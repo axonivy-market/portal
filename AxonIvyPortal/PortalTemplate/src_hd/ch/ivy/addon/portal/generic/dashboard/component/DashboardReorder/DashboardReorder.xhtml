@@ -1,0 +1,100 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="isPublicDashboard" default="false"/>
+  <cc:attribute name="listenerOnBackAction" />
+  <cc:attribute name="componentToUpdateOnBackAction" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="isPublicDashboard" value="#{cc.attrs.isPublicDashboard}" scope="request"/>
+
+  <h:form id="reorder-dashboard-form" styleClass="ui-g">
+    <f:event listener="#{dashboardReorderBean.initConfigration(isPublicDashboard)}" type="preRenderComponent"/>
+
+    <h:panelGroup styleClass="ui-g-12 dashboard-configuration__sub-header u-no-padding-left u-no-padding-right u-no-padding-top">
+      <h:outputText styleClass="sub-title"
+        value="#{ivy.cms.co(isPublicDashboard ? '/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ReorderPublicDashboards':'/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ReorderPrivateDashboards')}"/>
+
+      <h:panelGroup layout="block" styleClass="actions-group">
+        <p:remoteCommand id="back-to-public-configuration" name="backToPublicConfigurationCmd"
+          actionListener="#{cc.attrs.listenerOnBackAction}" update="#{cc.attrs.componentToUpdateOnBackAction}"
+          process="@this" partialSubmit="true" immediate="true" global="false"/>
+        <p:commandLink actionListener="#{cc.attrs.listenerOnBackAction}"
+          update="#{cc.attrs.componentToUpdateOnBackAction}" process="@this" styleClass="MarRight10">
+          <i class="si si-arrow-left-1" />
+          <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}</span>
+        </p:commandLink>
+        <p:commandButton id="save-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+          icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
+          actionListener="#{dashboardReorderBean.save()}" update="errors-message"
+          oncomplete="backToPublicConfigurationCmd()" />
+      </h:panelGroup>
+    </h:panelGroup>
+
+    <!-- Public dashboards -->
+    <ui:fragment rendered="#{isPublicDashboard}">
+      <p:dataTable id="public-dashboard-table" widgetVar="public-dashboard-table"
+        value="#{dashboardReorderBean.dashboardOrders}" var="dashboard"
+        draggableRows="true" rowDragSelector="i.si-move-expand-vertical"
+        styleClass="ui-g-12 u-no-padding-left u-no-padding-right" 
+        emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" lazy="false">
+        <p:ajax event="rowReorder" global="false" update="public-dashboard-table" />
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}"
+          styleClass="application-table-type-column">
+          <h:outputText id="dashboard-title" value="#{dashboard.dashboardTitle}" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/reorder/dashboardType')}"
+          styleClass="u-text-align-center" width="200">
+          <h:outputText id="dashboard-type" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/public')}" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reorder')}" width="70"
+          styleClass="u-text-align-center column-management-datatable__reorder">
+          <i id="reorder-button" class="si si-move-expand-vertical" />
+        </p:column>
+      </p:dataTable>
+    </ui:fragment>
+
+    <!-- Private dashboards -->
+    <ui:fragment rendered="#{!isPublicDashboard}">
+      <p:dataTable id="dashboard-table" widgetVar="dashboard-table"
+        value="#{dashboardReorderBean.dashboardOrders}" var="dashboard"
+        draggableRows="true" rowDragSelector="i.si-move-expand-vertical"
+        styleClass="ui-g-12 u-no-padding-left u-no-padding-right"
+        emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" lazy="false">
+        <p:ajax event="rowReorder" global="false" update="dashboard-table" />
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}"
+          styleClass="application-table-type-column">
+          <h:outputText id="dashboard-title" value="#{dashboard.dashboardTitle}" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/reorder/dashboardType')}"
+          styleClass="u-text-align-center" width="200">
+          <h:outputText id="dashboard-type"
+            value="#{ivy.cms.co(dashboard.isPublicDashboard ? '/ch.ivy.addon.portalkit.ui.jsf/common/public' : '/ch.ivy.addon.portalkit.ui.jsf/common/private')}" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/visible')}" width="150"
+          styleClass="u-text-align-center">
+          <p:commandLink id="toggle-visibility" styleClass="ui-selectbooleancheckbox ui-chkbox ui-widget"
+            actionListener="#{dashboardReorderBean.handleActivation(dashboard)}" update="dashboard-table" process="@this">
+            <h:panelGroup id="visible-state" rendered="#{dashboard.visible}"
+              class="ui-chkbox-box ui-widget ui-corner-all ui-state-default ui-state-active">
+              <span class="ui-chkbox-icon ui-icon ui-icon-check ui-c"/>
+            </h:panelGroup>
+            <h:panelGroup id="invisible-state" rendered="#{!dashboard.visible}"
+              class="ui-chkbox-box ui-widget ui-corner-all ui-state-default">
+              <span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"/>
+            </h:panelGroup>
+          </p:commandLink>
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reorder')}" width="150"
+          styleClass="u-text-align-center column-management-datatable__reorder">
+          <i id="reorder-button" class="si si-move-expand-vertical" />
+        </p:column>
+      </p:dataTable>
+    </ui:fragment>
+  </h:form>
+</cc:implementation>
+</html>

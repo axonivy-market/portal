@@ -31,16 +31,16 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
     super.setup();
     newDashboardPage = new NewDashboardPage();
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantDashboardWritePublicPermission.ivp");
-    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantDashboardWriteOwnPermission.ivp");
+    redirectToRelativeLink(grantDashboardWritePublicPermissionUrl);
+    redirectToRelativeLink(grantDashboardWriteOwnPermissionUrl);
     redirectToNewDashBoard();
   }
 
   @Test
   public void testRestorePublishDashboardToScratch() {
-    newDashboardPage.openDashboardConfigurationDialog();
-    newDashboardPage.openCreatePublicDashboardMenu();
-    newDashboardPage.createPublicDashboardFromScratch(DASHBOARD_NAME, DASHBOARD_DESCRIPTION, DASHBOARD_PERMISSION);
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    configurationPage.openCreatePublicDashboardMenu();
+    configurationPage.createPublicDashboardFromScratch(DASHBOARD_NAME, DASHBOARD_DESCRIPTION, DASHBOARD_PERMISSION);
     verifyEditingDashboardContent(DASHBOARD_NAME, CollectionCondition.empty);
     addNewCaseWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
@@ -52,9 +52,9 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
 
   @Test
   public void testRestorePublishDashboardToDefaultTemplate() {
-    newDashboardPage.openDashboardConfigurationDialog();
-    newDashboardPage.openCreatePublicDashboardMenu();
-    newDashboardPage.createPublicDashboardFromTemplate(DASHBOARD_NAME, DASHBOARD_DESCRIPTION, DASHBOARD_PERMISSION, 0);
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    configurationPage.openCreatePublicDashboardMenu();
+    configurationPage.createPublicDashboardFromTemplate(DASHBOARD_NAME, DASHBOARD_DESCRIPTION, DASHBOARD_PERMISSION, 0);
     verifyEditingDashboardContent(DASHBOARD_NAME, CollectionCondition.size(3));
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.deleteCompactModeProcess();
@@ -69,9 +69,9 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
     var dashboardName = "Dashboard";
     createJSonFile("dashboard-has-one-chart-example.json", PortalVariable.DASHBOARD.key);
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
-    newDashboardPage.openDashboardConfigurationDialog();
-    var configPage = newDashboardPage.navigateToEditPublicDashboardPage();
-    configPage.navigateToEditDashboardDetailsByName(dashboardName);
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName(dashboardName);
     verifyEditingDashboardContent(dashboardName, CollectionCondition.size(1));
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     var restoreButton = newDashboardDetailsEditPage.getRestoreDashboardButton();

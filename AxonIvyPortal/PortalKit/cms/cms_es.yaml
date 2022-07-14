@@ -727,18 +727,22 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Público
       savedFilters: 'Filtros guardados:'
   dashboard:
-    DashboardConfigurationDialog:
-      ConfigureDashboard: Configuración de tablero
+    DashboardConfiguration:
       CreateFromScratch: Crear desde cero
       CreateFromScratchDescription: Cree su propio panel de control desde cero
       CreateNewPrivateDashboard: Create new private dashboard
       CreateNewPublicDashboard: Crear un tablero público
+      Description: En esta área, puede configurar los cuadros de mando según sus necesidades.
       EditPrivateDashboards: Editar sus tableros privados
       EditPublicDashboards: Editar tableros públicos
+      PrivateDashboard: Private dashboards
       PrivateDashboardConfiguration: Configuración de tableros privados
+      PublicDashboard: Public dashboards
       PublicDashboardConfiguration: Configuración de tableros públicos
       ReorderPrivateDashboards: Reordenar tableros privados
       ReorderPublicDashboards: Reordenar tableros públicos
+      SelectAction: Select the action
+      Title: Configuración de tablero
     EmptyFilterMessage: No se ha encontrado ningún filtro de widget
     Filter:
       FilterOptionHeader: Opciones de filtro
@@ -781,6 +785,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CustomWidgetExternalLinkWarning: Algunas webs no son compatibles con iframe por motivos de seguridad. Póngase en contacto con su administrador si la web externa no funciona correctamente.
       Parameters: Parámetros
       RestoreDefaultDashboardTemplateTooltip: No podemos encontrar la plantilla de su panel de control, por lo que no podemos restablecer la configuración estándar. Por favor, consulte con su administrador para obtener más detalles.
+      SelectTheTemplate: Seleccione la plantilla
       SelectYourTemplate: Seleccione su plantilla
       configuration: Configuración
       configurationDescription: Puede configurar su widget en esta área de configuración. Por favor, defina los filtros requeridos así como las columnas a mostrar.
@@ -806,10 +811,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Editar tablero
       manageDashboard: Administrar tablero
       removeDashboardHeader: Borrar el tablero "{0}"
-      reorderDashboard: Reordenar tableros
     deleteWidget: Eliminar el widget
-    editPrivateDashboard: Editar tablero privado
-    editPublicDashboard: Editar tablero público
     editWidget: Editar widget
     existingField: El campo {0} ya existe
     expiryFrom: Caducidad desde
@@ -853,8 +855,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     removeWidgetMessage: ¿Realmente quieres eliminarlo?
     reorder:
       dashboardType: Tipo de tablero
-      reorderMyDashboard: Reordenar mi tablero
-      reorderPublicDashboard: Reordenar tableros públicos
     restoreDefaultHeader: Restaurar los widgets por defecto
     restoreDefaultMessage: Si procede, perderá todos los widgets creados por usted. Se aplicará la configuración estándar.
     select: Seleccione

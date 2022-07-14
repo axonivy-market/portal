@@ -1,31 +1,8 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.15",
   "id" : "164211FF9482BB44",
   "data" : "ch.ivy.addon.portal.generic.PortalStartData",
   "elements" : [ {
-      "id" : "f191",
-      "type" : "Alternative",
-      "name" : [
-        "has DashboardWriteOwn",
-        "permission?"
-      ],
-      "visual" : {
-        "at" : { "x" : 336, "y" : 2688 },
-        "labelOffset" : { "x" : -62, "y" : 27 }
-      },
-      "connect" : [
-        { "id" : "f180", "to" : "f173", "label" : {
-            "name" : "yes",
-            "segment" : 0.39,
-            "offset" : { "x" : 3, "y" : -9 }
-          }, "condition" : "ch.ivy.addon.portalkit.util.PermissionUtils.hasDashboardWriteOwnPermission()" },
-        { "id" : "f183", "to" : "f189", "label" : {
-            "name" : "no",
-            "segment" : 0.43,
-            "offset" : { "x" : -14, "y" : -1 }
-          } }
-      ]
-    }, {
       "id" : "f144",
       "type" : "RequestStart",
       "name" : "showCaseNoteHistory.ivp",
@@ -117,38 +94,13 @@
       "name" : " Redirect to task start",
       "config" : {
         "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.util.RequestUtil;",
-            "RequestUtil.redirect(in.callbackUrl);"
-          ]
+          "code" : "ch.ivy.addon.portalkit.util.RequestUtils.redirect(in.callbackUrl);"
         }
       },
       "visual" : {
         "at" : { "x" : 680, "y" : 1648 },
         "size" : { "width" : 128, "height" : 44 }
       }
-    }, {
-      "id" : "f177",
-      "type" : "RequestStart",
-      "name" : "PortalDashboardConfiguration.ivp",
-      "config" : {
-        "callSignature" : "PortalDashboardConfiguration",
-        "input" : {
-          "params" : [
-            { "name" : "isPublicDashboard", "type" : "Boolean" }
-          ],
-          "map" : {
-            "out.isPublicDashboard" : "param.isPublicDashboard"
-          }
-        },
-        "outLink" : "PortalDashboardConfiguration.ivp",
-        "showInStartList" : false
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 2416 },
-        "labelOffset" : { "x" : -67, "y" : 21 }
-      },
-      "connect" : { "id" : "f176", "to" : "f178" }
     }, {
       "id" : "f84",
       "type" : "DialogCall",
@@ -172,29 +124,6 @@
         "size" : { "width" : 128, "height" : 44 },
         "labelOffset" : { "x" : -55, "y" : -8 }
       }
-    }, {
-      "id" : "f193",
-      "type" : "DialogCall",
-      "name" : "PortalDashboardDetailModification",
-      "config" : {
-        "dialogId" : "ch.ivy.addon.portal.generic.dashboard.PortalDashboardDetailModification",
-        "startMethod" : "start(String,Boolean)",
-        "call" : {
-          "params" : [
-            { "name" : "dashboardId", "type" : "String" },
-            { "name" : "isPublicDashboard", "type" : "Boolean" }
-          ],
-          "map" : {
-            "param.dashboardId" : "in.dashboardId",
-            "param.isPublicDashboard" : "in.isPublicDashboard"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 296, "y" : 2800 },
-        "size" : { "width" : 208, "height" : 44 }
-      },
-      "connect" : { "id" : "f199", "to" : "f195" }
     }, {
       "id" : "f83",
       "type" : "Script",
@@ -486,30 +415,6 @@
         "labelOffset" : { "x" : -58, "y" : -20 }
       }
     }, {
-      "id" : "f188",
-      "type" : "RequestStart",
-      "name" : "DashboardDetails.ivp",
-      "config" : {
-        "callSignature" : "DashboardDetails",
-        "input" : {
-          "params" : [
-            { "name" : "dashboardId", "type" : "String" },
-            { "name" : "isPublicDashboard", "type" : "Boolean" }
-          ],
-          "map" : {
-            "out.dashboardId" : "param.dashboardId",
-            "out.isPublicDashboard" : "param.isPublicDashboard"
-          }
-        },
-        "outLink" : "DashboardDetails.ivp",
-        "showInStartList" : false
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 2800 },
-        "labelOffset" : { "x" : -45, "y" : 21 }
-      },
-      "connect" : { "id" : "f198", "to" : "f193" }
-    }, {
       "id" : "f71",
       "type" : "DialogCall",
       "name" : "Processes",
@@ -728,12 +633,6 @@
         "at" : { "x" : 1048, "y" : 2224 }
       },
       "connect" : { "id" : "f231", "to" : "f230" }
-    }, {
-      "id" : "f174",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 448, "y" : 2416 }
-      }
     }, {
       "id" : "f203",
       "type" : "Alternative",
@@ -1043,41 +942,6 @@
       },
       "connect" : { "id" : "f233", "to" : "f232" }
     }, {
-      "id" : "f150",
-      "type" : "RequestStart",
-      "name" : "DashboardReorder.ivp",
-      "config" : {
-        "callSignature" : "DashboardReorder",
-        "input" : {
-          "params" : [
-            { "name" : "isPublicDashboard", "type" : "Boolean" }
-          ],
-          "map" : {
-            "out.isPublicDashboard" : "param.isPublicDashboard"
-          }
-        },
-        "outLink" : "DashboardReorder.ivp",
-        "showInStartList" : false
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 2528 },
-        "labelOffset" : { "x" : -61, "y" : 18 }
-      },
-      "connect" : { "id" : "f194", "to" : "f192" }
-    }, {
-      "id" : "f182",
-      "type" : "DialogCall",
-      "name" : "DashboardArrangement",
-      "config" : {
-        "dialogId" : "ch.ivy.addon.portal.generic.dashboard.PublicDashboardReorder",
-        "startMethod" : "start()"
-      },
-      "visual" : {
-        "at" : { "x" : 504, "y" : 2528 },
-        "size" : { "width" : 144, "height" : 44 }
-      },
-      "connect" : { "id" : "f186", "to" : "f184" }
-    }, {
       "id" : "f94",
       "type" : "RequestStart",
       "name" : "RelatedTasksOfCasePageInFrame.ivp",
@@ -1126,12 +990,6 @@
         "size" : { "width" : 160, "height" : 44 }
       },
       "connect" : { "id" : "f55", "to" : "f54" }
-    }, {
-      "id" : "f195",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 480, "y" : 2800 }
-      }
     }, {
       "id" : "f125",
       "type" : "Alternative",
@@ -1222,12 +1080,6 @@
       "type" : "TaskEnd",
       "visual" : {
         "at" : { "x" : 448, "y" : 1840 }
-      }
-    }, {
-      "id" : "f189",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 336, "y" : 2600 }
       }
     }, {
       "id" : "f165",
@@ -1588,27 +1440,6 @@
         "labelOffset" : { "x" : -28, "y" : -16 }
       }
     }, {
-      "id" : "f178",
-      "type" : "DialogCall",
-      "name" : "PortalDashboardConfiguration",
-      "config" : {
-        "dialogId" : "ch.ivy.addon.portal.generic.dashboard.PortalDashboardConfiguration",
-        "startMethod" : "start(Boolean)",
-        "call" : {
-          "params" : [
-            { "name" : "isPublicDashboard", "type" : "Boolean" }
-          ],
-          "map" : {
-            "param.isPublicDashboard" : "in.isPublicDashboard"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 280, "y" : 2416 },
-        "size" : { "width" : 176, "height" : 44 }
-      },
-      "connect" : { "id" : "f175", "to" : "f174" }
-    }, {
       "id" : "f67",
       "type" : "SubProcessCall",
       "name" : "Functional Processes/OpenPortalSearch",
@@ -1650,19 +1481,6 @@
         "labelOffset" : { "x" : -68, "y" : 21 }
       },
       "connect" : { "id" : "f98", "to" : "f95" }
-    }, {
-      "id" : "f173",
-      "type" : "DialogCall",
-      "name" : "DashboardArrangement",
-      "config" : {
-        "dialogId" : "ch.ivy.addon.portal.generic.dashboard.MyDashboardReorder",
-        "startMethod" : "start()"
-      },
-      "visual" : {
-        "at" : { "x" : 504, "y" : 2688 },
-        "size" : { "width" : 144, "height" : 44 }
-      },
-      "connect" : { "id" : "f181", "to" : "f179" }
     }, {
       "id" : "f57",
       "type" : "TaskEnd",
@@ -1726,29 +1544,6 @@
         "labelOffset" : { "x" : -80, "y" : 18 }
       },
       "connect" : { "id" : "f202", "to" : "f201" }
-    }, {
-      "id" : "f187",
-      "type" : "Alternative",
-      "name" : [
-        "has DashboardWritePublic",
-        "permission?"
-      ],
-      "visual" : {
-        "at" : { "x" : 336, "y" : 2528 },
-        "labelOffset" : { "x" : -57, "y" : -54 }
-      },
-      "connect" : [
-        { "id" : "f185", "to" : "f182", "label" : {
-            "name" : "yes",
-            "segment" : 0.39,
-            "offset" : { "x" : 0, "y" : -9 }
-          }, "condition" : "ch.ivy.addon.portalkit.util.PermissionUtils.hasDashboardWritePublicPermission()" },
-        { "id" : "f190", "to" : "f189", "label" : {
-            "name" : "no",
-            "segment" : 0.43,
-            "offset" : { "x" : 14, "y" : 0 }
-          } }
-      ]
     }, {
       "id" : "f64",
       "type" : "TaskEnd",
@@ -1860,7 +1655,7 @@
             { "id" : "S60-f5", "to" : "S60-f4", "via" : [ { "x" : 284, "y" : 256 } ], "label" : {
                 "name" : "others",
                 "segment" : 1.43,
-                "offset" : { "x" : 0, "y" : -10 }
+                "offset" : { "x" : 2, "y" : -10 }
               } }
           ]
         }, {
@@ -1897,7 +1692,6 @@
             "output" : {
               "code" : [
                 "import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;",
-                "",
                 "out.homepage = HomepageUtils.findHomepage();"
               ]
             }
@@ -1916,14 +1710,11 @@
           ],
           "config" : {
             "output" : {
-              "code" : [
-                "import ch.ivy.addon.portalkit.util.RequestUtil;",
-                "RequestUtil.redirect(in.homepage.link);"
-              ]
+              "code" : "ch.ivy.addon.portalkit.util.RequestUtils.redirect(in.homepage.link);"
             }
           },
           "visual" : {
-            "at" : { "x" : 404, "y" : 256 },
+            "at" : { "x" : 408, "y" : 256 },
             "size" : { "width" : 128, "height" : 44 },
             "labelOffset" : { "x" : -45, "y" : -16 }
           }
@@ -2116,35 +1907,6 @@
         "at" : { "x" : 224, "y" : 592 }
       },
       "connect" : { "id" : "f217", "to" : "f212" }
-    }, {
-      "id" : "f184",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 696, "y" : 2528 }
-      }
-    }, {
-      "id" : "f192",
-      "type" : "Alternative",
-      "name" : [
-        "is public",
-        "dashboard?"
-      ],
-      "visual" : {
-        "at" : { "x" : 192, "y" : 2528 },
-        "labelOffset" : { "x" : -34, "y" : -52 }
-      },
-      "connect" : [
-        { "id" : "f197", "to" : "f187", "label" : {
-            "name" : "yes",
-            "segment" : 0.15,
-            "offset" : { "x" : 1, "y" : 14 }
-          }, "condition" : "in.isPublicDashboard" },
-        { "id" : "f196", "to" : "f191", "via" : [ { "x" : 192, "y" : 2688 } ], "label" : {
-            "name" : "no",
-            "segment" : 0.14,
-            "offset" : { "x" : 12, "y" : 0 }
-          } }
-      ]
     }, {
       "id" : "f218",
       "type" : "Alternative",
@@ -2729,12 +2491,6 @@
         "at" : { "x" : 384, "y" : 720 }
       }
     }, {
-      "id" : "f179",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 696, "y" : 2688 }
-      }
-    }, {
       "id" : "f149",
       "type" : "RequestStart",
       "name" : "showTaskNoteHistory.ivp",
@@ -2955,5 +2711,91 @@
         "at" : { "x" : 1048, "y" : 2416 }
       },
       "connect" : { "id" : "f129", "to" : "f41" }
+    }, {
+      "id" : "f188",
+      "type" : "RequestStart",
+      "name" : "DashboardDetails.ivp",
+      "config" : {
+        "callSignature" : "DashboardDetails",
+        "input" : {
+          "params" : [
+            { "name" : "dashboardId", "type" : "String" },
+            { "name" : "isPublicDashboard", "type" : "Boolean" }
+          ],
+          "map" : {
+            "out.dashboardId" : "param.dashboardId",
+            "out.isPublicDashboard" : "param.isPublicDashboard"
+          }
+        },
+        "outLink" : "DashboardDetails.ivp",
+        "showInStartList" : false
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 2568 },
+        "labelOffset" : { "x" : -45, "y" : 21 }
+      },
+      "connect" : { "id" : "f198", "to" : "f193" }
+    }, {
+      "id" : "f193",
+      "type" : "DialogCall",
+      "name" : "PortalDashboardDetailModification",
+      "config" : {
+        "dialogId" : "ch.ivy.addon.portal.generic.dashboard.PortalDashboardDetailModification",
+        "startMethod" : "start(String,Boolean)",
+        "call" : {
+          "params" : [
+            { "name" : "dashboardId", "type" : "String" },
+            { "name" : "isPublicDashboard", "type" : "Boolean" }
+          ],
+          "map" : {
+            "param.dashboardId" : "in.dashboardId",
+            "param.isPublicDashboard" : "in.isPublicDashboard"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 2568 },
+        "size" : { "width" : 208, "height" : 44 }
+      },
+      "connect" : { "id" : "f199", "to" : "f195" }
+    }, {
+      "id" : "f195",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 464, "y" : 2568 }
+      }
+    }, {
+      "id" : "f241",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 464, "y" : 2448 }
+      }
+    }, {
+      "id" : "f243",
+      "type" : "DialogCall",
+      "name" : "PortalDashboardConfiguration",
+      "config" : {
+        "dialogId" : "ch.ivy.addon.portal.generic.dashboard.PortalDashboardConfiguration",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 264, "y" : 2448 },
+        "size" : { "width" : 176, "height" : 44 }
+      },
+      "connect" : { "id" : "f242", "to" : "f241" }
+    }, {
+      "id" : "f150",
+      "type" : "RequestStart",
+      "name" : "PortalDashboardConfiguration.ivp",
+      "config" : {
+        "callSignature" : "PortalDashboardConfiguration",
+        "outLink" : "PortalDashboardConfiguration.ivp",
+        "showInStartList" : false
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 2448 },
+        "labelOffset" : { "x" : -84, "y" : 17 }
+      },
+      "connect" : { "id" : "f173", "to" : "f243" }
     } ]
 }

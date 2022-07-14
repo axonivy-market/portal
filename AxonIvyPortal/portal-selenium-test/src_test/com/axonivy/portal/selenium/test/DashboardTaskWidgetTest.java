@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
-import com.axonivy.portal.selenium.page.NewDashboardConfigurationPage;
+import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
@@ -125,9 +125,9 @@ public class DashboardTaskWidgetTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     
-    newDashboardPage.openDashboardConfigurationDialog();
-    NewDashboardConfigurationPage configPage = newDashboardPage.navigateToEditPublicDashboardPage();
-    configPage.navigateToEditDashboardDetailsByName("Dashboard");
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
     taskEditWidget.changeWidgetTitle(NEW_YOUR_TASK);
     taskEditWidget.filterTaskName(TASK_NUMBER);
@@ -154,9 +154,9 @@ public class DashboardTaskWidgetTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
 
-    newDashboardPage.openDashboardConfigurationDialog();
-    NewDashboardConfigurationPage configPage = newDashboardPage.navigateToEditPublicDashboardPage();
-    NewDashboardDetailsEditPage newDashboardDetailsEditPage = configPage.navigateToEditDashboardDetailsByName("Dashboard");
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 
     newDashboardDetailsEditPage.addWidget();
     TaskEditWidgetNewDashBoardPage newtaskWidget = newDashboardDetailsEditPage.addNewTaskWidget();
