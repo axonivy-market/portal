@@ -7,7 +7,6 @@ import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 
 public enum PortalLibrary {
-  PORTAL_STYLE("portalStyle"),
   PORTAL_KIT("portalKit"), 
   PORTAL_TEMPLATE("portalTemplate"),
   AXON_EXPRESS("axonIvyExpress"),
