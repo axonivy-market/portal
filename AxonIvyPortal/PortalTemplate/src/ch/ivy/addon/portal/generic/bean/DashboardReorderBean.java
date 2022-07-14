@@ -32,15 +32,15 @@ public class DashboardReorderBean implements Serializable {
       List<Dashboard> dashboards = DashboardUtils.getPublicDashboards();
       this.dashboardOrders = convertDashboardsToDashboardOrders(dashboards);
     } else {
-      this.dashboardOrders = createMyDashboardOrders();
+      this.dashboardOrders = createPrivateDashboardOrders();
     }
   }
 
   public void save() {
     if (isPublicDashboard) {
-      saveArrangement();
+      savePublicArrangement();
     } else {
-      saveMyArrangement();
+      savePrivateArrangement();
     }
   }
 
@@ -50,7 +50,7 @@ public class DashboardReorderBean implements Serializable {
     return orders;
   }
 
-  public void saveArrangement() {
+  public void savePublicArrangement() {
     List<Dashboard> dashboards = DashboardUtils.getPublicDashboards();
     for (Dashboard dashboard : dashboards) {
       if (dashboard.getId() == null) {
@@ -70,12 +70,12 @@ public class DashboardReorderBean implements Serializable {
     Ivy.var().set(PortalVariable.DASHBOARD.key, dashboardsAsSJSON);
   }
 
-  public void saveMyArrangement() {
+  public void savePrivateArrangement() {
     String dashboardJson = BusinessEntityConverter.entityToJsonValue(getDashboardOrders());
     Ivy.session().getSessionUser().setProperty(PortalVariable.DASHBOARD_ORDER.key, dashboardJson);
   }
 
-  private List<DashboardOrder> createMyDashboardOrders() {
+  private List<DashboardOrder> createPrivateDashboardOrders() {
     List<Dashboard> visibleDashboards = DashboardUtils.getAllVisibleDashboardsOfSessionUser();
     Map<String, Dashboard> dashboardByIdMap = DashboardUtils.createMapIdToDashboard(visibleDashboards);
     List<DashboardOrder> orders = DashboardUtils.getDashboardOrdersOfSessionUser();

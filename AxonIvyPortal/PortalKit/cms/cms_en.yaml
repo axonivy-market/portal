@@ -741,6 +741,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PublicDashboard: Public dashboards
       PublicDashboardConfiguration: Public dashboard configuration
       ReorderPrivateDashboards: Reorder your dashboards
+      ReorderPublicDashboards: Reorder public dashboards
       SelectAction: Select the action
       Title: Dashboard configuration
     EmptyFilterMessage: No widget filter found
