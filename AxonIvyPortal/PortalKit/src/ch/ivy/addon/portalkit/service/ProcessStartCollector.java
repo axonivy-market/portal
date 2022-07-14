@@ -52,20 +52,22 @@ public class ProcessStartCollector {
   
   /**
    * find friendly request path in specific pmv base on keyword
-   * If pmv id not found, get pmv of current task 
    * @param keyword
    * @param portalStartPmvId
    * @return user friendly request path
    */
   public String findFriendlyRequestPathContainsKeyword(String keyword, Object portalStartPmvId) {
-    IProcessModelVersion findPMV = null;
-    for (IApplication app : applicationsInSecurityContext) {
-      if(app.findProcessModelVersion(portalStartPmvId) != null) {
-        findPMV = app.findProcessModelVersion(portalStartPmvId);
+    if (portalStartPmvId == null) {
+      return findFriendlyRequestPathContainsKeywordInPMV(keyword, Ivy.wfTask().getProcessModelVersion()); 
+    } else {
+      for (IApplication app : applicationsInSecurityContext) {
+        IProcessModelVersion findProcessModelVersion = app.findProcessModelVersion(portalStartPmvId);
+        if(findProcessModelVersion != null) {
+          return findFriendlyRequestPathContainsKeywordInPMV(keyword, findProcessModelVersion);
+        }
       }
     }
-    IProcessModelVersion findProcessModelVersion = portalStartPmvId == null ? Ivy.wfTask().getProcessModelVersion() : findPMV;
-    return findFriendlyRequestPathContainsKeywordInPMV(keyword, findProcessModelVersion);
+    return StringUtils.EMPTY;
   }
 
   /**

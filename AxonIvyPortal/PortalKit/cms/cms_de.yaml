@@ -699,7 +699,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskStart:
       cannotDelegateTaskMessage: Diese Aufgabe kann an keinen anderen Benutzer oder keine andere Gruppe delegiert werden.
       cannotStartMessages:
-        cannotStartTask: "Sie können Aufgabe {0} nicht starten.\r\nSie können Aufgabe {0} nicht starten."
+        cannotStartTask: Sie können Aufgabe {0} nicht starten.
         isAnotherUserWorking: Sie können nicht an der Aufgabe ''{0}'' mit der Identifikation ''{1}'' arbeiten, weil Benutzer ''{2}'' momentan daran arbeitet.
         noPermission: Sie können die Aufgabe {0} nicht starten, weil Ihnen die Berechtigung fehlt.
         taskDone: |+

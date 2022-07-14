@@ -73,6 +73,6 @@ def cacheEngine() {
     rmdir C:\\Users\\wawa\\.m2\\repository\\.cache\\ivy\\$env:ivyEngineVersion\\* -recurse -force -errorAction SilentlyContinue
   '''
   bat '''
-    mvn clean compile -f AxonIvyPortal\\PortalStyle\\pom.xml -Divy.engine.directory=C:\\Users\\wawa\\.m2\\repository\\.cache\\ivy\\%ivyEngineVersion% %engineDownloadURL%
+    mvn clean compile -f AxonIvyPortal\\portal-component\\pom.xml -Divy.engine.directory=C:\\Users\\wawa\\.m2\\repository\\.cache\\ivy\\%ivyEngineVersion% %engineDownloadURL%
   '''
 }
