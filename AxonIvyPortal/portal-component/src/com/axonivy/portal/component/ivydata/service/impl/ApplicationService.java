@@ -84,7 +84,7 @@ public class ApplicationService implements IApplicationService {
   private List<IApplication> getAllPortalAppsOnSecurityContext() {
     List<IApplication> applications = IApplicationRepository.instance().allOf(ISecurityContext.current());
     return applications.stream()
-        .filter(app -> app.findReleasedLibrary(PortalLibrary.PORTAL_STYLE.getValue()) != null)
+        .filter(app -> app.findReleasedLibrary(PortalLibrary.PORTAL_KIT.getValue()) != null)
         .collect(Collectors.toList());
   }
 

@@ -86,7 +86,7 @@ def killUnnecessaryProcessesToRunTest() {
 def extractEngine(String engineDir, String engineDownloadURL) {
   echo '====================Extract engine===================='
   bat """
-    mvn clean compile -f AxonIvyPortal/PortalStyle/pom.xml -Divy.engine.directory=${engineDir} ${engineDownloadURL}
+    mvn clean compile -f AxonIvyPortal/portal-component/pom.xml -Divy.engine.directory=${engineDir} ${engineDownloadURL}
   """
 }
 
