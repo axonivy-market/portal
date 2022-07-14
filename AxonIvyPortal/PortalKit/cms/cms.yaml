@@ -682,8 +682,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Public
       savedFilters: 'Saved filters:'
   dashboard:
-    DashboardConfigurationDialog:
-      ConfigureDashboard: Dashboard configuration
+    DashboardConfiguration:
       CreateNewPrivateDashboard: Create new private dashboard
       CreateNewPublicDashboard: Create new public dashboard
       EditPrivateDashboards: Edit your private dashboards
@@ -692,6 +691,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PublicDashboardConfiguration: Public dashboard configuration
       ReorderPrivateDashboards: Reorder your dashboards
       ReorderPublicDashboards: Reorder public dashboards
+      Title: Dashboard configuration
     EmptyFilterMessage: No widget filter found
     Filter:
       FilterOptionHeader: Filter options
@@ -757,10 +757,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Edit dashboard
       manageDashboard: Manage dashboard
       removeDashboardHeader: Remove the "{0}" dashboard
-      reorderDashboard: Reorder dashboard
     deleteWidget: Delete widget
-    editPrivateDashboard: Edit private dashboard
-    editPublicDashboard: Edit public dashboard
     editWidget: Edit widget
     existingField: The {0} field has already been existing
     expiryFrom: Expiry From
@@ -804,8 +801,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     removeWidgetMessage: Do you really want to remove it?
     reorder:
       dashboardType: Dashboard type
-      reorderMyDashboard: Reorder my dashboard
-      reorderPublicDashboard: Reorder public dashboard
     restoreDefaultHeader: Restore to default widgets
     restoreDefaultMessage: If you proceed, you will loose all widgets created by yourself. The standard settings will be applied.
     select: Select

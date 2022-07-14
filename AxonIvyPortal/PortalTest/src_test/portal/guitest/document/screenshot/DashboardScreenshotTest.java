@@ -65,7 +65,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
   
   
   @Test
-  public void screenshotDashBoard() throws IOException {
+  public void screenshotDashboard() throws IOException {
     ScreenshotUtil.maximizeBrowser();
     ScreenshotUtil.captureElementScreenshot(homePage.getProcessWidgetElement(), ScreenshotUtil.DASHBOARD_FOLDER + "process-widget");
     ScreenshotUtil.captureElementScreenshot(homePage.getStatisticWidgetElement(), ScreenshotUtil.DASHBOARD_FOLDER + "statistic-widget");
@@ -74,7 +74,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
   }
   
   @Test
-  public void screenshotCustomizedDashBoard() throws IOException {
+  public void screenshotCustomizedDashboard() throws IOException {
     showNewCustomizedDashboard();
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.openTaskList();
@@ -82,16 +82,17 @@ public class DashboardScreenshotTest extends ScreenshotTest {
   }
   
   @Test
-  public void screenshotDashBoardWithAnnotation() throws IOException {
+  public void screenshotDashboardWithAnnotation() throws IOException {
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     ScreenshotUtil.maximizeBrowser();
     executeDecorateJs("numberingStatisticWidget();");
     ScreenshotUtil.captureElementScreenshot(homePage.getStatisticWidgetElement(), ScreenshotUtil.DASHBOARD_FOLDER + "statistics-key-information");
-    
+
     ScreenshotUtil.resizeBrowser(new Dimension(1400, 800));
     refreshHomePage();
     executeDecorateJs("numberingTopBar()");
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(homePage.getTopBar(), ScreenshotUtil.DASHBOARD_FOLDER + "portal-header-with-numbering-annotation", new ScreenshotMargin(20, 20, 20, 120));
-    
+
     executeDecorateJs("numberingTaskItem();");
     ScreenshotUtil.captureElementScreenshot(homePage.getTaskWidgetElement(), ScreenshotUtil.DASHBOARD_FOLDER + "personal-tasks-key-information");
     
@@ -99,19 +100,18 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     refreshHomePage();
     executeDecorateJs("highlightAndNumberingDashboardSections();");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DASHBOARD_FOLDER + "dashboard-3-sections");
-    
+
     refreshHomePage();
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_HD_WIDTH, 800));
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.openCompactSortMenu();
     executeDecorateJs("numberingTaskFilterAndSort();");
     ScreenshotUtil.captureElementScreenshot(homePage.getTaskWidgetElement(), ScreenshotUtil.DASHBOARD_FOLDER + "personal-tasks-sort-and-search-features");
-    
   }
   
 
   @Test
-  public void screenshotNewDashBoard() throws IOException{
+  public void screenshotNewDashboard() throws IOException{
     showNewDashboard();
     newDashboardPage = new NewDashboardPage();
 
@@ -136,8 +136,10 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     login(TestAccount.ADMIN_USER);
     showNewDashboard();
     newDashboardPage = new NewDashboardPage();
-    redirectToEditDashboard();
+    redirectToDashboardConfiguration();
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.selectPublicDashboardType();
+    configPage.selectEditPublicDashboards();
     configPage.configureDashboardByIndex(0);
     newDashboardPage.waitForPageLoaded();
     newDashboardPage.addNewCustomWidget();
@@ -183,8 +185,10 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     taskInfoOverlayPanel.findElement(By.className("info-overlay-panel__footer")).findElement(By.className("ui-link")).click();
 
     // Take screenshot of Edit dashboard page
-    redirectToEditDashboard();
+    redirectToDashboardConfiguration();
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.selectPublicDashboardType();
+    configPage.selectEditPublicDashboards();
     configPage.configureDashboardByIndex(0);
     newDashboardPage.waitForPageLoaded();
     WaitHelper.assertTrueWithWait(() -> ScreenshotUtil.isDOMStatusComplete());
@@ -271,7 +275,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     homePage.waitForStatisticRendered();
   }
 
-  private void redirectToEditDashboard() {
-    redirectToRelativeLink("portalTemplate/1549F58C18A6C562/PortalDashboardConfiguration.ivp?isPublicDashboard=true");
+  private void redirectToDashboardConfiguration() {
+    redirectToRelativeLink("portalTemplate/1549F58C18A6C562/PortalDashboardConfiguration.ivp");
   }
 }

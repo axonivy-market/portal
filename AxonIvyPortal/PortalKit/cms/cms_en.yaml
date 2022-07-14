@@ -728,18 +728,21 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Public
       savedFilters: 'Saved filters:'
   dashboard:
-    DashboardConfigurationDialog:
-      ConfigureDashboard: Dashboard configuration
+    DashboardConfiguration:
       CreateFromScratch: Create from scratch
       CreateFromScratchDescription: Create your own dashboard from scratch
       CreateNewPrivateDashboard: Create new private dashboard
       CreateNewPublicDashboard: Create new public dashboard
+      Description: In this area, you can configure the dashboards according to your requirements.
       EditPrivateDashboards: Edit your private dashboards
       EditPublicDashboards: Edit public dashboards
+      PrivateDashboard: Private dashboards
       PrivateDashboardConfiguration: Private dashboard configuration
+      PublicDashboard: Public dashboards
       PublicDashboardConfiguration: Public dashboard configuration
       ReorderPrivateDashboards: Reorder your dashboards
-      ReorderPublicDashboards: Reorder public dashboards
+      SelectAction: Select the action
+      Title: Dashboard configuration
     EmptyFilterMessage: No widget filter found
     Filter:
       FilterOptionHeader: Filter options
@@ -782,6 +785,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CustomWidgetExternalLinkWarning: Some websites are not compatible with iframe due to security concerns. Please contact your administrator if the external website is not working properly.
       Parameters: Parameters
       RestoreDefaultDashboardTemplateTooltip: We cannot find the template of your dashboard, so we cannot reset it to the standard configuration. Please check with your administrator for more details!
+      SelectTheTemplate: Select the template
       SelectYourTemplate: Select your template
       configuration: Configuration
       configurationDescription: You can configure your widget in this configuration area. Please define the required filters as well as columns to be shown.
@@ -807,10 +811,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Edit dashboard
       manageDashboard: Manage dashboard
       removeDashboardHeader: Remove the "{0}" dashboard
-      reorderDashboard: Reorder dashboard
     deleteWidget: Delete widget
-    editPrivateDashboard: Edit private dashboard
-    editPublicDashboard: Edit public dashboard
     editWidget: Edit widget
     existingField: The {0} field has already been existing
     expiryFrom: Expiry From
@@ -854,8 +855,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     removeWidgetMessage: Do you really want to remove it?
     reorder:
       dashboardType: Dashboard type
-      reorderMyDashboard: Reorder my dashboard
-      reorderPublicDashboard: Reorder public dashboard
     restoreDefaultHeader: Restore to default widgets
     restoreDefaultMessage: If you proceed, you will loose all widgets created by yourself. The standard settings will be applied.
     select: Select
