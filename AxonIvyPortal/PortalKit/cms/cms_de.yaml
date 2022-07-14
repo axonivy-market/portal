@@ -727,18 +727,20 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Öffentlich
       savedFilters: 'Gespeicherte Filter:'
   dashboard:
-    DashboardConfigurationDialog:
-      ConfigureDashboard: Dashboard-Konfiguration
-      CreateFromScratch: Von Grund auf neu erstellen
+    DashboardConfiguration:
       CreateFromScratchDescription: Erstellen Sie Ihr eigenes Dashboard von Grund auf
       CreateNewPrivateDashboard: Create new private dashboard
       CreateNewPublicDashboard: Neues öffentliches Dashboard erstellen
+      Description: In diesem Bereich können Sie die Dashboards nach Ihren Wünschen konfigurieren.
       EditPrivateDashboards: Private Dashboards bearbeiten
       EditPublicDashboards: Öffentliche Dashboards bearbeiten
+      PrivateDashboard: Private dashboards
       PrivateDashboardConfiguration: Private Dashboard-Konfiguration
-      PublicDashboardConfiguration: Öffentliche Dashboard-Konfiguration
+      PublicDashboard: Public dashboards
       ReorderPrivateDashboards: Réorganiser vos tableaux de bord
       ReorderPublicDashboards: Öffentliche Dashboards neu anordnen
+      SelectAction: Select the action
+      Title: Dashboard-Konfiguration
     EmptyFilterMessage: Kein Widget-Filter gefunden
     Filter:
       FilterOptionHeader: Filter-Optionen
@@ -781,6 +783,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CustomWidgetExternalLinkWarning: Einige Websites sind aufgrund von Sicherheitsbedenken nicht mit iframe kompatibel. Bitte wenden Sie sich an Ihren Administrator, wenn die externe Website nicht ordnungsgemäß funktioniert.
       Parameters: Parameter
       RestoreDefaultDashboardTemplateTooltip: Wir können die Vorlage für Ihr Dashboard nicht finden und es daher nicht auf die Standardkonfiguration zurücksetzen. Bitte erkundigen Sie sich bei Ihrem Administrator nach weiteren Details!
+      SelectTheTemplate: Wählen Sie die Vorlage
       SelectYourTemplate: Wählen Sie Ihre Vorlage
       configuration: Konfiguration
       configurationDescription: In diesem Konfigurationsbereich kann das Widget konfiguriert werden. Bitte definieren Sie die gewünschten Filter sowie die anzuzeigenden Spalten.
@@ -806,10 +809,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Dashboard editieren
       manageDashboard: Dashboard verwalten
       removeDashboardHeader: Dashboard "{0}" entfernen
-      reorderDashboard: Dashboard neu anordnen
     deleteWidget: Widget löschen
-    editPrivateDashboard: Privates Dashboard editieren
-    editPublicDashboard: Öffentliches Dashboard editieren
     editWidget: Widget bearbeiten
     existingField: Das Feld {0} ist bereits vorhanden
     expiryFrom: Gültig von
@@ -853,8 +853,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     removeWidgetMessage: Möchten Sie es wirklich löschen?
     reorder:
       dashboardType: Dashboard-Typ
-      reorderMyDashboard: Mein Dashboard neu anordnen
-      reorderPublicDashboard: Öffentliches Dashboard neu anordnen
     restoreDefaultHeader: Auf Standard zurücksetzen
     restoreDefaultMessage: Wenn Sie fortfahren, verlieren Sie alle von Ihnen erstellten Widgets. Es werden die Standardeinstellungen übernommen.
     select: Wählen Sie

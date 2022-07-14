@@ -20,9 +20,7 @@
   </div>
 
   <ui:insert name="menu-bar">
-    
     <ul id="top-menu" class="topbar-menu animated js-top-menu">
-      
       <li class="breadcrumb-container" >
         <h:panelGroup id="breadcrumb-container" >
           <ic:ch.ivy.addon.portal.generic.PortalBreadcrumb id="portal-breadcrumb"
@@ -46,12 +44,13 @@
            <li><p:commandLink id="user-profile" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle')}"
             actionListener="#{userMenuBean.navigateToUserProfileOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}" /></li>
 
-          <li jsf:rendered="#{dashboardBean.canEditPrivateDashboard or dashboardBean.canEditPublicDashboard}">
-            <p:commandLink id="dashboard-configuration" rendered="#{!menuView.isShowLegacyUI()}"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/ConfigureDashboard')}"
-              onclick="PF('dashboard-configuration-dialog').show();" global="false"/></li>
+          <li jsf:rendered="#{userMenuBean.showDashboardConfigurationMenu and !menuView.isShowLegacyUI()}">
+            <p:commandLink id="dashboard-configuration"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title')}"
+              actionListener="#{userMenuBean.navigateToDashboardConfigurationOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"/>
+          </li>
 
-          <li jsf:rendered="#{permissionBean.hasAdminPermission()}">
+          <li jsf:rendered="#{userMenuBean.hasAdminPermission()}">
             <p:commandLink id="adminui-menu-item" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}"
               actionListener="#{userMenuBean.navigateToPortalManagementDisplayWorkingTaskWarning(isWorkingOnATask, task)}" />
           </li>
@@ -69,13 +68,11 @@
 
           <li><p:link id="project-info-menu-item" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/info')}"
               onclick="rcProjectInfo(); $('#user-setting-container').click()" /></li>
-           
-           <c:forEach var="menu" items="#{userMenuConfigurableBean.menus}" varStatus="status">
-           <li>
-             <ic:ch.ivy.addon.portalkit.component.UserMenu id="user-menu-setting-#{status.index}" menu="#{menu}" index="#{status.index}"
-              isWorkingOnATask="#{isWorkingOnATask}" task="#{task}"/>
-           </li>
-           </c:forEach>
+
+          <c:forEach var="menu" items="#{userMenuConfigurableBean.menus}" varStatus="status">
+            <li><ic:ch.ivy.addon.portalkit.component.UserMenu id="user-menu-setting-#{status.index}" menu="#{menu}"
+                index="#{status.index}" isWorkingOnATask="#{isWorkingOnATask}" task="#{task}" /></li>
+          </c:forEach>
 
           <li jsf:rendered="#{loginBean.isLoginPageRendered()}">
             <ic:ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting
@@ -126,8 +123,6 @@
           icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('project-info-dialog').hide();" />
       </h:panelGroup>
     </p:dialog>
-
-    <ic:ch.ivy.addon.portal.generic.dashboard.component.PortalDashboardMenuDialog isWorkingOnATask="#{isWorkingOnATask}" task="#{task}" />
 
     <h:form>
       <p:remoteCommand name="rcProjectInfo" actionListener="#{projectVersionBean.loadProjectVesion}" oncomplete="PF('project-info-dialog').show()"

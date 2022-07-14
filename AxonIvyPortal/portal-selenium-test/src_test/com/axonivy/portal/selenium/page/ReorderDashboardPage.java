@@ -29,10 +29,9 @@ public class ReorderDashboardPage extends TemplatePage {
     reorderButton.dragAndDropTo(toRow);
   }
 
-  public NewDashboardPage saveAndBackToHomePage() {
+  public void saveSetting() {
     $("button[id$='save-settings']").waitUntil(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("a.dashboard__title").waitUntil(appear, DEFAULT_TIMEOUT);
-    return new NewDashboardPage();
+    $("[id$='dashboard-configuration-content']").waitUntil(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement findRowWithDashboardName(String dashboardName) {
