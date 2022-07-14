@@ -16,7 +16,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class TaskDetailsTest extends BaseTest {
 
   // TASK NAME
