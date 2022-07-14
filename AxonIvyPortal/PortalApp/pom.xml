@@ -25,8 +25,8 @@
   </repositories>
   <dependencies>
     <dependency>
-      <groupId>ch.ivyteam.ivy.project.portal</groupId>
-      <artifactId>portalStyle</artifactId>
+      <groupId>com.axonivy.portal</groupId>
+      <artifactId>portal-component</artifactId>
       <version>9.1.0.0-SNAPSHOT</version>
       <type>iar</type>
     </dependency>
