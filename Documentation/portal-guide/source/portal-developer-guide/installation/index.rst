@@ -14,8 +14,10 @@ Basic installation
 Project modules
 ---------------
 
-The application consists of 4 process modules. For detailed information
+The application consists of 5 process modules. For detailed information
 of each module, refer to :ref:`architecture` .
+
+-  portal-component
 
 -  PortalStyle
 
@@ -33,11 +35,11 @@ deployment </doc/8.0/engine-guide/administration/deployment.html>`.
 Portal mode
 -----------
 
--  **Single application mode**: One Portal application on one engine. It must include PortalKit,
-   PortalTemplate and PortalStyle modules.
+-  **Single application mode**: One Portal application on one engine. It must include portal-component,
+   PortalKit, PortalTemplate and PortalStyle modules.
 
 -  **Multi applications mode**: Multiple Portal applications on one engine.
-   Each Portal application must include PortalKit, PortalTemplate and PortalStyle modules.
+   Each Portal application must include portal-component, PortalKit, PortalTemplate and PortalStyle modules.
 
 .. important::
    In multi applications mode, if you need overall dashboard, create
