@@ -18,6 +18,7 @@ import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
+import ch.ivy.addon.portalkit.bean.PermissionBean;
 import ch.ivy.addon.portalkit.bean.PortalExceptionBean;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.dto.UserMenu;
@@ -32,6 +33,7 @@ import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -173,43 +175,14 @@ public class UserMenuBean implements Serializable {
     }
   }
 
-  public void navigateToPublicDashboardReorderOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
+  public void navigateToDashboardConfigurationOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
+    var url = PortalNavigator.buildDashboardConfigurationUrl();
     if (isWorkingOnATask && task.getState() != TaskState.DONE) {
       openTaskLosingConfirmationDialog();
-      targetPage = getPublicDashboardReorderUrl();
+      targetPage = url;
     } else {
       executeJSResetPortalMenuState();
-      navigateToPublicDashboardReorder();
-    }
-  }
-
-  public void navigateToMyDashboardReorderOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
-    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
-      openTaskLosingConfirmationDialog();
-      targetPage = getMyDashboardReorderUrl();
-    } else {
-      executeJSResetPortalMenuState();
-      navigateToMyDashboardReorder();
-    }
-  }
-
-  public void navigateToMyDashboardConfigurationOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
-    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
-      openTaskLosingConfirmationDialog();
-      targetPage = getMyDashboardConfigurationUrl();
-    } else {
-      executeJSResetPortalMenuState();
-      navigateToMyDashboardConfiguration();
-    }
-  }
-
-  public void navigateToPublicDashboardConfigurationOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
-    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
-      openTaskLosingConfirmationDialog();
-      targetPage = getPublicDashboardConfigurationUrl();
-    } else {
-      executeJSResetPortalMenuState();
-      navigateToPublicDashboardConfiguration();
+      getExternalContext().redirect(url);
     }
   }
 
@@ -217,40 +190,8 @@ public class UserMenuBean implements Serializable {
     return PortalNavigator.buildAbsencesUrl();
   }
 
-  private String getPublicDashboardReorderUrl() {
-    return PortalNavigator.buildDashboardReorderUrl(true);
-  }
-
-  private String getMyDashboardReorderUrl() {
-    return PortalNavigator.buildDashboardReorderUrl(false);
-  }
-
-  private String getPublicDashboardConfigurationUrl() {
-    return PortalNavigator.buildDashboardConfigurationUrl(true);
-  }
-
-  private String getMyDashboardConfigurationUrl() {
-    return PortalNavigator.buildDashboardConfigurationUrl(false);
-  }
-
   public void navigateToAbsences() throws IOException {
     getExternalContext().redirect(getAbsencesUrl());
-  }
-
-  private void navigateToPublicDashboardReorder() throws IOException {
-    getExternalContext().redirect(getPublicDashboardReorderUrl());
-  }
-
-  private void navigateToMyDashboardReorder() throws IOException {
-    getExternalContext().redirect(getMyDashboardReorderUrl());
-  }
-
-  private void navigateToPublicDashboardConfiguration() throws IOException {
-    getExternalContext().redirect(getPublicDashboardConfigurationUrl());
-  }
-
-  private void navigateToMyDashboardConfiguration() throws IOException {
-    getExternalContext().redirect(getMyDashboardConfigurationUrl());
   }
 
   public void reserveTaskAndNavigateWithGrowl(ITask task) throws IOException {
@@ -277,6 +218,15 @@ public class UserMenuBean implements Serializable {
   
   private void openTaskLosingConfirmationDialog() {
     PrimeFaces.current().executeScript("PF('logo-task-losing-confirmation-dialog').show()");
+  }
+
+  public boolean hasAdminPermission() {
+    return new PermissionBean().hasAdminPermission();
+  }
+
+  public boolean isShowDashboardConfigurationMenu() {
+    return !RequestUtils.isMobileDevice()
+        && (PermissionUtils.hasDashboardWriteOwnPermission() || PermissionUtils.hasDashboardWritePublicPermission());
   }
 
   /**

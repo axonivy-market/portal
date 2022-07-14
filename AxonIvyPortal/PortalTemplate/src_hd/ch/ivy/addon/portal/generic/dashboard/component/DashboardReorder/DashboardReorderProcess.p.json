@@ -1,7 +1,7 @@
 {
   "format" : "9.4.14",
-  "id" : "17E0539DDBFB5496",
-  "data" : "ch.ivy.addon.portal.generic.dashboard.MyDashboardReorder.MyDashboardReorderData",
+  "id" : "181FC015AAFFACDB",
+  "data" : "ch.ivy.addon.portal.generic.dashboard.component.DashboardReorder.DashboardReorderData",
   "kind" : "HTML_DIALOG",
   "elements" : [ {
       "id" : "f1",

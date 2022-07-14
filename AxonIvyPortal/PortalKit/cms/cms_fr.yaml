@@ -724,18 +724,21 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Publique
       savedFilters: 'Filtres enregistrés:'
   dashboard:
-    DashboardConfigurationDialog:
-      ConfigureDashboard: Configuration du tableau de bord
+    DashboardConfiguration:
       CreateFromScratch: Créer à partir de rien
       CreateFromScratchDescription: Create your own dashboard from scratch
-      CreateNewPrivateDashboard: Create new private dashboard
       CreateNewPublicDashboard: Créer un nouveau tableau de bord public
+      Description: Dans cette zone, vous pouvez configurer les tableaux de bord en fonction de vos besoins.
       EditPrivateDashboards: Modifier vos tableaux de bord privés
       EditPublicDashboards: Modifier les tableaux de bord publics
+      PrivateDashboard: Private dashboards
       PrivateDashboardConfiguration: Configuration des tableaux de bord privés
+      PublicDashboard: Public dashboards
       PublicDashboardConfiguration: Configuration des tableaux de bord publics
       ReorderPrivateDashboards: Réorganiser vos tableaux de bord
       ReorderPublicDashboards: Réorganiser les tableaux de bord publics
+      SelectAction: Select the action
+      Title: Configuration du tableau de bord
     EmptyFilterMessage: Aucun filtre de widget trouvé
     Filter:
       FilterOptionHeader: Options de filtre
@@ -778,6 +781,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CustomWidgetExternalLinkWarning: Certains web sites ne sont pas compatibles avec les iframe pour des raisons de sécurité. Veuillez contacter votre administrateur si le web site externe ne fonctionne pas correctement.
       Parameters: Paramètres
       RestoreDefaultDashboardTemplateTooltip: Nous ne trouvons pas le modèle de votre tableau de bord, nous ne pouvons donc pas le réinitialiser à la configuration standard. Veuillez vérifier auprès de votre administrateur pour plus de détails!
+      SelectTheTemplate: Sélectionnez le modèle
       SelectYourTemplate: Sélectionnez votre template
       configuration: Configuration
       configurationDescription: Vous pouvez configurer votre widget dans cette zone de configuration. Veuillez définir les filtres requis ainsi que les colonnes à afficher.
@@ -803,10 +807,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Modifier le tableau de bord
       manageDashboard: Gérer le tableau de bord
       removeDashboardHeader: Supprimez le tableau de bord "{0}".
-      reorderDashboard: Réorganiser le tableau de bord
     deleteWidget: Supprimer le widget
-    editPrivateDashboard: Modifier le tableau de bord privé
-    editPublicDashboard: Modifier le tableau de bord public
     editWidget: Modifier le widget
     existingField: Le champ {0} a déjà été créé
     expiryFrom: Expiration du
@@ -850,8 +851,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     removeWidgetMessage: Voulez-vous vraiment le supprimer ?
     reorder:
       dashboardType: Type de tableau de bord
-      reorderMyDashboard: Réorganiser mon tableau de bord
-      reorderPublicDashboard: Réorganiser le tableau de bord public
     restoreDefaultHeader: Restaurer les widgets par défaut
     restoreDefaultMessage: Si vous procédez ainsi, vous perdrez tous les widgets créés par vous-même. Les paramètres standard seront appliqués.
     select: Sélectionnez

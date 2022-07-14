@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
-import com.axonivy.portal.selenium.page.NewDashboardConfigurationPage;
+import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetNewDashBoardPage;
@@ -53,11 +53,13 @@ public class StickyNavigationDashboardTest extends BaseTest {
     createJSonFile("multi-dashboards.json", PortalVariable.DASHBOARD.key);
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard"));
-    newDashboardPage.openDashboardConfigurationDialog();
-    newDashboardPage.reorderPublicDashboard();
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    configurationPage.reorderPublicDashboard();
     ReorderDashboardPage reorderDashboardPage = new ReorderDashboardPage();
     reorderDashboardPage.reorderDashboard("New public dashboard 1", "New public dashboard");
-    newDashboardPage = reorderDashboardPage.saveAndBackToHomePage();
+    reorderDashboardPage.saveSetting();
+    redirectToNewDashBoard();
+    newDashboardPage = new NewDashboardPage();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard"));
   }
   
@@ -68,10 +70,10 @@ public class StickyNavigationDashboardTest extends BaseTest {
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard"));
     newDashboardPage.selectDashboard(2);
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 2"));
-    newDashboardPage.openDashboardConfigurationDialog();
-    NewDashboardConfigurationPage configPage = newDashboardPage.navigateToEditPublicDashboardPage();
-    configPage.clickDeleteDashboardByName("New public dashboard 2");
-    newDashboardPage = configPage.navigateToNewDashboardPage();
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.clickDeleteDashboardByName("New public dashboard 2");
+    newDashboardPage = configurationPage.backToHomePage();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard"));
   }
   
@@ -82,11 +84,12 @@ public class StickyNavigationDashboardTest extends BaseTest {
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard"));
     newDashboardPage.selectDashboard(1);
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"));
-    newDashboardPage.openDashboardConfigurationDialog();
-    newDashboardPage.reorderPrivateDashboard();
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    configurationPage.reorderPrivateDashboard();
     ReorderDashboardPage reorderDashboardPage = new ReorderDashboardPage();
     reorderDashboardPage.toggleVisibility("New public dashboard 1");
-    newDashboardPage = reorderDashboardPage.saveAndBackToHomePage();
+    reorderDashboardPage.saveSetting();
+    newDashboardPage = configurationPage.backToHomePage();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard"));
   }
   
@@ -112,11 +115,11 @@ public class StickyNavigationDashboardTest extends BaseTest {
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"));
     String name = "New private dashboard 3";
     String description = "New private dashboard 3 description";
-    newDashboardPage.openDashboardConfigurationDialog();
-    newDashboardPage.openCreatePrivateDashboardMenu();
-    newDashboardPage.createPrivateDashboardFromScratch(name, description);
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    configurationPage.createPrivateDashboardFromScratch(name, description);
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
-    newDashboardDetailsEditPage.backToConfigurationPage().navigateToNewDashboardPage();
+    configurationPage = newDashboardDetailsEditPage.backToConfigurationPage();
+    newDashboardPage = configurationPage.backToHomePage();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"));
   }
   
@@ -131,11 +134,12 @@ public class StickyNavigationDashboardTest extends BaseTest {
     String description = "New public dashboard 3 description";
     List<String> permissions = new ArrayList<>();
     permissions.add("Everybody");
-    newDashboardPage.openDashboardConfigurationDialog();
-    newDashboardPage.openCreatePublicDashboardMenu();
-    newDashboardPage.createPublicDashboardFromScratch(name, description, permissions);
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    configurationPage.openCreatePublicDashboardMenu();
+    configurationPage.createPublicDashboardFromScratch(name, description, permissions);
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
-    newDashboardDetailsEditPage.backToConfigurationPage().navigateToNewDashboardPage();
+    configurationPage = newDashboardDetailsEditPage.backToConfigurationPage();
+    newDashboardPage = configurationPage.backToHomePage();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"));
   }
 
