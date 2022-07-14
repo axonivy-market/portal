@@ -84,7 +84,7 @@ function of these columns work:
 
    -  To add a CMS for checkbox label, add new entries to folder
       ``/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/`` in
-      ``PortalStyle`` or override method ``getColumnLabel``\ (see the methods'
+      ``PortalKit`` or override method ``getColumnLabel``\ (see the methods'
       Javadoc comments)
 
    -  In the ``caseListHeader`` section, use the ``CaseColumnHeader`` component

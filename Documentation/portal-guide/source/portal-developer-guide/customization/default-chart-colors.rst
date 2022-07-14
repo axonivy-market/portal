@@ -97,7 +97,7 @@ Portal introduces the **StatisticColors** object. We use it to build a color **D
 
 ..
 
-You can override data label colors by re-defining the values of the variables in ``customization.css`` below:
+You can override data label colors by re-defining the values of the variables in ``custom.css`` below:
 
  - ``--chart-label-default-exception-priority-color`` to override label color of exception priority task
  - ``--chart-label-default-high-priority-color`` to override label color of high priority task
@@ -114,7 +114,7 @@ You can override data label colors by re-defining the values of the variables in
  - ``--chart-label-default-task-month-color`` to override label color of this month task
  - ``--chart-label-default-task-year-color`` to override label color of this year task
 
-In Portal home, you can override the color of the Statistic Carousel header by re-defining the value of the variables in ``customization.css`` below:
+In Portal home, you can override the color of the Statistic Carousel header by re-defining the value of the variables in ``custom.css`` below:
 
  - ``--statistic-panel-header`` to override background color of Carousel header
  - ``--statistic-panel-header-border`` to override border color of Carousel header
