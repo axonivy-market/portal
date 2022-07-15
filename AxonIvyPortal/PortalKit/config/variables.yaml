@@ -237,9 +237,9 @@ Variables:
     # For switch on/off the display of user/role avatars.
     ShowAvatar: true
     
-    # Set this property less than 10 to disable updating live statistic chart with polling
-    # Default value is 0, It means live chart polling is disabled, Set this property more than or equal 10 to enable updating live chart
-    StatisticChartsPolling: 0
+    # Interval in seconds to do periodic statistic chart scaling requests.
+    # If the interval value is less than 10, periodic statistic chart scaling is disabled.
+    StatisticChartScalingInterval: 0
 
     # The set number controls the amount of direct children roles that is shown in Role Management tab.
     # [enum: 10, 50, 100]
