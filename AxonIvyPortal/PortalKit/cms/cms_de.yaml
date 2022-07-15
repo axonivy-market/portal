@@ -735,9 +735,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       CreateNewPublicDashboard: Neues öffentliches Dashboard erstellen
       DefaultTemplateDescription: Dashboard mit 1 Aufgabenliste, 1 Fallliste und 1 Prozessliste erstellen
       Description: In diesem Bereich können Sie die Dashboards nach Ihren Wünschen konfigurieren.
+      DoNotSupportMobile: Die Dashboard-Konfiguration wird für mobile Geräte nicht unterstützt.
       EditPrivateDashboards: Private Dashboards bearbeiten
       EditPublicDashboards: Öffentliche Dashboards bearbeiten
-      PrivateDashboard: Persönliche Dashboards
+      PrivateDashboard: Private Dashboards
       PrivateDashboardConfiguration: Private Dashboard-Konfiguration
       PublicDashboard: Öffentliche Dashboards
       PublicDashboardConfiguration: Konfiguration des öffentlichen Dashboards
