@@ -336,6 +336,8 @@ Changes in 9.4
 - Introduce the ``Portal.Tasks.BehaviourWhenClickingOnLineInTaskList`` Portal setting to set behaviour when
   clicking on a line in task list, task widget in new dashboard and related tasks in case details, each user can change it via user profile. 
 
+- Introduce the ``Portal.StatisticChartScalingInterval`` Portal setting to set the interval in seconds to do periodic statistic chart scaling requests.
+
 - Introduce new ``Task ID``, ``Task Name``, ``Case ID`` and ``Case Name`` filter in the Portal full task list and case list.
 
 - Introduce the ``Process Viewer`` page, user can get the visual viewer of the process start. See details :ref:`Show Process Viewer <how-to-show-process-viewer>`
