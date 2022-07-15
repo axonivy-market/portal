@@ -56,7 +56,7 @@ public class StickyNavigationDashboardTest extends BaseTest {
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     configurationPage.reorderPublicDashboard();
     ReorderDashboardPage reorderDashboardPage = new ReorderDashboardPage();
-    reorderDashboardPage.reorderDashboard("New public dashboard 1", "New public dashboard");
+    reorderDashboardPage.reorderPublicDashboard("New public dashboard 1", "New public dashboard");
     reorderDashboardPage.saveSetting();
     redirectToNewDashBoard();
     newDashboardPage = new NewDashboardPage();
