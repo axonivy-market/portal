@@ -6406,11 +6406,12 @@ a.dashboard-action-container label {
   top: 0;
 }
 
-/* =================== ROLE MANAGEMENT ====================== */
+.dashboard-configuration-tooltip,
 .role-assigned-users-tooltip {
   max-width: 500px;
 }
 
+/* =================== ROLE MANAGEMENT ====================== */
 .delete-role-dialog-content {
   padding: 0.5em 2em;
 }
