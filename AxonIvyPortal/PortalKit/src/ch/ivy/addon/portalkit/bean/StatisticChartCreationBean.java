@@ -50,7 +50,7 @@ public class StatisticChartCreationBean implements Serializable {
   private Map<String, List<String>> customFieldFilters = new HashMap<>();
 
   public static final int CASE_CATEGORIES_TYPE = 0;
-  public static final int MINIMUM_POLLING = 10;
+  public static final int MINIMUM_STATISTIC_CHART_SCALING_INTERVAL = 10;
 
   @PostConstruct
   public void init() {
@@ -371,15 +371,12 @@ public class StatisticChartCreationBean implements Serializable {
     this.customFieldFilters.put(customFieldName, values);
   }
   
-  public long getStatisticChartsPolling() {
-    String clientSideTimeoutInMinute = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.STATISTIC_CHARTS_POLLING);
-    if (StringUtils.isNotBlank(clientSideTimeoutInMinute)) {
-      return Long.valueOf(clientSideTimeoutInMinute);
-    }
-    return 0;
+  public long getStatisticChartScalingInterval() {
+    String statisticChartScalingInterval = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.STATISTIC_CHART_SCALING_INTERVAL);
+    return StringUtils.isNotBlank(statisticChartScalingInterval) ? Long.valueOf(statisticChartScalingInterval) : 0;
   }
-  
-  public int getMinimumPolling() {
-    return MINIMUM_POLLING;
+
+  public int getMinimumStatisticChartScalingInterval() {
+    return MINIMUM_STATISTIC_CHART_SCALING_INTERVAL;
   }
 }
