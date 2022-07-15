@@ -397,6 +397,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   common:
     BusinessCaseInformation: Informations sur les cas d'affaires
     CollapseAll: Réduire tout
+    DefaultTemplate: Modèle standard
     ExpandAll: Ouvrir tout
     NoSelection: Aucune sélection
     ResetToDefaultHeaderText: Réinitialiser les paramètres par défaut ?
@@ -725,19 +726,24 @@ ch.ivy.addon.portalkit.ui.jsf:
   dashboard:
     DashboardConfiguration:
       CreateFromScratch: Créer à partir de rien
-      CreateFromScratchDescription: Create your own dashboard from scratch
+      CreateFromScratchDescription: Créez votre propre tableau de bord à partir de zéro
+      CreateNewPrivateDashboard: Créer un nouveau tableau de bord privé
       CreateNewPublicDashboard: Créer un nouveau tableau de bord public
+      DefaultTemplateDescription: Créer un tableau de bord avec une liste de tâches, une liste de cas et une liste de processus.
       Description: Dans cette zone, vous pouvez configurer les tableaux de bord en fonction de vos besoins.
+      DoNotSupportMobile: La configuration du tableau de bord n'est pas prise en charge pour les appareils mobiles.
       EditPrivateDashboards: Modifier vos tableaux de bord privés
       EditPublicDashboards: Modifier les tableaux de bord publics
-      PrivateDashboard: Private dashboards
+      PrivateDashboard: Tableaux de bord privés
       PrivateDashboardConfiguration: Configuration des tableaux de bord privés
-      PublicDashboard: Public dashboards
+      PublicDashboard: Tableaux de bord publics
       PublicDashboardConfiguration: Configuration des tableaux de bord publics
       ReorderPrivateDashboards: Réorganiser vos tableaux de bord
       ReorderPublicDashboards: Réorganiser les tableaux de bord publics
-      SelectAction: Select the action
+      SelectAction: Sélectionnez l'action
       Title: Configuration du tableau de bord
+      TwoTaskTemplate: Tableau de bord de deux listes de tâche
+      TwoTaskTemplateDescription: Créez un tableau de bord avec 2 listes de tâches et 1 liste de processus.
     EmptyFilterMessage: Aucun filtre de widget trouvé
     Filter:
       FilterOptionHeader: Options de filtre
@@ -1464,7 +1470,6 @@ Dialogs:
       maximumFileUploadElement: Il existe déjà un élément de téléchargement de fichiers
   workflowCreation:
     AdhocProcessName: AdHoc processues pour tâche {0} - {1}
-    DefaultTemplateDialogHeader: Modèle standard
     FormDefinition:
       AddCheckboxField: Ajouter un nouveau champs
       AddOptionboxField: Ajouter une nouvelle option
