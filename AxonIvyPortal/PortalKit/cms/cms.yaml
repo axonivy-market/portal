@@ -393,6 +393,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   common:
     BusinessCaseInformation: Business Case Information
     CollapseAll: Collapse all
+    DefaultTemplate: Default template
     ExpandAll: Expand all
     NoSelection: No Selection
     ResetToDefaultHeaderText: Reset to default settings?
@@ -1419,7 +1420,6 @@ Dialogs:
     maxOptionsLength: '20'
   workflowCreation:
     AdhocProcessName: AdHoc Process for Task {0} - {1}
-    DefaultTemplateDialogHeader: Default template
     FormDefinition:
       AddCheckboxField: Add new field
       AddOptionboxField: Append new option
