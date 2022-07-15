@@ -732,6 +732,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CreateNewPublicDashboard: Créer un nouveau tableau de bord public
       DefaultTemplateDescription: Créer un tableau de bord avec une liste de tâches, une liste de cas et une liste de processus.
       Description: Dans cette zone, vous pouvez configurer les tableaux de bord en fonction de vos besoins.
+      DoNotSupportMobile: La configuration du tableau de bord n'est pas prise en charge pour les appareils mobiles.
       EditPrivateDashboards: Modifier vos tableaux de bord privés
       EditPublicDashboards: Modifier les tableaux de bord publics
       PrivateDashboard: Tableaux de bord privés

@@ -45,7 +45,10 @@
         <p:ajax event="rowReorder" global="false" update="public-dashboard-table" />
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}"
           styleClass="application-table-type-column">
-          <h:outputText id="dashboard-title" value="#{dashboard.dashboardTitle}" />
+          <h:panelGroup styleClass="u-truncate-text" layout="block">
+            <h:outputText id="dashboard-title" value="#{dashboard.dashboardTitle}" />
+            <p:tooltip for="dashboard-title" value="#{dashboard.dashboardTitle}" trackMouse="true" hideEvent="mouseleave click" styleClass="dashboard-configuration-tooltip"/>
+          </h:panelGroup>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/reorder/dashboardType')}"
           styleClass="u-text-align-center" width="200">
@@ -68,7 +71,10 @@
         <p:ajax event="rowReorder" global="false" update="dashboard-table" />
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}"
           styleClass="application-table-type-column">
-          <h:outputText id="dashboard-title" value="#{dashboard.dashboardTitle}" />
+          <h:panelGroup styleClass="u-truncate-text" layout="block">
+            <h:outputText id="dashboard-title" value="#{dashboard.dashboardTitle}" />
+            <p:tooltip for="dashboard-title" value="#{dashboard.dashboardTitle}" trackMouse="true" hideEvent="mouseleave click" styleClass="dashboard-configuration-tooltip"/>
+          </h:panelGroup>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/reorder/dashboardType')}"
           styleClass="u-text-align-center" width="200">
