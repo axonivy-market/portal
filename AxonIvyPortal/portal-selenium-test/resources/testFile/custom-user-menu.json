@@ -16,8 +16,8 @@
         "url": "Portal Express process"
     },
     {
-        "id": "alpha-company",
-        "title": "cms:/Processes/CreateInvestment/name",
+        "id": "create-invesment",
+        "title": "Create Investment",
         "permissions": [
             "Employee",
             "AXONIVY_PORTAL_ADMIN",
