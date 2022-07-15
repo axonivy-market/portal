@@ -398,6 +398,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   common:
     BusinessCaseInformation: Business Case Informationen
     CollapseAll: Alles zuklappen
+    DefaultTemplate: Standard Vorlage
     ExpandAll: Alles aufklappen
     NoSelection: Keine Auswahl
     ResetToDefaultHeaderText: Auf Standard-Einstellungen zurücksetzen?
@@ -728,19 +729,24 @@ ch.ivy.addon.portalkit.ui.jsf:
       savedFilters: 'Gespeicherte Filter:'
   dashboard:
     DashboardConfiguration:
+      CreateFromScratch: Von Grund auf neu erstellen
       CreateFromScratchDescription: Erstellen Sie Ihr eigenes Dashboard von Grund auf
-      CreateNewPrivateDashboard: Create new private dashboard
+      CreateNewPrivateDashboard: Neues privates Dashboard erstellen
       CreateNewPublicDashboard: Neues öffentliches Dashboard erstellen
+      DefaultTemplateDescription: Dashboard mit 1 Aufgabenliste, 1 Fallliste und 1 Prozessliste erstellen
       Description: In diesem Bereich können Sie die Dashboards nach Ihren Wünschen konfigurieren.
       EditPrivateDashboards: Private Dashboards bearbeiten
       EditPublicDashboards: Öffentliche Dashboards bearbeiten
-      PrivateDashboard: Private dashboards
+      PrivateDashboard: Persönliche Dashboards
       PrivateDashboardConfiguration: Private Dashboard-Konfiguration
-      PublicDashboard: Public dashboards
+      PublicDashboard: Öffentliche Dashboards
+      PublicDashboardConfiguration: Konfiguration des öffentlichen Dashboards
       ReorderPrivateDashboards: Réorganiser vos tableaux de bord
       ReorderPublicDashboards: Öffentliche Dashboards neu anordnen
-      SelectAction: Select the action
+      SelectAction: Wählen Sie die Aktion
       Title: Dashboard-Konfiguration
+      TwoTaskTemplate: Zwei Aufgabenlisten Dashboard
+      TwoTaskTemplateDescription: Dashboard mit 2 Aufgabenlisten und 1 Prozessliste erstellen
     EmptyFilterMessage: Kein Widget-Filter gefunden
     Filter:
       FilterOptionHeader: Filter-Optionen
@@ -1469,7 +1475,6 @@ Dialogs:
       maximumFileUploadElement: Es gibt bereits ein Datei-Upload-Element
   workflowCreation:
     AdhocProcessName: AdHoc Prozess für Aufgabe {0} - {1}
-    DefaultTemplateDialogHeader: Standard Vorlage
     FormDefinition:
       AddCheckboxField: Neues Feld hinzufügen
       AddOptionboxField: Neue Option hinzufügen
