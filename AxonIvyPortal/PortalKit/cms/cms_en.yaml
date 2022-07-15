@@ -736,6 +736,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CreateNewPublicDashboard: Create new public dashboard
       DefaultTemplateDescription: Create dashboard with 1 Task list, 1 Case list, and 1 Process list
       Description: In this area, you can configure the dashboards according to your requirements.
+      DoNotSupportMobile: Dashboard configuration is not supported for mobile devices.
       EditPrivateDashboards: Edit your private dashboards
       EditPublicDashboards: Edit public dashboards
       PrivateDashboard: Private dashboards

@@ -735,6 +735,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CreateNewPublicDashboard: Crear un tablero público
       DefaultTemplateDescription: Crear un cuadro de mando con 1 lista de tareas, 1 lista de casos y 1 lista de procesos
       Description: En esta área, puede configurar los cuadros de mando según sus necesidades.
+      DoNotSupportMobile: La configuración del panel de control no es compatible con los dispositivos móviles.
       EditPrivateDashboards: Editar sus tableros privados
       EditPublicDashboards: Editar tableros públicos
       PrivateDashboard: Cuadros de mando privados
