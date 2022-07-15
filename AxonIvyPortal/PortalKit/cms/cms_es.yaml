@@ -399,6 +399,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   common:
     BusinessCaseInformation: Información sobre el caso de negocio
     CollapseAll: Cerrar todo
+    DefaultTemplate: Patrón estandard
     ExpandAll: Abrir todo
     NoSelection: Sin selección
     ResetToDefaultHeaderText: ¿Restablecer la configuración por defecto?
@@ -729,19 +730,23 @@ ch.ivy.addon.portalkit.ui.jsf:
     DashboardConfiguration:
       CreateFromScratch: Crear desde cero
       CreateFromScratchDescription: Cree su propio panel de control desde cero
-      CreateNewPrivateDashboard: Create new private dashboard
+      CreateNewPrivateDashboard: Crear un nuevo panel de control privado
       CreateNewPublicDashboard: Crear un tablero público
+      DefaultTemplateDescription: Crear un cuadro de mando con 1 lista de tareas, 1 lista de casos y 1 lista de procesos
       Description: En esta área, puede configurar los cuadros de mando según sus necesidades.
+      DoNotSupportMobile: La configuración del panel de control no es compatible con los dispositivos móviles.
       EditPrivateDashboards: Editar sus tableros privados
       EditPublicDashboards: Editar tableros públicos
-      PrivateDashboard: Private dashboards
+      PrivateDashboard: Cuadros de mando privados
       PrivateDashboardConfiguration: Configuración de tableros privados
-      PublicDashboard: Public dashboards
+      PublicDashboard: Cuadros de mando públicos
       PublicDashboardConfiguration: Configuración de tableros públicos
       ReorderPrivateDashboards: Reordenar tableros privados
       ReorderPublicDashboards: Reordenar tableros públicos
-      SelectAction: Select the action
+      SelectAction: Seleccione la acción
       Title: Configuración de tablero
+      TwoTaskTemplate: Dos cuadros de mando de la lista de tareas
+      TwoTaskTemplateDescription: Crear un cuadro de mando con 2 listas de tareas y 1 lista de procesos
     EmptyFilterMessage: No se ha encontrado ningún filtro de widget
     Filter:
       FilterOptionHeader: Opciones de filtro
@@ -1473,7 +1478,6 @@ Dialogs:
       maximumFileUploadElement: Ya existe un elemento de subir documentos
   workflowCreation:
     AdhocProcessName: Proceso adHoc para la tarea {0} - {1}
-    DefaultTemplateDialogHeader: Patrón estandard
     FormDefinition:
       AddCheckboxField: Agregar nuevo campo
       AddOptionboxField: Anexar nueva opción

@@ -15,6 +15,7 @@ public class DashboardConfigurationBean implements Serializable {
 
   private static final long serialVersionUID = 3541979834658757687L;
 
+  private boolean isMobileDevice;
   private boolean canEditPrivateDashboard;
   private boolean canEditPublicDashboard;
   private boolean isPublicDashboard;
@@ -31,9 +32,11 @@ public class DashboardConfigurationBean implements Serializable {
   }
 
   private void initPermissions() {
-    boolean isMobileDevice = RequestUtils.isMobileDevice();
-    canEditPrivateDashboard = PermissionUtils.hasDashboardWriteOwnPermission() && !isMobileDevice;
-    canEditPublicDashboard = PermissionUtils.hasDashboardWritePublicPermission() && !isMobileDevice;
+    isMobileDevice = RequestUtils.isMobileDevice();
+    if (!isMobileDevice) {
+      canEditPrivateDashboard = PermissionUtils.hasDashboardWriteOwnPermission();
+      canEditPublicDashboard = PermissionUtils.hasDashboardWritePublicPermission();
+    }
   }
 
   private void resetAllIndicators() {
@@ -70,6 +73,14 @@ public class DashboardConfigurationBean implements Serializable {
     resetAllIndicators();
     this.isReorderingDashboard = true;
     this.isPublicDashboard = isPublicDashboard;
+  }
+
+  public boolean isMobileDevice() {
+    return isMobileDevice;
+  }
+
+  public void setMobileDevice(boolean isMobileDevice) {
+    this.isMobileDevice = isMobileDevice;
   }
 
   public boolean isCanEditPrivateDashboard() {
