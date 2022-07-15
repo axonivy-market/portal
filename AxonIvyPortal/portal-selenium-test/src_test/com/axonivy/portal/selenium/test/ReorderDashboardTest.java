@@ -32,7 +32,7 @@ public class ReorderDashboardTest extends BaseTest {
     reorderDashboardPage.toggleVisibility("public 2");
     reorderDashboardPage.toggleVisibility("public 2");
     reorderDashboardPage.toggleVisibility("private 1");
-    reorderDashboardPage.reorderDashboard("private 2", "public 1");
+    reorderDashboardPage.reorderPrivateDashboard("private 2", "public 1");
     reorderDashboardPage.saveSetting();
     NewDashboardPage dashboardPage = configurationpage.backToHomePage();
     ElementsCollection dashboardCollection = dashboardPage.getDashboardCollection();
@@ -47,7 +47,7 @@ public class ReorderDashboardTest extends BaseTest {
     redirectToRelativeLink(createSampleDashboardUrl);
     DashboardConfigurationPage configurationpage = navigateToReorderDashboard(true);
     ReorderDashboardPage reorderDashboardPage = new ReorderDashboardPage();
-    reorderDashboardPage.reorderDashboard("public 2", "public 1");
+    reorderDashboardPage.reorderPublicDashboard("public 2", "public 1");
     reorderDashboardPage.saveSetting();
     NewDashboardPage dashboardPage = configurationpage.backToHomePage();
     ElementsCollection dashboardCollection = dashboardPage.getDashboardCollection();
