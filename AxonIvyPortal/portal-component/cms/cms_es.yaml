@@ -5,11 +5,19 @@ Dialogs:
         component:
           Common:
             Cancel: Cancelar
+            Categories: Categorias
             ConfirmForDelete: ¿Está seguro que quiere borrar este artículo?
             Confirmation: Confirmación
+            Description: Descripción
             More: Mas
+            Name: Nombre
             'No': 'No'
+            Process:
+              ProcessName: Nombre del proceso
             RequiredFieldMessage: este campo es obligatorio
+            Task:
+              Activator: Responsable
+            Type: Tipo
             'Yes': Sí
           DocumentTable:
             Delete: Borrar
@@ -66,5 +74,11 @@ Dialogs:
             NoDescription: Sin descripción
             NoName: Sin nombre
             NotAvailable: NA
+          ProcessViewer:
+            ProcessDataNotFound: No se han encontrado datos del proceso
+            ProcessDetails: Detalles del proceso
+            ProcessId: ID del proceso
+            ProcessInfo: Información del proceso
+            ProcessInfoIconTooltip: Haga clic para ver los detalles del inicio del proceso
 Labels:
   disabledUserPrefix: (inactivo)
