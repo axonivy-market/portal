@@ -76,7 +76,7 @@ function of these columns work:
 
    *  To add CMS for checkboxes's label, add new entries to folder
       ``/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/`` in
-      ``PortalStyle`` or override method ``getColumnLabel``\ (see the
+      ``PortalKit`` or override method ``getColumnLabel``\ (see the
       methods' Javadoc comments)
 
    *  In ``taskListHeader`` section, use ``TaskColumnHeader`` component

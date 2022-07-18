@@ -18,7 +18,7 @@ Project Modules
 The application consists of four process modules. For detailed information
 on each module, refer to :ref:`architecture`.
 
--  PortalStyle
+-  portal-component
 -  PortalKit
 -  PortalTemplate
 -  AxonIvyExpress
@@ -95,9 +95,6 @@ In Designer
 
 #. Replace all Portal projects by the versions of the new release.
 #. Update PortalTemplate dependency of the customer project in pom.xml.
-#. If PortalStyle has been customized, copy logo, customization.scss,
-   font-faces.scss, and your other customizations from the old to new
-   PortalStyle, then run maven to compile CSS.
 #. Follow detailed migration notes for each version below.
 #. If customization needs copying code from Portal, merge changes between the
    two versions of the Portal for copied code.
@@ -148,6 +145,10 @@ Migrate 9.3 To 9.4
 #. The ``customization.css`` file has been removed, in case you use it in your project, please switch to using
    :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html>` to customize styling
 
+#. The ``PortalStyles`` has been removed in 9.4. If you have customized PortalStyle, please use
+   :ref:`Customization Portal Logos And Colors <customization-portal-logos-and-colors>` to override login background, favicon & logo images.
+   If you changed some cms in PortalStyle, please adapt accordingly it on PortalKit.
+
 #. Sub processes related to documents are moved to the independent project ``portal-component``.
    If you customized these processes, please override the correspond sub process again and added your customization to it.
    
@@ -184,6 +185,7 @@ Migrate 9.3 To 9.4
    - :ref:`Migration steps <components-additional-components-migrate-from-old-process-history>` for the new :ref:`Process History <components-additional-component-process-history>` component.
 
    - :ref:`Migration steps <components-additional-components-migrate-from-old-process-chain>` for the new :ref:`Process Chain <components-additional-component-process-chain>` component.
+
 
 Migrate To 9.3
 --------------
@@ -334,9 +336,13 @@ Changes in 9.4
 - Introduce the ``Portal.Tasks.BehaviourWhenClickingOnLineInTaskList`` Portal setting to set behaviour when
   clicking on a line in task list, task widget in new dashboard and related tasks in case details, each user can change it via user profile. 
 
+- Introduce the ``Portal.StatisticChartScalingInterval`` Portal setting to set the interval in seconds to do periodic statistic chart scaling requests.
+
 - Introduce new ``Task ID``, ``Task Name``, ``Case ID`` and ``Case Name`` filter in the Portal full task list and case list.
 
 - Introduce the ``Process Viewer`` page, user can get the visual viewer of the process start. See details :ref:`Show Process Viewer <how-to-show-process-viewer>`
+
+- Remove the PortalStyle project. The CMS in PortalStyle has been moved to PortalKit.
 
 Changes in 9.3
 --------------

@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.15",
   "id" : "180D5172F0BA8922",
   "data" : "com.axonivy.portal.developerexamples.testdata.EmployeeSearchInFrame.EmployeeSearchInFrameData",
   "kind" : "HTML_DIALOG",
@@ -97,16 +97,14 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.application.IApplication;",
-            "import ch.ivy.addon.portalkit.util.RequestUtil;",
+            "import ch.ivy.addon.portalkit.util.RequestUtils;",
             "import org.primefaces.PrimeFaces;",
             "import javax.faces.context.FacesContext;",
             "import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;",
             "",
-            "",
-            "",
             "String requestPath = \"Start Processes/CustomCaseInfomationForTaskTemplate/employeeDetailsInFrame.ivp\";",
             "String url = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(requestPath);",
-            "RequestUtil.redirect(String.format(\"%s?%s=%s\", url, \"employeeId\", in.employeeId));"
+            "RequestUtils.redirect(String.format(\"%s?%s=%s\", url, \"employeeId\", in.employeeId));"
           ]
         }
       },
