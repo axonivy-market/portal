@@ -19,6 +19,13 @@ public class DashboardOrder extends AbstractConfiguration implements Serializabl
 
   public DashboardOrder() {}
 
+  public DashboardOrder(Dashboard dashboard) {
+    this.dashboardId = dashboard.getId();
+    this.isPublicDashboard = dashboard.getIsPublic();
+    this.dashboardTitle = dashboard.getTitle();
+    this.visible = true;
+  }
+
   public String getDashboardId() {
     return dashboardId;
   }

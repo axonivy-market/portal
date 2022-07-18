@@ -1,8 +1,8 @@
 [
   {
     "id": "default-portal-dashboard-template",
-    "title": "Default template",
-    "description": "Create dashboard with 1 Task list, 1 Case list, and 1 Process list",
+    "title": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/DefaultTemplate",
+    "description": "cms:/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/DefaultTemplateDescription",
     "icon": "si-layout-dashboard",
     "dashboard": {
       "id": "public-4",
@@ -266,8 +266,8 @@
   },
   {
     "id": "two-task-widget-dashboard-template",
-    "title": "Two Task list dashboard",
-    "description": "Create dashboard with 2 Task lists and 1 Process list",
+    "title": "cms:/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/TwoTaskTemplate",
+    "description": "cms:/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/TwoTaskTemplateDescription",
     "icon": "si-layout-dashboard",
     "dashboard": {
       "id": "",
