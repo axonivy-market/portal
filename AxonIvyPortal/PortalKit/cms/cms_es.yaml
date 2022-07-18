@@ -171,11 +171,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     AdminSetting: Configuración de administrador
   ProcessViewer:
     Breadcrumb: Visualización del proceso {0}
-    ProcessDataNotFound: No se han encontrado datos del proceso
-    ProcessDetails: Detalles del proceso
-    ProcessId: ID del proceso
-    ProcessInfo: Información del proceso
-    ProcessInfoIconTooltip: Haga clic para ver los detalles del inicio del proceso
     ProcessViewerText: Visualizador de procesos
     Title: Visualizador de procesos
   TaskDocuments:

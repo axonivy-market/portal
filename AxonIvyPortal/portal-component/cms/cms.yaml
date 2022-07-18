@@ -1,0 +1,20 @@
+Dialogs:
+  com:
+    axonivy:
+      portal:
+        component:
+          Common:
+            Categories: Categories
+            Description: Description
+            Name: Name
+            Process:
+              ProcessName: Process name
+            Task:
+              Activator: Responsible
+            Type: Type
+          ProcessViewer:
+            ProcessDataNotFound: Could not found the Process Data!
+            ProcessDetails: Process details
+            ProcessId: Process Id
+            ProcessInfo: Process Information
+            ProcessInfoIconTooltip: Click to see details of the process start
