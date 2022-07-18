@@ -202,17 +202,8 @@ public class MenuView implements Serializable {
       case ABSENCES_MANAGEMENT:
         buildBreadCrumbForAbsences();
         break;
-      case EDIT_PRIVATE_DASHBOARD:
-        buildBreadCrumbForEditPrivateDashboard();
-        break;
-      case EDIT_PUBLIC_DASHBOARD:
-        buildBreadCrumbForEditPublicDashboard();
-        break;
-      case REORDER_MY_DASHBOARD:
-        buildBreadCrumbForReorderMyDashboard();
-        break;
-      case REORDER_PUBLIC_DASHBOARD:
-        buildBreadCrumbForReorderPublicDashboard();
+      case DASHBOARD_CONFIGURATION:
+        buildBreadCrumbForDashboardConfiguration();
         break;
       case EDIT_DASHBOARD_DETAILS:
         buildBreadCrumbForEditDashboardDetail();
@@ -321,28 +312,10 @@ public class MenuView implements Serializable {
     breadcrumbModel.getElements().add(buildExpressBusinessMenuItem(Long.toString(userCase.getId())));
   }
 
-  private void buildBreadCrumbForEditPrivateDashboard() {
+  private void buildBreadCrumbForDashboardConfiguration() {
     setPortalHomeMenuToBreadcrumbModel();
     breadcrumbModel.getElements()
-        .add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/dashboard/editPrivateDashboard"));
-  }
-
-  private void buildBreadCrumbForEditPublicDashboard() {
-    setPortalHomeMenuToBreadcrumbModel();
-    breadcrumbModel.getElements()
-        .add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/dashboard/editPublicDashboard"));
-  }
-
-  private void buildBreadCrumbForReorderMyDashboard() {
-    setPortalHomeMenuToBreadcrumbModel();
-    breadcrumbModel.getElements()
-        .add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/dashboard/reorder/reorderMyDashboard"));
-  }
-
-  private void buildBreadCrumbForReorderPublicDashboard() {
-    setPortalHomeMenuToBreadcrumbModel();
-    breadcrumbModel.getElements()
-        .add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/dashboard/reorder/reorderPublicDashboard"));
+        .add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title"));
   }
 
   private void buildBreadCrumbForEditDashboardDetail() {

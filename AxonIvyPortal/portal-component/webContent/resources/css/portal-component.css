@@ -16,7 +16,7 @@
   --process-chain-circle-horizontal-step-number-container-border-top-color: var(--primary-color, hsl(195, 100%, 29%));
   --process-chain-circle-horizontal-waiting-step-number-container-background-color: var(--process-chain-body-background-color);
 
-  --process-chain-line-waiting-step-background-color: var(--primary-color, hsl(195, 100%, 29%));
+  --process-chain-line-waiting-step-background-color: #D9DADA;
   
   --process-chain-current-circle-horizontal-step-title-font-weight: bold;
   --process-chain-current-circle-vertical-step-title-font-weight: bold;
