@@ -42,4 +42,9 @@
   --state-running-background: #FFE896;
   --state-done-background: #D4EBA2;
   --state-open-color: #C9C9C9;
+
+/* CSS variables for process viewer component */
+  --process-viewer-data-has-error-message-font-weight: bold;
+  --process-viewer-data-has-error-message-font-size: bold;
+  --process-details-column-title-font-size: 1.2rem;
 }
