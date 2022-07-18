@@ -487,7 +487,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   public void navigatetoDashboardConfigurationPage() throws IOException {
-    String dashboardConfigurationUrl = PortalNavigator.buildDashboardConfigurationUrl(isPublicDashboard);
+    String dashboardConfigurationUrl = PortalNavigator.buildDashboardConfigurationUrl();
     FacesContext.getCurrentInstance().getExternalContext().redirect(dashboardConfigurationUrl);
   }
 
@@ -546,7 +546,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     if (DashboardConstants.CREATE_FROM_SCRATCH.equals(templateId)) {
       DashboardTemplate scratchDashboard = new DashboardTemplate();
       scratchDashboard.setId(DashboardConstants.CREATE_FROM_SCRATCH);
-      scratchDashboard.setTitle(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/CreateFromScratch"));
+      scratchDashboard.setTitle(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/CreateFromScratch"));
       return Optional.of(scratchDashboard);
     }
     return CollectionUtils.emptyIfNull(getDashboardTemplates()).stream()

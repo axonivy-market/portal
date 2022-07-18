@@ -65,11 +65,13 @@ public class BaseTest {
   protected String portalTemplatePasswordResetUrl = "portalTemplate/1549F58C18A6C562/PasswordResetPage.ivp?token=%s&username=%s";
   protected String createExpressProcess = "axonIvyExpress/15798655494F25E1/AxonIvyExpressWF.ivp";
   protected String cleanSessionCacheUrl = "http://localhost:8081/designer/pro/PortalKitTestHelper/17208192E0AF4185/cleanSessionCache.ivp";
-  protected String reorderDashboardUrl =
-      "portalTemplate/1549F58C18A6C562/DashboardReorder.ivp?isPublicDashboard=%s";
   protected String createSampleDashboardUrl = "portalKitTestHelper/17F2050944B46BB0/createSampleDashboard.ivp";
   protected String createTestingEscalationTasksUrl = "portal-developer-examples/162511D2577DBA88/CreateTaskForEscalation.ivp";
   protected String createJSonFileUrl = "PortalKitTestHelper/153CACC26D0D4C3D/createJSonFile.ivp?filePath=%s&key=%s";
+  protected String grantDashboardWriteOwnPermissionUrl = "PortalKitTestHelper/14DE09882B540AD5/grantDashboardWriteOwnPermission.ivp";
+  protected String denyDashboardWriteOwnPermissionUrl = "PortalKitTestHelper/14DE09882B540AD5/denyDashboardWriteOwnPermission.ivp";
+  protected String grantDashboardWritePublicPermissionUrl = "PortalKitTestHelper/14DE09882B540AD5/grantDashboardWritePublicPermission.ivp";
+  protected String denyDashboardWritePublicPermissionUrl = "PortalKitTestHelper/14DE09882B540AD5/denyDashboardWritePublicPermission.ivp";
 
   protected void redirectToNewDashBoard() {
     open(EngineUrl.createProcessUrl(PORTAL_HOME_PAGE_URL));

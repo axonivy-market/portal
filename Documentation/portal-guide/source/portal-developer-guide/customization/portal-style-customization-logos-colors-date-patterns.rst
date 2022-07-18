@@ -1,15 +1,15 @@
 .. _customization-portal-logos-and-colors:
 
-Portalstyle Customization (Logos, Colors, Date Patterns)
-========================================================
+Portal Styles Customization (Logos, Colors, Date Patterns)
+==========================================================
 
 .. _customization-portal-logos-and-colors-change-portal-logos:
 
 Change Logos in Portal
 ----------------------
 
-You can change both the top-left corner logo in the menu and the login logo by modifying the
-default logo graphics in the PortalStyle project. 
+You can change both the top-left corner logo in the menu and the login logo by
+using :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html>`.
 
 We allow for two different logo graphics for the expanded and the collapsed
 menu. You can use one "pure" logo for the small, quadratic format (default: 42x42 pixels), and a logo
@@ -29,17 +29,13 @@ high resolution to prevent the blurring.
 We recommend using images with a transparent background, if your Corporate
 Identity does not define a mandatory background color. 
 
-To change the logos used in the Portal, follow the guidelines below.
+To change the logos used in the Portal, please use resources that are described at 
+:dev-url:`User Interface Branding <doc/nightly/designer-guide/user-interface/branding/branding-user-interface.html#resources>` and follow the guidelines below.
 
 Expanded Menu Logo
 ^^^^^^^^^^^^^^^^^^
 
--  Modify the CMS entry ``PortalStyle/images/logo/CorporateLogoSvg`` to update
-   the homepage logo when the left-hand menu is **expanded**. File type is SVG.
-
--  Modify the CMS entry ``PortalStyle/images/logo/CorporateLogo`` to update
-   homepage logo when the left-hand menu is expanded. File type is PNG. **Only use
-   this approach if you don't have an SVG logo.**
+-  Use resource ``logo`` to update the homepage logo when the left-hand menu is expanded.
 
    .. tip::
       - For PNG, we recommend using an image with a size of 168 pixels by 42 
@@ -48,55 +44,36 @@ Expanded Menu Logo
         
       - To scale your logo, override these variables: ``--home-logo-width``, ``--home-logo-height``.
 
-Collapsed Menu Logo
-^^^^^^^^^^^^^^^^^^^
+Login & Collapsed Menu Logo
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
--  Modify the CMS entry ``PortalStyle/images/logo/SmallCorporateLogoSvg`` to
-   update homepage logo when the left-hand menu is **collapsed**. File type is SVG.
-
--  Modify the CMS entry ``PortalStyle/images/logo/SmallCorporateLogo`` to update
-   homepage logo when left-hand menu is collapsed. File type is PNG. **Only use
-   this approach if you don't have SVG file.**
-
-   .. tip::
-      - We recommend using an image with a size of 42 pixels by 42 pixels to fit the left menu size when it's collapsed.
-
-      - To scale your logo, override these variables: ``--small-home-logo-width``, ``--home-logo-height`` (the same variable for ``PortalStyle/images/logo/CorporateLogo`` and ``PortalStyle/images/logo/CorporateLogoSvg``).
-
-Login Logo
-^^^^^^^^^^
-
--  Modify the CMS entry ``PortalStyle/images/logo/loginLogoSvg`` to update
-   the login logo. File type is SVG.
-
--  Modify the CMS entry ``PortalStyle/images/logo/loginLogo`` to update
-   the login logo. File type is PNG. **Only use this approach if you don't have SVG file.**
+-  Use resource ``logo_small`` to update the login logo & the homepage logo when the left-hand menu is collapsed.
 
    .. tip::
       - We recommend using an image with size is 50x50 pixels.
 
-      - To scale your logo, override variable: ``--login-logo-height``, the width will be calculated automatically.
+      - To scale the login logo, override variable: ``--login-logo-height``, the width will be calculated automatically.
 
--  Modify CMS entry ``PortalStyle/images/logo/faviconLogoSvg`` to update
-   favicon logo. File type is SVG. This approach is highly recommended.
+      - To scale the homepage logo, override these variables: ``--small-home-logo-width``, ``--home-logo-height``.
 
--  Modify CMS entry ``PortalStyle/images/logo/faviconLogo`` to update
-   favicon logo. Recommended size for favicon: 16x16 or 32x32 pixels. Only use this approach if you don't have SVG file. File type is PNG.
+Favicon
+^^^^^^^
 
--  Please refer to default value of these variables: ``--home-logo-width``, ``--home-logo-height``, ``--small-home-logo-width``, ``--login-logo-height`` in
-   ``portal-variables.css`` to scale your logos.
+-  Use resource ``favicon`` to update the favicon.
 
-   .. _customization-portal-logos-and-colors-change-portal-background:
+   .. tip::
+      - We recommend using an image with size 16x16 or 32x32 pixels.
 
 Change Portal Styles
 --------------------
 
-The Portal uses modern |css_variable|  to support style customization. 
+The Portal uses modern |css_variable| to support style customization. 
 
-To customize the Portal styles in an upgrade safe way, follow this recipe:
+To customize the Portal styles in an upgrade safe way, we suggest that you copy all CSS variables and styles
+which you plan to override from the files ``portal-variables.css`` and ``portal.css`` to file ``custom.css``.
 
--  Store your customizations only in ``PortalStyle/webContent/resources/css/customization.css``.
--  We suggest that you copy all CSS variables and styles which you plan to override from the files ``portal-variables.css`` and ``portal.css`` in the same location.
+Refer to :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html>` for the
+location of :dev-url:`custom.css </doc/nightly/engine-guide/configuration/files/custom-css.html>`.
 
 .. caution:: Please do not modify ``portal-variables.css`` and ``portal.css`` directly because they may change in a future Portal version.
 
@@ -131,9 +108,7 @@ Below is the list of some Portal elements which are using customizable colors:
    |                              |                             | - Text of active page number in datatable                      |
    +------------------------------+-----------------------------+----------------------------------------------------------------+
 
-You can customize in:
-
-- ``customization.css``: to change styles of Portal. E.g. Portal's component styles.
+You can customize the Portal styles in ``custom.css``.
 
   For example, to customize the default ``font-family``:
 
@@ -166,9 +141,9 @@ You can customize in:
 Change date time pattern
 ------------------------
 
-You can change date pattern by modifying CMS in PortalStyle project:
-``PortalStyle/patterns/datePattern`` and
-``PortalStyle/patterns/dateTimePattern``.
+You can change the date pattern by modifying the CMS in the PortalKit project:
+``PortalKit/patterns/datePattern`` and
+``PortalKit/patterns/dateTimePattern``.
 
 .. |css_variable| raw:: html
 

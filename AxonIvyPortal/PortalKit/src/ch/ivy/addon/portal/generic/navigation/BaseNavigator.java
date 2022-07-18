@@ -12,7 +12,7 @@ import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
-import ch.ivy.addon.portalkit.util.RequestUtil;
+import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.StandardProcessType;
@@ -30,7 +30,7 @@ public class BaseNavigator {
   
   protected static void redirectURL(String url) {
     try {
-      RequestUtil.redirect(url);
+      RequestUtils.redirect(url);
     } catch (IOException ex) {
       throw new PortalException(ex);
     }

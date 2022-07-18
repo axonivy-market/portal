@@ -1,0 +1,25 @@
+{
+  "format" : "9.4.14",
+  "id" : "181FC015AAFFACDB",
+  "data" : "ch.ivy.addon.portal.generic.dashboard.component.DashboardReorder.DashboardReorderData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "172546E1FE4FCAB2"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.15",
   "id" : "1657EA461CE412A1",
   "data" : "_com.axonivy.portal.developerexamples.LogoutPageOverrideData",
   "kind" : "CALLABLE_SUB",
@@ -45,14 +45,7 @@
       "name" : "Set logout page",
       "config" : {
         "output" : {
-          "code" : [
-            "import javax.servlet.http.HttpServletRequest;",
-            "import ch.ivyteam.ivy.request.IRequest;",
-            "import ch.ivy.addon.portalkit.util.RequestUtil;",
-            "import javax.faces.context.FacesContext;",
-            "",
-            "in.logoutPage = ivy.html.applicationHomeRef();"
-          ]
+          "code" : "in.logoutPage = ivy.html.applicationHomeRef();"
         }
       },
       "visual" : {
