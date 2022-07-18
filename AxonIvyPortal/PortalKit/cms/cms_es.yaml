@@ -1,0 +1,1647 @@
+AppInfo:
+  SupportedLanguages: de,en,fr,es
+Categories:
+  AdhocExpressTasks:
+    name: Tareas Adhoc de Express
+  CreateExpressWorkflow:
+    name: Crear Express Workflow
+  ExpressWorkflow:
+    name: Express Workflow
+ch.ivy.addon.portal.generic:
+  CaseDetailsTemplate:
+    noCaseId: No hay ID de caso especificado
+    requestTabTitle: Solicitud
+    statusTabTitle: Información del caso
+  CustomLinkGenerator:
+    myTasks: Mis tareas
+  OpenTaskTemplate:
+    adhocHistory: Historial del proceso AdHoc
+    adhocHistoryTooltip: Mostrar historial del proceso AdHoc
+    browserTabClosingWarning: Puede perder su trabajo en progreso. ¿Quiere continuar?
+    goToAdhocWarning: Puede perder su trabajo en progreso e iniciar el proceso Ad-hoc. ¿Quiere continuar?
+    goToSidestepWarning: Sus modificaciones actuales no se guardarán cuando se inicie un proceso de paso lateral directamente desde una tarea. ¿Quiere continuar?
+    noteOfResultFromAdhocProcess: 'Nota: podrá encontrar este historial también en el historial del caso.'
+    reCreateAdhocWarning: Ya existe un proceso AdHoc para esta tarea. ¿Desea crear un proceso nuevo?
+    resultFromAdhocProcess: Resultados del proceso AdHoc
+    startAdHoc: Comenzar Adhoc
+    startAdHocTooltip: Redirija este proceso usando pasos ad-hoc
+  PortalCaseMenu:
+    AllCases: Todos los casos
+    MyCases: Mis casos
+  PortalTaskMenu:
+    AllTasks: Todas las tareas
+    GroupTasks: Tareas de grupo
+    PersonalTasks: Tareas de {0}
+  TaskMail:
+    dailyTaskSummaryIntro: 'Las siguientes tareas esperan ser procesadas:'
+    dailyTaskSummaryTitle: 'Resumen diario de tareas:'
+    newTaskIntro: 'La siguiente tarea le ha sido asignada: '
+    newTaskTitle: 'Nueva tarea asignada:'
+    taskResume: Comenzar
+ch.ivy.addon.portalkit:
+  variables:
+    portalkit_serveradress: PORTALKIT_SERVERADRESS
+ch.ivy.addon.portalkit.ui.jsf:
+  AbsenceAndDeputy:
+    Messages:
+      errorSelectInvalidDeputy: Sustituto ya está seleccionado o es inválido
+      errorSelectedInPersonalTaskPermanentDeputies: Sustituto ya está seleccionado en "{0}"
+      fromBiggerThanTill: '''Hasta'' debe ser posterior a ''Desde''.'
+      overlappingAbsence: La ausencia se superpone con otra ausencia.
+      userNameRequired: '''Nombre de usuario'' no debe estar vacío.'
+    absences: Ausencias
+    addAbsence: Agregar ausencia
+    deputies: Sustitutos
+    description: Establezca sus vacaciones, enfermedades u otras obligaciones externas que lleven a cualquier ausencia.
+    editAbsence: Editar ausencia
+    from: Del
+    noDeputy: Sin sustituto
+    period: Periodo
+    personalTaskDuringAbsenceDeputies: Sustitutos para tareas personales durante la aussencia
+    personalTaskPermanentDeputies: Sustitutos permanentes para tareas personales
+    selectDeputies: Seleccionar sustitutos
+    selectedDeputies: Sustitutos seleccionados
+    showAbsencesInThePast: Mostrar ausencias en el pasado
+    substitutedUser: Usuario sustituido
+    taskForRole: 'Tarea para el rol:'
+    till: Hasta
+  AbsenceManagement:
+    Messages:
+      addNewAbsence: Se ha creado una nueva ausencia para  {0}
+      removedAbsences: Ausencia removida para {0}
+      saveAbsenceSetting: Configuración para ausencias guardada con éxito.
+      updateAbsence: Ausencia actualizada con éxito
+    absenceAndDeputy: Ausencias y sustitutos
+    allAbsences: Ausencias de todos los usuarios
+    applicationAndRole: Aplicación y rol
+    definedDeputies: Sustitutos definidos
+    deputyFor: I am deputy for
+    myDeputies: My deputies
+    myPlannedAbsences: Mis ausencias programadas
+    nextAbsence: Siguiente ausencia
+    selectedDeputyFor: Usuario seleccionado es sustituto de
+    selectedUser: Usuario seleccionado
+  AllTasks:
+    caseDescription: Descripción de caso
+    taskDescription: Descripción de tarea
+    taskState: Estado de tarea
+  CaseDocuments:
+    CaseDocumentsPageTitle: Documentos del caso
+  CaseStatusInformation:
+    CurrentTasks:
+      currentTasks: Tareas actuales
+      noTasksFound: No se encontraron tareas
+    GeneralInformation:
+      processVersion: Versión de proceso
+      removeDelayConfirm: Esto eliminará la configuración de demora de la tarea. ¿Está seguro?
+      showNow: Mostrar ahora
+  Enums:
+    BasicDocumentType:
+      CONTRACT: Contrato
+      DOCUMENTATION: Documentación
+      EMAIL: Email
+      INFORMATION: Información
+      OTHERS: Otros
+    BehaviourWhenClickingOnLineInTaskList:
+      ACCESS_TASK_DETAILS: Acceder a los detalles de la tarea
+      RUN_TASK: Ejecutar la tarea
+    DashboardCustomWidgetType:
+      EXTERNAL_URL: Link externo
+      PROCESS: Proceso de Axon Ivy
+    DashboardWidgetType:
+      CASE: Widget del caso
+      CUSTOM: Widget personalizado
+      NEW: Nuevo widget
+      PROCESS: Widget de procesos
+      STATISTIC: Widget de estadísticas
+      TASK: Widget de tareas
+    GlobalVariable:
+      Option:
+        DISPLAY_NAME: Nombre de pantalla
+        DISPLAY_NAME_USERNAME: 'Nombre de pantalla (usuario) '
+        'FALSE': 'False'
+        'TRUE': 'True'
+        USERNAME: Usuario
+        USERNAME_DISPLAY_NAME: Usuario (nombre de pantalla)
+    ProcessMode:
+      COMPACT: Compacto
+      GRID: Carta
+      IMAGE: Imagen
+    ProcessType:
+      EXPRESS_PROCESS: Flujo de trabajo exprés
+      EXTERNAL_LINK: Link externo
+      IVY_PROCESS: Proceso de negocio
+    ProcessWidgetMode:
+      COMBINED_MODE: Modo combinado
+      COMPACT_MODE: Modo compacto
+      FULL_MODE: Modo completo
+      IMAGE_MODE: Modo de imagen
+    ReleaseState:
+      DEPRECATED: Depreciado
+      RELEASED: Publicado
+    SortDirection:
+      ASC: Orden ascendente
+      DESC: Orden descendente
+    WeekDay:
+      FRIDAY: Vier.
+      MONDAY: Lun.
+      SATURDAY: Sáb.
+      SUNDAY: Dom.
+      THURSDAY: Juev.
+      TUESDAY: Mart.
+      WEDNESDAY: Miérc.
+  MyProfile:
+    HomepageSelection:
+      fullTaskList: Lista de tareas completa
+    SortFieldSelections:
+      defaultSortFieldLabel: Orden predeterminado
+    caseListConfigDescription: En esta sección puede configurar su lista de casos.
+    caseListConfiguration: Configuración lista de casos
+    defaultOption: Predeterminado ({0})
+    defaultViewMode: Modo predeterminado
+    generalSettingDescription: En esta sección puede configurar los parámetros del portal.
+    generalSettings: Opciones generales
+    processListConfigDescription: En esta sección puede configurar la lista de procesos.
+    processListConfiguration: Configuración lista de casos
+    selectHomepage: Página incial seleccionada
+    showTutorial: Mostrar tour de bienvenida
+    taskListConfigDescription: En esta sección puede confirar la lista de tareas.
+    taskListConfiguration: Configuración lista de tareas
+  PortalManagement:
+    AdminSetting: Configuración de administrador
+  ProcessViewer:
+    Breadcrumb: Visualización del proceso {0}
+    ProcessDataNotFound: No se han encontrado datos del proceso
+    ProcessDetails: Detalles del proceso
+    ProcessId: ID del proceso
+    ProcessInfo: Información del proceso
+    ProcessInfoIconTooltip: Haga clic para ver los detalles del inicio del proceso
+    ProcessViewerText: Visualizador de procesos
+    Title: Visualizador de procesos
+  TaskDocuments:
+    TaskDocumentsPageTitle: Documentos de la tarea
+  adminSettings:
+    addLanguages: Agregar idiomas
+    addNewApplication: Crear nueva aplicación de terceros
+    announcement:
+      announcement: Aviso
+      announcementsDisabled: Los avisos están deactivados
+      announcementsEnabled: Los avisos están activados
+      defaultLanguageRequiredMessage: 'Texto requerido en el idioma estándard de la aplicación '
+      disable: Desactivar
+      enable: Activar
+      information: En esta área puede anunciar una información general (ej. mantenimiento, cambios en la aplicación, etc.). Este mensaje será visible para todos los usuarios.
+      tabTitle: Avisos
+    appDisplayName: Nombre para mostrar
+    appDisplayNameRequiredMsg: Por favor ingrese el nombre para mostrar de la aplicación.
+    appNameCharactersLimit: Solo los caracteres [\p{Alnum}_-]+ están permitidos para el nombre de la aplicación.
+    appNameRequiredMsg: Por favor introduzca el nombre de la aplicación.
+    applicationHint: Use arrastrar y soltar para reordenar.
+    applicationLinkRequiredMsg: Por favor, introduzca el enlace al portal
+    applicationList:
+      applicationSelectionHeader: Seleccionar aplicación
+      menuIcon: Icono de menú
+    applications: Aplicaciones
+    applicationtype:
+      thirdPartyApplication: Aplicación de terceros
+    currentValue: Valor actual
+    defaultValue: Valor estándard
+    deleteAppConfirmation: ¿Seguro que quiere eliminar esta aplicación?
+    dialogclosinginformation:
+      dialogHeader: Configuración del portal cerrada
+      informMessage: Las modificaciones en la configuración del portal requieren una actualización de la página actual para que la nueva configuración surta efecto.
+    duplicatePortalAppMsg: Esta aplicación ya existe, por favor elija otra.
+    editApplication: Editar aplicación
+    editSetting: Editar la configuración
+    embedInFrame: Empezar un proceso o tarea en modo iFrames
+    emptySupportedLanguages: No se admiten idiomas adicionales
+    globalVariableNote:
+      RoleDirectChildrenLimit: 'El número establecido controla la cantidad de roles hijos directos que se muestra en la pestaña de gestión de roles. Número válido: 10, 50, 100'
+      RoleParentLimit: 'El número establecido controla la cantidad de roles padre que se muestra al filtrar los roles en la pestaña Gestión de roles. Número válido: 5, 10, 20'
+      behaviourWhenClickingOnLineInTaskList: Para cambiar los comportamientos (ejecutar la tarea o acceder a los detalles de la tarea) al hacer clic en una línea de la lista de tareas, el widget de tareas del tablero y las tareas relacionadas en la página de detalles del caso.
+      chatMaxConnection: 'El número establecido controla la cantidad de pestañas permitidas con el chat activo. Si se abren más pestañas, el chat se desactivará en las pestañas inactivas. Valores permitidos entre 1-5 '
+      chatResponseTimeout: Tiempo de respuesta del chat en segundos, el valor por defecto es 0 y significa que no hay tiempo de espera. Si los mensajes de chat pasan por el proxy inverso Nginx, el tiempo de espera de la respuesta del chat debe ser menor que el tiempo de espera de Nginx, por ejemplo, menos
+        de 60 segundos.
+      clientSideTimeoutNote: Tiempo de espera del lado del cliente en minutos, debe ser mayor que 0 y menor que el tiempo de espera del lado del servidor (por ejemplo, 25 segundos). El valor por defecto es 0, lo que significa que se aplica el tiempo de espera por defecto del lado del cliente. El tiempo
+        de espera por defecto del lado del cliente es el tiempo de espera del lado del servidor menos 3 minutos.
+      dateFilterWithTime: Cambiar a "True" para activar filtros de fecha con tiempo. Esta configuración afectará la lista de tareas, de casos y estadísticas.
+      defaultHomepage: Para establecer la página de inicio estándar a la que se redirigirá al hacer clic en el icono de inicio o en el logotipo. Esta configuración también se aplica a la página final después de terminar una tarea.
+      defaultProcessImage: La configuración estándar de la imagen por defecto que se mostrará en la lista de procesos de imagen.
+      defaultProcessMode: La configuración estándar del modo de vista en la lista de procesos.
+      defaultSortDirectionOfCaseList: Dirección de clasificación por defecto de la lista de casos
+      defaultSortDirectionOfTaskList: Dirección de clasificación por defecto de la lista de tareas
+      defaultSortFieldOfCaseList: Campo de ordenación por defecto de la lista de casos
+      defaultSortFieldOfTaskList: Campo de ordenación por defecto de la lista de tareas
+      disableCaseCount: Cambiar a "true" para desactivar la función contar casos en la lista de casos
+      disableTaskCount: Cambiar a "true" para desactivar la función contar tareas en la lista de tareas
+      displayAllUsersOfTaskActivator: Esta configuración se utiliza para la componente SecurityMemberDisplayName. Si el SecurityMember es un rol, cambie esta configuración a "true" para ver todos los usuarios de este rol. Si se configura "true", se muestra la información del icono junto al nombre del
+        rol.
+      displayMessageAfterFinishOrLeaveTask: Se mostrará un mensaje después de finalizar una tarea
+      embedInFrame: Cambiar a "true" para abrir un proceso o tarea en modo iFrame
+      enableCaseOwner: 'Cambiar a "true" para también mostrar los casos en los que usted es el responsable del caso en su lista de casos. '
+      enableGroupChat: Cambie esta propiedad a "true" para activar el chat de grupos
+      enablePrivateChat: Cambie esta propiedad a "true" para activar el chat privado
+      enableProcessViewer: Defina esta propiedad como true para habilitar la opción de visor de procesos en las acciones de Tarea/Caso
+      enableScriptCheckingForUploadedDocumentNote: 'Cambiar a "True" para activar el control de anexos permitidos. De momento se pueden controlar archivos en PDF, word y excel. '
+      enableUserFavorites: Si esta propiedad está desactivada, los favoritos de usurio serán ocultados
+      enableVirusScannerForUploadedDocumentNote: Cambiar a "true" para habilitar el escáner de virus para el documento cargado. Actualmente esta función utiliza la API VIRUSTOTAL.
+      expressEndPageNote: Mostrar la página de final de flujo de trabajo express propia.
+      hideCaseDocument: Cambiar a "true" para ocultar el área de documentos en detalle de casos
+      hideChangePasswordButtonNote: Cambiar a "true" para ocultar la posibilidad de cambiar contraseña.
+      hideLogoutButtonNote: Cambiar a "true" para ocultar la opción de logout.
+      hideRelatedCaseInfoFromHistory: Si es verdadero, el historial de casos no muestra la información de los casos relacionados en la tabla de historial.
+      hideStatisticWidget: Cambiar a "true" para ocultar la estadística de la página principal y del menu lateral
+      hideSystemNotesFromHistory: Si esto es cierto, no se muestran notas del sistema para los usuarios en las notas de tarea/tarea.
+      hideSystemNotesFromHistoryAdministrator: Si esto es cierto, no se muestran notas de sistema para los administradores en las notas de tarea/tarea.
+      hideSystemTasksFromHistory: Cambiar a "true" para ocultar notas técnicas del historial de tareas del caso para usuarios
+      hideSystemTasksFromHistoryAdministrator: Cambiar a "true" para ocultar notas técnicas del historial de tareas del caso para administradores
+      hideTaskDocument: Cambiar a "true" para ocultar el área de documentos en detalle de tarea
+      hideTimeNote: Cambiar a "true" para ocultar horas y minutos de la fecha.
+      hideUploadDocumentForDoneCaseNote: Cambiar a "true" para impedir el upload de documentos después de que un caso esté terminado.
+      hideYear: activar para ocultar el año, de lo contrario se mostrará.
+      loggedInUserFormat: Opción para definir el formato visible del usuario conectado
+      refreshTaskListIntervalNote: Actualización de la lista de tareas en segundos
+      showAvatar: Para activar/desactivar la visualización de los avatares de los usuarios/roles.
+      showButtonIcon: Para encender o apagar el icono de la pantalla en el botón.
+      showCaseDurationTime: Activar o desactivar la visibilidad de la duración del caso en detalles de caso.
+      showEnvironmentInfoNote: Cambiar a "true" para ver la información del sistema sobre el nombre de usuario
+      showErrorLogToConsole: Establecer en true para activar el registro de errores en la consola del navegador
+      showGlobalSearch: Para activar o desactivar la visualización de la búsqueda global.
+      showLegacyUI: Para activar o desactivar el modo legado.
+      showProcessInformation: Cambiar a falso para desactivar el enlace "Más información" en la página de Procesos (modo cuadrícula) y Detalles del caso.
+      showTaskDurationTime: Activar o desactivar la visibilidad de la duración de la tarea en detalles de tarea.
+      showUserGuide: Activa la guía de usuario interactiva "primeros pasos" en el portal durante el primer acceso del usuario.
+      statisticChartScalingInterval: Intervalo en segundos para realizar peticiones periódicas de escalado de gráficos estadísticos. Si el valor del intervalo es inferior a 10, se desactiva el escalado periódico de gráficos estadísticos.
+      uploadDocumentWhiteListExtensionNote: 'Dejar libre, sie quiere permitir todos los anexos. Si quiere reducir los formatos permitidos, cree una lista separada por coma. Por ejemplo: pdf, txt, doc, docx.'
+    key: Llave
+    link: Enlazar
+    loading: CARGANDO
+    loginLogoSizeTooltip: 'Tamaño recomendado<BR/>Logo cuadrado: 80x80 px<BR/>Logo rectangular: 191x50 px'
+    logoScalingTooltip: El escalado a lo ancho del logo depende de su porcentaje de escalado a lo alto
+    logoSizeRecommendation:
+      homeRectangleSize: 'Logo rectangular: 160x42 px'
+      homeSquareSize: 'Logo cuadrado: 75x75 px'
+      loginRectangleSize: 'Logo rectangular: 191x50 px'
+      loginSquareSize: 'Logo cuadrado: 80x80 px'
+      sizeRecommendation: Tamaño recomendado
+    note: Nota
+    password: Contraseña
+    passwordHint: Contraseña del administrador del sistema
+    passwordRequiredMsg: Por favor, introduzca la contraseña
+    pleaseSelect: Por favor seleccione...
+    portalLink: Enlace del portal
+    refreshUserErrorMsg: '{0} error/es encontrado/s. Ver mensaje detallado: <BR/> {1}'
+    refreshUserPermissionSuccessful: '{0} usuarios actualizados con éxito.'
+    refreshUserPermissions: Sincronizar la configuración
+    requireToInputServer: Seleccione un servidor para la aplicación.
+    resetAllSettingsConfirmation: 'Seguro que quiere reestablecer todos los valores iniciales? '
+    resetSettingConfirmation: 'Seguro que quiere reestablecer el valor inicial? '
+    restoreAllToDefault: Restaurar todos los valores predeterminados
+    restoreDefault: Restaurar valor predeterminado
+    settingApplicationName: Definir el nombre de la aplicación
+    usernameHint: Nombre de usuario de un administrador de sistema.
+    usernameRequiredMsg: Por favor ingrese nombre de usuario.
+    value: Valor
+  applicationMenuHeader:
+    adminSettings: Configuración de administrador
+    changePassword: Cambiar contraseña
+  caseDetails:
+    addDocumentHelpText: Para cargar archivos, arrastrar y soltar o seleccionar archivos
+    addNoteHelpText: Escriba su texto aquí.
+    additionalCaseDetailsTitle: Detalles adicionales de casos
+    deleteFile: Borrar archivo
+    documents: Documentos
+    downloadFile: Descargar archivo
+    duration: Duración
+    history: Historia
+    noCaseName: ' <Caso sin nombre>'
+    noDescription: Sin descripción
+    noRunningCase: Ningún caso en proceso
+    noRunningTask: Ninguna tarea en proceso
+    noRunningTasksAndCasesPermission: Se están ejecutando otras tareas. No tiene permiso para ver las tareas relacionadas con este caso.
+    noSideSteps: No se dispone de Sidestep
+    noTaskName: <Sin nombre de tarea>
+    noTasks: Sin tareas
+    relatedTasks: Tareas relacionadas
+    relatedTasksAndCases: Tareas y casos relacionados
+    runningTasks: Tareas pendientes
+    showAdditionalPage: Detalles del negocio
+    showAllTasks: Mostrar todas las tareas
+    showAllTechnicalCases: Casos técnicos
+    showMoreTasks: Mostrar más detalles
+    showMoreTechnicalCases: Mostrar todos los casos técnicos
+    showProcessOverview: Resumen del proceso
+    sideSteps: Sidesteps
+    taskIsDestroyed: La tarea es destruida
+    taskIsDone: La tarea está hecha
+    taskIsFailed: 'Tarea fallida '
+    taskIsWaiting: Tarea en espera
+    taskStateAndResponsible: 'Estado: {0}, responsable: {1}'
+    taskStateIsCreated: El estado de la tarea es Creado (no persistido todavía)
+    taskStateIsZombie: El estado de la tarea es Zombie
+  caseList:
+    cases: Casos
+    confirmDeleteMessage: Esta acción no se puede deshacer. ¿De verdad quieres eliminar este objeto comercial?
+    defaultColumns:
+      CATEGORY: Categoría
+      CREATION_TIME: Creado
+      CREATOR: Creador
+      FINISHED_TIME: Terminado
+      ID: ID del caso
+      NAME: Nombre / Descripción
+      OWNER: Propietario
+      STATE: 'Estatus '
+    deletionNoteContent: El caso fue destruido por {0}
+    destroyCaseMessage: Esta operación no se puede deshacer. ¿Está seguro de que quiere destruir este caso y todas sus tareas?
+    destroyfail: El caso no ha sido destruido con éxito.
+    destroysucceed: El caso ha sido destruido con éxito.
+    downloadZipFileExplanation: El número de casos a exportar excede el límite de las filas de Excel. Por lo tanto, los datos serán divididos en múltiples archivos de Excel, luego comprimidos en un archivo ZIP para ser descargados.
+    error: Error
+    exportedCasesFileName: AXONIVY_Dataset_Cases_{0}.{1}
+    headerTitle:
+      relatedStatisticHeader: 'Casos relacionados de la tabla de estadísticas:'
+      technicalCaseOfBusinessCaseAlternativeTitle: Caso {0}
+      technicalCasesOfBusinessCaseTitle: 'Casos técnicos del caso de negocio #{0} {1}'
+    relatedCaseHeader: 'Caso # {0} {1}'
+    relatedCases: Casos relacionados
+    title: Título
+  caseState:
+    CREATED: Creado
+    DESTROYED: Destruido
+    DONE: Hecho
+    FAILED: Ha fallado
+    OPEN: Pendiente
+    RUNNING: En progreso
+    ZOMBIE: Zombie
+  caseTreeTable:
+    caseState: Estado del caso
+  chat:
+    chatAssigneeDialogHeader: Añadir usuarios al chat
+    chatAssigneeDialogHint: 'Por favor seleccione los usuarios y grupos que quiera añadir al chat de grupo:'
+    createProcessChat: Crear chat de grupo
+    errorSelectInvalidAssignee: El usuario asignado ya ha sido seleccionado o es inválido
+    failureToCreateProcessChat: Error al crear el chat de grupo
+    failureToJoinProcessChat: Error al entrar en el chat de grupo
+    groupChatHeader: Chat ligado al caso
+    joinGroupQuestion: ¿Quiere entrar al chat?
+    joinProcessChat: Entrar al chat de grupo
+    joinedProcessChat: Ha entrado al chat de grupo - {0}
+    noAssignees: Por favor selecione los usuarios para crear este chat de grupo
+    noGroupChat: No hay chats de grupo
+    noUsers: No hay usuarios
+    participants: Participantes
+    personalChatHeader: Chat general
+    processChatIsCreated: 'Chat de grupo: {0} ha sido creado'
+    processChatWasCreated: 'Chat de grupo: {0} ya ha sido creado. No puede crear otro chat.'
+    selectedAssignees: Usuarios seleccionados
+    typeMessage: Escriba su texto aquí…
+    viewParticipant: Mostrar participantes
+  common:
+    BusinessCaseInformation: Información sobre el caso de negocio
+    CollapseAll: Cerrar todo
+    DefaultTemplate: Patrón estandard
+    ExpandAll: Abrir todo
+    NoSelection: Sin selección
+    ResetToDefaultHeaderText: ¿Restablecer la configuración por defecto?
+    RoleUserInformation: Informaciones de rol y usuario
+    TaskCaseInformation: Informaciones de tarea y caso
+    Update: Aktualizar
+    action: Acciones
+    active: Activado
+    add: Añadir
+    addDocument: Agregar documento
+    addNote: Agregar nota
+    adhoc: Adhoc
+    allCategories: Todas las categorias
+    allowPng: Solo se permiten los tipos png
+    apply: Aplicar
+    at: en
+    author: Autor
+    back: Regresar
+    backToCaseMap: Volver al mapa de caso
+    backgroundColor: Color de fondo
+    cancel: Cancelar
+    case: Caso
+    caseInformation: Informaciones del caso
+    caseName: Nombre del caso
+    categories: Categorias
+    change: Cambiar
+    close: Cerrar
+    cockpit: Inicio
+    colors: Colores
+    comment: Comentario
+    completedOn: Completado en
+    confirmForDelete: ¿Está seguro que quiere borrar este artículo?
+    confirmation: Confirmación
+    confirmationHeaderText: ¿Está seguro?
+    continue: Continuar
+    create: Creado
+    creationDate: Fecha de creación
+    dashboard: Tablero
+    data: Datos
+    dateFromBiggerThanTo: Hasta' debe ser después de 'Desde'
+    dateRequired: La fecha no puede estar vacía.
+    day: Dia
+    dayUnit: Dia
+    days: Dias
+    default: Por defecto
+    defaultNotificationMessage: Hmm… Parece que algo ha ido mal.
+    delete: Borrar
+    deleteAbsenceHeaderText: ¿Borrar esta ausencia?
+    deleteChartHeaderText: ¿Borrar este gráfico?
+    deleteDocumentHeaderText: ¿Borrar este documento?
+    deleteFilterHeaderText: ¿Borrar este filtro?
+    deleteSettingHeaderText: ¿Borrar esta configuración?
+    description: Descripción
+    design: Diseño
+    destroy: Destruir
+    destroyCaseHeaderText: ¿Destruir este caso?
+    destroyTaskHeaderText: ¿Destruir esta tarea?
+    detail: Detalles
+    display: Mostrar
+    displayName: Nombre de pantalla
+    edit: Editar
+    errorAjaxMessage: Error general
+    errorFileUploadSize: El tamaño deberá ser inferior a {0}
+    errorNotification: Notificación de error
+    errorXhr: Error al actualizar el contenido web
+    escalationTaskHeaderText: Ejecutar escalación
+    escalationTaskMessage: Expiración ahora, por lo que la tarea expira. ¿Está seguro?
+    filter:
+      from: desde
+      moreOptions: Más opciones
+      restoreDefaultFilterHeader: Reestablecer valor predeterminado
+      to: hasta
+      worker: 'Editor '
+      wrongFromDateFormat: Por favor, introduzca una fecha válida "desde". El formato es {0}
+      wrongToDateFormat: Por favor, introduzca una fecha válida "hasta". El formato es {0}
+    finish: Terminar
+    general: General
+    generalInformation: Información general
+    globalSearch: Buscar tareas, casos y procesos
+    goToDetail: Ir a detalles
+    hasPrecondition: Este proceso tiene una precondición
+    height: altura
+    hide: esconder
+    homeLogo: Logo de la portada
+    hour: hora
+    hours: horas
+    inactive: Desactivado
+    information: Información
+    leave: Salir
+    leaveAndReserve: Salir y reservar
+    linkToCaseDetails: Haga click <a href="{0}" >aquí</a> para más detalles.
+    loading: Cargando
+    loginLogo: Logo de inicio de sesión
+    logos: Logos
+    mainColor: Color principal
+    minute: minuto
+    minutes: minutos
+    more: Mas
+    moreInformation: Más información
+    myProcesses: Mis procesos
+    name: Nombre
+    new: Nuevo
+    next: Siguiente
+    nextStage: Siguiente etapa
+    'no': 'No'
+    noCategory: '[Sin Categoría]'
+    noDocumentAvailable: No hay documentos disponibles
+    noName: Sin nombre
+    noNoteAvailable: No hay notas disponibles
+    noNotesFound: No se encuentran notas
+    noProcessDescription: Ejecute este proceso haciendo clic en el botón siguiente
+    noRecordsFound: No se encuentran registros
+    notAvailable: N/A
+    note: Nota
+    numberOfSelectedFilter: Filtros seleccionados
+    ok: Ok
+    'on': en
+    pleaseAddDocument: Por favor agregue documentos usando el enlace superior
+    pleaseAddNote: Por favor agregue notas usando el enlace superior
+    previousStage: Etapa anterior
+    private: Privado
+    process: Proceso
+    processes: Procesos
+    public: Público
+    remove: Retirar
+    reorder: Reordenar
+    requiredFieldMessage: este campo es obligatorio
+    reserve: Reservar
+    reset: Reiniciar
+    resetSettingHeaderText: ¿Resetear la configuración?
+    resetTaskHeaderText: ¿Reiniciar esta tarea?
+    resetToDefaultMessage: Esta operación no se puede deshacer. ¿Estás seguro de que quieres restablecer la configuración por defecto?
+    resetToStandardFilterHeaderText: '¿Resetear al filtro estándar? '
+    restore: Restablecer
+    restoreToDefaultChartHeaderText: ¿Restablecer a los gráficos por defecto?
+    role: Rol
+    save: Guardar
+    saveSuccessfully: Datos guardados exitosamente.
+    search: Buscar
+    second: segundo
+    seconds: segundos
+    seeDetail: Mostrar detalles
+    select: Seleccionar
+    selectAll: Seleccionar todo
+    selectUsers: Seleccione usuario(s)
+    selectedDay: '{0} Día(s) selecionados'
+    send: Enviar
+    sessionExpried: Su sesión expiró. La aplicación se reiniciará.
+    sessionExpriedInTeams: Su sesión expiró. La aplicación se reiniciará.
+    setting: Configuración
+    showDetail: Mostrar detalles
+    showRelatedCaseInfo: Casos relacionados
+    showSystemNotes: Notas del sistema
+    showSystemTasks: Tareas del sistema
+    start: Abrir
+    state: Estatus
+    status: Estado
+    switchToDesktopVersion: 'Cambiar al modo escritorio '
+    taskCanceledAndLeftSuccessfully: Ha cancelado y cerrado la tarea. Encontrará la tarea en su tablero o en su lista de tareas.
+    taskFinishedSuccessfully: Ha finalizado la tarea con éxito.
+    taskFromSubstitution: Usted ve esta tarea porque es el diputado
+    taskName: Nombre de tarea
+    tasks: Tareas
+    theCasemap: El mapa de caso
+    theProcess: El proceso
+    timeInformation: Informaciones de tiempo
+    timestamp: Marca de tiempo
+    type: Tipo
+    typeAdmin: Todos los administradores
+    typeAllUsers: Todos los usuarios
+    typeOnlyMe: Solo yo
+    user: '{0} usuario'
+    users: Usuarios
+    via: vía
+    viewExpired: Su vista actual expiró. Serás redirigido a la página de inicio.
+    viewMode: Modo de visualización
+    visible: Visible
+    warning: Advertencia
+    welcomeToPortal: 'Bienvenido, por favor inicie su sesión:'
+    wrongDateFormat: Por favor ingrese una fecha válida.
+    year: Año
+    years: Años
+    'yes': Sí
+  components:
+    RoleManagement:
+      AssignUsersToRole: Asignar usuarios a la función
+      AssignedUser: Usuarios asignados
+      AvailableUsers: Usuarios disponibles
+      CannotDeleteRoleTooltip: No tiene permiso para eliminar esta función. Póngase en contacto con el administrador del sistema.
+      CannotDeleteUserTooltip: Sólo puede editar las asignaciones directas de funciones, pero no las afiliaciones heredadas.
+      CannotEditRoleTooltip: No tiene permiso para cambiar la información de los roles. Póngase en contacto con el administrador del sistema.
+      CannotManageRoleTooltip: Sólo se puede modificar la información de los roles que no participan en ningún proceso.
+      CreateRole: Crear un nuevo rol
+      DeleteButtonTitle: Borrar el papel
+      EditButtonTitle: Editar la información del rol
+      FilteredRoles: Funciones filtradas
+      InheritedMembership: Afiliación heredada
+      ListUsers: Usuarios de la función {0}
+      Messages:
+        ConfirmDeleteRole: ¿Estás seguro de que quieres borrarlo?
+        ConfirmDeleteUserOfRole: ¿Estás seguro de que quieres sacar a los usuarios del papel?
+        CreateRoleFailed: El rol "{0}" no pudo ser creado
+        CreateRoleSuccess: Rol "{0}" creado con éxito
+        DuplicateRole: El rol "{0}" ya existe en el sistema, inténtelo con otro nombre
+        MaxSearchLimit: La búsqueda actual tiene más de {0} resultados
+        NotFoundRole: No se encuentra el "{0}" en el sistema
+        ParentRoleIsRequired: El papel de los padres es obligatorio
+        RemoveRoleSuccess: Rol "{0}" eliminado con éxito
+        RoleNameIsRequired: El nombre del rol es obligatorio
+        RoleNotFound: No se ha encontrado ningún papel
+        SearchToSeeMoreRole: Por favor, utilice la búsqueda para encontrar un rol específico ({0} más roles)
+        UpdateRoleSuccess: Rol "{0}" actualizado con éxito
+        UserOfRoleNotFound: Ningún usuario posee este rol
+      NumberUsers: '{0} usuarios'
+      ParentRole: Papel de los padres
+      RemovingRoleHeader: ¿Suprimir el papel "{0}"?
+      RoleCreation: Creación de roles
+      RoleDetails: Detalles de la función "{0}"
+      RoleInformation: Información sobre el papel
+      RoleName: Nombre del rol
+      SearchRole: Búsqueda del papel
+      TitlePage: Gestión de funciones
+      UserAssignment: Asignación de usuarios
+      UserSelectionLabel: Buscar usuario para añadir a este rol
+    SecurityMemberDisplayName:
+      filterByUsername: Filtrar por nombre de usuario
+      filterToSee: Filtrar para ver más
+      loadMore: Cargar más
+      noUser: No hay usuarios
+      tooltipHelper: Click para ver todos los usuarios que tienen este rol de forma directa o indirecta
+      userOfRoleTitle: 'Usuarios del rol {0} '
+    compactProcessWidget:
+      selectedProcess: Proceso seleccionado
+      settingFavoriteProcessName: Definición nombre del proceso favorito
+    expressManagement:
+      deployButton: Desplegar
+      deployMessage: Desplegando procesos
+      exportExpress: Export Express
+      exportExpressProcessTitle: 'Exportar procesos Express '
+      expressExportName: AXONIVY_Dataset_ExpressWorkflow_{0}.json
+      expressManagement: Gestionar Express
+      expressMessages:
+        deployErrorLog: Error durante el despliegue {0}
+        deploymentFinishedLog: Proceso(s) del archivo {0} han sido desplegados con éxito en {1}ms
+        endDeployLog: Despliegue Express finalizado
+        invalidVersionLog: Versión de Express {0} no apoyada
+        process:
+          duplicateProcessNameLog: Nombre de proceso duplicado {0}
+          installProcessFailedLog: Error al desplegar proceso {0}
+          installProcessFinishedLog: Instalación de proceso {0} con éxito.
+          installedProcessLog: Procesos instalados {0}
+          startDeployProcessLog: Comienzo de la instalación del proceso {0}
+        startDeployLog: Empezando el despliegue de los procesos del documento {0}
+        status:
+          error: Error
+          failed: Error
+          info: Info
+          successful: Éxito
+          warning: Atención
+        validate:
+          validateExpressVersion: La variable "Version Express" no ha sido encontrada. Por favor contacte a su administrador.
+          validateProcessCoOwnerLog: '- Validación del copropietario del proceso {0}. Usuario {1} no existe en el sistema'
+          validateProcessOwnerLog: '- Validación del propietario del proceso {0}. Usuario {1} no existe en el sistema. Cambie el propietario a {2}'
+          validateProcessPermissionLog: '- Validación del permiso para el proceso {0}. Usuario {1} no existe en el sistema'
+          validateTaskDefUserLog: '- Validación del responsable de tarea {0}. Usuario {1} no existe en el sistema'
+        versionLog: 'Versión de Express: {0}'
+      fileEmptyMessage: Archivo está vacío
+      importDialogHeaderTitle: Seleccione un archivo de procesos Express. El formato tiene que ser JSON.
+      importExpress: Importar Express
+      importExpressProcessTitle: Importar procesos Express
+      importHeaderTitle: 'Lista de procesos Express será exportada:'
+      processCount: proceso(s)
+      waitingMessage: Coleccionando datos…
+    guide:
+      dontShowAgain: No volver a mostrar
+      mainMenu:
+        content: En este menú se puede navegar a las diferentes áreas de Procesos, Tareas, casos y Estadísticas.
+        title: Menú principal
+      process:
+        content: En esta área puede definir sus propios favoritos y ver los procesos estándar de la aplicación. Sólo tienes que hacer clic en él y el proceso se iniciará.
+        title: Procesos
+      statistic:
+        content: 'En esta área encontrará todas las estadísticas disponibles. Haz clic en él para más detalles. '
+        title: Estadísticas
+      task:
+        content: En esta área encontrarás todas las tareas abiertas. Sólo tienes que hacer clic en él para trabajar en una tarea.
+        title: Tareas
+      username:
+        content: Al hacer clic en el nombre de usuario puede cambiar los ajustes como las ausencias, el idioma, la configuración del correo electrónico, etc.
+        title: Nombre de usuario
+      welcome:
+        content: 'Queremos que tengas un buen inicio con el portal. Para ello queremos mostrate las primeras acciones que puedes realizar. Además podrás consultar información más detallada siguiendo el siguiente enlace: <a href="{0}"  target="_blank">PortalGuide</a>'
+        mobileContent: 'Puede acceder a sus tareas aquí directamente o navegar a otras áreas usando <span class="{0}"></span>. Puede encontrar información adicional aquí: <a href="{1}"  target="_blank">PortalGuide</a>'
+        title: Bienvenido al Axon Ivy Portal
+    processChain:
+      currentStepIsNotDefined: El paso ({0}) de la cadena de proceso no está definido
+    statisticWidget:
+      chartDeletionConfirmation: ¿Seguro que quiere eliminar esta tabla de estadísticas?
+      contextMenuDrilldown: Drilldown
+      contextMenuToTaskList: Ir a la lista de tareas
+    taskStart:
+      cannotDelegateTaskMessage: Esta tarea no se puede delegar a ningún otro usuario o grupo.
+      cannotStartMessages:
+        cannotStartTask: No puede iniciar la tarea{0}.
+        isAnotherUserWorking: No puede trabajar en la tarea '' {0} '' con el identificador '' {1} '' porque el usuario '' {2} '' está trabajando actualmente en ella.
+        noPermission: No puede iniciar la tarea {0} porque no tiene permiso.
+        taskDone: No puede iniciar la tarea {0} porque ya está lista.
+      created: Creado el
+      expired: Expira el
+      showDetailsHint: Mostrar más detalles
+      taskDescriptionNotAvailable: '[No hay descripción disponible]'
+      taskNameNotAvailable: '[Nombre de la tarea no disponible]'
+    taskView:
+      adminFilterSetWarning: Su filtro contiene estados que sólo pueden ser vistos por los administradores.
+      appliedFilters: Filtros aplicados
+      exportedTasksCasesFileName: AXONIVY_Dataset_Statistics_{0}.{1}
+      exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}.{1}
+      filter: Filtrar
+      filterDeletionConfirmation: ¿Seguro que quiere eliminar este filtro?
+      filterExistedValidationError: El filtro ya existe
+      filterName: Nombre del filtro
+      filterVisibility: Visibilidad del filtro
+      noTask: Sin tareas
+      privateFilter: Mis filtros
+      publicFilter: Público
+      savedFilters: 'Filtros guardados:'
+  dashboard:
+    DashboardConfiguration:
+      CreateFromScratch: Crear desde cero
+      CreateFromScratchDescription: Cree su propio panel de control desde cero
+      CreateNewPrivateDashboard: Crear un nuevo panel de control privado
+      CreateNewPublicDashboard: Crear un tablero público
+      DefaultTemplateDescription: Crear un cuadro de mando con 1 lista de tareas, 1 lista de casos y 1 lista de procesos
+      Description: En esta área, puede configurar los cuadros de mando según sus necesidades.
+      DoNotSupportMobile: La configuración del panel de control no es compatible con los dispositivos móviles.
+      EditPrivateDashboards: Editar sus tableros privados
+      EditPublicDashboards: Editar tableros públicos
+      PrivateDashboard: Cuadros de mando privados
+      PrivateDashboardConfiguration: Configuración de tableros privados
+      PublicDashboard: Cuadros de mando públicos
+      PublicDashboardConfiguration: Configuración de tableros públicos
+      ReorderPrivateDashboards: Reordenar tableros privados
+      ReorderPublicDashboards: Reordenar tableros públicos
+      SelectAction: Seleccione la acción
+      Title: Configuración de tablero
+      TwoTaskTemplate: Dos cuadros de mando de la lista de tareas
+      TwoTaskTemplateDescription: Crear un cuadro de mando con 2 listas de tareas y 1 lista de procesos
+    EmptyFilterMessage: No se ha encontrado ningún filtro de widget
+    Filter:
+      FilterOptionHeader: Opciones de filtro
+      ManageWidgetFilterHeader: Gestión de filtros de widgets
+      NotFound: No se ha encontrado ningún filtro
+      WidgetNameColumn: Nombre de widget
+      WrongDateFormat: La fecha no es válida
+    ManageFilter: Gestión de filtros
+    NoData: No hay datos
+    NoSavedFilterMessage: No se ha encontrado ningún filtro guardado. Intente crear uno nuevo haciendo clic en el botón Guardar filtro
+    RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
+    SaveNewWidgetFilterHeader: Guardar un nuevo filtro de widget
+    SavedFilterHeader: Filtros guardados
+    SearchForFilter: Búsqueda del filtro
+    StatisticWidget:
+      AvailableCharts: Gráficos estadísticos disponibles
+      Charts: 'Gráfico(s): {0}'
+      ConfigurationDescription: Puede configurar su widget en esta área de configuración. Por favor, defina el gráfico que se mostrará en su panel de control.
+      EmptyChartDataMessage: No tenemos suficientes datos para crear un buen gráfico.
+      FilterChartText: Filtrar un gráfico por nombre
+      PlaceholderChartOption: Seleccione un gráfico
+      PleaseSelectChart: Seleccione un gráfico
+      PreviewText: Seleccione un gráfico para ver los datos del lienzo
+    WidgetFilterName: Nombre del filtro del widget
+    WidgetFilters: Filtros de widgets
+    actionSelection: Seleccionar acción
+    addField: Añadir campo
+    addWidget: Añadir widget
+    availableFilters: Filtros disponibles
+    canWorkOn: Puede trabajar en
+    caseList: Lista de casos
+    caseListIntroduction: Este widget muestra la información relevante del caso según la configuración definida
+    caseWidgetInfo:
+      casesByCategory: Número de casos por categoría
+      casesByState: Número de casos por estado
+      numberOfCase: caso(s)
+    category: Categoría
+    columnManagement: Gestión de columnas
+    configuration:
+      CustomWidgetExternalLinkWarning: Algunas webs no son compatibles con iframe por motivos de seguridad. Póngase en contacto con su administrador si la web externa no funciona correctamente.
+      Parameters: Parámetros
+      RestoreDefaultDashboardTemplateTooltip: No podemos encontrar la plantilla de su panel de control, por lo que no podemos restablecer la configuración estándar. Por favor, consulte con su administrador para obtener más detalles.
+      SelectTheTemplate: Seleccione la plantilla
+      SelectYourTemplate: Seleccione su plantilla
+      configuration: Configuración
+      configurationDescription: Puede configurar su widget en esta área de configuración. Por favor, defina los filtros requeridos así como las columnas a mostrar.
+      customWidgetParamChangedMessage: Este proceso ha cambiado. Presione aktualizar para continuar.
+      editWidgetHeader: Editar configuración del widget
+      newWidgetHeader: Nueva {0} configuración del widget
+      pageTitle: Configuración del panel de control
+      processConfigurationDescription: Puede configurar su widget en esta área de configuración. Por favor, defina los filtros requeridos así como las propiedades a mostrar.
+      tableConfiguration: Configuración de la tabla
+      tableConfigurationDesc: Puede gestionar las columnas y establecer la ordenación estándar haciendo clic en la columna.
+      yourWidget: Su Widget
+    createWidget: Añadir widget
+    createdFrom: Creado desde
+    createdTo: Creado para
+    customFieldType: Tipo de campo personalizado
+    customWidget: Widget personalizado
+    customWidgetIntroduction: Con este widget puede añadir procesos de Axon Ivy o páginas web externas.
+    dashboardManagement:
+      CreateDashboard: Crear tablero
+      addDashboard: Añadir tablero
+      dashboardPermission: Permiso de tablero
+      dashboardTitle: Título del tablero
+      editDashboard: Editar tablero
+      manageDashboard: Administrar tablero
+      removeDashboardHeader: Borrar el tablero "{0}"
+    deleteWidget: Eliminar el widget
+    editWidget: Editar widget
+    existingField: El campo {0} ya existe
+    expiryFrom: Caducidad desde
+    expiryTo: Fecha de caducidad hasta
+    field: Campo
+    fieldIsAdded: El campo {0} está añadido
+    iconMessage:
+      caseWidget:
+        BEACH_PALM_SUNBED: Eres increíble - todos los casos están hechos. Recuéstate y disfruta.
+        CHARGING_BATTERY_FULL_1: There are currently no cases. Time to recharge the batteries a little.
+        COFFEE_OF_HOT: ¡Vaya! ¡Buen trabajo! Todos los casos están completados. ¿Qué tal una pausa rápida para el café?
+        RANKING_WINNER_MEDAL: ¡Juego, set y partido! Lo has conseguido, ¡todos los casos están completados!
+        SOCCER_PLAYER: ¡Gol! Lo has hecho, todos los casos completados. Breve descanso de medio tiempo.
+        YOGA_MEDITATE: ¡Bien hecho! Todos los casos están hechos. Inhala, exhala, relájate.
+        noCasesFoundWhenFilter: Actualmente no hay casos después de aplicar el filtro.
+      taskWidget:
+        BEACH_PALM_SUNBED: 'Eres increíble: todas las tareas están hechas. Recuéstate y disfruta.'
+        CHARGING_BATTERY_FULL_1: Actualmente no hay tareas. Es hora de recargar un poco las pilas.
+        COFFEE_OF_HOT: ¡Vaya! ¡Buen trabajo! Todas las tareas están completadas. ¿Qué tal una pausa rápida para el café?
+        RANKING_WINNER_MEDAL: ¡Juego, set y partido! Lo has conseguido, ¡todas las tareas están completadas!
+        SOCCER_PLAYER: ¡Gol! Lo hiciste, todas las tareas completadas. Breve descanso de medio tiempo.
+        YOGA_MEDITATE: Bien hecho. Todas las tareas están hechas. Inhala, exhala, relájate.
+        noTasksFoundWhenFilter: Actualmente no hay tareas después del filtro aplicado.
+    loading: Cargando...
+    noCategory: No hay categorías
+    noDashboard: No hay tableros. Añadir al menos un tablero y widgets.
+    noPermission: No tienes permisos para ver los dashboards.
+    noWidget: No hay widgets para este tablero
+    numberPattern: Patrón de números
+    preview: Vista previa
+    processList: Lista de procesos
+    processListIntroduction: Este widget muestra los inicios de procesos disponibles. Tiene la posibilidad de elegir diferentes formatos
+    processWidgetInfo:
+      noProcess: No hay procesos.
+      numberOfProcessesByType: Número de procesos por tipo
+    processes:
+      emptyProcess: No ha definido ningún proceso.
+      noMatchingProcess: No hay procesos que coincidan.
+      noProcessSelected: Seleccione un proceso
+    removeWidgetHeader: Eliminar el widget "{0}"
+    removeWidgetMessage: ¿Realmente quieres eliminarlo?
+    reorder:
+      dashboardType: Tipo de tablero
+    restoreDefaultHeader: Restaurar los widgets por defecto
+    restoreDefaultMessage: Si procede, perderá todos los widgets creados por usted. Se aplicará la configuración estándar.
+    select: Seleccione
+    selectEditAction: Con qué acción quiere proceder?
+    showFullWidget: Mostrar el widget completo
+    startATask: Iniciar tarea
+    statisticChartIntroduction: Este widget muestra los gráficos estadísticos disponibles.
+    statisticChartWidget: Gráfico estadístico
+    switchToViewMode: Modo de visualización
+    tasWidgetkInfo:
+      expireToday: Expira hoy
+      expiryThisWeek: Expira esta semana
+      numberOfTasks: tarea(s)
+      numberOfTasksByCategory: Número de tareas por categoría
+      numberOfTasksByState: Número de tareas por estado
+      predefinedFilters: Filtros predefinidos
+    taskList: Lista de tareas
+    taskListIntroduction: Este widget muestra la información relevante de la tarea según la configuración definida.
+    taskWidgetConfiguration: Configuración del widget de tareas
+    widgetInfo: Información del widget
+    widgetTitle: Título del widget
+    widgetType: Tipo de widget
+    yourCases: Sus casos
+    yourCustomWidget: Su widget personalizado
+    yourProcesses: Sus procesos
+    yourStatistics: Sus estadísticas
+    yourTasks: Sus tareas
+  dateFormatConfiguration:
+    dateFormatConfiguration: Configuración del formato de fecha
+    selectedDateFormat: Formato de fecha selecionado
+  documentFiles:
+    deleteDocumentNote: '{0} ha eliminado {1}'
+    deleteSuceed: Archivo eliminado con éxito
+    download: Descargar
+    fileContainScript: ¡Este archivo no puede cargarse porque contiene algunos scripts!
+    fileContainVirus: Carga fallida, ¡se ha detectado un virus/infección!
+    name: Nombre de archivo
+    size: Tamaño de archivo
+    type: Tipo
+    upload: Cargar archivo nuevo
+    uploadDocumentNote: '{0} ha subido {1}'
+    uploadFailed: Se produjo un error al cargar este archivo. Por favor, pregunte a su administrador por este problema.
+    uploadFileExists: El archivo {0} ya existe
+    uploadSucceed: El archivo ha sido añadido con éxito
+  emailSetting:
+    dailySummary: Recibir un resumen diario
+    eMail: Email
+    emailSetting: Ajustes de correo electrónico
+    furtherEmailFromApp: Recibir otros emails de la aplicación
+    invalidEmailFormat: Formato de Email inválido
+    mailNotificationOnTaskAssign: Recibir notificación cuando se asigne una tarea
+    noSettingMsg: No hay una aplicación para configurar el correo electrónico.
+  errorPage:
+    '404': 404 Pagina no encontrada
+    404Message: Lo sentimos, pero el recurso que está buscando no existe.
+    '500': Error 500
+    500Message: Lo sentimos, hubo un problema al servir la página solicitada.
+    backToHomePage: Volver a la página de inicio
+    title: Página de error
+  exceptionDialog:
+    copied: Copiado
+    copyError: Error al copiar
+    errorId: ID del error
+    errorType: Tipo de error
+    message: Mensaje
+    pmv: PMV
+    processElementId: ID del elemento del proceso
+    stackTrace: Conjunto de trazas
+  forgotPassword:
+    empty: Vacío
+    forgotPassword: Olvidé mi contraseña
+    forgotPasswordError: Ha habido un error mientras se procesaba su solicitud. Por favor inténtelo más tarde.
+    goToForgotPassword: Ir a la página de olvido de contraseña
+    goToLogin: Volver a la página de inicio
+    good: Bien
+    invalidResetUrl: La dirección URL no es válida
+    invalidToken: Token inválido
+    newPassword: Nueva contraseña
+    passwordConfirmation: Confirmar contraseña
+    passwordReset: Restablecer contraseña
+    passwordResetEmailCantSend: 'Ha habido un problema para enviarle un E-Mail. Por favor inténtelo más tarde. '
+    passwordResetEmailContent: <html>Hola {0},<br/><br/>por favor haga click en este link para restablecer su contraseña <a href="{1}">Restablecer contraseña</a><br/><br/>Saludos</html>
+    passwordResetEmailSent: Se ha enviado un E-Mail con el link para restablecer su contraseña. Por favor compruebe su correo electrónico.
+    passwordResetEmailSubject: E-Mail para restablecer su contraseña
+    passwordResetSuccess: Su contraseña ha sido cambiada con éxito.
+    setANewPassword: Defina una nueva contraseña
+    strong: Fuerte
+    userNotFound: Usuario no encontrado
+    usersHaveSameEmail: Hay varios usuarios usando el mismo E-Mail. Por favor contacte con su administrador.
+    weak: Débil
+  iconselection:
+    iconSelectionDialogHeader: Seleccionar ícono
+    seachIconByNamePlaceHolder: Buscar símbolo por nombre
+  languageSetting:
+    Language: Idioma
+    cannotSetEmailLanguage: El idioma no se puede configurar como idioma de notificación de correo electrónico.
+    languageSetting: Ajustes de idioma
+    saveLanguageHasWSErrors: Error al guardar el idioma
+    selectedLanguage: Lenguaje seleccionado
+  login:
+    login: Iniciar sesión
+    loginErrorMessage: No está conectado o su usuario no existe en el sistema. Por favor, contacte con el administrador del sistema
+    loginFailed: error de inicio de sesion
+    username: Nombre de usuario
+  logoutSetting:
+    logout: Cerrar sesión
+  noteHistory:
+    author: Autor
+    caseExportedFileNamePrefix: Historia_Notas_del_caso_ {0}
+    caseHistoriesTitle: Historial
+    caseHistoryPageTitle: Historia de la nota de caso
+    columnContent: Contenido
+    curentReportOf: del
+    eventType: Tipo de evento
+    exportButton: Exportar a Excel
+    relatedCase: Caso relacionado
+    showMoreBtn: Mostrar más
+    taskExportedFileNamePrefix: Note_history_of_task_ {0}
+    taskFailReason: 'Razón del error: {0}'
+    taskHistoryPageTitle: Historial de notas de tareas
+  notes:
+    newNoteHeader: Agregar nueva nota
+    wroteAt: escribió en
+  passwordSetting:
+    changePasswordWSError: Se produjo un error al cambiar su contraseña. Póngase en contacto con su administrador si este problema persiste.
+    confirmNewPassword: Confirmar nueva contraseña
+    confirmPasswordHaveMatch: La contraseña introducida, no coincide con la contraseña confirmada
+    currentPassword: Contraseña actual
+    newPassword: Nueva contraseña
+    requireConfirmPassword: Falta la confirmación de la contraseña
+    requireCurrentPassword: Por favor, especifique la contraseña actual
+    requireNewPassword: Por favor, especifique la nueva contraseña también
+    updatePasswordSuccessfully: Contraseña actualizada exitosamente.
+    wrongPassword: Error de autenticación, ¡su contraseña parece no ser la correcta!
+  permission:
+    noPermission: Necesita el rol AXONIVY_PORTAL_ADMIN para acceder a esta página. Por favor, póngase en contacto con su administrador.
+  processwidget:
+    MoreInformation: Más información
+    addExternalLink: Añadir enlace externo
+    addNewExternalLinkHeader: Añadir enlace externo
+    addNewProcess: Agregar nuevo proceso
+    addNewProcessDialogHeader: Agregar nuevo proceso de usuario
+    backToOverview: De regreso a la visión general
+    brokenLinkProcess: El enlace no funciona. Por favor, actualice sus favoritos o contacte al administrador.
+    defaultProcesses: Favoritos de la aplicación
+    deleteExpressWorkflowTooltip: Eliminar Express Workflow
+    deleteExternalLinkTooltip: Borrar enlace externo
+    deleteProcess: Eliminar proceso
+    deleteProcessItemConfirmation: ¿Seguro que quiere eliminar el siguiente proceso?
+    deleteProcessItemHeader: ¿Eliminar un proceso?
+    displayMode: Modo de visualización
+    editDialog:
+      dialogCurrentIcon: Icono actual
+      dialogEditInfoTitle: '{0} Información'
+      dialogHeaderDescription: Aqui puede configurar parámetros relacionados con el proceso seleccionado.
+      dialogHeaderTitle: Editar información para {0}
+    editExpressWorkflowTooltip: Editar Express Workflow
+    editProcesses: Editar procesos
+    expressWorkflow: Workflow Express
+    externalLink: Enlace externo
+    externalLinkVisibility: Visibilidad
+    favoriteProcesses: Favoritos del usuario
+    goTo: 'Ir a:'
+    icon: Icono
+    isRequiredMessage: tiene que ser configurado
+    linkDescription: Descripción del enlace
+    noFavoriteProcess: No ha definido ningún favorito.
+    noProcess: Ningún proceso encontrado
+    noProcesses: Ningunos procesos encontrados
+    processFilterPlaceHolder: Nombre, Descripción, Categoría
+    processName: Nombre del proceso
+    processStartLink: Enlace de inicio del proceso
+    processType: Tipo de proceso
+    remove: Retirar
+    seeAllProcesses: Mostrar todos los procesos
+    sortByName: Ordenar por nombre
+    specialCharacterGroup: Caracteres especiales
+    startLink: Enlace de inicio
+    webLinkExample: Ej. http://www.ejemplo.com
+  projectInfo:
+    applicationProjectVersion: Proyectos de aplicación y versiones
+    engineVersion: Versión de motor
+    header: Información de versión Axon Ivy
+    info: Info
+    portalVersion: Versión de portal
+    projectName: Nombre de proyecto
+    version: Versión
+  searchResult:
+    case: Caso
+    notDisplayResultTabView: No tiene derechos para ver los resultados
+    process: Proceso
+    searchResults: Resultados de la búsqueda
+    searchResultsFor: '{0} resultados de búsqueda para "{1}"'
+  sidestep:
+    addAdhocTask: Añadir tarea Ad-hoc
+  statistic:
+    chart:
+      ExpandOrCollapseColumn: Abrir/Cerrar columnas
+      addChart: Agregar nueva grafica
+      addChartDialogHeader: Agregar grafica estadística al tablero
+      backToDashboard: Regresar al tablero
+      barchart:
+        Percentage: Porcentaje
+        daysOfWeek:
+          friday: Viernes
+          monday: Lunes
+          saturday: Sábado
+          sunday: Domingo
+          thursday: Jueves
+          tuesday: Martes
+          wednesday: Miércoles
+        expired: Vencido
+        in2Days: En 2 días
+        in3Days: En 3 días
+        monthsOfYear:
+          April: Abril
+          August: Agosto
+          December: Diciembre
+          February: Febrero
+          January: Enero
+          July: Julio
+          June: Junio
+          March: Marzo
+          May: Mayo
+          November: Noviembre
+          October: Octubre
+          September: Septiembre
+        today: Hoy
+        tomorrow: Mañana
+        weeksOfMonth:
+          fifthWeek: Quinta semana
+          firstWeek: Primera semana
+          fourthWeek: Cuarta semana
+          secondWeek: Segunda semana
+          sixthWeek: Sexta semana
+          thirdWeek: Tercera semana
+      caseCategory: Categoría de caso
+      chartCreationSuccessDetailMsg: El gráfico con el nombre {0} se creó con éxito
+      chartCreationSuccessTitle: El gráfico fue creado con éxito
+      elapsedTime: Tiempo transcurrido
+      elapsedTimeChart:
+        compareButton: Comparar
+        compareRole: 'Comparar el rol:'
+        elapsedTimeInHours: Tiempo transcurrido en horas
+        noEntriesFound: No se encontraron entradas con los criterios dados
+        taskCategory: Categoría de tarea
+        withRole: 'Con Rol:'
+      emptystate:
+        defaultEmptyMessages: No hay tabla de estadísticas para mostrar.
+      expiryPeriod: Período de caducidad
+      loadingCharts: Por favor espere, los diagramas se están cargando
+      notAllowedToCreateChart: Ha cambiado los filtros aplicados. Por favor aplique los filtros.
+      other: Otros
+      restoreDefaultChart: Si continúa, todos los diagramas hechos por usted serán borrados. Los valores iniciales serán reestablecidos.
+      second: segundo
+      showAllCharts: Mostrar todas las estadísticas
+      statisticCarousel: Tiovivo de estadísticas
+      statistics: Estadísticas
+      taskByExpiry:
+        hour: (Hora)
+        thisMonth: Este mes
+        thisWeek: Esta semana
+        thisYear: Este año
+      taskByPriority:
+        addToDashboardLink: Agregar al tablero
+        exception: Excepción
+        high: Alto
+        low: Bajo
+        normal: Normal
+      taskExpiry: Vencimiento de tareas
+    chartInfo:
+      chartDetailsHeader: Detalles del gráfico
+      chartName: Nombre del gráfico
+      chartType: Tipo de gráfico
+    chartType:
+      caseByFinishedTask: Caso por Tarea Terminada
+      caseByFinishedTaskDescription: Casos en los que al menos una tarea ha sido finalizada en el tiempo seleccionado
+      caseByFinishedTime: Caso por tiempo finalizado
+      caseByFinishedTimeDescription: Casos terminados en el periodo de tiempo seleccionado
+      caseByState: Caso por estado
+      elapsedTimeByCaseCategory: Tiempo transcurrido por categoría de caso
+      elapsedTimeByCaseCategoryDescription: Tiempo de duración para casos terminados por categoría
+      taskByExpiry: Tarea por vencimiento
+      taskByPriority: Tarea por prioridad
+    defaultChart:
+      newChart: Diagrama nuevo
+      tasksByPriority: Tareas por prioridad
+    filter:
+      affectedCharts: Diagramas afectados
+      allSelected: Todos
+      caseCategoriesLabel: Categorías de casos
+      caseCategoryFilterDescription: Puede encontrar todos las categorias disponibles aqui. Solo las categorías seleccionadas serán consideradas en los diagramas creados
+      caseStateFilterDescription: Solo los estados seleccionados serán considerados en los diagramas
+      filter: Filtros
+      noRoles: No hay Roles
+      noSelectionCustomVarChar: Sin selección
+      noneSelected: Ninguno
+      roleFilterDescription: Puede encontra todos los roles disponibles aquí. Solo los roles seleccionados serán considerados en los diagramas
+      rolesLabel: Roles
+      selectAll: Seleccionar todo
+      taskPrioritiesLabel: Prioridades de tareas
+      taskPriorityFilterDescription: Puede filtrar tareas por prioridad.
+      timePeriod: Periodo de tiempo
+      timePeriodFilterDescription: Restringir el periodo de tiempo para casos y tareas
+      workflowStatesLabel: Estados de flujo de trabajo
+    taskAnalysis:
+      applyFilter: Aplicar filtros
+      caseCategory: Categoría de caso
+      caseCreator: Creador del caso
+      caseDescription: Descripción del caso
+      caseFilter: Filtros del caso
+      caseID: ID del caso
+      caseName: Nombre del caso
+      caseOwner: Propietario del caso
+      caseState: Estado del caso
+      downloadZipFileExplanation: |-
+        El número de tareas excede el Límite de Excel. Por ello se crearán varios archivos y se comprimirán en un archivo Zip.
+
+        El número de tareas excede el Límite de Excel. Por ello se crearán varios archivos y se comprimirán en un archivo Zip.
+      taskAnalysis: Análisis de tareas
+      taskCategory: Categoría de la tarea
+      taskCreationTime: Tarea creada
+      taskDescription: Descripción de la tarea
+      taskExpiryTime: Fecha de expiración de la tarea
+      taskFilter: Filtros de tareas
+      taskFinishedTime: Tarea completada
+      taskID: ID de la tarea
+      taskPriority: Prioridad de tarea
+      taskResponsible: Resonsable de tarea
+      taskState: Estado de tarea
+      taskWorker: Editor de tareas
+      waitingDownloadMessage: 'Estamos creando su exporte, esto puede tardar unos minutos. '
+    timePeriod:
+      custom: Personalizado
+      last6Month: Último 6 meses
+      lastMonth: El mes pasado
+      lastWeek: La semana pasada
+    validationErrors:
+      nameIsExisted: Ya existe una tabla con este nombre
+  taskActivator:
+    assign: Asignar
+    cannotAssignTask: Esta tarea no puede ser asignada a otro usuario o grupo.
+    escalationActivatorDesc: Cambiar el usuario de la tarea escalada
+    escalationActivatorHeader: Seleccionar el usuario de la tarea escalada
+  taskDelegate:
+    afterEscalation:
+      delegateNotes: El usuario de la tarea escalada {0} ha sido cambiado de {1} a {2}
+      delegateNotesWithComment: El usuario de la tarea escalada {0} ha sido cambiado de {1} a {2} - {3}
+    delegateComment: La tarea {0} fue delegada de {1} a {2}
+    delegateReasonIncludedComment: La tarea {0} fue delegada de {1} a {2} - {3}
+    delegateTaskHeaderLabel: Delegar la tarea a un usuario o grupo específico
+    groupSelectionWatermark: Por favor seleccione un grupo ...
+    toGroup: Grupo
+    toUser: Usuario
+    userSelectionWatermark: Por favor seleccione un usuario...
+  taskDetails:
+    addDocumentHelpText: Para cargar archivos, arrastrar y soltar o seleccionar archivos
+    addNoteHelpText: Escriba su texto aquí.
+    afterEscalation: Después de la escalada
+    businessCase: Caso comercial
+    completedOn: Completado en
+    delayedUntil: Retrasado hasta
+    deleteFile: Borrar archivo
+    documents: Documentos
+    duration: Duración
+    events: Eventos del Workflow
+    expiry: Expiración
+    failedDelayValidation: La marca de tiempo del retraso de la tarea no puede ser un valor vacío o un formato de fecha inválido
+    failedExpiryValidation: La fecha de vencimiento de la tarea no puede estar en el pasado.
+    noAdhoc: Proceso AdHoc no disponible
+    noDescription: Sin descripción
+    noNotes: Sin notas
+    processingTime: Tiempo de procesado
+    setDelayTimestamp: '{0} ({1}) Ha modificado el tiempo de demora para la tarea #{2} a {3}'
+    setExpiryActivatorAndTimeNotes: '{0} y asignar {1} como el usuario de la tarea escalada'
+    taskCategory: Categoría de tarea
+    taskExpiryDisable: Esta tarea no tiene manejo lógico de escalado, por lo tanto no se puede establecer el tiempo de expiración.
+    technicalCase: Caso técnico
+    workflowEventDialog: 'Eventos del Workflow de la tarea #{0}'
+    workingUser: Usuario trabajador
+  taskExpiryDateDialog:
+    message:
+      setDeadlineSuccess: La fecha límite de la tarea se ha establecido con éxito.
+    title: Fecha límite de la tarea
+  taskInformation:
+    clearDelay: Borrar el retraso
+    clearExpiry: Borrar expiración
+    delegate: Delegar
+    delegateTask: Delegar tarea
+    freeReservationTaskTooltip: Usar reinicio para quitar el control de la tarea
+    histories: Notas
+    note: Información de notas
+    noteDetail: Detalles de nota
+    openRequest: Abrir
+    openTaskTooltip: Abrir tarea
+    park: Estacionar
+    parkTaskSuccessfully: La tarea ha sido pospuesta con éxito
+    reserveTaskTooltip: Reservar tarea
+    resetTaskSuccessfully: La tarea se ha reactivado con éxito
+    resetTaskTooltip: Reiniciar tarea
+    setDeadline: Definir fecha limite
+    setPriority: Definir prioridad
+    startTask: Comenzar
+    taskComments: Comentarios
+    taskDetails: Detalles de tarea
+    taskInforDialogTitle: Información de tarea
+    taskNotes: Notas
+    triggerEscalation: Ejecutar escalación
+  taskList:
+    deadline: Fecha límite
+    default: Predeterminado
+    defaultColumns:
+      ACTIVATOR: Responsable
+      CATEGORY: Categoría
+      COMPLETED_ON: Completado en
+      CREATION_TIME: Creado
+      EXPIRY_TIME: Expiración
+      ID: ID de tarea
+      NAME: Nombre / Descripción
+      PRIORITY: Prioridad
+      STATE: Estado
+      TASK_FOR_UNAVAILABLE_ACTIVATOR: Falta el activador
+      abbreviation:
+        PRIORITY: Prio
+    defaultFilter: Filtro por defecto
+    destroyTaskMessage: Esta operación no se puede revocar. ¿Está seguro de que quiere destruir esta tarea?
+    headerTitle:
+      relatedStatisticHeader: 'Tareas Relacionadas de la gráfica estadística:'
+      relatedTasksHeader: Tareas relacionadas del caso
+    lastEdit: Modificado por ultima vez
+    manageColumns: Administrar columnas
+    name: Nombre
+    newTaskNotification: Tiene nuevas tareas.
+    removeExpiryTimeNote: '{0} ({1}) ha borrado la expiración de la tarea #{2}'
+    resetTaskWarning: Esta tarea ya ha empezado. Pierde su progreso si la reinicia. ¿Quiere reiniciar la tarea?
+    responsibleAfterEscalation: Responsable después de escalación
+    setDeadlineNote: '{0} ({1}) ha establecido una fecha limite a la tarea # {2} para {3}'
+    setNameNote: El nombre de la tarea se estableció en {2} desde {1} por {0}
+    showOnlyTaskForMissingActivator: Mostrar sólo las tareas para las que falta el activador
+    showOnlyTaskForMissingActivatorDesc: Este filtro mostrará las tareas que no tienen activador, el activador no se encuentra o está desactivado.
+    sortFields:
+      CREATION_TIME_ASC: Fecha de creación (antiguos primero)
+      CREATION_TIME_DESC: Fecha de creación (nuevos primero)
+      EXPIRY_TIME_ASC: Fecha de caducidad (antiguos primero)
+      EXPIRY_TIME_DESC: Fecha de caducidad (nuevos primero)
+      PRIORITY_ASC: Prioridad (alta - baja)
+      PRIORITY_DESC: Prioridad (baja - alta)
+    triggerEscalationNote: 'Escalación ha sido ejecutada por {0} ({1}) para la tarea #{2}'
+    type: Tipo
+  taskPriority:
+    EXCEPTION: Excepción
+    EXCEPTION_LOWERCASE: Excepción
+    HIGH: Alto
+    HIGH_LOWERCASE: Alto
+    LOW: Bajo
+    LOW_LOWERCASE: Bajo
+    NORMAL: Normal
+    NORMAL_LOWERCASE: Normal
+  taskPriorityDialog:
+    message:
+      setPrioritySuccess: La prioridad de la tarea se ha establecido con éxito.
+    title: Prioridad de tarea
+  taskState:
+    CREATED: Creado
+    DELAYED: Retrasado
+    DELAYED_UPPERCASE: DEMORADO
+    DESTROYED: Destruido
+    DESTROYED_UPPERCASE: DESTRUIDO
+    DONE: Hecho
+    DONE_UPPERCASE: HECHO
+    FAILED: Ha fallado
+    INPROGRESS: En progreso
+    JOINING: Unión
+    JOIN_FAILED: Unión fallida
+    OPEN: Pendiente
+    OPEN_UPPERCASE: PENDIENTE
+    PARKED: Reservado
+    READY_FOR_JOIN: Listo para unirse
+    READY_FOR_JOINING: Listo para unirse
+    READY_FOR_JOIN_UPPERCASE: READY FOR JOIN
+    RESERVED: Reservado
+    RESUMED: En progreso
+    SUSPENDED: Suspendido
+    SYSTEM: SISTEMA
+    WAITING: Esperando
+    WAITING_FOR_INTERMEDIATE_EVENT: Esperando el evento
+    ZOMBIE: Zombi
+  taskView:
+    filterTextPlaceHolderMobile: Nombre o descripción
+    filterTextPlaceholder: Nombre, descripción o ID
+    restoreDefaultFilterMessage: Si procede, se aplicará el filtro por defecto
+    saveFilter: Guardar filtro
+    showFullTaskList: Mostrar lista de tareas completa
+    sort: Ordenar
+  taskWarning:
+    createdTaskLeave: 'Va a salir de esta página. Por favor selecione una de las siguientes opciones:<UL><LI>&nbsp; &nbsp; Salir: No guardará sus cambios y navegará a la página seleccionada<LI>&nbsp; &nbsp; Cancelar: Continue trabajando en esta tarea.</UL>'
+    createdTaskLogout: 'Va a salir de esta página. Por favor selecione una de las siguientes opciones:<UL><LI>&nbsp; &nbsp; Cerrar sesión: No guardará sus cambios y se cerrará la sesión.<LI>&nbsp;Cancelar: Continue trabajando en esta tarea.</UL>'
+    resetParkTaskBeforeLeave: 'Va a salir de esta página. Por favor selecione una de las siguientes opciones:<UL><LI>Salir: No guardará sus cambios y navegará a la página seleccionada<LI>Reservar: No guardará sus cambios y esta tarea quedara reservada para usted.<LI>Cancelar: Continue trabajando en esta
+      tarea.</UL>'
+    resetParkTaskBeforeLogout: 'Va a salir de esta página. Por favor selecione una de las siguientes opciones:<UL><LI>Salir: no guardará sus cambios y volverá a la página anterior.<LI>Reservar: No guardará sus cambios, volverá a la página anterior pero la tarea quedara reservada para usted.<LI>Cancelar:
+      Continue trabajando en esta tarea.</UL>'
+    taskNotFound: La tarea no existe o no los tiene derechos suficientes para ver esta tarea.
+  userProfile:
+    myProfileTitle: Mi perfil
+    saveUserSettingsSuccessfully: Propiedades de usuario guardadas con éxito.
+  warningBeforeLostSession:
+    extend: Ampliar
+    warningMessage: Su sesión caducará en 1 minuto. ¿Le gustaría extenderla?
+Dialogs:
+  Cases:
+    EditWorkflow:
+      CaseDescription: Editar un flujo de trabajo existente
+      CaseName: Editar flujo de trabajo
+  Tasks:
+    CreateWorkflow:
+      TaskDescription: Flujo de trabajo ha sido creado
+      TaskName: Flujo de trabajo ha sido creado
+    EditWorkflow:
+      TaskDescription: Un flujo de trabajo ha sido editado
+      TaskName: Flujo de trabajo editado
+    FinalReview:
+      TaskName: Control final
+    FinalWorkflowTask:
+      taskDescription: ¡El flujo de trabajo {0} ha sido {1}!
+    FormDefinition:
+      TaskDescription: ¡Por favor define el formulario!
+      TaskName: ¡Creación de formulario!
+    ProcessLoaded:
+      TaskName: Tarea para configurar el proceso Adhoc
+    SaveWorkflow:
+      TaskName: El flujo de trabajo express en tramitación
+    TaskDetail:
+      DataDescription: Datos y Descripción
+      restoreToDefaultSettings: 'Restablecer la configuración por defecto '
+      switchToEditMode: Editar
+      switchToViewMode: Guardar
+    WorkflowProperties:
+      TaskDescription: ¡Por favor configure las propiedades del flujo de trabajo!
+      TaskName: Propiedades del flujo de trabajo
+  WorkflowExecution:
+    ApprovalForm:
+      Approve: Aprobar
+      ApproveComment: Aprobar
+      CommentLabel: Comentario del aprobador
+      FieldSetApplicant: Solicitante
+      FieldSetForm: Formulario
+      FinishedTasks: Tareas terminadas
+      Fullname: Nombre completo
+      Reject: Rechazar
+      RejectComment: Rechazar
+    FinalReviewForm:
+      approvalStatus: Estado del aprobado
+      approver: Aprovador
+      noticed: Verificado
+    FinishedTasksForm:
+      Applicant: Solicitante
+      ApprovalResult: Estado del aprobado
+      FinishedTasks: Tareas terminadas
+      FormDetails: Detalles del formulario
+    UserTaskForm:
+      ApprovalResult:
+        Approved: Aprobado
+        Rejected: Rechazado
+      Formular: Formulario
+  agileBPM:
+    TooltipForOriginalTask: Su tarea actual volverá a evaluarse cuando estén completados los flujos de trabajo ad hoc previos.
+    define_WF:
+      AdhocWorkflowTasks: Tareas del flujo de trabajo
+      ErrorSelectInvalidAssignee: El destinatario ya está seleccionado o es inválido
+      ListOfSelectedUser: Lista de usuarios seleccionados
+      ResponsibleDialogHeader: Usuarios responsables
+      SequenceOfTasks: Tareas siguientes
+      TaskActor: Trabajador de la Tarea
+      TaskSubject: Nombre de la Tarea
+      WFCategory: Categoría
+      WFSubject: Tema
+    task_Form:
+      AppendATaskAfter: Agrega una tarea en la secuencia después de mi tarea
+      ErrorEmployeeNotExist: El empleado seleccionado no existe
+      InsertATaskBefore: Inserta una tarea antes de la mía. Mi tarea se pospondrá.
+      MyTaskIsDoneAnd: Mi tarea se ha completado y una nueva se ha anexado
+  ch:
+    ivy:
+      addon:
+        express:
+          generic:
+            endpage:
+              subtitle: La última tarea se completó con éxito.
+              title: ¡Tarea completada con éxito!
+            expressNoItem: Aún no se ha completado ninguna Tarea Express
+            expressNoItemDescription: Aquí se mostrarán los resultados de las tareas completadas
+            expressWorkflowName: 'Detalles de negocio del caso #{0}'
+        portalkit:
+          component:
+            CaseWidget:
+              CaseCategory: Categoría del caso
+              CaseDetail:
+                CaseDetailTitle: Detalles del caso
+                DataDescription: Datos y Descripción
+                destroyCase: Borrar caso
+              CaseOwner: Responsable del proceso
+              Finished: Terminado
+              ShowBusinessDetails: detalles del negocio
+              caseNameNotAvailable: '[Nombre del caso no disponible]'
+              defaultEmptyMessage: No hay casos
+  components:
+    CaseDocument:
+      FileDate: Modificado el
+      FileFunctions: Funciones
+      NoFiles: ¡No se encuentran archivos!
+      deleteSucceed: El archivo ha sido borrado con éxito
+      emptyFileMessage: El archivo no puede estar vacío
+      fileLimitMessage: ¡El máximo numero de archivos ha sido subido!
+      fileUploadElementPosition: Solo pueden subirse archivos en el encabezado on el pie de página
+      invalidFileMessage: Tipo de archivo no permitido
+      invalidSizeMessage: ¡El archivo es muy grande!
+      maximumFileUploadElement: Ya existe un elemento de subir documentos
+  workflowCreation:
+    AdhocProcessName: Proceso adHoc para la tarea {0} - {1}
+    FormDefinition:
+      AddCheckboxField: Agregar nuevo campo
+      AddOptionboxField: Anexar nueva opción
+      AllowedFiletypes: Tipos de Archivo permitidos
+      BroadFooterArea: Pie de pagina amplio
+      BroadHeaderArea: Encabezado amplio
+      CheckboxFields: Campos de casillas de verificación
+      CreateField: Crear
+      DragAndDropTooltip: Arrastre y suelte los elementos disponibles al encabezado, columna de la izquierda o de la derecha o al pie de página
+      ElementLabel: Etiqueta
+      ElementName: Nombre del elemento
+      Email:
+        Attachment: Anexo
+        EmailAddress: Dirección de E-Mail
+        EmailText: Texto de E-Mail
+        ResponseTo: Respuesta a
+        Subject: Asunto
+      ExecuteWorkflow: Ejecutar flujo de trabajo directamente
+      ExecuteWorkflowWarning: Tiene que procesar todas las tareas antes de poder ejecutar este processo
+      FieldSetAvailableFormelements: Elementos del formulario
+      FieldSetFormelements: Crear elementos de formulario
+      FieldSetFormelementsPlacing: Ubicación de elementos de formulario
+      FieldSetPreviewArea: Vista previa del formulario definido
+      FinishWorkflow: Fin del flujo de trabajo
+      InputArea: Área de entrada
+      InputCheckbox: Casilla de verificación
+      InputField: Campo de entrada
+      InputFileUpload: Carga de archivo
+      InputOptions: Botón Radial
+      InputType: Tipo de Entrada
+      InputTypes:
+        DateSelection: Seleccionador de Fecha
+        NumberField: Campo de numero
+        TextBox: Campo de texto
+      LeftColumn: Columna izquierda
+      NoCheckboxFieldYet: No hay campos de verificación definidos todavía
+      NoDataProvider: Proveedor de datos
+      NoFormelementsAvailable: ¡No hay elementos de formulario disponibles!
+      NoOptionboxFieldsYet: No hay tipos de casillas de verificación definidos todavía
+      NumberOfFiles: Numero de archivos
+      NumberOfRows: Numero de filas
+      OptionboxFields: Botones Radiales
+      OptionboxPlaceholder: Opción
+      Preview: Vista previa
+      RightColumn: Columna derecha
+      SaveWorkflow: Guardar Flujo de trabajo
+      UploadFileFormat:
+        Excel: Excel (xls/xlsx)
+        OtherFormats: Otros formatos de archivo
+        PDF: PDF (pdf)
+        Word: Word (doc/docx)
+      cancelCreateForm: 'Seguro que quiere cancelar? Perderá todos los datos. '
+      otherFiletype: Otros tipos de archivos
+    ProcessName: Crear Flujo de Trabajo Express
+    TaskType:
+      Approval: Aprobado
+      Email: E-Mail de información
+      Review: Comprobación
+      UserTask: Tarea
+      UserTaskWithEmail: 'Tarea con E-Mail '
+    WorkflowDefinition:
+      AbleToStart: Permiso de ejecución
+      AddProcessStep: Agregar paso de proceso
+      ChooseAssignee:
+        AddUserOrRole: 'Selecione un grupo o usuario porfavor:'
+        SelectedAssigneesFieldSet: Usuarios seleccionados
+        UserTooltip: Usuario
+      DefaultTemplateDescription: Abajo verá el patrón estandard
+      DeleteProcessStep: Retirar paso del proceso
+      Description: Describa su proceso
+      DueTimeInDays: Expiración en días
+      EndStep: Terminar
+      FormDefinitionStep: Definición de formulario
+      ProcessNameExists: Este nombre para el flujo de trabajo ya ha sido seleccionado
+      ProcessOwner: Responsable del proceso
+      Processdescription: Descripción de proceso
+      Processdetails: Propiedades del proceso
+      Processflow: Flujo de proceso
+      Processstep: Paso del proceso
+      Processtype: Tipo de proceso
+      ProcesstypeAdHoc: Una vez
+      ProcesstypeRepeating: Recurrente
+      TaskType: Tipo de tarea
+      UntilDaysTooltip: Después de la fecha de caducidad, esta tarea será asignada al grupo "todos" y su prioridad será alta
+      UserInterface:
+        ChangeSettingWarning: Todas las tareas definidas serán borradas, desea proceder?
+        CreateOwn: Crear propia
+        UseDefault: Usar patrón estandard
+        UserInterface: Interfaz de usuario
+      WorkflowPropertiesStep: Propiedades del flujo de trabajo
+      requiredMsgs:
+        ReqMsgGeneric: ¡Es un campo requerido!
+    processStep: Paso del proceso
+Labels:
+  AdhocWorkflow: Describe tu Flujo de Trabajo
+  AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
+  AppendTheTask: Anexar la tarea
+  InsertTask-Explain: Insertar la tarea. Mi tarea será pospuesta.
+  InsertTheTask: Insertar la tarea.
+  Task: Tarea
+  TaskItemDetail: Detalles de la tarea
+  TaskUser-Explain: Lista de usuario separados por coma
+  adhocTaskRequired: Deberá agregar al menos una tarea.
+  disabledUserPrefix: (inactivo)
+  title: Flujo de trabajo Ad-hoc de auto servicio
+patterns:
+  datePattern: dd.MM.yyyy
+  dateTimePattern: dd.MM.yyyy HH:mm
+  monthDatePattern: MM.dd.yyyy
+  timePattern: HH:mm
+  timestampPattern: HH:mm:ss.SSS
+Processes:
+  Cases:
+    PortalCategory: Portal
+    PortalInternalProcess:
+      PortalInternalProcessDescription: Este es un proceso interno del Portal
+    SynchronizeDataProcess:
+      AddOrUpdateBusinessEntitiesDescription: Agregar o actualizar las entidades de negocio
+      AddOrUpdateBusinessEntityDescription: Agregar o actualizar una entidad de negocio
+      AddOrUpdatePropertyOfServerDescription: Agregar o actualizar la propiedad del servidor
+      DeleteBusinessEntitiesDescription: Borrar entidades de negocios
+      DeleteBusinessEntityByPrefixDescription: Borrar entidad de negocios por un prefijo de propiedad
+      DeleteBusinessEntityDescription: Borrar una entidad de negocios
+      DeletePropertiesOfServerDescription: Borrar propiedades del servidor
+      DeletePropertyOfServerByPrefixDescription: Borrar propiedad del servidor por prefijo
+      DeletePropertyOfServerDescription: Borrar propiedad del servidor
+      SynchronizeDataCaseName: Sincronizar Datos
+    SynchronizeServerProcess:
+      AddServerConfigDescription: Agregar configuración del servidor
+      DeleteServerConfigurationDescription: Borrar configuración del servidor
+      SynchronizeServerConfigurationCaseName: Sincronizar configuración del servidor
+  portalHome: Portal Principal
+  portalSettingSaved: Ajustes del portal guardados
+ProcessPages:
+  selfServiceAdhocProcess: Auto servicio Axon Ivy
+  selfServiceDescription: 'Proceso de auto servicio: Lanzar un flujo de trabajo ad-hoc basado en un patrón de flujo predefinido'
+Texts:
+  Adhoc-Explain: |+
+    <P>
+
+    <B>Introduzca sus comentarios </B>y presione <B>Enviar</B> para proceder al flujo de trabajo.
+
+    </P>
+
+  AdhocWF-Explain: "<P>\n\nDefinir y lanzar un flujo de trabajo es muy sencillo: seleccione un patrón de flujo, agregue algunas tareas y empieze el flujo de trabajo. \n\n</P>\n\n<P>\n\n\n\n</P>\n\n"
+  Approval-Explain: |+
+    <P>
+
+    <B>Introduzca su decisión</B> y presione <B>Enviar </B>para proceder con el flujo de trabajo.
+
+    </P>
+
+  QA-Explain: "<P>\n\nConteste a la pregunta y <B>Envíe </B>su respuesta de regreso a quien llama. \n\n</P>\n\n"
+  QAresponse-Explain: |+
+    <P>
+
+    Puede <B>Enviar</B> de regreso una pregunta de seguimiento o <B>Terminar</B> el Flujo de Trabajo.
+
+    </P>
+
+  ToDo-Explain: |+
+    <P>
+
+    Confirme que la <B> TAREA </B>está <B>Terminada</B> o rechácela.
+
+    </P>
+
