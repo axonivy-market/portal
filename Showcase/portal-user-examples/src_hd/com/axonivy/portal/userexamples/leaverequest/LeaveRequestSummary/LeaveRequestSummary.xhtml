@@ -3,65 +3,67 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-  <ui:composition template="/layouts/frame-8.xhtml">
+  <ui:composition template="/layouts/frame-10.xhtml">
     <ui:define name="title">#{ivy.cms.co("/Labels/LeaveRequest/LeaveSteps/approvalResult")}</ui:define>
     <ui:param name="actualStepIndex" value="2" />
     <ui:param name="steps" value="#{[ivy.cms.co('/Labels/LeaveRequest/LeaveSteps/creation'),ivy.cms.co('/Labels/LeaveRequest/LeaveSteps/approval'), ivy.cms.co('/Labels/LeaveRequest/LeaveSteps/approvalResult')]}" />
     <ui:define name="content">
+      <h:outputStylesheet library="css" name="portal-variables.css" />
+      <h:outputStylesheet library="css" name="portal-user-examples.css" />
+
       <h:form id="leave-request">
         <h:panelGroup styleClass="ui-g ui-fluid portal-card-container">
-          <div class="ui-g-12 ui-md-12 ui-lg-1 ui-xl-3"></div>
-          <p:panel styleClass="card ui-g-12 ui-md-12 ui-lg-10 ui-xl-6">
-            <p>#{ivy.cms.co('/Labels/LeaveRequest/approvalResultTaskIntro')}</p>
-            <h:panelGrid columns="1" columnClasses="u-text-align-left" styleClass="ui-g-12">
+          <div class="ui-g-12"></div>
+          <p:panel styleClass="card ui-g-12">
+            <h4>#{ivy.cms.co('/Labels/LeaveRequest/approvalResultTaskIntro')}</h4>
+          <h:panelGroup styleClass="ui-g" layout="block">
               <p:messages styleClass="ui-g-12" />
+            <h:panelGrid columns="1" columnClasses="u-text-align-left ui-g-12" styleClass="ui-g-12">
               <h:panelGroup class="md-inputfield MarTop10">
-                <p:inputText id="requester" disabled="true" value="#{data.requester.displayName}" />
                 <p:outputLabel for="requester" value="#{ivy.cms.co('/Labels/LeaveRequest/requester')}" />
+                <p:inputText id="requester" disabled="true" value="#{data.requester.displayName}" styleClass="MarTop10" />
               </h:panelGroup>
 
               <h:panelGroup class="md-inputfield MarTop20">
-                <p:inputText id="leave-type" value="#{data.leaveRequestData.leaveType.getLabel()}" disabled="true" />
                 <p:outputLabel for="leave-type" value="#{ivy.cms.co('/Labels/LeaveRequest/leaveType')}" />
+                <p:inputText id="leave-type" value="#{data.leaveRequestData.leaveType.getLabel()}" disabled="true" styleClass="MarTop10" />
               </h:panelGroup>
 
               <h:panelGroup class="md-inputfield MarTop20">
-                <p:datePicker id="from" value="#{data.leaveRequestData.from}" locale="#{localeBean.locale}"
-                  pattern="#{dateTimePatternBean.configuredCalendarPattern}" showTime="#{!dateTimePatternBean.isTimeHidden}" disabled="true" />
                 <p:outputLabel for="from" value="#{ivy.cms.co('/Labels/LeaveRequest/from')}" />
-              </h:panelGroup>
-
-              <h:panelGroup class="md-inputfield MarTop20">
-                <p:datePicker id="to" value="#{data.leaveRequestData.to}" locale="#{localeBean.locale}"
+                <p:datePicker id="from" value="#{data.leaveRequestData.from}" locale="#{localeBean.locale}" styleClass="MarTop10" 
                   pattern="#{dateTimePatternBean.configuredCalendarPattern}" showTime="#{!dateTimePatternBean.isTimeHidden}" disabled="true" />
-                <p:outputLabel for="to" value="#{ivy.cms.co('/Labels/LeaveRequest/to')} " />
               </h:panelGroup>
 
               <h:panelGroup class="md-inputfield MarTop20">
-                <p:inputText id="approver" value="#{data.approver.displayName}" disabled="true" />
+                <p:outputLabel for="to" value="#{ivy.cms.co('/Labels/LeaveRequest/to')} " />
+                <p:datePicker id="to" value="#{data.leaveRequestData.to}" locale="#{localeBean.locale}" styleClass="MarTop10" 
+                  pattern="#{dateTimePatternBean.configuredCalendarPattern}" showTime="#{!dateTimePatternBean.isTimeHidden}" disabled="true" />
+              </h:panelGroup>
+
+              <h:panelGroup class="md-inputfield MarTop20">
                 <p:outputLabel for="approver" value="#{ivy.cms.co('/Labels/LeaveRequest/approver')}" />
+                <p:inputText id="approver" value="#{data.approver.displayName}" disabled="true" styleClass="MarTop10" />
               </h:panelGroup>
 
               <h:panelGroup>
                 <p:outputLabel for="requester-comment" value="#{ivy.cms.co('/Labels/LeaveRequest/requesterComment')} " />
                 <p:inputTextarea id="requester-comment" value="#{data.leaveRequestData.requesterComment}"
-                  disabled="true" rows="5" />
+                  disabled="true" rows="5" styleClass="MarTop10"/>
               </h:panelGroup>
 
               <h:panelGroup>
                 <p:outputLabel for="approver-comment" value="#{ivy.cms.co('/Labels/LeaveRequest/approverComment')}"  />
-                <p:inputTextarea id="approver-comment" value="#{data.leaveRequestData.approverComment}" disabled="true" rows="5" />
+                <p:inputTextarea id="approver-comment" value="#{data.leaveRequestData.approverComment}" disabled="true" rows="5" styleClass="MarTop10"/>
               </h:panelGroup>
             </h:panelGrid>
+            </h:panelGroup>
 
-            <h:panelGroup layout="block" styleClass="MarTop5 ui-g-12" id="command-group">
-               <p:commandButton value="#{ivy.cms.co('/Dialog/Common/finish')}" icon="si si-check-1" styleClass="Fright"
+          </p:panel>
+        </h:panelGroup>
+               <p:commandButton value="#{ivy.cms.co('/Dialog/Common/finish')}" icon="si si-check-1" styleClass="Fright MarTop10"
                 partialSubmit="true" id="finish-btn" actionListener="#{logic.close}" process=":leave-request"
                 update=":leave-request" style="width: auto" />
-            </h:panelGroup>
-          </p:panel>
-          <div class="ui-g-12 ui-md-12 ui-lg-1 ui-xl-3"></div>
-        </h:panelGroup>
       </h:form>
 
     </ui:define>
