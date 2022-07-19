@@ -4,8 +4,11 @@
   xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:jsf="http://xmlns.jcp.org/jsf">
 <h:body>
-  <ui:composition template="/layouts/BasicTemplate.xhtml">
-    <ui:define name="pageContent">
+  <ui:composition template="/layouts/frame-10.xhtml">
+    <ui:define name="content">
+      <h:outputStylesheet library="css" name="portal-variables.css" />
+      <h:outputStylesheet library="css" name="portal-user-examples.css" />
+
       <div class="ui-g case-map-detail-layout-content">
         <div class="center ui-g-6 ui-xl-8 ui-lg-12 ui-md-12 ui-sm-12">
           <ui:insert name="header">
