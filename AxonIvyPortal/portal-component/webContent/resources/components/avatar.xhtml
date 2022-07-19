@@ -5,12 +5,14 @@
 <cc:interface>
   <cc:attribute name="securityMember" required="true" />
   <cc:attribute name="id" />
-  <cc:attribute name="renderedAvatar" default="#{avatarBean.isShowAvatar()}" />
+  <cc:attribute name="renderedAvatar" default="true" /><!-- TODO -->
 </cc:interface>
 
 <cc:implementation>
+  <h:outputStylesheet library="css" name="avatar-component.css" />
+
   <p:avatar id="#{cc.attrs.id}" rendered="#{cc.attrs.renderedAvatar}"
-    gravatar="#{avatarBean.getEmailAddress(cc.attrs.securityMember)}" gravatarConfig="d=blank"
-    label="#{avatarBean.getNameInitials(cc.attrs.securityMember.getDisplayName())}" styleClass="gravatar" shape="circle" />
+    gravatar="#{processViewerBean.getEmailAddress(cc.attrs.securityMember)}" gravatarConfig="d=blank"
+    label="#{processViewerBean.getNameInitials(cc.attrs.securityMember.getDisplayName())}" styleClass="gravatar" shape="circle" />
 </cc:implementation>
 </html>
