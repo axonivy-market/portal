@@ -5,7 +5,7 @@
 <cc:interface>
   <cc:attribute name="securityMember" required="true" />
   <cc:attribute name="id" />
-  <cc:attribute name="renderedAvatar" default="true" /><!-- TODO -->
+  <cc:attribute name="renderedAvatar" default="#{processViewerBean.isShowAvatar()}" />
 </cc:interface>
 
 <cc:implementation>
