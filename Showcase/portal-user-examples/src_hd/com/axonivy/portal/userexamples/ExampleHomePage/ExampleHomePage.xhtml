@@ -44,17 +44,15 @@
 											styleClass="TexAlCenter" />
 									</div>
 									<p:spacer height="10" />
-									<div class="ui-g-12 TexAlCenter"
-										id="start-button-wrap-#{itemStatus.index}"
-										style="height: 2.4rem;">
+									<div class="ui-g-12 TexAlCenter start-button-wrap"
+										id="start-button-wrap-#{itemStatus.index}">
 										<p:commandButton
 											value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')} #{process.processName}"
 											rendered="#{item.description ne ivy.cms.co('/Processes/UserExampleGuide/comingSoon')}"
 											id="start-button"
 											actionListener="#{navigationBean.startProcess(item)}" />
 									</div>
-									<div class="ui-g-12 TexAlCenter more-info-wrap" id="more-info-wrap"
-										style="height: 2.3rem;">
+									<div class="ui-g-12 TexAlCenter more-info-wrap" id="more-info-wrap">
 										<p:commandLink
 											value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/moreInformation')}"
 											rendered="#{item.description ne ivy.cms.co('/Processes/UserExampleGuide/comingSoon')}"
