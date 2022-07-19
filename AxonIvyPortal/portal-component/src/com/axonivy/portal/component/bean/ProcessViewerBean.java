@@ -7,6 +7,8 @@ import javax.faces.bean.ManagedBean;
 import com.axonivy.portal.component.dto.RoleDTO;
 import com.axonivy.portal.component.dto.SecurityMemberDTO;
 import com.axonivy.portal.component.dto.UserDTO;
+import com.axonivy.portal.component.enums.GlobalVariable;
+import com.axonivy.portal.component.service.GlobalSettingService;
 import com.axonivy.portal.component.util.SecurityMemberUtils;
 
 import ch.ivyteam.ivy.security.ISecurityMember;
@@ -16,6 +18,10 @@ import ch.ivyteam.ivy.security.IUser;
 public class ProcessViewerBean implements Serializable {
 
   private static final long serialVersionUID = 6793376941093725298L;
+
+  public boolean isShowAvatar() {
+    return new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_AVATAR);
+  }
 
   public String getNameInitials(String displayName) {
     return SecurityMemberUtils.getNameInitials(displayName);
