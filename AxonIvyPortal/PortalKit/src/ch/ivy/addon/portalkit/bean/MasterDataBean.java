@@ -69,6 +69,10 @@ public class MasterDataBean implements Serializable {
   public String getTaskSortFieldCategory() {
     return TaskSortField.CATEGORY.toString();
   }
+  
+  public String getTaskSortFieldApplication() {
+    return TaskSortField.APPLICATION.toString();
+  }
 
   public Long getFileUploadSizeLimit() {
     return MasterData.getFileUploadSizeLimit();
