@@ -5,7 +5,9 @@ import java.net.URL;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.Protocol;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class UrlUtils {
@@ -42,6 +44,14 @@ public class UrlUtils {
     return urlInLowerCase.startsWith(Protocol.HTTP.getValue())
         || urlInLowerCase.startsWith(Protocol.HTTPS.getValue())
         || urlInLowerCase.startsWith("/");
+  }
+
+  public static String formatLinkBasedOnEmbedInFrameSetting(String link) {
+    boolean isEmbedInFrame = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.EMBED_IN_FRAME);
+    if (isEmbedInFrame) {
+      link += (link.contains("?") ? "&" : "?") + "embedInFrame";
+    }
+    return link;
   }
 
 }
