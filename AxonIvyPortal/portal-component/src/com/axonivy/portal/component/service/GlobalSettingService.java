@@ -8,9 +8,15 @@ public class GlobalSettingService {
 
   private static GlobalSettingService instance;
 
+  private GlobalSettingService() {}
+
   public static GlobalSettingService getInstance() {
     if (instance == null) {
-      instance = new GlobalSettingService();
+      synchronized (GlobalSettingService.class) {
+        if (instance == null) {
+          instance = new GlobalSettingService();
+        }
+      }
     }
     return instance;
   }
