@@ -81,9 +81,16 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   protected List<TaskFilter> oldSelectedFilters = new ArrayList<>();
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
-  protected List<String> portalDefaultColumns =
-      Arrays.asList(TaskSortField.PRIORITY.name(), TaskSortField.NAME.name(), TaskSortField.ACTIVATOR.name(), TaskSortField.ID.name(), TaskSortField.CREATION_TIME.name(),
-          TaskSortField.EXPIRY_TIME.name(), TaskSortField.COMPLETED_ON.name(), TaskSortField.STATE.name(), TaskSortField.CATEGORY.name());
+  protected List<String> portalDefaultColumns = Arrays.asList(TaskSortField.PRIORITY.name(), 
+                                                              TaskSortField.NAME.name(), 
+                                                              TaskSortField.ACTIVATOR.name(), 
+                                                              TaskSortField.ID.name(), 
+                                                              TaskSortField.CREATION_TIME.name(),
+                                                              TaskSortField.EXPIRY_TIME.name(), 
+                                                              TaskSortField.COMPLETED_ON.name(), 
+                                                              TaskSortField.STATE.name(), 
+                                                              TaskSortField.CATEGORY.name(), 
+                                                              TaskSortField.APPLICATION.name());
   protected List<String> portalRequiredColumns = Arrays.asList(TaskSortField.NAME.name());
 
   protected boolean compactMode;
@@ -880,6 +887,8 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
     }
     if (selectedColumns.isEmpty()) {
       selectedColumns.addAll(getDefaultColumns());
+      // hide column application by default
+      selectedColumns.remove(TaskSortField.APPLICATION.name());
       isAutoHideColumns = true;
     }
     setDisableSelectionCheckboxes(isAutoHideColumns);
