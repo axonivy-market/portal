@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="componentId" default="application-filter" />
+  <cc:attribute name="filter" required="true" type="ch.ivy.addon.portalkit.taskfilter.TaskApplicationFilter" />
+  <cc:attribute name="dataModel" required="true" />
+  <cc:attribute name="selectedFilters" />
+  <cc:attribute name="resultContainerUpdated" />
+</cc:interface>
+
+<cc:implementation>
+  <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="#{cc.attrs.componentId}" taskFilter="#{cc.attrs.filter}"
+    selectedFilters="#{cc.attrs.selectedFilters}" resultContainerUpdated="#{cc.attrs.resultContainerUpdated}" dataModel="#{cc.attrs.dataModel}">
+    <div class="config-checkbox-select-all">
+      <p:selectBooleanCheckbox id="states-select-all" styleClass="select-all-checkbox"
+        itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/selectAll')}"
+        value="#{cc.attrs.filter.selectedAll}" >
+        <p:ajax listener="#{cc.attrs.filter.onSelectedAllApplications()}" update="application-selection" partialSubmit="true"/>
+      </p:selectBooleanCheckbox>
+    </div>
+
+    <p:selectManyCheckbox id="application-selection" layout="pageDirection"
+      value="#{cc.attrs.filter.selectedFilteredApplications}">
+      <f:selectItems value="#{cc.attrs.filter.filteredApplications}" var="app"
+        itemValue="#{app}" itemLabel="#{app}" />
+      <p:ajax listener="#{cc.attrs.filter.onSelectApplication()}"
+        update="states-select-all" global="false" partialSubmit="true"/>
+    </p:selectManyCheckbox>
+  </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
+</cc:implementation>
+
+</html>
