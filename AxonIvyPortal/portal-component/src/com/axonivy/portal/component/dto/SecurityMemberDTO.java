@@ -3,6 +3,7 @@ package com.axonivy.portal.component.dto;
 import java.io.Serializable;
 
 import ch.ivyteam.ivy.security.ISecurityMember;
+import ch.ivyteam.ivy.security.IUser;
 
 // Serializable is required to send system event when creating group chat in cluster mode
 public class SecurityMemberDTO implements Serializable {
@@ -12,6 +13,7 @@ public class SecurityMemberDTO implements Serializable {
   private String name;
   private String displayName;
   private String memberName;
+  private String eMailAddress;
   private boolean isUser;
 
   public SecurityMemberDTO() {}
@@ -22,6 +24,10 @@ public class SecurityMemberDTO implements Serializable {
     this.displayName = securityMember.getDisplayName();
     this.memberName = securityMember.getMemberName();
     this.isUser = securityMember.isUser();
+    if(securityMember.isUser()) {
+      IUser user = (IUser) securityMember;
+      this.eMailAddress = user.getEMailAddress();
+    }
   }
 
   public long getId() {
@@ -54,6 +60,14 @@ public class SecurityMemberDTO implements Serializable {
 
   public void setMemberName(String memberName) {
     this.memberName = memberName;
+  }
+
+  public String getEMailAddress() {
+    return eMailAddress;
+  }
+
+  public void setEMailAddress(String eMailAddress) {
+    this.eMailAddress = eMailAddress;
   }
 
   public boolean isUser() {

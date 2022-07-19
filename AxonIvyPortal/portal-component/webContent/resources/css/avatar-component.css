@@ -1,0 +1,12 @@
+.ui-avatar.gravatar {
+  background-color: var(--ivy-primary-color-grey-light);
+  vertical-align: middle;
+  float: left;
+  margin-right: 6px;
+  width: 2.5rem;
+  height: 2.5rem;
+  pointer-events: none;
+}
+.ui-avatar.gravatar > img {
+  z-index: 1;
+}
