@@ -15,7 +15,7 @@ import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 
 @ManagedBean
-public class ProcessViewerBean implements Serializable {
+public class PortalComponentAvatarBean implements Serializable {
 
   private static final long serialVersionUID = 6793376941093725298L;
 
