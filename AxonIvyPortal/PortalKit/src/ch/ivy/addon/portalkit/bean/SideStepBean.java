@@ -74,7 +74,7 @@ public class SideStepBean implements Serializable {
   }
   
   public void startSideStep(IvySideStep sideStep) throws IOException {
-    String url = UrlUtils.formatLinkBasedOnEmbedInFrameSetting(sideStep.getStartLink());
+    String url = UrlUtils.formatLinkWithEmbedInFrameParam(sideStep.getStartLink());
     FacesContext.getCurrentInstance().getExternalContext().redirect(url);
   }
   
