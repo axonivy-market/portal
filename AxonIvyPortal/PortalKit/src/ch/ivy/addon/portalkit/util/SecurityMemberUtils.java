@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang.WordUtils;
-import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.component.dto.RoleDTO;
 import com.axonivy.portal.component.dto.UserDTO;
@@ -23,7 +21,6 @@ import ch.ivyteam.ivy.security.IUser;
 
 public class SecurityMemberUtils {
 
-  private static final int MAX_CHARACTER_NUMBER_OF_NAME_INITIALS = 2;
   private static final String PREFIX_CMS = "/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/";
 
   public static SecurityMemberDTO getCurrentSessionUserAsSecurityMemberDTO() {
@@ -94,11 +91,6 @@ public class SecurityMemberUtils {
       }
       return cms("roleMembersTooltipFormat", Arrays.asList(header, "", usersBuilder));
     });
-  }
-
-  public static String getNameInitials(String displayName) {
-    String fullInitials = WordUtils.initials(displayName);
-    return StringUtils.substring(fullInitials, 0, MAX_CHARACTER_NUMBER_OF_NAME_INITIALS);
   }
   
   private static String cms(String url, List<Object> params) {

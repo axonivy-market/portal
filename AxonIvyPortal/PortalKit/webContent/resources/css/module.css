@@ -6263,19 +6263,6 @@ a.dashboard-action-container label {
   margin: 0;
 }
 
-.ui-avatar.gravatar {
-  background-color: var(--ivy-primary-color-grey-light);
-  vertical-align: middle;
-  float: left;
-  margin-right: 6px;
-  width: 2.5rem;
-  height: 2.5rem;
-  pointer-events: none;
-}
-.ui-avatar.gravatar > img {
-  z-index: 1;
-}
-
 .security-member-table-cell {
   vertical-align: middle;
 }
@@ -6286,21 +6273,6 @@ a.dashboard-action-container label {
 
 .setting-container .ui-avatar.gravatar {
   margin-top: 0;
-}
-
-.has-avatar {
-  position: relative;
-  display: inline-block;
-}
-
-.has-avatar .ui-avatar {
-  position: absolute;
-  top: -4px;
-}
-
-.name-after-avatar {
-  display: flex;
-  padding-left: 3rem;
 }
 
 .responsible-cell .has-avatar,
