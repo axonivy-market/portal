@@ -38,7 +38,6 @@
 
         <!-- Applications Table -->
         <h:panelGroup id="applicationPanel" layout="block">
-          <p:messages id="applicationMsg" showDetail="true" escape="false" closable="true" redisplay="false"/>
           <p:dataTable value="#{data.applicationList}" var="app" id="applicationTable" draggableRows="true"
             reflow="true" styleClass="admin-table application-table" widgetVar="applicationTable"
             emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" lazy="false">

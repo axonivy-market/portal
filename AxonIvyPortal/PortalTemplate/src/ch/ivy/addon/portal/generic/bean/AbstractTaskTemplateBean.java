@@ -57,7 +57,7 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
 
   public void startSideStep(ITask task) {
     TaskUtils.resetTask(task);
-    String link = UrlUtils.formatLinkBasedOnEmbedInFrameSetting(selectedSideStep.getStartLink().getRelativeEncoded());
+    String link = UrlUtils.formatLinkWithEmbedInFrameParam(selectedSideStep.getStartLink().getRelativeEncoded());
     PortalNavigator.redirect(link);
   }
 
