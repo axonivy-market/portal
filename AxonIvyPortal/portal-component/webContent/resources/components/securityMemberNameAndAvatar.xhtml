@@ -4,6 +4,7 @@
   xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 
 <cc:interface>
+  <cc:attribute name="isShowAvatar" default="true" /><!-- TODO -->
   <cc:attribute name="displayNameId" default="username" />
   <cc:attribute name="displayName" required="true" />
   <cc:attribute name="displayNameRendered" default="true" />
@@ -13,12 +14,15 @@
 
 </cc:interface>
 <cc:implementation>
-  <div class="#{avatarBean.isShowAvatar() ? 'has-avatar' : ''} #{cc.attrs.containerStyleClass}">
+  <h:outputStylesheet library="css" name="portal-utility.css" />
+  <h:outputStylesheet library="css" name="security-member-avatar-component.css" />
+
+  <div class="#{cc.attrs.isShowAvatar ? 'has-avatar TODO SMAV' : ''} #{cc.attrs.containerStyleClass}">
     <pc:avatar securityMember="#{cc.attrs.securityMember}" rendered="#{cc.attrs.securityMember != null}" />
     <cc:renderFacet name="alternativeAvatar" />
     <h:outputText id="#{cc.attrs.displayNameId}" value="#{cc.attrs.displayName}"
       rendered="#{cc.attrs.displayNameRendered}"
-      styleClass="#{avatarBean.isShowAvatar() ? 'name-after-avatar' : ''} #{cc.attrs.displayNameStyleClass} #{cc.attrs.securityMember == null ? 'u-no-padding-left' : ''}">
+      styleClass="#{cc.attrs.isShowAvatar ? 'name-after-avatar' : ''} #{cc.attrs.displayNameStyleClass} #{cc.attrs.securityMember == null ? 'u-no-padding-left' : ''}">
     </h:outputText>
     <cc:renderFacet name="afterName" />
   </div>

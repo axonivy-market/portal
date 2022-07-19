@@ -24,13 +24,9 @@
   <f:event listener="#{securityMemberDisplayNameBean.init()}" type="preRenderComponent" />
   <!-- Display User name as text format -->
   <h:panelGroup id="security-member-container" layout="block" styleClass="security-member-container #{cc.attrs.securityMemberContainerStyleClass}">
-    <div class="#{avatarBean.isShowAvatar() ? 'has-avatar' : ''} #{cc.attrs.renderDeputyInfo and task.getActivator() != null and ivy.session.isMemberThroughActiveSubstitution(task.getActivator()) ? 'has-deputy-info' : ''}">
-      <pc:avatar securityMember="#{securityMember}" rendered="#{securityMember != null}"/>
-      <h:panelGroup id="#{cc.attrs.textId}"
-        styleClass="#{cc.attrs.styleClass} #{securityMember == null ? 'u-no-padding-left' : ''} #{avatarBean.isShowAvatar() ? 'name-after-avatar' : ''}">
-        <h:outputText id="#{cc.attrs.textId}-text" value="#{securityMemberDisplayNameBean.getBriefDisplayName(securityMember, memberName)}"/>
-      </h:panelGroup>
-    </div>
+    <pc:securityMemberNameAndAvatar isShowAvatar="#{avatarBean.isShowAvatar()}" securityMember="#{securityMember}"
+      containerStyleClass="TODO SMDM #{cc.attrs.renderDeputyInfo and task.getActivator() != null and ivy.session.isMemberThroughActiveSubstitution(task.getActivator()) ? 'has-deputy-info' : ''}"
+      displayNameId="#{cc.attrs.textId}" displayName="#{securityMemberDisplayNameBean.getBriefDisplayName(securityMember, memberName)}" displayNameStyleClass="#{cc.attrs.styleClass}" />
     <h:panelGroup id="deputy-info"
       rendered="#{cc.attrs.renderDeputyInfo and task.getActivator() != null and ivy.session.isMemberThroughActiveSubstitution(task.getActivator())}">
       <i class="si si-information-circle" />
