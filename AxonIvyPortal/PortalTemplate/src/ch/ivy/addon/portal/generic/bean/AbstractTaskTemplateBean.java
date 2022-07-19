@@ -17,6 +17,7 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
 import ch.ivyteam.ivy.casemap.runtime.model.ICaseMap;
@@ -56,7 +57,8 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
 
   public void startSideStep(ITask task) {
     TaskUtils.resetTask(task);
-    PortalNavigator.redirect(selectedSideStep.getStartLink().getRelativeEncoded());
+    String link = UrlUtils.formatLinkBasedOnEmbedInFrameSetting(selectedSideStep.getStartLink().getRelativeEncoded());
+    PortalNavigator.redirect(link);
   }
 
   public boolean hasExpressAdhocWF() {
