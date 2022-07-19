@@ -1265,6 +1265,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     default: Défaut
     defaultColumns:
       ACTIVATOR: Responsable
+      APPLICATION: Application
       CATEGORY: 'Catégorie '
       COMPLETED_ON: Fini le
       CREATION_TIME: Créé
