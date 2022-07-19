@@ -1,16 +1,22 @@
 package com.axonivy.portal.component.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
 
 import com.axonivy.portal.component.enums.BasicDocumentType;
 import com.axonivy.portal.component.enums.DocumentType;
+import com.axonivy.portal.component.enums.GlobalVariable;
 import com.axonivy.portal.component.masterdata.MasterData;
+import com.axonivy.portal.component.service.GlobalSettingService;
+
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -30,5 +36,23 @@ public class DocumentUploadBean implements Serializable {
   
   public DocumentType[] getDocumentTypes() {
     return BasicDocumentType.values();
+  }
+
+  public boolean enableScriptCheckingForUploadedDocument() {
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT);
+  }
+
+  public boolean enableVirusScannerForUploadedDocument() {
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_VIRUS_SCANNER_FOR_UPLOADED_DOCUMENT);
+  }
+
+  public List<String> getAllowedUploadFileType() {
+    String documentSetting = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION);
+    if (StringUtils.isBlank(documentSetting)) {
+      return new ArrayList<>();
+    } else {
+      String[] supportedFileTypeArr = documentSetting.toLowerCase().split("\\s*,[,\\s]*");
+      return Arrays.asList(supportedFileTypeArr);
+    }
   }
 }

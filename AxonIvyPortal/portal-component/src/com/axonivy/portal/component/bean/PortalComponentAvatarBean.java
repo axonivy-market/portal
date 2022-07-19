@@ -20,7 +20,7 @@ public class PortalComponentAvatarBean implements Serializable {
   private static final long serialVersionUID = 6793376941093725298L;
 
   public boolean isShowAvatar() {
-    return new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_AVATAR);
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_AVATAR);
   }
 
   public String getNameInitials(String displayName) {
