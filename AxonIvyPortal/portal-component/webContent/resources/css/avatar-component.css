@@ -1,5 +1,5 @@
 .ui-avatar.gravatar {
-  background-color: var(--ivy-primary-color-grey-light);
+  background-color: var(--avatar-background-color);
   vertical-align: middle;
   float: left;
   margin-right: 6px;

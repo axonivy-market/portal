@@ -7,6 +7,7 @@ Dialogs:
             Categories: Categories
             Description: Description
             Name: Name
+            NotAvailable: N/A
             Process:
               ProcessName: Process name
             Task:
