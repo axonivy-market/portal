@@ -6,6 +6,7 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="caseId" />
   <cc:attribute name="processLink" />
+  <cc:attribute name="containerStyleClass" />
 </cc:interface>
 
 <cc:implementation>
@@ -14,7 +15,7 @@
   <h:outputStylesheet library="css" name="process-viewer-component.css" />
 
   <f:event listener="#{logic.initData(cc.attrs.caseId, cc.attrs.processLink)}" type="preRenderComponent" />
-  <h:panelGroup layout="block" styleClass="ui-g-12 process-viewer-data #{data.isError ? 'has-error-message' : ''}">
+  <h:panelGroup layout="block" styleClass="ui-g-12 process-viewer-data #{data.isError ? 'has-error-message' : ''} #{cc.attrs.containerStyleClass}">
     <h:panelGroup rendered="#{!data.isError}">
       <div id="process-viewer-information" class="ui-g-12 u-padding-0 process-viewer-information">
         <div class="ui-g-12 u-no-padding-left u-no-padding-top process-information-title">
