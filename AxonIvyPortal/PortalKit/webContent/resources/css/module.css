@@ -6251,6 +6251,15 @@ a.dashboard-action-container label {
   padding: 2rem !important;
 }
 
+.portal-process-viewer-data .ui-avatar.gravatar {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.portal-process-viewer-data .name-after-avatar {
+  padding-left: 3rem;
+}
+
 .process-viewer-command {
   height: 50px;
 }
