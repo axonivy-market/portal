@@ -23,6 +23,10 @@
   font-size: var(--process-details-column-title-font-size);
 }
 
+.process-details-column-value {
+  height: 31px;
+}
+
 .process-viewer-information .process-viewer-info-link {
   cursor: pointer;
   margin-left: 3px;
