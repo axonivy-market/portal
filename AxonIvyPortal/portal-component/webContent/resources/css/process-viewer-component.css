@@ -28,6 +28,10 @@
   margin-left: 3px;
 }
 
+.process-viewer-information .process-viewer-info-link:hover {
+  text-decoration: none;
+}
+
 .process-viewer-information .process-viewer-info-link i {
   vertical-align: middle;
 }
