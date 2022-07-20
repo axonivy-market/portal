@@ -37,7 +37,6 @@ import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessResultDTO;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
-import ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI;
 import ch.ivy.addon.portalkit.service.DummyProcessService;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
@@ -334,26 +333,6 @@ private static final long serialVersionUID = -5889375917550618261L;
     // Put the "embedInIFrame" param to the process link to open it in the DefaultFramePage process
     // Then this process will open task in IFrame or not based on its "embedInIFrame" String custom field
     FacesContext.getCurrentInstance().getExternalContext().redirect(link + "embedInFrame");
-  }
-  
-  public void startProcessInframe(UserProcess userProcess) throws IOException {
-    Objects.requireNonNull(userProcess, "User process must not be null");
-    String link = userProcess.getLink();
-    if (isExternalLink(userProcess)) {
-      PortalNavigatorInFrameAPI.navigateToUrl(link);
-      return;
-    }
-    
-    if (isExpressProcess(userProcess) && StringUtils.isNotBlank(userProcess.getProcessId())) {
-      ProcessStartCollector processStartCollector = new ProcessStartCollector();
-      String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
-      if (StringUtils.isNotBlank(expressStartLink)) {
-        PortalNavigatorInFrameAPI.navigateToUrl(expressStartLink + "?workflowID=" + userProcess.getProcessId());
-        return;
-      }
-    }
-    
-    PortalNavigatorInFrameAPI.navigateToUrl(link);
   }
   
   private boolean isUserProcess(UserProcess processToAdd) {

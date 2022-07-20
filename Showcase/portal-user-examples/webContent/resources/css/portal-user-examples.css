@@ -131,6 +131,8 @@ h3, h4 {
   color: var(--ivy-primary-text-color);
   position: relative;
   height: 30px;
+  text-align: center;
+  padding: 0;
 }
 
 .process-first-breadcrumb:after {
@@ -149,12 +151,14 @@ h3, h4 {
 }
 
 .process-breadcrumb-title {
-  margin-left: 3.2rem;
+  line-height: 30px;
 }
 
 .process-breadcrumb {
   position: relative;
   height: 30px;
+  text-align: center;
+  padding: 0;
 }
 
 .process-breadcrumb:after {
