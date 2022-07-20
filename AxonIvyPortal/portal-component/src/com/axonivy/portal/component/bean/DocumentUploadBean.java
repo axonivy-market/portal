@@ -35,15 +35,15 @@ public class DocumentUploadBean implements Serializable {
     return BasicDocumentType.values();
   }
 
-  public boolean enableScriptCheckingForUploadedDocument() {
-    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT);
+  public boolean getPortalScriptCheckingSettingOrDefault(boolean defaultIfEmpty) {
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT, defaultIfEmpty);
   }
 
-  public boolean enableVirusScannerForUploadedDocument() {
-    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_VIRUS_SCANNER_FOR_UPLOADED_DOCUMENT);
+  public boolean getPortalVirusScannerSettingOrDefault(boolean defaultIfEmpty) {
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_VIRUS_SCANNER_FOR_UPLOADED_DOCUMENT, defaultIfEmpty);
   }
 
-  public String getAllowedUploadFileTypes() {
-    return GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION);
+  public String getPortalAllowedUploadFileTypesSettingOrDefault(String defaultIfEmpty) {
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsString(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION, defaultIfEmpty);
   }
 }
