@@ -12,6 +12,7 @@ Dialogs:
             More: Mehr
             Name: Titel
             'No': Nein
+            NotAvailable: N/V
             Process:
               ProcessName: Prozessname
             RequiredFieldMessage: Dies ist ein Pflichtfeld

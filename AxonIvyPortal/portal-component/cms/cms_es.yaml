@@ -12,6 +12,7 @@ Dialogs:
             More: Mas
             Name: Nombre
             'No': 'No'
+            NotAvailable: N/A
             Process:
               ProcessName: Nombre del proceso
             RequiredFieldMessage: este campo es obligatorio
