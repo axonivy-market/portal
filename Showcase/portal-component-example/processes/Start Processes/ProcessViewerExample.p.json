@@ -5,11 +5,11 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "RequestStart",
-      "name" : "showProcessViewer.ivp",
+      "name" : "showProcessViewerUsingCaseId.ivp",
       "config" : {
-        "callSignature" : "showProcessViewer",
-        "outLink" : "showProcessViewer.ivp",
-        "startName" : "Show Process Viewer Example"
+        "callSignature" : "showProcessViewerUsingCaseId",
+        "outLink" : "showProcessViewerUsingCaseId.ivp",
+        "startName" : "Show Process Viewer Using caseId"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
@@ -44,5 +44,48 @@
         "size" : { "width" : 144, "height" : 44 }
       },
       "connect" : { "id" : "f4", "to" : "f1" }
+    }, {
+      "id" : "f3",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 160 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "RequestStart",
+      "name" : "showProcessViewerUsingProcessLink.ivp",
+      "config" : {
+        "callSignature" : "showProcessViewerUsingProcessLink",
+        "outLink" : "showProcessViewerUsingProcessLink.ivp",
+        "startName" : "Show Process Viewer Using processLink"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 },
+        "labelOffset" : { "x" : -21, "y" : 17 }
+      },
+      "connect" : { "id" : "f9", "to" : "f7" }
+    }, {
+      "id" : "f7",
+      "type" : "DialogCall",
+      "name" : "ProcessViewerExample",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.component.example.ProcessViewerExample",
+        "startMethod" : "start(Long,String)",
+        "call" : {
+          "params" : [
+            { "name" : "caseId", "type" : "Long" },
+            { "name" : "processLink", "type" : "String" }
+          ],
+          "map" : {
+            "param.processLink" : "ivy.case.getProcessStart().getLink().getRelative()"
+          },
+          "code" : "ivy.log.error(\"TEST processLink\" + ivy.case.getProcessStart().getLink().getRelative());"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 320, "y" : 160 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f8", "to" : "f3" }
     } ]
 }
