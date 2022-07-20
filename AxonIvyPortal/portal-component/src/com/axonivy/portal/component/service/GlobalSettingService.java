@@ -1,5 +1,7 @@
 package com.axonivy.portal.component.service;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.axonivy.portal.component.enums.GlobalVariable;
 
 import ch.ivyteam.ivy.environment.Ivy;
@@ -26,7 +28,13 @@ public class GlobalSettingService {
     return Ivy.var().get(key);
   }
 
-  public Boolean findGlobalSettingValueAsBoolean(GlobalVariable variable) {
-    return Boolean.valueOf(findGlobalSettingValue(variable));
+  public Boolean findGlobalSettingValueAsBoolean(GlobalVariable variable, boolean defaultIfEmpty) {
+    String valueStr = findGlobalSettingValue(variable);
+    return StringUtils.isEmpty(valueStr) ? defaultIfEmpty : Boolean.valueOf(valueStr);
+  }
+
+  public String findGlobalSettingValueAsString(GlobalVariable variable, String defaultIfEmpty) {
+    String valueStr = findGlobalSettingValue(variable);
+    return StringUtils.isEmpty(valueStr) ? defaultIfEmpty : valueStr;
   }
 }

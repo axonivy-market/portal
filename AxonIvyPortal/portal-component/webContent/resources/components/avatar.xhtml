@@ -5,7 +5,7 @@
 <cc:interface>
   <cc:attribute name="securityMember" required="true" />
   <cc:attribute name="id" />
-  <cc:attribute name="renderedAvatar" default="#{portalComponentAvatarBean.isShowAvatar()}" />
+  <cc:attribute name="renderedAvatar" default="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}" />
 </cc:interface>
 
 <cc:implementation>
