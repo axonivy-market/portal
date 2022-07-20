@@ -23,12 +23,12 @@
   font-size: var(--process-details-column-title-font-size);
 }
 
-.process-viewer-info-link {
+.process-viewer-information .process-viewer-info-link {
   cursor: pointer;
   margin-left: 3px;
 }
 
-.process-viewer-info-link i {
+.process-viewer-information .process-viewer-info-link i {
   vertical-align: middle;
 }
 

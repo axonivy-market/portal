@@ -47,4 +47,7 @@
   --process-viewer-data-has-error-message-font-weight: bold;
   --process-viewer-data-has-error-message-font-size: bold;
   --process-details-column-title-font-size: 1.2rem;
+
+/* CSS variables for avatar component */
+  --avatar-background-color: var(--ivy-primary-color-grey-light, hsl(180, 1%, 85%));
 }
