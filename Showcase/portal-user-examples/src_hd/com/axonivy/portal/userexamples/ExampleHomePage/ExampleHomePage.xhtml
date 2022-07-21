@@ -1,73 +1,62 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:ic="http://ivyteam.ch/jsf/component"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-	<ui:composition template="/layouts/frame-10.xhtml">
-		<ui:param name="items" value="#{data.processes}" />
-		<ui:param name="isFullScreen" value="false" />
-		<ui:define name="title">#{ivy.cms.co('/Processes/UserExampleGuide/name')}</ui:define>
-		<ui:define name="content">
-          <h:outputStylesheet library="css" name="portal-variables.css" />
-          <h:outputStylesheet library="css" name="portal-user-examples.css" />
+  <ui:composition template="/layouts/frame-10.xhtml">
+    <ui:param name="items" value="#{data.processes}" />
+    <ui:param name="isFullScreen" value="false" />
+    <ui:define name="title">#{ivy.cms.co('/Processes/UserExampleGuide/name')}</ui:define>
+    <ui:define name="content">
+      <h:outputStylesheet library="css" name="portal-variables.css" />
+      <h:outputStylesheet library="css" name="portal-user-examples.css" />
 
-			<h:panelGroup layout="block" styleClass="ui-g-12" id="example-header">
-				<h1
-					style="margin-block-start: 0em; margin-block-end: 0.3em; margin-top: 0;">#{ivy.cms.co('/Processes/UserExampleGuide/name')}</h1>
-				<h:outputText
-					value="#{ivy.cms.co('/Processes/UserExampleGuide/description')}" />
-				<br />
-			</h:panelGroup>
+      <h:panelGroup layout="block" styleClass="ui-g-12" id="example-header">
+        <h1 style="margin-block-start: 0em; margin-block-end: 0.3em; margin-top: 0;">#{ivy.cms.co('/Processes/UserExampleGuide/name')}</h1>
+        <h:outputText value="#{ivy.cms.co('/Processes/UserExampleGuide/description')}" />
+        <br />
+      </h:panelGroup>
 
-			<div class="ui-g-12">
-				<h:form>
-					<ui:repeat var="item" value="#{data.processes}"
-						varStatus="itemStatus">
+      <div class="ui-g-12">
+        <h:form>
+          <ui:repeat var="item" value="#{data.processes}" varStatus="itemStatus">
 
-						<h:panelGroup layout="block"
-							styleClass="#{isFullScreen? 'ui-g-2':'ui-g-4'} #{isFullScreen? 'ui-xl-2':'ui-xl-4'} #{isFullScreen? 'ui-lg-4':'ui-lg-6'} ui-md-6 ui-sm-12 #{cardContainerStyleClass} portal-card-container">
-							<div class="card-item card ui-g-12 ">
-								<div style="padding: 2rem;" id="panel-#{itemStatus.index}">
+            <h:panelGroup layout="block"
+              styleClass="#{isFullScreen? 'ui-g-2':'ui-g-4'} #{isFullScreen? 'ui-xl-2':'ui-xl-4'} #{isFullScreen? 'ui-lg-4':'ui-lg-6'} ui-md-6 ui-sm-12 #{cardContainerStyleClass} portal-card-container">
+              <div class="card-item card ui-g-12 ">
+                <div style="padding: 2rem;" id="panel-#{itemStatus.index}">
 
-									<div class="ui-g-12 TexAlCenter">
-										<p:graphicImage library="ivy-cms" name="#{item.icon}"
-											id="icon" />
-									</div>
-									<div class="ui-g-12 TexAlCenter" style="height: 8rem;">
-										<h2>#{item.processName}</h2>
-									</div>
-									<div class="ui-g-12 TexAlCenter" style="height: 10rem;">
-										<h:outputText value="#{item.description}"
-											styleClass="TexAlCenter" />
-									</div>
-									<p:spacer height="10" />
-									<div class="ui-g-12 TexAlCenter start-button-wrap"
-										id="start-button-wrap-#{itemStatus.index}">
-										<p:commandButton
-											value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')} #{process.processName}"
-											rendered="#{item.description ne ivy.cms.co('/Processes/UserExampleGuide/comingSoon')}"
-											id="start-button"
-											actionListener="#{navigationBean.startProcess(item)}" />
-									</div>
-									<div class="ui-g-12 TexAlCenter more-info-wrap" id="more-info-wrap">
-										<p:commandLink
-											value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/moreInformation')}"
-											rendered="#{item.description ne ivy.cms.co('/Processes/UserExampleGuide/comingSoon')}"
-											id="more-info" actionListener="#{logic.navigate(item)}" />
-									</div>
-								</div>
-							</div>
-						</h:panelGroup>
+                  <div class="ui-g-12 TexAlCenter">
+                    <p:graphicImage library="ivy-cms" name="#{item.icon}" id="icon" />
+                  </div>
+                  <div class="ui-g-12 TexAlCenter" style="height: 8rem;">
+                    <h2>#{item.processName}</h2>
+                  </div>
+                  <div class="ui-g-12 TexAlCenter" style="height: 10rem;">
+                    <h:outputText value="#{item.description}" styleClass="TexAlCenter" />
+                  </div>
+                  <p:spacer height="10" />
+                  <div class="ui-g-12 TexAlCenter start-button-wrap" id="start-button-wrap-#{itemStatus.index}">
+                    <p:commandButton
+                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')} #{process.processName}"
+                      rendered="#{item.description ne ivy.cms.co('/Processes/UserExampleGuide/comingSoon')}"
+                      id="start-button" actionListener="#{navigationBean.startProcess(item)}" />
+                  </div>
+                  <div class="ui-g-12 TexAlCenter more-info-wrap" id="more-info-wrap">
+                    <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/moreInformation')}"
+                      rendered="#{item.description ne ivy.cms.co('/Processes/UserExampleGuide/comingSoon')}"
+                      id="more-info" actionListener="#{logic.navigate(item)}" />
+                  </div>
+                </div>
+              </div>
+            </h:panelGroup>
 
-					</ui:repeat>
-				</h:form>
-			</div>
+          </ui:repeat>
+        </h:form>
+      </div>
 
-		</ui:define>
-	</ui:composition>
+    </ui:define>
+  </ui:composition>
 
 </h:body>
 </html>
