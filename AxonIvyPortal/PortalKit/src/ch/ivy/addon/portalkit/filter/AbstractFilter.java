@@ -12,9 +12,6 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
  */
 public abstract class AbstractFilter<T extends Query<?>> {
 
-  /**
-   * All options in filter are selected e.g all states
-   */
   public static final String ALL = "All";
   protected static final String COMMA = ", ";
   protected static final String GREATER_EQUAL = ">= %s";
@@ -140,5 +137,9 @@ public abstract class AbstractFilter<T extends Query<?>> {
    */
   protected String noSelectionLabel() {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection");
+  }
+  
+  protected String getAllLabel() {
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/all");
   }
 }

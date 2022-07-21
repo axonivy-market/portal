@@ -28,7 +28,7 @@ public class TaskWorkerFilter extends TaskFilter {
   public String value() {
     if (StringUtils.isEmpty(selectedWorkerMemberName)) {
       setSelectedWorker(null);
-      return ALL;
+      return getAllLabel();
     } else {
       findWorker(selectedWorkerMemberName);
     }

@@ -45,7 +45,7 @@ public class TaskPriorityFilter extends TaskFilter {
     }
     else if (priorities.equals(selectedPriorities)) {
       isSelectedAll = true;
-      return ALL;
+      return getAllLabel();
     }
     isSelectedAll = false;
     String value = userFriendlyPriority(selectedPriorities.get(0));
