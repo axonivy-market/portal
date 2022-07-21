@@ -8,7 +8,7 @@
     <ui:define name="content">
       <h:outputStylesheet library="css" name="portal-variables.css" />
       <h:outputStylesheet library="css" name="portal-user-examples.css" />
-      
+
       <h:form id="form">
         <h:panelGroup styleClass="ui-g ui-fluid portal-card-container">
           <p:panel styleClass="card ui-g-12 ui-md-12">
@@ -81,8 +81,7 @@
           </p:panel>
         </h:panelGroup>
         <p:commandButton id="submit-button" actionListener="#{logic.close}"
-          value="#{ivy.cms.co('/Dialog/Common/submit')}" update="form" icon="si si-check-1"
-          styleClass="Fright MarTop10" />
+          value="#{ivy.cms.co('/Dialog/Common/submit')}" update="form" icon="si si-check-1" styleClass="Fright MarTop10" />
       </h:form>
 
     </ui:define>
