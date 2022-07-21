@@ -10,7 +10,7 @@
         "callSignature" : "userExampleGuide",
         "case" : {
           "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"true\"" }
           ]
         },
         "outLink" : "userExampleGuide.ivp",
