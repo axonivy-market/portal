@@ -43,7 +43,7 @@ public class TaskExpiredDateFilter extends TaskFilter {
     if (toExpiredDate != null) {
       return String.format(LESS_EQUAL, formatter.format(toExpiredDate));
     }
-    return ALL;
+    return getAllLabel();
   }
 
   @Override

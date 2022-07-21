@@ -28,7 +28,7 @@ public class CaseCreatorFilter extends CaseFilter {
   public String value() {
     if (StringUtils.isEmpty(selectedCreatorMemberName)) {
       setSelectedCreator(null);
-      return ALL;
+      return getAllLabel();
     } else {
       findCreator(selectedCreatorMemberName);
     }

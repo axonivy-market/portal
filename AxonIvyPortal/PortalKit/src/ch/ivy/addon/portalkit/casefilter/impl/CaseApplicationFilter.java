@@ -1,4 +1,4 @@
-package ch.ivy.addon.portalkit.taskfilter.impl;
+package ch.ivy.addon.portalkit.casefilter.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,22 +8,23 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
+import ch.ivy.addon.portalkit.casefilter.CaseFilter;
+import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityContext;
-import ch.ivyteam.ivy.workflow.query.TaskQuery;
-import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
 
-public class TaskApplicationFilter extends TaskFilter {
+public class CaseApplicationFilter extends CaseFilter {
   @JsonIgnore
   private List<String> filteredApplications;
   private List<String> selectedFilteredApplications;
   @JsonIgnore
   private boolean isSelectedAll;
   
-  public TaskApplicationFilter() {
+  public CaseApplicationFilter() {
     this.filteredApplications = IApplicationRepository.instance().allOf(ISecurityContext.current()).stream().map(IApplication::getName).collect(Collectors.toList());
     this.selectedFilteredApplications = new ArrayList<>();
   }
@@ -39,7 +40,7 @@ public class TaskApplicationFilter extends TaskFilter {
       return noSelectionLabel();
     } else if (isAllApplicationsSelected()) {
       isSelectedAll = true;
-      return getAllLabel();
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/all");
     }
     isSelectedAll = false;
     return selectedFilteredApplications.stream().collect(Collectors.joining(","));
@@ -50,14 +51,14 @@ public class TaskApplicationFilter extends TaskFilter {
   }
 
   @Override
-  public TaskQuery buildQuery() {
+  public CaseQuery buildQuery() {
     if (CollectionUtils.isEmpty(selectedFilteredApplications) && filteredApplications.size() == 1) {
       return null;
     } else if (CollectionUtils.isEmpty(selectedFilteredApplications)) {
       selectedFilteredApplications = new ArrayList<>(filteredApplications);
     }
 
-    TaskQuery query = TaskQuery.create();
+    CaseQuery query = CaseUtils.createBusinessCaseQuery();
     IFilterQuery filterQuery = query.where();
     selectedFilteredApplications.forEach(applicationName -> {
       final List<IApplication> allApps = IApplicationRepository.instance().allOf(ISecurityContext.current());
@@ -111,4 +112,5 @@ public class TaskApplicationFilter extends TaskFilter {
   public void setFilteredApplications(List<String> filteredApplications) {
     this.filteredApplications = filteredApplications;
   }
+
 }

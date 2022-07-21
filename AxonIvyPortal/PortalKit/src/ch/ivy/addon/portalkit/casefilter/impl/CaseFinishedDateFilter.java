@@ -44,7 +44,7 @@ public class CaseFinishedDateFilter extends CaseFilter {
     if (toFinishedDate != null) {
       return String.format(LESS_EQUAL, formatter.format(toFinishedDate));
     }
-    return ALL;
+    return getAllLabel();
   }
 
   @Override

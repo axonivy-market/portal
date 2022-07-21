@@ -26,7 +26,7 @@ public class CaseOwnerFilter extends CaseFilter {
   public String value() {
     if (StringUtils.isEmpty(selectedOwnerMemberName)) {
       setSelectedOwner(null);
-      return ALL;
+      return getAllLabel();
     } else {
       findSelectedOwner();
     }
@@ -51,7 +51,7 @@ public class CaseOwnerFilter extends CaseFilter {
 
   public String formatName(SecurityMemberDTO owner) {
     if (owner == null) {
-      return ALL;
+      return getAllLabel();
     }
     
     String ownerName = String.format("%s (%s)", owner.getDisplayName(), owner.getName());

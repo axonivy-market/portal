@@ -43,7 +43,7 @@ public class CaseCreationDateFilter extends CaseFilter {
     if (toCreationDate != null) {
       return String.format(LESS_EQUAL, formatter.format(toCreationDate));
     }
-    return ALL;
+    return getAllLabel();
   }
 
   @Override

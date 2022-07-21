@@ -18,7 +18,7 @@ public class CustomerNameFieldFilter extends CaseFilter {
 
 	@Override
 	public String value() {
-		return StringUtils.isNotBlank(customerNameField) ? String.format(DOUBLE_QUOTES, customerNameField) : ALL;
+		return StringUtils.isNotBlank(customerNameField) ? String.format(DOUBLE_QUOTES, customerNameField) : getAllLabel();
 	}
 
 	@Override
