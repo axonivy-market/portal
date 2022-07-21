@@ -466,4 +466,14 @@ public abstract class TemplatePage extends AbstractPage {
     clickUserMenuItem("dashboard-configuration");
     return new DashboardConfigurationPage();
   }
+
+  public void switchToIFrameOfTask() {
+    switchToDefaultContent();
+    WaitHelper.waitForIFrameAvailable(driver, "iFrame");
+  }
+
+  public void switchToDefaultContent() {
+    driver.switchTo().defaultContent();
+  }
+
 }
