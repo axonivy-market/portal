@@ -144,6 +144,14 @@ public class BaseTest {
     }
   }
 
+  public void redirectToRelativeLinkWithEmbedInFrame(String relativeProcessStartUrl) {
+    try {
+      browser.goHome(UrlHelpers.generateAbsoluteProcessStartLink(relativeProcessStartUrl) + "?embedInFrame");
+    } catch (Exception e) {
+      throw new PortalGUITestException(e);
+    }
+  }
+
   public void launchBrowserAndLogoutInDesigner() {
     try {
       browser.launch(browserType, designerLogoutUrl, getDriverPath());
