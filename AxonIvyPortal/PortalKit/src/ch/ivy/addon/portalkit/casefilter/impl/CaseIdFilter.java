@@ -19,7 +19,7 @@ public class CaseIdFilter extends CaseFilter {
   public String value() {
     if (caseId == null || caseId.equals(0l)) {
       caseId = null;
-      return ALL;
+      return getAllLabel();
     }
     return String.valueOf(caseId);
   }

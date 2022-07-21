@@ -26,7 +26,7 @@ public class TaskResponsibleFilter extends TaskFilter {
   public String value() {
     if (StringUtils.isEmpty(selectedResponsibleMemberName)) {
       setSelectedResponsible(null);
-      return ALL;
+      return getAllLabel();
     } else {
       findSelectedResponsible();
     }
@@ -59,7 +59,7 @@ public class TaskResponsibleFilter extends TaskFilter {
   }
 
   public String formatName(SecurityMemberDTO responsible) {
-    String responsibleName = ALL;
+    String responsibleName = getAllLabel();
     if (responsible != null) {
       if (StringUtils.isBlank(responsible.getDisplayName())) {
         responsibleName = responsible.getName();
