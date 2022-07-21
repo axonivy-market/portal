@@ -538,3 +538,7 @@ function highlightUserExampleNavigation() {
 function highlightProcessDisplayModePanel() {
   createRedMediumOutline($("div[id $='process-display-mode_panel']"));
 }
+
+function highlightDashboardConfiguration() {
+   createRedMediumOutline($("#dashboard-configuration"));
+}
