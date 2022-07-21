@@ -50,7 +50,7 @@ public class UrlUtils {
     if (StringUtils.isBlank(link) || link.contains(EMBED_IN_FRAME)) {
       return link;
     }
-    return (link.contains("?") ? "&" : "?") + EMBED_IN_FRAME;
+    return link + (link.contains("?") ? "&" : "?") + EMBED_IN_FRAME;
   }
 
 }
