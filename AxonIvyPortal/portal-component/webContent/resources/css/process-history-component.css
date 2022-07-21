@@ -175,6 +175,10 @@
   }
 }
 
+.state-column {
+	height: 1rem;
+}
+
 .state-column .case-state {
   border-radius: var(--state-border-radius);
   font-size: var(--state-font-size);
