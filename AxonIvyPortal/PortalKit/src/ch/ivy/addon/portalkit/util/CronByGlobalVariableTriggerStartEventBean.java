@@ -4,15 +4,10 @@ import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.TriggerBuilder.newTrigger;
 
-import java.awt.Container;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
-
-import javax.swing.JTextField;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.quartz.CronTrigger;
@@ -28,8 +23,9 @@ import org.quartz.impl.StdSchedulerFactory;
 import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean;
 import ch.ivyteam.ivy.process.eventstart.IProcessStartEventBeanRuntime;
-import ch.ivyteam.ivy.process.extension.IProcessExtensionConfigurationEditorEnvironment;
-import ch.ivyteam.ivy.process.extension.impl.AbstractProcessExtensionConfigurationEditor;
+import ch.ivyteam.ivy.process.extension.ui.UiEditorExtension;
+import ch.ivyteam.ivy.process.extension.ui.ExtensionUiBuilder;
+import ch.ivyteam.ivy.process.extension.ui.IUiFieldEditor;
 import ch.ivyteam.ivy.service.ServiceException;
 import ch.ivyteam.ivy.vars.Variable;
 import ch.ivyteam.ivy.vars.Variables;
@@ -38,11 +34,11 @@ import ch.ivyteam.log.Logger;
 /**
  * Cron Expsression Start Event Bean. This bean gets a cron expression via the
  * configuartion string and will schedule by using the expression
- * 
+ *
  * The Quarz framework is used as underlying scheduler framework.
- * 
+ *
  * @author mde
- * 
+ *
  */
 public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessStartEventBean implements Job {
   private Scheduler sched = null;
@@ -75,7 +71,7 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
         if (pattern != null && pattern.length() > 0) {
           // sf.getScheduler() method has to be called inside synchronized block to
           // prevent racing condition.
-          // E.g: two thread initialize Scheduler would cause 
+          // E.g: two thread initialize Scheduler would cause
           // SchedulerException: Scheduler with name 'DefaultQuartzScheduler' already exists.
           synchronized (SYN_OBJECT) {
             sched = sf.getScheduler();
@@ -162,7 +158,7 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
           } finally {
               startedJobs.remove(triggerIdentifier);
           }
-          
+
           long endTs = System.currentTimeMillis();
           String stats = String.format("execution time %.3f", (endTs - startTs) / 1000.0);
           if (throwable != null) {
@@ -181,16 +177,13 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
    *
    * @author maonguyen
    */
-  public static class Editor extends AbstractProcessExtensionConfigurationEditor {
+  public static class Editor extends UiEditorExtension {
 
-    private final JTextField globalVariable = new JTextField(60);
+    private IUiFieldEditor globalVariable;
 
     @Override
-    protected void createEditorPanelContent(Container editorPanel,
-        IProcessExtensionConfigurationEditorEnvironment editorEnvironment) {
-
-      editorPanel.add(globalVariable, new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.NORTHWEST,
-          GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+    public void initUiFields(ExtensionUiBuilder ui) {
+      globalVariable = ui.textField().create();
     }
 
     @Override
