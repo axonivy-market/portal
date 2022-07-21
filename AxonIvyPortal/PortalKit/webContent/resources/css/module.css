@@ -6251,15 +6251,6 @@ a.dashboard-action-container label {
   padding: 2rem !important;
 }
 
-.portal-process-viewer-data .ui-avatar.gravatar {
-  width: 2.5rem;
-  height: 2.5rem;
-}
-
-.portal-process-viewer-data .name-after-avatar {
-  padding-left: 3rem;
-}
-
 .process-viewer-command {
   height: 50px;
 }
@@ -6272,6 +6263,11 @@ a.dashboard-action-container label {
   margin: 0;
 }
 
+body .ui-avatar.gravatar {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
 .security-member-table-cell {
   vertical-align: middle;
 }
@@ -6282,6 +6278,10 @@ a.dashboard-action-container label {
 
 .setting-container .ui-avatar.gravatar {
   margin-top: 0;
+}
+
+body .name-after-avatar {
+  padding-left: 3rem;
 }
 
 .responsible-cell .has-avatar,
