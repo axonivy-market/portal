@@ -50,6 +50,7 @@ public class ScreenshotUtil {
   public static final String DEMO_FOLDER = "/demo-processes/";
   public static final String LAYOUT_FOLDER = "/layout-template/";
   public static final String ERROR_HANDLING_FOLDER = "/error-handling/";
+  public static final String DASHBOARD_CONFIGURATION_FOLDER = "/dashboard-configuration/";
   
   @PostConstruct
   public void initFolder() {
