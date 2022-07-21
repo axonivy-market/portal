@@ -87,6 +87,7 @@ public class BaseTest {
   protected String portalTemplatePasswordResetUrl = "portalTemplate/1549F58C18A6C562/PasswordResetPage.ivp?token=%s&username=%s";
   protected String cleanSessionCacheUrl = "portalKitTestHelper/17208192E0AF4185/cleanSessionCache.ivp";
   protected String showProcessViewerUrl = "portalTemplate/1549F58C18A6C562/PortalProcessViewer.ivp?caseId=%s&processKey=%s";
+  protected String createSampleDashboardUrl = "portalKitTestHelper/17F2050944B46BB0/createSampleDashboard.ivp";
 
   @Rule
   public ScreenshotFailedTestRule screenshotTestRule = new ScreenshotFailedTestRule();
