@@ -51,7 +51,7 @@ public class TaskStateFilter extends TaskFilter {
       return noSelectionLabel();
     } else if (isAllStatesSelected()) {
       isSelectedAll = true;
-      return ALL;
+      return getAllLabel();
     }
     isSelectedAll = false;
     String value = userFriendlyState(selectedFilteredStates.get(0));

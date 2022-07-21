@@ -18,7 +18,7 @@ public class CustomerNameFilter extends TaskFilter {
   
   @Override
   public String value() {
-    return StringUtils.isNotBlank(customerName) ? String.format(DOUBLE_QUOTES, customerName) : ALL;
+    return StringUtils.isNotBlank(customerName) ? String.format(DOUBLE_QUOTES, customerName) : getAllLabel();
   }
 
   @Override

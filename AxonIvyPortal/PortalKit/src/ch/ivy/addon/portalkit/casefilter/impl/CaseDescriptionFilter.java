@@ -17,7 +17,7 @@ public class CaseDescriptionFilter extends CaseFilter {
 
   @Override
   public String value() {
-    return StringUtils.isNotBlank(description) ? String.format(DOUBLE_QUOTES, description) : ALL;
+    return StringUtils.isNotBlank(description) ? String.format(DOUBLE_QUOTES, description) : getAllLabel();
   }
 
   @Override

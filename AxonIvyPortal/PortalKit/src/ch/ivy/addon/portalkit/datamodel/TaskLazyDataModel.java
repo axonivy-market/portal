@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import javax.faces.event.ValueChangeEvent;
@@ -66,21 +67,29 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
 
   protected String taskWidgetComponentId;
   protected String caseName;
+  
   protected int rowIndex;
+  
   protected TaskSearchCriteria criteria;
+  
   protected List<ITask> data;
 
   protected TaskFilterContainer filterContainer;
+  
   protected TaskFilterData selectedTaskFilterData;
   protected TaskFilterData defaultTaskFilterData;
+  
   protected Long filterGroupId;
 
   protected List<TaskFilter> filters;
   protected List<TaskFilter> selectedFilters;
   protected List<TaskFilter> submittedFilterSelection = new ArrayList<>();
   protected List<TaskFilter> oldSelectedFilters = new ArrayList<>();
+  
+  protected List<String> standardSortFields;
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
+  protected List<String> portalRequiredColumns = Arrays.asList(TaskSortField.NAME.name());
   protected List<String> portalDefaultColumns = Arrays.asList(TaskSortField.PRIORITY.name(), 
                                                               TaskSortField.NAME.name(), 
                                                               TaskSortField.ACTIVATOR.name(), 
@@ -91,7 +100,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
                                                               TaskSortField.STATE.name(), 
                                                               TaskSortField.CATEGORY.name(), 
                                                               TaskSortField.APPLICATION.name());
-  protected List<String> portalRequiredColumns = Arrays.asList(TaskSortField.NAME.name());
 
   protected boolean compactMode;
   protected boolean isAutoHideColumns;
@@ -99,10 +107,9 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   protected boolean isRelatedTaskDisplayed;
   protected boolean isNotKeepFilter;
   protected boolean disableTaskCount;
-  protected Boolean isSelectedDefaultFilter;
   protected boolean isGuide = true;
-  protected List<String> standardSortFields;
   protected boolean isSelectedAllFilters;
+  protected Boolean isSelectedDefaultFilter;
 
   /**
    * @hidden
@@ -221,7 +228,7 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
       updateStateForTaskCriteria();
       setValuesForStateFilter(criteria, tempFilterContainer);
       buildTaskStateFilter(tempFilterContainer);
-      defaultTaskFilterData.setFilters(tempFilterContainer.getFilters().stream().filter(TaskFilter::defaultFilter).collect(Collectors.toList()));
+      defaultTaskFilterData.setFilters(collectFilter(tempFilterContainer.getFilters(), TaskFilter::defaultFilter));
     }
   }
 
@@ -229,7 +236,7 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
     if (shouldSaveAndLoadSessionFilters()) {
       List<TaskFilter> sessionTaskFilters = UserUtils.getSessionTaskAdvancedFilterAttribute();
       if(sessionTaskFilters.isEmpty()) {
-        selectedFilters.addAll(filters.stream().filter(TaskFilter::defaultFilter).collect(Collectors.toList()));
+        selectedFilters.addAll(collectFilter(filters, TaskFilter::defaultFilter));
       } else {
         for (TaskFilter filter : filters) {
           for (TaskFilter sessionTaskFilter : sessionTaskFilters) {
@@ -238,6 +245,10 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
         }
       }
     }
+  }
+  
+  private <T> List<T> collectFilter (List<T> list, Predicate<T> predicate){
+    return list.stream().filter(predicate).collect(Collectors.toList());
   }
 
   protected void checkToApplyDefaultSet() {
@@ -343,11 +354,7 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   protected void initializedDataModel(TaskSearchCriteria criteria) {
     data.clear();
     buildQueryToSearchCriteria();
-    if (disableTaskCount) {
-      setRowCount(0);
-    } else {
-      setRowCount(getTaskCount(criteria));
-    }
+    setRowCount(disableTaskCount ? 0 : getTaskCount(criteria));
   }
 
   /**
@@ -697,6 +704,7 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   public TaskFilterData saveFilter(String filterName, FilterType filterType, Long taskFilterGroupId) {
     isSelectedDefaultFilter = false;
     TaskFilterData taskFilterData = new TaskFilterData();
+    
     List<TaskFilter> taskFilters = new ArrayList<>(selectedFilters);
     taskFilterData.setFilters(taskFilters);
     taskFilterData.setKeyword(criteria.getKeyword());
@@ -704,14 +712,16 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
     taskFilterData.setFilterGroupId(taskFilterGroupId);
     taskFilterData.setFilterName(filterName);
     taskFilterData.setType(filterType);
-    boolean isPublic = ALL_USERS == taskFilterData.getType() || ALL_ADMINS == taskFilterData.getType();
-    taskFilterData.setIsPublic(isPublic);
+    taskFilterData.setIsPublic(Arrays.asList(ALL_USERS, ALL_ADMINS).contains(taskFilterData.getType()));
+    
     TaskFilterService taskFilterService = new TaskFilterService();
     taskFilterService.save(taskFilterData);
+    
     BusinessDataInfo<TaskFilterData> info = taskFilterService.save(taskFilterData);
     taskFilterData = taskFilterService.findById(info.getId());
     UserUtils.setSessionSelectedTaskFilterSetAttribute(taskFilterData);
     UserUtils.setSessionSelectedDefaultTaskFilterSetAttribute(isSelectedDefaultFilter);
+    
     return taskFilterData;
   }
 
@@ -923,9 +933,8 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   public ITask getRowData() {
     if (rowIndex >= 0 && rowIndex < data.size()) {
       return data.get(rowIndex);
-    } else {
-      return null;
     }
+    return null;
   }
 
   /**
@@ -1028,11 +1037,7 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
 
   private void updateTaskColumnsConfiguration(TaskColumnsConfiguration taskColumnsConfiguration) {
     taskColumnsConfiguration.setAutoHideColumns(isAutoHideColumns);
-    if (isAutoHideColumns) {
-      taskColumnsConfiguration.setSelectedColumns(getDefaultColumns());
-    } else {
-      taskColumnsConfiguration.setSelectedColumns(selectedColumns);
-    }
+    taskColumnsConfiguration.setSelectedColumns(isAutoHideColumns ? getDefaultColumns() : selectedColumns);
   }
 
   /**
@@ -1287,11 +1292,7 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
    * @hidden
    */
   public void onSelectedAllFilters() {
-    if (isSelectedAllFilters) {
-      selectedFilters = new ArrayList<>(filters);
-    } else {
-      selectedFilters = new ArrayList<>();
-    }
+    selectedFilters = isSelectedAllFilters ? new ArrayList<>(filters) : new ArrayList<>();
   }
 
   /**
