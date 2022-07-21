@@ -461,4 +461,9 @@ public abstract class TemplatePage extends AbstractPage {
     clickByCssSelector("[id$='logout-setting:logout-menu-item']");
     WaitHelper.assertTrueWithWait(() -> findElementByCssSelector("[id$=':username']").isDisplayed());
   }
+  
+  public DashboardConfigurationPage openDashboardConfigurationPage() {
+    clickUserMenuItem("dashboard-configuration");
+    return new DashboardConfigurationPage();
+  }
 }
