@@ -9,7 +9,7 @@
     <ui:define name="content">
       <h:outputStylesheet library="css" name="portal-user-examples.css" />
       <h:outputStylesheet library="css" name="portal-variables.css" />
-      
+
 
       <div class="ui-g case-map-overview-layout-content">
         <div class="center ui-g-6 ui-xl-8 ui-lg-12 ui-md-12 ui-sm-12">
@@ -18,19 +18,20 @@
             <h1>Place header here</h1>
             <h:outputText value="Place description here" />
           </ui:insert>
-          <p:spacer height="25px" styleClass="ui-sm-hidden"/>
+          <p:spacer height="25px" styleClass="ui-sm-hidden" />
           <div class="ui-g-12 portal-card-container">
             <div class="card ui-g-12">
               <div class="ui-g-12">
                 <div class="ui-g-12">
-                  <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/theCasemap')}" styleClass="title-text"/>
+                  <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/theCasemap')}"
+                    styleClass="title-text" />
                 </div>
                 <ui:repeat var="stage" value="#{caseMapDetail.stages}" varStatus="stageStatus">
-    
-                  <h:panelGroup layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-6 ui-sm-12 " >
-                    
+
+                  <h:panelGroup layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-6 ui-sm-12 ">
+
                     <div class="ui-g-12 height-100 case-map-stage">
-                      <div class="ui-g-12 #{stageStatus.first?'':'line-left'} #{stageStatus.last?'':'line-right'}" >
+                      <div class="ui-g-12 #{stageStatus.first?'':'line-left'} #{stageStatus.last?'':'line-right'}">
                         <div class="square center card">
                           <i class="#{caseMapDetailBean.getIconOfStage(caseMapDetail, stage)} case-stage-icon" />
                         </div>
@@ -43,39 +44,43 @@
                           <i class="fa fa-ellipsis-v " />
                         </div>
                       </div>
-                      <div class="card ui-g-12 case-stage-detail" >
-    
+                      <div class="card ui-g-12 case-stage-detail">
+
                         <!-- PROCESS -->
                         <ui:repeat var="desc" value="#{caseMapDetailBean.getProcessOfStage(caseMapDetail, stage)}">
                           <div class="card ui-g-12 case-stage-process">
                             <div class="ui-g-11">
-                            <h:outputText value="#{desc}" styleClass="case-stage-text"/>
-                            </div>
-                            <div class="ui-g-1">
-                            <i class="fa fa-ellipsis-v" />
-                            </div>
-                            <hr />
-                            <div class="ui-g-12" jsf:rendered="#{caseMapDetailBean.renderPreCondition(caseMapDetail, desc)}">
-                              <i class="fa fa-diamond precondition-icon" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/hasPrecondition')}"/>
-                            </div>
-                          </div>
-                        </ui:repeat>
-                        
-                        <!-- SIDE STEP -->
-                        <div jsf:rendered="#{not empty caseMapDetailBean.getSideStepOfStage(caseMapDetail, stage)}">
-                          <hr />
-                        </div >
-                        <ui:repeat var="desc" value="#{caseMapDetailBean.getSideStepOfStage(caseMapDetail, stage)}">
-                          <div class="card ui-g-12 case-stage-process">
-                            <div class="ui-g-11">
-                              <h:outputText value="#{desc}" styleClass="case-stage-text"/>
+                              <h:outputText value="#{desc}" styleClass="case-stage-text" />
                             </div>
                             <div class="ui-g-1">
                               <i class="fa fa-ellipsis-v" />
                             </div>
                             <hr />
-                            <div class="ui-g-12" jsf:rendered="#{caseMapDetailBean.renderPreCondition(caseMapDetail, desc)}">
-                              <span class="fa fa-diamond precondition-icon" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/hasPrecondition')}" />
+                            <div class="ui-g-12"
+                              jsf:rendered="#{caseMapDetailBean.renderPreCondition(caseMapDetail, desc)}">
+                              <i class="fa fa-diamond precondition-icon"
+                                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/hasPrecondition')}" />
+                            </div>
+                          </div>
+                        </ui:repeat>
+
+                        <!-- SIDE STEP -->
+                        <div jsf:rendered="#{not empty caseMapDetailBean.getSideStepOfStage(caseMapDetail, stage)}">
+                          <hr />
+                        </div>
+                        <ui:repeat var="desc" value="#{caseMapDetailBean.getSideStepOfStage(caseMapDetail, stage)}">
+                          <div class="card ui-g-12 case-stage-process">
+                            <div class="ui-g-11">
+                              <h:outputText value="#{desc}" styleClass="case-stage-text" />
+                            </div>
+                            <div class="ui-g-1">
+                              <i class="fa fa-ellipsis-v" />
+                            </div>
+                            <hr />
+                            <div class="ui-g-12"
+                              jsf:rendered="#{caseMapDetailBean.renderPreCondition(caseMapDetail, desc)}">
+                              <span class="fa fa-diamond precondition-icon"
+                                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/hasPrecondition')}" />
                             </div>
                           </div>
                         </ui:repeat>
@@ -85,7 +90,7 @@
                       <h:outputText value="Insert your navigation button here" />
                     </ui:insert>
                   </h:panelGroup>
-                  
+
                 </ui:repeat>
               </div>
             </div>
@@ -96,7 +101,7 @@
           </div>
         </div>
       </div>
-    
+
     </ui:define>
   </ui:composition>
 </h:body>

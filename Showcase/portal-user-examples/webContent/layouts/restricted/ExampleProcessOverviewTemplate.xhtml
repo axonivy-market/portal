@@ -16,23 +16,24 @@
             <h1>#{process.processName}</h1>
             <h:outputText id="process-description" value="#{process.description}" />
           </ui:insert>
-          <p:spacer height="25px" styleClass="ui-sm-hidden"/>
+          <p:spacer height="25px" styleClass="ui-sm-hidden" />
           <h:panelGroup layout="block" styleClass="ui-g-12 portal-card-container" rendered="#{not empty processSteps}">
             <div class="card ui-g-12">
               <div class="ui-g-12">
-                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/theProcess')}" styleClass="title-text"/>
+                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/theProcess')}"
+                  styleClass="title-text" />
               </div>
               <ui:repeat var="step" value="#{processSteps}" varStatus="stepStatus">
-  
+
                 <h:panelGroup layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-6 ui-sm-12 panel-breadcrumb">
                   <div class="ui-g-12">
                     <div>
-  
+
                       <div class="ui-g-12 #{stepStatus.index == 0?'process-first-breadcrumb':'process-breadcrumb'} ">
-                        <h:outputText value="#{step.name}" styleClass="process-breadcrumb-title" id="process-step"/>
+                        <h:outputText value="#{step.name}" styleClass="process-breadcrumb-title" id="process-step" />
                       </div>
                       <div class="card ui-g-12 description-content height-100">
-  
+
                         <ui:repeat var="desc" value="#{step.descriptions}">
                           <div class="ui-g-12">
                             <div class="ui-g-2 TexAlCenter">
@@ -57,7 +58,7 @@
           </div>
         </div>
       </div>
-    
+
     </ui:define>
   </ui:composition>
 </h:body>
