@@ -19,10 +19,12 @@
     </ui:define>
     
     <ui:define name="detailButton">
+      <h:form>
       <div class="ui-g-12 TexAlCenter">
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/goToDetail')} #{stage}" 
           actionListener="#{logic.navigateToDetail(stageStatus.index)}" id="detail-stage"/>
       </div>
+      </h:form>
     </ui:define>
     
     <ui:define name="actionButtons">
@@ -30,7 +32,7 @@
       <p:spacer width="20px" />
       <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')} #{data.userProcess.processName}"
         id="start"
-        actionListener="#{compactProcessWidgetBean.startProcess(data.userProcess)}" />
+        actionListener="#{navigationBean.startProcess(data.userProcess)}" />
     </ui:define>
   </ui:composition>
 </h:body>
