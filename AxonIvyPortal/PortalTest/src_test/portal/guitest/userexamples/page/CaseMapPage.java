@@ -105,6 +105,7 @@ public class CaseMapPage extends TaskTemplatePage {
   
   public HomePage clickSubmitRequestButton() {
     clickByCssSelector("button[id$='submit-request']");
+    switchToDefaultContent();
     return new HomePage();
   }
 
@@ -129,6 +130,7 @@ public class CaseMapPage extends TaskTemplatePage {
   
   public TaskWidgetPage clickSubmitButtonAndBackToTaskList() {
     clickByCssSelector("button[id$='submit-button']");
+    switchToDefaultContent();
     return new TaskWidgetPage();
   }
 }
