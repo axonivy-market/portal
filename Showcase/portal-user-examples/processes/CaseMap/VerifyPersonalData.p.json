@@ -11,7 +11,7 @@
         "task" : {
           "name" : "<%=ivy.cms.co(\"/Processes/CaseMap/verifyPersonalData\")%>",
           "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"true\"" }
           ]
         },
         "showInStartList" : false,
