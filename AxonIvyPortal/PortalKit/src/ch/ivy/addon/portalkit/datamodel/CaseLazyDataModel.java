@@ -574,10 +574,10 @@ public class CaseLazyDataModel extends LazyDataModel7<ICase> {
   public void initColumnsConfiguration() {
     if (new GlobalSettingService().isCaseOwnerEnabled()) {
       portalDefaultColumns = List.of(CaseSortField.NAME.name(), CaseSortField.ID.name(), CaseSortField.CREATOR.name(), CaseSortField.OWNER.name(), CaseSortField.CREATION_TIME.name(),
-          CaseSortField.FINISHED_TIME.name(), CaseSortField.STATE.name(), CaseSortField.CATEGORY.name());
+          CaseSortField.FINISHED_TIME.name(), CaseSortField.STATE.name(), CaseSortField.CATEGORY.name(), CaseSortField.APPLICATION.name());
     } else {
       portalDefaultColumns = List.of(CaseSortField.NAME.name(), CaseSortField.ID.name(), CaseSortField.CREATOR.name(), CaseSortField.CREATION_TIME.name(), CaseSortField.FINISHED_TIME.name(),
-          CaseSortField.STATE.name(), CaseSortField.CATEGORY.name());
+          CaseSortField.STATE.name(), CaseSortField.CATEGORY.name(), CaseSortField.APPLICATION.name());
     }
     if (CollectionUtils.isEmpty(allColumns)) {
       allColumns.addAll(getDefaultColumns());
@@ -598,6 +598,7 @@ public class CaseLazyDataModel extends LazyDataModel7<ICase> {
     }
     if (selectedColumns.isEmpty()) {
       selectedColumns.addAll(getDefaultColumns());
+      selectedColumns.remove(CaseSortField.APPLICATION.name());
       isAutoHideColumns = true;
     }
     setDisableSelectionCheckboxes(isAutoHideColumns);

@@ -341,6 +341,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     cases: Vorgänge
     confirmDeleteMessage: Diese Aktion kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie dieses Businessobjekt löschen wollen?
     defaultColumns:
+      APPLICATION: Anwendung
       CATEGORY: Kategorie
       CREATION_TIME: Erstellt
       CREATOR: Ersteller
