@@ -16,6 +16,7 @@ public class DefaultCaseFilterContainer extends CaseFilterContainer {
   protected CaseDescriptionFilter caseDescriptionFilter = new CaseDescriptionFilter();
   protected CaseFinishedDateFilter caseFinishedDateFilter = new CaseFinishedDateFilter();
   protected CaseCategoryFilter caseCategoryFilter = new CaseCategoryFilter();
+  protected CaseApplicationFilter applicationFilter = new CaseApplicationFilter();
 
   public DefaultCaseFilterContainer() {
     super();
@@ -29,6 +30,7 @@ public class DefaultCaseFilterContainer extends CaseFilterContainer {
     filters.add(caseDescriptionFilter);
     filters.add(caseFinishedDateFilter);
     filters.add(caseCategoryFilter);
+    filters.add(applicationFilter);
     Collections.sort(filters, new CaseFilterComparator());
   }
 
@@ -94,5 +96,13 @@ public class DefaultCaseFilterContainer extends CaseFilterContainer {
 
   public void setNameFilter(CaseNameFilter nameFilter) {
     this.nameFilter = nameFilter;
+  }
+
+  public CaseApplicationFilter getApplicationFilter() {
+    return applicationFilter;
+  }
+
+  public void setApplicationFilter(CaseApplicationFilter applicationFilter) {
+    this.applicationFilter = applicationFilter;
   }
 }
