@@ -16,7 +16,7 @@
   <c:set var="case" value="#{cc.attrs.case}" />
 
   <h:panelGroup rendered="#{cc.attrs.dataModel.isSelectedColumn('APPLICATION')}">
-    <h:outputText id="#{cc.attrs.componentId}" styleClass="application-cell #{cc.attrs.responsiveStyleClass}"
+    <h:outputText id="#{cc.attrs.componentId}" styleClass="application-column #{cc.attrs.responsiveStyleClass}"
       value="#{case.application.name}" />
     <p:tooltip for="#{cc.attrs.componentId}" value="#{case.application.name}" trackMouse="true" hideEvent="mouseleave click" rendered="#{not empty case.name}" />
   </h:panelGroup>
