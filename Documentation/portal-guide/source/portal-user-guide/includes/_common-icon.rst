@@ -44,3 +44,5 @@
    :width: 15px 
 .. |move-expand-vertical| image:: ../includes/images/move-expand-vertical.svg
    :width: 15px 
+.. |settings-icon| image:: ../includes/images/settings.svg
+   :width: 15px 
