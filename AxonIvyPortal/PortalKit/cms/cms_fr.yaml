@@ -341,6 +341,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     cases: Dossiers
     confirmDeleteMessage: Cette action ne peut pas être annulée. Voulez-vous vraiment supprimer ?
     defaultColumns:
+      APPLICATION: Application
       CATEGORY: Catégorie
       CREATION_TIME: Créé
       CREATOR: Créateur

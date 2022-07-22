@@ -99,6 +99,8 @@ public class TaskExporter extends Exporter {
         return task.getEndTimestamp();
       case CATEGORY:
         return task.getCategory().getPath();
+      case APPLICATION:
+        return task.getApplication().getName();
       default:
         return "";
     }
