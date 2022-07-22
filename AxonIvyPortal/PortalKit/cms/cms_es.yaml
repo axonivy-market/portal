@@ -343,6 +343,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     cases: Casos
     confirmDeleteMessage: Esta acción no se puede deshacer. ¿De verdad quieres eliminar este objeto comercial?
     defaultColumns:
+      APPLICATION: Aplicación
       CATEGORY: Categoría
       CREATION_TIME: Creado
       CREATOR: Creador

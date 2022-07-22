@@ -110,6 +110,8 @@ public class CaseExporter extends Exporter{
         return caseItem.getState().toString();
       case CATEGORY:
         return caseItem.getCategory().getPath();
+      case APPLICATION:
+        return caseItem.getApplication().getName();
       default:
         return "";
     }

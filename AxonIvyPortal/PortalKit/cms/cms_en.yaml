@@ -340,6 +340,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     cases: Cases
     confirmDeleteMessage: This action can not be undone. Do you really want to delete this business object?
     defaultColumns:
+      APPLICATION: Application
       CATEGORY: Category
       CREATION_TIME: Created
       CREATOR: Creator
