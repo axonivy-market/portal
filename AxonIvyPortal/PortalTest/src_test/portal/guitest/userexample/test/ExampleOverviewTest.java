@@ -11,6 +11,7 @@ import portal.guitest.page.ExampleOverviewPage;
 import portal.guitest.page.LeaveRequestOverviewPage;
 import portal.guitest.page.LendingDetailPage;
 import portal.guitest.page.LendingOverviewPage;
+import portal.guitest.page.MainMenuPage;
 import portal.guitest.userexamples.page.CaseMapPage;
 import portal.guitest.userexamples.page.LeaveRequestPage;
 
@@ -22,13 +23,15 @@ public class ExampleOverviewTest extends BaseTest {
   @Override
   public void setup() {
     super.setup();
-    redirectToRelativeLink(PORTAL_EXAMPLES_PROCESS_CHAIN);
+    redirectToRelativeLinkWithEmbedInFrame(PORTAL_EXAMPLES_PROCESS_CHAIN);
+    new MainMenuPage().switchToIFrameOfTask();
     exampleOverviewPage = new ExampleOverviewPage();
   }
   
   @Test
   public void testOverviewLeaveRequest() {
     LeaveRequestOverviewPage leaveRequestOverview = exampleOverviewPage.openLeaveRequestOverview();
+    leaveRequestOverview.switchToIFrameOfTask();
     assertEquals("Leave Request", leaveRequestOverview.getHearText());
     assertEquals("Creation", leaveRequestOverview.getStepName(0));
     assertEquals("Approval", leaveRequestOverview.getStepName(1));
@@ -57,7 +60,7 @@ public class ExampleOverviewTest extends BaseTest {
     assertEquals("Lending (Case Map)", lendingOverview.getHearText());
     
     CaseMapPage caseMapPage = lendingOverview.startLendingCase();
-    assertEquals("Collect Personal Data", caseMapPage.getTitle());
+    assertEquals("Credit Request", caseMapPage.getHeader());
   }
   
   @Test
