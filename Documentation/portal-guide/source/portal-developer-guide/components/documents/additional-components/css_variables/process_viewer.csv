@@ -1,0 +1,4 @@
+Variable,Default value,Description
+\--process-viewer-data-has-error-message-font-weight,bold,Error message font weight.
+\--process-viewer-data-has-error-message-font-size,16px,Error message font size.
+\--process-details-column-title-font-size,12px,Process details column title font size.
