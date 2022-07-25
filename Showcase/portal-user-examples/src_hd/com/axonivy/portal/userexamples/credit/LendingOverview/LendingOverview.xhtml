@@ -19,7 +19,7 @@
     </ui:define>
     
     <ui:define name="detailButton">
-      <h:form>
+      <h:form id="detail-form">
       <div class="ui-g-12 TexAlCenter">
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/goToDetail')} #{stage}" 
           actionListener="#{logic.navigateToDetail(stageStatus.index)}" id="detail-stage"/>

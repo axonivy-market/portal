@@ -14,8 +14,14 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class CaseMapPage extends TaskTemplatePage {
 
+  @Override
+  protected String getLoadedLocator() {
+    return "id('form:first-name')";
+  }
+
   public void inputFields(String lastName, String firstName, String birthDate, String country, String amount, String reason,
       String salary, String otherCredit) {
+    waitForIFrameContentVisible();
     type(By.id("form:last-name"), lastName);
     type(By.id("form:first-name"), firstName);
     typeBirthDay(birthDate);
@@ -84,6 +90,7 @@ public class CaseMapPage extends TaskTemplatePage {
   @SuppressWarnings("deprecation")
   public String clickSubmitAndGetValidationMsg() {
     clickByCssSelector("button[id$='submit-request']");
+    waitForElementDisplayedByCssSelector(".ui-messages-error-icon");
     waitAjaxIndicatorDisappear();
     return getValidationMsg();
   }
@@ -100,6 +107,7 @@ public class CaseMapPage extends TaskTemplatePage {
   @Override
   public HomePage clickSubmitButton() {
     clickByCssSelector("button[id$='submit-button']");
+    switchToDefaultContent();
     return new HomePage();
   }
   
@@ -111,16 +119,19 @@ public class CaseMapPage extends TaskTemplatePage {
 
   public HomePage clickApproveButton() {
     clickByCssSelector("button[id$='form:approval-button']");
+    switchToDefaultContent();
     return new HomePage();
   }
   
   public HomePage clickRejectButton() {
     clickByCssSelector("button[id$='form:rejected-button']");
+    switchToDefaultContent();
     return new HomePage();
   }
   
   public UserExamplesEndPage clickSubmitContractButton() {
     clickByCssSelector("button[id$='submit-contract-button']");
+    switchToDefaultContent();
     return new UserExamplesEndPage();
   }
   
@@ -128,6 +139,10 @@ public class CaseMapPage extends TaskTemplatePage {
     return findElementByCssSelector("[id$='title']").getText();
   }
   
+  public String getHeader() {
+    return findElementByCssSelector("#header").getText();
+  }
+
   public TaskWidgetPage clickSubmitButtonAndBackToTaskList() {
     clickByCssSelector("button[id$='submit-button']");
     switchToDefaultContent();
