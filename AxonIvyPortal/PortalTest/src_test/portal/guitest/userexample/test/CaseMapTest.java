@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.page.CaseDetailsPage;
+import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.userexamples.page.CaseMapPage;
 import portal.guitest.userexamples.page.UserExamplesEndPage;
@@ -25,7 +26,8 @@ public class CaseMapTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
-    redirectToRelativeLink(CASE_MAP_URL);
+    redirectToRelativeLinkWithEmbedInFrame(CASE_MAP_URL);
+    new MainMenuPage().switchToIFrameOfTask();
   }
 
   @Test
@@ -34,25 +36,30 @@ public class CaseMapTest extends BaseTest {
     caseMapPage.inputFields("John", "Jack", "1.1.2019", "VN", "20000", "To buy a new car", "80000", "100000");
     caseMapPage.clickSubmitRequestButton();
     startTaskByTaskName(VERIFY_PERSONAL_DATA);
+    caseMapPage.switchToIFrameOfTask();
     assertInputData();
     caseMapPage.inputVerifierComment("Ok");
     caseMapPage.clickSubmitButton();
     startTaskByTaskName(INTERNAL_SOLVENCY_CHECK);
+    caseMapPage.switchToIFrameOfTask();
     assertInputData();
     Assert.assertEquals("Ok", caseMapPage.getVerifierComment());
     caseMapPage.inputInternalCreditComment("Pass");
     caseMapPage.clickSubmitButton();
     startTaskByTaskName(APPROVAL_LEVEL_1);
+    caseMapPage.switchToIFrameOfTask();
     assertInputData();
     Assert.assertEquals("Ok", caseMapPage.getVerifierComment());
     Assert.assertEquals("Pass", caseMapPage.getInternalCreditComment());
     caseMapPage.clickApproveButton();
     startTaskByTaskName(APPROVAL_LEVEL_2);
+    caseMapPage.switchToIFrameOfTask();
     assertInputData();
     Assert.assertEquals("Ok", caseMapPage.getVerifierComment());
     Assert.assertEquals("Pass", caseMapPage.getInternalCreditComment());
     caseMapPage.clickApproveButton();
     startTaskByTaskName(CREATE_CONTRACT);
+    caseMapPage.switchToIFrameOfTask();
     assertInputData();
     UserExamplesEndPage userExamplesEndPage = caseMapPage.clickSubmitContractButton();
     CaseDetailsPage caseDetailsPage = userExamplesEndPage.goToCaseDetail();
@@ -65,15 +72,18 @@ public class CaseMapTest extends BaseTest {
     caseMapPage.inputFields("John", "Jack", "1.1.2019", "VN", "20000", "To buy a new car", "80000", "100000");
     caseMapPage.clickSubmitRequestButton();
     startTaskByTaskName(VERIFY_PERSONAL_DATA);
+    caseMapPage.switchToIFrameOfTask();
     assertInputData();
     caseMapPage.inputVerifierComment("Ok");
     caseMapPage.clickSubmitButton();
     startTaskByTaskName(INTERNAL_SOLVENCY_CHECK);
+    caseMapPage.switchToIFrameOfTask();
     assertInputData();
     Assert.assertEquals("Ok", caseMapPage.getVerifierComment());
     caseMapPage.inputInternalCreditComment("Fail");
     caseMapPage.clickSubmitButton();
     startTaskByTaskName(APPROVAL_LEVEL_1);
+    caseMapPage.switchToIFrameOfTask();
     assertInputData();
     Assert.assertEquals("Ok", caseMapPage.getVerifierComment());
     Assert.assertEquals("Fail", caseMapPage.getInternalCreditComment());
@@ -96,6 +106,7 @@ public class CaseMapTest extends BaseTest {
   @Test
   public void testCollectPersonalDataValidation() {
     caseMapPage = new CaseMapPage();
+    caseMapPage.switchToIFrameOfTask();
     caseMapPage.inputFields("", "", "", "", "", "", "", "");
     Assert.assertEquals(
             "First name: Value is required.,"
