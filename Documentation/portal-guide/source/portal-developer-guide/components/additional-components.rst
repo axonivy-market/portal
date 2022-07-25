@@ -642,6 +642,51 @@ Migrate from Deprecated Role Selection
 
 .. _components-additional-portal-dialog-with-icon:
 
+Process Viewer
+--------------
+
+Introduction
+^^^^^^^^^^^^
+
+The Process Viewer component provides a visual representation of the process flow from a given Case ID or Process relative link.
+
+|portal-process-viewer-component|
+
+This component is a part of project ``portal-component``, which is independent of the Portal. You don't need to import the Portal projects to use it.
+
+How to Use
+^^^^^^^^^^
+
+You can integrate the Process Viewer component in any page by including following code:
+
+.. code-block:: html
+
+   <ic:com.axonivy.portal.component.ProcessViewer caseId="#{data.caseId}" processLink="#{data.processLink}" containerStyleClass="process-viewer-container" />
+
+#. You have to set one of below parameters
+
+   -  ``caseId``: Case ID.
+   -  ``processLink``: Process relative link.
+
+   .. warning::
+      Sub Case (Technical Case) or Express Workflow Process is not supported.
+
+#. You can customzie container style by using ``containerStyleClass`` parameter
+
+Refer to process ``ProcessViewerExample`` in project ``portal-component-example`` for more details.
+
+Attributes of this component:
+
+.. csv-table::
+  :file: documents/additional-components/process_viewer_component_attributes.csv
+  :header-rows: 1
+  :class: longtable
+  :widths: 1 1 1 3
+
+
+If you want to customize its style,
+please refer to :ref:`components-additional-components-style-customization`.
+
 Portal Dialog with Icon
 -----------------------
 
@@ -762,6 +807,16 @@ Process History
   :class: longtable
   :widths: 2 1 2
 
+
+Process Viewer
+^^^^^^^^^^^^^^
+
+.. csv-table::
+  :file: documents/additional-components/css_variables/process_viewer.csv
+  :header-rows: 1
+  :class: longtable
+  :widths: 2 1 2
+
 .. |process-history-example| image:: ../../screenshots/components/process-history-example.png
 .. |process-history-dialog-example| image:: ../../screenshots/components/process-history-dialog-example.png
 .. |set-business-entity-id-sub-process| image:: images/additional-component/set-business-entity-id-sub-process.png
@@ -778,3 +833,4 @@ Process History
 .. |role-selection-floating-label| image:: ../../screenshots/components/role-selection-component-floating-label-and-exclude-role.png
 .. |role-selection-with-children-and-ajax-event| image:: ../../screenshots/components/role-selection-component-ajax-event-selected-message.png
 .. |role-selection-component-ajax-expand| image:: ../../screenshots/components/role-selection-component-ajax-expand.png
+.. |portal-process-viewer-component| image:: ../../screenshots/components/portal-process-viewer-component.png
