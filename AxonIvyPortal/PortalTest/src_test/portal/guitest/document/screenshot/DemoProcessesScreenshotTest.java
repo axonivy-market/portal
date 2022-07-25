@@ -10,9 +10,9 @@ import org.openqa.selenium.Dimension;
 
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
-import portal.guitest.common.Sleeper;
 import portal.guitest.page.ExampleOverviewPage;
 import portal.guitest.page.HomePage;
+import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.userexamples.page.CaseMapPage;
@@ -54,16 +54,14 @@ public class DemoProcessesScreenshotTest extends ScreenshotTest {
     redirectToRelativeLinkWithEmbedInFrame(startUserExampleProcess);
     homePage.switchToIFrameOfTask();
     exampleOverviewPage = new ExampleOverviewPage();
-    exampleOverviewPage.waitUntilExampleOverviewDisplayed();
-    Sleeper.sleep(2000);
+    exampleOverviewPage.waitForIFrameContentVisible();
     executeDecorateJs("highlightUserExampleCard(0)");
     homePage.switchToDefaultContent();
     ScreenshotUtil.capturePageScreenshot(DEMO_FOLDER + "example-overview-leave-request");
     refreshPage();
     homePage.switchToIFrameOfTask();
     exampleOverviewPage = new ExampleOverviewPage();
-    exampleOverviewPage.waitUntilExampleOverviewDisplayed();
-    Sleeper.sleep(2000);
+    exampleOverviewPage.waitForIFrameContentVisible();
     executeDecorateJs("highlightUserExampleCard(1)");
     ScreenshotUtil.capturePageScreenshot(DEMO_FOLDER + "example-overview-lending-case");
   }
@@ -72,9 +70,9 @@ public class DemoProcessesScreenshotTest extends ScreenshotTest {
   public void screenshotLeaveRequestProcess() throws IOException {
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 950));
     redirectToRelativeLinkWithEmbedInFrame(LEAVE_REQUEST_START_LINK);
+    new MainMenuPage().switchToIFrameOfTask();
     LeaveRequestPage leaveRequestPage = new LeaveRequestPage();
-    leaveRequestPage.switchToIFrameOfTask();
-    leaveRequestPage.waitUntilLeaveRequestPageDisplayed();
+    leaveRequestPage.waitForIFrameContentVisible();
     ScreenshotUtil.capturePageScreenshot(DEMO_FOLDER + "leave-request-creation");
   }
   
@@ -82,9 +80,9 @@ public class DemoProcessesScreenshotTest extends ScreenshotTest {
   public void screenshotCaseMapProcess() throws IOException {
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 900));
     redirectToRelativeLinkWithEmbedInFrame(CASE_MAP_URL);
+    new MainMenuPage().switchToIFrameOfTask();
     CaseMapPage caseMapPage = new CaseMapPage();
-    caseMapPage.switchToIFrameOfTask();
-    caseMapPage.waitUntilCaseMapPageDisplayed();
+    caseMapPage.waitForIFrameContentVisible();
     ScreenshotUtil.capturePageScreenshot(DEMO_FOLDER + "lending-casemap-collect-personal-data");
     
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 700));
@@ -92,7 +90,7 @@ public class DemoProcessesScreenshotTest extends ScreenshotTest {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
     taskWidgetPage.startTask(0);
-    
+    taskWidgetPage.switchToIFrameOfTask();
     caseMapPage = new CaseMapPage();
     caseMapPage.switchToIFrameOfTask();
     taskWidgetPage = caseMapPage.clickSubmitButtonAndBackToTaskList();
@@ -100,6 +98,7 @@ public class DemoProcessesScreenshotTest extends ScreenshotTest {
     executeDecorateJs("highlightTaskActionItem(0, 1)");
     ScreenshotUtil.capturePageScreenshot(DEMO_FOLDER + "lending-casemap-external-solvency-service");
     taskWidgetPage.clickOnSideStepAction(0, 1);
+    taskWidgetPage.waitForIFrameContentVisible();
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1150));
     ScreenshotUtil.capturePageScreenshot(DEMO_FOLDER + "lending-casemap-approval-task");
   }
