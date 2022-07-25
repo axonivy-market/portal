@@ -45,7 +45,7 @@
 
 /* CSS variables for process viewer component */
   --process-viewer-data-has-error-message-font-weight: bold;
-  --process-viewer-data-has-error-message-font-size: bold;
+  --process-viewer-data-has-error-message-font-size: 16px;
   --process-details-column-title-font-size: 12px;
 
 /* CSS variables for avatar component */
