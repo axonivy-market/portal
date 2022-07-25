@@ -19,6 +19,7 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.ProcessHistoryPage;
+import portal.guitest.page.ProcessViewerComponentPage;
 import portal.guitest.page.ProcessViewerPage;
 import portal.guitest.page.RoleSelectionComponentPage;
 import portal.guitest.page.StatisticWidgetPage;
@@ -166,5 +167,14 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
     WaitHelper.assertTrueWithWait(() -> !processViewerPage.getProcessRequestPath().isEmpty());
     processViewerPage.waitForSprottyToolDisplayed();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_WIDGET_FOLDER + "portal-process-viewer");
+  }
+
+  @Test
+  public void captureScreenshotProcessViewerComponent() throws IOException {
+    redirectToRelativeLink(processViewerExampleInFrameUrl);
+    ScreenshotUtil.resizeBrowser(new Dimension(1366, 1000));
+    ProcessViewerComponentPage processViewerPage = new ProcessViewerComponentPage();
+    processViewerPage.waitForSprottyToolDisplayed();
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.COMPONENTS_FOLDER + "portal-process-viewer-component");
   }
 }
