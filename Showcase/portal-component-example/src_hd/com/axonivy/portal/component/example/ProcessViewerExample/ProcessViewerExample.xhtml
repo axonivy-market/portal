@@ -11,7 +11,7 @@
       <h1>Process Viewer Component Example</h1>
 
       <h:form id="form">
-        <ic:com.axonivy.portal.component.ProcessViewer caseId="#{data.caseId}" processLink="#{data.processLink}" containerStyleClass="process-viewer-container"/>
+        <ic:com.axonivy.portal.component.ProcessViewer caseId="#{data.caseId}" processLink="#{data.processLink}" containerStyleClass="process-viewer-container" />
 
         <div class="command-btns">
           <p:commandButton id="proceed" actionListener="#{logic.close}" value="Close" update="form" icon="pi pi-times" />
