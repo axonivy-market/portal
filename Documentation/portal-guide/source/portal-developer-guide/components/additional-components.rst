@@ -657,7 +657,9 @@ This component is a part of project ``portal-component``, which is independent o
 How to Use
 ^^^^^^^^^^
 
-You can integrate the Process Viewer component in any page by including following code:
+You can integrate the Process Viewer component in any page by including following code.
+
+Code example:
 
 .. code-block:: html
 
