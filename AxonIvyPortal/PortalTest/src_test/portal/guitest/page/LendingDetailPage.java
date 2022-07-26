@@ -35,24 +35,21 @@ public class LendingDetailPage extends TemplatePage {
   }
   
   public LendingOverviewPage navigateToLendingOverview() {
-    WebElement element = findElementByCssSelector("[id$='back-to-case-map']");
-    element.click();
+    clickByCssSelector("[id$='back-to-case-map']");
     waitForElementDisplayed(By.cssSelector("[id$='lending-header']"), true);
     return new LendingOverviewPage();
   }
   
   public LendingDetailPage navigateToPreviousDetail() {
-    WebElement element = findElementByCssSelector("[id$='previous-stage']");
-    element.click();
+    clickByCssSelector("[id$='previous-stage']");
     waitForElementDisplayed(By.cssSelector(String.format("[id$='stage-%d-name']", index - 1)), true);
     return new LendingDetailPage(index - 1);
   }
   
   @SuppressWarnings("deprecation")
   public LendingDetailPage navigateToNextDetail() {
-    WebElement element = findElementByCssSelector("[id$='next-stage']");
-    element.click();
-    waitForElementDisplayed(By.cssSelector(String.format("[id$='stage-%d-name']", index + 1)), true);
+    clickByCssSelector("[id$='next-stage']");
+    waitForElementDisplayed(By.cssSelector(String.format("#stage-%d-name", index + 1)), true);
     waitAjaxIndicatorDisappear();
     return new LendingDetailPage(index + 1);
   }
