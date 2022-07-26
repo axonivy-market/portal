@@ -30,7 +30,8 @@ import ch.ivyteam.ivy.environment.Ivy;
   @Type(value = CompactProcessDashboardWidget.class, name = "compact-process"),
   @Type(value = CombinedProcessDashboardWidget.class, name = "combined-process"),
   @Type(value = StatisticDashboardWidget.class, name = "statistic"),
-  @Type(value = CustomDashboardWidget.class, name = "custom")
+  @Type(value = CustomDashboardWidget.class, name = "custom"),
+  @Type(value = ProcessViewerDashboardWidget.class, name = "process-viewer")
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public abstract class DashboardWidget implements Serializable {
