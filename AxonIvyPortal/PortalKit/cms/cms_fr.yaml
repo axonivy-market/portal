@@ -564,6 +564,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     theCasemap: La carte des cas
     theProcess: Le processus
     timeInformation: Informations sur le temps
+    timestamp: Horodatage
     type: Type
     typeAdmin: Tous les administrateurs
     typeAllUsers: Tous les utilisateurs
@@ -686,6 +687,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         title: Tâches
       username:
         content: En cliquant sur le nom d'utilisateur, vous pouvez définir les absences, la langue, les paramètres du courrier électronique, etc.
+        title: Nom d'utilisateur
       welcome:
         content: 'Nous voulons vous aider à prendre un bon début avec le portail. Pour cela, nous voulons vous guider à travers les premières actions que vous pouvez faire. En outre, vous trouverez ici une documentation détaillée pour les utilisateurs, y compris un "Guide pratique" : <a href="{0}" target="_blank">Guide
           pratique du portail</a>'
@@ -912,6 +914,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     '404': 404 Page non trouvée
     404Message: Désolé, la ressource que vous recherchez n'existe pas
     '500': Erreur 500
+    500Message: Nous sommes désolés, il y a eu un problème pour servir la page demandée.
     backToHomePage: Retourner à la page d'accueil
     title: Page d'erreur
   exceptionDialog:
@@ -1358,6 +1361,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     myProfileTitle: Mon profil
     saveUserSettingsSuccessfully: Les paramètres de l'utilisateur ont été enregistrés avec succès.
   warningBeforeLostSession:
+    extend: Étendre le site
     warningMessage: Votre session expirera dans 1 minute. Voulez-vous prolonger?
 Dialogs:
   Cases:
@@ -1478,6 +1482,7 @@ Dialogs:
       BroadHeaderArea: En-tête large
       CheckboxFields: Champs de cases à cocher
       CreateField: Créer
+      DataProvider: Fournisseur de données
       DragAndDropTooltip: Veuillez placer les éléments disponibles par glisser/déposer  dans l’en-tête, dans la colonne de droite ou en pied de page.
       ElementLabel: Label
       ElementName: Nom de l’élément
@@ -1506,6 +1511,7 @@ Dialogs:
         TextBox: Champ de texte
       LeftColumn: Colonne de gauche
       NoCheckboxFieldYet: Aucun type de champ de case d’option à cocher n’est pour l’instant défini
+      NoDataProvider: Fournisseur de données statiques spéciales
       NoFormelementsAvailable: Aucun élément de formulaire n’est disponible !
       NoOptionboxFieldsYet: Aucun type de case d’’option à cocher n’est pour l’instant défini
       NumberOfFiles: Nombre de fichiers
