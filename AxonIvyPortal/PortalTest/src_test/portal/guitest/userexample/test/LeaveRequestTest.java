@@ -11,7 +11,9 @@ import org.junit.Test;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.DateTimePattern;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseDetailsPage;
+import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.userexamples.page.LeaveRequestPage;
 import portal.guitest.userexamples.page.UserExamplesEndPage;
@@ -48,14 +50,15 @@ public class LeaveRequestTest extends BaseTest {
     Assert.assertEquals("Create leave request", leaveRequestPage.getPageTitle());
     String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
     String yesterday = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
+    leaveRequestPage.waitForIFrameContentVisible();
     leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", yesterday, today, TestAccount.ADMIN_USER.getFullName(), "requester comment");
     leaveRequestPage.clickSubmitButton();
     leaveRequestPage.clickOnLogout();
     login(TestAccount.ADMIN_USER);
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.startTask(0);
-    leaveRequestPage = new LeaveRequestPage();
-    Assert.assertEquals("Approval", leaveRequestPage.getPageTitle());
+    taskWidgetPage.switchToIFrameOfTask();
+    WaitHelper.assertTrueWithWait(() -> "Approval".equals(leaveRequestPage.getPageTitle()));
     leaveRequestPage.enterApproverComment("Approved");
     leaveRequestPage.clickApproveBtn();
     leaveRequestPage.clickOnLogout();
@@ -63,8 +66,8 @@ public class LeaveRequestTest extends BaseTest {
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy("Your leave request is approved");
     taskWidgetPage.startTask(0);
-    leaveRequestPage = new LeaveRequestPage();
-    Assert.assertEquals("Approval Result", leaveRequestPage.getPageTitle());
+    taskWidgetPage.switchToIFrameOfTask();
+    WaitHelper.assertTrueWithWait(() -> "Approval Result".equals(leaveRequestPage.getPageTitle()));
     UserExamplesEndPage userExamplesEndPage = leaveRequestPage.finishLeaveRequest();
     CaseDetailsPage caseDetailsPage = userExamplesEndPage.goToCaseDetail();
     Assert.assertEquals("Leave Request", caseDetailsPage.getCaseName());
@@ -82,8 +85,8 @@ public class LeaveRequestTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.startTask(0);
-    leaveRequestPage = new LeaveRequestPage();
-    Assert.assertEquals("Approval", leaveRequestPage.getPageTitle());
+    taskWidgetPage.switchToIFrameOfTask();
+    WaitHelper.assertTrueWithWait(() -> "Approval".equals(leaveRequestPage.getPageTitle()));
     leaveRequestPage.enterApproverComment("Rejected");
     leaveRequestPage.clickRejectBtn();
     leaveRequestPage.clickOnLogout();
@@ -91,12 +94,13 @@ public class LeaveRequestTest extends BaseTest {
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy("Your leave request is rejected");
     taskWidgetPage.startTask(0);
-    leaveRequestPage = new LeaveRequestPage();
-    Assert.assertEquals("Approval Result", leaveRequestPage.getPageTitle());
+    taskWidgetPage.switchToIFrameOfTask();
+    WaitHelper.assertTrueWithWait(() -> "Approval Result".equals(leaveRequestPage.getPageTitle()));
   }
   
   private LeaveRequestPage startLeaveRequestProcess() {
-    redirectToRelativeLink(LEAVE_REQUEST_START_LINK);
+    redirectToRelativeLinkWithEmbedInFrame(LEAVE_REQUEST_START_LINK);
+    new MainMenuPage().switchToIFrameOfTask();
     return new LeaveRequestPage();
   }
 }

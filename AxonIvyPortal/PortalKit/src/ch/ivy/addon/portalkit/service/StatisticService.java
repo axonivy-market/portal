@@ -1095,7 +1095,8 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
       }
 
       DisplayName currentDisplayName = getDisplayNameInUserLanguageForChart(statisticChart);
-      statisticChart.setName(currentDisplayName.getValue());
+      String displayName = currentDisplayName.getValue();
+      statisticChart.setName(StringUtils.isBlank(displayName) ? statisticChart.getChartName() : displayName);
     }
   }
 

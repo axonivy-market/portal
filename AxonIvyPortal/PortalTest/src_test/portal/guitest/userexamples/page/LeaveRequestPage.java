@@ -8,10 +8,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.TaskTemplatePage;
+import portal.guitest.page.TaskTemplateIFramePage;
 
-public class LeaveRequestPage extends TaskTemplatePage {
+public class LeaveRequestPage extends TaskTemplateIFramePage {
+
+  @Override
+  protected String getLoadedLocator() {
+    return "id('leave-request:button-submit')";
+  }
 
   public void clickSubmitLeaveRequest() {
     click(By.id("leave-request:button-submit"));
@@ -19,7 +25,10 @@ public class LeaveRequestPage extends TaskTemplatePage {
   
   @SuppressWarnings("deprecation")
   public String clickSubmitAndGetValidationMsg() {
+    int numberOfErrors = findListElementsByCssSelector(("span.ui-messages-error-summary")).size();
     clickSubmitLeaveRequest();
+    WaitHelper.assertTrueWithWait(
+        () -> findListElementsByCssSelector(("span.ui-messages-error-summary")).size() != numberOfErrors);
     waitAjaxIndicatorDisappear();
     return getValidationMsg();
   }
@@ -50,21 +59,24 @@ public class LeaveRequestPage extends TaskTemplatePage {
   
   public HomePage clickApproveBtn() {
     click(By.id("leave-request:approved-btn"));
+    switchToDefaultContent();
     return new HomePage();
   }
   
   public HomePage clickRejectBtn() {
     click(By.id("leave-request:rejected-btn"));
+    switchToDefaultContent();
     return new HomePage();
   }
   
   public UserExamplesEndPage finishLeaveRequest() {
     click(By.id("leave-request:finish-btn"));
+    switchToDefaultContent();
     return new UserExamplesEndPage();
   }
   
   private void selectLeaveType(String leaveType) {
-    findElementById("leave-request:leave-type_label").click();
+    clickByCssSelector("#leave-request\\:leave-type_label");
     String leaveTypeSelector = "li[data-label='" + leaveType + "']";
     waitForElementDisplayed(By.cssSelector(leaveTypeSelector), true);
     clickByCssSelector(leaveTypeSelector);

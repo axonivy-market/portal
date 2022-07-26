@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -25,6 +26,7 @@ import vn.wawa.guitest.base.page.AbstractPage;
 
 public abstract class TemplatePage extends AbstractPage {
 
+  private static final int IFRAME_SCREENSHOT_FILE_SIZE_AT_MINIMUM = 10000;
   private static final String TEMPLATE_PAGE_LOCATOR = "id('global-search-component:global-search-data')";
   public static final String CLASS_PROPERTY = "class";
   public static final String ID_PROPERTY = "id";
@@ -461,4 +463,31 @@ public abstract class TemplatePage extends AbstractPage {
     clickByCssSelector("[id$='logout-setting:logout-menu-item']");
     WaitHelper.assertTrueWithWait(() -> findElementByCssSelector("[id$=':username']").isDisplayed());
   }
+  
+  public DashboardConfigurationPage openDashboardConfigurationPage() {
+    clickUserMenuItem("dashboard-configuration");
+    return new DashboardConfigurationPage();
+  }
+
+  public void switchToIFrameOfTask() {
+    switchToDefaultContent();
+    WaitHelper.waitForIFrameAvailable(driver, "iFrame");
+  }
+
+  public void switchToDefaultContent() {
+    driver.switchTo().defaultContent();
+  }
+
+  public void waitForIFrameContentVisible() {
+    waitForIFrameScreenshotSizeGreaterThan(IFRAME_SCREENSHOT_FILE_SIZE_AT_MINIMUM);
+  }
+
+  public void waitForIFrameScreenshotSizeGreaterThan(long fileSizeInBytes) {
+    switchToDefaultContent();
+    Awaitility.await().atMost(new Duration(30, TimeUnit.SECONDS)).until(() -> {
+      return findElementByCssSelector("iFrame").getScreenshotAs(OutputType.FILE).length() > fileSizeInBytes;
+    });
+    switchToIFrameOfTask();
+  }
+
 }
