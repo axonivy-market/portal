@@ -42,6 +42,16 @@ Ie0 @TkArc f31 '' #zField
 Ie0 @UserDialog f32 '' #zField
 Ie0 @PushWFArc f33 '' #zField
 Ie0 @PushWFArc f29 '' #zField
+Ie0 @UserDialog f36 '' #zField
+Ie0 @StartRequest f37 '' #zField
+Ie0 @PushWFArc f40 '' #zField
+Ie0 @EndTask f41 '' #zField
+Ie0 @PushWFArc f42 '' #zField
+Ie0 @UserDialog f34 '' #zField
+Ie0 @StartRequest f35 '' #zField
+Ie0 @EndTask f38 '' #zField
+Ie0 @PushWFArc f39 '' #zField
+Ie0 @PushWFArc f43 '' #zField
 >Proto Ie0 Ie0 IFrameExample #zField
 Ie0 f20 actionTable 'out=in1;
 ' #txt
@@ -342,6 +352,93 @@ Ie0 f32 280 554 112 44 -49 -8 #rect
 Ie0 f32 @|UserDialogIcon #fIcon
 Ie0 f33 223 576 280 576 #arcP
 Ie0 f29 392 576 449 576 #arcP
+Ie0 f36 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.CreateInvestment #txt
+Ie0 f36 startMethod start() #txt
+Ie0 f36 requestActionDecl '<> param;' #txt
+Ie0 f36 responseActionDecl 'investment.manae.Data out;
+' #txt
+Ie0 f36 responseMappingAction 'out=in;
+out.investment=result.investment;
+' #txt
+Ie0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Create Investment</name>
+    </language>
+</elementInfo>
+' #txt
+Ie0 f36 208 658 112 44 -50 -8 #rect
+Ie0 f36 @|UserDialogIcon #fIcon
+Ie0 f37 outLink SampleProcessWithoutAnyCustomFields.ivp #txt
+Ie0 f37 inParamDecl '<> param;' #txt
+Ie0 f37 requestEnabled true #txt
+Ie0 f37 triggerEnabled false #txt
+Ie0 f37 callSignature SampleProcessWithoutAnyCustomFields() #txt
+Ie0 f37 persist false #txt
+Ie0 f37 startName 'Sample process (IFrame without any custom fields)' #txt
+Ie0 f37 caseData 'businessCase.attach=true
+case.name=Investment Creation (IFrame + Task custom fields)' #txt
+Ie0 f37 showInStartList 1 #txt
+Ie0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>SampleProcessWithoutAnyCustomFields.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Ie0 f37 @C|.responsibility Everybody #txt
+Ie0 f37 81 665 30 30 -77 30 #rect
+Ie0 f37 @|StartRequestIcon #fIcon
+Ie0 f40 expr out #txt
+Ie0 f40 111 680 208 680 #arcP
+Ie0 f41 433 665 30 30 0 15 #rect
+Ie0 f41 @|EndIcon #fIcon
+Ie0 f42 expr out #txt
+Ie0 f42 320 680 433 680 #arcP
+Ie0 f34 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.CreateInvestment #txt
+Ie0 f34 startMethod start() #txt
+Ie0 f34 requestActionDecl '<> param;' #txt
+Ie0 f34 responseActionDecl 'investment.manae.Data out;
+' #txt
+Ie0 f34 responseMappingAction 'out=in;
+out.investment=result.investment;
+' #txt
+Ie0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Create Investment</name>
+    </language>
+</elementInfo>
+' #txt
+Ie0 f34 208 754 112 44 -50 -8 #rect
+Ie0 f34 @|UserDialogIcon #fIcon
+Ie0 f35 outLink SampleProcessWithCaseCustomField.ivp #txt
+Ie0 f35 inParamDecl '<> param;' #txt
+Ie0 f35 requestEnabled true #txt
+Ie0 f35 triggerEnabled false #txt
+Ie0 f35 callSignature SampleProcessWithCaseCustomField() #txt
+Ie0 f35 persist false #txt
+Ie0 f35 startName 'Sample process (IFrame + Case custom field)' #txt
+Ie0 f35 caseData 'businessCase.attach=true
+case.name=Sample process (IFrame + Case custom field)
+customFields.STRING.embedInFrame="true"' #txt
+Ie0 f35 showInStartList 1 #txt
+Ie0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>SampleProcessWithCaseCustomField.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Ie0 f35 @C|.responsibility Everybody #txt
+Ie0 f35 81 761 30 30 -75 32 #rect
+Ie0 f35 @|StartRequestIcon #fIcon
+Ie0 f38 433 761 30 30 0 15 #rect
+Ie0 f38 @|EndIcon #fIcon
+Ie0 f39 expr out #txt
+Ie0 f39 320 776 433 776 #arcP
+Ie0 f43 expr out #txt
+Ie0 f43 111 776 208 776 #arcP
 >Proto Ie0 .type ch.ivyteam.ivy.project.portal.examples.IFrameExampleData #txt
 >Proto Ie0 .processKind NORMAL #txt
 >Proto Ie0 0 0 32 24 18 0 #rect
@@ -380,3 +477,11 @@ Ie0 f30 out f33 tail #connect
 Ie0 f33 head f32 mainIn #connect
 Ie0 f32 mainOut f29 tail #connect
 Ie0 f29 head f28 mainIn #connect
+Ie0 f37 mainOut f40 tail #connect
+Ie0 f40 head f36 mainIn #connect
+Ie0 f36 mainOut f42 tail #connect
+Ie0 f42 head f41 mainIn #connect
+Ie0 f35 mainOut f43 tail #connect
+Ie0 f43 head f34 mainIn #connect
+Ie0 f34 mainOut f39 tail #connect
+Ie0 f39 head f38 mainIn #connect
