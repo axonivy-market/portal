@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>portal-demo-app</artifactId>
-  <version>9.1.0.0-SNAPSHOT</version>
+  <version>9.4.0-m228</version>
   <packaging>pom</packaging>
   <distributionManagement>
     <repository>
@@ -27,13 +27,13 @@
     <dependency>
       <groupId>ch.ivyteam.ivy.project.portal</groupId>
       <artifactId>axonIvyExpress</artifactId>
-      <version>9.1.0.0-SNAPSHOT</version>
+      <version>9.4.0-m228</version>
       <type>iar</type>
     </dependency>
     <dependency>
       <groupId>com.axonivy.portal</groupId>
       <artifactId>portal-user-examples</artifactId>
-      <version>9.1.0.0-SNAPSHOT</version>
+      <version>9.4.0-m228</version>
       <type>iar</type>
     </dependency>
   </dependencies>
