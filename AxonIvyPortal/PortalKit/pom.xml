@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>ch.ivyteam.ivy.project.portal</groupId>
   <artifactId>portalKit</artifactId>
-  <version>8.0.0.0-SNAPSHOT</version>
+  <version>8.0.26</version>
   <packaging>iar</packaging>
   <properties>
     <build.plugin.version>8.0.7</build.plugin.version>
@@ -24,13 +23,13 @@
     <dependency>
       <groupId>ch.ivyteam.ivy.project.portal</groupId>
       <artifactId>portalStyle</artifactId>
-      <version>8.0.0.0-SNAPSHOT</version>
+      <version>8.0.26</version>
       <type>iar</type>
     </dependency>
     <dependency>
       <groupId>com.axonivy.portal</groupId>
       <artifactId>portal-component</artifactId>
-      <version>8.0.0.0-SNAPSHOT</version>
+      <version>8.0.26</version>
       <type>iar</type>
     </dependency>
     <dependency>
@@ -82,7 +81,8 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore></ignore>
+                    <ignore>
+                    </ignore>
                   </action>
                 </pluginExecution>
               </pluginExecutions>
