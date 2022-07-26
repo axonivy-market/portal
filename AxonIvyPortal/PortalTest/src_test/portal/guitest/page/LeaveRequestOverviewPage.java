@@ -22,8 +22,7 @@ public class LeaveRequestOverviewPage extends TemplatePage {
   }
   
   public LeaveRequestPage start() {
-    WebElement element = findElementByCssSelector("[id$='start']");
-    element.click();
+    clickByCssSelector("button[id$='start']");
     waitForElementDisplayed(By.cssSelector("[id$='leave-request']"), true);
     return new LeaveRequestPage();
   }
