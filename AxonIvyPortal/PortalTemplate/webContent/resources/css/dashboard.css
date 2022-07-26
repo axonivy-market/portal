@@ -1222,7 +1222,8 @@ span.new-widget-dialog__icon.si {
   display: inline;
 }
 
-.widget-configuration.card.custom-widget-configuration {
+.widget-configuration.card.custom-widget-configuration,
+.widget-configuration.card.process-viewer-widget-configuration {
   margin-right: 0;
 }
 
