@@ -271,7 +271,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     link: Link
     loading: LOADING
     loginLogoSizeTooltip: 'Recommended size<BR/>Square logo: 80x80 px<BR/>Rectangle logo: 191x50 px'
-    logoScalingTooltip: Logo width scaling depends on its height scaling percent
     logoSizeRecommendation:
       homeRectangleSize: 'Rectangle logo: 160x42 px'
       homeSquareSize: 'Square logo: 75x75 px'
@@ -1330,7 +1329,6 @@ Dialogs:
       TaskName: Express workflow creation in progress
     TaskDetail:
       DataDescription: Data and Description
-      customPanel: Custom Panel
       restoreToDefaultSettings: Restore to default settings
       switchToEditMode: Edit
       switchToViewMode: Save
