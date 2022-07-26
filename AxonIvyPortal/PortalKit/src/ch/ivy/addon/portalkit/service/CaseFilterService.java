@@ -5,6 +5,7 @@ import java.util.List;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData;
+import ch.ivy.addon.portalkit.casefilter.impl.CaseStateFilter;
 import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 
 public class CaseFilterService extends AbstractFilterService<CaseFilterData> {
@@ -23,10 +24,21 @@ public class CaseFilterService extends AbstractFilterService<CaseFilterData> {
         CaseFilter savedFilter = savedFilterData.getFilters().get(j);
         if (filter.getClass().equals(savedFilter.getClass())) {
            copyFilterValues(filter, savedFilter);
+           copySupportDataForSelectionFilter(filter);
           dataModel.getSelectedFilters().add(filter);
           break;
         }
       }
+    }
+  }
+
+  /**
+   * @hidden
+   */
+  private void copySupportDataForSelectionFilter(CaseFilter caseFilter) {
+    if (caseFilter instanceof CaseStateFilter) {
+      var stateFilter = ((CaseStateFilter) caseFilter);
+      stateFilter.setSubmittedFilteredStates(stateFilter.getSelectedFilteredStates());
     }
   }
 }
