@@ -22,14 +22,12 @@ public class LendingOverviewPage extends TemplatePage {
   }
   
   public LendingDetailPage navigateToStageDetail(int index) {
-    WebElement element = findElementByCssSelector(String.format("[id$=':%d:detail-stage']", index));
-    element.click();
+    clickByCssSelector(String.format("[id$=':%d:detail-form:detail-stage']", index));
     return new LendingDetailPage(index);
   }
   
   public CaseMapPage startLendingCase() {
-    WebElement element = findElementByCssSelector("[id$='start']");
-    element.click();
+    clickByCssSelector("#start");
     waitForElementDisplayed(By.cssSelector("input[id$='form:first-name']"), true);
     return new CaseMapPage();
   }
