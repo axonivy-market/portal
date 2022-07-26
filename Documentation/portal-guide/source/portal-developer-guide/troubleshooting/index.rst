@@ -55,7 +55,7 @@ Update default pages
 ====================
 If you copy ``PortalStart.mod`` to your project for customization, 
 you need to follow this chapter to customize standard processes in your designer and engine:
-:dev-url:`Standard Processes </doc/9.3.3/designer-guide/user-interface/standard-processes/index.html>`
+:dev-url:`Standard Processes </doc/9.3.5/designer-guide/user-interface/standard-processes/index.html>`
 
 For example, below is the default setting:
 

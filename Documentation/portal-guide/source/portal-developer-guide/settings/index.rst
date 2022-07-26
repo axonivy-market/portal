@@ -14,7 +14,7 @@ Configure Portal settings
 
 To manually configure Portal settings, refer to :ref:`update-portal-settings`.
 
-Portal settings are stored as :dev-url:`Variables </doc/9.3.3/designer-guide/configuration/variables.html>`.
+Portal settings are stored as :dev-url:`Variables </doc/9.3.5/designer-guide/configuration/variables.html>`.
 
 In development, it is a quite tedious task to configure Portal settings after restarting Designer. You could update value of Variables in
 ``PortalKit/config/variables.yaml`` for the settings that you want to configure, it could survive after restarting Designer.
@@ -77,7 +77,7 @@ Permission settings
 ===================
 
 Permissions can be configured in :dev-url:`Cockpit
-</doc/9.3.3/engine-guide/tool-reference/engine-cockpit/security.html>`.
+</doc/9.3.5/engine-guide/tool-reference/engine-cockpit/security.html>`.
 In the security area, you will find all these permission in the Group
 "PortalPermissions"
 

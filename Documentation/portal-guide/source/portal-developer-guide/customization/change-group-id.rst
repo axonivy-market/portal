@@ -30,4 +30,4 @@ all Portal projects (and their dependencies).
 
 .. note::
 	Do not forget to change default pages to your project, follow this chapter to customize standard processes:
-	:dev-url:`Standard Processes </doc/9.3.3/designer-guide/user-interface/standard-processes/index.html>`
+	:dev-url:`Standard Processes </doc/9.3.5/designer-guide/user-interface/standard-processes/index.html>`

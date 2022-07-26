@@ -49,7 +49,7 @@ Following these steps to have your own Portal Home:
    home page. Now you will use this process start as the entry point of
    your Portal instead of the default one. To let Portal know about
    your new Portal home, you have to set default pages to your project, follow this chapter to customize standard processes:
-   :dev-url:`Standard Processes </doc/9.3.3/designer-guide/user-interface/standard-processes/index.html>`
+   :dev-url:`Standard Processes </doc/9.3.5/designer-guide/user-interface/standard-processes/index.html>`
 
 
 .. _customization-portal-home-advanced-usage:

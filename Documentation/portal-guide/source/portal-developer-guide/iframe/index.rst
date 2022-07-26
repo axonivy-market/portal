@@ -67,7 +67,7 @@ You must follow some important steps to ensure that your processes/tasks can be 
        * E.g. ``<BusinessProject>`` depends on ``<CustomizedPortal>``
 
   3. Change the ``DefaultPages`` in ``StandardProcesses`` to your customized portal project library id.
-     Refer to :dev-url:`Standard Processes </doc/9.3.3/engine-guide/deployment/advanced/index.html>` documentation.
+     Refer to :dev-url:`Standard Processes </doc/9.3.5/engine-guide/deployment/advanced/index.html>` documentation.
 
      - E.g: DefaultPages: ``<CustomizedPortal>`` ID.
 

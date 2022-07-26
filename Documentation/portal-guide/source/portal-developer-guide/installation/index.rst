@@ -26,7 +26,7 @@ of each module, refer to :ref:`architecture`.
 -  AxonIvyExpress
 
 The project deployment of Ivy project are described in :dev-url:`project
-deployment </doc/9.3.3/engine-guide/deployment/index.html>`
+deployment </doc/9.3.5/engine-guide/deployment/index.html>`
 .
 
 Installation
@@ -87,7 +87,7 @@ How to migrate
 
    In order to migrate Portal, you need to migrate Axon Ivy, refer
    :dev-url:`Axon Ivy migration
-   notes </doc/9.3.3/axonivy/migration/index.html>`.
+   notes </doc/9.3.5/axonivy/migration/index.html>`.
    Changes in Axon Ivy could lead to problems if customer project is not
    migrated properly.
 
@@ -166,7 +166,7 @@ Migrate 9.1 to 9.2
 
 #. Deprecated callable processes: ``OpenPortalSearch.mod``, ``OpenPortalTasks.mod``, ``OpenPortalTaskDetails.mod``, ``OpenPortalCases.mod``, ``OpenPortalCaseDetails.mod`` process.
 
-   Portal recommends using :dev-url:`Axon Ivy HtmlOverride wizard </doc/9.3.3/designer-guide/how-to/overrides.html?#override-new-wizard>` to customize ``Portal HTML Dialog``
+   Portal recommends using :dev-url:`Axon Ivy HtmlOverride wizard </doc/9.3.5/designer-guide/how-to/overrides.html?#override-new-wizard>` to customize ``Portal HTML Dialog``
 
    .. important:: The callable process which is supporting to open customization dialog will be removed in the future, do not use it in the new project
 
@@ -187,7 +187,7 @@ Migrate 8.x to 9.1
 
 #. Ivy core enhanced the Ivy URI, so Portal needs to make a migration. Deploy :download:`PortalUrlMigration.iar <documents/PortalUrlMigration.iar>` project to any Ivy Application then run ``migratePortalUrl.ivp`` once and wait until it is redirected to another page without error (E.g: Homepage). It is recommended to remove it after the migration.
 
-#. HOMEPAGE_URL (single Portal app mode) and registered application link (multi Portal app mode) are not available anymore. To let Portal know about your new Portal home, you have to set default pages to your project, follow this chapter to customize standard processes: :dev-url:`Standard Processes </doc/9.3.3/designer-guide/user-interface/standard-processes/index.html>`
+#. HOMEPAGE_URL (single Portal app mode) and registered application link (multi Portal app mode) are not available anymore. To let Portal know about your new Portal home, you have to set default pages to your project, follow this chapter to customize standard processes: :dev-url:`Standard Processes </doc/9.3.5/designer-guide/user-interface/standard-processes/index.html>`
 
 #. Portal now uses |css_variable| instead of SASS. Therefore you must convert SASS syntax to new CSS variable or use online tool such as |css_variable_convert| to convert it.
 

@@ -47,7 +47,7 @@ HowTo: Update Portal settings
 
 #. To reset to default value of all settings, click on :guilabel:`Restore all to defaults`.
 
-.. note:: Portal settings could be configured in :dev-url:`Axon Ivy Cockpit </doc/9.3.3/engine-guide/tool-reference/engine-cockpit/configuration.html#engine-cockpit-variables>`.
+.. note:: Portal settings could be configured in :dev-url:`Axon Ivy Cockpit </doc/9.3.5/engine-guide/tool-reference/engine-cockpit/configuration.html#engine-cockpit-variables>`.
 
 HowTo: Show/Hide announcement
 -----------------------------

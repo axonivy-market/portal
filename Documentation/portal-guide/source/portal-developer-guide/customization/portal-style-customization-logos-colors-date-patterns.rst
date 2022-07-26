@@ -117,7 +117,7 @@ You can customize in:
 
 .. tip::
    If you are using Iframes and you want to customize the colors of the project specific UIs, then refer to this documentation 
-   :dev-url:`/doc/9.3.3/designer-guide/how-to/overrides.html?#override-new-wizard`
+   :dev-url:`/doc/9.3.5/designer-guide/how-to/overrides.html?#override-new-wizard`
 
 .. warning::
    - Do not change ``font-family`` property values.
