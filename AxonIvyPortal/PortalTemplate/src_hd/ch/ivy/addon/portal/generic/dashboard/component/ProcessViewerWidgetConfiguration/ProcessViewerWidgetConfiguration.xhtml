@@ -9,6 +9,8 @@
 <cc:implementation>
   <c:set var="widget" value="#{cc.attrs.widget}" />
 
+  <f:event listener="#{dashboardProcessViewerWidgetConfigurationBean.preRender()}" type="preRenderComponent" />
+
   <!-- Configuration -->
   <h:panelGroup id="filter-container" layout="block" styleClass="card dashboard-card widget-configuration process-viewer-widget-configuration">
     <div class="filter-container ui-g">
@@ -33,7 +35,7 @@
         </div>
         <div class="ui-g-8 ui-fluid">
           <p:autoComplete id="selected-process" dropdown="true" scrollHeight="300" forceSelection="true"
-            completeMethod="#{dashboardProcessViewerWidgetBean.completeProcesses}" value="#{widget.process}" var="process" itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500" cache="true"
+            completeMethod="#{dashboardProcessViewerWidgetConfigurationBean.completeProcesses}" value="#{widget.process}" var="process" itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500" cache="true"
             minQueryLength="2" itemtipAtPosition="right top" converter="pojoConverter" required="true"
             requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noProcessSelected')}">
             <p:ajax event="query" global="false" />

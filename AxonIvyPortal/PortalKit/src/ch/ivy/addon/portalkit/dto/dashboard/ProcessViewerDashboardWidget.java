@@ -10,7 +10,6 @@ import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
-import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class ProcessViewerDashboardWidget extends DashboardWidget {
@@ -28,9 +27,8 @@ public class ProcessViewerDashboardWidget extends DashboardWidget {
   @JsonIgnore
   public void buildProcessDataFirstTime() {
     if (StringUtils.isNotBlank(getProcessStart())) {
-      String url = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(getProcessStart());
       List<IWebStartable> allPortalProcesses = ProcessService.newInstance().findProcesses().getProcesses();
-      setProcess(allPortalProcesses.stream().filter(proccess -> proccess.getLink().toString().contentEquals(url))
+      setProcess(allPortalProcesses.stream().filter(proccess -> proccess.getId().contentEquals(getProcessStart()))
           .map(DashboardProcess::new).findFirst().get());
     }
   }
@@ -65,6 +63,11 @@ public class ProcessViewerDashboardWidget extends DashboardWidget {
 
   public void setProcess(DashboardProcess process) {
     this.process = process;
+    if (process != null) {
+      processStart = process.getId();
+    } else {
+      processStart = "";
+    }
   }
 
   @JsonIgnore
