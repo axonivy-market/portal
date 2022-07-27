@@ -1,15 +1,12 @@
 package ch.ivy.addon.portalkit.ivydata.mapper;
 
 import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-
-import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.component.dto.RoleDTO;
 import com.axonivy.portal.component.dto.UserDTO;
 
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
+import ch.ivy.addon.portalkit.util.ListUtilities;
 
 public class SecurityMemberDTOMapper {
   
@@ -41,17 +38,10 @@ public class SecurityMemberDTOMapper {
   }
   
   public static List<SecurityMemberDTO> mapFromUserDTOs(List<UserDTO> userDTOs) {
-    return map(userDTOs, user -> mapFromUserDTO(user));
+    return ListUtilities.transformList(userDTOs, user -> mapFromUserDTO(user));
   }
   
   public static List<SecurityMemberDTO> mapFromRoleDTOs(List<RoleDTO> roleDTOs) {
-    return map(roleDTOs, role -> mapFromRoleDTO(role));
-  }
-  
-  private static <T, R> List<R> map(List<T> list, Function<T, R> function){
-    return CollectionUtils.emptyIfNull(list)
-        .stream()
-        .map(function)
-        .collect(Collectors.toList());
+    return ListUtilities.transformList(roleDTOs, role -> mapFromRoleDTO(role));
   }
 }

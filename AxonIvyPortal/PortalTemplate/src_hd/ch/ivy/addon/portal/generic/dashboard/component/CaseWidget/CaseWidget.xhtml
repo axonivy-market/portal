@@ -91,6 +91,11 @@
             <p:tooltip for="case-category" value="#{caseItem.getCategory().getPath()}" trackMouse="true" hideEvent="mouseleave click"/>
           </h:panelGroup>
           
+          <h:panelGroup rendered="#{column.field eq 'application'}">
+            <h:outputText id="case-application" value="#{column.display(caseItem)}"/>
+            <p:tooltip for="case-application" value="#{column.display(caseItem)}" trackMouse="true" hideEvent="mouseleave click"/>
+          </h:panelGroup>
+          
           <h:panelGroup rendered="#{column.field eq 'actions'}">
             <ui:include src="ActionsCell.xhtml" />
           </h:panelGroup>
