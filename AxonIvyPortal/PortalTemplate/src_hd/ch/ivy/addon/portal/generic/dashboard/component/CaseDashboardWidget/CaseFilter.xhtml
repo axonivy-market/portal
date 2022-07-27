@@ -35,6 +35,10 @@
         categoryNodeSelection="#{field.userSelectionCategoryNodes}" categoryTree="#{field.userCategoryTree}"
         containerStyleClass="case-configuration__category" inputCategoryStyleClass="case-configuration__input-text"
         overlayCategoryStyleClass="case-configuration__category-panel" showUnselectableCheckbox="true"/>
+      
+      <ic:ch.ivy.addon.portalkit.component.dashboard.widget.ApplicationFilterColumn field="#{field}"
+        selectedApps="#{field.userFilterApplications}"
+        appOptions="#{field.userFilterApplicationOptions}"/>
     </div>
   </ui:repeat>
 </h:panelGroup>
