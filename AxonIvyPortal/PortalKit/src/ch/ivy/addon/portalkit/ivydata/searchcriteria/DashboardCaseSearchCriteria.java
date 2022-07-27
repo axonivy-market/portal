@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
@@ -16,6 +17,8 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.Dates;
+import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.ICustomFieldFilterQuery;
@@ -177,48 +180,56 @@ public class DashboardCaseSearchCriteria {
         Date from = Dates.parse(filterFrom);
         Date to = Dates.parse(filterTo);
         queryFinishedDate(query, from, to);
+      } else if (StringUtils.equals(DashboardStandardCaseColumn.APPLICATION.getField(), column.getField())) {
+        queryApplications(query, filterList);
       } else if (column.getFilterType() == DashboardFilterType.SELECTION || CollectionUtils.isNotEmpty(filterList)) {
         queryCustomFieldSelection(query, field, filterList);
       } else {
-        CaseQuery subQuery = CaseQuery.create();
-        ICustomFieldFilterQuery filterQuery = subQuery.where().customField();
         if (StringUtils.isNotBlank(configuredFilter) || StringUtils.isNotBlank(userFilter) || StringUtils.isNotBlank(filterFrom) || StringUtils.isNotBlank(filterTo)) {
-          if (column.isNumber()) {
-            if (StringUtils.isNotBlank(filterFrom)) {
-              Number from = Double.parseDouble(filterFrom.toString());
-              filterQuery.numberField(field).isGreaterOrEqualThan(from);
-            }
-  
-            if (StringUtils.isNotBlank(filterTo)) {
-              Number to = Double.parseDouble(filterTo.toString());
-              filterQuery.numberField(field).isLowerOrEqualThan(to);
-            }
-          } else if (column.isDate()) {
-            Date from = Dates.parse(filterFrom);
-            Date to = Dates.parse(filterTo);
-            if (from != null) {
-              filterQuery.timestampField(field).isGreaterOrEqualThan(from);
-            }
-  
-            if (to != null) {
-              filterQuery.timestampField(field).isLowerOrEqualThan(DateUtils.addDays(to, 1));
-            }
-          } else if (column.isText()) {
-            queryTextField(filterQuery, field, configuredFilter);
-            if (!isInConfiguration) {
-              queryTextField(filterQuery, field, userFilter);
-            }
-          } else {
-            queryStringField(filterQuery, field, configuredFilter);
-            if (!isInConfiguration) {
-              queryStringField(filterQuery, field, userFilter);
-            }
-          }
+          CaseQuery subQuery = applyFilter(column, field, configuredFilter, userFilter, filterFrom, filterTo);
           query.where().and(subQuery);
         }
       }
     }
     queryStates(query, states);
+  }
+
+  private CaseQuery applyFilter(ColumnModel column, String field, String configuredFilter, String userFilter,
+      String filterFrom, String filterTo) {
+    CaseQuery subQuery = CaseQuery.create();
+    ICustomFieldFilterQuery filterQuery = subQuery.where().customField();
+    if (column.isNumber()) {
+      if (StringUtils.isNotBlank(filterFrom)) {
+        Number from = Double.parseDouble(filterFrom.toString());
+        filterQuery.numberField(field).isGreaterOrEqualThan(from);
+      }
+ 
+      if (StringUtils.isNotBlank(filterTo)) {
+        Number to = Double.parseDouble(filterTo.toString());
+        filterQuery.numberField(field).isLowerOrEqualThan(to);
+      }
+    } else if (column.isDate()) {
+      Date from = Dates.parse(filterFrom);
+      Date to = Dates.parse(filterTo);
+      if (from != null) {
+        filterQuery.timestampField(field).isGreaterOrEqualThan(from);
+      }
+ 
+      if (to != null) {
+        filterQuery.timestampField(field).isLowerOrEqualThan(DateUtils.addDays(to, 1));
+      }
+    } else if (column.isText()) {
+      queryTextField(filterQuery, field, configuredFilter);
+      if (!isInConfiguration) {
+        queryTextField(filterQuery, field, userFilter);
+      }
+    } else {
+      queryStringField(filterQuery, field, configuredFilter);
+      if (!isInConfiguration) {
+        queryStringField(filterQuery, field, userFilter);
+      }
+    }
+    return subQuery;
   }
   
   private void queryFinishedDate(CaseQuery query, Date from, Date to) {
@@ -244,6 +255,20 @@ public class DashboardCaseSearchCriteria {
         filterQuery.or().ownerName().isEqual(owner);
       }
 
+      query.where().and(subQuery);
+    }
+  }
+  
+  private void queryApplications(CaseQuery query, List<String> applications) {
+    if (CollectionUtils.isNotEmpty(applications)) {
+      CaseQuery subQuery = CaseQuery.create();
+      IFilterQuery filterQuery = subQuery.where();
+      for (String app : applications) {
+        final Optional<IApplication> appFindByName = IApplicationRepository.instance().findByName(app);
+        if (appFindByName.isPresent()) {
+          filterQuery.or().applicationId().isEqual(appFindByName.get().getId());
+        }
+      }
       query.where().and(subQuery);
     }
   }

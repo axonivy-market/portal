@@ -112,6 +112,8 @@ public class DashboardWidgetUtils {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.CategoryColumnModel.class);
       } else if (DashboardStandardTaskColumn.ACTIONS.getField().equalsIgnoreCase(field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ActionsColumnModel.class);
+      } else if (DashboardStandardTaskColumn.APPLICATION.getField().equalsIgnoreCase(field)) {
+        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ApplicationColumnModel.class);
       }
       column.initDefaultValue();
       columns.set(i, column);
@@ -153,6 +155,8 @@ public class DashboardWidgetUtils {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.OwnerColumnModel.class);
       } else if (DashboardStandardCaseColumn.CATEGORY.getField().equalsIgnoreCase(field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CategoryColumnModel.class);
+      } else if (DashboardStandardCaseColumn.APPLICATION.getField().equalsIgnoreCase(field)) {
+          column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.ApplicationColumnModel.class);
       } else if (DashboardStandardTaskColumn.ACTIONS.getField().equalsIgnoreCase(field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.ActionsColumnModel.class);
       }
@@ -247,9 +251,10 @@ public class DashboardWidgetUtils {
       if (hasPredefinedFilter) {
         break;
       }
-      if ((PRIORITY.getField().equalsIgnoreCase(col.getField()) || STATE.getField().equalsIgnoreCase(col.getField())
-          || RESPONSIBLE.getField().equalsIgnoreCase(col.getField())
-          || CATEGORY.getField().equalsIgnoreCase(col.getField()))
+      if ((PRIORITY.getField().equalsIgnoreCase(col.getField()) || 
+          STATE.getField().equalsIgnoreCase(col.getField()) || 
+          RESPONSIBLE.getField().equalsIgnoreCase(col.getField())|| 
+          CATEGORY.getField().equalsIgnoreCase(col.getField()))
           && !CollectionUtils.isEmpty(col.getFilterList())) {
         hasPredefinedFilter = true;
       } else {
@@ -381,6 +386,7 @@ public class DashboardWidgetUtils {
   }
 
   public static TaskDashboardWidget buildDefaultTaskWidget(String id, String name) {
+    Ivy.log().error("buildDefaultTaskWidget");
     TaskDashboardWidget widget = new TaskDashboardWidget();
     widget.setId(id);
     widget.setName(name);

@@ -44,6 +44,9 @@
             "field": "category"
           },
           {
+            "field": "application"
+          },
+          {
             "field": "actions"
           }
         ]
@@ -81,6 +84,9 @@
           },
           {
             "field": "category"
+          },
+          {
+            "field": "application"
           },
           {
             "field": "actions"
