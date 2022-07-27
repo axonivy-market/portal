@@ -277,7 +277,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     link: Enlazar
     loading: CARGANDO
     loginLogoSizeTooltip: 'Tamaño recomendado<BR/>Logo cuadrado: 80x80 px<BR/>Logo rectangular: 191x50 px'
-    logoScalingTooltip: El escalado a lo ancho del logo depende de su porcentaje de escalado a lo alto
     logoSizeRecommendation:
       homeRectangleSize: 'Logo rectangular: 160x42 px'
       homeSquareSize: 'Logo cuadrado: 75x75 px'
@@ -1488,6 +1487,7 @@ Dialogs:
       BroadHeaderArea: Encabezado amplio
       CheckboxFields: Campos de casillas de verificación
       CreateField: Crear
+      DataProvider: Proveedor de datos
       DragAndDropTooltip: Arrastre y suelte los elementos disponibles al encabezado, columna de la izquierda o de la derecha o al pie de página
       ElementLabel: Etiqueta
       ElementName: Nombre del elemento
@@ -1588,6 +1588,7 @@ Labels:
 patterns:
   datePattern: dd.MM.yyyy
   dateTimePattern: dd.MM.yyyy HH:mm
+  dateTimestampPattern: dd.MM.yyyy HH:mm:ss.SSS
   monthDatePattern: MM.dd.yyyy
   timePattern: HH:mm
   timestampPattern: HH:mm:ss.SSS
