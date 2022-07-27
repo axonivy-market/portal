@@ -3,8 +3,10 @@ package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
@@ -15,6 +17,9 @@ import ch.ivy.addon.portalkit.enums.DashboardFilterType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.app.IApplicationRepository;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -167,6 +172,7 @@ public class DashboardTaskSearchCriteria {
   
   private void queryFilters(TaskQuery query) {
     var states = new ArrayList<TaskState>();
+    Ivy.log().error(columns.stream().map(TaskColumnModel::getField).collect(Collectors.joining(", ")));
     for (ColumnModel column : columns) {
       String field = column.getField();
       String configuredFilter = column.getFilter();
@@ -185,9 +191,7 @@ public class DashboardTaskSearchCriteria {
       
       if (StringUtils.equals(DashboardStandardTaskColumn.PRIORITY.getField(), column.getField())) {
         List<WorkflowPriority> priorities = new ArrayList<>();
-        for (String priority : filterList) {
-          priorities.add(WorkflowPriority.valueOf(priority.toUpperCase()));
-        }
+        CollectionUtils.collect(filterList, WorkflowPriority::valueOf, priorities);
         queryPriorities(query, priorities);
       } else if (StringUtils.equals(DashboardStandardTaskColumn.NAME.getField(), column.getField())) {
         queryName(query, configuredFilter);
@@ -208,55 +212,78 @@ public class DashboardTaskSearchCriteria {
       } else if (StringUtils.equals(DashboardStandardTaskColumn.RESPONSIBLE.getField(), column.getField())) {
         queryResponsibles(query, filterList);
       } else if (StringUtils.equals(DashboardStandardTaskColumn.CREATED.getField(), column.getField())) {
-        Date from = Dates.parse(filterFrom);
-        Date to = Dates.parse(filterTo);
-        queryCreatedDate(query, from, to);
+        queryCreatedDate(query, Dates.parse(filterFrom), Dates.parse(filterTo));
       } else if (StringUtils.equals(DashboardStandardTaskColumn.EXPIRY.getField(), column.getField())) {
-        Date from = Dates.parse(filterFrom);
-        Date to = Dates.parse(filterTo);
-        queryExpiryDate(query, from, to);
+        queryExpiryDate(query, Dates.parse(filterFrom), Dates.parse(filterTo));
+      } else if (StringUtils.equals(DashboardStandardTaskColumn.APPLICATION.getField(), column.getField())){
+        queryApplications(query, filterList);
       } else if (column.getFilterType() == DashboardFilterType.SELECTION || CollectionUtils.isNotEmpty(filterList)) {
         queryCustomFieldSelection(query, field, filterList);
       } else {
-        TaskQuery subQuery = TaskQuery.create();
-        ICustomFieldFilterQuery filterQuery = subQuery.where().customField();
         if (StringUtils.isNotBlank(configuredFilter) || StringUtils.isNotBlank(userFilter) || StringUtils.isNotBlank(filterFrom) || StringUtils.isNotBlank(filterTo)) {
-          if (column.isNumber()) {
-            if (StringUtils.isNotBlank(filterFrom)) {
-              Number from = Double.parseDouble(filterFrom.toString());
-              filterQuery.numberField(field).isGreaterOrEqualThan(from);
-            }
-  
-            if (StringUtils.isNotBlank(filterTo)) {
-              Number to = Double.parseDouble(filterTo.toString());
-              filterQuery.numberField(field).isLowerOrEqualThan(to);
-            }
-          } else if (column.isDate()) {
-            Date from = Dates.parse(filterFrom);
-            Date to = Dates.parse(filterTo);
-            if (from != null) {
-              filterQuery.timestampField(field).isGreaterOrEqualThan(from);
-            }
-  
-            if (to != null) {
-              filterQuery.timestampField(field).isLowerOrEqualThan(DateUtils.addDays(to, 1));
-            }
-          } else if (column.isText()) {
-            queryTextField(filterQuery, field, configuredFilter);
-            if (!isInConfiguration) {
-              queryTextField(filterQuery, field, userFilter);
-            }
-          } else {
-            queryStringField(filterQuery, field, configuredFilter);
-            if (!isInConfiguration) {
-              queryStringField(filterQuery, field, userFilter);
-            }
-          }
+          TaskQuery subQuery = applyFilter(column, field, configuredFilter, userFilter, filterFrom, filterTo);
           query.where().and(subQuery);
         }
       }
     }
     queryStates(query, states);
+  }
+  
+  private TaskQuery applyFilter(ColumnModel column, String field, String configuredFilter, String userFilter,
+      String filterFrom, String filterTo) {
+    TaskQuery subQuery = TaskQuery.create();
+    ICustomFieldFilterQuery filterQuery = subQuery.where().customField();
+    if (column.isNumber()) {
+      if (StringUtils.isNotBlank(filterFrom)) {
+        Number from = Double.parseDouble(filterFrom.toString());
+        filterQuery.numberField(field).isGreaterOrEqualThan(from);
+      }
+ 
+      if (StringUtils.isNotBlank(filterTo)) {
+        Number to = Double.parseDouble(filterTo.toString());
+        filterQuery.numberField(field).isLowerOrEqualThan(to);
+      }
+    } else if (column.isDate()) {
+      Date from = Dates.parse(filterFrom);
+      Date to = Dates.parse(filterTo);
+      if (from != null) {
+        filterQuery.timestampField(field).isGreaterOrEqualThan(from);
+      }
+ 
+      if (to != null) {
+        filterQuery.timestampField(field).isLowerOrEqualThan(DateUtils.addDays(to, 1));
+      }
+    } else if (column.isText()) {
+      queryTextField(filterQuery, field, configuredFilter);
+      if (!isInConfiguration) {
+        queryTextField(filterQuery, field, userFilter);
+      }
+    } else {
+      queryStringField(filterQuery, field, configuredFilter);
+      if (!isInConfiguration) {
+        queryStringField(filterQuery, field, userFilter);
+      }
+    }
+    return subQuery;
+  }
+  
+  private void queryApplications(TaskQuery query, List<String> applications) {
+    if (CollectionUtils.isNotEmpty(applications)) {
+      applications.forEach(x ->Ivy.log().error("queryApplications with app {0}", x));
+      TaskQuery subQuery = TaskQuery.create();
+      IFilterQuery filterQuery = subQuery.where();
+      for (String app : applications) {
+        final Optional<IApplication> appFindByName = IApplicationRepository.instance().findByName(app);
+        if (appFindByName.isPresent()) {
+          Ivy.log().error("found app with name {0}", appFindByName.get().getId());
+          filterQuery.or().applicationId().isEqual(appFindByName.get().getId());
+        }
+      }
+      query.where().and(subQuery);
+    } 
+    else {
+      Ivy.log().error("applications is empty");
+    }
   }
   
   public String getSortField() {
@@ -378,6 +405,7 @@ public class DashboardTaskSearchCriteria {
         }
       }
     }
+    
   }
 
   public boolean getCanWorkOn() {
