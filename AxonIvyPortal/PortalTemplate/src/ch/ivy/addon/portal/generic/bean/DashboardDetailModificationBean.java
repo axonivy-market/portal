@@ -65,6 +65,7 @@ import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.IProcessStart;
 
 @ViewScoped
 @ManagedBean
@@ -288,11 +289,12 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         CustomDashboardWidget customWidget =  (CustomDashboardWidget) widget;
         loadCustomWidget(customWidget);
         break;
+      case PROCESS_VIEWER:
+        ProcessViewerDashboardWidget processViewerWidget = (ProcessViewerDashboardWidget) this.widget;
+        updateProcessViewerWidget(processViewerWidget);
+        break;
       case STATISTIC:
         updateStatisticWidgetData(widget);
-        break;
-      case PROCESS_VIEWER:
-        // TODO
         break;
       default:
         break;
@@ -352,6 +354,15 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         }
       }
     }
+  }
+
+  private void updateProcessViewerWidget(ProcessViewerDashboardWidget processViewerWidget) {
+    List<IProcessStart> startableProcessStarts = Ivy.session().getStartableProcessStarts();
+    String userFriendlyRequestPath = startableProcessStarts.stream()
+        .filter(process -> process.getLink().getRelative()
+            .contentEquals(processViewerWidget.getProcess().getStartLink()))
+        .findFirst().get().getUserFriendlyRequestPath();
+    processViewerWidget.setProcessStart(userFriendlyRequestPath);
   }
 
   public void updatePortalGridsCurrentRow() {
