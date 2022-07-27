@@ -28,7 +28,7 @@ public class ProcessViewerDashboardWidget extends DashboardWidget {
   public void buildProcessDataFirstTime() {
     if (StringUtils.isNotBlank(getProcessStart())) {
       List<IWebStartable> allPortalProcesses = ProcessService.newInstance().findProcesses().getProcesses();
-      setProcess(allPortalProcesses.stream().filter(proccess -> proccess.getId().contentEquals(getProcessStart()))
+      setProcess(allPortalProcesses.stream().filter(proccess -> proccess.getId().contains(getProcessStart()))
           .map(DashboardProcess::new).findFirst().get());
     }
   }
@@ -63,19 +63,12 @@ public class ProcessViewerDashboardWidget extends DashboardWidget {
 
   public void setProcess(DashboardProcess process) {
     this.process = process;
-    if (process != null) {
-      processStart = process.getId();
-    } else {
-      processStart = "";
-    }
+    setProcessStart(process != null ? process.getId() : "");
   }
 
   @JsonIgnore
   public String getProcessLink() {
-    if (process != null) {
-      return process.getStartLink();
-    }
-    return "";
+    return process != null ? process.getStartLink() : "";
   }
 
 }
