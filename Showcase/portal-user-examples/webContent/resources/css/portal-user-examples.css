@@ -247,43 +247,4 @@ h3, h4 {
 .card .title-text {
   font-size: 1.5rem;
   margin-left: 1rem;
-}/*****CSS FOR DECORATE SCREENSHOT******/
-.marker {
-  position: absolute;
-  z-index: 9999;
-  display: inherit;
-  width: 36px;
-  height: 36px;
-  color: #212121;
-  line-height: 36px;
-  text-align: center;
-  text-decoration: none;
-  border-radius: 50%;
-  background-color: #b5e61a;
-}
-
-.overlay-text {
-  position: absolute;
-  z-index: 100;
-  background: transparent;
-}
-
-.red-thick-outline {
-  outline-style: solid;
-  outline-color: red;
-  outline-width: thick;
-}
-
-.red-medium-outline {
-  outline-style: solid;
-  outline-color: red;
-  outline-width: medium;
-}
-
-.red-medium-border {
-  border: medium solid red !important;
-}
-
-.red-outline-thick-offset {
-  outline-offset: -5px;
 }
