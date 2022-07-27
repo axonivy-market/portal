@@ -116,6 +116,14 @@
                         index="#{status.index}"
                         id="custom-#{widget.id}" />
                     </c:if>
+
+                    <!-- Process viewer widget -->
+                    <c:if test="#{widget.type eq 'PROCESS_VIEWER'}">
+                      <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessViewerWidget widget="#{widget}"
+                        isReadOnlyMode="#{managedBean.isReadOnlyMode}"
+                        index="#{status.index}"
+                        id="process-viewer-#{widget.id}" />
+                    </c:if>
                     
                   </div>
                 </div>
