@@ -9,17 +9,15 @@
 </cc:interface>
 
 <cc:implementation>
-<h:panelGroup rendered="#{cc.attrs.field.field eq 'state'}">
+<h:panelGroup rendered="#{cc.attrs.field.field eq 'application'}">
     <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
       <h:outputLabel value="#{cc.attrs.field.headerText}" for="applications"/>
     </div>
     <div class="ui-g-8 ui-sm-12 ui-fluid">
       <p:selectCheckboxMenu id="applications" value="#{cc.attrs.selectedApps}" multiple="true"
-        filter="true" filterMatchMode="contains"
         panelStyleClass="task-configuration__selectcheckboxmenu-panel"
         styleClass="task-configuration__selectcheckboxmenu">
-        <f:selectItems value="#{cc.attrs.appOptions}" var="app" itemValue="#{app}"
-          itemLabel="#{dashboardTaskFilterBean.getUserFriendlyTaskState(state)}" />
+        <f:selectItems value="#{cc.attrs.appOptions}" var="app" itemValue="#{app}" itemLabel="#{app}" />
       </p:selectCheckboxMenu>
     </div>
   </h:panelGroup>

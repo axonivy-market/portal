@@ -2,15 +2,17 @@ package ch.ivy.addon.portalkit.dto.dashboard;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+
+import org.apache.commons.collections4.ListUtils;
+import org.apache.commons.collections4.MapUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.util.ListUtilities;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class UserFilterCollection implements Serializable {
@@ -52,10 +54,7 @@ public class UserFilterCollection implements Serializable {
   }
 
   public List<WidgetFilterModel> getSelectedWidgetFilters() {
-    if (selectedWidgetFilters == null) {
-      selectedWidgetFilters = new ArrayList<>();
-    }
-    return selectedWidgetFilters;
+    return ListUtils.emptyIfNull(selectedWidgetFilters);
   }
 
   public void setSelectedWidgetFilters(List<WidgetFilterModel> selectedWidgetFilters) {
@@ -79,10 +78,7 @@ public class UserFilterCollection implements Serializable {
   }
 
   public List<WidgetFilterModel> getWidgetFilterSelections() {
-    if (widgetFilterSelections == null) {
-      widgetFilterSelections = new ArrayList<>();
-    }
-    return widgetFilterSelections;
+    return ListUtils.emptyIfNull(widgetFilterSelections);
   }
 
   public void setWidgetFilterSelections(List<WidgetFilterModel> widgetFilterSelections) {
@@ -95,24 +91,17 @@ public class UserFilterCollection implements Serializable {
     List<ColumnModel> columns = new ArrayList<>();
     if (DashboardWidgetType.TASK == widget.getType()) {
       columns = ((TaskDashboardWidget) widget).getFilterableColumns();
-    }
-    if (DashboardWidgetType.CASE == widget.getType()) {
+    } else if (DashboardWidgetType.CASE == widget.getType()) {
       columns = ((CaseDashboardWidget) widget).getFilterableColumns();
-    }
-    if (DashboardWidgetType.PROCESS == widget.getType()) {
+    } else if (DashboardWidgetType.PROCESS == widget.getType()) {
       columns = ((CompactProcessDashboardWidget) widget).getFilterableColumns();
     }
     latestFilterOption.addFilterableColumns(columns);
-    setSelectedWidgetFilterIds(getSelectedWidgetFilters()
-          .stream()
-          .map(WidgetFilterModel::getId).collect(Collectors.toList()));
+    setSelectedWidgetFilterIds(ListUtilities.transformList(getSelectedWidgetFilters(), WidgetFilterModel::getId));
   }
 
   public Map<String, FilterColumnModel> getSelectedFilterOptionMap() {
-    if (selectedFilterOptionMap == null) {
-      selectedFilterOptionMap = new HashMap<>();
-    }
-    return selectedFilterOptionMap;
+    return MapUtils.emptyIfNull(selectedFilterOptionMap);
   }
 
   public void setSelectedFilterOptionMap(Map<String, FilterColumnModel> selectedFilterOptionMap) {

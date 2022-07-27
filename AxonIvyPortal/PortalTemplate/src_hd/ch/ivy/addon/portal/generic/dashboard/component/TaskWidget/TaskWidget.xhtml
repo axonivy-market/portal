@@ -94,6 +94,11 @@
             <p:tooltip for="task-category" value="#{task.getCategory().getPath()}" trackMouse="true" hideEvent="mouseleave click"/>
           </h:panelGroup>
           
+          <h:panelGroup rendered="#{column.field eq 'application'}">
+            <h:outputText id="task-application" value="#{column.display(task)}"/>
+            <p:tooltip for="task-application" value="#{column.display(task)}" trackMouse="true" hideEvent="mouseleave click"/>
+          </h:panelGroup>
+          
           <h:panelGroup rendered="#{column.field eq 'actions'}">
             <ui:include src="ActionsCell.xhtml" />
           </h:panelGroup>
