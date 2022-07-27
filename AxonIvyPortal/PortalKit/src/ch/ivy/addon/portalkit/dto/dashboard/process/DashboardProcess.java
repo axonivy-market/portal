@@ -42,6 +42,7 @@ public class DashboardProcess implements Process {
   private String category;
   private String defaultImageSrc;
   private String imageUrl;
+  private String application;
   
   public DashboardProcess() {}
 
@@ -65,6 +66,7 @@ public class DashboardProcess implements Process {
     this.startLink = process.getLink().getRelative();
     this.icon = process.customFields().value("cssIcon");
     this.category = process.getCategory().getPath();
+    this.application = process.pmv().getApplication().getName();
     updateDefaultProcessImage(process);
   }
 
@@ -246,5 +248,13 @@ public class DashboardProcess implements Process {
     GlobalSettingService globalSettingService = new GlobalSettingService();
     GlobalSetting defaultSetting = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_IMAGE);
     defaultImageType = defaultSetting.getDisplayValue().toUpperCase();
+  }
+
+  public String getApplication() {
+    return application;
+  }
+
+  public void setApplication(String application) {
+    this.application = application;
   }
 }
