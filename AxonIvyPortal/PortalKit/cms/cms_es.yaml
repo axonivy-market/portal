@@ -113,6 +113,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CUSTOM: Widget personalizado
       NEW: Nuevo widget
       PROCESS: Widget de procesos
+      PROCESS_VIEWER: Widget del visor de procesos
       STATISTIC: Widget de estadísticas
       TASK: Widget de tareas
     GlobalVariable:
@@ -793,6 +794,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       newWidgetHeader: Nueva {0} configuración del widget
       pageTitle: Configuración del panel de control
       processConfigurationDescription: Puede configurar su widget en esta área de configuración. Por favor, defina los filtros requeridos así como las propiedades a mostrar.
+      processViewerConfigurationDescription: Puede configurar su widget en esta área de configuración. Defina la información que se mostrará.
       tableConfiguration: Configuración de la tabla
       tableConfigurationDesc: Puede gestionar las columnas y establecer la ordenación estándar haciendo clic en la columna.
       yourWidget: Su Widget
@@ -843,6 +845,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     preview: Vista previa
     processList: Lista de procesos
     processListIntroduction: Este widget muestra los inicios de procesos disponibles. Tiene la posibilidad de elegir diferentes formatos
+    processViewerIntroduction: Este widget proporciona una representación visual del flujo del proceso.
     processWidgetInfo:
       noProcess: No hay procesos.
       numberOfProcessesByType: Número de procesos por tipo
@@ -878,6 +881,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     widgetType: Tipo de widget
     yourCases: Sus casos
     yourCustomWidget: Su widget personalizado
+    yourProcessViewer: Su visor de procesos
     yourProcesses: Sus procesos
     yourStatistics: Sus estadísticas
     yourTasks: Sus tareas
