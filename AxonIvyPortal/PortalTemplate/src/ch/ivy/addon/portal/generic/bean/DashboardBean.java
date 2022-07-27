@@ -29,7 +29,6 @@ import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardOrder;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
-import ch.ivy.addon.portalkit.dto.dashboard.ProcessViewerDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.SingleProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
@@ -181,9 +180,6 @@ public class DashboardBean implements Serializable {
         case CUSTOM:
           loadCustomWidget(widget);
           break;
-        case PROCESS_VIEWER:
-          loadProcessViewerWidget(widget);
-          break;
         default:
           break;
       }
@@ -212,16 +208,6 @@ public class DashboardBean implements Serializable {
       customWidget.getData().setType(DashboardCustomWidgetType.PROCESS);
     } else {
       customWidget.getData().setType(DashboardCustomWidgetType.EXTERNAL_URL);
-    }
-  }
-
-  private void loadProcessViewerWidget(DashboardWidget widget) {
-    ProcessViewerDashboardWidget processViewerWidget = (ProcessViewerDashboardWidget) widget;
-    if (StringUtils.isNotBlank(processViewerWidget.getProcessStart())) {
-      String url = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(processViewerWidget.getProcessStart());
-      List<IWebStartable> allPortalProcesses = ProcessService.newInstance().findProcesses().getProcesses();
-      processViewerWidget.setStartableProcessStart(allPortalProcesses.stream()
-        .filter(proccess -> proccess.getLink().toString().contentEquals(url)).findFirst().get());
     }
   }
 
