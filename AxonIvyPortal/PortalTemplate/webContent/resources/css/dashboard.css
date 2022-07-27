@@ -1222,7 +1222,8 @@ span.new-widget-dialog__icon.si {
   display: inline;
 }
 
-.widget-configuration.card.custom-widget-configuration {
+.widget-configuration.card.custom-widget-configuration,
+.widget-configuration.card.process-viewer-widget-configuration {
   margin-right: 0;
 }
 
@@ -1230,9 +1231,11 @@ span.new-widget-dialog__icon.si {
   width: 100%;
 }
 
-.custom-widget-panel {
+.custom-widget-panel,
+.process-viewer-widget-panel {
   height: 100%;
 }
+
 .custom-widget-panel .widget__content {
   height: calc(100% - 44px);
   padding: 0;
@@ -1241,6 +1244,10 @@ span.new-widget-dialog__icon.si {
 .custom-widget-panel .widget__content iframe,
 .custom-widget-panel .widget__content form {
   height: 100%;
+}
+
+.process-viewer-widget-panel .widget__content {
+  height: calc(100% - 44px);
 }
 
 /* Statistic chart widget */
