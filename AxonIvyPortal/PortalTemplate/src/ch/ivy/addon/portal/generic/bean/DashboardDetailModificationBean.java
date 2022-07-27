@@ -3,6 +3,7 @@ package ch.ivy.addon.portal.generic.bean;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CASE;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CUSTOM;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS;
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS_VIEWER;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.STATISTIC;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.TASK;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
@@ -44,6 +45,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.FullProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ImageProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.ProcessViewerDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.SingleProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
@@ -93,7 +95,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public void initSampleWidgets() {
     if (CollectionUtils.isEmpty(samples)) {
-      samples = List.of(taskSample(), caseSample(), processSample(), statisticSample(), customSample());
+      samples = List.of(taskSample(), caseSample(), processSample(), statisticSample(), customSample(), processViewerSample());
     }
   }
 
@@ -138,6 +140,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private WidgetSample customSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/customWidget"), CUSTOM,
         "si si-cog-double-2", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/customWidgetIntroduction"), true);
+  }
+
+  private WidgetSample processViewerSample() {
+    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessViewerText"), PROCESS_VIEWER,
+        "si si-hierarchy-6 si-rotate-270", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processViewerIntroduction"), true);
   }
 
   public void restore() {
@@ -190,6 +197,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
             Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticChartWidget")));
         this.widget = getDefaultStatisticDashboardWidget();
         break;
+      case PROCESS_VIEWER:
+        this.newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
+            Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessViewerText")));
+        this.widget = getDefaultProcessViewerDashboardWidget();
+        break;
       default:
         break;
     }
@@ -230,6 +242,12 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     String widgetId = DashboardWidgetUtils.generateNewWidgetId(DashboardWidgetType.CUSTOM);
     String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCustomWidget");
     return CustomDashboardWidget.buildDefaultWidget(widgetId, widgetName);
+  }
+
+  private ProcessViewerDashboardWidget getDefaultProcessViewerDashboardWidget() {
+    String widgetId = DashboardWidgetUtils.generateNewWidgetId(DashboardWidgetType.PROCESS_VIEWER);
+    String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcessViewer");
+    return ProcessViewerDashboardWidget.buildDefaultWidget(widgetId, widgetName);
   }
 
   public void saveWidget() {
