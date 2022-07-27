@@ -372,13 +372,14 @@ public class DashboardWidgetUtils {
       columnModel.setField(col.getField());
       if (DashboardStandardProcessColumn.NAME == col) {
         columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.NameColumnModel();
-      }
-      if (DashboardStandardProcessColumn.TYPE == col) {
+      } else if (DashboardStandardProcessColumn.TYPE == col) {
         columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.TypeColumnModel();
-      }
-      if (DashboardStandardProcessColumn.CATEGORY == col) {
+      } else if (DashboardStandardProcessColumn.CATEGORY == col) {
         columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.CategoryColumnModel();
+      } else if (DashboardStandardProcessColumn.APPLICATION == col) {
+        columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.ApplicationColumnModel();
       }
+      
       columnModel.initDefaultValue();
       columnModels.add(columnModel);
     }
@@ -386,7 +387,6 @@ public class DashboardWidgetUtils {
   }
 
   public static TaskDashboardWidget buildDefaultTaskWidget(String id, String name) {
-    Ivy.log().error("buildDefaultTaskWidget");
     TaskDashboardWidget widget = new TaskDashboardWidget();
     widget.setId(id);
     widget.setName(name);
