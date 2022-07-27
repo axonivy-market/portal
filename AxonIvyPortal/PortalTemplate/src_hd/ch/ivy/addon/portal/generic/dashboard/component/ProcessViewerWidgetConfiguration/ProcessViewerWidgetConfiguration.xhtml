@@ -33,12 +33,10 @@
         </div>
         <div class="ui-g-8 ui-fluid">
           <p:autoComplete id="selected-process" dropdown="true" scrollHeight="300" forceSelection="true"
-            completeMethod="#{dashboardProcessViewerWidgetBean.completeProcesses}" value="#{widget.startableProcessStart}" var="process" itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500" cache="true"
-            minQueryLength="2" itemtipAtPosition="right top" converter="pojoConverter"
-            required="true" 
+            completeMethod="#{dashboardProcessViewerWidgetBean.completeProcesses}" value="#{widget.process}" var="process" itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500" cache="true"
+            minQueryLength="2" itemtipAtPosition="right top" converter="pojoConverter" required="true"
             requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noProcessSelected')}">
             <p:ajax event="query" global="false" />
-            <p:ajax event="itemSelect" listener="#{dashboardProcessViewerWidgetBean.onSelectProcess(widget)}" />
             <p:column>
               <h:outputText styleClass="autocomplete-tooltip" value="#{process.name}" title="#{process.description}" />
             </p:column>
