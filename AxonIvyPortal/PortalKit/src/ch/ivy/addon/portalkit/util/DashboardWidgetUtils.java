@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.util;
 
+import static ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix.CMS;
 import static ch.ivy.addon.portalkit.constant.DashboardConstants.MAX_NOTI_FILTERS;
 import static ch.ivy.addon.portalkit.constant.DashboardConstants.MAX_NOTI_PATTERN;
 import static ch.ivy.addon.portalkit.constant.DashboardConstants.NEW_WIDGET_STYLE_CLASS;
@@ -19,14 +20,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bean.CompactDashboardProcessBean;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
+import ch.ivy.addon.portalkit.dto.dashboard.AbstractColumn;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
@@ -40,6 +45,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.dto.dashboard.process.ProcessColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
+import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
@@ -51,6 +57,7 @@ import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 
 public class DashboardWidgetUtils {
 
@@ -87,6 +94,7 @@ public class DashboardWidgetUtils {
 
   public static TaskDashboardWidget buildTaskColumns(TaskDashboardWidget widget) {
     List<TaskColumnModel> columns = widget.getColumns();
+    var taskCustomFieldMetas = ICustomFieldMeta.tasks();
     for (int i = 0; i < columns.size(); i++) {
       TaskColumnModel column = columns.get(i);
       String field = column.getField();
@@ -112,21 +120,36 @@ public class DashboardWidgetUtils {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.CategoryColumnModel.class);
       } else if (DashboardStandardTaskColumn.ACTIONS.getField().equalsIgnoreCase(field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ActionsColumnModel.class);
-      } else if (DashboardStandardTaskColumn.APPLICATION.getField().equalsIgnoreCase(field)) {
-        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ApplicationColumnModel.class);
+      } else {
+        column.setType(DashboardColumnType.CUSTOM);
       }
+
       column.initDefaultValue();
+      if (column.getType() == DashboardColumnType.CUSTOM) {
+        buildCustomColumn(taskCustomFieldMetas, column, field);
+      }
       columns.set(i, column);
     }
     widget.buildFilterableColumns(columns);
     return widget;
   }
 
+  private static void buildCustomColumn(Set<ICustomFieldMeta> customFieldMetas, AbstractColumn column,
+      String field) {
+    var fieldMeta = customFieldMetas.stream().filter(meta -> meta.name().equals(field)).findFirst();
+    if (fieldMeta.isPresent()) {
+      column.setHeader(fieldMeta.get().label());
+      column.setFormat(DashboardColumnFormat.valueOf(fieldMeta.get().type().name()));
+    } else if (StringUtils.isBlank(column.getHeader())) {
+      column.setHeader(field);
+    }
+  }
+
   public static List<ColumnModel> buildTaskFilterableColumns(List<TaskColumnModel> columns) {
     if (CollectionUtils.isEmpty(columns)) {
       return new ArrayList<>();
     }
-    return columns.stream()
+    return columns.stream().filter(Objects::nonNull)
         .filter(col -> !StringUtils.equalsIgnoreCase(col.getField(), START.toString())
                   && !StringUtils.equalsIgnoreCase(col.getField(), ID.toString()))
         .collect(Collectors.toList());
@@ -134,6 +157,7 @@ public class DashboardWidgetUtils {
 
   public static CaseDashboardWidget buildCaseColumns(CaseDashboardWidget widget) {
     List<CaseColumnModel> columns = widget.getColumns();
+    var caseCustomFieldMetas = ICustomFieldMeta.cases();
     for (int i = 0; i < columns.size(); i++) {
       CaseColumnModel column = columns.get(i);
       String field = column.getField();
@@ -155,12 +179,16 @@ public class DashboardWidgetUtils {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.OwnerColumnModel.class);
       } else if (DashboardStandardCaseColumn.CATEGORY.getField().equalsIgnoreCase(field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CategoryColumnModel.class);
-      } else if (DashboardStandardCaseColumn.APPLICATION.getField().equalsIgnoreCase(field)) {
-          column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.ApplicationColumnModel.class);
       } else if (DashboardStandardTaskColumn.ACTIONS.getField().equalsIgnoreCase(field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.ActionsColumnModel.class);
+      } else {
+        column.setType(DashboardColumnType.CUSTOM);
       }
+
       column.initDefaultValue();
+      if (column.getType() == DashboardColumnType.CUSTOM) {
+        buildCustomColumn(caseCustomFieldMetas, column, field);
+      }
       columns.set(i, column);
     }
     widget.buildFilterableColumns(columns);
@@ -170,7 +198,7 @@ public class DashboardWidgetUtils {
   public static List<ColumnModel> buildCaseFilterableColumns(List<CaseColumnModel> caseColumns) {
     List<ColumnModel> filterableColumns = new ArrayList<>();
     if (CollectionUtils.isNotEmpty(caseColumns)) {
-      filterableColumns = caseColumns.stream()
+      filterableColumns = caseColumns.stream().filter(Objects::nonNull)
           .filter(col -> !StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardCaseColumn.ID.toString()))
           .collect(Collectors.toList());
     }
@@ -181,16 +209,81 @@ public class DashboardWidgetUtils {
     return filterableColumns;
   }
 
+  public static DashboardWidget simplifyWidgetColumnData(DashboardWidget widget) {
+    List<String> deprecatedFields = new ArrayList<>();
+    switch (widget.getType()) {
+      case TASK:
+        var taskCustomFieldMetas = ICustomFieldMeta.tasks();
+        List<TaskColumnModel> columns = ((TaskDashboardWidget) widget).getColumns();
+        columns.forEach(column -> {
+          simplifyColumnData(column, taskCustomFieldMetas, deprecatedFields);
+        });
+        deprecatedFields.forEach(field -> {
+          columns.removeIf(column -> column.getField().equals(field));
+        });
+        break;
+      case CASE:
+        var caseCustomFieldMetas = ICustomFieldMeta.cases();
+        List<CaseColumnModel> caseColumns = ((CaseDashboardWidget) widget).getColumns();
+        caseColumns.forEach(column -> {
+          simplifyColumnData(column, caseCustomFieldMetas, deprecatedFields);
+        });
+        deprecatedFields.forEach(field -> {
+          caseColumns.removeIf(column -> column.getField().equals(field));
+        });
+        break;
+      default:
+        break;
+    }
+    return widget;
+  }
+
+  private static void simplifyColumnData(AbstractColumn column, Set<ICustomFieldMeta> customFieldMetas,
+      List<String> deprecatedFields) {
+    if (column == null) {
+      return;
+    }
+
+    if (column.getType() == DashboardColumnType.STANDARD) {
+      column.setType(null);
+      if (StringUtils.equals(column.getHeader(), CMS + column.getDefaultHeaderCMS())) {
+        column.setHeader(null);
+      }
+      if (StringUtils.equals(column.getDefaultStyleClass(), column.getStyleClass())) {
+        column.setStyleClass(null);
+      }
+      if (StringUtils.equals(column.getDefaultStyle(), column.getStyle())) {
+        column.setStyle(null);
+      }
+      if (column.getDefaultFormat() == column.getFormat()) {
+        column.setFormat(null);
+      }
+      if (column.getDefaultSortable() == column.getSortable()) {
+        column.setSortable(null);
+      }
+    } else {
+      column.setHeader(null);
+      var foundCustomField = customFieldMetas.stream().anyMatch(meta -> meta.name().equals(column.getField()));
+      if (!foundCustomField) {
+        deprecatedFields.add(column.getField());
+      }
+    }
+    if (DashboardColumnFormat.STRING == column.getFormat()) {
+      column.setFormat(null);
+    }
+    if (BooleanUtils.isTrue(column.getVisible())) {
+      column.setVisible(null);
+    }
+    if (BooleanUtils.isTrue(column.getSortable())) {
+      column.setSortable(null);
+    }
+  }
+
   public static void removeStyleNewWidget(DashboardWidget widget) {
     if (StringUtils.contains(widget.getLayout().getStyleClass(), NEW_WIDGET_STYLE_CLASS)) {
       var styleClass = widget.getLayout().getStyleClass();
       widget.getLayout().setStyleClass(styleClass.replace(NEW_WIDGET_STYLE_CLASS, ""));
     }
-  }
-
-  public static ColumnModel updateTypeForWidgetColumn(ColumnModel columnModel) {
-    columnModel.setType(columnModel.getFormat() != null ? DashboardColumnType.CUSTOM : DashboardColumnType.STANDARD);
-    return columnModel;
   }
 
   public static List<WidgetLayout> getWidgetLayoutFromRequest(Map<String, String> requestParamMap) {
@@ -251,10 +344,9 @@ public class DashboardWidgetUtils {
       if (hasPredefinedFilter) {
         break;
       }
-      if ((PRIORITY.getField().equalsIgnoreCase(col.getField()) || 
-          STATE.getField().equalsIgnoreCase(col.getField()) || 
-          RESPONSIBLE.getField().equalsIgnoreCase(col.getField())|| 
-          CATEGORY.getField().equalsIgnoreCase(col.getField()))
+      if ((PRIORITY.getField().equalsIgnoreCase(col.getField()) || STATE.getField().equalsIgnoreCase(col.getField())
+          || RESPONSIBLE.getField().equalsIgnoreCase(col.getField())
+          || CATEGORY.getField().equalsIgnoreCase(col.getField()))
           && !CollectionUtils.isEmpty(col.getFilterList())) {
         hasPredefinedFilter = true;
       } else {
@@ -372,14 +464,13 @@ public class DashboardWidgetUtils {
       columnModel.setField(col.getField());
       if (DashboardStandardProcessColumn.NAME == col) {
         columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.NameColumnModel();
-      } else if (DashboardStandardProcessColumn.TYPE == col) {
-        columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.TypeColumnModel();
-      } else if (DashboardStandardProcessColumn.CATEGORY == col) {
-        columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.CategoryColumnModel();
-      } else if (DashboardStandardProcessColumn.APPLICATION == col) {
-        columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.ApplicationColumnModel();
       }
-      
+      if (DashboardStandardProcessColumn.TYPE == col) {
+        columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.TypeColumnModel();
+      }
+      if (DashboardStandardProcessColumn.CATEGORY == col) {
+        columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.CategoryColumnModel();
+      }
       columnModel.initDefaultValue();
       columnModels.add(columnModel);
     }

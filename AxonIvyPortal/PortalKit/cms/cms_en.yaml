@@ -1,5 +1,3 @@
-AppInfo:
-  SupportedLanguages: de,en,fr,es
 Categories:
   AdhocExpressTasks:
     name: Adhoc Express Tasks
@@ -701,6 +699,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticWidget:
       chartDeletionConfirmation: Are you sure you want to delete this statistic chart?
       contextMenuDrilldown: Drilldown
+      contextMenuToCaseList: Go to case list
       contextMenuToTaskList: Go to task list
     taskStart:
       cannotDelegateTaskMessage: This task cannot be delegated to any other user or group.
@@ -959,6 +958,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     cannotSetEmailLanguage: Language cannot be set as email notification language.
     languageSetting: Language settings
     saveLanguageHasWSErrors: Language save error.
+    selectedFormattingLanguage: Selected formatting language
     selectedLanguage: Selected language
   login:
     login: Login
@@ -1141,6 +1141,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       caseByFinishedTime: Done cases in time period
       caseByFinishedTimeDescription: Cases which are done in the selected time period
       caseByState: Case by state
+      casesByCategory: Cases by category
       elapsedTimeByCaseCategory: Elapsed time of done cases
       elapsedTimeByCaseCategoryDescription: Elapsed time of finished cases by category
       taskByExpiry: Task by expiry

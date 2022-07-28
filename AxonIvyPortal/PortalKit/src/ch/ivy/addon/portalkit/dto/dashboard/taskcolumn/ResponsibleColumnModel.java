@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
@@ -26,13 +27,38 @@ public class ResponsibleColumnModel extends TaskColumnModel implements Serializa
 
   @Override
   public void initDefaultValue() {
-    this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR");
+    super.initDefaultValue();
     this.field = DashboardStandardTaskColumn.RESPONSIBLE.getField();
-    this.style = defaultIfEmpty(this.style, EXTRA_WIDTH);
-    this.format = DashboardColumnFormat.CUSTOM;
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__responsible");
+    this.style = defaultIfEmpty(this.style, getDefaultStyle());
+    this.format = getDefaultFormat();
+    this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
   }
-  
+
+  @Override
+  public String getHeaderText() {
+    return translateHeader(defaultIfEmpty(this.header, DashboardConfigurationPrefix.CMS + getDefaultHeaderCMS()));
+  }
+
+  @Override
+  public String getDefaultHeaderCMS() {
+    return "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR";
+  }
+
+  @Override
+  public DashboardColumnFormat getDefaultFormat() {
+    return DashboardColumnFormat.CUSTOM;
+  }
+
+  @Override
+  public String getDefaultStyle() {
+    return EXTRA_WIDTH;
+  }
+
+  @Override
+  public String getDefaultStyleClass() {
+    return "dashboard-tasks__responsible";
+  }
+
   @Override
   public Object display(ITask task) {
     if (task == null || task.getActivator() == null) {

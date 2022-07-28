@@ -108,7 +108,7 @@
       global="false" async="true" process="@this"
       oncomplete="loadWidgetFirstTime('js-loading-chart-#{widget.id}', 'js-dashboard-statistic-chart-#{widget.id}')" />
 
-    <p:poll id="chart_model_dashboard_poll-#{index}" interval="#{statisticChartScalingInterval}" update="@([id$='task_by_priority_chart-#{index}'])"
+    <p:poll id="chart_model_dashboard_poll-#{index}" interval="#{statisticChartScalingInterval}" update="rcLoadChartFirstTime"
       global="false" process="@this" partialSubmit="true" async="true" immediate="true" listener="#{logic.regenerateChartModelDashboard(chart)}"
       rendered="#{statisticChartScalingInterval ge minimumStatisticChartScalingInterval}" />
     <h:panelGroup id="statistic-chart-widget__content" rendered="#{chart ne null}" layout="block"
@@ -168,6 +168,13 @@
             <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.drilldownCaseByState}"
               disabled="#{disabledDrillDownChart}"/>
           </p:donutChart>
+          
+           <p:barChart model="#{chart.barChartModel}"
+            rendered="#{dashboardStatisticChartBean.isCasesByCategory(chart)}"
+            styleClass="statistic-chart-widget__canvas" >
+            <f:attribute name="selectedChartId" value="#{chart.id}" />
+            <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.toCasesByCategoryCaseList}"/>
+          </p:barChart>
         </h:panelGroup>
       </h:panelGroup>
     </h:panelGroup>
