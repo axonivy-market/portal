@@ -1,8 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>portal-product</artifactId>
-  <version>9.3.0.3</version>
+  <version>9.3.5</version>
   <packaging>pom</packaging>
   <distributionManagement>
     <repository>
@@ -50,7 +51,7 @@
             <goals>
               <goal>single</goal>
             </goals>
-            <configuration>              
+            <configuration>
               <appendAssemblyId>false</appendAssemblyId>
               <descriptors>
                 <descriptor>zip.xml</descriptor>
@@ -66,7 +67,7 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-deploy-plugin</artifactId>
           <version>3.0.0-M1</version>
-        </plugin>        
+        </plugin>
       </plugins>
     </pluginManagement>
   </build>
