@@ -697,6 +697,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticWidget:
       chartDeletionConfirmation: Wollen Sie dieses Diagramm wirklich löschen?
       contextMenuDrilldown: Drilldown
+      contextMenuToCaseList: Zur Fallliste gehen
       contextMenuToTaskList: Zur Aufgabenliste
     taskStart:
       cannotDelegateTaskMessage: Diese Aufgabe kann an keinen anderen Benutzer oder keine andere Gruppe delegiert werden.
@@ -1139,6 +1140,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       caseByFinishedTime: Abgeschlossene Vorgänge im Zeitraum
       caseByFinishedTimeDescription: Vorgänge die in der ausgewählten Zeitspanne abgeschlossen wurden
       caseByState: Vorgänge nach Status
+      casesByCategory: Fälle nach Kategorie
       elapsedTimeByCaseCategory: Durchlaufzeit abgeschlossener Vorgänge
       elapsedTimeByCaseCategoryDescription: Durchlaufszeit (Start bis Ende des Vorgangs) abgeschlossener Vorgänge nach Kategorie
       taskByExpiry: Aufgaben nach Ablaufdatum

@@ -698,6 +698,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticWidget:
       chartDeletionConfirmation: ¿Seguro que quiere eliminar esta tabla de estadísticas?
       contextMenuDrilldown: Drilldown
+      contextMenuToCaseList: Ir a la lista de casos
       contextMenuToTaskList: Ir a la lista de tareas
     taskStart:
       cannotDelegateTaskMessage: Esta tarea no se puede delegar a ningún otro usuario o grupo.
@@ -1138,6 +1139,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       caseByFinishedTime: Caso por tiempo finalizado
       caseByFinishedTimeDescription: Casos terminados en el periodo de tiempo seleccionado
       caseByState: Caso por estado
+      casesByCategory: Casos por categoría
       elapsedTimeByCaseCategory: Tiempo transcurrido por categoría de caso
       elapsedTimeByCaseCategoryDescription: Tiempo de duración para casos terminados por categoría
       taskByExpiry: Tarea por vencimiento
