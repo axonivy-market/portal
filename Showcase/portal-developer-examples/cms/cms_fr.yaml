@@ -11,26 +11,39 @@ Categories:
         name: Long
       name: Maladie
     name: Autres congés
+CustomFields:
+  Categories:
+    CustomTaskWidget: TaskWidget personnalisé
+  Tasks:
+    CustomerName:
+      Description: Nom du client
+      Label: Nom du client
+    CustomerType:
+      Description: Type de client
+      Label: Type de client
+    ShipmentDate:
+      Description: Date d'expédition
+      Label: Date d'expédition
 DefaultColumns:
   ACTIVATOR: Responsable
   CREATION_TIME: Créé
+  CustomerName: Nom du client
   EXPIRY_TIME: Délai
   ID: Id de tâche
   NAME: Nom / Description
   PRIORITY: Priorité
   STATE: Etat
+  ShipmentDate: Date d'expédition
   caseList:
     CREATION_TIME: Créé
     CREATOR: Créateur
+    CustomerName: Nom du client
     FINISHED_TIME: Terminé
     ID: Id du dossier
     NAME: Nom / Description
     OWNER: Propriétaire
     STATE: Etat
-    customTimestampField1: Date d'expédition
-    customVarCharField1: Nom du client
-  customTimestampField1: Date d'expédition
-  customVarCharField5: Nom du client
+    ShipmentDate: Date d'expédition
 Dialogs:
   Lists:
     Completeness:
@@ -111,11 +124,11 @@ Processes:
 sortFields:
   CREATION_TIME_ASC: Date de création (le plus ancien en premier)
   CREATION_TIME_DESC: Date de création (le plus récent en premier)
+  CustomerName_ASC: Nom du client (A -> Z)
+  CustomerName_DESC: Nom du client (Z -> A)
   EXPIRY_TIME_ASC: Expiration (le plus ancien en premier)
   EXPIRY_TIME_DESC: Expiration (le plus récent en premier)
   PRIORITY_ASC: Priorité (de haute à basse)
   PRIORITY_DESC: Priorité (de basse à haute)
-  customTimestampField1_ASC: Date d'expédition (ancienne en premier)
-  customTimestampField1_DESC: Date d'expédition (récente en premier)
-  customVarCharField5_ASC: Nom du client (A -> Z)
-  customVarCharField5_DESC: Nom du client (Z -> A)
+  ShipmentDate_ASC: Date d'expédition (ancienne en premier)
+  ShipmentDate_DESC: Date d'expédition (récente en premier)

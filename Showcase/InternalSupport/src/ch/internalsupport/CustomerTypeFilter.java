@@ -1,6 +1,6 @@
 package ch.internalsupport;
 
-import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_VARCHAR_FIELD1;
+import static ch.internalsupport.CustomizedTaskLazyDataModel.CUSTOM_CUSTOMER_TYPE;
 
 import java.util.Arrays;
 import java.util.List;
@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
+import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class CustomerTypeFilter extends TaskFilter {
@@ -17,7 +18,8 @@ public class CustomerTypeFilter extends TaskFilter {
 
   @Override
   public String label() {
-    return "Customer type";
+    var customFieldMeta = ICustomFieldMeta.tasks().stream().filter(meta -> meta.name().equals(CUSTOM_CUSTOMER_TYPE)).findAny();
+    return customFieldMeta.isPresent() ? customFieldMeta.get().label() : CUSTOM_CUSTOMER_TYPE;
   }
 
   @Override
@@ -38,7 +40,7 @@ public class CustomerTypeFilter extends TaskFilter {
     }
 
     String containingKeyword = String.format("%%%s%%", selectedCustomerType.trim());
-    return TaskQuery.create().where().customField().stringField(CUSTOM_VARCHAR_FIELD1).isLikeIgnoreCase(containingKeyword);
+    return TaskQuery.create().where().customField().stringField(CUSTOM_CUSTOMER_TYPE).isLikeIgnoreCase(containingKeyword);
   }
 
   @Override

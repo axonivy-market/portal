@@ -264,5 +264,66 @@
       "visual" : {
         "at" : { "x" : 632, "y" : 600 }
       }
+    }, {
+      "id" : "f94",
+      "type" : "Script",
+      "name" : "Get chart name",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.StatisticService;",
+            "",
+            "StatisticService service = StatisticService.getInstance();",
+            "in.chartNameOfCurrentLanguage = service.getDisplayNameInUserLanguageForChart(in.selectedStatisticChart).getValue();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 360, "y" : 512 }
+      },
+      "connect" : { "id" : "f14", "to" : "f11" }
+    }, {
+      "id" : "f11",
+      "type" : "SubProcessCall",
+      "name" : "Navigator",
+      "config" : {
+        "processCall" : "Functional Processes/Navigator:viewCaseForAnalytic(String,ch.ivyteam.ivy.workflow.query.CaseQuery)",
+        "call" : {
+          "params" : [
+            { "name" : "chartName", "type" : "String" },
+            { "name" : "caseQuery", "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery" }
+          ],
+          "map" : {
+            "param.chartName" : "in.chartNameOfCurrentLanguage",
+            "param.caseQuery" : "in.caseQuery"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 512, "y" : 512 }
+      }
+    }, {
+      "id" : "f12",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "goToCasesByCategoryList(StatisticChart,CaseQuery)",
+      "config" : {
+        "callSignature" : "goToCasesByCategoryList",
+        "input" : {
+          "params" : [
+            { "name" : "selectedStatisticChart", "type" : "ch.ivy.addon.portalkit.statistics.StatisticChart" },
+            { "name" : "caseQuery", "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery" }
+          ],
+          "map" : {
+            "out.caseQuery" : "param.caseQuery",
+            "out.selectedStatisticChart" : "param.selectedStatisticChart"
+          }
+        },
+        "guid" : "18214957424B6AC8"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 512 },
+        "labelOffset" : { "x" : -64, "y" : 14 }
+      },
+      "connect" : { "id" : "f13", "to" : "f94" }
     } ]
 }

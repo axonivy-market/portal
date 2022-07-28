@@ -19,7 +19,8 @@ public enum TaskAndCaseAnalysisColumn {
   TASK_CREATION_TIME(true, true),
   TASK_EXPIRY_TIME(true, false),
   TASK_FINISHED_TIME(true, true),
-  CASE_OWNER(false, false);
+  CASE_OWNER(false, false),
+  APPLICATION(false, false);
 
   private boolean isTaskField;
   private boolean isDefaultColumn;

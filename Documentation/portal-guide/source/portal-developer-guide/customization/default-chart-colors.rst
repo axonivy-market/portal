@@ -95,6 +95,9 @@ Portal introduces the **StatisticColors** object. We use it to build a color **D
   private String taskExpiriedNovColor = DEFAULT_TASK_YEAR_COLOR;
   private String taskExpiriedDecColor = DEFAULT_TASK_YEAR_COLOR;
 
+  // For Cases by category
+  private String casesByCategoryColor = DEFAULT_CASES_BY_CATEGORY_COLOR;
+
 ..
 
 You can override data label colors by re-defining the values of the variables in ``custom.css`` below:
@@ -113,6 +116,7 @@ You can override data label colors by re-defining the values of the variables in
  - ``--chart-label-default-task-week-color`` to override label color of this week task
  - ``--chart-label-default-task-month-color`` to override label color of this month task
  - ``--chart-label-default-task-year-color`` to override label color of this year task
+ - ``--chart-label-default-cases-by-category-color`` to override label color of cases by category
 
 In Portal home, you can override the color of the Statistic Carousel header by re-defining the value of the variables in ``custom.css`` below:
 
