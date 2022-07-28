@@ -1,5 +1,3 @@
-AppInfo:
-  SupportedLanguages: de,en,fr,es
 Categories:
   AdhocExpressTasks:
     name: Adhoc Express Aufgaben
@@ -958,6 +956,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     cannotSetEmailLanguage: Sprache kann nicht als Emailbenachrichtigungssprache gewählt werden.
     languageSetting: Spracheinstellungen
     saveLanguageHasWSErrors: Fehler beim Speichern der Sprache
+    selectedFormattingLanguage: Ausgewählte Formatierungsprache
     selectedLanguage: Ausgewählte Sprache
   login:
     login: Anmeldung
