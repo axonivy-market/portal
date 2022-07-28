@@ -41,6 +41,7 @@ public class StatisticDashboardBean implements Serializable {
   private static final String DASH = "%s - %s";
   private StatisticService statisticService = StatisticService.getInstance();
   private ItemSelectEvent taskByExpiryItemSelectEvent;
+  private ItemSelectEvent casesByCategoryItemSelectEvent;
 
   public String getChartWidthStyle(List<StatisticChart> chartList) {
     List<String> chartIdSuffixes = new ArrayList<>();
@@ -107,10 +108,34 @@ public class StatisticDashboardBean implements Serializable {
     StatisticChartDrilldownUtils.drilldownTaskByExpiry(taskByExpiryItemSelectEvent, selectedStatisticChart);
     releaseJSFEvent();
   }
+  
+  public void drilldownCasesByCategory() {
+    StatisticChart selectedStatisticChart = getSelectedStatisticChart(casesByCategoryItemSelectEvent);
+    StatisticChartDrilldownUtils.drilldownCasesByCategory(casesByCategoryItemSelectEvent, selectedStatisticChart);
+    releaseJSFEvent();
+  }
+  
+  public void onSelectDrilldownCasesByCategory(ItemSelectEvent event) {
+    StatisticChart selectedStatisticChart = getSelectedStatisticChart(event);
+    casesByCategoryItemSelectEvent = event;
+    StatisticChartDrilldownUtils.onSelectDrilldownCasesByCategory(event, selectedStatisticChart);
+  }
+  
+ //It's used for "Go to case list" selection from Statistic Dashboard
+ public void goToCasesByCategoryList() {
+   toCasesByCategoryList(casesByCategoryItemSelectEvent);
+   releaseJSFEvent();
+ }
+ 
+ public void toCasesByCategoryList(ItemSelectEvent event) {
+   StatisticChart selectedStatisticChart = getSelectedStatisticChart(event);
+   StatisticChartDrilldownUtils.toCasesByCategoryCaseList(event, selectedStatisticChart);
+ }
 
   private void releaseJSFEvent() {
     // Do not store JSF Event in a JSF bean that is not bound to request scope
     this.taskByExpiryItemSelectEvent = null;
+    this.casesByCategoryItemSelectEvent = null;
   }
 
   public StatisticChart createDefaultEmptyChart() {
@@ -230,6 +255,13 @@ public class StatisticDashboardBean implements Serializable {
       return false;
     }
     return statisticService.isElapsedTimeByCaseCategory(statisticChart);
+  }
+  
+  public boolean isCasesByCategory(StatisticChart statisticChart) {
+    if (statisticChart == null) {
+      return false;
+    }
+    return statisticService.isCasesByCategory(statisticChart);
   }
 
   public String getId(StatisticChart chart) {
