@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.dto.dashboard.taskcolumn;
 
 import java.io.Serializable;
 
+import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.workflow.ITask;
 
@@ -11,11 +12,26 @@ public class NameColumnModel extends TaskColumnModel implements Serializable {
 
   @Override
   public void initDefaultValue() {
-    this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/common/taskName");
+    super.initDefaultValue();
     this.field = DashboardStandardTaskColumn.NAME.getField();
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__name");
+    this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
   }
-  
+
+  @Override
+  public String getHeaderText() {
+    return translateHeader(defaultIfEmpty(this.header, DashboardConfigurationPrefix.CMS + getDefaultHeaderCMS()));
+  }
+
+  @Override
+  public String getDefaultHeaderCMS() {
+    return "/ch.ivy.addon.portalkit.ui.jsf/common/taskName";
+  }
+
+  @Override
+  public String getDefaultStyleClass() {
+    return "dashboard-tasks__name";
+  }
+
   @Override
   public Object display(ITask task) {
     if (task == null) {
