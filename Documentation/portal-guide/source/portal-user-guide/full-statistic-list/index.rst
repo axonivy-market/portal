@@ -130,6 +130,18 @@ HowTo: Create chart
 |                       |                       | The values are shown  |
 |                       |                       | in percentages.       |
 +-----------------------+-----------------------+-----------------------+
+| Cases by category     | Bar chart             | Displays all cases    |
+|                       |                       | belonging to a user   |
+|                       |                       | or a role categorized |
+|                       |                       | by their Case Category|
+|                       |                       | , where cases were in |
+|                       |                       | progress, or already  |
+|                       |                       | done during the       |
+|                       |                       | selected time period. |
+|                       |                       | The values are the    |
+|                       |                       | sum of cases in the   |
+|                       |                       | respective categories.|
++-----------------------+-----------------------+-----------------------+
 
 
 .. centered:: Chart filter criteria
