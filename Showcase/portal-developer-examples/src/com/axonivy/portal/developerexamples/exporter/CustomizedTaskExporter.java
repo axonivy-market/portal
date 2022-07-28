@@ -1,11 +1,9 @@
 package com.axonivy.portal.developerexamples.exporter;
 
-import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_TIMESTAMP_FIELD1;
-import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_VARCHAR_FIELD5;
+import static com.axonivy.portal.developerexamples.component.customize.CustomizedTaskLazyDataModel.CUSTOM_CUSTOMER_NAME;
+import static com.axonivy.portal.developerexamples.component.customize.CustomizedTaskLazyDataModel.CUSTOM_SHIPMENT_DATE;
 
 import java.util.List;
-
-import com.axonivy.portal.developerexamples.component.customize.CustomizedTaskLazyDataModel;
 
 import ch.ivy.addon.portalkit.exporter.TaskExporter;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -27,10 +25,10 @@ public class CustomizedTaskExporter extends TaskExporter {
   @Override
   public Object getColumnValue(String column, ITask task) {
     switch (column) {
-      case CustomizedTaskLazyDataModel.CUSTOM_VAR_CHAR_FIELD5:
-        return task.customFields().stringField(CUSTOM_VARCHAR_FIELD5).getOrNull();
-      case CustomizedTaskLazyDataModel.CUSTOM_TIMESTAMP_FIELD12:
-        return task.customFields().timestampField(CUSTOM_TIMESTAMP_FIELD1).getOrNull();
+      case CUSTOM_CUSTOMER_NAME:
+        return task.customFields().stringField(CUSTOM_CUSTOMER_NAME).getOrNull();
+      case CUSTOM_SHIPMENT_DATE:
+        return task.customFields().timestampField(CUSTOM_SHIPMENT_DATE).getOrNull();
       default:
         return getCommonColumnValue(column, task);
     }
