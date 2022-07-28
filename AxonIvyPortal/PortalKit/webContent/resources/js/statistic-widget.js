@@ -145,31 +145,10 @@ function elapsedTimeChartExtender() {
   options = {
     maintainAspectRatio : false,
     scales : {
-      xAxes : {
-        ticks : {
-          maxTicksLimit: 5,
-          callback : function(value) {
-            if (value.length > 15) {
-              return value.substr(0, 15) + '...';
-            } else {
-              return value;
-            }
-          },
-        }
-      },
-      yAxes : {}
-    },
-    tooltips: {
-      enabled: true,
-      mode: 'index',
-      intersect: false,
-      callbacks: {
-        title: function(tooltipItems, data) {
-          var idx = tooltipItems[0].index;
-          return data.labels[idx];
-        }
+      x : {
+        offset: true
       }
-    },
+    },  
     hover: {
       mode: 'index',
       intersect: false
