@@ -74,9 +74,9 @@ Portal will use the default value defined by the administrator if you don't sele
 Language settings
 -----------------
 
-**Language settings** allows you to specify your
+**Language** allows you to specify your
 preferred application language. This setting will affect all Axon Ivy
-Portal pages, notification mails and – if supported – your company's application pages as
+Portal pages, notification mails, and – if supported – your company's application pages as
 well. The following languages are currently supported in the Axon Ivy
 Portal:
 
@@ -85,7 +85,7 @@ Portal:
 -  French
 -  Spanish
 
-**Formatting language settings** is used to format values, for example the decimal point is displayed differently in different regions of the world.
+**Formatting language** is used to format values, for example the decimal separator is displayed differently in different regions of the world.
 
 .. hint:: 
    Your application needs to support
