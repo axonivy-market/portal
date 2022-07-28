@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.17",
   "id" : "16A684441A0EF157",
   "data" : "ch.ivy.addon.portalkit.DefaultStatisticCustomFieldData",
   "kind" : "CALLABLE_SUB",
@@ -37,8 +37,7 @@
         "output" : {
           "code" : [
             "import java.util.Arrays;",
-            "",
-            "in.customFields = Arrays.asList(\"CustomVarCharField1\", \"CustomVarCharField2\", \"CustomVarCharField3\", \"CustomVarCharField4\", \"CustomVarCharField5\");"
+            "in.customFields = Arrays.asList(\"\");"
           ]
         }
       },
@@ -53,14 +52,13 @@
       "name" : [
         "// FOLLOW THIS INSTRUCTION TO CREATE CUSTOM STRING FIELD",
         "// CREATE LIST OF YOUR CUSTOM STRING FIELD NAME",
-        "// DEFAULT IS \"CustomVarCharField1\", \"CustomVarCharField2\", \"CustomVarCharField3\", \"CustomVarCharField4\", \"CustomVarCharField5\"",
         "// YOU CAN CREATE YOUR OWN CUSTOM STRING FIELD NAME",
         "import java.util.Arrays;",
         "in.customFields = Arrays.asList(\"MyCustomStringField1\", \"MyCustomStringField2\");"
       ],
       "visual" : {
-        "at" : { "x" : 648, "y" : 176 },
-        "size" : { "width" : 768, "height" : 124 }
+        "at" : { "x" : 480, "y" : 184 },
+        "size" : { "width" : 464, "height" : 92 }
       }
     } ]
 }

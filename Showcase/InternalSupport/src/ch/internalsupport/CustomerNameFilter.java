@@ -1,10 +1,11 @@
 package ch.internalsupport;
 
-import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_VARCHAR_FIELD5;
+import static ch.internalsupport.CustomizedTaskLazyDataModel.CUSTOM_CUSTOMER_NAME;
 
 import org.apache.commons.lang.StringUtils;
 
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
+import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class CustomerNameFilter extends TaskFilter {
@@ -13,7 +14,8 @@ public class CustomerNameFilter extends TaskFilter {
 
   @Override
   public String label() {
-    return "Customer name";
+    var customFieldMeta = ICustomFieldMeta.tasks().stream().filter(meta -> meta.name().equals(CUSTOM_CUSTOMER_NAME)).findAny();
+    return customFieldMeta.isPresent() ? customFieldMeta.get().label() : CUSTOM_CUSTOMER_NAME;
   }
   
   @Override
@@ -28,7 +30,7 @@ public class CustomerNameFilter extends TaskFilter {
     }
     
     String containingKeyword = String.format("%%%s%%", customerName.trim());
-    return TaskQuery.create().where().customField().stringField(CUSTOM_VARCHAR_FIELD5).isLikeIgnoreCase(containingKeyword);
+    return TaskQuery.create().where().customField().stringField(CUSTOM_CUSTOMER_NAME).isLikeIgnoreCase(containingKeyword);
   }
 
   @Override

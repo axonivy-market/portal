@@ -34,7 +34,7 @@
       "name" : [
         "HINT: build your task query",
         "",
-        "out.taskQuery = TaskQuery.create().where().customField().stringField(\"CustomVarCharField5\").isLike(\"%HELLO WORLD%\");",
+        "out.taskQuery = TaskQuery.create().where().customField().stringField(\"CustomerName\").isLike(\"%HELLO WORLD%\");",
         "",
         "If you want to differentiate the customization in home page from customization in other places like task list, ",
         "just check  the attribute isQueryForHomePage",
