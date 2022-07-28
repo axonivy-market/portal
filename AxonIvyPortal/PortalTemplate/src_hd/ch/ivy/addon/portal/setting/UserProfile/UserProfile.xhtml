@@ -135,7 +135,7 @@
                   <h:outputText id="format-language-selection-label" styleClass="language-selection-label ui-g-12"
                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/selectedFormattingLanguage')}" />
                   <div class="ui-g-12">
-                    <p:autoComplete id="format-language-selection" scrollHeight="210" dropdown="true" size="60"
+                    <p:autoComplete id="format-language-selection" scrollHeight="210" dropdown="true" size="50"
                       completeMethod="#{logic.completeFormattingLanguage}"
                       value="#{data.language.itemFormattingLanguage}" var="language"
                       itemValue="#{language}" itemLabel="#{language.label}" converter="pojoConverter"
