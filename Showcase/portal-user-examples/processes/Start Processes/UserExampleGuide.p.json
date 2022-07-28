@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.15",
+  "format" : "9.4.14",
   "id" : "17236DB1D3DA14C0",
   "data" : "com.axonivy.portal.userexamples.UserExampleGuideData",
   "elements" : [ {
@@ -10,7 +10,7 @@
         "callSignature" : "userExampleGuide",
         "case" : {
           "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"true\"" }
           ]
         },
         "outLink" : "userExampleGuide.ivp",
@@ -95,7 +95,8 @@
         "outLink" : "startPortalLoginPage.ivp",
         "startCustomFields" : [
           { "name" : "cssIcon", "value" : "si si-login-3" }
-        ]
+        ],
+        "startName" : "Access Portal login page"
       },
       "visual" : {
         "at" : { "x" : 192, "y" : 224 },

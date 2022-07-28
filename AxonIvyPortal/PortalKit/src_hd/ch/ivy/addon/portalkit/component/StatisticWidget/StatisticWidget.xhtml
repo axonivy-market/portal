@@ -27,13 +27,13 @@
           styleClass="statistic-actions-panel ui-g #{data.createMode ? 'creation-mode':'ui-sm-8'}">
           <h:panelGroup layout="block" rendered="#{!data.createMode}" styleClass="ui-g-12 u-padding-0">
             <p:commandLink id="create-chart-link" actionListener="#{logic.switchCreateMode}" update="widget-container create-chart-header header"
-              rendered="#{!data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart and data.canCreateNewCharts}" styleClass="u-hidden-md-down chart-link">
+              rendered="#{!data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart and !data.isDrilldownCasesByCategory and data.canCreateNewCharts}" styleClass="u-hidden-md-down chart-link">
               <i class="si si-add" />
               <p:spacer width="3px" />
               <h:outputText id="create-chart-link-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/addChart')}" />
             </p:commandLink>
             <p:commandLink id="restore-default-chart-link" onclick="PF('restore-confirmation-dialog').show();"
-              rendered="#{!data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart 
+              rendered="#{!data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart and !data.isDrilldownCasesByCategory
             and data.hasDefaultChart and data.canCreateNewCharts}" styleClass="chart-link">
               <i class="si si-button-refresh-arrows" />
               <p:spacer width="3px" />
@@ -52,12 +52,18 @@
               <p:spacer width="3px" />
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
             </p:commandLink>
+            <p:commandLink id="back-from-drilldown-cases-by-category-chart-link" actionListener="#{logic.switchDrilldownCasesByCategoryMode}"
+              rendered="#{data.isDrilldownCasesByCategory}" update="#{p:resolveFirstComponentWithId('widget-container', view).clientId} create-chart-header" styleClass="Fright">
+              <i class="si si-arrow-left-1" />
+              <p:spacer width="3px" />
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
+            </p:commandLink>
             <h:outputText rendered="#{data.canAnalyzeTask and !data.isDrilldownElapsedTime 
-              and !data.isDrilldownExpiryChart and data.canCreateNewCharts}" styleClass="u-hidden-md-down">
+              and !data.isDrilldownExpiryChart and !data.isDrilldownCasesByCategory and data.canCreateNewCharts}" styleClass="u-hidden-md-down">
             </h:outputText>
   
             <p:commandLink id="task-analysis-page-navigation-link" actionListener="#{logic.navigateToTaskAnalysisPage}"
-              rendered="#{data.canAnalyzeTask and !data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart}" styleClass="task-analysis-page-navigation-link u-hidden-md-down Fright">
+              rendered="#{data.canAnalyzeTask and !data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart and !data.isDrilldownCasesByCategory}" styleClass="task-analysis-page-navigation-link u-hidden-md-down Fright">
               <i class="si si-analytics-board-graph-line u-mar-right-5" />
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskAnalysis')}" />
             </p:commandLink>
@@ -86,8 +92,8 @@
         <ic:ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget id="statistic-dashboard-widget"
           showTaskListImmediately="#{cc.attrs.showTaskListImmediately}" compactMode="#{data.compactMode}"
           statisticChartList="#{data.statisticChartList}" drilldownListener="#{logic.drilldownElapsedTimeListener}"
-          drillDownExpiryChartListener="#{logic.drillDownExpiryListener()}" isDrilldownElapsedTime="#{data.isDrilldownElapsedTime}"
-          isDrilldownExpiryChart="#{data.isDrilldownExpiryChart}" isBackFromDrilldown="#{data.isBackFromDrilldown}" />
+          drillDownExpiryChartListener="#{logic.drillDownExpiryListener()}" drillDownCasesByCategoryListener="#{logic.drillDownCasesByCategoryListener()}" isDrilldownElapsedTime="#{data.isDrilldownElapsedTime}"
+          isDrilldownExpiryChart="#{data.isDrilldownExpiryChart}" isDrilldownCasesByCategory="#{data.isDrilldownCasesByCategory}" isBackFromDrilldown="#{data.isBackFromDrilldown}" />
       </h:panelGroup>
 
       <h:panelGroup id="chart-list-container" layout="block" styleClass="chart-list-container ui-g-12 u-padding-0"

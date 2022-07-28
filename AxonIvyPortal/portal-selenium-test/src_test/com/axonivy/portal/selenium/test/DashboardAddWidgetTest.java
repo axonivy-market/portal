@@ -5,10 +5,11 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
-import com.axonivy.portal.selenium.page.NewDashboardConfigurationPage;
+import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
@@ -63,9 +64,9 @@ public class DashboardAddWidgetTest extends BaseTest {
   private NewDashboardDetailsEditPage gotoEditPublicDashboardPage() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
-    newDashboardPage.waitForAbsencesGrowlMessageDisplay();
-    newDashboardPage.openDashboardConfigurationDialog();
-    NewDashboardConfigurationPage configPage = newDashboardPage.navigateToEditPublicDashboardPage();
-    return configPage.navigateToEditDashboardDetailsByName("Dashboard");
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    var configurationPage = new DashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    return modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
   }
 }

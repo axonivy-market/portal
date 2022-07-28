@@ -40,9 +40,9 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
         .$("button[id^='new-widget-dialog-content']").shouldBe(getClickableCondition()).click();
   }
 
-  public NewDashboardConfigurationPage backToConfigurationPage() {
+  public DashboardConfigurationPage backToConfigurationPage() {
     $("a[id='back-to-configuration']").click();
-    return new NewDashboardConfigurationPage();
+    return new DashboardConfigurationPage();
   }
 
   public void deleteCompactModeProcess() {
