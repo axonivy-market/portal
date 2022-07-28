@@ -268,8 +268,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: Auf "false" setzen, um die Verknüpfung zu Informationen des Prozesses auf der Seite Prozesse (Gittermodus) und Falldetails anzeigen zu deaktivieren.
       showTaskDurationTime: Zum Ein-/Ausschalten der Anzeige der Bearbeitungszeit auf der Aufgabendetailseite.
       showUserGuide: 'Aktiviert die interaktive Benutzeranleitung "erste Schritte" im Portal bei erstmaliger Anmeldung. '
-      statisticChartsPolling: Setzen Sie diese Eigenschaft auf einen Wert kleiner als 10, um die Aktualisierung des Live-Diagramms mit Abfrage zu deaktivieren. Der Standardwert ist 0, was bedeutet, dass die Abfrage der Live-Statistik deaktiviert ist. Setzen Sie diese Eigenschaft auf mehr als oder gleich
-        10, um die Aktualisierung der Live-Statistik zu aktivieren.
+      statisticChartScalingInterval: Intervall in Sekunden, in dem die Skalierung des statistischen Diagramms regelmäßig angefordert wird. Ist der Intervallwert kleiner als 10, wird die periodische Skalierung des statistischen Diagramms deaktiviert.
       uploadDocumentWhiteListExtensionNote: 'Leer lassen, falls Sie alle Formate erlauben. Falls Sie nur eine geringe Anzahl an Formate erlauben möchten (White list), können Sie diese hier, mit Komma getrennt, aufführen. Z.B.: pdf, txt, doc, docx.'
     key: Schlüssel
     link: Link
@@ -396,6 +395,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   common:
     BusinessCaseInformation: Business Case Informationen
     CollapseAll: Alles zuklappen
+    DefaultTemplate: Standard Vorlage
     ExpandAll: Alles aufklappen
     NoSelection: Keine Auswahl
     ResetToDefaultHeaderText: Auf Standard-Einstellungen zurücksetzen?
@@ -695,6 +695,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticWidget:
       chartDeletionConfirmation: Wollen Sie dieses Diagramm wirklich löschen?
       contextMenuDrilldown: Drilldown
+      contextMenuToCaseList: Zur Fallliste gehen
       contextMenuToTaskList: Zur Aufgabenliste
     taskStart:
       cannotDelegateTaskMessage: Diese Aufgabe kann an keinen anderen Benutzer oder keine andere Gruppe delegiert werden.
@@ -725,18 +726,26 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Öffentlich
       savedFilters: 'Gespeicherte Filter:'
   dashboard:
-    DashboardConfigurationDialog:
-      ConfigureDashboard: Dashboard-Konfiguration
+    DashboardConfiguration:
       CreateFromScratch: Von Grund auf neu erstellen
       CreateFromScratchDescription: Erstellen Sie Ihr eigenes Dashboard von Grund auf
-      CreateNewPrivateDashboard: Create new private dashboard
+      CreateNewPrivateDashboard: Neues privates Dashboard erstellen
       CreateNewPublicDashboard: Neues öffentliches Dashboard erstellen
+      DefaultTemplateDescription: Dashboard mit 1 Aufgabenliste, 1 Fallliste und 1 Prozessliste erstellen
+      Description: In diesem Bereich können Sie die Dashboards nach Ihren Wünschen konfigurieren.
+      DoNotSupportMobile: Die Dashboard-Konfiguration wird für mobile Geräte nicht unterstützt.
       EditPrivateDashboards: Private Dashboards bearbeiten
       EditPublicDashboards: Öffentliche Dashboards bearbeiten
+      PrivateDashboard: Private Dashboards
       PrivateDashboardConfiguration: Private Dashboard-Konfiguration
-      PublicDashboardConfiguration: Öffentliche Dashboard-Konfiguration
+      PublicDashboard: Öffentliche Dashboards
+      PublicDashboardConfiguration: Konfiguration des öffentlichen Dashboards
       ReorderPrivateDashboards: Réorganiser vos tableaux de bord
       ReorderPublicDashboards: Öffentliche Dashboards neu anordnen
+      SelectAction: Wählen Sie die Aktion
+      Title: Dashboard-Konfiguration
+      TwoTaskTemplate: Zwei Aufgabenlisten Dashboard
+      TwoTaskTemplateDescription: Dashboard mit 2 Aufgabenlisten und 1 Prozessliste erstellen
     EmptyFilterMessage: Kein Widget-Filter gefunden
     Filter:
       FilterOptionHeader: Filter-Optionen
@@ -779,6 +788,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CustomWidgetExternalLinkWarning: Einige Websites sind aufgrund von Sicherheitsbedenken nicht mit iframe kompatibel. Bitte wenden Sie sich an Ihren Administrator, wenn die externe Website nicht ordnungsgemäß funktioniert.
       Parameters: Parameter
       RestoreDefaultDashboardTemplateTooltip: Wir können die Vorlage für Ihr Dashboard nicht finden und es daher nicht auf die Standardkonfiguration zurücksetzen. Bitte erkundigen Sie sich bei Ihrem Administrator nach weiteren Details!
+      SelectTheTemplate: Wählen Sie die Vorlage
       SelectYourTemplate: Wählen Sie Ihre Vorlage
       configuration: Konfiguration
       configurationDescription: In diesem Konfigurationsbereich kann das Widget konfiguriert werden. Bitte definieren Sie die gewünschten Filter sowie die anzuzeigenden Spalten.
@@ -804,10 +814,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Dashboard editieren
       manageDashboard: Dashboard verwalten
       removeDashboardHeader: Dashboard "{0}" entfernen
-      reorderDashboard: Dashboard neu anordnen
     deleteWidget: Widget löschen
-    editPrivateDashboard: Privates Dashboard editieren
-    editPublicDashboard: Öffentliches Dashboard editieren
     editWidget: Widget bearbeiten
     existingField: Das Feld {0} ist bereits vorhanden
     expiryFrom: Gültig von
@@ -851,8 +858,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     removeWidgetMessage: Möchten Sie es wirklich löschen?
     reorder:
       dashboardType: Dashboard-Typ
-      reorderMyDashboard: Mein Dashboard neu anordnen
-      reorderPublicDashboard: Öffentliches Dashboard neu anordnen
     restoreDefaultHeader: Auf Standard zurücksetzen
     restoreDefaultMessage: Wenn Sie fortfahren, verlieren Sie alle von Ihnen erstellten Widgets. Es werden die Standardeinstellungen übernommen.
     select: Wählen Sie
@@ -1134,6 +1139,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       caseByFinishedTime: Abgeschlossene Vorgänge im Zeitraum
       caseByFinishedTimeDescription: Vorgänge die in der ausgewählten Zeitspanne abgeschlossen wurden
       caseByState: Vorgänge nach Status
+      casesByCategory: Fälle nach Kategorie
       elapsedTimeByCaseCategory: Durchlaufzeit abgeschlossener Vorgänge
       elapsedTimeByCaseCategoryDescription: Durchlaufszeit (Start bis Ende des Vorgangs) abgeschlossener Vorgänge nach Kategorie
       taskByExpiry: Aufgaben nach Ablaufdatum
@@ -1470,7 +1476,6 @@ Dialogs:
       maximumFileUploadElement: Es gibt bereits ein Datei-Upload-Element
   workflowCreation:
     AdhocProcessName: AdHoc Prozess für Aufgabe {0} - {1}
-    DefaultTemplateDialogHeader: Standard Vorlage
     FormDefinition:
       AddCheckboxField: Neues Feld hinzufügen
       AddOptionboxField: Neue Option hinzufügen
@@ -1479,6 +1484,7 @@ Dialogs:
       BroadHeaderArea: Breiter Header Bereich
       CheckboxFields: Auswahlfelder
       CreateField: Erstellen
+      DataProvider: Datenanbieter
       DragAndDropTooltip: Ziehen Sie per Drag and Drop die verfügbaren Elemente in den Header, die linke Spalte, die rechte Spalte oder in den Footer um sie zu platzieren!
       ElementLabel: Label
       ElementName: Elementbezeichnung

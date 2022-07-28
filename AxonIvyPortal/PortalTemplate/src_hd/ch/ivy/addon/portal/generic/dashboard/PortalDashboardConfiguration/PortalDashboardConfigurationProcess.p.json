@@ -1,34 +1,25 @@
 {
   "format" : "9.4.14",
-  "id" : "17F4E85A986DB827",
+  "id" : "181CCBB78267AA7C",
   "data" : "ch.ivy.addon.portal.generic.dashboard.PortalDashboardConfiguration.PortalDashboardConfigurationData",
   "kind" : "HTML_DIALOG",
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
-      "name" : "start(Boolean)",
+      "name" : "start()",
       "config" : {
         "callSignature" : "start",
-        "input" : {
-          "params" : [
-            { "name" : "isPublicDashboard", "type" : "Boolean" }
-          ],
-          "map" : {
-            "out.isPublicDashboard" : "param.isPublicDashboard"
-          }
-        },
-        "guid" : "17F4E86175D200C3"
+        "guid" : "181CCBB782974EA7"
       },
       "visual" : {
-        "at" : { "x" : 88, "y" : 56 },
-        "labelOffset" : { "x" : -16, "y" : 15 }
+        "at" : { "x" : 96, "y" : 64 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 216, "y" : 56 }
+        "at" : { "x" : 264, "y" : 64 }
       }
     }, {
       "id" : "f16",
@@ -36,36 +27,28 @@
       "name" : "backToHome()",
       "config" : {
         "callSignature" : "backToHome",
-        "guid" : "17F4E86175DF7C4E"
+        "guid" : "181DBCB814135085"
       },
       "visual" : {
-        "at" : { "x" : 88, "y" : 152 },
+        "at" : { "x" : 104, "y" : 208 },
         "labelOffset" : { "x" : -25, "y" : 15 }
       },
       "connect" : { "id" : "f15", "to" : "f14" }
     }, {
-      "id" : "f21",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 488, "y" : 152 }
-      }
-    }, {
       "id" : "f14",
       "type" : "Script",
-      "name" : "Navigate To Portal EndPage",
+      "name" : "Back to Home",
       "config" : {
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;",
             "",
-            "PortalNavigatorAPI.navigateToPortalEndPage();"
+            "PortalNavigatorAPI.navigateToPortalHome();"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 264, "y" : 152 },
-        "size" : { "width" : 160, "height" : 44 }
-      },
-      "connect" : { "id" : "f22", "to" : "f21" }
+        "at" : { "x" : 272, "y" : 208 }
+      }
     } ]
 }

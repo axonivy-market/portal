@@ -9,7 +9,7 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.ExpressTaskPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
-import com.axonivy.portal.selenium.page.ReorderDashboardPage;
+import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.UserMenuPage;
 import com.codeborne.selenide.Condition;
 
@@ -46,10 +46,10 @@ public class UserMenuConfigurationTest extends BaseTest {
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
     mainMenuPage.openUserSettingMenu();
     UserMenuPage userMenu = new UserMenuPage();
-    userMenu.findMenu("Reorder dashboard").shouldBe(Condition.appear);
-    userMenu.accessMenu("Reorder dashboard");
-    ReorderDashboardPage reorderDashBoardPage = new ReorderDashboardPage();
-    reorderDashBoardPage.findRowWithDashboardName("Dashboard").shouldBe(Condition.appear);
+    userMenu.findMenu("Create Investment").shouldBe(Condition.appear);
+    userMenu.accessMenu("Create Investment");
+    TaskTemplatePage templatePage = new TaskTemplatePage();
+    templatePage.getElementInPortalIFramTask("[id$=':investment-table']").shouldBe(Condition.appear);
   }
 
   @Test

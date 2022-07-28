@@ -1,4 +1,0 @@
-DashboardCreationMenuData #class
-ch.ivy.addon.portal.generic.dashboard.component.DashboardCreationMenu #namespace
-isPublicDashboard Boolean #field
-isPublicDashboard PERSISTENT #fieldModifier

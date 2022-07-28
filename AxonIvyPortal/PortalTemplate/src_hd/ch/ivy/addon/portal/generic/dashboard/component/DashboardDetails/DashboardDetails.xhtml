@@ -9,25 +9,16 @@
   <cc:attribute name="isPublicDashboard" required="true" />
   <cc:attribute name="componentToUpdate" />
   <cc:attribute name="isDashboardCreation" default="false" />
-  <cc:attribute name="isWorkingOnATask" default="false"/>
-  <cc:attribute name="task" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
-  <c:set var="isWorkingOnATask" value="#{cc.attrs.isWorkingOnATask}" />
-  <c:set var="task" value="#{cc.attrs.task}" />
-
-  <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="task-leave-warning-component" rendered="#{isWorkingOnATask}"
-      leaveActionListener="#{dashboardConfigurationBean.resetTaskAndCreateDashboard(task)}"
-      reserveActionListener="#{dashboardConfigurationBean.reserveTaskAndCreateDashboard(task)}"
-      componentId="dashboard-creation-task-losing-confirmation-dialog" widgetVar="dashboard-creation-task-losing-confirmation-dialog"
-      taskState="#{task.state}" />
 
   <p:dialog id="#{cc.attrs.detailDialogId}" widgetVar="#{cc.attrs.detailDialogId}" styleClass="js-#{cc.attrs.detailDialogId}"
     header="#{cc.attrs.title}"
     appendTo="@(body)" closeOnEscape="true" draggable="false" fitViewport="true" responsive="true" modal="true"
-    width="40%">
+    minWidth="300"
+    dynamic="true">
 
     <h:form id="dashboard-detail-form" styleClass="dashboard-detail-form">
       <p:messages id="dashboard-detail-messages" />
@@ -36,8 +27,8 @@
           <p:outputLabel for="dashboard-title"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}" />
         </div>
-        <div class="ui-g-8">
-          <p:inputText id="dashboard-title" value="#{managedBean.selectedEditingDashboard.title}"
+        <div class="ui-g-8 ui-fluid">
+          <p:inputText id="dashboard-title" value="#{managedBean.selectedDashboard.title}"
             required="true" styleClass="manage-dashboard__input" />
         </div>
         <h:panelGroup layout="block" styleClass="ui-g-4 manage-dashboard__label"
@@ -45,16 +36,18 @@
           <p:outputLabel for="dashboard-permission"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardPermission')}" />
         </h:panelGroup>
-        <h:panelGroup layout="block" styleClass="ui-g-8" rendered="#{cc.attrs.isPublicDashboard}">
+        <h:panelGroup layout="block" styleClass="ui-g-8 ui-fluid" rendered="#{cc.attrs.isPublicDashboard}">
           <p:autoComplete id="dashboard-permission" scrollHeight="210" dropdown="true" required="true"
             completeMethod="#{managedBean.completePermissions}" styleClass="manage-dashboard__input"
             inputStyleClass="manage-dashboard__autocomplete-input"
-            value="#{managedBean.selectedEditingDashboard.permissionDTOs}" var="responsible"
+            value="#{managedBean.selectedDashboard.permissionDTOs}" var="responsible"
             itemValue="#{responsible}" itemLabel="#{responsible.briefDisplayNameWithState}" converter="pojoConverter"
             cache="true" maxResults="100" multiple="true"
             moreTextSelect="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true" forceSelection="true">
-            <p:ajax event="itemSelect" listener="#{managedBean.dashboardPermissionListener}"
-              update="dashboard-permission" global="false" />
+            <p:ajax event="itemSelect" listener="#{managedBean.onSelectPermissionForDashboard}"
+              update="dashboard-permission" global="false" process="@this"/>
+            <p:ajax event="itemUnselect" listener="#{managedBean.onUnSelectPermissionForDashboard}"
+              update="dashboard-permission" global="false" process="@this" immediate="true"/>
             <p:column>
               <pc:securityMemberNameAndAvatar
                 displayName="#{dashboardTaskFilterBean.formatName(responsible)}" securityMember="#{responsible}">
@@ -69,8 +62,8 @@
           <p:outputLabel for="dashboard-description"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" />
         </div>
-        <div class="ui-g-8">
-          <p:inputText id="dashboard-description" value="#{managedBean.selectedEditingDashboard.description}"
+        <div class="ui-g-8 ui-fluid">
+          <p:inputText id="dashboard-description" value="#{managedBean.selectedDashboard.description}"
             required="false" styleClass="manage-dashboard__input" />
         </div>
       </div>
@@ -94,7 +87,7 @@
           rendered="#{cc.attrs.isDashboardCreation}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/CreateDashboard')}"
           icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
-          actionListener="#{managedBean.createDashboard(isWorkingOnATask, task)}"
+          actionListener="#{managedBean.createDashboard()}"
           process="dashboard-detail-form"
           update="dashboard-detail-form"
           partialSubmit="true" />
