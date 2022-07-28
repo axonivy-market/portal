@@ -23,13 +23,13 @@ Categories:
 DefaultColumns:
   ACTIVATOR: Responsible
   CREATION_TIME: Created
+  CustomerName: Customer name
+  CustomerType: Customer type
   EXPIRY_TIME: Expiry
   ID: Task Id
   NAME: Name / Description
   PRIORITY: Priority
   STATE: State
-  customVarCharField1: Customer type
-  customVarCharField5: Customer name
 Processes:
   ProcessWithProcessSteps:
     processStep: |-

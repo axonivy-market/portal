@@ -48,6 +48,12 @@
       <p:donutChart styleClass="statistic-chart ui-g-12" model="#{chart.donutChartModel}" style="width: 100%; height:200px;"
         rendered="#{statisticDashboardBean.isCaseByFinishedTime(chart)}">
       </p:donutChart>
+      
+       <p:barChart styleClass="statistic-chart ui-g-12" model="#{chart.barChartModel}" rendered="#{statisticDashboardBean.isCasesByCategory(chart)}"
+        style="width: 100%; height:200px;">
+        <f:attribute name="selectedChartId" value="#{chart.id}" />
+        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.toCasesByCategoryList}" update="#{p:resolveFirstComponentWithId('widget-container', view).clientId}" />
+      </p:barChart>
     </h:panelGroup>
   </h:panelGroup>
 </p:carousel>
