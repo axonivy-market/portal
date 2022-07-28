@@ -36,8 +36,8 @@
       "config" : {
         "output" : {
           "code" : [
-            "import java.util.Arrays;",
-            "in.customFields = Arrays.asList(\"\");"
+            "//import java.util.Arrays;",
+            "//in.customFields = Arrays.asList(\"MyCustomStringField1\", \"MyCustomStringField2\");"
           ]
         }
       },

@@ -170,6 +170,7 @@
         </p:scrollPanel>
       </p:tab>
 
+    <c:if test="#{not empty cc.attrs.customFields and cc.attrs.customFields.size() gt 0}">
       <c:forEach items="#{cc.attrs.customFields}" var="tabVar" varStatus="status">
         <p:tab title="#{tabVar}" id="custom-field-filter-#{status.index}">
           <f:facet name="title">
@@ -187,9 +188,8 @@
             completeMethod="#{statisticChartCreationBean.populateCustomStringFieldAutoComplete}" />
         </p:tab>
       </c:forEach>
-
-    </p:accordionPanel>
-
+    </c:if>
+  </p:accordionPanel>
 </div>
 
 </cc:implementation>
