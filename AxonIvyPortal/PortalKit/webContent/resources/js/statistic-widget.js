@@ -49,6 +49,8 @@ function updateDrillDownPanelPosition(panel) {
 }
 
 function taskByExpiryChartBaseExtender(context, datalabelsColor) {
+  //Register plugin datalabels
+  jQuery.extend(true, context.cfg.config, {plugins: [ChartDataLabels]});
   // copy the config options into a variable
   let options = jQuery.extend(true, {}, context.cfg.config.options);
   options = {
@@ -140,6 +142,8 @@ function elapsedTimeChartDataLabelsColor(context) {
 }
 
 function elapsedTimeChartExtender() {
+  //Register plugin datalabels
+  jQuery.extend(true, this.cfg.config, {plugins: [ChartDataLabels]});
   // copy the config options into a variable
   let options = jQuery.extend(true, {}, this.cfg.config.options);
   options = {
@@ -184,6 +188,8 @@ function donutChartDataLabelsFormatter(value, context) {
 }
 
 function donutChartExtender(context, datalabelsColor) {
+  //Register plugin datalabels
+  jQuery.extend(true, context.cfg.config, {plugins: [ChartDataLabels]});
   // copy the config options into a variable
   let options = jQuery.extend(true, {}, context.cfg.config.options);
   options = {
@@ -290,6 +296,8 @@ var elapsedTimeChartDetail = {
 }
 
 function casesByCategoryChartExtender() {
+  //Register plugin datalabels
+  jQuery.extend(true, this.cfg.config, {plugins: [ChartDataLabels]});
   // copy the config options into a variable
   var delayed;
   let options = jQuery.extend(true, {}, this.cfg.config.options);
