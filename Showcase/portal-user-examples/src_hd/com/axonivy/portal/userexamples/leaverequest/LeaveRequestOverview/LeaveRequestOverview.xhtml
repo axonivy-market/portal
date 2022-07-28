@@ -3,7 +3,7 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-  <ui:composition template="/layouts/restricted/ProcessOverviewTemplate.xhtml">
+  <ui:composition template="/layouts/restricted/ExampleProcessOverviewTemplate.xhtml">
     <ui:param name="processSteps" value="#{data.processSteps}" />
     <ui:define name="pageTitle">#{data.userProcess.processName}</ui:define>
     <ui:define name="header">
@@ -18,11 +18,13 @@
       </div>
     </ui:define>
     <ui:define name="actionButtons">
+      <h:form>
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" actionListener="#{logic.cancel}"/>
       <p:spacer width="20px" />
       <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')} #{data.userProcess.processName}"
         id="start"
-        actionListener="#{compactProcessWidgetBean.startProcess(data.userProcess)}" />
+        actionListener="#{navigationBean.startProcess(data.userProcess)}" />
+      </h:form>
     </ui:define>
   </ui:composition>
 </h:body>

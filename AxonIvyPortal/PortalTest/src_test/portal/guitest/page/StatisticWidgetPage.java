@@ -21,6 +21,7 @@ public class StatisticWidgetPage extends TemplatePage {
   public static final String ELAPSED_TIME_CHART_NAME = "Elapsed time chart";
   public static final String CASE_BY_FINISHED_TASK_CHART_NAME = "Case by finished task chart";
   public static final String CASE_BY_FINISHED_TIME_CHART_NAME = "Case by finished time chart";
+  public static final String CASES_BY_CATEGORY_CHART_NAME = "Cases by category chart";
 
   public StatisticWidgetPage() {
     Sleeper.sleep(1000);
@@ -232,6 +233,19 @@ public class StatisticWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
     waitForElementExisted("span[class='ui-growl-title']", true, DEFAULT_TIMEOUT);
   }
+  
+  public void createCasesByCategory() {
+	    waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-cases-by-category-link"), true, 30);
+	    WebElement createCaseByFinishedTaskLink
+	      = findElementById("statistics-widget:chart-creation-widget:chart-management-form:create-cases-by-category-link");
+	    click(createCaseByFinishedTaskLink);
+
+	    waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true);
+	    inputNameForSupportedLanguages(CASES_BY_CATEGORY_CHART_NAME);
+	    clickByCssSelector("button[id$='chart-save-command']");
+
+	    waitForElementExisted("span[class='ui-growl-title']", true, DEFAULT_TIMEOUT);
+	  }
   
   public WebElement getChartCreationContainer() {
     return findElementById("statistics-widget:chart-creation-widget:chart-management-form:chart-list");

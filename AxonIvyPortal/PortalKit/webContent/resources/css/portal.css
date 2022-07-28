@@ -2235,27 +2235,37 @@ body.in-dialog .ui-widget-overlay {
   font-size: var(--default-body-font-size);
 }
 
-.dashboard-configuration-dialog__action-row {
+.dashboard-action-container {
   box-shadow:  var(--item-widget-box-shadow);
 }
 
-.dashboard-configuration-dialog__action-row:hover {
+.dashboard-action-container:hover {
   background: var(--process-start-list-item-hover-background-color);
   border: var(--process-start-list-item-hover-border);
 }
 
-.dashboard-configuration-dialog__action-row-label {
+.dashboard-action-container-label {
   color: var(--primary-dark-text-color);
 }
 
-.dashboard-configuration-dialog__action-row-description {
+.dashboard-action-container-description {
   color: var(--primary-dark-text-color);
 }
 
-.dashboard-configuration-dialog__action-row-icon {
+.dashboard-action-container-icon {
   color: var(--primary-dark-text-color);
 }
 
 #reorder-button:hover {
   cursor: move;
+}
+
+.statistic-chart-cases-by-category {
+	width: 100%;
+	height: 340px;
+}
+
+.dashboard-statistic-chart-cases-by-category {
+	width: 100%;
+	height: 400px;
 }

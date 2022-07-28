@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.15",
   "id" : "14BE3DBF5F8C376B",
   "data" : "ch.ivy.addon.portalkit.singleapp.general.Login.LoginData",
   "kind" : "HTML_DIALOG",
@@ -144,8 +144,8 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.util.RequestUtil;",
-            "RequestUtil.redirect(in.callbackUrl);"
+            "import ch.ivy.addon.portalkit.util.RequestUtils;",
+            "RequestUtils.redirect(in.callbackUrl);"
           ]
         }
       },
