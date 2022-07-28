@@ -272,7 +272,9 @@
                 <p:commandLink id="side-step-start-cancel" onclick="PF('sidestep-task-reset-confirmation-dialog').hide()"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
                 <p:spacer width="15px" />
-                <p:commandButton id="side-step-start-ok" actionListener="#{abstractTaskTemplateBean.startSideStep(currentTask)}" process="@this" update="@none"
+                <p:commandButton widgetVar="sideStepStartOkButton" id="side-step-start-ok"
+                  onclick="PF('sideStepStartOkButton').disable()"
+                  actionListener="#{abstractTaskTemplateBean.startSideStep(currentTask)}" process="@this" update="@none"
                   icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
               </h:panelGroup>

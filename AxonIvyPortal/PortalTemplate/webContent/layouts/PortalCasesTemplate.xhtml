@@ -68,6 +68,9 @@
                 
                 <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCategory componentId="case-category-cell" 
                   rendered="#{caseView.dataModel.isSelectedColumn('CATEGORY')}" value="#{case.getCategory().getName()}" tooltip="#{case.getCategory().getPath()}" />
+                  
+                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseApplication componentId="case-application-cell" case="#{case}"
+                  dataModel="#{caseView.getDataModel()}" rendered="#{caseView.dataModel.isSelectedColumn('APPLICATION')}" />
               </ui:fragment>
             </f:facet>
 

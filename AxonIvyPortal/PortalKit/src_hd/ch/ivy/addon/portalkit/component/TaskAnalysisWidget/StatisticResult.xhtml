@@ -135,6 +135,11 @@
             displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.case.owner, task.case.ownerName)}"
             securityMember="#{task.case.owner}" />
         </p:column>
+        
+        <p:column id="application" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/APPLICATION')}" sortable="false" width="90"
+          visible="#{taskAnalysisWidgetBean.columns['APPLICATION']}" exportable="#{taskAnalysisWidgetBean.columns['APPLICATION']}">
+          <h:outputText value="#{task.application.name}" />
+        </p:column>
       </p:dataTable>
     </h:form>
 

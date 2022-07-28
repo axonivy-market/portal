@@ -1,5 +1,3 @@
-AppInfo:
-  SupportedLanguages: de,en,fr,es
 Categories:
   AdhocExpressTasks:
     name: Tâches Adhoc Express
@@ -699,6 +697,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticWidget:
       chartDeletionConfirmation: Êtes-vous sûr de vouloir supprimer cette statistique?
       contextMenuDrilldown: Drilldown
+      contextMenuToCaseList: Aller à la liste des affaires
       contextMenuToTaskList: Aller à la liste des tâches
     taskStart:
       cannotDelegateTaskMessage: Cette tâche ne peut pas être déléguée ä un autre utilisateur ou une autre groupe.
@@ -957,6 +956,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     cannotSetEmailLanguage: La langue ne peut pas être définie comme langue de notification par courrier électronique.
     languageSetting: Paramètres de langue
     saveLanguageHasWSErrors: Erreur d'enregistrement de la langue
+    selectedFormattingLanguage: "Choisir la langue de formatage\r\n\r\n"
     selectedLanguage: Langue choisie
   login:
     login: Connexion
@@ -1139,6 +1139,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       caseByFinishedTime: Cas traités dans le temps
       caseByFinishedTimeDescription: Cas qui se font dans la période sélectionnée
       caseByState: Cas par état
+      casesByCategory: Affaires par catégorie
       elapsedTimeByCaseCategory: Temps écoulé des cas accomplis
       elapsedTimeByCaseCategoryDescription: Temps écoulé des cas finis par catégorie
       taskByExpiry: Tâche par échéance
