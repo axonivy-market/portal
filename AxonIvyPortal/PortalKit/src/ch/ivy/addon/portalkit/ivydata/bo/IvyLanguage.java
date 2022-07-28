@@ -48,7 +48,7 @@ public class IvyLanguage {
     if (Locale.ROOT.equals(locale) || locale == null) {
       return ""; 
     }
-    return String.format("%s (%s)", locale.getDisplayName(Ivy.session().getContentLocale()), locale.toString());
+    return locale.getDisplayName(Ivy.session().getContentLocale());
   }
 
   private String toDisplayNameLanguage(String languageTag) {
