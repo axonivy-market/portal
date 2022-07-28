@@ -117,16 +117,16 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void selectCustomType() {
     selectFieldType("CUSTOM");
-    getCustomFieldType().waitUntil(appear, DEFAULT_TIMEOUT);
+    getCustomFieldCategory().waitUntil(appear, DEFAULT_TIMEOUT);
   }
 
   public void selectStandardType() {
     selectFieldType("STANDARD");
-    getCustomFieldType().waitUntil(disappear, DEFAULT_TIMEOUT);
+    getCustomFieldCategory().waitUntil(disappear, DEFAULT_TIMEOUT);
   }
 
-  private SelenideElement getCustomFieldType() {
-    return getColumnManagementDialog().$("div[id$='custom-field-type-selection']");
+  private SelenideElement getCustomFieldCategory() {
+    return getColumnManagementDialog().$("input[id$=':column-management-form:custom-field-categories-selection_input']");
   }
 
   public void selectFieldType(String type) {
@@ -161,9 +161,6 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     SelenideElement firstFieldElement = customFieldPanel.$("li").shouldBe(getClickableCondition());
     String field = firstFieldElement.getText();
     firstFieldElement.click();
-
-    getFieldDisplayName().clear();
-    getFieldDisplayName().sendKeys(field);
 
     getColumnManagementDialog().$("button[id$='field-add-btn']").click();
 
