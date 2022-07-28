@@ -237,7 +237,7 @@
             "StatisticService service = StatisticService.getInstance();",
             "if (in.statisticChartList.size() != 0) {",
             "  in.hasStatistic = true;",
-            "  if(in.selectedItemOfDrilldown.isEmpty()){",
+            "  if(in.selectedItemOfDrilldown.isEmpty() || in.selectedCategoryOfDrilldown.isEmpty()){",
             "    service.generateChartModelForStatisticCharts(in.statisticChartList);",
             "  }",
             "} else {",
@@ -544,6 +544,7 @@
             "  ",
             "if (in.isBackFromDrilldown) {",
             "  in.selectedItemOfDrilldown = null;",
+            "  in.selectedCategoryOfDrilldown = null;",
             "  in.isFinishLoadCharts = false;",
             "  ",
             "  in.statisticChartList = service.findStatisticCharts();",
@@ -561,7 +562,7 @@
             "StatisticDashboardBean statisticDashboardBean = ManagedBeans.get(\"statisticDashboardBean\") as StatisticDashboardBean;",
             "in.isReloadChartContent = statisticDashboardBean.isChartModelNotInitialized(in.statisticChartList) || !in.isFinishLoadCharts || !service.isSame(in.prevStatisticList, in.statisticChartList);",
             "",
-            "if (in.isReloadChartContent && StringUtils.isEmpty(in.selectedItemOfDrilldown)) {",
+            "if (in.isReloadChartContent && StringUtils.isEmpty(in.selectedItemOfDrilldown) && StringUtils.isEmpty(in.selectedCategoryOfDrilldown)) {",
             "  // In case, isReloadChartContent indicator is true and not drilldown to expiry chart, we need to generate a placeholder chart to show on UI",
             "  // It will make comfortable when user is waiting for drawing canvas",
             "  service.generatePlaceholderForChart(in.statisticChartList);",
@@ -575,6 +576,15 @@
             "  in.statisticChartList.add(in.selectedStatisticChart);",
             "  in.statisticChartList.add(newChart);",
             "",
+            "  in.isFinishLoadCharts = true;",
+            "  in.prevStatisticList = new ArrayList(in.statisticChartList);",
+            "  in.isReloadChartContent = false;",
+            "} else if (StringUtils.isNotEmpty(in.selectedCategoryOfDrilldown)) {",
+            "  StatisticChart newChart = service.drilldownCasesByCategory(in.selectedCategoryOfDrilldown, in.selectedStatisticChart);",
+            "  in.statisticChartList.clear();",
+            "  in.statisticChartList.add(in.selectedStatisticChart);",
+            "  in.statisticChartList.add(newChart);",
+            "  ",
             "  in.isFinishLoadCharts = true;",
             "  in.prevStatisticList = new ArrayList(in.statisticChartList);",
             "  in.isReloadChartContent = false;",
@@ -918,5 +928,152 @@
       "visual" : {
         "at" : { "x" : 464, "y" : 872 }
       }
+    }, {
+      "id" : "f76",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "drilldownCasesByCategory(StatisticChart,String)",
+      "config" : {
+        "callSignature" : "drilldownCasesByCategory",
+        "input" : {
+          "params" : [
+            { "name" : "selectedStatisticChart", "type" : "ch.ivy.addon.portalkit.statistics.StatisticChart" },
+            { "name" : "selectedCategoryOfDrilldown", "type" : "String" }
+          ],
+          "map" : {
+            "out.selectedCategoryOfDrilldown" : "param.selectedCategoryOfDrilldown",
+            "out.selectedStatisticChart" : "param.selectedStatisticChart"
+          }
+        },
+        "guid" : "181FB91910DEB007"
+      },
+      "visual" : {
+        "at" : { "x" : 704, "y" : 864 },
+        "labelOffset" : { "x" : -55, "y" : 20 }
+      },
+      "connect" : { "id" : "f85", "to" : "f78" }
+    }, {
+      "id" : "f78",
+      "type" : "Script",
+      "name" : "Set data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "in.isFinishLoadCharts = false;",
+            "in.selectedItemOfDrilldown = null; // clear value drilldown expiry chart"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 888, "y" : 864 }
+      },
+      "connect" : { "id" : "f86", "to" : "f82" }
+    }, {
+      "id" : "f82",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 1120, "y" : 864 }
+      }
+    }, {
+      "id" : "f87",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "goToCasesByCategoryList(StatisticChart,CaseQuery)",
+      "config" : {
+        "callSignature" : "goToCasesByCategoryList",
+        "input" : {
+          "params" : [
+            { "name" : "selectedStatisticChart", "type" : "ch.ivy.addon.portalkit.statistics.StatisticChart" },
+            { "name" : "caseQuery", "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery" }
+          ],
+          "map" : {
+            "out.caseQuery" : "param.caseQuery",
+            "out.selectedStatisticChart" : "param.selectedStatisticChart"
+          }
+        },
+        "guid" : "181FBEB9A544AC80"
+      },
+      "visual" : {
+        "at" : { "x" : 704, "y" : 952 },
+        "labelOffset" : { "x" : -64, "y" : 14 }
+      },
+      "connect" : { "id" : "f89", "to" : "f94" }
+    }, {
+      "id" : "f88",
+      "type" : "SubProcessCall",
+      "name" : "Navigator",
+      "config" : {
+        "processCall" : "Functional Processes/Navigator:viewCaseForAnalytic(String,ch.ivyteam.ivy.workflow.query.CaseQuery)",
+        "call" : {
+          "params" : [
+            { "name" : "chartName", "type" : "String" },
+            { "name" : "caseQuery", "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery" }
+          ],
+          "map" : {
+            "param.chartName" : "in.chartNameOfCurrentLanguage",
+            "param.caseQuery" : "in.caseQuery"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1128, "y" : 952 }
+      }
+    }, {
+      "id" : "f90",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 968, "y" : 1072 }
+      },
+      "connect" : [
+        { "id" : "f93", "to" : "f94", "condition" : "in.isDrilldownToCaseList" },
+        { "id" : "f95", "to" : "f92" }
+      ]
+    }, {
+      "id" : "f91",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "onSelectDrilldownCasesByCategory(Boolean,StatisticChart,CaseQuery)",
+      "config" : {
+        "callSignature" : "onSelectDrilldownCasesByCategory",
+        "input" : {
+          "params" : [
+            { "name" : "isDrilldownToCaseList", "type" : "Boolean" },
+            { "name" : "selectedStatisticChart", "type" : "ch.ivy.addon.portalkit.statistics.StatisticChart" },
+            { "name" : "caseQuery", "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery" }
+          ],
+          "map" : {
+            "out.caseQuery" : "param.caseQuery",
+            "out.isDrilldownToCaseList" : "param.isDrilldownToCaseList",
+            "out.selectedStatisticChart" : "param.selectedStatisticChart"
+          }
+        },
+        "guid" : "182010C71CA41ADF"
+      },
+      "visual" : {
+        "at" : { "x" : 704, "y" : 1072 },
+        "labelOffset" : { "x" : -63, "y" : 28 }
+      },
+      "connect" : { "id" : "f97", "to" : "f90" }
+    }, {
+      "id" : "f92",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 1176, "y" : 1072 }
+      }
+    }, {
+      "id" : "f94",
+      "type" : "Script",
+      "name" : "Get chart name",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.StatisticService;",
+            "",
+            "StatisticService service = StatisticService.getInstance();",
+            "in.chartNameOfCurrentLanguage = service.getDisplayNameInUserLanguageForChart(in.selectedStatisticChart).getValue();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 968, "y" : 952 }
+      },
+      "connect" : { "id" : "f96", "to" : "f88" }
     } ]
 }

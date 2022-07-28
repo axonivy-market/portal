@@ -11,7 +11,7 @@
         "case" : {
           "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/leaveRequest\")%>",
           "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"true\"" }
           ]
         },
         "roleExceptionId" : ">>",

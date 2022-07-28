@@ -1,7 +1,7 @@
 {
   "format" : "9.4.14",
   "id" : "1803FB98EA8C752D",
-  "data" : "ch.ivy.addon.portal.generic.dashboard.component.DashboardCreationMenu.DashboardCreationMenuData",
+  "data" : "ch.ivy.addon.portal.generic.dashboard.component.DashboardTemplateSelection.DashboardTemplateSelectionData",
   "kind" : "HTML_DIALOG",
   "elements" : [ {
       "id" : "f0",

@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.17",
   "id" : "1657E6622F0C0122",
   "data" : "_com.axonivy.portal.developerexamples.LoadSubMenuItemsOverrideData",
   "kind" : "CALLABLE_SUB",
@@ -76,7 +76,7 @@
             "  userExampleGuide.setName(\"ExampleGuide\");",
             "  userExampleGuide.setLabel(\"User example guide\");",
             "  userExampleGuide.setMenuKind(MenuKind.CUSTOM);",
-            "  userExampleGuide.setLink(userExampleGuideLink);",
+            "  userExampleGuide.setLink(userExampleGuideLink + \"?embedInFrame\");",
             "  in.subMenuItems.add(userExampleGuide);",
             "}",
             "",

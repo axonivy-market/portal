@@ -7,7 +7,7 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
-import com.axonivy.portal.selenium.page.NewDashboardConfigurationPage;
+import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
@@ -643,13 +643,13 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
   private void backToNewDashboardPage() {
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
-    NewDashboardConfigurationPage newDashboardConfigurationPage = newDashboardDetailsEditPage.backToConfigurationPage();
-    newDashboardPage = newDashboardConfigurationPage.navigateToNewDashboardPage();
+    var configurationPage = newDashboardDetailsEditPage.backToConfigurationPage();
+    newDashboardPage = configurationPage.backToHomePage();
   }
 
   private NewDashboardDetailsEditPage navigateToEditDashboardDetails() {
-    newDashboardPage.openDashboardConfigurationDialog();
-    NewDashboardConfigurationPage configPage = newDashboardPage.navigateToEditPublicDashboardPage();
-    return configPage.navigateToEditDashboardDetailsByName("Dashboard");
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    return modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
   }
 }

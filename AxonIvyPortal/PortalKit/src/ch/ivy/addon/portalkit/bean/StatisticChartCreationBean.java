@@ -17,6 +17,7 @@ import org.primefaces.model.charts.bar.BarChartModel;
 import org.primefaces.model.charts.donut.DonutChartModel;
 
 import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
+import ch.ivy.addon.portalkit.bo.CaseCategoryStatistic;
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
@@ -46,11 +47,12 @@ public class StatisticChartCreationBean implements Serializable {
   private DonutChartModel caseByFinishedTaskModel;
   private BarChartModel taskByExpiryModel;
   private BarChartModel elapsedTimeModel;
+  private BarChartModel casesByCategoryModel;
   private StatisticService statisticService;
   private Map<String, List<String>> customFieldFilters = new HashMap<>();
 
   public static final int CASE_CATEGORIES_TYPE = 0;
-  public static final int MINIMUM_POLLING = 10;
+  public static final int MINIMUM_STATISTIC_CHART_SCALING_INTERVAL = 10;
 
   @PostConstruct
   public void init() {
@@ -69,6 +71,7 @@ public class StatisticChartCreationBean implements Serializable {
     caseByFinishedTaskModel = statisticService.createDonutChartPlaceholder();
     taskByExpiryModel = statisticService.createBarChartPlaceholder();
     elapsedTimeModel = statisticService.createBarChartPlaceholder();
+    casesByCategoryModel = statisticService.createBarChartPlaceholder();
   }
 
   /**
@@ -312,6 +315,17 @@ public class StatisticChartCreationBean implements Serializable {
     ElapsedTimeStatistic elapsedTimeStatisticData = statisticService.getElapsedTimeStatisticData(caseQuery);
     setElapsedTimeModel(statisticService.generateElapsedTimeModel(elapsedTimeStatisticData, false));
   }
+  
+  /**
+   * Create model for "Cases by Category" chart from given statistic filter
+   * 
+   * @param filter statistic filter
+   */
+  public void updateCasesByCategoryModel(StatisticFilter filter) {
+    CaseQuery caseQuery = StatisticChartQueryUtils.generateCaseQueryForCasesByCategoryChart(filter, null);
+    CaseCategoryStatistic caseCategoryStatisticData = statisticService.getCasesByCategoryStatisticData(caseQuery,filter.getCaseCategories().getCategoryPaths());
+    casesByCategoryModel = statisticService.generateCasesByCategoryModel(caseCategoryStatisticData, false);
+  }
 
   public DonutChartModel getTaskByPriorityModel() {
     return taskByPriorityModel;
@@ -361,7 +375,15 @@ public class StatisticChartCreationBean implements Serializable {
     this.caseByFinishedTimeModel = caseByFinishedTimeModel;
   }
 
-  public List<String> populateCustomStringFieldAutoComplete(String query) {
+  public BarChartModel getCasesByCategoryModel() {
+    return casesByCategoryModel;
+  }
+
+  public void setCasesByCategoryModel(BarChartModel casesByCategoryModel) {
+    this.casesByCategoryModel = casesByCategoryModel;
+  }
+
+public List<String> populateCustomStringFieldAutoComplete(String query) {
     Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
     String fieldName = params.get("fieldName");
     return statisticService.getCustomFields(fieldName, query);
@@ -371,15 +393,12 @@ public class StatisticChartCreationBean implements Serializable {
     this.customFieldFilters.put(customFieldName, values);
   }
   
-  public long getStatisticChartsPolling() {
-    String clientSideTimeoutInMinute = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.STATISTIC_CHARTS_POLLING);
-    if (StringUtils.isNotBlank(clientSideTimeoutInMinute)) {
-      return Long.valueOf(clientSideTimeoutInMinute);
-    }
-    return 0;
+  public long getStatisticChartScalingInterval() {
+    String statisticChartScalingInterval = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.STATISTIC_CHART_SCALING_INTERVAL);
+    return StringUtils.isNotBlank(statisticChartScalingInterval) ? Long.valueOf(statisticChartScalingInterval) : 0;
   }
-  
-  public int getMinimumPolling() {
-    return MINIMUM_POLLING;
+
+  public int getMinimumStatisticChartScalingInterval() {
+    return MINIMUM_STATISTIC_CHART_SCALING_INTERVAL;
   }
 }

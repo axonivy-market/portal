@@ -1,4 +1,4 @@
-package ch.ivy.addon.portalkit.util;
+package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
 

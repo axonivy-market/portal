@@ -8,22 +8,24 @@
   <cc:attribute name="statisticChartList" required="true" />
   <cc:attribute name="drilldownListener" required="true" method-signature="void handleEvent(javax.faces.event.FacesEvent)" />
   <cc:attribute name="drillDownExpiryChartListener" required="true" method-signature="void handleEvent(javax.faces.event.FacesEvent)" />
+  <cc:attribute name="drillDownCasesByCategoryListener" required="true" method-signature="void handleEvent(javax.faces.event.FacesEvent)" />
   <cc:attribute name="isDrilldownElapsedTime" default="false" />
   <cc:attribute name="isDrilldownExpiryChart" default="false" />
   <cc:attribute name="showTaskListImmediately" default="false" />
   <cc:attribute name="isBackFromDrilldown" default="false" />
+  <cc:attribute name="isDrilldownCasesByCategory" default="false" />
   <cc:facet name="emptyDataPlace" shortDescription="user can override empty message with this place" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="idChartDisplay" value="#{data.isCompactMode ? 'statistic-carousel-container':'statistic-chart-repeater-container'}" scope="request"/>
-  <c:set var="statisticChartsPolling" value="#{statisticChartCreationBean.statisticChartsPolling}" scope="request"/>
-  <c:set var="minimumPolling" value="#{statisticChartCreationBean.minimumPolling}" scope="request"/>
+  <c:set var="statisticChartScalingInterval" value="#{statisticChartCreationBean.statisticChartScalingInterval}" scope="request"/>
+  <c:set var="minimumStatisticChartScalingInterval" value="#{statisticChartCreationBean.minimumStatisticChartScalingInterval}" scope="request"/>
   <f:event listener="#{logic.initialize(cc.attrs.statisticChartList,cc.attrs.showTaskListImmediately, cc.attrs.isBackFromDrilldown, cc.attrs.compactMode, cc.attrs.isDrilldownExpiryChart)}"
     type="preRenderComponent" />
   <h:panelGroup id="statistic-container" layout="block" styleClass="ui-g-12 u-padding-0">
     <h:panelGroup id="statistic-dashboard-expand-mode" layout="block"
-      styleClass="statistic-dashboard-expand-mode #{cc.attrs.isDrilldownExpiryChart ? 'task-by-expiry-drilldown-mode' : ''}"
+      styleClass="statistic-dashboard-expand-mode #{(cc.attrs.isDrilldownExpiryChart or cc.attrs.isDrilldownCasesByCategory ) ? 'task-by-expiry-drilldown-mode' : ''}"
       rendered="#{!cc.attrs.compactMode and !cc.attrs.isDrilldownElapsedTime}">
       <div class="ui-g">
         <div class="ui-g-12 u-padding-0">
@@ -42,7 +44,7 @@
                             actionListener="#{logic.selectChart(chart)}" update="#{p:resolveFirstComponentWithId('chart-details-dialog', view).clientId}" oncomplete="PF('chart-details-dialog').show();" />
                       </h:panelGroup>
 
-                      <h:panelGroup layout="block" styleClass="chart-actions-container portal-icon-container" rendered="#{!cc.attrs.isDrilldownExpiryChart and !chart.isPublic}">
+                      <h:panelGroup layout="block" styleClass="chart-actions-container portal-icon-container" rendered="#{!cc.attrs.isDrilldownExpiryChart and !chart.isPublic and !cc.attrs.isDrilldownCasesByCategory}">
                         <p:commandLink styleClass="si si-arrow-left-1 chart-action ui-sm-hidden" actionListener="#{logic.moveLeft(chart)}"
                           update="@([id$='statistic-container'])" rendered="#{chartStatus.index > data.numberOfDefaultCharts}" />
                         <p:commandLink styleClass="si si-arrow-right-1 chart-action ui-sm-hidden" actionListener="#{logic.moveRight(chart)}"
@@ -109,6 +111,25 @@
                         <f:attribute name="selectedChartId" value="#{chart.id}" />
                         <p:ajax event="itemSelect" listener="#{statisticDashboardBean.drilldownCaseByState}" />
                       </p:donutChart>
+                      
+                       <p:barChart styleClass="statistic-chart dashboard-statistic-chart-cases-by-category" model="#{chart.barChartModel}"
+                        rendered="#{statisticDashboardBean.isCasesByCategory(chart)}" >
+                        <f:attribute name="selectedChartId" value="#{chart.id}" />
+                        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.onSelectDrilldownCasesByCategory}" global="false" />
+                      </p:barChart>
+                      
+                      <p:overlayPanel styleClass="context-menu-#{chartStatus.index} expiry-chart-context-menu options-panel"
+                        widgetVar="context-menu-#{chartStatus.index}"
+                        rendered="#{statisticDashboardBean.isCasesByCategory(chart)}"
+                        onShow="updateDrillDownPanelPosition(this);">
+                        <p:commandLink id="cases-by-category-chart-drill-down" styleClass="js-cases-by-category-chart-drill-down option-item"
+                          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/contextMenuDrilldown')}"
+                          action="#{cc.attrs.drillDownCasesByCategoryListener}" actionListener="#{statisticDashboardBean.drilldownCasesByCategory}"
+                          update="@([id$='create-chart-header']) #{p:resolveFirstComponentWithId('widget-container', view).clientId}"/>
+                        <p:commandLink id="cases-by-category-chart-case-list" styleClass="js-cases-by-category-chart-drill-down option-item"
+                          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/contextMenuToCaseList')}"
+                          actionListener="#{statisticDashboardBean.goToCasesByCategoryList}" />
+                      </p:overlayPanel>
                     </div>
                   </div>
 
@@ -137,8 +158,9 @@
       global="false" action="#{logic.generateChartModel}" async="true"
       immediate="true" process="@this" partialSubmit="true"/>
 
-    <p:poll id="chart_model_poll" interval="#{statisticChartsPolling}" update="@([id$=#{idChartDisplay}])" global="false"
-      process="@this" partialSubmit="true" async="true" immediate="true" listener="#{logic.regenerateChartModel(data.statisticChartList)}" rendered="#{statisticChartsPolling ge minimumPolling}"/>
+    <p:poll id="chart_model_poll" interval="#{statisticChartScalingInterval}" update="@([id$=#{idChartDisplay}])" global="false"
+      process="@this" partialSubmit="true" async="true" immediate="true" listener="#{logic.regenerateChartModel(data.statisticChartList)}"
+      rendered="#{statisticChartScalingInterval ge minimumStatisticChartScalingInterval and !cc.attrs.isDrilldownExpiryChart and !cc.attrs.isDrilldownCasesByCategory}" />
 
     <p:remoteCommand rendered="#{cc.attrs.compactMode}" name="updateStatisticCarousel" update="@([id$='statistic-carousel-container'])" 
       global="false" immediate="true" process="@this" partialSubmit="true"/>
