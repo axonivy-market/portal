@@ -266,13 +266,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: Set to false to disable link to Show Information of process on Processes page (grid mode) and Case Details.
       showTaskDurationTime: For switch on/off the display of the duration time in task details page.
       showUserGuide: 'Activates the interactive user guide "first steps" in the portal at first login. '
-      statisticChartsPolling: Set this property less than 10 to disable updating live statistic chart with polling. Default value is 0, It means live chart polling is disabled, Set this property more than or equal 10 to enable updating live chart
+      statisticChartScalingInterval: Interval in seconds to do periodic statistic chart scaling requests. If the interval value is less than 10, periodic statistic chart scaling is disabled.
       uploadDocumentWhiteListExtensionNote: 'Leave value empty if you allow all extensions. If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.'
     key: Key
     link: Link
     loading: LOADING
     loginLogoSizeTooltip: 'Recommended size<BR/>Square logo: 80x80 px<BR/>Rectangle logo: 191x50 px'
-    logoScalingTooltip: Logo width scaling depends on its height scaling percent
     logoSizeRecommendation:
       homeRectangleSize: 'Rectangle logo: 160x42 px'
       homeSquareSize: 'Square logo: 75x75 px'
@@ -394,6 +393,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   common:
     BusinessCaseInformation: Business Case Information
     CollapseAll: Collapse all
+    DefaultTemplate: Default template
     ExpandAll: Expand all
     NoSelection: No Selection
     ResetToDefaultHeaderText: Reset to default settings?
@@ -698,6 +698,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticWidget:
       chartDeletionConfirmation: Are you sure you want to delete this statistic chart?
       contextMenuDrilldown: Drilldown
+      contextMenuToCaseList: Go to case list
       contextMenuToTaskList: Go to task list
     taskStart:
       cannotDelegateTaskMessage: This task cannot be delegated to any other user or group.
@@ -726,18 +727,26 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Public
       savedFilters: 'Saved filters:'
   dashboard:
-    DashboardConfigurationDialog:
-      ConfigureDashboard: Dashboard configuration
+    DashboardConfiguration:
       CreateFromScratch: Create from scratch
       CreateFromScratchDescription: Create your own dashboard from scratch
       CreateNewPrivateDashboard: Create new private dashboard
       CreateNewPublicDashboard: Create new public dashboard
+      DefaultTemplateDescription: Create dashboard with 1 Task list, 1 Case list, and 1 Process list
+      Description: In this area, you can configure the dashboards according to your requirements.
+      DoNotSupportMobile: Dashboard configuration is not supported for mobile devices.
       EditPrivateDashboards: Edit your private dashboards
       EditPublicDashboards: Edit public dashboards
+      PrivateDashboard: Private dashboards
       PrivateDashboardConfiguration: Private dashboard configuration
+      PublicDashboard: Public dashboards
       PublicDashboardConfiguration: Public dashboard configuration
       ReorderPrivateDashboards: Reorder your dashboards
       ReorderPublicDashboards: Reorder public dashboards
+      SelectAction: Select the action
+      Title: Dashboard configuration
+      TwoTaskTemplate: Two Task list dashboard
+      TwoTaskTemplateDescription: Create dashboard with 2 Task lists and 1 Process list
     EmptyFilterMessage: No widget filter found
     Filter:
       FilterOptionHeader: Filter options
@@ -780,6 +789,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CustomWidgetExternalLinkWarning: Some websites are not compatible with iframe due to security concerns. Please contact your administrator if the external website is not working properly.
       Parameters: Parameters
       RestoreDefaultDashboardTemplateTooltip: We cannot find the template of your dashboard, so we cannot reset it to the standard configuration. Please check with your administrator for more details!
+      SelectTheTemplate: Select the template
       SelectYourTemplate: Select your template
       configuration: Configuration
       configurationDescription: You can configure your widget in this configuration area. Please define the required filters as well as columns to be shown.
@@ -805,10 +815,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Edit dashboard
       manageDashboard: Manage dashboard
       removeDashboardHeader: Remove the "{0}" dashboard
-      reorderDashboard: Reorder dashboard
     deleteWidget: Delete widget
-    editPrivateDashboard: Edit private dashboard
-    editPublicDashboard: Edit public dashboard
     editWidget: Edit widget
     existingField: The {0} field has already been existing
     expiryFrom: Expiry From
@@ -852,8 +859,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     removeWidgetMessage: Do you really want to remove it?
     reorder:
       dashboardType: Dashboard type
-      reorderMyDashboard: Reorder my dashboard
-      reorderPublicDashboard: Reorder public dashboard
     restoreDefaultHeader: Restore to default widgets
     restoreDefaultMessage: If you proceed, you will loose all widgets created by yourself. The standard settings will be applied.
     select: Select
@@ -1135,6 +1140,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       caseByFinishedTime: Done cases in time period
       caseByFinishedTimeDescription: Cases which are done in the selected time period
       caseByState: Case by state
+      casesByCategory: Cases by category
       elapsedTimeByCaseCategory: Elapsed time of done cases
       elapsedTimeByCaseCategoryDescription: Elapsed time of finished cases by category
       taskByExpiry: Task by expiry
@@ -1384,7 +1390,6 @@ Dialogs:
       TaskName: Express workflow creation in progress
     TaskDetail:
       DataDescription: Data and Description
-      customPanel: Custom Panel
       restoreToDefaultSettings: Restore to default settings
       switchToEditMode: Edit
       switchToViewMode: Save
@@ -1474,7 +1479,6 @@ Dialogs:
     maxOptionsLength: '20'
   workflowCreation:
     AdhocProcessName: AdHoc Process for Task {0} - {1}
-    DefaultTemplateDialogHeader: Default template
     FormDefinition:
       AddCheckboxField: Add new field
       AddOptionboxField: Append new option

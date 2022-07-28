@@ -22,6 +22,9 @@ public class StatisticChartDrilldownUtils {
   public static final String PREVIOUS_SELECTED_MONTH_FIELD = "#{data.previousSelectedMonth}";
   public static final String PREVIOUS_SELECTED_WEEK_FIELD = "#{data.previousSelectedWeek}";
   public static final String PREVIOUS_SELECTED_DAY_FIELD = "#{data.previousSelectedDay}";
+  public static final String DRILLDOWN_CASES_BY_CATEGORY_METHOD = "#{logic.drilldownCasesByCategory}";
+  public static final String TO_CASES_BY_CATEGORY_CASE_LIST_METHOD = "#{logic.goToCasesByCategoryList}";
+  public static final String ONSELECT_DRILLDOWN_CASES_BY_CATEGORY_METHOD = "#{logic.onSelectDrilldownCasesByCategory}";
 
   public static void drilldownTaskByPriority(ItemSelectEvent event, StatisticChart chart) {
     var taskQuery = StatisticChartQueryUtils.getQueryForSelectedItemOfTaskByPriorityChart(event, chart);
@@ -60,6 +63,24 @@ public class StatisticChartDrilldownUtils {
   public static void drilldownTaskByExpiry(ItemSelectEvent event, StatisticChart chart) {
     var selectedItemOfDrilldown = StatisticService.getSelectedValueOfBarChart(event);
     callIvyComponentLogic(DRILLDOWN_TASK_EXPIRY_METHOD, new Object[] {chart, selectedItemOfDrilldown});
+  }
+  
+  public static void onSelectDrilldownCasesByCategory(ItemSelectEvent event, StatisticChart chart) {
+    var selectedDrilldownItem = StatisticService.getSelectedValueOfBarChart(event);
+    var isDrilldownToCaseList = StatisticService.hasChildNode(selectedDrilldownItem);
+    var caseQuery = StatisticChartQueryUtils.getQueryForSelectedItemByCasesByCategory(event, chart);
+    callIvyComponentLogic(ONSELECT_DRILLDOWN_CASES_BY_CATEGORY_METHOD,
+        new Object[] {isDrilldownToCaseList, chart, caseQuery});
+  }
+  
+  public static void drilldownCasesByCategory(ItemSelectEvent event, StatisticChart chart) {
+    var selectedItemOfDrilldown = StatisticService.getSelectedValueOfBarChartCasesByCategory(event);
+    callIvyComponentLogic(DRILLDOWN_CASES_BY_CATEGORY_METHOD, new Object[] {chart, selectedItemOfDrilldown});
+  }
+  
+  public static void toCasesByCategoryCaseList(ItemSelectEvent event, StatisticChart chart) {
+    var casesQuery = StatisticChartQueryUtils.getQueryForSelectedItemByCasesByCategory(event, chart);
+    callIvyComponentLogic(TO_CASES_BY_CATEGORY_CASE_LIST_METHOD, new Object[] {chart, casesQuery});
   }
 
   private static TaskQuery generateQueryForTaskByExpiry(ItemSelectEvent event, StatisticChart statisticChart) {

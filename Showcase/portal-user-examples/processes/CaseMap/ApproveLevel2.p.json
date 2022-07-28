@@ -14,7 +14,7 @@
             "timeout" : "new Duration(\"8h\")"
           },
           "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"true\"" }
           ]
         },
         "showInStartList" : false,

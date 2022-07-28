@@ -10,6 +10,7 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.codeborne.selenide.Condition;
 
@@ -36,7 +37,9 @@ public class DashboardColumnManagementTest extends BaseTest {
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
 
-    newDashboardPage.navigateToEditPublicDashboardPage("Dashboard");
+    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 
     CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
     caseEditWidget.preview();

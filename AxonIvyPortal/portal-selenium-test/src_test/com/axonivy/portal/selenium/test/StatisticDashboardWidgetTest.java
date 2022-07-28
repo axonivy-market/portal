@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
-import com.axonivy.portal.selenium.page.NewDashboardConfigurationPage;
+import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.codeborne.selenide.CollectionCondition;
@@ -58,8 +58,36 @@ public class StatisticDashboardWidgetTest extends BaseTest {
 
   private NewDashboardDetailsEditPage gotoEditPublicDashboardPage() {
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
-    newDashboardPage.openDashboardConfigurationDialog();
-    NewDashboardConfigurationPage configPage = newDashboardPage.navigateToEditPublicDashboardPage();
-    return configPage.navigateToEditDashboardDetailsByName("Dashboard");
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    return modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+  }
+  
+  @Test
+  public void testShowChartCasesByCategoryInfo() {
+    login(TestAccount.ADMIN_USER);
+    createJSonFile("dashboard-has-chart-cases-by-category.json", PortalVariable.DASHBOARD.key);
+    redirectToRelativeLink(createTestingTasksUrl);
+    var chartWidget = newDashboardPage.selectStatisticWidget();
+    var chartName = chartWidget.getChartName(0);
+    assertTrue(StringUtils.equalsIgnoreCase("Cases by Category", chartName));
+    var infoIcon = chartWidget.getStatisticInfoIconOfChart(0);
+    infoIcon.should(Condition.appear);
+    chartWidget.openStatisticInfoPanel(0);
+    var chartFilter = chartWidget.countFilterOfStatistic(0);
+    chartFilter.shouldHave(CollectionCondition.sizeGreaterThanOrEqual(4));
+  }
+  
+  @Test
+  public void testEditCasesByCategoryChart() {
+    login(TestAccount.ADMIN_USER);
+    createJSonFile("dashboard-has-chart-cases-by-category.json", PortalVariable.DASHBOARD.key);
+    redirectToRelativeLink(createTestingTasksUrl);
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
+    var chartWidget = newDashboardDetailsEditPage.selectStatisticWidget();
+    chartWidget.getEditIconOfChart(0).shouldBe(Condition.visible, Condition.enabled);
+    var editChartDialog = chartWidget.openEditStatisticWidgetDialog(0);
+    assertTrue(StringUtils.equalsIgnoreCase(editChartDialog, "Edit Widget Configuration"));
+    chartWidget.clickOnCancelConfiguration();
   }
 }

@@ -268,8 +268,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: Définissez la valeur false pour désactiver le lien vers l'option Afficher les informations du processus sur la page processus (mode grille) et détails du cas.
       showTaskDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de la tâche.
       showUserGuide: 'Active le guide d''utilisation interactif "premiers pas" dans le portail lors de la première connexion. '
-      statisticChartsPolling: Définissez cette propriété inférieure à 10 pour désactiver la mise à jour du graphique de statistiques en temps réel avec l'interrogation. La valeur par défaut est 0, ce qui signifie que l'interrogation du graphique en temps réel est désactivée, définissez cette propriété
-        supérieure ou égale à 10 pour activer la mise à jour du graphique en temps réel.
+      statisticChartScalingInterval: Intervalle en secondes pour effectuer les demandes de mise à l'échelle périodique des graphiques statistiques. Si la valeur de l'intervalle est inférieure à 10, la mise à l'échelle périodique des graphiques statistiques est désactivée.
       uploadDocumentWhiteListExtensionNote: 'Laissez la valeur vide si vous autorisez toutes les extensions. Si juste autoriser quelques extensions, listez les extensions ici, séparées par des virgules. Exemple: pdf, txt, doc, docx.'
     key: Clé
     link: Lien
@@ -396,6 +395,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   common:
     BusinessCaseInformation: Informations sur les cas d'affaires
     CollapseAll: Réduire tout
+    DefaultTemplate: Modèle standard
     ExpandAll: Ouvrir tout
     NoSelection: Aucune sélection
     ResetToDefaultHeaderText: Réinitialiser les paramètres par défaut ?
@@ -562,6 +562,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     theCasemap: La carte des cas
     theProcess: Le processus
     timeInformation: Informations sur le temps
+    timestamp: Horodatage
     type: Type
     typeAdmin: Tous les administrateurs
     typeAllUsers: Tous les utilisateurs
@@ -684,6 +685,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         title: Tâches
       username:
         content: En cliquant sur le nom d'utilisateur, vous pouvez définir les absences, la langue, les paramètres du courrier électronique, etc.
+        title: Nom d'utilisateur
       welcome:
         content: 'Nous voulons vous aider à prendre un bon début avec le portail. Pour cela, nous voulons vous guider à travers les premières actions que vous pouvez faire. En outre, vous trouverez ici une documentation détaillée pour les utilisateurs, y compris un "Guide pratique" : <a href="{0}" target="_blank">Guide
           pratique du portail</a>'
@@ -694,6 +696,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticWidget:
       chartDeletionConfirmation: Êtes-vous sûr de vouloir supprimer cette statistique?
       contextMenuDrilldown: Drilldown
+      contextMenuToCaseList: Aller à la liste des affaires
       contextMenuToTaskList: Aller à la liste des tâches
     taskStart:
       cannotDelegateTaskMessage: Cette tâche ne peut pas être déléguée ä un autre utilisateur ou une autre groupe.
@@ -722,18 +725,26 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Publique
       savedFilters: 'Filtres enregistrés:'
   dashboard:
-    DashboardConfigurationDialog:
-      ConfigureDashboard: Configuration du tableau de bord
+    DashboardConfiguration:
       CreateFromScratch: Créer à partir de rien
-      CreateFromScratchDescription: Create your own dashboard from scratch
-      CreateNewPrivateDashboard: Create new private dashboard
+      CreateFromScratchDescription: Créez votre propre tableau de bord à partir de zéro
+      CreateNewPrivateDashboard: Créer un nouveau tableau de bord privé
       CreateNewPublicDashboard: Créer un nouveau tableau de bord public
+      DefaultTemplateDescription: Créer un tableau de bord avec une liste de tâches, une liste de cas et une liste de processus.
+      Description: Dans cette zone, vous pouvez configurer les tableaux de bord en fonction de vos besoins.
+      DoNotSupportMobile: La configuration du tableau de bord n'est pas prise en charge pour les appareils mobiles.
       EditPrivateDashboards: Modifier vos tableaux de bord privés
       EditPublicDashboards: Modifier les tableaux de bord publics
+      PrivateDashboard: Tableaux de bord privés
       PrivateDashboardConfiguration: Configuration des tableaux de bord privés
+      PublicDashboard: Tableaux de bord publics
       PublicDashboardConfiguration: Configuration des tableaux de bord publics
       ReorderPrivateDashboards: Réorganiser vos tableaux de bord
       ReorderPublicDashboards: Réorganiser les tableaux de bord publics
+      SelectAction: Sélectionnez l'action
+      Title: Configuration du tableau de bord
+      TwoTaskTemplate: Tableau de bord de deux listes de tâche
+      TwoTaskTemplateDescription: Créez un tableau de bord avec 2 listes de tâches et 1 liste de processus.
     EmptyFilterMessage: Aucun filtre de widget trouvé
     Filter:
       FilterOptionHeader: Options de filtre
@@ -776,6 +787,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CustomWidgetExternalLinkWarning: Certains web sites ne sont pas compatibles avec les iframe pour des raisons de sécurité. Veuillez contacter votre administrateur si le web site externe ne fonctionne pas correctement.
       Parameters: Paramètres
       RestoreDefaultDashboardTemplateTooltip: Nous ne trouvons pas le modèle de votre tableau de bord, nous ne pouvons donc pas le réinitialiser à la configuration standard. Veuillez vérifier auprès de votre administrateur pour plus de détails!
+      SelectTheTemplate: Sélectionnez le modèle
       SelectYourTemplate: Sélectionnez votre template
       configuration: Configuration
       configurationDescription: Vous pouvez configurer votre widget dans cette zone de configuration. Veuillez définir les filtres requis ainsi que les colonnes à afficher.
@@ -801,10 +813,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Modifier le tableau de bord
       manageDashboard: Gérer le tableau de bord
       removeDashboardHeader: Supprimez le tableau de bord "{0}".
-      reorderDashboard: Réorganiser le tableau de bord
     deleteWidget: Supprimer le widget
-    editPrivateDashboard: Modifier le tableau de bord privé
-    editPublicDashboard: Modifier le tableau de bord public
     editWidget: Modifier le widget
     existingField: Le champ {0} a déjà été créé
     expiryFrom: Expiration du
@@ -848,8 +857,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     removeWidgetMessage: Voulez-vous vraiment le supprimer ?
     reorder:
       dashboardType: Type de tableau de bord
-      reorderMyDashboard: Réorganiser mon tableau de bord
-      reorderPublicDashboard: Réorganiser le tableau de bord public
     restoreDefaultHeader: Restaurer les widgets par défaut
     restoreDefaultMessage: Si vous procédez ainsi, vous perdrez tous les widgets créés par vous-même. Les paramètres standard seront appliqués.
     select: Sélectionnez
@@ -906,6 +913,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     '404': 404 Page non trouvée
     404Message: Désolé, la ressource que vous recherchez n'existe pas
     '500': Erreur 500
+    500Message: Nous sommes désolés, il y a eu un problème pour servir la page demandée.
     backToHomePage: Retourner à la page d'accueil
     title: Page d'erreur
   exceptionDialog:
@@ -1130,6 +1138,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       caseByFinishedTime: Cas traités dans le temps
       caseByFinishedTimeDescription: Cas qui se font dans la période sélectionnée
       caseByState: Cas par état
+      casesByCategory: Affaires par catégorie
       elapsedTimeByCaseCategory: Temps écoulé des cas accomplis
       elapsedTimeByCaseCategoryDescription: Temps écoulé des cas finis par catégorie
       taskByExpiry: Tâche par échéance
@@ -1353,6 +1362,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     myProfileTitle: Mon profil
     saveUserSettingsSuccessfully: Les paramètres de l'utilisateur ont été enregistrés avec succès.
   warningBeforeLostSession:
+    extend: Étendre le site
     warningMessage: Votre session expirera dans 1 minute. Voulez-vous prolonger?
 Dialogs:
   Cases:
@@ -1465,7 +1475,6 @@ Dialogs:
       maximumFileUploadElement: Il existe déjà un élément de téléchargement de fichiers
   workflowCreation:
     AdhocProcessName: AdHoc processues pour tâche {0} - {1}
-    DefaultTemplateDialogHeader: Modèle standard
     FormDefinition:
       AddCheckboxField: Ajouter un nouveau champs
       AddOptionboxField: Ajouter une nouvelle option
@@ -1474,6 +1483,7 @@ Dialogs:
       BroadHeaderArea: En-tête large
       CheckboxFields: Champs de cases à cocher
       CreateField: Créer
+      DataProvider: Fournisseur de données
       DragAndDropTooltip: Veuillez placer les éléments disponibles par glisser/déposer  dans l’en-tête, dans la colonne de droite ou en pied de page.
       ElementLabel: Label
       ElementName: Nom de l’élément
@@ -1502,6 +1512,7 @@ Dialogs:
         TextBox: Champ de texte
       LeftColumn: Colonne de gauche
       NoCheckboxFieldYet: Aucun type de champ de case d’option à cocher n’est pour l’instant défini
+      NoDataProvider: Fournisseur de données statiques spéciales
       NoFormelementsAvailable: Aucun élément de formulaire n’est disponible !
       NoOptionboxFieldsYet: Aucun type de case d’’option à cocher n’est pour l’instant défini
       NumberOfFiles: Nombre de fichiers
