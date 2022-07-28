@@ -33,6 +33,7 @@ import com.axonivy.portal.component.dto.UserDTO;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
 import ch.ivy.addon.portalkit.constant.DashboardConstants;
+import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CombinedProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
@@ -198,7 +199,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void removeWidget() {
     if (this.getDeleteWidget() != null) {
       this.getSelectedDashboard().getWidgets().remove(getDeleteWidget());
-      DashboardService.getInstance().save(getSelectedDashboard());
+      saveSelectedDashboard();
     }
   }
 
@@ -342,6 +343,44 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     else {
       portalGridsCurrentRow = Long.valueOf(currentRowNumber);
     }
+  }
+
+  public void save() {
+    var layouts = DashboardWidgetUtils.getWidgetLayoutFromRequest(getRequestParameterMap());
+    for (var layout : layouts) {
+      DashboardWidget updatedWidget = getSelectedDashboard().getWidgets().stream()
+          .filter(w -> w.getId().contentEquals(layout.getId()))
+          .findFirst().get();
+
+      WidgetLayout updatedLayout = new WidgetLayout();
+      updatedLayout.setAxisX(layout.getAxisX());
+      updatedLayout.setAxisY(layout.getAxisY());
+      updatedLayout.setWidth(layout.getWidth());
+      updatedLayout.setHeight(layout.getHeight());
+
+      updatedWidget.setLayout(updatedLayout);
+    }
+    saveSelectedDashboard();
+  }
+
+  public void saveSelectedWidget() {
+    this.dashboards.set(this.dashboards.indexOf(this.getSelectedDashboard()), this.getSelectedDashboard());
+    saveSelectedDashboard();
+  }
+
+  protected void saveSelectedDashboard() {
+    selectedDashboard.getWidgets().forEach(widget -> {
+      DashboardWidgetUtils.simplifyWidgetColumnData(widget);
+    });
+
+    DashboardService.getInstance().save(selectedDashboard);
+    selectedDashboard.getWidgets().forEach(widget -> {
+      DashboardWidgetUtils.buildWidgetColumns(widget);
+    });
+  }
+
+  protected Map<String, String> getRequestParameterMap() {
+    return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
   }
 
   private void updateWidgetPosition(DashboardWidget widget) {

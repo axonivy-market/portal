@@ -87,6 +87,14 @@ public class StatisticChartConstants {
   public static final String DEFAULT_CHART_ICON = "si-pie-line-graph";
   public static final String DONUT_CHART_ICON = "si-analytics-pie-2";
   public static final String BAR_CHART_ICON = "si-analytics-bars";
+  
+  public static final String CATEGORIES_CMS = "/ch.ivy.addon.portalkit.ui.jsf/common/categories";
+  public static final String SELECTED_CATEGORIES = "selectedCategories";
+  public static final String SELECTED_CATEGORY = "selectedCategory";
+  public static final String PARENT_CATEGORY_DELIMITER = "\\\\";
+  public static final String CHILD_CATEGORY_DELIMITER = "\\";
+  public static final String PARENT_CATEGORY_DELIMITER_REGEX = "\\\\\\\\";
+  public static final String CHILD_CATEGORY_DELIMITER_REGEX = "\\\\";
 
   private StatisticChartConstants() {}
 }

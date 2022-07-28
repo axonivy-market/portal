@@ -1,8 +1,5 @@
 package ch.internalsupport;
 
-import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_VARCHAR_FIELD1;
-import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_VARCHAR_FIELD5;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,6 +10,8 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
 
   private static final long serialVersionUID = 7996851327481047161L;
+  public static final String CUSTOM_CUSTOMER_TYPE = "CustomerType";
+  public static final String CUSTOM_CUSTOMER_NAME = "CustomerName";
 
   public CustomizedTaskLazyDataModel() {
     super();
@@ -25,24 +24,24 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
 
   @Override
   public void extendSort(TaskQuery taskQuery) {
-    if ("customVarCharField5".equalsIgnoreCase(criteria.getSortField())) {
+    if (CUSTOM_CUSTOMER_NAME.equalsIgnoreCase(criteria.getSortField())) {
       if (criteria.isSortDescending()) {
-        taskQuery.orderBy().customField().stringField(CUSTOM_VARCHAR_FIELD5).descending();
+        taskQuery.orderBy().customField().stringField(CUSTOM_CUSTOMER_NAME).descending();
       } else {
-        taskQuery.orderBy().customField().stringField(CUSTOM_VARCHAR_FIELD5);
+        taskQuery.orderBy().customField().stringField(CUSTOM_CUSTOMER_NAME);
       }
-    } else if ("customVarCharField1".equalsIgnoreCase(criteria.getSortField())) {
+    } else if (CUSTOM_CUSTOMER_TYPE.equalsIgnoreCase(criteria.getSortField())) {
       if (criteria.isSortDescending()) {
-        taskQuery.orderBy().customField().stringField(CUSTOM_VARCHAR_FIELD1).descending();
+        taskQuery.orderBy().customField().stringField(CUSTOM_CUSTOMER_TYPE).descending();
       } else {
-        taskQuery.orderBy().customField().stringField(CUSTOM_VARCHAR_FIELD1);
+        taskQuery.orderBy().customField().stringField(CUSTOM_CUSTOMER_TYPE);
       }
     }
   }
 
   @Override
   public List<String> getDefaultColumns() {
-    return Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME", "EXPIRY_TIME", "customVarCharField5", "customVarCharField1");
+    return Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME", "EXPIRY_TIME", CUSTOM_CUSTOMER_NAME, CUSTOM_CUSTOMER_TYPE);
   }
   
   @Override

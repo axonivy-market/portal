@@ -39,6 +39,7 @@
     </ui:define>
 
     <ui:define name="additionalRemoteCommand">
+      <p:remoteCommand name="saveConfigurationCommand" actionListener="#{dashboardDetailModificationBean.save()}" global="false" />
       <p:remoteCommand name="addNewDashboardWidgetCommand" actionListener="#{dashboardDetailModificationBean.updatePortalGridsCurrentRow()}"
         global="false" process="@this" partialSubmit="true"/>
 

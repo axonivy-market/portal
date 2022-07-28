@@ -35,7 +35,7 @@ public class StatisticScreenshotTest extends ScreenshotTest {
     newDashboardPage = new NewDashboardPage();
     
     mainMenuPage = newDashboardPage.openMainMenu();
-    ScreenshotUtil.resizeBrowser(new Dimension(1366, 800));
+    ScreenshotUtil.resizeBrowser(new Dimension(1460, 800));
     executeDecorateJs("highlightStatisticNavigation()");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "navigate-to-full-statistics-page");
     ScreenshotUtil.maximizeBrowser();
@@ -44,7 +44,7 @@ public class StatisticScreenshotTest extends ScreenshotTest {
     statisticWidgetPage.switchCreateMode();
     statisticWidgetPage.waitForAllChartLoaded();
     statisticWidgetPage.closeMainMenu();
-    ScreenshotUtil.resizeBrowser(new Dimension(1366, 1680));
+    ScreenshotUtil.resizeBrowser(new Dimension(1366, 2210));
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "chart-creation-page");
     statisticWidgetPage.createTaskByPriorityChart();
     statisticWidgetPage.createTaskByExpiryChart();

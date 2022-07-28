@@ -1,6 +1,6 @@
 package com.axonivy.portal.developerexamples.component.customize.cases;
 
-import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_TIMESTAMP_FIELD1;
+import static com.axonivy.portal.developerexamples.component.customize.CustomizedTaskLazyDataModel.CUSTOM_SHIPMENT_DATE;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -57,11 +57,11 @@ public class ShipmentDateFieldFilter extends CaseFilter {
 
     CaseQuery query = CaseUtils.createBusinessCaseQuery();
     if (fromFinishedDate != null) {
-      query.where().customField().timestampField(CUSTOM_TIMESTAMP_FIELD1).isGreaterOrEqualThan(fromFinishedDate);
+      query.where().customField().timestampField(CUSTOM_SHIPMENT_DATE).isGreaterOrEqualThan(fromFinishedDate);
     }
 
     if (toFinishedDate != null) {
-      query.where().customField().timestampField(CUSTOM_TIMESTAMP_FIELD1).isLowerOrEqualThan(toFinishedDate);
+      query.where().customField().timestampField(CUSTOM_SHIPMENT_DATE).isLowerOrEqualThan(toFinishedDate);
     }
     return query;
   }

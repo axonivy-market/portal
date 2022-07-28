@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.15",
   "id" : "172546E1FDEB1FF7",
   "data" : "ch.ivy.addon.portal.setting.UserProfile.UserProfileData",
   "kind" : "HTML_DIALOG",
@@ -792,5 +792,65 @@
         "size" : { "width" : 128, "height" : 44 }
       },
       "connect" : { "id" : "f17", "to" : "f6" }
+    }, {
+      "id" : "f23",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "completeFormattingLanguage(String)",
+      "config" : {
+        "callSignature" : "completeFormattingLanguage",
+        "result" : {
+          "params" : [
+            { "name" : "result", "type" : "java.util.List<javax.faces.model.SelectItem>" }
+          ],
+          "map" : {
+            "result.result" : "in.formatLanguages"
+          }
+        },
+        "input" : {
+          "params" : [
+            { "name" : "queryLanguage", "type" : "String" }
+          ],
+          "map" : {
+            "out.queryLanguage" : "param.queryLanguage"
+          }
+        },
+        "guid" : "181ECCCA970B553D"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 512 },
+        "labelOffset" : { "x" : -25, "y" : 15 }
+      },
+      "connect" : { "id" : "f27", "to" : "f25" }
+    }, {
+      "id" : "f25",
+      "type" : "Script",
+      "name" : "filter formatting language",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "import javax.faces.model.SelectItem;",
+            "",
+            "List<SelectItem> items = in.language.getFormattingLanguages();",
+            "in.formatLanguages.clear();",
+            "for (SelectItem item: items){",
+            "  if (StringUtils.containsIgnoreCase(item.label, in.queryLanguage)){",
+            "    in.formatLanguages.add(item);",
+            "  }",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 336, "y" : 512 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f29", "to" : "f28" }
+    }, {
+      "id" : "f28",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 496, "y" : 512 }
+      }
     } ]
 }

@@ -88,6 +88,13 @@ public class DashboardStatisticChartBean implements Serializable {
     }
     return StatisticService.getInstance().isTaskByExpiry(chart) && Objects.nonNull(chart.getBarChartModel());
   }
+  
+  public boolean isCasesByCategory(StatisticChart chart) {
+	    if (chart == null) {
+	      return false;
+	    }
+	    return StatisticService.getInstance().isCasesByCategory(chart) && Objects.nonNull(chart.getBarChartModel());
+	  }
 
   public List<StatisticChart> completeStatisticChart(String filter) {
     return getAvailableCharts().stream().filter(chart -> getDisplayChartName(chart).contains(filter))
@@ -148,6 +155,14 @@ public class DashboardStatisticChartBean implements Serializable {
       return;
     }
     StatisticChartDrilldownUtils.toTaskByExpiryTaskList(event, selectedStatisticChart);
+  }
+  
+  public void toCasesByCategoryCaseList(ItemSelectEvent event) {
+    StatisticChart selectedStatisticChart = getSelectedStatisticChart(event);
+    if (selectedStatisticChart == null) {
+      return;
+    }
+    StatisticChartDrilldownUtils.toCasesByCategoryCaseList(event, selectedStatisticChart);
   }
 
 }
