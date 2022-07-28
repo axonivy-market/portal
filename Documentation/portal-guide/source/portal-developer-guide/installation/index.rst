@@ -186,6 +186,8 @@ Migrate 9.3 To 9.4
 
    - :ref:`Migration steps <components-additional-components-migrate-from-old-process-chain>` for the new :ref:`Process Chain <components-additional-component-process-chain>` component.
 
+#. Portal dashboard widgets only support the ``CustomFields`` declared in the ``custom-fields.yaml`` file.
+   If your ``CustomFields`` are used in the dashboard widget, please follow the :dev-url:`Custom Fields Meta Information </doc/nightly/designer-guide/how-to/workflow/custom-fields.html#meta-information>` to adapt the data.
 
 Migrate To 9.3
 --------------
