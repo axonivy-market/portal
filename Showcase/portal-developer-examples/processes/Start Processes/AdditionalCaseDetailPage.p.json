@@ -14,7 +14,7 @@
           "customFields" : [
             { "name" : "CustomDecimalField1", "type" : "Number", "value" : "100" },
             { "name" : "CustomDecimalField2", "type" : "Number", "value" : "2000" },
-            { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime(2018, 1, 1, 1, 1, 1)" },
+            { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime(2018, 1, 1, 1, 1, 1)" },
             { "name" : "CustomTimestampField2", "type" : "Timestamp", "value" : "new DateTime(2018, 2, 2, 2, 2, 2)" },
             { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Apartment A\"" },
             { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"Request for new computer\"" }

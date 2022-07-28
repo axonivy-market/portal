@@ -253,7 +253,7 @@
       "config" : {
         "callSignature" : "createTasksForTaskListCustomization",
         "outLink" : "createTasksForTaskListCustomization.ivp",
-        "startDescription" : "Create 3 tasks, each task has customVarCharField5 and customTimestampField1",
+        "startDescription" : "Create 3 tasks, each task has CustomerName and ShipmentDate",
         "startName" : "Create Tasks For Task List Customization"
       },
       "visual" : {
@@ -304,9 +304,9 @@
               "timeout" : "new Duration(\"3H\")"
             },
             "customFields" : [
-              { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime()" },
+              { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" },
               { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Exterior\"" },
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Sarah\"" }
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Sarah\"" }
             ]
           },
           "TaskB" : {
@@ -318,9 +318,9 @@
               "timeout" : "new Duration(\"1D\")"
             },
             "customFields" : [
-              { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime(\"2080-03-23 11:11:11\")" },
+              { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime(\"2080-03-23 11:11:11\")" },
               { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Interior\"" },
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Julie\"" }
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Julie\"" }
             ]
           },
           "TaskC" : {
@@ -332,9 +332,9 @@
               "timeout" : "new Duration(\"2D\")"
             },
             "customFields" : [
-              { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime()" },
+              { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" },
               { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Interior\"" },
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Florian\"" }
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Florian\"" }
             ]
           }
         }
@@ -356,7 +356,7 @@
         "HOW TO RUN THIS EXAMPLE:",
         "",
         "Run createTasksForTaskListCustomization.ivp process",
-        "This process will create 3 tasks, each task has filled customVarCharField5 and customTimestampField1,",
+        "This process will create 3 tasks, each task has filled CustomerName and ShipmentDate,",
         " we will use these fields as custom fields in Task Widget."
       ],
       "visual" : {
@@ -379,7 +379,7 @@
           "name" : "CreateCasesForCaseListCustomization",
           "description" : "CreateCasesForCaseListCustomization",
           "customFields" : [
-            { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime()" },
+            { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" },
             { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Parent Case\"" }
           ]
         },
@@ -465,7 +465,7 @@
           "description" : "TestCase Description <%=param.count%>",
           "attachToBusinessCase" : false,
           "customFields" : [
-            { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime()" },
+            { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" },
             { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"CustomVarCharField1\" + param.count" }
           ]
         },
@@ -573,9 +573,9 @@
             },
             "customFields" : [
               { "name" : "CustomDecimalField2", "type" : "Number", "value" : "7" },
-              { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime()" },
+              { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" },
               { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Exterior\"" },
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Long Do\"" },
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Long Do\"" },
               { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
             ]
           },
@@ -589,9 +589,9 @@
             },
             "customFields" : [
               { "name" : "CustomDecimalField2", "type" : "Number", "value" : "14" },
-              { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime()" },
+              { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" },
               { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Interior\"" },
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Tung Le\"" },
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Tung Le\"" },
               { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
             ]
           },
@@ -605,9 +605,9 @@
             },
             "customFields" : [
               { "name" : "CustomDecimalField2", "type" : "Number", "value" : "13" },
-              { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime()" },
+              { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" },
               { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Interior\"" },
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Anh Nguyen\"" },
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Anh Nguyen\"" },
               { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
             ]
           }

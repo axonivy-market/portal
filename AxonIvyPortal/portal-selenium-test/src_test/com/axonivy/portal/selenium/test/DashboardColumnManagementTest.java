@@ -16,7 +16,7 @@ import com.codeborne.selenide.Condition;
 
 @IvyWebTest
 public class DashboardColumnManagementTest extends BaseTest {
-  // WIDGET
+
   private static final String YOUR_CASES_WIDGET = "Your Cases";
 
   private NewDashboardPage newDashboardPage;
@@ -30,7 +30,6 @@ public class DashboardColumnManagementTest extends BaseTest {
     redirectToNewDashBoard();
     newDashboardPage = new NewDashboardPage();
   }
-
 
   @Test
   public void testHideUsedField() {
