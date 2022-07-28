@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.17",
   "id" : "16A914CEF46EA5B8",
   "data" : "_com.axonivy.portal.developerexamples.DefaultStatisticCustomFieldOverrideData",
   "kind" : "CALLABLE_SUB",
@@ -38,7 +38,7 @@
           "code" : [
             "import java.util.Arrays;",
             "",
-            "in.customFields = Arrays.asList(\"CustomVarCharField1\", \"CompanyName\");"
+            "in.customFields = Arrays.asList(\"CustomerName\", \"CompanyName\");"
           ]
         }
       },
@@ -53,14 +53,13 @@
       "name" : [
         "// FOLLOW THIS INSTRUCTION TO CREATE CUSTOM STRING FIELD",
         "// CREATE LIST OF YOUR CUSTOM STRING FIELD NAME",
-        "// DEFAULT IS \"CustomVarCharField1\", \"CustomVarCharField2\", \"CustomVarCharField3\", \"CustomVarCharField4\", \"CustomVarCharField5\"",
         "// YOU CAN CREATE YOUR OWN CUSTOM STRING FIELD NAME",
         "import java.util.Arrays;",
         "in.customFields = Arrays.asList(\"MyCustomStringField1\", \"MyCustomStringField2\");"
       ],
       "visual" : {
-        "at" : { "x" : 704, "y" : 184 },
-        "size" : { "width" : 768, "height" : 108 }
+        "at" : { "x" : 504, "y" : 192 },
+        "size" : { "width" : 464, "height" : 92 }
       }
     } ]
 }

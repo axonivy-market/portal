@@ -11,26 +11,39 @@ Categories:
         name: Lange
       name: Krank
     name: Andere verlassen
+CustomFields:
+  Categories:
+    CustomTaskWidget: Benutzerdefiniertes TaskWidget
+  Tasks:
+    CustomerName:
+      Description: Kundenname
+      Label: Kundenname
+    CustomerType:
+      Description: Typ des Kunden
+      Label: Typ des Kunden
+    ShipmentDate:
+      Description: Versanddatum
+      Label: Versanddatum
 DefaultColumns:
   ACTIVATOR: Verantwortlich
   CREATION_TIME: Erstellt
+  CustomerName: Kundenname
   EXPIRY_TIME: Ablaufdatum
   ID: Aufgaben ID
   NAME: Name / Beschreibung
   PRIORITY: Priorität
   STATE: Status
+  ShipmentDate: Versanddatum
   caseList:
     CREATION_TIME: Erstellt
     CREATOR: Ersteller
+    CustomerName: Kundenname
     FINISHED_TIME: Erledigt
     ID: Vorgangs Id
     NAME: Name / Beschreibung
     OWNER: Owner
     STATE: Status
-    customTimestampField1: Versanddatum
-    customVarCharField1: Kundenname
-  customTimestampField1: Versanddatum
-  customVarCharField5: Kundenname
+    ShipmentDate: Versanddatum
 Dialogs:
   Lists:
     Completeness:
@@ -110,11 +123,11 @@ Processes:
 sortFields:
   CREATION_TIME_ASC: Erstellungsdatum (Ältestes zuerst)
   CREATION_TIME_DESC: Erstellungsdatum (Neuestes zuerst)
+  CustomerName_ASC: Kundenname (A -> Z)
+  CustomerName_DESC: 'Kundenname (Z -> A) '
   EXPIRY_TIME_ASC: Ablauf (Älteste zuerst)
   EXPIRY_TIME_DESC: Ablauf (Neuste zuerst)
   PRIORITY_ASC: Priorität (hoch -> tief)
   PRIORITY_DESC: Priorität (tief -> hoch)
-  customTimestampField1_ASC: Versanddatum (älteste zuerst)
-  customTimestampField1_DESC: Versanddatum (neuerste zuerst)
-  customVarCharField5_ASC: Kundenname (A -> Z)
-  customVarCharField5_DESC: 'Kundenname (Z -> A) '
+  ShipmentDate_ASC: Versanddatum (älteste zuerst)
+  ShipmentDate_DESC: Versanddatum (neuerste zuerst)

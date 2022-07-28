@@ -6,12 +6,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.CheckboxTreeNode;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.bo.CategoryNode;
+import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
@@ -33,14 +33,43 @@ public class CategoryColumnModel extends TaskColumnModel {
 
   @Override
   public void initDefaultValue() {
-    this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CATEGORY");
+    super.initDefaultValue();
     this.field = DashboardStandardTaskColumn.CATEGORY.getField();
-    this.style = defaultIfEmpty(this.style, NORMAL_WIDTH);
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__category u-text-align-center");
-    this.fieldStyleClass = defaultIfEmpty(this.fieldStyleClass, StringUtils.EMPTY);
-    this.format = DashboardColumnFormat.CUSTOM;
-    this.sortable = false;
+    this.style = defaultIfEmpty(this.style, getDefaultStyle());
+    this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
+    this.format = getDefaultFormat();
+    this.sortable = getDefaultSortable();
     this.sorted = false;
+  }
+
+  @Override
+  public String getHeaderText() {
+    return translateHeader(defaultIfEmpty(this.header, DashboardConfigurationPrefix.CMS + getDefaultHeaderCMS()));
+  }
+
+  @Override
+  public String getDefaultHeaderCMS() {
+    return "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CATEGORY";
+  }
+
+  @Override
+  public DashboardColumnFormat getDefaultFormat() {
+    return DashboardColumnFormat.CUSTOM;
+  }
+
+  @Override
+  public Boolean getDefaultSortable() {
+    return false;
+  }
+
+  @Override
+  public String getDefaultStyle() {
+    return NORMAL_WIDTH;
+  }
+
+  @Override
+  public String getDefaultStyleClass() {
+    return "dashboard-tasks__category u-text-align-center";
   }
 
   @Override

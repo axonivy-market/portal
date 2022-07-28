@@ -126,8 +126,7 @@ Custom Columns
 Axon Ivy supports custom fields for tasks. You can show them in the Task widget
 as a column.
 
-You can predefine which column to show, and other attributes such as header,
-filter, format. Below is a standard JSON of a custom column.
+You can predefine which column to show, and other attributes such as filter, format, and style. Below is a standard JSON of a custom column.
 
 .. code-block:: html
 
@@ -136,8 +135,7 @@ filter, format. Below is a standard JSON of a custom column.
       
       "columns": [
          {
-            "format": "string",
-            "header": "cms:columns/custom/supplier",
+            "type": "CUSTOM",
             "field": "supplier",
             "style": "width: 110px"
          }
@@ -149,11 +147,14 @@ filter, format. Below is a standard JSON of a custom column.
 Besides attributes explained in the previous section, a custom column has two
 differences:
 
-   - ``format``: Type of custom column. There are four formats ``string``,
-     ``text``, ``number``, and ``timestamp``.
+   - ``type``: type of the widget column. There are two options: ``STANDARD`` and ``CUSTOM``.
 
    - ``field``: this attribute is the name of the task's custom field which will
      be used to get data for the column.
+
+.. important::
+   Portal only displays custom fields declared in the ``custom-fields.yaml`` file.
+   Refer to :dev-url:`Custom Fields Meta Information </doc/nightly/designer-guide/how-to/workflow/custom-fields.html#meta-information>` for more information.
 
 Filter Conditions
 -----------------

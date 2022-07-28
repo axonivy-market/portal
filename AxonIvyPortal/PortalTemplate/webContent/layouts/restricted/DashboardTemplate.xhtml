@@ -42,7 +42,6 @@
               <p:ajax event="change" process="@this" listener="#{managedBean.onDashboardChangeByDropdown}" oncomplete="loadGrid()" partialSubmit="true"
                 update="grid-stack dashboard-title-container" />
             </p:selectOneMenu>
-            
           </h:panelGroup>
 
           <h:panelGroup id="dashboard-header-action" rendered="#{!managedBean.isReadOnlyMode}" class="dashboard-header__action ui-lg-4 ui-md-5 ui-sm-12">
@@ -50,17 +49,16 @@
           </h:panelGroup>
         </div>
 
-          <h:form id="dashboard-remote-command-form" prependId="false">
-            <p:remoteCommand name="saveConfigurationCommand" actionListener="#{managedBean.save()}" global="false" />
-            <p:remoteCommand name="updateDashboardWidget" update="grid-stack" oncomplete="loadGrid(); return false;" />
-            <p:remoteCommand name="saveWidgetState" actionListener="#{managedBean.saveSelectedWidget()}" global="false"/>
-            <p:remoteCommand name="loadAllWidgetSavedFilters" actionListener="#{dashboardBean.loadAllWidgetSavedFilters()}"
-              global="false" process="@this" immediate="true" partialSubmit="true"
-              update="delete-saved-filter-form:quick-filter-table"
-              oncomplete="PF('quick-filter-table').clearFilters(); PF('manage-filter-dialog').initPosition();"/>
+        <h:form id="dashboard-remote-command-form" prependId="false">
+          <h:inputHidden id="dashboard-view-mode" value="#{managedBean.isReadOnlyMode}"/>
+          <p:remoteCommand name="updateDashboardWidget" update="grid-stack" oncomplete="loadGrid(); return false;" />
+          <p:remoteCommand name="loadAllWidgetSavedFilters" actionListener="#{managedBean.loadAllWidgetSavedFilters()}"
+            global="false" process="@this" immediate="true" partialSubmit="true"
+            update="delete-saved-filter-form:quick-filter-table"
+            oncomplete="PF('quick-filter-table').clearFilters(); PF('manage-filter-dialog').initPosition();"/>
 
-            <ui:insert name="additionalRemoteCommand" />
-          </h:form>
+          <ui:insert name="additionalRemoteCommand" />
+        </h:form>
 
         <div id="dashboard-body" class="dashboard__body ui-g-12 js-dashboard__body #{dashboardBodyStyleClass}">
           <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack ui-g-12">
