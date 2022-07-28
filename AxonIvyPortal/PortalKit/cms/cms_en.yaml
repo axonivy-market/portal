@@ -1,5 +1,3 @@
-AppInfo:
-  SupportedLanguages: de,en,fr,es
 Categories:
   AdhocExpressTasks:
     name: Adhoc Express Tasks
@@ -959,6 +957,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     cannotSetEmailLanguage: Language cannot be set as email notification language.
     languageSetting: Language settings
     saveLanguageHasWSErrors: Language save error.
+    selectedFormattingLanguage: Selected formatting language
     selectedLanguage: Selected language
   login:
     login: Login

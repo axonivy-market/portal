@@ -36,3 +36,7 @@ processModes java.util.List<String> #field
 processModes PERSISTENT #fieldModifier
 selectedProcessMode String #field
 selectedProcessMode PERSISTENT #fieldModifier
+queryLanguage String #field
+queryLanguage PERSISTENT #fieldModifier
+formatLanguages java.util.List<javax.faces.model.SelectItem> #field
+formatLanguages PERSISTENT #fieldModifier
