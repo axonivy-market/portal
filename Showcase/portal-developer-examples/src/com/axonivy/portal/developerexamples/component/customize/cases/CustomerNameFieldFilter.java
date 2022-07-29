@@ -15,7 +15,7 @@ public class CustomerNameFieldFilter extends CaseFilter {
   @Override
   public String label() {
     var customFieldMeta =
-        ICustomFieldMeta.tasks().stream().filter(meta -> meta.name().equals(CUSTOM_CUSTOMER_NAME)).findAny();
+        ICustomFieldMeta.cases().stream().filter(meta -> meta.name().equals(CUSTOM_CUSTOMER_NAME)).findAny();
     return customFieldMeta.isPresent() ? customFieldMeta.get().label() : CUSTOM_CUSTOMER_NAME;
   }
 
