@@ -83,3 +83,8 @@ CustomFields:
       Description: Property of Additional Case details page
       Type: NUMBER
       Category: DefaultAdditionalCaseDetails
+    SupportData:
+      Label: Support data
+      Description: Support data for additional case
+      Type: STRING
+      Category: DefaultAdditionalCaseDetails
