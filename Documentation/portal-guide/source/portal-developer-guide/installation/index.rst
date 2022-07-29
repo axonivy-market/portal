@@ -335,16 +335,20 @@ releases of Axon Ivy.
 Changes in 9.4
 --------------
 
-- Introduce the ``Portal.Tasks.BehaviourWhenClickingOnLineInTaskList`` Portal setting to set behaviour when
+- Introduced the ``Portal.Tasks.BehaviourWhenClickingOnLineInTaskList`` Portal setting to set behaviour when
   clicking on a line in task list, task widget in new dashboard and related tasks in case details, each user can change it via user profile. 
 
-- Introduce the ``Portal.StatisticChartScalingInterval`` Portal setting to set the interval in seconds to do periodic statistic chart scaling requests.
+- Introduced the ``Portal.StatisticChartScalingInterval`` Portal setting to set the interval in seconds to do periodic statistic chart scaling requests.
 
-- Introduce new ``Task ID``, ``Task Name``, ``Case ID`` and ``Case Name`` filter in the Portal full task list and case list.
+- Introduced new ``Task ID``, ``Task Name``, ``Case ID`` and ``Case Name`` filter in the Portal full task list and case list.
 
-- Introduce the ``Process Viewer`` page, user can get the visual viewer of the process start. See details :ref:`Show Process Viewer <how-to-show-process-viewer>`
+- Introduced the ``Process Viewer`` page, user can get the visual viewer of the process start. See details :ref:`Show Process Viewer <how-to-show-process-viewer>`
 
-- Remove the PortalStyle project. The CMS in PortalStyle has been moved to PortalKit.
+- Removed the PortalStyle project. The CMS in PortalStyle has been moved to PortalKit.
+
+- Adding a new language to the Portal is not supported.
+
+- Introduced the ``Formatting language setting`` to format values, for example the decimal separator is displayed differently in different regions of the world.
 
 Changes in 9.3
 --------------
@@ -355,21 +359,21 @@ Changes in 9.3
 Changes in 9.2
 --------------
 
-- Include new TaskState such as ``Destroyed``, ``Failed``, ``Join failed`` and ``Waiting for event`` in Portal Task list, also in Task State filter.
+- Included new TaskState such as ``Destroyed``, ``Failed``, ``Join failed`` and ``Waiting for event`` in Portal Task list, also in Task State filter.
 
-- Include new CaseState ``Destroyed`` in Portal Case list, also in Case State filter.
+- Included new CaseState ``Destroyed`` in Portal Case list, also in Case State filter.
 
-- Introduce :ref:`Workflow Events table <how-to-show-workflow-events>`, user who has permission ``WORKFLOW_EVENT_READ_ALL`` can see all ``WORKFLOW_EVENTS``.
+- Introduced :ref:`Workflow Events table <how-to-show-workflow-events>`, user who has permission ``WORKFLOW_EVENT_READ_ALL`` can see all ``WORKFLOW_EVENTS``.
 
-- Introduce the ``Portal.Homepage`` Portal setting to set the default homepage, each user can change it via user profile. 
+- Introduced the ``Portal.Homepage`` Portal setting to set the default homepage, each user can change it via user profile. 
 
-- Introduce new approach to customize :ref:`Portal Case Item details <customization-case-item-details>`. Now, your case information in Case details page and Case Info dialog is the same
+- Introduced new approach to customize :ref:`Portal Case Item details <customization-case-item-details>`. Now, your case information in Case details page and Case Info dialog is the same
 
-- Introduce new approach to customize :ref:`Portal Task item details <customization-task-item-details>`.
+- Introduced new approach to customize :ref:`Portal Task item details <customization-task-item-details>`.
 
-- Introduce new Portal Setting ``Portal.ShowButtonIcon`` to control visibility of icon of button in Portal.
+- Introduced new Portal Setting ``Portal.ShowButtonIcon`` to control visibility of icon of button in Portal.
 
-- Introduce new variable named ``PortalLoginPageDisplay`` to show Login page or hide it then show error page instead.
+- Introduced new variable named ``PortalLoginPageDisplay`` to show Login page or hide it then show error page instead.
 
 - No multiple applications anymore, Portal now only works in current application. It means administrator can not add new Ivy application.
 
@@ -382,16 +386,16 @@ Changes in 9.2
 Changes in 9.1
 --------------
 
-- Refactor style customization approach. From now on, Portal use CSS Variable as technology to customize CSS.
+- Refactored style customization approach. From now on, Portal use CSS Variable as technology to customize CSS.
 
-- Introduce the User Guide feature, using the ``Portal.Dashboard.ShowUserGuide`` Portal Setting to activate/deactivate it, 
+- Introduced the User Guide feature, using the ``Portal.Dashboard.ShowUserGuide`` Portal Setting to activate/deactivate it, 
   and follow :ref:`Customize user guide <customization-portal-home-user-guide>` for your customization.
 
-- Introduce new Portal Setting ``Portal.ShowButtonIcon`` to control visibility of icon of button in Portal.
+- Introduced new Portal Setting ``Portal.ShowButtonIcon`` to control visibility of icon of button in Portal.
 
-- Introduce new Portal dialog with icon decorator. Refer to :ref:`this section <components-additional-portal-dialog-with-icon>` for detail.
+- Introduced new Portal dialog with icon decorator. Refer to :ref:`this section <components-additional-portal-dialog-with-icon>` for detail.
 
-- TaskTemplate-7, TaskTemplate and TwoColumnTemplate are removed.
+- TaskTemplate-7, TaskTemplate and TwoColumnTemplate have been removed.
 
 
 .. |css_variable| raw:: html

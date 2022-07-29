@@ -128,8 +128,8 @@ public class DashboardCaseWidgetTest extends BaseTest {
     detailsCase.openActionPanel();
     detailsCase.openAdditionalCaseDetailsPage();
     newDashboardPage.switchLastBrowserTab();
-    detailsCase.countAdditionalFieldsPage().shouldHaveSize(15);
-    detailsCase.firstAdditionalFieldsPage().shouldBe(text("CustomVarCharField 1"));
+    detailsCase.countAdditionalFieldsPage().shouldHaveSize(13);
+    detailsCase.firstAdditionalFieldsPage().shouldBe(text("Customer name"));
   }
   
   @Test
