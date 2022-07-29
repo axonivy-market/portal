@@ -368,7 +368,7 @@
       },
       "connect" : [
         { "id" : "f37", "to" : "f36", "condition" : "in.showTaskListImmediately || in.isDrilldownToTaskList" },
-        { "id" : "f47", "to" : "f46", "via" : [ { "x" : 232, "y" : 208 } ] }
+        { "id" : "f99", "to" : "f98", "via" : [ { "x" : 232, "y" : 208 } ] }
       ]
     }, {
       "id" : "f46",
@@ -1075,5 +1075,19 @@
         "at" : { "x" : 968, "y" : 952 }
       },
       "connect" : { "id" : "f96", "to" : "f88" }
+    }, {
+      "id" : "f98",
+      "type" : "Script",
+      "name" : "clear selected item drill down",
+      "config" : {
+        "output" : {
+          "code" : "in.selectedItemOfDrilldown = null;"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 208 },
+        "size" : { "width" : 176, "height" : 44 }
+      },
+      "connect" : { "id" : "f47", "to" : "f46" }
     } ]
 }

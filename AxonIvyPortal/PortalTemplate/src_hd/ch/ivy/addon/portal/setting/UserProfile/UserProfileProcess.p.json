@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.15",
+  "format" : "9.4.17",
   "id" : "172546E1FDEB1FF7",
   "data" : "ch.ivy.addon.portal.setting.UserProfile.UserProfileData",
   "kind" : "HTML_DIALOG",
@@ -496,19 +496,25 @@
         }, {
           "id" : "S30-f9",
           "type" : "Script",
-          "name" : "Set locale",
+          "name" : [
+            "Add empty option",
+            "Set locale"
+          ],
           "config" : {
             "output" : {
               "code" : [
                 "import javax.faces.context.FacesContext;",
                 "import ch.ivy.addon.portalkit.util.UserUtils;",
                 "",
+                "in.language.supportedLanguages.add(0, \"\");",
+                "in.language.supportedFormattingLanguages.add(0, \"\");",
                 "UserUtils.setLanguague();"
               ]
             }
           },
           "visual" : {
-            "at" : { "x" : 344, "y" : 160 }
+            "at" : { "x" : 344, "y" : 160 },
+            "size" : { "width" : 128, "height" : 44 }
           },
           "connect" : { "id" : "S30-f1", "to" : "S30-g1" }
         }, {
