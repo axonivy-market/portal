@@ -57,7 +57,7 @@ public class ApplicationColumnModel extends CaseColumnModel implements Serializa
   }
   
   @Override
-  public boolean getSortable() {
+  public Boolean getSortable() {
     return false;
   }
 }

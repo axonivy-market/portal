@@ -48,7 +48,7 @@ public class ApplicationColumnModel extends ProcessColumnModel implements Serial
   }
   
   @Override
-  public boolean getSortable() {
+  public Boolean getSortable() {
     return false;
   }
 }
