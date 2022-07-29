@@ -21,53 +21,6 @@ restarting Designer. Therefore, update your variables in
 ``PortalKit/config/variables.yaml`` for the settings that you want to configure.
 This survives restarting Designer.
 
-.. _settings-language:
-
-Language Settings
-=================
-
--  We use the following language setting precedence:
-
-   |language-precedence|
-
-   If the user email language setting is the application default, the application
-   default language is applied.
-
-   If the user selects a language in email settings, this language is applied.
-
-   To configure the languages of Portal applications, refer to
-   :ref:`language-settings` in :ref:`my-profile` in the Portal User Guide.
-
--  For multiple languages, the CMS key ``/AppInfo/SupportedLanguages`` has to
-   exist in your application. This CMS entry is located in PortalKit. It
-   contains a comma separated list of all languages supported by your
-   application.
-
-   The rules for this list are:
-
-   -  This list must not contain spaces
-   -  Each entry has to be either a language code (en) or a language-country code (en-US) of a Java Locale (see below)
-   -  Entries are separated by comma
-   -  The process model version (PMV) containing this CMS entry has to be active.
-
--  To add a new language to Portal, what you have to do is:
-
-   -  Open CMS item ``/AppInfo/SupportedLanguages`` in PortalKit, then add the new language, for example, Italian
-
-      |add-new-item-to-cms-language|
-
-   -  Add the new language locale to all items. You can input either the language code ``it`` or the language code with country ``it-CH``. 
-      If you use language code with country, refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk11-suported-locales.html>`_ .
-
-      |add-new-item-to-cms-language-after|
-
-   -  Export all CMS entries of PortalKit to an Excel file, then add the translations for the new language for all CMS entries
-
-      |export-cms|
-
-   -  Import the Excel file.
-   -  Redeploy PortalKit.
-
 
 Role Configuration
 ==================
@@ -707,8 +660,4 @@ Data model:
 .. |portal-header| image:: ../../screenshots/settings/user-settings.png
 .. |global-settings| image:: ../../screenshots/settings/global-settings.png
 .. |global-setting-edit| image:: ../../screenshots/settings/edit-global-settings.png
-.. |language-precedence| image:: images/settings/language-precedence.png
 .. |select-admin-settings| image:: ../../screenshots/settings/select-admin-settings.png
-.. |add-new-item-to-cms-language| image:: images/settings/add-new-item-to-cms-language.png 
-.. |add-new-item-to-cms-language-after| image:: images/settings/add-new-item-to-cms-language-after.png
-.. |export-cms| image:: images/settings/export-cms.png   
