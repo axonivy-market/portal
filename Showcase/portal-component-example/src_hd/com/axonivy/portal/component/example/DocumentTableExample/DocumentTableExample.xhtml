@@ -6,10 +6,13 @@
   <ui:composition template="/layouts/frame-10.xhtml">
     <ui:define name="title">Default Document Table Component Example</ui:define>
     <ui:define name="content">
-      <h1>Default Document Table Component Example</h1>
-      <h:form id="form">
-        <ic:com.axonivy.portal.component.DocumentTable />
-      </h:form>
+      <div class="layout-wrapper">
+        <h1>Default Document Table Component Example</h1>
+        <h:form id="form">
+          <ic:com.axonivy.portal.component.example.internal.ThemeSelection />
+          <ic:com.axonivy.portal.component.DocumentTable />
+        </h:form>
+      </div>
     </ui:define>
   </ui:composition>
 </h:body>

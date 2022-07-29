@@ -131,9 +131,10 @@
 
   <!-- Responsive Case list -->
   <h:outputScript name="process-history-component.js" library="js" />
+  <h:outputScript name="theme-checker.js" library="js" />
   <script type="text/javascript">
     processHistory.setup(#{processHistoryComponentBean.dataModel.rowCount eq 0});
+    ThemeChecker.updateLayoutByTheme('#{ivyPrimefacesThemeResolver.sessionTheme}');
   </script>
-
 </cc:implementation>
 </html>
