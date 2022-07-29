@@ -12,17 +12,62 @@ Categories:
       name: Maladie
     name: Autres congés
 CustomFields:
-  Categories:
-    CustomTaskWidget: TaskWidget personnalisé
-  Tasks:
+  Cases:
+    AccountNumber:
+      Description: Propriété de la page de détails des cas supplémentaires
+      Label: Numéro de compte
+    CreatedBillDate:
+      Description: Propriété de la page de détails des cas supplémentaires
+      Label: Date de création du projet de loi
     CustomerName:
-      Description: Nom du client
+      Description: Colonne du nom du client par exemple
       Label: Nom du client
     CustomerType:
-      Description: Type de client
+      Description: Colonne de type de client par exemple
+      Label: Type de client
+    InvoiceDate:
+      Description: Propriété de la page de détails des cas supplémentaires
+      Label: Date de la facture
+    InvoiceDueDate:
+      Description: Propriété de la page de détails des cas supplémentaires
+      Label: Date d'échéance de la facture
+    InvoiceNumber:
+      Description: Propriété de la page de détails des cas supplémentaires
+      Label: Données de cas supplémentaires 1
+    InvoiceQualityNumber:
+      Description: Propriété de la page de détails des cas supplémentaires
+      Label: Numéro de qualité de la facture
+    InvoiceSubTotalAmount:
+      Description: Propriété de la page de détails des cas supplémentaires
+      Label: Montant du sous-total de la facture
+    InvoiceTotalAmount:
+      Description: Propriété de la page de détails des cas supplémentaires
+      Label: Montant total de la facture
+    ShipmentDate:
+      Description: Colonne de date d'expédition par exemple
+      Label: Date d'expédition
+    SupportData:
+      Description: Propriété de la page de détails des cas supplémentaires
+      Label: Données de soutien
+  Categories:
+    CustomCaseWidget: CaseWidget personnalisé
+    CustomTaskWidget: TaskWidget personnalisé
+    DefaultAdditionalCaseDetai: Page de détails supplémentaires sur le cas par défaut
+  Tasks:
+    CustomerAddress:
+      Description: Champ de l'adresse du client
+      Label: Adresse du client
+    CustomerEmail:
+      Description: Champ d'adresse électronique du client
+      Label: Courriel du client
+    CustomerName:
+      Description: Colonne du nom du client par exemple
+      Label: Nom du client
+    CustomerType:
+      Description: Colonne de type de client par exemple
       Label: Type de client
     ShipmentDate:
-      Description: Date d'expédition
+      Description: Colonne de date d'expédition par exemple
       Label: Date d'expédition
 DefaultColumns:
   ACTIVATOR: Responsable
