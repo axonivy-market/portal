@@ -1395,6 +1395,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     }
 
     newStatisticChart.setNames(newNames);
+    newStatisticChart.setName(getDisplayNameInUserLanguageForChart(newStatisticChart).getValue());
     newStatisticChart.setFilter(selectedChart.getFilter());
     newStatisticChart.setType(StatisticChartType.TASK_BY_EXPIRY);
     newStatisticChart.setBarChartModel(generateTaskByExpiryModel(taskByExpiryData, true, selectedValue,
