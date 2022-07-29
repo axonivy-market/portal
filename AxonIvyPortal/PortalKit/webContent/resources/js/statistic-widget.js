@@ -55,6 +55,11 @@ function taskByExpiryChartBaseExtender(context, datalabelsColor) {
   let options = jQuery.extend(true, {}, context.cfg.config.options);
   options = {
     maintainAspectRatio : false,
+    scales : {
+      x : {
+        offset: true
+      }
+    },
     hover : {
       onHover : function(event, activeElement) {
         event.target.style.cursor = activeElement[0] ? 'pointer' : 'default';
@@ -122,7 +127,7 @@ function taskByExpiryChartClickEvent(event, activeElement) {
     return;
   }
   if (activeElement[0]) {
-    if (activeElement[0]._index === 0) {
+    if (activeElement[0].index === 0) {
       $expiryChartDrillDown.hide();
     } else {
       $expiryChartDrillDown.show();
@@ -132,8 +137,8 @@ function taskByExpiryChartClickEvent(event, activeElement) {
     var indexOfChart = chartId.lastIndexOf(":");
     var widgetVar = 'context-menu-' + chartId.substring(indexOfChart - 1, indexOfChart);
     PF(widgetVar).show();
-    topValue = event.offsetY + 50;
-    leftValue = event.offsetX;
+    topValue = event.native.offsetY + 50;
+    leftValue = event.native.offsetX;
   }
 }
 
