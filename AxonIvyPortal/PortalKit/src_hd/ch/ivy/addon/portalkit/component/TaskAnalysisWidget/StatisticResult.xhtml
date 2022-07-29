@@ -136,9 +136,9 @@
             securityMember="#{task.case.owner}" />
         </p:column>
         
-        <p:column id="application" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/APPLICATION')}" sortable="false" width="90"
-          visible="#{taskAnalysisWidgetBean.columns['APPLICATION']}" exportable="#{taskAnalysisWidgetBean.columns['APPLICATION']}">
-          <h:outputText value="#{task.application.name}" />
+        <p:column id="application" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/APPLICATION')}" sortable="false" 
+          visible="#{taskAnalysisWidgetBean.columns['APPLICATION']}" exportable="#{taskAnalysisWidgetBean.columns['APPLICATION']}" styleClass="application-column">
+          <h:outputText value="#{task.application.name}" title="#{task.application.name}"/>
         </p:column>
       </p:dataTable>
     </h:form>
