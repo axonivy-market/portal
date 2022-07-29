@@ -50,6 +50,8 @@
 </cc:interface>
 
 <cc:implementation>
+  <h:outputStylesheet library="css" name="role-selection-component.css" />
+
   <h:panelGroup id="#{cc.attrs.componentId}-label-panel" layout="block"
     rendered="#{not empty cc.attrs.label and !cc.attrs.floatingLabel}"
     styleClass="#{cc.attrs.labelPanelStyleClass}">
@@ -59,7 +61,7 @@
 
   <c:set var="completeMethod" value="#{not empty cc.attrs.completeMethod ? cc.attrs.completeMethod : roleSelectionBean.completeRoleMethod}" />
   <h:panelGroup id="#{cc.attrs.componentId}-autocomplete-panel" layout="block"
-    styleClass="#{cc.attrs.autoCompletePanelStyleClass} #{cc.attrs.floatingLabel ? 'ui-float-label' : ''}">
+    styleClass="role-selection-panel #{cc.attrs.autoCompletePanelStyleClass} #{cc.attrs.floatingLabel and ivyPrimefacesThemeResolver.sessionTheme.contains('serenity') ? 'md-inputfield' : ''} #{cc.attrs.floatingLabel and ivyPrimefacesThemeResolver.sessionTheme.contains('freya') ? 'ui-float-label' : ''}">
     <p:autoComplete id="#{cc.attrs.componentId}"
       value="#{cc.attrs.selectedRole}"
       scrollHeight="#{cc.attrs.scrollHeight}"
@@ -92,11 +94,20 @@
       for="#{cc.attrs.componentId}"
       styleClass="#{cc.attrs.labelStyleClass}"
       rendered="#{cc.attrs.floatingLabel}" />
-  </h:panelGroup>
-  <p:message id="#{cc.attrs.componentId}-message"
+    <p:message id="#{cc.attrs.componentId}-message-serenity"
       for="#{cc.attrs.componentId}"
-      rendered="#{cc.attrs.isRenderedMessage}"
+      rendered="#{cc.attrs.isRenderedMessage and ivyPrimefacesThemeResolver.sessionTheme.contains('serenity')}"
       styleClass="#{cc.attrs.messageStyleClass}" />
+  </h:panelGroup>
+  <h:panelGroup layout="block" rendered="#{cc.attrs.isRenderedMessage and ivyPrimefacesThemeResolver.sessionTheme.contains('freya')}"
+    styleClass="#{cc.attrs.messageStyleClass}">
+    <p:message id="#{cc.attrs.componentId}-message-freya"
+      for="#{cc.attrs.componentId}" />
+  </h:panelGroup>
 
+  <h:outputScript name="theme-checker.js" library="js" />
+  <script type="text/javascript">
+    ThemeChecker.updateLayoutByTheme('#{ivyPrimefacesThemeResolver.sessionTheme}');
+  </script>
 </cc:implementation>
 </html>
