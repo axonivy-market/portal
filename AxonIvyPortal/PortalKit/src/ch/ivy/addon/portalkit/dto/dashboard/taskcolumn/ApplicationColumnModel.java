@@ -57,7 +57,7 @@ public class ApplicationColumnModel extends TaskColumnModel implements Serializa
   }
   
   @Override
-  public boolean getSortable() {
+  public Boolean getSortable() {
     return false;
   }
 }
