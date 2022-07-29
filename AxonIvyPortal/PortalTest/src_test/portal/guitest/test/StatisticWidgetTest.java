@@ -2,13 +2,13 @@ package portal.guitest.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static portal.guitest.page.StatisticWidgetPage.CASES_BY_CATEGORY_CHART_NAME;
 import static portal.guitest.page.StatisticWidgetPage.CASE_BY_FINISHED_TASK_CHART_NAME;
 import static portal.guitest.page.StatisticWidgetPage.CASE_BY_FINISHED_TIME_CHART_NAME;
 import static portal.guitest.page.StatisticWidgetPage.CASE_BY_STATE_CHART_NAME;
 import static portal.guitest.page.StatisticWidgetPage.ELAPSED_TIME_CHART_NAME;
 import static portal.guitest.page.StatisticWidgetPage.TASK_BY_EXPIRY_CHART_NAME;
 import static portal.guitest.page.StatisticWidgetPage.TASK_BY_PRIORITY_CHART_NAME;
-import static portal.guitest.page.StatisticWidgetPage.CASES_BY_CATEGORY_CHART_NAME;
 
 import org.junit.After;
 import org.junit.Before;
@@ -130,7 +130,7 @@ public class StatisticWidgetTest extends BaseTest {
     WaitHelper.assertTrueWithWait(() -> statisticWidgetPage.findElementByCssSelector("div[id$='1:chart-name-container'] .chart-name").getText().equals("Task by priority chart English"));
 
     UserProfilePage userProfilePage = statisticWidgetPage.openMyProfilePage();
-    userProfilePage.selectLanguage(0);
+    userProfilePage.selectLanguage(3);
     homePage = userProfilePage.save();
 
     mainMenuPage = homePage.openMainMenu();
