@@ -143,9 +143,9 @@ public class StatisticWidgetPage extends TemplatePage {
 
     waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true);
 
-    findElementByCssSelector("input[id$='0:chart-name-input']").sendKeys(TASK_BY_PRIORITY_CHART_NAME.concat(" German"));
-    findElementByCssSelector("input[id$='1:chart-name-input']").sendKeys(TASK_BY_PRIORITY_CHART_NAME.concat(" English"));
-    findElementByCssSelector("input[id$='2:chart-name-input']").sendKeys(TASK_BY_PRIORITY_CHART_NAME.concat(" French"));
+    findElementByCssSelector("input[id$='0:chart-name-input']").sendKeys(TASK_BY_PRIORITY_CHART_NAME.concat(" English"));
+    findElementByCssSelector("input[id$='1:chart-name-input']").sendKeys(TASK_BY_PRIORITY_CHART_NAME.concat(" French"));
+    findElementByCssSelector("input[id$='2:chart-name-input']").sendKeys(TASK_BY_PRIORITY_CHART_NAME.concat(" German"));
     findElementByCssSelector("input[id$='3:chart-name-input']").sendKeys(TASK_BY_PRIORITY_CHART_NAME.concat(" Spanish"));
 
     clickByCssSelector("button[id$='chart-save-command']");
