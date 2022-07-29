@@ -1,0 +1,7 @@
+body.freya .theme-selection-panel label.theme-selection-label {
+  line-height: 2.5;
+}
+
+body.serenity .theme-selection-panel label.theme-selection-label {
+  margin-top: 2px;
+}

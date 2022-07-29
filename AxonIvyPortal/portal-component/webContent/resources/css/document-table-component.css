@@ -33,10 +33,6 @@
   margin-right: 5px;
 }
 
-.document-table-component .upload-container .type-selection-label {
-  line-height: 2.5;
-}
-
 .document-table-component .upload-container .ui-widget.ui-fileupload {
   margin-top: 0;
   margin-left: 10px;
@@ -123,4 +119,15 @@
 
 .document-table-component .upload-container .ui-fileupload-files {
   margin-top: 20px;
+}
+
+/*SPECIFIC STYLES FOR THEMES*/
+
+body.freya .document-table-component .upload-container .type-selection-label {
+  line-height: 2.5;
+}
+
+body.serenity .document-table-component .upload-container .ui-widget.ui-selectonemenu,
+body.serenity .document-table-component .upload-container .ui-widget.ui-outputlabel {
+  margin-top: 5px;
 }
