@@ -12,9 +12,7 @@
           "attachToBusinessCase" : false,
           "customFields" : [
             { "name" : "CustomerType", "type" : "String", "value" : "\"Leave Request\"" },
-            { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"Leave 2\"" },
-            { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"Leave 3\"" },
-            { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"Leave 4\"" },
+            { "name" : "SupportData", "type" : "String", "value" : "\"Leave\"" },
             { "name" : "CustomerName", "type" : "String", "value" : "\"Leave 5\"" }
           ]
         },
@@ -197,9 +195,7 @@
             },
             "customFields" : [
               { "name" : "CustomerType", "type" : "String", "value" : "\"Annual CustomerType\"" },
-              { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"Annual CustomVarCharField2\"" },
-              { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"Annual CustomVarCharField3\"" },
-              { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"Annual CustomVarCharField4\"" },
+              { "name" : "SupportData", "type" : "String", "value" : "\"Annual SupportData\"" },
               { "name" : "CustomerName", "type" : "String", "value" : "\"Annual Leave\"" }
             ]
           },
@@ -212,9 +208,7 @@
             },
             "customFields" : [
               { "name" : "CustomerType", "type" : "String", "value" : "\"Sick CustomerType\"" },
-              { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"Sick CustomVarCharField2\"" },
-              { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"Sick CustomVarCharField3\"" },
-              { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"Sick CustomVarCharField4\"" },
+              { "name" : "SupportData", "type" : "String", "value" : "\"Sick SupportData\"" },
               { "name" : "CustomerName", "type" : "String", "value" : "\"Other Leave/Sick/Long\"" }
             ]
           },
@@ -227,9 +221,7 @@
             },
             "customFields" : [
               { "name" : "CustomerType", "type" : "String", "value" : "\"Maternity CustomerType\"" },
-              { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"Maternity CustomVarCharField2\"" },
-              { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"Maternity CustomVarCharField3\"" },
-              { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"Maternity CustomVarCharField4\"" },
+              { "name" : "SupportData", "type" : "String", "value" : "\"Maternity SupportData\"" },
               { "name" : "CustomerName", "type" : "String", "value" : "\"Other Leave/Maternity\"" }
             ]
           }
@@ -274,9 +266,7 @@
           "attachToBusinessCase" : false,
           "customFields" : [
             { "name" : "CustomerType", "type" : "String", "value" : "\"Leave Request CustomerType\"" },
-            { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"Leave Request CustomVarCharField2\"" },
-            { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"Leave Request CustomVarCharField3\"" },
-            { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"Leave Request CustomVarCharField4\"" },
+            { "name" : "SupportData", "type" : "String", "value" : "\"Leave Request SupportData\"" },
             { "name" : "ProcessCategoryCode", "type" : "String", "value" : "\"pubRequested\"" },
             { "name" : "ProcessCategoryName", "type" : "String", "value" : "\"Publication Requested\"" },
             { "name" : "ProcessCode", "type" : "String", "value" : "\"pubRequested\"" },
@@ -608,11 +598,9 @@
             { "name" : "InvoiceDate", "type" : "Timestamp", "value" : "new DateTime(2018, 2, 2, 2, 2 ,2)" },
             { "name" : "InvoiceDueDate", "type" : "Timestamp", "value" : "new DateTime(2018, 3, 3, 3, 3, 3)" },
             { "name" : "CreatedBillDate", "type" : "Timestamp", "value" : "new DateTime(2018, 5, 5, 5, 5, 5)" },
-            { "name" : "CustomerType", "type" : "String", "value" : "\"CustomVarCharField 1\"" },
-            { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"CustomVarCharField 2\"" },
-            { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"CustomVarCharField 3\"" },
-            { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"CustomVarCharField 4\"" },
-            { "name" : "CustomerName", "type" : "String", "value" : "\"CustomVarCharField 5\"" },
+            { "name" : "CustomerType", "type" : "String", "value" : "\"Customer type\"" },
+            { "name" : "SupportData", "type" : "String", "value" : "\"Support Data\"" },
+            { "name" : "CustomerName", "type" : "String", "value" : "\"Customer name\"" },
             { "name" : "ProcessCategoryCode", "type" : "String", "value" : "\"pubRequested\"" },
             { "name" : "ProcessCategoryName", "type" : "String", "value" : "\"Publication Requested\"" },
             { "name" : "ProcessCode", "type" : "String", "value" : "\"pubRequested\"" },
@@ -726,9 +714,7 @@
             { "name" : "CustomTimestampField4", "type" : "Timestamp", "value" : "new DateTime(2018, 4, 4, 4, 4, 4)" },
             { "name" : "CreatedBillDate", "type" : "Timestamp", "value" : "new DateTime(2018, 5, 5, 5, 5, 5)" },
             { "name" : "CustomerType", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails CustomerType\"" },
-            { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails CustomVarCharField2\"" },
-            { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails CustomVarCharField3\"" },
-            { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails CustomVarCharField4\"" },
+            { "name" : "SupportData", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails SupportData\"" },
             { "name" : "CustomerName", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails CustomerName\"" },
             { "name" : "ProcessCategoryCode", "type" : "String", "value" : "\"pubRequested\"" },
             { "name" : "ProcessCategoryName", "type" : "String", "value" : "\"Publication Requested\"" },
@@ -1284,9 +1270,7 @@
           "attachToBusinessCase" : false,
           "customFields" : [
             { "name" : "CustomerType", "type" : "String", "value" : "\"Leave Request CustomerType\"" },
-            { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"Leave Request CustomVarCharField2\"" },
-            { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"Leave Request CustomVarCharField3\"" },
-            { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"Leave Request CustomVarCharField4\"" },
+            { "name" : "SupportData", "type" : "String", "value" : "\"Leave Request SupportData\"" },
             { "name" : "Number field", "type" : "Number", "value" : "1000000" },
             { "name" : "ProcessCategoryCode", "type" : "String", "value" : "\"pubRequested\"" },
             { "name" : "ProcessCategoryName", "type" : "String", "value" : "\"Publication Requested\"" },
