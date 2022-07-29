@@ -11,7 +11,7 @@ CustomFields:
       Category: CustomTaskWidget
     ShipmentDate:
       Label: ShipmentDate
-      Description: Shipment date column for task
+      Description: ShipmentDate
       Type: TIMESTAMP
       Category: CustomTaskWidget
     CustomerType:
@@ -20,71 +20,71 @@ CustomFields:
       Category: CustomTaskWidget
       Type: STRING
     CustomerAddress:
-      Label: Customer address
-      Description: Customer address field
+      Label: CustomerAddress
+      Description: CustomerAddress
       Type: STRING
     CustomerEmail:
-      Label: Customer email
-      Description: Customer email field
+      Label: CustomerEmail
+      Description: CustomerEmail
       Type: STRING
   Cases:
     CustomerName:
-      Label: Customer name
-      Description: Customer name column for case
+      Label: CustomerName
+      Description: CustomerName
       Type: STRING
       Category: CustomCaseWidget
     ShipmentDate:
-      Label: Shipment date
-      Description: Shipment date column for case
+      Label: ShipmentDate
+      Description: ShipmentDate
       Type: TIMESTAMP
       Category: CustomCaseWidget
     CustomerType:
-      Label: Customer type
-      Description: Customer type column for case
+      Label: CustomerType
+      Description: CustomerType
       Category: CustomCaseWidget
       Type: STRING
     InvoiceNumber:
-      Label: Additional Case Data 1
-      Description: Property of Additional Case details page
+      Label: InvoiceNumber
+      Description: InvoiceNumber
       Type: NUMBER
       Category: DefaultAdditionalCaseDetai
     InvoiceTotalAmount:
-      Label: Invoice total amount
-      Description: Property of Additional Case details page
+      Label: InvoiceTotalAmount
+      Description: InvoiceTotalAmount
       Type: NUMBER
       Category: DefaultAdditionalCaseDetails
     InvoiceQualityNumber:
-      Label: Invoice quality number
-      Description: Property of Additional Case details page
+      Label: InvoiceQualityNumber
+      Description: InvoiceQualityNumber
       Type: NUMBER
       Category: DefaultAdditionalCaseDetails
     InvoiceSubTotalAmount:
-      Label: Invoice Subtotal Amount
-      Description: Property of Additional Case details page
+      Label: InvoiceSubTotalAmount
+      Description: InvoiceSubTotalAmount
       Type: NUMBER
       Category: DefaultAdditionalCaseDetails
     AccountNumber:
-      Label: Account Number
-      Description: Property of Additional Case details page
+      Label: AccountNumber
+      Description: AccountNumber
       Type: NUMBER
       Category: DefaultAdditionalCaseDetails
     InvoiceDate:
-      Label: Invoice date
-      Description: Property of Additional Case details page
+      Label: InvoiceDate
+      Description: InvoiceDate
       Type: NUMBER
       Category: DefaultAdditionalCaseDetails
     InvoiceDueDate:
-      Label: Invoice due date
-      Description: Property of Additional Case details page
+      Label: InvoiceDueDate
+      Description: InvoiceDueDate
       Type: NUMBER
       Category: DefaultAdditionalCaseDetails
     CreatedBillDate:
-      Label: Created Bill date
-      Description: Property of Additional Case details page
+      Label: CreatedBillDate
+      Description: CreatedBillDate
       Type: NUMBER
       Category: DefaultAdditionalCaseDetails
     SupportData:
-      Label: Support data
-      Description: Support data for additional case
+      Label: SupportData
+      Description: SupportData
       Type: STRING
       Category: DefaultAdditionalCaseDetails
