@@ -262,8 +262,7 @@ public class CaseWidgetPage extends TemplatePage {
 	}
 
 	public String getCaseListFirstCustomCellValue() {
-		return findElementByCssSelector(
-				"div[id$=':0\\:case-item\\:case-item-container'] span.customized-case-header-column").getText();
+		return findElementByCssSelector("div[id$=':0\\:case-item\\:case-item-container'] span.customized-case-header-column").getText();
 	}
 
 	public Integer getCaseCount() {
