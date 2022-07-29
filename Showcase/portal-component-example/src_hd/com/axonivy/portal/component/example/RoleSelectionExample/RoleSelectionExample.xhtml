@@ -7,12 +7,18 @@
     <ui:define name="title">Role Selection Component Example</ui:define>
     <ui:define name="content">
       <h:outputStylesheet name="/layouts/styles/example.css" />
+      <div class="layout-wrapper">
       <h:form id="form">
+        <ic:com.axonivy.portal.component.example.internal.ThemeSelection />
         <h1 class="user-selection-component-header">Role Selection Examples</h1>
         <div class="ui-g ui-fluid" style="margin-bottom: 20px;">
-          <ic:com.axonivy.portal.component.RoleSelection componentId="default-role-autocomplete" selectedRole="#{data.selectedRole}"
-            isRenderedMessage="true" label="Default role selection" labelPanelStyleClass="ui-g-2 ui-md-3 ui-sm-12"
-            autoCompleteStyleClass="width-100" autoCompletePanelStyleClass="ui-g-4 ui-sm-12" hightlight="false" isRequired="true" />
+          <div class="ui-g-8 ui-xl-8 ui-g-nopad">
+            <ic:com.axonivy.portal.component.RoleSelection componentId="default-role-autocomplete" selectedRole="#{data.selectedRole}"
+              isRenderedMessage="true" label="Default role selection" labelPanelStyleClass="ui-g-4 ui-md-4 ui-sm-12"
+              autoCompleteStyleClass="width-100" autoCompletePanelStyleClass="ui-g-8 ui-sm-12"
+              messageStyleClass="ui-g-8 ui-g-offset-4 ui-g-nopad"
+               hightlight="false" isRequired="true" />
+          </div>
           <div class="ui-g-2 ui-xl-2 ui-md-4 ui-sm-12">
             <p:commandButton id="assign-selected-role-btn" update="@form" value="Assign selected role to next task"
               actionListener="#{logic.finish}" styleClass="assign-task-to-selected-role" />
@@ -47,12 +53,13 @@
               </p:column>
               <f:facet name="event">
                 <p:ajax event="itemSelect" listener="#{logic.showSelectedRole}"
-                  update="#{p:resolveFirstComponentWithId('item-select-event-for-role-selection-message', view).clientId}" />
+                  update="#{p:resolveFirstComponentWithId('item-select-event-for-role-selection-message-serenity', view).clientId} #{p:resolveFirstComponentWithId('item-select-event-for-role-selection-message-freya', view).clientId}" />
               </f:facet>
             </ic:com.axonivy.portal.component.RoleSelection>
           </div>
         </div>
       </h:form>
+      </div>
     </ui:define>
   </ui:composition>
 </h:body>

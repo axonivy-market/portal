@@ -24,6 +24,8 @@
   --process-chain-current-line-vertical-step-title-font-weight: bold;
 
 /* CSS variables for process history component */
+  --process-history-default-font-size: 14px;
+  --process-history-dark-mode-running-case-state-font-color: #293241;
   --process-history-header-border-bottom-color: #D9DADA;
   --process-history-unsortable-header-font-size: 1rem;
   --process-history-unsortable-header-text-color: #9C9D9D;
