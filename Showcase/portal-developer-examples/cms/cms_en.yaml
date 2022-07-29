@@ -12,17 +12,62 @@ Categories:
       name: Sick Leave
     name: Other Leave
 CustomFields:
-  Categories:
-    CustomTaskWidget: Custom TaskWidget
-  Tasks:
+  Cases:
+    AccountNumber:
+      Description: Property of Additional Case details page
+      Label: Account Number
+    CreatedBillDate:
+      Description: Property of Additional Case details page
+      Label: Created Bill date
     CustomerName:
-      Description: Customer name
+      Description: Customer name column for example
       Label: Customer name
     CustomerType:
-      Description: Customer type
+      Description: Customer type column for example
+      Label: Customer type
+    InvoiceDate:
+      Description: Property of Additional Case details page
+      Label: Invoice date
+    InvoiceDueDate:
+      Description: Property of Additional Case details page
+      Label: Invoice due date
+    InvoiceNumber:
+      Description: Property of Additional Case details page
+      Label: Additional Case Data 1
+    InvoiceQualityNumber:
+      Description: Property of Additional Case details page
+      Label: Invoice quality number
+    InvoiceSubTotalAmount:
+      Description: Property of Additional Case details page
+      Label: Invoice Subtotal Amount
+    InvoiceTotalAmount:
+      Description: Property of Additional Case details page
+      Label: Additional Case Data 1
+    ShipmentDate:
+      Description: Shipment date column for example
+      Label: Shipment date
+    SupportData:
+      Description: Property of Additional Case details page
+      Label: Invoice date
+  Categories:
+    CustomCaseWidget: Custom CaseWidget
+    CustomTaskWidget: Custom TaskWidget
+    DefaultAdditionalCaseDetai: Default additional Case details page
+  Tasks:
+    CustomerAddress:
+      Description: Customer address field
+      Label: Customer address
+    CustomerEmail:
+      Description: Customer email field
+      Label: Customer email
+    CustomerName:
+      Description: Customer name column for example
+      Label: Customer name
+    CustomerType:
+      Description: Customer type column for example
       Label: Customer type
     ShipmentDate:
-      Description: Shipment date
+      Description: Shipment date column for example
       Label: Shipment date
 DefaultColumns:
   ACTIVATOR: Responsible
