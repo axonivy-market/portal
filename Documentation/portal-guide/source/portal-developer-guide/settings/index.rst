@@ -660,8 +660,4 @@ Data model:
 .. |portal-header| image:: ../../screenshots/settings/user-settings.png
 .. |global-settings| image:: ../../screenshots/settings/global-settings.png
 .. |global-setting-edit| image:: ../../screenshots/settings/edit-global-settings.png
-.. |language-precedence| image:: images/settings/language-precedence.png
 .. |select-admin-settings| image:: ../../screenshots/settings/select-admin-settings.png
-.. |add-new-item-to-cms-language| image:: images/settings/add-new-item-to-cms-language.png 
-.. |add-new-item-to-cms-language-after| image:: images/settings/add-new-item-to-cms-language-after.png
-.. |export-cms| image:: images/settings/export-cms.png   
