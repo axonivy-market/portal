@@ -19,7 +19,7 @@ public class CaseWidgetCustomizationTest extends BaseTest {
   private static final String CUSTOMER_NAME_CASE_LIST_HEADER_ID = "case-widget:customer-name-column-header:customer-name-column-header";
   private static final String STATE_COLUMN_HEADER = "State";
   private static final String CUSTOMER_NAME_COLUMN_HEADER = "Customer name";
-  private static final String CUSTOMER_NAME_COLUMN_VALUE = "Customer name 11";
+  private static final String CUSTOMER_NAME_COLUMN_VALUE = "Customer name 0";
 
   @Override
   @Before

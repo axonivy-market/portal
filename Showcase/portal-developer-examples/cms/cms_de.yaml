@@ -12,17 +12,62 @@ Categories:
       name: Krank
     name: Andere verlassen
 CustomFields:
-  Categories:
-    CustomTaskWidget: Benutzerdefiniertes TaskWidget
-  Tasks:
+  Cases:
+    AccountNumber:
+      Description: Eigenschaft der Seite Zusätzliche Falldetails
+      Label: Kontonummer
+    CreatedBillDate:
+      Description: Eigenschaft der Seite Zusätzliche Falldetails
+      Label: Erstelltes Rechnungsdatum
     CustomerName:
-      Description: Kundenname
+      Description: Spalte Kundenname zum Beispiel
       Label: Kundenname
     CustomerType:
-      Description: Typ des Kunden
+      Description: Spalte Kundentyp zum Beispiel
+      Label: Typ des Kunden
+    InvoiceDate:
+      Description: Eigenschaft der Seite Zusätzliche Falldetails
+      Label: Datum der Rechnung
+    InvoiceDueDate:
+      Description: Eigenschaft der Seite Zusätzliche Falldetails
+      Label: Fälligkeitsdatum der Rechnung
+    InvoiceNumber:
+      Description: Eigenschaft der Seite Zusätzliche Falldetails
+      Label: Zusätzliche Falldaten 1
+    InvoiceQualityNumber:
+      Description: Eigenschaft der Seite Zusätzliche Falldetails
+      Label: Qualitätsnummer der Rechnung
+    InvoiceSubTotalAmount:
+      Description: Eigenschaft der Seite Zusätzliche Falldetails
+      Label: Rechnung Zwischensumme Betrag
+    InvoiceTotalAmount:
+      Description: Eigenschaft der Seite Zusätzliche Falldetails
+      Label: Gesamtrechnungsbetrag
+    ShipmentDate:
+      Description: Spalte Sendungsdatum zum Beispiel
+      Label: Versanddatum
+    SupportData:
+      Description: Eigenschaft der Seite Zusätzliche Falldetails
+      Label: Daten unterstützen
+  Categories:
+    CustomCaseWidget: Benutzerdefiniertes CaseWidget
+    CustomTaskWidget: Benutzerdefiniertes TaskWidget
+    DefaultAdditionalCaseDetai: Standardmäßig zusätzliche Falldetailseite
+  Tasks:
+    CustomerAddress:
+      Description: Feld Kundenadresse
+      Label: Adresse des Kunden
+    CustomerEmail:
+      Description: E-Mail-Feld des Kunden
+      Label: Kunden-E-Mail
+    CustomerName:
+      Description: Spalte Kundenname zum Beispiel
+      Label: Kundenname
+    CustomerType:
+      Description: Spalte Kundentyp zum Beispiel
       Label: Typ des Kunden
     ShipmentDate:
-      Description: Versanddatum
+      Description: Spalte Sendungsdatum zum Beispiel
       Label: Versanddatum
 DefaultColumns:
   ACTIVATOR: Verantwortlich
