@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
@@ -14,7 +13,6 @@ import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
 import ch.ivy.addon.portalkit.ivydata.service.ILanguageService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.language.LanguageConfigurator;
 import ch.ivyteam.ivy.language.LanguageManager;
 import ch.ivyteam.ivy.language.LanguageRepository;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -58,19 +56,19 @@ public class LanguageService implements ILanguageService {
   }
 
   private String getUserLanguage() {
-    return loadLanguage(IUser::getLanguage, LanguageConfigurator::content);
+    return loadLanguage(IUser::getLanguage);
   }
   
   private String getUserFormatLanguage() {
-    return loadLanguage(IUser::getFormattingLanguage, LanguageConfigurator::formatting);
+    return loadLanguage(IUser::getFormattingLanguage);
   }
   
-  private String loadLanguage(Function<IUser, Locale> userLocaleLoader, Function<LanguageConfigurator, Locale> systemLocaleLoader) {
+  private String loadLanguage(Function<IUser, Locale> userLocaleLoader) {
     Locale apply = userLocaleLoader.apply(Ivy.session().getSessionUser());
     if (apply != null) {
       return apply.toLanguageTag();
     }
-    return systemLocaleLoader.apply(new LanguageConfigurator(ISecurityContext.current())).toLanguageTag();
+    return "";
   }
 
   @Override
@@ -102,14 +100,10 @@ public class LanguageService implements ILanguageService {
   }
   
   private List<Locale> locales(Function<LanguageRepository, List<Locale>> loader) {
-    List<Locale> locales = loader.apply(LanguageManager.instance().languages(ISecurityContext.current()))
+    return loader.apply(LanguageManager.instance().languages(ISecurityContext.current()))
                           .stream()
                           .sorted(Comparator.comparing(Locale::getDisplayName))
                           .collect(Collectors.toList());
-    ArrayList<Locale> l = new ArrayList<>();
-    l.add(Locale.ROOT);
-    l.addAll(locales);
-    return l;
   }
 
 }
