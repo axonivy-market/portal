@@ -86,16 +86,13 @@
       for="#{cc.attrs.componentId}"
       styleClass="#{cc.attrs.labelStyleClass}"
       rendered="#{cc.attrs.floatingLabel}" />
-    <p:message id="#{cc.attrs.componentId}-message-serenity"
-      for="#{cc.attrs.componentId}"
-      rendered="#{cc.attrs.isRenderedMessage and ivyPrimefacesThemeResolver.sessionTheme.contains('serenity')}"
-      styleClass="#{cc.attrs.messageStyleClass}" />
   </h:panelGroup>
-  <h:panelGroup layout="block" rendered="#{cc.attrs.isRenderedMessage and ivyPrimefacesThemeResolver.sessionTheme.contains('freya')}"
-    styleClass="#{cc.attrs.messageStyleClass}">
-    <p:message id="#{cc.attrs.componentId}-message-freya"
+  <h:panelGroup layout="block"
+    styleClass="#{cc.attrs.messageStyleClass} #{cc.attrs.floatingLabel ? 'message-for-floating-label' : ''}">
+    <p:message id="#{cc.attrs.componentId}-message"
       for="#{cc.attrs.componentId}" />
   </h:panelGroup>
+  
 
   <h:outputScript name="theme-checker.js" library="js" />
   <script type="text/javascript">
