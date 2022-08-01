@@ -6,9 +6,9 @@ import org.primefaces.event.ItemSelectEvent;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.dto.DisplayName;
-import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.service.StatisticService;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class StatisticChartDrilldownUtils {
@@ -28,9 +28,9 @@ public class StatisticChartDrilldownUtils {
 
   public static void drilldownTaskByPriority(ItemSelectEvent event, StatisticChart chart) {
     var taskQuery = StatisticChartQueryUtils.getQueryForSelectedItemOfTaskByPriorityChart(event, chart);
-    var currentLanguage = LanguageService.newInstance().findUserLanguages().getIvyLanguage().getUserLanguage();
+    var currentLanguage = UserUtils.getUserLanguage();
     var chartName = chart.getNames().stream()
-            .filter(name -> StatisticService.equalsDisplayNameLocale(name, currentLanguage))
+            .filter(name -> StatisticService.equalsLanguageLocale(name, currentLanguage))
             .map(DisplayName::getValue).findFirst().orElse(EMPTY);
     callIvyComponentLogic(DRILLDOWN_TASK_PRIORITY_METHOD, new Object[] {chartName, taskQuery});
   }
