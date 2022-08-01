@@ -40,7 +40,7 @@
          <p:selectOneMenu id="custom-widget-type" value="#{widget.data.type}">
            <f:selectItems value="#{dashboardCustomWidgetBean.customWidgetTypes}" var="type"
              itemLabel="#{type.label}" itemValue="#{type}" />
-           <p:ajax event="itemSelect" update="user-filter" listener="#{dashboardCustomWidgetBean.onChangeType(widget)}" />
+           <p:ajax event="itemSelect" process="@this widget-title" partialSubmit="true" update="user-filter" listener="#{dashboardCustomWidgetBean.onChangeType(widget)}" />
          </p:selectOneMenu>
        </div>
      </div>
