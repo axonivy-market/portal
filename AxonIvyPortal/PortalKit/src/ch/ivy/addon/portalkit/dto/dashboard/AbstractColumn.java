@@ -72,19 +72,19 @@ public abstract class AbstractColumn implements Serializable {
       this.visible = true;
     }
     if (isNull(this.sortable)) {
-      this.sortable = true;
+      this.sortable = getDefaultSortable();
     }
     if (isNull(this.format)) {
-      this.format = DashboardColumnFormat.STRING;
+      this.format = getDefaultFormat();
     }
     if (isNull(this.filterList)) {
       this.filterList = new ArrayList<>();
     }
     if (isNull(this.filterType)) {
-      this.filterType = DashboardFilterType.LIKE;
+      this.filterType = getDefaultFilterType();
     }
     if (isNull(this.type)) {
-      this.type = DashboardColumnType.STANDARD;
+      this.type = getDefaultType();
     }
     if (isNull(this.userFilterList)) {
       this.userFilterList = new ArrayList<>();
