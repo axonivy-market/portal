@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -186,7 +187,13 @@ public class DashboardBean implements Serializable {
     CustomDashboardWidget customWidget = (CustomDashboardWidget) widget;
     if (StringUtils.isNotBlank(customWidget.getData().getProcessStart())) {
       String url = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(customWidget.getData().getProcessStart());
+
+      if(StringUtils.isBlank(url)) return;
+
       IStartElement element = ProcessStartAPI.findStartElementByProcessStartFriendlyRequestPath(customWidget.getData().getProcessStart());
+
+      if(Objects.isNull(element)) return;
+
       customWidget.getData().setStartProcessParams(element.startParameters());
 
       List<IWebStartable> allPortalProcesses = ProcessService.newInstance().findProcesses().getProcesses();
