@@ -8,7 +8,7 @@
     <ui:define name="content">
       <div class="layout-wrapper">
       <h:form id="form">
-        <ic:com.axonivy.portal.component.example.internal.ThemeSelection />
+       
         <h1 class="user-selection-component-header">User Selection Examples</h1>
         <div class="ui-g ui-fluid" style="margin-bottom: 20px;">
           <div class="ui-g-8 ui-xl-8 ui-g-nopad">
@@ -49,7 +49,7 @@
               </p:column>
               <f:facet name="event">
                 <p:ajax event="itemSelect" listener="#{logic.showSelectedUser}"
-                  update="#{p:resolveFirstComponentWithId('item-select-event-for-user-selection-message-serenity', view).clientId} #{p:resolveFirstComponentWithId('item-select-event-for-user-selection-message-freya', view).clientId}" />
+                  update="#{p:resolveFirstComponentWithId('item-select-event-for-user-selection-message', view).clientId}" />
               </f:facet>
             </ic:com.axonivy.portal.component.UserSelection>
           </div>
