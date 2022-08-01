@@ -138,7 +138,7 @@ function taskByExpiryChartClickEvent(event, activeElement) {
     var widgetVar = 'context-menu-' + chartId.substring(indexOfChart - 1, indexOfChart);
     PF(widgetVar).show();
     topValue = event.native.offsetY + 50;
-    leftValue = event.native.offsetX;
+    leftValue = event.native.offsetX - 60;
   }
 }
 
@@ -392,6 +392,6 @@ function casesByCategoryChartClickEvent(event, activeElement) {
     var widgetVar = 'context-menu-' + chartId.substring(indexOfChart - 1, indexOfChart);
     PF(widgetVar).show();
     topValue = event.native.offsetY + 50;
-    leftValue = event.native.offsetX;
+    leftValue = event.native.offsetX - 60;
   }
 }
