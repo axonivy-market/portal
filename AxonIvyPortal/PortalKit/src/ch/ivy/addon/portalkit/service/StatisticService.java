@@ -1180,7 +1180,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
   public DisplayName getDisplayNameInUserLanguageForChart(StatisticChart statisticChart) {
     String userLanguage = UserUtils.getUserLanguage();
     return CollectionUtils.emptyIfNull(statisticChart.getNames()).stream()
-        .filter(name -> equalsDisplayNameLocale(name, userLanguage))
+        .filter(name -> equalsLanguageLocale(name, userLanguage))
         .findFirst().orElse(new DisplayName());
   }
 
@@ -1491,11 +1491,11 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
   }
 
   private boolean equalsDisplayName(String chartName, String language, DisplayName displayName) {
-    return equalsDisplayNameLocale(displayName, language) && StringUtils.equals(displayName.getValue(), chartName);
+    return equalsLanguageLocale(displayName, language) && StringUtils.equals(displayName.getValue(), chartName);
   }
 
-  public static boolean equalsDisplayNameLocale(DisplayName displayName, String language) {
-    return StringUtils.equalsIgnoreCase(displayName.getLocale().toLanguageTag(), language);
+  public static boolean equalsLanguageLocale(DisplayName displayName, String language) {
+    return StringUtils.equalsIgnoreCase(displayName.getLocale().toString(), language);
   }
 
   public boolean isDefaultChart(List<StatisticChart> statisticCharts) {
