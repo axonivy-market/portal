@@ -5,16 +5,26 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
+  <cc:attribute name="serenityExampleLink" />
 </cc:interface>
 <cc:implementation>
   <h:outputStylesheet library="css" name="examples.css" />
-  <div class="ui-g theme-selection-panel">
-    <h:outputLabel for="theme-selection" value="Choose a theme" styleClass="theme-selection-label" />
+  <div class="theme-selection-panel ui-g">
+    <div class="ui-g-4">
+      <h:outputLabel for="theme-selection" value="Choose a theme" styleClass="theme-selection-label" />
     <p:spacer width="10" />
     <p:selectOneMenu id="theme-selection" value="#{data.selectedTheme}">
       <p:ajax process="@this" update="@this" oncomplete="changeTheme();" />
       <f:selectItems value="#{ivyPrimefacesThemeResolver.ivyThemes}" />
     </p:selectOneMenu>
+    </div>
+    <div class="ui-g-3">
+      <p:link target="_blank" href="#{cc.attrs.serenityExampleLink}"
+        value="Show Serenity example in new tab" styleClass="example-link" />
+    </div>
+
+    
+
   </div>
   <h:outputScript name="theme-switcher.js" library="js" />
 </cc:implementation>
