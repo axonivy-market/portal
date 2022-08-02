@@ -1,12 +1,12 @@
 {
   "format" : "9.4.15",
-  "id" : "1818980EC9955786",
-  "data" : "com.axonivy.portal.component.example.ProcessHistoryExample.ProcessHistoryExampleData",
+  "id" : "1825CB45F86B23BB",
+  "data" : "portal.component.example.serenity.ProcessHistoryExampleSerenity.ProcessHistoryExampleSerenityData",
   "kind" : "HTML_DIALOG",
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
-      "name" : "start(Boolean,Boolean)",
+      "name" : "start(Boolean, Boolean)",
       "config" : {
         "callSignature" : "start",
         "input" : {
@@ -17,18 +17,9 @@
           "map" : {
             "out.showProcessHistoriesOfAlphaCompany" : "param.showProcessHistoriesOfAlphaCompany",
             "out.showProcessHistoriesOfBetaCompany" : "param.showProcessHistoriesOfBetaCompany"
-          },
-          "code" : [
-            "import com.axonivy.portal.component.example.utils.ProcessStartUtils;",
-            "",
-            "if (param.showProcessHistoriesOfAlphaCompany) {",
-            "  out.processHistoryExampleSerenityLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessHistoryExample/viewProcessHistoryOfAlphaCompanySerenity.ivp\");",
-            "} else {",
-            "  out.processHistoryExampleSerenityLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessHistoryExample/viewProcessHistoryOfBetaCompanySerenity.ivp\");",
-            "}"
-          ]
+          }
         },
-        "guid" : "1818980EC9CA1178"
+        "guid" : "1825CB45F8D514BC"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
@@ -46,7 +37,7 @@
       "type" : "HtmlDialogEventStart",
       "name" : "close",
       "config" : {
-        "guid" : "1818980EC9E65033"
+        "guid" : "1825CB45F9060461"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }
