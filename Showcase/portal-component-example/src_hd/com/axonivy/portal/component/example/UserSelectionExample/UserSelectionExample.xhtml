@@ -6,19 +6,19 @@
   <ui:composition template="/layouts/frame-10.xhtml">
     <ui:define name="title">User Selection Component Example</ui:define>
     <ui:define name="content">
+      <h:outputStylesheet library="css" name="examples.css" />
       <div class="layout-wrapper">
       <h:form id="form">
-       <ic:com.axonivy.portal.component.example.internal.ThemeSelection serenityExampleLink="#{data.userSelectionSerenityExampleLink}" />
+        <ic:com.axonivy.portal.component.example.internal.ThemeSelection serenityExampleLink="#{data.userSelectionSerenityExampleLink}" />
         <h1 class="user-selection-component-header">User Selection Examples</h1>
-        <div class="ui-g ui-fluid" style="margin-bottom: 20px;">
-          <div class="ui-g-8 ui-xl-8 ui-g-nopad">
+        <div class="ui-g ui-fluid">
+          <div class="ui-g-8 ui-xl-8 ui-sm-12">
           <ic:com.axonivy.portal.component.UserSelection componentId="default-user-autocomplete" selectedUser="#{data.selectedUser}"
             label="Default user selection" isRequired="true" labelPanelStyleClass="ui-g-4 ui-md-4 ui-sm-12" autoCompleteStyleClass="width-100"
-            autoCompletePanelStyleClass="ui-g-8 ui-sm-12" messageStyleClass="ui-g-8 ui-g-offset-4 ui-g-nopad" />
+            autoCompletePanelStyleClass="ui-g-8 ui-sm-12 user-selection-panel-with-button-inline" messageStyleClass="ui-g-8 ui-g-offset-4 ui-sm-offset-0 user-selection-message-with-button-inline" />
           </div>
-          <div class="ui-g-3 ui-xl-3 ui-md-4 ui-sm-12">
-            <p:commandButton update="@form" value="Assign selected user to next task" actionListener="#{logic.finish}"
-              styleClass="assign-task-to-selected-user" />
+          <div class="ui-g-3 ui-xl-3 ui-md-4 ui-sm-12 assign-task-to-selected-user">
+            <p:commandButton update="@form" value="Assign selected user to next task" actionListener="#{logic.finish}" />
           </div>
         </div>
         <div class="ui-g ui-fluid" style="margin-bottom: 20px;">
