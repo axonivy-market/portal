@@ -36,12 +36,13 @@ public class LanguageService implements ILanguageService {
 
   private IvyLanguage getIvyLanguageOfUser() {
     IvyLanguage ivyLanguage = new IvyLanguage();
-    List<Locale> contentLocales = getContentLanguages();
-    List<Locale> formatLocales = getFormattingLanguages();
+    List<Locale> contentLocales = getContentLocales();
+    List<Locale> formatLocales = getFormattingLocales();
     
     List<String> supportedLanguages = contentLocales.stream()
                                       .map(Locale::toString)
                                       .collect(Collectors.toList());
+    
     List<String> supportedFormatLanguages = formatLocales.stream()
                                       .map(Locale::toLanguageTag)
                                       .collect(Collectors.toList());
@@ -91,11 +92,11 @@ public class LanguageService implements ILanguageService {
     });
   }
   
-  public List<Locale> getContentLanguages() {
+  public List<Locale> getContentLocales() {
     return locales(LanguageRepository::allContent);
   }
   
-  public List<Locale> getFormattingLanguages() {
+  public List<Locale> getFormattingLocales() {
     return locales(LanguageRepository::allFormatting);
   }
   

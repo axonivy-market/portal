@@ -412,11 +412,11 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
    * </p>
    * <p>
    * <b>Example: </b> <code><pre>
-   * if ("CustomVarCharField5".equalsIgnoreCase(criteria.getSortField())) {
+   * if ("CustomerType".equalsIgnoreCase(criteria.getSortField())) {
    *   if (criteria.isSortDescending()) {
-   *     taskQuery.orderBy().customField().stringField("CustomVarCharField5").descending();
+   *     taskQuery.orderBy().customField().stringField("CustomerType").descending();
    *   } else {
-   *     taskQuery.orderBy().customField().stringField("CustomVarCharField5");
+   *     taskQuery.orderBy().customField().stringField("CustomerType");
    *   }
    * }
    * </pre></code>
@@ -972,7 +972,7 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
    * <p>
    * <b>Example: </b> <code><pre>
    *
-   * return Arrays.asList("PRIORITY", "NAME", "ID" , "ACTIVATOR", "CREATION_TIME", "EXPIRY_TIME", "customVarCharField5", "customVarCharField1");
+   * return Arrays.asList("PRIORITY", "NAME", "ID" , "ACTIVATOR", "CREATION_TIME", "EXPIRY_TIME", "CustomerName", "CustomerType");
    *
    * </pre></code> This list is the list of sortFields in TaskColumnHeader Portal component when you
    * use it to add new column headers Also the list of checkboxes in config columns panel
@@ -1154,10 +1154,10 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
    * "_DESC"
    *
    * E.g your customize portal column are Arrays.asList{"PRIORITY", "NAME", "ID" , "ACTIVATOR",
-   * "CREATION_TIME", "EXPIRY_TIME", "customVarCharField5", "customVarCharField1"} You can have sort
+   * "CREATION_TIME", "EXPIRY_TIME", "CustomerName", "CustomerType"} You can have sort
    * fields like: return Arrays.asList("CREATION_TIME_ASC", "CREATION_TIME_DESC",
-   * "customVarCharField5_ASC", "customVarCharField5_DESC", "customVarCharField1_ASC",
-   * "customVarCharField1_DESC"}
+   * "CustomerName_ASC", "CustomerName_DESC", "CustomerType_ASC",
+   * "CustomerType_DESC"}
    *
    * @return list of sort criteria
    */
@@ -1170,14 +1170,14 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
    * Sort field label. Override this method and return cms in your project
    *
    * Example you have custome sort fields like Arrays.asList("CREATION_TIME_ASC",
-   * "CREATION_TIME_DESC", "customVarCharField5_ASC", "customVarCharField5_DESC",
-   * "customVarCharField1_ASC", "customVarCharField1_DESC"}
+   * "CREATION_TIME_DESC", "CustomerName_ASC", "CustomerName_DESC",
+   * "CustomerType_ASC", "CustomerType_DESC"}
    *
    * Then create CMS folder in your project
    *
    * sortFields/customized/CREATION_TIME_ASC sortFields/customized/CREATION_TIME_DESC
-   * sortFields/customized/customVarCharField5_ASC sortFields/customized/customVarCharField5_DESC
-   * sortFields/customized/customVarCharField1_ASC sortFields/customized/customVarCharField1_DESC
+   * sortFields/customized/CustomerName_ASC sortFields/customized/CustomerName_DESC
+   * sortFields/customized/CustomerType_ASC sortFields/customized/CustomerType_DESC
    *
    * Override this method: return Ivy.cms().co("/sortFields/customized/" + fieldName);
    *
