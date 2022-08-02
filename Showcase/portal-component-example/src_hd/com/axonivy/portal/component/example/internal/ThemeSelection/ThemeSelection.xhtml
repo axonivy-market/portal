@@ -10,7 +10,7 @@
 <cc:implementation>
   <h:outputStylesheet library="css" name="examples.css" />
   <div class="theme-selection-panel ui-g">
-    <div class="ui-g-4">
+    <div class="ui-g-4 ui-sm-12">
       <h:outputLabel for="theme-selection" value="Choose a theme" styleClass="theme-selection-label" />
     <p:spacer width="10" />
     <p:selectOneMenu id="theme-selection" value="#{data.selectedTheme}">
@@ -18,7 +18,7 @@
       <f:selectItems value="#{ivyPrimefacesThemeResolver.ivyThemes}" />
     </p:selectOneMenu>
     </div>
-    <div class="ui-g-3">
+    <div class="ui-g-3 ui-sm-12">
       <p:link target="_blank" href="#{cc.attrs.serenityExampleLink}"
         value="Show Serenity example in new tab" styleClass="example-link" />
     </div>
