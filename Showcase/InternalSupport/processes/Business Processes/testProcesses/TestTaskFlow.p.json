@@ -711,7 +711,6 @@
             { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime(2018, 1, 1, 1, 1, 1)" },
             { "name" : "InvoiceDate", "type" : "Timestamp", "value" : "new DateTime(2018, 2, 2, 2, 2 ,2)" },
             { "name" : "InvoiceDueDate", "type" : "Timestamp", "value" : "new DateTime(2018, 3, 3, 3, 3, 3)" },
-            { "name" : "CustomTimestampField4", "type" : "Timestamp", "value" : "new DateTime(2018, 4, 4, 4, 4, 4)" },
             { "name" : "CreatedBillDate", "type" : "Timestamp", "value" : "new DateTime(2018, 5, 5, 5, 5, 5)" },
             { "name" : "CustomerType", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails CustomerType\"" },
             { "name" : "SupportData", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails SupportData\"" },
