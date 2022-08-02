@@ -1,7 +1,7 @@
 {
   "format" : "9.4.15",
-  "id" : "18189731173CA5D4",
-  "data" : "com.axonivy.portal.component.example.ProcessChainExample.ProcessChainExampleData",
+  "id" : "18258D93178B9CCF",
+  "data" : "portal.component.example.serenity.ProcessChainExampleSerenity.ProcessChainExampleSerenityData",
   "kind" : "HTML_DIALOG",
   "elements" : [ {
       "id" : "f0",
@@ -9,7 +9,7 @@
       "name" : "start()",
       "config" : {
         "callSignature" : "start",
-        "guid" : "18189731175BDAFD"
+        "guid" : "18258D9317863B37"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
@@ -26,7 +26,7 @@
       "type" : "HtmlDialogEventStart",
       "name" : "close",
       "config" : {
-        "guid" : "181897311778B802"
+        "guid" : "18258D9317A64142"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }
@@ -45,12 +45,10 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.component.example.utils.ProcessStartUtils;",
             "import java.util.Arrays;",
             "",
             "in.actualCurrentIndex = 2;",
-            "in.steps = Arrays.asList(\"Step 1\",\"Step 2\",\"Step 3\",\"Step 4\",\"Step 5\",\"Step 6\",\"Step 7\",\"Step 8\",\"Step 9\");",
-            "in.processChainSerenityExampleLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessChainExample/showProcessChainExamplesSerenity.ivp\");"
+            "in.steps = Arrays.asList(\"Step 1\",\"Step 2\",\"Step 3\",\"Step 4\",\"Step 5\",\"Step 6\",\"Step 7\",\"Step 8\",\"Step 9\");"
           ]
         }
       },
@@ -63,7 +61,7 @@
       "type" : "HtmlDialogEventStart",
       "name" : "next",
       "config" : {
-        "guid" : "1818974AB43CB235",
+        "guid" : "18258DA4F8C72112",
         "output" : {
           "code" : [
             "if (in.actualCurrentIndex == 8){",
@@ -83,7 +81,7 @@
       "id" : "f9",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 224, "y" : 256 }
+        "at" : { "x" : 256, "y" : 256 }
       }
     } ]
 }

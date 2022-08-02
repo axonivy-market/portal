@@ -3,14 +3,12 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-  <ui:composition template="/layouts/frame-10.xhtml">
+  <ui:composition template="/layouts/frame-10-serenity.xhtml">
     <ui:define name="title">Default Document Table Component Example</ui:define>
     <ui:define name="content">
       <div class="layout-wrapper">
-        <h1>Default Document Table Component Example</h1>
+        <h1>Default Document Table Component Example (Serenity theme)</h1>
         <h:form id="form">
-          <ic:com.axonivy.portal.component.example.internal.ThemeSelection
-            serenityExampleLink="#{documentTableExampleBean.serenityExampleLink}" />
           <ic:com.axonivy.portal.component.DocumentTable />
         </h:form>
       </div>
