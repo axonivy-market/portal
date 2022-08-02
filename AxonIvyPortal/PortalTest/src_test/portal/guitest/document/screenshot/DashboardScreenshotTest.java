@@ -112,6 +112,8 @@ public class DashboardScreenshotTest extends ScreenshotTest {
 
   @Test
   public void screenshotNewDashboard() throws IOException{
+    ScreenshotUtil.resizeBrowserAndCaptureWholeScreen(ScreenshotUtil.DASHBOARD_FOLDER + "legacy-dashboard", new Dimension(1200, 800));
+    
     showNewDashboard();
     newDashboardPage = new NewDashboardPage();
 
