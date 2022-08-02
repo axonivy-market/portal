@@ -5,3 +5,15 @@ body.freya .theme-selection-panel label.theme-selection-label {
 body.serenity .theme-selection-panel label.theme-selection-label {
   margin-top: 2px;
 }
+
+.ui-hidden {
+  display: none;
+}
+
+body.serenity .theme-selection-panel .example-link {
+  line-height: 1.5;
+}
+
+body.freya .theme-selection-panel .example-link {
+  line-height: 2.5;
+}

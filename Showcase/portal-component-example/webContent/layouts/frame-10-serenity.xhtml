@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+  
+<!--
+DESCRIPTION:
+This is the default template to use the freya-ivy theme as well as iFrames approach.
+
+PORTAL:
+If you are using the Axon Ivy Portal, you can pass several parameters to it to use some features (e.g. process chain).
+You'll find the list of parameters here: https://developer.axonivy.com/portal/dev/doc/portal-developer-guide/components/layout-templates.html#components-layout-templates-iframe-task-template
+For further information about iframes and usage in Portal please refer to: https://developer.axonivy.com/portal/dev/doc/portal-developer-guide/iframe/index.html
+
+BRANDING:
+If you want to brand your dialogs, please take a look at our documentation: https://developer.axonivy.com/doc/dev/designer-guide/user-interface/branding/index.html
+
+STYLING:
+If you want to add custom styles, you can simply add your own .css file (e.g. at the location: "webContent/layouts/styles/style.css")
+and refence it below in the head part.
+-->
+  
+<h:head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><ui:insert name="title">Ivy Html Dialog</ui:insert></title>
+
+  <f:attribute name="primefaces.THEME" value="serenity-ivy" />
+  <h:outputStylesheet name="css/layout-ivy.css" library="serenity-layout" />
+  <h:outputScript name="js/layout.js" library="serenity-layout" />
+
+  <link rel="shortcut icon" href="#{resource['ivy-branding:favicon']}" />
+  <h:outputStylesheet name="custom.css" library="ivy-branding" />
+  <!-- Optional Style or Script files: 
+  <h:outputStylesheet name="layouts/styles/style.css" /> 
+  -->
+</h:head>
+<h:body class="body-hd">
+  <ui:include src="/layouts/includes/progress-loader.xhtml" />
+  <div id="content" class="container frame">
+    <ui:insert name="content">
+      default content
+    </ui:insert>
+  </div>
+
+  <ui:insert name="exception">
+    <ui:include src="/layouts/includes/exception.xhtml" />
+  </ui:insert>
+
+  <!-- optional Portal parameters:
+  <script>
+    window.
+  </script>
+  -->
+
+</h:body>
+</html>

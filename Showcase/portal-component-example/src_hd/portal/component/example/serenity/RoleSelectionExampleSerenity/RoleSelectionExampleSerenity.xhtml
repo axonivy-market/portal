@@ -3,18 +3,17 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-  <ui:composition template="/layouts/frame-10.xhtml">
+  <ui:composition template="/layouts/frame-10-serenity.xhtml">
     <ui:define name="title">Role Selection Component Example</ui:define>
     <ui:define name="content">
       <h:outputStylesheet name="/layouts/styles/example.css" />
       <div class="layout-wrapper">
       <h:form id="form">
-        <ic:com.axonivy.portal.component.example.internal.ThemeSelection serenityExampleLink="#{data.roleSelectionSerenityExampleLink}" />
-        <h1 class="user-selection-component-header">Role Selection Examples</h1>
+        <h1 class="user-selection-component-header">Role Selection Examples (Serenity theme)</h1>
         <div class="ui-g ui-fluid" style="margin-bottom: 20px;">
           <div class="ui-g-8 ui-xl-8 ui-g-nopad">
             <ic:com.axonivy.portal.component.RoleSelection componentId="default-role-autocomplete" selectedRole="#{data.selectedRole}"
-              isRenderedMessage="true" label="Default role selection" labelPanelStyleClass="ui-g-4 ui-md-4 ui-sm-12"
+              isRenderedMessage="true" label="Default role selection" labelPanelStyleClass="ui-g-3 ui-md-3 ui-sm-12"
               autoCompleteStyleClass="width-100" autoCompletePanelStyleClass="ui-g-8 ui-sm-12"
               messageStyleClass="ui-g-8 ui-g-offset-4 ui-g-nopad"
                hightlight="false" isRequired="true" />
