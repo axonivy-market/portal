@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.15",
   "id" : "181899823E886ABB",
   "data" : "com.axonivy.portal.component.example.RoleSelectionExampleData",
   "elements" : [ {
@@ -62,5 +62,66 @@
         "at" : { "x" : 448, "y" : 64 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f7",
+      "type" : "RequestStart",
+      "name" : "showRoleSelectionExamplesSerenity.ivp",
+      "config" : {
+        "callSignature" : "showRoleSelectionExamplesSerenity",
+        "outLink" : "showRoleSelectionExamplesSerenity.ivp",
+        "showInStartList" : false,
+        "startName" : "Role Selection Example in Serenity theme"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 },
+        "labelOffset" : { "x" : -78, "y" : 19 }
+      },
+      "connect" : { "id" : "f11", "to" : "f8" }
+    }, {
+      "id" : "f8",
+      "type" : "DialogCall",
+      "name" : "RoleSelectionExampleSerenity",
+      "config" : {
+        "dialogId" : "portal.component.example.serenity.RoleSelectionExampleSerenity",
+        "startMethod" : "start(String)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.selectedRole" : "result.selectedRole"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "selectedRole", "type" : "String" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 192 },
+        "size" : { "width" : 176, "height" : 44 }
+      },
+      "connect" : { "id" : "f13", "to" : "f9" }
+    }, {
+      "id" : "f9",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "Task created by Role Selection Example",
+          "description" : "This task is created by Role Selection Example",
+          "responsible" : {
+            "roleFromAttribute" : "in1.selectedRole.getMemberName()"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 448, "y" : 192 }
+      },
+      "connect" : { "id" : "f12", "to" : "f10" }
+    }, {
+      "id" : "f10",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 544, "y" : 192 }
+      }
     } ]
 }
