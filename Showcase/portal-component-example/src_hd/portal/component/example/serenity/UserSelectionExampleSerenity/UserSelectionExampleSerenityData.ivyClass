@@ -1,5 +1,5 @@
-UserSelectionExampleData #class
-com.axonivy.portal.component.example.UserSelectionExample #namespace
+UserSelectionExampleSerenityData #class
+portal.component.example.serenity.UserSelectionExampleSerenity #namespace
 definedRoleNames List<String> #field
 definedRoleNames PERSISTENT #fieldModifier
 selectedUserForDefinedRoles com.axonivy.portal.component.dto.UserDTO #field
@@ -14,5 +14,3 @@ selectedUserForExcludingUsers com.axonivy.portal.component.dto.UserDTO #field
 selectedUserForExcludingUsers PERSISTENT #fieldModifier
 selectedUserForInsertChildren com.axonivy.portal.component.dto.UserDTO #field
 selectedUserForInsertChildren PERSISTENT #fieldModifier
-userSelectionSerenityExampleLink String #field
-userSelectionSerenityExampleLink PERSISTENT #fieldModifier
