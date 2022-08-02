@@ -27,6 +27,11 @@ CustomFields:
       Label: CustomerEmail
       Description: CustomerEmail
       Type: STRING
+    AccountNumber:
+      Label: AccountNumber
+      Description: AccountNumber
+      Type: NUMBER
+      Category: DefaultAdditionalCaseDetails
   Cases:
     CustomerName:
       Label: CustomerName

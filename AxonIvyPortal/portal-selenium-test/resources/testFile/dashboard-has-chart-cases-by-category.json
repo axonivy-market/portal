@@ -49,12 +49,7 @@
             "isAllCaseStatesSelected": true,
             "selectedTaskPriorities": [],
             "isAllTaskPrioritiesSelected": true,
-            "customFieldFilters": null,
-            "selectedCustomVarCharFields1": [],
-            "selectedCustomVarCharFields2": [],
-            "selectedCustomVarCharFields3": [],
-            "selectedCustomVarCharFields4": [],
-            "selectedCustomVarCharFields5": []
+            "customFieldFilters": null
           },
           "position": 0
         }
