@@ -1,12 +1,20 @@
 package ch.ivy.addon.portalkit.ivydata.bo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.function.Function;
 
 import javax.faces.model.SelectItem;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.language.LanguageConfigurator;
+import ch.ivyteam.ivy.language.LanguageManager;
+import ch.ivyteam.ivy.security.ISecurityContext;
 
 public class IvyLanguage {
 
@@ -21,39 +29,34 @@ public class IvyLanguage {
   private List<SelectItem> itemFormattingLanguages = new ArrayList<>();
 
   public List<SelectItem> getLanguages() {
-    items.clear();
-    if (supportedLanguages != null) {
-      for (String item : supportedLanguages) {
-        SelectItem it = new SelectItem(item.toLowerCase(), toDisplayNameLanguage(item.toLowerCase()));
-        items.add(it);
-      }
-    }
-    return items;
+    return getLanguages(items, supportedLanguages, LanguageConfigurator::content, false);
   }
   
   public List<SelectItem> getFormattingLanguages() {
-    itemFormattingLanguages.clear();
-    if (supportedFormattingLanguages != null) {
-      for (String item : supportedFormattingLanguages) {
-        String displayName = toDisplayNameFormattingLanguage(item);
-        SelectItem it = new SelectItem(item.toLowerCase(), displayName);
-        itemFormattingLanguages.add(it);
-      }
-    }
-    return itemFormattingLanguages;
+    return getLanguages(itemFormattingLanguages, supportedFormattingLanguages, LanguageConfigurator::formatting, true);
   }
   
-  private String toDisplayNameFormattingLanguage(String languageTag) {
-    Locale locale = Locale.forLanguageTag(languageTag);
-    if (Locale.ROOT.equals(locale) || locale == null) {
-      return ""; 
+  private List<SelectItem> getLanguages(List<SelectItem> selectItems, List<String> languages, Function<LanguageConfigurator, Locale> localeLoader, boolean replaceParentheses){
+    selectItems.clear();
+    if (CollectionUtils.isNotEmpty(languages)) {
+      for (String item : languages) {
+        SelectItem it = new SelectItem(item.toLowerCase(), toDisplayName(item.toLowerCase(), localeLoader, replaceParentheses));
+        selectItems.add(it);
+      }
     }
-    return locale.getDisplayName(Ivy.session().getContentLocale());
+    return selectItems;
   }
-
-  private String toDisplayNameLanguage(String languageTag) {
-    Locale displayedLocale = Locale.forLanguageTag(languageTag);
-    return displayedLocale.getDisplayName(Ivy.session().getContentLocale());
+  
+  private String toDisplayName(String languageTag, Function<LanguageConfigurator, Locale> loader, boolean replaceParentheses) {
+    Locale contentLocale = Ivy.session().getContentLocale();
+    if (StringUtils.isBlank(languageTag)) {
+      String systemLanguage = loader.apply(LanguageManager.instance().configurator(ISecurityContext.current())).getDisplayName(contentLocale);
+      if (replaceParentheses) {
+        systemLanguage = systemLanguage.replaceAll("\\(", "[").replaceAll("\\)","]");
+      }
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption", Arrays.asList(systemLanguage) );
+    }
+    return Locale.forLanguageTag(languageTag).getDisplayName(contentLocale);
   }
 
   /**
@@ -133,6 +136,6 @@ public class IvyLanguage {
   }
   
   public void initItemFormattingLanguage() {
-    this.itemFormattingLanguage = new SelectItem(this.userFormattingLanguage, toDisplayNameFormattingLanguage(this.userFormattingLanguage));
+    this.itemFormattingLanguage = new SelectItem(this.userFormattingLanguage, toDisplayName(this.userFormattingLanguage, LanguageConfigurator::formatting, true));
   }
 }
