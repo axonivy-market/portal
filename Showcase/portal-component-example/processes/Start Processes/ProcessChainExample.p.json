@@ -55,6 +55,7 @@
       "config" : {
         "callSignature" : "showProcessChainExamplesSerenity",
         "outLink" : "showProcessChainExamplesSerenity.ivp",
+        "showInStartList" : false,
         "startName" : "Process Chain Example in Serenity theme"
       },
       "visual" : {
