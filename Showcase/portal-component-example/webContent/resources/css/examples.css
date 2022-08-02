@@ -17,3 +17,28 @@ body.serenity .theme-selection-panel .example-link {
 body.freya .theme-selection-panel .example-link {
   line-height: 2.5;
 }
+
+.user-selection-panel-with-button-inline {
+  padding-left: 30px;
+}
+
+.user-selection-message-with-button-inline {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  padding-left: 25px !important;
+}
+
+.assign-task-to-selected-user,
+.assign-task-to-selected-role {
+  padding: 1em;
+}
+
+@media screen and (max-width: 40em) {
+  .user-selection-panel-with-button-inline,
+  .user-selection-message-with-button-inline {
+    padding-left: 0.5em !important;
+  }
+  .assign-task-to-selected-user {
+    padding: 0 1em;
+  }
+}
