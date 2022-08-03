@@ -2257,3 +2257,13 @@ body.in-dialog .ui-widget-overlay {
 #reorder-button:hover {
   cursor: move;
 }
+
+.statistic-chart-cases-by-category {
+	width: 100%;
+	height: 340px;
+}
+
+.dashboard-statistic-chart-cases-by-category {
+	width: 100%;
+	height: 400px;
+}

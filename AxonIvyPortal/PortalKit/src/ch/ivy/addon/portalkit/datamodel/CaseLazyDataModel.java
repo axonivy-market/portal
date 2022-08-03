@@ -423,11 +423,11 @@ public class CaseLazyDataModel extends LazyDataModel7<ICase> {
    * </p>
    * <p>
    * <b>Example: </b> <code><pre>
-   * if ("CustomVarCharField5".equalsIgnoreCase(criteria.getSortField())) {
+   * if ("CustomerName".equalsIgnoreCase(criteria.getSortField())) {
    *   if (criteria.isSortDescending()) {
-   *     caseQuery.orderBy().customField().stringField("CustomVarCharField5").descending();
+   *     caseQuery.orderBy().customField().stringField("CustomerName").descending();
    *   } else {
-   *     caseQuery.orderBy().customField().stringField("CustomVarCharField5");
+   *     caseQuery.orderBy().customField().stringField("CustomerName");
    *   }
    * }
    * </pre></code>
@@ -656,7 +656,7 @@ public class CaseLazyDataModel extends LazyDataModel7<ICase> {
    * <p>
    * <b>Example: </b> <code><pre>
    *
-   * return Arrays.asList("NAME", "ID" , "CREATOR", "CREATION_TIME", "FINISHED_TIME", "customVarCharField5", "customVarCharField1");
+   * return Arrays.asList("NAME", "ID" , "CREATOR", "CREATION_TIME", "FINISHED_TIME", "CustomerName", "CustomerType");
    *
    * </pre></code> This list is the list of sortFields in CaseColumnHeader Portal component when you use it to add new
    * column headers also the list of checkboxes in config columns panel

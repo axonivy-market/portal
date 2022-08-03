@@ -77,7 +77,7 @@ The basic JSON structure of a statistics widget
       using the CMS and the user's Locale.
 
       ``type``: type of chart such as ``TASK_BY_PRIORITY``, ``CASES_BY_STATE``,
-      ``CASES_BY_FINISHED_TASK``, ``CASES_BY_FINISHED_TIME``, ``TASK_BY_EXPIRY``
-      and ``ELAPSED_TIME_BY_CASE_CATEGORY``
+      ``CASES_BY_FINISHED_TASK``, ``CASES_BY_FINISHED_TIME``, ``TASK_BY_EXPIRY``,
+      ``ELAPSED_TIME_BY_CASE_CATEGORY``, and ``CASES_BY_CATEGORY``
 
       ``filter``: list of filters to apply for each chart. Please refer to :ref:`Portal.StatisticCharts <portal-statistic-charts>` for more information.
