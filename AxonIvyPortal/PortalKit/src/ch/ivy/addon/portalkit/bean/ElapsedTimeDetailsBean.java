@@ -8,12 +8,12 @@ import javax.faces.bean.ViewScoped;
 import org.primefaces.model.SortMeta;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
-import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
-import ch.ivy.addon.portalkit.util.DateTimeFormatterUtils;
-import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
+import ch.ivy.addon.portalkit.util.DateTimeFormatterUtils;
+import ch.ivy.addon.portalkit.util.SortFieldUtil;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -26,9 +26,9 @@ public class ElapsedTimeDetailsBean implements Serializable {
 
   public void initialize(String caseCategory, StatisticChart statisticChart) {
     setSelectedCaseCategory(caseCategory);
-    String currentLanguage = LanguageService.newInstance().findUserLanguages().getIvyLanguage().getUserLanguage();
+    String currentLanguage = UserUtils.getUserLanguage();
     chartName = statisticChart.getNames().stream()
-        .filter(name -> StatisticService.equalsDisplayNameLocale(name, currentLanguage))
+        .filter(name -> StatisticService.equalsLanguageLocale(name, currentLanguage))
         .map(DisplayName::getValue)
         .findFirst().orElse("");
   }

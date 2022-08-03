@@ -88,9 +88,9 @@
 
       <!-- New field -->
       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader
-        id="customVarCharField1-column-case-list-header" styleClass="TexAlCenter customized-case-header-column"
-        responsiveStyleClass="js-hidden-when-expand-menu u-hidden-lg-down" sortedField="customVarCharField1"
-        sortable="true" value="#{ivy.cms.co('/DefaultColumns/caseList/customVarCharField1')}"
+        id="customer-name-column-case-list-header" styleClass="TexAlCenter customized-case-header-column"
+        responsiveStyleClass="js-hidden-when-expand-menu u-hidden-lg-down" sortedField="CustomerName"
+        sortable="true" value="#{ivy.cms.co('/DefaultColumns/caseList/CustomerName')}"
         dataModel="#{dataModel.caseDataModel}" />
       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader
         id="ShipmentDate-column-case-list-header" styleClass="TexAlCenter customized-case-header-column"
@@ -118,9 +118,9 @@
 
       <!-- New field -->
       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCustomField id="case-customer-name-component"
-        panelGroupId="customVarCharField1-column-case-header-panel"
+        panelGroupId="customer-name-column-case-header-panel"
         responsiveStyleClass="js-hidden-when-expand-menu u-hidden-lg-down"
-        componentId="customVarCharField1-column-case-header-text" column="customVarCharField1"
+        componentId="customer-name-column-case-header-text" column="CustomerName"
         dataModel="#{dataModel.caseDataModel}"
         labelValue="#{case.customFields().stringField('CustomerName').getOrNull()}" />
       <h:outputText value="#{case.customFields().timestampField('ShipmentDate').getOrNull()}"
