@@ -10,6 +10,9 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.AUGUST_C
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.BEFORE_8;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CASE_CATEGORIES_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CASE_QUERY;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CATEGORIES_CMS;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CHILD_CATEGORY_DELIMITER;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CHILD_CATEGORY_DELIMITER_REGEX;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CREATED_CASE_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DECEMBER_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DONE_CASE_KEY;
@@ -46,10 +49,14 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NORMAL_P
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NOVEMBER_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NO_CATEGORY_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.OCTOBER_CMS;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.PARENT_CATEGORY_DELIMITER;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.PARENT_CATEGORY_DELIMITER_REGEX;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.RESULT;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.RUNNING_CASE_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SATURDAY_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SECONDWEEK_CMS;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SELECTED_CATEGORIES;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SELECTED_CATEGORY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SEPTEMBER_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SIXTHWEEK_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SUNDAY_CMS;
@@ -63,13 +70,6 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.THURSDAY
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.TODAY_EXPIRY_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.TUESDAY_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.WEDNESDAY_CMS;
-import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SELECTED_CATEGORIES;
-import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CATEGORIES_CMS;
-import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SELECTED_CATEGORY;
-import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.PARENT_CATEGORY_DELIMITER;
-import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.PARENT_CATEGORY_DELIMITER_REGEX;
-import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CHILD_CATEGORY_DELIMITER;
-import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CHILD_CATEGORY_DELIMITER_REGEX;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -113,8 +113,8 @@ import org.primefaces.model.charts.optionconfig.legend.Legend;
 import org.primefaces.model.charts.optionconfig.legend.LegendLabel;
 import org.primefaces.model.charts.optionconfig.title.Title;
 
-import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
 import ch.ivy.addon.portalkit.bo.CaseCategoryStatistic;
+import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
@@ -125,13 +125,13 @@ import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria;
-import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.statistics.Colors;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticChartTimeUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticColors;
 import ch.ivy.addon.portalkit.statistics.StatisticFilter;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -1178,8 +1178,9 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
   }
 
   public DisplayName getDisplayNameInUserLanguageForChart(StatisticChart statisticChart) {
+    String userLanguage = UserUtils.getUserLanguage();
     return CollectionUtils.emptyIfNull(statisticChart.getNames()).stream()
-        .filter(name -> equalsDisplayNameLocale(name, LanguageService.newInstance().findUserLanguages().getIvyLanguage().getUserLanguage()))
+        .filter(name -> equalsLanguageLocale(name, userLanguage))
         .findFirst().orElse(new DisplayName());
   }
 
@@ -1490,11 +1491,11 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
   }
 
   private boolean equalsDisplayName(String chartName, String language, DisplayName displayName) {
-    return equalsDisplayNameLocale(displayName, language) && StringUtils.equals(displayName.getValue(), chartName);
+    return equalsLanguageLocale(displayName, language) && StringUtils.equals(displayName.getValue(), chartName);
   }
 
-  public static boolean equalsDisplayNameLocale(DisplayName displayName, String language) {
-    return StringUtils.equalsIgnoreCase(displayName.getLocale().toLanguageTag(), language);
+  public static boolean equalsLanguageLocale(DisplayName displayName, String language) {
+    return StringUtils.equalsIgnoreCase(displayName.getLocale().toString(), language);
   }
 
   public boolean isDefaultChart(List<StatisticChart> statisticCharts) {
