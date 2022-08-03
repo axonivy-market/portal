@@ -1,6 +1,6 @@
 package com.axonivy.portal.developerexamples.component.customize;
 
-import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_TIMESTAMP_FIELD1;
+import static com.axonivy.portal.developerexamples.component.customize.CustomizedTaskLazyDataModel.CUSTOM_SHIPMENT_DATE;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -56,11 +56,11 @@ public class ShipmentDateFilter extends TaskFilter {
 
     TaskQuery query = TaskQuery.create();
     if (fromShipmentDate != null) {
-      query.where().customField().timestampField(CUSTOM_TIMESTAMP_FIELD1).isGreaterOrEqualThan(fromShipmentDate);
+      query.where().customField().timestampField(CUSTOM_SHIPMENT_DATE).isGreaterOrEqualThan(fromShipmentDate);
     }
 
     if (toShipmentDate != null) {
-      query.where().customField().timestampField(CUSTOM_TIMESTAMP_FIELD1).isLowerOrEqualThan(toShipmentDate);
+      query.where().customField().timestampField(CUSTOM_SHIPMENT_DATE).isLowerOrEqualThan(toShipmentDate);
     }
 
     return query;

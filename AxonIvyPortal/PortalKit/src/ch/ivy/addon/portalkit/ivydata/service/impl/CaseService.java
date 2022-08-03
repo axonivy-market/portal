@@ -4,6 +4,7 @@ import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.isHiddenTasksCa
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -21,6 +22,8 @@ import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriter
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ICaseService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
+import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
@@ -257,5 +260,135 @@ public class CaseService implements ICaseService {
       });
     }
     return caseCategoryStatistic;
+  }
+  
+  @Override
+  public IvyCaseResultDTO analyzeCasesByCategoryStatistic(CaseSearchCriteria criteria, List<String> selectedCategories) {
+    return IvyExecutor.executeAsSystem(() -> {
+      IvyCaseResultDTO result = new IvyCaseResultDTO();
+      CaseQuery finalQuery = extendQuery(criteria);
+      result.setCategoryTree(CategoryTree.createFor(finalQuery));
+      CaseCategoryStatistic caseCategoryStatistic = createCaseCategoryStatistic(result, selectedCategories);
+      result.setCaseCategoryStatistic(caseCategoryStatistic);
+      return result;
+    });
+  }
+  
+  private CaseCategoryStatistic createCaseCategoryStatistic(IvyCaseResultDTO result,
+      List<String> selectedCategories) {
+    CaseCategoryStatistic caseCategoryStatistic = new CaseCategoryStatistic();
+    caseCategoryStatistic.setNumberOfCasesByCategory(new LinkedHashMap<>());
+    if (result.getCategoryTree() != null) {
+      getNoCategoryCase(caseCategoryStatistic, result.getCategoryTree());
+      if (!selectedCategories.isEmpty()) {
+        result.getCategoryTree().getChildren().forEach(category -> {
+          loopSmallestNode(caseCategoryStatistic, category, selectedCategories);
+        });
+      } else {
+        result.getCategoryTree().getChildren().forEach(category -> {
+          putNode(caseCategoryStatistic, category);
+        });
+      }
+    }
+    return caseCategoryStatistic;
+  }
+  
+  /**
+   * count no category case because the count node not support count it self. It's always count sub node.
+   * @param caseCategoryStatistic
+   * @param category
+   */
+  private void getNoCategoryCase(CaseCategoryStatistic caseCategoryStatistic, CategoryTree category) {
+    var nonEmptyChildrenCount = category.getChildren().stream().map(CategoryTree::count).mapToInt(Long::intValue).sum();
+    var emptyChildrenCount = category.count() - nonEmptyChildrenCount;
+    if(emptyChildrenCount > 0) {
+     caseCategoryStatistic.getNumberOfCasesByCategory().put(Ivy.cms().co(CategoryUtils.NO_CATEGORY_CMS), emptyChildrenCount);
+    }
+  }
+  
+  /**
+   * loop to find the group category or child category
+   * @param caseCategoryStatistic
+   * @param category
+   * @param selectedCategories
+   */
+  private void loopSmallestNode(CaseCategoryStatistic caseCategoryStatistic, CategoryTree category,
+      List<String> selectedCategories) {
+    if (selectedCategories.contains(category.getRawPath())) { // category selected from tree
+      putNode(caseCategoryStatistic, category);
+    } else {
+      if (!category.getChildren().isEmpty()) { // category not selected from tree so loop into the child node
+        category.getChildren().forEach(categoryChil -> {
+          if (selectedCategories.contains(categoryChil.getRawPath())) {
+            putNode(caseCategoryStatistic, categoryChil);
+          } else {
+            loopSmallestNode(caseCategoryStatistic, categoryChil, selectedCategories);
+          }
+        });
+      } else {
+        putNode(caseCategoryStatistic, category);
+      }
+    }
+  }
+  
+  @Override
+  public IvyCaseResultDTO analyzeCasesByCategoryStatisticDrilldown(CaseSearchCriteria criteria, String selectedCategory) {
+    return IvyExecutor.executeAsSystem(() -> {
+      IvyCaseResultDTO result = new IvyCaseResultDTO();
+      CaseQuery finalQuery = extendQuery(criteria);
+      result.setCategoryTree(CategoryTree.createFor(finalQuery));
+      CaseCategoryStatistic caseCategoryStatistic = createCaseCategoryDrilldownStatistic(result, selectedCategory);
+      result.setCaseCategoryStatistic(caseCategoryStatistic);
+      return result;
+    });
+  }
+  
+  private CaseCategoryStatistic createCaseCategoryDrilldownStatistic(IvyCaseResultDTO result, String selectedCategory) {
+    CaseCategoryStatistic caseCategoryStatistic = new CaseCategoryStatistic();
+    caseCategoryStatistic.setNumberOfCasesByCategory(new LinkedHashMap<>());
+    result.getCategoryTree().getChildren().forEach(category -> {
+      loopToSelectedNode(caseCategoryStatistic, category, selectedCategory);
+    });
+
+    return caseCategoryStatistic;
+  }
+  
+  /**
+   * loop to find exactly the node selected in tree for drill down chart
+   * @param caseCategoryStatistic
+   * @param category
+   * @param selectedCategory
+   */
+  private void loopToSelectedNode(CaseCategoryStatistic caseCategoryStatistic, CategoryTree category, String selectedCategory) {
+    if(!category.getChildren().isEmpty()) {
+      if(category.getRawPath().contains(selectedCategory)) {
+        category.getChildren().forEach(categoryChil -> {
+          putNode(caseCategoryStatistic, categoryChil);
+        });
+      } else {
+        category.getChildren().forEach(categoryChil -> {
+          loopToSelectedNode(caseCategoryStatistic, categoryChil, selectedCategory);
+        });
+      }
+    }
+  }
+  
+  
+  /**
+   * put node into Category Map Data for chart Cases by category
+   * The parent node is contains child node and can drill down
+   * The child node can not drill down
+   * @param caseCategoryStatistic
+   * @param category
+   */
+  private void putNode(CaseCategoryStatistic caseCategoryStatistic, CategoryTree category) {
+    StringBuilder categoryPath = new StringBuilder(category.getCategory().getPath());
+    if (!category.getChildren().isEmpty()) {
+      categoryPath.append(StatisticChartConstants.PARENT_CATEGORY_DELIMITER); //parent Node
+    } else {
+      categoryPath.append(StatisticChartConstants.CHILD_CATEGORY_DELIMITER); // child Node
+    }
+    categoryPath.append(category.getRawPath());
+    caseCategoryStatistic.getNumberOfCasesByCategory().put(categoryPath.toString(), category.count());
   }
 }

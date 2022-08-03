@@ -87,6 +87,7 @@ public class BaseTest {
   protected String portalTemplatePasswordResetUrl = "portalTemplate/1549F58C18A6C562/PasswordResetPage.ivp?token=%s&username=%s";
   protected String cleanSessionCacheUrl = "portalKitTestHelper/17208192E0AF4185/cleanSessionCache.ivp";
   protected String showProcessViewerUrl = "portalTemplate/1549F58C18A6C562/PortalProcessViewer.ivp?caseId=%s&processKey=%s";
+  protected String createSampleDashboardUrl = "portalKitTestHelper/17F2050944B46BB0/createSampleDashboard.ivp";
   protected String processViewerExampleInFrameUrl = "/portal-component-example/1821592826979C20/showProcessViewerUsingCaseId.ivp?embedInFrame";
 
   @Rule
@@ -139,6 +140,14 @@ public class BaseTest {
   public void redirectToRelativeLink(String relativeProcessStartUrl) {
     try {
       browser.goHome(UrlHelpers.generateAbsoluteProcessStartLink(relativeProcessStartUrl));
+    } catch (Exception e) {
+      throw new PortalGUITestException(e);
+    }
+  }
+
+  public void redirectToRelativeLinkWithEmbedInFrame(String relativeProcessStartUrl) {
+    try {
+      browser.goHome(UrlHelpers.generateAbsoluteProcessStartLink(relativeProcessStartUrl) + "?embedInFrame");
     } catch (Exception e) {
       throw new PortalGUITestException(e);
     }

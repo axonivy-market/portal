@@ -31,8 +31,8 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
 
   public Dashboard(Dashboard dashboard) {
     setId(dashboard.getId());
-    setTemplateId(dashboard.getTemplateId());
     setIsPublic(dashboard.getIsPublic());
+    templateId = dashboard.getTemplateId();
     title = dashboard.title;
     description = dashboard.description;
     widgets = dashboard.widgets;
@@ -46,7 +46,7 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
     this.title = title;
     this.widgets = widgets;
   }
-  
+
   public String getTitle() {
     if (StringUtils.startsWithIgnoreCase(title, DashboardConfigurationPrefix.CMS)) {
       return Ivy.cms().co(StringUtils.removeStart(title, DashboardConfigurationPrefix.CMS));

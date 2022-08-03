@@ -22,6 +22,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
+import static java.util.Objects.isNull;
+
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public abstract class AbstractColumn implements Serializable {
 
@@ -41,21 +43,21 @@ public abstract class AbstractColumn implements Serializable {
   protected String fieldStyleClass;
   protected String style;
   protected String fieldStyle;
-  protected boolean visible = true;
-  protected boolean sortable = true;
-  protected DashboardColumnFormat format = DashboardColumnFormat.STRING;
+  protected Boolean visible;
+  protected Boolean sortable;
+  protected DashboardColumnFormat format;
   protected String pattern;
   protected String filter;
-  protected List<String> filterList = new ArrayList<>();
+  protected List<String> filterList;
   protected String filterFrom;
   protected String filterTo;
-  protected DashboardFilterType filterType = DashboardFilterType.LIKE;
-  protected boolean sorted;
-  protected boolean sortDescending;
+  protected DashboardFilterType filterType;
+  protected Boolean sorted;
+  protected Boolean sortDescending;
+  protected DashboardColumnType type;
 
-  protected DashboardColumnType type = DashboardColumnType.STANDARD;
   protected String userFilter;
-  protected List<String> userFilterList = new ArrayList<>();
+  protected List<String> userFilterList;
   protected String userFilterFrom;
   protected String userFilterTo;
   protected List<String> filterListOptions;
@@ -65,7 +67,64 @@ public abstract class AbstractColumn implements Serializable {
   protected Date userDateFilterTo;
   protected List<String> userFilterListOptions;
 
-  public void initDefaultValue() {}
+  public void initDefaultValue() {
+    if (isNull(this.visible)) {
+      this.visible = true;
+    }
+    if (isNull(this.sortable)) {
+      this.sortable = getDefaultSortable();
+    }
+    if (isNull(this.format)) {
+      this.format = getDefaultFormat();
+    }
+    if (isNull(this.filterList)) {
+      this.filterList = new ArrayList<>();
+    }
+    if (isNull(this.filterType)) {
+      this.filterType = getDefaultFilterType();
+    }
+    if (isNull(this.type)) {
+      this.type = getDefaultType();
+    }
+    if (isNull(this.userFilterList)) {
+      this.userFilterList = new ArrayList<>();
+    }
+  }
+
+  @JsonIgnore
+  public DashboardColumnType getDefaultType() {
+    return DashboardColumnType.STANDARD;
+  }
+
+  @JsonIgnore
+  public DashboardColumnFormat getDefaultFormat() {
+    return DashboardColumnFormat.STRING;
+  }
+
+  @JsonIgnore
+  public DashboardFilterType getDefaultFilterType() {
+    return DashboardFilterType.LIKE;
+  }
+
+  @JsonIgnore
+  public Boolean getDefaultSortable() {
+    return true;
+  }
+
+  @JsonIgnore
+  public String getDefaultHeaderCMS() {
+    return "";
+  }
+
+  @JsonIgnore
+  public String getDefaultStyle() {
+    return SMALL_WIDTH;
+  }
+
+  @JsonIgnore
+  public String getDefaultStyleClass() {
+    return "";
+  }
 
   @JsonIgnore
   public boolean isNumber() {
@@ -146,19 +205,19 @@ public abstract class AbstractColumn implements Serializable {
     this.fieldStyle = fieldStyle;
   }
 
-  public boolean getVisible() {
+  public Boolean getVisible() {
     return visible;
   }
 
-  public void setVisible(boolean visible) {
+  public void setVisible(Boolean visible) {
     this.visible = visible;
   }
 
-  public boolean getSortable() {
+  public Boolean getSortable() {
     return sortable;
   }
 
-  public void setSortable(boolean sortable) {
+  public void setSortable(Boolean sortable) {
     this.sortable = sortable;
   }
 
