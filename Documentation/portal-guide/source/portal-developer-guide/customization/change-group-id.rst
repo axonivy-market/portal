@@ -37,5 +37,5 @@ to all Portal projects (and their dependencies).
 .. important:: Do not change ``artifactId`` such as portal-component, PortalKit...
 
 .. note::
-	Do not forget to change default pages to your project, follow this chapter to customize standard processes:
-	:dev-url:`Standard Processes </doc/nightly/designer-guide/user-interface/standard-processes/index.html>`
+	Do not forget to change default pages to your project, follow this chapter to customize default pages:
+	:dev-url:`Default Pages </doc/nightly/designer-guide/user-interface/default-pages/index.html>`
