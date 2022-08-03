@@ -304,7 +304,7 @@
               "timeout" : "new Duration(\"3H\")"
             },
             "customFields" : [
-              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Exterior\"" },
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Exterior\"" },
               { "name" : "CustomerName", "type" : "String", "value" : "\"Sarah\"" },
               { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" }
             ]
@@ -318,7 +318,7 @@
               "timeout" : "new Duration(\"1D\")"
             },
             "customFields" : [
-              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Interior\"" },
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
               { "name" : "CustomerName", "type" : "String", "value" : "\"Julie\"" },
               { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime(\"2080-03-23 11:11:11\")" }
             ]
@@ -332,7 +332,7 @@
               "timeout" : "new Duration(\"2D\")"
             },
             "customFields" : [
-              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Interior\"" },
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
               { "name" : "CustomerName", "type" : "String", "value" : "\"Florian\"" },
               { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" }
             ]
@@ -557,7 +557,7 @@
           "name" : "Leave Request",
           "category" : "LeaveRequest",
           "customFields" : [
-            { "name" : "CustomDecimalField2", "type" : "Number", "value" : "36" }
+            { "name" : "AccountNumber", "type" : "Number", "value" : "36" }
           ]
         },
         "tasks" : {
@@ -572,8 +572,8 @@
               "timeout" : "new Duration(\"3H\")"
             },
             "customFields" : [
-              { "name" : "CustomDecimalField2", "type" : "Number", "value" : "7" },
-              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Exterior\"" },
+              { "name" : "AccountNumber", "type" : "Number", "value" : "7" },
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Exterior\"" },
               { "name" : "CustomerName", "type" : "String", "value" : "\"Long Do\"" },
               { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" },
               { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
@@ -588,8 +588,8 @@
               "timeout" : "new Duration(\"1D\")"
             },
             "customFields" : [
-              { "name" : "CustomDecimalField2", "type" : "Number", "value" : "14" },
-              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Interior\"" },
+              { "name" : "AccountNumber", "type" : "Number", "value" : "14" },
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
               { "name" : "CustomerName", "type" : "String", "value" : "\"Tung Le\"" },
               { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" },
               { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
@@ -604,8 +604,8 @@
               "timeout" : "new Duration(\"2D\")"
             },
             "customFields" : [
-              { "name" : "CustomDecimalField2", "type" : "Number", "value" : "13" },
-              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Interior\"" },
+              { "name" : "AccountNumber", "type" : "Number", "value" : "13" },
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
               { "name" : "CustomerName", "type" : "String", "value" : "\"Anh Nguyen\"" },
               { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" },
               { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
@@ -641,7 +641,7 @@
           "description" : "Leave Request Description",
           "attachToBusinessCase" : false,
           "customFields" : [
-            { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Leave Request CustomVarCharField1\"" },
+            { "name" : "CustomerType", "type" : "String", "value" : "\"Leave Request Type\"" },
             { "name" : "ProcessCategoryCode", "type" : "String", "value" : "\"pubRequested\"" },
             { "name" : "ProcessCategoryName", "type" : "String", "value" : "\"Publication Requested\"" },
             { "name" : "ProcessCode", "type" : "String", "value" : "\"pubRequested\"" },
@@ -989,7 +989,7 @@
           "description" : "Leave Request Description",
           "attachToBusinessCase" : false,
           "customFields" : [
-            { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Leave Request CustomVarCharField1\"" },
+            { "name" : "CustomerType", "type" : "String", "value" : "\"Leave Request Type\"" },
             { "name" : "ProcessCategoryCode", "type" : "String", "value" : "\"pubRequested\"" },
             { "name" : "ProcessCategoryName", "type" : "String", "value" : "\"Publication Requested\"" },
             { "name" : "ProcessCode", "type" : "String", "value" : "\"pubRequested\"" },
