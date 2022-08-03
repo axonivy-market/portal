@@ -81,5 +81,8 @@ Dialogs:
             ProcessId: Id du processus
             ProcessInfo: Informations sur le processus
             ProcessInfoIconTooltip: Cliquez pour voir les détails du démarrage du processus
+            ProcessType:
+              CASE_MAP: Carte de cas
+              IVY_PROCESS: Processus d'entreprise
 Labels:
   disabledUserPrefix: (désactivé)
