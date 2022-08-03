@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.17",
   "id" : "1821592826979C20",
   "data" : "portal.component.example.ProcessViewerExampleData",
   "elements" : [ {
@@ -9,7 +9,8 @@
       "config" : {
         "callSignature" : "showProcessViewerUsingCaseId",
         "outLink" : "showProcessViewerUsingCaseId.ivp",
-        "startName" : "Show Process Viewer Using caseId"
+        "startDescription" : "Show Process Viewer Using Case ID",
+        "startName" : "Show Process Viewer Using Case ID"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
@@ -57,7 +58,8 @@
       "config" : {
         "callSignature" : "showProcessViewerUsingProcessLink",
         "outLink" : "showProcessViewerUsingProcessLink.ivp",
-        "startName" : "Show Process Viewer Using processLink"
+        "startDescription" : "Show Process Viewer Using Process Link",
+        "startName" : "Show Process Viewer Using Process Link"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 },
@@ -78,8 +80,7 @@
           ],
           "map" : {
             "param.processLink" : "ivy.case.getProcessStart().getLink().getRelative()"
-          },
-          "code" : "ivy.log.error(\"TEST processLink\" + ivy.case.getProcessStart().getLink().getRelative());"
+          }
         }
       },
       "visual" : {
