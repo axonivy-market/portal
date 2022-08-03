@@ -32,3 +32,5 @@ isDisplayShowAllChartLink 'Is show all chart link at home page' #fieldComment
 isDisplayShowAllChartLink PERSISTENT #fieldModifier
 chartColors ch.ivy.addon.portalkit.statistics.StatisticColors #field
 chartColors PERSISTENT #fieldModifier
+isDrilldownCasesByCategory Boolean #field
+isDrilldownCasesByCategory PERSISTENT #fieldModifier

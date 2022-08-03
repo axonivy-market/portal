@@ -21,53 +21,21 @@ restarting Designer. Therefore, update your variables in
 ``PortalKit/config/variables.yaml`` for the settings that you want to configure.
 This survives restarting Designer.
 
+
 .. _settings-language:
 
 Language Settings
 =================
 
--  We use the following language setting precedence:
+To add a new language to the Portal, what you have to do is:
+-  Export all CMS entries of the Portal to an Excel file. 
+-  Add one new column to the end of this file, then add the new language locale for example ``it`` for the Italian language to the first cell of this new column. Refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk11-suported-locales.html>`_ for the supported locales.
 
-   |language-precedence|
+   |export-cms|
 
-   If the user email language setting is the application default, the application
-   default language is applied.
-
-   If the user selects a language in email settings, this language is applied.
-
-   To configure the languages of Portal applications, refer to
-   :ref:`language-settings` in :ref:`my-profile` in the Portal User Guide.
-
--  For multiple languages, the CMS key ``/AppInfo/SupportedLanguages`` has to
-   exist in your application. This CMS entry is located in PortalKit. It
-   contains a comma separated list of all languages supported by your
-   application.
-
-   The rules for this list are:
-
-   -  This list must not contain spaces
-   -  Each entry has to be either a language code (en) or a language-country code (en-US) of a Java Locale (see below)
-   -  Entries are separated by comma
-   -  The process model version (PMV) containing this CMS entry has to be active.
-
--  To add a new language to Portal, what you have to do is:
-
-   -  Open CMS item ``/AppInfo/SupportedLanguages`` in PortalKit, then add the new language, for example, Italian
-
-      |add-new-item-to-cms-language|
-
-   -  Add the new language locale to all items. You can input either the language code ``it`` or the language code with country ``it-CH``. 
-      If you use language code with country, refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk11-suported-locales.html>`_ .
-
-      |add-new-item-to-cms-language-after|
-
-   -  Export all CMS entries of PortalKit to an Excel file, then add the translations for the new language for all CMS entries
-
-      |export-cms|
-
-   -  Import the Excel file.
-   -  Redeploy PortalKit.
-
+-  Add the translations for the new language for all CMS entries.
+-  Import the Excel file.
+-  Redeploy the Portal.
 
 Role Configuration
 ==================
@@ -490,11 +458,25 @@ Data model:
             "CustomVarCharField": ["Request for new computer"],
          }
       },
-      "position": 6
+      "position": 1
+   },
+   { "id": "24b2d9afd9824abc8d3a70b9d9867dbc",
+      "chartName": "cms:/Statistic/Chart/taskByExpiry",
+      "type": "TASK_BY_EXPIRY",
+      "filter": {
+         "timePeriodSelection": "LAST_WEEK",
+         "createdDateFrom": null,
+         "createdDateTo": null,
+         "selectedRoles": ["Everybody"],
+         "isAllRolesSelected": false,
+         "selectedCaseStates": ["RUNNING"]
+      },
+      "position": 2
    }]
 
 -  ``id``: the identification of chart. An auto-generated UUID.
--  ``names``: the display name of the chart. Supports multi-language.
+-  ``names``: the display name of the chart. Support multi-language.
+-  ``chartName``: the display name of the chart. Support multi-language with using the CMS. This property will be ignored if the property ``names`` are defined.
 -  ``type``: type of chart such as ``TASK_BY_PRIORITY``, ``CASES_BY_STATE``, ``CASES_BY_FINISHED_TASK``, ``CASES_BY_FINISHED_TIME``, ``TASK_BY_EXPIRY`` and ``ELAPSED_TIME_BY_CASE_CATEGORY``
 -  ``filter``: list filters to apply for each chart
 
@@ -530,7 +512,6 @@ Data model:
 
    [{ "id": "234152a58c7a48a2b63be8a946e5731b",
       "processType": "IVY_PROCESS",
-      "processName": "Alpha Company Task",
       "names": [
          {
             "locale": "de",
@@ -552,12 +533,19 @@ Data model:
       "icon": "fa-building",
       "processId": "Portal/portal-developer-examples/Start Processes/ProcessHistoryComponent/createAlphaCompany.ivp",
       "index": 1
+   },
+   { "id": "423152a58c7a48a2b63be8a946e5731c",
+      "processType": "IVY_PROCESS",
+      "processName": "cms:/Favorite/Process/createAlphaCompany",
+      "icon": "fa-building",
+      "processId": "Portal/portal-developer-examples/Start Processes/ProcessHistoryComponent/createAlphaCompany.ivp",
+      "index": 2
    }]
 
 - ``id``: the identification of a process. auto-generated UUID.
 - ``processType``: type of a process such as ``EXPRESS_PROCESS``, ``EXTERNAL_LINK``, ``IVY_PROCESS``.
-- ``processName``: the display name of a process.
--  ``names``: the display name of a process. support multi-language.
+- ``names``: the display name of a process. Support multi-language.
+- ``processName``: the display name of a process. Support multi-language with using the CMS. This property will be ignored if the property ``names`` are defined.
 - ``icon``: the style class of the process icon.
 - ``processId``: the process id of the process start.
 - ``index``: the index number to order the processes in the dashboard.
@@ -687,8 +675,5 @@ Data model:
 .. |portal-header| image:: ../../screenshots/settings/user-settings.png
 .. |global-settings| image:: ../../screenshots/settings/global-settings.png
 .. |global-setting-edit| image:: ../../screenshots/settings/edit-global-settings.png
-.. |language-precedence| image:: images/settings/language-precedence.png
 .. |select-admin-settings| image:: ../../screenshots/settings/select-admin-settings.png
-.. |add-new-item-to-cms-language| image:: images/settings/add-new-item-to-cms-language.png 
-.. |add-new-item-to-cms-language-after| image:: images/settings/add-new-item-to-cms-language-after.png
-.. |export-cms| image:: images/settings/export-cms.png   
+.. |export-cms| image:: images/export-cms.png
