@@ -98,27 +98,29 @@ public class DashboardWidgetUtils {
     for (int i = 0; i < columns.size(); i++) {
       TaskColumnModel column = columns.get(i);
       String field = column.getField();
-      if (DashboardStandardTaskColumn.START.getField().equalsIgnoreCase(field)) {
+      if (equals(DashboardStandardTaskColumn.START, field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.StartColumnModel.class);
-      } else if (DashboardStandardTaskColumn.PRIORITY.getField().equalsIgnoreCase(field)) {
+      } else if (equals(DashboardStandardTaskColumn.PRIORITY, field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.PriorityColumnModel.class);
-      } else if (DashboardStandardTaskColumn.ID.getField().equalsIgnoreCase(field)) {
+      } else if (equals(DashboardStandardTaskColumn.ID, field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.IdColumnModel.class);
-      } else if (DashboardStandardTaskColumn.NAME.getField().equalsIgnoreCase(field)) {
+      } else if (equals(DashboardStandardTaskColumn.NAME, field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.NameColumnModel.class);
-      } else if (DashboardStandardTaskColumn.DESCRIPTION.getField().equalsIgnoreCase(field)) {
+      } else if (equals(DashboardStandardTaskColumn.DESCRIPTION, field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.DescriptionColumnModel.class);
-      } else if (DashboardStandardTaskColumn.RESPONSIBLE.getField().equalsIgnoreCase(field)) {
+      } else if (equals(DashboardStandardTaskColumn.RESPONSIBLE, field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ResponsibleColumnModel.class);
-      } else if (DashboardStandardTaskColumn.STATE.getField().equalsIgnoreCase(field)) {
+      } else if (equals(DashboardStandardTaskColumn.STATE, field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.StateColumnModel.class);
-      } else if (DashboardStandardTaskColumn.CREATED.getField().equalsIgnoreCase(field)) {
+      } else if (equals(DashboardStandardTaskColumn.CREATED, field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.CreatedDateColumnModel.class);
-      } else if (DashboardStandardTaskColumn.EXPIRY.getField().equalsIgnoreCase(field)) {
+      } else if (equals(DashboardStandardTaskColumn.EXPIRY, field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ExpiryDateColumnModel.class);
-      } else if (DashboardStandardTaskColumn.CATEGORY.getField().equalsIgnoreCase(field)) {
+      } else if (equals(DashboardStandardTaskColumn.CATEGORY, field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.CategoryColumnModel.class);
-      } else if (DashboardStandardTaskColumn.ACTIONS.getField().equalsIgnoreCase(field)) {
+      } else if (equals(DashboardStandardTaskColumn.APPLICATION, field)) {
+        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ApplicationColumnModel.class);
+      } else if (equals(DashboardStandardTaskColumn.ACTIONS, field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ActionsColumnModel.class);
       } else {
         column.setType(DashboardColumnType.CUSTOM);
@@ -132,6 +134,14 @@ public class DashboardWidgetUtils {
     }
     widget.buildFilterableColumns(columns);
     return widget;
+  }
+
+  private static boolean equals(DashboardStandardTaskColumn taskColumn,String field) {
+    return taskColumn.getField().equalsIgnoreCase(field);
+  }
+  
+  private static boolean equals(DashboardStandardCaseColumn caseColumn,String field) {
+    return caseColumn.getField().equalsIgnoreCase(field);
   }
 
   private static void buildCustomColumn(Set<ICustomFieldMeta> customFieldMetas, AbstractColumn column,
@@ -161,25 +171,27 @@ public class DashboardWidgetUtils {
     for (int i = 0; i < columns.size(); i++) {
       CaseColumnModel column = columns.get(i);
       String field = column.getField();
-      if (DashboardStandardCaseColumn.ID.getField().equalsIgnoreCase(field)) {
+      if (equals(DashboardStandardCaseColumn.ID, field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.IdColumnModel.class);
-      } else if (DashboardStandardCaseColumn.NAME.getField().equalsIgnoreCase(field)) {
+      } else if (equals(DashboardStandardCaseColumn.NAME, field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.NameColumnModel.class);
-      } else if (DashboardStandardCaseColumn.DESCRIPTION.getField().equalsIgnoreCase(field)) {
+      } else if (equals(DashboardStandardCaseColumn.DESCRIPTION, field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.DescriptionColumnModel.class);
-      } else if (DashboardStandardCaseColumn.CREATOR.getField().equalsIgnoreCase(field)) {
+      } else if (equals(DashboardStandardCaseColumn.CREATOR, field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CreatorColumnModel.class);
-      } else if (DashboardStandardCaseColumn.STATE.getField().equalsIgnoreCase(field)) {
+      } else if (equals(DashboardStandardCaseColumn.STATE, field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.StateColumnModel.class);
-      } else if (DashboardStandardCaseColumn.CREATED.getField().equalsIgnoreCase(field)) {
+      } else if (equals(DashboardStandardCaseColumn.CREATED, field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CreatedDateColumnModel.class);
-      } else if (DashboardStandardCaseColumn.FINISHED.getField().equalsIgnoreCase(field)) {
+      } else if (equals(DashboardStandardCaseColumn.FINISHED, field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.FinishedDateColumnModel.class);
-      } else if (DashboardStandardCaseColumn.OWNER.getField().equalsIgnoreCase(field)) {
+      } else if (equals(DashboardStandardCaseColumn.OWNER, field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.OwnerColumnModel.class);
-      } else if (DashboardStandardCaseColumn.CATEGORY.getField().equalsIgnoreCase(field)) {
+      } else if (equals(DashboardStandardCaseColumn.CATEGORY, field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CategoryColumnModel.class);
-      } else if (DashboardStandardTaskColumn.ACTIONS.getField().equalsIgnoreCase(field)) {
+      } else if (equals(DashboardStandardCaseColumn.APPLICATION, field)) {
+        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.ApplicationColumnModel.class);
+      } else if (equals(DashboardStandardCaseColumn.ACTIONS, field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.ActionsColumnModel.class);
       } else {
         column.setType(DashboardColumnType.CUSTOM);
@@ -464,13 +476,14 @@ public class DashboardWidgetUtils {
       columnModel.setField(col.getField());
       if (DashboardStandardProcessColumn.NAME == col) {
         columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.NameColumnModel();
-      }
-      if (DashboardStandardProcessColumn.TYPE == col) {
+      } else if (DashboardStandardProcessColumn.TYPE == col) {
         columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.TypeColumnModel();
-      }
-      if (DashboardStandardProcessColumn.CATEGORY == col) {
+      } else if (DashboardStandardProcessColumn.CATEGORY == col) {
         columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.CategoryColumnModel();
+      } else if (DashboardStandardProcessColumn.APPLICATION == col) {
+        columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.ApplicationColumnModel();
       }
+      
       columnModel.initDefaultValue();
       columnModels.add(columnModel);
     }
@@ -588,7 +601,8 @@ public class DashboardWidgetUtils {
     List<DashboardProcess> processes;
     if (processWidget.isSelectedAllProcess()) {
       processes = getAllPortalProcesses();
-    } if (CollectionUtils.isNotEmpty(processWidget.getProcesses())) {
+    } 
+    if (CollectionUtils.isNotEmpty(processWidget.getProcesses())) {
       processes = filterProcessesByProcesses(processWidget.getProcesses());
       processWidget.setProcesses(processes);
     } else {
@@ -602,7 +616,8 @@ public class DashboardWidgetUtils {
     List<DashboardProcess> processes;
     if (processWidget.isSelectedAllProcess()) {
       processes = getAllPortalProcesses();
-    } if (CollectionUtils.isNotEmpty(processWidget.getProcessPaths())) {
+    } 
+    if (CollectionUtils.isNotEmpty(processWidget.getProcessPaths())) {
       processes = filterProcessesByProcessPaths(processWidget.getProcessPaths());
       processWidget.setProcesses(processes);
     } else {
