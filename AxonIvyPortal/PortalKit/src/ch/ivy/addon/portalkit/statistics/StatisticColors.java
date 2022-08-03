@@ -24,6 +24,8 @@ public class StatisticColors implements Serializable {
   public static final String DEFAULT_TASK_YEAR_COLOR = "#49BAD6";
 
   public static final String DEFAULT_LEGEND_COLOR = "#1B1B1B";
+  
+  public static final String DEFAULT_CASES_BY_CATEGORY_COLOR = "#007095";
 
   // Color for Legend and DataSet label
   private String legendColor = DEFAULT_LEGEND_COLOR;
@@ -93,6 +95,9 @@ public class StatisticColors implements Serializable {
   private String taskExpiriedOctColor = DEFAULT_TASK_YEAR_COLOR;
   private String taskExpiriedNovColor = DEFAULT_TASK_YEAR_COLOR;
   private String taskExpiriedDecColor = DEFAULT_TASK_YEAR_COLOR;
+  
+  // For Cases by category
+  private String casesByCategoryColor = DEFAULT_CASES_BY_CATEGORY_COLOR;
 
   public String getElapsedTime() {
     return elapsedTime;
@@ -500,6 +505,14 @@ public class StatisticColors implements Serializable {
 
   public void setTaskExpiriedDecColor(String taskExpiriedDecColor) {
     this.taskExpiriedDecColor = taskExpiriedDecColor;
+  }
+
+  public String getCasesByCategoryColor() {
+    return casesByCategoryColor;
+  }
+
+  public void setCasesByCategoryColor(String casesByCategoryColor) {
+    this.casesByCategoryColor = casesByCategoryColor;
   }
 
 }

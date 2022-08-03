@@ -15,6 +15,7 @@ import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.ivydata.bo.IvySideStep;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.SideStepSearchCriteria;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
+import ch.ivy.addon.portalkit.util.UrlUtils;
 
 @ManagedBean
 @ViewScoped
@@ -73,7 +74,7 @@ public class SideStepBean implements Serializable {
   }
   
   public void startSideStep(IvySideStep sideStep) throws IOException {
-    String url = sideStep.getStartLink();
+    String url = UrlUtils.formatLinkWithEmbedInFrameParam(sideStep.getStartLink());
     FacesContext.getCurrentInstance().getExternalContext().redirect(url);
   }
   

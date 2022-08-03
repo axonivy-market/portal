@@ -9,6 +9,8 @@ import ch.ivy.addon.portalkit.enums.Protocol;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class UrlUtils {
+  private static final String EMBED_IN_FRAME = "embedInFrame";
+
   public static String getServerUrl() throws MalformedURLException {
     URL url = new URL(Ivy.html().applicationHomeRef());
     StringBuilder builder = new StringBuilder(url.getProtocol()).append("://").append(url.getHost());
@@ -42,6 +44,13 @@ public class UrlUtils {
     return urlInLowerCase.startsWith(Protocol.HTTP.getValue())
         || urlInLowerCase.startsWith(Protocol.HTTPS.getValue())
         || urlInLowerCase.startsWith("/");
+  }
+
+  public static String formatLinkWithEmbedInFrameParam(String link) {
+    if (StringUtils.isBlank(link) || link.contains(EMBED_IN_FRAME)) {
+      return link;
+    }
+    return link + (link.contains("?") ? "&" : "?") + EMBED_IN_FRAME;
   }
 
 }

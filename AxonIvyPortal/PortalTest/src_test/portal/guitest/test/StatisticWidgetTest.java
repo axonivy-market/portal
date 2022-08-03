@@ -2,6 +2,7 @@ package portal.guitest.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static portal.guitest.page.StatisticWidgetPage.CASES_BY_CATEGORY_CHART_NAME;
 import static portal.guitest.page.StatisticWidgetPage.CASE_BY_FINISHED_TASK_CHART_NAME;
 import static portal.guitest.page.StatisticWidgetPage.CASE_BY_FINISHED_TIME_CHART_NAME;
 import static portal.guitest.page.StatisticWidgetPage.CASE_BY_STATE_CHART_NAME;
@@ -80,6 +81,7 @@ public class StatisticWidgetTest extends BaseTest {
     statisticWidgetPage.createElapsedTimeChart();
     statisticWidgetPage.createCaseByFinishedTask();
     statisticWidgetPage.createCaseByFinishTime();
+    statisticWidgetPage.createCasesByCategory();
 
     statisticWidgetPage.backToDashboard();
     WaitHelper.assertTrueWithWait(() -> statisticWidgetPage.findElementByCssSelector("div[id$='0:chart-name-container'] .chart-name").getText().equals(TASK_BY_PRIORITY_DEFAULT_CHART_NAME));
@@ -89,6 +91,7 @@ public class StatisticWidgetTest extends BaseTest {
     WaitHelper.assertTrueWithWait(() -> statisticWidgetPage.findElementByCssSelector("div[id$='4:chart-name-container'] .chart-name").getText().equals(ELAPSED_TIME_CHART_NAME));
     WaitHelper.assertTrueWithWait(() -> statisticWidgetPage.findElementByCssSelector("div[id$='5:chart-name-container'] .chart-name").getText().equals(CASE_BY_FINISHED_TASK_CHART_NAME));
     WaitHelper.assertTrueWithWait(() -> statisticWidgetPage.findElementByCssSelector("div[id$='6:chart-name-container'] .chart-name").getText().equals(CASE_BY_FINISHED_TIME_CHART_NAME));
+    WaitHelper.assertTrueWithWait(() -> statisticWidgetPage.findElementByCssSelector("div[id$='7:chart-name-container'] .chart-name").getText().equals(CASES_BY_CATEGORY_CHART_NAME));
   }
 
   @Test
@@ -127,7 +130,7 @@ public class StatisticWidgetTest extends BaseTest {
     WaitHelper.assertTrueWithWait(() -> statisticWidgetPage.findElementByCssSelector("div[id$='1:chart-name-container'] .chart-name").getText().equals("Task by priority chart English"));
 
     UserProfilePage userProfilePage = statisticWidgetPage.openMyProfilePage();
-    userProfilePage.selectLanguage(0);
+    userProfilePage.selectLanguage(3);
     homePage = userProfilePage.save();
 
     mainMenuPage = homePage.openMainMenu();

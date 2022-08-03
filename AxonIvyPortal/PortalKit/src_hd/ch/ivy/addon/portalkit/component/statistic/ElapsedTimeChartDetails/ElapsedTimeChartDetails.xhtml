@@ -30,7 +30,7 @@
 
         <p:ajax event="sort" update="case-table" onstart="liveScroll()" />
 
-        <p:column id="case-id" styleClass="case-id" field="ID" filterable="false" sortBy="#{ID}"
+        <p:column id="case-id" styleClass="case-id" field="ID" filterable="false" sortBy="#{ID}" exportValue="#{elapsedTimeDetail.getId()}"
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseID')}" sortable="true">
           <h:outputText value="#{elapsedTimeDetail.getId()}" />
         </p:column>
@@ -41,7 +41,8 @@
         </p:column>
 
         <p:column id="case-creator" styleClass="case-creator js-elapsed-case"
-          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" sortable="false">
+          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" sortable="false" 
+          exportValue="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(elapsedTimeDetail.getCreatorUser(), elapsedTimeDetail.getCreatorUserName())}">
           <pc:securityMemberNameAndAvatar
             displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(elapsedTimeDetail.getCreatorUser(), elapsedTimeDetail.getCreatorUserName())}"
             securityMember="#{elapsedTimeDetail.getCreatorUser()}" />
@@ -61,7 +62,8 @@
           </h:outputText>
         </p:column>
 
-        <p:column id="case-elapsed-time" styleClass="case-elapsed-time" sortable="true" field="ELAPSED_TIME" filterable="false" sortBy="#{ELAPSED_TIME}"
+        <p:column id="case-elapsed-time" styleClass="case-elapsed-time" sortable="true" field="ELAPSED_TIME" filterable="false" sortBy="#{ELAPSED_TIME}" 
+          exportValue="#{elapsedTimeDetailsBean.calculateElapsedTime(elapsedTimeDetail.getBusinessRuntime().toNumber())}"
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTime')}">
           <h:outputText value="#{elapsedTimeDetailsBean.calculateElapsedTime(elapsedTimeDetail.getBusinessRuntime().toNumber())}" />
         </p:column>
