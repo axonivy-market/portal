@@ -11,26 +11,84 @@ Categories:
         name: Largo
       name: Enfermedad
     name: Otra ausencia
+CustomFields:
+  Cases:
+    AccountNumber:
+      Description: Propiedad de la página de detalles del Caso Adicional
+      Label: Número de cuenta
+    CreatedBillDate:
+      Description: Propiedad de la página de detalles del Caso Adicional
+      Label: Fecha de creación de la factura
+    CustomerName:
+      Description: Columna del nombre del cliente, por ejemplo
+      Label: Nombre del cliente
+    CustomerType:
+      Description: Columna de tipo de cliente, por ejemplo
+      Label: Tipo de cliente
+    InvoiceDate:
+      Description: Propiedad de la página de detalles del Caso Adicional
+      Label: Fecha de la factura
+    InvoiceDueDate:
+      Description: Propiedad de la página de detalles del Caso Adicional
+      Label: Fecha de vencimiento de la factura
+    InvoiceNumber:
+      Description: Propiedad de la página de detalles del Caso Adicional
+      Label: Datos adicionales del caso 1
+    InvoiceQualityNumber:
+      Description: Propiedad de la página de detalles del Caso Adicional
+      Label: Número de calidad de la factura
+    InvoiceSubTotalAmount:
+      Description: Propiedad de la página de detalles del Caso Adicional
+      Label: Subtotal de la factura Importe
+    InvoiceTotalAmount:
+      Description: Propiedad de la página de detalles del Caso Adicional
+      Label: Importe total de la factura
+    ShipmentDate:
+      Description: Columna de fecha de envío, por ejemplo
+      Label: Fecha de envío
+    SupportData:
+      Description: Propiedad de la página de detalles del Caso Adicional
+      Label: Datos de apoyo
+  Categories:
+    CustomCaseWidget: CaseWidget personalizado
+    CustomTaskWidget: TaskWidget personalizado
+    DefaultAdditionalCaseDetai: Página de detalles adicionales del caso por defecto
+  Tasks:
+    CustomerAddress:
+      Description: Campo de la dirección del cliente
+      Label: Dirección del cliente
+    CustomerEmail:
+      Description: Campo de correo electrónico del cliente
+      Label: Correo electrónico del cliente
+    CustomerName:
+      Description: Columna del nombre del cliente, por ejemplo
+      Label: Nombre del cliente
+    CustomerType:
+      Description: Columna de tipo de cliente, por ejemplo
+      Label: Tipo de cliente
+    ShipmentDate:
+      Description: Columna de fecha de envío, por ejemplo
+      Label: Fecha de envío
 DefaultColumns:
   ACTIVATOR: Responsabl
   CREATION_TIME: Creado
+  CustomerName: Nombre del cliente
   EXPIRY_TIME: Expiración
   ID: ID de la tarea
   NAME: Nombre / Descripción
   PRIORITY: Prioridad
   STATE: Estado
+  ShipmentDate: Fecha de envío
   caseList:
     CREATION_TIME: Creado
     CREATOR: Creador
+    CustomerName: Nombre del cliente
     FINISHED_TIME: Finalizado
     ID: ID del caso
     NAME: Nombre / Descripción
     OWNER: Propietario
     STATE: Estado
-    customTimestampField1: Fecha de envío
-    customVarCharField1: Nombre del cliente
-  customTimestampField1: Fecha de envío
-  customVarCharField5: Nombre del cliente
+    ShipmentDate: Fecha de envío
 Dialogs:
   Lists:
     Completeness:
@@ -111,11 +169,11 @@ Processes:
 sortFields:
   CREATION_TIME_ASC: Fecha de creación (antiguos primero)
   CREATION_TIME_DESC: Fecha de creación (nuevos primero)
+  CustomerName_ASC: Nombre del cliente (A -> Z)
+  CustomerName_DESC: Nombre del cliente (Z -> A)
   EXPIRY_TIME_ASC: Fecha de caducidad (antiguos primero)
   EXPIRY_TIME_DESC: Fecha de caducidad (nuevos primero)
   PRIORITY_ASC: Prioridad (alta -> baja)
   PRIORITY_DESC: Prioridad (baja -> alta)
-  customTimestampField1_ASC: Fecha de envío (antiguos primero)
-  customTimestampField1_DESC: Fecha de envío (nuevos primero)
-  customVarCharField5_ASC: Nombre del cliente (A -> Z)
-  customVarCharField5_DESC: Nombre del cliente (Z -> A)
+  ShipmentDate_ASC: Fecha de envío (antiguos primero)
+  ShipmentDate_DESC: Fecha de envío (nuevos primero)

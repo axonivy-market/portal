@@ -12,7 +12,7 @@ header you find two useful features:
    the Axon Ivy Portal`_ for a detailed overview of the configuration options.
 
 #. Next to your username is a |search-icon| **Search Bar** providing you
-   with a portal-wide search. This feature is described in detail in 
+   with a portal-wide search. This feature is described in detail in
    `Global Search`_.
 
 |portal-header|
@@ -34,6 +34,12 @@ My profile
 
 Menu entry :ref:`my-profile` contains general setting, user language and email settings.
 
+Dashboard Configuration
+-----------------------
+
+Menu entry :ref:`dashboard-configuration` contains dashboards settings,
+only available for users who have the permission ``DASHBOARD_WRITE_OWN`` or ``DASHBOARD_WRITE_PUBLIC``.
+
 Absences
 --------
 
@@ -42,7 +48,7 @@ component. Here you can enter your absence and define delegate for
 tasks assigned to you or one of the roles you hold.
 
 .. hint::
-   Although you can specify         
+   Although you can specify
    delegates for a role you hold, we recommend specifying only delegates for tasks
    assigned personally to you. Roles are normally held by a group of users, so if
    you’re absent one of your role members is still able to pick the task.
@@ -57,15 +63,15 @@ you can edit or delete absences by using the |edit-icon| **Edit** or |trash-icon
 HowTo: Add absence
 ^^^^^^^^^^^^^^^^^^
 
-#. Click on the button :guilabel:`Add absence` 
+#. Click on the button :guilabel:`Add absence`
 
 #. The :guilabel:`Add absence` dialog is opened
 
-#. Enter :guilabel:`From` and :guilabel:`To` 
+#. Enter :guilabel:`From` and :guilabel:`To`
 
 #. You may provide an explanatory comment
 
-#. Confirm your absence by clicking button :guilabel:`Save` 
+#. Confirm your absence by clicking button :guilabel:`Save`
 
 |how-to-add-an-absence|
 
@@ -113,12 +119,12 @@ The menu entry :guilabel:`Logout` will terminate your session in the Axon Ivy
 Portal. You’ll be routed back to the login page of the Axon Ivy
 Portal.
 
-.. hint:: 
+.. hint::
    The Axon Ivy Portal will also do
-   an automatic logout if you’re   
+   an automatic logout if you’re
    inactive for a certain amount of
-   time.                           
-   
+   time.
+
 Global Search
 -------------
 
@@ -138,17 +144,17 @@ a tab is provided, giving you the results of your search.
 
 |portal-global-search-result-page|
 
-.. hint:: 
-   Your company’s application may   
-   provide further search           
+.. hint::
+   Your company’s application may
+   provide further search
    capabilities which are integrated
-   in the Axon Ivy Portal Global    
+   in the Axon Ivy Portal Global
    Search. You’d find the results on
-   the result page accordingly.     
-   Contact your administrator for   
-   more information.                
+   the result page accordingly.
+   Contact your administrator for
+   more information.
 
-.. include:: ../includes/_common-icon.rst  
+.. include:: ../includes/_common-icon.rst
 
 
 .. |portal-header| image:: ../../screenshots/dashboard/portal-header-with-numbering-annotation.png

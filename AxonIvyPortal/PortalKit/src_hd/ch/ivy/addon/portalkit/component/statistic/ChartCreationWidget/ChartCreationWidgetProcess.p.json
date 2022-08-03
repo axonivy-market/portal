@@ -61,7 +61,7 @@
         "guid" : "1601F664C9C78C71"
       },
       "visual" : {
-        "at" : { "x" : 112, "y" : 928 },
+        "at" : { "x" : 88, "y" : 976 },
         "labelOffset" : { "x" : -98, "y" : 29 }
       },
       "connect" : { "id" : "f30", "to" : "f26" }
@@ -185,7 +185,7 @@
       "id" : "f11",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 672, "y" : 1120 }
+        "at" : { "x" : 648, "y" : 1168 }
       }
     }, {
       "id" : "f41",
@@ -238,7 +238,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 416, "y" : 1120 }
+        "at" : { "x" : 392, "y" : 1168 }
       },
       "connect" : { "id" : "f12", "to" : "f11" }
     }, {
@@ -272,11 +272,11 @@
       "id" : "f21",
       "type" : "Alternative",
       "visual" : {
-        "at" : { "x" : 416, "y" : 928 }
+        "at" : { "x" : 392, "y" : 976 }
       },
       "connect" : [
         { "id" : "f32", "to" : "f31", "condition" : "!in.isChartNameExisted" },
-        { "id" : "f20", "to" : "f11", "via" : [ { "x" : 672, "y" : 928 } ] }
+        { "id" : "f20", "to" : "f11", "via" : [ { "x" : 648, "y" : 976 } ] }
       ]
     }, {
       "id" : "f10",
@@ -286,7 +286,7 @@
         "guid" : "160911F3882D9937"
       },
       "visual" : {
-        "at" : { "x" : 112, "y" : 1120 }
+        "at" : { "x" : 88, "y" : 1168 }
       },
       "connect" : { "id" : "f14", "to" : "f13" }
     }, {
@@ -445,7 +445,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 280, "y" : 928 },
+        "at" : { "x" : 256, "y" : 976 },
         "size" : { "width" : 160, "height" : 44 }
       },
       "connect" : { "id" : "f16", "to" : "f21" }
@@ -500,7 +500,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 416, "y" : 1024 },
+        "at" : { "x" : 392, "y" : 1072 },
         "size" : { "width" : 144, "height" : 44 }
       },
       "connect" : { "id" : "f19", "to" : "f13" }
@@ -545,5 +545,33 @@
       "visual" : {
         "at" : { "x" : 448, "y" : 64 }
       }
+    }, {
+      "id" : "f48",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "updateBeforeAddCasesByCategory()",
+      "config" : {
+        "callSignature" : "updateBeforeAddCasesByCategory",
+        "input" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.bean.StatisticChartCreationBean;",
+            "import javax.faces.context.FacesContext;",
+            "import ch.ivy.addon.portalkit.enums.StatisticChartType;",
+            "",
+            "FacesContext context = FacesContext.getCurrentInstance();",
+            "StatisticChartCreationBean chartCreationBean = context.getApplication().evaluateExpressionGet(context, \"#{statisticChartCreationBean}\", StatisticChartCreationBean.class) as StatisticChartCreationBean;",
+            "out.isAllowedToCreateChart = !chartCreationBean.checkIfAnyFilterChanges(out.statisticFilter, out.oldStatisticFilter);",
+            "",
+            "if (out.isAllowedToCreateChart) {",
+            "  out.chartType  = StatisticChartType.CASES_BY_CATEGORY;",
+            "}"
+          ]
+        },
+        "guid" : "182142F4128BCDB9"
+      },
+      "visual" : {
+        "at" : { "x" : 112, "y" : 904 },
+        "labelOffset" : { "x" : -111, "y" : 15 }
+      },
+      "connect" : { "id" : "f49", "to" : "f43", "via" : [ { "x" : 448, "y" : 904 } ] }
     } ]
 }

@@ -1,13 +1,33 @@
 Categories:
   Test:
     ATest_4:
+      Test_4_1:
+        name: Test 4_1 Ge
+      Test_4_2:
+        name: Test 4_2 Ge
       name: Test 4 Ge
     BTest_3:
+      Test_3_1:
+        name: Test 3_1 Ge
+      Test_3_2:
+        name: Test 3_2 Ge
       name: Test 3 Ge
     CTest_2:
+      Test_2_1:
+        name: Test 2_1 Ge
+      Test_2_2:
+        name: Test 2_2 Ge
       name: Test 2 Ge
     DTest_5:
+      Test_5_1:
+        name: Test 5_1 Ge
+      Test_5_2:
+        name: Test 5_2 Ge
       name: Test 5 Ge
     ETest_1:
+      Test_1_1:
+        name: Test 1_1 Ge
+      Test_1_2:
+        name: Test 1_2 Ge
       name: Test 1 Ge
     name: Test Ge

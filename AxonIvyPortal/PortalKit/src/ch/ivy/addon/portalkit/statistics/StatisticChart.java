@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.statistics;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.primefaces.model.charts.bar.BarChartModel;
@@ -12,11 +13,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
+import ch.ivy.addon.portalkit.constant.PortalPrefix;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
+import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class StatisticChart extends AbstractConfiguration {
+  private String chartName;
   private List<DisplayName> names;
   private StatisticChartType type;
   private StatisticFilter filter;
@@ -100,5 +104,17 @@ public class StatisticChart extends AbstractConfiguration {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public String getChartName() {
+    if (StringUtils.startsWithIgnoreCase(chartName, PortalPrefix.CMS)) {
+      return Ivy.cms().co(StringUtils.removeStart(chartName, PortalPrefix.CMS));
+    }
+
+    return chartName;
+  }
+
+  public void setChartName(String chartName) {
+    this.chartName = chartName;
   }
 }

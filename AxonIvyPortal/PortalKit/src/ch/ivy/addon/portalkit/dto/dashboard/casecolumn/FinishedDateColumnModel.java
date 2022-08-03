@@ -11,6 +11,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 
+import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -22,12 +23,32 @@ public class FinishedDateColumnModel  extends CaseColumnModel implements Seriali
 
   @Override
   public void initDefaultValue() {
-    this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME");
+    super.initDefaultValue();
     this.field = DashboardStandardCaseColumn.FINISHED.getField();
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-cases__finished-date u-text-align-center");
-    this.format = DashboardColumnFormat.TIMESTAMP;
+    this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
+    this.format = getDefaultFormat();
   }
-  
+
+  @Override
+  public String getHeaderText() {
+    return translateHeader(defaultIfEmpty(this.header, DashboardConfigurationPrefix.CMS + getDefaultHeaderCMS()));
+  }
+
+  @Override
+  public String getDefaultHeaderCMS() {
+    return "/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME";
+  }
+
+  @Override
+  public DashboardColumnFormat getDefaultFormat() {
+    return DashboardColumnFormat.TIMESTAMP;
+  }
+
+  @Override
+  public String getDefaultStyleClass() {
+    return "dashboard-cases__finished-date u-text-align-center";
+  }
+
   @Override
   public Object display(ICase caze) {
     if (caze == null) {
