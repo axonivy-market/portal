@@ -24,34 +24,37 @@ public class TaskColumnModel extends ColumnModel {
   }
 
   public static TaskColumnModel constructColumn(DashboardColumnType fieldType, String field) {
-    TaskColumnModel column = new TaskColumnModel();
     if (fieldType == DashboardColumnType.STANDARD) {
-      if (DashboardStandardTaskColumn.START.getField().equalsIgnoreCase(field)) {
-        column = new StartColumnModel();
-      } else if (DashboardStandardTaskColumn.PRIORITY.getField().equalsIgnoreCase(field)) {
-        column = new PriorityColumnModel();
-      } else if (DashboardStandardTaskColumn.ID.getField().equalsIgnoreCase(field)) {
-        column = new IdColumnModel();
-      } else if (DashboardStandardTaskColumn.NAME.getField().equalsIgnoreCase(field)) {
-        column = new NameColumnModel();
-      } else if (DashboardStandardTaskColumn.DESCRIPTION.getField().equalsIgnoreCase(field)) {
-        column = new DescriptionColumnModel();
-      } else if (DashboardStandardTaskColumn.RESPONSIBLE.getField().equalsIgnoreCase(field)) {
-        column = new ResponsibleColumnModel();
-      } else if (DashboardStandardTaskColumn.STATE.getField().equalsIgnoreCase(field)) {
-        column = new StateColumnModel();
-      } else if (DashboardStandardTaskColumn.CREATED.getField().equalsIgnoreCase(field)) {
-        column = new CreatedDateColumnModel();
-      } else if (DashboardStandardTaskColumn.EXPIRY.getField().equalsIgnoreCase(field)) {
-        column = new ExpiryDateColumnModel();
-      } else if (DashboardStandardTaskColumn.CATEGORY.getField().equalsIgnoreCase(field)) {
-        column = new CategoryColumnModel();
-      }  else if (DashboardStandardTaskColumn.APPLICATION.getField().equalsIgnoreCase(field)) {
-          column = new ApplicationColumnModel();
-      } else if (DashboardStandardTaskColumn.ACTIONS.getField().equalsIgnoreCase(field)) {
-        column = new ActionsColumnModel();
+      if (equals(DashboardStandardTaskColumn.START, field)) {
+        return new StartColumnModel();
+      } else if (equals(DashboardStandardTaskColumn.PRIORITY, field)) {
+        return new PriorityColumnModel();
+      } else if (equals(DashboardStandardTaskColumn.ID, field)) {
+        return new IdColumnModel();
+      } else if (equals(DashboardStandardTaskColumn.NAME, field)) {
+        return new NameColumnModel();
+      } else if (equals(DashboardStandardTaskColumn.DESCRIPTION, field)) {
+        return new DescriptionColumnModel();
+      } else if (equals(DashboardStandardTaskColumn.RESPONSIBLE, field)) {
+        return new ResponsibleColumnModel();
+      } else if (equals(DashboardStandardTaskColumn.STATE, field)) {
+        return new StateColumnModel();
+      } else if (equals(DashboardStandardTaskColumn.CREATED, field)) {
+        return new CreatedDateColumnModel();
+      } else if (equals(DashboardStandardTaskColumn.EXPIRY, field)) {
+        return new ExpiryDateColumnModel();
+      } else if (equals(DashboardStandardTaskColumn.CATEGORY, field)) {
+        return new CategoryColumnModel();
+      }  else if (equals(DashboardStandardTaskColumn.APPLICATION, field)) {
+        return new ApplicationColumnModel();
+      } else if (equals(DashboardStandardTaskColumn.ACTIONS, field)) {
+        return new ActionsColumnModel();
       }
     }
-    return column;
+    return new TaskColumnModel();
+  }
+
+  private static boolean equals(DashboardStandardTaskColumn column, String field) {
+    return column.getField().equalsIgnoreCase(field);
   }
 }
