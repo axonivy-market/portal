@@ -20,9 +20,9 @@
         <!-- use the TaskListHeader component to keep default columns, and add a new one with TaskColumnHeader. -->
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskListHeader dataModel="#{taskView.dataModel}" />
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
-          componentId="customer-name-header" sortField="customVarCharField5" value="CustomVarCharField5" responsiveStyleClass="u-hidden-sm-down" />
+          componentId="customer-name-header" sortField="CustomerName" value="CustomerName" responsiveStyleClass="u-hidden-sm-down" />
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
-          componentId="customer-type-header" sortField="customVarCharField1" value="CustomVarCharField1" responsiveStyleClass="u-hidden-sm-down" />
+          componentId="customer-type-header" sortField="CustomerType" value="CustomerType" responsiveStyleClass="u-hidden-sm-down" />
       </ui:define>
 
       <ui:define name="taskHeader">
@@ -43,10 +43,10 @@
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskState dataModel="#{taskView.dataModel}" state="#{task.state}" />
 
         <!-- New field -->
-        <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-name-component" componentId="customer-name" column="customVarCharField5"
-          dataModel="#{taskView.dataModel}" labelValue="#{task.customFields().stringField('CustomVarCharField5').getOrNull()}" responsiveStyleClass="u-hidden-sm-down" />
-        <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-type-component" componentId="customer-type" column="customVarCharField1"
-          dataModel="#{taskView.dataModel}" labelValue="#{task.customFields().stringField('CustomVarCharField1').getOrNull()}" responsiveStyleClass="u-hidden-sm-down" />
+        <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-name-component" componentId="customer-name" column="CustomerName"
+          dataModel="#{taskView.dataModel}" labelValue="#{task.customFields().stringField('CustomerName').getOrNull()}" responsiveStyleClass="u-hidden-sm-down" />
+        <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-type-component" componentId="customer-type" column="CustomerType"
+          dataModel="#{taskView.dataModel}" labelValue="#{task.customFields().stringField('CustomerType').getOrNull()}" responsiveStyleClass="u-hidden-sm-down" />
       </ui:define>
 
       <ui:define name="taskFilter">

@@ -11,11 +11,9 @@
         "case" : {
           "attachToBusinessCase" : false,
           "customFields" : [
-            { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Leave 1\"" },
-            { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"Leave 2\"" },
-            { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"Leave 3\"" },
-            { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"Leave 4\"" },
-            { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Leave 5\"" }
+            { "name" : "CustomerType", "type" : "String", "value" : "\"Leave Request\"" },
+            { "name" : "SupportData", "type" : "String", "value" : "\"Leave\"" },
+            { "name" : "CustomerName", "type" : "String", "value" : "\"Leave 5\"" }
           ]
         },
         "outLink" : "CreateSupportTicket.ivp",
@@ -196,11 +194,9 @@
               "timeout" : "new Duration(\"3H\")"
             },
             "customFields" : [
-              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Annual CustomVarCharField1\"" },
-              { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"Annual CustomVarCharField2\"" },
-              { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"Annual CustomVarCharField3\"" },
-              { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"Annual CustomVarCharField4\"" },
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Annual Leave\"" }
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Annual CustomerType\"" },
+              { "name" : "SupportData", "type" : "String", "value" : "\"Annual SupportData\"" },
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Annual Leave\"" }
             ]
           },
           "TaskB" : {
@@ -211,11 +207,9 @@
               "timeout" : "new Duration(\"1D\")"
             },
             "customFields" : [
-              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Sick CustomVarCharField1\"" },
-              { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"Sick CustomVarCharField2\"" },
-              { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"Sick CustomVarCharField3\"" },
-              { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"Sick CustomVarCharField4\"" },
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Other Leave/Sick/Long\"" }
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Sick CustomerType\"" },
+              { "name" : "SupportData", "type" : "String", "value" : "\"Sick SupportData\"" },
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Other Leave/Sick/Long\"" }
             ]
           },
           "TaskC" : {
@@ -226,11 +220,9 @@
               "timeout" : "new Duration(\"2D\")"
             },
             "customFields" : [
-              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Maternity CustomVarCharField1\"" },
-              { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"Maternity CustomVarCharField2\"" },
-              { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"Maternity CustomVarCharField3\"" },
-              { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"Maternity CustomVarCharField4\"" },
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Other Leave/Maternity\"" }
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Maternity CustomerType\"" },
+              { "name" : "SupportData", "type" : "String", "value" : "\"Maternity SupportData\"" },
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Other Leave/Maternity\"" }
             ]
           }
         }
@@ -273,10 +265,8 @@
           "description" : "Leave Request Description",
           "attachToBusinessCase" : false,
           "customFields" : [
-            { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Leave Request CustomVarCharField1\"" },
-            { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"Leave Request CustomVarCharField2\"" },
-            { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"Leave Request CustomVarCharField3\"" },
-            { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"Leave Request CustomVarCharField4\"" },
+            { "name" : "CustomerType", "type" : "String", "value" : "\"Leave Request CustomerType\"" },
+            { "name" : "SupportData", "type" : "String", "value" : "\"Leave Request SupportData\"" },
             { "name" : "ProcessCategoryCode", "type" : "String", "value" : "\"pubRequested\"" },
             { "name" : "ProcessCategoryName", "type" : "String", "value" : "\"Publication Requested\"" },
             { "name" : "ProcessCode", "type" : "String", "value" : "\"pubRequested\"" },
@@ -395,7 +385,7 @@
               "userFromAttribute" : "\"demo\""
             },
             "customFields" : [
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Über\"" }
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Über\"" }
             ]
           },
           "TaskB" : {
@@ -405,7 +395,7 @@
               "userFromAttribute" : "\"demo\""
             },
             "customFields" : [
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Müller\"" }
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Müller\"" }
             ]
           }
         }
@@ -530,8 +520,8 @@
               "timeout" : "new Duration(\"3H\")"
             },
             "customFields" : [
-              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Exterior\"" },
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Long Do\"" },
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Exterior\"" },
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Long Do\"" },
               { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
             ]
           },
@@ -544,8 +534,8 @@
               "timeout" : "new Duration(\"1D\")"
             },
             "customFields" : [
-              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Interior\"" },
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Tung Le\"" },
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Tung Le\"" },
               { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
             ]
           },
@@ -558,8 +548,8 @@
               "timeout" : "new Duration(\"2D\")"
             },
             "customFields" : [
-              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Interior\"" },
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Anh Nguyen\"" },
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Anh Nguyen\"" },
               { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
             ]
           }
@@ -602,17 +592,15 @@
           "name" : "Leave Request for Default Additional Case Details",
           "description" : "Leave Request Description for Default Additional Case Details",
           "customFields" : [
-            { "name" : "CustomDecimalField1", "type" : "Number", "value" : "159753852" },
-            { "name" : "CustomDecimalField3", "type" : "Number", "value" : "745856" },
-            { "name" : "CustomDecimalField5", "type" : "Number", "value" : "1598526" },
-            { "name" : "CustomTimestampField2", "type" : "Timestamp", "value" : "new DateTime(2018, 2, 2, 2, 2 ,2)" },
-            { "name" : "CustomTimestampField3", "type" : "Timestamp", "value" : "new DateTime(2018, 3, 3, 3, 3, 3)" },
-            { "name" : "CustomTimestampField5", "type" : "Timestamp", "value" : "new DateTime(2018, 5, 5, 5, 5, 5)" },
-            { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"CustomVarCharField 1\"" },
-            { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"CustomVarCharField 2\"" },
-            { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"CustomVarCharField 3\"" },
-            { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"CustomVarCharField 4\"" },
-            { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"CustomVarCharField 5\"" },
+            { "name" : "InvoiceNumber", "type" : "Number", "value" : "159753852" },
+            { "name" : "InvoiceQualityNumber", "type" : "Number", "value" : "745856" },
+            { "name" : "AccountNumber", "type" : "Number", "value" : "1598526" },
+            { "name" : "InvoiceDate", "type" : "Timestamp", "value" : "new DateTime(2018, 2, 2, 2, 2 ,2)" },
+            { "name" : "InvoiceDueDate", "type" : "Timestamp", "value" : "new DateTime(2018, 3, 3, 3, 3, 3)" },
+            { "name" : "CreatedBillDate", "type" : "Timestamp", "value" : "new DateTime(2018, 5, 5, 5, 5, 5)" },
+            { "name" : "CustomerType", "type" : "String", "value" : "\"Customer type\"" },
+            { "name" : "SupportData", "type" : "String", "value" : "\"Support Data\"" },
+            { "name" : "CustomerName", "type" : "String", "value" : "\"Customer name\"" },
             { "name" : "ProcessCategoryCode", "type" : "String", "value" : "\"pubRequested\"" },
             { "name" : "ProcessCategoryName", "type" : "String", "value" : "\"Publication Requested\"" },
             { "name" : "ProcessCode", "type" : "String", "value" : "\"pubRequested\"" },
@@ -649,8 +637,8 @@
               "timeout" : "new Duration(\"3H\")"
             },
             "customFields" : [
-              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Exterior\"" },
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Long Do\"" }
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Exterior\"" },
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Long Do\"" }
             ]
           },
           "TaskB" : {
@@ -665,8 +653,8 @@
               "timeout" : "new Duration(\"1D\")"
             },
             "customFields" : [
-              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Interior\"" },
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Tung Le\"" }
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Tung Le\"" }
             ]
           },
           "TaskC" : {
@@ -681,8 +669,8 @@
               "timeout" : "new Duration(\"2D\")"
             },
             "customFields" : [
-              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Interior\"" },
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Anh Nguyen\"" }
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Anh Nguyen\"" }
             ]
           },
           "TaskD" : {
@@ -715,21 +703,18 @@
           "name" : "Test Case List Permission",
           "description" : "Test case List Permission",
           "customFields" : [
-            { "name" : "CustomDecimalField1", "type" : "Number", "value" : "111" },
-            { "name" : "CustomDecimalField2", "type" : "Number", "value" : "222" },
-            { "name" : "CustomDecimalField3", "type" : "Number", "value" : "333" },
-            { "name" : "CustomDecimalField4", "type" : "Number", "value" : "444" },
-            { "name" : "CustomDecimalField5", "type" : "Number", "value" : "555" },
-            { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime(2018, 1, 1, 1, 1, 1)" },
-            { "name" : "CustomTimestampField2", "type" : "Timestamp", "value" : "new DateTime(2018, 2, 2, 2, 2 ,2)" },
-            { "name" : "CustomTimestampField3", "type" : "Timestamp", "value" : "new DateTime(2018, 3, 3, 3, 3, 3)" },
-            { "name" : "CustomTimestampField4", "type" : "Timestamp", "value" : "new DateTime(2018, 4, 4, 4, 4, 4)" },
-            { "name" : "CustomTimestampField5", "type" : "Timestamp", "value" : "new DateTime(2018, 5, 5, 5, 5, 5)" },
-            { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails CustomVarCharField1\"" },
-            { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails CustomVarCharField2\"" },
-            { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails CustomVarCharField3\"" },
-            { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails CustomVarCharField4\"" },
-            { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails CustomVarCharField5\"" },
+            { "name" : "InvoiceNumber", "type" : "Number", "value" : "111" },
+            { "name" : "InvoiceTotalAmount", "type" : "Number", "value" : "222" },
+            { "name" : "InvoiceQualityNumber", "type" : "Number", "value" : "333" },
+            { "name" : "InvoiceSubTotalAmount", "type" : "Number", "value" : "444" },
+            { "name" : "AccountNumber", "type" : "Number", "value" : "555" },
+            { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime(2018, 1, 1, 1, 1, 1)" },
+            { "name" : "InvoiceDate", "type" : "Timestamp", "value" : "new DateTime(2018, 2, 2, 2, 2 ,2)" },
+            { "name" : "InvoiceDueDate", "type" : "Timestamp", "value" : "new DateTime(2018, 3, 3, 3, 3, 3)" },
+            { "name" : "CreatedBillDate", "type" : "Timestamp", "value" : "new DateTime(2018, 5, 5, 5, 5, 5)" },
+            { "name" : "CustomerType", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails CustomerType\"" },
+            { "name" : "SupportData", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails SupportData\"" },
+            { "name" : "CustomerName", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails CustomerName\"" },
             { "name" : "ProcessCategoryCode", "type" : "String", "value" : "\"pubRequested\"" },
             { "name" : "ProcessCategoryName", "type" : "String", "value" : "\"Publication Requested\"" },
             { "name" : "ProcessCode", "type" : "String", "value" : "\"pubRequested\"" },
@@ -1283,10 +1268,8 @@
           "description" : "Leave Request Description",
           "attachToBusinessCase" : false,
           "customFields" : [
-            { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Leave Request CustomVarCharField1\"" },
-            { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"Leave Request CustomVarCharField2\"" },
-            { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"Leave Request CustomVarCharField3\"" },
-            { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"Leave Request CustomVarCharField4\"" },
+            { "name" : "CustomerType", "type" : "String", "value" : "\"Leave Request CustomerType\"" },
+            { "name" : "SupportData", "type" : "String", "value" : "\"Leave Request SupportData\"" },
             { "name" : "Number field", "type" : "Number", "value" : "1000000" },
             { "name" : "ProcessCategoryCode", "type" : "String", "value" : "\"pubRequested\"" },
             { "name" : "ProcessCategoryName", "type" : "String", "value" : "\"Publication Requested\"" },
@@ -1338,7 +1321,7 @@
           "name" : "Leave Request",
           "category" : "LeaveRequest",
           "customFields" : [
-            { "name" : "CustomDecimalField2", "type" : "Number", "value" : "36" }
+            { "name" : "InvoiceTotalAmount", "type" : "Number", "value" : "36" }
           ]
         },
         "tasks" : {
@@ -1353,10 +1336,10 @@
               "timeout" : "new Duration(\"3H\")"
             },
             "customFields" : [
-              { "name" : "CustomDecimalField2", "type" : "Number", "value" : "7" },
-              { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime()" },
-              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Exterior\"" },
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Long Do\"" },
+              { "name" : "InvoiceTotalAmount", "type" : "Number", "value" : "7" },
+              { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" },
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Exterior\"" },
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Long Do\"" },
               { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
             ]
           },
@@ -1369,10 +1352,10 @@
               "timeout" : "new Duration(\"1D\")"
             },
             "customFields" : [
-              { "name" : "CustomDecimalField2", "type" : "Number", "value" : "14" },
-              { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime()" },
-              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Interior\"" },
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Tung Le\"" },
+              { "name" : "InvoiceTotalAmount", "type" : "Number", "value" : "14" },
+              { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" },
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Tung Le\"" },
               { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
             ]
           },
@@ -1385,10 +1368,10 @@
               "timeout" : "new Duration(\"2D\")"
             },
             "customFields" : [
-              { "name" : "CustomDecimalField2", "type" : "Number", "value" : "13" },
-              { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime()" },
-              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Interior\"" },
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Anh Nguyen\"" },
+              { "name" : "InvoiceTotalAmount", "type" : "Number", "value" : "13" },
+              { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" },
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Anh Nguyen\"" },
               { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
             ]
           }

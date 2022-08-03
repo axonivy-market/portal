@@ -1,0 +1,62 @@
+[
+  {
+    "id": "1",
+    "title": "Dashboard",
+    "widgets": [
+      {
+        "type": "statistic",
+        "id": "statistic_1",
+        "name": "Cases by Category",
+        "layout": {
+          "id": null,
+          "styleClass": "new-widget",
+          "style": null,
+          "w": 5,
+          "h": 5,
+          "x": 0,
+          "y": 0
+        },
+        "chart": {
+          "id": "0",
+          "names": [
+            {
+              "locale": "de",
+              "value": "Fälle nach Kategorie"
+            },
+            {
+              "locale": "en",
+              "value": "Cases by category"
+            },
+            {
+              "locale": "fr",
+              "value": "Affaires par catégorie"
+            },
+            {
+              "locale": "es",
+              "value": "Casos por categoría"
+            }
+          ],
+          "type": "CASES_BY_CATEGORY",
+          "filter": {
+            "timePeriodSelection": "CUSTOM",
+            "createdDateFrom": null,
+            "createdDateTo": null,
+            "selectedCaseCategories": [],
+            "isAllCategoriesSelected": false,
+            "selectedRoles": [],
+            "isAllRolesSelected": true,
+            "selectedCaseStates": [],
+            "isAllCaseStatesSelected": true,
+            "selectedTaskPriorities": [],
+            "isAllTaskPrioritiesSelected": true,
+            "customFieldFilters": null
+          },
+          "position": 0
+        }
+      }
+    ],
+    "permissions": [
+      "Everybody"
+    ]
+  }
+]

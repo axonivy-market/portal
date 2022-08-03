@@ -62,4 +62,32 @@ public class StatisticDashboardWidgetTest extends BaseTest {
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     return modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
   }
+  
+  @Test
+  public void testShowChartCasesByCategoryInfo() {
+    login(TestAccount.ADMIN_USER);
+    createJSonFile("dashboard-has-chart-cases-by-category.json", PortalVariable.DASHBOARD.key);
+    redirectToRelativeLink(createTestingTasksUrl);
+    var chartWidget = newDashboardPage.selectStatisticWidget();
+    var chartName = chartWidget.getChartName(0);
+    assertTrue(StringUtils.equalsIgnoreCase("Cases by Category", chartName));
+    var infoIcon = chartWidget.getStatisticInfoIconOfChart(0);
+    infoIcon.should(Condition.appear);
+    chartWidget.openStatisticInfoPanel(0);
+    var chartFilter = chartWidget.countFilterOfStatistic(0);
+    chartFilter.shouldHave(CollectionCondition.sizeGreaterThanOrEqual(4));
+  }
+  
+  @Test
+  public void testEditCasesByCategoryChart() {
+    login(TestAccount.ADMIN_USER);
+    createJSonFile("dashboard-has-chart-cases-by-category.json", PortalVariable.DASHBOARD.key);
+    redirectToRelativeLink(createTestingTasksUrl);
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
+    var chartWidget = newDashboardDetailsEditPage.selectStatisticWidget();
+    chartWidget.getEditIconOfChart(0).shouldBe(Condition.visible, Condition.enabled);
+    var editChartDialog = chartWidget.openEditStatisticWidgetDialog(0);
+    assertTrue(StringUtils.equalsIgnoreCase(editChartDialog, "Edit Widget Configuration"));
+    chartWidget.clickOnCancelConfiguration();
+  }
 }

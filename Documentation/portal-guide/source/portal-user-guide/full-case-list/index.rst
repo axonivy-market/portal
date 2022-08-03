@@ -140,12 +140,10 @@ HowTo: Create New Filter
 |                       |                                   |
 +-----------------------+-----------------------------------+
 
-.. hint:: 
-   #. Alternatively, start the creation of a new filter by selecting an existing
-      filter first. Then, reconfigure it and save it under a new name. 
+.. hint::
+   #. You can create a new filter by selecting an existing filter, reconfiguring it, and saving it.
 
-   #. Depending on your permissions you might only be allowed to save filters for
-      yourself.
+   #. Only users with the admin role ``AXONIVY_PORTAL_ADMIN`` can save the filter for all users.
 
 HowTo: Configure Displayed Cases in the Full Case List
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

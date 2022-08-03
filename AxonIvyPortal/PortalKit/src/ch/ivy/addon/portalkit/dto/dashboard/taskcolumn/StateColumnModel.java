@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -21,14 +22,39 @@ public class StateColumnModel extends TaskColumnModel implements Serializable {
 
   @Override
   public void initDefaultValue() {
-    this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE");
+    super.initDefaultValue();
     this.field = DashboardStandardTaskColumn.STATE.getField();
-    this.style = defaultIfEmpty(this.style, NORMAL_WIDTH);
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__state u-text-align-center");
+    this.style = defaultIfEmpty(this.style, getDefaultStyle());
+    this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.fieldStyleClass = defaultIfEmpty(this.fieldStyleClass, StringUtils.EMPTY);
-    this.format = DashboardColumnFormat.CUSTOM;
+    this.format = getDefaultFormat();
   }
-  
+
+  @Override
+  public String getHeaderText() {
+    return translateHeader(defaultIfEmpty(this.header, DashboardConfigurationPrefix.CMS + getDefaultHeaderCMS()));
+  }
+
+  @Override
+  public String getDefaultHeaderCMS() {
+    return "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE";
+  }
+
+  @Override
+  public DashboardColumnFormat getDefaultFormat() {
+    return DashboardColumnFormat.CUSTOM;
+  }
+
+  @Override
+  public String getDefaultStyle() {
+    return NORMAL_WIDTH;
+  }
+
+  @Override
+  public String getDefaultStyleClass() {
+    return "dashboard-tasks__state u-text-align-center";
+  }
+
   @Override
   public Object display(ITask task) {
     if (task == null) {
