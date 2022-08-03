@@ -1,8 +1,5 @@
 package com.axonivy.portal.developerexamples.component.customize;
 
-import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_TIMESTAMP_FIELD1;
-import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_VARCHAR_FIELD5;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,8 +10,8 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
 
-  public static final String CUSTOM_TIMESTAMP_FIELD12 = "customTimestampField1";
-  public static final String CUSTOM_VAR_CHAR_FIELD5 = "customVarCharField5";
+  public static final String CUSTOM_SHIPMENT_DATE = "ShipmentDate";
+  public static final String CUSTOM_CUSTOMER_NAME = "CustomerName";
   private static final long serialVersionUID = 7996851327481047161L;
 
   public CustomizedTaskLazyDataModel() {
@@ -30,17 +27,17 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
   // Extend sort fields, include 1 text field and 1 date time field
   @Override
   public void extendSort(TaskQuery taskQuery) {
-    if (CUSTOM_VAR_CHAR_FIELD5.equalsIgnoreCase(criteria.getSortField())) {
+    if (CUSTOM_CUSTOMER_NAME.equalsIgnoreCase(criteria.getSortField())) {
       if (criteria.isSortDescending()) {
-        taskQuery.orderBy().customField().stringField(CUSTOM_VARCHAR_FIELD5).descending();
+        taskQuery.orderBy().customField().stringField(CUSTOM_CUSTOMER_NAME).descending();
       } else {
-        taskQuery.orderBy().customField().stringField(CUSTOM_VARCHAR_FIELD5);
+        taskQuery.orderBy().customField().stringField(CUSTOM_CUSTOMER_NAME);
       }
-    } else if (CUSTOM_TIMESTAMP_FIELD12.equalsIgnoreCase(criteria.getSortField())) {
+    } else if (CUSTOM_SHIPMENT_DATE.equalsIgnoreCase(criteria.getSortField())) {
       if (criteria.isSortDescending()) {
-        taskQuery.orderBy().customField().timestampField(CUSTOM_TIMESTAMP_FIELD1).descending();
+        taskQuery.orderBy().customField().timestampField(CUSTOM_SHIPMENT_DATE).descending();
       } else {
-        taskQuery.orderBy().customField().timestampField(CUSTOM_TIMESTAMP_FIELD1);
+        taskQuery.orderBy().customField().timestampField(CUSTOM_SHIPMENT_DATE);
       }
     }
   }
@@ -48,7 +45,7 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
   @Override
   public List<String> getDefaultColumns() {
     return Arrays.asList(TaskSortField.PRIORITY.name(), TaskSortField.NAME.name(), TaskSortField.ACTIVATOR.name(), TaskSortField.ID.name(), 
-        TaskSortField.CREATION_TIME.name(), TaskSortField.EXPIRY_TIME.name(), CUSTOM_VAR_CHAR_FIELD5, CUSTOM_TIMESTAMP_FIELD12);
+        TaskSortField.CREATION_TIME.name(), TaskSortField.EXPIRY_TIME.name(), CUSTOM_CUSTOMER_NAME, CUSTOM_SHIPMENT_DATE);
   }
   
   @Override

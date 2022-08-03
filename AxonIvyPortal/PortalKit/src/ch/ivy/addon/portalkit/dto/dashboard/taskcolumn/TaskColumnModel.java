@@ -48,7 +48,7 @@ public class TaskColumnModel extends ColumnModel {
         column = new CategoryColumnModel();
       } else if (DashboardStandardTaskColumn.ACTIONS.getField().equalsIgnoreCase(field)) {
         column = new ActionsColumnModel();
-      }     
+      }
     }
     return column;
   }

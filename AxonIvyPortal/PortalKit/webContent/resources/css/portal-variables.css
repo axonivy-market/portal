@@ -181,6 +181,7 @@
   --chart-label-default-task-week-color: var(--ivy-primary-color-white);
   --chart-label-default-task-month-color: var(--ivy-primary-color-white);
   --chart-label-default-task-year-color: var(--ivy-primary-color-white);
+  --chart-label-default-cases-by-category-color: var(--ivy-primary-color-white);
 
   /* Sidebar */
   --sidebar-app-text-color: var(--menuitem-text-color);

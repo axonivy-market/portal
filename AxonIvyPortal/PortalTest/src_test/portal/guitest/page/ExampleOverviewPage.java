@@ -1,7 +1,6 @@
 package portal.guitest.page;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class ExampleOverviewPage extends TemplatePage {
   @Override
@@ -11,16 +10,14 @@ public class ExampleOverviewPage extends TemplatePage {
   
   @SuppressWarnings("deprecation")
   public LeaveRequestOverviewPage openLeaveRequestOverview() {
-    WebElement element = findElementByCssSelector("[id$='0:more-info']");
-    element.click();
+    clickByCssSelector("[id$='0:more-info']");
     waitAjaxIndicatorDisappear();
     return new LeaveRequestOverviewPage();
   }
   
   @SuppressWarnings("deprecation")
   public LendingOverviewPage openLendingOverview() {
-    WebElement element = findElementByCssSelector("[id$='1:more-info']");
-    element.click();
+    clickByCssSelector("[id$='1:more-info']");
     waitAjaxIndicatorDisappear();
     return new LendingOverviewPage();
   }
