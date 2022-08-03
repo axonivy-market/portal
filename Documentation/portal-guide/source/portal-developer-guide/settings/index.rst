@@ -22,6 +22,21 @@ restarting Designer. Therefore, update your variables in
 This survives restarting Designer.
 
 
+.. _settings-language:
+
+Language Settings
+=================
+
+To add a new language to the Portal, what you have to do is:
+-  Export all CMS entries of the Portal to an Excel file. 
+-  Add one new column to the end of this file, then add the new language locale for example ``it`` for the Italian language to the first cell of this new column. Refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk11-suported-locales.html>`_ for the supported locales.
+
+   |export-cms|
+
+-  Add the translations for the new language for all CMS entries.
+-  Import the Excel file.
+-  Redeploy the Portal.
+
 Role Configuration
 ==================
 
@@ -661,3 +676,4 @@ Data model:
 .. |global-settings| image:: ../../screenshots/settings/global-settings.png
 .. |global-setting-edit| image:: ../../screenshots/settings/edit-global-settings.png
 .. |select-admin-settings| image:: ../../screenshots/settings/select-admin-settings.png
+.. |export-cms| image:: images/export-cms.png

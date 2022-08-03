@@ -346,8 +346,6 @@ Changes in 9.4
 
 - Removed the PortalStyle project. The CMS in PortalStyle has been moved to PortalKit.
 
-- Adding a new language to the Portal is not supported.
-
 - Introduced the ``Formatting language setting`` to format values, for example the decimal separator is displayed differently in different regions of the world.
 
 Changes in 9.3
