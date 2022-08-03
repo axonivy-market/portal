@@ -25,6 +25,8 @@ var chartLabelDefaultTaskWeekColor = getColor('--chart-label-default-task-week-c
 var chartLabelDefaultTaskMonthColor = getColor('--chart-label-default-task-month-color');
 var chartLabelDefaultTaskYearColor = getColor('--chart-label-default-task-year-color');
 
+var chartLabelDefaultCasesByCategoryColor = getColor('--chart-label-default-cases-by-category-color');
+
 function chartDataLabelsSingleColor(context, color) {
   var index = context.dataIndex;
   var value = context.dataset.data[index];
@@ -47,10 +49,17 @@ function updateDrillDownPanelPosition(panel) {
 }
 
 function taskByExpiryChartBaseExtender(context, datalabelsColor) {
+  //Register plugin datalabels
+  jQuery.extend(true, context.cfg.config, {plugins: [ChartDataLabels]});
   // copy the config options into a variable
   let options = jQuery.extend(true, {}, context.cfg.config.options);
   options = {
     maintainAspectRatio : false,
+    scales : {
+      x : {
+        offset: true
+      }
+    },
     hover : {
       onHover : function(event, activeElement) {
         event.target.style.cursor = activeElement[0] ? 'pointer' : 'default';
@@ -118,7 +127,7 @@ function taskByExpiryChartClickEvent(event, activeElement) {
     return;
   }
   if (activeElement[0]) {
-    if (activeElement[0]._index === 0) {
+    if (activeElement[0].index === 0) {
       $expiryChartDrillDown.hide();
     } else {
       $expiryChartDrillDown.show();
@@ -128,8 +137,8 @@ function taskByExpiryChartClickEvent(event, activeElement) {
     var indexOfChart = chartId.lastIndexOf(":");
     var widgetVar = 'context-menu-' + chartId.substring(indexOfChart - 1, indexOfChart);
     PF(widgetVar).show();
-    topValue = event.offsetY + 50;
-    leftValue = event.offsetX;
+    topValue = event.native.offsetY + 50;
+    leftValue = event.native.offsetX - 60;
   }
 }
 
@@ -138,36 +147,17 @@ function elapsedTimeChartDataLabelsColor(context) {
 }
 
 function elapsedTimeChartExtender() {
+  //Register plugin datalabels
+  jQuery.extend(true, this.cfg.config, {plugins: [ChartDataLabels]});
   // copy the config options into a variable
   let options = jQuery.extend(true, {}, this.cfg.config.options);
   options = {
     maintainAspectRatio : false,
     scales : {
-      xAxes : {
-        ticks : {
-          maxTicksLimit: 5,
-          callback : function(value) {
-            if (value.length > 15) {
-              return value.substr(0, 15) + '...';
-            } else {
-              return value;
-            }
-          },
-        }
-      },
-      yAxes : {}
-    },
-    tooltips: {
-      enabled: true,
-      mode: 'index',
-      intersect: false,
-      callbacks: {
-        title: function(tooltipItems, data) {
-          var idx = tooltipItems[0].index;
-          return data.labels[idx];
-        }
+      x : {
+        offset: true
       }
-    },
+    },  
     hover: {
       mode: 'index',
       intersect: false
@@ -203,6 +193,8 @@ function donutChartDataLabelsFormatter(value, context) {
 }
 
 function donutChartExtender(context, datalabelsColor) {
+  //Register plugin datalabels
+  jQuery.extend(true, context.cfg.config, {plugins: [ChartDataLabels]});
   // copy the config options into a variable
   let options = jQuery.extend(true, {}, context.cfg.config.options);
   options = {
@@ -306,4 +298,100 @@ var elapsedTimeChartDetail = {
 	displayColumnWhenResizeScreen: function(column) {
 		$(column).removeClass("u-hidden");
 	}
+}
+
+function casesByCategoryChartExtender() {
+  //Register plugin datalabels
+  jQuery.extend(true, this.cfg.config, {plugins: [ChartDataLabels]});
+  // copy the config options into a variable
+  var delayed;
+  let options = jQuery.extend(true, {}, this.cfg.config.options);
+  options = {
+    responsive: true,
+    maintainAspectRatio : false,
+   	scales : {
+      x : {
+        offset: true,
+        ticks : {
+          callback : function(val) {
+              return getValueCasesByCategoryChart(this.getLabelForValue(val));
+          },
+        }
+      }
+    },
+    animation: {
+      onComplete: () => {
+        delayed = true;
+      },
+      delay: (context) => {
+        let delay = 0;
+        if (context.type === 'data' && context.mode === 'default' && !delayed) {
+          delay = context.dataIndex * 50 + context.datasetIndex * 10;
+        }
+        return delay;
+      },
+    },
+    onClick : casesByCategoryChartClickEvent,
+    hover: {
+      mode: 'index',
+      intersect: false
+   	},
+    plugins: {
+      datalabels: {
+        color: chartLabelDefaultCasesByCategoryColor
+      },
+      tooltip: {
+          enabled: true,
+          mode: 'index',
+          intersect: false,
+          callbacks: {
+             title: function(tooltipItems) {
+               return getValueCasesByCategoryChart(tooltipItems[0].label);
+             }      
+          }
+    	},
+    }
+  };
+
+  // merge all options into the main chart options
+  jQuery.extend(true, this.cfg.config.options, options);
+}
+
+function getValueCasesByCategoryChart(value){
+    if(value.includes("\\\\")){
+      return value.split("\\\\")[0];
+    }
+    if(value.includes("\\")){
+     return value.split("\\")[0];
+    }
+    return value;
+}
+
+function casesByCategoryChartClickEvent(event, activeElement) {
+  var $casesByCategoryChartDrillDown = $('.js-cases-by-category-chart-drill-down');
+  if ($casesByCategoryChartDrillDown.length == 0) {
+    return;
+  }
+  if (activeElement[0]) {
+    const points = event.chart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, true);
+    if (points.length) {
+        const firstPoint = points[0];
+        var label = event.chart.data.labels[firstPoint.index];
+        if(label.includes("\\\\")){
+          $casesByCategoryChartDrillDown.show();
+        } else {
+          $casesByCategoryChartDrillDown.hide();
+        }
+    } else {
+     $casesByCategoryChartDrillDown.show();
+    }
+    
+    var chartId = event.chart.canvas.id;
+    
+    var indexOfChart = chartId.lastIndexOf(":");
+    var widgetVar = 'context-menu-' + chartId.substring(indexOfChart - 1, indexOfChart);
+    PF(widgetVar).show();
+    topValue = event.native.offsetY + 50;
+    leftValue = event.native.offsetX - 60;
+  }
 }

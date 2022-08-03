@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.util.CaseUtils;
@@ -21,14 +22,38 @@ public class StateColumnModel extends CaseColumnModel implements Serializable {
   
   @Override
   public void initDefaultValue() {
-    this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE");
+    super.initDefaultValue();
     this.field = DashboardStandardCaseColumn.STATE.getField();
-    this.style = defaultIfEmpty(this.style, NORMAL_WIDTH);
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-cases__state u-text-align-center");
-    this.fieldStyleClass = defaultIfEmpty(this.fieldStyleClass, StringUtils.EMPTY);
-    this.format = DashboardColumnFormat.CUSTOM;
+    this.style = defaultIfEmpty(this.style, getDefaultStyle());
+    this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
+    this.format = getDefaultFormat();
   }
-  
+
+  @Override
+  public String getHeaderText() {
+    return translateHeader(defaultIfEmpty(this.header, DashboardConfigurationPrefix.CMS + getDefaultHeaderCMS()));
+  }
+
+  @Override
+  public String getDefaultHeaderCMS() {
+    return "/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE";
+  }
+
+  @Override
+  public DashboardColumnFormat getDefaultFormat() {
+    return DashboardColumnFormat.CUSTOM;
+  }
+
+  @Override
+  public String getDefaultStyle() {
+    return NORMAL_WIDTH;
+  }
+
+  @Override
+  public String getDefaultStyleClass() {
+    return "dashboard-cases__state u-text-align-center";
+  }
+
   @Override
   public Object display(ICase caze) {
     if (caze == null) {

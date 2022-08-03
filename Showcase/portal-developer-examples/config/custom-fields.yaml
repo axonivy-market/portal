@@ -4,16 +4,92 @@
 #
 CustomFields:
   Tasks:
-  #   MyTaskCustomField:
-  #      Label: My task custom field
-  #      Description: This new task custom field can be used to ...
-  #      Type: STRING        
+    CustomerName:
+      Label: CustomerName
+      Description: CustomerName
+      Type: STRING
+      Category: CustomTaskWidget
+    ShipmentDate:
+      Label: ShipmentDate
+      Description: ShipmentDate
+      Type: TIMESTAMP
+      Category: CustomTaskWidget
+    CustomerType:
+      Label: CustomerType
+      Description: CustomerType
+      Category: CustomTaskWidget
+      Type: STRING
+    CustomerAddress:
+      Label: CustomerAddress
+      Description: CustomerAddress
+      Type: STRING
+    CustomerEmail:
+      Label: CustomerEmail
+      Description: CustomerEmail
+      Type: STRING
+    AccountNumber:
+      Label: AccountNumber
+      Description: AccountNumber
+      Type: NUMBER
+      Category: DefaultAdditionalCaseDetails
   Cases:
-  #   MyCaseCustomField:
-  #      Label: My case custom field
-  #      Description: This new case custom field can be used to ...
-  #      Type: STRING        
-  Starts:
-#   MyStartCustomField:
-#      Label: My start custom field
-#      Description: This new start custom field can be used to ...
+    CustomerName:
+      Label: CustomerName
+      Description: CustomerName
+      Type: STRING
+      Category: CustomCaseWidget
+    ShipmentDate:
+      Label: ShipmentDate
+      Description: ShipmentDate
+      Type: TIMESTAMP
+      Category: CustomCaseWidget
+    CustomerType:
+      Label: CustomerType
+      Description: CustomerType
+      Category: CustomCaseWidget
+      Type: STRING
+    InvoiceNumber:
+      Label: InvoiceNumber
+      Description: InvoiceNumber
+      Type: NUMBER
+      Category: DefaultAdditionalCaseDetai
+    InvoiceTotalAmount:
+      Label: InvoiceTotalAmount
+      Description: InvoiceTotalAmount
+      Type: NUMBER
+      Category: DefaultAdditionalCaseDetails
+    InvoiceQualityNumber:
+      Label: InvoiceQualityNumber
+      Description: InvoiceQualityNumber
+      Type: NUMBER
+      Category: DefaultAdditionalCaseDetails
+    InvoiceSubTotalAmount:
+      Label: InvoiceSubTotalAmount
+      Description: InvoiceSubTotalAmount
+      Type: NUMBER
+      Category: DefaultAdditionalCaseDetails
+    AccountNumber:
+      Label: AccountNumber
+      Description: AccountNumber
+      Type: NUMBER
+      Category: DefaultAdditionalCaseDetails
+    InvoiceDate:
+      Label: InvoiceDate
+      Description: InvoiceDate
+      Type: NUMBER
+      Category: DefaultAdditionalCaseDetails
+    InvoiceDueDate:
+      Label: InvoiceDueDate
+      Description: InvoiceDueDate
+      Type: NUMBER
+      Category: DefaultAdditionalCaseDetails
+    CreatedBillDate:
+      Label: CreatedBillDate
+      Description: CreatedBillDate
+      Type: NUMBER
+      Category: DefaultAdditionalCaseDetails
+    SupportData:
+      Label: SupportData
+      Description: SupportData
+      Type: STRING
+      Category: DefaultAdditionalCaseDetails

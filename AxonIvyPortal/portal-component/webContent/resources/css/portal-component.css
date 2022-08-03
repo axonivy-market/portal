@@ -25,19 +25,19 @@
 
 /* CSS variables for process history component */
   --process-history-header-border-bottom-color: #D9DADA;
-  --process-history-unsortable-header-font-size: 1.4rem;
+  --process-history-unsortable-header-font-size: 1rem;
   --process-history-unsortable-header-text-color: #9C9D9D;
   --process-history-description-text-color: #9C9D9D;
   --process-history-item-background-color: rgba(var(--white, #000000), 0.2);
   --process-history-item-border-bottom-color: #D9DADA;
   --process-history-item-border-hover: 1px solid #90DDE9;
   --process-history-item-background-hover: rgba(144, 221, 233, 0.24);
-  --process-history-state-in-progress-color: rgba(7, 140, 255, 1);
-  --process-history-state-done-or-resume-color: #4EB41C;
+  --process-history-state-in-progress-color: #FFE896;
+  --process-history-state-done-or-resume-color: #D4EBA2;
   --process-history-empty-message-label-color: var(--black, #FFFFFF);
   --process-history-empty-message-label-font-size: 1.2rem;
   --state-border-radius: 10px;
-  --state-font-size: 12px;
+  --state-font-size: 1rem;
   --state-line-height: 16px;
   --state-running-background: #FFE896;
   --state-done-background: #D4EBA2;
