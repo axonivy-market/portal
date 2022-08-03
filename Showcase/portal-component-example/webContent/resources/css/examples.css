@@ -25,7 +25,6 @@ body.freya .theme-selection-panel .example-link {
 .user-selection-message-with-button-inline {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
-  padding-left: 25px !important;
 }
 
 .assign-task-to-selected-user,
@@ -34,7 +33,6 @@ body.freya .theme-selection-panel .example-link {
 }
 
 @media screen and (max-width: 40em) {
-  .user-selection-panel-with-button-inline,
   .user-selection-message-with-button-inline {
     padding-left: 0.5em !important;
   }
