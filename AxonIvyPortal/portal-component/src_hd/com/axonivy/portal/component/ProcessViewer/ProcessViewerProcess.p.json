@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.17",
   "id" : "181FC5E5ED6EAE2A",
   "data" : "com.axonivy.portal.component.ProcessViewer.ProcessViewerData",
   "kind" : "HTML_DIALOG",
@@ -64,7 +64,7 @@
     }, {
       "id" : "f10",
       "type" : "Script",
-      "name" : "Combile process info",
+      "name" : "Init info",
       "config" : {
         "output" : {
           "code" : [
@@ -80,8 +80,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 232, "y" : 256 },
-        "size" : { "width" : 128, "height" : 44 }
+        "at" : { "x" : 232, "y" : 256 }
       },
       "connect" : { "id" : "f12", "to" : "f9" }
     }, {
