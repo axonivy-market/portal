@@ -11,26 +11,84 @@ Categories:
         name: Long
       name: Sick Leave
     name: Other Leave
+CustomFields:
+  Cases:
+    AccountNumber:
+      Description: Property of Additional Case details page
+      Label: Account Number
+    CreatedBillDate:
+      Description: Property of Additional Case details page
+      Label: Created Bill date
+    CustomerName:
+      Description: Customer name column for example
+      Label: Customer name
+    CustomerType:
+      Description: Customer type column for example
+      Label: Customer type
+    InvoiceDate:
+      Description: Property of Additional Case details page
+      Label: Invoice date
+    InvoiceDueDate:
+      Description: Property of Additional Case details page
+      Label: Invoice due date
+    InvoiceNumber:
+      Description: Property of Additional Case details page
+      Label: Additional Case Data 1
+    InvoiceQualityNumber:
+      Description: Property of Additional Case details page
+      Label: Invoice quality number
+    InvoiceSubTotalAmount:
+      Description: Property of Additional Case details page
+      Label: Invoice Subtotal Amount
+    InvoiceTotalAmount:
+      Description: Property of Additional Case details page
+      Label: Additional Case Data 1
+    ShipmentDate:
+      Description: Shipment date column for example
+      Label: Shipment date
+    SupportData:
+      Description: Property of Additional Case details page
+      Label: Invoice date
+  Categories:
+    CustomCaseWidget: Custom CaseWidget
+    CustomTaskWidget: Custom TaskWidget
+    DefaultAdditionalCaseDetai: Default additional Case details page
+  Tasks:
+    CustomerAddress:
+      Description: Customer address field
+      Label: Customer address
+    CustomerEmail:
+      Description: Customer email field
+      Label: Customer email
+    CustomerName:
+      Description: Customer name column for example
+      Label: Customer name
+    CustomerType:
+      Description: Customer type column for example
+      Label: Customer type
+    ShipmentDate:
+      Description: Shipment date column for example
+      Label: Shipment date
 DefaultColumns:
   ACTIVATOR: Responsible
   CREATION_TIME: Created
+  CustomerName: Customer name
   EXPIRY_TIME: Expiry
   ID: Task Id
   NAME: Name / Description
   PRIORITY: Priority
   STATE: State
+  ShipmentDate: Shipment date
   caseList:
     CREATION_TIME: Created
     CREATOR: Creator
+    CustomerName: Customer name
     FINISHED_TIME: Finished
     ID: Case Id
     NAME: Name / Description
     OWNER: Owner
     STATE: State
-    customTimestampField1: Shipment date
-    customVarCharField1: Customer name
-  customTimestampField1: Shipment date
-  customVarCharField5: Customer name
+    ShipmentDate: Shipment date
 Dialogs:
   Lists:
     Completeness:
@@ -125,11 +183,11 @@ Processes:
 sortFields:
   CREATION_TIME_ASC: Creation date (Oldest first)
   CREATION_TIME_DESC: Creation date (Newest first)
+  CustomerName_ASC: Customer name (A -> Z)
+  CustomerName_DESC: Customer name (Z -> A)
   EXPIRY_TIME_ASC: Expiry (Oldest first)
   EXPIRY_TIME_DESC: Expiry (Newest first)
   PRIORITY_ASC: Priority (High -> low)
   PRIORITY_DESC: Priority (Low -> high)
-  customTimestampField1_ASC: Shipment date (Oldest first)
-  customTimestampField1_DESC: Shipment date (Newest first)
-  customVarCharField5_ASC: Customer name (A -> Z)
-  customVarCharField5_DESC: Customer name (Z -> A)
+  ShipmentDate_ASC: Shipment date (Oldest first)
+  ShipmentDate_DESC: Shipment date (Newest first)

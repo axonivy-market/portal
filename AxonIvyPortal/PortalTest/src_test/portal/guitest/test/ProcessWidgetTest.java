@@ -240,7 +240,7 @@ public class ProcessWidgetTest extends BaseTest {
     assertNotNull(processWidget.getProcess(String.format("%s - %s", APPRAISAL, "English Name*")));
     
     // Change language to German
-    changeLanguage(0);
+    changeLanguage(3);
     
     processWidget = homePage.getProcessWidget();
     assertNotNull(processWidget.getProcess(String.format("%s - %s", APPRAISAL, "German Name")));
