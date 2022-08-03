@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.17",
   "id" : "162511D2577DBA88",
   "data" : "com.axonivy.portal.developerexamples.Data",
   "elements" : [ {
@@ -253,7 +253,7 @@
       "config" : {
         "callSignature" : "createTasksForTaskListCustomization",
         "outLink" : "createTasksForTaskListCustomization.ivp",
-        "startDescription" : "Create 3 tasks, each task has customVarCharField5 and customTimestampField1",
+        "startDescription" : "Create 3 tasks, each task has CustomerName and ShipmentDate",
         "startName" : "Create Tasks For Task List Customization"
       },
       "visual" : {
@@ -304,9 +304,9 @@
               "timeout" : "new Duration(\"3H\")"
             },
             "customFields" : [
-              { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime()" },
-              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Exterior\"" },
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Sarah\"" }
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Exterior\"" },
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Sarah\"" },
+              { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" }
             ]
           },
           "TaskB" : {
@@ -318,9 +318,9 @@
               "timeout" : "new Duration(\"1D\")"
             },
             "customFields" : [
-              { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime(\"2080-03-23 11:11:11\")" },
-              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Interior\"" },
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Julie\"" }
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Julie\"" },
+              { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime(\"2080-03-23 11:11:11\")" }
             ]
           },
           "TaskC" : {
@@ -332,9 +332,9 @@
               "timeout" : "new Duration(\"2D\")"
             },
             "customFields" : [
-              { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime()" },
-              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Interior\"" },
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Florian\"" }
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Florian\"" },
+              { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" }
             ]
           }
         }
@@ -356,7 +356,7 @@
         "HOW TO RUN THIS EXAMPLE:",
         "",
         "Run createTasksForTaskListCustomization.ivp process",
-        "This process will create 3 tasks, each task has filled customVarCharField5 and customTimestampField1,",
+        "This process will create 3 tasks, each task has filled CustomerName and ShipmentDate,",
         " we will use these fields as custom fields in Task Widget."
       ],
       "visual" : {
@@ -379,8 +379,8 @@
           "name" : "CreateCasesForCaseListCustomization",
           "description" : "CreateCasesForCaseListCustomization",
           "customFields" : [
-            { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime()" },
-            { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Parent Case\"" }
+            { "name" : "CustomerName", "type" : "String", "value" : "\"Parent Case\"" },
+            { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" }
           ]
         },
         "outLink" : "createCasesForCaseListCustomization.ivp"
@@ -465,8 +465,8 @@
           "description" : "TestCase Description <%=param.count%>",
           "attachToBusinessCase" : false,
           "customFields" : [
-            { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime()" },
-            { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"CustomVarCharField1\" + param.count" }
+            { "name" : "CustomerName", "type" : "String", "value" : "\"Customer name \" + param.count" },
+            { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" }
           ]
         },
         "outLink" : "startACase.ivp",
@@ -557,7 +557,7 @@
           "name" : "Leave Request",
           "category" : "LeaveRequest",
           "customFields" : [
-            { "name" : "CustomDecimalField2", "type" : "Number", "value" : "36" }
+            { "name" : "AccountNumber", "type" : "Number", "value" : "36" }
           ]
         },
         "tasks" : {
@@ -572,10 +572,10 @@
               "timeout" : "new Duration(\"3H\")"
             },
             "customFields" : [
-              { "name" : "CustomDecimalField2", "type" : "Number", "value" : "7" },
-              { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime()" },
-              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Exterior\"" },
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Long Do\"" },
+              { "name" : "AccountNumber", "type" : "Number", "value" : "7" },
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Exterior\"" },
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Long Do\"" },
+              { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" },
               { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
             ]
           },
@@ -588,10 +588,10 @@
               "timeout" : "new Duration(\"1D\")"
             },
             "customFields" : [
-              { "name" : "CustomDecimalField2", "type" : "Number", "value" : "14" },
-              { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime()" },
-              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Interior\"" },
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Tung Le\"" },
+              { "name" : "AccountNumber", "type" : "Number", "value" : "14" },
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Tung Le\"" },
+              { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" },
               { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
             ]
           },
@@ -604,10 +604,10 @@
               "timeout" : "new Duration(\"2D\")"
             },
             "customFields" : [
-              { "name" : "CustomDecimalField2", "type" : "Number", "value" : "13" },
-              { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime()" },
-              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Interior\"" },
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Anh Nguyen\"" },
+              { "name" : "AccountNumber", "type" : "Number", "value" : "13" },
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Anh Nguyen\"" },
+              { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" },
               { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
             ]
           }
@@ -641,14 +641,12 @@
           "description" : "Leave Request Description",
           "attachToBusinessCase" : false,
           "customFields" : [
-            { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Leave Request CustomVarCharField1\"" },
-            { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"Leave Request CustomVarCharField2\"" },
-            { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"Leave Request CustomVarCharField3\"" },
-            { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"Leave Request CustomVarCharField4\"" },
+            { "name" : "CustomerType", "type" : "String", "value" : "\"Leave Request Type\"" },
             { "name" : "ProcessCategoryCode", "type" : "String", "value" : "\"pubRequested\"" },
             { "name" : "ProcessCategoryName", "type" : "String", "value" : "\"Publication Requested\"" },
             { "name" : "ProcessCode", "type" : "String", "value" : "\"pubRequested\"" },
             { "name" : "ProcessName", "type" : "String", "value" : "\"Publication Requested\"" },
+            { "name" : "SupportData", "type" : "String", "value" : "\"Leave Request SupportData\"" },
             { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
           ]
         },
@@ -991,14 +989,12 @@
           "description" : "Leave Request Description",
           "attachToBusinessCase" : false,
           "customFields" : [
-            { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Leave Request CustomVarCharField1\"" },
-            { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"Leave Request CustomVarCharField2\"" },
-            { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"Leave Request CustomVarCharField3\"" },
-            { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"Leave Request CustomVarCharField4\"" },
+            { "name" : "CustomerType", "type" : "String", "value" : "\"Leave Request Type\"" },
             { "name" : "ProcessCategoryCode", "type" : "String", "value" : "\"pubRequested\"" },
             { "name" : "ProcessCategoryName", "type" : "String", "value" : "\"Publication Requested\"" },
             { "name" : "ProcessCode", "type" : "String", "value" : "\"pubRequested\"" },
             { "name" : "ProcessName", "type" : "String", "value" : "\"Publication Requested\"" },
+            { "name" : "SupportData", "type" : "String", "value" : "\"Leave Request SupportData\"" },
             { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
           ]
         },
@@ -1154,5 +1150,578 @@
       "visual" : {
         "at" : { "x" : 496, "y" : 1440 }
       }
+    }, {
+      "id" : "f93",
+      "type" : "RequestStart",
+      "name" : "CreateCasesByCategory.ivp",
+      "config" : {
+        "callSignature" : "CreateCasesByCategory",
+        "outLink" : "CreateCasesByCategory.ivp",
+        "startDescription" : "This is the process to create data for statistic chart cases by category",
+        "startName" : "Create Test Data For Statistic Chart Cases By Category"
+      },
+      "visual" : {
+        "at" : { "x" : 16, "y" : 1792 },
+        "labelOffset" : { "x" : -21, "y" : 17 }
+      },
+      "connect" : { "id" : "f96", "to" : "f95" }
+    }, {
+      "id" : "f94",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 568, "y" : 1800 }
+      }
+    }, {
+      "id" : "f107",
+      "type" : "RequestStart",
+      "name" : "createCaseWithSpecificCategory",
+      "config" : {
+        "callSignature" : "createCasesWithSpecificCategory",
+        "input" : {
+          "params" : [
+            { "name" : "caseCategory", "type" : "String" }
+          ],
+          "map" : {
+            "out.category" : "param.caseCategory"
+          }
+        },
+        "case" : {
+          "attachToBusinessCase" : false
+        },
+        "outLink" : "createCasesWithSpecificCategory.ivp",
+        "task" : {
+          "responsible" : {
+            "role" : "SYSTEM"
+          }
+        },
+        "showInStartList" : false,
+        "triggerEnabled" : true
+      },
+      "visual" : {
+        "at" : { "x" : 16, "y" : 2064 },
+        "labelOffset" : { "x" : -148, "y" : 26 }
+      },
+      "connect" : { "id" : "f99", "to" : "f109" }
+    }, {
+      "id" : "f109",
+      "type" : "Script",
+      "name" : "Set case name and category",
+      "config" : {
+        "output" : {
+          "code" : [
+            "ivy.case.setCategoryPath(in.category);",
+            "ivy.case.setName(\"Case with category path: \" + in.category);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 216, "y" : 2064 },
+        "size" : { "width" : 160, "height" : 44 }
+      },
+      "connect" : { "id" : "f113", "to" : "f110" }
+    }, {
+      "id" : "f110",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "System Task",
+          "responsible" : {
+            "role" : "SYSTEM"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 2064 }
+      },
+      "connect" : { "id" : "f101", "to" : "f111" }
+    }, {
+      "id" : "f111",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 576, "y" : 2064 }
+      }
+    }, {
+      "id" : "S40",
+      "type" : "EmbeddedProcess",
+      "name" : "Create 4 cases category Annual Leave",
+      "elements" : [ {
+          "id" : "S40-g0",
+          "type" : "EmbeddedStart",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 288 }
+          },
+          "parentConnector" : "f102",
+          "connect" : { "id" : "S40-f6", "to" : "S40-f10" }
+        }, {
+          "id" : "S40-g1",
+          "type" : "EmbeddedEnd",
+          "visual" : {
+            "at" : { "x" : 872, "y" : 288 }
+          },
+          "parentConnector" : "f97"
+        }, {
+          "id" : "S40-f1",
+          "type" : "Alternative",
+          "visual" : {
+            "at" : { "x" : 288, "y" : 288 }
+          },
+          "connect" : [
+            { "id" : "S40-f11", "to" : "S40-f5" }
+          ]
+        }, {
+          "id" : "S40-f3",
+          "type" : "Alternative",
+          "visual" : {
+            "at" : { "x" : 784, "y" : 288 }
+          },
+          "connect" : [
+            { "id" : "S40-f0", "to" : "S40-g1", "condition" : "in.count == in.caseNumber" },
+            { "id" : "S40-f9", "to" : "S40-f1", "via" : [ { "x" : 784, "y" : 88 }, { "x" : 288, "y" : 88 } ] }
+          ]
+        }, {
+          "id" : "S40-f5",
+          "type" : "TriggerCall",
+          "name" : "CreateCasesWithSpecificCategory",
+          "config" : {
+            "processCall" : "Start Processes/CreateTestData:createCasesWithSpecificCategory(String)",
+            "call" : {
+              "params" : [
+                { "name" : "caseCategory", "type" : "String" }
+              ],
+              "map" : {
+                "param.caseCategory" : "in.category"
+              }
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 472, "y" : 288 },
+            "size" : { "width" : 208, "height" : 44 }
+          },
+          "connect" : { "id" : "S40-f8", "to" : "S40-f7" }
+        }, {
+          "id" : "S40-f7",
+          "type" : "Script",
+          "name" : "increase counter",
+          "config" : {
+            "output" : {
+              "code" : "in.count++;"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 672, "y" : 288 }
+          },
+          "connect" : { "id" : "S40-f4", "to" : "S40-f3" }
+        }, {
+          "id" : "S40-f10",
+          "type" : "Script",
+          "name" : "initialize case data",
+          "config" : {
+            "output" : {
+              "code" : [
+                "in.count = 0;",
+                "in.caseNumber = 4;",
+                "in.category = \"AnnualLeave\";"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 184, "y" : 288 }
+          },
+          "connect" : { "id" : "S40-f2", "to" : "S40-f1" }
+        } ],
+      "visual" : {
+        "at" : { "x" : 352, "y" : 1632 },
+        "size" : { "width" : 224, "height" : 44 }
+      },
+      "connect" : { "id" : "f97", "to" : "f94", "via" : [ { "x" : 568, "y" : 1632 } ] }
+    }, {
+      "id" : "S41",
+      "type" : "EmbeddedProcess",
+      "name" : "Create 6 cases category Leave Request",
+      "elements" : [ {
+          "id" : "S41-g0",
+          "type" : "EmbeddedStart",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 288 }
+          },
+          "parentConnector" : "f103",
+          "connect" : { "id" : "S41-f6", "to" : "S41-f10" }
+        }, {
+          "id" : "S41-g1",
+          "type" : "EmbeddedEnd",
+          "visual" : {
+            "at" : { "x" : 872, "y" : 288 }
+          },
+          "parentConnector" : "f105"
+        }, {
+          "id" : "S41-f1",
+          "type" : "Alternative",
+          "visual" : {
+            "at" : { "x" : 288, "y" : 288 }
+          },
+          "connect" : [
+            { "id" : "S41-f11", "to" : "S41-f5" }
+          ]
+        }, {
+          "id" : "S41-f3",
+          "type" : "Alternative",
+          "visual" : {
+            "at" : { "x" : 784, "y" : 288 }
+          },
+          "connect" : [
+            { "id" : "S41-f0", "to" : "S41-g1", "condition" : "in.count == in.caseNumber" },
+            { "id" : "S41-f9", "to" : "S41-f1", "via" : [ { "x" : 784, "y" : 88 }, { "x" : 288, "y" : 88 } ] }
+          ]
+        }, {
+          "id" : "S41-f5",
+          "type" : "TriggerCall",
+          "name" : "CreateCasesWithSpecificCategory",
+          "config" : {
+            "processCall" : "Start Processes/CreateTestData:createCasesWithSpecificCategory(String)",
+            "call" : {
+              "params" : [
+                { "name" : "caseCategory", "type" : "String" }
+              ],
+              "map" : {
+                "param.caseCategory" : "in.category"
+              }
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 472, "y" : 288 },
+            "size" : { "width" : 208, "height" : 44 }
+          },
+          "connect" : { "id" : "S41-f8", "to" : "S41-f7" }
+        }, {
+          "id" : "S41-f7",
+          "type" : "Script",
+          "name" : "increase counter",
+          "config" : {
+            "output" : {
+              "code" : "in.count++;"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 672, "y" : 288 }
+          },
+          "connect" : { "id" : "S41-f4", "to" : "S41-f3" }
+        }, {
+          "id" : "S41-f10",
+          "type" : "Script",
+          "name" : "initialize case data",
+          "config" : {
+            "output" : {
+              "code" : [
+                "in.count = 0;",
+                "in.caseNumber = 6;",
+                "in.category = \"LeaveRequest\";"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 184, "y" : 288 }
+          },
+          "connect" : { "id" : "S41-f2", "to" : "S41-f1" }
+        } ],
+      "visual" : {
+        "at" : { "x" : 352, "y" : 1696 },
+        "size" : { "width" : 224, "height" : 44 }
+      },
+      "connect" : { "id" : "f105", "to" : "f94", "via" : [ { "x" : 568, "y" : 1696 } ] }
+    }, {
+      "id" : "S42",
+      "type" : "EmbeddedProcess",
+      "name" : "Create 4 cases category Maternity Leave",
+      "elements" : [ {
+          "id" : "S42-g0",
+          "type" : "EmbeddedStart",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 288 }
+          },
+          "parentConnector" : "f98",
+          "connect" : { "id" : "S42-f6", "to" : "S42-f10" }
+        }, {
+          "id" : "S42-g1",
+          "type" : "EmbeddedEnd",
+          "visual" : {
+            "at" : { "x" : 872, "y" : 288 }
+          },
+          "parentConnector" : "f106"
+        }, {
+          "id" : "S42-f1",
+          "type" : "Alternative",
+          "visual" : {
+            "at" : { "x" : 288, "y" : 288 }
+          },
+          "connect" : [
+            { "id" : "S42-f11", "to" : "S42-f5" }
+          ]
+        }, {
+          "id" : "S42-f3",
+          "type" : "Alternative",
+          "visual" : {
+            "at" : { "x" : 784, "y" : 288 }
+          },
+          "connect" : [
+            { "id" : "S42-f0", "to" : "S42-g1", "condition" : "in.count == in.caseNumber" },
+            { "id" : "S42-f9", "to" : "S42-f1", "via" : [ { "x" : 784, "y" : 88 }, { "x" : 288, "y" : 88 } ] }
+          ]
+        }, {
+          "id" : "S42-f5",
+          "type" : "TriggerCall",
+          "name" : "CreateCasesWithSpecificCategory",
+          "config" : {
+            "processCall" : "Start Processes/CreateTestData:createCasesWithSpecificCategory(String)",
+            "call" : {
+              "params" : [
+                { "name" : "caseCategory", "type" : "String" }
+              ],
+              "map" : {
+                "param.caseCategory" : "in.category"
+              }
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 472, "y" : 288 },
+            "size" : { "width" : 208, "height" : 44 }
+          },
+          "connect" : { "id" : "S42-f8", "to" : "S42-f7" }
+        }, {
+          "id" : "S42-f7",
+          "type" : "Script",
+          "name" : "increase counter",
+          "config" : {
+            "output" : {
+              "code" : "in.count++;"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 672, "y" : 288 }
+          },
+          "connect" : { "id" : "S42-f4", "to" : "S42-f3" }
+        }, {
+          "id" : "S42-f10",
+          "type" : "Script",
+          "name" : "initialize case data",
+          "config" : {
+            "output" : {
+              "code" : [
+                "in.count = 0;",
+                "in.caseNumber = 4;",
+                "in.category = \"OtherLeave/Maternity\";"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 184, "y" : 288 }
+          },
+          "connect" : { "id" : "S42-f2", "to" : "S42-f1" }
+        } ],
+      "visual" : {
+        "at" : { "x" : 352, "y" : 1760 },
+        "size" : { "width" : 224, "height" : 44 }
+      },
+      "connect" : { "id" : "f106", "to" : "f94", "via" : [ { "x" : 568, "y" : 1760 } ] }
+    }, {
+      "id" : "S45",
+      "type" : "EmbeddedProcess",
+      "name" : "Create 7 cases category Sick Leave",
+      "elements" : [ {
+          "id" : "S45-g0",
+          "type" : "EmbeddedStart",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 288 }
+          },
+          "parentConnector" : "f100",
+          "connect" : { "id" : "S45-f6", "to" : "S45-f10" }
+        }, {
+          "id" : "S45-g1",
+          "type" : "EmbeddedEnd",
+          "visual" : {
+            "at" : { "x" : 872, "y" : 288 }
+          },
+          "parentConnector" : "f108"
+        }, {
+          "id" : "S45-f1",
+          "type" : "Alternative",
+          "visual" : {
+            "at" : { "x" : 288, "y" : 288 }
+          },
+          "connect" : [
+            { "id" : "S45-f11", "to" : "S45-f5" }
+          ]
+        }, {
+          "id" : "S45-f3",
+          "type" : "Alternative",
+          "visual" : {
+            "at" : { "x" : 784, "y" : 288 }
+          },
+          "connect" : [
+            { "id" : "S45-f0", "to" : "S45-g1", "condition" : "in.count == in.caseNumber" },
+            { "id" : "S45-f9", "to" : "S45-f1", "via" : [ { "x" : 784, "y" : 88 }, { "x" : 288, "y" : 88 } ] }
+          ]
+        }, {
+          "id" : "S45-f5",
+          "type" : "TriggerCall",
+          "name" : "CreateCasesWithSpecificCategory",
+          "config" : {
+            "processCall" : "Start Processes/CreateTestData:createCasesWithSpecificCategory(String)",
+            "call" : {
+              "params" : [
+                { "name" : "caseCategory", "type" : "String" }
+              ],
+              "map" : {
+                "param.caseCategory" : "in.category"
+              }
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 472, "y" : 288 },
+            "size" : { "width" : 208, "height" : 44 }
+          },
+          "connect" : { "id" : "S45-f8", "to" : "S45-f7" }
+        }, {
+          "id" : "S45-f7",
+          "type" : "Script",
+          "name" : "increase counter",
+          "config" : {
+            "output" : {
+              "code" : "in.count++;"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 672, "y" : 288 }
+          },
+          "connect" : { "id" : "S45-f4", "to" : "S45-f3" }
+        }, {
+          "id" : "S45-f10",
+          "type" : "Script",
+          "name" : "initialize case data",
+          "config" : {
+            "output" : {
+              "code" : [
+                "in.count = 0;",
+                "in.caseNumber = 7;",
+                "in.category = \"OtherLeave/SickLeave\";"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 184, "y" : 288 }
+          },
+          "connect" : { "id" : "S45-f2", "to" : "S45-f1" }
+        } ],
+      "visual" : {
+        "at" : { "x" : 344, "y" : 1824 },
+        "size" : { "width" : 208, "height" : 44 }
+      },
+      "connect" : { "id" : "f108", "to" : "f94", "via" : [ { "x" : 568, "y" : 1824 } ] }
+    }, {
+      "id" : "S43",
+      "type" : "EmbeddedProcess",
+      "name" : "Create 5 cases category Sick Leave Long",
+      "elements" : [ {
+          "id" : "S43-g0",
+          "type" : "EmbeddedStart",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 288 }
+          },
+          "parentConnector" : "f104",
+          "connect" : { "id" : "S43-f6", "to" : "S43-f10" }
+        }, {
+          "id" : "S43-g1",
+          "type" : "EmbeddedEnd",
+          "visual" : {
+            "at" : { "x" : 872, "y" : 288 }
+          },
+          "parentConnector" : "f112"
+        }, {
+          "id" : "S43-f1",
+          "type" : "Alternative",
+          "visual" : {
+            "at" : { "x" : 288, "y" : 288 }
+          },
+          "connect" : [
+            { "id" : "S43-f11", "to" : "S43-f5" }
+          ]
+        }, {
+          "id" : "S43-f3",
+          "type" : "Alternative",
+          "visual" : {
+            "at" : { "x" : 784, "y" : 288 }
+          },
+          "connect" : [
+            { "id" : "S43-f0", "to" : "S43-g1", "condition" : "in.count == in.caseNumber" },
+            { "id" : "S43-f9", "to" : "S43-f1", "via" : [ { "x" : 784, "y" : 88 }, { "x" : 288, "y" : 88 } ] }
+          ]
+        }, {
+          "id" : "S43-f5",
+          "type" : "TriggerCall",
+          "name" : "CreateCasesWithSpecificCategory",
+          "config" : {
+            "processCall" : "Start Processes/CreateTestData:createCasesWithSpecificCategory(String)",
+            "call" : {
+              "params" : [
+                { "name" : "caseCategory", "type" : "String" }
+              ],
+              "map" : {
+                "param.caseCategory" : "in.category"
+              }
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 472, "y" : 288 },
+            "size" : { "width" : 208, "height" : 44 }
+          },
+          "connect" : { "id" : "S43-f8", "to" : "S43-f7" }
+        }, {
+          "id" : "S43-f7",
+          "type" : "Script",
+          "name" : "increase counter",
+          "config" : {
+            "output" : {
+              "code" : "in.count++;"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 672, "y" : 288 }
+          },
+          "connect" : { "id" : "S43-f4", "to" : "S43-f3" }
+        }, {
+          "id" : "S43-f10",
+          "type" : "Script",
+          "name" : "initialize case data",
+          "config" : {
+            "output" : {
+              "code" : [
+                "in.count = 0;",
+                "in.caseNumber = 5;",
+                "in.category = \"OtherLeave/SickLeave/Long\";"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 184, "y" : 288 }
+          },
+          "connect" : { "id" : "S43-f2", "to" : "S43-f1" }
+        } ],
+      "visual" : {
+        "at" : { "x" : 360, "y" : 1888 },
+        "size" : { "width" : 240, "height" : 44 }
+      },
+      "connect" : { "id" : "f112", "to" : "f94", "via" : [ { "x" : 568, "y" : 1888 } ] }
+    }, {
+      "id" : "f95",
+      "type" : "Split",
+      "visual" : {
+        "at" : { "x" : 128, "y" : 1792 }
+      },
+      "connect" : [
+        { "id" : "f98", "to" : "S42", "via" : [ { "x" : 128, "y" : 1760 } ], "outVar" : "out1" },
+        { "id" : "f100", "to" : "S45", "via" : [ { "x" : 128, "y" : 1824 } ], "outVar" : "out2" },
+        { "id" : "f102", "to" : "S40", "via" : [ { "x" : 128, "y" : 1632 } ], "outVar" : "out3" },
+        { "id" : "f103", "to" : "S41", "via" : [ { "x" : 128, "y" : 1696 } ], "outVar" : "out4" },
+        { "id" : "f104", "to" : "S43", "via" : [ { "x" : 128, "y" : 1888 } ], "outVar" : "out5" }
+      ]
     } ]
 }
