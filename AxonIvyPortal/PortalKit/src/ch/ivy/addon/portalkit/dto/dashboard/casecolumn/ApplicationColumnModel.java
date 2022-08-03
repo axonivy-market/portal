@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.util.ListUtilities;
@@ -16,11 +17,22 @@ import ch.ivyteam.ivy.workflow.ICase;
 public class ApplicationColumnModel extends CaseColumnModel implements Serializable {
   @Override
   public void initDefaultValue() {
+    super.initDefaultValue();
     this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/APPLICATION");
     this.field = DashboardStandardCaseColumn.APPLICATION.getField();
     this.style = defaultIfEmpty(this.style, TINY_WIDTH);
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__priority u-text-align-center");
     this.format = DashboardColumnFormat.CUSTOM;
+  }
+  
+  @Override
+  public String getDefaultHeaderCMS() {
+    return "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/APPLICATION";
+  }
+  
+  @Override
+  public String getHeaderText() {
+    return translateHeader(defaultIfEmpty(this.header, DashboardConfigurationPrefix.CMS + getDefaultHeaderCMS()));
   }
   
   @Override
@@ -57,7 +69,7 @@ public class ApplicationColumnModel extends CaseColumnModel implements Serializa
   }
   
   @Override
-  public Boolean getSortable() {
+  public Boolean getDefaultSortable() {
     return false;
   }
 }
