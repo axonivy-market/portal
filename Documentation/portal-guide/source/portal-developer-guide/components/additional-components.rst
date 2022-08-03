@@ -3,6 +3,23 @@
 Additional Components
 =====================
 
+portal-component project
+------------------------
+
+In the project ``portal-component``, we introduced some components independent of the Portal.
+You don't need to import the Portal projects to use them.
+
+These components fully support both Freya and Serenity themes of Primefaces.
+
+   - :ref:`Process History<components-additional-component-process-history>`
+   - :ref:`Process Chain<components-additional-component-process-chain>`
+   - :ref:`Document Table<components-additional-components-document-table>`
+   - :ref:`User Selection<components-additional-components-user-selection>`
+   - :ref:`Role Selection<components-additional-components-role-selection>`
+
+Please refer to the project ``portal-component-example`` for more details about how to use,
+customize, look and feel of each component in supported themes.
+
 .. _components-additional-component-process-history:
 
 Process History
@@ -24,8 +41,6 @@ In a page
 In a dialog
 
 |process-history-dialog-example|
-
-This component is a part of project ``portal-component``, which is independent of the Portal. You don't need to import the Portal projects to use it.
 
 .. note::
 
@@ -196,8 +211,6 @@ process: the currently executable steps, done steps, and open steps. Its feature
 
 #. Change the orientation of the process chain: horizontal or vertical.
 
-This component is a part of project ``portal-component``, which is independent of the Portal. You don't need to import the Portal projects to use it.
-
 |process-chain|
 
 .. _components-additional-component-process-chain-how-to-use:
@@ -334,8 +347,6 @@ Document Table
 This component is a case document table with the features display, upload,
 download and delete document entries.
 
-This component is a part of project ``portal-component``, which is independent of the Portal. You don't need to import the Portal projects to use it.
-
 |document-table|
 
 To extend features of this component, please override these subprocesses: ``GetDocumentItems``,
@@ -443,8 +454,6 @@ This component is used for selecting a single user from a list of users defined 
 If you don't define the role name list, all users will be loaded. 
 It includes a label, an autocomplete and one message element to display a message related to that autocomplete element.
 
-This component is a part of project ``portal-component``, which is independent of the Portal. You don't need to import the Portal projects to use it.
-
 How to Use
 ^^^^^^^^^^
 
@@ -544,8 +553,6 @@ This component is used to select a role from a given list of roles. If you don't
 define the role list, all roles will be loaded. It includes one label, one
 autocomplete and one message element to display messages related to this
 autocomplete element.
-
-This component is a part of project ``portal-component``, which is independent of the Portal. You don't need to import the Portal projects to use it.
 
 How to Use
 ^^^^^^^^^^
