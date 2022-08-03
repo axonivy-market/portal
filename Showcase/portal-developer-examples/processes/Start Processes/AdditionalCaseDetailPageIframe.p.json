@@ -28,11 +28,11 @@
           "name" : "Investment request with custom case detail using iFrame",
           "description" : "Investment request for customized case detail page using iframe example",
           "customFields" : [
-            { "name" : "CustomDecimalField1", "type" : "Number", "value" : "100" },
-            { "name" : "CustomDecimalField2", "type" : "Number", "value" : "2000" },
+            { "name" : "AccountNumber", "type" : "Number", "value" : "100" },
+            { "name" : "InvoiceNumber", "type" : "Number", "value" : "2000" },
             { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime(2018, 1, 1, 1, 1, 1)" },
-            { "name" : "CustomTimestampField2", "type" : "Timestamp", "value" : "new DateTime(2018, 2, 2, 2, 2, 2)" },
-            { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Apartment A\"" },
+            { "name" : "InvoiceDate", "type" : "Timestamp", "value" : "new DateTime(2018, 2, 2, 2, 2, 2)" },
+            { "name" : "CustomerName", "type" : "String", "value" : "\"Apartment A\"" },
             { "name" : "SupportData", "type" : "String", "value" : "\"Request for new computer\"" }
           ]
         },
