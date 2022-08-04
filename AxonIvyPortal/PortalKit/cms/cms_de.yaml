@@ -129,7 +129,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ProcessType:
       EXPRESS_PROCESS: Express Workflow
       EXTERNAL_LINK: External Link
-      IVY_PROCESS: Business Process
+      IVY_PROCESS: Geschäftsprozess
     ProcessWidgetMode:
       COMBINED_MODE: Combined mode
       COMPACT_MODE: Compact mode
