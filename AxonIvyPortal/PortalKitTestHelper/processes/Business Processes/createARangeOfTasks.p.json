@@ -52,14 +52,14 @@
         "case" : {
           "name" : "CASE<%=in1.taskCounter%>_<%=in1.structuredData%>",
           "customFields" : [
-            { "name" : "CustomVarCharField5", "type" : "String", "value" : "in1.structuredData" }
+            { "name" : "CustomerType", "type" : "String", "value" : "in1.structuredData" }
           ]
         },
         "tasks" : {
           "TaskA" : {
             "name" : "TASK<%=in1.taskCounter%>_<%=in1.structuredData%>",
             "customFields" : [
-              { "name" : "CustomVarCharField5", "type" : "String", "value" : "in1.structuredData" }
+              { "name" : "CustomerType", "type" : "String", "value" : "in1.structuredData" }
             ]
           },
           "TaskB" : {
