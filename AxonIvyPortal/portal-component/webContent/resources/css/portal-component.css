@@ -24,6 +24,8 @@
   --process-chain-current-line-vertical-step-title-font-weight: bold;
 
 /* CSS variables for process history component */
+  --process-history-default-font-size: 14px;
+  --process-history-dark-mode-running-case-state-font-color: #293241;
   --process-history-header-border-bottom-color: #D9DADA;
   --process-history-unsortable-header-font-size: 1rem;
   --process-history-unsortable-header-text-color: #9C9D9D;
@@ -45,8 +47,8 @@
 
 /* CSS variables for process viewer component */
   --process-viewer-data-has-error-message-font-weight: bold;
-  --process-viewer-data-has-error-message-font-size: 16px;
-  --process-details-column-title-font-size: 12px;
+  --process-viewer-data-has-error-message-font-size: 1.2rem;
+  --process-details-column-title-font-size: 0.85rem;
 
 /* CSS variables for avatar component */
   --avatar-background-color: var(--ivy-primary-color-grey-light, hsl(180, 1%, 85%));

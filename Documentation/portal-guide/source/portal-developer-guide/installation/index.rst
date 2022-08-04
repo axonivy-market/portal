@@ -42,7 +42,7 @@ Engine Without License (Demo Mode)
 The engine automatically deploys the Portal application with the following set
 of default users:
 
-.. table:: 
+.. table::
 
    +-----------------------+-----------------------+-----------------------+
    | Username              | Password              | Description           |
@@ -79,10 +79,10 @@ to make your existing Portal working with current Axon Ivy engine.
 
 How To Migrate
 --------------
-   
-.. important:: 
-   If you call any Portal API which is not mentioned in the API documentation, 
-   it may have changed or have been removed. Don't forget to re-implement the 
+
+.. important::
+   If you call any Portal API which is not mentioned in the API documentation,
+   it may have changed or have been removed. Don't forget to re-implement the
    APIs concerned in your own project.
 
    To migrate the Portal, you need to migrate Axon Ivy first. Refer to the
@@ -113,7 +113,7 @@ In Engine
 Migrate 9.3 To 9.4
 ------------------
 
-#. If you configured Process widgets in your own dashboards as described in :ref:`configure-new-dashboard-proces-widget`, 
+#. If you configured Process widgets in your own dashboards as described in :ref:`configure-new-dashboard-proces-widget`,
    you need to adapt JSON as follows:
 
    * Search text ``"type":"process"``, then find related ``displayMode`` of that Process widget.
@@ -151,9 +151,9 @@ Migrate 9.3 To 9.4
 
 #. Sub processes related to documents are moved to the independent project ``portal-component``.
    If you customized these processes, please override the correspond sub process again and added your customization to it.
-   
+
    Below is a list of deprecated processes in project ``PortalKit`` and new processes in project ``portal-component``.
-   
+
    +-----------------------------------+--------------------------+
    | New subprocess                    | Deprecated subprocess    |
    +===================================+==========================+
@@ -202,7 +202,7 @@ Migrate To 9.3
       * Use an administrator account to sign in
       * Run migration process only once
 
-#. We changed the way to navigate to Task Analysis component. Process ``Start Processes/TaskAnalysis/start.ivp`` is moved to new place ``Start Processes/PortalStart/showTaskAnalysis.ivp``. 
+#. We changed the way to navigate to Task Analysis component. Process ``Start Processes/TaskAnalysis/start.ivp`` is moved to new place ``Start Processes/PortalStart/showTaskAnalysis.ivp``.
    Refer to :ref:`Task Analysis call<components-additional-component-task-analysis-how-to-use>` for details.
 
 #. We moved the configuration of announcement, thirdparty applications, default statistic charts, application favorite processes, public external links and express processes from the BusinessData tovariables.
@@ -222,19 +222,19 @@ Migrate 9.1 To 9.2
 
 #. Deploy :download:`MigrateData.iar <documents/MigrateData.iar>` project to your Ivy application and run it by access link
    ``your_host/your_application/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp``
-   
+
    If you have many applications, deploy to only one application and run it by access link
    ``your_host/your_application/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp``
-   
+
    Example: ``https://portal.io/Portal/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp``
 
    .. important:: Run migration process only once
 
 #. We remove implementation of Portal multiple applications. So that you need to adapt some points below:
 
-   - Adapt start process signature of ``PasswordService`` in ``ChangePassword.p.json`` if you overrode this callable.
+   - Adapt start process signature of ``PasswordService`` in ``ChangePassword.mod`` if you overrode this callable.
    - If you are using ``ProcessStartCollector``, replace constructor ``ProcessStartCollector(application)`` with ``ProcessStartCollector()``.
-   - If you have TaskLazyDataModel, CaseLazyDataModel customization, remove ``setInvolvedApplications()`` method, ``setInvolvedUsername`` in search criteria.   
+   - If you have TaskLazyDataModel, CaseLazyDataModel customization, remove ``setInvolvedApplications()`` method, ``setInvolvedUsername`` in search criteria.
 
 #. In PortalNavigatorInFrame.java, change the methods from non-static to static.
 
@@ -242,7 +242,7 @@ Migrate 9.1 To 9.2
 
 #. If you have TaskLazyDataModel, CaseLazyDataModel customization, follow :ref:`How to override export feature of Task list <customization-task-widget-how-to-override-export-feature>` and :ref:`How to override export feature of Case list <customization-case-widget-how-to-override-export-feature>` to customize label and value of custom columns that will be exported.
 
-#. Deprecated callable processes: ``OpenPortalSearch.p.json``, ``OpenPortalTasks.p.json``, ``OpenPortalTaskDetails.p.json``, ``OpenPortalCases.p.json``, ``OpenPortalCaseDetails.p.json`` process.
+#. Deprecated callable processes: ``OpenPortalSearch.mod``, ``OpenPortalTasks.mod``, ``OpenPortalTaskDetails.mod``, ``OpenPortalCases.mod``, ``OpenPortalCaseDetails.mod`` process.
 
    Portal recommends using :dev-url:`Axon Ivy HtmlOverride wizard </doc/nightly/designer-guide/how-to/overrides.html?#override-new-wizard>` to customize ``Portal HTML Dialog``
 
@@ -264,21 +264,21 @@ Migrate 8.X To 9.1
 #. Add parameter ``<ui:param name="viewName" value="CASE" />`` to your customized ``PortalCasesTemplate`` to displayed breadcrumb of Case list.
 
 #. Ivy core has enhanced the Ivy URI, so Portal needs to make a migration. For
-   each of your applications, execute the following steps: 
+   each of your applications, execute the following steps:
 
    #. Deploy process model :download:`PortalUrlMigration.iar <documents/PortalUrlMigration.iar>`
       to your Ivy Application.
-      
+
    #. run ``migratePortalUrl.ivp`` once and wait until it is redirected to
-      another page (i.e. the Homepage) without error. 
-      
+      another page (i.e. the Homepage) without error.
+
    #. Remove the process model ``migratePortalUrl.ivp`` after successfully migrating.
 
 #. HOMEPAGE_URL (single Portal app mode) and registered application link (multi
    Portal app mode) are not available anymore. To let Portal know where your new
    Portal home page is, you have to set default pages in your project.
-   Follow this chapter to customize standard processes: 
-   :dev-url:`Standard Processes </doc/nightly/designer-guide/user-interface/standard-processes/index.html>`
+   Follow this chapter to customize default-pages:
+   :dev-url:`Default Pages </doc/nightly/designer-guide/user-interface/default-pages/index.html>`
 
 #. Portal now uses |css_variable| instead of SASS. Therefore, you have to convert
    the SASS syntax to the new CSS variables or use online tools such as
@@ -336,7 +336,7 @@ Changes in 9.4
 --------------
 
 - Introduced the ``Portal.Tasks.BehaviourWhenClickingOnLineInTaskList`` Portal setting to set behaviour when
-  clicking on a line in task list, task widget in new dashboard and related tasks in case details, each user can change it via user profile. 
+  clicking on a line in task list, task widget in new dashboard and related tasks in case details, each user can change it via user profile.
 
 - Introduced the ``Portal.StatisticChartScalingInterval`` Portal setting to set the interval in seconds to do periodic statistic chart scaling requests.
 
@@ -363,7 +363,7 @@ Changes in 9.2
 
 - Introduced :ref:`Workflow Events table <how-to-show-workflow-events>`, user who has permission ``WORKFLOW_EVENT_READ_ALL`` can see all ``WORKFLOW_EVENTS``.
 
-- Introduced the ``Portal.Homepage`` Portal setting to set the default homepage, each user can change it via user profile. 
+- Introduced the ``Portal.Homepage`` Portal setting to set the default homepage, each user can change it via user profile.
 
 - Introduced new approach to customize :ref:`Portal Case Item details <customization-case-item-details>`. Now, your case information in Case details page and Case Info dialog is the same
 
@@ -386,7 +386,7 @@ Changes in 9.1
 
 - Refactored style customization approach. From now on, Portal use CSS Variable as technology to customize CSS.
 
-- Introduced the User Guide feature, using the ``Portal.Dashboard.ShowUserGuide`` Portal Setting to activate/deactivate it, 
+- Introduced the User Guide feature, using the ``Portal.Dashboard.ShowUserGuide`` Portal Setting to activate/deactivate it,
   and follow :ref:`Customize user guide <customization-portal-home-user-guide>` for your customization.
 
 - Introduced new Portal Setting ``Portal.ShowButtonIcon`` to control visibility of icon of button in Portal.

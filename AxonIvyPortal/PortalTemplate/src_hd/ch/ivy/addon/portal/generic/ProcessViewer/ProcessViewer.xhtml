@@ -9,7 +9,7 @@
     <ui:param name="case" value="#{data.selectedCase}" />
     <ui:define name="pageContent">
 
-      <h:form id="portal-process-viewer-form"
+      <h:panelGroup layout="block" id="portal-process-viewer-form"
         styleClass="ui-g portal-process-viewer-form portal-card-container">
         <h:panelGroup layout="block" styleClass="ui-g-12 portal-process-viewer-data card">
             <ic:com.axonivy.portal.component.ProcessViewer caseId="#{data.caseId}" processLink="#{data.processId}" />
@@ -20,7 +20,7 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
             icon="si si-close" />
         </div>
-      </h:form>
+      </h:panelGroup>
     </ui:define>
   </ui:composition>
 </h:body>

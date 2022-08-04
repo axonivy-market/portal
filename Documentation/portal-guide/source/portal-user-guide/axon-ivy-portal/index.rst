@@ -2,7 +2,7 @@
 
 Axon Ivy Portal
 ***************
-   
+
 **Axon Ivy Portal** is the centerpiece for your daily work with the
 applications you or your company implemented using Axon Ivy.
 With a web-based, modern interface, the Portal provides you with key
@@ -33,13 +33,13 @@ administrator in a web browser. The Axon Ivy Portal will ask you to enter your
 login credentials.
 
 |login-screen|
-   
-.. Hint:: 
-   Depending on your infrastructure, you might be automatically logged in 
-   using single-sign-on (SSO). In this case, you will be forwarded directly to the
-   Axon Ivy Portal Dashboard. 
 
-   If the Ivy Security System is used, you can click on 
+.. Hint::
+   Depending on your infrastructure, you might be automatically logged in
+   using single-sign-on (SSO). In this case, you will be forwarded directly to the
+   Axon Ivy Portal Dashboard.
+
+   If the Ivy Security System is used, you can click on
    :guilabel:`Forgot my password` to reset it.
 
 After successful login, you will see the Axon Ivy Portal Homepage and your
@@ -50,19 +50,19 @@ point. The Portal Homepage has the following elements:
    you with a global search field, key information about the Portal and options to
    configure your personal user account. See :ref:`portal-header` for
    details.
-   
+
    |axon-ivy-portal-header|
 
 #. The menu on the left side is always visible and gives you access to
-   all processes, cases, tasks and other features of the Axon Ivy Portal. 
+   all processes, cases, tasks and other features of the Axon Ivy Portal.
    If the menu is minimized, hover over the menu to enlarge it. You
-   may permanently enlarge the menu by clicking on the |pin-icon| icon in 
+   may permanently enlarge the menu by clicking on the |pin-icon| icon in
    the top left hand corner.
-   
+
    |axon-ivy-portal-menu|
 
 #. In the center, you see your personal dashboard providing you access to your
-   processes, cases, tasks and performance indicators. See :ref:`dashboard` for
+   processes, cases, tasks and performance indicators. See :ref:`new-dashboard` for
    a detailed description.
 
    |axon-ivy-portal|
