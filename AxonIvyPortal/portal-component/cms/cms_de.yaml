@@ -83,6 +83,6 @@ Dialogs:
             ProcessInfoIconTooltip: Klicken Sie hier, um Details zum Prozessstart anzuzeigen
             ProcessType:
               CASE_MAP: Fall Karte
-              IVY_PROCESS: Business Process
+              IVY_PROCESS: Geschäftsprozess
 Labels:
   disabledUserPrefix: (inaktiv)
