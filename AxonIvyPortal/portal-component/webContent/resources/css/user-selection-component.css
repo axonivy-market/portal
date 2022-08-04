@@ -1,0 +1,16 @@
+.ui-fluid .user-selection-panel .ui-inputfield[size] {
+  width: 100%;
+}
+
+.message-for-floating-label {
+  padding-left: 2px;
+}
+
+body.serenity .message-for-floating-label {
+  display: flex;
+  width: 100%;
+}
+
+body.serenity .message-for-floating-label .ui-message {
+  width: 100%;
+}
