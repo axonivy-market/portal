@@ -17,8 +17,8 @@ These components fully support both Freya and Serenity themes of Primefaces.
    - :ref:`User Selection<components-additional-components-user-selection>`
    - :ref:`Role Selection<components-additional-components-role-selection>`
 
-Please refer to the project ``portal-component-example`` for more details about how to use,
-customize, look and feel of each component in supported themes.
+Please refer to project ``portal-component-example`` for more details on use and customization,
+as well as look and feel of each component in supported themes.
 
 .. _components-additional-component-process-history:
 
