@@ -48,3 +48,9 @@ chartNameOfCurrentLanguage String #field
 chartNameOfCurrentLanguage PERSISTENT #fieldModifier
 numberOfDefaultCharts Integer #field
 numberOfDefaultCharts PERSISTENT #fieldModifier
+selectedCategoryOfDrilldown String #field
+selectedCategoryOfDrilldown PERSISTENT #fieldModifier
+isDrilldownToCaseList Boolean #field
+isDrilldownToCaseList PERSISTENT #fieldModifier
+selectedCategories java.util.List<String> #field
+selectedCategories PERSISTENT #fieldModifier

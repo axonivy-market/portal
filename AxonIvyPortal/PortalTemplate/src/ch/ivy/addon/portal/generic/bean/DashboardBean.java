@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -20,7 +21,6 @@ import org.primefaces.event.SelectEvent;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
-import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
@@ -150,10 +150,6 @@ public class DashboardBean implements Serializable {
     return currentUser().getProperty(PortalVariable.DASHBOARD.key);
   }
 
-  protected void removeDashboardInUserProperty() {
-    currentUser().removeProperty(PortalVariable.DASHBOARD.key);
-  }
-
   protected void buildWidgetModels(Dashboard dashboard) {
     if (dashboard == null || CollectionUtils.isEmpty(dashboard.getWidgets())) {
       return;
@@ -163,15 +159,9 @@ public class DashboardBean implements Serializable {
       DashboardWidgetUtils.buildWidgetColumns(widget);
       switch (widget.getType()) {
         case TASK:
-          for (ColumnModel columnModel : ((TaskDashboardWidget) widget).getColumns()) {
-            DashboardWidgetUtils.updateTypeForWidgetColumn(columnModel);
-          }
           cmsUri = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks";
           break;
         case CASE:
-          for (ColumnModel columnModel : ((CaseDashboardWidget) widget).getColumns()) {
-            DashboardWidgetUtils.updateTypeForWidgetColumn(columnModel);
-          }
           cmsUri = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCases";
           break;
         case PROCESS:
@@ -197,7 +187,13 @@ public class DashboardBean implements Serializable {
     CustomDashboardWidget customWidget = (CustomDashboardWidget) widget;
     if (StringUtils.isNotBlank(customWidget.getData().getProcessStart())) {
       String url = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(customWidget.getData().getProcessStart());
+
+      if(StringUtils.isBlank(url)) return;
+
       IStartElement element = ProcessStartAPI.findStartElementByProcessStartFriendlyRequestPath(customWidget.getData().getProcessStart());
+
+      if(Objects.isNull(element)) return;
+
       customWidget.getData().setStartProcessParams(element.startParameters());
 
       List<IWebStartable> allPortalProcesses = ProcessService.newInstance().findProcesses().getProcesses();
@@ -224,33 +220,6 @@ public class DashboardBean implements Serializable {
 
   public List<Dashboard> getDashboards() {
     return dashboards;
-  }
-
-  public void save() {
-    var layouts = DashboardWidgetUtils.getWidgetLayoutFromRequest(getRequestParameterMap());
-    for (var layout : layouts) {
-      DashboardWidget updatedWidget = getSelectedDashboard().getWidgets().stream()
-          .filter(w -> w.getId().contentEquals(layout.getId()))
-          .findFirst().get();
-
-      WidgetLayout updatedLayout = new WidgetLayout();
-      updatedLayout.setAxisX(layout.getAxisX());
-      updatedLayout.setAxisY(layout.getAxisY());
-      updatedLayout.setWidth(layout.getWidth());
-      updatedLayout.setHeight(layout.getHeight());
-
-      updatedWidget.setLayout(updatedLayout);
-    }
-    DashboardService.getInstance().save(getSelectedDashboard());
-  }
-
-  public void saveSelectedWidget() {
-    this.dashboards.set(this.dashboards.indexOf(this.getSelectedDashboard()), this.getSelectedDashboard());
-    DashboardService.getInstance().save(getSelectedDashboard());
-  }
-
-  protected Map<String, String> getRequestParameterMap() {
-    return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
   }
 
   public void navigateToSelectedTaskDetails(SelectEvent<Object> event) {
@@ -360,10 +329,6 @@ public class DashboardBean implements Serializable {
 
   public Dashboard getSelectedDashboard() {
     return selectedDashboard;
-  }
-
-  public void setReadOnlyMode(boolean isReadOnlyMode) {
-    this.isReadOnlyMode = isReadOnlyMode;
   }
 
   public String getSelectedDashboardId() {

@@ -23,7 +23,12 @@ function loadGrid() {
           h: node.h
         });
       });
-      if (grid.opts.minWidth < grid.el.clientWidth) {
+      let isReadOnlyMode = false;
+      let dashboardViewModeInput = $("input[id$='dashboard-view-mode']");
+      if (dashboardViewModeInput.length > 0) {
+        isReadOnlyMode = dashboardViewModeInput.val() === 'true';
+      }
+      if (grid.opts.minWidth < grid.el.clientWidth && !isReadOnlyMode) {
         saveConfigurationCommand([{
           name : 'nodes',
           value : JSON.stringify(serializedData, null, '')

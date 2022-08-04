@@ -34,6 +34,7 @@ import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
@@ -232,6 +233,19 @@ public class StatisticChartQueryUtils {
       query.where().state().isEqual(CaseState.DESTROYED).or().state().isEqual(CaseState.ZOMBIE);
     }
 
+    return query;
+  }
+  
+  /**
+   * Get updated case query for Cases by Category chart based on selected item
+   * 
+   * @param event
+   * @param statisticChart
+   * @return case query for selected item by case category
+   */
+  public static CaseQuery getQueryForSelectedItemByCasesByCategory(ItemSelectEvent event, StatisticChart statisticChart) {
+    CaseQuery query = CaseUtils.createBusinessCaseQuery();
+    query = StatisticChartQueryUtils.generateCaseQueryForCasesByCategoryChart(statisticChart.getFilter(), StatisticService.getSelectedValueOfBarChartCasesByCategory(event));
     return query;
   }
 
@@ -613,4 +627,40 @@ public class StatisticChartQueryUtils {
       });
     }
   }
-}                                                                                                                                             
+  
+  /**
+   * Generate case query for statistic
+   * 
+   * @param filter statistic filter
+   * @param selectedCategoryValue for selected category
+   * @return generated case query
+   */
+  public static CaseQuery generateCaseQueryForCasesByCategoryChart(StatisticFilter filter, String selectedCategoryValue) {
+    CaseQuery caseQuery = CaseUtils.createBusinessCaseQuery();
+
+    // Filter by created date
+    if (!isStartTimeFilterEmpty(filter)) {
+      caseQuery.where().and(generateCaseQueryForStartTimestamp(filter));
+    }
+
+    // Filter by case state
+    if (!filter.getIsAllCaseStatesSelected()) {
+      caseQuery.where().and(generateCaseQueryForCaseState(filter));
+    }
+    // Filter by case category
+    if (isCaseCategoriesNotEmpty(filter)) {
+      CaseQuery query = generateCaseQueryForCaseCategory(filter);
+      if (query != null) {
+        caseQuery.where().and(query);
+      }
+    }
+    if(StringUtils.isNotBlank(selectedCategoryValue)) {
+      if(selectedCategoryValue.equalsIgnoreCase(Ivy.cms().co(CategoryUtils.NO_CATEGORY_CMS))) {
+        caseQuery.where().and().category().isEqual(StringUtils.EMPTY);
+      } else {
+        caseQuery.where().and().category().isLike("%"+selectedCategoryValue.trim()+"%");
+      }
+    }
+    return caseQuery;
+  }
+}

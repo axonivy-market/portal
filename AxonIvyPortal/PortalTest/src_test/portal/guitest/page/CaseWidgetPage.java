@@ -249,12 +249,13 @@ public class CaseWidgetPage extends TemplatePage {
 		return isElementDisplayed(By.id("search-results-tabview:case-results:case-empty-message"));
 	}
 
-	@SuppressWarnings("deprecation")
   public void sortCaseListByColumn(String columnId) {
-		WebElement columnHeader = findElementById(columnId);
-		columnHeader.click();
-		waitAjaxIndicatorDisappear();
-	}
+    WebElement columnHeader = findElementById(columnId);
+    columnHeader.click();
+    WaitHelper.assertTrueWithWait(() -> {
+      return findElementById(columnId).getAttribute(CLASS_PROPERTY).contains("is-selected");
+    });
+  }
 
 	public String getSelectedSortColumn() {
 	  waitForElementDisplayed(By.cssSelector(".js-case-widget-column-header"), true);
@@ -262,8 +263,7 @@ public class CaseWidgetPage extends TemplatePage {
 	}
 
 	public String getCaseListFirstCustomCellValue() {
-		return findElementByCssSelector(
-				"div[id$=':0\\:case-item\\:case-item-container'] span.customized-case-header-column").getText();
+		return findElementByCssSelector("div[id$=':0\\:case-item\\:case-item-container'] span.customized-case-header-column").getText();
 	}
 
 	public Integer getCaseCount() {

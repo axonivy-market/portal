@@ -74,9 +74,11 @@ public class StatisticDashboardWidget extends DashboardWidget {
           .collect(Collectors.toList()));
     } else if (barChart != null && barChart.getData().getDataSet().size() == 1) {
       var barDataset = (BarChartDataSet) barChart.getData().getDataSet().get(0);
-      dataset.addAll(barDataset.getData().stream()
-          .filter(data -> data.intValue() != 0)
-          .collect(Collectors.toList()));
+      if(barDataset.getData() != null) {
+    	  dataset.addAll(barDataset.getData().stream()
+    	          .filter(data -> data.intValue() != 0)
+    	          .collect(Collectors.toList())); 
+      }      
     }
     return CollectionUtils.isEmpty(dataset);
   }

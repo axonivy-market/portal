@@ -10,6 +10,9 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.AUGUST_C
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.BEFORE_8;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CASE_CATEGORIES_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CASE_QUERY;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CATEGORIES_CMS;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CHILD_CATEGORY_DELIMITER;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CHILD_CATEGORY_DELIMITER_REGEX;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CREATED_CASE_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DECEMBER_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DONE_CASE_KEY;
@@ -46,10 +49,14 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NORMAL_P
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NOVEMBER_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NO_CATEGORY_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.OCTOBER_CMS;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.PARENT_CATEGORY_DELIMITER;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.PARENT_CATEGORY_DELIMITER_REGEX;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.RESULT;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.RUNNING_CASE_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SATURDAY_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SECONDWEEK_CMS;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SELECTED_CATEGORIES;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SELECTED_CATEGORY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SEPTEMBER_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SIXTHWEEK_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SUNDAY_CMS;
@@ -106,6 +113,7 @@ import org.primefaces.model.charts.optionconfig.legend.Legend;
 import org.primefaces.model.charts.optionconfig.legend.LegendLabel;
 import org.primefaces.model.charts.optionconfig.title.Title;
 
+import ch.ivy.addon.portalkit.bo.CaseCategoryStatistic;
 import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
@@ -117,13 +125,13 @@ import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria;
-import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.statistics.Colors;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticChartTimeUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticColors;
 import ch.ivy.addon.portalkit.statistics.StatisticFilter;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -257,6 +265,32 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
         IvyAdapterService.startSubProcess("analyzeElapsedTimeStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery)", params,
             Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     return (ElapsedTimeStatistic) response.get(RESULT);
+  }
+  
+  /**
+   * Get Cases by Case Category data
+   * 
+   * @param caseQuery
+   * @return Cases by Case Category data
+   */
+  public CaseCategoryStatistic getCasesByCategoryStatisticData(CaseQuery caseQuery, List<String> categoryNodes) {
+    Map<String, Object> params = new HashMap<>();
+    params.put(CASE_QUERY, caseQuery);
+    params.put(SELECTED_CATEGORIES, categoryNodes);
+    Map<String, Object> response =
+        IvyAdapterService.startSubProcess("analyzeCasesByCategoryStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery,java.util.List<String>)", params,
+            Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
+    return (CaseCategoryStatistic) response.get(RESULT);
+  }
+  
+  public CaseCategoryStatistic getCasesByCategoryDrilldownStatisticData(CaseQuery caseQuery, String categoryNode) {
+    Map<String, Object> params = new HashMap<>();
+    params.put(CASE_QUERY, caseQuery);
+    params.put(SELECTED_CATEGORY, categoryNode);
+    Map<String, Object> response =
+        IvyAdapterService.startSubProcess("analyzeCasesByCategoryDrilldownStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery,String)", params,
+            Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
+    return (CaseCategoryStatistic) response.get(RESULT);
   }
 
   @SuppressWarnings("unchecked")
@@ -1021,6 +1055,42 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
 
     return new HashMap<>(caseCategoryToElapsedTime);
   }
+  
+  /**
+   * Generate chart model for "Cases By Category" chart
+   * 
+   * @param statisticData statistic data
+   * @param isSetDefaultName
+   * @return chart model for "Cases By Category" chart
+   */
+  public BarChartModel generateCasesByCategoryModel(CaseCategoryStatistic statisticData, boolean isSetDefaultName) {
+    BarChartModel model = new BarChartModel();
+    ChartData data = new ChartData();
+    BarChartDataSet dataSet = new BarChartDataSet();
+    BarChartOptions options = new BarChartOptions();
+    CartesianScales scales = new CartesianScales();
+    if (statisticData.getNumberOfCasesByCategory().size() != 0) {
+      buildBarChartDataSet(new LinkedHashMap<>(statisticData.getNumberOfCasesByCategory()), data, dataSet);
+
+      dataSet.setBackgroundColor(statisticColors.getCasesByCategoryColor());
+      dataSet.setBorderColor(statisticColors.getCasesByCategoryColor());
+      
+      scales.addXAxesData(createLinearAxes(CHART_LEGEND_POSITION_LEFT, Ivy.cms().co(CASE_CATEGORIES_CMS)));
+      scales.addYAxesData(createLinearAxes(CHART_LEGEND_POSITION_BOTTOM, Ivy.cms().co(CATEGORIES_CMS)));
+    }
+    
+    data.addChartDataSet(dataSet);
+    if (isSetDefaultName) {
+      options.setTitle(generateChartTitle(StatisticChartType.CASES_BY_CATEGORY, false));
+    }
+    options.setScales(scales);
+    options.setLegend(buildChartLegend(CHART_LEGEND_POSITION_BOTTOM, false));
+
+    model.setData(data);
+    model.setOptions(options);
+    model.setExtender("casesByCategoryChartExtender");
+    return model;
+  }
 
   public boolean isTaskByPriority(StatisticChart statisticChart) {
     return statisticChart.getType() == StatisticChartType.TASK_BY_PRIORITY;
@@ -1059,6 +1129,10 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
   public boolean isCaseByFinishedTime(StatisticChart statisticChart) {
     return statisticChart.getType() == StatisticChartType.CASES_BY_FINISHED_TIME;
   }
+  
+  public boolean isCasesByCategory(StatisticChart statisticChart) {
+    return statisticChart.getType() == StatisticChartType.CASES_BY_CATEGORY;
+  }
 
   /**
    * 
@@ -1090,6 +1164,9 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
         case CASES_BY_FINISHED_TIME:
           statisticChart.setDonutChartModel(buildChartModelForCaseFinishedTime(statisticChart));
           break;
+        case CASES_BY_CATEGORY:
+          statisticChart.setBarChartModel(buildChartModelForCasesByCategory(statisticChart));
+          break;  
         default:
           break;
       }
@@ -1101,8 +1178,9 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
   }
 
   public DisplayName getDisplayNameInUserLanguageForChart(StatisticChart statisticChart) {
+    String userLanguage = UserUtils.getUserLanguage();
     return CollectionUtils.emptyIfNull(statisticChart.getNames()).stream()
-        .filter(name -> equalsDisplayNameLocale(name, LanguageService.newInstance().findUserLanguages().getIvyLanguage().getUserLanguage()))
+        .filter(name -> equalsLanguageLocale(name, userLanguage))
         .findFirst().orElse(new DisplayName());
   }
 
@@ -1136,6 +1214,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
           break;
         case TASK_BY_EXPIRY:
         case ELAPSED_TIME_BY_CASE_CATEGORY:
+        case CASES_BY_CATEGORY:
           statisticChart.setBarChartModel(barChartModel);
           break;
         default:
@@ -1234,6 +1313,19 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     }
     return statisticChart.getBarChartModel();
   }
+  
+  private BarChartModel buildChartModelForCasesByCategory(StatisticChart statisticChart) {
+    if (!statisticChart.getId().contains("_")) {
+      CaseCategoryStatistic casesByCategoryData = new CaseCategoryStatistic();
+      if (statisticChart.getFilter() != null) {
+        casesByCategoryData = getCasesByCategoryStatisticData(
+            StatisticChartQueryUtils.generateCaseQueryForCasesByCategoryChart(statisticChart.getFilter(), null),
+            statisticChart.getFilter().getCaseCategories().getCategoryPaths());
+      }
+      return generateCasesByCategoryModel(casesByCategoryData, true);
+    }
+    return statisticChart.getBarChartModel();
+  }
 
   public static boolean selectThisYear(String selectedItem) {
     return StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(THIS_YEAR_EXPIRY_KEY));
@@ -1304,10 +1396,31 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     }
 
     newStatisticChart.setNames(newNames);
+    newStatisticChart.setName(getDisplayNameInUserLanguageForChart(newStatisticChart).getValue());
     newStatisticChart.setFilter(selectedChart.getFilter());
     newStatisticChart.setType(StatisticChartType.TASK_BY_EXPIRY);
     newStatisticChart.setBarChartModel(generateTaskByExpiryModel(taskByExpiryData, true, selectedValue,
         previousSelectedMonth, previousSelectedWeek));
+    return newStatisticChart;
+  }
+  
+  public StatisticChart drilldownCasesByCategory(String selectedValue, StatisticChart selectedChart) {
+    CaseCategoryStatistic caseCategoryStatisticData = getCasesByCategoryDrilldownStatisticData(
+        StatisticChartQueryUtils.generateCaseQueryForCasesByCategoryChart(selectedChart.getFilter(), selectedValue), selectedValue);
+    StatisticChart newStatisticChart = new StatisticChart();
+    newStatisticChart.setId(selectedChart.getId() + "_" + selectedValue);
+    List<DisplayName> newNames = new ArrayList<>();
+    for (DisplayName name : selectedChart.getNames()) {
+      DisplayName newName = new DisplayName();
+      newName.setLocale(name.getLocale());
+      newName.setValue(name.getValue().concat(" - ").concat(selectedValue));
+      newNames.add(newName);
+    }  
+    newStatisticChart.setNames(newNames);
+    newStatisticChart.setName(getDisplayNameInUserLanguageForChart(newStatisticChart).getValue());
+    newStatisticChart.setFilter(selectedChart.getFilter());
+    newStatisticChart.setType(StatisticChartType.CASES_BY_CATEGORY);
+    newStatisticChart.setBarChartModel(generateCasesByCategoryModel(caseCategoryStatisticData, false));
     return newStatisticChart;
   }
 
@@ -1334,6 +1447,35 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
       return StringUtils.EMPTY;
     }
   }
+  
+  /**
+   * this method only for chart case by Category
+   * the labels of chart is name category (CMS) + category delimiter + path category
+   * Split category delimiter to get path category for case query
+   * @param event
+   * @return
+   */
+  @SuppressWarnings("unchecked")
+  public static String getSelectedValueOfBarChartCasesByCategory(ItemSelectEvent event) {
+    try {
+      List<String> labels = (List<String>) ((BarChart) event.getSource()).getModel().getData().getLabels();
+      int index = event.getItemIndex();
+      if(labels.get(index).contains(PARENT_CATEGORY_DELIMITER)) {
+        return labels.get(index).split(PARENT_CATEGORY_DELIMITER_REGEX)[1];
+      }
+      if(labels.get(index).contains(CHILD_CATEGORY_DELIMITER)) {
+        return labels.get(index).split(CHILD_CATEGORY_DELIMITER_REGEX)[1];
+      }
+      return labels.get(index);
+    } catch (Exception e) {
+      Ivy.log().error(e);
+      return StringUtils.EMPTY;
+    }
+  }
+  
+  public static Boolean hasChildNode(String value) {
+    return !value.contains(PARENT_CATEGORY_DELIMITER);
+  }
 
   public boolean checkStatisticChartNameExisted(String chartName, String language) {
     List<StatisticChart> privateCharts = getPrivateConfig();
@@ -1349,11 +1491,11 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
   }
 
   private boolean equalsDisplayName(String chartName, String language, DisplayName displayName) {
-    return equalsDisplayNameLocale(displayName, language) && StringUtils.equals(displayName.getValue(), chartName);
+    return equalsLanguageLocale(displayName, language) && StringUtils.equals(displayName.getValue(), chartName);
   }
 
-  public static boolean equalsDisplayNameLocale(DisplayName displayName, String language) {
-    return StringUtils.equalsIgnoreCase(displayName.getLocale().toLanguageTag(), language);
+  public static boolean equalsLanguageLocale(DisplayName displayName, String language) {
+    return StringUtils.equalsIgnoreCase(displayName.getLocale().toString(), language);
   }
 
   public boolean isDefaultChart(List<StatisticChart> statisticCharts) {

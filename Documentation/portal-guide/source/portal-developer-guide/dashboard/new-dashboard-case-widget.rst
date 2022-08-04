@@ -125,8 +125,7 @@ Custom Columns
 The Portal supports custom fields for a case. You can show them on the case widget
 as a column.
 
-You can predefine which column to show, and other attributes such as header,
-filter, format. Below is a standard JSON of a custom column.
+You can predefine which column to show, and other attributes such as filter, format, and style. Below is a standard JSON of a custom column.
 
 .. code-block:: html
 
@@ -135,8 +134,7 @@ filter, format. Below is a standard JSON of a custom column.
 
       "columns": [
          {
-            "format": "string",
-            "header": "cms:columns/custom/supplier",
+            "type": "CUSTOM",
             "field": "supplier",
             "style": "width: 110px"
          }
@@ -148,11 +146,14 @@ filter, format. Below is a standard JSON of a custom column.
 Besides the attributes explained in the previous section, a custom column has
 two differences:
 
+   - ``type``: type of the widget column. There are two options: ``STANDARD`` and ``CUSTOM``.
+
    - ``field``: this attribute is the name of the case's custom field which will
      be used to get data for the column.
 
-   - ``format``: Type of custom column. There are four formats ``string``,
-     ``text``, ``number``, and ``timestamp``.
+.. important::
+   Portal only displays custom fields declared in the ``custom-fields.yaml`` file.
+   Refer to :dev-url:`Custom Fields Meta Information </doc/nightly/designer-guide/how-to/workflow/custom-fields.html#meta-information>` for more information.
 
 Filter Conditions
 -----------------

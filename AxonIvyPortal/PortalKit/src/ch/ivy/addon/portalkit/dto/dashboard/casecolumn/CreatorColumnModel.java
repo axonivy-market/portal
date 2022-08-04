@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
@@ -26,13 +27,38 @@ public class CreatorColumnModel extends CaseColumnModel implements Serializable 
 
   @Override
   public void initDefaultValue() {
-    this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR");
+    super.initDefaultValue();
     this.field = DashboardStandardCaseColumn.CREATOR.getField();
-    this.style = defaultIfEmpty(this.style, EXTRA_WIDTH);
-    this.format = DashboardColumnFormat.CUSTOM;
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-cases__creator");
+    this.style = defaultIfEmpty(this.style, getDefaultStyle());
+    this.format = getDefaultFormat();
+    this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
   }
-  
+
+  @Override
+  public String getHeaderText() {
+    return translateHeader(defaultIfEmpty(this.header, DashboardConfigurationPrefix.CMS + getDefaultHeaderCMS()));
+  }
+
+  @Override
+  public String getDefaultHeaderCMS() {
+    return "/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR";
+  }
+
+  @Override
+  public DashboardColumnFormat getDefaultFormat() {
+    return DashboardColumnFormat.CUSTOM;
+  }
+
+  @Override
+  public String getDefaultStyle() {
+    return EXTRA_WIDTH;
+  }
+
+  @Override
+  public String getDefaultStyleClass() {
+    return "dashboard-cases__creator";
+  }
+
   @Override
   public Object display(ICase caze) {
     if (caze == null || caze.getCreatorUser() == null) {
