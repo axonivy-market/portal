@@ -27,6 +27,7 @@ public class TypeColumnModel extends ProcessColumnModel implements Serializable 
 
   @Override
   public void initDefaultValue() {
+    super.initDefaultValue();
     this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/processwidget/processType");
     this.field = DashboardStandardProcessColumn.TYPE.getField();
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-process__type");

@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.17",
   "id" : "15F95D721D0C7224",
   "data" : "ch.ivy.add.portalkit.BuildCaseQueryData",
   "kind" : "CALLABLE_SUB",
@@ -35,11 +35,11 @@
         "HINT: build your case query",
         "",
         "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
-        "out.caseQuery = CaseQuery.businessCases().where().customField().stringField(\"CustomVarCharField5\").isLike(\"%HELLO WORLD%\");"
+        "out.caseQuery = CaseQuery.businessCases().where().customField().stringField(\"SupportData\").isLike(\"%HELLO WORLD%\");"
       ],
       "visual" : {
         "at" : { "x" : 404, "y" : 186 },
-        "size" : { "width" : 752, "height" : 76 }
+        "size" : { "width" : 704, "height" : 76 }
       },
       "connect" : { "id" : "f6", "to" : "f2" }
     }, {
