@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.15",
   "id" : "18189731173CA5D4",
   "data" : "com.axonivy.portal.component.example.ProcessChainExample.ProcessChainExampleData",
   "kind" : "HTML_DIALOG",
@@ -45,10 +45,12 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.component.example.utils.ProcessStartUtils;",
             "import java.util.Arrays;",
             "",
             "in.actualCurrentIndex = 2;",
-            "in.steps = Arrays.asList(\"Step 1\",\"Step 2\",\"Step 3\",\"Step 4\",\"Step 5\",\"Step 6\",\"Step 7\",\"Step 8\",\"Step 9\");"
+            "in.steps = Arrays.asList(\"Step 1\",\"Step 2\",\"Step 3\",\"Step 4\",\"Step 5\",\"Step 6\",\"Step 7\",\"Step 8\",\"Step 9\");",
+            "in.processChainSerenityExampleLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessChainExample/showProcessChainExamplesSerenity.ivp\");"
           ]
         }
       },

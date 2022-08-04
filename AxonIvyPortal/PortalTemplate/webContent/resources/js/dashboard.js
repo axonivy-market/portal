@@ -45,10 +45,11 @@ function loadGrid() {
     });
   
     // Disable all pointer events of iframes when edit widgets
-    if($('div.js-dashboard__body').hasClass('readonly')) {
-      enableAllIFrameWhenEditLayout();
+    var dashboardBody = $('div.js-dashboard__body');
+    if(dashboardBody.hasClass('readonly')) {
+      dashboardBody.removeClass('dashboard__body__iframe--disabled');
     } else {
-      disableAllIFrameWhenEditLayout();
+      dashboardBody.addClass('dashboard__body__iframe--disabled');
     }
   });
 }
@@ -196,20 +197,6 @@ function collapseFullscreen(index, widgetId) {
   var infoOverlayId = 'expanded-info-overlay-panel-' + index;
   if ($("div[id $= " + infoOverlayId + "]").length > 0 && PF(infoOverlayId).isVisible()) {
     PF('expanded-info-overlay-panel-' + index).hide();
-  }
-}
-
-function disableAllIFrameWhenEditLayout() {
-  var iframes = $("iframe");
-  if (iframes.length > 0) {
-    iframes.css('pointer-events', 'none');
-  }
-}
-
-function enableAllIFrameWhenEditLayout() {
-  var iframes = $("iframe");
-  if (iframes.length > 0) {
-    iframes.css('pointer-events', 'auto');
   }
 }
 

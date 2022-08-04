@@ -1,0 +1,12 @@
+.ui-fluid .role-selection-panel .ui-inputfield[size] {
+  width: 100%;
+}
+
+body.serenity .message-for-floating-label {
+  display: flex;
+  width: 100%;
+}
+
+body.serenity .message-for-floating-label .ui-message {
+  width: 100%;
+}
