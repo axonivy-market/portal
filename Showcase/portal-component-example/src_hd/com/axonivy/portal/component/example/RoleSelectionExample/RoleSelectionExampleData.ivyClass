@@ -14,3 +14,5 @@ selectedRole com.axonivy.portal.component.dto.RoleDTO #field
 selectedRole PERSISTENT #fieldModifier
 definedRoleNames List<String> #field
 definedRoleNames PERSISTENT #fieldModifier
+roleSelectionSerenityExampleLink String #field
+roleSelectionSerenityExampleLink PERSISTENT #fieldModifier

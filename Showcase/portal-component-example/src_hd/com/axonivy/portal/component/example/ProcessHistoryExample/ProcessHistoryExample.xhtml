@@ -6,6 +6,10 @@
   <ui:composition template="/layouts/frame-10.xhtml">
     <ui:define name="title">Process History Component Example</ui:define>
     <ui:define name="content">
+      <div class="layout-wrapper">
+      <h:form>
+        <ic:com.axonivy.portal.component.example.internal.ThemeSelection serenityExampleLink="#{data.processHistoryExampleSerenityLink}" />
+      </h:form>
       <h:panelGroup rendered="#{data.showProcessHistoriesOfAlphaCompany}">
         <h1>Process history of Alpha Company</h1>
         <ic:com.axonivy.portal.component.ProcessHistory businessEntityId="alpha" chunkSize="12" dateTimePattern="dd.MM.yyyy" />
@@ -19,6 +23,7 @@
           <ic:com.axonivy.portal.component.ProcessHistory businessEntityId="beta" chunkSize="10" scrollHeight="400" />
         </p:dialog>
       </h:panelGroup>
+      </div>
       <h:outputStylesheet name="layouts/styles/process-history-customize.css" />
     </ui:define>
   </ui:composition>
