@@ -654,29 +654,6 @@ The Process Viewer component provides a visual representation of the process flo
 
 This component is a part of project ``portal-component``, which is independent of the Portal. You don't need to import the Portal projects to use it.
 
-How to Use
-^^^^^^^^^^
-
-You can integrate the Process Viewer component in any page by including following code.
-
-Code example:
-
-.. code-block:: html
-
-   <ic:com.axonivy.portal.component.ProcessViewer caseId="#{data.caseId}" processLink="#{data.processLink}" containerStyleClass="process-viewer-container" />
-
-#. You have to set one of below parameters
-
-   -  ``caseId``: Case ID.
-   -  ``processLink``: Process relative link.
-
-   .. warning::
-      Sub Case (Technical Case) or Express Workflow Process is not supported.
-
-#. You can customzie container style by using ``containerStyleClass`` parameter
-
-Refer to process ``ProcessViewerExample`` in project ``portal-component-example`` for more details.
-
 Attributes of this component:
 
 .. csv-table::
@@ -684,6 +661,32 @@ Attributes of this component:
   :header-rows: 1
   :class: longtable
   :widths: 1 1 1 3
+
+How to Use
+^^^^^^^^^^
+
+You can integrate the Process Viewer component in any page by including following code.
+
+#. You have to set one of below parameters
+
+   - ``caseId``: show the process or Case Map of the case has ID equals to ``caseId``.
+
+   .. code-block:: html
+
+      <ic:com.axonivy.portal.component.ProcessViewer caseId="000001" containerStyleClass="process-viewer-container" />
+
+   - ``processLink``: show the process or Case Map which by its defined relative link.
+
+   .. code-block:: html
+
+      <ic:com.axonivy.portal.component.ProcessViewer processLink="/designer/pro/portal-component-example/1821592826979C20/showProcessViewerUsingCaseId.ivp" containerStyleClass="process-viewer-container" />
+
+   .. warning::
+      Sub Case (Technical Case) or Express Workflow Process is not supported.
+
+#. You can customzie container style by using ``containerStyleClass`` parameter
+
+Refer to process ``ProcessViewerExample`` in project ``portal-component-example`` for more details.
 
 
 If you want to customize its style,
