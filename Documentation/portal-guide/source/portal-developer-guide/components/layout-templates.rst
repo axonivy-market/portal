@@ -27,9 +27,9 @@ Templates to use with IFrame:
 
 #. :ref:`IFrame Task template <components-layout-templates-iframe-task-template>` (Template used internally by Portal to configure IFrames)
 
-#. frame-8 template (Provided by core, use Serenity theme)
+#. frame-8 template (Provided by core, uses Serenity theme)
 
-#. frame-10 template (Provided by core, use Freya theme)
+#. frame-10 template (Provided by core, uses Freya theme)
 
 These templates have the same header, which is a menu of applications that you
 configure on the Administration page. Since version 8.0, Portal officially
@@ -47,7 +47,7 @@ to :ref:`Settings <settings>`.
       Therefore, if you want to reuse some Portal content, you have to add
       it manually to your HTML file.
 
-      For example, if you want to use the customize Serenity layout in Portal, add the code below:
+      For example, if you want to use the customized Serenity layout in Portal, add the code below:
       ``<h:outputStylesheet library="css" name="template.css" />``
 
 |portal-header|
@@ -308,7 +308,7 @@ How To Handle Required Login In Template
      </ui:composition>
 
 #. The result of using the above template (All user settings and
-   application menus will not visible).
+   application menus will not be visible).
 
 
 .. _components-layout-templates-default-homepage-template:

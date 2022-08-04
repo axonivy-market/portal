@@ -19,10 +19,10 @@ Build Your Own Portal Using Portalkit
 
      .. warning::
         * Portal uses some template files in the folder ``"webContent/layouts"``
-          in Portal Template project. Do not create files with the same
+          in the Portal Template project. Do not create files with the same
           path and name in your project as they can override the Portal
           files.
-        * Using DefaultHomePageTemplate (we marked this template as deprecated) will lead to the result that the user’s dashboard is the legacy dashboard.
+        * Using the deprecated DefaultHomePageTemplate will result in the user having the legacy dashboard.
 
    - Create a new ``Start process`` named ``DefaultApplicationHomePage.ivp`` and connect to ``User Dialog`` for your home page.
 
