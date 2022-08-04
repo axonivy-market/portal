@@ -8,7 +8,7 @@ Layout Templates
 Templates for Development
 -------------------------
 
-Your Portal project depends on the PortalTemplate project, which offers several templates that can be used directly withoutIFrames. 
+Your Portal project depends on the PortalTemplate project, which offers several templates that can be used directly withoutIFrames.
 Additionally, two templates are described to be used with IFrames.
 
 Templates without IFrames:
@@ -27,26 +27,28 @@ Templates to use with IFrame:
 
 #. :ref:`IFrame Task template <components-layout-templates-iframe-task-template>` (Template used internally by Portal to configure IFrames)
 
-#. frame-8 template (Provided by core, use Serenity theme)
+#. frame-8 template (Provided by core, uses Serenity theme)
+
+#. frame-10 template (Provided by core, uses Freya theme)
 
 These templates have the same header, which is a menu of applications that you
 configure on the Administration page. Since version 8.0, Portal officially
 supports responsiveness. Every template has its default responsiveness. Refer to
 :ref:`Responsiveness <components-layout-templates-responsiveness>` to override
-it. 
+it.
 
 Additionally, there are user settings like My Profile, Absences, Email, and
 Administration (for Administrators only). For details about user settings, refer
 to :ref:`Settings <settings>`.
 
-.. note:: 
+.. note::
 
-      The frame-8 template does not contain any content of the Portal.
-      Therefore, if you want to reuse some Portal content, you have to add 
+      The frame-8 and frame-10 templates do not contain any content from the Portal.
+      Therefore, if you want to reuse some Portal content, you have to add
       it manually to your HTML file.
-      
-      For example, if you want to add the Ivy icon pack, add the code below:
-      ``<h:outputStylesheet library="ivy-icons" name="ivy-icon.css" />``
+
+      For example, if you want to use the customized Serenity layout in Portal, add the code below:
+      ``<h:outputStylesheet library="css" name="template.css" />``
 
 |portal-header|
 
@@ -70,7 +72,7 @@ How to Use Basic Template
    <components-layout-templates-responsiveness>`.
 
    .. code-block:: html
-   
+
       <ui:composition template="/layouts/BasicTemplate.xhtml">
       <ui:define name="title">Sample Page</ui:define>
       <ui:define name="pageContent">
@@ -87,10 +89,10 @@ How to Use Basic Template
 IFrame Task Template
 --------------------
 
-The IFrame Task Template is used to display task functionality (e.g. the process chain) and related case information to help complete the task. 
+The IFrame Task Template is used to display task functionality (e.g. the process chain) and related case information to help complete the task.
 It renders your task UI inside an IFrame (refer to :ref:`IFrame in Portal <iframe-in-portal>`).
 
-The template expects to receive some parameters passed by JavaScript. 
+The template expects to receive some parameters passed by JavaScript.
 Inside your UI, you can configure these parameters as follows; they will be rendered by the template automatically:
 
 ::
@@ -132,8 +134,8 @@ Inside your UI, you can configure these parameters as follows; they will be rend
 
        When you define parameter processSteps, please make sure that you add the jsp function tag to your XHTML file:
        ``xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions``
-	
-In case your project has a navigation button that does not complete a task, e.g Cancel, to 
+
+In case your project has a navigation button that does not complete a task, e.g Cancel, to
 
 -  One of the default pages (application home, task list, process list, etc.): in your HTMLDialog, redirect to the page you want to display.
 -  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrameAPI``.
@@ -144,13 +146,13 @@ In case your project has a navigation button that does not complete a task, e.g 
 TaskTemplate-8
 --------------
 
-Task Template 8 is a new template using the Serenity theme introduced in Portal 8. 
+Task Template 8 is a new template using the Serenity theme introduced in Portal 8.
 There is no TabView, you have to define that if needed.
 
 .. warning::
 	Portal Styles are included. Therefore, your HTML dialogs are also affected. You might have some migration efforts in a future release.
 	We recommend to use :ref:`IFrame in Portal <iframe-in-portal>`.
-	
+
 .. important::
 	This template must not be used inside an iFrame.
 
@@ -204,7 +206,7 @@ business case details of the working task instead. Please refer to the example b
 
 .. code-block:: html
 
-   <ui:param name="caseId" value="123456" /> 
+   <ui:param name="caseId" value="123456" />
 
 Task List Template
 ------------------
@@ -223,7 +225,7 @@ How to Use Task List Template
    define the template.
 
    .. code-block:: html
-  
+
       <ui:composition template="/layouts/PortalTasksTemplate.xhtml">
       </ui:composition>
 
@@ -263,7 +265,7 @@ How To Use Case List Template
    define the template.
 
    .. code-block:: html
- 
+
      <ui:composition template="/layouts/PortalCasesTemplate.xhtml>
      </ui:composition>
 
@@ -274,10 +276,10 @@ How To Use Case List Template
    example to build a caseView.
 
    .. code-block:: java
-  
+
       import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
       import ch.ivy.addon.portal.generic.view.CaseView;
-      CaseLazyDataModel dataModel = new CaseLazyDataModel();  
+      CaseLazyDataModel dataModel = new CaseLazyDataModel();
       out.caseView = CaseView.create().dataModel(dataModel).withTitle("My Cases").buildNewView();
 
 .. _components-layout-templates-handle-required-login-in-templates:
@@ -297,7 +299,7 @@ How To Handle Required Login In Template
    the template inside
 
    .. code-block:: html
-  
+
      <ui:composition template="/layouts/BasicTemplate.xhtml">
      <ui:param name="isNotRequiredLogin" value="#{data.isNotRequiredLogin}" />
      <ui:define name="pageContent">
@@ -306,7 +308,7 @@ How To Handle Required Login In Template
      </ui:composition>
 
 #. The result of using the above template (All user settings and
-   application menus will not visible) is:
+   application menus will not be visible).
 
 
 .. _components-layout-templates-default-homepage-template:
@@ -332,7 +334,7 @@ template.
 
       <ui:composition template="/layouts/DefaultHomePageTemplate.xhtml">
 
-..    
+..
 
 .. _components-layout-templates-responsiveness:
 
@@ -362,7 +364,7 @@ footer section to override:
 E.g. Initialize ``ResponsiveToolkit`` for a TaskList page.
 
 .. code-block:: html
-  
+
       <ui:define name="footer">
       <script type="text/javascript">
       $(function(){
