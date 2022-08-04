@@ -29,7 +29,7 @@ public class ProcessViewerDashboardWidget extends DashboardWidget {
     if (StringUtils.isNotBlank(getProcessStart())) {
       List<IWebStartable> allPortalProcesses = ProcessService.newInstance().findProcesses().getProcesses();
       setProcess(allPortalProcesses.stream().filter(proccess -> proccess.getId().contains(getProcessStart()))
-          .map(DashboardProcess::new).findFirst().get());
+          .map(DashboardProcess::new).findFirst().orElse(null));
     }
   }
 
