@@ -48,7 +48,7 @@ Follow these steps to create your customzied Portal Home:
 #. Create a new processstart named ``DefaultApplicationHomePage.ivp`` for your
    new home page. Now you will use this processstart as the entry point of your
    Portal instead of the default one. To make Portal aware of your new Portal
-   home, you have to set the default pages to your project, as detailed in
+   home, you have to set the default pages in your project, as detailed in
    :dev-url:`Default Pages
    </doc/nightly/designer-guide/user-interface/default-pages/index.html>`
 
