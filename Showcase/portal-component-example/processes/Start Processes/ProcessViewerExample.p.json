@@ -121,7 +121,7 @@
       "config" : {
         "callSignature" : "showProcessViewerForSerenityUsingCaseId",
         "outLink" : "showProcessViewerForSerenityUsingCaseId.ivp",
-        "startName" : "Show Process Viewer For Serenity Using Case ID"
+        "startName" : "Show Process Viewer Using Case ID (Serenity theme)"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 256 },
@@ -135,7 +135,7 @@
       "config" : {
         "callSignature" : "showProcessViewerForSerenityUsingProcessLink",
         "outLink" : "showProcessViewerForSerenityUsingProcessLink.ivp",
-        "startName" : "Show Process Viewer For Serenity Using Process Link"
+        "startName" : "Show Process Viewer Using Process Link (Serenity theme)"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 352 },
