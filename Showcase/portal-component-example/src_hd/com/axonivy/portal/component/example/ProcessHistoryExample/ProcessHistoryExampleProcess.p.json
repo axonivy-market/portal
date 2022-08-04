@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.15",
   "id" : "1818980EC9955786",
   "data" : "com.axonivy.portal.component.example.ProcessHistoryExample.ProcessHistoryExampleData",
   "kind" : "HTML_DIALOG",
@@ -17,7 +17,16 @@
           "map" : {
             "out.showProcessHistoriesOfAlphaCompany" : "param.showProcessHistoriesOfAlphaCompany",
             "out.showProcessHistoriesOfBetaCompany" : "param.showProcessHistoriesOfBetaCompany"
-          }
+          },
+          "code" : [
+            "import com.axonivy.portal.component.example.utils.ProcessStartUtils;",
+            "",
+            "if (param.showProcessHistoriesOfAlphaCompany) {",
+            "  out.processHistoryExampleSerenityLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessHistoryExample/viewProcessHistoryOfAlphaCompanySerenity.ivp\");",
+            "} else {",
+            "  out.processHistoryExampleSerenityLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessHistoryExample/viewProcessHistoryOfBetaCompanySerenity.ivp\");",
+            "}"
+          ]
         },
         "guid" : "1818980EC9CA1178"
       },
