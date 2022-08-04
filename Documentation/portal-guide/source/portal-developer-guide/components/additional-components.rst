@@ -16,6 +16,7 @@ These components fully support both Freya and Serenity themes of Primefaces.
    - :ref:`Document Table<components-additional-components-document-table>`
    - :ref:`User Selection<components-additional-components-user-selection>`
    - :ref:`Role Selection<components-additional-components-role-selection>`
+   - :ref:`Process Viewer<components-additional-components-process-viewer>`
 
 Please refer to project ``portal-component-example`` for more details on use and customization,
 as well as look and feel of each component in supported themes.
@@ -647,7 +648,7 @@ Migrate from Deprecated Role Selection
 
    .. note:: If you stored class ``ch.ivy.addon.portalkit.dto.RoleDTO`` in your database, you have to update the database manually.
 
-.. _components-additional-portal-dialog-with-icon:
+.. _components-additional-components-process-viewer:
 
 Process Viewer
 --------------
@@ -698,6 +699,8 @@ Refer to process ``ProcessViewerExample`` in project ``portal-component-example`
 
 If you want to customize its style,
 please refer to :ref:`components-additional-components-style-customization`.
+
+.. _components-additional-portal-dialog-with-icon:
 
 Portal Dialog with Icon
 -----------------------
