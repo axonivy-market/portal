@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.15",
   "id" : "1818999DCC4266A8",
   "data" : "com.axonivy.portal.component.example.RoleSelectionExample.RoleSelectionExampleData",
   "kind" : "HTML_DIALOG",
@@ -58,6 +58,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.component.example.utils.ProcessStartUtils;",
             "import ch.ivyteam.ivy.environment.Ivy;",
             "import com.axonivy.portal.component.dto.RoleDTO;",
             "import ch.ivyteam.ivy.security.IRole;",
@@ -68,7 +69,8 @@
             "in.selectedRoleForReadOnlyField = new RoleDTO(everybodyRole);",
             "Ivy.log().info(\"selected Role for read only field: \" + in.selectedRoleForReadOnlyField.getDisplayName());",
             "in.excludedRoleNames = Arrays.asList(\"Tester\", \"Supporter\");",
-            "in.definedRoleNames = Arrays.asList(\"Everybody\");"
+            "in.definedRoleNames = Arrays.asList(\"Everybody\");",
+            "in.roleSelectionSerenityExampleLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/RoleSelectionExample/showRoleSelectionExamplesSerenity.ivp\");"
           ]
         }
       },

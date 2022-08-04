@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.15",
   "id" : "18189B0AEEFA7D89",
   "data" : "com.axonivy.portal.component.example.UserSelectionExample.UserSelectionExampleData",
   "kind" : "HTML_DIALOG",
@@ -53,6 +53,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.component.example.utils.ProcessStartUtils;",
             "import java.util.Locale;",
             "import ch.ivyteam.ivy.security.IRole;",
             "import ch.ivyteam.ivy.security.IUser;",
@@ -70,7 +71,8 @@
             "  }",
             "}",
             "in.selectedUserForReadOnlyField = new UserDTO(backendDev1);",
-            "in.excludedUsernames = Arrays.asList(\"supporter\", \"tester\");"
+            "in.excludedUsernames = Arrays.asList(\"supporter\", \"tester\");",
+            "in.userSelectionSerenityExampleLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/UserSelectionExample/showUserSelectionExamplesSerenity.ivp\");"
           ]
         }
       },
