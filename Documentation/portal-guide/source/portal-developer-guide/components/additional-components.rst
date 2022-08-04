@@ -110,8 +110,8 @@ additional property "CASE_BUSINESS_ENTITY_PROPERTY" of the business case.
    If you want to customize its style,
    please refer to :ref:`components-additional-components-style-customization`.
 
-   .. important:: 
-      
+   .. important::
+
          If your process has a Trigger component or sends a signal to start
          another process with the option "Attach to Business Case that
          triggered this process" selected, the current case of the process
@@ -137,11 +137,11 @@ Migrate from Deprecated Process History
       + Copy the contents of the subprocess ``OpenPortalCaseDetails`` in the project ``PortalTemplate`` to the overridden subprocess ``OpenCaseDetailsHook``.
 
    For applications using the Portal with an IFrame:
-   
+
       + Set attribute ``isOpenInFrame`` to ``true``.
-   
+
       + Modify the subprocess ``OpenCaseDetailsHook`` to generate ``caseDetailsUrl``. Process History component will navigate to this URL when the user clicks on a case.
-   
+
       + Please refer to the subprocess ``OpenCaseDetailsHookOverride`` in project ``portal-developer-examples`` to see how to generate this link in the Portal.
 
 .. _components-additional-component-task-analysis:
@@ -183,11 +183,11 @@ with the following code:
 
 .. code-block:: java
 
-      import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+      import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
       import java.util.HashMap;
       import javax.faces.context.FacesContext;
 
-      String taskAnalysisUrl = PortalNavigator.buildUrlByKeyword("showTaskAnalysis.ivp", "Start Processes/PortalStart/showTaskAnalysis.ivp", new HashMap());
+      String taskAnalysisUrl = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath("Start Processes/PortalStart/showTaskAnalysis.ivp");
       FacesContext.getCurrentInstance().getExternalContext().redirect(taskAnalysisUrl);
 
 
@@ -313,11 +313,11 @@ You can customize the message for finished or cancelled tasks separately.
    import javax.faces.context.Flash;
    import javax.faces.context.FacesContext;
    import javax.faces.application.FacesMessage;
-   
-   FacesMessage message = new FacesMessage("Task is done successfully", ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/linkToCaseDetails", 
+
+   FacesMessage message = new FacesMessage("Task is done successfully", ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/linkToCaseDetails",
    	[PortalNavigator.buildPortalCaseDetailsUrl(ivy.case.getBusinessCase().getId())]));
    FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
-   
+
    Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
    flash.put("overridePortalGrowl", true);
    flash.setRedirect(true);
@@ -451,7 +451,7 @@ Introduction
 ^^^^^^^^^^^^
 
 This component is used for selecting a single user from a list of users defined by a role name list.
-If you don't define the role name list, all users will be loaded. 
+If you don't define the role name list, all users will be loaded.
 It includes a label, an autocomplete and one message element to display a message related to that autocomplete element.
 
 How to Use
@@ -491,10 +491,10 @@ You can insert this component into any page. This component supports two styles 
    insert children and ajax events (Refer to ``UserSelection.xhtml``).
    Any child in the UserSelection component will be re-parented into
    this autocomplete at the location of the ``insertChildren`` tag.
-   We introduce a facet named ``event`` for autocomplete so that the 
+   We introduce a facet named ``event`` for autocomplete so that the
    ajax event can be nested, as well.
 
-An example: 
+An example:
 
 I want to display users in a dropdown list formatted as "<Full name>
 (<username>)". When I select a user, a message shall be displayed.
@@ -515,7 +515,7 @@ I want to display users in a dropdown list formatted as "<Full name>
          <h:outputText value="#{user.displayName} (#{user.name})" />
          </p:column>
          <f:facet name="event">
-            <p:ajax event="itemSelect" listener="#{logic.showSelectedUser}" 
+            <p:ajax event="itemSelect" listener="#{logic.showSelectedUser}"
                update="#{p:component('item-select-event-for-user-selection-message')}"/>
          </f:facet>
    </ic:com.axonivy.portal.component.UserSelection>
@@ -597,8 +597,8 @@ two styles to display its label.
    autocomplete at the location of the ``insertChildren`` tag. We
    introduced a facet named ``event`` for autocomplete so that the ajax
    event can be nested, as well.
-     
-For example: 
+
+For example:
 
 I want to display roles in dropdown list formatted as "<Display Name> (<Member
 Name>)". When I select a role, a message shall be displayed.
@@ -669,7 +669,7 @@ How to Use
          <ui:param name="iconClass" value="icon ivyicon-delete-1" />
          <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
          <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage')}" />
-         
+
          <ui:define name="dialogFooter">
             <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                onclick="PF('destroy-task-dialog').hide();" styleClass="u-mar-right-15"/>
@@ -723,7 +723,7 @@ How to customize
 ^^^^^^^^^^^^^^^^
 
 1. You have to add a new css file to your resources and import it into your template.
-   
+
    Code Example:
 
    .. code-block:: html
