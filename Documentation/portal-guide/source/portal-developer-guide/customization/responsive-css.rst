@@ -16,7 +16,7 @@ different resolutions.
 Bootstrap Based Responsive CSS
 ------------------------------
 
-These classes was created base on bootstrap responsive. For detail, refer to
+These classes have been created based on bootstrap responsive. For detail, refer to
 `Bootstrap <https://boosted.orange.com/v4-alpha/layout/responsive-utilities/#available-classes>`_
 
 
