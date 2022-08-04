@@ -5,7 +5,7 @@ Build Your Own Portal
 
 .. _customization-build-your-own-portal-build-your-own-portal-using-portal-kit:
 
-BUild Your Own Portal Using Portalkit
+Build Your Own Portal Using Portalkit
 -------------------------------------
 
 #. Create a new project that depends on ``PortalTemplate``.
@@ -17,12 +17,13 @@ BUild Your Own Portal Using Portalkit
      .. tip:: Find more information about templates at :ref:`Layout templates <components-layout-templates>`.
      ..
 
-     .. warning:: Portal uses some template files in the folder
-                       ``"webContent/layouts"`` 
-                       in Portal Template project. Do not create files with the same
-                       path and name in your project as they can override the Portal
-                       files.
-                   
+     .. warning::
+        * Portal uses some template files in the folder ``"webContent/layouts"``
+          in the Portal Template project. Do not create files with the same
+          path and name in your project as they can override the Portal
+          files.
+        * Using the deprecated DefaultHomePageTemplate will result in the user having the legacy dashboard.
+
    - Create a new ``Start process`` named ``DefaultApplicationHomePage.ivp`` and connect to ``User Dialog`` for your home page.
 
    - Run your application, start your newly created process and see result.
@@ -52,14 +53,14 @@ BUild Your Own Portal Using Portalkit
    .. code-block:: html
 
      <ic:ch.ivy.addon.portalkit.feature.WarnOnClosingBrowserTab confirmMessage="You may lose your work in progress. Do you want to continue?" />
-        
+
    ..
 
    Depending on browser, content of ``confirmMessage`` and names of buttons may vary.
 
    |warn-on-closing-browser-tab|
 
-   .. tip:: 
+   .. tip::
 
         Normally, when using this component, actions that user invoked outside Portal
         area like closing tab/browser, refreshing page, clicking on a link on
@@ -72,6 +73,6 @@ BUild Your Own Portal Using Portalkit
         ``location.reload()``. If that happens, add this to your javascript function:
         ``showConfirmDialogBeforeUnload = false;``
 
-.. |custom-portal-home| image:: ../../screenshots/dashboard/dashboard.png
+.. |custom-portal-home| image:: ../../screenshots/dashboard/legacy-dashboard.png
 .. |task-category-config| image:: images/build-your-own-portal/task-category-config.png
 .. |warn-on-closing-browser-tab| image:: images/build-your-own-portal/warn-on-closing-browser-tab.png
