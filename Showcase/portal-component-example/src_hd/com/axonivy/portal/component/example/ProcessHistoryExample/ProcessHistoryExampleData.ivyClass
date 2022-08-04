@@ -4,3 +4,5 @@ showProcessHistoriesOfAlphaCompany Boolean #field
 showProcessHistoriesOfAlphaCompany PERSISTENT #fieldModifier
 showProcessHistoriesOfBetaCompany Boolean #field
 showProcessHistoriesOfBetaCompany PERSISTENT #fieldModifier
+processHistoryExampleSerenityLink String #field
+processHistoryExampleSerenityLink PERSISTENT #fieldModifier

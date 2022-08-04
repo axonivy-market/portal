@@ -1,3 +1,7 @@
+html {
+  font-size: var(--process-history-default-font-size);
+}
+
 .process-history-component .case-header-default {
   text-align: center;
 }
@@ -135,6 +139,11 @@
 .process-history-component .state-column .running-case-state {
   background: var(--process-history-state-in-progress-color);
   border-color: var(--process-history-state-in-progress-color);
+}
+
+.freya.dark .process-history-component .state-column .running-case-state,
+body.freya.dark .process-history-component .ui-datascroller .ui-datascroller-content .state-column .running-case-state {
+  color: var(--process-history-dark-mode-running-case-state-font-color);
 }
 
 .process-history-component .state-column .done-case-state {
