@@ -85,6 +85,10 @@
   padding-top: 0;
 }
 
+.dashboard__body.dashboard__body__iframe--disabled iframe {
+  pointer-events: none;
+}
+
 @media screen and (max-width: 767px) {
   .dashboard__title-dropdown {
     min-width: 100% !important;

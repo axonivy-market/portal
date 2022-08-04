@@ -81,5 +81,8 @@ Dialogs:
             ProcessId: Process Id
             ProcessInfo: Process Information
             ProcessInfoIconTooltip: Click to see details of the process start
+            ProcessType:
+              CASE_MAP: Case Map
+              IVY_PROCESS: Business Process
 Labels:
   disabledUserPrefix: (disabled)

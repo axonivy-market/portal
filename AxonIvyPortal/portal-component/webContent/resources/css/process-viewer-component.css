@@ -1,11 +1,10 @@
 .process-viewer-data {
   height : 100%;
   overflow: auto;
-  padding: 0 !important;
 }
 
 .process-viewer-data.has-error-message {
-  font-weight: var(--process-viewer-data-has-error-message-font-weight) !important;
+  font-weight: var(--process-viewer-data-has-error-message-font-weight);
   font-size: var(--process-viewer-data-has-error-message-font-size);
   height: 200px;
 }
