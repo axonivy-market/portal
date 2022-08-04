@@ -35,7 +35,7 @@
         "HINT: build your case query",
         "",
         "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
-        "CaseQuery.businessCases().where().customField().stringField(\"CustomVarCharField5\").isLike(\"%HELLO WORLD%\");"
+        "CaseQuery.businessCases().where().customField().stringField(\"CustomerName\").isLike(\"%HELLO WORLD%\");"
       ],
       "visual" : {
         "at" : { "x" : 364, "y" : 186 },

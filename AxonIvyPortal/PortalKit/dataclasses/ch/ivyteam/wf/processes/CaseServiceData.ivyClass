@@ -12,3 +12,5 @@ totalCases Long #field
 caseCustomFieldSearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria #field
 customFields java.util.List<String> #field
 caseCategoryStatistic ch.ivy.addon.portalkit.bo.CaseCategoryStatistic #field
+selectedCategories java.util.List<String> #field
+selectedCategory String #field

@@ -3,17 +3,3 @@
 # You can define here your project custom fields.
 #
 CustomFields:
-  Tasks:
-  #   MyTaskCustomField:
-  #      Label: My task custom field
-  #      Description: This new task custom field can be used to ...
-  #      Type: STRING        
-  Cases:
-  #   MyCaseCustomField:
-  #      Label: My case custom field
-  #      Description: This new case custom field can be used to ...
-  #      Type: STRING        
-  Starts:
-#   MyStartCustomField:
-#      Label: My start custom field
-#      Description: This new start custom field can be used to ...

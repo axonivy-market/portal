@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.17",
   "id" : "16812A78CEF8FB1A",
   "data" : "ch.ivy.add.portalkit.BuildTaskQueryData",
   "kind" : "CALLABLE_SUB",
@@ -34,7 +34,7 @@
       "name" : [
         "HINT: build your task query",
         "",
-        "out.taskQuery = TaskQuery.create().where().customField().stringField(\"CustomVarCharField5\").isLike(\"%HELLO WORLD%\");",
+        "out.taskQuery = TaskQuery.create().where().customField().stringField(\"SupportData\").isLike(\"%HELLO WORLD%\");",
         "",
         "If you want to differentiate the customization in home page from customization in other places like task list, ",
         "just check  the attribute isQueryForHomePage",
@@ -45,7 +45,7 @@
       ],
       "visual" : {
         "at" : { "x" : 548, "y" : 226 },
-        "size" : { "width" : 688, "height" : 172 }
+        "size" : { "width" : 640, "height" : 172 }
       },
       "connect" : { "id" : "f6", "to" : "f2" }
     }, {

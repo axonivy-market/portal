@@ -110,7 +110,7 @@ public class CaseWidgetTest extends BaseTest {
   @Test
   public void testOpenAdditionalCaseDetailsPage() throws Exception {
     openAdditionalCaseDetailsPage(createTestingCaseUrlForDefaultAdditionalCaseDetails, LEAVE_REQUEST_DEFAULT_CASE_DETAILS_PAGE_CASE_NAME);
-    validateAdditionalCaseDetailsPage(15, "CustomVarCharField 1");
+    validateAdditionalCaseDetailsPage(13, "Customer name");
   }
   
   @Test
@@ -143,6 +143,7 @@ public class CaseWidgetTest extends BaseTest {
   private void openAdditionalCaseDetailsPage(String initDataUrl, String caseName){
     redirectToRelativeLink(initDataUrl);
     initHomePage(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     mainMenuPage = homePage.openMainMenu();
     additionalCaseDetailsPage = new AdditionalCaseDetailsPage();
     casePage = mainMenuPage.selectCaseMenu();
