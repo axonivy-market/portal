@@ -151,9 +151,7 @@ public class CompactDashboardProcessBean
   }
 
   public List<DashboardProcess> getPortalCompactProcesses() {
-    if (CollectionUtils.isEmpty(portalCompactProcesses)) {
-      portalCompactProcesses = new ArrayList<>(dashboardProcessBean.getPortalDashboardProcesses());
-    }
+    portalCompactProcesses = new ArrayList<>(dashboardProcessBean.getPortalDashboardProcesses());
     return portalCompactProcesses;
   }
 
@@ -162,7 +160,8 @@ public class CompactDashboardProcessBean
   }
 
   public List<DashboardProcess> getAllPortalProcesses() {
-    return CollectionUtils.isEmpty(allPortalProcesses) ? findAllPortalProcesses() : allPortalProcesses;
+    allPortalProcesses = findAllPortalProcesses();
+    return allPortalProcesses;
   }
 
   public void setAllPortalProcesses(List<DashboardProcess> allPortalProcesses) {
@@ -179,6 +178,11 @@ public class CompactDashboardProcessBean
     CompactProcessDashboardWidget newWidget = new CompactProcessDashboardWidget(dashboardProcessBean.getWidget());
     newWidget.buildFilterableColumns(DashboardWidgetUtils.initProcessFilterableColumns());
     dashboardProcessBean.updateWidget(newWidget);
+  }
+
+  @Override
+  public void onChangeApplications(List<String> applications) {
+    dashboardProcessBean.setApplications(applications);
   }
 
 }
