@@ -4,3 +4,5 @@ caseId Long #field
 caseId PERSISTENT #fieldModifier
 processLink String #field
 processLink PERSISTENT #fieldModifier
+processViewerForSerenityLink String #field
+processViewerForSerenityLink PERSISTENT #fieldModifier
