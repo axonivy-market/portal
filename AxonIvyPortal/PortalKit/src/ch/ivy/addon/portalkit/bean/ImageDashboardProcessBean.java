@@ -47,4 +47,9 @@ public class ImageDashboardProcessBean
   public void preview() {
     dashboardProcessBean.preview();
   }
+
+  @Override
+  public void onChangeApplications(List<String> applications) {
+    dashboardProcessBean.setApplications(applications);
+  }
 }

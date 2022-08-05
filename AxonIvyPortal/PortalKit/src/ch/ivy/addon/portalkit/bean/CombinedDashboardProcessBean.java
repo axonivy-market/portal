@@ -41,16 +41,16 @@ public class CombinedDashboardProcessBean
 
   public List<DashboardProcess> completeCombinedProcesses(String query) {
     return getPortalCombinedProcesses().stream()
-        .filter(process -> StringUtils.containsIgnoreCase(process.getName(), query)).collect(Collectors.toList());
+        .filter(process -> StringUtils.containsIgnoreCase(process.getName(), query))
+        .collect(Collectors.toList());
   }
 
   private List<DashboardProcess> getPortalCombinedProcesses() {
-    if (CollectionUtils.isEmpty(portalCombinedProcesses)) {
       portalCombinedProcesses = new ArrayList<>(
           dashboardProcessBean.getPortalDashboardProcesses().stream()
               .filter(process -> process.getType() != ProcessType.EXTERNAL_LINK)
-              .filter(process -> !dashboardProcessBean.isCaseMap(process)).collect(Collectors.toList()));
-    }
+              .filter(process -> !dashboardProcessBean.isCaseMap(process))
+              .collect(Collectors.toList()));
     return portalCombinedProcesses;
   }
 
@@ -93,4 +93,8 @@ public class CombinedDashboardProcessBean
     dashboardProcessBean.preview();
   }
 
+  @Override
+  public void onChangeApplications(List<String> applications) {
+    dashboardProcessBean.setApplications(applications);
+  }
 }
