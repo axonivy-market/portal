@@ -73,7 +73,7 @@
       "type" : "DialogCall",
       "name" : "DocumentTableExampleSerenity",
       "config" : {
-        "dialogId" : "portal.component.example.serenity.DocumentTableExampleSerenity",
+        "dialogId" : "com.axonivy.portal.component.example.serenity.DocumentTableExampleSerenity",
         "startMethod" : "start()"
       },
       "visual" : {
@@ -128,7 +128,7 @@
       "type" : "DialogCall",
       "name" : "CustomizedDocumentTableExampleSerenity",
       "config" : {
-        "dialogId" : "portal.component.example.serenity.CustomizedDocumentTableExampleSerenity",
+        "dialogId" : "com.axonivy.portal.component.example.serenity.CustomizedDocumentTableExampleSerenity",
         "startMethod" : "start()"
       },
       "visual" : {

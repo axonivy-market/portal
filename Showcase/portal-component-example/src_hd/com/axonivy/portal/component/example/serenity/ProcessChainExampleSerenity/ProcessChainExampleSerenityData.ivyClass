@@ -1,5 +1,5 @@
 ProcessChainExampleSerenityData #class
-portal.component.example.serenity.ProcessChainExampleSerenity #namespace
+com.axonivy.portal.component.example.serenity.ProcessChainExampleSerenity #namespace
 actualCurrentIndex Integer #field
 actualCurrentIndex PERSISTENT #fieldModifier
 steps java.util.List<String> #field
