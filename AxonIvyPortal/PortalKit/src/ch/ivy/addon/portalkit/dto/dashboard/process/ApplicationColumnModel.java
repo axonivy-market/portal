@@ -1,13 +1,24 @@
 package ch.ivy.addon.portalkit.dto.dashboard.process;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ch.ivy.addon.portalkit.bean.CombinedDashboardProcessBean;
+import ch.ivy.addon.portalkit.bean.CompactDashboardProcessBean;
+import ch.ivy.addon.portalkit.bean.FullDashboardProcessBean;
+import ch.ivy.addon.portalkit.bean.ImageDashboardProcessBean;
 import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
+import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.SingleProcessDashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
+import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.util.ListUtilities;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.app.IApplicationRepository;
@@ -62,5 +73,44 @@ public class ApplicationColumnModel extends ProcessColumnModel implements Serial
   @Override
   public Boolean getDefaultSortable() {
     return false;
+  }
+  
+  public void updateApplications(ProcessDashboardWidget widget) {
+    
+    if (widget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) { 
+      CompactDashboardProcessBean compactDashboardProcessBean = ManagedBeans.get("compactDashboardProcessBean");
+      if (compactDashboardProcessBean != null) {
+        compactDashboardProcessBean.onChangeApplications(this.userFilterList);
+      }
+    } else if (widget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE) {
+      CombinedDashboardProcessBean combinedDashboardProcessBean = ManagedBeans.get("combinedDashboardProcessBean");
+      if (combinedDashboardProcessBean != null) {
+        combinedDashboardProcessBean.onChangeApplications(this.userFilterList);
+      }
+    } else if (widget.getDisplayMode() == ProcessWidgetMode.IMAGE_MODE) {
+      ImageDashboardProcessBean imageDashboardProcessBean = ManagedBeans.get("imageDashboardProcessBean");
+      if (imageDashboardProcessBean != null) {
+        imageDashboardProcessBean.onChangeApplications(this.userFilterList);
+      }
+    } else if (widget.getDisplayMode() == ProcessWidgetMode.FULL_MODE) {
+      FullDashboardProcessBean fullDashboardProcessBean = ManagedBeans.get("fullDashboardProcessBean");
+      if (fullDashboardProcessBean != null) {
+        fullDashboardProcessBean.onChangeApplications(this.userFilterList);
+      }
+    }
+
+    if (widget instanceof CompactProcessDashboardWidget) {
+      ((CompactProcessDashboardWidget) widget).setProcesses(null);
+      final List<ColumnModel> filterableColumns = ((CompactProcessDashboardWidget) widget).getFilterableColumns();
+      for (ColumnModel column : filterableColumns) {
+        if (column instanceof CategoryColumnModel) {
+          ((CategoryColumnModel) column).setFilterList(new ArrayList<>());
+          ((CategoryColumnModel) column).setSelectionCategoryNodes(null);
+        }
+      }
+    } else if (widget instanceof SingleProcessDashboardWidget) {
+      ((SingleProcessDashboardWidget) widget).setProcess(null);
+    }
+    
   }
 }
