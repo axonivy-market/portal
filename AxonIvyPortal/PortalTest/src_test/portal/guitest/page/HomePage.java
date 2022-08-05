@@ -49,10 +49,10 @@ public class HomePage extends TemplatePage {
    */
   public void waitForStatisticRendered() {
     try {
-      WaitHelper.assertTrueWithRefreshPage(this, () -> {
-        waitForElementDisplayed(By.cssSelector("span[id$=':statistic-carousel:0:chart-name']"), true, 5);
+      WaitHelper.assertTrueWithWait(() -> {
+        WaitHelper.waitForVisibilityOfElementLocated(driver, "canvas[id^='statistics-widget:statistic-dashboard-widget:statistic-carousel:0']");
         return true;
-      });
+      }, 25);
     } catch (Exception e) {
       System.out.println("**ERROR when waitForStatisticRendered - chart info isn't rendered");
       refreshStatisticChartData();
