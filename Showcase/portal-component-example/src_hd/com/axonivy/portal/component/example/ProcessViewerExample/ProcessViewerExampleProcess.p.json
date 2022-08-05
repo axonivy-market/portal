@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.17",
   "id" : "1821596E460CDACC",
   "data" : "com.axonivy.portal.component.example.ProcessViewerExample.ProcessViewerExampleData",
   "kind" : "HTML_DIALOG",
@@ -34,7 +34,16 @@
           "map" : {
             "out.caseId" : "param.caseId",
             "out.processLink" : "param.processLink"
-          }
+          },
+          "code" : [
+            "import com.axonivy.portal.component.example.utils.ProcessStartUtils;",
+            "if (out.caseId == 0) {",
+            "  out.processViewerForSerenityLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessViewerExample/showProcessViewerForSerenityUsingProcessLink.ivp\");",
+            "} else {",
+            "  String processLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessViewerExample/showProcessViewerForSerenityUsingCaseId.ivp\");  ",
+            "  out.processViewerForSerenityLink = processLink + \"?caseId=\" + ivy.case.getId();",
+            "}"
+          ]
         },
         "guid" : "18215A3FF2DFA959"
       },

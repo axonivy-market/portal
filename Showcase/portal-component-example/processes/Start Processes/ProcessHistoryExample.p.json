@@ -332,7 +332,7 @@
       "type" : "DialogCall",
       "name" : "Alpha Company Process History",
       "config" : {
-        "dialogId" : "portal.component.example.serenity.ProcessHistoryExampleSerenity",
+        "dialogId" : "com.axonivy.portal.component.example.serenity.ProcessHistoryExampleSerenity",
         "startMethod" : "start(Boolean,Boolean)",
         "call" : {
           "params" : [
@@ -355,7 +355,7 @@
       "type" : "DialogCall",
       "name" : "Beta Company Process History",
       "config" : {
-        "dialogId" : "portal.component.example.serenity.ProcessHistoryExampleSerenity",
+        "dialogId" : "com.axonivy.portal.component.example.serenity.ProcessHistoryExampleSerenity",
         "startMethod" : "start(Boolean,Boolean)",
         "call" : {
           "params" : [

@@ -8,15 +8,21 @@
     <ui:define name="content">
       <h:outputStylesheet library="css" name="process-viewer-component-demo.css" />
 
-      <h1>Process Viewer Component Example</h1>
+      <div class="layout-wrapper">
+        <h:form>
+          <ic:com.axonivy.portal.component.example.internal.ThemeSelection serenityExampleLink="#{data.processViewerForSerenityLink}" />
+        </h:form>
 
-      <h:form id="form">
-        <ic:com.axonivy.portal.component.ProcessViewer caseId="#{data.caseId}" processLink="#{data.processLink}" containerStyleClass="process-viewer-container" />
+        <h1>Process Viewer Component Example</h1>
 
-        <div class="command-btns">
-          <p:commandButton id="proceed" actionListener="#{logic.close}" value="Close" update="form" icon="pi pi-times" />
-        </div>
-      </h:form>
+        <h:form id="form">
+          <ic:com.axonivy.portal.component.ProcessViewer caseId="#{data.caseId}" processLink="#{data.processLink}" containerStyleClass="process-viewer-container" />
+
+          <div class="command-btns">
+            <p:commandButton id="proceed" actionListener="#{logic.close}" value="Close" update="form" icon="pi pi-times" />
+          </div>
+        </h:form>
+      </div>
 
     </ui:define>
   </ui:composition>
