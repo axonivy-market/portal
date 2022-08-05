@@ -40,7 +40,7 @@
       "type" : "DialogCall",
       "name" : "ProcessChainExampleSerenity",
       "config" : {
-        "dialogId" : "portal.component.example.serenity.ProcessChainExampleSerenity",
+        "dialogId" : "com.axonivy.portal.component.example.serenity.ProcessChainExampleSerenity",
         "startMethod" : "start()"
       },
       "visual" : {
