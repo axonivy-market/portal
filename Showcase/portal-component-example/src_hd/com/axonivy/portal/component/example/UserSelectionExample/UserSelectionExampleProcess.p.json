@@ -53,8 +53,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivyteam.ivy.security.user.NewUser;",
-            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import com.axonivy.portal.component.example.utils.ProcessStartUtils;",
             "import java.util.Locale;",
             "import ch.ivyteam.ivy.security.IRole;",
             "import ch.ivyteam.ivy.security.IUser;",
@@ -63,17 +62,17 @@
             "",
             "in.definedRoleNames = Arrays.asList(\"BackendDeveloper\", \"Tester\");",
             "String backendDev1UserName = \"backendDev1\";",
-            "IUser backendDev1 = ISecurityContext.current().users().find(backendDev1UserName);",
+            "IUser backendDev1 = ivy.wf.getSecurityContext().findUser(backendDev1UserName);",
             "if (backendDev1 == null) {",
-            "  NewUser newUser = NewUser.create(backendDev1UserName).fullName(\"Backend Developer 1\").language(Locale.GERMAN).toNewUser();",
-            "  backendDev1 = ISecurityContext.current().users().create(newUser);",
-            "  IRole backendDev = ISecurityContext.current().roles().find(\"BackendDeveloper\");",
+            "  backendDev1 = ivy.wf.getSecurityContext().createUser(backendDev1UserName, \"Backend Developer 1\", \"\", Locale.GERMAN, \"\", \"\");",
+            "  IRole backendDev = ivy.wf.getSecurityContext().findRole(\"BackendDeveloper\");",
             "  if (backendDev != null) {",
             "    backendDev1.addRole(backendDev);",
             "  }",
             "}",
             "in.selectedUserForReadOnlyField = new UserDTO(backendDev1);",
-            "in.excludedUsernames = Arrays.asList(\"supporter\", \"tester\");"
+            "in.excludedUsernames = Arrays.asList(\"supporter\", \"tester\");",
+            "in.userSelectionSerenityExampleLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/UserSelectionExample/showUserSelectionExamplesSerenity.ivp\");"
           ]
         }
       },

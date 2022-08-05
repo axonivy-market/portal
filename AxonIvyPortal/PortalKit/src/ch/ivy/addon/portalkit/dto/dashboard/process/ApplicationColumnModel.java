@@ -76,7 +76,9 @@ public class ApplicationColumnModel extends ProcessColumnModel implements Serial
   }
   
   public void updateApplications(ProcessDashboardWidget widget) {
-    
+    if (widget == null) {
+      return;
+    }
     if (widget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) { 
       CompactDashboardProcessBean compactDashboardProcessBean = ManagedBeans.get("compactDashboardProcessBean");
       if (compactDashboardProcessBean != null) {
