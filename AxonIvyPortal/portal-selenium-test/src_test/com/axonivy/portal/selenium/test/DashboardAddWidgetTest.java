@@ -16,7 +16,7 @@ import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.CollectionCondition;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class DashboardAddWidgetTest extends BaseTest {
 
   private NewDashboardPage newDashboardPage;
@@ -60,7 +60,7 @@ public class DashboardAddWidgetTest extends BaseTest {
     var chartWidget = newDashboardPage.selectStatisticWidget();
     chartWidget.countStatisticCharts().shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
   }
-
+  
   private NewDashboardDetailsEditPage gotoEditPublicDashboardPage() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
