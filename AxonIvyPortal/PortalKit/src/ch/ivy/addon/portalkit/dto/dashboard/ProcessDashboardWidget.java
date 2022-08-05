@@ -8,6 +8,7 @@ import org.primefaces.model.SortMeta;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import ch.ivy.addon.portalkit.dto.dashboard.process.ApplicationColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
@@ -22,11 +23,14 @@ public class ProcessDashboardWidget extends DashboardWidget {
   private ProcessWidgetMode displayMode;
   @JsonIgnore
   private boolean isPreview;
+  private ApplicationColumnModel applicationFilter;
 
   public ProcessDashboardWidget() {}
 
   public ProcessDashboardWidget(ProcessDashboardWidget widget) {
     super(widget);
+    applicationFilter = new ApplicationColumnModel();
+    applicationFilter.initDefaultValue();
     displayMode = widget.getDisplayMode();
     isPreview = widget.isPreview();
   }
@@ -71,6 +75,14 @@ public class ProcessDashboardWidget extends DashboardWidget {
   @JsonIgnore
   public SortMeta getSortByName() {
     return SortFieldUtil.buildSortMeta("name", false);
+  }
+
+  public ApplicationColumnModel getApplicationFilter() {
+    return applicationFilter;
+  }
+
+  public void setApplicationFilter(ApplicationColumnModel applicationFilter) {
+    this.applicationFilter = applicationFilter;
   }
 
 }
