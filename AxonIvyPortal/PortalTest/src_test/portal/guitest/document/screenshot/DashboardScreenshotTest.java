@@ -99,6 +99,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
     refreshHomePage();
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DASHBOARD_FOLDER + "legacy-dashboard");
     executeDecorateJs("highlightAndNumberingDashboardSections();");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DASHBOARD_FOLDER + "dashboard-3-sections");
 
@@ -113,6 +114,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
 
   @Test
   public void screenshotNewDashboard() throws IOException{
+    
     showNewDashboard();
     newDashboardPage = new NewDashboardPage();
 
