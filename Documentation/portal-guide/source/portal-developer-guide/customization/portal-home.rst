@@ -38,7 +38,7 @@ Follow these steps to create your customzied Portal Home:
    Your custom home page should look like this:
 
    .. code-block:: html
-   
+
       <ui:composition template="/layouts/DefaultHomePageTemplate.xhtml">
       <ui:define name="customWidget">
       ...
@@ -48,9 +48,9 @@ Follow these steps to create your customzied Portal Home:
 #. Create a new processstart named ``DefaultApplicationHomePage.ivp`` for your
    new home page. Now you will use this processstart as the entry point of your
    Portal instead of the default one. To make Portal aware of your new Portal
-   home, you have to set the default pages to your project, as detailed in
-   :dev-url:`Standard Processes
-   </doc/nightly/designer-guide/user-interface/standard-processes/index.html>`
+   home, you have to set the default pages in your project, as detailed in
+   :dev-url:`Default Pages
+   </doc/nightly/designer-guide/user-interface/default-pages/index.html>`
 
 
 .. _customization-portal-home-advanced-usage:
@@ -94,7 +94,7 @@ The template includes placeholders to redefine the default widgets' sections.
    <div class="js-dashboard-main-content-3rd-col dashboard-main-content-3rd-col layout-col">
    <h:panelGroup layout="block" styleClass="js-statistic-widget" id="statistic-widget-container">
    <!-- KEEP THE STATISTIC WIDGET -->
-   <ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="true" tasks="#{tasks}"> 
+   <ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="true" tasks="#{tasks}">
    <!-- ADD THE WEATHER WIDGET BELOW STATISTIC WIDGET -->
    <ic:my.namespace.WeatherWidget />
    </h:panelGroup>
@@ -142,7 +142,7 @@ Customizing User Guide
 
 When the user guide is shown, the default order of guide steps is Welcome > Main Menu > Processes > Tasks > Username > Statistics.
 If you want to customize the guide, define the sections and put them into the ``GuideOverlayPanel`` component.
-Refer to ``CustomizedGuide.xhtml`` in the ``portal-developer-examples`` project. 
+Refer to ``CustomizedGuide.xhtml`` in the ``portal-developer-examples`` project.
 
 The supported sections are: ``welcomeGuide``, ``mainMenuGuide``, ``processWidgetGuide``, ``taskWidgetGuide``, ``statisticWidgetGuide``, ``userSettingsGuide``
 
@@ -151,19 +151,19 @@ The supported sections are: ``welcomeGuide``, ``mainMenuGuide``, ``processWidget
 	<ui:define name="welcomeGuide">
 	  <ic:ch.ivy.addon.portalkit.component.WelcomePortalDialog id="welcome-portal-guide-component"
 	    title="Welcome to Customized Guide"
-	    onNext="PF('left-menu-guide').show()" updatedComponentAfterGuide="#{updatedComponentAfterGuide}" 
+	    onNext="PF('left-menu-guide').show()" updatedComponentAfterGuide="#{updatedComponentAfterGuide}"
 	    rendered="#{guideBean.isGuideShown}" />
 	</ui:define>
-	
+
 	<ui:define name="taskWidgetGuide">
-	  <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="task-widget-guide-component" 
+	  <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="task-widget-guide-component"
 	    targetComponent="task-widget" targetCssSelector="#task-widget" icon="fa-check-square-o"
-	    title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/task/title')}" 
+	    title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/task/title')}"
 	    content="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/task/content')}"
-	    updatedComponentAfterGuide="#{updatedComponentAfterGuide}" 
+	    updatedComponentAfterGuide="#{updatedComponentAfterGuide}"
 	    rendered="#{guideBean.isGuideShown}" />
 	</ui:define>
 ..
-   
+
 
 .. |home-page-template| image:: ../../screenshots/dashboard/dashboard-3-sections.png
