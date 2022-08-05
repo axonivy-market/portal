@@ -13,28 +13,29 @@
   <c:set var="widget" value="#{cc.attrs.widget}" />
 
 <ui:decorate template="/layouts/restricted/decorator/TableWidget.xhtml">
-      <ui:param name="index" value="#{index}" />
-      <ui:param name="widget" value="#{widget}" />
-      <ui:param name="panelId" value="process-viewer-panel-group-#{index}" />
-      <ui:param name="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
-      <ui:param name="isRenderFilter" value="false" />
-      <ui:param name="isRenderInfo" value="false" />
-      <ui:param name="isRenderExpandCollapse" value="true" />
-      <ui:param name="panelStyleClass" value="process-viewer-widget-panel" />
+  <ui:param name="index" value="#{index}" />
+  <ui:param name="widget" value="#{widget}" />
+  <ui:param name="panelId" value="process-viewer-panel-group-#{index}" />
+  <ui:param name="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
+  <ui:param name="isRenderFilter" value="false" />
+  <ui:param name="isRenderInfo" value="false" />
+  <ui:param name="isRenderExpandCollapse" value="true" />
+  <ui:param name="panelStyleClass" value="process-viewer-widget-panel" />
 
-      <ui:define name="widgetContent">
-        <p:remoteCommand id="rcLoadProcessViewerFirstTime" autoRun="true" update="dashboard-process-viewer-container" global="false" async="true" process="@this"
-          oncomplete="loadWidgetFirstTime('js-loading-#{widget.id}', 'js-dashboard-process-viewer-container-#{widget.id}');"
-          actionListener="#{widget.buildProcessDataFirstTime()}" />
+  <ui:define name="widgetContent">
+    <p:remoteCommand id="rcLoadProcessViewerFirstTime" autoRun="true" update="dashboard-process-viewer-container" global="false" async="true" process="@this"
+      oncomplete="loadWidgetFirstTime('js-loading-#{widget.id}', 'js-dashboard-process-viewer-container-#{widget.id}');"
+      actionListener="#{widget.buildProcessDataFirstTime()}" />
 
-        <div class="ui-g-12 widget-height-100 u-padding-0">
-          <h:outputText id="loading" styleClass="js-loading-#{widget.id} ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}" />
-          <h:panelGroup id="dashboard-process-viewer-container" layout="block"
-            styleClass="ui-g-12 widget-height-100 u-padding-0 js-dashboard-process-viewer-container-#{widget.id} u-display-none">
-            <ic:com.axonivy.portal.component.ProcessViewer processLink="#{widget.processLink}" />
-          </h:panelGroup>
-        </div>
-      </ui:define>
+    <div class="ui-g-12 widget-height-100 u-padding-0">
+      <h:outputText id="loading" styleClass="js-loading-#{widget.id} ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}" />
+      <h:panelGroup id="dashboard-process-viewer-container" layout="block"
+        styleClass="ui-g-12 widget-height-100 u-padding-0 js-dashboard-process-viewer-container-#{widget.id} u-display-none">
+        <ic:com.axonivy.portal.component.ProcessViewer processLink="#{widget.processLink}" />
+        <h:outputStylesheet library="css" name="process-viewer-custom.css" />
+      </h:panelGroup>
+    </div>
+  </ui:define>
 </ui:decorate>
 </cc:implementation>
 

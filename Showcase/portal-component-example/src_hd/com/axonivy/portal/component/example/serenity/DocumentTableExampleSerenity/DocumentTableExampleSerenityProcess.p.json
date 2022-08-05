@@ -1,7 +1,7 @@
 {
   "format" : "9.4.15",
   "id" : "18258762620EAFB4",
-  "data" : "portal.component.example.serenity.DocumentTableExampleSerenity.DocumentTableExampleSerenityData",
+  "data" : "com.axonivy.portal.component.example.serenity.DocumentTableExampleSerenity.DocumentTableExampleSerenityData",
   "kind" : "HTML_DIALOG",
   "elements" : [ {
       "id" : "f0",
