@@ -82,7 +82,7 @@
       "type" : "DialogCall",
       "name" : "RoleSelectionExampleSerenity",
       "config" : {
-        "dialogId" : "portal.component.example.serenity.RoleSelectionExampleSerenity",
+        "dialogId" : "com.axonivy.portal.component.example.serenity.RoleSelectionExampleSerenity",
         "startMethod" : "start(String)",
         "output" : {
           "map" : {
