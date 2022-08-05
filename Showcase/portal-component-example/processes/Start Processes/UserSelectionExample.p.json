@@ -62,7 +62,7 @@
       "type" : "DialogCall",
       "name" : "UserSelectionExampleSerenity",
       "config" : {
-        "dialogId" : "portal.component.example.serenity.UserSelectionExampleSerenity",
+        "dialogId" : "com.axonivy.portal.component.example.serenity.UserSelectionExampleSerenity",
         "startMethod" : "start()",
         "output" : {
           "map" : {

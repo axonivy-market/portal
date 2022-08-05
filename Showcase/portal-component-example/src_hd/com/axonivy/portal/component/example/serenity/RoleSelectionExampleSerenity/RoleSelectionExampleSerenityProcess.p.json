@@ -1,7 +1,7 @@
 {
   "format" : "9.4.15",
   "id" : "1825C41865FB1EBB",
-  "data" : "portal.component.example.serenity.RoleSelectionExampleSerenity.RoleSelectionExampleSerenityData",
+  "data" : "com.axonivy.portal.component.example.serenity.RoleSelectionExampleSerenity.RoleSelectionExampleSerenityData",
   "kind" : "HTML_DIALOG",
   "elements" : [ {
       "id" : "f0",

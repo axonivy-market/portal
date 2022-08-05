@@ -1,7 +1,7 @@
 {
   "format" : "9.4.15",
   "id" : "18258D93178B9CCF",
-  "data" : "portal.component.example.serenity.ProcessChainExampleSerenity.ProcessChainExampleSerenityData",
+  "data" : "com.axonivy.portal.component.example.serenity.ProcessChainExampleSerenity.ProcessChainExampleSerenityData",
   "kind" : "HTML_DIALOG",
   "elements" : [ {
       "id" : "f0",
