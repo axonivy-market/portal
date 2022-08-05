@@ -20,7 +20,7 @@
       "id" : "f1",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 544, "y" : 64 }
+        "at" : { "x" : 448, "y" : 64 }
       }
     }, {
       "id" : "f5",
@@ -40,7 +40,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 320, "y" : 64 },
+        "at" : { "x" : 272, "y" : 64 },
         "size" : { "width" : 144, "height" : 44 }
       },
       "connect" : { "id" : "f4", "to" : "f1" }
@@ -48,7 +48,7 @@
       "id" : "f3",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 544, "y" : 160 }
+        "at" : { "x" : 448, "y" : 160 }
       }
     }, {
       "id" : "f6",
@@ -82,7 +82,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 320, "y" : 160 },
+        "at" : { "x" : 272, "y" : 160 },
         "size" : { "width" : 144, "height" : 44 }
       },
       "connect" : { "id" : "f8", "to" : "f3" }
@@ -99,12 +99,12 @@
             { "name" : "processLink", "type" : "String" }
           ],
           "map" : {
-            "param.caseId" : "ivy.case.getId()"
+            "param.caseId" : "in.selectedCaseId"
           }
         }
       },
       "visual" : {
-        "at" : { "x" : 320, "y" : 256 },
+        "at" : { "x" : 272, "y" : 256 },
         "size" : { "width" : 192, "height" : 44 }
       },
       "connect" : { "id" : "f13", "to" : "f11" }
@@ -112,7 +112,7 @@
       "id" : "f11",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 544, "y" : 256 }
+        "at" : { "x" : 448, "y" : 256 }
       }
     }, {
       "id" : "f12",
@@ -120,7 +120,16 @@
       "name" : "showProcessViewerForSerenityUsingCaseId.ivp",
       "config" : {
         "callSignature" : "showProcessViewerForSerenityUsingCaseId",
+        "input" : {
+          "params" : [
+            { "name" : "caseId", "type" : "Long" }
+          ],
+          "map" : {
+            "out.selectedCaseId" : "param.caseId"
+          }
+        },
         "outLink" : "showProcessViewerForSerenityUsingCaseId.ivp",
+        "showInStartList" : false,
         "startName" : "Show Process Viewer Using Case ID (Serenity theme)"
       },
       "visual" : {
@@ -135,6 +144,13 @@
       "config" : {
         "callSignature" : "showProcessViewerForSerenityUsingProcessLink",
         "outLink" : "showProcessViewerForSerenityUsingProcessLink.ivp",
+        "showInStartList" : false,
+        "input" : {
+          "code" : [
+            "import com.axonivy.portal.component.example.utils.ProcessStartUtils;",
+            "out.selectedProcessLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessViewerExample/showProcessViewerUsingProcessLink.ivp\");"
+          ]
+        },
         "startName" : "Show Process Viewer Using Process Link (Serenity theme)"
       },
       "visual" : {
@@ -146,7 +162,7 @@
       "id" : "f16",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 544, "y" : 352 }
+        "at" : { "x" : 448, "y" : 352 }
       }
     }, {
       "id" : "f17",
@@ -161,12 +177,12 @@
             { "name" : "processLink", "type" : "String" }
           ],
           "map" : {
-            "param.processLink" : "ivy.case.getProcessStart().getLink().getRelative()"
+            "param.processLink" : "in.selectedProcessLink"
           }
         }
       },
       "visual" : {
-        "at" : { "x" : 320, "y" : 352 },
+        "at" : { "x" : 272, "y" : 352 },
         "size" : { "width" : 192, "height" : 44 }
       },
       "connect" : { "id" : "f19", "to" : "f16" }
