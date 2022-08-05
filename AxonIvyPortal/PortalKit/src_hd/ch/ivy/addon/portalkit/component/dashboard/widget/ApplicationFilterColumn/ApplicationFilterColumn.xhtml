@@ -4,8 +4,10 @@
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="field" required="true" type="ch.ivy.addon.portalkit.dto.dashboard.ColumnModel"/>
+  <cc:attribute name="widget" type="ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget"/>
   <cc:attribute name="selectedApps" required="true"/>
   <cc:attribute name="appOptions" required="true"/>
+  <cc:attribute name="updateComponent" />
 </cc:interface>
 
 <cc:implementation>
@@ -18,6 +20,8 @@
         panelStyleClass="task-configuration__selectcheckboxmenu-panel"
         styleClass="task-configuration__selectcheckboxmenu">
         <f:selectItems value="#{cc.attrs.appOptions}" var="app" itemValue="#{app}" itemLabel="#{app}" />
+        <p:ajax event="change" listener="#{cc.attrs.field.updateApplications(cc.attrs.widget)}" update="#{cc.attrs.updateComponent}" partialSubmit="true" process="applications"/>
+        <p:ajax event="toggleSelect" listener="#{cc.attrs.field.updateApplications(cc.attrs.widget)}" update="#{cc.attrs.updateComponent}"  partialSubmit="true" process="applications"/>
       </p:selectCheckboxMenu>
     </div>
   </h:panelGroup>
