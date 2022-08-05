@@ -660,8 +660,6 @@ The Process Viewer component provides a visual representation of the process flo
 
 |portal-process-viewer-component|
 
-This component is a part of project ``portal-component``, which is independent of the Portal. You don't need to import the Portal projects to use it.
-
 Attributes of this component:
 
 .. csv-table::
