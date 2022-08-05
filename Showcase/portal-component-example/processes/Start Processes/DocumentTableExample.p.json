@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.15",
   "id" : "1818938E7EBC9329",
   "data" : "com.axonivy.portal.component.example.DocumentTableExampleData",
   "elements" : [ {
@@ -68,5 +68,73 @@
       "visual" : {
         "at" : { "x" : 576, "y" : 192 }
       }
+    }, {
+      "id" : "f10",
+      "type" : "DialogCall",
+      "name" : "DocumentTableExampleSerenity",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.component.example.serenity.DocumentTableExampleSerenity",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 328, "y" : 320 },
+        "size" : { "width" : 192, "height" : 44 }
+      },
+      "connect" : { "id" : "f14", "to" : "f11" }
+    }, {
+      "id" : "f11",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 576, "y" : 320 }
+      }
+    }, {
+      "id" : "f12",
+      "type" : "RequestStart",
+      "name" : "showDefaultDocumentTableExampleSerenity.ivp",
+      "config" : {
+        "callSignature" : "showDefaultDocumentTableExampleSerenity",
+        "outLink" : "showDefaultDocumentTableExampleSerenity.ivp",
+        "showInStartList" : false,
+        "startName" : "Show Default Document Table Example in Serenity theme"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 320 },
+        "labelOffset" : { "x" : -57, "y" : 22 }
+      },
+      "connect" : { "id" : "f13", "to" : "f10" }
+    }, {
+      "id" : "f15",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 576, "y" : 448 }
+      }
+    }, {
+      "id" : "f16",
+      "type" : "RequestStart",
+      "name" : "showCustomizedDocumentTableExampleSerenity.ivp",
+      "config" : {
+        "callSignature" : "showCustomizedDocumentTableExampleSerenity",
+        "outLink" : "showCustomizedDocumentTableExampleSerenity.ivp",
+        "showInStartList" : false,
+        "startName" : "Show Customized Document Table Example in Serenity theme"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 448 },
+        "labelOffset" : { "x" : -57, "y" : 22 }
+      },
+      "connect" : { "id" : "f18", "to" : "f17" }
+    }, {
+      "id" : "f17",
+      "type" : "DialogCall",
+      "name" : "CustomizedDocumentTableExampleSerenity",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.component.example.serenity.CustomizedDocumentTableExampleSerenity",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 328, "y" : 448 },
+        "size" : { "width" : 256, "height" : 44 }
+      },
+      "connect" : { "id" : "f19", "to" : "f15" }
     } ]
 }

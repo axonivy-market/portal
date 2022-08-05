@@ -22,7 +22,6 @@ import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.ProcessTreeUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class CategoryColumnModel extends ProcessColumnModel implements Serializable {
@@ -48,7 +47,6 @@ public class CategoryColumnModel extends ProcessColumnModel implements Serializa
 
   @JsonIgnore
   public String getDisplayCategories() {
-    Ivy.log().error("getDisplayCategories with filter list :{0} and node :{1}", CollectionUtils.emptyIfNull(filterList).toArray(), selectionCategoryNodes);
     return generateFriendlyCategoryPath(filterList, selectionCategoryNodes);
   }
 

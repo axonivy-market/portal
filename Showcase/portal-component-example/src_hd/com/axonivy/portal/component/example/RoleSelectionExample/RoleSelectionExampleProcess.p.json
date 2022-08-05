@@ -58,18 +58,19 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import com.axonivy.portal.component.example.utils.ProcessStartUtils;",
             "import ch.ivyteam.ivy.environment.Ivy;",
             "import com.axonivy.portal.component.dto.RoleDTO;",
             "import ch.ivyteam.ivy.security.IRole;",
             "import java.util.Arrays;",
             "",
             "String everybodyRoleName = \"Everybody\";",
-            "IRole everybodyRole = ISecurityContext.current().roles().find(everybodyRoleName);",
+            "IRole everybodyRole = ivy.wf.getSecurityContext().findRole(everybodyRoleName);",
             "in.selectedRoleForReadOnlyField = new RoleDTO(everybodyRole);",
             "Ivy.log().info(\"selected Role for read only field: \" + in.selectedRoleForReadOnlyField.getDisplayName());",
             "in.excludedRoleNames = Arrays.asList(\"Tester\", \"Supporter\");",
-            "in.definedRoleNames = Arrays.asList(\"Everybody\");"
+            "in.definedRoleNames = Arrays.asList(\"Everybody\");",
+            "in.roleSelectionSerenityExampleLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/RoleSelectionExample/showRoleSelectionExamplesSerenity.ivp\");"
           ]
         }
       },
