@@ -1,7 +1,9 @@
 package com.axonivy.portal.selenium.page;
 
+import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -15,6 +17,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void selectImageModeAndSaveWidget(String processName) {
     selectImageMode();
+    filterSelectFirstApplication();
     selectImageProcess(processName);
     clickSaveProcessWidget();
   }
@@ -28,6 +31,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void selectImageMode() {
     selectProcessMode("Image mode");
+    getApplicationCategoryFilter().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     getImageModeProcessSelectedProcess().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 
@@ -37,6 +41,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void previewImageModeProcess(String processName) {
     selectImageMode();
+    filterSelectFirstApplication();
     selectImageProcess(processName);
     getPreviewButton().click();
     getImageModeProcessPreview().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
@@ -59,6 +64,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void changeImageModeProcessAndSaveWidget(String newProcessName) {
+    filterSelectFirstApplication();
     selectImageProcess(newProcessName);
     clickSaveProcessWidget();
   }
@@ -72,6 +78,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void previewFullModeProcess(String processName) {
     selectFullMode();
+    filterSelectFirstApplication();
     selectFullProcess(processName);
     getPreviewButton().click();
     getFullModeProcessPreview().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
@@ -79,6 +86,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void selectFullMode() {
     selectProcessMode("Full mode");
+    filterSelectFirstApplication();
     getFullModeProcessSelectedProcess().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 
@@ -112,6 +120,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void selectFullModeProcessAndSaveWidget(String processName) {
     selectFullMode();
+    filterSelectFirstApplication();
     selectFullProcess(processName);
     clickSaveProcessWidget();
   }
@@ -123,6 +132,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void previewCombinedModeProcess(String processName, String description) {
     selectCombinedMode();
+    filterSelectFirstApplication();
     selectCombinedProcess(processName, description);
     getPreviewButton().click();
     getCombinedModeProcessPreview().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
@@ -130,6 +140,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void selectCombinedMode() {
     selectProcessMode("Combined mode");
+    getApplicationCategoryFilter().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     getCombinedModeProcessSelectedProcess().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 
@@ -193,6 +204,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void selectCombinedModeProcessAndSaveWidget(String processName, String description) {
     selectCombinedMode();
+    filterSelectFirstApplication();
     selectCombinedProcess(processName, description);
     clickSaveProcessWidget();
   }
@@ -216,6 +228,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   public void selectCompactMode() {
     selectProcessMode("Compact mode");
     getCompactModeWidgetTitle().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    getApplicationCategoryFilter().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     getCompactModeProcessCategoryFilter().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     getCompactModeProcessProcessFilter().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
@@ -246,6 +259,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void previewCompactModeProcessFilterCategory(String category) {
     selectCompactModeFromCombinedMode();
+    filterSelectFirstApplication();
     selectCompactModeCategory(category);
     getPreviewButton().click();
     getCompactModeProcessPreview().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
@@ -268,6 +282,10 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     return $("input[id$=':widget-filter-category']");
   }
 
+  public SelenideElement getApplicationCategoryFilter() {
+    return $("div[id$=':applications']");
+  }
+  
   private SelenideElement getCompactModeProcessCategoryFilterPanel() {
     return $("div[id$=':widget-filter-category-panel']");
   }
@@ -278,6 +296,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void previewCompactModeProcessFilterProcess(String processName) {
     selectCompactModeFromCombinedMode();
+    filterSelectFirstApplication();
     selectCompactModeProcess(processName);
     getPreviewButton().click();
     getCompactModeProcessPreview().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
@@ -305,6 +324,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     selectCompactModeFromCombinedMode();
     getCompactModeWidgetTitle().clear();
     getCompactModeWidgetTitle().sendKeys(processName);
+    filterSelectFirstApplication();
     selectCompactModeCategory(category);
     selectCompactModeProcess(processName);
     clickSaveProcessWidget();
@@ -314,6 +334,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     selectCompactMode();
     getCompactModeWidgetTitle().clear();
     getCompactModeWidgetTitle().sendKeys(processName);
+    filterSelectFirstApplication();
     selectCompactModeCategory(category);
     selectCompactModeProcess(processName);
   }
@@ -338,5 +359,25 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public SelenideElement getCompactModeProcessDisplayedCategoryFilter() {
     return getCompactModeProcessCategoryFilter().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void filterSelectFirstApplication() {
+    $("div[id$='user-filter']").waitUntil(appear, DEFAULT_TIMEOUT)
+        .$("div[id$=':applications']").$(".ui-selectcheckboxmenu-trigger.ui-corner-right")
+        .shouldBe(getClickableCondition()).click();
+    ElementsCollection applicationCheckboxOptions = $("[id$=':applications_panel']").waitUntil(appear, DEFAULT_TIMEOUT)
+      .$$(".ui-selectcheckboxmenu-item.ui-selectcheckboxmenu-list-item").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(1));
+    SelenideElement selenideElement = applicationCheckboxOptions.get(0);
+    selenideElement.$(".ui-chkbox-box.ui-widget").shouldBe(getClickableCondition()).click();
+     
+//    for (var item : applicationCheckboxOptions) {
+//      for (var app : applications) {
+//        if (item.getAttribute("data-item-value").equalsIgnoreCase(app)) {
+//          item.$(".ui-chkbox-box.ui-widget").shouldBe(getClickableCondition()).click();
+//          break;
+//        }
+//      }
+//    }
+    $("span.ui-icon-circle-close").click();
   }
 }
