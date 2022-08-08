@@ -6,7 +6,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
+import com.axonivy.portal.component.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivyteam.ivy.environment.Ivy;

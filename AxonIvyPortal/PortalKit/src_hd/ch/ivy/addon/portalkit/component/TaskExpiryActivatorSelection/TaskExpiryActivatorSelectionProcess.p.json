@@ -30,7 +30,7 @@
           "type" : "SubProcessCall",
           "name" : "CalculateTaskDelegate",
           "config" : {
-            "processCall" : "Functional Processes/CalculateTaskDelegate:call(java.util.List<com.axonivy.portal.component.dto.RoleDTO>,java.util.List<com.axonivy.portal.component.dto.UserDTO>,ch.ivy.addon.portalkit.dto.SecurityMemberDTO,ch.ivyteam.ivy.workflow.ITask)",
+            "processCall" : "Functional Processes/CalculateTaskDelegate:call(java.util.List<com.axonivy.portal.component.dto.RoleDTO>,java.util.List<com.axonivy.portal.component.dto.UserDTO>,com.axonivy.portal.component.dto.SecurityMemberDTO,ch.ivyteam.ivy.workflow.ITask)",
             "output" : {
               "map" : {
                 "out" : "in",
@@ -42,7 +42,7 @@
               "params" : [
                 { "name" : "roles", "type" : "java.util.List<com.axonivy.portal.component.dto.RoleDTO>" },
                 { "name" : "users", "type" : "java.util.List<com.axonivy.portal.component.dto.UserDTO>" },
-                { "name" : "currentUser", "type" : "ch.ivy.addon.portalkit.dto.SecurityMemberDTO" },
+                { "name" : "currentUser", "type" : "com.axonivy.portal.component.dto.SecurityMemberDTO" },
                 { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
               ],
               "map" : {
@@ -333,7 +333,7 @@
       "type" : "SubProcessCall",
       "name" : "CalculateTaskDelegate",
       "config" : {
-        "processCall" : "Functional Processes/CalculateTaskDelegate:call(java.util.List<com.axonivy.portal.component.dto.RoleDTO>,java.util.List<com.axonivy.portal.component.dto.UserDTO>,ch.ivy.addon.portalkit.dto.SecurityMemberDTO,ch.ivyteam.ivy.workflow.ITask)",
+        "processCall" : "Functional Processes/CalculateTaskDelegate:call(java.util.List<com.axonivy.portal.component.dto.RoleDTO>,java.util.List<com.axonivy.portal.component.dto.UserDTO>,com.axonivy.portal.component.dto.SecurityMemberDTO,ch.ivyteam.ivy.workflow.ITask)",
         "output" : {
           "map" : {
             "out" : "in",
@@ -344,7 +344,7 @@
           "params" : [
             { "name" : "roles", "type" : "java.util.List<com.axonivy.portal.component.dto.RoleDTO>" },
             { "name" : "users", "type" : "java.util.List<com.axonivy.portal.component.dto.UserDTO>" },
-            { "name" : "currentUser", "type" : "ch.ivy.addon.portalkit.dto.SecurityMemberDTO" },
+            { "name" : "currentUser", "type" : "com.axonivy.portal.component.dto.SecurityMemberDTO" },
             { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
           ],
           "map" : {
