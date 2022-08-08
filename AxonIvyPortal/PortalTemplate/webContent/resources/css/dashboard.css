@@ -85,6 +85,10 @@
   padding-top: 0;
 }
 
+.dashboard__body.dashboard__body__iframe--disabled iframe {
+  pointer-events: none;
+}
+
 @media screen and (max-width: 767px) {
   .dashboard__title-dropdown {
     min-width: 100% !important;
@@ -1222,7 +1226,8 @@ span.new-widget-dialog__icon.si {
   display: inline;
 }
 
-.widget-configuration.card.custom-widget-configuration {
+.widget-configuration.card.custom-widget-configuration,
+.widget-configuration.card.process-viewer-widget-configuration {
   margin-right: 0;
 }
 
@@ -1230,9 +1235,11 @@ span.new-widget-dialog__icon.si {
   width: 100%;
 }
 
-.custom-widget-panel {
+.custom-widget-panel,
+.process-viewer-widget-panel {
   height: 100%;
 }
+
 .custom-widget-panel .widget__content {
   height: calc(100% - 44px);
   padding: 0;
@@ -1241,6 +1248,10 @@ span.new-widget-dialog__icon.si {
 .custom-widget-panel .widget__content iframe,
 .custom-widget-panel .widget__content form {
   height: 100%;
+}
+
+.process-viewer-widget-panel .widget__content {
+  height: calc(100% - 44px);
 }
 
 /* Statistic chart widget */
