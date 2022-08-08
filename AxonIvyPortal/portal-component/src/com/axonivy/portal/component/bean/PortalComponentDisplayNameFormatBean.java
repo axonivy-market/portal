@@ -11,7 +11,7 @@ import ch.ivyteam.ivy.security.ISecurityMember;
 
 @ManagedBean
 @ApplicationScoped
-public class SecurityMemberDisplayNameFormatBean implements Serializable {
+public class PortalComponentDisplayNameFormatBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public String generateBriefDisplayNameForSecurityMember(ISecurityMember member, String securityMemberName) {

@@ -13,7 +13,7 @@ import com.axonivy.portal.component.dto.RoleDTO;
 import com.axonivy.portal.component.dto.UserDTO;
 
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
-import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
+import com.axonivy.portal.component.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
