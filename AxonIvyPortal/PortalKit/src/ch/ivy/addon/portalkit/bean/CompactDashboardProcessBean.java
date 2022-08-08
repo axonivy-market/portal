@@ -151,7 +151,9 @@ public class CompactDashboardProcessBean
   }
 
   public List<DashboardProcess> getPortalCompactProcesses() {
-    portalCompactProcesses = new ArrayList<>(dashboardProcessBean.getPortalDashboardProcesses());
+    if (CollectionUtils.isEmpty(portalCompactProcesses)) {
+      portalCompactProcesses = new ArrayList<>(dashboardProcessBean.getPortalDashboardProcesses());
+    }
     return portalCompactProcesses;
   }
 
@@ -160,17 +162,11 @@ public class CompactDashboardProcessBean
   }
 
   public List<DashboardProcess> getAllPortalProcesses() {
-    allPortalProcesses = findAllPortalProcesses();
-    return allPortalProcesses;
+    return CollectionUtils.isEmpty(allPortalProcesses) ? new ArrayList<>(dashboardProcessBean.getPortalDashboardProcesses()) : allPortalProcesses;
   }
 
   public void setAllPortalProcesses(List<DashboardProcess> allPortalProcesses) {
     this.allPortalProcesses = allPortalProcesses;
-  }
-
-  public List<DashboardProcess> findAllPortalProcesses() {
-    allPortalProcesses = new ArrayList<>(dashboardProcessBean.getPortalDashboardProcesses());
-    return allPortalProcesses;
   }
 
   @Override
