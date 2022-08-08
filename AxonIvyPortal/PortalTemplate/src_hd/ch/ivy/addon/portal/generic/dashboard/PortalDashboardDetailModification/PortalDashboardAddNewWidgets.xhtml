@@ -78,6 +78,12 @@
        widget="#{widget}"
        componentToUpdate="widget-configuration-form"/>
    </c:if>
+
+   <c:if test="#{widget.type eq 'PROCESS_VIEWER'}">
+     <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessViewerWidgetConfiguration id="new-widget-configuration-component"
+       widget="#{widget}"
+       componentToUpdate="widget-configuration-form"/>
+   </c:if>
   </h:form>
 
   <f:facet name="footer">
