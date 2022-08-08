@@ -52,7 +52,7 @@
                 <h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/Common/Task/Activator')}" />
                 <p:column>
                   <pc:securityMemberNameAndAvatar
-                    displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(data.activator, data.activatorName)}"
+                    displayName="#{portalComponentDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(data.activator, data.activatorName)}"
                     securityMember="#{data.activator}" />
                 </p:column>
 
