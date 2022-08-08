@@ -24,9 +24,9 @@
   <f:event listener="#{securityMemberDisplayNameBean.init()}" type="preRenderComponent" />
   <!-- Display User name as text format -->
   <h:panelGroup id="security-member-container" layout="block" styleClass="security-member-container #{cc.attrs.securityMemberContainerStyleClass}">
-    <pc:securityMemberNameAndAvatar securityMember="#{securityMember}"
+    <pc:securityMemberNameAndAvatar securityMember="#{securityMember}" id="name-and-avatar"
       containerStyleClass="#{cc.attrs.renderDeputyInfo and task.getActivator() != null and ivy.session.isMemberThroughActiveSubstitution(task.getActivator()) ? 'has-deputy-info' : ''}"
-      displayNameId="#{cc.attrs.textId}" displayName="#{securityMemberDisplayNameBean.getBriefDisplayName(securityMember, memberName)}" displayNameStyleClass="#{cc.attrs.styleClass}" />
+      displayNameId="#{cc.attrs.textId}-text" displayName="#{securityMemberDisplayNameBean.getBriefDisplayName(securityMember, memberName)}" displayNameStyleClass="#{cc.attrs.styleClass}" />
     <h:panelGroup id="deputy-info"
       rendered="#{cc.attrs.renderDeputyInfo and task.getActivator() != null and ivy.session.isMemberThroughActiveSubstitution(task.getActivator())}">
       <i class="si si-information-circle" />
@@ -36,7 +36,7 @@
       rendered="#{cc.attrs.renderDeputyInfo and task.getActivator() != null and ivy.session.isMemberThroughActiveSubstitution(task.getActivator())}" />
 
     <p:tooltip rendered="#{securityMemberDisplayNameBean.isRenderDisplayNameTooltip(securityMember)}"
-      for="#{cc.attrs.textId}-text"
+      for="#{cc.clientId}:name-and-avatar:#{cc.attrs.textId}-text"
       value="#{securityMemberDisplayNameBean.getFullDisplayName(securityMember, memberName)}"
       hideEvent="mouseleave click"
       styleClass="security-member-tooltip"
@@ -45,7 +45,7 @@
 
     <ui:fragment rendered="#{securityMemberDisplayNameBean.isRenderGroupUsersAsTooltip(securityMember, alwaysShowAsText)}">
       <f:event listener="#{logic.loadUsersForTooltip(securityMember)}" type="preRenderComponent" />
-      <p:tooltip for="#{cc.attrs.textId}-text"
+      <p:tooltip for="#{cc.clientId}:name-and-avatar:#{cc.attrs.textId}-text"
         value="#{data.usersInTooltips}"
         escape="false"
         styleClass="security-member-tooltip"
