@@ -44,4 +44,12 @@
   --state-running-background: #FFE896;
   --state-done-background: #D4EBA2;
   --state-open-color: #C9C9C9;
+
+/* CSS variables for process viewer component */
+  --process-viewer-data-has-error-message-font-weight: bold;
+  --process-viewer-data-has-error-message-font-size: 1.2rem;
+  --process-details-column-title-font-size: 0.85rem;
+
+/* CSS variables for avatar component */
+  --avatar-background-color: var(--ivy-primary-color-grey-light, hsl(180, 1%, 85%));
 }

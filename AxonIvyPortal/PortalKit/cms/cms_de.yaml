@@ -111,6 +111,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CUSTOM: Benutzerdefiniertes Widget
       NEW: Neues Widget
       PROCESS: Prozess-Widget
+      PROCESS_VIEWER: Prozess-Viewer-Widget
       STATISTIC: Statistik-Widget
       TASK: Aufgaben-Widget
     GlobalVariable:
@@ -128,7 +129,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ProcessType:
       EXPRESS_PROCESS: Express Workflow
       EXTERNAL_LINK: External Link
-      IVY_PROCESS: Business Process
+      IVY_PROCESS: Geschäftsprozess
     ProcessWidgetMode:
       COMBINED_MODE: Combined mode
       COMPACT_MODE: Compact mode
@@ -169,11 +170,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     AdminSetting: Administration
   ProcessViewer:
     Breadcrumb: Prozess-Viewer von {0} Prozess
-    ProcessDataNotFound: Konnte die Prozessdaten nicht finden!
-    ProcessDetails: Prozess-Details
-    ProcessId: Prozess-ID
-    ProcessInfo: Prozess-Informationen
-    ProcessInfoIconTooltip: Klicken Sie hier, um Details zum Prozessstart anzuzeigen
     ProcessViewerText: Prozess-Viewer
     Title: Prozess-Viewer
   TaskDocuments:
@@ -797,6 +793,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       newWidgetHeader: Neue {0} Widget-Konfiguration
       pageTitle: Dashboard-Konfiguration
       processConfigurationDescription: In diesem Konfigurationsbereich kann das Widget konfiguriert werden. Bitte definieren Sie die gewünschten Filter sowie die Eigenschaften, die angezeigt werden sollen.
+      processViewerConfigurationDescription: In diesem Konfigurationsbereich kann das Widget konfiguriert werden. Bitte definieren Sie die Informationen, die angezeigt werden sollen.
       tableConfiguration: Tabellenkonfiguration
       tableConfigurationDesc: Sie können Spalten verwalten und die Standardsortierung einstellen, indem Sie auf die Spalte klicken.
       yourWidget: Ihr Widget
@@ -847,6 +844,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     preview: Vorschau
     processList: Prozessliste
     processListIntroduction: Dieses Widget zeigt verfügbare Prozessstarts an. Sie haben die Möglichkeit, unterschiedliche Formate zu wählen
+    processViewerIntroduction: Dieses Widget bietet eine visuelle Darstellung des Prozessablaufs.
     processWidgetInfo:
       noProcess: Es sind keine Prozesse vorhanden.
       numberOfProcessesByType: Anzahl der Prozesse nach Typ
@@ -882,6 +880,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     widgetType: Widget-Typ
     yourCases: Ihre Vorgänge
     yourCustomWidget: Ihr benutzerdefiniertes Widget
+    yourProcessViewer: Ihr Prozessbetrachter
     yourProcesses: Ihre Prozesse
     yourStatistics: Ihre Statistiken
     yourTasks: Ihre Aufgaben

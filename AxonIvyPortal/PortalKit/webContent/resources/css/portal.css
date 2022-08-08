@@ -595,7 +595,6 @@ body .process-widget .ui-selectbooleanbutton.ui-state-active .ui-icon {
 .grid-view-form .process-action-group {
   font-size: var(--small-font-size); }
 
-.process-details-column-title,
 .task-detail-column-title,
 .edit-process-info-group .edit-process-detail-1st-cell {
   opacity: 0.65;
@@ -1350,8 +1349,7 @@ body .ui-inputfield.case-detail-name-input {
 .case-detail-section-title, .case-history-button-container,
 .task-history-button-container,
 .case-detail-section-title > i.si,
-.case-detail-section-title > div > i.si,
-.portal-process-viewer-form.has-error-message {
+.case-detail-section-title > div > i.si {
   font-weight: var(--history-button-container-font-weight) !important; }
 
 .case-header-action-cell .action-item .ui-button {

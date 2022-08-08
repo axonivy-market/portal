@@ -23,7 +23,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "members", "type" : "java.util.List<ch.ivy.addon.portalkit.dto.SecurityMemberDTO>" }
+            { "name" : "members", "type" : "java.util.List<com.axonivy.portal.component.dto.SecurityMemberDTO>" }
           ],
           "map" : {
             "result.members" : "in.securityMembers"

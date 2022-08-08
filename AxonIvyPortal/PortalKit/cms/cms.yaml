@@ -111,6 +111,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CUSTOM: Custom widget
       NEW: New widget
       PROCESS: Process widget
+      PROCESS_VIEWER: Process viewer widget
       STATISTIC: Statistic widget
       TASK: Task widget
     GlobalVariable:
@@ -169,11 +170,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     AdminSetting: Admin settings
   ProcessViewer:
     Breadcrumb: Process Viewer of {0} process
-    ProcessDataNotFound: Could not found the Process Data!
-    ProcessDetails: Process details
-    ProcessId: Process Id
-    ProcessInfo: Process Information
-    ProcessInfoIconTooltip: Click to see details of the process start
     ProcessViewerText: Process Viewer
     Title: Process Viewer
   TaskDocuments:
@@ -738,6 +734,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       newWidgetHeader: New {0} Widget Configuration
       pageTitle: Dashboard Configuration
       processConfigurationDescription: You can configure your widget in this configuration area. Please define the required filters as well as properties to be shown.
+      processViewerConfigurationDescription: You can configure your widget in this configuration area. Please define the information to be shown.
       tableConfiguration: Table configuration
       tableConfigurationDesc: You can manage columns and set the standard sorting by clicking on the column.
       yourWidget: Your Widget
@@ -788,6 +785,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     preview: Preview
     processList: Process List
     processListIntroduction: This widget displays available process starts. You have the possibility to choose different formats.
+    processViewerIntroduction: This widget provides a visual representation of the process flow.
     processWidgetInfo:
       noProcess: There are no processes.
       numberOfProcessesByType: Number of processes by type
@@ -823,6 +821,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     widgetType: Widget type
     yourCases: Your Cases
     yourCustomWidget: Your Custom Widget
+    yourProcessViewer: Your Process Viewer
     yourProcesses: Your Processes
     yourStatistics: Your Statistics
     yourTasks: Your Tasks

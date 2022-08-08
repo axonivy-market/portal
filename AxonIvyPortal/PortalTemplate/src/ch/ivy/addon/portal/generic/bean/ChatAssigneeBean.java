@@ -32,7 +32,7 @@ import ch.ivy.addon.portal.chat.ChatReferencesContainer;
 import ch.ivy.addon.portal.chat.CreateGroupChatStatus;
 import ch.ivy.addon.portal.chat.GroupChat;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
-import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
+import com.axonivy.portal.component.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
