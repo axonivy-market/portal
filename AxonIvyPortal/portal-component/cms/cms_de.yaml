@@ -5,11 +5,20 @@ Dialogs:
         component:
           Common:
             Cancel: Abbrechen
+            Categories: Kategorien
             ConfirmForDelete: Sind Sie sicher, dass Sie diesen Eintrag löschen wollen?
             Confirmation: Bestätigung
+            Description: Beschreibung
             More: Mehr
+            Name: Titel
             'No': Nein
+            NotAvailable: N/V
+            Process:
+              ProcessName: Prozessname
             RequiredFieldMessage: Dies ist ein Pflichtfeld
+            Task:
+              Activator: Verantwortlich
+            Type: Typ
             'Yes': Ja
           DocumentTable:
             Delete: Löschen
@@ -66,5 +75,14 @@ Dialogs:
             NoDescription: Keine Beschreibung vorhanden
             NoName: kein Name
             NotAvailable: NV
+          ProcessViewer:
+            ProcessDataNotFound: Konnte die Prozessdaten nicht finden!
+            ProcessDetails: Prozess-Details
+            ProcessId: Prozess-ID
+            ProcessInfo: Prozess-Informationen
+            ProcessInfoIconTooltip: Klicken Sie hier, um Details zum Prozessstart anzuzeigen
+            ProcessType:
+              CASE_MAP: Fall Karte
+              IVY_PROCESS: Geschäftsprozess
 Labels:
   disabledUserPrefix: (inaktiv)
