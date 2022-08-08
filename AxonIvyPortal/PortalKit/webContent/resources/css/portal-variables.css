@@ -167,21 +167,201 @@
   --statistic-link-hover-backround-color: var(--ivy-primary-color-grey-pale);
   --statistic-link-hover-border: var(--ivy-primary-color-grey-light);
   --chart-container-separator-border-top: 2px solid #F4F4F4;
+  
+  /* Statistic chart Task by priority*/
   --chart-label-default-exception-priority-color: var(--ivy-primary-color-white);
   --chart-label-default-high-priority-color: var(--ivy-primary-color-white);
   --chart-label-default-normal-priority-color: var(--ivy-primary-color-white);
-  --chart-label-default-low-priority-color: var(--ivy-portal-color-gray-dark);
-  --chart-label-default-created-case-color: var(--ivy-portal-color-gray-dark);
+  --chart-label-default-low-priority-color: var(--ivy-primary-color-white);
+  
+  --chart-default-exception-priority-color: hsla(357, 83%, 61%);
+  --chart-default-high-priority-color: hsl(195, 100%, 29%);
+  --chart-default-normal-priority-color: hsl(192, 63%, 56%);
+  --chart-default-low-priority-color: hsl(188, 67%, 74%);
+  
+  /* Statistic chart Case by state */
+  --chart-label-default-created-case-color: var(--ivy-primary-color-white);
   --chart-label-default-running-case-color: var(--ivy-primary-color-white);
   --chart-label-default-done-case-color: var(--ivy-primary-color-white);
   --chart-label-default-failed-case-color: var(--ivy-primary-color-white);
+  
+  --chart-default-created-case-color: hsl(0, 0%, 79%);
+  --chart-default-running-case-color: hsl(195, 100%, 29%);
+  --chart-default-done-case-color: hsl(137, 51%, 53%);
+  --chart-default-failed-case-color: hsl(357, 83%, 61%);
+  
+  /* Statistic chart Case by finish task */
+  --chart-label-default-created-case-finish-task-color: var(--ivy-primary-color-white);
+  --chart-label-default-running-case-finish-task-color: var(--ivy-primary-color-white);
+  --chart-label-default-done-case-finish-task-color: var(--ivy-primary-color-white);
+  --chart-label-default-failed-case-finish-task-color: var(--ivy-primary-color-white);
+  
+  --chart-default-created-case-finish-task-color: hsl(0, 0%, 79%);
+  --chart-default-running-case-finish-task-color: hsla(195, 100%, 29%);
+  --chart-default-done-case-finish-task-color: hsl(137, 51%, 53%);
+  --chart-default-failed-case-finish-task-color: hsl(357, 83%, 61%);
+  
+  /* Statistic chart Case by finish time */
+  --chart-label-default-created-case-finish-time-color: var(--ivy-primary-color-white);
+  --chart-label-default-running-case-finish-time-color: var(--ivy-primary-color-white);
+  --chart-label-default-done-case-finish-time-color: var(--ivy-primary-color-white);
+  --chart-label-default-failed-case-finish-time-color: var(--ivy-primary-color-white);
+  
+  --chart-default-created-case-finish-time-color: hsl(0, 0%, 79%);
+  --chart-default-running-case-finish-time-color: hsl(195, 100%, 29%);
+  --chart-default-done-case-finish-time-color: hsl(137, 51%, 53%);
+  --chart-default-failed-case-finish-time-color: hsl(357, 83%, 61%);
+  
+  /* Statistic chart Elapsed time of done case */
   --chart-label-default-elapsed-time-color: var(--ivy-primary-color-white);
+  
+  --chart-default-elapsed-time-color: hsl(195, 100%, 29%);
+  
+  /* Statistic chart Task by expiry */
   --chart-label-default-task-expiried-color: var(--ivy-primary-color-white);
   --chart-label-default-task-today-color: var(--ivy-primary-color-white);
   --chart-label-default-task-week-color: var(--ivy-primary-color-white);
   --chart-label-default-task-month-color: var(--ivy-primary-color-white);
   --chart-label-default-task-year-color: var(--ivy-primary-color-white);
+  
+  /* Color for column of expired tasks */
+  --chart-default-task-expiried-color: hsl(357, 83%, 61%);
+
+  /* Color for column of tasks will be expired today */
+  --chart-default-task-today-color: hsl(195, 100%, 29%);
+
+  /* Color for column of tasks will be expired this week */
+  --chart-default-task-week-color: hsl(195, 100%, 29%);
+
+  /* Color for column of tasks will be expired this month */
+  --chart-default-task-month-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired this year */
+  --chart-default-task-year-color: hsl(192, 63%, 56%);
+  
+  /****** Colors when drilldown to the date level ******/
+
+  /* Color for column of tasks will be expired before 8 AM of the selected date */
+  --chart-default-task-expiried-today-before-8-color: hsl(195, 100%, 29%);
+
+  /* Color for column of tasks will be expired at 8 AM of the selected date */
+  --chart-default-task-expiried-today-8-color: hsl(195, 100%, 29%);
+
+  /* Color for column of tasks will be expired at 9 AM of the selected date */
+  --chart-default-task-expiried-today-9-color: hsl(195, 100%, 29%);
+
+  /* Color for column of tasks will be expired at 10 AM of the selected date */
+  --chart-default-task-expiried-today-10-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired at 11 AM of the selected date */
+  --chart-default-task-expiried-today-11-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired at 12 AM of the selected date */
+  --chart-default-task-expiried-today-12-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired at 13 PM of the selected date */
+  --chart-default-task-expiried-today-13-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired at 14 PM of the selected date */
+  --chart-default-task-expiried-today-14-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired at 15 PM of the selected date */
+  --chart-default-task-expiried-today-15-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired at 16 PM of the selected date */
+  --chart-default-task-expiried-today-16-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired at 17 PM of the selected date */
+  --chart-default-task-expiried-today-17-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired after 18 PM of the selected date */
+  --chart-default-task-expiried-today-after-18-color: hsl(195, 100%, 29%);
+
+  /****** Colors when drilldown to the week level ******/
+
+  /* Color for column of tasks will be expired on Monday of the selected week */
+  --chart-default-task-expiried-mon-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired on Tuesday of the selected week */
+  --chart-default-task-expiried-tue-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired on Wednesday of the selected week */
+  --chart-default-task-expiried-wed-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired on Thursday of the selected week */
+  --chart-default-task-expiried-thu-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired on Friday of the selected week */
+  --chart-default-task-expiried-fri-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired on Saturday of the selected week */
+  --chart-default-task-expiried-sat-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired on Sunday of the selected week */
+  --chart-default-task-expiried-sun-color: hsl(195, 100%, 29%);
+
+  /****** Colors when drilldown to the month level ******/
+
+  /* Color for column of tasks will be expired on the first week of the selected month */
+  --chart-default-task-expiried-first-week-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on the second week of the selected month */
+  --chart-default-task-expiried-second-week-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on the third week of the selected month */
+  --chart-default-task-expiried-third-week-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on the fourth week of the selected month */
+  --chart-default-task-expiried-fourth-week-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on the fifth week of the selected month */
+  --chart-default-task-expiried-fifth-week-color: hsl(192, 63%, 56%);
+
+  /****** Colors when drilldown to the year level ******/
+
+  /* Color for column of tasks will be expired on January of the selected year */
+  --chart-default-task-expiried-jan-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on February of the selected year */
+  --chart-default-task-expiried-feb-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on March of the selected year */
+  --chart-default-task-expiried-mar-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on April of the selected year */
+  --chart-default-task-expiried-apr-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on May of the selected year */
+  --chart-default-task-expiried-may-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on June of the selected year */
+  --chart-default-task-expiried-june-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on July of the selected year */
+  --chart-default-task-expiried-july-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on August of the selected year */
+  --chart-default-task-expiried-aug-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on September of the selected year */
+  --chart-default-task-expiried-sep-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on October of the selected year */
+  --chart-default-task-expiried-oct-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on November of the selected year */
+  --chart-default-task-expiried-nov-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on December of the selected year */
+  --chart-default-task-expiried-dec-color: hsl(192, 63%, 56%);
+
+  /* Statistic chart Cases by Category */
   --chart-label-default-cases-by-category-color: var(--ivy-primary-color-white);
+  
+  --chart-default-cases-by-category-color: hsl(195, 100%, 29%);
+  
+  /* Legend labels color for Doughnut Chart */
+  --chart-default-legend-color: hsl(0, 0%, 11%);
 
   /* Sidebar */
   --sidebar-app-text-color: var(--menuitem-text-color);
