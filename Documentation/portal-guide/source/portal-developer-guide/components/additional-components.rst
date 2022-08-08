@@ -673,7 +673,7 @@ How to Use
 
 You can integrate the Process Viewer component in any page by including following code.
 
-#. You have to set one of below parameters
+#. You have to set one of parameters below:
 
    - ``caseId``: show the process or Case Map of the case has ID equals to ``caseId``.
 
@@ -690,7 +690,7 @@ You can integrate the Process Viewer component in any page by including followin
    .. warning::
       Sub Case (Technical Case) or Express Workflow Process is not supported.
 
-#. You can customzie container style by using ``containerStyleClass`` parameter
+#. You can customize the container style by using parameter ``containerStyleClass``
 
 Refer to process ``ProcessViewerExample`` in project ``portal-component-example`` for more details.
 
