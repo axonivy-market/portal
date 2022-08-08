@@ -7,7 +7,7 @@ One way to consume statistics is through your personal dashboard (see
 :ref:`dashboard`). If you need a deeper insight in what is going on, the
 **Full Statistics** page provides you with the perfect toolset. You can
 consume statistics and charts here at one glance and have the chance to set up
-your own statistics. You can reach the page by using the 
+your own statistics. You can reach the page by using the
 :guilabel:`Statistics` link in the Axon Ivy Portal menu.
 
 .. hint::
@@ -43,7 +43,7 @@ created. Each chart provides you with the following features:
 HowTo: Create chart
 -------------------
 
-#. Click on the link ``Add new chart``. 
+#. Click on the link ``Add new chart``.
 
 #. You are routed to the Chart Configuration page.
 
@@ -70,7 +70,7 @@ HowTo: Create chart
 +-----------------------+-----------------------+-----------------------+
 | Name                  | Type                  | Description           |
 +=======================+=======================+=======================+
-| Tasks by priority     | Donut chart           | Displays all tasks    |
+| Tasks by priority     | Doughnut chart        | Displays all tasks    |
 |                       |                       | assigned to a user or |
 |                       |                       | a belonged role       |
 |                       |                       | categorized by their  |
@@ -80,7 +80,7 @@ HowTo: Create chart
 |                       |                       | values are shown in   |
 |                       |                       | percentages.          |
 +-----------------------+-----------------------+-----------------------+
-| Case by state         | Donut chart           | Displays all cases    |
+| Case by state         | Doughnut chart        | Displays all cases    |
 |                       |                       | belonging to a user   |
 |                       |                       | or a role categorized |
 |                       |                       | by their state (In    |
@@ -108,7 +108,7 @@ HowTo: Create chart
 |                       |                       | values are shown in   |
 |                       |                       | percentages.          |
 +-----------------------+-----------------------+-----------------------+
-| Processed cases in    | Donut chart           | Displays all cases    |
+| Processed cases in    | Doughnut chart        | Displays all cases    |
 | time period           |                       | belonging to a user   |
 |                       |                       | or a role, where at   |
 |                       |                       | least one task was    |
@@ -122,7 +122,7 @@ HowTo: Create chart
 |                       |                       | values are shown in   |
 |                       |                       | percentages.          |
 +-----------------------+-----------------------+-----------------------+
-| Done cases in time    | Donut chart           | Displays all cases    |
+| Done cases in time    | Doughnut chart        | Displays all cases    |
 | period                |                       | belonging to a user   |
 |                       |                       | or a role, which were |
 |                       |                       | done during the       |
