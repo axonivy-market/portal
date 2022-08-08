@@ -118,18 +118,15 @@ import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
-import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria;
-import ch.ivy.addon.portalkit.statistics.Colors;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticChartTimeUtils;
-import ch.ivy.addon.portalkit.statistics.StatisticColors;
 import ch.ivy.addon.portalkit.statistics.StatisticFilter;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -142,7 +139,6 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
   private static final String CHART_LEGEND_POSITION_LEFT = "left";
   private static final String CHART_LEGEND_POSITION_RIGHT = "right";
   private static final String CHART_LEGEND_POSITION_BOTTOM = "bottom";
-  private static StatisticColors statisticColors = new StatisticColors();
   private int numberOfDefaultCharts;
   private final static String LOADING_MESSAGE = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/loadingCharts";
 
@@ -746,8 +742,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
 
     model.setData(data);
     model.setOptions(options);
-    model.setExtender(chartType == StatisticChartType.TASK_BY_PRIORITY ? "taskByPriorityChartExtender" : "caseByStateChartExtender");
-
+    model.setExtender(chartType.getChartExtender());
     return model;
   }
 
@@ -756,7 +751,6 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     legend.setPosition(legendPosition);
     legend.setDisplay(isDisplay);
     LegendLabel labels = new LegendLabel();
-    labels.setFontColor(statisticColors.getLegendColor());
     legend.setLabels(labels);
     return legend;
   }
@@ -777,7 +771,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     }
 
     DonutChartModel model = createDonutChartModel(chartData, StatisticChartType.TASK_BY_PRIORITY);
-    DonutChartDataSet dataSet = createDonutChartDataSet(Colors.PRIORITY_COLOR, chartData, isEmptyData);
+    DonutChartDataSet dataSet = createDonutChartDataSet(chartData, isEmptyData);
     model.getData().addChartDataSet(dataSet);
 
     if (isSetDefaultName) {
@@ -795,27 +789,11 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     return title;
   }
 
-  private DonutChartDataSet createDonutChartDataSet(String priorityColor, Map<String, Number> chartData,
+  private DonutChartDataSet createDonutChartDataSet(Map<String, Number> chartData,
       boolean isEmptyData) {
     DonutChartDataSet dataSet = new DonutChartDataSet();
     dataSet.setData(chartData.values().stream().collect(Collectors.toList()));
-    if (!isEmptyData) {
-      if (priorityColor == Colors.PRIORITY_COLOR) {
-        dataSet.setBackgroundColor(Colors.getPriorityColors(statisticColors));
-      } else {
-        dataSet.setBackgroundColor(Colors.getCaseStateColors(statisticColors));
-      }
-    }
     return dataSet;
-  }
-
-  /**
-   * set StatisticColors to session cache
-   * @param statisticColors
-   */
-  public void setStatisticsColors(StatisticColors statisticColors) {
-    IvyCacheService.newInstance().setSessionCache(IvyCacheIdentifier.STATISTIC_COLOR,
-        IvyCacheIdentifier.STATISTIC_COLOR, statisticColors);
   }
 
   /**
@@ -843,7 +821,6 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
 
     if (chartData.size() != 0) {
       buildBarChartDataSet(chartData, data, dataSet);
-      buildExpiryColorBySelectedValue(selectedValue, dataSet);
 
       String label = Ivy.cms().co(EXPIRY_PERIOD_CMS);
       if (selectDayOfWeek(selectedValue)) {
@@ -870,86 +847,17 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     data.setLabels(chartData.keySet().stream().collect(Collectors.toList()));
   }
 
-  private BarChartDataSet buildExpiryColorBySelectedValue(String selectedValue, BarChartDataSet dataSet) {
-    List<String> bgColor = new ArrayList<>();
-    String today = Ivy.cms().co(TODAY_EXPIRY_KEY);
-    String week = Ivy.cms().co(THIS_WEEK_EXPIRY_KEY);
-    String month = Ivy.cms().co(THIS_MONTH_EXPIRY_KEY);
-    String year = Ivy.cms().co(THIS_YEAR_EXPIRY_KEY);
-
-    if (selectedValue.equalsIgnoreCase(today)) {
-      // Build column color by hours
-      bgColor.add(statisticColors.getTaskExpiriedTodayBefore8Color());
-      bgColor.add(statisticColors.getTaskExpiriedToday8Color());
-      bgColor.add(statisticColors.getTaskExpiriedToday9Color());
-      bgColor.add(statisticColors.getTaskExpiriedToday10Color());
-      bgColor.add(statisticColors.getTaskExpiriedToday11Color());
-      bgColor.add(statisticColors.getTaskExpiriedToday8Color());
-      bgColor.add(statisticColors.getTaskExpiriedToday9Color());
-      bgColor.add(statisticColors.getTaskExpiriedToday10Color());
-      bgColor.add(statisticColors.getTaskExpiriedToday11Color());
-      bgColor.add(statisticColors.getTaskExpiriedToday12Color());
-      bgColor.add(statisticColors.getTaskExpiriedToday13Color());
-      bgColor.add(statisticColors.getTaskExpiriedToday14Color());
-      bgColor.add(statisticColors.getTaskExpiriedToday15Color());
-      bgColor.add(statisticColors.getTaskExpiriedToday16Color());
-      bgColor.add(statisticColors.getTaskExpiriedToday17Color());
-      bgColor.add(statisticColors.getTaskExpiriedTodayAfter18Color());
-    } else if (selectedValue.equalsIgnoreCase(week)) {
-      // Build column color by weekdays
-      bgColor.add(statisticColors.getTaskExpiriedMonColor());
-      bgColor.add(statisticColors.getTaskExpiriedTueColor());
-      bgColor.add(statisticColors.getTaskExpiriedWedColor());
-      bgColor.add(statisticColors.getTaskExpiriedThuColor());
-      bgColor.add(statisticColors.getTaskExpiriedFriColor());
-      bgColor.add(statisticColors.getTaskExpiriedSatColor());
-      bgColor.add(statisticColors.getTaskExpiriedSunColor());
-    } else if (selectedValue.equalsIgnoreCase(month)) {
-      // Build column color by week of the month
-      bgColor.add(statisticColors.getTaskExpiriedFirstWeekColor());
-      bgColor.add(statisticColors.getTaskExpiriedSecondWeekColor());
-      bgColor.add(statisticColors.getTaskExpiriedThirdWeekColor());
-      bgColor.add(statisticColors.getTaskExpiriedFourthWeekColor());
-      bgColor.add(statisticColors.getTaskExpiriedFifthWeekColor());
-    } else if (selectedValue.equalsIgnoreCase(year)) {
-      // Build column color by the month of the year
-      bgColor.add(statisticColors.getTaskExpiriedJanColor());
-      bgColor.add(statisticColors.getTaskExpiriedFebColor());
-      bgColor.add(statisticColors.getTaskExpiriedMarColor());
-      bgColor.add(statisticColors.getTaskExpiriedAprColor());
-      bgColor.add(statisticColors.getTaskExpiriedMayColor());
-      bgColor.add(statisticColors.getTaskExpiriedJuneColor());
-      bgColor.add(statisticColors.getTaskExpiriedJulyColor());
-      bgColor.add(statisticColors.getTaskExpiriedAugColor());
-      bgColor.add(statisticColors.getTaskExpiriedSeptColor());
-      bgColor.add(statisticColors.getTaskExpiriedOctColor());
-      bgColor.add(statisticColors.getTaskExpiriedNovColor());
-      bgColor.add(statisticColors.getTaskExpiriedDecColor());
-    } else {
-      // Build default column color
-      bgColor.add(statisticColors.getTaskExpiriedColor());
-      bgColor.add(statisticColors.getTaskExpiriedTodayColor());
-      bgColor.add(statisticColors.getTaskExpiriedThisWeekColor());
-      bgColor.add(statisticColors.getTaskExpiriedThisMonthColor());
-      bgColor.add(statisticColors.getTaskExpiriedThisYearColor());
-    }
-
-    dataSet.setBackgroundColor(bgColor);
-    dataSet.setBorderWidth(1);
-    return dataSet;
-  }
-
   private String getTaskByExpiryChartExtenderBySelectedValue(String selectedValue) {
     String extender = "";
     String today = Ivy.cms().co(TODAY_EXPIRY_KEY);
     String week = Ivy.cms().co(THIS_WEEK_EXPIRY_KEY);
     String month = Ivy.cms().co(THIS_MONTH_EXPIRY_KEY);
     String year = Ivy.cms().co(THIS_YEAR_EXPIRY_KEY);
-    if (selectedValue.equalsIgnoreCase(today)) {
+    if (selectedValue.equalsIgnoreCase(today) || selectDayOfWeek(selectedValue)) {
       extender = "taskByExpiryChartTodayExtender";
-    } else if (selectedValue.equalsIgnoreCase(week)) {
+    } else if (selectedValue.equalsIgnoreCase(week) || selectWeekOfMonth(selectedValue)) {
       extender = "taskByExpiryChartThisWeekExtender";
-    } else if (selectedValue.equalsIgnoreCase(month)) {
+    } else if (selectedValue.equalsIgnoreCase(month) || selectMonthOfYear(selectedValue)) {
       extender = "taskByExpiryChartThisMonthExtender";
     } else if (selectedValue.equalsIgnoreCase(year)) {
       extender = "taskByExpiryChartThisYearExtender";
@@ -993,7 +901,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     }
 
     DonutChartModel model = createDonutChartModel(chartData, chartType);
-    DonutChartDataSet dataSet = createDonutChartDataSet(Colors.STATE_COLOR, chartData, isEmptyData);
+    DonutChartDataSet dataSet = createDonutChartDataSet(chartData, isEmptyData);
     model.getData().addChartDataSet(dataSet);
     if (isSetDefaultName) {
       model.getOptions().setTitle(generateChartTitle(chartType, false));
@@ -1018,9 +926,6 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     CartesianScales scales = new CartesianScales();
     if (chartData.size() != 0) {
       buildBarChartDataSet(new HashMap<>(chartData), data, dataSet);
-
-      dataSet.setBackgroundColor(statisticColors.getElapsedTime());
-      dataSet.setBorderColor(statisticColors.getElapsedTime());
       
       scales.addXAxesData(createLinearAxes(CHART_LEGEND_POSITION_LEFT, Ivy.cms().co(CASE_CATEGORIES_CMS)));
       scales.addYAxesData(createLinearAxes(CHART_LEGEND_POSITION_BOTTOM, Ivy.cms().co(ELAPSED_TIME_DETAIL_CHART_NAME_CMS)));
@@ -1071,9 +976,6 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     CartesianScales scales = new CartesianScales();
     if (statisticData.getNumberOfCasesByCategory().size() != 0) {
       buildBarChartDataSet(new LinkedHashMap<>(statisticData.getNumberOfCasesByCategory()), data, dataSet);
-
-      dataSet.setBackgroundColor(statisticColors.getCasesByCategoryColor());
-      dataSet.setBorderColor(statisticColors.getCasesByCategoryColor());
       
       scales.addXAxesData(createLinearAxes(CHART_LEGEND_POSITION_LEFT, Ivy.cms().co(CASE_CATEGORIES_CMS)));
       scales.addYAxesData(createLinearAxes(CHART_LEGEND_POSITION_BOTTOM, Ivy.cms().co(CATEGORIES_CMS)));
@@ -1140,7 +1042,6 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
    */
   public void generateChartModelForStatisticCharts(List<StatisticChart> statisticChartList) {
     if (!statisticChartList.isEmpty()) {
-      fetchStatisticColor();
       initRolesForSavedChart(statisticChartList);
     }
     
@@ -1182,18 +1083,6 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     return CollectionUtils.emptyIfNull(statisticChart.getNames()).stream()
         .filter(name -> equalsLanguageLocale(name, userLanguage))
         .findFirst().orElse(new DisplayName());
-  }
-
-  /**
-   * 
-   * Fetch Statistic Color from DEFAULT_CHART_COLORS_PROCESS, and store it to session
-   */
-  public void fetchStatisticColor() {
-    Optional<Object> chartColor = IvyCacheService.newInstance().getSessionCacheValue(IvyCacheIdentifier.STATISTIC_COLOR,
-        IvyCacheIdentifier.STATISTIC_COLOR);
-    if (chartColor.isPresent()) {
-      statisticColors = (StatisticColors) chartColor.get();
-    }
   }
 
   /**

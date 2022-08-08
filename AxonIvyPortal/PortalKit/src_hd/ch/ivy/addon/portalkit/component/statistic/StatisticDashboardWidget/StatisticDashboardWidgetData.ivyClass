@@ -32,8 +32,6 @@ isFinishLoadCharts Boolean #field
 isFinishLoadCharts PERSISTENT #fieldModifier
 isCompactMode Boolean #field
 isCompactMode PERSISTENT #fieldModifier
-chartColors ch.ivy.addon.portalkit.statistics.StatisticColors #field
-chartColors PERSISTENT #fieldModifier
 defaultCharts java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> #field
 defaultCharts PERSISTENT #fieldModifier
 isDrilldownExpiryChart Boolean #field
