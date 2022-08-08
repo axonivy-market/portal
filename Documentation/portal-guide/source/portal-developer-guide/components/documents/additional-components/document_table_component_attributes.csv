@@ -16,12 +16,12 @@ deleteStyleClass,null,String,Styles for delete link.
 updatedComponentAfterDeleted,null,String,Component will be triggered the update after document is deleted.
 selectedType,,String,"String value to specify the selected document types, by default it will be first element in ``typeSelectionItems``."
 typeSelectionItems,"DOCUMENTATION,CONTRACT,INFORMATION,EMAIL,OTHERS",String,String value to specify the list of document type.
-enableScriptCheckingForUploadedDocument,,Boolean,"Boolean value to specify the script checking, when set to false script checking will not be executed. 
-It will detect Portal setting ``Portal.Document.EnableScriptChecking`` as default value, refer to :ref:`update-portal-settings` for more details.
-If Portal setting is not available, default value is ``false``."
-enableVirusScannerForUploadedDocument,,Boolean,"Boolean value to specify the virus scanning, when set to false virus scanning will not be executed. Refer to :ref:`Virus Scanning Setting<settings-virus-scanning-setting>` for more details.
-It will detect Portal setting ``Portal.Document.EnableVirusScanner`` as default value, refer to :ref:`update-portal-settings` for more details.
-If Portal setting is not available, default value is ``false``."
-allowedUploadFileTypes,,String,"String value to specify the list of file extension that can be uploaded.
-It will detect Portal setting ``Portal.Document.WhitelistExtension`` as default value, refer to :ref:`update-portal-settings` for more details.
-If Portal setting is not available, default value is ``doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,zip,jpg,jpeg,bmp,png``."
+enableScriptCheckingForUploadedDocument,,Boolean,"| Boolean value to specify script checking. Set to ``true`` to enable script checking.
+| The setting will detect Portal setting ``Portal.Document.EnableScriptChecking`` as its default value, refer to :ref:`update-portal-settings` for more details.
+| If the Portal setting is not available, defaults to ``false``."
+enableVirusScannerForUploadedDocument,,Boolean,"| Boolean value to specify virus scanning. Set to ``true`` to enable virus scanning. Refer to :ref:`Virus Scanning Setting<settings-virus-scanning-setting>` for more details.
+| The setting will detect Portal setting ``Portal.Document.EnableVirusScanner`` as its default value, refer to :ref:`update-portal-settings` for more details.
+| If Portal setting is not available, default value is ``false``."
+allowedUploadFileTypes,,String,"| String value to specify the list of file extension that can be uploaded.
+| The setting will detect Portal setting ``Portal.Document.WhitelistExtension`` as its default value, refer to :ref:`update-portal-settings` for more details.
+| If Portal setting is not available, default value is ``doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,zip,jpg,jpeg,bmp,png``."
