@@ -57,7 +57,6 @@ public class StatisticChartCreationBean implements Serializable {
   @PostConstruct
   public void init() {
     statisticService = StatisticService.getInstance();
-    statisticService.fetchStatisticColor();
     initStatisticChart();
   }
 

@@ -10,7 +10,7 @@
 </cc:interface>
 
 <cc:implementation>
-  <p:panelGrid id="chart-info-container" styleClass="chart-info-container">
+  <p:panelGrid id="chart-info-container" styleClass="chart-info-container ui-noborder">
     <p:row>
       <p:column styleClass="label-column">
         <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartInfo/chartName')}" for="info-chart-name" />
@@ -36,9 +36,9 @@
       </p:column>
     </p:row>
   </p:panelGrid>
-  <h:outputText styleClass="chart-info-header" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}" />
+  <p:panel styleClass="chart-info-header" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}" >
     <c:set var="filter" value="#{cc.attrs.selectedStatisticChart.filter}" />
-    <p:panelGrid id="chart-filter-container" styleClass="chart-info-container">
+    <p:panelGrid id="chart-filter-container" styleClass="chart-info-container ui-noborder">
       <p:row rendered="#{!(filter.timePeriodSelection eq 'CUSTOM' and empty filter.createdDateFrom and empty filter.createdDateTo)}">
         <p:column>
           <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/timePeriod')}" for="info-created-period" />
@@ -113,5 +113,6 @@
       	</p:row>
       </c:forEach>
     </p:panelGrid>
+    </p:panel>
 </cc:implementation>
 </html>

@@ -8,29 +8,6 @@
       "type" : "EmbeddedProcess",
       "name" : "Fetch Default Charts",
       "elements" : [ {
-          "id" : "S10-f74",
-          "type" : "SubProcessCall",
-          "name" : "DefaultChartColors",
-          "config" : {
-            "processCall" : "Functional Processes/DefaultChartColors:defaultChartColors()",
-            "output" : {
-              "map" : {
-                "out" : "in",
-                "out.chartColors" : "result.chartColors"
-              },
-              "code" : [
-                "import ch.ivy.addon.portalkit.service.StatisticService;",
-                "",
-                "StatisticService service = StatisticService.getInstance();",
-                "service.setStatisticsColors(result.chartColors);"
-              ]
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 248, "y" : 160 }
-          },
-          "connect" : { "id" : "S10-f1", "to" : "S10-f73" }
-        }, {
           "id" : "S10-f73",
           "type" : "Script",
           "name" : "add to chart list",
@@ -64,7 +41,7 @@
             "at" : { "x" : 88, "y" : 160 }
           },
           "parentConnector" : "f67",
-          "connect" : { "id" : "S10-f4", "to" : "S10-f74" }
+          "connect" : { "id" : "S10-f0", "to" : "S10-f73" }
         }, {
           "id" : "S10-g0",
           "type" : "EmbeddedStart",
@@ -822,7 +799,6 @@
             "import ch.ivy.addon.portalkit.service.StatisticService;",
             "",
             "StatisticService service = StatisticService.getInstance();",
-            "service.fetchStatisticColor();",
             "in.statisticChartList = [DummyStatisticService.createDummyChartForGuide()];",
             "in.prevStatisticList = new ArrayList(in.statisticChartList);"
           ]

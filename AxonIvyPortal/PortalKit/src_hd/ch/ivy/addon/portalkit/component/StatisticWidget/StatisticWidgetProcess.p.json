@@ -250,7 +250,7 @@
         "at" : { "x" : 256, "y" : 160 },
         "size" : { "width" : 120, "height" : 48 }
       },
-      "connect" : { "id" : "f48", "to" : "f46" }
+      "connect" : { "id" : "f43", "to" : "f26" }
     }, {
       "id" : "f30",
       "type" : "Script",
@@ -373,29 +373,6 @@
         "size" : { "width" : 160, "height" : 44 }
       },
       "connect" : { "id" : "f6", "to" : "f5" }
-    }, {
-      "id" : "f46",
-      "type" : "SubProcessCall",
-      "name" : "DefaultChartColors",
-      "config" : {
-        "processCall" : "Functional Processes/DefaultChartColors:defaultChartColors()",
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.chartColors" : "result.chartColors"
-          },
-          "code" : [
-            "import ch.ivy.addon.portalkit.service.StatisticService;",
-            "",
-            "StatisticService service = StatisticService.getInstance();",
-            "service.setStatisticsColors(result.chartColors);"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 432, "y" : 160 }
-      },
-      "connect" : { "id" : "f43", "to" : "f26" }
     }, {
       "id" : "f47",
       "type" : "HtmlDialogEnd",
