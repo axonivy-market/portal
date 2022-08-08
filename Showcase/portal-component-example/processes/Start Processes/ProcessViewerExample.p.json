@@ -1,0 +1,190 @@
+{
+  "format" : "9.4.17",
+  "id" : "1821592826979C20",
+  "data" : "portal.component.example.ProcessViewerExampleData",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "showProcessViewerUsingCaseId.ivp",
+      "config" : {
+        "callSignature" : "showProcessViewerUsingCaseId",
+        "outLink" : "showProcessViewerUsingCaseId.ivp",
+        "startName" : "Show Process Viewer Using Case ID"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -21, "y" : 17 }
+      },
+      "connect" : { "id" : "f2", "to" : "f5" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 64 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "DialogCall",
+      "name" : "ProcessViewerExample",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.component.example.ProcessViewerExample",
+        "startMethod" : "start(Long,String)",
+        "call" : {
+          "params" : [
+            { "name" : "caseId", "type" : "Long" },
+            { "name" : "processLink", "type" : "String" }
+          ],
+          "map" : {
+            "param.caseId" : "ivy.case.getId()"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 64 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f4", "to" : "f1" }
+    }, {
+      "id" : "f3",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 160 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "RequestStart",
+      "name" : "showProcessViewerUsingProcessLink.ivp",
+      "config" : {
+        "callSignature" : "showProcessViewerUsingProcessLink",
+        "outLink" : "showProcessViewerUsingProcessLink.ivp",
+        "startName" : "Show Process Viewer Using Process Link"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 },
+        "labelOffset" : { "x" : -21, "y" : 17 }
+      },
+      "connect" : { "id" : "f9", "to" : "f7" }
+    }, {
+      "id" : "f7",
+      "type" : "DialogCall",
+      "name" : "ProcessViewerExample",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.component.example.ProcessViewerExample",
+        "startMethod" : "start(Long,String)",
+        "call" : {
+          "params" : [
+            { "name" : "caseId", "type" : "Long" },
+            { "name" : "processLink", "type" : "String" }
+          ],
+          "map" : {
+            "param.processLink" : "ivy.case.getProcessStart().getLink().getRelative()"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 160 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f8", "to" : "f3" }
+    }, {
+      "id" : "f10",
+      "type" : "DialogCall",
+      "name" : "ProcessViewerExampleSerenity",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.component.example.serenity.ProcessViewerExampleSerenity",
+        "startMethod" : "start(Long,String)",
+        "call" : {
+          "params" : [
+            { "name" : "caseId", "type" : "Long" },
+            { "name" : "processLink", "type" : "String" }
+          ],
+          "map" : {
+            "param.caseId" : "in.selectedCaseId"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 256 },
+        "size" : { "width" : 192, "height" : 44 }
+      },
+      "connect" : { "id" : "f13", "to" : "f11" }
+    }, {
+      "id" : "f11",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 256 }
+      }
+    }, {
+      "id" : "f12",
+      "type" : "RequestStart",
+      "name" : "showProcessViewerForSerenityUsingCaseId.ivp",
+      "config" : {
+        "callSignature" : "showProcessViewerForSerenityUsingCaseId",
+        "input" : {
+          "params" : [
+            { "name" : "caseId", "type" : "Long" }
+          ],
+          "map" : {
+            "out.selectedCaseId" : "param.caseId"
+          }
+        },
+        "outLink" : "showProcessViewerForSerenityUsingCaseId.ivp",
+        "showInStartList" : false,
+        "startName" : "Show Process Viewer Using Case ID (Serenity theme)"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 256 },
+        "labelOffset" : { "x" : -21, "y" : 17 }
+      },
+      "connect" : { "id" : "f14", "to" : "f10" }
+    }, {
+      "id" : "f15",
+      "type" : "RequestStart",
+      "name" : "showProcessViewerForSerenityUsingProcessLink.ivp",
+      "config" : {
+        "callSignature" : "showProcessViewerForSerenityUsingProcessLink",
+        "outLink" : "showProcessViewerForSerenityUsingProcessLink.ivp",
+        "showInStartList" : false,
+        "input" : {
+          "code" : [
+            "import com.axonivy.portal.component.example.utils.ProcessStartUtils;",
+            "out.selectedProcessLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessViewerExample/showProcessViewerUsingProcessLink.ivp\");"
+          ]
+        },
+        "startName" : "Show Process Viewer Using Process Link (Serenity theme)"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 352 },
+        "labelOffset" : { "x" : -21, "y" : 17 }
+      },
+      "connect" : { "id" : "f18", "to" : "f17" }
+    }, {
+      "id" : "f16",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 352 }
+      }
+    }, {
+      "id" : "f17",
+      "type" : "DialogCall",
+      "name" : "ProcessViewerExampleSerenity",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.component.example.serenity.ProcessViewerExampleSerenity",
+        "startMethod" : "start(Long,String)",
+        "call" : {
+          "params" : [
+            { "name" : "caseId", "type" : "Long" },
+            { "name" : "processLink", "type" : "String" }
+          ],
+          "map" : {
+            "param.processLink" : "in.selectedProcessLink"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 352 },
+        "size" : { "width" : 192, "height" : 44 }
+      },
+      "connect" : { "id" : "f19", "to" : "f16" }
+    } ]
+}

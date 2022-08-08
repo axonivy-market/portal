@@ -5588,7 +5588,6 @@ body span.ui-commandlink .si {
   display: inline-block;
 }
 
-.portal-process-viewer-form.has-error-message,
 .task-details-panel-title {
   font-size: 16px;
 }
@@ -6246,34 +6245,14 @@ a.dashboard-action-container label {
   height: calc(100% - 7px);
 }
 
-.portal-process-viewer-form.has-error-message {
-  height: 200px;
-}
-
-.process-viewer-frame {
-  height: 100%;
-}
-
-.process-viewer-data {
-  height : calc(100% - 50px);
+.portal-process-viewer-data {
+  height: calc(100% - 50px);
   overflow: auto;
   padding: 2rem !important;
 }
 
-.process-viewer-information {
-  height: 60px;
-}
-
 .process-viewer-command {
   height: 50px;
-}
-
-.process-viewer-diagram {
-  height: calc(100% - 60px);
-}
-
-.process-viewer-information .process-information-title {
-  font-weight: bold;
 }
 
 .case-detail-section-title .case-detail-action-command {
@@ -6284,50 +6263,9 @@ a.dashboard-action-container label {
   margin: 0;
 }
 
-.process-viewer-info-link {
-  cursor: pointer;
-  margin-left: 3px;
-}
-
-.process-viewer-info-link i {
-  vertical-align: middle;
-}
-
-.process-viewer-info-container {
-  max-width: 500px;
-}
-
-.process-viewer-info-container .process-information-title {
-  margin-left: 2px;
-  margin-bottom: 7px;
-}
-
-.process-technical-information-group {
-  table-layout: fixed;
-}
-
-.process-viewer-info-panel .ui-overlaypanel-content {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-@media screen and (max-width: 40em) {
-  .process-viewer-info-container {
-    max-width: auto;
-  }
-}
-
-.ui-avatar.gravatar {
-  background-color: var(--ivy-primary-color-grey-light);
-  vertical-align: middle;
-  float: left;
-  margin-right: 6px;
+body .ui-avatar.gravatar {
   width: 2.5rem;
   height: 2.5rem;
-  pointer-events: none;
-}
-.ui-avatar.gravatar > img {
-  z-index: 1;
 }
 
 .security-member-table-cell {
@@ -6342,18 +6280,7 @@ a.dashboard-action-container label {
   margin-top: 0;
 }
 
-.has-avatar {
-  position: relative;
-  display: inline-block;
-}
-
-.has-avatar .ui-avatar {
-  position: absolute;
-  top: -4px;
-}
-
-.name-after-avatar {
-  display: flex;
+body .name-after-avatar {
   padding-left: 3rem;
 }
 

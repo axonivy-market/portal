@@ -1,0 +1,14 @@
+.has-avatar {
+  position: relative;
+  display: inline-block;
+}
+
+.has-avatar .ui-avatar {
+  position: absolute;
+  top: -4px;
+}
+
+.name-after-avatar {
+  display: flex;
+  padding-left: 30px;
+}

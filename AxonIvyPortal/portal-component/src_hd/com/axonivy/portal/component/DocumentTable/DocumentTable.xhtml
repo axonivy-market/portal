@@ -31,9 +31,9 @@
   <cc:attribute name="selectedType" />
   <cc:attribute name="typeSelectionItems" shortDescription="Use #{documentUploadBean.documentTypes} if there are no custom Document Type" />
   
-  <cc:attribute name="enableScriptCheckingForUploadedDocument" default="false" />
-  <cc:attribute name="enableVirusScannerForUploadedDocument" default="false" />
-  <cc:attribute name="allowedUploadFileTypes" default="doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,zip,jpg,jpeg,bmp,png" type="java.lang.String"/>
+  <cc:attribute name="enableScriptCheckingForUploadedDocument" default="#{documentUploadBean.getPortalScriptCheckingSettingOrDefault(false)}" />
+  <cc:attribute name="enableVirusScannerForUploadedDocument" default="#{documentUploadBean.getPortalVirusScannerSettingOrDefault(false)}" />
+  <cc:attribute name="allowedUploadFileTypes" default="#{documentUploadBean.getPortalAllowedUploadFileTypesSettingOrDefault('doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,zip,jpg,jpeg,bmp,png')}" type="java.lang.String"/>
 
 </cc:interface>
 

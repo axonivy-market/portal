@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:p="http://primefaces.org/ui" xmlns:cc="http://xmlns.jcp.org/jsf/composite">
+
+<cc:interface>
+  <cc:attribute name="securityMember" required="true" />
+  <cc:attribute name="id" />
+  <cc:attribute name="renderedAvatar" default="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}" />
+</cc:interface>
+
+<cc:implementation>
+  <h:outputStylesheet library="css" name="portal-component.css" />
+  <h:outputStylesheet library="css" name="avatar-component.css" />
+
+  <p:avatar id="#{cc.attrs.id}" rendered="#{cc.attrs.renderedAvatar}"
+    gravatar="#{portalComponentAvatarBean.getEmailAddress(cc.attrs.securityMember)}" gravatarConfig="d=blank"
+    label="#{portalComponentAvatarBean.getNameInitials(cc.attrs.securityMember.getDisplayName())}" styleClass="gravatar" shape="circle" />
+</cc:implementation>
+</html>
