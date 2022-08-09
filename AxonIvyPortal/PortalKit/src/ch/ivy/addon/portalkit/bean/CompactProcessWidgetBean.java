@@ -46,6 +46,7 @@ import ch.ivy.addon.portalkit.service.UserProcessService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.language.LanguageConfigurator;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -57,7 +58,7 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 public class CompactProcessWidgetBean implements Serializable, Converter {
 
 private static final long serialVersionUID = -5889375917550618261L;
-  
+
   private List<UserProcess> userProcesses;
   private List<UserProcess> defaultProcesses;
   private List<UserProcess> selectedUserProcesses;
@@ -263,7 +264,8 @@ private static final long serialVersionUID = -5889375917550618261L;
   }
 
   public boolean isRequiredLanguage(Locale locale) {
-    return this.currentLocale.equals(locale);
+    final String requireLanguage = UserUtils.getUserLanguage();
+    return StringUtils.equalsIgnoreCase(requireLanguage, locale.getLanguage());
   }
   
   private void initDataForProcessAutoComplete() {
