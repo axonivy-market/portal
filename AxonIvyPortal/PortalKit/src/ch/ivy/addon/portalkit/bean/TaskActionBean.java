@@ -273,7 +273,7 @@ public class TaskActionBean implements Serializable {
   public void backToPrevPage(ITask task, boolean isFromTaskList, boolean isTaskStartedInDetails) {
     if (isFromTaskList || !isTaskStartedInDetails) {
       TaskUtils.updateTaskStartedAttribute(false);
-      PF.current().executeScript("window.history.back()");
+      PF.current().executeScript("backToPrevPage();");
     } else {
       backToTaskList(task);
     }
