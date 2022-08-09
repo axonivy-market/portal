@@ -291,7 +291,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForProcessViewerWidgetLoading();
-    Sleeper.sleep(1000);
+    Sleeper.sleep(2000);// wait for iframe data loading finish
     ScreenshotUtil.captureElementScreenshot(newDashboardPage.getProcessViewerWidget(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "process-viewer-widget");
   }
 
@@ -307,6 +307,6 @@ public class DashboardScreenshotTest extends ScreenshotTest {
   }
 
   private void redirectToDashboardConfiguration() {
-    redirectToRelativeLink("portalTemplate/1549F58C18A6C562/PortalDashboardConfiguration.ivp");
+    redirectToRelativeLink("portal/1549F58C18A6C562/PortalDashboardConfiguration.ivp");
   }
 }
