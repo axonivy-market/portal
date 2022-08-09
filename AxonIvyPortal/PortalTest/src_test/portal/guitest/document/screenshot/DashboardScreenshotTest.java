@@ -291,7 +291,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForProcessViewerWidgetLoading();
-    Sleeper.sleep(1000);
+    Sleeper.sleep(2000);// wait for iframe data loading finish
     ScreenshotUtil.captureElementScreenshot(newDashboardPage.getProcessViewerWidget(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "process-viewer-widget");
   }
 
