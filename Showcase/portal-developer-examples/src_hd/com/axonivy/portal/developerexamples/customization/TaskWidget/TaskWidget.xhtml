@@ -41,6 +41,7 @@
         rendered="#{taskView.dataModel.isSelectedColumn('EXPIRY_TIME')}" componentId="expiry-time"
         value="#{task.expiryTimestamp}" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskState dataModel="#{taskView.dataModel}" state="#{task.state}" />
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskApplication dataModel="#{taskView.dataModel}" task="#{task}" />
 
       <!-- New field -->
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-name-component"
