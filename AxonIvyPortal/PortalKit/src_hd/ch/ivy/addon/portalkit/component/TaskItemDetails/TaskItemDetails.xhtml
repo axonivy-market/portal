@@ -53,7 +53,7 @@
   </div>
 
   <h:panelGroup layout="block" styleClass="task-item-body portal-card-container" id="task-item-body">
-    <h:panelGroup class="task-item-body-container task-details-widgets u-padding-0 grid-stack" id="task-details-widgets"
+    <h:panelGroup class="task-item-body-container task-details-widgets js-task-details-widgets u-padding-0 grid-stack" id="task-details-widgets"
       rendered="#{not empty taskDetailsBean.widgets}">
 
       <c:if test="#{taskDetailsBean.getWidgetPositionByType('InformationWidget') gt -1}">
