@@ -1,0 +1,4 @@
+ApplicationServiceData #class
+ch.ivyteam.wf.processes #namespace
+applications java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyApplication> #field
+names java.util.List<String> #field

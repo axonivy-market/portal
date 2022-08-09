@@ -1,0 +1,4 @@
+ExceptionDialogData #class
+ch.ivy.addon.portalkit.component.ExceptionDialog #namespace
+isCopied Boolean #field
+isCopied PERSISTENT #fieldModifier
