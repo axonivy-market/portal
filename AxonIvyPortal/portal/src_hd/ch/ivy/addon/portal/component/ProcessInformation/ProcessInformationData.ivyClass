@@ -1,0 +1,10 @@
+ProcessInformationData #class
+ch.ivy.addon.portal.component.ProcessInformation #namespace
+processSteps java.util.List<ch.ivy.addon.portalkit.bo.ProcessStep> #field
+processSteps PERSISTENT #fieldModifier
+processId String #field
+processId PERSISTENT #fieldModifier
+userProcesses java.util.List<ch.ivyteam.ivy.workflow.start.IWebStartable> #field
+userProcesses PERSISTENT #fieldModifier
+selectedProcess ch.ivy.addon.portalkit.configuration.UserProcess #field
+selectedProcess PERSISTENT #fieldModifier

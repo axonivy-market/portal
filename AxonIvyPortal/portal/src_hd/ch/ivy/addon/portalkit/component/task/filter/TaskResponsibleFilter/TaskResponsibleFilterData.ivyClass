@@ -1,0 +1,4 @@
+TaskResponsibleFilterData #class
+ch.ivy.addon.portalkit.component.task.filter.TaskResponsibleFilter #namespace
+queryAutoComplete String #field
+queryAutoComplete PERSISTENT #fieldModifier

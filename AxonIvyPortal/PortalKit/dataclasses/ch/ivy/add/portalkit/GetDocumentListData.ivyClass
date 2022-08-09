@@ -1,5 +1,0 @@
-GetDocumentListData #class
-ch.ivy.add.portalkit #namespace
-businessCase ch.ivyteam.ivy.workflow.ICase #field
-message String #field
-documents java.util.List<com.axonivy.portal.component.ivydata.bo.IvyDocument> #field

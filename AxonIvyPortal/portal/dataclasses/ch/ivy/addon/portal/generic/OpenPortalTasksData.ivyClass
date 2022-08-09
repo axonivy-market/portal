@@ -1,0 +1,4 @@
+OpenPortalTasksData #class
+ch.ivy.addon.portal.generic #namespace
+taskView ch.ivy.addon.portal.generic.view.TaskView #field
+taskQuery ch.ivyteam.ivy.workflow.query.TaskQuery #field

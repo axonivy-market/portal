@@ -1,0 +1,4 @@
+CaseCreatorFilterData #class
+ch.ivy.addon.portalkit.component.cases.filter.CaseCreatorFilter #namespace
+queryAutoComplete String #field
+queryAutoComplete PERSISTENT #fieldModifier

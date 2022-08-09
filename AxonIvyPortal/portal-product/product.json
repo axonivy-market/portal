@@ -5,8 +5,8 @@
             "data": {
                 "projects": [
                     {
-                        "groupId": "ch.ivyteam.ivy.project.portal",
-                        "artifactId": "portalTemplate",
+                        "groupId": "com.axonivy.portal",
+                        "artifactId": "portal",
                         "version": "${version}",
                         "type": "iar"
                     },
