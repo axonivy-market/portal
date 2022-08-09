@@ -1,0 +1,48 @@
+{
+  "format" : "9.4.14",
+  "id" : "15DC175B7155DE1F",
+  "data" : "ch.ivy.addon.portalkit.component.task.filter.TaskCreationDateFilter.TaskCreationDateFilterData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "15AE9A0BAA4D09B7"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 96 },
+        "size" : { "width" : 22, "height" : 22 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 64, "y" : 224 },
+        "size" : { "width" : 22, "height" : 22 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "15AE9A0BAC670820"
+      },
+      "visual" : {
+        "at" : { "x" : 160, "y" : 96 },
+        "size" : { "width" : 22, "height" : 22 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 160, "y" : 224 },
+        "size" : { "width" : 22, "height" : 22 }
+      }
+    } ]
+}

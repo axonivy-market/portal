@@ -1,8 +1,0 @@
-TaskNameData #class
-ch.ivy.addon.portalkit.component.task.column.TaskName #namespace
-oldName String #field
-oldName PERSISTENT #fieldModifier
-task ch.ivyteam.ivy.workflow.ITask #field
-task PERSISTENT #fieldModifier
-changeNameNoteContent String #field
-changeNameNoteContent PERSISTENT #fieldModifier

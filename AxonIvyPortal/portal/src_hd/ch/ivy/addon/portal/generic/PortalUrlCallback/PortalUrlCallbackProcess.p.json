@@ -1,0 +1,87 @@
+{
+  "format" : "9.4.14",
+  "id" : "15C67FEA143420EE",
+  "data" : "ch.ivy.addon.portal.generic.PortalUrlCallback.PortalUrlCallbackData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "callbackUrl", "type" : "String" }
+          ],
+          "map" : {
+            "out.callbackUrl" : "param.callbackUrl"
+          }
+        },
+        "guid" : "15C67E57F20669EF"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "redirect()",
+      "config" : {
+        "callSignature" : "redirect",
+        "guid" : "15C67E8753E2C68C"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "Script",
+      "name" : "check url and redirect",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "import javax.faces.context.ExternalContext;",
+            "import javax.faces.context.FacesContext;",
+            "import javax.servlet.http.HttpServletRequest;",
+            "import ch.ivyteam.ivy.request.OpenRedirectVulnerabilityUtil;",
+            "import java.net.URLDecoder;",
+            "",
+            "HttpServletRequest request = null;",
+            "ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();",
+            "if (context != null){",
+            "  request = context.getRequest() as HttpServletRequest;",
+            "}",
+            "",
+            "String url = URLDecoder.decode(in.callbackUrl, \"UTF-8\");",
+            "",
+            "if (request != null && StringUtils.isNotBlank(url) && OpenRedirectVulnerabilityUtil.isValid(url, request)){  ",
+            "  context.redirect(url);",
+            "} else {",
+            "  PortalNavigatorAPI.navigateToPortalHome();",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f7", "to" : "f6" }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 160 }
+      }
+    } ]
+}

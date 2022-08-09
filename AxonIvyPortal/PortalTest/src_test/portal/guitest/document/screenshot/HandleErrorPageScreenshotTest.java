@@ -16,8 +16,8 @@ public class HandleErrorPageScreenshotTest extends ScreenshotTest {
   
   private String portalCustomErrorUrl = "InternalSupport/14B2FC03D2E87141/testPortalCustomErrorHandler.ivp";
   private String showIvyErrorPageUrl = "portal-developer-examples/169BDE2F368D6EC4/StartShowIvyErrorPage.ivp";
-  private String portalCustom404ErrorUrl = "PortalTemplate/1549F58C18A6C562/Error404Page.ivp";
-  private String portalCustom500ErrorUrl = "PortalTemplate/1549F58C18A6C562/Error500Page.ivp";
+  private String portalCustom404ErrorUrl = "portal/1549F58C18A6C562/Error404Page.ivp";
+  private String portalCustom500ErrorUrl = "portal/1549F58C18A6C562/Error500Page.ivp";
   
   @Test
   public void screenshotErrorPages() throws IOException {
