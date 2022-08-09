@@ -307,6 +307,6 @@ public class DashboardScreenshotTest extends ScreenshotTest {
   }
 
   private void redirectToDashboardConfiguration() {
-    redirectToRelativeLink("portalTemplate/1549F58C18A6C562/PortalDashboardConfiguration.ivp");
+    redirectToRelativeLink("portal/1549F58C18A6C562/PortalDashboardConfiguration.ivp");
   }
 }

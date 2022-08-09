@@ -1,0 +1,19 @@
+TaskItemData #class
+ch.ivy.addon.portalkit.component.TaskItem #namespace
+task ch.ivyteam.ivy.workflow.ITask #field
+task PERSISTENT #fieldModifier
+compactMode Boolean #field
+compactMode PERSISTENT #fieldModifier
+expandedTask ch.ivyteam.ivy.workflow.ITask #field
+expandedTask PERSISTENT #fieldModifier
+canUserResumeTask Boolean #field
+canUserResumeTask PERSISTENT #fieldModifier
+callbackUrl String #field
+callbackUrl 'Portal Task List url is used to be back after finish task' #fieldComment
+callbackUrl PERSISTENT #fieldModifier
+dataModel ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel #field
+dataModel PERSISTENT #fieldModifier
+currentPortalPage String #field
+currentPortalPage PERSISTENT #fieldModifier
+inFrame Boolean #field
+inFrame PERSISTENT #fieldModifier

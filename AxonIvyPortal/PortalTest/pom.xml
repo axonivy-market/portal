@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>ch.ivyteam.ivy.project.portal</groupId>
   <artifactId>portalTest</artifactId>
   <version>9.1.0.0-SNAPSHOT</version>
   <packaging>iar</packaging>
   <properties>
-    <build.plugin.version>9.3.1</build.plugin.version>
     <ivy.engine.version>9.4.0</ivy.engine.version>
+    <build.plugin.version>9.3.1</build.plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <powermock.version>2.0.2</powermock.version>
   </properties>
@@ -35,8 +36,8 @@
       <version>1.7.0</version>
     </dependency>
     <dependency>
-      <groupId>ch.ivyteam.ivy.project.portal</groupId>
-      <artifactId>portalTemplate</artifactId>
+      <groupId>com.axonivy.portal</groupId>
+      <artifactId>portal</artifactId>
       <version>9.1.0.0-SNAPSHOT</version>
       <type>iar</type>
     </dependency>
@@ -54,7 +55,6 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.3</version>
         <configuration>
@@ -63,7 +63,6 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
         <version>3.0.2</version>
         <executions>
