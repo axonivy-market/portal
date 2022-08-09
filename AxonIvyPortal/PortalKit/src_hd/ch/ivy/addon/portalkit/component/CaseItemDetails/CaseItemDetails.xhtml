@@ -53,7 +53,7 @@
   </h:panelGroup>
   
   <h:panelGroup layout="block" styleClass="case-detail-body portal-card-container ui-g-12" id="case-detail-body">
-    <h:panelGroup class="case-item-body-container case-details-widgets u-padding-0 grid-stack" id="case-details-widgets"
+    <h:panelGroup class="case-item-body-container case-details-widgets js-case-details-widgets u-padding-0 grid-stack" id="case-details-widgets"
       rendered="#{not empty caseDetailsBean.widgets}">
 
       <c:set var="historyWidgetComponent" value="#{caseDetailsBean.getHistoryWidgetComponentId(cc.clientId)}" />
@@ -210,6 +210,10 @@
         return;
       }
       if (document.referrer &amp;&amp; isHistoryBack) {
+        var iframes = $('.js-case-details-widgets').find('iframe');
+        if (iframes.length > 0) {
+          iframes.remove();
+        }
         window.history.back();
         event.preventDefault();
       } else {

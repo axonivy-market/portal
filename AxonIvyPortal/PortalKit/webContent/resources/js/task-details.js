@@ -103,3 +103,11 @@ function enableAllIFrameWhenEditLayout() {
     iframes.css('pointer-events', 'auto');
   }
 }
+
+function backToPrevPage() {
+  var iframes = $('.js-task-details-widgets').find('iframe');
+  if (iframes.length > 0) {
+    iframes.remove();
+  }
+  window.history.back();
+}
