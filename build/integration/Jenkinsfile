@@ -35,7 +35,7 @@ pipeline {
 
           echo '====================Check out tag of Portal latest successful release===================='
           powershell '''
-            $artifactPattern = $env:releaseDir + '/AxonIvyPortal/PortalKit/target/*.iar' 
+            $artifactPattern = $env:releaseDir + '/AxonIvyPortal/portal/target/*.iar' 
             $artifactName = dir $artifactPattern | select -expand BaseName
             $versionLastestReleasedPortal = $artifactName.substring(10)
             git fetch --tags

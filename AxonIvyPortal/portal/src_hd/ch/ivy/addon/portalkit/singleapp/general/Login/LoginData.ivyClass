@@ -1,0 +1,10 @@
+LoginData #class
+ch.ivy.addon.portalkit.singleapp.general.Login #namespace
+username String #field
+username PERSISTENT #fieldModifier
+password String #field
+password PERSISTENT #fieldModifier
+loginOk Boolean #field
+loginOk PERSISTENT #fieldModifier
+callbackUrl String #field
+callbackUrl PERSISTENT #fieldModifier

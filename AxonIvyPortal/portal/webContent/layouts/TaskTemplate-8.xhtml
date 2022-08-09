@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/restricted/AbstractTaskTemplate.xhtml">
+    <!-- DESCRIPTION: -->
+    <!-- This template is used for displaying task functionality and related information to support completing the task. -->
+    <!-- Serenity theme is included -->
+    
+    <!-- HOW TO USE: -->
+    <!-- Is used in non-frame mode. -->
+    
+    <!-- MIGRATION NOTES: -->
+    <!-- If you migrate Portal since previous versions and use <ui:define name="taskForm" /> to define the content inside the Request tab, -->
+    <!-- TabView is removed and <ui:define name="taskForm" /> is DEPRECATED, use <ui:define name="content" /> instead -->
+    <!-- <ui:define name="dynamicTabs" /> is removed, design your TabView if needed -->
+    
+    <!-- AVAILABLE PARAMS in this template: -->
+    <!-- <ui:param name="actualStepIndex" value="" /> current process step -->
+    <!-- <ui:param name="steps" value="" /> list of process steps -->
+    <!-- <ui:param name="isShowAllSteps" value="" /> shows all of steps on large resolution, default is false -->
+    <!-- <ui:param name="isHideCaseInfo" value="" /> hide case info button, default is false -->
+    <!-- <ui:param name="isHideTaskName" value="" /> hide task name, default is false -->
+    <!-- <ui:param name="isHideTaskAction" value="" /> hide task action button, default is false -->
+    <!-- <ui:param name="processChainDirection" value="" /> VERTICAL or HORIZONTAL (default) -->
+    <!-- <ui:param name="processChainShape" value="" /> LINE or CIRCLE (default) -->
+    <!-- <ui:param name="isWorkingOnATask" value="" /> working on a task in order to display warning if leave page, default: true -->
+    <!-- <ui:param name="announcementInvisible" value="" /> display announcement written by administrator, default: true -->
+    <!-- <ui:param name="isShowStartAdhocButton" value="" /> display the button to create adhoc, default: PMV Portal Express is deployed -->
+    
+    <!-- AVAILABLE TEMPLATE AREA (ui:insert): -->
+    <!-- <ui:define name="breadCrumb"> -->
+    <!-- <ui:define name="taskName"> -->
+    <!-- <ui:define name="content"> -->
+    <!-- <ui:define name="javascript"> -->
+    <!-- other areas: refer to BasicTemplate.xhtml -->
+    <ui:param name="task" value="#{ivy.task}" />
+    <ui:param name="abstractTaskTemplateBean" value="#{taskTemplateBean}" />
+    <ui:param name="announcementInvisible" value="true" />
+  </ui:composition>
+</h:body>
+</html>
