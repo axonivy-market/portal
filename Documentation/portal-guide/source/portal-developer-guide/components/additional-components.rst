@@ -16,6 +16,7 @@ These components fully support both Freya and Serenity themes of Primefaces.
    - :ref:`Document Table<components-additional-components-document-table>`
    - :ref:`User Selection<components-additional-components-user-selection>`
    - :ref:`Role Selection<components-additional-components-role-selection>`
+   - :ref:`Process Viewer<components-additional-components-process-viewer>`
 
 Please refer to project ``portal-component-example`` for more details on use and customization,
 as well as look and feel of each component in supported themes.
@@ -647,6 +648,56 @@ Migrate from Deprecated Role Selection
 
    .. note:: If you stored class ``ch.ivy.addon.portalkit.dto.RoleDTO`` in your database, you have to update the database manually.
 
+.. _components-additional-components-process-viewer:
+
+Process Viewer
+--------------
+
+Introduction
+^^^^^^^^^^^^
+
+The Process Viewer component provides a visual representation of the process flow from a given Case ID or Process relative link.
+
+|portal-process-viewer-component|
+
+Attributes of this component:
+
+.. csv-table::
+  :file: documents/additional-components/process_viewer_component_attributes.csv
+  :header-rows: 1
+  :class: longtable
+  :widths: 1 1 1 3
+
+How to Use
+^^^^^^^^^^
+
+You can integrate the Process Viewer component in any page by including following code.
+
+#. You have to set one of parameters below:
+
+   - ``caseId``: show the process or Case Map of the case has ID equals to ``caseId``.
+
+   .. code-block:: html
+
+      <ic:com.axonivy.portal.component.ProcessViewer caseId="000001" containerStyleClass="process-viewer-container" />
+
+   - ``processLink``: show the process or Case Map which by its defined relative link.
+
+   .. code-block:: html
+
+      <ic:com.axonivy.portal.component.ProcessViewer processLink="/designer/pro/portal-component-example/1821592826979C20/showProcessViewerUsingCaseId.ivp" containerStyleClass="process-viewer-container" />
+
+   .. warning::
+      Sub Case (Technical Case) or Express Workflow Process is not supported.
+
+#. You can customize the container style by using parameter ``containerStyleClass``
+
+Refer to process ``ProcessViewerExample`` in project ``portal-component-example`` for more details.
+
+
+If you want to customize its style,
+please refer to :ref:`components-additional-components-style-customization`.
+
 .. _components-additional-portal-dialog-with-icon:
 
 Portal Dialog with Icon
@@ -769,6 +820,16 @@ Process History
   :class: longtable
   :widths: 2 1 2
 
+
+Process Viewer
+^^^^^^^^^^^^^^
+
+.. csv-table::
+  :file: documents/additional-components/css_variables/process_viewer.csv
+  :header-rows: 1
+  :class: longtable
+  :widths: 2 1 2
+
 .. |process-history-example| image:: ../../screenshots/components/process-history-example.png
 .. |process-history-dialog-example| image:: ../../screenshots/components/process-history-dialog-example.png
 .. |set-business-entity-id-sub-process| image:: images/additional-component/set-business-entity-id-sub-process.png
@@ -785,3 +846,4 @@ Process History
 .. |role-selection-floating-label| image:: ../../screenshots/components/role-selection-component-floating-label-and-exclude-role.png
 .. |role-selection-with-children-and-ajax-event| image:: ../../screenshots/components/role-selection-component-ajax-event-selected-message.png
 .. |role-selection-component-ajax-expand| image:: ../../screenshots/components/role-selection-component-ajax-expand.png
+.. |portal-process-viewer-component| image:: ../../screenshots/components/portal-process-viewer-component.png
