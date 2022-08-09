@@ -444,8 +444,8 @@ public class DashboardWidgetUtils {
     widget.setId(id);
     widget.setName(name);
     widget.setLayout(new WidgetLayout());
-    widget.getLayout().setWidth(2);
-    widget.getLayout().setHeight(6);
+    widget.getLayout().setWidth(-1);
+    widget.getLayout().setHeight(-1);
     widget.getLayout().setAxisX(0);
     widget.getLayout().setAxisY(0);
     widget.setAutoPosition(true);
