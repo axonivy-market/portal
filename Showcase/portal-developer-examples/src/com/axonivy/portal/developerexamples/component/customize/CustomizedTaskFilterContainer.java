@@ -44,6 +44,7 @@ public class CustomizedTaskFilterContainer extends TaskFilterContainer {
     filters.add(creationDateFilter);
     filters.add(expiredDateFilter);
     filters.add(responsibleFilter);
+    filters.add(applicationFilter);
     filters.add(customerNameFilter);
     filters.add(shipmentDateFilter);
     Collections.sort(filters, new TaskFilterComparator());
