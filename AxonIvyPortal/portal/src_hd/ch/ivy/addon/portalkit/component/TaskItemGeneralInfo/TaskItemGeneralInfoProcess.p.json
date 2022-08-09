@@ -1,0 +1,226 @@
+{
+  "format" : "9.4.14",
+  "id" : "15493A537A91F8FC",
+  "data" : "ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "1682691BC1A26D76"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 96 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 320, "y" : 96 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "updateExpiryTime(ITask)",
+      "config" : {
+        "callSignature" : "updateExpiryTime",
+        "input" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
+          ],
+          "map" : {
+            "out.task" : "param.task"
+          }
+        },
+        "guid" : "16826946D7BC78E5"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 288 },
+        "labelOffset" : { "x" : -63, "y" : 15 }
+      },
+      "connect" : { "id" : "f14", "to" : "f13" }
+    }, {
+      "id" : "f13",
+      "type" : "Script",
+      "name" : "Change task expiry",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "import java.util.Arrays;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "import ch.ivyteam.ivy.security.IUser;",
+            "import ch.ivy.addon.portalkit.service.TaskInforActionService;",
+            "",
+            "// Behind the scene, Portal sets expiry activator to the current responsible then set expiry time.",
+            "boolean isUpdateExpiryActivator = false;",
+            "if (in.task.getExpiryActivator() == null) {",
+            "  in.task.setExpiryActivator(in.task.getActivator());",
+            "  isUpdateExpiryActivator = true;",
+            "}",
+            "",
+            "TaskInforActionService service = new TaskInforActionService();",
+            "IUser user = ivy.session.getSessionUser();",
+            "String fullName = user.getFullName();",
+            "String userName = StringUtils.substring(user.getMemberName(), 1);",
+            "",
+            "if (!in.#expiryTimestamp is initialized) {",
+            "  TaskUtils.removeTaskDeadline(in.task);",
+            "  in.changeDeadlineNoteContent = service.prepareRemoveExpiryTimeNoteContent(fullName, userName, in.task.getId());",
+            "} else {",
+            "  in.task.setExpiryTimestamp(in.expiryTimestamp);",
+            "  in.changeDeadlineNoteContent = service.prepareChangeExpiryNoteContent(fullName, userName, in.task.expiryTimestamp, in.task.getId());",
+            "}",
+            "",
+            "if (isUpdateExpiryActivator) {",
+            "  in.changeDeadlineNoteContent = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/taskDetails/setExpiryActivatorAndTimeNotes\", Arrays.asList(in.changeDeadlineNoteContent, in.task.getExpiryActivator().getDisplayName()));",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 288 }
+      },
+      "connect" : { "id" : "f17", "to" : "f15" }
+    }, {
+      "id" : "f15",
+      "type" : "Script",
+      "name" : "Add note",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : "in.task.getCase().createNote(ivy.session, in.changeDeadlineNoteContent);"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 384, "y" : 288 }
+      },
+      "connect" : { "id" : "f20", "to" : "f19" }
+    }, {
+      "id" : "f19",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 512, "y" : 288 }
+      }
+    }, {
+      "id" : "f11",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 512, "y" : 192 }
+      }
+    }, {
+      "id" : "f7",
+      "type" : "Script",
+      "name" : "prepare global case id",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.dto.GlobalCaseId;",
+            "",
+            "in.globalCaseId = GlobalCaseId.caseId(in.selectedCase.getId()).build();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 192 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f24", "to" : "f9" }
+    }, {
+      "id" : "f9",
+      "type" : "SubProcessCall",
+      "name" : "Navigator",
+      "config" : {
+        "processCall" : "Functional Processes/Navigator:viewCase(ch.ivy.addon.portalkit.dto.GlobalCaseId)",
+        "call" : {
+          "params" : [
+            { "name" : "caseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId" }
+          ],
+          "map" : {
+            "param.caseId" : "in.globalCaseId"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 384, "y" : 192 }
+      },
+      "connect" : { "id" : "f12", "to" : "f11" }
+    }, {
+      "id" : "f16",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "navigateToRelatedCase(ICase)",
+      "config" : {
+        "callSignature" : "navigateToRelatedCase",
+        "input" : {
+          "params" : [
+            { "name" : "selectedCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
+          ],
+          "map" : {
+            "out.selectedCase" : "param.selectedCase"
+          }
+        },
+        "guid" : "1720D0EE85E5021E"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 },
+        "labelOffset" : { "x" : -63, "y" : 20 }
+      },
+      "connect" : { "id" : "f3", "to" : "f7" }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "updateDelayTimestamp(ITask)",
+      "config" : {
+        "callSignature" : "updateDelayTimestamp",
+        "input" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
+          ],
+          "map" : {
+            "out.task" : "param.task"
+          }
+        },
+        "guid" : "172FDEB375661428"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 416 },
+        "labelOffset" : { "x" : -76, "y" : 27 }
+      },
+      "connect" : { "id" : "f23", "to" : "f22" }
+    }, {
+      "id" : "f18",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 440, "y" : 416 }
+      }
+    }, {
+      "id" : "f22",
+      "type" : "Script",
+      "name" : "Add Note",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "import ch.ivyteam.ivy.security.IUser;",
+            "import ch.ivy.addon.portalkit.service.TaskInforActionService;",
+            "",
+            "TaskInforActionService service = new TaskInforActionService();",
+            "IUser user = ivy.session.getSessionUser();",
+            "String fullName = user.getFullName();",
+            "String userName = StringUtils.substring(user.getMemberName(), 1);",
+            "String delayNote = service.prepareChangeDelayNoteContent(fullName, userName, in.task.delayTimestamp, in.task.getId());",
+            "in.task.getCase().createNote(ivy.session, delayNote);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 416 }
+      },
+      "connect" : { "id" : "f21", "to" : "f18" }
+    } ]
+}

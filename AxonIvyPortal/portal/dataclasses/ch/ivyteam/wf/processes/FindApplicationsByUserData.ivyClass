@@ -1,0 +1,3 @@
+FindApplicationsByUserData #class
+ch.ivyteam.wf.processes #namespace
+applications List<ch.ivy.addon.portalkit.configuration.Application> #field

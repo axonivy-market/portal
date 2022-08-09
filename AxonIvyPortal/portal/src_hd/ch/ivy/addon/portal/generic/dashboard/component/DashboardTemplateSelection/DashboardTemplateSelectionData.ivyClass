@@ -1,0 +1,4 @@
+DashboardTemplateSelectionData #class
+ch.ivy.addon.portal.generic.dashboard.component.DashboardTemplateSelection #namespace
+isPublicDashboard Boolean #field
+isPublicDashboard PERSISTENT #fieldModifier

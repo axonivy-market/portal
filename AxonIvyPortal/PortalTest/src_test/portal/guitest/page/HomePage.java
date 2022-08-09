@@ -10,7 +10,7 @@ import portal.guitest.common.WaitHelper;
 
 public class HomePage extends TemplatePage {
 
-	public final static String PORTAL_HOME_PAGE_URL = "portalTemplate/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
+	public final static String PORTAL_HOME_PAGE_URL = "portal/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
 	public final static String PORTAL_EXAMPLES_HOME_PAGE_URL = "portal-developer-examples/164211E97C598DAA/DefaultApplicationHomePage.ivp";
 	public final static String PORTAL_EXAMPLES_PROCESS_CHAIN = "portal-developer-examples/164DB506D12B25CF/showSampleProcessChain.ivp";
 	public final static String PORTAL_INTERNAL_HOME_PAGE_URL = "internalSupport/164211FF9482BB44/DefaultApplicationHomePage.ivp";
