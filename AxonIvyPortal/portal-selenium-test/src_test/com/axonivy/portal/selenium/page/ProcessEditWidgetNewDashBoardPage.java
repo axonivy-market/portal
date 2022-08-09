@@ -370,14 +370,6 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     SelenideElement selenideElement = applicationCheckboxOptions.get(0);
     selenideElement.$(".ui-chkbox-box.ui-widget").shouldBe(getClickableCondition()).click();
      
-//    for (var item : applicationCheckboxOptions) {
-//      for (var app : applications) {
-//        if (item.getAttribute("data-item-value").equalsIgnoreCase(app)) {
-//          item.$(".ui-chkbox-box.ui-widget").shouldBe(getClickableCondition()).click();
-//          break;
-//        }
-//      }
-//    }
     $("span.ui-icon-circle-close").click();
   }
 }
