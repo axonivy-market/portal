@@ -45,7 +45,7 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
   @Override
   public List<String> getDefaultColumns() {
     return Arrays.asList(TaskSortField.PRIORITY.name(), TaskSortField.NAME.name(), TaskSortField.ACTIVATOR.name(), TaskSortField.ID.name(), 
-        TaskSortField.CREATION_TIME.name(), TaskSortField.EXPIRY_TIME.name(), CUSTOM_CUSTOMER_NAME, CUSTOM_SHIPMENT_DATE);
+        TaskSortField.CREATION_TIME.name(), TaskSortField.EXPIRY_TIME.name(), TaskSortField.NAME.name(), TaskSortField.APPLICATION.name(), CUSTOM_CUSTOMER_NAME, CUSTOM_SHIPMENT_DATE);
   }
   
   @Override
@@ -58,7 +58,6 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
   @Override
   public void initFilterContainer() {
     filterContainer = new CustomizedTaskFilterContainer();
-//    filterContainer = new CustomizedTaskFilterContainer(criteria.isAdminQuery());
   }
   
   /**
