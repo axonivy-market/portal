@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="styleClass" />
+  <cc:attribute name="widgetVar" />
+  <cc:attribute name="startLoadingText" shortDescription="The text is showing when start ajax loading indicator"/>
+</cc:interface>
+<cc:implementation>
+  <c:set var="renderDetail" value="#{portalExceptionBean.errorDetailToEndUser}" />
+  <c:set var="isPortalInTeams" value="#{masterDataBean.portalInTeams}" />
+  <c:set var="isShowErrorLog" value="#{portalExceptionBean.isShowErrorLogToConsole}" />
+  <h:outputStylesheet library="css" name="module.css" />
+
+  <p:ajaxStatus id="#{cc.clientId}-#{cc.id}" widgetVar="#{cc.attrs.widgetVar}"
+    onerror="handleError(PrimeFaces.ajax.Queue.xhrs[0], #{renderDetail}, #{isShowErrorLog})"
+    styleClass="portal-ajax-loader">
+    <f:facet name="start">
+      <div class="ajax-status-position #{cc.attrs.styleClass}">
+        <div class="axonivy-loader">
+          <div class="spinner" />
+          <h5>#{empty cc.attrs.startLoadingText ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loading') : cc.attrs.startLoadingText}...</h5>
+        </div>
+      </div>
+    </f:facet>
+    <f:facet name="complete">
+      <div>
+        <!-- empty to solve file upload issue -->
+      </div>
+    </f:facet>
+  </p:ajaxStatus>
+
+  <p:dialog id="#{cc.clientId}-error-ajax-dialog" widgetVar="error-ajax-dialog"
+    modal="true" resizable="false" styleClass="error-ajax-dialog" responsive="true"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" closable="false">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/errorAjaxMessage')}"/>
+      </div>
+      <div class="ui-g-12 u-text-align-center MarTop5">
+        <div class="ui-g-12">
+          <p:button rendered="#{!isPortalInTeams}" href="#" onclick="window.open('#{userMenuBean.getHomePageURL()}', '_self')"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}"
+            icon="#{visibilityBean.generateButtonIcon('si si-house-chimney-2')}"/>
+        </div>
+        <p:link id="#{cc.clientId}-show-more" rendered="#{renderDetail}"
+           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}"
+           styleClass="ui-g-12" href="#"/>
+      </div>
+    </div>
+  </p:dialog>
+
+  <p:dialog id="#{cc.clientId}-detail-error-dialog" widgetVar="detail-error-dialog" rendered="#{renderDetail}"
+    closable="true" width="70%" closeOnEscape="true" modal="true" resizable="false" responsive="true"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/errorXhr')}">
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-2">
+        <h:outputText value="Status code"/>
+      </div>
+      <div class="ui-g-10">
+        <h:outputText id="error-code" />
+      </div>
+      <div class="ui-g-2">
+        <h:outputText value="Status text"/>
+      </div>
+      <div class="ui-g-10">
+        <h:outputText id="error-text" />
+      </div>
+      <div class="ui-g-2">
+        <h:outputText value="Url" />
+      </div>
+      <div class="ui-g-10">
+        <h:outputText id="error-url" />
+      </div>
+      <div class="ui-g-2">
+        <h:outputText value="Ready state" />
+      </div>
+      <div class="ui-g-10">
+        <h:outputText id="error-ready-state" />
+      </div>
+      <div class="ui-g-2">
+        <h:outputText value="Type" />
+      </div>
+      <div class="ui-g-10">
+        <h:outputText id="error-type" />
+      </div>
+      <div class="ui-g-2">
+        <h:outputText value="PfArgs" />
+      </div>
+      <div class="ui-g-10">
+        <h:outputText id="error-args" />
+      </div>
+      <div class="ui-g-2">
+        <h:outputText value="PfSettings.source.id" />
+      </div>
+      <div class="ui-g-10">
+        <h:outputText id="pfSettings-source" />
+      </div>
+      <div class="ui-g-2">
+        <h:outputText value="Form data" />
+      </div>
+      <div class="ui-g-10">
+        <p:inputTextarea readonly="true" id="form-data" styleClass="Wid100" rows="3" autoResize="false" />
+      </div>
+      <div class="ui-g-2">
+        <h:outputText value="Response text" />
+      </div>
+      <div class="ui-g-10">
+        <p:inputTextarea readonly="true" id="response-text" styleClass="Wid100" rows="10" autoResize="false"  />
+      </div>
+      <div class="ui-g-2">
+        <h:outputText value="PrimeFaces.ajax.Queue.xhrs[0]" />
+      </div>
+      <div class="ui-g-10">
+        <p:inputTextarea readonly="true" id="xhr" styleClass="Wid100" rows="10" autoResize="false" />
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+        type="button" onclick="PF('detail-error-dialog').hide();"
+        styleClass="Fright" />
+    </div>
+  </p:dialog>
+</cc:implementation>
+</html>

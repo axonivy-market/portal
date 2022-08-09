@@ -1,0 +1,61 @@
+{
+  "format" : "9.4.14",
+  "id" : "14C7834636E63BEA",
+  "data" : "ch.ivyteam.wf.processes.FindApplicationsByUserData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "findThirdPartyApplications()",
+      "config" : {
+        "callSignature" : "findThirdPartyApplications",
+        "result" : {
+          "params" : [
+            { "name" : "applications", "type" : "List<ch.ivy.addon.portalkit.configuration.Application>" }
+          ],
+          "map" : {
+            "result.applications" : "in.applications"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 184, "y" : 64 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 184, "y" : 256 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "get Apps in session",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.RegisteredApplicationService;",
+            "",
+            "RegisteredApplicationService service = RegisteredApplicationService.getInstance();",
+            "in.applications = service.getPublicConfig();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 184, "y" : 128 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ],
+  "layout" : {
+    "lanes" : [ {
+        "name" : "FIND APPLICATIONS BY USER",
+        "size" : 480
+      } ]
+  }
+}

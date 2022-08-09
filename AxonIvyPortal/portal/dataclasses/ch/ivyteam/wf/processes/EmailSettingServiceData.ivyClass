@@ -1,0 +1,3 @@
+EmailSettingServiceData #class
+ch.ivyteam.wf.processes #namespace
+ivyEmailSetting ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting #field
