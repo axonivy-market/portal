@@ -8,6 +8,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import portalmigration.dto.DisplayName;
 import portalmigration.enums.ProcessType;
 import portalmigration.util.Locales;

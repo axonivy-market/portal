@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/welcomeToPortal')}" />
+</cc:interface>
+
+<cc:implementation>
+  <div class="login-panel ui-fluid">
+    <div class="login-panel-header">
+      <p:graphicImage name="logo_small" library="ivy-branding"
+        alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loginLogo')}" />
+    </div>
+    <div class="login-panel-content">
+      <h:form id="login-form" styleClass="login-form">
+        <p:focus for="username" />
+        <div class="ui-g">
+          <div class="ui-g-12">
+            <h1>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/welcomeToPortal')}</h1>
+          </div>
+          <h:panelGroup styleClass="block" class="ui-g-12" rendered="#{!data.loginOk}">
+            <p:messages globalOnly="true" id="login-message" />
+          </h:panelGroup>
+          <div class="ui-g-12">
+            <h:panelGroup styleClass="md-inputfield">
+              <p:inputText id="username" autocomplete="off" value="#{data.username}" required="true" />
+              <p:outputLabel for="username" indicateRequired="false">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}</p:outputLabel>
+              <p:message for="username" id="username-message" />
+            </h:panelGroup>
+          </div>
+          <div class="ui-g-12">
+            <h:panelGroup styleClass="md-inputfield">
+              <p:password id="password" autocomplete="off" value="#{data.password}" required="true" onchange="clearPlaceholder()" />
+              <p:outputLabel for="password" indicateRequired="false">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/password')}</p:outputLabel>
+              <p:message for="password" id="password-message" />
+            </h:panelGroup>
+          </div>
+          <div class="ui-g-12">
+            <p:commandButton update="@form" id="login-command" actionListener="#{logic.login}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/login')}"
+              icon="#{visibilityBean.generateButtonIcon('si si-login-3')}"
+              oncomplete="if (#{empty data.callbackUrl} === 'true' &amp;&amp; args &amp;&amp; !args.validationFailed) {location.reload()}" />
+          </div>
+          <h:panelGroup styleClass="ui-g-12 forgot-link u-text-align-right" rendered="#{forgotPasswordBean.isForgotPasswordRendered()}">
+            <p:link id="forgot-password-link" href="#{forgotPasswordBean.getForgotPasswordUrl()}">
+               <i class="si si-question-circle u-mar-right-5" />
+               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/forgotPassword')}" />
+            </p:link>
+          </h:panelGroup>
+        </div>
+      </h:form>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $(function() {
+      $('[id $= "login-form:password"]').on('change', function(e){
+        if($(e.target).val() != '') {
+          $(e.target).addClass('ui-state-filled');
+        }
+      });
+    });
+
+    function clearPlaceholder() {
+      $('[id $= "login-form:password"]').addClass('ui-state-filled');
+    }
+  </script>
+</cc:implementation>
+</html>
