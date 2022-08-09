@@ -2259,11 +2259,15 @@ body.in-dialog .ui-widget-overlay {
 }
 
 .statistic-chart-cases-by-category {
-	width: 100%;
-	height: 340px;
+  width: 100%;
+  height: 340px;
 }
 
 .dashboard-statistic-chart-cases-by-category {
-	width: 100%;
-	height: 400px;
+  width: 100%;
+  height: 400px;
+}
+
+.option-item-long-label {
+  max-width: 120px;
 }
