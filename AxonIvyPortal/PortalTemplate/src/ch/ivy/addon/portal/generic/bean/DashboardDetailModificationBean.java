@@ -265,8 +265,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE) {
           updateProcessWidget((SingleProcessDashboardWidget) processWidget, 6, 5);
         } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) {
-          processWidget.getLayout().setHeight(8);
-          processWidget.getLayout().setWidth(3);
+          updateProcessWidgetSize(processWidget, 8, 3);
           CompactProcessDashboardWidget compactProcessWidget = (CompactProcessDashboardWidget) processWidget;
           unifyCompactProcessCategory(compactProcessWidget);
           updateProcessesOfWidget(compactProcessWidget);
@@ -308,6 +307,15 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     widget = null;
     isEditWidget = false;
     PrimeFaces.current().ajax().update("grid-stack");
+  }
+
+  private void updateProcessWidgetSize(ProcessDashboardWidget processWidget, int height, int width) {
+    if (processWidget.getLayout().getHeight() == -1) {
+      processWidget.getLayout().setHeight(height);
+    }
+    if (processWidget.getLayout().getWidth() == -1) {
+      processWidget.getLayout().setWidth(width);
+    }
   }
 
   private void updateStatisticWidgetData(DashboardWidget widget) {
@@ -438,8 +446,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   private void updateProcessWidget(SingleProcessDashboardWidget processWidget, int height, int width) {
-    processWidget.getLayout().setHeight(height);
-    processWidget.getLayout().setWidth(width);
+    updateProcessWidgetSize(processWidget, height, width);
+
     DashboardProcess process = processWidget.getProcess();
     processWidget.setName(Objects.isNull(process) ? EMPTY : process.getName());
     processWidget.setProcessPath(Objects.isNull(process) ? EMPTY : process.getId());
