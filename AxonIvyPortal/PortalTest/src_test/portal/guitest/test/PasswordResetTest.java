@@ -32,7 +32,7 @@ public class PasswordResetTest extends BaseTest {
 
   @Test
   public void testResetPasswordSuccess() {
-    redirectToRelativeLink(String.format(portalTemplatePasswordResetUrl, TestAccount.TEST_FORGOT_PASSWORD_USER.getPassword(), TestAccount.TEST_FORGOT_PASSWORD_USER.getUsername()));
+    redirectToRelativeLink(String.format(portalPasswordResetUrl, TestAccount.TEST_FORGOT_PASSWORD_USER.getPassword(), TestAccount.TEST_FORGOT_PASSWORD_USER.getUsername()));
     passwordResetPage = new PasswordResetPage();
     passwordResetPage.resetPassword();
     assertTrue(passwordResetPage.isReset());
@@ -43,7 +43,7 @@ public class PasswordResetTest extends BaseTest {
 
   @Test
   public void testResetPasswordFailed() {
-    redirectToRelativeLink(String.format(portalTemplatePasswordResetUrl, "1234", TestAccount.TEST_FORGOT_PASSWORD_USER.getUsername()));
+    redirectToRelativeLink(String.format(portalPasswordResetUrl, "1234", TestAccount.TEST_FORGOT_PASSWORD_USER.getUsername()));
     passwordResetErrorPage = new PasswordResetErrorPage();
     assertTrue(passwordResetErrorPage.isDisplayed());
     passwordResetErrorPage.goForgotPassword();

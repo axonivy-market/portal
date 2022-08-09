@@ -1,0 +1,4 @@
+DashboardModificationData #class
+ch.ivy.addon.portal.generic.dashboard.component.DashboardModification #namespace
+isPublicDashboard Boolean #field
+isPublicDashboard PERSISTENT #fieldModifier

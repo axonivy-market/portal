@@ -1,8 +1,0 @@
-OpenPortalTaskDetailsData #class
-ch.ivy.add.portalkit #namespace
-task ch.ivyteam.ivy.workflow.ITask #field
-dataModel ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel #field
-portalPage ch.ivy.addon.portalkit.enums.PortalPage #field
-isFromTaskList Boolean #field
-isFromTaskList 'true: opened from TASK_LIST or SEARCH_RESULTS; false: back from Task Start page' #fieldComment
-dashboardDataModel ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel #field
