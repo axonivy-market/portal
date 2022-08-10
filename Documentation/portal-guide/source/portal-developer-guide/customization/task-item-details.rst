@@ -146,7 +146,7 @@ How to customize Task item details UI
 
 Refer to ``portal-developer-examples`` project for examples.
 
-#. Introduce an Axon Ivy project which has ``PortalTemplate`` as a
+#. Introduce an Axon Ivy project which has ``portal`` as a
    required library.
 
 #. To customize task item details, you must customize Portal Home first.
@@ -154,7 +154,7 @@ Refer to ``portal-developer-examples`` project for examples.
    home <customization-portal-home>` to set new home
    page.
 
-#. Copy the ``PortalStart`` process from ``PortalTemplate`` to your
+#. Copy the ``PortalStart`` process from ``portal`` to your
    project. Point PortalHome element to your custom home page in
    previous step. This process is new home page and administrator should
    register this link by Portal's Admin Settings.
@@ -177,7 +177,7 @@ Show or hide elements
 ---------------------
 
 Refer to list of ``ui:param`` tag in ``PortalTaskDetails.xhtml`` of
-PortalTemplate. If you want to show or hide elements on
+``portal``. If you want to show or hide elements on
 TaskItemDetails, you must override ``ui:param``
 
 List of valid ``ui:param``:
@@ -265,7 +265,7 @@ There are **two steps** for adding new custom panels.
 
    ..
 
-#. To customize task details which do not use IFrame, refer to the ``taskItemDetailCustomPanel*`` section in ``PortalTaskDetails.xhtml`` of PortalTemplate.
+#. To customize task details which do not use IFrame, refer to the ``taskItemDetailCustomPanel*`` section in ``PortalTaskDetails.xhtml`` of ``portal``.
 
    -  We need to define the ``ui:define`` tag with the valid name such as
       ``taskItemDetailCustomPanelTop`` and ``taskItemDetailCustomPanelBottom``.
