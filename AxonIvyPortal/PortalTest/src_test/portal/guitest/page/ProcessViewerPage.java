@@ -11,7 +11,7 @@ public class ProcessViewerPage extends TemplatePage {
 
   public String getProcessRequestPath() {
     waitForElementDisplayed(By.id("process-viewer-information"), true);
-    return findElementByCssSelector("[id$='portal-process-viewer-form:request-path']").getText();
+    return findElementByCssSelector("[id$='portal-process-viewer-form'] [id$='request-path']").getText();
   }
 
   public void waitForSprottyToolDisplayed() {

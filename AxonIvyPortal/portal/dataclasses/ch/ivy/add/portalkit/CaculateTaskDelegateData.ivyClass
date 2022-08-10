@@ -1,0 +1,6 @@
+CaculateTaskDelegateData #class
+ch.ivy.add.portalkit #namespace
+currentUser com.axonivy.portal.component.dto.SecurityMemberDTO #field
+task ch.ivyteam.ivy.workflow.ITask #field
+users java.util.List<com.axonivy.portal.component.dto.UserDTO> #field
+roles java.util.List<com.axonivy.portal.component.dto.RoleDTO> #field

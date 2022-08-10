@@ -1,0 +1,130 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui" 
+  xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:ic="http://ivyteam.ch/jsf/component">
+
+<h:body>
+  <ui:composition>
+    <ui:param name="userAgent" value="#{request.getHeader('User-Agent')}"></ui:param>
+    <ui:param name="isIE"
+      value="#{(fn:containsIgnoreCase(userAgent, 'Trident') and fn:containsIgnoreCase(userAgent, 'rv:11')) || fn:containsIgnoreCase(userAgent, 'MSIE')}" />
+
+    <h:form id="chat-form">
+      <h:outputScript library="js" name="polyfill/promise.min.js" rendered="#{isIE}" />
+      <h:outputScript library="js" name="polyfill/fetch.js" rendered="#{isIE}" />
+      <h:outputScript library="js" name="polyfill/babel-runtime.js" rendered="#{isIE}" />
+      <h:outputScript library="js" name="chat-transpiled.js" rendered="#{isIE}" />
+
+      <h:outputScript library="js" name="chat.js" rendered="#{!isIE}" />
+
+      <script type="text/javascript">
+              var userName = "#{ivy.session.getSessionUserName()}";
+              var contextPath = "#{ivy.task.getApplication().getContextPath()}";
+              var resource = new IvyUri().rest() + "/chat";
+              var isChatGroupEnabled = "#{chatRendererBean.isGroupChatRendered}";
+              var isChatPrivateEnabled = "#{chatRendererBean.isPrivateChatRendered}";
+
+              var view = new View(resource);
+              var chat = new Chat(resource, view);
+              window.addEventListener("load", function() {
+                setTimeout(function(){
+                  chat.listen(true, "INITIAL_RESPONSE_ID", "CHAT_LONG_POLLING_REQUEST");
+                  chat.getSendersOfUnreadMessages();
+                }, 2000);
+              });
+
+              document.addEventListener(visibilityChange, function() {
+                if (!document[hidden] &amp;&amp; isChatDeactivated === true) {
+                  chat.reloadChat();
+                }
+              }, false);
+            </script>
+      <p:remoteCommand autoRun="true" actionListener="#{chatRendererBean.getGroupChatName}" global="false" />
+      <h:outputStylesheet library="css" name="chat.css" />
+      <div id="chat-panel" class="chat-panel js-chat-panel">
+        <div class="chat-contact js-chat-contact-panel">
+          <div class="chat-contact-content-contact-list">
+            <div class="chat-contact-type-header" jsf:rendered="#{chatRendererBean.isGroupChatRendered}">
+              #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/groupChatHeader')}</div>
+            <h:panelGroup id="group-chat-container" class="js-group-chat-container" layout="block" rendered="#{chatRendererBean.isGroupChatRendered}" />
+            <div class="chat-contact-type-header" jsf:rendered="#{chatRendererBean.isPrivateChatRendered}">
+              #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/personalChatHeader')}</div>
+            <h:panelGroup id="private-chat-container" class="js-private-chat-container" layout="block"
+              rendered="#{chatRendererBean.isPrivateChatRendered}" />
+          </div>
+          <div class="close-chat">
+            <p:commandButton id="close-chat-button" icon="si si-arrow-right-1" onclick="view.closeChatPanel();" process="@(this)" partialSubmit="true" immediate="true" global="false" />
+          </div>
+        </div>
+        <div class="message-list js-chat-message-container">
+          <div class="message-list-header">
+            <span class="message-chat-header-name js-message-chat-header-name TexAlCenter" /> <span class="message-list-header-close js-close-message-list">
+              <i class="si si-delete-1" />
+            </span>
+            <p:commandLink id="show-participants-link" styleClass="show-participants-link"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/viewParticipant')}"
+              oncomplete="chat.getParticipantsForGroupChat(); PF('participants-list-dialog').show()" />
+          </div>
+          <div class="message-list-content">
+            <div id="chat-message-list" class="chat-message-list js-message-list" />
+
+            <h:panelGroup id="chat-send-form-container" layout="block" styleClass="chat-send-form js-chat-send-form">
+              <textarea id="message-input-field" onkeydown="chat.onKeyEvent(event)" placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/typeMessage')}" maxlength="2500"
+                class="message-list-content-send-input js-input-message ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all message-list-content-send-input js-input-message ui-inputtextarea-resizable">
+              </textarea>
+              <p:commandButton icon="si si-send-email" onclick="chat.sendMessage()"
+                styleClass="message-list-content-send-button js-send-chat-message" global="false" type="button" />
+            </h:panelGroup>
+          </div>
+        </div>
+      </div>
+
+      <span class="contact-card js-no-group-chat-template no-group-chat u-hidden">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/noGroupChat')}</span>
+
+      <div class="contact-card js-show-group-chat-message js-group-template u-hidden">
+        <span class="contact-card-icon js-show-contact-message-unread"> <i class="si si-multiple-neutral-1" />
+        </span>
+        <div class="contact-card-name">
+          <span class="js-group-card-name" />
+        </div>
+        <input type="hidden" class="js-case-id" /> <span class="contact-notification js-notification u-hidden" />
+      </div>
+
+      <div id="contact-template" class="contact-card js-contact-template js-show-chat-message u-hidden">
+        <span class="contact-card-icon js-show-contact-message-unread"> <i class="si si-single-neutral-actions" /> <i
+          class="contact-card-status js-contact-card-status" />
+        </span> <span class="contact-card-name js-contact-card-name" /> <span class="contact-notification js-notification u-hidden" />
+      </div>
+
+      <div class="js-message-template u-hidden chat-message-container">
+        <div class="chat-meta">
+          <span class="chat-sender js-sender" /> <span class="chat-sender js-time" /> <span class="tooltip js-tooltip" />
+        </div>
+        <p class="chat-message js-message" />
+      </div>
+    </h:form>
+
+    <p:dialog id="participants-list-dialog" resizable="false" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/participants')}"
+      widgetVar="participants-list-dialog" appendTo="@(body)" modal="true" styleClass="participants-list-dialog"
+      responsive="true" position="center center" fitViewport="true" onShow="PF('participants-list-dialog').initPosition();">
+      <h:outputText id="user-participants-list-header" styleClass="participants-list-header js-users-participants-header"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/users')}" />
+      <div class="js-users-participants">
+        <ul id="user-participants-list" class="participants-list" />
+      </div>
+      <div class="js-roles-participants">
+        <ul id="roles-participants-list" class="participants-list roles-participants-list" />
+        <input class="js-no-users-of-role" type="hidden" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/noUsers')}" />
+      </div>
+      
+      <f:facet name="footer">
+        <h:panelGroup layout="block">
+          <p:commandButton onclick="PF('participants-list-dialog').hide()" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+            type="button" icon="#{visibilityBean.generateButtonIcon('si si-remove')}" />
+        </h:panelGroup>
+      </f:facet>
+    </p:dialog>
+  </ui:composition>
+</h:body>
+</html>

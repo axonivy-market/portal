@@ -1,4 +1,0 @@
-PortalUrlCallbackData #class
-ch.ivy.addon.portal.generic.PortalUrlCallback #namespace
-callbackUrl String #field
-callbackUrl PERSISTENT #fieldModifier
