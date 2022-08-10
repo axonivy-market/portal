@@ -3,10 +3,10 @@
 Logout Process
 ==============
 
-#. Create an Axon Ivy project which has ``PortalTemplate`` as a
+#. Create an Axon Ivy project which has ``portal`` as a
    required library.
 
-#. Copy the ``PortalStart`` process from ``PortalTemplate`` to your project.
+#. Copy the ``PortalStart`` process from ``portal`` to your project.
    This process is the new home page. The administrator has to register this
    link.
 
