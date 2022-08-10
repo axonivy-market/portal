@@ -22,7 +22,7 @@ Customization
 
 Create an override that overrides subprocess
 ``createDefaultStatisticCustomField()`` in ``DefaultStatisticCustomField.p.json``
-process in PortalKit. This subprocess return a list of custom string fields.
+process in ``portal``. This subprocess return a list of custom string fields.
 Follow instruction to create default custom fields.
 
 |custom-field|
