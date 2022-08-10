@@ -189,6 +189,10 @@ Migrate 9.3 To 9.4
 #. Portal dashboard widgets only support the ``CustomFields`` declared in the ``custom-fields.yaml`` file.
    If your ``CustomFields`` are used in the dashboard widget, please follow the :dev-url:`Custom Fields Meta Information </doc/nightly/designer-guide/how-to/workflow/custom-fields.html#meta-information>` to adapt the data.
 
+#. The ``DefaultChartColor.p.json`` sub process has been removed, in case you use it in your project, please remove override this sub process and switch to using
+   :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html>` to customize chart, data labels, legend color.
+   Refer to :ref:`Default chart colors <customization-default-chart-colors>`.
+
 Migrate To 9.3
 --------------
 
@@ -347,6 +351,8 @@ Changes in 9.4
 - Removed the PortalStyle project. The CMS in PortalStyle has been moved to PortalKit.
 
 - Introduced the ``Formatting language setting`` to format values, for example the decimal separator is displayed differently in different regions of the world.
+
+- Removed sub process ``DefaultChartColor.p.json``, introduced some Portal variables for customizing the default chart color. See details: :ref:`Default chart colors <customization-default-chart-colors>`.
 
 Changes in 9.3
 --------------

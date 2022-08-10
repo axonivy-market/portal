@@ -1,0 +1,16 @@
+NavigatorData #class
+ch.ivy.addon.portal.generic #namespace
+caseId ch.ivy.addon.portalkit.dto.GlobalCaseId #field
+caseView ch.ivy.addon.portal.generic.view.CaseView #field
+caseName String #field
+taskView ch.ivy.addon.portal.generic.view.TaskView #field
+taskId Long #field
+thirdPartyAppName String #field
+thirdPartyAppUrl String #field
+taskDataModel ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel #field
+caseDataModel ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel #field
+taskQuery ch.ivyteam.ivy.workflow.query.TaskQuery #field
+caseQuery ch.ivyteam.ivy.workflow.query.CaseQuery #field
+chartName String #field
+iCase ch.ivyteam.ivy.workflow.ICase #field
+iTask ch.ivyteam.ivy.workflow.ITask #field

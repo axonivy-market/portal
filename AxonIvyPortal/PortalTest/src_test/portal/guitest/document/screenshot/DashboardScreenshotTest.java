@@ -17,6 +17,7 @@ import org.openqa.selenium.WebElement;
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.DashboardConfigurationPage;
@@ -165,7 +166,6 @@ public class DashboardScreenshotTest extends ScreenshotTest {
   @Test
   public void screenshotNewDashboardUserGuide() throws IOException {
     login(TestAccount.ADMIN_USER);
-    updatePortalSetting(SHOW_LEGACY_UI .getKey(), "false");
     showNewDashboard();
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForTaskWidgetLoading();
@@ -266,6 +266,35 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "process-widget-modes");
   }
 
+  @Test
+  public void screenshotProcessViewerWidget() throws IOException {
+    login(TestAccount.ADMIN_USER);
+    updatePortalSetting(SHOW_LEGACY_UI .getKey(), "false");
+    redirectToDashboardConfiguration();
+    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.selectPublicDashboardType();
+    configPage.selectEditPublicDashboards();
+    configPage.configureDashboardByIndex(0);
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForPageLoaded();
+    WaitHelper.assertTrueWithWait(() -> ScreenshotUtil.isDOMStatusComplete());
+    newDashboardPage.waitForTaskWidgetLoading();
+
+    newDashboardPage.clickAddWidget();
+    WebElement newWidgetDialog = newDashboardPage.getAddWidgetDialog();
+    newWidgetDialog.findElement(By.id("new-widget-dialog-content:5:add-widget")).click();
+    DashboardWidgetConfigurationDialogPage configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
+    configurationDialogPage.selectProcessForProcessViewerWidget("Categoried Leave Request");
+    ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "process-viewer-widget-configuration");
+    configurationDialogPage.saveConfiguration();
+
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForProcessViewerWidgetLoading();
+    Sleeper.sleep(2000);// wait for iframe data loading finish
+    ScreenshotUtil.captureElementScreenshot(newDashboardPage.getProcessViewerWidget(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "process-viewer-widget");
+  }
+
   private void showNewCustomizedDashboard() {
     updatePortalSetting(SHOW_LEGACY_UI .getKey(), "false");
     redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
@@ -278,6 +307,6 @@ public class DashboardScreenshotTest extends ScreenshotTest {
   }
 
   private void redirectToDashboardConfiguration() {
-    redirectToRelativeLink("portalTemplate/1549F58C18A6C562/PortalDashboardConfiguration.ivp");
+    redirectToRelativeLink("portal/1549F58C18A6C562/PortalDashboardConfiguration.ivp");
   }
 }

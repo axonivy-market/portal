@@ -1,0 +1,54 @@
+{
+  "format" : "9.4.14",
+  "id" : "14EB4D799BBF04C8",
+  "data" : "ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "14EB4D799DA15883"
+      },
+      "visual" : {
+        "at" : { "x" : 112, "y" : 64 },
+        "size" : { "width" : 22, "height" : 22 },
+        "labelOffset" : { "x" : -16, "y" : 12 }
+      },
+      "connect" : { "id" : "f7", "to" : "f2" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 320, "y" : 64 },
+        "size" : { "width" : 22, "height" : 22 }
+      }
+    }, {
+      "id" : "f2",
+      "type" : "Script",
+      "name" : "get statistic charts",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.StatisticService;",
+            "",
+            "StatisticService service = StatisticService.getInstance();",
+            "in.statisticChartList = service.findStatisticCharts();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 227, "y" : 64 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : -49, "y" : 14 }
+      },
+      "connect" : { "id" : "f9", "to" : "f1" }
+    } ],
+  "layout" : {
+    "lanes" : [ {
+        "name" : "Start method",
+        "size" : 192
+      } ]
+  }
+}

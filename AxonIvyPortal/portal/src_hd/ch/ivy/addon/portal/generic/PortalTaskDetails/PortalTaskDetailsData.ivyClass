@@ -1,0 +1,15 @@
+PortalTaskDetailsData #class
+ch.ivy.addon.portal.generic.PortalTaskDetails #namespace
+task ch.ivyteam.ivy.workflow.ITask #field
+task PERSISTENT #fieldModifier
+dataModel ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel #field
+dataModel PERSISTENT #fieldModifier
+portalPage ch.ivy.addon.portalkit.enums.PortalPage #field
+portalPage PERSISTENT #fieldModifier
+isFromTaskList Boolean #field
+isFromTaskList 'true: opened from TASK_LIST or SEARCH_RESULTS; false: back from Task Start page' #fieldComment
+isFromTaskList PERSISTENT #fieldModifier
+isTaskStartedInDetails Boolean #field
+isTaskStartedInDetails PERSISTENT #fieldModifier
+dashboardDataModel ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel #field
+dashboardDataModel PERSISTENT #fieldModifier

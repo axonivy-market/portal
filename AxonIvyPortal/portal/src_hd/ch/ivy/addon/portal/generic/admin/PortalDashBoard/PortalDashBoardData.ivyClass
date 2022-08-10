@@ -1,0 +1,7 @@
+PortalDashBoardData #class
+ch.ivy.addon.portal.generic.admin.PortalDashBoard #namespace
+statisticChartList java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> #field
+statisticChartList PERSISTENT #fieldModifier
+taskQuery ch.ivyteam.ivy.workflow.query.TaskQuery #field
+taskQuery 'Customized TaskQuery' #fieldComment
+taskQuery PERSISTENT #fieldModifier

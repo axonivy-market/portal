@@ -1,6 +1,6 @@
 CalculateTaskDelegateOverrideData #class
 _com.axonivy.portal.developerexamples #namespace
-currentUser ch.ivy.addon.portalkit.dto.SecurityMemberDTO #field
+currentUser com.axonivy.portal.component.dto.SecurityMemberDTO #field
 task ch.ivyteam.ivy.workflow.ITask #field
 users java.util.List<com.axonivy.portal.component.dto.UserDTO> #field
 roles java.util.List<com.axonivy.portal.component.dto.RoleDTO> #field

@@ -1,0 +1,1630 @@
+Categories:
+  AdhocExpressTasks:
+    name: Adhoc Express Aufgaben
+  CreateExpressWorkflow:
+    name: Express Workflow erstellen
+  ExpressWorkflow:
+    name: Express Workflow
+ch.ivy.addon.portal.generic:
+  CaseDetailsTemplate:
+    noCaseId: Keine Vorgangs-ID spezifiziert
+    requestTabTitle: Anfrage
+    statusTabTitle: Vorgangsinformationen
+  CustomLinkGenerator:
+    myTasks: Meine Aufgaben
+  OpenTaskTemplate:
+    adhocHistory: AdHoc Prozesshistorie
+    adhocHistoryTooltip: AdHoc Prozesshistorie anzeigen
+    browserTabClosingWarning: Durch diese Aktion gehen ungespeicherte Änderungen verloren. Möchten Sie wirklich fortfahren?
+    goToAdhocWarning: Beim starten von Ad-hoc Prozess gehen Ihre nicht gespeicherte Eingaben verloren. Möchten Sie weiter?
+    goToSidestepWarning: Bei starten eines Sidestep Prozesses werden die aktuelle Eingaben nicht gespeichert. Möchten Sie sich trotzdem fortsetzen?
+    noteOfResultFromAdhocProcess: 'Achtung: alle Einträge sind auch in der Vorgangshistorie'
+    reCreateAdhocWarning: Es gibt bereits einen AdHoc Prozess zu dieser Aufgabe. Möchten Sie einen neuen erstellen?
+    resultFromAdhocProcess: Ergebnisse aus dem Ad-Hoc Prozess
+    startAdHoc: Start Adhoc
+    startAdHocTooltip: Neue Aufgabe hinzufügen, und den aktuellen Prozess umleiten.
+  PortalCaseMenu:
+    AllCases: Alle Vorgänge
+    MyCases: Meine Vorgänge
+  PortalTaskMenu:
+    AllTasks: Alle Aufgaben
+    GroupTasks: Gruppenaufgaben
+    PersonalTasks: '{0}''''s Aufgaben'
+  TaskMail:
+    dailyTaskSummaryIntro: 'Liste der offenen Workflow Aufgaben:'
+    dailyTaskSummaryTitle: Tägliche Zusammenfassung
+    newTaskIntro: 'Ihnen wurde die folgende Workflow Aufgabe zugewiesen:'
+    newTaskTitle: Neue Aufgabe zugewiesen
+    taskResume: Aufnehmen
+ch.ivy.addon.portalkit:
+  variables:
+    portalkit_serveradress: PORTALKIT_SERVERADRESS
+ch.ivy.addon.portalkit.ui.jsf:
+  AbsenceAndDeputy:
+    Messages:
+      errorSelectInvalidDeputy: Stellvertreter ist bereits ausgewählt oder ungültig
+      errorSelectedInPersonalTaskPermanentDeputies: Stellvertreter ist bereits in "{0}" ausgewählt
+      fromBiggerThanTill: Das 'bis' Datum muss nach dem 'von' Datum liegen.
+      overlappingAbsence: Die Abwesenheit überschneidet sich mit einer anderen Abwesenheit.
+      userNameRequired: '''Benutzername'' darf nicht leer sein.'
+    absences: Abwesenheiten
+    addAbsence: Abwesenheit erfassen
+    deputies: Stellvertreter
+    description: 'Während meiner Abwesenheit werden Workflow Aufgaben automatisch den definierten Stellvertretern zugeteilt. '
+    editAbsence: Abwesenheiten bearbeiten
+    from: Von
+    noDeputy: Kein Stellvertreter
+    period: Zeitraum
+    personalTaskDuringAbsenceDeputies: Stellvertreter für persönlich zugewiesene Aufgaben während der Abwesenheit
+    personalTaskPermanentDeputies: Ständige Stellvertreter für persönlich zugewiesene Aufgaben
+    selectDeputies: Stellvertreter auswählen
+    selectedDeputies: Ausgewählte Stellvertreter
+    showAbsencesInThePast: Vergangene Abwesenheiten anzeigen
+    substitutedUser: Vertretener Benutzer
+    taskForRole: 'Aufgabe für Rolle: '
+    till: Bis
+  AbsenceManagement:
+    Messages:
+      addNewAbsence: Neue Abwesenheit ist für {0} hinzugefügt worden
+      removedAbsences: Abwesenheit ist für {0} entfernt worden
+      saveAbsenceSetting: Abwesenheitseinstellungen erfolgreich gespeichert.
+      updateAbsence: Abwesenheit erfolgreich aktualisiert
+    absenceAndDeputy: Abwesenheiten und Stellvertreter
+    allAbsences: Abwesenheiten aller Benutzer
+    applicationAndRole: Applikation und Rolle
+    definedDeputies: Festgelegte Stellvertreter
+    deputyFor: Ich bin Stellvertreter für
+    myDeputies: Meine Stellvertreter
+    myPlannedAbsences: Meine geplanten Abwesenheiten
+    nextAbsence: Bevorstehende Abwesenheit
+    selectedDeputyFor: Ausgewählter Benutzer ist Stellvertreter für
+    selectedUser: Ausgewählter Benutzer
+  AllTasks:
+    caseDescription: Beschreibung des Vorgangs
+    taskDescription: Aufgabenbeschreibung
+    taskState: Aufgabenstatus
+  CaseDocuments:
+    CaseDocumentsPageTitle: Dokumente zum Vorfall
+  CaseStatusInformation:
+    CurrentTasks:
+      currentTasks: Laufende Aufgaben
+      noTasksFound: Keine Aufgaben gefunden.
+    GeneralInformation:
+      processVersion: Prozessversion
+      removeDelayConfirm: Durch diese Aktion wird die Verzögerungs-Einstellung der Aufgabe entfernt. Sind Sie sicher?
+      showNow: Sofort anzeigen
+  Enums:
+    BasicDocumentType:
+      CONTRACT: Vertrag
+      DOCUMENTATION: Dokumentation
+      EMAIL: Email
+      INFORMATION: Information
+      OTHERS: Andere Dateiformate
+    BehaviourWhenClickingOnLineInTaskList:
+      ACCESS_TASK_DETAILS: Auf Aufgabendetails zugreifen
+      RUN_TASK: Ausführen der Aufgabe
+    DashboardCustomWidgetType:
+      EXTERNAL_URL: Externe URL
+      PROCESS: Axon Ivy Prozess
+    DashboardWidgetType:
+      CASE: Vorfall-Widget
+      CUSTOM: Benutzerdefiniertes Widget
+      NEW: Neues Widget
+      PROCESS: Prozess-Widget
+      PROCESS_VIEWER: Prozess-Viewer-Widget
+      STATISTIC: Statistik-Widget
+      TASK: Aufgaben-Widget
+    GlobalVariable:
+      Option:
+        DISPLAY_NAME: Anzeigename
+        DISPLAY_NAME_USERNAME: Anzeigename (Benutzername)
+        'FALSE': 'False'
+        'TRUE': 'True'
+        USERNAME: Benutzername
+        USERNAME_DISPLAY_NAME: Benutzername (Anzeigename)
+    ProcessMode:
+      COMPACT: Kompakt
+      GRID: Raster
+      IMAGE: Bild
+    ProcessType:
+      EXPRESS_PROCESS: Express Workflow
+      EXTERNAL_LINK: External Link
+      IVY_PROCESS: Geschäftsprozess
+    ProcessWidgetMode:
+      COMBINED_MODE: Combined mode
+      COMPACT_MODE: Compact mode
+      FULL_MODE: Full mode
+      IMAGE_MODE: Bild-Modus
+    ReleaseState:
+      DEPRECATED: Verworfen
+      RELEASED: Veröffentlicht
+    SortDirection:
+      ASC: Aufsteigend sortieren
+      DESC: Absteigend sortieren
+    WeekDay:
+      FRIDAY: Fr
+      MONDAY: Mo
+      SATURDAY: Sa
+      SUNDAY: So
+      THURSDAY: Do
+      TUESDAY: Di
+      WEDNESDAY: Mi
+  MyProfile:
+    HomepageSelection:
+      fullTaskList: Vollständige Aufgabenliste
+    SortFieldSelections:
+      defaultSortFieldLabel: Standard-Sortierfeld
+    caseListConfigDescription: In diesem Bereich können Sie die Vorgangsliste entsprechend Ihren Anforderungen konfigurieren.
+    caseListConfiguration: Konfiguration der Vorgangsliste
+    defaultOption: Standard ({0})
+    defaultViewMode: Standardanzeige
+    generalSettingDescription: In diesem Bereich können Sie die Einstellungen entsprechend Ihren Anforderungen konfigurieren.
+    generalSettings: Allgemeine Einstellungen
+    processListConfigDescription: In diesem Bereich können Sie die Prozessliste nach Ihren Anforderungen konfigurieren.
+    processListConfiguration: Konfiguration der Prozessliste
+    selectHomepage: Ausgewählte Homepage
+    showTutorial: Willkommenstour anzeigen
+    taskListConfigDescription: In diesem Bereich können Sie den Arbeitsplan entsprechend Ihren Anforderungen konfigurieren.
+    taskListConfiguration: Konfiguration der Aufgabenliste
+  PortalManagement:
+    AdminSetting: Administration
+  ProcessViewer:
+    Breadcrumb: Prozess-Viewer von {0} Prozess
+    ProcessViewerText: Prozess-Viewer
+    Title: Prozess-Viewer
+  TaskDocuments:
+    TaskDocumentsPageTitle: Aufgaben-Dokumente
+  adminSettings:
+    addLanguages: Sprachen hinzufügen
+    addNewApplication: Neue Drittanwendung hinzufügen
+    announcement:
+      announcement: Ankündigungen
+      announcementsDisabled: Ankündigungen sind deaktiviert
+      announcementsEnabled: Ankündigungen sind aktiviert
+      defaultLanguageRequiredMessage: Ein Ankündigungstext in der standard Applikationssprache ist notwendig
+      disable: Deaktivieren
+      enable: Aktivieren
+      information: Sie können eine allgemeine Ankündigung in diesem Bereich machen (z.B. Wartungsankündigung). Diese Nachricht kann von allen Benutzern gesehen werden.
+      tabTitle: Ankündigungen
+    appDisplayName: Anzeigename
+    appDisplayNameRequiredMsg: Geben Sie einen Anzeigename an.
+    appNameCharactersLimit: 'Nur die folgende Charakter sind für Applikationsname akzeptabel: [\p{Alnum}_-]+'
+    appNameRequiredMsg: Bitte, geben Sie den Anwendungsnamen an
+    applicationHint: Die Reihenfolge kann mit Drag & Drop geändert werden.
+    applicationLinkRequiredMsg: Geben Sie den Portal Link an.
+    applicationList:
+      applicationSelectionHeader: Anwendung auswählen
+      menuIcon: Menü Symbol
+    applications: Anwendungen
+    applicationtype:
+      thirdPartyApplication: 3rd Party Anwendung
+    currentValue: Aktueller Wert
+    defaultValue: Standard Wert
+    deleteAppConfirmation: Sind Sie sicher, dass Sie diese Anwendung entfernen möchten?
+    dialogclosinginformation:
+      dialogHeader: Einstellungen abgeschlossen
+      informMessage: Änderungen an den Portaleinstellungen erfordern eine Aktualisierung der aktuellen Seite, damit die neue Konfiguration wirksam wird.
+    duplicatePortalAppMsg: 'Diese Anwendung existiert bereits. Bitte wählen Sie eine andere Anwendung. '
+    editApplication: Anwendungseinstellungen ändern
+    editSetting: Einstellungen ändern
+    embedInFrame: Prozess/Task in Iframes Modus starten
+    emptySupportedLanguages: Es werden keine weiteren Sprachen unterstützt
+    globalVariableNote:
+      RoleDirectChildrenLimit: 'Die eingestellte Zahl steuert die Anzahl der direkten untergeordneten Rollen, die auf der Registerkarte Rollenverwaltung angezeigt werden. Gültige Zahl: 10, 50, 100'
+      RoleParentLimit: 'Die eingestellte Zahl steuert die Anzahl der übergeordneten Rollen, die beim Filtern von Rollen auf der Registerkarte Rollenverwaltung angezeigt werden. Gültige Zahl: 5, 10, 20'
+      behaviourWhenClickingOnLineInTaskList: Zum Umschalten des Verhaltens (Ausführen der Aufgabe oder Aufrufen der Aufgabendetails) beim Klicken auf eine Zeile in der Aufgabenliste, im Aufgaben-Widget des Dashboards und bei verwandten Aufgaben auf der Seite mit den Vorgangsdetails.
+      chatMaxConnection: 'Die gesetzte Nummer steuert die Anzahl der erlaubten Tabs mit aktiven Chat. Falls mehr Tabs geöffnet werden, wird der Chat in inaktive Tabs deaktiviert. Erlaubte Werte zw. 1-5 '
+      chatResponseTimeout: Chat-Antwort-Time-out in Sekunden, Standardwert ist 0 und bedeutet kein Time-out. Wenn Chat-Nachrichten durch den Reverse-Proxy Nginx gehen, muss das Chat-Antwort-Time-out kleiner sein als das Nginx-Time-out, z. B. kleiner als 60 Sekunden.
+      clientSideTimeoutNote: Cientseitiges Time-out in Minuten, muss größer als 0 und kleiner als das serverseitige Time-out sein (z. B. 25 Sekunden). Der Standardwert ist 0, d. h., das standardmäßige clientseitige Time-out wird angewendet. Das standardmäßige clientseitige Time-out ist das serverseitige
+        Time-out minus 3 Minuten.
+      dateFilterWithTime: Setzen Sie diesen Wert auf true, um die Datumsfilterung mit Uhrzeit zu aktivieren. Diese Einstellung wirkt sich auf die Aufgabenliste, die Fallliste und die Statistik aus.
+      defaultHomepage: Zum Einstellen der Standard-Homepage, zu der umgeleitet wird, wenn Sie auf das Home-Symbol oder das Logo klicken. Diese Einstellung gilt auch für die Endeseite nach Beendigung einer Aufgabe.
+      defaultProcessImage: Die Standardeinstellung des Standardbildes, das in der Bildprozessliste angezeigt wird.
+      defaultProcessMode: Die Standardeinstellung des Ansichtsmodus in der Prozessliste.
+      defaultSortDirectionOfCaseList: Standard-Sortierrichtung der Vorgangsliste
+      defaultSortDirectionOfTaskList: Standard-Sortierrichtung der Aufgabenliste
+      defaultSortFieldOfCaseList: Standard-Sortierfeld der Vorgangsliste
+      defaultSortFieldOfTaskList: Standardsortierfeld der Aufgabenliste
+      disableCaseCount: Auf "true" setzen, um das zählen der Vorgänge in der Vorgangsliste zu deaktivieren
+      disableTaskCount: Auf "true" setzen, um das zählen der Aufgaben in der Aufgabenliste zu deaktivieren
+      displayAllUsersOfTaskActivator: Diese Einstellung wird für die Komponente SecurityMemberDisplayName verwendet. Wenn der SecurityMember eine Rolle ist, setzen Sie diese Einstellung auf true, um alle Benutzer dieser Rolle aufzulisten. Wenn diese Einstellung auf true gesetzt ist, wird neben dem Rollennamen
+        eine Symbolinfo angezeigt.
+      displayMessageAfterFinishOrLeaveTask: Eine Feedback-Nachricht wird angezeigt, nachdem der Benutzer eine Aufgabe beendet oder verlassen hat.
+      embedInFrame: Auf true gesetzt, um einen Prozess/Task im IFrame-Modus zu starten
+      enableCaseOwner: Wird auf true gesetzt, um die Filterung des Vorgangsinhabers bei der Abfrage von Vorgängen zu aktivieren. Diese Einstellung wirkt sich auf alle Vorgangsabfragen aus, z.B. nach Vorgangsliste, globale Suche, Statistik, …
+      enableGroupChat: Setzen Sie diese Einstellung auf "true", um den Gruppenchat zu aktivieren
+      enablePrivateChat: Setzen Sie diese Einstellung auf "true", um den privaten Chat zu aktivieren
+      enableProcessViewer: Setzen Sie diese Einstellung auf true, um die Prozess-Viewer-Option in Aufgaben-/Vorgang-Aktionen zu aktivieren
+      enableScriptCheckingForUploadedDocumentNote: 'Auf "true" setzen, um die Skriptüberprüfung zu aktivieren. Es werden die Formate PDF, Excel und Word unterstützt. '
+      enableUserFavorites: Wenn diese Einstellung deaktiviert ist, zeigen Sie den Benutzerfavoritenabschnitt der Prozessliste nicht in Portal Home an.
+      enableVirusScannerForUploadedDocumentNote: Auf true setzen, um den Virenscanner für das hochgeladene Dokument zu aktivieren. Derzeit verwendet diese Funktion die API VIRUSTOTAL.
+      expressEndPageNote: Anzeigen der angepassten Endseite nach dem Ende eines Express Prozesses.
+      hideCaseDocument: Auf "true" setzen, um die Dokumentensektion in Vorgangsdetails auszublenden.
+      hideChangePasswordButtonNote: 'Auf "true" setzen, um die Option "Passwort ändern" im Top Menu zu deaktivieren. '
+      hideLogoutButtonNote: 'Auf "true" setzen, um die Logout Funktion im Top Menu zu deaktivieren. '
+      hideRelatedCaseInfoFromHistory: Wenn diese Option auf "true" gesetzt ist, werden die zugehörigen Fallinformationen nicht in der Tabelle "Historie" angezeigt.
+      hideStatisticWidget: Setzen Sie den Wert auf "true", um das Statistik-Widget auf der Startseite und im Anwendungsmenü auszublenden.
+      hideSystemNotesFromHistory: Wenn diese Option aktiviert ist, werden in den Vorgangs-/Aufgabennotizen keine Systemnotizen für Benutzer ohne Administratorrechte angezeigt.
+      hideSystemNotesFromHistoryAdministrator: Wenn diese Option aktiviert ist, werden in den Vorgangs-/Aufgabennotizen keine Systemnotizen für Administratoren angezeigt.
+      hideSystemTasksFromHistory: Wenn diese Option aktiviert ist, zeigt die Vorgangs- / Aufgabennotiz keine technischen Verlaufseinträge für Benutzer ohne Administratorrechte an.
+      hideSystemTasksFromHistoryAdministrator: Wenn dies der Fall ist, zeigt die Vorgangs- / Aufgabennotiz keine technischen Verlaufseinträge für den Administrator an.
+      hideTaskDocument: Auf "true" setzen, um die Dokumentensektion in Taskdetails auszublenden.
+      hideTimeNote: 'Auf "true" Setzen, um Datumsfelder ohne Stunden und Minuten anzuzeigen '
+      hideUploadDocumentForDoneCaseNote: Auf "true" setzen, um das Hochladen und Löschen von Dokumenten bei einem abgeschlossenen Vorgang zu unterbinden.
+      hideYear: Auf "true" um das Jahr auszublenden, andernfalls wird es angezeigt.
+      loggedInUserFormat: Definiert das Format, um den eingeloggten Benutzer anzuzeigen
+      refreshTaskListIntervalNote: Intervall in Sekunden um die Aufgabenliste neu zu laden.
+      showAvatar: Zum Ein- und Ausschalten der Anzeige von Benutzer-/Rollenavataren.
+      showButtonIcon: Zum Ein-/Ausschalten des Anzeigesymbols bei Butons im Portal
+      showCaseDurationTime: Zum Ein-/Ausschalten der Anzeige der Bearbeitungszeit auf der Vorgangsdetailseite.
+      showEnvironmentInfoNote: Zum Ein-/Ausschalten der Anzeige der Environment-Information
+      showErrorLogToConsole: Auf true setzen, um Fehlerprotokoll in die Browserkonsole zu schreiben
+      showGlobalSearch: Zum Ein-/Ausschalten der Anzeige der globalen Suche.
+      showLegacyUI: Zum Ein-/Ausschalten der Legacy UI des Dashboards.
+      showProcessInformation: Auf "false" setzen, um die Verknüpfung zu Informationen des Prozesses auf der Seite Prozesse (Gittermodus) und Falldetails anzeigen zu deaktivieren.
+      showTaskDurationTime: Zum Ein-/Ausschalten der Anzeige der Bearbeitungszeit auf der Aufgabendetailseite.
+      showUserGuide: 'Aktiviert die interaktive Benutzeranleitung "erste Schritte" im Portal bei erstmaliger Anmeldung. '
+      statisticChartScalingInterval: Intervall in Sekunden, in dem die Skalierung des statistischen Diagramms regelmäßig angefordert wird. Ist der Intervallwert kleiner als 10, wird die periodische Skalierung des statistischen Diagramms deaktiviert.
+      uploadDocumentWhiteListExtensionNote: 'Leer lassen, falls Sie alle Formate erlauben. Falls Sie nur eine geringe Anzahl an Formate erlauben möchten (White list), können Sie diese hier, mit Komma getrennt, aufführen. Z.B.: pdf, txt, doc, docx.'
+    key: Schlüssel
+    link: Link
+    loading: WIRD GELADEN
+    loginLogoSizeTooltip: 'Empfohlene Größe<BR/>Quadratisches Logo: 80x80 px<BR/>Rechteckiges Logo: 191x50 px'
+    logoSizeRecommendation:
+      homeRectangleSize: 'Rechteckiges Logo: 160x42 px'
+      homeSquareSize: 'Quadratisches Logo: 75x75 px'
+      loginRectangleSize: 'Rechteckiges Logo: 191x50 px'
+      loginSquareSize: 'Quadratisches Logo: 80x80 px'
+      sizeRecommendation: Empfohlene Größe
+    note: Notiz
+    password: Passwort
+    passwordHint: Password des Systemadministrators
+    passwordRequiredMsg: Bitte Passwort eingeben.
+    pleaseSelect: Bitte wählen Sie...
+    portalLink: Portallink
+    refreshUserErrorMsg: '{0} Fehler gefunden. Detaillierte Fehlermeldung: <BR/> {1}'
+    refreshUserPermissionSuccessful: Die Aktualisierung wurde erfolgreich abgeschlossen. Es wurden {0} Benutzer geladen.
+    refreshUserPermissions: Einstellungen synchronisieren
+    requireToInputServer: Wählen Sie einen Server für die Anwendung
+    resetAllSettingsConfirmation: 'Sind Sie sicher, dass Sie alle Einstellungen auf Standardwerte zurücksetzen möchten? '
+    resetSettingConfirmation: Sind Sie sicher, dass Sie die Einstellung auf den Standardwert zurücksetzen möchten?
+    restoreAllToDefault: Alle auf Standard Zurücksetzen
+    restoreDefault: Auf Standard Zurücksetzen.
+    settingApplicationName: Anwendungsname angeben
+    usernameHint: Benutzername eines System Administrators.
+    usernameRequiredMsg: Bitte geben Sie den Benutzernamen an.
+    value: Wert
+  applicationMenuHeader:
+    adminSettings: Administration
+    changePassword: Passwort ändern
+  caseDetails:
+    addDocumentHelpText: Zum Hochladen Dateien per Drag & Drop hier ablegen oder Dateien auswählen
+    addNoteHelpText: Schreiben Sie hier Ihren Text
+    additionalCaseDetailsTitle: Zusätzliche Vorgangsdaten
+    deleteFile: Datei löschen
+    documents: Dokumente
+    downloadFile: Datei herunterladen
+    duration: Dauer
+    history: Verlauf
+    noCaseName: <Kein Vorgangsnamen>
+    noDescription: Keine Beschreibung vorhanden
+    noRunningCase: Es wird kein Vorfall ausgeführt.
+    noRunningTask: Es wird keine Aufgabe ausgeführt.
+    noRunningTasksAndCasesPermission: Weitere Aufgaben werden derzeit bearbeitet. Sie haben keine Berechtigung, die zugehörigen Aufgaben dieses Vorganges zu sehen.
+    noSideSteps: Keine Sidesteps verfügbar
+    noTaskName: <Kein Aufgabenname>
+    noTasks: Keine Aufgabe
+    relatedTasks: Zugehörige Aufgaben
+    relatedTasksAndCases: Zugehörige Aufgaben und Vorgänge
+    runningTasks: Laufende Aufgaben
+    showAdditionalPage: Geschäftsdetails
+    showAllTasks: Alle Tasks anzeigen
+    showAllTechnicalCases: Vorgänge anzeigen
+    showMoreTasks: Weitere Aufgaben anzeigen
+    showMoreTechnicalCases: Weitere technische Vorgänge anzeigen
+    showProcessOverview: Prozessübersicht
+    sideSteps: Sidesteps
+    taskIsDestroyed: Die Aufgabe ist gelöscht
+    taskIsDone: Die Aufgabe ist erledigt
+    taskIsFailed: Aufgabe ist fehlgeschlagen
+    taskIsWaiting: Aufgabe wartet
+    taskStateAndResponsible: 'Status: {0}, verantwortlich: {1}'
+    taskStateIsCreated: Der Zustand der Aufgabe ist Erstellt (im Speicher noch)
+    taskStateIsZombie: Der Zustand der Aufgabe ist Zombie
+  caseList:
+    cases: Vorgänge
+    confirmDeleteMessage: Diese Aktion kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie dieses Businessobjekt löschen wollen?
+    defaultColumns:
+      APPLICATION: Anwendung
+      CATEGORY: Kategorie
+      CREATION_TIME: Erstellt
+      CREATOR: Ersteller
+      FINISHED_TIME: Erledigt
+      ID: Vorgangs Id
+      NAME: Name / Beschreibung
+      OWNER: Owner
+      STATE: Status
+    deletionNoteContent: Der Vorgang wurde durch {0} gelöscht.
+    destroyCaseMessage: Diese Operation kann nicht rückgängig gemacht werden. Sind Sie sicher, dass dieser komplette Vorgang gelöscht werden soll?
+    destroyfail: Beim Löschen des Vorgangs ist ein Fehler aufgetreten.
+    destroysucceed: Vorgang wurde erfolgreich gelöscht.
+    downloadZipFileExplanation: Die Anzahl der zu exportierenden Fälle überschreitet die Grenze der Excel-Zeilen. Daher werden die Daten in mehrere Excel-Dateien aufgeteilt und dann in einer ZIP-Datei zum Herunterladen komprimiert.
+    error: Fehler
+    exportedCasesFileName: AXONIVY_Dataset_Cases_{0}.{1}
+    headerTitle:
+      relatedStatisticHeader: 'Vorgänge aus Diagramm:'
+      technicalCaseOfBusinessCaseAlternativeTitle: Vorgang {0}
+      technicalCasesOfBusinessCaseTitle: 'Technische Vorgänge für Business Case #{0} {1}'
+    relatedCaseHeader: 'Vorgang #{0} {1}'
+    relatedCases: Verwandte Vorgänge
+    title: Titel
+  caseState:
+    CREATED: Erstellt
+    DESTROYED: Gelöscht
+    DONE: Erledigt
+    FAILED: Fehlgeschlagen
+    OPEN: Offen
+    RUNNING: in Bearbeitung
+    ZOMBIE: Zombie
+  caseTreeTable:
+    caseState: Vorgangsstatus
+  chat:
+    chatAssigneeDialogHeader: Benutzer zum Chat hinzufügen
+    chatAssigneeDialogHint: 'Bitte wählen Sie die relevanten User und Gruppen, die Sie zum Gruppenchat hinzufügen möchten:'
+    createProcessChat: Gruppenchat erstellen
+    errorSelectInvalidAssignee: Der Beauftragte ist bereits ausgewählt oder ungültig
+    failureToCreateProcessChat: Fehler beim erstellen des Gruppenchats
+    failureToJoinProcessChat: Fehler beim beitreten zum Gruppenchat
+    groupChatHeader: Vorgangsbezogener Chat
+    joinGroupQuestion: Möchten Sie beitreten?
+    joinProcessChat: Gruppenchat beitreten
+    joinedProcessChat: Sie sind dem Gruppenchat - {0} - beigetreten
+    noAssignees: Bitte wählen Sie die relevanten User und Gruppen, um den Gruppenchat zu erstellen.
+    noGroupChat: Es gibt keine Gruppen-Chats.
+    noUsers: Keine Benutzer
+    participants: Teilnehmer
+    personalChatHeader: Allgemeiner Chat
+    processChatIsCreated: Gruppenchat - {0} - wurde erstellt
+    processChatWasCreated: Gruppenchat - {0} - wurde bereits erstellt. Sie können keinen weiteren Chat erstellen.
+    selectedAssignees: Ausgewählte Genehmiger
+    typeMessage: Schreiben Sie hier eine Nachricht...
+    viewParticipant: Teilnehmer anzeigen
+  common:
+    BusinessCaseInformation: Business Case Informationen
+    CollapseAll: Alles zuklappen
+    DefaultTemplate: Standard Vorlage
+    ExpandAll: Alles aufklappen
+    NoSelection: Keine Auswahl
+    ResetToDefaultHeaderText: Auf Standard-Einstellungen zurücksetzen?
+    RoleUserInformation: Rollen- und Benutzerinformationen
+    TaskCaseInformation: Informationen zu Aufgabe und Vorgang
+    Update: Update
+    action: Aktionen
+    active: Aktiviert
+    add: Hinzufügen
+    addDocument: Dokument hinzufügen
+    addNote: Notiz hinzufügen
+    adhoc: Adhoc
+    allCategories: Alle Kategorien
+    allowPng: Nur das png Format wird unterstützt
+    apply: Anwenden
+    at: am
+    author: Author
+    back: Zurück
+    backToCaseMap: Zurück zur Case Map
+    backgroundColor: Hintergrundfarbe
+    cancel: Abbrechen
+    case: Vorgang
+    caseInformation: Vorgangsinformationen
+    caseName: Vorgangsname
+    categories: Kategorien
+    change: Ändern
+    close: Schließen
+    cockpit: Cockpit
+    colors: Farben
+    comment: Kommentar
+    completedOn: Erledigt am
+    confirmForDelete: Sind Sie sicher, dass Sie diesen Eintrag löschen wollen?
+    confirmation: Bestätigung
+    confirmationHeaderText: Sind Sie sicher?
+    continue: Weiterfahren
+    create: Erstellt
+    creationDate: Erstellungsdatum
+    dashboard: Dashboard
+    data: Daten
+    dateFromBiggerThanTo: Das 'bis' Datum muss nach dem 'von' Datum liegen.
+    dateRequired: Datum darf nicht leer sein.
+    day: Tag
+    dayUnit: Tag
+    days: Tage
+    default: Standardeinstellung
+    defaultNotificationMessage: Hmm... Hier ist wohl etwas schief gelaufen.
+    delete: Löschen
+    deleteAbsenceHeaderText: 'Diese Abwesenheit löschen? '
+    deleteChartHeaderText: Dieses Diagramm löschen?
+    deleteDocumentHeaderText: 'Dieses Dokument löschen? '
+    deleteFilterHeaderText: Diesen Filter löschen?
+    deleteSettingHeaderText: Diese Einstellung löschen?
+    description: Beschreibung
+    design: Design
+    destroy: Löschen
+    destroyCaseHeaderText: Diesen Vorgang löschen?
+    destroyTaskHeaderText: Diese Aufgabe löschen?
+    detail: Details
+    display: Anzeigen
+    displayName: Name anzeigen
+    edit: Bearbeiten
+    errorAjaxMessage: Es gibt einen allgemeinen Fehler!
+    errorFileUploadSize: Die Dateigrösse muss kleiner als {0} sein.
+    errorNotification: Fehlerbenachrichtigung
+    errorXhr: Fehler beim aktualisieren der Webseiteinhalte
+    escalationTaskHeaderText: Eskalation auslösen
+    escalationTaskMessage: Frist wird auf jetzt gesetzt, somit läuft die Bearbeitungsfrist ab. Sind Sie sicher?
+    filter:
+      from: von
+      moreOptions: Mehr Optionen
+      restoreDefaultFilterHeader: Zurücksetzen
+      to: bis
+      worker: Bearbeiter
+      wrongFromDateFormat: Bitte geben Sie ein gültiges Datum "von" an. Das Format ist {0}
+      wrongToDateFormat: Bitte geben Sie ein gültiges Datum "bis" an. Das Format ist {0}
+    finish: Beenden
+    general: Allgemein
+    generalInformation: Allgemeine Informationen
+    globalSearch: Suche nach Aufgaben, Vorgängen und Prozessen
+    goToDetail: Zu den Details
+    hasPrecondition: Dieser Prozess hat eine Vorbedingung
+    height: Höhe
+    hide: Verbergen
+    homeLogo: Home Logo
+    hour: Sunde
+    hours: Stunden
+    inactive: Deaktiviert
+    information: Information
+    leave: Verlassen
+    leaveAndReserve: Verlassen und reservieren
+    linkToCaseDetails: Klicken Sie <a href="{0}" >hier</a> für weitere Details.
+    loading: Ladet
+    loginLogo: Login Logo
+    logos: Logos
+    mainColor: Hauptfarbe
+    minute: Minute
+    minutes: Minuten
+    more: Mehr
+    moreInformation: Mehr information
+    myProcesses: Meine Prozesse
+    name: Titel
+    new: Neu
+    next: Weiter
+    nextStage: Nächste Stufe
+    'no': Nein
+    noCategory: '[Keine Kategorie]'
+    noDocumentAvailable: Keine Dokumente vorhanden
+    noName: kein Name
+    noNoteAvailable: Keine Notizen vorhanden
+    noNotesFound: Keine Notizen vorhanden
+    noProcessDescription: Führen Sie diesen Prozess aus, indem Sie auf die Schaltfläche unten klicken
+    noRecordsFound: Keine Ergebnisse gefunden.
+    notAvailable: N/V
+    note: NOTIZ
+    numberOfSelectedFilter: Ausgewählte Filter
+    ok: Ok
+    'on': am
+    pleaseAddDocument: Verwenden Sie bitte den Link oben, um Dokumente hochzuladen
+    pleaseAddNote: Verwenden Sie bitte den Link oben, um Notizen hochzuladen
+    previousStage: Vorherige Stufe
+    private: Privat
+    process: Prozess
+    processes: Prozesse
+    public: Öffentlich
+    remove: Entfernen
+    reorder: Neu anordnen
+    requiredFieldMessage: Dies ist ein Pflichtfeld
+    reserve: Reservieren
+    reset: Zurücksetzen
+    resetSettingHeaderText: Einstellung zurücksetzen?
+    resetTaskHeaderText: Diese Aufgabe zurücksetzen?
+    resetToDefaultMessage: Dieser Vorgang kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie auf die Standard-Einstellungen zurücksetzen möchten?
+    resetToStandardFilterHeaderText: Auf Standardfilter zurücksetzen?
+    restore: Wiederherstellen
+    restoreToDefaultChartHeaderText: Auf Standarddiagramme zurücksetzen?
+    role: Rolle
+    save: Speichern
+    saveSuccessfully: Daten erfolgreich gespeichert.
+    search: Suche
+    second: Sekunde
+    seconds: Sekunden
+    seeDetail: Details anzeigen
+    select: Auswählen
+    selectAll: Alle selektieren
+    selectUsers: Benutzer auswählen
+    selectedDay: '{0} ausgewählte Tag(e)'
+    send: Senden
+    sessionExpried: Ihre Session ist abgelaufen. Die Anwendung wird neu gestartet.
+    sessionExpriedInTeams: Ihre Session ist abgelaufen. Die Anwendung wird neu gestartet.
+    setting: Einstellungen
+    showDetail: Details anzeigen
+    showRelatedCaseInfo: Zugehöriger Vorfall
+    showSystemNotes: Systemhinweise
+    showSystemTasks: Systemaufgaben
+    start: Start
+    state: Status
+    status: Status
+    switchToDesktopVersion: Zur Desktop-Version wechseln
+    taskCanceledAndLeftSuccessfully: Sie haben die Aufgabe abgebrochen. Sie finden die Aufgabe im Dashboard oder in Ihrer Aufgabenliste.
+    taskFinishedSuccessfully: Sie haben die Aufgabe erfolgreich abgeschlossen
+    taskFromSubstitution: Sie sehen diese Aufgabe, weil Sie der Stellvertreter sind
+    taskName: Aufgabenname
+    tasks: Aufgaben
+    theCasemap: Die Case Map
+    theProcess: Der Prozess
+    timeInformation: Zeitangaben
+    timestamp: Zeitstempel
+    type: Typ
+    typeAdmin: Alle Administratoren
+    typeAllUsers: Alle Benutzer
+    typeOnlyMe: Nur für mich
+    user: '{0} Benutzer'
+    users: Benutzer
+    via: schrieb
+    viewExpired: Ihre aktuelle Bearbeitungsmaske ist abgelaufen und kann nicht weiter bearbeitet werden. Sie werden auf die Startseite umgeleitet.
+    viewMode: Ansichtsmodus
+    visible: Sichtbar
+    warning: Warnung
+    welcomeToPortal: 'Willkommen, bitte melden Sie sich an:'
+    wrongDateFormat: Bitte geben Sie ein gültiges Datum ein.
+    year: Jahr
+    years: Jahre
+    'yes': Ja
+  components:
+    RoleManagement:
+      AssignUsersToRole: Benutzer einer Rolle zuordnen
+      AssignedUser: Zugewiesene Benutzer
+      AvailableUsers: Verfügbare Benutzer
+      CannotDeleteRoleTooltip: Sie haben nicht die Berechtigung, diese Rolle zu löschen. Bitte wenden Sie sich an Ihren Systemadministrator.
+      CannotDeleteUserTooltip: Sie können nur direkte Rollenzuweisungen bearbeiten, nicht aber vererbte Mitgliedschaften.
+      CannotEditRoleTooltip: Sie haben nicht die Berechtigung, Rolleninformationen zu ändern. Bitte wenden Sie sich an Ihren Systemadministrator.
+      CannotManageRoleTooltip: Sie können nur Rolleninformationen für Rollen ändern, die nicht an einem Prozess beteiligt sind.
+      CreateRole: Neue Rolle erstellen
+      DeleteButtonTitle: Rolle löschen
+      EditButtonTitle: Rolleninfo bearbeiten
+      FilteredRoles: Gefilterte Rollen
+      InheritedMembership: Vererbte Mitgliedschaft
+      ListUsers: Benutzer der Rolle {0}
+      Messages:
+        ConfirmDeleteRole: Sind Sie sicher, dass Sie sie löschen wollen?
+        ConfirmDeleteUserOfRole: Sind Sie sicher, dass Sie die Benutzer aus der Rolle entfernen wollen?
+        CreateRoleFailed: Rolle "{0}" konnte nicht erstellt werden
+        CreateRoleSuccess: Rolle "{0}" erfolgreich erstellt
+        DuplicateRole: Rolle "{0}" existiert bereits im System, versuchen Sie es mit einem anderen Namen
+        MaxSearchLimit: Die aktuelle Suche hat mehr als {0} Ergebnisse
+        NotFoundRole: Kann die "{0}" im System nicht finden
+        ParentRoleIsRequired: Die Rolle der Eltern ist obligatorisch
+        RemoveRoleSuccess: Rolle "{0}" erfolgreich entfernt
+        RoleNameIsRequired: Rollenname ist obligatorisch
+        RoleNotFound: Keine Rollen gefunden
+        SearchToSeeMoreRole: Bitte benutzen Sie die Suche, um eine bestimmte Rolle zu finden ({0} weitere Rollen)
+        UpdateRoleSuccess: Rolle "{0}" erfolgreich aktualisiert
+        UserOfRoleNotFound: Kein Benutzer besitzt diese Rolle
+      NumberUsers: '{0} Benutzern'
+      ParentRole: Rolle der Eltern
+      RemovingRoleHeader: Entfernen der "{0}"-Rolle?
+      RoleCreation: Rollenerstellung
+      RoleDetails: Details zur Rolle "{0}"
+      RoleInformation: Informationen zur Rolle
+      RoleName: Name der Rolle
+      SearchRole: Suche nach Rolle
+      TitlePage: Rollenmanagement
+      UserAssignment: Benutzerzuordnung
+      UserSelectionLabel: Benutzer suchen, der dieser Rolle hinzugefügt werden soll
+    SecurityMemberDisplayName:
+      filterByUsername: Nach Benutzernamen filtern
+      filterToSee: Filtern, um mehr anzuzeigen
+      loadMore: Mehr laden
+      noUser: Es sind keine Benutzer vorhanden.
+      tooltipHelper: Klicken Sie hier, um alle Benutzer anzuzeigen, die diese Rolle direkt oder indirekt besitzen
+      userOfRoleTitle: Benutzer der Gruppe {0}
+    compactProcessWidget:
+      selectedProcess: Ausgewählter Prozess
+      settingFavoriteProcessName: Namensdefinition für Prozess-Favorit
+    expressManagement:
+      deployButton: Hochladen
+      deployMessage: Prozesse werden deployt
+      exportExpress: Export Express
+      exportExpressProcessTitle: Export Express Prozesse
+      expressExportName: AXONIVY_Dataset_ExpressWorkflow_{0}.json
+      expressManagement: Express Management
+      expressMessages:
+        deployErrorLog: Fehler beim Deployen {0}
+        deploymentFinishedLog: Prozess(e) der Datei {0} erfolgreich im Portal deployt in {1}ms
+        endDeployLog: Express Deployment beendet
+        invalidVersionLog: Nicht unterstützte Version {0} von Express
+        process:
+          duplicateProcessNameLog: '- Duplizierter Prozessname {0}'
+          installProcessFailedLog: '- Prozessdeployment {0} fehlgeschlagen'
+          installProcessFinishedLog: Installation von Prozess {0} erfolgreich
+          installedProcessLog: Prozess installiert {0}
+          startDeployProcessLog: Start des Deployments von Prozess {0}
+        startDeployLog: Start des Deployments des/der Express-Prozesses(e) der Datei {0} ins Portal
+        status:
+          error: Fehler
+          failed: Fehlgeschlagen
+          info: Info
+          successful: Erfolg
+          warning: Warnung
+        validate:
+          validateExpressVersion: Die Variable Express-Version konnte im System nicht gefunden werden. Bitte kontaktieren Sie Ihren Administrator.
+          validateProcessCoOwnerLog: '- Validierung des Prozesses Co-Owner von {0}, Benutzer {1} ist nicht im System verfügbar'
+          validateProcessOwnerLog: '- Validierung des Prozesses Owner von {0}, Benutzer {1} ist nicht im System verfügbar, ändern Sie den Prozesseigner auf {2}'
+          validateProcessPermissionLog: '- Validierung der Prozessberechtigung von {0}, Benutzer {1} ist im System nicht verfügbar'
+          validateTaskDefUserLog: '- Validierung der Task-Definition Verantwortliche von {0},Benutzer {1} ist im System nicht verfügbar'
+        versionLog: 'Express Version: {0}'
+      fileEmptyMessage: Datei ist leer
+      importDialogHeaderTitle: Wählen Sie ein Dataset für den Express-Workflow, es sollte eine JSON-Datei sein.
+      importExpress: Express importieren
+      importExpressProcessTitle: Express Prozess importieren
+      importHeaderTitle: 'Liste von Express Prozessen werden exportiert:'
+      processCount: Prozess(e)
+      waitingMessage: Daten werden gesammelt…
+    guide:
+      dontShowAgain: Nicht mehr anzeigen
+      mainMenu:
+        content: In diesem Menü können Sie zu den unterschiedlichen Bereichen Prozesse, Aufgaben, Vorgänge und Statistiken navigieren.
+        title: Hauptmenü
+      process:
+        content: In diesem Bereich können Sie Ihre eigenen Favoriten definieren und Standardprozesse der Anwendung einsehen. Klicken Sie darauf und der Prozess wird gestartet.
+        title: Prozesse
+      statistic:
+        content: "In diesem Bereich finden Sie alle verfügbaren Statistiken. Klicken Sie darauf für mehr Details. \n"
+        title: Statistiken
+      task:
+        content: In diesem Bereich finden Sie alle offenen Aufgaben. Klicken Sie darauf, um eine Aufgabe zu bearbeiten.
+        title: Aufgaben
+      username:
+        content: Mi Klick auf dem Benutzername können Sie Einstellungen wie Abwesenheiten, Sprache, Email Einstellungen, usw. vornehmen.
+        title: Benutzername
+      welcome:
+        content: 'Wir möchten Ihnen einen guten Start im Portal ermöglichen. Dazu möchten wir Sie durch die ersten Aktionen führen, die Sie durchführen können. Darüber hinaus finden Sie hier eine erweiterte Benutzerdokumentation inklusive "How-to-Guide": <a href="{0}"  target="_blank">Portal-Anleitung</a>'
+        mobileContent: 'Sie können auf dieser Seite sofort auf Ihre Aufgaben zugreifen oder mit <span class="{0}"></span> zu anderen Bereichen navigieren. Sie finden weiterführende Informationen hier: <a href="{1}"  target="_blank">PortalGuide</a>'
+        title: Willkommen im Axon Ivy Portal
+    processChain:
+      currentStepIsNotDefined: Aktueller Schritt ({0}) der Prozesskette ist nicht definiert
+    statisticWidget:
+      chartDeletionConfirmation: Wollen Sie dieses Diagramm wirklich löschen?
+      contextMenuDrilldown: Drilldown
+      contextMenuToCaseList: Zur Fallliste gehen
+      contextMenuToTaskList: Zur Aufgabenliste
+    taskStart:
+      cannotDelegateTaskMessage: Diese Aufgabe kann an keinen anderen Benutzer oder keine andere Gruppe delegiert werden.
+      cannotStartMessages:
+        cannotStartTask: Sie können Aufgabe {0} nicht starten.
+        isAnotherUserWorking: Sie können nicht an der Aufgabe ''{0}'' mit der Identifikation ''{1}'' arbeiten, weil Benutzer ''{2}'' momentan daran arbeitet.
+        noPermission: Sie können die Aufgabe {0} nicht starten, weil Ihnen die Berechtigung fehlt.
+        taskDone: |+
+          Sie können die Aufgabe {0} nicht starten, da sie bereits abgeschlossen wurde.
+
+      created: Erstellt am
+      expired: Ablaufdatum
+      showDetailsHint: Mehr Details anzeigen
+      taskDescriptionNotAvailable: '[Keine Beschreibung]'
+      taskNameNotAvailable: '[Kein Aufgabenname verfügbar]'
+    taskView:
+      adminFilterSetWarning: Ihr Filter enthält Status, die nur von Administratoren gesehen werden können.
+      appliedFilters: Angewendete Filter
+      exportedTasksCasesFileName: AXONIVY_Dataset_Statistics_{0}.{1}
+      exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}.{1}
+      filter: Filter
+      filterDeletionConfirmation: Sind Sie sicher, dass Sie diesen Filter löschen wollen?
+      filterExistedValidationError: Filter existiert bereits
+      filterName: Filtername
+      filterVisibility: Filtersichtbarkeit
+      noTask: Keine Aufgaben gefunden.
+      privateFilter: Meine Filter
+      publicFilter: Öffentlich
+      savedFilters: 'Gespeicherte Filter:'
+  dashboard:
+    DashboardConfiguration:
+      CreateFromScratch: Von Grund auf neu erstellen
+      CreateFromScratchDescription: Erstellen Sie Ihr eigenes Dashboard von Grund auf
+      CreateNewPrivateDashboard: Neues privates Dashboard erstellen
+      CreateNewPublicDashboard: Neues öffentliches Dashboard erstellen
+      DefaultTemplateDescription: Dashboard mit 1 Aufgabenliste, 1 Fallliste und 1 Prozessliste erstellen
+      Description: In diesem Bereich können Sie die Dashboards nach Ihren Wünschen konfigurieren.
+      DoNotSupportMobile: Die Dashboard-Konfiguration wird für mobile Geräte nicht unterstützt.
+      EditPrivateDashboards: Private Dashboards bearbeiten
+      EditPublicDashboards: Öffentliche Dashboards bearbeiten
+      PrivateDashboard: Private Dashboards
+      PrivateDashboardConfiguration: Private Dashboard-Konfiguration
+      PublicDashboard: Öffentliche Dashboards
+      PublicDashboardConfiguration: Konfiguration des öffentlichen Dashboards
+      ReorderPrivateDashboards: Réorganiser vos tableaux de bord
+      ReorderPublicDashboards: Öffentliche Dashboards neu anordnen
+      SelectAction: Wählen Sie die Aktion
+      Title: Dashboard-Konfiguration
+      TwoTaskTemplate: Zwei Aufgabenlisten Dashboard
+      TwoTaskTemplateDescription: Dashboard mit 2 Aufgabenlisten und 1 Prozessliste erstellen
+    EmptyFilterMessage: Kein Widget-Filter gefunden
+    Filter:
+      FilterOptionHeader: Filter-Optionen
+      ManageWidgetFilterHeader: Widget-Filter-Verwaltung
+      NotFound: Kein Filter gefunden
+      WidgetNameColumn: Widget-Name
+      WrongDateFormat: Das Datum ist ungültig
+    ManageFilter: Filterverwaltung
+    NoData: Keine Daten
+    NoSavedFilterMessage: Kein gespeicherter Filter gefunden. Versuchen Sie, einen neuen zu erstellen, indem Sie auf die Schaltfläche Filter speichern klicken.
+    RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
+    SaveNewWidgetFilterHeader: Save a new widget filter
+    SavedFilterHeader: Saved filters
+    SearchForFilter: Search for filter
+    StatisticWidget:
+      AvailableCharts: Verfügbare Statistikdiagramme
+      Charts: 'Diagramm(e): {0}'
+      ConfigurationDescription: Sie können Ihr Widget in diesem Konfigurationsbereich konfigurieren. Bitte definieren Sie die Grafik, die auf Ihrem Dashboard angezeigt werden soll.
+      EmptyChartDataMessage: Wir haben nicht genug Daten, um ein schönes Diagramm zu erstellen!
+      FilterChartText: Filtern eines Diagramms nach Name
+      PlaceholderChartOption: Wählen Sie ein Diagramm
+      PleaseSelectChart: Bitte wählen Sie ein Diagramm aus
+      PreviewText: Bitte wählen Sie ein Diagramm aus, um die Canvas-Daten zu sehen
+    WidgetFilterName: Name des Widget-Filters
+    WidgetFilters: Widget-Filter
+    actionSelection: Aktion auswählen
+    addField: Feld hinzufügen
+    addWidget: Widget hinzufügen
+    availableFilters: Verfügbare Filter
+    canWorkOn: Kann arbeiten an
+    caseList: Vorfall-Liste
+    caseListIntroduction: Dieses Widget zeigt relevante Vorgangsinformationen entsprechend einiger definierter Parameter an
+    caseWidgetInfo:
+      casesByCategory: Anzahl der Fälle nach Kategorie
+      casesByState: Anzahl der Fälle nach Bundesland
+      numberOfCase: Vorfälle
+    category: Kategorie
+    columnManagement: Spaltenverwaltung
+    configuration:
+      CustomWidgetExternalLinkWarning: Einige Websites sind aufgrund von Sicherheitsbedenken nicht mit iframe kompatibel. Bitte wenden Sie sich an Ihren Administrator, wenn die externe Website nicht ordnungsgemäß funktioniert.
+      Parameters: Parameter
+      RestoreDefaultDashboardTemplateTooltip: Wir können die Vorlage für Ihr Dashboard nicht finden und es daher nicht auf die Standardkonfiguration zurücksetzen. Bitte erkundigen Sie sich bei Ihrem Administrator nach weiteren Details!
+      SelectTheTemplate: Wählen Sie die Vorlage
+      SelectYourTemplate: Wählen Sie Ihre Vorlage
+      configuration: Konfiguration
+      configurationDescription: In diesem Konfigurationsbereich kann das Widget konfiguriert werden. Bitte definieren Sie die gewünschten Filter sowie die anzuzeigenden Spalten.
+      customWidgetParamChangedMessage: Dieser Prozess hat sich geändert. Klicken Sie auf Update, um fortzufahren.
+      editWidgetHeader: Widget-Konfiguration bearbeiten
+      newWidgetHeader: Neue {0} Widget-Konfiguration
+      pageTitle: Dashboard-Konfiguration
+      processConfigurationDescription: In diesem Konfigurationsbereich kann das Widget konfiguriert werden. Bitte definieren Sie die gewünschten Filter sowie die Eigenschaften, die angezeigt werden sollen.
+      processViewerConfigurationDescription: In diesem Konfigurationsbereich kann das Widget konfiguriert werden. Bitte definieren Sie die Informationen, die angezeigt werden sollen.
+      tableConfiguration: Tabellenkonfiguration
+      tableConfigurationDesc: Sie können Spalten verwalten und die Standardsortierung einstellen, indem Sie auf die Spalte klicken.
+      yourWidget: Ihr Widget
+    createWidget: Widget hinzufügen
+    createdFrom: Erstellt von
+    createdTo: Erzeugt bis
+    customFieldType: Benutzerdefinierter Feldtyp
+    customWidget: Benutzerdefiniertes Widget
+    customWidgetIntroduction: Dieses Widget kann einen Axon Ivy-Prozess oder eine externe Webseite anzeigen.
+    dashboardManagement:
+      CreateDashboard: Dashboard erstellen
+      addDashboard: Dashbaord hinzufürgen
+      dashboardPermission: Dashboard Berechtigung
+      dashboardTitle: Dashboard Titel
+      editDashboard: Dashboard editieren
+      manageDashboard: Dashboard verwalten
+      removeDashboardHeader: Dashboard "{0}" entfernen
+    deleteWidget: Widget löschen
+    editWidget: Widget bearbeiten
+    existingField: Das Feld {0} ist bereits vorhanden
+    expiryFrom: Gültig von
+    expiryTo: Ablauf bis
+    field: Feld
+    fieldIsAdded: Das Feld {0} wurde hinzugefügt
+    iconMessage:
+      caseWidget:
+        BEACH_PALM_SUNBED: Sie sind großartig - alle Vorgänge sind erledigt. Lehnen Sie sich zurück und genießen Sie.
+        CHARGING_BATTERY_FULL_1: Zurzeit gibt es keine Vorgänge. Zeit, die Batterien ein wenig aufzuladen.
+        COFFEE_OF_HOT: Wahnsinn! Gut gemacht! Alle Vorgänge sind abgeschlossen. Wie wäre es mit einer kurzen Kaffeepause?
+        RANKING_WINNER_MEDAL: Spiel, Satz und Sieg! Du hast es geschafft, alle Vorgänge sind abgeschlossen!
+        SOCCER_PLAYER: Ziel erreicht! Du hast es geschafft, alle Vorgänge sind abgeschlossen. Kurze Halbzeitpause.
+        YOGA_MEDITATE: Gut gemacht! Alle Vorgänge sind erledigt. Einatmen, ausatmen, entspannen.
+        noCasesFoundWhenFilter: Derzeit gibt es keine Vorgänge nach dem angewandten Filter.
+      taskWidget:
+        BEACH_PALM_SUNBED: Sie sind großartig - alle Aufgaben sind erledigt. Lehnen Sie sich zurück und genießen Sie.
+        CHARGING_BATTERY_FULL_1: Derzeit gibt es keine Aufgaben. Zeit, die Batterien ein wenig aufzuladen.
+        COFFEE_OF_HOT: Wahnsinn! Gut gemacht! Alle Aufgaben sind erledigt. Wie wäre es mit einer kurzen Kaffeepause?
+        RANKING_WINNER_MEDAL: Spiel, Satz und Sieg! Du hast es geschafft, alle Aufgaben sind erledigt!
+        SOCCER_PLAYER: Ziel erreicht! Du hast es geschafft, alle Aufgaben sind erledigt. Kurze Halbzeitpause.
+        YOGA_MEDITATE: Gut gemacht! Alle Aufgaben sind erledigt. Einatmen, ausatmen, entspannen.
+        noTasksFoundWhenFilter: Derzeit gibt es keine Aufgaben nach dem angewandten Filter.
+    loading: Laden...
+    noCategory: Es gibt keine Kategorien
+    noDashboard: Keine Dashboards vorhanden. Fügen Sie mindestens ein Dashboard und anschließend Widgets hinzu.
+    noPermission: Sie haben keine Berechtigung, Dashboards zu sehen.
+    noWidget: Es sind keine Widgets für dieses Dashboard vorgesehen
+    numberPattern: Zahlen-Muster
+    preview: Vorschau
+    processList: Prozessliste
+    processListIntroduction: Dieses Widget zeigt verfügbare Prozessstarts an. Sie haben die Möglichkeit, unterschiedliche Formate zu wählen
+    processViewerIntroduction: Dieses Widget bietet eine visuelle Darstellung des Prozessablaufs.
+    processWidgetInfo:
+      noProcess: Es sind keine Prozesse vorhanden.
+      numberOfProcessesByType: Anzahl der Prozesse nach Typ
+    processes:
+      emptyProcess: Sie haben keine Prozesse definiert.
+      noMatchingProcess: Keine passenden Prozesse.
+      noProcessSelected: Bitte wählen Sie einen Prozess
+    removeWidgetHeader: Widget "{0}" löschen
+    removeWidgetMessage: Möchten Sie es wirklich löschen?
+    reorder:
+      dashboardType: Dashboard-Typ
+    restoreDefaultHeader: Auf Standard zurücksetzen
+    restoreDefaultMessage: Wenn Sie fortfahren, verlieren Sie alle von Ihnen erstellten Widgets. Es werden die Standardeinstellungen übernommen.
+    select: Wählen Sie
+    selectEditAction: Welche Aktion möchten Sie durchführen?
+    showFullWidget: Vollständiges Widget anzeigen
+    startATask: Aufgabe starten
+    statisticChartIntroduction: Dieses Widget zeigt die verfügbaren statistischen Diagramme an.
+    statisticChartWidget: Statistisches Diagramm
+    switchToViewMode: Ansichtsmodus
+    tasWidgetkInfo:
+      expireToday: Ablaufdatum heute
+      expiryThisWeek: Ablaufdatum diese Woche
+      numberOfTasks: Aufgabe(n)
+      numberOfTasksByCategory: Anzahl der Aufgaben nach Kategorie
+      numberOfTasksByState: Anzahl der Aufgaben nach Status
+      predefinedFilters: Vordefinierte Filter
+    taskList: Aufgabenliste
+    taskListIntroduction: Dieses Widget zeigt relevante Aufgabeninformationen gemäß der definierten Einstellungen an
+    taskWidgetConfiguration: Aufgaben-Widget-Konfiguration
+    widgetInfo: Widget-Informationen
+    widgetTitle: Widget-Titel
+    widgetType: Widget-Typ
+    yourCases: Ihre Vorgänge
+    yourCustomWidget: Ihr benutzerdefiniertes Widget
+    yourProcessViewer: Ihr Prozessbetrachter
+    yourProcesses: Ihre Prozesse
+    yourStatistics: Ihre Statistiken
+    yourTasks: Ihre Aufgaben
+  dateFormatConfiguration:
+    dateFormatConfiguration: Konfiguration des Datumsformats
+    selectedDateFormat: Ausgewähltes Datumsformat
+  documentFiles:
+    deleteDocumentNote: '{0} hat folgendes gelöscht: {1}'
+    deleteSuceed: Datei wurde erfolgreich gelöscht
+    download: Herunterladen
+    fileContainScript: Diese Datei darf aufgrund von Skript-Inhalten nicht hochgeladen werden!
+    fileContainVirus: Upload fehlgeschlagen, Virus/Infektion erkannt!
+    name: Dateiname
+    size: Dateigröße
+    type: Typ
+    upload: Neue Datei hochladen
+    uploadDocumentNote: '{0} hat {1} hochgeladen.'
+    uploadFailed: Während des Hochladens ist ein Fehler aufgetreten. Bitte fragen Sie Ihren Administrator.
+    uploadFileExists: Datei {0} ist bereits vorhanden
+    uploadSucceed: Die Datei wurde erfolgreich hochgeladen
+  emailSetting:
+    dailySummary: Tägliche Zusammenfassung erhalten
+    eMail: E-Mail
+    emailSetting: E-Mail Einstellungen
+    furtherEmailFromApp: Weitere Emails der Applikation erhalten
+    invalidEmailFormat: Ungültiges E-Mail-Format
+    mailNotificationOnTaskAssign: E-Mail Benachrichtigung bei neuen Aufgaben
+    noSettingMsg: Es sind keine Anwendungen für die Spracheinstellung vorhanden.
+  errorPage:
+    '404': 404 Seite nicht gefunden
+    404Message: Entschuldigen Sie, aber die Ressource, welche Sie suchen, existiert nicht.
+    '500': 500 Fehler
+    500Message: Entschuldigen Sie, es gibt ein Problem beim Ausliefern der angefragten Seite.
+    backToHomePage: Zurück zur Home Page
+    title: Fehlerseite
+  exceptionDialog:
+    copied: Kopiert
+    copyError: Fehler kopieren
+    errorId: Fehler-Id
+    errorType: Fehlertyp
+    message: Nachricht
+    pmv: PMV
+    processElementId: Prozesselement Id
+    stackTrace: StackTrace
+  forgotPassword:
+    empty: Leer
+    forgotPassword: Ich habe mein Passwort vergessen.
+    forgotPasswordError: Bei der Bearbeitung Ihrer Anfrage ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.
+    goToForgotPassword: Zurück zur Passwort vergessen Seite
+    goToLogin: Zurück zur Login-Seite
+    good: Gut
+    invalidResetUrl: Angeforderte URL ist ungültig
+    invalidToken: Ungültiges Token
+    newPassword: Neues Passwort
+    passwordConfirmation: Passwort-Bestätigung
+    passwordReset: Kennwort zurücksetzen
+    passwordResetEmailCantSend: Ausnahme beim Senden der E-Mail an Sie. Bitte versuchen Sie es später erneut.
+    passwordResetEmailContent: '<html>Hallo {0},<br/><br/>Bitte klicken Sie auf diesen Link, um Ihr Passwort zurückzusetzen: <a href="{1}">Passwort zurücksetzen</a><br/><br/>Mit freundlichen Grüßen</html>'
+    passwordResetEmailSent: Es wurde Ihnen eine E-Mail mit einem Link zum Zurücksetzen des Passworts zugesandt. Bitte überprüfen Sie Ihr E-Mail-Postfach.
+    passwordResetEmailSubject: E-Mail zum Zurücksetzen des Passworts
+    passwordResetSuccess: Ihr Passwort wurde erfolgreich geändert
+    setANewPassword: Setzen Sie ein neues Passwort
+    strong: Stark
+    userNotFound: Benutzer nicht gefunden
+    usersHaveSameEmail: Es gibt viele Benutzer, die diese E-Mail verwenden. Bitte wenden Sie sich an Ihren Administrator.
+    weak: Schwach
+  iconselection:
+    iconSelectionDialogHeader: Symbol auswählen
+    seachIconByNamePlaceHolder: Icon anhand des Namens suchen
+  languageSetting:
+    Language: Sprache
+    cannotSetEmailLanguage: Sprache kann nicht als Emailbenachrichtigungssprache gewählt werden.
+    languageSetting: Spracheinstellungen
+    saveLanguageHasWSErrors: Fehler beim Speichern der Sprache
+    selectedFormattingLanguage: Ausgewählte Formatierungsprache
+    selectedLanguage: Ausgewählte Sprache
+  login:
+    login: Anmeldung
+    loginErrorMessage: Sie sind nicht angemeldet oder Ihr Benutzer ist im System nicht vorhanden. Bitte kontaktieren Sie den Systemadministrator
+    loginFailed: Anmeldung fehlgeschlagen
+    username: Benutzername
+  logoutSetting:
+    logout: Abmelden
+  noteHistory:
+    author: Author
+    caseExportedFileNamePrefix: Verlauf_Vorgangsnotizen_{0}
+    caseHistoriesTitle: Historie
+    caseHistoryPageTitle: Verlauf Vorgangsnotizen
+    columnContent: Inhalte
+    curentReportOf: vom
+    eventType: Ereignis-Typ
+    exportButton: Nach Excel exportieren
+    relatedCase: Zugehöriger Vorgang
+    showMoreBtn: Mehr anzeigen
+    taskExportedFileNamePrefix: Verlauf_Aufgabennotizen_{0}
+    taskFailReason: 'Grund für das Scheitern: {0}'
+    taskHistoryPageTitle: Verlauf Aufgabennotizen
+  notes:
+    newNoteHeader: Neue Notiz hinzufügen
+    wroteAt: Erstellt am
+  passwordSetting:
+    changePasswordWSError: Ein Fehler ist während der Passwortänderung aufgetreten. Bitte, kontaktieren Sie Ihren Administrator falls das Problem nach mehreren Versuchen besteht.
+    confirmNewPassword: Neues Password bestätigen
+    confirmPasswordHaveMatch: Das eingegebene Passwort stimmt nicht mit dem Bestätigungspasswort überein.
+    currentPassword: Aktuelles Passwort
+    newPassword: Neues Passwort
+    requireConfirmPassword: Wiederholen Sie Ihr Passwort, bitte
+    requireCurrentPassword: Bitte geben Sie Ihr Passwort an
+    requireNewPassword: Das neue Passwort wurde nicht angegeben
+    updatePasswordSuccessfully: Das Passwort wurde erfolgreich geändert.
+    wrongPassword: Das angegebene Passwort wurde abgelehnt!
+  permission:
+    noPermission: Sie benötigen die Rolle AXONIVY_PORTAL_ADMIN. Bitte kontaktieren Sie Ihren Administrator.
+  processwidget:
+    MoreInformation: Mehr Informationen
+    addExternalLink: Externen Link hinzufügen
+    addNewExternalLinkHeader: Externen Link hinzufügen
+    addNewProcess: Prozess hinzufügen
+    addNewProcessDialogHeader: Neuen Prozess hinzufügen
+    backToOverview: Zurück zur Übersicht
+    brokenLinkProcess: Der Prozess-Link ist ungültig. Bitte aktualisieren Sie Ihre Favoriten oder kontaktieren Sie den Administrator
+    defaultProcesses: Anwendungs-Favoriten
+    deleteExpressWorkflowTooltip: Express Workflow entfernen
+    deleteExternalLinkTooltip: Externen Link löschen
+    deleteProcess: Prozess löschen
+    deleteProcessItemConfirmation: Sind sie sicher das Sie folgenden Prozess löschen wollen?
+    deleteProcessItemHeader: Prozess löschen?
+    displayMode: Anzeigemodus
+    editDialog:
+      dialogCurrentIcon: Aktuelles Icon
+      dialogEditInfoTitle: '{0} Informationen'
+      dialogHeaderDescription: In diesem Bereich können Sie einige Informationen bearbeiten, die sich auf den ausgewählten Prozess beziehen.
+      dialogHeaderTitle: Informationen bearbeiten für {0}
+    editExpressWorkflowTooltip: Express Workflow bearbeiten
+    editProcesses: Prozesse bearbeiten
+    expressWorkflow: Express Workflow
+    externalLink: Externer Link
+    externalLinkVisibility: Sichtbarkeit
+    favoriteProcesses: Ihre Favoriten
+    goTo: 'Gehe zu: '
+    icon: Symbol
+    isRequiredMessage: muss gesetzt werden
+    linkDescription: Link Beschreibung
+    noFavoriteProcess: Sie haben keine Favoriten definiert.
+    noProcess: Keinen Prozess gefunden.
+    noProcesses: Keine Prozesse gefunden.
+    processFilterPlaceHolder: Name, Beschreibung, Kategorie
+    processName: Prozessname
+    processStartLink: Prozessstart Link
+    processType: Prozesstyp
+    remove: Entfernen
+    seeAllProcesses: Alle Prozesse anzeigen
+    sortByName: Sortieren nach Namen
+    specialCharacterGroup: Sonderzeichen
+    startLink: Startlink
+    webLinkExample: z.B. http://www.example.com
+  projectInfo:
+    applicationProjectVersion: Projekte und Versionen
+    engineVersion: Engine Version
+    header: Axon Ivy Versionsinformationen
+    info: Info
+    portalVersion: Portal Version
+    projectName: Projekt Name
+    version: Version
+  searchResult:
+    case: Vorgang
+    notDisplayResultTabView: Sie haben keine Berechtigung, Suchergebnisse anzuzeigen
+    process: Prozess
+    searchResults: Suchresultate
+    searchResultsFor: '{0} Suchresultate für "{1}"'
+  sidestep:
+    addAdhocTask: Ad-hoc Aufgabe hinzufügen
+  statistic:
+    chart:
+      ExpandOrCollapseColumn: Spalten auf-/zuklappen
+      addChart: Neues Diagramm hinzufügen
+      addChartDialogHeader: Diagramm zum Dashboard hinzufügen
+      backToDashboard: Zurück zum Dashboard
+      barchart:
+        Percentage: Prozent
+        daysOfWeek:
+          friday: Freitag
+          monday: Montag
+          saturday: Samstag
+          sunday: Sonntag
+          thursday: Donnerstag
+          tuesday: Dienstag
+          wednesday: Mittwoch
+        expired: Abgelaufen
+        in2Days: In 2 Tagen
+        in3Days: In 3 Tagen
+        monthsOfYear:
+          April: April
+          August: August
+          December: Dezember
+          February: Februar
+          January: Januar
+          July: Juli
+          June: Juni
+          March: März
+          May: Kann
+          November: November
+          October: Oktober
+          September: September
+        today: Heute
+        tomorrow: Morgen
+        weeksOfMonth:
+          fifthWeek: Fünfte Woche
+          firstWeek: Erste Woche
+          fourthWeek: Vierte Woche
+          secondWeek: Zweite Woche
+          sixthWeek: Sechste Woche
+          thirdWeek: Dritte Woche
+      caseCategory: Vorgangskategorie
+      chartCreationSuccessDetailMsg: Diagramm mit Name {0} wurde erfolgreich erstellt
+      chartCreationSuccessTitle: Diagramm wurde erfolgreich erstellt
+      elapsedTime: Verstrichene Zeit
+      elapsedTimeChart:
+        compareButton: Vergleichen
+        compareRole: Rollen vergleichen
+        elapsedTimeInHours: Verarbeitungszeit in Std.
+        noEntriesFound: Keine übereinstimmende Kriterien gefunden
+        taskCategory: Aufgabenkategorie
+        withRole: 'Mit Rolle:'
+      emptystate:
+        defaultEmptyMessages: Es sind keine Auswertungen vorhanden.
+      expiryPeriod: Fristende
+      loadingCharts: Bitte warten während die Diagramme geladen werden…
+      notAllowedToCreateChart: Sie haben die Filtereinstellungen geändert. Bitte aktualisieren Sie gesetzten Filter mit "Filter anwenden", um das Diagramm anschließend erstellen zu können
+      other: Andere
+      restoreDefaultChart: Wenn Sie fortfahren, werden alle selbsterstellten Diagramme gelöscht. Die Standardeinstellung wird angewendet.
+      second: sek
+      showAllCharts: Alle Diagramme anzeigen
+      statisticCarousel: Statistik-Karussell
+      statistics: Statistiken
+      taskByExpiry:
+        hour: (Stunde)
+        thisMonth: Diesen Monat
+        thisWeek: Diese Woche
+        thisYear: Dieses Jahr
+      taskByPriority:
+        addToDashboardLink: Zum Dashboard hinzufügen
+        exception: Ausnahme
+        high: Hoch
+        low: Niedrig
+        normal: Normal
+      taskExpiry: Aufgabenfristen
+    chartInfo:
+      chartDetailsHeader: Diagrammdetails
+      chartName: Diagrammname
+      chartType: Diagrammtyp
+    chartType:
+      caseByFinishedTask: Bearbeitete Vorgänge im Zeitraum
+      caseByFinishedTaskDescription: Vorgänge, in denen eine Aufgabe in der ausgewählten Zeitspanne abgeschlossen wurde
+      caseByFinishedTime: Abgeschlossene Vorgänge im Zeitraum
+      caseByFinishedTimeDescription: Vorgänge die in der ausgewählten Zeitspanne abgeschlossen wurden
+      caseByState: Vorgänge nach Status
+      casesByCategory: Fälle nach Kategorie
+      elapsedTimeByCaseCategory: Durchlaufzeit abgeschlossener Vorgänge
+      elapsedTimeByCaseCategoryDescription: Durchlaufszeit (Start bis Ende des Vorgangs) abgeschlossener Vorgänge nach Kategorie
+      taskByExpiry: Aufgaben nach Ablaufdatum
+      taskByPriority: Aufgaben nach Priorität
+    defaultChart:
+      newChart: Neues Diagramm
+      tasksByPriority: Aufgaben nach Priorität
+    filter:
+      affectedCharts: Betroffene Diagramme
+      allSelected: Alle
+      caseCategoriesLabel: Vorgangskategorien
+      caseCategoryFilterDescription: Hier sehen Sie alle verfügbaren Vorgangskategorien. Nur ausgewählte Vorgangskategorien werden in den betroffenen Diagrammen berücksichtigt.
+      caseStateFilterDescription: Nur ausgewählte Status werden in den betroffenen Diagrammen berücksichtigt.
+      filter: Filter
+      noRoles: Keine Rollen vorhanden
+      noSelectionCustomVarChar: Keine Auswahl
+      noneSelected: Keine
+      roleFilterDescription: Hier sehen Sie alle verfügbaren Prozessrollen. Nur ausgewählte Rollen werden in den betroffenen Diagrammen berücksichtigt.
+      rolesLabel: Rollen
+      selectAll: Alle selektieren
+      taskPrioritiesLabel: Aufgabenprioritäten
+      taskPriorityFilterDescription: Aufgaben können nach Ihrer Priorität gefiltert werden.
+      timePeriod: Zeitspanne
+      timePeriodFilterDescription: 'Schränkt den Zeitraum der Vorgänge und Aufgaben ein. '
+      workflowStatesLabel: Workflowstatus
+    taskAnalysis:
+      applyFilter: Filter anwenden
+      caseCategory: Vorgangskategorie
+      caseCreator: Ersteller
+      caseDescription: Vorgangsbeschreibung
+      caseFilter: Vorgangsfilter
+      caseID: Vorgangs Id
+      caseName: Vorgangsname
+      caseOwner: Vorgangs Owner
+      caseState: Vorgangsstatus
+      downloadZipFileExplanation: Die Anzahl der zu exportierenden Aufgaben überschreitet die Grenze der Excel-Zeilen. Daher werden die Daten in mehrere Excel-Dateien aufgeteilt und dann in einer ZIP-Datei zum Herunterladen komprimiert.
+      taskAnalysis: Aufgabenanalyse
+      taskCategory: Aufgabenkategorie
+      taskCreationTime: Aufgabe erstellt
+      taskDescription: Aufgabenbeschreibung
+      taskExpiryTime: Aufgabenfälligkeit
+      taskFilter: Aufgabenfilter
+      taskFinishedTime: Aufgabe abgeschlossen am
+      taskID: Aufgabe Id
+      taskPriority: Aufgabenpriorität
+      taskResponsible: Aufgabenverantwortlicher
+      taskState: Aufgabenstatus
+      taskWorker: Aufgabenbearbeiter
+      waitingDownloadMessage: Bitte um Geduld. Wir erstellen gerade den Export. Das kann einige Minuten dauern.
+    timePeriod:
+      custom: Benutzerdefiniert
+      last6Month: Letzte 6 Monate
+      lastMonth: Letzter Monat
+      lastWeek: Letzte Woche
+    validationErrors:
+      nameIsExisted: Ein Diagramm mit dem selben Namen existiert bereits
+  taskActivator:
+    assign: Zuweisen
+    cannotAssignTask: Diese Aufgabe kann keinem anderen Benutzer oder keiner anderen Gruppe zugewiesen werden.
+    escalationActivatorDesc: Ändern Sie den Eskalations-Aktivator der Aufgabe auf einen bestimmten Benutzer oder eine Gruppe
+    escalationActivatorHeader: Auswahl des Eskalations-Aktivators der Aufgabe
+  taskDelegate:
+    afterEscalation:
+      delegateNotes: Der Eskalations-Aktivator der Aufgabe {0} wurde von {1} auf {2} geändert
+      delegateNotesWithComment: Der Eskalations-Aktivator der Aufgabe {0} wurde von {1} auf {2} geändert - {3}
+    delegateComment: Die Aufgabe {0} wurde von {1} zu {2} delegiert
+    delegateReasonIncludedComment: Die Aufgabe {0} wurde von {1} zu {2} delegiert - {3}
+    delegateTaskHeaderLabel: Delegieren Sie die Aufgabe an einen bestimmten Benutzer oder an eine bestimmte Gruppe
+    groupSelectionWatermark: Bitte wählen Sie eine Gruppe aus...
+    toGroup: Gruppe
+    toUser: Benutzer
+    userSelectionWatermark: Bitte wählen Sie einen Benutzer aus...
+  taskDetails:
+    addDocumentHelpText: Zum Hochladen Dateien per Drag & Drop hier ablegen oder Dateien auswählen
+    addNoteHelpText: Schreiben Sie hier Ihren Text
+    afterEscalation: Nach Eskalation
+    businessCase: Vorgang
+    completedOn: Erledigt am
+    delayedUntil: Sperrfrist
+    deleteFile: Datei löschen
+    documents: Dokumente
+    duration: Dauer
+    events: Workflow-Ereignisse
+    expiry: Ablauffrist
+    failedDelayValidation: Der Zeitstempel der Aufgabenverzögerung darf kein leerer Wert oder ungültiges Datumsformat sein
+    failedExpiryValidation: Der Ablauf der Aufgabe darf nicht in der Vergangenheit liegen.
+    noAdhoc: AdHoc nicht verfügbar
+    noDescription: Keine Beschreibung vorhanden
+    noNotes: Keine Notizen
+    processingTime: Bearbeitungszeit
+    setDelayTimestamp: '{0} ({1}) hat die Verzügerungszeit des Tasks #{2} auf {3} gesetzt.'
+    setExpiryActivatorAndTimeNotes: '{0} und weisen Sie {1} als Aktivator für die Aufgabeneskalation zu'
+    taskCategory: Aufgabenkategorie
+    taskExpiryDisable: Es kann keine Ablaufzeit gesetzt werden, da diese Aufgabe keine Eskalationslogik enthält.
+    technicalCase: Technischer Vorgang
+    workflowEventDialog: 'Workflow Events für Aufgabe #{0}'
+    workingUser: Bearbeiter
+  taskExpiryDateDialog:
+    message:
+      setDeadlineSuccess: Die Aufgabenfrist wurde erfolgreich gespeichert
+    title: Frist
+  taskInformation:
+    clearDelay: Verzögerung zurücksetzen
+    clearExpiry: Aufgabenfrist zurücksetzen
+    delegate: Delegieren
+    delegateTask: Aufgabe delegieren
+    freeReservationTaskTooltip: Aufgabe zurücksetzen, um wieder freizugeben
+    histories: Notizen
+    note: Informationen
+    noteDetail: Details
+    openRequest: Öffnen
+    openTaskTooltip: Aufgabe öffnen
+    park: Parken
+    parkTaskSuccessfully: Die Aufgabe wurde erfolgreich reserviert.
+    reserveTaskTooltip: Aufgabe reservieren
+    resetTaskSuccessfully: Die Aufgabe wurde erfolgreich zurückgesetzt.
+    resetTaskTooltip: Aufgabe zurücksetzen
+    setDeadline: Frist setzen
+    setPriority: Priorität setzen
+    startTask: Start
+    taskComments: Kommentare
+    taskDetails: Aufgabendetails
+    taskInforDialogTitle: Informationen
+    taskNotes: Notizen
+    triggerEscalation: Eskalation auslösen
+  taskList:
+    deadline: Frist
+    default: Standard
+    defaultColumns:
+      ACTIVATOR: Verantwortlich
+      APPLICATION: Anwendung
+      CATEGORY: Kategorie
+      COMPLETED_ON: Erledigt am
+      CREATION_TIME: Erstellt
+      EXPIRY_TIME: Ablaufdatum
+      ID: Aufgaben Id
+      NAME: Name / Beschreibung
+      PRIORITY: Priorität
+      STATE: Status
+      TASK_FOR_UNAVAILABLE_ACTIVATOR: Fehlender Aktivator
+      abbreviation:
+        PRIORITY: Prio
+    defaultFilter: Standard-Filter
+    destroyTaskMessage: Diese Aktion kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie diese Aufgabe zerstören wollen?
+    headerTitle:
+      relatedStatisticHeader: 'Aufgaben von Diagramm:'
+      relatedTasksHeader: Zugehörige Aufgaben
+    lastEdit: Zuletzt bearbeitet
+    manageColumns: Spalten verwalten
+    name: Name
+    newTaskNotification: Sie haben neue Aufgaben.
+    removeExpiryTimeNote: '{0} ({1}) hat Frist der Aufgabe #{2} entfernt'
+    resetTaskWarning: Diese Aufgabe wurde bereit gestartet. Mit einem Neustart werden bisherige Änderungen verloren gehen. Möchten Sie die Aufgabe trotzdem zurücksetzen?
+    responsibleAfterEscalation: Verantwortlich nach Eskalation
+    setDeadlineNote: '{0} ({1}) hat das Ablaufdatum von der Aufgabe #{2} zum {3} angepasst'
+    setNameNote: Der Aufgabenname wurde durch {0} von {1} auf {2} geändert
+    showOnlyTaskForMissingActivator: Nur Aufgaben mit fehlendem Aktivator anzeigen
+    showOnlyTaskForMissingActivatorDesc: Dieser Filter zeigt Aufgaben an, die keinen Aktivator haben, der Aktivator nicht gefunden wird oder deaktiviert ist.
+    sortFields:
+      CREATION_TIME_ASC: Erstellungsdatum (Ältestes zuerst)
+      CREATION_TIME_DESC: Erstellungsdatum (Neuestes zuerst)
+      EXPIRY_TIME_ASC: Ablauf (Älteste zuerst)
+      EXPIRY_TIME_DESC: Ablauf (Neuste zuerst)
+      PRIORITY_ASC: Priorität (hoch nach niedrig)
+      PRIORITY_DESC: Priorität (niedrig nach hoch)
+    triggerEscalationNote: 'Die Eskalation wurde ausgelöst durch {0} ({1}) der Aufgabe #{2}'
+    type: Typ
+  taskPriority:
+    EXCEPTION: AUSNAHME
+    EXCEPTION_LOWERCASE: Ausnahme
+    HIGH: HOCH
+    HIGH_LOWERCASE: Hoch
+    LOW: NIEDRIG
+    LOW_LOWERCASE: Niedrig
+    NORMAL: NORMAL
+    NORMAL_LOWERCASE: Normal
+  taskPriorityDialog:
+    message:
+      setPrioritySuccess: Die Aufgabenpriorität wurde erfolgreich gespeichert.
+    title: Aufgabenpriorität
+  taskState:
+    CREATED: Erstellt
+    DELAYED: Verzögert
+    DELAYED_UPPERCASE: VERZÖGERT
+    DESTROYED: Vernichtet
+    DESTROYED_UPPERCASE: GELÖSCHT
+    DONE: Erledigt
+    DONE_UPPERCASE: ABGESCHLOSSEN
+    FAILED: Fehlerhaft
+    INPROGRESS: IN BEARBEITUNG
+    JOINING: In Zusammenführung
+    JOIN_FAILED: Zusammenführung fehlgeschlagen
+    OPEN: Offen
+    OPEN_UPPERCASE: OFFEN
+    PARKED: Reserviert
+    READY_FOR_JOIN: Bereit für Zusammenführung
+    READY_FOR_JOINING: Bereit für Zusammenführung
+    READY_FOR_JOIN_UPPERCASE: READY FOR JOIN
+    RESERVED: RESERVIERT
+    RESUMED: In Bearbeitung
+    SUSPENDED: Zugewiesen
+    SYSTEM: SYSTEM
+    WAITING: Wartend
+    WAITING_FOR_INTERMEDIATE_EVENT: Warten auf Ereignis
+    ZOMBIE: Zombie
+  taskView:
+    filterTextPlaceHolderMobile: Name oder Beschreibung
+    filterTextPlaceholder: Name, Beschreibung oder ID
+    restoreDefaultFilterMessage: Wenn Sie fortfahren, wird der Standardfilter angewendet.
+    saveFilter: Filter speichern
+    showFullTaskList: Komplette Aufgabenliste anzeigen
+    sort: Sortieren
+  taskWarning:
+    createdTaskLeave: 'Sie verlassen die aktuelle Seite. Bitte wählen Sie eine der folgenden Optionen:<UL><LI>&nbsp; &nbsp; Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI>&nbsp; &nbsp; Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    createdTaskLogout: 'Sie verlassen die aktuelle Seite. Bitte wählen Sie eine der folgenden Optionen:<UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    resetParkTaskBeforeLeave: 'Sie verlassen die aktuelle Aufgabe. Bitte wählen Sie eine der folgenden Optionen:<UL><LI> Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI> Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre Aufgabenliste verschieben<LI> Abbrechen: Die
+      Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    resetParkTaskBeforeLogout: 'Sie verlassen die aktuelle Aufgabe. Bitte wählen Sie eine der folgenden Optionen:<UL><LI>&nbsp; &nbsp; Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>&nbsp; &nbsp; Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre persönliche Aufgabenliste verschieben.
+      Dann abmelden.<LI>&nbsp; &nbsp; Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    taskNotFound: Die Aufgabe existiert nicht oder Sie haben ungenügende Rechte, um diese Aufgabe zu sehen.
+  userProfile:
+    myProfileTitle: Mein Profil
+    saveUserSettingsSuccessfully: Benutzereinstellungen erfolgreich gespeichert.
+  warningBeforeLostSession:
+    extend: Erweitern
+    warningMessage: Ihre Sitzung läuft in 1 Minute ab. Möchten Sie diese verlängern?
+Dialogs:
+  Cases:
+    EditWorkflow:
+      CaseDescription: Bearbeiten eines existierenden Workflows
+      CaseName: Workflow editieren
+  Tasks:
+    CreateWorkflow:
+      TaskDescription: Workflow wurde angelegt
+      TaskName: Workflow wurde angelegt
+    EditWorkflow:
+      TaskDescription: Ein Prozess wurde bearbeitet
+      TaskName: Prozess bearbeitet
+    FinalReview:
+      TaskName: Schlusskontrolle
+    FinalWorkflowTask:
+      taskDescription: Der Prozess {0} wurde beendet!
+    FormDefinition:
+      TaskDescription: Bitte definieren Sie das Formular!
+      TaskName: Formulardefinition!
+    ProcessLoaded:
+      TaskName: Aufgabe für die Adhoc Konfiguration
+    SaveWorkflow:
+      TaskName: Ein Express Workflowprozess ist gerade am Entstehen
+    TaskDetail:
+      DataDescription: Daten und Beschreibung
+      restoreToDefaultSettings: Standardeinstellungen wiederherstellen
+      switchToEditMode: Bearbeiten
+      switchToViewMode: Speichern
+    WorkflowProperties:
+      TaskDescription: Bitte definieren Sie die Workfloweigenschaften!
+      TaskName: Workflow Einstellungen
+  WorkflowExecution:
+    ApprovalForm:
+      Approve: Genehmigen!
+      ApproveComment: Genehmigen
+      CommentLabel: Kommentar des Genehmigers
+      FieldSetApplicant: Antragssteller
+      FieldSetForm: Formular
+      FinishedTasks: Erledigte Aufgaben
+      Fullname: vollständiger Name
+      Reject: Ablehnen!
+      RejectComment: Ablehnen
+    FinalReviewForm:
+      approvalStatus: Freigabestatus
+      approver: Genehmiger
+      noticed: Zur Kenntnis genommen!
+    FinishedTasksForm:
+      Applicant: Antragssteller
+      ApprovalResult: Freigabestatus
+      FinishedTasks: Erledigte Aufgaben
+      FormDetails: Formulardetails
+    UserTaskForm:
+      ApprovalResult:
+        Approved: Genehmigt
+        Rejected: Abgelehnt
+      Formular: Formular
+  agileBPM:
+    TooltipForOriginalTask: Ihre aktuelle Aufgabe wird wieder auftauchen sobald der Ad hoc Workflow fertiggestellt ist.
+    define_WF:
+      AdhocWorkflowTasks: Workflow Aufgaben
+      ErrorSelectInvalidAssignee: Der Beauftragte ist bereits ausgewählt oder ungültig
+      ListOfSelectedUser: Liste ausgewählter Benutzer
+      ResponsibleDialogHeader: Verantwortliche Benutzer
+      SequenceOfTasks: Nachfolgende Aufgaben
+      TaskActor: Ausführender Benutzer
+      TaskSubject: Aufgabenname
+      WFCategory: Kategorie
+      WFSubject: Betreff
+    task_Form:
+      AppendATaskAfter: Aufgabe in der Sequenz hinter meiner Aufgabe hinzufügen.
+      ErrorEmployeeNotExist: Ausgewählter Benutzer existiert nicht
+      InsertATaskBefore: Aufgabe in der Sequenz vor meiner Aufgabe hinzufügen. Meine Aufgabe wird aufgeschoben.
+      MyTaskIsDoneAnd: Meine Aufgabe ist erledigt und die neue Aufgabe ist angehängt
+  ch:
+    ivy:
+      addon:
+        express:
+          generic:
+            endpage:
+              subtitle: Die letzte Aufgabe wurde erfolgreich abgeschlossen
+              title: Aufgabe erfolgreich abgeschlossen!
+            expressNoItem: Es gibt noch keine abgeschlossene Express Aufgabe
+            expressNoItemDescription: Hier werden die Ergebnisse der abgeschlossenen Aufgaben angezeigt
+            expressWorkflowName: 'Business Details des Vorgangs: #{0}'
+        portalkit:
+          component:
+            CaseWidget:
+              CaseCategory: Vorgangskategorie
+              CaseDetail:
+                CaseDetailTitle: Vorgangsdetails
+                DataDescription: Daten und Beschreibung
+                destroyCase: Vorgang löschen
+              CaseOwner: Prozessverantwortlicher
+              Finished: Erledigt
+              ShowBusinessDetails: Business Details
+              caseNameNotAvailable: '[Kein Vorgangsname verfügbar]'
+              defaultEmptyMessage: Keine Vorgänge verfügbar
+  components:
+    CaseDocument:
+      FileDate: Änderungsdatum
+      FileFunctions: Funktionen
+      NoFiles: Keine Dateien vorhanden!
+      deleteSucceed: Die Datei wurde erfolgreich gelöscht
+      emptyFileMessage: Die Datei darf nicht leer sein
+      fileLimitMessage: Limit an hochgeladenen Dateien erreicht!
+      fileUploadElementPosition: Das File Upload-Element kann nur im Header oder Footer platziert werden!
+      invalidFileMessage: Dateityp nicht gültig!
+      invalidSizeMessage: Datei zu groß!
+      maximumFileUploadElement: Es gibt bereits ein Datei-Upload-Element
+  workflowCreation:
+    AdhocProcessName: AdHoc Prozess für Aufgabe {0} - {1}
+    FormDefinition:
+      AddCheckboxField: Neues Feld hinzufügen
+      AddOptionboxField: Neue Option hinzufügen
+      AllowedFiletypes: Erlaubte Dateiformate
+      BroadFooterArea: Breiter Footer Bereich
+      BroadHeaderArea: Breiter Header Bereich
+      CheckboxFields: Auswahlfelder
+      CreateField: Erstellen
+      DataProvider: Datenanbieter
+      DragAndDropTooltip: Ziehen Sie per Drag and Drop die verfügbaren Elemente in den Header, die linke Spalte, die rechte Spalte oder in den Footer um sie zu platzieren!
+      ElementLabel: Label
+      ElementName: Elementbezeichnung
+      Email:
+        Attachment: Anhang
+        EmailAddress: E-Mail Adresse
+        EmailText: Emailnachricht
+        ResponseTo: Antwort an
+        Subject: Betreff
+      ExecuteWorkflow: Workflow direkt ausführen
+      ExecuteWorkflowWarning: Sie müssen alle Aufgaben ausführen, bevor Sie diesen Workflow ausführen können
+      FieldSetAvailableFormelements: Formularelemente
+      FieldSetFormelements: Formularelemente erstellen
+      FieldSetFormelementsPlacing: Platzierung der Formularelemente
+      FieldSetPreviewArea: Formularvorschau
+      FinishWorkflow: Workflowende
+      InputArea: Eingabebereich
+      InputCheckbox: Auswahlfeld
+      InputField: Eingabefeld
+      InputFileUpload: Dateiupload
+      InputOptions: Optionsfeld
+      InputType: Eingabe-Typ
+      InputTypes:
+        DateSelection: Datumsauswahl
+        NumberField: Nummernfeld
+        TextBox: Textfeld
+      LeftColumn: Linke Spalte
+      NoCheckboxFieldYet: Bisher keine Auswahlfelder angelegt
+      NoDataProvider: 'Daten Provider '
+      NoFormelementsAvailable: Keine Formularelemente verfügbar!
+      NoOptionboxFieldsYet: Bisher keine Auswahloptionen angelegt
+      NumberOfFiles: Dateianzahl
+      NumberOfRows: Zeilenanzahl
+      OptionboxFields: Optionsfelder
+      OptionboxPlaceholder: Option
+      Preview: Vorschau
+      RightColumn: Rechte Spalte
+      SaveWorkflow: Workflow speichern
+      UploadFileFormat:
+        Excel: Excel (xls/xlsx)
+        OtherFormats: Andere Dateiformate
+        PDF: PDF (pdf)
+        Word: Word (doc/docx)
+      cancelCreateForm: Willen Sie wirklich abbrechen? Alle  Daten gehen verloren!
+      otherFiletype: Andere Dateiformate
+    ProcessName: Express Workflow erstellen
+    TaskType:
+      Approval: Genehmigung
+      Email: Information E-Mail
+      Review: Überprüfung
+      UserTask: Aufgabe
+      UserTaskWithEmail: Aufgabe mit E-Mail Schritt
+    WorkflowDefinition:
+      AbleToStart: Startberechtigung
+      AddProcessStep: Prozessschritt hinzufügen
+      ChooseAssignee:
+        AddUserOrRole: 'Wählen Sie eine Gruppe oder Benutzer aus, bitte:'
+        SelectedAssigneesFieldSet: Ausgewählte Genehmiger
+        UserTooltip: Benutzer
+      DefaultTemplateDescription: Unten befindet sich das Standard Template
+      DeleteProcessStep: Prozessschritt löschen
+      Description: Beschriben Sie Ihren Prozess
+      DueTimeInDays: Fälligkeitsfrist in Tagen
+      EndStep: Ende
+      FormDefinitionStep: Formular-definition
+      ProcessNameExists: Dieser Prozessname wurde bereits benutzt
+      ProcessOwner: Prozessverantwortliche
+      Processdescription: Prozessbeschreibung
+      Processdetails: Prozesseigenschaften
+      Processflow: Prozessfluss
+      Processstep: Prozessschritt
+      Processtype: Prozessart
+      ProcesstypeAdHoc: Einmalig
+      ProcesstypeRepeating: Wiederkehrend
+      TaskType: Aufgabentyp
+      UntilDaysTooltip: Nach Ablauf wird die Aufgabe an die Rolle Everybody zugeteilt, und ihre Priorität auf Hoch gesetzt.
+      UserInterface:
+        ChangeSettingWarning: Alle definierten Aufgaben werden gelöscht. Sind Sie sicher?
+        CreateOwn: Erstellen
+        UseDefault: Standardoberfläche
+        UserInterface: Benutzeroberfläche
+      WorkflowPropertiesStep: Workfloweigenschaften
+      requiredMsgs:
+        ReqMsgGeneric: ' ist ein erforderliches Feld!'
+    processStep: Prozessschritt
+Labels:
+  AdhocWorkflow: Beschreiben Sie Ihren Workflow
+  AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
+  AppendTheTask: Aufgabe anhängen
+  InsertTask-Explain: Aufgabe einfügen. Meine Aufgabe wird aufgeschoben.
+  InsertTheTask: Aufgabe einfügen
+  Task: Aufgabe
+  TaskItemDetail: Aufgabendetails
+  TaskUser-Explain: Kommaseparierte Liste von Benutzern
+  adhocTaskRequired: Zumindest eine Aufgabe ist erforderlich.
+  disabledUserPrefix: (inaktiv)
+  title: Self Service Ad-hoc Workflow
+patterns:
+  datePattern: dd.MM.yyyy
+  dateTimePattern: dd.MM.yyyy HH:mm
+  dateTimestampPattern: dd.MM.yyyy HH:mm:ss.SSS
+  monthDatePattern: MM.dd.yyyy
+  timePattern: HH:mm
+  timestampPattern: HH:mm:ss.SSS
+Processes:
+  Cases:
+    PortalCategory: Portal
+    PortalInternalProcess:
+      PortalInternalProcessDescription: Das ist ein interner Prozess des Portals
+    SynchronizeDataProcess:
+      AddOrUpdateBusinessEntitiesDescription: Hinzufügen oder ändern von Geschäftsentitäten
+      AddOrUpdateBusinessEntityDescription: Hinzufügen oder ändern einer Geschäftsentität
+      AddOrUpdatePropertyOfServerDescription: Hinzufügen oder ändern einer Servereinstellung
+      DeleteBusinessEntitiesDescription: Geschäftsentitäten löschen
+      DeleteBusinessEntityByPrefixDescription: Geschäftsentität mit einer Voreinstellung löschen
+      DeleteBusinessEntityDescription: Geschäftsentität löschen
+      DeletePropertiesOfServerDescription: Servereinstellungen löschen
+      DeletePropertyOfServerByPrefixDescription: Servereinstellung mit einer Voreinstellung löschen
+      DeletePropertyOfServerDescription: Servereinstellung löschen
+      SynchronizeDataCaseName: Daten synchronisieren
+    SynchronizeServerProcess:
+      AddServerConfigDescription: Server Konfiguration hinzufügen
+      DeleteServerConfigurationDescription: Server Konfiguration löschen
+      SynchronizeServerConfigurationCaseName: Server Konfiguration synchronisieren
+  portalHome: Portal Home
+  portalSettingSaved: Portaleinstellungen sind gespeichert
+ProcessPages:
+  selfServiceAdhocProcess: Axon Ivy Self Service
+  selfServiceDescription: 'Self Service Prozess: ein ad-hoc Workflow starten'
+Texts:
+  Adhoc-Explain: '<P>  <B>Geben Sie Ihren Kommentar ein </B>und drücken Sie <B>Senden</B> um weiterzufahren.  </P>  '
+  AdhocWF-Explain: "<P>\n\nDefinieren und starten Sie einen Workflow auf Knopfdruck. \n\n</P>\n\n"
+  Approval-Explain: "<P>\n\n<B>Treffen Sie Ihre Entscheidung</B> und klicken Sie auf <B>Senden </B>um weiterzufahren. \n\n</P>\n\n"
+  QA-Explain: |+
+    <P>
+
+    Beantworten Sie die Frage und <B>Senden </B>Sie Ihre Antwort an den Fragesteller zurück.
+
+    </P>
+
+  QAresponse-Explain: '<P>  Sie können eine Anschlussfrage <B>Zurücksenden</B> oder den Workflow <B>Beenden</B>.</P>  '
+  ToDo-Explain: '<P>  Bestätigen Sie, dass das <B> TODO erledigt</B> wurde oder lehnen Sie es ab.</P>  '

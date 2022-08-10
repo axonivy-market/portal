@@ -1,0 +1,106 @@
+{
+  "format" : "9.4.14",
+  "id" : "14BDEA64F884ED76",
+  "data" : "ch.ivyteam.wf.processes.EmailSettingServiceData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f9",
+      "type" : "Script",
+      "name" : "Find email setting",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.EmailSettingService;",
+            "import ch.ivy.addon.portalkit.ivydata.dto.IvyEmailSettingResultDTO;",
+            "",
+            "IvyEmailSettingResultDTO dto = EmailSettingService.newInstance().findEmailSetting();",
+            "out.ivyEmailSetting = dto.ivyEmailSetting;",
+            "EmailSettingService.newInstance().displayDailySummary(out.ivyEmailSetting);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 48 }
+      },
+      "connect" : { "id" : "f0", "to" : "f12" }
+    }, {
+      "id" : "f12",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 48 }
+      }
+    }, {
+      "id" : "f13",
+      "type" : "CallSubStart",
+      "name" : "findEmailSetting()",
+      "config" : {
+        "callSignature" : "findEmailSetting",
+        "result" : {
+          "params" : [
+            { "name" : "ivyEmailSetting", "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting" }
+          ],
+          "map" : {
+            "result.ivyEmailSetting" : "in.ivyEmailSetting"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 48 },
+        "labelOffset" : { "x" : -55, "y" : 19 }
+      },
+      "connect" : { "id" : "f8", "to" : "f9" }
+    }, {
+      "id" : "f15",
+      "type" : "CallSubStart",
+      "name" : "saveEmailSetting(IvyEmailSetting)",
+      "config" : {
+        "callSignature" : "saveEmailSetting",
+        "input" : {
+          "params" : [
+            { "name" : "emailSetting", "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting" }
+          ],
+          "map" : {
+            "out.ivyEmailSetting" : "param.emailSetting"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 128 },
+        "labelOffset" : { "x" : -63, "y" : 20 }
+      },
+      "connect" : { "id" : "f23", "to" : "f19" }
+    }, {
+      "id" : "f18",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 128 }
+      }
+    }, {
+      "id" : "f19",
+      "type" : "Script",
+      "name" : "Save email setting",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.EmailSettingService;",
+            "import ch.ivy.addon.portalkit.ivydata.dto.IvyEmailSettingResultDTO;",
+            "",
+            "IvyEmailSettingResultDTO dto = EmailSettingService.newInstance().saveEmailSetting(in.ivyEmailSetting);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 128 }
+      },
+      "connect" : { "id" : "f1", "to" : "f18" }
+    } ],
+  "layout" : {
+    "lanes" : [ {
+        "name" : "findAllEmailSettings",
+        "size" : 280
+      }, {
+        "name" : "saveAllEmailSettings",
+        "size" : 344
+      } ]
+  }
+}
