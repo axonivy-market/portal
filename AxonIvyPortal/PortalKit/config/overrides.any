@@ -1,9 +1,0 @@
-{
-  /PROCESS {
-    /Functional-Processes.DeleteDocumentItem "Functional Processes/DeleteDocument"
-    /Functional-Processes.UploadDocumentItem "Functional Processes/UploadDocument"
-    /Functional-Processes.GetDocumentItems "Functional Processes/GetDocumentList"
-    /Functional-Processes.DownloadDocumentItem "Functional Processes/DownloadDocument"
-  }
-  /HTML_DIALOG *
-}

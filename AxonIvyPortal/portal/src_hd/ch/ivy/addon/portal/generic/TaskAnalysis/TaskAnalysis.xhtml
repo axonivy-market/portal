@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:jsf="http://xmlns.jcp.org/jsf">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="taskView" value="#{data.taskView}" />
+    <ui:param name="viewName" value="STATISTICS" />
+    <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
+
+    <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskAnalysis')}</ui:define>
+
+    <ui:define name="pageContent">
+      <ic:ch.ivy.addon.portalkit.component.TaskAnalysisWidget id="task-widget" keyword="#{taskView.dataModel.criteria.keyword}"
+         hideTaskFilter="#{taskView.hideTaskFilter}" dataModel="#{taskView.dataModel}" filterGroupId="#{filterGroupId}"
+         chunkSize="#{taskView.chunkSize}">
+      </ic:ch.ivy.addon.portalkit.component.TaskAnalysisWidget>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

@@ -10,7 +10,10 @@ import org.apache.commons.io.FileUtils;
 
 import com.axonivy.portal.component.enums.BasicDocumentType;
 import com.axonivy.portal.component.enums.DocumentType;
+import com.axonivy.portal.component.enums.GlobalVariable;
 import com.axonivy.portal.component.masterdata.MasterData;
+import com.axonivy.portal.component.service.GlobalSettingService;
+
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -30,5 +33,17 @@ public class DocumentUploadBean implements Serializable {
   
   public DocumentType[] getDocumentTypes() {
     return BasicDocumentType.values();
+  }
+
+  public boolean getPortalScriptCheckingSettingOrDefault(boolean defaultIfEmpty) {
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT, defaultIfEmpty);
+  }
+
+  public boolean getPortalVirusScannerSettingOrDefault(boolean defaultIfEmpty) {
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_VIRUS_SCANNER_FOR_UPLOADED_DOCUMENT, defaultIfEmpty);
+  }
+
+  public String getPortalAllowedUploadFileTypesSettingOrDefault(String defaultIfEmpty) {
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsString(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION, defaultIfEmpty);
   }
 }

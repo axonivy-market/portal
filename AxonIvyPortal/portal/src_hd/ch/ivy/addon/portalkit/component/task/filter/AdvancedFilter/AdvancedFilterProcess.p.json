@@ -1,0 +1,78 @@
+{
+  "format" : "9.4.14",
+  "id" : "15DC16CB8B32F2B4",
+  "data" : "ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter.AdvancedFilterData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "152EE20AC7136182"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 96 },
+        "size" : { "width" : 22, "height" : 22 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 96 },
+        "size" : { "width" : 22, "height" : 22 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "updateTasksByFilter()",
+      "config" : {
+        "callSignature" : "updateTasksByFilter",
+        "input" : {
+          "params" : [
+            { "name" : "taskContainerId", "type" : "String" }
+          ],
+          "map" : {
+            "out.taskContainerId" : "param.taskContainerId"
+          }
+        },
+        "guid" : "15DA7A98A57644D7"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 192 }
+      },
+      "connect" : { "id" : "f6", "to" : "f5" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 320, "y" : 192 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "Script",
+      "name" : [
+        "update if",
+        "validation passed"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.primefaces.PrimeFaces;",
+            "import javax.faces.context.FacesContext;",
+            "",
+            "if (!FacesContext.getCurrentInstance().isValidationFailed()) {",
+            "  PrimeFaces.current().ajax().update(in.taskContainerId);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 192 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f7", "to" : "f4" }
+    } ]
+}
