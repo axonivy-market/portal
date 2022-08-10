@@ -12,6 +12,7 @@ import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.FileHelper;
 import portal.guitest.common.ScreenshotTest;
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.DocumentTableComponentPage;
@@ -175,6 +176,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.resizeBrowser(new Dimension(1366, 1000));
     ProcessViewerComponentPage processViewerPage = new ProcessViewerComponentPage();
     processViewerPage.waitForSprottyToolDisplayed();
+    Sleeper.sleep(1000);// wait for iframe data loading finish
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.COMPONENTS_FOLDER + "portal-process-viewer-component");
   }
 }
