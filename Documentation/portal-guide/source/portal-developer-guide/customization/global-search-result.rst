@@ -10,10 +10,10 @@ Global Search Result
 
 Follow these steps to customize the global search page:
 
-#. Create a Axon Ivy project which has ``PortalTemplate`` as a
+#. Create an Axon Ivy project which has ``portal`` as a
    required library.
 
-#. Copy the ``PortalStart`` process from ``PortalTemplate`` to your project.
+#. Copy the ``PortalStart`` process from ``portal`` to your project.
    This process is the new home page. The administrator needs to register this
    link in the variables.
 

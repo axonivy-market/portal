@@ -1,2 +1,2 @@
 StandardProcess:
-  DefaultPages: ch.ivyteam.ivy.project.portal:portalTemplate
+  DefaultPages: com.axonivy.portal:portal

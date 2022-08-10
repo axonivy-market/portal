@@ -15,12 +15,11 @@ Basic Installation
 Project Modules
 ---------------
 
-The application consists of four process modules. For detailed information
+The application consists of 3 process modules. For detailed information
 on each module, refer to :ref:`architecture`.
 
 -  portal-component
--  PortalKit
--  PortalTemplate
+-  portal
 -  AxonIvyExpress
 
 The deployment of Ivy projects is described in :dev-url:`project
@@ -93,8 +92,8 @@ How To Migrate
 In Designer
 -----------
 
-#. Replace all Portal projects by the versions of the new release.
-#. Update PortalTemplate dependency of the customer project in pom.xml.
+#. Replace all Portal projects with the versions of the new release.
+#. Update portal dependency of the customer project in pom.xml.
 #. Follow detailed migration notes for each version below.
 #. If customization needs copying code from Portal, merge changes between the
    two versions of the Portal for copied code.
@@ -106,12 +105,18 @@ In Engine
 
 #. Convert database schema if needed.
 
-#. Redeploy Portal projects and customer
-   project.
+#. Redeploy Portal projects and customer project.
+
 #. Follow detailed migration notes for each version below.
 
 Migrate 9.3 To 9.4
 ------------------
+
+``PortalStyle``, ``PortalKit`` and ``PortalTemplate`` have been replaced by ``portal-component`` and ``portal`` from 9.4, refer to :ref:`architecture`.
+
+#. If you have customized PortalStyle, please refer to
+   :ref:`Customization Portal Logos And Colors <customization-portal-logos-and-colors>` to override login background, favicon & logo images.
+   If you have changed the CMS in ``PortalStyle``, please adapt the ``portal`` CMS accordingly.
 
 #. If you configured Process widgets in your own dashboards as described in :ref:`configure-new-dashboard-proces-widget`,
    you need to adapt JSON as follows:
@@ -145,14 +150,10 @@ Migrate 9.3 To 9.4
 #. The ``customization.css`` file has been removed, in case you use it in your project, please switch to using
    :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html>` to customize styling
 
-#. The ``PortalStyles`` has been removed in 9.4. If you have customized PortalStyle, please use
-   :ref:`Customization Portal Logos And Colors <customization-portal-logos-and-colors>` to override login background, favicon & logo images.
-   If you changed some cms in PortalStyle, please adapt accordingly it on PortalKit.
-
 #. Sub processes related to documents are moved to the independent project ``portal-component``.
    If you customized these processes, please override the correspond sub process again and added your customization to it.
 
-   Below is a list of deprecated processes in project ``PortalKit`` and new processes in project ``portal-component``.
+   Below is a list of deprecated processes in project ``portal`` and new processes in project ``portal-component``.
 
    +-----------------------------------+--------------------------+
    | New subprocess                    | Deprecated subprocess    |
@@ -192,6 +193,17 @@ Migrate 9.3 To 9.4
 #. The ``DefaultChartColor.p.json`` sub process has been removed, in case you use it in your project, please remove override this sub process and switch to using
    :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html>` to customize chart, data labels, legend color.
    Refer to :ref:`Default chart colors <customization-default-chart-colors>`.
+
+#. Deploy :download:`portal-migration.iar <documents/portal-migration-9.4.0.iar>` project to your Ivy application and run it by access link
+   ``your_host/your_application/pro/portal-migration/175F92F71BC45295/startMigrateConfiguration.ivp``
+
+   .. important::
+      * If you have many applications, deploy to only one application and run it by access the migration link,
+        for example: ``https://portal.io/Portal/pro/portal-migration/175F92F71BC45295/startMigrateConfiguration.ivp``
+
+      * Use an administrator account to sign in
+      * Run migration process only once
+      * You must remove some process models: ``portal-migration``, ``PortalStyle``, ``PortalKit`` and ``PortalTemplate`` after successfully migrating.
 
 Migrate To 9.3
 --------------
@@ -339,6 +351,8 @@ releases of Axon Ivy.
 Changes in 9.4
 --------------
 
+- Combined projects ``PortalStyle``, ``PortalKit``, and ``PortalTemplate`` to one project named ``portal``.
+
 - Introduced the ``Portal.Tasks.BehaviourWhenClickingOnLineInTaskList`` Portal setting to set behaviour when
   clicking on a line in task list, task widget in new dashboard and related tasks in case details, each user can change it via user profile.
 
@@ -347,8 +361,6 @@ Changes in 9.4
 - Introduced new ``Task ID``, ``Task Name``, ``Case ID`` and ``Case Name`` filter in the Portal full task list and case list.
 
 - Introduced the ``Process Viewer`` page, user can get the visual viewer of the process start. See details :ref:`Show Process Viewer <how-to-show-process-viewer>`
-
-- Removed the PortalStyle project. The CMS in PortalStyle has been moved to PortalKit.
 
 - Introduced the ``Formatting language setting`` to format values, for example the decimal separator is displayed differently in different regions of the world.
 

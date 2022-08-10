@@ -141,9 +141,9 @@ You can customize the Portal styles in ``custom.css``.
 Change date time pattern
 ------------------------
 
-You can change the date pattern by modifying the CMS in the PortalKit project:
-``PortalKit/patterns/datePattern`` and
-``PortalKit/patterns/dateTimePattern``.
+You can change the date pattern by modifying the CMS in ``portal``:
+``portal/patterns/datePattern`` and
+``portal/patterns/dateTimePattern``.
 
 .. |css_variable| raw:: html
 
