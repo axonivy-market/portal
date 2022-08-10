@@ -1,8 +1,0 @@
-PortalHomeData #class
-ch.ivy.addon.portal.generic.PortalHome #namespace
-taskView ch.ivy.addon.portal.generic.view.TaskView #field
-taskView PERSISTENT #fieldModifier
-isNotLogin Boolean #field
-isNotLogin PERSISTENT #fieldModifier
-statisticChartList java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> #field
-statisticChartList PERSISTENT #fieldModifier

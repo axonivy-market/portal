@@ -5,11 +5,20 @@ Dialogs:
         component:
           Common:
             Cancel: Cancel
+            Categories: Categories
             ConfirmForDelete: Are you sure you want to delete this item?
             Confirmation: Confirmation
+            Description: Description
             More: More
+            Name: Name
             'No': 'No'
+            NotAvailable: N/A
+            Process:
+              ProcessName: Process name
             RequiredFieldMessage: This field is required
+            Task:
+              Activator: Responsible
+            Type: Type
             'Yes': 'Yes'
           DocumentTable:
             Delete: Delete
@@ -66,5 +75,14 @@ Dialogs:
             NoDescription: No description
             NoName: no name
             NotAvailable: NA
+          ProcessViewer:
+            ProcessDataNotFound: Could not found the Process Data!
+            ProcessDetails: Process details
+            ProcessId: Process Id
+            ProcessInfo: Process Information
+            ProcessInfoIconTooltip: Click to see details of the process start
+            ProcessType:
+              CASE_MAP: Case Map
+              IVY_PROCESS: Business Process
 Labels:
   disabledUserPrefix: (disabled)

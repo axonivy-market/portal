@@ -1,0 +1,153 @@
+{
+  "format" : "9.4.17",
+  "id" : "181FC5E5ED6EAE2A",
+  "data" : "com.axonivy.portal.component.ProcessViewer.ProcessViewerData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "181FC5E5EE0108E0"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 352 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 352 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "Init ProcessViewer",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.workflow.start.IWebStartable;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "import com.axonivy.portal.component.util.ProcessViewerUtils;",
+            "import com.axonivy.portal.component.util.CaseUtils;",
+            "",
+            "in.isError = false;",
+            "if (in.caseId == 0 && StringUtils.isBlank(in.processId)) {",
+            "    // Show error",
+            "    in.isError = true;",
+            "} else {",
+            "  in.selectedCase = CaseUtils.findCase(in.caseId);",
+            "",
+            "  IWebStartable webStartable = ProcessViewerUtils.findWebStartable(in.caseId, in.processId);",
+            "  if (webStartable == null) {",
+            "    // Show error",
+            "    in.isError = true;",
+            "  } else {",
+            "    in.webStartable = webStartable;",
+            "    ",
+            "    in.webLink = ProcessViewerUtils.getViewerWebLink(in.caseId, in.processId);",
+            "    if (in.webLink == null) {",
+            "      // Show error",
+            "      in.isError = true;",
+            "    }",
+            "  }",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      },
+      "connect" : { "id" : "f15", "to" : "f8" }
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "Init info",
+      "config" : {
+        "output" : {
+          "code" : [
+            "in.activator = in.webStartable.getActivator();",
+            "if (in.activator != null) {",
+            "  in.activatorName = in.activator.getDisplayName();",
+            "}",
+            "",
+            "if (in.webStartable.getCategory() != null) {",
+            "  in.category = in.webStartable.getCategory().getName();",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 256 }
+      },
+      "connect" : { "id" : "f12", "to" : "f9" }
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 160 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 256 }
+      }
+    }, {
+      "id" : "f11",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "loadProcessDetails()",
+      "config" : {
+        "callSignature" : "loadProcessDetails",
+        "guid" : "181FFBCA5DEC47B5"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 256 },
+        "labelOffset" : { "x" : -43, "y" : 14 }
+      },
+      "connect" : { "id" : "f13", "to" : "f10" }
+    }, {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "18201209D60ED0C2"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f16",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "initData(Long,String)",
+      "config" : {
+        "callSignature" : "initData",
+        "input" : {
+          "params" : [
+            { "name" : "caseId", "type" : "Long" },
+            { "name" : "processId", "type" : "String" }
+          ],
+          "map" : {
+            "out.caseId" : "param.caseId",
+            "out.processId" : "param.processId"
+          }
+        },
+        "guid" : "1820140735F9BD0F"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 },
+        "labelOffset" : { "x" : -25, "y" : 15 }
+      },
+      "connect" : { "id" : "f7", "to" : "f6" }
+    } ]
+}

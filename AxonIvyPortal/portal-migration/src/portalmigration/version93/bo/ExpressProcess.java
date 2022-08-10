@@ -6,7 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import portalmigration.version93.configuration.AbstractConfiguration;
+import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ExpressProcess extends AbstractConfiguration implements Serializable {
