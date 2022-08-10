@@ -1,0 +1,34 @@
+StatisticWidgetData #class
+ch.ivy.addon.portalkit.component.StatisticWidget #namespace
+compactMode Boolean #field
+compactMode PERSISTENT #fieldModifier
+username String #field
+username PERSISTENT #fieldModifier
+jsonQuery String #field
+jsonQuery 'Customized TaskQuery' #fieldComment
+jsonQuery PERSISTENT #fieldModifier
+createMode Boolean #field
+createMode PERSISTENT #fieldModifier
+statisticChartList java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> #field
+statisticChartList PERSISTENT #fieldModifier
+isDrilldownElapsedTime Boolean #field
+isDrilldownElapsedTime PERSISTENT #fieldModifier
+isDrilldownExpiryChart Boolean #field
+isDrilldownExpiryChart PERSISTENT #fieldModifier
+isBackFromDrilldown Boolean #field
+isBackFromDrilldown PERSISTENT #fieldModifier
+defaultCharts java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> #field
+defaultCharts PERSISTENT #fieldModifier
+canCreateNewCharts Boolean #field
+canCreateNewCharts 'Check user has permission to creating new charts' #fieldComment
+canCreateNewCharts PERSISTENT #fieldModifier
+hasDefaultChart Boolean #field
+hasDefaultChart PERSISTENT #fieldModifier
+canAnalyzeTask Boolean #field
+canAnalyzeTask 'Check user has permission to analyzing task' #fieldComment
+canAnalyzeTask PERSISTENT #fieldModifier
+isDisplayShowAllChartLink Boolean #field
+isDisplayShowAllChartLink 'Is show all chart link at home page' #fieldComment
+isDisplayShowAllChartLink PERSISTENT #fieldModifier
+isDrilldownCasesByCategory Boolean #field
+isDrilldownCasesByCategory PERSISTENT #fieldModifier
