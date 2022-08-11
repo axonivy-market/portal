@@ -11,7 +11,7 @@ When And Why You Need To Change the GroupId
 -------------------------------------------
 
 Most customers want to change (at least) colors and logos in their version of
-the portal, so they need to update the project portal-component. Changing anything in
+the portal, so they need to update ``portal-component``. Changing anything in
 the Portal **requires** a change of the Maven identifier, which consists of
 artifactId, groupId, and version. If the Portal is changed without adapting this
 identifier, then the changed version will be written to your local Maven
@@ -34,7 +34,7 @@ use for your other projects in the same deployment package. Because of
 dependencies between the Portal projects, you **have to propagate** this change
 to all Portal projects (and their dependencies).
 
-.. important:: Do not change ``artifactId`` such as portal-component, PortalKit...
+.. important:: Do not change ``artifactId`` such as portal-component, portal...
 
 .. note::
 	Do not forget to change default pages of your project. Follow this chapter to customize default pages:

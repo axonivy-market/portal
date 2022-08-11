@@ -29,7 +29,7 @@ the hints below.
 You can hide the Statistics widget in :ref:`Admin settings
 <settings-admin-settings>`. Therefore, if you want to hide the Statistics widget
 in your overridden process, please take a look at the NOTE section of
-``LoadSubMenuItems`` in PortalTemplate.
+``LoadSubMenuItems`` in ``portal``.
 
 .. tip::
     | For the Label of a SubMenuItem, if you want it to show correctly in several 

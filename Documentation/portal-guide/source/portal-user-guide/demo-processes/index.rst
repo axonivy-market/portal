@@ -3,8 +3,8 @@
 Demo Processes
 **************
 
-When you start the Axon Ivy Engine in demo mode, you will see the project
-**portal-user-examples**. In this project, we provide some simple examples.
+When you start the Axon Ivy Engine in demo mode, you will see **portal-user-examples**.
+In this project, we provide some simple examples.
 You can play with them to have the feeling how Axon Ivy and Portal work.
 
 .. hint:: 

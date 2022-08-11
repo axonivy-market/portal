@@ -30,14 +30,14 @@ We provide a code sample in ``portal-developer-examples``.
 
 Follow these steps to override the case Widget UI:
 
-#. Create an Axon Ivy project and add ``PortalTemplate`` as a
+#. Create an Axon Ivy project and add ``portal`` as a
    required library.
 
 #. To customize the case widget, you have to customize Portal Home first. Refer to
    :ref:`Customize Portal home <customization-portal-home>` to create and set a new home
    page.
 
-#. Copy the ``PortalStart`` process from ``PortalTemplate`` to your project.
+#. Copy the ``PortalStart`` process from ``portal`` to your project.
    Point the PortalHome element to your custom home page created in the previous
    step. This process is the new home page. The Portal administrator has to
    register this link in the Portal Admin Settings.
@@ -59,7 +59,7 @@ Case List Header and Case Header
 --------------------------------
 
 Refer to the ``caseListHeader (1)`` and ``caseHeader (2)`` sections in
-``PortalCases.xhtml`` in project PortalTemplate. If your case widget has
+``PortalCases.xhtml`` in ``portal``. If your case widget has
 new columns, you have to override the CaseLazyDataModel to make the sort
 function of these columns work:
 
@@ -84,7 +84,7 @@ function of these columns work:
 
    -  To add a CMS for checkbox label, add new entries to folder
       ``/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/`` in
-      ``PortalKit`` or override method ``getColumnLabel``\ (see the methods'
+      ``portal`` or override method ``getColumnLabel``\ (see the methods'
       Javadoc comments)
 
    -  In the ``caseListHeader`` section, use the ``CaseColumnHeader`` component
@@ -116,8 +116,7 @@ function of these columns work:
 Case Filter
 -----------
 
--  Refer to the ``caseFilter`` section in ``PortalCases.xhtml`` of
-   PortalTemplate.
+-  Refer to the ``caseFilter`` section in ``PortalCases.xhtml`` of ``portal``.
 
 -  To add a new filter, create a new Java class which extends
    CaseFilter and overrides its methods (see javadoc comments)
@@ -168,7 +167,7 @@ Case Filter
 How to Override Case Widget's Data Query
 ----------------------------------------
 
-Override the ``BuildCaseQuery`` callable process of PortalKit to build
+Override the ``BuildCaseQuery`` callable process of ``portal`` to build
 a query that changes the data passed to the case widget.
 
 To provide data to the case list after navigating to case list from your page,
@@ -193,7 +192,7 @@ apply the following steps:
 How to Override the Export Feature
 ----------------------------------
 
-#. Extend the CaseExporter Java class of PortalKit.
+#. Extend the CaseExporter Java class of ``portal``.
 
    -  Override the ``getColumnName`` method.
 

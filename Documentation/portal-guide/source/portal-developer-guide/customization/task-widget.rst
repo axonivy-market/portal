@@ -27,15 +27,14 @@ How To Override Task Widget's UI
 
 Refer to ``portal-developer-examples`` project for examples
 
-#. Introduce an Axon Ivy project which has ``PortalTemplate`` as a
+#. Introduce an Axon Ivy project which has ``portal`` as a
    required library.
 
 #. To customize task widget, you must customize Portal Home first. Refer
    to :ref:`Customize Portal
-   home <customization-portal-home>` to set new home
-   page.
+   home <customization-portal-home>` to set new home page.
 
-#. Copy the ``PortalStart`` process from ``PortalTemplate`` to your
+#. Copy the ``PortalStart`` process from ``portal`` to your
    project. Point PortalHome element to your custom home page in
    previous step. This process is new home page and administrator should
    register this link by Portal's Admin Settings.
@@ -54,7 +53,7 @@ Task List Header And Task Header
 --------------------------------
 
 Refer to the ``taskListHeader (1)`` and ``taskHeader (2)`` sections in
-``PortalTasks.xhtml`` of PortalTemplate. In case your task widget has
+``PortalTasks.xhtml`` of ``portal``. In case your task widget has
 new columns, you should override TaskLazyDataModel to make the sort
 function of these columns work:
 
@@ -76,7 +75,7 @@ function of these columns work:
 
    *  To add CMS for checkboxes's label, add new entries to folder
       ``/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/`` in
-      ``PortalKit`` or override method ``getColumnLabel``\ (see the
+      ``portal`` or override method ``getColumnLabel``\ (see the
       methods' Javadoc comments)
 
    *  In ``taskListHeader`` section, use ``TaskColumnHeader`` component
@@ -116,8 +115,7 @@ function of these columns work:
 Task Filter
 -----------
 
--  Refer to the ``taskFilter`` section in ``PortalTasks.xhtml`` of
-   PortalTemplate.
+-  Refer to the ``taskFilter`` section in ``PortalTasks.xhtml`` of ``portal``.
 
 -  To introduce new filter, create a new Java class extends
    TaskFilter and override its methods (see javadoc comments)
@@ -169,7 +167,7 @@ How To Override Task Widget's Data Query
 ----------------------------------------
 
 -  Override the
-   BuildTaskQuery callable process of PortalKit and build your own query to
+   BuildTaskQuery callable process of ``portal`` and build your own query to
    effect the data of task widget, task categories and statistic widget.
 -  If you want to apply a query for only Home page task list, not for
    Full mode task list, use attribute isQueryForHomePage in BuildTaskQuery
@@ -208,7 +206,7 @@ How To Override Task Widget's Data Query
 How To Override Export Feature
 ------------------------------
 
-#. Extend the TaskExporter Java class of PortalKit.
+#. Extend the TaskExporter Java class of ``portal``.
 
    -  Override the ``getColumnName`` method.
 
@@ -251,7 +249,7 @@ Custom Task Delegate
 Portal allows to customize the list of users and roles that a task can
 be delegated to. This can be done following these steps:
 
-#. Introduce a Axon Ivy project which has ``PortalTemplate`` as a
+#. Introduce an Axon Ivy project which has ``portal`` as a
    required library and its own ``PortalStart`` process. Refer to step
    1, 2, 3, 4 in :ref:`override task widget's
    UI <customization-task-widget-how-to-overide-ui>` guide.
