@@ -2270,4 +2270,6 @@ body.in-dialog .ui-widget-overlay {
 
 .option-item-long-label {
   max-width: 120px;
+  line-height: 1.2;
+  margin-top: 0 !important;
 }
