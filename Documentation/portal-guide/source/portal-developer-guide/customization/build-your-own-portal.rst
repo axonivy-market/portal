@@ -3,12 +3,12 @@
 Build Your Own Portal
 =====================
 
-.. _customization-build-your-own-portal-build-your-own-portal-using-portal-kit:
+.. _customization-build-your-own-portal-build-your-own-portal-using-portal:
 
-Build Your Own Portal Using Portalkit
--------------------------------------
+Build Your Own Portal Using portal
+----------------------------------
 
-#. Create a new project that depends on ``PortalTemplate``.
+#. Create a new project that depends on ``portal``.
 
 #. Create new home page
 
