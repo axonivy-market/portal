@@ -89,8 +89,7 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
                                                               TaskSortField.EXPIRY_TIME.name(), 
                                                               TaskSortField.COMPLETED_ON.name(), 
                                                               TaskSortField.STATE.name(), 
-                                                              TaskSortField.CATEGORY.name(), 
-                                                              TaskSortField.APPLICATION.name());
+                                                              TaskSortField.CATEGORY.name());
   protected List<String> portalRequiredColumns = Arrays.asList(TaskSortField.NAME.name());
 
   protected boolean compactMode;
@@ -870,6 +869,7 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   public void initColumnsConfiguration() {
     if (CollectionUtils.isEmpty(allColumns)) {
       allColumns.addAll(getDefaultColumns());
+      allColumns.add(TaskSortField.APPLICATION.name());
       initSelectedColumns();
     }
   }
@@ -887,8 +887,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
     }
     if (selectedColumns.isEmpty()) {
       selectedColumns.addAll(getDefaultColumns());
-      // hide column application by default
-      selectedColumns.remove(TaskSortField.APPLICATION.name());
       isAutoHideColumns = true;
     }
     setDisableSelectionCheckboxes(isAutoHideColumns);

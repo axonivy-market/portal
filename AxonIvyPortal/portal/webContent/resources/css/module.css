@@ -1932,7 +1932,8 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width:70px;
+  width:90px;
+  padding-right:15px;
 }
 
 .task-start-list .action-cell {
