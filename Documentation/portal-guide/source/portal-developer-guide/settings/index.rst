@@ -18,7 +18,7 @@ Portal settings are stored as :dev-url:`Variables </doc/nightly/designer-guide/c
 
 In development, it is a quite tedious task to configure Portal settings after
 restarting Designer. Therefore, update your variables in
-``PortalKit/config/variables.yaml`` for the settings that you want to configure.
+``portal/config/variables.yaml`` for the settings that you want to configure.
 This survives restarting Designer.
 
 
@@ -43,7 +43,7 @@ Role Configuration
 .. table:: 
 
    +-----------------------------------+-----------------------------------+
-   | PortalKit roles                   | Rights                            |
+   | Portal roles                      | Rights                            |
    +===================================+===================================+
    | AXONIVY_PORTAL_ADMIN              | User having to this role can      |
    |                                   | access the Portal Admin page,     |
@@ -294,8 +294,7 @@ configuration/web.xml file:
 
 By default, after you configured the context-param in the web XML file, the
 Virus Scanning is enabled. You can change the variable ``EnableVirusScanner`` to
-``false`` in ``PortalKit/config/variables.yaml`` if you want to disable virus
-scanning.
+``false`` in ``portal/config/variables.yaml`` if you want to disable virus scanning.
 
 Reference: `How to check if uploaded files contain a virus
 <https://community.axonivy.com/d/144-how-to-check-if-a-uploaded-files-contain-a-virus/>`_.
