@@ -129,14 +129,14 @@ How to Customize the Case Details UI
 
 We included sample code for this customization in ``portal-developer-examples``.
 
-#. Create an Axon Ivy project which has ``PortalTemplate`` as a
+#. Create an Axon Ivy project which has ``portal`` as a
    required library.
 
 #. To customize the case details UI, you have to customize Portal Home first.
    Refer to :ref:`Customize Portal home <customization-portal-home>` to set a new
    home page.
 
-#. Copy the ``PortalStart`` process from ``PortalTemplate`` to your project.
+#. Copy the ``PortalStart`` process from ``portal`` to your project.
    Point the PortalHome element to your custom home page created in the previous
    step. This process is the new home page. The Portal administrator has to
    register this link in the Portal Admin Settings.
@@ -161,7 +161,7 @@ Show/Hide Components by Keywords
 --------------------------------
 
 Refer to the ``ui:param`` tag list in ``CaseInformation.xhtml`` of
-PortalTemplate. In case, we want to show/hide any elements on
+``portal``. In case, we want to show/hide any elements on
 CaseItemDetails, we should override value of ``ui:param``
 
 List valid parameters:
@@ -276,7 +276,7 @@ The following two steps are necessary to add new custom panels:
         ]
 
 
-#. Refer to the ``caseItemDetailCustom*`` section in ``CaseInformation.xhtml`` of PortalTemplate.
+#. Refer to the ``caseItemDetailCustom*`` section in ``CaseInformation.xhtml`` of ``portal``.
 
 
    -  You need to define ``ui:define`` with a valid name such as

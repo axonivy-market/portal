@@ -8,7 +8,7 @@ Layout Templates
 Templates for Development
 -------------------------
 
-Your Portal project depends on the PortalTemplate project, which offers several templates that can be used directly withoutIFrames.
+Your Portal project depends on ``portal``, which offers several templates that can be used directly withoutIFrames.
 Additionally, two templates are described to be used with IFrames.
 
 Templates without IFrames:
@@ -130,7 +130,7 @@ Inside your UI, you can configure these parameters as follows; they will be rend
 
 .. note::
        Do not use or refer to this template in your Dialog. This will be done automatically by Portal if you use our IFrame Approach.
-       Refer to IFrameTaskTemplate.xhtml in PortalTemplate to see detailed information about how to use and pass parameters.
+       Refer to IFrameTaskTemplate.xhtml in the portal project to see detailed information about how to use and pass parameters.
 
        When you define parameter processSteps, please make sure that you add the jsp function tag to your XHTML file:
        ``xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions``

@@ -79,7 +79,7 @@
           <additionalOptions>
             <additionalOption>-classpath</additionalOption>
             <!--On Windows, replace character : by character ;-->
-            <additionalOption>../../../../../AxonIvyPortal/portal/lib/itextpdf-5.5.13.jar:../../../../../AxonIvyPortal/portal/lib/jsoup-1.10.3.jar:../../../../../AxonIvyPortal/portal/lib/quartz-2.1.1.jar:${standardized.maven.processor.classpath}</additionalOption>
+            <additionalOption>../../../../../AxonIvyPortal/portal-component/lib/itextpdf-5.5.13.jar:../../../../../AxonIvyPortal/portal-component/lib/jsoup-1.10.3.jar:../../../../../AxonIvyPortal/portal/lib/quartz-2.1.1.jar:${standardized.maven.processor.classpath}</additionalOption>
           </additionalOptions>
           <show>public</show>
           <doclint>none</doclint>

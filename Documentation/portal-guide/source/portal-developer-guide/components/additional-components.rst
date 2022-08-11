@@ -6,7 +6,7 @@ Additional Components
 portal-component project
 ------------------------
 
-In the project ``portal-component``, we introduced some components independent of the Portal.
+In ``portal-component``, we introduced some components independent of the Portal.
 You don't need to import the Portal projects to use them.
 
 These components fully support both Freya and Serenity themes of Primefaces.
@@ -104,9 +104,9 @@ additional property "CASE_BUSINESS_ENTITY_PROPERTY" of the business case.
 
 3. Override the callable subprocess ``OpenCaseDetailsHook`` to handle navigation when clicking on a case in the Process History component.
 
-   Please refer to the process ``ProcessHistoryExample`` in the project ``portal-component-example`` for more details on how to use the Process History without the Portal.
+   Please refer to the process ``ProcessHistoryExample`` in ``portal-component-example`` for more details on how to use the Process History without the Portal.
 
-   Please refer to the process ``ProcessHistoryComponent`` in the project ``portal-developer-examples`` for more details on how to customize the Process History with the Portal.
+   Please refer to the process ``ProcessHistoryComponent`` in ``portal-developer-examples`` for more details on how to customize the Process History with the Portal.
 
    If you want to customize its style,
    please refer to :ref:`components-additional-components-style-customization`.
@@ -135,7 +135,7 @@ Migrate from Deprecated Process History
 
    For applications using the Portal without IFrame:
 
-      + Copy the contents of the subprocess ``OpenPortalCaseDetails`` in the project ``PortalTemplate`` to the overridden subprocess ``OpenCaseDetailsHook``.
+      + Copy the contents of the subprocess ``OpenPortalCaseDetailsHook`` in ``portal`` to the overridden subprocess ``OpenCaseDetailsHook``.
 
    For applications using the Portal with an IFrame:
 
