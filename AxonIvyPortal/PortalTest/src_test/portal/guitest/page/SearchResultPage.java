@@ -157,4 +157,9 @@ public class SearchResultPage extends TemplatePage {
 	public boolean isCaseCategoryColumnDisplayed() {
     return findElementByCssSelector("span[id$=':case-category-cell']").isDisplayed();
   }
+
+  public void waitForFirstTabFinishedLoading() {
+    waitForElementDisplayed(By.className("js-loading-process-list"), false);
+    waitForElementDisplayed(By.className("js-process-start-list-container"), true);
+  }
 }

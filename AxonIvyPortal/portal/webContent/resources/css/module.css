@@ -26,20 +26,7 @@
  * }
  *
  */
- 
- .portal-layout-container {
-  flex-shrink: 1;
-  overflow: auto;
- }
 
-/* =================== PROCESS FIELDSET ====================== */
-body .ui-fieldset.fieldset-no-border {
-  border: none !important;
-  padding: .6em 0;
-  margin: 0;
-}
-
-/* =================== END FIELDSET ====================== */
 .widget-header {
   display: flex;
   flex-flow: row wrap;
@@ -48,7 +35,10 @@ body .ui-fieldset.fieldset-no-border {
 .widget-header-main {
   flex: 1 0 50%;
   position: relative;
-  height: 26px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 /* Small screen */
@@ -72,27 +62,11 @@ body .ui-fieldset.fieldset-no-border {
   align-self: flex-end;
 }
 
-.widget-header-main-title {
-  position: absolute;
-  bottom: 7px;
-  left: 0;
-}
-
-.home-page-container .widget-header-main-title {
-  bottom: 1px;
-}
-
 /* Small screen */
 @media screen and (max-width: 40em) {
   .widget-header-main-title.compact-mod-title {
     width: 100%;
   }
-}
-
-.widget-header-main-menu {
-  position: absolute;
-  bottom: 4px;
-  right: 0;
 }
 
 .widget-header-main-menu a:hover {
@@ -116,10 +90,6 @@ body .ui-fieldset.fieldset-no-border {
   margin-left: 2px;
 }
 
-.widget-header-filter-input.ui-inputfield {
-  width: 100%;
-}
-
 .widget-content a:hover {
   text-decoration: none;
 }
@@ -128,25 +98,6 @@ body .ui-fieldset.fieldset-no-border {
 .widget .ps-container.ps-active-y>.ps-scrollbar-y-rail {
   z-index: auto !important;
 }
-
-/********************** START MENU ITEM ***********************/
-.layout-wrapper .layout-sidebar,
-.layout-wrapper.layout-wrapper-active .layout-main-mask {
-  z-index: 1000;
-}
-
-.layout-wrapper .layout-main .layout-topbar {
-  box-shadow: none;
-  padding-bottom: 0;
-  height: 60px;
-  z-index: 997;
-}
-
-.layout-wrapper .layout-main .layout-content {
-  overflow-x: hidden;
-}
-
-/********************** END MENU ITEM ***********************/
 
 /********************** START CASE BOX ***********************/
 .grid-item-content-list-item {
@@ -158,7 +109,7 @@ body .ui-fieldset.fieldset-no-border {
 .filter-widget {
   position: relative;
   display: flex;
-  top: -8px;
+  align-items: center;
 }
 
 .expand-mode .filter-widget {
@@ -166,31 +117,12 @@ body .ui-fieldset.fieldset-no-border {
 }
 
 .filter-widget-input {
-  flex-grow: 1;
-}
-
-.filter-widget .filter-widget-input {
-  padding: 6px 0 4px 6px !important;
+  flex: 1;
 }
 
 .filter-category-checkbox-tree .ui-tree-container {
   height: 300px;
   overflow: auto !important;
-}
-
-.filter-category-checkbox-tree .ui-icon.ui-icon-search {
-  background-image: none !important;
-  text-indent: 2px !important;
-  bottom: 8px;
-  top: auto;
-}
-
-.filter-category-checkbox-tree .ui-icon.ui-icon-search:before {
-  content: "\f002";
-}
-
-.ui-tree .ui-treenode-leaf-icon {
-  width: 20px !important;
 }
 
 /********************************** END FILTER WIDGET **********************************/
@@ -245,11 +177,14 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
 }
 
 .task-widget .advanced-filter, .case-widget-container .advanced-filter, .case-widget .advanced-filter {
-  display: inline-block;
+  display: inline-flex;
   margin-right: 10px;
   position: relative;
   cursor: pointer;
   height: 30px;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
 }
 
 .task-widget .advanced-filter:hover, .case-widget-container .advanced-filter:hover,
@@ -263,7 +198,7 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   display: inline-block;
   line-height: 1;
   min-width: 0;
-  padding: 0 25px 0 5px !important;
+  padding: 0 5px 0 5px !important;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -315,31 +250,17 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   display: inline;
 }
 
-.advanced-filter-icon {
-  position: absolute;
-  right: 5px;
-  top: 7px;
-}
-
-.case-details-related-task-header-section,
-.case-details-related-case-header-section,
-.task-widget .ui-overlaypanel.advanced-filter-panel,
-.task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content,
-.case-widget-container .ui-overlaypanel.advanced-filter-panel,
-.case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content {
-  padding: 0 !important;
-}
-
-.task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content .ui-overlaypanel-filter-content,
-.case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content .ui-overlaypanel-filter-content {
-  padding: 10px;
+.si.advanced-filter-icon {
+  display: flex;
+  height: 100%;
+  align-items: center;
 }
 
 .task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer,
 .case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer,
 .task-widget .filter-add-panel .ui-overlaypanel-footer,
 .case-widget-container .filter-add-panel .ui-overlaypanel-footer{
-  padding: 10px;
+  padding-top: 10px;
   text-align: right;
 }
 
@@ -353,34 +274,12 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   transition: none;
 }
 
-.task-widget .ui-overlaypanel.filter-add-panel.ui-widget-content,
-.case-widget-container .ui-overlaypanel.filter-add-panel.ui-widget-content {
-  padding: 0;
-}
-
-.task-widget .ui-overlaypanel.filter-add-panel .ui-overlaypanel-content,
-.case-widget-container .ui-overlaypanel.filter-add-panel .ui-overlaypanel-content {
-  min-width: max-content;
-  padding: 0 !important;
-}
-
-.task-widget .ui-overlaypanel.filter-add-panel .ui-scrollpanel,
-.case-widget-container .ui-overlaypanel.filter-add-panel .ui-scrollpanel,
 .filter-add-panel.ui-overlaypanel .config-checkbox-select-all {
-  padding: 12px 22px;
-}
-
-.filter-add-panel.ui-overlaypanel .config-checkbox-select-all {
-  padding-bottom: 5px;
+  margin-bottom: .5rem;
 }
 
 .task-widget .ui-overlaypanel.filter-add-panel .ui-scrollpanel,
 .case-widget-container .ui-overlaypanel.filter-add-panel .ui-scrollpanel {
-  padding-top: 4px;
-  border: none;
-  border-radius: 0;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
   max-height: 75vh;
   width: 100%;
 }
@@ -394,18 +293,9 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   transition: none;
 }
 
-.task-widget .ui-overlaypanel.advanced-filter-panel .ui-inputfield.ui-widget,
-.case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-inputfield.ui-widget,
-.ui-selectonelistbox.responsible-list-filter .ui-selectlistbox-filter.ui-inputfield.ui-widget {
-  -webkit-transition: none;
-  -moz-transition: none;
-  -ms-transition: none;
-  -o-transition: none;
-  transition: none;
-}
-
 .config-columns-panel .ui-overlaypanel-footer {
   text-align: right;
+  margin-top: 1rem;
 }
 
 .config-columns {
@@ -507,13 +397,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   top: 2px;
   right: 4px;
 }
-
-@media screen and (max-width: 40em) {
-  .case-details-documents thead tr th {
-    border-right: 1px solid #d8d8d8;
-  }
-}
-
 /********************************** CASE ITEM SIMILAR TO TASK ITEM CLASSES **********************************/
 .case-widget-container .case-widget-top-header {
   position: relative;
@@ -528,8 +411,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .widget.case-widget-container .case-view {
-  padding-top: 0;
-  padding-bottom: 0;
+  padding: 0;
 }
 
 .case-list-item:hover {
@@ -539,7 +421,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .case-widget-container .widget-column-header, .case-default-widget-container .widget-column-header {
   flex: 1 0 auto;
   flex-basis: calc(100% - 14px);
-  margin: auto 7px;
+  margin: auto;
   display: flex;
   align-items: flex-end;
   line-height: normal;
@@ -642,11 +524,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   align-items: center;
 }
 
-/* .action-container a.task-action-item .icon-compact-mode, .action-container span.task-action-item .icon-compact-mode {
-  margin-top: 5px;
-  margin-right: 3px;
-}
- */
 @media (max-width : 767px) {
   .case-widget-top-header-main-title {
     word-break: break-all;
@@ -701,16 +578,13 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   overflow: auto
 }
 
-.case-description-inplace.ui-inplace .ui-inplace-editor {
-  height: 39px;
-}
-
 .task-description-inplace .ui-inplace-editor {
   height: 39px;
 }
 
+.task-description-inplace.ui-inplace .ui-inplace-content,
 .case-description-inplace.ui-inplace .ui-inplace-content {
-  width: 100%
+  display: flex;
 }
 
 .case-description-input {
@@ -725,19 +599,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 
 .action-steps-panel {
   max-width: 220px;
-  width: auto !important;
-  padding: 0 !important;
-}
-
-.action-steps-panel .case-action-separator, .options-panel .task-action-separator {
-  width: 100%;
-  margin: 0;
-  border-collapse: unset;
-}
-
-.action-steps-panel .ui-overlaypanel-content {
-  padding: 0 !important;
-  display: grid;
 }
 
 .action-steps-panel .action-icon {
@@ -1027,6 +888,8 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   .case-detail-body .case-details-related-task-table .related-task-description-column,
   .case-detail-body .case-details-related-task-table .related-task-responsible-column,
   .case-detail-body .case-details-related-task-table .related-task-created-column,
+  .case-detail-body .case-details-related-task-table .related-task-expiry-column,
+  .case-detail-body .case-details-related-task-table .related-task-complete-on-column,
   .case-detail-body .related-task-column-config {
     display: none;
   }
@@ -1058,6 +921,10 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   margin-right: 25px;
 }
 
+.process-widget {
+  position: relative;
+}
+
 .process-widget .loading-text {
   padding-left: 15px;
   padding-top: 10px;
@@ -1072,7 +939,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
     width: calc(100% - 35px) !important;
   }
   .process-start-list-item-name-text {
-    width: calc(100vw - 100px) !important;
+    width: calc(100% - 40px);
   }
   .add-external-link-dialog {
     min-width: 96vw;
@@ -1172,11 +1039,15 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .process-start-list-container {
-  flex-flow: row wrap;
-  justify-content: flex-start;
   overflow: auto;
-  height: auto;
   -webkit-overflow-scroll: touch;
+  display: flex;
+  flex-direction: column;
+}
+
+.process-start-list-container.u-invisibility {
+  height: calc(100vh - 200px);
+  max-height: 500px;
 }
 
 .process-widget .process-nav {
@@ -1187,6 +1058,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   position: absolute !important;
   right: 0;
   height: auto;
+  margin: 0.5rem auto;
 }
 
 .process-grid-item .process-more-info-link,
@@ -1373,25 +1245,19 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   opacity: 1;
 }
 
-
-.process-widget .process-widget-filter {
-  padding-right: 20px;
+.process-widget-creation-actions {
+  display: flex;
+  align-items: center;
 }
 
 .process-widget .process-group,
 .process-widget .grid-process {
-  width: calc(100% - 75px);
-  float: left;
+  margin-bottom: 1rem;
 }
 
 .search-results-tabview .process-widget .process-group {
-  width: 100% !important;
+  max-width: 100%;
   padding-right: 0;
-}
-
-body .ui-tabs.search-results-tabview .ui-tabs-panel {
-  padding-top: 0;
-  padding-bottom: 0;
 } 
 
 .process-widget .default-process-title {
@@ -1403,21 +1269,9 @@ body .ui-tabs.search-results-tabview .ui-tabs-panel {
   margin-bottom: 8px;
 }
 
-.process-widget .order-list-items.ui-orderlist {
-  border: none;
-}
-
-.process-widget .order-list-items.ui-orderlist .ui-orderlist-list {
-  height: auto;
-  overflow: visible;
-  margin: 0px !important;
-  border: none;
-}
-
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item {
   height: 50px;
-  margin-bottom: 5px !important;
-  padding: 0px !important;
+  margin: auto .5rem .5rem;
   background-image: none;
   border-radius: 5px;
   display: flex;
@@ -1485,20 +1339,12 @@ body .ui-tabs.search-results-tabview .ui-tabs-panel {
 
 /********************************** END PROCESSES **********************************/
 /******************START DELEGATE DIALOG********************/
-.ui-autocomplete-panel .ui-autocomplete-table.ui-autocomplete-items {
-  box-sizing: border-box;
-}
-
 .delegate-dialog-activator-panel {
   margin-top: 5px;
 }
 
 .select-delegate-panel {
   margin: 5px 0 10px 0;
-}
-
-.select-delegate-panel .ui-autocomplete, .select-delegate-panel .ui-autocomplete .ui-autocomplete-input {
-  width: 100%;
 }
 
 .delegate-comment-panel {
@@ -1554,11 +1400,6 @@ body .ui-tabs.search-results-tabview .ui-tabs-panel {
 /******************END DELEGATE DIALOG********************/
 .new-process-dialog {
   max-width: 800px;
-}
-
-.support-process-language-field {
-  margin-top: 25px;
-  margin-bottom: 5px;
 }
 
 .field-group {
@@ -1623,17 +1464,8 @@ body .ui-tabs.search-results-tabview .ui-tabs-panel {
   margin-bottom: 0;
 }
 
-.task-widget .sort-task-menu {
-  width: 100%;
-  margin-top: 6px;
-}
-
 .task-widget .task-view {
   padding: 0;
-}
-
-.dashboard-task-widget-container.compact-task-widget .filter-widget {
-  top: 2px;
 }
 
 .filter-container {
@@ -1643,10 +1475,9 @@ body .ui-tabs.search-results-tabview .ui-tabs-panel {
 }
 
 .filter-container .widget-title-mobile {
-  display: block;
-  height: 10px;
+  display: inline-flex;
+  height: 100%;
   position: relative;
-  padding: 0; 
   width: 40%;
 }
 
@@ -1666,9 +1497,6 @@ body .ui-tabs.search-results-tabview .ui-tabs-panel {
 }
 
 .filter-container .widget-title-mobile .top-header-main-title {
-  position: absolute;
-  top: -16px;
-  left: 8px;
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1694,7 +1522,7 @@ body .ui-tabs.search-results-tabview .ui-tabs-panel {
 }
 
 .filter-selection-form .filter-name-overlay-panel .ui-overlaypanel-content {
-  padding: 15px 0 0 0;
+  padding: .5rem 0;
   max-height: 70vh;
   overflow-y: auto;
   overflow-x: hidden;
@@ -1742,7 +1570,7 @@ body .ui-tabs.search-results-tabview .ui-tabs-panel {
 
 .task-widget .filter-save-action {
   order: 1002;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .save-filter-set-dialog {
@@ -1897,6 +1725,10 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   padding-left: 0.5em;
 }
 
+.compact-task-widget .no-task-message {
+  padding-left: 0;
+}
+
 .task-start-list .name-cell {
   display: block;
 }
@@ -1926,14 +1758,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.application-column{
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width:90px;
-  padding-right:15px;
 }
 
 .task-start-list .action-cell {
@@ -1978,11 +1802,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   align-self: center;
 }
 
-.options-panel .option-action-icon, .options-panel .option-item-label {
-  display: inline-block;
-  float: left;
-}
-
 .task-detail-general-card {
   min-height: 610px;
 }
@@ -2009,28 +1828,18 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   margin-right: 5px;
 }
 
-.options-panel .option-item-label {
-  margin-top: 2px;
-}
-
 .note-content-textarea {
   width: calc(100% - 2px);
 }
 
 .document-upload {
-  border-radius: 8px;
-  padding: 5px;
+  padding-top: 5px;
 }
 
 #task-description .scroll-panel {
   height: 230px;
   padding-right: 10px;
   padding-top: 5px;
-}
-
-.options-panel {
-  border-radius: 5px;
-  padding: 0 !important;
 }
 
 .options-panel.expiry-chart-context-menu {
@@ -2047,18 +1856,21 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   width: 80px;
 }
 
+.action-steps-panel .ui-overlaypanel-content,
 .options-panel.ui-overlaypanel .ui-overlaypanel-content {
-  padding: 0 !important;
+  padding: .5rem 0 !important;
   display: grid;
 }
 
-.options-panel .option-item {
+.options-panel .option-item  {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   clear: both;
   float: left;
   padding: 10px 18px 10px 20px;
   margin: 0;
   width: 160px;
-  line-height: 1.2rem;
   box-sizing: content-box;
 }
 
@@ -2092,8 +1904,8 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   .task-widget .ui-widget.ui-button.advanced-filter-command:after,
   .case-widget-container .ui-widget.ui-button.advanced-filter-command:after {
     position: absolute;
-    right: 25px;
-    top: 9px;
+    right: 6px;
+    top: 5px;
   }
   .task-start-list-item.full-mode .task-start-link, .case-header-container {
     height: 50px;
@@ -2116,9 +1928,11 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   height: 300px;
 }
 
+.case-detail-description-input,
 .task-detail-description-input {
-  width: calc(100% - 6px);
+  flex: 1;
   resize: none;
+  max-width: calc(100% - 80px);
 }
 
 .task-detail-description {
@@ -2138,16 +1952,16 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   overflow: auto; 
 }
 
+.description-content {
+  flex: 1;
+}
+
 .task-details-data-priority-icon {
   margin-right: 5px;
 }
 
 .task-details-data-expiry input[type="text"] {
   width: 145px;
-}
-
-.expiry-edit-inplace .ui-widget.ui-button {
-  margin-left:5px!important;
 }
 
 .task-name-input {
@@ -2227,6 +2041,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .task-expiry-activator-edit {
   margin-left: 5px;
+  vertical-align: top;
 }
 /********************************** END TASK DETAIL **********************************/
 
@@ -2271,11 +2086,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   padding: 0 15px;
   justify-content: center;
   position: relative
-}
-
-.case-detail-description-input {
-  width: calc(100% - 6px);
-  resize: none;
 }
 
 _:-ms-input-placeholder, :root .case-details>* {
@@ -2417,82 +2227,12 @@ _:-ms-fullscreen, :root .additional-case-details-link {
   z-index: 10000;
 }
 
-.axonivy-loader {
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100px;
-  height: 100px;
-  border-radius: 10px;
-  padding: 20px;
-}
-
-.axonivy-loader h5 {
-  margin-top: 5px;
-  text-align: center;
-}
-
-.axonivy-loader .spinner {
-  margin: 0 auto;
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  -webkit-animation: spinloader 2s linear infinite;
-          animation: spinloader 2s linear infinite;
-}
-
-.axonivy-loader .spinner:before {
-  content: "";
-  position: absolute;
-  top: 7px;
-  right: 7px;
-  bottom: 7px;
-  left: 7px;
-  border-radius: 50%;
-  -webkit-animation: spinloader 3s linear infinite;
-          animation: spinloader 3s linear infinite;
-}
-
-.axonivy-loader .spinner:after {
-  content: "";
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  bottom: 15px;
-  left: 15px;
-  border-radius: 50%;
-  -webkit-animation: spinloader 1.5s linear infinite;
-          animation: spinloader 1.5s linear infinite;
-}
-
-@-webkit-keyframes spinloader {
-  from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(359deg);
-            transform: rotate(359deg);
-  }
-}
-@keyframes spinloader {
-  from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(359deg);
-            transform: rotate(359deg);
-  }
-}
-
 /* Override Primefaces styles */
 .icon-selection-dialog-selecting-icon {
   display: inline-flex;
   width: 35px;
   height: 35px;
+  cursor: pointer;
 }
 
 .icon-selection-dialog-selecting-icon .fa, .icon-selection-dialog-selecting-icon .si {
@@ -2897,11 +2637,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   max-width: 800px;
 }
 
-.project-info-dialog .ui-dialog-titlebar.ui-widget-header {
-  padding-left: 1.5em;
-  padding-right: 1.5em;
-}
-
 @media screen and (max-width: 40em) {
   .project-info-dialog {
     max-width: 96vw;
@@ -2942,10 +2677,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   margin: .5em 0;
 }
 
-.admin-settings-form-input {
-  width: 100%;
-}
-
 .admin-settings-form-input-label {
   float: right;
   padding-top: 5px;
@@ -2958,17 +2689,11 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .app-icon {
   text-align: left;
-  height: 42px;
   line-height: 2.5rem;
 }
 
 .logo-height-unit {
   line-height: 39px;
-}
-
-.global-setting-table .ui-datatable-scrollable-header table tr th span.ui-column-title {
-  display: block;
-  height: 40px;
 }
 
 .settings-table-key-column {
@@ -3007,22 +2732,13 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .announcement-message {
-  border-radius: 5px;
-  padding: 2px 10px;
-  margin-top: 1px;
+  border-radius: 6px;
+  padding: 6px 10px;
+  margin-bottom: 1rem;
 }
 
 .admin-application {
   margin-top: 10px;
-}
-
-.app-dialog {
-  padding: 8px 0px !important;
-}
-
-.app-setting-button, .add-languages {
-  margin-top: 11px !important;
-  width: 100% !important;
 }
 
 .application-name-language {
@@ -3032,10 +2748,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .application-name-language .ui-datatable tr {
   margin: 10px !important;
-}
-
-.ui-dialog {
-  padding: 0 !important;
 }
 
 .new-app, .ui-dialog-footer button {
@@ -3066,10 +2778,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .absence-panel-grid {
   max-width: 450px;
-}
-
-.absence-panel-grid>div {
-  padding: 15px 0;
 }
 
 .absences-table-action-column-icon-button {
@@ -3164,21 +2872,9 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   }
 }
 
-.choose-deputy-dialog .deputy-selection-panel {
-  width: 100%;
-}
-
 .choose-deputy-dialog .deputy-selection-panel,
 .choose-deputy-dialog .deputy-selection-panel tbody tr td {
   border: none;
-}
-
-.choose-deputy-dialog .deputy-selection-panel .select-deputy .ui-autocomplete {
-  width: 100%;
-}
-
-.choose-deputy-dialog .deputy-selection-panel .select-deputy .ui-autocomplete-input {
-  width: 100%;
 }
 
 .choose-deputy-dialog .deputy-selection-panel .add-deputy-button {
@@ -3225,11 +2921,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   padding-bottom: 0px !important;
 }
 
-/* Override Primefaces table style */
-.absence-table table, .admin-table table {
-  box-sizing: border-box !important;
-}
-
 /********************************** CHANGE PASSWORD DIALOG **********************************/
 .change-password-dialog {
   max-width: 500px;
@@ -3260,10 +2951,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 .user-profile-footer {
   margin-top: 25px;
   text-align: right;
-}
-
-.user-profile {
-  margin: 15px;
 }
 
 .user-profile-footer .ui-button {
@@ -3317,7 +3004,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 .my-profile-container .setting-header span  {
   padding: 0 0 0 1px;
   margin: 0;
-  font-size: 1.2rem;
   line-height: 1.2rem;
 }
 
@@ -3514,9 +3200,13 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   vertical-align: top;
 }
 
-.edit-process-form .edit-process-detail-2nd-cell {
-  width: calc(100% - 150px);
-  text-align: left;
+.edit-process-form .edit-process-detail-2nd-cell .ui-inplace-content {
+  display: flex;
+}
+
+.edit-process-form .edit-process-detail-2nd-cell .ui-inplace-content input,
+.edit-process-form .edit-process-detail-2nd-cell .ui-inplace-content textarea {
+  flex-grow: 1;
 }
 
 .edit-process-form .edit-external-link-name {
@@ -3565,10 +3255,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 /********************************** STATISTIC WIDGET **********************************/
-.statistic-widget-container:not(.statistic-widget-compact-mode-container) {
-  padding: 0 0.5em 0.5em 0.5em;
-}
-
 .statistic-widget-container:not(.statistic-widget-compact-mode-container) .widget-header .widget-header-main {
   flex-basis: 200px !important;
 }
@@ -3752,9 +3438,9 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .statistic-actions-panel .ui-commandlink {
-  height: 30px;
-  padding: 5px;
-  border: solid 1px transparent;
+  padding: 5px .5rem;
+  display: inline-flex;
+  align-items: center;
 }
 
 .task-analysic-action {
@@ -3803,21 +3489,12 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   justify-content: space-between;
 }
 
-.edit-statistic-container .chart-list .separator::before {
-  top: -87px;
-}
-
-.edit-statistic-container .chart-list .separator-helper {
-  height: 2px;
-}
-
 .edit-statistic-container .chart-list .chart-container .label, .chart-filter-header-text {
   text-align: left;
 }
 
 .edit-statistic-container .chart-list .chart-container .add-button {
-  display: block;
-  margin: 16px 0px 0px auto;
+  float: right;
 }
 
 .edit-statistic-container td:not(.align-bottom) {
@@ -3825,7 +3502,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .chart-filter-info-icon {
-  padding-right: 5px;
   float: right;
 }
 
@@ -3835,12 +3511,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .statistic-filter-item {
-  height: 18rem;
-  padding-top: 0 !important;
-}
-
-.statistic-filter-item.ui-scrollpanel {
-  border: none;
+  max-height: 18rem;
 }
 
 .statistic-filter-item.ui-scrollpanel .ui-widget.ui-selectmanycheckbox td {
@@ -3930,7 +3601,7 @@ height: 340px;
 .dashboard-chart-panel .card .chart-name {
   margin: 0px;
   display: inline-block;
-  max-width: calc(100% - 30px);
+  max-width: calc(100% - 40px);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -3939,7 +3610,7 @@ height: 340px;
 
 .add-statistic-panel {
   width: 100%;
-  margin: 2rem auto 3rem;
+  margin: .5rem auto;
 }
 
 .statistic-dashboard-expand-mode {
@@ -3964,7 +3635,6 @@ height: 340px;
   margin-top: 20px;
   margin-bottom: 10px;
   width: 100%;
-  border-bottom: solid 1px;
   padding-bottom: 2px;
 }
 
@@ -3974,11 +3644,6 @@ height: 340px;
 
 .chart-info-container .display-block {
   display: block;
-}
-
-.chart-info-container, .chart-info-container.ui-panelgrid tbody tr td {
-  vertical-align: top;
-  word-break: break-all;
 }
 
 .chart-info-container .label-column {
@@ -4008,6 +3673,10 @@ height: 340px;
   left: 25%;
   right: 25%;
   z-index: 1001;
+}
+
+.notification-container .notification {
+  padding: 0;
 }
 
 .notification {
@@ -4109,26 +3778,11 @@ height: 340px;
 .color-header {
   height: 4px;
   display: flex;
-  margin-top: 5px;
-  margin-left: -25px;
-  width: calc(100vw - 60px);
-}
-.layout-wrapper-static .color-header {
-  width: calc(100vw - 240px);
-}
-
-/* Small screen */
-@media (max-width: 1024px) {
-  .layout-wrapper .color-header {
-    margin-left: -25px;
-    margin-right: -25px;
-    width: 100vw;
-  }
-}
-
-.container {
-  flex-shrink: 1;
-  overflow: auto;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .ui-tooltip {
@@ -4235,10 +3889,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   white-space: nowrap;
 }
 
-.change-password-column {
-  padding: 15px 0;
-}
-
 .change-password-column input {
   width: 100%;
 }
@@ -4246,14 +3896,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 .change-password-panel {
   width: 100%;
 }
-
-/* .preview-users-datatable {
-  width: 400px;
-}
-
-.preview-users-datatable .ui-datatable-scrollable-body {
-  overflow-x: hidden;
-} */
 
 .config-columns-panel {
   min-width: 250px;
@@ -4274,7 +3916,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .config-checkbox-container {
   margin: 3px 2px;
-  padding-bottom: 2px;
+  padding-bottom: .5rem;
 }
 
 .config-columns-panel.ui-overlay-hidden {
@@ -4290,31 +3932,9 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   width: 120px;
 }
 
-/*********** Styles for ui-inplace ***********/
-.ui-inplace .ui-inplace-editor .ui-button.ui-inplace-save .ui-icon-check,
-.ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close {
-  font-size: inherit;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-indent: 0 !important;
-}
-
-.ui-inplace .ui-inplace-editor .ui-button.ui-inplace-save .ui-icon-check:before {
-  content: '\f00c';
-}
-
-.ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close:before {
-  content: '\f00d';
-}
-
 /* STYLE FOR STATISTIC FILTER */
 .chart-list-container .filter-container {
   width: 33.5rem;
-}
-
-.chart-list-container .filter-container .chart-filter-header-text {
-  margin-left: 25px;
 }
 
 .statistic-filter-container table.ui-selectmanycheckbox.ui-widget label {
@@ -4323,33 +3943,10 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .chart-list-container .filter-container .apply-filters-btn {
   float: right;
-  margin-right: 16px;
-}
-
-.statistic-filter-accordion-panel {
-  border: none !important;
-}
-
-body .ui-accordion.statistic-filter-accordion-panel .ui-accordion-header,
-body .ui-accordion.statistic-filter-accordion-panel .ui-accordion-header.ui-state-active {
-  background: transparent;
-  padding-left: 25px;
-  font-weight: bold;
-  border: solid 1px transparent;
-}
-
-body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-header .ui-icon {
-  left: 0;
-}
-
-body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-content {
-  border: 0;
-  padding-left: 19px;
 }
 
 .statistic-filter-accordion-panel .ui-accordion-content {
   overflow-y: hidden !important;
-  max-width: 30.5rem;
 }
 
 .statistic-filter-container.ui-scrollpanel {
@@ -4367,14 +3964,8 @@ body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-c
 }
 
 .statistic-case-category-tree .ui-tree-container {
-  height: 26rem;
+  max-height: 26rem;
   width: 100%;
-  max-width: 282px;
-  overflow: auto !important;
-}
-
-.statistic-case-category-tree .ui-tree-filter-container .ui-icon.ui-icon-search {
-  top: 0 !important;
 }
 
 .statistic-filter-accordion-panel .item-label {
@@ -4411,10 +4002,6 @@ body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-c
   margin-right: 0 !important;
 }
 
-.statistic-filter-container table.ui-selectmanycheckbox td>* {
-  vertical-align: middle !important;
-}
-
 /* Small screen */
 @media (max-width: 1365px) {
   .filter-container:not(.dashboard-configuration-filter-container) .ui-inputfield.hasDatepicker {
@@ -4430,26 +4017,14 @@ body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-c
   }
 }
 
-.value-setting-dropdown .ui-selectonemenu-trigger.ui-state-default.ui-corner-right {
-  padding-left: 30px !important;
-}
-
 @media (max-width: 1080px) {
   .confirm-save-setting-button, .cancel-save-setting-button {
     min-width: 125px !important;
   }
 }
 
-.select-all-checkbox, .ui-chkbox {
-  width: auto !important;
-}
-
 .select-all-checkbox {
   padding-left: 3px;
-}
-
-.select-all-checkbox .ui-chkbox-box {
-  margin-right: 0px;
 }
 
 /*********** CASE AND TASK STATISTIC PAGE ***********/
@@ -4499,9 +4074,6 @@ body .ui-widget-content.filter-name-overlay-panel {
   .filter-container {
     padding: 0.5em !important;
   }
-  .filter-widget-input.case-filter-component {
-    padding-right: 35px !important;
-  }
 }
 
 @media (max-width: 991px) {
@@ -4518,20 +4090,6 @@ body .ui-widget-content.filter-name-overlay-panel {
   .mobile-filter-icon {
     display: none !important;
   }
-}
-
-.mobile-filter-icon {
-  position: absolute !important;
-  bottom: 5px;
-  right: 0;
-  height: 25px !important;
-  width: 25px !important;
-  padding: 0 13px !important;
-}
-
-.mobile-filter-icon span {
-  height: 18px !important;
-  top: 58% !important;
 }
 
 .filter-reset-action .ui-widget.ui-button.filter-add-button {
@@ -4553,10 +4111,6 @@ body .ui-widget-content.filter-name-overlay-panel {
 
 .statistic-result-list .task-table .ui-datatable-scrollable-body {
   max-height: 500px;
-}
-
-.statistic-result-list .task-table .ui-datatable-scrollable-body table {
-  box-sizing: border-box;
 }
 
 .elapsed-time-result-list {
@@ -4638,12 +4192,6 @@ width:320px;
   margin: 12px 0;
 }
 
-@media screen and (min-width: 64.063em) {
-  .search-item {
-    width: 400px;
-  }
-}
-
 @media screen and (max-width: 40em) {
   .elapsed-time-result-list .case-table {
     padding-right: 5px;
@@ -4690,7 +4238,7 @@ _:-ms-fullscreen, :root .content-link-history {
   width: calc(100% - 154px);
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .task-widget .filter-container .applied-filters-container,
@@ -4710,10 +4258,11 @@ _:-ms-fullscreen, :root .content-link-history {
 
 .task-widget .task-list-actions,
 .case-widget .case-list-actions {
-    display: flex;
-    height: auto;
-    min-height: 100%;
-    margin-left: auto;
+  display: flex;
+  height: auto;
+  min-height: 100%;
+  margin-left: auto;
+  align-items: flex-end;
 }
 
 .task-widget .task-list-actions.no-widget-header a,
@@ -4734,9 +4283,9 @@ _:-ms-fullscreen, :root .content-link-history {
 
 .task-widget .task-list-actions a,
 .case-widget .case-list-actions a {
-    margin-top: 22px;
     padding: 2px 0 0 2px;
-    display: block;
+    display: inline-flex;
+    align-items: center;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -4747,7 +4296,6 @@ _:-ms-fullscreen, :root .content-link-history {
   padding-top: 0.5em;
 }
 
-/*medium*/
 @media (min-width: 992px) and (max-width: 1599px) {
   .task-widget .filter-container .applied-filters-container,
   .case-widget .filter-container .applied-filters-container {
@@ -4769,7 +4317,7 @@ _:-ms-fullscreen, :root .content-link-history {
 
   .task-widget .task-list-actions i,
   .case-widget .case-list-actions i {
-    font-size: 1.8rem !important;
+    font-size: 1.6rem !important;
   }
 
   .task-widget .link-text,
@@ -4790,13 +4338,13 @@ _:-ms-fullscreen, :root .content-link-history {
 }
 
 .filter-selection-container-group .filter-selection-label {
-  display: block;
   padding-left: 5px;
 }
 
+.filter-selection-container-group .filter-selection-label,
 .filter-container .selected-filters-label {
   display: block;
-  margin-bottom: 9px;
+  margin-bottom: .5rem;
 }
 
 .filter-container .technical-case-text-filter .selected-filters-label {
@@ -4811,7 +4359,6 @@ _:-ms-fullscreen, :root .content-link-history {
 .task-widget .filter-reset-action,
 .case-widget-container .filter-add-container {
   border: solid 1px transparent;
-  margin-top: 12px;
   height: 30px;
 }
 
@@ -5017,12 +4564,8 @@ _:-ms-fullscreen, :root .content-link-history {
   padding-right: 1em !important;
 }
 
-.edit-priority-inplace .ui-inplace-editor {
-  display: block !important;
-}
-
-.edit-priority-inplace .ui-inplace-display {
-  float: left;
+.task-details-priority .edit-priority-inplace .ui-inplace-display {
+  margin-left: -0.5rem;
 }
 
 .truncate-note {
@@ -5047,7 +4590,12 @@ _:-ms-fullscreen, :root .content-link-history {
 }
 
 .task-details-back-btn, .case-details-back-btn {
+  flex: 0;
   margin-right: 5px !important;
+  display: inline-flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
 .task-note-dialog .ui-dialog-content.ui-widget-content {
@@ -5087,9 +4635,6 @@ _:-ms-fullscreen, :root .content-link-history {
 }
 
 @media screen and (max-width: 40em) {
-  .ui-fileupload-buttonbar .ui-button {
-    padding: 0 14px 0 28px !important;
-  }
   .case-details {
     padding: 0 !important;
   }
@@ -5133,10 +4678,6 @@ _:-ms-fullscreen, :root .content-link-history {
 /*  =================== END TASK TEMPLATE PAGE ========================= */
 
 /*====================FIX FOR SERENITY 2.0 STYLE========================*/
-.filter-add-panel .ui-scrollpanel {
-  overflow: hidden !important;
-}
-
 .favorite-process-title {
   display: inline-block;
   padding-right: 20px;
@@ -5167,10 +4708,6 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
 }
 
 /*=================== EXPRESS MANAGEMENT START ===================*/
-.express-process-upload.ui-fileupload {
-  padding: 0 !important;
-}
-
 .express-helper-loading-container,
 .express-process-upload.ui-fileupload .ui-fileupload-progress {
   display: none;
@@ -5255,6 +4792,14 @@ body .ui-widget-header.portal-breadcrumb a {
 	outline: none;
 }
 
+.layout-topbar .layout-topbar-wrapper .layout-topbar-right .layout-topbar-actions > li.topbar-item.breadcrumb-container {
+  margin-left: auto;
+  flex-grow: 1;
+  padding: 10px;
+  justify-content: flex-start;
+  transition: margin-left .5s;
+}
+
 .layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu>li.breadcrumb-container {
 	display: flex;
 	float: left;
@@ -5267,10 +4812,8 @@ body .ui-widget-header.portal-breadcrumb a {
 }
 
 body .ui-widget-header.portal-breadcrumb {
-	border: none;
-	padding-top: 1px;
-	padding-bottom: 0;
-	padding-left: 5px;
+  border: none;
+  padding: 0;
 }
 
 body .ui-widget-header.portal-breadcrumb .ui-menuitem-link.ui-state-disabled {
@@ -5333,6 +4876,13 @@ body .ui-breadcrumb li:first-child a span {
   margin-bottom: 40px;
 }
 
+.guide-panel__footer {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
 .guide-panel__buttons {
   text-align: right;
 }
@@ -5343,6 +4893,22 @@ body .ui-breadcrumb li:first-child a span {
 
 .guide-panel__dont-show-again {
   text-align: left;
+}
+
+.guide-mark__highlight {
+  background: var(--surface-a, white) !important;
+  z-index: 9999 !important;
+  border-radius: 6px;
+}
+
+.guide-mark__transparent {
+  background: transparent !important;
+  z-index: 9999 !important;
+}
+
+.guide-mark__hidden {
+  z-index: -9999 !important;
+  visibility: hidden !important;
 }
 /*=================== GUIDE END ===================*/
 .card-layout-content .center,
@@ -5495,16 +5061,14 @@ border-top: 0.14rem dashed;
 } 
 }
 @media (min-width: 769px) {
-.side-step-panel{
-border-left: 0.14rem dashed;
-} 
+  .side-step-panel {
+    border-left: 0.14rem dashed;
+  }
 }
-.card .description-content{
-height: 260px;	
-}
-.case-map-stage hr{
-clear: both;
-}
+
+.case-map-stage hr {
+  clear: both;
+  }
 
 .process-overview-layout-content,
 .case-map-detail-layout-content,
@@ -5515,19 +5079,8 @@ clear: both;
 .case-details-row-space span.si {
   vertical-align: text-top;
 }
-/** Fix for ivy icon --- Start---- **/
-body a .si,
-body td .si,
-body span.ui-commandlink .si {
-  vertical-align: text-top;
-}
-/** Fix for ivy icon --- End---- **/
 
 /** Portal dialog ---- start-----**/
-.portal-dialog .ui-dialog-titlebar {
-  border-bottom: 0 !important;
-}
-
 .portal-dialog-content {
   margin:20px 0;
 }
@@ -5560,14 +5113,31 @@ body span.ui-commandlink .si {
 }
 
 .error-ajax-dialog {
-  max-width: 400px;
+  min-width: 450px;
 }
 /* ===================== END EXCEPTION ===================== */
 
 /** Case information iframe ---- Start-----**/
+.iframe-body {
+  overflow: hidden;
+  width: auto;
+  height: auto;
+  margin: 0px;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+
 .iframe-body .layout-main,
 .iframe-body .layout-content {
   height: 100%;
+}
+
+.iframe-body .layout-main {
+  overflow: auto;
+  padding-top: 0;
 }
 
 .iframe-body .layout-content {
@@ -5590,10 +5160,6 @@ body span.ui-commandlink .si {
 
 .role-and-user-information .content-field {
   padding: 0;
-}
-
-.role-and-user-information .task-security-member-container > div {
-  display: inline-block;
 }
 
 .task-details-panel-title {
@@ -5696,16 +5262,6 @@ body span.ui-commandlink .si {
   }
 }
 
-/* Fix bug: calendar button jumped when clicked (Edge, Chrome) */
-.ui-fluid .ui-calendar, .ui-fluid .ui-calendar input {
-  display: block;
-}
-
-.case-item-body-container .card,
-.task-item-body-container .card {
-  padding: 24px;
-}
-
 .task-detail-description .pointer-event-none {
   pointer-events: none;
 }
@@ -5792,14 +5348,9 @@ body span.ui-commandlink .si {
 .task-escalation-activator-form .activator-type-label,
 .task-escalation-activator-form .task-escalation-activator-panel,
 .task-escalation-activator-form .select-assignee-panel,
-.assign-comment-panel .assign-comment-label,
-.assign-comment-panel .assign-comment-input {
+.assign-comment-panel .assign-comment-label {
   padding-left: 0;
   padding-right: 0;
-}
-
-.task-escalation-activator-form .select-assignee-panel.ui-fluid .ui-inputfield[size] {
-  width: 100%;
 }
 
 .task-escalation-activator-form .activator-type-select tbody tr td {
@@ -5814,28 +5365,29 @@ body span.ui-commandlink .si {
 
 }
 
+.process-view-mode {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 .view-mode-text {
-  opacity: 0.56;
-  color: var(--ivy-primary-color-black);
   padding-right: 8px;
-  font-size: var(--small-font-size);
-  position: relative;
-  top: -11px;
 }
 
-.ui-button.ui-button-icon-only.icon-more-menu-button {
-  background-color: var(--image-process-header-background-color);
-  height: 34px;
-  width: 34px;
-  margin: 0 0 0 8px;
+.process-action-group .process-category {
+  max-width: calc(100% - 3rem);
 }
 
-.ui-button.ui-button-icon-only.icon-more-menu-button.ui-state-hover {
-  background-color: var(--image-process-header-background-color-hover);
+.process-action-group .process-category span.ui-button-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.ui-button.ui-button-icon-only.icon-more-menu-button .si.si-navigation-menu-horizontal {
-  color: var(--image-process-header-color);
+.process-action-group .ui-button.icon-more-menu-button {
+  margin: 0 0 0 .5rem;
 }
 
 .image-view-form {
@@ -5876,35 +5428,9 @@ body span.ui-commandlink .si {
   justify-content: flex-end;
 }
 
-.process-action-group .process-category,
-.image-view-action-group-form .process-action-group .image-process-category {
-  border-radius: 20px;
-  background-color: var(--image-process-header-background-color);
-  color: var(--image-process-header-color);
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 6px 8px 6px 9px;
-  margin: 0px;
-  height: 34px;
-  max-width: 100%;
-}
-
 .process-action-group .process-category.has-menu-button,
 .image-view-action-group-form .process-action-group .image-process-category.has-menu-button {
   max-width: calc(100% - 40px);
-}
-
-.process-action-group .process-category .process-category-content,
-.image-view-action-group-form .process-action-group .image-process-category .image-process-category-content {
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 22px;
-  align-items: center;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-  flex-grow: 0;
-  margin: 0px 10px;
 }
 
 .image-process-item  .process-name .process-image-view-name {
@@ -5944,11 +5470,6 @@ body span.ui-commandlink .si {
   left: 0;
   width: 100%;
   text-align: center;
-}
-
-
-.image-view-form .start-process button {
-  height: 40px;
 }
 
 .image-view-form .process-description .process-item-description {
@@ -6049,7 +5570,7 @@ body span.ui-commandlink .si {
   position: relative;
   object-fit: cover;
   width: inherit;
-  border-radius: 5px;
+  border-radius: 24px;
 }
 
 .image-process-item .overlay-title {
@@ -6108,16 +5629,26 @@ body span.ui-commandlink .si {
 }
 
 @media screen and (min-width: 90.063em) {
-  .process-group.image-process-container .portal-card-container.image-process-item,
-  .process-group.grid-process-container .portal-card-container.process-grid-item {
+  .process-group.image-process-container ..image-process-item,
+  .process-group.grid-process-container ..process-grid-item {
     width: 20%;
   }
+}
+
+.dashboard-widget-iframe__container {
+  padding: 20px 0 0 !important;
+  position: relative;
 }
 
 .dashboard-custom-iframe {
   height: 100%;
   width: 100%;
   border: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .parameters-panel .param-label {
@@ -6133,7 +5664,7 @@ body span.ui-commandlink .si {
 .dashboard-type-list {
   padding: 0;
   margin-bottom: 0;
-  border-bottom: 1px solid #dbdbdb;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .dashboard-type-list li {
@@ -6156,11 +5687,11 @@ body span.ui-commandlink .si {
 
 .dashboard-type-list li.active {
   background-color: transparent;
-  border-color: var(--accent-color);
+  border-color: var(--primary-color);
 }
 
 .dashboard-type-list li a {
-  color: var(--ivy-primary-color-black);
+  color: var(--ivy-primary-color-grey-light);
   float: left;
   padding: 1rem 0;
   opacity: 0.85;
@@ -6233,7 +5764,6 @@ a.dashboard-action-container label {
 .dashboard-action-container-label {
   display: block;
   font-weight: bold;
-  font-size: 2rem;
 }
 
 .dashboard-action-container span.si {
@@ -6242,15 +5772,14 @@ a.dashboard-action-container label {
 
 .dashboard-configuration__header span,
 .dashboard-action-container-label,
-.dashboard-action-container-description,
-.dashboard-action-container span.si {
+.dashboard-action-container-description {
   line-height: 1.5;
 }
 
 /* Process Viewer */
 .portal-process-viewer-form {
   padding: 10px;
-  height: calc(100% - 7px);
+  height: calc(100vh - 100px);
 }
 
 .portal-process-viewer-data {
@@ -6271,37 +5800,12 @@ a.dashboard-action-container label {
   margin: 0;
 }
 
-body .ui-avatar.gravatar {
-  width: 2.5rem;
-  height: 2.5rem;
-}
-
 .security-member-table-cell {
   vertical-align: middle;
 }
 
 .security-member-container {
   display: inline;
-}
-
-.setting-container .ui-avatar.gravatar {
-  margin-top: 0;
-}
-
-body .name-after-avatar {
-  padding-left: 3rem;
-}
-
-.responsible-cell .has-avatar,
-.case-header-creator-cell .has-avatar {
-  line-height: 2.5rem;
-  height: 2.5rem;
-  margin-top: 2px;
-}
-
-.responsible-cell .has-avatar .ui-avatar,
-.case-header-creator-cell .has-avatar .ui-avatar {
-  top: 0;
 }
 
 .responsible-cell .name-after-avatar,
@@ -6337,10 +5841,6 @@ body .name-after-avatar {
   text-overflow: ellipsis;
 }
 
-#user-settings-menu .has-avatar .ui-avatar {
-  top: 0;
-}
-
 .dashboard-configuration-tooltip,
 .role-assigned-users-tooltip {
   max-width: 500px;
@@ -6353,13 +5853,6 @@ body .name-after-avatar {
 
 .role-management-title {
   margin: auto;
-}
-
-.user-assign-selection .width-100,
-.role-management-value .width-100,
-.user-assign-selection .width-100 .ui-autocomplete-input,
-.role-management-value .width-100 .ui-autocomplete-input {
-  width: 100%;
 }
 
 .role-details-dialog {
@@ -6384,6 +5877,7 @@ body .name-after-avatar {
 
 .role-actions-container {
   width: 100px;
+  text-align: center;
 }
 
 .role-tree-table tbody tr.dummy td {
@@ -6398,4 +5892,12 @@ body .name-after-avatar {
 .users-of-role-container .action-group {
   width: 100px;
   text-align:right
+}
+
+.application-column{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width:90px;
+  padding-right:15px;
 }

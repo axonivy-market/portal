@@ -15,69 +15,39 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
   </f:facet>
 
-  <f:attribute name="primefaces.THEME" value="serenity-ivy" />
+  <f:attribute name="primefaces.THEME" value="#{ivyFreyaTheme.theme}" />
   <link rel="shortcut icon" href="#{resource['ivy-branding:favicon']}" />
 
-  <c:set var="loadOptionalSerenityCss"
-    value="#{loadOptionalSerenityCss == 'false' ? 'false' : 'true'}" />
-  <c:set var="loadSerenityScript"
-    value="#{loadSerenityScript == 'false' ? 'false' : 'true'}" />
-  <c:set var="loadPortalScript"
-    value="#{loadPortalScript == 'false' ? 'false' : 'true'}" />
-
-  <h:outputStylesheet library="css" name="utility.css" />
-
-  <h:outputStylesheet name="css/nanoscroller.css"
-    library="serenity-layout" rendered="#{loadOptionalSerenityCss}" />
-  <h:outputStylesheet name="css/ripple.css" library="serenity-layout"
-    rendered="#{loadOptionalSerenityCss}" />
-  <h:outputStylesheet name="css/grid.css" library="serenity-layout"
-    rendered="#{loadOptionalSerenityCss}" />
-  <h:outputStylesheet name="css/layout-ivy.css"
-    library="serenity-layout" />
-
+  <!-- GridStack resources -->
   <h:outputStylesheet library="css" name="gridstack.min.css" />
   <h:outputStylesheet library="css" name="gridstack-extra.min.css" />
+  <h:outputScript library="js" name="gridstack-h5.js" />
+  
+  <!-- FREYA IMPORT -->
+  <h:outputStylesheet name="#{ivyFreyaTheme.layout}" library="#{ivyFreyaTheme.library}" />
+  <h:outputScript name="js/layout.js" library="#{ivyFreyaTheme.library}" />
+  <script src="#{resource['ivy-webcontent:layouts/js/cookie-helper.js']}" />
+  <script src="#{resource['ivy-webcontent:layouts/js/primefaces-calendar-en-us.js']}" />
 
-  <h:outputStylesheet library="css" name="portal-variables.css" />
+  <h:outputStylesheet library="css" name="utility.css" />
+  <h:outputStylesheet library="css" name="portal-root-variables.css" />
+  <h:outputStylesheet library="css" name="portal-variables-#{ivyFreyaTheme.mode}.css" />
   <h:outputStylesheet library="css" name="template.css" />
   <h:outputStylesheet library="css" name="module.css" />
   <h:outputStylesheet library="css" name="portal.css" />
 
   <h:outputStylesheet name="custom.css" library="ivy-branding" />
 
-  <h:outputScript name="js/nanoscroller.js" library="serenity-layout"
-    rendered="#{loadSerenityScript}" />
-  <h:outputScript name="js/ripple.js" library="serenity-layout"
-    rendered="#{loadSerenityScript}" />
-  <h:outputScript name="js/layout.js" library="serenity-layout"
-    rendered="#{loadSerenityScript}" />
-  <h:outputScript name="js/swipe.js" library="serenity-layout"
-    rendered="#{loadSerenityScript}" />
-  <h:outputScript name="js/css-vars-ponyfill.min.js"
-    library="serenity-layout" rendered="#{loadSerenityScript}" />
-
-  <h:outputScript library="js" name="gridstack-h5.js" />
-
-  <script
-    src="#{resource['ivy-webcontent:layouts/js/cookie-helper.js']}" />
-  <script
-    src="#{resource['ivy-webcontent:layouts/js/primefaces-calendar-en-us.js']}" />
-  <script
-    src="#{resource['ivy-webcontent:resources/serenity-layout/js/layout.js']}" />
-
-  <h:outputScript name="responsive-toolkit.js" library="js"
-    rendered="#{loadPortalScript}" />
-  <h:outputScript name="main.js" library="js"
-    rendered="#{loadPortalScript}" />
-  <h:outputScript name="portal.js" library="js"
-    rendered="#{loadPortalScript}" />
+  <c:set var="loadPortalScript" value="#{loadPortalScript == 'false' ? 'false' : 'true'}" />
+  <h:outputScript name="responsive-toolkit.js" library="js" />
+  <h:outputScript name="main.js" library="js" rendered="#{loadPortalScript}" />
+  <h:outputScript name="portal.js" library="js" rendered="#{loadPortalScript}" />
 </h:head>
+
 <h:body styleClass="iframe-body">
   <h:panelGroup layout="block" styleClass="layout-main js-layout-main portal-layout-container">
-    <div
-      class="layout-content js-layout-content #{layoutContentStyleClass}"
-      id="main-area-panel">
+    <div id="main-area-panel"
+      class="layout-content js-layout-content #{layoutContentStyleClass}">
       <ui:insert name="pageContent" />
     </div>
   </h:panelGroup>

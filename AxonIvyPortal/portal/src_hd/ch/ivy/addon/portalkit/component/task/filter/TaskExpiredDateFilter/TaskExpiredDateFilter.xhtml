@@ -13,8 +13,8 @@
 <cc:implementation>
   <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="#{cc.attrs.componentId}"
     taskFilter="#{cc.attrs.filter}" selectedFilters="#{cc.attrs.selectedFilters}" resultContainerUpdated="#{cc.attrs.resultContainerUpdated}" dismissableOverlayPanel="false" dataModel="#{cc.attrs.dataModel}">
-    <p:messages for="from-expired-calendar" />
-    <p:messages for="to-expired-calendar" />
+    <p:messages for="from-expired-calendar" showIcon="false"/>
+    <p:messages for="to-expired-calendar" showIcon="false"/>
     <h:panelGrid columns="2" cellpadding="5" styleClass="ui-fluid">
       <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}"
         for="from-expired-calendar" />

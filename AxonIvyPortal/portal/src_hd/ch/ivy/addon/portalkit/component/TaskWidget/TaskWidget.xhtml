@@ -34,10 +34,10 @@
   <f:event listener="#{data.dataModel.initColumnsConfiguration()}" type="preRenderComponent" />
   <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} ui-g">
     <h:panelGroup id="task-widget-header"
-      styleClass="widget-header task-widget-header js-task-widget-header ui-g-12 u-no-padding-left u-no-padding-bottom"
+      styleClass="widget-header task-widget-header js-task-widget-header ui-g-12 u-no-padding-bottom"
       layout="block">
       <!-- Title -->
-      <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader}" layout="block" styleClass="#{data.dataModel.compactMode? 'widget-header-main ui-g-8 ui-sm-4': 'u-hidden'}">
+      <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader}" layout="block" styleClass="#{data.dataModel.compactMode? 'widget-header-main': 'u-hidden'}">
         <h:panelGroup id="task-widget-title" styleClass="widget-header-main-title task-widget-header-content-title #{data.dataModel.compactMode ? 'compact-mod-title' : ''}">
           <f:event listener="#{logic.preRenderTitle()}" type="preRenderComponent" />
           <cc:renderFacet name="title" />
@@ -57,7 +57,7 @@
       </h:panelGroup>
 
       <!-- Filter part -->
-      <h:panelGroup id="filter-container" styleClass="filter-container ui-g-12 u-no-padding-bottom js-filter-container">
+      <h:panelGroup id="filter-container" styleClass="filter-container ui-g-12 js-filter-container">
         <h:panelGroup rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter and !cc.attrs.hideWidgetHeader}"
           layout="block">
           <!-- Filter selection -->
@@ -129,7 +129,7 @@
             </div>
 
           <!-- Search filter -->
-          <div id="text-filter" class="text-filter ui-g-2 ui-sm-8">
+          <div id="text-filter" class="text-filter">
             <span class="selected-filters-label u-hidden-md-down">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/appliedFilters')} </span>
             <h:form id="expanded-mode-filter-form" onsubmit="return false;">
               <ic:ch.ivy.addon.portalkit.component.Filter id="expanded-mode-filter-container"
@@ -146,7 +146,7 @@
             <cc:renderFacet name="taskFilter" />
   
             <!-- Add more filters link -->
-            <p:commandLink id="filter-add-action" styleClass="filter-add-button filter-add-container js-filter-add-action u-hidden-md-down" global="false">
+            <p:commandLink id="filter-add-action" styleClass="filter-add-button filter-add-container display-inline-flex-center js-filter-add-action u-hidden-md-down" global="false">
               <i class="si si-add u-mar-right-5" />
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/moreOptions')}" />
             </p:commandLink>
@@ -197,7 +197,7 @@
               <p:commandLink id="filter-reset-action"
                 rendered="#{data.dataModel.selectedTaskFilterData == null and !data.dataModel.isSelectedDefaultFilter()}"
                 onclick="PF('reset-filter-set-dialog').show();"
-                global="false">
+                global="false" styleClass="display-inline-flex-center">
                 <i class="si si-button-refresh-arrows u-mar-right-5" />
                 <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" />
               </p:commandLink>
@@ -215,7 +215,6 @@
         <!-- Export to Excel, Manage Columns -->
         <h:panelGroup id="task-list-actions" styleClass="task-list-actions u-hidden-md-down #{!cc.attrs.hideWidgetHeader ? '' : 'no-widget-header'}"
           rendered="#{!data.dataModel.compactMode}">
-          <p:spacer width="20px" />
           <h:form id="task-export-to-excel-form"
             styleClass="task-export-to-excel-form u-mar-right-20">
             <p:commandLink ajax="false" id="task-export-to-excel"
@@ -271,7 +270,7 @@
         </h:form>
       </h:panelGroup>
        <h:panelGroup id="compact-task-widget-sort-menu" layout="block" rendered="#{data.dataModel.compactMode}"
-        styleClass="widget-sort-menu ui-g-3 ui-sm-5">
+        styleClass="widget-sort-menu ui-g-3 ui-sm-5 ui-fluid">
           <ui:include src="CompactSortMenu.xhtml" />
       </h:panelGroup>
     </h:panelGroup>
@@ -301,8 +300,9 @@
             <cc:insertFacet name="taskHeader" />
           </ic:ch.ivy.addon.portalkit.component.TaskItem>
         </p:dataScroller>
-        <h:outputText styleClass="no-task-message" value="#{noTaskFoundMessage}"
-          rendered="#{data.dataModel.rowCount eq 0}" />
+        <h:panelGroup styleClass="ui-g-12" rendered="#{data.dataModel.rowCount eq 0}">
+          <h:outputText styleClass="no-task-message" value="#{noTaskFoundMessage}"/>
+        </h:panelGroup>
       </h:panelGroup>
       <h:form id="task-polling-form">
         <p:poll id="task-polling" interval="#{taskWidgetBean.taskListRefreshInterval}"

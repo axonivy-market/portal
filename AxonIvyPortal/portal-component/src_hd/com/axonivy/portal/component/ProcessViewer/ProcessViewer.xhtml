@@ -38,7 +38,8 @@
             <div class="ui-g process-viewer-info-container">
               <h:outputText styleClass="ui-g-12 u-padding-0 process-information-title" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/ProcessViewer/ProcessDetails')}"/>
               <h:panelGrid columns="2" styleClass="ui-g-12 u-padding-0 process-technical-information-group"
-                columnClasses="process-details-column-title ui-g-3 ui-sm-12 u-no-padding-left text-ellipsis, process-details-column-value ui-g-9 ui-sm-12 u-no-padding-left text-ellipsis">
+                columnClasses="process-details-column-title ui-g-3 ui-sm-12 u-no-padding-left text-ellipsis, process-details-column-value ui-g-9 ui-sm-12 u-no-padding-left text-ellipsis"
+                rowClasses="ui-g">
 
                 <h:outputText styleClass="" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/Common/Name')}" />
                 <h:outputText id="process-start-name" value="#{data.webStartable.name}" />

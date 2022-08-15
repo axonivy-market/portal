@@ -26,11 +26,13 @@ public class SearchCaseTest extends BaseTest {
 
   @Test
   public void testFindCaseByNameAndOpenCaseList() {
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     GlobalSearch globalSearch = homePage.getGlobalSearch(); 
     assertTrue(globalSearch.isDisplayed());
 
     String caseName = "Leave Request";
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(caseName);
+    searchResultPage.waitForFirstTabFinishedLoading();
     searchResultPage.openCaseTab();
     assertEquals(caseName, searchResultPage.getCaseResult(0));
     assertTrue(searchResultPage.isCaseCategoryColumnDisplayed());
@@ -38,6 +40,7 @@ public class SearchCaseTest extends BaseTest {
 
   @Test
   public void testFindCaseByNameWithSpecialCharacter() {
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     GlobalSearch globalSearch = homePage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
 

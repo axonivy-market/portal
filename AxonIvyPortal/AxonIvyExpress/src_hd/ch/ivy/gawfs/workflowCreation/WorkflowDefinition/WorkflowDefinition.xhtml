@@ -22,47 +22,43 @@
         </div>
 
         <p:fieldset id="process-setting-fieldset" legend="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdetails')}"
-          toggleable="true" styleClass="MarTop5 express-fieldset fieldset-no-border portal-card-container">
+          toggleable="true" styleClass="MarTop5 express-fieldset">
 
-          <div class="ui-g-12 card">
+          <div class="ui-g-12">
             <div id="process-setting-grid" class="process-property-container u-no-padding-top">
               <div class="ui-fluid">
-                <div class="ui-g alignLabelTop">
+                <div class="ui-g">
                   <div class="ui-g-12 u-padding-0">
                     <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
 
                     <!-- PROCESS NAME -->
-                    <div class="ui-g-5 ui-lg-5 ui-md-6 ui-sm-12 MarTop20">
-                      <div class="md-inputfield">
+                    <div class="ui-g-5 ui-lg-5 ui-md-6 ui-sm-12">
+                        <p:outputLabel styleClass="express-workflow-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}" for="process-name" />
                         <p:inputText id="process-name" value="#{data.data.processName}" required="true" maxlength="50"
                           disabled="#{data.data.isAdhocProcess}" styleClass="express-workflow-input"
                           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
                           <p:ajax event="blur" partialSubmit="true" process="@this" global="false" immediate="true" update="process-name-message"/>
                         </p:inputText>
-                        <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}" for="process-name" />
                         <p:message id="process-name-message" for="process-name" />
-                      </div>
                     </div>
 
                     <!-- PROCESS DESCRIPTION -->
-                    <div class="ui-g-5 ui-lg-5 ui-md-6 ui-sm-12 MarTop20">
-                      <div class="md-inputfield">
+                    <div class="ui-g-5 ui-lg-5 ui-md-6 ui-sm-12">
+                        <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdescription')}"
+                          for="process-description" styleClass="express-title-header express-workflow-label" />
                         <p:inputText id="process-description" value="#{data.data.processDescription}" maxlength="60"
                           styleClass="express-workflow-input">
                           <p:ajax event="blur" partialSubmit="true" process="@this" global="false" />
                         </p:inputText>
-                        <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdescription')}"
-                          for="process-description" styleClass="express-title-header" />
                       </div>
-                    </div>
                   </div>
 
-                  <div class="ui-g-12 u-padding-0 MarTop10">
+                  <div class="ui-g-12 u-padding-0">
                     <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
 
                     <!-- PROCESS TYPE -->
                     <div class="ui-g-5 ui-lg-5 ui-md-6 ui-sm-12 u-no-padding-left">
-                      <div class="ui-g-12 u-no-padding-bottom">
+                      <div class="ui-g-12">
                         <span class="express-title-header">#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processtype')}</span>
                       </div>
                       <div class="ui-g-12 u-no-padding-top u-no-padding-left">
@@ -79,7 +75,7 @@
 
                     <div class="ui-g-5 ui-lg-5 ui-md-6 ui-sm-12 u-no-padding-left">
                       <!-- UI SETTING -->
-                      <div class="ui-g-12 u-no-padding-bottom">
+                      <div class="ui-g-12">
                         <h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UserInterface')}"
                           styleClass="express-title-header" />
                       </div>
@@ -108,7 +104,7 @@
                     <!-- PROCESS OWNER -->
                     <h:panelGroup id="process-owner-container" styleClass="ui-g-5 ui-lg-5 ui-md-6 ui-sm-12 u-no-padding-left">
                       <h:panelGroup id="process-owner-content" layout="block" styleClass="ui-g" rendered="#{data.isDisplayProcessOwner}">
-                        <div class="ui-g-12 u-no-padding-bottom">
+                        <div class="ui-g-12">
                           <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ProcessOwner')}"
                             for="process-owner-responsible" styleClass="express-title-header task-responsible-label" />
                         </div>
@@ -132,7 +128,7 @@
 
                     <!-- PROCESS ICON -->
                     <h:panelGroup id="process-icon-container" styleClass="ui-g-5 ui-lg-5 ui-md-6 ui-sm-12 u-no-padding-left" rendered="#{!data.data.isAdhocProcess}">
-                      <div class="ui-g-12 u-no-padding-bottom">
+                      <div class="ui-g-12">
                         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/icon')}"
                           styleClass="express-title-header" />
                       </div>
@@ -149,9 +145,9 @@
 
         <h:panelGroup id="defined-tasks-list-container">
           <ui:repeat id="defined-tasks-list" value="#{data.data.definedTasks}" var="gtask" varStatus="status">
-            <p:fieldset id="process-flow-field" toggleable="true" styleClass="express-fieldset fieldset-no-border portal-card-container"
+            <p:fieldset id="process-flow-field" toggleable="true" styleClass="express-fieldset MarTop10"
               legend="#{ivy.cms.co('/Dialogs/workflowCreation/processStep')} #{gtask.position}">
-              <h:panelGroup styleClass="ui-g-12 card">
+              <h:panelGroup styleClass="ui-g-12">
 
                 <h:panelGroup id="task-panel-container" styleClass="u-no-padding-top" layout="block">
 
@@ -160,40 +156,35 @@
                     rendered="#{!data.data.isUseDefaultUI}">
                     <div class="ui-fluid">
                       <div class="ui-g">
-
-                        <h:panelGroup rendered="#{gtask.taskType ne 'EMAIL'}" styleClass="ui-g-12 MarTop20 u-padding-0">
+                        <h:panelGroup rendered="#{gtask.taskType ne 'EMAIL'}" styleClass="ui-g-12 u-padding-0">
                           <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
 
                           <!-- TASK NAME -->
                           <h:panelGroup layout="block" styleClass="ui-g-5 ui-lg-5 ui-md-6" rendered="#{gtask.taskType ne 'EMAIL'}">
-                            <div class="md-inputfield">
+                              <p:outputLabel id="task-name-label" for="task-name" styleClass="express-workflow-label" value="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/TaskSubject')}" />
                               <p:inputText id="task-name" value="#{gtask.subject}" maxlength="30" required="true" styleClass="express-workflow-input"
                                 requiredMessage="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/TaskSubject')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
                                 <p:ajax event="blur" partialSubmit="true" process="@this" global="false" update="task-name-message"/>
                               </p:inputText>
-                              <p:outputLabel id="task-name-label" for="task-name" value="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/TaskSubject')}" />
                               <p:message id="task-name-message" for="task-name" />
-                            </div>
                           </h:panelGroup>
 
                           <!-- TASK DESCRIPTION -->
                           <h:panelGroup layout="block" styleClass="ui-g-5 ui-lg-5 ui-md-6" rendered="#{gtask.taskType ne 'EMAIL'}">
-                            <div class="md-inputfield">
+                              <p:outputLabel id="task-description-label" styleClass="express-workflow-label" for="task-description"
+                                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/taskDescription')}" />
                               <p:inputText id="task-description" value="#{gtask.description}" styleClass="express-workflow-input">
                                 <p:ajax event="blur" partialSubmit="true" process="@this" global="false" />
                               </p:inputText>
-                              <p:outputLabel id="task-description-label" for="task-description"
-                                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/taskDescription')}" />
-                            </div>
                           </h:panelGroup>
 
                         </h:panelGroup>
 
-                        <h:panelGroup styleClass="ui-g-12 u-padding-0 MarTop10">
+                        <h:panelGroup styleClass="ui-g-12 u-padding-0">
                           <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
                           <!-- TASK TYPE -->
                           <div class="ui-g-5 ui-lg-5 ui-md-6 u-padding-0">
-                            <div class="ui-g-12 u-no-padding-bottom">
+                            <div class="ui-g-12">
                               <p:outputLabel id="task-type-label" for="task-type"
                                 value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/TaskType')}" styleClass="express-title-header" />
                             </div>
@@ -211,7 +202,7 @@
 
                           <div class="ui-g-5 ui-lg-5 ui-md-6 u-padding-0 task-responsible">
                             <!--  RESPONSIBLE -->
-                            <h:panelGroup layout="block" styleClass="ui-g-12 u-no-padding-bottom" rendered="#{gtask.taskType ne 'EMAIL'}">
+                            <h:panelGroup layout="block" styleClass="ui-g-12" rendered="#{gtask.taskType ne 'EMAIL'}">
                               <p:outputLabel for="task-responsible"
                                 value="#{data.data.processType == 'REPEAT' and gtask.position eq 1? ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart'):ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:"
                                 styleClass="express-title-header task-responsible-label" />
@@ -262,24 +253,22 @@
                       <div class="ui-g">
                         <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
 
-                        <h:panelGroup styleClass="ui-g-5 ui-lg-5 ui-md-6 MarTop20">
+                        <h:panelGroup styleClass="ui-g-5 ui-lg-5 ui-md-6">
                           <!-- TASK NAME -->
-                          <div class="md-inputfield">
+                            <p:outputLabel id="default-task-name-label" for="default-task-name" styleClass="express-workflow-label"
+                              value="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/TaskSubject')}" />
                             <p:inputText id="default-task-name" value="#{gtask.subject}" maxlength="30" required="true"
                               requiredMessage="#{ivy.cms.co('/Labels/Task')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
                               styleClass="express-workflow-input">
                               <p:ajax event="blur" partialSubmit="true" process="@this" global="false" update="default-task-name-message"/>
                             </p:inputText>
-                            <p:outputLabel id="default-task-name-label" for="default-task-name"
-                              value="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/TaskSubject')}" />
                             <p:message id="default-task-name-message" for="default-task-name" />
-                          </div>
                         </h:panelGroup>
 
                         <h:panelGroup styleClass="ui-g-5 ui-lg-5 ui-md-6 u-no-padding-left u-no-padding-top">
                           <!-- RESPONSIBLE -->
                           <div class="ui-g-12 u-no-padding-bottom">
-                            <p:outputLabel rendered="#{gtask.position >= 1}" for="default-task-responsible"
+                            <p:outputLabel rendered="#{gtask.position >= 1}" for="default-task-responsible" styleClass="express-workflow-label"
                               value="#{data.data.processType == 'REPEAT' and gtask.position eq 1? ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart'):ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:" />
                           </div>
                           <h:panelGroup layout="block" id="default-task-responsible-input-container" styleClass="ui-g-12">
@@ -344,20 +333,17 @@
           </ui:repeat>
         </h:panelGroup>
 
-        <p:outputPanel styleClass="TexAlRight">
-          <h:panelGroup id="express-button-container">
-            <p:commandLink id="cancel-workflow-button" actionListener="#{logic.cancel}" immediate="true"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
-            <p:spacer width="15" />
-            <p:commandButton id="save" actionListener="#{logic.close}" update="form form:error-messages"
-              icon="#{visibilityBean.generateButtonIcon(data.data.isUseDefaultUI ? (data.data.processType eq 'AD_HOC' ? 'si si-cog-play' : 'si si-check-1') : 'si si-arrow-right-1')}"
-              value="#{data.data.isUseDefaultUI ? (data.data.processType eq 'AD_HOC' ? ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflow') :
+        <h:panelGroup id="express-button-container" layout="block" styleClass="express-button-container">
+          <p:commandLink id="cancel-workflow-button" actionListener="#{logic.cancel}" immediate="true"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
+          <p:spacer width="15" />
+          <p:commandButton id="save" actionListener="#{logic.close}" update="form form:error-messages"
+            icon="#{visibilityBean.generateButtonIcon(data.data.isUseDefaultUI ? (data.data.processType eq 'AD_HOC' ? 'si si-cog-play' : 'si si-check-1') : 'si si-arrow-right-1')}"
+            value="#{data.data.isUseDefaultUI ? (data.data.processType eq 'AD_HOC' ? ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflow') :
                ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/SaveWorkflow')) : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}">
-              <ui:param name="save-workflow" value="true" />
-            </p:commandButton>
-          </h:panelGroup>
-        </p:outputPanel>
-
+            <ui:param name="save-workflow" value="true" />
+          </p:commandButton>
+        </h:panelGroup>
       </h:form>
 
       <p:dialog id="choose-responsible-dialog" styleClass="choose-responsible-dialog"

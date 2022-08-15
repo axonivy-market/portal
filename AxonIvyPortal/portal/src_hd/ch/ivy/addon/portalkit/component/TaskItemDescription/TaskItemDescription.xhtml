@@ -27,7 +27,7 @@
     <div class="ui-sm-12 ui-md-12 ui-lg-12 u-no-padding-left task-details-description-content">
       <h:form id="task-detail-description-form">
         <div class="ui-g-12 task-detail-description">
-          <div id="description-content" class="scroll-panel OvAuto short-description">
+          <div id="description-content" class="scroll-panel OvAuto short-description description-content">
             <p:inplace id="task-description-inplace" editor="true" styleClass="task-description-inplace portal-edit-inplace" effectSpeed="fast"
               widgetVar="widget-description-inplace" disabled="#{!canChangeDescription or cc.attrs.readOnly}"
               saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
@@ -40,9 +40,9 @@
                   value="#{task.description}" autoResize="false" />
               </f:facet>
               <f:facet name="output">
-                <div id="task-description-output" onclick="hideIconMoreLink(); hideIconLessLink();" class="#{!taskActionBean.canChangeDescription(task) or cc.attrs.readOnly ? 'pointer-event-none' : ''}">
+                <h:panelGroup id="task-description-output" onclick="hideIconMoreLink(); hideIconLessLink();" class="#{!taskActionBean.canChangeDescription(task) or cc.attrs.readOnly ? 'pointer-event-none' : ''}">
                   <h:outputText escape="false" styleClass="task-detail-description-output" value="#{taskWidgetBean.sanitizeHTML(task.description)}" />
-                </div>
+                </h:panelGroup>
               </f:facet>
             </p:inplace>
           </div>

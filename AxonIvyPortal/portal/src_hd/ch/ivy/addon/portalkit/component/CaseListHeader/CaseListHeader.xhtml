@@ -14,7 +14,7 @@
 		dataModel="#{dataModel}" sortedField="NAME" />
 
 	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="id-column-header" 
-		styleClass="TexAlCenter"
+		styleClass="u-text-align-center"
         responsiveStyleClass="u-hidden-sm-down" 
 		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" 
 		dataModel="#{dataModel}" sortedField="ID" />
@@ -30,19 +30,19 @@
       dataModel="#{dataModel}" sortedField="OWNER" rendered="#{caseBean.isCaseOwnerEnabled()}" />
 
 	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="created-date-column-header" 
-		styleClass="TexAlCenter"
+		styleClass="u-text-align-center"
         responsiveStyleClass="u-hidden-sm-down"
 		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}" 
 		dataModel="#{dataModel}" sortedField="CREATION_TIME" />
 
 	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="finished-date-column-header" 
-		styleClass="TexAlCenter"
+		styleClass="u-text-align-center"
         responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down" 
 		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME')}" 
 		dataModel="#{dataModel}" sortedField="FINISHED_TIME" />
 
 	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="state-column-header" 
-		styleClass="TexAlCenter"
+		styleClass="u-text-align-center"
         responsiveStyleClass="u-hidden-sm-down"  
 		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" 
 		dataModel="#{dataModel}" sortedField="STATE" />

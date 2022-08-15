@@ -76,7 +76,7 @@
         </div>
       </h:panelGroup>
       
-      <h:panelGroup id="parameters-panel" styleClass="ui-g-12 parameters-panel u-padding-0" layout="block"
+      <h:panelGroup id="parameters-panel" styleClass="ui-g-12 parameters-panel u-padding-0 MarTop10" layout="block"
         rendered="#{widget.data.type == 'PROCESS' and widget.data.startableProcessStart ne null}">
         <p:fieldset id="parameters-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/Parameters')}"
           toggleable="true" collapsed="false" rendered="#{not empty widget.data.params || widget.data.hasParamChanged}">

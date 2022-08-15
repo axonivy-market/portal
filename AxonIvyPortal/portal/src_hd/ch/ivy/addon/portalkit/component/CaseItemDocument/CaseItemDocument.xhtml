@@ -47,9 +47,12 @@
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
           currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}"
           styleClass="case-details-documents" lazy="false">
+          <p:ajax event="page" oncomplete="ResponsiveTable.init(':case-details-documents')"/>
+          <p:ajax event="sort" oncomplete="ResponsiveTable.init(':case-details-documents')"/>
+
           <p:column id="document-name" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}"
             sortBy="#{document.name}"
-            styleClass="u-truncate-text document-name ui-g-6 ui-xl-6 ui-lg-8 ui-md-12 ui-sm-12">
+            styleClass="u-truncate-text document-name">
             <h:panelGroup layout="block" rendered="#{document ne null}" styleClass="case-document-name">
               <p:commandLink ajax="false" id="download"
                 styleClass="download-command case-document-name-text u-truncate-text">
@@ -71,16 +74,18 @@
 
           <p:column id="document-author"
             headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}"
-            styleClass="case-document-author u-truncate-text ui-g-3 ui-xl-3 ui-lg-4 ui-md-hidden ui-sm-hidden"
-            sortBy="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(document.creation.user, document.creation.user.name)}">
+            styleClass="case-document-author js-column-priority-2"
+            sortBy="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(document.creation.user, document.creation.user.name)}"
+            width="200px">
             <pc:securityMemberNameAndAvatar securityMember="#{document.creation.user}"
               displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(document.creation.user, document.creation.user.name)}" />
           </p:column>
 
           <p:column id="document-creation"
             headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}"
-            styleClass="case-history-date u-truncate-text ui-g-3 ui-xl-3 ui-lg-hidden ui-md-hidden ui-sm-hidden"
-            sortBy="#{document.creation.timestamp}">
+            styleClass="case-history-date js-column-priority-3"
+            sortBy="#{document.creation.timestamp}"
+            width="150px">
             <h:outputText value="#{document.creation.timestamp}">
               <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
             </h:outputText>
@@ -110,7 +115,7 @@
         update="#{cc.clientId}:document-upload-form:upload-messages #{cc.attrs.componentToUpdate} #{cc.clientId}:case-document-form"
         label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" auto="true"
         invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
-        sizeLimit="#{masterDataBean.fileUploadSizeLimit}" />
+        sizeLimit="#{masterDataBean.fileUploadSizeLimit}" oncomplete="handleCaseDetailsTable()"/>
     </h:form>
     <f:facet name="footer">
       <p:commandButton id="document-upload-close-command" type="button"
@@ -137,7 +142,7 @@
         process="@this" icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
         update="#{cc.attrs.componentToUpdate} #{cc.clientId}:case-document-global-messages #{cc.clientId}:case-document-form"
         actionListener="#{logic.deleteDocument}"
-        oncomplete="PF('document-deletion-dialog').hide();" />
+        oncomplete="PF('document-deletion-dialog').hide();handleCaseDetailsTable();" />
     </ui:define>
   </ui:decorate>
 

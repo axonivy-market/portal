@@ -11,7 +11,7 @@
 
 <cc:implementation>
   <h:panelGroup rendered="#{cc.attrs.field.field eq 'activator'}">
-    <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
+    <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down display-flex-center">
       <h:outputLabel value="#{cc.attrs.field.headerText}" for="responsibles"/>
     </div>
     <div class="ui-g-8 ui-sm-12 ui-fluid">
@@ -19,7 +19,8 @@
         completeMethod="#{cc.attrs.responsibleCompleteMethod}" var="responsible" itemValue="#{responsible}"
         itemLabel="#{responsible.briefDisplayNameWithState}" converter="pojoConverter" cache="true" maxResults="100"
         multiple="true" moreTextSelect="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." scrollHeight="210"
-        dropdown="true" size="35" dynamic="true" styleClass="task-configuration__responsibles" forceSelection="true">
+        dropdown="true" size="35" dynamic="true" styleClass="task-configuration__responsibles" forceSelection="true"
+        panelStyleClass="task-configuration__responsibles-selection">
         <p:column>
           <pc:securityMemberNameAndAvatar
             displayName="#{dashboardTaskFilterBean.formatName(responsible)}"

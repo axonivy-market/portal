@@ -105,7 +105,7 @@ function resizeIFrame() {
   var taskHeaderContainerHeight = ($('.js-task-header-container').outerHeight(true)||0);
   var announcementMessageContainerHeight = ($('.js-annoucement-in-frame-template').outerHeight(true)||0);
 
-  var mainScreenHeight = $('.js-layout-content').outerHeight(true);
+  var mainScreenHeight = PortalLayout.getAvailableHeight() - PortalLayout.getYPaddingLayoutContent();
   var availableHeight = mainScreenHeight - taskHeaderContainerHeight - announcementMessageContainerHeight;
 
   if (!!availableHeight) {

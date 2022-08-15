@@ -3,6 +3,7 @@ $(function () {
   setTimeout(() => {
     loadCaseDetailsGrid();
   }, 0);
+  handleCaseDetailsTable();
 })
 
 function loadCaseDetailsGrid() {
@@ -19,6 +20,15 @@ function initCaseDetailsGrid() {
     alwaysShowResizeHandle: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
   });
   
+  caseDetailsGrid.on('resize resizestop', function (event, element) {
+    var elementId = element.gridstackNode.id;
+    if (elementId === 'document') {
+      ResponsiveTable.init(":document:case-details-documents");
+    }
+    if (elementId === 'history') {
+      ResponsiveTable.init(":case-histories:case-histories");
+    }
+  });
 }
 
 function saveCaseDetailsGrid() {
@@ -37,9 +47,6 @@ function saveCaseDetailsGrid() {
       w: node.w,
       h: node.h
     });
-    if (widgetType === "document" || widgetType === "history") {
-      responsiveATableInPanel(node.el);
-    }
   });
   saveConfigurationCommand([{
     name: "nodes",
@@ -62,32 +69,17 @@ function getCaseDetailsWidgetType(caseDetailsWidgetName) {
   return type;
 }
 
-function responsiveATableInPanel(widgetElement) {
-  let headerArr = widgetElement.getElementsByTagName("th");
-  if (!headerArr || headerArr.length === 0) {
-    return;
-  }
+$(window).on('resize', function () {
+  handleCaseDetailsTable();
+});
 
-  for (let i = headerArr.length - 1; i > 0; i--) {
-    hideColumnWhenNotEnoughWidth(headerArr[i]);
+function handleCaseDetailsTable() {
+  var documentTable = $("[id$=':document:case-details-documents']");
+  if (documentTable && documentTable.length > 0) {
+    ResponsiveTable.init(":document:case-details-documents");
   }
-}
-
-function hideColumnWhenNotEnoughWidth(element) {
-  removeStyle(element, "width");
-  let currentWidth = element.getBoundingClientRect().width;
-  element.style.display = "initial";
-  let fullWidth = element.getBoundingClientRect().width;
-  removeStyle(element, "display");
-  if (currentWidth < fullWidth) {
-    element.style.width = 0;
-  }
-}
-
-function removeStyle(element, styleName) {
-  if (element.style.removeProperty) {
-    element.style.removeProperty(styleName);
-  } else {
-    element.style.removeAttribute(styleName);
+  var historyTable = $("[id$=':case-histories:case-histories']");
+  if (historyTable && historyTable.length > 0) {
+    ResponsiveTable.init(":case-histories:case-histories");
   }
 }

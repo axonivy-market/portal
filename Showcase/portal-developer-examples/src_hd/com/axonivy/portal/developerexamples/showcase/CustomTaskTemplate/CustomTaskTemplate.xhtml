@@ -67,7 +67,7 @@
             </h:panelGroup>
 
             <h:panelGroup styleClass="ui-g-12">
-              <h:panelGroup styleClass="ui-g-6 ui-sm-12 TexAlRight">
+              <h:panelGroup styleClass="ui-g-6 ui-sm-12 u-text-align-right">
                 <p:commandButton value="Save and reload" icon="si si-controls-play" actionListener="#{logic.saveToSession()}"
                   process="process-group" oncomplete="reloadPage();" partialSubmit="true" />
                 <p:remoteCommand name="reloadPage" actionListener="#{logic.reload()}" />
