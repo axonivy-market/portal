@@ -21,6 +21,7 @@ public class SearchProcessTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     homePage = new HomePage();
   }
 
@@ -31,10 +32,14 @@ public class SearchProcessTest extends BaseTest {
 
     String processName = "Simple Payment";
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(processName);
+    searchResultPage.waitForFirstTabFinishedLoading();
     assertEquals(processName, searchResultPage.getProcessResult(processName));
     assertTrue(searchResultPage.isProcessGroupDisplay("S"));
 
     searchResultPage.startProcess(processName);
+    homePage = new HomePage();
+    homePage.waitForStatisticRendered();
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     WaitHelper.assertTrueWithRefreshPage(taskWidgetPage,
         () -> taskWidgetPage.getNameOfTaskInCompactListAt(0).contains("Payment"));
@@ -47,6 +52,7 @@ public class SearchProcessTest extends BaseTest {
     assertTrue(globalSearch.isDisplayed());
 
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(caseMapName);
+    searchResultPage.waitForFirstTabFinishedLoading();
     assertEquals(caseMapName, searchResultPage.getProcessResult(caseMapName));
   }
 }

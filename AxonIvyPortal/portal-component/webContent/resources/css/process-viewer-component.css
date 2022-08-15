@@ -20,10 +20,8 @@
 .process-details-column-title {
   opacity: 0.65;
   font-size: var(--process-details-column-title-font-size);
-}
-
-.process-details-column-value {
-  height: 31px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .process-viewer-information .process-viewer-info-link {

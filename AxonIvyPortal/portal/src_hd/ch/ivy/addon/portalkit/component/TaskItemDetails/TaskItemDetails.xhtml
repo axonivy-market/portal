@@ -38,13 +38,16 @@
     </h:panelGroup>
     <h:panelGroup id="task-details-actions"
       rendered="#{not cc.attrs.readOnly and cc.attrs.showItemDetailsHeader}"
-      styleClass="switch-and-reset-buttons-area ui-g-12 u-no-padding-bottom">
+      styleClass="switch-and-reset-buttons-area ui-g-12 u-no-padding-bottom ui-sm-hidden">
       <p:commandButton id="switch-to-view-mode-button" rendered="#{not taskDetailsBean.readOnlyMode}"
         value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToViewMode')}" onclick="saveTaskDetailsGrid()"
-        icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" update="task-item-body task-details-actions" oncomplete="loadTaskDetailsGrid(); enableAllIFrameWhenEditLayout();" />
+        icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" update="task-item-body task-details-actions" oncomplete="loadTaskDetailsGrid(); enableAllIFrameWhenEditLayout();"
+        styleClass="u-mar-right-5" />
       <p:commandButton id="switch-to-edit-mode-button" rendered="#{taskDetailsBean.readOnlyMode}"
         value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToEditMode')}" actionListener="#{taskDetailsBean.switchToEditMode()}"
-        icon="#{visibilityBean.generateButtonIcon('si si-pencil')}" update="task-item-body task-details-actions" oncomplete="loadTaskDetailsGrid(); disableAllIFrameWhenEditLayout();" />
+        icon="#{visibilityBean.generateButtonIcon('si si-pencil')}" update="task-item-body task-details-actions"
+        oncomplete="loadTaskDetailsGrid(); disableAllIFrameWhenEditLayout(); PortalLayout.hideHorizontalScrollOnLayoutContent();"
+        styleClass="u-mar-right-5" />
       <p:commandButton id="reset-details-settings-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
         rendered="#{taskDetailsBean.configuration.changed and not taskDetailsBean.readOnlyMode}" ajax="false" type="button"
         icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}" styleClass="reset-details-settings-button"
@@ -52,7 +55,7 @@
     </h:panelGroup>
   </div>
 
-  <h:panelGroup layout="block" styleClass="task-item-body portal-card-container" id="task-item-body">
+  <h:panelGroup layout="block" styleClass="task-item-body " id="task-item-body">
     <h:panelGroup class="task-item-body-container task-details-widgets js-task-details-widgets u-padding-0 grid-stack" id="task-details-widgets"
       rendered="#{not empty taskDetailsBean.widgets}">
 

@@ -1,4 +1,4 @@
-/*Uses for customize serenity layout in Portal Template*/
+/*Uses for customize layout in Portal Template*/
 #portal-template-header, #portal-template-footer {
   position: fixed;
   z-index: 1000;
@@ -13,6 +13,10 @@
   bottom: 0;
 }
 
+/* .portal-layout-container { */
+/*   overflow-y: auto; */
+/* } */
+
 #portal-environment {
   text-align: right;
 }
@@ -25,18 +29,8 @@ a.left-sidebar-menu-icon {
   cursor: pointer;
 }
 
-.global-search-icon {
-  position: absolute;
-  top: 20%;
-  right: 5px;
-}
-
 .mobile-global-search-container {
   margin: 0 9px;
-}
-
-.global-search-input {
-  padding: 4px 24px 4px 6px !important;
 }
 
 .mobile-global-search-container .global-search-input {
@@ -44,8 +38,8 @@ a.left-sidebar-menu-icon {
 }
 
 .global-search {
-  margin-top: 20px;
-  margin-right: 10px;
+  width: 100%;
+  margin: 10px auto;
   position: relative;
   display: inline-block;
 }
@@ -57,23 +51,6 @@ a.left-sidebar-menu-icon {
   .global-search, .search-results-tabview-container {
     padding: 0 10px 0 10px;
   }
-  .portal-home-logo-small {
-    display: none;
-  }
-}
-
-#user-setting-container li:first-child {
-  margin-top: 15px;
-}
-
-#user-setting-container li:last-child {
-  margin-bottom: 15px;
-}
-
-#user-setting-container li a {
-  padding: 0 0 0 20px !important;
-  height: 36px !important;
-  line-height: 36px;
 }
 
 .show-environment-info {
@@ -207,7 +184,7 @@ a.left-sidebar-menu-icon {
 }
 
 /* APPLICATION MENU */
-.layout-sidebar.layout-sidebar-active .sidebar-logo .portal-home-logo-small, .layout-wrapper.layout-wrapper-static .layout-sidebar .sidebar-logo .portal-home-logo-small
+.layout-wrapper.layout-static .menu-wrapper .sidebar-logo .portal-home-logo-small,  .layout-wrapper .menu-wrapper.layout-sidebar-active .sidebar-logo .portal-home-logo-small
   {
   display: none;
   -moz-transition: visibility 0.2s;
@@ -312,10 +289,6 @@ a.left-sidebar-menu-icon {
   padding-left: 10px;
 }
 
-.search-results-tabview {
-  margin-top: 10px;
-}
-
 .case-template-content .case-details, .task-template-content .case-details {
   margin: 0 !important;
 }
@@ -337,11 +310,6 @@ a.left-sidebar-menu-icon {
   list-style-type: circle;
 }
 /******** CHAT ********/
-.chat-user-selection .ui-autocomplete, .chat-user-selection .ui-autocomplete .ui-autocomplete-input,
-.ui-autocomplete.chat-role-selection, .ui-autocomplete-input.chat-role-selection-input {
-  width: 100%;
-}
-
 .chat-add-assignee-button-grid, .chat-action-container {
   text-align: right;
 }
@@ -363,19 +331,9 @@ a.left-sidebar-menu-icon {
   overflow: auto;
 }
 
-/* SERENITY TOP BAR */
-.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu>li {
-  line-height: 2;
-}
-
-/* END SERENITY TOP BAR */
 /* SERENITY MAIN LAYOUT */
 .layout-wrapper {
   -webkit-overflow-scrolling: touch;
-}
-
-.layout-wrapper .layout-main {
-  height: 100%;
 }
 
 .layout-wrapper .layout-main.margin-left-0 {

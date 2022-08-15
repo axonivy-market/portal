@@ -40,9 +40,9 @@
                   value="#{case.description}" autoResize="false" />
               </f:facet>
               <f:facet name="output">
-                <div id="case-description-output" onclick="hideIconMoreLink(); hideIconLessLink();" class="#{!caseActionBean.canChangeDescription(case) or cc.attrs.readOnly ? 'pointer-event-none' : ''}">
+                <h:panelGroup id="case-description-output" onclick="hideIconMoreLink(); hideIconLessLink();" class="#{!caseActionBean.canChangeDescription(case) or cc.attrs.readOnly ? 'pointer-event-none' : ''}">
                   <h:outputText escape="false" value="#{caseWidgetBean.sanitizeHTML(case.description)}" />
-                </div>
+                </h:panelGroup>
               </f:facet>
             </p:inplace>
           </div>

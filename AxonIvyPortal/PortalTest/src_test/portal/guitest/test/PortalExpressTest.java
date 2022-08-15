@@ -219,6 +219,7 @@ public class PortalExpressTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     GlobalSearch globalSearch = homePage.getGlobalSearch();
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("Test approval");
+    searchResultPage.waitForFirstTabFinishedLoading();
 
     WebElement expressWorkflow = searchResultPage.findElementByClassName("express-workflow");
     WebElement moreMenuButton =
@@ -236,7 +237,7 @@ public class PortalExpressTest extends BaseTest {
     createAdministratedWorkflow("Test approval", Arrays.asList(responsible1, groupHr), false);
     GlobalSearch globalSearch = homePage.getGlobalSearch();
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("Test approval");
-
+    searchResultPage.waitForFirstTabFinishedLoading();
     WebElement expressWorkflow = searchResultPage.findElementByClassName("express-workflow");
     WebElement moreMenuButton =
         searchResultPage.findChildElementByCssSelector(expressWorkflow, "button[id$=':process-action-button']");
@@ -254,6 +255,7 @@ public class PortalExpressTest extends BaseTest {
     login(TestAccount.HR_ROLE_USER);
     GlobalSearch globalSearch = homePage.getGlobalSearch();
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("Test approval");
+    searchResultPage.waitForFirstTabFinishedLoading();
 
     assertTrue(searchResultPage.isInfoWorkflowIcon());
     assertTrue(searchResultPage.isExpressProcessLogo());
@@ -274,6 +276,7 @@ public class PortalExpressTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     GlobalSearch globalSearch = homePage.getGlobalSearch();
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("Test approval");
+    searchResultPage.waitForFirstTabFinishedLoading();
     
     assertTrue(searchResultPage.isInfoWorkflowIcon());
     assertTrue(searchResultPage.isExpressProcessLogo());
@@ -451,6 +454,7 @@ public class PortalExpressTest extends BaseTest {
 		homePage = new HomePage();
 		GlobalSearch globalSearch = homePage.getGlobalSearch();
 		SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(processName);
+		searchResultPage.waitForFirstTabFinishedLoading();
 		searchResultPage.startProcess(processName);
 		new TaskTemplatePage().isDisplayed();
 	}

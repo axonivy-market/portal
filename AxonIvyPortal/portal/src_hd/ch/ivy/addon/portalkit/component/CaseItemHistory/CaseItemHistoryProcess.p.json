@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.17",
   "id" : "153362B0AC312EFB",
   "data" : "ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData",
   "kind" : "HTML_DIALOG",
@@ -52,6 +52,7 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import org.primefaces.PrimeFaces;",
             "import ch.ivy.addon.portalkit.util.CaseUtils;",
             "import ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel;",
             "import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;",
@@ -81,7 +82,10 @@
             "cases.addAll(CaseUtils.findSubCasesByBusinessCaseId(selectedCaseId));",
             "",
             "HistoryService historyService = new HistoryService();",
-            "in.histories = historyService.getCaseHistories(selectedCaseId, finishedTasks, cases, !in.showSystemTasks, !in.showSystemNotes);"
+            "in.histories = historyService.getCaseHistories(selectedCaseId, finishedTasks, cases, !in.showSystemTasks, !in.showSystemNotes);",
+            "",
+            "// Responsive table",
+            "PrimeFaces.current().executeScript(\"ResponsiveTable.init(':case-histories')\");"
           ]
         }
       },
