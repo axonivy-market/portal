@@ -64,11 +64,16 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
 
   private String defaultImageType = DefaultImage.DEFAULT.name();
 
-  public void initProcesses() {
+  public void initConfiguration() {
     initProcessViewMode();
     initDefaultProcessImage();
-    super.init();
+    collector = new ProcessStartCollector();
     createExpressWorkflowProcessStart = collector.findExpressCreationProcess();
+  }
+
+  public void initProcesses() {
+    super.init();
+    processesByAlphabet = new HashMap<>();
     groupProcessesByAlphabetIndex(portalProcesses);
   }
 
@@ -364,7 +369,10 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
 
   public Map<String, String> getAllAlphabeticalCharacters() {
     Map<String, String> processGroups = new LinkedHashMap<>();
-    for (String processGroupName : processesByAlphabet.keySet()) {
+    if (processesByAlphabet == null) {
+      return processGroups;
+    }
+    for (String processGroupName : CollectionUtils.emptyIfNull(processesByAlphabet.keySet())) {
       if (!processGroupName.equals(SPECIAL_CHARACTER_KEY)) {
         processGroups.put(processGroupName, processGroupName);
       } else {

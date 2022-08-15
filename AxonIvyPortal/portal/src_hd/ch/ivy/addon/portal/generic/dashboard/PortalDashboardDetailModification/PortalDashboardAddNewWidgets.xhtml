@@ -10,7 +10,7 @@
   modal="true" dynamic="true"
   position="center center"
   onShow="PF('new-widget-dialog').initPosition()">
-  <div class="new-widget-dialog__content portal-card-container">
+  <div class="new-widget-dialog__content ">
     <p:repeat id="new-widget-dialog-content"
       var="sample"
       value="#{dashboardDetailModificationBean.samples}">
@@ -52,7 +52,7 @@
   <c:set var="componentToProcess" value="#{widget eq null ? '@this' :
    'widget-configuration-form:new-widget-configuration-component:user-filter widget-configuration-form:new-widget-configuration-component:widget-title-group'}" />
 
-  <h:form id="widget-configuration-form" styleClass="ui-g portal-card-container">
+  <h:form id="widget-configuration-form" styleClass="ui-g ">
     <c:if test="#{widget.type eq 'TASK'}">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidgetConfiguration id="new-widget-configuration-component" taskWidget="#{widget}"
         componentToUpdate="widget-configuration-form" />

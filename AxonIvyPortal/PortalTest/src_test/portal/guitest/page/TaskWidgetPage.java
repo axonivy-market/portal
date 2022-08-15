@@ -236,17 +236,17 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void changeDescriptionOfTask(String description) {
-    clickByCssSelector("div[id$='task-description-output']");
+    clickByCssSelector("[id$='task-description-output']");
     WebElement taskNameInput = findElementByCssSelector("textarea[id$=':task-description-input']");
     waitForElementDisplayed(taskNameInput, true);
     taskNameInput.clear();
     taskNameInput.sendKeys(description);
-    clickByCssSelector("span[id$=':task-description-inplace_editor']  .ui-inplace-save");
-    waitForElementDisplayed(findElementByCssSelector("div[id$='task-description-output']"), true);
+    clickByCssSelector("span[id$=':task-description-inplace_editor'] .ui-inplace-save");
+    waitForElementDisplayed(findElementByCssSelector("[id$='task-description-output']"), true);
   }
 
   public String getTaskDescription() {
-    return findElementByCssSelector("div[id$='task-description-output'] .task-detail-description-output").getText();
+    return findElementByCssSelector("[id$='task-description-output'] .task-detail-description-output").getText();
   }
 
   public String getTaskCategory() {

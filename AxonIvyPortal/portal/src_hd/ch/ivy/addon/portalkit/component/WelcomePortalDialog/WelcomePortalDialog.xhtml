@@ -29,28 +29,30 @@
         <h:outputText id="welcome-content" value="#{content}" escape="false" styleClass="u-hidden-1024-down" />
         <h:outputText id="mobile-welcome-content" value="#{mobileContent}" escape="false" styleClass="u-hidden-1024-up" />
       </p>
-      <h:panelGroup id="guide-panel-buttons" layout="block" styleClass="guide-panel__buttons">
-        <p:commandLink id="welcome-guide-cancel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          process="@this" update="#{cc.attrs.updatedComponentAfterGuide}"
-          actionListener="#{guideBean.updateToLoadRealData()}" global="false"
-          oncomplete="PF('welcome-portal-guide').hide();" styleClass="guide-panel__cancel u-hidden-1024-down"
-          rendered="#{not guideBean.dontShowAgain}" />
-        <p:commandButton id="welcome-guide-next" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}"
-          icon="#{visibilityBean.generateButtonIcon('si si-arrow-right-1-small')}" 
-          onclick="PF('welcome-portal-guide').hide(); #{cc.attrs.onNext}"
-          rendered="#{not guideBean.dontShowAgain}" styleClass="u-hidden-1024-down" />
-        <p:commandButton id="finish" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/finish')}"
-          icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
-          process="@this" update="#{cc.attrs.updatedComponentAfterGuide}"
-          actionListener="#{guideBean.updateToLoadRealData()}" partialSubmit="true"
-          oncomplete="PF('welcome-portal-guide').hide();"
-          global="false" styleClass="#{guideBean.dontShowAgain ? '' : 'u-hidden-1024-up'}" />
-      </h:panelGroup>
-      <div class="guide-panel__dont-show-again">
-        <p:selectBooleanCheckbox id="dont-show-again-chbox" value="#{guideBean.dontShowAgain}"
-          itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/dontShowAgain')}">
-          <p:ajax process="@this" partialSubmit="true" update="guide-panel-buttons" />
-        </p:selectBooleanCheckbox>
+      <div class="guide-panel__footer">
+        <h:panelGroup id="guide-panel-buttons" layout="block" styleClass="guide-panel__buttons">
+          <p:commandLink id="welcome-guide-cancel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+            process="@this" update="#{cc.attrs.updatedComponentAfterGuide}"
+            actionListener="#{guideBean.updateToLoadRealData()}" global="false"
+            oncomplete="PF('welcome-portal-guide').hide();" styleClass="guide-panel__cancel u-hidden-1024-down"
+            rendered="#{not guideBean.dontShowAgain}" />
+          <p:commandButton id="welcome-guide-next" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}"
+            icon="#{visibilityBean.generateButtonIcon('si si-arrow-right-1-small')}" 
+            onclick="PF('welcome-portal-guide').hide(); #{cc.attrs.onNext}"
+            rendered="#{not guideBean.dontShowAgain}" styleClass="u-hidden-1024-down" />
+          <p:commandButton id="finish" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/finish')}"
+            icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
+            process="@this" update="#{cc.attrs.updatedComponentAfterGuide}"
+            actionListener="#{guideBean.updateToLoadRealData()}" partialSubmit="true"
+            oncomplete="PF('welcome-portal-guide').hide();"
+            global="false" styleClass="#{guideBean.dontShowAgain ? '' : 'u-hidden-1024-up'}" />
+        </h:panelGroup>
+        <div class="guide-panel__dont-show-again">
+          <p:selectBooleanCheckbox id="dont-show-again-chbox" value="#{guideBean.dontShowAgain}"
+            itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/dontShowAgain')}">
+            <p:ajax process="@this" partialSubmit="true" update="guide-panel-buttons" />
+          </p:selectBooleanCheckbox>
+        </div>
       </div>
     </div>
   </p:dialog>

@@ -18,14 +18,14 @@
       <c:set var="process" value="#{processWidgetBean.editedProcess}" />
       <c:set var="processIcon" value="#{process.getIcon()}" />
 
-      <div class="ui-g-12 edit-process-header-group">
+      <div class="ui-g-12 edit-process-header-group u-no-padding-left u-no-padding-right">
         <div class="ui-g-12 u-padding-0">
           <p class="edit-process-header-sub-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}</p>
           <p class="edit-process-header-description MarTop5">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editDialog/dialogHeaderDescription')}</p>
         </div>
       </div>
 
-      <div id="edit-process-icon-group" class="ui-g-12 edit-process-icon-group MarTop20">
+      <div id="edit-process-icon-group" class="ui-g-12 edit-process-icon-group MarTop20 u-no-padding-left u-no-padding-right">
         <p class="u-mar-right-10 edit-process-header-sub-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editDialog/dialogCurrentIcon')}</p>
         <div class="ui-g-12 u-no-padding-left">
           <ic:ch.ivy.addon.portalkit.component.IconSelection id="edit-process-icon"
@@ -34,7 +34,7 @@
         </div>
       </div>
 
-      <div class="ui-g-12 u-no-padding-bottom MarTop20 edit-process-info-group">
+      <div class="ui-g-12 u-no-padding-bottom MarTop20 edit-process-info-group u-no-padding-left u-no-padding-right">
         <p class="edit-process-header-sub-title">
           <span class="u-mar-right-5">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editDialog/dialogEditInfoTitle', [process.getType().getLabel()])}</span>
           <p:commandLink id="edit-express-workflow" rendered="#{processWidgetBean.isExpressProcess(process)}"
@@ -66,12 +66,12 @@
           rendered="#{!processWidgetBean.isExpressProcess(process)}">
           <!-- Process name -->
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')}" />
-          <p:inplace editor="true" styleClass="md-inputfield" effectSpeed="fast"
+          <p:inplace editor="true" styleClass="" effectSpeed="fast"
             saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
             <f:facet name="output">
-              <h:outputText styleClass="edit-external-link-name u-mar-right-5" value="#{processWidgetBean.editedExternalLink.name}" />
-              <a href="#" class="si si-graphic-tablet-drawing-pen edit-external-link-name-icon" />
+              <h:outputText styleClass="u-mar-right-5" value="#{processWidgetBean.editedExternalLink.name}" />
+              <a href="#" class="si si-graphic-tablet-drawing-pen" />
             </f:facet>
             <p:inputText id="external-link-name" value="#{processWidgetBean.editedExternalLink.name}" required="true" maxlength="85"
               requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
@@ -83,8 +83,8 @@
             saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
             <f:facet name="output">
-              <h:outputText styleClass="edit-external-link-name u-mar-right-5" value="#{processWidgetBean.editedExternalLink.link}" />
-              <a href="#" class="si si-graphic-tablet-drawing-pen edit-external-link-name-icon" />
+              <h:outputText styleClass="u-mar-right-5" value="#{processWidgetBean.editedExternalLink.link}" />
+              <a href="#" class="si si-graphic-tablet-drawing-pen" />
             </f:facet>
             <p:inputText id="external-link" value="#{processWidgetBean.editedExternalLink.link}" required="true"
               requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startLink')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
@@ -93,13 +93,13 @@
 
           <!-- Link description -->
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/linkDescription')}" />
-          <p:inplace editor="true" styleClass="md-inputfield ui-fluid" effectSpeed="fast"
+          <p:inplace editor="true" styleClass="" effectSpeed="fast"
             saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
             <f:facet name="output">
-              <h:outputText styleClass="edit-external-link-name u-mar-right-5"
+              <h:outputText styleClass="u-mar-right-5"
                 value="#{empty processWidgetBean.editedExternalLink.description ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable') : processWidgetBean.editedExternalLink.description}" />
-              <a href="#" class="si si-graphic-tablet-drawing-pen edit-external-link-name-icon" />
+              <a href="#" class="si si-graphic-tablet-drawing-pen" />
             </f:facet>
             <p:inputTextarea id="external-description" value="#{processWidgetBean.editedExternalLink.description}" maxlength="200"
               rows="3"/>
@@ -109,13 +109,11 @@
     </h:form>
 
     <f:facet name="footer">
-      <div class="ui-g-12">
-        <p:link id="cancel-edit-process-command" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          onclick="PF('edit-process-dialog').hide()" styleClass="u-mar-right-10" />
-        <p:commandButton id="save-process-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
-          process="#{cc.clientId}:edit-process-form" actionListener="#{processWidgetBean.updateProcessData()}" update="#{cc.clientId}:edit-process-form"
-          oncomplete="if(!args.validationFailed){PF('edit-process-dialog').hide(); updateProcessListOnSaveSuccessfull();}" form="#{cc.clientId}:edit-process-form"/>
-      </div>
+      <p:link id="cancel-edit-process-command" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        onclick="PF('edit-process-dialog').hide()" styleClass="u-mar-right-10" />
+      <p:commandButton id="save-process-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
+        process="#{cc.clientId}:edit-process-form" actionListener="#{processWidgetBean.updateProcessData()}" update="#{cc.clientId}:edit-process-form"
+        oncomplete="if(!args.validationFailed){PF('edit-process-dialog').hide(); updateProcessListOnSaveSuccessfull();}" form="#{cc.clientId}:edit-process-form"/>
     </f:facet>
   </p:dialog>
   <!-- End Edit Process -->
@@ -156,34 +154,39 @@
   <p:dialog id="add-external-link-dialog" widgetVar="add-external-link-dialog"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addNewExternalLinkHeader')}" closeOnEscape="true" modal="true"
     appendTo="@(body)" resizable="false" responsive="true" styleClass="add-external-link-dialog">
-    <h:form id="add-external-link-form" styleClass="add-external-link-form">
+    <h:form id="add-external-link-form" styleClass="add-external-link-form ui-g">
+      <p:messages styleClass="ui-g-12"/>
+
       <!-- Process Name -->
-      <div class="ui-g-12 MarTop20 ui-fluid">
-        <div class="md-inputfield">
-          <p:inputText id="external-link-name" value="#{externalLinkBean.externalLink.name}" required="true" maxlength="85"
-            requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
-          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}" for="external-link-name" />
-          <p:message for="external-link-name" />
-        </div>
+      <div class="ui-g-12">
+        <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}"
+          for="external-link-name" />
+      </div>
+      <div class="ui-g-12 ui-fluid">
+        <p:inputText id="external-link-name" value="#{externalLinkBean.externalLink.name}" required="true"
+          maxlength="85"
+          requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
       </div>
 
       <!-- Start link -->
-      <div class="ui-g-12 MarTop10 ui-fluid">
-        <div class="md-inputfield">
-          <p:inputText id="external-link" value="#{externalLinkBean.externalLink.link}" required="true" styleClass="external-link-dialog-field"
-            requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startLink')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}. #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/webLinkExample')}" />
-          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startLink')}" for="external-link" />
-          <p:message for="external-link" />
-        </div>
+      <div class="ui-g-12">
+        <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startLink')}"
+          for="external-link" />
+      </div>
+      <div class="ui-g-12 ui-fluid">
+        <p:inputText id="external-link" value="#{externalLinkBean.externalLink.link}" required="true"
+          styleClass="external-link-dialog-field"
+          requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startLink')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}. #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/webLinkExample')}" />
       </div>
 
       <!-- Description -->
-      <div class="ui-g-12 ui-fluid MarTop10">
-        <div class="md-inputfield">
-          <p:inputTextarea id="external-description" value="#{externalLinkBean.externalLink.description}" styleClass="external-description-field"
-            maxlength="200" rows="3" />
-          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/linkDescription')}" for="external-description" />
-        </div>
+      <div class="ui-g-12">
+        <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/linkDescription')}"
+          for="external-description" />
+      </div>
+      <div class="ui-g-12 ui-fluid">
+        <p:inputTextarea id="external-description" value="#{externalLinkBean.externalLink.description}"
+          styleClass="external-description-field" maxlength="200" rows="3" />
       </div>
 
       <!-- Type -->
@@ -210,15 +213,13 @@
     </h:form>
 
     <f:facet name="footer">
-      <div class="ui-g-12">
-        <p:link id="cancel-adding-external-link-command" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          onclick="PF('add-external-link-dialog').hide()" styleClass="u-mar-right-15" />
-        <p:commandButton id="adding-new-external-link-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
-          icon="#{visibilityBean.generateButtonIcon('si si-add-small')}" process="#{cc.clientId}:add-external-link-form"
-          form="#{cc.clientId}:add-external-link-form" actionListener="#{processWidgetBean.createNewExternalLink}"
-          update="#{cc.clientId}:add-external-link-form"
-          oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide(); updateProcessListOnSaveSuccessfull();}" />
-      </div>
+      <p:link id="cancel-adding-external-link-command" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        onclick="PF('add-external-link-dialog').hide()" styleClass="u-mar-right-15" />
+      <p:commandButton id="adding-new-external-link-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
+        icon="#{visibilityBean.generateButtonIcon('si si-add-small')}" process="#{cc.clientId}:add-external-link-form"
+        form="#{cc.clientId}:add-external-link-form" actionListener="#{processWidgetBean.createNewExternalLink}"
+        update="#{cc.clientId}:add-external-link-form"
+        oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide(); updateProcessListOnSaveSuccessfull();}" />
     </f:facet>
   </p:dialog>
   <!-- End External Link Dialogs -->

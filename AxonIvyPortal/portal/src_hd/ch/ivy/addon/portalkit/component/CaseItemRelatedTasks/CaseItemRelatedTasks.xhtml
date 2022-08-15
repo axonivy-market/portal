@@ -82,14 +82,14 @@
           </h:outputText>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}"
-          styleClass="related-task-expiry-column u-hidden-md-down" field="EXPIRY_TIME" sortBy="#{EXPIRY_TIME}" filterable="false"
+          styleClass="related-task-expiry-column u-hidden-md-down u-hidden-lg-down" field="EXPIRY_TIME" sortBy="#{EXPIRY_TIME}" filterable="false"
           visible="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldExpiryTime)}">
           <h:outputText value="#{task.expiryTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
           </h:outputText>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/COMPLETED_ON')}"
-          styleClass="related-task-complete-on-column u-hidden-md-down" field="COMPLETED_ON" sortBy="#{COMPLETED_ON}" filterable="false"
+          styleClass="related-task-complete-on-column u-hidden-md-down u-hidden-lg-down" field="COMPLETED_ON" sortBy="#{COMPLETED_ON}" filterable="false"
           visible="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldCompletedTime)}">
           <h:outputText value="#{task.endTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>

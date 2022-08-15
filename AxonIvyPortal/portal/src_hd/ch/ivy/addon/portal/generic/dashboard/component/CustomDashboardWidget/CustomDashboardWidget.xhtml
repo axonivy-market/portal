@@ -33,7 +33,7 @@
         <h:outputText id="custom-widget-info" rendered="#{not empty widget.info}" value="#{widget.info}" />
       </ui:define>
       <ui:define name="widgetContent">
-        <div class="ui-g-12 widget-height-100 u-padding-0">
+        <div class="ui-g-12 widget-height-100 u-padding-0 dashboard-widget-iframe__container">
           <ui:fragment rendered="#{not empty widget.data.processStart}">
           <h:form id="custom-form-#{index}">
             <c:forEach var="param" items="#{widget.data.params}">
