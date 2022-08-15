@@ -54,14 +54,16 @@
               rendered="#{chatRendererBean.isPrivateChatRendered}" />
           </div>
           <div class="close-chat">
-            <p:commandButton id="close-chat-button" icon="si si-arrow-right-1" onclick="view.closeChatPanel();" process="@(this)" partialSubmit="true" immediate="true" global="false" />
+            <p:commandButton id="close-chat-button" icon="si si-arrow-right-1" onclick="view.closeChatPanel();" process="@(this)" partialSubmit="true" immediate="true" global="false"
+              styleClass="rounded-button ui-button-outlined"/>
           </div>
         </div>
         <div class="message-list js-chat-message-container">
           <div class="message-list-header">
-            <span class="message-chat-header-name js-message-chat-header-name TexAlCenter" /> <span class="message-list-header-close js-close-message-list">
+            <span class="message-chat-header-name js-message-chat-header-name u-text-align-center" />
+            <a href="#" class="message-list-header-close js-close-message-list">
               <i class="si si-delete-1" />
-            </span>
+            </a>
             <p:commandLink id="show-participants-link" styleClass="show-participants-link"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/viewParticipant')}"
               oncomplete="chat.getParticipantsForGroupChat(); PF('participants-list-dialog').show()" />

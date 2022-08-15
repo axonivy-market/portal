@@ -3,12 +3,13 @@
 	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:ic="http://ivyteam.ch/jsf/component"
 	xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
 <body>
-	<ui:composition>
+  <ui:composition>
     <c:set var="isPortalInTeams" value="#{masterDataBean.portalInTeams}" />
 
     <ui:fragment rendered="#{isPortalInTeams}">
       <!-- Exception Handler for ViewExpiredExceptions -->
-      <p:ajaxExceptionHandler type="javax.faces.application.ViewExpiredException" update="ms-teams-view-expired-exception-dialog"
+      <p:ajaxExceptionHandler type="javax.faces.application.ViewExpiredException"
+        update="ms-teams-view-expired-exception-dialog"
         onexception="PF('ms-teams-view-expired-exception-dialog').show();" />
 
       <!-- Error Dialog shown if a view or session has expired -->
@@ -24,36 +25,41 @@
         onexception="PF('view-expired-exception-dialog').show();" />
 
       <!-- Error Dialog shown if a view or session has expired -->
-      <p:confirmDialog id="view-expired-exception-dialog"
-        header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}"
-        message="#{session.isNew()? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sessionExpried') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/viewExpired')}"
-        widgetVar="view-expired-exception-dialog" appendTo="@(body)" closable="false" responsive="true">
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="redirectDefaultPage();"
-          icon="#{visibilityBean.generateButtonIcon('si si-check-1')}" type="button" />
-      </p:confirmDialog>
+      <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+        <ui:param name="id" value="view-expired-exception-dialog" />
+        <ui:param name="widgetVar" value="view-expired-exception-dialog" />
+        <ui:param name="appendTo" value="@(body)" />
+        <ui:param name="iconClass" value="si si-road-sign-warning" />
+        <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
+        <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" />
+        <ui:param name="dialogContent" value="#{session.isNew()? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sessionExpried') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/viewExpired')}" />
+        
+        <ui:define name="dialogFooter">
+          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+            onclick="redirectDefaultPage();" icon="#{visibilityBean.generateButtonIcon('si si-check-1')}" type="button" />
+        </ui:define>
+      </ui:decorate>
     </ui:fragment>
 
-		<!--  Exception Handler for any other Exception -->
-		<c:set var="defaultNotificationMessage"
-			value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/defaultNotificationMessage')}" />
-		<p:ajaxExceptionHandler update="exception-dialog:exception-dialog"
-			onexception="onAjaxExceptionHandler()" />
-		<ic:ch.ivy.addon.portalkit.component.ExceptionDialog id="exception-dialog" widgetVar="exception-dialog"
-			pfException="#{pfExceptionHandler}" />
+    <!--  Exception Handler for any other Exception -->
+    <c:set var="defaultNotificationMessage"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/defaultNotificationMessage')}" />
+    <p:ajaxExceptionHandler update="exception-dialog:exception-dialog" onexception="onAjaxExceptionHandler()" />
+    <ic:ch.ivy.addon.portalkit.component.ExceptionDialog id="exception-dialog" widgetVar="exception-dialog"
+      pfException="#{pfExceptionHandler}" />
 
-        <h:form>
-          <p:remoteCommand name="onAjaxExceptionHandler"
-            oncomplete="portal.notifyError('#{defaultNotificationMessage}', '#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}')"
-            update="exception-dialog:exception-dialog"
-            immediate="true" partialSubmit="true" global="false"/>
-        </h:form>
+    <h:form>
+      <p:remoteCommand name="onAjaxExceptionHandler"
+        oncomplete="portal.notifyError('#{defaultNotificationMessage}', '#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}')"
+        update="exception-dialog:exception-dialog" immediate="true" partialSubmit="true" global="false" />
+    </h:form>
 
-		<script type="text/javascript">
-			var redirectPage = "#{userMenuBean.homePageURL}";
-			function redirectDefaultPage() {
-				window.location.href = redirectPage;
-			}
-		</script>
-	</ui:composition>
+    <script type="text/javascript">
+          var redirectPage = "#{userMenuBean.homePageURL}";
+          function redirectDefaultPage() {
+            window.location.href = redirectPage;
+          }
+    </script>
+  </ui:composition>
 </body>
 </html>

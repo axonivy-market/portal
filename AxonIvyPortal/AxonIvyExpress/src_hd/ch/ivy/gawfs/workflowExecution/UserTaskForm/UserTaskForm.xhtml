@@ -16,8 +16,6 @@
     </ui:define>
 
     <ui:define name="content">
-      <h:outputScript library="js" name="express-dyna-form.js" />
-
       <h:form id="form" styleClass="user-task-form">
         <p:messages id="error-messages" showDetail="false" closable="true" globalOnly="true">
           <p:autoUpdate />
@@ -28,22 +26,17 @@
         </h:panelGroup>
 
         <p:fieldset id="dynaform-fieldset" toggleable="true" legend="#{ivy.cms.co('/Dialogs/WorkflowExecution/UserTaskForm/Formular')}"
-          styleClass="express-fieldset fieldset-no-border MarTop10 ui-fluid portal-card-container">
+          styleClass="express-fieldset MarTop10 ui-fluid ">
           <p:messages id="messages-dynaform" showDetail="false" closable="true" redisplay="false">
             <p:autoUpdate />
           </p:messages>
-          <div class="card ui-g-12 user-task-dyna-container">
+          <div class="ui-g-12 user-task-dyna-container">
             <pe:dynaForm id="user-task-dyna-form" value="#{data.executePredefinedWorkflowData.currentTask.dynaFormController.model}" var="dynaData"
               styleClass="ui-g-12">
 
-              <pe:dynaFormControl type="InputFieldText" for="hidden-input-field-text" styleClass="input-text-field">
-                <h:inputHidden id="hidden-input-field-text" rendered="false"/>
-
-                <h:panelGroup styleClass="md-inputfield">
-                  <p:inputText id="inputFieldText" value="#{dynaData.value}" required="#{dynaData.required}"
-                    requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
-                  <p:outputLabel for="inputFieldText" value="#{dynaData.label}" />
-                </h:panelGroup>
+              <pe:dynaFormControl type="InputFieldText" for="inputFieldText" styleClass="input-text-field">
+                <p:inputText id="inputFieldText" value="#{dynaData.value}" required="#{dynaData.required}"
+                  requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
               </pe:dynaFormControl>
 
               <pe:dynaFormControl type="InputFieldNumber" for="input-field-number" styleClass="input-field-number">
@@ -94,14 +87,8 @@
           </div>
         </p:fieldset>
 
-        <script>
-          $(document).ready(function() {
-            var expressDynaForm = new ExpressDynaform();
-          })
-        </script>
-
         <br />
-        <p:outputPanel styleClass="TexAlRight">
+        <p:outputPanel styleClass="u-text-align-right">
           <p:commandLink id="cancel-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true" update="form"
             actionListener="#{logic.cancel}" />
           <p:spacer width="15" />

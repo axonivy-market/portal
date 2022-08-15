@@ -20,16 +20,17 @@
 </div>
 <div class="ui-g-12 ui-fluid">
   <div class="ui-g-12 saved-filter--search-container">
-    <p:inputText id="search-saved-filter-input"
-      placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/SearchForFilter')}"
-      styleClass="saved-filter__search" value="#{widget.searchSavedFilterKeyword}"
-      valueChangeListener="#{widget.searchSavedFilters()}">
-      <i class="saved-filter__search-icon si si-search ui-sm-hidden" />
-      <p:ajax event="keyup" delay="50" partialSubmit="true" global="false" process="@this"
-         onstart="searchWigetFilter#{index}()"/>
-      <p:ajax event="change" partialSubmit="true" global="false" process="@this"
-         onstart="searchWigetFilter#{index}()"/>
-    </p:inputText>
+    <span class="ui-input-icon-left">
+     <i class="saved-filter__search-icon si si-search" />
+     <p:inputText id="search-saved-filter-input"
+        placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/SearchForFilter')}"
+        styleClass="saved-filter__search" value="#{widget.searchSavedFilterKeyword}"
+        valueChangeListener="#{widget.searchSavedFilters()}">
+        <p:ajax event="keyup" delay="50" partialSubmit="true" global="false" process="@this"
+          onstart="searchWigetFilter#{index}()" />
+        <p:ajax event="change" partialSubmit="true" global="false" process="@this" onstart="searchWigetFilter#{index}()" />
+      </p:inputText>
+    </span>
   </div>
   <h:outputText styleClass="js-loading-widget-filters-#{widget.id} ui-g-12"
     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>

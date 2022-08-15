@@ -27,7 +27,7 @@
         </h:panelGrid>
 
           <h:form id="form" onkeypress="if (event.keyCode == 13) { return false; }" styleClass="note-history-container ui-g-12 u-no-padding-top">
-            <div class="ui-g-12 TexAlRight u-no-padding-top">
+            <div class="ui-g-12 u-text-align-right u-no-padding-top">
               <p:commandLink ajax="false" styleClass="note-history-export-button u-mar-right-15">
                 <i class="#{visibilityBean.generateButtonIcon('si si-office-file-xls-1')}" />
                 <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}</span>
