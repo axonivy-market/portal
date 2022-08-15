@@ -37,16 +37,16 @@
           </p:commandLink>
           <p:selectBooleanCheckbox id="system-note-checkbox" value="#{data.showSystemNotes}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemNotes')}" rendered="#{data.showSystemNotesChkbox}"
             styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
-            <p:ajax update="case-histories-table" process="@this" partialSubmit="true" listener="#{logic.loadHistories}" />
+            <p:ajax update="case-histories-table" process="@this" partialSubmit="true" listener="#{logic.loadHistories}" oncomplete="ResponsiveTable.init(':case-histories');"/>
           </p:selectBooleanCheckbox>
           <p:selectBooleanCheckbox id="system-task-checkbox" value="#{data.showSystemTasks}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemTasks')}" rendered="#{data.showSystemTasksChkbox}"
             styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
-            <p:ajax update="case-histories-table" process="@this" partialSubmit="true" listener="#{logic.loadHistories}" />
+            <p:ajax update="case-histories-table" process="@this" partialSubmit="true" listener="#{logic.loadHistories}" oncomplete="ResponsiveTable.init(':case-histories');"/>
           </p:selectBooleanCheckbox>
           <p:selectBooleanCheckbox id="related-case-checkbox" value="#{data.showRelatedCaseInfo}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showRelatedCaseInfo')}"
             rendered="#{data.showRelatedCaseInfoCheckbox}"
             styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
-            <p:ajax update="case-histories-table" process="@this" partialSubmit="true"/>
+            <p:ajax update="case-histories-table" process="@this" partialSubmit="true" oncomplete="ResponsiveTable.init(':case-histories');"/>
           </p:selectBooleanCheckbox>
         </h:panelGroup>
       </div>
@@ -59,6 +59,8 @@
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
         currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}"
         widgetVar="case-histories" styleClass="case-histories" lazy="false">
+        <p:ajax event="page" oncomplete="ResponsiveTable.init(':case-histories')"/>
+        <p:ajax event="sort" oncomplete="ResponsiveTable.init(':case-histories')"/>
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}"
           sortBy="#{history.content}" filterable="false"
@@ -78,7 +80,7 @@
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/relatedCase')}"
           sortBy="#{history.displayCaseName}"
-          styleClass="u-truncate-text history-related-case ui-xl-4 ui-lg-6 ui-md-6 ui-sm-hidden"
+          styleClass="u-truncate-text history-related-case js-column-priority-1"
           rendered="#{case.isBusinessCase() and data.showRelatedCaseInfo}">
           <p:commandLink id="related-case-link" value="#{history.displayCaseName}"
             rendered="#{not empty history.displayCaseName}"
@@ -88,7 +90,7 @@
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}"
           sortBy="#{history.displayName}"
-          styleClass="case-document-author u-truncate-text ui-xl-2 ui-lg-hidden ui-md-hidden ui-sm-hidden">
+          styleClass="case-document-author js-column-priority-2" width="200px">
           <pc:securityMemberNameAndAvatar 
             displayName="#{history.displayName}" securityMember="#{history.involvedUser}"
             displayNameStyleClass="history-fullname">
@@ -108,7 +110,7 @@
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}"
           sortBy="#{history.timestamp}"
-          styleClass="case-history-date u-truncate-text #{case.isBusinessCase() and data.showRelatedCaseInfo ? 'ui-xl-2 ui-lg-hidden ui-md-hidden' : 'ui-xl-2 ui-lg-4 ui-md-4'} ui-sm-hidden">
+          styleClass="case-history-date js-column-priority-3" width="150px">
           <h:outputText value="#{history.timestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
           </h:outputText>
@@ -149,7 +151,7 @@
           placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addNoteHelpText')}"
           styleClass="note-content-textarea" autoResize="false" />
       </h:panelGroup>
-      <h:panelGroup layout="block" styleClass="MarTop10 TexAlRight">
+      <h:panelGroup layout="block" styleClass="MarTop10 u-text-align-right">
         <p:commandLink id="cancel-add-note-command" actionListener="#{data.setNoteContent('')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this"
           onsuccess="PF('add-note-dialog-#{case.id}').hide()"
@@ -159,7 +161,7 @@
           icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" partialSubmit="true"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" process="note-content #{p:resolveFirstComponentWithId('system-note-checkbox', view).clientId} #{p:resolveFirstComponentWithId('system-task-checkbox', view).clientId}"
           update="note-content create-note-msg #{p:resolveFirstComponentWithId('case-histories-table', view).clientId}" actionListener="#{logic.createNote()}"
-          oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('add-note-dialog-#{case.id}').hide();}" />
+          oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('add-note-dialog-#{case.id}').hide();ResponsiveTable.init(':case-histories');}" />
       </h:panelGroup>
     </h:form>
   </p:dialog>

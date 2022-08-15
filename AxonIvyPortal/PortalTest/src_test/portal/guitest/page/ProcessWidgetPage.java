@@ -238,6 +238,8 @@ public class ProcessWidgetPage extends TemplatePage {
     loadSwitchModeButton();
     click(switchModeButton);
     waitForElementDisplayed(By.id(processWidgetId + ":process-search:non-ajax-keyword-filter"), true, DEFAULT_TIMEOUT);
+    waitForElementDisplayed(By.className("js-loading-process-list"), false);
+    waitForElementDisplayed(By.className("js-process-start-list-container"), true);
   }
 
   private void loadSwitchModeButton() {
@@ -345,6 +347,8 @@ public class ProcessWidgetPage extends TemplatePage {
   
   public void waitUtilProcessWidgetDisplayed() {
     waitForElementDisplayed(By.id("process-widget"), true);
+    waitForElementDisplayed(By.className("js-loading-process-list"), false);
+    waitForElementDisplayed(By.className("js-process-start-list-container"), true);
   }
   
   public void waitUtilProcessWidgetUserFavoriteDisplayed() {

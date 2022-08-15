@@ -7,13 +7,12 @@
     <p:messages id="error-message" showSummary="false" showDetail="true">
       <p:autoUpdate/>
     </p:messages>
-    <p:panelGrid id="deputy-selection-panel" columns="1" styleClass="deputy-selection-panel">
-
+    <p:panelGrid id="deputy-selection-panel" columns="1" styleClass="deputy-selection-panel ui-g-12">
       <h:panelGroup id="select-deputy" layout="block" styleClass="select-deputy">
-        <ic:com.axonivy.portal.component.UserSelection
-          id="user-selection-component"
+        <ic:com.axonivy.portal.component.UserSelection id="user-selection-component"
           completeMethod="#{logic.autoCompleteForSubstituteOnApp}"
-          selectedUser="#{data.selectedDeputy}" queryDelay="500" isRenderedMessage="false" >
+          selectedUser="#{data.selectedDeputy}" queryDelay="500" isRenderedMessage="false"
+          autoCompletePanelStyleClass="ui-fluid">
           <p:column>
             <pc:securityMemberNameAndAvatar
               displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
@@ -49,7 +48,7 @@
         </ui:repeat>
       </p:fieldset>
 
-      <p:outputPanel styleClass="TexAlRight">
+      <p:outputPanel styleClass="u-text-align-right">
         <p:commandButton id="save-deputy-button" styleClass="save-deputy-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.updateSelectedDeputies()}"
           icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"

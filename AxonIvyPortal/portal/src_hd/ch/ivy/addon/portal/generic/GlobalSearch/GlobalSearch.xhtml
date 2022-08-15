@@ -9,14 +9,26 @@
   <cc:attribute name="case" />
 </cc:interface>
 <cc:implementation>
-  <div id="global-search-container-in-page" class="search-item">
-  <h:panelGroup styleClass="md-inputfield mobile-global-search-container">
+  <h:panelGroup styleClass="search-input-wrapper">
     <p:inputText id="global-search-data" styleClass="global-search-input" value="#{data.keyword}"
-      onkeypress="if (event.keyCode == 13) { portalGlobalSearch(); return false; }" placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}">
+      onkeypress="if (event.keyCode == 13) { portalGlobalSearch(); return false; }"
+      placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}">
     </p:inputText>
     <i class="global-search-icon si si-search" />
   </h:panelGroup>
-  </div>
-  <p:remoteCommand id="global-search-remote-cmd" name="portalGlobalSearch" actionListener="#{logic.search(cc.attrs.isWorkingOnATask, cc.attrs.case)}" />
+  <ul>
+    <h:panelGroup styleClass="search-input-wrapper">
+      <p:inputText id="global-search-mobile-data" styleClass="global-search-input" value="#{data.keyword}"
+        onkeypress="if (event.keyCode == 13) { portalGlobalSearchMobile(); return false; }"
+        placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}">
+      </p:inputText>
+      <i class="global-search-icon si si-search" />
+    </h:panelGroup>
+  </ul>
+
+  <p:remoteCommand id="global-search-remote-cmd" name="portalGlobalSearch" actionListener="#{logic.search(cc.attrs.isWorkingOnATask, cc.attrs.case)}"
+    process="global-search-data" partialSubmit="true" />
+  <p:remoteCommand id="global-search-mobile-remote-cmd" name="portalGlobalSearchMobile" actionListener="#{logic.search(cc.attrs.isWorkingOnATask, cc.attrs.case)}"
+    process="global-search-mobile-data" partialSubmit="true" />
 </cc:implementation>
 </html>

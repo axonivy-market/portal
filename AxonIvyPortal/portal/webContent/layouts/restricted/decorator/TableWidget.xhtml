@@ -30,7 +30,7 @@
     -->
 
 <h:panelGroup id="#{panelId}" styleClass="table-widget-panel #{panelStyleClass}" layout="block">
-  <c:set var="isRenderFilter" value="#{empty isRenderFilter ? 'true': isRenderFilter}" scope="request"/>
+  <c:set var="isRenderFilter" value="#{empty isRenderFilter ? 'true': isRenderFilter}"/>
 
   <div class="widget__header">
     <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis">#{not empty widget.name ? widget.name : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/yourWidget')}</h:panelGroup>
@@ -153,7 +153,7 @@
         dynamic="true"
         at="right top">
         <div class="ui-g widget-info--type">
-          <h:outputText styleClass="ui-g-8 widget-info-type--label u-no-padding-bottom" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetType')}" />
+          <h:outputText styleClass="ui-g-8 widget-info-type--label u-no-padding-left" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetType')}" />
           <h:outputText styleClass="ui-g-4 u-no-padding-bottom u-no-padding-left" value="#{widget.type.label}" />
         </div>
 

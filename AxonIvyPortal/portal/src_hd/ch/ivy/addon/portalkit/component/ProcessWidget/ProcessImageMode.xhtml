@@ -6,7 +6,7 @@
   <c:set var="isExternalLink" value="#{processWidgetBean.isExternalLink(process)}" />
   <c:set var="isCaseMap" value="#{processWidgetBean.isCaseMap(process)}" />
 
-  <h:panelGroup layout="block" styleClass="js-process-start-list-item ui-g-2 ui-xl-2 ui-lg-3 ui-md-6 ui-sm-12 portal-card-container image-process-item #{groupCode}">
+  <h:panelGroup layout="block" styleClass="js-process-start-list-item ui-g-2 ui-xl-2 ui-lg-3 ui-md-6 ui-sm-12 image-process-item #{groupCode}">
     <div class="card-item card ui-g-12 u-padding-0 #{isExpress ? 'express-workflow' : ''} #{isExternalLink ? 'js-external-link-process-item' : ''}">
       <!-- Process Image -->
       <p:graphicImage cache="true" styleClass="image-process-item-image" rendered="#{not empty process.defaultImageSrc}" value="#{process.defaultImageSrc}" />
