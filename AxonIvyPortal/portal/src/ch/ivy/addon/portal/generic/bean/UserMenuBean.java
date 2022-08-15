@@ -224,6 +224,10 @@ public class UserMenuBean implements Serializable {
     return new PermissionBean().hasAdminPermission();
   }
 
+  public boolean isShowAdminSetting() {
+    return !RequestUtils.isMobileDevice() && hasAdminPermission();
+  }
+  
   public boolean isShowDashboardConfigurationMenu() {
     return !RequestUtils.isMobileDevice()
         && (PermissionUtils.hasDashboardWriteOwnPermission() || PermissionUtils.hasDashboardWritePublicPermission());

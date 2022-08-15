@@ -7,7 +7,7 @@ import portal.guitest.common.WaitHelper;
 
 public class MainMenuPage extends TemplatePage {
   
-  private static String PROCESS_MENU_ITEM_CSS_SELECTOR = ".layout-menu li[role='menuitem'] a.ripplelink.PROCESS";
+  private static String PROCESS_MENU_ITEM_CSS_SELECTOR = ".layout-menu li[role='menuitem'] a.PROCESS";
 
   @Override
   protected String getLoadedLocator() {
@@ -44,12 +44,12 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public TaskWidgetPage selectTaskMenu() {
-    WaitHelper.waitForNavigation(this, () -> clickByCssSelector(".layout-menu li[role='menuitem'] a.ripplelink.TASK"));
+    WaitHelper.waitForNavigation(this, () -> clickByCssSelector(".layout-menu li[role='menuitem'] a.TASK"));
     return new TaskWidgetPage();
   }
 
   public StatisticWidgetPage selectStatisticDashboard() {
-    WaitHelper.waitForNavigation(this, () -> clickByCssSelector(".layout-menu li[role='menuitem'] a.ripplelink.STATISTICS"));
+    WaitHelper.waitForNavigation(this, () -> clickByCssSelector(".layout-menu li[role='menuitem'] a.STATISTICS"));
     return new StatisticWidgetPage();
   }
 
@@ -63,12 +63,12 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public CaseWidgetPage selectCaseMenu() {
-    WaitHelper.waitForNavigation(this, () -> clickByCssSelector(".layout-menu li[role='menuitem'] a.ripplelink.CASE"));
+    WaitHelper.waitForNavigation(this, () -> clickByCssSelector(".layout-menu li[role='menuitem'] a.CASE"));
     return new CaseWidgetPage();
   }
 
   public WorkingTaskDialogPageOfApplicationMenu selectDashboardMenu() {
-    clickByCssSelector(".layout-menu li[role='menuitem'] a.ripplelink.DASHBOARD");
+    clickByCssSelector(".layout-menu li[role='menuitem'] a.DASHBOARD");
     return new WorkingTaskDialogPageOfApplicationMenu();
   }
 

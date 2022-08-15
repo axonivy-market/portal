@@ -16,7 +16,8 @@
         <ic:com.axonivy.portal.component.UserSelection
           id="user-selection-component"
           selectedUser="#{data.selectedUser}" queryDelay="500"
-          rendered="#{data.isAssignToUser}" isRenderedMessage="false" >
+          rendered="#{data.isAssignToUser}" isRenderedMessage="false"
+          autoCompletePanelStyleClass="ui-fluid">
           <p:column>
             <pc:securityMemberNameAndAvatar securityMember="#{user}"
               displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}" />
@@ -29,7 +30,8 @@
         <ic:com.axonivy.portal.component.RoleSelection id="role-selection-component" scrollHeight="400"
           componentId="role-selection" selectedRole="#{data.selectedRole}" rendered="#{!data.isAssignToUser}"
           cache="true" queryDelay="500" excludedRoleNames="#{workflowDefinitionBean.excludedRoleNames}"
-          isRenderedMessage="false">
+          isRenderedMessage="false"
+          autoCompletePanelStyleClass="ui-fluid">
           <p:column>
             <pc:securityMemberNameAndAvatar securityMember="#{role}"
               displayName="#{role.getDisplayName()}" />
@@ -60,7 +62,7 @@
         </ui:repeat>
       </p:fieldset>
 
-      <p:outputPanel styleClass="TexAlRight">
+      <p:outputPanel styleClass="u-text-align-right">
         <p:commandButton id="save-assignee-button" styleClass="save-assignee-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.updateResponsibles}"
           icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"

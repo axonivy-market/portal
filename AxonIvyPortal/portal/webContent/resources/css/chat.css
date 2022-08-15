@@ -215,6 +215,7 @@
 
 .message-list-content {
   height: 100%;
+  background: var(--surface-d, #545B67);
 }
 
 .chat-message-list {
@@ -277,21 +278,10 @@
   position: relative;
 }
 
-.chat-send-form textarea {
-  background-image: none !important;
-}
-
 .chat-send-form .ui-widget.ui-button {
   position: absolute;
   top: 10px;
   right: 10px;
-}
-
-.chat-send-form .ui-widget.ui-button .ui-icon {
-  width: 22px;
-  height: 22px;
-  margin-top: -10px;
-  margin-left: -13px;
 }
 
 .message-list-content-send-input {
@@ -300,12 +290,6 @@
   padding: 10px !important;
   padding-right: 50px !important;
   overflow-y: auto;
-}
-
-.message-list-content-send-button {
-  width: 294px;
-  height: 38px;
-  margin: 3px;
 }
 
 /*Need to add "data-badge" attribute to element*/
@@ -317,11 +301,11 @@
 .notification-badge[data-badge]:after {
   position: absolute;
   content: attr(data-badge);
-  left: 1.3rem;
-  top: 0.3rem !important;
+  right: 0.3rem !important;
+  top: 1.2rem !important;
   border-radius: 50%;
-  width: 1.3rem;
-  height: 1.3rem;
+  width: 1rem;
+  height: 1rem;
   text-align: center;
 }
 
@@ -360,6 +344,7 @@
 .my-message .chat-meta {
   text-align: right;
   width: 100%;
+  color: var(--text-color);
 }
 
 .chat-meta .tooltip {
@@ -490,8 +475,4 @@ _:-ms-fullscreen, :root .chat-message {
   position: absolute;
   top: 18px;
   right: 18px;
-}
-
-.close-chat .ui-button.ui-button-icon-only .ui-icon {
-  margin-left: -8px;
 }

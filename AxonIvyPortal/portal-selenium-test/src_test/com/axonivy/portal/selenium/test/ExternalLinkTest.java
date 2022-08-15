@@ -13,12 +13,14 @@ import com.codeborne.selenide.Condition;
 
 @IvyWebTest
 public class ExternalLinkTest extends BaseTest {
+
   @Test
   public void createExternalLink() {
     login(TestAccount.DEMO_USER);
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openProcessList();
     ProcessWidgetPage processPage = new ProcessWidgetPage();
+    processPage.waitForStartListShow();
     String iconClass = "si-server-search";
     processPage.addExternalLink("Search page", "https://www.google.com", iconClass);
     

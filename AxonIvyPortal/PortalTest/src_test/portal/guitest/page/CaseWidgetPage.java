@@ -131,8 +131,8 @@ public class CaseWidgetPage extends TemplatePage {
 	}
 
 	public String getCaseNameAt(int index) {
-		WebElement name = findElementById(
-				caseWidgetId + ":case-list-scroller:" + index + ":case-item:case-name-component:case-header-name-cell");
+	  waitForElementDisplayed(By.className("js-case-list"), true);
+		WebElement name = findElementByCssSelector("[id$='case-list-scroller:" + index + ":case-item:case-name-component:case-header-name-cell']");
 		return name.getText();
 	}
 	

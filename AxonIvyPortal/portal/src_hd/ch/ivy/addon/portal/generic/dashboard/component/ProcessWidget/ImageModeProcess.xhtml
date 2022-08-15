@@ -6,7 +6,7 @@
   <c:set var="isExternalLink" value="#{dashboardProcessBean.isExternalLink(process)}" />
   <c:set var="isCaseMap" value="#{dashboardProcessBean.isCaseMap(process)}" />
 
-  <h:panelGroup layout="block" styleClass="portal-card-container widget-content image-process-item widget-height-100" rendered="#{not empty process}" >
+  <h:panelGroup layout="block" styleClass=" widget-content image-process-item widget-height-100" rendered="#{not empty process}" >
     <div class="card-item card image-widget-mode js-image-widget-mode ui-g-12 u-padding-0 #{isExpress ? 'express-workflow' : ''} ">
       <div class="image-process-item-container js-image-process-item-container">
         <h:form id="image-view-action-group-form" styleClass="image-view-action-group-form">
