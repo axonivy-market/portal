@@ -59,7 +59,7 @@
         for="#{cc.clientId}:filter-open-form:advanced-filter-command" my="left top" at="left bottom"
         onHide="$(this.targetElement).parents('form').siblings('form').find('.portal-cancel-button').click();">
         <h:panelGroup id="advanced-filter-panel-content" layout="block" styleClass="ui-overlaypanel-filter-content #{cc.attrs.contentStyleClass}">
-          <p:messages for="advanced-filter-error-messages" />
+          <p:messages for="advanced-filter-error-messages" showIcon="false"/>
           <cc:insertChildren />
         </h:panelGroup>
 

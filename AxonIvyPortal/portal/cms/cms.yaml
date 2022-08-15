@@ -562,7 +562,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewMode: View mode
     visible: Visible
     warning: Warning
-    welcomeToPortal: 'Welcome, please login:'
+    welcomeToPortal: Welcome, please login
     wrongDateFormat: Please enter valid date.
     year: year
     years: years

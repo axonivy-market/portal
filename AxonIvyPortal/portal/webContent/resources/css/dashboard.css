@@ -42,7 +42,7 @@
 
 .dashboard__title {
   font-size: 1.5rem;
-  padding: 1.4rem 1.4rem 0.7rem 1.4rem;
+  padding: 1rem 1.4rem 0.7rem 1.4rem;
   border-bottom: 1.5px solid var(--ivy-primary-color-grey-light);
   line-height: 1;
   text-align: center;
@@ -91,9 +91,7 @@
 
 @media screen and (max-width: 767px) {
   .dashboard__title-dropdown {
-    min-width: 100% !important;
     margin-bottom: 15px;
-    margin-right: 5px;
   }
 
   .dashboard-header__action {
@@ -110,25 +108,32 @@
 .dashboard__widget {
   display: flex;
   flex-direction: column;
-  box-shadow: var(--card-box-shadow);
+  justify-content: flex-start;
 }
 
 .table-widget-panel {
   position: relative;
   overflow: hidden;
+  flex: 1;
 }
 
 .widget__header {
   flex: 0 0 30px;
-  padding: 10px;
-  font-size: var(--widget-header-font-size);
-  border-bottom: 2px solid var(--ivy-primary-color-grey-light);
-  font-weight: bold;
-  height: 44px;
+  padding: 20px;
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-.widget__header-actions {
-  float: right;
+.widget__header .widget__header-title,
+.widget__header .ui-link.si {
+  font-size: var(--widget-header-font-size);
+}
+
+.process-grid-item__action--combined a.si,
+.widget__header-actions > a.si {
+  font-size: var(--widget-header-font-size);
 }
 
 .widget__header-actions .widget__header-action:not(:last-child) {
@@ -136,16 +141,18 @@
 }
 
 .widget__header-title {
-  width: calc(100% - 120px);
+  flex: 1;
   display: inline-block;
+  font-weight: bold;
 }
 
 .widget__content {
   flex: auto;
   overflow: auto;
-  padding: 10px;
+  padding: 20px;
   height: auto;
   max-height: calc(100% - 44px);
+  width:100%;
 }
 
 /* CSS specific to iOS devices */
@@ -213,10 +220,6 @@
   display: none;
 }
 
-.dashboard__restore-button {
-  margin-right: 15px;
-}
-
 body .ui-dialog .ui-dialog-footer .ui-button.dashboard__edit-global-dashboard {
   margin-left: 15px;
   margin-right: 0;
@@ -253,11 +256,6 @@ body .ui-dialog .ui-dialog-footer .ui-button.dashboard__edit-global-dashboard {
 
 .task-widget-header-main {
 	margin: 10px 10px 0 10px;	
-}
-
-.widget__content .ui-datatable tr.dashboard-table--row-style.ui-state-hover {
-  background: var(--item-background-hover);
-  border: var(--item-border-hover);
 }
 
 .dashboard-tasks-container__columns-configuration,
@@ -303,10 +301,10 @@ td.dashboard-cases__name span {
 
 .task-configuration.card,
 .case-configuration.card,
-.widget-configuration.card {
+.widget-configuration.card  {
   width: 450px;
-  padding: 20px 15px;
   margin-right: 20px;
+  padding: 20px
 }
 
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
@@ -329,15 +327,6 @@ td.dashboard-cases__name span {
 
 .case-configuration.card {
   padding: 15px 20px 15px;
-}
-
-.task-configuration.card,
-.case-configuration.card,
-.widget-configuration.card,
-.task-preview.card,
-.case-preview.card,
-.widget-preview.card {
-  box-shadow: var(--card-box-shadow);
 }
 
 .task-configuration__chbox-work-on {
@@ -367,36 +356,6 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
   width: 300px;
 }
 
-.task-configuration__calendar {
-  float: right;
-  width: 90%;
-  height: 20px;
-}
-
-.task-configuration__calendar input {
-  width: 100%;
-}
-
-body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
-  top: -23px;
-  right: -92%;
-}
-
-@media screen and (max-width: 40em) {
-  body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
-    right: -89%;
-  }
-
-  .filter-container .task-configuration__calendar .ui-inputfield.hasDatepicker,
-  .filter-container .case-configuration__calendar .ui-inputfield.hasDatepicker {
-    width: 100% !important;
-  }
-}
-
-.task-configuration__calendar .ui-datepicker-trigger.ui-button-icon-only .ui-button-text {
-  line-height: normal;
-}
-
 .task-configuration__column-picker.ui-picklist .ui-picklist-list {
   width: 190px;
 }
@@ -405,7 +364,6 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   width: calc(100% - 470px);
   align-items: flex-start;
   align-self: stretch;
-  padding: 20px 15px;
 }
 
 .widget-preview .expand-link {
@@ -440,20 +398,12 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   float: right;
 }
 
-.task-configuration__user-selection .ui-autocomplete-input {
-  width: 100%;
-}
-
-.task-configuration__responsibles.ui-autocomplete {
-  float: right;
-}
-
-.task-configuration__responsibles.ui-autocomplete .ui-inputfield {
-  width: 100%;
+.task-configuration__responsibles-selection {
+  min-width: fit-content;
 }
 
 .widget-configuration__category-panel-footer {
-  margin-top: 5px;
+  margin-top: 1rem;
   text-align: right;
 }
 
@@ -465,24 +415,7 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   text-align: right;
 }
 
-.field-add-fieldset__input, .manage-dashboard__input, .manage-dashboard__input .ui-autocomplete-multiple-container {
-  width: 100%;
-}
-
-.field-add-fieldset__input {
-  height: 23px;
-}
-
 .field-add-fieldset__custom-field-type-container, .field-add-fieldset__number-pattern-container {
-  padding: 0;
-}
-
-.field-add-fieldset__autocomplete-input, .manage-dashboard__autocomplete-input {
-  width: 100%;
-}
-
-.ui-widget-content.info-overlay-panel,
-.filter-overlay-panel.ui-widget-content {
   padding: 0;
 }
 
@@ -505,7 +438,7 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
 @media screen and (max-width: 40em) {
   .filter-overlay-panel.ui-widget-content .ui-overlaypanel-content,
   .ui-widget-content.info-overlay-panel .ui-overlaypanel-content {
-    width: 80vw;
+    width: 65vw;
   }
   
   .saved-filter-node__text {
@@ -537,6 +470,7 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
 .statistic-filter-accordion-panel.widget-info-panel,
 .saved-filter__items {
   padding: .5em 1em;
+  padding-bottom: 1rem;
 }
 
 .filter-overlay-panel__footer,
@@ -608,12 +542,6 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
 .dashboard-tasks--table table {
   min-width: 100%;
   width: max-content;
-}
-
-.dashboard-cases--table table thead tr,
-.dashboard-tasks--table table thead tr {
-  border-left: solid 1px var(--case-related-task-content-border);
-  border-right: solid 1px var(--case-related-task-content-border);
 }
 
 .dashboard-cases--table table tbody tr:not(.ui-datatable-empty-message),
@@ -710,7 +638,6 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 }
 
 .widget-info-type--label {
-  padding-left: 25px;
   font-weight: bold;
 }
 .column-management-datatable__reorder i {
@@ -795,7 +722,6 @@ span.new-widget-dialog__icon.si {
   font-weight: var(--new-widget-dialog-title-font-weight);
   font-style: var(--new-widget-dialog-title-font-style);
   font-size: var(--new-widget-dialog-title-font-size);
-  color: var(--new-widget-dialog-title-color);
 }
 
 .new-widget-dialog__introduction {
@@ -806,7 +732,7 @@ span.new-widget-dialog__icon.si {
 }
 
 .widget__content.process-widget.dashboard-widget-panel-container {
-  padding: 0;
+  padding: 20px;
 }
 
 .widget__content.dashboard-widget-panel-container.process-widget--compact {
@@ -814,7 +740,6 @@ span.new-widget-dialog__icon.si {
 }
 
 .compact-processes-container.widget-content {
-  padding: 10px;
   overflow-y: visible;
 }
 
@@ -826,11 +751,11 @@ span.new-widget-dialog__icon.si {
 
 .new-widget-configuration-dialog {
   max-width: 95vw;
-  max-height: 90vh;
 }
 
 .new-widget-configuration-dialog .ui-dialog-content.ui-widget-content {
   max-height: calc(90vh - 100px) !important;
+  transition: all .3s;
 }
 
 .new-widget-configuration-dialog_content .widget-preview.widget-preview--process {
@@ -1008,7 +933,6 @@ span.new-widget-dialog__icon.si {
   .dashboard-tasks--table .relevant-tasks__name,
   .dashboard-cases--table .relevant-cases__name {
     width: 100%;
-    border-right: 1px solid #d8d8d8;
   }
 }
 
@@ -1041,11 +965,6 @@ span.new-widget-dialog__icon.si {
   padding: 0;
 }
 
-.dashboard-processes--empty-message {
-  display: block;
-  padding: 1em;
-}
-
 .process-grid-item__action {
   position: absolute;
   right: 0;
@@ -1074,7 +993,7 @@ span.new-widget-dialog__icon.si {
 
 @media screen and (max-width: 40em) {
   .dashboard-processes-container--combined .process-widget--combined {
-    height: 230px;
+    height: 23rem;
     margin-top: 0 !important;
   }
 
@@ -1088,7 +1007,7 @@ span.new-widget-dialog__icon.si {
   }
 
   .grid-view-form .process-name.process-name--combined {
-    height: 5rem;
+    height: 8rem;
   }
 
   .process-grid-view__description--combined {
@@ -1097,8 +1016,8 @@ span.new-widget-dialog__icon.si {
 }
 
 .process-grid-item__action--combined {
-  padding: 10px 10px 0 10px;
-  font-size: 18px;
+  padding: 20px;
+  padding-bottom: 0;
   float: right;
 }
 
@@ -1126,17 +1045,6 @@ span.new-widget-dialog__icon.si {
   padding-bottom: 0;
   padding-top: 0;
   position: relative;
-}
-
-.saved-filter__search {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-.saved-filter__search-icon {
-  position: absolute;
-  right: 5px;
-  padding-right: 7px;
 }
 
 .saved-filter-node {
@@ -1176,13 +1084,14 @@ span.new-widget-dialog__icon.si {
   color: var(--widget-advanced-filter-overlay-panel-footer);
 }
 
-.manage-filter-dialog .ui-dialog-content.ui-widget-content {
-  overflow: hidden;
-}
-
 .saved-filter__manage-filter {
   font-size: var(--small-font-size);
 }
+
+.manage-filter-dialog {
+  max-width: 80vh;
+}
+
 .expand-fullscreen {
   z-index: 1001 !important;
   position: fixed !important;
@@ -1229,6 +1138,8 @@ span.new-widget-dialog__icon.si {
 .widget-configuration.card.custom-widget-configuration,
 .widget-configuration.card.process-viewer-widget-configuration {
   margin-right: 0;
+  flex-grow: 1;
+  max-width: 450px;
 }
 
 .custom-widget-configuration__user-selection .ui-autocomplete-input.ui-inputfield[size] {
@@ -1300,8 +1211,7 @@ span.new-widget-dialog__icon.si {
   padding: 1em 1.5em;
 }
 
-.chart-information-container .ui-panelgrid tbody tr.ui-widget-content,
-.chart-information-container .chart-info-header {
+.chart-information-container .ui-panelgrid tbody tr.ui-widget-content {
   border-color: var(--widget-advanced-filter-overlay-panel-footer);
 }
 

@@ -42,7 +42,6 @@ import ch.ivyteam.ivy.workflow.IWorkflowSession;
 public class MenuView implements Serializable {
   private static final long serialVersionUID = 3188259472933435953L;
 
-  private static final String SI_SI_ARROW_RIGHT_1_SMALL = "si si-arrow-right-1-small";
   private final static String DASHBOARD = "/ch.ivy.addon.portalkit.ui.jsf/common/dashboard";
   public final static String SELECTED_MENU_ID = "selectedMenuId";
   public final static String PREV_SELECTED_MENU_ID = "prevSelectedMenuId";
@@ -226,7 +225,6 @@ public class MenuView implements Serializable {
     if (userCase != null && StringUtils.isNotEmpty(userCase.getProcessStart().getName())) {
       menuItem.setValue(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/Breadcrumb",
           Arrays.asList(userCase.getProcessStart().getName())));
-      menuItem.setIcon(SI_SI_ARROW_RIGHT_1_SMALL);
     }
     breadcrumbModel.getElements().add(menuItem);
   }
@@ -333,7 +331,6 @@ public class MenuView implements Serializable {
 
   private DefaultMenuItem buildMenuItemFromPortalSubMenuItem(SubMenuItem subMenuItem) {
     DefaultMenuItem menuItem = DefaultMenuItem.builder().build();
-    menuItem.setIcon(SI_SI_ARROW_RIGHT_1_SMALL);
     menuItem.setValue(subMenuItem.getLabel());
     menuItem.setUrl(null);
     return menuItem;
@@ -365,7 +362,6 @@ public class MenuView implements Serializable {
 
   private MenuItem buildTaskDetailsMenuItem(ITask userTask) {
     DefaultMenuItem menuItem = DefaultMenuItem.builder().build();
-    menuItem.setIcon(SI_SI_ARROW_RIGHT_1_SMALL);
     String taskName = StringUtils.isEmpty(userTask.getName()) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable") : userTask.getName();
     menuItem.setValue(String.join(": ", Ivy.cms().co("/Labels/Task"), taskName));
     menuItem.setUrl("#");
@@ -375,7 +371,6 @@ public class MenuView implements Serializable {
 
   private MenuItem buildCaseDetailsMenuItem(ICase userCase) {
     DefaultMenuItem menuItem = DefaultMenuItem.builder().build();
-    menuItem.setIcon(SI_SI_ARROW_RIGHT_1_SMALL);
     menuItem.setValue(String.join(": ", Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/case"), userCase.getName()));
     menuItem.setUrl("#");
     menuItem.setDisabled(true);
@@ -384,7 +379,6 @@ public class MenuView implements Serializable {
 
   private MenuItem buildExpressBusinessMenuItem(String caseId) {
     DefaultMenuItem menuItem = DefaultMenuItem.builder().build();
-    menuItem.setIcon(SI_SI_ARROW_RIGHT_1_SMALL);
     menuItem.setValue(Ivy.cms().co("/Dialogs/ch/ivy/addon/express/generic/expressWorkflowName", Arrays.asList(caseId)));
     menuItem.setUrl("#");
     menuItem.setDisabled(true);
@@ -393,7 +387,6 @@ public class MenuView implements Serializable {
 
   private MenuItem buildGenericMenuItem(String cms) {
     DefaultMenuItem menuItem = DefaultMenuItem.builder().build();
-    menuItem.setIcon(SI_SI_ARROW_RIGHT_1_SMALL);
     menuItem.setValue(Ivy.cms().co(cms));
     menuItem.setUrl("#");
     menuItem.setDisabled(true);

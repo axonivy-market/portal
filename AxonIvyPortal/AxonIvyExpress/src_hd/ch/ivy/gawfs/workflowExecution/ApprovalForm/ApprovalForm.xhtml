@@ -19,26 +19,26 @@
 
     <ui:define name="content">
 
-      <h:form id="form" styleClass="ui-g portal-card-container">
+      <h:form id="form" styleClass="ui-g ">
         <div>
           <ic:ch.ivy.gawfs.component.FinishedUserTasksForm id="finished-tasks-component" finishedTasks="#{data.finishedTasks}" />
         </div>
 
         <div class="approval-comment-container ui-g-12 u-padding-0">
-          <h:panelGroup styleClass="ui-g-12 card">
-            <h:outputText value="#{ivy.cms.co('/Dialogs/WorkflowExecution/ApprovalForm/CommentLabel')}" styleClass="review-content-title ui-g-12 u-no-padding-left" />
+          <h:panelGroup styleClass="ui-g card ui-fluid">
+            <h:outputText value="#{ivy.cms.co('/Dialogs/WorkflowExecution/ApprovalForm/CommentLabel')}" styleClass="review-content-title" />
 
             <p:inputTextarea id="comment" styleClass="approval-comment" value="#{data.comment}" rows="4" />
           </h:panelGroup>
         </div>
 
-        <div class="ui-g-12 u-padding-0 TexAlRight">
+        <div class="ui-g-12 u-padding-0 u-text-align-right">
           <p:commandLink id="cancel-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true" update="form"
             actionListener="#{logic.cancel}" styleClass="u-mar-right-15" />
           <p:commandButton id="refuse-btn" value="#{ivy.cms.co('/Dialogs/WorkflowExecution/ApprovalForm/Reject')}" update="form" icon="#{visibilityBean.generateButtonIcon('si si-delete')}"
-            actionListener="#{logic.closeDeny}" styleClass="secondary-btn MarLeft10" />
+            actionListener="#{logic.closeDeny}" styleClass="ui-button-secondary u-mar-right-5" />
           <p:commandButton id="approve-btn" value="#{ivy.cms.co('/Dialogs/WorkflowExecution/ApprovalForm/Approve')}" update="form"
-            icon="#{visibilityBean.generateButtonIcon('si si-check-1')}" actionListener="#{logic.closeApprove}" styleClass="MarLeft10"/>
+            icon="#{visibilityBean.generateButtonIcon('si si-check-1')}" actionListener="#{logic.closeApprove}" styleClass="u-mar-right-5"/>
         </div>
       </h:form>
 

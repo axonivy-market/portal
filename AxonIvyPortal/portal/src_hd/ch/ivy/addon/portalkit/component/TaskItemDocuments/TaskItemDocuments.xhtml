@@ -46,10 +46,14 @@
           pageLinks="3" rows="#{cc.attrs.documentWidget.rowPerPage}" rowsPerPageTemplate="5,10,20,50"
           paginatorPosition="bottom" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
           paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-          currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}" lazy="false">
+          currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}" lazy="false"
+          styleClass="ui-g-12 js-task-details-documents" >
+          <p:ajax event="page" oncomplete="ResponsiveTable.init(':task-details-documents')"/>
+          <p:ajax event="sort" oncomplete="ResponsiveTable.init(':task-details-documents')"/>
+
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}"
             sortBy="#{document.name}"
-            styleClass="u-truncate-text ui-g-6 ui-xl-6 ui-lg-8 ui-md-12 ui-sm-12">
+            styleClass="">
             <h:panelGroup layout="block" rendered="#{document ne null}" styleClass="task-document-name">
               <p:commandLink ajax="false" id="download" styleClass="download-command task-document-name-text u-truncate-text">
                 <p:fileDownload value="#{logic.downloadDocument(document)}" />
@@ -68,21 +72,24 @@
           </p:column>
 
           <p:column id="document-author" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}"
-            styleClass="task-document-author u-truncate-text ui-g-3 ui-xl-3 ui-lg-4 ui-md-hidden ui-sm-hidden"
-            sortBy="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(document.creation.user, document.creation.user.name)}">
+            styleClass="task-document-author js-column-priority-2"
+            sortBy="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(document.creation.user, document.creation.user.name)}"
+            width="200px">
             <pc:securityMemberNameAndAvatar securityMember="#{document.creation.user}"
               displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(document.creation.user, document.creation.user.name)}"
               displayNameStyleClass="text-ellipsis" />
           </p:column>
 
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}"
-            styleClass="task-history-date u-truncate-text ui-g-3 ui-xl-3 ui-lg-hidden ui-md-hidden ui-sm-hidden"
-            sortBy="#{document.creation.timestamp}">
+            styleClass="task-history-date js-column-priority-3"
+            sortBy="#{document.creation.timestamp}"
+            width="150px">
             <h:outputText value="#{document.creation.timestamp}">
               <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
             </h:outputText>
           </p:column>
         </p:dataTable>
+
         <h:panelGroup layout="block" styleClass="ui-g-12 no-item-panel" rendered="#{empty data.documents}">
           <i class="si si-information-circle" />
           <h:outputText styleClass="no-item-header" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noDocumentAvailable')}" />
@@ -104,7 +111,8 @@
         dragDropSupport="true" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
         auto="true" multiple="true" sizeLimit="#{masterDataBean.fileUploadSizeLimit}"
         invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
-        update="upload-messages #{p:resolveFirstComponentWithId('task-document-form', view).clientId} #{cc.attrs.componentToUpdate}" />
+        update="upload-messages #{p:resolveFirstComponentWithId('task-document-form', view).clientId} #{cc.attrs.componentToUpdate}"
+        oncomplete="handleTaskDetailsTables()" />
     </h:form>
     <f:facet name="footer">
       <p:commandButton id="document-upload-close-command" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
@@ -128,10 +136,8 @@
       <p:commandButton id="document-deletion-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" process="@this"
         icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
         update="#{p:resolveFirstComponentWithId('task-document-form', view).clientId} #{cc.attrs.componentToUpdate} #{p:resolveFirstComponentWithId('task-document-global-messages', view).clientId}"
-        actionListener="#{logic.deleteDocument}" oncomplete="PF('document-deletion-dialog').hide();" />
+        actionListener="#{logic.deleteDocument}" oncomplete="PF('document-deletion-dialog').hide();handleTaskDetailsTables();" />
     </ui:define>
   </ui:decorate>
-
-  <h:outputScript name="task-item-document.js" library="js" />
 </cc:implementation>
 </html>

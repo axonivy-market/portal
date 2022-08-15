@@ -25,28 +25,29 @@ function ProcessWidget() {
       if ($('.js-compact-process-widget').length) {
         return;
       }
-
+      this.removeStyleOnProcessStartList();
       var processWidgetMarginPadding = ($('.js-process-widget').outerHeight(true)||0) - ($('.js-process-widget').height()||0);
       var processsHeader = $('.js-process-header');
       var processStartListContainer = $('.js-process-start-list-container');
 
       var announcementMessageContainer = $('.js-announcement-message');
-      var mainScreenHeight = $('body').outerHeight() - ($('.layout-topbar').outerHeight()||0);
+      var mainScreenHeight = PortalLayout.getAvailableHeight();
       var processHeaderHeight = $('.js-portal-template-header').outerHeight();
       var footerHeight = $('.js-portal-template-footer').outerHeight();
       var availableHeight = mainScreenHeight - (announcementMessageContainer.outerHeight(true)||0)
-                              - processWidgetMarginPadding - (processsHeader.outerHeight(true)||0)
-                              - processHeaderHeight - footerHeight;
+                            - processWidgetMarginPadding - (processsHeader.outerHeight(true)||0)
+                            - processHeaderHeight - footerHeight;
 
-      var globalSearchTabHeader = $('.ui-tabs-nav');
-      if (globalSearchTabHeader.length > 0) {
-        var globalSearchInput = $('.js-global-search');
-        var searchResultMarginPadding = ($('.js-search-results-tabview').outerHeight(true)||0) - ($('.js-search-results-tabview').height()||0);
-        availableHeight = availableHeight - (globalSearchInput.is(":visible") ? globalSearchInput.outerHeight(true) : 0)
-                              - (globalSearchTabHeader.outerHeight(true)||0) - searchResultMarginPadding;
+      if (PortalGlobalSearch.isSearchPageOpened()) {
+        availableHeight = availableHeight - PortalGlobalSearch.getAvailableHeight(':process-tab');
+      } else {
+        if (this.countProcessHeight() > availableHeight) {
+          PortalLayout.removeLayoutContentPaddingBottom();
+        }
       }
 
       if (!!availableHeight) {
+        availableHeight = availableHeight - PortalLayout.getYPaddingLayoutContent();
         processStartListContainer.outerHeight(availableHeight);
         this.setupProcessNav(processStartListContainer, availableHeight, announcementMessageContainer);
       }
@@ -63,27 +64,21 @@ function ProcessWidget() {
       }
 
       // For process list page
-      var layoutContent = $('.layout-content');
+      var layoutContent = $('.js-layout-content');
       var processWidget = $('.js-process-widget');
       marginRightProcessWidget = extractRightOffsetOfElement(layoutContent) + extractRightOffsetOfElement(processWidget);
-
-      var scrollBarWidth = this.detectScrollBarWidth();
-      processNav.css("right", scrollBarWidth + "px");
-     
       processStartListContainer.css("width", "calc(100% + " + marginRightProcessWidget + "px)");
-      var processNavOuterHeight = processNav.outerHeight(true) - processNav.outerHeight();
-      processNav.css("height", (availableHeight - processNavOuterHeight) + "px");
+      processNav.outerHeight(availableHeight, true);
       
-      var portalHeaderHeight = $('.js-portal-template-header').outerHeight();
       let processPaddingTop = parseInt($('.js-process-widget').css('padding-top'));
-      var availableHeightProcessNavTop = (($('.js-process-header').outerHeight(true)||0) + ($('.layout-topbar').outerHeight(true)||0)
-                                          + (announcementMessageContainer.outerHeight(true)||0) + portalHeaderHeight + processPaddingTop);
+      var availableHeightProcessNavTop = ($('.js-process-header').outerHeight(true)||0) + processPaddingTop;
       processNav.css("top", availableHeightProcessNavTop + "px");
 
       var numberOfDisplayingCharacters = $('.js-process-nav-item').length;
       let characterContainer = processNav.find('.js-character-container');
-      let characterContainerPadding = parseInt(characterContainer.css('padding-top')) + parseInt(characterContainer.css('padding-bottom'));;
+      let characterContainerPadding = parseInt(characterContainer.css('padding-top')) + parseInt(characterContainer.css('padding-bottom'));
       processNav.width(characterContainer.width());
+      processStartListContainer.css('padding-right', characterContainer.width() + marginRightProcessWidget + 'px');
 
       // If there is less than 6 characters displayed, calculate height of character container to make UI look better.
       if (numberOfDisplayingCharacters < 6) {
@@ -94,15 +89,6 @@ function ProcessWidget() {
         characterContainer.height(processNav.get(0).offsetHeight - characterContainerPadding);
       }
       $(".js-process-nav-item.selected").removeClass("selected");
-    },
-
-    detectScrollBarWidth : function() {
-      var scrollbarWidth = 0;
-      var processWidget = document.getElementById("process-widget:process-list");
-      if (processWidget !== null) {
-        scrollbarWidth = processWidget.offsetWidth - processWidget.clientWidth;
-      }
-      return scrollbarWidth;
     },
 
     filter : function() {
@@ -170,6 +156,32 @@ function ProcessWidget() {
         disableGroupNavigation();
       }
       this.setupScrollbar();
+    },
+
+    hideLoadingText: function() {
+      $(".js-loading-process-list").parent().addClass("u-display-none");
+      $(".js-process-start-list-container").removeClass("u-invisibility");
+      $(".js-process-nav").removeClass("u-invisibility");
+    },
+
+    removeStyleOnProcessStartList() {
+      var startList = $('.js-process-start-list-container');
+      if (startList.length > 0) {
+        startList.removeAttr('style');
+      }
+    },
+
+    countProcessHeight() {
+      var compactProcesses = $(".js-process-index-group");
+      if (compactProcesses.length > 0) {
+        return $(compactProcesses[0]).outerHeight() * compactProcesses.length;
+      }
+
+      var processStartItems = $(".js-process-start-list-item");
+      if (processStartItems.length > 0) {
+        return $(processStartItems[0]).outerHeight() * processStartItems.length;
+      }
+      return 0;
     }
   };
 }
@@ -402,13 +414,18 @@ var FavouritesProcess = {
       }
     }
 
+    if (isContentOverPanelContainer) {
+      PortalLayout.removeLayoutContentPaddingBottom();
+    } else {
+      PortalLayout.removeJsStyleOnLayoutContent();
+    }
     userProcessList.css('margin-bottom', userFavoritesMarginBottom);
     userProcessList.find('.js-compact-processes-container').css('height', maxHeightUserProcessList);
     appProcessList.find('.js-user-default-process-list-content').css('height', maxHeightAppProcessList);
   },
 
   calculateHeightForFavorites : function() {
-    var mainContentHeight = $(window).outerHeight() - ($('.layout-topbar').outerHeight(true)||0);
+    var mainContentHeight = PortalLayout.getAvailableHeight();
     var processHeaderHeight = $('.js-process-widget-header').outerHeight(true)||0;
     var favoriteProcessHeaderHeight = $('.js-favorite-process-header').outerHeight(true)||0;
     var appFavoritesProcessHeaderHeight = $('.js-user-default-process-list-header').outerHeight(true)||0;

@@ -130,8 +130,8 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void selectFieldType(String type) {
-    getColumnManagementDialog().$("div[id$='field-type-selection']").waitUntil(Condition.appear, DEFAULT_TIMEOUT)
-        .shouldBe(getClickableCondition()).click();
+    getColumnManagementDialog().$("div[id$='field-type-selection'] span.ui-icon-triangle-1-s")
+        .waitUntil(Condition.appear, DEFAULT_TIMEOUT).waitUntil(Condition.enabled, DEFAULT_TIMEOUT).click();
     $("div[id$='column-management-form:field-type-selection_panel'] li[data-label='" + type + "']").click();
   }
 
