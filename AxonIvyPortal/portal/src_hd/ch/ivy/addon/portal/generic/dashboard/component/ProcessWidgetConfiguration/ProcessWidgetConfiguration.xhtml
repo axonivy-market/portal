@@ -66,7 +66,6 @@
 
       <!-- Widget Filters -->
       <h:panelGroup id="user-filter" layout="block" styleClass="ui-g-12 u-padding-0">
-      <h:outputLabel value="#{isCompact} - #{field.field}"></h:outputLabel>
         <h:panelGroup id="compact-filter" rendered="#{isCompact}">
           <h:outputLabel value="#{field.field}"></h:outputLabel>
           <ic:ch.ivy.addon.portalkit.component.dashboard.widget.ApplicationFilterColumn field="#{widget.applicationFilter}"
