@@ -25,7 +25,10 @@ public class ProcessDashboardWidget extends DashboardWidget {
   private boolean isPreview;
   private ApplicationColumnModel applicationFilter;
 
-  public ProcessDashboardWidget() {}
+  public ProcessDashboardWidget() {
+    applicationFilter = new ApplicationColumnModel();
+    applicationFilter.initDefaultValue();
+  }
 
   public ProcessDashboardWidget(ProcessDashboardWidget widget) {
     super(widget);
