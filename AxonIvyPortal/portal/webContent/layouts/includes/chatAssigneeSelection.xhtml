@@ -21,7 +21,7 @@
       <ic:com.axonivy.portal.component.UserSelection id="chat-user-selection-component"
         componentId="chat-user-selection" queryDelay="500" selectedUser="#{chatAssigneeBean.selectedUser}"
         isRenderedMessage="false" rendered="#{chatAssigneeBean.isAssignToUser}"
-        autoCompletePanelStyleClass="chat-user-selection">
+        autoCompletePanelStyleClass="chat-user-selection ui-fluid">
         <p:column>
           <pc:securityMemberNameAndAvatar securityMember="#{user}"
             displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}" />
@@ -34,7 +34,8 @@
       <ic:com.axonivy.portal.component.RoleSelection id="chat-role-selection-component"
         componentId="chat-role-selection" selectedRole="#{chatAssigneeBean.selectedRole}" queryDelay="500" cache="true"
         rendered="#{not chatAssigneeBean.isAssignToUser}" inputStyleClass="chat-role-selection-input" scrollHeight="400"
-        autoCompleteStyleClass="chat-role-selection" isRenderedMessage="false">
+        autoCompleteStyleClass="chat-role-selection" isRenderedMessage="false"
+        autoCompletePanelStyleClass="ui-fluid">
         <f:facet name="event">
           <p:ajax event="query" global="false" />
           <p:ajax event="itemSelect" update="chat-assignee-selection-form:chat-add-assignee-button" />

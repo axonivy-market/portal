@@ -16,10 +16,10 @@
     <ui:define name="taskListHeader">
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskListHeader dataModel="#{taskView.dataModel}" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
-        styleClass="TexAlCenter" componentId="task-custom" sortField="CustomerName"
+        styleClass="u-text-align-center" componentId="task-custom" sortField="CustomerName"
         value="#{ivy.cms.co('/DefaultColumns/CustomerName')}" responsiveStyleClass="u-hidden-lg-down" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
-        styleClass="TexAlCenter" componentId="task-custom" sortField="ShipmentDate"
+        styleClass="u-text-align-center" componentId="task-custom" sortField="ShipmentDate"
         value="#{ivy.cms.co('/DefaultColumns/ShipmentDate')}"
         responsiveStyleClass="u-hidden-lg-down js-hidden-when-expand-menu" />
     </ui:define>
@@ -49,7 +49,7 @@
         labelValue="#{task.customFields().stringField('CustomerName').getOrNull()}"
         responsiveStyleClass="u-hidden-lg-down" />
       <h:outputText id="shipment-date"
-        styleClass="TexAlCenter custom-datetime u-hidden-lg-down js-hidden-when-expand-menu"
+        styleClass="u-text-align-center custom-datetime u-hidden-lg-down js-hidden-when-expand-menu"
         value="#{task.customFields().timestampField('ShipmentDate').getOrNull()}"
         rendered="#{taskView.dataModel.isSelectedColumn('ShipmentDate')}">
         <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>

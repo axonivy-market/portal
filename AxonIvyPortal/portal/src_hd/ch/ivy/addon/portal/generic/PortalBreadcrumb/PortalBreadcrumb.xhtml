@@ -19,7 +19,7 @@
   <c:set var="case" value="#{not empty cc.attrs.case ? cc.attrs.case : ivy.case}" />
   <f:event listener="#{menuView.loadBreadcrumb(cc.attrs.viewName, task, case)}" type="preRenderComponent" />
   <h:form id="breadcrumb-form">
-  <p:breadCrumb id="breadcrumb" styleClass="portal-breadcrumb u-hidden-sm-down" model="#{menuView.breadcrumbModel}" rendered="#{not empty cc.attrs.viewName}" />
+  <p:breadCrumb id="breadcrumb" homeDisplay="text" styleClass="portal-breadcrumb u-hidden-sm-down" model="#{menuView.breadcrumbModel}"  rendered="#{not empty cc.attrs.viewName}" />
 
   <p:remoteCommand name="navigateToPortalHome"
     actionListener="#{logic.navigateToPortalHome(cc.attrs.isWorkingOnATask)}"

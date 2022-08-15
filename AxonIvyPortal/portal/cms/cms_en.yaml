@@ -569,7 +569,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewMode: View mode
     visible: Visible
     warning: Warning
-    welcomeToPortal: 'Welcome, please login:'
+    welcomeToPortal: Welcome, please login
     wrongDateFormat: Please enter valid date.
     year: year
     years: years
@@ -960,6 +960,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     selectedFormattingLanguage: Selected formatting language
     selectedLanguage: Selected language
   login:
+    AxonIvyPortal: Axon Ivy Portal
+    Copyright: Copyright Ⓒ Axon Ivy
+    PasswordRequiredMessage: The password is required
+    UsernameRequiredMessage: The username is required
     login: Login
     loginErrorMessage: You are not logged in or your username is not known by this application. Please consult your system administrator.
     loginFailed: Login failed

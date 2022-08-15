@@ -13,40 +13,38 @@
   <f:event listener="#{logic.init(cc.attrs.isWorkingOnATask)}" type="preRenderComponent" />
   
   <c:set var="task" value="#{not empty cc.attrs.task ? cc.attrs.task : ivy.task}" />
-  
-  <div id="#{cc.clientId}">
-    <p:commandLink id="logout-menu-item"
-      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
-      rendered="#{!userMenuBean.hiddenLogout}" actionListener="#{logic.logout(task)}" />
 
-    <p:confirmDialog id="logout-confirmation-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" 
-      closeOnEscape="true" widgetVar="logoutConfirmation" appendTo="@(body)" rendered="#{data.isWorkingOnATask}" responsive="true">
-      <h:form prependId="false">
-        <h:panelGroup>
-          <p:commandLink onclick="PF('logoutConfirmation').hide()" 
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"/>
-          <p:spacer width="15px" />
-          <p:commandButton id="reserve-task-button" actionListener="#{logic.reserveTask(task)}" process="@this"
-            icon="#{visibilityBean.generateButtonIcon('si si-touch-finger_1')}"
-            rendered="#{task.state != 'CREATED'}"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}"
-            styleClass="ui-confirmdialog-yes u-mar-right-5 secondary-btn" oncomplete="returnHomePage()" />
-          <p:commandButton actionListener="#{logic.logoutInDialog(task)}" process="@this"
-            icon="#{visibilityBean.generateButtonIcon('si si-logout-1')}"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
-            styleClass="ui-confirmdialog-yes u-mar-right-5" oncomplete="returnHomePage()" />
-          <p:tooltip for="reserve-task-button" trackMouse="true" rendered="#{task.state != 'CREATED'}"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leaveAndReserve')}" />
-        </h:panelGroup>
-      </h:form>
-      <f:facet name="message">
-        <h:outputText escape="false" rendered="#{task.state != 'CREATED'}" styleClass="ui-confirm-dialog-message"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLogout')}" />
-        <h:outputText escape="false" rendered="#{task.state == 'CREATED'}" styleClass="ui-confirm-dialog-message"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLogout')}" />
-      </f:facet>
-    </p:confirmDialog>
-  </div>
+  <p:commandLink id="logout-menu-item"
+    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
+    rendered="#{!userMenuBean.hiddenLogout}" actionListener="#{logic.logout(task)}" />
+
+  <p:confirmDialog id="logout-confirmation-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" 
+    closeOnEscape="true" widgetVar="logoutConfirmation" appendTo="@(body)" rendered="#{data.isWorkingOnATask}" responsive="true">
+    <h:form prependId="false">
+      <h:panelGroup>
+        <p:commandLink onclick="PF('logoutConfirmation').hide()" 
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"/>
+        <p:spacer width="15px" />
+        <p:commandButton id="reserve-task-button" actionListener="#{logic.reserveTask(task)}" process="@this"
+          icon="#{visibilityBean.generateButtonIcon('si si-touch-finger_1')}"
+          rendered="#{task.state != 'CREATED'}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}"
+          styleClass="ui-confirmdialog-yes u-mar-right-5 secondary-btn" oncomplete="returnHomePage()" />
+        <p:commandButton actionListener="#{logic.logoutInDialog(task)}" process="@this"
+          icon="#{visibilityBean.generateButtonIcon('si si-logout-1')}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
+          styleClass="ui-confirmdialog-yes u-mar-right-5" oncomplete="returnHomePage()" />
+        <p:tooltip for="reserve-task-button" trackMouse="true" rendered="#{task.state != 'CREATED'}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leaveAndReserve')}" />
+      </h:panelGroup>
+    </h:form>
+    <f:facet name="message">
+      <h:outputText escape="false" rendered="#{task.state != 'CREATED'}" styleClass="ui-confirm-dialog-message"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLogout')}" />
+      <h:outputText escape="false" rendered="#{task.state == 'CREATED'}" styleClass="ui-confirm-dialog-message"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLogout')}" />
+    </f:facet>
+  </p:confirmDialog>
 
   <script>
     function returnHomePage() {

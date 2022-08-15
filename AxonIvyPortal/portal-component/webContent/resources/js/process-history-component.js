@@ -1,4 +1,4 @@
-var Portal = {
+var PortalComponent = {
   init : function(responsiveToolkit) {
     // Swipe on mobile can cause problems with scroll
     PrimeFaces.widget.Paginator.prototype.bindSwipeEvents = function() {}
