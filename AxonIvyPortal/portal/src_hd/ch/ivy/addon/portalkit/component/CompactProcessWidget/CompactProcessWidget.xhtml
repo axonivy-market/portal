@@ -15,7 +15,7 @@
   <f:event listener="#{compactProcessWidgetBean.preRender}" type="preRenderComponent" />
 
   <p:remoteCommand id="init-processes" name="initProcesses" autoRun="true"
-      onstart="showLoadingText();" oncomplete="hideLoadingText();"
+      onstart="showLoadingText();" oncomplete="FavouritesProcess.setUpScrollBarForCompactProcessLists(false);hideLoadingText();"
       update="#{cc.clientId}-all-processes-container"
       global="false" action="#{compactProcessWidgetBean.initProcesses()}" async="true"
       immediate="true" process="@this" partialSubmit="true"/>
@@ -29,12 +29,7 @@
       <ui:include src="DefaultProcesses.xhtml" />
     </h:panelGroup>
   </div>
-  
-  <script type="text/javascript">
-       $(function() {
-          FavouritesProcess.setUpScrollBarForCompactProcessLists(false);
-      });
-  </script>
+
   <p:dialog id="broken-link-process-warning-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" modal="true"
     widgetVar="broken-link-process-warning-dialog-widget" appendTo="@(body)" closeOnEscape="true" responsive="true">
     <span class="ui-icon ui-icon-alert ui-confirm-dialog-severity"></span>

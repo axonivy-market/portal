@@ -85,10 +85,11 @@ public class UserFavoriteProcessPage extends TemplatePage {
       String defaultDisplayNameText = defaultDisplayName.getAttribute("value");
       WebElement settingLanguageDialog = findElementByCssSelector("div[id$='process-widget:favorite-process-name']");
       List<WebElement> inputFields = settingLanguageDialog
-          .findElements(By.cssSelector("div[class*='md-inputfield support-process-language-field']"));
+          .findElements(By.cssSelector("div[class*='support-process-language-field']"));
       for (WebElement languageGroup : inputFields) {
-        WebElement label = languageGroup.findElement(By.cssSelector("label[for$=':support-language']"));
-        WebElement input = languageGroup.findElement(By.cssSelector("input[id$=':support-language']"));
+        WebElement input = languageGroup.findElement(By.cssSelector("input[id*=':support-language-']"));
+        var inputId = input.getAttribute(ID_PROPERTY);
+        WebElement label = findElementByCssSelector("label[for$='"+ inputId +"']");
         input.clear();
         input.sendKeys(String.format("%s - %s", defaultDisplayNameText, label.getText()));
       }

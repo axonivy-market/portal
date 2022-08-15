@@ -35,36 +35,39 @@
           </p:commandLink>
           <p:selectBooleanCheckbox value="#{data.showSystemNotes}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemNotes')}"
             rendered="#{data.showSystemNotesChkbox}" id="show-system-notes-checkbox" styleClass="task-history-checkbox">
-            <p:ajax update="task-history-content-container" process="@this" partialSubmit="true" listener="#{logic.showHideSystemNotes}" />
+            <p:ajax update="task-history-content-container" process="@this" partialSubmit="true" listener="#{logic.showHideSystemNotes}" oncomplete="ResponsiveTable.init(':task-note-table')"/>
           </p:selectBooleanCheckbox>
         </h:panelGroup>
       </div>
     </div>
 
     <h:panelGroup id="task-history-content-container" styleClass="ui-g-12 u-padding-0">
-      <p:dataTable value="#{data.notes}" var="note" id="task-note-table" paginator="true"
+      <p:dataTable value="#{data.notes}" var="note" id="task-note-table" paginator="true" widgetVar="task-note-table"
         pageLinks="3" rows="#{cc.attrs.historyWidget.rowPerPage}" rowsPerPageTemplate="5,10,20,50"
         paginatorPosition="bottom" rendered="#{not empty data.notes}"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" paginatorAlwaysVisible="false"
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
         currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}" lazy="false">
+        <p:ajax event="page" oncomplete="ResponsiveTable.init(':task-note-table')"/>
+        <p:ajax event="sort" oncomplete="ResponsiveTable.init(':task-note-table')"/>
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}"
-          styleClass="u-truncate-text history-note ui-g-6 ui-xl-6 ui-lg-8 ui-md-12 ui-sm-12"
+          styleClass="history-note"
           sortBy="#{note.message}">
-          <span class="task-note truncate-note"> <p:commandLink id="note-message" value="#{note.message}" oncomplete="PF('#{cc.clientId}:view-note-dialog').show()"
-              actionListener="#{data.setFullNote(note.message)}" update="@widgetVar(#{cc.clientId}:view-note-dialog)" styleClass="content-link-history"/>
+          <span class="task-note truncate-note">
+            <p:commandLink id="note-message" value="#{note.message}" oncomplete="PF('#{cc.clientId}:view-note-dialog').show()"
+              actionListener="#{data.setFullNote(note.message)}" update="@widgetVar(#{cc.clientId}:view-note-dialog)" styleClass="content-link-history u-truncate-text"/>
           </span>
         </p:column>
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/author')}" 
           sortBy="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(note.writter, note.writterName)}"
-          styleClass="task-document-author u-truncate-text ui-g-3 ui-xl-3 ui-lg-4 ui-md-hidden ui-sm-hidden">
+          styleClass="task-document-author js-column-priority-2" width="200px">
           <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName securityMemberName="#{note.writterName}" securityMember="#{note.writter}" />
         </p:column>
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" sortBy="#{note.creationTimestamp}"
-          styleClass="task-history-date u-truncate-text ui-g-3 ui-xl-3 ui-lg-hidden ui-md-hidden ui-sm-hidden">
+          styleClass="task-history-date js-column-priority-3" width="150px">
           <h:outputText value="#{note.creationTimestamp.time}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
           </h:outputText>
@@ -101,7 +104,7 @@
           placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addNoteHelpText')}" styleClass="note-content-textarea" autoResize="false" />
       </h:panelGroup>
 
-      <h:panelGroup layout="block" styleClass="TexAlRight MarTop10">
+      <h:panelGroup layout="block" styleClass="u-text-align-right MarTop10">
         <p:commandLink id="cancel-add-note-command" actionListener="#{data.setNoteContent('')}" global="false"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this"
           onsuccess="PF('#{cc.clientId}:addNewNoteDialog').hide()" update="task-detail-note-content task-detail-create-note-msg" />
@@ -110,11 +113,9 @@
           icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" partialSubmit="true"
           process="task-detail-note-content #{p:resolveFirstComponentWithId('show-system-notes-checkbox', view).clientId}"
           update="task-detail-note-content task-detail-create-note-msg #{cc.clientId}:task-history-content-container"
-          actionListener="#{logic.createNote()}" oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('#{cc.clientId}:addNewNoteDialog').hide();}" />
+          actionListener="#{logic.createNote()}" oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('#{cc.clientId}:addNewNoteDialog').hide();handleTaskDetailsTables()}" />
       </h:panelGroup>
     </h:form>
   </p:dialog>
-  
-  <h:outputScript name="task-item-history.js" library="js" />
 </cc:implementation>
 </html>

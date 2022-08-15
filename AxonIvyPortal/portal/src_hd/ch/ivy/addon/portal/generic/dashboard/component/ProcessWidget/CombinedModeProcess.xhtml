@@ -40,7 +40,7 @@
 
   <h:form id="process-item-#{widget.id}" styleClass="ui-g-12 process-grid-item u-padding-0 widget-height-100" target="#{processTarget}">
     <div class="ui-g-12 #{isExpress ? 'express-workflow' : ''} #{isExternalLink ? 'external-link' : ''} combined-process widget-height-100">
-      <h:panelGroup id="process-item" layout="block" styleClass="grid-view-form TexAlCenter Fleft">
+      <h:panelGroup id="process-item" layout="block" styleClass="grid-view-form u-text-align-center Fleft">
         <!-- Process Icon -->
         <i id="icon" class="#{iconSelectionBean.generateIconWithFontFamily(widget.process.icon)} process-grid-view__icon process-grid-view__icon--combined"/>
         <!-- Process Name -->
@@ -49,7 +49,7 @@
         </div>
         <!-- Process Description -->
         <div class="ui-g-12 process-grid-view__description process-grid-view__description--combined">
-          <h:outputText id="process-description" value="#{widget.process.description}" styleClass="TexAlCenter line-clamp-text-5" />
+          <h:outputText id="process-description" value="#{widget.process.description}" styleClass="u-text-align-center line-clamp-text-5" />
           <p:tooltip id="info-workflow-tooltip" for="process-description" value="#{widget.process.description}" position="top" trackMouse="true"
             hideEvent="mouseleave click" />
         </div>

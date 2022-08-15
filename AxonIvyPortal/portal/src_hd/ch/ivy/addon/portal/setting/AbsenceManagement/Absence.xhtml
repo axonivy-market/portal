@@ -17,103 +17,84 @@
     position="center"
     responsive="true"
     styleClass="add-absence-dialog"
+    blockScroll="true"
     header="#{ivy.cms.co(data.isCreateMode ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/addAbsence' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/editAbsence')}">
 
-    <h:form id="absence-form" styleClass="ui-g-12">
-      <p:messages widgetVar="growl" closable="true" id="absence-messages" escape="false" styleClass="new-absence-messages"/>
-      <h:panelGroup id="input-adsence-data-section" layout="block">
-        <div id="absence-panel-grid" class="ui-fluid ui-g absence-panel-grid">
-          <h:panelGroup layout="block" styleClass="ui-g-12" rendered="#{data.canCreateAbsenceForOtherUsers}">
-            <ic:com.axonivy.portal.component.UserSelection id="absence-selection-component"
-              componentId="absence-username"
-              selectedUser="#{data.selectedUser}"
-              isRenderedMessage="false"
-              scrollHeight="200"
-              completeMethod="#{logic.autoCompleteForUserOnApp}"
-              isDisabled="#{!data.isCreateMode}"
-              isRequired="true"
-              requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/userNameRequired')}"
-              label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}" 
-              floatingLabel="true"
-              autoCompleteStyleClass="absence-user-selection">
-              <p:column>
-                <pc:securityMemberNameAndAvatar
-                  displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
-                  securityMember="#{user}" />
-              </p:column>
-              <f:facet name="event">
-                <p:ajax event="itemSelect" listener="#{logic.userSelectInAbsence}" update="#{p:resolveFirstComponentWithId('absence-messages', view).clientId} #{p:resolveFirstComponentWithId('save-absence', view).clientId}" />
-              </f:facet>
-            </ic:com.axonivy.portal.component.UserSelection>
-          </h:panelGroup>
-          <div class="ui-g-5 ui-sm-12">
-            <div class="md-inputfield">
-              <p:datePicker id="absence-start-date"
-                value="#{data.selectedAbsence.from}"
-                locale="#{localeBean.locale}"
-                showIcon="true"
-                converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}"
-                pattern="#{dateTimePatternBean.configuredDateWithoutTimePattern}" required="true"
-                requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateRequired')}">
-                <p:ajax event="dateSelect" listener="#{logic.dateChange}" update="#{p:resolveFirstComponentWithId('absence-messages', view).clientId} #{p:resolveFirstComponentWithId('save-absence', view).clientId}"/>
-              </p:datePicker>
-              <h:outputLabel for="absence-start-date"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/from')}:" />
-            </div>
-          </div>
-          <div class="ui-g-2 ui-sm-hidden" />
-          <div class="ui-g-5 ui-sm-12">
-            <div class="md-inputfield">
-              <p:datePicker id="absence-end-date"
-                value="#{data.selectedAbsence.until}"
-                showIcon="true"
-                locale="#{localeBean.locale}"
-                converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}"
-                pattern="#{dateTimePatternBean.configuredDateWithoutTimePattern}"
-                required="true"
-                requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateRequired')}">
-                <p:ajax event="dateSelect" listener="#{logic.dateChange}" update="#{p:resolveFirstComponentWithId('absence-messages', view).clientId} #{p:resolveFirstComponentWithId('save-absence', view).clientId}" />
-              </p:datePicker>
-              <h:outputLabel for="absence-end-date"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/till')}:" />
-            </div>
-          </div>
-
+    <h:form id="absence-form" styleClass="ui-g absence-panel-grid">
+      <p:messages widgetVar="growl" closable="true" id="absence-messages" escape="false"
+        styleClass="new-absence-messages ui-g-12" />
+      <h:panelGroup id="input-adsence-data-section" layout="block" styleClass="ui-g-12 u-padding-0 ui-fluid">
+        <h:panelGroup layout="block" styleClass="ui-g-12 u-padding-0" rendered="#{data.canCreateAbsenceForOtherUsers}">
+          <ic:com.axonivy.portal.component.UserSelection id="absence-selection-component" componentId="absence-username"
+            selectedUser="#{data.selectedUser}" isRenderedMessage="false" scrollHeight="200"
+            completeMethod="#{logic.autoCompleteForUserOnApp}" isDisabled="#{!data.isCreateMode}" isRequired="true"
+            requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/userNameRequired')}"
+            label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}"
+            autoCompleteStyleClass="absence-user-selection" autoCompletePanelStyleClass="ui-g-12"
+            labelPanelStyleClass="ui-g-12">
+            <p:column>
+              <pc:securityMemberNameAndAvatar
+                displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
+                securityMember="#{user}" />
+            </p:column>
+            <f:facet name="event">
+              <p:ajax event="itemSelect" listener="#{logic.userSelectInAbsence}"
+                update="#{p:resolveFirstComponentWithId('absence-messages', view).clientId} #{p:resolveFirstComponentWithId('save-absence', view).clientId}" />
+            </f:facet>
+          </ic:com.axonivy.portal.component.UserSelection>
+        </h:panelGroup>
+        <div class="ui-g-6 ui-sm-12 u-padding-0">
+          <h:outputLabel for="absence-start-date" styleClass="ui-g-12"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/from')}:" />
           <div class="ui-g-12">
-            <div class="md-inputfield">
-              <p:inputTextarea value="#{data.selectedAbsence.comment}"
-                id="comment"
-                autoResize="false"
-                styleClass="add-absences-dialog-input-comment"
-                rows="5"/>
-              <p:outputLabel for="comment" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/comment')}:" />
-            </div>
+            <p:datePicker id="absence-start-date" value="#{data.selectedAbsence.from}" locale="#{localeBean.locale}"
+              showIcon="true" converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}"
+              pattern="#{dateTimePatternBean.configuredDateWithoutTimePattern}" required="true"
+              requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateRequired')}">
+              <p:ajax event="dateSelect" listener="#{logic.dateChange}"
+                update="#{p:resolveFirstComponentWithId('absence-messages', view).clientId} #{p:resolveFirstComponentWithId('save-absence', view).clientId}" />
+            </p:datePicker>
           </div>
         </div>
+
+        <div class="ui-g-6 ui-sm-12 u-padding-0">
+          <h:outputLabel for="absence-end-date" styleClass="ui-g-12"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/till')}:" />
+          <div class="ui-g-12">
+            <p:datePicker id="absence-end-date" value="#{data.selectedAbsence.until}" showIcon="true"
+              locale="#{localeBean.locale}"
+              converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}"
+              pattern="#{dateTimePatternBean.configuredDateWithoutTimePattern}" required="true"
+              requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateRequired')}">
+              <p:ajax event="dateSelect" listener="#{logic.dateChange}"
+                update="#{p:resolveFirstComponentWithId('absence-messages', view).clientId} #{p:resolveFirstComponentWithId('save-absence', view).clientId}" />
+            </p:datePicker>
+          </div>
+        </div>
+
+        <p:outputLabel styleClass="ui-g-12" for="comment"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/comment')}:" />
+        <div class="ui-g-12">
+          <p:inputTextarea value="#{data.selectedAbsence.comment}" id="comment" autoResize="false"
+            styleClass="add-absences-dialog-input-comment" rows="5" />
+        </div>
       </h:panelGroup>
-      <h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer u-no-padding-right">
-        <p:commandLink id="close-add-absence-dialog"
-          rendered="#{data.isCreateMode}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
-          onclick="PF('absence-dialog').hide();"
-          styleClass="u-mar-right-15"/>
 
-        <p:commandLink id="close-edit-absence-dialog"
-          actionListener="#{logic.cancel}"
-          rendered="#{!data.isCreateMode}"
+      <div class="u-text-align-right ui-g-12">
+        <p:commandLink id="close-add-absence-dialog" rendered="#{data.isCreateMode}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('absence-dialog').hide();"
+          styleClass="u-mar-right-15" />
+
+        <p:commandLink id="close-edit-absence-dialog" actionListener="#{logic.cancel}" rendered="#{!data.isCreateMode}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          oncomplete="PF('absence-dialog').hide();"
-          styleClass="u-mar-right-15"/>
+          oncomplete="PF('absence-dialog').hide();" styleClass="u-mar-right-15" />
 
-        <p:commandButton process="@form"
-          id="save-absence"
-          disabled="#{data.validationError}"
+        <p:commandButton process="@form" id="save-absence" disabled="#{data.validationError}"
           oncomplete="if (args &amp;&amp; !args.validationFailed)PF('absence-dialog').hide();"
           icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-          actionListener="#{logic.saveAbsence}"
-          update="@(.absence-table) absence-messages @(.substitute-table) @(.substitution-table)"/>
-      </h:panelGroup>
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.saveAbsence}"
+          update="@(.absence-table) absence-messages @(.substitute-table) @(.substitution-table)" />
+      </div>
     </h:form>
   </p:dialog>
 </ui:composition>

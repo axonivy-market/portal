@@ -20,19 +20,15 @@
   <c:set var="hideActionButton" value="#{cc.attrs.hideActionButton or (!canModify and !showProcessViewer)}"/>
 
   <div id="process-action-group" class="process-action-group">
-    <h:panelGroup id="process-category" layout="block"
-      rendered="#{not empty process.category}"
-      styleClass="js-process-category process-category #{canModify ? 'has-menu-button' : ''}">
-      <h:outputText id="process-category-content"
-        styleClass="process-category-content u-truncate-text"
-        value="#{processItemActionBean.getDisplayProcessCategory(process)}" />
-      <p:tooltip for="process-category-content" value="#{process.category}" trackMouse="true" hideEvent="mouseleave click" />
-    </h:panelGroup>
+    <p:commandButton id="process-category" rendered="#{not empty process.category}"
+      styleClass="rounded-button ui-button-outlined process-category"
+      value="#{processItemActionBean.getDisplayProcessCategory(process)}"
+      readonly="true" type="button" onclick="return false;"/>
+    <p:tooltip for="process-category" value="#{process.category}" trackMouse="true" hideEvent="mouseleave click" />
 
     <h:panelGroup layout="block" rendered="#{!hideActionButton}">
-      <p:commandButton id="process-action-button" type="button"
-        styleClass="ui-button-icon-only icon-more-menu-button"
-        icon="si si-navigation-menu-horizontal" />
+      <p:commandButton id="process-action-button" icon="si si-navigation-menu-horizontal"
+        styleClass="rounded-button ui-button-outlined icon-more-menu-button" type="button"/>
 
       <p:menu id="process-action-menu" overlay="true"
         trigger="process-action-button"

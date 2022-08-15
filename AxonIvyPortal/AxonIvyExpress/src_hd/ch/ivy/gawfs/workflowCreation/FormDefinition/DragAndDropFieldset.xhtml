@@ -2,12 +2,10 @@
   xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:body>
-  <h:outputScript library="js" name="express-dyna-form.js" />
-
   <p:messages id="dnd-message" showDetail="false" closable="true" for="available-form-elements">
     <p:autoUpdate />
   </p:messages>
-  <p:panelGrid id="form-elements-container" styleClass="form-elements-container card ui-g-12 u-no-padding-top" layout="grid" columns="2"
+  <p:panelGrid id="form-elements-container" styleClass="form-elements-container" layout="grid" columns="2"
     columnClasses="form-elements-1st-column, form-elements-2nd-column">
 
     <p:dataView var="formelement"
@@ -20,10 +18,10 @@
         <span class="available-form-elements-title">#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/FieldSetAvailableFormelements')}</span>
       </f:facet>
       <f:facet name="emptyMessage">
-        <span>#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoFormelementsAvailable')}</span>
+        <span class="ui-g-12">#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoFormelementsAvailable')}</span>
       </f:facet>
       <p:dataViewListItem>
-        <p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle available-elements-panel ui-g card">
+        <p:panel id="pnl" styleClass="u-text-align-center vertical-align-middle available-elements-panel ui-g card">
           <div class="u-text-align-left ui-g-12">
             <div class="ui-g">
               <div class="ui-g-12 u-padding-0">
@@ -61,7 +59,7 @@
       </f:facet>
 
       <p:panelGrid styleClass="form-definition-table">
-        <p:row id="selected-form-elements-header-fieldset" styleClass="TexAlCenter form-definition-border-color">
+        <p:row id="selected-form-elements-header-fieldset" styleClass="u-text-align-center form-definition-border-color">
           <p:column colspan="2">
 
             <p:outputPanel id="selected-form-elements-header-panel" styleClass="selected-formelements-panel header-section">
@@ -82,7 +80,7 @@
                   <h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/BroadHeaderArea')}"/>
                 </f:facet>
                 <p:dataViewListItem>
-                  <p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle available-elements-panel ui-g card">
+                  <p:panel id="pnl" styleClass="u-text-align-center vertical-align-middle available-elements-panel ui-g card">
                     <div class="u-text-align-left ui-g-12">
                       <div class="ui-g">
                         <div class="ui-g-12 u-padding-0">
@@ -115,8 +113,8 @@
             </p:outputPanel>
           </p:column>
         </p:row>
-        <p:row styleClass="TexAlCenter form-definition-border-color">
-          <p:column colspan="1" id="selected-form-elements-left-panel-fieldset" styleClass="ui-g-6 TexAlCenter form-definition-border-color">
+        <p:row styleClass="u-text-align-center form-definition-border-color">
+          <p:column colspan="1" id="selected-form-elements-left-panel-fieldset" styleClass="ui-g-6 u-text-align-center form-definition-border-color">
 
             <p:outputPanel id="selected-form-elements-leftpanel-panel" styleClass="selected-formelements-panel left-section">
 
@@ -138,7 +136,7 @@
                   <h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/LeftColumn')}"/>
                 </f:facet>
                 <p:dataViewListItem>
-                  <p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle available-elements-panel ui-g card">
+                  <p:panel id="pnl" styleClass="u-text-align-center vertical-align-middle available-elements-panel ui-g card">
                     <div class="u-text-align-left ui-g-12">
                       <div class="ui-g">
                         <div class="ui-g-12 u-padding-0">
@@ -171,7 +169,7 @@
             </p:outputPanel>
           </p:column>
 
-          <p:column colspan="1" id="selected-formelements-rightpanel-fieldset" styleClass="TexAlCenter ui-g-6">
+          <p:column colspan="1" id="selected-formelements-rightpanel-fieldset" styleClass="u-text-align-center ui-g-6">
             <p:outputPanel id="selected-form-elements-rightpanel-panel" styleClass="selected-formelements-panel right-section">
               <p:outputPanel rendered="#{empty data.dragAndDropController.selectedFormelementsRightPanel}">
                 <br />
@@ -182,7 +180,7 @@
 
               <p:dataView id="selected-formelements-right-panel"
                 var="formelement"
-                styleClass="no-border TexAlCenter selected-form-elements-right-panel"
+                styleClass="no-border u-text-align-center selected-form-elements-right-panel"
                 value="#{data.dragAndDropController.selectedFormelementsRightPanel}"
                 rendered="#{not empty data.dragAndDropController.selectedFormelementsRightPanel}"
                 layout="list"
@@ -191,7 +189,7 @@
                   <h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/RightColumn')}"/>
                 </f:facet>
                 <p:dataViewListItem>
-                  <p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle available-elements-panel ui-g card">
+                  <p:panel id="pnl" styleClass="u-text-align-center vertical-align-middle available-elements-panel ui-g card">
                     <div class="u-text-align-left ui-g-12">
                       <div class="ui-g">
                         <div class="ui-g-12 u-padding-0">
@@ -226,7 +224,7 @@
           </p:column>
         </p:row>
 
-        <p:row id="selected-formelements-footer-fieldset" styleClass="TexAlCenter form-definition-border-color">
+        <p:row id="selected-formelements-footer-fieldset" styleClass="u-text-align-center form-definition-border-color">
           <p:column colspan="2">
             <p:outputPanel id="selected-form-elements-footer-panel" styleClass="selected-formelements-panel footer-section">
 
@@ -241,14 +239,14 @@
                 var="formelement"
                 value="#{data.dragAndDropController.selectedFormelementsFooter}"
                 rendered="#{not empty data.dragAndDropController.selectedFormelementsFooter}"
-                styleClass="no-border TexAlCenter selected-form-elements-footer"
+                styleClass="no-border u-text-align-center selected-form-elements-footer"
                 layout="list"
                 listIcon="si si-cog">
                 <f:facet name="header">
                   <h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/BroadFooterArea')}"/>
                 </f:facet>
                 <p:dataViewListItem>
-                  <p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle available-elements-panel ui-g card">
+                  <p:panel id="pnl" styleClass="u-text-align-center vertical-align-middle available-elements-panel ui-g card">
                     <div class="u-text-align-left ui-g-12">
                       <div class="ui-g">
                         <div class="ui-g-12 u-padding-0">
@@ -289,9 +287,9 @@
 
   <p:dialog id="preview-dialog" widgetVar="preview-dialog" styleClass="preview-dialog" width="70%" closable="true" modal="true" draggable="false"
     resizable="false" dynamic="true" fitViewport="true" header="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/FieldSetPreviewArea')}"
-    position="center" appendTo="@(body)" onShow="ExpressDynaform();" responsive="true">
+    position="center" appendTo="@(body)" responsive="true">
     <ui:include src="PreviewFieldset.xhtml" />
-    <h:panelGroup layout="block" class="u-dialog-footer ui-dialog-footer">
+    <h:panelGroup layout="block" class="u-text-align-right">
       <p:commandButton type="button" icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" onclick="PF('preview-dialog').hide();" />
     </h:panelGroup>

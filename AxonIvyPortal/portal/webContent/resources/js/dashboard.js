@@ -126,14 +126,27 @@ function setupScrollbar() {
   var gridstackItems = $('.grid-stack-item');
   if (gridstackItems.length > 0) {
     var container = $('.js-dashboard__body');
-    var headerContainer = ($('.js-dashboard__header').outerHeight(true)||0);
+    container.removeAttr('style');
+    var $dashboardHeader = $(".js-dashboard__header");
+    var headerContainer = ($dashboardHeader.outerHeight(true)||0);
     var announcementMessageContainer = ($('.js-announcement-message').outerHeight(true)||0);
-    var layoutContentPadding = ($('.layout-content').outerHeight(true)||0) - ($('.layout-content').height()||0);
-    var mainScreenHeight = ($('.js-layout-content').outerHeight(true)||0);
+    var mainScreenHeight = PortalLayout.getAvailableHeight();
 
-    var availableHeight = mainScreenHeight - headerContainer - announcementMessageContainer - layoutContentPadding;
+    var availableHeight = mainScreenHeight - headerContainer - announcementMessageContainer;
     if (!!availableHeight) {
+      var $dashboardWrapper = $(".js-dashboard__wrapper");
+      if (container.outerHeight() > availableHeight && !isMobileDevices()) {
+        PortalLayout.removeLayoutContentPaddingBottom();
+        $dashboardWrapper.css('margin-right', '-' + PortalLayout.getPaddingRightLayoutContent());
+        $dashboardHeader.css('padding-right', PortalLayout.getPaddingRightLayoutContent());
+      } else {
+        $dashboardWrapper.removeAttr('style');
+        $dashboardHeader.removeAttr('style');
+        PortalLayout.removeJsStyleOnLayoutContent();
+      }
+      availableHeight = availableHeight - PortalLayout.getYPaddingLayoutContent();
       container.outerHeight(availableHeight);
+      container.removeClass('u-invisibility');
     }
   }
 }

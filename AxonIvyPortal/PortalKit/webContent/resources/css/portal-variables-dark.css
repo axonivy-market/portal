@@ -1,96 +1,18 @@
 @charset "UTF-8";
 
 :root {
-  
-  
-  /* AxonIvy Colors: */
-  --ivy-primary-color-black: hsl(0, 0%, 11%);
-  --ivy-primary-color-white: hsl(0, 0%, 100%);
-  --ivy-primary-color-dark: var(--primary-color);
-  --ivy-primary-color-medium: hsl(192, 63%, 56%);
-  --ivy-primary-color-light: hsl(186, 63%, 73%);
-  --ivy-primary-color-grey-dark: hsl(0, 1%, 34%);
-  --ivy-primary-color-grey-medium: hsl(180, 1%, 61%);
-  --ivy-primary-color-grey-light: hsl(180, 1%, 85%);
-  --ivy-primary-color-grey-pale: hsl(180, 5%, 96%);
-  --ivy-primary-color-grey-basic: hsl(180, 9%, 98%);
-  --ivy-secondary-color-dark: hsl(62, 61%, 44%);
-  --ivy-secondary-color-medium: hsl(64, 70%, 49%);
-  --ivy-secondary-color-light: hsl(65, 78%, 54%);
-  --ivy-tertinary-color-red-dark: hsl(0, 63%, 52%);
-  --ivy-tertinary-color-red-medium: hsl(357, 83%, 61%);
-  --ivy-tertinary-color-red-light: hsl(0, 90%, 88%);
-  --ivy-tertinary-color-green-dark: hsl(164, 59%, 40%);
-  --ivy-tertinary-color-green-medium: hsl(137, 51%, 53%);
-  --ivy-tertinary-color-green-light: hsl(79, 65%, 78%);
-  --ivy-tertinary-color-yellow-dark: hsl(46, 100%, 58%);
-  --ivy-tertinary-color-yellow-medium: hsl(49, 99%, 65%);
-  --ivy-tertinary-color-yellow-light: hsl(47, 100%, 79%);
-
-  /* Colors for Portal */
-  --ivy-portal-blue-light: #90DDE9;
-  --ivy-portal-blue-dark: #007095;
-  --ivy-portal-color-black: #1B1B1B;
-  --ivy-portal-color-gray-dark: #565656;
-
   --accent-color: var(--ivy-portal-blue-light);
   --accent-text-color: var(--primary-dark-text-color);
-
-  /* Default Portal styles */
-  --default-font-size: 10px;
-  --default-body-font-size: 1.4rem;
-  --large-font-size: 1.4rem;
-  --small-font-size: 1.2rem;
-  --header-font-size: 2rem;
-  --left-menu-icon-font-size: 1.8rem;  
-  --portal-font-family: "Roboto";
-  --portal-icon-font-family: "StreamlineIcons";
-  --portal-icon-font-size: 1em;
-  --portal-icon-line-height: 1;
-  --portal-icon-ui-icon-font-size: 1.8rem;
-  --default-font-style: normal;
-  --default-font-weight: 400;
-  --inplace-edit-icon-font-size: 1.8rem;
-  --login-logo-height: 50px;
-  --home-logo-height: 42px;
-  --home-logo-width: calc(100% - 72px);
-  --small-home-logo-width: 42px;
-  --border-color: var(--ivy-primary-color-grey-light);
-  --body-background-color: var(--ivy-primary-color-white);
-  --accordion-header-active-background-color: var(--ivy-primary-color-grey-light);
-  --accordion-header-background-color: var(--ivy-primary-color-grey-light);
-  --case-task-state-done-or-resume-green: #4eb41c;
-  --box-shadow-color: hsla(0, 0%, 15%, 0.2);
-  --portal-border-radius: 5px;
-  --item-background-hover: rgba(144, 221, 233, 0.24);
-  --item-border-hover: 1px solid #90DDE9;
-  /* top bar*/
-  --top-bar-icon-size: 1.8rem;
-  --topbar-bg-color: var(--primary-color);
-  /* 3 colors of header bar */
-  --first-header-bar-color: var(--topbar-bg-color);
-  --second-header-bar-color: var(--topbar-bg-color);
-  --third-header-bar-color: var(--topbar-bg-color);
-
-  /* Task priority color */
-  --task-priority-low-color: #d4d4d4;
-  --task-priority-normal-color: #96dc82;
-  --task-priority-high-color: #ffc0c0;
-  --task-priority-exception-color: #ff5a5a;
+  --ajax-loader-color: var(--ivy-primary-color-dark);
 
   /* Task state color */
   --task-state-open-color: #C9C9C9;
   --task-state-in-progress-color: var(--ivy-tertinary-color-yellow-dark);
-  --task-state-done-color: #4eb41c;
+  --task-state-done-color: var(--ivy-primary-color-grey-dark);
   --task-state-reserved-color: rgba(black, 0.4);
   --task-state-system-color: rgba(black, 0.4);
   --task-state-failed-color: #EE4A52;
   --task-state-waiting-color: var(--ivy-tertinary-color-yellow-dark);
-  --task-state-reserved-font-size: 1.8rem;
-  --task-state-system-font-size: 1.8rem;
-  
-  /**Portal dialog*/
-  --portal-dialog-icon-font-size: 5rem;
   
   /* Color and border radius of Portal button e.g Add, Close, New, Save, OK .. */
   --cancel-button-background-color: var(--ivy-primary-color-grey-light);
@@ -100,40 +22,20 @@
   --button-secondary-bg-color: var(--ivy-primary-color-white);
   --button-secondary-text-color: var(--primary-color);
 
-  /* Color and border radius of context button, 
-  it only affects when button has attribute styleClass="context-button" */
+  /* Color and border radius of context button,  it only affects when button has attribute styleClass="context-button" */
   --context-button-border-radius: 0px;
   --context-button-background-color: var(--ivy-primary-color-grey-light);
   --context-button-state-hover-or-focus-background-color: var(--ivy-primary-color-grey-pale);
 
-  /* Text color of buttons */
-  --cancel-button-text-color: var(--ivy-primary-color-black);
-  --context-button-text-color: var(--ivy-primary-color-black);
-
-  /* Link */
-  --command-link-text-color: var(--ivy-primary-color-grey-medium);
-  --command-link-hover-text-color: var(--ivy-primary-color-grey-dark);
-  --command-link-active-text-color: var(--ivy-primary-color-grey-dark);
-  --command-link-disabled-text-color: var(--ivy-primary-color-grey-medium);
-
-  /* Fieldset */
-  --field-set-no-border-color: transparent;
-
   /* Widget header */
-  --widget-header-main-border-bottom-color: var(--ivy-primary-color-grey-light);
-  --widget-sort-menu-border-bottom-color: var(--ivy-primary-color-grey-light);
+  --widget-sort-menu-border-bottom-color: var(--ivy-primary-color-grey-medium);
   --widget-header-input-field-background-color: transparent;
   --widget-header-input-hover-background-color: transparent;
-  --widget-header-font-size: 1.8rem;
-  --widget-header-font-weight: bold;
-
-  /* Portal Card */
-  --card-box-shadow: 0px 4px 16px rgba(27, 27, 27, 0.16);
-  --card-border-radius: 5px;
 
   /* Announcement panel color */
   --announcement-background-color: var(--ivy-tertinary-color-yellow-light);
   --announcement-border-color: var(--ivy-tertinary-color-red-medium);
+  --announcement-color: var(--primary-dark-color);
 
   /* Process chain */
   --process-chain-menu-color: var(--primary-color);
@@ -361,63 +263,47 @@
   --chart-default-cases-by-category-color: hsl(195, 100%, 29%);
   
   /* Legend labels color for Doughnut Chart */
-  --chart-default-legend-color: hsl(0, 0%, 11%);
-
-  /* Sidebar */
-  --sidebar-app-text-color: var(--menuitem-text-color);
-  --sidebar-app-text-color: var(--primary-color);
-  --sidebar-mobile-menu-icon-font-size: 2.4rem;
-  --menuitem-active-bg-color: var(--primary-color);
-  --menuitem-active-text-color: var(--ivy-primary-color-white);
-  --menuitem-hover-bg-color: var(--ivy-primary-color-grey-light);
-  --menuitem-hover-text-color: var(--primary-color);
-
+  --chart-default-legend-color: var(--ivy-primary-text-color);
 
   /* Filter Widget */
   --advanced-filter-error-color: var(--ivy-tertinary-color-red-medium);
-  --widget-header-filter-color: var(--ivy-primary-color-black);
+  --widget-header-filter-color: var(--ivy-primary-text-color);
   --widget-advanced-filter-border: transparent;
   --widget-advanced-filter-hover-border: var(--ivy-primary-color-grey-light);
   --widget-filter-selection-container-border: transparent;
   --widget-advanced-filter-command-state-focus-background-color: none;
-  --widget-advanced-filter-overlay-panel-footer: var(--ivy-primary-color-grey-light);
+  --widget-advanced-filter-overlay-panel-footer: var(--surface-d, rgb(84 91 103 / 50%));
   --widget-advanced-filter-command-background-color: none;
   --widget-advanced-filter-background-color: none;
   --widget-advanced-filter-icon-color: hsla(180, 1%, 61%, 0.5);
   --widget-advanced-filter-icon-color-hover: var(--accent-color);
-  --widget-advanced-filter-hover-backround-color: var(--ivy-primary-color-grey-pale);
+  --widget-advanced-filter-hover-backround-color: transparent;
   --filter-name-label-color: var(--ivy-primary-color-grey-medium);
   --filter-selection-container-group-border-color: var(--ivy-primary-color-grey-medium);
   --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-medium);
 
   /* Item in Widget List */
-  --item-widget-background-color: var(--ivy-primary-color-white);
+  --item-widget-background-color: #3E4754;
   --item-widget-box-shadow: 0px 2px 8px var(--box-shadow-color);
   --item-widget-text-color: var(--ivy-primary-color-black);
 
   /* Process */
-  --process-navigator-item-color: var(--ivy-primary-color-black);
+  --process-navigator-item-color: var(--ivy-primary-color-grey-light);
+  --process-item-color-hover: var(--ivy-primary-color-white);
   --process-start-list-item-hover-background-color: var(--item-background-hover);
   --process-start-list-item-hover-border: var(--item-border-hover);
   --process-history-column-header-is-selected-color: var(--ivy-primary-color-black);
   --process-history-message-label-color: var(--ivy-primary-color-black);
-  --process-navigator-border: var(--ivy-primary-color-grey-light);
+  --process-navigator-border: var(--surface-d, rgb(84 91 103 / 50%));
   --process-navigator-item-selected-border: var(--primary-color);
   --process-history-column-header-border: var(--ivy-primary-color-grey-light);
   --process-history-list-data-scroller-background-color: transparent;
   --selected-process-nav-item-font-weight: bold;
   --process-start-list-item-name-font-weight: 400;
-  --process-nav-item-disable-color: hsla(0, 0%, 11%, 0.3);
+  --process-nav-item-disable-color: var(--ivy-primary-color-grey-light);
   --hovered-process-start-list-item-i-con-color: var(--primary-color);
   --hovered-user-process-start-list-item-icon-color: var(--primary-color);
   --process-warning-icon-color: var(--ivy-tertinary-color-red-medium);
-  --process-warning-icon-font-weight: bold;
-  --process-icon-font-size: 1.5rem;
-  --process-grid-icon-font-size: 4.8rem;
-  --process-grid-name-font-size: 1.8rem;
-  --process-grid-name-font-weight: 700;
-  --process-edit-name-font-size: 1.6rem;
-  --process-edit-name-font-weight: 700;
 
   /* Case Detail */
   --case-related-task-color: var(--ivy-primary-color-black);
@@ -438,52 +324,36 @@
   --case-detail-name-text-color-hight-light: var(--ivy-primary-color-black);
   /* Case List */
   --case-odd-row-background-color: var(--ivy-primary-color-grey-pale);
-  --priority-font-size: 1.8rem;
   /* Case Item */
   --history-note-color: var(--ivy-primary-color-black);
   --case-task-document-name-color: var(--ivy-primary-color-black);
   --case-item-action-steps-item-hover-background-color: var(--ivy-primary-color-grey-pale);
   --case-item-action-steps-item-hover-text-color: var(--ivy-primary-color-grey-dark);
-  --case-action-steps-contents-background-color: var(--ivy-primary-color-white);
   --case-action-separator-border-color: hsla(180, 1%, 61%, 0.5);
   --case-state-in-progress-color: var(--ivy-tertinary-color-yellow-dark);
   --case-state-done-color: #4eb41c;
-  --case-widget-column-header-border-bottom: var(--ivy-primary-color-grey-light);
+  --case-widget-column-header-border-bottom: var(--ivy-primary-color-grey-medium);
   --case-list-data-scroller-content-background-color: transparent;
   --case-header-action-cell-button-background-color: transparent;
   --header-action-action-left-border-color: var(--ivy-primary-color-grey-medium);
   --task-note-link-hover-color: var(--ivy-primary-color-grey-dark);
   --case-list-unsortable-header-cell-text-color: var(--ivy-primary-color-grey-medium);
   --case-list-item-background-color: hsla(0, 0%, 100%, 0.2);
-  --case-item-name-font-weight: bold;
-  --case-item-description-font-weight: 400;
-  --case-item-description-font-style: normal;
-  --case-item-description-font-size: 1.4.rem;
   --case-item-description-cell: var(--ivy-primary-color-grey-medium);
-  --case-item-description-font-size: var(--small-font-size);
-  --case-item-description-line-height: 1.6rem;
-  --case-item-name-line-height: 2rem;
-  --case-item-name-font-weight: 700;
   /* Task Widget */
-  --task-filter-selection-form-hover-background-color: var(--ivy-primary-color-grey-pale);
+  --task-filter-selection-form-hover-background-color: var(--item-background-hover);
   --compact-task-start-list-item-hover-background-color: var(--item-background-hover);
   --compact-task-start-list-item-hover-border: var(--item-border-hover);
-  --compact-task-start-info-color: var(--ivy-primary-color-black);
-  --compact-task-start-info-icon-color: hsla(0, 0%, 11%, 0.5);
-  --compact-task-start-info-icon-color: var(--ivy-primary-color-black);
-  --task-widget-overlay-panel-content-background-color: var(--ivy-primary-color-white);
-  --task-widget-link-color: var(--ivy-primary-color-black);
+  --compact-task-start-info-color: var(--text-color);
+  --compact-task-start-info-icon-color: var(--text-color);
+  --task-widget-link-color: var(--ivy-primary-text-color);
   --task-widget-header-column: var(--ivy-primary-color-grey-medium);
-  --task-action-hover-background-color: var(--ivy-primary-color-grey-pale);
-  --task-filter-separator-border-bottom: var(--ivy-primary-color-grey-light);
+  --menu-action-hover-text-color: var(--ivy-primary-color-grey-light);
+  --task-filter-separator-border-bottom: var(--ivy-primary-color-grey-dark);
   --task-view-container-data-scroller-content-background-color: transparent;
   --task-start-list-description-cell: var(--ivy-primary-color-grey-medium);
   --task-filter-delete-user-defined-icon-hover-color: var(--primary-color);
   --task-in-progress-checkbox-label-color: var(--primary-text-color);
-  --task-item-description-font-size: var(--small-font-size);
-  --task-item-description-line-height: 1.6rem;
-  --task-item-name-line-height: 2rem;
-  --task-item-name-font-weight: 700;
   /* Task Detail */
   --task-detail-paginator-color: var(--ivy-primary-color-black);
   --task-detail-paginator-header-corner-top-border-color: var(--ivy-primary-color-grey-light);
@@ -502,10 +372,8 @@
   --task-normal-priority-color: #49BAD6;
   --task-high-priority-color: #007095;
   --task-exception-priority-color: #EE4A52;
-  --task-state-border-radius: 10px;
-  --task-state-font-size: 1.2rem;
-  --task-state-line-height: 1.6rem;
   --task-state-suspended-background: #DADADA;
+  --task-state-suspended-color: var(--ivy-primary-color-grey-dark);
   --task-state-resumed-background: #FFE896;
   --task-state-done-background: #D4EBA2;
   --task-state-parked-background: rgba(0, 112, 149, 0.2);
@@ -525,7 +393,6 @@
   --email-setting-widget-header: var(--ivy-primary-color-white);
   /* Absences and Deputy */
   --substituted-user-text-color: var(--ivy-primary-color-black);
-  --delete-deputy-icon-font-size: var(--large-font-size);
   /* Awesome Icon Selection */
   --content-link-change-awesome-icon-color: var(--primary-color);
   --select-awesome-icon-button-font-weight: bold;
@@ -545,8 +412,6 @@
   --error-container-color: #546e7a;
   --error-message-background-color: var(--ivy-primary-color-white);
   --error-message-header-color: #e67163;
-  /* SelectCheckbox */
-  --config-checkbox-container-border: var(--ivy-primary-color-grey-light);
   /* Express */
   --express-input-switch-selection-background-color: var(--primary-color);
   --task-responsible-label-state-error-color: #e62a10;
@@ -586,14 +451,12 @@
   --express-import-status-success: var(--ivy-tertinary-color-green-medium);
   --express-import-status-warning: var(--ivy-tertinary-color-yellow-medium);
   --express-import-status-failed: var(--ivy-tertinary-color-red-medium);
-  --express-import-status-font-weight: bold;
   --express-import-paginator-background-color: hsla(180, 1%, 85%,0.5);
   --express-import-paginator-hover-button-background-color: hsla(180, 1%, 85%,0.5);
   --express-import-paginator-text-color: var(--ivy-primary-color-black);
-  --express-helper-loading-container-si-lg-font-size: 1.2em;
   /* Chat */
-  --chat-panel-background-color: var(--ivy-primary-color-grey-dark);
-  --no-group-chat-color: var(--ivy-primary-color-white);
+  --chat-panel-background-color: var(--surface-d, #D4D6D9);
+  --no-group-chat-color: var(--text-color, #69707A);
   --contact-card-icon-color: var(--ivy-primary-color-grey-dark);
   --contact-card-icon-offline-color: var(--ivy-primary-color-grey-light);
   --contact-card-background-color: var(--ivy-primary-color-white);
@@ -601,35 +464,27 @@
   --contact-card-icon-unread-message-color: var(--ivy-primary-color-white);
   --contact-card-icon-unread-message-background-color: var(--ivy-tertinary-color-red-dark);
   --contact-card-status-background-color: var(--ivy-tertinary-color-green-medium);
-  --contact-card-name-color: var(--ivy-primary-color-white);
+  --contact-card-name-color: var(--text-color, #69707A);
   --contact-notification-color: var(--ivy-primary-color-white);
   --contact-notification-background-color: var(--ivy-tertinary-color-red-dark);
   --contact-card-name: var(--ivy-primary-color-black);
   --message-list-background-color: var(--ivy-primary-color-grey-pale);
-  --message-list-header-background-color: var(--ivy-primary-color-grey-dark);
+  --message-list-header-background-color: var(--surface-d, #D4D6D9);
   --message-list-header-close-icon-background-color: var(--ivy-primary-color-grey-light);
   --chat-message-background-color: var(--ivy-primary-color-light);
   --chat-my-message-background-color: var(--ivy-secondary-color-light);
-  --message-chat-header-name-color: var(--ivy-primary-color-white);
+  --message-chat-header-name-color: var(--text-color, #69707A);
   --show-participants-link-color: var(--ivy-primary-color-white);
   --chat-form-background-color: var(--ivy-primary-color-white);
   --notification-badge-background-color: var(--ivy-tertinary-color-red-dark);
   --notification-badge-color: var(--ivy-primary-color-white);
-  --chat-contact-type-header-color: var(--ivy-primary-color-white);
+  --chat-contact-type-header-color: var(--text-color, #69707A);
   --chat-tooltip-color: var(--ivy-primary-color-white);
   --chat-tooltip-background-color: var(--ivy-primary-color-black);
   --participants-list-header-color: var(--ivy-primary-color-black);
   --chat-send-form-button-background-color: transparent;
   --message-list-content-send-input-background-color: transparent;
   --chat-user-in-role-border: var(--ivy-primary-color-grey-light);
-  --participants-list-header-font-weight: bold;
-  --message-chat-header-name-font-weight: bold;
-  --chat-contact-type-header-font-size: 2rem;
-  --close-chat-font-size: 1.4rem;
-  --contact-card-icon-font-size: 2rem;
-  --contact-card-icon-after-fontsize: 1.2rem;
-  --notification-badge-font-size: 1.2rem;
-  --notification-badge-icon-font-size: 2rem;
   --chat-box-shadow: 0 2px 4px 0 hsla(0, 0%, 11%, 0.2), 0 1px 10px 0 hsla(0, 0%, 11%, 0.12), 0 4px 5px 0 hsla(0, 0%, 11%, 0.14);
   --chat-contacts-box-shadow: 3px 0 6px hsla(0, 0%, 11%, 0.3);
   --close-chat-button-background-color: var(--ivy-primary-color-grey-light);
@@ -649,26 +504,10 @@
   --true-minimalistic-icon-font-weight: normal;
   --true-minimalistic-icon-font-variant: normal;
 
-  /*Table */
-  --data-table-row-header-color: var(--ivy-primary-color-black);
-  --data-table-row-header-bg-color: hsla(180, 1%, 85%, 0.5);
-  --data-table-border-color: #d8d8d8;
-  --right-border-inside-data-table: hsla(180, 1%, 61%, 0.5);
-  --left-border-inside-data-table: transparent;
-  --top-border-outside-data-table-color: hsla(180, 1%, 61%, 0.5);
-  --left-border-outside-data-table-color: hsla(180, 1%, 61%, 0.5);
-  --right-border-outside-data-table-color: hsla(180, 1%, 61%, 0.5);
-  --bottom-border-header-data-table-color: hsla(180, 1%, 61%, 0.5);
-  --top-border-body-express-many-checkbox-table-color: hsla(180, 1%, 61%, 0.5);
-  --ui-input-field-td-text-color: var(--ivy-primary-color-black);
-  --top-border-outside-tree-table-color: hsla(180, 1%, 61%, 0.5);
-  --bottom-border-outside-tree-table-color: hsla(180, 1%, 61%, 0.5);
-  --right-border-outside-tree-table-color: hsla(180, 1%, 61%, 0.5);
-  --right-border-inside-tree-table-color: hsla(180, 1%, 61%, 0.5);
-  --bottom-boder-body-tree-table-color: hsla(180, 1%, 61%, 0.5);
-  --left-border-outside-tree-table-color: hsla(180, 1%, 61%, 0.5);
   /* Others */
-  --body-dialog-title-font-size: 1.9rem;
+  --card-dialog-border-color: var(--surface-d, rgb(84 91 103 / 50%));
+  --border-color: var(--surface-d, rgb(84 91 103 / 50%));
+  --top-border-body-express-many-checkbox-table-color: hsla(180, 1%, 61%, 0.5);
   --hovered-item-select-one-menu-text-color: var(--ivy-primary-color-black);
   --hovered-item-select-one-list-box-text-color: var(--ivy-primary-color-black);
   --auto-complete-hover-color: var(--ivy-primary-color-black);
@@ -690,63 +529,35 @@
   --action-step-separator-border-color: #F4F4F4;
   --place-holder-text-color: var(--ivy-primary-color-grey-medium);
   --text-tab-default-color: var(--ivy-primary-color-grey-medium);
-  --no-item-icon-font-size: 8rem;
   --no-item-icon-color: var(--ivy-primary-color-grey-light);
-  --no-item-header-font-size: 2rem;
   /* Portal breadcrumb */
   --breadcrumb-background-color: transparent;
-  --breadcrumb-font-size: 1.4rem;
-  --breadcrumb-home-icon-font-size: 2rem;
   --breadcrumb-home-icon-color: var(--primary-color);
   --current-step-color: var(--primary-color);
   --current-step-opacity: 1; 
   /* Portal Global Ajax Status */
   --ajax-loading-bg: hsla(0, 0%, 100%, 0.9);
   --general-config-description-color: var(--ivy-primary-color-grey-medium);
-
   /* Security member display name */
   --security-member-tooltip-arrow-color: var(--ivy-primary-color-white);
-  --security-member-header-font-size: 12px;
-  --security-member-item-font-size: 10px;
-  --security-member-header-font-weight: bold;
-  
   /* Image Process Item */
   --image-process-header-background-color: hsla(0, 0%, 96%, 1);
   --image-process-header-background-color-hover: hsla(0, 0%, 86%, 1);
   --image-process-header-color: hsla(0, 0%, 49%, 1);
-  --image-process-header-font-size: 12px;
-
   /* Process information page */
-  --process-info-icon-font-size: 4rem;
-  --process-info-step-icon-font-size: 2rem;
   --process-info-step-icon-font-color: var(--primary-color);
-
   /* Widget header */
   --widget-filter-noti-background-color: var(--ivy-tertinary-color-red-medium);
-  --widget-filter-noti-font-size: var(--default-font-size);
   --widget-filter-noti-color: var(--ivy-primary-color-white);
-  --widget-filter-noti-font-weight: 700;
-
   /* New Dashboard */
-  --dashboard-table-column-small-screen-name-font-weight: bold;
-  --dashboard-table-column-small-screen-description-font-weight: 400;
-  --dashboard-table-column-small-screen-description-font-style: normal;
-  --dashboard-table-column-small-screen-description-font-size: 1.4.rem;
   --dashboard-table-column-small-screen-description-color: var(--ivy-primary-color-grey-medium);
-  --dashboard-table-empty-message-icon-font-size: 6rem;
-  --new-widget-dialog-title-font-weight: 700;
-  --new-widget-dialog-title-font-style: normal;
-  --new-widget-dialog-title-font-size: 1.4rem;
   --new-widget-dialog-title-color: var(--ivy-primary-color-black);
-  --new-widget-dialog-description-font-weight: 400;
-  --new-widget-dialog-description-font-style: normal;
-  --new-widget-dialog-description-font-size: 1.3rem;
   --new-widget-dialog-description-color: var(--ivy-primary-color-grey-medium);
-
+  --dashboard-type-color: var(--ivy-primary-color-grey-light);
   /* Process Start Widget*/
   --combined-normal-button-tab-color: hsla(0, 0%, 11%, 0.56);
   --combined-normal-button-tab-border-color: hsla(0, 0%, 11%, 0.32);
   --combined-active-button-tab-color: hsla(0, 0%, 11%, 1);
   --combined-button-tab-background-hover: rgba(144, 221, 233, 1);
   --combined-button-tab-background-focus: rgba(144, 221, 233, 0.5);
-  }
+}

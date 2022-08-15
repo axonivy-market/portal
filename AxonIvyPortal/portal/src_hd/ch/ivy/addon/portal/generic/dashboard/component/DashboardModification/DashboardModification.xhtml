@@ -19,7 +19,7 @@
         value="#{ivy.cms.co(isPublicDashboard ? '/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/EditPublicDashboards':'/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/EditPrivateDashboards')}"/>
 
       <p:commandLink actionListener="#{cc.attrs.listenerOnBackAction}"
-        update="#{cc.attrs.componentToUpdateOnBackAction}" process="@this" styleClass="Fright">
+        update="#{cc.attrs.componentToUpdateOnBackAction}" process="@this" styleClass="Fright display-inline-flex-center">
         <i class="si si-arrow-left-1" />
         <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}</span>
       </p:commandLink>

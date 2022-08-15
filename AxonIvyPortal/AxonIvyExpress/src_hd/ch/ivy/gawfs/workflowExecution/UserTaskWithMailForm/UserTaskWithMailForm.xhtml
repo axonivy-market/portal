@@ -13,35 +13,27 @@
 
     <ui:define name="content">
       <h:form id="task-form">
-        <p:messages id="messages-user-task-form" showDetail="false" closable="true" redisplay="false">
+        <p:messages id="messages-user-task-form" showDetail="false" closable="true" redisplay="false" showIcon="false">
           <p:autoUpdate />
         </p:messages>
 
         <p:tabView id="task-view">
           <p:tab id="custom-request-tab" title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/requestTabTitle')}"
             styleClass="dynaFormGrid">
-            <h:outputScript library="js" name="express-dyna-form.js" />
-    
             <h:panelGroup id="finished-user-tasks-container" layout="block" rendered="#{not empty data.executePredefinedWorkflowData.finishedTasks}">
               <ic:ch.ivy.gawfs.component.FinishedUserTasksForm id="finished-tasks-component"
                 finishedTasks="#{data.executePredefinedWorkflowData.finishedTasks}" />
             </h:panelGroup>
   
             <p:fieldset id="dyna-form-fieldset" toggleable="true" legend="#{ivy.cms.co('/Dialogs/WorkflowExecution/UserTaskForm/Formular')}"
-              styleClass="express-fieldset fieldset-no-border portal-card-container">
-  
-              <div class="ui-g-12 card express-fieldset-content portal-card-container">
+              styleClass="express-fieldset MarTop10">
+              <div class="ui-g-12 express-fieldset-content ">
                 <pe:dynaForm id="dyna-form" value="#{data.executePredefinedWorkflowData.currentTask.dynaFormController.model}" var="dynaData"
                   columnClasses="label-container, field-container" styleClass="user-task-dyna-form ui-fluid">
   
-                  <pe:dynaFormControl type="InputFieldText" for="hidden-input-field-text" styleClass="input-text-field">
-                    <h:inputHidden id="hidden-input-field-text" rendered="false"/>
-  
-                    <h:panelGroup styleClass="md-inputfield">
-                      <p:inputText id="inputFieldText" value="#{dynaData.value}" required="#{dynaData.required}"
-                        requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
-                      <p:outputLabel for="inputFieldText" value="#{dynaData.label}" />
-                    </h:panelGroup>
+                  <pe:dynaFormControl type="InputFieldText" for="inputFieldText" styleClass="input-text-field">
+                    <p:inputText id="inputFieldText" value="#{dynaData.value}" required="#{dynaData.required}"
+                      requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
                   </pe:dynaFormControl>
   
                   <pe:dynaFormControl type="InputFieldNumber" for="input-field-number" styleClass="input-field-number">
@@ -90,12 +82,6 @@
                 </pe:dynaForm>
               </div>
             </p:fieldset>
-  
-            <script>
-              $(document).ready(function() {
-                 var expressDynaForm = new ExpressDynaform();
-              })
-            </script>
           </p:tab>
           <p:tab id="mail-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/eMail')}">
             <h:panelGroup layout="block">
@@ -103,7 +89,7 @@
             </h:panelGroup>
           </p:tab>
         </p:tabView>
-        <p:outputPanel styleClass="TexAlRight">
+        <p:outputPanel styleClass="u-text-align-right MarTop20">
           <p:commandLink id="cancel-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true"
             actionListener="#{logic.cancel}" />
           <p:spacer width="15" />

@@ -42,7 +42,8 @@
           <ic:com.axonivy.portal.component.UserSelection id="user-activator-component" 
             componentId="user-activator-select" selectedUser="#{data.selectedUser}"
             rendered="#{data.isUserDelegated}" completeMethod="#{logic.autoCompleteForUserDelegate}"
-            isRenderedMessage="false">
+            isRenderedMessage="false"
+            autoCompletePanelStyleClass="ui-fluid">
             <p:column>
               <pc:securityMemberNameAndAvatar
                 displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}" securityMember="#{user}" />
@@ -56,7 +57,8 @@
           <ic:com.axonivy.portal.component.RoleSelection id="group-activator-select-component" scrollHeight="400"
             componentId="group-activator-select" selectedRole="#{data.selectedRole}" rendered="#{!data.isUserDelegated}"
             cache="true" queryDelay="500" completeMethod="#{logic.autoCompleteForRoleDelegate}"
-            isRenderedMessage="false">
+            isRenderedMessage="false"
+            autoCompletePanelStyleClass="ui-fluid">
             <p:column>
               <pc:securityMemberNameAndAvatar
                 displayName="#{role.getDisplayName()}" securityMember="#{role}" />
@@ -78,7 +80,7 @@
           </div>
         </h:panelGroup>
 
-        <h:panelGroup id="delegate-action-panel" layout="block" styleClass="ui-dialog-footer u-dialog-footer u-no-padding-right">
+        <h:panelGroup id="delegate-action-panel" layout="block" styleClass="u-text-align-right">
           <p:link id="cancel-task-delegate-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
             href="#" onclick="PF('task-delegate-dialog').hide(); return false;" />
           <p:spacer width="15px" />

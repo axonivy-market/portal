@@ -632,8 +632,9 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement getConfigureDashboardMenu() {
-    $("#user-settings-menu").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("#user-setting-container").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    $("#user-settings-menu").waitUntil(Condition.appear, DEFAULT_TIMEOUT).waitUntil(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("#user-setting-container").waitUntil(Condition.exist, DEFAULT_TIMEOUT).waitUntil(Condition.appear, DEFAULT_TIMEOUT)
+      .$("a#user-profile").waitUntil(Condition.appear, DEFAULT_TIMEOUT).waitUntil(getClickableCondition(), DEFAULT_TIMEOUT);
     return $("#dashboard-configuration");
   }
 
