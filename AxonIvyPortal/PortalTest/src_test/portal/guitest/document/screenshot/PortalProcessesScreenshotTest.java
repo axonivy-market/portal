@@ -111,19 +111,18 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
     executeDecorateJs("highlightEditSwitchProcessButton()");
     ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "how-to-edit-process-favorites");
     refreshPage();
-    processWidget.waitUtilProcessWidgetDisplayed();
+    processWidget.waitUtilProcessWidgetUserFavoriteDisplayed();
     processWidget.clickEditSwitchLink();
     executeDecorateJs("highlightEditStepUserProcess(true)");
     ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "how-to-delete-process-favorites");
     
     refreshPage();
-    processWidget.waitUtilProcessWidgetDisplayed();
+    processWidget.waitUtilProcessWidgetUserFavoriteDisplayed();
     processWidget.clickEditSwitchLink();
     executeDecorateJs("highlightEditStepUserProcess()");
     ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "how-to-order-process-favorites-individually");
     
     refreshPage();
-    processWidget.waitUtilProcessWidgetDisplayed();
     processWidget.waitUtilProcessWidgetUserFavoriteDisplayed();
     executeDecorateJs("highlightSortUserProcess()");
     ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "how-to-order-process-favorites-by-name");

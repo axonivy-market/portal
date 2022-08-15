@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.17",
   "id" : "153CACC26D0D4C3D",
   "data" : "portalKit_test.DataCreationData",
   "elements" : [ {
@@ -1638,6 +1638,7 @@
             "}",
             "",
             "// CREATE",
+            "/*",
             "NewRole serviceIntegrationTeamNewRole = NewRole",
             ".create(\"SERVICE_INTEGRATION_TEAM\")",
             ".displayName(\"Service Integration Team\")",
@@ -1659,7 +1660,8 @@
             "  role.addRoleMember(serviceIntegrationTeam);",
             "}",
             "",
-            "ivy.session.getSessionUser().addRole(serviceIntegrationTeam);"
+            "ivy.session.getSessionUser().addRole(serviceIntegrationTeam);",
+            "*/"
           ]
         }
       },

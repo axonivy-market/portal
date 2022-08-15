@@ -41,32 +41,34 @@
       </div>
 
       <!-- Widget Filters -->
-      <h:panelGroup id="user-filter" layout="block" styleClass="ui-g-12 u-padding-0">
-        <div class="ui-g-4">
+      <h:panelGroup id="user-filter" layout="block" styleClass="ui-g ui-g-12 u-padding-0">
+        <div class="ui-g-4 display-inline-flex-center">
           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticChartWidget')}" for="statistic-list" />
         </div>
         <div class="ui-g-8 ui-fluid">
-          <p:selectOneMenu id="statistic-list" value="#{widget.chart}"
-            filter="true" filterMatchMode="contains"
+          <p:autoComplete id="statistic-list" value="#{widget.chart}"
+            forceSelection="true" cache="true" dropdown="true" scrollHeight="350"
+            converter="statisticConverter" required="true"
             panelStyleClass="statistic-selection__panel"
             styleClass="statistic-configuration__select-chart"
-            height="350" maxlength="300"
-            placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/PleaseSelectChart')}"
-            filterPlaceholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/FilterChartText')}"
+            placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/FilterChartText')}"
+            requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticChartWidget')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
             widgetVar="statistic-list"
-            converter="statisticConverter" required="true"
-            requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticChartWidget')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}">
-            <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/PlaceholderChartOption')}" itemValue=""/>
-            <f:selectItems value="#{dashboardStatisticChartBean.availableCharts}" var="chart" itemValue="#{chart}"
-              itemLabel="#{dashboardStatisticChartBean.getDisplayChartName(chart)}" />
-
-            <f:facet name="footer">
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/Charts', [dashboardStatisticChartBean.availableCharts.size()])}"
-                styleClass="total-available-charts" />
-            </f:facet>
-          </p:selectOneMenu>
+            maxlength="300"
+            var="chart"
+            completeMethod="#{dashboardStatisticChartBean.completeCharts}"
+            itemValue="#{chart}"
+            itemLabel="#{dashboardStatisticChartBean.getDisplayChartName(chart)}"
+            emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/PlaceholderChartOption')}"
+            dynamic="true">
+            <p:column>
+                <h:outputText value="#{dashboardStatisticChartBean.getDisplayChartName(chart)}"/>
+            </p:column>
+          </p:autoComplete>
         </div>
-        <p:messages id="statistic-widget-validation-messages" closable="true" styleClass="ui-g-12"/>
+        <div class="ui-g-12 MarTop20">
+          <p:messages id="statistic-widget-validation-messages" closable="true" styleClass="ui-g-12"/>
+        </div>
       </h:panelGroup>
     </div>
   </h:panelGroup>

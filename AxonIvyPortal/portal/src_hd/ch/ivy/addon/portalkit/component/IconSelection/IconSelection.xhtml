@@ -18,14 +18,14 @@
     <p:inputText type="hidden" id="awesome-icon-hidden-value" value="#{cc.attrs.value}" />
     <p:commandLink id="change-icon-link" styleClass="select-awesome-icon-button" tabindex="#{cc.attrs.tabindex}"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/change')}" process="@this"
-      onclick="PF('#{cc.clientId}-select-icon-dialog').show();" oncomplete="loadStreamlineIcon();"
+      onclick="PF('#{cc.clientId}-select-icon-dialog').show();" oncomplete="loadStreamlineIcon('#{cc.clientId}-select-icon-dialog');"
       rendered="#{empty cc.attrs.isReadOnly or !cc.attrs.isReadOnly}" />
   </h:panelGroup>
   
   <p:dialog id="select-icon-dialog" widgetVar="#{cc.clientId}-select-icon-dialog" styleClass="select-icon-dialog"
     width="52%" modal="true" appendTo="@(body)"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/iconselection/iconSelectionDialogHeader')}" dynamic="true"
-    height="77vh" resizable="false" fitViewport="true" responsive="true">
+    resizable="false" fitViewport="true" responsive="true">
     <div class="search-icon-name-container">
       <p:inputText id="search-icon-name-field" onkeyup="searchIconByName(this)" 
         placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/iconselection/seachIconByNamePlaceHolder')}"
@@ -35,7 +35,7 @@
       <p:fieldset legend="Streamline" id="streamline-icon">
         <h:panelGroup layout="block" id="icons" />
       </p:fieldset>
-      <p:fieldset legend="Awesome" id="awesome-icon">
+      <p:fieldset legend="Awesome" id="awesome-icon" styleClass="MarTop20">
         <ui:repeat var="icon" value="#{masterDataBean.awesomeIcons}">
           <h:link id="awesome-icon" styleClass="icon-selection-dialog-selecting-icon"
             onclick="updateSelectedIConDisplay('#{icon.iconCode}', 'awesome');PF('#{cc.clientId}-select-icon-dialog').hide();return false;">
@@ -58,7 +58,7 @@
       iconHiddenValueJQ.val(iconCode);
     }
     
-    function loadStreamlineIcon(){
+    function loadStreamlineIcon(selectionIconDialog) {
       var iconsStylesheet = Object.values(document.styleSheets).filter(sheet => sheet.href?.includes("StreamlineIcons.css"))[0];
       var icons = Object.values(iconsStylesheet.rules).filter(rule => rule.selectorText?.startsWith(".si-"));
       icons.sort((a, b) => (a.selectorText > b.selectorText) ? 1 : -1);
@@ -87,6 +87,7 @@
       
       var searchField = document.getElementById("#{cc.clientId}:search-icon-name-field");
       searchIconByName(searchField);
+      PF(selectionIconDialog).initPosition();
     }
    
   </script>

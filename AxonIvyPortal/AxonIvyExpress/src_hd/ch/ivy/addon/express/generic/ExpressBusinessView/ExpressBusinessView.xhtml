@@ -19,9 +19,7 @@
     <ui:param name="actualStepIndex" value="#{expressBusinessViewBean.getFinishedActualStepIndex()}" />
 
     <ui:define name="content">
-      <h:outputScript library="js" name="express-dyna-form.js" />
-      <h:form id="express-view-form" styleClass="express-view-form portal-card-container">
-
+      <h:form id="express-view-form" styleClass="express-view-form">
         <h:panelGroup id="user-finished-tasks-container" layout="block" rendered="#{not empty expressBusinessViewBean.finishedTasks}">
           <ic:ch.ivy.gawfs.component.FinishedUserTasksForm id="finished-tasks-component"
             finishedTasks="#{expressBusinessViewBean.finishedTasks}"
@@ -43,12 +41,6 @@
         </div>
       </h:form>
     </ui:define>
-
-    <script>
-      $(document).ready(function() {
-        var expressDynaForm = new ExpressDynaform();
-      })
-    </script>
 
     <ui:define name="css">
       <h:outputStylesheet library="css" name="portal_express.css" />

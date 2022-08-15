@@ -17,13 +17,13 @@
   <f:event listener="#{approvalResultBean.groupingApprovalResult(cc.attrs.approvalResults)}" type="preRenderComponent" />
   <ui:repeat id="approval-result-container" value="#{approvalResultBean.approvalResultGroups}" var="approvalResultGroup"
     varStatus="approvalTaskStatus">
-    <p:fieldset id="approval-result-fieldset" styleClass="finished-task-fieldset express-fieldset fieldset-no-border ui-g portal-card-container" toggleable="true"
+    <p:fieldset id="approval-result-fieldset" styleClass="finished-task-fieldset express-fieldset ui-g MarTop10" toggleable="true"
       collapsed="#{cc.attrs.lastApprovalCollapsed}">
       <f:facet name="legend">
         <h:outputText id="approval-result-fieldset-legend" value="#{approvalResultGroup.get(0).taskName}" />
       </f:facet>
       <!-- APPROVAL RESULT -->
-      <div class="ui-g-12 card approval-result-content">
+      <div class="ui-g-12 approval-result-content">
         <p:outputLabel id="form-approval-label" value="#{ivy.cms.co('/Dialogs/WorkflowExecution/FinishedTasksForm/ApprovalResult')}"
           styleClass="review-content-title" />
         <p:dataTable id="approval-result-table" value="#{approvalResultGroup}" var="approval" styleClass="approval-result-table" lazy="false">
