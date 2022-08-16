@@ -17,7 +17,7 @@ Project modules
 The application consists of 5 process modules. For detailed information
 of each module, refer to :ref:`architecture` .
 
--  portal-component
+-  portal-components
 
 -  PortalStyle
 
@@ -35,11 +35,11 @@ deployment </doc/8.0/engine-guide/administration/deployment.html>`.
 Portal mode
 -----------
 
--  **Single application mode**: One Portal application on one engine. It must include portal-component,
+-  **Single application mode**: One Portal application on one engine. It must include portal-components,
    PortalKit, PortalTemplate and PortalStyle modules.
 
 -  **Multi applications mode**: Multiple Portal applications on one engine.
-   Each Portal application must include portal-component, PortalKit, PortalTemplate and PortalStyle modules.
+   Each Portal application must include portal-components, PortalKit, PortalTemplate and PortalStyle modules.
 
 .. important::
    In multi applications mode, if you need overall dashboard, create
@@ -62,7 +62,7 @@ Engine without license (demo mode)
 The engine automatically deploys the Portal application with default users. You do
 not need to deploy anything (Single application mode).
 
-.. table:: 
+.. table::
 
    +-----------------------+-----------------------+-----------------------+
    | Username              | Password              | Description           |
@@ -84,7 +84,7 @@ not need to deploy anything (Single application mode).
 Engine with license (production mode)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The engine does not deploy anything, you need to deploy and configure Portal application 
+The engine does not deploy anything, you need to deploy and configure Portal application
 manually.
 
 Single application mode
@@ -112,8 +112,8 @@ to make your existing Portal working with current Axon Ivy Engine.
 
 How to migrate
 --------------
-   
-.. important:: 
+
+.. important::
    If you call any Portal API which is not mentioned in the document. It could be changed or removed without inform. Don't forget
    to re-implement the concerning API in your own project.
 
@@ -147,6 +147,10 @@ In engine
    project.
 4. Follow detailed migration notes for each version below.
 
+Migrate 8.0.27 to 8.0.28
+-----------------------
+Project ``portal-component`` changed its name to ``portal-components``, and also changed package name, cms, and CSS file name. Please update your dependency accordingly.
+
 Migrate 8.0.x to 8.0.27
 -----------------------
 1. :ref:`The deprecated User Selection component <components-additional-components-old-user-selection>` is still working well without further migration. But if you want to upgrade it to :ref:`the new User Selection component <components-additional-components-user-selection>`, please follow :ref:`these migration steps <components-additional-components-migrate-from-old-user-selection>`.
@@ -158,7 +162,7 @@ Migrate 8.0.x to 8.0.27
 
 Migrate 8.0.x to 8.0.19
 -----------------------
-Portal date filter such as TaskCreationDateFilter, CaseCreationDateFilter... messages ``<p:messages for="..." />`` have been added for each calendar component to validate date format. 
+Portal date filter such as TaskCreationDateFilter, CaseCreationDateFilter... messages ``<p:messages for="..." />`` have been added for each calendar component to validate date format.
 If you use have any customized date filters in your project, update template accordingly.
 
 Migrate 8.0.x to 8.0.16
@@ -168,8 +172,8 @@ If you have overridden variables in customization.scss, please move those change
 
 Migrate 8.0.x to 8.0.13
 -----------------------
-Portal filter such as TaskNameFilter, CaseNameFilter... package name has been change from 
-``ch.ivy.addon.portalkit.casefilter`` to ``ch.ivy.addon.portalkit.casefilter.impl``, ``ch.ivy.addon.portalkit.taskfilter`` to ``ch.ivy.addon.portalkit.taskfilter.impl``. 
+Portal filter such as TaskNameFilter, CaseNameFilter... package name has been change from
+``ch.ivy.addon.portalkit.casefilter`` to ``ch.ivy.addon.portalkit.casefilter.impl``, ``ch.ivy.addon.portalkit.taskfilter`` to ``ch.ivy.addon.portalkit.taskfilter.impl``.
 If you use these filters in your project, update pakage name accordingly.
 
 Migrate 8.0.x to 8.0.12
@@ -203,13 +207,13 @@ Portal Template to your project and re-apply your customization.
 Migrate 8.0.1 to 8.0.2
 ----------------------
 
-1. ``CalculateTaskDelegate.mod`` callable process has been changed. If you overrode this callable process before, 
+1. ``CalculateTaskDelegate.mod`` callable process has been changed. If you overrode this callable process before,
 remove old implementation and adapt it accordingly.
 We changed ``IUser`` to ``UserDTO``, ``IRole`` to ``RoleDTO`` and ``ISecurityMember`` to ``SecurityMemberDTO``.
 
 2. In this Portal version, we introduced ``External link`` as a process item in Full Process List.
-You need to migrate external links for all users in User Favorites to Full Process List. 
-Please deploy :download:`ExternalLinkMigration.iar <documents/ExternalLinkMigration.iar>` project 
+You need to migrate external links for all users in User Favorites to Full Process List.
+Please deploy :download:`ExternalLinkMigration.iar <documents/ExternalLinkMigration.iar>` project
 then run ``migrateExternalLinkFromUserFavorites.ivp``
 and wait until it is redirected to another page without error (E.g: Homepage).
 
@@ -240,7 +244,7 @@ Follow these migration guides.
    migration-notes/8-0-0/installation-migration-notes-8-0-0-task-body
    migration-notes/8-0-0/installation-migration-notes-8-0-0-case-body
    migration-notes/8-0-0/installation-migration-notes-8-0-0-hidden-task-case
-   
+
 .. _installation-release-notes:
 
 Release notes
@@ -252,7 +256,7 @@ releases of Axon Ivy.
 Changes in 8.0.27
 -----------------
 
-- Introduce some components in new ``portal-component`` project.
+- Introduce some components in new ``portal-components`` project.
 
    - :ref:`User Selection Component <components-additional-components-user-selection>`
 
@@ -290,7 +294,7 @@ Changes in 8.0.8
 
 Changes in 8.0.3
 ----------------
--  User Selection Component is introduced, refer to :ref:`User 
+-  User Selection Component is introduced, refer to :ref:`User
    Selection <components-additional-components-user-selection>` for more details.
 
 Changes in 8.0
@@ -298,14 +302,14 @@ Changes in 8.0
 
 -  Upgraded to Serenity's theme, refer to :ref:`Migration
    Notes <installation-migration-notes-8-0-0>` for more details.
-   
+
 -  Support to see case if user is an owner. Administrator can activate/deactivate it via the ``ENABLE_CASE_OWNER`` Portal settings, default is false.
-   
+
 -  Support to start a task in IFrame, refer to :ref:`IFrame in Portal <iframe-in-portal>`.
 
 -  Refactor ``TaskTemplate.xhtml``, refer to :ref:`Migration
    Notes <installation-migration-notes-8-0-0-migrate-templates>` for more details.
-   
+
 -  Remove ``caseBody`` inside CaseWidget, refer to :ref:`Migration
    Notes <installation-migration-notes-8-0-0-case-body>` for more details.
 
