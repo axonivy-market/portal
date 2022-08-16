@@ -7,7 +7,20 @@
     <ui:param name="managedBean" value="#{dashboardDetailModificationBean}" />
     <ui:param name="viewName" value="EDIT_DASHBOARD_DETAILS" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/pageTitle')}</ui:define>
-    
+
+    <ui:define name="headerTitle">
+      <c:forEach var="dashboard" items="#{dashboardDetailModificationBean.dashboards}" varStatus="dashboardStatus">
+        <p:commandLink id="dashboard-title-#{dashboardStatus.index}"
+          actionListener="#{dashboardDetailModificationBean.onDashboardChange(dashboardStatus.index)}"
+          update="grid-stack dashboard-title-container" process="@this"
+          oncomplete="loadGrid();dashboardToolKit.responsive();"
+          styleClass="dashboard__title #{dashboardDetailModificationBean.currentDashboardIndex == dashboardStatus.index ? 'dashboard__title--active':''}">
+          <h:outputText rendered="#{dashboard.isPublic}" styleClass="si si-network-share" />
+          <span>#{dashboard.title}</span>
+        </p:commandLink>
+      </c:forEach>
+    </ui:define>
+
     <ui:define name="headerAction">
       <p:commandLink id="back-to-configuration" styleClass="dashboard__switch-mode u-mar-right-15 display-inline-flex-center"
         actionListener="#{dashboardDetailModificationBean.navigatetoDashboardConfigurationPage}"
@@ -69,7 +82,7 @@
           <p:commandButton id="reset-dashboard-button" widgetVar="reset-dashboard-button"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
             actionListener="#{dashboardDetailModificationBean.restore()}"
-            update="grid-stack dashboard-title-container dashboard-title-dropdown-container dashboard-header-action"
+            update="grid-stack dashboard-title-container dashboard-header-action"
             icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
             onclick="disabledResetDashboardActions()"/>
         </ui:define>

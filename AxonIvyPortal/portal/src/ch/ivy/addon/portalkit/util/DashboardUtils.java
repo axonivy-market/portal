@@ -8,11 +8,13 @@ import java.util.UUID;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardOrder;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -20,6 +22,15 @@ import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.IUser;
 
 public class DashboardUtils {
+
+  public final static String DASHBOARD_MENU_PREFIX = "_js__";
+  public final static String DASHBOARD_MENU_POSTFIX  = "-main-dashboard";
+  public final static String DASHBOARD_MENU_ITEM_POSTFIX = "-sub-dashboard";
+  public final static String DASHBOARD_MENU_PATTERN = DASHBOARD_MENU_PREFIX + "%s" + DASHBOARD_MENU_POSTFIX;
+  public final static String DASHBOARD_MENU_ITEM_PATTERN = DASHBOARD_MENU_PREFIX + "%s" + DASHBOARD_MENU_ITEM_POSTFIX;
+  public final static String DASHBOARD_PAGE_URL = "/ch.ivy.addon.portal.generic.dashboard.PortalDashboard/PortalDashboard.xhtml";
+  public final static String DASHBOARD_MENU_JS_CLASS = "js-dashboard-group";
+  public final static String HIGHLIGHT_DASHBOARD_ITEM_METHOD_PATTERN = "highlightDashboardItem('%s')";
 
   public static List<Dashboard> getVisibleDashboards(String dashboardJson) {
     List<Dashboard> dashboards = jsonToDashboards(dashboardJson);
@@ -116,5 +127,40 @@ public class DashboardUtils {
 
   private static String readDashboardBySessionUser() {
     return currentUser().getProperty(PortalVariable.DASHBOARD.key);
+  }
+
+  public static List<Dashboard> collectDashboards() {
+    List<Dashboard> visibleDashboards = DashboardUtils.getAllVisibleDashboardsOfSessionUser();
+    List<DashboardOrder> dashboardOrders = DashboardUtils.getDashboardOrdersOfSessionUser();
+    Map<String, Dashboard> idToDashboard = DashboardUtils.createMapIdToDashboard(visibleDashboards);
+    List<Dashboard> collectedDashboards = new ArrayList<>();
+    for (DashboardOrder dashboardOrder : dashboardOrders) {
+      if (dashboardOrder.getDashboardId() == null) {
+        continue;
+      }
+      Dashboard currentDashboard = idToDashboard.remove(dashboardOrder.getDashboardId());
+      if (dashboardOrder.isVisible() && currentDashboard != null) {
+        collectedDashboards.add(currentDashboard);
+      }
+    }
+    collectedDashboards.addAll(idToDashboard.values());
+
+    return collectedDashboards;
+  }
+
+  public static void highlightDashboardMenuItem(String selectedDashboardId) {
+    PrimeFaces.current().executeScript(String.format(HIGHLIGHT_DASHBOARD_ITEM_METHOD_PATTERN, selectedDashboardId));
+  }
+
+  public static void updateSelectedDashboardToSession(String selectedMenuItemId) {
+    if (StringUtils.endsWith(selectedMenuItemId, DASHBOARD_MENU_POSTFIX)
+        || StringUtils.endsWith(selectedMenuItemId, DASHBOARD_MENU_ITEM_POSTFIX)) {
+      var menuIds = selectedMenuItemId.split(":");
+      var dashboardIds = menuIds[menuIds.length - 1].split(DASHBOARD_MENU_PREFIX);
+      var dashboardId = dashboardIds[dashboardIds.length - 1];
+      dashboardId = dashboardId.replace(DASHBOARD_MENU_POSTFIX, "");
+      dashboardId = dashboardId.replace(DASHBOARD_MENU_ITEM_POSTFIX, "");
+      Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), dashboardId);
+    }
   }
 }

@@ -23,7 +23,7 @@ public class NewDashboardPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return ".dashboard__header";
+    return ".js-dashboard__wrapper";
   }
 
   public CaseWidgetNewDashBoardPage selectCaseWidget(String caseWidgetName) {
@@ -295,7 +295,8 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement getCompactModeProcessFilterPanelSaveFilters(boolean isExpanded) {
-    return getCompactModeProcessFilterPanel(isExpanded).$("div[id$=':widget-saved-filters-items");
+    return getCompactModeProcessFilterPanel(isExpanded).waitUntil(appear, DEFAULT_TIMEOUT)
+        .$("div[id$=':widget-saved-filters-items");
   }
 
   public SelenideElement getCompactModeProcessFilterPanelProcessName(boolean isExpanded) {
@@ -634,8 +635,9 @@ public class NewDashboardPage extends TemplatePage {
 
   public SelenideElement getConfigureDashboardMenu() {
     $("#user-settings-menu").waitUntil(Condition.appear, DEFAULT_TIMEOUT).waitUntil(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("#user-setting-container").waitUntil(Condition.exist, DEFAULT_TIMEOUT).waitUntil(Condition.appear, DEFAULT_TIMEOUT)
-      .$("a#user-profile").waitUntil(Condition.appear, DEFAULT_TIMEOUT).waitUntil(getClickableCondition(), DEFAULT_TIMEOUT);
+    $("#user-setting-container").waitUntil(Condition.exist, DEFAULT_TIMEOUT)
+           .waitUntil(Condition.appear, DEFAULT_TIMEOUT).$("a#user-profile").waitUntil(Condition.appear, DEFAULT_TIMEOUT)
+           .waitUntil(getClickableCondition(), DEFAULT_TIMEOUT);
     return $("#dashboard-configuration");
   }
 
@@ -646,16 +648,21 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public ElementsCollection getDashboardCollection() {
-    return $$("a.dashboard__title");
+    if (!$(".js-layout-wrapper").waitUntil(appear, DEFAULT_TIMEOUT).attr("class").contains("layout-static")) {
+      $(".layout-menu-container").waitUntil(appear, DEFAULT_TIMEOUT).waitUntil(getClickableCondition(), DEFAULT_TIMEOUT).contextClick();
+      $("a[id$='user-menu-required-login:toggle-menu']").waitUntil(appear, DEFAULT_TIMEOUT).waitUntil(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    }
+    return $(".layout-menu").waitUntil(appear, DEFAULT_TIMEOUT).$$("li.menu-item-dashboard a.DASHBOARD");
   }
-  
+
   public SelenideElement getDashboardActive() {
-    return $("a.dashboard__title--active").waitUntil(appear, DEFAULT_TIMEOUT);
+    return getDashboardCollection().stream().filter(menuItem -> menuItem.parent().has(Condition.cssClass("active-menuitem"))).findFirst().get();
   }
   
   public void selectDashboard(int index) {
-    $$("a.dashboard__title").get(index).shouldBe(getClickableCondition()).click();
-    $("a.dashboard__title--active").waitUntil(appear, DEFAULT_TIMEOUT);
+    var selectDashboard = getDashboardCollection().get(index);
+    selectDashboard.shouldBe(getClickableCondition()).click();
+    selectDashboard.parent().waitUntil(Condition.cssClass("active-menuitem"), DEFAULT_TIMEOUT);
   }
 
   public StatisticWidgetDashboardPage selectStatisticWidget() {
