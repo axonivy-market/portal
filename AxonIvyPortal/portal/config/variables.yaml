@@ -54,6 +54,9 @@ Variables:
     # It will be shown as the default charts in the statistic page.
     # [file: json]
     StatisticCharts:
+    
+    # [file: json]
+    PasswordValidation:
 
     # For switch on/off the display legacy UI.
     ShowLegacyUI: false
