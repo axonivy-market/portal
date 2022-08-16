@@ -3,7 +3,7 @@ package ch.ivy.addon.portalkit.document;
 import java.io.InputStream;
 
 /**
- * @deprecated use DocumentDetector in package com.axonivy.portal.component.document
+ * @deprecated use DocumentDetector in package com.axonivy.portal.components.document
  *
  */
 @Deprecated(since="8.0.27")

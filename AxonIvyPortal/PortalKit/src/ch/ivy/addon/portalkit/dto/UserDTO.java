@@ -4,7 +4,7 @@ import ch.ivyteam.ivy.scripting.objects.Record;
 import ch.ivyteam.ivy.security.IUser;
 
 /**
- * @deprecated use UserDTO in package com.axonivy.portal.component.dto
+ * @deprecated use UserDTO in package com.axonivy.portal.components.dto
  *
  */
 @Deprecated(since = "8.0.27")

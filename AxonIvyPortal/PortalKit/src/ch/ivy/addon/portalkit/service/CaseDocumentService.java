@@ -31,7 +31,7 @@ import ch.ivyteam.ivy.workflow.document.IDocumentService;
 import ch.ivyteam.ivy.workflow.document.Path;
 
 /**
- * @deprecated use CaseDocumentService in com.axonivy.portal.component.service
+ * @deprecated use CaseDocumentService in com.axonivy.portal.components.service
  *
  */
 @Deprecated(since="8.0.27")

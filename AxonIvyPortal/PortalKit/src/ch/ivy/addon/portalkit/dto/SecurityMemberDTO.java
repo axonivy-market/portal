@@ -5,7 +5,7 @@ import java.io.Serializable;
 import ch.ivyteam.ivy.security.ISecurityMember;
 
 /**
- * @deprecated use SecurityMemberDTO in package com.axonivy.portal.component.dto
+ * @deprecated use SecurityMemberDTO in package com.axonivy.portal.components.dto
  *
  */
 @Deprecated(since="8.0.27")
