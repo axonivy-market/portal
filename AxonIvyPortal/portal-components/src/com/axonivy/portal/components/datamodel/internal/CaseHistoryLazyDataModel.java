@@ -86,7 +86,7 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
     params.put("caseSearchCriteria", criteria);
     Map<String, Object> response =
         IvyAdapterService.startSubProcess(
-            "findCasesByCriteria(com.axonivy.portal.component.ivydata.searchcriteria.CaseSearchCriteria,Integer,Integer)", params, new ArrayList<>());
+            "findCasesByCriteria(com.axonivy.portal.components.ivydata.searchcriteria.CaseSearchCriteria,Integer,Integer)", params, new ArrayList<>());
     return (List<ICase>) response.get("cases");
   }
 
@@ -107,7 +107,7 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
     Map<String, Object> params = new HashMap<>();
     params.put("caseSearchCriteria", criteria);
     Map<String, Object> response =
-        IvyAdapterService.startSubProcess("countCasesByCriteria(com.axonivy.portal.component.ivydata.searchcriteria.CaseSearchCriteria)", params,
+        IvyAdapterService.startSubProcess("countCasesByCriteria(com.axonivy.portal.components.ivydata.searchcriteria.CaseSearchCriteria)", params,
             new ArrayList<>());
     return ((Long) response.get("totalCases")).intValue();
   }

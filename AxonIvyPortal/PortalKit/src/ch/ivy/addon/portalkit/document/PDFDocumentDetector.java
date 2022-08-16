@@ -10,7 +10,7 @@ import com.itextpdf.text.pdf.PdfReader;
 import ch.ivyteam.ivy.environment.Ivy;
 
 /**
- * @deprecated use PDFDocumentDetector in package com.axonivy.portal.component.document
+ * @deprecated use PDFDocumentDetector in package com.axonivy.portal.components.document
  *
  */
 @Deprecated(since="8.0.27")
