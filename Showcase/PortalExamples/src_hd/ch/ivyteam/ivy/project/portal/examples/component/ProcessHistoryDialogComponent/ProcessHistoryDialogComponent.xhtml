@@ -12,7 +12,7 @@
 				update="process-history-dialog" />
 			<p:dialog widgetVar="process-history-dialog" id="process-history-dialog" width="800" height="500" resizable="false"
 				header="Process history of Beta Company" modal="true" onShow="processHistory.setup();">
-				<ic:com.axonivy.portal.component.ProcessHistory businessEntityId="beta" chunkSize="10" scrollHeight="400" dateTimePattern="#{dateTimePatternBean.configuredPattern}" />
+				<ic:com.axonivy.portal.components.ProcessHistory businessEntityId="beta" chunkSize="10" scrollHeight="400" dateTimePattern="#{dateTimePatternBean.configuredPattern}" />
 			</p:dialog>
 		</ui:define>
 	</ui:composition>

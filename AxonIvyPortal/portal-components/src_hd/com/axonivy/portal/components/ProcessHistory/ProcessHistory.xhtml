@@ -1,0 +1,142 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="businessEntityId" required="true" />
+  <cc:attribute name="chunkSize" default="20" />
+  <cc:attribute name="scrollHeight" default="600" />
+  <cc:attribute name="emptyMessage" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/ProcessHistory/DefaultEmptyMessage')}" />
+  <cc:attribute name="showCasesOfOwner" default="false" />
+  <cc:attribute name="dateTimePattern" default="dd.MM.yyyy HH:mm" />
+  <cc:attribute name="isOpenInFrame" default="false" />
+</cc:interface>
+
+<cc:implementation>
+  <h:outputStylesheet library="css" name="portal-components.css" />
+  <h:outputStylesheet library="css" name="process-history-component.css" />
+
+  <h:panelGroup id="widget-column-header" class="process-history-component process-history-column-header js-case-widget-column-header ">
+    <ui:include src="ColumnHeader.xhtml">
+      <ui:param name="id" value="name-desc-column-header" />
+      <ui:param name="styleClass" value="process-history-list-name-header" />
+      <ui:param name="sortedField" value="NAME" />
+      <ui:param name="sortable" value="true" />
+      <ui:param name="value" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/ProcessHistory/CaseColumn/Name')}" />
+    </ui:include>
+    <ui:include src="ColumnHeader.xhtml">
+      <ui:param name="id" value="id-column-header" />
+      <ui:param name="styleHeaderClass" value="case-header-default" />
+      <ui:param name="styleClass" value="process-history-list-header-default u-hidden-sm-down" />
+      <ui:param name="sortedField" value="ID" />
+      <ui:param name="sortable" value="true" />
+      <ui:param name="value" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/ProcessHistory/CaseColumn/Id')}" />
+    </ui:include>
+    <ui:include src="ColumnHeader.xhtml">
+      <ui:param name="id" value="pm-column-header" />
+      <ui:param name="styleHeaderClass" value="case-header-default" />
+      <ui:param name="styleClass" value="process-history-list-header-default process-history-list-width-120 u-hidden-sm-down" />
+      <ui:param name="sortedField" value="PROCESS_NAME" />
+      <ui:param name="sortable" value="true" />
+      <ui:param name="value" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/ProcessHistory/CaseColumn/ProcessName')}" />
+    </ui:include>
+    <ui:include src="ColumnHeader.xhtml">
+      <ui:param name="id" value="created-date-column-header" />
+      <ui:param name="styleHeaderClass" value="case-header-default" />
+      <ui:param name="styleClass" value="process-history-list-header-default u-hidden-sm-down" />
+      <ui:param name="sortedField" value="CREATION_TIME" />
+      <ui:param name="value" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/ProcessHistory/CaseColumn/CreationTime')}" />
+      <ui:param name="sortable" value="true" />
+    </ui:include>
+    <ui:include src="ColumnHeader.xhtml">
+      <ui:param name="id" value="creator-column-header" />
+      <ui:param name="styleHeaderClass" value="case-header-default" />
+      <ui:param name="styleClass"
+        value="process-history-list-header-default process-history-list-width-120 js-hidden-when-expand-menu u-hidden-md-down" />
+      <ui:param name="sortedField" value="CREATOR" />
+      <ui:param name="sortable" value="true" />
+      <ui:param name="value" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/ProcessHistory/CaseColumn/Creator')}" />
+    </ui:include>
+    <ui:include src="ColumnHeader.xhtml">
+      <ui:param name="id" value="state-column-header" />
+      <ui:param name="styleHeaderClass" value="case-header-default" />
+      <ui:param name="styleClass" value="process-history-list-header-default u-hidden-sm-down" />
+      <ui:param name="sortedField" value="STATE" />
+      <ui:param name="sortable" value="true" />
+      <ui:param name="value" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/ProcessHistory/CaseColumn/State')}" />
+    </ui:include>
+  </h:panelGroup>
+
+  <h:panelGroup id="process-history-list" layout="block" styleClass="process-history-component process-history-list">
+    <f:event type="preRenderComponent" listener="#{processHistoryComponentBean.initData(cc.attrs.businessEntityId, cc.attrs.showCasesOfOwner)}" />
+    <p:dataScroller id="case-list-scroller" value="#{processHistoryComponentBean.dataModel}" var="case" scrollHeight="#{cc.attrs.scrollHeight}"
+      chunkSize="#{cc.attrs.chunkSize}" lazy="true" mode="inline" rowIndexVar="rowIndex" styleClass="js-case-list" buffer="70"
+      widgetVar="process-history-scroller">
+      <div id="case-item" class="js-case-item case-list-item #{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}">
+        <h:panelGroup id="case-item-container" styleClass="case-header-container case-header-data" layout="block">
+          <h:panelGroup id="case-info-row" styleClass="case-info-row js-case-start-link">
+            <p:ajax event="click" listener="#{logic.openDetails(case, cc.attrs.isOpenInFrame)}" />
+
+            <!-- Column NAME -->
+            <h:panelGroup class="case-header-name-desc-cell u-truncate-text" layout="block">
+              <h:panelGroup rendered="#{processHistoryComponentBean.dataModel.isSelectedColumn('NAME')}">
+                <h:outputText id="case-header-name-cell" styleClass="case-header-name-cell"
+                  value="#{empty case.getName() ? ivy.cms.co('/Dialogs/com/axonivy/portal/components/ProcessHistory/CaseNameNotAvailable') : case.name}" />
+                <h:outputText id="description-cell" styleClass="case-header-desc-cell" escape="false"
+                  value="#{processHistoryComponentBean.formatCaseDescription(case.description)}" />
+              </h:panelGroup>
+            </h:panelGroup>
+
+            <!-- Column ID -->
+            <h:outputText id="case-id-cell" value="#{case.id}" rendered="#{processHistoryComponentBean.dataModel.isSelectedColumn('ID')}"
+              styleClass="case-header-id-cell case-header-default-cell process-history process-history-list process-history-list-cell-default u-hidden-sm-down" />
+
+            <!-- Column PROCESS NAME -->
+            <h:outputText value="#{case.processName}" rendered="#{processHistoryComponentBean.dataModel.isSelectedColumn('PROCESS_NAME')}"
+              styleClass="process-history process-history-list process-history-list-cell-default process-history-list-width-120 u-hidden-sm-down" />
+
+            <!-- Column CREATION TIME -->
+            <h:outputText id="case-creation-time-cell" value="#{case.startTimestamp}"
+              rendered="#{processHistoryComponentBean.dataModel.isSelectedColumn('CREATION_TIME')}"
+              styleClass="datetime-cell case-header-default-cell process-history process-history-list process-history-list-cell-default u-hidden-sm-down">
+              <f:convertDateTime pattern="#{cc.attrs.dateTimePattern}" />
+            </h:outputText>
+
+            <!-- Column CREATOR-->
+            <h:outputText id="creator" rendered="#{processHistoryComponentBean.dataModel.isSelectedColumn('CREATOR')}"
+              styleClass="case-header-creator-cell process-history process-history-list process-history-list-cell-default process-history-list-width-120 js-hidden-when-expand-menu u-hidden-md-down"
+              value="#{processHistoryComponentBean.format(case.getCreatorUser().getFullName(), case.getCreatorUserName())}" />
+            <p:tooltip rendered="#{not empty case.getCreatorUserName()}" for="creator"
+              value="#{processHistoryComponentBean.formatWithTip(case.getCreatorUser().getFullName(), case.getCreatorUserName())}" trackMouse="true" />
+
+            <!-- Column STATE-->
+            <h:panelGroup rendered="#{processHistoryComponentBean.dataModel.isSelectedColumn('STATE')}" id="case-state-cell"
+              styleClass="case-header-default-cell process-history process-history-list process-history-list-cell-default u-hidden-sm-down">
+              <h:panelGroup id="case-state-cell-in-progress" styleClass="fa fa-play-circle case-state-in-progress"
+                rendered="#{case.state eq 'CREATED' or case.state eq 'RUNNING'}" />
+              <h:panelGroup id="case-state-cell-done" styleClass="fa fa-check-circle case-state-done" rendered="#{case.state eq 'DONE'}" />
+              <h:panelGroup id="case-state-cell-destroyed" rendered="#{case.state eq 'DESTROYED' or case.state eq 'ZOMBIE'}"
+                styleClass="fa fa-exclamation-circle case-state-zombie-destroyed" />
+            </h:panelGroup>
+            <p:tooltip for="case-state-cell" value="#{processHistoryComponentBean.getState(case)}" trackMouse="true" hideEvent="mouseleave click" />
+
+          </h:panelGroup>
+        </h:panelGroup>
+      </div>
+    </p:dataScroller>
+  </h:panelGroup>
+
+  <h:panelGroup id="process-history-empty-data-panel" rendered="#{processHistoryComponentBean.dataModel.rowCount eq 0}"
+    class="process-history-component process-history-empty-message">
+    <p:outputLabel value="#{cc.attrs.emptyMessage}" />
+  </h:panelGroup>
+
+  <!-- Responsive Case list -->
+  <h:outputScript name="process-history-component.js" library="js" />
+  <script type="text/javascript">
+    processHistory.setup(#{processHistoryComponentBean.dataModel.rowCount eq 0});
+  </script>
+
+</cc:implementation>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+        
+    <wb-module deploy-name="portal-components-examples">
+                
+        <wb-resource deploy-path="/" source-path="/webContent" tag="defaultRootSource"/>
+                
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+                
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_hd"/>
+                
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_ws"/>
+                
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_wsproc"/>
+                
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_dataClasses"/>
+                
+        <property name="java-output-path" value="/portal-components-examples/classes"/>
+        <property name="context-root" value="portal-components-examples"/>
+            
+    </wb-module>
+    
+</project-modules>
