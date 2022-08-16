@@ -121,7 +121,7 @@
 
           <div id="applied-filters-container" class="applied-filters-container">
             <!-- Title on mobile -->
-            <div class="widget-title-mobile js-widget-title-mobile">
+            <div class="widget-title-mobile js-widget-title-mobile u-hidden-md-up">
               <span class="top-header-main-title widget-header-main-title">
                 <span>#{cc.attrs.title}</span>
                 <h:outputText styleClass="js-task-count-mobile" rendered="#{!data.dataModel.disableTaskCount}" />
@@ -347,7 +347,7 @@
             itemValue="#{taskWidgetBean.adminTaskStateIncluded ? 'ALL_ADMINS' : 'ALL_USERS'}" />
         </p:selectOneRadio>
       </h:panelGrid>
-      <h:panelGroup layout="block" class="u-dialog-footer ui-dialog-footer">
+      <h:panelGroup layout="block" class="u-text-align-right">
         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('save-filter-set-dialog').hide();" />
         <p:spacer width="15px" />
         <p:commandButton id="filter-save-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
