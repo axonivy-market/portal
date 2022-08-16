@@ -148,7 +148,7 @@ In engine
 4. Follow detailed migration notes for each version below.
 
 Migrate 8.0.27 to 8.0.28
------------------------
+------------------------
 Project ``portal-component`` changed its name to ``portal-components``, and also changed package name, cms, and CSS file name. Please update your dependency accordingly.
 
 Migrate 8.0.x to 8.0.27
