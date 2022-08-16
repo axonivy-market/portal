@@ -244,7 +244,8 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void openCompactModeProcessFilterPanel(boolean isExpanded) {
-    getCompactModeProcessFilterLink(isExpanded).shouldBe(Condition.appear).click();
+    var processFilter = getCompactModeProcessFilterLink(isExpanded).shouldBe(Condition.appear);
+    scrollToElementThenClick(processFilter);
     getCompactModeProcessFilterPanelSaveFilters(isExpanded).waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 
