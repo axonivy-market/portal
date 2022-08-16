@@ -10,18 +10,18 @@ Architecture
       only used internally in Portal. Don't use them because they can be
       changed in next versions.
 
-Currently Portal system contains the following modules: portal-component, PortalStyle, PortalKit,
+Currently Portal system contains the following modules: portal-components, PortalStyle, PortalKit,
 PortalTemplate, AxonIvyExpress. AxonIvyExpress is the only optional module, other modules are mandatory.
 
 |process-module-structure|
 
 .. _architecture-portalkit:
 
-portal-component
-================
+portal-components
+=================
 
-This module contains 5 JSF Ivy components such as User Selection, Role Selection,
-Document Table, Process Chain and Process History. The end user can use these
+This module contains JSF Ivy components such as User Selection, Role Selection,
+Document Table, Process Chain and Process History,... The end user can use these
 components without other modules (PortalStyle, PortalKit, PortalTemplate and AxonIvyExpress modules).
 
 PortalKit
