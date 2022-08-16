@@ -19,33 +19,18 @@
           onstart="resetPortalLeftMenuState();"
           immediate="true" process="@this" update="@none" global="false"/>
       </h:form>
-      <div class="ui-g js-dashboard__wrapper">
+      <div class="ui-g js-dashboard__wrapper #{managedBean.isReadOnlyMode ? 'js-view-mode':''}">
       <!-- Dashboard content -->
       <ui:fragment>
         <h:outputStylesheet library="css" name="dashboard.css" />
-        <div class="dashboard__header ui-g-12 js-dashboard__header">
-
-          <h:panelGroup id="dashboard-title-container" styleClass="u-hidden-sm-down #{managedBean.isReadOnlyMode ? 'dashboard__title-container--flex ui-g-12' : 'dashboard__title-container--inline-flex ui-lg-8 ui-md-7'} dashboard__title-container">
-            <c:forEach var="dashboard" items="#{managedBean.dashboards}" varStatus="dashboardStatus">
-              <p:commandLink id="dashboard-title-#{dashboardStatus.index}" actionListener="#{managedBean.onDashboardChange(dashboardStatus.index)}"
-                update="grid-stack dashboard-title-container dashboard-title-dropdown-container" process="@this"
-                oncomplete="loadGrid();dashboardToolKit.responsive();"
-                styleClass="dashboard__title #{managedBean.currentDashboardIndex == dashboardStatus.index ? 'dashboard__title--active':''}">
-                <h:outputText rendered="#{dashboard.isPublic}" styleClass="si si-network-share" />
-                <span>#{dashboard.title}</span>
-              </p:commandLink>
-            </c:forEach>
-          </h:panelGroup>
-          <h:panelGroup id="dashboard-title-dropdown-container" styleClass="u-hidden-md-up ui-g-12 padding-0 dashboard__title-dropdown-container ui-fluid" layout="block">
-            <p:selectOneMenu id="dashboard-title-dropdown" value="#{managedBean.selectedDashboardId}" styleClass="dashboard__title-dropdown" >
-              <f:selectItems value="#{managedBean.dashboards}" var="dashboard" itemLabel="#{dashboard.title}" itemValue="#{dashboard.id}" />
-              <p:ajax event="change" process="@this" listener="#{managedBean.onDashboardChangeByDropdown}"
-                oncomplete="loadGrid();dashboardToolKit.responsive();" partialSubmit="true"
-                update="grid-stack dashboard-title-container" />
-            </p:selectOneMenu>
+        <div class="dashboard__header js-dashboard__header ui-g">
+          <h:panelGroup id="dashboard-title-container" rendered="#{!managedBean.isReadOnlyMode}"
+            styleClass="u-hidden-sm-down dashboard__title-container--flex ui-lg-8 ui-md-7 ui-sm-12 dashboard__title-container">
+            <ui:insert name="headerTitle" />
           </h:panelGroup>
 
-          <h:panelGroup id="dashboard-header-action" rendered="#{!managedBean.isReadOnlyMode}" class="dashboard-header__action ui-lg-4 ui-md-5 ui-sm-12">
+          <h:panelGroup id="dashboard-header-action" rendered="#{!managedBean.isReadOnlyMode}"
+            class="dashboard-header__action ui-lg-4 ui-md-5 ui-sm-12">
             <ui:insert name="headerAction" />
           </h:panelGroup>
         </div>
@@ -61,7 +46,7 @@
           <ui:insert name="additionalRemoteCommand" />
         </h:form>
 
-        <div id="dashboard-body" class="dashboard__body ui-g-12 js-dashboard__body #{dashboardBodyStyleClass} u-invisibility">
+        <div id="dashboard-body" class="dashboard__body ui-g-12 js-dashboard__body #{dashboardBodyStyleClass} #{managedBean.isReadOnlyMode ? '':'u-invisibility'}">
           <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack ui-g-12">
             <c:if test="#{not empty managedBean.selectedDashboard.widgets}">
               <c:forEach var="widget" items="#{managedBean.selectedDashboard.widgets}" varStatus="status">
@@ -157,7 +142,7 @@
               <p:commandButton id="confirm-destruction-dashboard-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
                icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
                actionListener="#{taskWidgetBean.destroyTask(taskWidgetBean.selectedTaskItemId)}"
-               oncomplete="PF('destroy-task-dialog').hide();loadGrid();dashboardToolKit.responsive();"
+               oncomplete="PF('destroy-task-dialog').hide();loadGrid();"
                update="grid-stack dashboard-title-container" />
             </ui:define>
            </ui:decorate>
@@ -179,7 +164,7 @@
               <p:commandButton id="confirm-escalation-dashboard-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
                icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
                actionListener="#{taskWidgetBean.expiryTask(taskWidgetBean.selectedTaskItemId)}"
-               oncomplete="PF('escalation-task-dialog').hide();loadGrid();dashboardToolKit.responsive();" update="grid-stack dashboard-title-container" />
+               oncomplete="PF('escalation-task-dialog').hide();loadGrid();" update="grid-stack dashboard-title-container" />
             </ui:define>
            </ui:decorate>
            
@@ -207,7 +192,7 @@
             <p:commandButton id="confirm-destruction-dashboard-cases" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
               icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
               actionListener="#{caseWidgetBean.destroyCase(caseWidgetBean.selectedCase)}"
-              oncomplete="PF('destroy-case-dialog').hide();loadGrid();dashboardToolKit.responsive();"
+              oncomplete="PF('destroy-case-dialog').hide();loadGrid();"
               update="grid-stack dashboard-title-container" />
            </ui:define>
           </ui:decorate>
