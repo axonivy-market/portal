@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.axonivy.portal</groupId>
+  <artifactId>portal-components-examples</artifactId>
+  <version>8.0.0.0-SNAPSHOT</version>
+  <packaging>iar</packaging>
+  <distributionManagement>
+    <repository>
+      <id>nexus.axonivy.com</id>
+      <url>https://nexus.axonivy.com/repository/maven-releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>nexus.axonivy.com</id>
+      <url>https://nexus.axonivy.com/repository/maven-snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+  <properties>
+    <ivy.engine.version>8.0.28</ivy.engine.version>
+    <build.plugin.version>8.0.7</build.plugin.version>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>com.axonivy.portal</groupId>
+      <artifactId>portal-components</artifactId>
+      <version>8.0.0.0-SNAPSHOT</version>
+      <type>iar</type>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.axonivy.ivy.ci</groupId>
+        <artifactId>project-build-plugin</artifactId>
+        <version>${build.plugin.version}</version>
+        <extensions>true</extensions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

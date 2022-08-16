@@ -94,7 +94,7 @@ Cs0 f6 224 192 296 192 #arcP
 Cs0 f6 0 0.4583333333333333 0 8 #arcLabel
 Cs0 f10 actionTable 'out=in;
 ' #txt
-Cs0 f10 actionCode 'import com.axonivy.portal.component.util.PortalNavigatorInFrameAPI;
+Cs0 f10 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;

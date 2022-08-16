@@ -19,14 +19,14 @@ Dt0 @PushWFArc f2 '' #zField
 Dt0 @InfoButton f5 '' #zField
 Dt0 @AnnotationArc f6 '' #zField
 >Proto Dt0 Dt0 DownloadDocumentItem #zField
-Dt0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ICase bussinessCase,com.axonivy.portal.component.ivydata.bo.IvyDocument document> param;' #txt
+Dt0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ICase bussinessCase,com.axonivy.portal.components.ivydata.bo.IvyDocument document> param;' #txt
 Dt0 f0 inParamTable 'out.businessCase=param.bussinessCase;
 out.document=param.document;
 ' #txt
 Dt0 f0 outParamDecl '<org.primefaces.model.StreamedContent streamedContent> result;' #txt
 Dt0 f0 outParamTable 'result.streamedContent=in.streamedContent;
 ' #txt
-Dt0 f0 callSignature call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.component.ivydata.bo.IvyDocument) #txt
+Dt0 f0 callSignature call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument) #txt
 Dt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -40,7 +40,7 @@ Dt0 f1 337 49 30 30 0 15 #rect
 Dt0 f1 @|EndSubIcon #fIcon
 Dt0 f3 actionTable 'out=in;
 ' #txt
-Dt0 f3 actionCode 'import com.axonivy.portal.component.service.CaseDocumentService;
+Dt0 f3 actionCode 'import com.axonivy.portal.components.service.CaseDocumentService;
 
 ivy.log.warn("Call to override process download document");
 out.streamedContent = CaseDocumentService.newInstance(in.businessCase).download(in.document);' #txt
