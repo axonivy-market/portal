@@ -1,4 +1,4 @@
-package com.axonivy.portal.developerexamples.service;
+package ch.ivy.addon.portalkit.service;
 
 import java.util.List;
 
@@ -8,10 +8,8 @@ import ch.ivy.addon.portalkit.bo.PasswordValidationStatus;
 import ch.ivy.addon.portalkit.enums.PasswordPolicyType;
 import ch.ivy.addon.portalkit.password.PasswordPolicy;
 import ch.ivy.addon.portalkit.password.PasswordValidation;
-import ch.ivy.addon.portalkit.service.PasswordValidationService;
 import ch.ivyteam.ivy.environment.Ivy;
 
-@Deprecated
 public class PasswordCheckingService {
   private static PasswordCheckingService instance;
 
