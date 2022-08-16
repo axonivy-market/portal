@@ -416,8 +416,6 @@ var FavouritesProcess = {
 
     if (isContentOverPanelContainer) {
       PortalLayout.removeLayoutContentPaddingBottom();
-    } else {
-      PortalLayout.removeJsStyleOnLayoutContent();
     }
     userProcessList.css('margin-bottom', userFavoritesMarginBottom);
     userProcessList.find('.js-compact-processes-container').css('height', maxHeightUserProcessList);
