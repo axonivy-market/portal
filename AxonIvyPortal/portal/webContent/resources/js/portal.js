@@ -187,6 +187,16 @@ var MainMenu = {
     let activeMenuItemList = this.getActiveMenu();
 
     if ($currentPageMenu.length > 0) {
+      var $dashboardGroup = $(".js-dashboard-group");
+      if ($currentPageMenu.hasClass("DASHBOARD") && $dashboardGroup.length > 0) {
+        $.each( activeMenuItemList, function( i, menuItem ) {
+            if (!(menuItem.id.includes('-sub-dashboard') || menuItem.id.includes('-main-dashboard'))) {
+              deactivateMenuItemOnLeftMenu(menuItem.id);
+            }
+        });
+        return;
+      }
+
       if ($currentPageMenu.parent().hasClass('active-menuitem') && activeMenuItemList.length === 1) {
         return;
       }
@@ -198,8 +208,7 @@ var MainMenu = {
 
   removeActiveMenu : function(activeMenuItems) {
     $.each( activeMenuItems, function( i, menuItem ) {
-      $(menuItem).removeClass('active-menuitem');
-      PF('main-menu').removeMenuitem(menuItem.id);
+      deactivateMenuItemOnLeftMenu(menuItem.id);
     });
   },
 
@@ -318,4 +327,27 @@ function hideDashboardOverlayPanels() {
       $(this).removeClass("ui-overlay-visible").addClass("ui-overlay-hidden");
     }
   });
+}
+
+function highlightDashboardItem(menuId) {
+  var $board = $("[id*='_js__" + menuId + "']");
+  if ($board.length > 0) {
+    activeMenuItemOnLeftMenu($board.attr("id"));
+  }
+}
+
+function activeMenuItemOnLeftMenu(menuId) {
+  PF('main-menu').addMenuitem(menuId);
+  let $selectedMenu = $("[id$='" + menuId + "']");
+  if (!$selectedMenu.hasClass('active-menuitem')) {
+    $selectedMenu.addClass('active-menuitem');
+  }
+}
+
+function deactivateMenuItemOnLeftMenu(menuId) {
+  PF('main-menu').removeMenuitem(menuId);
+  let $removedMenu = $("[id$='" + menuId + "']");
+  if ($removedMenu.hasClass('active-menuitem')) {
+    $removedMenu.removeClass('active-menuitem');
+  }
 }
