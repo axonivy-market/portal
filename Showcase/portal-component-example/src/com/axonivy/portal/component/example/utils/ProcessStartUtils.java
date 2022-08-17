@@ -31,7 +31,7 @@ public class ProcessStartUtils {
     return processStart != null ? processStart.getLink().getRelative() : StringUtils.EMPTY;
   }
 
-  private static IProcessStart findProcessStartByUserFriendlyRequestPath(String requestPath) {
+  public static IProcessStart findProcessStartByUserFriendlyRequestPath(String requestPath) {
     return IvyExecutor.executeAsSystem(() -> {
       IProcessStart processStart = getProcessStart(requestPath, Ivy.request().getProcessModelVersion());
       if (processStart != null) {
