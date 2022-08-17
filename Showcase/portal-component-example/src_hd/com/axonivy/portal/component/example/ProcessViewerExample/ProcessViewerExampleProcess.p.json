@@ -36,12 +36,12 @@
             "out.processLink" : "param.processLink"
           },
           "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
             "import com.axonivy.portal.component.example.utils.ProcessStartUtils;",
-            "if (out.caseId == 0) {",
-            "  out.processViewerForSerenityLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessViewerExample/showProcessViewerForSerenityUsingProcessLink.ivp\");",
+            "if (StringUtils.isNotBlank(out.processLink)) {",
+            "  out.processViewerForSerenityLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessViewerExample/showProcessViewerOfLeaveRequestForSerenityUsingProcessLink.ivp\");",
             "} else {",
-            "  String processLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessViewerExample/showProcessViewerForSerenityUsingCaseId.ivp\");  ",
-            "  out.processViewerForSerenityLink = processLink + \"?caseId=\" + ivy.case.getId();",
+            "  out.processViewerForSerenityLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessViewerExample/showProcessViewerOfLeaveRequestForSerenityUsingCaseId.ivp\");",
             "}"
           ]
         },
