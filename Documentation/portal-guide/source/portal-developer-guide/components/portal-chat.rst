@@ -30,7 +30,7 @@ Information
 
 - Group chat supports some customizations, refer to :ref:`Group chat customization <customization-group-chat>` for more details.
 
-- If your system uses an additional **Valve**, then we recommend adding the support async in the ``Context.xml`` file, this file is available in :dev-url:`File Reference </doc/8.0/engine-guide/configuration/files/context-xml.html>`.
+- If your system uses an additional **Valve**, then we recommend adding the support async in the ``Context.xml`` file, this file is available in :dev-url:`File Reference </doc/8.0.28/engine-guide/configuration/files/context-xml.html>`.
 
   .. code-block:: html
 
