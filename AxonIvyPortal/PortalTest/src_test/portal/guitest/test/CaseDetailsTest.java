@@ -72,6 +72,7 @@ public class CaseDetailsTest extends BaseTest {
 
   private void createTestingCaseContainTechnicalCases() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsOfCaseHasName(ORDER_PIZZA);
