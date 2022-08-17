@@ -65,7 +65,7 @@ Process developer can set up Portal settings of Portal in file ``portal_settings
       # Task/case detail document component setting
       #HIDE_TASK_DOCUMENT = false
       #HIDE_CASE_DOCUMENT = false
-
+      
       # Others
       #HOMEPAGE_URL =
       #SHOW_ENVIRONMENT_INFO = false
@@ -177,10 +177,10 @@ Language settings
 
 -  To add new language to Portal, what you have to do is
 
-   -  Open CMS item ``/AppInfo/SupportedLanguages`` in Portal Style, then add new language for example Italian
+   -  Open CMS item ``/AppInfo/SupportedLanguages`` in Portal Style, then add new language for example Italian 
       |add-new-item-to-cms-language|
    -  Add new language locale to all items, you can input either language code ``it`` or language code with country ``it-CH``. If you use language code with country, refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk11-suported-locales.html>`_ .
-
+   
       |add-new-item-to-cms-language-after|
    -  Export all CMS entries of Portal Style to excel file then add translation of new language for all CMS entries
       |export-cms|
@@ -190,7 +190,7 @@ Language settings
 Role configuration
 ==================
 
-.. table::
+.. table:: 
 
    +-----------------------------------+-----------------------------------+
    | PortalKit roles                   | Rights                            |
@@ -201,7 +201,7 @@ Role configuration
    |                                   | create public filters. Users who  |
    |                                   | own this role need some           |
    |                                   | permissions.                      |
-   |                                   |                                   |
+   |                                   |                                   |   
    +-----------------------------------+-----------------------------------+
 
 .. _settings-permission-settings:
@@ -210,7 +210,7 @@ Permission settings
 ===================
 
 Permissions can be configured in :dev-url:`Cockpit
-</doc/8.0.28/engine-guide/tool-reference/engine-cockpit/security.html>`.
+</doc/8.0/engine-guide/tool-reference/engine-cockpit/security.html>`.
 In the security area, you will find all these permission in the Group
 "PortalPermissions"
 
@@ -318,7 +318,7 @@ Personal task permission
    ``IPermission.TASK_WRITE_NAME``.
 
    .. important::
-      Task state cannot be one of following values:
+      Task state cannot be one of following values: 
       DONE, DESTROYED, FAILED.
 
 -  CHANGE TASK DESCRIPTION
@@ -395,7 +395,7 @@ Personal case permission
 
    Link to show all tasks of case will be hidden if session user does
    not have permission ``PortalPermission.SHOW_ALL_TASKS_OF_CASE``.
-
+   
 -  DISPLAY SHOW DETAILS LINK
 
    This link will be hidden if session user does not have permission
@@ -476,7 +476,7 @@ Portal general permission
 -  CREATE PUBLIC EXTERNAL LINK FOR ALL USERS
 
    Everyone can add a new external link privately by default.
-   If a user is granted ``PortalPermission.CREATE_PUBLIC_EXTERNAL_LINK``,
+   If a user is granted ``PortalPermission.CREATE_PUBLIC_EXTERNAL_LINK``, 
    he can set an external link as public so that all other users can see this link in full process list
    and other users can also add it to User Favorites.
 
@@ -501,7 +501,7 @@ application.
 
 .. _virus_scanning_setting:
 
-Virus Scanning Setting
+Virus Scanning Setting 
 ======================
 
 PrimeFaces is delivered with one implementation of that interface that uses
@@ -515,7 +515,7 @@ webapps/ivy/WEB-INF/web.xml file:
 
       <context-param>
       <param-name>primefaces.virusscan.VIRUSTOTAL_KEY</param-name>
-      <param-value>PUT YOUR API KEY HERE</param-value>
+      <param-value>PUT YOUR API KEY HERE</param-value> 
       </context-param>
 
    ..
@@ -531,7 +531,7 @@ Reference: `How to check if uploaded files contain a virus
 Global variables
 ================
 
-.. table::
+.. table:: 
 
    +---------------------------------------------+-----------------------------+---------------------------+
    | Variable                                    | Default                     | Description               |
@@ -580,6 +580,6 @@ Global variables
 .. |language-precedence| image:: images/settings/language-precedence.png
 .. |language-settings| image:: images/settings/language-settings.png
 .. |multi-portal-open-settings| image:: images/settings/multi-portal-open-settings.png
-.. |add-new-item-to-cms-language| image:: images/settings/add-new-item-to-cms-language.png
+.. |add-new-item-to-cms-language| image:: images/settings/add-new-item-to-cms-language.png 
 .. |add-new-item-to-cms-language-after| image:: images/settings/add-new-item-to-cms-language-after.png
-.. |export-cms| image:: images/settings/export-cms.png
+.. |export-cms| image:: images/settings/export-cms.png   
