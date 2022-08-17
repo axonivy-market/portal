@@ -51,6 +51,7 @@ public class TaskWidgetPage extends TemplatePage {
     WaitHelper.assertTrueWithWait(() -> isElementDisplayed(By.cssSelector("a[id$=':task-list-link:task-list-link']")));
     WebElement fullModeButton = findElementById(taskWidgetId + ":task-list-link:task-list-link");
     click(fullModeButton);
+    waitForElementDisplayed(By.cssSelector("li.topbar-item.breadcrumb-container"), true);
     WaitHelper.assertTrueWithWait(() -> isElementDisplayed(By.cssSelector("[id$=':filter-save-action']")));
     waitForLocatorDisplayed("id('" + taskWidgetId + ":filter-save-action')");
   }
