@@ -1,0 +1,160 @@
+{
+  "format" : "9.4.17",
+  "id" : "182A9B4C94DD0FB4",
+  "data" : "com.axonivy.portal.component.example.LeaveRequestProcessData",
+  "elements" : [ {
+      "id" : "f24",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "callSignature" : "start",
+        "case" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/leaveRequest\")%>",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"true\"" }
+          ]
+        },
+        "roleExceptionId" : ">>",
+        "startDescription" : [
+          "This process allow employee to submit their leave request, then the request will be sent to selected approver.",
+          "After approver finish his task, the approval result will be sent back to requester"
+        ],
+        "startCustomFields" : [
+          { "name" : "cssIcon", "value" : "si si-advertising-megaphone-2" }
+        ],
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/createNewLeaveRequest\")%>"
+        },
+        "outLink" : "start.ivp",
+        "wfuser" : "1",
+        "startName" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/leaveRequest\")%>"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 }
+      },
+      "connect" : { "id" : "f30", "to" : "f25" }
+    }, {
+      "id" : "f20",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1120, "y" : 192 }
+      }
+    }, {
+      "id" : "f25",
+      "type" : "UserTask",
+      "name" : "LeaveRequestCreation",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.component.example.leaverequest.LeaveRequestCreation",
+        "startMethod" : "start()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.approver" : "result.approverName",
+            "out.requester" : "result.requesterName"
+          }
+        },
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/createLeaveRequest\", [ivy.session.getSessionUser().getDisplayName()])%>",
+          "responsible" : {
+            "role" : "SELF"
+          },
+          "skipTasklist" : true
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 192 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f34", "to" : "f23" }
+    }, {
+      "id" : "f29",
+      "type" : "UserTask",
+      "name" : "LeaveRequestSummary",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.component.example.leaverequest.LeaveRequestSummary",
+        "startMethod" : "start()",
+        "task" : {
+          "name" : "<%=in.isApproved? ivy.cms.co(\"/Processes/LeaveRequest/approvalTask\") : ivy.cms.co(\"/Processes/LeaveRequest/rejectedTask\")%>",
+          "responsible" : {
+            "userFromAttribute" : "in.requester"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 928, "y" : 192 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f28", "to" : "f20" }
+    }, {
+      "id" : "f23",
+      "type" : "UserTask",
+      "name" : "LeaveRequestApproval",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.component.example.leaverequest.LeaveRequestApproval",
+        "startMethod" : "start()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.isApproved" : "result.isApproved"
+          }
+        },
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/approvalTaskName\", [ivy.security.users().find(in.requester).getDisplayName()])%>",
+          "responsible" : {
+            "userFromAttribute" : "in.approver"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 640, "y" : 192 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f32", "to" : "f29" }
+    }, {
+      "id" : "f26",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "Base on descision in approval task, the task name will be ",
+        "display as approved or rejected. It's assigned back to ",
+        "the person who submit the leave request"
+      ],
+      "visual" : {
+        "at" : { "x" : 928, "y" : 64 },
+        "size" : { "width" : 336, "height" : 60 }
+      },
+      "connect" : { "id" : "f3", "to" : "f29" }
+    }, {
+      "id" : "f27",
+      "type" : "ProcessAnnotation",
+      "name" : "Approval task for leave request, which is assigned to the selected approver in first task",
+      "visual" : {
+        "at" : { "x" : 1008, "y" : 288 },
+        "size" : { "width" : 480, "height" : 30 }
+      },
+      "connect" : { "id" : "f2", "to" : "f23" }
+    }, {
+      "id" : "f22",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "User goes directly to this task after start the process because we enable skipTaskList",
+        "In this task, user able to submit his/her  leave request, and choose the approval for the request"
+      ],
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 },
+        "size" : { "width" : 528, "height" : 44 }
+      },
+      "connect" : { "id" : "f1", "to" : "f25" }
+    }, {
+      "id" : "f21",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "This process allow employee to submit their leave request, then the request will be sent to selected approver.",
+        "After approver finish his task, the approval result will be sent back to requester"
+      ],
+      "visual" : {
+        "at" : { "x" : 384, "y" : 288 },
+        "size" : { "width" : 608, "height" : 44 }
+      },
+      "connect" : { "id" : "f0", "to" : "f24" }
+    } ]
+}
