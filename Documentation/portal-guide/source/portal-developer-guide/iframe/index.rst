@@ -18,12 +18,12 @@ How to use
 	If there is no configuration, a process/task is started inside iFrame as default.
 
 Follow these steps:
-
+ 
 1. Your HTML User Dialog must be independent from Portal, Portal will render it automatically in iFrame
-
+	
 	- Could use the ``frame-8`` template in designer, or your own template (highly recommend)
 	- Or use the :ref:`TaskTemplate <components-layout-templates-task-template>` template (no encouragement - dead path)
-
+	
 	+------------------------------------------------------+----------------------------------------------+
 	| Your own template                                    | TaskTemplate.xhtml - Modena ivy theme        |
 	+======================================================+==============================================+
@@ -39,14 +39,14 @@ Follow these steps:
 	|                                                      |  - Different look&feel between Portal and UIs|
 	+------------------------------------------------------+----------------------------------------------+
 
-.. note::
+.. note:: 
 
       ``frame-8`` template does not contains any content of **Portal**.
       Therefore, if you want to reuse some **Portal** content, you must add it manually to your HTML file.
-
+      
       For example, if you want to add ivy icon pack, add below code:
       ``<h:outputStylesheet library="ivy-icons" name="ivy-icon.css" />``
-
+	
 2. To pass some supported params in iFrame such as process steps, refer to :ref:`IFrameTaskTemplate <components-layout-templates-iframe-task-template>`
 
 3. If you don't want to use the default configuration, follow one of these 3 levels to open your task(s) in iFrame:
@@ -56,15 +56,15 @@ Follow these steps:
 	- ``true``: start inside iFrame
 	- ``false``: not start inside iFrame
 	- Don't set to check case level
-
+	
 	|task-embedInFrame|
 
-- Case level: in Case custom fields, set the ``embedInFrame`` String field to
+- Case level: in Case custom fields, set the ``embedInFrame`` String field to 
 
-	- ``true``: start inside iFrame
-	- ``false``: not start inside iFrame
+	- ``true``: start inside iFrame 
+	- ``false``: not start inside iFrame 
 	- Don't set to check engine level
-
+	
 	|case-embedInFrame|
 
 - Engine level:
@@ -87,19 +87,19 @@ You must follow some important steps to ensure that your processes/tasks can be 
 
      a. E.g: A project name ``<BusinessProject>``
 
-     b. If your business project (``<BusinessProject>``) needs some data/ressources from the portal project (``<CustomizedPortal>``)
+     b. If your business project (``<BusinessProject>``) needs some data/ressources from the portal project (``<CustomizedPortal>``) 
         then create a dependency between these two projects. If not, please **skip step 2.b**.
 
       * E.g. ``<BusinessProject>`` depends on ``<CustomizedPortal>``
 
   3. Change the ``DefaultPages`` in ``StandardProcesses`` to your customized portal project library id.
-     Refer to :dev-url:`Standard Processes </doc/8.0.28/engine-guide/administration/standard-processes.html>` documentation.
+     Refer to :dev-url:`Standard Processes </doc/8.0/engine-guide/administration/standard-processes.html>` documentation.
 
      - E.g: DefaultPages: ``<CustomizedPortal>`` ID.
 
 Now you can develop your own processes inside the ``<BusinessProject>`` and the dialogs will be rendered automatically using iFrame.
 
-.. important::
+.. important:: 
     We must create 2 projects: ``<CustomizedPortal>`` and ``<BusinessProject>`` and create your process start in ``<BusinessProject>``, not in ``<CustomizedPortal>``.
 
     Because you copied ``PortalStart.mod`` and this mod contains the ``DefaultFramePage.ivp`` start.

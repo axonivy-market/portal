@@ -14,7 +14,7 @@ Changing anything in the Portal **requires** a change of the Maven identifier, w
 Portal is changed without adapting this identifier, then the changed version will be written to your local Maven repository and therefore
 be used in **any Maven build of any projects that uses the same Portal version**.
 
-For example:
+For example: 
 If you have two customer projects that use different logos or colors using the **same Portal version**,
 and you build maven, e.g. ``mvn clean install`` PortalStyle of Project 1, then the local maven repository stores
 PortalStyle of Project 1. Later you build the deployment package of Project 2, and it will collect all
@@ -30,4 +30,4 @@ all Portal projects (and their dependencies).
 
 .. note::
 	Do not forget to change default pages to your project, follow this chapter to customize standard processes:
-	:dev-url:`Standard Processes </doc/8.0.28/engine-guide/administration/standard-processes.html>`
+	:dev-url:`Standard Processes </doc/8.0/engine-guide/administration/standard-processes.html>`

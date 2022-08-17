@@ -2,12 +2,12 @@ Customization
 *************
 
 Portal provides an easy way to customize features, user interface, user
-experiences... Besides the documentation, you could refer to project ``PortalExamples`` for customization examples.
+experiences... Besides the documentation, you could refer to project ``PortalExamples`` for customization examples. 
 You could find project ``PortalExamples`` in engine demo mode or import ``Ivy Projects`` in designer.
 
 .. note::
 	If you copy ``PortalStart.mod`` to your project for customization, set default pages to your project, follow this guide to customize standard processes:
-	:dev-url:`Standard Processes </doc/8.0.28/engine-guide/administration/standard-processes.html>`
+	:dev-url:`Standard Processes </doc/8.0/engine-guide/administration/standard-processes.html>`
 
 .. figure:: images/customization/engine-demo-mode.png
 
@@ -43,3 +43,4 @@ You could find project ``PortalExamples`` in engine demo mode or import ``Ivy Pr
    change-group-id
    user-with-environment-info
    page-header-footer
+   
