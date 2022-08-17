@@ -1,0 +1,33 @@
+Dialog:
+  Common:
+    approve: Approuver
+    finish: Terminer
+    reject: Refuser
+Enums:
+  LeaveType:
+    ANNUAL_LEAVE: Congé annuel
+    MATERNITY_LEAVE: Congé de maternité
+    SICK_LEAVE: Congés de maladie
+Labels:
+  LeaveRequest:
+    LeaveSteps:
+      approval: Approbation
+      approvalResult: Résultat de l'approbation
+      creation: Créer une demande de congé
+    approvalResultTaskIntro: Vous trouverez ci-dessous un résumé de votre demande de congé et les commentaires de l'approbateur.
+    approvalTaskIntro: 'Toute demande de congé doit être approuvée par vous, dont les détails figurent ci-dessous :'
+    approver: Approbateur
+    approverComment: Commentaire d'approbation
+    from: Du
+    leaveType: Type de congé
+    requester: Demandeur
+    requesterComment: Commentaire du demandeur
+    submitLeaveRequest: Soumettre une demande de congé
+    to: Au
+Processes:
+  LeaveRequest:
+    approvalTaskName: Approbation de la demande de congé de {0}
+    createLeaveRequest: 'Créer une demande de congé pour : {0}'
+    createNewLeaveRequest: 'Tâche du système : Commencer à créer une nouvelle demande de congé'
+    leaveRequest: Processus d'absence
+    rejectedTask: Votre demande de congé est rejetée

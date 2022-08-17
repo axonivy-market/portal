@@ -1,0 +1,14 @@
+LeaveRequestCreationData #class
+com.axonivy.portal.component.example.leaverequest.LeaveRequestCreation #namespace
+leaveRequestData com.axonivy.portal.component.example.leaverequest.LeaveRequest #field
+leaveRequestData PERSISTENT #fieldModifier
+requester com.axonivy.portal.component.dto.UserDTO #field
+requester PERSISTENT #fieldModifier
+approver com.axonivy.portal.component.dto.UserDTO #field
+approver PERSISTENT #fieldModifier
+leaveTypes java.util.List<com.axonivy.portal.component.example.enums.LeaveType> #field
+leaveTypes PERSISTENT #fieldModifier
+approvers java.util.List<com.axonivy.portal.component.dto.UserDTO> #field
+approvers PERSISTENT #fieldModifier
+isValid Boolean #field
+isValid PERSISTENT #fieldModifier

@@ -1,0 +1,34 @@
+Dialog:
+  Common:
+    approve: Genehmigen
+    finish: Beenden
+    reject: Ablehnen
+Enums:
+  LeaveType:
+    ANNUAL_LEAVE: Jahresurlaub
+    MATERNITY_LEAVE: Mutterschaftsurlaub
+    SICK_LEAVE: Krankenstand
+Labels:
+  LeaveRequest:
+    LeaveSteps:
+      approval: Genehmigung
+      approvalResult: Genehmigungsergebnis
+      creation: Urlaubsantrag erstellen
+    approvalResultTaskIntro: Unten finden Sie eine Zusammenfassung Ihres Urlaubsantrags und des Feedbacks des Genehmigers.
+    approvalTaskIntro: 'Es gibt einen Urlaubsantrag, der Ihre Genehmigung erfordert, Einzelheiten dazu finden Sie unten:'
+    approver: Genehmigender
+    approverComment: Kommentar des Befürworters
+    from: Von
+    leaveType: Urlaubsart
+    requester: Antragsteller
+    requesterComment: Kommentar des Antragstellers
+    submitLeaveRequest: Urlaubsantrag einreichen
+    to: Bis
+Processes:
+  LeaveRequest:
+    approvalTask: Ihr Urlaubsantrag wird genehmigt
+    approvalTaskName: Genehmigung eines Urlaubsantrags von {0}
+    createLeaveRequest: 'Urlaubsantrag anlegen für: {0}'
+    createNewLeaveRequest: 'Systemaufgabe: Beginn der Erstellung eines neuen Urlaubsantrags'
+    leaveRequest: Abwesenheitsprozess
+    rejectedTask: Ihr Urlaubsantrag wird abgelehnt

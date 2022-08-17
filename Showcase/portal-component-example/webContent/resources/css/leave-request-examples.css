@@ -1,0 +1,16 @@
+/*Style from others*/
+.MarTop20 {
+  margin-top: 20px;
+}
+
+.MarTop10 {
+  margin-top: 10px !important;
+}
+
+.Fright {
+  float: right;
+}
+
+.portal-card-container .card .ui-panel-content {
+  border-radius: 6px;
+}
