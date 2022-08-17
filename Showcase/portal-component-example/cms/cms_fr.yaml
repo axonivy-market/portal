@@ -26,6 +26,7 @@ Labels:
     to: Au
 Processes:
   LeaveRequest:
+    approvalTask: Votre demande de congé est approuvée
     approvalTaskName: Approbation de la demande de congé de {0}
     createLeaveRequest: 'Créer une demande de congé pour : {0}'
     createNewLeaveRequest: 'Tâche du système : Commencer à créer une nouvelle demande de congé'
