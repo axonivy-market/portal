@@ -123,15 +123,15 @@ You can customize in:
 - ``customization.scss``: to change styles of Portal. E.g. Portal's component styles.
 
 .. tip::
-   - For ``font-size``, Portal uses ``rem``. 
+   - For ``font-size``, Portal uses ``rem``.
      Font size of all elements are calculated based on font-size of ``html`` element.
 
-   - If ``$primaryColor`` is a bright tone color (such as yellow or light blue), you may want to change ``$accentTextColor`` to ``black``. 
+   - If ``$primaryColor`` is a bright tone color (such as yellow or light blue), you may want to change ``$accentTextColor`` to ``black``.
      It helps text of buttons and other components easier to recognize.
 
 .. tip::
-   If you are using Iframes and you want to customize the colors of the project specific UIs, then refer to 
-   :dev-url:`Color Customizing </doc/8.0/designer-guide/user-interface/user-dialogs/html-dialog-themes.html?highlight=color%20customizing#color-customizing>`.
+   If you are using Iframes and you want to customize the colors of the project specific UIs, then refer to
+   :dev-url:`Color Customizing </doc/8.0.28/designer-guide/user-interface/user-dialogs/html-dialog-themes.html?highlight=color%20customizing#color-customizing>`.
 
 .. warning::
    - Do not change ``font-family`` property values.
