@@ -642,10 +642,14 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public DashboardConfigurationPage openDashboardConfigurationPage() {
-    $(".js-dashboard__wrapper").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    waitForDashboardPageAvailable();
     SelenideElement configureButton = getConfigureDashboardMenu();
     configureButton.click();
     return new DashboardConfigurationPage();
+  }
+
+  public void waitForDashboardPageAvailable() {
+    $(".js-dashboard__wrapper").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public ElementsCollection getDashboardCollection() {
@@ -657,7 +661,6 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement getDashboardActive() {
-    $(".js-layout-wrapper.layout-static").waitUntil(appear, DEFAULT_TIMEOUT);
     return getDashboardCollection().stream().filter(menuItem -> menuItem.parent().has(Condition.cssClass("active-menuitem"))).findFirst().get();
   }
   
