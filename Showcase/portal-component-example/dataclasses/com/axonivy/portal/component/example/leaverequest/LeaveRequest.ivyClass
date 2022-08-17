@@ -1,0 +1,19 @@
+LeaveRequest #class
+ch.ivyteam.ivy.business.data.store.context.BusinessCaseData #classAnnotation
+com.axonivy.portal.component.example.leaverequest #namespace
+approverComment String #field
+approverComment PERSISTENT #fieldModifier
+approverUsername String #field
+approverUsername PERSISTENT #fieldModifier
+from java.util.Date #field
+from PERSISTENT #fieldModifier
+to java.util.Date #field
+to PERSISTENT #fieldModifier
+isApproved Boolean #field
+isApproved PERSISTENT #fieldModifier
+leaveType com.axonivy.portal.component.example.enums.LeaveType #field
+leaveType PERSISTENT #fieldModifier
+requesterComment String #field
+requesterComment PERSISTENT #fieldModifier
+requesterUsername String #field
+requesterUsername PERSISTENT #fieldModifier
