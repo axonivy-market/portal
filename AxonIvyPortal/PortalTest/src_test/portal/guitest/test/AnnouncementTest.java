@@ -55,6 +55,7 @@ public class AnnouncementTest extends BaseTest {
   @Test
   public void testShouldDisplayNotification() {
     HomePage homePage = new HomePage();
+    homePage.waitForGrowlMessageDisplayClearly();
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
     AnnouncementPage announcementPage = adminSettingsPage.openAnnouncementTab();
     assertTrue("Admin Settings dialog is displayed", announcementPage.isDisplayed());
