@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>portal-selenium-test</artifactId>
-  <version>9.1.0.0-SNAPSHOT</version>
+  <version>9.4.0-m229</version>
   <packaging>iar</packaging>
   <properties>
     <powermock.version>2.0.2</powermock.version>
@@ -14,7 +14,7 @@
     <dependency>
       <groupId>com.axonivy.portal</groupId>
       <artifactId>portal</artifactId>
-      <version>9.1.0.0-SNAPSHOT</version>
+      <version>9.4.0-m229</version>
       <type>iar</type>
     </dependency>
     <dependency>
