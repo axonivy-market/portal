@@ -86,7 +86,7 @@ The basic JSON structure of the case widget
    columns, too.
 
    -  ``field``: field name of the column
-         
+
          For a standard column, ``field`` must be one of these:
 
             - ``id``: case ID
@@ -153,7 +153,7 @@ two differences:
 
 .. important::
    Portal only displays custom fields declared in the ``custom-fields.yaml`` file.
-   Refer to :dev-url:`Custom Fields Meta Information </doc/nightly/designer-guide/how-to/workflow/custom-fields.html#meta-information>` for more information.
+   Refer to :dev-url:`Custom Fields Meta Information </doc/9.4.0-m229/designer-guide/how-to/workflow/custom-fields.html#meta-information>` for more information.
 
 Filter Conditions
 -----------------
@@ -171,7 +171,7 @@ conditions.
 
          {
             ...
-      
+
             "columns": [
                {
                   "field": "name",
@@ -192,7 +192,7 @@ conditions.
 
          {
             ...
-      
+
             "columns": [
                {
                   "field": "description",
@@ -213,7 +213,7 @@ conditions.
 
          {
             ...
-      
+
             "columns": [
                {
                   "field": "state",
@@ -225,9 +225,9 @@ conditions.
 
       This column only accepts a list of case state names as the filter condition.
       If you define a list of states in ``filterList``, the case widget will only show cases that have
-      states listed in ``filterList``. 
+      states listed in ``filterList``.
 
-      Refer to :dev-url:`Case States </doc/nightly/public-api/ch/ivyteam/ivy/workflow/CaseState.html>` for
+      Refer to :dev-url:`Case States </doc/9.4.0-m229/public-api/ch/ivyteam/ivy/workflow/CaseState.html>` for
       available case states.
 
    - ``creator``
@@ -236,7 +236,7 @@ conditions.
 
          {
             ...
-      
+
             "columns": [
                {
                   "field": "creator",
@@ -258,7 +258,7 @@ conditions.
 
          {
             ...
-      
+
             "columns": [
                {
                   "field": "startTimestamp",
@@ -282,7 +282,7 @@ conditions.
 
          {
             ...
-      
+
             "columns": [
                {
                   "field": "expiryTimestamp",
