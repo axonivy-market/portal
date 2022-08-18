@@ -359,7 +359,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .task-template-content.vertical-process-chain, .task-template-button.vertical-process-chain {
-  display: inline-block;
   width: calc(100% - 140px);
 }
 
