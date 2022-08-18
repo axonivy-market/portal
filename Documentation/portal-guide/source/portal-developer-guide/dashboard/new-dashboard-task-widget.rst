@@ -78,7 +78,7 @@ The basic JSON structure of a Task widget
 
    ``sortDescending``: sort direction of the default sort field. The default value is "false" (sort ascending)
 
-   ``rowsPerPage``: maximum number of tasks can be displayed on one page of the task widget.
+   ``rowsPerPage``: maximum number of tasks can be displayed on one page of the task widget. 
    The default value is 10 rows per page
 
    ``columns``: column configurations for each of the columns in the widget. You
@@ -86,11 +86,11 @@ The basic JSON structure of a Task widget
    columns, too:
 
       ``field``: the field name of the column
-
+         
          For standard columns, ``field`` must be one of these:
-
+         
             - ``start``: column which contains start button to start the task directly.
-
+  
             - ``priority``: task priority
 
             - ``id``: task ID
@@ -106,7 +106,7 @@ The basic JSON structure of a Task widget
             - ``startTimestamp``: created date and time of the task
 
             - ``expiryTimestamp``: expiry date and time of the task
-
+            
             - ``actions``: for further actions: access task details, reset task, delegate task, reserve, destroy task, trigger escalation task and add Ad-hoc task
 
          For custom columns, ``field`` is the name of a task custom field.
@@ -132,7 +132,7 @@ You can predefine which column to show, and other attributes such as filter, for
 
    {
       ...
-
+      
       "columns": [
          {
             "type": "CUSTOM",
@@ -154,7 +154,7 @@ differences:
 
 .. important::
    Portal only displays custom fields declared in the ``custom-fields.yaml`` file.
-   Refer to :dev-url:`Custom Fields Meta Information </doc/9.4.0-m229/designer-guide/how-to/workflow/custom-fields.html#meta-information>` for more information.
+   Refer to :dev-url:`Custom Fields Meta Information </doc/nightly/designer-guide/how-to/workflow/custom-fields.html#meta-information>` for more information.
 
 Filter Conditions
 -----------------
@@ -171,7 +171,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
          {
             ...
-
+      
             "columns": [
                {
                   "field": "activator",
@@ -193,7 +193,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
          {
             ...
-
+      
             "columns": [
                {
                   "field": "name",
@@ -213,7 +213,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
          {
             ...
-
+      
             "columns": [
                {
                   "field": "description",
@@ -234,7 +234,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
          {
             ...
-
+      
             "columns": [
                {
                   "field": "priority",
@@ -249,7 +249,7 @@ Below is the list of filterable columns and their corresponding filter condition
       If you define a list of priorities in ``filterList``, the task widget will show
       tasks that have priority listed in ``filterList``.
 
-      Refer to :dev-url:`Task Priority </doc/9.4.0-m229/public-api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>` for
+      Refer to :dev-url:`Task Priority </doc/nightly/public-api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>` for
       available task priorities.
 
    - ``state``
@@ -258,7 +258,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
          {
             ...
-
+      
             "columns": [
                {
                   "field": "state",
@@ -270,9 +270,9 @@ Below is the list of filterable columns and their corresponding filter condition
 
       This column only accepts a list of task state names as its filter condition.
       If you define a list of states in ``filterList``, the task widget will show
-      tasks that are in one of the states listed in ``filterList``.
+      tasks that are in one of the states listed in ``filterList``. 
 
-      Refer to :dev-url:`Task States </doc/9.4.0-m229/public-api/ch/ivyteam/ivy/workflow/TaskState.html>` for
+      Refer to :dev-url:`Task States </doc/nightly/public-api/ch/ivyteam/ivy/workflow/TaskState.html>` for
       available task states.
 
 
@@ -282,7 +282,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
          {
             ...
-
+      
             "columns": [
                {
                   "field": "startTimestamp",
@@ -306,7 +306,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
          {
             ...
-
+      
             "columns": [
                {
                   "field": "expiryTimestamp",

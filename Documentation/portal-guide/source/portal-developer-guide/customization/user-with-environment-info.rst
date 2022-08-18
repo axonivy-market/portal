@@ -9,7 +9,7 @@ This component shows environment info when the ``Portal.ShowEnvironmentInfo`` va
 
 To change the displayed information, override the ``UserWithEnvironmentInfo``
 Html Dialog. Refer to :dev-url:`Axon Ivy HtmlOverride wizard
-</doc/9.4.0-m229/designer-guide/how-to/overrides.html?#override-new-wizard>` to
+</doc/nightly/designer-guide/how-to/overrides.html?#override-new-wizard>` to
 override ``UserWithEnvironmentInfo`` HTML dialog.
 
 If you use Case Scope, you need to copy the ``PortalStart`` process from the
