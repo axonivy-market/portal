@@ -88,10 +88,12 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void initConfigration() {
     selectedDashboardId = Attrs.currentContext().getAttribute("#{data.dashboardId}", String.class);
     isPublicDashboard = Attrs.currentContext().getAttribute("#{data.isPublicDashboard}", Boolean.class);
-    super.init();
     isReadOnlyMode = false;
+    super.init();
     ((DashboardProcessBean) ManagedBeans.get("dashboardProcessBean")).addPropertyChangeListener(this);
-    foundTemplate = findSelectedTemplate(getSelectedDashboard().getTemplateId());
+    if (getSelectedDashboard() != null) {
+      foundTemplate = findSelectedTemplate(getSelectedDashboard().getTemplateId());
+    }
   }
 
   public void initSampleWidgets() {
