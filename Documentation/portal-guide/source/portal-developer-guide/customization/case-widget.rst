@@ -43,7 +43,7 @@ Follow these steps to override the case Widget UI:
    register this link in the Portal Admin Settings.
 
 #. Use :dev-url:`Axon Ivy HtmlOverride wizard
-   </doc/nightly/designer-guide/how-to/overrides.html?#override-new-wizard>` to
+   </doc/9.4.0-m229/designer-guide/how-to/overrides.html?#override-new-wizard>` to
    override the ``PortalCases`` HTML dialog.
 
    .. tip:: This action overrides ``Case widget`` in the CaseList page and the Case Search result page.
@@ -70,7 +70,7 @@ function of these columns work:
 -  Override the ``extendSort`` method and extend the sort function for
    the added columns (see the method's Javadoc comments).
 
--  The default case list allows the user to configure display or hide the following columns: 
+-  The default case list allows the user to configure display or hide the following columns:
    -  ``Custom SortFields (1)``
    -  ``Custom Checkboxes (2)``
    -  ``Custom header column (3)``.
@@ -353,7 +353,7 @@ You can refer to ``portal-developer-examples`` project for examples.
             </h:panelGroup>
       </ui:define>
 
-   .. tip:: The smallest browser width you can anchor the left menu is 1025. 
+   .. tip:: The smallest browser width you can anchor the left menu is 1025.
       To test which columns need to be hidden, reduce your window's width to 1025.
 
 .. |case-filter| image:: ../../screenshots/case/customization/case-filter.png

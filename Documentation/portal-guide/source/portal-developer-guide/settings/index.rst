@@ -14,7 +14,7 @@ Configure Portal Settings
 
 To manually configure Portal settings, refer to :ref:`update-portal-settings`.
 
-Portal settings are stored as :dev-url:`Variables </doc/nightly/designer-guide/configuration/variables.html>`.
+Portal settings are stored as :dev-url:`Variables </doc/9.4.0-m229/designer-guide/configuration/variables.html>`.
 
 In development, it is a quite tedious task to configure Portal settings after
 restarting Designer. Therefore, update your variables in
@@ -28,7 +28,7 @@ Language Settings
 =================
 
 To add a new language to the Portal, what you have to do is:
--  Export all CMS entries of the Portal to an Excel file. 
+-  Export all CMS entries of the Portal to an Excel file.
 -  Add one new column to the end of this file, then add the new language locale for example ``it`` for the Italian language to the first cell of this new column. Refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk11-suported-locales.html>`_ for the supported locales.
 
    |export-cms|
@@ -40,7 +40,7 @@ To add a new language to the Portal, what you have to do is:
 Role Configuration
 ==================
 
-.. table:: 
+.. table::
 
    +-----------------------------------+-----------------------------------+
    | Portal roles                      | Rights                            |
@@ -51,7 +51,7 @@ Role Configuration
    |                                   | properties, and create public     |
    |                                   | filters. Users who own this role  |
    |                                   | need some permissions.            |
-   |                                   |                                   |   
+   |                                   |                                   |
    +-----------------------------------+-----------------------------------+
 
 .. _settings-permission-settings:
@@ -60,7 +60,7 @@ Permission Settings
 ===================
 
 Configure permissions in the :dev-url:`Engine Cockpit
-</doc/nightly/engine-guide/tool-reference/engine-cockpit/security.html>`. In the
+</doc/9.4.0-m229/engine-guide/tool-reference/engine-cockpit/security.html>`. In the
 security area, you will find all these permission in group "PortalPermissions".
 
 Task Permissions
@@ -76,8 +76,8 @@ Task Permissions
 
    To delegate personal or group tasks, user needs permission
    ``TaskWriteActivatorOwnTasks``. This permission belongs to the
-   PortalPermissions group. It is not assigned to role Everybody by default. 
-   
+   PortalPermissions group. It is not assigned to role Everybody by default.
+
    To delegate all tasks in a task list, the user needs permission
    ``IPermission.TASK_WRITE_ACTIVATOR``.
 
@@ -97,17 +97,17 @@ Task Permissions
    ``IPermission.TASK_RESET``.
 
    .. important::
-      This only works for tasks in one of following states: RESUMED, 
+      This only works for tasks in one of following states: RESUMED,
       PARKED, READY_FOR_JOIN, FAILED.
 
-   
+
 - Delete
 
    To see the Delete Task action, the user needs permission
    ``IPermission.TASK_DESTROY``.
 
    .. important::
-      Delete Task only works if the task state is not already DESTROYED 
+      Delete Task only works if the task state is not already DESTROYED
       or DONE.
 
 - Reserve
@@ -119,12 +119,12 @@ Task Permissions
    ``IPermission.TASK_PARK_OWN_WORKING_TASK``.
 
    .. important::
-      Reservation is only possible if the task is in one of the following 
+      Reservation is only possible if the task is in one of the following
       states: CREATED, RESUMED, SUSPENDED.
 
 - Change description
 
-   User needs permission: 
+   User needs permission:
    ``IPermission.TASK_WRITE_DESCRIPTION``.
 
    .. important::
@@ -142,7 +142,7 @@ Task Permissions
 
 - Change priority
 
-   User needs permission 
+   User needs permission
    ``IPermission.TASK_WRITE_ORIGINAL_PRIORITY``.
 
    .. important::
@@ -207,7 +207,7 @@ with tasks that have been assigned to them.
 Other Permissions
 -----------------
 
-.. table:: 
+.. table::
 
  +-----------+---------------------------------+----------------------------------------------------+
  |           | Action                          | Permission required                                |
@@ -249,7 +249,7 @@ Other Permissions
  |           | processes" on Dashboard         |                                                    |
  |           +---------------------------------+----------------------------------------------------+
  |           | Access to full task list, it's  | ``PortalPermission.ACCESS_FULL_TASK_LIST``         |
- |           | "Tasks" on the left menu and    |                                                    | 
+ |           | "Tasks" on the left menu and    |                                                    |
  |           | link "Show full task list" on   |                                                    |
  |           | Dashboard                       |                                                    |
  |           +---------------------------------+----------------------------------------------------+
@@ -287,7 +287,7 @@ configuration/web.xml file:
 
       <context-param>
       <param-name>primefaces.virusscan.VIRUSTOTAL_KEY</param-name>
-      <param-value>PUT YOUR API KEY HERE</param-value> 
+      <param-value>PUT YOUR API KEY HERE</param-value>
       </context-param>
 
    ..
@@ -300,8 +300,8 @@ Reference: `How to check if uploaded files contain a virus
 <https://community.axonivy.com/d/144-how-to-check-if-a-uploaded-files-contain-a-virus/>`_.
 
 .. warning::
-   Files that are checked for viruses are uploaded to VirusTotal. If you may 
-   not store the data of your application on servers outside the internal 
+   Files that are checked for viruses are uploaded to VirusTotal. If you may
+   not store the data of your application on servers outside the internal
    network or a given country, you might want to refrain from using this solution.
 
 Variables
@@ -309,7 +309,7 @@ Variables
 
 These variables are stored as key-value pairs. They have to be edited in the Engine Cockpit.
 
-.. table:: 
+.. table::
 
    +---------------------------------------------+-------------------------------+-----------------------------+
    | Variable                                    | Default                       | Description                 |
@@ -378,7 +378,7 @@ Filename: ``variables.Portal.Announcement.json``
 Data model:
 
 .. code-block:: html
-   
+
    { "contents": [{
          "language": "en",
          "value": "The announcement content in english"

@@ -81,7 +81,7 @@ How to Configure Widgets in Case Details
       ``widgets``: definition of widgets in layout.
 
       ``filters``: conditions to determine which cases are eligible to use the layout. There are two types of case filters:
-      
+
       -  ``categories`` (case categories)
       -  ``states`` (case states).
 
@@ -89,7 +89,7 @@ How to Configure Widgets in Case Details
 
       ``id``: ID of widget.
 
-      ``type``: type of widget, there are 6 types: 
+      ``type``: type of widget, there are 6 types:
       -  ``information``
       -  ``document``
       -  ``technicalCase``
@@ -142,7 +142,7 @@ We included sample code for this customization in ``portal-developer-examples``.
    register this link in the Portal Admin Settings.
 
 #. Use :dev-url:`Axon Ivy HtmlOverride wizard
-   </doc/nightly/designer-guide/how-to/overrides.html?#override-new-wizard>` to
+   </doc/9.4.0-m229/designer-guide/how-to/overrides.html?#override-new-wizard>` to
    override the ``CaseInformation`` HTML dialog.
 
 #. After the above steps are done, you can override **Case Details UI elements**
@@ -194,9 +194,9 @@ For the custom widget, we have a new node is ``data`` inside of case details wid
 
       - Other key values will be treated as a hard coded value.
 
-.. tip:: 
+.. tip::
       To quickly understand how the JSON of custom case details looks like.
-   
+
       - Refer to ``variables.Portal.CaseDetails.json`` file in ``portal-developer-examples/resources/files`` project.
       - Copy to the corresponding application folder located in the designer.
 
@@ -205,9 +205,9 @@ For the custom widget, we have a new node is ``data`` inside of case details wid
       - Create some destroyed case or start the process ``Start Processes/CaseDetailsCustomWidgetExample/CreateEventTest.ivp`` in ``portal-developer-examples`` project.
       - Go to the example homepage by the process ``Start Processes/ExamplePortalStart/DefaultApplicationHomePage.ivp``.
       - And then go to case details to check the new custom layout.
-   
-      About how to configure Variables, refer to :dev-url:`Axon Ivy Variables </doc/nightly/designer-guide/configuration/variables.html>`
-   
+
+      About how to configure Variables, refer to :dev-url:`Axon Ivy Variables </doc/9.4.0-m229/designer-guide/configuration/variables.html>`
+
 
 Adding New Custom Panels
 ^^^^^^^^^^^^^^^^^^^^^^^^

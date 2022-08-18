@@ -93,7 +93,7 @@ Structure of the JSON for each dashboard:
 
    ``permissions``: roles can access the dashboard.
 
-   .. tip:: 
+   .. tip::
       If you don't define ``permissions`` for a dashboard, every user can see it.
 
    ``widgets``: definition of widgets dashboard. There are four types of
@@ -119,7 +119,7 @@ They will help you understand how to configure the widget efficiency.
    new-dashboard-custom-widget
    new-dashboard-process-viewer-widget
 
-.. tip:: 
+.. tip::
    To get an understanding of the JSON structure of the custom dashboard,
 
    - Refer to ``variables.Portal.Dashboard.json`` file in ``portal-developer-examples/resources/files`` project.
@@ -130,7 +130,7 @@ They will help you understand how to configure the widget efficiency.
    - Start the process ``Start Processes/CreateTestData/CreateTestDataForCustomizedDashboard.ivp`` in the ``portal-developer-examples`` project.
    - Open the new Portal dashboard to check the new custom layout.
 
-   To configure variables, refer to :dev-url:`Axon Ivy Variables </doc/nightly/designer-guide/configuration/variables.html>`
+   To configure variables, refer to :dev-url:`Axon Ivy Variables </doc/9.4.0-m229/designer-guide/configuration/variables.html>`
 
 Configure Dashboard Templates
 -----------------------------
