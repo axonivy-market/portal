@@ -18,11 +18,11 @@ How To Use
 	By default, i.e. if there is no configuration, a process/task is started inside an IFrame.
 
 Follow these steps to use the IFrame approach:
-
+ 
 #. Your HTML User Dialog has to be independent of the **Portal**. You can use
    the ``frame-_x_`` template in designer, or your own template. **Portal** will
    render it automatically in an IFrame.
-
+	
 #. To pass some supported params into the IFrame such as process steps, refer to
    :ref:`IFrameTaskTemplate <components-layout-templates-iframe-task-template>`
 
@@ -30,23 +30,23 @@ Follow these steps to use the IFrame approach:
    levels to open your task(s) in an IFrame:
 
    - Task level: in Task custom fields, set the ``embedInFrame`` String field to
-
+   
    	- ``true``: start inside IFrame
    	- ``false``: not start inside IFrame
    	- Don't set if you want to use case or engine level
-
+   	
    	|task-embedInFrame|
-
-   - Case level: in Case custom fields, set the ``embedInFrame`` String field to
-
-   	- ``true``: start inside IFrame
-   	- ``false``: not start inside IFrame
+   
+   - Case level: in Case custom fields, set the ``embedInFrame`` String field to 
+   
+   	- ``true``: start inside IFrame 
+   	- ``false``: not start inside IFrame 
    	- Don't set if you want to use engine level
-
+   	
    	|case-embedInFrame|
-
+   
    - Engine level:
-
+   
      - The **Portal Administrator** can define globally that all of the tasks
        running on the engine are started inside IFrames by using the
        ``Portal.EmbedInFrame`` Portal setting. refer to
@@ -76,14 +76,14 @@ steps to ensure that your processes/tasks can be rendered inside an IFrame:
 
   3. Change the ``DefaultPages`` in ``StandardProcesses`` to your customized
      portal project library id. For details, refer to :dev-url:`Standard Processes
-     </doc/9.4.0-m229/engine-guide/deployment/advanced/index.html>`.
+     </doc/nightly/engine-guide/deployment/advanced/index.html>`.
 
      - E.g: DefaultPages: ``CustomizedPortal`` ID.
 
 Now you can develop your own processes inside the ``BusinessProject`` and the dialogs will be rendered automatically using IFrames.
 
-.. important::
-    We have to  create two projects: ``CustomizedPortal`` and ``BusinessProject``.
+.. important:: 
+    We have to  create two projects: ``CustomizedPortal`` and ``BusinessProject``. 
     Create your process start in ``BusinessProject``, not in ``CustomizedPortal``.
 
     Because you copied ``PortalStart.p.json``, this contains the

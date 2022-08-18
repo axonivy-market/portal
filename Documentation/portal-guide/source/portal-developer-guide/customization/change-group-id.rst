@@ -38,4 +38,4 @@ to all Portal projects (and their dependencies).
 
 .. note::
 	Do not forget to change default pages of your project. Follow this chapter to customize default pages:
-	:dev-url:`Default Pages </doc/9.4.0-m229/designer-guide/user-interface/default-pages/index.html>`
+	:dev-url:`Default Pages </doc/nightly/designer-guide/user-interface/default-pages/index.html>`
