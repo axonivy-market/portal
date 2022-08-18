@@ -9,7 +9,7 @@ Change Logos in Portal
 ----------------------
 
 You can change both the top-left corner logo in the menu and the login logo by
-using :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html>`.
+using :dev-url:`Engine Branding </doc/9.4.0-m229/designer-guide/user-interface/branding/branding-engine.html>`.
 
 We allow for two different logo graphics for the expanded and the collapsed
 menu. You can use one "pure" logo for the small, quadratic format (default: 42x42 pixels), and a logo
@@ -24,13 +24,13 @@ are usually pretty small because they are text files. All modern browsers can
 render SVG graphics.
 
 On the other hand, PNG logos blur if expanded, and are big files if supplied in
-high resolution to prevent the blurring. 
+high resolution to prevent the blurring.
 
 We recommend using images with a transparent background, if your Corporate
-Identity does not define a mandatory background color. 
+Identity does not define a mandatory background color.
 
-To change the logos used in the Portal, please use resources that are described at 
-:dev-url:`User Interface Branding <doc/nightly/designer-guide/user-interface/branding/branding-user-interface.html#resources>` and follow the guidelines below.
+To change the logos used in the Portal, please use resources that are described at
+:dev-url:`User Interface Branding <doc/9.4.0-m229/designer-guide/user-interface/branding/branding-user-interface.html#resources>` and follow the guidelines below.
 
 Expanded Menu Logo
 ^^^^^^^^^^^^^^^^^^
@@ -38,10 +38,10 @@ Expanded Menu Logo
 -  Use resource ``logo`` to update the homepage logo when the left-hand menu is expanded.
 
    .. tip::
-      - For PNG, we recommend using an image with a size of 168 pixels by 42 
+      - For PNG, we recommend using an image with a size of 168 pixels by 42
         pixels (width by height) to fit the left menu size when it is expanded.
         For SVG, it is best if the logo has a 4:1 ratio.
-        
+
       - To scale your logo, override these variables: ``--home-logo-width``, ``--home-logo-height``.
 
 Login & Collapsed Menu Logo
@@ -67,13 +67,13 @@ Favicon
 Change Portal Styles
 --------------------
 
-The Portal uses modern |css_variable| to support style customization. 
+The Portal uses modern |css_variable| to support style customization.
 
 To customize the Portal styles in an upgrade safe way, we suggest that you copy all CSS variables and styles
 which you plan to override from the files ``portal-root-variables.css`` and ``portal.css`` to file ``custom.css``.
 
-Refer to :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html>` for the
-location of :dev-url:`custom.css </doc/nightly/engine-guide/configuration/files/custom-css.html>`.
+Refer to :dev-url:`Engine Branding </doc/9.4.0-m229/designer-guide/user-interface/branding/branding-engine.html>` for the
+location of :dev-url:`custom.css </doc/9.4.0-m229/engine-guide/configuration/files/custom-css.html>`.
 
 .. caution:: Please do not modify ``portal-root-variables.css``, ``portal-variables-light.css``, ``portal-variables-dark.css`` and ``portal.css`` directly because they may change in a future Portal version.
 
@@ -119,15 +119,15 @@ You can customize the Portal styles in ``custom.css``.
   #. Inside the ``:root`` tag, change the value of ``--portal-font-family`` to your ``font-family`` name.
 
 .. tip::
-   - As the size measure unit for ``font-size``, the Portal uses ``rem``. 
+   - As the size measure unit for ``font-size``, the Portal uses ``rem``.
      Font sizes of all elements are calculated based on the font size of the ``html`` element.
 
-   - If ``--primary-color`` is a bright color (such as yellow or light blue), you may want to change ``--primary-text-color`` to ``black``. 
+   - If ``--primary-color`` is a bright color (such as yellow or light blue), you may want to change ``--primary-text-color`` to ``black``.
      It ensures that text on buttons and other components is legible as it has high contrast.
 
 .. tip::
-   If you are using IFrames and you want to customize the colors of the project specific UIs, then refer to this documentation 
-   :dev-url:`/doc/nightly/designer-guide/how-to/overrides.html?#override-new-wizard`
+   If you are using IFrames and you want to customize the colors of the project specific UIs, then refer to this documentation
+   :dev-url:`/doc/9.4.0-m229/designer-guide/how-to/overrides.html?#override-new-wizard`
 
 .. warning::
    - Do not change ``font-family`` property values.
