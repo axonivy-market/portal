@@ -8,7 +8,7 @@ You find ``portal-developer-examples`` in the engine demo mode or import them in
 .. note::
    If you copy ``PortalStart.p.json`` to your project for customization, you have to set default pages in your project.
    Follow this chapter to customize default pages:
-   :dev-url:`Default Pages </doc/9.4.0-m229/designer-guide/user-interface/default-pages/index.html>`
+   :dev-url:`Default Pages </doc/nightly/designer-guide/user-interface/default-pages/index.html>`
 
 |engine-demo-mode|
 
