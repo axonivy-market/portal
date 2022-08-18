@@ -127,7 +127,7 @@ a.left-sidebar-menu-icon {
 }
 
 .task-template-content.task-frame-container {
-  display: flex;
+  display: flex !important;
 }
 
 .layout-wrapper .layout-main .layout-content.frame-container {
