@@ -39,7 +39,7 @@ Refer to ``portal-developer-examples`` project for examples
    previous step. This process is new home page and administrator should
    register this link by Portal's Admin Settings.
 
-#. Use :dev-url:`Axon Ivy HtmlOverride wizard </doc/nightly/designer-guide/how-to/overrides.html?#override-new-wizard>` to override ``PortalTasks`` HTML dialog.
+#. Use :dev-url:`Axon Ivy HtmlOverride wizard </doc/9.4.0-m229/designer-guide/how-to/overrides.html?#override-new-wizard>` to override ``PortalTasks`` HTML dialog.
 
    .. tip:: This action overrides ``Task widget`` in: TaskList page, Task Search result.
 

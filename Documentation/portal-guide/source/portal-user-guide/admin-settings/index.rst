@@ -4,8 +4,8 @@ Admin Settings
 **************
 
 .. hint::
-   Only users who have granted the role ``AXONIVY_PORTAL_ADMIN`` can see and access 
-   the :guilabel:`Admin settings` user menu item. They can update Portal settings, 
+   Only users who have granted the role ``AXONIVY_PORTAL_ADMIN`` can see and access
+   the :guilabel:`Admin settings` user menu item. They can update Portal settings,
    as well as define, show and hide the announcement.
 
 Select the :guilabel:`Admin settings` user menu item.
@@ -50,9 +50,9 @@ HowTo: Update Portal Settings
 
 #. To reset all settings to their default values, click on :guilabel:`Restore all to defaults`.
 
-.. hint:: 
-   Portal settings are stored as Axon Ivy variables and can be configured in the 
-   :dev-url:`Axon Ivy Cockpit </doc/nightly/engine-guide/tool-reference/engine-cockpit/configuration.html#engine-cockpit-variables>`.
+.. hint::
+   Portal settings are stored as Axon Ivy variables and can be configured in the
+   :dev-url:`Axon Ivy Cockpit </doc/9.4.0-m229/engine-guide/tool-reference/engine-cockpit/configuration.html#engine-cockpit-variables>`.
 
 .. _portal-available-settings:
 
