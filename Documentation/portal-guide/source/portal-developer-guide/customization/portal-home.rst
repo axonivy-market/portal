@@ -50,7 +50,7 @@ Follow these steps to create your customzied Portal Home:
    Portal instead of the default one. To make Portal aware of your new Portal
    home, you have to set the default pages in your project, as detailed in
    :dev-url:`Default Pages
-   </doc/nightly/designer-guide/user-interface/default-pages/index.html>`
+   </doc/9.4.0-m229/designer-guide/user-interface/default-pages/index.html>`
 
 
 .. _customization-portal-home-advanced-usage:

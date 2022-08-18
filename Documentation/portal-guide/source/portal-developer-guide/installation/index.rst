@@ -23,7 +23,7 @@ on each module, refer to :ref:`architecture`.
 -  AxonIvyExpress
 
 The deployment of Ivy projects is described in :dev-url:`project
-deployment </doc/nightly/engine-guide/deployment/index.html>`
+deployment </doc/9.4.0-m229/engine-guide/deployment/index.html>`
 .
 
 Installation
@@ -86,7 +86,7 @@ How To Migrate
 
    To migrate the Portal, you need to migrate Axon Ivy first. Refer to the
    :dev-url:`Axon Ivy Migration Notes
-   </doc/nightly/axonivy/migration/index.html>`. Changes in Axon Ivy could lead
+   </doc/9.4.0-m229/axonivy/migration/index.html>`. Changes in Axon Ivy could lead
    to problems if a customer project is not migrated properly.
 
 In Designer
@@ -148,7 +148,7 @@ Migrate 9.3 To 9.4
    ..
 
 #. The ``customization.css`` file has been removed, in case you use it in your project, please switch to using
-   :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html>` to customize styling
+   :dev-url:`Engine Branding </doc/9.4.0-m229/designer-guide/user-interface/branding/branding-engine.html>` to customize styling
 
 #. Sub processes related to documents are moved to the independent project ``portal-component``.
    If you customized these processes, please override the correspond sub process again and added your customization to it.
@@ -188,10 +188,10 @@ Migrate 9.3 To 9.4
    - :ref:`Migration steps <components-additional-components-migrate-from-old-process-chain>` for the new :ref:`Process Chain <components-additional-component-process-chain>` component.
 
 #. Portal dashboard widgets only support the ``CustomFields`` declared in the ``custom-fields.yaml`` file.
-   If your ``CustomFields`` are used in the dashboard widget, please follow the :dev-url:`Custom Fields Meta Information </doc/nightly/designer-guide/how-to/workflow/custom-fields.html#meta-information>` to adapt the data.
+   If your ``CustomFields`` are used in the dashboard widget, please follow the :dev-url:`Custom Fields Meta Information </doc/9.4.0-m229/designer-guide/how-to/workflow/custom-fields.html#meta-information>` to adapt the data.
 
 #. The ``DefaultChartColor.p.json`` sub process has been removed, in case you use it in your project, please remove override this sub process and switch to using
-   :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html>` to customize chart, data labels, legend color.
+   :dev-url:`Engine Branding </doc/9.4.0-m229/designer-guide/user-interface/branding/branding-engine.html>` to customize chart, data labels, legend color.
    Refer to :ref:`Default chart colors <customization-default-chart-colors>`.
 
 #. Deploy :download:`portal-migration.iar <documents/portal-migration-9.4.0.iar>` project to your Ivy application and run it by access link
@@ -230,7 +230,7 @@ Migrate To 9.3
    If you use have any customized date filters in your project, update template accordingly.
 
 #. The callable process ``DefaultChart.p.json``, ``DefaultUserProcess.p.json`` has been removed. They are replaced by
-   the :dev-url:`Variables </doc/nightly/designer-guide/configuration/variables.html>` configuration approach,
+   the :dev-url:`Variables </doc/9.4.0-m229/designer-guide/configuration/variables.html>` configuration approach,
    refer to :ref:`Default Chart <customization-default-chart>` and :ref:`Default User Process <customization-default-user-process>` for more information
 
 Migrate 9.1 To 9.2
@@ -260,7 +260,7 @@ Migrate 9.1 To 9.2
 
 #. Deprecated callable processes: ``OpenPortalSearch.mod``, ``OpenPortalTasks.mod``, ``OpenPortalTaskDetails.mod``, ``OpenPortalCases.mod``, ``OpenPortalCaseDetails.mod`` process.
 
-   Portal recommends using :dev-url:`Axon Ivy HtmlOverride wizard </doc/nightly/designer-guide/how-to/overrides.html?#override-new-wizard>` to customize ``Portal HTML Dialog``
+   Portal recommends using :dev-url:`Axon Ivy HtmlOverride wizard </doc/9.4.0-m229/designer-guide/how-to/overrides.html?#override-new-wizard>` to customize ``Portal HTML Dialog``
 
    .. important:: The callable process which is supporting to open customization dialog will be removed in the future, do not use it in the new project
 
@@ -294,7 +294,7 @@ Migrate 8.X To 9.1
    Portal app mode) are not available anymore. To let Portal know where your new
    Portal home page is, you have to set default pages in your project.
    Follow this chapter to customize default-pages:
-   :dev-url:`Default Pages </doc/nightly/designer-guide/user-interface/default-pages/index.html>`
+   :dev-url:`Default Pages </doc/9.4.0-m229/designer-guide/user-interface/default-pages/index.html>`
 
 #. Portal now uses |css_variable| instead of SASS. Therefore, you have to convert
    the SASS syntax to the new CSS variables or use online tools such as

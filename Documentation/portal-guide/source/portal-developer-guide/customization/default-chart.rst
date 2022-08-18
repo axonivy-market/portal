@@ -16,6 +16,6 @@ Priority". However, you can create your default chart.
 Customization
 -------------
 
-Default chart configuration is stored in 
-:dev-url:`Variables </doc/nightly/designer-guide/configuration/variables.html>`.
+Default chart configuration is stored in
+:dev-url:`Variables </doc/9.4.0-m229/designer-guide/configuration/variables.html>`.
 Update variable :ref:`portal-statistic-charts` to customize the default charts.
