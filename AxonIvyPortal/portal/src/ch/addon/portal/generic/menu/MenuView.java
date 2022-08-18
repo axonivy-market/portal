@@ -1,5 +1,9 @@
 package ch.addon.portal.generic.menu;
 
+import static ch.ivy.addon.portalkit.util.DashboardUtils.DASHBOARD_MENU_ITEM_PATTERN;
+import static ch.ivy.addon.portalkit.util.DashboardUtils.DASHBOARD_MENU_JS_CLASS;
+import static ch.ivy.addon.portalkit.util.DashboardUtils.DASHBOARD_MENU_PATTERN;
+import static ch.ivy.addon.portalkit.util.DashboardUtils.DASHBOARD_PAGE_URL;
 import static java.util.Objects.isNull;
 
 import java.io.IOException;
@@ -14,11 +18,14 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
+import org.primefaces.model.menu.DefaultSubMenu;
+import org.primefaces.model.menu.MenuElement;
 import org.primefaces.model.menu.MenuItem;
 import org.primefaces.model.menu.MenuModel;
 
@@ -31,6 +38,7 @@ import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.publicapi.ApplicationMultiLanguageAPI;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
+import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -127,7 +135,9 @@ public class MenuView implements Serializable {
         .build();
   }
 
-  private DefaultMenuItem buildDashboardItem() {
+  private MenuElement buildDashboardItem() {
+    var dashboardTitle = translate(DASHBOARD);
+    var dashboardId = "";
     String dashboardLink = PortalNavigator.getPortalStartUrl();
     String defaultHomepageConfig = HomepageUtils.getHomepageName();
     HomepageType configHomepageType = HomepageType.getType(defaultHomepageConfig);
@@ -135,11 +145,44 @@ public class MenuView implements Serializable {
       dashboardLink = getDashboardLink();
     }
 
-    return new PortalMenuBuilder(translate(DASHBOARD), MenuKind.DASHBOARD, this.isWorkingOnATask)
-        .icon(PortalMenuItem.DEFAULT_DASHBOARD_ICON)
-        .url(dashboardLink)
-        .workingTaskId(this.workingTaskId)
-        .build();
+    if (!isShowLegacyUI()) {
+      var dashboards = DashboardUtils.collectDashboards();
+      if (CollectionUtils.isNotEmpty(dashboards)) {
+        DefaultSubMenu dashboardGroupMenu = DefaultSubMenu.builder()
+                .label(dashboardTitle)
+                .icon(PortalMenuItem.DEFAULT_DASHBOARD_ICON)
+                .id(String.format(DASHBOARD_MENU_PATTERN, MenuKind.DASHBOARD.name()))
+                .styleClass(DASHBOARD_MENU_JS_CLASS).build();
+        if (dashboards.size() > 1) {
+          for (var board : dashboards) {
+            var iconClass = board.getIsPublic() ? "si si-network-share" : "si si-single-neutral-shield";
+            var dashboardMenu = new PortalMenuBuilder(board.getTitle(), MenuKind.DASHBOARD, this.isWorkingOnATask)
+                  .icon(iconClass)
+                  .url(dashboardLink)
+                  .workingTaskId(this.workingTaskId).build();
+            dashboardMenu.setId(String.format(DASHBOARD_MENU_ITEM_PATTERN, board.getId()));
+            dashboardGroupMenu.getElements().add(dashboardMenu);
+          }
+          if (StringUtils.endsWith(Ivy.request().getRootRequest().getRequestPath(), DASHBOARD_PAGE_URL)) {
+            dashboardGroupMenu.setExpanded(true);
+          }
+          return dashboardGroupMenu;
+        } else {
+          dashboardTitle = dashboards.get(0).getTitle();
+          dashboardId = dashboards.get(0).getId();
+        }
+      }
+    }
+
+    var dashboardMenu = new PortalMenuBuilder(dashboardTitle, MenuKind.DASHBOARD, this.isWorkingOnATask)
+            .icon(PortalMenuItem.DEFAULT_DASHBOARD_ICON)
+            .url(dashboardLink)
+            .workingTaskId(this.workingTaskId).build();
+    if (StringUtils.isBlank(dashboardId)) {
+      dashboardId = dashboardMenu.getId();
+    }
+    dashboardMenu.setId(String.format(DASHBOARD_MENU_PATTERN, dashboardId));
+    return dashboardMenu;
   }
 
   public String getDashboardLink() {
@@ -407,6 +450,8 @@ public class MenuView implements Serializable {
     var isWorkingOnATask = Optional.ofNullable(requestParamMap.get(IS_WORKING_ON_TASK)).map(BooleanUtils::toBoolean).orElse(false);
     var isOpenOnNewTab =  Optional.ofNullable(requestParamMap.get(IS_OPEN_NEW_TAB)).map(BooleanUtils::toBoolean).orElse(false);
     session().setAttribute(SELECTED_MENU_ID, selectedMenuItemId);
+    DashboardUtils.updateSelectedDashboardToSession(selectedMenuItemId);
+
     if (!isWorkingOnATask && !isOpenOnNewTab) {
       session().setAttribute(PREV_SELECTED_MENU_ID, selectedMenuItemId);
     }
