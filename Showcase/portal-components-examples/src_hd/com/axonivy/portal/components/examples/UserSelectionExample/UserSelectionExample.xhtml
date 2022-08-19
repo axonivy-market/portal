@@ -1,0 +1,63 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/frame-10.xhtml">
+    <ui:define name="title">User Selection Component Example</ui:define>
+    <ui:define name="content">
+      <h:outputStylesheet library="css" name="examples.css" />
+      <div class="layout-wrapper">
+      <h:form id="form">
+        <ic:com.axonivy.portal.components.examples.internal.ThemeSelection serenityExampleLink="#{data.userSelectionSerenityExampleLink}" />
+        <h1 class="user-selection-component-header">User Selection Examples</h1>
+        <div class="ui-g ui-fluid">
+          <div class="ui-g-8 ui-xl-8 ui-sm-12">
+          <ic:com.axonivy.portal.components.UserSelection componentId="default-user-autocomplete" selectedUser="#{data.selectedUser}"
+            label="Default user selection" isRequired="true" labelPanelStyleClass="ui-g-3 ui-md-3 ui-sm-12" autoCompleteStyleClass="width-100"
+            autoCompletePanelStyleClass="ui-g-9 ui-sm-12" messageStyleClass="ui-g-9 ui-g-offset-3 ui-sm-offset-0 ui-sm-12 user-selection-message-with-button-inline" />
+          </div>
+          <div class="ui-g-3 ui-xl-3 ui-md-4 ui-sm-12 assign-task-to-selected-user">
+            <p:commandButton update="@form" value="Assign selected user to next task" actionListener="#{logic.finish}" />
+          </div>
+        </div>
+        <div class="ui-g ui-fluid" style="margin-bottom: 20px;">
+          <div class="ui-g-8 ui-xl-4 ui-md-6 ui-sm-12">
+            <ic:com.axonivy.portal.components.UserSelection componentId="read-only-user-autocomplete"
+              selectedUser="#{data.selectedUserForReadOnlyField}" isRenderedMessage="false" label="Read only user selection"
+              labelPanelStyleClass="ui-g-6 ui-md-6 ui-sm-12" autoCompleteStyleClass="width-100" autoCompletePanelStyleClass="ui-g-6 ui-sm-12"
+              isReadOnly="true" hightlight="false" />
+          </div>
+          <div class="ui-g-4 ui-xl-4 ui-md-6 ui-sm-12">
+            <ic:com.axonivy.portal.components.UserSelection componentId="all-user-autocomplete" hightlight="false"
+              selectedUser="#{data.selectedUserForExcludingUsers}" label="Loading users (exclude supporter, tester)" autoCompleteStyleClass="width-100"
+              autoCompletePanelStyleClass="ui-g-12 floating-label-margin-top" excludedUsernames="#{data.excludedUsernames}" floatingLabel="true" />
+          </div>
+        </div>
+        <div class="ui-g ui-fluid" style="margin-bottom: 20px;">
+          <div class="ui-g-8 ui-xl-4 ui-md-6 ui-sm-12">
+            <ic:com.axonivy.portal.components.UserSelection componentId="user-by-role-autocomplete" fromRoleNames="#{data.definedRoleNames}"
+              selectedUser="#{data.selectedUserForDefinedRoles}" autoCompleteStyleClass="width-100" label="Users from defined rolenames"
+              labelPanelStyleClass="ui-g-6 ui-md-6 ui-sm-12" autoCompletePanelStyleClass="ui-g-6 ui-sm-12" />
+          </div>
+          <div class="ui-g-4 ui-xl-4 ui-md-6 ui-sm-12">
+            <ic:com.axonivy.portal.components.UserSelection id="item-select-event-component" componentId="item-select-event-for-user-selection"
+              fromRoleNames="#{data.definedRoleNames}" selectedUser="#{data.selectedUserForInsertChildren}" label="Demonstrate facet and children"
+              autoCompleteStyleClass="width-100" autoCompletePanelStyleClass="ui-g-12 floating-label-margin-top" floatingLabel="true">
+              <p:column>
+                <h:outputText value="#{user.displayName}" />
+              </p:column>
+              <f:facet name="event">
+                <p:ajax event="itemSelect" listener="#{logic.showSelectedUser}"
+                  update="#{p:resolveFirstComponentWithId('item-select-event-for-user-selection-message', view).clientId}" />
+              </f:facet>
+            </ic:com.axonivy.portal.components.UserSelection>
+          </div>
+        </div>
+      </h:form>
+      </div>
+    </ui:define>
+  </ui:composition>
+</h:body>
+
+</html>
