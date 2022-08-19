@@ -29,7 +29,7 @@
         "callSignature" : "query",
         "result" : {
           "params" : [
-            { "name" : "owners", "type" : "java.util.List<com.axonivy.portal.component.dto.SecurityMemberDTO>" }
+            { "name" : "owners", "type" : "java.util.List<com.axonivy.portal.components.dto.SecurityMemberDTO>" }
           ],
           "code" : [
             "import ch.ivy.addon.portalkit.constant.PortalConstants;",

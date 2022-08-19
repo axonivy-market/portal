@@ -15,8 +15,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import com.axonivy.portal.component.dto.RoleDTO;
-import com.axonivy.portal.component.dto.UserDTO;
+import com.axonivy.portal.components.dto.RoleDTO;
+import com.axonivy.portal.components.dto.UserDTO;
 
 import ch.ivy.addon.portalkit.role.RoleHolder;
 import ch.ivy.addon.portalkit.role.RoleTreeDataModel;

@@ -36,7 +36,7 @@
           "params" : [
             { "name" : "uploadedDocument", "type" : "ch.ivyteam.ivy.workflow.document.IDocument" },
             { "name" : "message", "type" : "String" },
-            { "name" : "status", "type" : "com.axonivy.portal.component.enums.UploadDocumentCheckStatus" }
+            { "name" : "status", "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus" }
           ],
           "map" : {
             "result.uploadedDocument" : "in.uploadedDocument",
@@ -82,7 +82,7 @@
         ".name" : "Validate",
         "output" : {
           "code" : [
-            "import com.axonivy.portal.component.enums.UploadDocumentCheckStatus;",
+            "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
             "import org.apache.commons.io.FileUtils;",
             "import java.util.Arrays;",
             "import ch.ivy.addon.portalkit.masterdata.MasterData;",
@@ -135,7 +135,7 @@
             "name" : "OK",
             "segment" : 0.33,
             "offset" : { "x" : 0, "y" : -8 }
-          }, "condition" : "in.status == com.axonivy.portal.component.enums.UploadDocumentCheckStatus.OK" },
+          }, "condition" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK" },
         { "id" : "f90", "to" : "f74" }
       ]
     }, {
@@ -153,7 +153,7 @@
         ".name" : "Check exist",
         "output" : {
           "code" : [
-            "import com.axonivy.portal.component.enums.UploadDocumentCheckStatus;",
+            "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
             "import ch.ivy.addon.portalkit.service.CaseDocumentService;",
             "",
             "String fileName = in.uploadedFile.getFileName();",
@@ -222,7 +222,7 @@
         ],
         "output" : {
           "code" : [
-            "import com.axonivy.portal.component.enums.UploadDocumentCheckStatus;",
+            "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
             "import ch.ivy.addon.portalkit.service.CaseDocumentService;",
             "import java.util.Arrays;",
             "import org.primefaces.model.file.UploadedFile;",
@@ -264,7 +264,7 @@
             "name" : "YES",
             "segment" : 0.3,
             "offset" : { "x" : 0, "y" : -12 }
-          }, "condition" : "in.status == com.axonivy.portal.component.enums.UploadDocumentCheckStatus.OK" },
+          }, "condition" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK" },
         { "id" : "f88", "to" : "f73" }
       ]
     }, {
