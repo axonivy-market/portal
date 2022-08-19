@@ -20,7 +20,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "documents", "type" : "java.util.List<com.axonivy.portal.component.ivydata.bo.IvyDocument>" },
+            { "name" : "documents", "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>" },
             { "name" : "message", "type" : "String" }
           ],
           "map" : {

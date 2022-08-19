@@ -1,0 +1,16 @@
+RoleSelectionExampleSerenityData #class
+com.axonivy.portal.components.examples.serenity.RoleSelectionExampleSerenity #namespace
+selectedRoleForDefinedRoles com.axonivy.portal.components.dto.RoleDTO #field
+selectedRoleForDefinedRoles PERSISTENT #fieldModifier
+selectedRoleForReadOnlyField com.axonivy.portal.components.dto.RoleDTO #field
+selectedRoleForReadOnlyField PERSISTENT #fieldModifier
+selectedRoleForExcludingRoles String #field
+selectedRoleForExcludingRoles PERSISTENT #fieldModifier
+excludedRoleNames List<String> #field
+excludedRoleNames PERSISTENT #fieldModifier
+selectedRoleForInsertChildren com.axonivy.portal.components.dto.RoleDTO #field
+selectedRoleForInsertChildren PERSISTENT #fieldModifier
+selectedRole com.axonivy.portal.components.dto.RoleDTO #field
+selectedRole PERSISTENT #fieldModifier
+definedRoleNames List<String> #field
+definedRoleNames PERSISTENT #fieldModifier

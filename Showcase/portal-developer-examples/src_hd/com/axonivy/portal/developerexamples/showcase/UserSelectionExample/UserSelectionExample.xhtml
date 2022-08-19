@@ -11,7 +11,7 @@
       <h:form id="form">
         <div class="ui-g" >
           <div class="ui-g-8 ui-xl-4 ui-md-6 ui-sm-12">
-            <ic:com.axonivy.portal.component.UserSelection 
+            <ic:com.axonivy.portal.components.UserSelection 
               componentId="read-only-user-autocomplete"
               selectedUser="#{data.selectedUserForReadOnlyField}" 
               isRenderedMessage="false"
@@ -22,7 +22,7 @@
               isReadOnly="true" hightlight="false"/>
           </div>
           <div id="floating-label-component" class="ui-g-4 ui-xl-3 ui-md-6 ui-sm-12">
-            <ic:com.axonivy.portal.component.UserSelection
+            <ic:com.axonivy.portal.components.UserSelection
               componentId="all-user-autocomplete"
               hightlight="false" selectedUser="#{data.selectedUser}"
               label="Loading with all users (exclude gm1, gm2, admin)"
@@ -34,7 +34,7 @@
         </div>
         <div class="ui-g" >
           <div id="user-by-role-component" class="ui-g-8 ui-xl-4 ui-md-6 ui-sm-12">
-              <ic:com.axonivy.portal.component.UserSelection 
+              <ic:com.axonivy.portal.components.UserSelection 
               componentId="user-by-role-autocomplete"
               fromRoleNames="#{data.definedRoleNames}"
               selectedUser="#{data.selectedUserForDefinedRoles}"
@@ -45,7 +45,7 @@
               autoCompletePanelStyleClass="ui-g-5 ui-sm-12" />
           </div>
           <div id="item-select-with-ajax-event-component" class="ui-g-4 ui-xl-3 ui-md-6 ui-sm-12">
-            <ic:com.axonivy.portal.component.UserSelection 
+            <ic:com.axonivy.portal.components.UserSelection 
               id="item-select-event-component"
               componentId="item-select-event-for-user-selection"
               fromRoleNames="#{data.definedRoleNamesForEverybody}"
@@ -62,7 +62,7 @@
                   <p:ajax event="itemSelect" listener="#{logic.showSelectedUser}" 
                     update="#{p:resolveFirstComponentWithId('item-select-event-for-user-selection-message', view).clientId}"/>
                 </f:facet>
-              </ic:com.axonivy.portal.component.UserSelection>
+              </ic:com.axonivy.portal.components.UserSelection>
           </div>
         </div>
         <div class="ui-g assign-task-to-selected-user-panel display-block">

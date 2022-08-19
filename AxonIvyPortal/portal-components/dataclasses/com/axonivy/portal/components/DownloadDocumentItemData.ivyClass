@@ -1,0 +1,5 @@
+DownloadDocumentItemData #class
+com.axonivy.portal.components #namespace
+streamedContent org.primefaces.model.StreamedContent #field
+businessCase ch.ivyteam.ivy.workflow.ICase #field
+document com.axonivy.portal.components.ivydata.bo.IvyDocument #field
