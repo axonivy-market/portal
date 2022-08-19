@@ -26,7 +26,7 @@
 
                 <div class="ui-g-12 u-no-padding-top">
                   <div class="ui-g-4 ui-xl-4 ui-lg-4 ui-md-12 ui-sm-12 u-padding-0 display-flex-center" jsf:rendered="#{data.isSupervisor}">
-                    <ic:com.axonivy.portal.component.UserSelection id="user-absence-selection-component"
+                    <ic:com.axonivy.portal.components.UserSelection id="user-absence-selection-component"
                       componentId="user-absence"
                       selectedUser="#{data.selectedAbsenceUser}"
                       completeMethod="#{logic.autoCompleteForUserOnApp}"
@@ -46,7 +46,7 @@
                         <p:ajax event="itemSelect" listener="#{logic.findAbsencesAndSubstitutes}" partialSubmit="true"
                           update="@(.absence-table) @(.substitute-table) @(.substitution-table) absences-management-form" />
                       </f:facet>
-                    </ic:com.axonivy.portal.component.UserSelection>
+                    </ic:com.axonivy.portal.components.UserSelection>
                   </div>
                   <div class="#{data.isSupervisor ? 'ui-g-8 ui-xl-8 ui-lg-8 ui-md-12 ui-sm-12' : 'ui-g-12'} add-absence-panel display-flex-center">
                     <div class="ui-g-6 ui-lg-6 ui-md-8 ui-sm-11 u-padding-0 u-text-align-left">

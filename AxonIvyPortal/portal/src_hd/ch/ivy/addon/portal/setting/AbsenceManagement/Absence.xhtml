@@ -25,7 +25,7 @@
         styleClass="new-absence-messages ui-g-12" />
       <h:panelGroup id="input-adsence-data-section" layout="block" styleClass="ui-g-12 u-padding-0 ui-fluid">
         <h:panelGroup layout="block" styleClass="ui-g-12 u-padding-0" rendered="#{data.canCreateAbsenceForOtherUsers}">
-          <ic:com.axonivy.portal.component.UserSelection id="absence-selection-component" componentId="absence-username"
+          <ic:com.axonivy.portal.components.UserSelection id="absence-selection-component" componentId="absence-username"
             selectedUser="#{data.selectedUser}" isRenderedMessage="false" scrollHeight="200"
             completeMethod="#{logic.autoCompleteForUserOnApp}" isDisabled="#{!data.isCreateMode}" isRequired="true"
             requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/userNameRequired')}"
@@ -41,7 +41,7 @@
               <p:ajax event="itemSelect" listener="#{logic.userSelectInAbsence}"
                 update="#{p:resolveFirstComponentWithId('absence-messages', view).clientId} #{p:resolveFirstComponentWithId('save-absence', view).clientId}" />
             </f:facet>
-          </ic:com.axonivy.portal.component.UserSelection>
+          </ic:com.axonivy.portal.components.UserSelection>
         </h:panelGroup>
         <div class="ui-g-6 ui-sm-12 u-padding-0">
           <h:outputLabel for="absence-start-date" styleClass="ui-g-12"

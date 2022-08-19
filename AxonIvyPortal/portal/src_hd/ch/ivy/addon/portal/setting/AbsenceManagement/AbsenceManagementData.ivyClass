@@ -5,7 +5,7 @@ absencesByUser PERSISTENT #fieldModifier
 backupAbsence ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence #field
 backupAbsence PERSISTENT #fieldModifier
 isSupervisor Boolean #field
-users java.util.List<com.axonivy.portal.component.dto.UserDTO> #field
+users java.util.List<com.axonivy.portal.components.dto.UserDTO> #field
 users PERSISTENT #fieldModifier
 queryAutoComplete String #field
 selectedAbsence ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence #field
@@ -17,9 +17,9 @@ displayedAbsences java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence> #
 displayedAbsences PERSISTENT #fieldModifier
 isAbsenceBeingCreated Boolean #field
 isAbsenceBeingCreated PERSISTENT #fieldModifier
-selectedAbsenceUser com.axonivy.portal.component.dto.UserDTO #field
+selectedAbsenceUser com.axonivy.portal.components.dto.UserDTO #field
 selectedAbsenceUser PERSISTENT #fieldModifier
-selectedUser com.axonivy.portal.component.dto.UserDTO #field
+selectedUser com.axonivy.portal.components.dto.UserDTO #field
 selectedUser PERSISTENT #fieldModifier
 isCreateMode Boolean #field
 isCreateMode PERSISTENT #fieldModifier
@@ -35,7 +35,7 @@ selectedDeputyRole ch.ivy.addon.portalkit.dto.DeputyRole #field
 selectedDeputyRole PERSISTENT #fieldModifier
 selectedDeputyRoleId String #field
 selectedDeputyRoleId PERSISTENT #fieldModifier
-selectedDeputy com.axonivy.portal.component.dto.UserDTO #field
+selectedDeputy com.axonivy.portal.components.dto.UserDTO #field
 selectedDeputy PERSISTENT #fieldModifier
 selectedDeputies java.util.List<ch.ivyteam.ivy.security.ISecurityMember> #field
 selectedDeputies PERSISTENT #fieldModifier

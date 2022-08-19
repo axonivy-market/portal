@@ -15,7 +15,7 @@ import org.primefaces.virusscan.VirusException;
 import org.primefaces.virusscan.VirusScanner;
 import org.primefaces.virusscan.VirusScannerService;
 
-import com.axonivy.portal.component.ivydata.bo.IvyDocument;
+import com.axonivy.portal.components.ivydata.bo.IvyDocument;
 
 import ch.ivy.addon.portalkit.configuration.GlobalSetting;
 import ch.ivy.addon.portalkit.document.DocumentDetector;

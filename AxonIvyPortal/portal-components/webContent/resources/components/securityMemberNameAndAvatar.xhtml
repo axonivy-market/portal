@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:p="http://primefaces.org/ui"
+  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
+
+<cc:interface>
+  <cc:attribute name="isShowAvatar" default="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}" />
+  <cc:attribute name="displayNameId" default="username" />
+  <cc:attribute name="displayName" required="true" />
+  <cc:attribute name="displayNameRendered" default="true" />
+  <cc:attribute name="securityMember" required="true" />
+  <cc:attribute name="displayNameStyleClass" />
+  <cc:attribute name="containerStyleClass" />
+
+</cc:interface>
+<cc:implementation>
+  <h:outputStylesheet library="css" name="portal-components-utility.css" />
+  <h:outputStylesheet library="css" name="security-member-avatar-component.css" />
+
+  <div class="#{cc.attrs.isShowAvatar ? 'has-avatar' : ''} #{cc.attrs.containerStyleClass}">
+    <pc:avatar securityMember="#{cc.attrs.securityMember}" rendered="#{cc.attrs.securityMember != null}" />
+    <cc:renderFacet name="alternativeAvatar" />
+    <h:outputText id="#{cc.attrs.displayNameId}" value="#{cc.attrs.displayName}"
+      rendered="#{cc.attrs.displayNameRendered}"
+      styleClass="#{cc.attrs.isShowAvatar ? 'name-after-avatar' : ''} #{cc.attrs.displayNameStyleClass} #{cc.attrs.securityMember == null ? 'u-no-padding-left' : ''}">
+    </h:outputText>
+    <cc:renderFacet name="afterName" />
+  </div>
+</cc:implementation>
+</html>
