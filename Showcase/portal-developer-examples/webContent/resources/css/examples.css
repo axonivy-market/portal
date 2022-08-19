@@ -1,9 +1,9 @@
 .custom-varchar {
-	flex: 0 0 150px;
+  flex: 0 0 150px;
 }
 
 .custom-datetime {
-	flex: 0 0 90px;
+  flex: 0 0 90px;
 }
 
 .custom-task-details-panel-top {
@@ -11,7 +11,7 @@
 }
 
 .custom-task-details-panel-middle {
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .custom-task-details-panel {
@@ -23,25 +23,28 @@
 }
 
 .custom-task-middle-container {
- padding-left: 0px !important;
- padding-right: 0px !important; 
- padding-bottom: 18px;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  padding-bottom: 18px;
 }
 
 .custom-task-panel-middle {
   height: 343px;
   margin-top: 15px;
-  margin :0;
+  margin: 0;
 }
 
 .custom-task-panel {
- padding-left: 14px;
- padding-right : 14px;
+  padding-left: 14px;
+  padding-right: 14px;
 }
-.custom-task-details-panel, .custom-task-details-panel-top,.custom-task-details-panel-middle {	
-	text-align: center;
-	font-size: 1.2rem;
-	padding: 1rem;
+
+.custom-task-details-panel,
+.custom-task-details-panel-top,
+.custom-task-details-panel-middle {
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 1rem;
 }
 
 .custom-case-details-panel-override-height {
@@ -51,152 +54,156 @@
 .custom-case-details-panel-font-size {
   font-size: 1.6rem !important;
 }
+
 .custom-task-left-component {
   padding-bottom: 15px !important;
 }
 
 .customized-case-header-column {
-	flex: 0 0 155px;
-	text-align: center;
+  flex: 0 0 155px;
+  text-align: center;
 }
 
 .customized-home-custom-widget {
-	border: 2px solid;
-	text-align: center;
-	height: 500px;
+  border: 2px solid;
+  text-align: center;
+  height: 500px;
 }
 
 .welcome-page-div {
-	text-align: center;
+  text-align: center;
 }
 
 .login-container {
-	height: 100%;
-	margin: 0;
+  height: 100%;
+  margin: 0;
 }
 
 .customized-login-bg {
-	background-image: url("#{resource['ivy-webcontent:images/login/Login-HD.jpg']}");
-	filter: blur(4px);
-	-webkit-filter: blur(4px);
-	height: 100%;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
+  background-image: url("#{resource['ivy-webcontent:images/login/Login-HD.jpg']}");
+  filter: blur(4px);
+  -webkit-filter: blur(4px);
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .customized-login {
-	background-color: transparent;
-	color: white;
-	font-weight: bold;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	z-index: 2;
-	width: 80%;
-	padding: 20px;
-	text-align: center;
+  background-color: transparent;
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
 }
 
 .customized-login .error-message {
-	color: #212121;
+  color: #212121;
 }
 
 .customized-login-panel {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 430px;
-	background-color: white;
-	border-radius: 20px;
-	text-align: center;
-	padding: 30px 20px;
-	box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 6px 10px 0 rgba(0, 0, 0, 0.14);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 430px;
+  background-color: white;
+  border-radius: 20px;
+  text-align: center;
+  padding: 30px 20px;
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 6px 10px 0 rgba(0, 0, 0, 0.14);
 }
 
 .customized-login-panel .title {
-	margin: 0;
-	font-size: 2rem;
-	color: #212121;
+  margin: 0;
+  font-size: 2rem;
+  color: #212121;
 }
 
 .customized-login-panel .input.ui-inputfield {
-	margin: 18px auto 0;
-	padding: 0 !important;
-	text-align: center;
-	display: block;
-	width: 70%;
-	background: transparent;
-	font-size: 1.8rem;
+  margin: 18px auto 0;
+  padding: 0 !important;
+  text-align: center;
+  display: block;
+  width: 70%;
+  background: transparent;
+  font-size: 1.8rem;
 }
 
 .customized-login-panel .login-command {
-	font-size: 1.4rem;
-	color: black !important;
-	text-decoration: none !important;
-	outline: none !important;
+  font-size: 1.4rem;
+  color: black !important;
+  text-decoration: none !important;
+  outline: none !important;
 }
 
 .customized-login-panel .ui-messages.ui-messages-noicon ul {
-	margin: 0;
+  margin: 0;
 }
 
 .customized-login-panel .ui-messages-error {
-	border: none;
-	margin: 10px 0 0;
-	padding: 0 !important;
-	color: red !important;
-	background: transparent !important;
-	text-align: center;
+  border: none;
+  margin: 10px 0 0;
+  padding: 0 !important;
+  color: red !important;
+  background: transparent !important;
+  text-align: center;
 }
 
 .process-chain-test-form {
-	padding: 0.5em 1em;
+  padding: 0.5em 1em;
 }
 
 .process-chain-test,
 .process-chain-test-button {
-	height: 150px;
+  height: 150px;
 }
 
 .process-chain-test-vertical,
 .process-chain-test-vertical-line {
-	height: 500px !important;
-	float: left;
+  height: 500px !important;
+  float: left;
 }
 
 .process-chain-test-vertical {
-	width: 200px;
+  width: 200px;
 }
+
 .process-chain-test-button,
 .process-chain-test-vertical-line {
-	width: 600px !important;
+  width: 600px !important;
 }
 
 .floating-label-margin-top {
-	margin-top: 6px;
+  margin-top: 6px;
 }
 
 .assign-task-to-selected-user {
-	margin-top: 15px;
-	float:right;
+  margin-top: 15px;
+  float: right;
 }
 
 .assign-task-to-selected-user-panel.display-block {
-	display: block;
+  display: block;
 }
 
-.width-100, .width-100 .ui-autocomplete-input{
-	width: 100%;
+.width-100,
+.width-100 .ui-autocomplete-input {
+  width: 100%;
 }
 
 .user-selection-component-header {
-	margin-left: 10px;
+  margin-left: 10px;
 }
 
 @media screen and (max-width: 40em) {
+
   .document-table-component .document-creator-column,
   .document-table-component .document-created-column,
   .document-table-component .document-customer-column {
@@ -221,7 +228,13 @@
   position: relative;
   object-fit: cover;
   width: inherit;
-  border-radius: 5px;
+  border-radius: 24px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.default-process-meta {
+  margin: 2rem 1rem;
 }
 
 .font-weight-bold {
@@ -233,7 +246,7 @@
 }
 
 .card-item.card.photo-item-example {
-  height: 354px;
+  min-height: 354px;
 }
 
 .custom-style-class>.card.case-detail-card {
@@ -257,4 +270,12 @@
 
 .font-size-75 {
   font-size: 75%;
+}
+
+.flex-align-center {
+  align-items: center !important;
+}
+
+.text-align-right {
+	text-align: right;
 }
