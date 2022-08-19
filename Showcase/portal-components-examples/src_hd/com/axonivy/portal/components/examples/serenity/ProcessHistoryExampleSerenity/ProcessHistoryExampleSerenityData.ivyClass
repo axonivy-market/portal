@@ -1,0 +1,6 @@
+ProcessHistoryExampleSerenityData #class
+com.axonivy.portal.components.examples.serenity.ProcessHistoryExampleSerenity #namespace
+showProcessHistoriesOfAlphaCompany Boolean #field
+showProcessHistoriesOfAlphaCompany PERSISTENT #fieldModifier
+showProcessHistoriesOfBetaCompany Boolean #field
+showProcessHistoriesOfBetaCompany PERSISTENT #fieldModifier

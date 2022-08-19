@@ -62,7 +62,7 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
-            "import com.axonivy.portal.component.dto.UserDTO;",
+            "import com.axonivy.portal.components.dto.UserDTO;",
             "import com.axonivy.portal.userexamples.leaverequest.LeaveRequest;",
             "in.leaveRequestData = ivy.repo.get(LeaveRequest.class) as LeaveRequest;",
             "",
