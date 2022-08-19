@@ -2926,6 +2926,15 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   min-width: 350px;
 }
 
+.change-password-new-password-label {
+  display: flex;
+  align-items: center;
+}
+
+.change-password-tooltip {
+  width: 300px;
+}
+
 @media screen and (max-width: 40em) {
   .change-password-dialog {
     max-width: 96vw;
@@ -5891,4 +5900,11 @@ a.dashboard-action-container label {
 .users-of-role-container .action-group {
   width: 100px;
   text-align:right
+}
+
+/* =================== PASSWORD VALIDATION====================== */
+.password-validation-setting-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
