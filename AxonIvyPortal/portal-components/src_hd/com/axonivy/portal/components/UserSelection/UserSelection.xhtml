@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 
 <cc:interface componentType="IvyComponent">
   <!-- autocomplete attributes -->
@@ -29,6 +30,13 @@
   <cc:attribute name="moreText" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/More')}..." />
   <cc:attribute name="queryDelay" default="300" />
   <cc:attribute name="maxResults" default="100" type="java.lang.Integer" />
+  <cc:attribute name="hasCustomizedSelectionList" default="false" />
+
+  <!-- Avatar in Selection list attributes  -->
+  <cc:attribute name="isShowAvatarInSelectionList" default="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}" />
+  <cc:attribute name="displayNameRenderedInSelectionList" default="true" />
+  <cc:attribute name="displayNameInSelectionListStyleClass" />
+  <cc:attribute name="selectionListContainerStyleClass" />
 
   <!-- Label attributes -->
   <cc:attribute name="label" shortDescription="Text of label for User selection component." />
@@ -39,6 +47,7 @@
   <!-- Message attributes -->
   <cc:attribute name="isRenderedMessage" default="true" shortDescription="Specify the rendering of message for user field." />
   <cc:attribute name="messageStyleClass" shortDescription="Style class of message." />
+
 </cc:interface>
 
 <cc:implementation>
@@ -78,6 +87,12 @@
       queryDelay="#{cc.attrs.queryDelay}"
       maxResults="#{cc.attrs.maxResults}"
       inputStyleClass="#{cc.attrs.inputStyleClass}">
+      <p:column rendered="#{!cc.attrs.hasCustomizedSelectionList}">
+        <pc:securityMemberNameAndAvatar securityMember="#{user}"
+          displayName="#{portalComponentDisplayNameFormatBean.getDisplayNameForUserDTO(user)}"
+          isShowAvatar="#{cc.attrs.isShowAvatarInSelectionList}" displayNameRendered="#{cc.attrs.displayNameRenderedInSelectionList}"
+          displayNameStyleClass="#{cc.attrs.displayNameInSelectionListStyleClass}" containerStyleClass="#{cc.attrs.selectionListContainerStyleClass}" />
+      </p:column>
       <cc:insertFacet name="event" />
       <cc:insertChildren />
     </p:autoComplete>
@@ -92,8 +107,6 @@
     <p:message id="#{cc.attrs.componentId}-message"
       for="#{cc.attrs.componentId}" />
   </h:panelGroup>
-  
-
   <h:outputScript name="theme-checker.js" library="js" />
   <script type="text/javascript">
     ThemeChecker.updateLayoutByTheme('#{ivyPrimefacesThemeResolver.sessionTheme}');
