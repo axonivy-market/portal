@@ -30,7 +30,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
-import com.axonivy.portal.component.dto.UserDTO;
+import com.axonivy.portal.components.dto.UserDTO;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
@@ -93,10 +93,12 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void initConfigration() {
     selectedDashboardId = Attrs.currentContext().getAttribute("#{data.dashboardId}", String.class);
     isPublicDashboard = Attrs.currentContext().getAttribute("#{data.isPublicDashboard}", Boolean.class);
-    super.init();
     isReadOnlyMode = false;
+    super.init();
     ((DashboardProcessBean) ManagedBeans.get("dashboardProcessBean")).addPropertyChangeListener(this);
-    foundTemplate = findSelectedTemplate(getSelectedDashboard().getTemplateId());
+    if (getSelectedDashboard() != null) {
+      foundTemplate = findSelectedTemplate(getSelectedDashboard().getTemplateId());
+    }
   }
 
   public void initSampleWidgets() {
