@@ -18,7 +18,7 @@
     resultContainerUpdated="#{cc.attrs.resultContainerUpdated}" dataModel="#{cc.attrs.dataModel}"
     dismissableOverlayPanel="false">
     <ic:com.axonivy.portal.components.UserSelection id="creator-component" componentId="creator-select" size="35"
-      selectedUser="#{cc.attrs.filter.selectedCreator}" autoCompleteStyleClass="responsible-list-filter">
+      selectedUser="#{cc.attrs.filter.selectedCreator}" autoCompleteStyleClass="responsible-list-filter" hasCustomizedSelectionList="true">
       <p:column>
         <pc:securityMemberNameAndAvatar securityMember="#{user}"
           displayName="#{cc.attrs.filter.formatName(user)}">

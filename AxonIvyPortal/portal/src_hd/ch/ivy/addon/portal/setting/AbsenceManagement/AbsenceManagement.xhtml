@@ -36,10 +36,10 @@
                       autoCompletePanelStyleClass="ui-g-8 ui-sm-12 ui-fluid"
                       autoCompleteStyleClass="absence-user-selection"
                       scrollHeight="200"
+                      hasCustomizedSelectionList="true"
                       size="35">
                       <p:column>
-                        <pc:securityMemberNameAndAvatar
-                          displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
+                        <pc:securityMemberNameAndAvatar displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
                           securityMember="#{user}" />
                       </p:column>
                       <f:facet name="event">

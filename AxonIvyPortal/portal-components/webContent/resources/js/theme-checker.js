@@ -1,5 +1,6 @@
+var hasUpdateLayoutByThemeFromParentNode = false;
 var ThemeChecker = {
-  updateLayoutByTheme : function(theme) {
+  updateLayoutByTheme: function (theme) {
     if (theme == null) {
       return;
     }
@@ -18,6 +19,13 @@ var ThemeChecker = {
       if (theme.includes('-light')) {
         $('body').removeClass('dark').addClass('light');
       }
+    }
+    hasUpdateLayoutByThemeFromParentNode = true;
+  },
+
+  updateLayoutOfSecurityMemberNameAndAvatarByTheme: function (theme) {
+    if (!hasUpdateLayoutByThemeFromParentNode) {
+      updateLayoutByTheme(theme);
     }
   }
 }
