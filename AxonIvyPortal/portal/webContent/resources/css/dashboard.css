@@ -55,7 +55,8 @@
 }
 
 .dashboard__header {
-  padding-top: 0;
+  padding: 0;
+  width: 100%;
 }
 
 .dashboard__title-container {
@@ -76,7 +77,6 @@
 .dashboard-header__action {
   padding-right: 0;
   padding-top: 1rem;
-  height: 49px;
 }
 
 .dashboard__body {

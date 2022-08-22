@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.enums;
 
 public enum PortalVariable {
+  PASSWORD_VALIDATION("Portal.PasswordValidation"),
   ANNOUNCEMENT("Portal.Announcement"),
   THIRD_PARTY_APP("Portal.ThirdPartyApplications"),
   STATISTIC_CHART("Portal.StatisticCharts"),

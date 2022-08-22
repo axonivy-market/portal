@@ -7,7 +7,7 @@ import org.apache.commons.lang.StringUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
-import com.axonivy.portal.component.dto.SecurityMemberDTO;
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;

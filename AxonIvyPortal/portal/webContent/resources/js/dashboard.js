@@ -83,7 +83,7 @@ function scrollToWidget(widgetId) {
 
 function handleFilterCategoryHeight(e) {
   var filterTab = $(document.getElementById(e.id)).find("[id$=':filter-tab']");
-  if (filterTab.lenght > 0 && filterTab.get(0).ariaHidden == "false") {
+  if (filterTab.length > 0 && filterTab.get(0).ariaHidden == "false") {
     var categoryInfo = filterTab.find(".js-category-filter-info");
     if (categoryInfo.get(0).offsetHeight > 160) {
       $(categoryInfo).toggleClass("minimize-content");
@@ -123,6 +123,10 @@ function DashboardToolKit() {
 }
 
 function setupScrollbar() {
+  var viewMode = $(".js-dashboard__wrapper.js-view-mode");
+  if (viewMode.length > 0) {
+    return;
+  }
   var gridstackItems = $('.grid-stack-item');
   if (gridstackItems.length > 0) {
     var container = $('.js-dashboard__body');
