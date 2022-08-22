@@ -107,14 +107,12 @@ Portal provides the :guilabel:`Role Management` section in the :guilabel:`Admin 
    Refer to :ref:`Settings Variables <portal-available-settings>` for more information.
 
 HowTo: Enable/Disable Password Validation
-------------------------------
+-----------------------------------------
 Portal provides the :guilabel:`Password Validation` section in the :guilabel:`Admin Settings` area, where you can enable/disable password validation and change password policies as well. 
 
 | To see the :guilabel:`Password Validation` tab, you have to have the ``PasswordValidation`` permission.
 
 #. Select the :guilabel:`Password Validation` tab.
-
-   |password-validation-tab|
 
 #. Click :guilabel:`Enable Password Validation` toggle switch to enable/disable the feature.
 
@@ -132,4 +130,3 @@ Portal provides the :guilabel:`Password Validation` section in the :guilabel:`Ad
 .. |edit-global-settings| image:: ../../screenshots/settings/edit-global-settings.png
 .. |role-assignment-tab| image:: ../../screenshots/settings/role-assignment-tab.png
 .. |role-assignment-creation-dialog| image:: ../../screenshots/settings/role-assignment-creation-dialog.png
-.. |password-validation-tab| image:: ../../screenshots/settings/password-validation-tab.png
