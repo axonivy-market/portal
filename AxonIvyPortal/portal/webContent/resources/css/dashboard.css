@@ -1254,6 +1254,7 @@ span.new-widget-dialog__icon.si {
 .welcome-widget-configuration .preview-panel .preview-image {
   width: 100%;
   height: 180px;
+  border-radius: 1rem;
 }
 
 .welcome-widget-configuration .upload-image-section .uploaded-file-name {
@@ -1285,12 +1286,13 @@ span.new-widget-dialog__icon.si {
   position: absolute;
   font-size: 2rem;
   color: black;
-  padding: 10px;
+  padding: 1.5rem;
   line-height: 2rem;
+  cursor: default;
 }
 
 .welcome-text.preview-text {
-  padding: 7px;
+  padding: 1rem;
 }
 
 .welcome-text.left {
