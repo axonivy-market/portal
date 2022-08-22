@@ -114,6 +114,8 @@ Portal provides the :guilabel:`Password Validation` section in the :guilabel:`Ad
 
 #. Select the :guilabel:`Password Validation` tab.
 
+   |password-validation-tab|
+
 #. Click :guilabel:`Enable Password Validation` toggle switch to enable/disable the feature.
 
 #. If :guilabel:`Enable Password Validation` toggle switch is :guilabel:`Enabled`, you can activate/deactivate password policies and change password policy settings, click on the :guilabel:`Save` button to save the configuration.
@@ -130,3 +132,4 @@ Portal provides the :guilabel:`Password Validation` section in the :guilabel:`Ad
 .. |edit-global-settings| image:: ../../screenshots/settings/edit-global-settings.png
 .. |role-assignment-tab| image:: ../../screenshots/settings/role-assignment-tab.png
 .. |role-assignment-creation-dialog| image:: ../../screenshots/settings/role-assignment-creation-dialog.png
+.. |password-validation-tab| image:: ../../screenshots/settings/password-validation-tab.png
