@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>portal-components</artifactId>
@@ -17,7 +16,7 @@
     </snapshotRepository>
   </distributionManagement>
   <properties>
-    <ivy.engine.version>8.0.28</ivy.engine.version>
+    <ivy.engine.version>8.0.29</ivy.engine.version>
     <build.plugin.version>8.0.7</build.plugin.version>
   </properties>
   <build>
