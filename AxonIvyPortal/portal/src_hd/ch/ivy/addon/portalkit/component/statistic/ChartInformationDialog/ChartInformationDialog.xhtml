@@ -1,0 +1,118 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="selectedStatisticChart" required="true" />
+</cc:interface>
+
+<cc:implementation>
+  <p:panelGrid id="chart-info-container" styleClass="chart-info-container ui-noborder">
+    <p:row>
+      <p:column styleClass="label-column">
+        <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartInfo/chartName')}" for="info-chart-name" />
+      </p:column>
+      <p:column>
+        <h:outputText id="info-chart-name" value="#{cc.attrs.selectedStatisticChart.name}" />
+      </p:column>
+    </p:row>
+    <p:row>
+      <p:column styleClass="label-column-info">
+        <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartInfo/chartType')}" for="info-chart-type" />
+      </p:column>
+      <p:column>
+        <h:outputText id="info-chart-type" value="#{ivy.cms.co(cc.attrs.selectedStatisticChart.type.cmsUri)}" />
+      </p:column>
+    </p:row>
+    <p:row rendered="#{not empty cc.attrs.selectedStatisticChart.type.cmsDescriptionUri}">
+      <p:column styleClass="label-column-info">
+        <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" for="info-chart-description" />
+      </p:column>
+      <p:column>
+        <h:outputText id="info-chart-description" value="#{ivy.cms.co(cc.attrs.selectedStatisticChart.type.cmsDescriptionUri)}" />
+      </p:column>
+    </p:row>
+  </p:panelGrid>
+  <p:panel styleClass="chart-info-header" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}" >
+    <c:set var="filter" value="#{cc.attrs.selectedStatisticChart.filter}" />
+    <p:panelGrid id="chart-filter-container" styleClass="chart-info-container ui-noborder">
+      <p:row rendered="#{!(filter.timePeriodSelection eq 'CUSTOM' and empty filter.createdDateFrom and empty filter.createdDateTo)}">
+        <p:column>
+          <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/timePeriod')}" for="info-created-period" />
+        </p:column>
+        <p:column>
+          <h:outputText id="info-created-period" value="#{statisticDashboardBean.concatCreatedDate(filter)}" />
+        </p:column>
+      </p:row>
+      <p:row>
+        <p:column>
+          <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/workflowStatesLabel')}" for="selected-case-states" />
+        </p:column>
+        <p:column>
+          <h:outputText rendered="#{filter.isAllCaseStatesSelected}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/allSelected')}"/>
+          <ui:repeat rendered="#{!filter.isAllCaseStatesSelected}" var="state" value="#{filter.selectedCaseStates}">
+            <h:outputText value="#{state}" styleClass="display-block" />
+          </ui:repeat>
+          <h:outputText rendered="#{filter.selectedCaseStates.isEmpty() and !filter.isAllCaseStatesSelected}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noneSelected')}" />
+        </p:column>
+      </p:row>
+      <p:row>
+        <p:column>
+          <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/taskPrioritiesLabel')}" for="selected-task-priorities" />
+        </p:column>
+        <p:column>
+          <h:outputText rendered="#{filter.isAllTaskPrioritiesSelected}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/allSelected')}"/>
+          <ui:repeat rendered="#{!filter.isAllTaskPrioritiesSelected}" var="priority" value="#{filter.selectedTaskPriorities}">
+            <h:outputText value="#{priority}" styleClass="display-block" />
+          </ui:repeat>
+          <h:outputText rendered="#{filter.selectedTaskPriorities.isEmpty() and !filter.isAllTaskPrioritiesSelected}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noneSelected')}" />
+        </p:column>
+      </p:row>
+      <p:row>
+        <p:column styleClass="label-column">
+          <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/rolesLabel')}" for="selected-roles" />
+        </p:column>
+        <p:column>
+          <h:panelGroup id="selected-roles" layout="block" styleClass="list-container">
+            <h:outputText rendered="#{filter.isAllRolesSelected}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/allSelected')}"/>
+            <ui:repeat rendered="#{!filter.isAllRolesSelected}" var="role" value="#{filter.selectedRoles}">
+              <h:outputText value="#{role}" styleClass="display-block" />
+            </ui:repeat>
+            <h:outputText rendered="#{filter.selectedRoles.isEmpty() and !filter.isAllRolesSelected}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noneSelected')}" />
+          </h:panelGroup>
+        </p:column>
+      </p:row>
+      <p:row>
+        <p:column styleClass="label-column">
+          <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/caseCategoriesLabel')}" for="selected-case-categories" />
+        </p:column>
+        <p:column>
+          <h:panelGroup id="selected-case-categories" layout="block" styleClass="list-container">
+            <h:outputText rendered="#{empty filter.selectedCaseCategories}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/allSelected')}"/>
+            <ui:repeat rendered="#{not empty filter.selectedCaseCategories}" var="category" value="#{filter.selectedCaseCategories}">
+              <h:outputText value="#{category eq '[No Category]' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noCategory') : category}" styleClass="display-block" />
+            </ui:repeat>
+          </h:panelGroup>
+        </p:column>
+      </p:row>
+      <c:forEach items="#{filter.findSavedCustomFields()}" var="customField">
+      	<p:row >
+        <p:column styleClass="label-column">
+          <h:outputLabel value="#{customField}" for="selected-case-categories" />
+        </p:column>
+        <p:column>
+          <h:panelGroup id="#{customField}" layout="block" styleClass="list-container">
+            <ui:repeat var="customFieldValue" value="#{filter.getCustomFieldFilter(customField)}">
+              <h:outputText value="#{customFieldValue}" styleClass="display-block" />
+            </ui:repeat>
+          </h:panelGroup>
+        </p:column>
+      	</p:row>
+      </c:forEach>
+    </p:panelGrid>
+    </p:panel>
+</cc:implementation>
+</html>

@@ -99,7 +99,7 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     
     executeDecorateJs("scrollToBottomOfLayoutContent()");
     WebElement histories = detailsPage.getHistoriesBox();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(histories, ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details-histories", new ScreenshotMargin(10));
+    ScreenshotUtil.captureElementScreenshot(histories, ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details-histories");
     
     WebElement deleteDocument = detailsPage.getDeleteDocumentConfirmDialog();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(deleteDocument, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-delete-an-attachment-from-case", new ScreenshotMargin(100, 200));
@@ -109,7 +109,7 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     executeDecorateJs("scrollToBottomOfLayoutContent()");
     executeDecorateJs("highlightShowMoreNoteLink()");
     histories = detailsPage.getHistoriesBox();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(histories, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-show-note-details", new ScreenshotMargin(10));
+    ScreenshotUtil.captureElementScreenshot(histories, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-show-note-details");
     
     detailsPage.showNoteHistory();
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
@@ -179,6 +179,7 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     setupCustomWidgetByJSONFile("custom-case-details-with-url.json");
     executeDecorateJs("highlightCustomWidgetInCaseDetails()");
     detailsPage.waitForIFrameURLWidgetLoad();
+    detailsPage.switchToDefaultContent();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-customized-iframe-url");
   }
 

@@ -1,0 +1,121 @@
+{
+  "format" : "9.4.14",
+  "id" : "180F979F5AF44684",
+  "data" : "com.axonivy.portal.components.ProcessHistory.ProcessHistoryData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "161935DA38EB511D"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "SubProcessCall",
+      "name" : "OpenCaseDetails",
+      "config" : {
+        "processCall" : "Functional Processes/OpenCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean,Boolean)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.caseDetailsUrl" : "result.caseDetailsUrl"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "caseView", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "isShowBackButton", "type" : "Boolean" },
+            { "name" : "isOpenInFrame", "type" : "Boolean" }
+          ],
+          "map" : {
+            "param.caseView" : "in.iCase",
+            "param.isShowBackButton" : "true",
+            "param.isOpenInFrame" : "in.isOpenInFrame"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 296, "y" : 160 }
+      },
+      "connect" : { "id" : "f7", "to" : "f4" }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "openDetails(ICase, Boolean)",
+      "config" : {
+        "callSignature" : "openDetails",
+        "input" : {
+          "params" : [
+            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "isOpenInFrame", "type" : "Boolean" }
+          ],
+          "map" : {
+            "out.iCase" : "param.iCase",
+            "out.isOpenInFrame" : "param.isOpenInFrame"
+          }
+        },
+        "guid" : "1811D800009FD86C"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 },
+        "labelOffset" : { "x" : -25, "y" : 15 }
+      },
+      "connect" : { "id" : "f6", "to" : "f5" }
+    }, {
+      "id" : "f4",
+      "type" : "Alternative",
+      "name" : "Is using Iframe with Portal?",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 160 },
+        "labelOffset" : { "x" : -64, "y" : -41 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f8", "label" : {
+            "name" : "yes",
+            "segment" : 0.42,
+            "offset" : { "x" : 0, "y" : 10 }
+          }, "condition" : "in.isOpenInFrame" },
+        { "id" : "f12", "to" : "f10", "via" : [ { "x" : 448, "y" : 256 }, { "x" : 808, "y" : 256 } ], "label" : {
+            "name" : "no",
+            "segment" : 1.18,
+            "offset" : { "x" : 0, "y" : -10 }
+          } }
+      ]
+    }, {
+      "id" : "f8",
+      "type" : "Script",
+      "name" : "Navigate to case details",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.PortalNavigatorInFrameAPI;",
+            "",
+            "PortalNavigatorInFrameAPI.navigateToUrl(in.caseDetailsUrl);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 648, "y" : 160 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f11", "to" : "f10" }
+    }, {
+      "id" : "f10",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 808, "y" : 160 }
+      }
+    } ]
+}

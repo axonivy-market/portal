@@ -1,0 +1,259 @@
+[
+  {
+    "id": "default-portal-dashboard-template",
+    "title": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/DefaultTemplate",
+    "description": "cms:/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/DefaultTemplateDescription",
+    "icon": "si-layout-dashboard",
+    "dashboard": {
+      "id": "public-4",
+      "templateId": "default-portal-dashboard-template",
+      "title": "public 4",
+      "widgets": [
+        {
+          "type": "task",
+          "id": "",
+          "name": "Your Tasks",
+          "layout": {
+            "w": 9,
+            "h": 5,
+            "x": 0,
+            "y": 0
+          },
+          "rowsPerPage": 10,
+          "sortDescending": true,
+          "columns": [
+            {
+              "field": "start"
+            },
+            {
+              "field": "priority"
+            },
+            {
+              "field": "id"
+            },
+            {
+              "field": "name"
+            },
+            {
+              "field": "description"
+            },
+            {
+              "field": "activator"
+            },
+            {
+              "field": "state"
+            },
+            {
+              "field": "startTimestamp"
+            },
+            {
+              "field": "expiryTimestamp"
+            },
+            {
+              "field": "category"
+            },
+            {
+              "field": "actions"
+            }
+          ],
+          "canWorkOn": false,
+          "sortField": "id"
+        },
+        {
+          "type": "case",
+          "id": "",
+          "name": "Your Cases",
+          "layout": {
+            "w": 9,
+            "h": 5,
+            "x": 0,
+            "y": 5
+          },
+          "rowsPerPage": 10,
+          "sortDescending": true,
+          "columns": [
+            {
+              "field": "id"
+            },
+            {
+              "field": "name"
+            },
+            {
+              "field": "description"
+            },
+            {
+              "field": "state"
+            },
+            {
+              "field": "creator"
+            },
+            {
+              "field": "startTimestamp"
+            },
+            {
+              "field": "endTimestamp"
+            },
+            {
+              "field": "owner"
+            },
+            {
+              "field": "category"
+            },
+            {
+              "field": "actions"
+            }
+          ],
+          "sortField": "ID"
+        },
+        {
+          "type": "compact-process",
+          "id": "",
+          "name": "Your Processes",
+          "layout": {
+            "w": 3,
+            "h": 10,
+            "x": 9,
+            "y": 0
+          }
+        }
+      ],
+      "permissions": [
+        "Everybody"
+      ]
+    }
+  },
+  {
+    "id": "two-task-widget-dashboard-template",
+    "title": "cms:/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/TwoTaskTemplate",
+    "description": "cms:/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/TwoTaskTemplateDescription",
+    "icon": "si-layout-dashboard",
+    "dashboard": {
+      "id": "",
+      "templateId": "two-task-widget-dashboard-template",
+      "title": "Two Task list dashboard",
+      "widgets": [
+        {
+          "type": "task",
+          "id": "",
+          "name": "Open Tasks",
+          "layout": {
+            "w": 9,
+            "h": 5,
+            "x": 0,
+            "y": 0
+          },
+          "rowsPerPage": 10,
+          "sortDescending": true,
+          "columns": [
+            {
+              "field": "start"
+            },
+            {
+              "field": "priority"
+            },
+            {
+              "field": "id"
+            },
+            {
+              "field": "name"
+            },
+            {
+              "field": "description"
+            },
+            {
+              "field": "activator"
+            },
+            {
+              "field": "state",
+              "filterList": [
+                "SUSPENDED"
+              ]
+            },
+            {
+              "field": "startTimestamp"
+            },
+            {
+              "field": "expiryTimestamp"
+            },
+            {
+              "field": "category"
+            },
+            {
+              "field": "actions"
+            }
+          ],
+          "canWorkOn": true,
+          "sortField": "id"
+        },
+        {
+          "type": "task",
+          "id": "",
+          "name": "Working Tasks",
+          "layout": {
+            "w": 9,
+            "h": 5,
+            "x": 0,
+            "y": 5
+          },
+          "rowsPerPage": 10,
+          "sortDescending": true,
+          "columns": [
+            {
+              "field": "start"
+            },
+            {
+              "field": "priority"
+            },
+            {
+              "field": "id"
+            },
+            {
+              "field": "name"
+            },
+            {
+              "field": "description"
+            },
+            {
+              "field": "activator"
+            },
+            {
+              "field": "state",
+              "filterList": [
+                "PARKED",
+                "RESUMED"
+              ]
+            },
+            {
+              "field": "startTimestamp"
+            },
+            {
+              "field": "expiryTimestamp"
+            },
+            {
+              "field": "category"
+            },
+            {
+              "field": "actions"
+            }
+          ],
+          "canWorkOn": false,
+          "sortField": "id"
+        },
+        {
+          "type": "compact-process",
+          "id": "",
+          "name": "Your Processes",
+          "layout": {
+            "w": 3,
+            "h": 10,
+            "x": 9,
+            "y": 0
+          }
+        }
+      ],
+      "permissions": [
+        "Everybody"
+      ]
+    }
+  }
+]

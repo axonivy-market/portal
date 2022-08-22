@@ -1,0 +1,12 @@
+ApplicationSelectionMenuData #class
+ch.ivy.addon.portal.generic.ApplicationSelectionMenu #namespace
+isNotRequiredLogin Boolean #field
+isNotRequiredLogin PERSISTENT #fieldModifier
+isWorkingOnATask Boolean #field
+isWorkingOnATask PERSISTENT #fieldModifier
+workingTask ch.ivyteam.ivy.workflow.ITask #field
+workingTask PERSISTENT #fieldModifier
+destinationBreadcrumbPage String #field
+destinationBreadcrumbPage PERSISTENT #fieldModifier
+isClickOnBreadcrumb Boolean #field
+isClickOnBreadcrumb PERSISTENT #fieldModifier

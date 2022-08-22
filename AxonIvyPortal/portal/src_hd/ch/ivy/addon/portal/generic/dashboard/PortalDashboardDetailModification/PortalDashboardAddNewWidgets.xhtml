@@ -1,0 +1,106 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<p:dialog id="new-widget-dialog" widgetVar="new-widget-dialog"
+  header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/createWidget')}"
+  appendTo="@(body)" closeOnEscape="true"
+  fitViewport="true" responsive="true"
+  modal="true" dynamic="true"
+  position="center center"
+  onShow="PF('new-widget-dialog').initPosition()">
+  <div class="new-widget-dialog__content ">
+    <p:repeat id="new-widget-dialog-content"
+      var="sample"
+      value="#{dashboardDetailModificationBean.samples}">
+      <div class="new-widget-dialog__item card">
+        <p:panelGrid columns="3" styleClass="ui-panelgrid-blank">
+          <p:graphicImage library="images" name="#{sample.image}" styleClass="new-widget-dialog__image" rendered="#{!sample.useIcon}" />
+          <h:panelGroup layout="block" rendered="#{sample.useIcon}" styleClass="new-widget-dialog__image" >
+            <span class="#{sample.image} new-widget-dialog__icon" />
+          </h:panelGroup>
+          <p:panelGrid styleClass="ui-panelgrid-blank new-widget-dialog__item-content" columns="1">
+            <p:outputLabel id="sample-name" value="#{sample.name}" styleClass="new-widget-dialog__widget-name"/>
+            <p:outputLabel value="#{sample.introduction}" styleClass="new-widget-dialog__introduction"/>
+          </p:panelGrid>
+          <p:commandButton id="add-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
+            actionListener="#{dashboardDetailModificationBean.create(sample)}" update="new-widget-configuration-dialog widget-configuration-form"
+            oncomplete="PF('new-widget-configuration-dialog').show(); PF('new-widget-dialog').hide();"
+            icon="si si-add" onstart="getPortalGridsCurrentRow();"/>
+        </p:panelGrid>
+      </div>
+    </p:repeat>
+  </div>
+
+  <div class="new-widget-dialog__footer ui-g-12 u-text-align-right MarTop10">
+    <p:commandLink id="new-widget-close-button"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+      onclick="PF('new-widget-dialog').hide()"
+      process="@this"
+      update="@this"
+      global="false"/>
+  </div>
+</p:dialog>
+
+<p:dialog id="new-widget-configuration-dialog" widgetVar="new-widget-configuration-dialog"
+  styleClass="new-widget-configuration-dialog" closable="false"
+  header="#{dashboardDetailModificationBean.newWidgetHeader}"
+  appendTo="@(body)" closeOnEscape="true" dynamic="true"
+  fitViewport="true" responsive="true" modal="true">
+  <c:set var="widget" value="#{dashboardDetailModificationBean.widget}" />
+  <c:set var="componentToProcess" value="#{widget eq null ? '@this' :
+   'widget-configuration-form:new-widget-configuration-component:user-filter widget-configuration-form:new-widget-configuration-component:widget-title-group'}" />
+
+  <h:form id="widget-configuration-form" styleClass="ui-g ">
+    <c:if test="#{widget.type eq 'TASK'}">
+      <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidgetConfiguration id="new-widget-configuration-component" taskWidget="#{widget}"
+        componentToUpdate="widget-configuration-form" />
+    </c:if>
+
+    <c:if test="#{widget.type eq 'CASE'}">
+      <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidgetConfiguration id="new-widget-configuration-component" caseWidget="#{widget}"
+        componentToUpdate="widget-configuration-form" />
+    </c:if>
+
+    <c:if test="#{widget.type eq 'PROCESS'}">
+      <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessWidgetConfiguration id="new-widget-configuration-component" processWidget="#{widget}"
+        componentToUpdate="widget-configuration-form" />
+    </c:if>
+
+    <c:if test="#{widget.type eq 'STATISTIC'}">
+      <ic:ch.ivy.addon.portal.generic.dashboard.component.StatisticChartWidgetConfiguration id="new-widget-configuration-component"
+        widget="#{widget}" componentToUpdate="widget-configuration-form" isPublicDashboard="#{isPublicDashboard}"/>
+    </c:if>
+
+   <c:if test="#{widget.type eq 'CUSTOM'}">
+     <ic:ch.ivy.addon.portal.generic.dashboard.component.CustomWidgetConfiguration id="new-widget-configuration-component"
+       widget="#{widget}"
+       componentToUpdate="widget-configuration-form"/>
+   </c:if>
+
+   <c:if test="#{widget.type eq 'PROCESS_VIEWER'}">
+     <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessViewerWidgetConfiguration id="new-widget-configuration-component"
+       widget="#{widget}"
+       componentToUpdate="widget-configuration-form"/>
+   </c:if>
+  </h:form>
+
+  <f:facet name="footer">
+    <p:commandLink id="task-configuration-cancel-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+      styleClass="u-mar-right-10"
+      onclick="PF('new-widget-configuration-dialog').hide()">
+      <p:resetInput target="widget-configuration-form" />
+    </p:commandLink>
+
+    <p:commandButton id="widget-configuration-save-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+      actionListener="#{dashboardDetailModificationBean.saveWidget()}" icon="si si-floppy-disk"
+      oncomplete="if (args &amp;&amp; !args.validationFailed){PF('new-widget-configuration-dialog').hide();loadGridAfterAddedNewWidget();}"
+      process="#{componentToProcess}"
+      partialSubmit="true"
+      update="widget-configuration-form load-grid-after-added-new-widget-cmd"
+      disabled="#{empty widget}"/>
+  </f:facet>
+</p:dialog>
+
+</html>

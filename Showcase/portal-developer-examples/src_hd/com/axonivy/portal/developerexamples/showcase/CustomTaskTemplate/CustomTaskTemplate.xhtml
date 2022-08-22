@@ -21,60 +21,64 @@
     <ui:define name="content">
 
       <h:form id="form">
-        <p:tabView>
+        <p:tabView styleClass="ui-g-12">
           <p:tab title="My first tab">
-            <h:panelGroup styleClass="md-inputfield MarTop20">
+            <h:panelGroup styleClass="ui-float-label MarTop20">
               <p:inputText id="first-name" value="#{data.firstname}" />
               <p:outputLabel value="first name" for="first-name" />
             </h:panelGroup>
           </p:tab>
 
           <p:tab title="My second tab">
-            <h:panelGroup styleClass="md-inputfield MarTop20">
+            <h:panelGroup styleClass="ui-float-label MarTop20">
               <p:inputText id="last-name" value="#{data.lastname}" />
               <p:outputLabel value="last name" />
             </h:panelGroup>
           </p:tab>
 
           <p:tab title="My third tab">
-            <h:panelGroup styleClass="md-inputfield MarTop20">
+            <h:panelGroup styleClass="ui-float-label MarTop20">
               <p:inputText id="last-name2" value="#{data.lastname}" />
               <p:outputLabel value="last name" />
             </h:panelGroup>
           </p:tab>
 
           <p:tab title="Customization tab">
-            <h:panelGroup id="process-group" styleClass="ui-g-12 ui-fluid">
-              <h:panelGrid styleClass="ui-g-6 ui-sm-12" columns="1">
-                <p:outputLabel value="Actual step" />
-                <h:panelGroup>
-                  <p:spinner id="actual-step" value="#{data.actualStepIndex}" min="1" max="#{data.steps.size()}" />
-                </h:panelGroup>
+            <div class="ui-g">
+              <h:panelGroup id="process-group" styleClass="ui-g-12 ui-fluid">
+                <h:panelGrid styleClass="ui-g-6 ui-sm-12" columns="1">
+                  <p:outputLabel value="Actual step" />
+                  <h:panelGroup>
+                    <p:spinner id="actual-step" value="#{data.actualStepIndex}" min="1" max="#{data.steps.size()}" />
+                  </h:panelGroup>
 
-                <p:outputLabel value="Process Chain Direction" for="processChainDirection" styleClass="ui-g-12" />
-                <p:selectOneMenu id="processChainDirection" value="#{data.processChainDirection}">
-                  <f:selectItem itemLabel="VERTICAL" itemValue="VERTICAL" />
-                  <f:selectItem itemLabel="HORIZONTAL" itemValue="HORIZONTAL" />
-                </p:selectOneMenu>
+                  <p:outputLabel value="Process Chain Direction" for="processChainDirection" styleClass="ui-g-12" />
+                  <p:selectOneMenu id="processChainDirection" value="#{data.processChainDirection}">
+                    <f:selectItem itemLabel="VERTICAL" itemValue="VERTICAL" />
+                    <f:selectItem itemLabel="HORIZONTAL" itemValue="HORIZONTAL" />
+                  </p:selectOneMenu>
 
-                <p:outputLabel value="Process Chain Shape" for="processChainShape" styleClass="ui-g-12" />
-                <p:selectOneMenu id="processChainShape" value="#{data.processChainShape}">
-                  <f:selectItem itemLabel="LINE" itemValue="LINE" />
-                  <f:selectItem itemLabel="CIRCLE" itemValue="CIRCLE" />
-                </p:selectOneMenu>
-              </h:panelGrid>
+                  <p:outputLabel value="Process Chain Shape" for="processChainShape" styleClass="ui-g-12" />
+                  <p:selectOneMenu id="processChainShape" value="#{data.processChainShape}">
+                    <f:selectItem itemLabel="LINE" itemValue="LINE" />
+                    <f:selectItem itemLabel="CIRCLE" itemValue="CIRCLE" />
+                  </p:selectOneMenu>
+                </h:panelGrid>
 
-            </h:panelGroup>
-
-            <h:panelGroup styleClass="ui-g-12">
-              <h:panelGroup styleClass="ui-g-6 ui-sm-12 TexAlRight">
-                <p:commandButton value="Save and reload" icon="si si-controls-play" actionListener="#{logic.saveToSession()}"
-                  process="process-group" oncomplete="reloadPage();" partialSubmit="true" />
-                <p:remoteCommand name="reloadPage" actionListener="#{logic.reload()}" />
               </h:panelGroup>
-            </h:panelGroup>
+
+              <h:panelGroup styleClass="ui-g-12">
+                <h:panelGroup styleClass="ui-g-6 ui-sm-12 u-text-align-right">
+                  <p:commandButton value="Save and reload" icon="si si-controls-play"
+                    actionListener="#{logic.saveToSession()}" process="process-group" oncomplete="reloadPage();"
+                    partialSubmit="true" />
+                  <p:remoteCommand name="reloadPage" actionListener="#{logic.reload()}" />
+                </h:panelGroup>
+              </h:panelGroup>
+            </div>
           </p:tab>
         </p:tabView>
+
         <p:commandButton value="Test left Button" actionListener="#{logic.close}" partialSubmit="true" />
         <p:commandButton value="Test Right button" actionListener="#{logic.close}" immediate="true" style="float:right" />
       </h:form>

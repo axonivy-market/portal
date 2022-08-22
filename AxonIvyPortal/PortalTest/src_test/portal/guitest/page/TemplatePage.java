@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -25,7 +26,8 @@ import vn.wawa.guitest.base.page.AbstractPage;
 
 public abstract class TemplatePage extends AbstractPage {
 
-  private static final String TEMPLATE_PAGE_LOCATOR = "id('global-search-component:global-search-data')";
+  private static final int IFRAME_SCREENSHOT_FILE_SIZE_AT_MINIMUM = 10000;
+  private static final String TEMPLATE_PAGE_LOCATOR = "id('global-search-item')";
   public static final String CLASS_PROPERTY = "class";
   public static final String ID_PROPERTY = "id";
   private static final String HOME_BREADCRUMB_SELECTOR = ".portal-breadcrumb .ui-menuitem-link:first-child";
@@ -219,9 +221,9 @@ public abstract class TemplatePage extends AbstractPage {
 
   private void clickUserMenuItem(String menuItemSelector) {
     waitForElementDisplayed(By.id("user-settings-menu"), true);
-    click(findElementById("user-settings-menu"));
+    clickByJavaScript(findElementById("user-settings-menu"));
     waitForElementDisplayed(By.id(menuItemSelector), true);
-    click(findElementById(menuItemSelector));
+    clickByJavaScript(findElementById(menuItemSelector));
     WaitHelper.assertTrueWithWait(() -> !findElementById("user-setting-container").isDisplayed());
   }
 
@@ -329,8 +331,7 @@ public abstract class TemplatePage extends AbstractPage {
 
     private static final String GLOBAL_SEARCH_INPUT_SELECTOR = "#global-search-component\\:global-search-data";
 
-    public GlobalSearch() {
-    }
+    public GlobalSearch() { }
 
     private WebElement getSearchInput() {
       waitForElementDisplayed(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR), true);
@@ -338,10 +339,14 @@ public abstract class TemplatePage extends AbstractPage {
     }
 
     public boolean isDisplayed() {
-      return getSearchInput().isDisplayed();
+      waitForElementDisplayed(By.cssSelector("a[id$='global-search-item']"), true);
+      return findElementByCssSelector("a[id$='global-search-item']").isDisplayed();
     }
 
     public SearchResultPage inputSearchKeyword(String keyword) {
+      waitForElementDisplayed(By.cssSelector(".topbar-item.search-item"), true);
+      clickByCssSelector("a[id$='global-search-item']");
+      waitForElementDisplayed(By.cssSelector("input[id$='global-search-component:global-search-data']"), true);
       click(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR));
       WaitHelper.typeWithRetry(new AbstractPage() {
         @Override
@@ -360,7 +365,7 @@ public abstract class TemplatePage extends AbstractPage {
     }
     
     public boolean isPresent() {
-      return isElementPresent(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR));
+      return isElementPresent(By.cssSelector("a[id$='global-search-item']"));
     }
   }
   
@@ -461,4 +466,31 @@ public abstract class TemplatePage extends AbstractPage {
     clickByCssSelector("[id$='logout-setting:logout-menu-item']");
     WaitHelper.assertTrueWithWait(() -> findElementByCssSelector("[id$=':username']").isDisplayed());
   }
+  
+  public DashboardConfigurationPage openDashboardConfigurationPage() {
+    clickUserMenuItem("dashboard-configuration");
+    return new DashboardConfigurationPage();
+  }
+
+  public void switchToIFrameOfTask() {
+    switchToDefaultContent();
+    WaitHelper.waitForIFrameAvailable(driver, "iFrame");
+  }
+
+  public void switchToDefaultContent() {
+    driver.switchTo().defaultContent();
+  }
+
+  public void waitForIFrameContentVisible() {
+    waitForIFrameScreenshotSizeGreaterThan(IFRAME_SCREENSHOT_FILE_SIZE_AT_MINIMUM);
+  }
+
+  public void waitForIFrameScreenshotSizeGreaterThan(long fileSizeInBytes) {
+    switchToDefaultContent();
+    Awaitility.await().atMost(new Duration(30, TimeUnit.SECONDS)).until(() -> {
+      return findElementByCssSelector("iFrame").getScreenshotAs(OutputType.FILE).length() > fileSizeInBytes;
+    });
+    switchToIFrameOfTask();
+  }
+
 }

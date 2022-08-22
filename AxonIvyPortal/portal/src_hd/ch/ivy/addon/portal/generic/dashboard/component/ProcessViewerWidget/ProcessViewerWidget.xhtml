@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="index" required="true" />
+  <cc:attribute name="widget" required="true" />
+  <cc:attribute name="isReadOnlyMode" default="false" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="index" value="#{cc.attrs.index}" />
+  <c:set var="widget" value="#{cc.attrs.widget}" />
+
+<ui:decorate template="/layouts/restricted/decorator/TableWidget.xhtml">
+  <ui:param name="index" value="#{index}" />
+  <ui:param name="widget" value="#{widget}" />
+  <ui:param name="panelId" value="process-viewer-panel-group-#{index}" />
+  <ui:param name="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
+  <ui:param name="isRenderFilter" value="false" />
+  <ui:param name="isRenderInfo" value="false" />
+  <ui:param name="isRenderExpandCollapse" value="true" />
+  <ui:param name="panelStyleClass" value="process-viewer-widget-panel" />
+
+  <ui:define name="widgetContent">
+    <p:remoteCommand id="rcLoadProcessViewerFirstTime" autoRun="true" update="dashboard-process-viewer-container" global="false" async="true" process="@this"
+      oncomplete="loadWidgetFirstTime('js-loading-#{widget.id}', 'js-dashboard-process-viewer-container-#{widget.id}');"
+      actionListener="#{widget.buildProcessDataFirstTime()}" />
+
+    <div class="ui-g-12 widget-height-100 u-padding-0">
+      <h:outputText id="loading" styleClass="js-loading-#{widget.id} ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}" />
+      <h:panelGroup id="dashboard-process-viewer-container" layout="block"
+        styleClass="ui-g-12 widget-height-100 u-padding-0 js-dashboard-process-viewer-container-#{widget.id} u-display-none">
+        <ic:com.axonivy.portal.components.ProcessViewer processLink="#{widget.processLink}" />
+      </h:panelGroup>
+    </div>
+  </ui:define>
+</ui:decorate>
+</cc:implementation>
+
+</html>

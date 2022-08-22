@@ -1,0 +1,96 @@
+{
+  "format" : "9.4.14",
+  "id" : "15AE9A62C6A66DD8",
+  "data" : "ch.ivy.addon.portalkit.component.task.column.TaskName.TaskNameData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "1681204703950395"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 96 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 96 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "keepOldNameValue(ValueChangeEvent)",
+      "config" : {
+        "callSignature" : "keepOldNameValue",
+        "input" : {
+          "params" : [
+            { "name" : "event", "type" : "javax.faces.event.ValueChangeEvent" }
+          ],
+          "map" : {
+            "out.oldName" : "param.event.getOldValue() as String"
+          }
+        },
+        "guid" : "1681204C698BF8C7"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 },
+        "labelOffset" : { "x" : -86, "y" : 15 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 192 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "updateTask(ITask)",
+      "config" : {
+        "callSignature" : "updateTask",
+        "input" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
+          ],
+          "map" : {
+            "out.task" : "param.task"
+          }
+        },
+        "guid" : "16812056797ABC4C"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 288 }
+      },
+      "connect" : { "id" : "f8", "to" : "f7" }
+    }, {
+      "id" : "f7",
+      "type" : "Script",
+      "name" : "Add note",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import java.util.Arrays;",
+            "",
+            "out.task.getCase().createNote(ivy.session, ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/taskList/setNameNote\", Arrays.asList(ivy.session.getSessionUser().getDisplayName(), in.oldName, in.task.getName())));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 288 }
+      },
+      "connect" : { "id" : "f10", "to" : "f9" }
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 288 }
+      }
+    } ]
+}

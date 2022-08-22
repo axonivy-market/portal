@@ -13,6 +13,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.Sleeper;
+import portal.guitest.common.WaitHelper;
 
 public class StatisticWidgetPage extends TemplatePage {
   public static final String TASK_BY_PRIORITY_CHART_NAME = "Task by priority chart";
@@ -21,6 +22,7 @@ public class StatisticWidgetPage extends TemplatePage {
   public static final String ELAPSED_TIME_CHART_NAME = "Elapsed time chart";
   public static final String CASE_BY_FINISHED_TASK_CHART_NAME = "Case by finished task chart";
   public static final String CASE_BY_FINISHED_TIME_CHART_NAME = "Case by finished time chart";
+  public static final String CASES_BY_CATEGORY_CHART_NAME = "Cases by category chart";
 
   public StatisticWidgetPage() {
     Sleeper.sleep(1000);
@@ -56,6 +58,9 @@ public class StatisticWidgetPage extends TemplatePage {
 
     taskAnalysisLink.click();
     waitForElementDisplayed(By.id("task-widget"), true, DEFAULT_TIMEOUT);
+    WaitHelper.assertTrueWithWait(() -> {
+      return isElementPresent(By.cssSelector(".js-layout-wrapper.has-breadcrumb"));
+    });
 
     return new TaskAnalysisWidgetPage();
   }
@@ -142,9 +147,9 @@ public class StatisticWidgetPage extends TemplatePage {
 
     waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true);
 
-    findElementByCssSelector("input[id$='0:chart-name-input']").sendKeys(TASK_BY_PRIORITY_CHART_NAME.concat(" German"));
-    findElementByCssSelector("input[id$='1:chart-name-input']").sendKeys(TASK_BY_PRIORITY_CHART_NAME.concat(" English"));
-    findElementByCssSelector("input[id$='2:chart-name-input']").sendKeys(TASK_BY_PRIORITY_CHART_NAME.concat(" French"));
+    findElementByCssSelector("input[id$='0:chart-name-input']").sendKeys(TASK_BY_PRIORITY_CHART_NAME.concat(" English"));
+    findElementByCssSelector("input[id$='1:chart-name-input']").sendKeys(TASK_BY_PRIORITY_CHART_NAME.concat(" French"));
+    findElementByCssSelector("input[id$='2:chart-name-input']").sendKeys(TASK_BY_PRIORITY_CHART_NAME.concat(" German"));
     findElementByCssSelector("input[id$='3:chart-name-input']").sendKeys(TASK_BY_PRIORITY_CHART_NAME.concat(" Spanish"));
 
     clickByCssSelector("button[id$='chart-save-command']");
@@ -232,6 +237,19 @@ public class StatisticWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
     waitForElementExisted("span[class='ui-growl-title']", true, DEFAULT_TIMEOUT);
   }
+  
+  public void createCasesByCategory() {
+	    waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-cases-by-category-link"), true, 30);
+	    WebElement createCaseByFinishedTaskLink
+	      = findElementById("statistics-widget:chart-creation-widget:chart-management-form:create-cases-by-category-link");
+	    click(createCaseByFinishedTaskLink);
+
+	    waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true);
+	    inputNameForSupportedLanguages(CASES_BY_CATEGORY_CHART_NAME);
+	    clickByCssSelector("button[id$='chart-save-command']");
+
+	    waitForElementExisted("span[class='ui-growl-title']", true, DEFAULT_TIMEOUT);
+	  }
   
   public WebElement getChartCreationContainer() {
     return findElementById("statistics-widget:chart-creation-widget:chart-management-form:chart-list");

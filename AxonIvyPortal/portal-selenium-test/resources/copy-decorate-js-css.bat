@@ -1,2 +1,2 @@
-type AxonivyPortal\PortalTest\resources\css\document-screenshot.css >> AxonivyPortal\PortalKit\webContent\resources\css\portal.css
-type AxonivyPortal\PortalTest\resources\js\document-screenshot.js >> AxonivyPortal\PortalTemplate\webContent\resources\js\portal.js
+type AxonivyPortal\PortalTest\resources\css\document-screenshot.css >> AxonivyPortal\portal\webContent\resources\css\portal.css
+type AxonivyPortal\PortalTest\resources\js\document-screenshot.js >> AxonivyPortal\portal\webContent\resources\js\portal.js

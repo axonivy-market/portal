@@ -112,10 +112,24 @@ public class NewDashboardPage extends TemplatePage {
     waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ui-datatable.dashboard-tasks--table", CLASS_PROPERTY);
   }
 
+  public void waitForProcessViewerWidgetLoading() {
+    WaitHelper.assertTrueWithWait(() -> {
+      var widgetLoading = findElementByCssSelector(".process-viewer-widget-panel [id$='loading']");
+      return widgetLoading.getAttribute(CLASS_PROPERTY).contains("u-display-none");
+    });
+    driver.switchTo().frame("process-viewer");
+    waitForElementDisplayed(By.id("sprotty"), true);
+    driver.switchTo().defaultContent();
+  }
+
   public void waitForWidgetInfoLoading(WebElement taskInfoOverlayPanel) {
     WaitHelper.assertTrueWithWait(() -> {
       var widgetInfo = taskInfoOverlayPanel.findElements(By.cssSelector("[class*='js-loading-']")).get(0);
       return widgetInfo.getAttribute(CLASS_PROPERTY).contains("u-display-none");
     });
+  }
+
+  public WebElement getProcessViewerWidget() {
+    return findElementByCssSelector("div[gs-id*='process_viewer']");
   }
 }

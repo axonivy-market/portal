@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="viewName" value="PORTAL_MANAGEMENT" />
+    <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/PortalManagement/AdminSetting')}</ui:define>
+    <ui:define name="pageContent">
+
+      <h:panelGroup id="portal-management-container" styleClass=" ui-g">
+        <div class="ui-g-12">
+          <p:messages redisplay="false" for="portal-management-messages-information" closable="false" id="portal-management-messages"/>
+        </div>
+
+        <div id="admin-settings-container" class="admin-settings-container ui-g-12">
+          <div class="card ui-g">
+            <ic:ch.ivy.addon.portalkit.admin.AdminSettings id="admin-setting-component" />
+          </div>
+        </div>
+        <div class="admin-settings-footer ui-g-12 u-text-align-right MarTop10">
+          <p:commandButton id="back-to-home-button"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}"
+            icon="si si-house-chimney-2"
+            actionListener="#{logic.backToHome}"
+            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}"/>
+        </div>
+      </h:panelGroup>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

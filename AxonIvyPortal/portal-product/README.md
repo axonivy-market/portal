@@ -49,11 +49,10 @@ This section describes the first installation. We recommend reading the document
 
 ### Project modules
 
-The application consists of 4 process modules. For detailed information on each module, refer to **Portal Guide**.
+The application consists of 3 process modules. For detailed information on each module, refer to **Portal Guide**.
 
-* portal-component
-* PortalKit
-* PortalTemplate
+* portal-components
+* portal
 * AxonIvyExpress
 
 ### The default users

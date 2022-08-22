@@ -1,0 +1,4 @@
+ThemeSelectionData #class
+com.axonivy.portal.components.examples.internal.ThemeSelection #namespace
+selectedTheme String #field
+selectedTheme PERSISTENT #fieldModifier

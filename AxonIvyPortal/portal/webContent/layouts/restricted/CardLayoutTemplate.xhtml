@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:define name="pageContent">
+      <div class="ui-g card-layout-content" >
+        <div class="center #{isFullScreen? 'ui-g-12':'ui-g-8'} #{isFullScreen? 'ui-xl-12':'ui-xl-8'} ui-lg-12 ui-md-12 ui-sm-12">
+          <div class="ui-g-12">
+            <ui:insert name="header">
+              <h1>Place header here</h1>
+              <h:outputText value="Place description here" />
+            </ui:insert>
+          </div>
+          <br />
+          <div class="ui-g-12">
+          <ui:repeat var="item" value="#{items}" varStatus="itemStatus" >
+            <h:panelGroup layout="block"
+              styleClass="#{isFullScreen? 'ui-g-2':'ui-g-4'} #{isFullScreen? 'ui-xl-2':'ui-xl-4'} #{isFullScreen? 'ui-lg-4':'ui-lg-6'} ui-md-6 ui-sm-12 #{cardContainerStyleClass} ">
+              <div class="card-item card ui-g-12 " >
+                <ui:insert name="card">
+                  <!-- Put card contain here -->
+                  <h:outputText value="This is my card"/>    
+                </ui:insert>
+              </div>
+            </h:panelGroup>
+
+          </ui:repeat>
+          </div>
+        </div>
+      </div>
+
+
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>
