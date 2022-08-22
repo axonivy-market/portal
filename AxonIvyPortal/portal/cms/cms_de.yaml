@@ -808,6 +808,7 @@ ch.ivy.addon.portalkit.ui.jsf:
           Evening: Guten Abend
           Morning: Guten Morgen
         Image: Bild
+        ShowGreeting: Gruß anzeigen
         TextPosition: Position des Textes
         TextSizeAndColor: Textgröße und -farbe
       configuration: Konfiguration

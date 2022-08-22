@@ -807,6 +807,7 @@ ch.ivy.addon.portalkit.ui.jsf:
           Evening: Bonsoir
           Morning: Bonjour
         Image: Image
+        ShowGreeting: Afficher les salutations
         TextPosition: Position du texte
         TextSizeAndColor: Taille et couleur du texte
       configuration: Configuration
