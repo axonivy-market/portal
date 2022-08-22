@@ -1,0 +1,182 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+  xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" 
+  xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="processListStyleClass" />
+  <cc:attribute name="hideHeader" default="false" type="java.lang.Boolean" />
+  <cc:attribute name="hideExpressCreation" default="false" />
+  <cc:attribute name="hideProcessNavigation" default="false" />
+</cc:interface>
+
+<cc:implementation>
+  <h:outputScript library="js" name="process-widget.js" />
+  <f:event listener="#{processWidgetBean.initConfiguration()}" type="preRenderComponent"/>
+  <div class="ui-g">
+    <div id="#{cc.clientId}" class="widget process-widget js-process-widget ui-g-12 u-padding-0">
+      <!-- Process header -->
+      <h:panelGroup layout="block" class="process-header js-process-header" rendered="#{!cc.attrs.hideHeader}">
+        <div class="ui-g-12 u-padding-0 ui-g">
+          <div class="ui-sm-3 u-hidden-sm-up">
+            <span class="process-header-title widget-header-main-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}</span>
+          </div>
+          <div class="ui-sm-9 ui-md-6 ui-lg-3 ui-xl-4 process-widget-filter ui-fluid">
+            <ic:ch.ivy.addon.portalkit.component.Filter id="process-search" listener="processWidget.filter()" ajax="false"
+              placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processFilterPlaceHolder')}"
+              styleClass="js-filter-process-widget-list-item" />
+          </div>
+          <div class="ui-sm-hidden ui-md-hidden ui-lg-4 ui-xl-4 process-widget-creation-actions">
+            <h:panelGroup id="create-express-link"
+              rendered="#{!cc.attrs.hideExpressCreation and processWidgetBean.canCreateExpessWorkflow()}"
+              styleClass="create-express-link u-mar-right-10">
+              <p:commandLink id="create-express-workflow"
+                actionListener="#{processWidgetBean.startExpressWorkflowCreationLink()}">
+                <i class="si si-startup-launch" />
+                <span class="process-widget-header-link">#{processWidgetBean.createExpressWorkflowProcessStart.name}</span>
+              </p:commandLink>
+            </h:panelGroup>
+            <h:panelGroup styleClass="add-external-link-command">
+              <p:commandLink id="add-external-link-command"
+                actionListener="#{externalLinkBean.addNewExternalLink(cc.clientId)}"
+                update="#{cc.clientId}:add-external-link-dialog" oncomplete="PF('add-external-link-dialog').show()">
+                <i class="si si-hyperlink-3" aria-hidden="true" />
+                <span class="process-widget-header-link">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addExternalLink')}</span>
+              </p:commandLink>
+            </h:panelGroup>
+          </div>
+
+          <div class="u-hidden-sm-down ui-md-6 ui-lg-5 ui-xl-4 u-no-padding-right u-no-padding-top">
+            <h:form id="process-view-mode" class="md-inputfiled ui-g-12 process-view-mode u-no-padding-right u-no-padding-top md-inputfiled">
+              <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/viewMode')}" for="view-mode-selection" styleClass="view-mode-text"/>
+              <p:selectOneButton value="#{processWidgetBean.viewMode}" unselectable="false" id="view-mode-selection">
+                <f:selectItems value="#{processWidgetBean.processViewModes}"  var="mode" itemValue="#{mode}" itemLabel="#{mode.label}" />
+                <p:ajax update="process-view-mode #{cc.clientId}:process-list #{cc.clientId}:process-nav"
+                  oncomplete="processWidget.setup(); processWidget.hideLoadingText(); return false;" />
+              </p:selectOneButton>
+            </h:form>
+          </div>
+        </div>
+      </h:panelGroup>
+
+      <p:remoteCommand id="init-process-data-cmd" autoRun="true" actionListener="#{processWidgetBean.initProcesses()}"
+        async="true" process="@this" update="process-list process-nav"
+        onstart="processWidget.removeStyleOnProcessStartList()"
+        oncomplete="processWidget.setupScrollbar();processWidget.filter();processWidget.hideLoadingText();"/>
+      <!-- Lazy loading -->
+      <div class="ui-g-12 u-no-padding-left">
+        <h:outputText id="loading" styleClass="js-loading-process-list ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}" />
+      </div>
+      <!-- Process body -->
+      <h:panelGroup id="process-list" layout="block"
+        styleClass="widget-content process-start-list-container js-process-start-list-container ui-g-12
+          u-no-padding-top u-no-padding-bottom #{processWidgetBean.compactMode ? '' : 'u-no-padding-left'}
+          u-invisibility">
+        <h:outputText id="no-found-processes" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/noProcesses')}"
+          styleClass="no-process-message js-no-found-processes u-display-none #{processWidgetBean.compactMode ? '' : 'ui-g-12'}" />
+        <!-- Grid mode -->
+        <h:panelGroup id="grid-process-container" layout="block" styleClass="ui-g process-group grid-process-container" rendered="#{processWidgetBean.viewMode eq 'GRID'}">
+          <ui:repeat id="grid-process-group-alphabet" var="entryProcess" value="#{processWidgetBean.processesByAlphabet.entrySet().toArray()}">
+            <ui:repeat id="grid-processes" varStatus="status" var="process" value="#{entryProcess.value}">
+              <ui:fragment id="grid-view">
+                <ic:ch.ivy.addon.portalkit.component.process.ProcessGridItem id="process-grid-item"
+                  process="#{process}" managedBean="#{processWidgetBean}"
+                  groupCode="js-grid-process-index-group js-process-group-#{entryProcess.key}"
+                  status="#{status}"
+                  ableToEdit="#{!processWidgetBean.isIvyProcess(process) and process.getProcess().ableToEdit}"
+                  showInformationLink="#{data.showInformationLink}"
+                  oncompleteEditProcess="PF('edit-process-dialog').show();"
+                  componentToUpdateOnEditProcess="#{cc.clientId}:edit-process-dialog"
+                  editActionListener="#{processWidgetBean.setEditedProcess(process)}"
+                  oncompleteRemoveProcess="PF('remove-process-workflow-dialog').show();"
+                  componentToUpdateOnRemoveProcess="#{cc.clientId}:remove-process-workflow-dialog"
+                  removeActionListener="#{processWidgetBean.setDeletedProcess(process)}"
+                  processStyleClass="js-process-start-list-item ui-g-2 ui-xl-2 ui-lg-3 ui-md-6 ui-sm-12" />
+              </ui:fragment>
+            </ui:repeat>
+          </ui:repeat>
+        </h:panelGroup>
+
+        <!-- Image mode -->
+        <h:panelGroup id="image-process-container" layout="block" styleClass="ui-g process-group image-process-container" rendered="#{processWidgetBean.viewMode eq 'IMAGE'}">
+          <ui:repeat id="image-process-group-alphabet" var="entryProcess" value="#{processWidgetBean.processesByAlphabet.entrySet().toArray()}">
+            <ui:repeat id="image-processes" varStatus="status" var="process" value="#{entryProcess.value}">
+              <ui:fragment id="image-view">
+                <ui:include src="ProcessImageMode.xhtml">
+                  <ui:param name="process" value="#{process}" />
+                  <ui:param name="status" value="#{status}" />
+                  <ui:param name="groupCode" value="js-grid-process-index-group js-process-group-#{entryProcess.key}" />
+                </ui:include>
+              </ui:fragment>
+            </ui:repeat>
+          </ui:repeat>
+        </h:panelGroup>
+
+        <!-- Compact mode -->
+        <h:panelGroup rendered="#{processWidgetBean.compactMode}">
+          <ui:repeat id="process-group-alphabet" var="entryProcess" value="#{processWidgetBean.processesByAlphabet.entrySet().toArray()}">
+            <p:fieldset id="alphabet-process-index-fieldset"
+              legend="#{entryProcess.key eq 'SPECIAL_CHARACTER' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/specialCharacterGroup') : entryProcess.key}"
+              toggleable="true" styleClass="process-group js-process-index-group js-process-group-#{entryProcess.key}">
+              <h:panelGroup id="process-container" layout="block" styleClass="ui-g">
+                <ui:repeat id="processes" varStatus="status" var="process" value="#{entryProcess.value}">
+                  <ui:fragment id="list-view">
+                    <ui:include src="ProcessListMode.xhtml">
+                      <ui:param name="process" value="#{process}" />
+                    </ui:include>
+                  </ui:fragment>
+                </ui:repeat>
+              </h:panelGroup>
+            </p:fieldset>
+          </ui:repeat>
+        </h:panelGroup>
+      </h:panelGroup>
+
+        <!-- Process navigator -->
+      <h:panelGroup id="process-nav" layout="block" styleClass="process-nav js-process-nav u-invisibility" rendered="#{!cc.attrs.hideProcessNavigation}">
+        <div class="js-character-container character-container">
+          <p:commandLink styleClass="process-nav-item js-process-nav-item js-process-starts-with-reset" value="All"
+            onclick="resetGridViewProcesses(event)" global="false" rendered="#{processWidgetBean.viewMode ne 'COMPACT'}" />
+          <p:commandLink id="expand-all-btn" rendered="#{processWidgetBean.compactMode}" onclick="expandOrCollapseAllCategories(true); return false;"
+            styleClass="si si-add expand-collapse-btn process-nav-item"
+            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ExpandAll')}" />
+          <p:commandLink id="collapse-all-btn" rendered="#{processWidgetBean.compactMode}" onclick="expandOrCollapseAllCategories(false); return false;"
+            styleClass="si si-subtract expand-collapse-btn process-nav-item"
+            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/CollapseAll')}" />
+
+          <ui:repeat value="#{processWidgetBean.getAllAlphabeticalCharacters().entrySet().toArray()}" var="character">
+            <p:commandLink value="#{character.value}" styleClass="process-nav-item js-process-nav-item js-process-starts-with-#{character.key}"
+              onclick="jumpToProcessGroupByCharacter(event, #{processWidgetBean.compactMode})" global="false" />
+          </ui:repeat>
+        </div>
+      </h:panelGroup>
+    </div>
+  </div>
+
+  <ui:include src="ProcessWidgetDialogs.xhtml" />
+
+  <h:form>
+    <p:remoteCommand name="updateProcessListOnSaveSuccessfull" update="#{cc.clientId}:process-list #{cc.clientId}:process-nav"
+      oncomplete="processWidget.setup();processWidget.hideLoadingText();"/>
+  </h:form>
+
+  <script>
+      var processWidget = new ProcessWidget();
+      $(function() {
+        processWidget.setupScrollbar();
+      });
+      function jumpToProcessGroup() {
+        document.getElementsByClassName("js-process-group-" + PF('dictionary-process-group-selection').value)[0]
+            .scrollIntoViewIfNeeded();
+        PF('dictionary-process-group-selection').hide();
+    
+        var processHeaderHeight = document.getElementsByClassName("process-widget")[0]
+            .getElementsByClassName("widget-header")[0].offsetHeight;
+        document.getElementsByClassName("process-widget")[0].scrollTop -= processHeaderHeight;
+        
+      }
+    </script>
+</cc:implementation>
+</html>

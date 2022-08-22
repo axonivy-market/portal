@@ -3,21 +3,18 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-  <ui:composition template="/layouts/TaskTemplate-8.xhtml">
+  <ui:composition template="/layouts/frame-10.xhtml">
     <ui:define name="title">Internal Solvency Check</ui:define>
-    <ui:define name="css">
-      <h:outputStylesheet library="css" name="portal-user-examples.css" />
-      <h:outputStylesheet library="styles" name="ivy-common-8.css" />
-    </ui:define>
     <ui:define name="content">
+      <h:outputStylesheet library="css" name="portal-variables.css" />
+      <h:outputStylesheet library="css" name="portal-user-examples.css" />
 
       <h:form id="form">
         <h:panelGroup styleClass="ui-g ui-fluid portal-card-container">
           <p:panel styleClass="card ui-g-12 ui-md-12">
             <h:panelGroup styleClass="ui-g" layout="block">
               <p:messages styleClass="ui-g-12 ui-lg-12 ui-md-12 ui-sm-12" />
-              <h:outputText value="#{ivy.cms.co('/Labels/CaseMap/Credit/person')}"
-                styleClass="credit-label margin-left-16" />
+              <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/person')}</h4>
               <h:panelGrid columns="1" columnClasses="u-text-align-left ui-g-12" styleClass="ui-g-12 ui-md-12 ui-sm-12">
                 <h:panelGroup layout="block">
                   <p:outputLabel for="first-name" value="#{ivy.cms.co('/Labels/CaseMap/Credit/firstName')}" />
@@ -36,8 +33,7 @@
                     styleClass="MarTop10" disabled="true" />
                 </h:panelGroup>
               </h:panelGrid>
-              <h:outputText value="#{ivy.cms.co('/Labels/CaseMap/Credit/credit')}"
-                styleClass="credit-label margin-left-16" />
+              <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/credit')}</h4>
               <h:panelGrid columns="2" columnClasses="u-text-align-left ui-g-6, u-text-align-left ui-g-6"
                 styleClass="ui-g-12 ui-md-12 ui-sm-12">
 
@@ -67,23 +63,20 @@
                 </h:panelGroup>
               </h:panelGrid>
 
-              <h:outputText value="#{ivy.cms.co('/Labels/CaseMap/Credit/verifierComment')}"
-                styleClass="credit-label margin-left-16" />
+              <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/verifierComment')}</h4>
               <h:panelGrid columns="1" columnClasses="u-text-align-left ui-g-12" styleClass="ui-g-12 ui-md-12 ui-sm-12">
                 <p:inputTextarea id="verifier-comment" value="#{data.dossier.verifierComment}" rows="4" disabled="true" />
               </h:panelGrid>
 
               <h:panelGroup rendered="#{not empty data.dossier.externalCreditComment}">
-                <h:outputText value="#{ivy.cms.co('/Labels/CaseMap/Credit/externalCreditComment')}"
-                  styleClass="credit-label margin-left-16" />
+                <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/externalCreditComment')}</h4>
               </h:panelGroup>
               <h:panelGrid columns="1" columnClasses="u-text-align-left ui-g-12" styleClass="ui-g-12 ui-md-12 ui-sm-12"
                 rendered="#{not empty data.dossier.externalCreditComment}">
                 <p:inputTextarea id="external-comment" value="#{data.dossier.externalCreditComment}" disabled="true" />
               </h:panelGrid>
 
-              <h:outputText value="#{ivy.cms.co('/Labels/CaseMap/Credit/internalCreditComment')}"
-                styleClass="credit-label margin-left-16" />
+              <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/internalCreditComment')}</h4>
               <h:panelGrid columns="1" columnClasses="u-text-align-left ui-g-12" styleClass="ui-g-12 ui-md-12 ui-sm-12">
                 <f:facet name="header">
                   <p:messages></p:messages>
@@ -94,8 +87,7 @@
           </p:panel>
         </h:panelGroup>
         <p:commandButton id="submit-button" actionListener="#{logic.close}"
-          value="#{ivy.cms.co('/Dialog/Common/submit')}" update="form" icon="si si-check-1"
-          styleClass="Fright" />
+          value="#{ivy.cms.co('/Dialog/Common/submit')}" update="form" icon="si si-check-1" styleClass="Fright MarTop10" />
       </h:form>
 
     </ui:define>

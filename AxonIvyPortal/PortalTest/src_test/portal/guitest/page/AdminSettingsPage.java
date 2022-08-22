@@ -176,6 +176,17 @@ public class AdminSettingsPage extends TemplatePage {
     return isElementPresent(By.cssSelector("a[href='#admin-setting-component:adminTabView:role-management-tab']"));
   }
   
+  public boolean isPasswordValidationTabViewPresent() {
+    return isElementPresent(By.cssSelector("a[href='#admin-setting-component:adminTabView:password-validation-tab']"));
+  }
+  
+  public PasswordValidationPage openPasswordValidationTab() {
+    waitForElementDisplayed(By.cssSelector("[id$='admin-setting-component:adminTabView']"), true);
+    clickByCssSelector("a[href='#admin-setting-component:adminTabView:password-validation-tab']");
+    waitForElementPresent(By.cssSelector("[id$=':password-validation-component:password-validation-form:password-policy-setting']"), true);
+    return new PasswordValidationPage();
+  }
+  
   public WebElement getAdminSettingContainer() {
     return findElementById("admin-settings-container");
   }

@@ -1,0 +1,97 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:jsf="http://xmlns.jcp.org/jsf">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="viewName" value="DASHBOARD_CONFIGURATION" />
+    <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title')}</ui:define>
+
+    <ui:define name="css">
+      <h:outputStylesheet library="css" name="dashboard.css" />
+    </ui:define>
+
+    <ui:define name="pageContent">
+      <div class="ui-g dashboard-configuration-page">
+        <div class="ui-g-12 ">
+          <h:panelGroup id="configuration-group" styleClass="card ui-g" layout="block">
+            <c:set var="isPublicDashboard" value="#{dashboardConfigurationBean.publicDashboard}" scope="request" />
+
+            <div class="ui-g-12 u-no-padding-top u-no-padding-bottom">
+              <div class="ui-g-12 dashboard-configuration__header">
+                <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title')}</h2>
+                <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Description')}</span>
+              </div>
+
+              <h:panelGroup id="dashboard-configuration-type" styleClass="ui-g-12" layout="block">
+                <ul id="dashboard-type-list" class="dashboard-type-list">
+                  <li class="#{isPublicDashboard ? '' : 'active'}" jsf:rendered="#{dashboardConfigurationBean.canEditPrivateDashboard}">
+                    <p:commandLink id="private-dashboard-type"
+                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PrivateDashboard')}"
+                      actionListener="#{dashboardConfigurationBean.switchDashboardType(false)}"
+                      update="dashboard-configuration-type dashboard-configuration-content" process="@this"
+                      partialSubmit="true"/>
+                  </li>
+                  <li class="#{isPublicDashboard ? 'active' : ''}" jsf:rendered="#{dashboardConfigurationBean.canEditPublicDashboard}">
+                    <p:commandLink id="public-dashboard-type"
+                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PublicDashboard')}"
+                      actionListener="#{dashboardConfigurationBean.switchDashboardType(true)}"
+                      update="dashboard-configuration-type dashboard-configuration-content" process="@this"
+                      partialSubmit="true"/>
+                  </li>
+                </ul>
+              </h:panelGroup>
+            </div>
+
+            <h:panelGroup id="dashboard-configuration-content" layout="block" rendered="#{!dashboardConfigurationBean.mobileDevice}"
+              styleClass="ui-g-12 dashboard-configuration__content u-no-padding-top #{isPublicDashboard ? 'js-public-dashboard-configuration':'js-private-dashboard-configuration'}">
+              <ui:fragment rendered="#{dashboardConfigurationBean.selectingAction}">
+                <ui:include src="PortalDashboardConfigurationActionSelection.xhtml">
+                  <ui:param name="isPublicDashboard" value="#{isPublicDashboard}"/>
+                </ui:include>
+              </ui:fragment>
+
+              <ui:fragment rendered="#{dashboardConfigurationBean.selectingTemplate}">
+                <ic:ch.ivy.addon.portal.generic.dashboard.component.DashboardTemplateSelection id="dashboard-template-selection-component"
+                  listenerOnBackAction="#{dashboardConfigurationBean.backToConfigurationTab()}"
+                  componentToUpdateOnBackAction="dashboard-configuration-content"
+                  isPublicDashboard="#{isPublicDashboard}"/>
+              </ui:fragment>
+
+              <ui:fragment rendered="#{dashboardConfigurationBean.editingDashboard}">
+                <ic:ch.ivy.addon.portal.generic.dashboard.component.DashboardModification id="dashboard-modification-component"
+                  listenerOnBackAction="#{dashboardConfigurationBean.backToConfigurationTab()}"
+                  componentToUpdateOnBackAction="dashboard-configuration-content"
+                  isPublicDashboard="#{isPublicDashboard}" />
+              </ui:fragment>
+
+              <ui:fragment rendered="#{dashboardConfigurationBean.reorderingDashboard}">
+                <div class="ui-g-12">
+                  <p:messages id="errors-message" redisplay="false" />
+
+                  <ic:ch.ivy.addon.portal.generic.dashboard.component.DashboardReorder id="dashboard-reorder-component"
+                    isPublicDashboard="#{isPublicDashboard}"
+                    listenerOnBackAction="#{dashboardConfigurationBean.backToConfigurationTab()}"
+                    componentToUpdateOnBackAction="dashboard-configuration-content"/>
+                </div>
+              </ui:fragment>
+            </h:panelGroup>
+            <h:panelGroup layout="block" rendered="#{dashboardConfigurationBean.mobileDevice}" styleClass="ui-g-12">
+              <h:outputText styleClass="ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/DoNotSupportMobile')}"/>
+            </h:panelGroup>
+          </h:panelGroup>
+        </div>
+
+        <div id="actions-group" class="u-text-align-right ui-g-12">
+          <p:commandButton id="back-to-home-button" actionListener="#{logic.backToHome()}"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}"
+            update="@this"
+            icon="#{visibilityBean.generateButtonIcon('si si-house-chimney-2')}"
+            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}"/>
+        </div>
+      </div>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

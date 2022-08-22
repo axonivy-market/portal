@@ -1,0 +1,161 @@
+{
+  "format" : "9.4.17",
+  "id" : "15493BD80A4C7D12",
+  "data" : "ch.ivy.addon.portalkit.component.TaskItemNotes.TaskItemNotesData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "1682705E65C6C417"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 96 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 320, "y" : 96 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "initData(ITask)",
+      "config" : {
+        "callSignature" : "initData",
+        "input" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
+          ],
+          "map" : {
+            "out.task" : "param.task"
+          }
+        },
+        "guid" : "168270608CC35DAF"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 }
+      },
+      "connect" : { "id" : "f15", "to" : "f13" }
+    }, {
+      "id" : "f4",
+      "type" : "Script",
+      "name" : "Load notes",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.environment.Ivy;",
+            "import java.util.ArrayList;",
+            "import ch.ivy.addon.portalkit.util.CaseUtils;",
+            "import ch.ivyteam.ivy.workflow.ICase;",
+            "",
+            "ICase iCase = in.task.getCase();",
+            "boolean showSystemNotes = out.showSystemNotes && out.showSystemNotesChkbox;",
+            "out.notes = CaseUtils.findNotes(iCase, !showSystemNotes);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 192 }
+      },
+      "connect" : { "id" : "f21", "to" : "f20" }
+    }, {
+      "id" : "f20",
+      "type" : "Script",
+      "name" : "Sort notes",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.primefaces.PrimeFaces;",
+            "import ch.ivy.addon.portalkit.comparator.NoteComparator;",
+            "",
+            "in.notes.sort(new NoteComparator());",
+            "",
+            "// Responsive table",
+            "PrimeFaces.current().executeScript(\"ResponsiveTable.init(':task-note-table')\");",
+            "",
+            "ivy.log.warn(\"load histories\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 608, "y" : 192 }
+      },
+      "connect" : { "id" : "f23", "to" : "f22" }
+    }, {
+      "id" : "f22",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 736, "y" : 192 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "createNote()",
+      "config" : {
+        "callSignature" : "createNote",
+        "guid" : "16827078DBAC9718"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 288 }
+      },
+      "connect" : { "id" : "f14", "to" : "f10" }
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "Create note",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "in.task.getCase().createNote(ivy.session, in.noteContent);",
+            "in.noteContent = \"\";"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 288 },
+        "size" : { "width" : 144, "height" : 48 }
+      },
+      "connect" : { "id" : "f8", "to" : "f4" }
+    }, {
+      "id" : "f7",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "showHideSystemNotes()",
+      "config" : {
+        "callSignature" : "showHideSystemNotes",
+        "guid" : "177282755F4CB896"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 384 },
+        "labelOffset" : { "x" : -25, "y" : 15 }
+      },
+      "connect" : { "id" : "f9", "to" : "f4", "via" : [ { "x" : 408, "y" : 384 } ] }
+    }, {
+      "id" : "f13",
+      "type" : "Script",
+      "name" : "Init note's configuration",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "import ch.ivy.addon.portalkit.util.PermissionUtils;",
+            "",
+            "GlobalSettingService globalSettingService = new GlobalSettingService();",
+            "out.showSystemNotesChkbox = !globalSettingService.findHideSystemNotesFromHistorySettingValue();",
+            "out.showSystemNotes = PermissionUtils.isSessionUserHasAdminRole();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 192 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    } ]
+}

@@ -71,15 +71,15 @@
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>3.2.0</version>
         <configuration>
-		  <!--On Windows, replace character : by character ;-->
-          <sourcepath>../../AxonIvyPortal/PortalKit/src:../../AxonIvyPortal/portal-component/src</sourcepath>
+          <!--On Windows, replace character : by character ;-->
+          <sourcepath>../../AxonIvyPortal/portal/src:../../AxonIvyPortal/portal-components/src</sourcepath>
           <subpackages>ch.ivy.addon.portalkit.publicapi, ch.ivy.addon.portalkit.datamodel, ch.ivy.addon.portalkit.exporter, 
             ch.ivy.addon.portalkit.taskfilter, ch.ivy.addon.portalkit.casefilter, ch.ivy.addon.portalkit.filter, 
-			com.axonivy.portal.component.dto</subpackages>
+			com.axonivy.portal.components.dto</subpackages>
           <additionalOptions>
             <additionalOption>-classpath</additionalOption>
             <!--On Windows, replace character : by character ;-->
-            <additionalOption>../../../../../AxonIvyPortal/PortalKit/lib/itextpdf-5.5.13.jar:../../../../../AxonIvyPortal/PortalKit/lib/jsoup-1.10.3.jar:../../../../../AxonIvyPortal/PortalKit/lib/quartz-2.1.1.jar:${standardized.maven.processor.classpath}</additionalOption>
+            <additionalOption>../../../../../AxonIvyPortal/portal-components/lib/itextpdf-5.5.13.jar:../../../../../AxonIvyPortal/portal-components/lib/jsoup-1.10.3.jar:../../../../../AxonIvyPortal/portal/lib/quartz-2.1.1.jar:${standardized.maven.processor.classpath}</additionalOption>
           </additionalOptions>
           <show>public</show>
           <doclint>none</doclint>

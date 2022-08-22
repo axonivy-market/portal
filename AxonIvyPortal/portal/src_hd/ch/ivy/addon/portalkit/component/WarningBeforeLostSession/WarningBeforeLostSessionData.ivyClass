@@ -1,0 +1,4 @@
+WarningBeforeLostSessionData #class
+ch.ivy.addon.portalkit.component.WarningBeforeLostSession #namespace
+task ch.ivyteam.ivy.workflow.ITask #field
+task PERSISTENT #fieldModifier

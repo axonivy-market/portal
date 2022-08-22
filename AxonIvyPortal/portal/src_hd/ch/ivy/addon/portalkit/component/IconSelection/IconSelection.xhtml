@@ -1,0 +1,95 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+  xmlns:c="http://java.sun.com/jsp/jstl/core">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="value" required="true" default="fa-play"
+    shortDescription="Value expression to bind selected Icon on" />
+  <cc:attribute name="tabindex" required="false" default="1" />
+  <cc:attribute name="isReadOnly" default="false" />
+</cc:interface>
+<cc:implementation>
+  <f:event listener="#{iconSelectionBean.init(cc.attrs.value)}" type="preRenderComponent" />
+
+  <h:panelGroup id="awesome-icon-selection" styleClass="awesome-icon-selection-panel">
+    <h:outputText id="awesome-icon-display" styleClass="#{iconSelectionBean.iconPattern} #{cc.attrs.value} u-vertical-align-center" />
+    <p:spacer width="7px" />
+    <p:inputText type="hidden" id="awesome-icon-hidden-value" value="#{cc.attrs.value}" />
+    <p:commandLink id="change-icon-link" styleClass="select-awesome-icon-button" tabindex="#{cc.attrs.tabindex}"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/change')}" process="@this"
+      onclick="PF('#{cc.clientId}-select-icon-dialog').show();" oncomplete="loadStreamlineIcon('#{cc.clientId}-select-icon-dialog');"
+      rendered="#{empty cc.attrs.isReadOnly or !cc.attrs.isReadOnly}" />
+  </h:panelGroup>
+  
+  <p:dialog id="select-icon-dialog" widgetVar="#{cc.clientId}-select-icon-dialog" styleClass="select-icon-dialog"
+    width="52%" modal="true" appendTo="@(body)"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/iconselection/iconSelectionDialogHeader')}" dynamic="true"
+    resizable="false" fitViewport="true" responsive="true">
+    <div class="search-icon-name-container">
+      <p:inputText id="search-icon-name-field" onkeyup="searchIconByName(this)" 
+        placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/iconselection/seachIconByNamePlaceHolder')}"
+        styleClass="search-icon-input Fright" />
+    </div>
+    <h:form id="icons-selection-form">
+      <p:fieldset legend="Streamline" id="streamline-icon">
+        <h:panelGroup layout="block" id="icons" />
+      </p:fieldset>
+      <p:fieldset legend="Awesome" id="awesome-icon" styleClass="MarTop20">
+        <ui:repeat var="icon" value="#{masterDataBean.awesomeIcons}">
+          <h:link id="awesome-icon" styleClass="icon-selection-dialog-selecting-icon"
+            onclick="updateSelectedIConDisplay('#{icon.iconCode}', 'awesome');PF('#{cc.clientId}-select-icon-dialog').hide();return false;">
+            <span class="fa #{icon.iconCode} fa-lg" />
+          </h:link>
+          <p:tooltip for="awesome-icon" value="#{icon.iconCode}" trackMouse="true" hideEvent="mouseleave click" />
+        </ui:repeat>
+      </p:fieldset>
+    </h:form>
+  </p:dialog>
+  
+  <script>
+    function updateSelectedIConDisplay(iconCode, type) {
+      var iconDisplayJQ = $(PrimeFaces.escapeClientId("#{cc.clientId}:awesome-icon-display"));
+      iconDisplayJQ.removeClass();
+      iconDisplayJQ.toggleClass(type === "awesome" ? "fa fa-2x" : "si si-xl");
+      iconDisplayJQ.toggleClass("u-vertical-align-center");
+      iconDisplayJQ.addClass(iconCode);
+      var iconHiddenValueJQ = $(PrimeFaces.escapeClientId("#{cc.clientId}:awesome-icon-hidden-value"));
+      iconHiddenValueJQ.val(iconCode);
+    }
+    
+    function loadStreamlineIcon(selectionIconDialog) {
+      var iconsStylesheet = Object.values(document.styleSheets).filter(sheet => sheet.href?.includes("StreamlineIcons.css"))[0];
+      var icons = Object.values(iconsStylesheet.rules).filter(rule => rule.selectorText?.startsWith(".si-"));
+      icons.sort((a, b) => (a.selectorText > b.selectorText) ? 1 : -1);
+    
+      var container = document.getElementById("#{cc.clientId}:icons-selection-form:icons");
+      container.innerHTML = "";
+      icons.forEach(icon => {
+        var iconCode = icon.selectorText.substring(1, icon.selectorText.length - 8);
+        var iconImage = document.createElement("i");
+        iconImage.className = "si " + iconCode + " si-lg";
+        var iconTitle = document.createElement("p");
+        iconTitle.appendChild(document.createTextNode("si " + iconCode));
+        
+        var iconAnchor = document.createElement("a");
+        iconAnchor.className = "icon-selection-dialog-selecting-icon";
+        iconAnchor.appendChild(iconImage);
+        iconAnchor.title = iconCode;
+        iconAnchor.onclick = function() {
+          updateSelectedIConDisplay(iconCode, "streamline");
+          PF('#{cc.clientId}-select-icon-dialog').hide();
+          return false;
+        };
+        
+        container.appendChild(iconAnchor);
+      });
+      
+      var searchField = document.getElementById("#{cc.clientId}:search-icon-name-field");
+      searchIconByName(searchField);
+      PF(selectionIconDialog).initPosition();
+    }
+   
+  </script>
+</cc:implementation>
+</html>

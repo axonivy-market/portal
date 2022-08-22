@@ -38,4 +38,9 @@ public class ProcessWidgetPage extends TemplatePage {
     
     System.out.println($("i[id='icon']").getAttribute("class"));
   }
+
+  public void waitForStartListShow() {
+    $(".js-loading-process-list").waitUntil(Condition.hidden, DEFAULT_TIMEOUT);
+    $(".js-process-start-list-container").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+  }
 }

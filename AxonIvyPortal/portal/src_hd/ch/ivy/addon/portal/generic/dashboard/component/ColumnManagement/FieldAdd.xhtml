@@ -1,0 +1,105 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+  <p:fieldset id="field-add-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addField')}" styleClass="field-add-fieldset"
+    toggleable="true">
+    <p:messages id="field-msg" closable="true" showDetail="false"/>
+    <div class="ui-g">
+      <div class="ui-g-3 field-add-fieldset__label">
+        <p:outputLabel for="field-type-selection" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/type')}" />
+      </div>
+      <div class="ui-g-9 field-add-fieldset__label ui-fluid">
+        <p:selectOneMenu id="field-type-selection" value="#{columnManagementBean.selectedFieldType}" styleClass="field-add-fieldset__input">
+          <f:selectItems value="#{columnManagementBean.fieldTypes}" />
+          <p:ajax listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" />
+        </p:selectOneMenu>
+      </div>
+
+      <c:set var="selectedStandardField" value="#{columnManagementBean.selectedFieldType eq 'STANDARD'}" scope="request"/>
+      <c:set var="selectedCustomField" value="#{columnManagementBean.selectedFieldType eq 'CUSTOM'}" scope="request"/>
+
+      <h:panelGroup rendered="#{selectedCustomField}">
+        <div class="ui-g-3 field-add-fieldset__label">
+          <p:outputLabel for="custom-field-categories-selection" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/category')}" />
+        </div>
+        <div class="ui-g-9 field-add-fieldset__selection ui-fluid">
+          <p:autoComplete id="custom-field-categories-selection" value="#{columnManagementBean.selectedCustomFieldCategory}"
+            completeMethod="#{columnManagementBean.completeCategoriesSelection}"
+            cache="true" dynamic="true" dropdown="true"
+            emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noCategory')}">
+            <p:ajax listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" />
+            <p:ajax event="clear" listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" />
+          </p:autoComplete>
+        </div>
+      </h:panelGroup>
+
+      <div class="ui-g-3 field-add-fieldset__label">
+        <p:outputLabel for="standard-field-selection" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/field')}" rendered="#{selectedStandardField}" />
+        <p:outputLabel for="custom-field-selection" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/field')}" rendered="#{selectedCustomField}" />
+      </div>
+      <div class="ui-g-9 ui-fluid">
+        <ui:fragment rendered="#{selectedStandardField}">
+          <f:event listener="#{columnManagementBean.fetchFields}" type="preRenderComponent" />
+          <p:selectOneMenu id="standard-field-selection" value="#{columnManagementBean.selectedField}" styleClass="field-add-fieldset__input"
+            required="true" requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/field')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
+            validator="duplicateFieldValidator" dynamic="true">
+            <f:attribute name="existingFields" value="#{columnManagementBean.existingFields}" />
+            <f:selectItems value="#{columnManagementBean.fields}" var="field" itemValue="#{field}" itemLabel="#{field}" />
+            <f:selectItem noSelectionOption="true" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"/>
+          </p:selectOneMenu>
+        </ui:fragment>
+
+        <ui:fragment rendered="#{selectedCustomField}">
+          <p:autoComplete id="custom-field-selection" value="#{columnManagementBean.selectedField}" styleClass="field-add-fieldset__input"
+            dynamic="true" completeMethod="#{columnManagementBean.completeCustomFields}" dropdown="true"
+            required="true" requiredMessage="Field #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
+            inputStyleClass="field-add-fieldset__autocomplete-input" validator="duplicateFieldValidator"
+            emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}">
+            <f:attribute name="existingFields" value="#{columnManagementBean.existingFields}" />
+            <p:ajax listener="#{columnManagementBean.onSelectCustomField()}" process="@this" update="field-add-fieldset"/>
+          </p:autoComplete>
+        </ui:fragment>
+      </div>
+
+      <h:panelGroup id="number-pattern-container" 
+        styleClass="#{columnManagementBean.selectedCustomFieldType eq 'NUMBER' ? 'ui-g-12 field-add-fieldset__number-pattern-container' : ''}">
+        <h:panelGroup styleClass="ui-g-3 field-add-fieldset__label" rendered="#{columnManagementBean.selectedCustomFieldType eq 'NUMBER'}">
+          <p:outputLabel for="custom-number-field-pattern" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/numberPattern')}" />
+          <p:link href="https://docs.oracle.com/javase/tutorial/i18n/format/decimalFormat.html" target="_blank">
+            <i class="si si-information-circle" />
+          </p:link>
+        </h:panelGroup>
+        <h:panelGroup styleClass="ui-g-9 ui-fluid" rendered="#{columnManagementBean.selectedCustomFieldType eq 'NUMBER'}">
+          <p:inputText id="custom-number-field-pattern" value="#{columnManagementBean.numberFieldPattern}"
+            styleClass="field-add-fieldset__input" />
+        </h:panelGroup>
+      </h:panelGroup>
+
+      <h:panelGroup rendered="#{selectedCustomField}">
+        <div class="ui-g-3 field-add-fieldset__label">
+          <p:outputLabel for="custom-field-description" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}"/>
+        </div>
+        <div class="ui-g-9 ui-fluid">
+          <p:inputText id="custom-field-description" readonly="true" value="#{columnManagementBean.fieldDescription}"/>
+        </div>
+      </h:panelGroup>
+
+      <div class="ui-g-3 field-add-fieldset__label">
+        <p:outputLabel for="field-display-name" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')}" />
+      </div>
+      <div class="ui-g-9 ui-fluid">
+        <p:inputText id="field-display-name" value="#{columnManagementBean.fieldDisplayName}" styleClass="field-add-fieldset__input"
+           required="#{!selectedCustomField}" requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
+           readonly="#{selectedCustomField}"/>
+      </div>
+
+      <div class="ui-g-12 u-text-align-right">
+        <p:commandButton id="field-add-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addField')}" actionListener="#{columnManagementBean.add}" update="field-add-fieldset column-management-datatable"
+          oncomplete="PF('column-management-dialog').initPosition();" icon="si si-add" process="column-management-form"/>
+      </div>
+    </div>
+  </p:fieldset>
+</html>

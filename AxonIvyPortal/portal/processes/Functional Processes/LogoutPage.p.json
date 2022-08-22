@@ -1,0 +1,43 @@
+{
+  "format" : "9.4.14",
+  "id" : "15EF11CA813E7FFF",
+  "data" : "ch.ivy.addon.portal.generic.LogoutPageData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "getLogoutPage()",
+      "config" : {
+        "callSignature" : "getLogoutPage",
+        "result" : {
+          "params" : [
+            { "name" : "logoutPage", "type" : "String" }
+          ],
+          "map" : {
+            "result.logoutPage" : "in.logoutPage"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "Change the value of in.logoutPage ",
+        "to customize the logout page"
+      ],
+      "visual" : {
+        "at" : { "x" : 224, "y" : 152 },
+        "size" : { "width" : 208, "height" : 44 }
+      }
+    } ]
+}

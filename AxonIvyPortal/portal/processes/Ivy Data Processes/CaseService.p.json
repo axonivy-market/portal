@@ -1,0 +1,513 @@
+{
+  "format" : "9.4.14",
+  "id" : "14715F955CC5A35F",
+  "data" : "ch.ivyteam.wf.processes.CaseServiceData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "findCasesByCriteria(CaseSearchCriteria,Integer,Integer)",
+      "config" : {
+        "callSignature" : "findCasesByCriteria",
+        "input" : {
+          "params" : [
+            { "name" : "caseSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria" },
+            { "name" : "startIndex", "type" : "Integer" },
+            { "name" : "count", "type" : "Integer" }
+          ],
+          "map" : {
+            "out.caseSearchCriteria" : "param.caseSearchCriteria",
+            "out.count" : "param.count",
+            "out.startIndex" : "param.startIndex"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "cases", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>" }
+          ],
+          "map" : {
+            "result.cases" : "in.cases"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 96 },
+        "labelOffset" : { "x" : -89, "y" : 26 }
+      },
+      "connect" : { "id" : "f54", "to" : "f6" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 432, "y" : 96 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "Find cases",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;",
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
+            "",
+            "IvyCaseResultDTO dto = CaseService.newInstance().findCasesByCriteria(in.caseSearchCriteria, in.startIndex, in.count);",
+            "out.cases = dto.cases;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 96 }
+      },
+      "connect" : { "id" : "f32", "to" : "f1" }
+    }, {
+      "id" : "f9",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 432, "y" : 192 }
+      }
+    }, {
+      "id" : "f11",
+      "type" : "Script",
+      "name" : "Count cases",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;",
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
+            "",
+            "IvyCaseResultDTO dto = CaseService.newInstance().countCasesByCriteria(in.caseSearchCriteria);",
+            "out.totalCases = dto.totalCases;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 192 }
+      },
+      "connect" : { "id" : "f3", "to" : "f9" }
+    }, {
+      "id" : "f12",
+      "type" : "CallSubStart",
+      "name" : "countCasesByCriteria(CaseSearchCriteria)",
+      "config" : {
+        "callSignature" : "countCasesByCriteria",
+        "input" : {
+          "params" : [
+            { "name" : "caseSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria" }
+          ],
+          "map" : {
+            "out.caseSearchCriteria" : "param.caseSearchCriteria"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "totalCases", "type" : "Long" }
+          ],
+          "map" : {
+            "result.totalCases" : "in.totalCases"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 },
+        "labelOffset" : { "x" : -89, "y" : 26 }
+      },
+      "connect" : { "id" : "f2", "to" : "f11" }
+    }, {
+      "id" : "f18",
+      "type" : "CallSubStart",
+      "name" : "findCategoriesByCriteria(CaseCategorySearchCriteria)",
+      "config" : {
+        "callSignature" : "findCategoriesByCriteria",
+        "input" : {
+          "params" : [
+            { "name" : "caseCategorySearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria" }
+          ],
+          "map" : {
+            "out.caseCategorySearchCriteria" : "param.caseCategorySearchCriteria"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "categoryTree", "type" : "ch.ivyteam.ivy.workflow.category.CategoryTree" }
+          ],
+          "map" : {
+            "result.categoryTree" : "in.#categoryTree"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 288 },
+        "labelOffset" : { "x" : -89, "y" : 28 }
+      },
+      "connect" : { "id" : "f17", "to" : "f22" }
+    }, {
+      "id" : "f21",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 432, "y" : 288 }
+      }
+    }, {
+      "id" : "f22",
+      "type" : "Script",
+      "name" : "Find categories",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;",
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
+            "",
+            "IvyCaseResultDTO dto = CaseService.newInstance().findCategoriesByCriteria(in.caseCategorySearchCriteria);",
+            "out.categoryTree = dto.#categoryTree;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 288 }
+      },
+      "connect" : { "id" : "f5", "to" : "f21" }
+    }, {
+      "id" : "f40",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 432, "y" : 480 }
+      }
+    }, {
+      "id" : "f28",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 432, "y" : 384 }
+      }
+    }, {
+      "id" : "f29",
+      "type" : "CallSubStart",
+      "name" : "analyzeCaseStateStatistic(CaseSearchCriteria)",
+      "config" : {
+        "callSignature" : "analyzeCaseStateStatistic",
+        "input" : {
+          "params" : [
+            { "name" : "caseSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria" }
+          ],
+          "map" : {
+            "out.caseSearchCriteria" : "param.caseSearchCriteria"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "caseStateStatistic", "type" : "ch.ivy.addon.portalkit.bo.CaseStateStatistic" }
+          ],
+          "map" : {
+            "result.caseStateStatistic" : "in.caseStateStatistic"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 384 },
+        "labelOffset" : { "x" : -68, "y" : 21 }
+      },
+      "connect" : { "id" : "f26", "to" : "f34" }
+    }, {
+      "id" : "f39",
+      "type" : "CallSubStart",
+      "name" : "analyzeElapsedTimeByCaseCategory(CaseSearchCriteria)",
+      "config" : {
+        "callSignature" : "analyzeElapsedTimeByCaseCategory",
+        "input" : {
+          "params" : [
+            { "name" : "caseSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria" }
+          ],
+          "map" : {
+            "out.caseSearchCriteria" : "param.caseSearchCriteria"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "elapsedTimeStatistic", "type" : "ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic" }
+          ],
+          "map" : {
+            "result.elapsedTimeStatistic" : "in.elapsedTimeStatistic"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 480 },
+        "labelOffset" : { "x" : -68, "y" : 21 }
+      },
+      "connect" : { "id" : "f37", "to" : "f33" }
+    }, {
+      "id" : "f33",
+      "type" : "Script",
+      "name" : "Analyze elapsed time statistic",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;",
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
+            "",
+            "IvyCaseResultDTO dto = CaseService.newInstance().analyzeElapsedTimeByCaseCategory(in.caseSearchCriteria);",
+            "out.elapsedTimeStatistic = dto.elapsedTimeStatistic;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 480 },
+        "size" : { "width" : 176, "height" : 44 }
+      },
+      "connect" : { "id" : "f13", "to" : "f40" }
+    }, {
+      "id" : "f34",
+      "type" : "Script",
+      "name" : "Analyze case state statistic",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;",
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
+            "",
+            "IvyCaseResultDTO dto = CaseService.newInstance().analyzeCaseStateStatistic(in.caseSearchCriteria);",
+            "out.caseStateStatistic = dto.caseStateStatistic;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 384 },
+        "size" : { "width" : 160, "height" : 44 }
+      },
+      "connect" : { "id" : "f8", "to" : "f28" }
+    }, {
+      "id" : "f4",
+      "type" : "CallSubStart",
+      "name" : "findValuesOfCustomField(CaseCustomFieldSearchCriteria)",
+      "config" : {
+        "callSignature" : "findValuesOfCustomField",
+        "input" : {
+          "params" : [
+            { "name" : "caseCustomFieldSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria" }
+          ],
+          "map" : {
+            "out.caseCustomFieldSearchCriteria" : "param.caseCustomFieldSearchCriteria"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "customFields", "type" : "java.util.List<String>" }
+          ],
+          "map" : {
+            "result.customFields" : "in.customFields"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 576 },
+        "labelOffset" : { "x" : -87, "y" : 34 }
+      },
+      "connect" : { "id" : "f31", "to" : "f10" }
+    }, {
+      "id" : "f7",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 432, "y" : 576 }
+      }
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "Find custom fields value",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;",
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
+            "",
+            "IvyCaseResultDTO dto = CaseService.newInstance().findValuesOfCustomString(in.caseCustomFieldSearchCriteria);",
+            "out.customFields = dto.customFields;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 576 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f15", "to" : "f7" }
+    }, {
+      "id" : "f14",
+      "type" : "Script",
+      "name" : "Analyze case by category",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;",
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
+            "",
+            "IvyCaseResultDTO dto = CaseService.newInstance().analyzeCaseCategoryStatistic(in.caseSearchCriteria);",
+            "out.caseCategoryStatistic = dto.caseCategoryStatistic;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 704 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f19", "to" : "f16" }
+    }, {
+      "id" : "f23",
+      "type" : "CallSubStart",
+      "name" : "analyzeCaseCategoryStatistic(CaseSearchCriteria)",
+      "config" : {
+        "callSignature" : "analyzeCaseCategoryStatistic",
+        "input" : {
+          "params" : [
+            { "name" : "caseSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria" }
+          ],
+          "map" : {
+            "out.caseSearchCriteria" : "param.caseSearchCriteria"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "caseCategoryStatistic", "type" : "ch.ivy.addon.portalkit.bo.CaseCategoryStatistic" }
+          ],
+          "map" : {
+            "result.caseCategoryStatistic" : "in.#caseCategoryStatistic"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 704 },
+        "labelOffset" : { "x" : -68, "y" : 21 }
+      },
+      "connect" : { "id" : "f30", "to" : "f14" }
+    }, {
+      "id" : "f16",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 424, "y" : 704 }
+      }
+    }, {
+      "id" : "f20",
+      "type" : "CallSubStart",
+      "name" : "analyzeCasesByCategoryStatistic(CaseSearchCriteria,List<String>)",
+      "config" : {
+        "callSignature" : "analyzeCasesByCategoryStatistic",
+        "input" : {
+          "params" : [
+            { "name" : "caseSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria" },
+            { "name" : "categories", "type" : "java.util.List<String>" }
+          ],
+          "map" : {
+            "out.caseSearchCriteria" : "param.caseSearchCriteria",
+            "out.selectedCategories" : "param.categories"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "CaseCategoryStatistic", "type" : "ch.ivy.addon.portalkit.bo.CaseCategoryStatistic" }
+          ],
+          "map" : {
+            "result.CaseCategoryStatistic" : "in.#CaseCategoryStatistic"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 792 },
+        "labelOffset" : { "x" : -68, "y" : 21 }
+      },
+      "connect" : { "id" : "f27", "to" : "f24" }
+    }, {
+      "id" : "f24",
+      "type" : "Script",
+      "name" : "Analyze case by category",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;",
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
+            "",
+            "IvyCaseResultDTO dto = CaseService.newInstance().analyzeCasesByCategoryStatistic(in.caseSearchCriteria, in.selectedCategories);",
+            "out.CaseCategoryStatistic = dto.CaseCategoryStatistic;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 792 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f35", "to" : "f25" }
+    }, {
+      "id" : "f25",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 424, "y" : 792 }
+      }
+    }, {
+      "id" : "f36",
+      "type" : "CallSubStart",
+      "name" : "analyzeCasesByCategoryDrilldownStatistic(CaseSearchCriteria,String)",
+      "config" : {
+        "callSignature" : "analyzeCasesByCategoryDrilldownStatistic",
+        "input" : {
+          "params" : [
+            { "name" : "caseSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria" },
+            { "name" : "selectedCategory", "type" : "String" }
+          ],
+          "map" : {
+            "out.caseSearchCriteria" : "param.caseSearchCriteria",
+            "out.selectedCategory" : "param.selectedCategory"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "CaseCategoryStatistic", "type" : "ch.ivy.addon.portalkit.bo.CaseCategoryStatistic" }
+          ],
+          "map" : {
+            "result.CaseCategoryStatistic" : "in.#CaseCategoryStatistic"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 864 },
+        "labelOffset" : { "x" : -68, "y" : 21 }
+      },
+      "connect" : { "id" : "f43", "to" : "f38" }
+    }, {
+      "id" : "f38",
+      "type" : "Script",
+      "name" : "Analyze case by category drilldown",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;",
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
+            "",
+            "IvyCaseResultDTO dto = CaseService.newInstance().analyzeCasesByCategoryStatisticDrilldown(in.caseSearchCriteria, in.selectedCategory);",
+            "out.CaseCategoryStatistic = dto.CaseCategoryStatistic;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 864 },
+        "size" : { "width" : 192, "height" : 44 }
+      },
+      "connect" : { "id" : "f42", "to" : "f41" }
+    }, {
+      "id" : "f41",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 424, "y" : 864 }
+      }
+    } ],
+  "layout" : {
+    "lanes" : [ {
+        "name" : "findCases",
+        "size" : 912
+      }, {
+        "name" : "addtionalProperties",
+        "size" : 432
+      }, {
+        "name" : "Documents",
+        "size" : 968
+      }, {
+        "name" : "Destroy Case",
+        "size" : 320
+      } ]
+  }
+}

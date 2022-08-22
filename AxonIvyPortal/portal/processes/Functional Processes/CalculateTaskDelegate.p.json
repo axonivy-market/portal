@@ -1,0 +1,72 @@
+{
+  "format" : "9.4.14",
+  "id" : "15B8089000CE1FF7",
+  "data" : "ch.ivy.add.portalkit.CaculateTaskDelegateData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "config" : {
+        "callSignature" : "call",
+        "input" : {
+          "params" : [
+            { "name" : "roles", "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>" },
+            { "name" : "users", "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>" },
+            { "name" : "currentUser", "type" : "com.axonivy.portal.components.dto.SecurityMemberDTO" },
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
+          ],
+          "map" : {
+            "out.currentUser" : "param.currentUser",
+            "out.roles" : "param.roles",
+            "out.task" : "param.task",
+            "out.users" : "param.users"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "users", "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>" },
+            { "name" : "roles", "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>" }
+          ],
+          "map" : {
+            "result.users" : "in.users",
+            "result.roles" : "in.roles"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 96 },
+        "size" : { "width" : 26, "height" : 26 }
+      },
+      "connect" : { "id" : "f1", "to" : "f6" }
+    }, {
+      "id" : "f7",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "Return your own list of users & roles to delegate task to",
+        "",
+        "if (\"admin\".equalsIgnoreCase(in.currentUser.getDisplayName()) && \"System task\".equalsIgnoreCase(in.task.getName())) {",
+        "  in.users = new ArrayList();",
+        "  in.roles = new ArrayList();",
+        "}"
+      ],
+      "visual" : {
+        "at" : { "x" : 464, "y" : 205 },
+        "size" : { "width" : 688, "height" : 108 }
+      },
+      "connect" : { "id" : "f2", "to" : "f6" }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "Calculate",
+      "visual" : {
+        "at" : { "x" : 216, "y" : 96 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f3",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 96 }
+      }
+    } ]
+}

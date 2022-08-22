@@ -871,11 +871,16 @@
       "config" : {
         "output" : {
           "code" : [
-            "in.caseCatagories.add(\"/Test/ETest_1\");",
-            "in.caseCatagories.add(\"/Test/CTest_2\");",
-            "in.caseCatagories.add(\"/Test/BTest_3\");",
-            "in.caseCatagories.add(\"/Test/ATest_4\");",
-            "in.caseCatagories.add(\"/Test/DTest_5\");",
+            "in.caseCatagories.add(\"/Test/ETest_1/Test_1_1\");",
+            "in.caseCatagories.add(\"/Test/ETest_1/Test_1_2\");",
+            "in.caseCatagories.add(\"/Test/CTest_2/Test_2_1\");",
+            "in.caseCatagories.add(\"/Test/CTest_2/Test_2_2\");",
+            "in.caseCatagories.add(\"/Test/BTest_3/Test_3_1\");",
+            "in.caseCatagories.add(\"/Test/BTest_3/Test_3_2\");",
+            "in.caseCatagories.add(\"/Test/ATest_4/Test_4_1\");",
+            "in.caseCatagories.add(\"/Test/ATest_4/Test_4_2\");",
+            "in.caseCatagories.add(\"/Test/DTest_5/Test_5_1\");",
+            "in.caseCatagories.add(\"/Test/DTest_5/Test_5_2\");",
             "in.numOfCats = in.caseCatagories.size();",
             "in.counter = 0;"
           ]

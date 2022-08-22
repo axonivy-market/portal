@@ -18,7 +18,7 @@ public final class WaitHelper {
     String viewState = $("input[name='javax.faces.ViewState']").getAttribute("value");
     navigationAcion.run();
     $$("input[value='" + viewState + "']").shouldHave(size(0), DEFAULT_TIMEOUT);
-    $(".layout-menu li[role='menuitem'] a.ripplelink.DASHBOARD").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    $(".layout-menu li[role='menuitem'] a.DASHBOARD").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public static void waitForIFrameAvailable(WebDriver driver, String frameId) {

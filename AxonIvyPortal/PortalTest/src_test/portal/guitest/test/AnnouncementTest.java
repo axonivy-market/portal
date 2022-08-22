@@ -33,7 +33,7 @@ public class AnnouncementTest extends BaseTest {
     adminSettingsPage.clickOnbackToHomepageOnAdminSetting();
     homePage = new HomePage();
     UserProfilePage userProfilePage = homePage.openMyProfilePage();
-    userProfilePage.selectLanguage(0);
+    userProfilePage.selectLanguage(3);
     userProfilePage.save();
     assertEquals("lies mich", homePage.getAnnouncementMessage());
 
@@ -55,6 +55,7 @@ public class AnnouncementTest extends BaseTest {
   @Test
   public void testShouldDisplayNotification() {
     HomePage homePage = new HomePage();
+    homePage.waitForGrowlMessageDisplayClearly();
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
     AnnouncementPage announcementPage = adminSettingsPage.openAnnouncementTab();
     assertTrue("Admin Settings dialog is displayed", announcementPage.isDisplayed());

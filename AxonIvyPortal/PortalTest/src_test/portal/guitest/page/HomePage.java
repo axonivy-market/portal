@@ -10,7 +10,7 @@ import portal.guitest.common.WaitHelper;
 
 public class HomePage extends TemplatePage {
 
-	public final static String PORTAL_HOME_PAGE_URL = "portalTemplate/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
+	public final static String PORTAL_HOME_PAGE_URL = "portal/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
 	public final static String PORTAL_EXAMPLES_HOME_PAGE_URL = "portal-developer-examples/164211E97C598DAA/DefaultApplicationHomePage.ivp";
 	public final static String PORTAL_EXAMPLES_PROCESS_CHAIN = "portal-developer-examples/164DB506D12B25CF/showSampleProcessChain.ivp";
 	public final static String PORTAL_INTERNAL_HOME_PAGE_URL = "internalSupport/164211FF9482BB44/DefaultApplicationHomePage.ivp";
@@ -49,10 +49,10 @@ public class HomePage extends TemplatePage {
    */
   public void waitForStatisticRendered() {
     try {
-      WaitHelper.assertTrueWithRefreshPage(this, () -> {
-        waitForElementDisplayed(By.cssSelector("span[id$=':statistic-carousel:0:chart-name']"), true, 5);
+      WaitHelper.assertTrueWithWait(() -> {
+        WaitHelper.waitForVisibilityOfElementLocated(driver, "canvas[id^='statistics-widget:statistic-dashboard-widget:statistic-carousel:0']");
         return true;
-      });
+      }, 25);
     } catch (Exception e) {
       System.out.println("**ERROR when waitForStatisticRendered - chart info isn't rendered");
       refreshStatisticChartData();

@@ -1,0 +1,121 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="caseWidget" type="ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget" required="true" />
+  <cc:attribute name="renderColumnConfiguration" default="false" />
+  <cc:attribute name="isReadOnlyMode" default="false"/>
+  <cc:attribute name="isPreviewMode" default="false"/>
+  <cc:attribute name="onCompleteLoadWidget" />
+  <cc:attribute name="componentToUpdateCaseWidget" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="caseWidget" value="#{cc.attrs.caseWidget}" />
+  <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
+  <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}" />
+
+  <p:remoteCommand id="rcLoadCaseFirstTime" autoRun="true" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
+    update="dashboard-cases-container" global="false" async="true" process="@this"
+    oncomplete="loadWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); #{cc.attrs.onCompleteLoadWidget}" />
+  <div class="ui-g">
+    <h:outputText id="loading" styleClass="js-loading-#{caseWidget.id}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
+
+    <h:panelGroup id="dashboard-cases-container" layout="block"
+      styleClass="ui-g-12 u-padding-0 js-dashboard-cases-container-#{caseWidget.id} u-display-none">
+
+      <h:panelGroup id="columns-configuration" layout="block" rendered="#{cc.attrs.renderColumnConfiguration}"
+        styleClass="dashboard-cases-container__columns-configuration">
+        <p:commandLink id="column-toggler" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}"
+          update="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}" oncomplete="PF('column-management-dialog').show()" process="@this" global="false">
+          <p:resetInput target="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}" />
+        </p:commandLink>
+      </h:panelGroup>
+
+      <p:dataTable id="dashboard-cases" widgetVar="dashboard-cases-#{caseWidget.id}" value="#{caseWidget.dataModel}" var="caseItem"
+        paginator="true" paginatorPosition="bottom" lazy="true"
+        paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}" pageLinks="5"
+        rows="#{caseWidget.rowsPerPage}"
+        rowsPerPageTemplate="5,10,20,50"
+        paginatorAlwaysVisible="true"
+        sortBy="#{caseWidget.sortBy}"
+        rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
+        styleClass="dashboard-cases--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and caseWidget.caseCount lt 1 ? 'u-display-none' : ''}"
+        rowStyleClass="dashboard-table--row-style"
+        emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
+        <p:ajax event="rowSelect" listener="#{dashboardBean.navigateToSelectedCaseDetails}" disabled="#{!isReadOnlyMode}" />
+
+        <p:columns var="column" value="#{caseWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass} #{(column.field eq 'name' or column.field eq 'actions' ) ? 'dashboard-cases__column-small-screen' : 'u-hidden-sm-down'}"
+          visible="#{column.visible}" field="#{column.field}" filterable="false" sortBy="#{column.field}" sortable="#{column.sortable}"
+          style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.style}">
+
+          <h:panelGroup rendered="#{column.field eq 'creator'}">
+            <pc:securityMemberNameAndAvatar displayName="#{column.display(caseItem)}" securityMember="#{caseItem.getCreatorUser()}" />
+          </h:panelGroup>
+
+          <h:panelGroup rendered="#{column.field eq 'state'}">
+            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="#{caseItem}"
+              alwaysShowState="true" stateStyleClass="#{column.fieldStyleClass}" />
+          </h:panelGroup>
+          
+          <h:panelGroup rendered="#{column.field eq 'owner'}">
+            <pc:securityMemberNameAndAvatar displayName="#{column.display(caseItem)}" securityMember="#{caseItem.getOwner()}" />
+          </h:panelGroup>
+
+          <h:panelGroup rendered="#{column.field eq 'name'}">
+            <ui:include src="NameCell.xhtml" />
+          </h:panelGroup>
+
+          <h:panelGroup rendered="#{(column.format eq 'STRING' or column.format eq 'TEXT') and column.field ne 'name'}">
+            <h:outputText value="#{column.display(caseItem)}" styleClass="#{column.fieldStyleClass}" style="#{column.fieldStyle}" />
+          </h:panelGroup>
+
+          <h:panelGroup rendered="#{column.format eq 'TIMESTAMP'}">
+            <h:outputText value="#{column.display(caseItem)}" style="#{column.fieldStyle}">
+              <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+            </h:outputText>
+          </h:panelGroup>
+
+          <h:panelGroup rendered="#{column.format eq 'NUMBER'}">
+            <h:outputText value="#{column.display(caseItem)}" styleClass="#{column.fieldStyleClass}" style="#{column.fieldStyle}">
+              <f:convertNumber pattern="#{column.pattern}" />
+            </h:outputText>
+          </h:panelGroup>
+
+          <h:panelGroup rendered="#{column.field eq 'category'}">
+            <h:outputText id="case-category" value="#{column.display(caseItem)}"/>
+            <p:tooltip for="case-category" value="#{caseItem.getCategory().getPath()}" trackMouse="true" hideEvent="mouseleave click"/>
+          </h:panelGroup>
+          
+          <h:panelGroup rendered="#{column.field eq 'actions'}">
+            <ui:include src="ActionsCell.xhtml" />
+          </h:panelGroup>
+        </p:columns>
+      </p:dataTable>
+      <h:panelGroup layout="block" id="empty-message-container"
+        styleClass="empty-message-container #{!isPreviewMode and caseWidget.caseCount lt 1 ? '' : 'u-display-none'}">
+        <c:set var="noCasesWhenFilter"
+          value="#{caseWidget.userDefinedFiltersCount.isPresent()}" />
+        <h:panelGroup layout="block" id="empty-message-when-filter"
+          rendered="#{noCasesWhenFilter}">
+          <i class="si si-filter-1 empty-message-icon" />
+          <br />
+          <h:outputText
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/iconMessage/caseWidget/noCasesFoundWhenFilter')}"
+            styleClass="empty-message-text" />
+        </h:panelGroup>
+        <h:panelGroup layout="block" id="empty-message-when-not-filter"
+          rendered="#{!noCasesWhenFilter}">
+          <i class="si #{dashboardBean.noCasesMessage.icon} empty-message-icon" />
+          <br />
+          <h:outputText value="#{dashboardBean.noCasesMessage.message}"
+            styleClass="empty-message-text" />
+        </h:panelGroup>
+      </h:panelGroup>
+    </h:panelGroup>
+  </div>
+</cc:implementation>
+</html>

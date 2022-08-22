@@ -19,7 +19,7 @@
             "priority" : "HIGH"
           },
           "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"true\"" }
           ]
         },
         "showInStartList" : false,

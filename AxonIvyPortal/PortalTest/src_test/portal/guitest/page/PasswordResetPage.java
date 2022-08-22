@@ -21,15 +21,27 @@ public class PasswordResetPage extends AbstractPage {
   public PasswordResetPage() {
     waitForPageLoaded();
     this.newPasswordTextField = findElementByCssSelector("input[id='password-reset:reset-password-form:new-password']");
-    this.passwordConfirmationTextField = findElementByCssSelector("input[id='password-reset:reset-password-form:password-confirmation']");
-    this.resetButton =  findElementByCssSelector("button[id='password-reset:reset-password-form:reset-command']");
+    this.passwordConfirmationTextField = findElementByCssSelector(
+        "input[id='password-reset:reset-password-form:password-confirmation']");
+    this.resetButton = findElementByCssSelector("button[id='password-reset:reset-password-form:reset-command']");
   }
 
-  public void resetPassword() {
-    newPasswordTextField.sendKeys("123");
-    passwordConfirmationTextField.sendKeys("123");
+  public void resetPassword(String newPassword, Boolean strongPasswordEnough) {
+    newPasswordTextField.sendKeys(newPassword);
+    passwordConfirmationTextField.sendKeys(newPassword);
     click(resetButton);
-    waitForElementDisplayed(By.id("password-reset:reset-password-form:result-message"), true, PASSWORD_RESET_TIMEOUT);
+
+    if (strongPasswordEnough) {
+      waitForElementDisplayed(By.id("password-reset:reset-password-form:result-message"), true, PASSWORD_RESET_TIMEOUT);
+    } else {
+      waitForElementDisplayedByCssSelector("span[class='ui-messages-error-summary']", (int) PASSWORD_RESET_TIMEOUT);
+    }
+  }
+
+  public boolean isNewPasswordNotStrongEnough() {
+    WebElement element = findElementByCssSelector("span[class='ui-messages-error-summary']");
+    return element.getText().equalsIgnoreCase(
+        "New password is not strong enough. Must be at least 4 characters long. Must contains at least 1 lowercase character. Must contains at least 1 uppercase character. Must contains at least 1 number. Must contains at least 1 special character.");
   }
 
   public boolean isReset() {

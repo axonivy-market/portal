@@ -32,18 +32,29 @@ public class PasswordResetTest extends BaseTest {
 
   @Test
   public void testResetPasswordSuccess() {
-    redirectToRelativeLink(String.format(portalTemplatePasswordResetUrl, TestAccount.TEST_FORGOT_PASSWORD_USER.getPassword(), TestAccount.TEST_FORGOT_PASSWORD_USER.getUsername()));
+    redirectToRelativeLink(String.format(portalPasswordResetUrl, TestAccount.TEST_FORGOT_PASSWORD_USER.getPassword(), TestAccount.TEST_FORGOT_PASSWORD_USER.getUsername()));
     passwordResetPage = new PasswordResetPage();
-    passwordResetPage.resetPassword();
+    String newPassword = "a2C!";
+    passwordResetPage.resetPassword(newPassword, true);
     assertTrue(passwordResetPage.isReset());
     passwordResetPage.goHome();
     LoginPage loginPage = new LoginPage();
     assertTrue(loginPage.isDisplayed());
   }
+  
+  @Test
+  public void testResetPasswordFailedWithWeakPassword() {
+    redirectToRelativeLink(String.format(portalPasswordResetUrl, TestAccount.TEST_FORGOT_PASSWORD_USER.getPassword(), TestAccount.TEST_FORGOT_PASSWORD_USER.getUsername()));
+    passwordResetPage = new PasswordResetPage();
+    
+    String newPassword = "abc";
+    passwordResetPage.resetPassword(newPassword, false);
+    assertTrue(passwordResetPage.isNewPasswordNotStrongEnough());
+  }
 
   @Test
   public void testResetPasswordFailed() {
-    redirectToRelativeLink(String.format(portalTemplatePasswordResetUrl, "1234", TestAccount.TEST_FORGOT_PASSWORD_USER.getUsername()));
+    redirectToRelativeLink(String.format(portalPasswordResetUrl, "1234", TestAccount.TEST_FORGOT_PASSWORD_USER.getUsername()));
     passwordResetErrorPage = new PasswordResetErrorPage();
     assertTrue(passwordResetErrorPage.isDisplayed());
     passwordResetErrorPage.goForgotPassword();
