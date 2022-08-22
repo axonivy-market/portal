@@ -1,0 +1,171 @@
+{
+  "format" : "9.4.14",
+  "id" : "16285772A1F890EE",
+  "data" : "ch.ivy.add.portalkit.UploadDocumentCheckerData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "call(UploadedFile)",
+      "config" : {
+        "callSignature" : "call",
+        ".name" : "call(UploadedFile)",
+        "input" : {
+          "params" : [
+            { "name" : "uploadFile", "type" : "org.primefaces.model.file.UploadedFile" }
+          ],
+          "map" : {
+            "out.uploadedFile" : "param.uploadFile"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "uploadDocumentCheckStatus", "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus" },
+            { "name" : "message", "type" : "String" }
+          ],
+          "map" : {
+            "result.uploadDocumentCheckStatus" : "in.checkStatus",
+            "result.message" : "in.message"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f6", "to" : "f5" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 96, "y" : 720 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Check file contains code",
+      "config" : {
+        "security" : "system",
+        ".name" : "Check file contains code",
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
+            "import ch.ivy.addon.portalkit.service.CaseDocumentService;",
+            "",
+            "if(CaseDocumentService.isDocumentSafe(in.uploadedFile)){",
+            "  in.checkStatus = UploadDocumentCheckStatus.OK;",
+            "}",
+            "else{",
+            "  in.checkStatus = UploadDocumentCheckStatus.FAIL;",
+            "  in.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript\");",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 560 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f5",
+      "type" : "Script",
+      "name" : [
+        "Check file extension",
+        "in whitelist"
+      ],
+      "config" : {
+        ".name" : [
+          "Check file extension",
+          "in whitelist"
+        ],
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
+            "import ch.ivy.addon.portalkit.service.CaseDocumentService;",
+            "",
+            "in.checkStatus = UploadDocumentCheckStatus.OK;",
+            "",
+            "if(!CaseDocumentService.isDocumentTypeValid(in.uploadedFile.getFileName())) {",
+            "  in.checkStatus = UploadDocumentCheckStatus.FAIL;",
+            "  in.message = ivy.cms.co(\"/Dialogs/components/CaseDocument/invalidFileMessage\");",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 176 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f13", "to" : "f12" }
+    }, {
+      "id" : "f7",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 96, "y" : 464 },
+        "description" : [
+          "Enable script check",
+          "in upload file"
+        ]
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f3", "label" : {
+            "name" : "Yes",
+            "segment" : 0.45,
+            "offset" : { "x" : -25, "y" : 0 }
+          }, "condition" : "in.checkStatus == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK && ch.ivy.addon.portalkit.service.CaseDocumentService.enableScriptCheckingForUploadedDocument()" },
+        { "id" : "f9", "to" : "f1", "via" : [ { "x" : 224, "y" : 464 }, { "x" : 224, "y" : 720 } ], "label" : {
+            "name" : "No",
+            "segment" : 1.16,
+            "offset" : { "x" : 16, "y" : 0 }
+          } }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "Check file contains virus",
+      "config" : {
+        "security" : "system",
+        ".name" : "Check file contains virus",
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
+            "import ch.ivy.addon.portalkit.service.CaseDocumentService;",
+            "",
+            "if(CaseDocumentService.isDocumentTypeHasVirus(in.uploadedFile)){",
+            "    in.checkStatus = UploadDocumentCheckStatus.FAIL;",
+            "    in.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainVirus\");",
+            "}",
+            "else{",
+            "    in.checkStatus = UploadDocumentCheckStatus.OK;",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 336 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f8", "to" : "f7" }
+    }, {
+      "id" : "f12",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 96, "y" : 272 },
+        "description" : [
+          "Enable virus scanner",
+          "in upload file"
+        ]
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f10", "label" : {
+            "name" : "Yes",
+            "segment" : 0.52,
+            "offset" : { "x" : 18, "y" : 0 }
+          }, "condition" : "in.checkStatus == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK && ch.ivy.addon.portalkit.service.CaseDocumentService.enableVirusScannerForUploadedDocument()" },
+        { "id" : "f14", "to" : "f7", "via" : [ { "x" : 288, "y" : 272 }, { "x" : 288, "y" : 392 }, { "x" : 96, "y" : 392 } ], "label" : {
+            "name" : "No",
+            "segment" : 1.48
+          } }
+      ]
+    } ]
+}

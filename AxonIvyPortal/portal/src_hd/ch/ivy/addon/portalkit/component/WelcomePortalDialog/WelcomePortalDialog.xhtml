@@ -1,0 +1,66 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="icon" />
+  <cc:attribute name="title" />
+  <cc:attribute name="content" />
+  <cc:attribute name="mobileContent" />
+  <cc:attribute name="contentWidth" />
+  <cc:attribute name="updatedComponentAfterGuide" shortDescription="Update the given components in order to display real data after guide." />
+  <cc:attribute name="onNext" required="true" shortDescription="javascript function to execute after click on Next button" />
+</cc:interface>
+
+<cc:implementation>
+  <ui:param name="icon" value="#{empty cc.attrs.icon ? 'si si-bulb' : cc.attrs.icon}" />
+  <ui:param name="title" value="#{empty cc.attrs.title ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/welcome/title') : cc.attrs.title}" />
+  <ui:param name="content" value="#{empty cc.attrs.content ? logic.buildContent() : cc.attrs.content}" />
+  <ui:param name="mobileContent" value="#{empty cc.attrs.mobileContent ? logic.buildMobileContent() : cc.attrs.mobileContent}" />
+  <ui:param name="contentWidth" value="#{empty cc.attrs.contentWidth ? '500px' : cc.attrs.contentWidth}" />
+
+  <p:dialog id="welcome-portal-guide" widgetVar="welcome-portal-guide" modal="true" appendTo="@(body)" styleClass="guide-panel"
+    draggable="false" closable="false" resizable="false" showHeader="false" fitViewport="true" responsive="true">
+    <div class="guide-panel__container" style="max-width: #{contentWidth}">
+      <span class="#{icon} guide-panel__icon" />
+      <h2>#{title}</h2>
+      <p class="guide-panel__content">
+        <h:outputText id="welcome-content" value="#{content}" escape="false" styleClass="u-hidden-1024-down" />
+        <h:outputText id="mobile-welcome-content" value="#{mobileContent}" escape="false" styleClass="u-hidden-1024-up" />
+      </p>
+      <div class="guide-panel__footer">
+        <h:panelGroup id="guide-panel-buttons" layout="block" styleClass="guide-panel__buttons">
+          <p:commandLink id="welcome-guide-cancel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+            process="@this" update="#{cc.attrs.updatedComponentAfterGuide}"
+            actionListener="#{guideBean.updateToLoadRealData()}" global="false"
+            oncomplete="PF('welcome-portal-guide').hide();" styleClass="guide-panel__cancel u-hidden-1024-down"
+            rendered="#{not guideBean.dontShowAgain}" />
+          <p:commandButton id="welcome-guide-next" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}"
+            icon="#{visibilityBean.generateButtonIcon('si si-arrow-right-1-small')}" 
+            onclick="PF('welcome-portal-guide').hide(); #{cc.attrs.onNext}"
+            rendered="#{not guideBean.dontShowAgain}" styleClass="u-hidden-1024-down" />
+          <p:commandButton id="finish" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/finish')}"
+            icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
+            process="@this" update="#{cc.attrs.updatedComponentAfterGuide}"
+            actionListener="#{guideBean.updateToLoadRealData()}" partialSubmit="true"
+            oncomplete="PF('welcome-portal-guide').hide();"
+            global="false" styleClass="#{guideBean.dontShowAgain ? '' : 'u-hidden-1024-up'}" />
+        </h:panelGroup>
+        <div class="guide-panel__dont-show-again">
+          <p:selectBooleanCheckbox id="dont-show-again-chbox" value="#{guideBean.dontShowAgain}"
+            itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/dontShowAgain')}">
+            <p:ajax process="@this" partialSubmit="true" update="guide-panel-buttons" />
+          </p:selectBooleanCheckbox>
+        </div>
+      </div>
+    </div>
+  </p:dialog>
+  
+  <script>
+    $(document).ready(function() {
+      PF('welcome-portal-guide').show();
+    });
+  </script>
+</cc:implementation>
+</html>

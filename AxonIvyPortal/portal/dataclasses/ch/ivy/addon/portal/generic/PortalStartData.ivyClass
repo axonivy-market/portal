@@ -1,0 +1,38 @@
+PortalStartData #class
+ch.ivy.addon.portal.generic #namespace
+portalPage ch.ivy.addon.portalkit.enums.PortalPage #field
+caseView ch.ivy.addon.portal.generic.view.CaseView #field
+taskView ch.ivy.addon.portal.generic.view.TaskView #field
+endedTaskId Number #field
+dataModel ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel #field
+selectedTaskId Number #field
+callbackUrl String #field
+caseDataModel ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel #field
+searchResultsDataModel ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel #field
+caseId Long #field
+isTaskStartedInDetails Boolean #field
+isTaskFinished Boolean #field
+taskSelected ch.ivyteam.ivy.workflow.ITask #field
+caseSelected ch.ivyteam.ivy.workflow.ICase #field
+backFromTaskDetails Boolean #field
+isFirstTask Boolean #field
+isBusinessCase Boolean #field
+caseName String #field
+keyword String #field
+keyword 'used in global search process' #fieldComment
+embedInIFrame Boolean #field
+homepage ch.addon.portal.generic.userprofile.homepage.Homepage #field
+homepage 'selected homepage of user' #fieldComment
+passwordResetToken String #field
+passwordResetUsername String #field
+isValidResetUrl Boolean #field
+passwordResetMessage String #field
+isShowDashboard Boolean #field
+processId String #field
+histories java.util.List<ch.ivy.addon.portalkit.bo.History> #field
+taskId Long #field
+notes java.util.List<ch.ivyteam.ivy.workflow.INote> #field
+hasPermission Boolean #field
+isPublicDashboard Boolean #field
+isPublicDashboard 'used in configuring new dashboard' #fieldComment
+dashboardId String #field

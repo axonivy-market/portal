@@ -1,0 +1,74 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="listenerOnBackAction" />
+  <cc:attribute name="componentToUpdateOnBackAction" />
+  <cc:attribute name="isPublicDashboard" default="false"/>
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="isPublicDashboard" value="#{cc.attrs.isPublicDashboard}" scope="request"/>
+
+  <h:panelGroup id="create-new-dashboard-form" styleClass="ui-g">
+    <h:panelGroup id="create-new-dashboard-section" layout="block" styleClass="ui-g-12 u-padding-0">
+      <h:panelGroup styleClass="ui-g-12 dashboard-configuration__sub-header">
+        <h:outputText styleClass="sub-title"
+          value="#{ivy.cms.co(isPublicDashboard ? '/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/SelectTheTemplate':'/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/SelectYourTemplate')}"/>
+
+        <p:commandLink actionListener="#{cc.attrs.listenerOnBackAction}"
+          update="#{cc.attrs.componentToUpdateOnBackAction}" process="@this" styleClass="Fright display-inline-flex-center">
+          <i class="si si-arrow-left-1" />
+          <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}</span>
+        </p:commandLink>
+      </h:panelGroup>
+
+      <div class="ui-g ui-g-12 u-padding-0">
+        <div class="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12">
+          <p:commandLink id="create-from-scratch" styleClass="dashboard-action-container"
+            oncomplete="PF('dashboard-creation-details-dialog').show()"
+            actionListener="#{dashboardTemplateSelectionBean.createDashboardFromScratch(isPublicDashboard)}"
+            update="#{cc.clientId}:dashboard-creation-component:dashboard-creation-details-dialog"
+            global="false">
+            <div class="dashboard-action__icon">
+              <span class="si si-common-file-add dashboard-action-container-icon" />
+            </div>
+            <div class="dashboard-action__text">
+              <p:outputLabel styleClass="dashboard-action-container-label"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/CreateFromScratch')}" />
+              <p:outputLabel styleClass="dashboard-action-container-description"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/CreateFromScratchDescription')}" />
+            </div>
+          </p:commandLink>
+        </div>
+        <ui:repeat var="template" value="#{dashboardTemplateSelectionBean.dashboardTemplates}" varStatus="status">
+          <div class="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12">
+            <p:commandLink id="template" styleClass="dashboard-action-container"
+              actionListener="#{dashboardTemplateSelectionBean.onSelectTemplate(template, isPublicDashboard)}"
+              oncomplete="PF('dashboard-creation-details-dialog').show()"
+              update="#{cc.clientId}:dashboard-creation-component:dashboard-creation-details-dialog"
+              global="false">
+              <div class="dashboard-action__icon">
+                <span class="si #{template.icon} dashboard-action-container-icon" />
+              </div>
+              <div class="dashboard-action__text">
+                <p:outputLabel styleClass="dashboard-action-container-label" value="#{template.title}" />
+                <p:outputLabel styleClass="dashboard-action-container-description" value="#{template.description}" />
+              </div>
+            </p:commandLink>
+          </div>
+        </ui:repeat>
+      </div>
+    </h:panelGroup>
+  </h:panelGroup>
+
+  <ic:ch.ivy.addon.portal.generic.dashboard.component.DashboardDetails id="dashboard-creation-component"
+    detailDialogId="dashboard-creation-details-dialog"
+    managedBean="#{dashboardTemplateSelectionBean}"
+    title="#{ivy.cms.co(isPublicDashboard ? '/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/CreateNewPublicDashboard':'/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/CreateNewPrivateDashboard')}"
+    isPublicDashboard="#{isPublicDashboard}"
+    isDashboardCreation="true" />
+</cc:implementation>
+</html>

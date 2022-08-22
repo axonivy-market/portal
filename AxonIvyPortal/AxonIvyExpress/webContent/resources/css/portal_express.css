@@ -1,15 +1,10 @@
 .task-template-container .task-template-content {
-  margin-bottom: 30px;
+  padding-bottom: 2rem;
 }
 
 /* WORKFLOW DEFINITION */
 .express-align-bottom-group {
   display: flex !important;
-}
-
-.express-align-bottom-group .align-bottom-child-item {
-  display: inline-block !important;
-  align-self: flex-end !important;
 }
 
 .express-work-flow {
@@ -19,6 +14,12 @@
 .express-work-flow .express-error-container {
   border: 0;
   padding: 8px 14px;
+}
+
+.express-button-container {
+  margin: 1rem auto;
+  text-align: right;
+  padding-bottom: 2rem;
 }
 
 /* Override fieldset style for express */
@@ -39,8 +40,9 @@
   float: left;
 }
 
-.form-element-input-checkbox-table, .express-workflow-input {
-  width: 91% !important;
+.express-workflow-label {
+  display: inline-block;
+  margin-bottom: .5rem;
 }
 
 .express-workflow-table-input {
@@ -95,11 +97,6 @@
   vertical-align: middle;
 }
 
-.placement-form-element-remove-btn {
-  padding-right: 8px;
-  float: right;
-}
-
 .no-border {
   border: none !important;
 }
@@ -110,12 +107,6 @@
 
 .form-definition-calendar {
   width: 128px;
-}
-
-.form-definition-option-container {
-  width: 35%;
-  padding: 0px !important;
-  border: solid 0px !important;
 }
 
 /* DEFAULT TEMPLATE DIALOG */
@@ -130,14 +121,6 @@
 
 .assignee-selection-panel, .assignee-selection-panel tbody tr td {
   border: none !important;
-}
-
-.assignee-selection-panel .select-assignee .ui-autocomplete {
-  width: 100%;
-}
-
-.assignee-selection-panel .select-assignee .ui-autocomplete-input {
-  width: 100%;
 }
 
 .assignee-selection-panel .add-assignee-button {
@@ -223,17 +206,10 @@
 
 .form-elements-container .form-elements-2nd-column {
   width: 75%;
-  padding-left: 0 !important;
 }
 
 .form-elements-container .available-form-elements .ui-panelgrid-cell {
   padding: 0 !important;
-}
-
-.form-elements-container .ui-panelgrid-content.ui-widget-content.ui-grid.ui-grid-responsive {
-  padding-left: 0;
-  padding-right: 0;
-  border-color: transparent;
 }
 
 .available-form-elements .ui-datagrid-content.ui-widget-content {
@@ -243,13 +219,10 @@
 
 .available-elements-panel, .available-elements-panel .ui-panel-content.ui-widget-content {
   width: 100%;
-  padding: 0 !important;
 }
 
 .available-elements-action-btn {
   float: right;
-  margin-top: -4px;
-  margin-right: -5px;
 }
 
 .no-padding-bottom {
@@ -328,8 +301,10 @@
   height: 100%;
 }
 
-.form-create-tabs .ui-tabs-nav.ui-widget-header.ui-corner-all {
-  padding-right: 100px !important;
+.form-creation-actions-container {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
 }
 
 /* EMAIL */
@@ -367,10 +342,6 @@ td.email-attachment-text {
   padding: 0.5em;
 }
 
-.express-email-container>div.ui-g>div {
-  margin-top: 10px;
-}
-
 .express-email-container label.ui-state-error {
   color: #e62a10;
 }
@@ -392,9 +363,6 @@ td.email-attachment-text {
 /* REVIEW FORM */
 .review-content-title {
   margin-bottom: 10px;
-  width: calc(100% - 28px);
-  padding-bottom: 6px;
-  margin-left: 14px;
 }
 
 .user-task-dyna-form {
@@ -429,20 +397,8 @@ td.email-attachment-text {
   display: none !important;
 }
 
-.express-table-no-header .ui-datatable-header.ui-widget-header.ui-corner-top {
-  padding: 0;
-  width: calc(100% - 1px);
-}
-
 .express-table-header-title {
-  float: left;
-  text-align: left;
-  width: calc(100% - 85px);
-}
-
-.express-add-option-panel {
-  float: right;
-  margin-right: 4px;
+  flex: 1;
 }
 
 /* Form Creation Tab */
@@ -464,8 +420,8 @@ td.email-attachment-text {
 
 .defined-task-label {
   position: absolute;
-  left: 6px;
-  top: 14px;
+  left: 10px;
+  top: 10px;
   z-index: 2;
   width: 20px;
   height: 20px;
@@ -478,15 +434,8 @@ td.email-attachment-text {
   display: block;
 }
 
-.defined-task-container div {
-  margin-left: 13px;
-}
-
-.defined-task-container {
-  width: 100%;
-  float: left;
-  padding-left: 3px;
-  padding-bottom: 11px;
+.defined-task-container .defined-task-button-container {
+  margin: .5rem;
 }
 
 .defined-task-button-container .ui-button .ui-button-text {
@@ -500,11 +449,6 @@ td.email-attachment-text {
 
 .applicant-field-col {
   border: none !important;
-}
-
-.approval-comment {
-  margin: auto 14px;
-  width: calc(99% - 28px) !important;
 }
 
 .default-template-text-area {
@@ -524,10 +468,6 @@ td.email-attachment-text {
 .preview-dialog .pe-dynaform-cell input.ui-inputtext, .preview-dialog .pe-dynaform-cell[colspan="2"] input.ui-inputtext,
   .preview-dialog .pe-dynaform-cell>.form-definition-calendar>input.hasDatepicker {
   width: 98%;
-}
-
-.ui-spinner .ui-spinner-input {
-  width: 100%;
 }
 
 .preview-dialog .pe-dynaform-cell[colspan="4"]>.ui-spinner {
@@ -574,7 +514,7 @@ td.email-attachment-text {
 }
 
 .approval-result-table {
-  margin: auto 14px;
+  margin: 1rem auto;
 }
 
 .pe-dynaform-cell.input-field-number {
@@ -597,13 +537,6 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
 .ui-fluid .ui-selectcheckboxmenu-trigger {
   height: 37px !important;
 }
-
-/*fix all input elements same height*/
-.ui-g label {
-  display: inline-block !important;
-}
-
-/*end of fix all input elements same height*/
 
 /*center main content */
 @media (min-width: 1920px) {
@@ -631,10 +564,6 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
   padding: 0 !important;
 }
 
-.pe-dynaform-cell[colspan="4"]>input, .pe-dynaform-cell[colspan="4"]>select {
-  width: 99%;
-}
-
 .ui-datalist {
   border: none;
 }
@@ -655,15 +584,6 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
   width: 96%;
 }
 
-.preview-dialog .pe-dynaform-cell[colspan="2"] .ui-inputfield.ui-inputtextarea, .ui-inputfield.ui-inputtextarea {
-  width: 98%;
-  white-space: pre;
-}
-
-.pe-dynaform-cell input {
-  width: 98%;
-}
-
 .Fs24 {
   font-size: 2.4rem !important;
 }
@@ -680,18 +600,8 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
   opacity: 1;
 }
 
-.alignLabelTop {
-  display: initial;
-}
-
 .marginTop6 {
   margin-top: 6px;
-}
-
-.create-form-toolbar {
-  position: absolute;
-  top: 10px;
-  right: 5px;
 }
 
 /* User task form */
@@ -732,6 +642,10 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
   padding-top: 0px !important;
 }
 
+.approval-comment-container {
+  margin: 1rem auto;
+}
+
 .form-definition-table tr:nth-child(2) td.ui-panelgrid-cell:first-child {
   margin-right: 5px !important;
   width: calc(50% - 5px);
@@ -767,7 +681,9 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
 /* Express View */
 .express-view-form .button-group,
 .express-view-form .empty-finished-tasks-container {
-  margin: 20px 14px;
+  display: flex;
+  padding: 1rem 0;
+  flex-direction: row-reverse;
 }
 
 .express-view-form .no-item-panel {

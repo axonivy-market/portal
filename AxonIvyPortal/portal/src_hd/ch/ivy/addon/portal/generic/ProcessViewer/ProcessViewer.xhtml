@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/Title')}</ui:define>
+    <ui:param name="viewName" value="PROCESS_VIEWER" />
+    <ui:param name="case" value="#{data.selectedCase}" />
+    <ui:define name="pageContent">
+
+      <h:panelGroup layout="block" id="portal-process-viewer-form"
+        styleClass="ui-g portal-process-viewer-form portal-card-container">
+        <h:panelGroup layout="block" styleClass="ui-g-12 portal-process-viewer-data card">
+            <ic:com.axonivy.portal.components.ProcessViewer caseId="#{data.caseId}" processLink="#{data.processId}" />
+            <h:outputStylesheet library="css" name="process-viewer-custom.css" />
+        </h:panelGroup>
+        <div class="ui-g-12 u-text-align-right process-viewer-command u-padding-0">
+          <p:commandButton id="close-process" actionListener="#{logic.close}"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+            icon="si si-close" />
+        </div>
+      </h:panelGroup>
+    </ui:define>
+  </ui:composition>
+</h:body>
+
+</html>

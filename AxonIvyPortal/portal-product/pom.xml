@@ -7,12 +7,12 @@
   <packaging>pom</packaging>
   <distributionManagement>
     <repository>
-      <id>repo.axonivy.io</id>
-      <url>https://repo.axonivy.io/artifactory/ext-release-local/</url>
+      <id>nexus.axonivy.com</id>
+      <url>https://nexus.axonivy.com/repository/maven-releases/</url>
     </repository>
     <snapshotRepository>
-      <id>repo.axonivy.io</id>
-      <url>https://repo.axonivy.io/artifactory/ext-snapshot-local/</url>
+      <id>nexus.axonivy.com</id>
+      <url>https://nexus.axonivy.com/repository/maven-snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
   <repositories>

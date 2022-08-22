@@ -11,7 +11,7 @@
         "callSignature" : "start",
         "result" : {
           "params" : [
-            { "name" : "selectedUserForDefinedRoles", "type" : "com.axonivy.portal.component.dto.UserDTO" }
+            { "name" : "selectedUserForDefinedRoles", "type" : "com.axonivy.portal.components.dto.UserDTO" }
           ],
           "map" : {
             "result.selectedUserForDefinedRoles" : "in.selectedUserForDefinedRoles"
@@ -55,7 +55,7 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
-            "import com.axonivy.portal.component.dto.UserDTO;",
+            "import com.axonivy.portal.components.dto.UserDTO;",
             "import ch.ivyteam.ivy.security.IRole;",
             "import ch.ivyteam.ivy.security.IUser;",
             "import java.util.Arrays;",

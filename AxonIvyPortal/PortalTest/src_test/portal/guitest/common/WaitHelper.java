@@ -24,7 +24,7 @@ public final class WaitHelper {
    * @param supplier
    * @param durationInSeconds
    */
-  private static void assertTrueWithWait(Supplier<Boolean> supplier, int durationInSeconds) {
+  public static void assertTrueWithWait(Supplier<Boolean> supplier, int durationInSeconds) {
     Awaitility.await().atMost(new Duration(durationInSeconds, TimeUnit.SECONDS)).until(() -> {
       try {
         return supplier.get();
@@ -75,7 +75,7 @@ public final class WaitHelper {
     String viewState = page.findElementByCssSelector("input[name='javax.faces.ViewState']").getAttribute("value");
     navigationAcion.run();
     page.waitForElementPresent(By.cssSelector("input[value='" + viewState + "']"), false);
-    page.waitForElementDisplayed("id('global-search-component:global-search-data')", true);
+    page.waitForElementDisplayed("id('global-search-item')", true);
   }
 
   public static void retryAction(Runnable action) {
@@ -114,5 +114,9 @@ public final class WaitHelper {
   
   public static void waitForPresenceOfElementLocatedInFrame(WebDriver driver, String cssSelector) {
     wait(driver).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(cssSelector)));
+  }
+  
+  public static void waitForVisibilityOfElementLocated(WebDriver driver, String cssSelector) {
+    wait(driver).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(cssSelector)));
   }
 }

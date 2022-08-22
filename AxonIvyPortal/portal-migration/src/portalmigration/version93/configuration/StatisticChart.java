@@ -11,6 +11,7 @@ import org.primefaces.model.charts.donut.DonutChartModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import portalmigration.dto.DisplayName;
 import portalmigration.enums.StatisticChartType;
 import portalmigration.version91.statistics.StatisticFilter;

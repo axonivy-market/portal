@@ -1,0 +1,121 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" />
+  <cc:attribute name="styleClass" />
+  <cc:attribute name="historyWidget" type="ch.ivy.addon.portalkit.dto.widget.HistoryWidget" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="task" value="#{cc.attrs.task}" />
+  <f:event listener="#{logic.initData(task)}" type="preRenderComponent" />
+  <h:panelGroup class="task-details-item-note ui-g" id="task-details-item-note" layout="block">
+    <div class="task-detail-section-title ui-g-12">
+      <div class="ui-g-3 u-truncate-text u-padding-0 task-details-panel-title">
+        <i class="si si-synchronize-arrow-clock" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/histories')}
+
+      </div>
+      <div class="ui-g-9 u-padding-0">
+        <h:panelGroup layout="block">
+          <p:link id="show-more-note-link" styleClass="task-details-document-add-link note-show-more-link ui-commandlink" target="_blank"
+            href="#{caseTaskNoteHistoryBean.getTaskNoteHistoryLink(task)}" rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
+            <span class="si si-expand-6 note-show-more-link-icon" />
+            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
+            <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
+          </p:link>
+          <p:commandLink id="add-note-command" styleClass="task-details-document-add-link" rendered="#{caseTaskNoteHistoryBean.showAddNote}"
+            oncomplete="PF('#{cc.clientId}:addNewNoteDialog').show()" actionListener="#{data.setTask(task)}">
+            <span class="si si-notes-add" />
+            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}</span>
+            <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
+          </p:commandLink>
+          <p:selectBooleanCheckbox value="#{data.showSystemNotes}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemNotes')}"
+            rendered="#{data.showSystemNotesChkbox}" id="show-system-notes-checkbox" styleClass="task-history-checkbox">
+            <p:ajax update="task-history-content-container" process="@this" partialSubmit="true" listener="#{logic.showHideSystemNotes}" oncomplete="ResponsiveTable.init(':task-note-table')"/>
+          </p:selectBooleanCheckbox>
+        </h:panelGroup>
+      </div>
+    </div>
+
+    <h:panelGroup id="task-history-content-container" styleClass="ui-g-12 u-padding-0">
+      <p:dataTable value="#{data.notes}" var="note" id="task-note-table" paginator="true" widgetVar="task-note-table"
+        pageLinks="3" rows="#{cc.attrs.historyWidget.rowPerPage}" rowsPerPageTemplate="5,10,20,50"
+        paginatorPosition="bottom" rendered="#{not empty data.notes}"
+        emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" paginatorAlwaysVisible="false"
+        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}" lazy="false">
+        <p:ajax event="page" oncomplete="ResponsiveTable.init(':task-note-table')"/>
+        <p:ajax event="sort" oncomplete="ResponsiveTable.init(':task-note-table')"/>
+
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}"
+          styleClass="history-note"
+          sortBy="#{note.message}">
+          <span class="task-note truncate-note">
+            <p:commandLink id="note-message" value="#{note.message}" oncomplete="PF('#{cc.clientId}:view-note-dialog').show()"
+              actionListener="#{data.setFullNote(note.message)}" update="@widgetVar(#{cc.clientId}:view-note-dialog)" styleClass="content-link-history u-truncate-text"/>
+          </span>
+        </p:column>
+
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/author')}" 
+          sortBy="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(note.writter, note.writterName)}"
+          styleClass="task-document-author js-column-priority-2" width="200px">
+          <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName securityMemberName="#{note.writterName}" securityMember="#{note.writter}" />
+        </p:column>
+
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" sortBy="#{note.creationTimestamp}"
+          styleClass="task-history-date js-column-priority-3" width="150px">
+          <h:outputText value="#{note.creationTimestamp.time}">
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
+          </h:outputText>
+        </p:column>
+      </p:dataTable>
+
+        <h:panelGroup layout="block" styleClass="ui-g-12 no-item-panel" rendered="#{empty data.notes}">
+          <i class="si si-information-circle" />
+          <h:outputText styleClass="no-item-header" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noNoteAvailable')}" />
+          <h:outputText styleClass="no-item-detail" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pleaseAddNote')}" />
+        </h:panelGroup>
+    </h:panelGroup>
+  </h:panelGroup>
+
+  <p:dialog id="view-note-dialog" widgetVar="#{cc.clientId}:view-note-dialog" closeOnEscape="true" styleClass="task-note-dialog"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')}" appendTo="@(body)" modal="true" resizable="false" dynamic="true"
+    responsive="true">
+    <h:panelGroup layout="block">
+      <h:outputText value="#{data.fullNote}" />
+    </h:panelGroup>
+    <f:facet name="footer">
+      <p:commandButton icon="#{visibilityBean.generateButtonIcon('si si-remove')}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button" onclick="PF('#{cc.clientId}:view-note-dialog').hide()" />
+    </f:facet>
+  </p:dialog>
+
+  <p:dialog id="add-new-note-dialog" widgetVar="#{cc.clientId}:addNewNoteDialog" dynamic="true" closable="false" closeOnEscape="true" styleClass="task-upload-dialog"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}" showEffect="fade" resizable="false" modal="true" appendTo="@(body)"
+    responsive="true">
+    <h:form id="task-add-new-note-form">
+      <h:panelGroup layout="block">
+        <p:messages id="task-detail-create-note-msg" for="task-detail-note-content" />
+        <p:inputTextarea id="task-detail-note-content" value="#{data.noteContent}" required="true"
+          requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" rows="8"
+          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addNoteHelpText')}" styleClass="note-content-textarea" autoResize="false" />
+      </h:panelGroup>
+
+      <h:panelGroup layout="block" styleClass="u-text-align-right MarTop10">
+        <p:commandLink id="cancel-add-note-command" actionListener="#{data.setNoteContent('')}" global="false"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this"
+          onsuccess="PF('#{cc.clientId}:addNewNoteDialog').hide()" update="task-detail-note-content task-detail-create-note-msg" />
+        <p:spacer width="15px" />
+        <p:commandButton styleClass="add-new-note-save-command" id="save-add-note-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+          icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" partialSubmit="true"
+          process="task-detail-note-content #{p:resolveFirstComponentWithId('show-system-notes-checkbox', view).clientId}"
+          update="task-detail-note-content task-detail-create-note-msg #{cc.clientId}:task-history-content-container"
+          actionListener="#{logic.createNote()}" oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('#{cc.clientId}:addNewNoteDialog').hide();handleTaskDetailsTables()}" />
+      </h:panelGroup>
+    </h:form>
+  </p:dialog>
+</cc:implementation>
+</html>

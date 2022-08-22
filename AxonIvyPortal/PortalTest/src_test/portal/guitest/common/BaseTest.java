@@ -79,14 +79,16 @@ public class BaseTest {
   protected String roleSelectionComponentShowcaseUrl = "portal-developer-examples/175495F02A2BCEB2/start.ivp";
   protected String startUserExampleProcess = "portal-user-examples/17236DB1D3DA14C0/userExampleGuide.ivp";
   protected String userIsOwnerUrl = "internalSupport/16A68510A341BE6E/userIsOwner.ivp";
-  protected String showTaskNoteHistoryUrl = "PortalTemplate/1549F58C18A6C562/showTaskNoteHistory.ivp?selectedTaskId=%s";
-  protected String showCaseNoteHistoryUrl = "PortalTemplate/1549F58C18A6C562/showCaseNoteHistory.ivp?caseId=%s";
+  protected String showTaskNoteHistoryUrl = "portal/1549F58C18A6C562/showTaskNoteHistory.ivp?selectedTaskId=%s";
+  protected String showCaseNoteHistoryUrl = "portal/1549F58C18A6C562/showCaseNoteHistory.ivp?caseId=%s";
   protected String createTaskWithSystemState = "portalKitTestHelper/153CACC26D0D4C3D/createTaskWithSystemState.ivp";
   protected String createTechnicalStateUrl = "portal-developer-examples/162511D2577DBA88/createTechnicalStateTasks.ivp";
   protected String portalKitTestHelperPasswordResetUrl = "portalKitTestHelper/176463FD4BBF6C93/PasswordReset.ivp";
-  protected String portalTemplatePasswordResetUrl = "portalTemplate/1549F58C18A6C562/PasswordResetPage.ivp?token=%s&username=%s";
+  protected String portalPasswordResetUrl = "portal/1549F58C18A6C562/PasswordResetPage.ivp?token=%s&username=%s";
   protected String cleanSessionCacheUrl = "portalKitTestHelper/17208192E0AF4185/cleanSessionCache.ivp";
-  protected String showProcessViewerUrl = "portalTemplate/1549F58C18A6C562/PortalProcessViewer.ivp?caseId=%s&processKey=%s";
+  protected String showProcessViewerUrl = "portal/1549F58C18A6C562/PortalProcessViewer.ivp?caseId=%s&processKey=%s";
+  protected String createSampleDashboardUrl = "portalKitTestHelper/17F2050944B46BB0/createSampleDashboard.ivp";
+  protected String processViewerExampleInFrameUrl = "/portal-components-examples/1821592826979C20/showProcessViewerUsingCaseId.ivp?embedInFrame";
 
   @Rule
   public ScreenshotFailedTestRule screenshotTestRule = new ScreenshotFailedTestRule();
@@ -138,6 +140,14 @@ public class BaseTest {
   public void redirectToRelativeLink(String relativeProcessStartUrl) {
     try {
       browser.goHome(UrlHelpers.generateAbsoluteProcessStartLink(relativeProcessStartUrl));
+    } catch (Exception e) {
+      throw new PortalGUITestException(e);
+    }
+  }
+
+  public void redirectToRelativeLinkWithEmbedInFrame(String relativeProcessStartUrl) {
+    try {
+      browser.goHome(UrlHelpers.generateAbsoluteProcessStartLink(relativeProcessStartUrl) + "?embedInFrame");
     } catch (Exception e) {
       throw new PortalGUITestException(e);
     }

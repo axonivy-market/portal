@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+  xmlns:pm="http://primefaces.org/freya-ivy">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="onClickTaskMenuItemCallback" />
+  <cc:attribute name="showGlobalSearch" />
+  <cc:attribute name="task" />
+  <cc:attribute name="isWorkingOnATask" type="java.lang.Boolean" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="task" value="#{not empty cc.attrs.task ? cc.attrs.task : ivy.task}" />
+  <f:event listener="#{logic.init(cc.attrs.isWorkingOnATask, task)}" type="preRenderComponent" />
+
+  <!-- LOGO  -->
+  <div class="sidebar-logo">
+    <p:commandLink id="logo" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(data.isWorkingOnATask, task)}" >
+      <p:graphicImage styleClass="portal-home-logo" name="#{ivyFreyaTheme.logo}" library="ivy-branding" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
+    </p:commandLink>
+    
+    <p:commandLink id="logo-small" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(data.isWorkingOnATask, task)}" styleClass="portal-home-logo-small">
+      <p:graphicImage styleClass="portal-home-logo portal-home-logo-small" name="logo_small" library="ivy-branding" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
+    </p:commandLink>
+    
+    <p:commandLink id="toggle-menu" styleClass="sidebar-pin" global="false"
+      onclick="hideBreadcrumb()" oncomplete="Portal.updateBreadcrumb();" >
+      <span class="pin"></span>
+    </p:commandLink>
+  </div>
+
+  <!-- APPLICATION MENU -->
+  <h:panelGroup id="main-navigator-container" layout="block" styleClass="layout-menu-container">
+    <div id="#{cc.clientId}" class="sidebar-scroll-content">
+      <!-- Application menu -->
+      <h:form id="main-navigator">
+        <!-- Portal Main Menu -->
+        <pm:menu id="main-menu" widgetVar="main-menu" model="#{menuView.mainMenuModel}" />
+
+        <!-- Remote-command will be called when click on leave task -->
+        <p:remoteCommand id="leave-task-rc" name="leaveTask" actionListener="#{logic.leave(task)}" immediate="true"
+          process="@this" partialSubmit="true" />
+        <!-- Remote-command will be called when click on reserve task -->
+        <p:remoteCommand id="reserve-task-rc" name="reserveTask" actionListener="#{logic.reserveTask(task)}"
+          immediate="true" process="@this" partialSubmit="true" />
+        <!-- Remote-command will be called when click on submenu item -->
+        <p:remoteCommand id="store-selected-menuitems-rc" name="storeSelectedMenuItems"
+          actionListener="#{menuView.storeSelectedMenuItems()}" immediate="true" process="@this" partialSubmit="true"
+          global="false" />
+        <!-- Remote-command will be called when resetting menu -->
+        <p:remoteCommand id="reset-selected-menuitems-rc" name="resetSelectedMenuItems"
+          actionListener="#{menuView.resetSelectedMenuItems()}" immediate="true" process="@this" partialSubmit="true"
+          global="false" />
+        <!-- Remote commands for breadcrumb -->
+        <p:remoteCommand name="navigateToTaskListFromBreadcrumb" immediate="true"
+          actionListener="#{logic.clickBreadcrumb('TASK')}" oncomplete="PF('task-losing-confirmation-dialog').show();" />
+        <p:remoteCommand name="navigateToHomeFromBreadcrumb" immediate="true"
+          actionListener="#{logic.clickBreadcrumb('HOME')}" oncomplete="PF('task-losing-confirmation-dialog').show();" />
+      </h:form>
+    </div>
+  </h:panelGroup>
+
+  <!-- Warning before leaving task -->
+  <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="warning-before-leaving-task-component" componentId="task-leave-warning-dialog"
+    widgetVar="task-losing-confirmation-dialog" renderedDialog="#{data.isWorkingOnATask}" taskState="#{task.state}"
+    leaveActionListener="#{logic.fireEventClickOnMenuItem()}" leaveOnComplete="leaveTask();"
+    reserveActionListener="#{logic.fireEventClickOnMenuItem()}" reserveOnComplete="reserveTask();"
+    cancelActionListener="#{logic.continueWorkingOnTask()}" cancelOnClick="PF('main-menu').restoreMenuState();">
+    <f:facet name="event">
+      <p:ajax event="close" listener="#{logic.continueWorkingOnTask}" global="false" immediate="true"/>
+    </f:facet>
+  </ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask>
+
+  <script type="text/javascript">
+    function hideBreadcrumb() {
+      if ($(".layout-wrapper-static").length == 0) {
+        $("#top-menu").find("> li.breadcrumb-container").css("display", "none");	
+      }
+    }
+  </script>
+</cc:implementation>
+</html>

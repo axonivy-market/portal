@@ -13,10 +13,11 @@
       </p:selectOneRadio>
 
       <h:panelGroup id="select-assignee" layout="block" styleClass="select-assignee">
-        <ic:com.axonivy.portal.component.UserSelection
+        <ic:com.axonivy.portal.components.UserSelection
           id="user-selection-component"
           selectedUser="#{data.selectedUser}" queryDelay="500"
-          rendered="#{data.isAssignToUser}" isRenderedMessage="false" >
+          rendered="#{data.isAssignToUser}" isRenderedMessage="false"
+          autoCompletePanelStyleClass="ui-fluid">
           <p:column>
             <pc:securityMemberNameAndAvatar securityMember="#{user}"
               displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}" />
@@ -24,12 +25,13 @@
           <f:facet name="event">
             <p:ajax event="itemSelect" update="assignee-selection-form:add-assignee-button" />
           </f:facet>
-        </ic:com.axonivy.portal.component.UserSelection>
+        </ic:com.axonivy.portal.components.UserSelection>
         
-        <ic:com.axonivy.portal.component.RoleSelection id="role-selection-component" scrollHeight="400"
+        <ic:com.axonivy.portal.components.RoleSelection id="role-selection-component" scrollHeight="400"
           componentId="role-selection" selectedRole="#{data.selectedRole}" rendered="#{!data.isAssignToUser}"
           cache="true" queryDelay="500" excludedRoleNames="#{workflowDefinitionBean.excludedRoleNames}"
-          isRenderedMessage="false">
+          isRenderedMessage="false"
+          autoCompletePanelStyleClass="ui-fluid">
           <p:column>
             <pc:securityMemberNameAndAvatar securityMember="#{role}"
               displayName="#{role.getDisplayName()}" />
@@ -37,7 +39,7 @@
           <f:facet name="event">
             <p:ajax event="itemSelect" update="assignee-selection-form:add-assignee-button" />
           </f:facet>
-        </ic:com.axonivy.portal.component.RoleSelection>
+        </ic:com.axonivy.portal.components.RoleSelection>
           
         <p:commandButton id="add-assignee-button" styleClass="add-assignee-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
           disabled="#{data.selectedUser == null and data.selectedRole == null}" icon="#{visibilityBean.generateButtonIcon('si si-add-small')}" actionListener="#{logic.addAssignee}" global="false"
@@ -60,7 +62,7 @@
         </ui:repeat>
       </p:fieldset>
 
-      <p:outputPanel styleClass="TexAlRight">
+      <p:outputPanel styleClass="u-text-align-right">
         <p:commandButton id="save-assignee-button" styleClass="save-assignee-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.updateResponsibles}"
           icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"

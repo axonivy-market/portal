@@ -1,0 +1,84 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<!-- Action -->
+<h:panelGroup id="process-action" rendered="#{!isReadOnlyMode}" styleClass="process-grid-item__action--combined">
+  <p:commandLink id="edit-widget" styleClass="si si-pencil u-mar-right-15" global="false"
+    actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
+    process="@this" partialSubmit="true"
+    update="new-widget-configuration-dialog"
+    oncomplete="PF('new-widget-configuration-dialog').show()" />
+  <p:tooltip for="edit-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}" trackMouse="true"
+    hideEvent="mouseleave click" />
+
+  <p:commandLink id="delete-widget" styleClass="si si-bin-1" global="false"
+    actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
+    process="@this" partialSubmit="true"
+    update="remove-widget-dialog" oncomplete="PF('remove-widget-dialog').show()" />
+  <p:tooltip for="delete-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}" trackMouse="true"
+    hideEvent="mouseleave click" />
+</h:panelGroup>
+
+<h:panelGroup id="process-action-read-only" rendered="#{isReadOnlyMode}" styleClass="process-grid-item__action--combined">
+  <p:link id="expand-link"
+        href="#"
+        styleClass="si si-expand-1 expand-link"
+        rendered="#{isReadOnlyMode}"
+        onclick="expandFullscreen(#{index}, '#{widget.id}')" />
+  
+  <p:link id="collapse-link"
+        href="#"
+        styleClass="si si-shrink-1 collapse-link"
+        rendered="#{isReadOnlyMode}"
+        onclick="collapseFullscreen(#{index}, '#{widget.id}')" />
+</h:panelGroup>
+
+<h:panelGroup styleClass="process-widget--full process-widget--combined ui-g-4 ui-sm-12" layout="block" rendered="#{widget.process ne null}">
+  <c:set var="isExpress" value="#{dashboardProcessBean.isExpressProcess(widget.process)}" />
+
+  <h:form id="process-item-#{widget.id}" styleClass="ui-g-12 process-grid-item u-padding-0 widget-height-100" target="#{processTarget}">
+    <div class="ui-g-12 #{isExpress ? 'express-workflow' : ''} #{isExternalLink ? 'external-link' : ''} combined-process widget-height-100">
+      <h:panelGroup id="process-item" layout="block" styleClass="grid-view-form u-text-align-center Fleft">
+        <!-- Process Icon -->
+        <i id="icon" class="#{iconSelectionBean.generateIconWithFontFamily(widget.process.icon)} process-grid-view__icon process-grid-view__icon--combined"/>
+        <!-- Process Name -->
+        <div class="ui-g-12 process-name js-process-start-list-item-name process-name--combined">
+          <h:outputText value="#{widget.process.name}" styleClass="line-clamp-text-2 process-grid-view__name process-grid-view__name--combined"/>
+        </div>
+        <!-- Process Description -->
+        <div class="ui-g-12 process-grid-view__description process-grid-view__description--combined">
+          <h:outputText id="process-description" value="#{widget.process.description}" styleClass="u-text-align-center line-clamp-text-5" />
+          <p:tooltip id="info-workflow-tooltip" for="process-description" value="#{widget.process.description}" position="top" trackMouse="true"
+            hideEvent="mouseleave click" />
+        </div>
+        <!-- Start process -->
+        <div class="ui-g-12 MarTop10 u-no-padding-left u-no-padding-right" id="start-button-container">
+          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" id="start-button"
+            actionListener="#{dashboardProcessBean.startProcess(widget.process)}" icon="si si-arrow-right-1"
+            disabled="#{!isReadOnlyMode or isInConfiguration}" process="process-item" partialSubmit="true" />
+        </div>
+      </h:panelGroup>
+    </div>
+  </h:form>
+</h:panelGroup>
+
+<h:panelGroup layout="block" class="ui-g-8 ui-sm-12 process-task-case-container" rendered="#{widget.process ne null}" id="process-task-case-container">
+  <div class="process-grid-item__related-data-button">
+    <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks')}"
+      styleClass="combined-process-widget__button-tabs first-tab-button #{widget.showCases ? '' : 'active-button-tab'}" process="@this"
+      actionListener="#{widget.setShowCases(false)}" update="#{cc.clientId}:process-task-case-container @this" />
+    <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCases')}"
+      styleClass="combined-process-widget__button-tabs last-tab-button #{not widget.showCases ? '' : 'active-button-tab'}" process="@this"
+      actionListener="#{widget.setShowCases(true)}" update="#{cc.clientId}:process-task-case-container @this" />
+  </div>
+
+  <h:panelGroup id="process-data-container" layout="block" styleClass="process-data-container">
+    <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessTaskWidget id="process-task-widget-component" widget="#{widget}"
+      isReadOnlyMode="#{isReadOnlyMode}" rendered="#{not widget.showCases}" isPreviewMode="#{isInConfiguration}" />
+    <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessCaseWidget id="process-case-widget-component" widget="#{widget}"
+      isReadOnlyMode="#{isReadOnlyMode}" rendered="#{widget.showCases}" isPreviewMode="#{isInConfiguration}" />
+  </h:panelGroup>
+</h:panelGroup>
+</html>

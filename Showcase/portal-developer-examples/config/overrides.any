@@ -1,8 +1,20 @@
 {
+  /HTML_DIALOG {
+    /ch.ivy.addon.portalkit.component.PageHeader "com.axonivy.portal.developerexamples.customization.component.PageHeaderOverride"
+    /ch.ivy.addon.portal.component.CaseInformation "com.axonivy.portal.developerexamples.customization.component.CaseInformationOverride"
+    /ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo "com.axonivy.portal.developerexamples.customization.component.UserWithEnvironmentInfoOverride"
+    /ch.ivy.addon.portal.generic.PortalCases "com.axonivy.portal.developerexamples.customization.CaseWidget"
+    /ch.ivy.addon.portalkit.component.PageFooter "com.axonivy.portal.developerexamples.customization.component.PageFooterOverride"
+    /ch.ivy.addon.portal.component.ProcessInformation "com.axonivy.portal.developerexamples.customization.CustomizedProcessInformation"
+    /ch.ivy.addon.portal.generic.SearchResults "com.axonivy.portal.developerexamples.customization.SearchResults"
+    /ch.ivy.addon.portal.generic.PortalTasks "com.axonivy.portal.developerexamples.customization.TaskWidget"
+    /ch.ivy.addon.portal.generic.PortalTaskDetails "com.axonivy.portal.developerexamples.customization.PortalTaskDetailsOverride"
+    /ch.ivy.addon.portal.generic.PortalCaseDetails "com.axonivy.portal.developerexamples.customization.PortalCaseDetailsOverride"
+  }
   /PROCESS {
     /Functional-Processes.CalculateTaskDelegate "Functional Processes/CalculateTaskDelegateOverride"
-    /Functional-Processes.DeleteDocumentItem "Functional Processes/DeleteDocumentItemOverride"
     /Functional-Processes.UploadDocumentItem "Functional Processes/UploadDocumentItemOverride"
+    /Functional-Processes.DeleteDocumentItem "Functional Processes/DeleteDocumentItemOverride"
     /Functional-Processes.AssignRolesGroupChat "Functional Processes/AssignRolesGroupChatOverride"
     /Functional-Processes.ResetPassword "Functional Processes/ResetPasswordOverride"
     /Functional-Processes.InitializeTaskDataModel "Functional Processes/InitializeTaskDataModelOverride"
@@ -16,20 +28,7 @@
     /Functional-Processes.SetGroupChatName "Functional Processes/SetGroupChatNameOverride"
     /Functional-Processes.InitializeCaseDataModel "Functional Processes/InitializeCaseDataModelOverride"
     /Functional-Processes.ExportCaseToExcel "Functional Processes/ExportCaseToExcelOverride"
-    /Functional-Processes.DefaultChartColors "Functional Processes/DefaultChartColorsOverride"
     /Functional-Processes.BuildTaskQuery "Functional Processes/BuildTaskQueryOverride"
     /Functional-Processes.DefaultStatisticCustomField "Functional Processes/DefaultStatisticCustomFieldOverride"
-  }
-  /HTML_DIALOG {
-    /ch.ivy.addon.portalkit.component.PageHeader "com.axonivy.portal.developerexamples.customization.component.PageHeaderOverride"
-    /ch.ivy.addon.portal.component.CaseInformation "com.axonivy.portal.developerexamples.customization.component.CaseInformationOverride"
-    /ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo "com.axonivy.portal.developerexamples.customization.component.UserWithEnvironmentInfoOverride"
-    /ch.ivy.addon.portal.generic.PortalCases "com.axonivy.portal.developerexamples.customization.CaseWidget"
-    /ch.ivy.addon.portalkit.component.PageFooter "com.axonivy.portal.developerexamples.customization.component.PageFooterOverride"
-    /ch.ivy.addon.portal.component.ProcessInformation "com.axonivy.portal.developerexamples.customization.CustomizedProcessInformation"
-    /ch.ivy.addon.portal.generic.SearchResults "com.axonivy.portal.developerexamples.customization.SearchResults"
-    /ch.ivy.addon.portal.generic.PortalTasks "com.axonivy.portal.developerexamples.customization.TaskWidget"
-    /ch.ivy.addon.portal.generic.PortalTaskDetails "com.axonivy.portal.developerexamples.customization.PortalTaskDetailsOverride"
-    /ch.ivy.addon.portal.generic.PortalCaseDetails "com.axonivy.portal.developerexamples.customization.PortalCaseDetailsOverride"
   }
 }
