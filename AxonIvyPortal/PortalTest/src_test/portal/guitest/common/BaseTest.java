@@ -88,7 +88,7 @@ public class BaseTest {
   protected String cleanSessionCacheUrl = "portalKitTestHelper/17208192E0AF4185/cleanSessionCache.ivp";
   protected String showProcessViewerUrl = "portal/1549F58C18A6C562/PortalProcessViewer.ivp?caseId=%s&processKey=%s";
   protected String createSampleDashboardUrl = "portalKitTestHelper/17F2050944B46BB0/createSampleDashboard.ivp";
-  protected String processViewerExampleInFrameUrl = "/portal-component-example/1821592826979C20/showProcessViewerUsingCaseId.ivp?embedInFrame";
+  protected String processViewerExampleInFrameUrl = "/portal-components-examples/1821592826979C20/showProcessViewerUsingCaseId.ivp?embedInFrame";
 
   @Rule
   public ScreenshotFailedTestRule screenshotTestRule = new ScreenshotFailedTestRule();

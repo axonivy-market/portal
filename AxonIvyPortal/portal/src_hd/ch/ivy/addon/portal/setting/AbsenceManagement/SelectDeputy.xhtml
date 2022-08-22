@@ -9,7 +9,7 @@
     </p:messages>
     <p:panelGrid id="deputy-selection-panel" columns="1" styleClass="deputy-selection-panel ui-g-12">
       <h:panelGroup id="select-deputy" layout="block" styleClass="select-deputy">
-        <ic:com.axonivy.portal.component.UserSelection id="user-selection-component"
+        <ic:com.axonivy.portal.components.UserSelection id="user-selection-component"
           completeMethod="#{logic.autoCompleteForSubstituteOnApp}"
           selectedUser="#{data.selectedDeputy}" queryDelay="500" isRenderedMessage="false"
           autoCompletePanelStyleClass="ui-fluid">
@@ -21,7 +21,7 @@
           <f:facet name="event">
             <p:ajax event="itemSelect" update="deputy-selection-form:add-deputy-button" />
           </f:facet>
-        </ic:com.axonivy.portal.component.UserSelection>
+        </ic:com.axonivy.portal.components.UserSelection>
 
         <p:commandButton id="add-deputy-button" styleClass="add-deputy-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
           disabled="#{data.selectedDeputy == null}" icon="#{visibilityBean.generateButtonIcon('si si-add-small')}" actionListener="#{logic.addDeputy()}" global="false"

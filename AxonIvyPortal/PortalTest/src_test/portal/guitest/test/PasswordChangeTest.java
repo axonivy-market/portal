@@ -33,7 +33,7 @@ public class PasswordChangeTest extends BaseTest {
     assertTrue(changePasswordPage.isWrongCurrentPasswordError());
 
     changePasswordPage.changePassword(TestAccount.TEST_CHANGE_PASSWORD_USER.getPassword(), newPassword);
-    assertTrue(changePasswordPage.isNewCurrentPasswordStrongEnough());
+    assertTrue(changePasswordPage.isNewPasswordNotStrongEnough());
     
     newPassword = "a2C!";
     changePasswordPage.changePassword(TestAccount.TEST_CHANGE_PASSWORD_USER.getPassword(), newPassword);
