@@ -410,7 +410,6 @@
   --asterik-icon-color: #f03369;
   /* Error Page */
   --error-container-color: #546e7a;
-  --error-message-background-color: var(--ivy-primary-color-white);
   --error-message-header-color: #e67163;
   /* Express */
   --express-input-switch-selection-background-color: var(--primary-color);

@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.18",
   "id" : "16E5DBBE43239E02",
   "data" : "com.axonivy.portal.developerexamples.testdata.CreateInvestment.CreateInvestmentData",
   "kind" : "HTML_DIALOG",
@@ -64,7 +64,11 @@
             "out.investmentRequest.investment.company.name" : "\"Axon Active\"",
             "out.investmentRequest.investment.id" : "\"00001\""
           },
-          "code" : "in.steps = [\"Create Investment Request\", \"Approve Investment Request\", \"Review Request\"];"
+          "code" : [
+            "in.steps = [\"Create Investment Request\", \"Approve Investment Request\", \"Review Request\"];",
+            "in.investmentRequest.investment.investedMoney = \"1000\";",
+            "in.investmentRequest.investment.startDate = new Date();"
+          ]
         }
       },
       "visual" : {

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -26,7 +25,6 @@ import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
-import ch.ivy.addon.portalkit.dto.dashboard.DashboardOrder;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.SingleProcessDashboardWidget;
@@ -70,7 +68,7 @@ public class DashboardBean implements Serializable {
   protected Dashboard selectedDashboard;
   private String selectedDashboardId;
   protected DashboardWidget widget;
-  protected boolean isReadOnlyMode;
+  protected boolean isReadOnlyMode = true;
   private int currentDashboardIndex;
   private List<WidgetFilterModel> widgetFilters;
   private List<WidgetFilterModel> deleteFilters;
@@ -83,7 +81,6 @@ public class DashboardBean implements Serializable {
   @PostConstruct
   public void init() {
     currentDashboardIndex = 0;
-    isReadOnlyMode = true;
     dashboards = collectDashboards();
     if (CollectionUtils.isNotEmpty(dashboards)) {
       selectedDashboardId = readDashboardFromSession();
@@ -94,6 +91,9 @@ public class DashboardBean implements Serializable {
           || (!selectedDashboardId.equalsIgnoreCase(selectedDashboard.getId()) && dashboards.size() > 1)) {
         storeDashboardInSession(selectedDashboard.getId());
       }
+      if (isReadOnlyMode) {
+        DashboardUtils.highlightDashboardMenuItem(selectedDashboard.getId());
+      }
     }
     buildWidgetModels(selectedDashboard);
     isRunningTaskWhenClickingOnTaskInList = new GlobalSettingService()
@@ -102,22 +102,7 @@ public class DashboardBean implements Serializable {
   }
 
   protected List<Dashboard> collectDashboards() {
-    List<Dashboard> visibleDashboards = DashboardUtils.getAllVisibleDashboardsOfSessionUser();
-    List<DashboardOrder> dashboardOrders = DashboardUtils.getDashboardOrdersOfSessionUser();
-    Map<String, Dashboard> idToDashboard = DashboardUtils.createMapIdToDashboard(visibleDashboards);
-    List<Dashboard> collectedDashboards = new ArrayList<>();
-    for (DashboardOrder dashboardOrder : dashboardOrders) {
-      if (dashboardOrder.getDashboardId() == null) {
-        continue;
-      }
-      Dashboard currentDashboard = idToDashboard.remove(dashboardOrder.getDashboardId());
-      if (dashboardOrder.isVisible() && currentDashboard != null) {
-        collectedDashboards.add(currentDashboard);
-      }
-    }
-    collectedDashboards.addAll(idToDashboard.values());
-
-    return collectedDashboards;
+    return DashboardUtils.collectDashboards();
   }
 
   public void loadDashboardTemplate() {

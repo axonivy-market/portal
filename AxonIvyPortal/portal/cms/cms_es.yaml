@@ -699,6 +699,16 @@ ch.ivy.addon.portalkit.ui.jsf:
         content: 'Queremos que tengas un buen inicio con el portal. Para ello queremos mostrate las primeras acciones que puedes realizar. Además podrás consultar información más detallada siguiendo el siguiente enlace: <a href="{0}"  target="_blank">PortalGuide</a>'
         mobileContent: 'Puede acceder a sus tareas aquí directamente o navegar a otras áreas usando <span class="{0}"></span>. Puede encontrar información adicional aquí: <a href="{1}"  target="_blank">PortalGuide</a>'
         title: Bienvenido al Axon Ivy Portal
+    passwordValidation:
+      criteria: Criterios
+      enablePasswordValidation: Activar la validación de contraseñas
+      passwordPolicyType:
+        minCharacter: Longitud mínima
+        minLowercaseCharacter: Caracteres mínimos en minúsculas
+        minNumber: Caracteres numéricos mínimos
+        minSpecialCharacter: Caracteres especiales mínimos
+        minUppercaseCharacter: Caracteres mínimos en mayúsculas
+      titlePage: Validación de contraseñas
     processChain:
       currentStepIsNotDefined: El paso ({0}) de la cadena de proceso no está definido
     statisticWidget:
@@ -1014,7 +1024,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     confirmNewPassword: Confirmar nueva contraseña
     confirmPasswordHaveMatch: La contraseña introducida, no coincide con la contraseña confirmada
     currentPassword: Contraseña actual
+    minCharacterRequired: tener al menos {0} caracteres
+    minLowercaseCharacterRequired: contienen al menos {0} caracteres en minúscula
+    minNumberRequired: contienen al menos {0} número
+    minSpecialCharacterRequired: contienen al menos {0} un carácter especial
+    minUppercaseCharacterRequired: contener al menos {0} caracteres en mayúscula
     newPassword: Nueva contraseña
+    passwordMust: La contraseña debe
     requireConfirmPassword: Falta la confirmación de la contraseña
     requireCurrentPassword: Por favor, especifique la contraseña actual
     requireNewPassword: Por favor, especifique la nueva contraseña también

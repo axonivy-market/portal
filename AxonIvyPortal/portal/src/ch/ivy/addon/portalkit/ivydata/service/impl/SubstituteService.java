@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.axonivy.portal.component.dto.UserDTO;
+import com.axonivy.portal.components.dto.UserDTO;
 
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
