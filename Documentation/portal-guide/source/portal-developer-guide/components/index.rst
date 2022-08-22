@@ -7,5 +7,5 @@ Components
    layout-templates
    portal-chat
    error-handling
-   portal-components
    additional-components
+   

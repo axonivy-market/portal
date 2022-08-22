@@ -3,11 +3,11 @@
 Introduction
 ************
 
-Portal Developer Guide provides information to set up, configure, customize
+Portal Developer Guide provides information to set up, configure, customize 
 Portal so that it could fit customer need.
 
 The Individual Dashboard for Axon Ivy Portal 9.3 refers to :ref:`introduction-new-and-note-worthy-9.3`.
-
+ 
 - Customizable Dashboard
 - Default Widgets
 - Custom Widgets
@@ -19,7 +19,7 @@ More UX for Axon Ivy Portal 9.2, refer to :ref:`introduction-new-and-note-worthy
 - Simplified tasks and cases export
 - Redesigned process list
 - Additional drag and drop widgets in task and case detail pages
-- Advanced user specific settings
+- Advanced user specific settings 
 
 .. _introduction-new-and-note-worthy-9.3:
 
@@ -28,12 +28,12 @@ New & Noteworthy 9.3
 
 Customizable Dashboard
 ^^^^^^^^^^^^^^^^^^^^^^
-End-users can choose between different layouts,
+End-users can choose between different layouts, 
 enable and disable default columns and even add custom columns at will.
 
 |customizable-dashboard|
 
-This feature allows multiple task lists with different filter options.
+This feature allows multiple task lists with different filter options. 
 For example, separating HR tasks from Finance tasks provides a better overview and more transparency.
 
 Default Widgets
@@ -95,7 +95,7 @@ Users can reset their passwords easily using the standard password reset feature
 
 Simplified tasks and cases export
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-We have listened to you! Business users requested to export specific lists from Axon Ivy Portal to perform further analysis in Microsoft Excel.
+We have listened to you! Business users requested to export specific lists from Axon Ivy Portal to perform further analysis in Microsoft Excel. 
 Now they have the possibility to export any list with one mouse click.
 
 |task-key-information|
@@ -129,8 +129,8 @@ Portal uses HTML Dialog Override instead of Subprocess Override for customizatio
 User and role selection component
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you need user and role selection, use Portal component instead of implementing yourself. For details refer to :ref:`components-portal-components-user-selection`
-and :ref:`components-portal-components-role-selection`.
+If you need user and role selection, use Portal component instead of implementing yourself. For details refer to :ref:`components-additional-components-user-selection` 
+and :ref:`components-additional-components-role-selection`.
 
 New & Noteworthy 9.1
 --------------------
@@ -142,7 +142,7 @@ At first login, an introduction will be shown to introduce all main features of 
 
 |overlay-guide|
 
-My profile
+My profile 
 ^^^^^^^^^^
 
 My profile replaces for language setting and email setting. Also, introduce the general setting for you can configure the Portal according to your requirements
