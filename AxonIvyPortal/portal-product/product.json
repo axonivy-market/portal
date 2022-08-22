@@ -5,8 +5,8 @@
             "data": {
                 "projects": [
                     {
-                        "groupId": "ch.ivyteam.ivy.project.portal",
-                        "artifactId": "portalTemplate",
+                        "groupId": "com.axonivy.portal",
+                        "artifactId": "portal",
                         "version": "${version}",
                         "type": "iar"
                     },
@@ -25,8 +25,8 @@
                 ],
                 "repositories": [
                     {
-                        "id": "axonivy.public",
-                        "url": "https://repo.axonivy.rocks"
+                        "id": "maven.axonivy.com",
+                        "url": "https://maven.axonivy.com"
                     }
                 ]
             }

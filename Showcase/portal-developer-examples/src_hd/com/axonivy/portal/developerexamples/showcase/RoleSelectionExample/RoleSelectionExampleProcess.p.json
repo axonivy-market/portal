@@ -11,7 +11,7 @@
         "callSignature" : "start",
         "result" : {
           "params" : [
-            { "name" : "selectedRoleForDefault", "type" : "com.axonivy.portal.component.dto.RoleDTO" }
+            { "name" : "selectedRoleForDefault", "type" : "com.axonivy.portal.components.dto.RoleDTO" }
           ],
           "map" : {
             "result.selectedRoleForDefault" : "in.selectedRoleForDefault"
@@ -55,7 +55,7 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
-            "import com.axonivy.portal.component.dto.RoleDTO;",
+            "import com.axonivy.portal.components.dto.RoleDTO;",
             "import ch.ivyteam.ivy.environment.Ivy;",
             "import ch.ivyteam.ivy.security.IRole;",
             "import java.util.Arrays;",

@@ -1,8 +1,0 @@
-{
-  /PROCESS {
-    /Functional-Processes.Navigator "Functional Processes/NavigatorOverride"
-    /Functional-Processes.OpenPortalCaseDetailsHook "Functional Processes/OpenPortalCaseDetails"
-    /Functional-Processes.Login "Functional Processes/LoginOverride"
-    /Functional-Processes.OpenPortalTaskDetailsHook "Functional Processes/OpenPortalTaskDetails"
-  }
-}

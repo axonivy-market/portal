@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="field" required="true" type="ch.ivy.addon.portalkit.dto.dashboard.ColumnModel"/>
+  <cc:attribute name="filterFrom" required="true"/>
+  <cc:attribute name="filterTo" required="true"/>
+  <cc:attribute name="minFilterFrom"/>
+  <cc:attribute name="maxFilterTo"/>
+</cc:interface>
+
+<cc:implementation>
+  <h:panelGroup rendered="#{cc.attrs.field.format eq 'TIMESTAMP'}">
+    <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down display-flex-center">
+      <h:outputLabel value="#{cc.attrs.field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}"
+        for="from-date-field-input"/>
+    </div>
+    <div class="ui-g-8 ui-sm-12 ui-fluid md-inputfield">
+      <p:datePicker id="from-date-field-input" showIcon="true" styleClass="task-configuration__calendar ui-g-12 u-padding-0"
+        value="#{cc.attrs.filterFrom}"
+        mindate="#{cc.attrs.minFilterFrom}"
+        pattern="#{dateTimePatternBean.configuredDateFilterPattern}" locale="#{localeBean.locale}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
+        validator="#{field.validate}"
+        converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongFromDateFormat', [dateTimePatternBean.configuredDateFilterPattern])}"/>
+      <p:message for="from-date-field-input" styleClass="ui-g-12 u-padding-0"/>
+    </div>
+
+    <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down display-flex-center">
+      <h:outputLabel value="#{cc.attrs.field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}"
+        for="to-date-field-input"/>
+    </div>
+    <div class="ui-g-8 ui-sm-12 ui-fluid md-inputfield">
+      <p:datePicker id="to-date-field-input" showIcon="true" styleClass="task-configuration__calendar ui-g-12 u-padding-0"
+        value="#{cc.attrs.filterTo}"
+        maxdate="#{cc.attrs.maxFilterTo}"
+        pattern="#{dateTimePatternBean.configuredDateFilterPattern}" locale="#{localeBean.locale}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
+        validator="#{field.validate}"
+        converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongToDateFormat', [dateTimePatternBean.configuredDateFilterPattern])}" />
+      <p:message for="to-date-field-input" styleClass="ui-g-12 u-padding-0"/>
+    </div>
+  </h:panelGroup>
+</cc:implementation>
+
+</html>

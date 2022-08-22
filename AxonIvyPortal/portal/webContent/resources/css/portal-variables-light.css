@@ -1,0 +1,571 @@
+@charset "UTF-8";
+
+:root {
+  --accent-color: var(--ivy-portal-blue-light);
+  --accent-text-color: var(--primary-dark-text-color);
+  --ajax-loader-color: var(--ivy-primary-color-grey-dark);
+
+  /* Task state color */
+  --task-state-open-color: #C9C9C9;
+  --task-state-in-progress-color: var(--ivy-tertinary-color-yellow-dark);
+  --task-state-reserved-color: rgba(black, 0.4);
+  --task-state-system-color: rgba(black, 0.4);
+  --task-state-failed-color: #EE4A52;
+  --task-state-waiting-color: var(--ivy-tertinary-color-yellow-dark);
+
+  /* Color and border radius of Portal button e.g Add, Close, New, Save, OK .. */
+  --cancel-button-background-color: var(--ivy-primary-color-grey-light);
+  --cancel-button-state-hover-or-focus-background-color: var(--ivy-primary-color-grey-pale);
+  
+  /* Color of secondary button */
+  --button-secondary-bg-color: var(--ivy-primary-color-white);
+  --button-secondary-text-color: var(--primary-color);
+
+  /* Color and border radius of context button, it only affects when button has attribute styleClass="context-button" */
+  --context-button-border-radius: 0px;
+  --context-button-background-color: var(--ivy-primary-color-grey-light);
+  --context-button-state-hover-or-focus-background-color: var(--ivy-primary-color-grey-pale);
+
+  /* Widget header */
+  --widget-header-main-border-bottom-color: var(--ivy-primary-color-grey-light);
+  --widget-sort-menu-border-bottom-color: var(--ivy-primary-color-grey-light);
+  --widget-header-input-field-background-color: transparent;
+  --widget-header-input-hover-background-color: transparent;
+
+  /* Announcement panel color */
+  --announcement-background-color: var(--ivy-tertinary-color-yellow-light);
+  --announcement-border-color: var(--ivy-tertinary-color-red-medium);
+  --announcement-color: var(--primary-dark-color);
+
+  /* Process chain */
+  --process-chain-menu-color: var(--primary-color);
+  --line-waiting-step-background-color: var(--ivy-primary-color-grey-light);
+  --circle-step-number-color: var(--ivy-primary-color-white);
+  --circle-horizontal-step-number-container-border-top-color: var(--primary-color);
+  --circle-horizontal-step-number-container-border-top: var(--ivy-primary-color-grey-light);
+  --circle-horizontal-last-step-number-container-border-top: var(--primary-color);
+  --circle-horizontal-waiting-step-number-container-background-color: transparent;
+  --circle-step-container-border: transparent;
+  --circle-vertical-step-number-container-border: var(--ivy-primary-color-grey-light);
+  --circle-vertical-step-container-background-color: transparent;
+  --stages-chain-current-icon-color: var(--primary-color);
+  --current-line-horizontal-step-title-font-weight: bold;
+  --current-line-vertical-step-title-font-weight: bold;
+  --current-circle-horizontal-step-title-font-weight: bold;
+  --current-circle-vertical-step-title-font-weight: bold;
+
+  /* Statistic widget */
+  --statistic-panel-header: var(--ivy-primary-color-white);
+  --statistic-panel-header-border: var(--ivy-primary-color-white);
+  --statistic-filter-accordion-panel-border: var(--ivy-primary-color-grey-light);
+  --chart-info-header-font-weight: bold;
+  --chart-name-font-weight: bold;
+  --chart-name-font-size: 1.6rem;
+  --chart-name-line-height: 2rem;
+  --chart-filter-header-font-size: 2rem;
+  --statistic-carousel-header-button-hover-color: var(--ivy-primary-color-grey-dark);
+  --statistic-carousel-header-button-color: var(--ivy-primary-color-grey-medium);
+  --statistic-carousel-header-color: var(--ivy-portal-color-black);
+  --statistic-link-hover-backround-color: var(--ivy-primary-color-grey-pale);
+  --statistic-link-hover-border: var(--ivy-primary-color-grey-light);
+  --chart-container-separator-border-top: 2px solid #F4F4F4;
+  
+  /* Statistic chart Task by priority*/
+  --chart-label-default-exception-priority-color: var(--ivy-primary-color-white);
+  --chart-label-default-high-priority-color: var(--ivy-primary-color-white);
+  --chart-label-default-normal-priority-color: var(--ivy-primary-color-white);
+  --chart-label-default-low-priority-color: var(--ivy-primary-color-white);
+  
+  --chart-default-exception-priority-color: hsla(357, 83%, 61%);
+  --chart-default-high-priority-color: hsl(195, 100%, 29%);
+  --chart-default-normal-priority-color: hsl(192, 63%, 56%);
+  --chart-default-low-priority-color: hsl(188, 67%, 74%);
+  
+  /* Statistic chart Case by state */
+  --chart-label-default-created-case-color: var(--ivy-primary-color-white);
+  --chart-label-default-running-case-color: var(--ivy-primary-color-white);
+  --chart-label-default-done-case-color: var(--ivy-primary-color-white);
+  --chart-label-default-failed-case-color: var(--ivy-primary-color-white);
+  
+  --chart-default-created-case-color: hsl(0, 0%, 79%);
+  --chart-default-running-case-color: hsl(195, 100%, 29%);
+  --chart-default-done-case-color: hsl(137, 51%, 53%);
+  --chart-default-failed-case-color: hsl(357, 83%, 61%);
+  
+  /* Statistic chart Case by finish task */
+  --chart-label-default-created-case-finish-task-color: var(--ivy-primary-color-white);
+  --chart-label-default-running-case-finish-task-color: var(--ivy-primary-color-white);
+  --chart-label-default-done-case-finish-task-color: var(--ivy-primary-color-white);
+  --chart-label-default-failed-case-finish-task-color: var(--ivy-primary-color-white);
+  
+  --chart-default-created-case-finish-task-color: hsl(0, 0%, 79%);
+  --chart-default-running-case-finish-task-color: hsla(195, 100%, 29%);
+  --chart-default-done-case-finish-task-color: hsl(137, 51%, 53%);
+  --chart-default-failed-case-finish-task-color: hsl(357, 83%, 61%);
+  
+  /* Statistic chart Case by finish time */
+  --chart-label-default-created-case-finish-time-color: var(--ivy-primary-color-white);
+  --chart-label-default-running-case-finish-time-color: var(--ivy-primary-color-white);
+  --chart-label-default-done-case-finish-time-color: var(--ivy-primary-color-white);
+  --chart-label-default-failed-case-finish-time-color: var(--ivy-primary-color-white);
+  
+  --chart-default-created-case-finish-time-color: hsl(0, 0%, 79%);
+  --chart-default-running-case-finish-time-color: hsl(195, 100%, 29%);
+  --chart-default-done-case-finish-time-color: hsl(137, 51%, 53%);
+  --chart-default-failed-case-finish-time-color: hsl(357, 83%, 61%);
+  
+  /* Statistic chart Elapsed time of done case */
+  --chart-label-default-elapsed-time-color: var(--ivy-primary-color-white);
+  
+  --chart-default-elapsed-time-color: hsl(195, 100%, 29%);
+  
+  /* Statistic chart Task by expiry */
+  --chart-label-default-task-expiried-color: var(--ivy-primary-color-white);
+  --chart-label-default-task-today-color: var(--ivy-primary-color-white);
+  --chart-label-default-task-week-color: var(--ivy-primary-color-white);
+  --chart-label-default-task-month-color: var(--ivy-primary-color-white);
+  --chart-label-default-task-year-color: var(--ivy-primary-color-white);
+  
+  /* Color for column of expired tasks */
+  --chart-default-task-expiried-color: hsl(357, 83%, 61%);
+
+  /* Color for column of tasks will be expired today */
+  --chart-default-task-today-color: hsl(195, 100%, 29%);
+
+  /* Color for column of tasks will be expired this week */
+  --chart-default-task-week-color: hsl(195, 100%, 29%);
+
+  /* Color for column of tasks will be expired this month */
+  --chart-default-task-month-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired this year */
+  --chart-default-task-year-color: hsl(192, 63%, 56%);
+  
+  /****** Colors when drilldown to the date level ******/
+
+  /* Color for column of tasks will be expired before 8 AM of the selected date */
+  --chart-default-task-expiried-today-before-8-color: hsl(195, 100%, 29%);
+
+  /* Color for column of tasks will be expired at 8 AM of the selected date */
+  --chart-default-task-expiried-today-8-color: hsl(195, 100%, 29%);
+
+  /* Color for column of tasks will be expired at 9 AM of the selected date */
+  --chart-default-task-expiried-today-9-color: hsl(195, 100%, 29%);
+
+  /* Color for column of tasks will be expired at 10 AM of the selected date */
+  --chart-default-task-expiried-today-10-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired at 11 AM of the selected date */
+  --chart-default-task-expiried-today-11-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired at 12 AM of the selected date */
+  --chart-default-task-expiried-today-12-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired at 13 PM of the selected date */
+  --chart-default-task-expiried-today-13-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired at 14 PM of the selected date */
+  --chart-default-task-expiried-today-14-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired at 15 PM of the selected date */
+  --chart-default-task-expiried-today-15-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired at 16 PM of the selected date */
+  --chart-default-task-expiried-today-16-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired at 17 PM of the selected date */
+  --chart-default-task-expiried-today-17-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired after 18 PM of the selected date */
+  --chart-default-task-expiried-today-after-18-color: hsl(195, 100%, 29%);
+
+  /****** Colors when drilldown to the week level ******/
+
+  /* Color for column of tasks will be expired on Monday of the selected week */
+  --chart-default-task-expiried-mon-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired on Tuesday of the selected week */
+  --chart-default-task-expiried-tue-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired on Wednesday of the selected week */
+  --chart-default-task-expiried-wed-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired on Thursday of the selected week */
+  --chart-default-task-expiried-thu-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired on Friday of the selected week */
+  --chart-default-task-expiried-fri-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired on Saturday of the selected week */
+  --chart-default-task-expiried-sat-color: hsl(195, 100%, 29%);
+  
+  /* Color for column of tasks will be expired on Sunday of the selected week */
+  --chart-default-task-expiried-sun-color: hsl(195, 100%, 29%);
+
+  /****** Colors when drilldown to the month level ******/
+
+  /* Color for column of tasks will be expired on the first week of the selected month */
+  --chart-default-task-expiried-first-week-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on the second week of the selected month */
+  --chart-default-task-expiried-second-week-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on the third week of the selected month */
+  --chart-default-task-expiried-third-week-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on the fourth week of the selected month */
+  --chart-default-task-expiried-fourth-week-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on the fifth week of the selected month */
+  --chart-default-task-expiried-fifth-week-color: hsl(192, 63%, 56%);
+
+  /****** Colors when drilldown to the year level ******/
+
+  /* Color for column of tasks will be expired on January of the selected year */
+  --chart-default-task-expiried-jan-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on February of the selected year */
+  --chart-default-task-expiried-feb-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on March of the selected year */
+  --chart-default-task-expiried-mar-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on April of the selected year */
+  --chart-default-task-expiried-apr-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on May of the selected year */
+  --chart-default-task-expiried-may-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on June of the selected year */
+  --chart-default-task-expiried-june-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on July of the selected year */
+  --chart-default-task-expiried-july-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on August of the selected year */
+  --chart-default-task-expiried-aug-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on September of the selected year */
+  --chart-default-task-expiried-sep-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on October of the selected year */
+  --chart-default-task-expiried-oct-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on November of the selected year */
+  --chart-default-task-expiried-nov-color: hsl(192, 63%, 56%);
+
+  /* Color for column of tasks will be expired on December of the selected year */
+  --chart-default-task-expiried-dec-color: hsl(192, 63%, 56%);
+
+  /* Statistic chart Cases by Category */
+  --chart-label-default-cases-by-category-color: var(--ivy-primary-color-white);
+  
+  --chart-default-cases-by-category-color: hsl(195, 100%, 29%);
+  
+  /* Legend labels color for Doughnut Chart */
+  --chart-default-legend-color: hsl(0, 0%, 11%);
+
+  /* Sidebar */
+  --sidebar-app-text-color: var(--menuitem-text-color);
+  --sidebar-app-text-color: var(--primary-color);
+  --sidebar-mobile-menu-icon-font-size: 2.4rem;
+  --menuitem-active-bg-color: var(--primary-color);
+  --menuitem-active-text-color: var(--ivy-primary-color-white);
+  --menuitem-hover-bg-color: var(--ivy-primary-color-grey-light);
+  --menuitem-hover-text-color: var(--primary-color);
+
+
+  /* Filter Widget */
+  --advanced-filter-error-color: var(--ivy-tertinary-color-red-medium);
+  --widget-header-filter-color: var(--ivy-primary-color-black);
+  --widget-advanced-filter-border: transparent;
+  --widget-advanced-filter-hover-border: var(--ivy-primary-color-grey-light);
+  --widget-filter-selection-container-border: transparent;
+  --widget-advanced-filter-command-state-focus-background-color: none;
+  --widget-advanced-filter-overlay-panel-footer: var(--ivy-primary-color-grey-light);
+  --widget-advanced-filter-command-background-color: none;
+  --widget-advanced-filter-background-color: none;
+  --widget-advanced-filter-icon-color: hsla(180, 1%, 61%, 0.5);
+  --widget-advanced-filter-icon-color-hover: var(--accent-color);
+  --widget-advanced-filter-hover-backround-color: var(--ivy-primary-color-grey-pale);
+  --filter-name-label-color: var(--ivy-primary-color-grey-medium);
+  --filter-selection-container-group-border-color: var(--ivy-primary-color-grey-medium);
+  --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-medium);
+
+  /* Item in Widget List */
+  --item-widget-background-color: var(--ivy-primary-color-white);
+  --item-widget-box-shadow: 0px 2px 8px var(--box-shadow-color);
+  --item-widget-text-color: var(--ivy-primary-color-black);
+
+  /* Process */
+  --process-navigator-item-color: var(--ivy-portal-color-gray-dark);
+  --process-item-color-hover: var(--ivy-primary-color);
+  --process-start-list-item-hover-background-color: var(--item-background-hover);
+  --process-start-list-item-hover-border: var(--item-border-hover);
+  --process-history-column-header-is-selected-color: var(--ivy-primary-color-black);
+  --process-history-message-label-color: var(--ivy-primary-color-black);
+  --process-navigator-border: var(--ivy-primary-color-grey-light);
+  --process-navigator-item-selected-border: var(--primary-color);
+  --process-history-column-header-border: var(--ivy-primary-color-grey-light);
+  --process-history-list-data-scroller-background-color: transparent;
+  --selected-process-nav-item-font-weight: bold;
+  --process-start-list-item-name-font-weight: 400;
+  --process-nav-item-disable-color: hsla(0, 0%, 11%, 0.3);
+  --hovered-process-start-list-item-i-con-color: var(--primary-color);
+  --hovered-user-process-start-list-item-icon-color: var(--primary-color);
+  --process-warning-icon-color: var(--ivy-tertinary-color-red-medium);
+
+  /* Case Detail */
+  --case-related-task-color: var(--ivy-primary-color-black);
+  --case-related-task-hover-color: var(--ivy-primary-color-grey-dark);
+  --case-detail-paginator-color: var(--ivy-primary-color-black);
+  --case-related-task-content-border: var(--ivy-primary-color-grey-light);
+  --case-document-upload-border: var(--ivy-primary-color-grey-light);
+  --user-defined-filter-container-hover-font-weight: normal;
+  --case-detail-name-input-font-weight: bold;
+  --additional-case-detail-link-font-weight: 400;
+  --details-document-add-link-font-weight: 400;
+  --case-detail-header-font-weight: bold;
+  --history-button-container-font-weight: bold;
+  --case-detail-separator-border-color: #F4F4F4;
+  --case-detail-paginator-header-corner-top-background-color: hsla(180, 1%, 85%,0.5);
+  --case-detail-paginator-hover-button-background-color: hsla(180, 1%, 85%,0.5);
+  --case-description-text-color-hightlight: var(--ivy-primary-color-black);
+  --case-detail-name-text-color-hight-light: var(--ivy-primary-color-black);
+  /* Case List */
+  --case-odd-row-background-color: var(--ivy-primary-color-grey-pale);
+  /* Case Item */
+  --history-note-color: var(--ivy-primary-color-black);
+  --case-task-document-name-color: var(--ivy-primary-color-black);
+  --case-item-action-steps-item-hover-background-color: var(--ivy-primary-color-grey-pale);
+  --case-item-action-steps-item-hover-text-color: var(--ivy-primary-color-grey-dark);
+  --case-action-separator-border-color: hsla(180, 1%, 61%, 0.5);
+  --case-state-in-progress-color: var(--ivy-tertinary-color-yellow-dark);
+  --case-state-done-color: #4eb41c;
+  --case-widget-column-header-border-bottom: var(--ivy-primary-color-grey-light);
+  --case-list-data-scroller-content-background-color: transparent;
+  --case-header-action-cell-button-background-color: transparent;
+  --header-action-action-left-border-color: var(--ivy-primary-color-grey-medium);
+  --task-note-link-hover-color: var(--ivy-primary-color-grey-dark);
+  --case-list-unsortable-header-cell-text-color: var(--ivy-primary-color-grey-medium);
+  --case-list-item-background-color: hsla(0, 0%, 100%, 0.2);
+  --case-item-description-cell: var(--ivy-primary-color-grey-medium);
+  /* Task Widget */
+  --task-filter-selection-form-hover-background-color: var(--ivy-primary-color-grey-pale);
+  --compact-task-start-list-item-hover-background-color: var(--item-background-hover);
+  --compact-task-start-list-item-hover-border: var(--item-border-hover);
+  --compact-task-start-info-color: var(--text-color);
+  --compact-task-start-info-icon-color: var(--text-color);
+  --task-widget-link-color: var(--ivy-primary-color-black);
+  --task-widget-header-column: var(--ivy-primary-color-grey-medium);
+  --menu-action-hover-text-color: var(--ivy-primary-color-dark);
+  --task-filter-separator-border-bottom: var(--ivy-primary-color-grey-light);
+  --task-view-container-data-scroller-content-background-color: transparent;
+  --task-start-list-description-cell: var(--ivy-primary-color-grey-medium);
+  --task-filter-delete-user-defined-icon-hover-color: var(--primary-color);
+  --task-in-progress-checkbox-label-color: var(--primary-text-color);
+  /* Task Detail */
+  --task-detail-paginator-color: var(--ivy-primary-color-black);
+  --task-detail-paginator-header-corner-top-border-color: var(--ivy-primary-color-grey-light);
+  --task-detail-paginator-header-corner-top-background-color: hsla(180, 1%, 85%, 0.5);
+  --task-detail-paginator-hovered-button-background-color: hsla(180, 1%, 85%, 0.5);
+  --task-detail-action-item-hover-background-color: transparent;
+  --task-detail-header-font-weight: bold;
+  --task-detail-section-title-font-weight: bold;
+  --task-detail-separator-border-color: #F4F4F4;
+  --task-start-info-header-font-weight: bold;
+  --task-start-info-task-id-font-weight: normal;
+  --task-name-input-font-weight: bold;
+  --task-highlighted-inplace-field-background-color: var(--ivy-primary-color-grey-pale);
+  --task-highlighted-inplace-field-text-color: var(--ivy-primary-color-black);
+  --task-low-priority-color: #90DDE9;
+  --task-normal-priority-color: #49BAD6;
+  --task-high-priority-color: #007095;
+  --task-exception-priority-color: #EE4A52;
+  --task-state-suspended-background: #DADADA;
+  --task-state-resumed-background: #FFE896;
+  --task-state-done-background: #D4EBA2;
+  --task-state-parked-background: rgba(0, 112, 149, 0.2);
+  --task-state-failed-background: #EE4A52;
+  --task-state-failed-text-color: var(--ivy-primary-color-white);
+  /* Task Action Item */
+  --task-action-item-widget-header-color: var(--ivy-primary-color-white);
+  --task-action-item-label-font-weight: normal;
+  --task-start-action-font-weight: bold;
+  /* Task Template */
+  --task-template-action-button-focus: transparent;
+  --task-template-title-font-weight: bold;
+  --output-label-task-template-title-font-weight: 400;
+  /* Admin Setting */
+  --admin-setting-no-permission-message-color: #e53935;
+  --user-setting-container-box-shadow: rgba(43, 59, 93, 0.6);
+  --email-setting-widget-header: var(--ivy-primary-color-white);
+  /* Absences and Deputy */
+  --substituted-user-text-color: var(--ivy-primary-color-black);
+  /* Awesome Icon Selection */
+  --content-link-change-awesome-icon-color: var(--primary-color);
+  --select-awesome-icon-button-font-weight: bold;
+  /* Start Notification */
+  --notification-content-background-color: var(--ivy-tertinary-color-red-dark);
+  --notification-content-action-color: var(--ivy-primary-color-white);
+  --notification-content-action-hover-background-color: var(--ivy-primary-color-black);
+  /* Login */
+  --login-panel-header-background-color: var(--ivy-primary-color-grey-pale);
+  /* Stages breadcrumb */
+  --stages-chain-visited-color: var(--ivy-primary-color-grey-dark);
+  --stages-chain-waiting-color: var(--ivy-primary-color-grey-light);
+  --stages-chain-process-flow-visible-background-color: var(--ivy-primary-color-grey-light);
+  /* Asterik Icon */
+  --asterik-icon-color: #f03369;
+  /* Error Page */
+  --error-container-color: #546e7a;
+  --error-message-header-color: #e67163;
+  /* Express */
+  --express-input-switch-selection-background-color: var(--primary-color);
+  --task-responsible-label-state-error-color: #e62a10;
+  --defined-task-button-background-color: var(--ivy-primary-color-white);
+  --form-elements-panel-hover-drop-section-background-color: var(--ivy-primary-color-light);
+  --form-elements-checkbox-fields-color: var(--ivy-primary-color-black);
+  --defined-task-label-background-color: var(--ivy-primary-color-grey-dark);
+  --defined-task-button-container-background-color: var(--ivy-primary-color-white);
+  --defined-task-button-actived-or-hover-background-color: var(--primary-color);
+  --defined-task-button-actived-border-color: var(--primary-color);
+  --defined-task-button-border-color: var(--primary-color);
+  --defined-task-button-text-color: var(--ivy-primary-color-black);
+  --active-defined-task-button-text-color: var(--ivy-primary-color-white);
+  --defined-task-label-text-color: var(--ivy-primary-color-white);
+  --active-defined-task-label-text-color: var(--ivy-primary-color-black);
+  --form-elements-panel-hover-drop-section-label-color: var(--ivy-primary-color-white);
+  --autocomplete-more-text-state-highlight-background-color: white;
+  --express-input-switch-selection-border: var(--primary-color);
+  --express-available-elements-action-button-background-color: transparent;
+  --express-available-elements-action-button-shadow: none;
+  --express-available-elements-action-button-icon-color: var(--ivy-primary-color-black);
+  --form-definition-table-border: var(--ivy-primary-color-grey-light);
+  --form-definition-table-selected-panel-border: var(--ivy-primary-color-grey-light);
+  --form-definition-table-selected-panel-background-color: transparent;
+  --email-file-upload-corner-top-background-color: transparent;
+  --express-table-no-header-border: var(--ivy-primary-color-grey-light);
+  --express-table-no-header-background-color: transparent;
+  --expand-collapse-button-color: var(--ivy-primary-color-black);
+  --express-workflow-active-switch-label-font-weight: 700;
+  --express-review-content-title-font-weight: 700;
+  --express-finished-task-label-font-weight: 700;
+  --express-active-defined-task-button-font-weight: bold;
+  --collapse-button-background-color: var(--ivy-primary-color-grey-pale);
+  --collapse-button-hover-background-color: var(--ivy-primary-color-grey-light) ;
+  --express-assignee-icon-color: var(--ivy-primary-color-black);
+  --express-review-content-title-border-color: hsla(180, 1%, 61%, 0.5);
+  --express-import-status-success: var(--ivy-tertinary-color-green-medium);
+  --express-import-status-warning: var(--ivy-tertinary-color-yellow-medium);
+  --express-import-status-failed: var(--ivy-tertinary-color-red-medium);
+  --express-import-status-font-weight: bold;
+  --express-import-paginator-background-color: hsla(180, 1%, 85%,0.5);
+  --express-import-paginator-hover-button-background-color: hsla(180, 1%, 85%,0.5);
+  --express-import-paginator-text-color: var(--ivy-primary-color-black);
+  /* Chat */
+  --chat-panel-background-color: var(--surface-d, #D4D6D9);
+  --no-group-chat-color: var(--text-color, #69707A);
+  --contact-card-icon-color: var(--ivy-primary-color-grey-dark);
+  --contact-card-icon-offline-color: var(--ivy-primary-color-grey-light);
+  --contact-card-background-color: var(--ivy-primary-color-white);
+  --contact-card-hover-background-color: hsla(0, 0%, 100%, 0.85);
+  --contact-card-icon-unread-message-color: var(--ivy-primary-color-white);
+  --contact-card-icon-unread-message-background-color: var(--ivy-tertinary-color-red-dark);
+  --contact-card-status-background-color: var(--ivy-tertinary-color-green-medium);
+  --contact-card-name-color: var(--text-color, #69707A);
+  --contact-notification-color: var(--ivy-primary-color-white);
+  --contact-notification-background-color: var(--ivy-tertinary-color-red-dark);
+  --contact-card-name: var(--ivy-primary-color-black);
+  --message-list-background-color: var(--ivy-primary-color-grey-pale);
+  --message-list-header-background-color: var(--surface-d, #D4D6D9);
+  --message-list-header-close-icon-background-color: var(--ivy-primary-color-grey-light);
+  --chat-message-background-color: var(--ivy-primary-color-light);
+  --chat-my-message-background-color: var(--ivy-secondary-color-light);
+  --message-chat-header-name-color: var(--text-color, #69707A);
+  --show-participants-link-color: var(--ivy-primary-color-white);
+  --chat-form-background-color: var(--ivy-primary-color-white);
+  --notification-badge-background-color: var(--ivy-tertinary-color-red-dark);
+  --notification-badge-color: var(--ivy-primary-color-white);
+  --chat-contact-type-header-color: var(--text-color, #69707A);
+  --chat-tooltip-color: var(--ivy-primary-color-white);
+  --chat-tooltip-background-color: var(--ivy-primary-color-black);
+  --participants-list-header-color: var(--ivy-primary-color-black);
+  --chat-send-form-button-background-color: transparent;
+  --message-list-content-send-input-background-color: transparent;
+  --chat-user-in-role-border: var(--ivy-primary-color-grey-light);
+  --chat-box-shadow: 0 2px 4px 0 hsla(0, 0%, 11%, 0.2), 0 1px 10px 0 hsla(0, 0%, 11%, 0.12), 0 4px 5px 0 hsla(0, 0%, 11%, 0.14);
+  --chat-contacts-box-shadow: 3px 0 6px hsla(0, 0%, 11%, 0.3);
+  --close-chat-button-background-color: var(--ivy-primary-color-grey-light);
+  --close-chat-button-color: var(--ivy-primary-color-black);
+  --chat-send-form-icon-color: var(--ivy-primary-color-black);
+  /* Icon */
+  --icon-font-family: "FontAwesome";
+  --icon-selection-dialog-border: transparent;
+  --icon-selection-dialog-border-hover: var(--ivy-primary-color-black);
+  --ui-inplace-background-color: transparent;
+  --data-icon-font-family: "true-minimalistic-icons";
+  --data-icon-font-style: normal;
+  --data-icon-font-weight: normal;
+  --data-icon-font-variant: normal;
+  --true-minimalistic-icon-font-family: "true-minimalistic-icons";
+  --true-minimalistic-icon-font-style: normal;
+  --true-minimalistic-icon-font-weight: normal;
+  --true-minimalistic-icon-font-variant: normal;
+
+  /* Others */
+  --card-dialog-border-color: transparent;
+  --top-border-body-express-many-checkbox-table-color: hsla(180, 1%, 61%, 0.5);
+  --hovered-item-select-one-menu-text-color: var(--ivy-primary-color-black);
+  --hovered-item-select-one-list-box-text-color: var(--ivy-primary-color-black);
+  --auto-complete-hover-color: var(--ivy-primary-color-black);
+  --ui-fiedset-legend-text-color: var(--ivy-primary-color-black);
+  --ui-dialog-title-bar-text-color: var(--ivy-primary-color-black);
+  --ui-input-field-text-color: var(--ivy-primary-color-black);
+  --ui-field-set-toggler-color: var(--ivy-primary-color-black);
+  --ui-data-picker-title-color: var(--ivy-primary-color-black);
+  --ui-data-picker-header-color: var(--ivy-primary-color-grey-pale);
+  --ui-data-picker-title-border-color: var(--ivy-primary-color-grey-pale);
+  --ui-data-picker-title-background-color: var(--ivy-primary-color-grey-pale);
+  --ui-fileupload-buttonbar-background-color: var(--ivy-primary-color-grey-light);
+  --ui-transparent-button-hover-background-color: transparent;
+  --menu-item-link-color: var(--ivy-primary-color-black);
+  --menu-item-link-hover-background-color: var(--ivy-primary-color-grey-pale);
+  --action-step-text-color: var(--ivy-primary-color-grey-medium);
+  --action-step-hover-text-color: var(--ivy-primary-color-grey-dark);
+  --action-step-disabled-text-color: var(--ivy-primary-color-grey-medium);
+  --action-step-separator-border-color: #F4F4F4;
+  --place-holder-text-color: var(--ivy-primary-color-grey-medium);
+  --text-tab-default-color: var(--ivy-primary-color-grey-medium);
+  --no-item-icon-color: var(--ivy-primary-color-grey-light);
+  /* Portal breadcrumb */
+  --breadcrumb-background-color: transparent;
+  --breadcrumb-home-icon-color: var(--primary-color);
+  --current-step-color: var(--primary-color);
+  --current-step-opacity: 1; 
+  /* Portal Global Ajax Status */
+  --ajax-loading-bg: hsla(0, 0%, 100%, 0.9);
+  --general-config-description-color: var(--ivy-primary-color-grey-medium);
+  /* Security member display name */
+  --security-member-tooltip-arrow-color: var(--ivy-primary-color-white);
+  /* Image Process Item */
+  --image-process-header-background-color: hsla(0, 0%, 96%, 1);
+  --image-process-header-background-color-hover: hsla(0, 0%, 86%, 1);
+  --image-process-header-color: hsla(0, 0%, 49%, 1);
+  /* Process information page */
+  --process-info-step-icon-font-color: var(--primary-color);
+  /* Widget header */
+  --widget-filter-noti-background-color: var(--ivy-tertinary-color-red-medium);
+  --widget-filter-noti-color: var(--ivy-primary-color-white);
+  /* New Dashboard */
+  --dashboard-table-column-small-screen-description-color: var(--ivy-primary-color-grey-medium);
+  --new-widget-dialog-title-color: var(--ivy-primary-color-black);
+  --new-widget-dialog-description-color: var(--ivy-primary-color-grey-medium);
+  --dashboard-type-color: var(--ivy-primary-color-grey-dark);
+  /* Process Start Widget*/
+  --combined-normal-button-tab-color: hsla(0, 0%, 11%, 0.56);
+  --combined-normal-button-tab-border-color: hsla(0, 0%, 11%, 0.32);
+  --combined-active-button-tab-color: hsla(0, 0%, 11%, 1);
+  --combined-button-tab-background-hover: rgba(144, 221, 233, 1);
+  --combined-button-tab-background-focus: rgba(144, 221, 233, 0.5);
+}

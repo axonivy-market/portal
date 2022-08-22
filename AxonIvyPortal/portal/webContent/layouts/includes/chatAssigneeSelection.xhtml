@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
+
+  <h:panelGroup id="chat-assignee-selection-panel" class="ui-g chat-assignee-selection-panel">
+    <p:messages id="error-message" showSummary="false" showDetail="true" styleClass="ui-g-12 u-padding-0" />
+    <div class="ui-g-12">
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/chatAssigneeDialogHint')}" />
+    </div>
+    <div class="ui-g-12">
+      <p:selectOneRadio id="chat-assignee-type" value="#{chatAssigneeBean.isAssignToUser}">
+        <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toUser')}" itemValue="true" />
+        <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toGroup')}" itemValue="false" />
+        <p:ajax event="change" listener="#{chatAssigneeBean.changeAssigneeType}" update="chat-assignee-selection-panel" />
+      </p:selectOneRadio>
+    </div>
+
+    <div id="chat-select-assignee" class="ui-g-12">
+      <ic:com.axonivy.portal.components.UserSelection id="chat-user-selection-component"
+        componentId="chat-user-selection" queryDelay="500" selectedUser="#{chatAssigneeBean.selectedUser}"
+        isRenderedMessage="false" rendered="#{chatAssigneeBean.isAssignToUser}"
+        autoCompletePanelStyleClass="chat-user-selection ui-fluid">
+        <p:column>
+          <pc:securityMemberNameAndAvatar securityMember="#{user}"
+            displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}" />
+        </p:column>
+        <f:facet name="event">
+          <p:ajax event="itemSelect" update="chat-assignee-selection-form:chat-add-assignee-button" />
+        </f:facet>
+      </ic:com.axonivy.portal.components.UserSelection>
+
+      <ic:com.axonivy.portal.components.RoleSelection id="chat-role-selection-component"
+        componentId="chat-role-selection" selectedRole="#{chatAssigneeBean.selectedRole}" queryDelay="500" cache="true"
+        rendered="#{not chatAssigneeBean.isAssignToUser}" inputStyleClass="chat-role-selection-input" scrollHeight="400"
+        autoCompleteStyleClass="chat-role-selection" isRenderedMessage="false"
+        autoCompletePanelStyleClass="ui-fluid">
+        <f:facet name="event">
+          <p:ajax event="query" global="false" />
+          <p:ajax event="itemSelect" update="chat-assignee-selection-form:chat-add-assignee-button" />
+        </f:facet>
+        <p:column>
+          <pc:securityMemberNameAndAvatar
+            securityMember="#{role}" displayName="#{role.getDisplayName()}"  />
+        </p:column> 
+      </ic:com.axonivy.portal.components.RoleSelection>
+    </div>
+
+    <div class="ui-g-12 chat-add-assignee-button-grid">
+      <p:commandButton id="chat-add-assignee-button"
+        icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
+        disabled="#{chatAssigneeBean.selectedUser == null and chatAssigneeBean.selectedRole == null}" actionListener="#{chatAssigneeBean.addAssignee}"
+        global="false" update="error-message chat-selected-assignee-fieldset" ignoreAutoUpdate="true" />
+    </div>
+
+    <div class="ui-g-12">
+      <p:fieldset id="chat-selected-assignee-fieldset" styleClass="chat-selected-assignee-fieldset"
+        legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/selectedAssignees')}">
+        <ui:repeat var="assignee" value="#{chatAssigneeBean.selectedAssignees}">
+          <div class="ui-g">
+            <div class="ui-g-12">
+              <pc:securityMemberNameAndAvatar securityMember="#{assignee}"
+              displayName="#{assignee.briefDisplayNameWithState}" >
+                <f:facet name="alternativeAvatar">
+                  <h:outputText id="chat-assign-type-icon" rendered="#{not avatarBean.isShowAvatar()}" styleClass="si #{assignee.isUser() ? 'si-single-neutral-actions' : 'si-multiple-neutral-1'} u-mar-right-5" />
+                </f:facet>
+              </pc:securityMemberNameAndAvatar>
+              <p:commandLink id="chat-delete-assignee" styleClass="si si-bin-1 chat-delete-assignee"
+                rendered="#{assignee ne ivy.session.getSessionUser()}"
+                actionListener="#{chatAssigneeBean.removeAssignee(assignee)}" update="#{p:resolveFirstComponentWithId('chat-assignee-selection-panel', view).clientId}" />
+            </div>
+          </div>
+        </ui:repeat>
+      </p:fieldset>
+    </div>
+
+    <div class="ui-g-12 chat-action-container">
+      <p:commandButton id="chat-group-create-button" actionListener="#{chatBean[createGroupChat]}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/createProcessChat')}" icon="#{visibilityBean.generateButtonIcon('si si-check-1')}">
+      </p:commandButton>
+    </div>
+  </h:panelGroup>
+</ui:composition>

@@ -3,6 +3,24 @@
 Additional Components
 =====================
 
+portal-components project
+-------------------------
+
+In ``portal-components``, we introduced some components independent of the Portal.
+You don't need to import the Portal projects to use them.
+
+These components fully support both Freya and Serenity themes of Primefaces.
+
+   - :ref:`Process History<components-additional-component-process-history>`
+   - :ref:`Process Chain<components-additional-component-process-chain>`
+   - :ref:`Document Table<components-additional-components-document-table>`
+   - :ref:`User Selection<components-additional-components-user-selection>`
+   - :ref:`Role Selection<components-additional-components-role-selection>`
+   - :ref:`Process Viewer<components-additional-components-process-viewer>`
+
+Please refer to project ``portal-components-examples`` for more details on use and customization,
+as well as look and feel of each component in supported themes.
+
 .. _components-additional-component-process-history:
 
 Process History
@@ -24,8 +42,6 @@ In a page
 In a dialog
 
 |process-history-dialog-example|
-
-This component is a part of project ``portal-component``, which is independent of the Portal. You don't need to import the Portal projects to use it.
 
 .. note::
 
@@ -56,7 +72,7 @@ additional property "CASE_BUSINESS_ENTITY_PROPERTY" of the business case.
 
    .. code-block:: html
 
-         <ic:com.axonivy.portal.component.ProcessHistory businessEntityId="alpha" />
+         <ic:com.axonivy.portal.components.ProcessHistory businessEntityId="alpha" />
 
    The value of the attribute ``businessEntityId`` must match the id input
    into the subprocess in the first step.
@@ -83,20 +99,20 @@ additional property "CASE_BUSINESS_ENTITY_PROPERTY" of the business case.
 
       <p:dialog widgetVar="process-history-dialog" id="process-history-dialog" width="800" height="500" resizable="false"
          header="Process history of Beta Company" modal="true" onShow="processHistory.setup();">
-         <ic:com.axonivy.portal.component.ProcessHistory businessEntityId="beta" chunkSize="10" scrollHeight="400" />
+         <ic:com.axonivy.portal.components.ProcessHistory businessEntityId="beta" chunkSize="10" scrollHeight="400" />
             </p:dialog>
 
 3. Override the callable subprocess ``OpenCaseDetailsHook`` to handle navigation when clicking on a case in the Process History component.
 
-   Please refer to the process ``ProcessHistoryExample`` in the project ``portal-component-example`` for more details on how to use the Process History without the Portal.
+   Please refer to the process ``ProcessHistoryExample`` in ``portal-components-examples`` for more details on how to use the Process History without the Portal.
 
-   Please refer to the process ``ProcessHistoryComponent`` in the project ``portal-developer-examples`` for more details on how to customize the Process History with the Portal.
+   Please refer to the process ``ProcessHistoryComponent`` in ``portal-developer-examples`` for more details on how to customize the Process History with the Portal.
 
    If you want to customize its style,
    please refer to :ref:`components-additional-components-style-customization`.
 
-   .. important:: 
-      
+   .. important::
+
          If your process has a Trigger component or sends a signal to start
          another process with the option "Attach to Business Case that
          triggered this process" selected, the current case of the process
@@ -109,7 +125,7 @@ additional property "CASE_BUSINESS_ENTITY_PROPERTY" of the business case.
 Migrate from Deprecated Process History
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Replace code in HTML files: replace ``ic:ch.ivy.addon.portal.component.ProcessHistory`` with ``ic:com.axonivy.portal.component.ProcessHistory``.
+#. Replace code in HTML files: replace ``ic:ch.ivy.addon.portal.component.ProcessHistory`` with ``ic:com.axonivy.portal.components.ProcessHistory``.
 
 #. Optional: set ``showCaseOfOwner`` to ``true`` if you want to show the cases owned by the login user.
 
@@ -119,14 +135,14 @@ Migrate from Deprecated Process History
 
    For applications using the Portal without IFrame:
 
-      + Copy the contents of the subprocess ``OpenPortalCaseDetails`` in the project ``PortalTemplate`` to the overridden subprocess ``OpenCaseDetailsHook``.
+      + Copy the contents of the subprocess ``OpenPortalCaseDetailsHook`` in ``portal`` to the overridden subprocess ``OpenCaseDetailsHook``.
 
    For applications using the Portal with an IFrame:
-   
+
       + Set attribute ``isOpenInFrame`` to ``true``.
-   
+
       + Modify the subprocess ``OpenCaseDetailsHook`` to generate ``caseDetailsUrl``. Process History component will navigate to this URL when the user clicks on a case.
-   
+
       + Please refer to the subprocess ``OpenCaseDetailsHookOverride`` in project ``portal-developer-examples`` to see how to generate this link in the Portal.
 
 .. _components-additional-component-task-analysis:
@@ -168,11 +184,11 @@ with the following code:
 
 .. code-block:: java
 
-      import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+      import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
       import java.util.HashMap;
       import javax.faces.context.FacesContext;
 
-      String taskAnalysisUrl = PortalNavigator.buildUrlByKeyword("showTaskAnalysis.ivp", "Start Processes/PortalStart/showTaskAnalysis.ivp", new HashMap());
+      String taskAnalysisUrl = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath("Start Processes/PortalStart/showTaskAnalysis.ivp");
       FacesContext.getCurrentInstance().getExternalContext().redirect(taskAnalysisUrl);
 
 
@@ -196,8 +212,6 @@ process: the currently executable steps, done steps, and open steps. Its feature
 
 #. Change the orientation of the process chain: horizontal or vertical.
 
-This component is a part of project ``portal-component``, which is independent of the Portal. You don't need to import the Portal projects to use it.
-
 |process-chain|
 
 .. _components-additional-component-process-chain-how-to-use:
@@ -210,7 +224,7 @@ the component on a page with following code:
 
 .. code-block:: html
 
-		<ic:com.axonivy.portal.component.ProcessChain id="process-chain-circle-horizontal" componentId="component-circle-horizontal" shape="CIRCLE" direction="HORIZONTAL"
+		<ic:com.axonivy.portal.components.ProcessChain id="process-chain-circle-horizontal" componentId="component-circle-horizontal" shape="CIRCLE" direction="HORIZONTAL"
          isShowAllSteps="false" actualStepIndex="0" steps="#{['Step 1','Step 2','Step 3','Step 4','Step 5','Step 6','Step 7','Step 8','Step 9']}" />
 
 #. You have to set the parameters
@@ -239,7 +253,7 @@ please refer to :ref:`components-additional-components-style-customization`.
 Migrate from Deprecated Process Chain
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- Replace code in HTML files: replace ``ch.ivy.addon.portalkit.singleapp.process.ProcessChain`` with ``com.axonivy.portal.component.ProcessChain``.
+- Replace code in HTML files: replace ``ch.ivy.addon.portalkit.singleapp.process.ProcessChain`` with ``com.axonivy.portal.components.ProcessChain``.
 
 .. _components-additional-component-global-growl:
 
@@ -300,11 +314,11 @@ You can customize the message for finished or cancelled tasks separately.
    import javax.faces.context.Flash;
    import javax.faces.context.FacesContext;
    import javax.faces.application.FacesMessage;
-   
-   FacesMessage message = new FacesMessage("Task is done successfully", ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/linkToCaseDetails", 
+
+   FacesMessage message = new FacesMessage("Task is done successfully", ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/linkToCaseDetails",
    	[PortalNavigator.buildPortalCaseDetailsUrl(ivy.case.getBusinessCase().getId())]));
    FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
-   
+
    Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
    flash.put("overridePortalGrowl", true);
    flash.setRedirect(true);
@@ -334,8 +348,6 @@ Document Table
 This component is a case document table with the features display, upload,
 download and delete document entries.
 
-This component is a part of project ``portal-component``, which is independent of the Portal. You don't need to import the Portal projects to use it.
-
 |document-table|
 
 To extend features of this component, please override these subprocesses: ``GetDocumentItems``,
@@ -348,7 +360,7 @@ Code Example:
 .. code-block:: html
 
    <h:form id="form">
-      <ic:com.axonivy.portal.component.DocumentTable id="document-table-component"
+      <ic:com.axonivy.portal.components.DocumentTable id="document-table-component"
          allowedUploadFileTypes="doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt"
          typeSelectionItems="#{documentTableExampleBean.documentTypes}">
          <f:facet name="componentHeader">
@@ -366,11 +378,11 @@ Code Example:
          <f:facet name="componentFooter">
             <h2>This is the customized document table component footer</h2>
          </f:facet>
-      </ic:com.axonivy.portal.component.DocumentTable>
+      </ic:com.axonivy.portal.components.DocumentTable>
    </h:form>
 
 
-Refer to process ``DocumentTableExample`` in project ``portal-component-example`` for more details.
+Refer to process ``DocumentTableExample`` in project ``portal-components-examples`` for more details.
 
 Attributes of this component:
 
@@ -393,7 +405,7 @@ Code example:
 
 .. code-block:: html
 
-   <ic:com.axonivy.portal.component.DocumentTable id="document-table-component"
+   <ic:com.axonivy.portal.components.DocumentTable id="document-table-component"
       enableScriptCheckingForUploadedDocument="true"
       enableVirusScannerForUploadedDocument="true" />
 
@@ -404,7 +416,7 @@ Please refer to :ref:`settings-virus-scanning-setting` for more details about vi
 Migrate from Deprecated Document Table
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Replace code in HTML files: replace ``ic:ch.ivy.addon.portalkit.component.document.DocumentTable`` with ``ic:com.axonivy.portal.component.DocumentTable``.
+#. Replace code in HTML files: replace ``ic:ch.ivy.addon.portalkit.component.document.DocumentTable`` with ``ic:com.axonivy.portal.components.DocumentTable``.
 
 #. Consider updating value of new attributes ``enableScriptCheckingForUploadedDocument``, ``enableVirusScannerForUploadedDocument`` and ``allowedUploadFileTypes`` as required.
 
@@ -422,10 +434,10 @@ Migrate from Deprecated Document Table
    | DownloadDocumentItem              | DownloadDocument         |
    +-----------------------------------+--------------------------+
 
-#. If you have customized IvyDocument make sure to extend it from class ``com.axonivy.portal.component.ivydata.bo.IvyDocument``.
+#. If you have customized IvyDocument make sure to extend it from class ``com.axonivy.portal.components.ivydata.bo.IvyDocument``.
 
-#. Attributes ``typeSelectionItems`` and ``selectedType`` now use ``com.axonivy.portal.component.enums.DocumentType``.
-   Please replace ``ch.ivy.addon.portalkit.enums.DocumentType`` with ``com.axonivy.portal.component.enums.DocumentType``.
+#. Attributes ``typeSelectionItems`` and ``selectedType`` now use ``com.axonivy.portal.components.enums.DocumentType``.
+   Please replace ``ch.ivy.addon.portalkit.enums.DocumentType`` with ``com.axonivy.portal.components.enums.DocumentType``.
 
 .. note::
    Please remove redundant overridden configurations, subprocesses, and data classes such as GetDocumentListOverride,
@@ -440,10 +452,8 @@ Introduction
 ^^^^^^^^^^^^
 
 This component is used for selecting a single user from a list of users defined by a role name list.
-If you don't define the role name list, all users will be loaded. 
+If you don't define the role name list, all users will be loaded.
 It includes a label, an autocomplete and one message element to display a message related to that autocomplete element.
-
-This component is a part of project ``portal-component``, which is independent of the Portal. You don't need to import the Portal projects to use it.
 
 How to Use
 ^^^^^^^^^^
@@ -458,7 +468,7 @@ You can insert this component into any page. This component supports two styles 
 
    .. code-block:: html
 
-      <ic:com.axonivy.portal.component.UserSelection componentId="default-user-autocomplete"
+      <ic:com.axonivy.portal.components.UserSelection componentId="default-user-autocomplete"
          selectedUser="#{data.selectedUser}" label="Default user selection"
          isRequired="true" labelPanelStyleClass="ui-g-6 ui-md-6 ui-sm-12"
          autoCompleteStyleClass="width-100" autoCompletePanelStyleClass="ui-g-6 ui-sm-12" />
@@ -471,7 +481,7 @@ You can insert this component into any page. This component supports two styles 
 
    .. code-block:: html
 
-      <ic:com.axonivy.portal.component.UserSelection componentId="all-user-autocomplete"
+      <ic:com.axonivy.portal.components.UserSelection componentId="all-user-autocomplete"
          hightlight="false" selectedUser="#{data.selectedUserForExcludingUsers}"
          label="Loading users (exclude gm1, gm2, admin)" autoCompleteStyleClass="width-100"
          autoCompletePanelStyleClass="ui-g-12 floating-label-margin-top"
@@ -482,10 +492,10 @@ You can insert this component into any page. This component supports two styles 
    insert children and ajax events (Refer to ``UserSelection.xhtml``).
    Any child in the UserSelection component will be re-parented into
    this autocomplete at the location of the ``insertChildren`` tag.
-   We introduce a facet named ``event`` for autocomplete so that the 
+   We introduce a facet named ``event`` for autocomplete so that the
    ajax event can be nested, as well.
 
-An example: 
+An example:
 
 I want to display users in a dropdown list formatted as "<Full name>
 (<username>)". When I select a user, a message shall be displayed.
@@ -496,7 +506,7 @@ I want to display users in a dropdown list formatted as "<Full name>
 
 .. code-block:: html
 
-   <ic:com.axonivy.portal.component.UserSelection id="item-select-event-component"
+   <ic:com.axonivy.portal.components.UserSelection id="item-select-event-component"
       componentId="item-select-event-for-user-selection" floatingLabel="true"
       fromRoleNames="#{data.definedRoleNames}" label="Demonstrate facet and children"
          selectedUser="#{data.selectedUserForInsertChildren}"
@@ -506,12 +516,12 @@ I want to display users in a dropdown list formatted as "<Full name>
          <h:outputText value="#{user.displayName} (#{user.name})" />
          </p:column>
          <f:facet name="event">
-            <p:ajax event="itemSelect" listener="#{logic.showSelectedUser}" 
+            <p:ajax event="itemSelect" listener="#{logic.showSelectedUser}"
                update="#{p:component('item-select-event-for-user-selection-message')}"/>
          </f:facet>
-   </ic:com.axonivy.portal.component.UserSelection>
+   </ic:com.axonivy.portal.components.UserSelection>
 
-Please refer to ``UserSelectionExample.xhtml`` in project ``portal-component-example`` for more details.
+Please refer to ``UserSelectionExample.xhtml`` in project ``portal-components-examples`` for more details.
 
 This component offers the following attributes:
 
@@ -526,9 +536,9 @@ This component offers the following attributes:
 Migrate from Deprecated User Selection
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Replace code in HTML files: replace ``ic:ch.ivy.addon.portalkit.component.UserSelection`` with ``ic:com.axonivy.portal.component.UserSelection``.
+#. Replace code in HTML files: replace ``ic:ch.ivy.addon.portalkit.component.UserSelection`` with ``ic:com.axonivy.portal.components.UserSelection``.
 
-#. Replace ``ch.ivy.addon.portalkit.dto.UserDTO`` with ``com.axonivy.portal.component.dto.UserDTO``.
+#. Replace ``ch.ivy.addon.portalkit.dto.UserDTO`` with ``com.axonivy.portal.components.dto.UserDTO``.
 
    .. note:: If you stored class ``ch.ivy.addon.portalkit.dto.UserDTO`` in your database, you have to update the database manually.
 
@@ -545,8 +555,6 @@ define the role list, all roles will be loaded. It includes one label, one
 autocomplete and one message element to display messages related to this
 autocomplete element.
 
-This component is a part of project ``portal-component``, which is independent of the Portal. You don't need to import the Portal projects to use it.
-
 How to Use
 ^^^^^^^^^^
 
@@ -561,7 +569,7 @@ two styles to display its label.
 
    .. code-block:: html
 
-      <ic:com.axonivy.portal.component.RoleSelection
+      <ic:com.axonivy.portal.components.RoleSelection
          componentId="role-from-defined-role-autocomplete"
          fromRoleNames="#{data.definedRoleNames}"
          selectedRole="#{data.selectedRoleForDefinedRoles}"
@@ -576,7 +584,7 @@ two styles to display its label.
 
    .. code-block:: html
 
-      <ic:com.axonivy.portal.component.RoleSelection
+      <ic:com.axonivy.portal.components.RoleSelection
          componentId="floating-label-and-exclude-role-autocomplete" hightlight="false"
          selectedRole="#{data.selectedRole}"
          label="Loading with all roles (exclude CaseOwner, GeneralManager)"
@@ -590,8 +598,8 @@ two styles to display its label.
    autocomplete at the location of the ``insertChildren`` tag. We
    introduced a facet named ``event`` for autocomplete so that the ajax
    event can be nested, as well.
-     
-For example: 
+
+For example:
 
 I want to display roles in dropdown list formatted as "<Display Name> (<Member
 Name>)". When I select a role, a message shall be displayed.
@@ -602,7 +610,7 @@ Name>)". When I select a role, a message shall be displayed.
 
 .. code-block:: html
 
-      <ic:com.axonivy.portal.component.RoleSelection
+      <ic:com.axonivy.portal.components.RoleSelection
          id="item-select-event-component"
          componentId="item-select-event-for-role-selection"
          fromRoleNames="#{data.definedRoleNames}"
@@ -618,9 +626,9 @@ Name>)". When I select a role, a message shall be displayed.
             <p:ajax event="itemSelect" listener="#{logic.showSelectedRole}"
                update="#{p:component('item-select-event-for-role-selection-message')}" />
          </f:facet>
-      </ic:com.axonivy.portal.component.RoleSelection>
+      </ic:com.axonivy.portal.components.RoleSelection>
 
-Please refer to ``RoleSelectionExample.xhtml`` in ``portal-component-example`` project for more details.
+Please refer to ``RoleSelectionExample.xhtml`` in ``portal-components-examples`` project for more details.
 
 This component offers the following attributes:
 
@@ -634,11 +642,61 @@ This component offers the following attributes:
 
 Migrate from Deprecated Role Selection
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-#. Replace code in HTML files: replace ``ic:ch.ivy.addon.portalkit.component.RoleSelection`` with ``ic:com.axonivy.portal.component.RoleSelection``.
+#. Replace code in HTML files: replace ``ic:ch.ivy.addon.portalkit.component.RoleSelection`` with ``ic:com.axonivy.portal.components.RoleSelection``.
 
-#. Replace ``ch.ivy.addon.portalkit.dto.RoleDTO`` with ``com.axonivy.portal.component.dto.RoleDTO``.
+#. Replace ``ch.ivy.addon.portalkit.dto.RoleDTO`` with ``com.axonivy.portal.components.dto.RoleDTO``.
 
    .. note:: If you stored class ``ch.ivy.addon.portalkit.dto.RoleDTO`` in your database, you have to update the database manually.
+
+.. _components-additional-components-process-viewer:
+
+Process Viewer
+--------------
+
+Introduction
+^^^^^^^^^^^^
+
+The Process Viewer component provides a visual representation of the process flow from a given Case ID or Process relative link.
+
+|portal-process-viewer-component|
+
+Attributes of this component:
+
+.. csv-table::
+  :file: documents/additional-components/process_viewer_component_attributes.csv
+  :header-rows: 1
+  :class: longtable
+  :widths: 1 1 1 3
+
+How to Use
+^^^^^^^^^^
+
+You can integrate the Process Viewer component in any page by including following code.
+
+#. You have to set one of parameters below:
+
+   - ``caseId``: show the process or Case Map of the case has ID equals to ``caseId``.
+
+   .. code-block:: html
+
+      <ic:com.axonivy.portal.components.ProcessViewer caseId="000001" containerStyleClass="process-viewer-container" />
+
+   - ``processLink``: show the process or Case Map which by its defined relative link.
+
+   .. code-block:: html
+
+      <ic:com.axonivy.portal.components.ProcessViewer processLink="/designer/pro/portal-components-examples/1821592826979C20/showProcessViewerUsingCaseId.ivp" containerStyleClass="process-viewer-container" />
+
+   .. warning::
+      Sub Case (Technical Case) or Express Workflow Process is not supported.
+
+#. You can customize the container style by using parameter ``containerStyleClass``
+
+Refer to process ``ProcessViewerExample`` in project ``portal-components-examples`` for more details.
+
+
+If you want to customize its style,
+please refer to :ref:`components-additional-components-style-customization`.
 
 .. _components-additional-portal-dialog-with-icon:
 
@@ -662,7 +720,7 @@ How to Use
          <ui:param name="iconClass" value="icon ivyicon-delete-1" />
          <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
          <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage')}" />
-         
+
          <ui:define name="dialogFooter">
             <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                onclick="PF('destroy-task-dialog').hide();" styleClass="u-mar-right-15"/>
@@ -710,13 +768,13 @@ breeze.
 Style Customization
 --------------------
 
-This customization is only available for the components in the new project ``portal-component``.
+This customization is only available for the components in the new project ``portal-components``.
 
 How to customize
 ^^^^^^^^^^^^^^^^
 
 1. You have to add a new css file to your resources and import it into your template.
-   
+
    Code Example:
 
    .. code-block:: html
@@ -724,7 +782,7 @@ How to customize
       <ui:composition template="/layouts/basic-10.xhtml">
          <ui:define name="title">test</ui:define>
          <ui:define name="content">
-            <ic:com.axonivy.portal.component.ProcessHistory businessEntityId="alpha" chunkSize="12" scrollHeight="600" />
+            <ic:com.axonivy.portal.components.ProcessHistory businessEntityId="alpha" chunkSize="12" scrollHeight="600" />
             <h:outputStylesheet name="layouts/styles/process-history-customize.css" />
          </ui:define>
       </ui:composition>
@@ -762,6 +820,16 @@ Process History
   :class: longtable
   :widths: 2 1 2
 
+
+Process Viewer
+^^^^^^^^^^^^^^
+
+.. csv-table::
+  :file: documents/additional-components/css_variables/process_viewer.csv
+  :header-rows: 1
+  :class: longtable
+  :widths: 2 1 2
+
 .. |process-history-example| image:: ../../screenshots/components/process-history-example.png
 .. |process-history-dialog-example| image:: ../../screenshots/components/process-history-dialog-example.png
 .. |set-business-entity-id-sub-process| image:: images/additional-component/set-business-entity-id-sub-process.png
@@ -778,3 +846,4 @@ Process History
 .. |role-selection-floating-label| image:: ../../screenshots/components/role-selection-component-floating-label-and-exclude-role.png
 .. |role-selection-with-children-and-ajax-event| image:: ../../screenshots/components/role-selection-component-ajax-event-selected-message.png
 .. |role-selection-component-ajax-expand| image:: ../../screenshots/components/role-selection-component-ajax-expand.png
+.. |portal-process-viewer-component| image:: ../../screenshots/components/portal-process-viewer-component.png

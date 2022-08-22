@@ -1,0 +1,91 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="isNotRequiredLogin" value="false" />
+    <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/caseHistoryPageTitle')}</ui:define>
+    <ui:define name="pageContent">
+      <h:form id="form" onkeypress="if (event.keyCode == 13) { return false; }" styleClass="note-history-container">
+        <div class="ui-g">
+          <div class="u-text-align-left ui-g-2 ui-lg-1 ui-md-2 ui-sm-4">
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" />
+          </div>
+          <div class="u-text-align-left ui-g-10 ui-lg-11 ui-md-10 ui-sm-8">
+            <h:outputText id="case-name" value="#{data.ivyCase.name}" />
+          </div>
+          <div class="u-text-align-left ui-g-2 ui-lg-1 ui-md-2 ui-sm-4">
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" />
+          </div>
+          <div class="u-text-align-left ui-g-10 ui-lg-11 ui-md-10 ui-sm-8">
+            <h:outputText id="case-id" value="#{data.ivyCase.id}" />
+          </div>
+          <div class="u-text-align-left ui-g-2 ui-lg-1 ui-md-2 ui-sm-4">
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" />
+          </div>
+          <div class="u-text-align-left ui-g-10 ui-lg-11 ui-md-10 ui-sm-8">
+            <pc:securityMemberNameAndAvatar securityMember="#{data.ivyCase.creatorUser}"
+              displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(data.ivyCase.creatorUser, data.ivyCase.creatorUser.name)}" />
+          </div>
+          <div class="u-text-align-left ui-g-2 ui-lg-1 ui-md-2 ui-sm-4">
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" />
+          </div>
+          <div class="u-text-align-left ui-g-10 ui-lg-11 ui-md-10 ui-sm-8">
+            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState id="case-state"
+              case="#{data.ivyCase}" showIndicatorBesideText="true" responsiveStyleClass="note-history-state"/>
+          </div>
+        </div>
+
+        <div class="ui-g">
+          <div class="ui-g-12 u-text-align-right u-no-padding-top">
+            <p:commandLink ajax="false" styleClass="note-history-export-button MarTop10">
+              <i class="#{visibilityBean.generateButtonIcon('si si-office-file-xls-1')}" />
+              <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}</span>
+              <p:fileDownload value="#{caseTaskNoteHistoryBean.getStreamedContentOfCaseNoteHistory(data.filteredHistories, data.ivyCase, data.exportedFileName)}" />
+            </p:commandLink>
+          </div>
+          <div class="ui-g-12">
+            <p:dataTable id="notes-table" widgetVar="notesTable" var="history" sortBy="#{caseTaskNoteHistoryBean.caseHistorySortByTimestamp}"
+              value="#{data.histories}" filteredValue="#{data.filteredHistories}"
+              emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
+              reflow="true" lazy="false">
+              <p:column sortBy="#{caseTaskNoteHistoryBean.getCaseNoteContent(history)}"
+                filterBy="#{caseTaskNoteHistoryBean.getCaseNoteContent(history)}" filterMatchMode="contains"
+                styleClass="u-truncate-text history-note"
+                headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}">
+                <h:outputText value="#{caseTaskNoteHistoryBean.getCaseNoteContent(history)}" styleClass="case-task-note-histories"/>
+              </p:column>
+              <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/relatedCase')}"
+                sortBy="#{history.displayCaseName}"
+                filterBy="#{history.displayCaseName}" filterMatchMode="contains"
+                styleClass="u-truncate-text history-related-case ui-sm-12"
+                rendered="#{data.showRelatedCaseInfo}"
+                width="20%">
+                <p:commandLink value="#{history.displayCaseName}"
+                  actionListener="#{caseDetailsBean.navigateToCaseDetails(history.caseId)}"/>
+              </p:column>
+              <p:column width="20%" sortBy="#{history.displayName}"
+                filterBy="#{history.displayName}"
+                filterMatchMode="contains" styleClass="note-history-fullname-column"
+                headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}">
+                <pc:securityMemberNameAndAvatar
+                  displayName="#{history.displayName}" securityMember="#{history.involvedUser}"
+                  displayNameStyleClass="case-task-note-histories" />
+              </p:column>
+              <p:column width="20%" sortBy="#{history.timestamp}"
+                headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}">
+                <h:outputText value="#{history.timestamp}">
+                  <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
+                </h:outputText>
+              </p:column>
+            </p:dataTable>
+          </div>
+        </div>
+      </h:form>
+
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,10 @@
+UploadDocumentItemData #class
+com.axonivy.portal.components #namespace
+businessCase ch.ivyteam.ivy.workflow.ICase #field
+message String #field
+status com.axonivy.portal.components.enums.UploadDocumentCheckStatus #field
+uploadedDocument ch.ivyteam.ivy.workflow.document.IDocument #field
+uploadedFile org.primefaces.model.file.UploadedFile #field
+enableVirusScannerForUploadedDocument Boolean #field
+enableScriptCheckingForUploadedDocument Boolean #field
+allowedUploadFileTypes String #field

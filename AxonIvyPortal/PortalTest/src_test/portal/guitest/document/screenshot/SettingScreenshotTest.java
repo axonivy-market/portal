@@ -141,4 +141,26 @@ public class SettingScreenshotTest extends ScreenshotTest {
         ScreenshotUtil.SETTINGS_FOLDER + "role-assignment-creation-dialog", new ScreenshotMargin(60, 30));
     roleManagementTab.clickOnCancelLinkOfRoleDialog();
   }
+  
+  @Test
+  public void screenshotPasswordValidation() throws IOException {
+    login(TestAccount.ADMIN_USER);
+    ScreenshotUtil.resizeBrowser(new Dimension(1050, 850));
+    homePage = new HomePage();
+    var adminSettingsPage = homePage.openAdminSettings();
+    adminSettingsPage.openPasswordValidationTab();
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.SETTINGS_FOLDER + "password-validation-tab");
+  }
+  
+  @Test
+  public void screenshotDashboardConfiguration() throws IOException {
+    login(TestAccount.ADMIN_USER);
+    ScreenshotUtil.resizeBrowser(new Dimension(1500, 1000));
+    showNewDashboard();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.getUserSettings();
+    executeDecorateJs("highlightDashboardConfiguration()");
+    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.SETTINGS_FOLDER + "dashboard-configuration");
+  }
 }
+

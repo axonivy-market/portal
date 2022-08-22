@@ -15,7 +15,7 @@ finishedTasks java.util.List<gawfs.TaskDef> #field
 finishedTasks PERSISTENT #fieldModifier
 hasRejectedApprovalTask Boolean #field
 hasRejectedApprovalTask PERSISTENT #fieldModifier
-responsible ch.ivy.addon.portalkit.dto.SecurityMemberDTO #field
+responsible com.axonivy.portal.components.dto.SecurityMemberDTO #field
 responsible PERSISTENT #fieldModifier
 shouldEndProcess Boolean #field
 steps List<String> #field

@@ -1,6 +1,7 @@
 package portalmigration.enums;
 
 public enum PortalLibrary {
+  PORTAL("portal"),
   PORTAL_KIT("portalKit"), 
   PORTAL_TEMPLATE("portalTemplate"),
   AXON_EXPRESS("axonIvyExpress"),

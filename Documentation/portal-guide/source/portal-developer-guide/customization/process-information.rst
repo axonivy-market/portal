@@ -42,7 +42,7 @@ Customization
 -------------
 
 #. Override the HTML dialog ``ch.ivy.addon.portal.component.ProcessInformation``
-   of project ``PortalTemplate``.
+   of ``portal``.
 
 #. Copy content and logic of the HTML dialog ``ch.ivy.addon.portal.component.ProcessInformation``
    to your overridden HTML dialog.
@@ -58,6 +58,6 @@ Customization
 
    .. tip::
       Please refer to HTML dialog ``CustomizedProcessInformation``
-      of project ``portal-developer-examples`` for details.
+      of ``portal-developer-examples`` for details.
 
 .. |process-step| image:: images/process-information/process-step.png

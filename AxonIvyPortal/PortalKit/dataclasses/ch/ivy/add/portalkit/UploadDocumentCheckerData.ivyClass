@@ -1,5 +1,0 @@
-UploadDocumentCheckerData #class
-ch.ivy.add.portalkit #namespace
-uploadedFile org.primefaces.model.file.UploadedFile #field
-checkStatus com.axonivy.portal.component.enums.UploadDocumentCheckStatus #field
-message String #field

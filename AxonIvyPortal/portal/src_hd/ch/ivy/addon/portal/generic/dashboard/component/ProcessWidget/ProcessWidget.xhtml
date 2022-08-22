@@ -1,0 +1,93 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+  xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="processWidget" required="true" />
+  <cc:attribute name="isReadOnlyMode" default="false" />
+  <cc:attribute name="isInConfiguration" default="false" />
+  <cc:attribute name="index" />
+  <cc:attribute name="onLoadProcessComplete" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="widget" value="#{cc.attrs.processWidget}" />
+  <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
+  <c:set var="displayMode" value="#{widget.displayMode}" />
+  <c:set var="index" value="#{cc.attrs.index}" />
+
+  <p:remoteCommand id="rcLoadProcessFirstTime" autoRun="true" update="dashboard-processes-container" global="false" async="true" process="@this"
+    oncomplete="loadWidgetFirstTime('js-loading-#{widget.id}', 'js-dashboard-processes-container-#{widget.id}'); #{cc.attrs.onLoadProcessComplete}; #{displayMode eq 'IMAGE_MODE' ? 'setupImageProcessWidget();' : ''} "
+    actionListener="#{widget.buildProcessDataFirstTime()}" />
+
+  <div class="ui-g widget-height-100 #{displayMode eq 'COMBINED_MODE' ? 'widget-overflow-auto' : ''} #{displayMode eq 'IMAGE_MODE' ? 'image-process-container' : ''}">
+    <h:outputText id="loading" styleClass="js-loading-#{widget.id} ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}" />
+
+    <h:panelGroup id="dashboard-processes-container" layout="block"
+      styleClass="ui-g-12 u-padding-0 js-dashboard-processes-container-#{widget.id} u-display-none #{displayMode eq 'COMBINED_MODE' and widget.process != null ? 'dashboard-processes-container--combined' : ''}">
+      <ui:fragment rendered="#{widget.displayMode eq 'COMPACT_MODE'}">
+        <ui:include src="CompactModeProcess.xhtml">
+          <ui:param name="processes" value="#{widget.displayProcesses}" />
+          <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode}" />
+          <ui:param name="isInConfiguration" value="#{cc.attrs.isInConfiguration}" />
+        </ui:include>
+      </ui:fragment>
+      <ui:fragment rendered="#{widget.displayMode eq 'FULL_MODE' and widget.process ne null}">
+        <ic:ch.ivy.addon.portalkit.component.process.ProcessGridItem id="process-grid-item"
+          process="#{widget.process}" managedBean="#{dashboardProcessBean}"
+          readOnlyMode="#{cc.attrs.isInConfiguration or !isReadOnlyMode}"
+          ableToEdit="#{!isReadOnlyMode}"
+          oncompleteEditProcess="PF('new-widget-configuration-dialog').show()"
+          componentToUpdateOnEditProcess="new-widget-configuration-dialog"
+          editActionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
+          oncompleteRemoveProcess="PF('remove-widget-dialog').show()"
+          componentToUpdateOnRemoveProcess="remove-widget-dialog"
+          removeActionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
+          showInformationLink="#{data.showInformationLink}"
+          processStyleClass="ui-g-12 u-padding-0 process-widget--full"
+          processIconStyleClass="process-grid-view__icon"
+          isInConfiguration="#{cc.attrs.isInConfiguration}"/>
+      </ui:fragment>
+      <ui:fragment rendered="#{widget.displayMode eq 'COMBINED_MODE' and widget.process ne null}">
+        <ui:include src="CombinedModeProcess.xhtml">
+          <ui:param name="widget" value="#{widget}" />
+          <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode}" />
+          <ui:param name="isInConfiguration" value="#{cc.attrs.isInConfiguration}" />
+          <ui:param name="index" value="#{index}" />
+        </ui:include>
+      </ui:fragment>
+      <ui:fragment rendered="#{widget.displayMode eq 'IMAGE_MODE' and widget.process ne null}">
+        <ui:include src="ImageModeProcess.xhtml">
+          <ui:param name="widget" value="#{widget}" />
+          <ui:param name="process" value="#{widget.process}" />
+          <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode}" />
+          <ui:param name="isInConfiguration" value="#{cc.attrs.isInConfiguration}" />
+        </ui:include>
+      </ui:fragment>
+
+      <h:panelGroup id="empty-process"
+        rendered="#{(displayMode eq 'COMBINED_MODE' or displayMode eq 'FULL_MODE' or displayMode eq 'IMAGE_MODE') and widget.process eq null}">
+        <h:panelGroup id="empty-process-actions" rendered="#{!isReadOnlyMode}" styleClass="process-grid-item__action--combined">
+          <p:commandLink id="empty-process-edit-widget" styleClass="si si-pencil u-mar-right-15" global="false"
+            actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}" process="@this"
+            partialSubmit="true" update="new-widget-configuration-dialog"
+            oncomplete="PF('new-widget-configuration-dialog').show()" />
+          <p:tooltip for="empty-process-edit-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
+            trackMouse="true" hideEvent="mouseleave click" />
+          <p:commandLink id="empty-process-delete-widget" styleClass="si si-bin-1" global="false"
+            actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}" process="@this" partialSubmit="true"
+            update="remove-widget-dialog" oncomplete="PF('remove-widget-dialog').show()" />
+          <p:tooltip for="empty-process-delete-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}"
+            trackMouse="true" hideEvent="mouseleave click" />
+        </h:panelGroup>
+        <h:panelGroup>
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/emptyProcess')}"/>
+        </h:panelGroup>
+      </h:panelGroup>
+
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noMatchingProcess')}"
+        rendered="#{not cc.attrs.isInConfiguration and displayMode eq 'COMPACT_MODE' and empty widget.displayProcesses}" styleClass="dashboard-processes--empty-message" />
+    </h:panelGroup>
+  </div>
+</cc:implementation>
+</html>

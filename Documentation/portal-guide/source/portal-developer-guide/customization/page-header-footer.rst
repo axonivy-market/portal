@@ -14,7 +14,7 @@ Refer to :dev-url:`Axon Ivy HtmlOverride wizard
 override HTML dialogs.
 
 If you use Case Scope, you need to copy the ``PortalStart`` process from
-``PortalTemplate`` to your project. This ensures that the process request is
-issued through your project instead of the (standard) PortalTemplate.
+``portal`` to your project. This ensures that the process request is
+issued through your project instead of the (standard) portal.
 
 .. |page-header-footer| image:: ../../screenshots/dashboard/page-header-footer.png

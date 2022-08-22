@@ -28,6 +28,8 @@ public class DashboardWidgetConfigurationDialogPage extends TemplatePage {
   private static final String FULL_MODE_PROCESS_SELECTION_PANEL_ID = "widget-configuration-form:new-widget-configuration-component:selected-full-process_panel";
   private static final String IMAGE_MODE_PROCESS_SELECTION_ID = "widget-configuration-form:new-widget-configuration-component:selected-image-process_input";
   private static final String IMAGE_MODE_PROCESS_SELECTION_PANEL_ID = "widget-configuration-form:new-widget-configuration-component:selected-image-process_panel";
+  private static final String PROCESS_VIEWER_PROCESS_SELECTION_ID = "widget-configuration-form:new-widget-configuration-component:selected-process_input";
+  private static final String PROCESS_VIEWER_PROCESS_SELECTION_PANEL_ID = "widget-configuration-form:new-widget-configuration-component:selected-process_panel";
 
   @Override
   protected String getLoadedLocator() {
@@ -52,6 +54,11 @@ public class DashboardWidgetConfigurationDialogPage extends TemplatePage {
 
   public void closeConfigurationDialog() {
     findElementById("task-configuration-cancel-link").click();
+    waitForElementDisplayed(By.id(CONFIGURATION_DIALOG_ID), false);
+  }
+
+  public void saveConfiguration() {
+    findElementById("widget-configuration-save-button").click();
     waitForElementDisplayed(By.id(CONFIGURATION_DIALOG_ID), false);
   }
 
@@ -178,5 +185,13 @@ public class DashboardWidgetConfigurationDialogPage extends TemplatePage {
 
   public void waitForImageProcessLoadedAfterClickPreview() {
     waitForElementDisplayed(By.id("process-actions"), true);
+  }
+
+  public void selectProcessForProcessViewerWidget(String processName) {
+    waitForElementDisplayed(By.id(PROCESS_VIEWER_PROCESS_SELECTION_ID), true);
+    findElementById(PROCESS_VIEWER_PROCESS_SELECTION_ID).clear();
+    findElementById(PROCESS_VIEWER_PROCESS_SELECTION_ID).sendKeys(processName);
+    waitForElementDisplayed(By.id(PROCESS_VIEWER_PROCESS_SELECTION_PANEL_ID), true);
+    findElementById(PROCESS_VIEWER_PROCESS_SELECTION_PANEL_ID).findElements(By.className("ui-autocomplete-item")).get(0).click();
   }
 }

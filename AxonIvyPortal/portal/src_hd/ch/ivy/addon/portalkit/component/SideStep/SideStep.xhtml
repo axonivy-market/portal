@@ -1,0 +1,134 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="actionLinkId" />
+  <cc:attribute name="panelWidgetVar" />
+  <cc:attribute name="sideStepsPanelStyleClass" />
+  <cc:attribute name="isAdhocExcluded" default="false" type="java.lang.Boolean" shortDescription="exclude adhoc from side steps" />
+  <cc:attribute name="isDisabled" default="false" type="java.lang.Boolean" />
+  <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" />
+  <cc:attribute name="componentToUpdate" default="" />
+  <cc:attribute name="buttonStyleClass" />
+  <cc:attribute name="renderedAdditionalAction" shortDescription="Control display adhoc and side steps" />
+  <cc:attribute name="currentPortalPage" default="TASK_LIST" />
+  <cc:attribute name="showDetailOption" default="false" shortDescription="Display go to task detail option" />
+  <cc:attribute name="dataModel" shortDescription="Data model of task list" />
+  <cc:attribute name="onDelegateComplete" />
+  <cc:attribute name="onDestroyComplete" />
+  <cc:attribute name="onEscalationComplete" />
+  <cc:attribute name="onWorkflowEventComplete" />
+  <cc:attribute name="showInTaskList" type="java.lang.Boolean" default="true" shortDescription="Indicator to display SideStep in TaskList"/>
+  <cc:attribute name="inFrame" default="false"/>
+  <cc:attribute name="isPreviewMode" default="false"/>
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="task" value="#{cc.attrs.task}" />
+  <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
+  <c:set var="isShowInTaskList" value="#{empty cc.attrs.showInTaskList ? true : cc.attrs.showInTaskList}" />
+  <f:event listener="#{data.setCurrentPortalPage(cc.attrs.currentPortalPage)}" type="preRenderComponent" />
+
+  <p:link id="#{cc.attrs.actionLinkId}" disabled="#{cc.attrs.isDisabled or cc.attrs.isPreviewMode}" onclick="event.stopPropagation(); return false;"
+    styleClass="action-link #{cc.attrs.buttonStyleClass} portal-icon">
+    <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" styleClass="task-action-item-label" />
+    <i class="si si-arrow-down-1" />
+  </p:link>
+
+  <p:overlayPanel id="side-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}" for="#{cc.attrs.actionLinkId}" my="left top" at="left bottom" appendTo="@(body)"
+    styleClass="options-panel #{cc.attrs.sideStepsPanelStyleClass}" dynamic="true" rendered="#{!cc.attrs.isDisabled}">
+
+    <p:commandLink id="task-open-detail-command" styleClass="option-item"
+      actionListener="#{logic.openDetails(task, dataModel, cc.attrs.inFrame)}" rendered="#{cc.attrs.showDetailOption}">
+      <i class="option-action-icon si si-information-circle" />
+      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}</span>
+    </p:commandLink>
+
+    <p:commandLink id="task-reset-command" onstart="event.stopPropagation();" rendered="#{taskActionBean.showResetTask}" disabled="#{!taskActionBean.canReset(task)}"
+      styleClass="option-item" actionListener="#{logic.resetTask(task)}" update="@parent #{cc.attrs.componentToUpdate}">
+      <i class="option-action-icon si si-road-sign-u-turn-left" />
+      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}</span>
+    </p:commandLink>
+
+    <p:commandLink id="task-delegate-command" disabled="#{!taskActionBean.canDelegate(task)}" rendered="#{taskActionBean.showDelegateTask}"
+      styleClass="option-item" onstart="event.stopPropagation();"
+      oncomplete="#{cc.attrs.onDelegateComplete}" global="false"
+      actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
+      update="@parent #{cc.attrs.componentToUpdate} @widgetVar(task-delegate-dialog)" process="@this">
+      <i class="option-action-icon si si-road-sign-u-turn-right" />
+      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}</span>
+    </p:commandLink>
+
+    <p:commandLink id="task-reserve-command" disabled="#{!taskActionBean.canPark(task)}" rendered="#{taskActionBean.showReserveTask}" onstart="event.stopPropagation();"
+      styleClass="option-item" actionListener="#{logic.parkTask(task)}" update="@parent #{cc.attrs.componentToUpdate}">
+      <i class="option-action-icon si si-navigation-right-circle" />
+      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}</span>
+    </p:commandLink>
+    
+    <p:commandLink id="task-clear-delay-command" disabled="#{!taskActionBean.canChangeDelayTimestamp(task)}" rendered="#{taskActionBean.showClearDelayTime(task)}"
+      styleClass="option-item" actionListener="#{logic.clearDelay(task)}" update="@parent #{cc.attrs.componentToUpdate}">
+      <i class="option-action-icon si si-button-refresh-arrows" />
+      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/clearDelay')}</span>
+    </p:commandLink>
+    
+    <p:commandLink id="task-clear-expiry-command" disabled="#{!taskActionBean.canChangeExpiry(task)}" rendered="#{taskActionBean.showClearExpiryTime(task)}"
+      styleClass="option-item" actionListener="#{logic.clearExpiryTime(task)}" update="@parent #{cc.attrs.componentToUpdate}">
+      <i class="option-action-icon si si-button-refresh-arrows" />
+      <span class="option-item-label option-item-long-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/clearExpiry')}</span>
+    </p:commandLink>
+    
+    <p:commandLink id="task-destroy-command" disabled="#{!taskActionBean.canDestroyTask(task)}" rendered="#{taskActionBean.showDestroyTask}"
+      styleClass="option-item" update="@parent #{cc.attrs.componentToUpdate}"
+      actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
+      oncomplete="#{cc.attrs.onDestroyComplete}" process="@this" global="false">
+      <i class="option-action-icon si si-remove" />
+      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}</span>
+    </p:commandLink>
+    
+    <p:commandLink id="task-trigger-escalation-command" disabled="#{!taskActionBean.canExpiry(task)}"
+      styleClass="option-item" update="@parent #{cc.attrs.componentToUpdate}"
+      actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
+      oncomplete="#{cc.attrs.onEscalationComplete}" process="@this" global="false">
+      <i class="option-action-icon si si-synchronize-arrow-clock" />
+      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/triggerEscalation')}</span>
+    </p:commandLink>
+    
+    <p:commandLink id="task-workflow-event-command" disabled="#{!taskActionBean.canReadWorkflowEventTask()}" rendered="#{taskActionBean.showReadWorkflowEvent}"
+      styleClass="option-item" onstart="event.stopPropagation();" process="@this"
+      update="@parent #{cc.attrs.componentToUpdate} @widgetVar(workflow-events-dialog)"
+      actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
+      oncomplete="#{cc.attrs.onWorkflowEventComplete}" global="false" >
+      <i class="option-action-icon si si-business-contract-handshake-sign" />
+      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/events')}</span>
+    </p:commandLink>
+
+    <p:link id="show-process-viewer-link" target="_blank"
+      styleClass="show-process-viewer-link option-item"
+      href="#{taskActionBean.getProcessViewerPageUri(task)}"
+      rendered="#{taskActionBean.showProcessViewer(task)}">
+      <i class="option-action-icon si si-hierarchy-6 si-rotate-270" />
+      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessViewerText')}</span>
+    </p:link>
+
+    <h:panelGroup id="task-additional-actions" layout="block" rendered="#{cc.attrs.renderedAdditionalAction}">
+      <f:event listener="#{sideStepBean.getSideSteps(task.getId(), task.case.getId(), cc.attrs.isAdhocExcluded)}" type="preRenderComponent" />
+      <p:divider styleClass="task-action-separator" />
+      <p:commandLink rendered="#{empty sideStepBean.currentSideSteps}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}"
+        styleClass="option-item" />
+      <ui:repeat var="sideStep" value="#{sideStepBean.currentSideSteps}">
+        <p:commandLink id="adhoc-side-step-item" styleClass="option-item" global="false" rendered="#{sideStep.isAdhoc()}"
+          actionListener="#{sideStepBean.startAdhoc(sideStep, task.getId())}" process="@this">
+          <i class="option-action-icon si si-add u-mar-right-5" />
+          <span class="option-item-label option-item-long-label"><h:outputText value="#{sideStep.name}" /></span>
+        </p:commandLink>
+  
+        <p:commandLink id="option-item" styleClass="option-item" value="#{sideStep.name}" global="false" rendered="#{not sideStep.isAdhoc()}"
+          actionListener="#{sideStepBean.startSideStep(sideStep)}" process="@this" />
+      </ui:repeat>
+    </h:panelGroup>
+  </p:overlayPanel>
+</cc:implementation>
+</html>

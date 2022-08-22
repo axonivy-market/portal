@@ -1,6 +1,6 @@
 package com.axonivy.portal.developerexamples.enums;
 
-import com.axonivy.portal.component.enums.DocumentType;
+import com.axonivy.portal.components.enums.DocumentType;
 
 public enum ExtendedDocumentType implements DocumentType {
 
