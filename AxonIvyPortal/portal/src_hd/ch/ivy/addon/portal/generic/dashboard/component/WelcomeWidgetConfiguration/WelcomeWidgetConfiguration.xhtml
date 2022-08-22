@@ -83,7 +83,7 @@
 
          <div class="ui-g-3 u-no-padding-bottom">
            <p:outputLabel for="welcome-text-greeting" styleClass="welcome-text-label"
-             value="Greeting" />
+             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/ShowGreeting')}" />
          </div>
          <div class="ui-g-9 u-no-padding-bottom">
            <p:selectOneRadio id="welcome-text-greeting" value="#{dashboardWelcomeWidgetConfigurationBean.widget.greeting}">
