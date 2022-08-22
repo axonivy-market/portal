@@ -12,6 +12,7 @@ import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.FileHelper;
 import portal.guitest.common.ScreenshotTest;
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.DocumentTableComponentPage;
@@ -19,6 +20,7 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.ProcessHistoryPage;
+import portal.guitest.page.ProcessViewerComponentPage;
 import portal.guitest.page.ProcessViewerPage;
 import portal.guitest.page.RoleSelectionComponentPage;
 import portal.guitest.page.StatisticWidgetPage;
@@ -166,5 +168,15 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
     WaitHelper.assertTrueWithWait(() -> !processViewerPage.getProcessRequestPath().isEmpty());
     processViewerPage.waitForSprottyToolDisplayed();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_WIDGET_FOLDER + "portal-process-viewer");
+  }
+
+  @Test
+  public void captureScreenshotProcessViewerComponent() throws IOException {
+    redirectToRelativeLink(processViewerExampleInFrameUrl);
+    ScreenshotUtil.resizeBrowser(new Dimension(1366, 1000));
+    ProcessViewerComponentPage processViewerPage = new ProcessViewerComponentPage();
+    processViewerPage.waitForSprottyToolDisplayed();
+    Sleeper.sleep(1000);// wait for iframe data loading finish
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.COMPONENTS_FOLDER + "portal-process-viewer-component");
   }
 }

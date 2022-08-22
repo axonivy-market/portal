@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+
+<ui:composition>
+  <h:panelGroup layout="block" class="task-start-list-item js-task-start-list-item">
+    <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority priority="#{task.priority}" id="task-start-priority" 
+      dataModel="#{dataModel}" />
+    <div class="task-start-info">
+    <h:panelGroup layout="block" styleClass="task-start-info-header">
+      <h:outputText id="task-start-task-name" styleClass="task-start-info-task-name"
+          value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}" />
+      <p:tooltip for="task-start-task-name" value="#{task.name}" trackMouse="true" hideEvent="mouseleave click" rendered="#{not empty task.name}"/>
+      <h:outputText id="task-start-task-id" value="(##{task.getId()})" styleClass="task-start-info-task-id"/>
+    </h:panelGroup>
+    <h:panelGroup layout="block" styleClass="task-start-info-content">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/created')}: " />
+        <h:outputText value="#{task.startTimestamp}">
+          <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
+        </h:outputText>
+        <h:outputText value=" / #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/expired')}: "
+          rendered="#{task.expiryTimestamp ne null}" />
+        <h:outputText value="#{task.expiryTimestamp}">
+          <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
+        </h:outputText>
+    </h:panelGroup> 
+    <h:outputText id="task-start-task-description" styleClass="task-start-info-footer task-start-info-task-description"
+      value="#{empty task.description ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription') : taskWidgetBean.createTaskDescriptionInTaskStart(task.description)}" />
+    <p:tooltip for="task-start-task-description" value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.description)}" 
+      trackMouse="true" hideEvent="mouseleave click" rendered="#{not empty task.description}" />
+    </div>
+    <h:panelGroup id="open-task-icon" class="action-icon si si-arrow-right-1 icon-compact-mode portal-icon" />
+    <p:tooltip for="open-task-icon" trackMouse="true" hideEvent="mouseleave click"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/openTaskTooltip')}" />
+  </h:panelGroup>
+</ui:composition>
+</html>

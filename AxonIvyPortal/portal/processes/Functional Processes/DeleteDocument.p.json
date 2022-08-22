@@ -1,0 +1,79 @@
+{
+  "format" : "9.4.14",
+  "id" : "16AC05A855359627",
+  "data" : "ch.ivy.add.portalkit.DeleteDocumentData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "call(ICase,IvyDocument)",
+      "config" : {
+        "callSignature" : "call",
+        ".name" : "call(ICase,IvyDocument)",
+        "input" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument" }
+          ],
+          "map" : {
+            "out.businessCase" : "param.businessCase",
+            "out.document" : "param.document"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "message", "type" : "String" }
+          ],
+          "map" : {
+            "result.message" : "in.message"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -73, "y" : 17 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 416, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Delete document item",
+      "config" : {
+        ".name" : "Delete document item",
+        "output" : {
+          "code" : [
+            "import java.util.Arrays;",
+            "",
+            "in.businessCase.documents().delete(Long.valueOf(in.document.id));",
+            "",
+            "String note = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/deleteDocumentNote\", Arrays.asList(ivy.session.getSessionUserName(), in.document.getName()));",
+            "in.businessCase.createNote(ivy.session, note);",
+            "in.message = ivy.cms.co(\"/Dialogs/components/CaseDocument/deleteSucceed\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 64 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f5",
+      "type" : "ProcessAnnotation",
+      "name" : "Override this sub process to delete file in DMS",
+      "config" : {
+        ".name" : "Override this sub process to delete file in DMS"
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 184 },
+        "size" : { "width" : 256, "height" : 40 }
+      },
+      "connect" : { "id" : "f6", "to" : "f0" }
+    } ]
+}

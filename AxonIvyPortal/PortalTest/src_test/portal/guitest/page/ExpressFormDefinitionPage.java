@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.WaitHelper;
 import vn.wawa.guitest.base.client.Browser;
 
@@ -28,7 +29,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 
 	@SuppressWarnings("deprecation")
   public void createTextInputField(String label, int inputFieldTypeIndex, boolean isRequired) {
-		click(By.xpath("//*[@id='form:create-tabs']/ul/li[1]"));
+		click(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][1]"));
 		waitForElementDisplayed(By.id("form:create-tabs:create-input-field-tab"), true, TIME_OUT);
 		type(By.id("form:create-tabs:input-field-label"), label);
 		chooseInputFieldType(inputFieldTypeIndex);
@@ -42,7 +43,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 
 	@SuppressWarnings("deprecation")
   public void createTextAreaField(String label, boolean isRequired) {
-		click(By.xpath("//*[@id='form:create-tabs']/ul/li[2]"));
+		click(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][2]"));
 		ensureNoBackgroundRequest();
 		waitForElementDisplayed(By.id("form:create-tabs:create-input-area-tab"), true, TIME_OUT);
 		type(By.id("form:create-tabs:input-area-label"), label);
@@ -56,7 +57,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 
 	@SuppressWarnings("deprecation")
   public void createCheckboxField(String label, int numberOfSelection) {
-		click(By.xpath("//*[@id='form:create-tabs']/ul/li[3]"));
+		click(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][3]"));
 		ensureNoBackgroundRequest();
 		waitForElementDisplayed(By.id("form:create-tabs:many-checkbox-options"), true, TIME_OUT);
 		type(By.id("form:create-tabs:many-checkbox-label"), label);
@@ -67,10 +68,10 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 	}
 
   public void switchToCheckBoxTab() {
-    waitForElementDisplayed(By.xpath("//*[@id='form:create-tabs']/ul/li[3]"), true);
-    click(By.xpath("//*[@id='form:create-tabs']/ul/li[3]"));
+    waitForElementDisplayed(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][3]"), true);
+    click(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][3]"));
     WaitHelper.assertTrueWithWait(() -> {
-      var checkboxTab = findElementByXpath("//*[@id='form:create-tabs']/ul/li[3]");
+      var checkboxTab = findElementByXpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][3]");
       return checkboxTab.getAttribute(CLASS_PROPERTY).contains("ui-state-active");
     });
     waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ui-tabs-header.ui-tabs-selected.ui-state-active", CLASS_PROPERTY);
@@ -87,7 +88,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 
   @SuppressWarnings("deprecation")
   public void fillDataForCheckboxProvider(String label) {
-    click(By.xpath("//*[@id='form:create-tabs']/ul/li[3]"));
+    click(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][3]"));
 		ensureNoBackgroundRequest();
 		waitForElementDisplayed(By.id("form:create-tabs:create-many-checkbox-tab"), true, TIME_OUT);
 		click(By.id("form:create-tabs:DataProvider_label"));
@@ -100,7 +101,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 
 	@SuppressWarnings("deprecation")
   public void createRadioButtonField(String label, int numberOfOption) {
-		click(By.xpath("//*[@id='form:create-tabs']/ul/li[4]"));
+		click(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][4]"));
 		ensureNoBackgroundRequest();
 		waitForElementDisplayed(By.id("form:create-tabs:one-radio-label"), true, TIME_OUT);
 		type(By.id("form:create-tabs:one-radio-label"), label);
@@ -112,7 +113,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 
 	@SuppressWarnings("deprecation")
   public void createUploadComponent(String label) {
-		click(By.xpath("//*[@id='form:create-tabs']/ul/li[5]"));
+		click(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][5]"));
 		ensureNoBackgroundRequest();
 		waitForElementDisplayed(By.id("form:create-tabs:create-file-upload-tab"), true, TIME_OUT);
 		type(By.id("form:create-tabs:file-upload-label"), label);
@@ -161,6 +162,10 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   }
 
   private void moveFormElementToPanel(int index, String position) {
+    //TODO Need to be fixed - Workaround for scroll-bar issue
+    JavascriptExecutor jse = (JavascriptExecutor) driver;
+    jse.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+    Sleeper.sleep(200); // Wait for JS executed successfully
     var formElementSelector = String.format("[id$='form:available-form-elements:%d:pnl_content']", index);
     // If elements is FileUpload, move to footer
     if (formElementIsFileUpload(findElementByCssSelector(formElementSelector))) {

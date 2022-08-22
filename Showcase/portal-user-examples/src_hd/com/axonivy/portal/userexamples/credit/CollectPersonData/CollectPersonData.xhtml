@@ -4,17 +4,17 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-  <ui:composition template="/layouts/TaskTemplate-8.xhtml">
+  <ui:composition template="/layouts/frame-10.xhtml">
     <ui:define name="title">CollectPersonData</ui:define>
-    <ui:define name="css">
-      <h:outputStylesheet library="css" name="portal-user-examples.css" />
-      <h:outputStylesheet library="styles" name="ivy-common-8.css" />
-    </ui:define>
     <ui:define name="content">
-      <h3>#{ivy.cms.co('/Labels/CaseMap/Credit/creditRequest')}</h3>
+      <h:outputStylesheet library="css" name="portal-variables.css" />
+      <h:outputStylesheet library="css" name="portal-user-examples.css" />
+
+      <h:outputStylesheet name="custom.css" library="ivy-branding" />
+      <h3 id="header">#{ivy.cms.co('/Labels/CaseMap/Credit/creditRequest')}</h3>
 
       <h:form id="form">
-        <h:panelGroup styleClass="ui-g ui-fluid portal-card-container">
+        <h:panelGroup styleClass="ui-g ui-fluid portal-card-container MarTop10">
           <p:panel styleClass="card ui-g-12 ui-md-12">
             <h:panelGroup styleClass="ui-g" layout="block">
               <p:messages styleClass="ui-g-12" />
@@ -22,7 +22,7 @@
                 styleClass="ui-g-12 ui-md-12 ui-sm-12">
 
                 <h:panelGroup layout="block" styleClass="credit-request-column-1">
-                  <h:outputText value="#{ivy.cms.co('/Labels/CaseMap/Credit/person')}" styleClass="credit-label" />
+                  <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/person')}</h4>
                   <h:panelGroup class="MarTop20" layout="block">
                     <p:outputLabel for="first-name" value="#{ivy.cms.co('/Labels/CaseMap/Credit/firstName')}" />
                     <p:inputText required="true" id="first-name" value="#{data.dossier.customer.firstName}"
@@ -35,8 +35,8 @@
 
                   <h:panelGroup class="MarTop20" layout="block">
                     <p:outputLabel for="birth-date" value="#{ivy.cms.co('/Labels/CaseMap/Credit/birthDate')}" />
-                    <p:datePicker id="birth-date" value="#{data.dossier.customer.birthDate}" monthNavigator="true" yearNavigator="true"
-                      yearRange="1950:2010" pattern="dd.MM.yyyy">
+                    <p:datePicker id="birth-date" value="#{data.dossier.customer.birthDate}" monthNavigator="true"
+                      yearNavigator="true" yearRange="1950:2010" pattern="dd.MM.yyyy" styleClass="MarTop10">
                     </p:datePicker>
                   </h:panelGroup>
                   <h:panelGroup class="MarTop20" layout="block">
@@ -50,7 +50,7 @@
                 </h:panelGroup>
 
                 <h:panelGroup layout="block" styleClass="credit-request-column-2">
-                  <h:outputText value="#{ivy.cms.co('/Labels/CaseMap/Credit/address')}" styleClass="credit-label" />
+                  <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/address')}</h4>
                   <h:panelGroup class="MarTop20" layout="block">
                     <p:outputLabel for="country" value="#{ivy.cms.co('/Labels/CaseMap/Credit/country')}" />
                     <p:inputText required="true" id="country" value="#{data.dossier.customer.address.country}"
@@ -58,7 +58,7 @@
                   </h:panelGroup>
 
                   <h:panelGroup class="MarTop20" layout="block">
-                    <h:outputText value="#{ivy.cms.co('/Labels/CaseMap/Credit/credit')}" styleClass="credit-label" />
+                    <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/credit')}</h4>
                   </h:panelGroup>
 
                   <h:panelGroup class="MarTop20" layout="block">
@@ -91,7 +91,7 @@
         </h:panelGroup>
         <p:commandButton id="submit-request" actionListener="#{logic.close}"
           value="#{ivy.cms.co('/Labels/CaseMap/Credit/submitRequest')}" update="form" icon="si si-check-1"
-          styleClass="Fright" />
+          styleClass="Fright MarTop10" />
       </h:form>
 
     </ui:define>

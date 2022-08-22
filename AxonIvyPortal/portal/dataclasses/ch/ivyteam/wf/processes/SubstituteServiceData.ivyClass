@@ -1,0 +1,5 @@
+SubstituteServiceData #class
+ch.ivyteam.wf.processes #namespace
+substitutes java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute> #field
+username String #field
+userDTO com.axonivy.portal.components.dto.UserDTO #field

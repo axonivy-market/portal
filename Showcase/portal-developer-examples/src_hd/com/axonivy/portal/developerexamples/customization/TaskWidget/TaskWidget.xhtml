@@ -16,11 +16,11 @@
     <ui:define name="taskListHeader">
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskListHeader dataModel="#{taskView.dataModel}" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
-        styleClass="TexAlCenter" componentId="task-custom" sortField="customVarCharField5"
-        value="#{ivy.cms.co('/DefaultColumns/customVarCharField5')}" responsiveStyleClass="u-hidden-lg-down" />
+        styleClass="u-text-align-center" componentId="task-custom" sortField="CustomerName"
+        value="#{ivy.cms.co('/DefaultColumns/CustomerName')}" responsiveStyleClass="u-hidden-lg-down" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
-        styleClass="TexAlCenter" componentId="task-custom" sortField="customTimestampField1"
-        value="#{ivy.cms.co('/DefaultColumns/customTimestampField1')}"
+        styleClass="u-text-align-center" componentId="task-custom" sortField="ShipmentDate"
+        value="#{ivy.cms.co('/DefaultColumns/ShipmentDate')}"
         responsiveStyleClass="u-hidden-lg-down js-hidden-when-expand-menu" />
     </ui:define>
 
@@ -44,13 +44,13 @@
 
       <!-- New field -->
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-name-component"
-        componentId="customer-name" column="customVarCharField5" dataModel="#{taskView.dataModel}"
-        labelValue="#{task.customFields().stringField('CustomVarCharField5').getOrNull()}"
+        componentId="customer-name" column="CustomerName" dataModel="#{taskView.dataModel}"
+        labelValue="#{task.customFields().stringField('CustomerName').getOrNull()}"
         responsiveStyleClass="u-hidden-lg-down" />
       <h:outputText id="shipment-date"
-        styleClass="TexAlCenter custom-datetime u-hidden-lg-down js-hidden-when-expand-menu"
-        value="#{task.customFields().timestampField('CustomTimestampField1').getOrNull()}"
-        rendered="#{taskView.dataModel.isSelectedColumn('customTimestampField1')}">
+        styleClass="u-text-align-center custom-datetime u-hidden-lg-down js-hidden-when-expand-menu"
+        value="#{task.customFields().timestampField('ShipmentDate').getOrNull()}"
+        rendered="#{taskView.dataModel.isSelectedColumn('ShipmentDate')}">
         <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
       </h:outputText>
     </ui:define>

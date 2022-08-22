@@ -14,11 +14,11 @@
     <ui:define name="taskListHeader">
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskListHeader dataModel="#{dataModel.taskDataModel}" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{dataModel.taskDataModel}"
-        styleClass="state-column-header TexAlCenter" componentId="task-custom" sortField="customVarCharField5"
-        value="#{ivy.cms.co('/DefaultColumns/customVarCharField5')}" responsiveStyleClass="u-hidden-lg-down" />
+        styleClass="state-column-header u-text-align-center" componentId="task-custom" sortField="CustomerName"
+        value="#{ivy.cms.co('/DefaultColumns/CustomerName')}" responsiveStyleClass="u-hidden-lg-down" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{dataModel.taskDataModel}"
-        styleClass="state-column-header TexAlCenter" componentId="task-custom" sortField="customTimestampField1"
-        value="#{ivy.cms.co('/DefaultColumns/customTimestampField1')}"
+        styleClass="state-column-header u-text-align-center" componentId="task-custom" sortField="ShipmentDate"
+        value="#{ivy.cms.co('/DefaultColumns/ShipmentDate')}"
         responsiveStyleClass="u-hidden-lg-down js-hidden-when-expand-menu" />
     </ui:define>
 
@@ -42,13 +42,13 @@
 
       <!-- New field -->
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-name-component"
-        componentId="customer-name" column="customVarCharField5" dataModel="#{dataModel.taskDataModel}"
+        componentId="customer-name" column="CustomerName" dataModel="#{dataModel.taskDataModel}"
         responsiveStyleClass="u-hidden-lg-down"
-        labelValue="#{task.customFields().stringField('CustomVarCharField5').getOrNull()}" />
+        labelValue="#{task.customFields().stringField('CustomerName').getOrNull()}" />
       <h:outputText id="shipment-date"
-        styleClass="TexAlCenter custom-datetime u-hidden-lg-down js-hidden-when-expand-menu"
-        value="#{task.customFields().timestampField('CustomTimestampField1').getOrNull()}"
-        rendered="#{dataModel.taskDataModel.isSelectedColumn('customTimestampField1')}">
+        styleClass="u-text-align-center custom-datetime u-hidden-lg-down js-hidden-when-expand-menu"
+        value="#{task.customFields().timestampField('ShipmentDate').getOrNull()}"
+        rendered="#{dataModel.taskDataModel.isSelectedColumn('ShipmentDate')}">
         <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
       </h:outputText>
     </ui:define>
@@ -59,7 +59,7 @@
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/NAME')}"
         dataModel="#{dataModel.caseDataModel}" />
 
-      <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="id-column-header" styleClass="TexAlCenter"
+      <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="id-column-header" styleClass="u-text-align-center"
         responsiveStyleClass="u-hidden-sm-down" sortedField="ID" sortable="true"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}"
         dataModel="#{dataModel.caseDataModel}" />
@@ -70,32 +70,32 @@
         dataModel="#{dataModel.caseDataModel}" />
 
       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="created-date-column-header"
-        componentToBeUpdated="" sortedField="CREATION_TIME" styleClass="TexAlCenter"
+        componentToBeUpdated="" sortedField="CREATION_TIME" styleClass="u-text-align-center"
         responsiveStyleClass="u-hidden-sm-down" sortable="true"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}"
         dataModel="#{dataModel.caseDataModel}" />
 
       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="mofified-date-column-header"
-        componentToBeUpdated="" sortedField="FINISHED_TIME" styleClass="TexAlCenter"
+        componentToBeUpdated="" sortedField="FINISHED_TIME" styleClass="u-text-align-center"
         responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down" sortable="true"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME')}"
         dataModel="#{dataModel.caseDataModel}" />
 
       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="state-column-header"
-        styleClass="TexAlCenter" sortedField="STATE" responsiveStyleClass="u-hidden-sm-down" sortable="true"
+        styleClass="u-text-align-center" sortedField="STATE" responsiveStyleClass="u-hidden-sm-down" sortable="true"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}"
         dataModel="#{dataModel.caseDataModel}" />
 
       <!-- New field -->
       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader
-        id="customVarCharField1-column-case-list-header" styleClass="TexAlCenter customized-case-header-column"
-        responsiveStyleClass="js-hidden-when-expand-menu u-hidden-lg-down" sortedField="customVarCharField1"
-        sortable="true" value="#{ivy.cms.co('/DefaultColumns/caseList/customVarCharField1')}"
+        id="customer-name-column-case-list-header" styleClass="TexAlCenter customized-case-header-column"
+        responsiveStyleClass="js-hidden-when-expand-menu u-hidden-lg-down" sortedField="CustomerName"
+        sortable="true" value="#{ivy.cms.co('/DefaultColumns/caseList/CustomerName')}"
         dataModel="#{dataModel.caseDataModel}" />
       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader
-        id="customTimestampField1-column-case-list-header" styleClass="TexAlCenter customized-case-header-column"
-        responsiveStyleClass="js-hidden-when-expand-menu u-hidden-lg-down" sortedField="customTimestampField1"
-        sortable="true" value="#{ivy.cms.co('/DefaultColumns/caseList/customTimestampField1')}"
+        id="ShipmentDate-column-case-list-header" styleClass="u-text-align-center customized-case-header-column"
+        responsiveStyleClass="js-hidden-when-expand-menu u-hidden-lg-down" sortedField="ShipmentDate"
+        sortable="true" value="#{ivy.cms.co('/DefaultColumns/caseList/ShipmentDate')}"
         dataModel="#{dataModel.caseDataModel}" />
     </ui:define>
 
@@ -118,14 +118,14 @@
 
       <!-- New field -->
       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCustomField id="case-customer-name-component"
-        panelGroupId="customVarCharField1-column-case-header-panel"
+        panelGroupId="customer-name-column-case-header-panel"
         responsiveStyleClass="js-hidden-when-expand-menu u-hidden-lg-down"
-        componentId="customVarCharField1-column-case-header-text" column="customVarCharField1"
+        componentId="customer-name-column-case-header-text" column="CustomerName"
         dataModel="#{dataModel.caseDataModel}"
-        labelValue="#{case.customFields().stringField('CustomVarCharField1').getOrNull()}" />
-      <h:outputText value="#{case.customFields().timestampField('CustomTimestampField1').getOrNull()}"
-        styleClass="TexAlCenter case-header-end-time-cell customized-case-header-column  js-hidden-when-expand-menu u-hidden-lg-down"
-        rendered="#{dataModel.caseDataModel.isSelectedColumn('customTimestampField1')}">
+        labelValue="#{case.customFields().stringField('CustomerName').getOrNull()}" />
+      <h:outputText value="#{case.customFields().timestampField('ShipmentDate').getOrNull()}"
+        styleClass="u-text-align-center case-header-end-time-cell customized-case-header-column  js-hidden-when-expand-menu u-hidden-lg-down"
+        rendered="#{dataModel.caseDataModel.isSelectedColumn('ShipmentDate')}">
         <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
       </h:outputText>
     </ui:define>

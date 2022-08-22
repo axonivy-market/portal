@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.Sleeper;
+import portal.guitest.common.WaitHelper;
 
 public class ChatPage extends TemplatePage {
 
@@ -48,6 +49,7 @@ public class ChatPage extends TemplatePage {
     WebElement input = findElementById("message-input-field");
     input.sendKeys(chatMessage);
     input.sendKeys(Keys.ENTER);
+    WaitHelper.assertTrueWithWait(() -> getAllMessagesChatLog().contains(chatMessage));
   }
 
   public String getAllMessagesChatLog() {
@@ -122,8 +124,8 @@ public class ChatPage extends TemplatePage {
   }
 
   public void closeChatMessageList() {
-    waitForElementDisplayed(By.cssSelector("span[class$='js-close-message-list']"), true);
-    click(By.cssSelector("span[class$='js-close-message-list']"));
+    waitForElementDisplayed(By.cssSelector(".js-close-message-list"), true);
+    click(By.cssSelector(".js-close-message-list"));
   }
 
   public boolean isNotificationBadgeChat() {

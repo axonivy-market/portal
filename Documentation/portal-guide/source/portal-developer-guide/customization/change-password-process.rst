@@ -20,7 +20,7 @@ Customization
 Create a callable subprocess in your project with the signature
 ``changePassword(String,String)``. Make sure that this signature is unique in
 your application. It has to return an enumeration ``ChangePasswordStatus`` and the
-``message`` to be shown to the user. You can override this process in PortalKit.
+``message`` to be shown to the user. You can override this process in ``portal``.
 
 |change-password-process|
 

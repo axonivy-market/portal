@@ -70,12 +70,12 @@ Change Portal Styles
 The Portal uses modern |css_variable| to support style customization. 
 
 To customize the Portal styles in an upgrade safe way, we suggest that you copy all CSS variables and styles
-which you plan to override from the files ``portal-variables.css`` and ``portal.css`` to file ``custom.css``.
+which you plan to override from the files ``portal-root-variables.css`` and ``portal.css`` to file ``custom.css``.
 
 Refer to :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html>` for the
 location of :dev-url:`custom.css </doc/nightly/engine-guide/configuration/files/custom-css.html>`.
 
-.. caution:: Please do not modify ``portal-variables.css`` and ``portal.css`` directly because they may change in a future Portal version.
+.. caution:: Please do not modify ``portal-root-variables.css``, ``portal-variables-light.css``, ``portal-variables-dark.css`` and ``portal.css`` directly because they may change in a future Portal version.
 
 ..
 
@@ -141,9 +141,9 @@ You can customize the Portal styles in ``custom.css``.
 Change date time pattern
 ------------------------
 
-You can change the date pattern by modifying the CMS in the PortalKit project:
-``PortalKit/patterns/datePattern`` and
-``PortalKit/patterns/dateTimePattern``.
+You can change the date pattern by modifying the CMS in ``portal``:
+``portal/patterns/datePattern`` and
+``portal/patterns/dateTimePattern``.
 
 .. |css_variable| raw:: html
 

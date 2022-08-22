@@ -24,9 +24,13 @@ The following default widgets are available:
 
 #. **Process list widget**: This widget displays available process starts. You can choose between different formats.
 
+#. **Process viewer widget**: This widget provides a visual representation of the process flow.
+
+   |process-viewer-widget|
+
 In addition, a developer can provide custom widgets to add relevant project information to your dashboard.
 
-Each default widget has the following standard features:
+**Task list widget, Case list widget, Process list widget (compact mode)** has the following standard features:
 
    - Saved filters and Filter options
 
@@ -167,6 +171,13 @@ You can create a widget with a card layout, including a nice picture for a singl
 
 |process-widget-image-mode|
 
+Process viewer widget
+=====================
+
+You can define the widget name and process to be displayed.
+
+|process-viewer-widget-configuration|
+
 .. include:: ../includes/_common-icon.rst  
 
 .. |dash-board| image:: ../../screenshots/new-dashboard/dashboard.png
@@ -188,3 +199,5 @@ You can create a widget with a card layout, including a nice picture for a singl
 .. |process-widget-compact-mode| image:: ../../screenshots/new-dashboard/process-widget-compact-mode.png
 .. |process-widget-full-mode| image:: ../../screenshots/new-dashboard/process-widget-full-mode.png
 .. |process-widget-image-mode| image:: ../../screenshots/new-dashboard/process-widget-image-mode.png
+.. |process-viewer-widget| image:: ../../screenshots/new-dashboard/process-viewer-widget.png
+.. |process-viewer-widget-configuration| image:: ../../screenshots/new-dashboard/process-viewer-widget-configuration.png

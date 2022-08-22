@@ -15,12 +15,11 @@ Basic Installation
 Project Modules
 ---------------
 
-The application consists of four process modules. For detailed information
+The application consists of 3 process modules. For detailed information
 on each module, refer to :ref:`architecture`.
 
--  portal-component
--  PortalKit
--  PortalTemplate
+-  portal-components
+-  portal
 -  AxonIvyExpress
 
 The deployment of Ivy projects is described in :dev-url:`project
@@ -42,7 +41,7 @@ Engine Without License (Demo Mode)
 The engine automatically deploys the Portal application with the following set
 of default users:
 
-.. table:: 
+.. table::
 
    +-----------------------+-----------------------+-----------------------+
    | Username              | Password              | Description           |
@@ -79,10 +78,10 @@ to make your existing Portal working with current Axon Ivy engine.
 
 How To Migrate
 --------------
-   
-.. important:: 
-   If you call any Portal API which is not mentioned in the API documentation, 
-   it may have changed or have been removed. Don't forget to re-implement the 
+
+.. important::
+   If you call any Portal API which is not mentioned in the API documentation,
+   it may have changed or have been removed. Don't forget to re-implement the
    APIs concerned in your own project.
 
    To migrate the Portal, you need to migrate Axon Ivy first. Refer to the
@@ -93,8 +92,8 @@ How To Migrate
 In Designer
 -----------
 
-#. Replace all Portal projects by the versions of the new release.
-#. Update PortalTemplate dependency of the customer project in pom.xml.
+#. Replace all Portal projects with the versions of the new release.
+#. Update portal dependency of the customer project in pom.xml.
 #. Follow detailed migration notes for each version below.
 #. If customization needs copying code from Portal, merge changes between the
    two versions of the Portal for copied code.
@@ -106,14 +105,20 @@ In Engine
 
 #. Convert database schema if needed.
 
-#. Redeploy Portal projects and customer
-   project.
+#. Redeploy Portal projects and customer project.
+
 #. Follow detailed migration notes for each version below.
 
 Migrate 9.3 To 9.4
 ------------------
 
-#. If you configured Process widgets in your own dashboards as described in :ref:`configure-new-dashboard-proces-widget`, 
+``PortalStyle``, ``PortalKit`` and ``PortalTemplate`` have been replaced by ``portal-components`` and ``portal`` from 9.4, refer to :ref:`architecture`.
+
+#. If you have customized PortalStyle, please refer to
+   :ref:`Customization Portal Logos And Colors <customization-portal-logos-and-colors>` to override login background, favicon & logo images.
+   If you have changed the CMS in ``PortalStyle``, please adapt the ``portal`` CMS accordingly.
+
+#. If you configured Process widgets in your own dashboards as described in :ref:`configure-new-dashboard-proces-widget`,
    you need to adapt JSON as follows:
 
    * Search text ``"type":"process"``, then find related ``displayMode`` of that Process widget.
@@ -145,15 +150,11 @@ Migrate 9.3 To 9.4
 #. The ``customization.css`` file has been removed, in case you use it in your project, please switch to using
    :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html>` to customize styling
 
-#. The ``PortalStyles`` has been removed in 9.4. If you have customized PortalStyle, please use
-   :ref:`Customization Portal Logos And Colors <customization-portal-logos-and-colors>` to override login background, favicon & logo images.
-   If you changed some cms in PortalStyle, please adapt accordingly it on PortalKit.
-
-#. Sub processes related to documents are moved to the independent project ``portal-component``.
+#. Sub processes related to documents are moved to the independent project ``portal-components``.
    If you customized these processes, please override the correspond sub process again and added your customization to it.
-   
-   Below is a list of deprecated processes in project ``PortalKit`` and new processes in project ``portal-component``.
-   
+
+   Below is a list of deprecated processes in project ``portal`` and new processes in project ``portal-components``.
+
    +-----------------------------------+--------------------------+
    | New subprocess                    | Deprecated subprocess    |
    +===================================+==========================+
@@ -166,7 +167,7 @@ Migrate 9.3 To 9.4
    | DownloadDocumentItem              | DownloadDocument         |
    +-----------------------------------+--------------------------+
 
-#. Some classes of the Portal have been moved to the independent project ``portal-component``. Please refer to below table to migrate them correctly
+#. Some classes of the Portal have been moved to the independent project ``portal-components``. Please refer to below table to migrate them correctly
 
    .. csv-table::
       :file: documents/class_replacement_9.4.csv
@@ -174,7 +175,7 @@ Migrate 9.3 To 9.4
       :class: longtable
       :widths: 1 1
 
-#. Some components of the Portal have been moved to the independent project ``portal-component``. Please follow these steps to migrate them:
+#. Some components of the Portal have been moved to the independent project ``portal-components``. Please follow these steps to migrate them:
 
    - :ref:`Migration steps <components-additional-components-migrate-from-old-user-selection>` for the new :ref:`User Selection <components-additional-components-user-selection>` component.
 
@@ -186,6 +187,23 @@ Migrate 9.3 To 9.4
 
    - :ref:`Migration steps <components-additional-components-migrate-from-old-process-chain>` for the new :ref:`Process Chain <components-additional-component-process-chain>` component.
 
+#. Portal dashboard widgets only support the ``CustomFields`` declared in the ``custom-fields.yaml`` file.
+   If your ``CustomFields`` are used in the dashboard widget, please follow the :dev-url:`Custom Fields Meta Information </doc/nightly/designer-guide/how-to/workflow/custom-fields.html#meta-information>` to adapt the data.
+
+#. The ``DefaultChartColor.p.json`` sub process has been removed, in case you use it in your project, please remove override this sub process and switch to using
+   :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html>` to customize chart, data labels, legend color.
+   Refer to :ref:`Default chart colors <customization-default-chart-colors>`.
+
+#. Deploy :download:`portal-migration.iar <documents/portal-migration-9.4.0.iar>` project to your Ivy application and run it by access link
+   ``your_host/your_application/pro/portal-migration/175F92F71BC45295/startMigrateConfiguration.ivp``
+
+   .. important::
+      * If you have many applications, deploy to only one application and run it by access the migration link,
+        for example: ``https://portal.io/Portal/pro/portal-migration/175F92F71BC45295/startMigrateConfiguration.ivp``
+
+      * Use an administrator account to sign in
+      * Run migration process only once
+      * You must remove some process models: ``portal-migration``, ``PortalStyle``, ``PortalKit`` and ``PortalTemplate`` after successfully migrating.
 
 Migrate To 9.3
 --------------
@@ -200,7 +218,7 @@ Migrate To 9.3
       * Use an administrator account to sign in
       * Run migration process only once
 
-#. We changed the way to navigate to Task Analysis component. Process ``Start Processes/TaskAnalysis/start.ivp`` is moved to new place ``Start Processes/PortalStart/showTaskAnalysis.ivp``. 
+#. We changed the way to navigate to Task Analysis component. Process ``Start Processes/TaskAnalysis/start.ivp`` is moved to new place ``Start Processes/PortalStart/showTaskAnalysis.ivp``.
    Refer to :ref:`Task Analysis call<components-additional-component-task-analysis-how-to-use>` for details.
 
 #. We moved the configuration of announcement, thirdparty applications, default statistic charts, application favorite processes, public external links and express processes from the BusinessData tovariables.
@@ -220,19 +238,19 @@ Migrate 9.1 To 9.2
 
 #. Deploy :download:`MigrateData.iar <documents/MigrateData.iar>` project to your Ivy application and run it by access link
    ``your_host/your_application/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp``
-   
+
    If you have many applications, deploy to only one application and run it by access link
    ``your_host/your_application/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp``
-   
+
    Example: ``https://portal.io/Portal/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp``
 
    .. important:: Run migration process only once
 
 #. We remove implementation of Portal multiple applications. So that you need to adapt some points below:
 
-   - Adapt start process signature of ``PasswordService`` in ``ChangePassword.p.json`` if you overrode this callable.
+   - Adapt start process signature of ``PasswordService`` in ``ChangePassword.mod`` if you overrode this callable.
    - If you are using ``ProcessStartCollector``, replace constructor ``ProcessStartCollector(application)`` with ``ProcessStartCollector()``.
-   - If you have TaskLazyDataModel, CaseLazyDataModel customization, remove ``setInvolvedApplications()`` method, ``setInvolvedUsername`` in search criteria.   
+   - If you have TaskLazyDataModel, CaseLazyDataModel customization, remove ``setInvolvedApplications()`` method, ``setInvolvedUsername`` in search criteria.
 
 #. In PortalNavigatorInFrame.java, change the methods from non-static to static.
 
@@ -240,7 +258,7 @@ Migrate 9.1 To 9.2
 
 #. If you have TaskLazyDataModel, CaseLazyDataModel customization, follow :ref:`How to override export feature of Task list <customization-task-widget-how-to-override-export-feature>` and :ref:`How to override export feature of Case list <customization-case-widget-how-to-override-export-feature>` to customize label and value of custom columns that will be exported.
 
-#. Deprecated callable processes: ``OpenPortalSearch.p.json``, ``OpenPortalTasks.p.json``, ``OpenPortalTaskDetails.p.json``, ``OpenPortalCases.p.json``, ``OpenPortalCaseDetails.p.json`` process.
+#. Deprecated callable processes: ``OpenPortalSearch.mod``, ``OpenPortalTasks.mod``, ``OpenPortalTaskDetails.mod``, ``OpenPortalCases.mod``, ``OpenPortalCaseDetails.mod`` process.
 
    Portal recommends using :dev-url:`Axon Ivy HtmlOverride wizard </doc/nightly/designer-guide/how-to/overrides.html?#override-new-wizard>` to customize ``Portal HTML Dialog``
 
@@ -262,21 +280,21 @@ Migrate 8.X To 9.1
 #. Add parameter ``<ui:param name="viewName" value="CASE" />`` to your customized ``PortalCasesTemplate`` to displayed breadcrumb of Case list.
 
 #. Ivy core has enhanced the Ivy URI, so Portal needs to make a migration. For
-   each of your applications, execute the following steps: 
+   each of your applications, execute the following steps:
 
    #. Deploy process model :download:`PortalUrlMigration.iar <documents/PortalUrlMigration.iar>`
       to your Ivy Application.
-      
+
    #. run ``migratePortalUrl.ivp`` once and wait until it is redirected to
-      another page (i.e. the Homepage) without error. 
-      
+      another page (i.e. the Homepage) without error.
+
    #. Remove the process model ``migratePortalUrl.ivp`` after successfully migrating.
 
 #. HOMEPAGE_URL (single Portal app mode) and registered application link (multi
    Portal app mode) are not available anymore. To let Portal know where your new
    Portal home page is, you have to set default pages in your project.
-   Follow this chapter to customize standard processes: 
-   :dev-url:`Standard Processes </doc/nightly/designer-guide/user-interface/standard-processes/index.html>`
+   Follow this chapter to customize default-pages:
+   :dev-url:`Default Pages </doc/nightly/designer-guide/user-interface/default-pages/index.html>`
 
 #. Portal now uses |css_variable| instead of SASS. Therefore, you have to convert
    the SASS syntax to the new CSS variables or use online tools such as
@@ -333,16 +351,34 @@ releases of Axon Ivy.
 Changes in 9.4
 --------------
 
-- Introduce the ``Portal.Tasks.BehaviourWhenClickingOnLineInTaskList`` Portal setting to set behaviour when
-  clicking on a line in task list, task widget in new dashboard and related tasks in case details, each user can change it via user profile. 
+- Combined projects ``PortalStyle``, ``PortalKit``, and ``PortalTemplate`` to one project named ``portal``.
 
-- Introduce the ``Portal.StatisticChartScalingInterval`` Portal setting to set the interval in seconds to do periodic statistic chart scaling requests.
+- Introduced the ``Portal.Tasks.BehaviourWhenClickingOnLineInTaskList`` Portal setting to set behaviour when
+  clicking on a line in task list, task widget in new dashboard and related tasks in case details, each user can change it via user profile.
 
-- Introduce new ``Task ID``, ``Task Name``, ``Case ID`` and ``Case Name`` filter in the Portal full task list and case list.
+- Introduced the ``Portal.StatisticChartScalingInterval`` Portal setting to set the interval in seconds to do periodic statistic chart scaling requests.
 
-- Introduce the ``Process Viewer`` page, user can get the visual viewer of the process start. See details :ref:`Show Process Viewer <how-to-show-process-viewer>`
+- Introduced new ``Task ID``, ``Task Name``, ``Case ID`` and ``Case Name`` filter in the Portal full task list and case list.
 
-- Remove the PortalStyle project. The CMS in PortalStyle has been moved to PortalKit.
+- Introduced the ``Process Viewer`` page, user can get the visual viewer of the process start. See details :ref:`Show Process Viewer <how-to-show-process-viewer>`
+
+- Introduced the ``Formatting language setting`` to format values, for example the decimal separator is displayed differently in different regions of the world.
+
+- Removed sub process ``DefaultChartColor.p.json``, introduced some Portal variables for customizing the default chart color. See details: :ref:`Default chart colors <customization-default-chart-colors>`.
+
+- Introduce some components in new ``portal-components`` project.
+
+   - :ref:`User Selection Component <components-additional-components-user-selection>`
+
+   - :ref:`Role Selection Component <components-additional-components-role-selection>`
+
+   - :ref:`Document Table Component <components-additional-components-document-table>`
+
+   - :ref:`Process History Component <components-additional-component-process-history>`
+
+   - :ref:`Process Chain Component <components-additional-component-process-chain>`
+
+   - :ref:`Process Viewer Component <components-additional-components-process-viewer>`
 
 Changes in 9.3
 --------------
@@ -353,21 +389,21 @@ Changes in 9.3
 Changes in 9.2
 --------------
 
-- Include new TaskState such as ``Destroyed``, ``Failed``, ``Join failed`` and ``Waiting for event`` in Portal Task list, also in Task State filter.
+- Included new TaskState such as ``Destroyed``, ``Failed``, ``Join failed`` and ``Waiting for event`` in Portal Task list, also in Task State filter.
 
-- Include new CaseState ``Destroyed`` in Portal Case list, also in Case State filter.
+- Included new CaseState ``Destroyed`` in Portal Case list, also in Case State filter.
 
-- Introduce :ref:`Workflow Events table <how-to-show-workflow-events>`, user who has permission ``WORKFLOW_EVENT_READ_ALL`` can see all ``WORKFLOW_EVENTS``.
+- Introduced :ref:`Workflow Events table <how-to-show-workflow-events>`, user who has permission ``WORKFLOW_EVENT_READ_ALL`` can see all ``WORKFLOW_EVENTS``.
 
-- Introduce the ``Portal.Homepage`` Portal setting to set the default homepage, each user can change it via user profile. 
+- Introduced the ``Portal.Homepage`` Portal setting to set the default homepage, each user can change it via user profile.
 
-- Introduce new approach to customize :ref:`Portal Case Item details <customization-case-item-details>`. Now, your case information in Case details page and Case Info dialog is the same
+- Introduced new approach to customize :ref:`Portal Case Item details <customization-case-item-details>`. Now, your case information in Case details page and Case Info dialog is the same
 
-- Introduce new approach to customize :ref:`Portal Task item details <customization-task-item-details>`.
+- Introduced new approach to customize :ref:`Portal Task item details <customization-task-item-details>`.
 
-- Introduce new Portal Setting ``Portal.ShowButtonIcon`` to control visibility of icon of button in Portal.
+- Introduced new Portal Setting ``Portal.ShowButtonIcon`` to control visibility of icon of button in Portal.
 
-- Introduce new variable named ``PortalLoginPageDisplay`` to show Login page or hide it then show error page instead.
+- Introduced new variable named ``PortalLoginPageDisplay`` to show Login page or hide it then show error page instead.
 
 - No multiple applications anymore, Portal now only works in current application. It means administrator can not add new Ivy application.
 
@@ -380,16 +416,16 @@ Changes in 9.2
 Changes in 9.1
 --------------
 
-- Refactor style customization approach. From now on, Portal use CSS Variable as technology to customize CSS.
+- Refactored style customization approach. From now on, Portal use CSS Variable as technology to customize CSS.
 
-- Introduce the User Guide feature, using the ``Portal.Dashboard.ShowUserGuide`` Portal Setting to activate/deactivate it, 
+- Introduced the User Guide feature, using the ``Portal.Dashboard.ShowUserGuide`` Portal Setting to activate/deactivate it,
   and follow :ref:`Customize user guide <customization-portal-home-user-guide>` for your customization.
 
-- Introduce new Portal Setting ``Portal.ShowButtonIcon`` to control visibility of icon of button in Portal.
+- Introduced new Portal Setting ``Portal.ShowButtonIcon`` to control visibility of icon of button in Portal.
 
-- Introduce new Portal dialog with icon decorator. Refer to :ref:`this section <components-additional-portal-dialog-with-icon>` for detail.
+- Introduced new Portal dialog with icon decorator. Refer to :ref:`this section <components-additional-portal-dialog-with-icon>` for detail.
 
-- TaskTemplate-7, TaskTemplate and TwoColumnTemplate are removed.
+- TaskTemplate-7, TaskTemplate and TwoColumnTemplate have been removed.
 
 
 .. |css_variable| raw:: html

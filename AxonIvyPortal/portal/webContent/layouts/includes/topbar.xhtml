@@ -1,0 +1,149 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:pe="http://primefaces.org/ui/extensions" 
+  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
+  <!-- TOPBAR START -->
+  <div class="layout-topbar-left">
+    <a href="#" class="menu-button">
+      <i class="si si-navigation-menu" />
+    </a>
+    <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="task-leave-warning-component"
+      rendered="#{isWorkingOnATask}" leaveActionListener="#{userMenuBean.resetTaskAndNavigateWithGrowl(task)}"
+      reserveActionListener="#{userMenuBean.reserveTaskAndNavigateWithGrowl(task)}"
+      componentId="logo-task-losing-confirmation-dialog" widgetVar="logo-task-losing-confirmation-dialog"
+      taskState="#{task.state}" />
+    <c:if test="#{!isNotRequiredLogin}">
+      <ic:ch.ivy.addon.portalkit.singleapp.general.SetLanguage />
+    </c:if>
+  </div>
+
+  <div class="layout-topbar-right">
+    <ui:insert name="menu-bar">
+      <ul id="top-menu" class="layout-topbar-actions topbar-menu animated js-top-menu">
+        <li class="topbar-item breadcrumb-container" >
+          <h:panelGroup id="breadcrumb-container">
+            <ic:ch.ivy.addon.portal.generic.PortalBreadcrumb id="portal-breadcrumb"
+              isWorkingOnATask="#{isWorkingOnATask}"
+              viewName="#{viewName}"
+              task="#{task}" case="#{case}" />
+          </h:panelGroup>
+        </li>
+
+        <li class="topbar-item search-item" jsf:rendered="#{showGlobalSearch}">
+            
+          <a href="#" id="global-search-item">
+            <i class="topbar-icon si si-search"/>
+          </a>
+          <ic:ch.ivy.addon.portal.generic.GlobalSearch id="global-search-component"
+            isWorkingOnATask="#{isWorkingOnATask}" case="#{case}" />
+        </li>
+
+        <li class="topbar-item themeswitch-item">
+          <p:commandLink id="theme-switcher"
+            onclick="PrimeFaces.FreyaConfigurator.changeLayout('ivy', '#{ivyFreyaTheme.mode == 'light' ? 'dark' : 'light'}');Portal.changePortalVariableTheme('#{ivyFreyaTheme.mode == 'light' ? 'dark' : 'light'}');">
+            <i class="topbar-icon pi pi-#{ivyFreyaTheme.mode == 'light' ? 'moon' : 'sun'}" />
+            <p:ajax onstart="PrimeFaces.FreyaConfigurator.beforeResourceChange();"
+              listener="#{ivyFreyaTheme.toggleTheme}" update="theme-switcher" />
+          </p:commandLink>
+        </li>
+
+        <li jsf:rendered="#{chatRendererBean.isChatRendered}" class="topbar-item">
+          <p:commandLink id="toggle-chat-panel-command" global="false" styleClass="notification-badge mod-chat-menu">
+            <i class="topbar-icon si si-messages-bubble" />
+          </p:commandLink>
+        </li>
+
+        <li class="topbar-item user-profile setting-container">
+          <a href="#" id="user-settings-menu" onclick="hideDashboardOverlayPanels()" class="topbar-item user-profile">
+            <pc:securityMemberNameAndAvatar displayName="#{userMenuBean.loggedInUser}" securityMember="#{ivy.session.sessionUser}" displayNameStyleClass="user-name" />
+          </a>
+          <ul id="user-setting-container">
+             <li><p:commandLink id="user-profile" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle')}"
+               actionListener="#{userMenuBean.navigateToUserProfileOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}" />
+             </li>
+
+            <li jsf:rendered="#{userMenuBean.showDashboardConfigurationMenu and !menuView.isShowLegacyUI()}">
+              <p:commandLink id="dashboard-configuration"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title')}"
+                actionListener="#{userMenuBean.navigateToDashboardConfigurationOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"/>
+            </li>
+
+            <li jsf:rendered="#{userMenuBean.showAdminSetting}">
+              <p:commandLink id="adminui-menu-item" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}"
+                actionListener="#{userMenuBean.navigateToPortalManagementDisplayWorkingTaskWarning(isWorkingOnATask, task)}" />
+            </li>
+
+            <li><p:commandLink id="absence-menu-item" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}"
+                  actionListener="#{userMenuBean.navigateToAbsencesOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"
+                  rendered="#{absenceManagementBean.ownAbsencesReadable}" /></li>
+
+            <li><p:commandLink id="change-password-menu-item"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}"
+                rendered="#{not userMenuBean.hiddenChangePassword}" oncomplete="PF('changePasswordDialog').show(); $('#user-setting-container').click()"
+                resetValues="true" update="change-password-form">
+                <p:resetInput target=":change-password-dialog" />
+              </p:commandLink></li>
+
+            <li><p:link id="project-info-menu-item" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/info')}"
+                onclick="rcProjectInfo(); $('#user-setting-container').click()" /></li>
+
+            <c:forEach var="menu" items="#{userMenuConfigurableBean.menus}" varStatus="status">
+              <li><ic:ch.ivy.addon.portalkit.component.UserMenu id="user-menu-setting-#{status.index}" menu="#{menu}"
+                  index="#{status.index}" isWorkingOnATask="#{isWorkingOnATask}" task="#{task}" /></li>
+            </c:forEach>
+
+            <li jsf:rendered="#{loginBean.isLoginPageRendered()}">
+              <ic:ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting
+                id="logout-setting" isWorkingOnATask="#{isWorkingOnATask}" task="#{task}" />
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="color-header">
+        <div class="first-header-bar" />
+        <div class="second-header-bar" />
+        <div class="third-header-bar" />
+      </div>
+
+      <ui:insert name="userSettingsGuide">
+        <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="setting-container-guide-component" targetComponent="setting-container"
+          title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/username/title')}" 
+          content="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/username/content')}"
+          targetCssSelector=".setting-container" iconClass="si si-single-neutral-actions" onNext="PF('statistic-widget-container-guide').show()"
+          my="right bottom-30" at="right top" arrowPosition="top right" onShow="showUsernameGuide()" onHide="hideUsernameGuide()"
+          updatedComponentAfterGuide="#{updatedComponentAfterGuide}" rendered="#{guideBean.isGuideShown}" />
+      </ui:insert>
+
+      <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" width="50%" closeOnEscape="true"
+        widgetVar="changePasswordDialog" id="change-password-dialog" resizable="false" modal="true" draggable="false" appendTo="@(body)" dynamic="true"
+        styleClass="change-password-dialog" responsive="true">
+        <h:form id="change-password-form">
+          <ic:ch.ivy.addon.portalkit.multiapp.settings.PasswordSetting id="password-setting" dialogName="changePasswordDialog" />
+        </h:form>
+      </p:dialog>
+
+      <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/header')}" styleClass="project-info-dialog" width="1000"
+        closeOnEscape="true" widgetVar="project-info-dialog" id="project-info-dialog" resizable="false" modal="true" draggable="false"
+        appendTo="@(body)" dynamic="true" responsive="true" fitViewport="true">
+        <ic:ch.ivy.addon.portalkit.component.ProjectVersion id="project-version" />
+        <div class="u-dialog-footer-actions-group">
+          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" id="project-version-close-button" type="button"
+            icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('project-info-dialog').hide();" />
+        </div>
+      </p:dialog>
+
+      <h:form>
+        <p:remoteCommand name="rcProjectInfo" actionListener="#{projectVersionBean.loadProjectVesion}" oncomplete="PF('project-info-dialog').show()"
+          update="project-info-dialog" />
+      </h:form>
+    </ui:insert>
+  </div>
+
+  <c:if test="#{chatRendererBean.isChatRendered}">
+    <ui:include src="/layouts/includes/chat.xhtml" />
+  </c:if>
+  <!-- TOPBAR END -->
+</ui:composition>

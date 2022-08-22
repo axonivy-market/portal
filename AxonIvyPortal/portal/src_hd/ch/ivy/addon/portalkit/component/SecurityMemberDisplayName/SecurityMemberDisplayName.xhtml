@@ -1,0 +1,125 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="textId" default="user" />
+  <cc:attribute name="securityMember" />
+  <cc:attribute name="securityMemberName" required="true" />
+  <cc:attribute name="alwaysShowAsText" default="false" shortDescription="To force display the user name with simple text format"/>
+  <cc:attribute name="styleClass" />
+  <cc:attribute name="roleNameStyleClass" />
+  <cc:attribute name="securityMemberContainerStyleClass" />
+  <cc:attribute name="renderDeputyInfo" default="false" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="securityMember" value="#{cc.attrs.securityMember}" />
+  <c:set var="memberName" value="#{cc.attrs.securityMemberName}" />
+  <c:set var="alwaysShowAsText" value="#{cc.attrs.alwaysShowAsText}" />
+
+  <f:event listener="#{securityMemberDisplayNameBean.init()}" type="preRenderComponent" />
+  <!-- Display User name as text format -->
+  <h:panelGroup id="security-member-container" layout="block" styleClass="security-member-container #{cc.attrs.securityMemberContainerStyleClass}">
+    <pc:securityMemberNameAndAvatar securityMember="#{securityMember}" id="name-and-avatar"
+      containerStyleClass="#{cc.attrs.renderDeputyInfo and task.getActivator() != null and ivy.session.isMemberThroughActiveSubstitution(task.getActivator()) ? 'has-deputy-info' : ''}"
+      displayNameId="#{cc.attrs.textId}-text" displayName="#{securityMemberDisplayNameBean.getBriefDisplayName(securityMember, memberName)}" displayNameStyleClass="#{cc.attrs.styleClass}" />
+    <h:panelGroup id="deputy-info"
+      rendered="#{cc.attrs.renderDeputyInfo and task.getActivator() != null and ivy.session.isMemberThroughActiveSubstitution(task.getActivator())}">
+      <i class="si si-information-circle" />
+    </h:panelGroup>
+    <p:tooltip for="deputy-info" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/taskFromSubstitution')}"
+      trackMouse="true" hideEvent="mouseleave click"
+      rendered="#{cc.attrs.renderDeputyInfo and task.getActivator() != null and ivy.session.isMemberThroughActiveSubstitution(task.getActivator())}" />
+
+    <p:tooltip rendered="#{securityMemberDisplayNameBean.isRenderDisplayNameTooltip(securityMember)}"
+      for="#{cc.clientId}:name-and-avatar:#{cc.attrs.textId}-text"
+      value="#{securityMemberDisplayNameBean.getFullDisplayName(securityMember, memberName)}"
+      hideEvent="mouseleave click"
+      styleClass="security-member-tooltip"
+      at="right center"
+      my="left center" />
+
+    <ui:fragment rendered="#{securityMemberDisplayNameBean.isRenderGroupUsersAsTooltip(securityMember, alwaysShowAsText)}">
+      <f:event listener="#{logic.loadUsersForTooltip(securityMember)}" type="preRenderComponent" />
+      <p:tooltip for="#{cc.clientId}:name-and-avatar:#{cc.attrs.textId}-text"
+        value="#{data.usersInTooltips}"
+        escape="false"
+        styleClass="security-member-tooltip"
+        hideEvent="mouseleave click" />
+    </ui:fragment>
+  </h:panelGroup>
+
+  <!-- Display Role name as link format, click to show all user of this role -->
+  <h:panelGroup rendered="#{securityMemberDisplayNameBean.isRenderUsersOverlaySearch(securityMember, alwaysShowAsText)}"
+    styleClass="#{cc.attrs.roleNameStyleClass}">
+    <p:commandLink id="#{cc.attrs.textId}-activator"
+      styleClass="#{cc.attrs.styleClass} user-fullname-link"
+      update="user-of-role"
+      actionListener="#{logic.loadUsersOfRole(securityMember.getMemberName())}"
+      oncomplete="PF('users-of-role').show('#{component.clientId}')"
+      process="@this"
+      immediate="true">
+      <i class="si si-information-circle icon-compact-mode" />
+    </p:commandLink>
+    <p:tooltip for="#{cc.attrs.textId}-activator"
+      value="#{securityMemberDisplayNameBean.getBriefDisplayName(securityMember, memberName)} - #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/tooltipHelper')}"
+      trackMouse="false"
+      hideEvent="mouseleave click" />
+
+    <p:overlayPanel id="user-of-role" widgetVar="users-of-role"
+      styleClass="user-of-role u-padding-0"
+      dismissable="true"
+      my="left top"
+      at="left bottom"
+      appendTo="@(body)"
+      dynamic="true">
+      <h:form id="user-form" styleClass="ui-g"
+        onsubmit="return false;">
+        <h:panelGroup id="user-data-container"
+          styleClass="ui-g-12 u-padding-0">
+          <div class="ui-g-12">
+            <h:outputText styleClass="role-name"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/userOfRoleTitle', [securityMember.getDisplayName()])}" />
+          </div>
+
+          <h:panelGroup layout="block" styleClass="ui-g-12 u-no-padding-bottom"
+            rendered="#{not empty data.memberNames}">
+            <ic:ch.ivy.addon.portalkit.component.Filter id="filter-container"
+              icon="fa fa-filter"
+              placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/filterByUsername')}"
+              styleClass="widget-header-filter-input"
+              keywordStoresIn="#{data.keyword}"
+              listener="#{logic.filterUserByName(data.keyword)}"
+              updateComponent="#{cc.clientId}:user-form:user-data-container" />
+          </h:panelGroup>
+
+          <c:set var="totalMember" value="#{data.memberNames.size()}" />
+          <p:dataScroller id="user-data" widgetVar="user-data"
+            value="#{data.memberNames}" var="user"
+            chunkSize="21"
+            rendered="#{not empty data.memberNames}"
+            styleClass="user-data-scroller ui-g-12 u-no-padding-top">
+            <pc:securityMemberNameAndAvatar securityMember="#{user}"
+              displayName="#{securityMemberDisplayNameBean.getFullDisplayNameForUserDTO(user)}" />
+            <h:outputText rendered="#{totalMember >= 100 and empty user.name}" value="#{user.displayName}"/>
+            <f:facet name="loader">
+              <p:link rendered="#{totalMember gt 20}" href="#">
+                <i class="fa fa-angle-double-down u-mar-right-5" />
+                <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/loadMore')}</span>
+              </p:link>
+            </f:facet>
+          </p:dataScroller>
+          <h:outputText rendered="#{empty data.memberNames}"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/noUser')}"
+            styleClass="ui-g-12" />
+        </h:panelGroup>
+      </h:form>
+    </p:overlayPanel>
+  </h:panelGroup>
+
+</cc:implementation>
+</html>

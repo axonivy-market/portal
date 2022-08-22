@@ -400,18 +400,15 @@ function cleanHighlightExportExpress() {
 }
 
 function scrollToMiddleOfLayoutContent() {
-  var layoutContent = $('.js-layout-content'); 
-  layoutContent.scrollTop(layoutContent[0].scrollHeight/2);
+  window.scrollTo(0, document.body.scrollHeight/2);
 }
 
 function scrollToMiddleOfLayoutContent2() {
-  var layoutContent = $('.js-layout-content');
-  layoutContent.scrollTop(layoutContent[0].scrollHeight/4);
+  window.scrollTo(0, document.body.scrollHeight/4);
 }
 
 function scrollToBottomOfLayoutContent() {
-  var layoutContent = $('.js-layout-content'); 
-  layoutContent.scrollTop(layoutContent[0].scrollHeight);
+  window.scrollTo(0, document.body.scrollHeight);
 }
 
 function highlightCustomTaskDetail() {
@@ -537,4 +534,8 @@ function highlightUserExampleNavigation() {
 
 function highlightProcessDisplayModePanel() {
   createRedMediumOutline($("div[id $='process-display-mode_panel']"));
+}
+
+function highlightDashboardConfiguration() {
+   createRedMediumOutline($("#dashboard-configuration"));
 }

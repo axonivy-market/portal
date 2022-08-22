@@ -1,6 +1,0 @@
-AbsenceServiceData #class
-ch.ivyteam.wf.processes #namespace
-absence ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence #field
-absences java.util.Set #field
-absencesByUser java.util.Map #field
-username String #field

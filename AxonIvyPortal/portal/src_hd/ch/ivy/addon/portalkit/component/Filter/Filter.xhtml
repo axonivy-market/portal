@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"      
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:ic="http://ivyteam.ch/jsf/component"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+      
+  <cc:interface componentType="IvyComponent">
+    <cc:attribute name="event" default="keyup"  />
+    <cc:attribute name="delay" default="500" />
+    <cc:attribute name="listener"  />
+    <cc:attribute name="styleClass" />
+    <cc:attribute name="ajax" default="true" type="java.lang.Boolean" />
+    <cc:attribute name="placeholder" />
+    <cc:attribute name="updateComponent" />
+    <cc:attribute name="keywordStoresIn" />
+    <cc:attribute name="onCompletedCallback" default="" />
+    <cc:attribute name="isFilterToggleRenderedOnMobile" default="false" />
+    <cc:attribute name="onClickIconFilter" default="" />
+  </cc:interface>
+  
+  <cc:implementation>
+    <div id="#{cc.clientId}" class="filter-widget">
+      <p:inputText id="ajax-keyword-filter" styleClass="filter-widget-input #{cc.attrs.styleClass}" rendered="#{cc.attrs.ajax}" placeholder="#{cc.attrs.placeholder}" value="#{cc.attrs.keywordStoresIn}">
+        <p:ajax global="false" event="#{cc.attrs.event}" delay="#{cc.attrs.delay}" listener="#{cc.attrs.listener}" update="#{cc.attrs.updateComponent}" oncomplete="#{cc.attrs.onCompletedCallback}" />
+      </p:inputText>
+      <p:inputText id="non-ajax-keyword-filter" styleClass="filter-widget-input #{cc.attrs.styleClass}" rendered="#{not cc.attrs.ajax}" onkeyup="#{cc.attrs.listener}" placeholder="#{cc.attrs.placeholder}" />
+      <span class="MarLeft10">
+        <p:commandButton id="mobile-filter-icon" styleClass="mobile-filter-icon rounded-button ui-button-outlined" icon="si si-filter-1" rendered="#{cc.attrs.isFilterToggleRenderedOnMobile}" onclick="#{cc.attrs.onClickIconFilter}" global="false" type="button" />
+      </span>
+    </div>
+  </cc:implementation>
+</html>

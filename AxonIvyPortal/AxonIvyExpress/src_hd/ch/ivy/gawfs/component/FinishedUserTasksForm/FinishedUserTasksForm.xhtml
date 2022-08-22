@@ -15,12 +15,12 @@
   <h:outputLabel id="finished-task-label" styleClass="finished-task-label ui-g-12" for="approval-result"
     value="#{ivy.cms.co('/Dialogs/WorkflowExecution/FinishedTasksForm/FinishedTasks')}" />
   <ui:repeat id="approval-result" var="wfTask" value="#{cc.attrs.finishedTasks}" varStatus="status">
-    <p:fieldset id="finished-task-fieldset" styleClass="finished-task-fieldset express-fieldset fieldset-no-border ui-g portal-card-container" toggleable="true"
+    <p:fieldset id="finished-task-fieldset" styleClass="finished-task-fieldset express-fieldset ui-g MarTop10" toggleable="true"
       collapsed="#{status.index == cc.attrs.finishedTasks.size() -1 or cc.attrs.expandAllSteps ? 'false' : 'true'}">
       <f:facet name="legend">
         <h:outputText id="finished-task-fieldset-legend" value="#{wfTask.subject}" />
       </f:facet>
-      <div class="ui-g-12 card">
+      <div class="ui-g-12">
         <!-- APPLICANT INFO -->
         <p:outputLabel id="applicant-label" value="#{ivy.cms.co('/Dialogs/WorkflowExecution/FinishedTasksForm/Applicant')}"
           styleClass="review-content-title" />
@@ -80,7 +80,7 @@
           </pe:dynaFormControl>
 
           <pe:dynaFormControl type="FileUpload" for="fileUpload">
-            <ic:com.axonivy.portal.component.DocumentTable id="fileUpload" uploadRendered="false" deleteRendered="false" typeColumnRendered="false"
+            <ic:com.axonivy.portal.components.DocumentTable id="fileUpload" uploadRendered="false" deleteRendered="false" typeColumnRendered="false"
               fileLimit="#{dynaData.intSetting}" iCase="#{cc.attrs.expressCase}"
               typeSelectionItems="#{masterDataBean.documentTypes}"
               allowedUploadFileTypes="#{userTaskFormBean.allowedUploadFileType}"

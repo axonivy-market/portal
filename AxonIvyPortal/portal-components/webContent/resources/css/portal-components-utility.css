@@ -1,0 +1,28 @@
+/**
+ * Sometimes we need a universal class that can be used in any component. 
+ * Things like clear fixes, vertical alignment, and text truncation.
+ * Denote these classes by prefixing them with .u-.
+ *
+ * All the utils should be in a single file. There should not be any need to overwrite them in components or mixins.
+ *
+ * You should really only need a few utilities. 
+ * We do not need something like .u-float-left { float: left; } where including float: left; in the component is just as easy
+ * and more visible.
+ */
+.u-padding-0 {
+  padding: 0 !important;
+}
+
+.u-no-padding-top {
+  padding-top: 0 !important;
+}
+
+.u-no-padding-left {
+  padding-left: 0 !important;
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

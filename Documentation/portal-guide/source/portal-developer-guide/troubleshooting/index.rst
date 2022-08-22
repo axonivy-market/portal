@@ -39,8 +39,8 @@ configuration.
 Update Default Pages
 ====================
 If you copy ``PortalStart.p.json`` to your project for customization, you need
-to follow this chapter to customize the standard processes in your designer and
-engine: :dev-url:`Standard Processes</doc/nightly/designer-guide/user-interface/standard-processes/index.html>`
+to follow this chapter to customize the default pages in your designer and
+engine: :dev-url:`Default Pages </doc/nightly/designer-guide/user-interface/default-pages/index.html>`
 
 For example, if you start with the default settings:
 

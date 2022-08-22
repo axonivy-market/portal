@@ -1,0 +1,57 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:jsf="http://xmlns.jcp.org/jsf">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="errorMessage" value="#{flash.keep.errorMessage}" />
+    <ui:param name="errorStackTrace" value="#{flash.keep.errorStackTrace}" />
+    <ui:param name="isNotRequiredLogin" value="false" />
+
+    <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/title')}</ui:define>
+    <ui:define name="pageContent">
+
+      <div class="error-container container">
+        <div class="message card">
+          <ui:fragment rendered="#{data.errorCode eq '404'}">
+            <div class="message-header"><h3>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/404')}</h3></div>
+            <div class="message-container"><p>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/404Message')}</p></div>
+          </ui:fragment>
+
+          <ui:fragment rendered="#{data.errorCode eq '500'}">
+            <div class="message-header"><h3>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/500')}</h3></div>
+            <div class="message-container"><p>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/500Message')}</p></div>
+          </ui:fragment>
+
+          <hr class="message-separator" />
+          <div class="message-footer ui-g">
+            <div class="ui-g-12">
+              <p:button href="#" onclick="window.open('#{userMenuBean.getHomePageURL()}', '_self')"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}"
+                icon="#{visibilityBean.generateButtonIcon('si si-house-chimney-2')}" />
+            </div>
+            <div class="ui-g-12">
+              <p:link styleClass="message-detail u-hover-effect" rendered="#{not empty errorMessage}" href="#"
+                onclick="$('#message-details').show();"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" />
+            </div>
+            <h:panelGroup layout="block" id="message-details" rendered="#{not empty errorMessage}"
+              styleClass="ui-g-12 u-text-align-center message-details">
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/message')}"
+                styleClass="message" />
+              <p>#{errorMessage}</p>
+              <h:panelGroup rendered="#{portalExceptionBean.errorDetailToEndUser}">
+                <h:outputText styleClass="stack-trace"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/stackTrace')}:" />
+                <p>#{errorStackTrace}</p>
+              </h:panelGroup>
+            </h:panelGroup>
+          </div>
+        </div>
+      </div>
+
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>
