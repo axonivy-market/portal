@@ -41,7 +41,7 @@ public class PasswordResetPage extends AbstractPage {
   public boolean isNewPasswordNotStrongEnough() {
     WebElement element = findElementByCssSelector("span[class='ui-messages-error-summary']");
     return element.getText().equalsIgnoreCase(
-        "New password is not strong enough. Must be at least 4 characters long. Must contains at least 1 lowercase character. Must contains at least 1 uppercase character. Must contains at least 1 number. Must contains at least 1 special character.");
+        "Password must be at least 4 characters long, contain at least 1 lowercase character, contain at least 1 uppercase character, contain at least 1 number, contain at least 1 special character.");
   }
 
   public boolean isReset() {
