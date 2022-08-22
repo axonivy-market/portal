@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions">
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 <h:body>
   <ui:composition template="/layouts/frame-10.xhtml">
     <ui:define name="title">User Selection Component Example</ui:define>
@@ -43,9 +43,9 @@
           <div class="ui-g-4 ui-xl-4 ui-md-6 ui-sm-12">
             <ic:com.axonivy.portal.components.UserSelection id="item-select-event-component" componentId="item-select-event-for-user-selection"
               fromRoleNames="#{data.definedRoleNames}" selectedUser="#{data.selectedUserForInsertChildren}" label="Demonstrate facet and children"
-              autoCompleteStyleClass="width-100" autoCompletePanelStyleClass="ui-g-12 floating-label-margin-top" floatingLabel="true">
+              autoCompleteStyleClass="width-100" autoCompletePanelStyleClass="ui-g-12 floating-label-margin-top" floatingLabel="true" hasCustomizedSelectionList="true">
               <p:column>
-                <h:outputText value="#{user.displayName}" />
+                <pc:securityMemberNameAndAvatar displayName="#{user.getDisplayName()} (#{user.getMemberName()})" securityMember="#{user}" />
               </p:column>
               <f:facet name="event">
                 <p:ajax event="itemSelect" listener="#{logic.showSelectedUser}"
