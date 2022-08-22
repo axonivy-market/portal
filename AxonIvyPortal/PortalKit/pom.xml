@@ -7,7 +7,7 @@
   <packaging>iar</packaging>
   <properties>
     <build.plugin.version>8.0.7</build.plugin.version>
-    <ivy.engine.version>8.0.28</ivy.engine.version>
+    <ivy.engine.version>8.0.29</ivy.engine.version>
   </properties>
   <distributionManagement>
     <repository>
