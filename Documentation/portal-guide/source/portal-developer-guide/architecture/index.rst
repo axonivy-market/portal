@@ -5,25 +5,25 @@ Architecture
 
 .. _architecture-portal-process-modules-structure:
 
-.. important:: 
+.. important::
       The CSS styles, Java methods, etc. which are not explicitly documented are
       only used internally in Portal. Don't use them because they can be
       changed in future versions.
 
-The Portal system consists of the following modules: portal-component, portal and AxonIvyExpress. 
+The Portal system consists of the following modules: portal-components, portal and AxonIvyExpress.
 While AxonIvyExpress is optional, all other modules are mandatory.
 
 |process-module-structure|
 
-.. _architecture-portal-component:
+.. _architecture-portal-components:
 
-portal-component
-================
+portal-components
+=================
 
-**Contains a set of public UI components** 
+**Contains a set of public UI components**
 
-This module contains several JSF Ivy components such as User Selection, Role Selection,
-Document Table, Process Chain, Process History, and more. These components are independent
+This module contains Ivy components such as User Selection, Role Selection,
+Document Table, Process Chain, Process History, and Process Viewer,... These components are independent
 of the modules portal and AxonIvyExpress. You can use them in your own applications.
 
 .. _architecture-portal:
@@ -31,7 +31,7 @@ of the modules portal and AxonIvyExpress. You can use them in your own applicati
 portal
 ======
 
-**Contains portal specific UI components, templates and pages** 
+**Contains portal specific UI components, templates and pages**
 
 The module ``portal`` provides a set of specific UI components that you need
 to use and administer (or manage) the portal, templates for developer and portal pages.
@@ -58,5 +58,5 @@ This project has been extended from portal. It allows the end user to
 
 .. |process-module-structure| image:: images/process-module-structure.png
 
-Axon Ivy Express also provides an AdHoc process feature. When Express is deployed, users can start an AdHoc process from any task. 
+Axon Ivy Express also provides an AdHoc process feature. When Express is deployed, users can start an AdHoc process from any task.
 Adhoc allows users to define additional process steps which will be executed before the current task.

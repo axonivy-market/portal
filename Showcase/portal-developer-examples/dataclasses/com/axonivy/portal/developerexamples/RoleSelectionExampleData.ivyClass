@@ -1,4 +1,4 @@
 RoleSelectionExampleData #class
 com.axonivy.portal.developerexamples #namespace
-selectedRole com.axonivy.portal.component.dto.RoleDTO #field
+selectedRole com.axonivy.portal.components.dto.RoleDTO #field
 selectedRole PERSISTENT #fieldModifier

@@ -100,7 +100,7 @@
               <p:inputText id="param-string-#{status.index}" value="#{parameter.value}" rendered="#{parameter.type == 'STRING'}" />
               <p:datePicker id="param-calendar-#{status.index}" value="#{parameter.valueDate}" rendered="#{parameter.type == 'DATE'}"
                  locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.configuredPattern}" showTime="#{!dateTimePatternBean.isTimeHidden}" showIcon="true" />
-              <ic:com.axonivy.portal.component.UserSelection id="param-user-#{status.index}"
+              <ic:com.axonivy.portal.components.UserSelection id="param-user-#{status.index}"
                 selectedUser="#{parameter.valueUser}" rendered="#{parameter.type == 'USER'}"
                 queryDelay="500" maxResults="100" cache="true" autoCompleteStyleClass="custom-widget-configuration__user-selection" />
               <p:selectOneRadio id="param-boolean-#{status.index}" value="#{parameter.valueBoolean}"
