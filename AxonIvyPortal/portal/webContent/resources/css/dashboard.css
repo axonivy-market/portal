@@ -1248,13 +1248,13 @@ span.new-widget-dialog__icon.si {
 
 .welcome-widget-configuration .preview-panel {
   position: relative;
-  min-height: 4rem;
+  height: 180px;
+  overflow: hidden;
+  border-radius: 1rem;
 }
 
 .welcome-widget-configuration .preview-panel .preview-image {
   width: 100%;
-  height: 180px;
-  border-radius: 1rem;
 }
 
 .welcome-widget-configuration .upload-image-section .uploaded-file-name {
@@ -1316,7 +1316,6 @@ span.new-widget-dialog__icon.si {
 }
 
 .welcome-text-container .welcome-image {
-  height: 100%;
   width: inherit;
   width: -webkit-fill-available;
 }
