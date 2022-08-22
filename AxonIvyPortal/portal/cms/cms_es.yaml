@@ -114,6 +114,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS_VIEWER: Widget del visor de procesos
       STATISTIC: Widget de estadísticas
       TASK: Widget de tareas
+      WELCOME: Widget de bienvenida
     GlobalVariable:
       Option:
         DISPLAY_NAME: Nombre de pantalla
@@ -149,6 +150,17 @@ ch.ivy.addon.portalkit.ui.jsf:
       THURSDAY: Juev.
       TUESDAY: Mart.
       WEDNESDAY: Miérc.
+    WelcomeTextPosition:
+      BOTTOM_LEFT: Esquina inferior izquierda
+      BOTTOM_RIGHT: Esquina inferior derecha
+      CENTER: Centro
+      TOP_LEFT: Esquina superior izquierda
+      TOP_RIGHT: Esquina superior derecha
+    WelcomeTextSize:
+      HEADING_1: Rúbrica 1
+      HEADING_2: Rúbrica 2
+      HEADING_3: Rúbrica 3
+      NORMAL_TEXT: Texto normal
   MyProfile:
     HomepageSelection:
       fullTaskList: Lista de tareas completa
@@ -764,8 +776,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       PlaceholderChartOption: Seleccione un gráfico
       PleaseSelectChart: Seleccione un gráfico
       PreviewText: Seleccione un gráfico para ver los datos del lienzo
+    WelcomeWidgetIntroduction: ''
     WidgetFilterName: Nombre del filtro del widget
     WidgetFilters: Filtros de widgets
+    YourWelcomeWidget: Su widget de bienvenida
     actionSelection: Seleccionar acción
     addField: Añadir campo
     addWidget: Añadir widget
@@ -785,6 +799,16 @@ ch.ivy.addon.portalkit.ui.jsf:
       RestoreDefaultDashboardTemplateTooltip: No podemos encontrar la plantilla de su panel de control, por lo que no podemos restablecer la configuración estándar. Por favor, consulte con su administrador para obtener más detalles.
       SelectTheTemplate: Seleccione la plantilla
       SelectYourTemplate: Seleccione su plantilla
+      WelcomeConfigurationDescription: ''
+      WelcomeWidget:
+        DisplayedText: Texto mostrado
+        Greeting:
+          Afternoon: Buenas tardes
+          Evening: Buenas noches
+          Morning: Buenos días
+        Image: Imagen
+        TextPosition: Posición del texto
+        TextSizeAndColor: Tamaño y color del texto
       configuration: Configuración
       configurationDescription: Puede configurar su widget en esta área de configuración. Por favor, defina los filtros requeridos así como las columnas a mostrar.
       customWidgetParamChangedMessage: Este proceso ha cambiado. Presione aktualizar para continuar.

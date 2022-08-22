@@ -84,6 +84,12 @@
        widget="#{widget}"
        componentToUpdate="widget-configuration-form"/>
    </c:if>
+
+   <c:if test="#{widget.type eq 'WELCOME'}">
+     <ic:ch.ivy.addon.portal.generic.dashboard.component.WelcomeWidgetConfiguration id="new-widget-configuration-component"
+       widget="#{widget}"
+       componentToUpdate="widget-configuration-form"/>
+   </c:if>
   </h:form>
 
   <f:facet name="footer">

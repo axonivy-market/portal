@@ -1,0 +1,130 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="widget" />
+  <cc:attribute name="componentToUpdate" />
+</cc:interface>
+
+<cc:implementation>
+  <h:outputScript name="welcome-widget.js" library="js" />
+  <c:set var="widget" value="#{cc.attrs.widget}" />
+  <f:event listener="#{dashboardWelcomeWidgetConfigurationBean.init()}" type="preRenderComponent" />
+  
+  <!-- Configuration -->
+  <h:panelGroup id="user-filter" layout="block" styleClass="card dashboard-card welcome-widget-configuration-panel">
+     <div class="user-filter ui-g">
+       <div class="ui-g-12 user-filter__header">
+         <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}</h2>
+         <p>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeConfigurationDescription')}</p>
+       </div>
+     </div>
+       <div class="ui-g welcome-widget-configuration">
+         <div class="ui-g-12">
+           <p:messages id="config-welcome-widget-message">
+             <p:autoUpdate />
+           </p:messages>
+         </div>
+         <div class="ui-g-12">
+           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}" styleClass="welcome-text-label" />
+           <h:panelGroup layout="block" id="preview-panel" styleClass="preview-panel">
+             <span id="preview-text" class="preview-text js-preview-text welcome-text" />
+            <img id="preview-image" class="preview-image js-preview-image" />
+            <h:inputHidden id="preview-image-hidden" value="#{dashboardWelcomeWidgetConfigurationBean.encodedImg}" />
+           </h:panelGroup>
+         </div>
+         <h:panelGroup id="widget-title-group" styleClass="u-hidden" />
+         <div class="ui-g-3">
+           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/Image')}"
+             for="image-upload-panel" styleClass="welcome-text-label" />
+         </div>
+         <div class="ui-g-9 ui-fluid upload-image-section display-inline-flex-center">
+           <p:fileUpload id="image-upload-panel"
+             listener="#{dashboardWelcomeWidgetConfigurationBean.handleFileUpload}"
+             chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
+             dragDropSupport="true" auto="true" mode="simple" skinSimple="true"
+             update="@(form)"
+             label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
+             invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
+             invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
+             sizeLimit="#{masterDataBean.fileUploadSizeLimit}"
+             oncomplete="PF('new-widget-configuration-dialog').initPosition(); WelcomeWidgetConfiguration.loadPreviewImage();"  />
+         </div>
+
+         <div class="ui-g-3">
+           <p:outputLabel for="welcome-text-position" styleClass="welcome-text-label"
+             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/TextPosition')}" />
+         </div>
+         <div class="ui-g-9">
+           <p:selectOneMenu id="welcome-text-position" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeTextPosition}" styleClass="welcome-text-select-one-menu">
+             <f:selectItems var="position" value="#{dashboardWelcomeWidgetConfigurationBean.textPositions}" itemLabel="#{position.label}" itemValue="#{position}" />
+             <p:ajax event="itemSelect" update="selected-welcome-text-position" oncomplete="WelcomeWidgetConfiguration.updatePreviewTextPosition();" />
+           </p:selectOneMenu>
+           <h:inputHidden id="selected-welcome-text-position" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeTextPosition}" />
+         </div>
+
+         <div class="ui-g-3">
+           <p:outputLabel for="welcome-text-size" styleClass="welcome-text-label"
+             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/TextSizeAndColor')}" />
+         </div>
+         <div class="ui-g-9 welcome-styles-panel">
+           <p:selectOneMenu id="welcome-text-size" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeTextSize}" styleClass="welcome-text-select-one-menu">
+             <p:ajax event="itemSelect" update="selected-welcome-text-size" oncomplete="WelcomeWidgetConfiguration.updatePreviewTextSize();" />
+             <f:selectItems var="size" value="#{dashboardWelcomeWidgetConfigurationBean.textSizes}" itemLabel="#{size.label}" itemValue="#{size}" />
+             </p:selectOneMenu>
+           <h:inputHidden id="selected-welcome-text-size" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeTextSize}" />
+
+           <p:colorPicker id="welcome-text-color" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeTextColor}"
+             styleClass="u-padding-right-10 js-welcome-text-color" onchange="WelcomeWidgetConfiguration.updatePreviewTextColor();" />
+           <span id="selected-welcome-text-color" class="js-selected-welcome-text-color" />
+         </div>
+
+         <div class="ui-g-3 u-no-padding-bottom">
+           <p:outputLabel for="welcome-text-greeting" styleClass="welcome-text-label"
+             value="Greeting" />
+         </div>
+         <div class="ui-g-9 u-no-padding-bottom">
+           <p:selectOneRadio id="welcome-text-greeting" value="#{dashboardWelcomeWidgetConfigurationBean.widget.greeting}">
+             <p:ajax update="user-filter" oncomplete="generateGreetingText();" />
+             <f:selectItem itemValue="#{true}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" />
+             <f:selectItem itemValue="#{false}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" />
+           </p:selectOneRadio>
+         </div>
+         <h:panelGrid id="welcome-text-input-container" columns="1" styleClass="ui-g-12 u-no-padding-left u-no-padding-right ui-g u-padding-0">
+           <ui:repeat id="welcome-text-list" var="text" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeTexts}" varStatus="status">
+             <div class="ui-g-3">
+               <p:outputLabel value="#{text.locale.getDisplayName()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/DisplayedText')}"
+                 for="welcome-text-input" styleClass="welcome-text-label" />
+             </div>
+             <h:panelGroup id="welcome-text-input-panel" styleClass="ui-g-9 welcome-text-input-panel" layout="block">
+               <h:outputText value="#{dashboardWelcomeWidgetConfigurationBean.generateGreetingText(text.locale)}"
+                 rendered="#{dashboardWelcomeWidgetConfigurationBean.widget.greeting}"
+                 styleClass="js-greeting-text greeting-text #{logic.isApplicationDefaultEmailLanguage(text.locale.toLanguageTag()) ? 'language-to-preview' : ''}" />
+               <p:inputText id="welcome-text-input" value="#{text.value}" maxlength="200"
+                 required="#{logic.isApplicationDefaultEmailLanguage(text.locale.toLanguageTag())}"
+                 requiredMessage="#{text.locale.getDisplayName()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
+                 styleClass="#{logic.isApplicationDefaultEmailLanguage(text.locale.toLanguageTag()) ? 'language-to-preview' : ''} js-welcome-text-input welcome-text-input"
+                 onkeyup="#{logic.isApplicationDefaultEmailLanguage(text.locale.toLanguageTag()) ? 'WelcomeWidgetConfiguration.updatePreviewText();' : ''}" />
+             </h:panelGroup>
+           </ui:repeat>
+        </h:panelGrid>
+       </div>
+       <p:remoteCommand name="initGreetingTexts" update="welcome-text-input-container"
+         actionListener="#{dashboardWelcomeWidgetConfigurationBean.initClientTime()}"
+         oncomplete="WelcomeWidgetConfiguration.updatePreviewText('#{widget.greeting}');" />
+       <script>
+         $(document).ready(function() {
+           WelcomeWidgetConfiguration.init('#{widget.greeting}');
+           generateGreetingText();
+         });
+
+         function generateGreetingText() {
+           var time= new Date().getHours();
+           initGreetingTexts([{name: 'clientTime', value: time}]);
+         }
+       </script>
+  </h:panelGroup>
+</cc:implementation>
+</html>
