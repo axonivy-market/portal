@@ -1,0 +1,61 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="index" required="true" />
+  <cc:attribute name="widget" required="true" />
+  <cc:attribute name="isReadOnlyMode" default="false" />
+</cc:interface>
+
+<cc:implementation>
+  <h:outputScript name="welcome-widget.js" library="js" />
+  <c:set var="index" value="#{cc.attrs.index}" />
+  <c:set var="widget" value="#{cc.attrs.widget}" />
+
+  <h:panelGroup id="welcome-widget-panel" layout="block" styleClass="welcome-widget-panel">
+    <f:event listener="#{dashboardWelcomeWidgetBean.init()}" type="preRenderComponent" />
+    <div class="ui-g-12 widget-height-100 u-padding-0 welcome-text-container">
+      <h:form id="welcome-widget-action-group-form" styleClass="welcome-widget-action-group-form" rendered="#{!cc.attrs.isReadOnlyMode}">
+        <h:panelGroup layout="block" rendered="#{!hideActionButton}">
+          <p:commandButton id="welcome-widget-action-button" icon="si si-navigation-menu-horizontal"
+            styleClass="rounded-button ui-button-outlined icon-more-menu-button" type="button"/>
+
+          <p:menu id="welcome-widget-action-menu" overlay="true"
+            trigger="welcome-widget-action-button"
+            my="right top" at="right bottom">
+            <p:menuitem id="edit-welcome-widget"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
+              icon="si si-graphic-tablet-drawing-pen"
+              actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
+              update="new-widget-configuration-dialog"
+              process="@this" partialSubmit="true" global="false"
+              oncomplete="PF('new-widget-configuration-dialog').show()" />
+            <p:menuitem id="delete-welcome-widget"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+              icon="si si-bin-1"
+              oncomplete="PF('remove-widget-dialog').show()"
+              actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
+              update="remove-widget-dialog"
+              process="@this" partialSubmit="true" global="false" />
+          </p:menu>
+        </h:panelGroup>
+      </h:form>
+      <h:outputText id="welcome-text" styleClass="welcome-text" value="#{widget.welcomeText}" />
+      <img id="welcome-image" class="welcome-image" />
+      <h:inputHidden id="welcome-image-hidden" value="#{dashboardWelcomeWidgetBean.renderImage(widget)}" />
+    </div>
+    <p:remoteCommand name="updateWelcomeText_#{widget.id}" update="welcome-text"
+      actionListener="#{dashboardWelcomeWidgetBean.updateWelcomeText()}"
+      oncomplete="WelcomeWidget.updateWelcomeTextStyles('#{widget.id}','#{widget.welcomeTextColor}','#{widget.welcomeTextPosition}','#{widget.welcomeTextSize}');" />
+    <script>
+      $(document).ready(function() {
+        WelcomeWidget.init('#{widget.id}','#{widget.welcomeTextColor}','#{widget.welcomeTextPosition}','#{widget.welcomeTextSize}');
+        if ('#{widget.greeting}' == 'true') {
+          var time= new Date().getHours();
+          updateWelcomeText_#{widget.id}([{name: 'clientTime', value: time}]);
+        }
+      });
+    </script>
+  </h:panelGroup>
+</cc:implementation>
+</html>

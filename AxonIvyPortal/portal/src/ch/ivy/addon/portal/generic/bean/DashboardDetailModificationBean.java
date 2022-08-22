@@ -6,6 +6,7 @@ import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS_VIEWER;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.STATISTIC;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.TASK;
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.WELCOME;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.beans.PropertyChangeEvent;
@@ -50,6 +51,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.ProcessViewerDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.SingleProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetSample;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
@@ -66,12 +68,15 @@ import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.scripting.objects.File;
 
 @ViewScoped
 @ManagedBean
 public class DashboardDetailModificationBean extends DashboardBean implements Serializable, PropertyChangeListener {
 
   private static final long serialVersionUID = -5272278165636659596L;
+  private static final String WELCOME_WIDGET_IMAGE_DIRECTORY_PATTERN = "DashboardWelcomeWidget/%s";
+
   private List<WidgetSample> samples;
   private String newWidgetHeader;
   private boolean isEditWidget;
@@ -96,7 +101,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public void initSampleWidgets() {
     if (CollectionUtils.isEmpty(samples)) {
-      samples = List.of(taskSample(), caseSample(), processSample(), statisticSample(), customSample(), processViewerSample());
+      samples = List.of(taskSample(), caseSample(), processSample(), statisticSample(), customSample(), processViewerSample(), welcomeWidgetSample());
     }
   }
 
@@ -146,6 +151,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private WidgetSample processViewerSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessViewerText"), PROCESS_VIEWER,
         "si si-hierarchy-6 si-rotate-270", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processViewerIntroduction"), true);
+  }
+
+  private WidgetSample welcomeWidgetSample() {
+    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/WELCOME"), WELCOME,
+        "si si-hierarchy-6 si-rotate-270", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/WelcomeWidgetIntroduction"), true);
   }
 
   public void restore() {
@@ -203,6 +213,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
             Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessViewerText")));
         this.widget = getDefaultProcessViewerDashboardWidget();
         break;
+      case WELCOME:
+        this.newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
+            Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/WELCOME")));
+        this.widget = getDefaultWelcomeDashboardWidget();
+        break;
       default:
         break;
     }
@@ -211,7 +226,26 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void removeWidget() {
     if (this.getDeleteWidget() != null) {
       this.getSelectedDashboard().getWidgets().remove(getDeleteWidget());
+      removeWelcomeWidgetImageDirectory();
       saveSelectedDashboard();
+    }
+  }
+
+  /**
+   * Remove the folder that storing image for the welcome widget
+   * from application files.
+   */
+  private void removeWelcomeWidgetImageDirectory() {
+    if (this.deleteWidget.getType() == WELCOME) {
+      WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) this.deleteWidget;
+      try {
+        File widgetDirectory = new File(String.format(WELCOME_WIDGET_IMAGE_DIRECTORY_PATTERN, welcomeWidget.getId()));
+        if (widgetDirectory.exists()) {
+          widgetDirectory.forceDelete();
+        }
+      } catch (IOException e) {
+        return;
+      }
     }
   }
 
@@ -249,6 +283,12 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     String widgetId = DashboardWidgetUtils.generateNewWidgetId(DashboardWidgetType.PROCESS_VIEWER);
     String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcessViewer");
     return ProcessViewerDashboardWidget.buildDefaultWidget(widgetId, widgetName);
+  }
+
+  private WelcomeDashboardWidget getDefaultWelcomeDashboardWidget() {
+    String widgetId = DashboardWidgetUtils.generateNewWidgetId(DashboardWidgetType.WELCOME);
+    String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/YourWelcomeWidget");
+    return WelcomeDashboardWidget.buildDefaultWidget(widgetId, widgetName);
   }
 
   public void saveWidget() {
@@ -410,9 +450,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   private void updateWidgetPosition(DashboardWidget widget) {
-    if (isEditWidget) {
+    if (isEditWidget || (widget != null && widget.getType() == WELCOME)) {
       return;
     }
+
     DashboardWidget lastWidget = null;
     for (var compareWidget : CollectionUtils.emptyIfNull(selectedDashboard.getWidgets())) {
       if (lastWidget == null) {
@@ -425,23 +466,25 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         lastWidget = compareWidget;
       }
     }
-    if (lastWidget != null && widget != null) {
-      var nextAxisX = lastWidget.getLayout().getAxisX() + lastWidget.getLayout().getWidth();
-      var totalWidth = nextAxisX + widget.getLayout().getWidth();
-      if (totalWidth <= 12) {
-        widget.getLayout().setAxisX(nextAxisX);
-        widget.getLayout().setAxisY(lastWidget.getLayout().getAxisY());
-      }
-      else {
-        widget.getLayout().setAxisX(0);
-        widget.getLayout().setAxisY(portalGridsCurrentRow.intValue());
-      }
-    }
 
-    if (StringUtils.isEmpty(widget.getLayout().getStyleClass())) {
-      widget.getLayout().setStyleClass(DashboardConstants.NEW_WIDGET_STYLE_CLASS);
-    } else {
-      widget.getLayout().setStyleClass(widget.getLayout().getStyleClass().concat(DashboardConstants.NEW_WIDGET_STYLE_CLASS));
+    if (widget != null) {
+      if (lastWidget != null) {
+        var nextAxisX = lastWidget.getLayout().getAxisX() + lastWidget.getLayout().getWidth();
+        var totalWidth = nextAxisX + widget.getLayout().getWidth();
+        if (totalWidth <= 12) {
+          widget.getLayout().setAxisX(nextAxisX);
+          widget.getLayout().setAxisY(lastWidget.getLayout().getAxisY());
+        }
+        else {
+          widget.getLayout().setAxisX(0);
+          widget.getLayout().setAxisY(portalGridsCurrentRow.intValue());
+        }
+      }
+      if (StringUtils.isEmpty(widget.getLayout().getStyleClass())) {
+        widget.getLayout().setStyleClass(DashboardConstants.NEW_WIDGET_STYLE_CLASS);
+      } else {
+        widget.getLayout().setStyleClass(widget.getLayout().getStyleClass().concat(DashboardConstants.NEW_WIDGET_STYLE_CLASS));
+      }
     }
   }
 

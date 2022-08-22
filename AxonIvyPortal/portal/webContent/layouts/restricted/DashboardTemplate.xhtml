@@ -123,7 +123,14 @@
                         index="#{status.index}"
                         id="process-viewer-#{widget.id}" />
                     </c:if>
-                    
+
+                    <!-- Welcome widget -->
+                    <c:if test="#{widget.type eq 'WELCOME'}">
+                      <ic:ch.ivy.addon.portal.generic.dashboard.component.WelcomeDashboardWidget widget="#{widget}"
+                        isReadOnlyMode="#{managedBean.isReadOnlyMode}"
+                        index="#{status.index}"
+                        id="welcome-#{widget.id}" />
+                    </c:if>
                   </div>
                 </div>
               </c:forEach>

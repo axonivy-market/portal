@@ -1239,3 +1239,153 @@ span.new-widget-dialog__icon.si {
 .restore-dashboard-tooltip {
   max-width: 300px;
 }
+
+.welcome-widget-configuration-panel {
+  max-width: 70vh;
+  max-height: 60vh;
+  overflow: auto;
+}
+
+.welcome-widget-configuration .preview-panel {
+  position: relative;
+  min-height: 4rem;
+}
+
+.welcome-widget-configuration .preview-panel .preview-image {
+  width: 100%;
+  height: 180px;
+}
+
+.welcome-widget-configuration .upload-image-section .uploaded-file-name {
+  display:inline-block;
+  max-width: 69%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.welcome-widget-configuration .welcome-text-label {
+  line-height: 2.5;
+}
+
+.welcome-widget-configuration .welcome-styles-panel {
+  display: flex;
+  align-items: center;
+}
+
+.welcome-widget-configuration .welcome-styles-panel > div {
+  margin-right: 10px;
+}
+
+.welcome-widget-configuration .welcome-text-select-one-menu {
+  width: 160px;
+}
+
+.welcome-text {
+  position: absolute;
+  font-size: 2rem;
+  color: black;
+  padding: 10px;
+  line-height: 2rem;
+}
+
+.welcome-text.preview-text {
+  padding: 7px;
+}
+
+.welcome-text.left {
+  left: 0;
+}
+
+.welcome-text.right {
+  right: 0;
+}
+
+.welcome-text.top {
+  top: 0;
+}
+
+.welcome-text.bottom {
+  bottom: 0;
+}
+
+.welcome-text-container {
+  position: relative;
+}
+
+.welcome-text-container .welcome-image {
+  height: 100%;
+  width: inherit;
+  width: -webkit-fill-available;
+}
+
+.welcome-text-size-options-panel {
+  width: 200px;
+}
+
+.welcome-text.NORMAL_TEXT {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+}
+
+.welcome-text.HEADING_1 {
+  font-size: 5rem;
+  line-height: 5rem;
+}
+
+.welcome-text.HEADING_2 {
+  font-size: 3.5rem;
+  line-height: 3.5rem;
+}
+
+.welcome-text.HEADING_3 {
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+}
+
+.preview-text.welcome-text.NORMAL_TEXT {
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+.preview-text.welcome-text.HEADING_1 {
+  font-size: 1.8rem;
+  line-height: 1.8rem;
+}
+
+.preview-text.welcome-text.HEADING_2 {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+}
+
+.preview-text.welcome-text.HEADING_3 {
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+}
+
+.welcome-widget-panel {
+  overflow: hidden;
+}
+
+.welcome-widget-action-group-form {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.welcome-widget-configuration .welcome-text-input-panel {
+  display: flex;
+  align-items: center;
+}
+
+.welcome-widget-configuration .welcome-text-input-panel .greeting-text {
+  padding-right: 10px;
+  flex: 1;
+}
+
+.welcome-widget-configuration .welcome-text-input-panel .welcome-text-input {
+  flex: auto;
+}

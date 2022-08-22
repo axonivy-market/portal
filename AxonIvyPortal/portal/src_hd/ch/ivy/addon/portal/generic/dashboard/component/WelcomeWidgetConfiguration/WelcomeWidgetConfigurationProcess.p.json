@@ -1,0 +1,99 @@
+{
+  "format" : "9.4.17",
+  "id" : "1829F62EDEAB239D",
+  "data" : "ch.ivy.addon.portal.generic.dashboard.component.WelcomeWidgetConfiguration.WelcomeWidgetConfigurationData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "1829F62EDF92F93D"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "1829F62EE2C20F3C"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      }
+    }, {
+      "id" : "f87",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "isApplicationDefaultEmailLanguage(String)",
+      "config" : {
+        "callSignature" : "isApplicationDefaultEmailLanguage",
+        "result" : {
+          "params" : [
+            { "name" : "result", "type" : "Boolean" }
+          ],
+          "map" : {
+            "result.result" : "in.isDefaultApplicationLanguage"
+          }
+        },
+        "input" : {
+          "params" : [
+            { "name" : "language", "type" : "String" }
+          ],
+          "map" : {
+            "out.language" : "param.language"
+          }
+        },
+        "guid" : "182A4E32CA2E2014"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 248 },
+        "labelOffset" : { "x" : -97, "y" : 16 }
+      },
+      "connect" : { "id" : "f36", "to" : "f34" }
+    }, {
+      "id" : "f89",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 432, "y" : 248 }
+      }
+    }, {
+      "id" : "f34",
+      "type" : "Script",
+      "name" : "Check language",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import ch.ivyteam.ivy.language.LanguageConfigurator;",
+            "import java.util.Locale;",
+            "import ch.ivyteam.ivy.application.IApplication;",
+            "",
+            "Locale defaultLocale = new LanguageConfigurator(ISecurityContext.current()).content();",
+            "in.isDefaultApplicationLanguage = defaultLocale.toLanguageTag().equalsIgnoreCase(in.language);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 248 }
+      },
+      "connect" : { "id" : "f37", "to" : "f89" }
+    } ]
+}
