@@ -110,7 +110,7 @@
   <h:panelGroup layout="block"
     styleClass="#{cc.attrs.messageStyleClass} #{cc.attrs.floatingLabel ? 'message-for-floating-label' : ''}">
     <p:message id="#{cc.attrs.componentId}-message"
-      for="#{cc.attrs.componentId}" />
+      for="#{cc.attrs.componentId}" rendered="#{cc.attrs.isRenderedMessage}"/>
   </h:panelGroup>
   <h:outputScript name="theme-checker.js" library="js" />
   <script type="text/javascript">
