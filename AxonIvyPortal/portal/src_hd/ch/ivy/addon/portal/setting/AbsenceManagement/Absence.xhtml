@@ -31,10 +31,9 @@
             requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/userNameRequired')}"
             label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}"
             autoCompleteStyleClass="absence-user-selection" autoCompletePanelStyleClass="ui-g-12"
-            labelPanelStyleClass="ui-g-12">
+            labelPanelStyleClass="ui-g-12" hasCustomizedSelectionList="true">
             <p:column>
-              <pc:securityMemberNameAndAvatar
-                displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
+              <pc:securityMemberNameAndAvatar displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
                 securityMember="#{user}" />
             </p:column>
             <f:facet name="event">
