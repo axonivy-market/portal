@@ -12,6 +12,7 @@
   <cc:attribute name="securityMember" required="true" />
   <cc:attribute name="displayNameStyleClass" />
   <cc:attribute name="containerStyleClass" />
+  <cc:attribute name="isStandAlone" default="true" />
 
 </cc:interface>
 <cc:implementation>
@@ -29,7 +30,9 @@
   </div>
   <h:outputScript name="theme-checker.js" library="js" />
   <script type="text/javascript">
-    ThemeChecker.updateLayoutOfSecurityMemberNameAndAvatarByTheme('#{ivyPrimefacesThemeResolver.sessionTheme}');
+    if (#{cc.attrs.isStandAlone}) {
+      ThemeChecker.updateLayoutByTheme('#{ivyPrimefacesThemeResolver.sessionTheme}');
+    }
   </script>
 </cc:implementation>
 </html>
