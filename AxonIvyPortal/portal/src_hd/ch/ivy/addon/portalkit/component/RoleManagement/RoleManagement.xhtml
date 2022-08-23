@@ -179,13 +179,7 @@
             labelPanelStyleClass="ui-g-4 ui-lg-3 ui-md-4 ui-sm-12 role-management-label"
             autoCompletePanelStyleClass="ui-g-8 ui-lg-9 ui-md-8 ui-sm-12 role-management-value ui-fluid"
             requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/ParentRoleIsRequired')}"
-            isRenderedMessage="false">
-            <p:column>
-              <pc:securityMemberNameAndAvatar securityMember="#{role}"
-                displayName="#{role.getDisplayName()}"
-                displayNameStyleClass="u-truncate-text" />
-            </p:column>
-          </ic:com.axonivy.portal.components.RoleSelection>
+            isRenderedMessage="false" displayNameInSelectionListStyleClass="u-truncate-text" />
         </h:panelGroup>
 
         <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" for="role-name"
@@ -224,7 +218,7 @@
             labelPanelStyleClass="ui-g-4 ui-lg-3 ui-md-4 ui-sm-12 role-management-label"
             autoCompletePanelStyleClass="ui-g-8 ui-lg-9 ui-md-8 ui-sm-12 role-management-value ui-fluid"
             excludedUsernames="#{roleManagementBean.distinctExcludedUsernames}"
-            isRenderedMessage="false">
+            isRenderedMessage="false" hasCustomizedSelectionList="true">
             <p:column styleClass="ui-g-12">
               <pc:securityMemberNameAndAvatar securityMember="#{user}"
                 displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
