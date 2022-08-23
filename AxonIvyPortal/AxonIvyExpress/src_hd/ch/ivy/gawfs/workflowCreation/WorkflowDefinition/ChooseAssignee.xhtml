@@ -17,25 +17,21 @@
           id="user-selection-component"
           selectedUser="#{data.selectedUser}" queryDelay="500"
           rendered="#{data.isAssignToUser}" isRenderedMessage="false"
-          autoCompletePanelStyleClass="ui-fluid">
+          autoCompletePanelStyleClass="ui-fluid" hasCustomizedSelectionList="true">
           <p:column>
             <pc:securityMemberNameAndAvatar securityMember="#{user}"
               displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}" />
-          </p:column> 
+          </p:column>
           <f:facet name="event">
             <p:ajax event="itemSelect" update="assignee-selection-form:add-assignee-button" />
           </f:facet>
         </ic:com.axonivy.portal.components.UserSelection>
-        
+
         <ic:com.axonivy.portal.components.RoleSelection id="role-selection-component" scrollHeight="400"
           componentId="role-selection" selectedRole="#{data.selectedRole}" rendered="#{!data.isAssignToUser}"
           cache="true" queryDelay="500" excludedRoleNames="#{workflowDefinitionBean.excludedRoleNames}"
           isRenderedMessage="false"
           autoCompletePanelStyleClass="ui-fluid">
-          <p:column>
-            <pc:securityMemberNameAndAvatar securityMember="#{role}"
-              displayName="#{role.getDisplayName()}" />
-          </p:column> 
           <f:facet name="event">
             <p:ajax event="itemSelect" update="assignee-selection-form:add-assignee-button" />
           </f:facet>

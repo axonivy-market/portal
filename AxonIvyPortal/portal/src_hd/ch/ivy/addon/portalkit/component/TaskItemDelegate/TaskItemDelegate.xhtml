@@ -43,10 +43,11 @@
             componentId="user-activator-select" selectedUser="#{data.selectedUser}"
             rendered="#{data.isUserDelegated}" completeMethod="#{logic.autoCompleteForUserDelegate}"
             isRenderedMessage="false"
-            autoCompletePanelStyleClass="ui-fluid">
+            autoCompletePanelStyleClass="ui-fluid"
+            hasCustomizedSelectionList="true">
             <p:column>
-              <pc:securityMemberNameAndAvatar
-                displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}" securityMember="#{user}" />
+              <pc:securityMemberNameAndAvatar displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
+                securityMember="#{user}" />
             </p:column>
             <f:facet name="event">
               <p:ajax event="itemSelect" listener="#{data.setDisabledDelegateButton(false)}"
@@ -59,10 +60,6 @@
             cache="true" queryDelay="500" completeMethod="#{logic.autoCompleteForRoleDelegate}"
             isRenderedMessage="false"
             autoCompletePanelStyleClass="ui-fluid">
-            <p:column>
-              <pc:securityMemberNameAndAvatar
-                displayName="#{role.getDisplayName()}" securityMember="#{role}" />
-            </p:column>
             <f:facet name="event">
               <p:ajax event="itemSelect" listener="#{data.setDisabledDelegateButton(false)}"
                 update="#{cc.clientId}:task-delegate-form:proceed-task-delegate-command" />
