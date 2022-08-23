@@ -10,7 +10,7 @@
           <ic:com.axonivy.portal.components.examples.internal.ThemeSelection
             serenityExampleLink="#{data.securityMemberNameAndAvatarSerenityExampleLink}" />
           <h1>Security Member Name And Avatar Examples</h1>
-          <div>This example uses the current session user and the current session role to display.</div>
+          <div>This example uses the current session user and the top-level role to display.</div>
           <br />
           <div class="ui-treetable">
             <table>
@@ -24,26 +24,38 @@
               <tbody class="ui-treetable-data">
                 <tr>
                   <td>Default Component</td>
-                  <td><div id="current-session-user-security-member-name-and-avatar-component-container">
+                  <td>
+                    <div id="current-session-user-security-member-name-and-avatar-component-container">
                       <pc:securityMemberNameAndAvatar displayName="#{ivy.session.sessionUser.displayName}" securityMember="#{ivy.session.sessionUser}" />
-                    </div></td>
-                  <td><div id="current-session-role-security-member-name-and-avatar-component-container">
-                      <pc:securityMemberNameAndAvatar displayName="#{ivy.session.sessionRole.displayName}" securityMember="#{ivy.session.sessionRole}" />
-                    </div></td>
+                    </div>
+                  </td>
+                  <td>
+                    <div id="current-session-role-security-member-name-and-avatar-component-container">
+                      <pc:securityMemberNameAndAvatar displayName="#{ivy.security.roles().topLevel().displayName}" securityMember="#{ivy.security.roles().topLevel()}" />
+                    </div>
+                  </td>
                 </tr>
                 <tr>
                   <td>Component without Name</td>
-                  <td><pc:securityMemberNameAndAvatar displayName="#{ivy.session.sessionUser.displayName}"
-                      securityMember="#{ivy.session.sessionUser}" displayNameRendered="false" /></td>
-                  <td><pc:securityMemberNameAndAvatar displayName="#{ivy.session.sessionRole.displayName}"
-                      securityMember="#{ivy.session.sessionRole}" displayNameRendered="false" /></td>
+                  <td>
+                    <pc:securityMemberNameAndAvatar displayName="#{ivy.session.sessionUser.displayName}"
+                      securityMember="#{ivy.session.sessionUser}" displayNameRendered="false" />
+                    </td>
+                  <td>
+                    <pc:securityMemberNameAndAvatar displayName="#{ivy.security.roles().topLevel().displayName}"
+                      securityMember="#{ivy.security.roles().topLevel()}" displayNameRendered="false" />
+                  </td>
                 </tr>
                 <tr>
                   <td>Component without Avatar</td>
-                  <td><pc:securityMemberNameAndAvatar displayName="#{ivy.session.sessionUser.displayName}"
-                      securityMember="#{ivy.session.sessionUser}" isShowAvatar="false" /></td>
-                  <td><pc:securityMemberNameAndAvatar displayName="#{ivy.session.sessionRole.displayName}"
-                      securityMember="#{ivy.session.sessionRole}" isShowAvatar="false" /></td>
+                  <td>
+                    <pc:securityMemberNameAndAvatar displayName="#{ivy.session.sessionUser.displayName}"
+                      securityMember="#{ivy.session.sessionUser}" isShowAvatar="false" />
+                  </td>
+                  <td>
+                    <pc:securityMemberNameAndAvatar displayName="#{ivy.security.roles().topLevel().displayName}"
+                      securityMember="#{ivy.security.roles().topLevel()}" isShowAvatar="false" />
+                  </td>
                 </tr>
               </tbody>
             </table>
