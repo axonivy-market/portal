@@ -94,7 +94,7 @@
       maxResults="#{cc.attrs.maxResults}"
       inputStyleClass="#{cc.attrs.inputStyleClass}">
       <p:column rendered="#{!cc.attrs.hasCustomizedSelectionList}">
-        <pc:securityMemberNameAndAvatar displayName="#{role.getDisplayName()}" securityMember="#{role}"
+        <pc:securityMemberNameAndAvatar displayName="#{role.getDisplayName()}" securityMember="#{role}" isStandAlone="false"
           isShowAvatar="#{cc.attrs.isShowAvatarInSelectionList}" displayNameRendered="#{cc.attrs.displayNameRenderedInSelectionList}"
           displayNameStyleClass="#{cc.attrs.displayNameInSelectionListStyleClass}" containerStyleClass="#{cc.attrs.selectionListContainerStyleClass}" />
       </p:column>
