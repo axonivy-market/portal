@@ -38,7 +38,7 @@
               selectedRole="#{data.selectedRoleForInsertChildren}" label="Demonstrate facet and children" autoCompleteStyleClass="width-100"
               autoCompletePanelStyleClass="ui-g-12 floating-label-margin-top" isRequired="true" floatingLabel="true" hasCustomizedSelectionList="true">
               <p:column>
-                <pc:securityMemberNameAndAvatar displayName="#{role.getDisplayName()} (#{role.getMemberName()})" securityMember="#{role}" />
+                <pc:securityMemberNameAndAvatar displayName="#{role.getDisplayName()} (#{role.getMemberName()})" securityMember="#{role}" isStandAlone="false"/>
               </p:column>
               <f:facet name="event">
                 <p:ajax event="itemSelect" listener="#{logic.showSelectedRole}"
