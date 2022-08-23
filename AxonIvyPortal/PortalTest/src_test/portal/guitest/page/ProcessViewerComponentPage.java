@@ -8,6 +8,10 @@ public class ProcessViewerComponentPage extends TemplatePage {
   protected String getLoadedLocator() {
     return "id('content-container')";
   }
+  
+  public String getProcessRequestPath() {
+    return findElementByCssSelector("span[id$=':request-path']").getText();
+  }
 
   public void waitForSprottyToolDisplayed() {
     driver.switchTo().frame("iFrame").switchTo().frame("process-viewer");
