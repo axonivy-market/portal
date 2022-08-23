@@ -19,7 +19,7 @@
           rendered="#{data.isAssignToUser}" isRenderedMessage="false"
           autoCompletePanelStyleClass="ui-fluid" hasCustomizedSelectionList="true">
           <p:column>
-            <pc:securityMemberNameAndAvatar securityMember="#{user}"
+            <pc:securityMemberNameAndAvatar securityMember="#{user}" isStandAlone="false"
               displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}" />
           </p:column>
           <f:facet name="event">
@@ -47,7 +47,7 @@
         <ui:repeat var="assignee" value="#{data.selectedAssigneeList}">
           <p:panelGrid id="selected-assignee-panel" styleClass="assignee-selection" columns="2" columnClasses="assignee-name-col">
             <p:column>
-              <pc:securityMemberNameAndAvatar securityMember="#{assignee}"
+              <pc:securityMemberNameAndAvatar securityMember="#{assignee}" isStandAlone="false"
               displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(assignee, assignee.getName())}" />
             </p:column>
             <p:column>
