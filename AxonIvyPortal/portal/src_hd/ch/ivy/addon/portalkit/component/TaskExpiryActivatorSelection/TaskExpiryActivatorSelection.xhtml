@@ -51,7 +51,7 @@
             isRenderedMessage="false" hasCustomizedSelectionList="true">
             <p:column>
               <pc:securityMemberNameAndAvatar displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
-                securityMember="#{user}" />
+                securityMember="#{user}" isStandAlone="false" />
             </p:column>
             <f:facet name="event">
               <p:ajax event="itemSelect" listener="#{data.setIsDisabledAssignButton(false)}" update="#{cc.clientId}:task-escalation-activator-form:assign-task-command" />

@@ -34,7 +34,7 @@
             labelPanelStyleClass="ui-g-12" hasCustomizedSelectionList="true">
             <p:column>
               <pc:securityMemberNameAndAvatar displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
-                securityMember="#{user}" />
+                securityMember="#{user}" isStandAlone="false" />
             </p:column>
             <f:facet name="event">
               <p:ajax event="itemSelect" listener="#{logic.userSelectInAbsence}"

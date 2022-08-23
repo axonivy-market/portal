@@ -89,7 +89,7 @@
       inputStyleClass="#{cc.attrs.inputStyleClass}">
       <p:column rendered="#{!cc.attrs.hasCustomizedSelectionList}">
         <pc:securityMemberNameAndAvatar securityMember="#{user}"
-          displayName="#{portalComponentDisplayNameFormatBean.getDisplayNameForUserDTO(user)}"
+          displayName="#{portalComponentDisplayNameFormatBean.getDisplayNameForUserDTO(user)}" isStandAlone="false"
           isShowAvatar="#{cc.attrs.isShowAvatarInSelectionList}" displayNameRendered="#{cc.attrs.displayNameRenderedInSelectionList}"
           displayNameStyleClass="#{cc.attrs.displayNameInSelectionListStyleClass}" containerStyleClass="#{cc.attrs.selectionListContainerStyleClass}" />
       </p:column>
