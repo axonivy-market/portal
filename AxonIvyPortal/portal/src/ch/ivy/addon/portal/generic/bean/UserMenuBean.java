@@ -329,9 +329,4 @@ public class UserMenuBean implements Serializable {
     }
     return "";
   }
-
-public void swipedEvent() {
-  var moveEvent = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("move");
-  Ivy.log().warn("I'm swiped event {0}", moveEvent);
-}
 }
