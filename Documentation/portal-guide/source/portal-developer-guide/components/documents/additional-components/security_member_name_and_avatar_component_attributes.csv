@@ -1,0 +1,12 @@
+Name,Default,Type,Required,"Description"
+id,,String,false,"Id of component."
+securityMember,null,ISecurityMember,true,"Security member in the ivy security system."
+isShowAvatar,,Boolean,false,"| Boolean value to specify avatar showing. Set to true to show avatar.
+| The setting will detect Portal setting Portal.ShowAvatar as its default value, refer to HowTo: Update :ref:`update-portal-settings` for more details.
+| If the Portal setting is not available, defaults to true."
+displayNameId,username,String,false,"Id of display name element."
+displayName,null,String,true,"The security member name is displayed."
+displayNameRendered,true,Boolean,false,"If false, the security member name is hidden."
+displayNameStyleClass,null,String,false,"The style class is applied for display name element."
+containerStyleClass,null,String,false,"The style class is applied for container element."
+isStandAlone,true,Boolean,false,"Set to false when you use this component in :ref:`components-additional-components-user-selection` and :ref:`components-additional-components-role-selection`."
