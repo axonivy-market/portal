@@ -171,14 +171,14 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
 .case-widget .filter-add-container,
 .case-widget .filter-reset-action {
   order: 1000;
-  margin-right: 10px;
   padding: 5px;
   border-radius: 5px;
 }
 
 .task-widget .advanced-filter, .case-widget-container .advanced-filter, .case-widget .advanced-filter {
   display: inline-flex;
-  margin-right: 10px;
+  margin-right: 5px;
+  padding-right: 5px;
   position: relative;
   cursor: pointer;
   height: 30px;
@@ -275,6 +275,7 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
 }
 
 .filter-add-panel.ui-overlaypanel .config-checkbox-select-all {
+  margin-left: 1rem;
   margin-bottom: .5rem;
 }
 
@@ -522,6 +523,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .action-container, .action-container a.task-action-item, .action-container span.task-action-item {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 @media (max-width : 767px) {
@@ -550,9 +552,11 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .case-command {
-  display: inline-block;
+  display: inline-flex;
   text-align: center;
   text-decoration: none;
+  align-items: center;
+  flex-direction: row;
 }
 
 .case-command.side-step {
@@ -925,11 +929,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   position: relative;
 }
 
-.process-widget .loading-text {
-  padding-left: 15px;
-  padding-top: 10px;
-}
-
 /* Mobile screen */
 @media screen and (max-width: 40em) {
   .process-widget .process-nav .process-nav-item {
@@ -1097,6 +1096,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 
 .process-start-list-item {
   height: 50px;
+  max-width: 100%;
   border-radius: 5px;
   display: flex;
   position: relative;
@@ -1154,10 +1154,10 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 
 .process-start-list-item-name {
   overflow: hidden;
-  display: inline-flex;
+  display: inline-grid;
   width: calc(100% - 75px);
   align-items: center;
-  padding-left: 15px;
+  padding:0 15px;
 }
 
 .compact-processes-container .process-start-list-item-name,
@@ -1236,8 +1236,10 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .process-start-list-item .ui-commandlink.process-item {
-  margin: 0 5px;
-  width: 100%;
+  margin: 0;
+  padding: 0 5px;
+  max-width: 100%;
+  flex: 1;
 }
 
 .process-start-list-item:hover,
@@ -1304,6 +1306,8 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .compact-processes-container .process-start-list-item, .compact-default-processes-container .process-start-list-item {
   margin: auto;
   margin-bottom: 12px;
+  padding: 0;
+  padding-right: 40px;
 }
 
 .add-external-link-icon {
@@ -1337,6 +1341,9 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   margin-right: 15px;
 }
 
+.favorite-process-name {
+  max-width: 850px;
+}
 /********************************** END PROCESSES **********************************/
 /******************START DELEGATE DIALOG********************/
 .delegate-dialog-activator-panel {
@@ -1571,6 +1578,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .task-widget .filter-save-action {
   order: 1002;
   margin-top: 5px;
+  margin-left: 10px;
 }
 
 .save-filter-set-dialog {
@@ -1722,7 +1730,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .no-task-message, .case-widget-empty-message {
-  padding-left: 0.5em;
+  padding-left: 1em;
 }
 
 .compact-task-widget .no-task-message {
@@ -1858,12 +1866,11 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .action-steps-panel .ui-overlaypanel-content,
 .options-panel.ui-overlaypanel .ui-overlaypanel-content {
-  padding: .5rem 0 !important;
   display: grid;
 }
 
 .options-panel .option-item  {
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   align-items: center;
   clear: both;
@@ -2070,6 +2077,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .case-detail-header-container {
   display: flex;
+  flex: 1 0;
 }
 
 .case-details-separator {
@@ -2263,7 +2271,8 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 .case-widget-container .filter-add-button {
   order: 1002;
-  margin-top: 10px;
+  margin-top: 5px;
+  margin-left: 10px;
 }
 
 /********************************** END CASE VIEW **********************************/
@@ -2625,12 +2634,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   }
 }
 
-.md-inputfield .absence-user-selection .ui-autocomplete-input.ui-inputfield,
-.ui-fluid.substituted-user .ui-autocomplete-input.ui-inputfield,
-.ui-fluid .md-inputfield.user-selection-autocomplete-panel .ui-autocomplete-input.ui-inputfield {
-  width: 100%;
-}
-
 /******************************** PROJECT INFO DIALOG ******************************/
 .project-info-dialog {
   max-width: 800px;
@@ -2905,11 +2908,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   margin-top: 10px;
 }
 
-.ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-moretext.ui-state-highlight,
-.ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-moretext.ui-state-highlight td {
-  cursor: default;
-}
-
 /**********************************END ABSENCES AND DEPUTY **********************************/
 .application-language-header {
   width: 20%;
@@ -2924,6 +2922,15 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 .change-password-dialog {
   max-width: 500px;
   min-width: 350px;
+}
+
+.change-password-new-password-label {
+  display: flex;
+  align-items: center;
+}
+
+.change-password-tooltip {
+  width: 300px;
 }
 
 @media screen and (max-width: 40em) {
@@ -3113,6 +3120,11 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   padding: 2rem;
   height: 100%;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .grid-view-form .process-name {
@@ -3269,6 +3281,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 .statistic-widget {
   justify-content: space-around;
   flex-direction: row;
+}
+
+.statistic-widget.compact-mode {
+  margin-top: 0.5em;
 }
 
 .statistic-carousel {
@@ -3631,10 +3647,8 @@ height: 340px;
 
 .chart-info-header {
   display: block;
-  margin-top: 20px;
-  margin-bottom: 10px;
+  margin: 10px auto;
   width: 100%;
-  padding-bottom: 2px;
 }
 
 .chart-info-container {
@@ -4174,11 +4188,12 @@ width:320px;
   width: 100%;
   display: inline-block;
   position: relative;
+  box-sizing: border-box;
+  border: 1px solid transparent;
 }
 
 .ui-inputfield.search-icon-input {
   display: block;
-  margin: 5px 10px 20px 0;
   width: 300px;
 }
 
@@ -4796,7 +4811,7 @@ body .ui-widget-header.portal-breadcrumb a {
   flex-grow: 1;
   padding: 10px;
   justify-content: flex-start;
-  transition: margin-left .5s;
+  transition: margin-left .3s;
 }
 
 .layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu>li.breadcrumb-container {
@@ -4823,11 +4838,6 @@ body .ui-widget-header.portal-breadcrumb .ui-menuitem-link.ui-state-disabled .ui
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
-}
-
-body .ui-widget-header.portal-breadcrumb a,
-body .ui-widget-header.portal-breadcrumb .ui-breadcrumb-chevron {
-	color: black;
 }
 
 body .portal-breadcrumb.ui-breadcrumb ul li {
@@ -5232,12 +5242,14 @@ border-top: 0.14rem dashed;
 
 .task-detail-container {
   text-align: left;
+  flex: 1 0;
 }
 
 .switch-and-reset-buttons-area {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  flex: 0 0;
 }
 
 .icon-more-link, .icon-less-link {
@@ -5279,12 +5291,6 @@ border-top: 0.14rem dashed;
 .ui-overlaypanel.user-of-role .user-name {
   padding: 4px 7px;
   padding-left: 0;
-}
-
-.ui-overlaypanel.user-of-role .user-data-scroller .ui-datascroller-content.ui-widget-content .ui-datascroller-list {
-  padding-top: 4px;
-  margin-left: 15px;
-  list-style-type: disc;
 }
 
 .ui-overlaypanel.user-of-role .user-data-scroller .ui-datascroller-content.ui-widget-content .ui-datascroller-list .has-avatar {
@@ -5407,6 +5413,13 @@ border-top: 0.14rem dashed;
   top: 35px;
   width: 100%;
   height: 16px;
+}
+
+.image-process-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 3rem !important;
 }
 
 .grid-view-form .process-action-group {
@@ -5561,7 +5574,7 @@ border-top: 0.14rem dashed;
 
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .more-information-image-widget {
-  padding-bottom: 32px;
+  margin-bottom: 32px;
 }
 
 .image-process-item .image-process-item-image {
@@ -5680,8 +5693,9 @@ border-top: 0.14rem dashed;
   position: relative;
   margin-right: 1.5rem;
   white-space: nowrap;
-  display: inline-block;
-  vertical-align: top;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .dashboard-type-list li.active {
@@ -5697,7 +5711,8 @@ border-top: 0.14rem dashed;
   transition: 0.3s;
 }
 
-.dashboard-type-list li.active a {
+.dashboard-type-list li.active a,
+.dashboard-type-list li.active i {
   color: var(--primary-color);
   font-weight: 700;
   opacity: 1;
@@ -5714,7 +5729,7 @@ border-top: 0.14rem dashed;
 
 .dashboard-configuration__sub-header {
   justify-content: space-between;
-  line-height: 30px;
+  line-height: 3rem;
 }
 
 .dashboard-configuration__sub-header h4 {
@@ -5737,6 +5752,10 @@ border-top: 0.14rem dashed;
   border-radius: .5rem;
   border: 1px solid transparent;
   justify-content: center;
+}
+
+.dashboard-action-container.ui-commandlink:hover {
+  text-decoration: none;
 }
 
 .dashboard-action-container,
@@ -5804,7 +5823,12 @@ a.dashboard-action-container label {
 }
 
 .security-member-container {
-  display: inline;
+  display: inline-flex;
+  align-items: center;
+}
+
+.user-fullname-container {
+  margin-left: 3px;
 }
 
 .responsible-cell .name-after-avatar,
@@ -5893,10 +5917,9 @@ a.dashboard-action-container label {
   text-align:right
 }
 
-.application-column{
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width:90px;
-  padding-right:15px;
+/* =================== PASSWORD VALIDATION====================== */
+.password-validation-setting-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

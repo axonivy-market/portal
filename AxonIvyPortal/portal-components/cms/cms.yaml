@@ -1,0 +1,27 @@
+Dialogs:
+  com:
+    axonivy:
+      portal:
+        components:
+          Common:
+            Categories: Categories
+            Description: Description
+            Name: Name
+            NotAvailable: N/A
+            Process:
+              ProcessName: Process name
+            Task:
+              Activator: Responsible
+            Type: Type
+          ProcessViewer:
+            ProcessDataNotFound: Could not found the Process Data!
+            ProcessDetails: Process details
+            ProcessId: Process Id
+            ProcessInfo: Process Information
+            ProcessInfoIconTooltip: Click to see details of the process start
+            ProcessType:
+              CASE_MAP: Case Map
+              IVY_PROCESS: Business Process
+Labels:
+  NoName: no name
+  NotAvailable: N/A

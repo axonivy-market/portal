@@ -29,7 +29,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
-import com.axonivy.portal.component.dto.UserDTO;
+import com.axonivy.portal.components.dto.UserDTO;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
@@ -263,7 +263,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         ProcessDashboardWidget processWidget = (ProcessDashboardWidget) this.widget;
         processWidget.setPreview(false);
         if (processWidget.getDisplayMode() == ProcessWidgetMode.FULL_MODE) {
-          updateProcessWidget((SingleProcessDashboardWidget) processWidget, 4, 2);
+          updateProcessWidget((SingleProcessDashboardWidget) processWidget, 6, 2);
         } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE) {
           updateProcessWidget((SingleProcessDashboardWidget) processWidget, 6, 5);
         } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) {

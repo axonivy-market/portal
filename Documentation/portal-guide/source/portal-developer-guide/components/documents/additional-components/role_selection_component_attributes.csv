@@ -27,3 +27,10 @@ moreText,More...,String,"The text shown in panel when the suggested list is grea
 queryDelay,300,Integer,"Delay in milliseconds before sending a query to the server."
 maxResults,100,Integer,"Maximum number of results to be displayed."
 scrollHeight,400,Integer,"scrollHeight attribute of primefaces autocomplete."
+hasCustomizedSelectionList,false,Boolean,"If true, the customized selection list is displayed."
+isShowAvatarInSelectionList,,Boolean,"| Boolean value to specify avatar showing. Set to true to show avatar.
+| The setting will detect Portal setting Portal.ShowAvatar as its default value, refer to HowTo: Update :ref:`update-portal-settings` for more details.
+| If the Portal setting is not available, defaults to true."
+displayNameRenderedInSelectionList,true,Boolean,"If false, the name of security member in the selection list is hidden."
+displayNameInSelectionListStyleClass,null,String,"Style class of display name in the selection list"
+selectionListContainerStyleClass,null,String,"Style class of item's container in the selection list"

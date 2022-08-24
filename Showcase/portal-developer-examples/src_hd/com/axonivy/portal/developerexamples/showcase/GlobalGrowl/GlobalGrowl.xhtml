@@ -6,11 +6,11 @@
     <ui:define name="content">
       <h:form id="request">
         <p:focus></p:focus>
-        <h:panelGroup styleClass="md-inputfield MarTop20">
+        <h:panelGroup styleClass="ui-float-label MarTop20" layout="block">
           <p:inputText id="fullname" />
           <p:outputLabel for="fullname" value="Employee" />
         </h:panelGroup>
-        <h:panelGroup styleClass="MarTop5 DispBlock" id="command-group">
+        <h:panelGroup styleClass="MarTop20" id="command-group" layout="block">
           <p:commandLink value="Cancel" id="button-cancel" actionListener="#{logic.cancel}" process="@this"/>
           <p:spacer width="15"/>
           <p:commandButton value="Send" icon="si si-check-1" id="button-submit" actionListener="#{logic.close}" process="@this" />

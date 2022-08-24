@@ -74,9 +74,6 @@ body .ui-selectonelistbox .ui-selectlistbox-item.ui-state-hover {
 .message .message-container {
   font-size: var(--large-font-size); }
 
-.message .message-footer .ui-button {
-  font-size: var(--small-font-size); }
-
 @media screen and (max-width: 64.063em) {
   .ui-messages-info-summary,
   .ui-messages-warn-summary,
@@ -101,10 +98,6 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
 body .md-inputfield input.ui-state-filled ~ label,
 body .md-inputfield input:focus ~ label {
   font-size: var(--small-font-size); }
-
-/* Auto complete */
-.ui-autocomplete-panel .ui-autocomplete-items.ui-autocomplete-table tr:hover {
-  color: var(--auto-complete-hover-color); }
 
 .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-save .ui-icon-check,
 .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close {
@@ -179,9 +172,17 @@ body .portal-breadcrumb.ui-breadcrumb ul li .ui-menuitem-link.ui-state-disabled 
 .process-start-list-item,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item,
 a.compact-task-start-link .task-start-list-item {
-  background-color: var(--item-widget-background-color);
   box-shadow: var(--item-widget-box-shadow);
   border: 1px solid transparent; }
+
+.dashboard-widget-panel-container .process-start-list-item,
+.ui-fieldset-content .process-start-list-item {
+  background-color: var(--item-widget-background-color);
+  box-shadow: var(--item-widget-box-shadow);
+}
+
+.process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item {
+  background-color: var(--item-widget-background-color); }
 
 /*Style For Process Widget --------------------------------------------------------------------------------*/
 .process-start-list-item:hover .process-start-list-item-icon {
@@ -1107,9 +1108,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .error-container {
   color: var(--error-container-color); }
 
-.message {
-  background-color: var(--error-message-background-color); }
-
 .message .message-header {
   color: var(--error-message-header-color); }
 
@@ -1201,10 +1199,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 .ui-widget.ui-button.defined-task-button.active {
   font-weight: var(--express-active-defined-task-button-font-weight); }
-
-.ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-moretext.ui-state-highlight,
-.ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-moretext.ui-state-highlight td {
-  background-color: var(--autocomplete-more-text-state-highlight-background-color); }
 
 /* Chat*/
 .layout-wrapper .layout-topbar .topbar-menu > li > a.notification-badge i.fa.fa-comment {

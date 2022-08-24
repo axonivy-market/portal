@@ -688,6 +688,16 @@ ch.ivy.addon.portalkit.ui.jsf:
           pratique du portail</a>'
         mobileContent: 'Vous pouvez accéder directement à vos tâches dans cette page ou naviguer vers d''autres domaines en utilisant <span class="{0}"></span>. Vous pouvez trouver une documetation utilisateur étendue ici : <a href="{1}" target="_blank">PortalGuide</a>'
         title: Bienvenue sur Axon Ivy Portal
+    passwordValidation:
+      criteria: Critères
+      enablePasswordValidation: Activer la validation du mot de passe
+      passwordPolicyType:
+        minCharacter: Longueur minimale
+        minLowercaseCharacter: Caractères minuscules minimum
+        minNumber: Caractères numériques minimums
+        minSpecialCharacter: Caractères spéciaux minimums
+        minUppercaseCharacter: Caractères majuscules minimum
+      titlePage: Validation du mot de passe
     processChain:
       currentStepIsNotDefined: L'étape actuelle ({0}) de la chaîne de processus n'est pas définie
     statisticWidget:
@@ -990,7 +1000,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     confirmNewPassword: Confirmer le nouveau mot de passe
     confirmPasswordHaveMatch: The entered new password did not match with confirmed password.
     currentPassword: Mot de passe actuel
+    minCharacterRequired: être d'au moins {0} caractères
+    minLowercaseCharacterRequired: contenir au moins {0} caractère minuscule
+    minNumberRequired: contient au moins {0} nombre
+    minSpecialCharacterRequired: contenir au moins {0} caractère spécial
+    minUppercaseCharacterRequired: contenir au moins {0} un caractère majuscule
     newPassword: Nouveau mot de passe
+    passwordMust: Le mot de passe doit
     requireConfirmPassword: Veuillez confirmer votre mot de passe
     requireCurrentPassword: Veuillez indiquer votre mot de passe actuel
     requireNewPassword: Le nouveau mot de passe n'a pas été renseigné
