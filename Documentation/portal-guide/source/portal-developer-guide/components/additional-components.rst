@@ -14,6 +14,7 @@ These components fully support both Freya and Serenity themes of Primefaces.
    - :ref:`Process History<components-additional-component-process-history>`
    - :ref:`Process Chain<components-additional-component-process-chain>`
    - :ref:`Document Table<components-additional-components-document-table>`
+   - :ref:`Security Member Name And Avatar<components-additional-components-security-member-name-and-avatar>`
    - :ref:`User Selection<components-additional-components-user-selection>`
    - :ref:`Role Selection<components-additional-components-role-selection>`
    - :ref:`Process Viewer<components-additional-components-process-viewer>`
@@ -443,6 +444,50 @@ Migrate from Deprecated Document Table
    Please remove redundant overridden configurations, subprocesses, and data classes such as GetDocumentListOverride,
    UploadDocumentOverride, etc.
 
+.. _components-additional-components-security-member-name-and-avatar:
+
+Security Member Name And Avatar
+-------------------------------
+
+Introduction
+^^^^^^^^^^^^
+
+This component is used to display the name and avatar of a security member in the ivy security system.
+It is also integrated in :ref:`components-additional-components-user-selection` and :ref:`components-additional-components-role-selection`.
+
+How to Use
+^^^^^^^^^^
+
+You can insert this component into any page.
+
+|session-role-security-member-name-and-avatar|
+
+Code example using the top-level role (Everybody):
+
+   .. code-block:: html
+
+         <pc:securityMemberNameAndAvatar displayName="#{ivy.security.roles().topLevel().displayName}"
+            securityMember="#{ivy.security.roles().topLevel()}" />
+
+|session-user-security-member-name-and-avatar|
+
+Code example using the current session user:
+
+   .. code-block:: html
+
+         <pc:securityMemberNameAndAvatar displayName="#{ivy.session.sessionUser.displayName}"
+            securityMember="#{ivy.session.sessionUser}" />
+
+This component offers the following attributes:
+
+.. csv-table::
+  :file: documents/additional-components/security_member_name_and_avatar_component_attributes.csv
+  :header-rows: 1
+  :class: longtable
+  :widths: 1 1 1 1 3
+
+Refer to process ``SecurityMemberNameAndAvatarExample`` in project ``portal-components-examples`` for more details.
+
 .. _components-additional-components-user-selection:
 
 User Selection
@@ -511,9 +556,9 @@ I want to display users in a dropdown list formatted as "<Full name>
       fromRoleNames="#{data.definedRoleNames}" label="Demonstrate facet and children"
          selectedUser="#{data.selectedUserForInsertChildren}"
       autoCompleteStyleClass="width-100"
-      autoCompletePanelStyleClass="ui-g-12 floating-label-margin-top">
+      autoCompletePanelStyleClass="ui-g-12 floating-label-margin-top" hasCustomizedSelectionList="true">
          <p:column>
-         <h:outputText value="#{user.displayName} (#{user.name})" />
+            <pc:securityMemberNameAndAvatar displayName="#{user.getDisplayName()} (#{user.getMemberName()})" securityMember="#{user}" isStandAlone="false" />
          </p:column>
          <f:facet name="event">
             <p:ajax event="itemSelect" listener="#{logic.showSelectedUser}"
@@ -618,9 +663,9 @@ Name>)". When I select a role, a message shall be displayed.
          label="Demonstrate facet and children"
          autoCompleteStyleClass="width-100"
          autoCompletePanelStyleClass="ui-g-12 floating-label-margin-top"
-         isRequired="true" floatingLabel="true">
+         isRequired="true" floatingLabel="true" hasCustomizedSelectionList="true">
          <p:column>
-            <h:outputText value="#{role.getDisplayName()} (#{role.getMemberName()})" />
+            <pc:securityMemberNameAndAvatar displayName="#{role.getDisplayName()} (#{role.getMemberName()})" securityMember="#{role}" isStandAlone="false" />
          </p:column>
          <f:facet name="event">
             <p:ajax event="itemSelect" listener="#{logic.showSelectedRole}"
@@ -847,3 +892,5 @@ Process Viewer
 .. |role-selection-with-children-and-ajax-event| image:: ../../screenshots/components/role-selection-component-ajax-event-selected-message.png
 .. |role-selection-component-ajax-expand| image:: ../../screenshots/components/role-selection-component-ajax-expand.png
 .. |portal-process-viewer-component| image:: ../../screenshots/components/portal-process-viewer-component.png
+.. |session-user-security-member-name-and-avatar| image:: ../../screenshots/components/session-user-security-member-name-and-avatar.png
+.. |session-role-security-member-name-and-avatar| image:: ../../screenshots/components/session-role-security-member-name-and-avatar.png
