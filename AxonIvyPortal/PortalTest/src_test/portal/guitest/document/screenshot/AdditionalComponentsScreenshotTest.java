@@ -23,6 +23,7 @@ import portal.guitest.page.ProcessHistoryPage;
 import portal.guitest.page.ProcessViewerComponentPage;
 import portal.guitest.page.ProcessViewerPage;
 import portal.guitest.page.RoleSelectionComponentPage;
+import portal.guitest.page.SecurityMemberNameAndAvatarComponentPage;
 import portal.guitest.page.StatisticWidgetPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.UserSelectionComponentPage;
@@ -178,5 +179,18 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
     processViewerPage.waitForSprottyToolDisplayed();
     Sleeper.sleep(1000);// wait for iframe data loading finish
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.COMPONENTS_FOLDER + "portal-process-viewer-component");
+  }
+
+  @Test
+  public void captureScreenshotSecurityMemberNameAndAvatarComponent() throws IOException {
+    redirectToRelativeLink(securityMemberNameAndAvatarExampleInFrameUrl);
+    ScreenshotUtil.resizeBrowser(new Dimension(1366, 1000));
+    SecurityMemberNameAndAvatarComponentPage securityMemberNameAndAvatarComponentPage = new SecurityMemberNameAndAvatarComponentPage();
+    ScreenshotUtil.captureElementScreenshot(
+        securityMemberNameAndAvatarComponentPage.getCurrentSessionUserSecurityMemberNameAndAvatarComponentContainer(),
+        ScreenshotUtil.COMPONENTS_FOLDER + "session-user-security-member-name-and-avatar");
+    ScreenshotUtil.captureElementScreenshot(
+        securityMemberNameAndAvatarComponentPage.getCurrentSessionRoleSecurityMemberNameAndAvatarComponentContainer(),
+        ScreenshotUtil.COMPONENTS_FOLDER + "session-role-security-member-name-and-avatar");
   }
 }

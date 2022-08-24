@@ -1,0 +1,4 @@
+ProcessViewerExampleData #class
+com.axonivy.portal.components.examples #namespace
+selectedCaseId Long #field
+selectedProcessLink String #field

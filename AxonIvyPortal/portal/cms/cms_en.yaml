@@ -690,6 +690,16 @@ ch.ivy.addon.portalkit.ui.jsf:
         content: 'We want to support you having a good start with the portal. For that we want to guide you through the first actions you can do. In addition, you can find an extended user documentation including "How-to-Guide" here: <a href="{0}"  target="_blank">PortalGuide</a>'
         mobileContent: 'You can access directly to your tasks in this page or navigate to other areas using <span class="{0}"></span>. You can find an extended user documetation here: <a href="{1}"  target="_blank">PortalGuide</a>'
         title: Welcome to the Axon Ivy Portal
+    passwordValidation:
+      criteria: Criteria
+      enablePasswordValidation: Enable password validation
+      passwordPolicyType:
+        minCharacter: Minimum Length
+        minLowercaseCharacter: Minimum Lowercase Characters
+        minNumber: Minimum Numeric Characters
+        minSpecialCharacter: Minimum Special Characters
+        minUppercaseCharacter: Minimum Uppercase Characters
+      titlePage: Password Validation
     processChain:
       currentStepIsNotDefined: Current step ({0}) of process chain is not defined
     statisticWidget:
@@ -992,7 +1002,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     confirmNewPassword: Confirm new password
     confirmPasswordHaveMatch: The entered new password did not match with confirmed password.
     currentPassword: Current password
+    minCharacterRequired: be at least {0} characters long
+    minLowercaseCharacterRequired: contain at least {0} lowercase character
+    minNumberRequired: contain at least {0} number
+    minSpecialCharacterRequired: contain at least {0} special character
+    minUppercaseCharacterRequired: contain at least {0} uppercase character
     newPassword: New password
+    passwordMust: Password must
     requireConfirmPassword: Password confirmation was missing
     requireCurrentPassword: Please specify the current password
     requireNewPassword: Please specify the new password as well

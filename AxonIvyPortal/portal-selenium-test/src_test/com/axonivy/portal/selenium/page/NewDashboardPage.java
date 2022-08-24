@@ -177,7 +177,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement getCasesTab() {
-    return $(".combined-process-widget__button-tabs.last-tab-button");
+    return $$(".combined-process-widget-button-selection .ui-button").get(1);
   }
 
   public SelenideElement getCombinedModeProcessFirstCaseName() {

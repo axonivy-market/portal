@@ -18,10 +18,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
-import com.axonivy.portal.component.util.RoleUtils;
+import com.axonivy.portal.components.util.RoleUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-import com.axonivy.portal.component.dto.SecurityMemberDTO;
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;

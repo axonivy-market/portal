@@ -32,7 +32,7 @@
           "params" : [
             { "name" : "uploadedDocument", "type" : "ch.ivyteam.ivy.workflow.document.IDocument" },
             { "name" : "message", "type" : "String" },
-            { "name" : "status", "type" : "com.axonivy.portal.component.enums.UploadDocumentCheckStatus" }
+            { "name" : "status", "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus" }
           ],
           "map" : {
             "result.uploadedDocument" : "in.uploadedDocument",
@@ -84,7 +84,7 @@
         "security" : "system",
         "output" : {
           "code" : [
-            "import com.axonivy.portal.component.enums.UploadDocumentCheckStatus;",
+            "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
             "import ch.ivy.addon.portalkit.util.DocumentFileUtils;",
             "import ch.ivy.addon.portalkit.service.CaseDocumentService;",
             "",
@@ -118,7 +118,7 @@
             "name" : "YES",
             "segment" : 0.33,
             "offset" : { "x" : -1, "y" : -8 }
-          }, "condition" : "in.status == com.axonivy.portal.component.enums.UploadDocumentCheckStatus.OK" },
+          }, "condition" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK" },
         { "id" : "f26", "to" : "f8" }
       ]
     }, {
@@ -138,7 +138,7 @@
         "security" : "system",
         "output" : {
           "code" : [
-            "import com.axonivy.portal.component.enums.UploadDocumentCheckStatus;",
+            "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
             "import ch.ivy.addon.portalkit.util.DocumentFileUtils;",
             "import org.primefaces.model.file.UploadedFile;",
             "import ch.ivy.addon.portalkit.service.CaseDocumentService;",
@@ -170,7 +170,7 @@
             "name" : "OK",
             "segment" : 0.33,
             "offset" : { "x" : 0, "y" : -8 }
-          }, "condition" : "in.status == com.axonivy.portal.component.enums.UploadDocumentCheckStatus.OK" },
+          }, "condition" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK" },
         { "id" : "f25", "to" : "f12" }
       ]
     }, {
@@ -186,7 +186,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.component.enums.UploadDocumentCheckStatus;",
+            "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
             "import org.apache.commons.io.FileUtils;",
             "import java.util.Arrays;",
             "import ch.ivy.addon.portalkit.masterdata.MasterData;",
