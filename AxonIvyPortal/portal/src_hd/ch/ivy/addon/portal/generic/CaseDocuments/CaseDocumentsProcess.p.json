@@ -102,7 +102,7 @@
       "name" : "Delete Document",
       "config" : {
         ".name" : "Delete Document",
-        "processCall" : "Functional Processes/DeleteDocument:call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.component.ivydata.bo.IvyDocument)",
+        "processCall" : "Functional Processes/DeleteDocument:call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
         "output" : {
           "map" : {
             "out" : "in",
@@ -112,7 +112,7 @@
         "call" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
-            { "name" : "document", "type" : "com.axonivy.portal.component.ivydata.bo.IvyDocument" }
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument" }
           ],
           "map" : {
             "param.businessCase" : "in.selectedCase",
@@ -204,7 +204,7 @@
         },
         "input" : {
           "params" : [
-            { "name" : "document", "type" : "com.axonivy.portal.component.ivydata.bo.IvyDocument" }
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument" }
           ],
           "map" : {
             "out.document" : "param.document"
@@ -223,7 +223,7 @@
       "name" : "Download Document",
       "config" : {
         ".name" : "Download Document",
-        "processCall" : "Functional Processes/DownloadDocument:call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.component.ivydata.bo.IvyDocument)",
+        "processCall" : "Functional Processes/DownloadDocument:call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
         "output" : {
           "map" : {
             "out" : "in",
@@ -233,7 +233,7 @@
         "call" : {
           "params" : [
             { "name" : "bussinessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
-            { "name" : "document", "type" : "com.axonivy.portal.component.ivydata.bo.IvyDocument" }
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument" }
           ],
           "map" : {
             "param.bussinessCase" : "in.selectedCase",

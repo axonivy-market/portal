@@ -29,9 +29,9 @@
         <p:ajax global="false" event="#{cc.attrs.event}" delay="#{cc.attrs.delay}" listener="#{cc.attrs.listener}" update="#{cc.attrs.updateComponent}" oncomplete="#{cc.attrs.onCompletedCallback}" />
       </p:inputText>
       <p:inputText id="non-ajax-keyword-filter" styleClass="filter-widget-input #{cc.attrs.styleClass}" rendered="#{not cc.attrs.ajax}" onkeyup="#{cc.attrs.listener}" placeholder="#{cc.attrs.placeholder}" />
-      <span class="MarLeft10">
-        <p:commandButton id="mobile-filter-icon" styleClass="mobile-filter-icon rounded-button ui-button-outlined" icon="si si-filter-1" rendered="#{cc.attrs.isFilterToggleRenderedOnMobile}" onclick="#{cc.attrs.onClickIconFilter}" global="false" type="button" />
-      </span>
+      <h:panelGroup styleClass="MarLeft10 mobile-filter-icon" rendered="#{cc.attrs.isFilterToggleRenderedOnMobile}">
+        <p:commandButton id="mobile-filter-icon" styleClass="mobile-filter-icon rounded-button ui-button-outlined" icon="si si-filter-1" onclick="#{cc.attrs.onClickIconFilter}" global="false" type="button" />
+      </h:panelGroup>
     </div>
   </cc:implementation>
 </html>

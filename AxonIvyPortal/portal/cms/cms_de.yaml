@@ -687,6 +687,16 @@ ch.ivy.addon.portalkit.ui.jsf:
         content: 'Wir möchten Ihnen einen guten Start im Portal ermöglichen. Dazu möchten wir Sie durch die ersten Aktionen führen, die Sie durchführen können. Darüber hinaus finden Sie hier eine erweiterte Benutzerdokumentation inklusive "How-to-Guide": <a href="{0}"  target="_blank">Portal-Anleitung</a>'
         mobileContent: 'Sie können auf dieser Seite sofort auf Ihre Aufgaben zugreifen oder mit <span class="{0}"></span> zu anderen Bereichen navigieren. Sie finden weiterführende Informationen hier: <a href="{1}"  target="_blank">PortalGuide</a>'
         title: Willkommen im Axon Ivy Portal
+    passwordValidation:
+      criteria: Kriterien
+      enablePasswordValidation: Kennwortüberprüfung einschalten
+      passwordPolicyType:
+        minCharacter: Mindestlänge
+        minLowercaseCharacter: Minimum Kleinbuchstaben
+        minNumber: Minimale numerische Zeichen
+        minSpecialCharacter: Minimum Sonderzeichen
+        minUppercaseCharacter: Minimum Großbuchstaben
+      titlePage: Passwort-Überprüfung
     processChain:
       currentStepIsNotDefined: Aktueller Schritt ({0}) der Prozesskette ist nicht definiert
     statisticWidget:
@@ -991,7 +1001,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     confirmNewPassword: Neues Password bestätigen
     confirmPasswordHaveMatch: Das eingegebene Passwort stimmt nicht mit dem Bestätigungspasswort überein.
     currentPassword: Aktuelles Passwort
+    minCharacterRequired: mindestens {0} Zeichen lang sein
+    minLowercaseCharacterRequired: mindestens {0} Kleinbuchstaben enthalten
+    minNumberRequired: mindestens {0} Zahl enthalten
+    minSpecialCharacterRequired: mindestens {0} Sonderzeichen enthalten
+    minUppercaseCharacterRequired: mindestens {0} Großbuchstaben enthalten
     newPassword: Neues Passwort
+    passwordMust: Das Passwort muss
     requireConfirmPassword: Wiederholen Sie Ihr Passwort, bitte
     requireCurrentPassword: Bitte geben Sie Ihr Passwort an
     requireNewPassword: Das neue Passwort wurde nicht angegeben

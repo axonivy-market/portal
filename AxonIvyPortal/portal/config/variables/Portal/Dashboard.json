@@ -7,7 +7,7 @@
         "type": "task",
         "id": "task_1",
         "layout": {
-          "x": 0, "y": 0, "w": 12, "h": 5
+          "x": 0, "y": 0, "w": 12, "h": 6
         },
         "rowsPerPage": 5,
         "sortField": "startTimestamp",
@@ -55,7 +55,7 @@
         "type": "case",
         "id": "case_1",
         "layout": {
-          "x": 0, "y": 5, "w": 9, "h": 5
+          "x": 0, "y": 6, "w": 9, "h": 6
         },
         "rowsPerPage": 5,
         "sortField": "startTimestamp",
@@ -97,7 +97,7 @@
         "type": "compact-process",
         "id": "process_1",
         "layout": {
-          "x": 9, "y": 5, "w": 3, "h": 5
+          "x": 9, "y": 6, "w": 3, "h": 6
         }
       }
     ]

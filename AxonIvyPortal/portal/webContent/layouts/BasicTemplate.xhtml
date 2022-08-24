@@ -82,7 +82,7 @@
       </div>
 
       <div class="layout-wrapper layout-sidebar layout-topbar-#{ivyFreyaTheme.mode} layout-menu-#{ivyFreyaTheme.mode}
-        js-layout-wrapper #{isPortalInTeams ? 'ms-teams-layout' : ''} #{guestPreferences.orientationRTL ? 'layout-rtl' : ''}">
+        js-layout-wrapper #{isPortalInTeams ? 'ms-teams-layout' : ''}">
 
         <h:panelGroup layout="block" rendered="#{!isPortalInTeams}" styleClass="layout-topbar js-layout-topbar">
           <h:panelGroup layout="block" id="layout-topbar-menu-wrapper" styleClass="layout-topbar-wrapper">
@@ -99,7 +99,7 @@
             </ui:decorate>
 
             <h:panelGroup layout="block" rendered="#{!isPortalInTeams}"
-              styleClass="menu-wrapper #{guestPreferences.darkMenu ? 'layout-sidebar-dark' : ''} #{currentPage} left-sidebar-color js-left-sidebar"
+              styleClass="menu-wrapper left-sidebar-color js-left-sidebar"
               id="left-menu">
               <c:choose>
                 <c:when test="#{isNotRequiredLogin}">

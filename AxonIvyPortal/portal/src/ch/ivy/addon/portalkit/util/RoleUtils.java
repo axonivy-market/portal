@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.component.dto.RoleDTO;
+import com.axonivy.portal.components.dto.RoleDTO;
 
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
