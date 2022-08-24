@@ -229,7 +229,7 @@
                   <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
                     icon="#{visibilityBean.generateButtonIcon('si si-chat-translate')}" process="appDisplayName3rd "
                     styleClass="app-setting-button"
-                    update=":#{p:resolveFirstComponentWithId('appDisplayName3rd', view).clientId} appDialogForm :#{p:resolveFirstComponentWithId('applicationName', view).clientId}"
+                    update=":#{p:resolveFirstComponentWithId('appDisplayName3rd', view).clientId} :#{p:resolveFirstComponentWithId('applicationName', view).clientId}"
                     actionListener="#{logic.getLanguageList}"
                     oncomplete="if (!args.validationFailed)PF('applicationName').show();">
                     <f:param name="skipDisplayNameInputValidation" value="true" />
