@@ -817,6 +817,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     dashboardManagement:
       CreateDashboard: Create Dashboard
       addDashboard: Add dashboard
+      dashboardIcon: Dashboard icon
       dashboardPermission: Dashboard permission
       dashboardTitle: Dashboard title
       editDashboard: Edit dashboard
