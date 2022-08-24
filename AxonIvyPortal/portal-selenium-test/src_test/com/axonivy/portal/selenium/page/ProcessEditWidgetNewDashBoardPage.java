@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -154,7 +155,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getSelectedTasksTab() {
-    return $(".combined-process-widget__button-tabs.first-tab-button.active-button-tab");
+    return $$(".combined-process-widget-button-selection .ui-button").get(0);
   }
 
   public SelenideElement getTasksTabDataContainer() {
@@ -167,11 +168,11 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getCasesTab() {
-    return $(".combined-process-widget__button-tabs.last-tab-button");
+    return $$(".combined-process-widget-button-selection .ui-button").get(1);
   }
 
   public SelenideElement getSelectedCasesTab() {
-    return $(".combined-process-widget__button-tabs.last-tab-button.active-button-tab");
+    return $(".combined-process-widget-button-selection .ui-button.ui-state-active");
   }
 
   public SelenideElement getCasesTabDataContainer() {

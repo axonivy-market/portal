@@ -67,7 +67,7 @@ function CaseWidget() {
       }
       if (!needShowScrollbar) {
         PortalLayout.removeJsStyleOnLayoutContent();
-        $('.js-case-list').removeAttr("style");
+        // $('.js-case-list').removeAttr("style");
       }
     },
 
@@ -133,7 +133,7 @@ function CaseListToolKit() {
       var $layout = $('.js-layout-wrapper');
       var remainingWidth = $('.js-layout-content').outerWidth(true);
       var $hiddenColumns = $('.js-hidden-when-expand-menu');
-      if (remainingWidth < 1024 && $layout.hasClass('layout-wrapper-static')) {
+      if (remainingWidth < 1024 && $layout.hasClass('layout-static')) {
         hideColumnWhenExpandMenu($hiddenColumns);
       } else {
         displayColumnWhenCollapseMenu($hiddenColumns);

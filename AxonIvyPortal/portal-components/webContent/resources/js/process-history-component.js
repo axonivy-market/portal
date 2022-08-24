@@ -199,7 +199,7 @@ function CaseListToolKit() {
       var $mainMenu = $('.js-left-sidebar');
       var remainingWidth = $('body').width() - $mainMenu.outerWidth() - 75;//exclude padding and scroll bar
       var $hiddenColumns = $('.js-hidden-when-expand-menu');
-      if (remainingWidth < 1024 && $layout.hasClass('layout-wrapper-static')) {
+      if (remainingWidth < 1024 && $layout.hasClass('layout-static')) {
         hideColumnWhenExpandMenu($hiddenColumns);
       } else {
         displayColumnWhenCollapseMenu($hiddenColumns);
