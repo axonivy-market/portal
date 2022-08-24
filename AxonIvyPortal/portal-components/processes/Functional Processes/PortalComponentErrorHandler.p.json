@@ -1,0 +1,60 @@
+{
+  "format" : "9.4.14",
+  "id" : "18098C74EBB97195",
+  "data" : "com.axonivy.portal.components.ErrorHandlerData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "handle(List<PortalIvyDataException>)",
+      "config" : {
+        "callSignature" : "handle",
+        "input" : {
+          "params" : [
+            { "name" : "exceptions", "type" : "java.util.List<com.axonivy.portal.components.ivydata.exception.PortalIvyDataException>" }
+          ],
+          "map" : {
+            "out.exceptions" : "param.exceptions"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 48 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 64, "y" : 240 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : [
+        "add errors to",
+        "error handler"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.ivydata.exception.PortalIvyDataException;",
+            "import com.axonivy.portal.components.util.ErrorHandler;",
+            "",
+            "for (PortalIvyDataException exception : in.exceptions) {",
+            "  ErrorHandler.addError(org.apache.log4j.Priority.ERROR, exception);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 136 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

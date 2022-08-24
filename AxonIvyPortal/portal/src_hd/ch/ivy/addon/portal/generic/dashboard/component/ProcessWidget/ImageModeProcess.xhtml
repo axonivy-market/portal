@@ -45,19 +45,19 @@
           <p:tooltip id="info-workflow-tooltip" for="process-description" value="#{process.description}" position="top" trackMouse="true" hideEvent="mouseleave click"
             styleClass="js-process-start-list-item-description" />
         </div>
-        <div id="process-actions">
-          <!-- Start process -->
-          <div class="start-process-image-widget">
-            <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" id="start-button" disabled="#{!isReadOnlyMode or isInConfiguration}"
-              icon="si si-arrow-right-1" actionListener="#{dashboardProcessBean.startProcess(process)}" ajax="#{!isExternalLink}" />
-          </div>
-          <!-- More Information Link -->
-          <div class="more-information-image-widget">
-            <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}" disabled="#{!isReadOnlyMode or isInConfiguration}" 
-              href="#{dashboardProcessBean.getProcessInformationPageUrl(process)}"  id="more-information"
-              rendered="#{data.showInformationLink and !isExpress and !isExternalLink and !isCaseMap}" />
-          </div>
+
+        <!-- Start process -->
+        <div class="ui-g-12 MarTop10 image-process-actions" id="process-actions">
+          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}"
+            id="start-button" actionListener="#{dashboardProcessBean.startProcess(process)}" icon="si si-arrow-right-1"
+            ajax="#{!isExternalLink}"
+            disabled="#{!isReadOnlyMode or isInConfiguration}" />
+          <p:link id="more-information" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}"
+            styleClass="process-more-info-link" href="#{dashboardProcessBean.getProcessInformationPageUrl(process)}"
+            rendered="#{!isReadOnlyMode or isInConfiguration}"
+            disabled="#{!isReadOnlyMode or isInConfiguration}" />
         </div>
+        
       </h:form>
     </div>
   </h:panelGroup>

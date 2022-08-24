@@ -40,7 +40,7 @@ public class CaseApplicationFilter extends CaseFilter {
       return noSelectionLabel();
     } else if (isAllApplicationsSelected()) {
       isSelectedAll = true;
-      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/all");
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/All");
     }
     isSelectedAll = false;
     return selectedFilteredApplications.stream().collect(Collectors.joining(","));
@@ -64,6 +64,7 @@ public class CaseApplicationFilter extends CaseFilter {
       final List<IApplication> allApps = IApplicationRepository.instance().allOf(ISecurityContext.current());
       for (IApplication app : allApps) {
         if (app.getName().equals(applicationName)) {
+          Ivy.log().error("filter case with app {0}", applicationName);
           filterQuery.or().applicationId().isEqual(app.getId());
         }
       }

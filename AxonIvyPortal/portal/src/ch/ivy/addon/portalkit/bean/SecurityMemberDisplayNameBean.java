@@ -8,7 +8,7 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.BooleanUtils;
 
-import com.axonivy.portal.component.dto.UserDTO;
+import com.axonivy.portal.components.dto.UserDTO;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;

@@ -167,13 +167,16 @@
   </h:form>
 
   <p:dialog id="chart-details-dialog" widgetVar="chart-details-dialog" appendTo="@(body)"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartInfo/chartDetailsHeader')}" modal="true" closable="true" closeOnEscape="true"
-    dynamic="true" styleClass="statistic-details-dialog" resizable="false" fitViewport="true" responsive="true">
-    <ic:ch.ivy.addon.portalkit.component.statistic.ChartInformationDialog selectedStatisticChart="#{data.selectedStatisticChart}" />
-    <div class="u-text-align-right MarTop20">
-      <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-        icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('chart-details-dialog').hide();">
-      </p:commandButton>
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartInfo/chartDetailsHeader')}"
+    modal="true" closable="true" closeOnEscape="true" dynamic="true" resizable="false"
+    styleClass="statistic-details-dialog" fitViewport="true" responsive="true">
+    <div class="ui-g">
+      <ic:ch.ivy.addon.portalkit.component.statistic.ChartInformationDialog selectedStatisticChart="#{data.selectedStatisticChart}" />
+      <div class="u-text-align-right ui-g-12 u-no-padding-bottom">
+        <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+          icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('chart-details-dialog').hide();">
+        </p:commandButton>
+      </div>
     </div>
   </p:dialog>
 

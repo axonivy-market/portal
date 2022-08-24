@@ -12,20 +12,20 @@
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/title')}</ui:define>
     <ui:define name="pageContent">
 
-      <div class="error-container">
-        <div class="message">
+      <div class="error-container container">
+        <div class="message card">
           <ui:fragment rendered="#{data.errorCode eq '404'}">
-            <div class="message-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/404')}</div>
-            <div class="message-container">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/404Message')}</div>
+            <div class="message-header"><h3>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/404')}</h3></div>
+            <div class="message-container"><p>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/404Message')}</p></div>
           </ui:fragment>
 
           <ui:fragment rendered="#{data.errorCode eq '500'}">
-            <div class="message-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/500')}</div>
-            <div class="message-container">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/500Message')}</div>
+            <div class="message-header"><h3>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/500')}</h3></div>
+            <div class="message-container"><p>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/500Message')}</p></div>
           </ui:fragment>
 
           <hr class="message-separator" />
-          <div class="message-footer">
+          <div class="message-footer ui-g">
             <div class="ui-g-12">
               <p:button href="#" onclick="window.open('#{userMenuBean.getHomePageURL()}', '_self')"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}"

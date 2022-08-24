@@ -1,0 +1,4 @@
+SecurityMemberNameAndAvatarExampleData #class
+com.axonivy.portal.components.examples.SecurityMemberNameAndAvatarExample #namespace
+securityMemberNameAndAvatarSerenityExampleLink String #field
+securityMemberNameAndAvatarSerenityExampleLink PERSISTENT #fieldModifier
