@@ -23,7 +23,8 @@
   <c:set var="showItemDetailsHeader" value="#{cc.attrs.showItemDetailsHeader}"/>
   <c:set var="readOnly" value="#{cc.attrs.readOnly}"/>
 
-  <h:panelGroup styleClass="ui-g-12 case-detail-header-container u-truncate-text" rendered="#{showItemDetailsHeader}" layout="block">
+  <h:panelGroup styleClass="ui-g-12 case-detail-header-container u-truncate-text u-no-padding-bottom"
+    rendered="#{showItemDetailsHeader}" layout="block">
     <h:panelGroup id="case-detail-name" styleClass="case-detail-header #{inFrame == true ? '' : 'u-hidden-md-up'}" layout="block">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}: "
         styleClass="case-detail-name-prefix" />
@@ -38,21 +39,21 @@
     </p:link>
   </h:panelGroup>
   <h:panelGroup id="case-details-actions" rendered="#{not isWorkingOnTask}"
-    styleClass="switch-and-reset-buttons-area ui-g-12 ui-sm-hidden">
+    styleClass="switch-and-reset-buttons-area ui-g-12 ui-sm-hidden u-no-padding-bottom">
+    <p:commandButton id="switch-to-edit-mode-button" rendered="#{caseDetailsBean.readOnlyMode and not inFrame}"
+      value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToEditMode')}" actionListener="#{caseDetailsBean.switchToEditMode()}"
+      icon="#{visibilityBean.generateButtonIcon('si si-pencil')}" styleClass="u-mar-right-5"
+      update="case-detail-body case-details-actions" oncomplete="loadCaseDetailsGrid();PortalLayout.hideHorizontalScrollOnLayoutContent()" />
+    <p:commandButton id="reset-details-settings-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+      rendered="#{caseDetailsBean.configuration.changed and not caseDetailsBean.readOnlyMode}" onclick="PF('reset-to-default-case-dialog').show()"
+      icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}" styleClass="reset-details-settings-button u-mar-right-5" immediate="true" ajax="false" type="button" />
     <p:commandButton id="switch-to-view-mode-button" rendered="#{not caseDetailsBean.readOnlyMode and not inFrame}"
       value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToViewMode')}" actionListener="#{caseDetailsBean.save()}"
       icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" onclick="saveCaseDetailsGrid()"
       update="case-detail-body case-details-actions" oncomplete="loadCaseDetailsGrid()" />
-    <p:commandButton id="switch-to-edit-mode-button" rendered="#{caseDetailsBean.readOnlyMode and not inFrame}"
-      value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToEditMode')}" actionListener="#{caseDetailsBean.switchToEditMode()}"
-      icon="#{visibilityBean.generateButtonIcon('si si-pencil')}"
-      update="case-detail-body case-details-actions" oncomplete="loadCaseDetailsGrid();PortalLayout.hideHorizontalScrollOnLayoutContent()" />
-    <p:commandButton id="reset-details-settings-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
-      rendered="#{caseDetailsBean.configuration.changed and not caseDetailsBean.readOnlyMode}" onclick="PF('reset-to-default-case-dialog').show()"
-      icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}" styleClass="reset-details-settings-button" immediate="true" ajax="false" type="button" />
   </h:panelGroup>
   
-  <h:panelGroup layout="block" styleClass="case-detail-body ui-g-12" id="case-detail-body">
+  <h:panelGroup layout="block" styleClass="case-detail-body ui-g-12 u-padding-0" id="case-detail-body">
     <h:panelGroup class="case-item-body-container case-details-widgets js-case-details-widgets u-padding-0 grid-stack" id="case-details-widgets"
       rendered="#{not empty caseDetailsBean.widgets}">
 
