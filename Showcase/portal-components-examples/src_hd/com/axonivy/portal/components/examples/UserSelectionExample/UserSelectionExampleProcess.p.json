@@ -1,0 +1,111 @@
+{
+  "format" : "9.4.15",
+  "id" : "18189B0AEEFA7D89",
+  "data" : "com.axonivy.portal.components.examples.UserSelectionExample.UserSelectionExampleData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "result" : {
+          "params" : [
+            { "name" : "selectedUser", "type" : "com.axonivy.portal.components.dto.UserDTO" }
+          ],
+          "map" : {
+            "result.selectedUser" : "in.selectedUser"
+          }
+        },
+        "guid" : "18189B0AEF1AD2F5"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f7", "to" : "f6" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "finish",
+      "config" : {
+        "guid" : "18189B0AEF397ED9"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "Init data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
+            "import java.util.Locale;",
+            "import ch.ivyteam.ivy.security.IRole;",
+            "import ch.ivyteam.ivy.security.IUser;",
+            "import com.axonivy.portal.components.dto.UserDTO;",
+            "import java.util.Arrays;",
+            "",
+            "in.definedRoleNames = Arrays.asList(\"BackendDeveloper\", \"Tester\");",
+            "String backendDev1UserName = \"backendDev1\";",
+            "IUser backendDev1 = ivy.wf.getSecurityContext().findUser(backendDev1UserName);",
+            "if (backendDev1 == null) {",
+            "  backendDev1 = ivy.wf.getSecurityContext().createUser(backendDev1UserName, \"Backend Developer 1\", \"\", Locale.GERMAN, \"\", \"\");",
+            "  IRole backendDev = ivy.wf.getSecurityContext().findRole(\"BackendDeveloper\");",
+            "  if (backendDev != null) {",
+            "    backendDev1.addRole(backendDev);",
+            "  }",
+            "}",
+            "in.selectedUserForReadOnlyField = new UserDTO(backendDev1);",
+            "in.excludedUsernames = Arrays.asList(\"supporter\", \"tester\");",
+            "in.userSelectionSerenityExampleLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/UserSelectionExample/showUserSelectionExamplesSerenity.ivp\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogEventStart",
+      "name" : "showSelectedUser",
+      "config" : {
+        "guid" : "18189B78B8650A2F",
+        "output" : {
+          "code" : [
+            "import org.primefaces.PrimeFaces;",
+            "import javax.faces.application.FacesMessage;",
+            "import javax.faces.context.FacesContext;",
+            "",
+            "FacesContext.getCurrentInstance().addMessage(\"form:item-select-event-component:item-select-event-for-user-selection\", new FacesMessage(FacesMessage.SEVERITY_INFO, \"You selected \" + in.selectedUserForInsertChildren.getDisplayName(), null));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 256 },
+        "labelOffset" : { "x" : -41, "y" : 15 }
+      },
+      "connect" : { "id" : "f10", "to" : "f9" }
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 256 }
+      }
+    } ]
+}

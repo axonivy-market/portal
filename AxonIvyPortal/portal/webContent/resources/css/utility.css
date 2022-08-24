@@ -383,3 +383,7 @@
   padding-right: .5em;
   margin-top: 10px;
 }
+
+.w-full {
+  width: 100%;
+}

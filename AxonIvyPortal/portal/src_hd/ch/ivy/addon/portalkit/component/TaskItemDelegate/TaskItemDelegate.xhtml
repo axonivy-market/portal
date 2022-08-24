@@ -39,35 +39,32 @@
         </h:panelGroup>
 
         <h:panelGroup id="select-delegate-panel" layout="block" styleClass="select-delegate-panel">
-          <ic:com.axonivy.portal.component.UserSelection id="user-activator-component" 
+          <ic:com.axonivy.portal.components.UserSelection id="user-activator-component" 
             componentId="user-activator-select" selectedUser="#{data.selectedUser}"
             rendered="#{data.isUserDelegated}" completeMethod="#{logic.autoCompleteForUserDelegate}"
             isRenderedMessage="false"
-            autoCompletePanelStyleClass="ui-fluid">
+            autoCompletePanelStyleClass="ui-fluid"
+            hasCustomizedSelectionList="true">
             <p:column>
-              <pc:securityMemberNameAndAvatar
-                displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}" securityMember="#{user}" />
+              <pc:securityMemberNameAndAvatar displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
+                securityMember="#{user}" isStandAlone="false" />
             </p:column>
             <f:facet name="event">
               <p:ajax event="itemSelect" listener="#{data.setDisabledDelegateButton(false)}"
                 update="#{cc.clientId}:task-delegate-form:proceed-task-delegate-command" />
            </f:facet>
-          </ic:com.axonivy.portal.component.UserSelection>
+          </ic:com.axonivy.portal.components.UserSelection>
 
-          <ic:com.axonivy.portal.component.RoleSelection id="group-activator-select-component" scrollHeight="400"
+          <ic:com.axonivy.portal.components.RoleSelection id="group-activator-select-component" scrollHeight="400"
             componentId="group-activator-select" selectedRole="#{data.selectedRole}" rendered="#{!data.isUserDelegated}"
             cache="true" queryDelay="500" completeMethod="#{logic.autoCompleteForRoleDelegate}"
             isRenderedMessage="false"
             autoCompletePanelStyleClass="ui-fluid">
-            <p:column>
-              <pc:securityMemberNameAndAvatar
-                displayName="#{role.getDisplayName()}" securityMember="#{role}" />
-            </p:column>
             <f:facet name="event">
               <p:ajax event="itemSelect" listener="#{data.setDisabledDelegateButton(false)}"
                 update="#{cc.clientId}:task-delegate-form:proceed-task-delegate-command" />
             </f:facet>
-          </ic:com.axonivy.portal.component.RoleSelection>
+          </ic:com.axonivy.portal.components.RoleSelection>
           
         </h:panelGroup>
 

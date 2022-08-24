@@ -1,275 +1,173 @@
-.ui-g > div {
-	display: block !important;
-}
-
-.ui-corner-all {
-	border-radius: 3px;
-}
-
 .calculation-form label {
-	float: right;
-	text-align: right;
-}
-
-.calculation-form .ui-inputtext,
-.calculation-form .ui-inputfield.hasDatepicker,
-.calculation-form .ui-inputfield.ui-password,
-.calculation-form .ui-selectlistbox-filter.ui-inputfield.ui-widget,
-.calculation-form .ui-inputfield.ui-inputtextarea,
-.calculation-form .ui-spinner > .ui-spinner-input.ui-inputfield {
-	font-family: 'Roboto';
-	font-style: normal;
-	font-weight: 400;
-	font-size: 13px;
-	border-radius: 0 !important;
-}
-
-.calculation-form .ui-inputfield.ui-inputtextarea {
-	border-radius: 3px;
-}
-
-.calculation-form .ui-outputlabel {
-	font-size: 13px;
-}
-
-.calculation-form .ui-datepicker-trigger {
-	height: 30px;
-}
-
-.calculation-form .ui-datepicker-trigger .ui-button-text {
-	padding: 5px 0px !important;
-}
-
-.calculation-form .ui-calendar .ui-button.ui-datepicker-trigger:after {
-	top: 5px;
-}
-
-.ui-g-1, .ui-g-2, .ui-g-3, .ui-g-4, .ui-g-5, .ui-g-6, .ui-g-7, .ui-g-8, .ui-g-9, .ui-g-10, .ui-g-11, .ui-g-12 {
-	padding: 0.3em !important;
-	height: 45px;
+  float: right;
+  text-align: right;
 }
 
 .debitor-label-container {
-	width: 25%;
+  width: 25%;
 }
 
-_:-ms-input-placeholder, :root .debitor-label-container.small {
-	width: 16.5%;
+_:-ms-input-placeholder,
+:root .debitor-label-container.small {
+  width: 16.5%;
 }
 
 @media (max-width: 1366px) {
+
   .debitor-label-container.small,
-  _:-ms-input-placeholder, :root .debitor-label-container.small {
+  _:-ms-input-placeholder,
+  :root .debitor-label-container.small {
     width: 25% !important;
   }
 }
 
 .debitor-label-container label {
-	line-height: 2.3;
+  line-height: 2.3;
 }
 
 .debitor-label-container label {
-	margin-right: 17px;
+  margin-right: 17px;
 }
 
 .Wid11 {
-	width: 11%;
+  width: 11%;
 }
 
 .Wid38 {
-	width: 38%;
+  width: 38%;
 }
 
 .Wid74 {
-	width: 74%;
+  width: 74%;
 }
 
 .Wid89 {
-	width: 89%;
+  width: 89%;
 }
 
 .customer-since .ui-inputfield {
-	width: 50%;
-}
-
-.calculation-form .ui-selectonemenu.ui-state-default, .ui-selectcheckboxmenu.ui-state-default {
-	background-color: white;
-	padding-left: 10px !important;
-	height: 28px;
-}
-
-.calculation-form .ui-selectonemenu .ui-selectonemenu-label {
-	font-size: 13px;
-	color: #222;
-	font-family: 'Roboto' !important;
-	font-style: normal;
-	font-weight: 400;
-}
-
-.calculation-form .ui-selectonemenu .ui-selectonemenu-trigger .ui-icon:after {
-	font-size: 13px !important;
-}
-
-.calculation-form .ui-button-text-only .ui-button-text {
-	padding: 0 20px !important;
+  width: 50%;
 }
 
 .calculation-form .header-section label {
-	float: left !important;
-	margin-top: 2px;
-	line-height: 2.3;
+  float: left !important;
 }
 
 .calculation-form .header-inputfield.ui-inputfield.ui-inputtext {
-	line-height: 2.3;
-    width: auto;
-	min-width: 20%;
-	max-width: 100%;
+  width: auto;
+  min-width: 20%;
+  max-width: 100%;
 }
 
-_:-ms-input-placeholder, :root .ui-g .ui-outputlabel {
-	line-height: 2;
-	margin-top: 0 !important;
+_:-ms-input-placeholder,
+:root .ui-g .ui-outputlabel {
+  line-height: 2;
+  margin-top: 0 !important;
 }
 
 .debitor-details {
-	padding: 10px 20px 20px 20px;
-	border: 1px solid #d6d6d6;
-	background-color: #fff;
-	width: 100%;
+  padding: 10px 20px 20px 20px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+  width: 100%;
 }
 
 .debitor-details-container {
-	padding: 20px;
-	border: 1px solid #d6d6d6;
-	border-top: none;
-	background-color: #f8f9fa;
+  padding: 20px;
+  border-top-left-radius: 0;
+	border-top-right-radius: 0;
 }
 
 .calculation-form .footer-button:not(:first-child) {
-	margin-right: 20px;
+  margin-right: 20px;
 }
 
 .calculation-form .footer-button {
-	margin-top: 20px;
-	margin-bottom: 40px;
-}
-
-.calculation-form .ui-fieldset-toggleable legend {
-	background-color: #fff !important;
-	color: #000;
-	border: none !important;
-	padding: 5px !important;
-}
-
-.calculation-form .ui-fieldset-toggleable .ui-fieldset-toggler {
-	filter: invert(100%);
-	-webkit-filter: invert(100%);
+  margin-top: 20px;
+  margin-bottom: 40px;
 }
 
 .calculation-form .header-section.fixed {
-	background-color: #fff;
-    position:fixed;
-    top:60px;
-    width:92%;
-    z-index:100;
+  position: fixed;
+  top: 60px;
+  width: 92%;
+  z-index: 100;
 }
 
 /* FIRST LEVEL TAB MENU */
-.first-level-tab-menu .ui-tabmenu-nav {
-	display: flex;
-}
-
 .first-level-tab-menu .ui-tabmenu-nav .ui-tabmenuitem {
-	border: solid 1px #E0E0E0 ;
-	width: 12.29%;
+  width: 12.29%;
 }
 
 @media (max-width: 1025px) {
-	.first-level-tab-menu .ui-tabmenu-nav .ui-tabmenuitem {
-		width: 20% !important;
-	}
-}
-
-.first-level-tab-menu .ui-tabmenu-nav .ui-tabmenuitem a {
-	padding: 10px !important;
-}
-
-.first-level-tab-menu .ui-tabmenu-nav .ui-tabmenuitem.ui-state-hover,
-.first-level-tab-menu .ui-tabmenu-nav .ui-tabmenuitem.ui-state-active {
-	border-bottom: none !important;
+  .first-level-tab-menu .ui-tabmenu-nav .ui-tabmenuitem {
+    width: 20% !important;
+  }
 }
 
 .first-level-tab-menu .ui-tabmenu-nav .ui-tabmenuitem.ui-state-hover a {
-	color: #e8323f;
+  color: #e8323f !important;
+	border-color: #e8323f !important;
 }
 
 .first-level-tab-menu .ui-tabmenu-nav .ui-tabmenuitem.ui-state-active {
-	background-color: #e8323f;
+  background-color: #e8323f !important;
+	border-color: #e8323f !important;
 }
 
 .first-level-tab-menu .ui-tabmenu-nav .ui-tabmenuitem.ui-state-active a {
-	color: #fff;
+  color: #fff !important;
 }
 
 .first-level-tab-menu.fixed {
-	display: block;
-	position: fixed;
-	top: 95px;
-	width: 92%;
-	margin-top: 0 !important;
-	z-index: 100;
+  display: block;
+  position: fixed;
+  top: 95px;
+  width: 92%;
+  margin-top: 0 !important;
+  z-index: 100;
 }
 
 .first-level-tab-menu.fixed .ui-tabmenu-nav {
-	width: 100%;
+  width: 100%;
 }
 
 .first-level-tab-menu.fixed .ui-tabmenu-nav .ui-tabmenuitem {
-	width: 12.28%;
+  width: 12.28%;
 }
 
 /* SECOND LEVEL TAB MENU */
-.second-level-tab-menu .ui-tabmenu-nav .ui-tabmenuitem a {
-	padding: 10px !important;
-}
-
-.second-level-tab-menu .ui-tabmenu-nav .ui-tabmenuitem.ui-state-hover {
-	border-bottom: none !important;
+.second-level-tab-menu {
+	margin-left: 1rem;
 }
 
 .second-level-tab-menu .ui-tabmenu-nav .ui-tabmenuitem.ui-state-active {
-	border-bottom: solid 2px #e8323f !important;
+  border-bottom: solid 2px #e8323f !important;
 }
 
 .second-level-tab-menu .ui-tabmenu-nav .ui-tabmenuitem.ui-state-active a,
 .second-level-tab-menu .ui-tabmenu-nav .ui-tabmenuitem.ui-state-hover a {
-	color: #e8323f;
+  color: #e8323f !important;
 }
 
 .second-level-tab-menu.fixed {
-	display: block;
-	position: fixed;
-	top: 137px;
-	z-index: 100;
-	width: 90%;
+  display: block;
+  position: fixed;
+  top: 137px;
+  z-index: 100;
+  width: 90%;
 }
 
-_:-ms-input-placeholder, :root .second-level-tab-menu.fixed {
-	top: 124px;
+_:-ms-input-placeholder,
+:root .second-level-tab-menu.fixed {
+  top: 124px;
 }
 
 .Height100 {
-	height: 100% !important;
-}
-
-/* REDUCE SPACE BETWEEN ROWS */
-.ui-g-1, .ui-g-2, .ui-g-3, .ui-g-4, .ui-g-5, .ui-g-6, .ui-g-7, .ui-g-8, .ui-g-9, .ui-g-10, .ui-g-11, .ui-g-12 {
-	padding: 0 0.3em !important;
-	height: 36px;
+  height: 100% !important;
 }
 
 /* TEXT INPUT AUTO INCREASE WIDTH */
 .calculation-form .ui-inputfield.ui-inputtext {
-	width: 100%;
+  width: 100%;
 }

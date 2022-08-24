@@ -143,6 +143,6 @@ public abstract class AbstractFilter<T extends Query<?>> {
   }
   
   protected String getAllLabel() {
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/all");
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/All");
   }
 }

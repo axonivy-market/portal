@@ -184,6 +184,12 @@
       title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/TitlePage')}">
       <ic:ch.ivy.addon.portalkit.component.RoleManagement id="role-management-component"/>
     </p:tab>
+    
+    <!-- PASSWORD VALIDATION  -->
+    <p:tab id="password-validation-tab" rendered="#{adminSettingBean.showPasswordValidationTab}"
+      title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/passwordValidation/titlePage')}">
+      <ic:ch.ivy.addon.portalkit.component.PasswordValidation id="password-validation-component"/>
+    </p:tab>
   </p:tabView>
 
   <!-- APPLICATION DIALOG-->
@@ -223,7 +229,7 @@
                   <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
                     icon="#{visibilityBean.generateButtonIcon('si si-chat-translate')}" process="appDisplayName3rd "
                     styleClass="app-setting-button"
-                    update=":#{p:resolveFirstComponentWithId('appDisplayName3rd', view).clientId} appDialogForm :#{p:resolveFirstComponentWithId('applicationName', view).clientId}"
+                    update=":#{p:resolveFirstComponentWithId('appDisplayName3rd', view).clientId} :#{p:resolveFirstComponentWithId('applicationName', view).clientId}"
                     actionListener="#{logic.getLanguageList}"
                     oncomplete="if (!args.validationFailed)PF('applicationName').show();">
                     <f:param name="skipDisplayNameInputValidation" value="true" />

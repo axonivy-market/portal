@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
-import com.axonivy.portal.component.dto.SecurityMemberDTO;
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)

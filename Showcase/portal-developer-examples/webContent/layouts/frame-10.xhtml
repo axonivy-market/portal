@@ -13,11 +13,11 @@ This is the default template to use the freya-ivy theme as well as iFrames appro
 
 PORTAL:
 If you are using the Axon Ivy Portal, you can pass several parameters to it to use some features (e.g. process chain).
-You'll find the list of parameters here: https://developer.axonivy.com/portal/sprint/doc/portal-developer-guide/components/layout-templates.html#components-layout-templates-iframe-task-template
-For further information about iframes and usage in Portal please refer to: https://developer.axonivy.com/portal/sprint/doc/portal-developer-guide/iframe/index.html
+You'll find the list of parameters here: https://developer.axonivy.com/portal/dev/doc/portal-developer-guide/components/layout-templates.html#components-layout-templates-iframe-task-template
+For further information about iframes and usage in Portal please refer to: https://developer.axonivy.com/portal/dev/doc/portal-developer-guide/iframe/index.html
 
 BRANDING:
-If you want to brand your dialogs, please take a look at our documentation: https://developer.axonivy.com/doc/sprint/designer-guide/user-interface/branding/index.html
+If you want to brand your dialogs, please take a look at our documentation: https://developer.axonivy.com/doc/dev/designer-guide/user-interface/branding/index.html
 
 STYLING:
 If you want to add custom styles, you can simply add your own .css file (e.g. at the location: "webContent/layouts/styles/style.css")
@@ -37,6 +37,7 @@ and refence it below in the head part.
   <!-- Optional Style or Script files: 
   <h:outputStylesheet name="layouts/styles/style.css" /> 
   -->
+  <h:outputStylesheet name="resources/css/examples.css"/>
 </h:head>
 <h:body class="body-hd">
   <ui:include src="/layouts/includes/progress-loader.xhtml" />

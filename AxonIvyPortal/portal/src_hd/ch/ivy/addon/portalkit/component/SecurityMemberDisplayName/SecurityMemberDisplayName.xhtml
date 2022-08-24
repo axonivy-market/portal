@@ -51,25 +51,28 @@
         styleClass="security-member-tooltip"
         hideEvent="mouseleave click" />
     </ui:fragment>
+    
+    <h:panelGroup rendered="#{securityMemberDisplayNameBean.isRenderUsersOverlaySearch(securityMember, alwaysShowAsText)}"
+      styleClass="#{cc.attrs.roleNameStyleClass} user-fullname-container">
+      <p:commandLink id="#{cc.attrs.textId}-activator"
+        styleClass="#{cc.attrs.styleClass} user-fullname-link"
+        update="user-of-role"
+        actionListener="#{logic.loadUsersOfRole(securityMember.getMemberName())}"
+        oncomplete="PF('users-of-role').show('#{component.clientId}')"
+        process="@this"
+        immediate="true">
+        <i class="si si-information-circle icon-compact-mode" />
+      </p:commandLink>
+      <p:tooltip for="#{cc.attrs.textId}-activator"
+        value="#{securityMemberDisplayNameBean.getBriefDisplayName(securityMember, memberName)} - #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/tooltipHelper')}"
+        trackMouse="false"
+        hideEvent="mouseleave click" />
+    </h:panelGroup>
   </h:panelGroup>
 
   <!-- Display Role name as link format, click to show all user of this role -->
   <h:panelGroup rendered="#{securityMemberDisplayNameBean.isRenderUsersOverlaySearch(securityMember, alwaysShowAsText)}"
     styleClass="#{cc.attrs.roleNameStyleClass}">
-    <p:commandLink id="#{cc.attrs.textId}-activator"
-      styleClass="#{cc.attrs.styleClass} user-fullname-link"
-      update="user-of-role"
-      actionListener="#{logic.loadUsersOfRole(securityMember.getMemberName())}"
-      oncomplete="PF('users-of-role').show('#{component.clientId}')"
-      process="@this"
-      immediate="true">
-      <i class="si si-information-circle icon-compact-mode" />
-    </p:commandLink>
-    <p:tooltip for="#{cc.attrs.textId}-activator"
-      value="#{securityMemberDisplayNameBean.getBriefDisplayName(securityMember, memberName)} - #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/tooltipHelper')}"
-      trackMouse="false"
-      hideEvent="mouseleave click" />
-
     <p:overlayPanel id="user-of-role" widgetVar="users-of-role"
       styleClass="user-of-role u-padding-0"
       dismissable="true"
@@ -86,8 +89,7 @@
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/userOfRoleTitle', [securityMember.getDisplayName()])}" />
           </div>
 
-          <h:panelGroup layout="block" styleClass="ui-g-12 u-no-padding-bottom"
-            rendered="#{not empty data.memberNames}">
+          <h:panelGroup layout="block" styleClass="ui-g-12">
             <ic:ch.ivy.addon.portalkit.component.Filter id="filter-container"
               icon="fa fa-filter"
               placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/filterByUsername')}"
@@ -102,7 +104,7 @@
             value="#{data.memberNames}" var="user"
             chunkSize="21"
             rendered="#{not empty data.memberNames}"
-            styleClass="user-data-scroller ui-g-12 u-no-padding-top">
+            styleClass="user-data-scroller ui-g-12">
             <pc:securityMemberNameAndAvatar securityMember="#{user}"
               displayName="#{securityMemberDisplayNameBean.getFullDisplayNameForUserDTO(user)}" />
             <h:outputText rendered="#{totalMember >= 100 and empty user.name}" value="#{user.displayName}"/>

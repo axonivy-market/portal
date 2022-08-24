@@ -3,7 +3,7 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-  <ui:composition template="/layouts/frame-8.xhtml">
+  <ui:composition template="/layouts/frame-10.xhtml">
     <ui:define name="title">#{ivy.task.name}</ui:define>
     <ui:define name="content">
       <h:form id="content-form" style="padding-bottom: 100px;">
@@ -46,22 +46,22 @@
               </div>
             </div>
             <p:fieldset legend="Company Information" toggleable="true" style="margin-top: 20px;">
-              <div class="ui-g">
-                <div class="u-g-2">
+              <div class="ui-g flex-align-center">
+                <div class="ui-g-2">
                   <h:outputLabel id="company-id-label" for="company-id" value="Company ID" />
                 </div>
                 <div class="ui-g-4">
                   <h:outputText id="company-id" value="#{data.investmentRequest.investment.company.id}" />
                 </div>
-                <div class="u-g-2">
+                <div class="ui-g-2">
                   <h:outputLabel id="company-name-label" for="company-name" value="Company Name" />
                 </div>
                 <div class="ui-g-4">
                   <h:outputText id="company-name" value="#{data.investmentRequest.investment.company.name}" />
                 </div>
               </div>
-              <div class="ui-g">
-                <div class="u-g-2">
+              <div class="ui-g flex-align-center">
+                <div class="ui-g-2">
                   <h:outputLabel id="company-desc-label" for="company-desc" value="Description" />
                 </div>
                 <div class="ui-g-10">
@@ -70,7 +70,7 @@
                 </div>
               </div>
             </p:fieldset>
-            <div class="ui-g">
+            <div class="ui-g flex-align-center">
               <div class="ui-g-2">
                 <h:outputLabel id="is-approved-label" for="is-approved" value="Decision" />
               </div>
@@ -85,16 +85,17 @@
               <div class="ui-g-2">
                 <h:outputLabel id="approval-note-label" for="approval-note" value="Note for approver" />
               </div>
-              <div class="ui-g-10">
+              <div class="ui-g-10 ui-fluid">
                 <p:inputTextarea id="approval-note" value="#{data.investmentRequest.decision.note}" rows="3"
-                  readonly="true" requiredMessage="Note is required" style="width: 98.5%;" />
+                  readonly="true" requiredMessage="Note is required" disabled="true"/>
                 <p:message for="approval-note" />
               </div>
             </div>
           </p:tab>
           <p:tab title="Additional">Additional information</p:tab>
         </p:tabView>
-        <h:panelGroup layout="block" rendered="#{!data.investmentRequest.isReadOnly}" style="width: 100%; margin-top: 20px; float: right">
+        <h:panelGroup layout="block" rendered="#{!data.investmentRequest.isReadOnly}"
+          class="ui-g-12 text-align-right m-top-20">
           <p:commandButton id="close-btn" value="Close" actionListener="#{logic.close}" update="@(form)" />
         </h:panelGroup>
       </h:form>
