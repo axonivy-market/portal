@@ -36,6 +36,7 @@ public class DashboardWelcomeWidgetConfigurationBean implements Serializable {
   private static final String DEFAULT_TEXT_COLOR = "000000";
   private static final String BASE64_STRING_PATTERN = "data:%s;base64,%s";
   private static final Long UPLOAD_SIZE_LIMIT = 6291456L;
+  private static final String DEFAULT_WELCOME_CMS = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/Welcome";
 
   private UploadedFile originalImageFile;
   private List<WelcomeTextPosition> textPositions;
@@ -70,7 +71,7 @@ public class DashboardWelcomeWidgetConfigurationBean implements Serializable {
       for(String lang : LanguageService.newInstance().findUserLanguages().getIvyLanguage().getSupportedLanguages()) {
         DisplayName displayName = new DisplayName();
         displayName.setLocale(Locale.forLanguageTag(lang));
-        displayName.setValue("");
+        displayName.setValue(Ivy.cms().coLocale(DEFAULT_WELCOME_CMS, displayName.getLocale()));
         getWidget().getWelcomeTexts().add(displayName);
       }
     }
