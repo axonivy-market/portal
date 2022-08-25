@@ -41,7 +41,7 @@
         </h:panelGroup>
       </h:form>
       <h:outputText id="welcome-text" styleClass="welcome-text" value="#{widget.welcomeText}" />
-      <img id="welcome-image" class="welcome-image" />
+      <img id="welcome-image" class="welcome-image js-welcome-image" />
       <h:inputHidden id="welcome-image-hidden" value="#{dashboardWelcomeWidgetBean.renderImage(widget)}" />
     </div>
     <p:remoteCommand name="updateWelcomeText_#{widget.id}" update="welcome-text"

@@ -82,6 +82,7 @@ WelcomeWidget = {
     var widget = $('div.grid-stack-item[gs-id = ' + widgetId + ']');
     $(widget.find('#welcome-image')).get(0).setAttribute('src', widget.find('input[id $= ":welcome-image-hidden"]').get(0).value);
     this.updateWelcomeTextStyles(widgetId, welcomeTextColor, welcomeTextPosition, welcomeTextSize);
+    this.stretchImage();
   },
 
   updateWelcomeTextStyles : function(widgetId, welcomeTextColor, welcomeTextPosition, welcomeTextSize) {
@@ -128,5 +129,21 @@ WelcomeWidget = {
       default:
         break;
     }
+  },
+  
+  stretchImage : function() {
+    $('.js-welcome-widget').each( function() {
+      if ($(this).find('.js-welcome-image').get(0).clientHeight < this.clientHeight) {
+        $(this).addClass('stretch-image');
+      } else {
+        setTimeout(() => {
+          $(this).removeClass('stretch-image');
+        }, 0);
+      }
+    });
   }
 }
+
+$(window).resize(() => {
+  WelcomeWidget.stretchImage();
+});
