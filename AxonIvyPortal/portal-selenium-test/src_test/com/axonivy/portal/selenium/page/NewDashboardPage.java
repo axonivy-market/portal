@@ -54,6 +54,23 @@ public class NewDashboardPage extends TemplatePage {
     return new ProcessEditWidgetNewDashBoardPage();
   }
 
+  public WelcomeEditWidgetNewDashboardPage editWelcomeWidgetConfiguration(String widgetId) {
+    var configurationPage = openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+
+    String actionButtonId = widgetId + ":welcome-widget-action-group-form:welcome-widget-action-button";
+    $("[id='" + actionButtonId + "']").waitUntil(appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition()).click();
+
+    String editLinkId = widgetId + ":welcome-widget-action-group-form:edit-welcome-widget";
+    $("[id='" + editLinkId + "']").waitUntil(appear, DEFAULT_TIMEOUT)
+    .shouldBe(getClickableCondition()).click();
+
+    $("div#new-widget-configuration-dialog").waitUntil(appear, DEFAULT_TIMEOUT);
+    return new WelcomeEditWidgetNewDashboardPage();
+  }
+  
   public void checkStartButtonAndImageShown() {
     getStartButton().shouldBe(Condition.disabled);
     getDisabledMoreInformationLink().shouldBe(Condition.appear);
