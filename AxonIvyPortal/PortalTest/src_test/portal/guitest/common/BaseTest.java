@@ -64,19 +64,20 @@ public class BaseTest {
   protected String createTaskWithNotExistedActivatorUrl = "internalSupport/14B2FC03D2E87141/createTaskWithNotExistedActivator.ivp";
   protected String expressStartLink = "axonIvyExpress/15798655494F25E1/AxonIvyExpressWF.ivp";
   protected String cleanupDataLink = "portalKitTestHelper/1511A66AF619A768/cleanData.ivp";
-  protected String createAlphaCompanyUrl = "portal-developer-examples/1624C1C79661758C/createAlphaCompany.ivp";
-  protected String viewAlphaCompanyProcessHistoryUrl = "portal-developer-examples/1624C1C79661758C/viewProcessHistoryOfAlphaCompany.ivp";
-  protected String viewAlphaCompanyProcessHistoryInDialogUrl = "portal-developer-examples/1624C1C79661758C/viewProcessHistoryOfAlphaCompanyInDialog.ivp";
+  protected String createAlphaCompanyUrl = "portal-components-examples/1818977D467E3129/createAlphaCompany.ivp";
+  protected String viewAlphaCompanyProcessHistoryUrl = "portal-components-examples/1818977D467E3129/viewProcessHistoryOfAlphaCompany.ivp";
+  protected String createBetaCompanyUrl = "portal-components-examples/1818977D467E3129/createBetaCompany.ivp";
+  protected String viewBetaCompanyProcessHistoryInDialogUrl = "portal-components-examples/1818977D467E3129/viewProcessHistoryOfBetaCompany.ivp";
   protected String createNewPaymentUrl = "portal-developer-examples/162511D2577DBA88/createNewPayment.ivp";
   protected String simplePaymentUrl = "portal-developer-examples/162511D2577DBA88/simplePayment.ivp";
   protected String complexPaymentUrl = "portal-developer-examples/162511D2577DBA88/complexPayment.ivp";
-  protected String documentTableComponentUrl = "portal-developer-examples/16B447235433958E/start.ivp";
+  protected String documentTableComponentUrl = "portal-components-examples/1818938E7EBC9329/showCustomizedDocumentTableExample.ivp";
   protected String cleanUpAbsencesAndSubstituesLink = "portalKitTestHelper/1511A66AF619A768/cleanAbsencesAndSubstitues.ivp";
   protected String createUserFavoriteProcess = "portalKitTestHelper/153CACC26D0D4C3D/createTestUserFavoriteProcess.ivp";
   protected String createCasesForCaseListCustomization = "portal-developer-examples/162511D2577DBA88/createCasesForCaseListCustomization.ivp";
-  protected String processChainShowcaseUrl = "portal-developer-examples/164DB506D12B25CF/showSampleProcessChain.ivp";
-  protected String userSelectionComponentShowcaseUrl = "portal-developer-examples/170514494945ADB9/start.ivp";
-  protected String roleSelectionComponentShowcaseUrl = "portal-developer-examples/175495F02A2BCEB2/start.ivp";
+  protected String processChainShowcaseUrl = "portal-components-examples/181897243F2BFDD3/showProcessChainExamples.ivp";
+  protected String userSelectionComponentShowcaseUrl = "portal-components-examples/18189AF10B521DF4/showUserSelectionExamples.ivp";
+  protected String roleSelectionComponentShowcaseUrl = "portal-components-examples/181899823E886ABB/showRoleSelectionExamples.ivp";
   protected String startUserExampleProcess = "portal-user-examples/17236DB1D3DA14C0/userExampleGuide.ivp";
   protected String userIsOwnerUrl = "internalSupport/16A68510A341BE6E/userIsOwner.ivp";
   protected String showTaskNoteHistoryUrl = "portal/1549F58C18A6C562/showTaskNoteHistory.ivp?selectedTaskId=%s";
@@ -88,7 +89,8 @@ public class BaseTest {
   protected String cleanSessionCacheUrl = "portalKitTestHelper/17208192E0AF4185/cleanSessionCache.ivp";
   protected String showProcessViewerUrl = "portal/1549F58C18A6C562/PortalProcessViewer.ivp?caseId=%s&processKey=%s";
   protected String createSampleDashboardUrl = "portalKitTestHelper/17F2050944B46BB0/createSampleDashboard.ivp";
-  protected String processViewerExampleInFrameUrl = "/portal-components-examples/1821592826979C20/showProcessViewerUsingCaseId.ivp?embedInFrame";
+  protected String processViewerExampleInFrameUrl = "portal-components-examples/1821592826979C20/showProcessViewerUsingCaseId.ivp";
+  protected String defaultProcessImageSelectionExampleUrl = "portal-developer-examples/179D499523153784/start.ivp";
   protected String securityMemberNameAndAvatarExampleInFrameUrl = "/portal-components-examples/182A5FCAF7FC6B1A/showSecurityMemberNameAndAvatarExamples.ivp?embedInFrame";
 
   @Rule

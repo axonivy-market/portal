@@ -15,7 +15,7 @@ public class ProcessViewerPage extends TemplatePage {
   }
 
   public void waitForSprottyToolDisplayed() {
-    driver.switchTo().frame("process-viewer");
+    waitForIFrameContentVisible("process-viewer", 15000);
     waitForElementDisplayed(By.id("sprotty"), true); 
   }
 }
