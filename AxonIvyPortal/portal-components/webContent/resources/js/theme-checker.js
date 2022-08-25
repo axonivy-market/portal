@@ -7,19 +7,11 @@ var ThemeChecker = {
 
     currentTheme = theme;
     if (theme.includes('serenity')) {
-      $('body').removeClass('freya').removeClass('dark').removeClass('light').addClass('serenity');
+      $('body').removeClass('freya dark light').addClass('serenity');
     }
 
     if (theme.includes('freya')) {
-      $('body').removeClass('serenity').addClass('freya');
-
-      if (theme.includes('-dark')) {
-        $('body').removeClass('light').addClass('dark');
-      }
-
-      if (theme.includes('-light')) {
-        $('body').removeClass('dark').addClass('light');
-      }
+      $('body').removeClass('serenity').addClass(theme.includes('-light') ? 'freya light' : 'freya dark');
     }
   }
 }
