@@ -50,7 +50,7 @@
           <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack ui-g-12">
             <c:if test="#{not empty managedBean.selectedDashboard.widgets}">
               <c:forEach var="widget" items="#{managedBean.selectedDashboard.widgets}" varStatus="status">
-                <div class="grid-stack-item "
+                <div class="grid-stack-item #{widget.type == 'WELCOME' ? 'js-welcome-widget welcome-widget' : ''}"
                   gs-x="#{widget.layout.axisX}"
                   gs-y="#{widget.layout.axisY}"
                   gs-id="#{widget.id}"
