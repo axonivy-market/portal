@@ -821,6 +821,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         ShowGreeting: Gruß anzeigen
         TextPosition: Position des Textes
         TextSizeAndColor: Textgröße und -farbe
+        Welcome: Willkommen
       configuration: Konfiguration
       configurationDescription: In diesem Konfigurationsbereich kann das Widget konfiguriert werden. Bitte definieren Sie die gewünschten Filter sowie die anzuzeigenden Spalten.
       customWidgetParamChangedMessage: Dieser Prozess hat sich geändert. Klicken Sie auf Update, um fortzufahren.
