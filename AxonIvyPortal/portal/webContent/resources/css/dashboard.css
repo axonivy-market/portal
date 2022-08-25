@@ -1292,7 +1292,7 @@ span.new-widget-dialog__icon.si {
 }
 
 .welcome-text.preview-text {
-  padding: 1rem;
+  padding: 0.7rem;
 }
 
 .welcome-text.left {
@@ -1315,9 +1315,32 @@ span.new-widget-dialog__icon.si {
   position: relative;
 }
 
+.stretch-image .welcome-text-container {
+  height: 100%;
+  overflow: hidden;
+}
+
 .welcome-text-container .welcome-image {
   width: inherit;
   width: -webkit-fill-available;
+}
+
+.stretch-image .welcome-widget-panel {
+  height: 100%;
+}
+
+.stretch-image .welcome-text-container .welcome-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-height: 100%;
+  min-width: 100%;
+  transform: translate(-50%, -50%);
+  width: auto;
+}
+
+.stretch-image .welcome-text-container .welcome-text {
+  z-index: 1;
 }
 
 .welcome-text-size-options-panel {
