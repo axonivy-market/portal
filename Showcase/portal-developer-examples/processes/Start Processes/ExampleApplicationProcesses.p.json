@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.18",
   "id" : "178ED537303DFF8E",
   "data" : "com.axonivy.portal.developerexamples.ExampleApplicationProcessesData",
   "elements" : [ {
@@ -31,10 +31,9 @@
             "import ch.ivy.addon.portalkit.service.UserProcessService;",
             "String appName = IApplication.current().getName();",
             "String defaultUserProcesses =",
-            "    \"[{\\\"id\\\":\\\"1\\\",\\\"processType\\\":\\\"IVY_PROCESS\\\",\\\"processName\\\":\\\"Alpha Company Task\\\",\\\"icon\\\":\\\"fa-building\\\",\\\"processId\\\":\\\"\"+ appName + ",
-            "    \"/portal-developer-examples/Start Processes/ProcessHistoryComponent/createAlphaCompany.ivp\\\",\\\"index\\\":1},{\\\"id\\\":\\\"2\\\",\\\"processType\\\":\\\"IVY_PROCESS\\\",\\\"processName\\\":\\\"View Alpha Process History\\\",\\\"icon\\\":\\\"fa-list-alt\\\",\\\"processId\\\":\\\"\" + appName + ",
-            "    \"/portal-developer-examples/Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompany.ivp\\\",\\\"index\\\":2},{\\\"id\\\":\\\"3\\\",\\\"processType\\\":\\\"IVY_PROCESS\\\",\\\"processName\\\":\\\"View Alpha Process History in Dialog\\\",\\\"icon\\\":\\\"fa-asterisk\\\",\\\"processId\\\":\\\"\" + appName +",
-            "    \"/portal-developer-examples/Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompanyInDialog.ivp\\\",\\\"index\\\":3},{\\\"id\\\":\\\"4\\\",\\\"processType\\\":\\\"EXPRESS_PROCESS\\\",\\\"processName\\\":\\\"Favorite Express Process Display Name\\\",\\\"icon\\\":\\\"fa fa-play\\\",\\\"processId\\\":\\\"Your Express Process Name\\\",\\\"index\\\":4},{\\\"id\\\":\\\"5\\\",\\\"processType\\\":\\\"EXTERNAL_LINK\\\",\\\"processName\\\":\\\"Favorite External Process Display Name\\\",\\\"icon\\\":\\\"fa fa-play\\\",\\\"processId\\\":\\\"Your External Link Name\\\",\\\"index\\\":5}]\";",
+            "    \"[{\\\"id\\\":\\\"1\\\",\\\"processType\\\":\\\"IVY_PROCESS\\\",\\\"processName\\\":\\\"Employee Search\\\",\\\"icon\\\":\\\"fa-building\\\",\\\"processId\\\":\\\"\"+ appName +  \"/portal-developer-examples/Start Processes/CustomCaseInfomationForTaskTemplate/employeeSearch.ivp\\\",\\\"index\\\":1},{\\\"id\\\":\\\"2\\\",\\\"processType\\\":\\\"IVY_PROCESS\\\",\\\"processName\\\":\\\"Employee Search in Iframe\\\",\\\"icon\\\":\\\"fa-list-alt\\\",\\\"processId\\\":\\\"\" + appName + ",
+            "    \"/portal-developer-examples/Start Processes/CustomCaseInfomationForTaskTemplate/employeeSearchInFrame.ivp\\\",\\\"index\\\":2},{\\\"id\\\":\\\"3\\\",\\\"processType\\\":\\\"IVY_PROCESS\\\",\\\"processName\\\":\\\"Create Investment\\\",\\\"icon\\\":\\\"fa-asterisk\\\",\\\"processId\\\":\\\"\" + appName +",
+            "    \"/portal-developer-examples/Start Processes/IFrameExample/CreateInvestment.ivp\\\",\\\"index\\\":3},{\\\"id\\\":\\\"4\\\",\\\"processType\\\":\\\"EXPRESS_PROCESS\\\",\\\"processName\\\":\\\"Favorite Express Process Display Name\\\",\\\"icon\\\":\\\"fa fa-play\\\",\\\"processId\\\":\\\"Your Express Process Name\\\",\\\"index\\\":4},{\\\"id\\\":\\\"5\\\",\\\"processType\\\":\\\"EXTERNAL_LINK\\\",\\\"processName\\\":\\\"Favorite External Process Display Name\\\",\\\"icon\\\":\\\"fa fa-play\\\",\\\"processId\\\":\\\"Your External Link Name\\\",\\\"index\\\":5}]\";",
             "ivy.var.set(UserProcessService.getInstance().getConfigKey(), defaultUserProcesses);"
           ]
         }
