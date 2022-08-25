@@ -1279,7 +1279,7 @@ span.new-widget-dialog__icon.si {
 }
 
 .welcome-widget-configuration .welcome-text-select-one-menu {
-  width: 160px;
+  width: 180px;
 }
 
 .welcome-widget-configuration .image-upload-panel {
@@ -1401,7 +1401,7 @@ span.new-widget-dialog__icon.si {
   right: 10px;
   background-color: #ffffff;
   border-radius: 50%;
-  z-index: 1;
+  z-index: 2;
 }
 
 .welcome-widget-configuration .welcome-text-input-panel {
