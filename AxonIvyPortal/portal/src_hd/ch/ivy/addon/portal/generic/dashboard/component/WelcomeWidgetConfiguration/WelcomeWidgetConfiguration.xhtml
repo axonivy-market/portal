@@ -94,7 +94,7 @@
              <f:selectItem itemValue="#{false}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" />
            </p:selectOneRadio>
          </div>
-         <h:panelGrid id="welcome-text-input-container" columns="1" styleClass="ui-g-12 u-no-padding-left u-no-padding-right ui-g u-padding-0">
+         <h:panelGroup id="welcome-text-input-container" layout="block" styleClass="ui-g-12 u-no-padding-left u-no-padding-right ui-g u-padding-0">
            <ui:repeat id="welcome-text-list" var="text" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeTexts}" varStatus="status">
              <div class="ui-g-3">
                <p:outputLabel value="#{text.locale.getDisplayName()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/DisplayedText')}"
@@ -111,7 +111,7 @@
                  onkeyup="#{logic.isApplicationDefaultEmailLanguage(text.locale.toLanguageTag()) ? 'WelcomeWidgetConfiguration.updatePreviewText();' : ''}" />
              </h:panelGroup>
            </ui:repeat>
-        </h:panelGrid>
+        </h:panelGroup>
        </div>
        <p:remoteCommand name="initGreetingTexts" update="welcome-text-input-container"
          actionListener="#{dashboardWelcomeWidgetConfigurationBean.initClientTime()}"
