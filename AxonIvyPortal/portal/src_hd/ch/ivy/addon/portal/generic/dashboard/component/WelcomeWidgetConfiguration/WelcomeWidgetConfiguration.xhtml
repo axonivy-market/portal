@@ -42,15 +42,17 @@
          </div>
          <div class="ui-g-9 ui-fluid upload-image-section display-inline-flex-center">
            <p:fileUpload id="image-upload-panel"
+             styleClass="image-upload-panel"
              listener="#{dashboardWelcomeWidgetConfigurationBean.handleFileUpload}"
              chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
-             dragDropSupport="true" auto="true" mode="simple" skinSimple="true"
-             update="@(form)"
+             dragDropSupport="true" auto="true"
+             update="preview-panel"
+             allowTypes="/(\.|\/)(png|jpg|jpeg)$/i"
              label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
-             invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
+             invalidSizeMessage="#{dashboardWelcomeWidgetConfigurationBean.getFileUploadInvalidSizeMessage()}"
              invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
-             sizeLimit="#{masterDataBean.fileUploadSizeLimit}"
-             oncomplete="PF('new-widget-configuration-dialog').initPosition(); WelcomeWidgetConfiguration.loadPreviewImage();"  />
+             sizeLimit="#{dashboardWelcomeWidgetConfigurationBean.uploadFileLimit}"
+             oncomplete="PF('new-widget-configuration-dialog').initPosition(); updateAll();"  />
          </div>
 
          <div class="ui-g-3">
@@ -116,9 +118,13 @@
          oncomplete="WelcomeWidgetConfiguration.updatePreviewText('#{widget.greeting}');" />
        <script>
          $(document).ready(function() {
+           updateAll();
+         });
+
+         function updateAll() {
            WelcomeWidgetConfiguration.init('#{widget.greeting}');
            generateGreetingText();
-         });
+         }
 
          function generateGreetingText() {
            var time= new Date().getHours();
