@@ -43,6 +43,7 @@
       "type" : "Script",
       "name" : "Init data",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",

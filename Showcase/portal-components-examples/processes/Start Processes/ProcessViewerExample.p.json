@@ -48,7 +48,7 @@
       "id" : "f3",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 448, "y" : 160 }
+        "at" : { "x" : 608, "y" : 160 }
       }
     }, {
       "id" : "f6",
@@ -63,7 +63,7 @@
         "at" : { "x" : 96, "y" : 160 },
         "labelOffset" : { "x" : -21, "y" : 17 }
       },
-      "connect" : { "id" : "f9", "to" : "f7" }
+      "connect" : { "id" : "f21", "to" : "f20" }
     }, {
       "id" : "f7",
       "type" : "DialogCall",
@@ -77,12 +77,12 @@
             { "name" : "processLink", "type" : "String" }
           ],
           "map" : {
-            "param.processLink" : "ivy.case.getProcessStart().getLink().getRelative()"
+            "param.processLink" : "in.selectedProcessLink"
           }
         }
       },
       "visual" : {
-        "at" : { "x" : 272, "y" : 160 },
+        "at" : { "x" : 416, "y" : 160 },
         "size" : { "width" : 144, "height" : 44 }
       },
       "connect" : { "id" : "f8", "to" : "f3" }
@@ -186,5 +186,19 @@
         "size" : { "width" : 192, "height" : 44 }
       },
       "connect" : { "id" : "f19", "to" : "f16" }
+    }, {
+      "id" : "f20",
+      "type" : "Script",
+      "name" : "get process link",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : "in.selectedProcessLink = ivy.case.getProcessStart().getLink().getRelative();"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 160 }
+      },
+      "connect" : { "id" : "f9", "to" : "f7" }
     } ]
 }

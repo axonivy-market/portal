@@ -20,13 +20,13 @@ var PortalComponent = {
     var resizeTimer;
     // Update screen when window size is changed
     $(window).resize(function() {
-      Portal.updateLayoutContent();
+      PortalComponent.updateLayoutContent();
 
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(function() {
         responsiveToolkit.updateLayoutWithoutAnimation();
       }, 250);
-      Portal.updateGuide();
+      PortalComponent.updateGuide();
     });
   },
   
@@ -332,13 +332,13 @@ var processHistory = {
   }
 }
 
-Portal.updateLayoutContent();
+PortalComponent.updateLayoutContent();
 setupCaseHeader();
 
 var resizeTimer;
 // Update screen when window size is changed
 $(window).resize(function() {
-  Portal.updateLayoutContent();
+  PortalComponent.updateLayoutContent();
 
   clearTimeout(resizeTimer);
   resizeTimer = setupCaseHeader();
@@ -351,5 +351,5 @@ function setupCaseHeader() {
   }, 250);
 }
 
-// Add a ScreenHandler listener to Portal Menu event
+// Add a ScreenHandler listener to PortalComponent Menu event
 MainMenu.init(processHistory);
