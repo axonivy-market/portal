@@ -16,7 +16,6 @@ public class WelcomeDashboardWidget  extends DashboardWidget {
   private static final long serialVersionUID = 2688408047581268704L;
 
   private String imageLocation;
-  private int imageSize;
   private String imageType;
   private String welcomeText;
   private WelcomeTextPosition welcomeTextPosition;
@@ -50,14 +49,6 @@ public class WelcomeDashboardWidget  extends DashboardWidget {
 
   public void setImageLocation(String imageLocation) {
     this.imageLocation = imageLocation;
-  }
-
-  public int getImageSize() {
-    return imageSize;
-  }
-
-  public void setImageSize(int imageSize) {
-    this.imageSize = imageSize;
   }
 
   public String getWelcomeText() {
