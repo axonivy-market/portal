@@ -1282,6 +1282,10 @@ span.new-widget-dialog__icon.si {
   width: 160px;
 }
 
+.welcome-widget-configuration .image-upload-panel {
+  width: 100%;
+}
+
 .welcome-text {
   position: absolute;
   font-size: 2rem;
