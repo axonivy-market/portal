@@ -28,6 +28,7 @@ public abstract class TemplatePage extends AbstractPage {
 
   private static final int IFRAME_SCREENSHOT_FILE_SIZE_AT_MINIMUM = 10000;
   private static final String TEMPLATE_PAGE_LOCATOR = "id('global-search-item')";
+  protected static final String COMPONENT_PAGE_LOCATOR = "//*[contains(@id,'theme-selection')]";
   public static final String CLASS_PROPERTY = "class";
   public static final String ID_PROPERTY = "id";
   private static final String HOME_BREADCRUMB_SELECTOR = ".portal-breadcrumb .ui-menuitem-link:first-child";
@@ -491,6 +492,14 @@ public abstract class TemplatePage extends AbstractPage {
       return findElementByCssSelector("iFrame").getScreenshotAs(OutputType.FILE).length() > fileSizeInBytes;
     });
     switchToIFrameOfTask();
+  }
+  
+  public void waitForIFrameContentVisible(String iframeId, int iframeFileSizeAtMinimum) {
+    switchToDefaultContent();
+    Awaitility.await().atMost(new Duration(30, TimeUnit.SECONDS)).until(() -> {
+      return findElementById(iframeId).getScreenshotAs(OutputType.FILE).length() > iframeFileSizeAtMinimum;
+    });
+    WaitHelper.waitForIFrameAvailable(driver, iframeId);
   }
 
 }
