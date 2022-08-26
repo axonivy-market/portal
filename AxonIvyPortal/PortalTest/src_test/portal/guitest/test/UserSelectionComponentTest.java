@@ -20,24 +20,21 @@ public class UserSelectionComponentTest extends BaseTest {
   @Test
   public void testNormalUserSelection() {
     UserSelectionComponentPage userSelectionComponentPage = new UserSelectionComponentPage();
-    String value = userSelectionComponentPage.getFirstItemForNormalUserSelectionComponent("Backend Developer 1");
-    userSelectionComponentPage.selectFirstItemForNormalUserSelectionComponent("Backend Developer 1");
+    String value = userSelectionComponentPage.selectFirstItemForNormalUserSelectionComponent("Backend Developer 1");
     assertEquals(value, userSelectionComponentPage.getNormalUserSelection());
   }
   
   @Test
   public void testFloatingLabelUserSelection() {
     UserSelectionComponentPage userSelectionComponentPage = new UserSelectionComponentPage();
-    String value = userSelectionComponentPage.getFirstItemForFloatingLabelUserSelectionComponent("Backend Developer 1");
-    userSelectionComponentPage.selectFirstItemForFloatingLabelUserSelectionComponent("Backend Developer 1");
+    String value = userSelectionComponentPage.selectFirstItemForFloatingLabelUserSelectionComponent("Backend Developer 1");
     assertEquals(value, userSelectionComponentPage.getFloatingLabelUserSelection());
   }
   
   @Test
   public void testAjaxEventUserSelection() {
     UserSelectionComponentPage userSelectionComponentPage = new UserSelectionComponentPage();
-    String value = userSelectionComponentPage.getFirstItemForFloatingLabelUserSelectionComponent("Backend Developer 1");
-    userSelectionComponentPage.selectFirstItemForFloatingLabelUserSelectionComponent("Backend Developer 1");
+    String value = userSelectionComponentPage.selectFirstItemForFloatingLabelUserSelectionComponent("Backend Developer 1");
     assertEquals(value, userSelectionComponentPage.getFloatingLabelUserSelection());
   }
 
