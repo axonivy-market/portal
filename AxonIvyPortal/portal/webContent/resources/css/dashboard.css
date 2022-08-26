@@ -1315,6 +1315,12 @@ span.new-widget-dialog__icon.si {
   bottom: 0;
 }
 
+.welcome-text.center {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .welcome-text-container {
   position: relative;
 }
