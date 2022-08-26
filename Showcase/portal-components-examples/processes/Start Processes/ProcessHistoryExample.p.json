@@ -47,6 +47,7 @@
         "code name"
       ],
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : "ivy.case.setCategoryPath(\"Alpha Company\");"
         }
@@ -203,6 +204,7 @@
         "code name"
       ],
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : "ivy.case.setCategoryPath(\"Beta Company\");"
         }

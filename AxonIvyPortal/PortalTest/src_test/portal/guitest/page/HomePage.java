@@ -12,7 +12,7 @@ public class HomePage extends TemplatePage {
 
 	public final static String PORTAL_HOME_PAGE_URL = "portal/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
 	public final static String PORTAL_EXAMPLES_HOME_PAGE_URL = "portal-developer-examples/164211E97C598DAA/DefaultApplicationHomePage.ivp";
-	public final static String PORTAL_EXAMPLES_PROCESS_CHAIN = "portal-developer-examples/164DB506D12B25CF/showSampleProcessChain.ivp";
+	public final static String PORTAL_EXAMPLES_EMPLOYEE_SEARCH = "portal-developer-examples/180D50804A2BF9E9/employeeSearch.ivp";
 	public final static String PORTAL_INTERNAL_HOME_PAGE_URL = "internalSupport/164211FF9482BB44/DefaultApplicationHomePage.ivp";
 	private final static String TASK_SWITCH_MODE_BTN_LOCATOR = "id('task-widget:task-list-link:task-list-link')";
 	private static final String SHOW_ALL_PROCESSES_LINK_ID = "process-widget:process-link:process-link-label";
