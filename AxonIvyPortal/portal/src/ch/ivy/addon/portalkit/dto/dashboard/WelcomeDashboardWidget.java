@@ -17,13 +17,16 @@ public class WelcomeDashboardWidget  extends DashboardWidget {
 
   private String imageLocation;
   private String imageType;
-  private String welcomeText;
+
   private WelcomeTextPosition welcomeTextPosition;
   private WelcomeTextSize welcomeTextSize;
   private String welcomeTextColor;
   private List<DisplayName> welcomeTexts;
   private boolean isGreeting;
-  
+
+  @JsonIgnore
+  private String welcomeText;
+
   @JsonIgnore
   private File uploadedImageFile;
 
