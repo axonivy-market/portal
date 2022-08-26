@@ -1,4 +1,0 @@
-ProcessChainTestData #class
-com.axonivy.portal.developerexamples.customization.ProcessChainTest #namespace
-actualCurrentIndex Integer #field
-actualCurrentIndex PERSISTENT #fieldModifier

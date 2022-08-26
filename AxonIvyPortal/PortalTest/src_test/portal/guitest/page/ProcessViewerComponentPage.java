@@ -6,11 +6,11 @@ public class ProcessViewerComponentPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('content-container')";
+    return COMPONENT_PAGE_LOCATOR;
   }
-
+  
   public void waitForSprottyToolDisplayed() {
-    driver.switchTo().frame("iFrame").switchTo().frame("process-viewer");
+    waitForIFrameContentVisible("process-viewer", 15000);
     waitForElementDisplayed(By.id("sprotty"), true); 
   }
 }
