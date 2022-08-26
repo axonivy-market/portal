@@ -28,52 +28,44 @@ public class RoleSelectionComponentPage extends TemplatePage {
     return findElementById("item-select-with-ajax-event-component");
   }
   
-  public void selectFirstItemForDefaultRoleSelectionComponent(String keyword) {
-    click(selectRoleSelection("default-role-autocomplete", keyword));
+  public String selectFirstItemForDefaultRoleSelectionComponent(String keyword) {
+    WebElement roleElement = selectRoleSelection("default-role-autocomplete", keyword);
+    click(roleElement);
     waitForElementDisplayed(By.cssSelector("span[id$='default-role-autocomplete_panel']"), false);
-  }
-  
-  public String getFirstItemForDefaultRoleSelectionComponent(String keyword) {
-    return selectRoleSelection("default-role-autocomplete", keyword).getCssValue("data-item-value");
+    return roleElement.getCssValue("data-item-value");
   }
   
   public String getDefaultRoleSelection() {
     return findElementByCssSelector("input[id$='default-role-autocomplete_hinput']").getCssValue("value");
   }
   
-  public void selectFirstItemForRoleFromDefinedRoleSelectionComponent(String keyword) {
-    click(selectRoleSelection("role-from-defined-role-autocomplete", keyword));
+  public String selectFirstItemForRoleFromDefinedRoleSelectionComponent(String keyword) {
+    WebElement roleElement = selectRoleSelection("role-from-defined-role-autocomplete", keyword);
+    click(roleElement);
     waitForElementDisplayed(By.cssSelector("span[id$='role-from-defined-role-autocomplete_panel']"), false);
-  }
-  
-  public String getFirstItemForRoleFromDefinedRoleSelectionComponent(String keyword) {
-    return selectRoleSelection("role-from-defined-role-autocomplete", keyword).getCssValue("data-item-value");
+    return roleElement.getCssValue("data-item-value");
   }
   
   public String getRoleFromDefinedRoleSelection() {
     return findElementByCssSelector("input[id$='role-from-defined-role-autocomplete_hinput']").getCssValue("value");
   }
   
-  public void selectFirstItemForFloatingLabelAndExcludeRoleSelectionComponent(String keyword) {
-    click(selectRoleSelection("floating-label-and-exclude-role-autocomplete", keyword));
+  public String selectFirstItemForFloatingLabelAndExcludeRoleSelectionComponent(String keyword) {
+    WebElement roleElement = selectRoleSelection("floating-label-and-exclude-role-autocomplete", keyword);
+    click(roleElement);
     waitForElementDisplayed(By.cssSelector("span[id$='floating-label-and-exclude-role-autocomplete_panel']"), false);
-  }
-  
-  public String getFirstItemForFloatingLabelAndExcludeRoleSelectionComponent(String keyword) {
-    return selectRoleSelection("floating-label-and-exclude-role-autocomplete", keyword).getCssValue("data-item-value");
+    return roleElement.getCssValue("data-item-value");
   }
   
   public String getFloatingLabelAndExcludeRoleSelection() {
     return findElementByCssSelector("input[id$='floating-label-and-exclude-role-autocomplete_hinput']").getCssValue("value");
   }
   
-  public void selectFirstItemForAjaxEventRoleSelectionComponent(String keyword) {
-    click(selectRoleSelection("item-select-event-for-role-selection", keyword));
+  public String selectFirstItemForAjaxEventRoleSelectionComponent(String keyword) {
+    WebElement roleElement = selectRoleSelection("item-select-event-for-role-selection", keyword);
+    click(roleElement);
     waitForElementDisplayed(By.cssSelector("[id$='item-select-event-for-role-selection-message_info-detail']"), true);
-  }
-  
-  public String getFirstItemForAjaxEventRoleSelectionComponent(String keyword) {
-    return selectRoleSelection("item-select-event-for-role-selection", keyword).getCssValue("data-item-value");
+    return roleElement.getCssValue("data-item-value");
   }
   
   public String getAjaxEventRoleSelection() {
