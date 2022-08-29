@@ -1,4 +1,4 @@
-package com.axonivy.portal.component.example.enums;
+package com.axonivy.portal.components.examples.enums;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
