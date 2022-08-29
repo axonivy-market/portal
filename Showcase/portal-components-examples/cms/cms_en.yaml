@@ -1,0 +1,34 @@
+Dialog:
+  Common:
+    approve: Approve
+    finish: Finish
+    reject: Reject
+Enums:
+  LeaveType:
+    ANNUAL_LEAVE: Annual Leave
+    MATERNITY_LEAVE: Maternity Leave
+    SICK_LEAVE: Sick Leave
+Labels:
+  LeaveRequest:
+    LeaveSteps:
+      approval: Approval
+      approvalResult: Approval Result
+      creation: Create leave request
+    approvalResultTaskIntro: Below is summary of your leave request and feedback from approver.
+    approvalTaskIntro: 'There is leave request need your approval, detail is below:'
+    approver: Approver
+    approverComment: Approver comment
+    from: From
+    leaveType: Leave type
+    requester: Requester
+    requesterComment: Requester comment
+    submitLeaveRequest: Submit leave request
+    to: To
+Processes:
+  LeaveRequest:
+    approvalTask: Your leave request is approved
+    approvalTaskName: Approval for leave request of {0}
+    createLeaveRequest: 'Create leave request for: {0}'
+    createNewLeaveRequest: 'System task: Start create new leave request'
+    leaveRequest: Leave Request
+    rejectedTask: Your leave request is rejected
