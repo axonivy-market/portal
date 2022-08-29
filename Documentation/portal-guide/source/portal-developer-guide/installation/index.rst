@@ -18,7 +18,7 @@ Project Modules
 The application consists of 3 process modules. For detailed information
 on each module, refer to :ref:`architecture`.
 
--  portal-component
+-  portal-components
 -  portal
 -  AxonIvyExpress
 
@@ -112,7 +112,7 @@ In Engine
 Migrate 9.3 To 9.4
 ------------------
 
-``PortalStyle``, ``PortalKit`` and ``PortalTemplate`` have been replaced by ``portal-component`` and ``portal`` from 9.4, refer to :ref:`architecture`.
+``PortalStyle``, ``PortalKit`` and ``PortalTemplate`` have been replaced by ``portal-components`` and ``portal`` from 9.4, refer to :ref:`architecture`.
 
 #. If you have customized PortalStyle, please refer to
    :ref:`Customization Portal Logos And Colors <customization-portal-logos-and-colors>` to override login background, favicon & logo images.
@@ -150,10 +150,10 @@ Migrate 9.3 To 9.4
 #. The ``customization.css`` file has been removed, in case you use it in your project, please switch to using
    :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html>` to customize styling
 
-#. Sub processes related to documents are moved to the independent project ``portal-component``.
+#. Sub processes related to documents are moved to the independent project ``portal-components``.
    If you customized these processes, please override the correspond sub process again and added your customization to it.
 
-   Below is a list of deprecated processes in project ``portal`` and new processes in project ``portal-component``.
+   Below is a list of deprecated processes in project ``portal`` and new processes in project ``portal-components``.
 
    +-----------------------------------+--------------------------+
    | New subprocess                    | Deprecated subprocess    |
@@ -167,7 +167,7 @@ Migrate 9.3 To 9.4
    | DownloadDocumentItem              | DownloadDocument         |
    +-----------------------------------+--------------------------+
 
-#. Some classes of the Portal have been moved to the independent project ``portal-component``. Please refer to below table to migrate them correctly
+#. Some classes of the Portal have been moved to the independent project ``portal-components``. Please refer to below table to migrate them correctly
 
    .. csv-table::
       :file: documents/class_replacement_9.4.csv
@@ -175,17 +175,17 @@ Migrate 9.3 To 9.4
       :class: longtable
       :widths: 1 1
 
-#. Some components of the Portal have been moved to the independent project ``portal-component``. Please follow these steps to migrate them:
+#. Some components of the Portal have been moved to the independent project ``portal-components``. Please follow these steps to migrate them:
 
-   - :ref:`Migration steps <components-additional-components-migrate-from-old-user-selection>` for the new :ref:`User Selection <components-additional-components-user-selection>` component.
+   - :ref:`Migration steps <components-portal-components-migrate-from-old-user-selection>` for the new :ref:`User Selection <components-portal-components-user-selection>` component.
 
-   - :ref:`Migration steps <components-additional-components-migrate-from-old-role-selection>` for the new :ref:`Role Selection <components-additional-components-role-selection>` component.
+   - :ref:`Migration steps <components-portal-components-migrate-from-old-role-selection>` for the new :ref:`Role Selection <components-portal-components-role-selection>` component.
 
-   - :ref:`Migration steps <components-additional-components-migrate-from-old-document-table>` for the new :ref:`Document Table <components-additional-components-document-table>` component.
+   - :ref:`Migration steps <components-portal-components-migrate-from-old-document-table>` for the new :ref:`Document Table <components-portal-components-document-table>` component.
 
-   - :ref:`Migration steps <components-additional-components-migrate-from-old-process-history>` for the new :ref:`Process History <components-additional-component-process-history>` component.
+   - :ref:`Migration steps <components-portal-components-migrate-from-old-process-history>` for the new :ref:`Process History <components-portal-components-process-history>` component.
 
-   - :ref:`Migration steps <components-additional-components-migrate-from-old-process-chain>` for the new :ref:`Process Chain <components-additional-component-process-chain>` component.
+   - :ref:`Migration steps <components-portal-components-migrate-from-old-process-chain>` for the new :ref:`Process Chain <components-portal-components-process-chain>` component.
 
 #. Portal dashboard widgets only support the ``CustomFields`` declared in the ``custom-fields.yaml`` file.
    If your ``CustomFields`` are used in the dashboard widget, please follow the :dev-url:`Custom Fields Meta Information </doc/nightly/designer-guide/how-to/workflow/custom-fields.html#meta-information>` to adapt the data.
@@ -365,6 +365,20 @@ Changes in 9.4
 - Introduced the ``Formatting language setting`` to format values, for example the decimal separator is displayed differently in different regions of the world.
 
 - Removed sub process ``DefaultChartColor.p.json``, introduced some Portal variables for customizing the default chart color. See details: :ref:`Default chart colors <customization-default-chart-colors>`.
+
+- Introduce some components in new ``portal-components`` project.
+
+   - :ref:`User Selection Component <components-portal-components-user-selection>`
+
+   - :ref:`Role Selection Component <components-portal-components-role-selection>`
+
+   - :ref:`Document Table Component <components-portal-components-document-table>`
+
+   - :ref:`Process History Component <components-portal-components-process-history>`
+
+   - :ref:`Process Chain Component <components-portal-components-process-chain>`
+
+   - :ref:`Process Viewer Component <components-portal-components-process-viewer>`
 
 Changes in 9.3
 --------------

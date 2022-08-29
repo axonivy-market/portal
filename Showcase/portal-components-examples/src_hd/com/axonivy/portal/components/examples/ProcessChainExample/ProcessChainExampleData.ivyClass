@@ -1,0 +1,8 @@
+ProcessChainExampleData #class
+com.axonivy.portal.components.examples.ProcessChainExample #namespace
+actualCurrentIndex Integer #field
+actualCurrentIndex PERSISTENT #fieldModifier
+steps java.util.List<String> #field
+steps PERSISTENT #fieldModifier
+processChainSerenityExampleLink String #field
+processChainSerenityExampleLink PERSISTENT #fieldModifier

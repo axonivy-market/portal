@@ -1,241 +1,203 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:ic="http://ivyteam.ch/jsf/component"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-	<ui:composition template="/layouts/TaskTemplate-8.xhtml">
-		<ui:define name="title">Request</ui:define>
-		<ui:param name="caseId" value="#{data.gdprRequest.caseId}" />
-		<ui:param name="task" value="#{ivy.task}" />
-		<ui:param name="actualStepIndex"
-			value="#{data.gdprRequest.processState.stepForProcessChain}" />
-		<ui:param name="steps"
-			value="#{data.gdprRequest.processState.listForProcessChain}" />
-		<div>
-			<div>
-				<ui:define name="taskName">
-					<span class="si si-task-list-edit task-template-title-icon"></span>
-					<h:outputText styleClass="task-template-title" id="title"
-						title="#{task.name}" value="#{task.name}" />
-				</ui:define>
-			</div>
-			<div class="">
-				<ui:define name="process_chain_area">
-					<ic:com.axonivy.portal.component.ProcessChain
-						startMethod="start" componentId="process-chain-component-id"
-						shape="LINE" direction="HORIZONTAL" isShowAllSteps="false"
-						actualStepIndex="#{actualStepIndex}" steps="#{steps}"
-						currentIndex="#{taskTemplateBean.getIndexOfCurrentStage(caseId)}"
-						stages="#{taskTemplateBean.getStagesBaseOnCurrentStage(caseId,steps)}" />
-				</ui:define>
-			</div>
-		</div>
-		<ui:define name="content">
+  <ui:composition template="/layouts/TaskTemplate-8.xhtml">
+    <ui:define name="title">Request</ui:define>
+    <ui:param name="caseId" value="#{data.gdprRequest.caseId}" />
+    <ui:param name="task" value="#{ivy.task}" />
+    <ui:param name="actualStepIndex" value="#{data.gdprRequest.processState.stepForProcessChain}" />
+    <ui:param name="steps" value="#{data.gdprRequest.processState.listForProcessChain}" />
+    <div>
+      <div>
+        <ui:define name="taskName">
+          <span class="si si-task-list-edit task-template-title-icon"></span>
+          <h:outputText styleClass="task-template-title" id="title" title="#{task.name}" value="#{task.name}" />
+        </ui:define>
+      </div>
+      <div class="">
+        <ui:define name="process_chain_area">
+          <ic:com.axonivy.portal.components.ProcessChain startMethod="start" componentId="process-chain-component-id"
+            shape="LINE" direction="HORIZONTAL" isShowAllSteps="false" actualStepIndex="#{actualStepIndex}"
+            steps="#{steps}" currentIndex="#{taskTemplateBean.getIndexOfCurrentStage(caseId)}"
+            stages="#{taskTemplateBean.getStagesBaseOnCurrentStage(caseId,steps)}" />
+        </ui:define>
+      </div>
+    </div>
+    <ui:define name="content">
 
 
-			<h:form id="form">
-				<p:growl id="growl">
-					<p:autoUpdate />
-				</p:growl>
-				<div class="ui-fluid">
-					<div class="">
-						<div class="ui-g">
-							<div class="ui-g-12 ui-md-6 ui-lg-2">
-								<p:outputLabel id="caseIdLabel"
-									value="#{ivy.cms.co('/Labels/caseId')}" />
-							</div>
+      <h:form id="form">
+        <p:growl id="growl">
+          <p:autoUpdate />
+        </p:growl>
+        <div class="ui-fluid">
+          <div class="">
+            <div class="ui-g">
+              <div class="ui-g-12 ui-md-6 ui-lg-2">
+                <p:outputLabel id="caseIdLabel" value="#{ivy.cms.co('/Labels/caseId')}" />
+              </div>
 
-							<div class="ui-g-12 ui-md-6 ui-lg-4">
-								<p:outputLabel id="caseIdValue" value="#{caseId}" />
-							</div>
-							<div class="ui-g-12 ui-md-6 ui-lg-2">
-								<p:outputLabel id="dateLabel"
-									value="#{ivy.cms.co('/Labels/date')}" />
-							</div>
-							<div class="ui-g-12 ui-md-6 ui-lg-4">
-								<p:outputLabel id="dateValue" value="12.11.2018 15:00">
-									<f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
-								</p:outputLabel>
-							</div>
-						</div>
-					</div>
-					<br />
-					<p:fieldset id="personalDataFieldset" toggleable="true"
-						styleClass="fitFieldsetToDiv"
-						legend="#{ivy.cms.co('/Labels/personalData')}">
+              <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:outputLabel id="caseIdValue" value="#{caseId}" />
+              </div>
+              <div class="ui-g-12 ui-md-6 ui-lg-2">
+                <p:outputLabel id="dateLabel" value="#{ivy.cms.co('/Labels/date')}" />
+              </div>
+              <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:outputLabel id="dateValue" value="12.11.2018 15:00">
+                  <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+                </p:outputLabel>
+              </div>
+            </div>
+          </div>
+          <br />
+          <p:fieldset id="personalDataFieldset" toggleable="true" styleClass="fitFieldsetToDiv"
+            legend="#{ivy.cms.co('/Labels/personalData')}">
 
-						<div class="ui-g">
-							<div class="ui-g-12 ui-md-6 ui-lg-2">
-								<p:outputLabel id="nameLabel" for="nameValue"
-									value="#{ivy.cms.co('/Labels/firstName')}" />
-							</div>
-							<div class="ui-g-12 ui-md-6 ui-lg-4">
-								<p:inputText id="nameValue" required="true"
-									value="#{data.gdprRequest.name}" />
-							</div>
+            <div class="ui-g">
+              <div class="ui-g-12 ui-md-6 ui-lg-2">
+                <p:outputLabel id="nameLabel" for="nameValue" value="#{ivy.cms.co('/Labels/firstName')}" />
+              </div>
+              <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:inputText id="nameValue" required="true" value="#{data.gdprRequest.name}" />
+              </div>
 
-							<div class="ui-g-12 ui-md-6 ui-lg-2">
-								<p:outputLabel id="surnameLabel" for="surnameValue"
-									value="#{ivy.cms.co('/Labels/surName')}" />
-							</div>
+              <div class="ui-g-12 ui-md-6 ui-lg-2">
+                <p:outputLabel id="surnameLabel" for="surnameValue" value="#{ivy.cms.co('/Labels/surName')}" />
+              </div>
 
-							<div class="ui-g-12 ui-md-6 ui-lg-4">
-								<p:inputText id="surnameValue" required="true"
-									value="#{data.gdprRequest.surname}" />
-							</div>
-						</div>
+              <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:inputText id="surnameValue" required="true" value="#{data.gdprRequest.surname}" />
+              </div>
+            </div>
 
-						<div class="ui-g">
-							<div class="ui-g-12 ui-md-6 ui-lg-2">
-								<p:outputLabel id="addressLabel" for="addressValue"
-									value="#{ivy.cms.co('/Labels/address')}" />
-							</div>
-							<div class="ui-g-12 ui-md-6 ui-lg-4">
-								<p:inputText id="addressValue" required="true"
-									value="#{data.gdprRequest.address}" />
-							</div>
+            <div class="ui-g">
+              <div class="ui-g-12 ui-md-6 ui-lg-2">
+                <p:outputLabel id="addressLabel" for="addressValue" value="#{ivy.cms.co('/Labels/address')}" />
+              </div>
+              <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:inputText id="addressValue" required="true" value="#{data.gdprRequest.address}" />
+              </div>
 
-							<div class="ui-g-12 ui-md-6 ui-lg-2">
-								<p:outputLabel id="cityLabel" for="cityValue"
-									value=" #{ivy.cms.co('/Labels/zip')}#{ivy.cms.co('/Labels/city')}" />
-							</div>
-							<div class="ui-g-12 ui-md-2 ui-lg-1">
-								<p:inputNumber id="zipValue" required="true" decimalPlaces="0"
-									decimalSeparator="" thousandSeparator=""
-									value="#{data.gdprRequest.zip}" />
+              <div class="ui-g-12 ui-md-6 ui-lg-2">
+                <p:outputLabel id="cityLabel" for="cityValue"
+                  value=" #{ivy.cms.co('/Labels/zip')}#{ivy.cms.co('/Labels/city')}" />
+              </div>
+              <div class="ui-g-12 ui-md-2 ui-lg-1">
+                <p:inputNumber id="zipValue" required="true" decimalPlaces="0" decimalSeparator="" thousandSeparator=""
+                  value="#{data.gdprRequest.zip}" />
 
-							</div>
-							<div class="ui-g-12 ui-md-4 ui-lg-3">
-								<p:inputText id="cityValue" required="true"
-									value="#{data.gdprRequest.city}" />
-							</div>
-						</div>
+              </div>
+              <div class="ui-g-12 ui-md-4 ui-lg-3">
+                <p:inputText id="cityValue" required="true" value="#{data.gdprRequest.city}" />
+              </div>
+            </div>
 
-						<div class="ui-g">
-							<div class="ui-g-12 ui-md-6 ui-lg-2">
-								<p:outputLabel id="phoneNumberLabel"
-									value="#{ivy.cms.co('/Dialogs/GdprRequest/Labels/phoneNumber')}#{ivy.cms.co('/Labels/phoneNumber')}" />
-							</div>
-							<div class="ui-g-12 ui-md-6 ui-lg-4">
-								<p:inputText id="phoneNumberValue"
-									value="#{data.gdprRequest.phoneNumber}" />
-							</div>
-							<div class="ui-g-12 ui-md-6 ui-lg-2">
-								<p:outputLabel id="identification" for="emailValue"
-									value="#{ivy.cms.co('/Dialogs/GdprRequest/Labels/identification')}#{ivy.cms.co('/Labels/email')}" />
-							</div>
-							<div class="ui-g-12 ui-md-6 ui-lg-4">
-								<p:inputText id="emailValue" required="true"
-									value="#{data.gdprRequest.emailAddress}" />
-							</div>
-						</div>
+            <div class="ui-g">
+              <div class="ui-g-12 ui-md-6 ui-lg-2">
+                <p:outputLabel id="phoneNumberLabel"
+                  value="#{ivy.cms.co('/Dialogs/GdprRequest/Labels/phoneNumber')}#{ivy.cms.co('/Labels/phoneNumber')}" />
+              </div>
+              <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:inputText id="phoneNumberValue" value="#{data.gdprRequest.phoneNumber}" />
+              </div>
+              <div class="ui-g-12 ui-md-6 ui-lg-2">
+                <p:outputLabel id="identification" for="emailValue"
+                  value="#{ivy.cms.co('/Dialogs/GdprRequest/Labels/identification')}#{ivy.cms.co('/Labels/email')}" />
+              </div>
+              <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:inputText id="emailValue" required="true" value="#{data.gdprRequest.emailAddress}" />
+              </div>
+            </div>
 
-						<div class="ui-g">
-							<div class="ui-g-12 ui-md-6 ui-lg-2">
-								<p:outputLabel id="identificationNumberLabel"
-									for="identificationNumberValue"
-									value="#{ivy.cms.co('/Dialogs/GdprRequest/Labels/identificationNumer')}#{ivy.cms.co('/Labels/id')}" />
-							</div>
-							<div class="ui-g-12 ui-md-6 ui-lg-4">
-								<p:inputText id="identificationNumberValue" required="false"
-									value="#{data.gdprRequest.identificationNumer}" />
-							</div>
-						</div>
-					</p:fieldset>
+            <div class="ui-g">
+              <div class="ui-g-12 ui-md-6 ui-lg-2">
+                <p:outputLabel id="identificationNumberLabel" for="identificationNumberValue"
+                  value="#{ivy.cms.co('/Dialogs/GdprRequest/Labels/identificationNumer')}#{ivy.cms.co('/Labels/id')}" />
+              </div>
+              <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:inputText id="identificationNumberValue" required="false"
+                  value="#{data.gdprRequest.identificationNumer}" />
+              </div>
+            </div>
+          </p:fieldset>
 
-					<br />
-					<p:fieldset id="requestFieldset"
-						legend="#{ivy.cms.co('/Labels/request')}" toggleable="true">
-						<div class="ui-g">
-							<div class="ui-g-12 ui-md-6 ui-lg-2">
-								<p:outputLabel id="requestTypeLabel"
-									value="#{ivy.cms.co('/Dialogs/GdprRequest/Labels/requestType')}#{ivy.cms.co('/Labels/requestType')}"
-									for="requestTypeValue" />
-							</div>
-							<div class="ui-g-12 ui-md-6 ui-lg-4">
-								<p:selectOneMenu id="requestTypeValue" required="true">
-									<f:selectItem itemLabel="Select One" itemValue="#{null}" />
-									<f:selectItem itemLabel="Antrag 1" itemValue="Xbox One" />
-									<f:selectItem itemLabel="Antrag 2" itemValue="PS4" />
-									<f:selectItem itemLabel="Antrag 3" itemValue="Wii U" />
-								</p:selectOneMenu>
-							</div>
-						</div>
-						<div class="ui-g">
-							<div class="ui-g-12 ui-md-6 ui-lg-2">
-								<p:outputLabel id="reasonLabel"
-									value="#{ivy.cms.co('/Dialogs/GdprRequest/Labels/reason')}#{ivy.cms.co('/Labels/reason')}" />
-							</div>
+          <br />
+          <p:fieldset id="requestFieldset" legend="#{ivy.cms.co('/Labels/request')}" toggleable="true">
+            <div class="ui-g">
+              <div class="ui-g-12 ui-md-6 ui-lg-2">
+                <p:outputLabel id="requestTypeLabel"
+                  value="#{ivy.cms.co('/Dialogs/GdprRequest/Labels/requestType')}#{ivy.cms.co('/Labels/requestType')}"
+                  for="requestTypeValue" />
+              </div>
+              <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:selectOneMenu id="requestTypeValue" required="true">
+                  <f:selectItem itemLabel="Select One" itemValue="#{null}" />
+                  <f:selectItem itemLabel="Antrag 1" itemValue="Xbox One" />
+                  <f:selectItem itemLabel="Antrag 2" itemValue="PS4" />
+                  <f:selectItem itemLabel="Antrag 3" itemValue="Wii U" />
+                </p:selectOneMenu>
+              </div>
+            </div>
+            <div class="ui-g">
+              <div class="ui-g-12 ui-md-6 ui-lg-2">
+                <p:outputLabel id="reasonLabel"
+                  value="#{ivy.cms.co('/Dialogs/GdprRequest/Labels/reason')}#{ivy.cms.co('/Labels/reason')}" />
+              </div>
 
-							<div class="ui-g-12 ui-md-6 ui-lg-10">
-								<p:inputTextarea id="reasonValue"
-									value="#{data.gdprRequest.requestReason}" maxlength="2600" />
-							</div>
-						</div>
-						<p:outputPanel>
-							<p:selectOneRadio id="city2" value="#{radioView.city2}"
-								layout="responsive" columns="3">
-								<f:selectItems value="#{radioView.cities}" var="c"
-									itemLabel="#{city}" itemValue="#{city}" />
-							</p:selectOneRadio>
-						</p:outputPanel>
-					</p:fieldset>
+              <div class="ui-g-12 ui-md-6 ui-lg-10">
+                <p:inputTextarea id="reasonValue" value="#{data.gdprRequest.requestReason}" maxlength="2600" />
+              </div>
+            </div>
+            <p:outputPanel>
+              <p:selectOneRadio id="city2" value="#{radioView.city2}" layout="responsive" columns="3">
+                <f:selectItems value="#{radioView.cities}" var="c" itemLabel="#{city}" itemValue="#{city}" />
+              </p:selectOneRadio>
+            </p:outputPanel>
+          </p:fieldset>
 
-					<br /> <br />
-					<h:panelGroup id="pdfFileGroup">
-						<p:dataTable id="fileTable" value="#{data.gdprRequest.files}"
-							var="file" scrollable="false" selectionMode="single"
-							rowKey="#{file.file.name}" selection="#{data.selectedGdprFile}" lazy="false">
-							<p:column headerText="#{ivy.cms.co('/Labels/tableName')}"
-								sortBy="#{file.file.name}" style="width:80%">
-								<h:outputText value="#{file.file.name}"
-									title="#{file.file.name}" />
-							</p:column>
-							<p:column headerText="#{ivy.cms.co('/Labels/tableDownload')}"
-								style="text-align:center;width:10%">
-								<p:commandButton id="showFileButton" ajax="false"
-									actionListener="#{logic.show(file)}"
-									icon="si si-download-bottom"
-									title="#{ivy.cms.co('/Dialogs/GdprRequest/Labels/tableDownload')}"
-									immediate="true">
-									<p:fileDownload value="#{data.streamedContent}" />
-								</p:commandButton>
-							</p:column>
-							<p:column headerText="#{ivy.cms.co('/Labels/tableDelete')}"
-								style="text-align:center;width:10%">
-								<p:commandButton actionListener="#{logic.delete(file)}"
-									title="#{ivy.cms.co('/Labels/delete')}"
-									update="#{p:resolveFirstComponentWithId('fileTable', view).clientId} #{p:resolveFirstComponentWithId('pdfFileGroup', view).clientId} form"
-									icon="si si-bin-1" immediate="true" />
-							</p:column>
-						</p:dataTable>
-						<p:fileUpload multiple="true" mode="advanced"
-                            chooseIcon="si si-touchpad-finger"
-                            uploadIcon="si si-add-small"
-                            cancelIcon="si si-delete-2"
-							listener="#{logic.handleFileUploader}"
-							update="fileTable" dragDropSupport="true" 
-							style="padding:0; margin-top:10px"/>
+          <br /> <br />
+          <h:panelGroup id="pdfFileGroup">
+            <p:dataTable id="fileTable" value="#{data.gdprRequest.files}" var="file" scrollable="false"
+              selectionMode="single" rowKey="#{file.file.name}" selection="#{data.selectedGdprFile}" lazy="false"
+              reflow="true">
+              <p:column headerText="#{ivy.cms.co('/Labels/tableName')}" sortBy="#{file.file.name}">
+                <h:outputText value="#{file.file.name}" title="#{file.file.name}" />
+              </p:column>
+              <p:column headerText="#{ivy.cms.co('/Labels/tableDownload')}" style="text-align:center;width:5rem">
+                <p:commandButton id="showFileButton" ajax="false" actionListener="#{logic.show(file)}"
+                  icon="si si-download-bottom" title="#{ivy.cms.co('/Dialogs/GdprRequest/Labels/tableDownload')}"
+                  immediate="true" styleClass="rounded-button ui-button-outlined">
+                  <p:fileDownload value="#{data.streamedContent}" />
+                </p:commandButton>
+              </p:column>
+              <p:column headerText="#{ivy.cms.co('/Labels/tableDelete')}" style="text-align:center;width:5rem">
+                <p:commandButton actionListener="#{logic.delete(file)}" title="#{ivy.cms.co('/Labels/delete')}"
+                  update="#{p:resolveFirstComponentWithId('fileTable', view).clientId} #{p:resolveFirstComponentWithId('pdfFileGroup', view).clientId} form"
+                  icon="si si-bin-1" immediate="true" styleClass="rounded-button ui-button-outlined"/>
+              </p:column>
+            </p:dataTable>
+            <p:fileUpload multiple="true" mode="advanced" chooseIcon="si si-touchpad-finger"
+              uploadIcon="si si-add-small" cancelIcon="si si-delete-2" listener="#{logic.handleFileUploader}"
+              update="fileTable" dragDropSupport="true" style="padding:0; margin-top:10px" />
 
-						<pe:documentViewer id="documentViewer" height="500" width="1000"
-							url="#{data.pdfFilenameUrl}"
-							rendered="#{data.renderPdfVeiwer and !data.isStrongboxProcess}" />
-					</h:panelGroup>
+            <pe:documentViewer id="documentViewer" height="500" width="1000" url="#{data.pdfFilenameUrl}"
+              rendered="#{data.renderPdfVeiwer and !data.isStrongboxProcess}" />
+          </h:panelGroup>
 
-					<br /> <br />
-				</div>
-				<p:toolbar>
-					<f:facet name="right">
-						<p:commandButton icon="si si-check-1" value="#{ivy.cms.co('/Labels/proceed')}"
-							actionListener="#{logic.proceed}" update="form" />
-					</f:facet>
-				</p:toolbar>
-			</h:form>
+          <br /> <br />
+        </div>
+        <p:toolbar>
+          <f:facet name="right">
+            <p:commandButton icon="si si-check-1" value="#{ivy.cms.co('/Labels/proceed')}"
+              actionListener="#{logic.proceed}" update="form" />
+          </f:facet>
+        </p:toolbar>
+      </h:form>
 
-		</ui:define>
-	</ui:composition>
+    </ui:define>
+  </ui:composition>
 </h:body>
 </html>

@@ -1,9 +1,9 @@
 package portal.guitest.page;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import portal.guitest.common.Sleeper;
 
 public class DocumentTableComponentPage extends TemplatePage {
 
@@ -14,9 +14,14 @@ public class DocumentTableComponentPage extends TemplatePage {
 
   public void uploadSampleDocument(String pathToFile) {
     click(By.id("form:document-table-component:document-upload"));
+    waitForElementExisted("input[id$='form:document-table-component:document-upload_input']", true, DEFAULT_TIMEOUT);
     findElementByCssSelector("input[id$='form:document-table-component:document-upload_input']").sendKeys(pathToFile);
-    Sleeper.sleep(2000);// currently haven't found solution to check when the file upload finish, we have to wait
+    waitForElementDisplayed(getDocuments().get(0), true);
     waitForElementDisplayed(By.cssSelector("span[class$='ui-messages-info-summary']"), true);
+  }
+  
+  private List<WebElement> getDocuments() {
+    return findElementById("form:document-table-component:document-table").findElement(By.cssSelector("table tbody")).findElements(By.cssSelector("tr"));
   }
   
   public void waitForDocumentTableComponentPageLoaded() {
@@ -25,5 +30,9 @@ public class DocumentTableComponentPage extends TemplatePage {
   
   public WebElement getDocumentTableComponent() {
     return findElementById("form:document-table-component");
+  }
+  
+  public int countDocuments() {
+    return getDocuments().size();
   }
 }

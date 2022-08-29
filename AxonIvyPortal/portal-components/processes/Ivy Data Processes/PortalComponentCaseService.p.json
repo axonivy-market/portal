@@ -1,0 +1,137 @@
+{
+  "format" : "9.4.14",
+  "id" : "18104AE3EB4807A1",
+  "data" : "com.axonivy.portal.components.service.PortalConponentCaseServiceData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "findCasesByCriteria(CaseSearchCriteria,Integer,Integer)",
+      "config" : {
+        "callSignature" : "findCasesByCriteria",
+        "input" : {
+          "params" : [
+            { "name" : "caseSearchCriteria", "type" : "com.axonivy.portal.components.ivydata.searchcriteria.CaseSearchCriteria" },
+            { "name" : "startIndex", "type" : "Integer" },
+            { "name" : "count", "type" : "Integer" }
+          ],
+          "map" : {
+            "out.caseSearchCriteria" : "param.caseSearchCriteria",
+            "out.count" : "param.count",
+            "out.startIndex" : "param.startIndex"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "errors", "type" : "java.util.List<com.axonivy.portal.components.ivydata.exception.PortalIvyDataException>" },
+            { "name" : "cases", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>" }
+          ],
+          "map" : {
+            "result.errors" : "in.errors",
+            "result.cases" : "in.cases"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 96 },
+        "labelOffset" : { "x" : -89, "y" : 26 }
+      },
+      "connect" : { "id" : "f54", "to" : "f6" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 416, "y" : 96 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "Find cases",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.ivydata.service.impl.CaseService;",
+            "import com.axonivy.portal.components.ivydata.dto.IvyCaseResultDTO;",
+            "",
+            "IvyCaseResultDTO dto = CaseService.newInstance().findCasesByCriteria(in.caseSearchCriteria, in.startIndex, in.count);",
+            "out.cases = dto.cases;",
+            "out.errors = dto.errors;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 96 }
+      },
+      "connect" : { "id" : "f3", "to" : "f1" }
+    }, {
+      "id" : "f9",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 416, "y" : 200 }
+      }
+    }, {
+      "id" : "f11",
+      "type" : "Script",
+      "name" : "Count cases",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.ivydata.service.impl.CaseService;",
+            "import com.axonivy.portal.components.ivydata.dto.IvyCaseResultDTO;",
+            "",
+            "IvyCaseResultDTO dto = CaseService.newInstance().countCasesByCriteria(in.caseSearchCriteria);",
+            "out.totalCases = dto.totalCases;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 200 }
+      },
+      "connect" : { "id" : "f4", "to" : "f9" }
+    }, {
+      "id" : "f12",
+      "type" : "CallSubStart",
+      "name" : "countCasesByCriteria(CaseSearchCriteria)",
+      "config" : {
+        "callSignature" : "countCasesByCriteria",
+        "input" : {
+          "params" : [
+            { "name" : "caseSearchCriteria", "type" : "com.axonivy.portal.components.ivydata.searchcriteria.CaseSearchCriteria" }
+          ],
+          "map" : {
+            "out.caseSearchCriteria" : "param.caseSearchCriteria"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "errors", "type" : "java.util.List<com.axonivy.portal.components.ivydata.exception.PortalIvyDataException>" },
+            { "name" : "totalCases", "type" : "Long" }
+          ],
+          "map" : {
+            "result.errors" : "in.errors",
+            "result.totalCases" : "in.totalCases"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 200 },
+        "labelOffset" : { "x" : -89, "y" : 26 }
+      },
+      "connect" : { "id" : "f2", "to" : "f11" }
+    } ],
+  "layout" : {
+    "lanes" : [ {
+        "name" : "findCases",
+        "size" : 768
+      }, {
+        "name" : "addtionalProperties",
+        "size" : 432
+      }, {
+        "name" : "Documents",
+        "size" : 968
+      }, {
+        "name" : "Destroy Case",
+        "size" : 320
+      } ]
+  }
+}

@@ -1,0 +1,90 @@
+Dialogs:
+  com:
+    axonivy:
+      portal:
+        components:
+          Common:
+            Cancel: Cancelar
+            Categories: Categorias
+            ConfirmForDelete: ¿Está seguro que quiere borrar este artículo?
+            Confirmation: Confirmación
+            Description: Descripción
+            More: Mas
+            Name: Nombre
+            'No': 'No'
+            NotAvailable: N/A
+            Process:
+              ProcessName: Nombre del proceso
+            RequiredFieldMessage: este campo es obligatorio
+            Task:
+              Activator: Responsable
+            Type: Tipo
+            'Yes': Sí
+          DocumentTable:
+            Delete: Borrar
+            DeleteDocumentNote: '{0} ha eliminado {1}'
+            DeleteSuceed: Archivo eliminado con éxito
+            Download: Descargar
+            EmptyFileMessage: El archivo no puede estar vacío
+            ErrorFileUploadSize: El tamaño deberá ser inferior a {0}
+            FileContainScript: ¡Este archivo no puede cargarse porque contiene algunos scripts!
+            FileContainVirus: 'Carga fallida, ¡se ha detectado un virus/infección! '
+            FileFunction: Funciones
+            FileLimitMessage: ¡El máximo numero de archivos ha sido subido!
+            InvalidFileMessage: Tipo de archivo no permitido
+            Name: Nombre de archivo
+            NoFile: ¡No se encuentran archivos!
+            Size: Tamaño de archivo
+            Type: Tipo
+            Upload: Cargar archivo nuevo
+            UploadDocumentNote: '{0} ha subido {1}'
+            UploadFailed: Se produjo un error al cargar este archivo. Por favor, pregunte a su administrador por este problema.
+            UploadFileExists: El archivo {0} ya existe
+            UploadSucceed: El archivo ha sido añadido con éxito
+          Enums:
+            BasicDocumentType:
+              CONTRACT: Contrato
+              DOCUMENTATION: Documentación
+              EMAIL: Email
+              INFORMATION: Información
+              OTHERS: Otros
+            PortalIvyDataErrorType:
+              APP_NOT_FOUND: Aplicación no encontrada
+              FAIL_TO_COUNT_CASE: Error al contar los casos
+              FAIL_TO_LOAD_CASE: Error al cargar el caso
+          ProcessChain:
+            currentStepIsNotDefined: El paso ({0}) de la cadena de proceso no está definido
+          ProcessHistory:
+            CaseColumn:
+              CreationTime: Creado
+              Creator: Creador
+              Id: ID del caso
+              Name: Nombre
+              ProcessName: Nombre del proceso
+              State: 'Estatus '
+            CaseNameNotAvailable: '[Nombre del caso no disponible]'
+            CaseState:
+              CREATED: Creado
+              DESTROYED: Destruido
+              DONE: Hecho
+              FAILED: Ha fallado
+              OPEN: Pendiente
+              RUNNING: En progreso
+              ZOMBIE: Zombie
+            DefaultEmptyMessage: No hay casos
+            NoDescription: Sin descripción
+            NoName: Sin nombre
+            NotAvailable: NA
+          ProcessViewer:
+            ProcessDataNotFound: No se han encontrado datos del proceso
+            ProcessDetails: Detalles del proceso
+            ProcessId: ID del proceso
+            ProcessInfo: Información del proceso
+            ProcessInfoIconTooltip: Haga clic para ver los detalles del inicio del proceso
+            ProcessType:
+              CASE_MAP: Mapa del caso
+              IVY_PROCESS: Proceso de negocio
+Labels:
+  DisabledUserPrefix: (inactivo)
+  NoName: Sin nombre
+  NotAvailable: N/A
