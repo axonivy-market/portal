@@ -1,8 +1,0 @@
-LeaveRequestSummaryData #class
-com.axonivy.portal.component.example.leaverequest.LeaveRequestSummary #namespace
-leaveRequestData com.axonivy.portal.component.example.leaverequest.LeaveRequest #field
-leaveRequestData PERSISTENT #fieldModifier
-approver com.axonivy.portal.component.dto.UserDTO #field
-approver PERSISTENT #fieldModifier
-requester com.axonivy.portal.component.dto.UserDTO #field
-requester PERSISTENT #fieldModifier

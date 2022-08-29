@@ -1,7 +1,7 @@
 {
   "format" : "9.4.17",
   "id" : "1703359FD55C9418",
-  "data" : "com.axonivy.portal.component.example.leaverequest.LeaveRequestCreation.LeaveRequestCreationData",
+  "data" : "com.axonivy.portal.components.examples.leaverequest.LeaveRequestCreation.LeaveRequestCreationData",
   "kind" : "HTML_DIALOG",
   "elements" : [ {
       "id" : "f0",
@@ -57,13 +57,13 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
-            "import com.axonivy.portal.component.dto.UserDTO;",
+            "import com.axonivy.portal.components.dto.UserDTO;",
             "import java.util.Arrays;",
-            "import com.axonivy.portal.component.util.UserUtils;",
-            "import com.axonivy.portal.component.example.enums.LeaveType;",
+            "import com.axonivy.portal.components.util.UserUtils;",
+            "import com.axonivy.portal.components.examples.enums.LeaveType;",
             "import java.util.Arrays;",
             "import org.apache.commons.lang3.StringUtils;",
-            "import com.axonivy.portal.component.example.leaverequest.LeaveRequest;",
+            "import com.axonivy.portal.components.examples.leaverequest.LeaveRequest;",
             "",
             "in.leaveRequestData = ivy.repo.get(LeaveRequest.class) as LeaveRequest;",
             "if(StringUtils.isEmpty(in.leaveRequestData.requesterUsername)) {",

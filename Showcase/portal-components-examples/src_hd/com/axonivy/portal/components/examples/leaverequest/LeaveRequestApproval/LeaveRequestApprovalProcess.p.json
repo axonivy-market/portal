@@ -1,7 +1,7 @@
 {
   "format" : "9.4.14",
   "id" : "1703362EB1E55CE2",
-  "data" : "com.axonivy.portal.component.example.leaverequest.LeaveRequestApproval.LeaveRequestApprovalData",
+  "data" : "com.axonivy.portal.components.examples.leaverequest.LeaveRequestApproval.LeaveRequestApprovalData",
   "kind" : "HTML_DIALOG",
   "elements" : [ {
       "id" : "f0",
@@ -62,8 +62,8 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
-            "import com.axonivy.portal.component.dto.UserDTO;",
-            "import com.axonivy.portal.component.example.leaverequest.LeaveRequest;",
+            "import com.axonivy.portal.components.dto.UserDTO;",
+            "import com.axonivy.portal.components.examples.leaverequest.LeaveRequest;",
             "in.leaveRequestData = ivy.repo.get(LeaveRequest.class) as LeaveRequest;",
             "",
             "in.requester = new UserDTO(ISecurityContext.current().users().find(in.leaveRequestData.requesterUsername));",

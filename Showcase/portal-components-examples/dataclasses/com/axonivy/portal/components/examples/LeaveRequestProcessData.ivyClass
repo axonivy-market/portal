@@ -1,5 +1,5 @@
 LeaveRequestProcessData #class
-com.axonivy.portal.component.example #namespace
+com.axonivy.portal.components.examples #namespace
 approver String #field
 approver PERSISTENT #fieldModifier
 isApproved Boolean #field
