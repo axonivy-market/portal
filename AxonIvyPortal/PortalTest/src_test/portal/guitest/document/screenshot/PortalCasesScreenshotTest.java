@@ -43,7 +43,6 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createUserFavoriteProcess);
-    redirectToRelativeLink(createAlphaCompanyUrl);
     redirectToRelativeLink(createTestingCaseMapUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     refreshPage();
@@ -86,7 +85,7 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     
     WebElement addNote = detailsPage.getAddNoteDialog();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(addNote, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-add-task-note", new ScreenshotMargin(30, 50));
-    detailsPage.addNote("Alpha Company");
+    detailsPage.addNote("Take Order");
     
     WebElement addDocument = detailsPage.getAddAttachmentDialog();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(addDocument, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-attach-document-to-case", new ScreenshotMargin(30, 60));
@@ -213,7 +212,7 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     login(TestAccount.ADMIN_USER);
     caseWidget = homePage.openMainMenu().selectCaseMenu();
     homePage.closeMainMenu();
-    CaseDetailsPage caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Choose Alpha business name");
+    CaseDetailsPage caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Order Pizza");
     caseDetailsPage.waitForCaseDetailsDisplay();
 
     executeDecorateJs("highlightSwitchToEditMode()");
