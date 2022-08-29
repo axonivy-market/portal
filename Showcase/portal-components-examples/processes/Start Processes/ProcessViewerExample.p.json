@@ -5,23 +5,55 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "RequestStart",
-      "name" : "showProcessViewerUsingCaseId.ivp",
+      "name" : "showProcessViewerOfLeaveRequestUsingCaseId.ivp",
       "config" : {
-        "callSignature" : "showProcessViewerUsingCaseId",
-        "outLink" : "showProcessViewerUsingCaseId.ivp",
+        "callSignature" : "showProcessViewerOfLeaveRequestUsingCaseId",
+        "outLink" : "showProcessViewerOfLeaveRequestUsingCaseId.ivp",
+        "input" : {
+          "code" : [
+            "import ch.ivyteam.ivy.workflow.ICase;",
+            "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
+            "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
+            "import ch.ivyteam.ivy.workflow.IProcessStart;",
+            "IProcessStart processStart = ProcessStartUtils.findProcessStartByUserFriendlyRequestPath(\"Start Processes/LeaveRequest/start.ivp\");",
+            "CaseQuery caseQuery = CaseQuery.businessCases().where().taskStartId().isEqual(processStart.getId()).orderBy().caseId().descendingNullLast();",
+            "ICase caze = ivy.wf.getCaseQueryExecutor().getFirstResult(caseQuery) as ICase;",
+            "out.selectedCaseId = caze != null ? caze.getId() : 0;"
+          ]
+        },
         "startName" : "Show Process Viewer Using Case ID"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -21, "y" : 17 }
+        "at" : { "x" : 224, "y" : 96 },
+        "labelOffset" : { "x" : -149, "y" : 24 }
       },
       "connect" : { "id" : "f2", "to" : "f5" }
     }, {
-      "id" : "f1",
+      "id" : "f16",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 448, "y" : 64 }
+        "at" : { "x" : 928, "y" : 384 }
       }
+    }, {
+      "id" : "f6",
+      "type" : "RequestStart",
+      "name" : "showProcessViewerOfLeaveRequestUsingProcessLink.ivp",
+      "config" : {
+        "callSignature" : "showProcessViewerOfLeaveRequestUsingProcessLink",
+        "outLink" : "showProcessViewerOfLeaveRequestUsingProcessLink.ivp",
+        "input" : {
+          "code" : [
+            "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
+            "out.selectedProcessLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/LeaveRequest/start.ivp\");"
+          ]
+        },
+        "startName" : "Show Process Viewer Using Process Link"
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 288 },
+        "labelOffset" : { "x" : -149, "y" : 22 }
+      },
+      "connect" : { "id" : "f9", "to" : "f7" }
     }, {
       "id" : "f5",
       "type" : "DialogCall",
@@ -35,57 +67,75 @@
             { "name" : "processLink", "type" : "String" }
           ],
           "map" : {
-            "param.caseId" : "ivy.case.getId()"
+            "param.caseId" : "in.selectedCaseId"
           }
         }
       },
       "visual" : {
-        "at" : { "x" : 272, "y" : 64 },
+        "at" : { "x" : 592, "y" : 96 },
         "size" : { "width" : 144, "height" : 44 }
       },
       "connect" : { "id" : "f4", "to" : "f1" }
     }, {
+      "id" : "f15",
+      "type" : "RequestStart",
+      "name" : "showProcessViewerOfLeaveRequestForSerenityUsingProcessLink.ivp",
+      "config" : {
+        "callSignature" : "showProcessViewerOfLeaveRequestForSerenityUsingProcessLink",
+        "outLink" : "showProcessViewerOfLeaveRequestForSerenityUsingProcessLink.ivp",
+        "showInStartList" : false,
+        "input" : {
+          "code" : [
+            "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
+            "out.selectedProcessLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/LeaveRequest/start.ivp\");"
+          ]
+        },
+        "startName" : "Show Process Viewer Using Process Link (Serenity theme)"
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 384 },
+        "labelOffset" : { "x" : -148, "y" : 24 }
+      },
+      "connect" : { "id" : "f18", "to" : "f17" }
+    }, {
       "id" : "f3",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 448, "y" : 160 }
+        "at" : { "x" : 928, "y" : 288 }
       }
     }, {
-      "id" : "f6",
-      "type" : "RequestStart",
-      "name" : "showProcessViewerUsingProcessLink.ivp",
-      "config" : {
-        "callSignature" : "showProcessViewerUsingProcessLink",
-        "outLink" : "showProcessViewerUsingProcessLink.ivp",
-        "startName" : "Show Process Viewer Using Process Link"
-      },
+      "id" : "f11",
+      "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 96, "y" : 160 },
-        "labelOffset" : { "x" : -21, "y" : 17 }
-      },
-      "connect" : { "id" : "f9", "to" : "f7" }
+        "at" : { "x" : 928, "y" : 192 }
+      }
     }, {
-      "id" : "f7",
-      "type" : "DialogCall",
-      "name" : "ProcessViewerExample",
+      "id" : "f12",
+      "type" : "RequestStart",
+      "name" : "showProcessViewerOfLeaveRequestForSerenityUsingCaseId.ivp",
       "config" : {
-        "dialogId" : "com.axonivy.portal.components.examples.ProcessViewerExample",
-        "startMethod" : "start(Long,String)",
-        "call" : {
-          "params" : [
-            { "name" : "caseId", "type" : "Long" },
-            { "name" : "processLink", "type" : "String" }
-          ],
-          "map" : {
-            "param.processLink" : "ivy.case.getProcessStart().getLink().getRelative()"
-          }
-        }
+        "callSignature" : "showProcessViewerOfLeaveRequestForSerenityUsingCaseId",
+        "outLink" : "showProcessViewerOfLeaveRequestForSerenityUsingCaseId.ivp",
+        "showInStartList" : false,
+        "input" : {
+          "code" : [
+            "import ch.ivyteam.ivy.workflow.ICase;",
+            "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
+            "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
+            "import ch.ivyteam.ivy.workflow.IProcessStart;",
+            "IProcessStart processStart = ProcessStartUtils.findProcessStartByUserFriendlyRequestPath(\"Start Processes/LeaveRequest/start.ivp\");",
+            "CaseQuery caseQuery = CaseQuery.businessCases().where().taskStartId().isEqual(processStart.getId()).orderBy().caseId().descendingNullLast();",
+            "ICase caze = ivy.wf.getCaseQueryExecutor().getFirstResult(caseQuery) as ICase;",
+            "out.selectedCaseId = caze != null ? caze.getId() : 0;"
+          ]
+        },
+        "startName" : "Show Process Viewer Using Case ID (Serenity theme)"
       },
       "visual" : {
-        "at" : { "x" : 272, "y" : 160 },
-        "size" : { "width" : 144, "height" : 44 }
+        "at" : { "x" : 224, "y" : 192 },
+        "labelOffset" : { "x" : -149, "y" : 23 }
       },
-      "connect" : { "id" : "f8", "to" : "f3" }
+      "connect" : { "id" : "f14", "to" : "f10" }
     }, {
       "id" : "f10",
       "type" : "DialogCall",
@@ -104,66 +154,10 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 272, "y" : 256 },
+        "at" : { "x" : 592, "y" : 192 },
         "size" : { "width" : 192, "height" : 44 }
       },
       "connect" : { "id" : "f13", "to" : "f11" }
-    }, {
-      "id" : "f11",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 448, "y" : 256 }
-      }
-    }, {
-      "id" : "f12",
-      "type" : "RequestStart",
-      "name" : "showProcessViewerForSerenityUsingCaseId.ivp",
-      "config" : {
-        "callSignature" : "showProcessViewerForSerenityUsingCaseId",
-        "input" : {
-          "params" : [
-            { "name" : "caseId", "type" : "Long" }
-          ],
-          "map" : {
-            "out.selectedCaseId" : "param.caseId"
-          }
-        },
-        "outLink" : "showProcessViewerForSerenityUsingCaseId.ivp",
-        "showInStartList" : false,
-        "startName" : "Show Process Viewer Using Case ID (Serenity theme)"
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 256 },
-        "labelOffset" : { "x" : -21, "y" : 17 }
-      },
-      "connect" : { "id" : "f14", "to" : "f10" }
-    }, {
-      "id" : "f15",
-      "type" : "RequestStart",
-      "name" : "showProcessViewerForSerenityUsingProcessLink.ivp",
-      "config" : {
-        "callSignature" : "showProcessViewerForSerenityUsingProcessLink",
-        "outLink" : "showProcessViewerForSerenityUsingProcessLink.ivp",
-        "showInStartList" : false,
-        "input" : {
-          "code" : [
-            "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
-            "out.selectedProcessLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessViewerExample/showProcessViewerUsingProcessLink.ivp\");"
-          ]
-        },
-        "startName" : "Show Process Viewer Using Process Link (Serenity theme)"
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 352 },
-        "labelOffset" : { "x" : -21, "y" : 17 }
-      },
-      "connect" : { "id" : "f18", "to" : "f17" }
-    }, {
-      "id" : "f16",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 448, "y" : 352 }
-      }
     }, {
       "id" : "f17",
       "type" : "DialogCall",
@@ -182,9 +176,62 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 272, "y" : 352 },
+        "at" : { "x" : 592, "y" : 384 },
         "size" : { "width" : 192, "height" : 44 }
       },
       "connect" : { "id" : "f19", "to" : "f16" }
+    }, {
+      "id" : "f31",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "In this example, we create a new page to show process viewer of Leave Request process.",
+        "",
+        "showProcessViewerOfLeaveRequestUsingCaseId.ivp => Show Process Viewer Using Case ID",
+        "showProcessViewerOfLeaveRequestForSerenityUsingCaseId.ivp => Show Process Viewer For Serenity Theme Using Case ID",
+        "showProcessViewerOfLeaveRequestUsingProcessLink.ivp => Show Process Viewer Using Process Link",
+        "showProcessViewerOfLeaveRequestForSerenityUsingProcessLink.ivp => Show Process Viewer For Serenity Theme Using Process Link",
+        "",
+        "HOW TO RUN THIS EXAMPLE:",
+        "Option 1:",
+        "1. Run \"Start Processes/LeaveRequest/start.ivp\" and submit a Leave Request.",
+        "2. Run showProcessViewerOfLeaveRequestUsingCaseId.ivp, process view page of Leave Request process will be shown.",
+        "On this page, there is a \"Show Serenity example in new tab\" link to run showProcessViewerOfLeaveRequestForSerenityUsingCaseId.ivp.",
+        "",
+        "Option 2:",
+        "Run showProcessViewerOfLeaveRequestUsingProcessLink.ivp, process view page of Leave Request process will be shown.",
+        "On this page, there is a \"Show Serenity example in new tab\" link to run showProcessViewerOfLeaveRequestForSerenityUsingProcessLink.ivp."
+      ],
+      "visual" : {
+        "at" : { "x" : 1424, "y" : 240 },
+        "size" : { "width" : 784, "height" : 268 }
+      }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 928, "y" : 96 }
+      }
+    }, {
+      "id" : "f7",
+      "type" : "DialogCall",
+      "name" : "ProcessViewerExample",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.components.examples.ProcessViewerExample",
+        "startMethod" : "start(Long,String)",
+        "call" : {
+          "params" : [
+            { "name" : "caseId", "type" : "Long" },
+            { "name" : "processLink", "type" : "String" }
+          ],
+          "map" : {
+            "param.processLink" : "in.selectedProcessLink"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 592, "y" : 288 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f8", "to" : "f3" }
     } ]
 }

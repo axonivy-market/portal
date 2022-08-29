@@ -177,15 +177,15 @@ Migrate 9.3 To 9.4
 
 #. Some components of the Portal have been moved to the independent project ``portal-components``. Please follow these steps to migrate them:
 
-   - :ref:`Migration steps <components-additional-components-migrate-from-old-user-selection>` for the new :ref:`User Selection <components-additional-components-user-selection>` component.
+   - :ref:`Migration steps <components-portal-components-migrate-from-old-user-selection>` for the new :ref:`User Selection <components-portal-components-user-selection>` component.
 
-   - :ref:`Migration steps <components-additional-components-migrate-from-old-role-selection>` for the new :ref:`Role Selection <components-additional-components-role-selection>` component.
+   - :ref:`Migration steps <components-portal-components-migrate-from-old-role-selection>` for the new :ref:`Role Selection <components-portal-components-role-selection>` component.
 
-   - :ref:`Migration steps <components-additional-components-migrate-from-old-document-table>` for the new :ref:`Document Table <components-additional-components-document-table>` component.
+   - :ref:`Migration steps <components-portal-components-migrate-from-old-document-table>` for the new :ref:`Document Table <components-portal-components-document-table>` component.
 
-   - :ref:`Migration steps <components-additional-components-migrate-from-old-process-history>` for the new :ref:`Process History <components-additional-component-process-history>` component.
+   - :ref:`Migration steps <components-portal-components-migrate-from-old-process-history>` for the new :ref:`Process History <components-portal-components-process-history>` component.
 
-   - :ref:`Migration steps <components-additional-components-migrate-from-old-process-chain>` for the new :ref:`Process Chain <components-additional-component-process-chain>` component.
+   - :ref:`Migration steps <components-portal-components-migrate-from-old-process-chain>` for the new :ref:`Process Chain <components-portal-components-process-chain>` component.
 
 #. Portal dashboard widgets only support the ``CustomFields`` declared in the ``custom-fields.yaml`` file.
    If your ``CustomFields`` are used in the dashboard widget, please follow the :dev-url:`Custom Fields Meta Information </doc/nightly/designer-guide/how-to/workflow/custom-fields.html#meta-information>` to adapt the data.
@@ -368,17 +368,17 @@ Changes in 9.4
 
 - Introduce some components in new ``portal-components`` project.
 
-   - :ref:`User Selection Component <components-additional-components-user-selection>`
+   - :ref:`User Selection Component <components-portal-components-user-selection>`
 
-   - :ref:`Role Selection Component <components-additional-components-role-selection>`
+   - :ref:`Role Selection Component <components-portal-components-role-selection>`
 
-   - :ref:`Document Table Component <components-additional-components-document-table>`
+   - :ref:`Document Table Component <components-portal-components-document-table>`
 
-   - :ref:`Process History Component <components-additional-component-process-history>`
+   - :ref:`Process History Component <components-portal-components-process-history>`
 
-   - :ref:`Process Chain Component <components-additional-component-process-chain>`
+   - :ref:`Process Chain Component <components-portal-components-process-chain>`
 
-   - :ref:`Process Viewer Component <components-additional-components-process-viewer>`
+   - :ref:`Process Viewer Component <components-portal-components-process-viewer>`
 
 Changes in 9.3
 --------------

@@ -20,7 +20,7 @@
     <ic:com.axonivy.portal.components.UserSelection id="creator-component" componentId="creator-select" size="35"
       selectedUser="#{cc.attrs.filter.selectedCreator}" autoCompleteStyleClass="responsible-list-filter" hasCustomizedSelectionList="true">
       <p:column>
-        <pc:securityMemberNameAndAvatar securityMember="#{user}"
+        <pc:securityMemberNameAndAvatar securityMember="#{user}" isStandAlone="false"
           displayName="#{cc.attrs.filter.formatName(user)}">
           <f:facet name="alternativeAvatar">
             <h:outputText rendered="#{not avatarBean.isShowAvatar()}" styleClass="si si-single-neutral-actions u-mar-right-5" />
