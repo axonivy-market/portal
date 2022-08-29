@@ -15,7 +15,7 @@
           autoCompletePanelStyleClass="ui-fluid" hasCustomizedSelectionList="true">
           <p:column>
             <pc:securityMemberNameAndAvatar displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
-              securityMember="#{user}" />
+              securityMember="#{user}" isStandAlone="false"/>
           </p:column>
           <f:facet name="event">
             <p:ajax event="itemSelect" update="deputy-selection-form:add-deputy-button" />

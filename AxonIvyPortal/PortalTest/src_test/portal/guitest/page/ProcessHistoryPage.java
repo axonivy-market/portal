@@ -4,6 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class ProcessHistoryPage extends TemplatePage {
+  
+  @Override
+  protected String getLoadedLocator() {
+    return COMPONENT_PAGE_LOCATOR;
+  }
 
   public int countCases() {
     WebElement caseList = findElementByClassName("ui-datascroller-list");
