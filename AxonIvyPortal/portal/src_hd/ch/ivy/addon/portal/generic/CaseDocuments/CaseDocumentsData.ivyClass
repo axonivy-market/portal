@@ -2,11 +2,11 @@ CaseDocumentsData #class
 ch.ivy.addon.portal.generic.CaseDocuments #namespace
 selectedCase ch.ivyteam.ivy.workflow.ICase #field
 selectedCase PERSISTENT #fieldModifier
-documents java.util.List<com.axonivy.portal.component.ivydata.bo.IvyDocument> #field
+documents java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument> #field
 documents PERSISTENT #fieldModifier
-filteredDocuments java.util.List<com.axonivy.portal.component.ivydata.bo.IvyDocument> #field
+filteredDocuments java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument> #field
 filteredDocuments PERSISTENT #fieldModifier
-document com.axonivy.portal.component.ivydata.bo.IvyDocument #field
+document com.axonivy.portal.components.ivydata.bo.IvyDocument #field
 document PERSISTENT #fieldModifier
 streamedContent org.primefaces.model.StreamedContent #field
 streamedContent PERSISTENT #fieldModifier

@@ -1,8 +1,0 @@
-ProcessHistoryComponentData #class
-com.axonivy.portal.developerexamples.component #namespace
-caseNames java.util.List<String> #field
-caseNames PERSISTENT #fieldModifier
-currentIndex Integer #field
-currentIndex PERSISTENT #fieldModifier
-caseStructureInfo String #field
-caseStructureInfo PERSISTENT #fieldModifier

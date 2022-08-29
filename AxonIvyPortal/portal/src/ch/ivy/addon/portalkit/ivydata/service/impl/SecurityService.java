@@ -9,10 +9,10 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.component.dto.RoleDTO;
-import com.axonivy.portal.component.dto.UserDTO;
+import com.axonivy.portal.components.dto.RoleDTO;
+import com.axonivy.portal.components.dto.UserDTO;
 
-import com.axonivy.portal.component.dto.SecurityMemberDTO;
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvySecurityResultDTO;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.ivydata.service.ISecurityService;

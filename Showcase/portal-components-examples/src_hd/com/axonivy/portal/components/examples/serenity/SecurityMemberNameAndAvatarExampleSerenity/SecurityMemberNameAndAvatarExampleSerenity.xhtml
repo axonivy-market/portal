@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
+<h:body>
+  <ui:composition template="/layouts/frame-10-serenity.xhtml">
+    <ui:define name="title">SecurityMemberNameAndAvatarExampleSerenity</ui:define>
+    <ui:define name="content">
+      <div class="layout-wrapper">
+        <h:form id="form">
+          <h1 class="user-selection-component-header">Security Member Name And Avatar Examples</h1>
+          <div>This example uses the current session user and the top-level role to display.</div>
+          <br />
+          <div class="ui-treetable">
+            <table>
+              <thead>
+                <tr>
+                  <th>Attribute securityMember</th>
+                  <th>Using IUser</th>
+                  <th>Using IRole</th>
+                </tr>
+              </thead>
+              <tbody class="ui-treetable-data">
+                <tr>
+                  <td>Default Component</td>
+                  <td><pc:securityMemberNameAndAvatar displayName="#{ivy.session.sessionUser.displayName}"
+                      securityMember="#{ivy.session.sessionUser}" /></td>
+                  <td>
+                    <pc:securityMemberNameAndAvatar displayName="#{ivy.security.roles().topLevel().displayName}"
+                      securityMember="#{ivy.security.roles().topLevel()}" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Component without Name</td>
+                  <td><pc:securityMemberNameAndAvatar displayName="#{ivy.session.sessionUser.displayName}"
+                      securityMember="#{ivy.session.sessionUser}" displayNameRendered="false" /></td>
+                  <td>
+                    <pc:securityMemberNameAndAvatar displayName="#{ivy.security.roles().topLevel().displayName}"
+                      securityMember="#{ivy.security.roles().topLevel()}" displayNameRendered="false" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Component without Avatar</td>
+                  <td><pc:securityMemberNameAndAvatar displayName="#{ivy.session.sessionUser.displayName}"
+                      securityMember="#{ivy.session.sessionUser}" isShowAvatar="false" /></td>
+                  <td>
+                     <pc:securityMemberNameAndAvatar displayName="#{ivy.security.roles().topLevel().displayName}"
+                      securityMember="#{ivy.security.roles().topLevel()}" isShowAvatar="false" />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </h:form>
+      </div>
+    </ui:define>
+  </ui:composition>
+</h:body>
+
+</html>

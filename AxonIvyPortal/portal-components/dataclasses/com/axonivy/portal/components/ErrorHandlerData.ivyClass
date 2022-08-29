@@ -1,0 +1,3 @@
+ErrorHandlerData #class
+com.axonivy.portal.components #namespace
+exceptions List<com.axonivy.portal.components.ivydata.exception.PortalIvyDataException> #field

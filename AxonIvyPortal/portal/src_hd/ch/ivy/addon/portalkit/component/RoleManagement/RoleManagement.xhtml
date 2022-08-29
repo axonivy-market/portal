@@ -170,7 +170,7 @@
         </div>
 
         <h:panelGroup rendered="#{creationMode}" layout="block" styleClass="ui-g-12 u-padding-0">
-          <ic:com.axonivy.portal.component.RoleSelection id="parent-role"
+          <ic:com.axonivy.portal.components.RoleSelection id="parent-role"
             componentId="parent-role-selection"
             selectedRole="#{roleManagementBean.selectedParentRole}"
             isRequired="#{roleManagementBean.canMoveRole}"
@@ -179,13 +179,7 @@
             labelPanelStyleClass="ui-g-4 ui-lg-3 ui-md-4 ui-sm-12 role-management-label"
             autoCompletePanelStyleClass="ui-g-8 ui-lg-9 ui-md-8 ui-sm-12 role-management-value ui-fluid"
             requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/ParentRoleIsRequired')}"
-            isRenderedMessage="false">
-            <p:column>
-              <pc:securityMemberNameAndAvatar securityMember="#{role}"
-                displayName="#{role.getDisplayName()}"
-                displayNameStyleClass="u-truncate-text" />
-            </p:column>
-          </ic:com.axonivy.portal.component.RoleSelection>
+            isRenderedMessage="false" displayNameInSelectionListStyleClass="u-truncate-text" />
         </h:panelGroup>
 
         <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" for="role-name"
@@ -218,13 +212,13 @@
         </div>
 
         <h:panelGroup id="user-assignment-group" layout="block" styleClass="ui-g-12 u-padding-0 user-assignment-group">
-          <ic:com.axonivy.portal.component.UserSelection id="user-assignment-selection"
+          <ic:com.axonivy.portal.components.UserSelection id="user-assignment-selection"
             selectedUser="#{roleManagementBean.selectedUser}"
             label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/AvailableUsers')}"
             labelPanelStyleClass="ui-g-4 ui-lg-3 ui-md-4 ui-sm-12 role-management-label"
             autoCompletePanelStyleClass="ui-g-8 ui-lg-9 ui-md-8 ui-sm-12 role-management-value ui-fluid"
             excludedUsernames="#{roleManagementBean.distinctExcludedUsernames}"
-            isRenderedMessage="false">
+            isRenderedMessage="false" hasCustomizedSelectionList="true">
             <p:column styleClass="ui-g-12">
               <pc:securityMemberNameAndAvatar securityMember="#{user}"
                 displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
@@ -233,7 +227,7 @@
             <f:facet name="event">
               <p:ajax event="itemSelect" oncomplete="PF('add-new-user-button').enable()" />
             </f:facet>
-          </ic:com.axonivy.portal.component.UserSelection>
+          </ic:com.axonivy.portal.components.UserSelection>
 
           <div class="user-assign-actions ui-g-12 u-no-padding-top u-text-align-right">
             <p:commandButton id="add-new-user"

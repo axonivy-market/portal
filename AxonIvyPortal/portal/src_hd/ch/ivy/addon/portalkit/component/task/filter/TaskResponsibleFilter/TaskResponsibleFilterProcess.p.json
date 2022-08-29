@@ -11,7 +11,7 @@
         "callSignature" : "autoCompleteForResponsible",
         "result" : {
           "params" : [
-            { "name" : "responsibles", "type" : "java.util.List<com.axonivy.portal.component.dto.SecurityMemberDTO>" }
+            { "name" : "responsibles", "type" : "java.util.List<com.axonivy.portal.components.dto.SecurityMemberDTO>" }
           ],
           "code" : [
             "import ch.ivy.addon.portalkit.constant.PortalConstants;",
