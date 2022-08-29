@@ -89,7 +89,7 @@
       inputStyleClass="#{cc.attrs.inputStyleClass}">
       <p:column rendered="#{!cc.attrs.hasCustomizedSelectionList}">
         <pc:securityMemberNameAndAvatar securityMember="#{user}"
-          displayName="#{portalComponentDisplayNameFormatBean.getDisplayNameForUserDTO(user)}"
+          displayName="#{portalComponentDisplayNameFormatBean.getDisplayNameForUserDTO(user)}" isStandAlone="false"
           isShowAvatar="#{cc.attrs.isShowAvatarInSelectionList}" displayNameRendered="#{cc.attrs.displayNameRenderedInSelectionList}"
           displayNameStyleClass="#{cc.attrs.displayNameInSelectionListStyleClass}" containerStyleClass="#{cc.attrs.selectionListContainerStyleClass}" />
       </p:column>
@@ -105,7 +105,7 @@
   <h:panelGroup layout="block"
     styleClass="#{cc.attrs.messageStyleClass} #{cc.attrs.floatingLabel ? 'message-for-floating-label' : ''}">
     <p:message id="#{cc.attrs.componentId}-message"
-      for="#{cc.attrs.componentId}" />
+      for="#{cc.attrs.componentId}" rendered="#{cc.attrs.isRenderedMessage}"/>
   </h:panelGroup>
   <h:outputScript name="theme-checker.js" library="js" />
   <script type="text/javascript">

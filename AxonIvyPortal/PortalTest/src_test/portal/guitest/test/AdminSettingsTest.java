@@ -55,7 +55,7 @@ public class AdminSettingsTest extends BaseTest {
 		login(TestAccount.ADMIN_USER);
 		HomePage homePage = new HomePage();
 		//Customize environment info in portal example 
-		redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_PROCESS_CHAIN);
+		redirectToRelativeLinkWithEmbedInFrame(HomePage.PORTAL_EXAMPLES_EMPLOYEE_SEARCH);
 		
 		assertTrue(homePage.getEnviromentInfo().contains("Dev Team: Wawa, Env: Dev"));
 	}
