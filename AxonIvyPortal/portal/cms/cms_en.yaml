@@ -212,6 +212,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     globalVariableNote:
       RoleDirectChildrenLimit: 'The set number controls the amount of direct children roles that is shown in Role Management tab. Valid number: 10, 50, 100'
       RoleParentLimit: 'The set number controls the amount of parent roles that is shown when filtering roles in Role Management tab. Valid number: 5, 10, 20'
+      ShowLoginPageFooter: For switch on/off the display of the footer on the login page.
       behaviourWhenClickingOnLineInTaskList: For switch behaviours (run the task or access task details) when clicking on a line in task list, task widget of dashboard and related tasks  in case details page.
       chatMaxConnection: 'The set number controls the amount of tabs allowed with active chat. If more tabs are opened, the chat will be disabled in inactive tabs. Allowed values between 1-5 '
       chatResponseTimeout: Chat response timeout in seconds, default value is 0 and means no timeout. If chat messages go through the reverse proxy Nginx, chat response timeout must be less than the Nginx timeout, e.g. less than 60 seconds.
@@ -969,8 +970,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     selectedFormattingLanguage: Selected formatting language
     selectedLanguage: Selected language
   login:
-    AxonIvyPortal: Axon Ivy Portal
-    Copyright: Copyright Ⓒ Axon Ivy
     PasswordRequiredMessage: The password is required
     UsernameRequiredMessage: The username is required
     login: Login
@@ -1598,6 +1597,9 @@ Labels:
   AppendTheTask: Append the task
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
+  Login:
+    CompanyName: Axon Ivy Portal
+    Copyright: Copyright Ⓒ Axon Ivy Portal
   Task: Task
   TaskItemDetail: Task Details
   TaskUser-Explain: Comma separated list of users
