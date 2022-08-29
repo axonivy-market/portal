@@ -128,7 +128,6 @@ public class AdminSettingsPage extends TemplatePage {
   public void setShowLegacyUI() {
     openSettingTab();
     editGlobalVariable(SHOW_LEGACY_UI.getKey(), "true", true);
-    waitForElementDisplayed(By.cssSelector("div[id$='portal-management-messages']"), true);
     closeConfirmationDialog();
   }
 
@@ -175,6 +174,17 @@ public class AdminSettingsPage extends TemplatePage {
 
   public boolean isRoleAssingmentTabViewPresent() {
     return isElementPresent(By.cssSelector("a[href='#admin-setting-component:adminTabView:role-management-tab']"));
+  }
+  
+  public boolean isPasswordValidationTabViewPresent() {
+    return isElementPresent(By.cssSelector("a[href='#admin-setting-component:adminTabView:password-validation-tab']"));
+  }
+  
+  public PasswordValidationPage openPasswordValidationTab() {
+    waitForElementDisplayed(By.cssSelector("[id$='admin-setting-component:adminTabView']"), true);
+    clickByCssSelector("a[href='#admin-setting-component:adminTabView:password-validation-tab']");
+    waitForElementPresent(By.cssSelector("[id$=':password-validation-component:password-validation-form:password-policy-setting']"), true);
+    return new PasswordValidationPage();
   }
   
   public WebElement getAdminSettingContainer() {

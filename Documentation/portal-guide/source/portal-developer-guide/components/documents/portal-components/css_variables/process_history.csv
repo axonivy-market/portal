@@ -1,0 +1,13 @@
+Variable,Default value,Description
+"\--process-history-header-border-bottom-color","#D9DADA","Color of bottom header’s border."
+"\--process-history-unsortable-header-font-size","1.4rem","Text size of cell header that is unsortable."
+"\--process-history-unsortable-header-text-color","#9C9D9D","Text color of cell header that is unsortable."
+"\--process-history-description-text-color","#9C9D9D","Text color of item description."
+"\--process-history-item-background-color","rgba(var(\--white, #000000), 0.2)","Background color of item."
+"\--process-history-item-border-bottom-color","#D9DADA","Color of bottom item’s border."
+"\--process-history-item-border-hover","1px solid #90DDE9","Hover color of item’s border."
+"\--process-history-item-background-hover","rgba(144, 221, 233, 0.24)","Hover background color of item."
+"\--process-history-state-in-progress-color","rgba(7, 140, 255, 1)","Color of in-progress state."
+"\--process-history-state-done-or-resume-color","#4EB41C","Color of done or resumed state."
+"\--process-history-empty-message-label-color","hsl(64, 1%, 48%)","Text color of message label when there is no item."
+"\--process-history-empty-message-label-font-size","1.2rem","Font size of of message label when there is no item."

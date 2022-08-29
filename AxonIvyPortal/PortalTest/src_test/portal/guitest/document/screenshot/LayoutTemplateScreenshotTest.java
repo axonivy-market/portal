@@ -20,7 +20,7 @@ public class LayoutTemplateScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.resizeBrowser(new Dimension(1200, 700));
     HomePage homePage = new HomePage();
     
-    redirectToRelativeLink(viewAlphaCompanyProcessHistoryUrl);
+    redirectToRelativeLink(defaultProcessImageSelectionExampleUrl);
     homePage.waitUntilLayoutWrapperDisplayed();
     homePage.waitForLeftMenuActive();
     ScreenshotUtil.capturePageScreenshot(LAYOUT_FOLDER + "basic-template");

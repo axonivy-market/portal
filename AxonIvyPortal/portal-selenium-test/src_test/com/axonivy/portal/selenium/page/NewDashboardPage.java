@@ -244,6 +244,11 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void openCompactModeProcessFilterPanel(boolean isExpanded) {
+    if (isExpanded) {
+      var processId = $(".grid-stack-item.expand-fullscreen").waitUntil(appear, DEFAULT_TIMEOUT).attr("gs-id");
+      $(".grid-stack-item.expand-fullscreen").$(".dashboard__widget").waitUntil(appear, DEFAULT_TIMEOUT)
+          .waitUntil(Condition.have(Condition.cssClass(String.format("js-dashboard-widget-%s", processId))), DEFAULT_TIMEOUT);
+    }
     var processFilter = getCompactModeProcessFilterLink(isExpanded).shouldBe(Condition.appear);
     scrollToElementThenClick(processFilter);
     getCompactModeProcessFilterPanelSaveFilters(isExpanded).waitUntil(Condition.appear, DEFAULT_TIMEOUT);

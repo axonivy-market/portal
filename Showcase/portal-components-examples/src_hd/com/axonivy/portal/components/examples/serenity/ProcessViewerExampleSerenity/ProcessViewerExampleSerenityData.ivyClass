@@ -1,0 +1,6 @@
+ProcessViewerExampleSerenityData #class
+com.axonivy.portal.components.examples.serenity.ProcessViewerExampleSerenity #namespace
+caseId Long #field
+caseId PERSISTENT #fieldModifier
+processLink String #field
+processLink PERSISTENT #fieldModifier

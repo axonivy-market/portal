@@ -3,63 +3,66 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions">
 <h:body>
-  <ui:composition template="/layouts/frame-8.xhtml">
+  <ui:composition template="/layouts/frame-10.xhtml">
     <ui:define name="title">Create Investment</ui:define>
     <ui:define name="content">
-      <h:form id="form">
-        <div class="ui-g">
-          <div class="ui-g-2">
+      <h:form id="form" styleClass="container ui-g">
+        <h:panelGrid styleClass="ui-g-12" columns="2" columnClasses="ui-g-4 ui-sm-12, ui-g-8 ui-sm-12">
+          <h:panelGroup>
             <h3>
               <i class="si si-check-1" />
+              <h:outputLabel id="id-label" for="id" value="Investment ID" />
             </h3>
-            <h:outputLabel id="id-label" for="id" value="Investment ID" />
-          </div>
-          <div class="ui-g-4">
-            <h:outputText id="id" value="#{data.investmentRequest.investment.id}" />
-          </div>
-        </div>
-        <div class="ui-g">
-          <div class="ui-g-2">
+          </h:panelGroup>
+          <h:outputText id="id" value="#{data.investmentRequest.investment.id}" />
+        </h:panelGrid>
+
+        <h:panelGrid styleClass="ui-g-12 ui-fluid" columns="2" columnClasses="ui-g-6 ui-sm-12, ui-g-6 ui-sm-12">
+          <h:panelGrid styleClass="ui-g-12" columns="2" columnClasses="ui-g-4 ui-sm-12, ui-g-8 ui-sm-12">
             <h:outputLabel id="invested-amount-label" for="invested-amount" value="Invested amount" />
-          </div>
-          <div class="ui-g-4">
-            <h:inputText id="invested-amount" value="#{data.investmentRequest.investment.investedMoney}" required="true"
-              requiredMessage="Amount is required" />
-            <p:message for="invested-amount" />
-          </div>
-          <div class="ui-g-2">
+            <h:panelGroup>
+              <p:inputText id="invested-amount" value="#{data.investmentRequest.investment.investedMoney}"
+                required="true" requiredMessage="Amount is required" />
+              <p:message for="invested-amount" />
+            </h:panelGroup>
+          </h:panelGrid>
+
+          <h:panelGrid styleClass="ui-g-12" columns="2" columnClasses="ui-g-4 ui-sm-12, ui-g-8 ui-sm-12">
             <h:outputLabel id="start-date-label" for="start-date" value="Start date" />
-          </div>
-          <div class="ui-g-4">
-            <p:datePicker id="start-date" value="#{data.investmentRequest.investment.startDate}" />
-          </div>
+            <h:panelGroup>
+              <p:datePicker id="start-date" value="#{data.investmentRequest.investment.startDate}" />
+            </h:panelGroup>
+          </h:panelGrid>
+        </h:panelGrid>
+
+        <div class="ui-g-12">
+          <p:fieldset legend="Company Information" toggleable="true" styleClass="MarTop10 ui-g-12">
+            <div class="ui-g flex-align-center">
+              <div class="ui-g-2">
+                <h:outputLabel id="company-id-label" for="company-id" value="Company ID" />
+              </div>
+              <div class="ui-g-4">
+                <h:outputText id="company-id" value="#{data.investmentRequest.investment.company.id}" />
+              </div>
+              <div class="ui-g-2">
+                <h:outputLabel id="company-name-label" for="company-name" value="Company Name" />
+              </div>
+              <div class="ui-g-4 ui-fluid">
+                <p:inputText id="company-name" value="#{data.investmentRequest.investment.company.name}" />
+              </div>
+            </div>
+            <div class="ui-g flex-align-center">
+              <div class="ui-g-2">
+                <h:outputLabel id="company-desc-label" for="company-desc" value="Description" />
+              </div>
+              <div class="ui-g-10 ui-fluid">
+                <p:inputText id="company-desc" value="#{data.investmentRequest.investment.company.description}"
+                  style="width: 100%" />
+              </div>
+            </div>
+          </p:fieldset>
         </div>
-        <p:fieldset legend="Company Information" toggleable="true" style="margin-top: 20px;">
-          <div class="ui-g">
-            <div class="u-g-2">
-              <h:outputLabel id="company-id-label" for="company-id" value="Company ID" />
-            </div>
-            <div class="ui-g-4">
-              <h:outputText id="company-id" value="#{data.investmentRequest.investment.company.id}" />
-            </div>
-            <div class="u-g-2">
-              <h:outputLabel id="company-name-label" for="company-name" value="Company Name" />
-            </div>
-            <div class="ui-g-4">
-              <p:inputText id="company-name" value="#{data.investmentRequest.investment.company.name}" />
-            </div>
-          </div>
-          <div class="ui-g">
-            <div class="u-g-2">
-              <h:outputLabel id="company-desc-label" for="company-desc" value="Description" />
-            </div>
-            <div class="ui-g-10">
-              <p:inputText id="company-desc" value="#{data.investmentRequest.investment.company.description}"
-                style="width: 100%" />
-            </div>
-          </div>
-        </p:fieldset>
-        <div style="width: 100%; margin-bottom: 100px;">
+        <div class="ui-g-12 MarTop10">
           <p:commandButton id="save-btn" value="Save" update="@(form)" actionListener="#{logic.close}"
             style="float: right; margin-top: 20px;" />
         </div>

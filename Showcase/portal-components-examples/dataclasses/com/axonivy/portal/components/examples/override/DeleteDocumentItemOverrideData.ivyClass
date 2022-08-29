@@ -1,0 +1,5 @@
+DeleteDocumentItemOverrideData #class
+com.axonivy.portal.components.examples.override #namespace
+document com.axonivy.portal.components.ivydata.bo.IvyDocument #field
+businessCase ch.ivyteam.ivy.workflow.ICase #field
+message String #field

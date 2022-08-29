@@ -2,7 +2,7 @@ package ch.ivy.addon.portalkit.ivydata.service;
 
 import java.util.List;
 
-import com.axonivy.portal.component.dto.UserDTO;
+import com.axonivy.portal.components.dto.UserDTO;
 
 import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
 import ch.ivy.addon.portalkit.ivydata.dto.IvySubstituteResultDTO;

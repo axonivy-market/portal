@@ -8,10 +8,10 @@
       <h:panelGroup id="image-process-container" layout="block" styleClass="ui-g process-group image-process-container">
         <ui:repeat value="#{data.photoNames}" var="photo">
           <ui:fragment id="image-view">
-            <div class="ui-g-2 ui-xl-2 ui-lg-3 ui-md-6 ui-sm-12 portal-card-container">
+            <div class="ui-g-2 ui-xl-2 ui-lg-3 ui-md-6 ui-sm-12">
               <div class="card-item card ui-g-12 u-padding-0 photo-item-example">
                 <p:graphicImage id="default-process-image" styleClass="default-process-image" library="ivy-cms" name="#{photo.path}" />
-                <div class="mg-10">
+                <div class="default-process-meta u-text-align-center">
                   <div>Portal.Processes.DefaultImage:</div>
                   <div class="font-weight-bold">#{photo}</div>
                 </div>

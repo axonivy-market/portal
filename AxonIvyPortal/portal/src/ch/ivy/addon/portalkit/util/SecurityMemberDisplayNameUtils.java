@@ -7,7 +7,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.util.Strings;
 
-import com.axonivy.portal.component.dto.UserDTO;
+import com.axonivy.portal.components.dto.UserDTO;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
