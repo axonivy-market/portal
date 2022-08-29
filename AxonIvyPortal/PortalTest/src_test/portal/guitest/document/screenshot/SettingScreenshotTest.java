@@ -143,6 +143,16 @@ public class SettingScreenshotTest extends ScreenshotTest {
   }
   
   @Test
+  public void screenshotPasswordValidation() throws IOException {
+    login(TestAccount.ADMIN_USER);
+    ScreenshotUtil.resizeBrowser(new Dimension(1050, 850));
+    homePage = new HomePage();
+    var adminSettingsPage = homePage.openAdminSettings();
+    adminSettingsPage.openPasswordValidationTab();
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.SETTINGS_FOLDER + "password-validation-tab");
+  }
+  
+  @Test
   public void screenshotDashboardConfiguration() throws IOException {
     login(TestAccount.ADMIN_USER);
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 1000));
@@ -153,3 +163,4 @@ public class SettingScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.SETTINGS_FOLDER + "dashboard-configuration");
   }
 }
+

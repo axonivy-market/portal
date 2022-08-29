@@ -7,7 +7,7 @@ import java.util.Map;
 
 import org.apache.commons.collections4.CollectionUtils;
 
-import com.axonivy.portal.component.dto.UserDTO;
+import com.axonivy.portal.components.dto.UserDTO;
 
 import ch.ivy.addon.portalkit.dto.DeputyRole;
 import ch.ivy.addon.portalkit.enums.DeputyRoleType;

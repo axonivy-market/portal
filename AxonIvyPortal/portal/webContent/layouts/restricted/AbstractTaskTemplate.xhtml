@@ -101,7 +101,7 @@
           <h:panelGroup layout="block"
             styleClass="process-chain-container #{processChainDirection eq 'VERTICAL' ? 'vertical-process-chain-container' : 'horizontal-process-chain-container'} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
             <ui:insert name="processChainArea">
-              <ic:com.axonivy.portal.component.ProcessChain id="process-chain-component"
+              <ic:com.axonivy.portal.components.ProcessChain id="process-chain-component"
                 startMethod="start" componentId="process-chain-component-id"
                 shape="#{processChainShape eq 'LINE' ? 'LINE' : 'CIRCLE'}"
                 direction="#{processChainDirection eq 'VERTICAL' ? 'VERTICAL' : 'HORIZONTAL'}" 

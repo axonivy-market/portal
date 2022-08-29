@@ -74,9 +74,6 @@ body .ui-selectonelistbox .ui-selectlistbox-item.ui-state-hover {
 .message .message-container {
   font-size: var(--large-font-size); }
 
-.message .message-footer .ui-button {
-  font-size: var(--small-font-size); }
-
 @media screen and (max-width: 64.063em) {
   .ui-messages-info-summary,
   .ui-messages-warn-summary,
@@ -1106,9 +1103,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 /*Style for Error Page*/
 .error-container {
   color: var(--error-container-color); }
-
-.message {
-  background-color: var(--error-message-background-color); }
 
 .message .message-header {
   color: var(--error-message-header-color); }
