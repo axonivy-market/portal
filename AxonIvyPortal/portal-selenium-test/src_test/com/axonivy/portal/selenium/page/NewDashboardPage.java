@@ -54,6 +54,33 @@ public class NewDashboardPage extends TemplatePage {
     return new ProcessEditWidgetNewDashBoardPage();
   }
 
+  public ProcessViewerWidgetNewDashBoardPage showProcessViewerWidgetConfiguration() {
+    var configurationPage = openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+
+    $("button[id$='add-button']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("div#new-widget-dialog").waitUntil(appear, DEFAULT_TIMEOUT);
+    $("button[id$=':5:add-widget']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+
+    $("div#new-widget-configuration-dialog").waitUntil(appear, DEFAULT_TIMEOUT);
+    return new ProcessViewerWidgetNewDashBoardPage();
+  }
+
+  public ProcessViewerWidgetNewDashBoardPage showEditProcessViewerWidgetConfiguration() {
+    $("a[id$=':edit-widget-3']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("div#new-widget-configuration-dialog").waitUntil(appear, DEFAULT_TIMEOUT);
+    return new ProcessViewerWidgetNewDashBoardPage();
+  }
+
+  public void deleteProcessViewerWidget() {
+    $("a[id$=':delete-widget-3']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("div#remove-widget-dialog").waitUntil(appear, DEFAULT_TIMEOUT);
+    $("button[id$='remove-widget-button']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
+        .click();
+    $("div#remove-widget-dialog").waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
   public void checkStartButtonAndImageShown() {
     getStartButton().shouldBe(Condition.disabled);
     getDisabledMoreInformationLink().shouldBe(Condition.appear);
@@ -79,8 +106,16 @@ public class NewDashboardPage extends TemplatePage {
     return $("span[id$=':process-item-name']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 
+  public SelenideElement getProcessRequestPathName() {
+    return $("span[id$=':request-path']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
   public SelenideElement getImageContainer() {
     return $("div.image-process-container");
+  }
+
+  public SelenideElement findProcessViewerWidget() {
+    return $("div[id$=':process-viewer-panel-group-3']");
   }
 
   public void startProcess() {
