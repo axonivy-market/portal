@@ -20,7 +20,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "documents", "type" : "java.util.List<com.axonivy.portal.component.ivydata.bo.IvyDocument>" },
+            { "name" : "documents", "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>" },
             { "name" : "message", "type" : "String" }
           ],
           "map" : {
@@ -49,9 +49,9 @@
         ".name" : "get document items",
         "output" : {
           "code" : [
-            "import com.axonivy.portal.component.enums.BasicDocumentType;",
-            "import com.axonivy.portal.component.document.IvyDocumentTransformer;",
-            "import com.axonivy.portal.component.ivydata.bo.IvyDocument;",
+            "import com.axonivy.portal.components.enums.BasicDocumentType;",
+            "import com.axonivy.portal.components.document.IvyDocumentTransformer;",
+            "import com.axonivy.portal.components.ivydata.bo.IvyDocument;",
             "import ch.ivy.addon.portalkit.document.DocumentCustomField;",
             "import org.apache.commons.lang3.StringUtils;",
             "import ch.ivyteam.ivy.workflow.document.IDocument;",

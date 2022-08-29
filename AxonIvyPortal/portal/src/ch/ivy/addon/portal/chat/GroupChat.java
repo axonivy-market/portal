@@ -10,7 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import com.axonivy.portal.component.dto.SecurityMemberDTO;
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.security.ISecurityMember;
 

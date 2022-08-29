@@ -1,0 +1,62 @@
+{
+  "format" : "9.4.15",
+  "id" : "1818980EC9955786",
+  "data" : "com.axonivy.portal.components.examples.ProcessHistoryExample.ProcessHistoryExampleData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(Boolean,Boolean)",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "showProcessHistoriesOfAlphaCompany", "type" : "Boolean" },
+            { "name" : "showProcessHistoriesOfBetaCompany", "type" : "Boolean" }
+          ],
+          "map" : {
+            "out.showProcessHistoriesOfAlphaCompany" : "param.showProcessHistoriesOfAlphaCompany",
+            "out.showProcessHistoriesOfBetaCompany" : "param.showProcessHistoriesOfBetaCompany"
+          },
+          "code" : [
+            "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
+            "",
+            "if (param.showProcessHistoriesOfAlphaCompany) {",
+            "  out.processHistoryExampleSerenityLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessHistoryExample/viewProcessHistoryOfAlphaCompanySerenity.ivp\");",
+            "} else {",
+            "  out.processHistoryExampleSerenityLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessHistoryExample/viewProcessHistoryOfBetaCompanySerenity.ivp\");",
+            "}"
+          ]
+        },
+        "guid" : "1818980EC9CA1178"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -16, "y" : 15 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "1818980EC9E65033"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      }
+    } ]
+}

@@ -1,0 +1,117 @@
+{
+  "format" : "9.4.17",
+  "id" : "18189AF10B521DF4",
+  "data" : "com.axonivy.portal.components.examples.UserSelectionExampleData",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "showUserSelectionExamples.ivp",
+      "config" : {
+        "callSignature" : "showUserSelectionExamples",
+        "outLink" : "showUserSelectionExamples.ivp",
+        "startName" : "User Selection Example"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -68, "y" : 19 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 576, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "UserSelectionExample",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.components.examples.UserSelectionExample",
+        "startMethod" : "start()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.selectedUser" : "result.selectedUser"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 296, "y" : 64 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f6", "to" : "f5" }
+    }, {
+      "id" : "f5",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "Task created by User Selection Example",
+          "description" : "This task is created by User Selection Example",
+          "responsible" : {
+            "userFromAttribute" : "in1.selectedUser.getName()"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 480, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f7",
+      "type" : "DialogCall",
+      "name" : "UserSelectionExampleSerenity",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.components.examples.serenity.UserSelectionExampleSerenity",
+        "startMethod" : "start()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.selectedUser" : "result.selectedUser"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 296, "y" : 192 },
+        "size" : { "width" : 176, "height" : 44 }
+      },
+      "connect" : { "id" : "f13", "to" : "f10" }
+    }, {
+      "id" : "f8",
+      "type" : "RequestStart",
+      "name" : "showUserSelectionExamplesSerenity.ivp",
+      "config" : {
+        "callSignature" : "showUserSelectionExamplesSerenity",
+        "outLink" : "showUserSelectionExamplesSerenity.ivp",
+        "showInStartList" : false,
+        "startName" : "User Selection Example in Serenity theme"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 },
+        "labelOffset" : { "x" : -71, "y" : 17 }
+      },
+      "connect" : { "id" : "f12", "to" : "f7" }
+    }, {
+      "id" : "f9",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 576, "y" : 192 }
+      }
+    }, {
+      "id" : "f10",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "Task created by User Selection Example",
+          "description" : "This task is created by User Selection Example",
+          "responsible" : {
+            "userFromAttribute" : "in1.selectedUser.getName()"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 480, "y" : 192 }
+      },
+      "connect" : { "id" : "f11", "to" : "f9" }
+    } ]
+}
