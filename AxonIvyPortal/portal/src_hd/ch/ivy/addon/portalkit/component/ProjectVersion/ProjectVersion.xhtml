@@ -26,21 +26,22 @@
 
     <h:panelGroup rendered="#{not empty projectVersionBean.projectLibraries}">
       <ui:repeat id="application-list" value="#{projectVersionBean.projectLibraries.entrySet().toArray()}" var="entry">
-        <div class="ui-g-3 ui-sm-12">
-          <h:outputText id="application-name" value="#{entry.key}:" />
-        </div>
-        <div class="ui-g-9 ui-sm-12">
-          <p:dataTable id="application-project-version-table" value="#{entry.value}" var="library" styleClass="project-version-table" reflow="true" lazy="false">
+        <div class="ui-g-12">
+          <p:dataTable id="application-project-version-table" value="#{entry.value}" var="library" styleClass="project-version-table"
+            reflow="true" lazy="false">
+            <f:facet name="header">
+              <h:outputText id="application-name" value="#{entry.key}" />
+            </f:facet>
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/projectName')}">
               <h:outputText id="project-name" value="#{library.getProcessModelVersion().getProcessModel().getName()}" />
             </p:column>
-            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/version')}" width="180">
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/version')}" styleClass="project-version">
               <h:outputText id="project-version" value="#{library.getQualifiedVersion().toString()}" />
             </p:column>
-            <p:column headerText="PMV" width="80">
+            <p:column headerText="PMV" width="35">
               <h:outputText id="pmv" value="#{library.getProcessModelVersion().getVersionNumber()}" />
             </p:column>
-            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/state')}" width="120">
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/state')}" styleClass="project-state">
               <h:outputText id="state" value="#{projectVersionBean.translateReleaseState(library.getProcessModelVersion().getReleaseState())}" />
             </p:column>
           </p:dataTable>

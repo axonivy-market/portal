@@ -15,7 +15,7 @@
   <div class="ui-g case-details-description-title">
     <div class="case-detail-title #{cc.attrs.labelStyleClasses} text-ellipsis">
       #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}
-      <p:commandLink onclick="PF('widget-description-inplace').show(); hideIconLessLink(); hideIconMoreLink(); return false;"
+      <p:commandLink onclick="showWidgetDescriptionInplaceEditor();"
         rendered="#{caseActionBean.canChangeDescription(case) and !cc.attrs.readOnly}" id="edit-description-link">
         <i class="si si-graphic-tablet-drawing-pen" />
       </p:commandLink>
@@ -27,27 +27,28 @@
     <div class="ui-sm-12 ui-md-12 ui-lg-12 u-no-padding-left case-details-description-content">
       <h:form id="case-description-form">
         <div class="ui-g-12 case-detail-description">
-          <div id="description-content" class="scroll-panel OvAuto short-description">
-            <p:inplace id="case-description-inplace" editor="true" styleClass="case-description-inplace" effectSpeed="fast"
+          <div id="description-content" class="scroll-panel short-description">
+            <p:inplace id="case-description-inplace" editor="true" styleClass="case-description-inplace js-case-description-inplace" effectSpeed="fast"
               widgetVar="widget-description-inplace" disabled="#{!caseActionBean.canChangeDescription(case) or cc.attrs.readOnly}"
               saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
               cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               emptyLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/noDescription')}" >
               <p:ajax event="save" oncomplete="handleDisplayIconMoreLink()" update="#{cc.attrs.descriptionComponentToUpdate} case-description-form" />
               <p:ajax event="cancel" oncomplete="handleDisplayIconMoreLink()" update="case-description-form" process="@none" />
-              <f:facet name="input">
-                <p:inputTextarea id="case-description-input" cols="250" rows="3" styleClass="case-detail-description-input"
-                  value="#{case.description}" autoResize="false" />
-              </f:facet>
-              <f:facet name="output">
-                <h:panelGroup id="case-description-output" onclick="hideIconMoreLink(); hideIconLessLink();" class="#{!caseActionBean.canChangeDescription(case) or cc.attrs.readOnly ? 'pointer-event-none' : ''}">
-                  <h:outputText escape="false" value="#{caseWidgetBean.sanitizeHTML(case.description)}" />
-                </h:panelGroup>
-              </f:facet>
+              <p:inputTextarea id="case-description-input" cols="250" rows="5" styleClass="case-detail-description-input"
+                value="#{case.description}" autoResize="false" />
             </p:inplace>
+            <h:panelGroup id="case-description-output"
+              styleClass="case-description-output js-case-description-output #{!caseActionBean.canChangeDescription(case) or cc.attrs.readOnly ? 'pointer-event-none' : ''}">
+              <h:outputText escape="false" value="#{caseWidgetBean.sanitizeHTML(case.description)}" />
+             </h:panelGroup>
           </div>
-          <a href="#" onclick="displayMoreText()" id="icon-more-link" class="icon-more-link"><i class="si si-add-circle si-add-circle-case-description" /></a>
-          <a href="#" onclick="displayLessText()" id="icon-less-link" class="icon-less-link"><i class="si si-subtract-circle" /></a>
+          <p:commandLink onclick="displayMoreText()" id="icon-more-link" styleClass="icon-more-link" global="false" process="@this" immediate="true" partialSubmit="true">
+            <i class="si si-add-circle si-add-circle-case-description" />
+          </p:commandLink>
+          <p:commandLink onclick="displayLessText()" id="icon-less-link" styleClass="icon-less-link" global="false" process="@this" immediate="true" partialSubmit="true">
+            <i class="si si-subtract-circle" />
+          </p:commandLink>
         </div>
       </h:form>
     </div>

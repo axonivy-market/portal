@@ -48,7 +48,7 @@ public class NewDashboardPage extends TemplatePage {
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 
-    $("a[id$=':edit-widget-2']").waitUntil(appear, DEFAULT_TIMEOUT)
+    $("[id$=':edit-widget-2']").waitUntil(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
     $("div#new-widget-configuration-dialog").waitUntil(appear, DEFAULT_TIMEOUT);
     return new ProcessEditWidgetNewDashBoardPage();
@@ -192,11 +192,11 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement getCombinedModeProcessExpandLink() {
-    return $(".dashboard-processes-container--combined a[id$=':expand-link']");
+    return $(".dashboard-processes-container--combined [id$=':expand-link']");
   }
 
   public SelenideElement getCombinedModeProcessCollapseLink() {
-    return $(".dashboard-processes-container--combined a[id$=':collapse-link']");
+    return $(".dashboard-processes-container--combined [id$=':collapse-link']");
   }
 
   public void checkTasksTabDisplayedDataContainer() {
@@ -212,7 +212,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement getCasesTab() {
-    return $(".combined-process-widget__button-tabs.last-tab-button");
+    return $$(".combined-process-widget-button-selection .ui-button").get(1);
   }
 
   public SelenideElement getCombinedModeProcessFirstCaseName() {
@@ -278,125 +278,108 @@ public class NewDashboardPage extends TemplatePage {
         .filter(Condition.exactTextCaseSensitive(processName)).first();
   }
 
-  public void openCompactModeProcessFilterPanel(boolean isExpanded) {
-    if (isExpanded) {
-      var processId = $(".grid-stack-item.expand-fullscreen").waitUntil(appear, DEFAULT_TIMEOUT).attr("gs-id");
-      $(".grid-stack-item.expand-fullscreen").$(".dashboard__widget").waitUntil(appear, DEFAULT_TIMEOUT)
-          .waitUntil(Condition.have(Condition.cssClass(String.format("js-dashboard-widget-%s", processId))), DEFAULT_TIMEOUT);
-    }
-    var processFilter = getCompactModeProcessFilterLink(isExpanded).shouldBe(Condition.appear);
+  public void openCompactModeProcessFilterPanel() {
+    var processFilter = getCompactModeProcessFilterLink().shouldBe(Condition.appear);
     scrollToElementThenClick(processFilter);
-    getCompactModeProcessFilterPanelSaveFilters(isExpanded).waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    getCompactModeProcessFilterPanelSaveFilters().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 
-  public void applyCompactModeProcessFilterPanel(boolean isExpanded) {
-    getCompactModeProcessFilterPanelApplyButton(isExpanded).shouldBe(Condition.enabled).click();
-    getCompactModeProcessFilterPanel(isExpanded).waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
-  }
-
-  public void applyFilterCompactModeProcessProcessName(String processName) {
-    applyFilterCompactModeProcessProcessName(false, processName);
+  public void applyCompactModeProcessFilterPanel() {
+    getCompactModeProcessFilterPanelApplyButton().shouldBe(Condition.enabled).click();
+    getCompactModeProcessFilterPanel().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public void applyFilterCompactModeProcessProcessNameWhenExpanded(String processName) {
-    applyFilterCompactModeProcessProcessName(true, processName);
+    applyFilterCompactModeProcessProcessName(processName);
   }
 
-  private void applyFilterCompactModeProcessProcessName(boolean isExpanded, String processName) {
-    openCompactModeProcessFilterPanel(isExpanded);
-    filterCompactModeProcessProcessName(isExpanded, processName);
-    applyCompactModeProcessFilterPanel(isExpanded);
+  public void applyFilterCompactModeProcessProcessName(String processName) {
+    openCompactModeProcessFilterPanel();
+    filterCompactModeProcessProcessName(processName);
+    applyCompactModeProcessFilterPanel();
   }
 
-  public void filterCompactModeProcessProcessName(boolean isExpanded, String processName) {
-    SelenideElement filterName = getCompactModeProcessFilterPanelProcessName(isExpanded);
+  public void filterCompactModeProcessProcessName(String processName) {
+    SelenideElement filterName = getCompactModeProcessFilterPanelProcessName();
     filterName.shouldBe(Condition.appear).clear();
     filterName.sendKeys(processName);
   }
 
-  public SelenideElement getCompactModeProcessFilterLink(boolean isExpanded) {
-    String selector = String.format("a[id$=':%sfilter-sidebar-link-2']", isExpanded ? "expanded-" : "");
+  public SelenideElement getCompactModeProcessFilterLink() {
+    String selector = String.format("[id$=':filter-sidebar-link-2']");
     return $(selector);
   }
 
-  public SelenideElement getCompactModeProcessInfoLink(boolean isExpanded) {
-    String selector = String.format("a[id$=':%sinfo-sidebar-link-2']", isExpanded ? "expanded-" : "");
+  public SelenideElement getCompactModeProcessInfoLink() {
+    String selector = String.format("[id$=':info-sidebar-link-2']");
     return $(selector);
   }
 
-  public SelenideElement getCompactModeProcessFilterPanel(boolean isExpanded) {
-    String selector = String.format("div[id$=':%sfilter-overlay-panel-2']", isExpanded ? "expanded-" : "");
+  public SelenideElement getCompactModeProcessFilterPanel() {
+    String selector = String.format("div[id$=':filter-overlay-panel-2']");
     return $(selector);
   }
 
-  public SelenideElement getCompactModeProcessInfoPanel(boolean isExpanded) {
-    String selector = String.format("div[id$=':%sinfo-overlay-panel-2']", isExpanded ? "expanded-" : "");
+  public SelenideElement getCompactModeProcessInfoPanel() {
+    String selector = String.format("div[id$=':info-overlay-panel-2']");
     return $(selector);
   }
 
-  public SelenideElement getCompactModeProcessFilterPanelSaveFilters(boolean isExpanded) {
-    return getCompactModeProcessFilterPanel(isExpanded).waitUntil(appear, DEFAULT_TIMEOUT)
+  public SelenideElement getCompactModeProcessFilterPanelSaveFilters() {
+    return getCompactModeProcessFilterPanel().waitUntil(appear, DEFAULT_TIMEOUT)
         .$("div[id$=':widget-saved-filters-items");
   }
 
-  public SelenideElement getCompactModeProcessFilterPanelProcessName(boolean isExpanded) {
-    return getCompactModeProcessFilterPanel(isExpanded).$("input[id$=':text-field-input']");
+  public SelenideElement getCompactModeProcessFilterPanelProcessName() {
+    return getCompactModeProcessFilterPanel().$("input[id$=':text-field-input']");
   }
 
-  public SelenideElement getCompactModeProcessFilterPanelApplyButton(boolean isExpanded) {
-    return getCompactModeProcessFilterPanel(isExpanded).$("button[id$=':apply-button']");
-  }
-
-  public void applyFilterCompactModeProcessProcessType(String processType) {
-    applyFilterCompactModeProcessProcessType(false, processType);
+  public SelenideElement getCompactModeProcessFilterPanelApplyButton() {
+    return getCompactModeProcessFilterPanel().$("button[id$=':apply-button']");
   }
 
   public void applyFilterCompactModeProcessProcessTypeWhenExpanded(String processType) {
-    applyFilterCompactModeProcessProcessType(true, processType);
+    applyFilterCompactModeProcessProcessType(processType);
   }
 
-  public void applyFilterCompactModeProcessProcessType(boolean isExpanded, String processType) {
-    openCompactModeProcessFilterPanel(isExpanded);
-    filterCompactModeProcessProcessType(isExpanded, processType);
-    applyCompactModeProcessFilterPanel(isExpanded);
+  public void applyFilterCompactModeProcessProcessType(String processType) {
+    openCompactModeProcessFilterPanel();
+    filterCompactModeProcessProcessType(processType);
+    applyCompactModeProcessFilterPanel();
   }
 
   public void checkCompactModeProcessDisappearedProcessItem(String processName) {
     getCompactModeProcessProcessItemName(processName).waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
-  public void filterCompactModeProcessProcessType(boolean isExpanded, String processType) {
-    getCompactModeProcessFilterPanelProcessTypes(isExpanded).shouldBe(Condition.appear).click();
+  public void filterCompactModeProcessProcessType(String processType) {
+    getCompactModeProcessFilterPanelProcessTypes().shouldBe(Condition.appear).click();
     getCompactModeProcessProcessTypesPanel().waitUntil(Condition.appear, DEFAULT_TIMEOUT)
         .$("li[data-item-value='" + processType + "']").shouldBe(Condition.appear).click();
     getCompactModeProcessProcessTypesPanel().$(".ui-selectcheckboxmenu-close").click();
     getCompactModeProcessProcessTypesPanel().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
-  public SelenideElement getCompactModeProcessFilterPanelProcessTypes(boolean isExpanded) {
-    return getCompactModeProcessFilterPanel(isExpanded).$("div[id$=':process-types']");
+  public SelenideElement getCompactModeProcessFilterPanelProcessTypes() {
+    return getCompactModeProcessFilterPanel().$("div[id$=':process-types']");
   }
 
   public SelenideElement getCompactModeProcessProcessTypesPanel() {
     return $("div[id$=':process-types_panel']");
   }
 
-  public void applyFilterCompactModeProcessCategory(String category) {
-    applyFilterCompactModeProcessCategory(false, category);
-  }
-
   public void applyFilterCompactModeProcessCategoryWhenExpanded(String category) {
-    applyFilterCompactModeProcessCategory(true, category);
+    applyFilterCompactModeProcessCategory(category);
   }
 
-  public void applyFilterCompactModeProcessCategory(boolean isExpanded, String category) {
-    openCompactModeProcessFilterPanel(isExpanded);
-    filterCompactModeProcessCategory(isExpanded, category);
-    applyCompactModeProcessFilterPanel(isExpanded);
+  public void applyFilterCompactModeProcessCategory(String category) {
+    openCompactModeProcessFilterPanel();
+    filterCompactModeProcessCategory(category);
+    applyCompactModeProcessFilterPanel();
   }
 
-  public void filterCompactModeProcessCategory(boolean isExpanded, String category) {
-    getCompactModeProcessFilterPanelCategory(isExpanded).shouldBe(Condition.appear).click();
+  public void filterCompactModeProcessCategory(String category) {
+    getCompactModeProcessFilterPanelCategory().shouldBe(Condition.appear).click();
     ElementsCollection categories = getCompactModeProcessCategoryFilterPanel()
         .waitUntil(Condition.appear, DEFAULT_TIMEOUT).$$(".ui-treenode-label");
     categories.filter(Condition.exactTextCaseSensitive("All Categories")).first().click();
@@ -406,8 +389,8 @@ public class NewDashboardPage extends TemplatePage {
     getCompactModeProcessCategoryFilterPanel().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
-  public SelenideElement getCompactModeProcessFilterPanelCategory(boolean isExpanded) {
-    return getCompactModeProcessFilterPanel(isExpanded).$("input[id$=':widget-filter-category']");
+  public SelenideElement getCompactModeProcessFilterPanelCategory() {
+    return getCompactModeProcessFilterPanel().$("input[id$=':widget-filter-category']");
   }
 
   public SelenideElement getCompactModeProcessCategoryFilterPanel() {
@@ -419,17 +402,11 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void expandCompactModeProcess() {
-    SelenideElement filterLink = getCompactModeProcessFilterLink(false);
+    SelenideElement filterLink = getCompactModeProcessFilterLink();
     filterLink.shouldBe(Condition.appear);
 
-    SelenideElement infoLink = getCompactModeProcessInfoLink(false);
+    SelenideElement infoLink = getCompactModeProcessInfoLink();
     infoLink.shouldBe(Condition.appear);
-
-    SelenideElement expandedFilterLink = getCompactModeProcessFilterLink(true);
-    expandedFilterLink.shouldBe(Condition.disappear);
-
-    SelenideElement expandedInfoLink = getCompactModeProcessFilterLink(true);
-    expandedInfoLink.shouldBe(Condition.disappear);
 
     SelenideElement collapseLink = getCompactModeProcessCollapseLink();
     collapseLink.shouldBe(Condition.disappear);
@@ -439,83 +416,72 @@ public class NewDashboardPage extends TemplatePage {
     expandLink.waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
 
     collapseLink.waitUntil(Condition.appear, DEFAULT_TIMEOUT);
-    expandedFilterLink.waitUntil(Condition.appear, DEFAULT_TIMEOUT);
-    expandedInfoLink.waitUntil(Condition.appear, DEFAULT_TIMEOUT);
-    filterLink.waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
-    infoLink.waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public void collapseCompactModeProcess() {
     getCompactModeProcessCollapseLink().click();
-    getCompactModeProcessExpandLink().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
-    getCompactModeProcessFilterLink(true).waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
-    getCompactModeProcessFilterLink(false).waitUntil(Condition.appear, DEFAULT_TIMEOUT);
-    getCompactModeProcessInfoLink(true).waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
-    getCompactModeProcessInfoLink(false).waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    getCompactModeProcessCollapseLink().waitUntil(disappears, DEFAULT_TIMEOUT);
+    getCompactModeProcessExpandLink().waitUntil(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getCompactModeProcessExpandLink() {
-    return $("a[id$=':expand-link-2']");
+    return $("[id$=':expand-link-2']");
   }
 
   public SelenideElement getCompactModeProcessCollapseLink() {
-    return $("a[id$=':collapse-link-2']");
+    return $("[id$=':collapse-link-2']");
   }
 
-  public SelenideElement getCompactModeProcessFilterPanelSaveButton(boolean isExpanded) {
-    return getCompactModeProcessFilterPanel(isExpanded).$("button[id$=':save-filter']");
+  public SelenideElement getCompactModeProcessFilterPanelSaveButton() {
+    return getCompactModeProcessFilterPanel().$("button[id$=':save-filter']");
   }
 
-  public SelenideElement getCompactModeProcessFilterPanelResetButton(boolean isExpanded) {
-    return getCompactModeProcessFilterPanel(isExpanded).$("button[id$=':reset-button']");
+  public SelenideElement getCompactModeProcessFilterPanelResetButton() {
+    return getCompactModeProcessFilterPanel().$("button[id$=':reset-button']");
   }
 
-  public void resetCompactModeProcessFilterPanel(boolean isExpaned) {
-    getCompactModeProcessFilterPanelResetButton(isExpaned).shouldBe(Condition.enabled).click();
-    getCompactModeProcessFilterPanel(isExpaned).waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+  public void resetCompactModeProcessFilterPanel() {
+    getCompactModeProcessFilterPanelResetButton().shouldBe(Condition.enabled).click();
+    getCompactModeProcessFilterPanel().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
-  public void selectCompactModeProcessFilter(boolean isExpanded, String processName, String processType,
+  public void selectCompactModeProcessFilter(String processName, String processType,
       String category) {
-    filterCompactModeProcessProcessName(isExpanded, processName);
-    filterCompactModeProcessProcessType(isExpanded, processType);
-    filterCompactModeProcessCategory(isExpanded, category);
-  }
-
-  public void testSaveResetApplyCompactModeProcessFilter() {
-    testSaveResetApplyCompactModeProcessFilter(false);
+    filterCompactModeProcessProcessName(processName);
+    filterCompactModeProcessProcessType(processType);
+    filterCompactModeProcessCategory(category);
   }
 
   public void testSaveResetApplyCompactModeProcessFilterWhenExpanded() {
-    testSaveResetApplyCompactModeProcessFilter(true);
+    testSaveResetApplyCompactModeProcessFilter();
   }
 
-  private void testSaveResetApplyCompactModeProcessFilter(boolean isExpanded) {
+  public void testSaveResetApplyCompactModeProcessFilter() {
     // Save filter
-    openCompactModeProcessFilterPanel(isExpanded);
-    selectCompactModeProcessFilter(isExpanded, SHOWCASE_NAME, IVY_PROCESS, SHOWCASE);
-    saveCompactModeProcessFilter(isExpanded, SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME);
-    getCompactModeProcessFilterPanelSavedFilter(isExpanded, 0).waitUntil(Condition.appear, DEFAULT_TIMEOUT)
+    openCompactModeProcessFilterPanel();
+    selectCompactModeProcessFilter(SHOWCASE_NAME, IVY_PROCESS, SHOWCASE);
+    saveCompactModeProcessFilter(SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME);
+    getCompactModeProcessFilterPanelSavedFilter(0).waitUntil(Condition.appear, DEFAULT_TIMEOUT)
         .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME));
     // Apply filter
-    applyCompactModeProcessFilterPanel(isExpanded);
+    applyCompactModeProcessFilterPanel();
     getCompactModeProcessDisplayedFirstProcessItemName()
         .shouldHave(Condition.exactTextCaseSensitive("Showcase Application"));
     // Reset filter
-    openCompactModeProcessFilterPanel(isExpanded);
-    resetCompactModeProcessFilterPanel(isExpanded);
+    openCompactModeProcessFilterPanel();
+    resetCompactModeProcessFilterPanel();
     getCompactModeProcessDisplayedFirstProcessItemName()
         .shouldNotHave(Condition.exactTextCaseSensitive("Showcase Application"));
     // Apply saved filter
-    openCompactModeProcessFilterPanel(isExpanded);
-    selectCompactModeProcessSavedFilter(isExpanded, SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME);
-    applyCompactModeProcessFilterPanel(isExpanded);
+    openCompactModeProcessFilterPanel();
+    selectCompactModeProcessSavedFilter(SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME);
+    applyCompactModeProcessFilterPanel();
     getCompactModeProcessDisplayedFirstProcessItemName()
         .shouldHave(Condition.exactTextCaseSensitive("Showcase Application"));
   }
 
-  public void saveCompactModeProcessFilter(boolean isExpanded, String savedFilterName) {
-    getCompactModeProcessFilterPanelSaveButton(isExpanded).shouldBe(Condition.enabled).click();
+  public void saveCompactModeProcessFilter(String savedFilterName) {
+    getCompactModeProcessFilterPanelSaveButton().shouldBe(Condition.enabled).click();
     SelenideElement saveWidgetFilterDialog = getSaveWidgetFilterDialog();
     saveWidgetFilterDialog.waitUntil(Condition.appear, DEFAULT_TIMEOUT);
 
@@ -539,23 +505,23 @@ public class NewDashboardPage extends TemplatePage {
     return getSaveWidgetFilterDialog().$("button[id$=':save-widget-filter-button']");
   }
 
-  public SelenideElement getCompactModeProcessFilterPanelSavedFilter(boolean isExpanded, int index) {
-    return getCompactModeProcessFilterPanelSaveFilters(isExpanded).$$("span.saved-filter-node__text").get(index);
+  public SelenideElement getCompactModeProcessFilterPanelSavedFilter(int index) {
+    return getCompactModeProcessFilterPanelSaveFilters().$$("span.saved-filter-node__text").get(index);
   }
 
-  public void selectCompactModeProcessSavedFilter(boolean isExpanded, String savedFilterName) {
-    SelenideElement savedFilter = getCompactModeProcessFilterPanelSavedFilter(isExpanded, 0);
+  public void selectCompactModeProcessSavedFilter(String savedFilterName) {
+    SelenideElement savedFilter = getCompactModeProcessFilterPanelSavedFilter(0);
     savedFilter.waitUntil(Condition.appear, DEFAULT_TIMEOUT)
         .shouldHave(Condition.exactTextCaseSensitive(savedFilterName)).click();
     savedFilter.closest(".saved-filter-node").waitUntil(Condition.cssClass("selected"), DEFAULT_TIMEOUT);
   }
 
-  public SelenideElement getCompactModeProcessFilterPanelSearchInput(boolean isExpanded) {
-    return getCompactModeProcessFilterPanel(isExpanded).$("input[id$=':search-saved-filter-input']");
+  public SelenideElement getCompactModeProcessFilterPanelSearchInput() {
+    return getCompactModeProcessFilterPanel().$("input[id$=':search-saved-filter-input']");
   }
 
-  public SelenideElement getCompactModeProcessFilterPanelManageFiltersLink(boolean isExpanded) {
-    return getCompactModeProcessFilterPanel(isExpanded).$("a.saved-filter__manage-filter");
+  public SelenideElement getCompactModeProcessFilterPanelManageFiltersLink() {
+    return getCompactModeProcessFilterPanel().$(".saved-filter__manage-filter");
   }
 
   public SelenideElement getManageWidgetFilterDialog() {
@@ -574,8 +540,8 @@ public class NewDashboardPage extends TemplatePage {
     return getManageWidgetFilterDialog().$("div[id$=':manage-filter-action'] a");
   }
 
-  public void openCompactModeProcessManageFilters(boolean isExpanded) {
-    getCompactModeProcessFilterPanelManageFiltersLink(isExpanded).shouldBe(Condition.appear).click();
+  public void openCompactModeProcessManageFilters() {
+    getCompactModeProcessFilterPanelManageFiltersLink().shouldBe(Condition.appear).click();
     getManageWidgetFilterDialog().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 
@@ -584,53 +550,46 @@ public class NewDashboardPage extends TemplatePage {
     getManageWidgetFilterDialog().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
-  public void testSearchRemoveCompactModeProcessFilter() {
-    testSearchRemoveCompactModeProcessFilter(false);
-  }
-
   public void testSearchRemoveCompactModeProcessFilterWhenExpanded() {
-    testSearchRemoveCompactModeProcessFilter(true);
+    testSearchRemoveCompactModeProcessFilter();
   }
 
-  private void testSearchRemoveCompactModeProcessFilter(boolean isExpanded) {
+  public void testSearchRemoveCompactModeProcessFilter() {
     checkDisplayedCompactModeProcessContainer();
-    if (isExpanded) {
-      expandCompactModeProcess();
-    }
 
-    openCompactModeProcessFilterPanel(isExpanded);
-    testCreateCompactModeProcessFilters(isExpanded);
-    testSearchCompactModeProcessFilters(isExpanded);
+    openCompactModeProcessFilterPanel();
+    testCreateCompactModeProcessFilters();
+    testSearchCompactModeProcessFilters();
 
-    openCompactModeProcessManageFilters(isExpanded);
+    openCompactModeProcessManageFilters();
     testRemoveCompactModeProcessFilter();
     closeCompactModeProcessManagerFilters();
 
-    openCompactModeProcessFilterPanel(isExpanded);
-    getCompactModeProcessFilterPanelSavedFilter(isExpanded, 0)
+    openCompactModeProcessFilterPanel();
+    getCompactModeProcessFilterPanelSavedFilter(0)
         .waitUntil(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME), DEFAULT_TIMEOUT);
   }
 
-  private void testCreateCompactModeProcessFilters(boolean isExpanded) {
-    selectCompactModeProcessFilter(isExpanded, SHOWCASE_NAME, "IVY_PROCESS", SHOWCASE);
-    saveCompactModeProcessFilter(isExpanded, MY_FILTER);
-    getCompactModeProcessFilterPanelSavedFilter(isExpanded, 0).waitUntil(Condition.appear, DEFAULT_TIMEOUT)
+  private void testCreateCompactModeProcessFilters() {
+    selectCompactModeProcessFilter(SHOWCASE_NAME, "IVY_PROCESS", SHOWCASE);
+    saveCompactModeProcessFilter(MY_FILTER);
+    getCompactModeProcessFilterPanelSavedFilter(0).waitUntil(Condition.appear, DEFAULT_TIMEOUT)
         .shouldHave(Condition.exactTextCaseSensitive(MY_FILTER));
 
-    saveCompactModeProcessFilter(isExpanded, SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME);
-    getCompactModeProcessFilterPanelSavedFilter(isExpanded, 1).waitUntil(Condition.appear, DEFAULT_TIMEOUT)
+    saveCompactModeProcessFilter(SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME);
+    getCompactModeProcessFilterPanelSavedFilter(1).waitUntil(Condition.appear, DEFAULT_TIMEOUT)
         .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME));
   }
 
-  private void testSearchCompactModeProcessFilters(boolean isExpanded) {
-    SelenideElement searchInput = getCompactModeProcessFilterPanelSearchInput(isExpanded);
+  private void testSearchCompactModeProcessFilters() {
+    SelenideElement searchInput = getCompactModeProcessFilterPanelSearchInput();
     searchInput.shouldBe(Condition.appear).clear();
     searchInput.sendKeys(SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME);
-    getCompactModeProcessFilterPanelSavedFilter(isExpanded, 0)
+    getCompactModeProcessFilterPanelSavedFilter(0)
         .waitUntil(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME), DEFAULT_TIMEOUT);
 
     searchInput.shouldBe(Condition.appear).clear();
-    getCompactModeProcessFilterPanelSavedFilter(isExpanded, 0).waitUntil(Condition.appear, DEFAULT_TIMEOUT)
+    getCompactModeProcessFilterPanelSavedFilter(0).waitUntil(Condition.appear, DEFAULT_TIMEOUT)
         .shouldHave(Condition.exactTextCaseSensitive(MY_FILTER));
   }
 
@@ -648,29 +607,21 @@ public class NewDashboardPage extends TemplatePage {
     getManageWidgetFilterDialogRemoveButton().shouldBe(Condition.enabled).click();
   }
 
-  public ElementsCollection getCompactModeProcessInfoProcessTypes() {
-    return getCompactModeProcessInfoProcessTypes(false);
-  }
-
-  public void openCompactModeProcessInforPanel() {
-    openCompactModeProcessInforPanel(false);
-  }
-
   public ElementsCollection getCompactModeProcessInfoProcessTypesWhenExpanded() {
-    return getCompactModeProcessInfoProcessTypes(true);
+    return getCompactModeProcessInfoProcessTypes();
   }
 
   public void openCompactModeProcessInforPanelWhenExpanded() {
-    openCompactModeProcessInforPanel(true);
+    openCompactModeProcessInforPanel();
   }
 
-  public void openCompactModeProcessInforPanel(boolean isExpanded) {
-    getCompactModeProcessInfoLink(isExpanded).shouldBe(Condition.appear).click();
-    getCompactModeProcessInfoPanel(isExpanded).waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+  public void openCompactModeProcessInforPanel() {
+    getCompactModeProcessInfoLink().shouldBe(Condition.appear).click();
+    getCompactModeProcessInfoPanel().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 
-  public ElementsCollection getCompactModeProcessInfoProcessTypes(boolean isExpanded) {
-    return getCompactModeProcessInfoPanel(isExpanded).$$("span.dashboard-processes__type-text");
+  public ElementsCollection getCompactModeProcessInfoProcessTypes() {
+    return getCompactModeProcessInfoPanel().$$("span.dashboard-processes__type-text");
   }
 
   public SelenideElement getConfigureDashboardMenu() {

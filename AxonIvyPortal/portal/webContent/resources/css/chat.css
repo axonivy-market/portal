@@ -69,7 +69,7 @@
   display: flex;
   align-items: stretch;
   /* set it in front of top-layout */
-  z-index: 1001;
+  z-index: 999;
 }
 
 .chat-panel.active {

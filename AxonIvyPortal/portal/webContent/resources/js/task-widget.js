@@ -36,9 +36,7 @@ function TaskWidget() {
         var compactProcessWidgetHeight = window.matchMedia("(max-width: 40em)").matches == true ? ($('.js-compact-process-widget-panel').outerHeight(true)||0) : 0;
         var compactTaskWidgetPadding = ($('.js-compact-task-widget').outerHeight(true)||0) - ($('.js-compact-task-widget').height()||0);
         var taskViewPadding = ($('.js-task-view').outerHeight(true)||0) - ($('.js-task-view').height()||0);
-        //var layoutContentPadding = ($('.layout-content').outerHeight(true)||0) - ($('.layout-content').height()||0);
 
-        // var mainScreenHeight = ($('.js-layout-content').outerHeight(true)||0);
         var mainScreenHeight = PortalLayout.getAvailableHeight();
 
         // When open task list inside case information dialog, back link is displayed. So we should subtract its height also
@@ -165,7 +163,7 @@ function TaskListToolKit() {
       var $layout = $('.js-layout-wrapper');
       var remainingWidth = $('.js-layout-content').outerWidth(true);
       var $hiddenColumns = $('.js-hidden-when-expand-menu');
-      if (remainingWidth < 1024 && $layout.hasClass('layout-wrapper-static')) {
+      if (remainingWidth < 1024 && $layout.hasClass('layout-static')) {
         hideColumnWhenExpandMenu($hiddenColumns);
       } else {
         displayColumnWhenCollapseMenu($hiddenColumns);
