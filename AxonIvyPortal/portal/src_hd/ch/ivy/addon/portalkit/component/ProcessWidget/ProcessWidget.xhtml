@@ -51,7 +51,7 @@
           <div class="u-hidden-sm-down ui-md-6 ui-lg-5 ui-xl-4 u-no-padding-right u-no-padding-top">
             <h:form id="process-view-mode" class="md-inputfiled ui-g-12 process-view-mode u-no-padding-right u-no-padding-top md-inputfiled">
               <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/viewMode')}" for="view-mode-selection" styleClass="view-mode-text"/>
-              <p:selectOneButton value="#{processWidgetBean.viewMode}" unselectable="false" id="view-mode-selection">
+              <p:selectOneButton value="#{processWidgetBean.viewMode}" unselectable="false" id="view-mode-selection" widgetVar="view-mode-selection">
                 <f:selectItems value="#{processWidgetBean.processViewModes}"  var="mode" itemValue="#{mode}" itemLabel="#{mode.label}" />
                 <p:ajax update="process-view-mode #{cc.clientId}:process-list #{cc.clientId}:process-nav"
                   oncomplete="processWidget.setup(); processWidget.hideLoadingText(); return false;" />
@@ -62,8 +62,9 @@
       </h:panelGroup>
 
       <p:remoteCommand id="init-process-data-cmd" autoRun="true" actionListener="#{processWidgetBean.initProcesses()}"
-        async="true" process="@this" update="process-list process-nav"
-        onstart="processWidget.removeStyleOnProcessStartList()"
+        async="true" process="@this"
+        update="process-list process-nav process-view-mode"
+        onstart="processWidget.removeStyleOnProcessStartList();"
         oncomplete="processWidget.setupScrollbar();processWidget.filter();processWidget.hideLoadingText();"/>
       <!-- Lazy loading -->
       <div class="ui-g-12 u-no-padding-left">
@@ -72,7 +73,7 @@
       <!-- Process body -->
       <h:panelGroup id="process-list" layout="block"
         styleClass="widget-content process-start-list-container js-process-start-list-container ui-g-12
-          u-no-padding-top u-no-padding-bottom #{processWidgetBean.compactMode ? '' : 'u-no-padding-left'}
+          u-no-padding-bottom #{processWidgetBean.compactMode ? '' : 'u-no-padding-left'}
           u-invisibility">
         <h:outputText id="no-found-processes" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/noProcesses')}"
           styleClass="no-process-message js-no-found-processes u-display-none #{processWidgetBean.compactMode ? '' : 'ui-g-12'}" />

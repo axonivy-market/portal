@@ -155,7 +155,10 @@ public class MenuView implements Serializable {
                 .styleClass(DASHBOARD_MENU_JS_CLASS).build();
         if (dashboards.size() > 1) {
           for (var board : dashboards) {
-            var iconClass = board.getIsPublic() ? "si si-network-share" : "si si-single-neutral-shield";
+            if(StringUtils.isBlank(board.getIcon())) {
+              board.setIcon(board.getIsPublic() ? "si-network-share" : "si-single-neutral-shield");  
+            }
+            var iconClass = (board.getIcon().startsWith("fa") ? "fa " : "si ") + board.getIcon();
             var dashboardMenu = new PortalMenuBuilder(board.getTitle(), MenuKind.DASHBOARD, this.isWorkingOnATask)
                   .icon(iconClass)
                   .url(dashboardLink)

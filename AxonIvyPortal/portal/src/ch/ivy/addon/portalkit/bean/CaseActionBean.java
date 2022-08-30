@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.bean;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -68,6 +69,9 @@ public class CaseActionBean implements Serializable {
   }
 
   public String getProcessOverviewPageUri(ICase iCase) {
+    if (Objects.isNull(iCase) || Objects.isNull(iCase.getApplication()) || Objects.isNull(iCase.getProcessStart())) {
+      return "#";
+    }
     return PortalNavigator.buildProcessInfoUrl(iCase.getApplication().getName().concat("/")
         .concat(iCase.getProcessStart().getFullUserFriendlyRequestPath()));
   }
