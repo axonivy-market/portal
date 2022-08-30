@@ -1,4 +1,19 @@
 {
+  /PROCESS {
+    /Functional-Processes.CalculateTaskDelegate "Functional Processes/CalculateTaskDelegateOverride"
+    /Functional-Processes.AssignRolesGroupChat "Functional Processes/AssignRolesGroupChatOverride"
+    /Functional-Processes.ResetPassword "Functional Processes/ResetPasswordOverride"
+    /Functional-Processes.InitializeTaskDataModel "Functional Processes/InitializeTaskDataModelOverride"
+    /Functional-Processes.GetGroupChatParams "Functional Processes/GetGroupChatParamsOverride"
+    /Functional-Processes.LoadSubMenuItems "Functional Processes/LoadSubMenuItemsOverride"
+    /Functional-Processes.SendPasswordResetEmail "Functional Processes/SendPasswordResetEmailOverride"
+    /Functional-Processes.ExportTaskToExcel "Functional Processes/ExportTaskToExcelOverride"
+    /Functional-Processes.InitializeCaseDataModel "Functional Processes/InitializeCaseDataModelOverride"
+    /Functional-Processes.SetGroupChatName "Functional Processes/SetGroupChatNameOverride"
+    /Functional-Processes.ExportCaseToExcel "Functional Processes/ExportCaseToExcelOverride"
+    /Functional-Processes.BuildTaskQuery "Functional Processes/BuildTaskQueryOverride"
+    /Functional-Processes.DefaultStatisticCustomField "Functional Processes/DefaultStatisticCustomFieldOverride"
+  }
   /HTML_DIALOG {
     /ch.ivy.addon.portalkit.component.PageHeader "com.axonivy.portal.developerexamples.customization.component.PageHeaderOverride"
     /ch.ivy.addon.portal.component.CaseInformation "com.axonivy.portal.developerexamples.customization.component.CaseInformationOverride"
@@ -10,25 +25,5 @@
     /ch.ivy.addon.portal.generic.PortalTasks "com.axonivy.portal.developerexamples.customization.TaskWidget"
     /ch.ivy.addon.portal.generic.PortalTaskDetails "com.axonivy.portal.developerexamples.customization.PortalTaskDetailsOverride"
     /ch.ivy.addon.portal.generic.PortalCaseDetails "com.axonivy.portal.developerexamples.customization.PortalCaseDetailsOverride"
-  }
-  /PROCESS {
-    /Functional-Processes.CalculateTaskDelegate "Functional Processes/CalculateTaskDelegateOverride"
-    /Functional-Processes.UploadDocumentItem "Functional Processes/UploadDocumentItemOverride"
-    /Functional-Processes.DeleteDocumentItem "Functional Processes/DeleteDocumentItemOverride"
-    /Functional-Processes.AssignRolesGroupChat "Functional Processes/AssignRolesGroupChatOverride"
-    /Functional-Processes.ResetPassword "Functional Processes/ResetPasswordOverride"
-    /Functional-Processes.InitializeTaskDataModel "Functional Processes/InitializeTaskDataModelOverride"
-    /Functional-Processes.OpenCaseDetailsHook "Functional Processes/OpenCaseDetailsHookOverride"
-    /Functional-Processes.DownloadDocumentItem "Functional Processes/DownloadDocumentItemOverride"
-    /Functional-Processes.GetGroupChatParams "Functional Processes/GetGroupChatParamsOverride"
-    /Functional-Processes.SendPasswordResetEmail "Functional Processes/SendPasswordResetEmailOverride"
-    /Functional-Processes.LoadSubMenuItems "Functional Processes/LoadSubMenuItemsOverride"
-    /Functional-Processes.ExportTaskToExcel "Functional Processes/ExportTaskToExcelOverride"
-    /Functional-Processes.GetDocumentItems "Functional Processes/GetDocumentItemsOverride"
-    /Functional-Processes.SetGroupChatName "Functional Processes/SetGroupChatNameOverride"
-    /Functional-Processes.InitializeCaseDataModel "Functional Processes/InitializeCaseDataModelOverride"
-    /Functional-Processes.ExportCaseToExcel "Functional Processes/ExportCaseToExcelOverride"
-    /Functional-Processes.BuildTaskQuery "Functional Processes/BuildTaskQueryOverride"
-    /Functional-Processes.DefaultStatisticCustomField "Functional Processes/DefaultStatisticCustomFieldOverride"
   }
 }

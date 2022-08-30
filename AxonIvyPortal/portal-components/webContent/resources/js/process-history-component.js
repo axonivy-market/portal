@@ -20,13 +20,13 @@ var PortalComponent = {
     var resizeTimer;
     // Update screen when window size is changed
     $(window).resize(function() {
-      Portal.updateLayoutContent();
+      PortalComponent.updateLayoutContent();
 
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(function() {
         responsiveToolkit.updateLayoutWithoutAnimation();
       }, 250);
-      Portal.updateGuide();
+      PortalComponent.updateGuide();
     });
   },
   
@@ -199,7 +199,7 @@ function CaseListToolKit() {
       var $mainMenu = $('.js-left-sidebar');
       var remainingWidth = $('body').width() - $mainMenu.outerWidth() - 75;//exclude padding and scroll bar
       var $hiddenColumns = $('.js-hidden-when-expand-menu');
-      if (remainingWidth < 1024 && $layout.hasClass('layout-wrapper-static')) {
+      if (remainingWidth < 1024 && $layout.hasClass('layout-static')) {
         hideColumnWhenExpandMenu($hiddenColumns);
       } else {
         displayColumnWhenCollapseMenu($hiddenColumns);
@@ -332,13 +332,13 @@ var processHistory = {
   }
 }
 
-Portal.updateLayoutContent();
+PortalComponent.updateLayoutContent();
 setupCaseHeader();
 
 var resizeTimer;
 // Update screen when window size is changed
 $(window).resize(function() {
-  Portal.updateLayoutContent();
+  PortalComponent.updateLayoutContent();
 
   clearTimeout(resizeTimer);
   resizeTimer = setupCaseHeader();
@@ -351,5 +351,5 @@ function setupCaseHeader() {
   }, 250);
 }
 
-// Add a ScreenHandler listener to Portal Menu event
+// Add a ScreenHandler listener to PortalComponent Menu event
 MainMenu.init(processHistory);

@@ -70,7 +70,7 @@ public class PortalExpressScreenshotTest extends ScreenshotTest {
     
     executeDecorateJs("highlightExpressTaskResponsible(0)");
     WebElement taskStep1 = expressProcessPage.getDefineTaskStep(0);
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskStep1, ScreenshotUtil.EXPRESS_FOLDER + "express-able-to-start", new ScreenshotMargin(20, 20, 0, 20));
+    ScreenshotUtil.captureElementScreenshot(taskStep1, ScreenshotUtil.EXPRESS_FOLDER + "express-able-to-start");
     expressProcessPage.fillProcessProperties(true, true, "Request new resources process", "Request description");
     
     ExpressResponsible responsible1 = new ExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
@@ -171,12 +171,12 @@ public class PortalExpressScreenshotTest extends ScreenshotTest {
     expressManagementTest.completeExpressWorkflowTasks(ExpressManagementTest.FIRST_COMMENT, ExpressManagementTest.SECOND_COMMENT);
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     homePage = new HomePage();
-    ScreenshotUtil.resizeBrowser(new Dimension(1050, 800));
+    ScreenshotUtil.resizeBrowser(new Dimension(1050, 600));
     CaseWidgetPage caseWidgetPage = homePage.openCaseList();
     caseWidgetPage.closeMainMenu();
     caseWidgetPage.openActionStepMenu();
     executeDecorateJs("highlightShowAdditionalLink()");
-    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.EXPRESS_FOLDER + "express-case");
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "express-case");
     
     String caseId = caseWidgetPage.getCaseId(0);
     redirectToRelativeLink(expressAdditionalBusinessUrl + "?caseId=" + caseId);

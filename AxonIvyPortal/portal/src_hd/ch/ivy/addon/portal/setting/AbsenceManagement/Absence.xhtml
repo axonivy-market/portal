@@ -21,8 +21,9 @@
     header="#{ivy.cms.co(data.isCreateMode ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/addAbsence' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/editAbsence')}">
 
     <h:form id="absence-form" styleClass="ui-g absence-panel-grid">
-      <p:messages widgetVar="growl" closable="true" id="absence-messages" escape="false"
-        styleClass="new-absence-messages ui-g-12" />
+      <div class="ui-g-12">
+        <p:messages widgetVar="growl" closable="true" id="absence-messages" escape="false" styleClass="new-absence-messages " />
+      </div>
       <h:panelGroup id="input-adsence-data-section" layout="block" styleClass="ui-g-12 u-padding-0 ui-fluid">
         <h:panelGroup layout="block" styleClass="ui-g-12 u-padding-0" rendered="#{data.canCreateAbsenceForOtherUsers}">
           <ic:com.axonivy.portal.components.UserSelection id="absence-selection-component" componentId="absence-username"
@@ -34,7 +35,7 @@
             labelPanelStyleClass="ui-g-12" hasCustomizedSelectionList="true">
             <p:column>
               <pc:securityMemberNameAndAvatar displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
-                securityMember="#{user}" />
+                securityMember="#{user}" isStandAlone="false" />
             </p:column>
             <f:facet name="event">
               <p:ajax event="itemSelect" listener="#{logic.userSelectInAbsence}"
