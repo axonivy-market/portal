@@ -303,6 +303,10 @@ function Chat(uri, view) {
 
     $("#toggle-chat-panel-command").off().click(function(e) {
       e.stopImmediatePropagation();
+      var $menuButton = $(".menu-button");
+      if ($menuButton.is(":visible") && $(".layout-wrapper.layout-mobile-active .menu-wrapper").is(":visible")) {
+        $menuButton.click();
+      }
       view.renderChatMessagePanelUIWhenOpen();
 
       // Hide environment info when open chat

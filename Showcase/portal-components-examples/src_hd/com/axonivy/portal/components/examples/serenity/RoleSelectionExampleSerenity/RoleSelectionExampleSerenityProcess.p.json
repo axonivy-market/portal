@@ -76,6 +76,7 @@
       "type" : "Script",
       "name" : "Init data",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.environment.Ivy;",

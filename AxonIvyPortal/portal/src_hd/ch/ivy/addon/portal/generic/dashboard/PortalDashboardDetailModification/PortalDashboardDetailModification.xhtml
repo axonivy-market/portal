@@ -10,11 +10,12 @@
 
     <ui:define name="headerTitle">
       <c:forEach var="dashboard" items="#{dashboardDetailModificationBean.dashboards}" varStatus="dashboardStatus">
+        <c:set value="#{dashboardDetailModificationBean.currentDashboardIndex == dashboardStatus.index}" var="isSelectedItem"/>
         <p:commandLink id="dashboard-title-#{dashboardStatus.index}"
           actionListener="#{dashboardDetailModificationBean.onDashboardChange(dashboardStatus.index)}"
           update="grid-stack dashboard-title-container" process="@this"
           oncomplete="loadGrid();dashboardToolKit.responsive();"
-          styleClass="dashboard__title #{dashboardDetailModificationBean.currentDashboardIndex == dashboardStatus.index ? 'dashboard__title--active':''}">
+          styleClass="dashboard__title #{isSelectedItem ? 'dashboard__title--active':''}">
           <h:outputText styleClass="#{dashboard.getIconClass()}" />
           <span>#{dashboard.title}</span>
         </p:commandLink>
@@ -22,24 +23,24 @@
     </ui:define>
 
     <ui:define name="headerAction">
-      <p:commandLink id="back-to-configuration" styleClass="dashboard__switch-mode u-mar-right-15 display-inline-flex-center"
+      <p:commandButton id="back-to-configuration" styleClass="dashboard__switch-mode u-mar-right-15 ui-button-flat"
         actionListener="#{dashboardDetailModificationBean.navigatetoDashboardConfigurationPage}"
-        update="grid-stack @this" process="@this">
-        <i class="si si-arrow-left-1" />
-        <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}</span>
-      </p:commandLink>
+        update="grid-stack @this" process="@this"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
+        icon="si si-arrow-left-1" />
 
+      <c:set var="showRestoreButton" value="#{dashboardDetailModificationBean.foundTemplate.isPresent()}"/>
       <h:panelGroup id="restore-button-group" styleClass="restore-button-group u-mar-right-15">
         <p:commandButton id="restore-button" styleClass="ui-button-secondary dashboard__restore-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
           type="button" icon="si si-button-refresh-arrows"
           onclick="PF('restore-confirm-dialog').show()"
-          disabled="#{!dashboardDetailModificationBean.foundTemplate.isPresent()}" />
+          disabled="#{!showRestoreButton}" />
         <p:tooltip styleClass="restore-dashboard-tooltip"
           for="#{cc.clientId}:restore-button-group" id="restore-button-tooltip"
           trackMouse="true"
           hideEvent="mouseleave click"
-          rendered="#{!dashboardDetailModificationBean.foundTemplate.isPresent()}"
+          rendered="#{!showRestoreButton}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/RestoreDefaultDashboardTemplateTooltip')}"/>
       </h:panelGroup>
 
