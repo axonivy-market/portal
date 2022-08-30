@@ -10,6 +10,7 @@ import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
+import portal.guitest.page.ProcessViewerComponentPage;
 import portal.guitest.page.ProcessViewerPage;
 import portal.guitest.page.TaskWidgetPage;
 
@@ -23,6 +24,13 @@ public class ProcessViewerTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
+  }
+  
+  @Test
+  public void testOpenProcessViewerComponent() {
+    redirectToRelativeLink(processViewerExampleInFrameUrl);
+    ProcessViewerComponentPage processViewerPage = new ProcessViewerComponentPage();
+    assertTrue(processViewerPage.getProcessRequestPath().equalsIgnoreCase("Leave Request"));
   }
 
   @Test
@@ -106,8 +114,7 @@ public class ProcessViewerTest extends BaseTest {
     var detailActions = taskDetailsPage.getActiveTaskAction();
     assertTrue("Process Viewer is NOT found on TaskList page", detailActions.contains("Process Viewer"));
   }
-
-
+  
   private CaseWidgetPage gotoCaseList() {
     homePage = new HomePage();
     var mainMenuPage = homePage.openMainMenu();

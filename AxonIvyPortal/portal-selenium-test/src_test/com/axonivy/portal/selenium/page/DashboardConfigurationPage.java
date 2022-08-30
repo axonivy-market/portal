@@ -71,20 +71,20 @@ public class DashboardConfigurationPage extends TemplatePage {
     waitForCreateNewDashboardSectionAppear();
   }
 
-  public void createPrivateDashboardFromTemplate(String newName, String newDescription, int templateIndex) {
+  public void createPrivateDashboardFromTemplate(String newName, String icon, String newDescription, int templateIndex) {
     waitForCreateNewDashboardSectionAppear().$("a[id$=':" + templateIndex + ":template']")
         .waitUntil(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
-    inputCreateDashboardDialog(newName, newDescription, null);
+    inputCreateDashboardDialog(newName, icon, newDescription, null);
   }
 
-  public void createPrivateDashboardFromScratch(String newName, String newDescription) {
+  public void createPrivateDashboardFromScratch(String newName, String icon, String newDescription) {
     selectPrivateDashboardType();
     $("a[id$='create-dashboard-action'].js-private-dashboard").waitUntil(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
     waitForCreateNewDashboardSectionAppear();
     $("a[id$=':create-from-scratch']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    inputCreateDashboardDialog(newName, newDescription, null);
+    inputCreateDashboardDialog(newName, icon, newDescription, null);
   }
 
   private SelenideElement waitForCreateNewDashboardSectionAppear() {
@@ -92,17 +92,17 @@ public class DashboardConfigurationPage extends TemplatePage {
     return $("div[id$=':create-new-dashboard-section']");
   }
 
-  public void createPublicDashboardFromScratch(String newName, String newDescription, List<String> permissions) {
+  public void createPublicDashboardFromScratch(String newName, String icon, String newDescription, List<String> permissions) {
     $("a[id$=':create-from-scratch']").shouldBe(getClickableCondition()).click();
-    inputCreateDashboardDialog(newName, newDescription, permissions);
+    inputCreateDashboardDialog(newName, icon, newDescription, permissions);
   }
 
-  public void createPublicDashboardFromTemplate(String newName, String newDescription, List<String> permissions,
+  public void createPublicDashboardFromTemplate(String newName, String icon, String newDescription, List<String> permissions,
       int templateIndex) {
     waitForCreateNewDashboardSectionAppear().$("a[id$='" + templateIndex + ":template']")
         .waitUntil(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
-    inputCreateDashboardDialog(newName, newDescription, permissions);
+    inputCreateDashboardDialog(newName, icon, newDescription, permissions);
   }
 
   public void reorderPublicDashboard() {
@@ -117,10 +117,12 @@ public class DashboardConfigurationPage extends TemplatePage {
         .shouldBe(getClickableCondition()).click();
   }
 
-  private void inputCreateDashboardDialog(String newName, String newDescription, List<String> permissions) {
+  private void inputCreateDashboardDialog(String newName, String icon, String newDescription, List<String> permissions) {
     String creationDetailsDialogId = "div[id$=':dashboard-creation-details-dialog']";
     $(creationDetailsDialogId).waitUntil(appear, DEFAULT_TIMEOUT);
     SelenideElement createDashboardDialog = $(creationDetailsDialogId);
+    $("a[id$=':change-icon-link']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    selectDashboardIcon(icon);
     createDashboardDialog.$("input[id$=':dashboard-title']").clear();
     createDashboardDialog.$("input[id$=':dashboard-title']").sendKeys(newName);
     createDashboardDialog.$("input[id$=':dashboard-description']").clear();
@@ -144,6 +146,18 @@ public class DashboardConfigurationPage extends TemplatePage {
 
     createDashboardDialog.$("button[id$='dashboard-create-button']").click();
     $(creationDetailsDialogId).waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  private void selectDashboardIcon(String icon) {
+    String selectIconDialogId = "div[id$=':select-icon-dialog']";
+    $(selectIconDialogId).waitUntil(appear, DEFAULT_TIMEOUT);
+    SelenideElement selectIconDialog = $(selectIconDialogId);
+    String iconId = "a[id$=':awesome-icon'] span." + icon;
+    if (icon.startsWith("si")) {
+      iconId = "div[id$=':icons-selection-form:icons'] a.icon-selection-dialog-selecting-icon i." + icon;
+    }
+    selectIconDialog.$(iconId).shouldBe(getClickableCondition()).click();
+    $(selectIconDialogId).waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public NewDashboardPage backToHomePage() {

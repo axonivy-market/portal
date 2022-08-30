@@ -47,7 +47,7 @@
           paginatorPosition="bottom" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
           paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
           currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}" lazy="false"
-          styleClass="ui-g-12 js-task-details-documents" >
+          styleClass="js-task-details-documents">
           <p:ajax event="page" oncomplete="ResponsiveTable.init(':task-details-documents')"/>
           <p:ajax event="sort" oncomplete="ResponsiveTable.init(':task-details-documents')"/>
 

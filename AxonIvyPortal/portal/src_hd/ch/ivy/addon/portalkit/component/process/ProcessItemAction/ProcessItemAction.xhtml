@@ -11,6 +11,7 @@
   <cc:attribute name="actionListenerOnDeleteProcess"/>
   <cc:attribute name="onCompleteDeleteProcess"/>
   <cc:attribute name="componentToUpdateOnDeleteProcess"/>
+  <cc:attribute name="outlinedButtonStyle" default="true"/>
 </cc:interface>
 
 <cc:implementation>
@@ -18,17 +19,18 @@
   <c:set var="canModify" value="#{cc.attrs.canModify}" />
   <c:set var="showProcessViewer" value="#{processItemActionBean.isShowProcessViewer(process)}"/>
   <c:set var="hideActionButton" value="#{cc.attrs.hideActionButton or (!canModify and !showProcessViewer)}"/>
+  <c:set var="buttonStyle" value="#{cc.attrs.outlinedButtonStyle ? 'ui-button-outlined':'ui-button-raised ui-button-secondary'}"/>
 
   <div id="process-action-group" class="process-action-group">
     <p:commandButton id="process-category" rendered="#{not empty process.category}"
-      styleClass="rounded-button ui-button-outlined process-category"
+      styleClass="rounded-button process-category #{buttonStyle}"
       value="#{processItemActionBean.getDisplayProcessCategory(process)}"
       readonly="true" type="button" onclick="return false;"/>
     <p:tooltip for="process-category" value="#{process.category}" trackMouse="true" hideEvent="mouseleave click" />
 
     <h:panelGroup layout="block" rendered="#{!hideActionButton}">
       <p:commandButton id="process-action-button" icon="si si-navigation-menu-horizontal"
-        styleClass="rounded-button ui-button-outlined icon-more-menu-button" type="button"/>
+        styleClass="rounded-button icon-more-menu-button #{buttonStyle}" type="button"/>
 
       <p:menu id="process-action-menu" overlay="true"
         trigger="process-action-button"
