@@ -19,12 +19,12 @@ public class StatisticWidgetDashboardPage extends TemplatePage {
   }
   
   public SelenideElement getStatisticInfoIconOfChart(int chartIndex) {
-    return $(String.format("a[id$=':chart-info-link-%d']", chartIndex)).waitUntil(appear, DEFAULT_TIMEOUT)
+    return $(String.format("[id$=':chart-info-link-%d']", chartIndex)).waitUntil(appear, DEFAULT_TIMEOUT)
         .should(getClickableCondition());
   }
 
   public void openStatisticInfoPanel(int chartIndex) {
-    $(String.format("a[id$=':chart-info-link-%d']", chartIndex)).waitUntil(appear, DEFAULT_TIMEOUT)
+    $(String.format("[id$=':chart-info-link-%d']", chartIndex)).waitUntil(appear, DEFAULT_TIMEOUT)
         .should(getClickableCondition()).click();
     $(String.format("[id$=':info-overlay-panel-%d']", chartIndex)).waitUntil(appear, DEFAULT_TIMEOUT);
   }
@@ -43,7 +43,7 @@ public class StatisticWidgetDashboardPage extends TemplatePage {
 
   public SelenideElement getEditIconOfChart(int chartIndex) {
     return $(".statistic-chart-widget__header").waitUntil(appear, DEFAULT_TIMEOUT)
-      .$(String.format("a[id$=':edit-widget-%d']", chartIndex)).waitUntil(appear, DEFAULT_TIMEOUT);
+      .$(String.format("[id$=':edit-widget-%d']", chartIndex)).waitUntil(appear, DEFAULT_TIMEOUT);
   }
 
   public String openEditStatisticWidgetDialog(int chartIndex) {

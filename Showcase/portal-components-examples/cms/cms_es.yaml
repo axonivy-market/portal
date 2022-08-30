@@ -1,0 +1,34 @@
+Dialog:
+  Common:
+    approve: Aprobar
+    finish: Acabar
+    reject: Rechazar
+Enums:
+  LeaveType:
+    ANNUAL_LEAVE: Ausencia anual
+    MATERNITY_LEAVE: Ausencia maternal
+    SICK_LEAVE: Ausencia por enfermedad
+Labels:
+  LeaveRequest:
+    LeaveSteps:
+      approval: Aprobar
+      approvalResult: Resultado del aprobado
+      creation: Crear ausencia
+    approvalResultTaskIntro: Más abajo encontrará un resumen de su solicitud.
+    approvalTaskIntro: 'Hay una solicitud para una ausencia. Detalles más abajo:'
+    approver: Aprovador
+    approverComment: Comentario del aprovador
+    from: Desde
+    leaveType: Tipo de ausencia
+    requester: Solicitante
+    requesterComment: Comentario del solicitante
+    submitLeaveRequest: Presentar solicitud para ausencia
+    to: Hasta
+Processes:
+  LeaveRequest:
+    approvalTask: Su ausencia ha sido aprovada
+    approvalTaskName: Aprovar solicitud para ausencia del {0}
+    createLeaveRequest: 'Crear ausencia para: {0}'
+    createNewLeaveRequest: 'Tarea de sistema: Crear nueva solicitud para ausencia'
+    leaveRequest: Solicitud para ausencia
+    rejectedTask: Su solicitud para ausencia ha sido denegada

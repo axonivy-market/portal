@@ -32,29 +32,20 @@ public class TaskAnalysisScreenshotTest extends ScreenshotTest {
   }
 
   @Test
-  public void screenshotTaskList() throws IOException {
+  public void screenshotTaskAnalysisPage() throws IOException {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     WaitHelper.assertTrueWithRefreshPage(taskWidgetPage, () -> !taskWidgetPage.isWelcomeDialogExisted());
     homePage = new HomePage();
     homePage.waitForStatisticRendered();
-
     mainMenuPage = homePage.openMainMenu();
     ScreenshotUtil.resizeBrowser(new Dimension(1366, 800));
-    // executeDecorateJs("highlightStatisticNavigation()");
-    // ScreenshotUtil.maximizeBrowser();
-
-
     StatisticWidgetPage statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
-    // statisticWidgetPage.switchCreateMode();
-    // statisticWidgetPage.waitForAllChartLoaded();
     statisticWidgetPage.closeMainMenu();
     executeDecorateJs("highlightTaskAnalysisNavigationLink()");
     ScreenshotUtil.captureHalfTopRightPageScreenShot(ScreenshotUtil.TASK_ANALYSIS_FOLDER + "navigate-to-task-analysis");
-    // ScreenshotUtil.resizeBrowser(new Dimension(1366, 1366));
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
 
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_ANALYSIS_FOLDER + "task-analysis");
-
 
     taskAnalysisWidgetPage.openAdvancedTaskFilter("Priority", "priority");
     List<String> selectedPriorities = new ArrayList<>();
@@ -65,8 +56,6 @@ public class TaskAnalysisScreenshotTest extends ScreenshotTest {
     taskAnalysisWidgetPage.enterDataToSaveFilterSet("Normal Priority Task", true);
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskAnalysisWidgetPage.getSavingFilterDialog(),
         ScreenshotUtil.TASK_ANALYSIS_FOLDER + "saved-filter", new ScreenshotMargin(20));
-
   }
-
 
 }
