@@ -11,6 +11,7 @@ import ch.ivy.addon.portalkit.util.ConfigurationJsonUtil;
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.Variable;
 import portal.guitest.page.AbsencePage;
@@ -97,6 +98,8 @@ public class SettingScreenshotTest extends ScreenshotTest {
     createAbsenceForCurrentUser(TODAY, TODAY, "Personal leave", absencePage);
     createAbsenceForCurrentUser(TOMORROW, TOMORROW, "Vacation", absencePage);
     NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
+    newAbsencePage.enterCommentForAbsence("Add new absence");
+    Sleeper.sleep(250); // wait for datepicker hides the popup selection
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(absencePage.getAddAbsenceDialog(), ScreenshotUtil.SETTINGS_FOLDER + "new-absence", new ScreenshotMargin(20));
     newAbsencePage.closeAddAbsenceDialog();
     ScreenshotUtil.captureElementScreenshot(absencePage.getAbsenceForm(), ScreenshotUtil.SETTINGS_FOLDER + "absence");
@@ -145,7 +148,7 @@ public class SettingScreenshotTest extends ScreenshotTest {
   @Test
   public void screenshotPasswordValidation() throws IOException {
     login(TestAccount.ADMIN_USER);
-    ScreenshotUtil.resizeBrowser(new Dimension(1050, 850));
+    ScreenshotUtil.resizeBrowser(new Dimension(1050, 750));
     homePage = new HomePage();
     var adminSettingsPage = homePage.openAdminSettings();
     adminSettingsPage.openPasswordValidationTab();

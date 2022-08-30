@@ -1,3 +1,8 @@
+// Freya style has the transition delay time is 0.2s when expand/collapse main menu
+// We need to delay a bit before calculating scrollbar
+var isFinishedRestoreMenuState = false;
+var delayTime = 0;
+
 var Portal = {
   init : function(responsiveToolkit) {
     // Swipe on mobile can cause problems with scroll
@@ -8,14 +13,21 @@ var Portal = {
     }
     // Update menuitem when access page by direct link
     MainMenu.init(responsiveToolkit);
-    
-    //Add very small timeout when page ready, fix responsive problem for IE 11
+
+    //Check and add a delay time timeout when Freya restoring Menu state
+    if (!isFinishedRestoreMenuState) {
+      isFinishedRestoreMenuState = true;
+      delayTime = 250;
+    }
+
     setTimeout(function() {
       responsiveToolkit.updateLayoutWithoutAnimation();
-    }, 1);
-    
-    this.updateLayoutContent();
-    this.updateBreadcrumb();
+    }, delayTime);
+
+    setTimeout(function() {
+      Portal.updateLayoutContent();
+      Portal.updateBreadcrumb();
+    }, delayTime);
 
     var resizeTimer;
     // Update screen when window size is changed
@@ -120,7 +132,7 @@ var Portal = {
           breadCrumb.css("display", "none");
           layoutWrapper.removeClass('has-breadcrumb');
         }
-      }, 300);
+      }, 250);
   },
 
   changePortalVariableTheme: function(themeMode) {

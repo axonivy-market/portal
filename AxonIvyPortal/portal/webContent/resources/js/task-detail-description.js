@@ -1,32 +1,31 @@
-$(function () {
-  setTimeout(() => {
-    handleDisplayIconMoreLink();
-  }, 0);
-})
+var $descriptionContentContainer, $descriptionContent, $iconMoreLink, $iconLessLink;
+handleDisplayIconMoreLink();
+
+function showWidgetDescriptionInplaceEditor() {
+  $(".js-task-description-output").hide();
+  $(".js-task-description-inplace").show();
+  hideIconLessLink();
+  hideIconMoreLink();
+  PF('widget-description-inplace').show();
+}
 
 function displayMoreText() {
-  let descriptionContent = document.getElementById("description-content");
-
-  if (!descriptionContent) {
+  if (!$descriptionContentContainer || $descriptionContentContainer.length == 0) {
     return;
   }
-
-  descriptionContent.classList.remove("short-description");
-  descriptionContent.classList.add("long-description");
+  $descriptionContentContainer.removeClass("short-description");
+  $descriptionContentContainer.addClass("long-description");
   hideIconMoreLink();
   displayIconLessLink();
 }
 
 function displayLessText() {
-  let descriptionContent = document.getElementById("description-content");
-
-  if (!descriptionContent) {
+  if (!$descriptionContentContainer || $descriptionContentContainer.length == 0) {
     return;
   }
-
-  descriptionContent.scrollTop = 0
-  descriptionContent.classList.remove("long-description");
-  descriptionContent.classList.add("short-description");
+  $descriptionContentContainer.scrollTop = 0
+  $descriptionContentContainer.removeClass("long-description");
+  $descriptionContentContainer.addClass("short-description");
 
   hideIconLessLink();
   displayIconMoreLink();
@@ -34,68 +33,61 @@ function displayLessText() {
 
 
 function displayIconMoreLink() {
-  let iconMoreLink = document.getElementById("icon-more-link");
-  if (!iconMoreLink) {
+  if (!$iconMoreLink || $iconMoreLink.length == 0) {
     return;
   }
-
-  iconMoreLink.style.setProperty("display", "block");
+  $iconMoreLink.css("display", "block");
 }
 
 function hideIconMoreLink() {
-  let iconMoreLink = document.getElementById("icon-more-link");
-  if (!iconMoreLink) {
+  if (!$iconMoreLink || $iconMoreLink.length == 0) {
     return;
   }
-
-  iconMoreLink.style.setProperty("display", "none");
+  $iconMoreLink.css("display", "none");
 }
 
 function displayIconLessLink() {
-  let iconLessLink = document.getElementById("icon-less-link");
-  let descriptionContent = document.getElementById("description-content");
-  if (!iconLessLink || !descriptionContent) {
+  if (!$iconLessLink || $iconLessLink.length == 0
+    || !$descriptionContent || $descriptionContent.length == 0) {
     return;
   }
-
-  iconLessLink.classList.add("display");
+  $iconLessLink.css("display", "block");
 }
 
 function hideIconLessLink() {
-  let iconLessLink = document.getElementById("icon-less-link");
-  if (!iconLessLink) {
+  if (!$iconLessLink || $iconLessLink.length == 0) {
     return;
   }
-
-  iconLessLink.classList.remove("display");
+  $iconLessLink.css("display", "none");
 }
 
 function handleDisplayIconMoreLink() {
-  let descriptionContentContainer = document.getElementById("description-content");
-  if (!descriptionContentContainer) {
-      return;
-  }
-
-  let descriptionContent = document.getElementById("task-description-output");
-  let iconMoreLink = document.getElementById("icon-more-link");
-  let iconLessLink = document.getElementById("icon-less-link");
-  if (!descriptionContent || !iconMoreLink || !iconLessLink) {
+  taskDescriptionForm = $("[id$='task-detail-description-form']");
+  $descriptionContentContainer = taskDescriptionForm.find("[id$='description-content']");
+  if (!$descriptionContentContainer || $descriptionContentContainer.length == 0) {
     return;
   }
 
-  descriptionContentContainer.classList.add("long-description");
-  descriptionContentContainer.classList.remove("short-description");
-  iconMoreLink.style.setProperty("display", "none");
-  iconLessLink.classList.remove("display");
+  $descriptionContent = taskDescriptionForm.find("[id$='task-description-output']");
+  $iconMoreLink = taskDescriptionForm.find("[id$='icon-more-link']");
+  $iconLessLink = taskDescriptionForm.find("[id$='icon-less-link']");
+  if (!$descriptionContent || !$iconMoreLink || !$iconLessLink) {
+    return;
+  }
 
-  if (descriptionContent.offsetHeight > 36) { // 36 is height of two lines
-    descriptionContentContainer.classList.add("short-description");
-    descriptionContentContainer.classList.remove("long-description");
-    iconMoreLink.style.setProperty("display", "block");
+  $descriptionContentContainer.addClass("long-description");
+  $descriptionContentContainer.removeClass("short-description");
+  $iconMoreLink.css("display", "none");
+  $iconLessLink.css("display", "none");
+
+  if ($descriptionContent.outerHeight() > 36) { // 36 is height of two lines
+    $descriptionContentContainer.addClass("short-description");
+    $descriptionContentContainer.removeClass("long-description");
+    $iconMoreLink.css("display", "block");
   } else {
-    descriptionContentContainer.classList.remove("short-description");
-    descriptionContentContainer.classList.add("long-description");
-    iconMoreLink.style.setProperty("display", "none");
+    $descriptionContentContainer.removeClass("short-description");
+    $descriptionContentContainer.addClass("long-description");
+    $iconMoreLink.css("display", "none");
   }
 }
 

@@ -81,7 +81,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
   
   @Test
   public void screenshotBasicTaskDetails() throws IOException {
-    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1200));
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1000));
     login(TestAccount.ADMIN_USER);
     refreshPage();
     TaskWidgetPage taskWidget = homePage.openTaskList();
