@@ -394,6 +394,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     CollapseAll: Alles zuklappen
     DefaultTemplate: Standard Vorlage
     ExpandAll: Alles aufklappen
+    MoreItemsAvailable: weitere Artikel verfügbar
     NoSelection: Keine Auswahl
     ResetToDefaultHeaderText: Auf Standard-Einstellungen zurücksetzen?
     RoleUserInformation: Rollen- und Benutzerinformationen
