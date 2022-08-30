@@ -30,8 +30,7 @@ public class ProcessViewerTest extends BaseTest {
   public void testOpenProcessViewerComponent() {
     redirectToRelativeLink(processViewerExampleInFrameUrl);
     ProcessViewerComponentPage processViewerPage = new ProcessViewerComponentPage();
-    processViewerPage.switchToIFrameOfTask();
-    assertTrue(processViewerPage.getProcessRequestPath().equalsIgnoreCase("Show Process Viewer Using Case ID"));
+    assertTrue(processViewerPage.getProcessRequestPath().equalsIgnoreCase("Leave Request"));
   }
 
   @Test
