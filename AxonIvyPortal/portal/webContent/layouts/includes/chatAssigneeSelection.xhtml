@@ -23,7 +23,7 @@
         isRenderedMessage="false" rendered="#{chatAssigneeBean.isAssignToUser}"
         autoCompletePanelStyleClass="chat-user-selection ui-fluid" hasCustomizedSelectionList="true">
         <p:column>
-          <pc:securityMemberNameAndAvatar securityMember="#{user}"
+          <pc:securityMemberNameAndAvatar securityMember="#{user}" isStandAlone="false"
             displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}" />
         </p:column>
         <f:facet name="event">

@@ -6,7 +6,8 @@
   <ui:composition template="/layouts/frame-10.xhtml">
     <ui:define name="title">ApproveLevel1</ui:define>
     <ui:define name="content">
-      <h:outputStylesheet library="css" name="portal-variables.css" />
+      <h:outputStylesheet library="css" name="portal-root-variables.css" />
+      <h:outputStylesheet library="css" name="portal-variables-#{ivyFreyaTheme.mode}.css" />
       <h:outputStylesheet library="css" name="portal-user-examples.css" />
 
       <h3>Credit Request Approval Level 1&#160;</h3>

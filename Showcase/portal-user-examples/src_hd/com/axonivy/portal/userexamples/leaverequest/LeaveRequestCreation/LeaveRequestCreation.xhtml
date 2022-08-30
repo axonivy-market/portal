@@ -10,7 +10,8 @@
       value="#{[ivy.cms.co('/Labels/LeaveRequest/LeaveSteps/creation'),ivy.cms.co('/Labels/LeaveRequest/LeaveSteps/approval'), ivy.cms.co('/Labels/LeaveRequest/LeaveSteps/approvalResult')]}" />
 
     <ui:define name="content">
-      <h:outputStylesheet library="css" name="portal-variables.css" />
+      <h:outputStylesheet library="css" name="portal-root-variables.css" />
+      <h:outputStylesheet library="css" name="portal-variables-#{ivyFreyaTheme.mode}.css" />
       <h:outputStylesheet library="css" name="portal-user-examples.css" />
 
       <h:form id="leave-request">

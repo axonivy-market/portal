@@ -8,7 +8,8 @@
     <ui:param name="isFullScreen" value="false" />
     <ui:define name="title">#{ivy.cms.co('/Processes/UserExampleGuide/name')}</ui:define>
     <ui:define name="content">
-      <h:outputStylesheet library="css" name="portal-variables.css" />
+      <h:outputStylesheet library="css" name="portal-root-variables.css" />
+      <h:outputStylesheet library="css" name="portal-variables-#{ivyFreyaTheme.mode}.css" />
       <h:outputStylesheet library="css" name="portal-user-examples.css" />
       <h:outputScript name="portal-user-examples.js" library="js" />
 

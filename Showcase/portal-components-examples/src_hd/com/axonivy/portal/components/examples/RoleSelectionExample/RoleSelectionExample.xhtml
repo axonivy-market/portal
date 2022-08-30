@@ -12,7 +12,7 @@
         <ic:com.axonivy.portal.components.examples.internal.ThemeSelection serenityExampleLink="#{data.roleSelectionSerenityExampleLink}" />
         <h1 class="user-selection-component-header">Role Selection Examples</h1>
         <div class="ui-g ui-fluid">
-          <div class="ui-g-8 ui-xl-8 ui-sm-12">
+          <div id="default-role-selection-component" class="ui-g-8 ui-xl-8 ui-sm-12">
             <ic:com.axonivy.portal.components.RoleSelection componentId="default-role-autocomplete" selectedRole="#{data.selectedRole}"
               isRenderedMessage="true" label="Default role selection" labelPanelStyleClass="ui-g-3 ui-md-3 ui-sm-12"
               autoCompleteStyleClass="width-100" autoCompletePanelStyleClass="ui-g-9 ui-sm-12"
@@ -49,7 +49,7 @@
               fromRoleNames="#{data.definedRoleNames}" selectedRole="#{data.selectedRoleForInsertChildren}" label="Demonstrate facet and children"
               autoCompleteStyleClass="width-100" autoCompletePanelStyleClass="ui-g-12 floating-label-margin-top" floatingLabel="true" hasCustomizedSelectionList="true">
               <p:column>
-                <pc:securityMemberNameAndAvatar displayName="#{role.getDisplayName()} (#{role.getMemberName()})" securityMember="#{role}" />
+                <pc:securityMemberNameAndAvatar displayName="#{role.getDisplayName()} (#{role.getMemberName()})" securityMember="#{role}" isStandAlone="false" />
               </p:column>
               <f:facet name="event">
                 <p:ajax event="itemSelect" listener="#{logic.showSelectedRole}"
