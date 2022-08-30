@@ -28,11 +28,11 @@
       </h:panelGroup>
     </div>
 
-    <h:panelGroup id="default-user-processes-container" styleClass="compact-default-processes-container js-user-default-process-list-content ui-g-12" layout="block">
+    <h:panelGroup id="default-user-processes-container" styleClass="compact-default-processes-container js-user-default-process-list-content ui-g-12 widget-content" layout="block">
       <ui:repeat varStatus="status" var="process" value="#{compactProcessWidgetBean.defaultUserProcesses}">
         <c:set var="isExternalProcess"
           value="#{!(fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}" />
-        <h:form id="process-item-form" styleClass="process-start-list-item js-process-start-list-item"
+        <h:form id="process-item-form" styleClass="process-start-list-item js-process-start-list-item card"
           rendered="#{!compactProcessWidgetBean.editMode}">
           <ui:include src="ProcessItemLink.xhtml">
             <ui:param name="processLink" value="#{process.link}"></ui:param>

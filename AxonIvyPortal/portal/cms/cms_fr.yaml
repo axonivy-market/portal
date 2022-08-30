@@ -150,22 +150,22 @@ ch.ivy.addon.portalkit.ui.jsf:
       TUESDAY: MAR
       WEDNESDAY: MER
   MyProfile:
+    CaseList: Liste de cas
+    DateFormat: Format de la date
+    Email: 'Courriel :'
+    FormattingLanguage: Langue de mise en forme
+    General: Généraux
+    Homepage: Page d'accueil
     HomepageSelection:
       fullTaskList: Liste complète des tâches
+    Language: Langue
+    ProcessList: Liste des processus
     SortFieldSelections:
       defaultSortFieldLabel: Champ de tri par défaut
-    caseListConfigDescription: Dans cette zone, vous pouvez configurer la liste des cas en fonction de vos besoins.
-    caseListConfiguration: Configuration de la liste des cas
+    TaskList: Liste des tâches
     defaultOption: Par défaut ({0})
     defaultViewMode: Mode de vue par défaut
-    generalSettingDescription: Dans cette zone, vous pouvez configurer les paramètres en fonction de vos besoins.
-    generalSettings: Paramètres généraux
-    processListConfigDescription: Dans cette zone, vous pouvez configurer la liste des processus en fonction de vos besoins.
-    processListConfiguration: Configuration de la liste des processus
-    selectHomepage: Page d'accueil sélectionnée
     showTutorial: Spectacle de bienvenue
-    taskListConfigDescription: Dans cette zone, vous pouvez configurer la liste des tâches en fonction de vos besoins.
-    taskListConfiguration: Configuration de la liste des tâches
   PortalManagement:
     AdminSetting: Administration
   ProcessViewer:
@@ -471,7 +471,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     finish: Terminer
     general: Général
     generalInformation: Informations générales
-    globalSearch: Recherche de tâches, de dossiers et de processus
+    globalSearch: Recherche ...
     goToDetail: Aller au détail
     hasPrecondition: Ce processus est soumis à une condition préalable
     height: Hauteur
@@ -894,9 +894,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourProcesses: Vos processus
     yourStatistics: Vos statistiques
     yourTasks: Vos tâches
-  dateFormatConfiguration:
-    dateFormatConfiguration: Configuration du format de la date
-    selectedDateFormat: Format de la date sélectionnée
   documentFiles:
     deleteDocumentNote: '{0} a supprimé(e) {1}'
     deleteSuceed: Le fichier a été supprimé avec succès
@@ -914,7 +911,6 @@ ch.ivy.addon.portalkit.ui.jsf:
   emailSetting:
     dailySummary: Recevoir le résumé quotidien
     eMail: Courriel
-    emailSetting: Paramètres Email
     furtherEmailFromApp: Recevoir d'autres courriels de l'application
     invalidEmailFormat: Format d'e-mail non valide
     mailNotificationOnTaskAssign: Recevoir une notification par courriel sur l'assignation des tâches
@@ -952,6 +948,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     passwordResetEmailSent: Un e-mail vous a été envoyé, comprenant un lien pour la réinitialisation du mot de passe. Veuillez vérifier votre boîte aux lettres électronique.
     passwordResetEmailSubject: Courriel de réinitialisation du mot de passe
     passwordResetSuccess: Votre mot de passe a été modifié avec succès
+    requiredFieldMessage: '{0} est nécessaire'
     setANewPassword: Définir un nouveau mot de passe
     strong: Fort
     userNotFound: Utilisateur non trouvé
@@ -965,9 +962,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     cannotSetEmailLanguage: La langue ne peut pas être définie comme langue de notification par courrier électronique.
     languageSetting: Paramètres de langue
     saveLanguageHasWSErrors: Erreur d'enregistrement de la langue
-    selectedFormattingLanguage: "Choisir la langue de formatage\r\n\r\n"
-    selectedLanguage: Langue choisie
   login:
+    AxonIvyPortal: Axon Ivy Portal
+    Copyright: Copyright Ⓒ Axon Ivy Portal
     PasswordRequiredMessage: Le mot de passe est obligatoire
     UsernameRequiredMessage: Le nom d'utilisateur est obligatoire
     login: Connexion

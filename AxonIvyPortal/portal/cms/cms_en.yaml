@@ -150,22 +150,22 @@ ch.ivy.addon.portalkit.ui.jsf:
       TUESDAY: TUE
       WEDNESDAY: WED
   MyProfile:
+    CaseList: Case list
+    DateFormat: Date Format
+    Email: Email
+    FormattingLanguage: Formatting language
+    General: General
+    Homepage: Homepage
     HomepageSelection:
       fullTaskList: Full Task list
+    Language: Language
+    ProcessList: Process list
     SortFieldSelections:
       defaultSortFieldLabel: Default sort field
-    caseListConfigDescription: In this area you can configure the case list according to your requirements.
-    caseListConfiguration: Case list configuration
+    TaskList: Task list
     defaultOption: Default ({0})
     defaultViewMode: Default view mode
-    generalSettingDescription: In this area you can configure the settings according to your requirements.
-    generalSettings: General settings
-    processListConfigDescription: In this area you can configure the process list according to your requirements.
-    processListConfiguration: Process list configuration
-    selectHomepage: Selected homepage
     showTutorial: Show Welcome Tour
-    taskListConfigDescription: In this area you can configure the task list according to your requirements.
-    taskListConfiguration: Task list configuration
   PortalManagement:
     AdminSetting: Admin settings
   ProcessViewer:
@@ -469,7 +469,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     finish: Finish
     general: General
     generalInformation: General information
-    globalSearch: Search for tasks, cases and processes
+    globalSearch: Search ...
     goToDetail: Go to detail
     hasPrecondition: This process has precondition
     height: Height
@@ -896,9 +896,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourProcesses: Your Processes
     yourStatistics: Your Statistics
     yourTasks: Your Tasks
-  dateFormatConfiguration:
-    dateFormatConfiguration: Date Format Configuration
-    selectedDateFormat: Selected Date Format
   documentFiles:
     deleteDocumentNote: '{0} has deleted {1}'
     deleteSuceed: File deleted successfully
@@ -916,7 +913,6 @@ ch.ivy.addon.portalkit.ui.jsf:
   emailSetting:
     dailySummary: Receive daily summary
     eMail: E-mail
-    emailSetting: Email settings
     furtherEmailFromApp: Receive further emails from application
     invalidEmailFormat: Invalid email format
     mailNotificationOnTaskAssign: Receive email notification on task assignment
@@ -954,6 +950,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     passwordResetEmailSent: An E-Mail was sent to you, including a link to reset your password. Please check your mail box.
     passwordResetEmailSubject: Email to reset your password
     passwordResetSuccess: Your password has been changed successfully
+    requiredFieldMessage: '{0} is required'
     setANewPassword: Set a new password
     strong: Strong
     userNotFound: User not found
@@ -967,9 +964,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     cannotSetEmailLanguage: Language cannot be set as email notification language.
     languageSetting: Language settings
     saveLanguageHasWSErrors: Language save error.
-    selectedFormattingLanguage: Selected formatting language
-    selectedLanguage: Selected language
   login:
+    AxonIvyPortal: Axon Ivy Portal
+    Copyright: Copyright Ⓒ Axon Ivy Portal
     PasswordRequiredMessage: The password is required
     UsernameRequiredMessage: The username is required
     login: Login
