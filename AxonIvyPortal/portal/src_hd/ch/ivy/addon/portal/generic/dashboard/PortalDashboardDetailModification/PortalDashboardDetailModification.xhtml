@@ -16,7 +16,7 @@
           update="grid-stack dashboard-title-container" process="@this"
           oncomplete="loadGrid();dashboardToolKit.responsive();"
           styleClass="dashboard__title #{isSelectedItem ? 'dashboard__title--active':''}">
-          <h:outputText rendered="#{dashboard.isPublic}" styleClass="si si-network-share" />
+          <h:outputText styleClass="#{dashboard.getIconClass()}" />
           <span>#{dashboard.title}</span>
         </p:commandLink>
       </c:forEach>
