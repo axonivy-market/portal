@@ -48,5 +48,6 @@ public class DashboardTemplateSelectionBean extends DashboardModificationBean im
     this.selectedDashboard.setTemplateId(templateId);
     this.selectedDashboard.setId(dashboardId);
     this.selectedDashboard.setTitle(null);
+    this.selectedDashboard.setIcon(this.isPublicDashboard ? PUBLIC_DASHBOARD_DEFAULT_ICON : PRIVATE_DASHBOARD_DEFAULT_ICON);
   }
 }
