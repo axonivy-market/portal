@@ -816,6 +816,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     dashboardManagement:
       CreateDashboard: Créer un tableau de bord
       addDashboard: Ajouter un tableau de bord
+      dashboardIcon: Icône du tableau de bord
       dashboardPermission: Autorisation du tableau de bord
       dashboardTitle: Titre du tableau de bord
       editDashboard: Modifier le tableau de bord
