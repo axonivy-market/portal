@@ -32,11 +32,8 @@ function ProcessWidget() {
 
       var announcementMessageContainer = $('.js-announcement-message');
       var mainScreenHeight = PortalLayout.getAvailableHeight();
-      var processHeaderHeight = $('.js-portal-template-header').outerHeight();
-      var footerHeight = $('.js-portal-template-footer').outerHeight();
       var availableHeight = mainScreenHeight - (announcementMessageContainer.outerHeight(true)||0)
-                            - processWidgetMarginPadding - (processsHeader.outerHeight(true)||0)
-                            - processHeaderHeight - footerHeight;
+                            - processWidgetMarginPadding - (processsHeader.outerHeight(true)||0);
 
       if (PortalGlobalSearch.isSearchPageOpened()) {
         availableHeight = availableHeight - PortalGlobalSearch.getAvailableHeight(':process-tab');
@@ -359,14 +356,15 @@ var FavouritesProcess = {
     var availableHeight = this.calculateHeightForFavorites();
     
     // Check if viewport is mobile screen
-    if (window.matchMedia("(max-width: 40em)").matches) {
+    var isMobileDevices = window.matchMedia("(max-width: 40em)").matches;
+    if (isMobileDevices) {
       // Always show max 7 processes for user/application favorites on mobile screen
       availableHeight = this.getHeightOfProcessStartItem() * 7;
     }
 
     availableHeight = availableHeight < 0 ? 0 : availableHeight;
     // If there is available height, don't setup scroll-bar for compact process widget
-    if ($(compactProcessWidgetClass).height() < availableHeight && !isResize) {
+    if ($(compactProcessWidgetClass).height() < availableHeight && !isResize && !isMobileDevices) {
       return;
     }
 
