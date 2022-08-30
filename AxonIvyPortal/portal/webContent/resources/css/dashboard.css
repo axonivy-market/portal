@@ -273,10 +273,10 @@ body .ui-dialog .ui-dialog-footer .ui-button.dashboard__edit-global-dashboard {
   display: block;
 }
 
-.dashboard-tasks__actions a,
-.dashboard-cases__actions a {
+.dashboard-tasks__actions .action-container,
+.dashboard-cases__actions .action-container {
   margin: 0;
- justify-content: center;
+  justify-content: center;
 }
 
 td.dashboard-tasks__name span,
@@ -593,7 +593,7 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 }
 
 .dashboard-tasks__start .ui-commandlink {
-  padding: .5em 2em;
+  padding: .5rem 1rem;
 }
 
 body .ui-datatable tbody tr td.dashboard-tasks__state,
