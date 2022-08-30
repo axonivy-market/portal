@@ -118,6 +118,10 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     return $("a[id='dashboard-title-" + index + "']");
   }
 
+  public SelenideElement getIconByIndex(int index, String icon) {
+    return $("a[id='dashboard-title-" + index + "'] span." + icon);
+  }
+
   public ElementsCollection getWidgets() {
     return $("div[id='dashboard-body']").$$("div.grid-stack-item");
   }
