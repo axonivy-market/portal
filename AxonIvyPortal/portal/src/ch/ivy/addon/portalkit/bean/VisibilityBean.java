@@ -31,4 +31,8 @@ public class VisibilityBean implements Serializable {
     return globalSettingService.findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_BUTTON_ICON) ? iconClass
         : StringUtils.EMPTY;
   }
+
+  public boolean isShowLoginFooter() {
+    return globalSettingService.findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_LOGIN_FOOTER);
+  }
 }

@@ -22,6 +22,7 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
   private NewDashboardPage newDashboardPage;
   private static final String CASE_WIDGET_NAME = "Your New Cases Widget";
   private static final String DASHBOARD_NAME = "New public dashboard";
+  private static final String ICON = "fa-coffee";
   private static final String DASHBOARD_DESCRIPTION = "New public dashboard description";
   private static final List<String> DASHBOARD_PERMISSION = Arrays.asList("Cost Object (CostObject)");
 
@@ -40,7 +41,7 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
   public void testRestorePublishDashboardToScratch() {
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
-    configurationPage.createPublicDashboardFromScratch(DASHBOARD_NAME, DASHBOARD_DESCRIPTION, DASHBOARD_PERMISSION);
+    configurationPage.createPublicDashboardFromScratch(DASHBOARD_NAME, ICON, DASHBOARD_DESCRIPTION, DASHBOARD_PERMISSION);
     verifyEditingDashboardContent(DASHBOARD_NAME, CollectionCondition.empty);
     addNewCaseWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
@@ -54,7 +55,7 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
   public void testRestorePublishDashboardToDefaultTemplate() {
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
-    configurationPage.createPublicDashboardFromTemplate(DASHBOARD_NAME, DASHBOARD_DESCRIPTION, DASHBOARD_PERMISSION, 0);
+    configurationPage.createPublicDashboardFromTemplate(DASHBOARD_NAME, ICON, DASHBOARD_DESCRIPTION, DASHBOARD_PERMISSION, 0);
     verifyEditingDashboardContent(DASHBOARD_NAME, CollectionCondition.size(3));
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.deleteCompactModeProcess();

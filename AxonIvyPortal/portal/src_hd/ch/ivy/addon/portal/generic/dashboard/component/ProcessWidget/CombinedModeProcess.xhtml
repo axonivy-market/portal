@@ -5,7 +5,7 @@
 
 <!-- Action -->
 <h:panelGroup id="process-action" rendered="#{!isReadOnlyMode}" styleClass="process-grid-item__action--combined">
-  <p:commandLink id="edit-widget" styleClass="si si-pencil u-mar-right-15" global="false"
+  <p:commandButton id="edit-widget" styleClass="rounded-button ui-button-outlined u-mar-right-5" global="false" icon="si si-pencil"
     actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
     process="@this" partialSubmit="true"
     update="new-widget-configuration-dialog"
@@ -13,7 +13,7 @@
   <p:tooltip for="edit-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}" trackMouse="true"
     hideEvent="mouseleave click" />
 
-  <p:commandLink id="delete-widget" styleClass="si si-bin-1" global="false"
+  <p:commandButton id="delete-widget" styleClass="rounded-button ui-button-outlined ui-button-danger" global="false" icon="si si-bin-1"
     actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
     process="@this" partialSubmit="true"
     update="remove-widget-dialog" oncomplete="PF('remove-widget-dialog').show()" />
@@ -22,15 +22,15 @@
 </h:panelGroup>
 
 <h:panelGroup id="process-action-read-only" rendered="#{isReadOnlyMode}" styleClass="process-grid-item__action--combined">
-  <p:link id="expand-link"
-        href="#"
-        styleClass="si si-expand-1 expand-link"
+  <p:commandButton id="expand-link" type="button"
+        icon="si si-expand-1"
+        styleClass="rounded-button ui-button-outlined expand-link"
         rendered="#{isReadOnlyMode}"
         onclick="expandFullscreen(#{index}, '#{widget.id}')" />
   
-  <p:link id="collapse-link"
-        href="#"
-        styleClass="si si-shrink-1 collapse-link"
+  <p:commandButton id="collapse-link" type="button"
+        icon="si si-shrink-1"
+        styleClass="rounded-button ui-button-outlined collapse-link"
         rendered="#{isReadOnlyMode}"
         onclick="collapseFullscreen(#{index}, '#{widget.id}')" />
 </h:panelGroup>
@@ -40,7 +40,7 @@
 
   <h:form id="process-item-#{widget.id}" styleClass="ui-g-12 process-grid-item u-padding-0 widget-height-100" target="#{processTarget}">
     <div class="ui-g-12 #{isExpress ? 'express-workflow' : ''} #{isExternalLink ? 'external-link' : ''} combined-process widget-height-100">
-      <h:panelGroup id="process-item" layout="block" styleClass="grid-view-form u-text-align-center Fleft">
+      <h:panelGroup id="process-item" layout="block" styleClass="grid-view-form u-text-align-center">
         <!-- Process Icon -->
         <i id="icon" class="#{iconSelectionBean.generateIconWithFontFamily(widget.process.icon)} process-grid-view__icon process-grid-view__icon--combined"/>
         <!-- Process Name -->
@@ -66,12 +66,12 @@
 
 <h:panelGroup layout="block" class="ui-g-8 ui-sm-12 process-task-case-container" rendered="#{widget.process ne null}" id="process-task-case-container">
   <div class="process-grid-item__related-data-button">
-    <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks')}"
-      styleClass="combined-process-widget__button-tabs first-tab-button #{widget.showCases ? '' : 'active-button-tab'}" process="@this"
-      actionListener="#{widget.setShowCases(false)}" update="#{cc.clientId}:process-task-case-container @this" />
-    <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCases')}"
-      styleClass="combined-process-widget__button-tabs last-tab-button #{not widget.showCases ? '' : 'active-button-tab'}" process="@this"
-      actionListener="#{widget.setShowCases(true)}" update="#{cc.clientId}:process-task-case-container @this" />
+    <p:selectOneButton id="combined-process-widget-button-selection-#{index}" value="#{widget.showCases}" styleClass="combined-process-widget-button-selection">
+      <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks')}" itemValue="false" />
+      <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCases')}" itemValue="true" />
+      <p:ajax update="#{cc.clientId}:process-task-case-container @this" process="@this"
+        listener="#{widget.setShowCases(widget.showCases)}" partialSubmit="true"/>
+    </p:selectOneButton>
   </div>
 
   <h:panelGroup id="process-data-container" layout="block" styleClass="process-data-container">

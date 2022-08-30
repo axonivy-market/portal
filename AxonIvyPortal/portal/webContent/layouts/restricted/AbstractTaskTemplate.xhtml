@@ -15,7 +15,9 @@
         function backToPrevPage(isHistoryBack) {
           if (document.referrer &amp;&amp; isHistoryBack) {
             window.history.back();
-            event.preventDefault();
+            if (event) {
+              event.preventDefault();
+            }
           } else {
             backToCasesList();
           }

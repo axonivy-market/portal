@@ -237,7 +237,8 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void changeDescriptionOfTask(String description) {
-    clickByCssSelector("[id$='task-description-output']");
+    clickByCssSelector("a[id$=':task-detail-description:edit-description-link']");
+    waitForElementDisplayed(By.cssSelector("[id$=':task-detail-description-form:task-description-inplace_content']"), true);
     WebElement taskNameInput = findElementByCssSelector("textarea[id$=':task-description-input']");
     waitForElementDisplayed(taskNameInput, true);
     taskNameInput.clear();
