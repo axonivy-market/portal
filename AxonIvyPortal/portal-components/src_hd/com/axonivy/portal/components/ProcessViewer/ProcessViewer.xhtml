@@ -27,14 +27,15 @@
         </div>
         <div class="ui-xl-11 ui-lg-10 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left u-no-padding-top text-ellipsis">
           <h:outputText id="request-path" value="#{data.webStartable.displayName}" />
-          <p:link id="process-viewer-info-link" styleClass="process-viewer-info-link" href="#">
+          <p:commandLink id="process-viewer-info-link" styleClass="process-viewer-info-link" global="false" process="@this" immediate="true">
             <i class="si si-information-circle" />
-          </p:link>
+          </p:commandLink>
           <p:tooltip for="process-viewer-info-link" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessInfoIconTooltip')}"
             trackMouse="true" hideEvent="mouseleave click"/>
           <p:overlayPanel for="process-viewer-info-link" dynamic="true"
             styleClass="process-viewer-info-panel"
-            onShow="#{logic.loadProcessDetails()}">
+            onShow="#{logic.loadProcessDetails()}"
+            appendTo="@(body)">
             <div class="ui-g process-viewer-info-container">
               <h:outputText styleClass="ui-g-12 u-padding-0 process-information-title" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessDetails')}"/>
               <h:panelGrid columns="2" styleClass="ui-g-12 u-padding-0 process-technical-information-group"
