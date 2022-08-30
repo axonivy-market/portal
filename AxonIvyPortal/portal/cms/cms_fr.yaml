@@ -150,22 +150,22 @@ ch.ivy.addon.portalkit.ui.jsf:
       TUESDAY: MAR
       WEDNESDAY: MER
   MyProfile:
+    CaseList: Liste de cas
+    DateFormat: Format de la date
+    Email: 'Courriel :'
+    FormattingLanguage: Langue de mise en forme
+    General: Généraux
+    Homepage: Page d'accueil
     HomepageSelection:
       fullTaskList: Liste complète des tâches
+    Language: Langue
+    ProcessList: Liste des processus
     SortFieldSelections:
       defaultSortFieldLabel: Champ de tri par défaut
-    caseListConfigDescription: Dans cette zone, vous pouvez configurer la liste des cas en fonction de vos besoins.
-    caseListConfiguration: Configuration de la liste des cas
+    TaskList: Liste des tâches
     defaultOption: Par défaut ({0})
     defaultViewMode: Mode de vue par défaut
-    generalSettingDescription: Dans cette zone, vous pouvez configurer les paramètres en fonction de vos besoins.
-    generalSettings: Paramètres généraux
-    processListConfigDescription: Dans cette zone, vous pouvez configurer la liste des processus en fonction de vos besoins.
-    processListConfiguration: Configuration de la liste des processus
-    selectHomepage: Page d'accueil sélectionnée
     showTutorial: Spectacle de bienvenue
-    taskListConfigDescription: Dans cette zone, vous pouvez configurer la liste des tâches en fonction de vos besoins.
-    taskListConfiguration: Configuration de la liste des tâches
   PortalManagement:
     AdminSetting: Administration
   ProcessViewer:
@@ -212,6 +212,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     globalVariableNote:
       RoleDirectChildrenLimit: 'Le nombre défini contrôle la quantité de rôles d''enfants directs qui est affichée dans l''onglet Gestion des rôles. Nombre valide : 10, 50, 100'
       RoleParentLimit: 'Le nombre défini contrôle la quantité de rôles parents qui est affichée lors du filtrage des rôles dans l''onglet Gestion des rôles. Nombre valide : 5, 10, 20'
+      ShowLoginPageFooter: Pour activer/désactiver l'affichage du pied de page sur la page de connexion.
       behaviourWhenClickingOnLineInTaskList: Pour changer de comportement (exécuter la tâche ou accéder aux détails de la tâche) en cliquant sur une ligne dans la liste des tâches, le widget des tâches du tableau de bord et les tâches liées dans la page des détails du cas.
       chatMaxConnection: Si le nombre de tabs du browser est supérieur à ce nombre maximum, le chat sera désactivé sur les tabs inactifs du browser. Les valeurs valides sont 1, 2, 3, 4, 5.
       chatResponseTimeout: Délai de réponse au chat en secondes, la valeur par défaut est 0 et signifie aucun délai. Si les messages de chat passent par le proxy inverse Nginx, le délai de réponse du chat doit être inférieur au délai de Nginx, par exemple moins de 60 secondes.
@@ -470,7 +471,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     finish: Terminer
     general: Général
     generalInformation: Informations générales
-    globalSearch: Recherche de tâches, de dossiers et de processus
+    globalSearch: Recherche ...
     goToDetail: Aller au détail
     hasPrecondition: Ce processus est soumis à une condition préalable
     height: Hauteur
@@ -815,6 +816,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     dashboardManagement:
       CreateDashboard: Créer un tableau de bord
       addDashboard: Ajouter un tableau de bord
+      dashboardIcon: Icône du tableau de bord
       dashboardPermission: Autorisation du tableau de bord
       dashboardTitle: Titre du tableau de bord
       editDashboard: Modifier le tableau de bord
@@ -893,9 +895,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourProcesses: Vos processus
     yourStatistics: Vos statistiques
     yourTasks: Vos tâches
-  dateFormatConfiguration:
-    dateFormatConfiguration: Configuration du format de la date
-    selectedDateFormat: Format de la date sélectionnée
   documentFiles:
     deleteDocumentNote: '{0} a supprimé(e) {1}'
     deleteSuceed: Le fichier a été supprimé avec succès
@@ -913,7 +912,6 @@ ch.ivy.addon.portalkit.ui.jsf:
   emailSetting:
     dailySummary: Recevoir le résumé quotidien
     eMail: Courriel
-    emailSetting: Paramètres Email
     furtherEmailFromApp: Recevoir d'autres courriels de l'application
     invalidEmailFormat: Format d'e-mail non valide
     mailNotificationOnTaskAssign: Recevoir une notification par courriel sur l'assignation des tâches
@@ -951,6 +949,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     passwordResetEmailSent: Un e-mail vous a été envoyé, comprenant un lien pour la réinitialisation du mot de passe. Veuillez vérifier votre boîte aux lettres électronique.
     passwordResetEmailSubject: Courriel de réinitialisation du mot de passe
     passwordResetSuccess: Votre mot de passe a été modifié avec succès
+    requiredFieldMessage: '{0} est nécessaire'
     setANewPassword: Définir un nouveau mot de passe
     strong: Fort
     userNotFound: Utilisateur non trouvé
@@ -964,11 +963,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     cannotSetEmailLanguage: La langue ne peut pas être définie comme langue de notification par courrier électronique.
     languageSetting: Paramètres de langue
     saveLanguageHasWSErrors: Erreur d'enregistrement de la langue
-    selectedFormattingLanguage: "Choisir la langue de formatage\r\n\r\n"
-    selectedLanguage: Langue choisie
   login:
     AxonIvyPortal: Axon Ivy Portal
-    Copyright: Copyright Ⓒ Axon Ivy
+    Copyright: Copyright Ⓒ Axon Ivy Portal
     PasswordRequiredMessage: Le mot de passe est obligatoire
     UsernameRequiredMessage: Le nom d'utilisateur est obligatoire
     login: Connexion
@@ -1594,6 +1591,9 @@ Labels:
   AppendTheTask: Ajouter la tâche
   InsertTask-Explain: Insérer la tâche. Ma tâche sera reportée.
   InsertTheTask: Insérer la tâche.
+  Login:
+    CompanyName: Axon Ivy Portal
+    Copyright: Copyright Ⓒ Axon Ivy Portal
   Task: Tâche
   TaskItemDetail: Détails de la tâche
   TaskUser-Explain: Liste d’utilisateurs séparés par des virgules

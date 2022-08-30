@@ -76,7 +76,7 @@
 
 .dashboard-header__action {
   padding-right: 0;
-  padding-top: 1rem;
+  padding-top: 0;
 }
 
 .dashboard__body {
@@ -119,8 +119,7 @@
 
 .widget__header {
   flex: 0 0 30px;
-  padding: 20px;
-  padding-bottom: 0;
+  padding: 14px 20px 7px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -274,9 +273,10 @@ body .ui-dialog .ui-dialog-footer .ui-button.dashboard__edit-global-dashboard {
   display: block;
 }
 
-.dashboard-tasks__actions a,
-.dashboard-cases__actions a {
+.dashboard-tasks__actions .action-container,
+.dashboard-cases__actions .action-container {
   margin: 0;
+  justify-content: center;
 }
 
 td.dashboard-tasks__name span,
@@ -292,11 +292,12 @@ td.dashboard-cases__name span {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  max-width: 300px;
 }
 
 .prototype-task-table .default-column {
-	max-width: 300px;
-	width: 300px;
+  max-width: 300px;
+  width: 300px;
 }
 
 .task-configuration.card,
@@ -412,7 +413,9 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 }
 
 .field-add-fieldset__label, .manage-dashboard__label {
-  text-align: right;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .field-add-fieldset__custom-field-type-container, .field-add-fieldset__number-pattern-container {
@@ -420,7 +423,7 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 }
 
 .filter-overlay-panel.ui-widget-content>.ui-overlaypanel-content {
-  width: 600px;
+  max-width: 800px;
   padding: 0;
 }
 
@@ -438,7 +441,7 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 @media screen and (max-width: 40em) {
   .filter-overlay-panel.ui-widget-content .ui-overlaypanel-content,
   .ui-widget-content.info-overlay-panel .ui-overlaypanel-content {
-    width: 65vw;
+    max-width: 85vw;
   }
   
   .saved-filter-node__text {
@@ -590,7 +593,7 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 }
 
 .dashboard-tasks__start .ui-commandlink {
-  padding: .5em 2em;
+  padding: .5rem 1rem;
 }
 
 body .ui-datatable tbody tr td.dashboard-tasks__state,
@@ -611,10 +614,6 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 
 .widget-info__state {
   margin: 2px;
-}
-
-.widget__filter-sidebar-link {
-  position: relative;
 }
 
 .widget__filter-noti-number {
@@ -798,46 +797,6 @@ span.new-widget-dialog__icon.si {
   text-align: center;
 }
 
-.process-grid-item__related-data-button .combined-process-widget__button-tabs {
-  height: 34px;
-  margin: 0;
-  box-sizing: border-box;
-  background: #FFFFFF;
-  border: 1px solid var(--combined-normal-button-tab-border-color);
-  color: var(--combined-normal-button-tab-color);
-  box-shadow: none;
-}
-
-.process-grid-item__related-data-button .combined-process-widget__button-tabs.ui-state-focus {
-  background: var(--combined-button-tab-background-focus);
-  border: var(--item-border-hover);
-  color: var(--combined-active-button-tab-color);
-}
-
-.process-grid-item__related-data-button .combined-process-widget__button-tabs.ui-state-hover {
-  background: var(--combined-button-tab-background-hover);
-  border: var(--item-border-hover);
-  color: var(--combined-active-button-tab-color);
-}
-
-.process-grid-item__related-data-button .combined-process-widget__button-tabs.first-tab-button {
-  border-radius: 8px 0 0 8px;
-  border-right: none;
-}
-
-.process-grid-item__related-data-button .combined-process-widget__button-tabs.last-tab-button {
-  border-radius: 0 8px 8px 0;
-  border-left: none;
-}
-
-.process-grid-item__related-data-button .combined-process-widget__button-tabs.first-tab-button.active-button-tab,
-.process-grid-item__related-data-button .combined-process-widget__button-tabs.last-tab-button.active-button-tab {
-  background: var(--item-background-hover);
-  border: var(--item-border-hover);
-  color: var(--combined-active-button-tab-color);
-  pointer-events: none;
-}
-
 .process-data-container {
   margin-top: 32px;
 }
@@ -993,8 +952,9 @@ span.new-widget-dialog__icon.si {
 
 @media screen and (max-width: 40em) {
   .dashboard-processes-container--combined .process-widget--combined {
-    height: 23rem;
+    height: 30rem;
     margin-top: 0 !important;
+    border-right: 0;
   }
 
   .dashboard-processes-container--combined {
@@ -1105,7 +1065,7 @@ span.new-widget-dialog__icon.si {
   display: inline;
 }
 
-.ui-widget.ui-link.collapse-link {
+.ui-widget.collapse-link {
   display: none;
 }
 
@@ -1113,7 +1073,7 @@ span.new-widget-dialog__icon.si {
   display: none;
 }
 
-.expand-fullscreen .ui-widget.ui-link.collapse-link {
+.expand-fullscreen .ui-widget.collapse-link {
   display: inline;
 }
 
@@ -1123,16 +1083,6 @@ span.new-widget-dialog__icon.si {
 
 .ui-widget.ui-link.expanded-link {
   display: none;
-}
-
-.expand-fullscreen .widget__filter-sidebar-link,
-.expand-fullscreen .widget__info-sidebar-link {
-  display: none;
-}
-
-.expand-fullscreen .widget__filter-sidebar-link.ui-widget.ui-link.expanded-link,
-.expand-fullscreen .widget__info-sidebar-link.ui-widget.ui-link.expanded-link {
-  display: inline;
 }
 
 .widget-configuration.card.custom-widget-configuration,
@@ -1238,4 +1188,8 @@ span.new-widget-dialog__icon.si {
 
 .restore-dashboard-tooltip {
   max-width: 300px;
+}
+
+.dashboard-detail-form {
+  max-width: 850px;
 }
