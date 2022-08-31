@@ -12,15 +12,15 @@
 </cc:interface>
 
 <cc:implementation>
-  <h:form id="login-form" styleClass="login-form">
+  <h:form id="login-form">
     <div class="login-wrapper">
-      <div class="login-panel ui-fluid">
+      <div class="login-panel">
         <div class="login-panel-header">
           <p:graphicImage name="logo" library="ivy-branding"
             alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loginLogo')}" />
         </div>
         <p:focus for="username" />
-        <h4>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/welcomeToPortal')}</h4>
+        <h4>#{cc.attrs.title}</h4>
 
         <p:messages id="login-message" showIcon="false"/>
 
@@ -38,7 +38,7 @@
           oncomplete="if (#{empty data.callbackUrl} === 'true' &amp;&amp; args &amp;&amp; !args.validationFailed) {location.reload()}"
           process="login-form" update="login-form" />
 
-        <h:panelGroup styleClass="forgot-link" rendered="#{forgotPasswordBean.isForgotPasswordRendered()}">
+        <h:panelGroup styleClass="forgot-link" rendered="#{forgotPasswordBean.isForgotPasswordRendered()}" layout="block">
           <p:link id="forgot-password-link" href="#{forgotPasswordBean.getForgotPasswordUrl()}">
             <i class="si si-question-circle u-mar-right-5" />
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/forgotPassword')}" />
