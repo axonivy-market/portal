@@ -552,14 +552,6 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
   height: 53px;
 }
 
-.grid-stack {
-  margin-top: 0;
-  margin-bottom: 2.5em;
-  padding-top: 0;
-  padding-left: 0;
-  padding-right: 0;
-}
-
 .filter-container {
   align-self: flex-start;
 }
