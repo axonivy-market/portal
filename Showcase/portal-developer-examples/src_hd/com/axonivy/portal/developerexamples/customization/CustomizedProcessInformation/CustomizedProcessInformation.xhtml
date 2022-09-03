@@ -46,7 +46,9 @@
       <script>
         function goBack() {
           window.history.back();
-          event.preventDefault();
+          if (event) {
+            event.preventDefault();
+          }
         }
       </script>
     </ui:define>

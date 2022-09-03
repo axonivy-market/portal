@@ -29,7 +29,7 @@ public class LanguageSettingTest extends BaseTest {
     WorkingTaskDialogFromUserProfilePage workingTaskDialogPage = new WorkingTaskDialogFromUserProfilePage();
     workingTaskDialogPage.leaveTask();
     UserProfilePage userProfilePage = new UserProfilePage();
-    assertEquals("Language settings", userProfilePage.getLanguageSettingTitle());
+    assertEquals("Language", userProfilePage.getLanguageSettingTitle());
   }
 
   @Test

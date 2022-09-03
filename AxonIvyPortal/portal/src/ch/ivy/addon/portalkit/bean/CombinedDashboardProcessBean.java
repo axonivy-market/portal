@@ -16,6 +16,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.CombinedProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 
@@ -63,6 +64,7 @@ public class CombinedDashboardProcessBean
   @Override
   public void onChangeDisplayMode() {
     CombinedProcessDashboardWidget newWidget = new CombinedProcessDashboardWidget(dashboardProcessBean.getWidget());
+    newWidget.buildFilterableColumns(DashboardWidgetUtils.initProcessFilterableColumns());
     if (dashboardProcessBean.isCaseMap(newWidget.getProcess())) {
       newWidget.setProcess(null);
       newWidget.setProcessPath(null);

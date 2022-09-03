@@ -24,39 +24,33 @@ public class UserSelectionComponentPage extends TemplatePage {
     return findElementById("item-select-with-ajax-event-component");
   }
   
-  public void selectFirstItemForNormalUserSelectionComponent(String keyword) {
-    click(selectUserComponent("user-by-role-autocomplete", keyword));
+  public String selectFirstItemForNormalUserSelectionComponent(String keyword) {
+    WebElement userElement = selectUserComponent("user-by-role-autocomplete", keyword);
+    click(userElement);
     waitForElementDisplayed(By.cssSelector("span[id$='user-by-role-autocomplete_panel']"), false);
-  }
-  
-  public String getFirstItemForNormalUserSelectionComponent(String keyword) {
-    return selectUserComponent("user-by-role-autocomplete", keyword).getCssValue("data-item-value");
+    return userElement.getCssValue("data-item-value");
   }
   
   public String getNormalUserSelection() {
     return findElementByCssSelector("input[id$='user-by-role-autocomplete_hinput']").getCssValue("value");
   }
   
-  public void selectFirstItemForFloatingLabelUserSelectionComponent(String keyword) {   
-    click(selectUserComponent("all-user-autocomplete", keyword));
+  public String selectFirstItemForFloatingLabelUserSelectionComponent(String keyword) {
+    WebElement userElement = selectUserComponent("all-user-autocomplete", keyword);
+    click(userElement);
     waitForElementDisplayed(By.cssSelector("span[id$='all-user-autocomplete_panel']"), false);
-  }
-  
-  public String getFirstItemForFloatingLabelUserSelectionComponent(String keyword) {   
-    return selectUserComponent("all-user-autocomplete", keyword).getCssValue("data-item-value");
+    return userElement.getCssValue("data-item-value");
   }
   
   public String getFloatingLabelUserSelection() {
     return findElementByCssSelector("input[id$='all-user-autocomplete_hinput']").getCssValue("value");
   }
   
-  public void selectFirstItemForAjaxEventUserSelectionComponent(String keyword) {
-    click(selectUserComponent("item-select-event-for-user-selection", keyword));
+  public String selectFirstItemForAjaxEventUserSelectionComponent(String keyword) {
+    WebElement userElement = selectUserComponent("item-select-event-for-user-selection", keyword);
+    click(userElement);
     waitForElementDisplayed(By.id("form:item-select-event-component:item-select-event-for-user-selection-message_info-detail"), true);
-  }
-  
-  public String getFirstItemForAjaxEventUserSelectionComponent(String keyword) {
-    return selectUserComponent("item-select-event-for-user-selection", keyword).getCssValue("data-item-value");
+    return userElement.getCssValue("data-item-value");
   }
   
   public String getAjaxEventUserSelection() {

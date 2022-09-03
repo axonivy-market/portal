@@ -2,15 +2,19 @@ package ch.ivy.addon.portalkit.dto.dashboard;
 
 import static ch.ivy.addon.portalkit.constant.DashboardConstants.REMOTE_COMMAND_PATTERN;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.SortMeta;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import ch.ivy.addon.portalkit.dto.dashboard.process.ApplicationColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.process.ProcessColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
+import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardProcessSearchCriteria;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
 
@@ -22,18 +26,19 @@ public class ProcessDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private ProcessWidgetMode displayMode;
   @JsonIgnore
+  protected List<ColumnModel> filterableColumns;
+  @JsonIgnore
   private boolean isPreview;
-  private ApplicationColumnModel applicationFilter;
+  @JsonIgnore
+  protected DashboardProcessSearchCriteria criteria;
 
   public ProcessDashboardWidget() {
-    applicationFilter = new ApplicationColumnModel();
-    applicationFilter.initDefaultValue();
+    criteria = new DashboardProcessSearchCriteria();
   }
 
   public ProcessDashboardWidget(ProcessDashboardWidget widget) {
     super(widget);
-    applicationFilter = new ApplicationColumnModel();
-    applicationFilter.initDefaultValue();
+    criteria = widget.getCriteria();
     displayMode = widget.getDisplayMode();
     isPreview = widget.isPreview();
   }
@@ -80,12 +85,36 @@ public class ProcessDashboardWidget extends DashboardWidget {
     return SortFieldUtil.buildSortMeta("name", false);
   }
 
-  public ApplicationColumnModel getApplicationFilter() {
-    return applicationFilter;
+  public List<ColumnModel> getFilterableColumns() {
+    return filterableColumns;
   }
 
-  public void setApplicationFilter(ApplicationColumnModel applicationFilter) {
-    this.applicationFilter = applicationFilter;
+  public void setFilterableColumns(List<ColumnModel> columns) {
+    this.filterableColumns = columns;
   }
 
+  public void buildFilterableColumns(List<ProcessColumnModel> columns) {
+    this.filterableColumns = columns.stream().collect(Collectors.toList());
+  }
+
+  public DashboardProcessSearchCriteria getCriteria() {
+    return criteria;
+  }
+
+  public void setCriteria(DashboardProcessSearchCriteria criteria) {
+    this.criteria = criteria;
+  }
+  
+  @JsonIgnore
+  public void setInConfiguration(boolean isInConfiguration) {
+    this.criteria.setInConfiguration(isInConfiguration);
+  }
+  
+  public List<String> getApplications() {
+    return this.criteria.getApplications();
+  }
+  
+  public void setApplications(List<String> applications) {
+    this.criteria.setApplications(applications);
+  }
 }

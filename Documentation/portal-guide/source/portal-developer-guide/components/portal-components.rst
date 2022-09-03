@@ -588,7 +588,7 @@ You can integrate the Process Viewer component in any page by including followin
 
    .. code-block:: html
 
-      <ic:com.axonivy.portal.components.ProcessViewer processLink="/designer/pro/portal-components-examples/1821592826979C20/showProcessViewerUsingCaseId.ivp" containerStyleClass="process-viewer-container" />
+      <ic:com.axonivy.portal.components.ProcessViewer processLink="/designer/pro/portal-components-examples/182E92730FF57035/start.ivp" containerStyleClass="process-viewer-container" />
 
    .. warning::
       Sub Case (Technical Case) or Express Workflow Process is not supported.

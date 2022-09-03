@@ -152,35 +152,35 @@ public class DashboardCaseSearchCriteria {
       String filterFrom = StringUtils.isNotBlank(userFilterFrom) && !isInConfiguration ? userFilterFrom : configuredFilterFrom;
       String filterTo = StringUtils.isNotBlank(userFilterTo) && !isInConfiguration ? userFilterTo : configuredFilterTo;
       
-      if (StringUtils.equals(DashboardStandardCaseColumn.NAME.getField(), column.getField())) {
+      if (equals(DashboardStandardCaseColumn.NAME, column)) {
         queryName(query, configuredFilter);
         if (!isInConfiguration) {
           queryName(query, userFilter);
         }
-      } else if (StringUtils.equals(DashboardStandardCaseColumn.DESCRIPTION.getField(), column.getField())) {
+      } else if (equals(DashboardStandardCaseColumn.DESCRIPTION, column)) {
         queryDescription(query, configuredFilter);
         if (!isInConfiguration) {
           queryDescription(query, userFilter);
         }
-      } else if (StringUtils.equals(DashboardStandardCaseColumn.STATE.getField(), column.getField())) {
+      } else if (equals(DashboardStandardCaseColumn.STATE, column)) {
         for (String state : filterList) {
           states.add(CaseState.valueOf(state.toUpperCase()));
         }
-      } else if (StringUtils.equals(DashboardStandardCaseColumn.CREATOR.getField(), column.getField())) {
+      } else if (equals(DashboardStandardCaseColumn.CREATOR, column)) {
         queryCreator(query, filterList);
-      } else if (StringUtils.equals(DashboardStandardCaseColumn.OWNER.getField(), column.getField())) {
+      } else if (equals(DashboardStandardCaseColumn.OWNER, column)) {
         queryOwner(query, filterList);
-      } else if (StringUtils.equals(DashboardStandardCaseColumn.CATEGORY.getField(), column.getField())) {
+      } else if (equals(DashboardStandardCaseColumn.CATEGORY, column)) {
         queryCategory(query, filterList);
-      } else if (StringUtils.equals(DashboardStandardCaseColumn.CREATED.getField(), column.getField())) {
+      } else if (equals(DashboardStandardCaseColumn.CREATED, column)) {
         Date from = Dates.parse(filterFrom);
         Date to = Dates.parse(filterTo);
         queryCreatedDate(query, from, to);
-      } else if (StringUtils.equals(DashboardStandardCaseColumn.FINISHED.getField(), column.getField())) {
+      } else if (equals(DashboardStandardCaseColumn.FINISHED, column)) {
         Date from = Dates.parse(filterFrom);
         Date to = Dates.parse(filterTo);
         queryFinishedDate(query, from, to);
-      } else if (StringUtils.equals(DashboardStandardCaseColumn.APPLICATION.getField(), column.getField())) {
+      } else if (equals(DashboardStandardCaseColumn.APPLICATION, column)) {
         queryApplications(query, filterList);
       } else if (column.getFilterType() == DashboardFilterType.SELECTION || CollectionUtils.isNotEmpty(filterList)) {
         queryCustomFieldSelection(query, field, filterList);
@@ -192,6 +192,10 @@ public class DashboardCaseSearchCriteria {
       }
     }
     queryStates(query, states);
+  }
+
+  private boolean equals(DashboardStandardCaseColumn caseColumn, ColumnModel column) {
+    return StringUtils.equals(caseColumn.getField(), column.getField());
   }
 
   private CaseQuery applyFilter(ColumnModel column, String field, String configuredFilter, String userFilter,

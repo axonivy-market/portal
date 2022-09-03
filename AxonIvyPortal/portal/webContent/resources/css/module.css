@@ -27,6 +27,10 @@
  *
  */
 
+.portal-edit-inplace span.ui-inplace-editor {
+  display: inline-block;
+}
+
 .widget-header {
   display: flex;
   flex-flow: row wrap;
@@ -171,20 +175,34 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
 .case-widget .filter-add-container,
 .case-widget .filter-reset-action {
   order: 1000;
-  padding: 5px;
+  margin-right: 5px;
   border-radius: 5px;
+  padding: 0.5rem;
+  outline: 0 none;
+  transition: all .2s;
+  border: solid 1px transparent;
 }
 
-.task-widget .advanced-filter, .case-widget-container .advanced-filter, .case-widget .advanced-filter {
+.task-widget .task-list-actions a,
+.case-widget .case-list-actions a {
+  border: solid 1px transparent;
+}
+
+.task-widget .task-list-actions a,
+.case-widget .case-list-actions a,
+.task-widget .advanced-filter,
+.case-widget-container .advanced-filter,
+.case-widget .advanced-filter {
   display: inline-flex;
   margin-right: 5px;
-  padding-right: 5px;
   position: relative;
   cursor: pointer;
-  height: 30px;
   flex-direction: row;
   align-items: center;
   flex-wrap: nowrap;
+  padding: 0.5rem;
+  outline: 0 none;
+  transition: all .2s;
 }
 
 .task-widget .advanced-filter:hover, .case-widget-container .advanced-filter:hover,
@@ -209,8 +227,6 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
 
 .task-widget .filter-selection-container, .case-widget-container .filter-selection-container {
   display: inline-block;
-  height: 30px;
-  line-height: 30px;
   width: calc(100% - 5px);
 }
 
@@ -582,6 +598,11 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   overflow: auto
 }
 
+.case-description-inplace,
+.task-description-inplace {
+  display: none;
+}
+
 .task-description-inplace .ui-inplace-editor {
   height: 39px;
 }
@@ -589,10 +610,16 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .task-description-inplace.ui-inplace .ui-inplace-content,
 .case-description-inplace.ui-inplace .ui-inplace-content {
   display: flex;
+  padding: 5px;
 }
 
 .case-description-input {
   width: 75%;
+}
+
+.task-description-output,
+.case-description-output {
+  word-break: break-word;
 }
 
 .case-name-input {
@@ -1061,9 +1088,11 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .process-grid-item .process-more-info-link,
-.process-widget .process-more-info-link {
+.process-widget .process-more-info-link,
+.widget-content .process-more-info-link {
   display: block;
   margin-top: 20px;
+  height: 16px;
 }
 
 .process-widget .process-nav .character-container {
@@ -1944,7 +1973,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .task-detail-description {
   display: inline-flex;
-  max-height: 150px;
+  max-height: 160px;
   padding: 0 !important;
 }
 
@@ -1973,10 +2002,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .task-name-input {
   width: calc(100% - 155px);
-}
-
-#task-description .scroll-panel.OvAuto li {
-  list-style-type: inherit;
 }
 
 .no-document-text {
@@ -2636,21 +2661,23 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 /******************************** PROJECT INFO DIALOG ******************************/
 .project-info-dialog {
-  max-width: 800px;
+  max-width: 1000px;
 }
 
-@media screen and (max-width: 40em) {
-  .project-info-dialog {
-    max-width: 96vw;
+.project-info-dialog .project-version-table .project-version {
+  width: 180px;
+}
+
+.project-info-dialog .project-version-table .project-state {
+  width: 120px;
+}
+
+@media screen and (max-width: 64.062em) {
+  .project-info-dialog .project-version-table .project-version,
+  .project-info-dialog .project-version-table .project-state {
+    width: auto;
   }
 }
-
-@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
-  .project-info-dialog, .app-dialog {
-    max-width: 80vw;
-  }
-}
-
 /******************************** END PROJECT INFO DIALOG **************************/
 
 /********************************** ADMIN SETTING **********************************/
@@ -2996,14 +3023,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   float: left;
 }
 
-.my-profile-container .setting-header {
-  margin-bottom: 10px;
-}
-
 .dashboard-configuration__header h2,
 .my-profile-container .setting-header h2 {
   padding: 0;
-  margin-bottom: 8px;
+  margin-bottom: .5rem;
 }
 
 .dashboard-configuration__header span,
@@ -3483,7 +3506,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .chart-list-container .edit-statistic-container {
-  padding-right: 33.5rem;
+  padding-right: 30rem;
   padding-top: 0;
 }
 
@@ -3947,7 +3970,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 /* STYLE FOR STATISTIC FILTER */
 .chart-list-container .filter-container {
-  width: 33.5rem;
+  width: 30rem;
 }
 
 .statistic-filter-container table.ui-selectmanycheckbox.ui-widget label {
@@ -4033,6 +4056,21 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 @media (max-width: 1080px) {
   .confirm-save-setting-button, .cancel-save-setting-button {
     min-width: 125px !important;
+  }
+  .chart-list-container .filter-container {
+    width: 18rem;
+  }
+  .chart-list-container .edit-statistic-container {
+    padding-right: 18rem;
+  }
+}
+
+@media (max-width : 1400px) {
+  .chart-list-container .filter-container {
+    width: 20rem;
+  }
+  .chart-list-container .edit-statistic-container {
+    padding-right: 20rem;
   }
 }
 
@@ -4295,16 +4333,6 @@ _:-ms-fullscreen, :root .content-link-history {
   padding-right: 5px;
 }
 
-.task-widget .task-list-actions a,
-.case-widget .case-list-actions a {
-    padding: 2px 0 0 2px;
-    display: inline-flex;
-    align-items: center;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
 .back-link-container {
   position: absolute;
   padding-top: 0.5em;
@@ -4314,6 +4342,7 @@ _:-ms-fullscreen, :root .content-link-history {
   .task-widget .filter-container .applied-filters-container,
   .case-widget .filter-container .applied-filters-container {
     width: calc(100% - 240px);
+    flex: 1;
   }
   .task-widget .task-export-to-excel-form,
   .task-widget .config-columns-button,
@@ -4342,13 +4371,14 @@ _:-ms-fullscreen, :root .content-link-history {
 
 .filter-selection-form a.ui-commandlink.filter-name {
   width: 100%;
-  height: 30px;
-  line-height: 30px;
   display: inline-block;
-  padding: 0 10px 0 5px;
+  padding: 0.5rem;
+  padding-left: 5px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  outline: none;
+  border-radius: 5px;
 }
 
 .filter-selection-container-group .filter-selection-label {
@@ -4368,14 +4398,6 @@ _:-ms-fullscreen, :root .content-link-history {
 .filter-container .advanced-filter-component {
   margin-top: 10px;
 }
-
-.task-widget .filter-add-container,
-.task-widget .filter-reset-action,
-.case-widget-container .filter-add-container {
-  border: solid 1px transparent;
-  height: 30px;
-}
-
 /* =================== RESPONSIVE ENHANCEMENT ====================== */
 @media screen and (min-width: 40.063em) {
   .ui-md-0 {
@@ -4563,19 +4585,9 @@ _:-ms-fullscreen, :root .content-link-history {
   margin-top: 3px;
 }
 
-.task-name-inplace .ui-button.ui-widget.ui-button-icon-only.ui-inplace-save, .task-priority-form .ui-button.ui-widget.ui-button-icon-only.ui-inplace-save
-  {
-  margin-top: 5px;
-  margin-right: 5px;
-}
-
 .task-business-case {
   margin-top: 0px !important;
   display: inline !important;
-}
-
-.task-details-priority .ui-selectonemenu {
-  padding-right: 1em !important;
 }
 
 .task-details-priority .edit-priority-inplace .ui-inplace-display {
@@ -4623,6 +4635,16 @@ _:-ms-fullscreen, :root .content-link-history {
     height: auto;
   }
 }
+
+.case-document-name a, .task-document-name a {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center; }
+
+.case-document-name .document-name, .task-document-name .document-name {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden; }
 
 /*  =================== END TASK DETAIL PAGE ========================= */
 
@@ -4803,7 +4825,7 @@ body .ui-dialog.ui-widget.export-express-dialog .ui-dialog-titlebar.ui-widget-he
 
 /*=================== BREADCRUMB ===================*/
 body .ui-widget-header.portal-breadcrumb a {
-	outline: none;
+  outline: none;
 }
 
 .layout-topbar .layout-topbar-wrapper .layout-topbar-right .layout-topbar-actions > li.topbar-item.breadcrumb-container {
@@ -4815,14 +4837,14 @@ body .ui-widget-header.portal-breadcrumb a {
 }
 
 .layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu>li.breadcrumb-container {
-	display: flex;
-	float: left;
-	margin-left: 0;
-	line-height: 1.65;
+  display: flex;
+  float: left;
+  margin-left: 0;
+  line-height: 1.65;
 }
 
-.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu>li.breadcrumb-container >form {
-	width: 100%;
+.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu>li.breadcrumb-container>form {
+  width: 100%;
 }
 
 body .ui-widget-header.portal-breadcrumb {
@@ -4831,25 +4853,25 @@ body .ui-widget-header.portal-breadcrumb {
 }
 
 body .ui-widget-header.portal-breadcrumb .ui-menuitem-link.ui-state-disabled {
-	width: 100%;
+  width: 100%;
 }
 
 body .ui-widget-header.portal-breadcrumb .ui-menuitem-link.ui-state-disabled .ui-menuitem-text {
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 body .portal-breadcrumb.ui-breadcrumb ul li {
-	line-height: 2rem;
+  line-height: 2rem;
 }
 
 body .portal-breadcrumb.ui-breadcrumb ul li .has-count {
-	display: inline;
+  display: inline;
 }
 
 .ui-breadcrumb .ui-icon-home:before {
-   display: none;
+  display: none;
 }
 
 body .ui-breadcrumb li:first-child a span {
@@ -5641,8 +5663,8 @@ border-top: 0.14rem dashed;
 }
 
 @media screen and (min-width: 90.063em) {
-  .process-group.image-process-container ..image-process-item,
-  .process-group.grid-process-container ..process-grid-item {
+  .process-group.image-process-container .image-process-item,
+  .process-group.grid-process-container .process-grid-item {
     width: 20%;
   }
 }
@@ -5922,4 +5944,11 @@ a.dashboard-action-container label {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.application-column{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width:90px;
+  padding-right:15px;
 }
