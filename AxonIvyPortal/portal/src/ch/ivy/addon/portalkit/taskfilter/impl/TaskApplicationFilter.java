@@ -63,7 +63,6 @@ public class TaskApplicationFilter extends TaskFilter {
       final List<IApplication> allApps = IApplicationRepository.instance().allOf(ISecurityContext.current());
       for (IApplication app : allApps) {
         if (app.getName().equals(applicationName)) {
-          Ivy.log().error("filter case with app {0}", applicationName);
           filterQuery.or().applicationId().isEqual(app.getId());
         }
       }
