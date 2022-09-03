@@ -5,7 +5,6 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -13,18 +12,15 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.dto.UserDTO;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
-import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
-import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 
@@ -36,18 +32,12 @@ public class DashboardTaskFilterBean {
   private UserDTO selectedUser;
   private List<SecurityMemberDTO> responsibles;
   private TaskDashboardWidget widget;
-  private List<String> applications;
   
   @PostConstruct
   public void init() {
     this.states = TaskUtils.getValidStates();
     this.priorities = Arrays.asList(WorkflowPriority.values());
     this.responsibles = new ArrayList<>();
-    this.applications = IApplicationRepository.instance()
-                        .allOf(ISecurityContext.current())
-                        .stream()
-                        .map(IApplication::getName)
-                        .collect(Collectors.toList());
   }
   
   public void preRender(TaskDashboardWidget widget) {
@@ -132,13 +122,5 @@ public class DashboardTaskFilterBean {
 
   public void setResponsibles(List<SecurityMemberDTO> responsibles) {
     this.responsibles = responsibles;
-  }
-
-  public List<String> getApplications() {
-    return applications;
-  }
-
-  public void setApplications(List<String> applications) {
-    this.applications = applications;
   }
 }

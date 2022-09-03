@@ -71,9 +71,10 @@
         rendered="#{renderFilter}"/>
 
       <span class="u-mar-right-5">
-        <p:badge value="#{widget.userDefinedFiltersCount.get()}"
-          id="filter-sidebar-link-#{index}" visible="#{widget.userDefinedFiltersCount.isPresent()}"
-          rendered="#{renderFilter}">
+        <c:set var="countFilter" value="#{widget.userDefinedFiltersCount.isPresent() ? widget.userDefinedFiltersCount.get():0}"/>
+        <p:badge value="#{countFilter}"
+          id="filter-sidebar-link-#{index}" visible="#{countFilter != 0}"
+          rendered="#{renderFilter}" styleClass="widget__filter-noti-number">
           <p:commandButton type="button" icon="si si-filter-1"
             styleClass="rounded-button widget__filter-sidebar-link ui-button-outlined" />
         </p:badge>
@@ -148,7 +149,7 @@
 
         <div class="ui-g-12 info-overlay-panel__footer">
           <div class="ui-g-12">
-            <p:commandLink styleClass="Fright"
+            <p:commandLink styleClass="Fright info-overlay-panel__close-link"
               onclick="PF('info-overlay-panel-#{index}').hide();"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
               partialSubmit="true" immediate="true" global="false" process="@this"/>

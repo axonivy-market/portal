@@ -38,8 +38,9 @@
     <i class="si si-arrow-down-1" />
   </p:link>
 
-  <p:overlayPanel id="side-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}" for="#{cc.attrs.actionLinkId}" my="left top" at="left bottom" appendTo="@(body)"
-    styleClass="options-panel #{cc.attrs.sideStepsPanelStyleClass}" dynamic="true" rendered="#{!cc.attrs.isDisabled}">
+  <p:overlayPanel id="side-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}" for="#{cc.attrs.actionLinkId}" appendTo="@(body)"
+    styleClass="options-panel #{cc.attrs.sideStepsPanelStyleClass}" dynamic="true" rendered="#{!cc.attrs.isDisabled}"
+    my="left top" at="left bottom">
 
     <p:commandLink id="task-open-detail-command" styleClass="option-item"
       actionListener="#{logic.openDetails(task, dataModel, cc.attrs.inFrame)}" rendered="#{cc.attrs.showDetailOption}">

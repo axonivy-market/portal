@@ -30,6 +30,7 @@ public class CombinedProcessDashboardWidget extends SingleProcessDashboardWidget
     taskDataModel = widget.getTaskDataModel();
     caseDataModel = widget.getCaseDataModel();
     showCases = widget.isShowCases();
+    filterableColumns = widget.getFilterableColumns();
   }
 
   public CombinedProcessDashboardWidget(ProcessDashboardWidget widget) {

@@ -5,13 +5,11 @@ import static ch.ivy.addon.portalkit.enums.ProcessWidgetMode.COMPACT_MODE;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
-import ch.ivy.addon.portalkit.dto.dashboard.process.ProcessColumnModel;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardProcessSearchCriteria;
@@ -28,11 +26,7 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
   @JsonIgnore
   private List<DashboardProcess> displayProcesses;
   @JsonIgnore
-  private List<ColumnModel> filterableColumns;
-  @JsonIgnore
   private Map<ProcessType, Long> processByTypeStatistic;
-  @JsonIgnore
-  private DashboardProcessSearchCriteria criteria;
   @JsonIgnore
   private List<DashboardProcess> originalDisplayProcesses;
   @JsonIgnore
@@ -42,7 +36,6 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
     super(widget);
     setDisplayMode(COMPACT_MODE);
     processPaths = widget.getProcessPaths();
-    criteria = widget.getCriteria();
     displayProcesses = widget.getDisplayProcesses();
     processByTypeStatistic = widget.getProcessByTypeStatistic();
     filterableColumns = widget.getFilterableColumns();
@@ -54,7 +47,6 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
     super(widget);
     setDisplayMode(COMPACT_MODE);
     filterableColumns = new ArrayList<>();
-    criteria = new DashboardProcessSearchCriteria();
     processes = new ArrayList<>();
   }
 
@@ -62,7 +54,6 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
     super();
     setDisplayMode(COMPACT_MODE);
     filterableColumns = new ArrayList<>();
-    criteria = new DashboardProcessSearchCriteria();
     processes = new ArrayList<>();
   }
 
@@ -72,23 +63,6 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
 
   public void setDisplayProcesses(List<DashboardProcess> displayProcesses) {
     this.displayProcesses = displayProcesses;
-  }
-
-  public List<ColumnModel> getFilterableColumns() {
-    return filterableColumns;
-  }
-
-  public void setFilterableColumns(List<ColumnModel> columns) {
-    this.filterableColumns = columns;
-  }
-
-  public void buildFilterableColumns(List<ProcessColumnModel> columns) {
-    this.filterableColumns = columns.stream().collect(Collectors.toList());
-  }
-
-  @JsonIgnore
-  public void setInConfiguration(boolean isInConfiguration) {
-    this.criteria.setInConfiguration(isInConfiguration);
   }
 
   public Map<ProcessType, Long> getProcessByTypeStatistic() {
@@ -116,7 +90,7 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
   public void setCategories(List<String> categories) {
     this.criteria.setCategories(categories);
   }
-
+  
   @Override
   public void onApplyUserFilters() {
     filterProcessesByUser();
