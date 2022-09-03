@@ -40,21 +40,6 @@ body .ui-datatable tbody tr td.ui-editable-column.ui-state-highlight.ui-cell-edi
   .ui-datatable-reflow .ui-reflow-dropdown {
     font-size: var(--large-font-size); } }
 
-/*Layout topbar*/
-.layout-wrapper .layout-main .layout-topbar {
-  z-index: 997; }
-
-@media screen and (max-height: 500px) {
-  .layout-wrapper .layout-main .layout-content {
-    height: 80vh; } }
-
-@media (max-width: 1365px) {
-  .layout-wrapper .layout-topbar .topbar-menu {
-    display: inline; } }
-
-.layout-wrapper .layout-topbar .topbar-menu > li > ul:before {
-  border-bottom: 15px solid var(--primary-color); }
-
 /* Select one list box */
 body .ui-selectonelistbox .ui-selectlistbox-item.ui-state-hover {
   color: var(--hovered-item-select-one-list-box-text-color); }
@@ -263,9 +248,6 @@ body .process-widget .ui-selectbooleanbutton.ui-state-active .ui-icon {
   opacity: 0.65;
   font-size: var(--small-font-size); }
 
-.process-header .process-widget-header-link {
-  font-size: var(--small-font-size); }
-
 /*Style For Task Widget ----------------------------------------------------------------------------------*/
 .filter-selection-form .filter-name:hover,
 .filter-selection-form .filter-name-overlay-panel .user-defined-filter-container .delete-user-defined-filter-command:hover {
@@ -365,7 +347,8 @@ body .statistic-carousel .ui-widget-header.ui-carousel-header {
 /*Style For Buttons --------------------------------------------------------------------------------------*/
 body .portal-cancel-button.ui-widget.ui-button,
 body .ui-inplace-cancel.ui-widget.ui-button {
-  background-color: var(--cancel-button-background-color); }
+  background-color: var(--cancel-button-background-color);
+  border-color: var(--cancel-button-background-color); }
 
 body .portal-cancel-button.ui-widget.ui-button .ui-button-text,
 body .portal-cancel-button.ui-widget.ui-button .ui-icon,
@@ -537,7 +520,7 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 .filter-category-checkbox-tree.ui-tree .ui-treenode .ui-treenode-label,
 .task-widget .advanced-filter, .case-widget .advanced-filter,
 .case-widget-container .advanced-filter {
-  font-size: var(--small-font-size); }
+  font-size: var(--default-font-size); }
 
 .task-widget .advanced-filter,
 .case-widget-container .advanced-filter, .case-widget .advanced-filter {
@@ -763,13 +746,13 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 /* Style for Filter Widget -----------------------------**/
 .task-widget .advanced-filter:hover,
 .case-widget-container .advanced-filter:hover,
-.task-widget .filter-selection-container:hover,
-.case-widget-container .filter-selection-container:hover {
+.task-widget .filter-selection-container .filter-name:hover,
+.case-widget-container .filter-selection-container .filter-name:hover {
   background-color: var(--widget-advanced-filter-hover-backround-color);
   border-color: var(--widget-advanced-filter-hover-border); }
 
-.task-widget .filter-selection-container,
-.case-widget-container .filter-selection-container {
+.task-widget .filter-selection-container .filter-name,
+.case-widget-container .filter-selection-container .filter-name {
   border: solid 1px var(--widget-filter-selection-container-border);
   background: var(--widget-advanced-filter-background-color); }
 
@@ -789,15 +772,6 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 
 .history-note .task-note-link:hover {
   color: var(--task-note-link-hover-color); }
-
-.case-document-name a, .task-document-name a {
-  display: flex;
-  flex-wrap: nowrap; }
-
-.case-document-name .document-name, .task-document-name .document-name {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden; }
 
 .case-document-name .document-size, .task-document-name .document-size {
   opacity: 0.65;

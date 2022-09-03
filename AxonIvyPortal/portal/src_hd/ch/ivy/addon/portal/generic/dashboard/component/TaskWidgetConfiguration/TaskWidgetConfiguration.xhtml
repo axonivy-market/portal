@@ -69,8 +69,8 @@
           
           <h:panelGroup rendered="#{field.field eq 'application'}">
             <ic:ch.ivy.addon.portalkit.component.dashboard.widget.ApplicationFilterColumn field="#{field}"
-              selectedApps="#{field.applications}"
-              appOptions="#{dashboardTaskFilterBean.applications}"/>
+              selectedApps="#{field.filterList}"
+              appOptions="#{field.applications}"/>
           </h:panelGroup>
         </ui:repeat>
       </h:panelGroup>
