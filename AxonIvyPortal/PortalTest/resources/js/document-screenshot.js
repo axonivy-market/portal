@@ -94,7 +94,7 @@ function numberingTaskFilterAndSort() {
 }
 
 function highlightProcessNavigation() {
-  createRedThickOutlineWithOffset($('.ripplelink.PROCESS'));
+  createRedThickOutlineWithOffset($('.layout-menu .PROCESS'));
 }
 
 function highlightAddExternalLink() {
@@ -178,7 +178,7 @@ function highlightUserMenuConfiguration() {
 }
 
 function highlightCaseMenuItem() {
-  createRedThickOutlineWithOffset($('.ripplelink.CASE'));
+  createRedThickOutlineWithOffset($('.layout-menu .CASE'));
 }
 
 function highlightShowMoreNoteLink() {
@@ -186,7 +186,7 @@ function highlightShowMoreNoteLink() {
 }
 
 function highlightStatisticNavigation() {
-   createRedThickOutlineWithOffset($('.ripplelink.STATISTICS'));
+   createRedThickOutlineWithOffset($('.layout-menu .STATISTICS'));
 }
 
 function highlightTaskAnalysisNavigationLink() {
@@ -474,7 +474,7 @@ function highlightTaskActionItem(taskIndex, actionIndex) {
 }
 
 function highlightShowAllProcesses() {
-  createRedThickOutlineWithOffset($('.ripplelink.PROCESS'));
+  createRedThickOutlineWithOffset($('.layout-menu .PROCESS'));
 }
 
 function highlightShowAdditionalLink() {
@@ -521,7 +521,7 @@ function highlightEmailSettings() {
 }
 
 function highlightUserName() {
-  createRedMediumOutline($('#user-settings-menu .user-name'));
+  createRedMediumOutline($('#user-settings-menu'));
 }
 
 function highlightServerInfo() {
@@ -529,7 +529,7 @@ function highlightServerInfo() {
 }
 
 function highlightUserExampleNavigation() {
-  createRedThickOutlineWithOffset($('.ripplelink.CUSTOM'));
+  createRedThickOutlineWithOffset($('.layout-menu .CUSTOM'));
 }
 
 function highlightProcessDisplayModePanel() {

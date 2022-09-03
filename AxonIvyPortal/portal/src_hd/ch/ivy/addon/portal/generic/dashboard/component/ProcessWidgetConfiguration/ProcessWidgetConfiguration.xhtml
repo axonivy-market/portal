@@ -67,15 +67,14 @@
       <!-- Widget Filters -->
       <h:panelGroup id="user-filter" layout="block" styleClass="ui-g-12 u-padding-0">
         <h:panelGroup id="compact-filter" rendered="#{isCompact}">
-          <h:outputLabel value="#{field.field}"></h:outputLabel>
-          <ic:ch.ivy.addon.portalkit.component.dashboard.widget.ApplicationFilterColumn field="#{widget.applicationFilter}"
-            selectedApps="#{widget.applicationFilter.userFilterApplications}" updateComponent="#{cc.clientId}:compact-filter-columns #{cc.clientId}:processes-list"
-            appOptions="#{widget.applicationFilter.userFilterApplicationOptions}" widget="#{widget}"/>
-            
-          <h:panelGroup layout="block"  id="compact-filter-columns">
+          <h:panelGroup layout="block" id="compact-filter-columns">
+          <ui:repeat var="field" value="#{widget.filterableColumns}">
+            <ic:ch.ivy.addon.portalkit.component.dashboard.widget.ApplicationFilterColumn field="#{field}"
+            selectedApps="#{field.filterList}" updateComponent="#{cc.clientId}:compact-filter-columns #{cc.clientId}:processes-list"
+            appOptions="#{field.applications}" widget="#{widget}"/>
+          </ui:repeat>
           
           <ui:repeat var="field" value="#{widget.filterableColumns}">
-              
             <ic:ch.ivy.addon.portalkit.component.dashboard.widget.CategoryFilterColumn field="#{field}"
               displaySelectedCategories="#{field.displayCategories}" configurationMode="true" updateComponent="#{cc.clientId}:processes-list"
               categoryTree="#{field.categoryTree}" categoryNodeSelection="#{field.selectionCategoryNodes}"
@@ -99,9 +98,11 @@
         </h:panelGroup>
 
         <h:panelGroup id="full-filter" rendered="#{isFull}">
-          <ic:ch.ivy.addon.portalkit.component.dashboard.widget.ApplicationFilterColumn field="#{widget.applicationFilter}"
-            selectedApps="#{widget.applicationFilter.userFilterApplications}" updateComponent="#{cc.clientId}:selected-full-process"
-            appOptions="#{widget.applicationFilter.userFilterApplicationOptions}" widget="#{widget}"/>
+          <ui:repeat var="field" value="#{widget.filterableColumns}">
+            <ic:ch.ivy.addon.portalkit.component.dashboard.widget.ApplicationFilterColumn field="#{field}"
+            selectedApps="#{field.filterList}" updateComponent="#{cc.clientId}:selected-full-process"
+            appOptions="#{field.applications}" widget="#{widget}"/>
+          </ui:repeat>
             
           <div class="ui-g-4">
             <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/process')}" for="selected-full-process" />
@@ -121,9 +122,11 @@
         </h:panelGroup>
 
         <h:panelGroup id="combined-filter" rendered="#{isCombined}">
-          <ic:ch.ivy.addon.portalkit.component.dashboard.widget.ApplicationFilterColumn field="#{widget.applicationFilter}"
-            selectedApps="#{widget.applicationFilter.userFilterApplications}" updateComponent="#{cc.clientId}:selected-combined-process"
-            appOptions="#{widget.applicationFilter.userFilterApplicationOptions}" widget="#{widget}"/>
+          <ui:repeat var="field" value="#{widget.filterableColumns}">
+            <ic:ch.ivy.addon.portalkit.component.dashboard.widget.ApplicationFilterColumn field="#{field}"
+            selectedApps="#{field.filterList}" updateComponent="#{cc.clientId}:selected-combined-process"
+            appOptions="#{field.applications}" widget="#{widget}"/>
+          </ui:repeat>
             
           <div class="ui-g-4">
             <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/process')}" for="selected-combined-process" />
@@ -144,9 +147,11 @@
         </h:panelGroup>
         
         <h:panelGroup id="image-filter" rendered="#{isImage}">
-          <ic:ch.ivy.addon.portalkit.component.dashboard.widget.ApplicationFilterColumn field="#{widget.applicationFilter}"
-            selectedApps="#{widget.applicationFilter.userFilterApplications}" updateComponent="#{cc.clientId}:selected-image-process"
-            appOptions="#{widget.applicationFilter.userFilterApplicationOptions}" widget="#{widget}"/>
+          <ui:repeat var="field" value="#{widget.filterableColumns}">
+            <ic:ch.ivy.addon.portalkit.component.dashboard.widget.ApplicationFilterColumn field="#{field}"
+            selectedApps="#{field.filterList}" updateComponent="#{cc.clientId}:selected-image-process"
+            appOptions="#{field.applications}" widget="#{widget}"/>
+          </ui:repeat>
           <div class="ui-g-4">
             <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/process')}" for="selected-image-process" />
           </div>

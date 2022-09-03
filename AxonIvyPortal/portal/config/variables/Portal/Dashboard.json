@@ -41,7 +41,8 @@
             "field": "expiryTimestamp"
           },
           {
-            "field": "category"
+            "field": "category",
+            "visible": false
           },
           {
             "field": "application"
@@ -68,7 +69,8 @@
             "field": "name"
           },
           {
-            "field": "description"
+            "field": "description",
+            "visible": false
           },
           {
             "field": "state"
@@ -80,10 +82,12 @@
             "field": "startTimestamp"
           },
           {
-            "field": "endTimestamp"
+            "field": "endTimestamp",
+            "visible": false
           },
           {
-            "field": "category"
+            "field": "category",
+            "visible": false
           },
           {
             "field": "application"

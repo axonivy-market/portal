@@ -69,7 +69,8 @@
                           oncomplete="PF('absence-dialog').show()"
                           actionListener="#{logic.add}"
                           icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
-                          update="@widgetVar(absence-dialog)"
+                          update="absence-dialog absence-form"
+                          resetValues="true"
                           rendered="#{absenceManagementBean.absencesCreatable || absenceManagementBean.ownAbsencesCreatable}" />
                         <!-- Show on Mobile screen - Only show icon -->
                         <p:commandButton id="add-absence-icon-only"

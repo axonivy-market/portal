@@ -32,16 +32,16 @@ public class AdhocScreenshotTest extends ScreenshotTest {
     String defaultTaskComment1 = "Get approve from CEO";
     String defaultTaskComment2 = "Inform team";
     
+    ScreenshotUtil.resizeBrowser(new Dimension(1200, 580));
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(1);
-    ScreenshotUtil.resizeBrowser(new Dimension(1200, 580));
     taskTemplatePage.clickTaskActionMenu();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "adhoc-start");
     taskTemplatePage.clickOnStartAdhocLink();
     taskTemplatePage.clickAdhocOkButton();
     
     //create tasks in adhoc page
-    ScreenshotUtil.resizeBrowser(new Dimension(1500, 1000));
+    ScreenshotUtil.resizeBrowser(new Dimension(1500, 1200));
     ExpressProcessPage expressPage = new ExpressProcessPage();
     ExpressResponsible responsible = new ExpressResponsible("demo", false);
     List<ExpressResponsible> responsibles = Arrays.asList(responsible);
@@ -54,7 +54,7 @@ public class AdhocScreenshotTest extends ScreenshotTest {
     //first task of adhoc
     DefaultExpresTaskPage defaultExpressTaskPage = new DefaultExpresTaskPage();
     defaultExpressTaskPage.enterTextToDefaultTask(defaultTaskComment1);
-    ScreenshotUtil.resizeBrowser(new Dimension(1500, 580));
+    ScreenshotUtil.resizeBrowser(new Dimension(1500, 600));
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "adhoc-first-task");
     defaultExpressTaskPage.finishDefaultTask();
     
@@ -70,15 +70,14 @@ public class AdhocScreenshotTest extends ScreenshotTest {
     
     new HomePage().isDisplayed();
     taskWidgetPage.filterTasksBy(taskNamePrefix, 1);
+    ScreenshotUtil.resizeBrowser(new Dimension(1500, 800));
     taskWidgetPage.startTask(0);
-    ScreenshotUtil.resizeBrowser(new Dimension(1500, 600));
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "adhoc-process-history");
-    
+    ScreenshotUtil.resizeBrowser(new Dimension(1200, 800));
     if (taskTemplatePage.isAdhocHistoryDialogExist()) {
       taskTemplatePage.closeAdhocHistoryDialog();
     }
     taskTemplatePage.clickTaskActionMenu();
-    ScreenshotUtil.resizeBrowser(new Dimension(1200, 580));
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "adhoc-show-history");
     
   }

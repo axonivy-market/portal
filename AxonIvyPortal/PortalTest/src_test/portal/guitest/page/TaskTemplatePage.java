@@ -199,6 +199,7 @@ public class TaskTemplatePage extends TemplatePage {
 
   public void clickTaskActionMenu() {
     clickByCssSelector("button[id$='horizontal-task-actions']");
+    waitForElementDisplayed(By.cssSelector("[id$=':horizontal-task-action-menu']"), true);
   }
 
   public void clickOnStartAdhocLink() {

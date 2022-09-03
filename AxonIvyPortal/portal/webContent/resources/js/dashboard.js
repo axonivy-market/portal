@@ -71,9 +71,6 @@ function getPortalGridsCurrentRow(widgetType) {
 
 function scrollToWidget(widgetId) {
   let widgetClass = ".js-dashboard-widget-" + widgetId;
-  $(widgetClass);
-  console.log("widget seleted " + $(widgetClass));
-
   let $container = $("#dashboard-body");
   let $scrollTo = $(widgetClass);
   $container.scrollTop(

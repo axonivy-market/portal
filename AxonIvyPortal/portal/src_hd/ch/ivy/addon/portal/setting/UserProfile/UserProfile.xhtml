@@ -21,12 +21,11 @@
             <div class="portal-section-container card">
               <div class="ui-g-12">
                 <div class="setting-header ui-g-12">
-                  <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/generalSettings')}</h2>
-                  <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/generalSettingDescription')}</span>
+                  <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/General')}</h2>
                 </div>
 
                 <div class="ui-g-12 u-no-padding-top">
-                  <span class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/selectHomepage')}</span>
+                  <span class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Homepage')}</span>
                   <div class="ui-g ui-g-12 u-padding-0">
                     <div class="ui-g-6 ui-sm-12 ui-fluid">
                       <p:selectOneMenu id="homepage" value="#{data.selectedHomepage}" converter="pojoConverter">
@@ -47,8 +46,7 @@
               <!-- Process List Setting -->
               <div class="ui-g-12">
                 <div class="setting-header ui-g-12">
-                  <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/processListConfiguration')}</h2>
-                  <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/processListConfigDescription')}</span>
+                  <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/ProcessList')}</h2>
                 </div>
                 <div class="ui-g-12 u-no-padding-top">
                   <span class="ui-g-12">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultViewMode")}</span>
@@ -64,8 +62,7 @@
               <!-- Task List Setting -->
               <div class="ui-g-12">
                 <div class="setting-header ui-g-12">
-                  <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/taskListConfiguration')}</h2>
-                  <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/taskListConfigDescription')}</span>
+                  <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/TaskList')}</h2>
                 </div>
                 <div class="ui-g-12 u-no-padding-top ui-fluid">
                   <span class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/SortFieldSelections/defaultSortFieldLabel')}</span>
@@ -89,8 +86,7 @@
               <!-- Case List Setting -->
               <div class="ui-g-12">
                 <div class="setting-header ui-g-12">
-                  <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/caseListConfiguration')}</h2>
-                  <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/caseListConfigDescription')}</span>
+                  <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/CaseList')}</h2>
                 </div>
                 <div class="ui-g-12 u-no-padding-top ui-fluid">
                   <span class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/SortFieldSelections/defaultSortFieldLabel')}</span>
@@ -117,15 +113,15 @@
           <div class="ui-g-6 ui-lg-6 ui-md-12 ui-sm-12">
             <div class="portal-section-container card">
               <div id="language-setting-container" class="ui-g-12 ui-fluid">
-                <div class="setting-header ui-g-12 u-no-padding-bottom">
-                  <h2 id="language-setting-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/languageSetting')}</h2>
+                <div class="setting-header ui-g-12">
+                  <h2 id="language-setting-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Language')}</h2>
                 </div>
 
                 <div class="ui-g ui-g-12 u-padding-0">
                   <!-- Language Setting -->
-                  <div class="language-selection ui-g-6 ui-sm-12 u-no-padding-top">
+                  <div class="language-selection ui-g-6 ui-sm-12 u-no-padding-top u-no-padding-right">
                     <h:outputText id="language-selection-label" styleClass="language-selection-label ui-g-12"
-                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/selectedLanguage')}" />
+                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Language')}" />
                     <div class="ui-g-12">
                       <p:selectOneMenu id="language-selection" value="#{data.language.userLanguage}">
                         <f:selectItems value="#{data.language.languages}" />
@@ -133,15 +129,16 @@
                     </div>
                   </div>
                   <!-- Format language Setting -->
-                  <div class="language-selection ui-g-6 ui-sm-12 u-no-padding-top">
+                  <div class="language-selection ui-g-6 ui-sm-12 u-no-padding-top u-no-padding-left">
                     <h:outputText id="format-language-selection-label" styleClass="language-selection-label ui-g-12"
-                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/selectedFormattingLanguage')}" />
+                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/FormattingLanguage')}" />
                     <div class="ui-g-12">
                       <p:autoComplete id="format-language-selection" scrollHeight="210" dropdown="true" size="35"
                         completeMethod="#{logic.completeFormattingLanguage}"
                         value="#{data.language.itemFormattingLanguage}" var="language" itemValue="#{language}"
                         itemLabel="#{language.label}" converter="pojoConverter" cache="true" maxResults="100"
-                        moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true"/>
+                        moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true"
+                        appendTo="@(.portal-layout-container)"/>
                     </div>
                   </div>
                 </div>
@@ -150,7 +147,7 @@
               <!-- Email Setting -->
               <div id="email-setting-container" class="email-setting-container ui-g-12">
                 <div class="setting-header ui-g-12">
-                  <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/emailSetting')}</h2>
+                  <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Email')}</h2>
                 </div>
 
                 <div class="ui-g-12 u-no-padding-top">
@@ -183,13 +180,13 @@
 
               <!-- Date format Setting -->
               <div id="date-formatting-setting-container" class="ui-g-12">
-                <div class="setting-header ui-g-12 u-no-padding-bottom">
-                  <h2 id="date-format-configuration-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dateFormatConfiguration/dateFormatConfiguration')}</h2>
+                <div class="setting-header ui-g-12">
+                  <h2 id="date-format-configuration-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/DateFormat')}</h2>
                 </div>
 
                 <div class="date-format-selection ui-g-12 u-no-padding-top">
                   <h:outputText id="date-format-selection-label" styleClass="date-format-selection-label ui-g-12"
-                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dateFormatConfiguration/selectedDateFormat')}" />
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/DateFormat')}" />
                   <div class="ui-g-6 ui-sm-12 ui-fluid">
                     <p:selectOneMenu id="date-format-selection" value="#{data.selectedDateFormat}">
                       <f:selectItems value="#{data.dateFormats}" var="format" itemValue="#{format}"

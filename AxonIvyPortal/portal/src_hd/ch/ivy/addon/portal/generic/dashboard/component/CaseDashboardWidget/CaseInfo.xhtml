@@ -177,6 +177,18 @@
             <span class="category-toggle js-category-toggle ivy-icon si si-subtract-circle" onclick="toggleCategoryInfo(this);" />
           </h:panelGroup>
         </h:panelGroup>
+        
+        <!-- Application -->
+        <h:panelGroup rendered="#{field.field eq 'application'}">
+          <h:panelGroup layout="block" styleClass="ui-g-4" rendered="#{not empty field.filterList}">
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/APPLICATION')}" />
+          </h:panelGroup>
+          <h:panelGroup layout="block" styleClass="ui-g-8 category-panel" rendered="#{not empty field.filterList}">
+            <p:repeat var="selection" value="#{field.filterList}">
+              <h:outputText value="#{selection} " />
+            </p:repeat>
+          </h:panelGroup>
+        </h:panelGroup>
       </ui:repeat>
     </h:panelGroup>
   </h:panelGroup>

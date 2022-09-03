@@ -12,15 +12,15 @@
 </cc:interface>
 
 <cc:implementation>
-  <h:form id="login-form" styleClass="login-form">
+  <h:form id="login-form">
     <div class="login-wrapper">
-      <div class="login-panel ui-fluid">
-        <div class="logo login-panel-header">
-          <p:graphicImage name="logo_small" library="ivy-branding"
+      <div class="login-panel">
+        <div class="login-panel-header">
+          <p:graphicImage name="logo" library="ivy-branding"
             alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loginLogo')}" />
         </div>
         <p:focus for="username" />
-        <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/welcomeToPortal')}</h2>
+        <h4>#{cc.attrs.title}</h4>
 
         <p:messages id="login-message" showIcon="false"/>
 
@@ -38,17 +38,17 @@
           oncomplete="if (#{empty data.callbackUrl} === 'true' &amp;&amp; args &amp;&amp; !args.validationFailed) {location.reload()}"
           process="login-form" update="login-form" />
 
-        <h:panelGroup styleClass="forgot-link" rendered="#{forgotPasswordBean.isForgotPasswordRendered()}">
+        <h:panelGroup styleClass="forgot-link" rendered="#{forgotPasswordBean.isForgotPasswordRendered()}" layout="block">
           <p:link id="forgot-password-link" href="#{forgotPasswordBean.getForgotPasswordUrl()}">
             <i class="si si-question-circle u-mar-right-5" />
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/forgotPassword')}" />
           </p:link>
         </h:panelGroup>
       </div>
-      <div class="login-footer">
-        <h4>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/AxonIvyPortal')}</h4>
-        <h6>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/Copyright')}</h6>
-      </div>
+      <h:panelGroup layout="block" class="login-footer" rendered="#{visibilityBean.showLoginFooter}">
+        <h4>#{ivy.cms.co('/Labels/Login/CompanyName')}</h4>
+        <h6>#{ivy.cms.co('/Labels/Login/Copyright')}</h6>
+      </h:panelGroup>
     </div>
   </h:form>
 </cc:implementation>
