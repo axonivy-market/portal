@@ -16,7 +16,7 @@
   <strong class="ui-g-12 u-no-padding-left">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/SavedFilterHeader')}</strong>
   <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ManageFilter')}"
     styleClass="ui-sm-hidden saved-filter__manage-filter" global="false"
-    onclick="PF('filter-overlay-panel-#{index}').hide(); PF('expanded-filter-overlay-panel-#{index}').hide(); PF('manage-filter-dialog').show(); return false;" />
+    onclick="hideAllDashboardOverlayPanels(); PF('manage-filter-dialog').show();" />
 </div>
 <div class="ui-g-12 ui-fluid">
   <div class="ui-g-12 saved-filter--search-container">

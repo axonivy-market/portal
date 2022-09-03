@@ -6,6 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
+import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.util.ListUtilities;
@@ -53,23 +54,13 @@ public class ApplicationColumnModel extends CaseColumnModel implements Serializa
     this.filterList = applications;
   }
   
-  @JsonIgnore
-  public List<String> getUserFilterApplicationOptions() {
-    return getApplications();
-  }
-  
-  @JsonIgnore
-  public List<String> getUserFilterApplications() {
-    return this.userFilterList;
-  }
-  
-  @JsonIgnore
-  public void setUserFilterApplications(List<String> applications) {
-    this.userFilterList = applications;
-  }
-  
   @Override
   public Boolean getDefaultSortable() {
     return false;
+  }
+  
+  public void updateApplications(CaseDashboardWidget widget) {
+  }
+  public void initializeApplications(CaseDashboardWidget widget) {
   }
 }

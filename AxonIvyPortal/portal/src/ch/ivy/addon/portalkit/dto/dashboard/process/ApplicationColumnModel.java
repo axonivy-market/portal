@@ -55,24 +55,36 @@ public class ApplicationColumnModel extends ProcessColumnModel implements Serial
     this.filterList = applications;
   }
   
-  @JsonIgnore
-  public List<String> getUserFilterApplicationOptions() {
-    return getApplications();
-  }
-  
-  @JsonIgnore
-  public List<String> getUserFilterApplications() {
-    return this.userFilterList;
-  }
-  
-  @JsonIgnore
-  public void setUserFilterApplications(List<String> applications) {
-    this.userFilterList = applications;
-  }
-  
   @Override
   public Boolean getDefaultSortable() {
     return false;
+  }
+  
+  public void initializeApplications(ProcessDashboardWidget widget) {
+    if (widget == null) {
+      return;
+    }
+    if (widget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) { 
+      CompactDashboardProcessBean compactDashboardProcessBean = ManagedBeans.get("compactDashboardProcessBean");
+      if (compactDashboardProcessBean != null) {
+        compactDashboardProcessBean.onChangeApplications(this.filterList);
+      }
+    } else if (widget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE) {
+      CombinedDashboardProcessBean combinedDashboardProcessBean = ManagedBeans.get("combinedDashboardProcessBean");
+      if (combinedDashboardProcessBean != null) {
+        combinedDashboardProcessBean.onChangeApplications(this.filterList);
+      }
+    } else if (widget.getDisplayMode() == ProcessWidgetMode.IMAGE_MODE) {
+      ImageDashboardProcessBean imageDashboardProcessBean = ManagedBeans.get("imageDashboardProcessBean");
+      if (imageDashboardProcessBean != null) {
+        imageDashboardProcessBean.onChangeApplications(this.filterList);
+      }
+    } else if (widget.getDisplayMode() == ProcessWidgetMode.FULL_MODE) {
+      FullDashboardProcessBean fullDashboardProcessBean = ManagedBeans.get("fullDashboardProcessBean");
+      if (fullDashboardProcessBean != null) {
+        fullDashboardProcessBean.onChangeApplications(this.filterList);
+      }
+    }
   }
   
   public void updateApplications(ProcessDashboardWidget widget) {
@@ -82,22 +94,22 @@ public class ApplicationColumnModel extends ProcessColumnModel implements Serial
     if (widget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) { 
       CompactDashboardProcessBean compactDashboardProcessBean = ManagedBeans.get("compactDashboardProcessBean");
       if (compactDashboardProcessBean != null) {
-        compactDashboardProcessBean.onChangeApplications(this.userFilterList);
+        compactDashboardProcessBean.onChangeApplications(this.filterList);
       }
     } else if (widget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE) {
       CombinedDashboardProcessBean combinedDashboardProcessBean = ManagedBeans.get("combinedDashboardProcessBean");
       if (combinedDashboardProcessBean != null) {
-        combinedDashboardProcessBean.onChangeApplications(this.userFilterList);
+        combinedDashboardProcessBean.onChangeApplications(this.filterList);
       }
     } else if (widget.getDisplayMode() == ProcessWidgetMode.IMAGE_MODE) {
       ImageDashboardProcessBean imageDashboardProcessBean = ManagedBeans.get("imageDashboardProcessBean");
       if (imageDashboardProcessBean != null) {
-        imageDashboardProcessBean.onChangeApplications(this.userFilterList);
+        imageDashboardProcessBean.onChangeApplications(this.filterList);
       }
     } else if (widget.getDisplayMode() == ProcessWidgetMode.FULL_MODE) {
       FullDashboardProcessBean fullDashboardProcessBean = ManagedBeans.get("fullDashboardProcessBean");
       if (fullDashboardProcessBean != null) {
-        fullDashboardProcessBean.onChangeApplications(this.userFilterList);
+        fullDashboardProcessBean.onChangeApplications(this.filterList);
       }
     }
 
@@ -110,6 +122,8 @@ public class ApplicationColumnModel extends ProcessColumnModel implements Serial
           ((CategoryColumnModel) column).setSelectionCategoryNodes(null);
         }
       }
+      CompactDashboardProcessBean dashboardProcessBean = ManagedBeans.get("compactDashboardProcessBean");
+      dashboardProcessBean.setPortalCompactProcesses(null);
     } else if (widget instanceof SingleProcessDashboardWidget) {
       ((SingleProcessDashboardWidget) widget).setProcess(null);
     }

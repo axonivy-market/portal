@@ -75,7 +75,6 @@
             "import ch.ivy.addon.portalkit.comparator.NoteComparator;",
             "",
             "in.notes.sort(new NoteComparator());",
-            "",
             "// Responsive table",
             "PrimeFaces.current().executeScript(\"ResponsiveTable.init(':task-note-table')\");"
           ]

@@ -76,6 +76,15 @@ public class NewAbsencePage extends TemplatePage {
   @SuppressWarnings("deprecation")
   public void closeAddAbsenceDialog() {
     clickByCssSelector("a[id*='close-add-absence-dialog']");
+    waitForElementDisplayed(By.cssSelector("[id$='absence-dialog']"), false);
     waitAjaxIndicatorDisappear();
+  }
+
+  public void enterCommentForAbsence(String comment) {
+    waitForElementDisplayed(By.cssSelector("[id$='absence-dialog']"), true);
+    waitForElementDisplayed(By.cssSelector("[id$='absence-form']"), true);
+    clickByJavaScript(findElementByCssSelector("[id$='absence-form:comment']"));
+    WebElement commentInput = findElementByCssSelector("textarea[id*='comment']");
+    commentInput.sendKeys(comment);
   }
 }

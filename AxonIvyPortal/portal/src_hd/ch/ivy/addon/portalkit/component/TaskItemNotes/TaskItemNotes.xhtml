@@ -41,7 +41,7 @@
       </div>
     </div>
 
-    <h:panelGroup id="task-history-content-container" styleClass="ui-g-12 u-padding-0">
+    <h:panelGroup id="task-history-content-container" styleClass="ui-g-12">
       <p:dataTable value="#{data.notes}" var="note" id="task-note-table" paginator="true" widgetVar="task-note-table"
         pageLinks="3" rows="#{cc.attrs.historyWidget.rowPerPage}" rowsPerPageTemplate="5,10,20,50"
         paginatorPosition="bottom" rendered="#{not empty data.notes}"

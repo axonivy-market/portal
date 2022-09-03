@@ -9,6 +9,7 @@ import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.NUMBER;
 import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.STRING;
 import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.TEXT;
 import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.TIMESTAMP;
+import static ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn.APPLICATION;
 import static ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn.CATEGORY;
 import static ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn.ID;
 import static ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn.PRIORITY;
@@ -71,11 +72,8 @@ public class DashboardWidgetUtils {
         break;
       case PROCESS:
         ProcessDashboardWidget processWidget = (ProcessDashboardWidget) widget;
-        if (ProcessWidgetMode.COMPACT_MODE == processWidget.getDisplayMode()) {
-          CompactProcessDashboardWidget compactProcessDashboardWidget = (CompactProcessDashboardWidget) widget;
-          compactProcessDashboardWidget.buildFilterableColumns(initProcessFilterableColumns());
-          buildProcessColumns(compactProcessDashboardWidget);
-        }
+        processWidget.buildFilterableColumns(initProcessFilterableColumns());
+        buildProcessColumns(processWidget);
         break;
       default:
         break;
@@ -83,10 +81,14 @@ public class DashboardWidgetUtils {
     return widget;
   }
 
-  public static ProcessDashboardWidget buildProcessColumns(CompactProcessDashboardWidget processWidget) {
+  
+  public static ProcessDashboardWidget buildProcessColumns(ProcessDashboardWidget processWidget) {
     for (var filter : processWidget.getFilterableColumns()) {
-      if (DashboardStandardProcessColumn.CATEGORY.getField().equalsIgnoreCase(filter.getField())) {
-        filter.setFilterList(processWidget.getCategories());
+      if (DashboardStandardProcessColumn.CATEGORY.getField().equalsIgnoreCase(filter.getField()) && 
+          processWidget instanceof CompactProcessDashboardWidget) {
+        filter.setFilterList(((CompactProcessDashboardWidget)processWidget).getCategories());
+      } else if (DashboardStandardProcessColumn.APPLICATION.getField().equalsIgnoreCase(filter.getField())) {
+        filter.setFilterList(processWidget.getApplications());
       }
     }
     return processWidget;
@@ -334,7 +336,8 @@ public class DashboardWidgetUtils {
       if ((DashboardStandardCaseColumn.STATE.getField().equalsIgnoreCase(col.getField())
           || DashboardStandardCaseColumn.CREATOR.getField().equalsIgnoreCase(col.getField())
           || DashboardStandardCaseColumn.OWNER.getField().equalsIgnoreCase(col.getField())
-          || DashboardStandardCaseColumn.CATEGORY.getField().equalsIgnoreCase(col.getField()))
+          || DashboardStandardCaseColumn.CATEGORY.getField().equalsIgnoreCase(col.getField())
+          || DashboardStandardCaseColumn.APPLICATION.getField().equalsIgnoreCase(col.getField()))
           && CollectionUtils.isNotEmpty(col.getFilterList())) {
         hasPredefinedFilter = true;
       } else {
@@ -356,7 +359,8 @@ public class DashboardWidgetUtils {
       }
       if ((PRIORITY.getField().equalsIgnoreCase(col.getField()) || STATE.getField().equalsIgnoreCase(col.getField())
           || RESPONSIBLE.getField().equalsIgnoreCase(col.getField())
-          || CATEGORY.getField().equalsIgnoreCase(col.getField()))
+          || CATEGORY.getField().equalsIgnoreCase(col.getField())
+          || APPLICATION.getField().equalsIgnoreCase(col.getField()))
           && !CollectionUtils.isEmpty(col.getFilterList())) {
         hasPredefinedFilter = true;
       } else {

@@ -614,7 +614,7 @@ public class CaseLazyDataModel extends LazyDataModel7<ICase> {
     }
     setDisableSelectionCheckboxes(isAutoHideColumns);
   }
-
+  
   /**
    * @hidden
    */
@@ -637,6 +637,7 @@ public class CaseLazyDataModel extends LazyDataModel7<ICase> {
       caseColumnsConfiguration = createNewCaseColumnsConfigurationData();
     }
     service.save(caseColumnsConfiguration);
+    
     initSelectedColumns();
   }
 
