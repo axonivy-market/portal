@@ -185,7 +185,7 @@
           </h:panelGroup>
           <h:panelGroup layout="block" styleClass="ui-g-8 category-panel" rendered="#{not empty field.filterList}">
             <p:repeat var="selection" value="#{field.filterList}">
-              <h:outputText value="#{selection} " />
+              <h:outputText value="#{selection}"/><br/>
             </p:repeat>
           </h:panelGroup>
         </h:panelGroup>
