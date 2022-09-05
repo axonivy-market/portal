@@ -1244,7 +1244,6 @@ span.new-widget-dialog__icon.si {
 
 .welcome-widget-configuration-panel {
   max-width: 70vh;
-  max-height: 60vh;
   overflow: auto;
   padding: 20px;
 }
