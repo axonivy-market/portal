@@ -13,7 +13,7 @@
 
 <cc:implementation>
   <h:form id="login-form">
-    <div class="login-wrapper">
+    <div class="login-wrapper layout-wrapper">
       <div class="login-panel">
         <div class="login-panel-header">
           <p:graphicImage name="logo" library="ivy-branding"
@@ -35,7 +35,7 @@
         <p:commandButton id="login-command" actionListener="#{logic.login}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/login')}"
           icon="#{visibilityBean.generateButtonIcon('si si-login-3')}"
-          oncomplete="if (#{empty data.callbackUrl} === 'true' &amp;&amp; args &amp;&amp; !args.validationFailed) {location.reload()}"
+          oncomplete="if (#{empty data.callbackUrl} === 'true' &amp;&amp; args &amp;&amp; !args.validationFailed) {location.reload()};Portal.changeLogoByThemeMode('#{themeBean.themeMode}');"
           process="login-form" update="login-form" />
 
         <h:panelGroup styleClass="forgot-link" rendered="#{forgotPasswordBean.isForgotPasswordRendered()}" layout="block">

@@ -114,6 +114,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS_VIEWER: Widget del visor de procesos
       STATISTIC: Widget de estadísticas
       TASK: Widget de tareas
+      WELCOME: Widget de bienvenida
     GlobalVariable:
       Option:
         DISPLAY_NAME: Nombre de pantalla
@@ -149,6 +150,17 @@ ch.ivy.addon.portalkit.ui.jsf:
       THURSDAY: Juev.
       TUESDAY: Mart.
       WEDNESDAY: Miérc.
+    WelcomeTextPosition:
+      BOTTOM_LEFT: Esquina inferior izquierda
+      BOTTOM_RIGHT: Esquina inferior derecha
+      CENTER: Centro
+      TOP_LEFT: Esquina superior izquierda
+      TOP_RIGHT: Esquina superior derecha
+    WelcomeTextSize:
+      HEADING_1: Rúbrica 1
+      HEADING_2: Rúbrica 2
+      HEADING_3: Rúbrica 3
+      NORMAL_TEXT: Texto normal
   MyProfile:
     CaseList: Lista de casos
     DateFormat: Formato de la fecha
@@ -210,6 +222,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     embedInFrame: Empezar un proceso o tarea en modo iFrames
     emptySupportedLanguages: No se admiten idiomas adicionales
     globalVariableNote:
+      DefaultThemeMode: El modo de tema por defecto de la aplicación
+      EnableSwitchThemeModeButton: Establecer en true para habilitar el botón de cambio de tema.
       RoleDirectChildrenLimit: 'El número establecido controla la cantidad de roles hijos directos que se muestra en la pestaña de gestión de roles. Número válido: 10, 50, 100'
       RoleParentLimit: 'El número establecido controla la cantidad de roles padre que se muestra al filtrar los roles en la pestaña Gestión de roles. Número válido: 5, 10, 20'
       ShowLoginPageFooter: Para activar/desactivar la visualización del pie de página en la página de acceso.
@@ -397,6 +411,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     CollapseAll: Cerrar todo
     DefaultTemplate: Patrón estandard
     ExpandAll: Abrir todo
+    MoreItemsAvailable: más artículos disponibles
     NoSelection: Sin selección
     ResetToDefaultHeaderText: ¿Restablecer la configuración por defecto?
     RoleUserInformation: Informaciones de rol y usuario
@@ -777,8 +792,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       PlaceholderChartOption: Seleccione un gráfico
       PleaseSelectChart: Seleccione un gráfico
       PreviewText: Seleccione un gráfico para ver los datos del lienzo
+    WelcomeWidgetIntroduction: Este widget muestra un texto y una imagen de bienvenida en el panel de control.
     WidgetFilterName: Nombre del filtro del widget
     WidgetFilters: Filtros de widgets
+    YourWelcomeWidget: Su widget de bienvenida
     actionSelection: Seleccionar acción
     addField: Añadir campo
     addWidget: Añadir widget
@@ -798,6 +815,20 @@ ch.ivy.addon.portalkit.ui.jsf:
       RestoreDefaultDashboardTemplateTooltip: No podemos encontrar la plantilla de su panel de control, por lo que no podemos restablecer la configuración estándar. Por favor, consulte con su administrador para obtener más detalles.
       SelectTheTemplate: Seleccione la plantilla
       SelectYourTemplate: Seleccione su plantilla
+      WelcomeConfigurationDescription: ''
+      WelcomeWidget:
+        DisplayedText: Texto mostrado
+        Greeting:
+          Afternoon: Buenas tardes
+          Evening: Buenas noches
+          Morning: Buenos días
+        Image: Imagen
+        ImageStyleClass: Clase de estilo de imagen
+        ShowGreeting: Mostrar saludo
+        TextPosition: Posición del texto
+        TextSizeAndColor: Tamaño y color del texto
+        Welcome: Bienvenido
+        WelcomeTextStyleClass: Clase de estilo de texto de bienvenida
       configuration: Configuración
       configurationDescription: Puede configurar su widget en esta área de configuración. Por favor, defina los filtros requeridos así como las columnas a mostrar.
       customWidgetParamChangedMessage: Este proceso ha cambiado. Presione aktualizar para continuar.
@@ -1595,6 +1626,10 @@ Labels:
   AdhocWorkflow: Describe tu Flujo de Trabajo
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
   AppendTheTask: Anexar la tarea
+  Enums:
+    ThemeMode:
+      DARK: Oscuro
+      LIGHT: Luz
   InsertTask-Explain: Insertar la tarea. Mi tarea será pospuesta.
   InsertTheTask: Insertar la tarea.
   Login:

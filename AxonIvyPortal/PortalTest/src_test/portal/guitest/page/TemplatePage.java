@@ -416,6 +416,11 @@ public abstract class TemplatePage extends AbstractPage {
     return getText(By.cssSelector("#user-settings-menu .name-after-avatar"));
   }
 
+  public boolean isSwitchThemeLightModeLinkIconPresent() {
+    waitForElementDisplayed(By.cssSelector("#theme-switcher .topbar-icon.pi.pi-sun"), true);
+    return isElementPresent(By.cssSelector("#theme-switcher .topbar-icon.pi.pi-sun"));
+  }
+
   public ChatPage getChat() {
     waitForElementDisplayed(By.id("toggle-chat-panel-command"), true, 5);
     click(findElementById("toggle-chat-panel-command"));
