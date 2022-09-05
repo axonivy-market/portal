@@ -194,7 +194,7 @@ Migrate 9.3 To 9.4
    :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html>` to customize chart, data labels, legend color.
    Refer to :ref:`Default chart colors <customization-default-chart-colors>`.
 
-#. Deploy :download:`portal-migration.iar <documents/portal-migration-9.4.0.iar>` project to your Ivy application and run it by access link
+#. Deploy :download:`portal-migration-9.4.0.iar <documents/portal-migration-9.4-9.4.0.iar>` project to your Ivy application and run it by access link
    ``your_host/your_application/pro/portal-migration/175F92F71BC45295/startMigrateConfiguration.ivp``
 
    .. important::
