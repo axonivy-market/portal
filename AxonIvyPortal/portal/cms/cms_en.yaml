@@ -222,6 +222,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     embedInFrame: Start a process/task in IFrame mode
     emptySupportedLanguages: No additional languages are supported
     globalVariableNote:
+      DefaultThemeMode: The default theme mode of the application
+      EnableSwitchThemeModeButton: Set to true to enable the switch theme button.
       RoleDirectChildrenLimit: 'The set number controls the amount of direct children roles that is shown in Role Management tab. Valid number: 10, 50, 100'
       RoleParentLimit: 'The set number controls the amount of parent roles that is shown when filtering roles in Role Management tab. Valid number: 5, 10, 20'
       ShowLoginPageFooter: For switch on/off the display of the footer on the login page.
@@ -1622,6 +1624,10 @@ Labels:
   AdhocWorkflow: Describe your Workflow
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
+  Enums:
+    ThemeMode:
+      DARK: Dark
+      LIGHT: Light
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
   Login:
