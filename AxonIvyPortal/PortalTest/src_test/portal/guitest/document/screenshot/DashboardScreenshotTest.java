@@ -295,6 +295,29 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.captureElementScreenshot(newDashboardPage.getProcessViewerWidget(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "process-viewer-widget");
   }
 
+  @Test
+  public void screenshotWelcomeWidget() throws IOException {
+    login(TestAccount.ADMIN_USER);
+    updatePortalSetting(SHOW_LEGACY_UI .getKey(), "false");
+    redirectToDashboardConfiguration();
+    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.selectPublicDashboardType();
+    configPage.selectEditPublicDashboards();
+    configPage.configureDashboardByIndex(0);
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForPageLoaded();
+    WaitHelper.assertTrueWithWait(() -> ScreenshotUtil.isDOMStatusComplete());
+    newDashboardPage.waitForTaskWidgetLoading();
+
+    newDashboardPage.clickAddWidget();
+    WebElement newWidgetDialog = newDashboardPage.getAddWidgetDialog();
+    newWidgetDialog.findElement(By.id("new-widget-dialog-content:6:add-widget")).click();
+    DashboardWidgetConfigurationDialogPage configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
+    configurationDialogPage.waitUntilAnimationFinished();
+    ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "welcome-widget-configuration");
+    configurationDialogPage.saveConfiguration();
+  }
+
   private void showNewCustomizedDashboard() {
     updatePortalSetting(SHOW_LEGACY_UI .getKey(), "false");
     redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
