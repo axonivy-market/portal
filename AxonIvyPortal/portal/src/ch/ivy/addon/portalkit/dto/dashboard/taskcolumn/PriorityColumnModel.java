@@ -45,7 +45,7 @@ public class PriorityColumnModel extends TaskColumnModel implements Serializable
 
   @Override
   public String getDefaultStyle() {
-    return TINY_WIDTH;
+    return "width: 50px";
   }
 
   @Override

@@ -19,10 +19,10 @@
     dataModel="#{cc.attrs.dataModel}" dismissableOverlayPanel="false">
     <ic:com.axonivy.portal.components.UserSelection id="worker-component" componentId="worker-select"
       selectedUser="#{cc.attrs.filter.selectedWorker}" size="35"
-      autoCompleteStyleClass="responsible-list-filter">
+      autoCompleteStyleClass="responsible-list-filter" hasCustomizedSelectionList="true">
       <p:column>
         <pc:securityMemberNameAndAvatar
-          displayName="#{cc.attrs.filter.formatName(user)}"
+          displayName="#{cc.attrs.filter.formatName(user)}" isStandAlone="false"
           securityMember="#{user}">
           <f:facet name="alternativeAvatar">
             <h:outputText rendered="#{not avatarBean.isShowAvatar()}" styleClass="si si-single-neutral-actions u-mar-right-5" />

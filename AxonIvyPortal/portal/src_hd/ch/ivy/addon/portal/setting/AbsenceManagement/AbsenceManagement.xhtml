@@ -36,10 +36,10 @@
                       autoCompletePanelStyleClass="ui-g-8 ui-sm-12 ui-fluid"
                       autoCompleteStyleClass="absence-user-selection"
                       scrollHeight="200"
+                      hasCustomizedSelectionList="true"
                       size="35">
                       <p:column>
-                        <pc:securityMemberNameAndAvatar
-                          displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
+                        <pc:securityMemberNameAndAvatar displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
                           securityMember="#{user}" />
                       </p:column>
                       <f:facet name="event">
@@ -69,7 +69,8 @@
                           oncomplete="PF('absence-dialog').show()"
                           actionListener="#{logic.add}"
                           icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
-                          update="@widgetVar(absence-dialog)"
+                          update="absence-dialog absence-form"
+                          resetValues="true"
                           rendered="#{absenceManagementBean.absencesCreatable || absenceManagementBean.ownAbsencesCreatable}" />
                         <!-- Show on Mobile screen - Only show icon -->
                         <p:commandButton id="add-absence-icon-only"

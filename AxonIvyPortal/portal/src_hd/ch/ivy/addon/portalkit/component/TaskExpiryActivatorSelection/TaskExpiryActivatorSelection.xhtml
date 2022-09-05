@@ -48,11 +48,10 @@
             selectedUser="#{data.selectedUser}"
             rendered="#{data.isUserAssigned}"
             completeMethod="#{logic.autoCompleteForUser}"
-            isRenderedMessage="false">
+            isRenderedMessage="false" hasCustomizedSelectionList="true">
             <p:column>
-              <pc:securityMemberNameAndAvatar
-                displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
-                securityMember="#{user}" />
+              <pc:securityMemberNameAndAvatar displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
+                securityMember="#{user}" isStandAlone="false" />
             </p:column>
             <f:facet name="event">
               <p:ajax event="itemSelect" listener="#{data.setIsDisabledAssignButton(false)}" update="#{cc.clientId}:task-escalation-activator-form:assign-task-command" />
@@ -68,10 +67,6 @@
             queryDelay="500"
             completeMethod="#{logic.autoCompleteForRole}"
             isRenderedMessage="false">
-            <p:column>
-              <pc:securityMemberNameAndAvatar
-                displayName="#{role.getDisplayName()}" securityMember="#{role}" />
-            </p:column>
             <f:facet name="event">
               <p:ajax event="itemSelect" listener="#{data.setIsDisabledAssignButton(false)}" update="#{cc.clientId}:task-escalation-activator-form:assign-task-command" />
             </f:facet>
