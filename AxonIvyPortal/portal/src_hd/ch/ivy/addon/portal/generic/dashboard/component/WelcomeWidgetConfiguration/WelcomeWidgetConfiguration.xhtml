@@ -57,6 +57,14 @@
          </div>
 
          <div class="ui-g-3 ui-md-4">
+           <p:outputLabel for="image-style-class" styleClass="welcome-text-label"
+             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/ImageStyleClass')}" />
+         </div>
+         <div class="ui-fluid ui-g-9 ui-md-8 welcome-styles-panel">
+           <p:inputText id="image-style-class" value="#{dashboardWelcomeWidgetConfigurationBean.widget.imageStyleClass}" styleClass="js-image-style-class" onchange="WelcomeWidgetConfiguration.updateStyleClasses();" />
+         </div>
+
+         <div class="ui-g-3 ui-md-4">
            <p:outputLabel for="welcome-text-position" styleClass="welcome-text-label"
              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/TextPosition')}" />
          </div>
@@ -82,6 +90,14 @@
            <p:colorPicker id="welcome-text-color" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeTextColor}"
              styleClass="u-padding-right-10 js-welcome-text-color" onchange="WelcomeWidgetConfiguration.updatePreviewTextColor();" />
            <span id="selected-welcome-text-color" class="js-selected-welcome-text-color" />
+         </div>
+
+         <div class="ui-g-3 ui-md-4">
+           <p:outputLabel for="text-style-class" styleClass="welcome-text-label"
+             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/WelcomeTextStyleClass')}" />
+         </div>
+         <div class="ui-fluid ui-g-9 ui-md-8 welcome-styles-panel">
+           <p:inputText id="text-style-class" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeTextStyleClass}" styleClass="js-text-style-class" onchange="WelcomeWidgetConfiguration.updateStyleClasses();" />
          </div>
 
          <div class="ui-g-3 ui-md-4 u-no-padding-bottom">
