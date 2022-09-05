@@ -169,6 +169,10 @@ public class BaseTest {
     redirectToRelativeLink("portalKitTestHelper/1511A66AF619A768/resetLanguageOfCurrentUser.ivp");
   }
   
+  public void setLanguageOfCurrentUserToGerman() {
+    redirectToRelativeLink("PortalKitTestHelper/17208192E0AF4185/setLanguageOfCurrentUserToGerman.ivp");
+  }
+  
   public void createThirdPartyApp() {
 	  redirectToRelativeLink("PortalKitTestHelper/153CACC26D0D4C3D/createThirdPartyApp.ivp");
     
@@ -230,5 +234,4 @@ public class BaseTest {
     }
     redirectToRelativeLink(String.format(createJSonFileUrl,filepath,key));
   }
-  
 }
