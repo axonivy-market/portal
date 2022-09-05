@@ -40,7 +40,7 @@ Below is a sample JSON definition of a welcome widget in the Portal dashboard
       "imageStyleClass" : "custom-image"
    }
 
-The basic JSON structure of a process viewer widget
+The basic JSON structure of a welcome widget
 
    ``type``: type of widget. Use ``welcome`` for a welcome widget
 
