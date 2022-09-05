@@ -114,6 +114,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS_VIEWER: Process viewer widget
       STATISTIC: Statistic widget
       TASK: Task widget
+      WELCOME: Welcome widget
     GlobalVariable:
       Option:
         DISPLAY_NAME: Display name
@@ -149,6 +150,17 @@ ch.ivy.addon.portalkit.ui.jsf:
       THURSDAY: THU
       TUESDAY: TUE
       WEDNESDAY: WED
+    WelcomeTextPosition:
+      BOTTOM_LEFT: Bottom-left corner
+      BOTTOM_RIGHT: Bottom-right corner
+      CENTER: Center
+      TOP_LEFT: Top-left corner
+      TOP_RIGHT: Top-right corner
+    WelcomeTextSize:
+      HEADING_1: Heading 1
+      HEADING_2: Heading 2
+      HEADING_3: Heading 3
+      NORMAL_TEXT: Normal Text
   MyProfile:
     CaseList: Case list
     DateFormat: Date Format
@@ -210,6 +222,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     embedInFrame: Start a process/task in IFrame mode
     emptySupportedLanguages: No additional languages are supported
     globalVariableNote:
+      DefaultThemeMode: The default theme mode of the application
+      EnableSwitchThemeModeButton: Set to true to enable the switch theme button.
       RoleDirectChildrenLimit: 'The set number controls the amount of direct children roles that is shown in Role Management tab. Valid number: 10, 50, 100'
       RoleParentLimit: 'The set number controls the amount of parent roles that is shown when filtering roles in Role Management tab. Valid number: 5, 10, 20'
       ShowLoginPageFooter: For switch on/off the display of the footer on the login page.
@@ -394,6 +408,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     CollapseAll: Collapse all
     DefaultTemplate: Default template
     ExpandAll: Expand all
+    MoreItemsAvailable: more items available
     NoSelection: No Selection
     ResetToDefaultHeaderText: Reset to default settings?
     RoleUserInformation: Role and User Information
@@ -779,8 +794,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       PlaceholderChartOption: Select a chart
       PleaseSelectChart: Please select a chart
       PreviewText: Please select a chart to see the canvas data
+    WelcomeWidgetIntroduction: This widget displays a welcome text and image on dashboard.
     WidgetFilterName: Widget filter name
     WidgetFilters: Widget filters
+    YourWelcomeWidget: Your Welcome Widget
     actionSelection: Action selection
     addField: Add field
     addWidget: Add widget
@@ -800,6 +817,20 @@ ch.ivy.addon.portalkit.ui.jsf:
       RestoreDefaultDashboardTemplateTooltip: We cannot find the template of your dashboard, so we cannot reset it to the standard configuration. Please check with your administrator for more details!
       SelectTheTemplate: Select the template
       SelectYourTemplate: Select your template
+      WelcomeConfigurationDescription: You can configure your widget in this configuration area. Please define the welcome text and image to be used.
+      WelcomeWidget:
+        DisplayedText: Displayed Text
+        Greeting:
+          Afternoon: Good afternoon
+          Evening: Good evening
+          Morning: Good morning
+        Image: Image
+        ImageStyleClass: Image style class
+        ShowGreeting: Show greeting
+        TextPosition: Text position
+        TextSizeAndColor: Text size and color
+        Welcome: Welcome
+        WelcomeTextStyleClass: Welcome text style class
       configuration: Configuration
       configurationDescription: You can configure your widget in this configuration area. Please define the required filters as well as columns to be shown.
       customWidgetParamChangedMessage: This process has changed. Click on Update to proceed.
@@ -1596,6 +1627,10 @@ Labels:
   AdhocWorkflow: Describe your Workflow
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
+  Enums:
+    ThemeMode:
+      DARK: Dark
+      LIGHT: Light
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
   Login:
