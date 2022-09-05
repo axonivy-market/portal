@@ -3,6 +3,8 @@ package ch.ivy.addon.portalkit.dto.dashboard.casecolumn;
 import java.io.Serializable;
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
@@ -62,5 +64,14 @@ public class ApplicationColumnModel extends CaseColumnModel implements Serializa
   public void updateApplications(CaseDashboardWidget widget) {
   }
   public void initializeApplications(CaseDashboardWidget widget) {
+  }
+  
+  @Override
+  public List<String> getUserFilterListOptions(){
+    if (CollectionUtils.isEmpty(this.userFilterListOptions)) {
+      this.userFilterListOptions = getApplications();
+    }
+    
+    return this.userFilterListOptions;
   }
 }
