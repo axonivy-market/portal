@@ -27,6 +27,7 @@
               <h:panelGroup id="dashboard-configuration-type" styleClass="ui-g-12" layout="block">
                 <ul id="dashboard-type-list" class="dashboard-type-list">
                   <li class="#{isPublicDashboard ? '' : 'active'}" jsf:rendered="#{dashboardConfigurationBean.canEditPrivateDashboard}">
+                    <i class="si si-single-neutral-shield u-mar-right-5"/>
                     <p:commandLink id="private-dashboard-type"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PrivateDashboard')}"
                       actionListener="#{dashboardConfigurationBean.switchDashboardType(false)}"
@@ -34,6 +35,7 @@
                       partialSubmit="true"/>
                   </li>
                   <li class="#{isPublicDashboard ? 'active' : ''}" jsf:rendered="#{dashboardConfigurationBean.canEditPublicDashboard}">
+                    <i class="si si-network-share u-mar-right-5"/>
                     <p:commandLink id="public-dashboard-type"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PublicDashboard')}"
                       actionListener="#{dashboardConfigurationBean.switchDashboardType(true)}"

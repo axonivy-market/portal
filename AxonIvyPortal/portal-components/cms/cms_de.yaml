@@ -84,4 +84,6 @@ Dialogs:
               CASE_MAP: Fall Karte
               IVY_PROCESS: Geschäftsprozess
 Labels:
-  disabledUserPrefix: (inaktiv)
+  DisabledUserPrefix: (inaktiv)
+  NoName: kein Name
+  NotAvailable: N/V

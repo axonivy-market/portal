@@ -19,7 +19,7 @@
   <c:set var="index" value="#{cc.attrs.index}" />
   <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
   <c:set var="isConfigurationMode" value="#{cc.attrs.isConfigurationMode}" />
-  <c:set var="availableFilter" value="#{chart.filter ne null}"/>
+  <c:set var="availableFilter" value="#{isReadOnlyMode and chart.filter ne null}"/>
   <c:set var="disabledDrillDownChart" value="#{isConfigurationMode or !isReadOnlyMode}"/>
   <c:set var="statisticChartScalingInterval" value="#{statisticChartCreationBean.statisticChartScalingInterval}" scope="request"/>
   <c:set var="minimumStatisticChartScalingInterval" value="#{statisticChartCreationBean.minimumStatisticChartScalingInterval}" scope="request"/>
@@ -35,63 +35,44 @@
       <!-- Action -->
       <h:panelGroup id="statistic-chart-action-#{index}" rendered="#{!isConfigurationMode}"
         styleClass="widget__header-actions statistic-chart-action">
-        <p:link id="chart-info-link-#{index}" rendered="#{availableFilter}"
-          styleClass="si si-statistics-daytum u-mar-right-15 widget__info-sidebar-link" href="#"/>
+        <p:commandButton id="chart-info-link-#{index}" type="button" rendered="#{availableFilter}" icon="si si-statistics-daytum"
+          styleClass="rounded-button ui-button-outlined widget__info-sidebar-link u-mar-right-5"/>
         <p:tooltip for="chart-info-link-#{index}" rendered="#{availableFilter}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}"
           trackMouse="true" hideEvent="mouseleave click" />
 
-        <p:link id="expanded-info-sidebar-link-#{index}" href="#"
-          rendered="#{availableFilter}"
-          styleClass="si si-statistics-daytum u-mar-right-15 expanded-link widget__info-sidebar-link" />
-        <p:tooltip for="expanded-info-sidebar-link-#{index}" rendered="#{availableFilter}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}"
-          trackMouse="true" hideEvent="mouseleave click" />
-
-        <p:commandLink id="edit-widget-#{index}" styleClass="si si-pencil u-mar-right-15" global="false"
-          actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}" process="@this"
+        <p:commandButton id="edit-widget-#{index}" styleClass="rounded-button ui-button-outlined u-mar-right-5" icon="si si-pencil"
+          global="false" actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}" process="@this"
           partialSubmit="true" update="new-widget-configuration-dialog"
           oncomplete="PF('new-widget-configuration-dialog').show()" rendered="#{!isReadOnlyMode}" />
         <p:tooltip for="edit-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
           trackMouse="true" hideEvent="mouseleave click" rendered="#{!isReadOnlyMode}" />
 
-        <p:commandLink id="delete-widget-#{index}" styleClass="si si-bin-1" global="false"
+        <p:commandButton id="delete-widget-#{index}" styleClass="rounded-button ui-button-outlined ui-button-danger" icon="si si-bin-1" global="false"
           actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}" process="@this"
           partialSubmit="true" update="remove-widget-dialog" oncomplete="PF('remove-widget-dialog').show()"
           rendered="#{!isReadOnlyMode}" />
         <p:tooltip for="delete-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}"
           trackMouse="true" hideEvent="mouseleave click" rendered="#{!isReadOnlyMode}" />
 
-        <p:link id="expand-link" href="#" styleClass="si si-expand-1 expand-link" rendered="#{isReadOnlyMode}"
-          onclick="expandFullscreen(#{index}, '#{widget.id}')" />
+        <p:commandButton id="expand-link-#{index}" type="button" rendered="#{isReadOnlyMode}" icon="si si-expand-1"
+          styleClass="rounded-button ui-button-outlined expand-link u-mar-right-5"
+          onclick="expandFullscreen(#{index}, '#{widget.id}')"/>
 
-        <p:link id="collapse-link" href="#" styleClass="si si-shrink-1 collapse-link" rendered="#{isReadOnlyMode}"
-          onclick="collapseFullscreen(#{index}, '#{widget.id}')" />
+        <p:commandButton id="collapse-link-#{index}" type="button" rendered="#{isReadOnlyMode}" icon="si si-shrink-1"
+          styleClass="rounded-button ui-button-outlined collapse-link u-mar-right-5"
+          onclick="collapseFullscreen(#{index}, '#{widget.id}')"/>
 
         <p:overlayPanel for="chart-info-link-#{index}" id="info-overlay-panel-#{index}"
-          widgetVar="info-overlay-panel-#{index}" rendered="#{availableFilter}" appendTo="@(#grid-stack)"
+          widgetVar="info-overlay-panel-#{index}" rendered="#{availableFilter}" appendTo="@(body)"
           styleClass="info-overlay-panel js-dashboard-overlay-panel" dismissable="false" dynamic="true">
           <div class="chart-information-container">
             <ic:ch.ivy.addon.portalkit.component.statistic.ChartInformationDialog selectedStatisticChart="#{chart}" />
           </div>
           <div class="ui-g-12 info-overlay-panel__footer">
             <div class="ui-g-12">
-              <p:link styleClass="Fright" href="#" onclick="PF('info-overlay-panel-#{index}').hide();"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" />
-            </div>
-          </div>
-        </p:overlayPanel>
-
-        <p:overlayPanel id="expanded-info-overlay-panel-#{index}" widgetVar="expanded-info-overlay-panel-#{index}"
-          for="expanded-info-sidebar-link-#{index}" rendered="#{availableFilter}"
-          styleClass="info-overlay-panel" dismissable="false" dynamic="true">
-          <div class="chart-information-container">
-            <ic:ch.ivy.addon.portalkit.component.statistic.ChartInformationDialog selectedStatisticChart="#{chart}" />
-          </div>
-          <div class="ui-g-12 info-overlay-panel__footer">
-            <div class="ui-g-12">
-              <p:link styleClass="Fright" href="#" onclick="PF('expanded-info-overlay-panel-#{index}').hide();"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" />
+              <p:commandLink styleClass="Fright" global="false" onclick="PF('info-overlay-panel-#{index}').hide();"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" process="@this" immediate="true"/>
             </div>
           </div>
         </p:overlayPanel>

@@ -16,23 +16,21 @@
     </ui:define>
 
     <ui:define name="content">
-
       <h:form id="form" styleClass="ui-g">
         <div class="ui-g-12 u-padding-0">
           <ic:ch.ivy.gawfs.component.FinishedUserTasksForm id="finished-tasks-component" finishedTasks="#{data.finishedTasks}" />
         </div>
 
         <br />
-        <div class="ui-g-12 u-padding-0 u-text-align-right">
+        <div class="ui-g-12 u-padding-0 u-text-align-right MarTop10">
           <p:commandLink id="cancel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true" update="form"
-            actionListener="#{logic.cancel}" />
+            actionListener="#{logic.cancel}" styleClass="u-mar-right-10"/>
           <p:commandButton id="acknowledged" value="#{ivy.cms.co('/Dialogs/WorkflowExecution/FinalReviewForm/noticed')}" update="form"
             icon="#{visibilityBean.generateButtonIcon('si si-check-1')}" actionListener="#{logic.close}" styleClass="MarLeft10"/>
         </div>
-
       </h:form>
-
     </ui:define>
+
     <ui:define name="css">
       <h:outputStylesheet library="css" name="portal_express.css" />
     </ui:define>

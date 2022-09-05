@@ -1,6 +1,0 @@
-ProcessHistoryComponentData #class
-com.axonivy.portal.developerexamples.customization.ProcessHistoryComponent #namespace
-emptyData Boolean #field
-emptyData PERSISTENT #fieldModifier
-criteria ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria #field
-criteria PERSISTENT #fieldModifier

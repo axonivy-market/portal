@@ -6,7 +6,8 @@
 <h:body>
   <ui:composition template="/layouts/frame-10.xhtml">
     <ui:define name="content">
-      <h:outputStylesheet library="css" name="portal-variables.css" />
+      <h:outputStylesheet library="css" name="portal-root-variables.css" />
+      <h:outputStylesheet library="css" name="portal-variables-#{ivyFreyaTheme.mode}.css" />
       <h:outputStylesheet library="css" name="portal-user-examples.css" />
 
       <div class="ui-g case-map-detail-layout-content">

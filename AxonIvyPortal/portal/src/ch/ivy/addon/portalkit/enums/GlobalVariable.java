@@ -68,8 +68,9 @@ public enum GlobalVariable {
   SHOW_AVATAR("Portal.ShowAvatar",GlobalVariableType.SELECTION,Option.TRUE.toString(),"showAvatar"),
   STATISTIC_CHART_SCALING_INTERVAL("Portal.StatisticChartScalingInterval", GlobalVariableType.NUMBER, "0", "statisticChartScalingInterval"),
   ROLE_DIRECT_CHILDREN_LIMIT("Portal.RoleDirectChildrenLimit", GlobalVariableType.SELECTION, "50", "RoleDirectChildrenLimit", new Object[] { 10, 50, 100}),
-  ROLE_PARENT_LIMIT("Portal.RoleParentLimit", GlobalVariableType.SELECTION, "10", "RoleParentLimit", new Object[] { 5, 10, 20});
-  
+  ROLE_PARENT_LIMIT("Portal.RoleParentLimit", GlobalVariableType.SELECTION, "10", "RoleParentLimit", new Object[] { 5, 10, 20}),
+  SHOW_LOGIN_FOOTER("Portal.LoginPage.ShowFooter", GlobalVariableType.SELECTION, Option.TRUE.toString(), "ShowLoginPageFooter");
+
   private String key;
   private GlobalVariableType type;
   private String defaultValue;
