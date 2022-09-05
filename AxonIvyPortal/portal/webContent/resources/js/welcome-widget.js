@@ -1,10 +1,15 @@
 WelcomeWidgetConfiguration = {
+
+  oldImageStyleClass : '',
+  oldTextStyleClass : '',
+
   init : function(isGreeting) {
     this.loadPreviewImage();
     this.updatePreviewText(isGreeting);
     this.updatePreviewTextPosition();
     this.updatePreviewTextColor();
     this.updatePreviewTextSize();
+    this.updateStyleClasses();
   },
 
   updatePreviewText : function(isGreeting) {
@@ -74,6 +79,24 @@ WelcomeWidgetConfiguration = {
       previewText.removeClass('HEADING_1 HEADING_2 NORMAL_TEXT').addClass('HEADING_3');
       return;
     }
+  },
+
+  updateStyleClasses : function() {
+    var previewDialog = $('#new-widget-configuration-dialog');
+
+    var imageStyleClass = previewDialog.find('.js-image-style-class').get(0).value;
+    var image = previewDialog.find('.js-preview-image').get(0);
+    if (this.oldImageStyleClass == "") {
+      this.oldImageStyleClass = image.className;
+    }
+    image.setAttribute('class', this.oldImageStyleClass + ' ' + imageStyleClass);
+
+    var textStyleClass = previewDialog.find('.js-text-style-class').get(0).value;
+    var welcomeText = previewDialog.find('.js-preview-text').get(0);
+    if (this.oldTextStyleClass == "") {
+      this.oldTextStyleClass = welcomeText.className;
+    }
+    welcomeText.setAttribute('class', this.oldTextStyleClass + ' ' + textStyleClass);
   }
 }
 
@@ -112,7 +135,6 @@ WelcomeWidget = {
         break;
     }
 
-    welcomeTextSize;
     switch(welcomeTextSize) {
       case 'NORMAL_TEXT':
         welcomeText.addClass('NORMAL_TEXT');
@@ -130,7 +152,7 @@ WelcomeWidget = {
         break;
     }
   },
-  
+
   stretchImage : function() {
     $('.js-welcome-widget').each( function() {
       if ($(this).find('.js-welcome-image').get(0).clientHeight < this.clientHeight) {
