@@ -7,13 +7,15 @@ import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.enums.ThemeMode;
+
 import ch.addon.portal.generic.userprofile.homepage.HomepageType;
 import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
 import ch.ivy.addon.portalkit.document.DocumentExtensionConstants;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public enum GlobalVariable {
-  
+
   HIDE_LOGOUT_BUTTON("Portal.UserMenu.HideLogoutMenu", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideLogoutButtonNote"),
   HIDE_CHANGE_PASSWORD_BUTTON("Portal.UserMenu.HideChangePasswordMenu", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideChangePasswordButtonNote"),
   SHOW_ENVIRONMENT_INFO("Portal.ShowEnvironmentInfo", GlobalVariableType.SELECTION, Option.FALSE.toString(), "showEnvironmentInfoNote"),
@@ -69,7 +71,9 @@ public enum GlobalVariable {
   STATISTIC_CHART_SCALING_INTERVAL("Portal.StatisticChartScalingInterval", GlobalVariableType.NUMBER, "0", "statisticChartScalingInterval"),
   ROLE_DIRECT_CHILDREN_LIMIT("Portal.RoleDirectChildrenLimit", GlobalVariableType.SELECTION, "50", "RoleDirectChildrenLimit", new Object[] { 10, 50, 100}),
   ROLE_PARENT_LIMIT("Portal.RoleParentLimit", GlobalVariableType.SELECTION, "10", "RoleParentLimit", new Object[] { 5, 10, 20}),
-  SHOW_LOGIN_FOOTER("Portal.LoginPage.ShowFooter", GlobalVariableType.SELECTION, Option.TRUE.toString(), "ShowLoginPageFooter");
+  SHOW_LOGIN_FOOTER("Portal.LoginPage.ShowFooter", GlobalVariableType.SELECTION, Option.TRUE.toString(), "ShowLoginPageFooter"),
+  ENABLE_SWITCH_THEME_BUTTON("Portal.Theme.EnableSwitchThemeModeButton", GlobalVariableType.SELECTION, Option.TRUE.toString(), "EnableSwitchThemeModeButton"),
+  DEFAULT_THEME_MODE("Portal.Theme.Mode", GlobalVariableType.EXTERNAL_SELECTION, ThemeMode.LIGHT.toString(), "DefaultThemeMode", getThemeModes());
 
   private String key;
   private GlobalVariableType type;
@@ -223,6 +227,14 @@ public enum GlobalVariable {
     Map<String, Object> result = new HashMap<>();
     for (BehaviourWhenClickingOnLineInTaskList behaviour : BehaviourWhenClickingOnLineInTaskList.values()) {
       result.put(behaviour.name(), behaviour);
+    }
+    return result;
+  }
+
+  private static Map<String, Object> getThemeModes() {
+    Map<String, Object> result = new HashMap<>();
+    for (ThemeMode themeMode : ThemeMode.values()) {
+      result.put(themeMode.name(), themeMode);
     }
     return result;
   }
