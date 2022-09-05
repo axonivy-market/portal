@@ -41,11 +41,11 @@
         </li>
 
         <li class="topbar-item themeswitch-item">
-          <p:commandLink id="theme-switcher"
+          <p:commandLink id="theme-switcher" disabled="#{!themeBean.enableSwitchThemeButton}"
             onclick="PrimeFaces.FreyaConfigurator.changeLayout('ivy', '#{ivyFreyaTheme.mode == 'light' ? 'dark' : 'light'}');Portal.changePortalVariableTheme('#{ivyFreyaTheme.mode == 'light' ? 'dark' : 'light'}');">
             <i class="topbar-icon pi pi-#{ivyFreyaTheme.mode == 'light' ? 'moon' : 'sun'}" />
             <p:ajax onstart="PrimeFaces.FreyaConfigurator.beforeResourceChange();"
-              listener="#{ivyFreyaTheme.toggleTheme}" update="theme-switcher" />
+              listener="#{themeBean.toggleTheme()}" update="theme-switcher" />
           </p:commandLink>
         </li>
 
