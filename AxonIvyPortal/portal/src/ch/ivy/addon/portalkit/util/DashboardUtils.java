@@ -130,9 +130,9 @@ public class DashboardUtils {
   }
 
   public static List<Dashboard> collectDashboards() {
-    List<Dashboard> visibleDashboards = DashboardUtils.getAllVisibleDashboardsOfSessionUser();
-    List<DashboardOrder> dashboardOrders = DashboardUtils.getDashboardOrdersOfSessionUser();
-    Map<String, Dashboard> idToDashboard = DashboardUtils.createMapIdToDashboard(visibleDashboards);
+    List<Dashboard> visibleDashboards = getAllVisibleDashboardsOfSessionUser();
+    List<DashboardOrder> dashboardOrders = getDashboardOrdersOfSessionUser();
+    Map<String, Dashboard> idToDashboard = createMapIdToDashboard(visibleDashboards);
     List<Dashboard> collectedDashboards = new ArrayList<>();
     for (DashboardOrder dashboardOrder : dashboardOrders) {
       if (dashboardOrder.getDashboardId() == null) {

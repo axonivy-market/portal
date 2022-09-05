@@ -41,6 +41,7 @@ public class PasswordResetScreenshotTest extends BaseTest {
     passwordResetPage = new PasswordResetPage();
     String newPassword = "a2C!";
     passwordResetPage.resetPassword(newPassword, true);
+    refreshPage();
     ScreenshotUtil.resizeBrowser(new Dimension(1024, 768));
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.FORGOT_PASSWORD + "reset-password-success-screen");
   }

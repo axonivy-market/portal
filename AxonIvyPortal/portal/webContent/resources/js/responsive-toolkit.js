@@ -96,6 +96,10 @@ var PortalLayout = {
     return parseInt($layoutContent.css('padding-top') || 0) + parseInt($layoutContent.css('padding-bottom') || 0);
   },
 
+  getPaddingBottomLayoutContent: function() {
+    return $(".js-layout-content").css('padding-bottom');
+  },
+
   getPaddingRightLayoutContent: function () {
     return $(".js-layout-content").css("padding-right");
   },

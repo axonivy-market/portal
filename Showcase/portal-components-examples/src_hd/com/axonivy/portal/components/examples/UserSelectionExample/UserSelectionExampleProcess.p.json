@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.15",
+  "format" : "9.4.18",
   "id" : "18189B0AEEFA7D89",
   "data" : "com.axonivy.portal.components.examples.UserSelectionExample.UserSelectionExampleData",
   "kind" : "HTML_DIALOG",
@@ -51,8 +51,10 @@
       "type" : "Script",
       "name" : "Init data",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.user.NewUser;",
             "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
             "import java.util.Locale;",
             "import ch.ivyteam.ivy.security.IRole;",
@@ -62,10 +64,10 @@
             "",
             "in.definedRoleNames = Arrays.asList(\"BackendDeveloper\", \"Tester\");",
             "String backendDev1UserName = \"backendDev1\";",
-            "IUser backendDev1 = ivy.wf.getSecurityContext().findUser(backendDev1UserName);",
+            "IUser backendDev1 = ivy.wf.getSecurityContext().users().find(backendDev1UserName);",
             "if (backendDev1 == null) {",
-            "  backendDev1 = ivy.wf.getSecurityContext().createUser(backendDev1UserName, \"Backend Developer 1\", \"\", Locale.GERMAN, \"\", \"\");",
-            "  IRole backendDev = ivy.wf.getSecurityContext().findRole(\"BackendDeveloper\");",
+            "  backendDev1 = ivy.wf.getSecurityContext().users().create(NewUser.create(\"Backend Developer 1\").toNewUser());",
+            "  IRole backendDev = ivy.wf.getSecurityContext().roles().find(\"BackendDeveloper\");",
             "  if (backendDev != null) {",
             "    backendDev1.addRole(backendDev);",
             "  }",

@@ -36,7 +36,7 @@ public class DescriptionColumnModel extends CaseColumnModel implements Serializa
 
   @Override
   public String getDefaultStyle() {
-    return "width: 250px";
+    return "width: 200px";
   }
 
   @Override

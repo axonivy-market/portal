@@ -267,17 +267,7 @@ public class DashboardBean implements Serializable {
   public void onDashboardChange(int index) {
     currentDashboardIndex = index;
     selectedDashboard = dashboards.get(index);
-    storeDashboardInSession(selectedDashboard.getId());
     buildWidgetModels(selectedDashboard);
-  }
-
-  public void onDashboardChangeByDropdown() {
-    if (selectedDashboardId != null) {
-      currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
-      storeDashboardInSession(selectedDashboardId);
-      selectedDashboard = dashboards.get(currentDashboardIndex);
-      buildWidgetModels(selectedDashboard);
-    }
   }
 
   public void startTask(ITask task) throws IOException {
