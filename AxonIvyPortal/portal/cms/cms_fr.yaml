@@ -394,6 +394,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     CollapseAll: Réduire tout
     DefaultTemplate: Modèle standard
     ExpandAll: Ouvrir tout
+    MoreItemsAvailable: plus d'articles disponibles
     NoSelection: Aucune sélection
     ResetToDefaultHeaderText: Réinitialiser les paramètres par défaut ?
     RoleUserInformation: Informations sur le rôle et l'utilisateur
