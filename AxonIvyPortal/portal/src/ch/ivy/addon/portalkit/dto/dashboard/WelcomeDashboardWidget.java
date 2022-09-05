@@ -23,6 +23,8 @@ public class WelcomeDashboardWidget  extends DashboardWidget {
   private String welcomeTextColor;
   private List<DisplayName> welcomeTexts;
   private boolean isGreeting;
+  private String welcomeTextStyleClass;
+  private String imageStyleClass;
 
   @JsonIgnore
   private String welcomeText;
@@ -136,6 +138,22 @@ public class WelcomeDashboardWidget  extends DashboardWidget {
 
   public void setGreeting(boolean isGreeting) {
     this.isGreeting = isGreeting;
+  }
+
+  public String getWelcomeTextStyleClass() {
+    return welcomeTextStyleClass;
+  }
+
+  public void setWelcomeTextStyleClass(String welcomeTextStyleClass) {
+    this.welcomeTextStyleClass = welcomeTextStyleClass;
+  }
+
+  public String getImageStyleClass() {
+    return imageStyleClass;
+  }
+
+  public void setImageStyleClass(String imageStyleClass) {
+    this.imageStyleClass = imageStyleClass;
   }
 
 }
