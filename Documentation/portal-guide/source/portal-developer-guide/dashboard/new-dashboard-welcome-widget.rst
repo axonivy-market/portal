@@ -6,7 +6,7 @@ Configure Welcome Widget
 Define Welcome Widget
 ---------------------
 
-The Welcome widget
+The Welcome widget of the Portal dashboard displays welcome text and an image as background.
 
 Below is a sample JSON definition of a welcome widget in the Portal dashboard
 
