@@ -35,7 +35,9 @@ Below is a sample JSON definition of a welcome widget in the Portal dashboard
       "welcomeTextPosition" : "BOTTOM_LEFT",
       "welcomeTextSize" : "NORMAL_TEXT",
       "welcomeTextColor" : "000000",
-      "greeting" : false
+      "greeting" : false,
+      "welcomeTextStyleClass" : "custom-text",
+      "imageStyleClass" : "custom-image"
    }
 
 The basic JSON structure of a process viewer widget
@@ -89,6 +91,10 @@ The basic JSON structure of a process viewer widget
       ``false``: Welcome text will just displayed the text declared from ``welcomeTexts`` by user's locale.
 
       ``true``: Welcome text will displayed a greeting text together with text declared from ``welcomeTexts`` by user language.
+
+   ``welcomeTextStyleClass``: style class for welcome text.
+
+   ``imageStyleClass``: style class for image.
 
 This widget also support user to upload an image as background.
 This feature only available when user configure widget directly on Portal.
