@@ -145,6 +145,14 @@ var Portal = {
     }
     PrimeFaces.FreyaConfigurator.replaceLink(linkElement, href.replace(currentColor, newLayout));
   },
+ 
+  switchToThemeMode: function(themeMode) {
+    PrimeFaces.FreyaConfigurator.changeLayout('ivy', themeMode);
+  },
+
+  changeLogoByThemeMode: function(themeMode) {
+    PrimeFaces.FreyaConfigurator.changeLogo(themeMode);
+  },
 }
 
 function searchIconByName(element) {
