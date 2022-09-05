@@ -18,6 +18,7 @@ import ch.ivy.addon.portalkit.util.ConfigurationJsonUtil;
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.Variable;
 import portal.guitest.common.WaitHelper;
@@ -43,7 +44,6 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createUserFavoriteProcess);
-    redirectToRelativeLink(createAlphaCompanyUrl);
     redirectToRelativeLink(createTestingCaseMapUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     refreshPage();
@@ -60,11 +60,13 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     
     refreshPage();
     caseWidget.waitUntilCaseFilterDisplayed();
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 600));
     homePage.closeMainMenu();
     caseWidget.openActionStepMenu();
     homePage.waitForLeftMenuActive();
-    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.CASE_WIDGET_FOLDER + "case-key-information", new Dimension(SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT));
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_WIDGET_FOLDER + "case-key-information");
     
+    ScreenshotUtil.maximizeBrowser();
     WebElement saveFilterDialog =  caseWidget.getSaveFilterDialog();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(saveFilterDialog, ScreenshotUtil.CASE_WIDGET_FOLDER + "how-to-create-case-filter", new ScreenshotMargin(100, 200));
   }
@@ -75,18 +77,20 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     homePage.closeMainMenu();
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1400));
     CaseDetailsPage detailsPage = caseWidget.openDetailsOfCaseHasName("Order Pizza");
+    Sleeper.sleep(250); // Need to wait for bread-crumb finished render
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details");
     
     WebElement generalInfor = detailsPage.getGeneralInforBox();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(generalInfor, ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details-data-description", new ScreenshotMargin(50, 10, 10, 10));
     
-    executeDecorateJs("scrollToMiddleOfLayoutContent2()");
     WebElement relatedTask = detailsPage.getRelatedRunningTaskBox();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(relatedTask, ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details-related-tasks-cases", new ScreenshotMargin(10));
+    ScreenshotUtil.captureElementScreenshot(relatedTask, ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details-related-tasks-cases");
     
+    refreshPage();
+    detailsPage.waitForCaseDetailsDisplay();
     WebElement addNote = detailsPage.getAddNoteDialog();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(addNote, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-add-task-note", new ScreenshotMargin(30, 50));
-    detailsPage.addNote("Alpha Company");
+    detailsPage.addNote("Take Order");
     
     WebElement addDocument = detailsPage.getAddAttachmentDialog();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(addDocument, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-attach-document-to-case", new ScreenshotMargin(30, 60));
@@ -101,6 +105,8 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     WebElement histories = detailsPage.getHistoriesBox();
     ScreenshotUtil.captureElementScreenshot(histories, ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details-histories");
     
+    refreshPage();
+    detailsPage.waitForCaseDetailsDisplay();
     WebElement deleteDocument = detailsPage.getDeleteDocumentConfirmDialog();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(deleteDocument, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-delete-an-attachment-from-case", new ScreenshotMargin(100, 200));
     
@@ -213,7 +219,7 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     login(TestAccount.ADMIN_USER);
     caseWidget = homePage.openMainMenu().selectCaseMenu();
     homePage.closeMainMenu();
-    CaseDetailsPage caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Choose Alpha business name");
+    CaseDetailsPage caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Order Pizza");
     caseDetailsPage.waitForCaseDetailsDisplay();
 
     executeDecorateJs("highlightSwitchToEditMode()");
@@ -248,9 +254,9 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     
     homePage = new HomePage();
     caseWidget = homePage.openCaseList();
+    caseWidget.closeMainMenu();
     CaseDetailsPage caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Process With Process Steps");
     caseDetailsPage.waitForCaseDetailsDisplay();
-    caseDetailsPage.closeMainMenu();
     
     executeDecorateJs("highlightProcessOverviewLink()");
     ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.PROCESSES_INFORMATION_WIDGET_FOLDER + "process-overview-link");

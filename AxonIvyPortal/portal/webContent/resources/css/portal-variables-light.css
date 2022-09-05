@@ -8,6 +8,7 @@
   /* Task state color */
   --task-state-open-color: #C9C9C9;
   --task-state-in-progress-color: var(--ivy-tertinary-color-yellow-dark);
+  --task-state-done-color: var(--ivy-primary-color-grey-dark);
   --task-state-reserved-color: rgba(black, 0.4);
   --task-state-system-color: rgba(black, 0.4);
   --task-state-failed-color: #EE4A52;

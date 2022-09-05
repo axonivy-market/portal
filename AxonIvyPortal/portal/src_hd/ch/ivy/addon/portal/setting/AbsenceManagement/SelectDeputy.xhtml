@@ -12,12 +12,11 @@
         <ic:com.axonivy.portal.components.UserSelection id="user-selection-component"
           completeMethod="#{logic.autoCompleteForSubstituteOnApp}"
           selectedUser="#{data.selectedDeputy}" queryDelay="500" isRenderedMessage="false"
-          autoCompletePanelStyleClass="ui-fluid">
+          autoCompletePanelStyleClass="ui-fluid" hasCustomizedSelectionList="true">
           <p:column>
-            <pc:securityMemberNameAndAvatar
-              displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
-              securityMember="#{user}" />
-          </p:column> 
+            <pc:securityMemberNameAndAvatar displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
+              securityMember="#{user}" isStandAlone="false"/>
+          </p:column>
           <f:facet name="event">
             <p:ajax event="itemSelect" update="deputy-selection-form:add-deputy-button" />
           </f:facet>

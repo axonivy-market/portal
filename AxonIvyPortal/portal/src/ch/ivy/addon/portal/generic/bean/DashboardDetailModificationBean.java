@@ -91,6 +91,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   @PostConstruct
   public void initConfigration() {
+    foundTemplate = Optional.empty();
     selectedDashboardId = Attrs.currentContext().getAttribute("#{data.dashboardId}", String.class);
     isPublicDashboard = Attrs.currentContext().getAttribute("#{data.isPublicDashboard}", Boolean.class);
     isReadOnlyMode = false;
@@ -303,7 +304,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         ProcessDashboardWidget processWidget = (ProcessDashboardWidget) this.widget;
         processWidget.setPreview(false);
         if (processWidget.getDisplayMode() == ProcessWidgetMode.FULL_MODE) {
-          updateProcessWidget((SingleProcessDashboardWidget) processWidget, 4, 2);
+          updateProcessWidget((SingleProcessDashboardWidget) processWidget, 6, 2);
         } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE) {
           updateProcessWidget((SingleProcessDashboardWidget) processWidget, 6, 5);
         } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) {
@@ -643,7 +644,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   public String getRestoreDashboardMessage() {
-    if (StringUtils.isBlank(restoreDashboardMessage)) {
+    if (StringUtils.isBlank(restoreDashboardMessage) && Objects.nonNull(foundTemplate)) {
       if (foundTemplate.isPresent()) {
         restoreDashboardMessage = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/RestoreDefaultDashboardMessage",
             Arrays.asList(foundTemplate.get().getTitle()));

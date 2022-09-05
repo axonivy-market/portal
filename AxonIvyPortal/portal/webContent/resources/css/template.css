@@ -13,16 +13,16 @@
   bottom: 0;
 }
 
-/* .portal-layout-container { */
-/*   overflow-y: auto; */
-/* } */
-
 #portal-environment {
   text-align: right;
 }
 
 #logo>img {
   margin: 5px 0 0 0px;
+}
+
+.login-panel-header {
+  margin-bottom: 50px;
 }
 
 a.left-sidebar-menu-icon {
@@ -140,6 +140,10 @@ a.left-sidebar-menu-icon {
   border: 0;
 }
 
+.task-frame>html {
+  padding-right: 18px;
+}
+
 .case-information-frame {
   position: absolute;
   height: 100%;
@@ -184,8 +188,8 @@ a.left-sidebar-menu-icon {
 }
 
 /* APPLICATION MENU */
-.layout-wrapper.layout-static .menu-wrapper .sidebar-logo .portal-home-logo-small,  .layout-wrapper .menu-wrapper.layout-sidebar-active .sidebar-logo .portal-home-logo-small
-  {
+.layout-wrapper.layout-static .menu-wrapper .sidebar-logo .portal-home-logo-small,
+.layout-wrapper .menu-wrapper.layout-sidebar-active .sidebar-logo .portal-home-logo-small {
   display: none;
   -moz-transition: visibility 0.2s;
   -o-transition: visibility 0.2s;
@@ -330,16 +334,6 @@ a.left-sidebar-menu-icon {
   max-height: 150px;
   overflow: auto;
 }
-
-/* SERENITY MAIN LAYOUT */
-.layout-wrapper {
-  -webkit-overflow-scrolling: touch;
-}
-
-.layout-wrapper .layout-main.margin-left-0 {
-  margin-left: 0px;
-}
-/* END SERENITY MAIN LAYOUT */
 /* =================== FRAME ========================= */
 .request-frame {
   width: 100%;

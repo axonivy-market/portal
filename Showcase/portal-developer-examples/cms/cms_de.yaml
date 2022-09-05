@@ -117,13 +117,6 @@ Dialogs:
                   IsRequired: Pflichtfeld
                   Representation: Vertretung
                   To: Bis
-  com.axonivy.portal.developerexamples:
-    LeaveRequestForm:
-      Employee: Mitarbeiter
-      From: Von
-      IsRequired: Pflichtfeld
-      Representation: Vertretung
-      To: Bis
 Labels:
   address: Strasse/Hausnr.
   cancel: Abbrechen
@@ -158,13 +151,6 @@ Processes:
       Ergebnis zur Kenntnis nehmen
   CreateInvestment:
     name: Investition anlegen
-  ProcessHistoryComponent:
-    AlphaCompany:
-      name: Aufgabe für Firma Alpha
-    ProcessHistoryOfAlphaCompany:
-      name: Verlauf von Firma Alpha ansehen
-    ProcessHistoryOfAlphaCompanyInDialog:
-      name: Prozessverlauf für Firma Alpha im Dialog anzeigen
 sortFields:
   CREATION_TIME_ASC: Erstellungsdatum (Ältestes zuerst)
   CREATION_TIME_DESC: Erstellungsdatum (Neuestes zuerst)

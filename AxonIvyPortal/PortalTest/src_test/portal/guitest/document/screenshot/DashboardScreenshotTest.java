@@ -158,8 +158,8 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     WebElement userField = newDashboardPage.findElementById("widget-configuration-form:new-widget-configuration-component:parammeters:0:param-user-:user-selection_input");
     newDashboardPage.type(userField, "demo");
     newDashboardPage.waitForElementDisplayed(By.id("widget-configuration-form:new-widget-configuration-component:parammeters:0:param-user-:user-selection_panel"), true);
-    newDashboardPage.click(By.xpath("//*[@id='widget-configuration-form:new-widget-configuration-component:parammeters:0:param-user-:user-selection_panel']/ul/li"));
-
+    newDashboardPage.click(By.xpath("//*[@id='widget-configuration-form:new-widget-configuration-component:parammeters:0:param-user-:user-selection_panel']/table/tbody/tr"));
+    Sleeper.sleep(300); // wait for datepicker and autocomplete selection hide
     ScreenshotUtil.captureElementScreenshot(newDashboardPage.getConfigurationDialog(), ScreenshotUtil.DASHBOARD_FOLDER + "process-custom-widget-configuration");
   }
 
@@ -184,7 +184,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     taskInfoOverlayPanel.findElement(By.className("widget-info-type--label")).click();
     newDashboardPage.waitForWidgetInfoLoading(taskInfoOverlayPanel);
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskInfoOverlayPanel, ScreenshotUtil.NEW_DASHBOARD_FOLDER + "widget-info", new ScreenshotMargin(20));
-    taskInfoOverlayPanel.findElement(By.className("info-overlay-panel__footer")).findElement(By.className("ui-link")).click();
+    taskInfoOverlayPanel.findElement(By.className("info-overlay-panel__footer")).findElement(By.className("info-overlay-panel__close-link")).click();
 
     // Take screenshot of Edit dashboard page
     redirectToDashboardConfiguration();
