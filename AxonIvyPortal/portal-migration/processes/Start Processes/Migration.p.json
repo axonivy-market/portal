@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.18",
   "id" : "175F92F71BC45295",
   "data" : "portalmigration.Data",
   "elements" : [ {
@@ -90,14 +90,10 @@
     }, {
       "id" : "f2",
       "type" : "ProcessAnnotation",
-      "name" : [
-        "**This is migration process for Portal configuration**",
-        "Details in the stories: IVYPORTAL-12037, IVYPORTAL-12210"
-      ],
+      "name" : "**This is migration process for Portal configuration**",
       "visual" : {
         "at" : { "x" : 272, "y" : 88 },
-        "size" : { "width" : 384, "height" : 44 },
-        "labelOffset" : { "x" : -186, "y" : -18 }
+        "size" : { "width" : 384, "height" : 44 }
       }
     } ]
 }
