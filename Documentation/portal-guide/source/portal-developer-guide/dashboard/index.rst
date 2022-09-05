@@ -118,6 +118,7 @@ They will help you understand how to configure the widget efficiency.
    new-dashboard-statistic-widget
    new-dashboard-custom-widget
    new-dashboard-process-viewer-widget
+   new-dashboard-welcome-widget
 
 .. tip:: 
    To get an understanding of the JSON structure of the custom dashboard,
