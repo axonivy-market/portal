@@ -95,12 +95,12 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void clickWidgetFilter(int index) {
-    findElementByCssSelector("a[id$='filter-sidebar-link-" + index + "']").click();
+    findElementByCssSelector("[id$='filter-sidebar-link-" + index + "']").click();
     waitForElementDisplayed(By.cssSelector("div[id$=':filter-form-" + index + ":widget-filter-content']"), true);
   }
 
   public void clickWidgetInfo(int index) {
-    findElementByCssSelector("a[id$='info-sidebar-link-" + index + "']").click();
+    findElementByCssSelector("[id$='info-sidebar-link-" + index + "']").click();
     waitForElementDisplayed(By.cssSelector("div[id$=':info-overlay-panel-" + index + "']"), true);
   }
 

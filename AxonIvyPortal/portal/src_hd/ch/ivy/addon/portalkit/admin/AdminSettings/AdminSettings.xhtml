@@ -69,11 +69,6 @@
             </p:column>
           </p:dataTable>
         </h:panelGroup>
-
-        <p:blockUI block="applicationPanel" trigger="applicationTable">
-          #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/loading")}<br />
-          <p:graphicImage name="images/loader/ajax-loader.gif" />
-        </p:blockUI>
       </h:form>
     </p:tab>
 
@@ -229,7 +224,7 @@
                   <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
                     icon="#{visibilityBean.generateButtonIcon('si si-chat-translate')}" process="appDisplayName3rd "
                     styleClass="app-setting-button"
-                    update=":#{p:resolveFirstComponentWithId('appDisplayName3rd', view).clientId} appDialogForm :#{p:resolveFirstComponentWithId('applicationName', view).clientId}"
+                    update=":#{p:resolveFirstComponentWithId('appDisplayName3rd', view).clientId} :#{p:resolveFirstComponentWithId('applicationName', view).clientId} messages"
                     actionListener="#{logic.getLanguageList}"
                     oncomplete="if (!args.validationFailed)PF('applicationName').show();">
                     <f:param name="skipDisplayNameInputValidation" value="true" />

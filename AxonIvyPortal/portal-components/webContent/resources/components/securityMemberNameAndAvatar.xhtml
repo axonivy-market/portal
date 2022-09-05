@@ -5,20 +5,22 @@
 
 <cc:interface>
   <cc:attribute name="isShowAvatar" default="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}" />
+  <cc:attribute name="id" />
   <cc:attribute name="displayNameId" default="username" />
   <cc:attribute name="displayName" required="true" />
   <cc:attribute name="displayNameRendered" default="true" />
   <cc:attribute name="securityMember" required="true" />
   <cc:attribute name="displayNameStyleClass" />
   <cc:attribute name="containerStyleClass" />
+  <cc:attribute name="isStandAlone" default="true" />
 
 </cc:interface>
 <cc:implementation>
   <h:outputStylesheet library="css" name="portal-components-utility.css" />
   <h:outputStylesheet library="css" name="security-member-avatar-component.css" />
 
-  <div class="#{cc.attrs.isShowAvatar ? 'has-avatar' : ''} #{cc.attrs.containerStyleClass}">
-    <pc:avatar securityMember="#{cc.attrs.securityMember}" rendered="#{cc.attrs.securityMember != null}" />
+  <div id="#{cc.attrs.id}" class="#{cc.attrs.isShowAvatar ? 'has-avatar' : ''} #{cc.attrs.containerStyleClass}">
+    <pc:avatar securityMember="#{cc.attrs.securityMember}" rendered="#{cc.attrs.securityMember != null}" renderedAvatar="#{cc.attrs.isShowAvatar}" />
     <cc:renderFacet name="alternativeAvatar" />
     <h:outputText id="#{cc.attrs.displayNameId}" value="#{cc.attrs.displayName}"
       rendered="#{cc.attrs.displayNameRendered}"
@@ -26,5 +28,11 @@
     </h:outputText>
     <cc:renderFacet name="afterName" />
   </div>
+  <h:outputScript name="theme-checker.js" library="js" />
+  <script type="text/javascript">
+    if (#{cc.attrs.isStandAlone}) {
+      ThemeChecker.updateLayoutByTheme('#{ivyPrimefacesThemeResolver.sessionTheme}');
+    }
+  </script>
 </cc:implementation>
 </html>

@@ -88,11 +88,6 @@
   text-align: right;
 }
 
-.ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-moretext.ui-state-highlight,
-.ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-moretext.ui-state-highlight td {
-  cursor: default;
-}
-
 .form-definition-item-icon {
   vertical-align: middle;
 }
