@@ -817,10 +817,12 @@ ch.ivy.addon.portalkit.ui.jsf:
           Evening: Buenas noches
           Morning: Buenos días
         Image: Imagen
+        ImageStyleClass: Clase de estilo de imagen
         ShowGreeting: Mostrar saludo
         TextPosition: Posición del texto
         TextSizeAndColor: Tamaño y color del texto
         Welcome: Bienvenido
+        WelcomeTextStyleClass: Clase de estilo de texto de bienvenida
       configuration: Configuración
       configurationDescription: Puede configurar su widget en esta área de configuración. Por favor, defina los filtros requeridos así como las columnas a mostrar.
       customWidgetParamChangedMessage: Este proceso ha cambiado. Presione aktualizar para continuar.
