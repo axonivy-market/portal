@@ -21,23 +21,23 @@ WelcomeWidgetConfiguration = {
     var selectedPosition = previewDialog.find('input[id $="selected-welcome-text-position"]').get(0).value;
     var previewText = previewDialog.find('.js-preview-text');
     if (selectedPosition == 'BOTTOM_LEFT') {
-      previewText.removeClass('top').removeClass('right').removeClass('center').addClass('bottom').addClass('left');
+      previewText.removeClass('top right center').addClass('bottom left');
       return;
     }
     if (selectedPosition == 'BOTTOM_RIGHT') {
-      previewText.removeClass('top').removeClass('left').removeClass('center').addClass('bottom').addClass('right');
+      previewText.removeClass('top left center').addClass('bottom right');
       return;
     }
     if (selectedPosition == 'TOP_LEFT') {
-      previewText.removeClass('bottom').removeClass('right').removeClass('center').addClass('top').addClass('left');
+      previewText.removeClass('bottom right center').addClass('top left');
       return;
     }
     if (selectedPosition == 'TOP_RIGHT') {
-      previewText.removeClass('bottom').removeClass('left').removeClass('center').addClass('top').addClass('right');
+      previewText.removeClass('bottom left center').addClass('top right');
       return;
     }
     if (selectedPosition == 'CENTER') {
-      previewText.removeClass('bottom').removeClass('top').removeClass('left').removeClass('right').addClass('center');
+      previewText.removeClass('bottom top left right').addClass('center');
       return;
     }
   },
@@ -59,19 +59,19 @@ WelcomeWidgetConfiguration = {
     var selectedTextSize = previewDialog.find('input[id $="selected-welcome-text-size"]').get(0).value;
     var previewText = previewDialog.find('.js-preview-text');
     if (selectedTextSize == 'NORMAL_TEXT') {
-      previewText.removeClass('HEADING_1').removeClass('HEADING_2').removeClass('HEADING_3').addClass('NORMAL_TEXT');
+      previewText.removeClass('HEADING_1 HEADING_2 HEADING_3').addClass('NORMAL_TEXT');
       return;
     }
     if (selectedTextSize == 'HEADING_1') {
-      previewText.addClass('HEADING_1').removeClass('HEADING_2').removeClass('HEADING_3').removeClass('NORMAL_TEXT');
+      previewText.removeClass('HEADING_2 HEADING_3 NORMAL_TEXT').addClass('HEADING_1');
       return;
     }
     if (selectedTextSize == 'HEADING_2') {
-      previewText.removeClass('HEADING_1').addClass('HEADING_2').removeClass('HEADING_3').removeClass('NORMAL_TEXT');
+      previewText.removeClass('HEADING_1 HEADING_3 NORMAL_TEXT').addClass('HEADING_2');
       return;
     }
     if (selectedTextSize == 'HEADING_3') {
-      previewText.removeClass('HEADING_1').removeClass('HEADING_2').addClass('HEADING_3').removeClass('NORMAL_TEXT');
+      previewText.removeClass('HEADING_1 HEADING_2 NORMAL_TEXT').addClass('HEADING_3');
       return;
     }
   }
