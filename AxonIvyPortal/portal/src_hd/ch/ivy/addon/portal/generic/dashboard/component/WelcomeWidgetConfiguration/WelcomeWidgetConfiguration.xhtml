@@ -36,11 +36,11 @@
            </h:panelGroup>
          </div>
          <h:panelGroup id="widget-title-group" styleClass="u-hidden" />
-         <div class="ui-g-3">
+         <div class="ui-g-3 ui-md-4">
            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/Image')}"
              for="image-upload-panel" styleClass="welcome-text-label" />
          </div>
-         <div class="ui-g-9 ui-fluid upload-image-section display-inline-flex-center">
+         <div class="ui-g-9 ui-md-8 ui-fluid upload-image-section display-inline-flex-center">
            <p:fileUpload id="image-upload-panel"
              styleClass="image-upload-panel"
              listener="#{dashboardWelcomeWidgetConfigurationBean.handleFileUpload}"
@@ -48,6 +48,7 @@
              dragDropSupport="true" auto="true"
              update="preview-panel"
              allowTypes="/(\.|\/)(png|jpg|jpeg)$/i"
+             accept=".png,.jpg,.jpeg"
              label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
              invalidSizeMessage="#{dashboardWelcomeWidgetConfigurationBean.getFileUploadInvalidSizeMessage()}"
              invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
@@ -55,11 +56,11 @@
              oncomplete="PF('new-widget-configuration-dialog').initPosition(); updateAll();"  />
          </div>
 
-         <div class="ui-g-3">
+         <div class="ui-g-3 ui-md-4">
            <p:outputLabel for="welcome-text-position" styleClass="welcome-text-label"
              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/TextPosition')}" />
          </div>
-         <div class="ui-g-9">
+         <div class="ui-g-9 ui-md-8">
            <p:selectOneMenu id="welcome-text-position" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeTextPosition}" styleClass="welcome-text-select-one-menu">
              <f:selectItems var="position" value="#{dashboardWelcomeWidgetConfigurationBean.textPositions}" itemLabel="#{position.label}" itemValue="#{position}" />
              <p:ajax event="itemSelect" update="selected-welcome-text-position" oncomplete="WelcomeWidgetConfiguration.updatePreviewTextPosition();" />
@@ -67,11 +68,11 @@
            <h:inputHidden id="selected-welcome-text-position" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeTextPosition}" />
          </div>
 
-         <div class="ui-g-3">
+         <div class="ui-g-3 ui-md-4">
            <p:outputLabel for="welcome-text-size" styleClass="welcome-text-label"
              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/TextSizeAndColor')}" />
          </div>
-         <div class="ui-g-9 welcome-styles-panel">
+         <div class="ui-g-9 ui-md-8 welcome-styles-panel">
            <p:selectOneMenu id="welcome-text-size" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeTextSize}" styleClass="welcome-text-select-one-menu">
              <p:ajax event="itemSelect" update="selected-welcome-text-size" oncomplete="WelcomeWidgetConfiguration.updatePreviewTextSize();" />
              <f:selectItems var="size" value="#{dashboardWelcomeWidgetConfigurationBean.textSizes}" itemLabel="#{size.label}" itemValue="#{size}" />
@@ -83,24 +84,24 @@
            <span id="selected-welcome-text-color" class="js-selected-welcome-text-color" />
          </div>
 
-         <div class="ui-g-3 u-no-padding-bottom">
+         <div class="ui-g-3 ui-md-4 u-no-padding-bottom">
            <p:outputLabel for="welcome-text-greeting" styleClass="welcome-text-label"
              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/ShowGreeting')}" />
          </div>
-         <div class="ui-g-9 u-no-padding-bottom">
+         <div class="ui-g-9 ui-md-8 u-no-padding-bottom">
            <p:selectOneRadio id="welcome-text-greeting" value="#{dashboardWelcomeWidgetConfigurationBean.widget.greeting}">
-             <p:ajax update="user-filter" oncomplete="generateGreetingText();" />
+             <p:ajax update="user-filter" process="user-filter" oncomplete="generateGreetingText();" />
              <f:selectItem itemValue="#{true}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" />
              <f:selectItem itemValue="#{false}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" />
            </p:selectOneRadio>
          </div>
          <h:panelGroup id="welcome-text-input-container" layout="block" styleClass="ui-g-12 u-no-padding-left u-no-padding-right ui-g u-padding-0">
            <ui:repeat id="welcome-text-list" var="text" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeTexts}" varStatus="status">
-             <div class="ui-g-3">
+             <div class="ui-g-3 ui-md-4">
                <p:outputLabel value="#{text.locale.getDisplayName()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/DisplayedText')}"
                  for="welcome-text-input" styleClass="welcome-text-label" />
              </div>
-             <h:panelGroup id="welcome-text-input-panel" styleClass="ui-g-9 welcome-text-input-panel" layout="block">
+             <h:panelGroup id="welcome-text-input-panel" styleClass="ui-g-9 ui-md-8 welcome-text-input-panel" layout="block">
                <h:outputText value="#{dashboardWelcomeWidgetConfigurationBean.generateGreetingText(text.locale)}"
                  rendered="#{dashboardWelcomeWidgetConfigurationBean.widget.greeting}"
                  styleClass="js-greeting-text greeting-text #{logic.isApplicationDefaultEmailLanguage(text.locale.toLanguageTag()) ? 'language-to-preview' : ''}" />

@@ -157,7 +157,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   private WidgetSample welcomeWidgetSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/WELCOME"), WELCOME,
-        "si si-hierarchy-6 si-rotate-270", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/WelcomeWidgetIntroduction"), true);
+        "si si-plane-take-off", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/WelcomeWidgetIntroduction"), true);
   }
 
   public void restore() {
@@ -217,7 +217,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         break;
       case WELCOME:
         this.newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
-            Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/WELCOME")));
+            Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/Welcome")));
         this.widget = getDefaultWelcomeDashboardWidget();
         break;
       default:
@@ -246,7 +246,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
           widgetDirectory.forceDelete();
         }
       } catch (IOException e) {
-        return;
+        Ivy.log().error(e);
       }
     }
   }

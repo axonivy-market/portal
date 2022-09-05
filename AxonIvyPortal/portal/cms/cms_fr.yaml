@@ -786,7 +786,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PlaceholderChartOption: Sélectionnez un graphique
       PleaseSelectChart: Veuillez sélectionner un graphique
       PreviewText: Veuillez sélectionner un graphique pour voir les données du canevas
-    WelcomeWidgetIntroduction: ''
+    WelcomeWidgetIntroduction: Ce widget affiche un texte et une image de bienvenue sur le tableau de bord.
     WidgetFilterName: Nom du filtre du widget
     WidgetFilters: Filtres widgets
     YourWelcomeWidget: Votre widget de bienvenue

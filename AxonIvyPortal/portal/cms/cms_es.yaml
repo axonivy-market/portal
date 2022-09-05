@@ -786,7 +786,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PlaceholderChartOption: Seleccione un gráfico
       PleaseSelectChart: Seleccione un gráfico
       PreviewText: Seleccione un gráfico para ver los datos del lienzo
-    WelcomeWidgetIntroduction: ''
+    WelcomeWidgetIntroduction: Este widget muestra un texto y una imagen de bienvenida en el panel de control.
     WidgetFilterName: Nombre del filtro del widget
     WidgetFilters: Filtros de widgets
     YourWelcomeWidget: Su widget de bienvenida
