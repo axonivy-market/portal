@@ -114,6 +114,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS_VIEWER: Widget de visualisation des processus
       STATISTIC: Widget Statistiques
       TASK: Widget Tâche
+      WELCOME: Widget de bienvenue
     GlobalVariable:
       Option:
         DISPLAY_NAME: Nom d'affichage
@@ -149,6 +150,17 @@ ch.ivy.addon.portalkit.ui.jsf:
       THURSDAY: JEU
       TUESDAY: MAR
       WEDNESDAY: MER
+    WelcomeTextPosition:
+      BOTTOM_LEFT: Coin inférieur gauche
+      BOTTOM_RIGHT: Coin inférieur droit
+      CENTER: Centre
+      TOP_LEFT: Coin supérieur gauche
+      TOP_RIGHT: Coin supérieur droit
+    WelcomeTextSize:
+      HEADING_1: Rubrique 1
+      HEADING_2: Rubrique 2
+      HEADING_3: Rubrique 3
+      NORMAL_TEXT: Texte normal
   MyProfile:
     CaseList: Liste de cas
     DateFormat: Format de la date
@@ -776,8 +788,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       PlaceholderChartOption: Sélectionnez un graphique
       PleaseSelectChart: Veuillez sélectionner un graphique
       PreviewText: Veuillez sélectionner un graphique pour voir les données du canevas
+    WelcomeWidgetIntroduction: Ce widget affiche un texte et une image de bienvenue sur le tableau de bord.
     WidgetFilterName: Nom du filtre du widget
     WidgetFilters: Filtres widgets
+    YourWelcomeWidget: Votre widget de bienvenue
     actionSelection: Sélection des actions
     addField: Ajouter un champ
     addWidget: Ajouter un widget
@@ -797,6 +811,20 @@ ch.ivy.addon.portalkit.ui.jsf:
       RestoreDefaultDashboardTemplateTooltip: Nous ne trouvons pas le modèle de votre tableau de bord, nous ne pouvons donc pas le réinitialiser à la configuration standard. Veuillez vérifier auprès de votre administrateur pour plus de détails!
       SelectTheTemplate: Sélectionnez le modèle
       SelectYourTemplate: Sélectionnez votre template
+      WelcomeConfigurationDescription: ''
+      WelcomeWidget:
+        DisplayedText: Texte affiché
+        Greeting:
+          Afternoon: Bonne journée
+          Evening: Bonsoir
+          Morning: Bonjour
+        Image: Image
+        ImageStyleClass: Classe de style d'image
+        ShowGreeting: Afficher les salutations
+        TextPosition: Position du texte
+        TextSizeAndColor: Taille et couleur du texte
+        Welcome: Bienvenue
+        WelcomeTextStyleClass: Classe de style de texte de bienvenue
       configuration: Configuration
       configurationDescription: Vous pouvez configurer votre widget dans cette zone de configuration. Veuillez définir les filtres requis ainsi que les colonnes à afficher.
       customWidgetParamChangedMessage: Ce processus a changé. Cliquez sur Update pour continuer.

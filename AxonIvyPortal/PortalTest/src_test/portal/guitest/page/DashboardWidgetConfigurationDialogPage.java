@@ -194,4 +194,8 @@ public class DashboardWidgetConfigurationDialogPage extends TemplatePage {
     waitForElementDisplayed(By.id(PROCESS_VIEWER_PROCESS_SELECTION_PANEL_ID), true);
     findElementById(PROCESS_VIEWER_PROCESS_SELECTION_PANEL_ID).findElements(By.className("ui-autocomplete-item")).get(0).click();
   }
+
+  public void waitUntilAnimationFinished() {
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ajax-indicator\\\\:ajax-indicator-ajax-indicator_start", ID_PROPERTY);
+  }
 }
