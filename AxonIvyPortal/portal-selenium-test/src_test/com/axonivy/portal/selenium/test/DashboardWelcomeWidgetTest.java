@@ -16,7 +16,7 @@ import com.codeborne.selenide.Condition;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class DashboardWelcomeWidgetTest extends BaseTest {
 
   private static final String WIDGET_ID = "welcome-widget1";

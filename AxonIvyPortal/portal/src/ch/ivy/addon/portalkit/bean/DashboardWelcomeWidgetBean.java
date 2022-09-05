@@ -57,6 +57,7 @@ public class DashboardWelcomeWidgetBean implements Serializable {
         byte[] fileContent = FileUtils.readFileToByteArray(widget.getUploadedImageFile().getJavaFile());
         return String.format(BASE64_STRING_PATTERN, widget.getImageType(), Base64.getEncoder().encodeToString(fileContent));
       } catch (IOException e) {
+        Ivy.log().error(e);
         return "";
       }
   }

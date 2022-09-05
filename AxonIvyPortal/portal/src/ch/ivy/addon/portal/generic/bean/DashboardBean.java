@@ -203,8 +203,7 @@ public class DashboardBean implements Serializable {
       try {
         welcomeWidget.setUploadedImageFile(new File(welcomeWidget.getImageLocation()));
       } catch (IOException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
+        Ivy.log().error(e);
       }
     }
   }

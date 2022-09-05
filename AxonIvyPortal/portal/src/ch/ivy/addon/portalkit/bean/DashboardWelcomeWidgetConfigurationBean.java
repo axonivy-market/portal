@@ -46,6 +46,8 @@ public class DashboardWelcomeWidgetConfigurationBean implements Serializable {
   private int parsedClientTime;
 
   public void init() {
+    this.setOriginalImageFile(null);
+    this.setEncodedImg(null);
     setTextPositions(Arrays.asList(WelcomeTextPosition.values()));
     setTextSizes(Arrays.asList(WelcomeTextSize.values()));
     initWelcomeWidget();
@@ -81,14 +83,12 @@ public class DashboardWelcomeWidgetConfigurationBean implements Serializable {
         widget.setUploadedImageFile(new File(widget.getImageLocation()));
         updateEncodedImage(FileUtils.readFileToByteArray(widget.getUploadedImageFile().getJavaFile()));
       } catch (IOException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
+        Ivy.log().error(e);
       }
     }
   }
 
   public void handleFileUpload(FileUploadEvent event) throws IOException {
-    this.setOriginalImageFile(null);
     UploadedFile file = event.getFile();
   
     // Save image to the temporary folder then use it as image for the widget while configuring.
