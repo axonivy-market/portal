@@ -296,8 +296,8 @@ td.dashboard-cases__name span {
 }
 
 .prototype-task-table .default-column {
-  max-width: 300px;
-  width: 300px;
+	max-width: 300px;
+	width: 300px;
 }
 
 .task-configuration.card,
@@ -1184,4 +1184,190 @@ span.new-widget-dialog__icon.si {
 
 .dashboard-detail-form {
   max-width: 850px;
+}
+
+/* WELCOME WIDGET */
+
+.welcome-widget-configuration-panel {
+  max-width: 70vh;
+  overflow: auto;
+  padding: 20px;
+}
+
+.welcome-widget-configuration .preview-panel {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.welcome-widget-configuration .preview-panel .preview-image {
+  width: 100%;
+}
+
+.welcome-widget-configuration .upload-image-section .uploaded-file-name {
+  display:inline-block;
+  max-width: 69%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.welcome-widget-configuration .welcome-text-label {
+  line-height: 2.5;
+}
+
+.welcome-widget-configuration .welcome-styles-panel {
+  display: flex;
+  align-items: center;
+}
+
+.welcome-widget-configuration .welcome-styles-panel > div {
+  margin-right: 10px;
+}
+
+.welcome-widget-configuration .welcome-text-select-one-menu {
+  width: 180px;
+}
+
+.welcome-widget-configuration .image-upload-panel {
+  width: 100%;
+}
+
+.welcome-text {
+  position: absolute;
+  font-size: 2rem;
+  color: black;
+  padding: 1.5rem;
+  line-height: 2rem;
+  cursor: default;
+}
+
+.welcome-text.preview-text {
+  padding: 0.7rem;
+}
+
+.welcome-text.left {
+  left: 0;
+}
+
+.welcome-text.right {
+  right: 0;
+}
+
+.welcome-text.top {
+  top: 0;
+}
+
+.welcome-text.bottom {
+  bottom: 0;
+}
+
+.welcome-text.center {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.welcome-text-container {
+  position: relative;
+}
+
+.stretch-image .welcome-text-container {
+  height: 100%;
+  overflow: hidden;
+}
+
+.welcome-text-container .welcome-image {
+  width: inherit;
+  width: -webkit-fill-available;
+}
+
+.stretch-image .welcome-widget-panel {
+  height: 100%;
+}
+
+.stretch-image .welcome-text-container .welcome-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-height: 100%;
+  min-width: 100%;
+  transform: translate(-50%, -50%);
+  width: auto;
+}
+
+.stretch-image .welcome-text-container .welcome-text {
+  z-index: 1;
+}
+
+.welcome-text-size-options-panel {
+  width: 200px;
+}
+
+.welcome-text.NORMAL_TEXT {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+}
+
+.welcome-text.HEADING_1 {
+  font-size: 5rem;
+  line-height: 5rem;
+}
+
+.welcome-text.HEADING_2 {
+  font-size: 3.5rem;
+  line-height: 3.5rem;
+}
+
+.welcome-text.HEADING_3 {
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+}
+
+.preview-text.welcome-text.NORMAL_TEXT {
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+.preview-text.welcome-text.HEADING_1 {
+  font-size: 1.8rem;
+  line-height: 1.8rem;
+}
+
+.preview-text.welcome-text.HEADING_2 {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+}
+
+.preview-text.welcome-text.HEADING_3 {
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+}
+
+.welcome-widget-panel {
+  overflow: hidden;
+}
+
+.welcome-widget-action-group-form {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.welcome-widget-configuration .welcome-text-input-panel {
+  display: flex;
+  align-items: center;
+}
+
+.welcome-widget-configuration .welcome-text-input-panel .greeting-text {
+  padding-right: 10px;
+  flex: 1;
+}
+
+.welcome-widget-configuration .welcome-text-input-panel .welcome-text-input {
+  flex: auto;
 }
