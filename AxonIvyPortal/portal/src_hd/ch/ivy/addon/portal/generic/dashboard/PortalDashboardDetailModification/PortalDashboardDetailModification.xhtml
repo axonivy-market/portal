@@ -60,7 +60,7 @@
       <p:remoteCommand id="load-grid-after-added-new-widget-cmd" name="loadGridAfterAddedNewWidget"
         onstart="loadGrid();dashboardToolKit.responsive();"
         global="false" process="@this" partialSubmit="true"
-        oncomplete="if (#{!dashboardDetailModificationBean.editWidget}) {scrollToWidget('#{dashboardDetailModificationBean.newWidgetId}');}" />
+        oncomplete="if (#{!dashboardDetailModificationBean.editWidget}) {scrollToWidget('#{dashboardDetailModificationBean.newWidgetId}');} if (typeof WelcomeWidget !== 'undefined') {WelcomeWidget.stretchImage();}" />
     </ui:define>
 
     <ui:define name="dashboardContent">

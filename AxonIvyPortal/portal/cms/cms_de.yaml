@@ -114,6 +114,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS_VIEWER: Prozess-Viewer-Widget
       STATISTIC: Statistik-Widget
       TASK: Aufgaben-Widget
+      WELCOME: Willkommens-Widget
     GlobalVariable:
       Option:
         DISPLAY_NAME: Anzeigename
@@ -149,6 +150,17 @@ ch.ivy.addon.portalkit.ui.jsf:
       THURSDAY: Do
       TUESDAY: Di
       WEDNESDAY: Mi
+    WelcomeTextPosition:
+      BOTTOM_LEFT: Linke untere Ecke
+      BOTTOM_RIGHT: Rechte untere Ecke
+      CENTER: Zentrum
+      TOP_LEFT: Linke obere Ecke
+      TOP_RIGHT: Rechte obere Ecke
+    WelcomeTextSize:
+      HEADING_1: Rubrik 1
+      HEADING_2: Rubrik 2
+      HEADING_3: Rubrik 3
+      NORMAL_TEXT: Normaler Text
   MyProfile:
     CaseList: Liste der Fälle
     DateFormat: Datum Format
@@ -777,8 +789,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       PlaceholderChartOption: Wählen Sie ein Diagramm
       PleaseSelectChart: Bitte wählen Sie ein Diagramm aus
       PreviewText: Bitte wählen Sie ein Diagramm aus, um die Canvas-Daten zu sehen
+    WelcomeWidgetIntroduction: Dieses Widget zeigt einen Willkommenstext und ein Bild auf dem Dashboard an.
     WidgetFilterName: Name des Widget-Filters
     WidgetFilters: Widget-Filter
+    YourWelcomeWidget: Ihr Willkommens-Widget
     actionSelection: Aktion auswählen
     addField: Feld hinzufügen
     addWidget: Widget hinzufügen
@@ -798,6 +812,20 @@ ch.ivy.addon.portalkit.ui.jsf:
       RestoreDefaultDashboardTemplateTooltip: Wir können die Vorlage für Ihr Dashboard nicht finden und es daher nicht auf die Standardkonfiguration zurücksetzen. Bitte erkundigen Sie sich bei Ihrem Administrator nach weiteren Details!
       SelectTheTemplate: Wählen Sie die Vorlage
       SelectYourTemplate: Wählen Sie Ihre Vorlage
+      WelcomeConfigurationDescription: ''
+      WelcomeWidget:
+        DisplayedText: Angezeigter Text
+        Greeting:
+          Afternoon: Guten Tag
+          Evening: Guten Abend
+          Morning: Guten Morgen
+        Image: Bild
+        ImageStyleClass: Bildstilklasse
+        ShowGreeting: Gruß anzeigen
+        TextPosition: Position des Textes
+        TextSizeAndColor: Textgröße und -farbe
+        Welcome: Willkommen
+        WelcomeTextStyleClass: Begrüßungstext Stilklasse
       configuration: Konfiguration
       configurationDescription: In diesem Konfigurationsbereich kann das Widget konfiguriert werden. Bitte definieren Sie die gewünschten Filter sowie die anzuzeigenden Spalten.
       customWidgetParamChangedMessage: Dieser Prozess hat sich geändert. Klicken Sie auf Update, um fortzufahren.
