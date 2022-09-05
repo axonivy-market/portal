@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.bean.CombinedDashboardProcessBean;
@@ -128,5 +130,14 @@ public class ApplicationColumnModel extends ProcessColumnModel implements Serial
       ((SingleProcessDashboardWidget) widget).setProcess(null);
     }
     
+  }
+  
+  @Override
+  public List<String> getUserFilterListOptions(){
+    if (CollectionUtils.isEmpty(this.userFilterListOptions)) {
+      this.userFilterListOptions = getApplications();
+    }
+    
+    return this.userFilterListOptions;
   }
 }
