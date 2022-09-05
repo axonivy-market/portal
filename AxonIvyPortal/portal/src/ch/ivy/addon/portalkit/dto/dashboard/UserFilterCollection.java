@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections4.ListUtils;
-import org.apache.commons.collections4.MapUtils;
+import org.apache.commons.collections4.map.HashedMap;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -101,7 +101,10 @@ public class UserFilterCollection implements Serializable {
   }
 
   public Map<String, FilterColumnModel> getSelectedFilterOptionMap() {
-    return MapUtils.emptyIfNull(selectedFilterOptionMap);
+    if (selectedFilterOptionMap == null) {
+      return new HashedMap<>();
+    }
+    return selectedFilterOptionMap;
   }
 
   public void setSelectedFilterOptionMap(Map<String, FilterColumnModel> selectedFilterOptionMap) {
