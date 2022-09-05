@@ -787,7 +787,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PlaceholderChartOption: Wählen Sie ein Diagramm
       PleaseSelectChart: Bitte wählen Sie ein Diagramm aus
       PreviewText: Bitte wählen Sie ein Diagramm aus, um die Canvas-Daten zu sehen
-    WelcomeWidgetIntroduction: ''
+    WelcomeWidgetIntroduction: Dieses Widget zeigt einen Willkommenstext und ein Bild auf dem Dashboard an.
     WidgetFilterName: Name des Widget-Filters
     WidgetFilters: Widget-Filter
     YourWelcomeWidget: Ihr Willkommens-Widget
