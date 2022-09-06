@@ -3,17 +3,13 @@ package portal.guitest.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static portal.guitest.common.Variable.DEFAULT_THEME_MODE;
-import static portal.guitest.common.Variable.LOGGED_IN_USER_FORMAT;
 import static portal.guitest.common.Variable.ENABLE_SWITCH_THEME_BUTTON;
+import static portal.guitest.common.Variable.LOGGED_IN_USER_FORMAT;
 
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.SystemProperties;
-import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
-import vn.wawa.guitest.base.client.Browser;
 
 public class TopbarTest extends BaseTest {
 
@@ -51,16 +47,10 @@ public class TopbarTest extends BaseTest {
 
   @Test
   public void testThemeMode() {
-    updateGlobalVariable(DEFAULT_THEME_MODE_SETTING, "DARK");
-    updateGlobalVariable(ENABLE_SWITCH_THEME_BUTTON_SETTING, "FALSE");
-    setBrowser(Browser.getBrowser());
-    if (!SystemProperties.isInServerMode()) {
-      logoutDesigner();
-    }
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
+    updatePortalSetting(DEFAULT_THEME_MODE_SETTING, "Dark");
+    updatePortalSetting(ENABLE_SWITCH_THEME_BUTTON_SETTING, "False");
     HomePage homePage = new HomePage();
-    updateGlobalVariable(ENABLE_SWITCH_THEME_BUTTON_SETTING, "TRUE");
-    assertTrue(homePage.isSwitchThemeLightModeLinkIconPresent());
+    assertTrue(homePage.isSwitchThemeToLightModeLinkIconDisplayed());
+    assertTrue(homePage.isSwitchThemeLinkIconDisabled());
   }
 }
