@@ -297,7 +297,8 @@ public class NewDashboardPage extends TemplatePage {
 
   public void openCompactModeProcessFilterPanel() {
     var processFilter = getCompactModeProcessFilterLink().shouldBe(Condition.appear);
-    scrollToElementThenClick(processFilter);
+    waitUntilElementToBeClickable(processFilter);
+    processFilter.click();
     getCompactModeProcessFilterPanelSaveFilters().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 
@@ -572,8 +573,6 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void testSearchRemoveCompactModeProcessFilter() {
-    checkDisplayedCompactModeProcessContainer();
-
     openCompactModeProcessFilterPanel();
     testCreateCompactModeProcessFilters();
     testSearchCompactModeProcessFilters();
