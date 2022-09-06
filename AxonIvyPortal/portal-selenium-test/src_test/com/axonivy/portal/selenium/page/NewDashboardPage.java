@@ -297,8 +297,7 @@ public class NewDashboardPage extends TemplatePage {
 
   public void openCompactModeProcessFilterPanel() {
     var processFilter = getCompactModeProcessFilterLink().shouldBe(Condition.appear);
-    waitUntilElementToBeClickable(processFilter);
-    processFilter.click();
+    scrollToElementThenClick(processFilter);
     getCompactModeProcessFilterPanelSaveFilters().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 
@@ -581,7 +580,11 @@ public class NewDashboardPage extends TemplatePage {
     testRemoveCompactModeProcessFilter();
     closeCompactModeProcessManagerFilters();
 
-    openCompactModeProcessFilterPanel();
+    try {
+      openCompactModeProcessFilterPanel();
+    } catch (Exception e) {
+      openCompactModeProcessFilterPanel();
+    }
     getCompactModeProcessFilterPanelSavedFilter(0)
         .waitUntil(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME), DEFAULT_TIMEOUT);
   }
