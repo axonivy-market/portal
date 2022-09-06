@@ -6,7 +6,7 @@ Configure Welcome Widget
 Define Welcome Widget
 ---------------------
 
-The Welcome widget of the Portal dashboard displays welcome text and an image as background.
+The Welcome widget of the Portal dashboard displays a welcome text and an image as its background.
 
 Below is a sample JSON definition of a welcome widget in the Portal dashboard
 
@@ -42,19 +42,19 @@ Below is a sample JSON definition of a welcome widget in the Portal dashboard
 
 The basic JSON structure of a welcome widget
 
-   ``type``: type of widget. Use ``welcome`` for a welcome widget
+   ``type``: type of the widget. Use ``welcome`` for a welcome widget
 
    ``id``: ID of the widget
 
-   ``layout``: layout definition of welcome widget
+   ``layout``: layout definition of the welcome widget
 
-      ``x``: HTML DOM Style ``left`` will be calculated by formula ``x / 12 * 100%``
+      ``x``: HTML DOM Style ``left`` is calculated as ``x / 12 * 100%``
 
-      ``y``: HTML DOM Style ``top`` will be calculated by formula ``y / 12 * 100%``
+      ``y``: HTML DOM Style ``top`` is calculated as ``y / 12 * 100%``
 
-      ``w``: HTML DOM Style ``width`` will be calculated by formula ``60 * w + 20 * (w - 1)``
+      ``w``: HTML DOM Style ``width`` is calculated as ``60 * w + 20 * (w - 1)``
 
-      ``h``: HTML DOM Style ``height`` will be calculated by formula ``60 * h + 20 * (h - 1)``
+      ``h``: HTML DOM Style ``height`` is calculated as ``60 * h + 20 * (h - 1)``
 
       ``styleClass`` (optional): add CSS Classes to HTML DOM of the widget
 
@@ -62,7 +62,7 @@ The basic JSON structure of a welcome widget
 
    ``welcomeTexts``: the welcome text on the widget. This allows multi-language by user’s locale.
 
-   ``welcomeTextPosition``: position for the welcome text related to the widget. There are five positions
+   ``welcomeTextPosition``: position for the welcome text relative to the widget. There are five positions:
 
          ``BOTTOM_LEFT``: Bottom left corner of the widget
 
@@ -74,7 +74,7 @@ The basic JSON structure of a welcome widget
 
          ``CENTER``: Center of the widget
 
-   ``welcomeTextSize``: size for the welcome text. There are four sizes
+   ``welcomeTextSize``: size for the welcome text. There are four sizes:
 
       ``NORMAL_TEXT``: Normal text font size (1.5rem)
 
@@ -86,15 +86,15 @@ The basic JSON structure of a welcome widget
 
    ``welcomeTextColor``: color for the welcome text. You can input any value that accepted by the CSS attribute ``font-color``.
 
-   ``greeting``: Marked that welcome text should also has greeting text or not
+   ``greeting``: Defines if a greeting text is added to the welcome text:
 
-      ``false``: Welcome text will just displayed the text declared from ``welcomeTexts`` by user's locale.
+      ``false``: The widget displays just the text contained in ``welcomeTexts`` for the language of the user.
 
-      ``true``: Welcome text will displayed a greeting text together with text declared from ``welcomeTexts`` by user language.
+      ``true``: The widget displays the standard Portal greeting text, followed by text contained in ``welcomeTexts``, both for the language of the user. The two texts are separated by comma.
 
-   ``welcomeTextStyleClass``: style class for welcome text.
+   ``welcomeTextStyleClass``: style class for the welcome text.
 
-   ``imageStyleClass``: style class for image.
+   ``imageStyleClass``: style class for the image.
 
 This widget also support user to upload an image as background.
 This feature only available when user configure widget directly on Portal.
