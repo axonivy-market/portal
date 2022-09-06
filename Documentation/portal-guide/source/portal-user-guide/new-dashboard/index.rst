@@ -181,7 +181,7 @@ You can define the widget name and process to be displayed.
 Welcome widget
 ==============
 
-You can define a welcome widget with background image and welcome text.
+You can define a welcome widget with a background image and a welcome text.
 
 |welcome-widget-configuration|
 

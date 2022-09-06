@@ -53,7 +53,7 @@ Below is a sample JSON definition of the case widget in the Portal dashboard.
 ..
 
 The basic JSON structure of the case widget
--  ``type``: type of widget. Use ``case`` for a case widget
+-  ``type``: type of the widget. Use ``case`` for a case widget
 
 -  ``id``: ID of the widget
 
@@ -61,19 +61,19 @@ The basic JSON structure of the case widget
 
 -  ``layout``: layout definition of the case widget
 
-   -  ``x``: HTML DOM Style ``left`` will be calculated by formula ``x / 12 * 100%``
+   -  ``x``: HTML DOM Style ``left`` is calculated as formula ``x / 12 * 100%``
 
-   -  ``y``: HTML DOM Style ``top`` will be calculated by formula ``y / 12 * 100%``
+   -  ``y``: HTML DOM Style ``top`` is calculated as formula ``y / 12 * 100%``
 
-   -  ``w``: HTML DOM Style ``width`` will be calculated by formula ``60 * w + 20 * (w - 1)``
+   -  ``w``: HTML DOM Style ``width`` is calculated as formula ``60 * w + 20 * (w - 1)``
 
-   -  ``h``: HTML DOM Style ``height`` will be calculated by formula ``60 * h + 20 * (h - 1)``
+   -  ``h``: HTML DOM Style ``height`` is calculated as formula ``60 * h + 20 * (h - 1)``
 
-   -  ``styleClass`` (optional): add CSS classes to HTML DOM of Case widget
+   -  ``styleClass`` (optional): add CSS classes to HTML DOM of the Case widget
 
-   -  ``style`` (optional): add inline style to HTML DOM of Case widget
+   -  ``style`` (optional): add inline style to HTML DOM of the Case widget
 
--  ``sortField``: default sort field for Case widget
+-  ``sortField``: default sort field for the Case widget
 
 -  ``sortDescending``: default sort direction of the default sort field. The
    default value is "false" (sort direction is ascending)
