@@ -213,6 +213,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
 
     newDashboardDetailsEditPage.addWidget();
     CaseEditWidgetNewDashBoardPage newCaseWidget = newDashboardDetailsEditPage.addNewCaseWidget();
+    newCaseWidget.waitPreviewTableLoaded();
     newCaseWidget.changeWidgetTitle("New Your Cases");
     newCaseWidget.save();
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget("New Your Cases");
