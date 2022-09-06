@@ -31,8 +31,8 @@ public abstract class TemplatePage extends AbstractPage {
     WebDriverRunner.getWebDriver().switchTo().window(tabs.get(0));
   }
 
-  public void waitUntilElementToBeClickable(SelenideElement element) {
+  public void scrollToElementThenClick(SelenideElement element) {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
-        .until(ExpectedConditions.elementToBeClickable(element));
+        .until(ExpectedConditions.elementToBeClickable(element)).click();
   }
 }
