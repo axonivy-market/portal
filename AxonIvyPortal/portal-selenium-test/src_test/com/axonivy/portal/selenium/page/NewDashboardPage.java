@@ -68,13 +68,13 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public ProcessViewerWidgetNewDashBoardPage showEditProcessViewerWidgetConfiguration() {
-    $("a[id$=':edit-widget-3']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("button[id$=':edit-widget-3']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("div#new-widget-configuration-dialog").waitUntil(appear, DEFAULT_TIMEOUT);
     return new ProcessViewerWidgetNewDashBoardPage();
   }
 
   public void deleteProcessViewerWidget() {
-    $("a[id$=':delete-widget-3']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("button[id$=':delete-widget-3']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("div#remove-widget-dialog").waitUntil(appear, DEFAULT_TIMEOUT);
     $("button[id$='remove-widget-button']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
         .click();
