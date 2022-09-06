@@ -3,7 +3,6 @@ package com.axonivy.portal.selenium.test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.TestAccount;
@@ -16,7 +15,6 @@ import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.CollectionCondition;
 
-@IvyWebTest(headless = false)
 public class DashboardAddWidgetTest extends BaseTest {
 
   private NewDashboardPage newDashboardPage;
@@ -33,6 +31,7 @@ public class DashboardAddWidgetTest extends BaseTest {
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
     newDashboardDetailsEditPage.addWidget();
     CaseEditWidgetNewDashBoardPage newCaseWidget = newDashboardDetailsEditPage.addNewCaseWidget();
+    newCaseWidget.waitPreviewTableLoaded();
     newCaseWidget.changeWidgetTitle("Your New Cases");
     newCaseWidget.save();
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget("Your New Cases");
@@ -60,7 +59,7 @@ public class DashboardAddWidgetTest extends BaseTest {
     var chartWidget = newDashboardPage.selectStatisticWidget();
     chartWidget.countStatisticCharts().shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
   }
-  
+
   private NewDashboardDetailsEditPage gotoEditPublicDashboardPage() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
