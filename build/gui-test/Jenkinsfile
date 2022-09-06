@@ -12,7 +12,7 @@ pipeline {
 
   tools { 
       maven '3.6' 
-      jdk '17' 
+      jdk '11' 
   }
 
   parameters {
