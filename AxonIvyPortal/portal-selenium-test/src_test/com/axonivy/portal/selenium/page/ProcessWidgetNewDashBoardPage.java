@@ -39,7 +39,8 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
   public void startProcessByName(String processName) {
     var startProcess = $(processWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$$("span.process-start-list-item").filter(text(processName))
         .first().$("a");
-    scrollToElementThenClick(startProcess);
+    waitUntilElementToBeClickable(startProcess);
+    startProcess.click();
   }
   
   public void deleteProcessWidget() {
