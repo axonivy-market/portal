@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "18104AE3EB4807A1",
   "data" : "com.axonivy.portal.components.service.PortalConponentCaseServiceData",
   "kind" : "CALLABLE_SUB",
@@ -34,7 +34,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 96 },
-        "labelOffset" : { "x" : -89, "y" : 26 }
+        "labelOffset" : { "x" : 73, "y" : 46 }
       },
       "connect" : { "id" : "f54", "to" : "f6" }
     }, {
@@ -115,7 +115,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 200 },
-        "labelOffset" : { "x" : -89, "y" : 26 }
+        "labelOffset" : { "x" : 37, "y" : 46 }
       },
       "connect" : { "id" : "f2", "to" : "f11" }
     } ],

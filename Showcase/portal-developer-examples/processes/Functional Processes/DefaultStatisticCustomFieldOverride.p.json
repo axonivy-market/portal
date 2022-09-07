@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.17",
+  "format" : "9.4.20",
   "id" : "16A914CEF46EA5B8",
   "data" : "_com.axonivy.portal.developerexamples.DefaultStatisticCustomFieldOverrideData",
   "kind" : "CALLABLE_SUB",
@@ -20,7 +20,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : 34, "y" : -10 }
+        "labelOffset" : { "x" : 143, "y" : 10 }
       },
       "connect" : { "id" : "f4", "to" : "f3" }
     }, {
@@ -44,7 +44,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 192 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {

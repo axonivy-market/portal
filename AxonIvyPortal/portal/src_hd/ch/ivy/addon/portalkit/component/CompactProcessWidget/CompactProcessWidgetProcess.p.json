@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "167CFB0D927CF955",
   "data" : "ch.ivy.addon.portalkit.component.CompactProcessWidget.CompactProcessWidgetData",
   "kind" : "HTML_DIALOG",
@@ -13,7 +13,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 96 },
-        "labelOffset" : { "x" : -32, "y" : 15 }
+        "labelOffset" : { "x" : -12, "y" : 35 }
       },
       "connect" : { "id" : "f4", "to" : "f3" }
     }, {
@@ -40,7 +40,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 192 },
-        "labelOffset" : { "x" : -48, "y" : 16 }
+        "labelOffset" : { "x" : 11, "y" : 36 }
       },
       "connect" : { "id" : "f14", "to" : "f6" }
     }, {
@@ -99,7 +99,7 @@
       },
       "visual" : {
         "at" : { "x" : 392, "y" : 192 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f9", "to" : "f12" }
     }, {
@@ -121,7 +121,7 @@
       },
       "visual" : {
         "at" : { "x" : 568, "y" : 192 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f13", "to" : "f8" }
     }, {
@@ -134,7 +134,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 320 },
-        "labelOffset" : { "x" : -79, "y" : 21 }
+        "labelOffset" : { "x" : 18, "y" : 41 }
       },
       "connect" : { "id" : "f7", "to" : "f5" }
     }, {
@@ -155,7 +155,7 @@
       },
       "visual" : {
         "at" : { "x" : 248, "y" : 320 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f18", "to" : "f17" }
     }, {
@@ -170,7 +170,7 @@
       "name" : "is provided process name?",
       "visual" : {
         "at" : { "x" : 400, "y" : 320 },
-        "labelOffset" : { "x" : -70, "y" : -40 }
+        "labelOffset" : { "x" : 13, "y" : -20 }
       },
       "connect" : [
         { "id" : "f20", "to" : "f21", "condition" : "in.#canAddLanguages" },
@@ -193,7 +193,7 @@
       },
       "visual" : {
         "at" : { "x" : 576, "y" : 320 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f16", "to" : "f15" }
     }, {
@@ -206,7 +206,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 448 },
-        "labelOffset" : { "x" : -72, "y" : 20 }
+        "labelOffset" : { "x" : 3, "y" : 40 }
       },
       "connect" : { "id" : "f28", "to" : "f27" }
     }, {
@@ -242,7 +242,7 @@
       },
       "visual" : {
         "at" : { "x" : 256, "y" : 448 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f26", "to" : "f25" }
     } ]

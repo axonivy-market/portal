@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "15791C23B125821B",
   "data" : "gawfs.Data",
   "kind" : "CALLABLE_SUB",
@@ -50,7 +50,7 @@
           },
           "visual" : {
             "at" : { "x" : 208, "y" : 256 },
-            "size" : { "width" : 144, "height" : 44 }
+            "size" : { "width" : 144, "height" : 60 }
           },
           "connect" : { "id" : "S10-f1", "to" : "S10-g1" }
         }, {
@@ -59,7 +59,7 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 208, "y" : 104 },
-            "labelOffset" : { "x" : 0, "y" : 5 }
+            "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f33",
           "connect" : { "id" : "S10-f0", "to" : "S10-f26" }
@@ -69,7 +69,7 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 208, "y" : 416 },
-            "labelOffset" : { "x" : 0, "y" : 5 }
+            "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f34"
         } ],
@@ -128,7 +128,7 @@
       },
       "visual" : {
         "at" : { "x" : 640, "y" : 264 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f26", "to" : "f41" }
     }, {
@@ -148,7 +148,7 @@
       },
       "visual" : {
         "at" : { "x" : 1720, "y" : 264 },
-        "size" : { "width" : 160, "height" : 44 }
+        "size" : { "width" : 160, "height" : 60 }
       },
       "connect" : { "id" : "f36", "to" : "f35" }
     }, {
@@ -174,7 +174,7 @@
       },
       "visual" : {
         "at" : { "x" : 1048, "y" : 264 },
-        "size" : { "width" : 176, "height" : 44 }
+        "size" : { "width" : 176, "height" : 60 }
       },
       "connect" : { "id" : "f48", "to" : "f45" }
     }, {
@@ -222,7 +222,7 @@
       ],
       "visual" : {
         "at" : { "x" : 1568, "y" : 264 },
-        "labelOffset" : { "x" : -33, "y" : -49 }
+        "labelOffset" : { "x" : -25, "y" : -29 }
       },
       "connect" : [
         { "id" : "f55", "to" : "f54", "via" : [ { "x" : 1568, "y" : 360 } ], "label" : {
@@ -261,7 +261,7 @@
       },
       "visual" : {
         "at" : { "x" : 2056, "y" : 360 },
-        "size" : { "width" : 176, "height" : 44 }
+        "size" : { "width" : 176, "height" : 60 }
       },
       "connect" : { "id" : "f19", "to" : "f32", "via" : [ { "x" : 2208, "y" : 360 } ] }
     }, {
@@ -295,7 +295,7 @@
       "name" : "Discarded?",
       "visual" : {
         "at" : { "x" : 792, "y" : 264 },
-        "labelOffset" : { "x" : -31, "y" : -33 }
+        "labelOffset" : { "x" : 9, "y" : -13 }
       },
       "connect" : [
         { "id" : "f29", "to" : "f27", "condition" : "!in.discard" },
@@ -344,7 +344,7 @@
       },
       "visual" : {
         "at" : { "x" : 1408, "y" : 264 },
-        "size" : { "width" : 160, "height" : 44 }
+        "size" : { "width" : 160, "height" : 60 }
       },
       "connect" : { "id" : "f23", "to" : "f18" }
     }, {
@@ -353,7 +353,7 @@
       "name" : "Use default template?",
       "visual" : {
         "at" : { "x" : 888, "y" : 264 },
-        "labelOffset" : { "x" : -58, "y" : -32 }
+        "labelOffset" : { "x" : 10, "y" : -12 }
       },
       "connect" : [
         { "id" : "f30", "to" : "f18", "via" : [ { "x" : 888, "y" : 360 }, { "x" : 1496, "y" : 360 } ], "label" : {
@@ -389,7 +389,7 @@
       "name" : "Is ready to execute?",
       "visual" : {
         "at" : { "x" : 1888, "y" : 264 },
-        "labelOffset" : { "x" : -49, "y" : 18 }
+        "labelOffset" : { "x" : 13, "y" : 38 }
       },
       "connect" : [
         { "id" : "f38", "to" : "f37", "label" : {
@@ -425,7 +425,7 @@
       },
       "visual" : {
         "at" : { "x" : 1888, "y" : 168 },
-        "labelOffset" : { "x" : 24, "y" : -18 }
+        "labelOffset" : { "x" : 32, "y" : 2 }
       },
       "connect" : { "id" : "f49", "to" : "f42", "via" : [ { "x" : 1888, "y" : 72 } ], "condition" : "ivp==\"TaskA.ivp\"" }
     }, {
@@ -474,7 +474,7 @@
       },
       "visual" : {
         "at" : { "x" : 80, "y" : 72 },
-        "labelOffset" : { "x" : -74, "y" : 26 }
+        "labelOffset" : { "x" : 5, "y" : 46 }
       },
       "connect" : { "id" : "f53", "to" : "f52" }
     }, {
@@ -531,7 +531,7 @@
       },
       "visual" : {
         "at" : { "x" : 1768, "y" : 360 },
-        "size" : { "width" : 160, "height" : 44 }
+        "size" : { "width" : 160, "height" : 60 }
       },
       "connect" : { "id" : "f58", "to" : "f20" }
     } ]
