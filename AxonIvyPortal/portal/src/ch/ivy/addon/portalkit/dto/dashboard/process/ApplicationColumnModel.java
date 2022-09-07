@@ -90,30 +90,7 @@ public class ApplicationColumnModel extends ProcessColumnModel implements Serial
   }
   
   public void updateApplications(ProcessDashboardWidget widget) {
-    if (widget == null) {
-      return;
-    }
-    if (widget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) { 
-      CompactDashboardProcessBean compactDashboardProcessBean = ManagedBeans.get("compactDashboardProcessBean");
-      if (compactDashboardProcessBean != null) {
-        compactDashboardProcessBean.onChangeApplications(this.filterList);
-      }
-    } else if (widget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE) {
-      CombinedDashboardProcessBean combinedDashboardProcessBean = ManagedBeans.get("combinedDashboardProcessBean");
-      if (combinedDashboardProcessBean != null) {
-        combinedDashboardProcessBean.onChangeApplications(this.filterList);
-      }
-    } else if (widget.getDisplayMode() == ProcessWidgetMode.IMAGE_MODE) {
-      ImageDashboardProcessBean imageDashboardProcessBean = ManagedBeans.get("imageDashboardProcessBean");
-      if (imageDashboardProcessBean != null) {
-        imageDashboardProcessBean.onChangeApplications(this.filterList);
-      }
-    } else if (widget.getDisplayMode() == ProcessWidgetMode.FULL_MODE) {
-      FullDashboardProcessBean fullDashboardProcessBean = ManagedBeans.get("fullDashboardProcessBean");
-      if (fullDashboardProcessBean != null) {
-        fullDashboardProcessBean.onChangeApplications(this.filterList);
-      }
-    }
+    initializeApplications(widget);
 
     if (widget instanceof CompactProcessDashboardWidget) {
       ((CompactProcessDashboardWidget) widget).setProcesses(null);

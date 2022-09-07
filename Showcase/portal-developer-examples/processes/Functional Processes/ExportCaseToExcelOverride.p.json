@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "17554FC641F204AA",
   "data" : "_com.axonivy.portal.developerexamples.ExportCaseToExcelOverrideData",
   "kind" : "CALLABLE_SUB",
@@ -30,7 +30,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -58, "y" : 17 }
+        "labelOffset" : { "x" : 60, "y" : 37 }
       },
       "connect" : { "id" : "f3", "to" : "f81" }
     }, {

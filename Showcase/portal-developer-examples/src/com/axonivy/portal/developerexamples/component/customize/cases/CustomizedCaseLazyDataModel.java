@@ -46,7 +46,7 @@ public class CustomizedCaseLazyDataModel extends CaseLazyDataModel {
 	public List<String> getDefaultColumns() {
     if (new GlobalSettingService().isCaseOwnerEnabled()) {
       return Arrays.asList(CaseSortField.NAME.name(), CaseSortField.ID.name(), CaseSortField.CREATOR.name(), CaseSortField.OWNER.name(), CaseSortField.CREATION_TIME.name(), CaseSortField.FINISHED_TIME.name(), CaseSortField.APPLICATION.name(), CUSTOM_CUSTOMER_NAME, CUSTOM_SHIPMENT_DATE);
-    } 
+    }
     return Arrays.asList(CaseSortField.NAME.name(), CaseSortField.ID.name(), CaseSortField.CREATOR.name(), CaseSortField.CREATION_TIME.name(), CaseSortField.FINISHED_TIME.name(), CaseSortField.APPLICATION.name(), CUSTOM_CUSTOMER_NAME, CUSTOM_SHIPMENT_DATE);
 	}
 	

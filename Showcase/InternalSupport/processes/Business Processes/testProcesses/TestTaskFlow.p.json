@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "14B2FC03D2E87141",
   "data" : "internaltest.Data",
   "elements" : [ {
@@ -11,9 +11,9 @@
         "case" : {
           "attachToBusinessCase" : false,
           "customFields" : [
+            { "name" : "CustomerName", "type" : "String", "value" : "\"Leave 5\"" },
             { "name" : "CustomerType", "type" : "String", "value" : "\"Leave Request\"" },
-            { "name" : "SupportData", "type" : "String", "value" : "\"Leave\"" },
-            { "name" : "CustomerName", "type" : "String", "value" : "\"Leave 5\"" }
+            { "name" : "SupportData", "type" : "String", "value" : "\"Leave\"" }
           ]
         },
         "outLink" : "CreateSupportTicket.ivp",
@@ -21,16 +21,14 @@
       },
       "visual" : {
         "at" : { "x" : 544, "y" : 64 },
-        "size" : { "width" : 26, "height" : 26 },
-        "labelOffset" : { "x" : 25, "y" : -2 }
+        "labelOffset" : { "x" : 72, "y" : 18 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f22",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 544, "y" : 416 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 544, "y" : 416 }
       }
     }, {
       "id" : "f23",
@@ -67,8 +65,7 @@
       },
       "visual" : {
         "at" : { "x" : 544, "y" : 288 },
-        "size" : { "width" : 28, "height" : 28 },
-        "labelOffset" : { "x" : 21, "y" : -3 }
+        "labelOffset" : { "x" : 66, "y" : 17 }
       },
       "connect" : [
         { "id" : "f25", "to" : "f22", "condition" : "ivp==\"TaskA.ivp\"" }
@@ -93,8 +90,7 @@
       },
       "visual" : {
         "at" : { "x" : 544, "y" : 192 },
-        "size" : { "width" : 40, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "size" : { "width" : 40, "height" : 24 }
       },
       "connect" : { "id" : "f3", "to" : "f23", "var" : "in1" }
     }, {
@@ -117,16 +113,14 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1072, "y" : 168 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 1072, "y" : 168 }
       },
       "connect" : { "id" : "f21", "to" : "f10", "condition" : "ivp==\"TaskA.ivp\"" }
     }, {
       "id" : "f10",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 1072, "y" : 256 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 1072, "y" : 256 }
       }
     }, {
       "id" : "f6",
@@ -138,8 +132,7 @@
       },
       "visual" : {
         "at" : { "x" : 1072, "y" : 64 },
-        "size" : { "width" : 26, "height" : 26 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 122, "y" : 20 }
       },
       "connect" : { "id" : "f16", "to" : "f8", "var" : "in1" }
     }, {
@@ -154,9 +147,7 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 1646, "y" : 284 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 1646, "y" : 284 }
       },
       "connect" : { "id" : "f33", "to" : "f20", "via" : [ { "x" : 1646, "y" : 416 } ] }
     }, {
@@ -171,9 +162,7 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 1382, "y" : 284 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 1382, "y" : 284 }
       },
       "connect" : { "id" : "f36", "to" : "f20", "via" : [ { "x" : 1382, "y" : 416 } ] }
     }, {
@@ -194,9 +183,9 @@
               "timeout" : "new Duration(\"3H\")"
             },
             "customFields" : [
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Annual Leave\"" },
               { "name" : "CustomerType", "type" : "String", "value" : "\"Annual CustomerType\"" },
-              { "name" : "SupportData", "type" : "String", "value" : "\"Annual SupportData\"" },
-              { "name" : "CustomerName", "type" : "String", "value" : "\"Annual Leave\"" }
+              { "name" : "SupportData", "type" : "String", "value" : "\"Annual SupportData\"" }
             ]
           },
           "TaskB" : {
@@ -207,9 +196,9 @@
               "timeout" : "new Duration(\"1D\")"
             },
             "customFields" : [
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Other Leave/Sick/Long\"" },
               { "name" : "CustomerType", "type" : "String", "value" : "\"Sick CustomerType\"" },
-              { "name" : "SupportData", "type" : "String", "value" : "\"Sick SupportData\"" },
-              { "name" : "CustomerName", "type" : "String", "value" : "\"Other Leave/Sick/Long\"" }
+              { "name" : "SupportData", "type" : "String", "value" : "\"Sick SupportData\"" }
             ]
           },
           "TaskC" : {
@@ -220,17 +209,16 @@
               "timeout" : "new Duration(\"2D\")"
             },
             "customFields" : [
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Other Leave/Maternity\"" },
               { "name" : "CustomerType", "type" : "String", "value" : "\"Maternity CustomerType\"" },
-              { "name" : "SupportData", "type" : "String", "value" : "\"Maternity SupportData\"" },
-              { "name" : "CustomerName", "type" : "String", "value" : "\"Other Leave/Maternity\"" }
+              { "name" : "SupportData", "type" : "String", "value" : "\"Maternity SupportData\"" }
             ]
           }
         }
       },
       "visual" : {
         "at" : { "x" : 1510, "y" : 180 },
-        "size" : { "width" : 28, "height" : 28 },
-        "labelOffset" : { "x" : 9, "y" : -21 }
+        "labelOffset" : { "x" : 52, "y" : -1 }
       },
       "connect" : [
         { "id" : "f37", "to" : "f26", "via" : [ { "x" : 1382, "y" : 180 } ], "condition" : "ivp==\"TaskA.ivp\"" },
@@ -249,9 +237,7 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 1510, "y" : 284 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 1510, "y" : 284 }
       },
       "connect" : { "id" : "f46", "to" : "f20" }
     }, {
@@ -266,11 +252,11 @@
           "attachToBusinessCase" : false,
           "customFields" : [
             { "name" : "CustomerType", "type" : "String", "value" : "\"Leave Request CustomerType\"" },
-            { "name" : "SupportData", "type" : "String", "value" : "\"Leave Request SupportData\"" },
             { "name" : "ProcessCategoryCode", "type" : "String", "value" : "\"pubRequested\"" },
             { "name" : "ProcessCategoryName", "type" : "String", "value" : "\"Publication Requested\"" },
             { "name" : "ProcessCode", "type" : "String", "value" : "\"pubRequested\"" },
             { "name" : "ProcessName", "type" : "String", "value" : "\"Publication Requested\"" },
+            { "name" : "SupportData", "type" : "String", "value" : "\"Leave Request SupportData\"" },
             { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
           ]
         },
@@ -280,8 +266,7 @@
       },
       "visual" : {
         "at" : { "x" : 1510, "y" : 52 },
-        "size" : { "width" : 26, "height" : 26 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 133, "y" : 20 }
       },
       "connect" : { "id" : "f34", "to" : "f27", "var" : "in1" }
     }, {
@@ -290,8 +275,7 @@
       "name" : "ExpirationHandler",
       "visual" : {
         "at" : { "x" : 800, "y" : 72 },
-        "size" : { "width" : 26, "height" : 26 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 71, "y" : 20 }
       },
       "connect" : { "id" : "f40", "to" : "f39" }
     }, {
@@ -307,9 +291,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 800, "y" : 200 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 800, "y" : 200 }
       },
       "connect" : { "id" : "f43", "to" : "f41", "var" : "in1" }
     }, {
@@ -338,23 +320,20 @@
       },
       "visual" : {
         "at" : { "x" : 800, "y" : 288 },
-        "size" : { "width" : 26, "height" : 26 },
-        "labelOffset" : { "x" : 13, "y" : 0 }
+        "labelOffset" : { "x" : 57, "y" : 20 }
       },
       "connect" : { "id" : "f44", "to" : "f42", "condition" : "ivp==\"TaskA.ivp\"" }
     }, {
       "id" : "f42",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 800, "y" : 416 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 800, "y" : 416 }
       }
     }, {
       "id" : "f20",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 1510, "y" : 416 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 1510, "y" : 416 }
       }
     }, {
       "id" : "f30",
@@ -367,8 +346,7 @@
       },
       "visual" : {
         "at" : { "x" : 192, "y" : 512 },
-        "size" : { "width" : 26, "height" : 26 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 110, "y" : 20 }
       },
       "connect" : { "id" : "f49", "to" : "f32", "var" : "in1" }
     }, {
@@ -402,8 +380,7 @@
       },
       "visual" : {
         "at" : { "x" : 192, "y" : 576 },
-        "size" : { "width" : 28, "height" : 28 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 83, "y" : 20 }
       },
       "connect" : [
         { "id" : "f50", "to" : "f47", "via" : [ { "x" : 136, "y" : 576 } ], "condition" : "ivp==\"TaskA.ivp\"" },
@@ -413,15 +390,13 @@
       "id" : "f47",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 136, "y" : 704 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 136, "y" : 704 }
       }
     }, {
       "id" : "f48",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 248, "y" : 704 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 248, "y" : 704 }
       }
     }, {
       "id" : "f66",
@@ -470,9 +445,7 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 1010, "y" : 684 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 1010, "y" : 684 }
       },
       "connect" : { "id" : "f96", "to" : "f89" }
     }, {
@@ -487,17 +460,14 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 1146, "y" : 684 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 1146, "y" : 684 }
       },
       "connect" : { "id" : "f97", "to" : "f89", "via" : [ { "x" : 1146, "y" : 748 } ] }
     }, {
       "id" : "f89",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 1010, "y" : 748 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 1010, "y" : 748 }
       }
     }, {
       "id" : "f90",
@@ -520,8 +490,8 @@
               "timeout" : "new Duration(\"3H\")"
             },
             "customFields" : [
-              { "name" : "CustomerType", "type" : "String", "value" : "\"Exterior\"" },
               { "name" : "CustomerName", "type" : "String", "value" : "\"Long Do\"" },
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Exterior\"" },
               { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
             ]
           },
@@ -534,8 +504,8 @@
               "timeout" : "new Duration(\"1D\")"
             },
             "customFields" : [
-              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
               { "name" : "CustomerName", "type" : "String", "value" : "\"Tung Le\"" },
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
               { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
             ]
           },
@@ -548,8 +518,8 @@
               "timeout" : "new Duration(\"2D\")"
             },
             "customFields" : [
-              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
               { "name" : "CustomerName", "type" : "String", "value" : "\"Anh Nguyen\"" },
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
               { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
             ]
           }
@@ -557,8 +527,7 @@
       },
       "visual" : {
         "at" : { "x" : 1010, "y" : 628 },
-        "size" : { "width" : 28, "height" : 28 },
-        "labelOffset" : { "x" : 9, "y" : -21 }
+        "labelOffset" : { "x" : 52, "y" : -1 }
       },
       "connect" : [
         { "id" : "f99", "to" : "f91", "via" : [ { "x" : 882, "y" : 628 } ], "condition" : "ivp==\"TaskA.ivp\"" },
@@ -577,9 +546,7 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 882, "y" : 684 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 882, "y" : 684 }
       },
       "connect" : { "id" : "f98", "to" : "f89", "via" : [ { "x" : 882, "y" : 748 } ] }
     }, {
@@ -592,19 +559,19 @@
           "name" : "Leave Request for Default Additional Case Details",
           "description" : "Leave Request Description for Default Additional Case Details",
           "customFields" : [
-            { "name" : "InvoiceNumber", "type" : "Number", "value" : "159753852" },
-            { "name" : "InvoiceQualityNumber", "type" : "Number", "value" : "745856" },
             { "name" : "AccountNumber", "type" : "Number", "value" : "1598526" },
+            { "name" : "CreatedBillDate", "type" : "Timestamp", "value" : "new DateTime(2018, 5, 5, 5, 5, 5)" },
+            { "name" : "CustomerName", "type" : "String", "value" : "\"Customer name\"" },
+            { "name" : "CustomerType", "type" : "String", "value" : "\"Customer type\"" },
             { "name" : "InvoiceDate", "type" : "Timestamp", "value" : "new DateTime(2018, 2, 2, 2, 2 ,2)" },
             { "name" : "InvoiceDueDate", "type" : "Timestamp", "value" : "new DateTime(2018, 3, 3, 3, 3, 3)" },
-            { "name" : "CreatedBillDate", "type" : "Timestamp", "value" : "new DateTime(2018, 5, 5, 5, 5, 5)" },
-            { "name" : "CustomerType", "type" : "String", "value" : "\"Customer type\"" },
-            { "name" : "SupportData", "type" : "String", "value" : "\"Support Data\"" },
-            { "name" : "CustomerName", "type" : "String", "value" : "\"Customer name\"" },
+            { "name" : "InvoiceNumber", "type" : "Number", "value" : "159753852" },
+            { "name" : "InvoiceQualityNumber", "type" : "Number", "value" : "745856" },
             { "name" : "ProcessCategoryCode", "type" : "String", "value" : "\"pubRequested\"" },
             { "name" : "ProcessCategoryName", "type" : "String", "value" : "\"Publication Requested\"" },
             { "name" : "ProcessCode", "type" : "String", "value" : "\"pubRequested\"" },
-            { "name" : "ProcessName", "type" : "String", "value" : "\"Publication Requested\"" }
+            { "name" : "ProcessName", "type" : "String", "value" : "\"Publication Requested\"" },
+            { "name" : "SupportData", "type" : "String", "value" : "\"Support Data\"" }
           ]
         },
         "outLink" : "DefaultAdditionalCaseDetails.ivp",
@@ -612,8 +579,7 @@
       },
       "visual" : {
         "at" : { "x" : 1010, "y" : 513 },
-        "size" : { "width" : 26, "height" : 26 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 112, "y" : 20 }
       },
       "connect" : { "id" : "f88", "to" : "f90", "var" : "in1" }
     }, {
@@ -637,8 +603,8 @@
               "timeout" : "new Duration(\"3H\")"
             },
             "customFields" : [
-              { "name" : "CustomerType", "type" : "String", "value" : "\"Exterior\"" },
-              { "name" : "CustomerName", "type" : "String", "value" : "\"Long Do\"" }
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Long Do\"" },
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Exterior\"" }
             ]
           },
           "TaskB" : {
@@ -653,8 +619,8 @@
               "timeout" : "new Duration(\"1D\")"
             },
             "customFields" : [
-              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
-              { "name" : "CustomerName", "type" : "String", "value" : "\"Tung Le\"" }
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Tung Le\"" },
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" }
             ]
           },
           "TaskC" : {
@@ -669,8 +635,8 @@
               "timeout" : "new Duration(\"2D\")"
             },
             "customFields" : [
-              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
-              { "name" : "CustomerName", "type" : "String", "value" : "\"Anh Nguyen\"" }
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Anh Nguyen\"" },
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" }
             ]
           },
           "TaskD" : {
@@ -684,8 +650,7 @@
       },
       "visual" : {
         "at" : { "x" : 191, "y" : 903 },
-        "size" : { "width" : 28, "height" : 28 },
-        "labelOffset" : { "x" : 9, "y" : -21 }
+        "labelOffset" : { "x" : 52, "y" : -1 }
       },
       "connect" : [
         { "id" : "f113", "to" : "f103", "via" : [ { "x" : 63, "y" : 903 } ], "condition" : "ivp==\"TaskA.ivp\"" },
@@ -703,22 +668,22 @@
           "name" : "Test Case List Permission",
           "description" : "Test case List Permission",
           "customFields" : [
-            { "name" : "InvoiceNumber", "type" : "Number", "value" : "111" },
-            { "name" : "InvoiceTotalAmount", "type" : "Number", "value" : "222" },
-            { "name" : "InvoiceQualityNumber", "type" : "Number", "value" : "333" },
-            { "name" : "InvoiceSubTotalAmount", "type" : "Number", "value" : "444" },
             { "name" : "AccountNumber", "type" : "Number", "value" : "555" },
-            { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime(2018, 1, 1, 1, 1, 1)" },
+            { "name" : "CreatedBillDate", "type" : "Timestamp", "value" : "new DateTime(2018, 5, 5, 5, 5, 5)" },
+            { "name" : "CustomerName", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails CustomerName\"" },
+            { "name" : "CustomerType", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails CustomerType\"" },
             { "name" : "InvoiceDate", "type" : "Timestamp", "value" : "new DateTime(2018, 2, 2, 2, 2 ,2)" },
             { "name" : "InvoiceDueDate", "type" : "Timestamp", "value" : "new DateTime(2018, 3, 3, 3, 3, 3)" },
-            { "name" : "CreatedBillDate", "type" : "Timestamp", "value" : "new DateTime(2018, 5, 5, 5, 5, 5)" },
-            { "name" : "CustomerType", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails CustomerType\"" },
-            { "name" : "SupportData", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails SupportData\"" },
-            { "name" : "CustomerName", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails CustomerName\"" },
+            { "name" : "InvoiceNumber", "type" : "Number", "value" : "111" },
+            { "name" : "InvoiceQualityNumber", "type" : "Number", "value" : "333" },
+            { "name" : "InvoiceSubTotalAmount", "type" : "Number", "value" : "444" },
+            { "name" : "InvoiceTotalAmount", "type" : "Number", "value" : "222" },
             { "name" : "ProcessCategoryCode", "type" : "String", "value" : "\"pubRequested\"" },
             { "name" : "ProcessCategoryName", "type" : "String", "value" : "\"Publication Requested\"" },
             { "name" : "ProcessCode", "type" : "String", "value" : "\"pubRequested\"" },
             { "name" : "ProcessName", "type" : "String", "value" : "\"Publication Requested\"" },
+            { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime(2018, 1, 1, 1, 1, 1)" },
+            { "name" : "SupportData", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails SupportData\"" },
             { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
           ]
         },
@@ -727,8 +692,7 @@
       },
       "visual" : {
         "at" : { "x" : 191, "y" : 772 },
-        "size" : { "width" : 26, "height" : 26 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 103, "y" : 20 }
       },
       "connect" : { "id" : "f102", "to" : "f93", "var" : "in1" }
     }, {
@@ -743,9 +707,7 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 327, "y" : 959 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 327, "y" : 959 }
       },
       "connect" : { "id" : "f109", "to" : "f105", "via" : [ { "x" : 327, "y" : 1023 } ] }
     }, {
@@ -760,9 +722,7 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 63, "y" : 959 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 63, "y" : 959 }
       },
       "connect" : { "id" : "f107", "to" : "f105", "via" : [ { "x" : 63, "y" : 1023 } ] }
     }, {
@@ -777,17 +737,14 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 191, "y" : 959 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 191, "y" : 959 }
       },
       "connect" : { "id" : "f112", "to" : "f105" }
     }, {
       "id" : "f105",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 191, "y" : 1023 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 191, "y" : 1023 }
       }
     }, {
       "id" : "f106",
@@ -801,9 +758,7 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 456, "y" : 959 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 456, "y" : 959 }
       },
       "connect" : { "id" : "f114", "to" : "f105", "via" : [ { "x" : 456, "y" : 1023 } ] }
     }, {
@@ -857,7 +812,7 @@
       },
       "visual" : {
         "at" : { "x" : 208, "y" : 1136 },
-        "labelOffset" : { "x" : 22, "y" : 8 }
+        "labelOffset" : { "x" : 133, "y" : 28 }
       },
       "connect" : { "id" : "f138", "to" : "f136", "var" : "in1" }
     }, {
@@ -1186,7 +1141,7 @@
       },
       "visual" : {
         "at" : { "x" : 544, "y" : 580 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f61", "to" : "f60", "var" : "in1" }
     }, {
@@ -1220,7 +1175,7 @@
       },
       "visual" : {
         "at" : { "x" : 544, "y" : 664 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f63", "to" : "f62", "condition" : "ivp==\"TaskA.ivp\"" }
     }, {
@@ -1235,9 +1190,7 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 72, "y" : 296 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 72, "y" : 296 }
       },
       "connect" : { "id" : "f18", "to" : "f45", "via" : [ { "x" : 72, "y" : 416 } ] }
     }, {
@@ -1252,9 +1205,7 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 200, "y" : 296 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 200, "y" : 296 }
       },
       "connect" : { "id" : "f17", "to" : "f45" }
     }, {
@@ -1269,12 +1220,12 @@
           "attachToBusinessCase" : false,
           "customFields" : [
             { "name" : "CustomerType", "type" : "String", "value" : "\"Leave Request CustomerType\"" },
-            { "name" : "SupportData", "type" : "String", "value" : "\"Leave Request SupportData\"" },
             { "name" : "Number field", "type" : "Number", "value" : "1000000" },
             { "name" : "ProcessCategoryCode", "type" : "String", "value" : "\"pubRequested\"" },
             { "name" : "ProcessCategoryName", "type" : "String", "value" : "\"Publication Requested\"" },
             { "name" : "ProcessCode", "type" : "String", "value" : "\"pubRequested\"" },
             { "name" : "ProcessName", "type" : "String", "value" : "\"Publication Requested\"" },
+            { "name" : "SupportData", "type" : "String", "value" : "\"Leave Request SupportData\"" },
             { "name" : "Today", "type" : "Timestamp", "value" : "new java.util.Date()" }
           ]
         },
@@ -1283,8 +1234,7 @@
       },
       "visual" : {
         "at" : { "x" : 200, "y" : 64 },
-        "size" : { "width" : 26, "height" : 26 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 101, "y" : 20 }
       },
       "connect" : { "id" : "f4", "to" : "f7", "var" : "in1" }
     }, {
@@ -1299,17 +1249,14 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 336, "y" : 296 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 336, "y" : 296 }
       },
       "connect" : { "id" : "f19", "to" : "f45", "via" : [ { "x" : 336, "y" : 416 } ] }
     }, {
       "id" : "f45",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 200, "y" : 416 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 200, "y" : 416 }
       }
     }, {
       "id" : "f7",
@@ -1336,10 +1283,10 @@
               "timeout" : "new Duration(\"3H\")"
             },
             "customFields" : [
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Long Do\"" },
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Exterior\"" },
               { "name" : "InvoiceTotalAmount", "type" : "Number", "value" : "7" },
               { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" },
-              { "name" : "CustomerType", "type" : "String", "value" : "\"Exterior\"" },
-              { "name" : "CustomerName", "type" : "String", "value" : "\"Long Do\"" },
               { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
             ]
           },
@@ -1352,10 +1299,10 @@
               "timeout" : "new Duration(\"1D\")"
             },
             "customFields" : [
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Tung Le\"" },
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
               { "name" : "InvoiceTotalAmount", "type" : "Number", "value" : "14" },
               { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" },
-              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
-              { "name" : "CustomerName", "type" : "String", "value" : "\"Tung Le\"" },
               { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
             ]
           },
@@ -1368,10 +1315,10 @@
               "timeout" : "new Duration(\"2D\")"
             },
             "customFields" : [
+              { "name" : "CustomerName", "type" : "String", "value" : "\"Anh Nguyen\"" },
+              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
               { "name" : "InvoiceTotalAmount", "type" : "Number", "value" : "13" },
               { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" },
-              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
-              { "name" : "CustomerName", "type" : "String", "value" : "\"Anh Nguyen\"" },
               { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
             ]
           }
@@ -1379,8 +1326,7 @@
       },
       "visual" : {
         "at" : { "x" : 200, "y" : 192 },
-        "size" : { "width" : 28, "height" : 28 },
-        "labelOffset" : { "x" : 9, "y" : -21 }
+        "labelOffset" : { "x" : 52, "y" : -1 }
       },
       "connect" : [
         { "id" : "f13", "to" : "f9", "via" : [ { "x" : 72, "y" : 192 } ], "condition" : "ivp==\"TaskA.ivp\"" },
@@ -1404,7 +1350,7 @@
       },
       "visual" : {
         "at" : { "x" : 1392, "y" : 536 },
-        "labelOffset" : { "x" : -21, "y" : 17 },
+        "labelOffset" : { "x" : 50, "y" : 37 },
         "description" : "IFrame in Case level"
       },
       "connect" : { "id" : "f55", "to" : "f53" }
@@ -1440,7 +1386,7 @@
       },
       "visual" : {
         "at" : { "x" : 192, "y" : 1472 },
-        "labelOffset" : { "x" : -69, "y" : 19 }
+        "labelOffset" : { "x" : 22, "y" : 39 }
       },
       "connect" : { "id" : "f72", "to" : "f71", "var" : "in1" }
     }, {
@@ -1486,9 +1432,7 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 472, "y" : 1471 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 472, "y" : 1471 }
       },
       "connect" : { "id" : "f73", "to" : "f58" }
     } ],

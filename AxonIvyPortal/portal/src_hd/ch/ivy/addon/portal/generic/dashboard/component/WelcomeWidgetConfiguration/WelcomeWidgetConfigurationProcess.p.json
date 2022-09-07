@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.17",
+  "format" : "9.4.20",
   "id" : "1829F62EDEAB239D",
   "data" : "ch.ivy.addon.portal.generic.dashboard.component.WelcomeWidgetConfiguration.WelcomeWidgetConfigurationData",
   "kind" : "HTML_DIALOG",
@@ -64,7 +64,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 248 },
-        "labelOffset" : { "x" : -97, "y" : 16 }
+        "labelOffset" : { "x" : 29, "y" : 36 }
       },
       "connect" : { "id" : "f36", "to" : "f34" }
     }, {
