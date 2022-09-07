@@ -41,7 +41,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
 
   public DashboardConfigurationPage backToConfigurationPage() {
-    $("[id='back-to-configuration']").click(0, 0);
+    clickByJavaScript($("[id='back-to-configuration']"));
     return new DashboardConfigurationPage();
   }
 
