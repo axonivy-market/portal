@@ -49,21 +49,21 @@ Below is a sample JSON definition of a statistics widget in the Portal dashboard
 
 The basic JSON structure of a statistics widget
 
-   ``type``: type of widget. Use ``statistic`` for a statistics widget
+   ``type``: type of the widget. Use ``statistic`` for a statistics widget
 
    ``id``: ID of the widget
 
    ``name``: Name of the widget on UI
 
-   ``layout``: layout definition of statistics widget
+   ``layout``: layout definition of the statistics widget
 
-      ``x``: HTML DOM Style ``left`` will be calculated by formula ``x / 12 * 100%``
+      ``x``: HTML DOM Style ``left`` is calculated as formula ``x / 12 * 100%``
 
-      ``y``: HTML DOM Style ``top`` will be calculated by formula ``y / 12 * 100%``
+      ``y``: HTML DOM Style ``top`` is calculated as formula ``y / 12 * 100%``
 
-      ``w``: HTML DOM Style ``width`` will be calculated by formula ``60 * w + 20 * (w - 1)``
+      ``w``: HTML DOM Style ``width`` is calculated as formula ``60 * w + 20 * (w - 1)``
 
-      ``h``: HTML DOM Style ``height`` will be calculated by formula ``60 * h + 20 * (h - 1)``
+      ``h``: HTML DOM Style ``height`` is calculated as formula ``60 * h + 20 * (h - 1)``
 
       ``styleClass`` (optional): add CSS Classes to HTML DOM of the widget
 
