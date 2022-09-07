@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "1636734E13CEC872",
   "data" : "portalKit_test.LoginData",
   "elements" : [ {
@@ -87,7 +87,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 },
-        "labelOffset" : { "x" : -21, "y" : 17 }
+        "labelOffset" : { "x" : 13, "y" : 37 }
       },
       "connect" : { "id" : "f8", "to" : "f6" }
     } ]

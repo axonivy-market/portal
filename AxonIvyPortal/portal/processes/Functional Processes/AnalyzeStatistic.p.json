@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "1602F513613E1225",
   "data" : "ch.ivy.add.portalkit.AnalyzeStatisticData",
   "kind" : "CALLABLE_SUB",
@@ -422,7 +422,7 @@
       },
       "visual" : {
         "at" : { "x" : 128, "y" : 544 },
-        "labelOffset" : { "x" : -117, "y" : 17 }
+        "labelOffset" : { "x" : 49, "y" : 37 }
       },
       "connect" : { "id" : "f16", "to" : "f51" }
     }, {
@@ -477,7 +477,7 @@
       },
       "visual" : {
         "at" : { "x" : 128, "y" : 656 },
-        "labelOffset" : { "x" : -114, "y" : 17 }
+        "labelOffset" : { "x" : 55, "y" : 37 }
       },
       "connect" : { "id" : "f32", "to" : "f18" }
     }, {
@@ -559,7 +559,7 @@
       },
       "visual" : {
         "at" : { "x" : 128, "y" : 744 },
-        "labelOffset" : { "x" : -114, "y" : 17 }
+        "labelOffset" : { "x" : 64, "y" : 37 }
       },
       "connect" : { "id" : "f49", "to" : "f46" }
     }, {

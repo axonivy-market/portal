@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "1624CFE2532EF6BE",
   "data" : "ch.ivy.addon.portal.generic.SetAdditonalCaseDetailPageData",
   "kind" : "CALLABLE_SUB",
@@ -49,7 +49,7 @@
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 64 },
-        "size" : { "width" : 176, "height" : 44 }
+        "size" : { "width" : 176, "height" : 60 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     } ]

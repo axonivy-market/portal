@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "16B6880352B52912",
   "data" : "ch.ivy.addon.portalkit.component.ActionStep.ActionStepData",
   "kind" : "HTML_DIALOG",
@@ -30,7 +30,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 384 },
-        "labelOffset" : { "x" : -15, "y" : 12 }
+        "labelOffset" : { "x" : 8, "y" : 32 }
       },
       "connect" : { "id" : "f5", "to" : "f4" }
     }, {
@@ -59,7 +59,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 },
-        "labelOffset" : { "x" : -25, "y" : 15 }
+        "labelOffset" : { "x" : 16, "y" : 35 }
       },
       "connect" : { "id" : "f10", "to" : "f9" }
     }, {
@@ -81,7 +81,7 @@
       },
       "visual" : {
         "at" : { "x" : 432, "y" : 160 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       }
     }, {
       "id" : "f9",
@@ -89,7 +89,7 @@
       "name" : "open in frame ?",
       "visual" : {
         "at" : { "x" : 224, "y" : 160 },
-        "labelOffset" : { "x" : -43, "y" : -40 }
+        "labelOffset" : { "x" : 8, "y" : -20 }
       },
       "connect" : [
         { "id" : "f8", "to" : "f7", "label" : {
@@ -117,7 +117,7 @@
       },
       "visual" : {
         "at" : { "x" : 440, "y" : 256 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       }
     } ]
 }
