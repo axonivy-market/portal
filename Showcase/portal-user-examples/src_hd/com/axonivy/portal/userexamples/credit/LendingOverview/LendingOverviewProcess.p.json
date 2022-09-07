@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "172598595FEC9964",
   "data" : "com.axonivy.portal.userexamples.credit.LendingOverview.LendingOverviewData",
   "kind" : "HTML_DIALOG",
@@ -21,7 +21,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -16, "y" : 15 }
+        "labelOffset" : { "x" : 44, "y" : 35 }
       },
       "connect" : { "id" : "f7", "to" : "f6" }
     }, {
@@ -160,7 +160,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 256 },
-        "labelOffset" : { "x" : -25, "y" : 15 }
+        "labelOffset" : { "x" : 52, "y" : 35 }
       },
       "connect" : { "id" : "f10", "to" : "f9" }
     }, {
@@ -193,7 +193,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 352 },
-        "labelOffset" : { "x" : -14, "y" : 15 }
+        "labelOffset" : { "x" : 12, "y" : 35 }
       },
       "connect" : { "id" : "f13", "to" : "f12" }
     }, {
@@ -206,7 +206,7 @@
       },
       "visual" : {
         "at" : { "x" : 288, "y" : 352 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       }
     } ]
 }
