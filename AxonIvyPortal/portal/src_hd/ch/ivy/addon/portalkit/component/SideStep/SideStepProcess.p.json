@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "16BF516D50A96350",
   "data" : "ch.ivy.addon.portalkit.component.SideStep.SideStepData",
   "kind" : "HTML_DIALOG",
@@ -137,7 +137,7 @@
       },
       "visual" : {
         "at" : { "x" : 88, "y" : 400 },
-        "labelOffset" : { "x" : -70, "y" : 15 }
+        "labelOffset" : { "x" : 71, "y" : 35 }
       },
       "connect" : { "id" : "f14", "to" : "f13" }
     }, {
@@ -163,7 +163,7 @@
       },
       "visual" : {
         "at" : { "x" : 544, "y" : 400 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       }
     }, {
       "id" : "f4",
@@ -183,7 +183,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 576 },
-        "labelOffset" : { "x" : -46, "y" : 17 }
+        "labelOffset" : { "x" : 10, "y" : 37 }
       },
       "connect" : { "id" : "f12", "to" : "f11" }
     }, {
@@ -226,7 +226,7 @@
       "name" : "in frame ?",
       "visual" : {
         "at" : { "x" : 320, "y" : 400 },
-        "labelOffset" : { "x" : -25, "y" : -34 }
+        "labelOffset" : { "x" : 10, "y" : -14 }
       },
       "connect" : [
         { "id" : "f8", "to" : "f7", "label" : {
@@ -258,7 +258,7 @@
       },
       "visual" : {
         "at" : { "x" : 544, "y" : 496 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       }
     }, {
       "id" : "f20",
@@ -278,7 +278,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 704 },
-        "labelOffset" : { "x" : -50, "y" : 18 }
+        "labelOffset" : { "x" : 20, "y" : 38 }
       },
       "connect" : { "id" : "f25", "to" : "f24" }
     }, {

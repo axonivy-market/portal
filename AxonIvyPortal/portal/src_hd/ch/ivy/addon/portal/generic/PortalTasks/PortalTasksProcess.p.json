@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "1520FC11167E4897",
   "data" : "ch.ivy.addon.portal.generic.PortalTasks.PortalTasksData",
   "kind" : "HTML_DIALOG",
@@ -7,8 +7,7 @@
       "id" : "f1",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 240, "y" : 144 },
-        "size" : { "width" : 22, "height" : 22 }
+        "at" : { "x" : 240, "y" : 144 }
       }
     }, {
       "id" : "f2",
@@ -28,8 +27,7 @@
       },
       "visual" : {
         "at" : { "x" : 88, "y" : 144 },
-        "size" : { "width" : 22, "height" : 22 },
-        "labelOffset" : { "x" : -36, "y" : 17 }
+        "labelOffset" : { "x" : 39, "y" : 37 }
       },
       "connect" : { "id" : "f3", "to" : "f1" }
     } ]

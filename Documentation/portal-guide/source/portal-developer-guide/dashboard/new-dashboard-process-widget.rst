@@ -25,7 +25,7 @@ The basic structure of the JSON of a process widget is as follows:
 
 The basic structure of the JSON of a Process widget
 
-``type``: type of process widget. There are four types for related display
+``type``: type of the process widget. There are four types for related display
 modes: ``compact-process`` (compact mode), ``combined-process`` (combined mode),
 ``full-process`` (full mode), and ``image-process`` (image mode).
 
@@ -33,19 +33,19 @@ modes: ``compact-process`` (compact mode), ``combined-process`` (combined mode),
 
    ``name``: Name of the widget on UI
 
-   ``layout``: layout definition of widget
+   ``layout``: layout definition of the widget
 
-      ``x``: HTML DOM Style ``left`` will be calculated by formula ``x / 12 * 100%``
+      ``x``: HTML DOM Style ``left`` is calculated as formula ``x / 12 * 100%``
 
-      ``y``: HTML DOM Style ``top`` will be calculated by formula ``y / 12 * 100%``
+      ``y``: HTML DOM Style ``top`` is calculated as formula ``y / 12 * 100%``
 
-      ``w``: HTML DOM Style ``width`` will be calculated by formula ``60 * w + 20 * (w - 1)``
+      ``w``: HTML DOM Style ``width`` is calculated as formula ``60 * w + 20 * (w - 1)``
 
-      ``h``: HTML DOM Style ``height`` will be calculated by formula ``60 * h + 20 * (h - 1)``
+      ``h``: HTML DOM Style ``height`` is calculated as formula ``60 * h + 20 * (h - 1)``
 
-      ``styleClass`` (optional): add CSS Classes to HTML DOM of widget
+      ``styleClass`` (optional): add CSS Classes to HTML DOM of the widget
 
-      ``style`` (optional): add inline style to HTML DOM of widget
+      ``style`` (optional): add inline style to HTML DOM of the widget
 
 Each mode has differences in its JSON definition. Refer to the below sections to
 understand how to define the process widget in these modes properly.

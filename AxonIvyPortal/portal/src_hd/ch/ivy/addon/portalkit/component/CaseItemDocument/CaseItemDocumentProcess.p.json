@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "153361016FE4213A",
   "data" : "ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData",
   "kind" : "HTML_DIALOG",
@@ -27,7 +27,6 @@
       "name" : "initData(ICase)",
       "config" : {
         "callSignature" : "initData",
-        ".name" : "initData(ICase)",
         "input" : {
           "params" : [
             { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
@@ -54,7 +53,6 @@
       "name" : "uploadDocument(FileUploadEvent)",
       "config" : {
         "callSignature" : "uploadDocument",
-        ".name" : "uploadDocument(FileUploadEvent)",
         "input" : {
           "params" : [
             { "name" : "event", "type" : "org.primefaces.event.FileUploadEvent" }
@@ -67,7 +65,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 288 },
-        "labelOffset" : { "x" : -75, "y" : 18 }
+        "labelOffset" : { "x" : 29, "y" : 38 }
       },
       "connect" : { "id" : "f19", "to" : "f13" }
     }, {
@@ -75,7 +73,6 @@
       "type" : "Script",
       "name" : "Show error message",
       "config" : {
-        ".name" : "Show error message",
         "output" : {
           "code" : [
             "import javax.faces.application.FacesMessage;",
@@ -87,7 +84,7 @@
       },
       "visual" : {
         "at" : { "x" : 632, "y" : 384 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f15", "to" : "f33", "via" : [ { "x" : 976, "y" : 384 } ] }
     }, {
@@ -102,7 +99,6 @@
       "name" : "downloadDocument(IvyDocument)",
       "config" : {
         "callSignature" : "downloadDocument",
-        ".name" : "downloadDocument(IvyDocument)",
         "result" : {
           "params" : [
             { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent" }
@@ -123,7 +119,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 448 },
-        "labelOffset" : { "x" : -91, "y" : 17 }
+        "labelOffset" : { "x" : 11, "y" : 37 }
       },
       "connect" : { "id" : "f22", "to" : "f20" }
     }, {
@@ -138,7 +134,6 @@
       "name" : "resetDataUploadDialog()",
       "config" : {
         "callSignature" : "resetDataUploadDialog",
-        ".name" : "resetDataUploadDialog()",
         "guid" : "168030614DDB1EA9"
       },
       "visual" : {
@@ -150,7 +145,6 @@
       "type" : "Script",
       "name" : "Reset messages",
       "config" : {
-        ".name" : "Reset messages",
         "output" : {
           "code" : [
             "import java.util.Iterator;",
@@ -181,7 +175,6 @@
       "name" : "deleteDocument()",
       "config" : {
         "callSignature" : "deleteDocument",
-        ".name" : "deleteDocument()",
         "guid" : "168030735CFC1630"
       },
       "visual" : {
@@ -198,12 +191,9 @@
       "id" : "f28",
       "type" : "Alternative",
       "name" : "Upload successfully?",
-      "config" : {
-        ".name" : "Upload successfully?"
-      },
       "visual" : {
         "at" : { "x" : 488, "y" : 288 },
-        "labelOffset" : { "x" : -54, "y" : -39 }
+        "labelOffset" : { "x" : 13, "y" : -19 }
       },
       "connect" : [
         { "id" : "f49", "to" : "f46", "label" : {
@@ -230,10 +220,6 @@
         "message"
       ],
       "config" : {
-        ".name" : [
-          "Show success",
-          "message"
-        ],
         "output" : {
           "code" : [
             "import javax.faces.application.FacesMessage;",
@@ -245,7 +231,7 @@
       },
       "visual" : {
         "at" : { "x" : 632, "y" : 288 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f32", "to" : "f14" }
     }, {
@@ -256,10 +242,6 @@
         "message"
       ],
       "config" : {
-        ".name" : [
-          "Show delete",
-          "message"
-        ],
         "output" : {
           "code" : [
             "import javax.faces.application.FacesMessage;",
@@ -278,7 +260,6 @@
       "type" : "SubProcessCall",
       "name" : "Find documents",
       "config" : {
-        ".name" : "Find documents",
         "processCall" : "Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)",
         "output" : {
           "map" : {
@@ -304,7 +285,6 @@
       "type" : "SubProcessCall",
       "name" : "Find documents",
       "config" : {
-        ".name" : "Find documents",
         "processCall" : "Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)",
         "output" : {
           "map" : {
@@ -330,7 +310,6 @@
       "type" : "SubProcessCall",
       "name" : "Find documents",
       "config" : {
-        ".name" : "Find documents",
         "processCall" : "Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)",
         "output" : {
           "map" : {
@@ -356,7 +335,6 @@
       "type" : "SubProcessCall",
       "name" : "UploadDocument",
       "config" : {
-        ".name" : "UploadDocument",
         "processCall" : "Functional Processes/UploadDocument:call(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.file.UploadedFile,Boolean,Boolean,String)",
         "output" : {
           "map" : {
@@ -388,7 +366,6 @@
       "type" : "SubProcessCall",
       "name" : "Download Document",
       "config" : {
-        ".name" : "Download Document",
         "processCall" : "Functional Processes/DownloadDocument:call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
         "output" : {
           "map" : {
@@ -409,7 +386,7 @@
       },
       "visual" : {
         "at" : { "x" : 256, "y" : 448 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f25", "to" : "f24" }
     }, {
@@ -417,7 +394,6 @@
       "type" : "SubProcessCall",
       "name" : "Delete Document",
       "config" : {
-        ".name" : "Delete Document",
         "processCall" : "Functional Processes/DeleteDocument:call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
         "output" : {
           "map" : {
@@ -445,7 +421,6 @@
       "type" : "Script",
       "name" : "Release JSF Event",
       "config" : {
-        ".name" : "Release JSF Event",
         "output" : {
           "code" : [
             "// Do not store JSF Event in a Html Dialog data field",

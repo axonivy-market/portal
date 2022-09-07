@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "176CBAE5E8EDAEE3",
   "data" : "com.axonivy.portal.developerexamples.customization.PortalHome.PortalHomeData",
   "kind" : "HTML_DIALOG",
@@ -21,7 +21,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -16, "y" : 15 }
+        "labelOffset" : { "x" : 34, "y" : 35 }
       },
       "connect" : { "id" : "f2", "to" : "f3" }
     }, {
@@ -34,8 +34,7 @@
       "id" : "f4",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 221, "y" : 221 },
-        "size" : { "width" : 22, "height" : 22 }
+        "at" : { "x" : 221, "y" : 221 }
       }
     }, {
       "id" : "f1",
@@ -66,8 +65,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 },
-        "size" : { "width" : 22, "height" : 22 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 64, "y" : 20 }
       },
       "connect" : { "id" : "f7", "to" : "f6" }
     }, {
@@ -96,16 +94,14 @@
       },
       "visual" : {
         "at" : { "x" : 93, "y" : 221 },
-        "size" : { "width" : 22, "height" : 22 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 74, "y" : 20 }
       },
       "connect" : { "id" : "f8", "to" : "f4" }
     }, {
       "id" : "f6",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 224, "y" : 160 },
-        "size" : { "width" : 22, "height" : 22 }
+        "at" : { "x" : 224, "y" : 160 }
       }
     } ]
 }

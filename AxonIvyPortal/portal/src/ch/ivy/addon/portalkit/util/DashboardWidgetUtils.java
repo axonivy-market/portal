@@ -603,7 +603,7 @@ public class DashboardWidgetUtils {
     List<DashboardProcess> processes;
     if (processWidget.isSelectedAllProcess()) {
       processes = getAllPortalProcesses();
-    } 
+    }
     if (CollectionUtils.isNotEmpty(processWidget.getProcesses())) {
       processes = filterProcessesByProcesses(processWidget.getProcesses());
       processWidget.setProcesses(processes);
@@ -618,7 +618,7 @@ public class DashboardWidgetUtils {
     List<DashboardProcess> processes;
     if (processWidget.isSelectedAllProcess()) {
       processes = getAllPortalProcesses();
-    } 
+    }
     if (CollectionUtils.isNotEmpty(processWidget.getProcessPaths())) {
       processes = filterProcessesByProcessPaths(processWidget.getProcessPaths());
       processWidget.setProcesses(processes);
