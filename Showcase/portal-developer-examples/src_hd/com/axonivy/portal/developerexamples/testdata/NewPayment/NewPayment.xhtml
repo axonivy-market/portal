@@ -1,56 +1,48 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:ic="http://ivyteam.ch/jsf/component"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-	<ui:composition template="/layouts/TaskTemplate-8.xhtml">
-		<ui:define name="title">NewPayment</ui:define>
-		<ui:param name="actualStepIndex" value="#{data.actualStepIndex}" />
-		<ui:param name="steps" value="#{data.steps}" />
+  <ui:composition template="/layouts/TaskTemplate-8.xhtml">
+    <ui:define name="title">NewPayment</ui:define>
+    <ui:param name="actualStepIndex" value="#{data.actualStepIndex}" />
+    <ui:param name="steps" value="#{data.steps}" />
 
-		<ui:define name="content">
-			<h:form id="payment-request">
-				<p:focus for="payment-request" />
-				<h:panelGroup styleClass="ui-g">
-					<h:panelGrid columns="2" columnClasses="TexAlLeft ui-g-6, ui-g-6"
-						styleClass="ui-g-4 ui-sm-12 ui-fluid">
-						<h:panelGroup class="md-inputfield MarTop5">
-							<p:inputText id="fullname" required="true"
-								requiredMessage="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/IsRequired')}" />
-							<p:outputLabel for="fullname"
-								value="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/Employee')}" />
-						</h:panelGroup>
-						<p:message id="fullname-msg" for="fullname" />
+    <ui:define name="content">
+      <h:form id="payment-request" styleClass="container ui-g">
+        <p:focus for="payment-request" />
+        <p:messages redisplay="false" showIcon="false" styleClass="ui-g-12">
+            <p:autoUpdate/>
+        </p:messages>
+        <h:panelGroup styleClass="ui-g-12">
+          <h:panelGrid columns="2" columnClasses="u-text-align-left ui-g-6, ui-g-6"
+            styleClass="ui-g-12 ui-fluid">
+            <h:panelGroup class="ui-float-label">
+              <p:inputText id="fullname" required="true"
+                requiredMessage="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/IsRequired')}" />
+              <p:outputLabel for="fullname"
+                value="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/Employee')}" />
+            </h:panelGroup>
 
-						<h:panelGroup class="md-inputfield MarTop5">
-							<p:datePicker id="from" value="" locale="#{localeBean.locale}"
-								pattern="#{dateTimePatternBean.configuredCalendarPattern}" required="true" showTime="#{!dateTimePatternBean.isTimeHidden}"
-								requiredMessage="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/IsRequired')}" />
-							<p:outputLabel for="from"
-								value="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/From')}" />
-						</h:panelGroup>
-						<p:message id="from-msg" for="from" />
-
-					</h:panelGrid>
-				</h:panelGroup>
-				<h:panelGroup styleClass="MarTop5 DispBlock Fright"
-					id="command-group">
-					<p:commandLink value="Cancel"
-						id="button-cancel"
-						actionListener="#{logic.cancel}" partialSubmit="true"
-						process="@this" />
-					<p:spacer width="15px" />
-					<p:commandButton value="Send" icon="si si-check-1"
-						partialSubmit="true" id="button-submit"
-						actionListener="#{logic.close}" process=":payment-request"
-						update=":payment-request" />
-				</h:panelGroup>
-			</h:form>
-
-		</ui:define>
-	</ui:composition>
+            <h:panelGroup class="ui-float-label">
+              <p:datePicker id="from" value="" locale="#{localeBean.locale}"
+                pattern="#{dateTimePatternBean.configuredCalendarPattern}" required="true"
+                showTime="#{!dateTimePatternBean.isTimeHidden}"
+                requiredMessage="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/IsRequired')}" />
+              <p:outputLabel for="from"
+                value="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/From')}" />
+            </h:panelGroup>
+          </h:panelGrid>
+        </h:panelGroup>
+        <h:panelGroup styleClass="ui-g-12 MarTop20 u-text-align-right" id="command-group" layout="block">
+          <p:commandLink value="Cancel" id="button-cancel" actionListener="#{logic.cancel}" partialSubmit="true"
+            process="@this" />
+          <p:spacer width="15px" />
+          <p:commandButton value="Send" icon="si si-check-1" partialSubmit="true" id="button-submit"
+            actionListener="#{logic.close}" process=":payment-request" update=":payment-request" />
+        </h:panelGroup>
+      </h:form>
+    </ui:define>
+  </ui:composition>
 </h:body>
 </html>

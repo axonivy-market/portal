@@ -179,7 +179,7 @@
           <h:outputText styleClass="task-detail-column-title"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}" />
         </div>
-        <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis">
+        <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 text-ellipsis">
           <h:outputText id="start-date" value="#{task.startTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
           </h:outputText>
@@ -192,7 +192,7 @@
           <h:outputText styleClass="task-detail-column-title"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/delayedUntil')}" />
         </div>
-        <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left">
+        <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 #{!taskActionBean.canChangeDelayTimestamp(task) or cc.attrs.readOnly ? '':'u-no-padding-left'}">
           <h:form id="delay-form">
             <p:inplace id="delay-date" styleClass="delay-edit-inplace portal-edit-inplace" editor="true"
               saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
@@ -265,7 +265,7 @@
           <h:outputText styleClass="task-detail-column-title"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/completedOn')}" />
         </div>
-        <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis">
+        <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 text-ellipsis">
           <h:outputText id="end-date" value="#{task.endTimestamp}" rendered="#{not empty task.endTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
           </h:outputText>
@@ -278,7 +278,7 @@
           <h:outputText styleClass="task-detail-column-title"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/processingTime')}" />
         </div>
-        <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis">
+        <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 text-ellipsis">
           <h:outputText id="duration-time" value="#{taskActionBean.getDurationOfTask(task)}" />
           <h:panelGroup id="duration-time-info">
             <i class="si si-information-circle" />

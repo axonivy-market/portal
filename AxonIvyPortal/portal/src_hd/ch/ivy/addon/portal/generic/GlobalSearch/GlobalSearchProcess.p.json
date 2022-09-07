@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.17",
   "id" : "163AFDE4C30836BD",
   "data" : "ch.ivy.addon.portal.generic.GlobalSearch.GlobalSearchData",
   "kind" : "HTML_DIALOG",
@@ -76,7 +76,7 @@
     }, {
       "id" : "f31",
       "type" : "Script",
-      "name" : "Navigate to task details",
+      "name" : "Navigate to Portal Search",
       "config" : {
         "output" : {
           "code" : [
@@ -88,8 +88,7 @@
       },
       "visual" : {
         "at" : { "x" : 416, "y" : 224 },
-        "size" : { "width" : 128, "height" : 44 },
-        "labelOffset" : { "x" : -59, "y" : -8 }
+        "size" : { "width" : 144, "height" : 44 }
       },
       "connect" : { "id" : "f6", "to" : "f4" }
     }, {

@@ -94,7 +94,7 @@ function numberingTaskFilterAndSort() {
 }
 
 function highlightProcessNavigation() {
-  createRedThickOutlineWithOffset($('.ripplelink.PROCESS'));
+  createRedThickOutlineWithOffset($('.layout-menu .PROCESS'));
 }
 
 function highlightAddExternalLink() {
@@ -178,7 +178,7 @@ function highlightUserMenuConfiguration() {
 }
 
 function highlightCaseMenuItem() {
-  createRedThickOutlineWithOffset($('.ripplelink.CASE'));
+  createRedThickOutlineWithOffset($('.layout-menu .CASE'));
 }
 
 function highlightShowMoreNoteLink() {
@@ -186,7 +186,7 @@ function highlightShowMoreNoteLink() {
 }
 
 function highlightStatisticNavigation() {
-   createRedThickOutlineWithOffset($('.ripplelink.STATISTICS'));
+   createRedThickOutlineWithOffset($('.layout-menu .STATISTICS'));
 }
 
 function highlightTaskAnalysisNavigationLink() {
@@ -400,18 +400,15 @@ function cleanHighlightExportExpress() {
 }
 
 function scrollToMiddleOfLayoutContent() {
-  var layoutContent = $('.js-layout-content'); 
-  layoutContent.scrollTop(layoutContent[0].scrollHeight/2);
+  window.scrollTo(0, document.body.scrollHeight/2);
 }
 
 function scrollToMiddleOfLayoutContent2() {
-  var layoutContent = $('.js-layout-content');
-  layoutContent.scrollTop(layoutContent[0].scrollHeight/4);
+  window.scrollTo(0, document.body.scrollHeight/4);
 }
 
 function scrollToBottomOfLayoutContent() {
-  var layoutContent = $('.js-layout-content'); 
-  layoutContent.scrollTop(layoutContent[0].scrollHeight);
+  window.scrollTo(0, document.body.scrollHeight);
 }
 
 function highlightCustomTaskDetail() {
@@ -477,7 +474,7 @@ function highlightTaskActionItem(taskIndex, actionIndex) {
 }
 
 function highlightShowAllProcesses() {
-  createRedThickOutlineWithOffset($('.ripplelink.PROCESS'));
+  createRedThickOutlineWithOffset($('.layout-menu .PROCESS'));
 }
 
 function highlightShowAdditionalLink() {
@@ -524,7 +521,7 @@ function highlightEmailSettings() {
 }
 
 function highlightUserName() {
-  createRedMediumOutline($('#user-settings-menu .user-name'));
+  createRedMediumOutline($('#user-settings-menu'));
 }
 
 function highlightServerInfo() {
@@ -532,7 +529,7 @@ function highlightServerInfo() {
 }
 
 function highlightUserExampleNavigation() {
-  createRedThickOutlineWithOffset($('.ripplelink.CUSTOM'));
+  createRedThickOutlineWithOffset($('.layout-menu .CUSTOM'));
 }
 
 function highlightProcessDisplayModePanel() {

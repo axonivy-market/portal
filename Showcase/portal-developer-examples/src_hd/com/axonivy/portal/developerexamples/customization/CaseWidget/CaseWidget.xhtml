@@ -20,7 +20,7 @@
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/NAME')}"
         dataModel="#{caseView.dataModel}" sortable="true" sortedField="NAME" />
 
-      <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="id-column-header" styleClass="TexAlCenter"
+      <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="id-column-header" styleClass="u-text-align-center"
         responsiveStyleClass="u-hidden-sm-down"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}"
         dataModel="#{caseView.dataModel}" sortable="true" sortedField="ID" />
@@ -36,28 +36,28 @@
         dataModel="#{caseView.dataModel}" sortable="true" sortedField="OWNER" rendered="#{caseBean.isCaseOwnerEnabled()}" />
 
       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="created-date-column-header"
-        styleClass="TexAlCenter" responsiveStyleClass="u-hidden-sm-down"
+        styleClass="u-text-align-center" responsiveStyleClass="u-hidden-sm-down"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}"
         dataModel="#{caseView.dataModel}" sortable="true" sortedField="CREATION_TIME" />
 
       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="finished-date-column-header"
-        styleClass="TexAlCenter" responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down"
+        styleClass="u-text-align-center" responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME')}"
         dataModel="#{caseView.dataModel}" sortable="true" sortedField="FINISHED_TIME" />
 
       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="state-column-header"
-        styleClass="TexAlCenter" responsiveStyleClass="u-hidden-sm-down"
+        styleClass="u-text-align-center" responsiveStyleClass="u-hidden-sm-down"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}"
         dataModel="#{caseView.dataModel}" sortable="true" sortedField="STATE" />
 
       <!-- New field -->
       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customer-name-column-header"
-        styleClass="TexAlCenter customized-case-header-column"
+        styleClass="u-text-align-center customized-case-header-column"
         responsiveStyleClass="js-hidden-when-expand-menu u-hidden-lg-down"
         value="#{ivy.cms.co('/DefaultColumns/caseList/CustomerName')}" sortedField="CustomerName"
         sortable="true" dataModel="#{caseView.dataModel}" />
       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="ShipmentDate-column-header"
-        styleClass="TexAlCenter customized-case-header-column"
+        styleClass="u-text-align-center customized-case-header-column"
         responsiveStyleClass="js-hidden-when-expand-menu u-hidden-lg-down"
         value="#{ivy.cms.co('/DefaultColumns/caseList/ShipmentDate')}" sortedField="ShipmentDate"
         sortable="true" dataModel="#{caseView.dataModel}" />

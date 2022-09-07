@@ -19,39 +19,25 @@
           onstart="resetPortalLeftMenuState();"
           immediate="true" process="@this" update="@none" global="false"/>
       </h:form>
-      <div class="ui-g">
+      <div class="ui-g js-dashboard__wrapper #{managedBean.isReadOnlyMode ? 'js-view-mode':''}">
       <!-- Dashboard content -->
       <ui:fragment>
         <h:outputStylesheet library="css" name="dashboard.css" />
-        <div class="dashboard__header ui-g-12 js-dashboard__header">
-
-          <h:panelGroup id="dashboard-title-container" styleClass="u-hidden-sm-down #{managedBean.isReadOnlyMode ? 'dashboard__title-container--flex ui-g-12' : 'dashboard__title-container--inline-flex ui-lg-8 ui-md-7'} dashboard__title-container">
-            <c:forEach var="dashboard" items="#{managedBean.dashboards}" varStatus="dashboardStatus">
-              <p:commandLink id="dashboard-title-#{dashboardStatus.index}" actionListener="#{managedBean.onDashboardChange(dashboardStatus.index)}"
-                update="grid-stack dashboard-title-container dashboard-title-dropdown-container" process="@this"
-                oncomplete="loadGrid()"
-                styleClass="dashboard__title #{managedBean.currentDashboardIndex == dashboardStatus.index ? 'dashboard__title--active':''}">
-                <h:outputText rendered="#{dashboard.isPublic}" styleClass="si si-network-share" />
-                <span>#{dashboard.title}</span>
-              </p:commandLink>
-            </c:forEach>
-          </h:panelGroup>
-          <h:panelGroup id="dashboard-title-dropdown-container" styleClass="u-hidden-md-up ui-g-12 padding-0 dashboard__title-dropdown-container" layout="block">
-            <p:selectOneMenu id="dashboard-title-dropdown" value="#{managedBean.selectedDashboardId}" styleClass="ui-fluid dashboard__title-dropdown" >
-              <f:selectItems value="#{managedBean.dashboards}" var="dashboard" itemLabel="#{dashboard.title}" itemValue="#{dashboard.id}" />
-              <p:ajax event="change" process="@this" listener="#{managedBean.onDashboardChangeByDropdown}" oncomplete="loadGrid()" partialSubmit="true"
-                update="grid-stack dashboard-title-container" />
-            </p:selectOneMenu>
+        <div class="dashboard__header js-dashboard__header ui-g">
+          <h:panelGroup id="dashboard-title-container" rendered="#{!managedBean.isReadOnlyMode}"
+            styleClass="u-hidden-sm-down dashboard__title-container--flex ui-lg-8 ui-md-7 ui-sm-12 dashboard__title-container">
+            <ui:insert name="headerTitle" />
           </h:panelGroup>
 
-          <h:panelGroup id="dashboard-header-action" rendered="#{!managedBean.isReadOnlyMode}" class="dashboard-header__action ui-lg-4 ui-md-5 ui-sm-12">
+          <h:panelGroup id="dashboard-header-action" rendered="#{!managedBean.isReadOnlyMode}"
+            class="dashboard-header__action ui-lg-4 ui-md-5 ui-sm-12">
             <ui:insert name="headerAction" />
           </h:panelGroup>
         </div>
 
         <h:form id="dashboard-remote-command-form" prependId="false">
           <h:inputHidden id="dashboard-view-mode" value="#{managedBean.isReadOnlyMode}"/>
-          <p:remoteCommand name="updateDashboardWidget" update="grid-stack" oncomplete="loadGrid(); return false;" />
+          <p:remoteCommand name="updateDashboardWidget" update="grid-stack" oncomplete="loadGrid();dashboardToolKit.responsive();" />
           <p:remoteCommand name="loadAllWidgetSavedFilters" actionListener="#{managedBean.loadAllWidgetSavedFilters()}"
             global="false" process="@this" immediate="true" partialSubmit="true"
             update="delete-saved-filter-form:quick-filter-table"
@@ -60,11 +46,11 @@
           <ui:insert name="additionalRemoteCommand" />
         </h:form>
 
-        <div id="dashboard-body" class="dashboard__body ui-g-12 js-dashboard__body #{dashboardBodyStyleClass}">
+        <div id="dashboard-body" class="dashboard__body ui-g-12 js-dashboard__body #{dashboardBodyStyleClass} #{managedBean.isReadOnlyMode ? '':'u-invisibility'}">
           <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack ui-g-12">
             <c:if test="#{not empty managedBean.selectedDashboard.widgets}">
               <c:forEach var="widget" items="#{managedBean.selectedDashboard.widgets}" varStatus="status">
-                <div class="grid-stack-item portal-card-container"
+                <div class="grid-stack-item #{widget.type == 'WELCOME' ? 'js-welcome-widget welcome-widget' : ''}"
                   gs-x="#{widget.layout.axisX}"
                   gs-y="#{widget.layout.axisY}"
                   gs-id="#{widget.id}"
@@ -122,7 +108,14 @@
                         index="#{status.index}"
                         id="process-viewer-#{widget.id}" />
                     </c:if>
-                    
+
+                    <!-- Welcome widget -->
+                    <c:if test="#{widget.type eq 'WELCOME'}">
+                      <ic:ch.ivy.addon.portal.generic.dashboard.component.WelcomeDashboardWidget widget="#{widget}"
+                        isReadOnlyMode="#{managedBean.isReadOnlyMode}"
+                        index="#{status.index}"
+                        id="welcome-#{widget.id}" />
+                    </c:if>
                   </div>
                 </div>
               </c:forEach>
@@ -156,7 +149,8 @@
               <p:commandButton id="confirm-destruction-dashboard-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
                icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
                actionListener="#{taskWidgetBean.destroyTask(taskWidgetBean.selectedTaskItemId)}"
-               oncomplete="PF('destroy-task-dialog').hide();loadGrid();" update="grid-stack dashboard-title-container" />
+               oncomplete="PF('destroy-task-dialog').hide();loadGrid();"
+               update="grid-stack dashboard-title-container" />
             </ui:define>
            </ui:decorate>
            
@@ -215,15 +209,15 @@
             modal="true" fitViewport="true" dynamic="true" closable="false" width="450">
             <h:form id="save-filter-form" styleClass="ui-g">
               <p:messages styleClass="ui-g-12" redisplay="false" for="save-filter-form"/>
-              <div class="md-inputfield ui-fluid ui-g-12 MarTop20">
+              <h:outputLabel styleClass="ui-g-12" for="save-filter-name"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/WidgetFilterName')}" />
+              <div class="ui-fluid ui-g-12">
                 <p:inputText id="save-filter-name" value="#{widgetFilterHelperBean.saveFilter.name}" required="true" 
                   maxlength="30"
                   requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"/>
-                <h:outputLabel styleClass="ui-g-12" for="save-filter-name"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/WidgetFilterName')}" />
                 <p:message for="save-filter-name"/>
               </div>
-              <div class="ui-g-12 MarTop10 TexAlRight">
+              <div class="ui-g-12 u-text-align-right">
                 <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                   oncomplete="PF('save-widget-filter-dialog').hide();" styleClass="u-mar-right-10"
                   process="@this" update="save-filter-form" resetValues="true"
@@ -241,7 +235,7 @@
 
           <p:dialog id="manage-filter-dialog" widgetVar="manage-filter-dialog"
             header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/ManageWidgetFilterHeader')}"
-            modal="true" fitViewport="true" width="650" styleClass="manage-filter-dialog"
+            modal="true" fitViewport="true" styleClass="manage-filter-dialog"
             dynamic="true" appendTo="@(body)" closable="false"
             onShow="loadAllWidgetSavedFilters();">
             <h:form id="delete-saved-filter-form" styleClass="ui-g">
@@ -270,7 +264,7 @@
                   </p:column>
                 </p:dataTable>
               </div>
-              <h:panelGroup id="manage-filter-action" layout="block" styleClass="ui-g-12 TexAlRight">
+              <h:panelGroup id="manage-filter-action" layout="block" styleClass="ui-g-12 u-text-align-right">
                 <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
                   onclick="PF('manage-filter-dialog').hide();"
                   styleClass="u-mar-right-15" global="false"/>
@@ -287,6 +281,7 @@
         <h:outputScript library="js" name="dashboard.js" />
 
         <script type="text/javascript">
+            var dashboardToolKit = new DashboardToolKit();
             $(function() {
               var simpleScreen = new DashboardScreenHandler();
               var responsiveToolkit = ResponsiveToolkit(simpleScreen);

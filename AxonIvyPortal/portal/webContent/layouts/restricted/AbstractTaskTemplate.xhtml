@@ -15,7 +15,9 @@
         function backToPrevPage(isHistoryBack) {
           if (document.referrer &amp;&amp; isHistoryBack) {
             window.history.back();
-            event.preventDefault();
+            if (event) {
+              event.preventDefault();
+            }
           } else {
             backToCasesList();
           }
@@ -55,12 +57,12 @@
             </ui:insert>
             
             <h:panelGroup id="vertical-task-template-tasks-command" class="task-template-tasks-command" rendered="#{!(isHideCaseInfo and isHideTaskAction) and processChainDirection eq 'VERTICAL'}">
-              <p:commandButton id="vertical-case-info" type="button" styleClass="secondary-btn border-with-primary-color"
+              <p:commandButton id="vertical-case-info" type="button" styleClass="rounded-button ui-button-outlined"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="si si-folder-search"
                 onclick="openCaseInfo()" rendered="#{!isHideCaseInfo}"
                 global="false" />
               <p:spacer width="10" />
-              <p:commandButton id="vertical-task-actions" type="button" rendered="#{!isHideTaskAction}" styleClass="secondary-btn border-with-primary-color"
+              <p:commandButton id="vertical-task-actions" type="button" rendered="#{!isHideTaskAction}" styleClass="rounded-button ui-button-outlined"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="si si-navigation-menu" />
             </h:panelGroup>
             
@@ -101,7 +103,7 @@
           <h:panelGroup layout="block"
             styleClass="process-chain-container #{processChainDirection eq 'VERTICAL' ? 'vertical-process-chain-container' : 'horizontal-process-chain-container'} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
             <ui:insert name="processChainArea">
-              <ic:com.axonivy.portal.component.ProcessChain id="process-chain-component"
+              <ic:com.axonivy.portal.components.ProcessChain id="process-chain-component"
                 startMethod="start" componentId="process-chain-component-id"
                 shape="#{processChainShape eq 'LINE' ? 'LINE' : 'CIRCLE'}"
                 direction="#{processChainDirection eq 'VERTICAL' ? 'VERTICAL' : 'HORIZONTAL'}" 
@@ -113,12 +115,12 @@
           </h:panelGroup>
   
           <h:panelGroup id="horizontal-task-template-tasks-command" styleClass="task-template-tasks-command" rendered="#{!(isHideCaseInfo and isHideTaskAction) and processChainDirection ne 'VERTICAL'}">
-            <p:commandButton id="horizontal-case-info" type="button" styleClass="secondary-btn border-with-primary-color"
+            <p:commandButton id="horizontal-case-info" type="button" styleClass="rounded-button ui-button-outlined"
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="si si-folder-search"
               onclick="openCaseInfo()" rendered="#{!isHideCaseInfo}"
               global="false" />
             <p:spacer width="10" />
-            <p:commandButton id="horizontal-task-actions" type="button" rendered="#{!isHideTaskAction}" styleClass="secondary-btn border-with-primary-color"
+            <p:commandButton id="horizontal-task-actions" type="button" rendered="#{!isHideTaskAction}" styleClass="rounded-button ui-button-outlined"
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="si si-navigation-menu" />
           
             <h:form id="horizontal-task-action-form">
@@ -177,7 +179,7 @@
           closeOnEscape="true" draggable="false" responsive="true"
           widgetVar="case-info-dialog" appendTo="@(body)" modal="true" styleClass="case-info-dialog">
           <f:facet name="header">
-            <h:panelGroup layout="block" styleClass="case-infor-title u-truncate-text">
+            <h:panelGroup styleClass="case-infor-title u-truncate-text">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}: #{case.name}" />
             </h:panelGroup>
           </f:facet>
@@ -210,15 +212,14 @@
           </h:panelGroup>
           <f:facet name="footer">
             <h:form id="chat-group-join-form" rendered="#{chatAssigneeBean.doesGroupChatExist()}">
-              <h:panelGroup styleClass="Fs14 ui-dialog-buttonpane">
-                <p:commandLink id="chat-group-cancel-button"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-                  onclick="PF('chat-assignee-dialog').hide()" />
-                <p:spacer width="15px" />
-                <p:commandButton id="chat-group-join-button" actionListener="#{chatAssigneeBean.joinGroupChat()}"
-                  icon="#{visibilityBean.generateButtonIcon('si si-messages-bubble-square-sync')}"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/joinProcessChat')}" process="@this" update="@none" />
-              </h:panelGroup>
+              <p:commandLink id="chat-group-cancel-button"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                onclick="PF('chat-assignee-dialog').hide()" />
+              <p:spacer width="15px" />
+              <p:commandButton id="chat-group-join-button" actionListener="#{chatAssigneeBean.joinGroupChat()}"
+                icon="#{visibilityBean.generateButtonIcon('si si-messages-bubble-square-sync')}"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/joinProcessChat')}" process="@this"
+                update="@none" />
             </h:form>
           </f:facet>
           <h:form id="chat-assignee-selection-form" rendered="#{!chatAssigneeBean.doesGroupChatExist()}">

@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.17",
   "id" : "17208192E0AF4185",
   "data" : "portalKit_test.PortalSettingHelperData",
   "elements" : [ {
@@ -88,5 +88,45 @@
         "size" : { "width" : 128, "height" : 44 }
       },
       "connect" : { "id" : "f9", "to" : "f8" }
+    }, {
+      "id" : "f2",
+      "type" : "RequestStart",
+      "name" : "setLanguageOfCurrentUserToGerman.ivp",
+      "config" : {
+        "callSignature" : "setLanguageOfCurrentUserToGerman",
+        "outLink" : "setLanguageOfCurrentUserToGerman.ivp",
+        "startName" : "Set language of current user to German"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 296 },
+        "labelOffset" : { "x" : -90, "y" : 25 }
+      },
+      "connect" : { "id" : "f13", "to" : "f6" }
+    }, {
+      "id" : "f5",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 480, "y" : 296 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : [
+        "Update language",
+        "to German"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.Locale;",
+            "",
+            "ivy.session.getSessionUser().setLanguage(Locale.GERMAN);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 312, "y" : 296 }
+      },
+      "connect" : { "id" : "f14", "to" : "f5" }
     } ]
 }

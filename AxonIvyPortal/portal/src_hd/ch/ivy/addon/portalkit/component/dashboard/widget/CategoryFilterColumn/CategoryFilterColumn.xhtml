@@ -19,14 +19,13 @@
 <cc:implementation>
   <h:panelGroup rendered="#{cc.attrs.field.field eq 'category'}">
     <f:event listener="#{cc.attrs.field.loadCategories(cc.attrs.configurationMode)}" type="preRenderComponent"/>
-    <div class="ui-g-12 u-padding-0">
-      <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
+      <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down display-flex-center">
         <h:outputLabel for="widget-filter-category"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/category')}" />
       </div>
-      <div class="ui-g-8 ui-sm-12">
+      <div class="ui-g-8 ui-sm-12 display-flex-center">
         <h:panelGroup id="widget-filter-category-container"
-          styleClass="widget-configuration__category #{cc.attrs.containerStyleClass}"
+          styleClass="widget-configuration__category #{cc.attrs.containerStyleClass} w-full"
           layout="block">
           <div class="ui-fluid">
             <p:inputText id="widget-filter-category" readonly="true"
@@ -65,7 +64,6 @@
           </p:overlayPanel>
         </h:panelGroup>
       </div>
-    </div>
   </h:panelGroup>
 </cc:implementation>
 

@@ -117,13 +117,6 @@ Dialogs:
                   IsRequired: Mandatorio
                   Representation: Representante
                   To: Hasta
-  com.axonivy.portal.developerexamples:
-    LeaveRequestForm:
-      Employee: Empleado
-      From: Desde
-      IsRequired: Mandatorio
-      Representation: Representante
-      To: Hasta
 Labels:
   address: Calle / Número
   cancel: Cancelar
@@ -159,13 +152,6 @@ Processes:
       Tomar nota del resultado
   CreateInvestment:
     name: Crear investición
-  ProcessHistoryComponent:
-    AlphaCompany:
-      name: Tarea para la empresa Alpha
-    ProcessHistoryOfAlphaCompany:
-      name: Ver historial de la empresa Alpha
-    ProcessHistoryOfAlphaCompanyInDialog:
-      name: Mostrar historial de la compañía Alpha
 sortFields:
   CREATION_TIME_ASC: Fecha de creación (antiguos primero)
   CREATION_TIME_DESC: Fecha de creación (nuevos primero)

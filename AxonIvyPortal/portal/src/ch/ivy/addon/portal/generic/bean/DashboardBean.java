@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -26,11 +25,11 @@ import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
-import ch.ivy.addon.portalkit.dto.dashboard.DashboardOrder;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.SingleProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
 import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.CaseEmptyMessage;
@@ -51,6 +50,7 @@ import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.scripting.objects.File;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -68,7 +68,7 @@ public class DashboardBean implements Serializable {
   protected Dashboard selectedDashboard;
   private String selectedDashboardId;
   protected DashboardWidget widget;
-  protected boolean isReadOnlyMode;
+  protected boolean isReadOnlyMode = true;
   private int currentDashboardIndex;
   private List<WidgetFilterModel> widgetFilters;
   private List<WidgetFilterModel> deleteFilters;
@@ -81,7 +81,6 @@ public class DashboardBean implements Serializable {
   @PostConstruct
   public void init() {
     currentDashboardIndex = 0;
-    isReadOnlyMode = true;
     dashboards = collectDashboards();
     if (CollectionUtils.isNotEmpty(dashboards)) {
       selectedDashboardId = readDashboardFromSession();
@@ -92,6 +91,9 @@ public class DashboardBean implements Serializable {
           || (!selectedDashboardId.equalsIgnoreCase(selectedDashboard.getId()) && dashboards.size() > 1)) {
         storeDashboardInSession(selectedDashboard.getId());
       }
+      if (isReadOnlyMode) {
+        DashboardUtils.highlightDashboardMenuItem(selectedDashboard.getId());
+      }
     }
     buildWidgetModels(selectedDashboard);
     isRunningTaskWhenClickingOnTaskInList = new GlobalSettingService()
@@ -100,22 +102,7 @@ public class DashboardBean implements Serializable {
   }
 
   protected List<Dashboard> collectDashboards() {
-    List<Dashboard> visibleDashboards = DashboardUtils.getAllVisibleDashboardsOfSessionUser();
-    List<DashboardOrder> dashboardOrders = DashboardUtils.getDashboardOrdersOfSessionUser();
-    Map<String, Dashboard> idToDashboard = DashboardUtils.createMapIdToDashboard(visibleDashboards);
-    List<Dashboard> collectedDashboards = new ArrayList<>();
-    for (DashboardOrder dashboardOrder : dashboardOrders) {
-      if (dashboardOrder.getDashboardId() == null) {
-        continue;
-      }
-      Dashboard currentDashboard = idToDashboard.remove(dashboardOrder.getDashboardId());
-      if (dashboardOrder.isVisible() && currentDashboard != null) {
-        collectedDashboards.add(currentDashboard);
-      }
-    }
-    collectedDashboards.addAll(idToDashboard.values());
-
-    return collectedDashboards;
+    return DashboardUtils.collectDashboards();
   }
 
   public void loadDashboardTemplate() {
@@ -170,6 +157,9 @@ public class DashboardBean implements Serializable {
         case CUSTOM:
           loadCustomWidget(widget);
           break;
+        case WELCOME:
+          loadWelcomeWidget(widget);
+          break;
         default:
           break;
       }
@@ -204,6 +194,17 @@ public class DashboardBean implements Serializable {
       customWidget.getData().setType(DashboardCustomWidgetType.PROCESS);
     } else {
       customWidget.getData().setType(DashboardCustomWidgetType.EXTERNAL_URL);
+    }
+  }
+
+  private void loadWelcomeWidget(DashboardWidget widget) {
+    WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
+    if (StringUtils.isNotBlank(welcomeWidget.getImageLocation())) {
+      try {
+        welcomeWidget.setUploadedImageFile(new File(welcomeWidget.getImageLocation()));
+      } catch (IOException e) {
+        Ivy.log().error(e);
+      }
     }
   }
 
@@ -266,17 +267,7 @@ public class DashboardBean implements Serializable {
   public void onDashboardChange(int index) {
     currentDashboardIndex = index;
     selectedDashboard = dashboards.get(index);
-    storeDashboardInSession(selectedDashboard.getId());
     buildWidgetModels(selectedDashboard);
-  }
-
-  public void onDashboardChangeByDropdown() {
-    if (selectedDashboardId != null) {
-      currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
-      storeDashboardInSession(selectedDashboardId);
-      selectedDashboard = dashboards.get(currentDashboardIndex);
-      buildWidgetModels(selectedDashboard);
-    }
   }
 
   public void startTask(ITask task) throws IOException {

@@ -24,6 +24,7 @@ public class SearchTaskTest extends BaseTest {
 
   @Test
   public void testFindTaskByName() {
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     GlobalSearch globalSearch = homePage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
     

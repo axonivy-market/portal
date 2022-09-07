@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.util;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -18,7 +19,7 @@ public class ProcessViewerUtils {
   public static final String DEFAULT_LINK = "#";
 
   public static String getStartProcessViewerPageUri(ICase selectedCase) {
-    if (isExpressCase(selectedCase)) {
+    if (Objects.isNull(selectedCase) || Objects.isNull(selectedCase.getProcessStart()) || isExpressCase(selectedCase)) {
       return DEFAULT_LINK;
     }
     return buildPortalProcessViewerUrl(selectedCase.getId(), selectedCase.getProcessStart().getLink().getRelative());

@@ -34,7 +34,7 @@ public class ChatScreenshotTest extends ScreenshotTest {
   public void screenshotChat() throws IOException {
     showNewDashboard();
     newDashboardPage = new NewDashboardPage();
-    ScreenshotUtil.resizeBrowser(new Dimension(1500, 600));
+    ScreenshotUtil.resizeBrowser(new Dimension(1500, 800));
     ScreenshotUtil.captureHalfTopRightPageScreenShot(ScreenshotUtil.CHAT_FOLDER + "access-chat");
     TaskWidgetPage taskWidgetPage = newDashboardPage.openTaskList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);

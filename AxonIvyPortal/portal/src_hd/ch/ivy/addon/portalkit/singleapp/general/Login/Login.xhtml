@@ -12,62 +12,44 @@
 </cc:interface>
 
 <cc:implementation>
-  <div class="login-panel ui-fluid">
-    <div class="login-panel-header">
-      <p:graphicImage name="logo_small" library="ivy-branding"
-        alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loginLogo')}" />
-    </div>
-    <div class="login-panel-content">
-      <h:form id="login-form" styleClass="login-form">
-        <p:focus for="username" />
-        <div class="ui-g">
-          <div class="ui-g-12">
-            <h1>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/welcomeToPortal')}</h1>
-          </div>
-          <h:panelGroup styleClass="block" class="ui-g-12" rendered="#{!data.loginOk}">
-            <p:messages globalOnly="true" id="login-message" />
-          </h:panelGroup>
-          <div class="ui-g-12">
-            <h:panelGroup styleClass="md-inputfield">
-              <p:inputText id="username" autocomplete="off" value="#{data.username}" required="true" />
-              <p:outputLabel for="username" indicateRequired="false">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}</p:outputLabel>
-              <p:message for="username" id="username-message" />
-            </h:panelGroup>
-          </div>
-          <div class="ui-g-12">
-            <h:panelGroup styleClass="md-inputfield">
-              <p:password id="password" autocomplete="off" value="#{data.password}" required="true" onchange="clearPlaceholder()" />
-              <p:outputLabel for="password" indicateRequired="false">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/password')}</p:outputLabel>
-              <p:message for="password" id="password-message" />
-            </h:panelGroup>
-          </div>
-          <div class="ui-g-12">
-            <p:commandButton update="@form" id="login-command" actionListener="#{logic.login}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/login')}"
-              icon="#{visibilityBean.generateButtonIcon('si si-login-3')}"
-              oncomplete="if (#{empty data.callbackUrl} === 'true' &amp;&amp; args &amp;&amp; !args.validationFailed) {location.reload()}" />
-          </div>
-          <h:panelGroup styleClass="ui-g-12 forgot-link u-text-align-right" rendered="#{forgotPasswordBean.isForgotPasswordRendered()}">
-            <p:link id="forgot-password-link" href="#{forgotPasswordBean.getForgotPasswordUrl()}">
-               <i class="si si-question-circle u-mar-right-5" />
-               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/forgotPassword')}" />
-            </p:link>
-          </h:panelGroup>
+  <h:form id="login-form">
+    <div class="login-wrapper layout-wrapper">
+      <div class="login-panel">
+        <div class="login-panel-header">
+          <p:graphicImage name="logo" library="ivy-branding"
+            alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loginLogo')}" />
         </div>
-      </h:form>
-    </div>
-  </div>
-  <script type="text/javascript">
-    $(function() {
-      $('[id $= "login-form:password"]').on('change', function(e){
-        if($(e.target).val() != '') {
-          $(e.target).addClass('ui-state-filled');
-        }
-      });
-    });
+        <p:focus for="username" />
+        <h4>#{cc.attrs.title}</h4>
 
-    function clearPlaceholder() {
-      $('[id $= "login-form:password"]').addClass('ui-state-filled');
-    }
-  </script>
+        <p:messages id="login-message" showIcon="false"/>
+
+        <p:inputText id="username" autocomplete="off" value="#{data.username}" required="true"
+          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}"
+          requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/UsernameRequiredMessage')}" />
+
+        <p:password id="password" autocomplete="off" value="#{data.password}" required="true"
+          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/password')}"
+          requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/PasswordRequiredMessage')}" />
+
+        <p:commandButton id="login-command" actionListener="#{logic.login}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/login')}"
+          icon="#{visibilityBean.generateButtonIcon('si si-login-3')}"
+          oncomplete="if (#{empty data.callbackUrl} === 'true' &amp;&amp; args &amp;&amp; !args.validationFailed) {location.reload()};Portal.changeLogoByThemeMode('#{themeBean.themeMode}');"
+          process="login-form" update="login-form" />
+
+        <h:panelGroup styleClass="forgot-link" rendered="#{forgotPasswordBean.isForgotPasswordRendered()}" layout="block">
+          <p:link id="forgot-password-link" href="#{forgotPasswordBean.getForgotPasswordUrl()}">
+            <i class="si si-question-circle u-mar-right-5" />
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/forgotPassword')}" />
+          </p:link>
+        </h:panelGroup>
+      </div>
+      <h:panelGroup layout="block" class="login-footer" rendered="#{visibilityBean.showLoginFooter}">
+        <h4>#{ivy.cms.co('/Labels/Login/CompanyName')}</h4>
+        <h6>#{ivy.cms.co('/Labels/Login/Copyright')}</h6>
+      </h:panelGroup>
+    </div>
+  </h:form>
 </cc:implementation>
 </html>

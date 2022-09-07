@@ -8,6 +8,7 @@ function TaskWidget() {
     },
 
     setupScrollbar: function() {
+      let needShowScrollbar = false;
       var childElements = $('.js-task-start-list-item');
       if (childElements.length > 0) {
         var container = $('.js-task-start-list > .ui-datascroller-content');
@@ -35,32 +36,33 @@ function TaskWidget() {
         var compactProcessWidgetHeight = window.matchMedia("(max-width: 40em)").matches == true ? ($('.js-compact-process-widget-panel').outerHeight(true)||0) : 0;
         var compactTaskWidgetPadding = ($('.js-compact-task-widget').outerHeight(true)||0) - ($('.js-compact-task-widget').height()||0);
         var taskViewPadding = ($('.js-task-view').outerHeight(true)||0) - ($('.js-task-view').height()||0);
-        var layoutContentPadding = ($('.layout-content').outerHeight(true)||0) - ($('.layout-content').height()||0);
 
-        var mainScreenHeight = ($('.js-layout-content').outerHeight(true)||0);
+        var mainScreenHeight = PortalLayout.getAvailableHeight();
 
         // When open task list inside case information dialog, back link is displayed. So we should subtract its height also
         var backlinkHeight = $('.js-back-link').outerHeight(true)||0;
 
         var availableHeight = mainScreenHeight - (taskWidgetHeaderContainer.outerHeight(true)||0)
-          - (announcementMessageContainer.outerHeight(true)||0) - (taskWidgetSortMenuContainer.outerHeight(true)||0)
-          - customWidgetContainer
-          - taskViewPadding - layoutContentPadding
-          - compactTaskWidgetPadding - compactProcessWidgetHeight - backlinkHeight;
+                              - (announcementMessageContainer.outerHeight(true)||0) - (taskWidgetSortMenuContainer.outerHeight(true)||0)
+                              - customWidgetContainer
+                              - taskViewPadding
+                              - compactTaskWidgetPadding - compactProcessWidgetHeight - backlinkHeight;
 
-        var globalSearchTabHeader = $('.ui-tabs-nav');
-        if (globalSearchTabHeader.length > 0) {
-          var globalSearchInput = $('.js-global-search');
-          var globalSearchInputHeight = globalSearchInput.is(":visible") ? (globalSearchInput.outerHeight(true)||0) : 0;
-          var searchResultTabMargin = ($('.js-search-results-tabview').outerHeight(true)||0) - ($('.js-search-results-tabview').outerHeight()||0);
-          var containerMarginPadding = (container.outerHeight(true)||0) - (container.height()||0);
-          availableHeight = availableHeight - (globalSearchTabHeader.outerHeight(true)||0) - globalSearchInputHeight - searchResultTabMargin - containerMarginPadding;
+        if (PortalGlobalSearch.isSearchPageOpened()) {
+          availableHeight = availableHeight - PortalGlobalSearch.getAvailableHeight(':task-tab');
+        } else {
+          needShowScrollbar = (childElements.length * $(childElements[0]).outerHeight(true)||1) > availableHeight;
+          if (needShowScrollbar && !isMobileDevices()) {
+            PortalLayout.removeLayoutContentPaddingBottom();
+            $('.js-task-list-container').css('margin-right', '-' + PortalLayout.getPaddingRightLayoutContent());
+          }
         }
 
         if (!!availableHeight) {
           if ($('.js-task-start-list').hasClass("js-is-guide")) {
             container.outerHeight('auto');
           } else {
+            availableHeight = availableHeight - PortalLayout.getYPaddingLayoutContent();
             container.outerHeight(availableHeight);
           }
           if (container.outerHeight(true) > availableHeight) {
@@ -76,6 +78,9 @@ function TaskWidget() {
         if (mobileTitle.length > 0) {
           mobileTitle.removeClass("u-hidden");
         }
+      }
+      if (!needShowScrollbar) {
+        PortalLayout.removeJsStyleOnLayoutContent();
       }
     },
 
@@ -158,7 +163,7 @@ function TaskListToolKit() {
       var $layout = $('.js-layout-wrapper');
       var remainingWidth = $('.js-layout-content').outerWidth(true);
       var $hiddenColumns = $('.js-hidden-when-expand-menu');
-      if (remainingWidth < 1024 && $layout.hasClass('layout-wrapper-static')) {
+      if (remainingWidth < 1024 && $layout.hasClass('layout-static')) {
         hideColumnWhenExpandMenu($hiddenColumns);
       } else {
         displayColumnWhenCollapseMenu($hiddenColumns);

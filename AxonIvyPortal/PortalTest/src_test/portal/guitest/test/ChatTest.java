@@ -172,6 +172,8 @@ public class ChatTest extends BaseTest {
     launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     ChatPage chatPageDemo4 = openChatGroup(TestAccount.DEMO_USER);
     chatPageAdmin1.sendMessage(ADMIN1_2);
+    //TODO need to be fixed - Workaround for wait message render
+    Sleeper.sleep(3000);
     assertContainMessage(chatPageDemo1, ADMIN1_2);
     assertContainMessage(chatPageDemo2, ADMIN1_2);
     assertContainMessage(chatPageDemo3, ADMIN1_2);
@@ -194,8 +196,8 @@ public class ChatTest extends BaseTest {
   }
 
   private ChatPage openChatGroup(TestAccount chatUser) {
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     login(chatUser);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     ChatPage chatPage = new HomePage().getChat();
     chatPage.selectPortalDemoUserChatGroup();
     return chatPage;
@@ -207,8 +209,8 @@ public class ChatTest extends BaseTest {
     } else {
       redirectToRelativeLink(createTestingCaseUrlForDefaultAdditionalCaseDetails);
     }
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     login(creatorChatGroup);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     ChatPage chatPage = new HomePage().getChat();
     // Create chat group via task
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
@@ -220,6 +222,7 @@ public class ChatTest extends BaseTest {
 
   private void joinChatGroupWhichAlreadyHadChatGroup(TestAccount userJoined) {
     login(userJoined);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.clickTaskActionMenu();
