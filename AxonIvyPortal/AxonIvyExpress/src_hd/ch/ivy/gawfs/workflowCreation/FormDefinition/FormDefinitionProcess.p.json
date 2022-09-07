@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "1574EBDBE9576CED",
   "data" : "ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData",
   "kind" : "HTML_DIALOG",
@@ -29,7 +29,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -28, "y" : 33 }
+        "labelOffset" : { "x" : 9, "y" : 53 }
       },
       "connect" : { "id" : "f47", "to" : "f46" }
     }, {
@@ -92,7 +92,7 @@
       },
       "visual" : {
         "at" : { "x" : 257, "y" : 160 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f21", "to" : "f19", "via" : [ { "x" : 576, "y" : 160 } ] }
     }, {
@@ -158,7 +158,7 @@
       },
       "visual" : {
         "at" : { "x" : 257, "y" : 224 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f22", "to" : "f19", "via" : [ { "x" : 576, "y" : 224 } ] }
     }, {
@@ -254,7 +254,7 @@
       },
       "visual" : {
         "at" : { "x" : 265, "y" : 288 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f37", "to" : "f19", "via" : [ { "x" : 576, "y" : 288 } ] }
     }, {
@@ -272,7 +272,7 @@
       },
       "visual" : {
         "at" : { "x" : 273, "y" : 351 },
-        "size" : { "width" : 160, "height" : 44 }
+        "size" : { "width" : 160, "height" : 60 }
       },
       "connect" : { "id" : "f38", "to" : "f19", "via" : [ { "x" : 576, "y" : 351 } ] }
     }, {
@@ -290,7 +290,7 @@
       },
       "visual" : {
         "at" : { "x" : 265, "y" : 416 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f41", "to" : "f19", "via" : [ { "x" : 576, "y" : 416 } ] }
     }, {
@@ -484,7 +484,7 @@
       },
       "visual" : {
         "at" : { "x" : 272, "y" : 608 },
-        "size" : { "width" : 160, "height" : 44 }
+        "size" : { "width" : 160, "height" : 60 }
       },
       "connect" : { "id" : "f27", "to" : "f26" }
     }, {
@@ -504,7 +504,7 @@
       },
       "visual" : {
         "at" : { "x" : 720, "y" : 904 },
-        "size" : { "width" : 160, "height" : 44 }
+        "size" : { "width" : 160, "height" : 60 }
       },
       "connect" : { "id" : "f5", "to" : "f3" }
     }, {
@@ -558,7 +558,7 @@
       "name" : "Validated?",
       "visual" : {
         "at" : { "x" : 384, "y" : 968 },
-        "labelOffset" : { "x" : -26, "y" : -34 }
+        "labelOffset" : { "x" : 11, "y" : -14 }
       },
       "connect" : [
         { "id" : "f32", "to" : "f63", "label" : {
@@ -609,7 +609,7 @@
       "name" : "Is saved task?",
       "visual" : {
         "at" : { "x" : 192, "y" : 736 },
-        "labelOffset" : { "x" : -40, "y" : -39 }
+        "labelOffset" : { "x" : 7, "y" : -19 }
       },
       "connect" : [
         { "id" : "f70", "to" : "f69", "condition" : "in.data.savedFlag" },
@@ -635,7 +635,7 @@
       },
       "visual" : {
         "at" : { "x" : 344, "y" : 736 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       }
     }, {
       "id" : "f64",
@@ -655,8 +655,7 @@
       },
       "visual" : {
         "at" : { "x" : 512, "y" : 816 },
-        "size" : { "width" : 144, "height" : 44 },
-        "labelOffset" : { "x" : -51, "y" : -16 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f30", "to" : "f4", "via" : [ { "x" : 720, "y" : 816 } ] }
     } ]

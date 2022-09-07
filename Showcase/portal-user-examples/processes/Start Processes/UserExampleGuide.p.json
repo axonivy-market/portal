@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "17236DB1D3DA14C0",
   "data" : "com.axonivy.portal.userexamples.UserExampleGuideData",
   "elements" : [ {
@@ -22,7 +22,7 @@
       },
       "visual" : {
         "at" : { "x" : 192, "y" : 480 },
-        "labelOffset" : { "x" : -31, "y" : 18 }
+        "labelOffset" : { "x" : 39, "y" : 38 }
       },
       "connect" : { "id" : "f7", "to" : "S31" }
     }, {
@@ -62,7 +62,7 @@
           },
           "visual" : {
             "at" : { "x" : 232, "y" : 256 },
-            "size" : { "width" : 128, "height" : 44 }
+            "size" : { "width" : 128, "height" : 60 }
           },
           "connect" : { "id" : "S20-f3", "to" : "S20-f4" }
         }, {
@@ -100,7 +100,7 @@
       },
       "visual" : {
         "at" : { "x" : 192, "y" : 224 },
-        "labelOffset" : { "x" : -32, "y" : 18 }
+        "labelOffset" : { "x" : 43, "y" : 38 }
       },
       "connect" : { "id" : "f19", "to" : "S20" }
     }, {
@@ -123,7 +123,7 @@
           },
           "visual" : {
             "at" : { "x" : 272, "y" : 160 },
-            "size" : { "width" : 128, "height" : 44 }
+            "size" : { "width" : 128, "height" : 60 }
           },
           "connect" : { "id" : "S31-f1", "to" : "S31-g1" }
         }, {
@@ -132,7 +132,7 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
-            "labelOffset" : { "x" : 0, "y" : 5 }
+            "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f7",
           "connect" : { "id" : "S31-f0", "to" : "S31-f3" }
@@ -142,13 +142,13 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 464, "y" : 160 },
-            "labelOffset" : { "x" : 0, "y" : 5 }
+            "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f8"
         } ],
       "visual" : {
         "at" : { "x" : 408, "y" : 480 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f8", "to" : "f1" }
     }, {
@@ -162,8 +162,7 @@
       ],
       "visual" : {
         "at" : { "x" : 432, "y" : 104 },
-        "size" : { "width" : 672, "height" : 76 },
-        "labelOffset" : { "x" : -330, "y" : -34 }
+        "size" : { "width" : 672, "height" : 76 }
       },
       "connect" : { "id" : "f9", "to" : "f4" }
     }, {
@@ -176,8 +175,7 @@
       ],
       "visual" : {
         "at" : { "x" : 360, "y" : 368 },
-        "size" : { "width" : 528, "height" : 60 },
-        "labelOffset" : { "x" : -259, "y" : -26 }
+        "size" : { "width" : 528, "height" : 60 }
       },
       "connect" : { "id" : "f10", "to" : "f0" }
     } ],

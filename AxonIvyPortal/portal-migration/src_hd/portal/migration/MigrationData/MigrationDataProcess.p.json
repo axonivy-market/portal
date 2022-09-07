@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "17AF165647CC8A09",
   "data" : "portal.migration.MigrationData.MigrationDataData",
   "kind" : "HTML_DIALOG",
@@ -53,7 +53,7 @@
       },
       "visual" : {
         "at" : { "x" : 88, "y" : 176 },
-        "labelOffset" : { "x" : -25, "y" : 15 }
+        "labelOffset" : { "x" : 9, "y" : 35 }
       },
       "connect" : { "id" : "f20", "to" : "f18" }
     }, {

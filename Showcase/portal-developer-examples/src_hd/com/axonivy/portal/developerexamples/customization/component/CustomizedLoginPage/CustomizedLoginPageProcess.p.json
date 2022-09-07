@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "176CC37C73C85D55",
   "data" : "com.axonivy.portal.developerexamples.customization.component.CustomizedLoginPage.CustomizedLoginPageData",
   "kind" : "HTML_DIALOG",
@@ -20,7 +20,7 @@
       "visual" : {
         "at" : { "x" : 119, "y" : 288 },
         "size" : { "width" : 20, "height" : 20 },
-        "labelOffset" : { "x" : 13, "y" : 0 }
+        "labelOffset" : { "x" : 34, "y" : 20 }
       },
       "connect" : { "id" : "f6", "to" : "f5" }
     }, {
@@ -48,9 +48,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 247, "y" : 288 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 247, "y" : 288 }
       },
       "connect" : { "id" : "f7", "to" : "f4" }
     }, {
@@ -87,7 +85,7 @@
       "visual" : {
         "at" : { "x" : 120, "y" : 128 },
         "size" : { "width" : 20, "height" : 20 },
-        "labelOffset" : { "x" : 13, "y" : 0 }
+        "labelOffset" : { "x" : 53, "y" : 20 }
       },
       "connect" : { "id" : "f10", "to" : "f8" }
     } ]

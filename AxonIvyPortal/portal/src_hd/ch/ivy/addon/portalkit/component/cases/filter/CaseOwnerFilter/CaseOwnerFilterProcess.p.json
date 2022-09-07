@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "17313A70C291401F",
   "data" : "ch.ivy.addon.portalkit.component.cases.filter.CaseOwnerFilter.CaseOwnerFilterData",
   "kind" : "HTML_DIALOG",
@@ -50,7 +50,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 },
-        "labelOffset" : { "x" : -29, "y" : 14 }
+        "labelOffset" : { "x" : 14, "y" : 34 }
       },
       "connect" : { "id" : "f8", "to" : "f7" }
     }, {

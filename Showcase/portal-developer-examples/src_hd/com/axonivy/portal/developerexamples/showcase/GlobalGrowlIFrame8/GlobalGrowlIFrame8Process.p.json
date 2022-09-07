@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "178A0F7DD8A74A94",
   "data" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8.GlobalGrowlIFrame8Data",
   "kind" : "HTML_DIALOG",
@@ -21,7 +21,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -16, "y" : 15 }
+        "labelOffset" : { "x" : 31, "y" : 35 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {
@@ -40,8 +40,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 432, "y" : 192 },
-        "labelOffset" : { "x" : -25, "y" : -8 }
+        "at" : { "x" : 432, "y" : 192 }
       },
       "connect" : { "id" : "f19", "to" : "f11" }
     }, {
@@ -53,7 +52,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 128 },
-        "labelOffset" : { "x" : -14, "y" : 15 }
+        "labelOffset" : { "x" : 9, "y" : 35 }
       },
       "connect" : { "id" : "f17", "to" : "f6" }
     }, {
@@ -72,8 +71,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 240, "y" : 192 },
-        "labelOffset" : { "x" : -35, "y" : -8 }
+        "at" : { "x" : 240, "y" : 192 }
       },
       "connect" : { "id" : "f18", "to" : "f13" }
     }, {
@@ -92,8 +90,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 240, "y" : 128 },
-        "labelOffset" : { "x" : -35, "y" : -8 }
+        "at" : { "x" : 240, "y" : 128 }
       },
       "connect" : { "id" : "f14", "to" : "f10" }
     }, {
@@ -105,7 +102,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 192 },
-        "labelOffset" : { "x" : -14, "y" : 15 }
+        "labelOffset" : { "x" : 12, "y" : 35 }
       },
       "connect" : { "id" : "f15", "to" : "f9" }
     }, {
@@ -126,8 +123,7 @@
       },
       "visual" : {
         "at" : { "x" : 640, "y" : 192 },
-        "size" : { "width" : 128, "height" : 44 },
-        "labelOffset" : { "x" : -40, "y" : -16 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f16", "to" : "f12" }
     }, {

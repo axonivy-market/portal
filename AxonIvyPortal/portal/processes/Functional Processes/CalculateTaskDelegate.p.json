@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "15B8089000CE1FF7",
   "data" : "ch.ivy.add.portalkit.CaculateTaskDelegateData",
   "kind" : "CALLABLE_SUB",
@@ -34,8 +34,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 64, "y" : 96 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 64, "y" : 96 }
       },
       "connect" : { "id" : "f1", "to" : "f6" }
     }, {

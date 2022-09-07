@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.15",
+  "format" : "9.4.20",
   "id" : "180D5172F0BA8922",
   "data" : "com.axonivy.portal.developerexamples.testdata.EmployeeSearchInFrame.EmployeeSearchInFrameData",
   "kind" : "HTML_DIALOG",
@@ -86,7 +86,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 256 },
-        "labelOffset" : { "x" : -25, "y" : 15 }
+        "labelOffset" : { "x" : 47, "y" : 35 }
       },
       "connect" : { "id" : "f10", "to" : "f9" }
     }, {
