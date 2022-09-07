@@ -13,6 +13,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.Sleeper;
+import portal.guitest.common.WaitHelper;
 
 public class StatisticWidgetPage extends TemplatePage {
   public static final String TASK_BY_PRIORITY_CHART_NAME = "Task by priority chart";
@@ -57,6 +58,9 @@ public class StatisticWidgetPage extends TemplatePage {
 
     taskAnalysisLink.click();
     waitForElementDisplayed(By.id("task-widget"), true, DEFAULT_TIMEOUT);
+    WaitHelper.assertTrueWithWait(() -> {
+      return isElementPresent(By.cssSelector(".js-layout-wrapper.has-breadcrumb"));
+    });
 
     return new TaskAnalysisWidgetPage();
   }

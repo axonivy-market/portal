@@ -224,7 +224,7 @@
        process="@(.statistic-result-list)" update="@(.statistic-result-list) status-dialog" />
       <p:commandButton id="filter-reset-action"
         rendered="#{data.dataModel.selectedTaskAnalysisFilterData == null and !data.dataModel.isSelectedDefaultFilter()}"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" styleClass="filter-add-button MarRight10"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" styleClass="filter-add-button u-mar-right-10"
         icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}" onclick="PF('reset-filter-set-dialog').show();" global="false"/>
       <p:commandButton id="filter-save-action" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}"
         icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" update="save-filter-set-dialog #{cc.clientId}:filter-selection-container" resetValues="true"
@@ -277,7 +277,7 @@
             itemValue="ALL_USERS" />
         </p:selectOneRadio>
       </h:panelGrid>
-      <h:panelGroup layout="block" class="u-dialog-footer ui-dialog-footer">
+      <h:panelGroup layout="block" class="u-text-align-right MarTop5">
         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           actionListener="#{logic.clearSaveFilterDialog}" onclick="PF('save-filter-set-dialog').hide();" />
         <p:spacer width="15px" />

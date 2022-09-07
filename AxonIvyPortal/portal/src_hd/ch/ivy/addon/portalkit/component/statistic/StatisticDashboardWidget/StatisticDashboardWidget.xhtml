@@ -34,7 +34,7 @@
             <ui:repeat id="statistic-chart-repeater" var="chart" value="#{data.statisticChartList}" varStatus="chartStatus">
               <!--  Statistic card -->
               <div class="ui-g-4 ui-xl-4 ui-lg-6 ui-md-6 ui-sm-12">
-                <h:panelGroup id="chart-panel" styleClass="ui-g dashboard-chart-panel portal-card-container">
+                <h:panelGroup id="chart-panel" styleClass="ui-g dashboard-chart-panel ">
                   <div class="card card-w-title ui-g-12">
                     <!-- Chart Header -->
                     <h:panelGroup styleClass="statistics-header-container ui-g-12">
@@ -142,7 +142,7 @@
     </h:panelGroup>
 
     <!-- Statistics Chart for home page -->
-    <h:panelGroup id="statistic-carousel-container" rendered="#{cc.attrs.compactMode}" styleClass="portal-card-container">
+    <h:panelGroup id="statistic-carousel-container" rendered="#{cc.attrs.compactMode}" styleClass="">
       <ui:include src="StatisticCarousel.xhtml" />
     </h:panelGroup>
 
@@ -167,14 +167,17 @@
   </h:form>
 
   <p:dialog id="chart-details-dialog" widgetVar="chart-details-dialog" appendTo="@(body)"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartInfo/chartDetailsHeader')}" modal="true" closable="true" closeOnEscape="true"
-    dynamic="true" styleClass="statistic-details-dialog" resizable="false" fitViewport="true" responsive="true">
-    <ic:ch.ivy.addon.portalkit.component.statistic.ChartInformationDialog selectedStatisticChart="#{data.selectedStatisticChart}" />
-    <h:panelGroup layout="block" styleClass="ui-dialog-footer u-no-padding-right">
-      <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-        icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('chart-details-dialog').hide();">
-      </p:commandButton>
-    </h:panelGroup>
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartInfo/chartDetailsHeader')}"
+    modal="true" closable="true" closeOnEscape="true" dynamic="true" resizable="false"
+    styleClass="statistic-details-dialog" fitViewport="true" responsive="true">
+    <div class="ui-g">
+      <ic:ch.ivy.addon.portalkit.component.statistic.ChartInformationDialog selectedStatisticChart="#{data.selectedStatisticChart}" />
+      <div class="u-text-align-right ui-g-12 u-no-padding-bottom">
+        <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+          icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('chart-details-dialog').hide();">
+        </p:commandButton>
+      </div>
+    </div>
   </p:dialog>
 
   <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">

@@ -11,7 +11,7 @@ pipeline {
 
   tools { 
       maven '3.6' 
-      jdk '11' 
+      jdk '17' 
   }
 
   parameters {
@@ -45,7 +45,7 @@ pipeline {
               powershell '''
                 $artifactPattern = $env:releaseDir + '/AxonIvyPortal/portal/target/*.iar' 
                 $artifactName = dir $artifactPattern | select -expand BaseName
-                $versionLastestReleasedPortal = $artifactName.substring(10)
+                $versionLastestReleasedPortal = $artifactName.substring(7)
                 git fetch --tags
                 git checkout tags/$versionLastestReleasedPortal
                 git reset --hard HEAD
@@ -66,7 +66,7 @@ pipeline {
           bat "AxonIvyPortal/PortalTest/resources/copy-decorate-js-css.bat"
           
           echo "====================Build Portal modules===================="
-          def modules = ['AxonIvyPortal/portal-component', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-component-example', 'AxonIvyPortal/PortalApp', 'Showcase/portal-demo-app']
+          def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples', 'AxonIvyPortal/PortalApp', 'Showcase/portal-demo-app']
           for (module in modules) {
             bat "mvn clean install -f ${module}/pom.xml -Divy.engine.directory=%engineDir%"
           }
@@ -77,7 +77,7 @@ pipeline {
             rmdir $DEPLOYMENT/* -recurse
             Copy-Item Showcase/portal-demo-app/target/*zip -Destination $DEPLOYMENT
             Copy-Item Showcase/portal-developer-examples/target/*iar -Destination $DEPLOYMENT
-            Copy-Item Showcase/portal-component-example/target/*iar -Destination $DEPLOYMENT
+            Copy-Item Showcase/portal-components-examples/target/*iar -Destination $DEPLOYMENT
           '''
 
           node('master') {

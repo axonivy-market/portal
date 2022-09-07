@@ -1,0 +1,127 @@
+{
+  "format" : "9.4.15",
+  "id" : "181899823E886ABB",
+  "data" : "com.axonivy.portal.components.examples.RoleSelectionExampleData",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "showRoleSelectionExamples.ivp",
+      "config" : {
+        "callSignature" : "showRoleSelectionExamples",
+        "outLink" : "showRoleSelectionExamples.ivp",
+        "startName" : "Role Selection Example"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -78, "y" : 19 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 544, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "RoleSelectionExample",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.components.examples.RoleSelectionExample",
+        "startMethod" : "start(String)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.selectedRole" : "result.selectedRole"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "selectedRole", "type" : "String" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 64 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f6", "to" : "f5" }
+    }, {
+      "id" : "f5",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "Task created by Role Selection Example",
+          "description" : "This task is created by Role Selection Example",
+          "responsible" : {
+            "roleFromAttribute" : "in1.selectedRole.getMemberName()"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 448, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f7",
+      "type" : "RequestStart",
+      "name" : "showRoleSelectionExamplesSerenity.ivp",
+      "config" : {
+        "callSignature" : "showRoleSelectionExamplesSerenity",
+        "outLink" : "showRoleSelectionExamplesSerenity.ivp",
+        "showInStartList" : false,
+        "startName" : "Role Selection Example in Serenity theme"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 },
+        "labelOffset" : { "x" : -78, "y" : 19 }
+      },
+      "connect" : { "id" : "f11", "to" : "f8" }
+    }, {
+      "id" : "f8",
+      "type" : "DialogCall",
+      "name" : "RoleSelectionExampleSerenity",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.components.examples.serenity.RoleSelectionExampleSerenity",
+        "startMethod" : "start(String)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.selectedRole" : "result.selectedRole"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "selectedRole", "type" : "String" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 192 },
+        "size" : { "width" : 176, "height" : 44 }
+      },
+      "connect" : { "id" : "f13", "to" : "f9" }
+    }, {
+      "id" : "f9",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "Task created by Role Selection Example",
+          "description" : "This task is created by Role Selection Example",
+          "responsible" : {
+            "roleFromAttribute" : "in1.selectedRole.getMemberName()"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 448, "y" : 192 }
+      },
+      "connect" : { "id" : "f12", "to" : "f10" }
+    }, {
+      "id" : "f10",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 544, "y" : 192 }
+      }
+    } ]
+}

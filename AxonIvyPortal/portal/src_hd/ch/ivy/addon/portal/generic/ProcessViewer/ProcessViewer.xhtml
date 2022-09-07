@@ -12,10 +12,10 @@
       <h:panelGroup layout="block" id="portal-process-viewer-form"
         styleClass="ui-g portal-process-viewer-form portal-card-container">
         <h:panelGroup layout="block" styleClass="ui-g-12 portal-process-viewer-data card">
-            <ic:com.axonivy.portal.component.ProcessViewer caseId="#{data.caseId}" processLink="#{data.processId}" />
+            <ic:com.axonivy.portal.components.ProcessViewer caseId="#{data.caseId}" processLink="#{data.processId}" />
             <h:outputStylesheet library="css" name="process-viewer-custom.css" />
         </h:panelGroup>
-        <div class="ui-g-12 TexAlRight process-viewer-command u-padding-0">
+        <div class="ui-g-12 u-text-align-right process-viewer-command u-padding-0">
           <p:commandButton id="close-process" actionListener="#{logic.close}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
             icon="si si-close" />

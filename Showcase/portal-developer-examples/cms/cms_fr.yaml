@@ -117,13 +117,6 @@ Dialogs:
                   IsRequired: Ce champ est obligatoire
                   Representation: Représentation
                   To: À l'adresse suivante
-  com.axonivy.portal.developerexamples:
-    LeaveRequestForm:
-      Employee: Employé
-      From: Tiré de
-      IsRequired: Ce champ est obligatoire
-      Representation: Représentation
-      To: 'À l''adresse suivante :'
 Labels:
   address: Rue/No.
   cancel: Annuler
@@ -159,13 +152,6 @@ Processes:
       Connaître le résultat
   CreateInvestment:
     name: Réaliser un investissement
-  ProcessHistoryComponent:
-    AlphaCompany:
-      name: Tâche pour la société Alpha
-    ProcessHistoryOfAlphaCompany:
-      name: Voir l'historique de la société Alpha
-    ProcessHistoryOfAlphaCompanyInDialog:
-      name: Voir l'historique du processus Alpha en dialogue
 sortFields:
   CREATION_TIME_ASC: Date de création (le plus ancien en premier)
   CREATION_TIME_DESC: Date de création (le plus récent en premier)

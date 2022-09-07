@@ -11,47 +11,38 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
   </f:facet>
 
-  <f:attribute name="primefaces.THEME" value="serenity-ivy" />
-  
   <title>
     <ui:insert name="title">
       <ui:insert name="pageTitle">Axon Ivy Portal</ui:insert><!-- DEPRECATED: please use title instead of pageTitle -->
     </ui:insert>
   </title>
+
+  <f:attribute name="primefaces.THEME" value="#{themeBean.theme}" />
   <link rel="shortcut icon" href="#{resource['ivy-branding:favicon']}" />
-
   <c:set var="loadGridStack" value="#{loadGridStack == 'true' ? 'true' : 'false'}" />
-
-  <h:outputStylesheet library="css" name="utility.css" />
-
-  <h:outputStylesheet name="css/nanoscroller.css" library="serenity-layout" />
-  <h:outputStylesheet name="css/ripple.css" library="serenity-layout" />
-  <h:outputStylesheet name="css/grid.css" library="serenity-layout" />
-  <h:outputStylesheet name="css/layout-ivy.css" library="serenity-layout" />
+  <!-- GridStack resources -->
   <h:outputStylesheet library="css" name="gridstack.min.css" rendered="#{loadGridStack}" />
   <h:outputStylesheet library="css" name="gridstack-extra.min.css" rendered="#{loadGridStack}" />
   <h:outputScript library="js" name="gridstack-h5.js" rendered="#{loadGridStack}" />
-
-  <h:outputStylesheet library="css" name="portal-variables.css" />
+  <!-- FREYA IMPORT -->
+  <h:outputStylesheet name="#{ivyFreyaTheme.layout}" library="#{ivyFreyaTheme.library}" />
+  <h:outputScript name="js/layout.js" library="#{ivyFreyaTheme.library}" />
+  <script src="#{resource['ivy-webcontent:layouts/js/cookie-helper.js']}" />
+  <script src="#{resource['ivy-webcontent:layouts/js/primefaces-calendar-en-us.js']}" />
+  <h:outputStylesheet library="css" name="portal-root-variables.css" />
+  <h:outputStylesheet library="css" name="portal-variables-#{ivyFreyaTheme.mode}.css" />
+  <h:outputStylesheet library="css" name="utility.css" />
   <h:outputStylesheet library="css" name="template.css" />
   <h:outputStylesheet library="css" name="module.css" />
   <h:outputStylesheet library="css" name="portal.css" />
-
+  <!-- ivy Branding resources -->
   <h:outputStylesheet name="custom.css" library="ivy-branding" />
-
-  <h:outputScript name="js/nanoscroller.js" library="serenity-layout" />
-  <h:outputScript name="js/ripple.js" library="serenity-layout" />
-  <h:outputScript name="js/layout.js" library="serenity-layout" />
-  <h:outputScript name="js/swipe.js" library="serenity-layout" />
-  
-  <script src="#{resource['ivy-webcontent:layouts/js/cookie-helper.js']}" />
-  <script src="#{resource['ivy-webcontent:layouts/js/primefaces-calendar-en-us.js']}" />
-  <script src="#{resource['ivy-webcontent:resources/serenity-layout/js/layout.js']}" />
-  
+  <!-- Portal resources -->
   <h:outputScript name="responsive-toolkit.js" library="js" />
   <h:outputScript name="main.js" library="js" />
   <h:outputScript name="portal.js" library="js" />
   <h:outputScript name="guide-panel.js" library="js" />
+
   <ui:insert name="head" />
 </h:head>
 
@@ -86,61 +77,56 @@
         
       <c:set var="showGlobalSearch" value="#{userMenuBean.isShowGlobalSearch}" />
         
-      <div id="portal-template-header" class="js-portal-template-header">
+     <div id="portal-template-header" class="js-portal-template-header #{showMainArea eq true ? '' : 'u-invisibility'}">
         <ic:ch.ivy.addon.portalkit.component.PageHeader />
       </div>
 
-      <div class="layout-wrapper js-layout-wrapper #{isPortalInTeams ? 'ms-teams-layout' : ''} #{guestPreferences.orientationRTL ? 'layout-rtl' : ''} #{showMainArea eq true ? '' : 'u-invisibility'}">
-        <h:panelGroup layout="block" rendered="#{!isPortalInTeams}" styleClass="layout-sidebar #{guestPreferences.darkMenu ? 'layout-sidebar-dark' : ''} #{currentPage} left-sidebar-color js-left-sidebar" id="left-menu">
-          <c:choose>
-            <c:when test="#{isNotRequiredLogin}">
-              <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu startMethod="StartNotRequiredLogin" id="user-menu-without-login" isWorkingOnATask="#{isWorkingOnATask}" 
-                showGlobalSearch="#{showGlobalSearch}" task="#{not empty currentTask ? currentTask : task}" />
-            </c:when>
-            <c:otherwise>
-              <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu id="user-menu-required-login" isWorkingOnATask="#{isWorkingOnATask}" 
-                showGlobalSearch="#{showGlobalSearch}" task="#{not empty currentTask ? currentTask : task}" />
-            </c:otherwise>
-          </c:choose>
-        </h:panelGroup>
-        
-        <ui:insert name="mainMenuGuide">
-          <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="left-menu-guide-component" targetComponent="left-menu"
-            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/mainMenu/title')}" 
-            content="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/mainMenu/content')}"
-            targetCssSelector="#left-menu" iconClass="si si-navigation-menu" onNext="PF('process-widget-guide').show()"
-            my="left+30 top+70" at="right top" targetPosition="fixed" arrowPosition="left top"
-            updatedComponentAfterGuide="#{updatedComponentAfterGuide}" rendered="#{guideBean.isGuideShown}" />
-        </ui:insert>
-          
-        <div class="layout-main js-layout-main #{isPortalInTeams ? 'margin-left-0' : ''}">
-          <h:panelGroup layout="block" rendered="#{!isPortalInTeams}" styleClass="layout-topbar">
-            <a class="menu-btn left-sidebar-menu-icon">
-              <i class="si si-navigation-menu left-sidebar-menu-icon left-sidebar-menu-icon-font-size" />
-            </a>
-            <h:panelGroup layout="block" id="layout-topbar-menu-wrapper" styleClass="layout-topbar-menu-wrapper">
-              <ui:decorate template="/layouts/includes/topbar.xhtml">
-                <ui:param name="task" value="#{not empty currentTask ? currentTask : task}" />
-                <ui:param name="isWorkingOnATask" value="#{isWorkingOnATask}" />
-                <ui:param name="isNotRequiredLogin" value="#{isNotRequiredLogin}" />
-                <ui:param name="hasMainMenu" value="#{empty hasMainMenu ? true : hasMainMenu}" />
-                <ui:param name="showGlobalSearch" value="#{showGlobalSearch}" />
-                <ui:param name="enablesChat" value="#{enablesChat}" />
-                <ui:param name="viewName" value="#{viewName}" />
-                <ui:param name="case" value="#{case}" />
-                <ui:param name="updatedComponentAfterGuide" value="#{updatedComponentAfterGuide}" />
-              </ui:decorate>
-              <div class="color-header">
-                <div class="first-header-bar" />
-                <div class="second-header-bar" />
-                <div class="third-header-bar" />
-              </div>
+      <div class="layout-wrapper layout-sidebar layout-topbar-#{ivyFreyaTheme.mode} layout-menu-#{ivyFreyaTheme.mode}
+        js-layout-wrapper #{isPortalInTeams ? 'ms-teams-layout' : ''}">
+
+        <h:panelGroup layout="block" rendered="#{!isPortalInTeams}" styleClass="layout-topbar js-layout-topbar">
+          <h:panelGroup layout="block" id="layout-topbar-menu-wrapper" styleClass="layout-topbar-wrapper">
+            <ui:decorate template="/layouts/includes/topbar.xhtml">
+              <ui:param name="task" value="#{not empty currentTask ? currentTask : task}" />
+              <ui:param name="isWorkingOnATask" value="#{isWorkingOnATask}" />
+              <ui:param name="isNotRequiredLogin" value="#{isNotRequiredLogin}" />
+              <ui:param name="hasMainMenu" value="#{empty hasMainMenu ? true : hasMainMenu}" />
+              <ui:param name="showGlobalSearch" value="#{showGlobalSearch}" />
+              <ui:param name="enablesChat" value="#{enablesChat}" />
+              <ui:param name="viewName" value="#{viewName}" />
+              <ui:param name="case" value="#{case}" />
+              <ui:param name="updatedComponentAfterGuide" value="#{updatedComponentAfterGuide}" />
+            </ui:decorate>
+
+            <h:panelGroup layout="block" rendered="#{!isPortalInTeams}"
+              styleClass="menu-wrapper left-sidebar-color js-left-sidebar"
+              id="left-menu">
+              <c:choose>
+                <c:when test="#{isNotRequiredLogin}">
+                  <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu startMethod="StartNotRequiredLogin"
+                    id="user-menu-without-login" isWorkingOnATask="#{isWorkingOnATask}"
+                    showGlobalSearch="#{showGlobalSearch}" task="#{not empty currentTask ? currentTask : task}" />
+                </c:when>
+                <c:otherwise>
+                  <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu id="user-menu-required-login"
+                    isWorkingOnATask="#{isWorkingOnATask}" showGlobalSearch="#{showGlobalSearch}"
+                    task="#{not empty currentTask ? currentTask : task}" />
+                </c:otherwise>
+              </c:choose>
             </h:panelGroup>
+            <ui:insert name="mainMenuGuide">
+              <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="left-menu-guide-component" targetComponent="left-menu"
+                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/mainMenu/title')}" 
+                content="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/mainMenu/content')}"
+                targetCssSelector="#left-menu" iconClass="si si-navigation-menu" onNext="removeHighlightLeftMenu(); PF('process-widget-guide').show()"
+                my="left+30 top+70" at="right top" targetPosition="fixed" arrowPosition="left top"
+                updatedComponentAfterGuide="#{updatedComponentAfterGuide}" rendered="#{guideBean.isGuideShown}"
+                onShow="onHighlightLeftMenu()"/>
+            </ui:insert>
           </h:panelGroup>
+        </h:panelGroup>
 
-          <!-- div for positioning layout, don't modify it -->
-          <div class="js-position-topbar" />
-
+        <div class="layout-main js-layout-main #{isPortalInTeams ? 'margin-left-0' : ''} #{showMainArea eq true ? '' : 'u-invisibility'}" >
           <!-- If showMainArea indicator is true, the layout content will be rendered by the schedule loading of JS file-->
           <!-- Otherwise, the layout content will be rendered by once DOM is pasted already -->
           <div class="layout-content js-layout-content portal-layout-container #{layoutContentStyleClass}" id="main-area-panel">
@@ -153,21 +139,20 @@
             <ui:insert name="pageContent">
             </ui:insert>
           </div>
-          <div class="layout-main-mask" />
         </div>
 
         <ic:ch.ivy.addon.portalkit.component.WarningBeforeLostSession id="warning-before-lost-session"
           clientSideTimeOut="#{userMenuBean.clientSideTimeout}" task="#{not empty currentTask ? currentTask : task}" />
       </div>
       
-      <div id="portal-template-footer" class="js-portal-template-footer">
+      <div id="portal-template-footer" class="js-portal-template-footer #{showMainArea eq true ? '' : 'u-invisibility'}">
         <div id="portal-environment" class="js-portal-environment">
           <ic:ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo />
         </div>
         <ic:ch.ivy.addon.portalkit.component.PageFooter />
       </div>
       
-      <div id="guide-modal" class="ui-dialog-mask ui-widget-overlay guide-modal" />
+      <div id="guide-modal" class="guide-modal" />
     </c:otherwise>
   </c:choose>
 
@@ -198,6 +183,6 @@
     });
   </script>
 
-  <p:growl id="portal-global-growl" widgetVar="portal-global-growl" for="portal-global-growl-message" escape="false" showDetail="true" />
+  <p:growl id="portal-global-growl" widgetVar="portal-global-growl" for="portal-global-growl-message" escape="false" showDetail="true"/>
 </h:body>
 </html>

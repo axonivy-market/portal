@@ -1,521 +1,526 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-	xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:pe="http://primefaces.org/ui/extensions">
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-	<ui:composition template="/layouts/BasicTemplate.xhtml">
-		<ui:define name="title">E-Calculation</ui:define>
-		<ui:define name="head">
-			<h:outputStylesheet library="css" name="calculation.css" />
-		</ui:define>
-		<ui:define name="pageContent">
-			<h:form id="main-form" styleClass="calculation-form" style="margin-top: 50px;">
-				<div class="ui-g header-section">
-					<div class="ui-g-2 ui-md-4">
-						<p:outputLabel for="trans-number" value="Transaction number" styleClass="MarRight10 "/>
-						<p:inputText id="trans-number"
-							styleClass="ui-corner-all header-inputfield" value="1234567" />
-					</div>
-					<div class="ui-g-3">
-						<p:outputLabel for="header-date" value="Date" styleClass="MarRight10"/>
-						<p:datePicker id="header-date" value=""
-							pattern="#{dateTimePatternBean.configuredCalendarPattern}" showIcon="true" showTime="#{!dateTimePatternBean.isTimeHidden}"
-							styleClass="ui-corner-all header-inputfield" />
-					</div>
-					<div class="ui-g-2 ui-md-3">
-						<p:outputLabel for="last-saved" value="Last saved" styleClass="MarRight10"/>
-						<p:inputText id="last-saved" styleClass="ui-corner-all header-inputfield" value="Daniel 31.12.2018" />
-					</div>
-					<div class="ui-g-2 ui-md-2">
-						<p:commandButton id="load-button" value="Load" />
-					</div>
-				</div>
-				<p:tabMenu id="first-level-tab-menu" styleClass="MarTop20 first-level-tab-menu" >
-					<p:menuitem value="General Information">
-						<f:param name="i" value="0" />
-					</p:menuitem>
-					<p:menuitem value="Project Information">
-						<f:param name="i" value="1" />
-					</p:menuitem>
-					<p:menuitem value="Relations">
-						<f:param name="i" value="2" />
-					</p:menuitem>
-					<p:menuitem value="Process">
-						<f:param name="i" value="3" />
-					</p:menuitem>
-					<p:menuitem value="Approval">
-						<f:param name="i" value="4" />
-					</p:menuitem>
-					<p:menuitem value="Summarize">
-						<f:param name="i" value="5" />
-					</p:menuitem>
-				</p:tabMenu>
-				<div class="ui-g debitor-details-container">
-					<p:tabMenu id="second-level-tab-menu" styleClass="second-level-tab-menu">
-						<p:menuitem value="Customer 6232 - Optimus Prime">
-							<f:param name="i" value="0" />
-						</p:menuitem>
-						<p:menuitem value="Customer 2130 - Tester">
-							<f:param name="i" value="1" />
-						</p:menuitem>
-						<p:menuitem value="Customer 3478 - Megatron">
-							<f:param name="i" value="2" />
-						</p:menuitem>
-						<p:menuitem value="Customer 0510 - Bumblebee">
-							<f:param name="i" value="3" />
-						</p:menuitem>
-					</p:tabMenu>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:define name="title">E-Calculation</ui:define>
+    <ui:define name="head">
+      <h:outputStylesheet library="css" name="calculation.css" />
+    </ui:define>
+    <ui:define name="pageContent">
+      <h:form id="main-form" styleClass="calculation-form MarTop20">
+        <div class="ui-g header-section display-flex-center">
+          <div class="ui-g-2 ui-md-4 display-flex-center">
+            <p:outputLabel for="trans-number" value="Transaction number" styleClass="u-mar-right-10" />
+            <p:inputText id="trans-number" styleClass="header-inputfield" value="1234567" />
+          </div>
+          <div class="ui-g-3 display-flex-center">
+            <p:outputLabel for="header-date" value="Date" styleClass="u-mar-right-10" />
+            <p:datePicker id="header-date" value="" pattern="#{dateTimePatternBean.configuredCalendarPattern}"
+              showIcon="true" showTime="#{!dateTimePatternBean.isTimeHidden}"
+              styleClass="header-inputfield" />
+          </div>
+          <div class="ui-g-2 ui-md-3 display-flex-center">
+            <p:outputLabel for="last-saved" value="Last saved" styleClass="u-mar-right-10" />
+            <p:inputText id="last-saved" styleClass="header-inputfield" value="Daniel 31.12.2018" />
+          </div>
+          <div class="ui-g-2 ui-md-2 u-text-align-right">
+            <p:commandButton id="load-button" value="Load" icon="si si-button-refresh-arrows"/>
+          </div>
+        </div>
+        <p:tabMenu id="first-level-tab-menu" styleClass="MarTop20 first-level-tab-menu">
+          <p:menuitem value="General Information">
+            <f:param name="i" value="0" />
+          </p:menuitem>
+          <p:menuitem value="Project Information">
+            <f:param name="i" value="1" />
+          </p:menuitem>
+          <p:menuitem value="Relations">
+            <f:param name="i" value="2" />
+          </p:menuitem>
+          <p:menuitem value="Process">
+            <f:param name="i" value="3" />
+          </p:menuitem>
+          <p:menuitem value="Approval">
+            <f:param name="i" value="4" />
+          </p:menuitem>
+          <p:menuitem value="Summarize">
+            <f:param name="i" value="5" />
+          </p:menuitem>
+        </p:tabMenu>
+        <div class="ui-g debitor-details-container card">
+          <p:tabMenu id="second-level-tab-menu" styleClass="second-level-tab-menu">
+            <p:menuitem value="Customer 6232 - Optimus Prime">
+              <f:param name="i" value="0" />
+            </p:menuitem>
+            <p:menuitem value="Customer 2130 - Tester">
+              <f:param name="i" value="1" />
+            </p:menuitem>
+            <p:menuitem value="Customer 3478 - Megatron">
+              <f:param name="i" value="2" />
+            </p:menuitem>
+            <p:menuitem value="Customer 0510 - Bumblebee">
+              <f:param name="i" value="3" />
+            </p:menuitem>
+          </p:tabMenu>
 
-					<div class="ui-g debitor-details">
-						<!-- PANEL 2 -->
-						<p:fieldset id="panel-2" widgetVar="panel-2" legend="General information" styleClass="MarTop10" toggleable="true" >
-							<div class="ui-g">
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="customer-number" value="Number" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="customer-number" styleClass="ui-corner-all" value="6232" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="invoice-code" value="Invoice code" styleClass="MarRight10" escape="true"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="invoice-code" styleClass="" value="359-9-124-001" />
-										</div>
-									</div>
-								</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="address" value="Address" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="address" styleClass="" value="4810  Murphy Court, Riverside, CA" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="customer-since" value="Customer Since" styleClass="MarRight10" escape="true"/>
-										</div>
-										<div class="Wid74">
-											<p:datePicker id="customer-since"
-												pattern="#{dateTimePatternBean.configuredCalendarPattern}" showIcon="true" showTime="#{!dateTimePatternBean.isTimeHidden}"
-												styleClass="ui-corner-all customer-since" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="custom-code" value="Custom code" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="custom-code" styleClass="ui-corner-all" value="111-002-122-001" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="custom-type" value="Custom Type" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="custom-type" styleClass="ui-corner-all" value="None" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="custom-code-2" value="Custom Code 2" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="custom-code-2" styleClass="ui-corner-all" value="001-1931-345-01" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="job" value="Job" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="job" styleClass="ui-corner-all" value="Web developer" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="company" value="Company" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="company" styleClass="ui-corner-all" value="Axon Ivy company" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6 MarTop20 Height100">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel value="Relation table 1" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:dataTable id="table-1" value="#{data.table1}" var="entity" scrollable="true" scrollHeight="152" lazy="false">
-												<p:column headerText="Customer code" width="90">
-													<h:outputText value="#{entity.code}" />
-												</p:column>
-												<p:column headerText="Address" width="120">
-													<h:outputText value="#{entity.address}" />
-												</p:column>
-												<p:column headerText="Relation Name" width="110">
-													<h:outputText value="#{entity.name}" />
-												</p:column>
-											</p:dataTable>
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6 MarTop20 Height100">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel value="Relation table 2" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:dataTable id="table-2" value="#{data.table2}" var="entity" scrollable="true" scrollHeight="152" lazy="false">
-												<p:column headerText="Customer code" width="90">
-													<h:outputText value="#{entity.code}" />
-												</p:column>
-												<p:column headerText="Address" width="120">
-													<h:outputText value="#{entity.address}" />
-												</p:column>
-												<p:column headerText="Relation Name" width="110">
-													<h:outputText value="#{entity.name}" />
-												</p:column>
-											</p:dataTable>
-										</div>
-									</div>
-									
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6 MarTop20 Height100 MarBot20">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel value="Object List" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:dataTable id="table-3" value="#{data.table3}" var="entity" scrollable="true" scrollHeight="152" lazy="false">
-												<p:column headerText="Object Name" width="80">
-													<h:outputText value="#{entity.objectName}" />
-												</p:column>
-												<p:column headerText="Created Date" width="100">
-													<h:outputText value="#{entity.startDate}" />
-												</p:column>
-												<p:column headerText="Expiry Date" width="100">
-													<h:outputText value="#{entity.endDate}" />
-												</p:column>
-												<p:column headerText="Type" width="70">
-													<h:outputText value="#{entity.type}" />
-												</p:column>
-											</p:dataTable>
-										</div>
-									</div>
-									
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6 MarTop40"></div>
-							
-						</p:fieldset>
+          <div class="ui-g debitor-details ui-card">
+            <!-- PANEL 2 -->
+            <p:fieldset id="panel-2" widgetVar="panel-2" legend="General information" styleClass="MarTop10 ui-g-12"
+              toggleable="true">
+              <div class="ui-g">
+                <div class="ui-g-12 ui-md-12 ui-lg-6">
+                  <div class="ui-g">
+                    <div class="debitor-label-container">
+                      <p:outputLabel for="customer-number" value="Number" styleClass="u-mar-right-10" />
+                    </div>
+                    <div class="Wid74">
+                      <p:inputText id="customer-number"  value="6232" />
+                    </div>
+                  </div>
+                </div>
+                <div class="ui-g-12 ui-md-12 ui-lg-6">
+                  <div class="ui-g">
+                    <div class="debitor-label-container">
+                      <p:outputLabel for="invoice-code" value="Invoice code" styleClass="u-mar-right-10" escape="true" />
+                    </div>
+                    <div class="Wid74">
+                      <p:inputText id="invoice-code"  value="359-9-124-001" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="ui-g-12 ui-md-12 ui-lg-6">
+                <div class="ui-g">
+                  <div class="debitor-label-container">
+                    <p:outputLabel for="address" value="Address" styleClass="u-mar-right-10" />
+                  </div>
+                  <div class="Wid74">
+                    <p:inputText id="address"  value="4810  Murphy Court, Riverside, CA" />
+                  </div>
+                </div>
+              </div>
+              <div class="ui-g-12 ui-md-12 ui-lg-6">
+                <div class="ui-g">
+                  <div class="debitor-label-container">
+                    <p:outputLabel for="customer-since" value="Customer Since" styleClass="u-mar-right-10" escape="true" />
+                  </div>
+                  <div class="Wid74 ui-fluid">
+                    <p:datePicker id="customer-since" pattern="#{dateTimePatternBean.configuredCalendarPattern}"
+                      showIcon="true" showTime="#{!dateTimePatternBean.isTimeHidden}"
+                      styleClass="customer-since" />
+                  </div>
+                </div>
+              </div>
+              <div class="ui-g-12 ui-md-12 ui-lg-6">
+                <div class="ui-g">
+                  <div class="debitor-label-container">
+                    <p:outputLabel for="custom-code" value="Custom code" styleClass="u-mar-right-10" />
+                  </div>
+                  <div class="Wid74">
+                    <p:inputText id="custom-code"  value="111-002-122-001" />
+                  </div>
+                </div>
+              </div>
+              <div class="ui-g-12 ui-md-12 ui-lg-6">
+                <div class="ui-g">
+                  <div class="debitor-label-container">
+                    <p:outputLabel for="custom-type" value="Custom Type" styleClass="u-mar-right-10" />
+                  </div>
+                  <div class="Wid74">
+                    <p:inputText id="custom-type"  value="None" />
+                  </div>
+                </div>
+              </div>
+              <div class="ui-g-12 ui-md-12 ui-lg-6">
+                <div class="ui-g">
+                  <div class="debitor-label-container">
+                    <p:outputLabel for="custom-code-2" value="Custom Code 2" styleClass="u-mar-right-10" />
+                  </div>
+                  <div class="Wid74">
+                    <p:inputText id="custom-code-2"  value="001-1931-345-01" />
+                  </div>
+                </div>
+              </div>
+              <div class="ui-g-12 ui-md-12 ui-lg-6">
+                <div class="ui-g">
+                  <div class="debitor-label-container">
+                    <p:outputLabel for="job" value="Job" styleClass="u-mar-right-10" />
+                  </div>
+                  <div class="Wid74">
+                    <p:inputText id="job"  value="Web developer" />
+                  </div>
+                </div>
+              </div>
+              <div class="ui-g-12 ui-md-12 ui-lg-6"></div>
+              <div class="ui-g-12 ui-md-12 ui-lg-6">
+                <div class="ui-g">
+                  <div class="debitor-label-container">
+                    <p:outputLabel for="company" value="Company" styleClass="u-mar-right-10" />
+                  </div>
+                  <div class="Wid74">
+                    <p:inputText id="company"  value="Axon Ivy company" />
+                  </div>
+                </div>
+              </div>
+              <div class="ui-g-12 ui-md-12 ui-lg-6 MarTop20 Height100">
+                <div class="ui-g">
+                  <div class="debitor-label-container">
+                    <p:outputLabel value="Relation table 1" styleClass="u-mar-right-10" />
+                  </div>
+                  <div class="Wid74">
+                    <p:dataTable id="table-1" value="#{data.table1}" var="entity" scrollable="true" scrollHeight="152"
+                      lazy="false">
+                      <p:column headerText="Customer code" width="90">
+                        <h:outputText value="#{entity.code}" />
+                      </p:column>
+                      <p:column headerText="Address" width="120">
+                        <h:outputText value="#{entity.address}" />
+                      </p:column>
+                      <p:column headerText="Relation Name" width="110">
+                        <h:outputText value="#{entity.name}" />
+                      </p:column>
+                    </p:dataTable>
+                  </div>
+                </div>
+              </div>
+              <div class="ui-g-12 ui-md-12 ui-lg-6 MarTop20 Height100">
+                <div class="ui-g">
+                  <div class="debitor-label-container">
+                    <p:outputLabel value="Relation table 2" styleClass="u-mar-right-10" />
+                  </div>
+                  <div class="Wid74">
+                    <p:dataTable id="table-2" value="#{data.table2}" var="entity" scrollable="true" scrollHeight="152"
+                      lazy="false">
+                      <p:column headerText="Customer code" width="90">
+                        <h:outputText value="#{entity.code}" />
+                      </p:column>
+                      <p:column headerText="Address" width="120">
+                        <h:outputText value="#{entity.address}" />
+                      </p:column>
+                      <p:column headerText="Relation Name" width="110">
+                        <h:outputText value="#{entity.name}" />
+                      </p:column>
+                    </p:dataTable>
+                  </div>
+                </div>
 
-						<!-- PANEL 3 -->
-						<p:fieldset id="panel-3" widgetVar="panel-3" legend="Custom Fields" styleClass="MarTop20" toggleable="true" >
-							<div class="ui-g">
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="custom-field-1" value="Custom field 1" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="custom-field-1" styleClass="ui-corner-all" value="Lorem ipsum dolor sit amet" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="custom-field-2" value="Custom field 1" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="custom-field-2" styleClass="ui-corner-all" value="11-60012-542" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="custom-field-3" value="Custom field 3" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="custom-field-3" styleClass="ui-corner-all" value="Excepteur sint occaecat cupidatat non proident" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="custom-field-4" value="Custom field 4" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="custom-field-4" styleClass="ui-corner-all" value="Lorem ipsum dolor sit amet" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="custom-field-5" value="Custom field 5" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="custom-field-5" styleClass="ui-corner-all" value="Excepteur sint occaecat cupidatat non proident" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="custom-field-6" value="Custom field 6" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="custom-field-6" styleClass="ui-corner-all" value="Lorem ipsum dolor sit amet" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="custom-field-7" value="Custom field 7" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="custom-field-7" styleClass="ui-corner-all" value="11-60012-542" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="custom-field-8" value="Custom field 8" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="custom-field-8" styleClass="ui-corner-all" value="perfekt" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="custom-field-9" value="Custom field 9" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="custom-field-9" styleClass="ui-corner-all" value="01002167995" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="custom-field-10" value="Custom field 10" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="custom-field-10" styleClass="ui-corner-all" value="11-60012-542" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="custom-field-11" value="Custom field 11" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="custom-field-11" styleClass="ui-corner-all" value="Excepteur sint occaecat cupidatat non proident" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="custom-field-12" value="Custom field 12" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="custom-field-12" styleClass="ui-corner-all" value="2" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="custom-field-13" value="Custom field 13" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="custom-field-13" styleClass="ui-corner-all" value="001" />
-										</div>
-									</div>
-								</div>
-							</div>
-						</p:fieldset>
+              </div>
+              <div class="ui-g-12 ui-md-12 ui-lg-6 MarTop20 Height100 MarBot20">
+                <div class="ui-g">
+                  <div class="debitor-label-container">
+                    <p:outputLabel value="Object List" styleClass="u-mar-right-10" />
+                  </div>
+                  <div class="Wid74">
+                    <p:dataTable id="table-3" value="#{data.table3}" var="entity" scrollable="true" scrollHeight="152"
+                      lazy="false">
+                      <p:column headerText="Object Name" width="80">
+                        <h:outputText value="#{entity.objectName}" />
+                      </p:column>
+                      <p:column headerText="Created Date" width="100">
+                        <h:outputText value="#{entity.startDate}" />
+                      </p:column>
+                      <p:column headerText="Expiry Date" width="100">
+                        <h:outputText value="#{entity.endDate}" />
+                      </p:column>
+                      <p:column headerText="Type" width="70">
+                        <h:outputText value="#{entity.type}" />
+                      </p:column>
+                    </p:dataTable>
+                  </div>
+                </div>
 
-						<!-- PANEL 4 -->
-						<p:fieldset id="panel-4" widgetVar="panel-4" legend="Additional Properties" styleClass="MarTop20" toggleable="true" >
-							<div class="ui-g">
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="additional-1" value="Property 1" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="additional-1" styleClass="ui-corner-all" value="345011127" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container ui-g-3">
-											<p:outputLabel for="additional-2" value="Option 1" styleClass="MarRight10"/>
-										</div>
-										<div class="ui-g-3">
-											<p:selectOneMenu id="additional-2" value="#{data.isNewCustomer}">
-												<f:selectItem itemValue="true" itemLabel="Ja"></f:selectItem>
-												<f:selectItem itemValue="false" itemLabel="Nein"></f:selectItem>
-											</p:selectOneMenu>
-										</div>
-										<div class="debitor-label-container small ui-g-3">
-											<p:outputLabel for="additional-3" value="Option 2" styleClass="MarRight10"/>
-										</div>
-										<div class="ui-g-3">
-											<p:selectOneMenu id="additional-3" value="#{data.isNewCustomerLetter}">
-												<f:selectItem itemValue="true" itemLabel="Ja"></f:selectItem>
-												<f:selectItem itemValue="false" itemLabel="Nein"></f:selectItem>
-											</p:selectOneMenu>
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="additional-4" value="Property 2" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="additional-4" styleClass="ui-corner-all" value="11-60012-542" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="additional-5" value="Property 3" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="additional-5" styleClass="ui-corner-all" value="11-60012-542" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="additional-6" value="Property 4" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="additional-6" styleClass="ui-corner-all" value="perfekt" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="additional-7" value="Property 5" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="additional-7" styleClass="ui-corner-all" value="Lorem ipsum dolor sit amet" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="current-supplier-af" value="Property 6" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="current-supplier-af" styleClass="ui-corner-all" value="Excepteur sint occaecat cupidatat non proident" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="new-supplier-af" value="Property 7" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="new-supplier-af" styleClass="ui-corner-all" value="Lorem ipsum dolor sit amet" />
-										</div>
-									</div>
-								</div>
-							</div>
-						</p:fieldset>
-					</div>
-				</div>
-				<div class="ui-g">
-					<div class="ui-g-12">
-						<p:commandButton id="button-3" value="Button 3" styleClass="Fright footer-button" />
-						<p:commandButton id="button-2" value="Button 2" styleClass="Fright footer-button" />
-						<p:commandButton id="button-1" value="Button 1" styleClass="Fright footer-button" />
-					</div>
-				</div>
-			</h:form>
-			<script type="text/javascript">
-			
-			$(document).ready(function() {
-				$('.ui-inputfield.ui-inputtext').on("input", function() {
-					var size = $(this).val().length;
-					$(this).attr('size', size);
-				});
-			});
+              </div>
+              <div class="ui-g-12 ui-md-12 ui-lg-6 MarTop40"></div>
 
-				$("#main-area-panel").scroll(function() {
-					var distanceFromTop = $(this).scrollTop();
-					var $headerSection = $(".header-section");
-					var $firstLevelTabMenu = $("[id$='first-level-tab-menu']");
-					var $secondLevelTabMenu = $("[id$='second-level-tab-menu']");
-					
-					if (distanceFromTop >= $headerSection.height()) {
-						$headerSection.addClass("fixed");
-					} else {
-						$headerSection.removeClass("fixed");
-					}
-					
-					if (distanceFromTop >= $firstLevelTabMenu.height()) {
-						$firstLevelTabMenu.addClass("fixed");
-					} else {
-						$firstLevelTabMenu.removeClass("fixed");
-					}
+            </p:fieldset>
 
-					if (distanceFromTop >= $secondLevelTabMenu.height()) {
-						$secondLevelTabMenu.addClass("fixed");
-					} else {
-						$secondLevelTabMenu.removeClass("fixed");
-					}
-				});
-			</script>
-		</ui:define>
-	</ui:composition>
+            <!-- PANEL 3 -->
+            <p:fieldset id="panel-3" widgetVar="panel-3" legend="Custom Fields" styleClass="MarTop20 ui-g-12" toggleable="true">
+              <div class="ui-g">
+                <div class="ui-g-12 ui-md-12 ui-lg-6">
+                  <div class="ui-g">
+                    <div class="debitor-label-container">
+                      <p:outputLabel for="custom-field-1" value="Custom field 1" styleClass="u-mar-right-10" />
+                    </div>
+                    <div class="Wid74">
+                      <p:inputText id="custom-field-1"  value="Lorem ipsum dolor sit amet" />
+                    </div>
+                  </div>
+                </div>
+                <div class="ui-g-12 ui-md-12 ui-lg-6">
+                  <div class="ui-g">
+                    <div class="debitor-label-container">
+                      <p:outputLabel for="custom-field-2" value="Custom field 1" styleClass="u-mar-right-10" />
+                    </div>
+                    <div class="Wid74">
+                      <p:inputText id="custom-field-2"  value="11-60012-542" />
+                    </div>
+                  </div>
+                </div>
+                <div class="ui-g-12 ui-md-12 ui-lg-6">
+                  <div class="ui-g">
+                    <div class="debitor-label-container">
+                      <p:outputLabel for="custom-field-3" value="Custom field 3" styleClass="u-mar-right-10" />
+                    </div>
+                    <div class="Wid74">
+                      <p:inputText id="custom-field-3" 
+                        value="Excepteur sint occaecat cupidatat non proident" />
+                    </div>
+                  </div>
+                </div>
+                <div class="ui-g-12 ui-md-12 ui-lg-6">
+                  <div class="ui-g">
+                    <div class="debitor-label-container">
+                      <p:outputLabel for="custom-field-4" value="Custom field 4" styleClass="u-mar-right-10" />
+                    </div>
+                    <div class="Wid74">
+                      <p:inputText id="custom-field-4"  value="Lorem ipsum dolor sit amet" />
+                    </div>
+                  </div>
+                </div>
+                <div class="ui-g-12 ui-md-12 ui-lg-6">
+                  <div class="ui-g">
+                    <div class="debitor-label-container">
+                      <p:outputLabel for="custom-field-5" value="Custom field 5" styleClass="u-mar-right-10" />
+                    </div>
+                    <div class="Wid74">
+                      <p:inputText id="custom-field-5" 
+                        value="Excepteur sint occaecat cupidatat non proident" />
+                    </div>
+                  </div>
+                </div>
+                <div class="ui-g-12 ui-md-12 ui-lg-6">
+                  <div class="ui-g">
+                    <div class="debitor-label-container">
+                      <p:outputLabel for="custom-field-6" value="Custom field 6" styleClass="u-mar-right-10" />
+                    </div>
+                    <div class="Wid74">
+                      <p:inputText id="custom-field-6"  value="Lorem ipsum dolor sit amet" />
+                    </div>
+                  </div>
+                </div>
+                <div class="ui-g-12 ui-md-12 ui-lg-6">
+                  <div class="ui-g">
+                    <div class="debitor-label-container">
+                      <p:outputLabel for="custom-field-7" value="Custom field 7" styleClass="u-mar-right-10" />
+                    </div>
+                    <div class="Wid74">
+                      <p:inputText id="custom-field-7"  value="11-60012-542" />
+                    </div>
+                  </div>
+                </div>
+                <div class="ui-g-12 ui-md-12 ui-lg-6">
+                  <div class="ui-g">
+                    <div class="debitor-label-container">
+                      <p:outputLabel for="custom-field-8" value="Custom field 8" styleClass="u-mar-right-10" />
+                    </div>
+                    <div class="Wid74">
+                      <p:inputText id="custom-field-8"  value="perfekt" />
+                    </div>
+                  </div>
+                </div>
+                <div class="ui-g-12 ui-md-12 ui-lg-6">
+                  <div class="ui-g">
+                    <div class="debitor-label-container">
+                      <p:outputLabel for="custom-field-9" value="Custom field 9" styleClass="u-mar-right-10" />
+                    </div>
+                    <div class="Wid74">
+                      <p:inputText id="custom-field-9"  value="01002167995" />
+                    </div>
+                  </div>
+                </div>
+                <div class="ui-g-12 ui-md-12 ui-lg-6">
+                  <div class="ui-g">
+                    <div class="debitor-label-container">
+                      <p:outputLabel for="custom-field-10" value="Custom field 10" styleClass="u-mar-right-10" />
+                    </div>
+                    <div class="Wid74">
+                      <p:inputText id="custom-field-10"  value="11-60012-542" />
+                    </div>
+                  </div>
+                </div>
+                <div class="ui-g-12 ui-md-12 ui-lg-6">
+                  <div class="ui-g">
+                    <div class="debitor-label-container">
+                      <p:outputLabel for="custom-field-11" value="Custom field 11" styleClass="u-mar-right-10" />
+                    </div>
+                    <div class="Wid74">
+                      <p:inputText id="custom-field-11" 
+                        value="Excepteur sint occaecat cupidatat non proident" />
+                    </div>
+                  </div>
+                </div>
+                <div class="ui-g-12 ui-md-12 ui-lg-6">
+                  <div class="ui-g">
+                    <div class="debitor-label-container">
+                      <p:outputLabel for="custom-field-12" value="Custom field 12" styleClass="u-mar-right-10" />
+                    </div>
+                    <div class="Wid74">
+                      <p:inputText id="custom-field-12"  value="2" />
+                    </div>
+                  </div>
+                </div>
+                <div class="ui-g-12 ui-md-12 ui-lg-6"></div>
+                <div class="ui-g-12 ui-md-12 ui-lg-6">
+                  <div class="ui-g">
+                    <div class="debitor-label-container">
+                      <p:outputLabel for="custom-field-13" value="Custom field 13" styleClass="u-mar-right-10" />
+                    </div>
+                    <div class="Wid74">
+                      <p:inputText id="custom-field-13"  value="001" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </p:fieldset>
+
+            <!-- PANEL 4 -->
+            <p:fieldset id="panel-4" widgetVar="panel-4" legend="Additional Properties" styleClass="MarTop20 ui-g-12"
+              toggleable="true">
+              <div class="ui-g">
+                <div class="ui-g-12 ui-md-12 ui-lg-6">
+                  <div class="ui-g">
+                    <div class="debitor-label-container">
+                      <p:outputLabel for="additional-1" value="Property 1" styleClass="u-mar-right-10" />
+                    </div>
+                    <div class="Wid74">
+                      <p:inputText id="additional-1"  value="345011127" />
+                    </div>
+                  </div>
+                </div>
+                <div class="ui-g-12 ui-md-12 ui-lg-6">
+                  <div class="ui-g">
+                    <div class="debitor-label-container ui-g-3">
+                      <p:outputLabel for="additional-2" value="Option 1" styleClass="u-mar-right-10" />
+                    </div>
+                    <div class="ui-g-3 u-no-padding-left">
+                      <p:selectOneMenu id="additional-2" value="#{data.isNewCustomer}">
+                        <f:selectItem itemValue="true" itemLabel="Ja"></f:selectItem>
+                        <f:selectItem itemValue="false" itemLabel="Nein"></f:selectItem>
+                      </p:selectOneMenu>
+                    </div>
+                    <div class="debitor-label-container small ui-g-3">
+                      <p:outputLabel for="additional-3" value="Option 2" styleClass="u-mar-right-10" />
+                    </div>
+                    <div class="ui-g-3 u-no-padding-left">
+                      <p:selectOneMenu id="additional-3" value="#{data.isNewCustomerLetter}">
+                        <f:selectItem itemValue="true" itemLabel="Ja"></f:selectItem>
+                        <f:selectItem itemValue="false" itemLabel="Nein"></f:selectItem>
+                      </p:selectOneMenu>
+                    </div>
+                  </div>
+                </div>
+                <div class="ui-g-12 ui-md-12 ui-lg-6">
+                  <div class="ui-g">
+                    <div class="debitor-label-container">
+                      <p:outputLabel for="additional-4" value="Property 2" styleClass="u-mar-right-10" />
+                    </div>
+                    <div class="Wid74">
+                      <p:inputText id="additional-4"  value="11-60012-542" />
+                    </div>
+                  </div>
+                </div>
+                <div class="ui-g-12 ui-md-12 ui-lg-6">
+                  <div class="ui-g">
+                    <div class="debitor-label-container">
+                      <p:outputLabel for="additional-5" value="Property 3" styleClass="u-mar-right-10" />
+                    </div>
+                    <div class="Wid74">
+                      <p:inputText id="additional-5"  value="11-60012-542" />
+                    </div>
+                  </div>
+                </div>
+                <div class="ui-g-12 ui-md-12 ui-lg-6">
+                  <div class="ui-g">
+                    <div class="debitor-label-container">
+                      <p:outputLabel for="additional-6" value="Property 4" styleClass="u-mar-right-10" />
+                    </div>
+                    <div class="Wid74">
+                      <p:inputText id="additional-6"  value="perfekt" />
+                    </div>
+                  </div>
+                </div>
+                <div class="ui-g-12 ui-md-12 ui-lg-6">
+                  <div class="ui-g">
+                    <div class="debitor-label-container">
+                      <p:outputLabel for="additional-7" value="Property 5" styleClass="u-mar-right-10" />
+                    </div>
+                    <div class="Wid74">
+                      <p:inputText id="additional-7"  value="Lorem ipsum dolor sit amet" />
+                    </div>
+                  </div>
+                </div>
+                <div class="ui-g-12 ui-md-12 ui-lg-6">
+                  <div class="ui-g">
+                    <div class="debitor-label-container">
+                      <p:outputLabel for="current-supplier-af" value="Property 6" styleClass="u-mar-right-10" />
+                    </div>
+                    <div class="Wid74">
+                      <p:inputText id="current-supplier-af" 
+                        value="Excepteur sint occaecat cupidatat non proident" />
+                    </div>
+                  </div>
+                </div>
+                <div class="ui-g-12 ui-md-12 ui-lg-6">
+                  <div class="ui-g">
+                    <div class="debitor-label-container">
+                      <p:outputLabel for="new-supplier-af" value="Property 7" styleClass="u-mar-right-10" />
+                    </div>
+                    <div class="Wid74">
+                      <p:inputText id="new-supplier-af" value="Lorem ipsum dolor sit amet" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </p:fieldset>
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-g-12">
+            <p:commandButton id="button-3" value="Button 3" styleClass="Fright footer-button" />
+            <p:commandButton id="button-2" value="Button 2" styleClass="Fright footer-button" />
+            <p:commandButton id="button-1" value="Button 1" styleClass="Fright footer-button" />
+          </div>
+        </div>
+      </h:form>
+      <script type="text/javascript">
+              $(document).ready(function() {
+                $('.ui-inputfield.ui-inputtext').on("input", function() {
+                  var size = $(this).val().length;
+                  $(this).attr('size', size);
+                });
+              });
+
+              $("#main-area-panel").scroll(function() {
+                var distanceFromTop = $(this).scrollTop();
+                var $headerSection = $(".header-section");
+                var $firstLevelTabMenu = $("[id$='first-level-tab-menu']");
+                var $secondLevelTabMenu = $("[id$='second-level-tab-menu']");
+
+                if (distanceFromTop >= $headerSection.height()) {
+                  $headerSection.addClass("fixed");
+                } else {
+                  $headerSection.removeClass("fixed");
+                }
+
+                if (distanceFromTop >= $firstLevelTabMenu.height()) {
+                  $firstLevelTabMenu.addClass("fixed");
+                } else {
+                  $firstLevelTabMenu.removeClass("fixed");
+                }
+
+                if (distanceFromTop >= $secondLevelTabMenu.height()) {
+                  $secondLevelTabMenu.addClass("fixed");
+                } else {
+                  $secondLevelTabMenu.removeClass("fixed");
+                }
+              });
+            </script>
+    </ui:define>
+  </ui:composition>
 </h:body>
 </html>

@@ -5,12 +5,12 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
-import com.axonivy.portal.component.dto.SecurityMemberDTO;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -19,6 +19,7 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
   private static final long serialVersionUID = 4580715578128184706L;
   private String templateId;
   private String title;
+  private String icon;
   private String description;
   private List<DashboardWidget> widgets;
   private List<String> permissions;
@@ -34,6 +35,7 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
     setIsPublic(dashboard.getIsPublic());
     templateId = dashboard.getTemplateId();
     title = dashboard.title;
+    icon = dashboard.icon;
     description = dashboard.description;
     widgets = dashboard.widgets;
     permissions = dashboard.permissions;
@@ -56,6 +58,22 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
 
   public void setTitle(String title) {
     this.title = title;
+  }
+
+  public String getIcon() {
+    return icon;
+  }
+
+  public void setIcon(String icon) {
+    this.icon = icon;
+  }
+
+  @JsonIgnore
+  public String getIconClass() {
+    if (StringUtils.isBlank(this.icon)) {
+      return StringUtils.EMPTY;
+    }
+    return (this.icon.startsWith("fa") ? "fa " : "si ") + this.icon;
   }
 
   public String getDescription() {

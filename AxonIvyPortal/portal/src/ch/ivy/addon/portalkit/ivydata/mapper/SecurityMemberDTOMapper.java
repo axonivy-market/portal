@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 
-import com.axonivy.portal.component.dto.RoleDTO;
-import com.axonivy.portal.component.dto.UserDTO;
+import com.axonivy.portal.components.dto.RoleDTO;
+import com.axonivy.portal.components.dto.UserDTO;
 
-import com.axonivy.portal.component.dto.SecurityMemberDTO;
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 
 public class SecurityMemberDTOMapper {
   

@@ -8,7 +8,7 @@
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/absenceAndDeputy')}</ui:define>
     <ui:define name="pageContent">
 
-      <h:form id="absences-management-form" styleClass="absences-management-form portal-card-container">
+      <h:form id="absences-management-form" styleClass="absences-management-form ">
         <div id="absences-management-container" class="ui-g absences-management-container">
           <div class="ui-g-12">
             <p:growl id="absences-management-info" showDetail="true" severity="info" for="absences-management-message" sticky="true" redisplay="false">
@@ -25,8 +25,8 @@
                 </div>
 
                 <div class="ui-g-12 u-no-padding-top">
-                  <div class="ui-g-4 ui-xl-4 ui-lg-4 ui-md-12 ui-sm-12 u-padding-0" jsf:rendered="#{data.isSupervisor}">
-                    <ic:com.axonivy.portal.component.UserSelection id="user-absence-selection-component"
+                  <div class="ui-g-4 ui-xl-4 ui-lg-4 ui-md-12 ui-sm-12 u-padding-0 display-flex-center" jsf:rendered="#{data.isSupervisor}">
+                    <ic:com.axonivy.portal.components.UserSelection id="user-absence-selection-component"
                       componentId="user-absence"
                       selectedUser="#{data.selectedAbsenceUser}"
                       completeMethod="#{logic.autoCompleteForUserOnApp}"
@@ -36,19 +36,19 @@
                       autoCompletePanelStyleClass="ui-g-8 ui-sm-12 ui-fluid"
                       autoCompleteStyleClass="absence-user-selection"
                       scrollHeight="200"
+                      hasCustomizedSelectionList="true"
                       size="35">
                       <p:column>
-                        <pc:securityMemberNameAndAvatar
-                          displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
+                        <pc:securityMemberNameAndAvatar displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
                           securityMember="#{user}" />
                       </p:column>
                       <f:facet name="event">
                         <p:ajax event="itemSelect" listener="#{logic.findAbsencesAndSubstitutes}" partialSubmit="true"
                           update="@(.absence-table) @(.substitute-table) @(.substitution-table) absences-management-form" />
                       </f:facet>
-                    </ic:com.axonivy.portal.component.UserSelection>
+                    </ic:com.axonivy.portal.components.UserSelection>
                   </div>
-                  <div class="#{data.isSupervisor ? 'ui-g-8 ui-xl-8 ui-lg-8 ui-md-12 ui-sm-12' : 'ui-g-12'} add-absence-panel">
+                  <div class="#{data.isSupervisor ? 'ui-g-8 ui-xl-8 ui-lg-8 ui-md-12 ui-sm-12' : 'ui-g-12'} add-absence-panel display-flex-center">
                     <div class="ui-g-6 ui-lg-6 ui-md-8 ui-sm-11 u-padding-0 u-text-align-left">
                       <p:selectBooleanCheckbox id="show-absence-in-the-past"
                         value="#{data.absenceInThePastShown}"
@@ -69,7 +69,8 @@
                           oncomplete="PF('absence-dialog').show()"
                           actionListener="#{logic.add}"
                           icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
-                          update="@widgetVar(absence-dialog)"
+                          update="absence-dialog absence-form"
+                          resetValues="true"
                           rendered="#{absenceManagementBean.absencesCreatable || absenceManagementBean.ownAbsencesCreatable}" />
                         <!-- Show on Mobile screen - Only show icon -->
                         <p:commandButton id="add-absence-icon-only"

@@ -23,7 +23,7 @@
     <h:panelGroup id="task-detail-container" rendered="#{cc.attrs.showItemDetailsHeader}"
       styleClass="u-truncate-text task-detail-container ui-g-12 u-no-padding-bottom">
       <h:form id="task-detail-title-form" onsubmit="return false;" styleClass="task-detail-header">
-        <h:panelGroup id="#{cc.attrs.nameId}-edit-form" styleClass="js-task-name-details task-name u-truncate-text MarTop5 task-name">
+        <h:panelGroup id="#{cc.attrs.nameId}-edit-form" styleClass="js-task-name-details task-name u-truncate-text MarTop5">
           <h:outputText value="#{ivy.cms.co('/Labels/Task')}: #{task.name}" />
         </h:panelGroup>
 
@@ -38,21 +38,23 @@
     </h:panelGroup>
     <h:panelGroup id="task-details-actions"
       rendered="#{not cc.attrs.readOnly and cc.attrs.showItemDetailsHeader}"
-      styleClass="switch-and-reset-buttons-area ui-g-12 u-no-padding-bottom">
-      <p:commandButton id="switch-to-view-mode-button" rendered="#{not taskDetailsBean.readOnlyMode}"
-        value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToViewMode')}" onclick="saveTaskDetailsGrid()"
-        icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" update="task-item-body task-details-actions" oncomplete="loadTaskDetailsGrid(); enableAllIFrameWhenEditLayout();" />
+      styleClass="switch-and-reset-buttons-area ui-g-12 u-no-padding-bottom ui-sm-hidden">
       <p:commandButton id="switch-to-edit-mode-button" rendered="#{taskDetailsBean.readOnlyMode}"
         value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToEditMode')}" actionListener="#{taskDetailsBean.switchToEditMode()}"
-        icon="#{visibilityBean.generateButtonIcon('si si-pencil')}" update="task-item-body task-details-actions" oncomplete="loadTaskDetailsGrid(); disableAllIFrameWhenEditLayout();" />
+        icon="#{visibilityBean.generateButtonIcon('si si-pencil')}" update="task-item-body task-details-actions"
+        oncomplete="loadTaskDetailsGrid(); disableAllIFrameWhenEditLayout(); PortalLayout.hideHorizontalScrollOnLayoutContent();"
+        styleClass="u-mar-right-5" />
       <p:commandButton id="reset-details-settings-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
         rendered="#{taskDetailsBean.configuration.changed and not taskDetailsBean.readOnlyMode}" ajax="false" type="button"
-        icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}" styleClass="reset-details-settings-button"
+        icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}" styleClass="reset-details-settings-button u-mar-right-5"
         immediate="true" onclick="PF('reset-to-default-task-dialog').show()" />
+      <p:commandButton id="switch-to-view-mode-button" rendered="#{not taskDetailsBean.readOnlyMode}"
+        value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToViewMode')}" onclick="saveTaskDetailsGrid()"
+        icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" update="task-item-body task-details-actions" oncomplete="loadTaskDetailsGrid(); enableAllIFrameWhenEditLayout();"/>
     </h:panelGroup>
   </div>
 
-  <h:panelGroup layout="block" styleClass="task-item-body portal-card-container" id="task-item-body">
+  <h:panelGroup layout="block" styleClass="task-item-body " id="task-item-body">
     <h:panelGroup class="task-item-body-container task-details-widgets js-task-details-widgets u-padding-0 grid-stack" id="task-details-widgets"
       rendered="#{not empty taskDetailsBean.widgets}">
 
@@ -85,7 +87,7 @@
           <!-- General & description box -->
           <h:panelGroup id="task-detail-general-container" layout="block" rendered="#{widget.type eq 'information'}"
             styleClass="card grid-stack-item-content #{taskDetailsBean.readOnlyMode ? '' : 'moveable-area'} ">
-            <div class="task-detail-section-title u-truncate-text ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0 ">
+            <div class="task-detail-section-title u-truncate-text ui-g-12 u-padding-0">
               <div class="task-details-description-title u-truncate-text ui-g-7 task-details-panel-title">
                 <i class="si si-single-neutral-actions" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/general')}
               </div>

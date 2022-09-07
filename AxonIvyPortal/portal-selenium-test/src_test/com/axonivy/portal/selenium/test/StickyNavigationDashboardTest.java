@@ -23,9 +23,9 @@ import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 @IvyWebTest
 public class StickyNavigationDashboardTest extends BaseTest {
-  
+
   private NewDashboardPage newDashboardPage;
-  
+
   @Override
   @BeforeEach
   public void setup() {
@@ -33,7 +33,7 @@ public class StickyNavigationDashboardTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     newDashboardPage = new NewDashboardPage();
   }
-  
+
   @Test
   public void testStickyDashboardAfterStartTask() {
     redirectToRelativeLink(createTestingTasksUrl);
@@ -47,7 +47,7 @@ public class StickyNavigationDashboardTest extends BaseTest {
     taskWidget.clickOnTaskActionLink(0);
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"));
   }
-  
+
   @Test
   public void testStickyDashboardAfterReorderDashboard() {
     createJSonFile("multi-dashboards.json", PortalVariable.DASHBOARD.key);
@@ -62,7 +62,7 @@ public class StickyNavigationDashboardTest extends BaseTest {
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard"));
   }
-  
+
   @Test
   public void testStickyDashboardAfterDeleteDashboard() {
     createJSonFile("multi-dashboards.json", PortalVariable.DASHBOARD.key);
@@ -76,7 +76,7 @@ public class StickyNavigationDashboardTest extends BaseTest {
     newDashboardPage = configurationPage.backToHomePage();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard"));
   }
-  
+
   @Test
   public void testStickyDashboardAfterHideDashboard() {
     createJSonFile("multi-dashboards.json", PortalVariable.DASHBOARD.key);
@@ -92,7 +92,7 @@ public class StickyNavigationDashboardTest extends BaseTest {
     newDashboardPage = configurationPage.backToHomePage();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard"));
   }
-  
+
   @Test
   public void testStickyDashboardAfterStartProcess() {
     createJSonFile("multi-dashboards.json", PortalVariable.DASHBOARD.key);
@@ -103,9 +103,10 @@ public class StickyNavigationDashboardTest extends BaseTest {
     ProcessWidgetNewDashBoardPage processWidget = new ProcessWidgetNewDashBoardPage();
     processWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     processWidget.startProcessByName("Categoried Leave Request");
+    newDashboardPage.waitForDashboardPageAvailable();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"));
   }
-  
+
   @Test
   public void testStickyDashboardAfterAddPrivateDashboard() {
     createJSonFile("multi-dashboards.json", PortalVariable.DASHBOARD.key);
@@ -114,15 +115,16 @@ public class StickyNavigationDashboardTest extends BaseTest {
     newDashboardPage.selectDashboard(1);
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"));
     String name = "New private dashboard 3";
+    String icon = "fa-coffee";
     String description = "New private dashboard 3 description";
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
-    configurationPage.createPrivateDashboardFromScratch(name, description);
+    configurationPage.createPrivateDashboardFromScratch(name, icon, description);
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     configurationPage = newDashboardDetailsEditPage.backToConfigurationPage();
     newDashboardPage = configurationPage.backToHomePage();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"));
   }
-  
+
   @Test
   public void testStickyDashboardAfterAddPublicDashboard() {
     createJSonFile("multi-dashboards.json", PortalVariable.DASHBOARD.key);
@@ -131,12 +133,13 @@ public class StickyNavigationDashboardTest extends BaseTest {
     newDashboardPage.selectDashboard(1);
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"));
     String name = "New public dashboard 3";
+    String icon = "fa-coffee";
     String description = "New public dashboard 3 description";
     List<String> permissions = new ArrayList<>();
     permissions.add("Everybody");
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
-    configurationPage.createPublicDashboardFromScratch(name, description, permissions);
+    configurationPage.createPublicDashboardFromScratch(name, icon, description, permissions);
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     configurationPage = newDashboardDetailsEditPage.backToConfigurationPage();
     newDashboardPage = configurationPage.backToHomePage();

@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.configuration;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang.StringUtils;
 
+import com.axonivy.portal.enums.ThemeMode;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -97,6 +98,8 @@ public class GlobalSetting extends AbstractConfiguration {
       return ((BehaviourWhenClickingOnLineInTaskList)object).getLabel();
     } else if (object instanceof DefaultImage) {
       return ((DefaultImage)object).getLabel();
+    } else if (object instanceof ThemeMode) {
+      return ((ThemeMode)object).getLabel();
     } else {
       return (String)object;
     }

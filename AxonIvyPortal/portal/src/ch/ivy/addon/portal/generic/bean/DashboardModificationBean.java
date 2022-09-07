@@ -18,10 +18,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
-import com.axonivy.portal.component.util.RoleUtils;
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
+import com.axonivy.portal.components.util.RoleUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-import com.axonivy.portal.component.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
@@ -35,6 +35,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class DashboardModificationBean extends DashboardBean implements Serializable {
 
   private static final long serialVersionUID = 1L;
+  protected static final String PUBLIC_DASHBOARD_DEFAULT_ICON = "si-network-share";
+  protected static final String PRIVATE_DASHBOARD_DEFAULT_ICON = "si-single-neutral-shield";
   protected boolean isPublicDashboard;
   protected List<String> selectedDashboardPermissions;
 
@@ -58,6 +60,9 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   public void openDashboardDetailDialog(Dashboard dashboard) {
     this.selectedDashboardPermissions = new ArrayList<>();
     this.selectedDashboard = dashboard;
+    if (StringUtils.isBlank(this.selectedDashboard.getIcon())) {
+      this.selectedDashboard.setIcon(this.isPublicDashboard ? PUBLIC_DASHBOARD_DEFAULT_ICON : PRIVATE_DASHBOARD_DEFAULT_ICON);
+    }
     dashboard.setPermissionDTOs(new ArrayList<>());
     Map<String, SecurityMemberDTO> nameToSecurityMemberDTO = SecurityMemberUtils.findSecurityMembers("", 0, MAX_USERS_IN_AUTOCOMPLETE)
             .stream().filter(securityMember -> !securityMember.isUser())

@@ -30,9 +30,9 @@ public class ProcessWidgetTest extends BaseTest {
   private static final String APPRAISAL = "Appraisal";
   private static final String AGOOGLE_LINK = "AGoogle";
   private static final String AAGOOGLE_LINK = "AAGoogle";
-  private static final String ALPHA_HISTORY_TASK = "Alpha Company Task";
-  private static final String VIEW_ALPHA_HISTORY = "View Alpha Process History";
-  private static final String VIEW_ALPHA_HISTORY_IN_DIALOG = "View Alpha Process History in Dialog";
+  private static final String EMPLOYEE_SEARCH = "Employee Search";
+  private static final String EMPLOYEE_SEARCH_IN_IFRAME = "Employee Search in Iframe";
+  private static final String CREATE_INVESTMENT = "Create Investment";
 
   private HomePage homePage;
   ProcessWidgetPage processWidget;
@@ -133,11 +133,11 @@ public class ProcessWidgetTest extends BaseTest {
     redirectToRelativeLink(EXAMPLE_APPLICATION_PROCESSES);
     processWidget = new ProcessWidgetPage();
     processWidget.clickSortDefaultProcessByName();
-    assertEquals(ALPHA_HISTORY_TASK, processWidget.getProcessNameFromDefaultProcessList(0));
-    assertEquals("Favorite Express Process Display Name", processWidget.getProcessNameFromDefaultProcessList(1));
-    assertEquals("Favorite External Process Display Name", processWidget.getProcessNameFromDefaultProcessList(2));
-    assertEquals(VIEW_ALPHA_HISTORY, processWidget.getProcessNameFromDefaultProcessList(3));
-    assertEquals(VIEW_ALPHA_HISTORY_IN_DIALOG, processWidget.getProcessNameFromDefaultProcessList(4));
+    assertEquals(CREATE_INVESTMENT, processWidget.getProcessNameFromDefaultProcessList(0));
+    assertEquals(EMPLOYEE_SEARCH, processWidget.getProcessNameFromDefaultProcessList(1));
+    assertEquals(EMPLOYEE_SEARCH_IN_IFRAME, processWidget.getProcessNameFromDefaultProcessList(2));
+    assertEquals("Favorite Express Process Display Name", processWidget.getProcessNameFromDefaultProcessList(3));
+    assertEquals("Favorite External Process Display Name", processWidget.getProcessNameFromDefaultProcessList(4));
     resetLanguageOfCurrentUser();
   }
 
@@ -145,9 +145,9 @@ public class ProcessWidgetTest extends BaseTest {
   public void testSortDefaultProcessByIndex() {
     redirectToRelativeLink(EXAMPLE_APPLICATION_PROCESSES);
     processWidget = new ProcessWidgetPage();
-    assertEquals(ALPHA_HISTORY_TASK, processWidget.getProcessNameFromDefaultProcessList(0));
-    assertEquals(VIEW_ALPHA_HISTORY, processWidget.getProcessNameFromDefaultProcessList(1));
-    assertEquals(VIEW_ALPHA_HISTORY_IN_DIALOG, processWidget.getProcessNameFromDefaultProcessList(2));
+    assertEquals(EMPLOYEE_SEARCH, processWidget.getProcessNameFromDefaultProcessList(0));
+    assertEquals(EMPLOYEE_SEARCH_IN_IFRAME, processWidget.getProcessNameFromDefaultProcessList(1));
+    assertEquals(CREATE_INVESTMENT, processWidget.getProcessNameFromDefaultProcessList(2));
     assertEquals("Favorite Express Process Display Name", processWidget.getProcessNameFromDefaultProcessList(3));
     assertEquals("Favorite External Process Display Name", processWidget.getProcessNameFromDefaultProcessList(4));
     resetLanguageOfCurrentUser();
@@ -178,14 +178,14 @@ public class ProcessWidgetTest extends BaseTest {
     addNewProcessDialog.selectProcessByName(CLEAN_ALL_FAVORITE_PROCESSES);
     addNewProcessDialog.submitForm();
 
+    var processNameBeforeChanging = processWidget.findListElementsByCssSelector(".process-start-list-item-name").get(1).getText();
     processWidget.clickEditSwitchLink();
     processWidget.moveFavoriteProcess(3, 1);
-    WaitHelper.assertTrueWithWait(() -> CLEAN_ALL_FAVORITE_PROCESSES
+    WaitHelper.assertTrueWithWait(() -> !processNameBeforeChanging
         .equals(processWidget.findListElementsByCssSelector(".process-start-list-item-name").get(1).getText()));
     processWidget.clickSaveProcess();
 
-    assertEquals(CLEAN_ALL_FAVORITE_PROCESSES, processWidget.getProcessNameFromFavoriteProcessList(1));
-    assertEquals(AGOOGLE_LINK, processWidget.getProcessNameFromFavoriteProcessList(0));
+    assertFalse(processNameBeforeChanging.equals(processWidget.getProcessNameFromFavoriteProcessList(1)));
 
     addNewProcessDialog = processWidget.openNewProcessDialog();
     addNewProcessDialog.selectProcessByName(AAGOOGLE_LINK);

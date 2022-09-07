@@ -93,7 +93,7 @@
   
           <div id="applied-filters-container" class="applied-filters-container">
             <!-- Title on mobile -->
-            <h:panelGroup id="case-header-mobile" styleClass="ui-sm-4 widget-title-mobile js-widget-title-mobile">
+            <h:panelGroup id="case-header-mobile" styleClass="ui-sm-4 widget-title-mobile js-widget-title-mobile u-hidden-md-up">
               <f:event listener="#{logic.preRenderTitle()}" type="preRenderComponent" />
               <span class="top-header-main-title widget-header-main-title">
                 <span> #{cc.attrs.title}</span>
@@ -120,7 +120,7 @@
 
             <!-- Add more filters button -->
             <p:commandLink id="filter-add-action" rendered="#{!cc.attrs.isTechnicalCaseView}"
-              styleClass="filter-add-container u-hidden-md-down js-filter-add-action" global="false">
+              styleClass="filter-add-container display-inline-flex-center u-hidden-md-down js-filter-add-action" global="false">
               <i class="si si-add u-mar-right-5" />
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/moreOptions')}" />
             </p:commandLink>
@@ -169,7 +169,7 @@
               <p:commandLink id="filter-reset-action"
                 rendered="#{data.dataModel.selectedFilterData == null and !data.dataModel.isSelectedDefaultFilter() and !cc.attrs.isTechnicalCaseView}"
                 onclick="PF('reset-filter-set-dialog').show();"
-                global="false">
+                global="false" styleClass="display-inline-flex-center">
                 <span class="si si-button-refresh-arrows u-mar-right-5" />
                 <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" />
               </p:commandLink>
@@ -185,7 +185,6 @@
         </h:panelGroup>
         <!-- Export to Excel, Manage Columns -->
         <h:panelGroup id="case-list-actions" styleClass="case-list-actions u-hidden-md-down  #{!cc.attrs.hideWidgetHeader ? '' : 'no-widget-header'}">
-          <p:spacer width="20px"></p:spacer>
           <h:form id="case-export-to-excel-form" styleClass="case-export-to-excel-form u-mar-right-20">
             <p:commandLink ajax="false" id="case-export-to-excel"
               onclick="PrimeFaces.monitorDownload(start, stop);">
@@ -281,7 +280,7 @@
             itemValue="ALL_USERS" />
         </p:selectOneRadio>
       </h:panelGrid>
-      <div class="u-dialog-footer ui-dialog-footer">
+      <div class="u-text-align-right">
         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('save-filter-set-dialog').hide();" />
         <p:spacer width="15px" />
@@ -346,7 +345,6 @@
         var responsiveToolkit = ResponsiveToolkit(simpleScreen);
         Portal.init(responsiveToolkit);
         caseWidget.updateCaseCountToBreadcrumb();
-        caseWidget.setupHeader();
       });
 
       function start() {

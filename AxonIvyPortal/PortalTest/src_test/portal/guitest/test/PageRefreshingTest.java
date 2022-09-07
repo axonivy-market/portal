@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.TaskWidgetPage;
@@ -47,10 +48,13 @@ public class PageRefreshingTest extends BaseTest {
   
   @Test
   public void testTasksInPortalHomePageUpdatedAfterExpandToFullMode() {
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     assertEquals(3, taskWidgetPage.countTasks());
 
     launchBrowserAndGotoRelativeLink(createTestingTasksUrl);
+    login(TestAccount.DEMO_USER);
+    taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
     assertEquals(6, taskWidgetPage.countTasks());
   }

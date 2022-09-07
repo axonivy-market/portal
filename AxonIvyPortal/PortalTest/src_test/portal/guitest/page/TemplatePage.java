@@ -27,7 +27,8 @@ import vn.wawa.guitest.base.page.AbstractPage;
 public abstract class TemplatePage extends AbstractPage {
 
   private static final int IFRAME_SCREENSHOT_FILE_SIZE_AT_MINIMUM = 10000;
-  private static final String TEMPLATE_PAGE_LOCATOR = "id('global-search-component:global-search-data')";
+  private static final String TEMPLATE_PAGE_LOCATOR = "id('global-search-item')";
+  protected static final String COMPONENT_PAGE_LOCATOR = "//*[contains(@id,'theme-selection')]";
   public static final String CLASS_PROPERTY = "class";
   public static final String ID_PROPERTY = "id";
   private static final String HOME_BREADCRUMB_SELECTOR = ".portal-breadcrumb .ui-menuitem-link:first-child";
@@ -221,9 +222,9 @@ public abstract class TemplatePage extends AbstractPage {
 
   private void clickUserMenuItem(String menuItemSelector) {
     waitForElementDisplayed(By.id("user-settings-menu"), true);
-    click(findElementById("user-settings-menu"));
+    clickByJavaScript(findElementById("user-settings-menu"));
     waitForElementDisplayed(By.id(menuItemSelector), true);
-    click(findElementById(menuItemSelector));
+    clickByJavaScript(findElementById(menuItemSelector));
     WaitHelper.assertTrueWithWait(() -> !findElementById("user-setting-container").isDisplayed());
   }
 
@@ -331,8 +332,7 @@ public abstract class TemplatePage extends AbstractPage {
 
     private static final String GLOBAL_SEARCH_INPUT_SELECTOR = "#global-search-component\\:global-search-data";
 
-    public GlobalSearch() {
-    }
+    public GlobalSearch() { }
 
     private WebElement getSearchInput() {
       waitForElementDisplayed(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR), true);
@@ -340,10 +340,14 @@ public abstract class TemplatePage extends AbstractPage {
     }
 
     public boolean isDisplayed() {
-      return getSearchInput().isDisplayed();
+      waitForElementDisplayed(By.cssSelector("a[id$='global-search-item']"), true);
+      return findElementByCssSelector("a[id$='global-search-item']").isDisplayed();
     }
 
     public SearchResultPage inputSearchKeyword(String keyword) {
+      waitForElementDisplayed(By.cssSelector(".topbar-item.search-item"), true);
+      clickByCssSelector("a[id$='global-search-item']");
+      waitForElementDisplayed(By.cssSelector("input[id$='global-search-component:global-search-data']"), true);
       click(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR));
       WaitHelper.typeWithRetry(new AbstractPage() {
         @Override
@@ -362,7 +366,7 @@ public abstract class TemplatePage extends AbstractPage {
     }
     
     public boolean isPresent() {
-      return isElementPresent(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR));
+      return isElementPresent(By.cssSelector("a[id$='global-search-item']"));
     }
   }
   
@@ -410,6 +414,16 @@ public abstract class TemplatePage extends AbstractPage {
   
   public String getLoggedInUserFormat() {
     return getText(By.cssSelector("#user-settings-menu .name-after-avatar"));
+  }
+
+  public boolean isSwitchThemeLinkIconDisabled() {
+    waitForElementDisplayed(By.cssSelector("#theme-switcher.ui-state-disabled"), true);
+    return isElementDisplayed(By.cssSelector("#theme-switcher.ui-state-disabled"));
+  }
+
+  public boolean isSwitchThemeToLightModeLinkIconDisplayed() {
+    waitForElementDisplayed(By.cssSelector("#theme-switcher .topbar-icon.pi.pi-sun"), true);
+    return isElementDisplayed(By.cssSelector("#theme-switcher .topbar-icon.pi.pi-sun"));
   }
 
   public ChatPage getChat() {
@@ -488,6 +502,14 @@ public abstract class TemplatePage extends AbstractPage {
       return findElementByCssSelector("iFrame").getScreenshotAs(OutputType.FILE).length() > fileSizeInBytes;
     });
     switchToIFrameOfTask();
+  }
+  
+  public void waitForIFrameContentVisible(String iframeId, int iframeFileSizeAtMinimum) {
+    switchToDefaultContent();
+    Awaitility.await().atMost(new Duration(30, TimeUnit.SECONDS)).until(() -> {
+      return findElementById(iframeId).getScreenshotAs(OutputType.FILE).length() > iframeFileSizeAtMinimum;
+    });
+    WaitHelper.waitForIFrameAvailable(driver, iframeId);
   }
 
 }

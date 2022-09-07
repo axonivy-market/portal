@@ -11,14 +11,14 @@
     <ui:define name="pageContent">
       <c:set var="isShowResultTabView" value="#{compactProcessWidgetBean.displayShowAllProcessesLink or taskWidgetBean.showFullTaskList or caseWidgetBean.showFullCaseList}"></c:set>
       <h:form id="global-search-form-in-page">
-        <div id="global-search-container-in-page" class="global-search ui-lg-hidden ui-xl-hidden js-global-search">
-          <h:panelGroup styleClass="md-inputfield">
-            <p:inputText id="global-search-data" styleClass="global-search-input js-filter-process-widget-list-item" value="#{dataModel.keyword}"
-              onkeypress="if (event.keyCode == 13) { portalGlobalSearchInPage(); return false; }">
-            </p:inputText>
-            <p:outputLabel for="global-search-data" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}" />
+        <div id="global-search-container-in-page" class="global-search ui-lg-hidden ui-xl-hidden js-global-search ui-fluid">
+          <span class="ui-input-icon-left">
             <i class="global-search-icon si si-search" />
-          </h:panelGroup>
+            <p:inputText id="global-search-data" styleClass="global-search-input js-filter-process-widget-list-item"
+              value="#{dataModel.keyword}"
+              onkeypress="if (event.keyCode == 13) { portalGlobalSearchInPage(); return false; }"
+              placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}"/>
+          </span>
         </div>
         <p:remoteCommand name="portalGlobalSearchInPage" actionListener="#{dataModel.search}"
           update="#{p:resolveFirstComponentWithId('search-results-tabview', view).clientId}" oncomplete="processWidget.filter();" />
@@ -27,7 +27,7 @@
       <c:if test="#{!isShowResultTabView}" >
       	<h:outputText styleClass="not-display-result-tab-view" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/notDisplayResultTabView')}."/>
       </c:if>
-      <div id="search-results-tabview-container" class="search-results-tabview-container">
+      <div id="search-results-tabview-container" class="search-results-tabview-container js-search-results-tabview-container">
         <p:tabView id="search-results-tabview" widgetVar="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview js-search-results-tabview"
           rendered="#{isShowResultTabView}">
           <p:tab id="process-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" titleStyleClass="process-tab-title"

@@ -1,4 +1,0 @@
-UserSelectionExampleData #class
-com.axonivy.portal.developerexamples #namespace
-selectedUser com.axonivy.portal.component.dto.UserDTO #field
-selectedUser PERSISTENT #fieldModifier

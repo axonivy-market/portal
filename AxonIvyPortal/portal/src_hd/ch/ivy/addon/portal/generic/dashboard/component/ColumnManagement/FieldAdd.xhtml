@@ -11,7 +11,7 @@
       <div class="ui-g-3 field-add-fieldset__label">
         <p:outputLabel for="field-type-selection" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/type')}" />
       </div>
-      <div class="ui-g-9 field-add-fieldset__label">
+      <div class="ui-g-9 field-add-fieldset__label ui-fluid">
         <p:selectOneMenu id="field-type-selection" value="#{columnManagementBean.selectedFieldType}" styleClass="field-add-fieldset__input">
           <f:selectItems value="#{columnManagementBean.fieldTypes}" />
           <p:ajax listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" />
@@ -40,7 +40,7 @@
         <p:outputLabel for="standard-field-selection" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/field')}" rendered="#{selectedStandardField}" />
         <p:outputLabel for="custom-field-selection" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/field')}" rendered="#{selectedCustomField}" />
       </div>
-      <div class="ui-g-9">
+      <div class="ui-g-9 ui-fluid">
         <ui:fragment rendered="#{selectedStandardField}">
           <f:event listener="#{columnManagementBean.fetchFields}" type="preRenderComponent" />
           <p:selectOneMenu id="standard-field-selection" value="#{columnManagementBean.selectedField}" styleClass="field-add-fieldset__input"
@@ -72,7 +72,7 @@
             <i class="si si-information-circle" />
           </p:link>
         </h:panelGroup>
-        <h:panelGroup styleClass="ui-g-9" rendered="#{columnManagementBean.selectedCustomFieldType eq 'NUMBER'}">
+        <h:panelGroup styleClass="ui-g-9 ui-fluid" rendered="#{columnManagementBean.selectedCustomFieldType eq 'NUMBER'}">
           <p:inputText id="custom-number-field-pattern" value="#{columnManagementBean.numberFieldPattern}"
             styleClass="field-add-fieldset__input" />
         </h:panelGroup>
@@ -90,7 +90,7 @@
       <div class="ui-g-3 field-add-fieldset__label">
         <p:outputLabel for="field-display-name" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')}" />
       </div>
-      <div class="ui-g-9">
+      <div class="ui-g-9 ui-fluid">
         <p:inputText id="field-display-name" value="#{columnManagementBean.fieldDisplayName}" styleClass="field-add-fieldset__input"
            required="#{!selectedCustomField}" requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
            readonly="#{selectedCustomField}"/>

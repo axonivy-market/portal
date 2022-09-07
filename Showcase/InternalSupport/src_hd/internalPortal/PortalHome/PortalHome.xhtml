@@ -15,7 +15,7 @@
 
     <ui:define name="taskListHeader">
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{dataModel}"
-        componentId="priority-column-header" styleClass="priority-column-header TexAlCenter"
+        componentId="priority-column-header" styleClass="priority-column-header u-text-align-center"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/PRIORITY')}"
         sortField="#{masterDataBean.taskSortFieldPriority}" />
 
@@ -31,27 +31,27 @@
         sortField="#{masterDataBean.taskSortFieldActivator}" />
 
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{dataModel}"
-        componentId="id-column-header" styleClass="id-column-header js-id-column-header TexAlCenter"
+        componentId="id-column-header" styleClass="id-column-header js-id-column-header u-text-align-center"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')}"
         sortField="#{masterDataBean.taskSortFieldId}" />
 
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{dataModel}"
-        componentId="create-column-header" styleClass="create-column-header js-create-column-header TexAlCenter"
+        componentId="create-column-header" styleClass="create-column-header js-create-column-header u-text-align-center"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}"
         sortField="#{masterDataBean.taskSortFieldCreationTime}" />
 
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{dataModel}"
-        componentId="expiry-column-header" styleClass="expiry-column-header js-expiry-column-header TexAlCenter"
+        componentId="expiry-column-header" styleClass="expiry-column-header js-expiry-column-header u-text-align-center"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}"
         sortField="#{masterDataBean.taskSortFieldExpiryTime}" />
 
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{dataModel}"
         componentId="customer-name-header" sortField="CustomerName" value="Customer name"
-        styleClass="state-column-header TexAlCenter" />
+        styleClass="state-column-header u-text-align-center" />
 
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{dataModel}"
         componentId="customer-type-header" sortField="CustomerType" value="Customer type"
-        styleClass="state-column-header TexAlCenter" />
+        styleClass="state-column-header u-text-align-center" />
     </ui:define>
 
     <ui:define name="taskHeader">
@@ -70,10 +70,10 @@
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate componentId="expiry-time"
         value="#{task.expiryTimestamp}" />
 
-      <h:outputText id="customer-name" styleClass="TexAlCenter" style="flex: 0 0 150px;"
+      <h:outputText id="customer-name" styleClass="u-text-align-center" style="flex: 0 0 150px;"
         value="#{task.customFields().stringField('CustomerName').getOrNull()}" />
 
-      <h:outputText id="customer-type" styleClass="TexAlCenter" style="flex: 0 0 150px;"
+      <h:outputText id="customer-type" styleClass="u-text-align-center" style="flex: 0 0 150px;"
         value="#{task.customFields().stringField('CustomerType').getOrNull()}" />
     </ui:define>
 

@@ -8,53 +8,60 @@
       <h:form>
         <p:tabView>
           <p:tab title="Employee information">
-            <h:panelGrid columns="2" columnClasses="TexAlLeft ui-g-6, ui-g-6" styleClass="ui-g-4 ui-sm-12 ui-fluid" id="employee-info">
-              <h:panelGroup class="md-inputfield MarTop10">
-                <p:inputText id="first-name" value="#{data.employeeInfo.firstName}" required="true" requiredMessage="This field is required" />
-                <p:outputLabel value="First name" for="first-name" />
-              </h:panelGroup>
-              <p:message id="first-name-msg" for="first-name" />
-    
-              <h:panelGroup class="md-inputfield MarTop20">
-                <p:inputText  value="#{data.employeeInfo.lastName}" />
-                <p:outputLabel value="Last name" />
-              </h:panelGroup>
-              <p:spacer />
-    
-              <h:panelGrid columns="1">
-                <p:outputLabel value="Birthday" />
-                <p:datePicker value="#{data.employeeInfo.birthDay}" />
+            <div class="ui-g">
+              <h:panelGrid columns="2" columnClasses="u-text-align-left ui-g-6, ui-g-6" styleClass="ui-g-12 ui-fluid"
+                id="employee-info">
+                <h:panelGroup class="ui-float-label">
+                  <p:inputText id="first-name" value="#{data.employeeInfo.firstName}" required="true"
+                    requiredMessage="This field is required" />
+                  <p:outputLabel value="First name" for="first-name" />
+                </h:panelGroup>
+                <p:message id="first-name-msg" for="first-name" />
+
+                <h:panelGroup class="ui-float-label MarTop20">
+                  <p:inputText value="#{data.employeeInfo.lastName}" />
+                  <p:outputLabel value="Last name" />
+                </h:panelGroup>
+                <p:spacer />
+
+                <h:panelGroup class="ui-float-label MarTop20">
+                  <p:datePicker value="#{data.employeeInfo.birthDay}" />
+                  <p:outputLabel value="Birthday" />
+                </h:panelGroup>
+                <p:spacer />
               </h:panelGrid>
-              <p:spacer />
-            </h:panelGrid>
+            </div>
           </p:tab>
-    
+
           <p:tab title="Company information">
-            <h:panelGrid columns="2" columnClasses="TexAlLeft ui-g-6, ui-g-6" styleClass="ui-g-4 ui-sm-12 ui-fluid" id="company-info">
-              <h:panelGroup class="md-inputfield MarTop10">
-                <p:inputText id="country" value="#{data.employeeInfo.country}" required="true" />
-                <p:outputLabel value="Country" for="country" />
-              </h:panelGroup>
-              <p:message id="country-msg" for="country" />
-    
-              <h:panelGroup class="md-inputfield MarTop20">
-                <p:inputText id="city" value="#{data.employeeInfo.city}" />
-                <p:outputLabel value="City" for="city" />
-              </h:panelGroup>
-              <p:spacer />
-    
-              <h:panelGroup class="md-inputfield MarTop20">
-                <p:inputText value="#{data.employeeInfo.email}" type="email" id="email" />
-                <p:outputLabel value="Email" />
-              </h:panelGroup>
-              <p:spacer/>
-            </h:panelGrid>
+            <div class="ui-g">
+              <h:panelGrid columns="2" columnClasses="u-text-align-left ui-g-6, ui-g-6" styleClass="ui-g-12 ui-fluid"
+                id="company-info">
+                <h:panelGroup class="ui-float-label">
+                  <p:inputText id="country" value="#{data.employeeInfo.country}" required="true" />
+                  <p:outputLabel value="Country" for="country" />
+                </h:panelGroup>
+                <p:message id="country-msg" for="country" />
+
+                <h:panelGroup class="ui-float-label MarTop20">
+                  <p:inputText id="city" value="#{data.employeeInfo.city}" />
+                  <p:outputLabel value="City" for="city" />
+                </h:panelGroup>
+                <p:spacer />
+
+                <h:panelGroup class="ui-float-label MarTop20">
+                  <p:inputText value="#{data.employeeInfo.email}" type="email" id="email" />
+                  <p:outputLabel value="Email" />
+                </h:panelGroup>
+                <p:spacer />
+              </h:panelGrid>
+            </div>
           </p:tab>
         </p:tabView>
-        <h:panelGroup styleClass="MarTop5 DispBlock Fright" id="command-group">
-          <p:commandButton value="Finish" actionListener="#{logic.finish}" id="finish-button"
-            process="@form" update="@form" />
-          <p:spacer width="5"/>
+        <h:panelGroup styleClass="MarTop20 Fright" id="command-group" layout="block">
+          <p:commandButton value="Finish" actionListener="#{logic.finish}" id="finish-button" process="@form"
+            update="@form" />
+          <p:spacer width="5" />
           <p:commandButton value="Back" actionListener="#{logic.back}" id="back-button" immediate="true" />
         </h:panelGroup>
       </h:form>

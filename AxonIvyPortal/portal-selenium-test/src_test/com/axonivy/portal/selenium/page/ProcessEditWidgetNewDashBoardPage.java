@@ -154,7 +154,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getSelectedTasksTab() {
-    return $(".combined-process-widget__button-tabs.first-tab-button.active-button-tab");
+    return $(".combined-process-widget-button-selection .ui-button.ui-state-active input[id$=':0']");
   }
 
   public SelenideElement getTasksTabDataContainer() {
@@ -167,11 +167,11 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getCasesTab() {
-    return $(".combined-process-widget__button-tabs.last-tab-button");
+    return $(".combined-process-widget-button-selection .ui-button input[id$=':1']").parent();
   }
 
   public SelenideElement getSelectedCasesTab() {
-    return $(".combined-process-widget__button-tabs.last-tab-button.active-button-tab");
+    return $(".combined-process-widget-button-selection .ui-button.ui-state-active input[id$=':1']");
   }
 
   public SelenideElement getCasesTabDataContainer() {
@@ -179,7 +179,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void selectCasesTab() {
-    getCasesTab().shouldBe(Condition.appear).click();
+    getCasesTab().waitUntil(Condition.appear, DEFAULT_TIMEOUT).waitUntil(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public SelenideElement getFirstDisplayedCaseName() {

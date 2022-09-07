@@ -31,8 +31,7 @@
       <h:outputText id="loading" styleClass="js-loading-#{widget.id} ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}" />
       <h:panelGroup id="dashboard-process-viewer-container" layout="block"
         styleClass="ui-g-12 widget-height-100 u-padding-0 js-dashboard-process-viewer-container-#{widget.id} u-display-none">
-        <ic:com.axonivy.portal.component.ProcessViewer processLink="#{widget.processLink}" />
-        <h:outputStylesheet library="css" name="process-viewer-custom.css" />
+        <ic:com.axonivy.portal.components.ProcessViewer processLink="#{widget.processLink}" />
       </h:panelGroup>
     </div>
   </ui:define>

@@ -71,7 +71,7 @@
           <h:panelGroup layout="block" rendered="#{data.createMode}">
             <div class="ui-g-12 u-padding-0">
               <p:commandLink id="back-from-chart-creation" action="#{statisticChartCreationBean.clearChartModels()}"
-                styleClass="back-button Fright" actionListener="#{logic.switchCreateMode}"
+                styleClass="back-button" actionListener="#{logic.switchCreateMode}"
                 update="create-chart-header header widget-container" global="false">
                 <i class="si si-arrow-left-1" />
                 <p:spacer width="3px" />
