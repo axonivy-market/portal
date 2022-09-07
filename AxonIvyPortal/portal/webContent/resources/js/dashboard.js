@@ -138,8 +138,8 @@ function setupScrollbar() {
       var $dashboardWrapper = $(".js-dashboard__wrapper");
       if (container.outerHeight() > availableHeight && !isMobileDevices()) {
         PortalLayout.removeLayoutContentPaddingBottom();
-        //$dashboardWrapper.css('margin-right', '-' + PortalLayout.getPaddingRightLayoutContent());
-        //$dashboardHeader.css('padding-right', PortalLayout.getPaddingRightLayoutContent());
+        $dashboardWrapper.css('margin-right', '-' + PortalLayout.getPaddingRightLayoutContent());
+        $dashboardHeader.css('padding-right', PortalLayout.getPaddingRightLayoutContent());
       } else {
         $dashboardWrapper.removeAttr('style');
         $dashboardHeader.removeAttr('style');
