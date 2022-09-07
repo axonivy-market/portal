@@ -372,8 +372,8 @@ public class NewDashboardPage extends TemplatePage {
 
   public void filterCompactModeProcessProcessType(String processType) {
     getCompactModeProcessFilterPanelProcessTypes().shouldBe(Condition.appear).click();
-    getCompactModeProcessProcessTypesPanel().waitUntil(Condition.appear, DEFAULT_TIMEOUT)
-        .$("li[data-item-value='" + processType + "']").shouldBe(Condition.appear).click();
+    getCompactModeProcessProcessTypesPanel().waitUntil(Condition.cssClass("ui-connected-overlay-enter-done"), DEFAULT_TIMEOUT)
+        .$("li[data-item-value='" + processType + "'] label").shouldBe(Condition.appear).click();
     getCompactModeProcessProcessTypesPanel().$(".ui-selectcheckboxmenu-close").click();
     getCompactModeProcessProcessTypesPanel().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
