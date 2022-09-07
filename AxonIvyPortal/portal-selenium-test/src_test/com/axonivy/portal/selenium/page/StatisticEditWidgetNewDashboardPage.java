@@ -32,11 +32,10 @@ public class StatisticEditWidgetNewDashboardPage extends TemplatePage {
   public void selectFirstChart() {
     $("[id$=':new-widget-configuration-component:user-filter']").waitUntil(appear, DEFAULT_TIMEOUT)
         .$("[id$=':new-widget-configuration-component:statistic-list']").waitUntil(appear, DEFAULT_TIMEOUT)
-        .$("[id$=':new-widget-configuration-component:statistic-list_label']").waitUntil(Condition.exist, DEFAULT_TIMEOUT).click();
+        .$("button.ui-autocomplete-dropdown").waitUntil(Condition.exist, DEFAULT_TIMEOUT).waitUntil(getClickableCondition(), DEFAULT_TIMEOUT).click();
     var selectionOptions = $("[id$=':new-widget-configuration-component:statistic-list_panel']").waitUntil(appear, DEFAULT_TIMEOUT)
-        .$("[id$=':new-widget-configuration-component:statistic-list_items']").waitUntil(appear, DEFAULT_TIMEOUT)
-        .$$("li.ui-selectonemenu-item");
-    selectionOptions.get(1).click();
+        .$$("tr.ui-autocomplete-item.ui-autocomplete-row");
+    selectionOptions.get(0).click();
     $("[id$=':new-widget-configuration-component:statistic-list_panel']").waitUntil(disappear, DEFAULT_TIMEOUT);
   }
 

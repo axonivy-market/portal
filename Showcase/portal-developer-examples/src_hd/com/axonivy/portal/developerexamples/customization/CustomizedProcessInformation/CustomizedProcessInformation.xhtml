@@ -30,7 +30,7 @@
           <h:outputText value="Running cases" styleClass="title-text"/>
         </div>
         <div class="ui-g-12">
-          <ic:com.axonivy.portal.component.ProcessHistory businessEntityId="leave_request" chunkSize="10" scrollHeight="350" />
+          <ic:com.axonivy.portal.components.ProcessHistory businessEntityId="leave_request" chunkSize="10" scrollHeight="350" />
         </div>
       </div>
     </div>
@@ -46,7 +46,9 @@
       <script>
         function goBack() {
           window.history.back();
-          event.preventDefault();
+          if (event) {
+            event.preventDefault();
+          }
         }
       </script>
     </ui:define>

@@ -1,3 +1,8 @@
+// Freya style has the transition delay time is 0.2s when expand/collapse main menu
+// We need to delay a bit before calculating scrollbar
+var isFinishedRestoreMenuState = false;
+var delayTime = 0;
+
 var Portal = {
   init : function(responsiveToolkit) {
     // Swipe on mobile can cause problems with scroll
@@ -8,14 +13,21 @@ var Portal = {
     }
     // Update menuitem when access page by direct link
     MainMenu.init(responsiveToolkit);
-    
-    //Add very small timeout when page ready, fix responsive problem for IE 11
+
+    //Check and add a delay time timeout when Freya restoring Menu state
+    if (!isFinishedRestoreMenuState) {
+      isFinishedRestoreMenuState = true;
+      delayTime = 250;
+    }
+
     setTimeout(function() {
       responsiveToolkit.updateLayoutWithoutAnimation();
-    }, 1);
-    
-    this.updateLayoutContent();
-    this.updateBreadcrumb();
+    }, delayTime);
+
+    setTimeout(function() {
+      Portal.updateLayoutContent();
+      Portal.updateBreadcrumb();
+    }, delayTime);
 
     var resizeTimer;
     // Update screen when window size is changed
@@ -44,44 +56,50 @@ var Portal = {
   },
   
   updateLayoutContent : function() {
-    var ua = window.navigator.userAgent;
-    var isIE = /MSIE|Trident/.test(ua);
-    var fullHeight= '100vh';
-    if (!isIE) {
-      var vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', vh + 'px');
-      fullHeight = 'var(--vh, 1vh) * 100';
-    }
-
-    var headerHeight = $('.js-portal-template-header').outerHeight(true)||0;
-    var footerHeight = $('.js-portal-template-footer').outerHeight(true)||0;
+    var $layoutTopbar = $('.js-layout-topbar');
+    var $layoutMain = $('.js-layout-main');
+    var $portalHeader = $('.js-portal-template-header');
+    var $portalFooter = $('.js-portal-template-footer');
+    var headerHeight = $portalHeader.outerHeight(true)||0;
+    var footerHeight = $portalFooter.outerHeight(true)||0;
     var headerFooterHeight = headerHeight + footerHeight;
-    var layoutTopbarHeight = $('.layout-topbar').outerHeight(true)||0;
-    $('.js-position-topbar').height(layoutTopbarHeight);
-    if ($('.js-layout-wrapper').hasClass('u-invisibility')) {
-      var envHeight = $('#portal-environment').outerHeight();
+    var layoutTopbarHeight = $layoutTopbar.outerHeight(true)||0;
+    if ($layoutMain.hasClass('u-invisibility')) {
+      var envHeight = $('#portal-environment').outerHeight()||0;
     }
 
-    $('.js-left-sidebar').css('top', headerHeight + 'px').css('height', 'calc(100vh - ' + (headerFooterHeight - envHeight) + 'px)');
-    $('.js-layout-main').css('margin-top', headerHeight + 'px').css('height', 'calc(100vh - ' + headerFooterHeight + 'px)');
-    $('.js-layout-wrapper').removeClass('u-invisibility');
+    $layoutTopbar.css('top', headerHeight + 'px');
+    if ($(window).width() < 992) { // Handle for mobile view
+      const menuTopValue = (headerHeight + layoutTopbarHeight) + 'px';
+      const menuHeightValue = 'calc(100vh - ' + (headerFooterHeight + envHeight) + 'px)';
+      $('.js-left-sidebar').css({'height': menuHeightValue, 'top': menuTopValue});
+    } else {
+      $('.js-left-sidebar').css({'height': 'calc(100vh - ' + (headerFooterHeight - envHeight) + 'px)','top': headerHeight + 'px'});
+    }
 
-    var topbarWithHeaderFooterHeight = (layoutTopbarHeight + headerFooterHeight);
-    $('.js-layout-content').css('height', 'calc(' + fullHeight + ' - ' + topbarWithHeaderFooterHeight + 'px)');
+    if (headerFooterHeight === 0 && envHeight === 0) {
+      $layoutMain.removeAttr('style');
+    } else {
+      const layoutMainPaddingTop = headerHeight + layoutTopbarHeight + 20; // By default, Freya buffer 20px from topbar, refer to .layout-main class
+      $layoutMain.css({'padding-top': layoutMainPaddingTop + 'px', 'padding-bottom' : footerHeight + 'px'});
+    }
+
     var chatPanel = $('.js-chat-panel');
     if (chatPanel.length > 0) {
-      chatPanel.css('height', 'calc(100% - ' + (headerFooterHeight - envHeight) + 'px)');
-      chatPanel.css('top', headerHeight + 'px');
-      chatPanel.css('bottom', footerHeight + 'px');
+      const chatPanelHeight = 'calc(100% - ' + (headerFooterHeight + layoutTopbarHeight + envHeight) + 'px)';
+      const chatPanelTop = (headerHeight + layoutTopbarHeight) + 'px';
+      chatPanel.css({'height': chatPanelHeight, 'top': chatPanelTop, 'bottom': footerHeight + 'px'});
     }
+    $portalHeader.removeClass('u-invisibility');
+    $layoutMain.removeClass('u-invisibility');
+    $portalFooter.removeClass('u-invisibility');
   },
 
   updateBreadcrumb : function() {
-    var topMenuElements = $("#top-menu").find("> li");
     var breadCrumb = $("#top-menu").find("> li.breadcrumb-container");
     var breadCrumbMembers = breadCrumb.find("li");
-
     if (breadCrumbMembers.length == 0) {
+      breadCrumb.css("display", "none");
       return;
     }
 
@@ -89,39 +107,52 @@ var Portal = {
     clearTimeout(updateBreadcrumbTimeout);
 
     updateBreadcrumbTimeout = setTimeout(function() {
-        var usedWidthOfTopMenu = 0;
         var layoutWrapper = $('.js-layout-wrapper');
-        topMenuElements.each(function(i, val) {
-          if (!val.classList.contains("breadcrumb-container")) {
-            usedWidthOfTopMenu += $(val).outerWidth(true);
+        var leftSidebarMenu = $(".menu-wrapper.js-left-sidebar");
+        var leftTopbar = $(".layout-topbar-left");
+        var rightTopbar = $(".layout-topbar-right");
+        var breadCrumbMarginLeft = 0;
+        if (layoutWrapper.hasClass('layout-static')) {
+          breadCrumbMarginLeft = leftSidebarMenu.outerWidth(true) - leftTopbar.outerWidth(true) - parseInt(rightTopbar.css("padding-left")) + "px";
+        } else {
+          if ($("a.menu-button").is(":visible")) {
+            breadCrumbMarginLeft = 0;
+          } else {
+            breadCrumbMarginLeft = '2rem';
           }
-        });
-
-        var toggleMenuIcon = $('.left-sidebar-menu-icon');
-        if (toggleMenuIcon.is(":visible")) {
-          usedWidthOfTopMenu += toggleMenuIcon.outerWidth(true);
         }
 
-        var breadCrumbWidth = "calc(100% - " + usedWidthOfTopMenu + "px)";
-        breadCrumb.css({"display": "block", "width" : breadCrumbWidth});
+        breadCrumb.css({"display": "flex", "margin-left" : breadCrumbMarginLeft});
         if(!layoutWrapper.hasClass('has-breadcrumb')) {
           layoutWrapper.addClass('has-breadcrumb');
         }
 
-        var breadcrumbWidthWithoutCurrentStep = 0;
-        breadCrumbMembers.each(function(i, val) {
-          if (i != breadCrumbMembers.length - 1) {
-            breadcrumbWidthWithoutCurrentStep += val.offsetWidth;
-          }
-        });
         var currentBreadcrumb = $(breadCrumbMembers.get(breadCrumbMembers.length - 1));
-        currentBreadcrumb.css("max-width", "calc(100% - " + breadcrumbWidthWithoutCurrentStep + "px)");
         if (currentBreadcrumb.get(0).offsetWidth == 0) {
           breadCrumb.css("display", "none");
           layoutWrapper.removeClass('has-breadcrumb');
         }
-      }, 100);
-  }
+      }, 250);
+  },
+
+  changePortalVariableTheme: function(themeMode) {
+    let newLayout = '-' + themeMode;
+    var linkElement = $('link[href*="portal-variables-"]');
+    var href = linkElement.attr('href');
+    var currentColor = '-light';
+    if (href.includes('portal-variables-dark.css')) {
+      currentColor = '-dark';
+    }
+    PrimeFaces.FreyaConfigurator.replaceLink(linkElement, href.replace(currentColor, newLayout));
+  },
+ 
+  switchToThemeMode: function(themeMode) {
+    PrimeFaces.FreyaConfigurator.changeLayout('ivy', themeMode);
+  },
+
+  changeLogoByThemeMode: function(themeMode) {
+    PrimeFaces.FreyaConfigurator.changeLogo(themeMode);
+  },
 }
 
 function searchIconByName(element) {
@@ -154,7 +185,7 @@ var MainMenu = {
   init : function(responsiveToolkit) {
     this.highlightMenuItem();
     this.responsiveToolkit = responsiveToolkit;
-    this.$mainMenuToggle = $('.sidebar-anchor');
+    this.$mainMenuToggle = $('.sidebar-pin');
     this.menulinks = $('.layout-sidebar .layout-menu a');
     this.bindEvents();
   },
@@ -176,6 +207,16 @@ var MainMenu = {
     let activeMenuItemList = this.getActiveMenu();
 
     if ($currentPageMenu.length > 0) {
+      var $dashboardGroup = $(".js-dashboard-group");
+      if ($currentPageMenu.hasClass("DASHBOARD") && $dashboardGroup.length > 0) {
+        $.each( activeMenuItemList, function( i, menuItem ) {
+            if (!(menuItem.id.includes('-sub-dashboard') || menuItem.id.includes('-main-dashboard'))) {
+              deactivateMenuItemOnLeftMenu(menuItem.id);
+            }
+        });
+        return;
+      }
+
       if ($currentPageMenu.parent().hasClass('active-menuitem') && activeMenuItemList.length === 1) {
         return;
       }
@@ -187,8 +228,7 @@ var MainMenu = {
 
   removeActiveMenu : function(activeMenuItems) {
     $.each( activeMenuItems, function( i, menuItem ) {
-      $(menuItem).removeClass('active-menuitem');
-      PF('main-menu').removeMenuitem(menuItem.id);
+      deactivateMenuItemOnLeftMenu(menuItem.id);
     });
   },
 
@@ -203,7 +243,7 @@ var MainMenu = {
 
   getMenuItemByCurrentPage : function() {
     let currentPage = this.getCurentPageByPageUrl();
-    return $(".layout-menu").find("a.ripplelink." + currentPage);
+    return $(".layout-menu").find('li[role="menuitem"] a.' + currentPage);
   },
 
   getActiveMenu : function() {
@@ -295,7 +335,7 @@ function fireEventClickOnMenuItem(menuItem, prevMenuItemId) {
 }
 
 function resetPortalLeftMenuState() {
-  $.removeCookie('serenity_expandeditems', {path: '/'});
+  $.removeCookie('freya_expandeditems', {path: '/'});
   if (typeof resetSelectedMenuItems === "function") {
     resetSelectedMenuItems();
   }
@@ -307,4 +347,27 @@ function hideDashboardOverlayPanels() {
       $(this).removeClass("ui-overlay-visible").addClass("ui-overlay-hidden");
     }
   });
+}
+
+function highlightDashboardItem(menuId) {
+  var $board = $("[id*='_js__" + menuId + "']");
+  if ($board.length > 0) {
+    activeMenuItemOnLeftMenu($board.attr("id"));
+  }
+}
+
+function activeMenuItemOnLeftMenu(menuId) {
+  PF('main-menu').addMenuitem(menuId);
+  let $selectedMenu = $("[id$='" + menuId + "']");
+  if (!$selectedMenu.hasClass('active-menuitem')) {
+    $selectedMenu.addClass('active-menuitem');
+  }
+}
+
+function deactivateMenuItemOnLeftMenu(menuId) {
+  PF('main-menu').removeMenuitem(menuId);
+  let $removedMenu = $("[id$='" + menuId + "']");
+  if ($removedMenu.hasClass('active-menuitem')) {
+    $removedMenu.removeClass('active-menuitem');
+  }
 }

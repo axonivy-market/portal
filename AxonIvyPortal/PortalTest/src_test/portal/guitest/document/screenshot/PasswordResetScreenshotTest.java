@@ -39,7 +39,9 @@ public class PasswordResetScreenshotTest extends BaseTest {
   public void testResetPasswordSuccess() throws IOException {
     redirectToRelativeLink(String.format(portalPasswordResetUrl, TestAccount.TEST_FORGOT_PASSWORD_USER.getPassword(), TestAccount.TEST_FORGOT_PASSWORD_USER.getUsername()));
     passwordResetPage = new PasswordResetPage();
-    passwordResetPage.resetPassword();
+    String newPassword = "a2C!";
+    passwordResetPage.resetPassword(newPassword, true);
+    refreshPage();
     ScreenshotUtil.resizeBrowser(new Dimension(1024, 768));
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.FORGOT_PASSWORD + "reset-password-success-screen");
   }

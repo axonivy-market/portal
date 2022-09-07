@@ -33,9 +33,11 @@ public class AdminSettingBean implements Serializable {
   public static final String ANNOUNCEMENT_SETTING_TAB_ID = "announcement-tab";
   public static final String EXPRESS_MANAGEMENT_TAB_ID = "express-management-tab";
   public static final String ROLE_MANAGEMENT_TAB_ID = "role-management-tab";
+  public static final String PASSWORD_VALIDATION_TAB_ID = "password-validation-tab";
   private boolean isShowExpressManagementTab;
   private boolean isShowRoleManagementTab;
   private boolean isTabChangeEventTriggered;
+  private boolean isShowPasswordValidationTab;
 
   public void initAdminTabViewConfig() {
     if (isTabChangeEventTriggered) {
@@ -44,6 +46,7 @@ public class AdminSettingBean implements Serializable {
     }
     isShowExpressManagementTab = new ProcessStartCollector().findExpressCreationProcess() != null;
     isShowRoleManagementTab = canSeeRoleManagement();
+    isShowPasswordValidationTab = canSeePasswordValidation();
     initApplicationTab();
   }
 
@@ -67,6 +70,8 @@ public class AdminSettingBean implements Serializable {
           break;
         case ROLE_MANAGEMENT_TAB_ID:
           break;
+        case PASSWORD_VALIDATION_TAB_ID:
+            break;
         default:
           break;
       }
@@ -123,6 +128,10 @@ public class AdminSettingBean implements Serializable {
   private boolean canSeeRoleManagement() {
     return PermissionUtils.hasPortalPermission(PortalPermission.ROLE_MANAGEMENT);
   }
+  
+  private boolean canSeePasswordValidation() {
+    return PermissionUtils.hasPortalPermission(PortalPermission.PASSWORD_VALIDATION);
+  }
 
   public String getDropdownItemlabel(Object item) {
     if (item instanceof Option) {
@@ -147,4 +156,12 @@ public class AdminSettingBean implements Serializable {
   public void setShowRoleManagementTab(boolean isShowRoleManagementTab) {
     this.isShowRoleManagementTab = isShowRoleManagementTab;
   }
+  
+  public boolean isShowPasswordValidationTab() {
+	return isShowPasswordValidationTab;
+  }
+  
+  public void setShowPasswordValidationTab(boolean isShowPasswordValidationTab) {
+	    this.isShowPasswordValidationTab = isShowPasswordValidationTab;
+	  }
 }

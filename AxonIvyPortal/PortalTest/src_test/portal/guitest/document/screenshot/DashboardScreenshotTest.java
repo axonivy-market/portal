@@ -158,8 +158,8 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     WebElement userField = newDashboardPage.findElementById("widget-configuration-form:new-widget-configuration-component:parammeters:0:param-user-:user-selection_input");
     newDashboardPage.type(userField, "demo");
     newDashboardPage.waitForElementDisplayed(By.id("widget-configuration-form:new-widget-configuration-component:parammeters:0:param-user-:user-selection_panel"), true);
-    newDashboardPage.click(By.xpath("//*[@id='widget-configuration-form:new-widget-configuration-component:parammeters:0:param-user-:user-selection_panel']/ul/li"));
-
+    newDashboardPage.click(By.xpath("//*[@id='widget-configuration-form:new-widget-configuration-component:parammeters:0:param-user-:user-selection_panel']/table/tbody/tr"));
+    Sleeper.sleep(300); // wait for datepicker and autocomplete selection hide
     ScreenshotUtil.captureElementScreenshot(newDashboardPage.getConfigurationDialog(), ScreenshotUtil.DASHBOARD_FOLDER + "process-custom-widget-configuration");
   }
 
@@ -184,7 +184,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     taskInfoOverlayPanel.findElement(By.className("widget-info-type--label")).click();
     newDashboardPage.waitForWidgetInfoLoading(taskInfoOverlayPanel);
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskInfoOverlayPanel, ScreenshotUtil.NEW_DASHBOARD_FOLDER + "widget-info", new ScreenshotMargin(20));
-    taskInfoOverlayPanel.findElement(By.className("info-overlay-panel__footer")).findElement(By.className("ui-link")).click();
+    taskInfoOverlayPanel.findElement(By.className("info-overlay-panel__footer")).findElement(By.className("info-overlay-panel__close-link")).click();
 
     // Take screenshot of Edit dashboard page
     redirectToDashboardConfiguration();
@@ -293,6 +293,29 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     newDashboardPage.waitForProcessViewerWidgetLoading();
     Sleeper.sleep(2000);// wait for iframe data loading finish
     ScreenshotUtil.captureElementScreenshot(newDashboardPage.getProcessViewerWidget(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "process-viewer-widget");
+  }
+
+  @Test
+  public void screenshotWelcomeWidget() throws IOException {
+    login(TestAccount.ADMIN_USER);
+    updatePortalSetting(SHOW_LEGACY_UI .getKey(), "false");
+    redirectToDashboardConfiguration();
+    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.selectPublicDashboardType();
+    configPage.selectEditPublicDashboards();
+    configPage.configureDashboardByIndex(0);
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForPageLoaded();
+    WaitHelper.assertTrueWithWait(() -> ScreenshotUtil.isDOMStatusComplete());
+    newDashboardPage.waitForTaskWidgetLoading();
+
+    newDashboardPage.clickAddWidget();
+    WebElement newWidgetDialog = newDashboardPage.getAddWidgetDialog();
+    newWidgetDialog.findElement(By.id("new-widget-dialog-content:6:add-widget")).click();
+    DashboardWidgetConfigurationDialogPage configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
+    configurationDialogPage.waitUntilAnimationFinished();
+    ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "welcome-widget-configuration");
+    configurationDialogPage.saveConfiguration();
   }
 
   private void showNewCustomizedDashboard() {

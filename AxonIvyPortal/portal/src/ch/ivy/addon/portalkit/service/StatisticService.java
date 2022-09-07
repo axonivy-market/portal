@@ -267,6 +267,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
    * Get Cases by Case Category data
    * 
    * @param caseQuery
+   * @param categoryNodes
    * @return Cases by Case Category data
    */
   public CaseCategoryStatistic getCasesByCategoryStatisticData(CaseQuery caseQuery, List<String> categoryNodes) {
@@ -1342,7 +1343,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
    * the labels of chart is name category (CMS) + category delimiter + path category
    * Split category delimiter to get path category for case query
    * @param event
-   * @return
+   * @return labels
    */
   @SuppressWarnings("unchecked")
   public static String getSelectedValueOfBarChartCasesByCategory(ItemSelectEvent event) {

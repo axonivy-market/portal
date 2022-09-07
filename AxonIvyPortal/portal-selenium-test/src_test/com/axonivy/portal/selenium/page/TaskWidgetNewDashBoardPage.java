@@ -72,7 +72,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void startFirstTaskAndWaitShowHomePageButton() {
     $$("span.widget__filter-noti-number").first().waitUntil(appear, DEFAULT_TIMEOUT);
     getColumnOfTaskHasIndex(0, "Start").waitUntil(appear, DEFAULT_TIMEOUT).click();
-    $(".ui-icon-home").waitUntil(appear, DEFAULT_TIMEOUT);
+    $("a>span.si-house-chimney-2.portal-icon").waitUntil(appear, DEFAULT_TIMEOUT);
   }
 
   public void startTask(int taskIndex) {
@@ -85,7 +85,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void openFilterWidget() {
-    getTaskWidgetHeader().$("a.widget__filter-sidebar-link")
+    getTaskWidgetHeader().$(".widget__filter-sidebar-link")
         .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("[id$=':widget-saved-filters-items").waitUntil(appear, DEFAULT_TIMEOUT);
   }
@@ -363,14 +363,14 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   
   public TaskEditWidgetNewDashBoardPage openEditTaskWidget() {
     $$("div.table-widget-panel div.widget__header").filter(text(taskWidgetName)).first()
-        .waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("a[class^='ui-commandlink'][id*='edit-widget']")
+        .waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='edit-widget']")
         .shouldBe(getClickableCondition()).click();
     return new TaskEditWidgetNewDashBoardPage();
   }
   
   public void deleteTaskWidget() {
     $$("div.table-widget-panel div.widget__header").filter(text(taskWidgetName)).first()
-        .waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("a.ui-commandlink[id*='delete-widget']")
+        .waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='delete-widget']")
         .shouldBe(getClickableCondition()).click();
   }
   
@@ -379,7 +379,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void clickOnButtonWidgetInformation() {
-    getTaskWidgetHeader().$("a.widget__info-sidebar-link")
+    getTaskWidgetHeader().$(".widget__info-sidebar-link")
         .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
   
@@ -417,7 +417,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void clickOnButtonExpandTaskWidget() {
-    getTaskWidgetHeader().$("a.expand-link")
+    getTaskWidgetHeader().$(".expand-link")
         .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
   
@@ -430,7 +430,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void clickOnButtonCollapseTaskWidget() {
-    getTaskWidgetHeader().$("a.collapse-link")
+    getTaskWidgetHeader().$(".collapse-link")
         .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
   
