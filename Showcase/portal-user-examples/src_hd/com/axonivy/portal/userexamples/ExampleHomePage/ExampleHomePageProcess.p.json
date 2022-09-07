@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "1723A6F0283D003D",
   "data" : "com.axonivy.portal.userexamples.ExampleHomePage.ExampleHomePageData",
   "kind" : "HTML_DIALOG",
@@ -122,7 +122,7 @@
       },
       "visual" : {
         "at" : { "x" : 472, "y" : 256 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f12", "to" : "f11", "via" : [ { "x" : 672, "y" : 256 } ] }
     }, {
@@ -149,7 +149,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 352 },
-        "labelOffset" : { "x" : -25, "y" : 15 }
+        "labelOffset" : { "x" : 46, "y" : 35 }
       },
       "connect" : { "id" : "f16", "to" : "f14" }
     }, {

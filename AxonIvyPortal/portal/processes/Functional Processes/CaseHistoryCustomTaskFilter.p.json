@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "14E52ACF4B6D37BF",
   "data" : "ch.ivy.add.portalkit.CaseHistoryCustomTaskFilterData",
   "kind" : "CALLABLE_SUB",
@@ -28,16 +28,14 @@
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 96 },
-        "size" : { "width" : 26, "height" : 26 },
-        "labelOffset" : { "x" : 17, "y" : -6 }
+        "labelOffset" : { "x" : 89, "y" : 14 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 64, "y" : 352 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 64, "y" : 352 }
       }
     }, {
       "id" : "f7",

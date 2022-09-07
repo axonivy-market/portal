@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "16BFA568D95D2EA0",
   "data" : "ch.ivy.addon.portalkit.component.TaskItemDetails.TaskItemDetailsData",
   "kind" : "HTML_DIALOG",
@@ -25,7 +25,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -16, "y" : 15 }
+        "labelOffset" : { "x" : 111, "y" : 35 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {
@@ -52,7 +52,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 },
-        "labelOffset" : { "x" : -86, "y" : 15 }
+        "labelOffset" : { "x" : 33, "y" : 35 }
       },
       "connect" : { "id" : "f13", "to" : "f7" }
     }, {
@@ -89,7 +89,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 256 },
-        "labelOffset" : { "x" : -51, "y" : 15 }
+        "labelOffset" : { "x" : -7, "y" : 35 }
       },
       "connect" : { "id" : "f11", "to" : "f8" }
     }, {
@@ -108,7 +108,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 480 },
-        "labelOffset" : { "x" : -46, "y" : 17 }
+        "labelOffset" : { "x" : -7, "y" : 37 }
       },
       "connect" : { "id" : "f16", "to" : "f45" }
     }, {
@@ -131,7 +131,7 @@
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 480 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f20", "to" : "f77" }
     }, {
@@ -144,8 +144,7 @@
       "id" : "f77",
       "type" : "Alternative",
       "visual" : {
-        "at" : { "x" : 352, "y" : 480 },
-        "size" : { "width" : 28, "height" : 28 }
+        "at" : { "x" : 352, "y" : 480 }
       },
       "connect" : [
         { "id" : "f3", "to" : "f49", "condition" : "in.canUserResumeTask" },
@@ -231,8 +230,7 @@
       },
       "visual" : {
         "at" : { "x" : 480, "y" : 480 },
-        "size" : { "width" : 128, "height" : 44 },
-        "labelOffset" : { "x" : -44, "y" : -16 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f5", "to" : "f15" }
     }, {
@@ -307,7 +305,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 672 },
-        "labelOffset" : { "x" : -60, "y" : 16 }
+        "labelOffset" : { "x" : -12, "y" : 36 }
       },
       "connect" : { "id" : "f81", "to" : "f80" }
     }, {
@@ -328,7 +326,7 @@
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 672 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f87", "to" : "f79" }
     }, {
@@ -341,7 +339,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 800 },
-        "labelOffset" : { "x" : -84, "y" : 23 }
+        "labelOffset" : { "x" : 28, "y" : 43 }
       },
       "connect" : { "id" : "f23", "to" : "f22" }
     }, {
@@ -368,7 +366,7 @@
       },
       "visual" : {
         "at" : { "x" : 320, "y" : 800 },
-        "size" : { "width" : 256, "height" : 44 }
+        "size" : { "width" : 256, "height" : 60 }
       },
       "connect" : { "id" : "f21", "to" : "f19" }
     }, {
@@ -389,7 +387,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 928 },
-        "labelOffset" : { "x" : -25, "y" : 15 }
+        "labelOffset" : { "x" : 35, "y" : 35 }
       },
       "connect" : { "id" : "f28", "to" : "f27" }
     }, {
@@ -438,7 +436,7 @@
       },
       "visual" : {
         "at" : { "x" : 640, "y" : 64 },
-        "labelOffset" : { "x" : -16, "y" : 15 }
+        "labelOffset" : { "x" : 100, "y" : 35 }
       },
       "connect" : { "id" : "f32", "to" : "f29" }
     }, {
@@ -465,7 +463,7 @@
       },
       "visual" : {
         "at" : { "x" : 88, "y" : 1040 },
-        "labelOffset" : { "x" : -25, "y" : 15 }
+        "labelOffset" : { "x" : 31, "y" : 35 }
       },
       "connect" : { "id" : "f36", "to" : "f34" }
     }, {

@@ -1,5 +1,5 @@
 ch.ivyteam.ivy.designer.preferences.DataClassPreferencePage\:DEFAULT_DATA_CLASS=com.axonivy.portal.components.examples.Data
 ch.ivyteam.ivy.designer.preferences.DataClassPreferencePage\:DEFAULT_NAMESPACE=com.axonivy.portal.components.examples
 ch.ivyteam.ivy.project.preferences\:PRIMEFACES_VERSION=11
-ch.ivyteam.ivy.project.preferences\:PROJECT_VERSION=94004
+ch.ivyteam.ivy.project.preferences\:PROJECT_VERSION=94005
 eclipse.preferences.version=1

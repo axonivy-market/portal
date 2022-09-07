@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "16FA8B451814E32A",
   "data" : "com.axonivy.portal.developerexamples.GlobalGrowlSkipTaskListData",
   "elements" : [ {
@@ -55,7 +55,7 @@
       },
       "visual" : {
         "at" : { "x" : 320, "y" : 64 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     } ]

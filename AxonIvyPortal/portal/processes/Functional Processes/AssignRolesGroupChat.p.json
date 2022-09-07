@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "169B2A4D199FA6EA",
   "data" : "ch.ivy.addon.portal.generic.AssignRolesGroupChatData",
   "kind" : "CALLABLE_SUB",
@@ -28,7 +28,7 @@
       },
       "visual" : {
         "at" : { "x" : 48, "y" : 40 },
-        "labelOffset" : { "x" : 5, "y" : 17 }
+        "labelOffset" : { "x" : 113, "y" : 37 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {
