@@ -298,7 +298,7 @@ public class NewDashboardPage extends TemplatePage {
   public void openCompactModeProcessFilterPanel() {
     var processFilter = getCompactModeProcessFilterLink().shouldBe(Condition.appear);
     waitUntilElementToBeClickable(processFilter);
-    processFilter.click(0, 0);
+    clickByJavaScript(processFilter);
     getCompactModeProcessFilterPanelSaveFilters().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 
