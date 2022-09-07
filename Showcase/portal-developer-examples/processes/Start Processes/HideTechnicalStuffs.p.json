@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "16583F0F73864543",
   "data" : "com.axonivy.portal.developerexamples.Data",
   "elements" : [ {
@@ -62,7 +62,7 @@
       },
       "visual" : {
         "at" : { "x" : 368, "y" : 72 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {
@@ -85,7 +85,7 @@
       },
       "visual" : {
         "at" : { "x" : 367, "y" : 173 },
-        "size" : { "width" : 160, "height" : 44 }
+        "size" : { "width" : 160, "height" : 60 }
       },
       "connect" : { "id" : "f15", "to" : "f13" }
     }, {

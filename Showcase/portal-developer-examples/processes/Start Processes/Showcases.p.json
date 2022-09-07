@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "169BDE2F368D6EC4",
   "data" : "com.axonivy.portal.developerexamples.showcase.Data",
   "elements" : [ {
@@ -33,7 +33,7 @@
       },
       "visual" : {
         "at" : { "x" : 120, "y" : 64 },
-        "labelOffset" : { "x" : -69, "y" : 17 }
+        "labelOffset" : { "x" : 7, "y" : 37 }
       },
       "connect" : { "id" : "f4", "to" : "f3" }
     }, {
@@ -97,7 +97,7 @@
       },
       "visual" : {
         "at" : { "x" : 120, "y" : 256 },
-        "labelOffset" : { "x" : -77, "y" : 19 }
+        "labelOffset" : { "x" : 8, "y" : 39 }
       },
       "connect" : { "id" : "f13", "to" : "f10" }
     }, {
@@ -135,7 +135,7 @@
       },
       "visual" : {
         "at" : { "x" : 120, "y" : 480 },
-        "labelOffset" : { "x" : -70, "y" : 29 }
+        "labelOffset" : { "x" : 19, "y" : 49 }
       },
       "connect" : { "id" : "f26", "to" : "f25" }
     }, {
@@ -167,7 +167,7 @@
       },
       "visual" : {
         "at" : { "x" : 248, "y" : 480 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f24", "to" : "f23" }
     }, {
@@ -204,7 +204,7 @@
       },
       "visual" : {
         "at" : { "x" : 120, "y" : 160 },
-        "labelOffset" : { "x" : -79, "y" : 19 }
+        "labelOffset" : { "x" : 0, "y" : 39 }
       },
       "connect" : { "id" : "f34", "to" : "f33" }
     }, {
@@ -230,7 +230,7 @@
       },
       "visual" : {
         "at" : { "x" : 120, "y" : 360 },
-        "labelOffset" : { "x" : -82, "y" : 18 }
+        "labelOffset" : { "x" : -4, "y" : 38 }
       },
       "connect" : { "id" : "f38", "to" : "f37" }
     }, {
@@ -249,7 +249,7 @@
       },
       "visual" : {
         "at" : { "x" : 248, "y" : 360 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f39", "to" : "f36" }
     } ]

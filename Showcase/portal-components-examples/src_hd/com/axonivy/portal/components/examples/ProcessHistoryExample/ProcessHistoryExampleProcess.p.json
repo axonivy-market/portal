@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.15",
+  "format" : "9.4.20",
   "id" : "1818980EC9955786",
   "data" : "com.axonivy.portal.components.examples.ProcessHistoryExample.ProcessHistoryExampleData",
   "kind" : "HTML_DIALOG",
@@ -32,7 +32,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -16, "y" : 15 }
+        "labelOffset" : { "x" : 55, "y" : 35 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {

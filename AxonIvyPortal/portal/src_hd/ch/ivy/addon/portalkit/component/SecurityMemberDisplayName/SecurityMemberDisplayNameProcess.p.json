@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "17255D74942B8265",
   "data" : "ch.ivy.addon.portalkit.component.SecurityMemberDisplayName.SecurityMemberDisplayNameData",
   "kind" : "HTML_DIALOG",
@@ -33,7 +33,7 @@
       },
       "visual" : {
         "at" : { "x" : 328, "y" : 352 },
-        "size" : { "width" : 208, "height" : 44 }
+        "size" : { "width" : 208, "height" : 60 }
       },
       "connect" : { "id" : "f10", "to" : "f9" }
     }, {
@@ -66,8 +66,7 @@
       },
       "visual" : {
         "at" : { "x" : 128, "y" : 96 },
-        "size" : { "width" : 22, "height" : 22 },
-        "labelOffset" : { "x" : -9, "y" : 9 }
+        "labelOffset" : { "x" : 15, "y" : 29 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {
@@ -94,7 +93,7 @@
       },
       "visual" : {
         "at" : { "x" : 128, "y" : 352 },
-        "labelOffset" : { "x" : -56, "y" : 15 }
+        "labelOffset" : { "x" : 20, "y" : 35 }
       },
       "connect" : { "id" : "f11", "to" : "f13" }
     }, {
@@ -125,15 +124,14 @@
       },
       "visual" : {
         "at" : { "x" : 328, "y" : 224 },
-        "size" : { "width" : 208, "height" : 44 }
+        "size" : { "width" : 208, "height" : 60 }
       },
       "connect" : { "id" : "f16", "to" : "f15" }
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 320, "y" : 96 },
-        "size" : { "width" : 22, "height" : 22 }
+        "at" : { "x" : 320, "y" : 96 }
       }
     }, {
       "id" : "f3",
@@ -157,7 +155,7 @@
       },
       "visual" : {
         "at" : { "x" : 128, "y" : 224 },
-        "labelOffset" : { "x" : -50, "y" : 22 }
+        "labelOffset" : { "x" : 26, "y" : 42 }
       },
       "connect" : { "id" : "f6", "to" : "f8" }
     }, {
@@ -184,7 +182,7 @@
       },
       "visual" : {
         "at" : { "x" : 128, "y" : 480 },
-        "labelOffset" : { "x" : -100, "y" : 20 }
+        "labelOffset" : { "x" : 14, "y" : 40 }
       },
       "connect" : { "id" : "f27", "to" : "f26" }
     }, {
@@ -224,7 +222,7 @@
       },
       "visual" : {
         "at" : { "x" : 512, "y" : 480 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f19", "to" : "f18" }
     }, {
@@ -242,7 +240,7 @@
       },
       "visual" : {
         "at" : { "x" : 256, "y" : 480 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f21", "to" : "f20" }
     } ]

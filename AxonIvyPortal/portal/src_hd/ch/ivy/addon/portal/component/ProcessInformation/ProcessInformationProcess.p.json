@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "17982F86EF698C57",
   "data" : "ch.ivy.addon.portal.component.ProcessInformation.ProcessInformationData",
   "kind" : "HTML_DIALOG",
@@ -22,7 +22,7 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
         "size" : { "width" : 24, "height" : 24 },
-        "labelOffset" : { "x" : -16, "y" : 15 }
+        "labelOffset" : { "x" : 24, "y" : 35 }
       },
       "connect" : { "id" : "f8", "to" : "f7" }
     }, {

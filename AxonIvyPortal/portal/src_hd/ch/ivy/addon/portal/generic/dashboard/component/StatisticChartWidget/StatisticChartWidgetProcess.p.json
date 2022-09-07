@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "17FF80435B6470D3",
   "data" : "ch.ivy.addon.portal.generic.dashboard.component.StatisticChartWidget.StatisticChartWidgetData",
   "kind" : "HTML_DIALOG",
@@ -41,7 +41,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 416 },
-        "labelOffset" : { "x" : -64, "y" : 14 }
+        "labelOffset" : { "x" : 77, "y" : 34 }
       },
       "connect" : { "id" : "f8", "to" : "f42" }
     }, {
@@ -94,7 +94,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 344 },
-        "labelOffset" : { "x" : -64, "y" : 12 }
+        "labelOffset" : { "x" : 58, "y" : 32 }
       },
       "connect" : { "id" : "f84", "to" : "f7" }
     }, {
@@ -184,7 +184,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 272 },
-        "labelOffset" : { "x" : -66, "y" : 11 }
+        "labelOffset" : { "x" : 95, "y" : 31 }
       },
       "connect" : { "id" : "f43", "to" : "f36", "via" : [ { "x" : 320, "y" : 272 } ] }
     }, {
@@ -211,7 +211,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 192 },
-        "labelOffset" : { "x" : -63, "y" : 28 }
+        "labelOffset" : { "x" : 144, "y" : 48 }
       },
       "connect" : { "id" : "f40", "to" : "f39" }
     }, {
@@ -232,7 +232,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 600 },
-        "labelOffset" : { "x" : -25, "y" : 15 }
+        "labelOffset" : { "x" : 116, "y" : 35 }
       },
       "connect" : { "id" : "f9", "to" : "f4" }
     }, {
@@ -322,7 +322,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 512 },
-        "labelOffset" : { "x" : -64, "y" : 14 }
+        "labelOffset" : { "x" : 90, "y" : 34 }
       },
       "connect" : { "id" : "f13", "to" : "f94" }
     } ]

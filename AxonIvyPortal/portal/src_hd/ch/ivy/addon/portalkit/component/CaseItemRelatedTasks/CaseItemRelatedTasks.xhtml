@@ -105,7 +105,7 @@
           styleClass="related-task-state-column state-column u-hidden-md-down" field="APPLICATION" filterable="false"
           visible="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldApplication)}">
           <ic:ch.ivy.addon.portalkit.component.task.column.TaskApplication id="task-application-component"
-            dataModel="#{data.dataModel}" task="#{task}" />
+            task="#{task}" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}"
           styleClass="related-task-more-column">

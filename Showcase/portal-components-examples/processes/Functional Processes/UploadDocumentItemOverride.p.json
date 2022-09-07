@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "1818961DF63F4295",
   "data" : "com.axonivy.portal.components.examples.override.UploadDocumentItemOverrideData",
   "kind" : "CALLABLE_SUB",
@@ -43,7 +43,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 128 },
-        "labelOffset" : { "x" : -60, "y" : -46 }
+        "labelOffset" : { "x" : -52, "y" : -26 }
       },
       "connect" : { "id" : "f3", "to" : "f36" }
     }, {
@@ -93,7 +93,7 @@
       "name" : "Not exist?",
       "visual" : {
         "at" : { "x" : 920, "y" : 128 },
-        "labelOffset" : { "x" : -27, "y" : -34 }
+        "labelOffset" : { "x" : 8, "y" : -14 }
       },
       "connect" : [
         { "id" : "f15", "to" : "f71", "label" : {
@@ -137,7 +137,7 @@
       },
       "visual" : {
         "at" : { "x" : 1088, "y" : 128 },
-        "size" : { "width" : 160, "height" : 44 }
+        "size" : { "width" : 160, "height" : 60 }
       },
       "connect" : { "id" : "f8", "to" : "f4" }
     }, {
@@ -190,8 +190,7 @@
       "name" : "valid file?",
       "visual" : {
         "at" : { "x" : 376, "y" : 128 },
-        "size" : { "width" : 28, "height" : 28 },
-        "labelOffset" : { "x" : -30, "y" : -34 }
+        "labelOffset" : { "x" : 3, "y" : -14 }
       },
       "connect" : [
         { "id" : "f78", "to" : "f75", "label" : {
@@ -211,7 +210,7 @@
       "name" : "Document check",
       "visual" : {
         "at" : { "x" : 664, "y" : 128 },
-        "labelOffset" : { "x" : -54, "y" : -37 }
+        "labelOffset" : { "x" : 0, "y" : -17 }
       },
       "connect" : [
         { "id" : "f87", "to" : "f38", "label" : {
@@ -251,7 +250,7 @@
       },
       "visual" : {
         "at" : { "x" : 520, "y" : 128 },
-        "size" : { "width" : 176, "height" : 44 }
+        "size" : { "width" : 176, "height" : 60 }
       },
       "connect" : { "id" : "f80", "to" : "f53" }
     }, {
@@ -286,7 +285,7 @@
       },
       "visual" : {
         "at" : { "x" : 1280, "y" : 128 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     } ]

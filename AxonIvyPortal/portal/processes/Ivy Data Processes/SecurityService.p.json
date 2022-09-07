@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "1485F329FE84F01E",
   "data" : "ch.ivyteam.wf.processes.SecurityServiceData",
   "kind" : "CALLABLE_SUB",
@@ -32,7 +32,7 @@
       },
       "visual" : {
         "at" : { "x" : 144, "y" : 256 },
-        "labelOffset" : { "x" : -90, "y" : 19 }
+        "labelOffset" : { "x" : 36, "y" : 39 }
       },
       "connect" : { "id" : "f6", "to" : "f5" }
     }, {
@@ -53,7 +53,7 @@
       },
       "visual" : {
         "at" : { "x" : 464, "y" : 256 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f8", "to" : "f7" }
     }, {
@@ -95,7 +95,7 @@
       },
       "visual" : {
         "at" : { "x" : 144, "y" : 64 },
-        "labelOffset" : { "x" : -53, "y" : 20 }
+        "labelOffset" : { "x" : 112, "y" : 40 }
       },
       "connect" : { "id" : "f23", "to" : "f25" }
     }, {
@@ -167,7 +167,7 @@
       },
       "visual" : {
         "at" : { "x" : 144, "y" : 160 },
-        "labelOffset" : { "x" : -53, "y" : 20 }
+        "labelOffset" : { "x" : -15, "y" : 40 }
       },
       "connect" : { "id" : "f45", "to" : "f37" }
     }, {
@@ -213,7 +213,7 @@
       },
       "visual" : {
         "at" : { "x" : 144, "y" : 352 },
-        "labelOffset" : { "x" : -53, "y" : 20 }
+        "labelOffset" : { "x" : -2, "y" : 40 }
       },
       "connect" : { "id" : "f52", "to" : "f48" }
     }, {
@@ -234,7 +234,7 @@
       },
       "visual" : {
         "at" : { "x" : 464, "y" : 448 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f3", "to" : "f2" }
     }, {
@@ -268,7 +268,7 @@
       },
       "visual" : {
         "at" : { "x" : 144, "y" : 448 },
-        "labelOffset" : { "x" : -111, "y" : 20 }
+        "labelOffset" : { "x" : 65, "y" : 40 }
       },
       "connect" : { "id" : "f10", "to" : "f0" }
     }, {
