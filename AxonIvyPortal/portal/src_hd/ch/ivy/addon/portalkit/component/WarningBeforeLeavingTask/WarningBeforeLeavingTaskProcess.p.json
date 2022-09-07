@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "1612B5181308632F",
   "data" : "ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask.WarningBeforeLeavingTaskData",
   "kind" : "HTML_DIALOG",
@@ -39,7 +39,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 192 },
-        "labelOffset" : { "x" : -25, "y" : 15 }
+        "labelOffset" : { "x" : 18, "y" : 35 }
       },
       "connect" : { "id" : "f6", "to" : "f8" }
     }, {
@@ -60,7 +60,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 256 },
-        "labelOffset" : { "x" : -28, "y" : 15 }
+        "labelOffset" : { "x" : 21, "y" : 35 }
       },
       "connect" : { "id" : "f9", "to" : "f8", "via" : [ { "x" : 304, "y" : 256 } ] }
     }, {
@@ -81,7 +81,7 @@
       },
       "visual" : {
         "at" : { "x" : 304, "y" : 192 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f7", "to" : "f5" }
     }, {

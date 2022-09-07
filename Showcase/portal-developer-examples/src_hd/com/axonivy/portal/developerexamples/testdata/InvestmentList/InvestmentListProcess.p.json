@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "17B2F3DF898D03CF",
   "data" : "com.axonivy.portal.developerexamples.testdata.InvestmentList.InvestmentListData",
   "kind" : "HTML_DIALOG",
@@ -25,7 +25,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -54, "y" : 26 }
+        "labelOffset" : { "x" : 21, "y" : 46 }
       },
       "connect" : { "id" : "f7", "to" : "f6" }
     }, {

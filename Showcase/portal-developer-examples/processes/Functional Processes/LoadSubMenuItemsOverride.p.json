@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.17",
+  "format" : "9.4.20",
   "id" : "1657E6622F0C0122",
   "data" : "_com.axonivy.portal.developerexamples.LoadSubMenuItemsOverrideData",
   "kind" : "CALLABLE_SUB",
@@ -20,7 +20,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 152 },
-        "labelOffset" : { "x" : 16, "y" : 11 }
+        "labelOffset" : { "x" : 81, "y" : 31 }
       },
       "connect" : { "id" : "f4", "to" : "f3" }
     }, {

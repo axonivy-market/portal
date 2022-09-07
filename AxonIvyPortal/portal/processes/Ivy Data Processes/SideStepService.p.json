@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "167F3CD1442A57A4",
   "data" : "ch.ivyteam.wf.processes.SideStepServiceData",
   "kind" : "CALLABLE_SUB",
@@ -28,7 +28,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -92, "y" : 32 }
+        "labelOffset" : { "x" : 49, "y" : 52 }
       },
       "connect" : { "id" : "f4", "to" : "f3" }
     }, {
