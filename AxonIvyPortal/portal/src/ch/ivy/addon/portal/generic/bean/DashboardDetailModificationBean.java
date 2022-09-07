@@ -312,7 +312,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
           CompactProcessDashboardWidget compactProcessWidget = (CompactProcessDashboardWidget) processWidget;
           unifyCompactProcessCategory(compactProcessWidget);
           updateProcessesOfWidget(compactProcessWidget);
-          updateCompactApplication(compactProcessWidget);
+          updateApplicationForCompactProcess(compactProcessWidget);
           if (CollectionUtils.isEmpty((compactProcessWidget).getFilterableColumns())) {
             (compactProcessWidget).buildFilterableColumns(DashboardWidgetUtils.initProcessFilterableColumns());
           }
@@ -353,7 +353,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     PrimeFaces.current().ajax().update("grid-stack");
   }
 
-  private void updateCompactApplication(CompactProcessDashboardWidget compactProcessWidget) {
+  private void updateApplicationForCompactProcess(CompactProcessDashboardWidget compactProcessWidget) {
     compactProcessWidget.getFilterableColumns().stream()
       .filter(column -> DashboardStandardProcessColumn.APPLICATION.getField().equalsIgnoreCase(column.getField()))
       .findAny().ifPresent(applicationColumn -> {

@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.17",
+  "format" : "9.4.20",
   "id" : "172546E1FDEB1FF7",
   "data" : "ch.ivy.addon.portal.setting.UserProfile.UserProfileData",
   "kind" : "HTML_DIALOG",
@@ -30,7 +30,7 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
-            "labelOffset" : { "x" : 0, "y" : 5 }
+            "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f18",
           "connect" : { "id" : "S90-f0", "to" : "S90-f17" }
@@ -40,7 +40,7 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 320, "y" : 160 },
-            "labelOffset" : { "x" : 0, "y" : 5 }
+            "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f9"
         } ],
@@ -74,7 +74,7 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
-            "labelOffset" : { "x" : 0, "y" : 5 }
+            "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f5",
           "connect" : { "id" : "S80-f0", "to" : "S80-f27" }
@@ -84,7 +84,7 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 320, "y" : 160 },
-            "labelOffset" : { "x" : 0, "y" : 5 }
+            "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f18"
         } ],
@@ -121,8 +121,7 @@
           },
           "visual" : {
             "at" : { "x" : 216, "y" : 160 },
-            "size" : { "width" : 160, "height" : 44 },
-            "labelOffset" : { "x" : -59, "y" : -16 }
+            "size" : { "width" : 160, "height" : 60 }
           },
           "connect" : { "id" : "S70-f1", "to" : "S70-g1" }
         }, {
@@ -131,7 +130,7 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
-            "labelOffset" : { "x" : 0, "y" : 5 }
+            "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f11",
           "connect" : { "id" : "S70-f0", "to" : "S70-f28" }
@@ -141,13 +140,13 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 384, "y" : 160 },
-            "labelOffset" : { "x" : 0, "y" : 5 }
+            "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f5"
         } ],
       "visual" : {
         "at" : { "x" : 512, "y" : 280 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f5", "to" : "S80" }
     }, {
@@ -193,7 +192,7 @@
           },
           "visual" : {
             "at" : { "x" : 200, "y" : 160 },
-            "size" : { "width" : 128, "height" : 44 }
+            "size" : { "width" : 128, "height" : 60 }
           },
           "connect" : { "id" : "S60-f1", "to" : "S60-g1" }
         }, {
@@ -202,7 +201,7 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 3, "y" : 160 },
-            "labelOffset" : { "x" : 0, "y" : 5 }
+            "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f20",
           "connect" : { "id" : "S60-f0", "to" : "S60-f11" }
@@ -212,7 +211,7 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 352, "y" : 160 },
-            "labelOffset" : { "x" : 0, "y" : 5 }
+            "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f26"
         } ],
@@ -257,7 +256,7 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
-            "labelOffset" : { "x" : 0, "y" : 5 }
+            "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f4",
           "connect" : { "id" : "S50-f0", "to" : "S50-f25" }
@@ -267,13 +266,13 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 320, "y" : 160 },
-            "labelOffset" : { "x" : 0, "y" : 5 }
+            "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f10"
         } ],
       "visual" : {
         "at" : { "x" : 664, "y" : 144 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f10", "to" : "S20" }
     }, {
@@ -377,7 +376,7 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
-            "labelOffset" : { "x" : 0, "y" : 5 }
+            "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f10",
           "connect" : { "id" : "S20-f0", "to" : "S20-f10" }
@@ -387,7 +386,7 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 480, "y" : 160 },
-            "labelOffset" : { "x" : 0, "y" : 5 }
+            "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f20"
         } ],
@@ -430,7 +429,7 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
-            "labelOffset" : { "x" : 0, "y" : 5 }
+            "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f24",
           "connect" : { "id" : "S40-f0", "to" : "S40-f11" }
@@ -440,7 +439,7 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 584, "y" : 160 },
-            "labelOffset" : { "x" : 0, "y" : 5 }
+            "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f4"
         }, {
@@ -463,8 +462,7 @@
             }
           },
           "visual" : {
-            "at" : { "x" : 408, "y" : 160 },
-            "labelOffset" : { "x" : -45, "y" : -8 }
+            "at" : { "x" : 408, "y" : 160 }
           },
           "connect" : { "id" : "S40-f1", "to" : "S40-g1" }
         } ],
@@ -514,7 +512,7 @@
           },
           "visual" : {
             "at" : { "x" : 344, "y" : 160 },
-            "size" : { "width" : 128, "height" : 44 }
+            "size" : { "width" : 128, "height" : 60 }
           },
           "connect" : { "id" : "S30-f1", "to" : "S30-g1" }
         }, {
@@ -523,7 +521,7 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
-            "labelOffset" : { "x" : 0, "y" : 5 }
+            "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f7",
           "connect" : { "id" : "S30-f0", "to" : "S30-f11" }
@@ -533,7 +531,7 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 480, "y" : 160 },
-            "labelOffset" : { "x" : 0, "y" : 5 }
+            "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f13"
         } ],
@@ -587,7 +585,7 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
-            "labelOffset" : { "x" : 0, "y" : 5 }
+            "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f35",
           "connect" : { "id" : "S10-f0", "to" : "S10-f18" }
@@ -597,7 +595,7 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 480, "y" : 160 },
-            "labelOffset" : { "x" : 0, "y" : 5 }
+            "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f36"
         } ],
@@ -627,7 +625,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 144 },
-        "labelOffset" : { "x" : -22, "y" : 17 }
+        "labelOffset" : { "x" : 20, "y" : 37 }
       },
       "connect" : { "id" : "f7", "to" : "S30" }
     }, {
@@ -640,7 +638,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 280 },
-        "labelOffset" : { "x" : -16, "y" : 20 }
+        "labelOffset" : { "x" : 9, "y" : 40 }
       },
       "connect" : { "id" : "f35", "to" : "S10" }
     }, {
@@ -719,7 +717,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 392 },
-        "labelOffset" : { "x" : -25, "y" : 15 }
+        "labelOffset" : { "x" : 24, "y" : 35 }
       },
       "connect" : { "id" : "f15", "to" : "f14" }
     }, {
@@ -789,13 +787,13 @@
           },
           "visual" : {
             "at" : { "x" : 288, "y" : 256 },
-            "size" : { "width" : 128, "height" : 44 }
+            "size" : { "width" : 128, "height" : 60 }
           },
           "connect" : { "id" : "S00-f0", "to" : "S00-g1" }
         } ],
       "visual" : {
         "at" : { "x" : 984, "y" : 280 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f17", "to" : "f6" }
     }, {
@@ -824,7 +822,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 512 },
-        "labelOffset" : { "x" : -25, "y" : 15 }
+        "labelOffset" : { "x" : 86, "y" : 35 }
       },
       "connect" : { "id" : "f27", "to" : "f25" }
     }, {
@@ -849,7 +847,7 @@
       },
       "visual" : {
         "at" : { "x" : 336, "y" : 512 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f29", "to" : "f28" }
     }, {

@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "160347990F681701",
   "data" : "ch.ivy.addon.portal.generic.CaseNoteHistory.CaseNoteHistoryData",
   "kind" : "HTML_DIALOG",
@@ -51,7 +51,7 @@
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 96 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f2", "to" : "f7" }
     } ]

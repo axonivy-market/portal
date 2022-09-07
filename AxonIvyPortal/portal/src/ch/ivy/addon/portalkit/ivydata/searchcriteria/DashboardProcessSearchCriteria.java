@@ -37,29 +37,26 @@ public class DashboardProcessSearchCriteria {
     List<DashboardProcess> displayProcesses = widget.getOriginalDisplayProcesses();
     for (var column : widget.getFilterableColumns()) {
       if (NAME.getField().equalsIgnoreCase(column.getField()) && StringUtils.isNotEmpty(column.getUserFilter())) {
-        return ListUtilities.filterList(displayProcesses, process -> StringUtils.containsIgnoreCase(process.getName(), column.getUserFilter()));
+        displayProcesses = ListUtilities.filterList(displayProcesses, process -> StringUtils.containsIgnoreCase(process.getName(), column.getUserFilter()));
       } else if (TYPE.getField().equalsIgnoreCase(column.getField()) && CollectionUtils.isNotEmpty(column.getUserFilterList())) {
         List<ProcessType> typeFilters = ((TypeColumnModel) column).getUserProcessTypes();
-        return ListUtilities.filterList(displayProcesses, process -> typeFilters.contains(process.getType()));
+        displayProcesses = ListUtilities.filterList(displayProcesses, process -> typeFilters.contains(process.getType()));
       } else if (CATEGORY.getField().equalsIgnoreCase(column.getField())) {
         List<String> categories = isInConfiguration ? column.getFilterList() : column.getUserFilterList();
         if (CollectionUtils.isEmpty(categories)) {
           continue;
         }
-        return ListUtilities.filterList(displayProcesses, process -> isProcessMatchedCategory(process, categories));
+        displayProcesses = ListUtilities.filterList(displayProcesses, process -> isProcessMatchedCategory(process, categories));
       } else if (APPLICATION.getField().equalsIgnoreCase(column.getField())) {
         List<String> applications = isInConfiguration ? column.getFilterList() : column.getUserFilterList();//((ApplicationColumnModel)column).getUserFilterApplications();
-        if (CollectionUtils.isEmpty(applications)) {
-          return displayProcesses;
-        }
-        List<DashboardProcess> returnApps = new ArrayList<>();
-        for (String app : applications) {
-          Optional<IApplication> appFindByName = IApplicationRepository.instance().findByName(app);
-          if (appFindByName.isPresent()) {
-            returnApps.addAll(ListUtilities.filterList(displayProcesses, process -> StringUtils.containsIgnoreCase(process.getApplication(), app)));
+        if (CollectionUtils.isNotEmpty(applications)) {
+          for (String app : applications) {
+            Optional<IApplication> appFindByName = IApplicationRepository.instance().findByName(app);
+            if (appFindByName.isPresent()) {
+              displayProcesses = ListUtilities.filterList(displayProcesses, process -> StringUtils.containsIgnoreCase(process.getApplication(), app));
+            }
           }
         }
-        return returnApps;
       }
       
     }

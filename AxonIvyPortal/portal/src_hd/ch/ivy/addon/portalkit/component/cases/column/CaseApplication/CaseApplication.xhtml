@@ -5,10 +5,7 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="componentId" default="case-application" />
-  <cc:attribute name="descriptionId" default="case-description" />
   <cc:attribute name="case" required="true" shortDescription="Case" type="ch.ivyteam.ivy.workflow.ICase" />
-  <cc:attribute name="componentToUpdate" />
-  <cc:attribute name="dataModel" />
   <cc:attribute name="responsiveStyleClass" />
 </cc:interface>
 
@@ -18,7 +15,7 @@
   <h:panelGroup>
     <h:outputText id="#{cc.attrs.componentId}" styleClass="application-column #{cc.attrs.responsiveStyleClass}"
       value="#{case.application.name}" />
-    <p:tooltip for="#{cc.attrs.componentId}" value="#{case.application.name}" trackMouse="true" hideEvent="mouseleave click" rendered="#{not empty case.name}" />
+    <p:tooltip for="#{cc.attrs.componentId}" value="#{case.application.name}" trackMouse="true" hideEvent="mouseleave click" rendered="#{not empty case.application.name}" />
   </h:panelGroup>
 </cc:implementation>
 

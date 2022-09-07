@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "1747BF67941CE352",
   "data" : "ch.ivy.addon.portalkit.component.TaskItemWorkflowEvents.TaskItemWorkflowEventsData",
   "kind" : "HTML_DIALOG",
@@ -80,7 +80,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 192 },
-        "labelOffset" : { "x" : -52, "y" : 18 }
+        "labelOffset" : { "x" : 26, "y" : 38 }
       },
       "connect" : { "id" : "f2", "to" : "f8" }
     } ]
