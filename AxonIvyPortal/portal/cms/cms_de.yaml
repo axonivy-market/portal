@@ -114,6 +114,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS_VIEWER: Prozess-Viewer-Widget
       STATISTIC: Statistik-Widget
       TASK: Aufgaben-Widget
+      WELCOME: Willkommens-Widget
     GlobalVariable:
       Option:
         DISPLAY_NAME: Anzeigename
@@ -149,23 +150,34 @@ ch.ivy.addon.portalkit.ui.jsf:
       THURSDAY: Do
       TUESDAY: Di
       WEDNESDAY: Mi
+    WelcomeTextPosition:
+      BOTTOM_LEFT: Linke untere Ecke
+      BOTTOM_RIGHT: Rechte untere Ecke
+      CENTER: Zentrum
+      TOP_LEFT: Linke obere Ecke
+      TOP_RIGHT: Rechte obere Ecke
+    WelcomeTextSize:
+      HEADING_1: Rubrik 1
+      HEADING_2: Rubrik 2
+      HEADING_3: Rubrik 3
+      NORMAL_TEXT: Normaler Text
   MyProfile:
+    CaseList: Liste der Fälle
+    DateFormat: Datum Format
+    Email: E-Mail
+    FormattingLanguage: Sprache der Formatierung
+    General: Allgemeine
+    Homepage: Homepage
     HomepageSelection:
       fullTaskList: Vollständige Aufgabenliste
+    Language: Sprache
+    ProcessList: Prozess-Liste
     SortFieldSelections:
       defaultSortFieldLabel: Standard-Sortierfeld
-    caseListConfigDescription: In diesem Bereich können Sie die Vorgangsliste entsprechend Ihren Anforderungen konfigurieren.
-    caseListConfiguration: Konfiguration der Vorgangsliste
+    TaskList: Aufgabenliste
     defaultOption: Standard ({0})
     defaultViewMode: Standardanzeige
-    generalSettingDescription: In diesem Bereich können Sie die Einstellungen entsprechend Ihren Anforderungen konfigurieren.
-    generalSettings: Allgemeine Einstellungen
-    processListConfigDescription: In diesem Bereich können Sie die Prozessliste nach Ihren Anforderungen konfigurieren.
-    processListConfiguration: Konfiguration der Prozessliste
-    selectHomepage: Ausgewählte Homepage
     showTutorial: Willkommenstour anzeigen
-    taskListConfigDescription: In diesem Bereich können Sie den Arbeitsplan entsprechend Ihren Anforderungen konfigurieren.
-    taskListConfiguration: Konfiguration der Aufgabenliste
   PortalManagement:
     AdminSetting: Administration
   ProcessViewer:
@@ -210,8 +222,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     embedInFrame: Prozess/Task in Iframes Modus starten
     emptySupportedLanguages: Es werden keine weiteren Sprachen unterstützt
     globalVariableNote:
+      DefaultThemeMode: Der Standardthemenmodus der Anwendung
+      EnableSwitchThemeModeButton: Setzen Sie diesen Wert auf true, um die Schaltfläche "Thema wechseln" zu aktivieren.
       RoleDirectChildrenLimit: 'Die eingestellte Zahl steuert die Anzahl der direkten untergeordneten Rollen, die auf der Registerkarte Rollenverwaltung angezeigt werden. Gültige Zahl: 10, 50, 100'
       RoleParentLimit: 'Die eingestellte Zahl steuert die Anzahl der übergeordneten Rollen, die beim Filtern von Rollen auf der Registerkarte Rollenverwaltung angezeigt werden. Gültige Zahl: 5, 10, 20'
+      ShowLoginPageFooter: Zum Ein-/Ausschalten der Anzeige der Fußzeile auf der Anmeldeseite.
       behaviourWhenClickingOnLineInTaskList: Zum Umschalten des Verhaltens (Ausführen der Aufgabe oder Aufrufen der Aufgabendetails) beim Klicken auf eine Zeile in der Aufgabenliste, im Aufgaben-Widget des Dashboards und bei verwandten Aufgaben auf der Seite mit den Vorgangsdetails.
       chatMaxConnection: 'Die gesetzte Nummer steuert die Anzahl der erlaubten Tabs mit aktiven Chat. Falls mehr Tabs geöffnet werden, wird der Chat in inaktive Tabs deaktiviert. Erlaubte Werte zw. 1-5 '
       chatResponseTimeout: Chat-Antwort-Time-out in Sekunden, Standardwert ist 0 und bedeutet kein Time-out. Wenn Chat-Nachrichten durch den Reverse-Proxy Nginx gehen, muss das Chat-Antwort-Time-out kleiner sein als das Nginx-Time-out, z. B. kleiner als 60 Sekunden.
@@ -393,6 +408,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     CollapseAll: Alles zuklappen
     DefaultTemplate: Standard Vorlage
     ExpandAll: Alles aufklappen
+    MoreItemsAvailable: weitere Artikel verfügbar
     NoSelection: Keine Auswahl
     ResetToDefaultHeaderText: Auf Standard-Einstellungen zurücksetzen?
     RoleUserInformation: Rollen- und Benutzerinformationen
@@ -470,7 +486,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     finish: Beenden
     general: Allgemein
     generalInformation: Allgemeine Informationen
-    globalSearch: Suche nach Aufgaben, Vorgängen und Prozessen
+    globalSearch: Suche ...
     goToDetail: Zu den Details
     hasPrecondition: Dieser Prozess hat eine Vorbedingung
     height: Höhe
@@ -570,7 +586,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewMode: Ansichtsmodus
     visible: Sichtbar
     warning: Warnung
-    welcomeToPortal: 'Willkommen, bitte melden Sie sich an:'
+    welcomeToPortal: Willkommen, bitte melden Sie sich an
     wrongDateFormat: Bitte geben Sie ein gültiges Datum ein.
     year: Jahr
     years: Jahre
@@ -686,6 +702,16 @@ ch.ivy.addon.portalkit.ui.jsf:
         content: 'Wir möchten Ihnen einen guten Start im Portal ermöglichen. Dazu möchten wir Sie durch die ersten Aktionen führen, die Sie durchführen können. Darüber hinaus finden Sie hier eine erweiterte Benutzerdokumentation inklusive "How-to-Guide": <a href="{0}"  target="_blank">Portal-Anleitung</a>'
         mobileContent: 'Sie können auf dieser Seite sofort auf Ihre Aufgaben zugreifen oder mit <span class="{0}"></span> zu anderen Bereichen navigieren. Sie finden weiterführende Informationen hier: <a href="{1}"  target="_blank">PortalGuide</a>'
         title: Willkommen im Axon Ivy Portal
+    passwordValidation:
+      criteria: Kriterien
+      enablePasswordValidation: Kennwortüberprüfung einschalten
+      passwordPolicyType:
+        minCharacter: Mindestlänge
+        minLowercaseCharacter: Minimum Kleinbuchstaben
+        minNumber: Minimale numerische Zeichen
+        minSpecialCharacter: Minimum Sonderzeichen
+        minUppercaseCharacter: Minimum Großbuchstaben
+      titlePage: Passwort-Überprüfung
     processChain:
       currentStepIsNotDefined: Aktueller Schritt ({0}) der Prozesskette ist nicht definiert
     statisticWidget:
@@ -765,8 +791,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       PlaceholderChartOption: Wählen Sie ein Diagramm
       PleaseSelectChart: Bitte wählen Sie ein Diagramm aus
       PreviewText: Bitte wählen Sie ein Diagramm aus, um die Canvas-Daten zu sehen
+    WelcomeWidgetIntroduction: Dieses Widget zeigt einen Willkommenstext und ein Bild auf dem Dashboard an.
     WidgetFilterName: Name des Widget-Filters
     WidgetFilters: Widget-Filter
+    YourWelcomeWidget: Ihr Willkommens-Widget
     actionSelection: Aktion auswählen
     addField: Feld hinzufügen
     addWidget: Widget hinzufügen
@@ -786,6 +814,20 @@ ch.ivy.addon.portalkit.ui.jsf:
       RestoreDefaultDashboardTemplateTooltip: Wir können die Vorlage für Ihr Dashboard nicht finden und es daher nicht auf die Standardkonfiguration zurücksetzen. Bitte erkundigen Sie sich bei Ihrem Administrator nach weiteren Details!
       SelectTheTemplate: Wählen Sie die Vorlage
       SelectYourTemplate: Wählen Sie Ihre Vorlage
+      WelcomeConfigurationDescription: ''
+      WelcomeWidget:
+        DisplayedText: Angezeigter Text
+        Greeting:
+          Afternoon: Guten Tag
+          Evening: Guten Abend
+          Morning: Guten Morgen
+        Image: Bild
+        ImageStyleClass: Bildstilklasse
+        ShowGreeting: Gruß anzeigen
+        TextPosition: Position des Textes
+        TextSizeAndColor: Textgröße und -farbe
+        Welcome: Willkommen
+        WelcomeTextStyleClass: Begrüßungstext Stilklasse
       configuration: Konfiguration
       configurationDescription: In diesem Konfigurationsbereich kann das Widget konfiguriert werden. Bitte definieren Sie die gewünschten Filter sowie die anzuzeigenden Spalten.
       customWidgetParamChangedMessage: Dieser Prozess hat sich geändert. Klicken Sie auf Update, um fortzufahren.
@@ -806,6 +848,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     dashboardManagement:
       CreateDashboard: Dashboard erstellen
       addDashboard: Dashbaord hinzufürgen
+      dashboardIcon: Dashboard-Symbol
       dashboardPermission: Dashboard Berechtigung
       dashboardTitle: Dashboard Titel
       editDashboard: Dashboard editieren
@@ -884,9 +927,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourProcesses: Ihre Prozesse
     yourStatistics: Ihre Statistiken
     yourTasks: Ihre Aufgaben
-  dateFormatConfiguration:
-    dateFormatConfiguration: Konfiguration des Datumsformats
-    selectedDateFormat: Ausgewähltes Datumsformat
   documentFiles:
     deleteDocumentNote: '{0} hat folgendes gelöscht: {1}'
     deleteSuceed: Datei wurde erfolgreich gelöscht
@@ -904,7 +944,6 @@ ch.ivy.addon.portalkit.ui.jsf:
   emailSetting:
     dailySummary: Tägliche Zusammenfassung erhalten
     eMail: E-Mail
-    emailSetting: E-Mail Einstellungen
     furtherEmailFromApp: Weitere Emails der Applikation erhalten
     invalidEmailFormat: Ungültiges E-Mail-Format
     mailNotificationOnTaskAssign: E-Mail Benachrichtigung bei neuen Aufgaben
@@ -942,6 +981,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     passwordResetEmailSent: Es wurde Ihnen eine E-Mail mit einem Link zum Zurücksetzen des Passworts zugesandt. Bitte überprüfen Sie Ihr E-Mail-Postfach.
     passwordResetEmailSubject: E-Mail zum Zurücksetzen des Passworts
     passwordResetSuccess: Ihr Passwort wurde erfolgreich geändert
+    requiredFieldMessage: '{0} ist erforderlich'
     setANewPassword: Setzen Sie ein neues Passwort
     strong: Stark
     userNotFound: Benutzer nicht gefunden
@@ -955,9 +995,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     cannotSetEmailLanguage: Sprache kann nicht als Emailbenachrichtigungssprache gewählt werden.
     languageSetting: Spracheinstellungen
     saveLanguageHasWSErrors: Fehler beim Speichern der Sprache
-    selectedFormattingLanguage: Ausgewählte Formatierungsprache
-    selectedLanguage: Ausgewählte Sprache
   login:
+    AxonIvyPortal: Axon Ivy Portal
+    Copyright: Copyright Ⓒ Axon Ivy Portal
+    PasswordRequiredMessage: Das Passwort ist erforderlich
+    UsernameRequiredMessage: Der Nutzername ist erforderlich
     login: Anmeldung
     loginErrorMessage: Sie sind nicht angemeldet oder Ihr Benutzer ist im System nicht vorhanden. Bitte kontaktieren Sie den Systemadministrator
     loginFailed: Anmeldung fehlgeschlagen
@@ -986,7 +1028,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     confirmNewPassword: Neues Password bestätigen
     confirmPasswordHaveMatch: Das eingegebene Passwort stimmt nicht mit dem Bestätigungspasswort überein.
     currentPassword: Aktuelles Passwort
+    minCharacterRequired: mindestens {0} Zeichen lang sein
+    minLowercaseCharacterRequired: mindestens {0} Kleinbuchstaben enthalten
+    minNumberRequired: mindestens {0} Zahl enthalten
+    minSpecialCharacterRequired: mindestens {0} Sonderzeichen enthalten
+    minUppercaseCharacterRequired: mindestens {0} Großbuchstaben enthalten
     newPassword: Neues Passwort
+    passwordMust: Das Passwort muss
     requireConfirmPassword: Wiederholen Sie Ihr Passwort, bitte
     requireCurrentPassword: Bitte geben Sie Ihr Passwort an
     requireNewPassword: Das neue Passwort wurde nicht angegeben
@@ -1573,8 +1621,15 @@ Labels:
   AdhocWorkflow: Beschreiben Sie Ihren Workflow
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
+  Enums:
+    ThemeMode:
+      DARK: Dunkelheit
+      LIGHT: Licht
   InsertTask-Explain: Aufgabe einfügen. Meine Aufgabe wird aufgeschoben.
   InsertTheTask: Aufgabe einfügen
+  Login:
+    CompanyName: Axon Ivy Portal
+    Copyright: Copyright Ⓒ Axon Ivy Portal
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails
   TaskUser-Explain: Kommaseparierte Liste von Benutzern

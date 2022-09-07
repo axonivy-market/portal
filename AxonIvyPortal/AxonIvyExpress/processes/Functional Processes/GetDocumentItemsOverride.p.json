@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.18",
   "id" : "16B25F2844868AE2",
   "data" : "gawfs.GetDocumentItemsOverrideData",
   "kind" : "CALLABLE_SUB",
@@ -19,7 +19,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "documents", "type" : "java.util.List<com.axonivy.portal.component.ivydata.bo.IvyDocument>" },
+            { "name" : "documents", "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>" },
             { "name" : "message", "type" : "String" }
           ],
           "map" : {
@@ -62,7 +62,7 @@
       "id" : "f5",
       "type" : "ProcessAnnotation",
       "name" : [
-        "After get document list from DMS, convert them into List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>",
+        "After get document list from DMS, convert them into List<ch.ivy.addon.portal.components.ivydata.bo.IvyDocument>",
         "Some mandatory fields when mapping:",
         "- id",
         "- name",

@@ -51,6 +51,7 @@ public class TaskWidgetPage extends TemplatePage {
     WaitHelper.assertTrueWithWait(() -> isElementDisplayed(By.cssSelector("a[id$=':task-list-link:task-list-link']")));
     WebElement fullModeButton = findElementById(taskWidgetId + ":task-list-link:task-list-link");
     click(fullModeButton);
+    waitForElementDisplayed(By.cssSelector("li.topbar-item.breadcrumb-container"), true);
     WaitHelper.assertTrueWithWait(() -> isElementDisplayed(By.cssSelector("[id$=':filter-save-action']")));
     waitForLocatorDisplayed("id('" + taskWidgetId + ":filter-save-action')");
   }
@@ -236,17 +237,18 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void changeDescriptionOfTask(String description) {
-    clickByCssSelector("div[id$='task-description-output']");
+    clickByCssSelector("a[id$=':task-detail-description:edit-description-link']");
+    waitForElementDisplayed(By.cssSelector("[id$=':task-detail-description-form:task-description-inplace_content']"), true);
     WebElement taskNameInput = findElementByCssSelector("textarea[id$=':task-description-input']");
     waitForElementDisplayed(taskNameInput, true);
     taskNameInput.clear();
     taskNameInput.sendKeys(description);
-    clickByCssSelector("span[id$=':task-description-inplace_editor']  .ui-inplace-save");
-    waitForElementDisplayed(findElementByCssSelector("div[id$='task-description-output']"), true);
+    clickByCssSelector("span[id$=':task-description-inplace_editor'] .ui-inplace-save");
+    waitForElementDisplayed(findElementByCssSelector("[id$='task-description-output']"), true);
   }
 
   public String getTaskDescription() {
-    return findElementByCssSelector("div[id$='task-description-output'] .task-detail-description-output").getText();
+    return findElementByCssSelector("[id$='task-description-output'] .task-detail-description-output").getText();
   }
 
   public String getTaskCategory() {

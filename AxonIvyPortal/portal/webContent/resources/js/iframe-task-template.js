@@ -102,12 +102,11 @@ function checkUrl(iFrame) {
 window.addEventListener("resize", resizeIFrame, false);
 function resizeIFrame() {
   Portal.updateLayoutContent();
+  Portal.updateBreadcrumb();
   var taskHeaderContainerHeight = ($('.js-task-header-container').outerHeight(true)||0);
   var announcementMessageContainerHeight = ($('.js-annoucement-in-frame-template').outerHeight(true)||0);
-
-  var mainScreenHeight = $('.js-layout-content').outerHeight(true);
+  var mainScreenHeight = PortalLayout.getAvailableHeight() - PortalLayout.getYPaddingLayoutContent();
   var availableHeight = mainScreenHeight - taskHeaderContainerHeight - announcementMessageContainerHeight;
-
   if (!!availableHeight) {
     $('iframe[id="iFrame"]').height(availableHeight);
   }

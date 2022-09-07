@@ -44,9 +44,9 @@ public class ChangePasswordPage extends TemplatePage {
     return element.getText().equalsIgnoreCase("Authentication failed, your password seems to be wrong!");
   }
   
-  public boolean isNewCurrentPasswordStrongEnough() {
+  public boolean isNewPasswordNotStrongEnough() {
     WebElement element = findElementByCssSelector("#change-password-form\\:password-setting\\:change-password-messages .ui-messages-error-detail");
-    return element.getText().equalsIgnoreCase("New password is not strong enough. Must contains at least 1 special character, 1 number, 1 uppercase and 1 lowercase character!");
+    return element.getText().equalsIgnoreCase("Password must be at least 4 characters long, contain at least 1 lowercase character, contain at least 1 uppercase character, contain at least 1 number, contain at least 1 special character.");
   }
   
   public WebElement getChangePasswordDialog() {

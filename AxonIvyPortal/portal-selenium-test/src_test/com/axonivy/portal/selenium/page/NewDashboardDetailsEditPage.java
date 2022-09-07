@@ -41,12 +41,12 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
 
   public DashboardConfigurationPage backToConfigurationPage() {
-    $("a[id='back-to-configuration']").click();
+    $("[id='back-to-configuration']").click();
     return new DashboardConfigurationPage();
   }
 
   public void deleteCompactModeProcess() {
-    $("a[id$=':delete-widget-2']").shouldBe(Condition.appear).click();
+    $("[id$=':delete-widget-2']").shouldBe(Condition.appear).click();
     getRemoveWidgetDialog().waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
     getRemoveWidgetButton().click();
     getRemoveWidgetDialog().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
@@ -54,7 +54,8 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public void deleteImageModeProcess() {
     $("button[id$=':process-action-button']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("span.si-bin-1").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("[id$=':process-action-menu']").waitUntil(Condition.appear, DEFAULT_TIMEOUT)
+      .$("span.si-bin-1").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
     getRemoveWidgetDialog().waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
     getRemoveWidgetButton().click();
     getRemoveWidgetDialog().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
@@ -62,7 +63,8 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public void deleteFullModeProcess() {
     $("button[id$=':process-action-button']").shouldBe(Condition.appear).click();
-    $("span.si-bin-1").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("[id$=':process-action-menu']").waitUntil(Condition.appear, DEFAULT_TIMEOUT)
+      .$("span.si-bin-1").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
     getRemoveWidgetDialog().waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
     getRemoveWidgetButton().click();
     getRemoveWidgetDialog().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
@@ -114,6 +116,10 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public SelenideElement getTitleByIndex(int index) {
     return $("a[id='dashboard-title-" + index + "']");
+  }
+
+  public SelenideElement getIconByIndex(int index, String icon) {
+    return $("a[id='dashboard-title-" + index + "'] span." + icon);
   }
 
   public ElementsCollection getWidgets() {

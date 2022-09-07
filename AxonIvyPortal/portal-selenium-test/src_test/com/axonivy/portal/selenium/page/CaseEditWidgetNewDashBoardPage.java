@@ -98,11 +98,15 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     $(caseEditWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='case-widget-preview:dashboard-cases']")
         .$("a.ui-paginator-next").shouldBe(getClickableCondition()).click();
   }
-  
+
+  public void waitPreviewTableLoaded() {
+    $(caseEditWidgetId).$("div[id$=':dashboard-cases-container']").waitUntil(appear, DEFAULT_TIMEOUT);
+  }
+
   public void save() {
     $(caseEditWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("button[id$='widget-configuration-save-button']")
         .shouldBe(getClickableCondition()).click();
-    $("div[id$='new-widget-configuration-dialog']").waitUntil(disappear, DEFAULT_TIMEOUT);
+    $(caseEditWidgetId).waitUntil(disappear, DEFAULT_TIMEOUT);
   }
 
   public void openColumnManagementDialog() {
@@ -130,8 +134,8 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void selectFieldType(String type) {
-    getColumnManagementDialog().$("div[id$='field-type-selection']").waitUntil(Condition.appear, DEFAULT_TIMEOUT)
-        .shouldBe(getClickableCondition()).click();
+    getColumnManagementDialog().$("div[id$='field-type-selection'] span.ui-icon-triangle-1-s")
+        .waitUntil(Condition.appear, DEFAULT_TIMEOUT).waitUntil(Condition.enabled, DEFAULT_TIMEOUT).click();
     $("div[id$='column-management-form:field-type-selection_panel'] li[data-label='" + type + "']").click();
   }
 

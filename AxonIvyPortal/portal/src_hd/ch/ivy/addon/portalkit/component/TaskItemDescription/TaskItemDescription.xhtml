@@ -16,7 +16,7 @@
   <h:panelGroup layout="block" styleClass="ui-g task-details-description-title">
     <div class="task-detail-title #{cc.attrs.labelStyleClasses} text-ellipsis task-description-title">
       #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}
-      <p:commandLink onclick="PF('widget-description-inplace').show(); hideIconLessLink(); hideIconMoreLink(); return false;"
+      <p:commandLink onclick="showWidgetDescriptionInplaceEditor();"
         rendered="#{canChangeDescription and !cc.attrs.readOnly}" id="edit-description-link">
         <i class="si si-graphic-tablet-drawing-pen" />
       </p:commandLink>
@@ -27,27 +27,29 @@
     <div class="ui-sm-12 ui-md-12 ui-lg-12 u-no-padding-left task-details-description-content">
       <h:form id="task-detail-description-form">
         <div class="ui-g-12 task-detail-description">
-          <div id="description-content" class="scroll-panel OvAuto short-description">
-            <p:inplace id="task-description-inplace" editor="true" styleClass="task-description-inplace portal-edit-inplace" effectSpeed="fast"
+          <div id="description-content" class="scroll-panel short-description description-content">
+            <p:inplace id="task-description-inplace" editor="true"
+              styleClass="task-description-inplace js-task-description-inplace portal-edit-inplace" effectSpeed="fast"
               widgetVar="widget-description-inplace" disabled="#{!canChangeDescription or cc.attrs.readOnly}"
               saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
               cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               emptyLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/noDescription')}" >
               <p:ajax event="save" oncomplete="handleDisplayIconMoreLink()" update="task-detail-description-form" />
               <p:ajax event="cancel" oncomplete="handleDisplayIconMoreLink()" update="task-detail-description-form" process="@none" />
-              <f:facet name="input">
-                <p:inputTextarea id="task-description-input" cols="250" rows="6" styleClass="task-detail-description-input"
-                  value="#{task.description}" autoResize="false" />
-              </f:facet>
-              <f:facet name="output">
-                <div id="task-description-output" onclick="hideIconMoreLink(); hideIconLessLink();" class="#{!taskActionBean.canChangeDescription(task) or cc.attrs.readOnly ? 'pointer-event-none' : ''}">
-                  <h:outputText escape="false" styleClass="task-detail-description-output" value="#{taskWidgetBean.sanitizeHTML(task.description)}" />
-                </div>
-              </f:facet>
+              <p:inputTextarea id="task-description-input" cols="250" rows="6" styleClass="task-detail-description-input"
+                value="#{task.description}" autoResize="false" />
             </p:inplace>
+            <h:panelGroup id="task-description-output"
+              styleClass="js-task-description-output task-description-output #{!taskActionBean.canChangeDescription(task) or cc.attrs.readOnly ? 'pointer-event-none' : ''}">
+              <h:outputText escape="false" styleClass="task-detail-description-output" value="#{taskWidgetBean.sanitizeHTML(task.description)}" />
+            </h:panelGroup>
           </div>
-          <a href="#" onclick="displayMoreText()" id="icon-more-link" class="icon-more-link"><i class="si si-add-circle si-add-circle-task-description" /></a>
-          <a href="#" onclick="displayLessText()" id="icon-less-link" class="icon-less-link"><i class="si si-subtract-circle" /></a>
+          <p:commandLink onclick="displayMoreText()" id="icon-more-link" styleClass="icon-more-link" global="false" process="@this" partialSubmit="true">
+            <i class="si si-add-circle si-add-circle-task-description" />
+          </p:commandLink>
+          <p:commandLink onclick="displayLessText()" id="icon-less-link" styleClass="icon-less-link" global="false" process="@this" partialSubmit="true">
+            <i class="si si-subtract-circle" />
+          </p:commandLink>
         </div>
       </h:form>
     </div>

@@ -13,59 +13,58 @@
   <c:set var="email" value="#{cc.attrs.email}" />
   <f:event listener="#{emailBean.init(email, cc.attrs.responsibles)}" type="preRenderComponent" />
 
-  <h:panelGroup id="email-container" styleClass="express-email-container portal-card-container u-padding-0" layout="block">
-    <div class="ui-g card">
-      <div class="ui-g-12 md-inputfield">
-        <p:inputText id="email-recipients" styleClass="ui-g-12" value="#{email.recipients}" required="#{param['skipValidator'] == null}"
+  <h:panelGroup id="email-container" styleClass="express-email-container u-padding-0" layout="block">
+    <div class="ui-g">
+      <p:outputLabel for="email-recipients" styleClass="ui-g-12"
+        value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailAddress')}" />
+      <div class="ui-g-12 ui-fluid">
+        <p:inputText id="email-recipients" value="#{email.recipients}" required="#{param['skipValidator'] == null}"
           requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailAddress')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
           validatorMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/invalidEmailFormat')}">
-          <f:validateRegex pattern="#{emailBean.emailRegex}" disabled="#{param['skipValidator'] == true}"/>
+          <f:validateRegex pattern="#{emailBean.emailRegex}" disabled="#{param['skipValidator'] == true}" />
         </p:inputText>
-        <p:outputLabel for="email-recipients" styleClass="ui-g-12"
-          value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailAddress')}" />
         <p:message for="email-recipients" />
       </div>
 
-      <div class="ui-g-12 md-inputfield">
-        <p:inputText id="email-response-to" styleClass="ui-g-12" value="#{email.responseTo}"
-           validatorMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/invalidEmailFormat')}">
-          <f:validateRegex pattern="#{emailBean.emailRegex}" disabled="#{param['skipValidator'] == true}"/>
+      <p:outputLabel for="email-response-to" styleClass="ui-g-12"
+        value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/ResponseTo')}" />
+      <div class="ui-g-12 ui-fluid">
+        <p:inputText id="email-response-to" value="#{email.responseTo}"
+          validatorMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/invalidEmailFormat')}">
+          <f:validateRegex pattern="#{emailBean.emailRegex}" disabled="#{param['skipValidator'] == true}" />
         </p:inputText>
-        <p:outputLabel for="email-response-to" styleClass="ui-g-12"
-          value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/ResponseTo')}" />
         <p:message for="email-response-to" />
       </div>
 
-      <div class="ui-g-12 md-inputfield">
-        <p:inputText id="email-subject" styleClass="ui-g-12" value="#{email.subject}" required="#{param['skipValidator'] == null}"
+      <p:outputLabel for="email-subject" styleClass="ui-g-12"
+        value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/Subject')}" />
+      <div class="ui-g-12 ui-fluid">
+        <p:inputText id="email-subject" value="#{email.subject}" required="#{param['skipValidator'] == null}"
           requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/Subject')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
-        <p:outputLabel for="email-subject" styleClass="ui-g-12" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/Subject')}" />
         <p:message for="email-subject" />
       </div>
 
+      <p:outputLabel for="email-content" styleClass="ui-g-12"
+        value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailText')}: " />
       <div class="ui-g-12">
-        <p:outputLabel for="email-content" styleClass="ui-g-12" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailText')}: " />
-        <div class="md-inputfield">
-          <p:textEditor id="email-content" styleClass="ui-g-12 text-editor-send-email" height="300" value="#{email.content}" required="#{param['skipValidator'] == null}" secure="false"
-            requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailText')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
-            <f:facet name="toolbar">
-              <span class="ql-formats">
-                <button class="ql-bold" />
-                <button class="ql-italic" />
-                <button class="ql-underline" />
-                <button class="ql-strike" />
-              </span>
-              <span class="ql-formats">
-                <select class="ql-font" />
-                <select class="ql-size" />
-              </span>
-            </f:facet>
-          </p:textEditor>
-          <p:message for="email-content" />
-        </div>
+        <p:textEditor id="email-content" styleClass="text-editor-send-email" height="300" value="#{email.content}"
+          required="#{param['skipValidator'] == null}" secure="false"
+          requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailText')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
+          <f:facet name="toolbar">
+            <span class="ql-formats">
+              <button class="ql-bold" />
+              <button class="ql-italic" />
+              <button class="ql-underline" />
+              <button class="ql-strike" />
+            </span>
+            <span class="ql-formats"> <select class="ql-font" /> <select class="ql-size" />
+            </span>
+          </f:facet>
+        </p:textEditor>
+        <p:message for="email-content" />
       </div>
 
-      <div class="ui-g-12 u-no-padding-top">
+      <div class="ui-g-12 u-padding-0">
         <div class="ui-g-12 u-padding-0">
           <p:outputLabel for="attachment-table" styleClass="ui-g-4 ui-sm-6"
             value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/Attachment')}: ">

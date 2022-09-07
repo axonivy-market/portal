@@ -117,26 +117,6 @@ Dialogs:
                   IsRequired: This field is mandatory
                   Representation: Representation
                   To: To
-  com.axonivy.portal.developerexamples:
-    AlphaCompany:
-      CaseName: |-
-        Conduct market research/Market research will tell company if there’s an opportunity to turn our idea into a successful business. It’s a way to gather information about potential customers and businesses already operating in our area.;
-        Write Alpha business plan/Company business plan is the foundation of our business. It’s a roadmap for how to structure, run, and grow your new business.;
-        Fund Alpha business/Company business plan will help us figure out how much money we’ll need to start your business.;
-        Pick Alpha business location/Company location is one of the most important decisions we’ll make. Whether we’re setting up a brick-and-mortar business or launching an online store, the choices we make could affect your taxes, legal requirements, and revenue.;
-        Choose a business structure/The legal structure we choose for our business will impact our business registration requirements.;
-        Choose Alpha business name/It’s not easy to pick the perfect name. We’ll want one that reflects our brand and captures your spirit.;
-        Register Alpha business/Once we’ve picked the perfect business name, it’s time to make it legal and protect our brand.;
-        Get federal and state tax IDs/We’ll use our employer identification number (EIN) for important steps to start and grow our business, like opening a bank account and paying taxes.;
-        Apply for licenses and permits/Keep company running smoothly by staying legally compliant. The licenses and permits need for company will vary by industry, state, location, and other factors.;
-        Open a business bank account/A small business checking account can help company handles legal, tax, and day-to-day issues.;
-        Congratulations!/It's time to cut the big ribbon. Your business is officially open. Now, focus on managing and growing your business.;
-    LeaveRequestForm:
-      Employee: Employee
-      From: From
-      IsRequired: This field is mandatory
-      Representation: Representation
-      To: To
 Labels:
   address: Street/No.
   cancel: Cancel
@@ -173,13 +153,6 @@ Processes:
       Acknoledge the result
   CreateInvestment:
     name: Create Investment
-  ProcessHistoryComponent:
-    AlphaCompany:
-      name: Alpha Company Task
-    ProcessHistoryOfAlphaCompany:
-      name: View Alpha Process History
-    ProcessHistoryOfAlphaCompanyInDialog:
-      name: View Alpha Process History in Dialog
 sortFields:
   CREATION_TIME_ASC: Creation date (Oldest first)
   CREATION_TIME_DESC: Creation date (Newest first)
