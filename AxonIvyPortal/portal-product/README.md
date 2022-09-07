@@ -51,7 +51,7 @@ This section describes the first installation. We recommend reading the document
 
 The application consists of 3 process modules. For detailed information on each module, refer to **Portal Guide**.
 
-* portal-component
+* portal-components
 * portal
 * AxonIvyExpress
 

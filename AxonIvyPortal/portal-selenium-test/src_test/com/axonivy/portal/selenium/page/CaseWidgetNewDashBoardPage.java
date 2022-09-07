@@ -92,13 +92,13 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   public void openFilterWidget() {
     $$("div.table-widget-panel").filter(text(caseWidgetName)).first().waitUntil(appear, DEFAULT_TIMEOUT)
-        .$("a.widget__filter-sidebar-link").shouldBe(getClickableCondition()).click();
+        .$(".widget__filter-sidebar-link").shouldBe(getClickableCondition()).click();
     $("[id$=':widget-saved-filters-items").waitUntil(appear, DEFAULT_TIMEOUT);
   }
 
   public CaseEditWidgetNewDashBoardPage openEditWidget() {
     $$("div.table-widget-panel div.widget__header").filter(text(caseWidgetName)).first()
-        .waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("a[class^='ui-commandlink'][id*='edit-widget']")
+        .waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='edit-widget']")
         .shouldBe(getClickableCondition()).click();
     return new CaseEditWidgetNewDashBoardPage();
   }
@@ -191,7 +191,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   
   public void deleteCaseWidget() {
     $$("div.table-widget-panel div.widget__header").filter(text(caseWidgetName)).first()
-        .waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("a.ui-commandlink[id*='delete-widget']")
+        .waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='delete-widget']")
         .shouldBe(getClickableCondition()).click();
   }
 }

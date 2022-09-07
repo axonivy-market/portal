@@ -7,26 +7,40 @@
     <ui:param name="managedBean" value="#{dashboardDetailModificationBean}" />
     <ui:param name="viewName" value="EDIT_DASHBOARD_DETAILS" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/pageTitle')}</ui:define>
-    
-    <ui:define name="headerAction">
-      <p:commandLink id="back-to-configuration" styleClass="dashboard__switch-mode u-mar-right-15"
-        actionListener="#{dashboardDetailModificationBean.navigatetoDashboardConfigurationPage}"
-        update="grid-stack @this" process="@this">
-        <i class="si si-arrow-left-1" />
-        <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}</span>
-      </p:commandLink>
 
-      <h:panelGroup id="restore-button-group" styleClass="restore-button-group">
-        <p:commandButton id="restore-button" styleClass="secondary-btn dashboard__restore-button"
+    <ui:define name="headerTitle">
+      <c:forEach var="dashboard" items="#{dashboardDetailModificationBean.dashboards}" varStatus="dashboardStatus">
+        <c:set value="#{dashboardDetailModificationBean.currentDashboardIndex == dashboardStatus.index}" var="isSelectedItem"/>
+        <p:commandLink id="dashboard-title-#{dashboardStatus.index}"
+          actionListener="#{dashboardDetailModificationBean.onDashboardChange(dashboardStatus.index)}"
+          update="grid-stack dashboard-title-container" process="@this"
+          oncomplete="loadGrid();dashboardToolKit.responsive();"
+          styleClass="dashboard__title #{isSelectedItem ? 'dashboard__title--active':''}">
+          <h:outputText styleClass="#{dashboard.getIconClass()}" />
+          <span>#{dashboard.title}</span>
+        </p:commandLink>
+      </c:forEach>
+    </ui:define>
+
+    <ui:define name="headerAction">
+      <p:commandButton id="back-to-configuration" styleClass="dashboard__switch-mode u-mar-right-15 ui-button-flat"
+        actionListener="#{dashboardDetailModificationBean.navigatetoDashboardConfigurationPage}"
+        update="grid-stack @this" process="@this"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
+        icon="si si-arrow-left-1" />
+
+      <c:set var="showRestoreButton" value="#{dashboardDetailModificationBean.foundTemplate.isPresent()}"/>
+      <h:panelGroup id="restore-button-group" styleClass="restore-button-group u-mar-right-15">
+        <p:commandButton id="restore-button" styleClass="ui-button-secondary dashboard__restore-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
           type="button" icon="si si-button-refresh-arrows"
           onclick="PF('restore-confirm-dialog').show()"
-          disabled="#{!dashboardDetailModificationBean.foundTemplate.isPresent()}" />
+          disabled="#{!showRestoreButton}" />
         <p:tooltip styleClass="restore-dashboard-tooltip"
           for="#{cc.clientId}:restore-button-group" id="restore-button-tooltip"
           trackMouse="true"
           hideEvent="mouseleave click"
-          rendered="#{!dashboardDetailModificationBean.foundTemplate.isPresent()}"
+          rendered="#{!showRestoreButton}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/RestoreDefaultDashboardTemplateTooltip')}"/>
       </h:panelGroup>
 
@@ -35,7 +49,7 @@
         actionListener="#{dashboardDetailModificationBean.initSampleWidgets()}"
         update="new-widget-dialog"
         process="@this"
-        oncomplete="PF('new-widget-dialog').show()" styleClass="u-hidden-md-down u-mar-right-15" />
+        oncomplete="PF('new-widget-dialog').show()" styleClass="u-hidden-md-down" />
     </ui:define>
 
     <ui:define name="additionalRemoteCommand">
@@ -43,9 +57,10 @@
       <p:remoteCommand name="addNewDashboardWidgetCommand" actionListener="#{dashboardDetailModificationBean.updatePortalGridsCurrentRow()}"
         global="false" process="@this" partialSubmit="true"/>
 
-      <p:remoteCommand id="load-grid-after-added-new-widget-cmd" name="loadGridAfterAddedNewWidget" onstart="loadGrid();"
+      <p:remoteCommand id="load-grid-after-added-new-widget-cmd" name="loadGridAfterAddedNewWidget"
+        onstart="loadGrid();dashboardToolKit.responsive();"
         global="false" process="@this" partialSubmit="true"
-        oncomplete="if (#{!dashboardDetailModificationBean.editWidget}) {scrollToWidget('#{dashboardDetailModificationBean.newWidgetId}');}" />
+        oncomplete="if (#{!dashboardDetailModificationBean.editWidget}) {scrollToWidget('#{dashboardDetailModificationBean.newWidgetId}');} if (typeof WelcomeWidget !== 'undefined') {WelcomeWidget.stretchImage();}" />
     </ui:define>
 
     <ui:define name="dashboardContent">
@@ -68,7 +83,7 @@
           <p:commandButton id="reset-dashboard-button" widgetVar="reset-dashboard-button"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
             actionListener="#{dashboardDetailModificationBean.restore()}"
-            update="grid-stack dashboard-title-container dashboard-title-dropdown-container dashboard-header-action"
+            update="grid-stack dashboard-title-container dashboard-header-action"
             icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
             onclick="disabledResetDashboardActions()"/>
         </ui:define>

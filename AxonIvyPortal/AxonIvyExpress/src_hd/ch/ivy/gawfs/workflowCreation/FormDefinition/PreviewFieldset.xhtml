@@ -5,14 +5,9 @@
   <h:panelGroup layout="block" styleClass="preview-dyna-container">
     <pe:dynaForm id="dyna-form" value="#{data.dynaFormController.model}" var="dynaData">
 
-      <pe:dynaFormControl type="InputFieldText" for="hidden-input-field-text" styleClass="input-text-field">
-        <h:inputHidden id="hidden-input-field-text" rendered="false"/>
-
-        <h:panelGroup styleClass="md-inputfield">
-          <p:inputText id="input-field-text" value="#{dynaData.value}" required="#{dynaData.required}"
-            requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" styleClass="Wid90" />
-          <p:outputLabel for="input-field-text" value="#{dynaData.label}" />
-        </h:panelGroup>
+      <pe:dynaFormControl type="InputFieldText" for="input-field-text" styleClass="input-text-field">
+        <p:inputText id="input-field-text" value="#{dynaData.value}" required="#{dynaData.required}"
+          requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" styleClass="Wid90" />
       </pe:dynaFormControl>
 
       <pe:dynaFormControl type="InputFieldNumber" for="input-field-number" styleClass="input-field-number">
@@ -47,7 +42,7 @@
       </pe:dynaFormControl>
 
       <pe:dynaFormControl type="FileUpload" for="fileUploadComponent">
-        <ic:com.axonivy.portal.component.DocumentTable id="fileUploadComponent" uploadRendered="false"
+        <ic:com.axonivy.portal.components.DocumentTable id="fileUploadComponent" uploadRendered="false"
           fileLimit="#{dynaData.intSetting}" typeColumnRendered="false"
           typeSelectionItems="#{masterDataBean.documentTypes}"
           allowedUploadFileTypes="#{userTaskFormBean.allowedUploadFileType}"

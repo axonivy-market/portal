@@ -1,6 +1,6 @@
 SecurityMemberDisplayNameData #class
 ch.ivy.addon.portalkit.component.SecurityMemberDisplayName #namespace
-memberNames java.util.List<com.axonivy.portal.component.dto.UserDTO> #field
+memberNames java.util.List<com.axonivy.portal.components.dto.UserDTO> #field
 memberNames PERSISTENT #fieldModifier
 roleName String #field
 roleName PERSISTENT #fieldModifier

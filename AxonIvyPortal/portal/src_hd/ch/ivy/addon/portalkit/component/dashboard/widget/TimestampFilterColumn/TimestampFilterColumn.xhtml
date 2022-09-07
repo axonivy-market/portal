@@ -12,7 +12,7 @@
 
 <cc:implementation>
   <h:panelGroup rendered="#{cc.attrs.field.format eq 'TIMESTAMP'}">
-    <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
+    <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down display-flex-center">
       <h:outputLabel value="#{cc.attrs.field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}"
         for="from-date-field-input"/>
     </div>
@@ -26,7 +26,7 @@
       <p:message for="from-date-field-input" styleClass="ui-g-12 u-padding-0"/>
     </div>
 
-    <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
+    <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down display-flex-center">
       <h:outputLabel value="#{cc.attrs.field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}"
         for="to-date-field-input"/>
     </div>

@@ -54,8 +54,10 @@
   right: 0;
 }
 
+.u-hidden,
+.hide,
 .u-display-none {
-  display: none;
+  display: none !important;
 }
 
 .u-cursor-pointer {
@@ -129,20 +131,12 @@
   width: 5px;
 }
 
-.u-text-align-center {
-  text-align: center !important;
-}
-
 .u-vertical-align-center {
   vertical-align: middle;
 }
 
 .u-italic-font {
   font-style: italic;
-}
-
-.u-hidden {
-  display: none !important;
 }
 
 .u-invisibility {
@@ -153,6 +147,7 @@
   margin-right: 5px !important;
 }
 
+.MarRight10,
 .u-mar-right-10 {
   margin-right: 10px;
 }
@@ -184,6 +179,7 @@
 .u-no-padding-bottom {
   padding-bottom: 0 !important;
 }
+
 @media ( max-width : 767px) {
   .u-no-padding-bottom-sm-down {
     padding-bottom: 0 !important;
@@ -198,22 +194,22 @@
   padding-right: 0 !important;
 }
 
+.TexAlRight,
 .u-text-align-right {
   text-align: right !important;
 }
 
+.TexAlLeft,
 .u-text-align-left {
   text-align: left !important;
 }
 
+.TexAlCenter,
 .u-text-align-center {
   text-align: center !important;
 }
 
-.hide {
-  display: none !important;
-}
-
+.FontBold,
 .u-font-bold {
   font-weight: bold !important;
 }
@@ -258,7 +254,7 @@
     visibility: hidden;
   }
   .height-100{
-  	height:100% !important;
+    height:100% !important;
   }
 }
 
@@ -320,10 +316,6 @@
 /* Do not use them for new code, these classes are for backward compatibility
 * Some style is removed after migrated to Serenity - need re-define
 */
-.MarRight10 {
-  margin-right: 10px;
-}
-
 .MarLeft10 {
   margin-left: 10px;
 }
@@ -349,18 +341,6 @@
   clear: both;
 }
 
-.TexAlRight {
-  text-align: right !important;
-}
-
-.TexAlLeft {
-  text-align: left !important;
-}
-
-.TexAlCenter {
-  text-align: center !important;
-}
-
 .MarTop0 {
   margin-top: 0 !important;
 }
@@ -373,11 +353,37 @@
   margin-top: 10px !important;
 }
 
-.FontBold {
-  font-weight: bold;
-}
 /* For Serenity theme - End */
 
 .u-default-cursor {
   cursor: default;
+}
+
+.display-flex-center {
+  display: flex;
+  align-items: center;
+}
+
+.display-inline-flex-center {
+  display: inline-flex;
+  align-items: center;
+}
+
+.display-inline-flex-end {
+  display: inline-flex;
+  align-items: flex-end;
+}
+
+.u-dialog-footer-actions-group {
+  position: relative;
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: .5em;
+  margin-top: 10px;
+}
+
+.w-full {
+  width: 100%;
 }

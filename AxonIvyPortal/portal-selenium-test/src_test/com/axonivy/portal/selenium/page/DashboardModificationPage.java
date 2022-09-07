@@ -36,7 +36,7 @@ public class DashboardModificationPage extends TemplatePage {
   public NewDashboardDetailsEditPage navigateToEditDashboardDetailsByName(String dashboardName) {
     SelenideElement dashboardRow = getDashboardRowByName(dashboardName);
     if (dashboardRow != null) {
-      dashboardRow.$("a[id$=':configure-dashboard']").click();
+      dashboardRow.$("[id$=':configure-dashboard']").click();
       NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
       return newDashboardDetailsEditPage;
     }
@@ -45,13 +45,13 @@ public class DashboardModificationPage extends TemplatePage {
 
   public void clickEditDashboardByName(String dashboardName) {
     SelenideElement dashboardRow = getDashboardRowByName(dashboardName);
-    dashboardRow.$("a[id$=':edit']").click();
+    dashboardRow.$("[id$=':edit']").click();
     getEditDashboardDialog().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public void clickDeleteDashboardByName(String dashboardName) {
     SelenideElement dashboardRow = getDashboardRowByName(dashboardName);
-    dashboardRow.$("a[id$=':delete-dashboard']").click();
+    dashboardRow.$("[id$=':delete-dashboard']").click();
     SelenideElement deleteConfirmDialog = $("[id$=':remove-dashboard-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     deleteConfirmDialog.$("button[id$=':remove-dashboard-button']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     deleteConfirmDialog.waitUntil(Condition.disappear, DEFAULT_TIMEOUT);

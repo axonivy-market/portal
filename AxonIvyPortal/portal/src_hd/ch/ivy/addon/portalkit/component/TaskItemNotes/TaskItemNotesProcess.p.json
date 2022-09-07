@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.18",
   "id" : "15493BD80A4C7D12",
   "data" : "ch.ivy.addon.portalkit.component.TaskItemNotes.TaskItemNotesData",
   "kind" : "HTML_DIALOG",
@@ -71,9 +71,12 @@
       "config" : {
         "output" : {
           "code" : [
+            "import org.primefaces.PrimeFaces;",
             "import ch.ivy.addon.portalkit.comparator.NoteComparator;",
             "",
-            "in.notes.sort(new NoteComparator());"
+            "in.notes.sort(new NoteComparator());",
+            "// Responsive table",
+            "PrimeFaces.current().executeScript(\"ResponsiveTable.init(':task-note-table')\");"
           ]
         }
       },

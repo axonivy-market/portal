@@ -14,12 +14,12 @@
           "id": "",
           "name": "Your Tasks",
           "layout": {
-            "w": 9,
-            "h": 5,
+            "w": 12,
+            "h": 6,
             "x": 0,
             "y": 0
           },
-          "rowsPerPage": 10,
+          "rowsPerPage": 5,
           "sortDescending": true,
           "columns": [
             {
@@ -50,7 +50,8 @@
               "field": "expiryTimestamp"
             },
             {
-              "field": "category"
+              "field": "category",
+              "visible": false
             },
             {
               "field": "actions"
@@ -65,11 +66,11 @@
           "name": "Your Cases",
           "layout": {
             "w": 9,
-            "h": 5,
+            "h": 6,
             "x": 0,
-            "y": 5
+            "y": 6
           },
-          "rowsPerPage": 10,
+          "rowsPerPage": 5,
           "sortDescending": true,
           "columns": [
             {
@@ -79,7 +80,8 @@
               "field": "name"
             },
             {
-              "field": "description"
+              "field": "description",
+              "visible": false
             },
             {
               "field": "state"
@@ -91,13 +93,16 @@
               "field": "startTimestamp"
             },
             {
-              "field": "endTimestamp"
+              "field": "endTimestamp",
+              "visible": false
             },
             {
-              "field": "owner"
+              "field": "owner",
+              "visible": false
             },
             {
-              "field": "category"
+              "field": "category",
+              "visible": false
             },
             {
               "field": "actions"
@@ -111,9 +116,9 @@
           "name": "Your Processes",
           "layout": {
             "w": 3,
-            "h": 10,
+            "h": 6,
             "x": 9,
-            "y": 0
+            "y": 6
           }
         }
       ],
@@ -138,11 +143,11 @@
           "name": "Open Tasks",
           "layout": {
             "w": 9,
-            "h": 5,
+            "h": 6,
             "x": 0,
             "y": 0
           },
-          "rowsPerPage": 10,
+          "rowsPerPage": 5,
           "sortDescending": true,
           "columns": [
             {
@@ -158,10 +163,12 @@
               "field": "name"
             },
             {
-              "field": "description"
+              "field": "description",
+              "visible": false
             },
             {
-              "field": "activator"
+              "field": "activator",
+              "visible": false
             },
             {
               "field": "state",
@@ -173,10 +180,12 @@
               "field": "startTimestamp"
             },
             {
-              "field": "expiryTimestamp"
+              "field": "expiryTimestamp",
+              "visible": false
             },
             {
-              "field": "category"
+              "field": "category",
+              "visible": false
             },
             {
               "field": "actions"
@@ -191,11 +200,11 @@
           "name": "Working Tasks",
           "layout": {
             "w": 9,
-            "h": 5,
+            "h": 6,
             "x": 0,
-            "y": 5
+            "y": 6
           },
-          "rowsPerPage": 10,
+          "rowsPerPage": 5,
           "sortDescending": true,
           "columns": [
             {
@@ -211,10 +220,12 @@
               "field": "name"
             },
             {
-              "field": "description"
+              "field": "description",
+              "visible": false
             },
             {
-              "field": "activator"
+              "field": "activator",
+              "visible": false
             },
             {
               "field": "state",
@@ -227,10 +238,12 @@
               "field": "startTimestamp"
             },
             {
-              "field": "expiryTimestamp"
+              "field": "expiryTimestamp",
+              "visible": false
             },
             {
-              "field": "category"
+              "field": "category",
+              "visible": false
             },
             {
               "field": "actions"
@@ -245,7 +258,7 @@
           "name": "Your Processes",
           "layout": {
             "w": 3,
-            "h": 10,
+            "h": 12,
             "x": 9,
             "y": 0
           }

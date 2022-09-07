@@ -81,7 +81,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
   
   @Test
   public void screenshotBasicTaskDetails() throws IOException {
-    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1200));
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1000));
     login(TestAccount.ADMIN_USER);
     refreshPage();
     TaskWidgetPage taskWidget = homePage.openTaskList();
@@ -232,11 +232,13 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     setupCustomWidgetByJSONFile("task-details-custom-iframe.json");
     executeDecorateJs("highlightIFrameWidgetTaskDetails()");
     taskDetails.waitForIFrameURLWidgetLoad();
+    taskDetails.switchToDefaultContent();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-iframe-url");
 
     setupCustomWidgetByJSONFile("task-details-custom-process-iframe.json");
     executeDecorateJs("highlightIFrameWidgetTaskDetails()");
     taskDetails.waitForIFrameWidgetLoad();
+    taskDetails.switchToDefaultContent();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-iframe-process");
   }
 

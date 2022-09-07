@@ -14,7 +14,6 @@
   <c:set var="renderDetail" value="#{portalExceptionBean.errorDetailToEndUser}" />
   <c:set var="isPortalInTeams" value="#{masterDataBean.portalInTeams}" />
   <c:set var="isShowErrorLog" value="#{portalExceptionBean.isShowErrorLogToConsole}" />
-  <h:outputStylesheet library="css" name="module.css" />
 
   <p:ajaxStatus id="#{cc.clientId}-#{cc.id}" widgetVar="#{cc.attrs.widgetVar}"
     onerror="handleError(PrimeFaces.ajax.Queue.xhrs[0], #{renderDetail}, #{isShowErrorLog})"
@@ -34,25 +33,33 @@
     </f:facet>
   </p:ajaxStatus>
 
-  <p:dialog id="#{cc.clientId}-error-ajax-dialog" widgetVar="error-ajax-dialog"
-    modal="true" resizable="false" styleClass="error-ajax-dialog" responsive="true"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" closable="false">
-    <div class="ui-g">
-      <div class="ui-g-12">
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/errorAjaxMessage')}"/>
-      </div>
-      <div class="ui-g-12 u-text-align-center MarTop5">
-        <div class="ui-g-12">
-          <p:button rendered="#{!isPortalInTeams}" href="#" onclick="window.open('#{userMenuBean.getHomePageURL()}', '_self')"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}"
-            icon="#{visibilityBean.generateButtonIcon('si si-house-chimney-2')}"/>
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="#{cc.clientId}-error-ajax-dialog" />
+    <ui:param name="widgetVar" value="error-ajax-dialog" />
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="styleClass" value="error-ajax-dialog" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" />
+    <ui:param name="iconClass" value="si si-road-sign-warning" />
+    <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
+
+    <ui:define name="dialogContentSection">
+      <div class="ui-g">
+        <div class="ui-g-12 u-text-align-center">
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/errorAjaxMessage')}" />
         </div>
-        <p:link id="#{cc.clientId}-show-more" rendered="#{renderDetail}"
-           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}"
-           styleClass="ui-g-12" href="#"/>
+        <div class="ui-g-12 u-text-align-center MarTop10 u-no-padding-bottom">
+          <div class="ui-g-12">
+            <p:button rendered="#{!isPortalInTeams}" href="#"
+              onclick="window.open('#{userMenuBean.getHomePageURL()}', '_self')"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}"
+              icon="#{visibilityBean.generateButtonIcon('si si-house-chimney-2')}" />
+          </div>
+          <p:link id="#{cc.clientId}-show-more" rendered="#{renderDetail}"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" styleClass="ui-g-12" href="#" />
+        </div>
       </div>
-    </div>
-  </p:dialog>
+    </ui:define>
+  </ui:decorate>
 
   <p:dialog id="#{cc.clientId}-detail-error-dialog" widgetVar="detail-error-dialog" rendered="#{renderDetail}"
     closable="true" width="70%" closeOnEscape="true" modal="true" resizable="false" responsive="true"

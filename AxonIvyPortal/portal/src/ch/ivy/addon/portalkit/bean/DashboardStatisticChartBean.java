@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.ItemSelectEvent;
 
@@ -17,7 +18,6 @@ import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.statistics.StatisticChartDrilldownUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
 @ManagedBean
@@ -26,6 +26,7 @@ public class DashboardStatisticChartBean implements Serializable {
   private static final long serialVersionUID = -8491957877380766526L;
   private List<StatisticChart> availableCharts;
   private StatisticChart selectedChart;
+  private boolean isPublicDashboard;
 
   public void initChartConfiguration(StatisticDashboardWidget widget, boolean isPublicDashboard) {
     if (widget != null && widget.getChart() != null) {
@@ -35,16 +36,24 @@ public class DashboardStatisticChartBean implements Serializable {
       selectedChart.setType(StatisticChartType.TASK_BY_PRIORITY);
       selectedChart.setDonutChartModel(StatisticService.getInstance().createDonutChartPlaceholder());
     }
-    fetchStatisticCharts(isPublicDashboard);
+    this.isPublicDashboard = isPublicDashboard;
   }
 
-  public void fetchStatisticCharts(boolean isPublicDashboard) {
+  public void fetchStatisticCharts() {
     availableCharts = new ArrayList<>();
     if (isPublicDashboard) {
       availableCharts.addAll(StatisticService.getInstance().getPublicConfig());
     } else {
       availableCharts.addAll(StatisticService.getInstance().findStatisticCharts());
     }
+  }
+
+  public List<StatisticChart> completeCharts(String filter) {
+    if (CollectionUtils.isEmpty(availableCharts)) {
+      fetchStatisticCharts();
+    }
+    return availableCharts.stream().filter(chart -> StringUtils.containsAnyIgnoreCase(getDisplayChartName(chart), filter))
+      .collect(Collectors.toList());
   }
 
   public boolean isCaseByFinishedTime(StatisticChart chart) {
@@ -90,11 +99,11 @@ public class DashboardStatisticChartBean implements Serializable {
   }
   
   public boolean isCasesByCategory(StatisticChart chart) {
-	    if (chart == null) {
-	      return false;
-	    }
-	    return StatisticService.getInstance().isCasesByCategory(chart) && Objects.nonNull(chart.getBarChartModel());
-	  }
+    if (chart == null) {
+      return false;
+    }
+    return StatisticService.getInstance().isCasesByCategory(chart) && Objects.nonNull(chart.getBarChartModel());
+  }
 
   public List<StatisticChart> completeStatisticChart(String filter) {
     return getAvailableCharts().stream().filter(chart -> getDisplayChartName(chart).contains(filter))
@@ -111,7 +120,7 @@ public class DashboardStatisticChartBean implements Serializable {
 
   public String getDisplayChartName(StatisticChart chart) {
     if (chart == null) {
-      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/noName");
+      return "";
     }
     var displayName = StatisticService.getInstance().getDisplayNameInUserLanguageForChart(chart);
     return Objects.isNull(displayName) ? chart.getName() : displayName.getValue();

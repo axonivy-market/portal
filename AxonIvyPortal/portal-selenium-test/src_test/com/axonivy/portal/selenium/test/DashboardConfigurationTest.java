@@ -99,15 +99,17 @@ public class DashboardConfigurationTest extends BaseTest {
   @Test
   public void testAddPublishDashboardFromScratch() {
     String name = "New public dashboard";
+    String icon = "fa-coffee";
     String description = "New public dashboard description";
     List<String> permissions = Arrays.asList("Cost Object (CostObject)");
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
-    configurationPage.createPublicDashboardFromScratch(name, description, permissions);
+    configurationPage.createPublicDashboardFromScratch(name, icon, description, permissions);
 
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
+    newDashboardDetailsEditPage.getIconByIndex(0, icon).shouldBe(Condition.appear);
     newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.empty);
 
     goBackConfigurationAndVerifyDashboards(name, description, newDashboardDetailsEditPage, true);
@@ -116,13 +118,15 @@ public class DashboardConfigurationTest extends BaseTest {
   @Test
   public void testAddPrivateDashboardFromScratch() {
     String name = "New private dashboard";
+    String icon = "fa-coffee";
     String description = "New private dashboard description";
 
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
-    configurationPage.createPrivateDashboardFromScratch(name, description);
+    configurationPage.createPrivateDashboardFromScratch(name, icon, description);
 
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
+    newDashboardDetailsEditPage.getIconByIndex(0, icon).shouldBe(Condition.appear);
     newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.empty);
 
     goBackConfigurationAndVerifyDashboards(name, description, newDashboardDetailsEditPage, false);
@@ -131,16 +135,18 @@ public class DashboardConfigurationTest extends BaseTest {
   @Test
   public void testAddPublishDashboardUseTemplate() {
     String name = "New public dashboard";
+    String icon = "fa-coffee";
     String description = "New public dashboard description";
     List<String> permissions = new ArrayList<>();
     permissions.add("Cost Object (CostObject)");
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
-    configurationPage.createPublicDashboardFromTemplate(name, description, permissions, 0);
+    configurationPage.createPublicDashboardFromTemplate(name, icon, description, permissions, 0);
 
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
+    newDashboardDetailsEditPage.getIconByIndex(0, icon).shouldBe(Condition.appear);
     newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.size(3));
 
     goBackConfigurationAndVerifyDashboards(name, description, newDashboardDetailsEditPage, true);
@@ -149,14 +155,16 @@ public class DashboardConfigurationTest extends BaseTest {
   @Test
   public void testAddPrivateDashboardUseTemplate() {
     String name = "New private dashboard";
+    String icon = "fa-coffee";
     String description = "New private dashboard description";
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
     configurationPage.openCreatePrivateDashboardMenu();
-    configurationPage.createPrivateDashboardFromTemplate(name, description, 0);
+    configurationPage.createPrivateDashboardFromTemplate(name, icon, description, 0);
 
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
+    newDashboardDetailsEditPage.getIconByIndex(0, icon).shouldBe(Condition.appear);
     newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.size(3));
 
     goBackConfigurationAndVerifyDashboards(name, description, newDashboardDetailsEditPage, false);
@@ -165,16 +173,18 @@ public class DashboardConfigurationTest extends BaseTest {
   @Test
   public void testAddPublishDashboardTwoTaskListDashboard() {
     String name = "New public dashboard two task list";
+    String icon = "fa-coffee";
     String description = "New public dashboard description";
     List<String> permissions = new ArrayList<>();
     permissions.add("Cost Object (CostObject)");
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
-    configurationPage.createPublicDashboardFromTemplate(name, description, permissions, 1);
+    configurationPage.createPublicDashboardFromTemplate(name, icon, description, permissions, 1);
 
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
+    newDashboardDetailsEditPage.getIconByIndex(0, icon).shouldBe(Condition.appear);
     newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.size(3));
 
     goBackConfigurationAndVerifyDashboards(name, description, newDashboardDetailsEditPage, true);
@@ -183,14 +193,16 @@ public class DashboardConfigurationTest extends BaseTest {
   @Test
   public void testAddPrivateDashboardTwoTaskListDashboard() {
     String name = "New private dashboard two task list";
+    String icon = "fa-coffee";
     String description = "New private dashboard description";
 
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     configurationPage.openCreatePrivateDashboardMenu();
-    configurationPage.createPrivateDashboardFromTemplate(name, description, 1);
+    configurationPage.createPrivateDashboardFromTemplate(name, icon, description, 1);
 
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
+    newDashboardDetailsEditPage.getIconByIndex(0, icon).shouldBe(Condition.appear);
     newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.size(3));
 
     goBackConfigurationAndVerifyDashboards(name, description, newDashboardDetailsEditPage, false);
