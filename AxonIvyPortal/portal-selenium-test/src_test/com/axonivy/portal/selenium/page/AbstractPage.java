@@ -5,6 +5,10 @@ import static com.codeborne.selenide.Selenide.$;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+
+import com.codeborne.selenide.WebDriverRunner;
 
 public abstract class AbstractPage {
   
@@ -28,4 +32,11 @@ public abstract class AbstractPage {
     $(getLoadedLocator()).waitUntil(appear, DEFAULT_TIMEOUT);
   }
 
+  /**
+   * @param element
+   * this function used for action click in some invisible element
+   */
+  public void clickByJavaScript(WebElement element) {
+    ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript("arguments[0].click();", element);
+  }
 }
