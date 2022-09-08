@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "176EF69EC66B4E37",
   "data" : "com.axonivy.portal.developerexamples.customization.PortalCaseDetailsOverride.PortalCaseDetailsOverrideData",
   "kind" : "HTML_DIALOG",
@@ -23,7 +23,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -16, "y" : 15 }
+        "labelOffset" : { "x" : 49, "y" : 35 }
       },
       "connect" : { "id" : "f7", "to" : "f6" }
     }, {
@@ -41,7 +41,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 },
-        "labelOffset" : { "x" : -15, "y" : 12 }
+        "labelOffset" : { "x" : 8, "y" : 32 }
       },
       "connect" : { "id" : "f5", "to" : "f4" }
     }, {
@@ -65,7 +65,7 @@
       },
       "visual" : {
         "at" : { "x" : 312, "y" : 64 },
-        "size" : { "width" : 176, "height" : 44 }
+        "size" : { "width" : 176, "height" : 60 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     } ]

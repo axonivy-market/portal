@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "15F6AF4140FEAD47",
   "data" : "ch.ivy.addon.portal.generic.ProcessNavigator.ProcessNavigatorData",
   "kind" : "HTML_DIALOG",
@@ -42,8 +42,7 @@
       },
       "visual" : {
         "at" : { "x" : 240, "y" : 144 },
-        "size" : { "width" : 112, "height" : 48 },
-        "labelOffset" : { "x" : -22, "y" : -8 }
+        "size" : { "width" : 112, "height" : 48 }
       }
     } ]
 }

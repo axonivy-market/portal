@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "1803FB98EA8C752D",
   "data" : "ch.ivy.addon.portal.generic.dashboard.component.DashboardTemplateSelection.DashboardTemplateSelectionData",
   "kind" : "HTML_DIALOG",
@@ -21,7 +21,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -16, "y" : 15 }
+        "labelOffset" : { "x" : 31, "y" : 35 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {

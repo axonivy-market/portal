@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "17B2F35B7DC5B800",
   "data" : "com.axonivy.portal.developerexamples.showcase.CustomWidgetExampleData",
   "elements" : [ {
@@ -58,7 +58,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -21, "y" : 17 }
+        "labelOffset" : { "x" : 36, "y" : 37 }
       },
       "connect" : { "id" : "f4", "to" : "f3" }
     } ]

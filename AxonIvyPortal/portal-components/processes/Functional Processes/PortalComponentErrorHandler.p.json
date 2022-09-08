@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "18098C74EBB97195",
   "data" : "com.axonivy.portal.components.ErrorHandlerData",
   "kind" : "CALLABLE_SUB",
@@ -20,16 +20,14 @@
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 48 },
-        "size" : { "width" : 26, "height" : 26 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 124, "y" : 20 }
       },
       "connect" : { "id" : "f4", "to" : "f3" }
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 64, "y" : 240 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 64, "y" : 240 }
       }
     }, {
       "id" : "f3",
@@ -51,9 +49,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 64, "y" : 136 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 64, "y" : 136 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     } ]

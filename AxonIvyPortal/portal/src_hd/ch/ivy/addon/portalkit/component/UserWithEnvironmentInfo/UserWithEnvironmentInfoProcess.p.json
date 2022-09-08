@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "1705775E741380D0",
   "data" : "ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo.UserWithEnvironmentInfoData",
   "kind" : "HTML_DIALOG",
@@ -14,7 +14,7 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
         "size" : { "width" : 20, "height" : 20 },
-        "labelOffset" : { "x" : 13, "y" : 0 }
+        "labelOffset" : { "x" : 37, "y" : 20 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {

@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.17",
+  "format" : "9.4.20",
   "id" : "163AFDE4C30836BD",
   "data" : "ch.ivy.addon.portal.generic.GlobalSearch.GlobalSearchData",
   "kind" : "HTML_DIALOG",
@@ -47,7 +47,7 @@
       },
       "visual" : {
         "at" : { "x" : 216, "y" : 224 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f5", "to" : "f31" }
     }, {
@@ -70,7 +70,7 @@
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 224 },
-        "labelOffset" : { "x" : -25, "y" : 15 }
+        "labelOffset" : { "x" : 47, "y" : 35 }
       },
       "connect" : { "id" : "f9", "to" : "f8" }
     }, {
@@ -88,7 +88,7 @@
       },
       "visual" : {
         "at" : { "x" : 416, "y" : 224 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f6", "to" : "f4" }
     }, {

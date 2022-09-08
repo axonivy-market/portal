@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "17326ECC60698A9A",
   "data" : "ch.ivy.addon.express.generic.ExpressBusinessView.ExpressBusinessViewData",
   "kind" : "HTML_DIALOG",
@@ -21,7 +21,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -33, "y" : 25 }
+        "labelOffset" : { "x" : 5, "y" : 45 }
       },
       "connect" : { "id" : "f3", "to" : "f1" }
     }, {
@@ -40,7 +40,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 192 },
-        "labelOffset" : { "x" : -25, "y" : 15 }
+        "labelOffset" : { "x" : 5, "y" : 35 }
       },
       "connect" : { "id" : "f2", "to" : "f13" }
     }, {

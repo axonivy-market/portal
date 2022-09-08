@@ -68,7 +68,7 @@ Below is a standard JSON definition of the custom widget in the Portal dashboard
 
 The basic JSON structure of the custom widget
 
-   ``type``: type of widget. Use ``custom`` to mark that this widget is a custom
+   ``type``: type of the widget. Use ``custom`` to mark that this widget is a custom
    widget.
 
    ``id``: ID of the widget.

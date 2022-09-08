@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "17C597F3BE08B8C1",
   "data" : "com.axonivy.portal.developerexamples.ResetTaskIFrame.ResetTaskIFrameData",
   "kind" : "HTML_DIALOG",
@@ -30,7 +30,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 },
-        "labelOffset" : { "x" : -15, "y" : 15 }
+        "labelOffset" : { "x" : 15, "y" : 35 }
       },
       "connect" : { "id" : "f5", "to" : "f4" }
     }, {
@@ -48,7 +48,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 256 },
-        "labelOffset" : { "x" : -14, "y" : 15 }
+        "labelOffset" : { "x" : 36, "y" : 35 }
       },
       "connect" : { "id" : "f8", "to" : "f7" }
     }, {
@@ -70,7 +70,7 @@
       },
       "visual" : {
         "at" : { "x" : 248, "y" : 256 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       }
     }, {
       "id" : "f9",
@@ -81,7 +81,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 352 },
-        "labelOffset" : { "x" : -14, "y" : 15 }
+        "labelOffset" : { "x" : 44, "y" : 35 }
       },
       "connect" : { "id" : "f11", "to" : "f10" }
     }, {
@@ -103,7 +103,7 @@
       },
       "visual" : {
         "at" : { "x" : 248, "y" : 352 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       }
     }, {
       "id" : "f12",
@@ -114,7 +114,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 448 },
-        "labelOffset" : { "x" : -14, "y" : 15 }
+        "labelOffset" : { "x" : 27, "y" : 35 }
       },
       "connect" : { "id" : "f14", "to" : "f13" }
     }, {
@@ -140,7 +140,7 @@
       },
       "visual" : {
         "at" : { "x" : 280, "y" : 448 },
-        "size" : { "width" : 208, "height" : 44 }
+        "size" : { "width" : 208, "height" : 60 }
       }
     } ]
 }
