@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.17",
+  "format" : "9.4.20",
   "id" : "16DCDC775655EFD5",
   "data" : "ch.ivy.addon.portal.generic.OpenPortalCaseDetailsData",
   "kind" : "CALLABLE_SUB",
@@ -22,7 +22,7 @@
       },
       "visual" : {
         "at" : { "x" : 280, "y" : 256 },
-        "labelOffset" : { "x" : -40, "y" : -37 }
+        "labelOffset" : { "x" : 22, "y" : -17 }
       },
       "connect" : { "id" : "f3", "to" : "f2" }
     }, {
@@ -72,7 +72,7 @@
       },
       "visual" : {
         "at" : { "x" : 280, "y" : 576 },
-        "labelOffset" : { "x" : -64, "y" : -37 }
+        "labelOffset" : { "x" : 27, "y" : -17 }
       },
       "connect" : { "id" : "f8", "to" : "f7" }
     }, {
@@ -101,7 +101,7 @@
       },
       "visual" : {
         "at" : { "x" : 648, "y" : 576 },
-        "size" : { "width" : 160, "height" : 44 }
+        "size" : { "width" : 160, "height" : 60 }
       },
       "connect" : { "id" : "f9", "to" : "f6" }
     }, {
@@ -115,8 +115,7 @@
       ],
       "visual" : {
         "at" : { "x" : 736, "y" : 360 },
-        "size" : { "width" : 720, "height" : 76 },
-        "labelOffset" : { "x" : -357, "y" : -34 }
+        "size" : { "width" : 720, "height" : 76 }
       }
     }, {
       "id" : "f12",
@@ -129,8 +128,7 @@
       ],
       "visual" : {
         "at" : { "x" : 760, "y" : 680 },
-        "size" : { "width" : 768, "height" : 76 },
-        "labelOffset" : { "x" : -378, "y" : -34 }
+        "size" : { "width" : 768, "height" : 76 }
       }
     } ]
 }

@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "1600AC95D2CA7CEA",
   "data" : "ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData",
   "kind" : "HTML_DIALOG",
@@ -51,7 +51,7 @@
         } ],
       "visual" : {
         "at" : { "x" : 936, "y" : 288 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f1", "to" : "f3" }
     }, {
@@ -153,7 +153,7 @@
       },
       "visual" : {
         "at" : { "x" : 992, "y" : 672 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f20", "to" : "f18" }
     }, {
@@ -400,7 +400,7 @@
       },
       "visual" : {
         "at" : { "x" : 712, "y" : 288 },
-        "labelOffset" : { "x" : -58, "y" : 21 }
+        "labelOffset" : { "x" : 6, "y" : 41 }
       },
       "connect" : { "id" : "f60", "to" : "f59" }
     }, {
@@ -431,8 +431,7 @@
       },
       "visual" : {
         "at" : { "x" : 1280, "y" : 224 },
-        "size" : { "width" : 144, "height" : 48 },
-        "labelOffset" : { "x" : -67, "y" : -8 }
+        "size" : { "width" : 144, "height" : 48 }
       },
       "connect" : { "id" : "f77", "to" : "f2", "via" : [ { "x" : 1480, "y" : 224 } ] }
     }, {
@@ -466,7 +465,7 @@
       },
       "visual" : {
         "at" : { "x" : 712, "y" : 64 },
-        "labelOffset" : { "x" : -27, "y" : 16 }
+        "labelOffset" : { "x" : 3, "y" : 36 }
       },
       "connect" : { "id" : "f69", "to" : "f62" }
     }, {
@@ -573,7 +572,7 @@
       },
       "visual" : {
         "at" : { "x" : 992, "y" : 64 },
-        "size" : { "width" : 208, "height" : 44 }
+        "size" : { "width" : 208, "height" : 60 }
       },
       "connect" : { "id" : "f61", "to" : "f66" }
     }, {
@@ -663,7 +662,7 @@
       },
       "visual" : {
         "at" : { "x" : 128, "y" : 424 },
-        "labelOffset" : { "x" : -64, "y" : 12 }
+        "labelOffset" : { "x" : 58, "y" : 32 }
       },
       "connect" : { "id" : "f84", "to" : "f7" }
     }, {
@@ -686,7 +685,7 @@
       },
       "visual" : {
         "at" : { "x" : 128, "y" : 496 },
-        "labelOffset" : { "x" : -64, "y" : 14 }
+        "labelOffset" : { "x" : 77, "y" : 34 }
       },
       "connect" : { "id" : "f8", "to" : "f42" }
     }, {
@@ -709,7 +708,7 @@
       },
       "visual" : {
         "at" : { "x" : 128, "y" : 576 },
-        "labelOffset" : { "x" : -64, "y" : 18 }
+        "labelOffset" : { "x" : 64, "y" : 38 }
       },
       "connect" : { "id" : "f10", "to" : "f48" }
     }, {
@@ -736,7 +735,7 @@
       },
       "visual" : {
         "at" : { "x" : 128, "y" : 272 },
-        "labelOffset" : { "x" : -63, "y" : 28 }
+        "labelOffset" : { "x" : 144, "y" : 48 }
       },
       "connect" : { "id" : "f40", "to" : "f39" }
     }, {
@@ -761,7 +760,7 @@
       },
       "visual" : {
         "at" : { "x" : 128, "y" : 352 },
-        "labelOffset" : { "x" : -66, "y" : 11 }
+        "labelOffset" : { "x" : 95, "y" : 31 }
       },
       "connect" : { "id" : "f43", "to" : "f36", "via" : [ { "x" : 352, "y" : 352 } ] }
     }, {
@@ -784,7 +783,7 @@
       },
       "visual" : {
         "at" : { "x" : 704, "y" : 544 },
-        "labelOffset" : { "x" : -55, "y" : 20 }
+        "labelOffset" : { "x" : 72, "y" : 40 }
       },
       "connect" : { "id" : "f45", "to" : "f53" }
     }, {
@@ -805,8 +804,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1280, "y" : 448 },
-        "labelOffset" : { "x" : -53, "y" : -8 }
+        "at" : { "x" : 1280, "y" : 448 }
       },
       "connect" : { "id" : "f12", "to" : "f2", "via" : [ { "x" : 1480, "y" : 448 } ] }
     }, {
@@ -877,7 +875,7 @@
       },
       "visual" : {
         "at" : { "x" : 88, "y" : 872 },
-        "labelOffset" : { "x" : -25, "y" : 15 }
+        "labelOffset" : { "x" : 44, "y" : 35 }
       },
       "connect" : { "id" : "f74", "to" : "f71" }
     }, {
@@ -924,7 +922,7 @@
       },
       "visual" : {
         "at" : { "x" : 704, "y" : 864 },
-        "labelOffset" : { "x" : -55, "y" : 20 }
+        "labelOffset" : { "x" : 85, "y" : 40 }
       },
       "connect" : { "id" : "f85", "to" : "f78" }
     }, {
@@ -969,7 +967,7 @@
       },
       "visual" : {
         "at" : { "x" : 704, "y" : 952 },
-        "labelOffset" : { "x" : -64, "y" : 14 }
+        "labelOffset" : { "x" : 90, "y" : 34 }
       },
       "connect" : { "id" : "f89", "to" : "f94" }
     }, {
@@ -1024,7 +1022,7 @@
       },
       "visual" : {
         "at" : { "x" : 704, "y" : 1072 },
-        "labelOffset" : { "x" : -63, "y" : 28 }
+        "labelOffset" : { "x" : 142, "y" : 48 }
       },
       "connect" : { "id" : "f97", "to" : "f90" }
     }, {
@@ -1062,7 +1060,7 @@
       },
       "visual" : {
         "at" : { "x" : 408, "y" : 208 },
-        "size" : { "width" : 176, "height" : 44 }
+        "size" : { "width" : 176, "height" : 60 }
       },
       "connect" : { "id" : "f47", "to" : "f46" }
     } ]

@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "15DC1795219AF4F0",
   "data" : "ch.ivy.addon.portalkit.component.task.filter.TaskResponsibleFilter.TaskResponsibleFilterData",
   "kind" : "HTML_DIALOG",
@@ -32,7 +32,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 192 },
-        "labelOffset" : { "x" : -57, "y" : 13 }
+        "labelOffset" : { "x" : 54, "y" : 33 }
       },
       "connect" : { "id" : "f8", "to" : "f7" }
     }, {

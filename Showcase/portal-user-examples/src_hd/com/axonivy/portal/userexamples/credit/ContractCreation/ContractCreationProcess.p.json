@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "1709948259287151",
   "data" : "com.axonivy.portal.userexamples.credit.ContractCreation.ContractCreationData",
   "kind" : "HTML_DIALOG",
@@ -40,8 +40,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 80 },
-        "labelOffset" : { "x" : -40, "y" : -8 }
+        "at" : { "x" : 224, "y" : 80 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {

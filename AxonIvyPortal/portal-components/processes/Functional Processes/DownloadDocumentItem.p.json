@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "180CC2A120F7FCC9",
   "data" : "com.axonivy.portal.components.DownloadDocumentItemData",
   "kind" : "CALLABLE_SUB",
@@ -30,7 +30,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -76, "y" : 30 }
+        "labelOffset" : { "x" : -2, "y" : 50 }
       },
       "connect" : { "id" : "f4", "to" : "f3" }
     }, {
@@ -55,7 +55,7 @@
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 64 },
-        "size" : { "width" : 160, "height" : 44 }
+        "size" : { "width" : 160, "height" : 60 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {

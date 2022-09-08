@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "16B267B1A01CFA7E",
   "data" : "gawfs.UploadDocumentItemOverrideData",
   "kind" : "CALLABLE_SUB",
@@ -43,7 +43,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 128 },
-        "labelOffset" : { "x" : -60, "y" : -46 }
+        "labelOffset" : { "x" : -52, "y" : -26 }
       },
       "connect" : { "id" : "f1", "to" : "f17" }
     }, {
@@ -61,8 +61,7 @@
       "name" : "valid file?",
       "visual" : {
         "at" : { "x" : 400, "y" : 128 },
-        "size" : { "width" : 28, "height" : 28 },
-        "labelOffset" : { "x" : -30, "y" : -34 }
+        "labelOffset" : { "x" : 3, "y" : -14 }
       },
       "connect" : [
         { "id" : "f21", "to" : "f18", "label" : {
@@ -111,7 +110,7 @@
       "name" : "Not exist?",
       "visual" : {
         "at" : { "x" : 944, "y" : 128 },
-        "labelOffset" : { "x" : -27, "y" : -34 }
+        "labelOffset" : { "x" : 8, "y" : -14 }
       },
       "connect" : [
         { "id" : "f93", "to" : "f10", "label" : {
@@ -163,7 +162,7 @@
       "name" : "Document check",
       "visual" : {
         "at" : { "x" : 688, "y" : 128 },
-        "labelOffset" : { "x" : -54, "y" : -37 }
+        "labelOffset" : { "x" : 0, "y" : -17 }
       },
       "connect" : [
         { "id" : "f27", "to" : "f13", "label" : {
@@ -238,7 +237,7 @@
       },
       "visual" : {
         "at" : { "x" : 544, "y" : 128 },
-        "size" : { "width" : 160, "height" : 44 }
+        "size" : { "width" : 160, "height" : 60 }
       },
       "connect" : { "id" : "f23", "to" : "f14" }
     } ]

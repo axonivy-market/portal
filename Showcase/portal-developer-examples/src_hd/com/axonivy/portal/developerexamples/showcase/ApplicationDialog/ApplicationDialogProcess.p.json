@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "169C767D49174098",
   "data" : "com.axonivy.portal.developerexamples.showcase.ApplicationDialog.ApplicationDialogData",
   "kind" : "HTML_DIALOG",
@@ -35,7 +35,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 488 },
-        "labelOffset" : { "x" : -52, "y" : 15 }
+        "labelOffset" : { "x" : -13, "y" : 35 }
       },
       "connect" : { "id" : "f16", "to" : "f13" }
     }, {
@@ -71,7 +71,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 552 },
-        "labelOffset" : { "x" : -47, "y" : 15 }
+        "labelOffset" : { "x" : -17, "y" : 35 }
       },
       "connect" : { "id" : "f27", "to" : "f25" }
     }, {
@@ -123,7 +123,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 296 },
-        "labelOffset" : { "x" : -47, "y" : 15 }
+        "labelOffset" : { "x" : -5, "y" : 35 }
       },
       "connect" : { "id" : "f14", "to" : "f11" }
     }, {
@@ -144,7 +144,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -16, "y" : 15 }
+        "labelOffset" : { "x" : 45, "y" : 35 }
       },
       "connect" : { "id" : "f7", "to" : "f6" }
     }, {
@@ -156,7 +156,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 168 },
-        "labelOffset" : { "x" : -15, "y" : 12 }
+        "labelOffset" : { "x" : 8, "y" : 32 }
       },
       "connect" : { "id" : "f5", "to" : "f4" }
     }, {
@@ -277,7 +277,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 376 },
-        "labelOffset" : { "x" : -52, "y" : 15 }
+        "labelOffset" : { "x" : -15, "y" : 35 }
       },
       "connect" : { "id" : "f15", "to" : "f12" }
     }, {
