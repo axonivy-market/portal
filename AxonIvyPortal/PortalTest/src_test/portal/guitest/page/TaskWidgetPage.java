@@ -404,6 +404,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public String getFilterValue(String filterId) {
+    waitForElementDisplayed(By.cssSelector("[id$='" + filterId + ":advanced-filter-component']"), true);
     WebElement filterElement =
         findElementByCssSelector("button[id$='" + filterId + ":filter-open-form:advanced-filter-command']");
     return filterElement.getText();
