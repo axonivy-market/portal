@@ -1,8 +1,10 @@
 Categories:
   AnnualLeave:
     name: Jahresurlaub
+  Investment:
+    name: Investition
   LeaveRequest:
-    name: Leave Request German
+    name: Urlaubsantrag
   OtherLeave:
     Maternity:
       name: Mutterschaft
@@ -11,6 +13,14 @@ Categories:
         name: Lange
       name: Krank
     name: Andere verlassen
+  Party:
+    Drink:
+      name: Trinken Sie
+    Food:
+      name: Lebensmittel
+    name: Party
+  Payment:
+    name: Zahlung
 CustomFields:
   Cases:
     AccountNumber:
@@ -138,6 +148,21 @@ Labels:
   zip: PLZ
 Processes:
   CategoriedLeaveRequest:
+    Cases:
+      description: Urlaubsantrag Beschreibung
+      name: Urlaubsantrag
+    Tasks:
+      AnnualLeave:
+        description: Antrag auf Jahresurlaub Beschreibung
+        name: Antrag auf Jahresurlaub
+      MaternityLeave:
+        description: Antrag auf Mutterschaftsurlaub Beschreibung
+        name: Antrag auf Mutterschaftsurlaub
+      SickLeave:
+        description: Antrag auf Krankheitsurlaub Beschreibung
+        name: Antrag auf Krankheitsurlaub
+    description: Dies ist eine kurze Beschreibung dessen, was Sie hinter diesem Beispiel "Urlaubsantrag" erwarten können.
+    name: Antrag auf kategorisierten Urlaub
     processStep: |-
       #Erstellung
       Wählen Sie aus unterschiedlichen Abwesenheitstypen
@@ -150,7 +175,35 @@ Processes:
       Antragssteller bekommt eine Zusammenfassung
       Ergebnis zur Kenntnis nehmen
   CreateInvestment:
+    Tasks:
+      Request:
+        name: Investitionsantrag
+    description: Beispiel für eine Investitionsanfrage für eine kundenspezifische Falldetail-Seite
     name: Investition anlegen
+  Payment:
+    Tasks:
+      Pay:
+        name: Neue Zahlung vornehmen
+      Signal:
+        name: Signal erstellen Neue Zahlung
+    name: Neue Zahlung erstellen
+  TasksForTaskListCustomization:
+    Cases:
+      Party:
+        description: Ein geselliges Beisammensein mit geladenen Gästen, bei dem in der Regel gegessen, getrunken und unterhalten wird.
+        name: Prepare a party
+    Tasks:
+      BeerOrder:
+        description: Bier für ein großes Unternehmen mit 10.000 Mitarbeitern
+        name: Bier-Bestellung
+      MilkTeaOrder:
+        description: Milchtee für 4 Personen
+        name: Milchtee Bestellung
+      PizzaOrder:
+        description: Pizza für 10 Personen
+        name: Pizza bestellen
+    description: 3 Aufgaben erstellen, jede Aufgabe hat CustomerName und ShipmentDate
+    name: Aufgaben für die Anpassung der Aufgabenliste erstellen
 sortFields:
   CREATION_TIME_ASC: Erstellungsdatum (Ältestes zuerst)
   CREATION_TIME_DESC: Erstellungsdatum (Neuestes zuerst)

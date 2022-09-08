@@ -24,6 +24,7 @@
       "name" : "createInvestmentRequestIframe.ivp",
       "config" : {
         "callSignature" : "createInvestmentRequestIframe",
+        "startCategory" : "Investment",
         "case" : {
           "name" : "Investment request with custom case detail using iFrame",
           "description" : "Investment request for customized case detail page using iframe example",
