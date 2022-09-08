@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "1473A12DE00609FB",
   "data" : "ch.ivyteam.wf.processes.ProcessServiceData",
   "kind" : "CALLABLE_SUB",
@@ -20,7 +20,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 96 },
-        "labelOffset" : { "x" : -53, "y" : 17 }
+        "labelOffset" : { "x" : -1, "y" : 37 }
       },
       "connect" : { "id" : "f0", "to" : "f24" }
     }, {

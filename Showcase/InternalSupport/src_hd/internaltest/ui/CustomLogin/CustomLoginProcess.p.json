@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "14E9B792756E0040",
   "data" : "internaltest.ui.CustomLogin.CustomLoginData",
   "kind" : "HTML_DIALOG",
@@ -22,7 +22,7 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
         "size" : { "width" : 20, "height" : 20 },
-        "labelOffset" : { "x" : 13, "y" : 0 }
+        "labelOffset" : { "x" : 37, "y" : 20 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {
@@ -42,7 +42,7 @@
       "visual" : {
         "at" : { "x" : 192, "y" : 64 },
         "size" : { "width" : 20, "height" : 20 },
-        "labelOffset" : { "x" : 13, "y" : 0 }
+        "labelOffset" : { "x" : 34, "y" : 20 }
       },
       "connect" : { "id" : "f6", "to" : "f5" }
     }, {
@@ -98,9 +98,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 192, "y" : 128 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 192, "y" : 128 }
       },
       "connect" : { "id" : "f7", "to" : "f4" }
     } ]

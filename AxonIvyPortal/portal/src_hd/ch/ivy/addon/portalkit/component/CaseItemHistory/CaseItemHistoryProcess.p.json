@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.17",
+  "format" : "9.4.20",
   "id" : "153362B0AC312EFB",
   "data" : "ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData",
   "kind" : "HTML_DIALOG",
@@ -91,7 +91,7 @@
       },
       "visual" : {
         "at" : { "x" : 416, "y" : 192 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f29", "to" : "f28" }
     }, {
@@ -139,7 +139,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 384 },
-        "labelOffset" : { "x" : -23, "y" : 15 }
+        "labelOffset" : { "x" : 26, "y" : 35 }
       },
       "connect" : { "id" : "f6", "to" : "f26", "via" : [ { "x" : 416, "y" : 384 } ] }
     }, {
@@ -169,8 +169,7 @@
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 192 },
-        "size" : { "width" : 128, "height" : 60 },
-        "labelOffset" : { "x" : -46, "y" : -24 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f10", "to" : "f26" }
     } ]

@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "16583DA46E986FE1",
   "data" : "com.axonivy.portal.developerexamples.Data",
   "elements" : [ {
@@ -53,7 +53,7 @@
       },
       "visual" : {
         "at" : { "x" : 520, "y" : 64 },
-        "size" : { "width" : 176, "height" : 44 }
+        "size" : { "width" : 176, "height" : 60 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {

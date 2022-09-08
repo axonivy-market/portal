@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "176CBAB7EBAE6D13",
   "data" : "com.axonivy.portal.developerexamples.customization.CustomizedGuide.CustomizedGuideData",
   "kind" : "HTML_DIALOG",
@@ -21,7 +21,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -16, "y" : 15 }
+        "labelOffset" : { "x" : 34, "y" : 35 }
       },
       "connect" : { "id" : "f2", "to" : "f3" }
     }, {
@@ -56,16 +56,14 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 },
-        "size" : { "width" : 22, "height" : 22 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 64, "y" : 20 }
       },
       "connect" : { "id" : "f7", "to" : "f6" }
     }, {
       "id" : "f6",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 224, "y" : 160 },
-        "size" : { "width" : 22, "height" : 22 }
+        "at" : { "x" : 224, "y" : 160 }
       }
     } ]
 }

@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "172591B4F5B4DE03",
   "data" : "com.axonivy.portal.userexamples.leaverequest.LeaveRequestOverview.LeaveRequestOverviewData",
   "kind" : "HTML_DIALOG",
@@ -86,7 +86,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 256 },
-        "labelOffset" : { "x" : -14, "y" : 15 }
+        "labelOffset" : { "x" : 12, "y" : 35 }
       },
       "connect" : { "id" : "f10", "to" : "f9" }
     }, {
@@ -99,7 +99,7 @@
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 256 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       }
     } ]
 }

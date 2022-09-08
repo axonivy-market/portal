@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.17",
+  "format" : "9.4.20",
   "id" : "181FC5E5ED6EAE2A",
   "data" : "com.axonivy.portal.components.ProcessViewer.ProcessViewerData",
   "kind" : "HTML_DIALOG",
@@ -105,7 +105,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 256 },
-        "labelOffset" : { "x" : -43, "y" : 14 }
+        "labelOffset" : { "x" : 23, "y" : 34 }
       },
       "connect" : { "id" : "f13", "to" : "f10" }
     }, {
@@ -146,7 +146,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 },
-        "labelOffset" : { "x" : -25, "y" : 15 }
+        "labelOffset" : { "x" : 39, "y" : 35 }
       },
       "connect" : { "id" : "f7", "to" : "f6" }
     } ]

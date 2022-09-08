@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "1709A202E7AEC7E8",
   "data" : "com.axonivy.portal.userexamples.credit.HandleEndPageData",
   "kind" : "CALLABLE_SUB",
@@ -26,7 +26,7 @@
       },
       "visual" : {
         "at" : { "x" : 65, "y" : 88 },
-        "labelOffset" : { "x" : -48, "y" : 17 }
+        "labelOffset" : { "x" : 49, "y" : 37 }
       },
       "connect" : { "id" : "f6", "to" : "f4" }
     }, {
