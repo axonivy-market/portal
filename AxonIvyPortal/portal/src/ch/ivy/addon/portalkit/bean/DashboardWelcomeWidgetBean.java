@@ -24,6 +24,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 @ManagedBean
 public class DashboardWelcomeWidgetBean implements Serializable {
 
+  private static final long serialVersionUID = 5372831531773612518L;
+
   private static final String BASE64_STRING_PATTERN = "data:%s;base64,%s";
   private static final String DEFAULT_TEXT_COLOR = "000000";
 
