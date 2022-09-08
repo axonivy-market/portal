@@ -8,3 +8,5 @@ loginOk Boolean #field
 loginOk PERSISTENT #fieldModifier
 callbackUrl String #field
 callbackUrl PERSISTENT #fieldModifier
+oauthProviders java.util.List<ch.ivy.addon.portalkit.bo.OAuthProvider> #field
+oauthProviders PERSISTENT #fieldModifier
