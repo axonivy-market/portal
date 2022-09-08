@@ -35,10 +35,11 @@ public class DashboardWelcomeWidgetConfigurationBean implements Serializable {
   private static final long serialVersionUID = 597266282990903281L;
 
   private static final String IMAGE_DIRECTORY = "DashboardWelcomeWidget";
-  private static final String DEFAULT_TEXT_COLOR = "000000";
+  private static final String DEFAULT_TEXT_COLOR = "ffffff";
   private static final String BASE64_STRING_PATTERN = "data:%s;base64,%s";
   private static final Long UPLOAD_SIZE_LIMIT = 6291456L;
   private static final String DEFAULT_WELCOME_CMS = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/Welcome";
+  private static final String DEFAULT_IMAGE_CMS_URI = "/images/WelcomeWidget/DefaultImage";
 
   private UploadedFile originalImageFile;
   private List<WelcomeTextPosition> textPositions;
@@ -178,5 +179,9 @@ public class DashboardWelcomeWidgetConfigurationBean implements Serializable {
   public String getFileUploadInvalidSizeMessage() {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize",
         Arrays.asList(FileUtils.byteCountToDisplaySize(UPLOAD_SIZE_LIMIT)));
+  }
+
+  public String getDefaultImageLink() {
+    return DEFAULT_IMAGE_CMS_URI;
   }
 }

@@ -42,7 +42,7 @@ public class WelcomeDashboardWidget  extends DashboardWidget {
     result.setName(name);
     result.setLayout(new WidgetLayout());
     result.getLayout().setWidth(12);
-    result.getLayout().setHeight(4);
+    result.getLayout().setHeight(3);
     result.getLayout().setAxisX(0);
     result.getLayout().setAxisY(0);
     return result;
