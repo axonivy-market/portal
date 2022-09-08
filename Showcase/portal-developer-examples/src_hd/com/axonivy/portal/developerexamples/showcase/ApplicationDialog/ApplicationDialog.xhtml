@@ -13,7 +13,7 @@
       <div>
         <ui:define name="taskName">
           <span class="si si-task-list-edit task-template-title-icon"></span>
-          <h:outputText styleClass="task-template-title" id="title" title="#{task.name}" value="#{task.name}" />
+          <h:outputText styleClass="task-template-title" id="title" title="#{task.names().current()}" value="#{task.names().current()}" />
         </ui:define>
       </div>
       <div class="">
