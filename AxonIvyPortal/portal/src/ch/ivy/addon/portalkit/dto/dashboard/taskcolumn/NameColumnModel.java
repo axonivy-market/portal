@@ -37,6 +37,6 @@ public class NameColumnModel extends TaskColumnModel implements Serializable {
     if (task == null) {
       return null;
     }
-    return task.getName();
+    return task.names().current();
   }
 }

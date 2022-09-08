@@ -49,6 +49,6 @@ public class DescriptionColumnModel extends TaskColumnModel implements Serializa
     if (task == null) {
       return null;
     }
-    return task.getDescription();
+    return task.descriptions().current();
   }
 }
