@@ -1,6 +1,8 @@
 Categories:
   AnnualLeave:
     name: Annual Leave
+  Investment:
+    name: Investment
   LeaveRequest:
     name: Leave Request
   OtherLeave:
@@ -11,6 +13,14 @@ Categories:
         name: Long
       name: Sick Leave
     name: Other Leave
+  Party:
+    Drink:
+      name: Drink
+    Food:
+      name: Food
+    name: Party
+  Payment:
+    name: Payment
 CustomFields:
   Cases:
     AccountNumber:
@@ -140,6 +150,21 @@ Labels:
   zip: ZIP
 Processes:
   CategoriedLeaveRequest:
+    Cases:
+      description: Leave Request Description
+      name: Leave Request
+    Tasks:
+      AnnualLeave:
+        description: Annual Leave Request Description
+        name: Annual Leave Request
+      MaternityLeave:
+        description: Maternity Leave Request Description
+        name: Maternity Leave Request
+      SickLeave:
+        description: Sick Leave Request Description
+        name: Sick Leave Request
+    description: This is a short description what you can expect behind this “Leave Request” example.
+    name: Categoried Leave Request
     processStep: |-
       #Creation
       Choose different leave types
@@ -152,7 +177,35 @@ Processes:
       Requester will get a summary of the request
       Acknoledge the result
   CreateInvestment:
+    Tasks:
+      Request:
+        name: Investment request
+    description: Investment Request for Customized Case Detail Page example
     name: Create Investment
+  Payment:
+    Tasks:
+      Pay:
+        name: Do New Payment
+      Signal:
+        name: Signal create New Payment
+    name: Create New Payment
+  TasksForTaskListCustomization:
+    Cases:
+      Party:
+        description: A social gathering of invited guests, typically involving eating, drinking, and entertainment.
+        name: Prepare a party
+    Tasks:
+      BeerOrder:
+        description: Beer for a big company with 10.000 people
+        name: Beer Order
+      MilkTeaOrder:
+        description: Milk tea for 4 people
+        name: Milk Tea Order
+      PizzaOrder:
+        description: Pizza for 10 people
+        name: Pizza Order
+    description: Create 3 tasks, each task has CustomerName and ShipmentDate
+    name: Create Tasks For Task List Customization
 sortFields:
   CREATION_TIME_ASC: Creation date (Oldest first)
   CREATION_TIME_DESC: Creation date (Newest first)

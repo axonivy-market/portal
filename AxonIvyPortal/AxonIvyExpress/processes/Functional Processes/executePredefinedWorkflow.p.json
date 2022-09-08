@@ -608,7 +608,7 @@
                 "taskDef.taskType = TaskType.FINAL_REVIEW;",
                 "if(in.isAdhocProcess) {",
                 "  ITask originalTask = ivy.wf.findTask(in.originalTaskId);",
-                "  taskDef.subject = originalTask.name;",
+                "  taskDef.subject = originalTask.names().current();",
                 "}",
                 "else {",
                 "  taskDef.subject = TaskType.FINAL_REVIEW.getLabel();",
