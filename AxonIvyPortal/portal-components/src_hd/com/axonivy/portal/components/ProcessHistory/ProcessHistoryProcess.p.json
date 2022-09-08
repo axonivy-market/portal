@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "180F979F5AF44684",
   "data" : "com.axonivy.portal.components.ProcessHistory.ProcessHistoryData",
   "kind" : "HTML_DIALOG",
@@ -70,7 +70,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 },
-        "labelOffset" : { "x" : -25, "y" : 15 }
+        "labelOffset" : { "x" : 63, "y" : 35 }
       },
       "connect" : { "id" : "f6", "to" : "f5" }
     }, {
@@ -79,7 +79,7 @@
       "name" : "Is using Iframe with Portal?",
       "visual" : {
         "at" : { "x" : 448, "y" : 160 },
-        "labelOffset" : { "x" : -64, "y" : -41 }
+        "labelOffset" : { "x" : 18, "y" : -21 }
       },
       "connect" : [
         { "id" : "f9", "to" : "f8", "label" : {
@@ -108,7 +108,7 @@
       },
       "visual" : {
         "at" : { "x" : 648, "y" : 160 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f11", "to" : "f10" }
     }, {

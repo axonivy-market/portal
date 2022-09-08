@@ -54,7 +54,7 @@ Below is a sample JSON definition of a task widget in the Portal dashboard
 
 The basic JSON structure of a Task widget
 
-   ``type``: type of widget. Use ``task`` for a task widget
+   ``type``: type of the widget. Use ``task`` for a task widget
 
    ``id``: ID of the widget
 
@@ -62,13 +62,13 @@ The basic JSON structure of a Task widget
 
    ``layout``: layout definition of the widget
 
-      ``x``: HTML DOM Style ``left`` will be calculated by formula ``x / 12 * 100%``
+      ``x``: HTML DOM Style ``left`` is calculated as formula ``x / 12 * 100%``
 
-      ``y``: HTML DOM Style ``top`` will be calculated by formula ``y / 12 * 100%``
+      ``y``: HTML DOM Style ``top`` is calculated as formula ``y / 12 * 100%``
 
-      ``w``: HTML DOM Style ``width`` will be calculated by formula ``60 * w + 20 * (w - 1)``
+      ``w``: HTML DOM Style ``width`` is calculated as formula ``60 * w + 20 * (w - 1)``
 
-      ``h``: HTML DOM Style ``height`` will be calculated by formula ``60 * h + 20 * (h - 1)``
+      ``h``: HTML DOM Style ``height`` is calculated as formula ``60 * h + 20 * (h - 1)``
 
       ``styleClass`` (optional): add CSS Classes to HTML DOM of the widget
 

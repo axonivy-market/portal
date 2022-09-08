@@ -178,6 +178,13 @@ You can define the widget name and process to be displayed.
 
 |process-viewer-widget-configuration|
 
+Welcome widget
+==============
+
+You can define a welcome widget with a background image and a welcome text.
+
+|welcome-widget-configuration|
+
 .. include:: ../includes/_common-icon.rst  
 
 .. |dash-board| image:: ../../screenshots/new-dashboard/dashboard.png
@@ -201,3 +208,4 @@ You can define the widget name and process to be displayed.
 .. |process-widget-image-mode| image:: ../../screenshots/new-dashboard/process-widget-image-mode.png
 .. |process-viewer-widget| image:: ../../screenshots/new-dashboard/process-viewer-widget.png
 .. |process-viewer-widget-configuration| image:: ../../screenshots/new-dashboard/process-viewer-widget-configuration.png
+.. |welcome-widget-configuration| image:: ../../screenshots/new-dashboard/welcome-widget-configuration.png

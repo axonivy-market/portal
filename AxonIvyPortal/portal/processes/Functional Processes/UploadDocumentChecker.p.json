@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "16285772A1F890EE",
   "data" : "ch.ivy.add.portalkit.UploadDocumentCheckerData",
   "kind" : "CALLABLE_SUB",
@@ -9,7 +9,6 @@
       "name" : "call(UploadedFile)",
       "config" : {
         "callSignature" : "call",
-        ".name" : "call(UploadedFile)",
         "input" : {
           "params" : [
             { "name" : "uploadFile", "type" : "org.primefaces.model.file.UploadedFile" }
@@ -45,7 +44,6 @@
       "name" : "Check file contains code",
       "config" : {
         "security" : "system",
-        ".name" : "Check file contains code",
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
@@ -63,7 +61,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 560 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {
@@ -74,10 +72,6 @@
         "in whitelist"
       ],
       "config" : {
-        ".name" : [
-          "Check file extension",
-          "in whitelist"
-        ],
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
@@ -94,7 +88,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 176 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f13", "to" : "f12" }
     }, {
@@ -125,7 +119,6 @@
       "name" : "Check file contains virus",
       "config" : {
         "security" : "system",
-        ".name" : "Check file contains virus",
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
@@ -143,7 +136,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 336 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f8", "to" : "f7" }
     }, {

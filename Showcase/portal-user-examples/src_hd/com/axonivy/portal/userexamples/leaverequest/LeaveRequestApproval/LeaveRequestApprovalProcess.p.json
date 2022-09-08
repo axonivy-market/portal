@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "1703362EB1E55CE2",
   "data" : "com.axonivy.portal.userexamples.leaverequest.LeaveRequestApproval.LeaveRequestApprovalData",
   "kind" : "HTML_DIALOG",
@@ -44,7 +44,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 },
-        "labelOffset" : { "x" : -15, "y" : 15 }
+        "labelOffset" : { "x" : 18, "y" : 35 }
       },
       "connect" : { "id" : "f11", "to" : "f10" }
     }, {
@@ -90,7 +90,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 256 },
-        "labelOffset" : { "x" : -21, "y" : 16 }
+        "labelOffset" : { "x" : 9, "y" : 36 }
       },
       "connect" : { "id" : "f12", "to" : "f10", "via" : [ { "x" : 224, "y" : 256 } ] }
     }, {
