@@ -68,3 +68,5 @@ Portal.RoleDirectChildrenLimit,"50","| Controls the number of direct child roles
 Portal.RoleParentLimit,"10","| Controls the number of parent roles that are shown when filtering roles in the Role Management tab.
 | Valid number: 5, 10, 20"
 Portal.LoginPage.ShowFooter,TRUE,"Set to false to hide the footer on the login page."
+Portal.Theme.EnableSwitchThemeModeButton,TRUE,"If false, the Switch Theme Mode button is disabled."
+Portal.Theme.Mode,LIGHT,"The default theme mode of the application."
