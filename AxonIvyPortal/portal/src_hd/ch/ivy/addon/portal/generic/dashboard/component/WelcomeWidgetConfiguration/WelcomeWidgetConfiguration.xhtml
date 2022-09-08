@@ -28,11 +28,15 @@
            </p:messages>
          </div>
          <div class="ui-g-12">
-           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}" styleClass="welcome-text-label" />
+           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}" styleClass="welcome-text-label" for="preview-panel" />
            <h:panelGroup layout="block" id="preview-panel" styleClass="preview-panel">
              <span id="preview-text" class="preview-text js-preview-text welcome-text" />
-            <img id="preview-image" class="preview-image js-preview-image" />
-            <h:inputHidden id="preview-image-hidden" value="#{dashboardWelcomeWidgetConfigurationBean.encodedImg}" />
+
+            <p:graphicImage id="default-image" cache="true" styleClass="preview-image js-preview-image"
+              library="ivy-cms" rendered="#{empty dashboardWelcomeWidgetConfigurationBean.encodedImg}" name="#{dashboardWelcomeWidgetConfigurationBean.defaultImageLink}" />
+
+            <img id="preview-image" class="preview-image js-preview-image" jsf:rendered="#{not empty dashboardWelcomeWidgetConfigurationBean.encodedImg}" />
+            <h:inputHidden id="preview-image-hidden" value="#{dashboardWelcomeWidgetConfigurationBean.encodedImg}" rendered="#{not empty dashboardWelcomeWidgetConfigurationBean.encodedImg}" />
            </h:panelGroup>
          </div>
          <h:panelGroup id="widget-title-group" styleClass="u-hidden" />
@@ -54,14 +58,6 @@
              invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
              sizeLimit="#{dashboardWelcomeWidgetConfigurationBean.uploadFileLimit}"
              oncomplete="PF('new-widget-configuration-dialog').initPosition(); updateAll();"  />
-         </div>
-
-         <div class="ui-g-3 ui-md-4">
-           <p:outputLabel for="image-style-class" styleClass="welcome-text-label"
-             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/ImageStyleClass')}" />
-         </div>
-         <div class="ui-fluid ui-g-9 ui-md-8 welcome-styles-panel">
-           <p:inputText id="image-style-class" value="#{dashboardWelcomeWidgetConfigurationBean.widget.imageStyleClass}" styleClass="js-image-style-class" onchange="WelcomeWidgetConfiguration.updateStyleClasses();" />
          </div>
 
          <div class="ui-g-3 ui-md-4">
@@ -90,14 +86,6 @@
            <p:colorPicker id="welcome-text-color" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeTextColor}"
              styleClass="u-padding-right-10 js-welcome-text-color" onchange="WelcomeWidgetConfiguration.updatePreviewTextColor();" />
            <span id="selected-welcome-text-color" class="js-selected-welcome-text-color" />
-         </div>
-
-         <div class="ui-g-3 ui-md-4">
-           <p:outputLabel for="text-style-class" styleClass="welcome-text-label"
-             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/WelcomeTextStyleClass')}" />
-         </div>
-         <div class="ui-fluid ui-g-9 ui-md-8 welcome-styles-panel">
-           <p:inputText id="text-style-class" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeTextStyleClass}" styleClass="js-text-style-class" onchange="WelcomeWidgetConfiguration.updateStyleClasses();" />
          </div>
 
          <div class="ui-g-3 ui-md-4 u-no-padding-bottom">
@@ -129,6 +117,31 @@
              </h:panelGroup>
            </ui:repeat>
         </h:panelGroup>
+        
+        <div class="ui-g-12">
+          <p:fieldset legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/AdvancedSettings')}" collapsed="true" toggleable="true">
+            <div class="ui-g">
+              <div class="ui-g-3 ui-md-4">
+                <p:outputLabel for="image-style-class" styleClass="welcome-text-label"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/ImageStyleClass')}" />
+              </div>
+              <div class="ui-fluid ui-g-9 ui-md-8 welcome-styles-panel u-no-padding-left">
+                <p:inputText id="image-style-class" value="#{dashboardWelcomeWidgetConfigurationBean.widget.imageStyleClass}" styleClass="js-image-style-class" onchange="WelcomeWidgetConfiguration.updateStyleClasses();" />
+              </div>
+
+              <div class="ui-g-3 ui-md-4">
+                <p:outputLabel for="text-style-class" styleClass="welcome-text-label"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/WelcomeTextStyleClass')}" />
+              </div>
+              <div class="ui-fluid ui-g-9 ui-md-8 welcome-styles-panel u-no-padding-left">
+                <p:inputText id="text-style-class" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeTextStyleClass}" styleClass="js-text-style-class" onchange="WelcomeWidgetConfiguration.updateStyleClasses();" />
+              </div>
+            </div>
+          </p:fieldset>
+        </div>
+
+        
+
        </div>
        <p:remoteCommand name="initGreetingTexts" update="welcome-text-input-container"
          actionListener="#{dashboardWelcomeWidgetConfigurationBean.initClientTime()}"
