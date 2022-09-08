@@ -999,6 +999,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   login:
     AxonIvyPortal: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+    LoginWith: Log in with
     PasswordRequiredMessage: The password is required
     UsernameRequiredMessage: The username is required
     login: Login
