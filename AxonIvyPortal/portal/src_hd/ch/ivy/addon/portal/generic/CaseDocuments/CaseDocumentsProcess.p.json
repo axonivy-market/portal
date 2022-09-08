@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "18022687D24C1D82",
   "data" : "ch.ivy.addon.portal.generic.CaseDocuments.CaseDocumentsData",
   "kind" : "HTML_DIALOG",
@@ -9,7 +9,6 @@
       "name" : "start(Long)",
       "config" : {
         "callSignature" : "start",
-        ".name" : "start(Long)",
         "input" : {
           "params" : [
             { "name" : "caseId", "type" : "Long" }
@@ -23,7 +22,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -16, "y" : 15 }
+        "labelOffset" : { "x" : 22, "y" : 35 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {
@@ -37,7 +36,6 @@
       "type" : "HtmlDialogEventStart",
       "name" : "close",
       "config" : {
-        ".name" : "close",
         "guid" : "1802215F5712F489"
       },
       "visual" : {
@@ -55,7 +53,6 @@
       "type" : "SubProcessCall",
       "name" : "Find documents",
       "config" : {
-        ".name" : "Find documents",
         "processCall" : "Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)",
         "output" : {
           "map" : {
@@ -82,12 +79,11 @@
       "name" : "initData()",
       "config" : {
         "callSignature" : "initData",
-        ".name" : "initData()",
         "guid" : "1802244D8B3A4339"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 },
-        "labelOffset" : { "x" : -40, "y" : 15 }
+        "labelOffset" : { "x" : -7, "y" : 35 }
       },
       "connect" : { "id" : "f9", "to" : "f30" }
     }, {
@@ -101,7 +97,6 @@
       "type" : "SubProcessCall",
       "name" : "Delete Document",
       "config" : {
-        ".name" : "Delete Document",
         "processCall" : "Functional Processes/DeleteDocument:call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
         "output" : {
           "map" : {
@@ -141,7 +136,6 @@
       "type" : "SubProcessCall",
       "name" : "Find documents",
       "config" : {
-        ".name" : "Find documents",
         "processCall" : "Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)",
         "output" : {
           "map" : {
@@ -170,10 +164,6 @@
         "message"
       ],
       "config" : {
-        ".name" : [
-          "Show delete",
-          "message"
-        ],
         "output" : {
           "code" : [
             "import javax.faces.application.FacesMessage;",
@@ -193,7 +183,6 @@
       "name" : "downloadDocument(IvyDocument)",
       "config" : {
         "callSignature" : "downloadDocument",
-        ".name" : "downloadDocument(IvyDocument)",
         "result" : {
           "params" : [
             { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent" }
@@ -214,7 +203,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 256 },
-        "labelOffset" : { "x" : -91, "y" : 17 }
+        "labelOffset" : { "x" : 11, "y" : 37 }
       },
       "connect" : { "id" : "f22", "to" : "f20" }
     }, {
@@ -222,7 +211,6 @@
       "type" : "SubProcessCall",
       "name" : "Download Document",
       "config" : {
-        ".name" : "Download Document",
         "processCall" : "Functional Processes/DownloadDocument:call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
         "output" : {
           "map" : {
@@ -243,7 +231,7 @@
       },
       "visual" : {
         "at" : { "x" : 232, "y" : 256 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f25", "to" : "f24" }
     }, {
@@ -252,7 +240,6 @@
       "name" : "deleteDocument()",
       "config" : {
         "callSignature" : "deleteDocument",
-        ".name" : "deleteDocument()",
         "guid" : "18040F4FD2418511"
       },
       "visual" : {

@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "16B1B70EE89C4939",
   "data" : "com.axonivy.portal.components.DocumentTable.DocumentTableData",
   "kind" : "HTML_DIALOG",
@@ -9,7 +9,6 @@
       "name" : "start(ICase)",
       "config" : {
         "callSignature" : "start",
-        ".name" : "start(ICase)",
         "input" : {
           "params" : [
             { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
@@ -22,7 +21,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 96 },
-        "labelOffset" : { "x" : -35, "y" : 15 }
+        "labelOffset" : { "x" : 5, "y" : 35 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {
@@ -37,12 +36,11 @@
       "name" : "renderTable()",
       "config" : {
         "callSignature" : "renderTable",
-        ".name" : "renderTable()",
         "guid" : "16B1C835D6DF8ED1"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 288 },
-        "labelOffset" : { "x" : -25, "y" : 17 }
+        "labelOffset" : { "x" : 20, "y" : 37 }
       },
       "connect" : { "id" : "f8", "to" : "f6" }
     }, {
@@ -50,7 +48,6 @@
       "type" : "SubProcessCall",
       "name" : "GetDocumentList",
       "config" : {
-        ".name" : "GetDocumentList",
         "processCall" : "Functional Processes/GetDocumentItems:call(ch.ivyteam.ivy.workflow.ICase)",
         "output" : {
           "map" : {
@@ -84,7 +81,6 @@
       "name" : "upload(FileUploadEvent)",
       "config" : {
         "callSignature" : "upload",
-        ".name" : "upload(FileUploadEvent)",
         "input" : {
           "params" : [
             { "name" : "event", "type" : "org.primefaces.event.FileUploadEvent" }
@@ -97,19 +93,16 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 384 },
-        "labelOffset" : { "x" : -64, "y" : 21 }
+        "labelOffset" : { "x" : 12, "y" : 41 }
       },
       "connect" : { "id" : "f32", "to" : "f16" }
     }, {
       "id" : "f28",
       "type" : "Alternative",
       "name" : "Upload successfully?",
-      "config" : {
-        ".name" : "Upload successfully?"
-      },
       "visual" : {
         "at" : { "x" : 512, "y" : 384 },
-        "labelOffset" : { "x" : -54, "y" : -39 }
+        "labelOffset" : { "x" : 13, "y" : -19 }
       },
       "connect" : [
         { "id" : "f40", "to" : "f39", "label" : {
@@ -124,7 +117,6 @@
       "type" : "Script",
       "name" : "Show error message",
       "config" : {
-        ".name" : "Show error message",
         "output" : {
           "code" : [
             "import javax.faces.application.FacesMessage;",
@@ -136,7 +128,7 @@
       },
       "visual" : {
         "at" : { "x" : 640, "y" : 480 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f48", "to" : "f45" }
     }, {
@@ -150,7 +142,6 @@
       "type" : "SubProcessCall",
       "name" : "UploadDocument",
       "config" : {
-        ".name" : "UploadDocument",
         "processCall" : "Functional Processes/UploadDocumentItem:call(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.file.UploadedFile,Boolean,Boolean,String)",
         "output" : {
           "map" : {
@@ -189,10 +180,6 @@
         "message"
       ],
       "config" : {
-        ".name" : [
-          "Show success",
-          "message"
-        ],
         "output" : {
           "code" : [
             "import javax.faces.application.FacesMessage;",
@@ -204,7 +191,7 @@
       },
       "visual" : {
         "at" : { "x" : 800, "y" : 384 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f47", "to" : "f45" }
     }, {
@@ -213,7 +200,6 @@
       "name" : "setFileLimit(Integer)",
       "config" : {
         "callSignature" : "setFileLimit",
-        ".name" : "setFileLimit(Integer)",
         "input" : {
           "params" : [
             { "name" : "fileLimit", "type" : "Integer" }
@@ -240,7 +226,6 @@
       "name" : "delete()",
       "config" : {
         "callSignature" : "delete",
-        ".name" : "delete()",
         "guid" : "16B213CA436B66B2"
       },
       "visual" : {
@@ -252,7 +237,6 @@
       "type" : "SubProcessCall",
       "name" : "Delete Document",
       "config" : {
-        ".name" : "Delete Document",
         "processCall" : "Functional Processes/DeleteDocumentItem:call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
         "output" : {
           "map" : {
@@ -283,10 +267,6 @@
         "message"
       ],
       "config" : {
-        ".name" : [
-          "Show delete",
-          "message"
-        ],
         "output" : {
           "code" : [
             "import javax.faces.application.FacesMessage;",
@@ -312,7 +292,6 @@
       "name" : "download(IvyDocument)",
       "config" : {
         "callSignature" : "download",
-        ".name" : "download(IvyDocument)",
         "result" : {
           "params" : [
             { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent" }
@@ -340,7 +319,6 @@
       "type" : "SubProcessCall",
       "name" : "DownloadDocument",
       "config" : {
-        ".name" : "DownloadDocument",
         "processCall" : "Functional Processes/DownloadDocumentItem:call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
         "output" : {
           "map" : {
@@ -361,7 +339,7 @@
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 736 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f27", "to" : "f26" }
     }, {
@@ -377,15 +355,9 @@
         "not exceed",
         "limit of documents?"
       ],
-      "config" : {
-        ".name" : [
-          "not exceed",
-          "limit of documents?"
-        ]
-      },
       "visual" : {
         "at" : { "x" : 224, "y" : 384 },
-        "labelOffset" : { "x" : -68, "y" : -48 }
+        "labelOffset" : { "x" : -60, "y" : -28 }
       },
       "connect" : [
         { "id" : "f33", "to" : "f13", "label" : {
@@ -402,17 +374,13 @@
         "limit of documents error message"
       ],
       "config" : {
-        ".name" : [
-          "Set error message to",
-          "limit of documents error message"
-        ],
         "output" : {
           "code" : "out.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/FileLimitMessage\") + \" (max.\" + in.fileLimit + \")\";"
         }
       },
       "visual" : {
         "at" : { "x" : 368, "y" : 480 },
-        "size" : { "width" : 208, "height" : 44 }
+        "size" : { "width" : 208, "height" : 60 }
       },
       "connect" : { "id" : "f38", "to" : "f36" }
     }, {
@@ -432,10 +400,6 @@
         "if it is not empty"
       ],
       "config" : {
-        ".name" : [
-          "Store document type",
-          "if it is not empty"
-        ],
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.document.DocumentCustomField;",
@@ -449,7 +413,7 @@
       },
       "visual" : {
         "at" : { "x" : 640, "y" : 384 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f41", "to" : "f46" }
     }, {
@@ -458,7 +422,6 @@
       "name" : "renderComponent(String,Boolean,DocumentType,Boolean,Boolean,String)",
       "config" : {
         "callSignature" : "renderComponent",
-        ".name" : "renderComponent(String,Boolean,DocumentType,Boolean,Boolean,String)",
         "input" : {
           "params" : [
             { "name" : "messageComponentId", "type" : "String" },
@@ -481,7 +444,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 192 },
-        "labelOffset" : { "x" : -91, "y" : 17 }
+        "labelOffset" : { "x" : 121, "y" : 37 }
       },
       "connect" : { "id" : "f44", "to" : "f43" }
     }, {
@@ -495,7 +458,6 @@
       "type" : "Script",
       "name" : "Release JSF Event",
       "config" : {
-        ".name" : "Release JSF Event",
         "output" : {
           "code" : [
             "// Do not store JSF Event in a Html Dialog data field",

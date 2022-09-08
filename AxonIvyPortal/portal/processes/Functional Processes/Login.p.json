@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.17",
+  "format" : "9.4.20",
   "id" : "1694805B8DB28D00",
   "data" : "ch.ivy.add.portalkit.LoginData",
   "kind" : "CALLABLE_SUB",
@@ -51,7 +51,7 @@
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 64 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     } ]

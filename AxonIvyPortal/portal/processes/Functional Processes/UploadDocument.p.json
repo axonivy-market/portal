@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "16AB53A8F6EAADFB",
   "data" : "ch.ivy.add.portalkit.UploadDocumentData",
   "kind" : "CALLABLE_SUB",
@@ -12,10 +12,6 @@
       ],
       "config" : {
         "callSignature" : "call",
-        ".name" : [
-          "call(ICase,UploadedFile,",
-          "Boolean,Boolean,String)"
-        ],
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
@@ -47,20 +43,16 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 128 },
-        "labelOffset" : { "x" : -60, "y" : -46 }
+        "labelOffset" : { "x" : -52, "y" : -26 }
       },
       "connect" : { "id" : "f4", "to" : "f36" }
     }, {
       "id" : "f70",
       "type" : "Alternative",
       "name" : "valid file?",
-      "config" : {
-        ".name" : "valid file?"
-      },
       "visual" : {
         "at" : { "x" : 368, "y" : 128 },
-        "size" : { "width" : 28, "height" : 28 },
-        "labelOffset" : { "x" : -30, "y" : -34 }
+        "labelOffset" : { "x" : 3, "y" : -14 }
       },
       "connect" : [
         { "id" : "f78", "to" : "f75", "label" : {
@@ -79,7 +71,6 @@
       "type" : "Script",
       "name" : "Validate",
       "config" : {
-        ".name" : "Validate",
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
@@ -123,12 +114,9 @@
       "id" : "f53",
       "type" : "Alternative",
       "name" : "Document check",
-      "config" : {
-        ".name" : "Document check"
-      },
       "visual" : {
         "at" : { "x" : 656, "y" : 128 },
-        "labelOffset" : { "x" : -54, "y" : -37 }
+        "labelOffset" : { "x" : 0, "y" : -17 }
       },
       "connect" : [
         { "id" : "f87", "to" : "f38", "label" : {
@@ -150,7 +138,6 @@
       "name" : "Check exist",
       "config" : {
         "security" : "system",
-        ".name" : "Check exist",
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
@@ -184,7 +171,6 @@
       "type" : "SubProcessCall",
       "name" : "UploadDocumentChecker",
       "config" : {
-        ".name" : "UploadDocumentChecker",
         "processCall" : "Functional Processes/UploadDocumentChecker:call(org.primefaces.model.file.UploadedFile)",
         "output" : {
           "map" : {
@@ -204,7 +190,7 @@
       },
       "visual" : {
         "at" : { "x" : 512, "y" : 128 },
-        "size" : { "width" : 160, "height" : 44 }
+        "size" : { "width" : 160, "height" : 60 }
       },
       "connect" : { "id" : "f80", "to" : "f53" }
     }, {
@@ -216,10 +202,6 @@
       ],
       "config" : {
         "security" : "system",
-        ".name" : [
-          "Upload document",
-          "and create note"
-        ],
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
@@ -245,19 +227,16 @@
       },
       "visual" : {
         "at" : { "x" : 1080, "y" : 128 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f3", "to" : "f2" }
     }, {
       "id" : "f72",
       "type" : "Alternative",
       "name" : "Not exist?",
-      "config" : {
-        ".name" : "Not exist?"
-      },
       "visual" : {
         "at" : { "x" : 912, "y" : 128 },
-        "labelOffset" : { "x" : -27, "y" : -34 }
+        "labelOffset" : { "x" : 8, "y" : -14 }
       },
       "connect" : [
         { "id" : "f15", "to" : "f71", "label" : {
@@ -274,12 +253,6 @@
         "Override this sub process to upload your file to DMS",
         "This sub process also contains some validation, so if you override it, you have to implement validation by your own"
       ],
-      "config" : {
-        ".name" : [
-          "Override this sub process to upload your file to DMS",
-          "This sub process also contains some validation, so if you override it, you have to implement validation by your own"
-        ]
-      },
       "visual" : {
         "at" : { "x" : 400, "y" : 272 },
         "size" : { "width" : 640, "height" : 44 }

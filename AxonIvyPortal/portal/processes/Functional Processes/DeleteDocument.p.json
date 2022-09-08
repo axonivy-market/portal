@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "16AC05A855359627",
   "data" : "ch.ivy.add.portalkit.DeleteDocumentData",
   "kind" : "CALLABLE_SUB",
@@ -9,7 +9,6 @@
       "name" : "call(ICase,IvyDocument)",
       "config" : {
         "callSignature" : "call",
-        ".name" : "call(ICase,IvyDocument)",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
@@ -31,7 +30,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -73, "y" : 17 }
+        "labelOffset" : { "x" : 1, "y" : 37 }
       },
       "connect" : { "id" : "f4", "to" : "f3" }
     }, {
@@ -45,7 +44,6 @@
       "type" : "Script",
       "name" : "Delete document item",
       "config" : {
-        ".name" : "Delete document item",
         "output" : {
           "code" : [
             "import java.util.Arrays;",
@@ -60,16 +58,13 @@
       },
       "visual" : {
         "at" : { "x" : 256, "y" : 64 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f5",
       "type" : "ProcessAnnotation",
       "name" : "Override this sub process to delete file in DMS",
-      "config" : {
-        ".name" : "Override this sub process to delete file in DMS"
-      },
       "visual" : {
         "at" : { "x" : 288, "y" : 184 },
         "size" : { "width" : 256, "height" : 40 }

@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "16A68510A341BE6E",
   "data" : "internaltest.CaseOwnerData",
   "elements" : [ {
@@ -16,7 +16,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -38, "y" : 15 }
+        "labelOffset" : { "x" : 14, "y" : 35 }
       },
       "connect" : { "id" : "f4", "to" : "f3" }
     }, {
@@ -43,7 +43,7 @@
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 64 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f6", "to" : "f5", "var" : "in1" }
     }, {
@@ -83,7 +83,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 },
-        "labelOffset" : { "x" : -45, "y" : 17 }
+        "labelOffset" : { "x" : 5, "y" : 37 }
       },
       "connect" : { "id" : "f13", "to" : "f10" }
     }, {
@@ -133,7 +133,7 @@
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 160 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f12", "to" : "f8", "var" : "in1" }
     } ]

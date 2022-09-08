@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "1703246DF653A6CD",
   "data" : "com.axonivy.portal.userexamples.credit.ApproveLevel2.ApproveLevel2Data",
   "kind" : "HTML_DIALOG",
@@ -57,8 +57,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 64 },
-        "labelOffset" : { "x" : -40, "y" : -8 }
+        "at" : { "x" : 224, "y" : 64 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {
