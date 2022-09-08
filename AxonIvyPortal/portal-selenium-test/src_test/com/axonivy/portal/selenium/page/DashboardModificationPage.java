@@ -38,7 +38,6 @@ public class DashboardModificationPage extends TemplatePage {
     if (dashboardRow != null) {
       dashboardRow.$("[id$=':configure-dashboard']").click();
       NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
-      $("div[id$='dashboard-body']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
       return newDashboardDetailsEditPage;
     }
     return null;
