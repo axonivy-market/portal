@@ -52,7 +52,7 @@ public class TaskWidgetPage extends TemplatePage {
     WebElement fullModeButton = findElementById(taskWidgetId + ":task-list-link:task-list-link");
     click(fullModeButton);
     waitForElementDisplayed(By.cssSelector("li.topbar-item.breadcrumb-container"), true);
-    WaitHelper.assertTrueWithWait(() -> isElementDisplayed(By.cssSelector("[id$=':filter-save-action']")));
+    waitForElementDisplayed(By.cssSelector("[id$=':filter-save-action']"), true);
     waitForLocatorDisplayed("id('" + taskWidgetId + ":filter-save-action')");
   }
 
