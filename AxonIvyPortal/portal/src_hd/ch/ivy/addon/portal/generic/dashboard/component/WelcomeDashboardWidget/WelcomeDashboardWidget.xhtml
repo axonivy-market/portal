@@ -47,7 +47,9 @@
         library="ivy-cms" rendered="#{empty widget.uploadedImageFile}" name="#{dashboardWelcomeWidgetBean.defaultImageLink}" />
 
       <img id="welcome-image" class="welcome-image js-welcome-image #{widget.imageStyleClass}" jsf:rendered="#{not empty widget.uploadedImageFile}" />
-      <h:inputHidden id="welcome-image-hidden" value="#{dashboardWelcomeWidgetBean.renderImage(widget)}" rendered="#{not empty widget.uploadedImageFile}" />
+      <h:form>
+        <h:inputHidden id="welcome-image-hidden" value="#{dashboardWelcomeWidgetBean.renderImage(widget)}" rendered="#{not empty widget.uploadedImageFile}" />
+      </h:form>
     </div>
     <p:remoteCommand name="updateWelcomeText_#{widget.id}" update="welcome-text"
       actionListener="#{dashboardWelcomeWidgetBean.updateWelcomeText()}"

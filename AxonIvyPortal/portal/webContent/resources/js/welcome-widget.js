@@ -56,7 +56,7 @@ WelcomeWidgetConfiguration = {
 
   loadPreviewImage : function() {
     var previewDialog = $('#new-widget-configuration-dialog');
-    if (!previewDialog.find('[id$=":default-image"]')) {
+    if (previewDialog.find('[id$=":default-image"]').length == 0) {
       previewDialog.find('.js-preview-image').get(0).setAttribute('src', $('#widget-configuration-form input[id $= ":preview-image-hidden"]').get(0).value);
     }
   },
@@ -106,7 +106,7 @@ WelcomeWidget = {
   init : function(widgetId, welcomeTextColor, welcomeTextPosition, welcomeTextSize) {
     var widget = $('div.grid-stack-item[gs-id = ' + widgetId + ']');
     
-    if (!widget.find('[id$=":default-image"]')) {
+    if (widget.find('[id$=":default-image"]').length == 0) {
       $(widget.find('#welcome-image')).get(0).setAttribute('src', widget.find('input[id $= ":welcome-image-hidden"]').get(0).value);
     }
     this.updateWelcomeTextStyles(widgetId, welcomeTextColor, welcomeTextPosition, welcomeTextSize);
