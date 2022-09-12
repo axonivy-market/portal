@@ -12,7 +12,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "#dashboard-body";
+    return "#add-button";
   }
 
   public void addWidget() {
