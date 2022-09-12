@@ -26,7 +26,7 @@ Login Background
 To change the default login background image, simply add or replace the image in
 ``configuration/applications/<APPNAME>/branding/background.jpg`` with your image.
 
-Refer to :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html#>` for details.
+Refer to :dev-url:`Engine Branding </doc/9.4.0/designer-guide/user-interface/branding/branding-engine.html#>` for details.
 
 .. tip::
   - We recommend using an image with 1920x1080 pixels.
