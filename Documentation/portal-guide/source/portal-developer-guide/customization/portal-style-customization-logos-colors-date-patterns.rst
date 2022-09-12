@@ -9,7 +9,7 @@ Change Logos in Portal
 ----------------------
 
 You can change both the top-left corner logo in the menu and the login logo by
-using :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html>`.
+using :dev-url:`Engine Branding </doc/9.4.0/designer-guide/user-interface/branding/branding-engine.html>`.
 
 We allow for two different logo graphics for the expanded and the collapsed
 menu. You can use one "pure" logo for the small, quadratic format (default: 42x42 pixels), and a logo
@@ -30,7 +30,7 @@ We recommend using images with a transparent background, if your Corporate
 Identity does not define a mandatory background color. 
 
 To change the logos used in the Portal, please use resources that are described at 
-:dev-url:`User Interface Branding <doc/nightly/designer-guide/user-interface/branding/branding-user-interface.html#resources>` and follow the guidelines below.
+:dev-url:`User Interface Branding <doc/9.4.0/designer-guide/user-interface/branding/branding-user-interface.html#resources>` and follow the guidelines below.
 
 Expanded Menu Logo
 ^^^^^^^^^^^^^^^^^^
@@ -72,8 +72,8 @@ The Portal uses modern |css_variable| to support style customization.
 To customize the Portal styles in an upgrade safe way, we suggest that you copy all CSS variables and styles
 which you plan to override from the files ``portal-root-variables.css`` and ``portal.css`` to file ``custom.css``.
 
-Refer to :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html>` for the
-location of :dev-url:`custom.css </doc/nightly/engine-guide/configuration/files/custom-css.html>`.
+Refer to :dev-url:`Engine Branding </doc/9.4.0/designer-guide/user-interface/branding/branding-engine.html>` for the
+location of :dev-url:`custom.css </doc/9.4.0/engine-guide/configuration/files/custom-css.html>`.
 
 .. caution:: Please do not modify ``portal-root-variables.css``, ``portal-variables-light.css``, ``portal-variables-dark.css`` and ``portal.css`` directly because they may change in a future Portal version.
 
@@ -127,7 +127,7 @@ You can customize the Portal styles in ``custom.css``.
 
 .. tip::
    If you are using IFrames and you want to customize the colors of the project specific UIs, then refer to this documentation 
-   :dev-url:`/doc/nightly/designer-guide/how-to/overrides.html?#override-new-wizard`
+   :dev-url:`/doc/9.4.0/designer-guide/how-to/overrides.html?#override-new-wizard`
 
 .. warning::
    - Do not change ``font-family`` property values.
