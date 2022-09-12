@@ -17,7 +17,7 @@
   </distributionManagement>
   <properties>
     <ivy.engine.version>9.4.0</ivy.engine.version>
-    <build.plugin.version>9.4.1</build.plugin.version>
+    <build.plugin.version>9.4.0</build.plugin.version>
   </properties>
   <repositories>
     <repository>

@@ -202,6 +202,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private SelenideElement getStandardFieldSelection() {
+    getColumnManagementDialog().$("div[id$='standard-field-selection'] .ui-selectonemenu-trigger").waitUntil(getClickableCondition(), DEFAULT_TIMEOUT);
     return getColumnManagementDialog().$("div[id$='standard-field-selection'] .ui-selectonemenu-trigger");
   }
 

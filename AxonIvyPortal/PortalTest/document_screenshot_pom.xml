@@ -7,7 +7,7 @@
   <packaging>pom</packaging>
   <properties>
     <powermock.version>2.0.2</powermock.version>
-    <build.plugin.version>9.4.1</build.plugin.version>
+    <build.plugin.version>9.4.0</build.plugin.version>
     <ivy.engine.version>9.4.0</ivy.engine.version>
   </properties>
   <distributionManagement>
