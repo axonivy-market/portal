@@ -43,7 +43,7 @@ Follow these steps to override the case Widget UI:
    register this link in the Portal Admin Settings.
 
 #. Use :dev-url:`Axon Ivy HtmlOverride wizard
-   </doc/9.4.0/designer-guide/how-to/overrides.html?#override-new-wizard>` to
+   </doc/nightly/designer-guide/how-to/overrides.html?#override-new-wizard>` to
    override the ``PortalCases`` HTML dialog.
 
    .. tip:: This action overrides ``Case widget`` in the CaseList page and the Case Search result page.
