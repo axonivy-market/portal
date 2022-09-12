@@ -382,7 +382,7 @@ public class StatisticChartCreationBean implements Serializable {
     this.casesByCategoryModel = casesByCategoryModel;
   }
 
-public List<String> populateCustomStringFieldAutoComplete(String query) {
+  public List<String> populateCustomStringFieldAutoComplete(String query) {
     Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
     String fieldName = params.get("fieldName");
     return statisticService.getCustomFields(fieldName, query);
