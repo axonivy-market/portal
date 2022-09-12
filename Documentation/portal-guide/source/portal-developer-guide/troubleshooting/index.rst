@@ -40,7 +40,7 @@ Update Default Pages
 ====================
 If you copy ``PortalStart.p.json`` to your project for customization, you need
 to follow this chapter to customize the default pages in your designer and
-engine: :dev-url:`Default Pages </doc/9.4.0/designer-guide/user-interface/default-pages/index.html>`
+engine: :dev-url:`Default Pages </doc/nightly/designer-guide/user-interface/default-pages/index.html>`
 
 For example, if you start with the default settings:
 

@@ -17,5 +17,5 @@ Customization
 -------------
 
 Default chart configuration is stored in 
-:dev-url:`Variables </doc/9.4.0/designer-guide/configuration/variables.html>`.
+:dev-url:`Variables </doc/nightly/designer-guide/configuration/variables.html>`.
 Update variable :ref:`portal-statistic-charts` to customize the default charts.

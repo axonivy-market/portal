@@ -52,7 +52,7 @@ HowTo: Update Portal Settings
 
 .. hint:: 
    Portal settings are stored as Axon Ivy variables and can be configured in the 
-   :dev-url:`Axon Ivy Cockpit </doc/9.4.0/engine-guide/tool-reference/engine-cockpit/configuration.html#engine-cockpit-variables>`.
+   :dev-url:`Axon Ivy Cockpit </doc/nightly/engine-guide/tool-reference/engine-cockpit/configuration.html#engine-cockpit-variables>`.
 
 .. _portal-available-settings:
 
