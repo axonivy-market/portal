@@ -153,7 +153,7 @@ two differences:
 
 .. important::
    Portal only displays custom fields declared in the ``custom-fields.yaml`` file.
-   Refer to :dev-url:`Custom Fields Meta Information </doc/nightly/designer-guide/how-to/workflow/custom-fields.html#meta-information>` for more information.
+   Refer to :dev-url:`Custom Fields Meta Information </doc/9.4.0/designer-guide/how-to/workflow/custom-fields.html#meta-information>` for more information.
 
 Filter Conditions
 -----------------
@@ -227,7 +227,7 @@ conditions.
       If you define a list of states in ``filterList``, the case widget will only show cases that have
       states listed in ``filterList``. 
 
-      Refer to :dev-url:`Case States </doc/nightly/public-api/ch/ivyteam/ivy/workflow/CaseState.html>` for
+      Refer to :dev-url:`Case States </doc/9.4.0/public-api/ch/ivyteam/ivy/workflow/CaseState.html>` for
       available case states.
 
    - ``creator``

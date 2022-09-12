@@ -76,7 +76,7 @@ steps to ensure that your processes/tasks can be rendered inside an IFrame:
 
   3. Change the ``DefaultPages`` in ``StandardProcesses`` to your customized
      portal project library id. For details, refer to :dev-url:`Standard Processes
-     </doc/nightly/engine-guide/deployment/advanced/index.html>`.
+     </doc/9.4.0/engine-guide/deployment/advanced/index.html>`.
 
      - E.g: DefaultPages: ``CustomizedPortal`` ID.
 

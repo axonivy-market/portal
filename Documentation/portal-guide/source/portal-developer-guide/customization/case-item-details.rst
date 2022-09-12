@@ -142,7 +142,7 @@ We included sample code for this customization in ``portal-developer-examples``.
    register this link in the Portal Admin Settings.
 
 #. Use :dev-url:`Axon Ivy HtmlOverride wizard
-   </doc/nightly/designer-guide/how-to/overrides.html?#override-new-wizard>` to
+   </doc/9.4.0/designer-guide/how-to/overrides.html?#override-new-wizard>` to
    override the ``CaseInformation`` HTML dialog.
 
 #. After the above steps are done, you can override **Case Details UI elements**
@@ -206,7 +206,7 @@ For the custom widget, we have a new node is ``data`` inside of case details wid
       - Go to the example homepage by the process ``Start Processes/ExamplePortalStart/DefaultApplicationHomePage.ivp``.
       - And then go to case details to check the new custom layout.
    
-      About how to configure Variables, refer to :dev-url:`Axon Ivy Variables </doc/nightly/designer-guide/configuration/variables.html>`
+      About how to configure Variables, refer to :dev-url:`Axon Ivy Variables </doc/9.4.0/designer-guide/configuration/variables.html>`
    
 
 Adding New Custom Panels

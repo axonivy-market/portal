@@ -16,7 +16,7 @@ Introduction
 The Portal's Task Analysis component provides features in accordance with the
 user's permission StatisticAnalyzeTask in PortalTaskPermissions. Refer to
 :dev-url:`Security section in Cockpit
-</doc/nightly/engine-guide/tool-reference/engine-cockpit/security.html>` to
+</doc/9.4.0/engine-guide/tool-reference/engine-cockpit/security.html>` to
 analyze not only tasks but also cases. These features are:
 
 #. Sets of filters for both tasks and cases which allow to filter
