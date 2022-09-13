@@ -6,6 +6,13 @@ Introduction
 Portal Developer Guide provides information to set up, configure, customize
 Portal so that it could fit customer need.
 
+Welcoming and modern Look & Feel for Axon Ivy Portal 9.4 refer to :ref:`introduction-new-and-note-worthy-9.4`.
+
+- Welcome Screen
+- Dashboard Wizards
+- New Portal Theme Freya
+- Change password validations
+
 The Individual Dashboard for Axon Ivy Portal 9.3 refers to :ref:`introduction-new-and-note-worthy-9.3`.
 
 - Customizable Dashboard
@@ -20,6 +27,60 @@ More UX for Axon Ivy Portal 9.2, refer to :ref:`introduction-new-and-note-worthy
 - Redesigned process list
 - Additional drag and drop widgets in task and case detail pages
 - Advanced user specific settings
+
+.. _introduction-new-and-note-worthy-9.4:
+
+New & Noteworthy 9.4
+--------------------
+
+Welcome Screen
+^^^^^^^^^^^^^^
+
+First impressions matter; a nice user experience also means engaging and motivating the end user.
+That’s the idea of the new configurable welcome dashboard widget.
+
+|dashboard-light-mode|
+
+This feature includes displaying your own welcome image and attaching personalized messages with your own styling, embedded into the fully configurable dashboard.
+
+Freya Theme featuring Dark Mode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Another step in this direction is the upgrade to a new UI theme. The latest trends and design patterns are ideally included in the fresh `Freya <https://www.primefaces.org/freya/>`_ theme by PrimeFaces.
+Moreover, the entire Axon Ivy Portal can now be used in Dark Mode.
+
+|dashboard-dark-mode|
+
+A dark mode color scheme can be more visually appealing and easier on the eyes. End users can switch between the light and dark color schemes as needed.
+
+Dashboard Configuration Wizard
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+All dashboards within the Axon Ivy Portal can now be configured and arranged with a wizard according to individual preferences.
+
+|dashboard-configuration-wizard|
+
+Now it is possible to create and manage private and public Dashboards. Creating those dashboards is now done conveniently via a significantly simplified and enhanced wizard. 
+Additionally, the dashboards can be rearranged as desired.
+
+|dashboard-configuration-wizard-create|
+
+When creating new dashboards, the wizard goes one step further and offers predefined templates based on our experience.
+
+Password Validation
+^^^^^^^^^^^^^^^^^^^
+
+Password policies are different in each company. This fact is fully taken into account in the Axon Ivy Portal.
+
+|password-validation|
+
+Portal administrators can enable or disable password validation and also freely define the following criteria:
+
+    - Minimum length
+    - Minimum number of lower case characters
+    - Minimum number of upper case characters
+    - Minimum number of numbers
+    - Minimum number of special characters
 
 .. _introduction-new-and-note-worthy-9.3:
 
@@ -180,3 +241,8 @@ Filter case by owner in case list and task analysis if case owner is enabled.
 .. |default-widgets-configuration| image:: images/default-widgets-configuration.png
 .. |custom-widgets| image:: images/custom-widgets.png
 .. |adjustable-look-for-process-list| image:: images/adjustable-look-for-process-list.png
+.. |dashboard-light-mode| image:: images/9.4/dashboard-light-mode.png
+.. |dashboard-dark-mode| image:: images/9.4/dashboard-dark-mode.png
+.. |dashboard-configuration-wizard-create| image:: images/9.4/dashboard-configuration-wizard-create.png
+.. |dashboard-configuration-wizard| image:: images/9.4/dashboard-configuration-wizard.png
+.. |password-validation| image:: images/9.4/password-validation.png
