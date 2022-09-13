@@ -5,7 +5,7 @@
   <artifactId>public-api</artifactId>
   <version>9.1.0.0-SNAPSHOT</version>
   <properties>
-    <build.plugin.version>9.4.0</build.plugin.version>
+    <build.plugin.version>9.4.2-SNAPSHOT</build.plugin.version>
     <ivy.engine.version>10.0.0</ivy.engine.version>
   </properties>
   <distributionManagement>
