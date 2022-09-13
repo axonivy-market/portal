@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.17",
+  "format" : "9.4.20",
   "id" : "1543CB1F7FCE2CC1",
   "data" : "ch.ivy.addon.portal.generic.NavigatorData",
   "kind" : "CALLABLE_SUB",
@@ -7,8 +7,7 @@
       "id" : "f10",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 1128, "y" : 1664 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 1128, "y" : 1664 }
       }
     }, {
       "id" : "f12",
@@ -26,9 +25,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1128, "y" : 1584 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 1128, "y" : 1584 }
       },
       "connect" : { "id" : "f11", "to" : "f10" }
     }, {
@@ -52,8 +49,7 @@
       },
       "visual" : {
         "at" : { "x" : 1128, "y" : 1344 },
-        "size" : { "width" : 26, "height" : 26 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 122, "y" : 20 }
       },
       "connect" : { "id" : "f17", "to" : "f16" }
     }, {
@@ -99,9 +95,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1128, "y" : 1512 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 1128, "y" : 1512 }
       },
       "connect" : { "id" : "f13", "to" : "f12" }
     }, {
@@ -173,9 +167,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1929, "y" : 1515 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 1929, "y" : 1515 }
       },
       "connect" : { "id" : "f27", "to" : "f23" }
     }, {
@@ -194,17 +186,14 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1929, "y" : 1587 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 1929, "y" : 1587 }
       },
       "connect" : { "id" : "f28", "to" : "f24" }
     }, {
       "id" : "f24",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 1929, "y" : 1667 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 1929, "y" : 1667 }
       }
     }, {
       "id" : "f25",
@@ -225,8 +214,7 @@
       },
       "visual" : {
         "at" : { "x" : 1929, "y" : 1347 },
-        "size" : { "width" : 26, "height" : 26 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 129, "y" : 20 }
       },
       "connect" : { "id" : "f29", "to" : "f26" }
     }, {
@@ -277,9 +265,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1930, "y" : 1159 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 1930, "y" : 1159 }
       },
       "connect" : { "id" : "f37", "to" : "f35" }
     }, {
@@ -301,16 +287,14 @@
       },
       "visual" : {
         "at" : { "x" : 1930, "y" : 967 },
-        "size" : { "width" : 26, "height" : 26 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 132, "y" : 20 }
       },
       "connect" : { "id" : "f38", "to" : "f34" }
     }, {
       "id" : "f33",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 1930, "y" : 1287 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 1930, "y" : 1287 }
       }
     }, {
       "id" : "f34",
@@ -348,9 +332,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1930, "y" : 1223 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 1930, "y" : 1223 }
       },
       "connect" : { "id" : "f39", "to" : "f33" }
     }, {
@@ -510,17 +492,14 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1128, "y" : 1176 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 1128, "y" : 1176 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 1128, "y" : 1288 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 1128, "y" : 1288 }
       }
     }, {
       "id" : "f21",
@@ -553,8 +532,7 @@
       },
       "visual" : {
         "at" : { "x" : 1128, "y" : 968 },
-        "size" : { "width" : 26, "height" : 26 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 91, "y" : 20 }
       },
       "connect" : { "id" : "f8", "to" : "f7" }
     }, {
@@ -572,9 +550,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1128, "y" : 1056 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 1128, "y" : 1056 }
       },
       "connect" : { "id" : "f6", "to" : "f5" }
     }, {
@@ -594,8 +570,7 @@
       },
       "visual" : {
         "at" : { "x" : 2856, "y" : 1424 },
-        "size" : { "width" : 26, "height" : 26 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 146, "y" : 20 }
       },
       "connect" : { "id" : "f57", "to" : "f56" }
     }, {
@@ -616,8 +591,7 @@
       "id" : "f18",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 2856, "y" : 1712 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 2856, "y" : 1712 }
       }
     }, {
       "id" : "f56",
@@ -659,8 +633,7 @@
       },
       "visual" : {
         "at" : { "x" : 2856, "y" : 1616 },
-        "size" : { "width" : 48, "height" : 24 },
-        "labelOffset" : { "x" : -126, "y" : 28 }
+        "size" : { "width" : 48, "height" : 24 }
       },
       "connect" : { "id" : "f55", "to" : "f18" }
     }, {
@@ -679,9 +652,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1128, "y" : 2040 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 1128, "y" : 2040 }
       },
       "connect" : { "id" : "f69", "to" : "f62" }
     }, {
@@ -727,17 +698,14 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1128, "y" : 1968 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 1128, "y" : 1968 }
       },
       "connect" : { "id" : "f68", "to" : "f60" }
     }, {
       "id" : "f62",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 1128, "y" : 2120 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 1128, "y" : 2120 }
       }
     }, {
       "id" : "f63",
@@ -777,8 +745,7 @@
       },
       "visual" : {
         "at" : { "x" : 1128, "y" : 1800 },
-        "size" : { "width" : 26, "height" : 26 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 145, "y" : 20 }
       },
       "connect" : { "id" : "f67", "to" : "f63" }
     }, {
@@ -799,8 +766,7 @@
       "id" : "f70",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 1929, "y" : 2123 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 1929, "y" : 2123 }
       }
     }, {
       "id" : "f71",
@@ -819,8 +785,7 @@
       },
       "visual" : {
         "at" : { "x" : 1929, "y" : 1803 },
-        "size" : { "width" : 26, "height" : 26 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 147, "y" : 20 }
       },
       "connect" : { "id" : "f73", "to" : "f72" }
     }, {
@@ -843,7 +808,7 @@
       },
       "visual" : {
         "at" : { "x" : 1928, "y" : 1944 },
-        "size" : { "width" : 160, "height" : 44 }
+        "size" : { "width" : 160, "height" : 60 }
       },
       "connect" : { "id" : "f74", "to" : "f70" }
     }, {
@@ -886,8 +851,7 @@
       },
       "visual" : {
         "at" : { "x" : 2440, "y" : 1992 },
-        "size" : { "width" : 48, "height" : 24 },
-        "labelOffset" : { "x" : -126, "y" : 28 }
+        "size" : { "width" : 48, "height" : 24 }
       },
       "connect" : { "id" : "f82", "to" : "f79" }
     }, {
@@ -907,8 +871,7 @@
       },
       "visual" : {
         "at" : { "x" : 2440, "y" : 1800 },
-        "size" : { "width" : 26, "height" : 26 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 169, "y" : 20 }
       },
       "connect" : { "id" : "f81", "to" : "f75" }
     }, {
@@ -929,8 +892,7 @@
       "id" : "f79",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 2440, "y" : 2088 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 2440, "y" : 2088 }
       }
     }, {
       "id" : "f83",
@@ -1042,7 +1004,7 @@
       },
       "visual" : {
         "at" : { "x" : 1128, "y" : 2248 },
-        "labelOffset" : { "x" : 14, "y" : 17 }
+        "labelOffset" : { "x" : 209, "y" : 37 }
       },
       "connect" : { "id" : "f89", "to" : "f83" }
     } ]

@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "15798655494F25E1",
   "data" : "gawfs.createWorkflowData",
   "elements" : [ {
@@ -61,7 +61,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 192 },
-        "labelOffset" : { "x" : -73, "y" : 24 }
+        "labelOffset" : { "x" : 12, "y" : 44 }
       },
       "connect" : { "id" : "f13", "to" : "f12" }
     }, {

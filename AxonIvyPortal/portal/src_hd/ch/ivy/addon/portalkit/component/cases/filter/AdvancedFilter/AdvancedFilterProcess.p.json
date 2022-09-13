@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "15F9451DFD921A3D",
   "data" : "ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter.AdvancedFilterData",
   "kind" : "HTML_DIALOG",
@@ -62,7 +62,7 @@
       },
       "visual" : {
         "at" : { "x" : 264, "y" : 160 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f7", "to" : "f5" }
     }, {

@@ -24,8 +24,11 @@ import ch.ivyteam.ivy.environment.Ivy;
 @ManagedBean
 public class DashboardWelcomeWidgetBean implements Serializable {
 
+  private static final long serialVersionUID = 5372831531773612518L;
+
   private static final String BASE64_STRING_PATTERN = "data:%s;base64,%s";
-  private static final String DEFAULT_TEXT_COLOR = "000000";
+  private static final String DEFAULT_TEXT_COLOR = "ffffff";
+  private static final String DEFAULT_IMAGE_CMS_URI = "/images/WelcomeWidget/DefaultImage";
 
   private WelcomeDashboardWidget widget;
 
@@ -46,6 +49,7 @@ public class DashboardWelcomeWidgetBean implements Serializable {
           .filter(name -> equalsLanguageLocale(name, userLanguage))
           .findFirst().orElse(new DisplayName()).getValue());
     }
+    
   }
 
   public String renderImage(WelcomeDashboardWidget widget) {
@@ -91,5 +95,9 @@ public class DashboardWelcomeWidgetBean implements Serializable {
 
   public void setWidget(WelcomeDashboardWidget widget) {
     this.widget = widget;
+  }
+
+  public String getDefaultImageLink() {
+    return DEFAULT_IMAGE_CMS_URI;
   }
 }

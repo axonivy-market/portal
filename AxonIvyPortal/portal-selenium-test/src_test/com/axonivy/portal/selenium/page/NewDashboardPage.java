@@ -68,13 +68,13 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public ProcessViewerWidgetNewDashBoardPage showEditProcessViewerWidgetConfiguration() {
-    $("a[id$=':edit-widget-3']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("button[id$=':edit-widget-3']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("div#new-widget-configuration-dialog").waitUntil(appear, DEFAULT_TIMEOUT);
     return new ProcessViewerWidgetNewDashBoardPage();
   }
 
   public void deleteProcessViewerWidget() {
-    $("a[id$=':delete-widget-3']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("button[id$=':delete-widget-3']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("div#remove-widget-dialog").waitUntil(appear, DEFAULT_TIMEOUT);
     $("button[id$='remove-widget-button']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
         .click();
@@ -297,7 +297,8 @@ public class NewDashboardPage extends TemplatePage {
 
   public void openCompactModeProcessFilterPanel() {
     var processFilter = getCompactModeProcessFilterLink().shouldBe(Condition.appear);
-    scrollToElementThenClick(processFilter);
+    waitUntilElementToBeClickable(processFilter);
+    clickByJavaScript(processFilter);
     getCompactModeProcessFilterPanelSaveFilters().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 
@@ -371,8 +372,8 @@ public class NewDashboardPage extends TemplatePage {
 
   public void filterCompactModeProcessProcessType(String processType) {
     getCompactModeProcessFilterPanelProcessTypes().shouldBe(Condition.appear).click();
-    getCompactModeProcessProcessTypesPanel().waitUntil(Condition.appear, DEFAULT_TIMEOUT)
-        .$("li[data-item-value='" + processType + "']").shouldBe(Condition.appear).click();
+    getCompactModeProcessProcessTypesPanel().waitUntil(Condition.cssClass("ui-connected-overlay-enter-done"), DEFAULT_TIMEOUT)
+        .$("li[data-item-value='" + processType + "'] label").shouldBe(Condition.appear).click();
     getCompactModeProcessProcessTypesPanel().$(".ui-selectcheckboxmenu-close").click();
     getCompactModeProcessProcessTypesPanel().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
@@ -572,8 +573,6 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void testSearchRemoveCompactModeProcessFilter() {
-    checkDisplayedCompactModeProcessContainer();
-
     openCompactModeProcessFilterPanel();
     testCreateCompactModeProcessFilters();
     testSearchCompactModeProcessFilters();
@@ -582,7 +581,11 @@ public class NewDashboardPage extends TemplatePage {
     testRemoveCompactModeProcessFilter();
     closeCompactModeProcessManagerFilters();
 
-    openCompactModeProcessFilterPanel();
+    try {
+      openCompactModeProcessFilterPanel();
+    } catch (Exception e) {
+      openCompactModeProcessFilterPanel();
+    }
     getCompactModeProcessFilterPanelSavedFilter(0)
         .waitUntil(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME), DEFAULT_TIMEOUT);
   }

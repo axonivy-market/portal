@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "15EF0843F1DB39F2",
   "data" : "ch.ivy.add.portalkit.LogoutData",
   "kind" : "CALLABLE_SUB",
@@ -22,7 +22,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -36, "y" : 17 }
+        "labelOffset" : { "x" : 25, "y" : 37 }
       },
       "connect" : { "id" : "f4", "to" : "f3" }
     }, {
