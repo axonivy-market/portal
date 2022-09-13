@@ -14,10 +14,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.ItemSelectEvent;
 
 import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.statistics.StatisticChartDrilldownUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
 @ManagedBean
@@ -27,7 +30,9 @@ public class DashboardStatisticChartBean implements Serializable {
   private List<StatisticChart> availableCharts;
   private StatisticChart selectedChart;
   private boolean isPublicDashboard;
-
+  private boolean isRenderedRefreshChartPoll;
+  private long statisticChartScalingInterval;
+  
   public void initChartConfiguration(StatisticDashboardWidget widget, boolean isPublicDashboard) {
     if (widget != null && widget.getChart() != null) {
       selectedChart = widget.getChart();
@@ -46,6 +51,13 @@ public class DashboardStatisticChartBean implements Serializable {
     } else {
       availableCharts.addAll(StatisticService.getInstance().findStatisticCharts());
     }
+  }
+
+  public void initSettings() {
+    var chartScalingSetting = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.STATISTIC_CHART_SCALING_INTERVAL);
+    statisticChartScalingInterval = StringUtils.isNotBlank(chartScalingSetting) ? Long.valueOf(chartScalingSetting) : 0;
+    isRenderedRefreshChartPoll = statisticChartScalingInterval > StatisticChartCreationBean.MINIMUM_STATISTIC_CHART_SCALING_INTERVAL
+            && !Ivy.session().isSessionUserUnknown();
   }
 
   public List<StatisticChart> completeCharts(String filter) {
@@ -174,4 +186,11 @@ public class DashboardStatisticChartBean implements Serializable {
     StatisticChartDrilldownUtils.toCasesByCategoryCaseList(event, selectedStatisticChart);
   }
 
+  public boolean isRenderedRefreshChartPoll() {
+    return isRenderedRefreshChartPoll;
+  }
+
+  public long getStatisticChartScalingInterval() {
+    return statisticChartScalingInterval;
+  }
 }

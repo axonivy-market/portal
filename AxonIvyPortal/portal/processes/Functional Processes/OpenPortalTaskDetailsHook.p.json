@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.17",
+  "format" : "9.4.20",
   "id" : "16D289860FF9CFCA",
   "data" : "ch.ivy.addon.portal.generic.OpenPortalTaskDetailsData",
   "kind" : "CALLABLE_SUB",
@@ -26,7 +26,7 @@
       },
       "visual" : {
         "at" : { "x" : 576, "y" : 448 },
-        "labelOffset" : { "x" : -43, "y" : -36 }
+        "labelOffset" : { "x" : 106, "y" : -16 }
       },
       "connect" : { "id" : "f3", "to" : "f2" }
     }, {
@@ -84,7 +84,7 @@
       },
       "visual" : {
         "at" : { "x" : 576, "y" : 800 },
-        "labelOffset" : { "x" : -74, "y" : -36 }
+        "labelOffset" : { "x" : 98, "y" : -16 }
       },
       "connect" : { "id" : "f8", "to" : "f7" }
     }, {
@@ -117,7 +117,7 @@
       },
       "visual" : {
         "at" : { "x" : 936, "y" : 800 },
-        "size" : { "width" : 176, "height" : 44 }
+        "size" : { "width" : 176, "height" : 60 }
       },
       "connect" : { "id" : "f9", "to" : "f6" }
     }, {
@@ -131,8 +131,7 @@
       ],
       "visual" : {
         "at" : { "x" : 1000, "y" : 560 },
-        "size" : { "width" : 720, "height" : 76 },
-        "labelOffset" : { "x" : -354, "y" : -34 }
+        "size" : { "width" : 720, "height" : 76 }
       }
     }, {
       "id" : "f12",
@@ -145,8 +144,7 @@
       ],
       "visual" : {
         "at" : { "x" : 1032, "y" : 912 },
-        "size" : { "width" : 800, "height" : 76 },
-        "labelOffset" : { "x" : -391, "y" : -34 }
+        "size" : { "width" : 800, "height" : 76 }
       }
     }, {
       "id" : "f14",
@@ -171,7 +169,7 @@
       },
       "visual" : {
         "at" : { "x" : 1536, "y" : 448 },
-        "labelOffset" : { "x" : -95, "y" : -42 }
+        "labelOffset" : { "x" : 131, "y" : -22 }
       },
       "connect" : { "id" : "f18", "to" : "f17" }
     }, {
@@ -185,8 +183,7 @@
       ],
       "visual" : {
         "at" : { "x" : 1960, "y" : 560 },
-        "size" : { "width" : 720, "height" : 76 },
-        "labelOffset" : { "x" : -354, "y" : -34 }
+        "size" : { "width" : 720, "height" : 76 }
       }
     }, {
       "id" : "f16",

@@ -1,13 +1,12 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "1626C02D46BF5153",
   "data" : "ch.ivy.add.portalkit.Data",
   "elements" : [ {
       "id" : "f6",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 120, "y" : 320 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 120, "y" : 320 }
       }
     }, {
       "id" : "f5",
@@ -19,8 +18,7 @@
       },
       "visual" : {
         "at" : { "x" : 120, "y" : 49 },
-        "size" : { "width" : 26, "height" : 26 },
-        "labelOffset" : { "x" : 14, "y" : 0 },
+        "labelOffset" : { "x" : 104, "y" : 20 },
         "description" : "This is a scheduled process of Portal"
       },
       "connect" : { "id" : "f4", "to" : "f2" }
@@ -43,7 +41,7 @@
       },
       "visual" : {
         "at" : { "x" : 120, "y" : 224 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f1", "to" : "f6" }
     } ]

@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.17",
+  "format" : "9.4.20",
   "id" : "15C7B30FB93C827E",
   "data" : "internaltest.Data",
   "elements" : [ {
@@ -215,7 +215,7 @@
       },
       "visual" : {
         "at" : { "x" : 88, "y" : 456 },
-        "labelOffset" : { "x" : -42, "y" : 17 }
+        "labelOffset" : { "x" : 4, "y" : 37 }
       },
       "connect" : { "id" : "f38", "to" : "f37" }
     }, {

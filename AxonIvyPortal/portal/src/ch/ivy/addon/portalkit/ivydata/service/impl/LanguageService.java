@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.ivydata.service.impl;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -63,17 +64,23 @@ public class LanguageService implements ILanguageService {
   private String getUserFormatLanguage() {
     return loadLanguage(IUser::getFormattingLanguage);
   }
-  
+
   private String loadLanguage(Function<IUser, Locale> userLocaleLoader) {
-    Locale apply = userLocaleLoader.apply(Ivy.session().getSessionUser());
-    if (apply != null) {
-      return apply.toLanguageTag();
+    var languageTag = "";
+    if (Ivy.session().isSessionUserUnknown()) {
+      languageTag = "";
+    } else {
+      Locale apply = userLocaleLoader.apply(Ivy.session().getSessionUser());
+      languageTag = Objects.nonNull(apply) ? apply.toLanguageTag() : languageTag;
     }
-    return "";
+    return languageTag;
   }
 
   @Override
-  public void saveUserLanguage(IvyLanguage language){
+  public void saveUserLanguage(IvyLanguage language) {
+    if (Ivy.session().isSessionUserUnknown()) {
+      return;
+    }
     IvyExecutor.executeAsSystem(() -> {
       IUser currentUser = Ivy.session().getSessionUser();
       
@@ -106,5 +113,4 @@ public class LanguageService implements ILanguageService {
                           .sorted(Comparator.comparing(Locale::getDisplayName))
                           .collect(Collectors.toList());
   }
-
 }

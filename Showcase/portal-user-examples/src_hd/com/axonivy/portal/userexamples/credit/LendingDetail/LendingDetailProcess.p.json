@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "1725FB50A0E1F50A",
   "data" : "com.axonivy.portal.userexamples.credit.LendingDetail.LendingDetailData",
   "kind" : "HTML_DIALOG",
@@ -23,7 +23,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -16, "y" : 15 }
+        "labelOffset" : { "x" : 71, "y" : 35 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {
@@ -59,7 +59,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 352 },
-        "labelOffset" : { "x" : -28, "y" : 15 }
+        "labelOffset" : { "x" : 53, "y" : 35 }
       },
       "connect" : { "id" : "f13", "to" : "f12" }
     }, {
@@ -122,7 +122,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 256 },
-        "labelOffset" : { "x" : -25, "y" : 15 }
+        "labelOffset" : { "x" : 73, "y" : 35 }
       },
       "connect" : { "id" : "f11", "to" : "f10" }
     }, {
@@ -144,7 +144,7 @@
       },
       "visual" : {
         "at" : { "x" : 304, "y" : 352 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f9", "to" : "f8" }
     }, {
@@ -156,7 +156,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 448 },
-        "labelOffset" : { "x" : -14, "y" : 15 }
+        "labelOffset" : { "x" : 12, "y" : 35 }
       },
       "connect" : { "id" : "f16", "to" : "f15" }
     }, {
@@ -169,7 +169,7 @@
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 448 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       }
     } ]
 }

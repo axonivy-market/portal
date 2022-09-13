@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "176CBADCB53CCEEA",
   "data" : "com.axonivy.portal.developerexamples.showcase.NavigateBackTaskPage.NavigateBackTaskPageData",
   "kind" : "HTML_DIALOG",
@@ -30,7 +30,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 200 },
-        "labelOffset" : { "x" : -15, "y" : 12 }
+        "labelOffset" : { "x" : 6, "y" : 32 }
       },
       "connect" : { "id" : "f10", "to" : "f9" }
     }, {
@@ -42,7 +42,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 128 },
-        "labelOffset" : { "x" : -19, "y" : 17 }
+        "labelOffset" : { "x" : 4, "y" : 37 }
       },
       "connect" : { "id" : "f8", "to" : "f7" }
     }, {

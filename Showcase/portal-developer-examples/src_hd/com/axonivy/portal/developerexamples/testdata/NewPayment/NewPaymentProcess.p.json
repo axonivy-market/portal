@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "176CBAB201D2F3E8",
   "data" : "com.axonivy.portal.developerexamples.testdata.NewPayment.NewPaymentData",
   "kind" : "HTML_DIALOG",
@@ -47,7 +47,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 256 },
-        "labelOffset" : { "x" : -14, "y" : 15 }
+        "labelOffset" : { "x" : 12, "y" : 35 }
       },
       "connect" : { "id" : "f10", "to" : "f9" }
     }, {
@@ -71,7 +71,7 @@
       },
       "visual" : {
         "at" : { "x" : 240, "y" : 256 },
-        "size" : { "width" : 160, "height" : 44 }
+        "size" : { "width" : 160, "height" : 60 }
       },
       "connect" : { "id" : "f8", "to" : "f7" }
     } ]

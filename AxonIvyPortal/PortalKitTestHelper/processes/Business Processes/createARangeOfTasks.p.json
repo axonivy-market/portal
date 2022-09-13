@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "14B2A3DC7173EA26",
   "data" : "ch.ivy.add.portalkit.task.TaskGenerationDataRange",
   "elements" : [ {
@@ -27,8 +27,7 @@
       },
       "visual" : {
         "at" : { "x" : 208, "y" : 224 },
-        "size" : { "width" : 26, "height" : 26 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 139, "y" : 20 }
       },
       "connect" : { "id" : "f13", "to" : "f12" }
     }, {
@@ -37,8 +36,7 @@
       "name" : "in.taskCounter < in.to",
       "visual" : {
         "at" : { "x" : 208, "y" : 344 },
-        "size" : { "width" : 28, "height" : 28 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 80, "y" : 20 }
       },
       "connect" : [
         { "id" : "f6", "to" : "f2", "condition" : "in.taskCounter < in.to", "var" : "in1" },
@@ -70,8 +68,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 208, "y" : 432 },
-        "size" : { "width" : 28, "height" : 28 }
+        "at" : { "x" : 208, "y" : 432 }
       },
       "connect" : [
         { "id" : "f7", "to" : "f4", "condition" : "ivp==\"TaskA.ivp\"" },
@@ -81,15 +78,13 @@
       "id" : "f3",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 96, "y" : 344 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 96, "y" : 344 }
       }
     }, {
       "id" : "f4",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 208, "y" : 496 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 208, "y" : 496 }
       }
     }, {
       "id" : "f9",
@@ -101,9 +96,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 352, "y" : 432 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 352, "y" : 432 }
       },
       "connect" : { "id" : "f11", "to" : "f1", "via" : [ { "x" : 352, "y" : 344 } ] }
     }, {
@@ -116,9 +109,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 208, "y" : 288 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 208, "y" : 288 }
       },
       "connect" : { "id" : "f5", "to" : "f1" }
     }, {
@@ -127,8 +118,7 @@
       "name" : "in.taskCounter <= in.to",
       "visual" : {
         "at" : { "x" : 608, "y" : 352 },
-        "size" : { "width" : 28, "height" : 28 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 83, "y" : 20 }
       },
       "connect" : [
         { "id" : "f21", "to" : "f16", "condition" : "in.taskCounter <= in.to", "var" : "in1" },
@@ -138,8 +128,7 @@
       "id" : "f15",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 608, "y" : 560 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 608, "y" : 560 }
       }
     }, {
       "id" : "f16",
@@ -160,8 +149,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 608, "y" : 440 },
-        "size" : { "width" : 28, "height" : 28 }
+        "at" : { "x" : 608, "y" : 440 }
       },
       "connect" : [
         { "id" : "f29", "to" : "f28", "condition" : "ivp==\"TaskA.ivp\"" },
@@ -183,17 +171,14 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 752, "y" : 440 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 752, "y" : 440 }
       },
       "connect" : { "id" : "f25", "to" : "f14", "via" : [ { "x" : 752, "y" : 352 } ] }
     }, {
       "id" : "f18",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 496, "y" : 352 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 496, "y" : 352 }
       }
     }, {
       "id" : "f19",
@@ -220,8 +205,7 @@
       },
       "visual" : {
         "at" : { "x" : 608, "y" : 224 },
-        "size" : { "width" : 26, "height" : 26 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 77, "y" : 20 }
       },
       "connect" : { "id" : "f26", "to" : "f20" }
     }, {
@@ -234,9 +218,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 608, "y" : 288 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 608, "y" : 288 }
       },
       "connect" : { "id" : "f27", "to" : "f14" }
     }, {
@@ -261,9 +243,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 608, "y" : 496 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : 20, "y" : -2 }
+        "at" : { "x" : 608, "y" : 496 }
       },
       "connect" : { "id" : "f22", "to" : "f15" }
     }, {
@@ -291,16 +271,14 @@
       },
       "visual" : {
         "at" : { "x" : 960, "y" : 224 },
-        "size" : { "width" : 26, "height" : 26 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 63, "y" : 20 }
       },
       "connect" : { "id" : "f34", "to" : "f33", "var" : "in1" }
     }, {
       "id" : "f31",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 960, "y" : 432 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 960, "y" : 432 }
       }
     }, {
       "id" : "f33",
@@ -316,8 +294,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 960, "y" : 320 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 960, "y" : 320 }
       },
       "connect" : { "id" : "f32", "to" : "f31", "condition" : "ivp==\"TaskA.ivp\"" }
     } ]

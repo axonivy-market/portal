@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "1540379C4B7261E4",
   "data" : "ch.ivy.addon.portal.generic.OpenPortalCasesData",
   "kind" : "CALLABLE_SUB",
@@ -20,16 +20,14 @@
       },
       "visual" : {
         "at" : { "x" : 192, "y" : 128 },
-        "size" : { "width" : 26, "height" : 26 },
-        "labelOffset" : { "x" : -41, "y" : -31 }
+        "labelOffset" : { "x" : 22, "y" : -11 }
       },
       "connect" : { "id" : "f4", "to" : "f3" }
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 864, "y" : 128 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 864, "y" : 128 }
       }
     }, {
       "id" : "f3",
@@ -68,16 +66,14 @@
       },
       "visual" : {
         "at" : { "x" : 192, "y" : 536 },
-        "size" : { "width" : 26, "height" : 26 },
-        "labelOffset" : { "x" : -54, "y" : -32 }
+        "labelOffset" : { "x" : 32, "y" : -12 }
       },
       "connect" : { "id" : "f9", "to" : "f7" }
     }, {
       "id" : "f6",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 864, "y" : 536 },
-        "size" : { "width" : 26, "height" : 26 }
+        "at" : { "x" : 864, "y" : 536 }
       }
     }, {
       "id" : "f7",
@@ -97,7 +93,7 @@
       },
       "visual" : {
         "at" : { "x" : 512, "y" : 536 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f8", "to" : "f6" }
     }, {
@@ -111,8 +107,7 @@
       ],
       "visual" : {
         "at" : { "x" : 600, "y" : 232 },
-        "size" : { "width" : 672, "height" : 76 },
-        "labelOffset" : { "x" : -332, "y" : -34 }
+        "size" : { "width" : 672, "height" : 76 }
       },
       "connect" : { "id" : "f11", "to" : "f0" }
     }, {
@@ -126,8 +121,7 @@
       ],
       "visual" : {
         "at" : { "x" : 632, "y" : 648 },
-        "size" : { "width" : 736, "height" : 76 },
-        "labelOffset" : { "x" : -362, "y" : -34 }
+        "size" : { "width" : 736, "height" : 76 }
       },
       "connect" : { "id" : "f13", "to" : "f5" }
     } ]

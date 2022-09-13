@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "1791D2E2E5ADF37E",
   "data" : "com.axonivy.portal.developerexamples.customization.InvoiceDetails.InvoiceDetailsData",
   "kind" : "HTML_DIALOG",
@@ -21,7 +21,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -16, "y" : 15 }
+        "labelOffset" : { "x" : 27, "y" : 35 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {
