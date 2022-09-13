@@ -16,7 +16,7 @@
     </snapshotRepository>
   </distributionManagement>
   <properties>
-    <ivy.engine.version>9.4.0</ivy.engine.version>
+    <ivy.engine.version>10.0.0</ivy.engine.version>
     <build.plugin.version>9.4.0</build.plugin.version>
     <quartz.version>2.1.1</quartz.version>
   </properties>
