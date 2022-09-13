@@ -124,9 +124,9 @@ function setupScrollbar() {
   if (viewMode.length > 0) {
     return;
   }
+  var container = $('.js-dashboard__body');
   var gridstackItems = $('.grid-stack-item');
   if (gridstackItems.length > 0) {
-    var container = $('.js-dashboard__body');
     container.removeAttr('style');
     var $dashboardHeader = $(".js-dashboard__header");
     var headerContainer = ($dashboardHeader.outerHeight(true) || 0);
@@ -147,9 +147,9 @@ function setupScrollbar() {
       }
       availableHeight = availableHeight - PortalLayout.getYPaddingLayoutContent();
       container.outerHeight(availableHeight);
-      container.removeClass('u-invisibility');
     }
   }
+  container.removeClass('u-invisibility');
 }
 
 function isSafariBrowser() {

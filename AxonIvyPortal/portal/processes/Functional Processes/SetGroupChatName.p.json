@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "169B29B5A9636EE8",
   "data" : "ch.ivy.addon.portal.generic.SetGroupChatNameData",
   "kind" : "CALLABLE_SUB",
@@ -42,7 +42,7 @@
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 64 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {

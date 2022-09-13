@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "14BEF201D2E3FF7D",
   "data" : "ch.ivy.addon.portal.generic.PortalHome.PortalHomeData",
   "kind" : "HTML_DIALOG",
@@ -28,8 +28,7 @@
       "id" : "f10",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 224, "y" : 64 },
-        "size" : { "width" : 22, "height" : 22 }
+        "at" : { "x" : 224, "y" : 64 }
       }
     }, {
       "id" : "f1",
@@ -60,23 +59,20 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 },
-        "size" : { "width" : 22, "height" : 22 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 64, "y" : 20 }
       },
       "connect" : { "id" : "f3", "to" : "f2" }
     }, {
       "id" : "f2",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 224, "y" : 160 },
-        "size" : { "width" : 22, "height" : 22 }
+        "at" : { "x" : 224, "y" : 160 }
       }
     }, {
       "id" : "f4",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 221, "y" : 221 },
-        "size" : { "width" : 22, "height" : 22 }
+        "at" : { "x" : 221, "y" : 221 }
       }
     }, {
       "id" : "f5",
@@ -104,8 +100,7 @@
       },
       "visual" : {
         "at" : { "x" : 93, "y" : 221 },
-        "size" : { "width" : 22, "height" : 22 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 74, "y" : 20 }
       },
       "connect" : { "id" : "f6", "to" : "f4" }
     } ]

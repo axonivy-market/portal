@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.18",
+  "format" : "9.4.20",
   "id" : "175F92F71BC45295",
   "data" : "portalmigration.Data",
   "elements" : [ {
@@ -13,7 +13,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 192 },
-        "labelOffset" : { "x" : -21, "y" : 17 }
+        "labelOffset" : { "x" : 65, "y" : 37 }
       },
       "connect" : { "id" : "f4", "to" : "S11" }
     }, {
@@ -56,7 +56,7 @@
           "name" : "is login?",
           "visual" : {
             "at" : { "x" : 192, "y" : 160 },
-            "labelOffset" : { "x" : -24, "y" : -38 }
+            "labelOffset" : { "x" : 7, "y" : -18 }
           },
           "connect" : [
             { "id" : "S11-f10", "to" : "S11-f7", "via" : [ { "x" : 192, "y" : 256 } ], "condition" : "ivy.session.isSessionUserUnknown()" },
@@ -68,7 +68,7 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
-            "labelOffset" : { "x" : 0, "y" : 5 }
+            "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f4",
           "connect" : { "id" : "S11-f0", "to" : "S11-f5" }
@@ -78,13 +78,13 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 608, "y" : 160 },
-            "labelOffset" : { "x" : 0, "y" : 5 }
+            "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f11"
         } ],
       "visual" : {
         "at" : { "x" : 336, "y" : 192 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f11", "to" : "f1" }
     }, {

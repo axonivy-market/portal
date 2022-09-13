@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.17",
+  "format" : "9.4.20",
   "id" : "1821596E460CDACC",
   "data" : "com.axonivy.portal.components.examples.ProcessViewerExample.ProcessViewerExampleData",
   "kind" : "HTML_DIALOG",
@@ -49,7 +49,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -19, "y" : 15 }
+        "labelOffset" : { "x" : 36, "y" : 35 }
       },
       "connect" : { "id" : "f8", "to" : "f7" }
     }, {
