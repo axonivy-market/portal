@@ -63,11 +63,13 @@ pipeline {
               rmdir $DEPLOYMENT/* -recurse
               Copy-Item $env:releaseDir/Showcase/portal-demo-app/target/*zip -Destination $DEPLOYMENT
               Copy-Item $env:releaseDir/Showcase/portal-developer-examples/target/*iar -Destination $DEPLOYMENT
+              Copy-Item Showcase/portal-components-examples/target/*iar -Destination $DEPLOYMENT
             '''
           } else {
             powershell '''
               $DEPLOYMENT= $env:engineDir + "/system/demo-applications/demo-portal"
               Copy-Item $env:releaseDir/Showcase/portal-developer-examples/target/*iar -Destination $DEPLOYMENT
+              Copy-Item Showcase/portal-components-examples/target/*iar -Destination $DEPLOYMENT
             '''
 		  }
 
