@@ -30,7 +30,7 @@ We recommend using images with a transparent background, if your Corporate
 Identity does not define a mandatory background color. 
 
 To change the logos used in the Portal, please use resources that are described at 
-:dev-url:`User Interface Branding <doc/nightly/designer-guide/user-interface/branding/branding-user-interface.html#resources>` and follow the guidelines below.
+:dev-url:`User Interface Branding </doc/nightly/designer-guide/user-interface/branding/branding-user-interface.html#resources>` and follow the guidelines below.
 
 Expanded Menu Logo
 ^^^^^^^^^^^^^^^^^^
