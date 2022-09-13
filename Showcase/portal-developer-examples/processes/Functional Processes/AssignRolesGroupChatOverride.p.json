@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "16B3FA08E0ADDCE6",
   "data" : "_com.axonivy.portal.developerexamples.AssignRolesGroupChatOverrideData",
   "kind" : "CALLABLE_SUB",
@@ -28,7 +28,7 @@
       },
       "visual" : {
         "at" : { "x" : 72, "y" : 32 },
-        "labelOffset" : { "x" : 5, "y" : 17 }
+        "labelOffset" : { "x" : 113, "y" : 37 }
       },
       "connect" : { "id" : "f6", "to" : "f5" }
     }, {

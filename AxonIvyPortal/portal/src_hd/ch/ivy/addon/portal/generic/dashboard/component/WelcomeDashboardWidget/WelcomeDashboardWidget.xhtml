@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:jsf="http://xmlns.jcp.org/jsf">
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="index" required="true" />
   <cc:attribute name="widget" required="true" />
@@ -41,8 +42,14 @@
         </h:panelGroup>
       </h:form>
       <h:outputText id="welcome-text" styleClass="welcome-text #{widget.welcomeTextStyleClass}" value="#{widget.welcomeText}" />
-      <img id="welcome-image" class="welcome-image js-welcome-image #{widget.imageStyleClass}" />
-      <h:inputHidden id="welcome-image-hidden" value="#{dashboardWelcomeWidgetBean.renderImage(widget)}" />
+
+      <p:graphicImage id="default-image" cache="true" styleClass="welcome-image js-welcome-image #{widget.imageStyleClass}"
+        library="ivy-cms" rendered="#{empty widget.uploadedImageFile}" name="#{dashboardWelcomeWidgetBean.defaultImageLink}" />
+
+      <img id="welcome-image" class="welcome-image js-welcome-image #{widget.imageStyleClass}" jsf:rendered="#{not empty widget.uploadedImageFile}" />
+      <h:form>
+        <h:inputHidden id="welcome-image-hidden" value="#{dashboardWelcomeWidgetBean.renderImage(widget)}" rendered="#{not empty widget.uploadedImageFile}" />
+      </h:form>
     </div>
     <p:remoteCommand name="updateWelcomeText_#{widget.id}" update="welcome-text"
       actionListener="#{dashboardWelcomeWidgetBean.updateWelcomeText()}"

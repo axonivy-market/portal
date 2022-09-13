@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "14BDDCD00C5EA267",
   "data" : "ch.ivyteam.wf.processes.AbsenceServiceData",
   "kind" : "CALLABLE_SUB",
@@ -74,7 +74,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 256 },
-        "labelOffset" : { "x" : -70, "y" : 18 }
+        "labelOffset" : { "x" : 15, "y" : 38 }
       },
       "connect" : { "id" : "f1", "to" : "f3" }
     }, {
@@ -182,7 +182,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 },
-        "labelOffset" : { "x" : -75, "y" : 19 }
+        "labelOffset" : { "x" : 8, "y" : 39 }
       },
       "connect" : { "id" : "f22", "to" : "f20" }
     } ],

@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.15",
+  "format" : "9.4.20",
   "id" : "18258D93178B9CCF",
   "data" : "com.axonivy.portal.components.examples.serenity.ProcessChainExampleSerenity.ProcessChainExampleSerenityData",
   "kind" : "HTML_DIALOG",
@@ -75,7 +75,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 256 },
-        "labelOffset" : { "x" : -14, "y" : 15 }
+        "labelOffset" : { "x" : 5, "y" : 35 }
       },
       "connect" : { "id" : "f10", "to" : "f9" }
     }, {

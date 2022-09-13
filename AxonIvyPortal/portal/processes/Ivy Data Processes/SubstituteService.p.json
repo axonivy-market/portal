@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "14BECA923C1F4A4B",
   "data" : "ch.ivyteam.wf.processes.SubstituteServiceData",
   "kind" : "CALLABLE_SUB",
@@ -80,7 +80,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 },
-        "labelOffset" : { "x" : -61, "y" : 17 }
+        "labelOffset" : { "x" : 13, "y" : 37 }
       },
       "connect" : { "id" : "f2", "to" : "f14" }
     }, {
@@ -127,7 +127,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 256 },
-        "labelOffset" : { "x" : -74, "y" : 20 }
+        "labelOffset" : { "x" : 60, "y" : 40 }
       },
       "connect" : { "id" : "f24", "to" : "f21" }
     }, {

@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "1818968119A51953",
   "data" : "com.axonivy.portal.components.examples.override.DeleteDocumentItemOverrideData",
   "kind" : "CALLABLE_SUB",
@@ -30,7 +30,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -81, "y" : 26 }
+        "labelOffset" : { "x" : -7, "y" : 46 }
       },
       "connect" : { "id" : "f4", "to" : "f3" }
     }, {
@@ -60,7 +60,7 @@
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 64 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {
