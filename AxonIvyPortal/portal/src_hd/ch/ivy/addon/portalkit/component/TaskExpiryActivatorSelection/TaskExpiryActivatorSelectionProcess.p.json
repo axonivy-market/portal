@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "178DA0DE8672E8A1",
   "data" : "ch.ivy.addon.portalkit.component.TaskExpiryActivatorSelection.TaskExpiryActivatorSelectionData",
   "kind" : "HTML_DIALOG",
@@ -22,7 +22,7 @@
           },
           "visual" : {
             "at" : { "x" : 448, "y" : 160 },
-            "size" : { "width" : 160, "height" : 44 }
+            "size" : { "width" : 160, "height" : 60 }
           },
           "connect" : { "id" : "S10-f18", "to" : "S10-f17" }
         }, {
@@ -55,7 +55,7 @@
           },
           "visual" : {
             "at" : { "x" : 664, "y" : 160 },
-            "size" : { "width" : 144, "height" : 44 }
+            "size" : { "width" : 144, "height" : 60 }
           },
           "connect" : { "id" : "S10-f98", "to" : "S10-f89" }
         }, {
@@ -87,7 +87,7 @@
           },
           "visual" : {
             "at" : { "x" : 216, "y" : 160 },
-            "size" : { "width" : 160, "height" : 44 }
+            "size" : { "width" : 160, "height" : 60 }
           },
           "connect" : { "id" : "S10-f20", "to" : "S10-f5" }
         }, {
@@ -123,7 +123,7 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
-            "labelOffset" : { "x" : -19, "y" : 17 }
+            "labelOffset" : { "x" : -1, "y" : 37 }
           },
           "parentConnector" : "f21",
           "connect" : { "id" : "S10-f0", "to" : "S10-f15" }
@@ -133,13 +133,13 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 1024, "y" : 160 },
-            "labelOffset" : { "x" : -7, "y" : 11 }
+            "labelOffset" : { "x" : 14, "y" : 31 }
           },
           "parentConnector" : "f22"
         } ],
       "visual" : {
         "at" : { "x" : 336, "y" : 160 },
-        "size" : { "width" : 224, "height" : 44 }
+        "size" : { "width" : 224, "height" : 60 }
       },
       "connect" : { "id" : "f22", "to" : "f13" }
     }, {
@@ -175,7 +175,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 544 },
-        "labelOffset" : { "x" : -47, "y" : 15 }
+        "labelOffset" : { "x" : 13, "y" : 35 }
       },
       "connect" : { "id" : "f110", "to" : "f107" }
     }, {
@@ -207,7 +207,7 @@
       },
       "visual" : {
         "at" : { "x" : 304, "y" : 352 },
-        "size" : { "width" : 160, "height" : 44 }
+        "size" : { "width" : 160, "height" : 60 }
       },
       "connect" : { "id" : "f10", "to" : "f9" }
     }, {
@@ -236,7 +236,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 352 },
-        "labelOffset" : { "x" : -52, "y" : 12 }
+        "labelOffset" : { "x" : 37, "y" : 32 }
       },
       "connect" : { "id" : "f6", "to" : "f86" }
     }, {
@@ -261,7 +261,7 @@
       },
       "visual" : {
         "at" : { "x" : 504, "y" : 544 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f109", "to" : "f106" }
     }, {
@@ -274,7 +274,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 448 },
-        "labelOffset" : { "x" : -41, "y" : 15 }
+        "labelOffset" : { "x" : 3, "y" : 35 }
       },
       "connect" : { "id" : "f4", "to" : "S30" }
     }, {
@@ -305,7 +305,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 256 },
-        "labelOffset" : { "x" : -56, "y" : 13 }
+        "labelOffset" : { "x" : 33, "y" : 33 }
       },
       "connect" : { "id" : "f3", "to" : "f66" }
     }, {
@@ -357,7 +357,7 @@
       },
       "visual" : {
         "at" : { "x" : 520, "y" : 352 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f11", "to" : "f69" }
     }, {
@@ -414,7 +414,7 @@
           },
           "visual" : {
             "at" : { "x" : 528, "y" : 160 },
-            "size" : { "width" : 192, "height" : 44 }
+            "size" : { "width" : 192, "height" : 60 }
           },
           "connect" : { "id" : "S30-f1", "to" : "S30-g1" }
         }, {
@@ -423,7 +423,7 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
-            "labelOffset" : { "x" : -8, "y" : 13 }
+            "labelOffset" : { "x" : 10, "y" : 33 }
           },
           "parentConnector" : "f4",
           "connect" : { "id" : "S30-f0", "to" : "S30-f4" }
@@ -433,13 +433,13 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 928, "y" : 160 },
-            "labelOffset" : { "x" : 0, "y" : 5 }
+            "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f26"
         } ],
       "visual" : {
         "at" : { "x" : 304, "y" : 448 },
-        "size" : { "width" : 160, "height" : 44 }
+        "size" : { "width" : 160, "height" : 60 }
       },
       "connect" : { "id" : "f26", "to" : "f77" }
     }, {
@@ -468,7 +468,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 },
-        "labelOffset" : { "x" : -72, "y" : 15 }
+        "labelOffset" : { "x" : 39, "y" : 35 }
       },
       "connect" : { "id" : "f21", "to" : "S10" }
     } ]

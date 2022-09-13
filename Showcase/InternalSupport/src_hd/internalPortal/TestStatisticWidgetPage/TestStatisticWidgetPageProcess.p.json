@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "16150F8167BC0EF5",
   "data" : "internalPortal.TestStatisticWidgetPage.TestStatisticWidgetPageData",
   "kind" : "HTML_DIALOG",
@@ -19,9 +19,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 471, "y" : 66 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : -49, "y" : 14 }
+        "at" : { "x" : 471, "y" : 66 }
       },
       "connect" : { "id" : "f9", "to" : "f1" }
     }, {
@@ -34,16 +32,14 @@
       },
       "visual" : {
         "at" : { "x" : 68, "y" : 66 },
-        "size" : { "width" : 22, "height" : 22 },
-        "labelOffset" : { "x" : -16, "y" : 13 }
+        "labelOffset" : { "x" : 8, "y" : 33 }
       },
       "connect" : { "id" : "f4", "to" : "f8" }
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 580, "y" : 66 },
-        "size" : { "width" : 22, "height" : 22 }
+        "at" : { "x" : 580, "y" : 66 }
       }
     }, {
       "id" : "f8",
@@ -53,9 +49,7 @@
         "processCall" : "Functional Processes/BuildTaskQuery:buildTaskQuery()"
       },
       "visual" : {
-        "at" : { "x" : 332, "y" : 66 },
-        "size" : { "width" : 36, "height" : 24 },
-        "labelOffset" : { "x" : -51, "y" : 18 }
+        "at" : { "x" : 332, "y" : 66 }
       },
       "connect" : { "id" : "f3", "to" : "f2" }
     } ]

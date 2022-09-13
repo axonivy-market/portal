@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "167BAF785E543C28",
   "data" : "ch.ivy.addon.portalkit.test.CreateHiddenTasksAndCases.CreateHiddenTasksAndCasesData",
   "kind" : "HTML_DIALOG",
@@ -38,7 +38,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 },
-        "labelOffset" : { "x" : -15, "y" : 12 }
+        "labelOffset" : { "x" : 8, "y" : 32 }
       },
       "connect" : { "id" : "f5", "to" : "f4" }
     }, {

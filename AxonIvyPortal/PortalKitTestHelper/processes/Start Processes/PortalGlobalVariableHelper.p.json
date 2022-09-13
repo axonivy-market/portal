@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "1749B87B8C1B77BE",
   "data" : "portalKit_test.PortalGlobalVariableHelperData",
   "elements" : [ {
@@ -20,7 +20,7 @@
       },
       "visual" : {
         "at" : { "x" : 200, "y" : 80 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f9", "to" : "f6" }
     }, {
@@ -43,7 +43,7 @@
       },
       "visual" : {
         "at" : { "x" : 80, "y" : 80 },
-        "labelOffset" : { "x" : -67, "y" : 21 }
+        "labelOffset" : { "x" : 9, "y" : 41 }
       },
       "connect" : { "id" : "f8", "to" : "f7" }
     } ]

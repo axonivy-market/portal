@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "1791D27754935B10",
   "data" : "com.axonivy.portal.developerexamples.TaskDetailsCustomWidgetExampleData",
   "elements" : [ {
@@ -59,7 +59,7 @@
       },
       "visual" : {
         "at" : { "x" : 80, "y" : 48 },
-        "labelOffset" : { "x" : -21, "y" : 17 }
+        "labelOffset" : { "x" : 34, "y" : 37 }
       },
       "connect" : { "id" : "f15", "to" : "f6" }
     }, {
@@ -121,7 +121,7 @@
       },
       "visual" : {
         "at" : { "x" : 80, "y" : 112 },
-        "labelOffset" : { "x" : -24, "y" : 17 }
+        "labelOffset" : { "x" : 45, "y" : 37 }
       },
       "connect" : { "id" : "f20", "to" : "f8", "var" : "in1" }
     }, {

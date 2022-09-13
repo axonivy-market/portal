@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "15F80B590709168C",
   "data" : "internaltest.Data",
   "elements" : [ {
@@ -106,7 +106,7 @@
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 64 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {

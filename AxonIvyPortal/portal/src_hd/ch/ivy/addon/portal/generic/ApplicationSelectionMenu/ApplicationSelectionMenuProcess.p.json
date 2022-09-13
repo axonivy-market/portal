@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "156A1AA176DE2A21",
   "data" : "ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData",
   "kind" : "HTML_DIALOG",
@@ -19,7 +19,7 @@
       "visual" : {
         "at" : { "x" : 104, "y" : 184 },
         "size" : { "width" : 24, "height" : 24 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
+        "labelOffset" : { "x" : 89, "y" : 20 }
       },
       "connect" : { "id" : "f25", "to" : "f9", "via" : [ { "x" : 320, "y" : 184 } ] }
     }, {
@@ -33,7 +33,7 @@
       "visual" : {
         "at" : { "x" : 104, "y" : 96 },
         "size" : { "width" : 24, "height" : 24 },
-        "labelOffset" : { "x" : 13, "y" : 0 }
+        "labelOffset" : { "x" : 37, "y" : 20 }
       },
       "connect" : { "id" : "f7", "to" : "f9" }
     }, {
@@ -98,7 +98,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 592 },
-        "labelOffset" : { "x" : -24, "y" : 14 }
+        "labelOffset" : { "x" : 17, "y" : 34 }
       },
       "connect" : { "id" : "f8", "to" : "f14" }
     }, {
@@ -119,7 +119,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 496 },
-        "labelOffset" : { "x" : -47, "y" : 16 }
+        "labelOffset" : { "x" : 14, "y" : 36 }
       },
       "connect" : { "id" : "f18", "to" : "f91" }
     }, {
@@ -140,7 +140,7 @@
       },
       "visual" : {
         "at" : { "x" : 480, "y" : 496 },
-        "size" : { "width" : 144, "height" : 44 }
+        "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f1", "to" : "f5" }
     }, {
@@ -159,7 +159,7 @@
       },
       "visual" : {
         "at" : { "x" : 104, "y" : 288 },
-        "labelOffset" : { "x" : -70, "y" : 17 }
+        "labelOffset" : { "x" : 9, "y" : 37 }
       },
       "connect" : { "id" : "f10", "to" : "f41" }
     }, {
@@ -188,7 +188,7 @@
       },
       "visual" : {
         "at" : { "x" : 608, "y" : 96 },
-        "labelOffset" : { "x" : -53, "y" : 16 }
+        "labelOffset" : { "x" : 6, "y" : 36 }
       },
       "connect" : { "id" : "f30", "to" : "f6" }
     }, {
@@ -272,7 +272,7 @@
       },
       "visual" : {
         "at" : { "x" : 104, "y" : 384 },
-        "labelOffset" : { "x" : -64, "y" : 15 }
+        "labelOffset" : { "x" : 10, "y" : 35 }
       },
       "connect" : { "id" : "f17", "to" : "f15" }
     }, {
@@ -291,7 +291,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 688 },
-        "labelOffset" : { "x" : -57, "y" : 16 }
+        "labelOffset" : { "x" : 27, "y" : 36 }
       },
       "connect" : { "id" : "f23", "to" : "f22" }
     }, {
@@ -325,7 +325,7 @@
       },
       "visual" : {
         "at" : { "x" : 256, "y" : 688 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f21", "to" : "f16" }
     } ],

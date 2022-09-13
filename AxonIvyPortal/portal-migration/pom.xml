@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>portal.migration</groupId>
   <artifactId>portal-migration-9.4</artifactId>
@@ -8,7 +7,7 @@
   <packaging>iar</packaging>
   <properties>
     <ivy.engine.version>9.4.0</ivy.engine.version>
-    <build.plugin.version>9.3.1</build.plugin.version>
+    <build.plugin.version>9.4.0</build.plugin.version>
   </properties>
   <build>
     <plugins>

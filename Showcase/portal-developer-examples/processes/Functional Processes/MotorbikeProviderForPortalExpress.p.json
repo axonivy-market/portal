@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.20",
   "id" : "16B40A95DA8F858E",
   "data" : "com.axonivy.portal.developerexamples.DataProviderForPortalExpressData",
   "kind" : "CALLABLE_SUB",
@@ -20,7 +20,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : 24, "y" : -1 }
+        "labelOffset" : { "x" : 109, "y" : 19 }
       },
       "connect" : { "id" : "f4", "to" : "f3" }
     }, {
