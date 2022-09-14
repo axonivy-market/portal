@@ -132,9 +132,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       EXTERNAL_LINK: External Link
       IVY_PROCESS: Geschäftsprozess
     ProcessWidgetMode:
-      COMBINED_MODE: Combined mode
-      COMPACT_MODE: Compact mode
-      FULL_MODE: Full mode
+      COMBINED_MODE: Kombinierter Modus
+      COMPACT_MODE: Kompakt-Modus
+      FULL_MODE: Voller Modus
       IMAGE_MODE: Bild-Modus
     ReleaseState:
       DEPRECATED: Verworfen
