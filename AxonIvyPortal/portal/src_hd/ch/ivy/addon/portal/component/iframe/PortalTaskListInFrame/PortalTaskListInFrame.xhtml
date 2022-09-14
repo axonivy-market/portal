@@ -82,6 +82,8 @@
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component" dataModel="#{taskView.dataModel}" state="#{task.state}" />
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskCategory id="task-category-component" tooltip="#{task.getCategory().getPath()}" 
                   rendered="#{taskView.dataModel.isSelectedColumn('CATEGORY')}" value="#{task.getCategory().getName()}"  />
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskApplication id="task-application-component" task="#{task}" 
+                  rendered="#{taskView.dataModel.isSelectedColumn('APPLICATION')}" />
               </ui:fragment>
             </f:facet>
 

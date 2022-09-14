@@ -350,6 +350,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     cases: Dossiers
     confirmDeleteMessage: Cette action ne peut pas être annulée. Voulez-vous vraiment supprimer ?
     defaultColumns:
+      APPLICATION: Application
       CATEGORY: Catégorie
       CREATION_TIME: Créé
       CREATOR: Créateur
@@ -404,6 +405,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeMessage: Tapez votre message ici…
     viewParticipant: Voir les participants
   common:
+    All: Toutes
     BusinessCaseInformation: Informations sur les cas d'affaires
     CollapseAll: Réduire tout
     DefaultTemplate: Modèle standard
@@ -1317,6 +1319,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     default: Défaut
     defaultColumns:
       ACTIVATOR: Responsable
+      APPLICATION: Application
       CATEGORY: 'Catégorie '
       COMPLETED_ON: Fini le
       CREATION_TIME: Créé

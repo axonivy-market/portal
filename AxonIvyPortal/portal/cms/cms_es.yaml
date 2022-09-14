@@ -351,6 +351,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     cases: Casos
     confirmDeleteMessage: Esta acción no se puede deshacer. ¿De verdad quieres eliminar este objeto comercial?
     defaultColumns:
+      APPLICATION: Aplicación
       CATEGORY: Categoría
       CREATION_TIME: Creado
       CREATOR: Creador
@@ -405,6 +406,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeMessage: Escriba su texto aquí…
     viewParticipant: Mostrar participantes
   common:
+    All: Todas
     BusinessCaseInformation: Información sobre el caso de negocio
     CollapseAll: Cerrar todo
     DefaultTemplate: Patrón estandard
@@ -1320,6 +1322,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     default: Predeterminado
     defaultColumns:
       ACTIVATOR: Responsable
+      APPLICATION: Aplicación
       CATEGORY: Categoría
       COMPLETED_ON: Completado en
       CREATION_TIME: Creado

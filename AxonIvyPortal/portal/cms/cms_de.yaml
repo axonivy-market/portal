@@ -350,6 +350,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     cases: Vorgänge
     confirmDeleteMessage: Diese Aktion kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie dieses Businessobjekt löschen wollen?
     defaultColumns:
+      APPLICATION: Anwendung
       CATEGORY: Kategorie
       CREATION_TIME: Erstellt
       CREATOR: Ersteller
@@ -404,6 +405,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeMessage: Schreiben Sie hier eine Nachricht...
     viewParticipant: Teilnehmer anzeigen
   common:
+    All: Alles
     BusinessCaseInformation: Business Case Informationen
     CollapseAll: Alles zuklappen
     DefaultTemplate: Standard Vorlage
@@ -1318,6 +1320,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     default: Standard
     defaultColumns:
       ACTIVATOR: Verantwortlich
+      APPLICATION: Anwendung
       CATEGORY: Kategorie
       COMPLETED_ON: Erledigt am
       CREATION_TIME: Erstellt

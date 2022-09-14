@@ -269,6 +269,7 @@ public class TaskSearchCriteria {
 //        }
 //      }
     }
+    
   }
   
   /** Check if current user can see task in advance state such as

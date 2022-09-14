@@ -69,6 +69,8 @@ public class TaskAnalysisExporter extends Exporter{
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskExpiryTime");
       case TASK_FINISHED_TIME:
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskFinishedTime");
+      case APPLICATION:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/APPLICATION");
       default:
         return "";
     }
@@ -124,6 +126,8 @@ public class TaskAnalysisExporter extends Exporter{
         return task.getExpiryTimestamp();
       case TASK_FINISHED_TIME:
         return task.getEndTimestamp();
+      case APPLICATION:
+        return task.getApplication().getName();
       default:
         return "";
     }

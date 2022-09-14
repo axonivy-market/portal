@@ -23,6 +23,16 @@ public class CaseWidgetPage extends TemplatePage {
         .filter(text(caseName)).first().click();
     return new CaseDetailsPage();
   }
+  
+  public void openAdvancedFilter(String filterName, String filterIdName) {
+    $("a[id$='filter-add-action']").waitUntil(appear, DEFAULT_TIMEOUT);
+    $("a[id$='filter-add-action']").click();
+    $("table[id$='case-widget:filter-add-form:filter-selection']").waitUntil(appear, DEFAULT_TIMEOUT);
+    $$("table[id$='case-widget:filter-add-form:filter-selection'] label").filter(text(filterName)).first().click();
+    $("button[id$='case-widget:filter-add-form:update-filter-selected-command']").click();
+    $("div[id$='case-widget:filter-add-panel']").waitUntil(disappear, DEFAULT_TIMEOUT);
+    $("span[id$='" + filterIdName + "-filter:advanced-filter-component").waitUntil(appear, DEFAULT_TIMEOUT);
+  }
 
   public void filterCasesByCreatedDate(String fromCreatedDate, String toCreatedDate) {
     $("button[id$='created-filter:filter-open-form:advanced-filter-command']").waitUntil(appear, DEFAULT_TIMEOUT);
@@ -34,6 +44,19 @@ public class CaseWidgetPage extends TemplatePage {
     closePanelDatePicker($("div[id$='created-filter:filter-input-form:to-created-calendar_panel"));
     $("button[id$='created-filter:filter-input-form:update-command']").click();
     $("div[id$='created-filter:filter-input-form:advanced-filter-panel'").waitUntil(disappear, DEFAULT_TIMEOUT);
+  }
+  
+  public void filterFirstApp() {
+    $("button[id$=':application-filter:filter-open-form:advanced-filter-command']").click();
+    $("div[id$=':application-filter:filter-input-form:advanced-filter-panel'").waitUntil(appear, DEFAULT_TIMEOUT);
+    final ElementsCollection checkboxLabel = $$("span.ui-chkbox-label");
+    for (int i=0; i < checkboxLabel.size(); i ++) {
+      if (checkboxLabel.get(i).getText().equals("Select All")) {
+        checkboxLabel.get(i).click();
+      }
+    }
+    $("button[id$=':application-filter:filter-input-form:update-command']").click();
+    $("div[id$=':application-filter:filter-input-form:advanced-filter-panel'").waitUntil(disappear, DEFAULT_TIMEOUT);
   }
   
   private void closePanelDatePicker(SelenideElement element) {
