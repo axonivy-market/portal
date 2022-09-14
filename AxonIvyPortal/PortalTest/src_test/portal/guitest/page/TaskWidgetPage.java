@@ -48,11 +48,11 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void expand() {
-    WaitHelper.assertTrueWithWait(() -> isElementDisplayed(By.cssSelector("a[id$=':task-list-link:task-list-link']")));
+    waitForElementDisplayed(By.cssSelector("a[id$=':task-list-link:task-list-link']"), true);
     WebElement fullModeButton = findElementById(taskWidgetId + ":task-list-link:task-list-link");
     click(fullModeButton);
     waitForElementDisplayed(By.cssSelector("li.topbar-item.breadcrumb-container"), true);
-    WaitHelper.assertTrueWithWait(() -> isElementDisplayed(By.cssSelector("[id$=':filter-save-action']")));
+    waitForElementDisplayed(By.cssSelector("[id$=':filter-save-action']"), true);
     waitForLocatorDisplayed("id('" + taskWidgetId + ":filter-save-action')");
   }
 
@@ -404,6 +404,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public String getFilterValue(String filterId) {
+    waitForElementDisplayed(By.cssSelector("[id$='" + filterId + ":advanced-filter-component']"), true);
     WebElement filterElement =
         findElementByCssSelector("button[id$='" + filterId + ":filter-open-form:advanced-filter-command']");
     return filterElement.getText();

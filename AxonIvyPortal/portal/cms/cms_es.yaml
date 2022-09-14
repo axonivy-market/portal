@@ -817,6 +817,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectYourTemplate: Seleccione su plantilla
       WelcomeConfigurationDescription: ''
       WelcomeWidget:
+        AdvancedSettings: Configuración avanzada
         DisplayedText: Texto mostrado
         Greeting:
           Afternoon: Buenas tardes

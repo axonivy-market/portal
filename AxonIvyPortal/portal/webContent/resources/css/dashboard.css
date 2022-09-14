@@ -1196,13 +1196,14 @@ span.new-widget-dialog__icon.si {
 
 .welcome-widget-configuration .preview-panel {
   position: relative;
-  height: 180px;
+  max-height: 180px;
   overflow: hidden;
   border-radius: 1rem;
 }
 
 .welcome-widget-configuration .preview-panel .preview-image {
   width: 100%;
+  display: block;
 }
 
 .welcome-widget-configuration .upload-image-section .uploaded-file-name {

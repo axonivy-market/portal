@@ -56,7 +56,9 @@ WelcomeWidgetConfiguration = {
 
   loadPreviewImage : function() {
     var previewDialog = $('#new-widget-configuration-dialog');
-    previewDialog.find('.js-preview-image').get(0).setAttribute('src', $('#widget-configuration-form input[id $= ":preview-image-hidden"]').get(0).value);
+    if (previewDialog.find('[id$=":default-image"]').length == 0) {
+      previewDialog.find('.js-preview-image').get(0).setAttribute('src', $('#widget-configuration-form input[id $= ":preview-image-hidden"]').get(0).value);
+    }
   },
 
   updatePreviewTextSize : function() {
@@ -103,7 +105,10 @@ WelcomeWidgetConfiguration = {
 WelcomeWidget = {
   init : function(widgetId, welcomeTextColor, welcomeTextPosition, welcomeTextSize) {
     var widget = $('div.grid-stack-item[gs-id = ' + widgetId + ']');
-    $(widget.find('#welcome-image')).get(0).setAttribute('src', widget.find('input[id $= ":welcome-image-hidden"]').get(0).value);
+    
+    if (widget.find('[id$=":default-image"]').length == 0) {
+      $(widget.find('#welcome-image')).get(0).setAttribute('src', widget.find('input[id $= ":welcome-image-hidden"]').get(0).value);
+    }
     this.updateWelcomeTextStyles(widgetId, welcomeTextColor, welcomeTextPosition, welcomeTextSize);
     this.stretchImage();
   },
@@ -155,7 +160,7 @@ WelcomeWidget = {
 
   stretchImage : function() {
     $('.js-welcome-widget').each( function() {
-      if ($(this).find('.js-welcome-image').get(0).clientHeight < this.clientHeight) {
+      if ($(this).find('.js-welcome-image').get(0).clientHeight < $(this).find('.grid-stack-item-content').get(0).clientHeight) {
         $(this).addClass('stretch-image');
       } else {
         setTimeout(() => {

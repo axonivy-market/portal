@@ -21,9 +21,8 @@
   <c:set var="isConfigurationMode" value="#{cc.attrs.isConfigurationMode}" />
   <c:set var="availableFilter" value="#{isReadOnlyMode and chart.filter ne null}"/>
   <c:set var="disabledDrillDownChart" value="#{isConfigurationMode or !isReadOnlyMode}"/>
-  <c:set var="statisticChartScalingInterval" value="#{statisticChartCreationBean.statisticChartScalingInterval}" scope="request"/>
-  <c:set var="minimumStatisticChartScalingInterval" value="#{statisticChartCreationBean.minimumStatisticChartScalingInterval}" scope="request"/>
 
+  <f:event listener="#{dashboardStatisticChartBean.initSettings()}" type="preRenderComponent"/>
   <div class="statistic-chart-widget">
     <!-- Chart Header -->
     <h:panelGroup styleClass="statistic-chart-widget__header widget__header">
@@ -90,9 +89,11 @@
       global="false" async="true" process="@this"
       oncomplete="loadWidgetFirstTime('js-loading-chart-#{widget.id}', 'js-dashboard-statistic-chart-#{widget.id}')" />
 
-    <p:poll id="chart_model_dashboard_poll-#{index}" interval="#{statisticChartScalingInterval}" update="rcLoadChartFirstTime"
-      global="false" process="@this" partialSubmit="true" async="true" immediate="true" listener="#{logic.regenerateChartModelDashboard(chart)}"
-      rendered="#{statisticChartScalingInterval ge minimumStatisticChartScalingInterval}" />
+	<c:set value="chart_model_dashboard_poll-#{index}" var="chartPollId"/>
+    <p:poll id="#{chartPollId}" interval="#{dashboardStatisticChartBean.statisticChartScalingInterval}" update="rcLoadChartFirstTime @this"
+      global="false" process="@this" partialSubmit="true" async="true" immediate="true" listener="#{widget.generateChartModel()}"
+      rendered="#{dashboardStatisticChartBean.renderedRefreshChartPoll}" stop="#{ivy.session.sessionUserUnknown}"
+      widgetVar="#{chartPollId}" onerror="PF(#{chartPollId}).stop()"/>
     <h:panelGroup id="statistic-chart-widget__content" rendered="#{chart ne null}" layout="block"
       styleClass="statistic-chart-widget__content widget__content widget__content">
 

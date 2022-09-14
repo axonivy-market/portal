@@ -27,7 +27,7 @@ Information
 
 - Group chat supports some customizations, refer to :ref:`Group chat customization <customization-group-chat>` for details.
 
-- If your system uses an additional Tomcat **Valve**, then we recommend to add asyncSupported in file ``Context.xml``. An example file is available at :dev-url:`File Reference </doc/8.0/engine-guide/configuration/files/context-xml.html>`.
+- If your system uses an additional Tomcat **Valve**, then we recommend to add asyncSupported in file ``Context.xml``. An example file is available at :dev-url:`File Reference </doc/nightly/engine-guide/configuration/files/context-xml.html>`.
 
   .. code-block:: html
 
