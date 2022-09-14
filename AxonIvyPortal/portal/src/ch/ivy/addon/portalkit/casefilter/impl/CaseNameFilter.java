@@ -17,7 +17,7 @@ public class CaseNameFilter extends CaseFilter {
 
   @Override
   public String value() {
-    return StringUtils.isNotBlank(name) ? String.format(DOUBLE_QUOTES, name) : ALL;
+    return StringUtils.isNotBlank(name) ? String.format(DOUBLE_QUOTES, name) : getAllLabel();
   }
 
   @Override
