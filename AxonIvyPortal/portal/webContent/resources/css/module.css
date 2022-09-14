@@ -5954,3 +5954,10 @@ a.dashboard-action-container label {
   justify-content: space-between;
   align-items: center;
 }
+.application-column{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width:90px;
+  padding-right:15px;
+}

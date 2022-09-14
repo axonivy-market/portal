@@ -44,6 +44,13 @@
           containerStyleClass="task-configuration__category" inputCategoryStyleClass="task-configuration__input-text"
           overlayCategoryStyleClass="task-configuration__category-panel" showUnselectableCheckbox="true"/>
       </h:panelGroup>
+      
+      <h:panelGroup rendered="#{field.field eq 'application'}">
+        <ic:ch.ivy.addon.portalkit.component.dashboard.widget.ApplicationFilterColumn field="#{field}"
+          selectedApps="#{field.userFilterList}"
+          appOptions="#{field.userFilterListOptions}"/>
+      </h:panelGroup>
+      
     </div>
   </ui:repeat>
 </h:panelGroup>
