@@ -17,7 +17,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class DashboardTaskWidgetTest extends BaseTest {
 
   //WIDGET
