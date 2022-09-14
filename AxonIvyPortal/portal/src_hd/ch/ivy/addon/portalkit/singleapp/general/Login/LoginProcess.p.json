@@ -160,7 +160,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.service.OAuthProviderService;",
             "",
-            "in.oauthProviders = OAuthProviderService.getInstance().getOAuthProviders();"
+            "in.oauthProviders = OAuthProviderService.getInstance().getOAuthProviders(in.callbackUrl);"
           ]
         }
       },
