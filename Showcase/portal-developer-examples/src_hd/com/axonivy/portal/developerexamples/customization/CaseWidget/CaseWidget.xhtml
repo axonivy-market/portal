@@ -4,7 +4,7 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:body>
 
-  <!-- In this HTML dialog, we override task list header, task header, task filter, and task body -->
+  <!-- In this HTML dialog, we override case list header, case header, case filter, and case body -->
 
   <ui:composition template="/layouts/PortalCasesTemplate.xhtml">
     <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
@@ -49,6 +49,11 @@
         styleClass="u-text-align-center" responsiveStyleClass="u-hidden-sm-down"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}"
         dataModel="#{caseView.dataModel}" sortable="true" sortedField="STATE" />
+        
+      <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="application-column-header"
+        styleClass="TexAlCenter" responsiveStyleClass="u-hidden-sm-down"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/APPLICATION')}"
+        dataModel="#{caseView.dataModel}" sortable="false" sortedField="APPLICATION" />
 
       <!-- New field -->
       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customer-name-column-header"
@@ -81,6 +86,7 @@
         responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down" />
       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState componentId="case-state-cell" case="#{case}"
         dataModel="#{caseView.getDataModel()}" />
+      <ic:ch.ivy.addon.portalkit.component.cases.column.CaseApplication componentId="case-application-cell" case="#{case}" />
 
       <!-- New field -->
       <h:panelGroup styleClass="customized-case-header-column js-hidden-when-expand-menu u-hidden-lg-down" rendered="#{caseView.dataModel.isSelectedColumn('CustomerName')}">
@@ -109,6 +115,8 @@
         dataModel="#{caseView.dataModel}" />
       <ic:ch.ivy.addon.portalkit.component.cases.filter.CaseOwnerFilter filter="#{filterContainer.caseOwnerFilter}"
         dataModel="#{caseView.dataModel}" rendered="#{caseBean.isCaseOwnerEnabled()}" />
+      <ic:ch.ivy.addon.portalkit.component.cases.filter.CaseApplicationFilter filter="#{filterContainer.applicationFilter}"
+        dataModel="#{caseView.dataModel}" />
 
       <!-- Add new filter -->
       <ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter id="customerNameField-case-filter"
