@@ -107,6 +107,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   @SuppressWarnings("deprecation")
   public void filterByTaskPriority(List<String> selectedPriorities) {
     click(By.cssSelector("[id$='priority-filter:filter-open-form:advanced-filter-command']"));
+    waitForElementDisplayed(By.cssSelector("[id$='priority-filter:filter-input-form:advanced-filter-panel-content']"), true);
     WebElement selectionElement = findElementByCssSelector("[id$='priority-filter:filter-input-form:advanced-filter-panel-content']");
     for (WebElement labelElement : findChildElementsByTagName(selectionElement, "LABEL")) {
       if (!selectedPriorities.contains(labelElement.getText())) {

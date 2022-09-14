@@ -48,31 +48,31 @@
           componentToUpdateOnDeleteProcess="#{cc.attrs.componentToUpdateOnRemoveProcess}"
           hideActionButton="#{cc.attrs.isInConfiguration}"/>
 
-        <!-- Process Icon -->
-        <i id="icon" class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())} process-grid-view-icon #{cc.attrs.processIconStyleClass}" />
-        <!-- Process Name -->
-        <div class="ui-g-12 process-name js-process-start-list-item-name">
-          <h:outputText id="process-name" value="#{process.name}" styleClass="line-clamp-text-2 process-grid-view-name" />
+        <div class="process-grid__header">
+          <!-- Process Icon -->
+          <i id="icon" class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())} process-grid-view-icon #{cc.attrs.processIconStyleClass}" />
+          <!-- Process Name -->
+          <div class="ui-g-12 process-name js-process-start-list-item-name">
+            <h:outputText id="process-name" value="#{process.name}" styleClass="line-clamp-text-2 process-grid-view-name" />
+          </div>
         </div>
         <!-- Process Description -->
         <div class="ui-g-12 process-description js-process-start-list-item-description">
           <h:outputText id="process-description" value="#{process.description}"
-            styleClass="u-text-align-center line-clamp-text-5" />
+            styleClass="u-text-align-center line-clamp-text-5 process-description__text" />
           <p:tooltip id="info-workflow-tooltip" for="process-description" value="#{process.description}" position="top"
             trackMouse="true" hideEvent="mouseleave click" styleClass="js-process-start-list-item-description" />
         </div>
         <!-- Start process -->
-        <div class="ui-g-12 MarTop10" id="start-button-wrap-#{status.index}">
+        <div class="ui-g-12" id="start-button-wrap-#{status.index}">
           <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}"
             id="start-button" actionListener="#{managedBean.startProcess(process)}" icon="si si-arrow-right-1"
             ajax="#{!isExternalLink}"
             disabled="#{cc.attrs.readOnlyMode}" />
-          <div class="process-more-info-link">
-            <p:link id="more-information" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}"
-              href="#{managedBean.getProcessInformationPageUrl(process)}"
-              rendered="#{cc.attrs.showInformationLink and !isExpress and !isExternalLink and !isCaseMap}"
-              disabled="#{cc.attrs.readOnlyMode}" />
-          </div>
+          <p:link id="more-information" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}"
+            href="#{managedBean.getProcessInformationPageUrl(process)}"
+            rendered="#{cc.attrs.showInformationLink and !isExpress and !isExternalLink and !isCaseMap}"
+            disabled="#{cc.attrs.readOnlyMode}" styleClass="process-more-info-link"/>
         </div>
         <p:tooltip for="process-name" value="#{process.name}" trackMouse="true" hideEvent="mouseleave click"/>
       </h:form>

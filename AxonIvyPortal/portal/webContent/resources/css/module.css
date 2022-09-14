@@ -1091,8 +1091,16 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .process-widget .process-more-info-link,
 .widget-content .process-more-info-link {
   display: block;
-  margin-top: 20px;
-  height: 16px;
+  padding-top: .5rem;
+  text-align: center;
+}
+
+.process-more-info-link {
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
 
 .process-widget .process-nav .character-container {
@@ -3140,7 +3148,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .grid-view-form {
-  padding: 2rem;
   height: 100%;
   position: relative;
   display: flex;
@@ -3151,13 +3158,11 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .grid-view-form .process-name {
-  height: 6rem;
   display: flex;
 }
 
-.process-grid-view__description,
-.grid-view-form .process-description {
-  height: 9rem;
+.dashboard-processes-container {
+  height: 100%;
   overflow: hidden;
 }
 
@@ -5441,7 +5446,6 @@ border-top: 0.14rem dashed;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 3rem !important;
 }
 
 .grid-view-form .process-action-group {
@@ -5450,6 +5454,10 @@ border-top: 0.14rem dashed;
   width: 100%;
   display: inline-flex;
   justify-content: flex-end;
+}
+
+.process-group.grid-process-container .process-grid-item .process-grid-view-icon {
+  padding: 2rem;
 }
 
 .process-action-group {
@@ -5479,7 +5487,7 @@ border-top: 0.14rem dashed;
 }
 
 .image-view-form .process-description {
-  padding: 24px;
+  padding: 0.5rem 2rem;
   overflow: hidden;
   position: absolute;
   top: -202px;
@@ -5506,10 +5514,9 @@ border-top: 0.14rem dashed;
   text-align: center;
 }
 
+.process-description .process-description__text,
 .image-view-form .process-description .process-item-description {
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0.01em;
+  line-height: 1.5;
   word-break: break-word;
 }
 
@@ -5532,12 +5539,15 @@ border-top: 0.14rem dashed;
       height: -webkit-fill-available;
     }
 }
+#dashboard-processes-container {
+  overflow: hidden;
+  height: 100%;
+}
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-container {
   width: inherit;
   position: relative;
   height: 100%;
-  min-height: 200px;
   max-height: 296px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -5580,7 +5590,6 @@ border-top: 0.14rem dashed;
 }
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .process-description {
-  min-height: 24px;
   height: 100%;
 }
 

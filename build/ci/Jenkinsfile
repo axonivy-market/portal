@@ -40,7 +40,6 @@ pipeline {
               bat "mvn clean install -f ${module}/pom.xml"
             }
           }
-          bat "mvn clean test -f AxonIvyPortal/PortalTest/pom.xml -Dtest=ch.ivy.addon.**.*Test"
           archiveArtifacts artifacts: "*/*/target/*.iar", allowEmptyArchive: true
           junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
         }
