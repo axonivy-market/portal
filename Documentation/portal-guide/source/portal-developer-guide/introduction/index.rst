@@ -6,21 +6,21 @@ Introduction
 Portal Developer Guide provides information to set up, configure, customize
 Portal so that it could fit customer need.
 
-Welcoming and modern Look & Feel for Axon Ivy Portal 9.4 refer to :ref:`introduction-new-and-note-worthy-9.4`.
+Inviting and modern Look & Feel for Axon Ivy Portal 9.4. Refer to :ref:`introduction-new-and-note-worthy-9.4`.
 
 - Welcome Screen
 - Dashboard Wizards
 - New Portal Theme Freya
 - Change password validations
 
-The Individual Dashboard for Axon Ivy Portal 9.3 refers to :ref:`introduction-new-and-note-worthy-9.3`.
+The Individual Dashboard for Axon Ivy Portal 9.3. Refers to :ref:`introduction-new-and-note-worthy-9.3`.
 
 - Customizable Dashboard
 - Default Widgets
 - Custom Widgets
 - Adjustable Look for Process List
 
-More UX for Axon Ivy Portal 9.2, refer to :ref:`introduction-new-and-note-worthy-9.2`.
+More UX for Axon Ivy Portal 9.2. Refer to :ref:`introduction-new-and-note-worthy-9.2`.
 
 - Enhanced forgot password features
 - Simplified tasks and cases export
@@ -60,7 +60,7 @@ All dashboards within the Axon Ivy Portal can now be configured and arranged wit
 
 |dashboard-configuration-wizard|
 
-Now it is possible to create and manage private and public Dashboards. Creating those dashboards is now done conveniently via a significantly simplified and enhanced wizard. 
+Now, it is possible to create and manage private and public Dashboards. Creating those dashboards is now done conveniently via a significantly simplified and enhanced wizard. 
 Additionally, the dashboards can be rearranged as desired.
 
 |dashboard-configuration-wizard-create|
@@ -71,6 +71,8 @@ Password Validation
 ^^^^^^^^^^^^^^^^^^^
 
 Password policies are different in each company. This fact is fully taken into account in the Axon Ivy Portal.
+
+This applies to users managed by the Axon Ivy Engine only. If users are imported from an external Identity Provider (IDP), this IDP manages passwords as well as password policy.
 
 |password-validation|
 
