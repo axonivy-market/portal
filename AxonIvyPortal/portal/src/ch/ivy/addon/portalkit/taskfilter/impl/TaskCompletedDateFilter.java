@@ -39,7 +39,7 @@ public class TaskCompletedDateFilter extends TaskFilter {
 		if (toCompletedDate != null) {
 			return String.format(LESS_EQUAL, formatter.format(toCompletedDate));
 		}
-		return ALL;
+		return getAllLabel();
 	}
 
 	@Override

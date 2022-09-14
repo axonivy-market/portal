@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.dto.dashboard.FullProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 
 @ManagedBean
 @ViewScoped
@@ -39,11 +40,17 @@ public class FullDashboardProcessBean implements DashboardProcessBeanHandler<Ful
   @Override
   public void onChangeDisplayMode() {
     FullProcessDashboardWidget newWidget = new FullProcessDashboardWidget(dashboardProcessBean.getWidget());
+    newWidget.buildFilterableColumns(DashboardWidgetUtils.initProcessFilterableColumns());
     dashboardProcessBean.updateWidget(newWidget);
   }
 
   @Override
   public void preview() {
     dashboardProcessBean.preview();
+  }
+
+  @Override
+  public void onChangeApplications(List<String> applications) {
+    dashboardProcessBean.setApplications(applications);
   }
 }
