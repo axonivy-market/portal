@@ -49,7 +49,7 @@
             "",
             "dossier.decision.granted = false;",
             "// Execute rules to evaluate if it needs approval Level 1 and / or Level 2",
-            "ivy.rules.engine.createRuleBase().loadRulesFromNamespace(\"com.axonivy.portal.userexamples.credit\").createSession().execute(dossier);",
+            "Rules.create().namespace(\"com.axonivy.portal.userexamples.credit\").executor().execute(dossier);",
             "// Save dossier",
             "ivy.repo.save(dossier);"
           ]

@@ -42,6 +42,8 @@ function loadGrid() {
       if (descriptionElement.length > 0) {
         setupImageProcessWidgetDescription(descriptionElement);
       }
+
+      setupGridProcessWidget();
     });
 
     // Disable all pointer events of iframes when edit widgets
@@ -124,9 +126,9 @@ function setupScrollbar() {
   if (viewMode.length > 0) {
     return;
   }
+  var container = $('.js-dashboard__body');
   var gridstackItems = $('.grid-stack-item');
   if (gridstackItems.length > 0) {
-    var container = $('.js-dashboard__body');
     container.removeAttr('style');
     var $dashboardHeader = $(".js-dashboard__header");
     var headerContainer = ($dashboardHeader.outerHeight(true) || 0);
@@ -147,9 +149,9 @@ function setupScrollbar() {
       }
       availableHeight = availableHeight - PortalLayout.getYPaddingLayoutContent();
       container.outerHeight(availableHeight);
-      container.removeClass('u-invisibility');
     }
   }
+  container.removeClass('u-invisibility');
 }
 
 function isSafariBrowser() {
@@ -196,38 +198,15 @@ function collapseFullscreen(index, widgetId) {
   hideAllDashboardOverlayPanels();
 }
 
-function setupImageProcessWidget() {
-  var imageContainers = $('.js-image-widget-mode .js-image-process-item-container');
-  if (imageContainers.length > 0) {
-    imageContainers.each(function () {
-      var imageUrl = $(this).find("img").attr("src");
-      $(this).css('background-image', 'url("' + imageUrl + '")');
-    });
-  }
-
-  var processDescriptions = $('.js-image-widget-mode .js-process-description');
-  if (processDescriptions.length > 0) {
-    processDescriptions.each(function () {
-      setupImageProcessWidgetDescription($(this));
-    });
-  }
-}
-
-function setupImageProcessWidgetDescription(e) {
-  var height = e.height();
-  var descriptionContent = e.find('.js-process-item-description');
-  var lineHeight = parseFloat(descriptionContent.css('line-height'));
-  var lineClamp = Math.floor(height / lineHeight);
-  if (lineClamp == 2) lineClamp = 1;
-  descriptionContent.css('-webkit-line-clamp', lineClamp.toString());
-}
-
 function loadWidgetFirstTime(loadingClass, widgetClass) {
   var loading = $('.' + loadingClass);
   if (loading.length > 0) {
     loading.addClass('u-display-none');
   }
   var widget = $('.' + widgetClass);
+  if (widget.length == 0) {
+    widget = $("[data-process-id='" + widgetClass + "']");
+  }
   if (widget.length > 0) {
     widget.removeClass('u-display-none');
     widget.removeClass('u-invisibility');
@@ -249,4 +228,140 @@ function hideAllDashboardOverlayPanels() {
       }
     });
   }
+}
+
+// Start Process Dashboard Widget
+function respondProcessWidget(displayMode) {
+  if (displayMode === 'IMAGE_MODE') {
+    setupImageProcessWidget();
+  }
+  else if (displayMode === 'FULL_MODE') {
+    setupGridProcessWidget();
+  }
+}
+
+// Setup for Image process
+function setupImageProcessWidget() {
+  var imageContainers = $('.js-image-widget-mode .js-image-process-item-container');
+  if (imageContainers.length > 0) {
+    imageContainers.each(function () {
+      var imageUrl = $(this).find("img").attr("src");
+      $(this).css('background-image', 'url("' + imageUrl + '")');
+    });
+  }
+
+  var processDescriptions = $('.js-image-widget-mode .js-process-description');
+  if (processDescriptions.length > 0) {
+    processDescriptions.each(function () {
+      setupImageProcessWidgetDescription($(this));
+    });
+  }
+}
+
+function setupImageProcessWidgetDescription(e) {
+  var height = e.height();
+  var descriptionContent = e.find('.js-process-item-description');
+  removeStyle(descriptionContent);
+  var lineHeight = parseFloat(descriptionContent.css('line-height'));
+  var lineClamp = Math.floor(height / lineHeight);
+  if (lineClamp == 2) lineClamp = 1;
+  setLineClamp(descriptionContent, lineClamp.toString());
+  if (lineClamp == 0) {
+    descriptionContent.hide();
+  }
+}
+
+// Setup for Full Grid process
+function setupGridProcessWidget() {
+  let processWidgets = $(".grid-view-form");
+  if (processWidgets.length == 0) {
+    return;
+  }
+  processWidgets.each(function () {
+    let $processHeader = $(this).find('.process-grid__header');
+    let $processIcon = $(this).find("i#icon");
+    let $processName = $(this).find(".process-name");
+    let $processNameText = $processName.find(".process-grid-view-name");
+    let $processDescription = $(this).find(".process-description");
+    let $moreInformation = $(this).find(".process-more-info-link");
+    removeStyle($processIcon);
+    removeStyle($processName);
+    removeStyle($processDescription);
+    removeStyle($moreInformation);
+    removeStyle($processHeader);
+    removeStyle($processNameText);
+    let availableHeightForWidget = getAvailableHeightOfWidget($(this));
+
+    setupProcessWidgetDescription($processDescription, availableHeightForWidget);
+    availableHeightForWidget = availableHeightForWidget - $processDescription.outerHeight(true);
+    if (availableHeightForWidget < 0) {
+      $processIcon.css('font-size', '3.5rem');
+      availableHeightForWidget = getAvailableHeightOfWidget($(this));
+    }
+    if (availableHeightForWidget < 0) {
+      $processNameText.css('font-size', '1.2rem');
+      availableHeightForWidget = getAvailableHeightOfWidget($(this));
+    }
+    if (availableHeightForWidget < 0) {
+      $moreInformation.hide();
+      availableHeightForWidget = getAvailableHeightOfWidget($(this));
+    }
+    if (availableHeightForWidget < 0) {
+      $processDescription.hide();
+      availableHeightForWidget = getAvailableHeightOfWidget($(this));
+    }
+    if (availableHeightForWidget < 0) {
+      $processHeader.css({'display': 'flex', 'padding-right': '2rem', 'text-align': 'left'});
+      setLineClamp($processNameText, 3);
+      removeStyle($moreInformation);
+      availableHeightForWidget = getAvailableHeightOfWidget($(this));
+    }
+    if (availableHeightForWidget < 0) {
+      setLineClamp($processNameText, 2);
+      availableHeightForWidget = getAvailableHeightOfWidget($(this));
+      if (availableHeightForWidget < 0) {
+        $moreInformation.hide();
+      }
+    }
+    if ($(this).width() < $processHeader.outerWidth(true)) {
+      $processName.hide();
+      $processHeader.css({'padding-right': '0'});
+    }
+  });
+}
+
+function setupProcessWidgetDescription(processDescriptionContainer, availableHeightForWidget) {
+  var descriptionText = processDescriptionContainer.find('.process-description__text');
+  removeStyle(descriptionText);
+  var height = processDescriptionContainer.height();
+  if (availableHeightForWidget && height > availableHeightForWidget) {
+    height = Math.floor(availableHeightForWidget);
+  }
+  var lineHeight = parseFloat(descriptionText.css('line-height'));
+  var lineClamp = Math.floor(height / lineHeight);
+  setLineClamp(descriptionText, lineClamp);
+  if (lineClamp <= 0) {
+    descriptionText.hide();
+  }
+}
+
+function getAvailableHeightOfWidget(widget) {
+  let $processHeader = $(widget).find(".process-grid__header");
+  let $processDescription = $(widget).find(".process-description");
+  const processDescriptionXSpaces = parseInt($processDescription.outerHeight(true) - $processDescription.height());
+
+  let $processStartContainer = $(widget).find("[id^='start-button-wrap-']");
+  const startProcessButtonHeight = $(widget).find("button[id$=':start-button']").outerHeight(true);
+  const processStartContainerXSpaces = parseInt($processStartContainer.outerHeight(true) - $processStartContainer.height());
+  
+  return $(widget).height() - $processHeader.outerHeight(true) - startProcessButtonHeight - processDescriptionXSpaces - processStartContainerXSpaces;
+}
+// End Process Dashboard Widget
+
+function setLineClamp(element, number) {
+  $(element).css('-webkit-line-clamp', number.toString());
+}
+
+function removeStyle(element) {
+  $(element).removeAttr('style');
 }

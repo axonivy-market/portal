@@ -360,6 +360,10 @@ Changes in 9.4
 
 - Introduced the ``Portal.LoginPage.ShowFooter`` Portal setting to control visibility of the footer on the login page.
 
+- Introduced the ``Portal.Theme.Mode`` Portal setting to set the default theme mode: Light or Dark.
+
+- Introduced the ``Portal.Theme.EnableSwitchThemeModeButton`` Portal setting to control state of the switch theme button on the top-bar.
+
 - Introduced new ``Task ID``, ``Task Name``, ``Case ID`` and ``Case Name`` filter in the Portal full task list and case list.
 
 - Introduced the ``Process Viewer`` page, user can get the visual viewer of the process start. See details :ref:`Show Process Viewer <how-to-show-process-viewer>`
