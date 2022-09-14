@@ -83,6 +83,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
   public void testVisibilityTaskDone() {
     login(TestAccount.DEMO_USER);
     createTestingTasks();
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     gotoTaskList();
     // Suspended
     TaskWidgetPage taskWidgetPageDemo = new TaskWidgetPage();
@@ -91,6 +92,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     int countTasks = taskWidgetPageDemo.countTasks();
     // User Guest
     login(TestAccount.GUEST_USER);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     gotoTaskList();
     // Suspended
     TaskWidgetPage taskWidgetPageGuest = new TaskWidgetPage();

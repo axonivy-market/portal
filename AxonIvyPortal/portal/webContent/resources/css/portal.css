@@ -197,8 +197,6 @@ a.compact-task-start-link .task-start-list-item {
 .process-start-list-container .grid-view-form .process-grid-view-icon {
   font-size: var(--process-grid-icon-font-size);
   padding: 0.7rem;
-  margin-top: 20px;
-  padding-top: 2rem;
 }
 
 body .process-widget .ui-selectbooleanbutton.ui-state-active {
