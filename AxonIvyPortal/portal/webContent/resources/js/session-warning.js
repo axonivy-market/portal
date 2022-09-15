@@ -55,6 +55,7 @@ var PortalSessionWarning = function() {
       } else {
         if (isLogOut == false) {
           isLogOut = true;
+          stopAvailableChartPolling();
           logoutAndShowDialog();
         } else {
           PF('timeout-warning-dialog').hide();
@@ -97,6 +98,29 @@ var PortalSessionWarning = function() {
     PF('timeout-warning-dialog').hide();
   }
   
+  stopAvailableChartPolling = function () {
+    let polls = $("div[id*=':chart_model_dashboard_poll-']");
+    stopChartPolling(polls);
+    polls = $("div[id$=':task-polling']");
+    stopChartPolling(polls);
+    polls = $("div[id$=':chart_model_poll']");
+    stopChartPolling(polls);
+  }
+  
+  stopChartPolling = function (polls) {
+    for (const poll of polls) {
+      getWidgetVarById(poll.id).stop();
+    }
+  }
+  
+  getWidgetVarById = function(id) {
+    for (var propertyName in PrimeFaces.widgets) {
+      if (PrimeFaces.widgets[propertyName].id === id) {
+        return PrimeFaces.widgets[propertyName];
+      }
+    }
+  }
+
   return {
     init: init,
     resetCounterAndTimeout: resetCounterAndTimeout,
