@@ -1,6 +1,8 @@
 Categories:
   AnnualLeave:
     name: Congé annuel
+  Investment:
+    name: Investissement
   LeaveRequest:
     name: Demande de congé
   OtherLeave:
@@ -11,6 +13,14 @@ Categories:
         name: Long
       name: Maladie
     name: Autres congés
+  Party:
+    Drink:
+      name: Boire
+    Food:
+      name: Alimentation
+    name: Fête
+  Payment:
+    name: Paiement
 CustomFields:
   Cases:
     AccountNumber:
@@ -139,6 +149,21 @@ Labels:
   zip: Code postal
 Processes:
   CategoriedLeaveRequest:
+    Cases:
+      description: Description de la demande de congé
+      name: Demande de congé
+    Tasks:
+      AnnualLeave:
+        description: Demande de congé annuel Description
+        name: Demande de congé annuel
+      MaternityLeave:
+        description: Description de la demande de congé de maternité
+        name: Demande de congé de maternité
+      SickLeave:
+        description: Demande de congé de maladie Description
+        name: Demande de congé de maladie
+    description: Voici une brève description de ce à quoi vous pouvez vous attendre derrière cet exemple de "demande de congé".
+    name: Demande de congé catégorisé
     processStep: |-
       #Création
       Choisissez différents types de congés
@@ -151,7 +176,35 @@ Processes:
       Le demandeur recevra un résumé de la demande
       Connaître le résultat
   CreateInvestment:
+    Tasks:
+      Request:
+        name: Demande d'investissement
+    description: Exemple de page de demande d'investissement pour un cas personnalisé
     name: Réaliser un investissement
+  Payment:
+    Tasks:
+      Pay:
+        name: Effectuer un nouveau paiement
+      Signal:
+        name: Signal de création d'un nouveau paiement
+    name: Créer un nouveau paiement
+  TasksForTaskListCustomization:
+    Cases:
+      Party:
+        description: Un rassemblement social d'invités, impliquant généralement de manger, boire et se divertir.
+        name: Prepare a party
+    Tasks:
+      BeerOrder:
+        description: Bière pour une grande entreprise de 10 000 personnes
+        name: Commande de bières
+      MilkTeaOrder:
+        description: Thé au lait pour 4 personnes
+        name: Commande de thé au lait
+      PizzaOrder:
+        description: Pizza pour 10 personnes
+        name: Commande de pizzas
+    description: Créez 3 tâches, chaque tâche a le nom du client et la date d'expédition.
+    name: Créer des tâches pour la personnalisation de la liste de tâches
 sortFields:
   CREATION_TIME_ASC: Date de création (le plus ancien en premier)
   CREATION_TIME_DESC: Date de création (le plus récent en premier)

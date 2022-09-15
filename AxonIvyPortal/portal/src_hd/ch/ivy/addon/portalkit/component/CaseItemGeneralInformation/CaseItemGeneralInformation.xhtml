@@ -96,14 +96,14 @@
       </div>
 
       <h:panelGroup styleClass="ui-g-12 content-field" layout="block"
-        rendered="#{(caseDetailsBean.showNotAvailableData and empty case.getBusinessCase().id and empty case.getBusinessCase().getName()) or not empty case.getBusinessCase().id or not empty case.getBusinessCase().getName()}">
+        rendered="#{(caseDetailsBean.showNotAvailableData and empty case.getBusinessCase().id and empty case.getBusinessCase().getName()) or not empty case.getBusinessCase().id or not empty case.getBusinessCase().names().current()}">
         <div class="ui-xl-3 ui-lg-4 ui-md-4 ui-sm-5 ui-g-2 u-no-padding-left min-width-column-task-details-when-resize">
           <h:outputText styleClass="task-detail-column-title text-ellipsis"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/businessCase')}" />
         </div>
         <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4 u-no-padding-left u-truncate-text">
           <p:commandLink id="related-business-case" styleClass="case-detail-business-case" disabled="#{cc.attrs.readOnly}"
-            value="##{case.getBusinessCase().id} #{case.getBusinessCase().getName()}"
+            value="##{case.getBusinessCase().id} #{case.getBusinessCase().names().current()}"
             actionListener="#{caseDetailsBean.navigateToCaseDetails(case.getBusinessCase().id)}"
             rendered="#{not empty case.getBusinessCase().id}">
           </p:commandLink>
@@ -157,7 +157,7 @@
   </div>
   
   <p:tooltip for="related-business-case"
-    value="##{case.getBusinessCase().id} #{case.getBusinessCase().name} (#{caseBean.getState(case.getBusinessCase()).toUpperCase()})"
+    value="##{case.getBusinessCase().id} #{case.getBusinessCase().names().current()} (#{caseBean.getState(case.getBusinessCase()).toUpperCase()})"
     trackMouse="true" hideEvent="mouseleave click" />
 </cc:implementation>
 </html>

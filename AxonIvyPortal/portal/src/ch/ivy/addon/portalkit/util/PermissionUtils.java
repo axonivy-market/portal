@@ -214,11 +214,15 @@ public class PermissionUtils {
   }
 
   public static String getCaseName(ICase iCase) {
-    return IvyExecutor.executeAsSystem(iCase::getName);
+    return IvyExecutor.executeAsSystem(() -> {
+      return iCase.names().current();
+    });
   }
 
   public static String getTaskName(ITask task) {
-    return IvyExecutor.executeAsSystem(task::getName);
+    return IvyExecutor.executeAsSystem(() -> {
+      return task.names().current();
+    });
   }
 
   /**

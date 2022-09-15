@@ -35,15 +35,15 @@
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortable="true" sortBy="#{name}" field="name" filterable="false"
           styleClass="relevant-cases__name">
-          <span class="u-hidden-sm-down"><h:outputText value="#{caseItem.name}" /></span>
+          <span class="u-hidden-sm-down"><h:outputText value="#{caseItem.names().current()}" /></span>
           <h:panelGroup layout="block" styleClass="u-hidden-md-up">
-            <h:outputText value="#{caseItem.name}" title="#{caseItem.name}" styleClass="dashboard-cases__column-small-screen-name"/>
-            <h:outputText value="#{dashboardBean.createExtractedTextFromHtml(caseItem.description)}" styleClass="dashboard-cases__column-small-screen-description"/>
+            <h:outputText value="#{caseItem.names().current()}" title="#{caseItem.names().current()}" styleClass="dashboard-cases__column-small-screen-name"/>
+            <h:outputText value="#{dashboardBean.createExtractedTextFromHtml(caseItem.descriptions().current())}" styleClass="dashboard-cases__column-small-screen-description"/>
           </h:panelGroup>
         </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" styleClass="relevant-cases__description u-hidden-sm-down">
-          <span><h:outputText value="#{caseItem.description}" /></span>
+          <span><h:outputText value="#{caseItem.descriptions().current()}" /></span>
         </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" sortable="true" sortBy="#{state}" field="state" filterable="false"
