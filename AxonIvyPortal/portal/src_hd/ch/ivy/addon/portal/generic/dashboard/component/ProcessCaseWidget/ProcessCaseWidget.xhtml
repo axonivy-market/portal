@@ -43,7 +43,7 @@
         </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" styleClass="relevant-cases__description u-hidden-sm-down">
-          <span><h:outputText value="#{caseItem.description}" /></span>
+          <span><h:outputText value="#{caseItem.descriptions().current()}" /></span>
         </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" sortable="true" sortBy="#{state}" field="state" filterable="false"

@@ -83,13 +83,13 @@ public class CaseExporter extends Exporter{
    */
   protected Object getCommonColumnValue(String column, ICase caseItem) {
     if (StringUtils.equals(column, CaseLazyDataModel.DESCRIPTION)) {
-      return caseItem.getDescription();
+      return caseItem.descriptions().current();
     }
 
     CaseSortField sortField = CaseSortField.valueOf(column);
     switch (sortField) {
       case NAME:
-        return StringUtils.isEmpty(caseItem.getName()) ? Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable") : caseItem.getName();
+        return StringUtils.isEmpty(caseItem.names().current()) ? Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable") : caseItem.names().current();
       case ID:
         return String.valueOf(caseItem.getId());
       case CREATOR:
