@@ -17,7 +17,7 @@
           <p:outputLabel for="case-name" value="Case Name" />
         </div>
         <div class="ui-g-9">
-          <h:outputText id="case-name" value="#{data.caseView.name}" />
+          <h:outputText id="case-name" value="#{data.caseView.names().current()}" />
         </div>
         <div class="ui-g-3">
           <p:outputLabel for="case-state" value="Case state" />

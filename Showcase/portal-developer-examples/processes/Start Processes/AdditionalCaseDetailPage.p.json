@@ -8,9 +8,10 @@
       "name" : "createInvestmentRequest.ivp",
       "config" : {
         "callSignature" : "createInvestmentRequest",
+        "startCategory" : "Investment",
         "case" : {
-          "name" : "Investment Request",
-          "description" : "Investment Request for Customized Case Detail Page example",
+          "name" : "<%=ivy.cms.co(\"/Processes/CreateInvestment/name\")%>",
+          "description" : "<%=ivy.cms.co(\"/Processes/CreateInvestment/description\")%>",
           "customFields" : [
             { "name" : "AccountNumber", "type" : "Number", "value" : "100" },
             { "name" : "CustomerName", "type" : "String", "value" : "\"Apartment A\"" },
@@ -21,8 +22,8 @@
           ]
         },
         "outLink" : "createInvestmentRequest.ivp",
-        "startDescription" : "Investment Request for Customized Case Detail Page example",
-        "startName" : "Investment Request for Customized Case Detail Page example"
+        "startDescription" : "<%=ivy.cms.co(\"/Processes/CreateInvestment/description\")%>",
+        "startName" : "<%=ivy.cms.co(\"/Processes/CreateInvestment/description\")%>"
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 184 },
@@ -41,7 +42,7 @@
       "config" : {
         "outLinks" : [ "TaskA.ivp" ],
         "task" : {
-          "name" : "InvestmentRequest"
+          "name" : "<%=ivy.cms.co(\"/Processes/CreateInvestment/Tasks/Request/name\")%>"
         }
       },
       "visual" : {

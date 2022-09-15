@@ -12,7 +12,7 @@
           columnClasses="u-text-align-left ui-g-2 ui-lg-1 ui-md-2 ui-sm-4, u-text-align-left ui-g-10 ui-lg-11 ui-md-8 ui-sm-8"
           styleClass="ui-g-12 u-no-padding-bottom">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" />
-          <h:outputText id="case-name" value="#{data.task.name}" />
+          <h:outputText id="case-name" value="#{data.task.names().current()}" />
 
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')}" />
           <h:outputText id="case-id" value="#{data.task.id}" />

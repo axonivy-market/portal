@@ -1,6 +1,8 @@
 Categories:
   AnnualLeave:
     name: Ausencia anual
+  Investment:
+    name: Inversión
   LeaveRequest:
     name: Solicitud para ausencia
   OtherLeave:
@@ -11,6 +13,14 @@ Categories:
         name: Largo
       name: Enfermedad
     name: Otra ausencia
+  Party:
+    Drink:
+      name: Bebida
+    Food:
+      name: Alimentos
+    name: Fiesta
+  Payment:
+    name: Pago
 CustomFields:
   Cases:
     AccountNumber:
@@ -139,6 +149,21 @@ Labels:
   zip: Codigo postal
 Processes:
   CategoriedLeaveRequest:
+    Cases:
+      description: Descripción de la solicitud de licencia
+      name: Solicitud de licencia
+    Tasks:
+      AnnualLeave:
+        description: Solicitud de vacaciones anuales Descripción
+        name: Solicitud de vacaciones anuales
+      MaternityLeave:
+        description: Descripción de la solicitud de baja por maternidad
+        name: Solicitud de baja por maternidad
+      SickLeave:
+        description: Descripción de la solicitud de baja por enfermedad
+        name: Solicitud de baja por enfermedad
+    description: Esta es una breve descripción de lo que puede esperar detrás de este ejemplo de "Solicitud de licencia".
+    name: Solicitud de licencia por categorías
     processStep: |-
       #Creación
       Seleccione diferentes tipos de ausencias
@@ -151,7 +176,35 @@ Processes:
       Solicitante obtendrá un resumen
       Tomar nota del resultado
   CreateInvestment:
+    Tasks:
+      Request:
+        name: Solicitud de inversión
+    description: Ejemplo de solicitud de inversión para la página de detalles de casos personalizados
     name: Crear investición
+  Payment:
+    Tasks:
+      Pay:
+        name: Hacer un nuevo pago
+      Signal:
+        name: Señal de creación de un nuevo pago
+    name: Crear un nuevo pago
+  TasksForTaskListCustomization:
+    Cases:
+      Party:
+        description: Una reunión social de invitados, que suele incluir comida, bebida y entretenimiento.
+        name: Prepare a party
+    Tasks:
+      BeerOrder:
+        description: Cerveza para una gran empresa con 10.000 personas
+        name: Pedido de cerveza
+      MilkTeaOrder:
+        description: Té con leche para 4 personas
+        name: Pedido de té con leche
+      PizzaOrder:
+        description: Pizza para 10 personas
+        name: Pedido de pizza
+    description: Crear 3 tareas, cada tarea tiene CustomerName y ShipmentDate
+    name: Crear tareas para la personalización de la lista de tareas
 sortFields:
   CREATION_TIME_ASC: Fecha de creación (antiguos primero)
   CREATION_TIME_DESC: Fecha de creación (nuevos primero)

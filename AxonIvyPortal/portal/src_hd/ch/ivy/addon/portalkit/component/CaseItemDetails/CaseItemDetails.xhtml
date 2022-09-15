@@ -28,7 +28,7 @@
     <h:panelGroup id="case-detail-name" styleClass="case-detail-header #{inFrame == true ? '' : 'u-hidden-md-up'}" layout="block">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}: "
         styleClass="case-detail-name-prefix" />
-      <span class="u-truncate-text">#{case.name}</span>
+      <span class="u-truncate-text">#{case.names().current()}</span>
     </h:panelGroup>
 
     <p:link id="back-to-cases" href="#" rendered="#{showItemBackButton}"

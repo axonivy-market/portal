@@ -182,15 +182,15 @@ public class TaskBean implements Serializable {
 
   public String displayCaseName(ITask task) {
     ICase iCase = task.getCase().getBusinessCase();
-    String caseName = iCase.getName();
+    String caseName = iCase.names().current();
     return StringUtils.isNotEmpty(caseName) ? caseName : "#" + iCase.getId();
   }
 
   public String getTechnicalCaseDisplayName(ITask task) {
     ICase technicalCase = task.getCase();
     if (technicalCase != null) {
-      if (StringUtils.isNotBlank(technicalCase.getName())) {
-        return technicalCase.getName();
+      if (StringUtils.isNotBlank(technicalCase.names().current())) {
+        return technicalCase.names().current();
       }
       return String.valueOf(technicalCase.getId());
     }

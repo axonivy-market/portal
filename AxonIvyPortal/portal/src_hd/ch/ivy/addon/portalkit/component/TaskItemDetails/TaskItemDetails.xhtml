@@ -14,6 +14,7 @@
 </cc:interface>
 
 <cc:implementation>
+  <f:event listener="#{taskDetailsBean.init()}" type="preRenderComponent"/>
   <c:set var="task" value="#{data.task}" />
   <c:set var="informationWidgetComponent" value="" />
   <c:set var="documentWidgetComponent" value="" />
@@ -24,7 +25,7 @@
       styleClass="u-truncate-text task-detail-container ui-g-12 u-no-padding-bottom">
       <h:form id="task-detail-title-form" onsubmit="return false;" styleClass="task-detail-header">
         <h:panelGroup id="#{cc.attrs.nameId}-edit-form" styleClass="js-task-name-details task-name u-truncate-text MarTop5">
-          <h:outputText value="#{ivy.cms.co('/Labels/Task')}: #{task.name}" />
+          <h:outputText value="#{ivy.cms.co('/Labels/Task')}: #{task.names().current()}" />
         </h:panelGroup>
 
         <p:commandLink id="back-to-previous-page"

@@ -12,6 +12,7 @@
 <cc:implementation>
   <c:set var="task" value="#{cc.attrs.task}" />
   <c:set var="canChangeDescription" value="#{taskActionBean.canChangeDescription(task)}" />
+  <f:event listener="#{taskDetailsBean.initTaskDescription(task)}" type="preRenderComponent"/>
 
   <h:panelGroup layout="block" styleClass="ui-g task-details-description-title">
     <div class="task-detail-title #{cc.attrs.labelStyleClasses} text-ellipsis task-description-title">
@@ -33,15 +34,15 @@
               widgetVar="widget-description-inplace" disabled="#{!canChangeDescription or cc.attrs.readOnly}"
               saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
               cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-              emptyLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/noDescription')}" >
-              <p:ajax event="save" oncomplete="handleDisplayIconMoreLink()" update="task-detail-description-form" />
+              emptyLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/noDescription')}">
+              <p:ajax event="save" listener="#{taskDetailsBean.updateTaskDescription(task)}" oncomplete="handleDisplayIconMoreLink()" update="task-detail-description-form" />
               <p:ajax event="cancel" oncomplete="handleDisplayIconMoreLink()" update="task-detail-description-form" process="@none" />
               <p:inputTextarea id="task-description-input" cols="250" rows="6" styleClass="task-detail-description-input"
-                value="#{task.description}" autoResize="false" />
+                value="#{taskDetailsBean.taskDetailsDescription}" autoResize="false" />
             </p:inplace>
             <h:panelGroup id="task-description-output"
-              styleClass="js-task-description-output task-description-output #{!taskActionBean.canChangeDescription(task) or cc.attrs.readOnly ? 'pointer-event-none' : ''}">
-              <h:outputText escape="false" styleClass="task-detail-description-output" value="#{taskWidgetBean.sanitizeHTML(task.description)}" />
+              styleClass="js-task-description-output task-description-output">
+              <h:outputText escape="false" styleClass="task-detail-description-output" value="#{taskWidgetBean.sanitizeHTML(task.descriptions().current())}" />
             </h:panelGroup>
           </div>
           <p:commandLink onclick="displayMoreText()" id="icon-more-link" styleClass="icon-more-link" global="false" process="@this" partialSubmit="true">
