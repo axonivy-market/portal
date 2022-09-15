@@ -21,6 +21,7 @@ import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.Locales;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -42,6 +43,7 @@ public class DashboardProcess implements Process {
   private String category;
   private String defaultImageSrc;
   private String imageUrl;
+  private String application;
   
   public DashboardProcess() {}
 
@@ -55,6 +57,7 @@ public class DashboardProcess implements Process {
     this.category = process.getCategory();
     this.imageUrl = process.getImageUrl();
     this.defaultImageSrc = process.getDefaultImageSrc();
+    this.application = process.getApplication();
   }
 
   public DashboardProcess(IWebStartable process) {
@@ -65,6 +68,7 @@ public class DashboardProcess implements Process {
     this.startLink = process.getLink().getRelative();
     this.icon = process.customFields().value("cssIcon");
     this.category = process.getCategory().getPath();
+    this.application = process.pmv().getApplication().getName();
     updateDefaultProcessImage(process);
   }
 
@@ -75,6 +79,7 @@ public class DashboardProcess implements Process {
     this.description = process.getProcessDescription();
     this.icon = process.getIcon();
     this.category = EXPRESS_CATEGORY_PRE_FIX + "/" + process.getProcessName();
+    this.application = IApplication.current().getName();
   }
 
   public DashboardProcess(ExternalLink externalLink) {
@@ -246,5 +251,14 @@ public class DashboardProcess implements Process {
     GlobalSettingService globalSettingService = new GlobalSettingService();
     GlobalSetting defaultSetting = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_IMAGE);
     defaultImageType = defaultSetting.getDisplayValue().toUpperCase();
+  }
+
+  @Override
+  public String getApplication() {
+    return application;
+  }
+
+  public void setApplication(String application) {
+    this.application = application;
   }
 }
