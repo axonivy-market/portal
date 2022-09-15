@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.dto.dashboard;
 
+import java.util.ArrayList;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -19,14 +21,17 @@ public class SingleProcessDashboardWidget extends ProcessDashboardWidget {
     super(widget);
     processPath = widget.getProcessPath();
     process = widget.getProcess();
+    filterableColumns = widget.getFilterableColumns();
   }
 
   public SingleProcessDashboardWidget(ProcessDashboardWidget widget) {
     super(widget);
+    filterableColumns = widget.getFilterableColumns();
   }
 
   public SingleProcessDashboardWidget() {
     super();
+    filterableColumns = new ArrayList<>();
   }
 
   public DashboardProcess getProcess() {

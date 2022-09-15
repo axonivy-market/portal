@@ -19,7 +19,7 @@ public class TaskIdFilter extends TaskFilter {
   public String value() {
     if (taskId == null || taskId.equals(0l)) {
       taskId = null;
-      return ALL;
+      return getAllLabel();
     }
     return String.valueOf(taskId);
   }
