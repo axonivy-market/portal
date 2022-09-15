@@ -81,7 +81,7 @@ additional property "CASE_BUSINESS_ENTITY_PROPERTY" of the business case.
    Attributes of this component:
 
    .. csv-table::
-      :file: documents/portal-components/process_history_component_attributes.csv
+      :file: documents/process_history_component_attributes.csv
       :header-rows: 1
       :class: longtable
       :widths: 1 1 1 3
@@ -183,7 +183,7 @@ the component on a page with following code:
    -  ``isShowAllSteps`` to ``TRUE`` or ``FALSE`` . Default is ``FALSE``.
 
 .. csv-table::
-  :file: documents/portal-components/process_chain_component_attributes.csv
+  :file: documents/process_chain_component_attributes.csv
   :header-rows: 1
   :class: longtable
   :widths: 1 1 1 3
@@ -247,7 +247,7 @@ Attributes of this component:
 
 
 .. csv-table::
-  :file: documents/portal-components/document_table_component_attributes.csv
+  :file: documents/document_table_component_attributes.csv
   :header-rows: 1
   :class: longtable
   :widths: 1 1 1 3
@@ -339,7 +339,7 @@ Code example using the current session user:
 This component offers the following attributes:
 
 .. csv-table::
-  :file: documents/portal-components/security_member_name_and_avatar_component_attributes.csv
+  :file: documents/security_member_name_and_avatar_component_attributes.csv
   :header-rows: 1
   :class: longtable
   :widths: 1 1 1 1 3
@@ -429,7 +429,7 @@ Please refer to ``UserSelectionExample.xhtml`` in project ``portal-components-ex
 This component offers the following attributes:
 
 .. csv-table::
-  :file: documents/portal-components/user_selection_component_attributes.csv
+  :file: documents/user_selection_component_attributes.csv
   :header-rows: 1
   :class: longtable
   :widths: 1 1 1 3
@@ -536,7 +536,7 @@ Please refer to ``RoleSelectionExample.xhtml`` in ``portal-components-examples``
 This component offers the following attributes:
 
 .. csv-table::
-  :file: documents/portal-components/role_selection_component_attributes.csv
+  :file: documents/role_selection_component_attributes.csv
   :header-rows: 1
   :class: longtable
   :widths: 1 1 1 3
@@ -566,7 +566,7 @@ The Process Viewer component provides a visual representation of the process flo
 Attributes of this component:
 
 .. csv-table::
-  :file: documents/portal-components/process_viewer_component_attributes.csv
+  :file: documents/process_viewer_component_attributes.csv
   :header-rows: 1
   :class: longtable
   :widths: 1 1 1 3
@@ -642,7 +642,7 @@ Process Chain
 ^^^^^^^^^^^^^
 
 .. csv-table::
-  :file: documents/portal-components/css_variables/process_chain.csv
+  :file: documents/css_variables/process_chain.csv
   :header-rows: 1
   :class: longtable
   :widths: 2 1 2
@@ -652,7 +652,7 @@ Process History
 ^^^^^^^^^^^^^^^
 
 .. csv-table::
-  :file: documents/portal-components/css_variables/process_history.csv
+  :file: documents/css_variables/process_history.csv
   :header-rows: 1
   :class: longtable
   :widths: 2 1 2
@@ -662,25 +662,25 @@ Process Viewer
 ^^^^^^^^^^^^^^
 
 .. csv-table::
-  :file: documents/portal-components/css_variables/process_viewer.csv
+  :file: documents/css_variables/process_viewer.csv
   :header-rows: 1
   :class: longtable
   :widths: 2 1 2
 
 
-.. |process-history-example| image:: ../../screenshots/components/process-history-example.png
-.. |process-history-dialog-example| image:: ../../screenshots/components/process-history-dialog-example.png
+.. |process-history-example| image:: ../screenshots/components/process-history-example.png
+.. |process-history-dialog-example| image:: ../screenshots/components/process-history-dialog-example.png
 .. |set-business-entity-id-sub-process| image:: images/additional-component/set-business-entity-id-sub-process.png
-.. |process-chain| image:: ../../screenshots/components/process-chain.png
-.. |document-table| image:: ../../screenshots/components/document-table.png
-.. |user-selection| image:: ../../screenshots/components/user-selection-component.png
-.. |user-selection-floating-label| image:: ../../screenshots/components/user-selection-component-floating-label.png
-.. |user-selection-with-children-and-ajax-event| image:: ../../screenshots/components/user-selection-component-ajax-event-selected-message.png
-.. |user-selection-component-ajax-expand| image:: ../../screenshots/components/user-selection-component-ajax-expand.png
-.. |role-selection| image:: ../../screenshots/components/role-selection-component-from-defined-role.png
-.. |role-selection-floating-label| image:: ../../screenshots/components/role-selection-component-floating-label-and-exclude-role.png
-.. |role-selection-with-children-and-ajax-event| image:: ../../screenshots/components/role-selection-component-ajax-event-selected-message.png
-.. |role-selection-component-ajax-expand| image:: ../../screenshots/components/role-selection-component-ajax-expand.png
-.. |portal-process-viewer-component| image:: ../../screenshots/components/portal-process-viewer-component.png
-.. |session-user-security-member-name-and-avatar| image:: ../../screenshots/components/session-user-security-member-name-and-avatar.png
-.. |session-role-security-member-name-and-avatar| image:: ../../screenshots/components/session-role-security-member-name-and-avatar.png
+.. |process-chain| image:: ../screenshots/components/process-chain.png
+.. |document-table| image:: ../screenshots/components/document-table.png
+.. |user-selection| image:: ../screenshots/components/user-selection-component.png
+.. |user-selection-floating-label| image:: ../screenshots/components/user-selection-component-floating-label.png
+.. |user-selection-with-children-and-ajax-event| image:: ../screenshots/components/user-selection-component-ajax-event-selected-message.png
+.. |user-selection-component-ajax-expand| image:: ../screenshots/components/user-selection-component-ajax-expand.png
+.. |role-selection| image:: ../screenshots/components/role-selection-component-from-defined-role.png
+.. |role-selection-floating-label| image:: ../screenshots/components/role-selection-component-floating-label-and-exclude-role.png
+.. |role-selection-with-children-and-ajax-event| image:: ../screenshots/components/role-selection-component-ajax-event-selected-message.png
+.. |role-selection-component-ajax-expand| image:: ../screenshots/components/role-selection-component-ajax-expand.png
+.. |portal-process-viewer-component| image:: ../screenshots/components/portal-process-viewer-component.png
+.. |session-user-security-member-name-and-avatar| image:: ../screenshots/components/session-user-security-member-name-and-avatar.png
+.. |session-role-security-member-name-and-avatar| image:: ../screenshots/components/session-role-security-member-name-and-avatar.png
