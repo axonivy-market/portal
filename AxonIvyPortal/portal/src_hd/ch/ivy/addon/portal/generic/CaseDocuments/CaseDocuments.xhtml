@@ -14,7 +14,7 @@
           columnClasses="u-text-align-left ui-g-2 ui-lg-1 ui-md-2 ui-sm-4, u-text-align-left ui-g-10 ui-lg-11 ui-md-8 ui-sm-8"
           styleClass="ui-g-12 u-no-padding-bottom">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" />
-          <h:outputText id="case-name" value="#{data.selectedCase.name}" />
+          <h:outputText id="case-name" value="#{data.selectedCase.names().current()}" />
 
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" />
           <h:outputText id="case-id" value="#{data.selectedCase.id}" />

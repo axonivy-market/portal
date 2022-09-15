@@ -50,6 +50,7 @@
             "out.startDate" : "param.date__startDate"
           }
         },
+        "startCategory" : "Investment",
         "outLink" : "investmentList.ivp",
         "startCustomFields" : [
           { "name" : "isDashboardProcess", "value" : "true" }

@@ -26,12 +26,12 @@
         <p:ajax event="sort" update="task-table" onstart="liveScroll()" />
         <p:column id="case-name" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseName')}" sortable="false" width="200"
           visible="#{taskAnalysisWidgetBean.columns['CASE_NAME']}" exportable="#{taskAnalysisWidgetBean.columns['CASE_NAME']}">
-          <h:outputText value="#{empty task.case.name? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable') : task.case.name}" />
+          <h:outputText value="#{empty task.case.names().current() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable') : task.case.names().current()}" />
         </p:column>
 
         <p:column id="case-description" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseDescription')}" sortable="false" width="250"
           visible="#{taskAnalysisWidgetBean.columns['CASE_DESCRIPTION']}" exportable="#{taskAnalysisWidgetBean.columns['CASE_DESCRIPTION']}">
-          <h:outputText value="#{task.case.description}" />
+          <h:outputText value="#{task.case.descriptions().current()}" />
         </p:column>
 
         <p:column id="case-id" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseID')}" sortable="false" width="120" 
@@ -59,7 +59,7 @@
         <p:column id="task-name" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/taskName')}" field="TASK_NAME" sortBy="#{TASK_NAME}" filterable="false" width="250"
           visible="#{taskAnalysisWidgetBean.columns['TASK_NAME']}" 
           exportable="#{taskAnalysisWidgetBean.columns['TASK_NAME']}">
-          <h:outputText value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}" />
+          <h:outputText value="#{empty task.names().current() ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.names().current()}" />
         </p:column>
 
         <p:column id="task-id" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskID')}" field="TASK_ID" sortBy="#{TASK_ID}" filterable="false" width="120"
@@ -76,7 +76,7 @@
         <p:column id="task-description" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskDescription')}" sortable="false" width="250"
           visible="#{taskAnalysisWidgetBean.columns['TASK_DESCRIPTION']}"
           exportable="#{taskAnalysisWidgetBean.columns['TASK_DESCRIPTION']}">
-          <h:outputText value="#{task.description}" />
+          <h:outputText value="#{task.descriptions().current()}" />
         </p:column>
 
         <p:column id="task-activator" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskResponsible')}" field="TASK_ACTIVATOR" sortBy="#{TASK_ACTIVATOR}" filterable="false" width="200"

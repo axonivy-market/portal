@@ -13,7 +13,7 @@
 
 		<ui:define name="taskName">
 			<span class="fa fa-subway" />
-			<h:outputText value="#{ivy.task.name} #(#{ivy.task.getId()})"></h:outputText>
+			<h:outputText value="#{ivy.task.names().current()} #(#{ivy.task.getId()})"></h:outputText>
 		</ui:define>
 
 		<ui:define name="content">
