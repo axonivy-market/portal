@@ -8,6 +8,6 @@
 
   <h:panelGroup layout="block" styleClass="u-hidden-md-up">
     <h:outputText value="#{column.display(caseItem)}" title="#{column.display(caseItem)}" styleClass="dashboard-cases__column-small-screen-name"/>
-    <h:outputText value="#{dashboardBean.createExtractedTextFromHtml(caseItem.description)}" styleClass="dashboard-cases__column-small-screen-description"/>
+    <h:outputText value="#{dashboardBean.createExtractedTextFromHtml(caseItem.descriptions().current())}" styleClass="dashboard-cases__column-small-screen-description"/>
   </h:panelGroup>
 </html>
