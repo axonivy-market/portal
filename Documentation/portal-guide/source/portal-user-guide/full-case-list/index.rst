@@ -34,6 +34,10 @@ For each case, the list shows the following key information:
 
 #. Status
 
+#. Category
+
+#. Application (This column is not displayed by default)
+
 |case-key-information|
 
 At the end of each row you find a set of key features to handle cases:
