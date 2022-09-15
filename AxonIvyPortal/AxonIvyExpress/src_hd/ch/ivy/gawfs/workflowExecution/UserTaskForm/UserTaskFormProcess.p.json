@@ -134,7 +134,7 @@
             "if (in.executePredefinedWorkflowData.originalTaskId != null && in.executePredefinedWorkflowData.originalTaskId > 0) {",
             "  String description = AdhocUtils.getDescriptionOfFirstTask(in.executePredefinedWorkflowData);",
             "  AdhocUtils.storeHistory(in.executePredefinedWorkflowData.getOriginalTaskId(), description);",
-            "  ivy.case.getBusinessCase().createNote(ivy.session, ivy.task.getName() + \": \" + description);",
+            "  ivy.case.getBusinessCase().createNote(ivy.session, ivy.task.names().current() + \": \" + description);",
             "}"
           ]
         }

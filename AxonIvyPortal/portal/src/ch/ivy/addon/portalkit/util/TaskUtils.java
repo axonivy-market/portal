@@ -257,7 +257,7 @@ public final class TaskUtils {
     if (task == null) {
       return false;
     }
-    if (StringUtils.equals(task.getName(), DummyTask.TASK_NAME)) {
+    if (StringUtils.equals(task.names().current(), DummyTask.TASK_NAME)) {
       return true;
     }
     IUser sessionUser = Ivy.session().getSessionUser();
@@ -287,7 +287,7 @@ public final class TaskUtils {
   private static String getNotificationWhenStartTask(ITask task) {
     String notification = "";
     List<Object> cmsList = new ArrayList<>();
-    cmsList.add(task.getName());
+    cmsList.add(task.names().current());
     if (task.getState() == TaskState.DONE) {
       notification = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/taskDone", cmsList);
     } else if (!canResume(task)) {
