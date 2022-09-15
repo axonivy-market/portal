@@ -226,7 +226,7 @@
             "",
             "String notification;",
             "if(in.task.getState() == TaskState.DONE){",
-            "  notification = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/taskDone\", [in.task.getName()]);",
+            "  notification = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/taskDone\", [in.task.names().current()]);",
             "} else {",
             "  IUser worker = in.task.getWorkerUser();",
             "  if (worker != null){",

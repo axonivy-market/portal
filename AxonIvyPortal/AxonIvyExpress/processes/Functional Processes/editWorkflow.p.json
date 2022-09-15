@@ -489,7 +489,7 @@
             "import ch.ivyteam.ivy.workflow.ITask;",
             "ITask originalTask = ivy.wf.findTask(in.originalTaskId);",
             "if(originalTask != null) {",
-            "  in.processName = ivy.cms.co(\"/Dialogs/workflowCreation/AdhocProcessName\", Arrays.asList(String.valueOf(originalTask.getId()), originalTask.getName()));",
+            "  in.processName = ivy.cms.co(\"/Dialogs/workflowCreation/AdhocProcessName\", Arrays.asList(String.valueOf(originalTask.getId()), originalTask.names().current()));",
             "}"
           ]
         }
