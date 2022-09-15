@@ -3,13 +3,12 @@ package ch.ivy.addon.portalkit.bean;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import ch.ivy.addon.portalkit.dto.taskdetails.TaskDetails;
-import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -20,8 +19,8 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
 
   private static final long serialVersionUID = 8566646437739271552L;
   private boolean hasShowDurationTime;
+  private String taskDetailsDescription;
 
-  @PostConstruct
   public void init() {
     super.initConfig();
     try {
@@ -46,12 +45,31 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
     return Attrs.currentContext().getAttribute("#{data.task}", ITask.class);
   }
 
+  public void initTaskDescription(ITask taskDetails) {
+    setTaskDetailsDescription(taskDetails.descriptions().current());
+  }
+
+  public void updateTaskDescription(ITask taskDetails) {
+    if (taskDetails == null || taskDetailsDescription == null) {
+      return;
+    }
+    taskDetails.descriptions().current(taskDetailsDescription);
+  }
+
   public boolean isShowDurationTime() {
     return hasShowDurationTime;
   }
 
   public void setShowDurationTime(boolean hasShowDurationTime) {
     this.hasShowDurationTime = hasShowDurationTime;
+  }
+
+  public String getTaskDetailsDescription() {
+    return taskDetailsDescription;
+  }
+
+  public void setTaskDetailsDescription(String taskDetailsDescription) {
+    this.taskDetailsDescription = taskDetailsDescription;
   }
 
   @Override
