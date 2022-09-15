@@ -11,8 +11,10 @@ public class IvyProcess implements Process {
   private IWebStartable process;
   private String defaultImageSrc;
   private String defaultImageCms;
+  private String application;
 
   public IvyProcess(IWebStartable process) {
+    this.application = process.pmv().getApplication().getName();
     this.process = process;
   }
 
@@ -82,5 +84,14 @@ public class IvyProcess implements Process {
 
   public String getCustomFieldImageProcess() {
     return this.process.customFields().value("processImage");
+  }
+
+  @Override
+  public String getApplication() {
+    return application;
+  }
+
+  public void setApplication(String application) {
+    this.application = application;
   }
 }

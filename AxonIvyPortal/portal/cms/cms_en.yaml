@@ -348,6 +348,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     cases: Cases
     confirmDeleteMessage: This action can not be undone. Do you really want to delete this business object?
     defaultColumns:
+      APPLICATION: Application
       CATEGORY: Category
       CREATION_TIME: Created
       CREATOR: Creator
@@ -402,6 +403,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeMessage: Type your message here...
     viewParticipant: View participants
   common:
+    All: All
     BusinessCaseInformation: Business Case Information
     CollapseAll: Collapse all
     DefaultTemplate: Default template
@@ -1319,6 +1321,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     default: Default
     defaultColumns:
       ACTIVATOR: Responsible
+      APPLICATION: Application
       CATEGORY: Category
       COMPLETED_ON: Completed on
       CREATION_TIME: Created
