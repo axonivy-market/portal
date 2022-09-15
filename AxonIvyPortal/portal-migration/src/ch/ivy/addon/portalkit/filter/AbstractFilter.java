@@ -141,4 +141,8 @@ public abstract class AbstractFilter<T extends Query<?>> {
   protected String noSelectionLabel() {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection");
   }
+  
+  protected String getAllLabel() {
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/all");
+  }
 }

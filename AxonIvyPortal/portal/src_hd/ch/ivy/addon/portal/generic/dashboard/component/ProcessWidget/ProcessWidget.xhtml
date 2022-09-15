@@ -17,14 +17,15 @@
   <c:set var="index" value="#{cc.attrs.index}" />
 
   <p:remoteCommand id="rcLoadProcessFirstTime" autoRun="true" update="dashboard-processes-container" global="false" async="true" process="@this"
-    oncomplete="loadWidgetFirstTime('js-loading-#{widget.id}', 'js-dashboard-processes-container-#{widget.id}'); #{cc.attrs.onLoadProcessComplete}; #{displayMode eq 'IMAGE_MODE' ? 'setupImageProcessWidget();' : ''} "
+    oncomplete="loadWidgetFirstTime('js-loading-#{widget.id}', 'js-dashboard-processes-container-#{widget.id}'); #{cc.attrs.onLoadProcessComplete}; respondProcessWidget('#{displayMode}')"
     actionListener="#{widget.buildProcessDataFirstTime()}" />
 
   <div class="ui-g widget-height-100 #{displayMode eq 'COMBINED_MODE' ? 'widget-overflow-auto' : ''} #{displayMode eq 'IMAGE_MODE' ? 'image-process-container' : ''}">
     <h:outputText id="loading" styleClass="js-loading-#{widget.id} ui-g-12 #{displayMode eq 'COMPACT_MODE' ? '':'MarLeft10 MarTop20'}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}" />
 
     <h:panelGroup id="dashboard-processes-container" layout="block"
-      styleClass="ui-g-12 u-padding-0 js-dashboard-processes-container-#{widget.id} u-display-none #{displayMode eq 'COMBINED_MODE' and widget.process != null ? 'dashboard-processes-container--combined' : ''}">
+      styleClass="dashboard-processes-container ui-g-12 u-padding-0 u-display-none js-dashboard-processes-container-#{widget.id}
+        #{displayMode eq 'COMBINED_MODE' and widget.process != null ? 'dashboard-processes-container--combined' : ''}">
       <ui:fragment rendered="#{widget.displayMode eq 'COMPACT_MODE'}">
         <ui:include src="CompactModeProcess.xhtml">
           <ui:param name="processes" value="#{widget.displayProcesses}" />

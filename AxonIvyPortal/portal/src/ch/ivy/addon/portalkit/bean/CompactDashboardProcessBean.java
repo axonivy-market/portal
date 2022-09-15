@@ -28,7 +28,6 @@ public class CompactDashboardProcessBean
     implements DashboardProcessBeanHandler<CompactProcessDashboardWidget>, Serializable {
 
   private static final long serialVersionUID = 1L;
-  private List<DashboardProcess> allPortalProcesses;
   private List<DashboardProcess> portalCompactProcesses;
   private DashboardProcessBean dashboardProcessBean;
 
@@ -39,7 +38,6 @@ public class CompactDashboardProcessBean
   @PostConstruct
   public void init() {
     dashboardProcessBean = ManagedBeans.get("dashboardProcessBean");
-    allPortalProcesses = new ArrayList<>();
     portalCompactProcesses = new ArrayList<>();
   }
 
@@ -95,11 +93,26 @@ public class CompactDashboardProcessBean
     return getAllPortalProcesses().stream()
         .filter(process -> isProcessMatchedCategory(process, getWidget().getCategories())).collect(Collectors.toList());
   }
+  
+  private List<DashboardProcess> filterByApplication() {
+    return getAllPortalProcesses().stream()
+        .filter(process -> isProcessMatchedApplication(process, getWidget().getApplications())).collect(Collectors.toList());
+  }
 
   private boolean isProcessMatchedCategory(DashboardProcess process, List<String> categories) {
+    if (CollectionUtils.isEmpty(categories)) {
+      return true;
+    }
     boolean hasNoCategory = categories.indexOf(CategoryUtils.NO_CATEGORY) > -1;
     return categories.indexOf(process.getCategory()) > -1
         || (StringUtils.isBlank(process.getCategory()) && hasNoCategory);
+  }
+  
+  private boolean isProcessMatchedApplication(DashboardProcess process, List<String> applications) {
+    if (CollectionUtils.isEmpty(applications)) {
+      return true;
+    }
+    return applications.contains(process.getApplication());
   }
 
   @Override
@@ -113,6 +126,17 @@ public class CompactDashboardProcessBean
       getWidget().setSelectedAllProcess(false);
       displayProcesses = getWidget().getProcesses();
     }
+    var applicationFilter = getWidget().getFilterableColumns().stream()
+        .filter(filter -> DashboardStandardProcessColumn.APPLICATION.getField().equalsIgnoreCase(filter.getField()))
+        .findAny().orElse(null);
+    if (applicationFilter != null && CollectionUtils.isNotEmpty(applicationFilter.getFilterList())) {
+      getWidget().setApplications(applicationFilter.getFilterList());
+      if (CollectionUtils.isEmpty(getWidget().getProcesses())) {
+        displayProcesses = filterByApplication();
+      }
+    }
+    
+    
     var categoryFilter = getWidget().getFilterableColumns().stream()
         .filter(filter -> DashboardStandardProcessColumn.CATEGORY.getField().equalsIgnoreCase(filter.getField()))
         .findAny().orElse(null);
@@ -162,16 +186,7 @@ public class CompactDashboardProcessBean
   }
 
   public List<DashboardProcess> getAllPortalProcesses() {
-    return CollectionUtils.isEmpty(allPortalProcesses) ? findAllPortalProcesses() : allPortalProcesses;
-  }
-
-  public void setAllPortalProcesses(List<DashboardProcess> allPortalProcesses) {
-    this.allPortalProcesses = allPortalProcesses;
-  }
-
-  public List<DashboardProcess> findAllPortalProcesses() {
-    allPortalProcesses = new ArrayList<>(dashboardProcessBean.getPortalDashboardProcesses());
-    return allPortalProcesses;
+    return dashboardProcessBean.getPortalDashboardProcesses();
   }
 
   @Override
@@ -179,6 +194,11 @@ public class CompactDashboardProcessBean
     CompactProcessDashboardWidget newWidget = new CompactProcessDashboardWidget(dashboardProcessBean.getWidget());
     newWidget.buildFilterableColumns(DashboardWidgetUtils.initProcessFilterableColumns());
     dashboardProcessBean.updateWidget(newWidget);
+  }
+
+  @Override
+  public void onChangeApplications(List<String> applications) {
+    dashboardProcessBean.setApplications(applications);
   }
 
 }
