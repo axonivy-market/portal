@@ -16,7 +16,7 @@
     <ui:param name="viewName" value="EXPRESS" />
 
     <ui:define name="title">
-      #{ivy.case.name} - #{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/FormDefinitionStep')}"
+      #{ivy.case.names().current()} - #{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/FormDefinitionStep')}"
     </ui:define>
     <ui:define name="content">
       <p:messages id="error-messages" showDetail="false" closable="true"/>

@@ -78,7 +78,7 @@
           "code" : [
             "import java.util.Arrays;",
             "",
-            "out.task.getCase().createNote(ivy.session, ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/taskList/setNameNote\", Arrays.asList(ivy.session.getSessionUser().getDisplayName(), in.oldName, in.task.getName())));"
+            "out.task.getCase().createNote(ivy.session, ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/taskList/setNameNote\", Arrays.asList(ivy.session.getSessionUser().getDisplayName(), in.oldName, in.task.names().current())));"
           ]
         }
       },
