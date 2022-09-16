@@ -101,6 +101,7 @@
          </div>
          <h:panelGroup id="welcome-text-input-container" layout="block" styleClass="ui-g-12 u-no-padding-left u-no-padding-right ui-g u-padding-0">
            <ui:repeat id="welcome-text-list" var="text" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeTexts}" varStatus="status">
+             <c:set var="isApplicationDefaultEmailLanguage" value="#{dashboardWelcomeWidgetConfigurationBean.isApplicationDefaultEmailLanguage(text.locale.toLanguageTag())}" />
              <div class="ui-g-3 ui-md-4">
                <p:outputLabel value="#{text.locale.getDisplayName()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/DisplayedText')}"
                  for="welcome-text-input" styleClass="welcome-text-label" />
@@ -108,12 +109,12 @@
              <h:panelGroup id="welcome-text-input-panel" styleClass="ui-g-9 ui-md-8 welcome-text-input-panel" layout="block">
                <h:outputText value="#{dashboardWelcomeWidgetConfigurationBean.generateGreetingText(text.locale)}"
                  rendered="#{dashboardWelcomeWidgetConfigurationBean.widget.greeting}"
-                 styleClass="js-greeting-text greeting-text #{dashboardWelcomeWidgetConfigurationBean.isApplicationDefaultEmailLanguage(text.locale.toLanguageTag()) ? 'language-to-preview' : ''}" />
+                 styleClass="js-greeting-text greeting-text #{isApplicationDefaultEmailLanguage ? 'language-to-preview' : ''}" />
                <p:inputText id="welcome-text-input" value="#{text.value}" maxlength="200"
-                 required="#{dashboardWelcomeWidgetConfigurationBean.isApplicationDefaultEmailLanguage(text.locale.toLanguageTag())}"
+                 required="#{isApplicationDefaultEmailLanguage}"
                  requiredMessage="#{text.locale.getDisplayName()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
-                 styleClass="#{dashboardWelcomeWidgetConfigurationBean.isApplicationDefaultEmailLanguage(text.locale.toLanguageTag()) ? 'language-to-preview' : ''} js-welcome-text-input welcome-text-input"
-                 onkeyup="#{dashboardWelcomeWidgetConfigurationBean.isApplicationDefaultEmailLanguage(text.locale.toLanguageTag()) ? 'WelcomeWidgetConfiguration.updatePreviewText();' : ''}" />
+                 styleClass="#{isApplicationDefaultEmailLanguage ? 'language-to-preview' : ''} js-welcome-text-input welcome-text-input"
+                 onkeyup="#{isApplicationDefaultEmailLanguage ? 'WelcomeWidgetConfiguration.updatePreviewText();' : ''}" />
              </h:panelGroup>
            </ui:repeat>
         </h:panelGroup>
