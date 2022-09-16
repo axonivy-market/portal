@@ -348,6 +348,12 @@ Release notes
 This part lists all relevant changes since the last official product
 releases of Axon Ivy.
 
+Changes in 10
+-------------
+
+- Introduced the ``Application`` filter and the ``Application`` column at the following places: full task list, full case list, dashboard task list, dashboard case list, and task analysis.
+
+
 Changes in 9.4
 --------------
 
