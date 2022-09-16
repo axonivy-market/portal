@@ -795,17 +795,15 @@ span.new-widget-dialog__icon.si {
 
 .process-widget--full {
   height: 100%;
+  overflow: hidden;
 }
 
-.process-widget--full .card-item.card {
+.process-widget--full .card {
   margin: 0;
 }
 
-@supports (-webkit-touch-callout: none) {
-    .process-widget--full .card-item.card {
-      padding: 0;
-      height: -webkit-fill-available;
-    }
+.process-widget--full .process-grid__header {
+  padding-top: 4rem;
 }
 
 .process-widget--full .process-grid-view__icon.process-grid-view__icon--combined {
@@ -813,9 +811,7 @@ span.new-widget-dialog__icon.si {
   padding-bottom: 2rem;
 }
 
-.process-widget--full .process-grid-item .card-item {
-  height: 330px;
-}
+
 
 .grid-view-form .process-name.process-name--combined {
   height: 8rem;
@@ -837,6 +833,9 @@ span.new-widget-dialog__icon.si {
 .process-task-case-container {
   padding: 2rem;
   margin-top: 5rem;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .widget-preview--combined {
@@ -965,6 +964,11 @@ span.new-widget-dialog__icon.si {
   .process-grid-view__description--combined {
     height: 8rem;
   }
+  .process-task-case-container {
+    padding-top: 0;
+    margin-top: 0;
+  }
+  
 }
 
 .process-grid-item__action--combined {
@@ -981,8 +985,7 @@ span.new-widget-dialog__icon.si {
 }
 
 .combined-process {
-  padding-top: 0;
-  padding: 0;
+  padding: 0 2rem;
 }
 
 .saved-filter {

@@ -302,21 +302,22 @@ function setupGridProcessWidget() {
       $processNameText.css('font-size', '1.2rem');
       availableHeightForWidget = getAvailableHeightOfWidget($(this));
     }
-    if (availableHeightForWidget < 0) {
+    if (availableHeightForWidget <= 0) {
       $moreInformation.hide();
       availableHeightForWidget = getAvailableHeightOfWidget($(this));
     }
-    if (availableHeightForWidget < 0) {
+    if (availableHeightForWidget <= 0) {
       $processDescription.hide();
       availableHeightForWidget = getAvailableHeightOfWidget($(this));
     }
-    if (availableHeightForWidget < 0) {
-      $processHeader.css({'display': 'flex', 'padding-right': '2rem', 'text-align': 'left'});
+    if (availableHeightForWidget <= 0) {
+      $(this).find('.rounded-button.process-category').hide();
+      $processHeader.css({'display': 'flex', 'padding-right': '2rem', 'padding-top': '0', 'text-align': 'left'});
       setLineClamp($processNameText, 3);
       removeStyle($moreInformation);
       availableHeightForWidget = getAvailableHeightOfWidget($(this));
     }
-    if (availableHeightForWidget < 0) {
+    if (availableHeightForWidget <= 0) {
       setLineClamp($processNameText, 2);
       availableHeightForWidget = getAvailableHeightOfWidget($(this));
       if (availableHeightForWidget < 0) {
