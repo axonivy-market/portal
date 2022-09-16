@@ -108,12 +108,12 @@
              <h:panelGroup id="welcome-text-input-panel" styleClass="ui-g-9 ui-md-8 welcome-text-input-panel" layout="block">
                <h:outputText value="#{dashboardWelcomeWidgetConfigurationBean.generateGreetingText(text.locale)}"
                  rendered="#{dashboardWelcomeWidgetConfigurationBean.widget.greeting}"
-                 styleClass="js-greeting-text greeting-text #{logic.isApplicationDefaultEmailLanguage(text.locale.toLanguageTag()) ? 'language-to-preview' : ''}" />
+                 styleClass="js-greeting-text greeting-text #{dashboardWelcomeWidgetConfigurationBean.isApplicationDefaultEmailLanguage(text.locale.toLanguageTag()) ? 'language-to-preview' : ''}" />
                <p:inputText id="welcome-text-input" value="#{text.value}" maxlength="200"
-                 required="#{logic.isApplicationDefaultEmailLanguage(text.locale.toLanguageTag())}"
+                 required="#{dashboardWelcomeWidgetConfigurationBean.isApplicationDefaultEmailLanguage(text.locale.toLanguageTag())}"
                  requiredMessage="#{text.locale.getDisplayName()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
-                 styleClass="#{logic.isApplicationDefaultEmailLanguage(text.locale.toLanguageTag()) ? 'language-to-preview' : ''} js-welcome-text-input welcome-text-input"
-                 onkeyup="#{logic.isApplicationDefaultEmailLanguage(text.locale.toLanguageTag()) ? 'WelcomeWidgetConfiguration.updatePreviewText();' : ''}" />
+                 styleClass="#{dashboardWelcomeWidgetConfigurationBean.isApplicationDefaultEmailLanguage(text.locale.toLanguageTag()) ? 'language-to-preview' : ''} js-welcome-text-input welcome-text-input"
+                 onkeyup="#{dashboardWelcomeWidgetConfigurationBean.isApplicationDefaultEmailLanguage(text.locale.toLanguageTag()) ? 'WelcomeWidgetConfiguration.updatePreviewText();' : ''}" />
              </h:panelGroup>
            </ui:repeat>
         </h:panelGroup>
