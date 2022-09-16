@@ -8,7 +8,6 @@ import static ch.ivy.addon.portalkit.enums.ProcessWidgetMode.COMPACT_MODE;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -19,8 +18,6 @@ import ch.ivy.addon.portalkit.dto.dashboard.process.TypeColumnModel;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.ListUtilities;
-import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.application.app.IApplicationRepository;
 
 public class DashboardProcessSearchCriteria {
 
@@ -48,15 +45,15 @@ public class DashboardProcessSearchCriteria {
         }
         displayProcesses = ListUtilities.filterList(displayProcesses, process -> isProcessMatchedCategory(process, categories));
       } else if (APPLICATION.getField().equalsIgnoreCase(column.getField())) {
-        List<String> applications = isInConfiguration ? column.getFilterList() : column.getUserFilterList();//((ApplicationColumnModel)column).getUserFilterApplications();
-        if (CollectionUtils.isNotEmpty(applications)) {
-          for (String app : applications) {
-            Optional<IApplication> appFindByName = IApplicationRepository.instance().findByName(app);
-            if (appFindByName.isPresent()) {
-              displayProcesses = ListUtilities.filterList(displayProcesses, process -> StringUtils.containsIgnoreCase(process.getApplication(), app));
-            }
-          }
+        List<String> applications = isInConfiguration ? column.getFilterList() : column.getUserFilterList();
+        if (!isInConfiguration && CollectionUtils.isEmpty(applications)) {
+          applications = column.getFilterList();
         }
+        
+        if (CollectionUtils.isNotEmpty(applications)) {
+          final List<String> apps = applications;
+          displayProcesses = ListUtilities.filterList(displayProcesses, process -> apps.contains(process.getApplication()));
+        } 
       }
       
     }
