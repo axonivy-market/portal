@@ -143,6 +143,9 @@ HowTo: Create New Filter
 |  State                |  Specify the case state           |
 |                       |                                   |
 +-----------------------+-----------------------------------+
+|  Application          |  This filter lets you select      |
+|                       |  the application                  |
++-----------------------+-----------------------------------+
 
 .. hint::
    #. You can create a new filter by selecting an existing filter, reconfiguring it, and saving it.
