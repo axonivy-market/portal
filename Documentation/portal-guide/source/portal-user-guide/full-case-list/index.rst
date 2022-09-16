@@ -144,7 +144,7 @@ HowTo: Create New Filter
 |                       |                                   |
 +-----------------------+-----------------------------------+
 |  Application          |  This filter lets you select      |
-|                       |  application                      |
+|                       |  the application                  |
 +-----------------------+-----------------------------------+
 
 .. hint::

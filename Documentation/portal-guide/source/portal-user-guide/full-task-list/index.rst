@@ -175,7 +175,7 @@ HowTo: Create new filter
 |                                   | activator, activator is not found |
 |                                   | or is disabled.                   |
 +-----------------------------------+-----------------------------------+
-| Application                       | This filter lets you select       |
+| Application                       | This filter lets you select the   |
 |                                   | application                       |
 +-----------------------------------+-----------------------------------+
 
