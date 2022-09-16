@@ -143,9 +143,6 @@ HowTo: Create New Filter
 |  State                |  Specify the case state           |
 |                       |                                   |
 +-----------------------+-----------------------------------+
-|  Application          |  This filter lets you select      |
-|                       |  application                      |
-+-----------------------+-----------------------------------+
 
 .. hint::
    #. You can create a new filter by selecting an existing filter, reconfiguring it, and saving it.
@@ -287,8 +284,6 @@ following columns:
 
 - State
 
-- Application
-
 At the end of each row, a side step menu is available. It offers the following
 actions:
 
@@ -334,8 +329,6 @@ By default, the following information is shown. To change it, click on :guilabel
 - State
 
 - Category
-
-- Application
 
 The Action column provides these actions to handle the related case:
 
