@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
 import javax.faces.context.FacesContext;
@@ -35,10 +36,10 @@ public abstract class AbstractProcessBean implements Serializable {
 
   public void init() {
     collector = new ProcessStartCollector();
-    portalProcesses = findProcesses();
+    portalProcesses = new CopyOnWriteArrayList<Process>(findProcesses());
     portalProcesses.addAll(findExpressProcesses());
     portalProcesses.addAll(findExternalLink());
-    portalProcesses = sortProcesses(portalProcesses);
+    portalProcesses = new CopyOnWriteArrayList<Process>(sortProcesses(portalProcesses));
   }
 
   public String getProcessInformationPageUrl(Process process) {
