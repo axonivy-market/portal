@@ -10,6 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
@@ -299,7 +300,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
         .getELResolver().getValue(FacesContext.getCurrentInstance().getELContext(), null, "externalLinkBean");
     externalLinkBean.saveNewExternalLink();
     portalProcesses.add(new ExternalLinkProcessItem(externalLinkBean.getExternalLink()));
-    portalProcesses = sortProcesses(portalProcesses);
+    portalProcesses = new CopyOnWriteArrayList<Process>(sortProcesses(portalProcesses));
     groupProcessesByAlphabetIndex(portalProcesses);
   }
 
