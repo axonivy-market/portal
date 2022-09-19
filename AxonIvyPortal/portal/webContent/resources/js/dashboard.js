@@ -281,11 +281,13 @@ function setupGridProcessWidget() {
     let $processHeader = $(this).find('.process-grid__header');
     let $processIcon = $(this).find("i#icon");
     let $processName = $(this).find(".process-name");
+    let $processCategory = $(this).find('.rounded-button.process-category');
     let $processNameText = $processName.find(".process-grid-view-name");
     let $processDescription = $(this).find(".process-description");
     let $moreInformation = $(this).find(".process-more-info-link");
     removeStyle($processIcon);
     removeStyle($processName);
+    removeStyle($processCategory);
     removeStyle($processDescription);
     removeStyle($moreInformation);
     removeStyle($processHeader);
@@ -311,7 +313,7 @@ function setupGridProcessWidget() {
       availableHeightForWidget = getAvailableHeightOfWidget($(this));
     }
     if (availableHeightForWidget <= 0) {
-      $(this).find('.rounded-button.process-category').hide();
+      $processCategory.hide();
       $processHeader.css({'display': 'flex', 'padding-right': '2rem', 'padding-top': '0', 'text-align': 'left'});
       setLineClamp($processNameText, 3);
       removeStyle($moreInformation);
