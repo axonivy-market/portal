@@ -112,7 +112,7 @@ public class AdminSettingsTest extends BaseTest {
 
       adminSettingsPage = newDashboardPage.openAdminSettings();
       adminSettingsPage.setShowLegacyUI();
-      redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+      adminSettingsPage.clickOnbackToHomepageOnAdminSetting();
       homePage = new HomePage();
       assertTrue(homePage.isDisplayed());
       adminSettingsPage = homePage.openAdminSettings();
