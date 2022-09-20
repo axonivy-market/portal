@@ -5453,6 +5453,14 @@ border-top: 0.14rem dashed;
   justify-content: flex-end;
 }
 
+.process-group.grid-process-container .process-grid__header {
+  margin-top: 2.5rem;
+}
+
+.process-group.grid-process-container .start-button-wrap {
+  min-height: 75px;
+}
+
 .process-group.grid-process-container .process-grid-item .process-grid-view-icon {
   padding: 2rem;
 }
@@ -5653,6 +5661,10 @@ border-top: 0.14rem dashed;
 
 .image-process-item .card-item.card {
   margin-bottom: 0px;
+}
+
+.process-group.image-process-container .image-process-item .card-item.card {
+  padding-bottom: 1rem !important;
 }
 
 .compact-process-category {
