@@ -64,7 +64,7 @@
             trackMouse="true" hideEvent="mouseleave click" styleClass="js-process-start-list-item-description" />
         </div>
         <!-- Start process -->
-        <div class="ui-g-12" id="start-button-wrap-#{status.index}">
+        <div class="ui-g-12 start-button-wrap" id="start-button-wrap-#{status.index}">
           <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}"
             id="start-button" actionListener="#{managedBean.startProcess(process)}" icon="si si-arrow-right-1"
             ajax="#{!isExternalLink}"
