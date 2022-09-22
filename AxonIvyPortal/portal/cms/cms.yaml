@@ -42,23 +42,23 @@ ch.ivy.addon.portalkit:
 ch.ivy.addon.portalkit.ui.jsf:
   AbsenceAndDeputy:
     Messages:
-      errorSelectInvalidDeputy: Deputy is already selected or invalid
-      errorSelectedInPersonalTaskPermanentDeputies: Deputy is already selected in "{0}"
+      errorSelectInvalidDeputy: Substitute is already selected or invalid
+      errorSelectedInPersonalTaskPermanentDeputies: Substitute is already selected in "{0}"
       fromBiggerThanTill: '''Until'' must be later than ''From''.'
       overlappingAbsence: The absence is overlapping with another absence.
       userNameRequired: User name must not be empty.
     absences: Absences
     addAbsence: Add absence
-    deputies: Deputies
+    deputies: Substitutes
     description: Set up your vacations, illnesses or other external obligations that leads to any absence.
     editAbsence: Edit absence
     from: From
-    noDeputy: No deputy
+    noDeputy: No substitute
     period: Period
-    personalTaskDuringAbsenceDeputies: Deputies for personally assigned tasks during the absence
-    personalTaskPermanentDeputies: Permanent deputies for personally assigned tasks
-    selectDeputies: Select deputies
-    selectedDeputies: Selected deputies
+    personalTaskDuringAbsenceDeputies: Substitutes for personally assigned tasks during the absence
+    personalTaskPermanentDeputies: Permanent substitutes for personally assigned tasks
+    selectDeputies: Select substitutes
+    selectedDeputies: Selected substitutes
     showAbsencesInThePast: Display absences in the past
     substitutedUser: Substituted user
     taskForRole: 'Task for role: '
@@ -69,15 +69,15 @@ ch.ivy.addon.portalkit.ui.jsf:
       removedAbsences: Removed absence for {0}
       saveAbsenceSetting: Absences settings saved successfully.
       updateAbsence: Asence updated successfully
-    absenceAndDeputy: Absences and deputies
+    absenceAndDeputy: Absences and substitutes
     allAbsences: Absences of all users
     applicationAndRole: Application and role
-    definedDeputies: Defined Deputies
-    deputyFor: I am deputy for
-    myDeputies: My deputies
+    definedDeputies: Defined Substitutes
+    deputyFor: I am substitute for
+    myDeputies: My substitutes
     myPlannedAbsences: My planned absences
     nextAbsence: Upcomming absence
-    selectedDeputyFor: Selected user is deputy for
+    selectedDeputyFor: Selected user is substitute for
     selectedUser: Selected user
   AllTasks:
     caseDescription: Case description

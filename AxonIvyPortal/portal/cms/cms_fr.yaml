@@ -42,23 +42,23 @@ ch.ivy.addon.portalkit:
 ch.ivy.addon.portalkit.ui.jsf:
   AbsenceAndDeputy:
     Messages:
-      errorSelectInvalidDeputy: Deputy is already selected or invalid
-      errorSelectedInPersonalTaskPermanentDeputies: Deputy is already selected in "{0}"
+      errorSelectInvalidDeputy: Le substitut est déjà sélectionné ou invalide
+      errorSelectedInPersonalTaskPermanentDeputies: Le substitut est déjà sélectionné dans "{0}"
       fromBiggerThanTill: '"Jusqu''à" doit être ultérieur à "Depuis"'
       overlappingAbsence: L'absence entre en collision avec une autre absence.
       userNameRequired: Le nom d'utilisateur doit être indiqué.
     absences: Absences
     addAbsence: Ajouter une absence
-    deputies: Deputies
+    deputies: Substituts
     description: Veuillez inscrire vos vacances, maladies ou autres obligations extérieures conduisant à une absence.
     editAbsence: Editer les absences
     from: Du
-    noDeputy: Pas de remplaçant
+    noDeputy: Aucun substitut
     period: Période
-    personalTaskDuringAbsenceDeputies: Les députés pour les tâches personnelles pendant l'absence.
-    personalTaskPermanentDeputies: Les députés permanents pour des tâches personnelles
-    selectDeputies: Sélection des députés
-    selectedDeputies: Députés sélectionnés
+    personalTaskDuringAbsenceDeputies: Remplacer les tâches assignées personnellement pendant l'absence
+    personalTaskPermanentDeputies: Remplacement permanent des tâches confiées personnellement
+    selectDeputies: Choisir des substituts
+    selectedDeputies: Substituts sélectionnés
     showAbsencesInThePast: Afficher les absences du passé
     substitutedUser: Utilisateur remplacé
     taskForRole: 'Tâche pour le rôle:'
@@ -69,15 +69,15 @@ ch.ivy.addon.portalkit.ui.jsf:
       removedAbsences: Absence supprimée pour {0}
       saveAbsenceSetting: Les paramètres d'absence ont été sauvegardés avec succès.
       updateAbsence: Mise à jour des absences réussie
-    absenceAndDeputy: Absences et suppléants
+    absenceAndDeputy: Absences et suppléances
     allAbsences: Absences de tous les utilisateurs
     applicationAndRole: Application et rôle
-    definedDeputies: Suppléants définis
-    deputyFor: I am deputy for
-    myDeputies: My deputies
+    definedDeputies: Substituts définis
+    deputyFor: Je suis remplaçant pour
+    myDeputies: Mes substituts
     myPlannedAbsences: Mes absences prévues
     nextAbsence: Absence à venir
-    selectedDeputyFor: L'utilisateur sélectionné est suppléant pour
+    selectedDeputyFor: L'utilisateur sélectionné est un substitut de
     selectedUser: Utilisateur sélectionné
   AllTasks:
     caseDescription: Description du dossier
@@ -570,7 +570,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     switchToDesktopVersion: Passer à la version de bureau
     taskCanceledAndLeftSuccessfully: Vous avez annulé et quitté la tâche avec succès. Vous pouvez trouver la tâche dans le tableau de bord ou dans votre liste de tâches.
     taskFinishedSuccessfully: Vous avez terminé la tâche avec succès
-    taskFromSubstitution: Vous voyez cette tâche parce que vous êtes l'adjoint
+    taskFromSubstitution: Vous voyez cette tâche parce que vous êtes le remplaçant
     taskName: Nom de tâche
     tasks: Tâches
     theCasemap: La carte des cas
