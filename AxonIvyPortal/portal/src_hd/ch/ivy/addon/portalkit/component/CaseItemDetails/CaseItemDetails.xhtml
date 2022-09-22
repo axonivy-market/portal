@@ -215,7 +215,11 @@
         if (iframes.length > 0) {
           iframes.remove();
         }
-        window.history.back();
+        if (window.history.length < 3) { // if no history or back from a page in Frame
+          backToCasesList();
+        } else {
+          window.history.back();
+        }
         if (event) {
           event.preventDefault();
         }
