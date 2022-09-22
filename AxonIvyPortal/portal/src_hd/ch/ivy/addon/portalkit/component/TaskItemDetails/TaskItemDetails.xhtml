@@ -16,9 +16,12 @@
 <cc:implementation>
   <f:event listener="#{taskDetailsBean.init()}" type="preRenderComponent"/>
   <c:set var="task" value="#{data.task}" />
-  <c:set var="informationWidgetComponent" value="" />
-  <c:set var="documentWidgetComponent" value="" />
-  <c:set var="historyWidgetComponent" value="" />
+  <c:set var="generalContainerID" value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('InformationWidget')}:task-detail-general-container" />
+  <c:set var="informationWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('InformationWidget') gt -1 ? generalContainerID:''}" />
+  <c:set var="documentsContainerID" value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('DocumentWidget')}:task-documents:task-details-documents" />
+  <c:set var="documentWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('DocumentWidget') gt -1 ? documentsContainerID:''}" />
+  <c:set var="noteContainerID" value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('HistoryWidget')}:task-detail-note-container" />
+  <c:set var="historyWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('HistoryWidget') gt -1 ? noteContainerID:''}" />
 
   <div class="ui-g">
     <h:panelGroup id="task-detail-container" rendered="#{cc.attrs.showItemDetailsHeader}"
@@ -58,19 +61,6 @@
   <h:panelGroup layout="block" styleClass="task-item-body " id="task-item-body">
     <h:panelGroup class="task-item-body-container task-details-widgets js-task-details-widgets u-padding-0 grid-stack" id="task-details-widgets"
       rendered="#{not empty taskDetailsBean.widgets}">
-
-      <c:if test="#{taskDetailsBean.getWidgetPositionByType('InformationWidget') gt -1}">
-        <c:set var="informationWidgetComponent"
-          value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('InformationWidget')}:task-detail-general-container" />
-      </c:if>
-      <c:if test="#{taskDetailsBean.getWidgetPositionByType('DocumentWidget') gt -1}">
-        <c:set var="documentWidgetComponent"
-          value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('DocumentWidget')}:task-documents:task-details-documents" />
-      </c:if>
-      <c:if test="#{taskDetailsBean.getWidgetPositionByType('HistoryWidget') gt -1}">
-        <c:set var="historyWidgetComponent"
-          value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('HistoryWidget')}:task-detail-note-container" />
-      </c:if>
 
       <ui:repeat var="widget" value="#{taskDetailsBean.widgets}" id="widgets">
         <div id="task-details-#{widget.type}-panel"
