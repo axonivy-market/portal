@@ -1,6 +1,2 @@
 WelcomeWidgetConfigurationData #class
 ch.ivy.addon.portal.generic.dashboard.component.WelcomeWidgetConfiguration #namespace
-language String #field
-language PERSISTENT #fieldModifier
-isDefaultApplicationLanguage Boolean #field
-isDefaultApplicationLanguage PERSISTENT #fieldModifier

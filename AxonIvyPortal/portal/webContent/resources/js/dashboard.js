@@ -281,11 +281,13 @@ function setupGridProcessWidget() {
     let $processHeader = $(this).find('.process-grid__header');
     let $processIcon = $(this).find("i#icon");
     let $processName = $(this).find(".process-name");
+    let $processCategory = $(this).find('.rounded-button.process-category');
     let $processNameText = $processName.find(".process-grid-view-name");
     let $processDescription = $(this).find(".process-description");
     let $moreInformation = $(this).find(".process-more-info-link");
     removeStyle($processIcon);
     removeStyle($processName);
+    removeStyle($processCategory);
     removeStyle($processDescription);
     removeStyle($moreInformation);
     removeStyle($processHeader);
@@ -302,21 +304,22 @@ function setupGridProcessWidget() {
       $processNameText.css('font-size', '1.2rem');
       availableHeightForWidget = getAvailableHeightOfWidget($(this));
     }
-    if (availableHeightForWidget < 0) {
+    if (availableHeightForWidget <= 0) {
       $moreInformation.hide();
       availableHeightForWidget = getAvailableHeightOfWidget($(this));
     }
-    if (availableHeightForWidget < 0) {
+    if (availableHeightForWidget <= 0) {
       $processDescription.hide();
       availableHeightForWidget = getAvailableHeightOfWidget($(this));
     }
-    if (availableHeightForWidget < 0) {
-      $processHeader.css({'display': 'flex', 'padding-right': '2rem', 'text-align': 'left'});
+    if (availableHeightForWidget <= 0) {
+      $processCategory.hide();
+      $processHeader.css({'display': 'flex', 'padding-right': '2rem', 'padding-top': '0', 'text-align': 'left'});
       setLineClamp($processNameText, 3);
       removeStyle($moreInformation);
       availableHeightForWidget = getAvailableHeightOfWidget($(this));
     }
-    if (availableHeightForWidget < 0) {
+    if (availableHeightForWidget <= 0) {
       setLineClamp($processNameText, 2);
       availableHeightForWidget = getAvailableHeightOfWidget($(this));
       if (availableHeightForWidget < 0) {
