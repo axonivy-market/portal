@@ -227,7 +227,7 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
   }
 
   public int getWidgetPositionByType(String widgetType) {
-    if (CollectionUtils.isNotEmpty(widgets)) {
+    if (CollectionUtils.isNotEmpty(widgets) && StringUtils.isNotBlank(widgetType)) {
       for (int i = 0; i < widgets.size(); i++) {
         if (isValidWidgetByType(i, widgetType)) {
           return i;

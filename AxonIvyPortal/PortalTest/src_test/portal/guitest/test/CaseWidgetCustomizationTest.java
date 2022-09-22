@@ -47,11 +47,11 @@ public class CaseWidgetCustomizationTest extends BaseTest {
     assertTrue(caseWidgetPage.isCaseListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
     caseWidgetPage.clickColumnsButton();
     caseWidgetPage.clickDefaultCheckbox();
-    caseWidgetPage.clickColumnCheckbox(6);
+    caseWidgetPage.clickColumnCheckbox(7);
     caseWidgetPage.clickApplyButton();
     WaitHelper.assertTrueWithWait(() -> !caseWidgetPage.isCaseListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
     caseWidgetPage.clickColumnsButton();
-    caseWidgetPage.clickColumnCheckbox(6);
+    caseWidgetPage.clickColumnCheckbox(7);
     caseWidgetPage.clickApplyButton();
     WaitHelper.assertTrueWithWait(() -> caseWidgetPage.isCaseListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
   }

@@ -96,6 +96,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     getFullModeProcessSelectedProcess().find("input").clear();
     getFullModeProcessSelectedProcess().find("input").sendKeys(processName);
     $("tr[data-item-label='" + processName + "']").click();
+    waitUntilElementToBeClickable($("button[id='widget-configuration-save-button']"));
   }
 
   public SelenideElement getPreviewButton() {
