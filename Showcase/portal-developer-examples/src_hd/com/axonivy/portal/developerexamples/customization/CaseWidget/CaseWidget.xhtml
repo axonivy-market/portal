@@ -86,7 +86,7 @@
         responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down" />
       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState componentId="case-state-cell" case="#{case}"
         dataModel="#{caseView.getDataModel()}" />
-      <ic:ch.ivy.addon.portalkit.component.cases.column.CaseApplication componentId="case-application-cell" case="#{case}" />
+      <ic:ch.ivy.addon.portalkit.component.cases.column.CaseApplication componentId="case-application-cell" case="#{case}" rendered="#{caseView.dataModel.isSelectedColumn('APPLICATION')}" />
 
       <!-- New field -->
       <h:panelGroup styleClass="customized-case-header-column js-hidden-when-expand-menu u-hidden-lg-down" rendered="#{caseView.dataModel.isSelectedColumn('CustomerName')}">
