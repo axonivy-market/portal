@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
@@ -27,7 +28,11 @@ public class CaseDescriptionChangeTest extends BaseTest {
     createTestingTasks();
   }
 
+  @Ignore
   @Test
+  /**
+   * This test is ignored because it need specific configuration on engine to run correctly
+   */
   public void testChangeCaseDescription() {
     var caseNameEn = "Leave Request";
     var caseNameGer = "Urlaubsantrag";
