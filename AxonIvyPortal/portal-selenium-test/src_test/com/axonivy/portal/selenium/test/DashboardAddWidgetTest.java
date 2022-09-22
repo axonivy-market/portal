@@ -45,6 +45,7 @@ public class DashboardAddWidgetTest extends BaseTest {
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
     newDashboardDetailsEditPage.addWidget();
     TaskEditWidgetNewDashBoardPage newTaskWidget = newDashboardDetailsEditPage.addNewTaskWidget();
+    newTaskWidget.waitPreviewTableLoaded();
     newTaskWidget.changeWidgetTitle("Your New Tasks");
     newTaskWidget.save();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget("Your New Tasks");
