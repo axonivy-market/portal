@@ -81,6 +81,7 @@ CustomFields:
       Label: Versanddatum
 DefaultColumns:
   ACTIVATOR: Verantwortlich
+  APPLICATION: Anwendung
   CREATION_TIME: Erstellt
   CustomerName: Kundenname
   EXPIRY_TIME: Ablaufdatum
@@ -90,6 +91,7 @@ DefaultColumns:
   STATE: Status
   ShipmentDate: Versanddatum
   caseList:
+    APPLICATION: Anwendung
     CREATION_TIME: Erstellt
     CREATOR: Ersteller
     CustomerName: Kundenname
