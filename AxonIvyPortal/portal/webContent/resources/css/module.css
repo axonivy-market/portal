@@ -3163,7 +3163,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .dashboard-processes-container {
   height: 100%;
-  overflow: hidden;
 }
 
 .line-clamp-text-2 {
@@ -3271,8 +3270,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   float: left;
 }
 
-.process-grid-item .card-item {
-  height: 100%;
+.process-grid-item .card {
+  height: 100% !important;
 }
 
 /********************************** END PROCESS START **********************************/
@@ -5056,9 +5055,7 @@ left: 60%;
 width: 45%;
 }
 }
-.card-item{
-height: 400px; 
-}
+
 .card .title-text{
 font-size:2rem;	
 margin-left:1rem;
@@ -5456,6 +5453,14 @@ border-top: 0.14rem dashed;
   justify-content: flex-end;
 }
 
+.process-group.grid-process-container .process-grid__header {
+  margin-top: 2.5rem;
+}
+
+.process-group.grid-process-container .start-button-wrap {
+  min-height: 75px;
+}
+
 .process-group.grid-process-container .process-grid-item .process-grid-view-icon {
   padding: 2rem;
 }
@@ -5520,12 +5525,8 @@ border-top: 0.14rem dashed;
   word-break: break-word;
 }
 
-.image-process-container .image-process-item .card-item.card {
-  height: 520px;
-}
-
-.image-process-container .image-process-item .card-item.card.image-widget-mode {
-  height:100%;
+.image-process-container .image-process-item .card.image-widget-mode {
+  height:100% !important;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -5547,7 +5548,7 @@ border-top: 0.14rem dashed;
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-container {
   width: inherit;
   position: relative;
-  height: 100%;
+  height: 100% !important;
   max-height: 296px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -5660,6 +5661,10 @@ border-top: 0.14rem dashed;
 
 .image-process-item .card-item.card {
   margin-bottom: 0px;
+}
+
+.process-group.image-process-container .image-process-item .card-item.card {
+  padding-bottom: 1rem !important;
 }
 
 .compact-process-category {
