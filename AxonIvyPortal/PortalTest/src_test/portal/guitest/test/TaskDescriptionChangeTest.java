@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
@@ -56,7 +57,11 @@ public class TaskDescriptionChangeTest extends BaseTest {
     assertFalse(taskWidgetPage.isTaskNameChangeComponentPresented(firstTask));
   }
 
+  @Ignore
   @Test
+  /**
+   * This test is ignored because it need specific configuration on engine to run correctly
+   */
   public void testChangeTaskDescriptionInMultiLanguage() {
     login(TestAccount.ADMIN_USER);
     int firstTask = 0;
