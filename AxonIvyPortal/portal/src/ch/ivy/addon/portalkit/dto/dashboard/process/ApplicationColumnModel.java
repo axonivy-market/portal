@@ -27,6 +27,8 @@ import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.security.ISecurityContext;
 
 public class ApplicationColumnModel extends ProcessColumnModel implements Serializable {
+  private static final long serialVersionUID = -4196645833691283486L;
+
   @Override
   public void initDefaultValue() {
     super.initDefaultValue();

@@ -14,6 +14,8 @@ import ch.ivy.addon.portalkit.configuration.UserProcess;
 @ViewScoped
 public class NavigationBean implements Serializable {
 
+  private static final long serialVersionUID = -4420507462312859147L;
+
   public void startProcess(UserProcess userProcess) throws IOException {
     Objects.requireNonNull(userProcess, "User process must not be null");
     String link = userProcess.getLink();
