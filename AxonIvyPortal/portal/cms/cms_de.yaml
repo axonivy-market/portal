@@ -43,22 +43,22 @@ ch.ivy.addon.portalkit.ui.jsf:
   AbsenceAndDeputy:
     Messages:
       errorSelectInvalidDeputy: Stellvertreter ist bereits ausgewählt oder ungültig
-      errorSelectedInPersonalTaskPermanentDeputies: Stellvertreter ist bereits in "{0}" ausgewählt
+      errorSelectedInPersonalTaskPermanentDeputies: Ersetzen ist bereits in "{0}" ausgewählt
       fromBiggerThanTill: Das 'bis' Datum muss nach dem 'von' Datum liegen.
       overlappingAbsence: Die Abwesenheit überschneidet sich mit einer anderen Abwesenheit.
       userNameRequired: '''Benutzername'' darf nicht leer sein.'
     absences: Abwesenheiten
     addAbsence: Abwesenheit erfassen
-    deputies: Stellvertreter
+    deputies: Vertretungen
     description: 'Während meiner Abwesenheit werden Workflow Aufgaben automatisch den definierten Stellvertretern zugeteilt. '
     editAbsence: Abwesenheiten bearbeiten
     from: Von
-    noDeputy: Kein Stellvertreter
+    noDeputy: Kein Ersatz
     period: Zeitraum
-    personalTaskDuringAbsenceDeputies: Stellvertreter für persönlich zugewiesene Aufgaben während der Abwesenheit
+    personalTaskDuringAbsenceDeputies: Vertretungen für persönlich zugewiesene Aufgaben während der Abwesenheit
     personalTaskPermanentDeputies: Ständige Stellvertreter für persönlich zugewiesene Aufgaben
-    selectDeputies: Stellvertreter auswählen
-    selectedDeputies: Ausgewählte Stellvertreter
+    selectDeputies: Ersatzstoffe auswählen
+    selectedDeputies: Ausgewählte Ersatzstoffe
     showAbsencesInThePast: Vergangene Abwesenheiten anzeigen
     substitutedUser: Vertretener Benutzer
     taskForRole: 'Aufgabe für Rolle: '
@@ -69,15 +69,15 @@ ch.ivy.addon.portalkit.ui.jsf:
       removedAbsences: Abwesenheit ist für {0} entfernt worden
       saveAbsenceSetting: Abwesenheitseinstellungen erfolgreich gespeichert.
       updateAbsence: Abwesenheit erfolgreich aktualisiert
-    absenceAndDeputy: Abwesenheiten und Stellvertreter
+    absenceAndDeputy: Abwesenheiten und Vertretungen
     allAbsences: Abwesenheiten aller Benutzer
     applicationAndRole: Applikation und Rolle
-    definedDeputies: Festgelegte Stellvertreter
-    deputyFor: Ich bin Stellvertreter für
+    definedDeputies: Definierte Substitute
+    deputyFor: Ich bin Ersatz für
     myDeputies: Meine Stellvertreter
     myPlannedAbsences: Meine geplanten Abwesenheiten
     nextAbsence: Bevorstehende Abwesenheit
-    selectedDeputyFor: Ausgewählter Benutzer ist Stellvertreter für
+    selectedDeputyFor: Ausgewählter Benutzer ist Ersatz für
     selectedUser: Ausgewählter Benutzer
   AllTasks:
     caseDescription: Beschreibung des Vorgangs
