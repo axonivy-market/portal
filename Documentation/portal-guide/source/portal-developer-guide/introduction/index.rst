@@ -215,7 +215,7 @@ My profile replaces for language setting and email setting. Also, introduce the 
 New absence management
 ^^^^^^^^^^^^^^^^^^^^^^
 
-New UI and user can choose deputy as permanent or temporary for personal task.
+New UI and user can choose substitute as permanent or temporary for personal task.
 
 |absence|
 
