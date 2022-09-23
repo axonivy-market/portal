@@ -15,18 +15,18 @@ public class MainMenuPage extends TemplatePage {
 
   public TaskWidgetPage openTaskList() {
     waitLeftMenuReady();
-    WaitHelper.waitForNavigation(() -> {
-      $(".layout-menu li[role='menuitem'] a.TASK").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    });
-    return new TaskWidgetPage();
+    $(".layout-menu li[role='menuitem'] a.TASK").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.waitPageLoaded();
+    return taskWidgetPage;
   }
 
   public CaseWidgetPage openCaseList() {
     waitLeftMenuReady();
-    WaitHelper.waitForNavigation(() -> {
-      $(".layout-menu li[role='menuitem'] a.CASE").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    });
-    return new CaseWidgetPage();
+    $(".layout-menu li[role='menuitem'] a.CASE").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    CaseWidgetPage caseWidgetPage = new CaseWidgetPage();
+    caseWidgetPage.waitPageLoaded();
+    return caseWidgetPage;
   }
 
   public ProcessWidgetPage openProcessList() {
