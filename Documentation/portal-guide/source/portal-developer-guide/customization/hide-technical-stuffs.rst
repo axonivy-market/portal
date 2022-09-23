@@ -70,7 +70,7 @@ To mark a case as a technical case, follow one of the two ways below:
       - Reverse it:
          ch.ivy.addon.portalkit.publicapi.CaseAPI.removeHidePropertyToDisplayInPortal(ICase)
 
-.. admonition:: Use the customfields of the ITask API
+.. admonition:: Use the customfields of the ICase API
 
       Open the case editor, expand the ``Custom Fields`` section
 
