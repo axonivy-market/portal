@@ -357,7 +357,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       FINISHED_TIME: Erledigt
       ID: Vorgangs Id
       NAME: Name / Beschreibung
-      OWNER: Owner
+      OWNER: Verantwortlich
       STATE: Status
     deletionNoteContent: Der Vorgang wurde durch {0} gelöscht.
     destroyCaseMessage: Diese Operation kann nicht rückgängig gemacht werden. Sind Sie sicher, dass dieser komplette Vorgang gelöscht werden soll?
@@ -501,7 +501,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     leave: Verlassen
     leaveAndReserve: Verlassen und reservieren
     linkToCaseDetails: Klicken Sie <a href="{0}" >hier</a> für weitere Details.
-    loading: Ladet
+    loading: Lädt
     loginLogo: Login Logo
     logos: Logos
     mainColor: Hauptfarbe
@@ -764,7 +764,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PrivateDashboardConfiguration: Private Dashboard-Konfiguration
       PublicDashboard: Öffentliche Dashboards
       PublicDashboardConfiguration: Konfiguration des öffentlichen Dashboards
-      ReorderPrivateDashboards: Réorganiser vos tableaux de bord
+      ReorderPrivateDashboards: Dashboards neu anordnen
       ReorderPublicDashboards: Öffentliche Dashboards neu anordnen
       SelectAction: Wählen Sie die Aktion
       Title: Dashboard-Konfiguration
@@ -781,9 +781,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     NoData: Keine Daten
     NoSavedFilterMessage: Kein gespeicherter Filter gefunden. Versuchen Sie, einen neuen zu erstellen, indem Sie auf die Schaltfläche Filter speichern klicken.
     RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
-    SaveNewWidgetFilterHeader: Save a new widget filter
-    SavedFilterHeader: Saved filters
-    SearchForFilter: Search for filter
+    SaveNewWidgetFilterHeader: Speichere neuen Widget-Filter
+    SavedFilterHeader: Gespeicherte Filter
+    SearchForFilter: Suche nach Filter
     StatisticWidget:
       AvailableCharts: Verfügbare Statistikdiagramme
       Charts: 'Diagramm(e): {0}'
@@ -850,7 +850,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     customWidgetIntroduction: Dieses Widget kann einen Axon Ivy-Prozess oder eine externe Webseite anzeigen.
     dashboardManagement:
       CreateDashboard: Dashboard erstellen
-      addDashboard: Dashbaord hinzufürgen
+      addDashboard: Dashboard hinzufügen
       dashboardIcon: Dashboard-Symbol
       dashboardPermission: Dashboard Berechtigung
       dashboardTitle: Dashboard Titel
@@ -1010,7 +1010,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   logoutSetting:
     logout: Abmelden
   noteHistory:
-    author: Author
+    author: Autor
     caseExportedFileNamePrefix: Verlauf_Vorgangsnotizen_{0}
     caseHistoriesTitle: Historie
     caseHistoryPageTitle: Verlauf Vorgangsnotizen
@@ -1132,7 +1132,7 @@ ch.ivy.addon.portalkit.ui.jsf:
           July: Juli
           June: Juni
           March: März
-          May: Kann
+          May: Mai
           November: November
           October: Oktober
           September: September
@@ -1152,7 +1152,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       elapsedTimeChart:
         compareButton: Vergleichen
         compareRole: Rollen vergleichen
-        elapsedTimeInHours: Verarbeitungszeit in Std.
+        elapsedTimeInHours: Laufzeit in Std.
         noEntriesFound: Keine übereinstimmende Kriterien gefunden
         taskCategory: Aufgabenkategorie
         withRole: 'Mit Rolle:'
@@ -1579,7 +1579,7 @@ Dialogs:
         OtherFormats: Andere Dateiformate
         PDF: PDF (pdf)
         Word: Word (doc/docx)
-      cancelCreateForm: Willen Sie wirklich abbrechen? Alle  Daten gehen verloren!
+      cancelCreateForm: Wollen Sie wirklich abbrechen? Alle  Daten gehen verloren!
       otherFiletype: Andere Dateiformate
     ProcessName: Express Workflow erstellen
     TaskType:
@@ -1627,8 +1627,8 @@ Labels:
   AppendTheTask: Aufgabe anhängen
   Enums:
     ThemeMode:
-      DARK: Dunkelheit
-      LIGHT: Licht
+      DARK: Dunkel
+      LIGHT: Hell
   InsertTask-Explain: Aufgabe einfügen. Meine Aufgabe wird aufgeschoben.
   InsertTheTask: Aufgabe einfügen
   Login:
