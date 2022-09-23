@@ -42,8 +42,8 @@ ch.ivy.addon.portalkit:
 ch.ivy.addon.portalkit.ui.jsf:
   AbsenceAndDeputy:
     Messages:
-      errorSelectInvalidDeputy: Sustituto ya está seleccionado o es inválido
-      errorSelectedInPersonalTaskPermanentDeputies: Sustituto ya está seleccionado en "{0}"
+      errorSelectInvalidDeputy: El sustituto ya está seleccionado o no es válido
+      errorSelectedInPersonalTaskPermanentDeputies: El sustituto ya está seleccionado en "{0}"
       fromBiggerThanTill: '''Hasta'' debe ser posterior a ''Desde''.'
       overlappingAbsence: La ausencia se superpone con otra ausencia.
       userNameRequired: '''Nombre de usuario'' no debe estar vacío.'
@@ -55,8 +55,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     from: Del
     noDeputy: Sin sustituto
     period: Periodo
-    personalTaskDuringAbsenceDeputies: Sustitutos para tareas personales durante la aussencia
-    personalTaskPermanentDeputies: Sustitutos permanentes para tareas personales
+    personalTaskDuringAbsenceDeputies: Sustituye las tareas asignadas personalmente durante la ausencia
+    personalTaskPermanentDeputies: Sustitución permanente de las tareas asignadas personalmente
     selectDeputies: Seleccionar sustitutos
     selectedDeputies: Sustitutos seleccionados
     showAbsencesInThePast: Mostrar ausencias en el pasado
@@ -69,15 +69,15 @@ ch.ivy.addon.portalkit.ui.jsf:
       removedAbsences: Ausencia removida para {0}
       saveAbsenceSetting: Configuración para ausencias guardada con éxito.
       updateAbsence: Ausencia actualizada con éxito
-    absenceAndDeputy: Ausencias y sustitutos
+    absenceAndDeputy: Ausencias y sustituciones
     allAbsences: Ausencias de todos los usuarios
     applicationAndRole: Aplicación y rol
     definedDeputies: Sustitutos definidos
-    deputyFor: I am deputy for
-    myDeputies: My deputies
+    deputyFor: Soy sustituto de
+    myDeputies: Mis sustitutos
     myPlannedAbsences: Mis ausencias programadas
     nextAbsence: Siguiente ausencia
-    selectedDeputyFor: Usuario seleccionado es sustituto de
+    selectedDeputyFor: El usuario seleccionado es el sustituto de
     selectedUser: Usuario seleccionado
   AllTasks:
     caseDescription: Descripción de caso
@@ -571,7 +571,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     switchToDesktopVersion: 'Cambiar al modo escritorio '
     taskCanceledAndLeftSuccessfully: Ha cancelado y cerrado la tarea. Encontrará la tarea en su tablero o en su lista de tareas.
     taskFinishedSuccessfully: Ha finalizado la tarea con éxito.
-    taskFromSubstitution: Usted ve esta tarea porque es el diputado
+    taskFromSubstitution: Usted ve esta tarea porque es el sustituto
     taskName: Nombre de tarea
     tasks: Tareas
     theCasemap: El mapa de caso
