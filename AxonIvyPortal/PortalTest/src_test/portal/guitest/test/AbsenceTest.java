@@ -123,7 +123,7 @@ public class AbsenceTest extends BaseTest {
     List<String> deputyNames = Arrays.asList(TestAccount.CASE_OWNER_USER.getFullName());
     absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_PERMANENT);
     absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE, false);
-    assertTrue(absencePage.getChooseDeputyDialogError().startsWith("Deputy is already selected in"));
+    assertTrue(absencePage.getChooseDeputyDialogError().startsWith("Substitute is already selected in"));
   }
 
   @Test
@@ -134,7 +134,7 @@ public class AbsenceTest extends BaseTest {
     List<String> deputyNames = Arrays.asList(TestAccount.CASE_OWNER_USER.getFullName());
     absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
     absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_PERMANENT, false);
-    assertTrue(absencePage.getChooseDeputyDialogError().startsWith("Deputy is already selected in"));
+    assertTrue(absencePage.getChooseDeputyDialogError().startsWith("Substitute is already selected in"));
   }
 
   @Test
