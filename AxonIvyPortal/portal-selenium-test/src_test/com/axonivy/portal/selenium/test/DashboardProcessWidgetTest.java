@@ -551,6 +551,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
   public void testSearchRemoveCompactModeProcessFilterWhenExpanded() {
     newDashboardPage.checkDisplayedCompactModeProcessContainer();
     newDashboardPage.expandCompactModeProcess();
+    newDashboardPage.removeCompactModeProcessFilter();
     redirectToNewDashBoard();
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.testSavedFilterValue();
