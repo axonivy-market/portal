@@ -75,26 +75,26 @@ HowTo: Add absence
 
 |how-to-add-an-absence|
 
-HowTo: Set deputy
+HowTo: Set substitute
 ^^^^^^^^^^^^^^^^^
 
 #. You see a list with 2 entries for your personal tasks and for each
    role you hold.
 
-   For each role, you can choose multiple deputies.
+   For each role, you can choose multiple substitutes.
 
-   For your personal tasks, you can choose multiple deputies and there are two types of deputy:
+   For your personal tasks, you can choose multiple substitutes and there are two types of substitute:
 
-   - Permanent deputies for personally assigned tasks.
-   - Deputies for personally assigned tasks during the absence.
+   - Permanent substitutes for personally assigned tasks.
+   - Substitutes for personally assigned tasks during the absence.
 
-   A deputy can only belonged to one type.
+   A substitute can only belonged to one type.
 
-#. Specify deputies by clicking on link ends with |si-notes-quill|.
+#. Specify substitutes by clicking on link ends with |si-notes-quill|.
 
-#. Confirm your deputies with the button :guilabel:`Save`.
+#. Confirm your substitutes with the button :guilabel:`Save`.
 
-|how-to-set-absence-deputies|
+|how-to-set-absence-substitutes|
 
 Change Password
 ---------------
@@ -160,7 +160,7 @@ a tab is provided, giving you the results of your search.
 .. |portal-header| image:: ../../screenshots/dashboard/portal-header-with-numbering-annotation.png
 .. |portal-absences| image:: ../../screenshots/settings/absence.png
 .. |how-to-add-an-absence| image:: ../../screenshots/settings/new-absence.png
-.. |how-to-set-absence-deputies| image:: ../../screenshots/settings/set-deputy.png
+.. |how-to-set-absence-substitutes| image:: ../../screenshots/settings/set-deputy.png
 .. |portal-password-change-dialog| image:: ../../screenshots/settings/change-password.png
 .. |portal-version-information| image:: ../../screenshots/settings/portal-version-information.png
 .. |portal-global-search-result-page| image:: ../../screenshots/search/global-search-result.png
