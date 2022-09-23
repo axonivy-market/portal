@@ -18,6 +18,8 @@ import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.ICase;
 
 public class ApplicationColumnModel extends CaseColumnModel implements Serializable {
+  private static final long serialVersionUID = 6708953330031478257L;
+
   @Override
   public void initDefaultValue() {
     super.initDefaultValue();
@@ -61,9 +63,9 @@ public class ApplicationColumnModel extends CaseColumnModel implements Serializa
     return false;
   }
   
-  public void updateApplications(CaseDashboardWidget widget) {
+  public void updateApplications(@SuppressWarnings("unused") CaseDashboardWidget widget) {
   }
-  public void initializeApplications(CaseDashboardWidget widget) {
+  public void initializeApplications(@SuppressWarnings("unused") CaseDashboardWidget widget) {
   }
   
   @Override

@@ -18,6 +18,8 @@ import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.ITask;
 
 public class ApplicationColumnModel extends TaskColumnModel implements Serializable {
+  private static final long serialVersionUID = 8918150285605338212L;
+
   @Override
   public void initDefaultValue() {
     super.initDefaultValue();
@@ -61,9 +63,9 @@ public class ApplicationColumnModel extends TaskColumnModel implements Serializa
     return false;
   }
 
-  public void updateApplications(TaskDashboardWidget  widget) {
+  public void updateApplications(@SuppressWarnings("unused") TaskDashboardWidget  widget) {
   }
-  public void initializeApplications(TaskDashboardWidget widget) {
+  public void initializeApplications(@SuppressWarnings("unused") TaskDashboardWidget widget) {
   }
   
   @Override

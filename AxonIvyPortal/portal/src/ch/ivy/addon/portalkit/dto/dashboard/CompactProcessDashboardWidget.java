@@ -115,6 +115,7 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
     this.displayProcesses = this.originalDisplayProcesses;
   }
 
+  @Override
   public DashboardProcessSearchCriteria getCriteria() {
     return criteria;
   }
