@@ -296,6 +296,15 @@ public class CaseWidgetPage extends TemplatePage {
 		click(columnCheckbox);
 	}
 
+  public void clickColumnCheckboxByName(String columnName) {
+    waitForElementDisplayed(By.cssSelector("[id$=':case-columns-configuration:case-config-columns-panel']"), true);
+    findListElementsByCssSelector("label[for*=':case-columns-configuration:select-columns-form:columns-checkbox:']").stream()
+        .filter(checkbox -> checkbox.getText().equalsIgnoreCase(columnName)).findAny()
+        .ifPresent(foundCheckbox -> {
+          clickByJavaScript(foundCheckbox);
+        });
+  }
+
 	public void clickDefaultCheckbox() {
 		WebElement columnCheckbox = findElementByXpath(DEFAULT_COLUMNS_XPATH);
 		click(columnCheckbox);
