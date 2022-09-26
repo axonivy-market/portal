@@ -126,6 +126,9 @@ public class DashboardUtils {
   }
 
   private static String readDashboardBySessionUser() {
+    if (Ivy.session().isSessionUserUnknown()) {
+      return "";
+    }
     return currentUser().getProperty(PortalVariable.DASHBOARD.key);
   }
 
