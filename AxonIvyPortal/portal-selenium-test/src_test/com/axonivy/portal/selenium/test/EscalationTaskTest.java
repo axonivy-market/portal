@@ -40,6 +40,7 @@ public class EscalationTaskTest extends BaseTest {
   public void testTriggerEscalationTaskOnTaskDetails() {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
     TaskWidgetPage taskWidgetPage = new MainMenuPage().openTaskList();
     taskWidgetPage.openTask(SICK_LEAVE_REQUEST);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
@@ -56,6 +57,7 @@ public class EscalationTaskTest extends BaseTest {
   @Test
   public void testTriggerEscalationTaskOnTaskList() {
     login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openTaskList();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
@@ -77,6 +79,7 @@ public class EscalationTaskTest extends BaseTest {
   public void testTriggerEscalationTaskOnRelatedTasksOfCase() {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
     CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(TRIGGER_ESCALATION_CASE);
@@ -93,6 +96,7 @@ public class EscalationTaskTest extends BaseTest {
   @Test
   public void testTriggerEscalationTaskWidgetOfDashboard() {
     login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
