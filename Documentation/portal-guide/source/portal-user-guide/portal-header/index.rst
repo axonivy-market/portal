@@ -76,7 +76,7 @@ HowTo: Add absence
 |how-to-add-an-absence|
 
 HowTo: Set substitute
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 #. You see a list with 2 entries for your personal tasks and for each
    role you hold.

@@ -49,16 +49,16 @@ ch.ivy.addon.portalkit.ui.jsf:
       userNameRequired: '''Benutzername'' darf nicht leer sein.'
     absences: Abwesenheiten
     addAbsence: Abwesenheit erfassen
-    deputies: Vertretungen
+    deputies: Stellvertreter
     description: 'Während meiner Abwesenheit werden Workflow Aufgaben automatisch den definierten Stellvertretern zugeteilt. '
     editAbsence: Abwesenheiten bearbeiten
     from: Von
-    noDeputy: Kein Ersatz
+    noDeputy: Kein Stellvertreter
     period: Zeitraum
     personalTaskDuringAbsenceDeputies: Vertretungen für persönlich zugewiesene Aufgaben während der Abwesenheit
     personalTaskPermanentDeputies: Ständige Stellvertreter für persönlich zugewiesene Aufgaben
-    selectDeputies: Ersatzstoffe auswählen
-    selectedDeputies: Ausgewählte Ersatzstoffe
+    selectDeputies: Stellvertreter auswählen
+    selectedDeputies: Ausgewählte Stellvertreter
     showAbsencesInThePast: Vergangene Abwesenheiten anzeigen
     substitutedUser: Vertretener Benutzer
     taskForRole: 'Aufgabe für Rolle: '
@@ -72,12 +72,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     absenceAndDeputy: Abwesenheiten und Vertretungen
     allAbsences: Abwesenheiten aller Benutzer
     applicationAndRole: Applikation und Rolle
-    definedDeputies: Definierte Substitute
+    definedDeputies: Definierte Stellvertreter
     deputyFor: Ich bin Ersatz für
     myDeputies: Meine Stellvertreter
     myPlannedAbsences: Meine geplanten Abwesenheiten
     nextAbsence: Bevorstehende Abwesenheit
-    selectedDeputyFor: Ausgewählter Benutzer ist Ersatz für
+    selectedDeputyFor: Ausgewählter Benutzer ist Stellvertreter für
     selectedUser: Ausgewählter Benutzer
   AllTasks:
     caseDescription: Beschreibung des Vorgangs
