@@ -129,7 +129,7 @@ public class DashboardWelcomeWidgetConfigurationBean implements Serializable {
     } else if (parsedClientTime > 18) {
       greetingTextCms = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/Greeting/Evening";
     }
-    return String.join(", ",
+    return String.join(" ",
         Ivy.cms().coLocale(greetingTextCms, locale),
         Ivy.session().getSessionUser().getDisplayName(), "");
   }
