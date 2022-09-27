@@ -322,7 +322,10 @@ function setupGridProcessWidget() {
     availableHeightForWidget = getAvailableHeightOfWidget($(this));
     if (availableHeightForWidget <= 0) {
       $processCategory.hide();
-      $processHeader.css({'display': 'flex', 'padding-right': '2rem', 'padding-top': '0', 'text-align': 'left'});
+      $processHeader.css({'display': 'flex', 'padding-top': '0', 'text-align': 'left'});
+      if ($processActionGroup.find("button").length > 0) {
+        $processHeader.css({'padding-right': '2rem'});
+      }
       setLineClamp($processNameText, 3);
       removeStyle($moreInformation);
     } else {
