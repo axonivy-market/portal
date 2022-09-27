@@ -80,7 +80,7 @@ public class DashboardWelcomeWidgetBean implements Serializable {
       greetingTextCms = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/Greeting/Evening";
     }
     
-    widget.setWelcomeText(String.join(", ",
+    widget.setWelcomeText(String.join(" ",
         Ivy.cms().coLocale(greetingTextCms, Ivy.session().getContentLocale()),
         Ivy.session().getSessionUser().getDisplayName(), widget.getWelcomeText()));
   }
