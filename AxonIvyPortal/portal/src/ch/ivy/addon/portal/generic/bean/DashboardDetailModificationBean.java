@@ -229,7 +229,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void removeWidget() {
     if (this.getDeleteWidget() != null) {
       this.getSelectedDashboard().getWidgets().remove(getDeleteWidget());
-      removeWelcomeWidgetImageDirectory();
+      if (this.deleteWidget.getType() == WELCOME) {
+        removeWelcomeWidgetImageDirectory();
+      }
       saveSelectedDashboard();
     }
   }
@@ -239,16 +241,30 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
    * from application files.
    */
   private void removeWelcomeWidgetImageDirectory() {
-    if (this.deleteWidget.getType() == WELCOME) {
-      WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) this.deleteWidget;
-      try {
-        File widgetDirectory = new File(String.format(WELCOME_WIDGET_IMAGE_DIRECTORY_PATTERN, welcomeWidget.getId()));
-        if (widgetDirectory.exists()) {
-          widgetDirectory.forceDelete();
-        }
-      } catch (IOException e) {
-        Ivy.log().error(e);
+    WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) this.deleteWidget;
+    try {
+      File widgetDirectory = new File(String.format(WELCOME_WIDGET_IMAGE_DIRECTORY_PATTERN, welcomeWidget.getId()));
+      if (widgetDirectory.exists()) {
+        widgetDirectory.forceDelete();
       }
+    } catch (IOException e) {
+      Ivy.log().error(e);
+    }
+  }
+
+  private void removeWelcomeWidgetUnusedImages(DashboardWidget widget) {
+    WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
+    try {
+      File widgetDirectory = new File(String.format(WELCOME_WIDGET_IMAGE_DIRECTORY_PATTERN, welcomeWidget.getId()));
+      if (widgetDirectory.exists() && CollectionUtils.isNotEmpty(widgetDirectory.listFiles())) {
+        for (File image : widgetDirectory.listFiles()) {
+          if (!image.getPath().contentEquals(welcomeWidget.getImageLocation())) {
+            image.forceDelete();
+          }
+        }
+      }
+    } catch (IOException e) {
+      Ivy.log().error(e);
     }
   }
 
@@ -334,6 +350,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         break;
       case STATISTIC:
         updateStatisticWidgetData(widget);
+        break;
+      case WELCOME:
+        removeWelcomeWidgetUnusedImages(widget);
         break;
       default:
         break;
