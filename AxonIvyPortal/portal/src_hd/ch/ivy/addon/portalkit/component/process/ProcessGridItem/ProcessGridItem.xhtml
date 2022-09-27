@@ -48,14 +48,20 @@
           componentToUpdateOnDeleteProcess="#{cc.attrs.componentToUpdateOnRemoveProcess}"
           hideActionButton="#{cc.attrs.isInConfiguration}"/>
 
-        <div class="process-grid__header">
+        <p:commandLink id="start-process-link" styleClass="process-grid__header"
+          actionListener="#{managedBean.startProcess(process)}"
+          ajax="#{!isExternalLink}"
+          target="#{processTarget}"
+          disabled="#{cc.attrs.readOnlyMode}"
+          global="#{!isExternalLink}" partialSubmit="true" process="@this">
           <!-- Process Icon -->
           <i id="icon" class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())} process-grid-view-icon #{cc.attrs.processIconStyleClass}" />
           <!-- Process Name -->
           <div class="ui-g-12 process-name js-process-start-list-item-name">
             <h:outputText id="process-name" value="#{process.name}" styleClass="line-clamp-text-2 process-grid-view-name" />
           </div>
-        </div>
+        </p:commandLink>
+
         <!-- Process Description -->
         <div class="ui-g-12 process-description js-process-start-list-item-description">
           <h:outputText id="process-description" value="#{process.description}"
