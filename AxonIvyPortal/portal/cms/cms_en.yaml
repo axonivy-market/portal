@@ -72,7 +72,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     absenceAndDeputy: Absences and substitutes
     allAbsences: Absences of all users
     applicationAndRole: Application and role
-    definedDeputies: Defined Substitutes
+    definedDeputies: Defined substitutes
     deputyFor: I am substitute for
     myDeputies: My substitutes
     myPlannedAbsences: My planned absences
