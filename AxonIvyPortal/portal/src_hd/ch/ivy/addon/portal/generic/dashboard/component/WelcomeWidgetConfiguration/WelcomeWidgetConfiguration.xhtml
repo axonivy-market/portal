@@ -33,7 +33,7 @@
             <p:graphicImage id="default-image" cache="true" styleClass="preview-image js-preview-image"
               library="ivy-cms" rendered="#{empty dashboardWelcomeWidgetConfigurationBean.encodedImg}" name="#{dashboardWelcomeWidgetConfigurationBean.defaultImageLink}" />
 
-            <img id="preview-image" class="preview-image js-preview-image" jsf:rendered="#{not empty dashboardWelcomeWidgetConfigurationBean.encodedImg}" />
+            <p:graphicImage id="preview-image" styleClass="preview-image js-preview-image" rendered="#{not empty dashboardWelcomeWidgetConfigurationBean.encodedImg}" />
             <h:inputHidden id="preview-image-hidden" value="#{dashboardWelcomeWidgetConfigurationBean.encodedImg}" rendered="#{not empty dashboardWelcomeWidgetConfigurationBean.encodedImg}" />
            </h:panelGroup>
          </div>
