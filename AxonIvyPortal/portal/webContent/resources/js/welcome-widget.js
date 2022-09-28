@@ -111,7 +111,7 @@ WelcomeWidget = {
       $(widget.find('#welcome-image')).get(0).setAttribute('src', widget.find('input[id $= ":welcome-image-hidden"]').get(0).value);
     }
     this.updateWelcomeTextStyles(widgetId, welcomeTextColor, welcomeTextPosition, welcomeTextSize);
-    this.stretchImage();
+    this.stretchImage(widget);
   },
 
   updateWelcomeTextStyles : function(widgetId, welcomeTextColor, welcomeTextPosition, welcomeTextSize) {
@@ -159,19 +159,26 @@ WelcomeWidget = {
     }
   },
 
-  stretchImage : function() {
+  stretchImage : function(widget) {
+    if ($(widget).find('.js-welcome-image').get(0).clientHeight < $(widget).find('.grid-stack-item-content').get(0).clientHeight) {
+      $(widget).addClass('stretch-image');
+    } else {
+        $(widget).removeClass('stretch-image');
+    }
+  },
+
+  stretchAllImages : function() {
     $('.js-welcome-widget').each( function() {
+      $(this).removeClass('stretch-image');
       if ($(this).find('.js-welcome-image').get(0).clientHeight < $(this).find('.grid-stack-item-content').get(0).clientHeight) {
         $(this).addClass('stretch-image');
       } else {
-        setTimeout(() => {
-          $(this).removeClass('stretch-image');
-        }, 0);
+        $(this).removeClass('stretch-image');
       }
     });
   }
 }
 
 $(window).resize(() => {
-  WelcomeWidget.stretchImage();
+  WelcomeWidget.stretchAllImages();
 });
