@@ -48,6 +48,7 @@
             "",
             "TaskSearchCriteria criteria = out.taskView.dataModel.criteria;",
             "if (out.isNotLogin) {",
+            "  criteria.setInvolvedUsername(ivy.session.getSessionUserName());",
             "  out.isNotLogin = false;",
             "}"
           ]

@@ -608,7 +608,7 @@
             "import ch.ivyteam.ivy.workflow.ITask;",
             "import ch.ivyteam.ivy.bpm.error.BpmError;",
             "",
-            "ITask task = ivy.wf.findTask(Long.valueOf(in.endedTaskId));",
+            "ITask task = ivy.wf.findTask(in.endedTaskId);",
             "if (!in.callbackUrl.startsWith(task.getApplication().getContextPath())) {",
             "  BpmError.create(\"frame:unsupported:url\").withMessage(\"only relative urls are supported (security reasons)\").throwError();",
             "}"
