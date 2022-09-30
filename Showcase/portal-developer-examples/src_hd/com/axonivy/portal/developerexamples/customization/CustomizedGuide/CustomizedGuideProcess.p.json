@@ -40,7 +40,8 @@
           "code" : [
             "import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;",
             "",
-            "TaskSearchCriteria criteria = out.taskView.dataModel.criteria;"
+            "TaskSearchCriteria criteria = out.taskView.dataModel.criteria;",
+            "criteria.setInvolvedUsername(ivy.session.getSessionUserName());"
           ]
         },
         "result" : {
