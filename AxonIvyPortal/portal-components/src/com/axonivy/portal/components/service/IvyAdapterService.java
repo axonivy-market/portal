@@ -6,14 +6,12 @@ import java.util.concurrent.Callable;
 
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
-import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.ISubProcessStart;
 import ch.ivyteam.ivy.process.call.SubProcessRunner;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter.Builder;
-import ch.ivyteam.ivy.security.ISecurityManager;
-import ch.ivyteam.ivy.security.SecurityManagerFactory;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.service.ServiceException;
 
 /**
@@ -48,12 +46,7 @@ public class IvyAdapterService {
    */
   public static <V> V executeCallableAsSystem(Callable<V> callable) {
     try {
-      ISecurityManager securityManager = SecurityManagerFactory.getSecurityManager();
-      return securityManager.executeAsSystem(callable);
-    } catch (EnvironmentNotAvailableException e) {
-      String message = "Environment not available.";
-      Ivy.log().error(message);
-      throw new ServiceException(message, e);
+      return Sudo.call(callable);
     } catch (NoSuchFieldException e) {
       String message = "Field not found.";
       Ivy.log().error(message);
