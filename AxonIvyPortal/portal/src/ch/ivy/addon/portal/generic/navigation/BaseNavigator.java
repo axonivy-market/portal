@@ -10,12 +10,13 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.RequestUtils;
-import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.StandardProcessType;
+import ch.ivyteam.ivy.workflow.standard.DefaultPagesConfigurator;
 
 public class BaseNavigator {
   protected static void navigateByKeyword(String keyword, String defaultFriendlyRequestPath, Map<String, String> param) {
@@ -37,9 +38,9 @@ public class BaseNavigator {
   }
   
   protected static String getRelativeLink(StandardProcessType standardProcess) {
-    return IvyExecutor.executeAsSystem(() ->
+    return Sudo.get(() ->
       {
-        IProcessStart standardProcessImplementation = Ivy.wf().getStandardProcessImplementation(standardProcess);
+        IProcessStart standardProcessImplementation = DefaultPagesConfigurator.of(IApplication.current()).findProcessStart(standardProcess).orElse(null);
         if (standardProcessImplementation != null) {
           return standardProcessImplementation.getLink().getRelative();
         }
