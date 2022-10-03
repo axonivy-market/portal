@@ -111,7 +111,7 @@ WelcomeWidget = {
       $(widget.find('[id $= ":welcome-image"]')).get(0).setAttribute('src', widget.find('input[id $= ":welcome-image-hidden"]').get(0).value);
     }
     this.updateWelcomeTextStyles(widgetId, welcomeTextColor, welcomeTextPosition, welcomeTextSize);
-    this.stretchImage(widget);
+    setTimeout(this.stretchImage(widget),500);
   },
 
   updateWelcomeTextStyles : function(widgetId, welcomeTextColor, welcomeTextPosition, welcomeTextSize) {
