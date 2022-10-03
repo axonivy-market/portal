@@ -18,7 +18,11 @@ import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.enums.WelcomeTextPosition;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.util.UserUtils;
+import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.cm.ContentObjectValue;
+import ch.ivyteam.ivy.cm.exec.ContentManagement;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.scripting.objects.File;
 
 @ViewScoped
 @ManagedBean
@@ -29,6 +33,8 @@ public class DashboardWelcomeWidgetBean implements Serializable {
   private static final String BASE64_STRING_PATTERN = "data:%s;base64,%s";
   private static final String DEFAULT_TEXT_COLOR = "ffffff";
   private static final String DEFAULT_IMAGE_CMS_URI = "/images/WelcomeWidget/DefaultImage";
+  private static final String IMAGE_DIRECTORY = "DashboardWelcomeWidget";
+  private static final String DEFAULT_LOCALE_AND_DOT = "_en.";
 
   private WelcomeDashboardWidget widget;
 
@@ -52,18 +58,35 @@ public class DashboardWelcomeWidgetBean implements Serializable {
     
   }
 
-  public String renderImage(WelcomeDashboardWidget widget) {
-    if (Optional.ofNullable(widget).map(WelcomeDashboardWidget::getUploadedImageFile).isEmpty()) {
+  public String renderImage() {
+    if (Optional.ofNullable(widget).map(WelcomeDashboardWidget::getImageLocation).isEmpty()) {
       return "";
     }
+    migrateWelcomeWidget();
+    byte[] fileContent = getWidgetImage().read().bytes();
+    return String.format(BASE64_STRING_PATTERN, widget.getImageType(), Base64.getEncoder().encodeToString(fileContent));
 
+  }
+
+  /**
+   * Silent migrate old welcome widget
+   * 
+   */
+  private void migrateWelcomeWidget() {
+    if (widget.getImageLocation().startsWith(IMAGE_DIRECTORY.concat("/").concat(widget.getId()))) {
       try {
-        byte[] fileContent = FileUtils.readFileToByteArray(widget.getUploadedImageFile().getJavaFile());
-        return String.format(BASE64_STRING_PATTERN, widget.getImageType(), Base64.getEncoder().encodeToString(fileContent));
+        //Create new file in CMS and update image location
+        File oldImage = new File(widget.getImageLocation());
+        byte[] oldFileContent = FileUtils.readFileToByteArray(oldImage.getJavaFile());
+        widget.setImageLocation(widget.getId().concat(DEFAULT_LOCALE_AND_DOT).concat(getImageType()));
+        getWidgetImage().write().bytes(oldFileContent);
+
+        // Remove old image file
+        oldImage.getParentFile().forceDelete();
       } catch (IOException e) {
         Ivy.log().error(e);
-        return "";
       }
+    }
   }
 
   public void updateWelcomeText() {
@@ -99,5 +122,18 @@ public class DashboardWelcomeWidgetBean implements Serializable {
 
   public String getDefaultImageLink() {
     return DEFAULT_IMAGE_CMS_URI;
+  }
+
+  private ContentObjectValue getWidgetImage() {
+    var app = IApplication.current();
+    var cms = ContentManagement.cms(app);
+    return cms.root()
+      .child().folder(IMAGE_DIRECTORY).child()
+      .file(getWidget().getImageLocation().substring(0, getWidget().getImageLocation().indexOf(DEFAULT_LOCALE_AND_DOT)), getImageType())
+      .value().get("en");
+  }
+
+  private String getImageType() {
+    return getWidget().getImageType().substring(getWidget().getImageType().indexOf("/") + 1);
   }
 }
