@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    docker {
-      label 'nqhoanpc'
-      image 'mcr.microsoft.com/powershell'
-    }
-  }
+  agent any
 
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '2'))
