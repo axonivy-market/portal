@@ -29,7 +29,6 @@ import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.SingleProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
-import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
 import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.CaseEmptyMessage;
@@ -50,7 +49,6 @@ import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.scripting.objects.File;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -157,9 +155,6 @@ public class DashboardBean implements Serializable {
         case CUSTOM:
           loadCustomWidget(widget);
           break;
-        case WELCOME:
-          loadWelcomeWidget(widget);
-          break;
         default:
           break;
       }
@@ -194,17 +189,6 @@ public class DashboardBean implements Serializable {
       customWidget.getData().setType(DashboardCustomWidgetType.PROCESS);
     } else {
       customWidget.getData().setType(DashboardCustomWidgetType.EXTERNAL_URL);
-    }
-  }
-
-  private void loadWelcomeWidget(DashboardWidget widget) {
-    WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
-    if (StringUtils.isNotBlank(welcomeWidget.getImageLocation())) {
-      try {
-        welcomeWidget.setUploadedImageFile(new File(welcomeWidget.getImageLocation()));
-      } catch (IOException e) {
-        Ivy.log().error(e);
-      }
     }
   }
 

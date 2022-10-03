@@ -44,12 +44,12 @@
       <h:outputText id="welcome-text" styleClass="welcome-text #{widget.welcomeTextStyleClass}" value="#{widget.welcomeText}" />
 
       <p:graphicImage id="default-image" cache="true" styleClass="welcome-image js-welcome-image #{widget.imageStyleClass}"
-        library="ivy-cms" rendered="#{empty widget.uploadedImageFile}" name="#{dashboardWelcomeWidgetBean.defaultImageLink}" />
+        library="ivy-cms" rendered="#{empty widget.imageLocation}" name="#{dashboardWelcomeWidgetBean.defaultImageLink}" />
 
       <p:graphicImage id="welcome-image" styleClass="welcome-image js-welcome-image #{widget.imageStyleClass}"
-        rendered="#{not empty widget.uploadedImageFile}" />
+        rendered="#{not empty widget.imageLocation}" />
       <h:form>
-        <h:inputHidden id="welcome-image-hidden" value="#{dashboardWelcomeWidgetBean.renderImage(widget)}" rendered="#{not empty widget.uploadedImageFile}" />
+        <h:inputHidden id="welcome-image-hidden" value="#{dashboardWelcomeWidgetBean.renderImage()}" rendered="#{not empty widget.imageLocation}" />
       </h:form>
     </div>
     <p:remoteCommand name="updateWelcomeText_#{widget.id}" update="welcome-text"
