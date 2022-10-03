@@ -14,7 +14,7 @@ pipeline {
       steps {
         script {
           def version = 'dev'
-          docker.withRegistry('', 'docker.io') {
+          docker.withRegistry('', 'nqhoan-docker.io') {
             docker.image('maven:3.6.3-openjdk-17-slim').inside {
               version = getCurrentVersion()
               maven cmd: 'clean process-resources -Divy.engine.version=[9.4.0,] -Divy.engine.list.url=https://jenkins.ivyteam.io/job/core_product/job/master/lastSuccessfulBuild/ -f Documentation/public-api/pom.xml'
