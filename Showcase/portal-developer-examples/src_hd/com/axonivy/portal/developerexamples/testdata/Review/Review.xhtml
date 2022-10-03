@@ -4,7 +4,7 @@
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/frame-10.xhtml">
-    <ui:define name="title">#{ivy.task.name}</ui:define>
+    <ui:define name="title">#{ivy.task.names().current()}</ui:define>
     <ui:define name="content">
       <h:form id="content-form" style="padding-bottom: 100px;">
         <p:tabView id="content-tab-view">

@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.bean;
 
-import static ch.ivy.addon.portalkit.filter.AbstractFilter.ALL;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +71,7 @@ public class CaseWidgetBean implements Serializable {
     for (CaseFilter filter : caseFilters) {
       if (filter instanceof CaseStateFilter) {
         CaseStateFilter caseStateFilter = (CaseStateFilter) filter;
-        if (!caseStateFilter.value().equals(ALL)) {
+        if (!caseStateFilter.value().equals(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/all"))) {
           isAdminCaseStateIncluded = caseStateFilter.getSelectedFilteredStates()
               .contains(CaseState.DESTROYED);
         }

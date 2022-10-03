@@ -1,12 +1,6 @@
 AxonIvyPortal/AxonIvyExpress/src_dataClasses/
-AxonIvyPortal/PortalConnector/src_dataClasses/
-AxonIvyPortal/portal/src_dataClasses/
-AxonIvyPortal/portal/classes/
-AxonIvyPortal/portal/target/
-AxonIvyPortal/PortalConnector/src_wsproc/
 AxonIvyPortal/PortalKitTestHelper/src_dataClasses/
 Showcase/InternalSupport/src_dataClasses/
-AxonIvyPortal/SelfServiceBPM/src_dataClasses/
 AxonIvyPortal/PortalTest/src_dataClasses/
 Showcase/InternalSupport/target/
 **/.flattened-pom.xml

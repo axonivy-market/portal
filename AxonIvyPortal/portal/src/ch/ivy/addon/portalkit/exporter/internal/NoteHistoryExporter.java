@@ -113,7 +113,7 @@ public class NoteHistoryExporter {
   private List<List<Object>> generateDataForCaseInfo(ICase iCase) {
     List<List<Object>> rows = new ArrayList<>();
     List<Object> row = new ArrayList<>();
-    row.add(iCase.getName());
+    row.add(iCase.names().current());
     row.add(iCase.getId());
     row.add(SecurityMemberDisplayNameUtils.generateFullDisplayNameForUser(iCase.getCreatorUser(), iCase.getCreatorUser().getName()));
     row.add(new CaseBean().getState(iCase));

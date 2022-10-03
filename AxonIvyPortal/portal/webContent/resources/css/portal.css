@@ -177,6 +177,12 @@ a.compact-task-start-link .task-start-list-item {
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item {
   background-color: var(--item-widget-background-color); }
 
+.process-grid__header.ui-commandlink {
+  color: var(--process-grid-header-color); }
+
+.process-grid__header.ui-commandlink:hover {
+  text-decoration: none; }
+
 /*Style For Process Widget --------------------------------------------------------------------------------*/
 .process-start-list-item:hover .process-start-list-item-icon {
   color: var(--hovered-process-start-list-item-i-con-color); }

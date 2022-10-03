@@ -43,7 +43,7 @@
       "name" : [
         "Return your own list of users & roles to delegate task to",
         "",
-        "if (\"admin\".equalsIgnoreCase(in.currentUser.getDisplayName()) && \"System task\".equalsIgnoreCase(in.task.getName())) {",
+        "if (\"admin\".equalsIgnoreCase(in.currentUser.getDisplayName()) && \"System task\".equalsIgnoreCase(in.task.names().current())) {",
         "  in.users = new ArrayList();",
         "  in.roles = new ArrayList();",
         "}"

@@ -253,8 +253,8 @@
       "config" : {
         "callSignature" : "createTasksForTaskListCustomization",
         "outLink" : "createTasksForTaskListCustomization.ivp",
-        "startDescription" : "Create 3 tasks, each task has CustomerName and ShipmentDate",
-        "startName" : "Create Tasks For Task List Customization"
+        "startDescription" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/description\")%>",
+        "startName" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/name\")%>"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 96 },
@@ -286,17 +286,18 @@
       "config" : {
         "outLinks" : [ "TaskA.ivp", "TaskB.ivp", "TaskC.ivp" ],
         "case" : {
-          "name" : "Leave Request",
-          "category" : "LeaveRequest",
+          "name" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Cases/Party/name\")%>",
+          "description" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Cases/Party/description\")%>",
+          "category" : "Party",
           "customFields" : [
             { "name" : "CompanyName", "type" : "String", "value" : "\"AxonIvy\"" }
           ]
         },
         "tasks" : {
           "TaskA" : {
-            "name" : "Milk Tea Order",
-            "description" : "Milk tea for 4 people",
-            "category" : "Drink",
+            "name" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Tasks/MilkTeaOrder/name\")%>",
+            "description" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Tasks/MilkTeaOrder/description\")%>",
+            "category" : "Party/Drink",
             "responsible" : {
               "userFromAttribute" : "\"demo\""
             },
@@ -310,9 +311,9 @@
             ]
           },
           "TaskB" : {
-            "name" : "Beer Order",
-            "description" : "Beer for a big company with 10.000 people",
-            "category" : "Drink",
+            "name" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Tasks/BeerOrder/name\")%>",
+            "description" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Tasks/BeerOrder/description\")%>",
+            "category" : "Party/Drink",
             "priority" : "HIGH",
             "expiry" : {
               "timeout" : "new Duration(\"1D\")"
@@ -324,9 +325,9 @@
             ]
           },
           "TaskC" : {
-            "name" : "Pizza Order",
-            "description" : "Pizza for 10 people",
-            "category" : "Food",
+            "name" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Tasks/PizzaOrder/name\")%>",
+            "description" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Tasks/PizzaOrder/description\")%>",
+            "category" : "Party/Food",
             "priority" : "LOW",
             "expiry" : {
               "timeout" : "new Duration(\"2D\")"
@@ -341,7 +342,7 @@
       },
       "visual" : {
         "at" : { "x" : 256, "y" : 96 },
-        "labelOffset" : { "x" : 52, "y" : -1 }
+        "labelOffset" : { "x" : 56, "y" : 0 }
       },
       "connect" : [
         { "id" : "f3", "to" : "f1", "condition" : "ivp==\"TaskA.ivp\"" },
@@ -551,7 +552,8 @@
       "config" : {
         "outLinks" : [ "TaskB.ivp", "TaskA.ivp", "TaskC.ivp" ],
         "case" : {
-          "name" : "Leave Request",
+          "name" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Cases/name\")%>",
+          "description" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Cases/description\")%>",
           "category" : "LeaveRequest",
           "customFields" : [
             { "name" : "AccountNumber", "type" : "Number", "value" : "36" }
@@ -559,8 +561,8 @@
         },
         "tasks" : {
           "TaskA" : {
-            "name" : "Annual Leave Request",
-            "description" : "Annual Leave Request Description",
+            "name" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/AnnualLeave/name\")%>",
+            "description" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/AnnualLeave/description\")%>",
             "category" : "AnnualLeave",
             "responsible" : {
               "userFromAttribute" : "\"demo\""
@@ -577,8 +579,8 @@
             ]
           },
           "TaskB" : {
-            "name" : "Sick Leave Request",
-            "description" : "Sick Leave Request Description",
+            "name" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/SickLeave/name\")%>",
+            "description" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/SickLeave/description\")%>",
             "category" : "OtherLeave/SickLeave/Long",
             "priority" : "HIGH",
             "expiry" : {
@@ -593,8 +595,8 @@
             ]
           },
           "TaskC" : {
-            "name" : "Maternity Leave Request",
-            "description" : "Maternity Leave Request Description",
+            "name" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/MaternityLeave/name\")%>",
+            "description" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/MaternityLeave/description\")%>",
             "category" : "OtherLeave/Maternity",
             "priority" : "LOW",
             "expiry" : {
@@ -632,9 +634,10 @@
       "name" : "CategoriedLeaveRequest.ivp",
       "config" : {
         "callSignature" : "CategoriedLeaveRequest",
+        "startCategory" : "LeaveRequest",
         "case" : {
-          "name" : "Leave Request",
-          "description" : "Leave Request Description",
+          "name" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Cases/name\")%>",
+          "description" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Cases/description\")%>",
           "attachToBusinessCase" : false,
           "customFields" : [
             { "name" : "CustomerType", "type" : "String", "value" : "\"Leave Request Type\"" },
@@ -647,8 +650,8 @@
           ]
         },
         "outLink" : "CategoriedLeaveRequest.ivp",
-        "startDescription" : "This is a short description what you can expect behind this “Leave Request” example.",
-        "startName" : "Categoried Leave Request"
+        "startDescription" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/description\")%>",
+        "startName" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/name\")%>"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 520 },
@@ -697,11 +700,12 @@
       "name" : "createNewPayment.ivp",
       "config" : {
         "callSignature" : "createNewPayment",
+        "startCategory" : "Payment",
         "case" : {
-          "name" : "Create New Payment"
+          "name" : "<%=ivy.cms.co(\"/Processes/Payment/name\")%>"
         },
         "outLink" : "createNewPayment.ivp",
-        "startName" : "Create New Payment"
+        "startName" : "<%=ivy.cms.co(\"/Processes/Payment/name\")%>"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 688 },
@@ -782,7 +786,7 @@
         "dialogId" : "com.axonivy.portal.developerexamples.testdata.NewPayment",
         "startMethod" : "start()",
         "task" : {
-          "name" : "Do New Payment",
+          "name" : "<%=ivy.cms.co(\"/Processes/Payment/Tasks/Pay/name\")%>",
           "customFields" : [
             { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
           ]
@@ -1004,8 +1008,9 @@
       "name" : "simplePayment.ivp",
       "config" : {
         "callSignature" : "simplePayment",
+        "startCategory" : "Payment",
         "case" : {
-          "name" : "Create New Payment"
+          "name" : "<%=ivy.cms.co(\"/Processes/Payment/name\")%>"
         },
         "outLink" : "simplePayment.ivp",
         "startName" : "Simple Payment"
@@ -1021,6 +1026,7 @@
       "name" : "complexPayment.ivp",
       "config" : {
         "callSignature" : "complexPayment",
+        "startCategory" : "Payment",
         "case" : {
           "name" : "Create New Payment"
         },
@@ -1039,7 +1045,7 @@
       "name" : "system task",
       "config" : {
         "task" : {
-          "name" : "Signal create New Payment",
+          "name" : "<%=ivy.cms.co(\"/Processes/Payment/Tasks/Signal/name\")%>",
           "responsible" : {
             "role" : "SYSTEM"
           }
