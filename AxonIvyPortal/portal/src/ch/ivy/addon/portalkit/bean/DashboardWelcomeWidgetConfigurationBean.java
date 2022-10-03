@@ -25,8 +25,10 @@ import ch.ivy.addon.portalkit.enums.WelcomeTextSize;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.language.LanguageConfigurator;
 import ch.ivyteam.ivy.scripting.objects.Binary;
 import ch.ivyteam.ivy.scripting.objects.File;
+import ch.ivyteam.ivy.security.ISecurityContext;
 
 @ViewScoped
 @ManagedBean
@@ -183,5 +185,10 @@ public class DashboardWelcomeWidgetConfigurationBean implements Serializable {
 
   public String getDefaultImageLink() {
     return DEFAULT_IMAGE_CMS_URI;
+  }
+
+  public boolean isApplicationDefaultEmailLanguage(String language) {
+    Locale defaultLocale = new LanguageConfigurator(ISecurityContext.current()).content();
+    return defaultLocale.toLanguageTag().equalsIgnoreCase(language);
   }
 }

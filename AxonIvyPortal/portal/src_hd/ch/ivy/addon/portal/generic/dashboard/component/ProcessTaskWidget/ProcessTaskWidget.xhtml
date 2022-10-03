@@ -36,15 +36,15 @@
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortable="true" sortBy="#{name}" field="name" filterable="false"
           styleClass="relevant-tasks__name">
-          <span class="u-hidden-sm-down"><h:outputText value="#{task.name}" /></span>
+          <span class="u-hidden-sm-down"><h:outputText value="#{task.names().current()}" /></span>
           <h:panelGroup layout="block" styleClass="u-hidden-md-up">
-            <h:outputText value="#{task.name}" title="#{task.name}" styleClass="dashboard-tasks__column-small-screen-name"/>
-            <h:outputText value="#{dashboardBean.createExtractedTextFromHtml(task.description)}" styleClass="dashboard-tasks__column-small-screen-description"/>
+            <h:outputText value="#{task.names().current()}" title="#{task.names().current()}" styleClass="dashboard-tasks__column-small-screen-name"/>
+            <h:outputText value="#{dashboardBean.createExtractedTextFromHtml(task.descriptions().current())}" styleClass="dashboard-tasks__column-small-screen-description"/>
           </h:panelGroup>
         </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="true" sortBy="#{description}" field="description" filterable="false" styleClass="relevant-tasks__description u-hidden-sm-down">
-          <span><h:outputText value="#{task.description}" /></span>
+          <span><h:outputText value="#{task.descriptions().current()}" /></span>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" sortable="true" sortBy="#{expiryTimestamp}" field="expiryTimestamp" filterable="false" styleClass="relevant-tasks__expiry u-hidden-sm-down">
           <h:outputText styleClass="u-text-align-center" value="#{task.expiryTimestamp}">

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -54,8 +53,8 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
   private boolean inFrame;
   private boolean isFirstTime;
   private boolean isRunningTaskWhenClickingOnTaskInList;
+  private String caseDetailsDescription;
 
-  @PostConstruct
   public void init() {
     super.initConfig();
     isHideCaseDocument = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_CASE_DOCUMENT);
@@ -67,6 +66,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
   }
 
   public void preRender(ICase selectedCase, boolean showBackButton) {
+    this.init();
     this.selectedCase = selectedCase;
     this.showBackButton = showBackButton;
     this.isTaskStartedInDetails = BooleanUtils.toBooleanDefaultIfNull((Boolean) Ivy.session().getAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString()), false);
@@ -102,6 +102,25 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
     return caseActionBean.canDestroy(caseItem)
         && caseItem.getState() != CaseState.DONE
         && caseItem.getState() != CaseState.DESTROYED;
+  }
+
+  public void initCaseDescription(ICase caseDetails) {
+    setCaseDetailsDescription(caseDetails.descriptions().current());
+  }
+
+  public void updateCaseDescription(ICase caseDetails) {
+    if (caseDetails == null || caseDetailsDescription == null) {
+      return;
+    }
+    caseDetails.descriptions().current(caseDetailsDescription);
+  }
+
+  public String getCaseDetailsDescription() {
+    return caseDetailsDescription;
+  }
+
+  public void setCaseDetailsDescription(String caseDetailsDescription) {
+    this.caseDetailsDescription = caseDetailsDescription;
   }
 
   /**

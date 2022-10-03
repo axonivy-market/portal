@@ -4,6 +4,7 @@ import java.util.Collections;
 
 import ch.ivy.addon.portalkit.comparator.TaskFilterComparator;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskApplicationFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskCategoryFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskCompletedDateFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskCreationDateFilter;
@@ -33,6 +34,7 @@ public class CustomizedTaskFilterContainer extends TaskFilterContainer {
   private TaskCategoryFilter categoryFilter = new TaskCategoryFilter();
   private TaskCompletedDateFilter completedDateFilter = new TaskCompletedDateFilter();
   private TaskForAvailableActivatorFilter availableActivatorFilter = new TaskForAvailableActivatorFilter();
+  private TaskApplicationFilter applicationFilter = new TaskApplicationFilter();
   
   public CustomizedTaskFilterContainer() {
     filters.add(priorityFilter);
@@ -42,6 +44,7 @@ public class CustomizedTaskFilterContainer extends TaskFilterContainer {
     filters.add(creationDateFilter);
     filters.add(expiredDateFilter);
     filters.add(responsibleFilter);
+    filters.add(applicationFilter);
     filters.add(customerNameFilter);
     filters.add(shipmentDateFilter);
     Collections.sort(filters, new TaskFilterComparator());
@@ -141,6 +144,14 @@ public class CustomizedTaskFilterContainer extends TaskFilterContainer {
 
   public void setNameFilter(TaskNameFilter nameFilter) {
     this.nameFilter = nameFilter;
+  }
+
+  public TaskApplicationFilter getApplicationFilter() {
+    return applicationFilter;
+  }
+
+  public void setApplicationFilter(TaskApplicationFilter applicationFilter) {
+    this.applicationFilter = applicationFilter;
   }
 
 }

@@ -45,7 +45,7 @@ public class ShipmentDateFilter extends TaskFilter {
     if (toShipmentDate != null) {
       return String.format(LESS_EQUAL, formatter.format(toShipmentDate));
     }
-    return ALL;
+    return getAllLabel();
   }
 
   @Override

@@ -91,4 +91,8 @@ public class MasterDataBean implements Serializable {
     Boolean isPortalInTeams = (Boolean) SecurityServiceUtils.getSessionAttribute(SessionAttribute.PORTAL_IN_TEAMS.toString());
     return BooleanUtils.isTrue(isPortalInTeams);
   }
+  
+  public String getTaskSortFieldApplication() {
+    return TaskSortField.APPLICATION.toString();
+    }
 }

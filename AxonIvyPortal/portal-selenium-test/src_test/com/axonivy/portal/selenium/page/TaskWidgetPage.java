@@ -44,7 +44,20 @@ public class TaskWidgetPage extends TemplatePage {
     $("input[id$='created-filter:filter-input-form:to-created-calendar_input'").sendKeys(toCreatedDate);
     closePanelDatePicker($("div[id$='created-filter:filter-input-form:to-created-calendar_panel'"));
     $("button[id$='created-filter:filter-input-form:update-command']").click();
-    $("div[id$='created-filter:filter-input-form:advanced-filter-panel'").waitUntil(disappear, DEFAULT_TIMEOUT);
+    $("div[id$='created-filter:filter-input-form:advanced-filter-panel']").waitUntil(disappear, DEFAULT_TIMEOUT);
+  }
+  
+  public void filterFirstApp() {
+    $("button[id$=':application-filter:filter-open-form:advanced-filter-command']").click();
+    $("div[id$=':application-filter:filter-input-form:advanced-filter-panel'").waitUntil(appear, DEFAULT_TIMEOUT);
+    final ElementsCollection checkboxLabel = $$("span.ui-chkbox-label");
+    for (int i=0; i < checkboxLabel.size(); i ++) {
+      if (checkboxLabel.get(i).getText().equals("Select All")) {
+        checkboxLabel.get(i).click();
+      }
+    }
+    $("button[id$=':application-filter:filter-input-form:update-command']").click();
+    $("div[id$=':application-filter:filter-input-form:advanced-filter-panel'").waitUntil(disappear, DEFAULT_TIMEOUT);
   }
   
   private void closePanelDatePicker(SelenideElement element) {

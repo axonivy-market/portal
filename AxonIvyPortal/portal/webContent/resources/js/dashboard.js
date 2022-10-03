@@ -278,50 +278,70 @@ function setupGridProcessWidget() {
     return;
   }
   processWidgets.each(function () {
+    let $processActionGroup = $(this).find('.process-action-group');
     let $processHeader = $(this).find('.process-grid__header');
     let $processIcon = $(this).find("i#icon");
     let $processName = $(this).find(".process-name");
+    let $processCategory = $(this).find('.rounded-button.process-category');
     let $processNameText = $processName.find(".process-grid-view-name");
     let $processDescription = $(this).find(".process-description");
     let $moreInformation = $(this).find(".process-more-info-link");
+    removeStyle($processActionGroup);
     removeStyle($processIcon);
     removeStyle($processName);
+    removeStyle($processCategory);
     removeStyle($processDescription);
     removeStyle($moreInformation);
     removeStyle($processHeader);
     removeStyle($processNameText);
+
+    $processHeader.css('padding-top', $processActionGroup.height() + parseInt($processActionGroup.css('padding-bottom')) + 'px');
     let availableHeightForWidget = getAvailableHeightOfWidget($(this));
 
     setupProcessWidgetDescription($processDescription, availableHeightForWidget);
     availableHeightForWidget = availableHeightForWidget - $processDescription.outerHeight(true);
-    if (availableHeightForWidget < 0) {
+    if (availableHeightForWidget <= 0) {
       $processIcon.css('font-size', '3.5rem');
-      availableHeightForWidget = getAvailableHeightOfWidget($(this));
-    }
-    if (availableHeightForWidget < 0) {
       $processNameText.css('font-size', '1.2rem');
-      availableHeightForWidget = getAvailableHeightOfWidget($(this));
+    } else {
+      setupProcessWidgetDescription($processDescription, availableHeightForWidget);
     }
-    if (availableHeightForWidget < 0) {
+    availableHeightForWidget = getAvailableHeightOfWidget($(this));
+    if (availableHeightForWidget <= 0) {
       $moreInformation.hide();
-      availableHeightForWidget = getAvailableHeightOfWidget($(this));
+    } else {
+      setupProcessWidgetDescription($processDescription, availableHeightForWidget);
     }
-    if (availableHeightForWidget < 0) {
+    availableHeightForWidget = getAvailableHeightOfWidget($(this));
+    if (availableHeightForWidget <= 0) {
       $processDescription.hide();
-      availableHeightForWidget = getAvailableHeightOfWidget($(this));
+    } else {
+      removeStyle($processDescription);
+      setupProcessWidgetDescription($processDescription, availableHeightForWidget);
     }
-    if (availableHeightForWidget < 0) {
-      $processHeader.css({'display': 'flex', 'padding-right': '2rem', 'text-align': 'left'});
+    availableHeightForWidget = getAvailableHeightOfWidget($(this));
+    if (availableHeightForWidget <= 0) {
+      $processCategory.hide();
+      $processHeader.css({'display': 'flex', 'padding-top': '0', 'text-align': 'left'});
+      if ($processActionGroup.find("button").length > 0) {
+        $processHeader.css({'padding-right': '2rem'});
+      }
       setLineClamp($processNameText, 3);
       removeStyle($moreInformation);
-      availableHeightForWidget = getAvailableHeightOfWidget($(this));
+    } else {
+      removeStyle($processDescription);
+      setupProcessWidgetDescription($processDescription, availableHeightForWidget);
     }
-    if (availableHeightForWidget < 0) {
+    availableHeightForWidget = getAvailableHeightOfWidget($(this));
+    if (availableHeightForWidget <= 0) {
       setLineClamp($processNameText, 2);
       availableHeightForWidget = getAvailableHeightOfWidget($(this));
       if (availableHeightForWidget < 0) {
         $moreInformation.hide();
       }
+    } else {
+      removeStyle($processDescription);
+      setupProcessWidgetDescription($processDescription, availableHeightForWidget);
     }
     if ($(this).width() < $processHeader.outerWidth(true)) {
       $processName.hide();

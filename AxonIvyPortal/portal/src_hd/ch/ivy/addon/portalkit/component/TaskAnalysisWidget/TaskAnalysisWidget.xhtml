@@ -114,6 +114,8 @@
             dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
           <ic:ch.ivy.addon.portalkit.component.task.filter.TaskAvailableActivatorFilter filter="#{filterContainer.availableActivatorFilter}" 
             dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
+          <ic:ch.ivy.addon.portalkit.component.task.filter.TaskApplicationFilter filter="#{filterContainer.applicationFilter}" 
+            dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
 
           <h:panelGroup id="task-filter-add-container" styleClass="filter-add-container" style="order: #{data.dataModel.selectedTaskFilters.size()}">
             <p:commandLink id="task-filter-add-action" styleClass="filter-add-button" global="false">
@@ -176,6 +178,8 @@
           <ic:ch.ivy.addon.portalkit.component.cases.filter.CaseNameFilter filter="#{caseFilterContainer.nameFilter}"
                dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedCaseFilters}" resultContainerUpdated="#{false}"/>
           <ic:ch.ivy.addon.portalkit.component.cases.filter.CaseCategoryFilter filter="#{caseFilterContainer.caseCategoryFilter}"
+               dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedCaseFilters}" resultContainerUpdated="#{false}"/>
+          <ic:ch.ivy.addon.portalkit.component.cases.filter.CaseApplicationFilter filter="#{caseFilterContainer.applicationFilter}"
                dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedCaseFilters}" resultContainerUpdated="#{false}"/>
 
           <h:panelGroup id="case-filter-add-container" styleClass="filter-add-container" style="order: #{data.dataModel.selectedCaseFilters.size()}">
