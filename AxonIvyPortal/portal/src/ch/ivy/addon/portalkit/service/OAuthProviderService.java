@@ -34,7 +34,6 @@ public class OAuthProviderService {
 
   private OAuthProvider toOAuthPovider(IdentityProvider provider, String callbackUrl) {
     var initUri = OAuth2Url.initUri(ISecurityContext.current(), provider, callbackUrl);
-    Ivy.log().warn("initUri: {0}", initUri);
     return new OAuthProvider(provider.displayName(), loadResource(provider.logo()), initUri);
   }
 
