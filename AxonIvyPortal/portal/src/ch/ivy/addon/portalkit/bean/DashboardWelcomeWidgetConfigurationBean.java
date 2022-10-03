@@ -193,8 +193,4 @@ public class DashboardWelcomeWidgetConfigurationBean implements Serializable {
       .file(imageName, imageType)
       .value().get("en");
   }
-
-  private String getImageType() {
-    return getWidget().getImageType().substring(getWidget().getImageType().indexOf("/") + 1);
-  }
 }
