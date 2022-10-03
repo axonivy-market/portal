@@ -47,13 +47,13 @@
         <p:ajax event="rowSelect" listener="#{caseDetailsBean.navigateToSelectedCaseDetails}" />
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" field="NAME" sortBy="#{NAME}" filterable="false" styleClass="name-column u-truncate-text ui-sm-12"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'NAME')}">
-          <h:outputText value="#{case.name}" title="#{case.name}" styleClass="case-name-value"/>
-          <h:outputText value="#{caseWidgetBean.formatCaseDescription(case.description)}" styleClass="case-description-value"/>
+          <h:outputText value="#{case.names().current()}" title="#{case.names().current()}" styleClass="case-name-value"/>
+          <h:outputText value="#{caseWidgetBean.formatCaseDescription(case.descriptions().current())}" styleClass="case-description-value"/>
         </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="false" styleClass="description-column u-truncate-text"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'NAME')}" >
-          <h:outputText escape="false" value="#{caseWidgetBean.formatCaseDescription(case.description)}" title="#{case.description}"/>
+          <h:outputText escape="false" value="#{caseWidgetBean.formatCaseDescription(case.descriptions().current())}" title="#{case.descriptions().current()}"/>
         </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" field="ID" sortBy="#{ID}" filterable="false" styleClass="id-column u-hidden-md-down"

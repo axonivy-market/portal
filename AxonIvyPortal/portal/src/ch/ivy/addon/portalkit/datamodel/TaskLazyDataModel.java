@@ -81,9 +81,15 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   protected List<TaskFilter> oldSelectedFilters = new ArrayList<>();
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
-  protected List<String> portalDefaultColumns =
-      Arrays.asList(TaskSortField.PRIORITY.name(), TaskSortField.NAME.name(), TaskSortField.ACTIVATOR.name(), TaskSortField.ID.name(), TaskSortField.CREATION_TIME.name(),
-          TaskSortField.EXPIRY_TIME.name(), TaskSortField.COMPLETED_ON.name(), TaskSortField.STATE.name(), TaskSortField.CATEGORY.name());
+  protected List<String> portalDefaultColumns = Arrays.asList(TaskSortField.PRIORITY.name(), 
+                                                              TaskSortField.NAME.name(), 
+                                                              TaskSortField.ACTIVATOR.name(), 
+                                                              TaskSortField.ID.name(), 
+                                                              TaskSortField.CREATION_TIME.name(),
+                                                              TaskSortField.EXPIRY_TIME.name(), 
+                                                              TaskSortField.COMPLETED_ON.name(), 
+                                                              TaskSortField.STATE.name(), 
+                                                              TaskSortField.CATEGORY.name());
   protected List<String> portalRequiredColumns = Arrays.asList(TaskSortField.NAME.name());
 
   protected boolean compactMode;
@@ -863,6 +869,7 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   public void initColumnsConfiguration() {
     if (CollectionUtils.isEmpty(allColumns)) {
       allColumns.addAll(getDefaultColumns());
+      allColumns.add(TaskSortField.APPLICATION.name());
       initSelectedColumns();
     }
   }

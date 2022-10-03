@@ -83,7 +83,7 @@
             "if (in.originalTaskId != null && in.originalTaskId > 0) {",
             "  String approvalComment = ivy.cms.co(\"/Dialogs/WorkflowExecution/ApprovalForm/ApproveComment\") + (StringUtils.isEmpty(in.comment) ? \"\" : (\" - \" + in.comment));",
             "  AdhocUtils.storeHistory(in.originalTaskId, approvalComment);",
-            "  ivy.case.getBusinessCase().createNote(ivy.session, ivy.task.getName() + \": \" + approvalComment);",
+            "  ivy.case.getBusinessCase().createNote(ivy.session, ivy.task.names().current() + \": \" + approvalComment);",
             "}"
           ]
         }
@@ -139,7 +139,7 @@
             "if (in.originalTaskId != null && in.originalTaskId > 0) {",
             "  String approvalComment = ivy.cms.co(\"/Dialogs/WorkflowExecution/ApprovalForm/RejectComment\") + (StringUtils.isEmpty(in.comment) ? \"\" : (\" - \" + in.comment));",
             "  AdhocUtils.storeHistory(in.originalTaskId, approvalComment);",
-            "  ivy.case.getBusinessCase().createNote(ivy.session, ivy.task.getName() + \": \" + approvalComment);",
+            "  ivy.case.getBusinessCase().createNote(ivy.session, ivy.task.names().current() + \": \" + approvalComment);",
             "}"
           ]
         }

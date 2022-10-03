@@ -48,8 +48,8 @@ public class NewDashboardPage extends TemplatePage {
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 
-    $("[id$=':edit-widget-2']").waitUntil(appear, DEFAULT_TIMEOUT)
-        .shouldBe(getClickableCondition()).click();
+    $("[id$=':edit-widget-2']").waitUntil(appear, DEFAULT_TIMEOUT).waitUntil(getClickableCondition(), DEFAULT_TIMEOUT);
+    clickByJavaScript($("[id$=':edit-widget-2']"));
     $("div#new-widget-configuration-dialog").waitUntil(appear, DEFAULT_TIMEOUT);
     return new ProcessEditWidgetNewDashBoardPage();
   }
@@ -568,11 +568,7 @@ public class NewDashboardPage extends TemplatePage {
     getManageWidgetFilterDialog().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
-  public void testSearchRemoveCompactModeProcessFilterWhenExpanded() {
-    testSearchRemoveCompactModeProcessFilter();
-  }
-
-  public void testSearchRemoveCompactModeProcessFilter() {
+  public void removeCompactModeProcessFilter() {
     openCompactModeProcessFilterPanel();
     testCreateCompactModeProcessFilters();
     testSearchCompactModeProcessFilters();
@@ -580,16 +576,14 @@ public class NewDashboardPage extends TemplatePage {
     openCompactModeProcessManageFilters();
     testRemoveCompactModeProcessFilter();
     closeCompactModeProcessManagerFilters();
-
-    try {
-      openCompactModeProcessFilterPanel();
-    } catch (Exception e) {
-      openCompactModeProcessFilterPanel();
-    }
-    getCompactModeProcessFilterPanelSavedFilter(0)
-        .waitUntil(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME), DEFAULT_TIMEOUT);
   }
 
+  public void testSavedFilterValue() {
+    openCompactModeProcessFilterPanel();
+    getCompactModeProcessFilterPanelSavedFilter(0)
+    .waitUntil(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME), DEFAULT_TIMEOUT);
+  }
+  
   private void testCreateCompactModeProcessFilters() {
     selectCompactModeProcessFilter(SHOWCASE_NAME, "IVY_PROCESS", SHOWCASE);
     saveCompactModeProcessFilter(MY_FILTER);

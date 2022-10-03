@@ -113,4 +113,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     $("[id$='task-component:loading']").waitUntil(disappear, DEFAULT_TIMEOUT);
   }
 
+  public void waitPreviewTableLoaded() {
+    $(taskEditWidgetId).$("div[id$=':dashboard-tasks-container']").waitUntil(appear, DEFAULT_TIMEOUT);
+  }
 }

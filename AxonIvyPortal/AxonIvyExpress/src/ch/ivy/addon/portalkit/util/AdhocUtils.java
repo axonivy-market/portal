@@ -31,7 +31,7 @@ public class AdhocUtils {
     AdhocHistory adhocHistory = new AdhocHistory();
     adhocHistory.setOriginalTaskId(originalTaskId);
     adhocHistory.setContent(content);
-    adhocHistory.setTaskName(Ivy.wfTask().getName());
+    adhocHistory.setTaskName(Ivy.wfTask().names().current());
     adhocHistory.setTimestamp(Ivy.wfTask().getStartTimestamp());
     adhocHistory.setAuthorUsername(Ivy.wfTask().getWorkerUserName());
     adhocHistory.setExternalSecurityId(Ivy.wfTask().getWorkerUser().getExternalId());

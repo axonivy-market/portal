@@ -29,7 +29,7 @@ import portal.guitest.page.UserProfilePage;
 
 public class CaseWidgetTest extends BaseTest {
 
-  private static final String INVESTMENT_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME = "Investment Request";
+  private static final String INVESTMENT_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME = "Create Investment";
   private static final String LEAVE_REQUEST_DEFAULT_CASE_DETAILS_PAGE_CASE_NAME = "Leave Request for Default Additional Case Details";
   private static final String LEAVE_REQUEST_CASE_NAME = "Leave Request";
   private static final String ORDER_PIZZA = "Order Pizza";

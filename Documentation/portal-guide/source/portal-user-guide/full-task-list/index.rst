@@ -46,6 +46,10 @@ For each task the following key information is shown in the list:
 
 #. Status
 
+#. Category
+
+#. Application (This column is not displayed by default)
+
 |task-key-information|
 
 Furthermore, at the end of each row you find a side step menu of key features in
@@ -171,6 +175,10 @@ HowTo: Create new filter
 |                                   | activator, activator is not found |
 |                                   | or is disabled.                   |
 +-----------------------------------+-----------------------------------+
+| Application                       | This filter lets you select the   |
+|                                   | application                       |
++-----------------------------------+-----------------------------------+
+
 
 
 .. hint::

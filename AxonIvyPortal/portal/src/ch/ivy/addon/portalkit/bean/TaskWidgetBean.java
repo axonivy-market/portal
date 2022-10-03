@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.bean;
 
-import static ch.ivy.addon.portalkit.filter.AbstractFilter.ALL;
 import static ch.ivyteam.ivy.workflow.TaskState.DELAYED;
 import static ch.ivyteam.ivy.workflow.TaskState.DESTROYED;
 
@@ -110,7 +109,7 @@ public class TaskWidgetBean implements Serializable {
     for (TaskFilter filter : taskFilters) {
       if (filter instanceof TaskStateFilter) {
         TaskStateFilter taskStateFilter = (TaskStateFilter) filter;
-        if (!taskStateFilter.value().equals(ALL)) {
+        if (!taskStateFilter.value().equals(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/all"))) {
           isAdminTaskStateIncluded = taskStateFilter.getSelectedFilteredStates().contains(DELAYED)
               || taskStateFilter.getSelectedFilteredStates().contains(DESTROYED);
         }
