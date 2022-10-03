@@ -573,14 +573,26 @@ public class CaseLazyDataModel extends LazyDataModel7<ICase> {
    */
   public void initColumnsConfiguration() {
     if (new GlobalSettingService().isCaseOwnerEnabled()) {
-      portalDefaultColumns = List.of(CaseSortField.NAME.name(), CaseSortField.ID.name(), CaseSortField.CREATOR.name(), CaseSortField.OWNER.name(), CaseSortField.CREATION_TIME.name(),
-          CaseSortField.FINISHED_TIME.name(), CaseSortField.STATE.name(), CaseSortField.CATEGORY.name());
+      portalDefaultColumns = List.of(CaseSortField.NAME.name(), 
+                                      CaseSortField.ID.name(), 
+                                      CaseSortField.CREATOR.name(), 
+                                      CaseSortField.OWNER.name(), 
+                                      CaseSortField.CREATION_TIME.name(),
+                                      CaseSortField.FINISHED_TIME.name(), 
+                                      CaseSortField.STATE.name(), 
+                                      CaseSortField.CATEGORY.name());
     } else {
-      portalDefaultColumns = List.of(CaseSortField.NAME.name(), CaseSortField.ID.name(), CaseSortField.CREATOR.name(), CaseSortField.CREATION_TIME.name(), CaseSortField.FINISHED_TIME.name(),
-          CaseSortField.STATE.name(), CaseSortField.CATEGORY.name());
+      portalDefaultColumns = List.of(CaseSortField.NAME.name(), 
+                                      CaseSortField.ID.name(), 
+                                      CaseSortField.CREATOR.name(), 
+                                      CaseSortField.CREATION_TIME.name(), 
+                                      CaseSortField.FINISHED_TIME.name(),
+                                      CaseSortField.STATE.name(), 
+                                      CaseSortField.CATEGORY.name());
     }
     if (CollectionUtils.isEmpty(allColumns)) {
       allColumns.addAll(getDefaultColumns());
+      allColumns.add(CaseSortField.APPLICATION.name());
       initSelectedColumns();
     }
   }
@@ -602,7 +614,7 @@ public class CaseLazyDataModel extends LazyDataModel7<ICase> {
     }
     setDisableSelectionCheckboxes(isAutoHideColumns);
   }
-
+  
   /**
    * @hidden
    */
@@ -625,6 +637,7 @@ public class CaseLazyDataModel extends LazyDataModel7<ICase> {
       caseColumnsConfiguration = createNewCaseColumnsConfigurationData();
     }
     service.save(caseColumnsConfiguration);
+    
     initSelectedColumns();
   }
 

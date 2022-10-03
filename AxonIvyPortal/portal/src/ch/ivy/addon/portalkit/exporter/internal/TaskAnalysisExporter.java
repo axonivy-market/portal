@@ -69,6 +69,8 @@ public class TaskAnalysisExporter extends Exporter{
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskExpiryTime");
       case TASK_FINISHED_TIME:
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskFinishedTime");
+      case APPLICATION:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/APPLICATION");
       default:
         return "";
     }
@@ -77,9 +79,9 @@ public class TaskAnalysisExporter extends Exporter{
   private Object getColumnValue(TaskAndCaseAnalysisColumn column, ITask task) {
     switch (column) {
       case CASE_NAME:
-        return StringUtils.isEmpty(task.getCase().getName()) ? Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable") : task.getCase().getName();
+        return StringUtils.isEmpty(task.getCase().names().current()) ? Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable") : task.getCase().names().current();
       case CASE_DESCRIPTION:
-        return task.getCase().getDescription();
+        return task.getCase().descriptions().current();
       case CASE_ID:
         return String.valueOf(task.getCase().getId());
       case CASE_CATEGORY:
@@ -97,13 +99,13 @@ public class TaskAnalysisExporter extends Exporter{
       case CASE_STATE:
         return task.getCase().getState().toString();
       case TASK_NAME:
-        return StringUtils.isEmpty(task.getName()) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable") : task.getName();
+        return StringUtils.isEmpty(task.names().current()) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable") : task.names().current();
       case TASK_ID:
         return String.valueOf(task.getId());
       case TASK_CATEGORY:
         return task.getCategory().getPath();
       case TASK_DESCRIPTION:
-        return task.getDescription();
+        return task.descriptions().current();
       case TASK_ACTIVATOR:
         if (task.getActivatorName() == null) {
           return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
@@ -124,6 +126,8 @@ public class TaskAnalysisExporter extends Exporter{
         return task.getExpiryTimestamp();
       case TASK_FINISHED_TIME:
         return task.getEndTimestamp();
+      case APPLICATION:
+        return task.getApplication().getName();
       default:
         return "";
     }

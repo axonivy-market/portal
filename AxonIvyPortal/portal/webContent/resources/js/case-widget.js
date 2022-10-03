@@ -67,7 +67,7 @@ function CaseWidget() {
       }
       if (!needShowScrollbar) {
         PortalLayout.removeJsStyleOnLayoutContent();
-        $('.js-case-list').removeAttr("style");
+        // $('.js-case-list').removeAttr("style");
       }
     },
 

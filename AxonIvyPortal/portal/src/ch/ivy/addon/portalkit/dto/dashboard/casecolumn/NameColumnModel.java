@@ -37,6 +37,6 @@ public class NameColumnModel extends CaseColumnModel implements Serializable {
     if (caze == null) {
       return null;
     }
-    return caze.getName();
+    return caze.names().current();
   }
 }

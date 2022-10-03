@@ -52,7 +52,7 @@
             <ui:insert name="taskName">
               <ui:fragment rendered="#{!isHideTaskName}">
                 <span class="si si-task-list-edit task-template-title-icon" />
-                <h:outputText id="title" title="#{currentTask.name}" value="#{currentTask.name}" styleClass="task-title" />
+                <h:outputText id="title" title="#{currentTask.names().current()}" value="#{currentTask.names().current()}" styleClass="task-title" />
               </ui:fragment>
             </ui:insert>
             
@@ -180,7 +180,7 @@
           widgetVar="case-info-dialog" appendTo="@(body)" modal="true" styleClass="case-info-dialog">
           <f:facet name="header">
             <h:panelGroup styleClass="case-infor-title u-truncate-text">
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}: #{case.name}" />
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}: #{case.names().current()}" />
             </h:panelGroup>
           </f:facet>
           <ui:insert name="caseDetails">

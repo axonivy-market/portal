@@ -45,6 +45,9 @@
             "visible": false
           },
           {
+            "field": "application"
+          },
+          {
             "field": "actions"
           }
         ]
@@ -85,6 +88,9 @@
           {
             "field": "category",
             "visible": false
+          },
+          {
+            "field": "application"
           },
           {
             "field": "actions"

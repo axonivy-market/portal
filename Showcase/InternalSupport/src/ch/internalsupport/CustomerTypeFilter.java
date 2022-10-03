@@ -14,7 +14,7 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 public class CustomerTypeFilter extends TaskFilter {
 
   private String selectedCustomerType;
-  private List<String> customerTypes = Arrays.asList(ALL, "Exterior", "Interior");
+  private List<String> customerTypes = Arrays.asList(getAllLabel(), "Exterior", "Interior");
 
   @Override
   public String label() {
@@ -24,17 +24,18 @@ public class CustomerTypeFilter extends TaskFilter {
 
   @Override
   public String value() {
+    final String allLabel = getAllLabel();
     if (StringUtils.isBlank(selectedCustomerType)) {
-      selectedCustomerType = ALL;
+      selectedCustomerType = allLabel;
     }
     
-    return !ALL.equals(selectedCustomerType) ? String.format(
-        DOUBLE_QUOTES, selectedCustomerType) : ALL;
+    return !allLabel.equals(selectedCustomerType) ? String.format(
+        DOUBLE_QUOTES, selectedCustomerType) : allLabel;
   }
 
   @Override
   public TaskQuery buildQuery() {
-    if (StringUtils.isBlank(selectedCustomerType) || ALL.equals(selectedCustomerType)) {
+    if (StringUtils.isBlank(selectedCustomerType) || getAllLabel().equals(selectedCustomerType)) {
       return null;
     }
 

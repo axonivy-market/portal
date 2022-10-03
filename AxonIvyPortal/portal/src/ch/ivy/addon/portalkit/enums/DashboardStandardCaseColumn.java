@@ -4,8 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum DashboardStandardCaseColumn {
-  ID("id"), NAME("name"), DESCRIPTION("description"), STATE("state"), CREATOR("creator"), CREATED("startTimestamp"), FINISHED("endTimestamp"),
-  OWNER("owner"), CATEGORY("category"), ACTIONS("actions");
+  ID("id"), 
+  NAME("name"), 
+  DESCRIPTION("description"), 
+  STATE("state"), 
+  CREATOR("creator"), 
+  CREATED("startTimestamp"), 
+  FINISHED("endTimestamp"),
+  OWNER("owner"), 
+  CATEGORY("category"), 
+  APPLICATION("application"),
+  ACTIONS("actions");
 
   private final String field;
 

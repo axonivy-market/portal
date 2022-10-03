@@ -74,6 +74,7 @@
       "name" : "CreateInvestment.ivp",
       "config" : {
         "callSignature" : "CreateInvestment",
+        "startCategory" : "Investment",
         "case" : {
           "name" : "Investment Creation (IFrame + Task custom fields)"
         },

@@ -43,13 +43,10 @@ import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.service.UserProcessService;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.language.LanguageConfigurator;
-import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @Deprecated(since = "9.3")
@@ -75,11 +72,9 @@ private static final long serialVersionUID = -5889375917550618261L;
   private boolean isUserFavoritesEnabled;
   private boolean isDisplayShowAllProcessesLink;
   private boolean isGuide;
-  private Locale currentLocale;
   
   @PostConstruct
   public void init() {
-    currentLocale = getApplicationDefaultLanguage();
     // used in global search page
     isDisplayShowAllProcessesLink = PermissionUtils.checkAccessFullProcessListPermission();
   }
@@ -499,12 +494,6 @@ private static final long serialVersionUID = -5889375917550618261L;
       target="_blank";
     }
     return target;
-  }
-
-  private Locale getApplicationDefaultLanguage() {
-    return IvyExecutor.executeAsSystem(() -> {
-      return new LanguageConfigurator(ISecurityContext.current()).content();
-    });
   }
 
   public boolean isExternalLink(UserProcess process) {

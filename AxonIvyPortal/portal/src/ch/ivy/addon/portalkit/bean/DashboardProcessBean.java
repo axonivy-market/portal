@@ -35,6 +35,7 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   private List<ProcessWidgetMode> displayModes;
   private ProcessDashboardWidget widget;
   private PropertyChangeSupport propertyChangeSupport;
+  private List<String> applications;
 
   @Override
   @PostConstruct
@@ -128,7 +129,17 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
       portalProcesses = new ArrayList<>();
       super.init();
     }
-    return portalProcesses.stream().map(toDashboardProcess()).collect(Collectors.toList());
+    return portalProcesses.stream()
+        .filter(process -> CollectionUtils.isEmpty(applications) || applications.contains(process.getApplication()))
+        .map(toDashboardProcess()).collect(Collectors.toList());
+  }
+
+  public List<String> getApplications() {
+    return applications;
+  }
+
+  public void setApplications(List<String> applications) {
+    this.applications = applications;
   }
 
 }

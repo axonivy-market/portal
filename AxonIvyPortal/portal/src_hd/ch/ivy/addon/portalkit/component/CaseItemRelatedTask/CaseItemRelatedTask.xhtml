@@ -42,7 +42,7 @@
           <h:panelGroup id="task" layout="block" class="grid-item-content-list-item related-task-content js-related-task">
             <i class="#{taskBean.getStateIcon(task.state)} related-task-list-item-status" />
             <p:commandLink id="task-name" disabled="#{cc.attrs.readOnly}"
-              value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}"
+              value="#{empty task.names().current() ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.names().current()}"
               styleClass="related-task" actionListener="#{logic.navigateToSelectedTaskDetails(task.getId(), cc.attrs.isWorkingOnTask, cc.attrs.inFrame)}">
             </p:commandLink>
           </h:panelGroup>
@@ -77,12 +77,12 @@
           mode="inline" styleClass="case-related-task-case-running">
           <h:panelGroup id="technicalCase" layout="block" class="grid-item-content-list-item related-task-content js-technical-case">
             <i class="si si-folder-empty related-task-list-item-status" />
-            <p:commandLink id="case-name" value="#{empty technicalCase.name ? technicalCase.id : technicalCase.name}" disabled="#{cc.attrs.readOnly}"
+            <p:commandLink id="case-name" value="#{empty technicalCase.names().current() ? technicalCase.id : technicalCase.names().current()}" disabled="#{cc.attrs.readOnly}"
               actionListener="#{logic.navigateToRelatedCaseDetails(technicalCase,cc.attrs.isWorkingOnTask, cc.attrs.inFrame)}" styleClass="related-task">
             </p:commandLink>
           </h:panelGroup>
           <p:tooltip for="technicalCase"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/technicalCase')}: ##{technicalCase.id} #{technicalCase.name} (#{caseBean.getState(technicalCase).toUpperCase()})"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/technicalCase')}: ##{technicalCase.id} #{technicalCase.names().current()} (#{caseBean.getState(technicalCase).toUpperCase()})"
             trackMouse="true" hideEvent="mouseleave click"/>
         </p:dataScroller>
       </div>

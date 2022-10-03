@@ -8,6 +8,7 @@ import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.ExpressManagementUtils;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
@@ -25,6 +26,7 @@ public class PortalExpressProcess implements Process {
   private ExpressProcess process;
   private String processOwnerDisplayName;
   private String ableToStart;
+  private String application;
 
   public PortalExpressProcess(ExpressProcess process) {
     this.process = process;
@@ -40,6 +42,8 @@ public class PortalExpressProcess implements Process {
       String ableStartName = Optional.ofNullable(assignee).map(ISecurityMember::getDisplayName).orElse(Ivy.cms().co(NOT_AVAILABLE_CMS));
       this.ableToStart = StringUtils.isBlank(ableToStart) ? ableStartName : String.join(";", ableToStart, ableStartName);
     }
+    
+    application = IApplication.current().getName();
   }
 
   @Override
@@ -124,5 +128,14 @@ public class PortalExpressProcess implements Process {
   @Override
   public String getDefaultImageSrc() {
     return StringUtils.EMPTY;
+  }
+
+  @Override
+  public String getApplication() {
+    return application;
+  }
+
+  public void setApplication(String application) {
+    this.application = application;
   }
 }

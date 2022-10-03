@@ -5,6 +5,7 @@ import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,6 +37,20 @@ public class CaseFilterTest extends BaseTest {
     CaseWidgetPage caseWidgetPage = new CaseWidgetPage();
     caseWidgetPage.filterCasesByCreatedDate(fromInputText, EMPTY);
     caseWidgetPage.countCases().shouldHave(sizeGreaterThanOrEqual(1));
+  }
+  
+  @Test
+  public void testFilterCasesByApplication() {
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
+    login(TestAccount.ADMIN_USER);
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    mainMenuPage.openCaseList();
+    CaseWidgetPage caseWidgetPage = new CaseWidgetPage();
+    int before = caseWidgetPage.countCases().size();
+    caseWidgetPage.openAdvancedFilter("Application", "application");
+    caseWidgetPage.filterFirstApp();
+    int after = caseWidgetPage.countCases().size();
+    Assertions.assertEquals(before, after);
   }
 
 }
