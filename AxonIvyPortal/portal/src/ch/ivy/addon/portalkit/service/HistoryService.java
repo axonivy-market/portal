@@ -61,7 +61,7 @@ public class HistoryService {
   private void buildDisplayCaseNameForNote(Long selectedCaseId, ICase caseHistory, History history) {
     history.setCaseId(caseHistory.getId());
     history.setDisabledCaseName(selectedCaseId == caseHistory.getId());
-    var caseName = caseHistory.getName();
+    var caseName = caseHistory.names().current();
     if (StringUtils.isBlank(caseName)) {
       caseName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noCaseName");
     }
@@ -124,7 +124,7 @@ public class HistoryService {
   public History createHistoryFrom(ITask task) {
     History history = new History();
     history.setId(task.getId());
-    history.setContent(task.getName());
+    history.setContent(task.names().current());
     history.setTaskState(task.getState());
     history.setInvolvedUsername(task.getWorkerUserName());
     history.setInvolvedUser(task.getWorkerUser());

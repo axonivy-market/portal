@@ -11,6 +11,8 @@
 
 <cc:implementation>
   <c:set value="#{cc.attrs.case}" var="case" />
+  <c:set value="#{caseActionBean.canChangeDescription(case)}" var="canChangeDescription"/>
+  <f:event listener="#{caseDetailsBean.initCaseDescription(case)}" type="preRenderComponent"/>
   
   <div class="ui-g case-details-description-title">
     <div class="case-detail-title #{cc.attrs.labelStyleClasses} text-ellipsis">
@@ -19,7 +21,6 @@
         rendered="#{caseActionBean.canChangeDescription(case) and !cc.attrs.readOnly}" id="edit-description-link">
         <i class="si si-graphic-tablet-drawing-pen" />
       </p:commandLink>
-      
     </div>
   </div>
 
@@ -29,18 +30,18 @@
         <div class="ui-g-12 case-detail-description">
           <div id="description-content" class="scroll-panel short-description">
             <p:inplace id="case-description-inplace" editor="true" styleClass="case-description-inplace js-case-description-inplace" effectSpeed="fast"
-              widgetVar="widget-description-inplace" disabled="#{!caseActionBean.canChangeDescription(case) or cc.attrs.readOnly}"
+              widgetVar="widget-description-inplace" disabled="#{!canChangeDescription or cc.attrs.readOnly}"
               saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
               cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               emptyLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/noDescription')}" >
-              <p:ajax event="save" oncomplete="handleDisplayIconMoreLink()" update="#{cc.attrs.descriptionComponentToUpdate} case-description-form" />
+              <p:ajax event="save" listener="#{caseDetailsBean.updateCaseDescription(case)}" oncomplete="handleDisplayIconMoreLink()" update="#{cc.attrs.descriptionComponentToUpdate} case-description-form" />
               <p:ajax event="cancel" oncomplete="handleDisplayIconMoreLink()" update="case-description-form" process="@none" />
               <p:inputTextarea id="case-description-input" cols="250" rows="5" styleClass="case-detail-description-input"
-                value="#{case.description}" autoResize="false" />
+                value="#{caseDetailsBean.caseDetailsDescription}" autoResize="false" />
             </p:inplace>
             <h:panelGroup id="case-description-output"
-              styleClass="case-description-output js-case-description-output #{!caseActionBean.canChangeDescription(case) or cc.attrs.readOnly ? 'pointer-event-none' : ''}">
-              <h:outputText escape="false" value="#{caseWidgetBean.sanitizeHTML(case.description)}" />
+              styleClass="case-description-output js-case-description-output">
+              <h:outputText escape="false" value="#{caseWidgetBean.sanitizeHTML(case.descriptions().current())}" />
              </h:panelGroup>
           </div>
           <p:commandLink onclick="displayMoreText()" id="icon-more-link" styleClass="icon-more-link" global="false" process="@this" immediate="true" partialSubmit="true">

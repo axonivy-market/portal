@@ -275,7 +275,7 @@ public class CaseDetailsPage extends TemplatePage {
   private void onSubmitDescriptionInplaceEditor() {
     WebElement editor = findElementByCssSelector("span[id$='general-information:description:case-description-form:case-description-inplace_editor']");
     WebElement saveButton = findChildElementByClassName(editor, "ui-inplace-save");
-    saveButton.click();
+    clickByJavaScript(saveButton);
     waitAjaxIndicatorDisappear();
   }
 

@@ -304,7 +304,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         ProcessDashboardWidget processWidget = (ProcessDashboardWidget) this.widget;
         processWidget.setPreview(false);
         if (processWidget.getDisplayMode() == ProcessWidgetMode.FULL_MODE) {
-          updateProcessWidget((SingleProcessDashboardWidget) processWidget, 6, 2);
+          updateProcessWidget((SingleProcessDashboardWidget) processWidget, 5, 2);
         } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE) {
           updateProcessWidget((SingleProcessDashboardWidget) processWidget, 6, 5);
         } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) {
@@ -312,11 +312,12 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
           CompactProcessDashboardWidget compactProcessWidget = (CompactProcessDashboardWidget) processWidget;
           unifyCompactProcessCategory(compactProcessWidget);
           updateProcessesOfWidget(compactProcessWidget);
+          updateApplicationForCompactProcess(compactProcessWidget);
           if (CollectionUtils.isEmpty((compactProcessWidget).getFilterableColumns())) {
             (compactProcessWidget).buildFilterableColumns(DashboardWidgetUtils.initProcessFilterableColumns());
           }
         } else if (processWidget.getDisplayMode() == ProcessWidgetMode.IMAGE_MODE) {
-          updateProcessWidget((SingleProcessDashboardWidget) processWidget, 6, 2);
+          updateProcessWidget((SingleProcessDashboardWidget) processWidget, 5, 2);
         }
         DashboardWidget dashboardWidget =
             widgets.stream().filter(w -> widget.getId().equals(w.getId()) && w.getType() == DashboardWidgetType.PROCESS)
@@ -352,6 +353,14 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     PrimeFaces.current().ajax().update("grid-stack");
   }
 
+  private void updateApplicationForCompactProcess(CompactProcessDashboardWidget compactProcessWidget) {
+    compactProcessWidget.getFilterableColumns().stream()
+      .filter(column -> DashboardStandardProcessColumn.APPLICATION.getField().equalsIgnoreCase(column.getField()))
+      .findAny().ifPresent(applicationColumn -> {
+      compactProcessWidget.setApplications(applicationColumn.getFilterList());
+    });
+  }
+  
   private void updateProcessWidgetSize(ProcessDashboardWidget processWidget, int height, int width) {
     if (processWidget.getLayout().getHeight() == -1) {
       processWidget.getLayout().setHeight(height);

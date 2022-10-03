@@ -12,8 +12,8 @@
     <div class="task-start-info">
     <h:panelGroup layout="block" styleClass="task-start-info-header">
       <h:outputText id="task-start-task-name" styleClass="task-start-info-task-name"
-          value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}" />
-      <p:tooltip for="task-start-task-name" value="#{task.name}" trackMouse="true" hideEvent="mouseleave click" rendered="#{not empty task.name}"/>
+          value="#{empty task.names().current() ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.names().current()}" />
+      <p:tooltip for="task-start-task-name" value="#{task.names().current()}" trackMouse="true" hideEvent="mouseleave click" rendered="#{not empty task.names().current()}"/>
       <h:outputText id="task-start-task-id" value="(##{task.getId()})" styleClass="task-start-info-task-id"/>
     </h:panelGroup>
     <h:panelGroup layout="block" styleClass="task-start-info-content">
@@ -28,9 +28,9 @@
         </h:outputText>
     </h:panelGroup> 
     <h:outputText id="task-start-task-description" styleClass="task-start-info-footer task-start-info-task-description"
-      value="#{empty task.description ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription') : taskWidgetBean.createTaskDescriptionInTaskStart(task.description)}" />
-    <p:tooltip for="task-start-task-description" value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.description)}" 
-      trackMouse="true" hideEvent="mouseleave click" rendered="#{not empty task.description}" />
+      value="#{empty task.descriptions().current() ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription') : taskWidgetBean.createTaskDescriptionInTaskStart(task.descriptions().current())}" />
+    <p:tooltip for="task-start-task-description" value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.descriptions().current())}" 
+      trackMouse="true" hideEvent="mouseleave click" rendered="#{not empty task.descriptions().current()}" />
     </div>
     <h:panelGroup id="open-task-icon" class="action-icon si si-arrow-right-1 icon-compact-mode portal-icon" />
     <p:tooltip for="open-task-icon" trackMouse="true" hideEvent="mouseleave click"

@@ -100,8 +100,7 @@ public class ColumnManagementBean implements Serializable {
       List<TaskColumnModel> taskColumns = new ArrayList<>();
       columnsBeforeSave.forEach(column -> taskColumns.add((TaskColumnModel) column));
       taskWidget.setColumns(taskColumns);
-    }
-    if (widget.getType() == DashboardWidgetType.CASE) {
+    } else if (widget.getType() == DashboardWidgetType.CASE) {
       CaseDashboardWidget caseDashboardWidget = (CaseDashboardWidget) this.widget;
       List<CaseColumnModel> caseColumns = new ArrayList<>();
       columnsBeforeSave.forEach(column -> caseColumns.add((CaseColumnModel) column));
@@ -121,8 +120,7 @@ public class ColumnManagementBean implements Serializable {
       for (DashboardStandardTaskColumn col : DashboardStandardTaskColumn.values()) {
         standardFields.add(col.getField());
       }
-    }
-    if (widget.getType() == DashboardWidgetType.CASE) {
+    } else if (widget.getType() == DashboardWidgetType.CASE) {
       var enableCaseOwner = GlobalSettingService.getInstance().isCaseOwnerEnabled();
       for (DashboardStandardCaseColumn col : DashboardStandardCaseColumn.values()) {
         if (!enableCaseOwner && DashboardStandardCaseColumn.OWNER == col) {
@@ -209,8 +207,7 @@ public class ColumnManagementBean implements Serializable {
             .map(ICustomFieldMeta::category)
             .distinct()
             .sorted().collect(Collectors.toList());
-      }
-      if (widget.getType() == DashboardWidgetType.CASE) {
+      } else if (widget.getType() == DashboardWidgetType.CASE) {
         customFieldCategories = ICustomFieldMeta.cases().stream()
             .map(ICustomFieldMeta::category)
             .distinct()
@@ -228,8 +225,7 @@ public class ColumnManagementBean implements Serializable {
     if (CollectionUtils.isEmpty(customFieldNames)) {
       if (widget.getType() == DashboardWidgetType.TASK) {
         customFieldNames = ICustomFieldMeta.tasks();
-      }
-      if (widget.getType() == DashboardWidgetType.CASE) {
+      } else if (widget.getType() == DashboardWidgetType.CASE) {
         customFieldNames = ICustomFieldMeta.cases();
       }
     }
@@ -240,8 +236,7 @@ public class ColumnManagementBean implements Serializable {
     Optional<ICustomFieldMeta> metaData = Optional.empty();
     if (widget.getType() == DashboardWidgetType.TASK) {
       metaData = ICustomFieldMeta.tasks().stream().filter(meta -> meta.name().equals(selectedField)).findFirst();
-    }
-    if (widget.getType() == DashboardWidgetType.CASE) {
+    } else if (widget.getType() == DashboardWidgetType.CASE) {
       metaData = ICustomFieldMeta.cases().stream().filter(meta -> meta.name().equals(selectedField)).findFirst();
     }
     return metaData;

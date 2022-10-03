@@ -303,7 +303,7 @@ public class MenuView implements Serializable {
   private void buildBreadCrumbForTechnicalCaseList(ICase userCase) {
     setPortalHomeMenuToBreadcrumbModel();
     DefaultMenuItem caseListSubmenuItem = buildCaseListMenuItem();
-    String title = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCasesOfBusinessCaseTitle", Arrays.asList(Long.toString(userCase.getId()), userCase.getName()));
+    String title = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCasesOfBusinessCaseTitle", Arrays.asList(Long.toString(userCase.getId()), userCase.names().current()));
     caseListSubmenuItem.setValue(title);
     caseListSubmenuItem.setDisabled(true);
     breadcrumbModel.getElements().add(caseListSubmenuItem);
@@ -408,7 +408,7 @@ public class MenuView implements Serializable {
 
   private MenuItem buildTaskDetailsMenuItem(ITask userTask) {
     DefaultMenuItem menuItem = DefaultMenuItem.builder().build();
-    String taskName = StringUtils.isEmpty(userTask.getName()) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable") : userTask.getName();
+    String taskName = StringUtils.isEmpty(userTask.getName()) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable") : userTask.names().current();
     menuItem.setValue(String.join(": ", Ivy.cms().co("/Labels/Task"), taskName));
     menuItem.setUrl("#");
     menuItem.setDisabled(true);
@@ -417,7 +417,7 @@ public class MenuView implements Serializable {
 
   private MenuItem buildCaseDetailsMenuItem(ICase userCase) {
     DefaultMenuItem menuItem = DefaultMenuItem.builder().build();
-    menuItem.setValue(String.join(": ", Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/case"), userCase.getName()));
+    menuItem.setValue(String.join(": ", Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/case"), userCase.names().current()));
     menuItem.setUrl("#");
     menuItem.setDisabled(true);
     return menuItem;

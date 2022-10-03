@@ -92,8 +92,7 @@ public class TaskFilterTest extends BaseTest {
   @SuppressWarnings("deprecation")
   @Test
   public void testSaveTaskFilterForAdmin() {
-    List<String> adminStates = Arrays.asList("Ready for joining", "Suspended", "In progress", "Reserved", "Delayed",
-        "Done", "Destroyed", "Failed", "Join failed", "Waiting for event");
+    List<String> normalStates = Arrays.asList("Suspended", "In progress");
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
 
@@ -105,20 +104,19 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.filterByDescription("Maternity");
 
     WebElement saveFilterDialog = taskWidgetPage.openSaveFilterDialog();
-    assertEquals("All users", saveFilterDialog
-        .findElement(By.cssSelector("label[for='task-widget:filter-save-form:save-filter-type-radio:1']")).getText());
-    taskWidgetPage.click(saveFilterDialog.findElement(By.cssSelector("a")));
-    taskWidgetPage.waitAjaxIndicatorDisappear();
-
-    taskWidgetPage.filterByStates(adminStates);
-
-    saveFilterDialog = taskWidgetPage.openSaveFilterDialog();
     assertEquals("All administrators", saveFilterDialog
         .findElement(By.cssSelector("label[for='task-widget:filter-save-form:save-filter-type-radio:1']")).getText());
     taskWidgetPage.click(saveFilterDialog.findElement(By.cssSelector("a")));
     taskWidgetPage.waitAjaxIndicatorDisappear();
-
     taskWidgetPage.saveAdminFilter(filterName);
+
+    taskWidgetPage.filterByStates(normalStates);
+
+    saveFilterDialog = taskWidgetPage.openSaveFilterDialog();
+    assertEquals("All users", saveFilterDialog
+        .findElement(By.cssSelector("label[for='task-widget:filter-save-form:save-filter-type-radio:1']")).getText());
+    taskWidgetPage.click(saveFilterDialog.findElement(By.cssSelector("a")));
+    taskWidgetPage.waitAjaxIndicatorDisappear();
 
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
@@ -311,7 +309,7 @@ public class TaskFilterTest extends BaseTest {
     assertEquals(1, taskWidgetPage.countTasks());
 
     WebElement saveFilterDialog = taskWidgetPage.openSaveFilterDialog();
-    assertEquals("All users", saveFilterDialog
+    assertEquals("All administrators", saveFilterDialog
         .findElement(By.cssSelector("label[for='task-widget:filter-save-form:save-filter-type-radio:1']")).getText());
     taskWidgetPage.saveAdminFilter("admin filter");
 

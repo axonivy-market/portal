@@ -49,6 +49,6 @@ public class DescriptionColumnModel extends CaseColumnModel implements Serializa
     if (caze == null) {
       return null;
     }
-    return caze.getDescription();
+    return caze.descriptions().current();
   }
 }

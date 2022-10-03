@@ -14,7 +14,7 @@
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" />
           </div>
           <div class="u-text-align-left ui-g-10 ui-lg-11 ui-md-10 ui-sm-8">
-            <h:outputText id="case-name" value="#{data.ivyCase.name}" />
+            <h:outputText id="case-name" value="#{data.ivyCase.names().current()}" />
           </div>
           <div class="u-text-align-left ui-g-2 ui-lg-1 ui-md-2 ui-sm-4">
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" />
