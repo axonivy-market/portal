@@ -9,7 +9,6 @@ import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.WelcomeTextPosition;
 import ch.ivy.addon.portalkit.enums.WelcomeTextSize;
-import ch.ivyteam.ivy.scripting.objects.File;
 
 public class WelcomeDashboardWidget  extends DashboardWidget {
 
@@ -28,9 +27,6 @@ public class WelcomeDashboardWidget  extends DashboardWidget {
 
   @JsonIgnore
   private String welcomeText;
-
-  @JsonIgnore
-  private File uploadedImageFile;
 
   @JsonIgnore
   private String displayWelcomeText;
@@ -106,14 +102,6 @@ public class WelcomeDashboardWidget  extends DashboardWidget {
 
   public void setWelcomeTextColor(String welcomeTextColor) {
     this.welcomeTextColor = welcomeTextColor;
-  }
-
-  public File getUploadedImageFile() {
-    return uploadedImageFile;
-  }
-
-  public void setUploadedImageFile(File uploadedImageFile) {
-    this.uploadedImageFile = uploadedImageFile;
   }
 
   public String getImageType() {

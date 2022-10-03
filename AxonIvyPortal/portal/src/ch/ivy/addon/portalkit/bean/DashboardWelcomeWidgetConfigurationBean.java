@@ -24,10 +24,11 @@ import ch.ivy.addon.portalkit.enums.WelcomeTextPosition;
 import ch.ivy.addon.portalkit.enums.WelcomeTextSize;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
+import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.cm.ContentObjectValue;
+import ch.ivyteam.ivy.cm.exec.ContentManagement;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.language.LanguageConfigurator;
-import ch.ivyteam.ivy.scripting.objects.Binary;
-import ch.ivyteam.ivy.scripting.objects.File;
 import ch.ivyteam.ivy.security.ISecurityContext;
 
 @ViewScoped
@@ -36,14 +37,14 @@ public class DashboardWelcomeWidgetConfigurationBean implements Serializable {
 
   private static final long serialVersionUID = 597266282990903281L;
 
-  private static final String IMAGE_DIRECTORY = "DashboardWelcomeWidget";
+  private static final String WELCOME_WIDGET_IMAGE_DIRECTORY = "DashboardWelcomeWidget";
   private static final String DEFAULT_TEXT_COLOR = "ffffff";
   private static final String BASE64_STRING_PATTERN = "data:%s;base64,%s";
   private static final Long UPLOAD_SIZE_LIMIT = 6291456L;
   private static final String DEFAULT_WELCOME_CMS = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/Welcome";
   private static final String DEFAULT_IMAGE_CMS_URI = "/images/WelcomeWidget/DefaultImage";
+  private static final String DEFAULT_LOCALE_AND_DOT = "_en.";
 
-  private UploadedFile originalImageFile;
   private List<WelcomeTextPosition> textPositions;
   private List<WelcomeTextSize> textSizes;
   private WelcomeDashboardWidget widget;
@@ -51,7 +52,6 @@ public class DashboardWelcomeWidgetConfigurationBean implements Serializable {
   private int parsedClientTime;
 
   public void init() {
-    this.setOriginalImageFile(null);
     this.setEncodedImg(null);
     setTextPositions(Arrays.asList(WelcomeTextPosition.values()));
     setTextSizes(Arrays.asList(WelcomeTextSize.values()));
@@ -84,29 +84,25 @@ public class DashboardWelcomeWidgetConfigurationBean implements Serializable {
     }
     
     if (StringUtils.isNotBlank(widget.getImageLocation())) {
-      try {
-        widget.setUploadedImageFile(new File(widget.getImageLocation()));
-        updateEncodedImage(FileUtils.readFileToByteArray(widget.getUploadedImageFile().getJavaFile()));
-      } catch (IOException e) {
-        Ivy.log().error(e);
-      }
+      updateEncodedImage(getWelcomeWidgetImage(false).read().bytes());
     }
   }
 
   public void handleFileUpload(FileUploadEvent event) throws IOException {
     UploadedFile file = event.getFile();
-  
-    // Save image to the temporary folder then use it as image for the widget while configuring.
+
     if (file != null && file.getContent() != null && file.getContent().length > 0 && file.getFileName() != null) {
-      this.setOriginalImageFile(file);
-      getWidget().setUploadedImageFile(new File(IMAGE_DIRECTORY.concat("/").concat(getWidget().getId()).concat("/").concat(file.getFileName())));
-      if (!getWidget().getUploadedImageFile().exists()) {
-        getWidget().getUploadedImageFile().createNewFile();
+      // If image is not saved, create location
+      if (StringUtils.isBlank(getWidget().getImageLocation())) {
+        getWidget().setImageLocation(getWidget().getId().concat(DEFAULT_LOCALE_AND_DOT).concat(file.getContentType().substring(file.getContentType().indexOf("/") + 1)));
+        getWidget().setImageType(file.getContentType());
       }
-      getWidget().getUploadedImageFile().writeBinary(new Binary(file.getContent()));
-      getWidget().setImageLocation(getWidget().getUploadedImageFile().getPath());
-      getWidget().setImageType(getOriginalImageFile().getContentType());
-      updateEncodedImage(getOriginalImageFile().getContent());
+
+      // save the temporary image
+      getWelcomeWidgetImage(true).write().bytes(file.getContent());
+
+      // update encoded image to display in dialog
+      updateEncodedImage(file.getContent());
     }
   }
 
@@ -140,14 +136,6 @@ public class DashboardWelcomeWidgetConfigurationBean implements Serializable {
 
   public void setTextPositions(List<WelcomeTextPosition> textPositions) {
     this.textPositions = textPositions;
-  }
-
-  public UploadedFile getOriginalImageFile() {
-    return originalImageFile;
-  }
-
-  public void setOriginalImageFile(UploadedFile originalImageFile) {
-    this.originalImageFile = originalImageFile;
   }
 
   public WelcomeDashboardWidget getWidget() {
@@ -190,5 +178,23 @@ public class DashboardWelcomeWidgetConfigurationBean implements Serializable {
   public boolean isApplicationDefaultEmailLanguage(String language) {
     Locale defaultLocale = new LanguageConfigurator(ISecurityContext.current()).content();
     return defaultLocale.toLanguageTag().equalsIgnoreCase(language);
+  }
+
+  private ContentObjectValue getWelcomeWidgetImage(boolean isTempImage) {
+    var app = IApplication.current();
+    var cms = ContentManagement.cms(app);
+
+    String imageName = widget.getImageLocation().substring(0, widget.getImageLocation().indexOf(DEFAULT_LOCALE_AND_DOT));
+    imageName = isTempImage ? "temp_".concat(imageName) : imageName;
+
+    String imageType = widget.getImageType().substring(widget.getImageType().indexOf("/") + 1);
+    return cms.root()
+      .child().folder(WELCOME_WIDGET_IMAGE_DIRECTORY).child()
+      .file(imageName, imageType)
+      .value().get("en");
+  }
+
+  private String getImageType() {
+    return getWidget().getImageType().substring(getWidget().getImageType().indexOf("/") + 1);
   }
 }
