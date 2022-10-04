@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "1473A12DE00609FB",
-  "data" : "ch.ivyteam.wf.processes.ProcessServiceData",
   "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "ch.ivyteam.wf.processes.ProcessServiceData"
+  },
   "elements" : [ {
       "id" : "f15",
       "type" : "CallSubStart",

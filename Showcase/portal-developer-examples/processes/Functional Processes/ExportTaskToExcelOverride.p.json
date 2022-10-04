@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "1754F24CA0462B0C",
-  "data" : "_com.axonivy.portal.developerexamples.ExportTaskToExcelOverrideData",
   "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "_com.axonivy.portal.developerexamples.ExportTaskToExcelOverrideData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",

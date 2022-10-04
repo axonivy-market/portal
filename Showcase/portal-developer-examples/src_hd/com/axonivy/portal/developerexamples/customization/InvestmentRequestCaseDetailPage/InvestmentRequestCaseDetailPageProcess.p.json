@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "1624D1BB2301B683",
-  "data" : "com.axonivy.portal.developerexamples.customization.InvestmentRequestCaseDetailPage.InvestmentRequestCaseDetailPageData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.portal.developerexamples.customization.InvestmentRequestCaseDetailPage.InvestmentRequestCaseDetailPageData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

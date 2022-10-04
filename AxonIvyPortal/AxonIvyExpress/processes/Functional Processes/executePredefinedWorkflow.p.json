@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "163729F2CBAE7BE4",
-  "data" : "gawfs.ExecutePredefinedWorkflowData",
   "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "gawfs.ExecutePredefinedWorkflowData"
+  },
   "elements" : [ {
       "id" : "f1",
       "type" : "CallSubEnd",
