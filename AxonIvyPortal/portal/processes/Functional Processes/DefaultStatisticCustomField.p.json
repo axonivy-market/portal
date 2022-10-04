@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "16A684441A0EF157",
-  "data" : "ch.ivy.addon.portalkit.DefaultStatisticCustomFieldData",
   "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "ch.ivy.addon.portalkit.DefaultStatisticCustomFieldData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",

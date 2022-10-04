@@ -1,7 +1,9 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "1626C02D46BF5153",
-  "data" : "ch.ivy.add.portalkit.Data",
+  "config" : {
+    "data" : "ch.ivy.add.portalkit.Data"
+  },
   "elements" : [ {
       "id" : "f6",
       "type" : "TaskEnd",

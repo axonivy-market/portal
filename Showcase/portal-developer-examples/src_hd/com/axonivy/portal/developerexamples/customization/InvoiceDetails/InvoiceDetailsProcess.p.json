@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "1791D2E2E5ADF37E",
-  "data" : "com.axonivy.portal.developerexamples.customization.InvoiceDetails.InvoiceDetailsData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.portal.developerexamples.customization.InvoiceDetails.InvoiceDetailsData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
