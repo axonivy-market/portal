@@ -24,7 +24,7 @@
     update="dashboard-tasks-container" global="false" async="true" process="@this"
     oncomplete="loadWidgetFirstTime('js-loading-#{taskWidget.id}', 'js-dashboard-tasks-container-#{taskWidget.id}'); #{cc.attrs.onCompleteLoadWidget}" />
   <div class="ui-g">
-    <h:outputText id="loading" styleClass="js-loading-#{taskWidget.id}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
+    <h:outputText id="loading" styleClass="js-loading-#{taskWidget.id} task-dashboard-widget__loading-message" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
       
     <h:panelGroup id="dashboard-tasks-container" layout="block" 
       styleClass="ui-g-12 u-padding-0 js-dashboard-tasks-container-#{taskWidget.id} u-display-none">
