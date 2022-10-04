@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    docker {
-      label 'nqhoanpc'
-      image 'mcr.microsoft.com/powershell'
-    }
-  }
+  agent any
 
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '2'))
@@ -22,8 +17,8 @@ pipeline {
           docker.withRegistry('', 'nqhoan-docker.io') {
             docker.image('maven:3.6.3-openjdk-17-slim').inside {
               version = getCurrentVersion()
-              maven cmd: 'clean process-resources -Divy.engine.version=[9.4.0,] -Divy.engine.list.url=https://jenkins.ivyteam.io/job/core_product/job/master/lastSuccessfulBuild/ -f Documentation/public-api/pom.xml'
-              maven cmd: 'clean generate-resources -f Documentation/pom.xml'
+              sh 'mvn clean process-resources -f Documentation/public-api/pom.xml'
+              sh 'mvn clean generate-resources -f Documentation/pom.xml'
             }
             
             docker.image('axonivy/build-container:read-the-docs-2').inside {
@@ -32,7 +27,7 @@ pipeline {
 
             docker.image('maven:3.6.3-openjdk-17-slim').inside {
               def phase = env.BRANCH_NAME == 'master' ? 'deploy' : 'install'
-              maven cmd: "clean ${phase} -f Documentation/pom.xml"
+              sh 'mvn clean ${phase} -f Documentation/pom.xml'
             }
           }
         }
