@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "17099FEAF8325AA8",
-  "data" : "com.axonivy.portal.userexamples.credit.CustomEndPage.CustomEndPageData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.portal.userexamples.credit.CustomEndPage.CustomEndPageData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

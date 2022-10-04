@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "15AE9CC2C41A3F66",
-  "data" : "ch.ivy.addon.portalkit.component.task.column.TaskResponsible.TaskResponsibleData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portalkit.component.task.column.TaskResponsible.TaskResponsibleData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
