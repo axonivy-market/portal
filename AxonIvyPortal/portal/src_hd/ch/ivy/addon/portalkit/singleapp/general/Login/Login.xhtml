@@ -44,6 +44,21 @@
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/forgotPassword')}" />
           </p:link>
         </h:panelGroup>
+        
+        <div class="login-oauth-providers">
+          <ul>
+            <c:forEach var="authProvider" items="#{data.oauthProviders}">
+              <li>
+                <h:outputLink value="${authProvider.link}">
+                  <h:outputText value="${authProvider.image}" escape="false" />
+                    <span>
+                      #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/LoginWith')} <h:outputText value="${authProvider.displayName}" />
+                    </span>
+                </h:outputLink>
+              </li>
+            </c:forEach>
+          </ul>
+        </div>
       </div>
       <h:panelGroup layout="block" class="login-footer" rendered="#{visibilityBean.showLoginFooter}">
         <h4>#{ivy.cms.co('/Labels/Login/CompanyName')}</h4>
