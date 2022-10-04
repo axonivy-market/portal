@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "1825CB45F86B23BB",
-  "data" : "com.axonivy.portal.components.examples.serenity.ProcessHistoryExampleSerenity.ProcessHistoryExampleSerenityData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.portal.components.examples.serenity.ProcessHistoryExampleSerenity.ProcessHistoryExampleSerenityData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

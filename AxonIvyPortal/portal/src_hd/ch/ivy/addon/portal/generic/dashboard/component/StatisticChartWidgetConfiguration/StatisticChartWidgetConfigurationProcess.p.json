@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "17FE498A0B4F9B30",
-  "data" : "ch.ivy.addon.portal.generic.dashboard.component.StatisticChartWidgetConfiguration.StatisticChartWidgetConfigurationData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portal.generic.dashboard.component.StatisticChartWidgetConfiguration.StatisticChartWidgetConfigurationData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
