@@ -128,7 +128,7 @@ public class AdminSettingsPage extends TemplatePage {
   public void setShowLegacyUI() {
     openSettingTab();
     editGlobalVariable(SHOW_LEGACY_UI.getKey(), "true", true);
-    closeConfirmationDialog();
+    clickOnbackToHomepageOnAdminSetting();
   }
 
   public void resetShowLegacyUI() {
