@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "1657E6622F0C0122",
-  "data" : "_com.axonivy.portal.developerexamples.LoadSubMenuItemsOverrideData",
   "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "_com.axonivy.portal.developerexamples.LoadSubMenuItemsOverrideData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",

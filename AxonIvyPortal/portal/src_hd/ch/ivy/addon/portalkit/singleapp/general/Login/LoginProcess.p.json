@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "14BE3DBF5F8C376B",
-  "data" : "ch.ivy.addon.portalkit.singleapp.general.Login.LoginData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portalkit.singleapp.general.Login.LoginData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
