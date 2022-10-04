@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "1818961DF63F4295",
-  "data" : "com.axonivy.portal.components.examples.override.UploadDocumentItemOverrideData",
   "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.portal.components.examples.override.UploadDocumentItemOverrideData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",

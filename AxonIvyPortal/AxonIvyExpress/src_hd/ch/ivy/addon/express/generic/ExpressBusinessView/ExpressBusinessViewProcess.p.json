@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "17326ECC60698A9A",
-  "data" : "ch.ivy.addon.express.generic.ExpressBusinessView.ExpressBusinessViewData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.express.generic.ExpressBusinessView.ExpressBusinessViewData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
