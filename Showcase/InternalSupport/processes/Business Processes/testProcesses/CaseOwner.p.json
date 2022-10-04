@@ -1,7 +1,9 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "16A68510A341BE6E",
-  "data" : "internaltest.CaseOwnerData",
+  "config" : {
+    "data" : "internaltest.CaseOwnerData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "RequestStart",

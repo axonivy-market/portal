@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "15DE4F365CA95344",
-  "data" : "internaltest.TestPortalCustomErrorHandler.TestPortalCustomErrorHandlerData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "internaltest.TestPortalCustomErrorHandler.TestPortalCustomErrorHandlerData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

@@ -1,7 +1,9 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "1818938E7EBC9329",
-  "data" : "com.axonivy.portal.components.examples.DocumentTableExampleData",
+  "config" : {
+    "data" : "com.axonivy.portal.components.examples.DocumentTableExampleData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "RequestStart",

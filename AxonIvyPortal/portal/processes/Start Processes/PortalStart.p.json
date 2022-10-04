@@ -1,7 +1,9 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "1549F58C18A6C562",
-  "data" : "ch.ivy.addon.portal.generic.PortalStartData",
+  "config" : {
+    "data" : "ch.ivy.addon.portal.generic.PortalStartData"
+  },
   "elements" : [ {
       "id" : "f10",
       "type" : "RequestStart",

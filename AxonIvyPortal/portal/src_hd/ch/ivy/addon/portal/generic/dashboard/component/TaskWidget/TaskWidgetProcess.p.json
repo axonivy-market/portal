@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "1706725B0593DA17",
-  "data" : "ch.ivy.addon.portal.generic.dashboard.component.TaskWidget.TaskWidgetData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portal.generic.dashboard.component.TaskWidget.TaskWidgetData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
