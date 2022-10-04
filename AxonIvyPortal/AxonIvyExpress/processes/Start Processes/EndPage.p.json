@@ -1,7 +1,9 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "1600BDF7CC0AE52F",
-  "data" : "ch.ivy.addon.express.generic.HandleEndPageData",
+  "config" : {
+    "data" : "ch.ivy.addon.express.generic.HandleEndPageData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "RequestStart",

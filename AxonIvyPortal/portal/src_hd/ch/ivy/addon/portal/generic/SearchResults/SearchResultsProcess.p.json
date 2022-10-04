@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "163A4BFC48261B85",
-  "data" : "ch.ivy.addon.portal.generic.SearchResults.SearchResultsData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portal.generic.SearchResults.SearchResultsData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
