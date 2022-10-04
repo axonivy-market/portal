@@ -24,7 +24,7 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = 3048837559125720787L;
 
-  private int rowsPerPage = 10;
+  private int rowsPerPage = 5;
   @JsonIgnore
   private DashboardTaskLazyDataModel dataModel;
   @JsonIgnore
