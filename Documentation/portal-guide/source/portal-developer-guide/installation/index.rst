@@ -270,7 +270,7 @@ Migrate 9.1 To 9.2
 
 9. If you have ``caseItemDetailCustomTop`` or ``caseItemDetailCustomMiddle`` or ``caseItemDetailCustomBottom`` customization, follow :ref:`How to override CaseItemDetail <customization-case-item-details>` to add these custom widgets.
 
-Migrate 8.X To 9.1
+Migrate 8.x To 9.1
 ------------------
 
 #. Remove the ``views`` field in SubMenuItem.java. Adapt it if you overrode the ``LoadSubMenuItems`` callable process
