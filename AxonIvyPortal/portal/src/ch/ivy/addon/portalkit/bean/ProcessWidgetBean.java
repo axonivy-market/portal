@@ -10,7 +10,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
@@ -75,7 +74,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   public void initProcesses() {
     super.init();
     processesByAlphabet = new HashMap<>();
-    groupProcessesByAlphabetIndex(portalProcesses);
+    groupProcessesByAlphabetIndex(getPortalProcesses());
   }
 
   private void initProcessViewMode() {
@@ -215,9 +214,8 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   public void deleteExpressWorkflow() {
     String workflowId = this.deletedProcess.getId();
     ExpressProcessService.getInstance().delete(workflowId);
-    portalProcesses.remove(
-        portalProcesses.stream().filter(process -> process.getId().equals(deletedProcess.getId())).findFirst().get());
-    groupProcessesByAlphabetIndex(portalProcesses);
+    getPortalProcesses().removeIf(process -> process.getId().equals(deletedProcess.getId()));
+    groupProcessesByAlphabetIndex(getPortalProcesses());
   }
 
   public void updateProcessData() {
@@ -299,16 +297,15 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     ExternalLinkBean externalLinkBean = (ExternalLinkBean) FacesContext.getCurrentInstance().getApplication()
         .getELResolver().getValue(FacesContext.getCurrentInstance().getELContext(), null, "externalLinkBean");
     externalLinkBean.saveNewExternalLink();
-    portalProcesses.add(new ExternalLinkProcessItem(externalLinkBean.getExternalLink()));
-    portalProcesses = new CopyOnWriteArrayList<Process>(sortProcesses(portalProcesses));
-    groupProcessesByAlphabetIndex(portalProcesses);
+    getPortalProcesses().add(new ExternalLinkProcessItem(externalLinkBean.getExternalLink()));
+    sortProcesses(getPortalProcesses());
+    groupProcessesByAlphabetIndex(getPortalProcesses());
   }
 
   public void deleteExternalLink() {
     ExternalLinkService.getInstance().delete(this.deletedProcess.getId());
-    portalProcesses.remove(portalProcesses.stream()
-        .filter(process -> process.getId().equals(this.deletedProcess.getId())).findFirst().get());
-    groupProcessesByAlphabetIndex(portalProcesses);
+    getPortalProcesses().removeIf(process -> process.getId().equals(this.deletedProcess.getId()));
+    groupProcessesByAlphabetIndex(getPortalProcesses());
   }
 
   public String getCreateExpessWorkflowLink() {
