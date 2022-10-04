@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "17079E5EB3A9C649",
-  "data" : "com.axonivy.portal.userexamples.credit.VerifyPersonalData.VerifyPersonalDataData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.portal.userexamples.credit.VerifyPersonalData.VerifyPersonalDataData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
