@@ -1,7 +1,9 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "17B2F35B7DC5B800",
-  "data" : "com.axonivy.portal.developerexamples.showcase.CustomWidgetExampleData",
+  "config" : {
+    "data" : "com.axonivy.portal.developerexamples.showcase.CustomWidgetExampleData"
+  },
   "elements" : [ {
       "id" : "f1",
       "type" : "TaskEnd",

@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "178DA0DE8672E8A1",
-  "data" : "ch.ivy.addon.portalkit.component.TaskExpiryActivatorSelection.TaskExpiryActivatorSelectionData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portalkit.component.TaskExpiryActivatorSelection.TaskExpiryActivatorSelectionData"
+  },
   "elements" : [ {
       "id" : "S10",
       "type" : "EmbeddedProcess",
