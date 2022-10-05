@@ -47,7 +47,7 @@ public class DashboardTemplateSelectionBean extends DashboardModificationBean im
   private void mappingCommonDataToNewDashboard(String templateId, String dashboardId) {
     this.selectedDashboard.setTemplateId(templateId);
     this.selectedDashboard.setId(dashboardId);
-    this.selectedDashboard.setTitle(null);
+    this.selectedDashboard.setTitles(new ArrayList<>());
     this.selectedDashboard.setIcon(this.isPublicDashboard ? PUBLIC_DASHBOARD_DEFAULT_ICON : PRIVATE_DASHBOARD_DEFAULT_ICON);
   }
 }

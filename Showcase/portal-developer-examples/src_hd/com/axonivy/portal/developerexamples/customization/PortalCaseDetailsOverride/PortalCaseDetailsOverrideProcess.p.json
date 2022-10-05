@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "176EF69EC66B4E37",
-  "data" : "com.axonivy.portal.developerexamples.customization.PortalCaseDetailsOverride.PortalCaseDetailsOverrideData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.portal.developerexamples.customization.PortalCaseDetailsOverride.PortalCaseDetailsOverrideData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

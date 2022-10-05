@@ -4,19 +4,23 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
-import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
-import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivy.addon.portalkit.util.LanguageUtils;
+import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class UserMenu extends AbstractConfiguration implements Serializable {
 
   private static final long serialVersionUID = 2765618265355842745L;
 
+  @Deprecated(since = "10.0", forRemoval = true)
+  @JsonProperty(access = Access.WRITE_ONLY)
   private String title;
+  private List<DisplayName> titles;
 
   private String url;
 
@@ -25,14 +29,21 @@ public class UserMenu extends AbstractConfiguration implements Serializable {
   private Map<String, String> params;
 
   public String getTitle() {
-    if (StringUtils.startsWithIgnoreCase(title, DashboardConfigurationPrefix.CMS)) {
-      return Ivy.cms().co(StringUtils.removeStart(title, DashboardConfigurationPrefix.CMS));
-    }
-    return title;
+    return LanguageUtils.getLocalizedName(titles, title);
   }
 
   public void setTitle(String title) {
-    this.title = title;
+    NameResult nameResult = LanguageUtils.collectMultilingualNames(titles, title);
+    this.titles = nameResult.names();
+    this.title = nameResult.name();
+  }
+
+  public List<DisplayName> getTitles() {
+    return titles;
+  }
+
+  public void setTitles(List<DisplayName> titles) {
+    this.titles = titles;
   }
 
   public String getUrl() {

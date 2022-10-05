@@ -10,15 +10,19 @@ import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivy.addon.portalkit.util.LanguageUtils;
+import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
@@ -40,7 +44,10 @@ public abstract class DashboardWidget implements Serializable {
   private static final long serialVersionUID = 4580715578128184706L;
   
   protected String id;
+  @Deprecated(since = "10.0", forRemoval = true)
+  @JsonProperty(access = Access.WRITE_ONLY)
   protected String name;
+  protected List<DisplayName> names;
   private WidgetLayout layout;
 
   @JsonIgnore
@@ -61,6 +68,7 @@ public abstract class DashboardWidget implements Serializable {
   public DashboardWidget(DashboardWidget widget) {
     id = widget.getId();
     name = widget.getName();
+    names = widget.getNames();
     setLayout(widget.getLayout());
     autoPosition = widget.getAutoPosition();
     hasPredefinedFilter = widget.isHasPredefinedFilter();
@@ -172,14 +180,21 @@ public abstract class DashboardWidget implements Serializable {
   }
 
   public String getName() {
-    if (StringUtils.startsWithIgnoreCase(name, DashboardConfigurationPrefix.CMS)) {
-      return Ivy.cms().co(StringUtils.removeStart(name, DashboardConfigurationPrefix.CMS));
-    }
-    return name;
+    return LanguageUtils.getLocalizedName(names, name);
   }
 
   public void setName(String name) {
-    this.name = name;
+    NameResult nameResult = LanguageUtils.collectMultilingualNames(names, name);
+    this.names = nameResult.names();
+    this.name = nameResult.name();
+  }
+
+  public List<DisplayName> getNames() {
+    return names;
+  }
+
+  public void setNames(List<DisplayName> names) {
+    this.names = names;
   }
 
   public WidgetLayout getLayout() {

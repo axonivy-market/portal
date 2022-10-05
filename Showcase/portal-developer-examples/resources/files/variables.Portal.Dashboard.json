@@ -1,7 +1,24 @@
 [
   {
     "id": "default-dashboard",
-    "title": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/dashboard",
+    "titles": [
+      {
+        "locale": "en",
+        "value": "Dashboard"
+      },
+      {
+        "locale": "fr",
+        "value": "Dashboard"
+      },
+      {
+        "locale": "de",
+        "value": "Dashboard"
+      },
+      {
+        "locale": "es",
+        "value": "Dashboard"
+      }
+    ],
     "widgets": [
       {
         "type": "task",
@@ -61,7 +78,12 @@
       {
         "type": "compact-process",
         "id": "compact_mode_10",
-        "name": "Process Widget",
+        "names": [
+          {
+            "locale": "en",
+            "value": "Process Widget"
+          }
+        ],
         "layout": {
           "x": 9, "y": 0, "w": 3, "h": 4
         }
@@ -166,38 +188,48 @@
       {
         "type": "compact-process",
         "id": "compact_mode_20",
-        "name": "Process Widget",
+        "names": [
+          {
+            "locale": "en",
+            "value": "Process Widget"
+          }
+        ],
         "layout": {
           "x": 9, "y": 0, "w": 3, "h": 4
         },
         "categories": ["CostObject"]
       },
       {
-         "type": "custom",
-         "id": "custom-widget",
-         "name": "Custom Widget",
-         "layout": {
-            "x": 10, "y": 11, "w": 12, "h": 5
-         },
-         "data" : {
-           "processStart": "Start Processes/DashboardCustomWidgetExample/investmentList.ivp",
-           "params": [
-               {
-                  "type": "user",
-                  "name": "customer",
-                  "value": "demo"
-               },
-               {
-                  "type": "date",
-                  "name": "startDate",
-                  "value": "11/19/2021"
-               },
-               {
-                  "type": "string",
-                  "name": "note",
-                  "value": "a short note for user"
-               }
-            ]
+        "type": "custom",
+        "id": "custom-widget",
+        "names": [
+          {
+            "locale": "en",
+            "value": "Custom Widget"
+          }
+        ],
+        "layout": {
+          "x": 10, "y": 11, "w": 12, "h": 5
+        },
+        "data": {
+          "processStart": "Start Processes/DashboardCustomWidgetExample/investmentList.ivp",
+          "params": [
+            {
+              "type": "user",
+              "name": "customer",
+              "value": "demo"
+            },
+            {
+              "type": "date",
+              "name": "startDate",
+              "value": "11/19/2021"
+            },
+            {
+              "type": "string",
+              "name": "note",
+              "value": "a short note for user"
+            }
+          ]
         }
       }
     ]

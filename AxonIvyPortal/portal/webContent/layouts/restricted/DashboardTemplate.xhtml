@@ -81,7 +81,8 @@
                       <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessDashboardWidget widget="#{widget}"
                         isReadOnlyMode="#{managedBean.isReadOnlyMode}"
                         index="#{status.index}"
-                        id="process-#{widget.id}" />
+                        id="process-#{widget.id}"
+                        isPublicDashboard="#{managedBean.selectedDashboard.isPublic}" />
                     </c:if>
 
                     <!-- Statistic widget -->

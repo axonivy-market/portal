@@ -12,7 +12,7 @@
 
 <cc:implementation>
   <c:set var="case" value="#{cc.attrs.case}" />
-  <f:event listener="#{caseDetailsBean.setInFrame(cc.attrs.inFrame)}" type="preRenderView" />
+  <f:event listener="#{caseDetailsBean.setInFrame(cc.attrs.inFrame)}" type="preRenderComponent" />
   <div class="ui-g-12 u-padding-0">
     <div class="case-detail-title">
       <h:outputText
