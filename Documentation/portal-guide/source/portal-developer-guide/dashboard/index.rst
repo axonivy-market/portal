@@ -45,7 +45,16 @@ Below find a JSON example for the configuration of dashboards.
       {
          "id": "default-dashboard",
          "templateId": "template-id"
-         "title": "cms:/dashboard/DefaultDashboard",
+         "titles": [
+            {
+            "locale": "en",
+            "value": "Dashboard"
+            },
+            {
+            "locale": "de",
+            "value": "Dashboard"
+            }
+         ],
          "widgets": [
             {
                "type": "task",
@@ -66,7 +75,12 @@ Below find a JSON example for the configuration of dashboards.
       },
       {
          "id": "general-dashboard",
-         "title": "General Dashboard",
+         "titles": [
+            {
+            "locale": "en",
+            "value": "General Dashboard"
+            }
+         ],
          "permissions": ["Employee", "CIO", "#daniel"],
          "widgets": [
             {
@@ -88,9 +102,7 @@ Structure of the JSON for each dashboard:
 
    ``templateId``: the key to identify the predefined template this dashboard is referring to.
 
-   ``title``: title of dashboard. You can input a string as dashboard
-   title, or can use CMS by using prefix ``cms:`` before your CMS URI
-   to define dashboard title in multilingual.
+   ``titles``: multilingual title of dashboard.
 
    ``permissions``: roles can access the dashboard.
 
