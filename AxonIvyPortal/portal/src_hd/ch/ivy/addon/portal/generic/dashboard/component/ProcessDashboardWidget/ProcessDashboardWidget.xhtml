@@ -5,12 +5,15 @@
   <cc:attribute name="index" required="true" />
   <cc:attribute name="widget" required="true" />
   <cc:attribute name="isReadOnlyMode" default="false" />
+  <cc:attribute name="isPublicDashboard" default="true"/>
 </cc:interface>
 
 <cc:implementation>
   <c:set var="index" value="#{cc.attrs.index}" />
   <c:set var="widget" value="#{cc.attrs.widget}" />
   <c:set var="displayMode" value="#{widget.displayMode}" />
+
+  <f:event listener="#{dashboardProcessBean.initPortalDashboardProcesses(cc.attrs.isPublicDashboard)}" type="preRenderComponent"/>
 
   <c:if test="#{displayMode eq 'COMPACT_MODE'}">
     <ui:decorate template="/layouts/restricted/decorator/TableWidget.xhtml">
