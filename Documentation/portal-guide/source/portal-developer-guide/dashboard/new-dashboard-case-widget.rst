@@ -16,7 +16,16 @@ Below is a sample JSON definition of the case widget in the Portal dashboard.
    {
       "type": "case",
       "id": "case-widget",
-      "name": "Case Widget",
+      "names": [
+         {
+         "locale": "en",
+         "value": "Your Cases"
+         },
+         {
+         "locale": "de",
+         "value": "Ihre Vorgänge"
+         }
+      ],
       "layout": {
          "x": 0, "y": 0, "w": 10, "h": 9,
          "style": "text-color: blue;",
@@ -40,7 +49,16 @@ Below is a sample JSON definition of the case widget in the Portal dashboard.
          },
          {
             "field": "state",
-            "header": "cms:/your_state_header_cms"
+            "headers": [
+               {
+               "locale": "en",
+               "value": "State"
+               },
+               {
+               "locale": "de",
+               "value": "Status"
+               }
+            ]
          },
          {
             "field": "startTimestamp"
@@ -57,7 +75,7 @@ The basic JSON structure of the case widget
 
 -  ``id``: ID of the widget
 
--  ``name``: Name of the widget on the UI
+-  ``names``: multilingual name of the widget on the UI.
 
 -  ``layout``: layout definition of the case widget
 
@@ -115,9 +133,7 @@ The basic JSON structure of the case widget
    -  ``visible``: visibility of a column. The default value is "true". Set to
       "false" to hide the column.
 
-   -  ``header``: header text of the column. You can input a string, or you can
-      use the CMS by setting prefix ``cms:`` before your CMS URI to define a
-      multilingual column header.
+   -  ``headers``: multilingual header of the column.
 
 Custom Columns
 --------------

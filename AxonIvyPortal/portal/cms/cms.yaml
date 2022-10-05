@@ -383,7 +383,6 @@ ch.ivy.addon.portalkit.ui.jsf:
   common:
     BusinessCaseInformation: Business Case Information
     CollapseAll: Collapse all
-    DefaultTemplate: Default template
     ExpandAll: Expand all
     NoSelection: No Selection
     ResetToDefaultHeaderText: Reset to default settings?

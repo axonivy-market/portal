@@ -159,7 +159,7 @@
   <ui:include src="ProcessWidgetDialogs.xhtml" />
 
   <h:form>
-    <p:remoteCommand name="updateProcessListOnSaveSuccessfull" update="#{cc.clientId}:process-list #{cc.clientId}:process-nav"
+    <p:remoteCommand name="updateProcessListOnSaveSuccessful" update="#{cc.clientId}:process-list #{cc.clientId}:process-nav"
       oncomplete="processWidget.setup();processWidget.hideLoadingText();"/>
   </h:form>
 

@@ -2,7 +2,6 @@ package ch.ivy.addon.portalkit.dto.dashboard.taskcolumn;
 
 import java.io.Serializable;
 
-import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 
 public class StartColumnModel extends TaskColumnModel implements Serializable {
@@ -16,11 +15,6 @@ public class StartColumnModel extends TaskColumnModel implements Serializable {
     this.style = defaultIfEmpty(this.style, getDefaultStyle());
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.sortable = getDefaultSortable();
-  }
-
-  @Override
-  public String getHeaderText() {
-    return translateHeader(defaultIfEmpty(this.header, DashboardConfigurationPrefix.CMS + getDefaultHeaderCMS()));
   }
 
   @Override

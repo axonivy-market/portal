@@ -1,7 +1,9 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "16150F67EE2A7F31",
-  "data" : "internaltest.TestStatisticWidgetData",
+  "config" : {
+    "data" : "internaltest.TestStatisticWidgetData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "RequestStart",

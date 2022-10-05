@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "18258762620EAFB4",
-  "data" : "com.axonivy.portal.components.examples.serenity.DocumentTableExampleSerenity.DocumentTableExampleSerenityData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.portal.components.examples.serenity.DocumentTableExampleSerenity.DocumentTableExampleSerenityData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "178C423AA9D37D99",
-  "data" : "ch.ivy.addon.portal.generic.dashboard.component.ProcessCaseWidget.ProcessCaseWidgetData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portal.generic.dashboard.component.ProcessCaseWidget.ProcessCaseWidgetData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

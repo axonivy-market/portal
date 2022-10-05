@@ -55,7 +55,7 @@ of default users:
    |                       |                       | permission to manage  |
    |                       |                       | user absences.        |
    +-----------------------+-----------------------+-----------------------+
-   | guest                 | guest                 | Default normal user   |
+   | guest                 | guest                 | Default standard user |
    |                       |                       | of the portal.        |
    +-----------------------+-----------------------+-----------------------+
 
@@ -205,8 +205,8 @@ Migrate 9.3 To 9.4
       * Run migration process only once
       * You must remove some process models: ``portal-migration``, ``PortalStyle``, ``PortalKit`` and ``PortalTemplate`` after successfully migrating.
 
-Migrate To 9.3
---------------
+Migrate 9.2 To 9.3
+------------------
 
 #. Deploy :download:`portal-migration.iar <documents/portal-migration-9.3.0.iar>` project to your Ivy application and run it by access link
    ``your_host/your_application/pro/portal-migration/175F92F71BC45295/startMigrateConfiguration.ivp``
@@ -270,7 +270,7 @@ Migrate 9.1 To 9.2
 
 9. If you have ``caseItemDetailCustomTop`` or ``caseItemDetailCustomMiddle`` or ``caseItemDetailCustomBottom`` customization, follow :ref:`How to override CaseItemDetail <customization-case-item-details>` to add these custom widgets.
 
-Migrate 8.X To 9.1
+Migrate 8.x To 9.1
 ------------------
 
 #. Remove the ``views`` field in SubMenuItem.java. Adapt it if you overrode the ``LoadSubMenuItems`` callable process

@@ -1,8 +1,42 @@
 [
   {
     "id": "default-portal-dashboard-template",
-    "title": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/DefaultTemplate",
-    "description": "cms:/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/DefaultTemplateDescription",
+    "titles": [
+      {
+        "locale": "en",
+        "value": "Default template"
+      },
+      {
+        "locale": "fr",
+        "value": "Modèle standard"
+      },
+      {
+        "locale": "de",
+        "value": "Standard Vorlage"
+      },
+      {
+        "locale": "es",
+        "value": "Patrón estandard"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "en",
+        "value": "Create dashboard with 1 Task list, 1 Case list, and 1 Process list"
+      },
+      {
+        "locale": "fr",
+        "value": "Créer un tableau de bord avec une liste de tâches, une liste de cas et une liste de processus."
+      },
+      {
+        "locale": "de",
+        "value": "Dashboard mit 1 Aufgabenliste, 1 Vorgangsliste und 1 Prozessliste erstellen"
+      },
+      {
+        "locale": "es",
+        "value": "Crear un cuadro de mando con 1 lista de tareas, 1 lista de casos y 1 lista de procesos"
+      }
+    ],
     "icon": "si-layout-dashboard",
     "dashboard": {
       "id": "public-4",
@@ -12,10 +46,15 @@
         {
           "type": "task",
           "id": "",
-          "name": "Your Tasks",
+          "names": [
+            {
+              "locale": "en",
+              "value": "Your Tasks"
+            }
+          ],
           "layout": {
             "w": 12,
-            "h": 6,
+            "h": 5,
             "x": 0,
             "y": 0
           },
@@ -63,12 +102,17 @@
         {
           "type": "case",
           "id": "",
-          "name": "Your Cases",
+          "names": [
+            {
+              "locale": "en",
+              "value": "Your Cases"
+            }
+          ],
           "layout": {
             "w": 9,
-            "h": 6,
+            "h": 5,
             "x": 0,
-            "y": 6
+            "y": 5
           },
           "rowsPerPage": 5,
           "sortDescending": true,
@@ -113,12 +157,17 @@
         {
           "type": "compact-process",
           "id": "",
-          "name": "Your Processes",
+          "names": [
+            {
+              "locale": "en",
+              "value": "Processes"
+            }
+          ],
           "layout": {
             "w": 3,
-            "h": 6,
+            "h": 5,
             "x": 9,
-            "y": 6
+            "y": 5
           }
         }
       ],
@@ -129,8 +178,42 @@
   },
   {
     "id": "two-task-widget-dashboard-template",
-    "title": "cms:/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/TwoTaskTemplate",
-    "description": "cms:/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/TwoTaskTemplateDescription",
+    "titles": [
+      {
+        "locale": "en",
+        "value": "Two Task list dashboard"
+      },
+      {
+        "locale": "fr",
+        "value": "Tableau de bord de deux listes de tâche"
+      },
+      {
+        "locale": "de",
+        "value": "Zwei Aufgabenlisten Dashboard"
+      },
+      {
+        "locale": "es",
+        "value": "Dos cuadros de mando de la lista de tareas"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "en",
+        "value": "Create dashboard with 2 Task lists and 1 Process list"
+      },
+      {
+        "locale": "fr",
+        "value": "Créez un tableau de bord avec 2 listes de tâches et 1 liste de processus."
+      },
+      {
+        "locale": "de",
+        "value": "Dashboard mit 2 Aufgabenlisten und 1 Prozessliste erstellen"
+      },
+      {
+        "locale": "es",
+        "value": "Crear un cuadro de mando con 2 listas de tareas y 1 lista de procesos"
+      }
+    ],
     "icon": "si-layout-dashboard",
     "dashboard": {
       "id": "",
@@ -140,10 +223,15 @@
         {
           "type": "task",
           "id": "",
-          "name": "Open Tasks",
+          "names": [
+            {
+              "locale": "en",
+              "value": "Open Tasks"
+            }
+          ],
           "layout": {
             "w": 9,
-            "h": 6,
+            "h": 5,
             "x": 0,
             "y": 0
           },
@@ -197,12 +285,17 @@
         {
           "type": "task",
           "id": "",
-          "name": "Working Tasks",
+          "names": [
+            {
+              "locale": "en",
+              "value": "Working Tasks"
+            }
+          ],
           "layout": {
             "w": 9,
-            "h": 6,
+            "h": 5,
             "x": 0,
-            "y": 6
+            "y": 5
           },
           "rowsPerPage": 5,
           "sortDescending": true,
@@ -255,10 +348,15 @@
         {
           "type": "compact-process",
           "id": "",
-          "name": "Your Processes",
+          "names": [
+            {
+              "locale": "en",
+              "value": "Your Processes"
+            }
+          ],
           "layout": {
             "w": 3,
-            "h": 12,
+            "h": 10,
             "x": 9,
             "y": 0
           }

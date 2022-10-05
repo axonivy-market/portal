@@ -1,7 +1,9 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "178ED537303DFF8E",
-  "data" : "com.axonivy.portal.developerexamples.ExampleApplicationProcessesData",
+  "config" : {
+    "data" : "com.axonivy.portal.developerexamples.ExampleApplicationProcessesData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "RequestStart",

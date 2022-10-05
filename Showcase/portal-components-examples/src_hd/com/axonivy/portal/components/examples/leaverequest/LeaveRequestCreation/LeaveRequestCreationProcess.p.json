@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "1703359FD55C9418",
-  "data" : "com.axonivy.portal.components.examples.leaverequest.LeaveRequestCreation.LeaveRequestCreationData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.portal.components.examples.leaverequest.LeaveRequestCreation.LeaveRequestCreationData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
