@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "172546E1FDEB1FF7",
-  "data" : "ch.ivy.addon.portal.setting.UserProfile.UserProfileData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portal.setting.UserProfile.UserProfileData"
+  },
   "elements" : [ {
       "id" : "S90",
       "type" : "EmbeddedProcess",

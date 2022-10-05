@@ -308,7 +308,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE) {
           updateProcessWidget((SingleProcessDashboardWidget) processWidget, 6, 5);
         } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) {
-          updateProcessWidgetSize(processWidget, 8, 3);
+          updateProcessWidgetSize(processWidget, 5, 3);
           CompactProcessDashboardWidget compactProcessWidget = (CompactProcessDashboardWidget) processWidget;
           unifyCompactProcessCategory(compactProcessWidget);
           updateProcessesOfWidget(compactProcessWidget);

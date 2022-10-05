@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "161936E158EBC57F",
-  "data" : "com.axonivy.portal.components.SetCaseBusinessEntityData",
   "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.portal.components.SetCaseBusinessEntityData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",

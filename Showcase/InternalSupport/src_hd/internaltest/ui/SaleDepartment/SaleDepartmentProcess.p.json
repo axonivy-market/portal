@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "161D076AC41F1C4E",
-  "data" : "internaltest.ui.SaleDepartment.SaleDepartmentData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "internaltest.ui.SaleDepartment.SaleDepartmentData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

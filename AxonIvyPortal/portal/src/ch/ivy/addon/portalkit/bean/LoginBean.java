@@ -8,7 +8,7 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-import ch.ivyteam.ivy.application.restricted.di.ApplicationContext;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -27,7 +27,7 @@ public class LoginBean implements Serializable {
   }
 
   public String loginPageTitle() {
-    return ApplicationContext.current().getName() + StringUtils.SPACE
+    return IApplication.current().getName() + StringUtils.SPACE
         + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/login/login");
   }
 }

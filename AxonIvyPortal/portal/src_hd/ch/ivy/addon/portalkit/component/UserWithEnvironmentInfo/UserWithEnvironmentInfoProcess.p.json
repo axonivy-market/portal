@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "1705775E741380D0",
-  "data" : "ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo.UserWithEnvironmentInfoData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo.UserWithEnvironmentInfoData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
