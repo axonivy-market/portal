@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "14BE3DBF5F8C376B",
-  "data" : "ch.ivy.addon.portalkit.singleapp.general.Login.LoginData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portalkit.singleapp.general.Login.LoginData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
@@ -32,12 +34,12 @@
         "size" : { "width" : 20, "height" : 20 },
         "labelOffset" : { "x" : 53, "y" : 20 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : { "id" : "f14", "to" : "f7" }
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 96, "y" : 192 },
+        "at" : { "x" : 96, "y" : 256 },
         "size" : { "width" : 20, "height" : 20 }
       }
     }, {
@@ -151,5 +153,22 @@
         "at" : { "x" : 224, "y" : 416 },
         "size" : { "width" : 128, "height" : 60 }
       }
+    }, {
+      "id" : "f7",
+      "type" : "Script",
+      "name" : "fetch oauth providers",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.OAuthProviderService;",
+            "",
+            "in.oauthProviders = OAuthProviderService.getInstance().getOAuthProviders(in.callbackUrl);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
     } ]
 }

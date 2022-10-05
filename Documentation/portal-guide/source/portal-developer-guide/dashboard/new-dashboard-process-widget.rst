@@ -16,7 +16,12 @@ The basic structure of the JSON of a process widget is as follows:
       {
          "type": "compact-process",
          "id": "process-widget",
-         "name": "Process Widget",
+         "names": [
+            {
+               "locale": "en",
+               "value": "Process Widget"
+            }
+         ],
          "layout": {
             "x": 10, "y": 0, "w": 2, "h": 4
          }
@@ -31,7 +36,7 @@ modes: ``compact-process`` (compact mode), ``combined-process`` (combined mode),
 
    ``id``: ID of the widget
 
-   ``name``: Name of the widget on UI
+   ``names``: multilingual name of the widget on UI.
 
    ``layout``: layout definition of the widget
 
@@ -60,7 +65,12 @@ Below is a standard JSON definition of aProcess widget in compact mode
       {
          "type": "compact-process",
          "id": "compact_mode",
-         "name": "Process Widget",
+         "names": [
+            {
+               "locale": "en",
+               "value": "Process Widget"
+            }
+         ],
          "layout": {
             "x": 10, "y": 0, "w": 2, "h": 4
          },
@@ -91,7 +101,12 @@ Below is a standard JSON definition of a Process widget in combined mode
       {
          "type": "combined-process",
          "id": "combined_mode",
-         "name": "Process Widget",
+         "names": [
+            {
+               "locale": "en",
+               "value": "Process Widget"
+            }
+         ],
          "layout": {
             "x": 10, "y": 0, "w": 2, "h": 4
          },
@@ -116,7 +131,12 @@ Below is a standard JSON definition of a Process widget in full mode
       {
          "type": "full-process",
          "id": "full_mode",
-         "name": "Process Widget",
+         "names": [
+            {
+               "locale": "en",
+               "value": "Process Widget"
+            }
+         ],
          "layout": {
             "x": 10, "y": 0, "w": 2, "h": 4
          },
@@ -134,7 +154,12 @@ Below is a standard JSON definition of the Process widget in image mode
       {
          "type": "image-process",
          "id": "image_mode",
-         "name": "Process Widget",
+         "names": [
+            {
+               "locale": "en",
+               "value": "Process Widget"
+            }
+         ],
          "layout": {
             "x": 10, "y": 0, "w": 2, "h": 4
          },

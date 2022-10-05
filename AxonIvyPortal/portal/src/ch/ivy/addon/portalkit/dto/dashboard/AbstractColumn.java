@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.dto.dashboard;
 
+import static java.util.Objects.isNull;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,17 +14,19 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
-import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardFilterType;
 import ch.ivy.addon.portalkit.util.Dates;
+import ch.ivy.addon.portalkit.util.LanguageUtils;
+import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
-
-import static java.util.Objects.isNull;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public abstract class AbstractColumn implements Serializable {
@@ -37,7 +41,10 @@ public abstract class AbstractColumn implements Serializable {
   @JsonIgnore
   public static final String EXTRA_WIDTH = "width: 150px";
 
+  @Deprecated(since = "10.0", forRemoval = true)
+  @JsonProperty(access = Access.WRITE_ONLY)
   protected String header;
+  protected List<DisplayName> headers;
   protected String field;
   protected String styleClass;
   protected String fieldStyleClass;
@@ -150,11 +157,21 @@ public abstract class AbstractColumn implements Serializable {
   }
 
   public String getHeader() {
-    return header;
+    return LanguageUtils.getLocalizedName(headers, header);
   }
 
   public void setHeader(String header) {
-    this.header = header;
+    NameResult nameResult = LanguageUtils.collectMultilingualNames(headers, header);
+    this.headers = nameResult.names();
+    this.header = nameResult.name();
+  }
+
+  public List<DisplayName> getHeaders() {
+    return headers;
+  }
+
+  public void setHeaders(List<DisplayName> headers) {
+    this.headers = headers;
   }
 
   public String getField() {
@@ -312,10 +329,7 @@ public abstract class AbstractColumn implements Serializable {
 
   @JsonIgnore
   public String getHeaderText() {
-    if (StringUtils.startsWithIgnoreCase(header, DashboardConfigurationPrefix.CMS)) {
-      return Ivy.cms().co(StringUtils.removeStart(header, DashboardConfigurationPrefix.CMS));
-    }
-    return this.header;
+    return getHeader();
   }
 
   public List<String> getFilterListOptions() {

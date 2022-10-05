@@ -12,7 +12,6 @@ import ch.ivy.addon.portalkit.bean.CombinedDashboardProcessBean;
 import ch.ivy.addon.portalkit.bean.CompactDashboardProcessBean;
 import ch.ivy.addon.portalkit.bean.FullDashboardProcessBean;
 import ch.ivy.addon.portalkit.bean.ImageDashboardProcessBean;
-import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
@@ -32,7 +31,6 @@ public class ApplicationColumnModel extends ProcessColumnModel implements Serial
   @Override
   public void initDefaultValue() {
     super.initDefaultValue();
-    this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/APPLICATION");
     this.field = DashboardStandardProcessColumn.APPLICATION.getField();
     this.style = defaultIfEmpty(this.style, TINY_WIDTH);
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__priority u-text-align-center");
@@ -43,12 +41,7 @@ public class ApplicationColumnModel extends ProcessColumnModel implements Serial
   public String getDefaultHeaderCMS() {
     return "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/APPLICATION";
   }
-  
-  @Override
-  public String getHeaderText() {
-    return translateHeader(defaultIfEmpty(this.header, DashboardConfigurationPrefix.CMS + getDefaultHeaderCMS()));
-  }
-  
+
   @JsonIgnore
   public List<String> getApplications() {
     return ListUtilities.transformList(IApplicationRepository.instance().allOf(ISecurityContext.current()), IApplication::getName);

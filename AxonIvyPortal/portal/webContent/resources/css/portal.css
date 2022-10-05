@@ -122,6 +122,14 @@ body .layout-wrapper .menu-wrapper .sidebar-logo .portal-home-logo-small img {
 .login-body .login-panel .login-panel-header img {
   height: var(--login-logo-height); }
 
+.login-body .login-panel .login-oauth-providers ul {
+  list-style-type: none; 
+  padding-left: 0px; }
+
+.login-body .login-panel .login-oauth-providers span {
+  position: relative; 
+  bottom: 5px; }
+
 /*Style For Color Header --------------------------------------------------------------------------------------*/
 .first-header-bar {
   width: 70%;
@@ -168,6 +176,12 @@ a.compact-task-start-link .task-start-list-item {
 
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item {
   background-color: var(--item-widget-background-color); }
+
+.process-grid__header.ui-commandlink {
+  color: var(--process-grid-header-color); }
+
+.process-grid__header.ui-commandlink:hover {
+  text-decoration: none; }
 
 /*Style For Process Widget --------------------------------------------------------------------------------*/
 .process-start-list-item:hover .process-start-list-item-icon {

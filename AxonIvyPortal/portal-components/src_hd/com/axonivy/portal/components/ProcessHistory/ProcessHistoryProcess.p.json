@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "180F979F5AF44684",
-  "data" : "com.axonivy.portal.components.ProcessHistory.ProcessHistoryData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.portal.components.ProcessHistory.ProcessHistoryData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

@@ -1,7 +1,9 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "17F2050944B46BB0",
-  "data" : "portalKit_test.DashboardCreationData",
+  "config" : {
+    "data" : "portalKit_test.DashboardCreationData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "RequestStart",
