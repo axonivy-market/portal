@@ -63,9 +63,9 @@ The default users for demonstration of Portal.
 | -------- | ------------------------------------------------------------------------------- |
 | admin    | This user has all Portal permissions, which can access to Portal Admin Settings |
 | demo     | This user has permission to manage user absences                                |
-| guest    | Default normal user of the Portal                                               |
+| guest    | Default standard user of the Portal                                             |
 
 
 ### Hints
 
-We recommend reading the document detail in the **Portal guideline** in the section **Developer Guide** to get more information about installation **Portal** to your workspaces.
+We recommend reading the document detail in the **Portal guideline** in the section **Developer Guide** to get more information about installing **Portal** to your workspaces.

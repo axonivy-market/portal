@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "178A0F7DD8A74A94",
-  "data" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8.GlobalGrowlIFrame8Data",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8.GlobalGrowlIFrame8Data"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

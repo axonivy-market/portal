@@ -22,7 +22,7 @@
     update="dashboard-cases-container" global="false" async="true" process="@this"
     oncomplete="loadWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); #{cc.attrs.onCompleteLoadWidget}" />
   <div class="ui-g">
-    <h:outputText id="loading" styleClass="js-loading-#{caseWidget.id}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
+    <h:outputText id="loading" styleClass="js-loading-#{caseWidget.id} case-dashboard-widget__loading-message" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
 
     <h:panelGroup id="dashboard-cases-container" layout="block"
       styleClass="ui-g-12 u-padding-0 js-dashboard-cases-container-#{caseWidget.id} u-display-none">

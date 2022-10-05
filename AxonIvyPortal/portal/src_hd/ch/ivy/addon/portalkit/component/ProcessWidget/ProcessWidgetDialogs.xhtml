@@ -113,7 +113,7 @@
         onclick="PF('edit-process-dialog').hide()" styleClass="u-mar-right-10" />
       <p:commandButton id="save-process-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
         process="#{cc.clientId}:edit-process-form" actionListener="#{processWidgetBean.updateProcessData()}" update="#{cc.clientId}:edit-process-form"
-        oncomplete="if(!args.validationFailed){PF('edit-process-dialog').hide(); updateProcessListOnSaveSuccessfull();}" form="#{cc.clientId}:edit-process-form"/>
+        oncomplete="if(!args.validationFailed){PF('edit-process-dialog').hide(); updateProcessListOnSaveSuccessful();}" form="#{cc.clientId}:edit-process-form"/>
     </f:facet>
   </p:dialog>
   <!-- End Edit Process -->
@@ -144,7 +144,7 @@
         <p:commandButton id="remove-process-command" global="false" process="@this" update="#{cc.clientId}:process-list"
           icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
           actionListener="#{processWidgetBean.deleteProcessWorkflow()}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-          oncomplete="PF('remove-process-workflow-dialog').hide(); processWidget.setup();" />
+          oncomplete="PF('remove-process-workflow-dialog').hide(); updateProcessListOnSaveSuccessful();" />
       </h:form>
     </ui:define>
   </ui:decorate>
@@ -219,7 +219,7 @@
         icon="#{visibilityBean.generateButtonIcon('si si-add-small')}" process="#{cc.clientId}:add-external-link-form"
         form="#{cc.clientId}:add-external-link-form" actionListener="#{processWidgetBean.createNewExternalLink}"
         update="#{cc.clientId}:add-external-link-form"
-        oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide(); updateProcessListOnSaveSuccessfull();}" />
+        oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide(); updateProcessListOnSaveSuccessful();}" />
     </f:facet>
   </p:dialog>
   <!-- End External Link Dialogs -->

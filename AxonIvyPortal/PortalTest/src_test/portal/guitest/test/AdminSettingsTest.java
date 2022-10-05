@@ -92,6 +92,7 @@ public class AdminSettingsTest extends BaseTest {
       HomePage homePage = new HomePage();
       AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
       adminSettingsPage.setShowLegacyUI();
+      homePage = new HomePage();
       MainMenuPage mainMenuPage = homePage.openMainMenu();
       ProcessWidgetPage processWidgetPage = mainMenuPage.selectProcessesMenu();
       String currentView = processWidgetPage.getCurrentViewMode();

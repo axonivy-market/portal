@@ -27,7 +27,7 @@
 }
 
 .dashboard-card.new-widget {
-  outline: 3px solid var(--accent-color);
+  outline: 3px solid var(--ivy-primary-light-color);
 }
 
 .ui-draggable:not(.ui-draggable-disabled)>.ui-draggable-handle {
@@ -152,6 +152,17 @@
   height: auto;
   max-height: calc(100% - 44px);
   width:100%;
+}
+
+.table-widget-panel.task-dashboard-widget__panel .widget__content,
+.table-widget-panel.case-dashboard-widget__panel .widget__content {
+  padding: 0;
+}
+
+.case-dashboard-widget__loading-message,
+.task-dashboard-widget__loading-message,
+.process-dashboard-widget__empty-process-message {
+  padding: 20px;
 }
 
 /* CSS specific to iOS devices */
