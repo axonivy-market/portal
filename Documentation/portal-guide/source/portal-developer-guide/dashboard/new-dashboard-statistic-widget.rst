@@ -15,7 +15,6 @@ Below is a sample JSON definition of a statistics widget in the Portal dashboard
    {
       "type": "statistic",
       "id": "statistic_1",
-      "name": "Tasks by Priority",
       "layout": {
          "styleClass": "new-widget",
          "w": 5,
@@ -25,7 +24,8 @@ Below is a sample JSON definition of a statistics widget in the Portal dashboard
       },
       "chart": {
          "id": "0",
-         "names": [{
+         "names": [
+            {
                "locale": "de",
                "value": "Aufgaben nach Priorität"
             }, {
@@ -53,8 +53,6 @@ The basic JSON structure of a statistics widget
 
    ``id``: ID of the widget
 
-   ``name``: Name of the widget on UI
-
    ``layout``: layout definition of the statistics widget
 
       ``x``: HTML DOM Style ``left`` is calculated as formula ``x / 12 * 100%``
@@ -73,8 +71,7 @@ The basic JSON structure of a statistics widget
 
       ``id``: the identification of the chart. It is an auto-generated UUID.
 
-      ``names``: the display name of the chart. This allows for multi-language
-      using the CMS and the user's Locale.
+      ``names``: the multilingual display name of the chart.
 
       ``type``: type of chart such as ``TASK_BY_PRIORITY``, ``CASES_BY_STATE``,
       ``CASES_BY_FINISHED_TASK``, ``CASES_BY_FINISHED_TIME``, ``TASK_BY_EXPIRY``,

@@ -458,24 +458,10 @@ Data model:
          }
       },
       "position": 1
-   },
-   { "id": "24b2d9afd9824abc8d3a70b9d9867dbc",
-      "chartName": "cms:/Statistic/Chart/taskByExpiry",
-      "type": "TASK_BY_EXPIRY",
-      "filter": {
-         "timePeriodSelection": "LAST_WEEK",
-         "createdDateFrom": null,
-         "createdDateTo": null,
-         "selectedRoles": ["Everybody"],
-         "isAllRolesSelected": false,
-         "selectedCaseStates": ["RUNNING"]
-      },
-      "position": 2
    }]
 
 -  ``id``: the identification of chart. An auto-generated UUID.
--  ``names``: the display name of the chart. Support multi-language.
--  ``chartName``: the display name of the chart. Support multi-language with using the CMS. This property will be ignored if the property ``names`` are defined.
+-  ``names``: the multilingual display name of the chart.
 -  ``type``: type of chart such as ``TASK_BY_PRIORITY``, ``CASES_BY_STATE``, ``CASES_BY_FINISHED_TASK``, ``CASES_BY_FINISHED_TIME``, ``TASK_BY_EXPIRY`` and ``ELAPSED_TIME_BY_CASE_CATEGORY``
 -  ``filter``: list filters to apply for each chart
 
@@ -532,19 +518,11 @@ Data model:
       "icon": "fa-building",
       "processId": "Portal/portal-developer-examples/Start Processes/IFrameExample/CreateInvestment.ivp",
       "index": 1
-   },
-   { "id": "423152a58c7a48a2b63be8a946e5731c",
-      "processType": "IVY_PROCESS",
-      "processName": "cms:/Processes/CreateInvestment/name",
-      "icon": "fa-building",
-      "processId": "Portal/portal-developer-examples/Start Processes/IFrameExample/CreateInvestment.ivp",
-      "index": 2
    }]
 
 - ``id``: the identification of a process. auto-generated UUID.
 - ``processType``: type of a process such as ``EXPRESS_PROCESS``, ``EXTERNAL_LINK``, ``IVY_PROCESS``.
-- ``names``: the display name of a process. Support multi-language.
-- ``processName``: the display name of a process. Support multi-language with using the CMS. This property will be ignored if the property ``names`` are defined.
+- ``names``: the display name of a process. Multilingual name is supported.
 - ``icon``: the style class of the process icon.
 - ``processId``: the process id of the process start.
 - ``index``: the index number to order the processes in the dashboard.
