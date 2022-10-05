@@ -1,7 +1,9 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "16A7BB2ADC9580A8",
-  "data" : "com.axonivy.portal.developerexamples.GlobalGrowlData",
+  "config" : {
+    "data" : "com.axonivy.portal.developerexamples.GlobalGrowlData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "RequestStart",

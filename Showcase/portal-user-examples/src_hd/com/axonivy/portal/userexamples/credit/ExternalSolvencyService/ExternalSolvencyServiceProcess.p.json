@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "1707A4F138A679DA",
-  "data" : "com.axonivy.portal.userexamples.credit.ExternalSolvencyService.ExternalSolvencyServiceData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.portal.userexamples.credit.ExternalSolvencyService.ExternalSolvencyServiceData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

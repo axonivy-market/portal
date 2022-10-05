@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "18104AE3EB4807A1",
-  "data" : "com.axonivy.portal.components.service.PortalConponentCaseServiceData",
   "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.portal.components.service.PortalConponentCaseServiceData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",

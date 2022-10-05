@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "15D4E5494B0DFC50",
-  "data" : "internaltest.ui.CancelApprovalRequest.CancelApprovalRequestData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "internaltest.ui.CancelApprovalRequest.CancelApprovalRequestData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "182A5FF24E046384",
-  "data" : "com.axonivy.portal.components.examples.SecurityMemberNameAndAvatarExample.SecurityMemberNameAndAvatarExampleData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.portal.components.examples.SecurityMemberNameAndAvatarExample.SecurityMemberNameAndAvatarExampleData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
