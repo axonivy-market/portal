@@ -2,7 +2,6 @@ package ch.ivy.addon.portalkit.dto.dashboard.casecolumn;
 
 import java.io.Serializable;
 
-import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivyteam.ivy.workflow.ICase;
 
@@ -17,11 +16,6 @@ public class DescriptionColumnModel extends CaseColumnModel implements Serializa
     this.style = defaultIfEmpty(this.style, getDefaultStyle());
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.sortable = defaultIfEmpty(this.sortable, getDefaultSortable());
-  }
-
-  @Override
-  public String getHeaderText() {
-    return translateHeader(defaultIfEmpty(this.header, DashboardConfigurationPrefix.CMS + getDefaultHeaderCMS()));
   }
 
   @Override

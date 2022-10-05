@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "1624CFE2532EF6BE",
-  "data" : "ch.ivy.addon.portal.generic.SetAdditonalCaseDetailPageData",
   "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "ch.ivy.addon.portal.generic.SetAdditonalCaseDetailPageData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",

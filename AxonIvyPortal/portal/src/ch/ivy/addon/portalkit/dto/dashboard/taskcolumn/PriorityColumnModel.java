@@ -9,7 +9,6 @@ import org.apache.commons.collections.CollectionUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -26,11 +25,6 @@ public class PriorityColumnModel extends TaskColumnModel implements Serializable
     this.style = defaultIfEmpty(this.style, getDefaultStyle());
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.format = getDefaultFormat();
-  }
-
-  @Override
-  public String getHeaderText() {
-    return translateHeader(defaultIfEmpty(this.header, DashboardConfigurationPrefix.CMS + getDefaultHeaderCMS()));
   }
 
   @Override

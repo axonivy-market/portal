@@ -65,7 +65,7 @@
 
     <c:if test="#{widget.type eq 'PROCESS'}">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessWidgetConfiguration id="new-widget-configuration-component" processWidget="#{widget}"
-        componentToUpdate="widget-configuration-form" />
+        componentToUpdate="widget-configuration-form" isPublicDashboard="#{dashboardDetailModificationBean.publicDashboard}"/>
     </c:if>
 
     <c:if test="#{widget.type eq 'STATISTIC'}">

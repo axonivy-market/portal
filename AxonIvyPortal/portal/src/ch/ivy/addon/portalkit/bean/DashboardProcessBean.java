@@ -19,12 +19,15 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.collections4.CollectionUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.bo.Process;
+import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
+import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ManagedBean
@@ -36,14 +39,20 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   private ProcessDashboardWidget widget;
   private PropertyChangeSupport propertyChangeSupport;
   private List<String> applications;
+  private Boolean isPublicDashboard;
 
   @Override
   @PostConstruct
-  public void init() {
+  public synchronized void init() {
     displayModes = Arrays.asList(ProcessWidgetMode.values()).stream()
         .sorted((mode1, mode2) -> mode1.getLabel().compareToIgnoreCase(mode2.getLabel()))
         .collect(Collectors.toList());
     propertyChangeSupport = new PropertyChangeSupport(this);
+  }
+
+  public void initPortalDashboardProcesses(Boolean isPublicDashboard) {
+    this.isPublicDashboard = isPublicDashboard;
+    super.init();
   }
 
   public void addPropertyChangeListener(PropertyChangeListener listener) {
@@ -125,13 +134,24 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   }
 
   public List<DashboardProcess> getPortalDashboardProcesses() {
-    if (CollectionUtils.isEmpty(portalProcesses)) {
-      portalProcesses = new ArrayList<>();
+    if (CollectionUtils.isEmpty(getPortalProcesses())) {
       super.init();
     }
-    return portalProcesses.stream()
+    return getPortalProcesses().stream()
         .filter(process -> CollectionUtils.isEmpty(applications) || applications.contains(process.getApplication()))
         .map(toDashboardProcess()).collect(Collectors.toList());
+  }
+
+  @Override
+  protected List<Process> findExternalLink() {
+    List<ExternalLink> externalLinks = new ArrayList<>();
+    if (Objects.isNull(this.isPublicDashboard) || !this.isPublicDashboard) {
+      externalLinks.addAll(ExternalLinkService.getInstance().getPrivateConfig());
+    }
+    externalLinks.addAll(ExternalLinkService.getInstance().getPublicConfig());
+    List<Process> defaultPortalProcesses = new ArrayList<>();
+    externalLinks.forEach(externalLink -> defaultPortalProcesses.add(new ExternalLinkProcessItem(externalLink)));
+    return defaultPortalProcesses;
   }
 
   public List<String> getApplications() {

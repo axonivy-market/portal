@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "167CFB0D927CF955",
-  "data" : "ch.ivy.addon.portalkit.component.CompactProcessWidget.CompactProcessWidgetData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portalkit.component.CompactProcessWidget.CompactProcessWidgetData"
+  },
   "elements" : [ {
       "id" : "f1",
       "type" : "HtmlDialogStart",

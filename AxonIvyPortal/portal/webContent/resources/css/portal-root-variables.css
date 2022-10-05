@@ -85,6 +85,7 @@
   --process-grid-name-font-weight: 700;
   --process-edit-name-font-size: 1.6rem;
   --process-edit-name-font-weight: 700;
+  --process-grid-header-color: var(--text-color);
 
   --case-item-name-font-weight: bold;
   --case-item-description-font-weight: 400;

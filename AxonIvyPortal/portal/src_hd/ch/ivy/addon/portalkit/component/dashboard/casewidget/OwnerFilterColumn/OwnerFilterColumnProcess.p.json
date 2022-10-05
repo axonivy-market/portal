@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "17CE4DFDAED53CE2",
-  "data" : "ch.ivy.addon.portalkit.component.dashboard.casewidget.OwnerFilterColumn.OwnerFilterColumnData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portalkit.component.dashboard.casewidget.OwnerFilterColumn.OwnerFilterColumnData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

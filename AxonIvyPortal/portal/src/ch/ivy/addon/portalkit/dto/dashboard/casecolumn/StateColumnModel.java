@@ -9,7 +9,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.util.CaseUtils;
@@ -27,11 +26,6 @@ public class StateColumnModel extends CaseColumnModel implements Serializable {
     this.style = defaultIfEmpty(this.style, getDefaultStyle());
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.format = getDefaultFormat();
-  }
-
-  @Override
-  public String getHeaderText() {
-    return translateHeader(defaultIfEmpty(this.header, DashboardConfigurationPrefix.CMS + getDefaultHeaderCMS()));
   }
 
   @Override

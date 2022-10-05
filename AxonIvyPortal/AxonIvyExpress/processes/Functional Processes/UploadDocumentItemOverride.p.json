@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "16B267B1A01CFA7E",
-  "data" : "gawfs.UploadDocumentItemOverrideData",
   "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "gawfs.UploadDocumentItemOverrideData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
