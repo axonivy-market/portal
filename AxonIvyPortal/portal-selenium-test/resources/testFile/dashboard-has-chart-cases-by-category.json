@@ -6,7 +6,12 @@
       {
         "type": "statistic",
         "id": "statistic_1",
-        "name": "Cases by Category",
+        "names": [
+          {
+            "locale": "en",
+            "value": "Cases by Category"
+          }
+        ],
         "layout": {
           "id": null,
           "styleClass": "new-widget",
