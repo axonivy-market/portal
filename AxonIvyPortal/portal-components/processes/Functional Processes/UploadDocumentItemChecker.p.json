@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "180CC29030DF7407",
-  "data" : "com.axonivy.portal.components.UploadDocumentItemCheckerData",
   "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.portal.components.UploadDocumentItemCheckerData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",

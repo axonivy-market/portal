@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "16812A78CEF8FB1A",
-  "data" : "ch.ivy.add.portalkit.BuildTaskQueryData",
   "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "ch.ivy.add.portalkit.BuildTaskQueryData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
