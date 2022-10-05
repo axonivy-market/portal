@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.dto.dashboard;
 
+import static ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix.CMS;
+
 import java.io.Serializable;
 
 import javax.faces.component.UIComponent;
@@ -12,7 +14,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -23,15 +24,15 @@ public class ColumnModel extends AbstractColumn implements Serializable {
 
   private static final long serialVersionUID = -4315469062114036720L;
 
+  @Override
+  public String getHeaderText() {
+    if (getHeader() == null || StringUtils.equals(getHeader(), CMS + getDefaultHeaderCMS())) {
+      return Ivy.cms().co(getDefaultHeaderCMS());
+    }
+    return getHeader();
+  }
+
   @JsonIgnore
   @SuppressWarnings("unused")
   public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {}
-
-  @JsonIgnore
-  protected String translateHeader(String header) {
-    if (StringUtils.startsWithIgnoreCase(header, DashboardConfigurationPrefix.CMS)) {
-      return Ivy.cms().co(StringUtils.removeStart(header, DashboardConfigurationPrefix.CMS));
-    }
-    return header;
-  }
 }

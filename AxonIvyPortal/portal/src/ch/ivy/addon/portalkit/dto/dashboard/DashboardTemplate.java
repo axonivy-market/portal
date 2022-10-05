@@ -1,45 +1,59 @@
 package ch.ivy.addon.portalkit.dto.dashboard;
 
 import java.io.Serializable;
+import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
-import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
-import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.util.LanguageUtils;
+import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class DashboardTemplate extends AbstractConfiguration implements Serializable {
 
   private static final long serialVersionUID = 6785925200522522200L;
-  private String title;
-  private String description;
+  private List<DisplayName> titles;
+  private List<DisplayName> descriptions;
   private String icon;
   private Dashboard dashboard;
 
-  
+  @JsonIgnore
   public String getTitle() {
-    if (StringUtils.startsWithIgnoreCase(title, DashboardConfigurationPrefix.CMS)) {
-      return Ivy.cms().co(StringUtils.removeStart(title, DashboardConfigurationPrefix.CMS));
-    }
-    return title;
+    return LanguageUtils.getLocalizedName(titles);
   }
 
   public void setTitle(String title) {
-    this.title = title;
+    NameResult nameResult = LanguageUtils.collectMultilingualNames(titles, title);
+    this.titles = nameResult.names();
   }
 
+  public List<DisplayName> getTitles() {
+    return titles;
+  }
+
+  public void setTitles(List<DisplayName> titles) {
+    this.titles = titles;
+  }
+
+  @JsonIgnore
   public String getDescription() {
-    if (StringUtils.startsWithIgnoreCase(description, DashboardConfigurationPrefix.CMS)) {
-      return Ivy.cms().co(StringUtils.removeStart(description, DashboardConfigurationPrefix.CMS));
-    }
-    return description;
+    return LanguageUtils.getLocalizedName(descriptions);
   }
 
   public void setDescription(String description) {
-    this.description = description;
+    NameResult nameResult = LanguageUtils.collectMultilingualNames(descriptions, description);
+    this.descriptions = nameResult.names();
+  }
+
+  public List<DisplayName> getDescriptions() {
+    return descriptions;
+  }
+
+  public void setDescriptions(List<DisplayName> descriptions) {
+    this.descriptions = descriptions;
   }
 
   public String getIcon() {

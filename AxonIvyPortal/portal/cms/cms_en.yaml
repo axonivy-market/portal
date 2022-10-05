@@ -406,7 +406,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     All: All
     BusinessCaseInformation: Business Case Information
     CollapseAll: Collapse all
-    DefaultTemplate: Default template
     ExpandAll: Expand all
     MoreItemsAvailable: more items available
     NoSelection: No Selection
@@ -756,7 +755,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       CreateFromScratchDescription: Create your own dashboard from scratch
       CreateNewPrivateDashboard: Create new private dashboard
       CreateNewPublicDashboard: Create new public dashboard
-      DefaultTemplateDescription: Create dashboard with 1 Task list, 1 Case list, and 1 Process list
       Description: In this area, you can configure the dashboards according to your requirements.
       DoNotSupportMobile: Dashboard configuration is not supported for mobile devices.
       EditPrivateDashboards: Edit your private dashboards
@@ -769,8 +767,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: Reorder public dashboards
       SelectAction: Select the action
       Title: Dashboard configuration
-      TwoTaskTemplate: Two Task list dashboard
-      TwoTaskTemplateDescription: Create dashboard with 2 Task lists and 1 Process list
     EmptyFilterMessage: No widget filter found
     Filter:
       FilterOptionHeader: Filter options

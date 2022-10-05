@@ -1,7 +1,24 @@
 [{
     "id": "1",
     "templateId": "default-portal-dashboard-template",
-    "title": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/dashboard",
+    "titles": [
+      {
+        "locale": "en",
+        "value": "Dashboard"
+      },
+      {
+        "locale": "fr",
+        "value": "Dashboard"
+      },
+      {
+        "locale": "de",
+        "value": "Dashboard"
+      },
+      {
+        "locale": "es",
+        "value": "Dashboard"
+      }
+    ],
     "widgets": [
       {
         "type": "task",

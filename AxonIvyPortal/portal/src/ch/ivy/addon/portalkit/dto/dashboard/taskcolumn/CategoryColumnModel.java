@@ -11,7 +11,6 @@ import org.primefaces.model.CheckboxTreeNode;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.bo.CategoryNode;
-import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
@@ -40,11 +39,6 @@ public class CategoryColumnModel extends TaskColumnModel {
     this.format = getDefaultFormat();
     this.sortable = getDefaultSortable();
     this.sorted = false;
-  }
-
-  @Override
-  public String getHeaderText() {
-    return translateHeader(defaultIfEmpty(this.header, DashboardConfigurationPrefix.CMS + getDefaultHeaderCMS()));
   }
 
   @Override
