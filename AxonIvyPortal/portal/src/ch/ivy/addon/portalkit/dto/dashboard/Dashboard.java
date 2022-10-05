@@ -8,17 +8,23 @@ import org.apache.commons.lang.StringUtils;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
-import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
-import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.util.LanguageUtils;
+import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Dashboard extends AbstractConfiguration implements Serializable {
 
   private static final long serialVersionUID = 4580715578128184706L;
   private String templateId;
+  @Deprecated(since = "10.0", forRemoval = true)
+  @JsonProperty(access = Access.WRITE_ONLY)
   private String title;
+  private List<DisplayName> titles;
   private String icon;
   private String description;
   private List<DashboardWidget> widgets;
@@ -35,6 +41,7 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
     setIsPublic(dashboard.getIsPublic());
     templateId = dashboard.getTemplateId();
     title = dashboard.title;
+    titles = dashboard.titles;
     icon = dashboard.icon;
     description = dashboard.description;
     widgets = dashboard.widgets;
@@ -43,21 +50,22 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
     displayedPermission = dashboard.displayedPermission;
   }
 
-  public Dashboard(String id, String title, List<DashboardWidget> widgets) {
-    this.setId(id);
-    this.title = title;
-    this.widgets = widgets;
-  }
-
   public String getTitle() {
-    if (StringUtils.startsWithIgnoreCase(title, DashboardConfigurationPrefix.CMS)) {
-      return Ivy.cms().co(StringUtils.removeStart(title, DashboardConfigurationPrefix.CMS));
-    }
-    return title;
+    return LanguageUtils.getLocalizedName(titles, title);
   }
 
   public void setTitle(String title) {
-    this.title = title;
+    NameResult nameResult = LanguageUtils.collectMultilingualNames(titles, title);
+    this.titles = nameResult.names();
+    this.title = nameResult.name();
+  }
+
+  public List<DisplayName> getTitles() {
+    return titles;
+  }
+
+  public void setTitles(List<DisplayName> titles) {
+    this.titles = titles;
   }
 
   public String getIcon() {
@@ -91,11 +99,11 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
   public void setWidgets(List<DashboardWidget> widgets) {
     this.widgets = widgets;
   }
-  
+
   public List<String> getPermissions() {
     return permissions;
   }
-  
+
   public void setPermissions(List<String> permissions) {
     this.permissions = permissions;
   }

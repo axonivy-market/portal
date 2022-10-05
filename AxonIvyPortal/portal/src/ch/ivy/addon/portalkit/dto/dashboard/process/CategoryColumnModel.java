@@ -39,10 +39,14 @@ public class CategoryColumnModel extends ProcessColumnModel implements Serializa
   @Override
   public void initDefaultValue() {
     super.initDefaultValue();
-    this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/common/categories");
     this.field = DashboardStandardProcessColumn.CATEGORY.getField();
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-process__category");
     this.format = DashboardColumnFormat.CUSTOM;
+  }
+
+  @Override
+  public String getDefaultHeaderCMS() {
+    return "/ch.ivy.addon.portalkit.ui.jsf/common/categories";
   }
 
   @JsonIgnore
