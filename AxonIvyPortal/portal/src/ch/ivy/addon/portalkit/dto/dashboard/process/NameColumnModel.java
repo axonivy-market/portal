@@ -14,9 +14,12 @@ public class NameColumnModel extends ProcessColumnModel implements Serializable 
   @Override
   public void initDefaultValue() {
     super.initDefaultValue();
-    this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName");
     this.field = DashboardStandardProcessColumn.NAME.getField();
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-process__name");
   }
 
+  @Override
+  public String getDefaultHeaderCMS() {
+    return "/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName";
+  }
 }
