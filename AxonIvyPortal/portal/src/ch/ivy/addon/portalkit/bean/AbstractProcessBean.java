@@ -31,10 +31,10 @@ public abstract class AbstractProcessBean implements Serializable {
   private static final long serialVersionUID = -8450309463672220642L;
   protected static final String SLASH = "/";
 
-  protected List<Process> portalProcesses;
+  private List<Process> portalProcesses;
   protected ProcessStartCollector collector;
 
-  public void init() {
+  synchronized public void init() {
     collector = new ProcessStartCollector();
     portalProcesses = new CopyOnWriteArrayList<Process>(findProcesses());
     portalProcesses.addAll(findExpressProcesses());
@@ -129,12 +129,7 @@ public abstract class AbstractProcessBean implements Serializable {
     return lengthOfCategoryPaths > 0 ? arrayOfCategoyPaths[lengthOfCategoryPaths - 1] : StringUtils.EMPTY;
   }
 
-  public List<Process> getPortalProcesses() {
+  synchronized public List<Process> getPortalProcesses() {
     return portalProcesses;
   }
-
-  public void setPortalProcesses(List<Process> portalProcesses) {
-    this.portalProcesses = portalProcesses;
-  }
-
 }

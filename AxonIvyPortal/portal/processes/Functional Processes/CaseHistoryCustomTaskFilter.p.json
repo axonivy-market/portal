@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "14E52ACF4B6D37BF",
-  "data" : "ch.ivy.add.portalkit.CaseHistoryCustomTaskFilterData",
   "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "ch.ivy.add.portalkit.CaseHistoryCustomTaskFilterData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",

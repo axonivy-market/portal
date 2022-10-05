@@ -1,7 +1,9 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "181899823E886ABB",
-  "data" : "com.axonivy.portal.components.examples.RoleSelectionExampleData",
+  "config" : {
+    "data" : "com.axonivy.portal.components.examples.RoleSelectionExampleData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "RequestStart",

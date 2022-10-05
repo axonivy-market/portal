@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "16B3FA08E0ADDCE6",
-  "data" : "_com.axonivy.portal.developerexamples.AssignRolesGroupChatOverrideData",
   "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "_com.axonivy.portal.developerexamples.AssignRolesGroupChatOverrideData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
