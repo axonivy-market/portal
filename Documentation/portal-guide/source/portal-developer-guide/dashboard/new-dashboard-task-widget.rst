@@ -16,7 +16,12 @@ Below is a sample JSON definition of a task widget in the Portal dashboard
    {
       "type": "task",
       "id": "task-widget",
-      "name": "Task Widget",
+      "names": [
+         {
+            "locale": "en",
+            "value": "Task Widget"
+         }
+      ],
       "layout": {
          "x": 0, "y": 0, "w": 10, "h": 9,
          "style": "color: red;",
@@ -40,7 +45,16 @@ Below is a sample JSON definition of a task widget in the Portal dashboard
          },
          {
             "field": "state",
-            "header": "cms:/your_state_header_cms"
+            "headers": [
+               {
+               "locale": "en",
+               "value": "State"
+               },
+               {
+               "locale": "de",
+               "value": "Status"
+               }
+            ]
          },
          {
             "field": "startTimestamp"
@@ -58,7 +72,7 @@ The basic JSON structure of a Task widget
 
    ``id``: ID of the widget
 
-   ``name``: Name of the widget on the UI
+   ``names``: multilingual name of the widget on the UI
 
    ``layout``: layout definition of the widget
 
@@ -117,8 +131,7 @@ The basic JSON structure of a Task widget
       ``visible``: visibility of a column. The default value is "true".
       Set to "false" to hide the column.
 
-      ``header``: header text of the column. You can enter a string, or use
-      CMS by adding prefix ``cms:`` in front of your CMS URI to define a multilingual header.
+   -  ``headers``: multilingual header of the column.
 
 Custom Columns
 --------------

@@ -14,8 +14,13 @@ Below is a sample JSON definition of a process viewer widget in the Portal dashb
 
    {
       "type": "process-viewer", 
-      "id": "process_viewer_1", 
-      "name": "Your Process Viewer", 
+      "id": "process_viewer_1",
+      "names": [
+         {
+            "locale": "en",
+            "value": "Your Process Viewer"
+         }
+      ],
       "layout": {
          "x": 0, "y": 0, "w": 12, "h": 6
       }, 
@@ -28,7 +33,7 @@ The basic JSON structure of a process viewer widget
 
    ``id``: ID of the widget
 
-   ``name``: Name of the widget on UI
+   ``names``: multilingual name of the widget on UI.
 
    ``layout``: layout definition of the process viewer widget
 
