@@ -1381,6 +1381,11 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .favorite-process-name {
   max-width: 850px;
 }
+
+.process-tooltip {
+  max-width: 500px;
+  word-break: break-all;
+}
 /********************************** END PROCESSES **********************************/
 /******************START DELEGATE DIALOG********************/
 .delegate-dialog-activator-panel {
