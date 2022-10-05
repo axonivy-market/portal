@@ -67,7 +67,6 @@
         <extensions>true</extensions>
         <configuration>
           <compilerWarnings>false</compilerWarnings>
-          <skipScriptValidation>true</skipScriptValidation>
         </configuration>
       </plugin>
     </plugins>
