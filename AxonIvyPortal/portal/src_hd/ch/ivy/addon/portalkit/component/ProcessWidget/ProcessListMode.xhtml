@@ -18,7 +18,7 @@
         <div class="process-start-list-item-name #{isExpress ? 'is-express' : ''} #{isExternalLink ? 'is-external-link' : ''}">
           <h:outputText id="process-name" value="#{process.name}"
             styleClass="process-start-list-item-name-text u-truncate-text js-process-start-list-item-name" />
-          <p:tooltip for="process-name" value="#{process.name}" trackMouse="true" hideEvent="mouseleave click" />
+          <p:tooltip for="process-name" value="#{process.name}" trackMouse="true" hideEvent="mouseleave click" styleClass="process-tooltip"/>
         </div>
         <div class="process-item-action-container">
           <h:panelGroup styleClass="process-start-list-item-action #{isExpress ? 'is-express' : ''} u-padding-0" rendered="#{isExpress}"
@@ -46,7 +46,7 @@
               styleClass="si si-hyperlink-3 external-link-icon #{!process.getProcess().ableToEdit ? 'public-external-link' : ''}" />
             <p:tooltip id="external-link-icon-tooltip" for="external-link-icon"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/externalLink')}" position="top" trackMouse="true"
-              hideEvent="mouseleave click" />
+              hideEvent="mouseleave click" styleClass="process-tooltip"/>
             <p:commandLink id="delete-external-link" styleClass="si si-bin-1 process-item"
               actionListener="#{processWidgetBean.setDeletedProcess(process)}" oncomplete="PF('remove-process-workflow-dialog').show();"
               update="#{cc.clientId}:remove-process-workflow-dialog" rendered="#{process.getProcess().ableToEdit}" />
@@ -57,7 +57,7 @@
           <h:panelGroup styleClass="process-start-list-item-action u-hidden-md-down">
             <h:outputText id="info-workflow" styleClass="si si-information-circle process-description process-item" />
             <p:tooltip id="info-workflow-tooltip" for="info-workflow" value="#{process.description}" position="top" trackMouse="true"
-              hideEvent="mouseleave click" styleClass="js-process-start-list-item-description" />
+              hideEvent="mouseleave click" styleClass="js-process-start-list-item-description process-tooltip" />
           </h:panelGroup>
           <span id="open-process-start" class="si si-arrow-right-1 open-icon" />
         </div>
