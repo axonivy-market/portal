@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "15DBBB9E9FC55C0A",
-  "data" : "ch.ivy.addon.portal.generic.InitializeTaskDataModelData",
   "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "ch.ivy.addon.portal.generic.InitializeTaskDataModelData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",

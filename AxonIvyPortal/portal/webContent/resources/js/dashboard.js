@@ -142,6 +142,7 @@ function setupScrollbar() {
         PortalLayout.removeLayoutContentPaddingBottom();
         $dashboardWrapper.css('margin-right', '-' + PortalLayout.getPaddingRightLayoutContent());
         $dashboardHeader.css('padding-right', PortalLayout.getPaddingRightLayoutContent());
+        container.css('padding-right', PortalLayout.getPaddingRightLayoutContent());
       } else {
         $dashboardWrapper.removeAttr('style');
         $dashboardHeader.removeAttr('style');

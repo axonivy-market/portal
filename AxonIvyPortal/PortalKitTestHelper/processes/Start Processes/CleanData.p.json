@@ -1,7 +1,9 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "1511A66AF619A768",
-  "data" : "portalKit_test.Data",
+  "config" : {
+    "data" : "portalKit_test.Data"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "RequestStart",
@@ -275,16 +277,16 @@
             "import ch.ivy.addon.portalkit.enums.PortalPermissionGroup;",
             "",
             "for (PortalPermission permission : PortalPermission.values()) {",
-            "  IPermission iPermission = IPermissionRepository.get().findByName(permission.getValue());",
+            "  IPermission iPermission = IPermissionRepository.instance().findByName(permission.getValue());",
             "  if (#iPermission is initialized) {",
-            "    IPermissionRepository.get().delete(iPermission);",
+            "    IPermissionRepository.instance().delete(iPermission);",
             "  }",
             "}",
             "",
             "for (PortalPermissionGroup group : PortalPermissionGroup.values()) {",
-            "  IPermissionGroup permissionGroup = IPermissionGroupRepository.get().findByName(group.getValue());",
+            "  IPermissionGroup permissionGroup = IPermissionGroupRepository.instance().findByName(group.getValue());",
             "  if (#permissionGroup is initialized) {",
-            "    IPermissionGroupRepository.get().delete(permissionGroup);",
+            "    IPermissionGroupRepository.instance().delete(permissionGroup);",
             "  }",
             "}"
           ]

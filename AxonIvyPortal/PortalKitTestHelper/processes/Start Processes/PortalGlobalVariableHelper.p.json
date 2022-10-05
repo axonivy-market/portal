@@ -1,7 +1,9 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "1749B87B8C1B77BE",
-  "data" : "portalKit_test.PortalGlobalVariableHelperData",
+  "config" : {
+    "data" : "portalKit_test.PortalGlobalVariableHelperData"
+  },
   "elements" : [ {
       "id" : "f6",
       "type" : "TaskEnd",

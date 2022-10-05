@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "9.4.21",
   "id" : "15EF07D454EF13E4",
-  "data" : "ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting.LogoutSettingData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting.LogoutSettingData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
