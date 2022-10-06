@@ -30,32 +30,14 @@
         "security" : "system",
         "output" : {
           "code" : [
-            "import ch.ivyteam.ivy.workflow.start.IWebStartable;",
-            "import org.apache.commons.lang3.StringUtils;",
+            "import com.axonivy.portal.components.dto.ProcessViewerDTO;",
             "import com.axonivy.portal.components.util.ProcessViewerUtils;",
-            "import com.axonivy.portal.components.util.CaseUtils;",
             "",
-            "in.isError = false;",
-            "if (in.caseId == 0 && StringUtils.isBlank(in.processId)) {",
-            "    // Show error",
-            "    in.isError = true;",
-            "} else {",
-            "  in.selectedCase = CaseUtils.findCase(in.caseId);",
-            "",
-            "  IWebStartable webStartable = ProcessViewerUtils.findWebStartable(in.caseId, in.processId);",
-            "  if (webStartable == null) {",
-            "    // Show error",
-            "    in.isError = true;",
-            "  } else {",
-            "    in.webStartable = webStartable;",
-            "    ",
-            "    in.webLink = ProcessViewerUtils.getViewerWebLink(in.caseId, in.processId);",
-            "    if (in.webLink == null) {",
-            "      // Show error",
-            "      in.isError = true;",
-            "    }",
-            "  }",
-            "}"
+            "ProcessViewerDTO processViewerDTO = ProcessViewerUtils.initProcessViewer(in.caseId, in.processId);",
+            "in.webStartable = processViewerDTO.getWebStartable();",
+            "in.webLink = processViewerDTO.getWebLink();",
+            "in.isError = processViewerDTO.isError();",
+            "in.errorMessage = processViewerDTO.getErrorMessage();"
           ]
         }
       },
