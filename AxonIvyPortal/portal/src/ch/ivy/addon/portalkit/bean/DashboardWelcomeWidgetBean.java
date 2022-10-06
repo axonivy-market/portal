@@ -33,6 +33,7 @@ public class DashboardWelcomeWidgetBean implements Serializable {
   private static final String BASE64_STRING_PATTERN = "data:%s;base64,%s";
   private static final String DEFAULT_TEXT_COLOR = "ffffff";
   private static final String DEFAULT_IMAGE_CMS_URI = "/images/WelcomeWidget/DefaultImage";
+  private static final String DEFAULT_IMAGE_DARK_CMS_URI = "/images/WelcomeWidget/DefaultImageDark";
   private static final String IMAGE_DIRECTORY = "DashboardWelcomeWidget";
   private static final String DEFAULT_LOCALE_AND_DOT = "_en.";
 
@@ -122,6 +123,10 @@ public class DashboardWelcomeWidgetBean implements Serializable {
 
   public String getDefaultImageLink() {
     return DEFAULT_IMAGE_CMS_URI;
+  }
+
+  public String getDefaultImageDarkLink() {
+    return DEFAULT_IMAGE_DARK_CMS_URI;
   }
 
   private ContentObjectValue getWidgetImage() {

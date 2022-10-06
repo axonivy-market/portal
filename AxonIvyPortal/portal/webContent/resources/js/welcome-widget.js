@@ -160,25 +160,6 @@ WelcomeWidget = {
   },
 
   stretchImage : function(widget) {
-    if ($(widget).find('.js-welcome-image').get(0).clientHeight < $(widget).find('.grid-stack-item-content').get(0).clientHeight) {
-      $(widget).addClass('stretch-image');
-    } else {
-        $(widget).removeClass('stretch-image');
-    }
-  },
-
-  stretchAllImages : function() {
-    $('.js-welcome-widget').each( function() {
-      $(this).removeClass('stretch-image');
-      if ($(this).find('.js-welcome-image').get(0).clientHeight < $(this).find('.grid-stack-item-content').get(0).clientHeight) {
-        $(this).addClass('stretch-image');
-      } else {
-        $(this).removeClass('stretch-image');
-      }
-    });
+    
   }
 }
-
-$(window).resize(() => {
-  WelcomeWidget.stretchAllImages();
-});
