@@ -29,9 +29,6 @@ public class WelcomeDashboardWidget  extends DashboardWidget {
   private String welcomeText;
 
   @JsonIgnore
-  private String displayWelcomeText;
-
-  @JsonIgnore
   public static WelcomeDashboardWidget buildDefaultWidget(String id, String name) {
     WelcomeDashboardWidget result = new WelcomeDashboardWidget();
     result.setId(id);
@@ -66,15 +63,6 @@ public class WelcomeDashboardWidget  extends DashboardWidget {
 
   public void setWelcomeTexts(List<DisplayName> welcomeTexts) {
     this.welcomeTexts = welcomeTexts;
-  }
-  
-
-  public String getDisplayWelcomeText() {
-    return displayWelcomeText;
-  }
-
-  public void setDisplayWelcomeText(String displayWelcomeText) {
-    this.displayWelcomeText = displayWelcomeText;
   }
 
   @Override
