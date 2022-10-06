@@ -319,6 +319,10 @@ td.dashboard-cases__name span {
   padding: 20px
 }
 
+.widget-configuration.card.custom-widget-configuration  {
+  width: 600px;
+}
+
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
   .task-configuration.card,
   .case-configuration.card,
@@ -1089,7 +1093,12 @@ span.new-widget-dialog__icon.si {
   display: none;
 }
 
-.widget-configuration.card.custom-widget-configuration,
+.widget-configuration.card.custom-widget-configuration {
+  margin-right: 0;
+  flex-grow: 1;
+  max-width: 650px;
+}
+
 .widget-configuration.card.process-viewer-widget-configuration {
   margin-right: 0;
   flex-grow: 1;
@@ -1103,6 +1112,24 @@ span.new-widget-dialog__icon.si {
 .custom-widget-panel,
 .process-viewer-widget-panel {
   height: 100%;
+}
+
+.custom-widget-panel.no-header .widget__content {
+  height: 100%;
+  max-height: 100%;
+  padding: 0;
+}
+
+.dashboard-widget-panel-container:hover .expand-link.widget-no-header,
+.expand-fullscreen .dashboard-widget-panel-container:hover .collapse-link.widget-no-header {
+  visibility: visible;
+}
+
+.expand-fullscreen .ui-widget.collapse-link.widget-no-header, .expand-link.widget-no-header {
+  position: absolute;
+  visibility: hidden;
+  top: 14px;
+  right: 20px;
 }
 
 .custom-widget-panel .widget__content {
