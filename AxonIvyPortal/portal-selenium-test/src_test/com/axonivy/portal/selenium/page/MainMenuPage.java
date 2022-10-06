@@ -3,7 +3,6 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.$;
 
-import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 
 public class MainMenuPage extends TemplatePage {
@@ -15,25 +14,25 @@ public class MainMenuPage extends TemplatePage {
 
   public TaskWidgetPage openTaskList() {
     waitLeftMenuReady();
-    WaitHelper.waitForNavigation(() -> {
-      $(".layout-menu li[role='menuitem'] a.TASK").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    });
+    var taskMenu = $(".layout-menu li[role='menuitem'] a.TASK").waitUntil(appear, DEFAULT_TIMEOUT);
+    waitUntilElementToBeClickable(taskMenu);
+    taskMenu.click();
     return new TaskWidgetPage();
   }
 
   public CaseWidgetPage openCaseList() {
     waitLeftMenuReady();
-    WaitHelper.waitForNavigation(() -> {
-      $(".layout-menu li[role='menuitem'] a.CASE").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    });
+    var caseMenu = $(".layout-menu li[role='menuitem'] a.CASE").waitUntil(appear, DEFAULT_TIMEOUT);
+    waitUntilElementToBeClickable(caseMenu);
+    caseMenu.click();
     return new CaseWidgetPage();
   }
 
   public ProcessWidgetPage openProcessList() {
     waitLeftMenuReady();
-    WaitHelper.waitForNavigation(() -> {
-      $(".layout-menu li[role='menuitem'] a.PROCESS").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    });
+    var processMenu = $(".layout-menu li[role='menuitem'] a.PROCESS").waitUntil(appear, DEFAULT_TIMEOUT);
+    waitUntilElementToBeClickable(processMenu);
+    processMenu.click();
     return new ProcessWidgetPage();
   }
 
