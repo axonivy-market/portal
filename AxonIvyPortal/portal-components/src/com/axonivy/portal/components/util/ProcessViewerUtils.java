@@ -8,47 +8,78 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.constant.CustomFields;
+import com.axonivy.portal.components.dto.ProcessViewerDTO;
 import com.axonivy.portal.components.service.impl.ProcessService;
 
 import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
 import ch.ivyteam.ivy.casemap.runtime.model.ICaseMap;
-import ch.ivyteam.ivy.casemap.runtime.start.CaseMapViewerUrl;
-import ch.ivyteam.ivy.casemap.runtime.start.CaseMapViewerUrl.CaseMapViewerMode;
+import ch.ivyteam.ivy.casemap.viewer.api.CaseMapViewer;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.model.value.WebLink;
+import ch.ivyteam.ivy.process.viewer.api.ProcessViewer;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.businesscase.IBusinessCase;
 import ch.ivyteam.ivy.workflow.start.ICaseMapWebStartable;
 import ch.ivyteam.ivy.workflow.start.IProcessWebStartable;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
-import ch.ivyteam.ivy.workflow.start.ProcessViewerUrl;
-import ch.ivyteam.ivy.workflow.start.ProcessViewerUrl.ProcessViewerMode;
 
 public class ProcessViewerUtils {
 
-  public static IWebStartable findWebStartable(Long caseId, String processLink) {
-    String startProcessLink = "";
-    var selectedCase = caseId > 0 ? CaseUtils.findCase(caseId) : null;
-    if (selectedCase != null && !isExpressCase(selectedCase)) {
-      ICaseMap caseMap = findCaseMapByCase(selectedCase);
-      if (!Objects.isNull(caseMap)) {
-        return getWebStartables().stream()
-            .filter(filterById(caseMap.getUuid().toString())).findFirst()
-            .orElse(null);
-      } else {
-        startProcessLink = selectedCase.getProcessStart().getLink().getRelative();
+  public static ProcessViewerDTO initProcessViewer(Long caseId, String processLink) {
+    boolean isViewerAllowed = false;
+    IWebStartable webStartable = null;
+    WebLink webLink = null;
+    boolean isError = false;
+    String errorMessage = null;
+    if (caseId != 0 || StringUtils.isNotBlank(processLink)) {
+      // init data using caseId
+      ICase selectedCase = CaseUtils.findCase(caseId);
+      isViewerAllowed = isViewerAllowed(selectedCase);
+      if (isViewerAllowed) {
+        ICaseMap caseMap = findCaseMapByCase(selectedCase);
+        if (!Objects.isNull(caseMap)) {
+          webStartable = findWebStartable(caseMap);
+          webLink = CaseMapViewer.of(caseMap).url().toWebLink();
+        } else {
+          webStartable = findWebStartable(selectedCase.getProcessStart().getLink().getRelative());
+          webLink = ProcessViewer.of(selectedCase).url().toWebLink();
+        }
       }
-    } else {
-      startProcessLink = processLink;
+
+      // try to init data using processLink
+      if (webLink == null) {
+        webStartable = findWebStartable(processLink);
+        isViewerAllowed = isViewerAllowed(webStartable);
+        if (isViewerAllowed) {
+          if (webStartable instanceof ICaseMapWebStartable) {
+            webLink = CaseMapViewer.of((ICaseMapWebStartable) webStartable).url().toWebLink();
+          } else {
+            webLink = ProcessViewer.of((IProcessWebStartable) webStartable).url().toWebLink();
+          }
+        }
+      }
     }
 
-    return findWebStartable(startProcessLink);
+    // check result
+    if (webLink == null) {
+      isError = true;
+      errorMessage =
+          !isViewerAllowed ? Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessIsHidden")
+              : Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessDataNotFound");
+    }
+    return new ProcessViewerDTO(webStartable, webLink, isError, errorMessage);
+  }
+
+  public static IWebStartable findWebStartable(ICaseMap caseMap) {
+    if (caseMap != null) {
+      return getWebStartables().stream().filter(filterById(caseMap.getUuid().toString())).findFirst().orElse(null);
+    }
+    return null;
   }
 
   public static IWebStartable findWebStartable(String processLink) {
     if (StringUtils.isNotBlank(processLink)) {
-      return getWebStartables().stream()
-          .filter(filterByRelativeLink(processLink)).findFirst()
-          .orElse(null);
+      return getWebStartables().stream().filter(filterByRelativeLink(processLink)).findFirst().orElse(null);
     }
     return null;
   }
@@ -65,27 +96,9 @@ public class ProcessViewerUtils {
     return ProcessService.newInstance().findProcesses().getProcesses();
   }
 
-  private static boolean isExpressCase(ICase iCase) {
-    return BooleanUtils.toBoolean(iCase.customFields().stringField(CustomFields.IS_EXPRESS_PROCESS).getOrNull());
-  }
-
-  public static WebLink getViewerWebLink(Long caseId, String processLink) {
-    var selectedCase = caseId > 0 ? CaseUtils.findCase(caseId) : null;
-    if (selectedCase != null && !isExpressCase(selectedCase)) {
-      ICaseMap caseMap = findCaseMapByCase(selectedCase);
-      if (!Objects.isNull(caseMap)) {
-        return CaseMapViewerUrl.of(caseMap).mode(CaseMapViewerMode.VIEWER).toWebLink();
-      } else {
-        return ProcessViewerUrl.of(selectedCase).mode(ProcessViewerMode.VIEWER).toWebLink();
-      }
-    }
-
-    var webStartable = findWebStartable(processLink);
-    if(webStartable instanceof ICaseMapWebStartable) {
-      return CaseMapViewerUrl.of((ICaseMapWebStartable) webStartable).mode(CaseMapViewerMode.VIEWER).toWebLink();
-    } else {
-      return ProcessViewerUrl.of((IProcessWebStartable) webStartable).mode(ProcessViewerMode.VIEWER).toWebLink();
-    }
+  public static boolean isExpressCase(ICase iCase) {
+    return iCase != null
+        && BooleanUtils.toBoolean(iCase.customFields().stringField(CustomFields.IS_EXPRESS_PROCESS).getOrNull());
   }
 
   public static ICaseMap findCaseMapByCase(ICase caze) {
@@ -93,5 +106,31 @@ public class ProcessViewerUtils {
       return null;
     }
     return Ivy.get(ICaseMapService.class).getCaseMapService(caze.getBusinessCase()).find().current();
+  }
+
+  public static boolean hasCaseMap(IBusinessCase businessCase) {
+    return findCaseMapByCase(businessCase) != null;
+  }
+
+  public static boolean isViewerAllowed(ICase caze) {
+    if (caze == null) {
+      return false;
+    } else if (isExpressCase(caze)) {
+      return false;
+    } else if (hasCaseMap(caze.getBusinessCase())) {
+      return true;
+    } else {
+      return ProcessViewer.of(caze).isViewAllowed();
+    }
+  }
+
+  public static boolean isViewerAllowed(IWebStartable webStartable) {
+    if (webStartable == null) {
+      return false;
+    } else if (webStartable instanceof ICaseMapWebStartable) {
+      return true;
+    } else {
+      return ProcessViewer.of((IProcessWebStartable) webStartable).isViewAllowed();
+    }
   }
 }
