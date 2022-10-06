@@ -81,6 +81,7 @@ Dialogs:
             ProcessId: Id du processus
             ProcessInfo: Informations sur le processus
             ProcessInfoIconTooltip: Cliquez pour voir les détails du démarrage du processus
+            ProcessIsHidden: Le processus actuel est caché !
             ProcessType:
               CASE_MAP: Carte de cas
               IVY_PROCESS: Processus d'entreprise
