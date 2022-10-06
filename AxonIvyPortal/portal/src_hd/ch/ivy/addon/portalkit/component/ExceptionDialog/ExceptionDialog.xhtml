@@ -54,7 +54,7 @@
     </h:panelGroup>
     <f:facet name="footer">
       <h:panelGroup id="exception-handler-command" styleClass="exception-handler-command" layout="block">
-        <p:link onclick="PF('#{cc.attrs.widgetVar}').hide()"
+        <p:link onclick="PF('#{cc.attrs.widgetVar}').hide(); return false;"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" href="#" styleClass="u-mar-right-15" />
 
         <p:commandButton id="copy-error-detail-button"
