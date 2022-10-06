@@ -1251,9 +1251,10 @@ span.new-widget-dialog__icon.si {
   position: absolute;
   font-size: 2rem;
   color: black;
-  padding: 1.5rem;
+  padding: 2rem;
   line-height: 2rem;
   cursor: default;
+  opacity: 0.8;
 }
 
 .welcome-text.preview-text {
