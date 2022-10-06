@@ -29,7 +29,8 @@
           <p:outputLabel for="widget-title" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetTitle')}" />
         </div>
         <div class="ui-g-9">
-          <p:inputText id="widget-title" styleClass="widget-configuration__input-text" value="#{widget.name}" />
+          <p:inputText id="widget-title" styleClass="widget-configuration__input-text" value="#{widget.name}"
+            placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/CustomWidgetTitlePlaceholder')}" />
         </div>
       </h:panelGroup>
      <div class="ui-g-12 u-padding-0">
