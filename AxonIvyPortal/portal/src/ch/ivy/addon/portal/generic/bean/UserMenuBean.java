@@ -36,6 +36,7 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 
@@ -97,8 +98,12 @@ public class UserMenuBean implements Serializable {
   }
 
   public boolean isHiddenChangePassword() {
-    return Boolean
+    return loggedByExternalSecuritySystem() || Boolean
         .parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON));
+  }
+  
+  private boolean loggedByExternalSecuritySystem() {
+	  return Ivy.session().getSessionUser() != null && Ivy.session().getSessionUser().getExternalId() != null;
   }
 
   public boolean isHiddenStatisticWidget() {
