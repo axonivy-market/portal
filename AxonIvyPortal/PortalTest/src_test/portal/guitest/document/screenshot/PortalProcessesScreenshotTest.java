@@ -87,7 +87,7 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
     refreshPage();
     processWidget.waitUtilProcessWidgetDisplayed();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "portal-process-image-view-page");
-    processWidget.selectViewMode("GRID");
+    processWidget.selectViewMode(ProcessWidgetPage.GRID_MODE);
     processWidget.waitForGridProcessListDisplayed();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "portal-process-grid-view-page");
     processWidget.selectViewMode("COMPACT");
@@ -133,10 +133,10 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.resizeBrowser(new Dimension(1920, 800));
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
-    processWidget.selectViewMode("GRID");
+    processWidget.selectViewMode(ProcessWidgetPage.GRID_MODE);
     processWidget.waitForGridProcessListDisplayed();
     processWidget.enterSearchKeyword("Process With Process Steps");
-    processWidget.selectViewMode("GRID");
+    processWidget.selectViewMode(ProcessWidgetPage.GRID_MODE);
     processWidget.waitUntilAnimationFinished(45, "js-filter-process-widget-list-item", "class");
     executeDecorateJs("highlightProcessMoreInformationLink()"); 
     ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.PROCESSES_INFORMATION_WIDGET_FOLDER + "more-information-link");
@@ -159,7 +159,7 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
     processWidget.enterSearchKeyword("Default Process Image selection example");
-    processWidget.selectViewMode("IMAGE");
+    processWidget.selectViewMode(ProcessWidgetPage.IMAGE_MODE);
     processWidget.waitUntilAnimationFinished(45, "js-process-start-list-item", "class");
     ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.PROCESSES_PROCESS_IMAGE_FOLDER + "image-process-list");
   }

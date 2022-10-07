@@ -67,7 +67,7 @@
           <h:outputText id="process-description" value="#{process.description}"
             styleClass="u-text-align-center line-clamp-text-5 process-description__text" />
           <p:tooltip id="info-workflow-tooltip" for="process-description" value="#{process.description}" position="top"
-            trackMouse="true" hideEvent="mouseleave click" styleClass="js-process-start-list-item-description" />
+            trackMouse="true" hideEvent="mouseleave click" styleClass="js-process-start-list-item-description process-tooltip" />
         </div>
         <!-- Start process -->
         <div class="ui-g-12 start-button-wrap" id="start-button-wrap-#{status.index}">
@@ -80,7 +80,7 @@
             rendered="#{cc.attrs.showInformationLink and !isExpress and !isExternalLink and !isCaseMap}"
             disabled="#{cc.attrs.readOnlyMode}" styleClass="process-more-info-link"/>
         </div>
-        <p:tooltip for="process-name" value="#{process.name}" trackMouse="true" hideEvent="mouseleave click"/>
+        <p:tooltip for="process-name" value="#{process.name}" trackMouse="true" hideEvent="mouseleave click" styleClass="process-tooltip"/>
       </h:form>
     </div>
   </h:panelGroup>
