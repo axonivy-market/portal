@@ -44,6 +44,7 @@ public class TaskDetailsTest extends BaseTest {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     login(TestAccount.ADMIN_USER);
     MainMenuPage mainMenuPage = new MainMenuPage();
+    mainMenuPage.waitForGrowlMessageDisappear();
     mainMenuPage.openTaskList();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.openTask(ORDER_PIZZA);
