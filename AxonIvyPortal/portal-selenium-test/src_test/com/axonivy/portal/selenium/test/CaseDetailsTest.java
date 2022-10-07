@@ -42,6 +42,7 @@ public class CaseDetailsTest extends BaseTest {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     login(TestAccount.ADMIN_USER);
     MainMenuPage mainMenuPage = new MainMenuPage();
+    mainMenuPage.waitForGrowlMessageDisappear();
     mainMenuPage.openCaseList();
     CaseWidgetPage caseWidgetPage = new CaseWidgetPage();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
