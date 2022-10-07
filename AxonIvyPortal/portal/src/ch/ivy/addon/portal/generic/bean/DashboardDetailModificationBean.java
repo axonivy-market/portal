@@ -67,15 +67,19 @@ import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.Dates;
+import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.cm.ContentObject;
+import ch.ivyteam.ivy.cm.ContentObjectValue;
+import ch.ivyteam.ivy.cm.exec.ContentManagement;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.scripting.objects.File;
 
 @ViewScoped
 @ManagedBean
 public class DashboardDetailModificationBean extends DashboardBean implements Serializable, PropertyChangeListener {
 
   private static final long serialVersionUID = -5272278165636659596L;
-  private static final String WELCOME_WIDGET_IMAGE_DIRECTORY_PATTERN = "DashboardWelcomeWidget/%s";
+  private static final String WELCOME_WIDGET_IMAGE_DIRECTORY = "DashboardWelcomeWidget";
+  private static final String DEFAULT_LOCALE_AND_DOT = "_en.";
 
   private List<WidgetSample> samples;
   private String newWidgetHeader;
@@ -158,10 +162,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   private WidgetSample welcomeWidgetSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/WELCOME"), WELCOME,
-        "si si-plane-take-off", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/WelcomeWidgetIntroduction"), true);
+        "welcome-widget-sample.png", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/WelcomeWidgetIntroduction"));
   }
 
   public void restore() {
+    removeWelcomeWidgetImagesOfDashboard(getSelectedDashboard());
     selectedDashboardId = getSelectedDashboard().getId();
     if (StringUtils.isBlank(getSelectedDashboard().getTemplateId())) {
       selectedDashboard.setWidgets(new ArrayList<>());
@@ -229,25 +234,37 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void removeWidget() {
     if (this.getDeleteWidget() != null) {
       this.getSelectedDashboard().getWidgets().remove(getDeleteWidget());
-      removeWelcomeWidgetImageDirectory();
+      if (WELCOME.equals(this.deleteWidget.getType())) {
+        removeWelcomeWidgetImage(this.deleteWidget);
+      }
       saveSelectedDashboard();
     }
   }
 
   /**
-   * Remove the folder that storing image for the welcome widget
-   * from application files.
+   * Remove the image of welcome widget from CMS
+   * 
    */
-  private void removeWelcomeWidgetImageDirectory() {
-    if (this.deleteWidget.getType() == WELCOME) {
-      WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) this.deleteWidget;
-      try {
-        File widgetDirectory = new File(String.format(WELCOME_WIDGET_IMAGE_DIRECTORY_PATTERN, welcomeWidget.getId()));
-        if (widgetDirectory.exists()) {
-          widgetDirectory.forceDelete();
-        }
-      } catch (IOException e) {
-        Ivy.log().error(e);
+  private void removeWelcomeWidgetImage(DashboardWidget selectedWidget) {
+    WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) selectedWidget;
+    if (StringUtils.isNotBlank(welcomeWidget.getImageLocation())) {
+      var app = IApplication.current();
+      var cms = ContentManagement.cms(app);
+      String imageType = welcomeWidget.getImageType().substring(welcomeWidget.getImageType().indexOf("/") + 1);
+      cms.root()
+        .child().folder(WELCOME_WIDGET_IMAGE_DIRECTORY).child()
+        .file(welcomeWidget.getImageLocation().substring(0, welcomeWidget.getImageLocation().indexOf(DEFAULT_LOCALE_AND_DOT)), imageType).delete();
+    }
+  }
+
+  /**
+   * Remove images of welcome widgets of a dashboard
+   * @param selectedDashboard
+   */
+  private void removeWelcomeWidgetImagesOfDashboard(Dashboard selectedDashboard) {
+    for (DashboardWidget selectedWidget : selectedDashboard.getWidgets()) {
+      if (WELCOME.equals(selectedWidget.getType())) {
+        removeWelcomeWidgetImage(selectedWidget);
       }
     }
   }
@@ -334,6 +351,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       case STATISTIC:
         updateStatisticWidgetData(widget);
         break;
+      case WELCOME:
+        updateWelcomeWidget(widget);
+        break;
       default:
         break;
     }
@@ -350,6 +370,16 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     widget = null;
     isEditWidget = false;
     PrimeFaces.current().ajax().update("grid-stack");
+  }
+
+  public void onCancel(DashboardWidget widget) {
+    if (WELCOME.equals(widget.getType())) {
+      removeTempImageOfWelcomeWidget(widget);
+      WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
+      if (!StringUtils.isBlank(welcomeWidget.getImageLocation()) && !getWelcomeWidgetImageObject(false, welcomeWidget).exists()) {
+        welcomeWidget.setImageLocation(null);
+      }
+    }
   }
 
   private void updateApplicationForCompactProcess(CompactProcessDashboardWidget compactProcessWidget) {
@@ -375,6 +405,46 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     if (displayName != null) {
       statisticWidget.setName(displayName.getValue());
     }
+  }
+
+  /**
+   * Add image to CMS, remove temp image CMS
+   * 
+   * @param widget
+   */
+  private void updateWelcomeWidget(DashboardWidget widget) {
+    var welcomeWidget = (WelcomeDashboardWidget) widget;
+    if (StringUtils.isNotBlank(welcomeWidget.getImageLocation())) {
+      ContentObjectValue tempImageFile = getWelcomeWidgetImage(true, welcomeWidget);
+      ContentObjectValue imageFile = getWelcomeWidgetImage(false, welcomeWidget);
+      imageFile.write().bytes(tempImageFile.read().bytes());
+      tempImageFile.delete();
+    }
+  }
+
+  private void removeTempImageOfWelcomeWidget(DashboardWidget widget) {
+    var welcomeWidget = (WelcomeDashboardWidget) widget;
+    if (StringUtils.isNotBlank(welcomeWidget.getImageLocation())) {
+      ContentObjectValue tempImageFile = getWelcomeWidgetImage(true, welcomeWidget);
+      tempImageFile.delete();
+    }
+  }
+
+  private ContentObjectValue getWelcomeWidgetImage(boolean isTempImage, WelcomeDashboardWidget widget) {
+    return getWelcomeWidgetImageObject(isTempImage, widget).value().get("en");
+  }
+
+  private ContentObject getWelcomeWidgetImageObject(boolean isTempImage, WelcomeDashboardWidget widget) {
+    var app = IApplication.current();
+    var cms = ContentManagement.cms(app);
+
+    String imageName = widget.getImageLocation().substring(0, widget.getImageLocation().indexOf(DEFAULT_LOCALE_AND_DOT));
+    imageName = isTempImage ? "temp_".concat(imageName) : imageName;
+
+    String imageType = widget.getImageType().substring(widget.getImageType().indexOf("/") + 1);
+    return cms.root()
+      .child().folder(WELCOME_WIDGET_IMAGE_DIRECTORY).child()
+      .file(imageName, imageType);
   }
 
   private void unifyCompactProcessCategory(CompactProcessDashboardWidget processWidget) {
@@ -461,7 +531,18 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   private void updateWidgetPosition(DashboardWidget widget) {
-    if (isEditWidget || (widget != null && widget.getType() == WELCOME)) {
+    if (isEditWidget) {
+      return;
+    }
+
+    if (WELCOME.equals(widget.getType())) {
+      for (var otherWidget : CollectionUtils.emptyIfNull(selectedDashboard.getWidgets())) {
+        if (otherWidget.getId().contentEquals(widget.getId())) {
+          continue;
+        }
+        int currentAxisY = otherWidget.getLayout().getAxisY();
+        otherWidget.getLayout().setAxisY(currentAxisY + widget.getLayout().getHeight());
+      }
       return;
     }
 

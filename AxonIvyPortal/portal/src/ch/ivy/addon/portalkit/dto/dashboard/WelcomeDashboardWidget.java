@@ -9,7 +9,6 @@ import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.WelcomeTextPosition;
 import ch.ivy.addon.portalkit.enums.WelcomeTextSize;
-import ch.ivyteam.ivy.scripting.objects.File;
 
 public class WelcomeDashboardWidget  extends DashboardWidget {
 
@@ -30,12 +29,6 @@ public class WelcomeDashboardWidget  extends DashboardWidget {
   private String welcomeText;
 
   @JsonIgnore
-  private File uploadedImageFile;
-
-  @JsonIgnore
-  private String displayWelcomeText;
-
-  @JsonIgnore
   public static WelcomeDashboardWidget buildDefaultWidget(String id, String name) {
     WelcomeDashboardWidget result = new WelcomeDashboardWidget();
     result.setId(id);
@@ -45,6 +38,8 @@ public class WelcomeDashboardWidget  extends DashboardWidget {
     result.getLayout().setHeight(3);
     result.getLayout().setAxisX(0);
     result.getLayout().setAxisY(0);
+    result.setWelcomeTextPosition(WelcomeTextPosition.TOP_LEFT);
+    result.setWelcomeTextSize(WelcomeTextSize.HEADING_2);
     return result;
   }
 
@@ -70,15 +65,6 @@ public class WelcomeDashboardWidget  extends DashboardWidget {
 
   public void setWelcomeTexts(List<DisplayName> welcomeTexts) {
     this.welcomeTexts = welcomeTexts;
-  }
-  
-
-  public String getDisplayWelcomeText() {
-    return displayWelcomeText;
-  }
-
-  public void setDisplayWelcomeText(String displayWelcomeText) {
-    this.displayWelcomeText = displayWelcomeText;
   }
 
   @Override
@@ -106,14 +92,6 @@ public class WelcomeDashboardWidget  extends DashboardWidget {
 
   public void setWelcomeTextColor(String welcomeTextColor) {
     this.welcomeTextColor = welcomeTextColor;
-  }
-
-  public File getUploadedImageFile() {
-    return uploadedImageFile;
-  }
-
-  public void setUploadedImageFile(File uploadedImageFile) {
-    this.uploadedImageFile = uploadedImageFile;
   }
 
   public String getImageType() {
