@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.ivydata.service.impl;
 import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.isHiddenTasksCasesExcluded;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -189,21 +190,30 @@ public class TaskService implements ITaskService {
   }
 
   private ExpiryStatistic createExpiryTimeStampToCountMap(Recordset recordSet) throws ParseException {
-    ExpiryStatistic expiryStatistic = new ExpiryStatistic();
-    Map<Date, Long> numberOfTasksByExpiryTime = new HashMap<>();
-    if (recordSet != null) {
-      for (Record record : recordSet.getRecords()) {
-        if (record.getField("EXPIRYTIMESTAMP") != null) {
-          // must use same format as IVY DB, can not change it to Ivy.cms().co("/patterns/dateTimePattern")
-          String pattern = "yyyy-MM-dd HH:mm:ss.SSS";
-          Date date = DateUtils.parseDate(record.getField("EXPIRYTIMESTAMP").toString(), pattern);
-          numberOfTasksByExpiryTime.put(date, Long.valueOf(record.getField("COUNT").toString()));
+      ExpiryStatistic expiryStatistic = new ExpiryStatistic();
+      Map<Date, Long> numberOfTasksByExpiryTime = new HashMap<>();
+      if (recordSet != null) {
+        for (Record record : recordSet.getRecords()) {
+          if (record.getField("EXPIRYTIMESTAMP") != null) {
+            // must use same format as IVY DB, can not change it to Ivy.cms().co("/patterns/dateTimePattern")
+            String pattern = "yyyy-MM-dd HH:mm:ss.SSS";
+
+            Date date = new Date();
+            try {
+              date = DateUtils.parseDate(record.getField("EXPIRYTIMESTAMP").toString(), pattern);
+            } catch(ParseException e) {
+              // Try to parse by MySQL specific date format
+              // Ticket: IVYPORTAL-14349
+              SimpleDateFormat mySqlDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+              date = mySqlDateFormat.parse(record.getField("EXPIRYTIMESTAMP").toString());
+            }
+            numberOfTasksByExpiryTime.put(date, Long.valueOf(record.getField("COUNT").toString()));
+          }
         }
       }
+      expiryStatistic.setNumberOfTasksByExpiryTime(numberOfTasksByExpiryTime);
+      return expiryStatistic;
     }
-    expiryStatistic.setNumberOfTasksByExpiryTime(numberOfTasksByExpiryTime);
-    return expiryStatistic;
-  }
 
   private TaskQuery extendQueryWithUserHasPermissionToSee(TaskSearchCriteria criteria) {
     TaskQuery clonedQuery = TaskQuery.fromJson(criteria.getFinalTaskQuery().asJson()); // clone to keep the final query in TaskSearchCriteria
