@@ -16,6 +16,8 @@ import portal.guitest.common.WaitHelper;
 
 public class ProcessWidgetPage extends TemplatePage {
 
+  public static final String IMAGE_MODE = "IMAGE";
+  public static final String GRID_MODE = "GRID";
   private static final String ACTIVE_MODE_SELECTOR = "[id$=':process-view-mode:view-mode-selection'] div.ui-button.ui-button-text-only.ui-state-active .ui-button-text";
   private static final String IMAGE_ACTION_BUTTON = "[id$=':%d:image-processes:%d:process-item:image-process-action-component:process-action-button']";
   private static final String GRID_ACTION_BUTTON = "[id$=':%d:grid-processes:%d:process-grid-item:process-item:grid-process-action-component:process-action-button']";
@@ -407,7 +409,11 @@ public class ProcessWidgetPage extends TemplatePage {
     WebElement processItem = getProcessItem(processName);
     processItem.findElement(By.cssSelector(".more-information")).click();
   }
-  
+
+  public void waitForImageProcessListDisplayed() {
+    waitForElementDisplayed(By.cssSelector("[id$='process-widget:image-process-container']"), true);
+  }
+
   public void waitForGridProcessListDisplayed() {
     waitForElementDisplayed(By.cssSelector("[id$='process-widget:grid-process-container']"), true);
   }
@@ -428,6 +434,15 @@ public class ProcessWidgetPage extends TemplatePage {
             return findElementByCssSelector(ACTIVE_MODE_SELECTOR)
                 .getText().equalsIgnoreCase(viewMode);
           });
+          WaitHelper.assertTrueWithWait(() -> {
+            if (IMAGE_MODE.equalsIgnoreCase(viewMode)) {
+              return findElementByCssSelector(".process-group.image-process-container").isDisplayed();
+            }
+            if (GRID_MODE.equalsIgnoreCase(viewMode)) {
+              return findElementByCssSelector(".process-group.grid-process-container").isDisplayed();
+            }
+            return true;
+          });
           return;
         }
       }
@@ -435,8 +450,11 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public void clickMoreButtonOfFirstImageProcess() {
-    waitForElementDisplayed(By.cssSelector(String.format(IMAGE_ACTION_BUTTON, 0, 0)), true);
-    clickByCssSelector(String.format(IMAGE_ACTION_BUTTON, 0, 0));
+    findListElementsByCssSelector("[id$=':process-item:image-process-action-component:process-action-button']")
+        .stream().filter(WebElement::isDisplayed)
+        .filter(WebElement::isEnabled).findFirst().ifPresent(firstActionButton -> {
+          clickByJavaScript(firstActionButton);
+        });
   }
 
   public WebElement getMoreMenuButtonOfImageProcess(int index) {
