@@ -94,7 +94,7 @@ public class ProcessWidgetTest extends BaseTest {
     
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
-    processWidget.selectViewMode("GRID");
+    processWidget.selectViewMode(ProcessWidgetPage.GRID_MODE);
     processWidget.waitForGridProcessListDisplayed();
     processWidget.clickMoreButtonOfFirstGridProcess();
     processWidget.deleteGridProcess(0);
