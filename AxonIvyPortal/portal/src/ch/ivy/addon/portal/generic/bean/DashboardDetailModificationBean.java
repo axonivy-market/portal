@@ -161,7 +161,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   private WidgetSample welcomeWidgetSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/WELCOME"), WELCOME,
-        "si si-plane-take-off", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/WelcomeWidgetIntroduction"), true);
+        "welcome-widget-sample.png", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/WelcomeWidgetIntroduction"));
   }
 
   public void restore() {
@@ -511,7 +511,18 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   private void updateWidgetPosition(DashboardWidget widget) {
-    if (isEditWidget || (widget != null && widget.getType() == WELCOME)) {
+    if (isEditWidget) {
+      return;
+    }
+
+    if (widget.getType() == WELCOME) {
+      for (var otherWidget : CollectionUtils.emptyIfNull(selectedDashboard.getWidgets())) {
+        if (otherWidget.getId().contentEquals(widget.getId())) {
+          continue;
+        }
+        int currentAxisY = otherWidget.getLayout().getAxisY();
+        otherWidget.getLayout().setAxisY(currentAxisY + widget.getLayout().getHeight());
+      }
       return;
     }
 
