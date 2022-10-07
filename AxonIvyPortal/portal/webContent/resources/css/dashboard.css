@@ -669,11 +669,6 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
     width: auto;
     max-width: 100%;
   }
-  
-  .dashboard-cases__actions,
-  .dashboard-tasks__actions {
-    border-right: 1px solid #d8d8d8 !important;
-  }
 }
 
 .dashboard-tasks__column-small-screen-name,
