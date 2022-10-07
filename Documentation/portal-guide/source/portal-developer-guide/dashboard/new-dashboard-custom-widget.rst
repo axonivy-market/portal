@@ -32,7 +32,7 @@ Dashboard:
 
       ``date``: type java.util.Date.
 
-   ``name``: name of the field that you want to show on the configuration dialog of the custom widget.
+   ``name``: name of the field that you want to show on the configuration dialog of the custom widget. The widget's header is hidden if the name is empty.
 
    The reason to define in the above format is to allow end-user to send parameters to the Ivy process in the proper way.
 
