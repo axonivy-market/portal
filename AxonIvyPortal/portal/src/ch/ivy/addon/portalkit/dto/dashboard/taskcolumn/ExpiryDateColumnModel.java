@@ -41,7 +41,7 @@ public class ExpiryDateColumnModel extends TaskColumnModel implements Serializab
 
   @Override
   public String getDefaultStyle() {
-    return SMALL_WIDTH;
+    return NORMAL_WIDTH;
   }
 
   @Override

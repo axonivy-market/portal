@@ -295,8 +295,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   private CustomDashboardWidget getDefaultCustomDashboardWidget() {
     String widgetId = DashboardWidgetUtils.generateNewWidgetId(DashboardWidgetType.CUSTOM);
-    String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCustomWidget");
-    return CustomDashboardWidget.buildDefaultWidget(widgetId, widgetName);
+    return CustomDashboardWidget.buildDefaultWidget(widgetId, StringUtils.EMPTY);
   }
 
   private ProcessViewerDashboardWidget getDefaultProcessViewerDashboardWidget() {
