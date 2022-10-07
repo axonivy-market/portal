@@ -56,7 +56,7 @@
       </h:form>
     </div>
     <p:remoteCommand name="updateWelcomeText_#{widget.id}" update="welcome-text"
-      actionListener="#{dashboardWelcomeWidgetBean.updateWelcomeText()}"
+      actionListener="#{dashboardWelcomeWidgetBean.updateWelcomeText(widget)}"
       oncomplete="WelcomeWidget.updateWelcomeTextStyles('#{widget.id}','#{widget.welcomeTextColor}','#{widget.welcomeTextPosition}','#{widget.welcomeTextSize}');" />
     <script>
       $(document).ready(function() {
