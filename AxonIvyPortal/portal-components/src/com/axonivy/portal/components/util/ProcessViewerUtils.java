@@ -113,9 +113,7 @@ public class ProcessViewerUtils {
   }
 
   public static boolean isViewerAllowed(ICase caze) {
-    if (caze == null) {
-      return false;
-    } else if (isExpressCase(caze)) {
+    if (caze == null || isExpressCase(caze) || !caze.isBusinessCase()) {
       return false;
     } else if (hasCaseMap(caze.getBusinessCase())) {
       return true;
