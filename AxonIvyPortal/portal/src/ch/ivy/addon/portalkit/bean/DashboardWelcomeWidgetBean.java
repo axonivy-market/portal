@@ -90,7 +90,7 @@ public class DashboardWelcomeWidgetBean implements Serializable {
     }
   }
 
-  public void updateWelcomeText() {
+  public void updateWelcomeText(WelcomeDashboardWidget welcomeWidget) {
     int parsedClientTime = 0;
     String clientTime = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("clientTime");
     if (clientTime != null) {
@@ -104,9 +104,9 @@ public class DashboardWelcomeWidgetBean implements Serializable {
       greetingTextCms = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/Greeting/Evening";
     }
     
-    widget.setWelcomeText(String.join(" ",
+    welcomeWidget.setWelcomeText(String.join(" ",
         Ivy.cms().coLocale(greetingTextCms, Ivy.session().getContentLocale()),
-        Ivy.session().getSessionUser().getDisplayName(), widget.getWelcomeText()));
+        Ivy.session().getSessionUser().getDisplayName(), welcomeWidget.getWelcomeText()));
   }
 
   private static boolean equalsLanguageLocale(DisplayName displayName, String language) {
