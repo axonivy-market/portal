@@ -28,10 +28,7 @@ public class TaskFilterTest extends BaseTest {
 
   @Test
   public void testFilterTasksByCreatedDate() {
-    redirectToRelativeLink(createTestingTasksUrl);
-    login(TestAccount.ADMIN_USER);
-    MainMenuPage mainMenuPage = new MainMenuPage();
-    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+    TaskWidgetPage taskWidgetPage = createTestData();
     taskWidgetPage.openAdvancedFilter("Created (from/to)", "created");
     String fromInputText = new SimpleDateFormat(DateTimePattern.DATE_PATTERN).format(new Date());
     taskWidgetPage.filterTasksByCreatedDate(fromInputText, EMPTY);
@@ -40,15 +37,21 @@ public class TaskFilterTest extends BaseTest {
   
   @Test
   public void testFilterTasksByApplication() {
-    redirectToRelativeLink(createTestingTasksUrl);
-    login(TestAccount.ADMIN_USER);
-    MainMenuPage mainMenuPage = new MainMenuPage();
-    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+    TaskWidgetPage taskWidgetPage = createTestData();
     int before = taskWidgetPage.countTasks().size();
     taskWidgetPage.openAdvancedFilter("Application", "application");
     taskWidgetPage.filterFirstApp();
     int after = taskWidgetPage.countTasks().size();
     Assertions.assertEquals(before, after);
+  }
+
+  private TaskWidgetPage createTestData() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    mainMenuPage.waitForGrowlMessageDisappear();
+    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+    return taskWidgetPage;
   }
 
 }
