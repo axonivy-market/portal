@@ -232,7 +232,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void removeWidget() {
     if (this.getDeleteWidget() != null) {
       this.getSelectedDashboard().getWidgets().remove(getDeleteWidget());
-      if (this.deleteWidget.getType() == WELCOME) {
+      if (WELCOME.equals(this.deleteWidget.getType())) {
         removeWelcomeWidgetImage();
       }
       saveSelectedDashboard();
@@ -360,7 +360,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   public void onCancel(DashboardWidget widget) {
-    if (widget.getType() == WELCOME) {
+    if (WELCOME.equals(widget.getType())) {
       removeTempImageOfWelcomeWidget(widget);
     }
   }
@@ -515,7 +515,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       return;
     }
 
-    if (widget.getType() == WELCOME) {
+    if (WELCOME.equals(widget.getType())) {
       for (var otherWidget : CollectionUtils.emptyIfNull(selectedDashboard.getWidgets())) {
         if (otherWidget.getId().contentEquals(widget.getId())) {
           continue;
