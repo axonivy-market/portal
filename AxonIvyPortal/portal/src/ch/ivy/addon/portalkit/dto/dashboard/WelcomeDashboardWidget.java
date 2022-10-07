@@ -38,6 +38,8 @@ public class WelcomeDashboardWidget  extends DashboardWidget {
     result.getLayout().setHeight(3);
     result.getLayout().setAxisX(0);
     result.getLayout().setAxisY(0);
+    result.setWelcomeTextPosition(WelcomeTextPosition.TOP_LEFT);
+    result.setWelcomeTextSize(WelcomeTextSize.HEADING_2);
     return result;
   }
 
