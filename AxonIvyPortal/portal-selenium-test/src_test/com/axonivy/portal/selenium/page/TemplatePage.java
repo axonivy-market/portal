@@ -1,8 +1,11 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.and;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappears;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$;
 
 import java.util.ArrayList;
 
@@ -34,5 +37,10 @@ public abstract class TemplatePage extends AbstractPage {
   public void waitUntilElementToBeClickable(SelenideElement element) {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
         .until(ExpectedConditions.elementToBeClickable(element));
+  }
+
+  public void waitForGrowlMessageDisappear() {
+    $("div[id='portal-global-growl_container']").waitUntil(appear, DEFAULT_TIMEOUT)
+          .$("div.ui-growl-message").waitUntil(disappears, DEFAULT_TIMEOUT);
   }
 }

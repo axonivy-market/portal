@@ -809,6 +809,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     columnManagement: Column management
     configuration:
       CustomWidgetExternalLinkWarning: Some websites are not compatible with iframe due to security concerns. Please contact your administrator if the external website is not working properly.
+      CustomWidgetTitlePlaceholder: Leave it blank to hide the header of the widget
       Parameters: Parameters
       RestoreDefaultDashboardTemplateTooltip: We cannot find the template of your dashboard, so we cannot reset it to the standard configuration. Please check with your administrator for more details!
       SelectTheTemplate: Select the template

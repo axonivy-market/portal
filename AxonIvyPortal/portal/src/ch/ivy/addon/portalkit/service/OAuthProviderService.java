@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 import org.apache.commons.io.IOUtils;
 
 import ch.ivy.addon.portalkit.bo.OAuthProvider;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.identity.core.auth.oauth2.OAuth2Url;
 import ch.ivyteam.ivy.security.identity.spi.IdentityProvider;

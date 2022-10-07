@@ -1,22 +1,24 @@
 package ch.ivy.addon.portalkit.configuration;
 
 import java.util.List;
+import java.util.Locale;
+
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
+import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.ProcessType;
-import ch.ivy.addon.portalkit.util.LanguageUtils;
-import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
+import ch.ivy.addon.portalkit.util.Locales;
+import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class UserProcess extends AbstractConfiguration {
   private ProcessType processType;
   @Deprecated(since = "10.0", forRemoval = true)
-  @JsonProperty(access = Access.WRITE_ONLY)
   private String processName;
   private List<DisplayName> names;
   private String link;
@@ -57,14 +59,27 @@ public class UserProcess extends AbstractConfiguration {
     this.processType = processType;
   }
 
+  /**
+   * Gets the display name of process by current active locale
+   * 
+   * @return process name
+   */
   public String getProcessName() {
-    return LanguageUtils.getLocalizedName(names, processName);
+    if (CollectionUtils.isNotEmpty(this.names)) {
+      return getActiveDisplayName();
+    }
+
+    return getDisplayNameWithCms();
   }
 
-  public void setProcessName(String processname) {
-    NameResult nameResult = LanguageUtils.collectMultilingualNames(names, processname);
-    this.names = nameResult.names();
-    this.processName = nameResult.name();
+  private String getActiveDisplayName() {
+    Locale currentLocale = new Locales().getCurrentLocale();
+    return names.stream().filter(displayName -> displayName.getLocale().equals(currentLocale))
+        .map(DisplayName::getValue).findFirst().orElse(getDisplayNameWithCms());
+  }
+
+  public void setProcessName(String processName) {
+    this.processName = processName;
   }
 
   public List<DisplayName> getNames() {
@@ -129,4 +144,9 @@ public class UserProcess extends AbstractConfiguration {
     return String.format("UserProcess {processName=%s, icon=%s, link=%s, id=%s}", processName, icon, link, getId());
   }
 
+  private String getDisplayNameWithCms() {
+    return StringUtils.startsWithIgnoreCase(processName, DashboardConfigurationPrefix.CMS)
+        ? Ivy.cms().co(StringUtils.removeStart(processName, DashboardConfigurationPrefix.CMS))
+        : processName;
+  }
 }
