@@ -92,7 +92,7 @@
          </div>
          <div class="ui-g-9 ui-md-8 u-no-padding-bottom">
            <p:selectOneRadio id="welcome-text-greeting" value="#{dashboardWelcomeWidgetConfigurationBean.widget.greeting}">
-             <p:ajax update="user-filter" process="user-filter" oncomplete="generateGreetingText();" global="false" />
+             <p:ajax update="user-filter" process="user-filter" oncomplete="generateGreetingText();" />
              <f:selectItem itemValue="#{true}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" />
              <f:selectItem itemValue="#{false}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" />
            </p:selectOneRadio>
@@ -139,7 +139,7 @@
        </div>
        <p:remoteCommand name="initGreetingTexts" update="welcome-text-input-container"
          actionListener="#{dashboardWelcomeWidgetConfigurationBean.initClientTime()}"
-         oncomplete="WelcomeWidgetConfiguration.updatePreviewText('#{widget.greeting}');" global="false" />
+         oncomplete="WelcomeWidgetConfiguration.updatePreviewText('#{widget.greeting}');" />
        <script>
          $(document).ready(function() {
            updateAll();
