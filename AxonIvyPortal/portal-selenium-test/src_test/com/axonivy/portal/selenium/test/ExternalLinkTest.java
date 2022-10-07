@@ -18,6 +18,7 @@ public class ExternalLinkTest extends BaseTest {
   public void createExternalLink() {
     login(TestAccount.DEMO_USER);
     MainMenuPage mainMenuPage = new MainMenuPage();
+    mainMenuPage.waitForGrowlMessageDisappear();
     mainMenuPage.openProcessList();
     ProcessWidgetPage processPage = new ProcessWidgetPage();
     processPage.waitForStartListShow();
