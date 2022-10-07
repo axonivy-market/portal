@@ -16,7 +16,7 @@ import portal.guitest.page.ProcessWidgetPage.AddNewExternalLinkDialog;
 
 public class FullProcessPageTest extends BaseTest{
   
-  private static final String AAGOOGLE_LINK = "AAGoogle";
+  private static final String AAGOOGLE_LINK = "11AAGoogle";
   protected HomePage homePage;
   protected ProcessWidgetPage processWidgetPage;
   
@@ -44,7 +44,7 @@ public class FullProcessPageTest extends BaseTest{
   @Test
   public void testChangeProcessViewMode() {
     String currentView = processWidgetPage.getCurrentViewMode();
-    processWidgetPage.selectViewMode("GRID");
+    processWidgetPage.selectViewMode(ProcessWidgetPage.GRID_MODE);
     String newView = processWidgetPage.getCurrentViewMode();
     assertFalse("Current view is not changed", StringUtils.equals(currentView, newView));
   }
@@ -57,17 +57,18 @@ public class FullProcessPageTest extends BaseTest{
     processWidgetPage = mainMenuPage.selectProcessesMenu();
     createExternalTestProcess(AAGOOGLE_LINK, AAGOOGLE_LINK, false);
 
-    processWidgetPage.selectViewMode("GRID");
+    processWidgetPage.selectViewMode(ProcessWidgetPage.GRID_MODE);
     processWidgetPage.waitForGridProcessListDisplayed();
     processWidgetPage.enterSearchKeyword("link");
     String currentIcon = processWidgetPage.getProcessItemIcon(0);
-    processWidgetPage.selectViewMode("IMAGE");
+    processWidgetPage.selectViewMode(ProcessWidgetPage.IMAGE_MODE);
+    processWidgetPage.waitForImageProcessListDisplayed();
+    processWidgetPage.enterSearchKeyword("link");
     processWidgetPage.clickMoreButtonOfFirstImageProcess();
-    processWidgetPage.waitForMenuActionsDisplayed();
     processWidgetPage.clickOnProcessEditMenu(0);
     processWidgetPage.changeProcessIcon();
     processWidgetPage.waitForJQueryAndPrimeFaces(5);
-    processWidgetPage.selectViewMode("GRID");
+    processWidgetPage.selectViewMode(ProcessWidgetPage.GRID_MODE);
     processWidgetPage.waitForGridProcessListDisplayed();
     processWidgetPage.enterSearchKeyword("link");
     String newIcon = processWidgetPage.getProcessItemIcon(0);
