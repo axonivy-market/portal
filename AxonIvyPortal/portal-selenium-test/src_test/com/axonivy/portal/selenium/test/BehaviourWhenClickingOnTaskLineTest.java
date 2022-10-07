@@ -39,8 +39,9 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
   public void testRunTaskWhenClickingOnTaskLineInTaskList() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.DEMO_USER);
-    MainMenuPage mainMenuPage = new MainMenuPage();
-    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+    var mainMenu = new MainMenuPage();
+    mainMenu.waitForGrowlMessageDisappear();
+    TaskWidgetPage taskWidgetPage = mainMenu.openTaskList();
     taskWidgetPage.runTaskWithRunTheTaskBehaviour(0);
     new TaskTemplatePage().getStartedTaskTemplateTitle()
         .shouldHave(Condition.attribute("title", TASK_MATERNITY_LEAVE_REQUEST));
@@ -51,8 +52,9 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.DEMO_USER);
-    MainMenuPage mainMenuPage = new MainMenuPage();
-    mainMenuPage.openTaskList();
+    var mainMenu = new MainMenuPage();
+    mainMenu.waitForGrowlMessageDisappear();
+    mainMenu.openTaskList();
     new TaskWidgetPage().openTaskWithAccessTaskDetailsBehaviour(0);
     new TaskDetailsPage().getInformationPanel().should(Condition.appear);
   }
@@ -61,7 +63,9 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
   public void testRunTaskWhenClickingOnTaskLineInCaseDetails() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.DEMO_USER);
-    CaseWidgetPage caseWidgetPage = new MainMenuPage().openCaseList();
+    var mainMenu = new MainMenuPage();
+    mainMenu.waitForGrowlMessageDisappear();
+    CaseWidgetPage caseWidgetPage = mainMenu.openCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(CASE_LEAVE_REQUEST);
     caseDetailsPage.openTaskWithRunTheTaskBehaviour(TASK_MATERNITY_LEAVE_REQUEST);
     new TaskTemplatePage().getStartedTaskTemplateTitle()
@@ -73,7 +77,9 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.DEMO_USER);
-    CaseDetailsPage caseDetailsPage = new MainMenuPage().openCaseList().openCase(CASE_LEAVE_REQUEST);
+    var mainMenu = new MainMenuPage();
+    mainMenu.waitForGrowlMessageDisappear();
+    CaseDetailsPage caseDetailsPage = mainMenu.openCaseList().openCase(CASE_LEAVE_REQUEST);
     caseDetailsPage.openTaskWithRunTheTaskBehaviour(TASK_MATERNITY_LEAVE_REQUEST);
     new TaskDetailsPage().getInformationPanel().should(Condition.appear);
   }
