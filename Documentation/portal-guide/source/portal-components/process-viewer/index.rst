@@ -10,6 +10,9 @@ The Process Viewer component provides a visual representation of the process flo
 
 |portal-process-viewer-component|
 
+.. warning::
+   If a process is designed to not allow users to view, an error message will be shown instead.
+
 Attributes of this component:
 
 .. csv-table::
