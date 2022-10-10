@@ -68,13 +68,13 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public ProcessViewerWidgetNewDashBoardPage showEditProcessViewerWidgetConfiguration() {
-    $("button[id$=':edit-widget-3']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("button[id$=':edit-widget-4']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("div#new-widget-configuration-dialog").waitUntil(appear, DEFAULT_TIMEOUT);
     return new ProcessViewerWidgetNewDashBoardPage();
   }
 
   public void deleteProcessViewerWidget() {
-    $("button[id$=':delete-widget-3']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("button[id$=':delete-widget-4']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("div#remove-widget-dialog").waitUntil(appear, DEFAULT_TIMEOUT);
     $("button[id$='remove-widget-button']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
         .click();
@@ -132,7 +132,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement findProcessViewerWidget() {
-    return $("div[id$=':process-viewer-panel-group-3']");
+    return $("div[id$=':process-viewer-panel-group-4']");
   }
 
   public void startProcess() {

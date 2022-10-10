@@ -56,10 +56,10 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
     configurationPage.createPublicDashboardFromTemplate(DASHBOARD_NAME, ICON, DASHBOARD_DESCRIPTION, DASHBOARD_PERMISSION, 0);
-    verifyEditingDashboardContent(DASHBOARD_NAME, CollectionCondition.size(3));
+    verifyEditingDashboardContent(DASHBOARD_NAME, CollectionCondition.size(4));
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.deleteCompactModeProcess();
-    newDashboardDetailsEditPage.getWidgets().shouldHave(CollectionCondition.size(2));
+    newDashboardDetailsEditPage.getWidgets().shouldHave(CollectionCondition.size(3));
     verifyRestoreDashboardMessage("Default template");
     newDashboardDetailsEditPage.restoreDashboardToStandard();
     verifyEditingDashboardContent(DASHBOARD_NAME, CollectionCondition.size(3));
