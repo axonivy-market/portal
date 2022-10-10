@@ -45,7 +45,7 @@
           </p:link>
         </h:panelGroup>
         
-        <div class="login-oauth-providers">
+        <div class="login-oauth-providers" jsf:rendered="#{not empty data.oauthProviders}">
           <ul>
             <c:forEach var="authProvider" items="#{data.oauthProviders}">
               <li>
