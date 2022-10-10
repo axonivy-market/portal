@@ -80,7 +80,7 @@
 
     <h:outputText rendered="#{data.isError}" styleClass="ui-g-12">
       <i class="si si-cog-double-2" />
-      <span>#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessDataNotFound')}</span>
+      <span>#{data.errorMessage}</span>
     </h:outputText>
   </h:panelGroup>
 </cc:implementation>
