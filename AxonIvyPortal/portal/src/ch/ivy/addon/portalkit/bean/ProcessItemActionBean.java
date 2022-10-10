@@ -27,7 +27,7 @@ public class ProcessItemActionBean extends ProcessWidgetBean {
 
   public String getProcessViewerPageUri(Process process) {
     var startLink = "";
-    if (process.getType() == ProcessType.IVY_PROCESS) {
+    if (ProcessType.IVY_PROCESS.equals(process.getType())) {
       var processData = process.getProcess();
       if (processData instanceof IWebStartable) {
         startLink = ((IWebStartable) processData).getLink().getRelative();
@@ -39,7 +39,7 @@ public class ProcessItemActionBean extends ProcessWidgetBean {
   }
 
   public boolean isShowProcessViewer(Process process) {
-    if (this.showProcessViewer && process.getType() == ProcessType.IVY_PROCESS) {
+    if (this.showProcessViewer && ProcessType.IVY_PROCESS.equals(process.getType())) {
       var processData = process.getProcess();
       IWebStartable webStartable = null;
       if (processData instanceof DashboardProcess) {
