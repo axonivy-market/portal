@@ -18,7 +18,8 @@
         "case" : {
           "name" : "Test Process Viewer Permission Case"
         },
-        "outLink" : "start.ivp"
+        "outLink" : "start.ivp",
+        "startName" : "Test Process Viewer Permission"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
