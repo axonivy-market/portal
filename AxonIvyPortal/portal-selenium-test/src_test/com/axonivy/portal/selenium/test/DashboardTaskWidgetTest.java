@@ -38,7 +38,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
   private static final String MATERNITY_LEAVE_REQUEST = "Maternity Leave Request";
   private static final String ANNUAL_LEAVE_REQUEST = "Annual Leave Request";
   private static final String CATEGORIED_LEAVE_REQUEST = "Categoried Leave Request";
-  private static final String TASK_ID = "Task Id";
+  private static final String TASK_PRIORITY = "Prio";
   private static final String EXPIRY = "Expiry";
   private static final String IN_PROGRESS = "In progress";
   
@@ -207,7 +207,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     
-    // Verify default task should be sorted by  Created descending
+    // Verify default task should be sorted by Created descending
     taskWidget.getTaskWidgetHeaderSorted().shouldHave(text("Created"));
     String sortType = taskWidget.getTaskWidgetHeaderSorted().getAttribute("aria-sort");
     assertEquals(sortType, "descending");
@@ -218,11 +218,11 @@ public class DashboardTaskWidgetTest extends BaseTest {
     assertEquals(sortType, "ascending");
     taskWidget.getTheFirstTaskWidgetByColumn(TASK_NAME).shouldHave(text(ANNUAL_LEAVE_REQUEST));
     // Sort by task id
-    taskWidget.clickOnHeaderTaskByColumn(TASK_ID);
+    taskWidget.clickOnHeaderTaskByColumn(TASK_PRIORITY);
     taskWidget.waitForSortingFinished("ascending");
-    taskWidget.clickOnHeaderTaskByColumn(TASK_ID);
+    taskWidget.clickOnHeaderTaskByColumn(TASK_PRIORITY);
     taskWidget.waitForSortingFinished("descending");
-    taskWidget.getTaskWidgetHeaderSorted().shouldHave(text(TASK_ID));
+    taskWidget.getTaskWidgetHeaderSorted().shouldHave(text(TASK_PRIORITY));
     sortType = taskWidget.getTaskWidgetHeaderSorted().getAttribute("aria-sort");
     assertEquals(sortType, "descending");
     taskWidget.getTheFirstTaskWidgetByColumn(TASK_NAME).shouldHave(text(MATERNITY_LEAVE_REQUEST));
@@ -231,7 +231,6 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.getTaskWidgetHeaderSorted().shouldHave(text(EXPIRY));
     sortType = taskWidget.getTaskWidgetHeaderSorted().getAttribute("aria-sort");
     assertEquals(sortType, "ascending");
-    taskWidget.getTheFirstTaskWidgetByColumn(TASK_NAME).shouldHave(text(CATEGORIED_LEAVE_REQUEST));
+    taskWidget.getTheFirstTaskWidgetByColumn(TASK_NAME).shouldHave(text(ANNUAL_LEAVE_REQUEST));
   }
-  
 }
