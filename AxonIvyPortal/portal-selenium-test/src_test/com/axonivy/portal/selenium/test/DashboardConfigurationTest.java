@@ -147,7 +147,7 @@ public class DashboardConfigurationTest extends BaseTest {
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
     newDashboardDetailsEditPage.getIconByIndex(0, icon).shouldBe(Condition.appear);
-    newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.size(3));
+    newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.size(4));
 
     goBackConfigurationAndVerifyDashboards(name, description, newDashboardDetailsEditPage, true);
   }
@@ -165,7 +165,7 @@ public class DashboardConfigurationTest extends BaseTest {
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
     newDashboardDetailsEditPage.getIconByIndex(0, icon).shouldBe(Condition.appear);
-    newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.size(3));
+    newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.size(4));
 
     goBackConfigurationAndVerifyDashboards(name, description, newDashboardDetailsEditPage, false);
   }
