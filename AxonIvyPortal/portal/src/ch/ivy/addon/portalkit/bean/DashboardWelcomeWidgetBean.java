@@ -103,10 +103,20 @@ public class DashboardWelcomeWidgetBean implements Serializable {
     } else if (parsedClientTime > 18) {
       greetingTextCms = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/Greeting/Evening";
     }
-    
-    welcomeWidget.setWelcomeText(String.join(" ",
-        Ivy.cms().coLocale(greetingTextCms, Ivy.session().getContentLocale()),
-        Ivy.session().getSessionUser().getDisplayName(), welcomeWidget.getWelcomeText()));
+    var originWelcomeText = welcomeWidget.getWelcomeText();
+    if (StringUtils.isNoneBlank(originWelcomeText)) {
+      if (StringUtils.startsWith(originWelcomeText.trim(), ",") || StringUtils.startsWith(originWelcomeText.trim(), ".")) {
+        var newWelcomeText = String.join(" ",
+            Ivy.cms().coLocale(greetingTextCms, Ivy.session().getContentLocale()),
+            Ivy.session().getSessionUser().getDisplayName());
+        welcomeWidget.setWelcomeText(newWelcomeText.concat(welcomeWidget.getWelcomeText()));
+      }
+    } else {
+      welcomeWidget.setWelcomeText(String.join(" ",
+          Ivy.cms().coLocale(greetingTextCms, Ivy.session().getContentLocale()),
+          Ivy.session().getSessionUser().getDisplayName(),
+          welcomeWidget.getWelcomeText()));
+    }
   }
 
   private static boolean equalsLanguageLocale(DisplayName displayName, String language) {
