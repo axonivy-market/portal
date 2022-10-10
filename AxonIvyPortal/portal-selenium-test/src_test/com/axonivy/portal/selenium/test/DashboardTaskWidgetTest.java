@@ -202,6 +202,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
   public void testStickySortTaskList() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
     
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));

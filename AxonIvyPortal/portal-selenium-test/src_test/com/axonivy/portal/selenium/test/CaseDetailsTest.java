@@ -59,6 +59,7 @@ public class CaseDetailsTest extends BaseTest {
   public void testVisibilityOfNotesWhenAddNoteOnTechnicalCaseDetails() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openCaseList();
     CaseWidgetPage caseWidgetPage = new CaseWidgetPage();

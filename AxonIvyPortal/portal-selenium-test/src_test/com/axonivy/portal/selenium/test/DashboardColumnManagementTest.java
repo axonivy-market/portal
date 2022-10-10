@@ -44,17 +44,14 @@ public class DashboardColumnManagementTest extends BaseTest {
     caseEditWidget.preview();
     caseEditWidget.openColumnManagementDialog();
 
-    caseEditWidget.selectCustomType();
-
     caseEditWidget.removeAddedField("id");
-    caseEditWidget.getCustomField("id").shouldNotBe(Condition.exist);
+    caseEditWidget.getStandardField("id").shouldBe(Condition.exist);
 
+    caseEditWidget.selectCustomType();
     String addedCustomField1 = caseEditWidget.addFirstCustomField();
     caseEditWidget.getCustomField(addedCustomField1).shouldNotBe(Condition.exist);
-
     String addedCustomField2 = caseEditWidget.addFirstCustomField();
     caseEditWidget.getCustomField(addedCustomField2).shouldNotBe(Condition.exist);
-
     caseEditWidget.removeAddedField(addedCustomField1);
     caseEditWidget.getCustomField(addedCustomField1).shouldBe(Condition.exist);
 
@@ -62,13 +59,12 @@ public class DashboardColumnManagementTest extends BaseTest {
     caseEditWidget.getStandardField("id").shouldBe(Condition.exist);
 
     caseEditWidget.removeAddedField(addedCustomField2);
-    caseEditWidget.getStandardField(addedCustomField2).shouldNotBe(Condition.exist);
+    caseEditWidget.selectCustomType();
+    caseEditWidget.getCustomField(addedCustomField2).shouldBe(Condition.exist);
 
+    caseEditWidget.selectStandardType();
     caseEditWidget.addFirstStandardField();
-    caseEditWidget.getStandardField("id").shouldNotBe(Condition.exist);
-
-    caseEditWidget.removeAddedField("id");
-    caseEditWidget.getStandardField("id").shouldBe(Condition.exist);
+    caseEditWidget.getStandardField("application").shouldNotBe(Condition.exist);
 
     caseEditWidget.selectCustomType();
     caseEditWidget.getCustomField(addedCustomField2).shouldBe(Condition.exist);
