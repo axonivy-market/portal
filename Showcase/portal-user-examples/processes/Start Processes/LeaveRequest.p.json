@@ -22,7 +22,8 @@
           "After approver finish his task, the approval result will be sent back to requester"
         ],
         "startCustomFields" : [
-          { "name" : "cssIcon", "value" : "si si-advertising-megaphone-2" }
+          { "name" : "cssIcon", "value" : "si si-advertising-megaphone-2" },
+          { "name" : "processImage", "value" : "<%=ivy.cms.cr(\"/images/process/NASASTART\")%>" }
         ],
         "task" : {
           "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/createNewLeaveRequest\")%>"
