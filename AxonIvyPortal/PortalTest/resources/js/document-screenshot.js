@@ -316,7 +316,7 @@ function highlightCustomColumnsConfigOnTaskList() {
   appendStepAnnotation($(customColumnHeader), "1", -30, -20);
   
   var columnsCheckbox = $("[id$='task-columns-configuration:select-columns-form:columns-checkbox']");
-  var customCheckbox = columnsCheckbox.find("td:eq(6)");
+  var customCheckbox = columnsCheckbox.find("td:eq(7)");
   createRedMediumOutline(customCheckbox);
   appendStepAnnotation(customCheckbox, "2", -20, customCheckbox.width() - 10);
   
@@ -482,7 +482,7 @@ function highlightShowAdditionalLink() {
 }
 
 function highlightTaskExportToExcelButton() {
-  createRedMediumOutline($("a[id$=':task-export-to-excel']"));
+  createRedMediumOutline($("[id$=':task-export-to-excel-form']"));
 }
 
 function highlightCaseExportToExcelButton() {

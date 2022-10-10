@@ -20,6 +20,7 @@ public class GlobalSearchScreenshotTest extends ScreenshotTest {
     GlobalSearch globalSearch = homePage.getGlobalSearch();
     globalSearch.inputSearchKeyword("process");
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 800));
+    globalSearch.waitUtilProcessWidgetDisplayed();
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.SEARCH_FOLDER + "global-search-result");
   }
 }

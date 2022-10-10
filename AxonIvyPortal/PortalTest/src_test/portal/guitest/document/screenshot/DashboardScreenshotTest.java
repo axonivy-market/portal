@@ -68,6 +68,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
   @Test
   public void screenshotDashboard() throws IOException {
     ScreenshotUtil.maximizeBrowser();
+    homePage.waitUtilProcessWidgetDisplayed();
     ScreenshotUtil.captureElementScreenshot(homePage.getProcessWidgetElement(), ScreenshotUtil.DASHBOARD_FOLDER + "process-widget");
     ScreenshotUtil.captureElementScreenshot(homePage.getStatisticWidgetElement(), ScreenshotUtil.DASHBOARD_FOLDER + "statistic-widget");
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_HD_WIDTH, 800));
