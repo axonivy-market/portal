@@ -92,7 +92,8 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public ProcessEditWidgetNewDashBoardPage editFullModeProcess() {
     $("button[id$=':process-action-button']").shouldBe(Condition.appear).click();
-    $("span.si-graphic-tablet-drawing-pen").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("[id$=':process-item:grid-process-action-component:edit-process']").waitUntil(Condition.appear, DEFAULT_TIMEOUT)
+        .$("span.si-graphic-tablet-drawing-pen").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
     $("div[id='new-widget-configuration-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     return new ProcessEditWidgetNewDashBoardPage();
   }

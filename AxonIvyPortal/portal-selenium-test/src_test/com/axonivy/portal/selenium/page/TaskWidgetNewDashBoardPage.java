@@ -445,7 +445,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
    * sortType descending or ascending
    */
   public void waitForSortingFinished(String sortType) {
-    if("descending".equalsIgnoreCase(sortType)) {
+    if(DESCENDING.equalsIgnoreCase(sortType)) {
       $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("th.ui-state-active").waitUntil(Condition.attribute("aria-sort", DESCENDING), DEFAULT_TIMEOUT);
     }else {
       $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("th.ui-state-active").waitUntil(Condition.attribute("aria-sort", ASCENDING), DEFAULT_TIMEOUT);
@@ -457,6 +457,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     for (int i = 0; i < elementsTH.size(); i++) {
       if (elementsTH.get(i).getText().equalsIgnoreCase(columnName)) {
         elementsTH.get(i).click();
+        elementsTH.get(i).waitUntil(Condition.cssClass("ui-state-active"), DEFAULT_TIMEOUT);
       }
     }
   }

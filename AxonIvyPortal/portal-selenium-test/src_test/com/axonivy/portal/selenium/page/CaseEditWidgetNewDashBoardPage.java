@@ -153,7 +153,6 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     getCustomFieldSelection().click();
     SelenideElement customFieldPanel = $("span[id$='column-management-form:custom-field-selection_panel']");
     customFieldPanel.waitUntil(Condition.appear, DEFAULT_TIMEOUT);
-    getCustomFieldSelection().click();
     return customFieldPanel.$("li[data-item-value='" + field + "']");
   }
 
@@ -180,7 +179,6 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     getStandardFieldSelection().click();
     SelenideElement standardFieldPanel = $("div[id$='column-management-form:standard-field-selection_panel']");
     standardFieldPanel.waitUntil(Condition.appear, DEFAULT_TIMEOUT);
-    getStandardFieldSelection().click();
     return standardFieldPanel.$("li[data-label='" + field + "']");
   }
 
