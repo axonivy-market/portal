@@ -31,6 +31,8 @@
           "y": 9
         },
         "rowsPerPage": 5,
+        "sortDescending": true,
+        "sortField": "startTimestamp",
         "columns": [
           {
             "field": "start"
@@ -52,7 +54,8 @@
             "field": "activator"
           },
           {
-            "field": "state"
+            "field": "state",
+            "filterList": ["PARKED", "RESUMED", "SUSPENDED"]
           },
           {
             "field": "startTimestamp"
@@ -67,10 +70,7 @@
           {
             "field": "actions"
           }
-        ],
-        "canWorkOn": false,
-        "sortDescending": true,
-        "sortField": "startTimestamp"
+        ]
       },
       {
         "type": "case",
@@ -82,6 +82,8 @@
           "y": 4
         },
         "rowsPerPage": 5,
+        "sortDescending": true,
+        "sortField": "startTimestamp",
         "columns": [
           {
             "field": "id"
@@ -113,9 +115,7 @@
           {
             "field": "actions"
           }
-        ],
-        "sortDescending": true,
-        "sortField": "startTimestamp"
+        ]
       },
       {
         "type": "compact-process",
@@ -130,31 +130,32 @@
       {
         "type": "welcome",
         "id": "welcome_1",
+        "name": "Your Welcome Widget",
         "layout": {
           "w": 12,
           "h": 4,
           "x": 0,
           "y": 0
         },
-        "welcomeTextPosition": "BOTTOM_LEFT",
+        "welcomeTextPosition": "TOP_LEFT",
         "welcomeTextSize": "HEADING_3",
         "welcomeTextColor": "ffffff",
         "welcomeTexts": [
           {
             "locale": "en",
-            "value": "Welcome to the Axon Ivy Portal"
+            "value": ", welcome to the Axon Ivy Portal!"
           },
           {
             "locale": "fr",
-            "value": "Bienvenue"
+            "value": ", bienvenue sur le portail Axon Ivy!"
           },
           {
             "locale": "de",
-            "value": "Willkommen"
+            "value": ", willkommen im Axon Ivy Portal!"
           },
           {
             "locale": "es",
-            "value": "Bienvenido"
+            "value": ", bienvenido al portal Axon Ivy!"
           }
         ],
         "greeting": true
