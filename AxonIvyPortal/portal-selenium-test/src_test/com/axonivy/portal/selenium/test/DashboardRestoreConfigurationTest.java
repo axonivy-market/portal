@@ -62,7 +62,7 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
     newDashboardDetailsEditPage.getWidgets().shouldHave(CollectionCondition.size(3));
     verifyRestoreDashboardMessage("Default template");
     newDashboardDetailsEditPage.restoreDashboardToStandard();
-    verifyEditingDashboardContent(DASHBOARD_NAME, CollectionCondition.size(3));
+    verifyEditingDashboardContent(DASHBOARD_NAME, CollectionCondition.size(4));
   }
 
   @Test
