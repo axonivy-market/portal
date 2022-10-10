@@ -35,7 +35,6 @@ public class DashboardProcessViewerWidgetTest extends BaseTest {
     testEditProcessViewerWidget();
     newDashboardPage.findProcessViewerWidget().shouldBe(Condition.exist);
     testDeleteProcessViewerWidget();
-
   }
 
   public void testEditProcessViewerWidget() {
