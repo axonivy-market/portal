@@ -111,4 +111,10 @@ public class HomePage extends TemplatePage {
     });
     return findElementById("task-widget");
   }
+
+  public void waitUtilProcessWidgetDisplayed() {
+    waitForElementDisplayed(By.className("process-widget"), true);
+    waitForElementDisplayed(By.className("js-loading-text"), false);
+    waitForElementDisplayed(By.className("user-process-container"), true);
+  }
 }
