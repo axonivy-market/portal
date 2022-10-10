@@ -20,7 +20,7 @@ import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.util.ProcessViewerUtils;
+import ch.ivy.addon.portalkit.util.PortalProcessViewerUtils;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.workflow.ICase;
 
@@ -56,7 +56,7 @@ public class CaseActionBean implements Serializable {
   }
 
   public String getProcessViewerPageUri(ICase selectedCase) {
-    return ProcessViewerUtils.getStartProcessViewerPageUri(selectedCase);
+    return PortalProcessViewerUtils.getStartProcessViewerPageUri(selectedCase);
   }
 
   private boolean isExpressCase(ICase iCase) {
@@ -104,6 +104,6 @@ public class CaseActionBean implements Serializable {
   }
 
   public boolean showProcessViewer(ICase caze) {
-    return ProcessViewerUtils.isShowProcessViewer(caze);
+    return PortalProcessViewerUtils.isShowProcessViewer(caze);
   }
 }
