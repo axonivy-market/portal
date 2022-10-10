@@ -129,7 +129,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public void clickOnRestoreDashboard() {
     $("[id$='restore-button-group']").waitUntil(appear, DEFAULT_TIMEOUT).$("button[id$='restore-button']")
-        .waitUntil(Condition.exist, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+        .waitUntil(Condition.enabled, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("div[id$='restore-confirm-dialog']").waitUntil(appear, DEFAULT_TIMEOUT);
   }
 
