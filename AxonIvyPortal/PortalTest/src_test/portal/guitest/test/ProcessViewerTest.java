@@ -114,6 +114,33 @@ public class ProcessViewerTest extends BaseTest {
     var detailActions = taskDetailsPage.getActiveTaskAction();
     assertTrue("Process Viewer is NOT found on TaskList page", detailActions.contains("Process Viewer"));
   }
+
+  @Test
+  public void testProcessViewerPermissionInCaseAction() {
+    redirectToRelativeLink(testProcessViewerPermissionUrl);
+    gotoCaseList();
+    caseWidgetPage.openActionStepMenu();
+    var steps = caseWidgetPage.getAvailableActionSteps();
+    assertTrue("Process Viewer is found in CaseList", steps.contains("Process Viewer"));
+
+    var caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
+    caseDetailsPage.openActionMenu();
+    var detailPageSteps = caseDetailsPage.getAvailableActionSteps();
+    assertTrue("Process Viewer is found on CaseDetails page", detailPageSteps.contains("Process Viewer"));
+  }
+
+  @Test
+  public void testProcessViewerPermissionInTaskAction() {
+    redirectToRelativeLink(testProcessViewerPermissionUrl);
+    gotoTaskList();
+    var actions = taskWidgetPage.getActiveTaskAction(0);
+    assertTrue("Process Viewer is found on TaskList page", !actions.contains("Process Viewer"));
+    taskWidgetPage.refresh();
+    var taskDetailsPage = taskWidgetPage.openTaskDetailsFromActionMenu(0);
+    var detailActions = taskDetailsPage.getActiveTaskAction();
+    assertTrue("Process Viewer is found on TaskList page", !detailActions.contains("Process Viewer"));
+
+  }
   
   private CaseWidgetPage gotoCaseList() {
     homePage = new HomePage();
