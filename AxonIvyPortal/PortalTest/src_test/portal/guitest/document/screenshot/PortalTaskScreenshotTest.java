@@ -19,6 +19,7 @@ import ch.ivy.addon.portalkit.util.ConfigurationJsonUtil;
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.Variable;
 import portal.guitest.common.WaitHelper;
@@ -46,6 +47,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     TaskWidgetPage taskWidgetPage = homePage.openTaskList();
     taskWidgetPage.closeMainMenu();
     taskWidgetPage.waitForLeftMenuActive();
+    Sleeper.sleep(250); // wait for Portal.js renders the breadcrumb - Portal.js line 135 - updateBreadcrumbTimeout
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_WIDGET_FOLDER + "task-key-information");
     WebElement saveTaskFilterDialog = taskWidgetPage.getSaveFilterDialog();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(saveTaskFilterDialog, ScreenshotUtil.TASK_WIDGET_FOLDER + "how-to-create-task-filter",new ScreenshotMargin(100, 200));
