@@ -122,6 +122,9 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
    * @param selectedDashboard
    */
   private void removeWelcomeWidgetImagesOfDashboard(Dashboard selectedDashboard) {
+    if (CollectionUtils.isEmpty(selectedDashboard.getWidgets())) {
+      return;
+    }
     for (DashboardWidget selectedWidget : selectedDashboard.getWidgets()) {
       if (WELCOME.equals(selectedWidget.getType())) {
         removeWelcomeWidgetImage(selectedWidget);
