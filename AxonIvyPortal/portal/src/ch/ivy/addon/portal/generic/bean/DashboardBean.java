@@ -38,6 +38,7 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
+import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
 import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
@@ -182,6 +183,9 @@ public class DashboardBean implements Serializable {
       customWidget.getData().setStartProcessParams(element.startParameters());
 
       List<IWebStartable> allPortalProcesses = ProcessService.newInstance().findProcesses().getProcesses();
+      if (customWidget.getData().getIvyProcessStartDTO() == null) {
+        customWidget.getData().setIvyProcessStartDTO(new IvyProcessStartDTO());
+      }
       customWidget.getData().getIvyProcessStartDTO().setStartableProcessStart(allPortalProcesses.stream()
         .filter(proccess -> proccess.getLink().toString().contentEquals(url)).findFirst().get());
       customWidget.loadParameters();
