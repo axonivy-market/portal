@@ -161,7 +161,7 @@ public class ProcessViewerTest extends BaseTest {
     var steps = caseWidgetPage.getAvailableActionSteps();
     assertTrue(PROCESS_VIEWER_IS_NOT_FOUND_IN_CASE_LIST, steps.contains(PROCESS_VIEWER));
 
-    var caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Lending");
+    var caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Business Case Map: Leave Request");
     caseDetailsPage.openActionMenu();
     var detailPageSteps = caseDetailsPage.getAvailableActionSteps();
     assertTrue(PROCESS_VIEWER_IS_NOT_FOUND_ON_CASE_DETAILS_PAGE, detailPageSteps.contains(PROCESS_VIEWER));
