@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidgetParam;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
-import ch.ivyteam.ivy.workflow.start.IWebStartable;
+import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
 import ch.ivyteam.ivy.workflow.start.StartParameter;
 
 public class DashboardCustomWidgetData implements Serializable {
@@ -23,7 +23,7 @@ public class DashboardCustomWidgetData implements Serializable {
   @JsonIgnore
   private DashboardCustomWidgetType type;
   @JsonIgnore
-  private IWebStartable startableProcessStart;
+  private IvyProcessStartDTO ivyProcessStartDTO;
 
   @JsonIgnore
   private List<StartParameter> startProcessParams;
@@ -55,14 +55,6 @@ public class DashboardCustomWidgetData implements Serializable {
     this.type = type;
   }
 
-  public IWebStartable getStartableProcessStart() {
-    return startableProcessStart;
-  }
-
-  public void setStartableProcessStart(IWebStartable startableProcessStart) {
-    this.startableProcessStart = startableProcessStart;
-  }
-
   public List<CustomDashboardWidgetParam> getParams() {
     return params;
   }
@@ -85,5 +77,13 @@ public class DashboardCustomWidgetData implements Serializable {
 
   public void setHasParamChanged(boolean hasParamChanged) {
     this.hasParamChanged = hasParamChanged;
+  }
+
+  public IvyProcessStartDTO getIvyProcessStartDTO() {
+    return ivyProcessStartDTO;
+  }
+
+  public void setIvyProcessStartDTO(IvyProcessStartDTO ivyProcessStartDTO) {
+    this.ivyProcessStartDTO = ivyProcessStartDTO;
   }
 }
