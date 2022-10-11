@@ -19,6 +19,8 @@ import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.codeborne.selenide.Condition;
 
+import ch.ivy.addon.portalkit.enums.PortalVariable;
+
 @IvyWebTest
 public class EscalationTaskTest extends BaseTest {
 
@@ -95,6 +97,7 @@ public class EscalationTaskTest extends BaseTest {
   
   @Test
   public void testTriggerEscalationTaskWidgetOfDashboard() {
+    createJSonFile("dashboard-has-one-task-widget.json", PortalVariable.DASHBOARD.key);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
