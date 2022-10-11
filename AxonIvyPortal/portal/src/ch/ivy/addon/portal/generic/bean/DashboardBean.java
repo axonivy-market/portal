@@ -182,7 +182,7 @@ public class DashboardBean implements Serializable {
       customWidget.getData().setStartProcessParams(element.startParameters());
 
       List<IWebStartable> allPortalProcesses = ProcessService.newInstance().findProcesses().getProcesses();
-      customWidget.getData().setStartableProcessStart(allPortalProcesses.stream()
+      customWidget.getData().getIvyProcessStartDTO().setStartableProcessStart(allPortalProcesses.stream()
         .filter(proccess -> proccess.getLink().toString().contentEquals(url)).findFirst().get());
       customWidget.loadParameters();
       customWidget.getData().setUrl(url);
