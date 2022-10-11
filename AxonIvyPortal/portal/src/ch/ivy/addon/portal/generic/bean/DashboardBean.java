@@ -412,21 +412,4 @@ public class DashboardBean implements Serializable {
     }
     return currentDashboardIndex;
   }
-
-  private String getCmsUriForWidgetName(DashboardWidget widget) {
-    switch (widget.getType()) {
-      case TASK:
-        return "/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks";
-      case CASE:
-        return "/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCases";
-      case PROCESS:
-        return "/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcesses";
-      default:
-        return "/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/yourWidget";
-    }
-  }
-
-  public String getDefaultWidgetName(DashboardWidget widgetToGetName) {
-    return Ivy.cms().co(getCmsUriForWidgetName(widgetToGetName));
-  }
 }
