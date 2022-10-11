@@ -815,7 +815,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeConfigurationDescription: ''
       WelcomeWidget:
         AdvancedSettings: Paramètres avancés
-        DisplayedText: Texte affiché
+        DisplayedText: afficher le texte
         Greeting:
           Afternoon: Bonne journée
           Evening: Bonsoir
