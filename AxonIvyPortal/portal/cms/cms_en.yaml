@@ -817,7 +817,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeConfigurationDescription: You can configure your widget in this configuration area. Please define the welcome text and image to be used.
       WelcomeWidget:
         AdvancedSettings: Advanced settings
-        DisplayedText: Displayed Text
+        DisplayedText: display text
         Greeting:
           Afternoon: Good afternoon
           Evening: Good evening
