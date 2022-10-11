@@ -121,12 +121,12 @@ public class ProcessViewerTest extends BaseTest {
     gotoCaseList();
     caseWidgetPage.openActionStepMenu();
     var steps = caseWidgetPage.getAvailableActionSteps();
-    assertTrue("Process Viewer is found in CaseList", steps.contains("Process Viewer"));
+    assertTrue("Process Viewer is found in CaseList", !steps.contains("Process Viewer"));
 
     var caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
     caseDetailsPage.openActionMenu();
     var detailPageSteps = caseDetailsPage.getAvailableActionSteps();
-    assertTrue("Process Viewer is found on CaseDetails page", detailPageSteps.contains("Process Viewer"));
+    assertTrue("Process Viewer is found on CaseDetails page", !detailPageSteps.contains("Process Viewer"));
   }
 
   @Test
@@ -139,7 +139,6 @@ public class ProcessViewerTest extends BaseTest {
     var taskDetailsPage = taskWidgetPage.openTaskDetailsFromActionMenu(0);
     var detailActions = taskDetailsPage.getActiveTaskAction();
     assertTrue("Process Viewer is found on TaskList page", !detailActions.contains("Process Viewer"));
-
   }
   
   private CaseWidgetPage gotoCaseList() {
