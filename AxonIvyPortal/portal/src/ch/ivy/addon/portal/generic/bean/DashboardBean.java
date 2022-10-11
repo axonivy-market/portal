@@ -140,27 +140,11 @@ public class DashboardBean implements Serializable {
       return;
     }
     for (var widget : dashboard.getWidgets()) {
-      String cmsUri = "";
       DashboardWidgetUtils.buildWidgetColumns(widget);
-      switch (widget.getType()) {
-        case TASK:
-          cmsUri = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks";
-          break;
-        case CASE:
-          cmsUri = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCases";
-          break;
-        case PROCESS:
-          cmsUri = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcesses";
-          break;
-        case CUSTOM:
-          loadCustomWidget(widget);
-          break;
-        default:
-          break;
+      if (DashboardWidgetType.CUSTOM.equals(widget.getType())) {
+        loadCustomWidget(widget);
       }
-      if (StringUtils.isBlank(widget.getName())) {
-        widget.setName(translate(cmsUri));
-      }
+      
       if (!(widget instanceof SingleProcessDashboardWidget)) {
         WidgetFilterService.getInstance().applyUserFilterFromSession(widget);
       }
@@ -427,5 +411,22 @@ public class DashboardBean implements Serializable {
       }
     }
     return currentDashboardIndex;
+  }
+
+  private String getCmsUriForWidgetName(DashboardWidget widget) {
+    switch (widget.getType()) {
+      case TASK:
+        return "/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks";
+      case CASE:
+        return "/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCases";
+      case PROCESS:
+        return "/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcesses";
+      default:
+        return "/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/yourWidget";
+    }
+  }
+
+  public String getDefaultWidgetName(DashboardWidget widgetToGetName) {
+    return Ivy.cms().co(getCmsUriForWidgetName(widgetToGetName));
   }
 }
