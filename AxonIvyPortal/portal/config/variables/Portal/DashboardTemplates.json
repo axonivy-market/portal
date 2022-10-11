@@ -22,19 +22,19 @@
     "descriptions": [
       {
         "locale": "en",
-        "value": "Create dashboard with 1 Task list, 1 Case list, and 1 Process list"
+        "value": "Create dashboard with a welcome, one Task list, one Case list, and one Process list widget"
       },
       {
         "locale": "fr",
-        "value": "Créer un tableau de bord avec une liste de tâches, une liste de cas et une liste de processus."
+        "value": "Créez un tableau de bord avec un widget de bienvenue, une liste de tâches, une liste de cas et une liste de processus."
       },
       {
         "locale": "de",
-        "value": "Dashboard mit 1 Aufgabenliste, 1 Vorgangsliste und 1 Prozessliste erstellen"
+        "value": "Erstellen eines Dashboards mit einem Willkommens-Widget, einer Aufgabenliste, einer Fallliste und einer Prozessliste"
       },
       {
         "locale": "es",
-        "value": "Crear un cuadro de mando con 1 lista de tareas, 1 lista de casos y 1 lista de procesos"
+        "value": "Crear un panel de control con un widget de bienvenida, una lista de tareas, una lista de casos y una lista de procesos"
       }
     ],
     "icon": "si-pie-line-graph",
