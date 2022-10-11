@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import ch.addon.portal.generic.userprofile.homepage.HomepageType;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
@@ -127,6 +128,7 @@ public class ProcessViewerTest extends BaseTest {
   @Test
   public void testProcessViewerPermissionInCaseAction() {
     redirectToRelativeLink(testProcessViewerPermissionUrl);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     gotoCaseList();
     caseWidgetPage.openActionStepMenu();
     var steps = caseWidgetPage.getAvailableActionSteps();
@@ -141,6 +143,7 @@ public class ProcessViewerTest extends BaseTest {
   @Test
   public void testProcessViewerPermissionInTaskAction() {
     redirectToRelativeLink(testProcessViewerPermissionUrl);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     gotoTaskList();
     var actions = taskWidgetPage.getActiveTaskAction(0);
     assertTrue(PROCESS_VIEWER_IS_FOUND_ON_TASK_LIST_PAGE, !actions.contains(PROCESS_VIEWER));
@@ -153,6 +156,7 @@ public class ProcessViewerTest extends BaseTest {
   @Test
   public void testCaseMapViewerPermissionInCaseAction() {
     redirectToRelativeLink(createTestingCaseMapUrl);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     gotoCaseList();
     caseWidgetPage.openActionStepMenu();
     var steps = caseWidgetPage.getAvailableActionSteps();
@@ -167,6 +171,7 @@ public class ProcessViewerTest extends BaseTest {
   @Test
   public void testCaseMapViewerPermissionInTaskAction() {
     redirectToRelativeLink(createTestingCaseMapUrl);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     gotoTaskList();
     var actions = taskWidgetPage.getActiveTaskAction(0);
     assertTrue(PROCESS_VIEWER_IS_NOT_FOUND_ON_TASK_LIST_PAGE, actions.contains(PROCESS_VIEWER));
