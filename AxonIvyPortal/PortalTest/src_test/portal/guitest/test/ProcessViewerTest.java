@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import ch.addon.portal.generic.userprofile.homepage.HomepageType;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
