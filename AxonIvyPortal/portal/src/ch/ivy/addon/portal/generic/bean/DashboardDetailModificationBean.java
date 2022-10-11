@@ -761,4 +761,27 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void propertyChange(PropertyChangeEvent event) {
     setWidget((DashboardWidget) event.getNewValue());
   }
+
+  public String getWidgetNameToDelete() {
+    if (deleteWidget == null) {
+      return "";
+    }
+    if (StringUtils.isNotBlank(deleteWidget.getName())) {
+      return deleteWidget.getName();
+    }
+    return Ivy.cms().co(getCmsUriForWidgetName(deleteWidget));
+  }
+
+  private String getCmsUriForWidgetName(DashboardWidget widget) {
+    switch (widget.getType()) {
+      case TASK:
+        return "/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks";
+      case CASE:
+        return "/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCases";
+      case PROCESS:
+        return "/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcesses";
+      default:
+        return "/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/yourWidget";
+    }
+  }
 }
