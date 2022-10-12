@@ -14,6 +14,10 @@ public class ProcessViewerPage extends TemplatePage {
     return findElementByCssSelector("[id$='portal-process-viewer-form'] [id$='request-path']").getText();
   }
 
+  public String getErrorMessage() {
+    return findElementByCssSelector(".process-viewer-data.has-error-message span").getText();
+  }
+
   public void waitForSprottyToolDisplayed() {
     waitForIFrameContentVisible("process-viewer", 15000);
     waitForElementDisplayed(By.id("sprotty"), true); 

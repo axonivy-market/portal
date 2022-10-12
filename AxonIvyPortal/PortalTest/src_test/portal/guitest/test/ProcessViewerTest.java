@@ -43,6 +43,13 @@ public class ProcessViewerTest extends BaseTest {
   }
 
   @Test
+  public void testPermissionForProcessViewerComponent() {
+    redirectToRelativeLink(testProcessViewerPermissionUrl);
+    ProcessViewerPage processViewerPage = new ProcessViewerPage();
+    assertTrue(processViewerPage.getErrorMessage().equalsIgnoreCase("The current process is hidden!"));
+  }
+
+  @Test
   public void testOpenProcessViewerFromCase() {
     createTestingTasks();
     gotoCaseList();
@@ -126,14 +133,14 @@ public class ProcessViewerTest extends BaseTest {
 
   @Test
   public void testProcessViewerPermissionInCaseAction() {
-    redirectToRelativeLink(testProcessViewerPermissionUrl);
+    redirectToRelativeLink(processViewerPermissionExampleUrl);
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     gotoCaseList();
     caseWidgetPage.openActionStepMenu();
     var steps = caseWidgetPage.getAvailableActionSteps();
     assertTrue(PROCESS_VIEWER_IS_FOUND_IN_CASE_LIST, !steps.contains(PROCESS_VIEWER));
 
-    var caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Test Process Viewer Permission Case");
+    var caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Process Viewer Permission Example Case");
     caseDetailsPage.openActionMenu();
     var detailPageSteps = caseDetailsPage.getAvailableActionSteps();
     assertTrue(PROCESS_VIEWER_IS_FOUND_ON_CASE_DETAILS_PAGE, !detailPageSteps.contains(PROCESS_VIEWER));
@@ -141,7 +148,7 @@ public class ProcessViewerTest extends BaseTest {
 
   @Test
   public void testProcessViewerPermissionInTaskAction() {
-    redirectToRelativeLink(testProcessViewerPermissionUrl);
+    redirectToRelativeLink(processViewerPermissionExampleUrl);
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     gotoTaskList();
     var actions = taskWidgetPage.getActiveTaskAction(0);

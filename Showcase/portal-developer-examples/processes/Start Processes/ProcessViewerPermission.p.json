@@ -16,7 +16,7 @@
       "config" : {
         "callSignature" : "start",
         "case" : {
-          "name" : "Test Process Viewer Permission Case"
+          "name" : "Process Viewer Permission Example Case"
         },
         "outLink" : "start.ivp",
         "startName" : "Test Process Viewer Permission"
@@ -36,7 +36,7 @@
       "type" : "TaskSwitchEvent",
       "config" : {
         "task" : {
-          "name" : "Test Process Viewer Permission Task"
+          "name" : "Process Viewer Permission Example Task"
         }
       },
       "visual" : {
