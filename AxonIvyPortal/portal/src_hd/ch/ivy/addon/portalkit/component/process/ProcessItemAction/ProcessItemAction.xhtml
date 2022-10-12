@@ -40,7 +40,7 @@
           icon="si si-hierarchy-6 si-rotate-270"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessViewerText')}"
           target="_blank" url="#{processItemActionBean.getProcessViewerPageUri(process)}"
-          disabled="#{!showProcessViewer}" />
+          rendered="#{showProcessViewer}" />
         <p:menuitem id="edit-process"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
           icon="si si-graphic-tablet-drawing-pen"

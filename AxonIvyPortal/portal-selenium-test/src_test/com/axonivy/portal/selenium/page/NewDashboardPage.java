@@ -113,8 +113,9 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public ProcessEditWidgetNewDashBoardPage editImageModeProcess() {
-    $("button[id$=':process-action-button']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("span.si-graphic-tablet-drawing-pen").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("button[id$='image-process-action-component:process-action-button']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("[id$=':image-process-action-component:process-action-menu']").waitUntil(Condition.appear, DEFAULT_TIMEOUT)
+        .$("span.si-graphic-tablet-drawing-pen").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
     $("div[id='new-widget-configuration-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     return new ProcessEditWidgetNewDashBoardPage();
   }
