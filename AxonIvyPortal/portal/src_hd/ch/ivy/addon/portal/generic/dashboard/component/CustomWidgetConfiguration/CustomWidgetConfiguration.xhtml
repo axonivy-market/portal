@@ -64,21 +64,21 @@
         </div>
         <div class="ui-g-9 ui-fluid">
           <p:autoComplete id="selected-process" dropdown="true" scrollHeight="300" forceSelection="true"
-            completeMethod="#{dashboardCustomWidgetBean.completeProcesses}" value="#{widget.data.startableProcessStart}" var="process" itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500"
+            completeMethod="#{dashboardCustomWidgetBean.completeProcesses}" value="#{widget.data.ivyProcessStartDTO}" var="process" itemValue="#{process}" itemLabel="#{process.startableProcessStart.name}" queryDelay="500"
             cache="true" minQueryLength="2" itemtipAtPosition="right top" converter="pojoConverter"
             required="#{widget.data.type == 'PROCESS' ? true : false}">
             <p:ajax event="query" global="false" />
             <p:ajax event="itemSelect" listener="#{dashboardCustomWidgetBean.onSelectProcess(widget)}" update="user-filter"
               process="@this" oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
             <p:column>
-              <h:outputText styleClass="autocomplete-tooltip" value="#{process.name}" title="#{process.description}" />
+              <h:outputText styleClass="autocomplete-tooltip" value="#{process.startableProcessStart.name}" title="#{process.startableProcessStart.description}" />
             </p:column>
           </p:autoComplete>
         </div>
       </h:panelGroup>
       
       <h:panelGroup id="parameters-panel" styleClass="ui-g-12 parameters-panel u-padding-0 MarTop10" layout="block"
-        rendered="#{widget.data.type == 'PROCESS' and widget.data.startableProcessStart ne null}">
+        rendered="#{widget.data.type == 'PROCESS' and widget.data.ivyProcessStartDTO.startableProcessStart ne null}">
         <p:fieldset id="parameters-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/Parameters')}"
           toggleable="true" collapsed="false" rendered="#{not empty widget.data.params || widget.data.hasParamChanged}">
           <h:panelGroup layout="block" rendered="#{widget.data.hasParamChanged}" styleClass="ui-g">
