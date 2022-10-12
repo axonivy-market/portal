@@ -1,0 +1,71 @@
+[
+  {
+    "id": "d30b6aefa7df49958bd53b50f4e17b19",
+    "templateId": "create-from-scratch",
+    "titles": [
+      {
+        "locale": "en__APPLICATION_DEFAULT",
+        "value": "Dashboard"
+      }
+    ],
+    "icon": "si-network-share",
+    "widgets": [
+      {
+        "type": "task",
+        "id": "task_1",
+        "layout": {
+          "styleClass": "new-widget",
+          "w": 12,
+          "h": 6,
+          "x": 0,
+          "y": 0
+        },
+        "rowsPerPage": 5,
+        "columns": [
+          {
+            "field": "start"
+          },
+          {
+            "field": "priority"
+          },
+          {
+            "field": "id"
+          },
+          {
+            "field": "name"
+          },
+          {
+            "field": "description"
+          },
+          {
+            "field": "activator"
+          },
+          {
+            "field": "state"
+          },
+          {
+            "field": "startTimestamp"
+          },
+          {
+            "field": "expiryTimestamp"
+          },
+          {
+            "field": "category"
+          },
+          {
+            "field": "application"
+          },
+          {
+            "field": "actions"
+          }
+        ],
+        "sortDescending": true,
+        "sortField": "ID",
+        "canWorkOn": false
+      }
+    ],
+    "permissions": [
+      "Everybody"
+    ]
+  }
+]

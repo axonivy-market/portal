@@ -16,6 +16,8 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.ElementsCollection;
 
+import ch.ivy.addon.portalkit.enums.PortalVariable;
+
 @IvyWebTest
 public class DashboardTaskWidgetActionTest extends BaseTest {
 
@@ -28,6 +30,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
+    createJSonFile("dashboard-has-one-task-widget.json", PortalVariable.DASHBOARD.key);
     redirectToRelativeLink(createTestingTasksUrl);
     newDashboardPage = new NewDashboardPage();
   }

@@ -12,6 +12,7 @@ import com.codeborne.selenide.Condition;
 
 @IvyWebTest
 public class DashboardProcessViewerWidgetTest extends BaseTest {
+  private static final String TEST_PROCESS_VIEWER_PERMISSION = "Test Process Viewer Permission";
   private static final String THIRD_PARTY_APP = "Create third party app";
   private static final String SHOWCASE_APPLICATION = "Showcase Application";
   private NewDashboardPage newDashboardPage;
@@ -29,6 +30,8 @@ public class DashboardProcessViewerWidgetTest extends BaseTest {
   public void testCreateProcessViewerWidget() {
     ProcessViewerWidgetNewDashBoardPage processViewerWidgetConfiguration = newDashboardPage
         .showProcessViewerWidgetConfiguration();
+    processViewerWidgetConfiguration.findProcess(TEST_PROCESS_VIEWER_PERMISSION);
+    processViewerWidgetConfiguration.getSelectedProcessList().shouldHaveSize(0);
     processViewerWidgetConfiguration.selectProcessAndSaveWidget(THIRD_PARTY_APP);
     newDashboardPage.getProcessRequestPathName().shouldHave(Condition.exactTextCaseSensitive(THIRD_PARTY_APP));
 
