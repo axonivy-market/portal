@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "17AF165647CC8A09",
-  "data" : "portal.migration.MigrationData.MigrationDataData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "portal.migration.MigrationData.MigrationDataData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

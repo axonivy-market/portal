@@ -1,7 +1,9 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "175F92F71BC45295",
-  "data" : "portalmigration.Data",
+  "config" : {
+    "data" : "portalmigration.Data"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "RequestStart",
