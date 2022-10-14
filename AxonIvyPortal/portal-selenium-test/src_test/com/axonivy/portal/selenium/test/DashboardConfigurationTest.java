@@ -22,7 +22,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class DashboardConfigurationTest extends BaseTest {
 
   private NewDashboardPage newDashboardPage;
