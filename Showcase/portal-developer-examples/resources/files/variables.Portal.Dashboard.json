@@ -23,6 +23,12 @@
       {
         "type": "task",
         "id": "task_10",
+        "names": [
+          {
+            "locale": "en",
+            "value": "Your Tasks"
+          }
+        ],
         "layout": {
           "x": 0, "y": 0, "w": 9, "h": 4
         },
@@ -50,6 +56,12 @@
       {
         "type": "case",
         "id": "case_10",
+        "names": [
+          {
+            "locale": "en",
+            "value": "Your Cases"
+          }
+        ],
         "layout": {
           "x": 0, "y": 4, "w": 9, "h": 4
         },
