@@ -24,6 +24,12 @@
       {
         "type": "task",
         "id": "task_1",
+        "names": [
+          {
+            "locale": "en",
+            "value": "Your Tasks"
+          }
+        ],
         "layout": {
           "w": 12,
           "h": 5,
@@ -75,6 +81,12 @@
       {
         "type": "case",
         "id": "case_1",
+        "names": [
+          {
+            "locale": "en",
+            "value": "Your Cases"
+          }
+        ],
         "layout": {
           "w": 9,
           "h": 5,
@@ -120,6 +132,12 @@
       {
         "type": "compact-process",
         "id": "process_1",
+        "names": [
+          {
+            "locale": "en",
+            "value": "Your Processes"
+          }
+        ],
         "layout": {
           "w": 3,
           "h": 5,
