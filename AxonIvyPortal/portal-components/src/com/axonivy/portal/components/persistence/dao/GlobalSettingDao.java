@@ -17,12 +17,11 @@ public class GlobalSettingDao extends AbstractDao<GlobalSetting> {
 
   public String findGlobalSettingValue(String variableName) {
     GlobalSetting globalSetting = findGlobalSetting(variableName);
-    if(globalSetting == null){
+    if (globalSetting == null) {
       return StringUtils.EMPTY;
-    }else{
+    } else {
       return globalSetting.getValue();
     }
-    
   }
 
   @ExecuteAsSystem
