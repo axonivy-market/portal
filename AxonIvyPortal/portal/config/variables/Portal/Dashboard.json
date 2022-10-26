@@ -20,7 +20,7 @@
 				"type" : "task",
 				"id" : "task_1",
 				"names" : [{
-						"locale" : "en__APPLICATION_DEFAULT",
+						"locale" : "en",
 						"value" : "Your Tasks"
 					}, {
 						"locale" : "de",
@@ -76,7 +76,7 @@
 				"type" : "case",
 				"id" : "case_1",
 				"names" : [{
-						"locale" : "en__APPLICATION_DEFAULT",
+						"locale" : "en",
 						"value" : "Your Cases"
 					}, {
 						"locale" : "de",
@@ -126,7 +126,7 @@
 				"type" : "compact-process",
 				"id" : "process_1",
 				"names" : [{
-						"locale" : "en__APPLICATION_DEFAULT",
+						"locale" : "en",
 						"value" : "Your Processes"
 					}, {
 						"locale" : "de",
@@ -149,7 +149,7 @@
 				"type" : "welcome",
 				"id" : "welcome_1",
 				"names" : [{
-						"locale" : "en__APPLICATION_DEFAULT",
+						"locale" : "en",
 						"value" : "Your Welcome Widget"
 					}
 				],
