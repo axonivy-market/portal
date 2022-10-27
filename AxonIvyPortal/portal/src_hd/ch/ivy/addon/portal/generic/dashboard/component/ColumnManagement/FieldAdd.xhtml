@@ -45,7 +45,7 @@
           <f:event listener="#{columnManagementBean.fetchFields}" type="preRenderComponent" />
           <p:selectOneMenu id="standard-field-selection" value="#{columnManagementBean.selectedField}" styleClass="field-add-fieldset__input"
             required="true" requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/field')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
-            validator="duplicateFieldValidator" dynamic="true">
+            validator="duplicateFieldValidator">
             <f:attribute name="existingFields" value="#{columnManagementBean.existingFields}" />
             <f:selectItems value="#{columnManagementBean.fields}" var="field" itemValue="#{field}" itemLabel="#{field}" />
             <f:selectItem noSelectionOption="true" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"/>
