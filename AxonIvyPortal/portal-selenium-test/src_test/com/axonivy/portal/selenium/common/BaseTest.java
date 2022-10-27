@@ -13,6 +13,7 @@ import com.axonivy.ivy.webtest.engine.EngineUrl;
 import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivy.addon.portalkit.enums.PortalVariable;
 /**
  * A base test that other tests extend it. It will test on browser IE by default. It provides feature to take screenshot
  * of failed tests and utility methods.
@@ -25,7 +26,7 @@ public class BaseTest {
   private final static String PORTAL_HOME_PAGE_URL = "/portal/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
 
   public BaseTest() {}
-  
+
   @AfterEach
   public void tearDown() {
     WebDriverRunner.getWebDriver().quit();
@@ -85,6 +86,7 @@ public class BaseTest {
   public void setup() {
     launchBrowserAndGotoRelativeLink(cleanupDataLink);
     updatePortalSetting(SHOW_USER_GUIDE.getKey(), "false");
+    createJSonFile("default-dashboard.json", PortalVariable.DASHBOARD.key);
   }
   
   /**
