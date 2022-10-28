@@ -18,6 +18,7 @@
             actionListenerOnDeleteProcess="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
             onCompleteDeleteProcess="PF('remove-widget-dialog').show()"
             componentToUpdateOnDeleteProcess="remove-widget-dialog"
+            outlinedButtonStyle="false"
             hideActionButton="#{isInConfiguration}"/>
         </h:form>
         <p:graphicImage styleClass="image-process-item-image" rendered="#{not empty process.defaultImageSrc}" value="#{process.defaultImageSrc}" />
