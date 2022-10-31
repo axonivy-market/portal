@@ -26,6 +26,7 @@ public class ReorderDashboardTest extends BaseTest {
   // Private dashboard order: private 1, private 2
   @Test
   public void testReorderMyDashboard() {
+	redirectToNewDashBoard();
     redirectToRelativeLink(createSampleDashboardUrl);
     DashboardConfigurationPage configurationpage = navigateToReorderDashboard(false);
     ReorderDashboardPage reorderDashboardPage = new ReorderDashboardPage();

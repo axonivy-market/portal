@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.test;
 
+import static com.codeborne.selenide.CollectionCondition.size;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +24,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class DashboardConfigurationTest extends BaseTest {
 
   private NewDashboardPage newDashboardPage;
@@ -93,7 +95,7 @@ public class DashboardConfigurationTest extends BaseTest {
   public void testDeletePublicDashboard() {
     DashboardModificationPage modificationPage = navigateToConfigurationAndEditDashboards(true);
     modificationPage.clickDeleteDashboardByName("Dashboard");
-    modificationPage.getDashboardRows().shouldHaveSize(0);
+    modificationPage.getDashboardRows().shouldHave(size(0));
   }
 
   @Test
@@ -225,7 +227,7 @@ public class DashboardConfigurationTest extends BaseTest {
     redirectToRelativeLink(createSampleDashboardUrl);
     DashboardModificationPage modificationPage = navigateToConfigurationAndEditDashboards(false);
     modificationPage.clickDeleteDashboardByName(PRIVATE_1);
-    modificationPage.getDashboardRows().shouldHaveSize(1);
+    modificationPage.getDashboardRows().shouldHave(size(1));
   }
 
   @Test
@@ -237,7 +239,7 @@ public class DashboardConfigurationTest extends BaseTest {
     taskWidget.deleteTaskWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectCaseWidget("").expand().shouldHaveSize(2);
+    newDashboardPage.selectCaseWidget(" ").expand().shouldHave(size(2));
   }
 
   @Test
@@ -249,7 +251,7 @@ public class DashboardConfigurationTest extends BaseTest {
     caseWidget.deleteCaseWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectTaskWidget("").expand().shouldHaveSize(2);
+    newDashboardPage.selectTaskWidget(" ").expand().shouldHave(size(2));
   }
 
   @Test
@@ -261,8 +263,8 @@ public class DashboardConfigurationTest extends BaseTest {
     processWidget.deleteProcessWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectTaskWidget("").expand().shouldHaveSize(2);
-  }
+    newDashboardPage.selectTaskWidget(" ").expand().shouldHave(size(2));
+    }
 
   @Test
   public void testDeleteTaskWidgetForPrivateDashboard() {
@@ -273,7 +275,7 @@ public class DashboardConfigurationTest extends BaseTest {
     taskWidget.deleteTaskWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectCaseWidget("").expand().shouldHaveSize(2);
+    newDashboardPage.selectCaseWidget(" ").expand().shouldHave(size(2));
   }
 
   @Test
@@ -286,7 +288,7 @@ public class DashboardConfigurationTest extends BaseTest {
     caseWidget.deleteCaseWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectTaskWidget("").expand().shouldHaveSize(2);
+    newDashboardPage.selectTaskWidget(" ").expand().shouldHave(size(2));
   }
 
   @Test
@@ -299,7 +301,7 @@ public class DashboardConfigurationTest extends BaseTest {
     processWidget.deleteProcessWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectTaskWidget("").expand().shouldHaveSize(2);
+    newDashboardPage.selectTaskWidget(" ").expand().shouldHave(size(2));
   }
 
   private DashboardModificationPage navigateToConfigurationAndEditDashboards(boolean isPublicDashboard) {

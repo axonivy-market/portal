@@ -2,7 +2,7 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.and;
 import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.disappears;
+import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -40,7 +40,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void waitForGrowlMessageDisappear() {
-    $("div[id='portal-global-growl_container']").waitUntil(appear, DEFAULT_TIMEOUT)
-          .$("div.ui-growl-message").waitUntil(disappears, DEFAULT_TIMEOUT);
+    $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT)
+          .$("div.ui-growl-message").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 }

@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.test;
 
+import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -164,7 +165,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   private void assertTaskAction(int index, List<String> taskActionsInTask) {
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     ElementsCollection actions = taskWidget.getActiveTaskActions(index);
-    actions.shouldHaveSize(taskActionsInTask.size());
+    actions.shouldHave(size(taskActionsInTask.size()));
     assertTrue(actions.texts().containsAll(taskActionsInTask));
     taskWidget.clickOnTaskActionLink(index);
   }

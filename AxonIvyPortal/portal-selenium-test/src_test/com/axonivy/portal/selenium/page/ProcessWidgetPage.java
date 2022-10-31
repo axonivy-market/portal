@@ -11,7 +11,7 @@ public class ProcessWidgetPage extends TemplatePage {
   }
   
   public void addExternalLink(String name, String link, String iconClass) {
-    $("a[id$=':add-external-link-command']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    $("a[id$=':add-external-link-command']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $("a[id$=':add-external-link-command']").click();
     
     $("input[id$=':add-external-link-form:external-link-name']").sendKeys(name);
@@ -19,28 +19,28 @@ public class ProcessWidgetPage extends TemplatePage {
     
     // change icon
     $("a[id$=':change-icon-link']").click();
-    $("div[id='process-widget:add-external-link-form:external-link-icon:select-icon-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    $("div[id='process-widget:add-external-link-form:external-link-icon:select-icon-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     
     $("input[id$=':search-icon-name-field']").sendKeys(iconClass);
     
     $("a[title='"+ iconClass + "']").click();
-    $("div[id$='process-widget:add-external-link-form:external-link-icon:select-icon-dialog']").waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+    $("div[id$='process-widget:add-external-link-form:external-link-icon:select-icon-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
     
     $("button[id$='adding-new-external-link-command']").click();
-    $("div[id='process-widget:add-external-link-dialog']").waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+    $("div[id='process-widget:add-external-link-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
     
  
   }
   
   public void findProcess(String keyword) {
     $("input[id='process-widget:process-search:non-ajax-keyword-filter']").sendKeys(keyword);
-    $("div.js-external-link-process-item").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    $("div.js-external-link-process-item").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     
     System.out.println($("i[id='icon']").getAttribute("class"));
   }
 
   public void waitForStartListShow() {
-    $(".js-loading-process-list").waitUntil(Condition.hidden, DEFAULT_TIMEOUT);
-    $(".js-process-start-list-container").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    $(".js-loading-process-list").shouldBe(Condition.hidden, DEFAULT_TIMEOUT);
+    $(".js-process-start-list-container").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 }

@@ -19,7 +19,7 @@ public class WelcomeEditWidgetNewDashboardPage extends TemplatePage {
   public void uploadImage(String fileName) {
     var configDialog = $("#new-widget-configuration-dialog");
     configDialog.find("[id $= ':image-upload-panel_input']").sendKeys(getTestFilePath(fileName));
-    configDialog.find(".ui-fileupload-filename").waitUntil(Condition.disappear, DEFAULT_TIMEOUT).waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+    configDialog.find(".ui-fileupload-filename").shouldBe(Condition.disappear, DEFAULT_TIMEOUT).shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
   
   private String getTestFilePath(String filename) {
@@ -39,11 +39,11 @@ public class WelcomeEditWidgetNewDashboardPage extends TemplatePage {
     var configDialog = $("#new-widget-configuration-dialog");
     configDialog.find("[id $= ':welcome-text-size']").click();
     var selectionPanel = $("[id $= ':welcome-text-size_panel']");
-    selectionPanel.waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    selectionPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     selectionPanel.findAll("li.ui-selectonemenu-item").forEach( item -> {
       if (item.innerText().contentEquals(value)) {
         item.click();
-        selectionPanel.waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+        selectionPanel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
         return;
       }
     });
@@ -53,11 +53,11 @@ public class WelcomeEditWidgetNewDashboardPage extends TemplatePage {
     var configDialog = $("#new-widget-configuration-dialog");
     configDialog.find("[id $= ':welcome-text-position']").click();
     var selectionPanel = $("[id $= ':welcome-text-position_panel']");
-    selectionPanel.waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    selectionPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     selectionPanel.findAll("li.ui-selectonemenu-item").forEach( item -> {
       if (item.innerText().contentEquals(value)) {
         item.click();
-        selectionPanel.waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+        selectionPanel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
         return;
       }
     });
@@ -65,8 +65,8 @@ public class WelcomeEditWidgetNewDashboardPage extends TemplatePage {
 
   public void save() {
     var configDialog = $("#new-widget-configuration-dialog");
-    configDialog.waitUntil(appear, DEFAULT_TIMEOUT).$("button[id$='widget-configuration-save-button']")
+    configDialog.shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='widget-configuration-save-button']")
         .shouldBe(getClickableCondition()).click();
-    $("div[id$='new-widget-configuration-dialog']").waitUntil(disappear, DEFAULT_TIMEOUT);
+    $("div[id$='new-widget-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 }

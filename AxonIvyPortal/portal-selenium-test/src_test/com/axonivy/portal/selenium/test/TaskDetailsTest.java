@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.test;
 
+import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -43,37 +44,37 @@ public class TaskDetailsTest extends BaseTest {
   public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithoutTechnicalCase() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
-    mainMenuPage.waitForGrowlMessageDisappear();
     mainMenuPage.openTaskList();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.openTask(ORDER_PIZZA);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.addNote(NOTE_TASK_DETAIL_BUSINESS_CASE);
-    taskDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_BUSINESS_CASE).shouldHaveSize(1);
+    taskDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_BUSINESS_CASE).shouldHave(size(1));
     taskDetailsPage.gotoBusinessCase();
     CaseDetailsPage caseDetailsPage = new CaseDetailsPage();
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
-    caseDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_BUSINESS_CASE).shouldHaveSize(1);
+    caseDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_BUSINESS_CASE).shouldHave(size(1));
   }
 
   @Test
   public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
-    mainMenuPage.waitForGrowlMessageDisappear();
     mainMenuPage.openTaskList();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.openTask(TAKE_ORDER);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.addNote(NOTE_TASK_DETAIL_TECHNICAL_CASE);
-    taskDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_TECHNICAL_CASE).shouldHaveSize(1);
+    taskDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_TECHNICAL_CASE).shouldHave(size(1));
     CaseDetailsPage caseDetailsPage = taskDetailsPage.gotoTechnicalCase();
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
-    caseDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_TECHNICAL_CASE).shouldHaveSize(1);
+    caseDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_TECHNICAL_CASE).shouldHave(size(1));
     caseDetailsPage.gotoBusinessCase();
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
-    caseDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_TECHNICAL_CASE).shouldHaveSize(1);
+    caseDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_TECHNICAL_CASE).shouldHave(size(1));
   }
 }

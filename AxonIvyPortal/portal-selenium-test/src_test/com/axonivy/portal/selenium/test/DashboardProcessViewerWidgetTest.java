@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.test;
 
+import static com.codeborne.selenide.CollectionCondition.size;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +33,7 @@ public class DashboardProcessViewerWidgetTest extends BaseTest {
     ProcessViewerWidgetNewDashBoardPage processViewerWidgetConfiguration = newDashboardPage
         .showProcessViewerWidgetConfiguration();
     processViewerWidgetConfiguration.findProcess(TEST_PROCESS_VIEWER_PERMISSION);
-    processViewerWidgetConfiguration.getSelectedProcessList().shouldHaveSize(0);
+    processViewerWidgetConfiguration.getSelectedProcessList().shouldHave(size(0));
     processViewerWidgetConfiguration.selectProcessAndSaveWidget(THIRD_PARTY_APP);
     newDashboardPage.getProcessRequestPathName().shouldHave(Condition.exactTextCaseSensitive(THIRD_PARTY_APP));
 

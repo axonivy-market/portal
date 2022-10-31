@@ -31,8 +31,8 @@ public class CaseFilterTest extends BaseTest {
   public void testFilterCasesByCreatedDate() {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
-    mainMenuPage.waitForGrowlMessageDisappear();
     mainMenuPage.openCaseList();
     String fromInputText = new SimpleDateFormat(DateTimePattern.DATE_PATTERN).format(new Date());
     CaseWidgetPage caseWidgetPage = new CaseWidgetPage();
@@ -56,3 +56,4 @@ public class CaseFilterTest extends BaseTest {
   }
 
 }
+	
