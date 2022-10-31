@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.21",
+  "format" : "10.0.0",
   "id" : "181897243F2BFDD3",
   "config" : {
     "data" : "com.axonivy.portal.components.examples.ProcessChainExampleData"
