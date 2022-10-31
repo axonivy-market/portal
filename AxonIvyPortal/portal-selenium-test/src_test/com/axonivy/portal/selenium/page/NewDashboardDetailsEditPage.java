@@ -16,7 +16,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
 
   public void addWidget() {
-    $("button[id='add-button']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("button[id='add-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
 
   public TaskEditWidgetNewDashBoardPage addNewTaskWidget() {
@@ -35,7 +35,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
 
   private void addWidgetByName(String name) {
-    $("div[id$='new-widget-dialog_content']").waitUntil(appear, DEFAULT_TIMEOUT)
+    $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$("div.new-widget-dialog__item").filter(text(name)).first().$("tr.ui-widget-content")
         .$("button[id^='new-widget-dialog-content']").shouldBe(getClickableCondition()).click();
   }
@@ -47,27 +47,27 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public void deleteCompactModeProcess() {
     $("[id$=':delete-widget-2']").shouldBe(Condition.appear).click();
-    getRemoveWidgetDialog().waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
+    getRemoveWidgetDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     getRemoveWidgetButton().click();
-    getRemoveWidgetDialog().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+    getRemoveWidgetDialog().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public void deleteImageModeProcess() {
-    $("button[id$=':process-action-button']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("[id$=':process-action-menu']").waitUntil(Condition.appear, DEFAULT_TIMEOUT)
-      .$("span.si-bin-1").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    getRemoveWidgetDialog().waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("button[id$=':process-action-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("[id$=':process-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+      .$("span.si-bin-1").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    getRemoveWidgetDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     getRemoveWidgetButton().click();
-    getRemoveWidgetDialog().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+    getRemoveWidgetDialog().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public void deleteFullModeProcess() {
     $("button[id$=':process-action-button']").shouldBe(Condition.appear).click();
-    $("[id$=':process-action-menu']").waitUntil(Condition.appear, DEFAULT_TIMEOUT)
-      .$("span.si-bin-1").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    getRemoveWidgetDialog().waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("[id$=':process-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+      .$("span.si-bin-1").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    getRemoveWidgetDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     getRemoveWidgetButton().click();
-    getRemoveWidgetDialog().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+    getRemoveWidgetDialog().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public void deleteCombinedModeProcess() {
@@ -77,24 +77,24 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
       openDeleteCombinedModeProcessDialog();
     }
     getRemoveWidgetButton().click();
-    getRemoveWidgetDialog().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+    getRemoveWidgetDialog().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
   
   public void clickOnRemoveWidgetButton() {
-    getRemoveWidgetButton().waitUntil(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    getRemoveWidgetButton().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+    getRemoveWidgetButton().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    getRemoveWidgetButton().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   private void openDeleteCombinedModeProcessDialog() {
-    $(".process-grid-item__action--combined .si-bin-1").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    getRemoveWidgetDialog().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    $(".process-grid-item__action--combined .si-bin-1").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    getRemoveWidgetDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public ProcessEditWidgetNewDashBoardPage editFullModeProcess() {
     $("button[id$=':process-action-button']").shouldBe(Condition.appear).click();
-    $("[id$=':process-item:grid-process-action-component:edit-process']").waitUntil(Condition.appear, DEFAULT_TIMEOUT)
-        .$("span.si-graphic-tablet-drawing-pen").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("div[id='new-widget-configuration-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    $("[id$=':process-item:grid-process-action-component:edit-process']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("span.si-graphic-tablet-drawing-pen").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("div[id='new-widget-configuration-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return new ProcessEditWidgetNewDashBoardPage();
   }
   
@@ -128,23 +128,23 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
 
   public void clickOnRestoreDashboard() {
-    $("[id$='restore-button-group']").waitUntil(appear, DEFAULT_TIMEOUT).$("button[id$='restore-button']")
-        .waitUntil(Condition.enabled, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $("div[id$='restore-confirm-dialog']").waitUntil(appear, DEFAULT_TIMEOUT);
+    $("[id$='restore-button-group']").shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='restore-button']")
+        .shouldBe(Condition.enabled, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("div[id$='restore-confirm-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getRestoreDashboardMessage() {
-    return $("div[id$='restore-confirm-dialog']").waitUntil(appear, DEFAULT_TIMEOUT)
-        .$("span.dashboard-template-name-message").waitUntil(appear, DEFAULT_TIMEOUT);
+    return $("div[id$='restore-confirm-dialog']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("span.dashboard-template-name-message").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void restoreDashboardToStandard() {
-    $("div[id$='restore-confirm-dialog']").waitUntil(appear, DEFAULT_TIMEOUT).$("button[id$='reset-dashboard-button']")
-        .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("div[id$='restore-confirm-dialog']").shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='reset-dashboard-button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
 
   public SelenideElement getRestoreDashboardButton() {
-    return $("[id$='restore-button-group']").waitUntil(appear, DEFAULT_TIMEOUT).$("button[id$='restore-button']")
-        .waitUntil(Condition.exist, DEFAULT_TIMEOUT);
+    return $("[id$='restore-button-group']").shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='restore-button']")
+        .shouldBe(Condition.exist, DEFAULT_TIMEOUT);
   }
 }

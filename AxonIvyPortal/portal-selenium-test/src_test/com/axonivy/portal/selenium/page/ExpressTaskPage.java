@@ -13,7 +13,7 @@ public class ExpressTaskPage extends TemplatePage {
   }
 
   public SelenideElement findExpressTask() {
-    return $(".js-task-header-container").waitUntil(appear, DEFAULT_TIMEOUT).$("div[id='task-template-title']");
+    return $(".js-task-header-container").shouldBe(appear, DEFAULT_TIMEOUT).$("div[id='task-template-title']");
   }
 
 }

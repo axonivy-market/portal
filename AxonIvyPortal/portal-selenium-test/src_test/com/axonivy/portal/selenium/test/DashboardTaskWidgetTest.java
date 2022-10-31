@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.test;
 
+import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -116,7 +117,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.filterTaskState();
     taskWidget.selectState(DONE);
     taskWidget.applyFilter();
-    taskWidget.countAllTasks().shouldHaveSize(1);
+    taskWidget.countAllTasks().shouldHave(size(1));
     taskWidget.stateOfFirstTask().shouldHave(text(DONE));
   }
   
@@ -139,17 +140,17 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskEditWidget.selectState(SUSPENDED);
     taskEditWidget.preview();
     taskEditWidget.waitPageSelected(1);
-    taskEditWidget.countAllTasks().shouldHaveSize(5);
+    taskEditWidget.countAllTasks().shouldHave(size(5));
     taskEditWidget.nextPageTable();
     taskEditWidget.waitPageSelected(2);
-    taskEditWidget.countAllTasks().shouldHaveSize(5);
+    taskEditWidget.countAllTasks().shouldHave(size(5));
     taskEditWidget.nextPageTable();
     taskEditWidget.waitPageSelected(3);
-    taskEditWidget.countAllTasks().shouldHaveSize(2);
+    taskEditWidget.countAllTasks().shouldHave(size(2));
     taskEditWidget.save();
     TaskWidgetNewDashBoardPage taskWidgetEdited = newDashboardPage.selectTaskWidget(NEW_YOUR_TASK);
     taskWidgetEdited.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    taskWidgetEdited.countAllTasks().shouldHaveSize(5);
+    taskWidgetEdited.countAllTasks().shouldHave(size(5));
   }
   
   @Test
@@ -167,7 +168,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     newtaskWidget.changeWidgetTitle(NEW_YOUR_TASK);
     newtaskWidget.save();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(NEW_YOUR_TASK);
-    taskWidget.expand().shouldHaveSize(1);
+    taskWidget.expand().shouldHave(size(1));
   }
   
   @Test
@@ -197,9 +198,9 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     
     taskWidget.clickOnButtonExpandTaskWidget();
-    taskWidget.getExpandedTaskWidget().shouldHaveSize(1);
+    taskWidget.getExpandedTaskWidget().shouldHave(size(1));
     taskWidget.clickOnButtonCollapseTaskWidget();
-    taskWidget.getExpandedWidget().shouldHaveSize(0);
+    taskWidget.getExpandedWidget().shouldHave(size(0));
   }
   
   @Test
