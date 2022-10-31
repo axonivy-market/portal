@@ -29,7 +29,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private SelenideElement widgetTitle() {
-    return $(taskEditWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("span[id$='widget-title-group']")
+    return $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("span[id$='widget-title-group']")
         .$("input[id$='widget-title']");
   }
 
@@ -40,7 +40,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   
   private int getIndexFiltertByName(String name) {
     ElementsCollection elementsTH =
-        $(taskEditWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='user-filter']").$$("div");
+        $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='user-filter']").$$("div");
     for (int i = 0; i < elementsTH.size(); i++) {
       if (elementsTH.get(i).getText().equalsIgnoreCase(name)) {
         return i;
@@ -51,7 +51,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   
   private SelenideElement getAvailableFilterInput(String filterName) {
     int index = getIndexFiltertByName(filterName);
-    return $(taskEditWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='user-filter']").$$("div").get(index + 1)
+    return $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='user-filter']").$$("div").get(index + 1)
         .$("input");
   }
   
@@ -61,17 +61,17 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   
   public void clickOnStateToShowDropdown() {
     int index = getIndexFiltertByName(STATE);
-    $(taskEditWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='user-filter']").$$("div").get(index + 1)
+    $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='user-filter']").$$("div").get(index + 1)
         .click();
   }
   
   private SelenideElement getValueOfCheckBox(String value) {
     return $("div[style*='display: block;'] div.ui-selectcheckboxmenu-items-wrapper")
-        .waitUntil(appear, DEFAULT_TIMEOUT).$$("li.ui-selectcheckboxmenu-item").filter(text(value)).first().$("div.ui-chkbox-box");
+        .shouldBe(appear, DEFAULT_TIMEOUT).$$("li.ui-selectcheckboxmenu-item").filter(text(value)).first().$("div.ui-chkbox-box");
   }
   
   private SelenideElement getCloseCheckBox() {
-    return $("div.ui-selectcheckboxmenu-panel[style*='display: block;']").waitUntil(appear, DEFAULT_TIMEOUT).$("a.ui-selectcheckboxmenu-close");
+    return $("div.ui-selectcheckboxmenu-panel[style*='display: block;']").shouldBe(appear, DEFAULT_TIMEOUT).$("a.ui-selectcheckboxmenu-close");
   }
   
   public void selectState(String state) {
@@ -80,12 +80,12 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void preview() {
-    $(taskEditWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']")
+    $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']")
         .shouldBe(getClickableCondition()).click();
   }
   
   private ElementsCollection getColumnsOfTableWidget() {
-    return $(taskEditWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$$("table tbody tr td");
+    return $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr td");
   }
   
   private ElementsCollection getAllTasksOfTaskWidget() {
@@ -98,22 +98,22 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   
   
   public void nextPageTable() {
-    $(taskEditWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-preview']")
-    .waitUntil(appear, DEFAULT_TIMEOUT).$("a.ui-paginator-next").waitUntil(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='widget-preview']")
+    .shouldBe(appear, DEFAULT_TIMEOUT).$("a.ui-paginator-next").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
   
   public void waitPageSelected(int pageNumber) {
-    $(taskEditWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-preview']")
-    .waitUntil(appear, DEFAULT_TIMEOUT).$$("a.ui-paginator-page").get(pageNumber-1).waitUntil(Condition.attributeMatching("class", ".*ui-state-active.*"), DEFAULT_TIMEOUT);
+    $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='widget-preview']")
+    .shouldBe(appear, DEFAULT_TIMEOUT).$$("a.ui-paginator-page").get(pageNumber-1).shouldBe(Condition.attributeMatching("class", ".*ui-state-active.*"), DEFAULT_TIMEOUT);
   }
   
   public void save() {
-    $(taskEditWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("button[id$='widget-configuration-save-button']")
+    $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='widget-configuration-save-button']")
         .shouldBe(getClickableCondition()).click();
-    $("[id$='task-component:loading']").waitUntil(disappear, DEFAULT_TIMEOUT);
+    $("[id$='task-component:loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void waitPreviewTableLoaded() {
-    $(taskEditWidgetId).$("div[id$=':dashboard-tasks-container']").waitUntil(appear, DEFAULT_TIMEOUT);
+    $(taskEditWidgetId).$("div[id$=':dashboard-tasks-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 }
