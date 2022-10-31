@@ -31,9 +31,9 @@ public class ProcessViewerWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickSaveProcessViewerWidget() {
-    $("button[id='widget-configuration-save-button']").waitUntil(Condition.appear, DEFAULT_TIMEOUT)
+    $("button[id='widget-configuration-save-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
-    $("div[id='new-widget-configuration-dialog']").waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+    $("div[id='new-widget-configuration-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public void findProcess(String processName) {

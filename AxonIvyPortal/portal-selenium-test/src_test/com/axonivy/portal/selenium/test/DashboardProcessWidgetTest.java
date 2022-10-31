@@ -1,5 +1,9 @@
 package com.axonivy.portal.selenium.test;
 
+import static com.codeborne.selenide.CollectionCondition.size;
+
+import java.time.Duration;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,10 +18,9 @@ import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.ProcessInformationPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
-import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest
+@IvyWebTest 
 public class DashboardProcessWidgetTest extends BaseTest {
   private static final String EXPRESS_PROCESS = "EXPRESS_PROCESS";
   private static final String CASE_LEAVE_REQUEST_TEST_FOR_IVYPORTAL_3369 =
@@ -37,7 +40,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
   private static final String SHOWCASE_APPLICATION = "Showcase Application";
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
   private NewDashboardPage newDashboardPage;
-  private static final long DEFAULT_TIMEOUT = 45000;
+  protected static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(45);
 
   @Override
   @BeforeEach
@@ -562,7 +565,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     newDashboardPage.checkDisplayedCompactModeProcessContainer();
 
     newDashboardPage.openCompactModeProcessInforPanel();
-    newDashboardPage.getCompactModeProcessInfoProcessTypes().shouldHave(CollectionCondition.size(3), DEFAULT_TIMEOUT);
+    newDashboardPage.getCompactModeProcessInfoProcessTypes().shouldHave(size(3), DEFAULT_TIMEOUT);
   }
 
   @Test
@@ -571,7 +574,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     newDashboardPage.expandCompactModeProcess();
 
     newDashboardPage.openCompactModeProcessInforPanelWhenExpanded();
-    newDashboardPage.getCompactModeProcessInfoProcessTypesWhenExpanded().shouldHave(CollectionCondition.size(3),
+    newDashboardPage.getCompactModeProcessInfoProcessTypesWhenExpanded().shouldHave(size(3),
         DEFAULT_TIMEOUT);
   }
 
