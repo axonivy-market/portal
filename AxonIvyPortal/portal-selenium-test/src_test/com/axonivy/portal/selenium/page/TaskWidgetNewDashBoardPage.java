@@ -1,7 +1,7 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.disappears;
+import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -41,7 +41,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private int getIndexWidgetByColumn(String columnName) {
-    ElementsCollection elementsTH = $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
+    ElementsCollection elementsTH = $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
     for (int i = 0; i < elementsTH.size(); i++) {
       if (elementsTH.get(i).getText().equalsIgnoreCase(columnName)) {
         return i;
@@ -51,11 +51,11 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private ElementsCollection getColumnOfTableWidget(int rowIndex) {
-    return $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$$("table tbody tr").get(rowIndex).$$("td");
+    return $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr").get(rowIndex).$$("td");
   }
 
   public ElementsCollection expand() {
-    $$("div.widget__header").filter(text(taskWidgetName)).first().waitUntil(appear, DEFAULT_TIMEOUT);
+    $$("div.widget__header").filter(text(taskWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT);
     return $$("div.widget__header").filter(text(taskWidgetName));
   }
 
@@ -65,18 +65,18 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void startFirstTask() {
-    $$("span.widget__filter-noti-number").first().waitUntil(appear, DEFAULT_TIMEOUT);
-    WaitHelper.waitForNavigation(() -> getColumnOfTaskHasIndex(0, "Start").waitUntil(appear, DEFAULT_TIMEOUT).click());
+    $$("span.widget__filter-noti-number").first().shouldBe(appear, DEFAULT_TIMEOUT);
+    WaitHelper.waitForNavigation(() -> getColumnOfTaskHasIndex(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click());
   }
   
   public void startFirstTaskAndWaitShowHomePageButton() {
-    $$("span.widget__filter-noti-number").first().waitUntil(appear, DEFAULT_TIMEOUT);
-    getColumnOfTaskHasIndex(0, "Start").waitUntil(appear, DEFAULT_TIMEOUT).click();
-    $("a>span.si-house-chimney-2.portal-icon").waitUntil(appear, DEFAULT_TIMEOUT);
+    $$("span.widget__filter-noti-number").first().shouldBe(appear, DEFAULT_TIMEOUT);
+    getColumnOfTaskHasIndex(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("a>span.si-house-chimney-2.portal-icon").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void startTask(int taskIndex) {
-    $$("span.widget__filter-noti-number").first().waitUntil(appear, DEFAULT_TIMEOUT);
+    $$("span.widget__filter-noti-number").first().shouldBe(appear, DEFAULT_TIMEOUT);
     getColumnOfTaskHasIndex(taskIndex, "Start").shouldBe(getClickableCondition()).click();
   }
 
@@ -86,39 +86,39 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void openFilterWidget() {
     getTaskWidgetHeader().$(".widget__filter-sidebar-link")
-        .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $("[id$=':widget-saved-filters-items").waitUntil(appear, DEFAULT_TIMEOUT);
+        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void filterTaskName(String input) {
-    var taskNameFilter = $("div[id$='widget-filter-content']").waitUntil(appear, DEFAULT_TIMEOUT)
+    var taskNameFilter = $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$(".ui-inputfield.text-field-input-name");
     taskNameFilter.clear();
     taskNameFilter.sendKeys(input);
   }
 
   public String getTaskNameFilterValue() {
-    return $("div[id$='widget-filter-content']").waitUntil(appear, DEFAULT_TIMEOUT)
-        .$(".task-configuration__input-text.text-field-input-name").waitUntil(Condition.cssClass("ui-state-filled"), DEFAULT_TIMEOUT)
+    return $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$(".task-configuration__input-text.text-field-input-name").shouldBe(Condition.cssClass("ui-state-filled"), DEFAULT_TIMEOUT)
         .getValue();
   }
   
   public void applyFilter() {
-    $("div.filter-overlay-panel__footer").waitUntil(appear, DEFAULT_TIMEOUT).$$("button[id$='apply-button']")
+    $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='apply-button']")
         .filter(text("Apply")).first().shouldBe(getClickableCondition()).click();
-    $("div[id$='task-task_1:filter-overlay-panel-0']").waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+    $("div[id$='task-task_1:filter-overlay-panel-0']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
   
   public void resetFilter() {
-    $("div.filter-overlay-panel__footer").waitUntil(appear, DEFAULT_TIMEOUT).$$("button[id$='reset-button']")
+    $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='reset-button']")
         .filter(text("Reset")).first().shouldBe(getClickableCondition()).click();
   }
 
   public void filterPriority(String... priorities) {
-    $("div[id$='widget-filter-content']").waitUntil(appear, DEFAULT_TIMEOUT)
+    $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("div[id$=':priorities']").$(".ui-selectcheckboxmenu-trigger.ui-corner-right")
         .shouldBe(getClickableCondition()).click();
-    var priorityCheckboxOptions = $("[id$=':priorities_panel']").waitUntil(appear, DEFAULT_TIMEOUT)
+    var priorityCheckboxOptions = $("[id$=':priorities_panel']").shouldBe(appear, DEFAULT_TIMEOUT)
       .$$(".ui-selectcheckboxmenu-item.ui-selectcheckboxmenu-list-item").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(1));
     for (var item : priorityCheckboxOptions) {
       for (var prio : priorities) {
@@ -131,9 +131,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void filterCategories(String... categories) {
-    $("div[id$='widget-filter-content']").waitUntil(appear, DEFAULT_TIMEOUT)
+    $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT)
       .$("[id$=':widget-filter-category']").shouldBe(getClickableCondition()).click();
-  var categoriesPanel = $("[id$=':widget-filter-category-panel']").waitUntil(appear, DEFAULT_TIMEOUT);
+  var categoriesPanel = $("[id$=':widget-filter-category-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
   categoriesPanel.$("[id$=':widget-category-filter-tree']")
     .$$(".ui-chkbox").first().shouldBe(getClickableCondition()).click();
   
@@ -148,21 +148,21 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     });
     
     categoriesPanel.$("button[id$=':update-command']").shouldBe(getClickableCondition()).click();
-    categoriesPanel.waitUntil(disappears, DEFAULT_TIMEOUT);
+    categoriesPanel.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void clickOnSaveFilterButton() {
-    $("div.filter-overlay-panel__footer").waitUntil(appear, DEFAULT_TIMEOUT)
+    $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("button[id$=':save-filter']").shouldBe(getClickableCondition()).click();
-    $("div[id$='save-widget-filter-dialog']").waitUntil(appear, DEFAULT_TIMEOUT);
+    $("div[id$='save-widget-filter-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void saveANewWidgetFilter(String filterName) {
-    var saveFilterDialog = $("div[id$='save-widget-filter-dialog']").waitUntil(appear, DEFAULT_TIMEOUT);
+    var saveFilterDialog = $("div[id$='save-widget-filter-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     saveFilterDialog.$("input[id$='save-filter-form:save-filter-name']").sendKeys(filterName);
     saveFilterDialog.$("button[id$='save-filter-form:save-widget-filter-button']").shouldBe(getClickableCondition()).click();
-    saveFilterDialog.waitUntil(disappears, DEFAULT_TIMEOUT);
-    getSavedFilterContainer().$(".saved-filter__items").waitUntil(appear, DEFAULT_TIMEOUT)
+    saveFilterDialog.shouldBe(disappear, DEFAULT_TIMEOUT);
+    getSavedFilterContainer().$(".saved-filter__items").shouldBe(appear, DEFAULT_TIMEOUT)
       .$$(".saved-filter-node").shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
   }
 
@@ -182,7 +182,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public SelenideElement getSelectedFilter(String selectSavedFilterId) {
-     return $("[id$='" + selectSavedFilterId + "']").waitUntil(Condition.enabled, DEFAULT_TIMEOUT);
+     return $("[id$='" + selectSavedFilterId + "']").shouldBe(Condition.enabled, DEFAULT_TIMEOUT);
   }
   
   public boolean hasSavedFilterItem(String filterName) {
@@ -199,51 +199,51 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void clickOnManageFilterLink() {
     var savedFilterContainer = getSavedFilterContainer();
     savedFilterContainer.$(".ui-commandlink.saved-filter__manage-filter").shouldBe(getClickableCondition()).click();
-    $("[id$='manage-filter-dialog']").waitUntil(appear, DEFAULT_TIMEOUT);
+    $("[id$='manage-filter-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
   public SelenideElement getManageFilterDialog() {
-    return $("[id$='manage-filter-dialog']").waitUntil(appear, DEFAULT_TIMEOUT);
+    return $("[id$='manage-filter-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public int getTotalSavedFilterInManageFilterDialog() {
-    var deleteSavedFilterForm = $("#delete-saved-filter-form").waitUntil(appear, DEFAULT_TIMEOUT);
-    return deleteSavedFilterForm.$(".ui-datatable-data").waitUntil(appear, DEFAULT_TIMEOUT)
+    var deleteSavedFilterForm = $("#delete-saved-filter-form").shouldBe(appear, DEFAULT_TIMEOUT);
+    return deleteSavedFilterForm.$(".ui-datatable-data").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$(".saved-filter-selection-column").size();
   }
 
   public void deleteFirstSavedFilter() {
-    var deleteSavedFilterForm = $("#delete-saved-filter-form").waitUntil(appear, DEFAULT_TIMEOUT);
-    $("tr[data-rk='Tasks Filterset 4']").waitUntil(appear, DEFAULT_TIMEOUT);
+    var deleteSavedFilterForm = $("#delete-saved-filter-form").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("tr[data-rk='Tasks Filterset 4']").shouldBe(appear, DEFAULT_TIMEOUT);
     var totalWidgetFilter = getDelelteSavedFilterRow().size();
     deleteSavedFilterForm.$(".ui-datatable-data")
         .$$(".saved-filter-selection-column").first()
         .shouldBe(getClickableCondition()).click();
-    var removeButton = getDeleteWidgetFilterButton().waitUntil(Condition.enabled, DEFAULT_TIMEOUT);
+    var removeButton = getDeleteWidgetFilterButton().shouldBe(Condition.enabled, DEFAULT_TIMEOUT);
     removeButton.shouldBe(getClickableCondition()).click();
     getDelelteSavedFilterRow().shouldHave(CollectionCondition.sizeLessThan(totalWidgetFilter));
   }
 
   private ElementsCollection getDelelteSavedFilterRow() {
-    return $("[id$='delete-saved-filter-form:quick-filter-table']").waitUntil(appear, DEFAULT_TIMEOUT)
+    return $("[id$='delete-saved-filter-form:quick-filter-table']").shouldBe(appear, DEFAULT_TIMEOUT)
     .$$("tbody tr");
   }
 
   public void clickOnResetFilter() {
-    $("[id$=':reset-button']").waitUntil(Condition.enabled, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $("[id$=':saved-filters-container']").waitUntil(disappears, DEFAULT_TIMEOUT);
+    $("[id$=':reset-button']").shouldBe(Condition.enabled, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("[id$=':saved-filters-container']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public int getNumberOfFilterApplied() {
-    var numberNoti = $("[id$='task-task_1:task-panel-group-0']").waitUntil(appear, DEFAULT_TIMEOUT)
-          .$(".widget__filter-noti-number").waitUntil(appear, DEFAULT_TIMEOUT).getText();
+    var numberNoti = $("[id$='task-task_1:task-panel-group-0']").shouldBe(appear, DEFAULT_TIMEOUT)
+          .$(".widget__filter-noti-number").shouldBe(appear, DEFAULT_TIMEOUT).getText();
     return Integer.valueOf(numberNoti);
   }
 
   public void searchWidgetFilter(String filterName) {
     var savedFilterPanel = getSavedFilterContainer();
     waitFirstWidgetFilterAppear(savedFilterPanel);
-    var searchFilter = savedFilterPanel.$("[id$=':search-saved-filter-input']").waitUntil(Condition.visible, DEFAULT_TIMEOUT);
+    var searchFilter = savedFilterPanel.$("[id$=':search-saved-filter-input']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
     searchFilter.sendKeys(filterName);
   }
 
@@ -258,12 +258,12 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private void waitFirstWidgetFilterAppear(SelenideElement savedFilterPanel) {
-    savedFilterPanel.$(".saved-filter__content").waitUntil(appear, DEFAULT_TIMEOUT)
-        .$("[id$=':saved-filter-node']").waitUntil(appear, DEFAULT_TIMEOUT);
+    savedFilterPanel.$(".saved-filter__content").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("[id$=':saved-filter-node']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   private SelenideElement getSavedFilterContainer() {
-    return $("[id$=':saved-filters-container']").waitUntil(appear, DEFAULT_TIMEOUT);
+    return $("[id$=':saved-filters-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
   private SelenideElement getDeleteWidgetFilterButton() {
@@ -271,21 +271,21 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void openTask(String taskName) {
-    $("div[id$=':task-component:dashboard-tasks']").waitUntil(appear, DEFAULT_TIMEOUT)
+    $("div[id$=':task-component:dashboard-tasks']").shouldBe(appear, DEFAULT_TIMEOUT)
       .$$("table tbody tr td span").filter(text(taskName)).first().click();
   }
   
   private SelenideElement getStateFilterCheckBox(String value) {
-    return $("div[id$='states_panel']").$("div.ui-selectcheckboxmenu-items-wrapper").waitUntil(appear, DEFAULT_TIMEOUT)
+    return $("div[id$='states_panel']").$("div.ui-selectcheckboxmenu-items-wrapper").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$("li.ui-selectcheckboxmenu-item").filter(text(value)).first().$("div.ui-chkbox-box");
   }
   
   private SelenideElement getCloseStateFilter() {
-    return $("div[id$='states_panel']").waitUntil(appear, DEFAULT_TIMEOUT).$("a.ui-selectcheckboxmenu-close");
+    return $("div[id$='states_panel']").shouldBe(appear, DEFAULT_TIMEOUT).$("a.ui-selectcheckboxmenu-close");
   }
   
   private SelenideElement getFilterCheckBox(String inputField) {
-    return $("div[id$='widget-filter-content']").waitUntil(appear, DEFAULT_TIMEOUT)
+    return $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$("div.widget-filter-panel div.ui-g").filter(text(inputField)).first();
   }
   
@@ -301,7 +301,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public ElementsCollection getActiveTaskActions(int taskIndex) {
     clickOnTaskActionLink(taskIndex);
     return $$(String.format("div.js-task-side-steps-panel-task_1-%d", taskIndex)).filter(appear).first()
-        .waitUntil(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='option-item']");
+        .shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='option-item']");
   }
 
   public void clickOnTaskActionLink(int taskIndex) {
@@ -313,17 +313,17 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void clickCancelTask() {
-    $("a[id$='button-cancel']").waitUntil(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("a[id$='button-cancel']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
   
   public void triggerEscalationTask(int taskIndex) {
     getActiveTaskActions(taskIndex).filter(text("Trigger Escalation")).first().shouldBe(getClickableCondition()).click();
-    $("div[id='escalation-task-confirmation-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
-    $("button[id='confirm-escalation-dashboard-tasks']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("div[id='escalation-task-confirmation-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("button[id='confirm-escalation-dashboard-tasks']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
   
   private ElementsCollection getColumnsOfTableWidget() {
-    return $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$$("table tbody tr td");
+    return $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr td");
   }
   
   private ElementsCollection getTasksOfTaskWidgetHasName(String taskName) {
@@ -343,9 +343,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
   
   private void confirmDestroy() {
-    $("div[id$='destroy-task-confirmation-dialog']").waitUntil(appear, DEFAULT_TIMEOUT)
+    $("div[id$='destroy-task-confirmation-dialog']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("button[id$='confirm-destruction-dashboard-tasks']").shouldBe(getClickableCondition()).click();
-    $("button[id$='confirm-destruction-dashboard-tasks']").waitUntil(disappears, DEFAULT_TIMEOUT);
+    $("button[id$='confirm-destruction-dashboard-tasks']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
   
   public SelenideElement destroyTaskLink() {
@@ -358,19 +358,19 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public SelenideElement stateOfFirstTask() {
-    return getColumnOfTaskHasIndex(0, FILTER_TASK_STATE).waitUntil(appear, DEFAULT_TIMEOUT);
+    return getColumnOfTaskHasIndex(0, FILTER_TASK_STATE).shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
   public TaskEditWidgetNewDashBoardPage openEditTaskWidget() {
     $$("div.table-widget-panel div.widget__header").filter(text(taskWidgetName)).first()
-        .waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='edit-widget']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='edit-widget']")
         .shouldBe(getClickableCondition()).click();
     return new TaskEditWidgetNewDashBoardPage();
   }
   
   public void deleteTaskWidget() {
     $$("div.table-widget-panel div.widget__header").filter(text(taskWidgetName)).first()
-        .waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='delete-widget']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='delete-widget']")
         .shouldBe(getClickableCondition()).click();
   }
   
@@ -380,33 +380,33 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   
   public void clickOnButtonWidgetInformation() {
     getTaskWidgetHeader().$(".widget__info-sidebar-link")
-        .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
   
   public SelenideElement getExpiryTodayLabelInWidgetInfo() {
-    return $("[id$='expiry-tab']").waitUntil(appear, DEFAULT_TIMEOUT).$("div div").waitUntil(appear, DEFAULT_TIMEOUT);
+    return $("[id$='expiry-tab']").shouldBe(appear, DEFAULT_TIMEOUT).$("div div").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
   public void clickToExpandNumberOfTaskByState() {
-    SelenideElement element = $("[id$='state-tab_header']").waitUntil(appear, DEFAULT_TIMEOUT);
+    SelenideElement element = $("[id$='state-tab_header']").shouldBe(appear, DEFAULT_TIMEOUT);
     if("false".equalsIgnoreCase(element.getAttribute("aria-expanded"))){
       element.click();
     }
   }
   
   public SelenideElement getFirstStateLabelInWidgetInfo() {
-    return $("[id$='state-tab']").waitUntil(appear, DEFAULT_TIMEOUT).$("div div").waitUntil(appear, DEFAULT_TIMEOUT);
+    return $("[id$='state-tab']").shouldBe(appear, DEFAULT_TIMEOUT).$("div div").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
   public void clickToExpandNumberOfTaskByCategory() {
-    SelenideElement element = $("[id$='category-tab_header']").waitUntil(appear, DEFAULT_TIMEOUT);
+    SelenideElement element = $("[id$='category-tab_header']").shouldBe(appear, DEFAULT_TIMEOUT);
     if("false".equalsIgnoreCase(element.getAttribute("aria-expanded"))){
       element.click();
     }
   }
   
   public void clickToExpandPredefinedFilters() {
-    SelenideElement element = $("[id$='filter-tab_header']").waitUntil(appear, DEFAULT_TIMEOUT);
+    SelenideElement element = $("[id$='filter-tab_header']").shouldBe(appear, DEFAULT_TIMEOUT);
     if("false".equalsIgnoreCase(element.getAttribute("aria-expanded"))){
       element.click();
     }
@@ -418,7 +418,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   
   public void clickOnButtonExpandTaskWidget() {
     getTaskWidgetHeader().$(".expand-link")
-        .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
   
   public ElementsCollection getExpandedTaskWidget() {
@@ -431,14 +431,14 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   
   public void clickOnButtonCollapseTaskWidget() {
     getTaskWidgetHeader().$(".collapse-link")
-        .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
   
   /* 
    * return descending or ascending
    */
   public SelenideElement getTaskWidgetHeaderSorted() {
-    return  $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("th.ui-state-active");
+    return  $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("th.ui-state-active");
   }
   
   /* 
@@ -446,18 +446,18 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
    */
   public void waitForSortingFinished(String sortType) {
     if(DESCENDING.equalsIgnoreCase(sortType)) {
-      $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("th.ui-state-active").waitUntil(Condition.attribute("aria-sort", DESCENDING), DEFAULT_TIMEOUT);
+      $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("th.ui-state-active").shouldBe(Condition.attribute("aria-sort", DESCENDING), DEFAULT_TIMEOUT);
     }else {
-      $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("th.ui-state-active").waitUntil(Condition.attribute("aria-sort", ASCENDING), DEFAULT_TIMEOUT);
+      $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("th.ui-state-active").shouldBe(Condition.attribute("aria-sort", ASCENDING), DEFAULT_TIMEOUT);
     }
   }
   
   public void clickOnHeaderTaskByColumn(String columnName) {
-    ElementsCollection elementsTH = $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
+    ElementsCollection elementsTH = $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
     for (int i = 0; i < elementsTH.size(); i++) {
       if (elementsTH.get(i).getText().equalsIgnoreCase(columnName)) {
         elementsTH.get(i).click();
-        elementsTH.get(i).waitUntil(Condition.cssClass("ui-state-active"), DEFAULT_TIMEOUT);
+        elementsTH.get(i).shouldBe(Condition.cssClass("ui-state-active"), DEFAULT_TIMEOUT);
       }
     }
   }
@@ -467,15 +467,15 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public SelenideElement getTaskEmptyMessage() {
-    return $("[id$='dashboard-tasks-container'] [id$='empty-message-container']").waitUntil(appear, DEFAULT_TIMEOUT);
+    return $("[id$='dashboard-tasks-container'] [id$='empty-message-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
   public SelenideElement getGrowlTitle() {
-    return $(".ui-growl-title").waitUntil(appear, DEFAULT_TIMEOUT);
+    return $(".ui-growl-title").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
 
   public SelenideElement getResponsibleAvatar() {
-    return $(".dashboard-tasks__responsible > .has-avatar > .ui-avatar").waitUntil(appear, DEFAULT_TIMEOUT);
+    return $(".dashboard-tasks__responsible > .has-avatar > .ui-avatar").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 }

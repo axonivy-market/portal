@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.test;
 
+import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -64,7 +65,7 @@ public class DashboardCaseWidgetActionTest extends BaseTest {
     filterByCaseState(state);
     CaseWidgetNewDashBoardPage caseWidget = new CaseWidgetNewDashBoardPage();
     ElementsCollection actions = caseWidget.getActiveCaseActions(0);
-    actions.shouldHaveSize(caseActionsInCase.size());
+    actions.shouldHave(size(caseActionsInCase.size()));
     assertTrue(actions.texts().containsAll(caseActionsInCase));
     caseWidget.turnOffActionsPanel(0);
   }

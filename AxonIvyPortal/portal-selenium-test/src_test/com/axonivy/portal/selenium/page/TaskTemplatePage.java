@@ -15,7 +15,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public SelenideElement getDisplayedTaskTitle() {
-    return getTaskTitle().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    return getTaskTitle().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   private SelenideElement getTaskTitle() {
@@ -23,7 +23,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public SelenideElement getStartedTaskTemplateTitle() {
-    return $("span[id='title']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    return $("span[id='title']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
 
