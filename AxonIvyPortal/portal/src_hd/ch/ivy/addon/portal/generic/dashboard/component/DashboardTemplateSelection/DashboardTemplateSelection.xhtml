@@ -29,6 +29,7 @@
             oncomplete="PF('dashboard-creation-details-dialog').show()"
             actionListener="#{dashboardTemplateSelectionBean.createDashboardFromScratch(isPublicDashboard)}"
             update="#{cc.clientId}:dashboard-creation-component:dashboard-creation-details-dialog"
+            resetValues="true"
             global="false">
             <div class="dashboard-action__icon">
               <span class="si si-common-file-add dashboard-action-container-icon" />
@@ -47,6 +48,7 @@
               actionListener="#{dashboardTemplateSelectionBean.onSelectTemplate(template, isPublicDashboard)}"
               oncomplete="PF('dashboard-creation-details-dialog').show()"
               update="#{cc.clientId}:dashboard-creation-component:dashboard-creation-details-dialog"
+              resetValues="true"
               global="false">
               <div class="dashboard-action__icon">
                 <span class="si #{template.icon} dashboard-action-container-icon" />
