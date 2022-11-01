@@ -32,7 +32,8 @@ pipeline {
         script {
           today = new Date().format('dd-MM-yyyy_HH-mm')
 
-          config = [singleAppEngine: [engineParentDir: 'D:\\tools\\ivy-server\\', engineName: '10.0', databaseBackupDir: 'D:\\backup\\database', databaseName: 'ivy-10.0', serviceName: 'Axon.ivy-10.0']]
+          config = [singleAppEngine: [engineParentDir: 'D:\\tools\\ivy-server\\', engineName: '10.0', databaseBackupDir: 'D:\\backup\\database', databaseName: 'ivy-10.0', serviceName: 'Axon.ivy-10.0']
+		  ,performanceTestEngine: [engineParentDir: 'C:\\tools\\ivy-server\\', engineName: '10.0', databaseBackupDir: 'D:\\backup\\database', databaseName: 'ivy-performance-10.0', serviceName: 'Axon.ivyEngine10.0']]
 
           engineParentDir = config[params.engine]['engineParentDir']
           engineName = config[params.engine]['engineName']
