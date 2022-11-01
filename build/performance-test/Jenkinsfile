@@ -6,7 +6,7 @@ pipeline {
   }
 
   triggers {
-    cron('0 13 * * *')
+    cron('0 14 * * *')
   }
 
   tools { 
@@ -15,7 +15,7 @@ pipeline {
   }
 
   environment {
-    engineVersion = 'trunk'
+    engineVersion = '10.0'
     engineDir = "C:/tools/ivy-server/${env.engineVersion}"
     portalApplicationName = 'Portal'
   }
@@ -26,7 +26,7 @@ pipeline {
         script {
           utils = load 'build/common/utils.groovy'
           utils.stopAllEngines()
-          engineServiceName = 'Axon.ivyEngineTrunk'
+          engineServiceName = 'Axon.ivyEngine10.0'
           utils.startWindowsService(engineServiceName)
 
           def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').getProperties().getProperty("build.plugin.version")
