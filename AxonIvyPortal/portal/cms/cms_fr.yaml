@@ -1631,6 +1631,7 @@ Labels:
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  Permissions: Permissions
   Task: Tâche
   TaskItemDetail: Détails de la tâche
   TaskUser-Explain: Liste d’utilisateurs séparés par des virgules

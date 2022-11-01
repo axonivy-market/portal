@@ -42,7 +42,7 @@
         <h:panelGroup layout="block" styleClass="ui-g-4 manage-dashboard__label"
           rendered="#{cc.attrs.isPublicDashboard}">
           <p:outputLabel for="dashboard-permission"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardPermission')}" />
+            value="#{ivy.cms.co('/Labels/Permissions')}" />
         </h:panelGroup>
         <h:panelGroup layout="block" styleClass="ui-g-8 ui-fluid" rendered="#{cc.attrs.isPublicDashboard}">
           <p:autoComplete id="dashboard-permission" scrollHeight="210" dropdown="true" required="true"
