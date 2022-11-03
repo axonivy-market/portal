@@ -6,6 +6,7 @@
   <cc:attribute name="widget" required="true" />
   <cc:attribute name="isReadOnlyMode" default="false" />
   <cc:attribute name="isPublicDashboard" default="true"/>
+  <cc:attribute name="isInConfiguration" default="false"/>
 </cc:interface>
 
 <cc:implementation>
@@ -40,7 +41,7 @@
 
       <ui:define name="widgetContent">
         <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessWidget id="process-component" processWidget="#{widget}"
-          isReadOnlyMode="#{isReadOnlyMode}" index="#{index}" />
+          isReadOnlyMode="#{isReadOnlyMode}" index="#{index}" isInConfiguration="#{cc.attrs.isInConfiguration}"/>
       </ui:define>
     </ui:decorate>
   </c:if>
