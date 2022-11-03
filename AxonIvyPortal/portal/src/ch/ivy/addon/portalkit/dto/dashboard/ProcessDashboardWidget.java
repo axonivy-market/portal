@@ -49,7 +49,8 @@ public class ProcessDashboardWidget extends DashboardWidget {
   }
 
   @JsonIgnore
-  public void buildProcessDataFirstTime() {
+  public void buildProcessDataFirstTime(boolean isInConfiguration) {
+    setInConfiguration(isInConfiguration);
     DashboardWidgetUtils.loadProcessesOfWidget(this);
   }
 

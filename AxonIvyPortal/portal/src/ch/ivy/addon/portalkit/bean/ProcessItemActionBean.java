@@ -3,6 +3,8 @@ package ch.ivy.addon.portalkit.bean;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.axonivy.portal.components.util.ProcessViewerUtils;
 
 import ch.ivy.addon.portalkit.bo.Process;
@@ -11,6 +13,7 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PortalProcessViewerUtils;
+import ch.ivyteam.ivy.workflow.category.Category;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ManagedBean
@@ -23,6 +26,13 @@ public class ProcessItemActionBean extends ProcessWidgetBean {
   public void initAction() {
     showProcessViewer =
         GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_PROCESS_VIEWER);
+  }
+  
+  public boolean isRenderedCategory(Category category) {
+    if (category == null) {
+      return false;
+    }
+    return StringUtils.isNotBlank(category.getName());
   }
 
   public String getProcessViewerPageUri(Process process) {
