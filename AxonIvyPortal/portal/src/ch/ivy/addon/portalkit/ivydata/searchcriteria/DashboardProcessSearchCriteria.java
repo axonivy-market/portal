@@ -16,7 +16,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.dto.dashboard.process.TypeColumnModel;
 import ch.ivy.addon.portalkit.enums.ProcessType;
-import ch.ivy.addon.portalkit.util.CategoryUtils;
+import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.ListUtilities;
 
 public class DashboardProcessSearchCriteria {
@@ -43,7 +43,7 @@ public class DashboardProcessSearchCriteria {
         if (CollectionUtils.isEmpty(categories)) {
           continue;
         }
-        displayProcesses = ListUtilities.filterList(displayProcesses, process -> isProcessMatchedCategory(process, categories));
+        displayProcesses = ListUtilities.filterList(displayProcesses, process -> DashboardWidgetUtils.isProcessMatchedCategory(process, categories));
       } else if (APPLICATION.getField().equalsIgnoreCase(column.getField())) {
         List<String> applications = isInConfiguration ? column.getFilterList() : column.getUserFilterList();
         if (!isInConfiguration && CollectionUtils.isEmpty(applications)) {
@@ -58,12 +58,6 @@ public class DashboardProcessSearchCriteria {
       
     }
     return displayProcesses;
-  }
-
-  private boolean isProcessMatchedCategory(DashboardProcess process, List<String> categories) {
-    boolean hasNoCategory = categories.indexOf(CategoryUtils.NO_CATEGORY) > -1;
-    return categories.indexOf(process.getCategory()) > -1
-        || (StringUtils.isBlank(process.getCategory()) && hasNoCategory);
   }
 
   public boolean isInConfiguration() {

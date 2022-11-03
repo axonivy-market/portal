@@ -7,12 +7,14 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.ExpressManagementUtils;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.workflow.category.Category;
 
 /*
  * Used for merging express process and ivy process into a process list
@@ -20,13 +22,13 @@ import ch.ivyteam.ivy.security.IUser;
 public class PortalExpressProcess implements Process {
 
   public static final String DEFAULT_ICON = "si si-startup-launch";
-  private static final String EXPRESS_CATEGORY_PRE_FIX = "ExpressWorkflow";
   private static final String NOT_AVAILABLE_CMS = "/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable";
   private static final String EXPRESS_WORKFLOW_ID_PARAM = "?workflowID=";
   private ExpressProcess process;
   private String processOwnerDisplayName;
   private String ableToStart;
   private String application;
+  private Category category;
 
   public PortalExpressProcess(ExpressProcess process) {
     this.process = process;
@@ -44,6 +46,7 @@ public class PortalExpressProcess implements Process {
     }
     
     application = IApplication.current().getName();
+    category = CategoryUtils.buildExpressCategory(process.getProcessName());
   }
 
   @Override
@@ -116,8 +119,8 @@ public class PortalExpressProcess implements Process {
   }
 
   @Override
-  public String getCategory() {
-    return EXPRESS_CATEGORY_PRE_FIX + "/" + process.getProcessName();
+  public Category getCategory() {
+    return category;
   }
 
   @Override
