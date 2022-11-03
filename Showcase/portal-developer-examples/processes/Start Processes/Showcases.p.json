@@ -114,7 +114,7 @@
       "name" : "CustomizedTaskTemplate.ivp",
       "config" : {
         "callSignature" : "CustomizedTaskTemplate",
-        "startCategory" : "Showcase/Customized",
+        "startCategory" : "Showcase/Customized/TaskList",
         "case" : {
           "name" : "Case testing",
           "description" : "Testing",
@@ -198,7 +198,7 @@
       "name" : "StartShowIvyErrorPage.ivp",
       "config" : {
         "callSignature" : "StartShowIvyErrorPage",
-        "startCategory" : "Showcase/ShowIvyErrorPage",
+        "startCategory" : "Showcase/Error/IvyError/ShowIvyErrorPage",
         "outLink" : "StartShowIvyErrorPage.ivp",
         "input" : {
           "code" : "1/0;"

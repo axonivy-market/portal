@@ -596,7 +596,9 @@ public class DashboardWidgetUtils {
     List<DashboardProcess> processes = processWidget.isPreview() ? getCompactProcessesForPreview(processWidget) : getCompactProcessesOfWidget(processWidget);
     processWidget.setDisplayProcesses(processes);
     processWidget.setOriginalDisplayProcesses(processes);
-    processWidget.filterProcessesByUser();
+    if (!processWidget.getCriteria().isInConfiguration()) {
+      processWidget.filterProcessesByUser();
+    }
   }
 
   private static List<DashboardProcess> getCompactProcessesForPreview(CompactProcessDashboardWidget processWidget) {
@@ -668,10 +670,16 @@ public class DashboardWidgetUtils {
     return processes;
   }
 
-  private static boolean isProcessMatchedCategory(DashboardProcess process, List<String> categories) {
+  public static boolean isProcessMatchedCategory(DashboardProcess process, List<String> categories) {
+    if (CollectionUtils.isEmpty(categories) || Objects.isNull(process)) {
+      return true;
+    }
     boolean hasNoCategory = categories.indexOf(CategoryUtils.NO_CATEGORY) > -1;
-    return categories.indexOf(process.getCategory()) > -1
-        || (StringUtils.isBlank(process.getCategory()) && hasNoCategory);
+    if (Objects.isNull(process.getCategory())) {
+      return hasNoCategory;
+    }
+    return categories.indexOf(process.getCategory().getCmsUri()) > -1
+        || (StringUtils.isBlank(process.getCategory().getPath()) && hasNoCategory);
   }
 
   public static String generateNewWidgetId(DashboardWidgetType type) {

@@ -19,7 +19,6 @@ import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
-import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 
 @ManagedBean
@@ -91,21 +90,13 @@ public class CompactDashboardProcessBean
 
   private List<DashboardProcess> filterByCategory() {
     return getAllPortalProcesses().stream()
-        .filter(process -> isProcessMatchedCategory(process, getWidget().getCategories())).collect(Collectors.toList());
+        .filter(process -> DashboardWidgetUtils.isProcessMatchedCategory(process, getWidget().getCategories()))
+        .collect(Collectors.toList());
   }
   
   private List<DashboardProcess> filterByApplication() {
     return getAllPortalProcesses().stream()
         .filter(process -> isProcessMatchedApplication(process, getWidget().getApplications())).collect(Collectors.toList());
-  }
-
-  private boolean isProcessMatchedCategory(DashboardProcess process, List<String> categories) {
-    if (CollectionUtils.isEmpty(categories)) {
-      return true;
-    }
-    boolean hasNoCategory = categories.indexOf(CategoryUtils.NO_CATEGORY) > -1;
-    return categories.indexOf(process.getCategory()) > -1
-        || (StringUtils.isBlank(process.getCategory()) && hasNoCategory);
   }
   
   private boolean isProcessMatchedApplication(DashboardProcess process, List<String> applications) {
