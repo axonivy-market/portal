@@ -31,6 +31,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.dto.UserDTO;
+import com.axonivy.portal.util.WelcomeWidgetUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
@@ -66,10 +67,8 @@ import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.Dates;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.cm.ContentObjectValue;
-import ch.ivyteam.ivy.cm.exec.ContentManagement;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
@@ -77,8 +76,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class DashboardDetailModificationBean extends DashboardBean implements Serializable, PropertyChangeListener {
 
   private static final long serialVersionUID = -5272278165636659596L;
-  private static final String WELCOME_WIDGET_IMAGE_DIRECTORY = "DashboardWelcomeWidget";
-  private static final String DEFAULT_LOCALE_AND_DOT = "_en.";
 
   private List<WidgetSample> samples;
   private String newWidgetHeader;
@@ -247,17 +244,14 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private void removeWelcomeWidgetImage(DashboardWidget selectedWidget) {
     WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) selectedWidget;
     if (StringUtils.isNotBlank(welcomeWidget.getImageLocation())) {
-      var app = IApplication.current();
-      var cms = ContentManagement.cms(app);
-      String imageType = welcomeWidget.getImageType().substring(welcomeWidget.getImageType().indexOf("/") + 1);
-      cms.root()
-        .child().folder(WELCOME_WIDGET_IMAGE_DIRECTORY).child()
-        .file(welcomeWidget.getImageLocation().substring(0, welcomeWidget.getImageLocation().indexOf(DEFAULT_LOCALE_AND_DOT)), imageType).delete();
+      ContentObject imageObject =
+          WelcomeWidgetUtils.getImageContentObject(welcomeWidget.getImageLocation(), welcomeWidget.getImageType());
+      imageObject.delete();
     }
   }
 
   /**
-   * Remove images of welcome widgets of a dashboard
+   * Remove images of welcome widgets
    * @param selectedDashboard
    */
   private void removeWelcomeWidgetImagesOfDashboard(Dashboard selectedDashboard) {
@@ -434,16 +428,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   private ContentObject getWelcomeWidgetImageObject(boolean isTempImage, WelcomeDashboardWidget widget) {
-    var app = IApplication.current();
-    var cms = ContentManagement.cms(app);
-
-    String imageName = widget.getImageLocation().substring(0, widget.getImageLocation().indexOf(DEFAULT_LOCALE_AND_DOT));
+    String imageName = WelcomeWidgetUtils.getFileNameOfImage(widget.getImageLocation());
     imageName = isTempImage ? "temp_".concat(imageName) : imageName;
-
-    String imageType = widget.getImageType().substring(widget.getImageType().indexOf("/") + 1);
-    return cms.root()
-      .child().folder(WELCOME_WIDGET_IMAGE_DIRECTORY).child()
-      .file(imageName, imageType);
+    return WelcomeWidgetUtils.getImageContentObject(imageName, widget.getImageType());
   }
 
   private void unifyCompactProcessCategory(CompactProcessDashboardWidget processWidget) {

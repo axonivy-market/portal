@@ -4,7 +4,6 @@ WelcomeWidgetConfiguration = {
   oldTextStyleClass : '',
 
   init : function(isGreeting) {
-    this.loadPreviewImage();
     this.updatePreviewText(isGreeting);
     this.updatePreviewTextPosition();
     this.updatePreviewTextColor();
@@ -55,13 +54,6 @@ WelcomeWidgetConfiguration = {
     previewDialog.find('.js-selected-welcome-text-color').get(0).innerHTML = selectedColor;
   },
 
-  loadPreviewImage : function() {
-    var previewDialog = $('#new-widget-configuration-dialog');
-    if (previewDialog.find('[id$=":default-image"]').length == 0) {
-      previewDialog.find('.js-preview-image').get(0).setAttribute('src', $('#widget-configuration-form input[id $= ":preview-image-hidden"]').get(0).value);
-    }
-  },
-
   updatePreviewTextSize : function() {
     var previewDialog = $('#new-widget-configuration-dialog');
     var selectedTextSize = previewDialog.find('input[id $="selected-welcome-text-size"]').get(0).value;
@@ -86,30 +78,24 @@ WelcomeWidgetConfiguration = {
 
   updateStyleClasses : function() {
     var previewDialog = $('#new-widget-configuration-dialog');
-
-    var imageStyleClass = previewDialog.find('.js-image-style-class').get(0).value;
-    var image = previewDialog.find('.js-preview-image').get(0);
+    var imageStyleClass = previewDialog.find('.js-image-style-class').attr('value');
+    var image = previewDialog.find('.js-preview-image');
     if (this.oldImageStyleClass == "") {
-      this.oldImageStyleClass = image.className;
+      this.oldImageStyleClass = image.attr('class');
     }
-    image.setAttribute('class', this.oldImageStyleClass + ' ' + imageStyleClass);
+    image.attr('class', this.oldImageStyleClass + ' ' + imageStyleClass);
 
-    var textStyleClass = previewDialog.find('.js-text-style-class').get(0).value;
-    var welcomeText = previewDialog.find('.js-preview-text').get(0);
+    var textStyleClass = previewDialog.find('.js-text-style-class').attr('value');
+    var welcomeText = previewDialog.find('.js-preview-text');
     if (this.oldTextStyleClass == "") {
-      this.oldTextStyleClass = welcomeText.className;
+      this.oldTextStyleClass = welcomeText.attr('class');
     }
-    welcomeText.setAttribute('class', this.oldTextStyleClass + ' ' + textStyleClass);
+    welcomeText.attr('class', this.oldTextStyleClass + ' ' + textStyleClass);
   }
 }
 
 WelcomeWidget = {
   init : function(widgetId, welcomeTextColor, welcomeTextPosition, welcomeTextSize) {
-    var widget = $('div.grid-stack-item[gs-id = ' + widgetId + ']');
-    
-    if (widget.find('[id$=":default-image"]').length == 0) {
-      $(widget.find('[id $= ":welcome-image"]')).get(0).setAttribute('src', widget.find('input[id $= ":welcome-image-hidden"]').get(0).value);
-    }
     this.updateWelcomeTextStyles(widgetId, welcomeTextColor, welcomeTextPosition, welcomeTextSize);
   },
 
