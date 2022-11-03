@@ -1,28 +1,25 @@
 package ch.ivy.addon.portalkit.bean;
 
-import java.io.IOException;
+import static org.apache.commons.lang3.StringUtils.SPACE;
+
 import java.io.Serializable;
-import java.util.Base64;
 import java.util.Optional;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+
+import com.axonivy.portal.util.WelcomeWidgetUtils;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.enums.WelcomeTextPosition;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.util.UserUtils;
-import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.cm.ContentObjectValue;
-import ch.ivyteam.ivy.cm.exec.ContentManagement;
+import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.scripting.objects.File;
 
 @ViewScoped
 @ManagedBean
@@ -30,14 +27,11 @@ public class DashboardWelcomeWidgetBean implements Serializable {
 
   private static final long serialVersionUID = 5372831531773612518L;
 
-  private static final String BASE64_STRING_PATTERN = "data:%s;base64,%s";
-  private static final String DEFAULT_TEXT_COLOR = "ffffff";
-  private static final String DEFAULT_IMAGE_CMS_URI = "/images/WelcomeWidget/DefaultImage";
-  private static final String DEFAULT_IMAGE_DARK_CMS_URI = "/images/WelcomeWidget/DefaultImageDark";
-  private static final String IMAGE_DIRECTORY = "DashboardWelcomeWidget";
-  private static final String DEFAULT_LOCALE_AND_DOT = "_en.";
+  protected static final String DEFAULT_TEXT_COLOR = "ffffff";
+  protected static final String DEFAULT_IMAGE_CMS_URI = "/images/WelcomeWidget/DefaultImage";
+  protected static final String DEFAULT_IMAGE_DARK_CMS_URI = DEFAULT_IMAGE_CMS_URI + "Dark";
 
-  private WelcomeDashboardWidget widget;
+  protected WelcomeDashboardWidget widget;
 
   public void init() {
     widget = Attrs.currentContext().getAttribute("#{cc.attrs.widget}", WelcomeDashboardWidget.class);
@@ -56,70 +50,38 @@ public class DashboardWelcomeWidgetBean implements Serializable {
           .filter(name -> equalsLanguageLocale(name, userLanguage))
           .findFirst().orElse(new DisplayName()).getValue());
     }
-    
+    widget.setImageContentObject(renderImage());
   }
 
-  public String renderImage() {
+  public ContentObject renderImage() {
     if (Optional.ofNullable(widget).map(WelcomeDashboardWidget::getImageLocation).isEmpty()) {
-      return "";
+      return null;
     }
-    migrateWelcomeWidget();
-    byte[] fileContent = getWidgetImage().read().bytes();
-    return String.format(BASE64_STRING_PATTERN, widget.getImageType(), Base64.getEncoder().encodeToString(fileContent));
-
-  }
-
-  /**
-   * Silent migrate old welcome widget
-   * 
-   */
-  private void migrateWelcomeWidget() {
-    if (widget.getImageLocation().startsWith(IMAGE_DIRECTORY.concat("/").concat(widget.getId()))) {
-      try {
-        //Create new file in CMS and update image location
-        File oldImage = new File(widget.getImageLocation());
-        byte[] oldFileContent = FileUtils.readFileToByteArray(oldImage.getJavaFile());
-        widget.setImageLocation(widget.getId().concat(DEFAULT_LOCALE_AND_DOT).concat(getImageType()));
-        getWidgetImage().write().bytes(oldFileContent);
-
-        // Remove old image file
-        oldImage.getParentFile().forceDelete();
-      } catch (IOException e) {
-        Ivy.log().error(e);
-      }
+    if (WelcomeWidgetUtils.isObsoleteImageData(widget.getImageLocation(), widget.getId())) {
+      WelcomeWidgetUtils.migrateWelcomeWidget(widget.getId(), widget.getImageType(), widget.getImageLocation());
     }
+    return WelcomeWidgetUtils.getImageContentObject(widget.getImageLocation(), widget.getImageType());
   }
 
   public void updateWelcomeText(WelcomeDashboardWidget welcomeWidget) {
-    int parsedClientTime = 0;
-    String clientTime = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("clientTime");
-    if (clientTime != null) {
-      parsedClientTime = Integer.parseInt(clientTime);
+    int parseClientTime = WelcomeWidgetUtils.parseClientTime();
+    String greetingTextCms = WelcomeWidgetUtils.generateGreetingTextByTime(parseClientTime);
+    var originWelcomeText = welcomeWidget.getWelcomeText();
+    if (StringUtils.isNoneBlank(originWelcomeText) && StringUtils.startsWith(originWelcomeText.trim(), ",") || StringUtils.startsWith(originWelcomeText.trim(), ".")) {
+      var newWelcomeText = String.join(SPACE,
+          Ivy.cms().coLocale(greetingTextCms, Ivy.session().getContentLocale()),
+          Ivy.session().getSessionUser().getDisplayName());
+      welcomeWidget.setWelcomeText(newWelcomeText.concat(welcomeWidget.getWelcomeText()));
+      return;
     }
 
-    String greetingTextCms = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/Greeting/Afternoon";
-    if (parsedClientTime < 12) {
-      greetingTextCms = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/Greeting/Morning";
-    } else if (parsedClientTime > 18) {
-      greetingTextCms = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/Greeting/Evening";
-    }
-    var originWelcomeText = welcomeWidget.getWelcomeText();
-    if (StringUtils.isNoneBlank(originWelcomeText)) {
-      if (StringUtils.startsWith(originWelcomeText.trim(), ",") || StringUtils.startsWith(originWelcomeText.trim(), ".")) {
-        var newWelcomeText = String.join(" ",
-            Ivy.cms().coLocale(greetingTextCms, Ivy.session().getContentLocale()),
-            Ivy.session().getSessionUser().getDisplayName());
-        welcomeWidget.setWelcomeText(newWelcomeText.concat(welcomeWidget.getWelcomeText()));
-      }
-    } else {
-      welcomeWidget.setWelcomeText(String.join(" ",
+    welcomeWidget.setWelcomeText(String.join(SPACE,
           Ivy.cms().coLocale(greetingTextCms, Ivy.session().getContentLocale()),
           Ivy.session().getSessionUser().getDisplayName(),
           welcomeWidget.getWelcomeText()));
-    }
   }
 
-  private static boolean equalsLanguageLocale(DisplayName displayName, String language) {
+  protected static boolean equalsLanguageLocale(DisplayName displayName, String language) {
     return StringUtils.equalsIgnoreCase(displayName.getLocale().toString(), language);
   }
 
@@ -137,18 +99,5 @@ public class DashboardWelcomeWidgetBean implements Serializable {
 
   public String getDefaultImageDarkLink() {
     return DEFAULT_IMAGE_DARK_CMS_URI;
-  }
-
-  private ContentObjectValue getWidgetImage() {
-    var app = IApplication.current();
-    var cms = ContentManagement.cms(app);
-    return cms.root()
-      .child().folder(IMAGE_DIRECTORY).child()
-      .file(getWidget().getImageLocation().substring(0, getWidget().getImageLocation().indexOf(DEFAULT_LOCALE_AND_DOT)), getImageType())
-      .value().get("en");
-  }
-
-  private String getImageType() {
-    return getWidget().getImageType().substring(getWidget().getImageType().indexOf("/") + 1);
   }
 }
