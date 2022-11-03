@@ -75,14 +75,14 @@ Below is a standard JSON definition of aProcess widget in compact mode
             "x": 10, "y": 0, "w": 2, "h": 4
          },
          "processPaths": ["Start Processes/Request/createNewRequest.ivp", "Start Processes/Request/collectDataRequest.ivp"],
-         "categories": ["estimation","analysis"]
+         "categories": ["/Categories/Showcase/Customized", "/Categories/Showcase/PortalDialogExample"]
       }
    ..
 
 ``processPaths``: userfriendly request path of the processes that you want to
 show.
 
-``categories``: categories of processes that you want to show. Process widget
+``categories``: categories of processes that you want to show. The value should be the :dev-url:`CMS URI </doc/nightly/designer-guide/how-to/workflow/categories.html#workflow-categories>` of this category. Process widget
 will show all processes that belonged to these categories.
 
 If you define both ``processPaths`` and ``categories``, the process widget will
