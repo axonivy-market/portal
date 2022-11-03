@@ -63,7 +63,6 @@ import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.DashboardService;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
-import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.Dates;
@@ -531,7 +530,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   private void updateWidgetPosition(DashboardWidget widget) {
-    if (isEditWidget) {
+    if (isEditWidget || Objects.isNull(widget)) {
       return;
     }
 
@@ -559,24 +558,21 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       }
     }
 
-    if (widget != null) {
-      if (lastWidget != null) {
-        var nextAxisX = lastWidget.getLayout().getAxisX() + lastWidget.getLayout().getWidth();
-        var totalWidth = nextAxisX + widget.getLayout().getWidth();
-        if (totalWidth <= 12) {
-          widget.getLayout().setAxisX(nextAxisX);
-          widget.getLayout().setAxisY(lastWidget.getLayout().getAxisY());
-        }
-        else {
-          widget.getLayout().setAxisX(0);
-          widget.getLayout().setAxisY(portalGridsCurrentRow.intValue());
-        }
-      }
-      if (StringUtils.isEmpty(widget.getLayout().getStyleClass())) {
-        widget.getLayout().setStyleClass(DashboardConstants.NEW_WIDGET_STYLE_CLASS);
+    if (lastWidget != null) {
+      var nextAxisX = lastWidget.getLayout().getAxisX() + lastWidget.getLayout().getWidth();
+      var totalWidth = nextAxisX + widget.getLayout().getWidth();
+      if (totalWidth <= 12) {
+        widget.getLayout().setAxisX(nextAxisX);
+        widget.getLayout().setAxisY(lastWidget.getLayout().getAxisY());
       } else {
-        widget.getLayout().setStyleClass(widget.getLayout().getStyleClass().concat(DashboardConstants.NEW_WIDGET_STYLE_CLASS));
+        widget.getLayout().setAxisX(0);
+        widget.getLayout().setAxisY(portalGridsCurrentRow.intValue());
       }
+    }
+    if (StringUtils.isEmpty(widget.getLayout().getStyleClass())) {
+      widget.getLayout().setStyleClass(DashboardConstants.NEW_WIDGET_STYLE_CLASS);
+    } else {
+      widget.getLayout().setStyleClass(widget.getLayout().getStyleClass().concat(DashboardConstants.NEW_WIDGET_STYLE_CLASS));
     }
   }
 
@@ -598,19 +594,13 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       processPaths = getProcessPaths(displayProcesses);
     } else {
       displayProcesses = DashboardWidgetUtils.getAllPortalProcesses().stream()
-          .filter(process -> isProcessMatchedCategory(process, widget.getCategories()))
+          .filter(process -> DashboardWidgetUtils.isProcessMatchedCategory(process, widget.getCategories()))
           .collect(Collectors.toList());
     }
 
     widget.setProcessPaths(processPaths);
     widget.setDisplayProcesses(displayProcesses);
     widget.setOriginalDisplayProcesses(displayProcesses);
-  }
-
-  private boolean isProcessMatchedCategory(DashboardProcess process, List<String> categories) {
-    boolean hasNoCategory = categories.indexOf(CategoryUtils.NO_CATEGORY) > -1;
-    return categories.indexOf(process.getCategory()) > -1
-        || (StringUtils.isBlank(process.getCategory()) && hasNoCategory);
   }
 
   private List<String> getProcessPaths(List<DashboardProcess> processes) {

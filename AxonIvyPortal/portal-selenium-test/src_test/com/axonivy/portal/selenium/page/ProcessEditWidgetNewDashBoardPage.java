@@ -311,6 +311,14 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     clickSaveProcessWidget();
   }
 
+  public void changeCompactModeProcessAndSaveWidget(String category) {
+    selectCompactModeFromCombinedMode();
+    getCompactModeWidgetTitle().clear();
+    getCompactModeWidgetTitle().sendKeys(category);
+    selectCompactModeCategory(category);
+    clickSaveProcessWidget();
+  }
+
   public void changeToCompactModeProcess(String category, String processName) {
     selectCompactMode();
     getCompactModeWidgetTitle().clear();

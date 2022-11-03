@@ -20,16 +20,17 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.Locales;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.category.Category;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DashboardProcess implements Process {
 
   private static final String EXPRESS_WORKFLOW_ID_PARAM = "?workflowID=";
-  private static final String EXPRESS_CATEGORY_PRE_FIX = "ExpressWorkflow";
   private String defaultImageType = DefaultImage.DEFAULT.name();
   private static final String DEFAULT_IMAGE_CMS_FOLDER = "/images/process/";
   private String id;
@@ -40,10 +41,10 @@ public class DashboardProcess implements Process {
   private List<DisplayName> names;
   private String startLink;
   private String icon;
-  private String category;
   private String defaultImageSrc;
   private String imageUrl;
   private String application;
+  private Category category;
   
   public DashboardProcess() {}
 
@@ -67,7 +68,7 @@ public class DashboardProcess implements Process {
     this.description = process.getDescription();
     this.startLink = process.getLink().getRelative();
     this.icon = process.customFields().value("cssIcon");
-    this.category = process.getCategory().getPath();
+    this.category = process.getCategory();
     this.application = process.pmv().getApplication().getName();
     updateDefaultProcessImage(process);
   }
@@ -78,7 +79,7 @@ public class DashboardProcess implements Process {
     this.name = process.getProcessName();
     this.description = process.getProcessDescription();
     this.icon = process.getIcon();
-    this.category = EXPRESS_CATEGORY_PRE_FIX + "/" + process.getProcessName();
+    this.category = CategoryUtils.buildExpressCategory(process.getProcessName());
     this.application = IApplication.current().getName();
   }
 
@@ -188,15 +189,6 @@ public class DashboardProcess implements Process {
   }
 
   @Override
-  public String getCategory() {
-    return category;
-  }
-
-  public void setCategory(String category) {
-    this.category = category;
-  }
-
-  @Override
   public Object getProcess() {
     return this;
   }
@@ -260,5 +252,10 @@ public class DashboardProcess implements Process {
 
   public void setApplication(String application) {
     this.application = application;
+  }
+
+  @Override
+  public Category getCategory() {
+    return category;
   }
 }
