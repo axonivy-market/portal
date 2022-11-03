@@ -29,12 +29,9 @@
            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}" styleClass="welcome-text-label" for="preview-panel" />
            <h:panelGroup layout="block" id="preview-panel" styleClass="preview-panel">
              <span id="preview-text" class="preview-text js-preview-text welcome-text" />
-
-            <p:graphicImage id="default-image" cache="true" styleClass="preview-image js-preview-image"
-              library="ivy-cms" rendered="#{empty dashboardWelcomeWidgetConfigurationBean.encodedImg}" name="#{dashboardWelcomeWidgetConfigurationBean.defaultImageLink}" />
-
-            <p:graphicImage id="preview-image" styleClass="preview-image js-preview-image" rendered="#{not empty dashboardWelcomeWidgetConfigurationBean.encodedImg}" />
-            <h:inputHidden id="preview-image-hidden" value="#{dashboardWelcomeWidgetConfigurationBean.encodedImg}" rendered="#{not empty dashboardWelcomeWidgetConfigurationBean.encodedImg}" />
+             <p:graphicImage id="preview-image"
+               styleClass="preview-image js-preview-image"
+               library="ivy-cms" name="#{dashboardWelcomeWidgetConfigurationBean.imageUri}"/>
            </h:panelGroup>
          </div>
          <h:panelGroup id="widget-title-group" styleClass="u-hidden" />
