@@ -31,7 +31,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
   private static final String POINTER_EVENTS_PROPERTY = "pointer-events";
   private static final String TITLE_ATTRIBUTE = "title";
   private static final String APPRAISAL = "Appraisal";
-  private static final String SHOWCASE_CUSTOMIZED_CATEGORY = "Showcase/Customized";
+  private static final String SHOWCASE_CUSTOMIZED_CATEGORY = "Customized, Portal dialog example, Application, Show Ivy Error Page, Showcase";
   private static final String LEAVE_REQUEST_TEST_FOR_IVYPORTAL_3369 = "Leave Request Test For IVYPORTAL-3369";
   private static final String TEST_FOR_IVYPORTAL_3369 = "Test for IVYPORTAL-3369";
   private static final String START_APPLICATION_SHOWCASE = "Start Application Showcase";
@@ -594,7 +594,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration = newDashboardDetailsEditPage.editFullModeProcess();
     editProcessWidgetConfiguration.changeToCompactModeProcess(SHOWCASE, SHOWCASE_APPLICATION);
     editProcessWidgetConfiguration.getCompactModeProcessCategoryFilter()
-        .shouldHave(Condition.value(SHOWCASE_CUSTOMIZED_CATEGORY));
+        .shouldBe(Condition.value(SHOWCASE_CUSTOMIZED_CATEGORY));
     editProcessWidgetConfiguration.getCompactModeProcessSelectedProcess()
         .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_APPLICATION));
 

@@ -82,7 +82,8 @@
                         isReadOnlyMode="#{managedBean.isReadOnlyMode}"
                         index="#{status.index}"
                         id="process-#{widget.id}"
-                        isPublicDashboard="#{managedBean.selectedDashboard.isPublic}" />
+                        isPublicDashboard="#{managedBean.selectedDashboard.isPublic}"
+                        isInConfiguration="#{isInConfiguration}" />
                     </c:if>
 
                     <!-- Statistic widget -->

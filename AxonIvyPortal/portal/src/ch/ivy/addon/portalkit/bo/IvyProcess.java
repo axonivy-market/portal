@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.ProcessType;
+import ch.ivyteam.ivy.workflow.category.Category;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class IvyProcess implements Process {
@@ -60,8 +61,8 @@ public class IvyProcess implements Process {
   }
 
   @Override
-  public String getCategory() {
-    return process.getCategory().getPath();
+  public Category getCategory() {
+    return process.getCategory();
   }
 
   @Override

@@ -1,14 +1,11 @@
 package ch.ivy.addon.portalkit.dto.dashboard.process;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.CheckboxTreeNode;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -51,21 +48,29 @@ public class CategoryColumnModel extends ProcessColumnModel implements Serializa
 
   @JsonIgnore
   public String getDisplayCategories() {
-    return generateFriendlyCategoryPath(filterList, selectionCategoryNodes);
+    return generateFriendlyCategoryPath(filterList, selectionCategoryNodes, false);
   }
 
   @JsonIgnore
   public String getUserFriendlyCategories() {
-    return generateFriendlyCategoryPath(userFilterList, userSelectionCategoryNodes);
+    return generateFriendlyCategoryPath(userFilterList, userSelectionCategoryNodes, true);
   }
 
   @JsonIgnore
-  public String generateFriendlyCategoryPath(List<String> filterList, CheckboxTreeNode<CategoryNode>[] treeNodes) {
-    var paths = Optional.ofNullable(filterList).orElse(new ArrayList<>());
-    if (CollectionUtils.isEmpty(filterList) && treeNodes != null && treeNodes.length > 0) {
-      paths = Optional.ofNullable(CategoryUtils.getCategoryPaths(treeNodes)).orElse(new ArrayList<>());
+  public String generateFriendlyCategoryPath(List<String> filterList, CheckboxTreeNode<CategoryNode>[] treeNodes, boolean isUserFilter) {
+    if (CollectionUtils.isEmpty(filterList)) {
+      return "";
     }
-    return paths.stream().collect(Collectors.joining(", "));
+    if (treeNodes != null && treeNodes.length > 0) {
+      return CategoryUtils.getCategoryValues(treeNodes);
+    } else {
+      if (isUserFilter && userCategoryTree != null) {
+        return CategoryUtils.getSelectedNodesAsString(userCategoryTree);
+      } else if (categoryTree != null) {
+        return CategoryUtils.getSelectedNodesAsString(categoryTree);
+      }
+    }
+    return CollectionUtils.emptyIfNull(filterList).stream().collect(Collectors.joining(CategoryUtils.CATEGORY_SEPARATOR));
   }
 
   @JsonIgnore
@@ -88,13 +93,7 @@ public class CategoryColumnModel extends ProcessColumnModel implements Serializa
 
   private List<DashboardProcess> filterByCategory(CompactDashboardProcessBean dashboardProcessBean) {
     return dashboardProcessBean.getAllPortalProcesses().stream()
-        .filter(process -> isProcessMatchedCategory(process, filterList)).collect(Collectors.toList());
-  }
-
-  private boolean isProcessMatchedCategory(DashboardProcess process, List<String> categories) {
-    boolean hasNoCategory = categories.indexOf(CategoryUtils.NO_CATEGORY) > -1;
-    return categories.indexOf(process.getCategory()) > -1
-        || (StringUtils.isBlank(process.getCategory()) && hasNoCategory);
+        .filter(process -> DashboardWidgetUtils.isProcessMatchedCategory(process, filterList)).collect(Collectors.toList());
   }
 
   @JsonIgnore
