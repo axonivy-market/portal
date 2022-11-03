@@ -4,7 +4,7 @@ Categories:
   CreateExpressWorkflow:
     name: Créer un workflow express
   ExpressWorkflow:
-    name: Express Workflow
+    name: Flux de travail express
 ch.ivy.addon.portal.generic:
   CaseDetailsTemplate:
     noCaseId: Aucun numéro de dossier n'a été indiqué

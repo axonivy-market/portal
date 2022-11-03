@@ -1,12 +1,11 @@
 package ch.ivy.addon.portalkit.util;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 
+import java.util.List;
+
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.CheckboxTreeNode;
 import org.primefaces.model.TreeNode;
@@ -14,12 +13,9 @@ import org.primefaces.model.TreeNode;
 import ch.ivy.addon.portalkit.bo.CategoryNode;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.category.Category;
 
 public class ProcessTreeUtils {
-
-  public static final String DELIMITER = "/";
-  public static final String EXPRESS_WORKFLOW_CMS = "/Categories/ExpressWorkflow/name";
-  public static final String EXPRESS_WORKFLOW = "Express Workflow";
 
   private ProcessTreeUtils() {}
 
@@ -27,10 +23,63 @@ public class ProcessTreeUtils {
     CheckboxTreeNode<CategoryNode> root = buildRoot();
     CheckboxTreeNode<CategoryNode> allCategoriesNode = buildAllCategoriesNode(root);
     buildNoCategoryNode(allCategoriesNode);
-    List<String> allProcessCategoryPaths = getAllProcessCategoryPaths(processes);
-    Collections.sort(allProcessCategoryPaths);
-    buildChildrenNodes(allCategoriesNode, allProcessCategoryPaths);
+    buildChildrenNodes(allCategoriesNode, processes);
     return root;
+  }
+
+  private static void buildChildrenNodes(CheckboxTreeNode<CategoryNode> allCategoriesNode,
+      List<DashboardProcess> processes) {
+    CollectionUtils.emptyIfNull(processes).stream()
+        .filter(process -> nonNull(process.getCategory()))
+        .filter(process -> StringUtils.isNotBlank(process.getCategory().getName()))
+        .forEach(process -> {
+          createCategoryTreeNode(allCategoriesNode, null, process.getCategory());
+        });
+  }
+
+  private static void createCategoryTreeNode(CheckboxTreeNode<CategoryNode> parent, CheckboxTreeNode<CategoryNode> categoryNode, Category category) {
+    if (isNull(parent) || isNull(category)) {
+      return;
+    }
+    CheckboxTreeNode<CategoryNode> rootTreeNode = parent;
+    Category parentCategory = category.getParent();
+    if (nonNull(parentCategory)) {
+      var parentNode = findTreeNodeByCmsUri(parent, parentCategory.getCmsUri());
+      if (isNull(parentNode)) {
+        parentNode = new CheckboxTreeNode<>(new CategoryNode(parentCategory));
+        parentNode.setExpanded(true);
+        createCategoryTreeNode(parent, (CheckboxTreeNode<CategoryNode>) parentNode, parentCategory.getParent());
+      }
+      rootTreeNode = (CheckboxTreeNode<CategoryNode>) parentNode;
+    }
+    updateExistedParentDataToRootTree(category, categoryNode, rootTreeNode);
+  }
+
+  private static void updateExistedParentDataToRootTree(Category category, TreeNode<CategoryNode> categoryNode,
+      TreeNode<CategoryNode> parentNode) {
+    TreeNode<CategoryNode> foundRole = findTreeNodeByCmsUri(parentNode, category.getCmsUri());
+    if (isNull(foundRole)) {
+      foundRole = buildNewSubTreeNode((CheckboxTreeNode<CategoryNode>) parentNode, category);
+    }
+    if (nonNull(categoryNode)) {
+      TreeNode<CategoryNode> foundSelectedChild = findTreeNodeByCmsUri(foundRole, categoryNode.getData().getCategory());
+      if (isNull(foundSelectedChild)) {
+        foundRole.getChildren().add(categoryNode);
+      }
+    }
+  }
+
+  private static TreeNode<CategoryNode> findTreeNodeByCmsUri(TreeNode<CategoryNode> treeNode, String cmsUri) {
+    return treeNode.getChildren().stream().filter(node -> node.getData().getCategory().equals(cmsUri)).findAny()
+        .orElse(null);
+  }
+
+  private static CheckboxTreeNode<CategoryNode> buildNewSubTreeNode(CheckboxTreeNode<CategoryNode> parent,
+      Category category) {
+    var checkboxTreeNode = new CheckboxTreeNode<>(new CategoryNode(category), parent);
+    checkboxTreeNode.setSelected(true);
+    checkboxTreeNode.setExpanded(true);
+    return checkboxTreeNode;
   }
 
   public static CheckboxTreeNode<CategoryNode> buildRoot() {
@@ -59,62 +108,5 @@ public class ProcessTreeUtils {
     nodeData.setCategory(CategoryUtils.NO_CATEGORY);
     CheckboxTreeNode<CategoryNode> checkboxTreeNode = new CheckboxTreeNode<>(nodeData, parent);
     checkboxTreeNode.setSelected(true);
-  }
-
-  private static List<String> getAllProcessCategoryPaths(List<DashboardProcess> processes) {
-    Set<String> categoryPaths = new HashSet<String>();
-    for (DashboardProcess process : processes) {
-      String categoryPath = process.getCategory();
-      if (StringUtils.isNotBlank(categoryPath)) {
-        categoryPaths.add(categoryPath);
-      }
-    }
-    return new ArrayList<String>(categoryPaths);
-  }
-
-  private static void buildChildrenNodes(CheckboxTreeNode<CategoryNode> parent, List<String> allProcessCategoryPaths) {
-    for (String path : allProcessCategoryPaths) {
-      String[] pathArr = path.split(DELIMITER);
-      buildCategoryTree(parent, pathArr);
-    }
-  }
-
-  private static void buildCategoryTree(CheckboxTreeNode<CategoryNode> parent, String[] pathArr) {
-    int currentLevel = 0;
-    Optional<TreeNode<CategoryNode>>  parentTreeNode = parent.getChildren().stream()
-        .filter(node -> node.getData().getValue().equals(pathArr[currentLevel])).findFirst();
-    if (pathArr.length == 1) {
-      if (parentTreeNode.isEmpty()) {
-        buildSingleCategoryNode(parent, pathArr[0], pathArr[0]);
-      }
-    } else {
-      buildSubCategoryTrees(parent, pathArr, currentLevel, parentTreeNode);
-    }
-  }
-
-  private static void buildSubCategoryTrees(CheckboxTreeNode<CategoryNode> parent, String[] pathArr, int currentLevel, Optional<TreeNode<CategoryNode>> parentTreeNode) {
-    if (currentLevel < pathArr.length) {
-      if (parentTreeNode.isEmpty()) {
-        String parentCategoryPath = currentLevel == 0 ? "" : parent.getData().getValue();
-        String fullCategoryPath = StringUtils.isBlank(parentCategoryPath) ? pathArr[currentLevel] : parentCategoryPath + DELIMITER + pathArr[currentLevel];
-        CheckboxTreeNode<CategoryNode> currentTreeNode = buildSingleCategoryNode(parent, pathArr[currentLevel], fullCategoryPath);
-        buildSubCategoryTrees(currentTreeNode, pathArr, currentLevel + 1, parentTreeNode);
-      } else {
-        Optional<TreeNode<CategoryNode>> childTreeNode = parentTreeNode.get().getChildren().stream()
-            .filter(node -> node.getData().getValue().equals(pathArr[currentLevel + 1])).findFirst();
-        buildSubCategoryTrees((CheckboxTreeNode<CategoryNode>)parentTreeNode.get(), pathArr, currentLevel + 1, childTreeNode);
-      }
-    }
-  }
-
-  private static CheckboxTreeNode<CategoryNode> buildSingleCategoryNode(CheckboxTreeNode<CategoryNode> parent, String category,
-      String rawCategoryPath) {
-    CategoryNode nodeData = new CategoryNode();
-    nodeData.setValue(category);
-    nodeData.setCategory(rawCategoryPath);
-    CheckboxTreeNode<CategoryNode> checkboxTreeNode = new CheckboxTreeNode<>(nodeData, parent);
-    checkboxTreeNode.setSelected(true);
-    checkboxTreeNode.setExpanded(true);
-    return checkboxTreeNode;
   }
 }

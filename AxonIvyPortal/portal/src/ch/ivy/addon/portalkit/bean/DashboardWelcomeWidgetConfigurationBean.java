@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.bean;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -88,7 +87,7 @@ public class DashboardWelcomeWidgetConfigurationBean implements Serializable {
     }
   }
 
-  public void handleFileUpload(FileUploadEvent event) throws IOException {
+  public void handleFileUpload(FileUploadEvent event) {
     UploadedFile file = event.getFile();
 
     if (file != null && file.getContent() != null && file.getContent().length > 0 && file.getFileName() != null) {

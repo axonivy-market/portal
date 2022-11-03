@@ -33,7 +33,7 @@ public class NewDashboardPage extends TemplatePage {
   public TaskWidgetNewDashBoardPage selectTaskWidget(String taskWidgetName) {
     return new TaskWidgetNewDashBoardPage(taskWidgetName);
   }
-  
+
   public ProcessWidgetNewDashBoardPage selectProcessWidget(String processWidgetName) {
     return new ProcessWidgetNewDashBoardPage(processWidgetName);
   }
@@ -291,6 +291,11 @@ public class NewDashboardPage extends TemplatePage {
     return $(".process-widget.dashboard-widget-panel-container .compact-processes-container");
   }
 
+  public ElementsCollection getCompactModeProcessElementList() {
+    return $(".process-widget.dashboard-widget-panel-container .compact-processes-container")
+        .$$("span.process-start-list-item");
+  }
+
   public SelenideElement getCompactModeProcessProcessItemName(String processName) {
     return $$(".compact-processes-container a.process-item span[id$=':process-name-process-item']")
         .filter(Condition.exactTextCaseSensitive(processName)).first();
@@ -469,6 +474,10 @@ public class NewDashboardPage extends TemplatePage {
     filterCompactModeProcessCategory(category);
   }
 
+  public void selectCompactModeProcessFilter(String category) {
+    filterCompactModeProcessCategory(category);
+  }
+
   public void testSaveResetApplyCompactModeProcessFilterWhenExpanded() {
     testSaveResetApplyCompactModeProcessFilter();
   }
@@ -580,9 +589,9 @@ public class NewDashboardPage extends TemplatePage {
   public void testSavedFilterValue() {
     openCompactModeProcessFilterPanel();
     getCompactModeProcessFilterPanelSavedFilter(0)
-    .shouldBe(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME), DEFAULT_TIMEOUT);
+        .shouldBe(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME), DEFAULT_TIMEOUT);
   }
-  
+
   private void testCreateCompactModeProcessFilters() {
     selectCompactModeProcessFilter(SHOWCASE_NAME, "IVY_PROCESS", SHOWCASE);
     saveCompactModeProcessFilter(MY_FILTER);
@@ -696,7 +705,6 @@ public class NewDashboardPage extends TemplatePage {
 
   public SelenideElement getCaseWidgetEmptyMessageWhenFilter() {
     return getCaseWidgetContainer().$("div[id$='empty-message-when-filter']");
-
   }
 
   public void checkDisplayedTaskWidgetContainer() {
@@ -721,6 +729,10 @@ public class NewDashboardPage extends TemplatePage {
 
   public SelenideElement getUserMenuAvatar() {
     return $("#user-settings-menu > .has-avatar >.ui-avatar").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getWidgetNoti() {
+    return $("div[gs-id$='process_1']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$(".widget__filter-noti-number");
   }
 
 }
