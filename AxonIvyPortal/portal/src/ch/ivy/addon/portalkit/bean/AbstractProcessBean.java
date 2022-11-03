@@ -123,7 +123,10 @@ public abstract class AbstractProcessBean implements Serializable {
   }
 
   public String getDisplayProcessCategory(Process process) {
-    String categoryFullPath = process.getCategory();
+    if (Objects.isNull(process) || Objects.isNull(process.getCategory())) {
+      return "";
+    }
+    String categoryFullPath = process.getCategory().getName();
     String[] arrayOfCategoyPaths = categoryFullPath.split(SLASH);
     int lengthOfCategoryPaths = arrayOfCategoyPaths.length;
     return lengthOfCategoryPaths > 0 ? arrayOfCategoyPaths[lengthOfCategoryPaths - 1] : StringUtils.EMPTY;
