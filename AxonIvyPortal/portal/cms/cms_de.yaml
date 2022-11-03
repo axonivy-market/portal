@@ -790,6 +790,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PleaseSelectChart: Bitte wählen Sie ein Diagramm aus
       PreviewText: Bitte wählen Sie ein Diagramm aus, um die Canvas-Daten zu sehen
     WelcomeWidgetIntroduction: Dieses Widget zeigt einen Willkommenstext und ein Bild auf dem Dashboard an.
+    WelcomeWidgetNotFoundMessage: Wir können das Bild des Widgets nicht finden, bitte konfigurieren Sie Ihr Bild neu!
     WidgetFilterName: Name des Widget-Filters
     WidgetFilters: Widget-Filter
     YourWelcomeWidget: Ihr Willkommens-Widget

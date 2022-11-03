@@ -9,6 +9,7 @@ import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.WelcomeTextPosition;
 import ch.ivy.addon.portalkit.enums.WelcomeTextSize;
+import ch.ivyteam.ivy.cm.ContentObject;
 
 public class WelcomeDashboardWidget  extends DashboardWidget {
 
@@ -27,6 +28,8 @@ public class WelcomeDashboardWidget  extends DashboardWidget {
 
   @JsonIgnore
   private String welcomeText;
+  @JsonIgnore
+  private ContentObject imageContentObject;
 
   @JsonIgnore
   public static WelcomeDashboardWidget buildDefaultWidget(String id, String name) {
@@ -68,10 +71,7 @@ public class WelcomeDashboardWidget  extends DashboardWidget {
   }
 
   @Override
-  public void resetWidgetFilters() {
-    // TODO Auto-generated method stub
-    
-  }
+  public void resetWidgetFilters() { }
 
   @Override
   public DashboardWidgetType getType() {
@@ -132,6 +132,14 @@ public class WelcomeDashboardWidget  extends DashboardWidget {
 
   public void setImageStyleClass(String imageStyleClass) {
     this.imageStyleClass = imageStyleClass;
+  }
+
+  public ContentObject getImageContentObject() {
+    return imageContentObject;
+  }
+
+  public void setImageContentObject(ContentObject imageContentObject) {
+    this.imageContentObject = imageContentObject;
   }
 
 }
