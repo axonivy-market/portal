@@ -1,5 +1,8 @@
 package ch.ivy.addon.portalkit.bean;
 
+import static ch.ivy.addon.portalkit.constant.PortalConstants.MAX_USERS_IN_AUTOCOMPLETE;
+import static org.apache.commons.lang3.StringUtils.EMPTY;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.text.Collator;
@@ -10,6 +13,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
@@ -18,6 +22,10 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
+
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
@@ -31,6 +39,7 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.ProcessMode;
 import ch.ivy.addon.portalkit.enums.ProcessType;
+import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
@@ -40,6 +49,7 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
@@ -58,6 +68,11 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   private String selectedIconProcess;
   private String viewMode;
   private List<ProcessMode> processViewModes;
+  private List<SecurityMemberDTO> selectedSecurityMemberDTOsWhenCreatingExternalLink;
+  private List<String> selectedPermissionsWhenCreatingExternalLink;
+  private List<SecurityMemberDTO> selectedSecurityMemberDTOsWhenEditingExternalLink;
+  private List<String> selectedPermissionsWhenEditingExternalLink;
+  private List<String> selectedPermissionsForSavingEditedExternalLink;
 
   private IProcessStart createExpressWorkflowProcessStart;
   private Map<String, List<Process>> processesByAlphabet;
@@ -74,6 +89,8 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   public void initProcesses() {
     super.init();
     processesByAlphabet = new HashMap<>();
+    selectedPermissionsWhenCreatingExternalLink = new ArrayList<>();
+    selectedPermissionsWhenEditingExternalLink = new ArrayList<>();
     groupProcessesByAlphabetIndex(getPortalProcesses());
   }
 
@@ -179,13 +196,72 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
       ivyProcess.setDefaultImageSrc(StringUtils.EMPTY);
     }
   }
-  
+
   private String getImageSrc(String imageElement) {
     if(!imageElement.contains("/cm")) {
       imageElement = Ivy.cms().cr(imageElement);
     }
     int indexOfImageSrc = imageElement.indexOf("/cm");
     return imageElement.substring(indexOfImageSrc).replaceAll("\"/>", StringUtils.EMPTY);
+  }
+
+  public String formatName(SecurityMemberDTO responsible) {
+    String responsibleName = EMPTY;
+    if (responsible != null) {
+      if (StringUtils.isBlank(responsible.getDisplayName())) {
+        responsibleName = responsible.getName();
+      } else {
+        responsibleName = String.format("%s (%s)", responsible.getDisplayName(), responsible.getName());
+      }
+      return responsible.isEnabled() ? responsibleName
+          : String.format("%s %s", Ivy.cms().co("/Labels/disabledUserPrefix"), responsibleName);
+    }
+    return responsibleName;
+  }
+
+  public List<SecurityMemberDTO> completePermissionsWhenCreatingExternalLink(String query) {
+    return com.axonivy.portal.components.util.RoleUtils
+        .findRoles(null, selectedPermissionsWhenCreatingExternalLink, query).stream()
+        .map(SecurityMemberDTOMapper::mapFromRoleDTO).collect(Collectors.toList());
+  }
+
+  public List<SecurityMemberDTO> completePermissionsWhenEditingExternalLink(String query) {
+    return com.axonivy.portal.components.util.RoleUtils
+        .findRoles(null, selectedPermissionsWhenEditingExternalLink, query).stream()
+        .map(SecurityMemberDTOMapper::mapFromRoleDTO).collect(Collectors.toList());
+  }
+
+  public void onSelectPermissionsWhenCreatingExternalLink(SelectEvent<Object> event) {
+    SecurityMemberDTO selectedItem = (SecurityMemberDTO) event.getObject();
+    this.selectedPermissionsWhenCreatingExternalLink.add(selectedItem.getName());
+  }
+
+  public void onUnSelectPermissionsWhenCreatingExternalLink(UnselectEvent<Object> event) {
+    SecurityMemberDTO selectedItem = (SecurityMemberDTO) event.getObject();
+    this.selectedPermissionsWhenCreatingExternalLink.remove(selectedItem.getName());
+  }
+
+  public void onSelectPermissionsWhenEditingExternalLink(SelectEvent<Object> event) {
+    SecurityMemberDTO selectedItem = (SecurityMemberDTO) event.getObject();
+    this.selectedPermissionsWhenEditingExternalLink.add(selectedItem.getName());
+  }
+
+  public void onUnSelectPermissionsWhenEditingExternalLink(UnselectEvent<Object> event) {
+    SecurityMemberDTO selectedItem = (SecurityMemberDTO) event.getObject();
+    this.selectedPermissionsWhenEditingExternalLink.remove(selectedItem.getName());
+  }
+
+  public void handleSavePermissionSelections() {
+    this.selectedPermissionsForSavingEditedExternalLink = new ArrayList<>(this.selectedPermissionsWhenEditingExternalLink);
+  }
+
+  public void handleCancelPermissionSelections() {
+    this.selectedPermissionsWhenEditingExternalLink = new ArrayList<>(this.selectedPermissionsForSavingEditedExternalLink);
+    this.setSelectedSecurityMemberDTOsWhenEditingExternalLink(getSecurityMemberDTOsFromPermissions(this.selectedPermissionsForSavingEditedExternalLink));
+  }
+
+  public String getDisplayNameOfPermissionsWhenEditingExternalLink() {
+    return String.join(", ", getSelectedPermissionsWhenEditingExternalLink());
   }
 
   public void editExpressWorkflow(ExpressProcess process) throws IOException {
@@ -258,6 +334,9 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
       externalLink.setIcon(this.selectedIconProcess);
       externalLink.setName(this.editedExternalLink.getName());
       externalLink.setDescription(this.editedExternalLink.getDescription());
+      if (CollectionUtils.isNotEmpty(this.selectedPermissionsForSavingEditedExternalLink)) {
+        externalLink.setPermissions(this.selectedPermissionsForSavingEditedExternalLink);
+      }
       ExternalLinkBean externalLinkBean = ManagedBeans.get("externalLinkBean");
       String correctLink = externalLinkBean.correctLink(this.editedExternalLink.getLink());
       externalLink.setLink(correctLink);
@@ -296,6 +375,12 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   public void createNewExternalLink() {
     ExternalLinkBean externalLinkBean = (ExternalLinkBean) FacesContext.getCurrentInstance().getApplication()
         .getELResolver().getValue(FacesContext.getCurrentInstance().getELContext(), null, "externalLinkBean");
+    if (CollectionUtils.isNotEmpty(selectedPermissionsWhenCreatingExternalLink)) {
+      externalLinkBean.getExternalLink().setIsPublic(true);
+      externalLinkBean.getExternalLink().setPermissions(selectedPermissionsWhenCreatingExternalLink);
+    } else {
+      externalLinkBean.getExternalLink().setIsPublic(false);
+    }
     externalLinkBean.saveNewExternalLink();
     getPortalProcesses().add(new ExternalLinkProcessItem(externalLinkBean.getExternalLink()));
     sortProcesses(getPortalProcesses());
@@ -351,6 +436,28 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     this.editedExternalLink.setName(editedProcess.getName());
     this.editedExternalLink.setLink(editedProcess.getStartLink());
     this.editedExternalLink.setDescription(editedProcess.getDescription());
+    this.editedExternalLink.setPermissions(editedProcess.getPermissions());
+    if (CollectionUtils.isNotEmpty(editedProcess.getPermissions())) {
+      List<String> permissions = editedProcess.getPermissions();
+      this.editedExternalLink.setIsPublic(true);
+      this.setSelectedPermissionsWhenEditingExternalLink(permissions);
+      this.setSelectedSecurityMemberDTOsWhenEditingExternalLink(getSecurityMemberDTOsFromPermissions(permissions));
+      this.selectedPermissionsForSavingEditedExternalLink = new ArrayList<>(permissions);
+    } else {
+      this.editedExternalLink.setIsPublic(false);
+    }
+  }
+
+  private List<SecurityMemberDTO> getSecurityMemberDTOsFromPermissions(List<String> permissions) {
+    Map<String, SecurityMemberDTO> nameToSecurityMemberDTO = SecurityMemberUtils
+        .findSecurityMembers("", 0, MAX_USERS_IN_AUTOCOMPLETE)
+        .stream().filter(securityMember -> !securityMember.isUser())
+        .collect(Collectors.toMap(SecurityMemberDTO::getMemberName, v -> v));
+    var responsibles = permissions.stream().filter(Objects::nonNull).distinct()
+        .filter(permission -> !permission.startsWith("#"))
+        .map(permission -> nameToSecurityMemberDTO.get(permission))
+        .filter(Objects::nonNull).collect(Collectors.toSet());
+    return new ArrayList<>(responsibles);
   }
 
   public Map<String, List<Process>> getProcessesByAlphabet() {
@@ -420,4 +527,37 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   public boolean isCompactMode() {
     return StringUtils.equalsIgnoreCase(this.viewMode, ProcessMode.COMPACT.name());
   }
+
+  public List<SecurityMemberDTO> getSelectedSecurityMemberDTOsWhenCreatingExternalLink() {
+    return selectedSecurityMemberDTOsWhenCreatingExternalLink;
+  }
+
+  public void setSelectedSecurityMemberDTOsWhenCreatingExternalLink(List<SecurityMemberDTO> selectedSecurityMemberDTOsWhenCreatingExternalLink) {
+    this.selectedSecurityMemberDTOsWhenCreatingExternalLink = new ArrayList<>(selectedSecurityMemberDTOsWhenCreatingExternalLink);
+  }
+
+  public List<String> getSelectedPermissionsWhenCreatingExternalLink() {
+    return selectedPermissionsWhenCreatingExternalLink;
+  }
+
+  public void setSelectedPermissionsWhenCreatingExternalLink(List<String> selectedPermissionsWhenCreatingExternalLink) {
+    this.selectedPermissionsWhenCreatingExternalLink = new ArrayList<>(selectedPermissionsWhenCreatingExternalLink);
+  }
+
+  public List<SecurityMemberDTO> getselectedSecurityMemberDTOsWhenEditingExternalLink() {
+    return selectedSecurityMemberDTOsWhenEditingExternalLink;
+  }
+
+  public void setSelectedSecurityMemberDTOsWhenEditingExternalLink(List<SecurityMemberDTO> selectedSecurityMemberDTOsWhenEditingExternalLink) {
+    this.selectedSecurityMemberDTOsWhenEditingExternalLink = new ArrayList<>(selectedSecurityMemberDTOsWhenEditingExternalLink);
+  }
+
+  public List<String> getSelectedPermissionsWhenEditingExternalLink() {
+    return selectedPermissionsWhenEditingExternalLink;
+  }
+
+  public void setSelectedPermissionsWhenEditingExternalLink(List<String> selectedPermissionsWhenEditingExternalLink) {
+    this.selectedPermissionsWhenEditingExternalLink = new ArrayList<>(selectedPermissionsWhenEditingExternalLink);
+  }
+
 }

@@ -16,6 +16,8 @@ public class SingleProcessDashboardWidget extends ProcessDashboardWidget {
 
   @JsonIgnore
   private DashboardProcess process;
+  @JsonIgnore
+  private boolean hasPermissionToSee;
 
   public SingleProcessDashboardWidget(SingleProcessDashboardWidget widget) {
     super(widget);
@@ -49,4 +51,13 @@ public class SingleProcessDashboardWidget extends ProcessDashboardWidget {
   public void setProcessPath(String processPath) {
     this.processPath = processPath;
   }
+
+  public boolean isHasPermissionToSee() {
+    return hasPermissionToSee;
+  }
+
+  public void setHasPermissionToSee(boolean hasPermissionToSee) {
+    this.hasPermissionToSee = hasPermissionToSee;
+  }
+  
 }

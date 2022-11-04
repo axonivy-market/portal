@@ -5971,3 +5971,13 @@ a.dashboard-action-container label {
   width:90px;
   padding-right:15px;
 }
+
+/* =================== ROLE SELECTION FOR EDITING THE EXTERNAL LINK ====================== */
+.permissions-for-editing-external-link {
+  flex: 1;
+}
+
+.role-permissions-editor-for-external-link {
+  word-break: break-word;
+  display: flex;
+}
