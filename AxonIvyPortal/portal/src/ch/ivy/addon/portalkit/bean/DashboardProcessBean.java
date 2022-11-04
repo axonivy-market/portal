@@ -148,11 +148,12 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
     if (Objects.isNull(this.isPublicDashboard) || !this.isPublicDashboard) {
       externalLinks.addAll(ExternalLinkService.getInstance().getPrivateConfig());
     }
-    externalLinks.addAll(ExternalLinkService.getInstance().getPublicConfig());
+    externalLinks.addAll(ExternalLinkService.getInstance().filterPublicExternalLinksForIvySessionUser());
     List<Process> defaultPortalProcesses = new ArrayList<>();
     externalLinks.forEach(externalLink -> defaultPortalProcesses.add(new ExternalLinkProcessItem(externalLink)));
     return defaultPortalProcesses;
   }
+
 
   public List<String> getApplications() {
     return applications;

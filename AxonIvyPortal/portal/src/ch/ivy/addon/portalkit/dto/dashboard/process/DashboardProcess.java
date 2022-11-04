@@ -230,7 +230,7 @@ public class DashboardProcess implements Process {
       this.imageUrl = StringUtils.defaultIfBlank(defaultImageCms, DefaultImage.PROCESSMODELING.getPath());
     }
   }
-  
+
   private String getImageSrc(String imageElement) {
     if(!imageElement.contains("/cm")) {
       imageElement = Ivy.cms().cr(imageElement);
