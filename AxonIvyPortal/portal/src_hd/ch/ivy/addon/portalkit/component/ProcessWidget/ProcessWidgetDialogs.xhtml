@@ -14,6 +14,7 @@
     closeOnEscape="true" modal="true" appendTo="@(body)"
     responsive="true" resizable="false" fitViewport="true"
     styleClass="edit-process-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editDialog/dialogHeaderTitle', [processWidgetBean.editedProcess.getName()])}">
+    <p:ajax event="close" update="edit-process-dialog" resetValues="true" />
     <h:form id="edit-process-form" styleClass="ui-g edit-process-form">
       <c:set var="process" value="#{processWidgetBean.editedProcess}" />
       <c:set var="processIcon" value="#{process.getIcon()}" />
@@ -66,7 +67,7 @@
           rendered="#{!processWidgetBean.isExpressProcess(process)}">
           <!-- Process name -->
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')}" />
-          <p:inplace editor="true" styleClass="" effectSpeed="fast"
+          <p:inplace editor="true" effectSpeed="fast"
             saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
             <f:facet name="output">
@@ -103,6 +104,49 @@
             </f:facet>
             <p:inputTextarea id="external-description" value="#{processWidgetBean.editedExternalLink.description}" maxlength="200"
               rows="3"/>
+          </p:inplace>
+
+          <!-- Role Permissions -->
+          <h:outputText value="#{ivy.cms.co('/Labels/Permissions')}" rendered="#{processWidgetBean.editedExternalLink.isPublic}"/>
+          <p:inplace editor="true" effectSpeed="fast" rendered="#{processWidgetBean.editedExternalLink.isPublic}" id="role-permissions-editor-for-external-link"
+            styleClass="role-permissions-editor-for-external-link"
+            saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+            cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
+            <p:ajax event="save" listener="#{processWidgetBean.handleSavePermissionSelections()}"
+              process="@this" update="permission-for-editing-external-link" />
+            <p:ajax event="cancel" listener="#{processWidgetBean.handleCancelPermissionSelections()}"
+              process="@this" update="permission-for-editing-external-link" resetValues="true"/>
+            <f:facet name="output">
+              <h:outputText styleClass="u-mar-right-5" value="#{processWidgetBean.displayNameOfPermissionsWhenEditingExternalLink}" />
+              <a href="#" class="si si-graphic-tablet-drawing-pen" />
+            </f:facet>
+            <f:facet name="input">
+              <h:panelGroup id="permission-for-editing-external-link" layout="block"
+                styleClass="permissions-for-editing-external-link ui-fluid">
+                <p:autoComplete id="role-autocomplete-for-editing-external-link" scrollHeight="210" dropdown="true"
+                  required="true" completeMethod="#{processWidgetBean.completePermissionsWhenEditingExternalLink}"
+                  value="#{processWidgetBean.selectedSecurityMemberDTOsWhenEditingExternalLink}" var="responsible"
+                  itemValue="#{responsible}" itemLabel="#{responsible.briefDisplayNameWithState}"
+                  converter="pojoConverter" cache="true" maxResults="100" multiple="true"
+                  requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/rolePermissionsRequiredMessage')}"
+                  moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true"
+                  forceSelection="true">
+                  <p:ajax event="itemSelect" listener="#{processWidgetBean.onSelectPermissionsWhenEditingExternalLink}"
+                    global="false" update="role-autocomplete-for-editing-external-link" process="@this"/>
+                  <p:ajax event="itemUnselect" listener="#{processWidgetBean.onUnSelectPermissionsWhenEditingExternalLink}"
+                    global="false" update="role-autocomplete-for-editing-external-link" process="@this" immediate="true"/>
+                  <p:column>
+                    <pc:securityMemberNameAndAvatar displayName="#{processWidgetBean.formatName(responsible)}"
+                      securityMember="#{responsible}">
+                      <f:facet name="alternativeAvatar">
+                        <h:outputText rendered="#{not avatarBean.isShowAvatar()}"
+                          styleClass="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+                      </f:facet>
+                    </pc:securityMemberNameAndAvatar>
+                  </p:column>
+                </p:autoComplete>
+              </h:panelGroup>
+            </f:facet>
           </p:inplace>
         </h:panelGrid>
       </div>
@@ -154,6 +198,7 @@
   <p:dialog id="add-external-link-dialog" widgetVar="add-external-link-dialog"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addNewExternalLinkHeader')}" closeOnEscape="true" modal="true"
     appendTo="@(body)" resizable="false" responsive="true" styleClass="add-external-link-dialog">
+    <p:ajax event="close" update="add-external-link-dialog" resetValues="true" />
     <h:form id="add-external-link-form" styleClass="add-external-link-form ui-g">
       <p:messages styleClass="ui-g-12"/>
 
@@ -192,15 +237,49 @@
       <!-- Type -->
       <div class="ui-g-12 MarTop10 u-padding-0" jsf:rendered="#{externalLinkBean.hasPublicLinkCreationPermission()}">
         <div class="ui-g-12">
-          <p:outputLabel id="external-link-type-label" for="external-link-type-radio" styleClass="external-link-type-label"
+          <p:outputLabel id="external-link-type-label" for="external-link-type-radio"
+            styleClass="external-link-type-label"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/externalLinkVisibility')}" />
         </div>
         <div class="ui-g-12 u-no-padding-top">
-          <p:selectOneRadio id="external-link-type-radio" value="#{externalLinkBean.externalLink.isPublic}" styleClass="external-link-type-radio">
-            <f:selectItem id="only-me" itemValue="false" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/typeOnlyMe')}" />
-            <f:selectItem id="all-users" itemValue="true" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/typeAllUsers')}" />
+          <p:selectOneRadio id="external-link-type-radio" value="#{externalLinkBean.externalLink.isPublic}"
+            styleClass="external-link-type-radio">
+            <f:selectItem id="only-me" itemValue="false" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/private')}" />
+            <f:selectItem id="for-role" itemValue="true" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/selectRoles')}" />
+            <p:ajax update="permission-for-creating-external-link permission-for-creating-external-link-label" event="valueChange" />
           </p:selectOneRadio>
         </div>
+        <h:panelGroup id="permission-for-creating-external-link-label">
+          <p:outputLabel for="role-autocomplete-for-creating-external-link" rendered="#{externalLinkBean.externalLink.isPublic}"
+            styleClass="ui-g-12"
+            value="#{ivy.cms.co('/Labels/Permissions')}" />
+        </h:panelGroup>
+        <h:panelGroup id="permission-for-creating-external-link" layout="block">
+          <h:panelGroup styleClass="ui-g-12 ui-fluid" rendered="#{externalLinkBean.externalLink.isPublic}">
+            <p:autoComplete id="role-autocomplete-for-creating-external-link" scrollHeight="210" dropdown="true"
+              required="true" completeMethod="#{processWidgetBean.completePermissionsWhenCreatingExternalLink}"
+              value="#{processWidgetBean.selectedSecurityMemberDTOsWhenCreatingExternalLink}" var="responsible"
+              itemValue="#{responsible}" itemLabel="#{responsible.briefDisplayNameWithState}" converter="pojoConverter"
+              cache="true" maxResults="100" multiple="true"
+              requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/rolePermissionsRequiredMessage')}"
+              moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true"
+              forceSelection="true">
+              <p:ajax event="itemSelect" listener="#{processWidgetBean.onSelectPermissionsWhenCreatingExternalLink}"
+                update="role-autocomplete-for-creating-external-link" global="false" process="@this" immediate="true"/>
+              <p:ajax event="itemUnselect" listener="#{processWidgetBean.onUnSelectPermissionsWhenCreatingExternalLink}"
+                update="role-autocomplete-for-creating-external-link" global="false" process="@this" immediate="true" />
+              <p:column>
+                <pc:securityMemberNameAndAvatar displayName="#{processWidgetBean.formatName(responsible)}"
+                  securityMember="#{responsible}">
+                  <f:facet name="alternativeAvatar">
+                    <h:outputText rendered="#{not avatarBean.isShowAvatar()}"
+                      styleClass="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+                  </f:facet>
+                </pc:securityMemberNameAndAvatar>
+              </p:column>
+            </p:autoComplete>
+          </h:panelGroup>
+        </h:panelGroup>
       </div>
 
       <!-- Icon -->
@@ -217,12 +296,11 @@
         onclick="PF('add-external-link-dialog').hide()" styleClass="u-mar-right-15" />
       <p:commandButton id="adding-new-external-link-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
         icon="#{visibilityBean.generateButtonIcon('si si-add-small')}" process="#{cc.clientId}:add-external-link-form"
-        form="#{cc.clientId}:add-external-link-form" actionListener="#{processWidgetBean.createNewExternalLink}"
+        form="#{cc.clientId}:add-external-link-form" actionListener="#{processWidgetBean.createNewExternalLink()}"
         update="#{cc.clientId}:add-external-link-form"
         oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide(); updateProcessListOnSaveSuccessful();}" />
     </f:facet>
   </p:dialog>
   <!-- End External Link Dialogs -->
-
 </ui:composition>
 </html>

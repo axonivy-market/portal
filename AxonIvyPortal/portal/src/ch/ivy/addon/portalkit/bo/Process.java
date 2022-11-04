@@ -1,5 +1,8 @@
 package ch.ivy.addon.portalkit.bo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivyteam.ivy.workflow.category.Category;
 
@@ -16,6 +19,10 @@ public interface Process {
   public String getImageUrl();
   public String getDefaultImageSrc();
   public String getApplication();
+
+  default public List<String> getPermissions() {
+    return new ArrayList<>();
+  }
 
   default public String getIcon() {
     return DEFAULT_PROCESS_ICON;
