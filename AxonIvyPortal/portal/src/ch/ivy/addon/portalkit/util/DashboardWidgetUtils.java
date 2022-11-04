@@ -31,6 +31,7 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bean.CompactDashboardProcessBean;
+import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.AbstractColumn;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
@@ -56,6 +57,7 @@ import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
+import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
@@ -573,6 +575,14 @@ public class DashboardWidgetUtils {
     if (processPath == null || processWidget.getProcess() != null) {
       return;
     }
+
+    if (getPublicExternalLinkIdsNotForIvySessionUser().indexOf(processPath) > -1) {
+      processWidget.setHasPermissionToSee(false);
+      return;
+    } else {
+      processWidget.setHasPermissionToSee(true);
+    }
+
     for (DashboardProcess process : getAllPortalProcesses()) {
       if (process.getId() != null && process.getId().contains(processPath)) {
         updateProcessStartIdForCombined(processWidget, process);
@@ -580,6 +590,11 @@ public class DashboardWidgetUtils {
         break;
       }
     }
+  }
+  
+  private static List<String> getPublicExternalLinkIdsNotForIvySessionUser() {
+      List<ExternalLink> publicExternalLinksNotForIvySessionUser = ExternalLinkService.getInstance().filterPublicExternalLinksNotForIvySessionUser();
+      return publicExternalLinksNotForIvySessionUser.stream().map(link -> link.getId()).toList();
   }
 
   private static void updateProcessStartIdForCombined(ProcessDashboardWidget processWidget, DashboardProcess process) {

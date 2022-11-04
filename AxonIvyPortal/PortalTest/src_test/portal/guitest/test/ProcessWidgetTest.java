@@ -69,11 +69,11 @@ public class ProcessWidgetTest extends BaseTest {
     String processLink = "google.com";
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
-    createExternalTestProcess(processName, processLink, false);
+    createPrivateExternalTestProcess(processName, processLink);
     
     processName = "AAGoogle";
     processLink = "google.com";
-    createExternalTestProcess(processName, processLink, false);
+    createPrivateExternalTestProcess(processName, processLink);
     
     backToCompactProcessWidget();
     UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
@@ -110,7 +110,7 @@ public class ProcessWidgetTest extends BaseTest {
     String processName = "AGoogle";
     String processLink = "google.com";
     processWidget.expand();
-    createExternalTestProcess(processName, processLink, false);
+    createPrivateExternalTestProcess(processName, processLink);
     backToCompactProcessWidget();
     UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
     addNewProcessDialog.selectProcessByName(CASE_MAP_LEAVES);
@@ -160,10 +160,10 @@ public class ProcessWidgetTest extends BaseTest {
     processWidget.openMainMenu();
     String processName = "AGoogle";
     String processLink = "google.com";
-    createExternalTestProcess(processName, processLink,false);
+    createPrivateExternalTestProcess(processName, processLink);
     processName = "AAGoogle";
     processLink = "google.com";
-    createExternalTestProcess(processName, processLink, false);
+    createPrivateExternalTestProcess(processName, processLink);
     
     backToCompactProcessWidget();
     UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
@@ -201,7 +201,7 @@ public class ProcessWidgetTest extends BaseTest {
     String processLink = "google.com";
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
-    createExternalTestProcess(processName, processLink, false);
+    createPrivateExternalTestProcess(processName, processLink);
     
     backToCompactProcessWidget();
     UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
@@ -312,9 +312,9 @@ public class ProcessWidgetTest extends BaseTest {
     resetLanguageOfCurrentUser();
   }
 
-  private void createExternalTestProcess(String processName, String processLink, boolean isPublic) {
+  private void createPrivateExternalTestProcess(String processName, String processLink) {
     AddNewExternalLinkDialog addNewExternalLinkDialog = processWidget.openNewExternalLinkDialog();
-    addNewExternalLinkDialog.inputDataForExternalLink(processName, processLink, isPublic);
+    addNewExternalLinkDialog.inputDataForPrivateExternalLink(processName, processLink);
     addNewExternalLinkDialog.submitForm();
   }
 
