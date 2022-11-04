@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.bo;
 
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
@@ -73,6 +75,11 @@ public class ExternalLinkProcessItem implements Process {
   @Override
   public String getDefaultImageSrc() {
     return StringUtils.EMPTY;
+  }
+
+  @Override
+  public List<String> getPermissions() {
+    return externalLink.getPermissions();
   }
 
   @Override

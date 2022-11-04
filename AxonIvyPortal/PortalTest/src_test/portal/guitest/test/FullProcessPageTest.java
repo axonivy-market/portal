@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.TestRole;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.ProcessWidgetPage;
@@ -55,7 +56,7 @@ public class FullProcessPageTest extends BaseTest{
     homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     processWidgetPage = mainMenuPage.selectProcessesMenu();
-    createExternalTestProcess(AAGOOGLE_LINK, AAGOOGLE_LINK, false);
+    createPublicExternalTestProcess(AAGOOGLE_LINK, AAGOOGLE_LINK, TestRole.TESTER_ROLE);
 
     processWidgetPage.selectViewMode(ProcessWidgetPage.GRID_MODE);
     processWidgetPage.waitForGridProcessListDisplayed();
@@ -67,22 +68,44 @@ public class FullProcessPageTest extends BaseTest{
     processWidgetPage.clickMoreButtonOfFirstImageProcess();
     processWidgetPage.clickOnProcessEditMenu(0);
     processWidgetPage.changeProcessIcon();
-    processWidgetPage.waitForJQueryAndPrimeFaces(5);
+    processWidgetPage.addNewRolePermission(TestRole.HR_ROLE);
+    processWidgetPage.saveEditProcessDialog();
     processWidgetPage.selectViewMode(ProcessWidgetPage.GRID_MODE);
     processWidgetPage.waitForGridProcessListDisplayed();
     processWidgetPage.enterSearchKeyword("link");
     String newIcon = processWidgetPage.getProcessItemIcon(0);
     assertFalse("Current Icon is not changed", StringUtils.equals(currentIcon, newIcon));
 
+    login(TestAccount.CASE_OWNER_USER);
+    homePage = new HomePage();
+    mainMenuPage = homePage.openMainMenu();
+    processWidgetPage = mainMenuPage.selectProcessesMenu();
+    processWidgetPage.enterSearchKeyword(AAGOOGLE_LINK);
+    assertTrue(processWidgetPage.isNoProcessFound());
+
+    login(TestAccount.HR_ROLE_USER);
+    homePage = new HomePage();
+    mainMenuPage = homePage.openMainMenu();
+    processWidgetPage = mainMenuPage.selectProcessesMenu();
+    processWidgetPage.enterSearchKeyword(AAGOOGLE_LINK);
+    assertTrue(processWidgetPage.isProcessDisplay(AAGOOGLE_LINK));
+
+    login(TestAccount.ADMIN_USER);
+    homePage = new HomePage();
+    mainMenuPage = homePage.openMainMenu();
+    processWidgetPage = mainMenuPage.selectProcessesMenu();
+    processWidgetPage.selectViewMode(ProcessWidgetPage.GRID_MODE);
+    processWidgetPage.waitForGridProcessListDisplayed();
+    processWidgetPage.enterSearchKeyword(AAGOOGLE_LINK);
     processWidgetPage.clickMoreButtonOfGridProcess(AAGOOGLE_LINK);
     processWidgetPage.deleteGridProcess(AAGOOGLE_LINK);
     processWidgetPage.enterSearchKeyword("link");
     assertTrue("Still see processes", processWidgetPage.isNoProcessFound());
   }
   
-  private void createExternalTestProcess(String processName, String processLink, boolean isPublic) {
+  private void createPublicExternalTestProcess(String processName, String processLink, String rolePermission) {
     AddNewExternalLinkDialog addNewExternalLinkDialog = processWidgetPage.openNewExternalLinkDialog();
-    addNewExternalLinkDialog.inputDataForExternalLink(processName, processLink, isPublic);
+    addNewExternalLinkDialog.inputDataForPublicExternalLink(processName, processLink, rolePermission);
     addNewExternalLinkDialog.submitForm();
   }
 }
