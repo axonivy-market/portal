@@ -24,6 +24,9 @@ import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.RoleUtils;
+import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public abstract class AbstractProcessBean implements Serializable {
@@ -72,7 +75,9 @@ public abstract class AbstractProcessBean implements Serializable {
   }
 
   protected List<Process> findExternalLink() {
-    List<ExternalLink> externalLinks = ExternalLinkService.getInstance().findAll();
+    List<ExternalLink> privateExternalLinks = ExternalLinkService.getInstance().getPrivateConfig();
+    List<ExternalLink> externalLinks = new ArrayList<>(privateExternalLinks);
+    externalLinks.addAll(ExternalLinkService.getInstance().filterPublicExternalLinksForIvySessionUser());
     List<Process> defaultPortalProcesses = new ArrayList<>();
     externalLinks.forEach(externalLink -> defaultPortalProcesses.add(new ExternalLinkProcessItem(externalLink)));
     return defaultPortalProcesses;

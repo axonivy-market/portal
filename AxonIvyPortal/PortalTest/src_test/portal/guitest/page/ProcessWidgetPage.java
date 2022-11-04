@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
@@ -275,12 +276,18 @@ public class ProcessWidgetPage extends TemplatePage {
     
     private AddNewExternalLinkDialog() {}
 
-    public void inputDataForExternalLink(String processName, String processLink, boolean isPublic) {
+    public void inputDataForPrivateExternalLink(String processName, String processLink) {
       inputExternalLinkName(processName);
       inputExternalLink(processLink);
-      selectExternalLinkType(isPublic);
     }
-    
+
+    public void inputDataForPublicExternalLink(String processName, String processLink, String rolePermission) {
+      inputExternalLinkName(processName);
+      inputExternalLink(processLink);
+      selectExternalLinkType(true);
+      selectExternalLinkRolePermission(rolePermission);
+    }
+
     public void inputExternalLinkName(String name) {
       WebElement externalLinkInputField = findDisplayedElementByCssSelector(EXTERNAL_LINK_NAME_INPUT_CSS_SELECTOR);
       externalLinkInputField.sendKeys(name);
@@ -298,11 +305,19 @@ public class ProcessWidgetPage extends TemplatePage {
       }
     }
 
-    @SuppressWarnings("deprecation")
+    public void selectExternalLinkRolePermission(String rolePermission) {
+        WebElement rolePermissionInput = findDisplayedElementByCssSelector(
+                "[id$='process-widget:add-external-link-form:role-autocomplete-for-creating-external-link_input");
+        rolePermissionInput.sendKeys(rolePermission);
+        waitForElementDisplayed(By.cssSelector("span[id$='process-widget:add-external-link-form:role-autocomplete-for-creating-external-link_panel']"), true);
+        rolePermissionInput.sendKeys(Keys.DOWN);
+        rolePermissionInput.sendKeys(Keys.ENTER);
+    }
+
     public void submitForm() {
       WebElement submitButton = findElementByCssSelector(ADD_EXTERNAL_LINK_BUTTON_INPUT_CSS_SELECTOR);
       submitButton.click();
-      waitAjaxIndicatorDisappear();
+      waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     }
   }
   
@@ -389,8 +404,27 @@ public class ProcessWidgetPage extends TemplatePage {
     clickByCssSelector("a[id^='process-widget:edit-process-form:edit-process-icon']");
     waitForElementDisplayed(By.cssSelector("[id$='process-widget:edit-process-form:edit-process-icon:select-icon-dialog']"), true);
     clickByCssSelector("[id$=':0:awesome-icon']");
+
+  }
+
+  public void addNewRolePermission(String rolePermission) {
+    waitForElementDisplayed(By.cssSelector("span[id='process-widget:edit-process-form:role-permissions-editor-for-external-link_display'] a.si.si-graphic-tablet-drawing-pen"), true);
+    clickByCssSelector("span[id='process-widget:edit-process-form:role-permissions-editor-for-external-link_display'] a.si.si-graphic-tablet-drawing-pen");
+    WebElement rolePermissionInput = findDisplayedElementByCssSelector(
+      "[id$='process-widget:edit-process-form:role-autocomplete-for-editing-external-link_input']");
+    rolePermissionInput.sendKeys(rolePermission);
+    waitForElementDisplayed(By.cssSelector("span[id$='process-widget:edit-process-form:role-autocomplete-for-editing-external-link_panel']"), true);
+    rolePermissionInput.sendKeys(Keys.DOWN);
+    rolePermissionInput.sendKeys(Keys.ENTER);
+    WebElement savePermissionButton =
+      findDisplayedElementByCssSelector("span[id='process-widget:edit-process-form:role-permissions-editor-for-external-link_editor'] button.ui-button-icon-only.ui-inplace-save");
+    savePermissionButton.click();
+  }
+
+  public void saveEditProcessDialog() {
     clickByCssSelector("[id$='process-widget:save-process-command']");
     waitForElementDisplayed(By.cssSelector("[id$='process-widget:edit-process-dialog']"), false);
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public String getProcessItemIcon(int index) {

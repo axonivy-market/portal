@@ -311,4 +311,21 @@ public final class RoleUtils {
   private static List<IRole> filterRole(List<IRole> roles, Predicate<IRole> predicate) {
     return CollectionUtils.emptyIfNull(roles).stream().filter(predicate).collect(Collectors.toList());
   }
+
+  public static RoleDTO findRoleDTO(String name) {
+      IRole role = findRole(name);
+      return role != null ? new RoleDTO(role) : null;
+  }
+
+  public static boolean hasRolePermission(List<IRole> roles, List<String> roleMemberNames) {
+      if (CollectionUtils.isNotEmpty(roleMemberNames)) {
+          for (IRole role : roles) {
+              if (roleMemberNames.indexOf(role.getMemberName()) > -1) {
+                  return true;
+              }
+          }
+      }
+
+      return false;
+  }
 }
