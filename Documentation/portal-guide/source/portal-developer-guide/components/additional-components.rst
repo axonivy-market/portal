@@ -14,7 +14,7 @@ Introduction
 ^^^^^^^^^^^^
 
 
--  This component is deprecated since version 8.0.27, use :ref:`Process History <components-additional-components-process-history>` of ``portal-component`` project instead.
+-  This component is deprecated since version 8.0.27, use :ref:`Process History <components-additional-components-process-history>` of ``portal-components`` project instead.
 -  This component is a lazy loading list which displays all business cases
    of a business entity in your application. You can include this component
    everywhere:
@@ -60,7 +60,7 @@ for more details.
 
 If your application is using Iframe approach of Portal, set attribute ``isOpenInFrame`` to ``true``.
 
-.. note:: 
+.. note::
 
       If you use this component in a dialog, you must run this script
       ``processHistory.setup();`` when the dialog is shown. For example:
@@ -71,7 +71,7 @@ If your application is using Iframe approach of Portal, set attribute ``isOpenIn
 			  <ic:ch.ivy.addon.portal.component.ProcessHistory businessEntityId="resourceA247" chunkSize="6" scrollHeight="400" />
 			</p:dialog>
 
-.. note:: 
+.. note::
 
       If you use this component in an Iframe, you must set parameter
       ``isOpenInIframe`` to ``true``. For example:
@@ -80,8 +80,8 @@ If your application is using Iframe approach of Portal, set attribute ``isOpenIn
 
       <ic:ch.ivy.addon.portal.component.ProcessHistory businessEntityId="resourceA247" isOpenInIframe="true" />
 
-.. important:: 
-   
+.. important::
+
       If your process has a Trigger component or sends a signal to start
       another process with the option "Attach to Business Case that
       triggered this process" selected, the current case of the process
@@ -100,7 +100,7 @@ Process history
 Introduction
 ^^^^^^^^^^^^
 
--  This component is a part of ``portal-component`` project, which is independent from Portal. You don't need to import Portal projects to use it.
+-  This component is a part of ``portal-components`` project, which is independent from Portal. You don't need to import Portal projects to use it.
 -  This component is a lazy loading list which displays all business cases
    of a business entity in your application. You can include this component
    everywhere:
@@ -113,7 +113,7 @@ Introduction
 
    |new-process-history-dialog-example|
 
-.. note:: 
+.. note::
 
       - If you use this component in Portal, redirect to case details page when clicking on a row line.
 
@@ -134,7 +134,7 @@ Include the process history component into your page:
 
 .. code-block:: html
 
-   <ic:com.axonivy.portal.component.ProcessHistory businessEntityId="alpha" />
+   <ic:com.axonivy.portal.components.ProcessHistory businessEntityId="alpha" />
 
 
 Attributes of this component:
@@ -147,7 +147,7 @@ Attributes of this component:
   :widths: 1 1 1 3
 
 
-.. note:: 
+.. note::
 
       If you use this component in a dialog, you must run this script
       ``processHistory.setup();`` when the dialog is shown. For example:
@@ -156,10 +156,10 @@ Attributes of this component:
 
    <p:dialog widgetVar="process-history-dialog" id="process-history-dialog" width="800" height="500" resizable="false"
       header="Process history of Beta Company" modal="true" onShow="processHistory.setup();">
-      <ic:com.axonivy.portal.component.ProcessHistory businessEntityId="beta" chunkSize="10" scrollHeight="400" />
+      <ic:com.axonivy.portal.components.ProcessHistory businessEntityId="beta" chunkSize="10" scrollHeight="400" />
    </p:dialog>
 
-Please refer to ``ProcessHistoryExample`` process in ``portal-component-example`` project for more details.
+Please refer to ``ProcessHistoryExample`` process in ``portal-components-examples`` project for more details.
 
 Please refer to ``ProcessHistoryComponent`` process in  ``PortalExamples`` for more details how to customize new Process History with Portal.
 
@@ -167,8 +167,8 @@ If you want to customize its style,
 please refer to :ref:`Styles Customization <components-additional-components-styles-customization>`
 for more details.
 
-.. important:: 
-   
+.. important::
+
       If your process has a Trigger component or sends a signal to start
       another process with the option "Attach to Business Case that
       triggered this process" selected, the current case of the process
@@ -183,22 +183,22 @@ for more details.
 Migrate from Deprecated Process History
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. Replace the code in HTML files: ``ic:ch.ivy.addon.portal.component.ProcessHistory`` to ``ic:com.axonivy.portal.component.ProcessHistory``.
+1. Replace the code in HTML files: ``ic:ch.ivy.addon.portal.component.ProcessHistory`` to ``ic:com.axonivy.portal.components.ProcessHistory``.
 
 2. Consider updating value of new attributes ``showCasesOfOwner`` and ``dateTimePattern`` by your business.
 
 3. From the project you want to use the new component, override the subprocess ``OpenCaseDetailsHook.mod``.
 
 4. If your application using Portal without IFrame:
-   
+
    - Copy content of the subprocess ``OpenPortalCaseDetails.mod`` in ``PortalTemplate`` project to the overrided subprocess ``OpenCaseDetailsHook.mod``.
 
 5. If your application using Portal with IFrame:
-   
+
    - Set attribute ``isOpenInFrame`` to ``true``.
-   
+
    - Modify the subprocess ``OpenCaseDetailsHook.mod`` to generate ``caseDetailsUrl``. Process History component will navigate to this URL when user click on case item.
-   
+
    - Please refer to subprocess ``OpenCaseDetailsHookOverride.mod`` in ``PortalExamples`` project to see how to generate this link from Portal.
 
 .. _components-additional-component-task-analysis:
@@ -211,7 +211,7 @@ Task Analysis
 Introduction
 ^^^^^^^^^^^^
 
-Task Analysis component of Portal provides features for the user's own permission StatisticAnalyzeTask in PortalTaskPermissions refer to 
+Task Analysis component of Portal provides features for the user's own permission StatisticAnalyzeTask in PortalTaskPermissions refer to
 :dev-url:`Security section in
 Cockpit </doc/8.0/engine-guide/tool-reference/engine-cockpit/security.html>`
 to analyze  not only tasks but also cases. These features are:
@@ -253,7 +253,7 @@ Deprecated Process Chain
 Introduction
 ^^^^^^^^^^^^
 
--  This component is deprecated since version 8.0.27, use :ref:`Process Chain <components-additional-components-process-chain>` of ``portal-component`` project instead.
+-  This component is deprecated since version 8.0.27, use :ref:`Process Chain <components-additional-components-process-chain>` of ``portal-components`` project instead.
 -  Process Chain component of Portal provides features for users to know
    status of all steps in a process: the step's working, these steps are
    done, these steps are not done. These features are:
@@ -312,7 +312,7 @@ Introduction
 ^^^^^^^^^^^^
 
 
--  This component is a part of ``portal-component`` project, which is independent from Portal. You don't need to import Portal projects to use it.
+-  This component is a part of ``portal-components`` project, which is independent from Portal. You don't need to import Portal projects to use it.
 -  Process Chain component of Portal provides features for users to know
    status of all steps in a process: the step's working, these steps are
    done, these steps are not done. These features are:
@@ -336,12 +336,12 @@ include this component to this page with following code:
 
 .. code-block:: html
 
-      <ic:com.axonivy.portal.component.ProcessChain id="process-chain-circle-horizontal" componentId="component-circle-horizontal" shape="CIRCLE" direction="HORIZONTAL"
+      <ic:com.axonivy.portal.components.ProcessChain id="process-chain-circle-horizontal" componentId="component-circle-horizontal" shape="CIRCLE" direction="HORIZONTAL"
          isShowAllSteps="false" actualStepIndex="0" steps="#{['Step 1','Step 2','Step 3','Step 4','Step 5','Step 6','Step 7','Step 8','Step 9']}" />
 
-Please refer to ``ProcessChainExample`` process in ``portal-component-example`` project for more details.
+Please refer to ``ProcessChainExample`` process in ``portal-components-examples`` project for more details.
 
-.. important:: 
+.. important::
 
    - Must set value for ``actualStepIndex`` parameter. This is current step index.
    - Must set value for ``steps`` parameter. This is list of working steps.
@@ -365,7 +365,7 @@ for more details.
 Migrate from Deprecated Process Chain
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- Replace the code in HTML files: ``ch.ivy.addon.portalkit.singleapp.process.ProcessChain`` to ``ic:com.axonivy.portal.component.ProcessChain``.
+- Replace the code in HTML files: ``ch.ivy.addon.portalkit.singleapp.process.ProcessChain`` to ``ic:com.axonivy.portal.components.ProcessChain``.
 
 .. _components-additional-component-global-growl:
 
@@ -455,7 +455,7 @@ Deprecated Document table
 -------------------------
 
 
--  This component is deprecated since version 8.0.27, use :ref:`Document Table <components-additional-components-document-table>` of ``portal-component`` project instead.
+-  This component is deprecated since version 8.0.27, use :ref:`Document Table <components-additional-components-document-table>` of ``portal-components`` project instead.
 -  This component is case document table with the features: upload, download and delete.
 
 |document-table|
@@ -472,7 +472,7 @@ Document table
 
 
 - This component is case document table with the features: upload, download and delete.
-- This component is a part of ``portal-component`` project, which is independent from Portal. You don't need to import Portal projects to use it.
+- This component is a part of ``portal-components`` project, which is independent from Portal. You don't need to import Portal projects to use it.
 
 |document-table|
 
@@ -486,7 +486,7 @@ Code Example:
 .. code-block:: html
 
    <h:form id="form">
-      <ic:com.axonivy.portal.component.DocumentTable id="document-table-component"
+      <ic:com.axonivy.portal.components.DocumentTable id="document-table-component"
          allowedUploadFileTypes="doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt"
          typeSelectionItems="#{documentTableExampleBean.documentTypes}">
          <f:facet name="componentHeader">
@@ -504,11 +504,11 @@ Code Example:
          <f:facet name="componentFooter">
             <h2>This is customized document table component footer</h2>
          </f:facet>
-      </ic:com.axonivy.portal.component.DocumentTable>
+      </ic:com.axonivy.portal.components.DocumentTable>
    </h:form>
 
 
-Refer to the ``DocumentTableExample`` process in ``portal-component-example`` project for more details.
+Refer to the ``DocumentTableExample`` process in ``portal-components-examples`` project for more details.
 
 Attributes of this component:
 
@@ -524,7 +524,7 @@ Attributes of this component:
 Migrate from Deprecated Document Table
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. Replace the code in HTML files: ``ic:ch.ivy.addon.portalkit.component.document.DocumentTable`` to ``ic:com.axonivy.portal.component.DocumentTable``.
+1. Replace the code in HTML files: ``ic:ch.ivy.addon.portalkit.component.document.DocumentTable`` to ``ic:com.axonivy.portal.components.DocumentTable``.
 2. Consider updating value of new attributes ``enableScriptCheckingForUploadedDocument``, ``enableVirusScannerForUploadedDocument`` and ``allowedUploadFileTypes`` by your business.
 3. Override sub processes if you want and adapt your business accordingly.
 
@@ -554,9 +554,9 @@ Introduction
 ^^^^^^^^^^^^
 
 
--  This component is deprecated since version 8.0.27, use :ref:`User Selection <components-additional-components-user-selection>` of ``portal-component`` project instead.
+-  This component is deprecated since version 8.0.27, use :ref:`User Selection <components-additional-components-user-selection>` of ``portal-components`` project instead.
 -  This component is used for choosing a user from a user list defined by a role name list.
-   If you don't define role name list, all users will be loaded. 
+   If you don't define role name list, all users will be loaded.
    It includes 1 label, 1 autocomplete and 1 message element to display message related to that autocomplete element.
 
 How to use
@@ -598,7 +598,7 @@ Code example:
    Any child in UserSelection component will be re-parented into this autocomplete at the point of ``insertChildren`` tag.
    We introduce a facet named ``event`` for autocomplete so that ajax event can be nested.
 
-For example: 
+For example:
 
 I want to display user in dropdown list with format <Full name> (<username>) and when I select a user, a message will be displayed.
 
@@ -640,9 +640,9 @@ Introduction
 
 
 -  This component is used for choosing a user from a user list defined by a role name list.
-   If you don't define role name list, all users will be loaded. 
+   If you don't define role name list, all users will be loaded.
    It includes 1 label, 1 autocomplete and 1 message element to display message related to that autocomplete element.
--  This component is a part of ``portal-component`` project, which is independent from Portal. You don't need to import Portal projects to use it.
+-  This component is a part of ``portal-components`` project, which is independent from Portal. You don't need to import Portal projects to use it.
 
 How to use
 ^^^^^^^^^^
@@ -657,7 +657,7 @@ Code example:
 
 .. code-block:: html
 
-   <ic:com.axonivy.portal.component.UserSelection componentId="default-user-autocomplete"
+   <ic:com.axonivy.portal.components.UserSelection componentId="default-user-autocomplete"
       selectedUser="#{data.selectedUser}" label="Default user selection"
       isRequired="true" labelPanelStyleClass="ui-g-6 ui-md-6 ui-sm-12"
       autoCompleteStyleClass="width-100" autoCompletePanelStyleClass="ui-g-6 ui-sm-12" />
@@ -670,18 +670,18 @@ Code example:
 
 .. code-block:: html
 
-   <ic:com.axonivy.portal.component.UserSelection componentId="all-user-autocomplete"
+   <ic:com.axonivy.portal.components.UserSelection componentId="all-user-autocomplete"
       hightlight="false" selectedUser="#{data.selectedUserForExcludingUsers}"
       label="Loading users (exclude gm1, gm2, admin)" autoCompleteStyleClass="width-100"
       autoCompletePanelStyleClass="ui-g-12 floating-label-margin-top"
       excludedUsernames="#{data.excludedUsernames}" floatingLabel="true" />
 
 .. tip::
-   Autocomplete element of user selection component allows inserting children and ajax event (Refer to ``UserSelection.xhtml`` in ``portal-component`` project).
+   Autocomplete element of user selection component allows inserting children and ajax event (Refer to ``UserSelection.xhtml`` in ``portal-components`` project).
    Any child in UserSelection component will be re-parented into this autocomplete at the point of ``insertChildren`` tag.
    We introduce a facet named ``event`` for autocomplete so that ajax event can be nested.
 
-For example: 
+For example:
 
 I want to display user in dropdown list with format <Full name> (<username>) and when I select a user, a message will be displayed.
 
@@ -691,7 +691,7 @@ I want to display user in dropdown list with format <Full name> (<username>) and
 
 .. code-block:: html
 
-   <ic:com.axonivy.portal.component.UserSelection id="item-select-event-component"
+   <ic:com.axonivy.portal.components.UserSelection id="item-select-event-component"
       componentId="item-select-event-for-user-selection" floatingLabel="true"
       fromRoleNames="#{data.definedRoleNames}" label="Demonstrate facet and children"
       selectedUser="#{data.selectedUserForInsertChildren}"
@@ -704,9 +704,9 @@ I want to display user in dropdown list with format <Full name> (<username>) and
          <p:ajax event="itemSelect" listener="#{logic.showSelectedUser}"
             update="#{p:component('item-select-event-for-user-selection-message')}" />
       </f:facet>
-   </ic:com.axonivy.portal.component.UserSelection>
+   </ic:com.axonivy.portal.components.UserSelection>
 
-Please refer to ``UserSelectionExample.xhtml`` in ``portal-component-example`` project for more details.
+Please refer to ``UserSelectionExample.xhtml`` in ``portal-components-examples`` project for more details.
 
 Attributes of this component:
 
@@ -721,8 +721,8 @@ Attributes of this component:
 Migrate from Deprecated User Selection
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. Replace the code in HTML files: ``ic:ch.ivy.addon.portalkit.component.UserSelection`` to ``ic:com.axonivy.portal.component.UserSelection``.
-2. Use ``com.axonivy.portal.component.dto.UserDTO`` instead of ``ch.ivy.addon.portalkit.dto.UserDTO``.
+1. Replace the code in HTML files: ``ic:ch.ivy.addon.portalkit.component.UserSelection`` to ``ic:com.axonivy.portal.components.UserSelection``.
+2. Use ``com.axonivy.portal.components.dto.UserDTO`` instead of ``ch.ivy.addon.portalkit.dto.UserDTO``.
 
 .. note:: If you stored ch.ivy.addon.portalkit.dto.UserDTO class in your database, you must update it manually.
 
@@ -736,7 +736,7 @@ Introduction
 ^^^^^^^^^^^^
 
 
--  This component is deprecated since version 8.0.27, use :ref:`Role Selection <components-additional-components-role-selection>` of ``portal-component`` project instead.
+-  This component is deprecated since version 8.0.27, use :ref:`Role Selection <components-additional-components-role-selection>` of ``portal-components`` project instead.
 -  This component is used for choosing a role from a role list defined by a role name list.
    If you don't define role name list, all roles will be loaded.
    It includes 1 label, 1 autocomplete and 1 message element to display message related to that autocomplete element.
@@ -782,7 +782,7 @@ Code example:
    Any child in RoleSelection component will be re-parented into this autocomplete at the point of ``insertChildren`` tag.
    We introduce a facet named ``event`` for autocomplete so that ajax event can be nested.
 
-For example: 
+For example:
 
 I want to display role in dropdown list with format <Display Name> (<Member Name>) and when I select a role, a message will be displayed.
 
@@ -829,7 +829,7 @@ Introduction
 -  This component is used for choosing a role from a role list defined by a role name list.
    If you don't define role name list, all roles will be loaded.
    It includes 1 label, 1 autocomplete and 1 message element to display message related to that autocomplete element.
--  This component is a part of ``portal-component`` project, which is independent from Portal. You don't need to import Portal projects to use it.
+-  This component is a part of ``portal-components`` project, which is independent from Portal. You don't need to import Portal projects to use it.
 
 How to use
 ^^^^^^^^^^
@@ -844,7 +844,7 @@ Code example:
 
 .. code-block:: html
 
-      <ic:com.axonivy.portal.component.RoleSelection
+      <ic:com.axonivy.portal.components.RoleSelection
          componentId="role-from-defined-role-autocomplete"
          fromRoleNames="#{data.definedRoleNames}"
          selectedRole="#{data.selectedRoleForDefinedRoles}"
@@ -859,7 +859,7 @@ Code example:
 
 .. code-block:: html
 
-      <ic:com.axonivy.portal.component.RoleSelection
+      <ic:com.axonivy.portal.components.RoleSelection
          componentId="floating-label-and-exclude-role-autocomplete" hightlight="false"
          selectedRole="#{data.selectedRole}"
          label="Loading with all roles (exclude CaseOwner, GeneralManager)"
@@ -867,11 +867,11 @@ Code example:
          isRequired="true" floatingLabel="true" />
 
 .. tip::
-   Autocomplete element of role selection component allows inserting children and ajax event (Refer to ``RoleSelection.xhtml`` of ``portal-component`` project).
+   Autocomplete element of role selection component allows inserting children and ajax event (Refer to ``RoleSelection.xhtml`` of ``portal-components`` project).
    Any child in RoleSelection component will be re-parented into this autocomplete at the point of ``insertChildren`` tag.
    We introduce a facet named ``event`` for autocomplete so that ajax event can be nested.
 
-For example: 
+For example:
 
 I want to display role in dropdown list with format <Display Name> (<Member Name>) and when I select a role, a message will be displayed.
 
@@ -881,7 +881,7 @@ I want to display role in dropdown list with format <Display Name> (<Member Name
 
 .. code-block:: html
 
-      <ic:com.axonivy.portal.component.RoleSelection
+      <ic:com.axonivy.portal.components.RoleSelection
          id="item-select-event-component"
          componentId="item-select-event-for-role-selection"
          fromRoleNames="#{data.definedRoleNames}"
@@ -897,9 +897,9 @@ I want to display role in dropdown list with format <Display Name> (<Member Name
             <p:ajax event="itemSelect" listener="#{logic.showSelectedRole}"
                update="#{p:component('item-select-event-for-role-selection-message')}" />
          </f:facet>
-      </ic:com.axonivy.portal.component.RoleSelection>
+      </ic:com.axonivy.portal.components.RoleSelection>
 
-Please refer to ``RoleSelectionExample.xhtml`` in ``portal-component-example`` project for more details.
+Please refer to ``RoleSelectionExample.xhtml`` in ``portal-components-examples`` project for more details.
 
 Attributes of this component:
 
@@ -913,8 +913,8 @@ Attributes of this component:
 
 Migrate from Deprecated Role Selection
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-1. Replace the code in HTML files: ``ic:ch.ivy.addon.portalkit.component.RoleSelection`` to ``ic:com.axonivy.portal.component.RoleSelection``.
-2. Use ``com.axonivy.portal.component.dto.RoleDTO`` instead of ``ch.ivy.addon.portalkit.dto.RoleDTO``.
+1. Replace the code in HTML files: ``ic:ch.ivy.addon.portalkit.component.RoleSelection`` to ``ic:com.axonivy.portal.components.RoleSelection``.
+2. Use ``com.axonivy.portal.components.dto.RoleDTO`` instead of ``ch.ivy.addon.portalkit.dto.RoleDTO``.
 
 .. note:: If you stored ch.ivy.addon.portalkit.dto.RoleDTO class in your database, you must update it manually.
 
@@ -931,13 +931,13 @@ There is a online `Cron Maker <http://www.cronmaker.com>`_ could help you to cre
 Styles Customization
 --------------------
 
-This customization only supports for new components of ``portal-component`` project.
+This customization only supports for new components of ``portal-components`` project.
 
 How to customize
 ^^^^^^^^^^^^^^^^
 
 1. You have to add a new css file to your resources and import it into your template.
-   
+
    Code Example:
 
    .. code-block:: html
@@ -945,7 +945,7 @@ How to customize
       <ui:composition template="/layouts/basic-8.xhtml">
          <ui:define name="title">test</ui:define>
          <ui:define name="content">
-            <ic:com.axonivy.portal.component.ProcessHistory businessEntityId="alpha" chunkSize="12" scrollHeight="600" />
+            <ic:com.axonivy.portal.components.ProcessHistory businessEntityId="alpha" chunkSize="12" scrollHeight="600" />
             <h:outputStylesheet name="layouts/styles/process-history-customize.css" />
          </ui:define>
       </ui:composition>

@@ -1,3 +1,0 @@
-UserSelectionExampleData #class
-com.axonivy.portal.component.example #namespace
-selectedUser com.axonivy.portal.component.dto.UserDTO #field

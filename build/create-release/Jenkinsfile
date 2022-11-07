@@ -50,7 +50,7 @@ pipeline {
 
           echo "====================Build all modules===================="
           // module structure [module path, isPossibleToDeploy]
-          def modules = [['AxonIvyPortal/portal-component', true], ['Showcase/portal-component-example', true], ['AxonIvyPortal/PortalStyle', true], ['AxonIvyPortal/PortalKit', true], ['AxonIvyPortal/PortalTemplate', true], ['AxonIvyPortal/AxonIvyExpress', true], ['AxonIvyPortal/PortalKitTestHelper', false], ['Showcase/PortalExamples', true], ['Showcase/InternalSupport', false], ['AxonIvyPortal/PortalApp', true]]
+          def modules = [['AxonIvyPortal/portal-components', true], ['Showcase/portal-components-examples', true], ['AxonIvyPortal/PortalStyle', true], ['AxonIvyPortal/PortalKit', true], ['AxonIvyPortal/PortalTemplate', true], ['AxonIvyPortal/AxonIvyExpress', true], ['AxonIvyPortal/PortalKitTestHelper', false], ['Showcase/PortalExamples', true], ['Showcase/InternalSupport', false], ['AxonIvyPortal/PortalApp', true]]
           for (module in modules) {
             def mavenGoal = params.deployToRepo && module[1]? 'deploy' : 'install'
             bat "mvn clean ${mavenGoal} -Divy.engine.directory=%engineDir% -Divy.engine.version=(7.0.0,] -Divy.compiler.engine.start.timeout=120 %engineDownloadURL% -f ${module[0]}/pom.xml"

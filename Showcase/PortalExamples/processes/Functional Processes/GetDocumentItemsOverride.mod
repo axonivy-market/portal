@@ -22,7 +22,7 @@ Gt0 @AnnotationArc f6 '' #zField
 Gt0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ICase businessCase> param;' #txt
 Gt0 f0 inParamTable 'out.businessCase=param.businessCase;
 ' #txt
-Gt0 f0 outParamDecl '<java.util.List<com.axonivy.portal.component.ivydata.bo.IvyDocument> documents,String message> result;' #txt
+Gt0 f0 outParamDecl '<java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument> documents,String message> result;' #txt
 Gt0 f0 outParamTable 'result.documents=in.documents;
 result.message=in.message;
 ' #txt
@@ -40,8 +40,8 @@ Gt0 f1 337 49 30 30 0 15 #rect
 Gt0 f1 @|EndSubIcon #fIcon
 Gt0 f3 actionTable 'out=in;
 ' #txt
-Gt0 f3 actionCode 'import com.axonivy.portal.component.document.DocumentCustomField;
-import com.axonivy.portal.component.service.CaseDocumentService;
+Gt0 f3 actionCode 'import com.axonivy.portal.components.document.DocumentCustomField;
+import com.axonivy.portal.components.service.CaseDocumentService;
 
 import ch.ivyteam.ivy.project.portal.examples.component.customize.CustomizedIvyDocumentTransformer;
 import ch.ivyteam.ivy.project.portal.examples.component.customize.CustomizedIvyDocument;

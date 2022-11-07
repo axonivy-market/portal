@@ -8,7 +8,7 @@ import org.apache.poi.poifs.macros.VBAMacroReader;
 import ch.ivyteam.ivy.environment.Ivy;
 
 /**
- * @deprecated use ExcelDocumentDetector in package com.axonivy.portal.component.document
+ * @deprecated use ExcelDocumentDetector in package com.axonivy.portal.components.document
  *
  */
 @Deprecated(since="8.0.27")

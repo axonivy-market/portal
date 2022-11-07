@@ -5,7 +5,7 @@ import java.util.List;
 import com.google.common.collect.ImmutableList;
 
 /**
- * @deprecated use DocumentExtensionConstants in package com.axonivy.portal.component.document
+ * @deprecated use DocumentExtensionConstants in package com.axonivy.portal.components.document
  *
  */
 @Deprecated(since="8.0.27")

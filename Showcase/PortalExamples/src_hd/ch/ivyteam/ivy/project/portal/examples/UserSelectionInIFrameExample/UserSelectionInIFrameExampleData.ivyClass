@@ -2,13 +2,13 @@ UserSelectionInIFrameExampleData #class
 ch.ivyteam.ivy.project.portal.examples.UserSelectionInIFrameExample #namespace
 definedRoleNames List<String> #field
 definedRoleNames PERSISTENT #fieldModifier
-selectedUserForDefinedRoles com.axonivy.portal.component.dto.UserDTO #field
+selectedUserForDefinedRoles com.axonivy.portal.components.dto.UserDTO #field
 selectedUserForDefinedRoles PERSISTENT #fieldModifier
-selectedUser com.axonivy.portal.component.dto.UserDTO #field
+selectedUser com.axonivy.portal.components.dto.UserDTO #field
 selectedUser PERSISTENT #fieldModifier
-selectedUserForReadOnlyField com.axonivy.portal.component.dto.UserDTO #field
+selectedUserForReadOnlyField com.axonivy.portal.components.dto.UserDTO #field
 selectedUserForReadOnlyField PERSISTENT #fieldModifier
 excludedUsernames java.util.List<String> #field
 excludedUsernames PERSISTENT #fieldModifier
-selectedUserForInsertChildren com.axonivy.portal.component.dto.UserDTO #field
+selectedUserForInsertChildren com.axonivy.portal.components.dto.UserDTO #field
 selectedUserForInsertChildren PERSISTENT #fieldModifier

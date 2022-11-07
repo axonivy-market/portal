@@ -1,7 +1,7 @@
 package ch.ivy.addon.portalkit.document;
 
 /**
- * @deprecated use DocumentCustomField in package com.axonivy.portal.component.document
+ * @deprecated use DocumentCustomField in package com.axonivy.portal.components.document
  *
  */
 @Deprecated(since="8.0.27")

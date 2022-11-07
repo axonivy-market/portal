@@ -1,0 +1,8 @@
+PortalConponentCaseServiceData #class
+com.axonivy.portal.components.service #namespace
+cases java.util.List<ch.ivyteam.ivy.workflow.ICase> #field
+caseSearchCriteria com.axonivy.portal.components.ivydata.searchcriteria.CaseSearchCriteria #field
+count Integer #field
+errors java.util.List<com.axonivy.portal.components.ivydata.exception.PortalIvyDataException> #field
+startIndex Integer #field
+totalCases Long #field

@@ -47,7 +47,7 @@ out.enableScriptCheckingForUploadedDocument=param.enableScriptCheckingForUploade
 out.enableVirusScannerForUploadedDocument=param.enableVirusScannerForUploadedDocument;
 out.uploadedFile=param.uploadedFile;
 ' #txt
-Ut0 f0 outParamDecl '<ch.ivyteam.ivy.workflow.document.IDocument uploadedDocument,String message,com.axonivy.portal.component.enums.UploadDocumentCheckStatus status> result;' #txt
+Ut0 f0 outParamDecl '<ch.ivyteam.ivy.workflow.document.IDocument uploadedDocument,String message,com.axonivy.portal.components.enums.UploadDocumentCheckStatus status> result;' #txt
 Ut0 f0 outParamTable 'result.uploadedDocument=in.uploadedDocument;
 result.message=in.message;
 result.status=in.status;
@@ -67,8 +67,8 @@ Ut0 f1 1393 113 30 30 0 15 #rect
 Ut0 f1 @|EndSubIcon #fIcon
 Ut0 f36 actionTable 'out=in;
 ' #txt
-Ut0 f36 actionCode 'import com.axonivy.portal.component.masterdata.MasterData;
-import com.axonivy.portal.component.enums.UploadDocumentCheckStatus;
+Ut0 f36 actionCode 'import com.axonivy.portal.components.masterdata.MasterData;
+import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;
 import org.apache.commons.io.FileUtils;
 import java.util.Arrays;
 
@@ -76,15 +76,15 @@ in.message = "";
 in.status = UploadDocumentCheckStatus.OK;
 
 if (in.uploadedFile == null) {
-	in.message = ivy.cms.co("/Dialogs/com/axonivy/portal/component/DocumentTable/InvalidFileMessage");
+	in.message = ivy.cms.co("/Dialogs/com/axonivy/portal/components/DocumentTable/InvalidFileMessage");
 	in.status = UploadDocumentCheckStatus.FAIL;
 } else if (in.uploadedFile.getSize() == 0) {
-	in.message = ivy.cms.co("/Dialogs/com/axonivy/portal/component/DocumentTable/EmptyFileMessage");
+	in.message = ivy.cms.co("/Dialogs/com/axonivy/portal/components/DocumentTable/EmptyFileMessage");
 	in.status = UploadDocumentCheckStatus.FAIL;
 } else {
 	Long maxFileUploadSize = MasterData.getFileUploadSizeLimit();
 	if (in.uploadedFile.getSize() > maxFileUploadSize) {
-		in.message = ivy.cms.co("/Dialogs/com/axonivy/portal/component/DocumentTable/ErrorFileUploadSize", Arrays.asList(FileUtils.byteCountToDisplaySize(maxFileUploadSize)));
+		in.message = ivy.cms.co("/Dialogs/com/axonivy/portal/components/DocumentTable/ErrorFileUploadSize", Arrays.asList(FileUtils.byteCountToDisplaySize(maxFileUploadSize)));
 	}
 	in.status = UploadDocumentCheckStatus.FAIL;
 }
@@ -109,8 +109,8 @@ Ut0 f72 904 112 32 32 -27 -34 #rect
 Ut0 f72 @|AlternativeIcon #fIcon
 Ut0 f71 actionTable 'out=in;
 ' #txt
-Ut0 f71 actionCode 'import com.axonivy.portal.component.service.CaseDocumentService;
-import com.axonivy.portal.component.enums.UploadDocumentCheckStatus;
+Ut0 f71 actionCode 'import com.axonivy.portal.components.service.CaseDocumentService;
+import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;
 import java.util.Arrays;
 import org.primefaces.model.UploadedFile;
 
@@ -120,11 +120,11 @@ String fileName = in.uploadedFile.getFileName();
 out.uploadedDocument = CaseDocumentService.newInstance(in.businessCase).upload(fileName, in.uploadedFile.getInputstream());
 
 if (out.#uploadedDocument != null) {	
-	String note = ivy.cms.co("/Dialogs/com/axonivy/portal/component/DocumentTable/UploadDocumentNote", Arrays.asList(ivy.session.getSessionUserName(), fileName));
+	String note = ivy.cms.co("/Dialogs/com/axonivy/portal/components/DocumentTable/UploadDocumentNote", Arrays.asList(ivy.session.getSessionUserName(), fileName));
 	in.businessCase.createNote(ivy.session, note);
-	out.message = ivy.cms.co("/Dialogs/com/axonivy/portal/component/DocumentTable/UploadSucceed");
+	out.message = ivy.cms.co("/Dialogs/com/axonivy/portal/components/DocumentTable/UploadSucceed");
 } else {
-	out.message = ivy.cms.co("/Dialogs/com/axonivy/portal/component/DocumentTable/UploadFailed");
+	out.message = ivy.cms.co("/Dialogs/com/axonivy/portal/components/DocumentTable/UploadFailed");
 	out.status = UploadDocumentCheckStatus.FAIL;
 }' #txt
 Ut0 f71 security system #txt
@@ -140,15 +140,15 @@ Ut0 f71 1008 106 160 44 -59 -16 #rect
 Ut0 f71 @|StepIcon #fIcon
 Ut0 f38 actionTable 'out=in;
 ' #txt
-Ut0 f38 actionCode 'import com.axonivy.portal.component.enums.UploadDocumentCheckStatus;
+Ut0 f38 actionCode 'import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;
 import org.primefaces.model.UploadedFile;
-import com.axonivy.portal.component.service.CaseDocumentService;
+import com.axonivy.portal.components.service.CaseDocumentService;
 
 String fileName = in.uploadedFile.getFileName();
 boolean doesDocumentExist = CaseDocumentService.newInstance(in.businessCase).doesDocumentExist(fileName);
 
 if (doesDocumentExist) {
-	in.message = ivy.cms.co("/Dialogs/com/axonivy/portal/component/DocumentTable/UploadFileExists", [fileName]);
+	in.message = ivy.cms.co("/Dialogs/com/axonivy/portal/components/DocumentTable/UploadFileExists", [fileName]);
 	in.status = UploadDocumentCheckStatus.FAIL;
 }' #txt
 Ut0 f38 security system #txt
@@ -246,7 +246,7 @@ Ut0 f83 1 0.11556836310247781 -1 -9 #arcLabel
 Ut0 f79 expr out #txt
 Ut0 f79 312 128 362 128 #arcP
 Ut0 f87 expr in #txt
-Ut0 f87 outCond 'in.status == com.axonivy.portal.component.enums.UploadDocumentCheckStatus.OK' #txt
+Ut0 f87 outCond 'in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK' #txt
 Ut0 f87 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -269,7 +269,7 @@ Ut0 f91 0 0.3333333333333333 0 -8 #arcLabel
 Ut0 f3 expr out #txt
 Ut0 f3 111 128 200 128 #arcP
 Ut0 f15 expr in #txt
-Ut0 f15 outCond 'in.status == com.axonivy.portal.component.enums.UploadDocumentCheckStatus.OK' #txt
+Ut0 f15 outCond 'in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK' #txt
 Ut0 f15 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

@@ -19,14 +19,14 @@ Dt0 @PushWFArc f2 '' #zField
 Dt0 @InfoButton f5 '' #zField
 Dt0 @AnnotationArc f6 '' #zField
 >Proto Dt0 Dt0 DeleteDocumentItem #zField
-Dt0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ICase businessCase,com.axonivy.portal.component.ivydata.bo.IvyDocument document> param;' #txt
+Dt0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ICase businessCase,com.axonivy.portal.components.ivydata.bo.IvyDocument document> param;' #txt
 Dt0 f0 inParamTable 'out.businessCase=param.businessCase;
 out.document=param.document;
 ' #txt
 Dt0 f0 outParamDecl '<String message> result;' #txt
 Dt0 f0 outParamTable 'result.message=in.message;
 ' #txt
-Dt0 f0 callSignature call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.component.ivydata.bo.IvyDocument) #txt
+Dt0 f0 callSignature call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument) #txt
 Dt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -44,9 +44,9 @@ Dt0 f3 actionCode 'import java.util.Arrays;
 
 in.businessCase.documents().delete(Long.valueOf(in.document.id));
 
-String note = ivy.cms.co("/Dialogs/com/axonivy/portal/component/DocumentTable/DeleteDocumentNote", Arrays.asList(ivy.session.getSessionUserName(), in.document.getName()));
+String note = ivy.cms.co("/Dialogs/com/axonivy/portal/components/DocumentTable/DeleteDocumentNote", Arrays.asList(ivy.session.getSessionUserName(), in.document.getName()));
 in.businessCase.createNote(ivy.session, note);
-in.message = ivy.cms.co("/Dialogs/com/axonivy/portal/component/DocumentTable/DeleteSuceed");' #txt
+in.message = ivy.cms.co("/Dialogs/com/axonivy/portal/components/DocumentTable/DeleteSuceed");' #txt
 Dt0 f3 security system #txt
 Dt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

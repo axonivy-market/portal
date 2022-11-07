@@ -1,4 +1,0 @@
-ProcessHistoryDetailsExampleData #class
-com.axonivy.portal.component.example.ProcessHistoryDetailsExample #namespace
-caseView ch.ivyteam.ivy.workflow.ICase #field
-caseView PERSISTENT #fieldModifier

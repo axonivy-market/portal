@@ -1,0 +1,8 @@
+UploadDocumentItemCheckerData #class
+com.axonivy.portal.components #namespace
+uploadedFile org.primefaces.model.UploadedFile #field
+checkStatus com.axonivy.portal.components.enums.UploadDocumentCheckStatus #field
+message String #field
+enableVirusScannerForUploadedDocument Boolean #field
+enableScriptCheckingForUploadedDocument Boolean #field
+allowedUploadFileTypes String #field

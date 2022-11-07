@@ -23,7 +23,7 @@ Us0 @PushWFArc f10 '' #zField
 Us0 f0 guid 1702D46BD3BF10DA #txt
 Us0 f0 method start() #txt
 Us0 f0 inParameterDecl '<> param;' #txt
-Us0 f0 outParameterDecl '<com.axonivy.portal.component.dto.RoleDTO selectedRoleForDefault> result;' #txt
+Us0 f0 outParameterDecl '<com.axonivy.portal.components.dto.RoleDTO selectedRoleForDefault> result;' #txt
 Us0 f0 outParameterMapAction 'result.selectedRoleForDefault=in.selectedRoleForDefault;
 ' #txt
 Us0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -55,7 +55,7 @@ Us0 f5 109 192 211 192 #arcP
 Us0 f6 actionTable 'out=in;
 ' #txt
 Us0 f6 actionCode 'import ch.ivyteam.ivy.environment.Ivy;
-import com.axonivy.portal.component.dto.RoleDTO;
+import com.axonivy.portal.components.dto.RoleDTO;
 import ch.ivyteam.ivy.security.IRole;
 import java.util.Arrays;
 
