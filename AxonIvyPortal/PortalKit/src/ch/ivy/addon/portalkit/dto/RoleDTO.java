@@ -3,7 +3,7 @@ package ch.ivy.addon.portalkit.dto;
 import ch.ivyteam.ivy.security.IRole;
 
 /**
- * @deprecated use RoleDTO in package com.axonivy.portal.component.dto
+ * @deprecated use RoleDTO in package com.axonivy.portal.components.dto
  *
  */
 @Deprecated(since="8.0.27")

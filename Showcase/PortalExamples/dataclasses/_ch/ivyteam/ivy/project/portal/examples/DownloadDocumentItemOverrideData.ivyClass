@@ -2,4 +2,4 @@ DownloadDocumentItemOverrideData #class
 _ch.ivyteam.ivy.project.portal.examples #namespace
 streamedContent org.primefaces.model.StreamedContent #field
 businessCase ch.ivyteam.ivy.workflow.ICase #field
-document com.axonivy.portal.component.ivydata.bo.IvyDocument #field
+document com.axonivy.portal.components.ivydata.bo.IvyDocument #field

@@ -8,7 +8,6 @@ public class Application extends BusinessEntity {
   private String name;
   private String link;
   private Long serverId;
-  private boolean embedInFrame = true;
 
   public String getDisplayName() {
     return displayName;
@@ -58,18 +57,10 @@ public class Application extends BusinessEntity {
     this.serverId = serverId;
   }
 
-  public boolean isEmbedInFrame() {
-    return embedInFrame;
-  }
-
-  public void setEmbedInFrame(boolean embedInFrame) {
-    this.embedInFrame = embedInFrame;
-  }
-
   @Override
   public String toString() {
     return "Application {displayName=" + displayName
         +  ", menuIcon=" + menuIcon + ", menuOrdinal=" + menuOrdinal + ", name=" + name
-        + ", link=" + link + ", serverId=" + serverId + ", id=" + getId() + ", embedInFrame = " + embedInFrame + "}";
+        + ", link=" + link + ", serverId=" + serverId + ", id=" + getId() + "}";
   }
 }

@@ -11,7 +11,7 @@ import ch.ivyteam.ivy.scripting.objects.File;
 import ch.ivyteam.ivy.workflow.document.IDocument;
 
 /**
- * @deprecated use IvyDocumentTransformer in package com.axonivy.portal.component.document
+ * @deprecated use IvyDocumentTransformer in package com.axonivy.portal.components.document
  *
  */
 @Deprecated(since="8.0.27")

@@ -3,7 +3,7 @@ package ch.ivy.addon.portalkit.document;
 import org.apache.commons.lang.StringUtils;
 
 /**
- * @deprecated use DocumentDetectorFactory in package com.axonivy.portal.component.document
+ * @deprecated use DocumentDetectorFactory in package com.axonivy.portal.components.document
  *
  */
 @Deprecated(since="8.0.27")

@@ -1,3 +1,0 @@
-RoleSelectionExampleData #class
-com.axonivy.portal.component.example #namespace
-selectedRole com.axonivy.portal.component.dto.RoleDTO #field

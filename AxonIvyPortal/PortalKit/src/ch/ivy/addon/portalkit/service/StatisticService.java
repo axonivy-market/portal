@@ -1513,8 +1513,8 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     List<StatisticChart> groupedCharts = Stream.of(distinctChart, verifyChartList).flatMap(List::stream)
           .filter(Objects::nonNull).collect(Collectors.toList());
     List<DisplayName> distinctChartNameList = groupedCharts.stream()
-          .map(StatisticChart::getNames)
-          .flatMap(List::stream).filter(Objects::nonNull)
+          .map(StatisticChart::getNames).filter(Objects::nonNull)
+          .flatMap(List::stream)
           .distinct().collect(Collectors.toList());
 
     if (CollectionUtils.isNotEmpty(distinctChartNameList)) {

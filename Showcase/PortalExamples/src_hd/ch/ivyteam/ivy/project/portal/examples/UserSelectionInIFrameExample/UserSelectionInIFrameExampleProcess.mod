@@ -24,7 +24,7 @@ Us0 @PushWFArc f10 '' #zField
 Us0 f0 guid 180AD454F4A7D6C8 #txt
 Us0 f0 method start() #txt
 Us0 f0 inParameterDecl '<> param;' #txt
-Us0 f0 outParameterDecl '<com.axonivy.portal.component.dto.UserDTO selectedUserForDefinedRoles> result;' #txt
+Us0 f0 outParameterDecl '<com.axonivy.portal.components.dto.UserDTO selectedUserForDefinedRoles> result;' #txt
 Us0 f0 outParameterMapAction 'result.selectedUserForDefinedRoles=in.selectedUserForDefinedRoles;
 ' #txt
 Us0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -58,7 +58,7 @@ Us0 f6 actionTable 'out=in;
 Us0 f6 actionCode 'import java.util.Locale;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
-import com.axonivy.portal.component.dto.UserDTO;
+import com.axonivy.portal.components.dto.UserDTO;
 import java.util.Arrays;
 
 in.definedRoleNames = Arrays.asList("CostObject", "GeneralManager");

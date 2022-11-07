@@ -1,5 +1,0 @@
-GetDocumentItemsOverrideData #class
-com.axonivy.portal.component.example.override #namespace
-businessCase ch.ivyteam.ivy.workflow.ICase #field
-message String #field
-documents java.util.List<com.axonivy.portal.component.ivydata.bo.IvyDocument> #field

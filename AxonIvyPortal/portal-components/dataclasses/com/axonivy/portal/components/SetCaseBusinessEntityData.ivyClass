@@ -1,0 +1,3 @@
+SetCaseBusinessEntityData #class
+com.axonivy.portal.components #namespace
+caseBusinessEntity String #field
