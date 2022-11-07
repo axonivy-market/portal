@@ -376,6 +376,9 @@ function changeThemeModeRefeshCharts() {
   let charts = $("div[id*='task_by_priority_chart-']");
   updateChartLegendLabelColor(charts);
 
+  charts = $("div[id*='chart-statistic']");
+  updateChartLegendLabelColor(charts);
+
   charts = $("div[id*='statistics-widget']");
   updateChartLegendLabelColor(charts);
 }
