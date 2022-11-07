@@ -43,7 +43,9 @@ public class WelcomeWidgetUtils {
     String fileExtension = getFileTypeOfImage(imageType);
     imageLocation = widgetId.concat(DEFAULT_LOCALE_AND_DOT).concat(fileExtension);
     ContentObject imageObject = getImageContentObject(getFileNameOfImage(imageLocation), fileExtension);
-    readObjectValueOfDefaultLocale(imageObject).write().bytes(oldFileContent);
+    if (imageObject != null) {
+      readObjectValueOfDefaultLocale(imageObject).write().bytes(oldFileContent);
+    }
   }
 
   private static byte[] getImageAsByteData(String filePath) {
@@ -82,8 +84,20 @@ public class WelcomeWidgetUtils {
   public static ContentObject getImageContentObject(String imageLocation, String imageType) {
     String fileName = getFileNameOfImage(imageLocation);
     String fileExtension = getFileTypeOfImage(imageType);
+    if (StringUtils.isEmpty(fileName) || StringUtils.isEmpty(fileExtension)) {
+      return null;
+    }
     return getApplicationCMS().child().folder(IMAGE_DIRECTORY).child()
         .file(fileName, fileExtension);
+  }
+
+  public static void removeWelcomeImage(String imageLocation, String imageType) {
+    if (StringUtils.isNotEmpty(imageLocation) && StringUtils.isNotEmpty(imageType)) {
+      ContentObject imageObject = getImageContentObject(imageLocation, imageType);
+      if (imageObject != null) {
+        imageObject.delete();
+      }
+    }
   }
 
   private static ContentObject getApplicationCMS() {
