@@ -2,8 +2,6 @@ package com.axonivy.portal.selenium.test;
 
 import static com.codeborne.selenide.CollectionCondition.size;
 
-import java.time.Duration;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +29,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
   private static final String POINTER_EVENTS_PROPERTY = "pointer-events";
   private static final String TITLE_ATTRIBUTE = "title";
   private static final String APPRAISAL = "Appraisal";
-  private static final String SHOWCASE_CUSTOMIZED_CATEGORY = "Customized, Portal dialog example, Application, Show Ivy Error Page, Showcase";
+  private static final String SHOWCASE_CATEGORY = "Customized, Custom task list, Portal dialog example, Application, Error, Ivy Error, Show Ivy Error Page, Showcase";
   private static final String LEAVE_REQUEST_TEST_FOR_IVYPORTAL_3369 = "Leave Request Test For IVYPORTAL-3369";
   private static final String TEST_FOR_IVYPORTAL_3369 = "Test for IVYPORTAL-3369";
   private static final String START_APPLICATION_SHOWCASE = "Start Application Showcase";
@@ -40,7 +38,6 @@ public class DashboardProcessWidgetTest extends BaseTest {
   private static final String SHOWCASE_APPLICATION = "Showcase Application";
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
   private NewDashboardPage newDashboardPage;
-  protected static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(45);
 
   @Override
   @BeforeEach
@@ -594,7 +591,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration = newDashboardDetailsEditPage.editFullModeProcess();
     editProcessWidgetConfiguration.changeToCompactModeProcess(SHOWCASE, SHOWCASE_APPLICATION);
     editProcessWidgetConfiguration.getCompactModeProcessCategoryFilter()
-        .shouldBe(Condition.value(SHOWCASE_CUSTOMIZED_CATEGORY));
+        .shouldBe(Condition.value(SHOWCASE_CATEGORY));
     editProcessWidgetConfiguration.getCompactModeProcessSelectedProcess()
         .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_APPLICATION));
 
@@ -606,7 +603,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     // Change to COMPACT_MODE
     editProcessWidgetConfiguration.selectCompactMode();
     editProcessWidgetConfiguration.getCompactModeProcessCategoryFilter()
-        .shouldNotHave(Condition.value(SHOWCASE_CUSTOMIZED_CATEGORY));
+        .shouldNotHave(Condition.value(SHOWCASE_CATEGORY));
 
     // Change to IMAGE_MODE
     editProcessWidgetConfiguration.selectImageMode();
@@ -637,7 +634,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration = newDashboardDetailsEditPage.editFullModeProcess();
     editProcessWidgetConfiguration.selectCompactMode();
     editProcessWidgetConfiguration.getCompactModeProcessDisplayedCategoryFilter()
-        .shouldNotHave(Condition.value(SHOWCASE_CUSTOMIZED_CATEGORY));
+        .shouldNotHave(Condition.value(SHOWCASE_CATEGORY));
     editProcessWidgetConfiguration.getCompactModeProcessSelectedProcess().shouldNotBe(Condition.exist);
 
     // Change to COMPACT_MODE from FULL_MODE
