@@ -371,3 +371,45 @@ function deactivateMenuItemOnLeftMenu(menuId) {
     $removedMenu.removeClass('active-menuitem');
   }
 }
+
+function changeThemeModeRefeshCharts() {
+  let charts = $("div[id*='task_by_priority_chart-']");
+  updateChartLegendLabelColor(charts);
+
+  charts = $("div[id*='chart-statistic']");
+  updateChartLegendLabelColor(charts);
+
+  charts = $("div[id*='statistics-widget']");
+  updateChartLegendLabelColor(charts);
+}
+
+function updateChartLegendLabelColor(charts) {
+  for (const chart of charts) {
+    let widgetVar = getWidgetVarById(chart.id);
+    if(widgetVar && widgetVar.cfg && widgetVar.cfg.config && widgetVar.cfg.config.options) {
+      let options = jQuery.extend(true, {}, widgetVar.cfg.config.options);
+        options = {
+          plugins: {
+              legend: {    
+                labels: {
+                  color: getColor('--chart-default-legend-color')
+                }
+              }
+          }
+        };
+
+        jQuery.extend(true, widgetVar.cfg.config.options, options);
+        widgetVar.refresh(widgetVar.cfg);
+    }
+  }
+}
+
+function getWidgetVarById(id) {
+  for (var propertyName in PrimeFaces.widgets) {
+    var widget = PrimeFaces.widgets[propertyName];
+    if (widget && widget.id === id) {
+      return widget;
+    }  
+  }
+  return null;
+}
