@@ -109,14 +109,9 @@ var PortalSessionWarning = function() {
   
   stopChartPolling = function (polls) {
     for (const poll of polls) {
-      getWidgetVarById(poll.id).stop();
-    }
-  }
-  
-  getWidgetVarById = function(id) {
-    for (var propertyName in PrimeFaces.widgets) {
-      if (PrimeFaces.widgets[propertyName].id === id) {
-        return PrimeFaces.widgets[propertyName];
+      let widgetVar = getWidgetVarById(poll.id);
+      if(widgetVar) {
+        widgetVar.stop();
       }
     }
   }
