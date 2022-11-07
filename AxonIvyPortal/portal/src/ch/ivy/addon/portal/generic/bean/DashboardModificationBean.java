@@ -136,8 +136,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   private void removeWelcomeWidgetImage(DashboardWidget selectedWidget) {
     WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) selectedWidget;
     if (StringUtils.isNotBlank(welcomeWidget.getImageLocation())) {
-      var imageObject = WelcomeWidgetUtils.getImageContentObject(welcomeWidget.getImageLocation(), welcomeWidget.getImageType());
-      imageObject.delete();
+      WelcomeWidgetUtils.removeWelcomeImage(welcomeWidget.getImageLocation(), welcomeWidget.getImageType());
     }
   }
 
