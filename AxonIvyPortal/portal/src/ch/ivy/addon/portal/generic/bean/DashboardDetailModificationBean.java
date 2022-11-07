@@ -244,9 +244,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private void removeWelcomeWidgetImage(DashboardWidget selectedWidget) {
     WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) selectedWidget;
     if (StringUtils.isNotBlank(welcomeWidget.getImageLocation())) {
-      ContentObject imageObject =
-          WelcomeWidgetUtils.getImageContentObject(welcomeWidget.getImageLocation(), welcomeWidget.getImageType());
-      imageObject.delete();
+      WelcomeWidgetUtils.removeWelcomeImage(welcomeWidget.getImageLocation(), welcomeWidget.getImageType());
     }
   }
 
@@ -369,7 +367,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     if (WELCOME.equals(widget.getType())) {
       removeTempImageOfWelcomeWidget(widget);
       WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
-      if (!StringUtils.isBlank(welcomeWidget.getImageLocation()) && !getWelcomeWidgetImageObject(false, welcomeWidget).exists()) {
+      ContentObject welcomeImage = getWelcomeWidgetImageObject(false, welcomeWidget);
+      if (!StringUtils.isBlank(welcomeWidget.getImageLocation()) && welcomeImage != null && !welcomeImage.exists()) {
         welcomeWidget.setImageLocation(null);
       }
     }
@@ -410,8 +409,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     if (StringUtils.isNotBlank(welcomeWidget.getImageLocation())) {
       ContentObjectValue tempImageFile = getWelcomeWidgetImage(true, welcomeWidget);
       ContentObjectValue imageFile = getWelcomeWidgetImage(false, welcomeWidget);
-      imageFile.write().bytes(tempImageFile.read().bytes());
-      tempImageFile.delete();
+      if (imageFile != null && tempImageFile != null) {
+        imageFile.write().bytes(tempImageFile.read().bytes());
+        tempImageFile.delete();
+      }
     }
   }
 
@@ -419,7 +420,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     var welcomeWidget = (WelcomeDashboardWidget) widget;
     if (StringUtils.isNotBlank(welcomeWidget.getImageLocation())) {
       ContentObjectValue tempImageFile = getWelcomeWidgetImage(true, welcomeWidget);
-      tempImageFile.delete();
+      if (tempImageFile != null) {
+        tempImageFile.delete();
+      }
     }
   }
 
