@@ -1639,6 +1639,7 @@ Labels:
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  Permissions: Permiso
   Task: Tarea
   TaskItemDetail: Detalles de la tarea
   TaskUser-Explain: Lista de usuario separados por coma
