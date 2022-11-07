@@ -1,0 +1,31 @@
+# Conversion log for project 'PortalKitTestHelper'
+# Convert Process files to latest version
+# Using Axon Ivy Designer version 11.1.0.2210170128
+# Created on 27.10.2022 16:36:26
+27.10.2022 16:36:26 : New Task  : Converting project PortalKitTestHelper.
+27.10.2022 16:36:26 : Info      : Log is stored in 'logs/process-migrate-to-10.0.0.log'
+27.10.2022 16:36:26 : New Task  : Convert process files to latest 10.0.0 version
+27.10.2022 16:36:26 : Info      : Convert process processes/Business Processes/PortalTestInit.p.json to latest version
+27.10.2022 16:36:26 : Info      : Convert process processes/Business Processes/createARangeOfTasks.p.json to latest version
+27.10.2022 16:36:26 : Info      : Convert process processes/Functional Processes/CaseHistoryCustomTaskFilterOverride.p.json to latest version
+27.10.2022 16:36:26 : Info      : Convert process processes/Functional Processes/TestDataProviderForPortalExpress.p.json to latest version
+27.10.2022 16:36:26 : Info      : Convert process processes/Start Processes/CleanData.p.json to latest version
+27.10.2022 16:36:26 : Info      : Convert process processes/Start Processes/DashboardCreation.p.json to latest version
+27.10.2022 16:36:26 : Info      : Convert process processes/Start Processes/DataCreation.p.json to latest version
+27.10.2022 16:36:26 : Info      : Convert process processes/Start Processes/GrantPermissions.p.json to latest version
+27.10.2022 16:36:27 : Info      : Convert process processes/Start Processes/Login.p.json to latest version
+27.10.2022 16:36:27 : Info      : Convert process processes/Start Processes/PasswordReset.p.json to latest version
+27.10.2022 16:36:27 : Info      : Convert process processes/Start Processes/PortalGlobalVariableHelper.p.json to latest version
+27.10.2022 16:36:27 : Info      : Convert process processes/Start Processes/PortalSettingHelper.p.json to latest version
+27.10.2022 16:36:27 : Info      : Convert process processes/Start Processes/UserGuide.p.json to latest version
+27.10.2022 16:36:27 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/showroom/multiapp/tasks/DestroyTaskPage/DestroyTaskPageProcess.p.json to latest version
+27.10.2022 16:36:27 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/test/Confirmation/ConfirmationProcess.p.json to latest version
+27.10.2022 16:36:27 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/test/CreateHiddenTasksAndCases/CreateHiddenTasksAndCasesProcess.p.json to latest version
+27.10.2022 16:36:27 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/test/CreateMultipleTestUsers/CreateMultipleTestUsersProcess.p.json to latest version
+27.10.2022 16:36:27 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/test/DataCreation/DataCreationProcess.p.json to latest version
+27.10.2022 16:36:27 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/test/DefaultDialog/DefaultDialogProcess.p.json to latest version
+27.10.2022 16:36:27 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/test/GrantOrDenySpecificPermission/GrantOrDenySpecificPermissionProcess.p.json to latest version
+27.10.2022 16:36:27 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/test/HideOrUnHideTaskCase/HideOrUnHideTaskCaseProcess.p.json to latest version
+27.10.2022 16:36:27 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/test/UserGuide/UserGuideProcess.p.json to latest version
+27.10.2022 16:36:27 : New Task  : Updated Processes to version 10.0.0.
+27.10.2022 16:36:27 : New Task  : Finished conversion of project PortalKitTestHelper.

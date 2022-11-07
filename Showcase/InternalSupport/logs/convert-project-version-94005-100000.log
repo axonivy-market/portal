@@ -1,0 +1,36 @@
+# Conversion log for project 'InternalSupport'
+# Convert project version from 94005 to 100000
+# Using Axon Ivy Designer version 11.1.0.2210170128
+# Created on 27.10.2022 16:36:25
+27.10.2022 16:36:25 : New Task  : Converting project InternalSupport.
+27.10.2022 16:36:25 : Info      : Log is stored in 'logs/convert-project-version-94005-100000.log'
+27.10.2022 16:36:25 : New Task  : Convert processes to format 10.0.0
+27.10.2022 16:36:25 : Info      : Migrating processes/Business Processes/testCaseMaps/testProcesses/ApproveLeave.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:25 : Info      : Migrating processes/Business Processes/testCaseMaps/testProcesses/CaseMapCreateLeaveRequest.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:25 : Info      : Migrating processes/Business Processes/testCaseMaps/testSideSteps/CancelApprovalRequest.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:25 : Info      : Migrating processes/Business Processes/testCaseMaps/testSideSteps/SubmitLeaveReason.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:25 : Info      : Migrating processes/Business Processes/testCaseMaps/testSideSteps/UploadAdditionalData.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:25 : Info      : Migrating processes/Business Processes/testProcesses/BusinessCases.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:25 : Info      : Migrating processes/Business Processes/testProcesses/CaseOwner.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:25 : Info      : Migrating processes/Business Processes/testProcesses/HiddenTask.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:25 : Info      : Migrating processes/Business Processes/testProcesses/RoleInvolved.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:25 : Info      : Migrating processes/Business Processes/testProcesses/TestStatisticWidget.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:25 : Info      : Migrating processes/Business Processes/testProcesses/TestTaskFlow.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:25 : Info      : Migrating processes/Functional Processes/BuildCaseQueryOverride.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:25 : Info      : Migrating processes/Start Processes/CreateUsersManually.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:25 : Info      : Migrating processes/Start Processes/InternalSupportPortalStart.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:26 : Info      : Migrating processes/Start Processes/RestorePortalDashboardToDefault.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:26 : Info      : Migrating src_hd/internalPortal/InternalPortalHome/InternalPortalHomeProcess.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:26 : Info      : Migrating src_hd/internalPortal/InternalPortalHomeNotRequiredLogin/InternalPortalHomeNotRequiredLoginProcess.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:26 : Info      : Migrating src_hd/internalPortal/PortalHome/PortalHomeProcess.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:26 : Info      : Migrating src_hd/internalPortal/TestStatisticWidgetPage/TestStatisticWidgetPageProcess.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:26 : Info      : Migrating src_hd/internaltest/ResponsiveUI/ResponsiveUIProcess.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:26 : Info      : Migrating src_hd/internaltest/TestPortalCustomErrorHandler/TestPortalCustomErrorHandlerProcess.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:26 : Info      : Migrating src_hd/internaltest/myInternalTestDialog/myInternalTestDialogProcess.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:26 : Info      : Migrating src_hd/internaltest/ui/CancelApprovalRequest/CancelApprovalRequestProcess.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:26 : Info      : Migrating src_hd/internaltest/ui/CustomLogin/CustomLoginProcess.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:26 : Info      : Migrating src_hd/internaltest/ui/NewLeaveRequest/NewLeaveRequestProcess.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:26 : Info      : Migrating src_hd/internaltest/ui/SaleDepartment/SaleDepartmentProcess.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:26 : Info      : Migrating src_hd/internaltest/ui/approveLeave/approveLeaveProcess.p.json from 10.0.0 to 10.0.0
+27.10.2022 16:36:26 : New Task  : Update project version to actual version 100000.
+27.10.2022 16:36:26 : New Task  : Finished conversion of project InternalSupport.

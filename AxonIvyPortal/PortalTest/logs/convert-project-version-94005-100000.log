@@ -1,0 +1,8 @@
+# Conversion log for project 'portalTest'
+# Convert project version from 94005 to 100000
+# Using Axon Ivy Designer version 11.1.0.2210170128
+# Created on 27.10.2022 16:36:28
+27.10.2022 16:36:28 : New Task  : Converting project portalTest.
+27.10.2022 16:36:28 : Info      : Log is stored in 'logs/convert-project-version-94005-100000.log'
+27.10.2022 16:36:28 : New Task  : Update project version to actual version 100000.
+27.10.2022 16:36:28 : New Task  : Finished conversion of project portalTest.

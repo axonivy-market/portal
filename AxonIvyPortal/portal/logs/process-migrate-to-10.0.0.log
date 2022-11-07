@@ -1,0 +1,249 @@
+# Conversion log for project 'portal'
+# Convert Process files to latest version
+# Using Axon Ivy Designer version 11.1.0.2210170128
+# Created on 27.10.2022 16:31:19
+27.10.2022 16:31:19 : New Task  : Converting project portal.
+27.10.2022 16:31:19 : Info      : Log is stored in 'logs/process-migrate-to-10.0.0.log'
+27.10.2022 16:31:19 : New Task  : Convert process files to latest 10.0.0 version
+27.10.2022 16:31:19 : Info      : Convert process processes/Business Processes/FindThirdPartyApplications.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Business Processes/PortalInit.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/AnalyzeStatistic.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/AssignRolesGroupChat.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/BuildCaseQuery.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/BuildTaskQuery.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/CalculateTaskDelegate.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/CaseHistoryCustomTaskFilter.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/ChangePassword.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/DefaultStatisticCustomField.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/DeleteDocument.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/DownloadDocument.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/ExportCaseToExcel.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/ExportTaskToExcel.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/GetDocumentList.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/GetGroupChatParams.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/GetGroupId.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/HideSystemCase.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/InitializeCaseDataModel.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/InitializeTaskDataModel.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/LoadSubMenuItems.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/Login.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/Logout.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/LogoutPage.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/Navigator.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/OpenPortalCaseDetailsHook.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/OpenPortalCases.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/OpenPortalSearch.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/OpenPortalTaskDetailsHook.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/OpenPortalTasks.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/ResetPassword.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/SendPasswordResetEmail.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/SetAdditonalCaseDetailPage.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/SetBusinessEntityId.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/SetGroupChatName.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/UploadDocument.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Functional Processes/UploadDocumentChecker.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Ivy Data Processes/AbsenceService.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Ivy Data Processes/CaseService.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Ivy Data Processes/EmailSettingService.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Ivy Data Processes/LanguageService.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Ivy Data Processes/PasswordService.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Ivy Data Processes/ProcessService.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Ivy Data Processes/SecurityService.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Ivy Data Processes/SideStepService.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Ivy Data Processes/SubstituteService.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Ivy Data Processes/TaskService.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/Start Processes/PortalStart.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process processes/SynchronizeDataProcesses/CleanUpObsoletedUserData.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/component/CaseInformation/CaseInformationProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/component/ProcessInformation/ProcessInformationProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/component/iframe/CaseInformationInIFrame/CaseInformationInIFrameProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/component/iframe/PortalCaseListInFrame/PortalCaseListInFrameProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/component/iframe/PortalTaskItemDetailsInIFrame/PortalTaskItemDetailsInIFrameProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/component/iframe/PortalTaskListInFrame/PortalTaskListInFrameProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/error/ErrorPage/ErrorPageProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/AdditionalCaseDetails/AdditionalCaseDetailsProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/ApplicationSelectionMenu/ApplicationSelectionMenuProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/CaseDocuments/CaseDocumentsProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/CaseNoteHistory/CaseNoteHistoryProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/ForgotPassword/ForgotPasswordProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/GlobalSearch/GlobalSearchProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/GlobalSearchLeftMenu/GlobalSearchLeftMenuProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/Login/LoginProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/PasswordReset/PasswordResetProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/PortalBreadcrumb/PortalBreadcrumbProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/PortalCaseDetails/PortalCaseDetailsProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/PortalCases/PortalCasesProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/PortalFinishTaskHandle/PortalFinishTaskHandleProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/PortalHome/PortalHomeProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/PortalTaskDetails/PortalTaskDetailsProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/PortalTasks/PortalTasksProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/PortalUrlCallback/PortalUrlCallbackProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/ProcessNavigator/ProcessNavigatorProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/ProcessViewer/ProcessViewerProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/Processes/ProcessesProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/SearchResults/SearchResultsProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/StatisticNavigator/StatisticNavigatorProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/TaskAnalysis/TaskAnalysisProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/TaskDocuments/TaskDocumentsProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/TaskListNavigator/TaskListNavigatorProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/TaskNoteHistory/TaskNoteHistoryProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/admin/PortalDashBoard/PortalDashBoardProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/PortalDashboard/PortalDashboardProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/PortalDashboardConfigurationProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/PortalDashboardDetailModification/PortalDashboardDetailModificationProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/component/CaseDashboardWidget/CaseDashboardWidgetProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/component/CaseWidget/CaseWidgetProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/component/CaseWidgetConfiguration/CaseWidgetConfigurationProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/component/ColumnManagement/ColumnManagementProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/component/CustomDashboardWidget/CustomDashboardWidgetProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/component/CustomWidgetConfiguration/CustomWidgetConfigurationProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/component/DashboardDetails/DashboardDetailsProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/component/DashboardModification/DashboardModificationProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/component/DashboardReorder/DashboardReorderProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/component/DashboardTemplateSelection/DashboardTemplateSelectionProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/component/ProcessCaseWidget/ProcessCaseWidgetProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/component/ProcessDashboardWidget/ProcessDashboardWidgetProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/component/ProcessTaskWidget/ProcessTaskWidgetProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/component/ProcessViewerWidget/ProcessViewerWidgetProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/component/ProcessViewerWidgetConfiguration/ProcessViewerWidgetConfigurationProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/component/ProcessWidget/ProcessWidgetProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/component/ProcessWidgetConfiguration/ProcessWidgetConfigurationProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/component/StatisticChartWidget/StatisticChartWidgetProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/component/StatisticChartWidgetConfiguration/StatisticChartWidgetConfigurationProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/component/TaskDashboardWidget/TaskDashboardWidgetProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/component/TaskWidget/TaskWidgetProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/component/TaskWidgetConfiguration/TaskWidgetConfigurationProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/component/WelcomeDashboardWidget/WelcomeDashboardWidgetProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/dashboard/component/WelcomeWidgetConfiguration/WelcomeWidgetConfigurationProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/generic/iframe/TaskTemplateIFrame/TaskTemplateIFrameProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/setting/AbsenceManagement/AbsenceManagementProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/setting/PortalManagement/PortalManagementProcess.p.json to latest version
+27.10.2022 16:31:19 : Info      : Convert process src_hd/ch/ivy/addon/portal/setting/UserProfile/UserProfileProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/LoginErrorPage/LoginErrorPageProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/PasswordResetErrorPage/PasswordResetErrorPageProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/admin/AdminSettings/AdminSettingsProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/ActionStep/ActionStepProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/CaseItem/CaseItemProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/CaseItemDescription/CaseItemDescriptionProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/CaseItemDetails/CaseItemDetailsProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/CaseItemDocument/CaseItemDocumentProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/CaseItemGeneralInformation/CaseItemGeneralInformationProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/CaseItemHistory/CaseItemHistoryProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/CaseItemRelatedCases/CaseItemRelatedCasesProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/CaseItemRelatedTask/CaseItemRelatedTaskProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/CaseItemRelatedTasks/CaseItemRelatedTasksProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/CaseListHeader/CaseListHeaderProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/CaseWidget/CaseWidgetProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/ColumnsConfiguration/ColumnsConfigurationProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/CompactProcessWidget/CompactProcessWidgetProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/CustomIFrameWidget/CustomIFrameWidgetProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/ExceptionDialog/ExceptionDialogProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/ExpressManagement/ExpressManagementProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/Filter/FilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/GlobalAjaxStatus/GlobalAjaxStatusProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/GuideOverlayPanel/GuideOverlayPanelProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/IconSelection/IconSelectionProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/PageFooter/PageFooterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/PageHeader/PageHeaderProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/PasswordValidation/PasswordValidationProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/ProcessWidget/ProcessWidgetProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/ProjectVersion/ProjectVersionProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/RoleManagement/RoleManagementProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/SecurityMemberDisplayName/SecurityMemberDisplayNameProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/SideStep/SideStepProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/StatisticWidget/StatisticWidgetProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/TaskAnalysisWidget/TaskAnalysisWidgetProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/TaskExpiryActivatorSelection/TaskExpiryActivatorSelectionProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/TaskItem/TaskItemProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/TaskItemDelegate/TaskItemDelegateProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/TaskItemDescription/TaskItemDescriptionProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/TaskItemDetails/TaskItemDetailsProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/TaskItemDocuments/TaskItemDocumentsProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/TaskItemGeneralInfo/TaskItemGeneralInfoProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/TaskItemNotes/TaskItemNotesProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/TaskItemWorkflowEvents/TaskItemWorkflowEventsProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/TaskWidget/TaskWidgetProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/UserFullnameDisplayText/UserFullnameDisplayTextProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/UserMenu/UserMenuProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/UserWithEnvironmentInfo/UserWithEnvironmentInfoProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/WarningBeforeLeavingTask/WarningBeforeLeavingTaskProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/WarningBeforeLostSession/WarningBeforeLostSessionProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/WelcomePortalDialog/WelcomePortalDialogProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/cases/column/CaseApplication/CaseApplicationProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/cases/column/CaseCategory/CaseCategoryProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/cases/column/CaseColumnHeader/CaseColumnHeaderProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/cases/column/CaseCreator/CaseCreatorProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/cases/column/CaseCustomField/CaseCustomFieldProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/cases/column/CaseDate/CaseDateProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/cases/column/CaseId/CaseIdProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/cases/column/CaseName/CaseNameProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/cases/column/CaseOwner/CaseOwnerProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/cases/column/CaseState/CaseStateProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/cases/filter/AdvancedFilter/AdvancedFilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/cases/filter/CaseApplicationFilter/CaseApplicationFilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/cases/filter/CaseCategoryFilter/CaseCategoryFilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/cases/filter/CaseCreationDateFilter/CaseCreationDateFilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/cases/filter/CaseCreatorFilter/CaseCreatorFilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/cases/filter/CaseDescriptionFilter/CaseDescriptionFilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/cases/filter/CaseFinishedDateFilter/CaseFinishedDateFilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/cases/filter/CaseIdFilter/CaseIdFilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/cases/filter/CaseNameFilter/CaseNameFilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/cases/filter/CaseOwnerFilter/CaseOwnerFilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/cases/filter/CaseStateFilter/CaseStateFilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/cases/filter/DefaultCaseFilters/DefaultCaseFiltersProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/dashboard/casewidget/CreatorFilterColumn/CreatorFilterColumnProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/dashboard/casewidget/OwnerFilterColumn/OwnerFilterColumnProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/dashboard/casewidget/StateFilterColumn/StateFilterColumnProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/dashboard/taskwidget/ActivatorFilterColumn/ActivatorFilterColumnProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/dashboard/taskwidget/PriorityFilterColumn/PriorityFilterColumnProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/dashboard/taskwidget/StateFilterColumn/StateFilterColumnProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/dashboard/widget/ApplicationFilterColumn/ApplicationFilterColumnProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/dashboard/widget/CategoryFilterColumn/CategoryFilterColumnProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/dashboard/widget/NumberFilterColumn/NumberFilterColumnProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/dashboard/widget/TextFilterColumn/TextFilterColumnProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/dashboard/widget/TimestampFilterColumn/TimestampFilterColumnProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/document/DocumentNameWithIcon/DocumentNameWithIconProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/process/ProcessGridItem/ProcessGridItemProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/process/ProcessItemAction/ProcessItemActionProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/statistic/ChartCreationWidget/ChartCreationWidgetProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/statistic/ChartInformationDialog/ChartInformationDialogProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/statistic/CustomField/CustomFieldProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/statistic/CustomVarField/CustomVarFieldProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/statistic/ElapsedTimeChartDetails/ElapsedTimeChartDetailsProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/statistic/StatisticDashboardWidget/StatisticDashboardWidgetProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/statistic/StatisticFilters/StatisticFiltersProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/column/TaskApplication/TaskApplicationProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/column/TaskCategory/TaskCategoryProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/column/TaskColumnHeader/TaskColumnHeaderProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/column/TaskCustomField/TaskCustomFieldProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/column/TaskDate/TaskDateProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/column/TaskId/TaskIdProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/column/TaskListHeader/TaskListHeaderProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/column/TaskName/TaskNameProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/column/TaskPriority/TaskPriorityProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/column/TaskResponsible/TaskResponsibleProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/column/TaskState/TaskStateProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/filter/AdvancedFilter/AdvancedFilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/filter/DefaultTaskFilters/DefaultTaskFiltersProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/filter/TaskApplicationFilter/TaskApplicationFilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/filter/TaskAvailableActivatorFilter/TaskAvailableActivatorFilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/filter/TaskCategoryFilter/TaskCategoryFilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/filter/TaskCompletedDateFilter/TaskCompletedDateFilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/filter/TaskCreationDateFilter/TaskCreationDateFilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/filter/TaskDescriptionFilter/TaskDescriptionFilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/filter/TaskExpiredDateFilter/TaskExpiredDateFilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/filter/TaskIdFilter/TaskIdFilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/filter/TaskNameFilter/TaskNameFilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/filter/TaskPriorityFilter/TaskPriorityFilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/filter/TaskResponsibleFilter/TaskResponsibleFilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/filter/TaskStateFilter/TaskStateFilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/component/task/filter/TaskWorkerFilter/TaskWorkerFilterProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/feature/WarnOnClosingBrowserTab/WarnOnClosingBrowserTabProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/multiapp/settings/LogoutSetting/LogoutSettingProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/multiapp/settings/PasswordSetting/PasswordSettingProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/singleapp/general/ForgotPassword/ForgotPasswordProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/singleapp/general/Login/LoginProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/singleapp/general/PasswordReset/PasswordResetProcess.p.json to latest version
+27.10.2022 16:31:20 : Info      : Convert process src_hd/ch/ivy/addon/portalkit/singleapp/general/SetLanguage/SetLanguageProcess.p.json to latest version
+27.10.2022 16:31:20 : New Task  : Updated Processes to version 10.0.0.
+27.10.2022 16:31:20 : New Task  : Finished conversion of project portal.
