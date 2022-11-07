@@ -85,7 +85,9 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
 
       // save the temporary image
       imageCMSObject = getWelcomeWidgetImageContentObject(true);
-      WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageCMSObject).write().bytes(file.getContent());
+      if (imageCMSObject != null) {
+        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageCMSObject).write().bytes(file.getContent());
+      }
     }
   }
 
