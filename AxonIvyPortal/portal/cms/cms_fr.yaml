@@ -110,6 +110,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CASE: Widget de cas
       CUSTOM: Widget personnalisé
       NEW: Nouveau widget
+      NEWS: Nouvelles
       PROCESS: Widget Processus
       PROCESS_VIEWER: Widget de visualisation des processus
       STATISTIC: Widget Statistiques
@@ -1515,6 +1516,26 @@ Dialogs:
               ShowBusinessDetails: Détails de l'entreprise
               caseNameNotAvailable: '[Nom de cas pas disponible]'
               defaultEmptyMessage: Il n'y a pas de dossiers
+  com:
+    axonivy:
+      portal:
+        dashboard:
+          component:
+            NewsWidget:
+              NewsContentPlaceHolder: Saisir le contenu de l'actualité
+              NewsContentValidateMessage: Un contenu d'actualité de {0} est requis
+              NewsTitlePlaceholder: Entrez le titre de la nouvelle
+              NewsTitleValidateMessage: Un titre d'actualité de {0} est requis
+              NoNewsAvailable: Il n'y a pas encore de nouvelles
+              Publish: Publier
+              RemoveNewsHeader: Supprimer les informations ?
+              SeeLess: voir moins
+              SeeMore: voir plus
+            NewsWidgetConfiguration:
+              AddNews: Ajouter une nouvelle
+              EditNews: Nouvelles d'édition
+              NewsContentMaxLengthMessage: Le contenu des actualités ne doit pas dépasser 1000 caractères
+              NewsWidgetDescription: Ce widget partage des informations pertinentes sous forme de fil d'actualité dans Axon Ivy.
   components:
     CaseDocument:
       FileDate: Modifié le
