@@ -104,9 +104,12 @@ public class CategoryColumnModel extends TaskColumnModel {
   }
 
   @JsonIgnore
-  public void updateCategoriesPath() {
-    setUserFilterList(CategoryUtils.getCategoryPaths(userSelectionCategoryNodes));
-    setFilterList(CategoryUtils.getCategoryPaths(selectionCategoryNodes));
+  public void updateCategoriesPath(boolean isConfigurationMode) {
+    if (isConfigurationMode) {
+      setFilterList(CategoryUtils.getCategoryPaths(selectionCategoryNodes));
+    } else {
+      setUserFilterList(CategoryUtils.getCategoryPaths(userSelectionCategoryNodes));
+    }
   }
 
   @JsonIgnore
