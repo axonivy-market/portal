@@ -15,6 +15,7 @@ import ch.ivy.addon.portalkit.ivydata.service.ILanguageService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.ListUtilities;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.language.LanguageConfigurator;
 import ch.ivyteam.ivy.language.LanguageManager;
 import ch.ivyteam.ivy.language.LanguageRepository;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -109,5 +110,9 @@ public class LanguageService implements ILanguageService {
                           .stream()
                           .sorted(Comparator.comparing(Locale::getDisplayName))
                           .collect(Collectors.toList());
+  }
+
+  public Locale getDefaultEmailLanguage() {
+    return new LanguageConfigurator(ISecurityContext.current()).content();
   }
 }

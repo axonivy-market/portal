@@ -1,12 +1,6 @@
 package ch.ivy.addon.portal.generic.bean;
 
-import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CASE;
-import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CUSTOM;
-import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS;
-import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS_VIEWER;
-import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.STATISTIC;
-import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.TASK;
-import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.WELCOME;
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.*;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.beans.PropertyChangeEvent;
@@ -31,6 +25,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.dto.UserDTO;
+import com.axonivy.portal.dto.News;
+import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -76,6 +72,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class DashboardDetailModificationBean extends DashboardBean implements Serializable, PropertyChangeListener {
 
   private static final long serialVersionUID = -5272278165636659596L;
+  private static final String DEFAULT_USER_FILTER_ID = "widget-configuration-form:new-widget-configuration-component:user-filter";
+  private static final String DEFAULT_WIDGET_TITLE_ID = "widget-configuration-form:new-widget-configuration-component:widget-title-group";
 
   private List<WidgetSample> samples;
   private String newWidgetHeader;
@@ -104,7 +102,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public void initSampleWidgets() {
     if (CollectionUtils.isEmpty(samples)) {
-      samples = List.of(taskSample(), caseSample(), processSample(), statisticSample(), customSample(), processViewerSample(), welcomeWidgetSample());
+      samples = List.of(taskSample(), caseSample(), processSample(), statisticSample(), customSample(),
+          processViewerSample(), welcomeWidgetSample(), newsSample());
     }
   }
 
@@ -161,6 +160,12 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         "welcome-widget-sample.png", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/WelcomeWidgetIntroduction"));
   }
 
+  private WidgetSample newsSample() {
+    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/NEWS"),
+        NEWS, News.DEFAULT_NEWS_ICON,
+        translate("/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/NewsWidgetDescription"), true);
+  }
+
   public void restore() {
     removeWelcomeWidgetImagesOfDashboard(getSelectedDashboard());
     selectedDashboardId = getSelectedDashboard().getId();
@@ -188,39 +193,44 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     this.newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader", Arrays.asList(EMPTY));
     switch (sample.getType()) {
       case CASE:
-        this.newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
+        newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
             Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/common/case")));
-        this.widget = getDefaultCaseDashboardWidget();
+        widget = getDefaultCaseDashboardWidget();
         break;
       case TASK:
-        this.newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
+        newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
             Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/common/tasks")));
-        this.widget = getDefaultTaskDashboardWidget();
+        widget = getDefaultTaskDashboardWidget();
         break;
       case PROCESS:
-        this.newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
+        newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
             Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/common/processes")));
-        this.widget = getDefaultProcessDashboardWidget();
+        widget = getDefaultProcessDashboardWidget();
         break;
       case CUSTOM:
-        this.newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
+        newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
             Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/statistic/timePeriod/custom")));
-        this.widget = getDefaultCustomDashboardWidget();
+        widget = getDefaultCustomDashboardWidget();
         break;
       case STATISTIC:
-        this.newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
+        newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
             Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticChartWidget")));
-        this.widget = getDefaultStatisticDashboardWidget();
+        widget = getDefaultStatisticDashboardWidget();
         break;
       case PROCESS_VIEWER:
-        this.newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
+        newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
             Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessViewerText")));
-        this.widget = getDefaultProcessViewerDashboardWidget();
+        widget = getDefaultProcessViewerDashboardWidget();
         break;
       case WELCOME:
-        this.newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
+        newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
             Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/Welcome")));
-        this.widget = getDefaultWelcomeDashboardWidget();
+        widget = getDefaultWelcomeDashboardWidget();
+        break;
+      case NEWS:
+        newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
+            Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/NEWS")));
+        widget = getDefaultNewsWidget();
         break;
       default:
         break;
@@ -285,20 +295,26 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   private CustomDashboardWidget getDefaultCustomDashboardWidget() {
-    String widgetId = DashboardWidgetUtils.generateNewWidgetId(DashboardWidgetType.CUSTOM);
+    String widgetId = DashboardWidgetUtils.generateNewWidgetId(CUSTOM);
     return CustomDashboardWidget.buildDefaultWidget(widgetId, StringUtils.EMPTY);
   }
 
   private ProcessViewerDashboardWidget getDefaultProcessViewerDashboardWidget() {
-    String widgetId = DashboardWidgetUtils.generateNewWidgetId(DashboardWidgetType.PROCESS_VIEWER);
+    String widgetId = DashboardWidgetUtils.generateNewWidgetId(PROCESS_VIEWER);
     String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcessViewer");
     return ProcessViewerDashboardWidget.buildDefaultWidget(widgetId, widgetName);
   }
 
   private WelcomeDashboardWidget getDefaultWelcomeDashboardWidget() {
-    String widgetId = DashboardWidgetUtils.generateNewWidgetId(DashboardWidgetType.WELCOME);
+    String widgetId = DashboardWidgetUtils.generateNewWidgetId(WELCOME);
     String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/YourWelcomeWidget");
     return WelcomeDashboardWidget.buildDefaultWidget(widgetId, widgetName);
+  }
+
+  private NewsDashboardWidget getDefaultNewsWidget() {
+    String widgetId = DashboardWidgetUtils.generateNewWidgetId(NEWS);
+    String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/NEWS");
+    return NewsDashboardWidget.buildDefaultWidget(widgetId, widgetName);
   }
 
   public void saveWidget() {
@@ -364,7 +380,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   public void onCancel(DashboardWidget widget) {
-    if (WELCOME.equals(widget.getType())) {
+    if (widget != null && WELCOME == widget.getType()) {
       removeTempImageOfWelcomeWidget(widget);
       WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
       ContentObject welcomeImage = getWelcomeWidgetImageObject(false, welcomeWidget);
@@ -740,5 +756,16 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   @Override
   public void propertyChange(PropertyChangeEvent event) {
     setWidget((DashboardWidget) event.getNewValue());
+  }
+
+  public String getComponentToProcessOnSave() {
+    var componentId = "@this";
+    if (getWidget() != null) {
+      componentId = DEFAULT_WIDGET_TITLE_ID;
+      if (NEWS != getWidget().getType()) {
+        componentId = componentId.concat(" ").concat(DEFAULT_USER_FILTER_ID);
+      }
+    }
+    return componentId;
   }
 }

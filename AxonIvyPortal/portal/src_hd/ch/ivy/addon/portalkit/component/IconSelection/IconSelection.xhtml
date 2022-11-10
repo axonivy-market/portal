@@ -8,18 +8,33 @@
     shortDescription="Value expression to bind selected Icon on" />
   <cc:attribute name="tabindex" required="false" default="1" />
   <cc:attribute name="isReadOnly" default="false" />
+  <cc:attribute name="hideChangeIconLink" default="false"/>
 </cc:interface>
 <cc:implementation>
+  <c:set var="tabindex" value="#{cc.attrs.tabindex}"/>
+  <c:set var="readOnly" value="#{empty cc.attrs.isReadOnly ? false : cc.attrs.isReadOnly}"/>
+  <c:set var="hideChangeIconLink" value="#{empty cc.attrs.hideChangeIconLink ? false : cc.attrs.hideChangeIconLink}"/>
   <f:event listener="#{iconSelectionBean.init(cc.attrs.value)}" type="preRenderComponent" />
 
   <h:panelGroup id="awesome-icon-selection" styleClass="awesome-icon-selection-panel">
-    <h:outputText id="awesome-icon-display" styleClass="#{iconSelectionBean.iconPattern} #{cc.attrs.value} u-vertical-align-center" />
-    <p:spacer width="7px" />
+    <h:panelGroup rendered="#{!hideChangeIconLink}">
+      <h:outputText id="awesome-icon-display" styleClass="#{iconSelectionBean.iconPattern} #{cc.attrs.value} u-vertical-align-center" />
+      <p:spacer width="7px" />
+      <p:commandLink id="change-icon-link" styleClass="select-awesome-icon-button" tabindex="#{tabindex}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/change')}" process="@this"
+        onclick="PF('#{cc.clientId}-select-icon-dialog').show();" oncomplete="loadStreamlineIcon('#{cc.clientId}-select-icon-dialog');"
+        rendered="#{!readOnly}" />
+    </h:panelGroup>
+    <h:panelGroup rendered="#{hideChangeIconLink}">
+      <p:commandLink id="icon-link" tabindex="#{tabindex}"
+        styleClass="select-icon-link"
+        process="@this" disabled="#{readOnly}"
+        onclick="PF('#{cc.clientId}-select-icon-dialog').show();"
+        oncomplete="loadStreamlineIcon('#{cc.clientId}-select-icon-dialog');">
+        <h:outputText id="selection-icon-display" styleClass="#{iconSelectionBean.iconPattern} #{cc.attrs.value} u-vertical-align-center" />
+      </p:commandLink>
+    </h:panelGroup>
     <p:inputText type="hidden" id="awesome-icon-hidden-value" value="#{cc.attrs.value}" />
-    <p:commandLink id="change-icon-link" styleClass="select-awesome-icon-button" tabindex="#{cc.attrs.tabindex}"
-      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/change')}" process="@this"
-      onclick="PF('#{cc.clientId}-select-icon-dialog').show();" oncomplete="loadStreamlineIcon('#{cc.clientId}-select-icon-dialog');"
-      rendered="#{empty cc.attrs.isReadOnly or !cc.attrs.isReadOnly}" />
   </h:panelGroup>
   
   <p:dialog id="select-icon-dialog" widgetVar="#{cc.clientId}-select-icon-dialog" styleClass="select-icon-dialog"
@@ -50,12 +65,22 @@
   <script>
     function updateSelectedIConDisplay(iconCode, type) {
       var iconDisplayJQ = $(PrimeFaces.escapeClientId("#{cc.clientId}:awesome-icon-display"));
+      updateIconDisplay(iconDisplayJQ, iconCode, type);
+      var iconDisplayForLink = $(PrimeFaces.escapeClientId("#{cc.clientId}:selection-icon-display"));
+      updateIconDisplay(iconDisplayForLink, iconCode, type);
+
+      var iconHiddenValueJQ = $(PrimeFaces.escapeClientId("#{cc.clientId}:awesome-icon-hidden-value"));
+      iconHiddenValueJQ.val(iconCode);
+    }
+    
+    function updateIconDisplay(iconDisplayJQ, iconCode, type) {
+      if (iconDisplayJQ === undefined || iconDisplayJQ.length == 0) {
+        return;
+      }
       iconDisplayJQ.removeClass();
       iconDisplayJQ.toggleClass(type === "awesome" ? "fa fa-2x" : "si si-xl");
       iconDisplayJQ.toggleClass("u-vertical-align-center");
       iconDisplayJQ.addClass(iconCode);
-      var iconHiddenValueJQ = $(PrimeFaces.escapeClientId("#{cc.clientId}:awesome-icon-hidden-value"));
-      iconHiddenValueJQ.val(iconCode);
     }
     
     function loadStreamlineIcon(selectionIconDialog) {
