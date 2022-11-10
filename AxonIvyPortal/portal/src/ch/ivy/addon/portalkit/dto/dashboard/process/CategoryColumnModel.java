@@ -74,9 +74,12 @@ public class CategoryColumnModel extends ProcessColumnModel implements Serializa
   }
 
   @JsonIgnore
-  public void updateCategoriesPath() {
-    setUserFilterList(CategoryUtils.getCategoryPaths(userSelectionCategoryNodes));
-    setFilterList(CategoryUtils.getCategoryPaths(selectionCategoryNodes));
+  public void updateCategoriesPath(boolean isConfigurationMode) {
+    if (isConfigurationMode) {
+      setFilterList(CategoryUtils.getCategoryPaths(selectionCategoryNodes));
+    } else {
+      setUserFilterList(CategoryUtils.getCategoryPaths(userSelectionCategoryNodes));
+    }
     updatePortalCompactProcesses();
   }
 
