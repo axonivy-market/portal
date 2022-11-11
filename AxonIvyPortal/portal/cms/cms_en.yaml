@@ -791,6 +791,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PleaseSelectChart: Please select a chart
       PreviewText: Please select a chart to see the canvas data
     WelcomeWidgetIntroduction: This widget displays a welcome text and image on dashboard.
+    WelcomeWidgetNotFoundMessage: We cannot find the image of widget, please reconfigure your image!
     WidgetFilterName: Widget filter name
     WidgetFilters: Widget filters
     YourWelcomeWidget: Your Welcome Widget
@@ -895,6 +896,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processes:
       emptyProcess: You have not defined any processes.
       noMatchingProcess: No matching processes.
+      noPermissionToSee: You do not have the necessary permission to see this widget.
       noProcessSelected: Please select a process
     removeWidgetHeader: Remove the "{0}" widget
     removeWidgetMessage: Do you really want to remove it?
@@ -1077,12 +1079,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     noFavoriteProcess: You have not defined any favorites.
     noProcess: There are no processes.
     noProcesses: There are no processes.
+    private: Private
     processFilterPlaceHolder: Name, Description, Category
     processName: Process name
     processStartLink: Process start link
     processType: Process type
     remove: Remove
+    rolePermissionsRequiredMessage: Permissions have to be set
     seeAllProcesses: Show all processes
+    selectRoles: Select roles
     sortByName: Sort by name
     specialCharacterGroup: Special Characters
     startLink: Start link
@@ -1635,6 +1640,7 @@ Labels:
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  Permissions: Permissions
   Task: Task
   TaskItemDetail: Task Details
   TaskUser-Explain: Comma separated list of users

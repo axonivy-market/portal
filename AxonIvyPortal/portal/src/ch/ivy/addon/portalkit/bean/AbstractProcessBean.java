@@ -72,7 +72,9 @@ public abstract class AbstractProcessBean implements Serializable {
   }
 
   protected List<Process> findExternalLink() {
-    List<ExternalLink> externalLinks = ExternalLinkService.getInstance().findAll();
+    List<ExternalLink> privateExternalLinks = ExternalLinkService.getInstance().getPrivateConfig();
+    List<ExternalLink> externalLinks = new ArrayList<>(privateExternalLinks);
+    externalLinks.addAll(ExternalLinkService.getInstance().filterPublicExternalLinksForIvySessionUser());
     List<Process> defaultPortalProcesses = new ArrayList<>();
     externalLinks.forEach(externalLink -> defaultPortalProcesses.add(new ExternalLinkProcessItem(externalLink)));
     return defaultPortalProcesses;
@@ -123,7 +125,10 @@ public abstract class AbstractProcessBean implements Serializable {
   }
 
   public String getDisplayProcessCategory(Process process) {
-    String categoryFullPath = process.getCategory();
+    if (Objects.isNull(process) || Objects.isNull(process.getCategory())) {
+      return "";
+    }
+    String categoryFullPath = process.getCategory().getName();
     String[] arrayOfCategoyPaths = categoryFullPath.split(SLASH);
     int lengthOfCategoryPaths = arrayOfCategoyPaths.length;
     return lengthOfCategoryPaths > 0 ? arrayOfCategoyPaths[lengthOfCategoryPaths - 1] : StringUtils.EMPTY;

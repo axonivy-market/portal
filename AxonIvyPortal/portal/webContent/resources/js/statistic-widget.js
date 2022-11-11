@@ -389,7 +389,7 @@ function donutChartExtender(context, datalabelsColor, dataColor) {
           display: true,
           labels: {
             filter: donutChartLegendLabelsFilter,
-            color: chartDefaultLegendColor
+            color: getColor('--chart-default-legend-color')
           }
         },
         datalabels: {

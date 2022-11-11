@@ -1,10 +1,13 @@
 package ch.ivy.addon.portalkit.bo;
 
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.ProcessType;
+import ch.ivyteam.ivy.workflow.category.Category;
 
 /*
  * Used for merging external link and ivy process into a process list
@@ -60,8 +63,8 @@ public class ExternalLinkProcessItem implements Process {
   }
 
   @Override
-  public String getCategory() {
-    return StringUtils.EMPTY;
+  public Category getCategory() {
+    return null;
   }
   
   @Override
@@ -72,6 +75,11 @@ public class ExternalLinkProcessItem implements Process {
   @Override
   public String getDefaultImageSrc() {
     return StringUtils.EMPTY;
+  }
+
+  @Override
+  public List<String> getPermissions() {
+    return externalLink.getPermissions();
   }
 
   @Override

@@ -18,7 +18,7 @@
 
   <p:remoteCommand id="rcLoadProcessFirstTime" autoRun="true" update="dashboard-processes-container" global="false" async="true" process="@this"
     oncomplete="loadWidgetFirstTime('js-loading-#{widget.id}', 'js-dashboard-processes-container-#{widget.id}'); #{cc.attrs.onLoadProcessComplete}; respondProcessWidget('#{displayMode}')"
-    actionListener="#{widget.buildProcessDataFirstTime()}" />
+    actionListener="#{widget.buildProcessDataFirstTime(cc.attrs.isInConfiguration)}" />
 
   <div class="ui-g widget-height-100 #{displayMode eq 'COMBINED_MODE' ? 'widget-overflow-auto' : ''} #{displayMode eq 'IMAGE_MODE' ? 'image-process-container' : ''}">
     <h:outputText id="loading" styleClass="js-loading-#{widget.id} ui-g-12 #{displayMode eq 'COMPACT_MODE' ? '':'MarLeft10 MarTop20'}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}" />
@@ -81,8 +81,12 @@
           <p:tooltip for="empty-process-delete-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}"
             trackMouse="true" hideEvent="mouseleave click" />
         </h:panelGroup>
-        <h:panelGroup styleClass="process-dashboard-widget__empty-process-message" layout="block">
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/emptyProcess')}"/>
+
+        <h:panelGroup styleClass="process-dashboard-widget__empty-process empty-message-container" layout="block">
+          <i class="#{widget.hasPermissionToSee ? 'si si-alert-circle' : 'si si-lock-1'} empty-message-icon" />
+          <br />
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noPermissionToSee')}" rendered="#{not widget.hasPermissionToSee}" styleClass="empty-message-text" />
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/emptyProcess')}" rendered="#{widget.hasPermissionToSee}" styleClass="empty-message-text" />
         </h:panelGroup>
       </h:panelGroup>
 

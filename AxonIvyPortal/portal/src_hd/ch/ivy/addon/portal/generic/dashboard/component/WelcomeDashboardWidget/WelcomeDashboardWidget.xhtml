@@ -49,11 +49,18 @@
       <p:graphicImage id="default-image-dark" cache="true" styleClass="welcome-image default-welcome-image-dark js-welcome-image #{widget.imageStyleClass}"
         library="ivy-cms" rendered="#{empty widget.imageLocation}" name="#{dashboardWelcomeWidgetBean.defaultImageDarkLink}" />
 
-      <p:graphicImage id="welcome-image" styleClass="welcome-image js-welcome-image #{widget.imageStyleClass}"
-        rendered="#{not empty widget.imageLocation}" />
-      <h:form>
-        <h:inputHidden id="welcome-image-hidden" value="#{dashboardWelcomeWidgetBean.renderImage()}" rendered="#{not empty widget.imageLocation}" />
-      </h:form>
+      <h:panelGroup rendered="#{not empty widget.imageLocation}">
+        <p:graphicImage id="welcome-image" styleClass="welcome-image js-welcome-image #{widget.imageStyleClass}"
+          library="ivy-cms"
+          rendered="#{widget.imageContentObject.exists()}"
+          name="#{widget.imageContentObject.uri()}"/>
+        <h:panelGroup id="not-found-welcome-image" styleClass="empty-message-container w-full" layout="block"
+            rendered="#{!widget.imageContentObject.exists()}">
+          <i class="si si-alert-circle empty-message-icon"/>
+          <br/>
+          <h:outputText styleClass="empty-message-text" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/WelcomeWidgetNotFoundMessage')}" />
+        </h:panelGroup>
+      </h:panelGroup>
     </div>
     <p:remoteCommand id="update-welcome-text-#{widget.id}-rc" name="updateWelcomeText_#{widget.id}" update="welcome-text" process="@this" async="true"
       actionListener="#{dashboardWelcomeWidgetBean.updateWelcomeText(widget)}"

@@ -173,8 +173,6 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     }
     var panelId = String.format("form:selected-form-elements-%s-panel", position);
     waitForElementDisplayed(By.id(panelId), true);
-    // this click to fix bug can't drag on IE
-    clickByCssSelector(formElementSelector);
     WebElement panel = findElementById(panelId);
     Actions builder = new Actions(driver);
     Action moveProcessSequence = builder.dragAndDrop(findElementByCssSelector(formElementSelector), panel).build();
