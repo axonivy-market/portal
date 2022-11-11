@@ -26,7 +26,11 @@ The following default widgets are available:
 
 #. **Process viewer widget**: This widget provides a visual representation of the process flow.
 
-   |process-viewer-widget|
+#. **Statistic chart widget**: This widget provides graphical display of statistical data.
+
+#. **Welcome widget**: This widget greets the user based on the local time and enables a friendlier approach.
+
+#. **News feed widget**: This widget shares relevant information as News Feed into Axon Ivy.
 
 In addition, a developer can provide custom widgets to add relevant project information to your dashboard.
 
@@ -176,7 +180,13 @@ Process viewer widget
 
 You can define the widget name and process to be displayed.
 
-|process-viewer-widget-configuration|
+- Configuration a widget
+
+  |process-viewer-widget-configuration|
+
+- Output sample
+
+  |process-viewer-widget|
 
 Welcome widget
 ==============
@@ -184,6 +194,47 @@ Welcome widget
 You can define a welcome widget with a background image and a welcome text.
 
 |welcome-widget-configuration|
+
+
+News feed widget
+================
+
+You can define a news feed widget to display all news entries to the user
+
+- Configuration the widget
+
+  |news-feed-widget-configuration|
+
+- After done for adding a new widget, we have a news feed
+
+  |news-feed-widget|
+
+**Manage news feeds content**
+
+.. note:: The user must have certain permission that as ``NewsManagement`` permission.
+
+If the user has permission, then the user can:
+
+- **Add the news**:  add a new entry for the news feed by clicking :guilabel:`Add News`: button.
+
+- **Edit a news**: edit an existing entry for the list by clicking on the |edit-icon| icon in the lower right corner of each entry.
+
+- **Delete a news**: delete entry directly from the list, by clicking on the |trash-icon| icon in the lower right corner of each entry.
+
+The :guilabel:`Manage News` dialog.
+
+|news-feed-widget-manage-content|
+
+In manage news, user can:
+
+#. The user should be able to create one entry in multiple languages, so when creating the entry, the user can switch between the available languages with a click on the tab view header.
+
+#. The user can choose an icon for news by clicking directly on the icon, the :guilabel:`Icon browser` will be shown to you to select the new one.
+
+#. Also, the user can define news title, which is limited the length to 200 character.
+
+#. And user can provide a news content, that is the main information for the newsfeed. The content is an editor, so it's limitted the length and it is 1000 character.
+
 
 .. include:: ../includes/_common-icon.rst  
 
@@ -209,3 +260,6 @@ You can define a welcome widget with a background image and a welcome text.
 .. |process-viewer-widget| image:: ../../screenshots/new-dashboard/process-viewer-widget.png
 .. |process-viewer-widget-configuration| image:: ../../screenshots/new-dashboard/process-viewer-widget-configuration.png
 .. |welcome-widget-configuration| image:: ../../screenshots/new-dashboard/welcome-widget-configuration.png
+.. |news-feed-widget-configuration| image:: ../../screenshots/new-dashboard/news-feed-widget-configuration.png
+.. |news-feed-widget| image:: ../../screenshots/new-dashboard/news-feed-widget.png
+.. |news-feed-widget-manage-content| image:: ../../screenshots/new-dashboard/news-feed-widget-manage-content.png
