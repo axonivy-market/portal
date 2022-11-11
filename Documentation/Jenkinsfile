@@ -30,7 +30,7 @@ pipeline {
             docker.image('maven:3.6.3-openjdk-17-slim').inside {
               def phase = env.BRANCH_NAME.contains('SNAPSHOT') ? 'install' : 'deploy'
 			  echo "phase is $phase"
-              maven cmd: 'clean deploy -f Documentation/pom.xml'
+              maven cmd: 'clean deploy -X -f Documentation/pom.xml'
             }
           }
         }
