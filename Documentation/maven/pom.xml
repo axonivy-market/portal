@@ -10,7 +10,7 @@
         <revision>11.1.0-m233</revision>
     </properties>
 
-    <distributionManagement>
+    <!--distributionManagement>
       <repository>
         <id>nexus.axonivy.com</id>
         <url>https://nexus.axonivy.com/repository/maven-releases/</url>
@@ -19,8 +19,14 @@
         <id>nexus.axonivy.com</id>
         <url>https://nexus.axonivy.com/repository/maven-snapshots/</url>
       </snapshotRepository>
-    </distributionManagement>
-
+    </distributionManagement-->
+  <distributionManagement>
+    <repository>
+      <id>central</id>
+      <name>repo.axonivy.io</name>
+      <url>https://repo.axonivy.io/artifactory/ext-release-local</url>
+    </repository>
+  </distributionManagement>
     <build>
         <plugins>
             <plugin>
