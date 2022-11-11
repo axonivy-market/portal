@@ -23,6 +23,7 @@ Available widgets of Portal dashboard are:
 - Custom widget
 - Process viewer widget
 - Welcome widget
+- News feed widget
 
 You can predefine Portal dashboards, and details of each widget
 by configuring variable **Portal.Dashboard**.
@@ -132,6 +133,7 @@ They will help you understand how to configure the widget efficiency.
    new-dashboard-custom-widget
    new-dashboard-process-viewer-widget
    new-dashboard-welcome-widget
+   dashboard-newsfeed-widget
 
 .. tip:: 
    To get an understanding of the JSON structure of the custom dashboard,
