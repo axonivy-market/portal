@@ -1,5 +1,7 @@
 pipeline {
-  agent {label 'linux'}
+  agent {
+    label 'linux'
+  }
 
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '2'))
@@ -17,8 +19,8 @@ pipeline {
           docker.withRegistry('', 'docker.io') {
             docker.image('maven:3.6.3-openjdk-17-slim').inside {
               version = getCurrentVersion()
-              sh 'mvn clean process-resources -Divy.engine.version=[11.1.0,] -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip -f Documentation/public-api/pom.xml'
-              sh 'mvn clean generate-resources -f Documentation/pom.xml'
+              maven cmd: 'clean process-resources -Divy.engine.version=[11.1.0,] -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip -f Documentation/public-api/pom.xml'
+              maven cmd: 'clean generate-resources -f Documentation/pom.xml'
             }
             
             docker.image('axonivy/build-container:read-the-docs-2').inside {
@@ -26,8 +28,9 @@ pipeline {
             }
 
             docker.image('maven:3.6.3-openjdk-17-slim').inside {
-              def phase = env.BRANCH_NAME == 'master' ? 'deploy' : 'install'
-              sh 'mvn clean ${phase} -f Documentation/pom.xml'
+              def phase = env.BRANCH_NAME.contains('SNAPSHOT') ? 'install' : 'deploy'
+			  echo "phase is $phase"
+              maven cmd: 'clean deploy -f Documentation/pom.xml'
             }
           }
         }
