@@ -27,7 +27,7 @@
 }
 
 .dashboard-card.new-widget {
-  outline: 3px solid var(--accent-color);
+  outline: 3px solid var(--ivy-primary-light-color);
 }
 
 .ui-draggable:not(.ui-draggable-disabled)>.ui-draggable-handle {
@@ -152,6 +152,17 @@
   height: auto;
   max-height: calc(100% - 44px);
   width:100%;
+}
+
+.table-widget-panel.task-dashboard-widget__panel .widget__content,
+.table-widget-panel.case-dashboard-widget__panel .widget__content {
+  padding: 0;
+}
+
+.case-dashboard-widget__loading-message,
+.task-dashboard-widget__loading-message,
+.process-dashboard-widget__empty-process-message {
+  padding: 20px;
 }
 
 /* CSS specific to iOS devices */
@@ -306,6 +317,10 @@ td.dashboard-cases__name span {
   width: 450px;
   margin-right: 20px;
   padding: 20px
+}
+
+.widget-configuration.card.custom-widget-configuration  {
+  width: 600px;
 }
 
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
@@ -657,11 +672,6 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
     min-width: 120px;
     width: auto;
     max-width: 100%;
-  }
-  
-  .dashboard-cases__actions,
-  .dashboard-tasks__actions {
-    border-right: 1px solid #d8d8d8 !important;
   }
 }
 
@@ -1078,7 +1088,12 @@ span.new-widget-dialog__icon.si {
   display: none;
 }
 
-.widget-configuration.card.custom-widget-configuration,
+.widget-configuration.card.custom-widget-configuration {
+  margin-right: 0;
+  flex-grow: 1;
+  max-width: 650px;
+}
+
 .widget-configuration.card.process-viewer-widget-configuration {
   margin-right: 0;
   flex-grow: 1;
@@ -1092,6 +1107,24 @@ span.new-widget-dialog__icon.si {
 .custom-widget-panel,
 .process-viewer-widget-panel {
   height: 100%;
+}
+
+.custom-widget-panel.no-header .widget__content {
+  height: 100%;
+  max-height: 100%;
+  padding: 0;
+}
+
+.dashboard-widget-panel-container:hover .expand-link.widget-no-header,
+.expand-fullscreen .dashboard-widget-panel-container:hover .collapse-link.widget-no-header {
+  visibility: visible;
+}
+
+.expand-fullscreen .ui-widget.collapse-link.widget-no-header, .expand-link.widget-no-header {
+  position: absolute;
+  visibility: hidden;
+  top: 14px;
+  right: 20px;
 }
 
 .custom-widget-panel .widget__content {
@@ -1240,9 +1273,10 @@ span.new-widget-dialog__icon.si {
   position: absolute;
   font-size: 2rem;
   color: black;
-  padding: 1.5rem;
+  padding: 2rem;
   line-height: 2rem;
   cursor: default;
+  opacity: 0.8;
 }
 
 .welcome-text.preview-text {
@@ -1273,34 +1307,23 @@ span.new-widget-dialog__icon.si {
 
 .welcome-text-container {
   position: relative;
-}
-
-.stretch-image .welcome-text-container {
-  height: 100%;
-  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .welcome-text-container .welcome-image {
-  width: inherit;
-  width: -webkit-fill-available;
+  object-fit: cover;
+  flex: auto;
 }
 
-.stretch-image .welcome-widget-panel {
-  height: 100%;
+.layout-topbar-light .welcome-text-container .default-welcome-image,
+.layout-topbar-dark .welcome-text-container .default-welcome-image-dark {
+  display: block;
 }
 
-.stretch-image .welcome-text-container .welcome-image {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-height: 100%;
-  min-width: 100%;
-  transform: translate(-50%, -50%);
-  width: auto;
-}
-
-.stretch-image .welcome-text-container .welcome-text {
-  z-index: 1;
+.layout-topbar-dark .welcome-text-container .default-welcome-image,
+.layout-topbar-light .welcome-text-container .default-welcome-image-dark {
+  display: none;
 }
 
 .welcome-text-size-options-panel {

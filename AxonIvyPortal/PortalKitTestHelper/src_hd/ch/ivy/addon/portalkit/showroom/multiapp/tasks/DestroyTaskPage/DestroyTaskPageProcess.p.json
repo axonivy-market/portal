@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "1559AE0A76284C44",
-  "data" : "ch.ivy.addon.portalkit.showroom.multiapp.tasks.DestroyTaskPage.DestroyTaskPageData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portalkit.showroom.multiapp.tasks.DestroyTaskPage.DestroyTaskPageData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

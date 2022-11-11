@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "163051859F226598",
-  "data" : "ch.ivy.gawfs.workflowExecution.FinalReviewForm.FinalReviewFormData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.gawfs.workflowExecution.FinalReviewForm.FinalReviewFormData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

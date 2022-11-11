@@ -3,6 +3,8 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.$;
 
+import java.time.Duration;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.JavascriptExecutor;
@@ -13,7 +15,8 @@ import com.codeborne.selenide.WebDriverRunner;
 public abstract class AbstractPage {
   
   protected final Log log;
-  protected static final long DEFAULT_TIMEOUT = 45000;
+//  protected static final long DEFAULT_TIMEOUT = 45000;
+  protected static final Duration DEFAULT_TIMEOUT= Duration.ofSeconds(45);
 
   /**
    * This abstract method is used to determine identity of a page.
@@ -29,7 +32,7 @@ public abstract class AbstractPage {
   }
 
   public void waitPageLoaded() {
-    $(getLoadedLocator()).waitUntil(appear, DEFAULT_TIMEOUT);
+    $(getLoadedLocator()).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   /**

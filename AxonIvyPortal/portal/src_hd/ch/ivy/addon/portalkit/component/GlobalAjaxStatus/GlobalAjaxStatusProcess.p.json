@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "1511EBF05C5FCFDA",
-  "data" : "ch.ivy.addon.portalkit.component.GlobalAjaxStatus.GlobalAjaxStatusData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portalkit.component.GlobalAjaxStatus.GlobalAjaxStatusData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

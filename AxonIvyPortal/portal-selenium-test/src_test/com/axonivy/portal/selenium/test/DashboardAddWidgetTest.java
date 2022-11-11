@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.test;
 
+import static com.codeborne.selenide.CollectionCondition.size;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +39,7 @@ public class DashboardAddWidgetTest extends BaseTest {
     newCaseWidget.changeWidgetTitle("Your New Cases");
     newCaseWidget.save();
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget("Your New Cases");
-    caseWidget.expand().shouldHaveSize(1);
+    caseWidget.expand().shouldHave(size(1));
   }
   
   @Test
@@ -49,7 +51,7 @@ public class DashboardAddWidgetTest extends BaseTest {
     newTaskWidget.changeWidgetTitle("Your New Tasks");
     newTaskWidget.save();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget("Your New Tasks");
-    taskWidget.expand().shouldHaveSize(1);
+    taskWidget.expand().shouldHave(size(1));
   }
 
   @Test

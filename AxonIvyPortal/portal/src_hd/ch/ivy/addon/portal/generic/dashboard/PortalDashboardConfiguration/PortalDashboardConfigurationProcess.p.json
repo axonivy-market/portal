@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "181CCBB78267AA7C",
-  "data" : "ch.ivy.addon.portal.generic.dashboard.PortalDashboardConfiguration.PortalDashboardConfigurationData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portal.generic.dashboard.PortalDashboardConfiguration.PortalDashboardConfigurationData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

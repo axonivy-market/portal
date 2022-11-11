@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "181893C96BAB1893",
-  "data" : "com.axonivy.portal.components.examples.DocumentTableExample.DocumentTableExampleData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.portal.components.examples.DocumentTableExample.DocumentTableExampleData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

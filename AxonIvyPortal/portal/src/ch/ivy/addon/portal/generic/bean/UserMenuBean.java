@@ -97,8 +97,12 @@ public class UserMenuBean implements Serializable {
   }
 
   public boolean isHiddenChangePassword() {
-    return Boolean
+    return loggedByExternalSecuritySystem() || Boolean
         .parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON));
+  }
+  
+  private boolean loggedByExternalSecuritySystem() {
+	  return Ivy.session().getSessionUser() != null && Ivy.session().getSessionUser().getExternalId() != null;
   }
 
   public boolean isHiddenStatisticWidget() {

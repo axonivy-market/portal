@@ -38,7 +38,7 @@ function Notifier() {
       moreDetailsLink.attr('href', '#');
       moreDetailsLink.addClass('notification-content-action-more-details');
       moreDetailsLink.click(function() {
-        PF('exception-dialog').show();
+        onShowMoreExceptionDialog();
       });
 
       var notificationContentAction = $(document.createElement('div'));

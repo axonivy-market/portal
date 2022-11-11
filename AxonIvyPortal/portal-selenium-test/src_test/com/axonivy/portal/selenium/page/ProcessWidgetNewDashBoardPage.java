@@ -37,7 +37,7 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void startProcessByName(String processName) {
-    var startProcess = $(processWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$$("span.process-start-list-item").filter(text(processName))
+    var startProcess = $(processWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("span.process-start-list-item").filter(text(processName))
         .first().$("a");
     waitUntilElementToBeClickable(startProcess);
     startProcess.click();
@@ -45,7 +45,7 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
   
   public void deleteProcessWidget() {
     $$("div.table-widget-panel div.widget__header").filter(text(processWidgetName)).first()
-        .waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='delete-widget']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='delete-widget']")
         .shouldBe(getClickableCondition()).click();
   }
 }

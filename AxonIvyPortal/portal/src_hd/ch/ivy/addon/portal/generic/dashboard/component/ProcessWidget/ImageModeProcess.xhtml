@@ -18,6 +18,7 @@
             actionListenerOnDeleteProcess="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
             onCompleteDeleteProcess="PF('remove-widget-dialog').show()"
             componentToUpdateOnDeleteProcess="remove-widget-dialog"
+            outlinedButtonStyle="false"
             hideActionButton="#{isInConfiguration}"/>
         </h:form>
         <p:graphicImage styleClass="image-process-item-image" rendered="#{not empty process.defaultImageSrc}" value="#{process.defaultImageSrc}" />
@@ -35,7 +36,7 @@
             </div>
           </div>
         </div>
-        <p:tooltip for="process-item-name" value="#{process.getName()}" position="top" trackMouse="true" hideEvent="mouseleave click" />
+        <p:tooltip for="process-item-name" value="#{process.getName()}" position="top" trackMouse="true" hideEvent="mouseleave click" styleClass="process-tooltip"/>
       </div>
 
      <h:form id="process-item" target="#{dashboardProcessBean.targetToStartProcess(process)}" styleClass="image-view-form #{isExpress ? 'is-express' : ''} #{isExternalLink ? 'is-external-link' : ''}">
@@ -43,7 +44,7 @@
           <h:outputText id="process-description" value="#{not empty process.description ? process.description : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noProcessDescription')}"
             styleClass="process-item-description js-process-item-description line-clamp-text-3" />
           <p:tooltip id="info-workflow-tooltip" for="process-description" value="#{process.description}" position="top" trackMouse="true" hideEvent="mouseleave click"
-            styleClass="js-process-start-list-item-description" />
+            styleClass="js-process-start-list-item-description process-tooltip" />
         </div>
 
         <!-- Start process -->

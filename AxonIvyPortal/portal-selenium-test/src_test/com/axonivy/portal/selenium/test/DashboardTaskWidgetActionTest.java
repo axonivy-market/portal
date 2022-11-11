@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.test;
 
+import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -16,6 +17,8 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.ElementsCollection;
 
+import ch.ivy.addon.portalkit.enums.PortalVariable;
+
 @IvyWebTest
 public class DashboardTaskWidgetActionTest extends BaseTest {
 
@@ -28,6 +31,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
+    createJSonFile("dashboard-has-one-task-widget.json", PortalVariable.DASHBOARD.key);
     redirectToRelativeLink(createTestingTasksUrl);
     newDashboardPage = new NewDashboardPage();
   }
@@ -161,7 +165,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   private void assertTaskAction(int index, List<String> taskActionsInTask) {
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     ElementsCollection actions = taskWidget.getActiveTaskActions(index);
-    actions.shouldHaveSize(taskActionsInTask.size());
+    actions.shouldHave(size(taskActionsInTask.size()));
     assertTrue(actions.texts().containsAll(taskActionsInTask));
     taskWidget.clickOnTaskActionLink(index);
   }

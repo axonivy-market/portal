@@ -7,7 +7,6 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
@@ -23,7 +22,6 @@ public class ApplicationColumnModel extends TaskColumnModel implements Serializa
   @Override
   public void initDefaultValue() {
     super.initDefaultValue();
-    this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/APPLICATION");
     this.field = DashboardStandardTaskColumn.APPLICATION.getField();
     this.style = defaultIfEmpty(this.style, TINY_WIDTH);
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__priority u-text-align-center");
@@ -33,11 +31,6 @@ public class ApplicationColumnModel extends TaskColumnModel implements Serializa
   @Override
   public String getDefaultHeaderCMS() {
     return "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/APPLICATION";
-  }
-  
-  @Override
-  public String getHeaderText() {
-    return translateHeader(defaultIfEmpty(this.header, DashboardConfigurationPrefix.CMS + getDefaultHeaderCMS()));
   }
   
   @Override

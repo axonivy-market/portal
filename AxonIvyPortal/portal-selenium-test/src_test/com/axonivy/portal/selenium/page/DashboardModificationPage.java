@@ -16,7 +16,7 @@ public class DashboardModificationPage extends TemplatePage {
   }
 
   public ElementsCollection getDashboardRows() {
-    SelenideElement dashboardTable = $("tbody[id='dashboard-modification-component:dashboard-table_data']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    SelenideElement dashboardTable = $("tbody[id='dashboard-modification-component:dashboard-table_data']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return dashboardTable.$$("tr:not(.ui-datatable-empty-message)");
   }
 
@@ -46,15 +46,15 @@ public class DashboardModificationPage extends TemplatePage {
   public void clickEditDashboardByName(String dashboardName) {
     SelenideElement dashboardRow = getDashboardRowByName(dashboardName);
     dashboardRow.$("[id$=':edit']").click();
-    getEditDashboardDialog().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    getEditDashboardDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public void clickDeleteDashboardByName(String dashboardName) {
     SelenideElement dashboardRow = getDashboardRowByName(dashboardName);
     dashboardRow.$("[id$=':delete-dashboard']").click();
-    SelenideElement deleteConfirmDialog = $("[id$=':remove-dashboard-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
-    deleteConfirmDialog.$("button[id$=':remove-dashboard-button']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    deleteConfirmDialog.waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+    SelenideElement deleteConfirmDialog = $("[id$=':remove-dashboard-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    deleteConfirmDialog.$("button[id$=':remove-dashboard-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    deleteConfirmDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public void editDashboardInfo(String newName, String newDescription, List<String> permissions) {
@@ -73,7 +73,7 @@ public class DashboardModificationPage extends TemplatePage {
 
     editDashboardDialog.$("div[id$=':dashboard-permission']").$("button.ui-autocomplete-dropdown").click();
     
-    $("span[id$=':dashboard-permission_panel']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    $("span[id$=':dashboard-permission_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $("span[id$=':dashboard-permission_panel']").$$("tr.ui-autocomplete-item").forEach(item -> {
       for(String permissionName : permissions) {
         if (item.$("td").getText().contains(permissionName)) {
@@ -82,7 +82,7 @@ public class DashboardModificationPage extends TemplatePage {
       }
     });
     editDashboardDialog.$("button[id$='dashboard-detail-save-button']").click();
-    editDashboardDialog.waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+    editDashboardDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
   
   public void editPrivateDashboardInfo(String newName, String newDescription) {
@@ -93,7 +93,7 @@ public class DashboardModificationPage extends TemplatePage {
     editDashboardDialog.$("input[id$=':dashboard-description']").sendKeys(newDescription);
     
     editDashboardDialog.$("button[id$='dashboard-detail-save-button']").click();
-    editDashboardDialog.waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+    editDashboardDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public NewDashboardPage navigateToNewDashboardPage() {

@@ -1,7 +1,9 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "1624D1F5CBEA5332",
-  "data" : "com.axonivy.portal.developerexamples.customization.AdditionalCaseDetailPage",
+  "config" : {
+    "data" : "com.axonivy.portal.developerexamples.customization.AdditionalCaseDetailPage"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "RequestStart",

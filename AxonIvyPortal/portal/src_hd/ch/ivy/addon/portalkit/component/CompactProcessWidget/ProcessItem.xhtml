@@ -12,7 +12,7 @@
   <div class="process-start-list-item-name">
     <h:outputText id="process-name-#{processType}" value="#{process.processName}"
       styleClass="process-start-list-item-name-text u-truncate-text js-process-start-list-item-name" />
-    <p:tooltip for="process-name-#{processType}" value="#{process.processName}" trackMouse="true" hideEvent="mouseleave click"/>
+    <p:tooltip for="process-name-#{processType}" value="#{process.processName}" trackMouse="true" hideEvent="mouseleave click" styleClass="process-tooltip"/>
   </div>
   <div class="process-item-action-container">
     <h:panelGroup styleClass="process-start-list-item-action" rendered="#{process.isBrokenLink()}">

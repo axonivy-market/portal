@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "14BDDCD00C5EA267",
-  "data" : "ch.ivyteam.wf.processes.AbsenceServiceData",
   "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "ch.ivyteam.wf.processes.AbsenceServiceData"
+  },
   "elements" : [ {
       "id" : "f81",
       "type" : "CallSubStart",

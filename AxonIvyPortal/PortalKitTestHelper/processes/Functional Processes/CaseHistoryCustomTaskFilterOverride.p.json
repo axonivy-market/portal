@@ -1,9 +1,11 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "14E53233041A883D",
-  "data" : "portalKit_test.CaseHistoryCustomTaskFilterOverrideData",
   "kind" : "CALLABLE_SUB",
   "description" : "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "config" : {
+    "data" : "portalKit_test.CaseHistoryCustomTaskFilterOverrideData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",

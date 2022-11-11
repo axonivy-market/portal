@@ -13,6 +13,7 @@ import ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
 import ch.ivy.addon.portalkit.ivydata.service.ILanguageService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivy.addon.portalkit.util.ListUtilities;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.language.LanguageManager;
 import ch.ivyteam.ivy.language.LanguageRepository;
@@ -40,13 +41,9 @@ public class LanguageService implements ILanguageService {
     List<Locale> contentLocales = getContentLocales();
     List<Locale> formatLocales = getFormattingLocales();
     
-    List<String> supportedLanguages = contentLocales.stream()
-                                      .map(Locale::toString)
-                                      .collect(Collectors.toList());
+    List<String> supportedLanguages = ListUtilities.transformList(contentLocales, Locale::toLanguageTag); 
     
-    List<String> supportedFormatLanguages = formatLocales.stream()
-                                      .map(Locale::toLanguageTag)
-                                      .collect(Collectors.toList());
+    List<String> supportedFormatLanguages =  ListUtilities.transformList(formatLocales, Locale::toLanguageTag); 
     
     ivyLanguage.setUserLanguage(getUserLanguage());
     ivyLanguage.setSupportedLanguages(supportedLanguages);

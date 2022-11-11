@@ -1,7 +1,9 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "1636734E13CEC872",
-  "data" : "portalKit_test.LoginData",
+  "config" : {
+    "data" : "portalKit_test.LoginData"
+  },
   "elements" : [ {
       "id" : "f1",
       "type" : "TaskEnd",

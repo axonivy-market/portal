@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.test;
 
+import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -18,6 +19,8 @@ import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.codeborne.selenide.Condition;
+
+import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 @IvyWebTest
 public class EscalationTaskTest extends BaseTest {
@@ -51,7 +54,7 @@ public class EscalationTaskTest extends BaseTest {
     taskDetailsPage.back();
     taskWidgetPage.filterTasksBy(SICK_LEAVE_REQUEST_ESCALATED);
     assertTrue(taskWidgetPage.getFilterTasksByKeyword().attr("value").equalsIgnoreCase(SICK_LEAVE_REQUEST_ESCALATED));
-    taskWidgetPage.countTasks().shouldHaveSize(1);
+    taskWidgetPage.countTasks().shouldHave(size(1));
   }
   
   @Test
@@ -63,7 +66,7 @@ public class EscalationTaskTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy(SICK_LEAVE_REQUEST);
     assertTrue(taskWidgetPage.getFilterTasksByKeyword().attr("value").equals(SICK_LEAVE_REQUEST));
-    taskWidgetPage.countTasks().shouldHaveSize(1);
+    taskWidgetPage.countTasks().shouldHave(size(1));
     taskWidgetPage.clickOnTaskActionLink(0);
     taskWidgetPage.triggerEscalation();
     // Try to refresh data
@@ -71,7 +74,7 @@ public class EscalationTaskTest extends BaseTest {
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy(SICK_LEAVE_REQUEST_ESCALATED);
     assertTrue(taskWidgetPage.getFilterTasksByKeyword().attr("value").equalsIgnoreCase(SICK_LEAVE_REQUEST_ESCALATED));
-    taskWidgetPage.countTasks().shouldHaveSize(1);
+    taskWidgetPage.countTasks().shouldHave(size(1));
     assertTrue(taskWidgetPage.getPriorityOfTask(0).equalsIgnoreCase("high"));
   }
   
@@ -95,6 +98,7 @@ public class EscalationTaskTest extends BaseTest {
   
   @Test
   public void testTriggerEscalationTaskWidgetOfDashboard() {
+    createJSonFile("dashboard-has-one-task-widget.json", PortalVariable.DASHBOARD.key);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();

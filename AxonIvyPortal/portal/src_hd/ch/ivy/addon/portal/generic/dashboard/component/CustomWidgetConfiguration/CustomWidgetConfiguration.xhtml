@@ -29,7 +29,8 @@
           <p:outputLabel for="widget-title" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetTitle')}" />
         </div>
         <div class="ui-g-9">
-          <p:inputText id="widget-title" styleClass="widget-configuration__input-text" value="#{widget.name}" />
+          <p:inputText id="widget-title" styleClass="widget-configuration__input-text" value="#{widget.name}"
+            placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/CustomWidgetTitlePlaceholder')}" />
         </div>
       </h:panelGroup>
      <div class="ui-g-12 u-padding-0">
@@ -63,21 +64,21 @@
         </div>
         <div class="ui-g-9 ui-fluid">
           <p:autoComplete id="selected-process" dropdown="true" scrollHeight="300" forceSelection="true"
-            completeMethod="#{dashboardCustomWidgetBean.completeProcesses}" value="#{widget.data.startableProcessStart}" var="process" itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500"
+            completeMethod="#{dashboardCustomWidgetBean.completeProcesses}" value="#{widget.data.ivyProcessStartDTO}" var="process" itemValue="#{process}" itemLabel="#{process.startableProcessStart.name}" queryDelay="500"
             cache="true" minQueryLength="2" itemtipAtPosition="right top" converter="pojoConverter"
             required="#{widget.data.type == 'PROCESS' ? true : false}">
             <p:ajax event="query" global="false" />
             <p:ajax event="itemSelect" listener="#{dashboardCustomWidgetBean.onSelectProcess(widget)}" update="user-filter"
               process="@this" oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
             <p:column>
-              <h:outputText styleClass="autocomplete-tooltip" value="#{process.name}" title="#{process.description}" />
+              <h:outputText styleClass="autocomplete-tooltip" value="#{process.startableProcessStart.name}" title="#{process.startableProcessStart.description}" />
             </p:column>
           </p:autoComplete>
         </div>
       </h:panelGroup>
       
       <h:panelGroup id="parameters-panel" styleClass="ui-g-12 parameters-panel u-padding-0 MarTop10" layout="block"
-        rendered="#{widget.data.type == 'PROCESS' and widget.data.startableProcessStart ne null}">
+        rendered="#{widget.data.type == 'PROCESS' and widget.data.ivyProcessStartDTO.startableProcessStart ne null}">
         <p:fieldset id="parameters-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/Parameters')}"
           toggleable="true" collapsed="false" rendered="#{not empty widget.data.params || widget.data.hasParamChanged}">
           <h:panelGroup layout="block" rendered="#{widget.data.hasParamChanged}" styleClass="ui-g">
@@ -94,12 +95,12 @@
           <h:panelGroup id="parameters-container" styleClass="ui-g ui-g-12 ui-fluid parameters u-padding-0" layout="block">
           <ui:repeat id="parammeters" value ="#{widget.data.params}" var="parameter" varStatus="status" >
             <h:panelGroup layout="block" styleClass="ui-g-4">
-              <h:outputLabel styleClass="param-label" value="#{parameter.name}" />
+              <h:outputText styleClass="param-label" value="#{parameter.name}" />
             </h:panelGroup>
             <h:panelGroup layout="block" styleClass="ui-g-8">
               <p:inputText id="param-string-#{status.index}" value="#{parameter.value}" rendered="#{parameter.type == 'STRING'}" />
               <p:datePicker id="param-calendar-#{status.index}" value="#{parameter.valueDate}" rendered="#{parameter.type == 'DATE'}"
-                 locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.configuredPattern}" showTime="#{!dateTimePatternBean.isTimeHidden}" showIcon="true" />
+                 locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.formattingLanguagePattern}" showTime="#{!dateTimePatternBean.isTimeHidden}" showIcon="true" />
               <ic:com.axonivy.portal.components.UserSelection id="param-user-#{status.index}"
                 selectedUser="#{parameter.valueUser}" rendered="#{parameter.type == 'USER'}"
                 queryDelay="500" maxResults="100" cache="true" autoCompleteStyleClass="custom-widget-configuration__user-selection" />

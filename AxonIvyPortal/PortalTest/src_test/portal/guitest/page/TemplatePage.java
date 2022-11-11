@@ -368,6 +368,12 @@ public abstract class TemplatePage extends AbstractPage {
     public boolean isPresent() {
       return isElementPresent(By.cssSelector("a[id$='global-search-item']"));
     }
+
+    public void waitUtilProcessWidgetDisplayed() {
+      waitForElementDisplayed(By.className("process-widget"), true);
+      waitForElementDisplayed(By.className("js-loading-process-list"), false);
+      waitForElementDisplayed(By.className("js-process-start-list-container"), true);
+    }
   }
   
   public void clickByCssSelector(String cssSelector) {

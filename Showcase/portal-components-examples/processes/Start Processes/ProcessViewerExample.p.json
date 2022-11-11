@@ -1,7 +1,9 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "1821592826979C20",
-  "data" : "com.axonivy.portal.components.examples.ProcessViewerExampleData",
+  "config" : {
+    "data" : "com.axonivy.portal.components.examples.ProcessViewerExampleData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "RequestStart",

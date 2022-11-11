@@ -1,7 +1,9 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "15797DC22608DA55",
-  "data" : "gawfs.GenericPredefinedWorkflowStartData",
+  "config" : {
+    "data" : "gawfs.GenericPredefinedWorkflowStartData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "RequestStart",

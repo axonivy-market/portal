@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "14C7834636E63BEA",
-  "data" : "ch.ivyteam.wf.processes.FindApplicationsByUserData",
   "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "ch.ivyteam.wf.processes.FindApplicationsByUserData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",

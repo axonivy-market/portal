@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "15B0ED8770CD5F13",
-  "data" : "internalPortal.PortalHome.PortalHomeData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "internalPortal.PortalHome.PortalHomeData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
@@ -42,7 +44,6 @@
             "",
             "TaskSearchCriteria criteria = out.taskView.dataModel.criteria;",
             "if (out.isNotLogin) {",
-            "  criteria.setInvolvedUsername(ivy.session.getSessionUserName());",
             "  out.isNotLogin = false;",
             "}"
           ]

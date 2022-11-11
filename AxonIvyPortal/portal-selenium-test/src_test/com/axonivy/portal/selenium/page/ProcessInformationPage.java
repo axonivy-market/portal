@@ -15,7 +15,7 @@ public class ProcessInformationPage extends TemplatePage {
   }
 
   public SelenideElement getDisplayedBackLink() {
-    return getBackLink().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    return getBackLink().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getBackLink() {
@@ -28,7 +28,7 @@ public class ProcessInformationPage extends TemplatePage {
   }
 
   public SelenideElement getDisplayedStartButton() {
-    return getStartButton().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    return getStartButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getStartButton() {

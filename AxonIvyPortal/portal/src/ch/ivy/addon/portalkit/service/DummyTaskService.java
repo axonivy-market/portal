@@ -10,8 +10,8 @@ public class DummyTaskService {
 
   public static List<ITask> dummyTasks() {
     ITask task = ITask.current();
-    task.setName(DummyTask.TASK_NAME);
-    task.setDescription(DummyTask.TASK_DESCRIPTION);
+    task.names().current(DummyTask.TASK_NAME);
+    task.descriptions().current(DummyTask.TASK_DESCRIPTION);
     return Arrays.asList(task);
   }
   

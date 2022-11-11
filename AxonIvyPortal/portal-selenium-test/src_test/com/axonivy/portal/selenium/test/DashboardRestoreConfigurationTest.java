@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.test;
 
+import static com.codeborne.selenide.CollectionCondition.size;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -56,13 +58,13 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
     configurationPage.createPublicDashboardFromTemplate(DASHBOARD_NAME, ICON, DASHBOARD_DESCRIPTION, DASHBOARD_PERMISSION, 0);
-    verifyEditingDashboardContent(DASHBOARD_NAME, CollectionCondition.size(3));
+    verifyEditingDashboardContent(DASHBOARD_NAME, CollectionCondition.size(4));
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.deleteCompactModeProcess();
-    newDashboardDetailsEditPage.getWidgets().shouldHave(CollectionCondition.size(2));
+    newDashboardDetailsEditPage.getWidgets().shouldHave(CollectionCondition.size(3));
     verifyRestoreDashboardMessage("Default template");
     newDashboardDetailsEditPage.restoreDashboardToStandard();
-    verifyEditingDashboardContent(DASHBOARD_NAME, CollectionCondition.size(3));
+    verifyEditingDashboardContent(DASHBOARD_NAME, CollectionCondition.size(4));
   }
 
   @Test
@@ -92,7 +94,7 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
     newCaseWidget.changeWidgetTitle(CASE_WIDGET_NAME);
     newCaseWidget.save();
     var caseWidget = newDashboardPage.selectCaseWidget(CASE_WIDGET_NAME);
-    caseWidget.expand().shouldHaveSize(1);
+    caseWidget.expand().shouldHave(size(1));
   }
 
   private void verifyRestoreDashboardMessage(String templateName) {

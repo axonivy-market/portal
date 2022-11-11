@@ -23,9 +23,7 @@
      </div>
        <div id="welcome-widget-configuration" class="ui-g welcome-widget-configuration">
          <div class="ui-g-12">
-           <p:messages id="config-welcome-widget-message">
-             <p:autoUpdate />
-           </p:messages>
+           <p:messages id="config-welcome-widget-message" />
          </div>
          <div class="ui-g-12">
            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}" styleClass="welcome-text-label" for="preview-panel" />
@@ -35,7 +33,7 @@
             <p:graphicImage id="default-image" cache="true" styleClass="preview-image js-preview-image"
               library="ivy-cms" rendered="#{empty dashboardWelcomeWidgetConfigurationBean.encodedImg}" name="#{dashboardWelcomeWidgetConfigurationBean.defaultImageLink}" />
 
-            <img id="preview-image" class="preview-image js-preview-image" jsf:rendered="#{not empty dashboardWelcomeWidgetConfigurationBean.encodedImg}" />
+            <p:graphicImage id="preview-image" styleClass="preview-image js-preview-image" rendered="#{not empty dashboardWelcomeWidgetConfigurationBean.encodedImg}" />
             <h:inputHidden id="preview-image-hidden" value="#{dashboardWelcomeWidgetConfigurationBean.encodedImg}" rendered="#{not empty dashboardWelcomeWidgetConfigurationBean.encodedImg}" />
            </h:panelGroup>
          </div>
@@ -67,7 +65,7 @@
          <div class="ui-g-9 ui-md-8">
            <p:selectOneMenu id="welcome-text-position" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeTextPosition}" styleClass="welcome-text-select-one-menu">
              <f:selectItems var="position" value="#{dashboardWelcomeWidgetConfigurationBean.textPositions}" itemLabel="#{position.label}" itemValue="#{position}" />
-             <p:ajax event="itemSelect" update="selected-welcome-text-position" oncomplete="WelcomeWidgetConfiguration.updatePreviewTextPosition();" />
+             <p:ajax event="itemSelect" update="selected-welcome-text-position" oncomplete="WelcomeWidgetConfiguration.updatePreviewTextPosition();" global="false" />
            </p:selectOneMenu>
            <h:inputHidden id="selected-welcome-text-position" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeTextPosition}" />
          </div>
@@ -78,7 +76,7 @@
          </div>
          <div class="ui-g-9 ui-md-8 welcome-styles-panel">
            <p:selectOneMenu id="welcome-text-size" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeTextSize}" styleClass="welcome-text-select-one-menu">
-             <p:ajax event="itemSelect" update="selected-welcome-text-size" oncomplete="WelcomeWidgetConfiguration.updatePreviewTextSize();" />
+             <p:ajax event="itemSelect" update="selected-welcome-text-size" oncomplete="WelcomeWidgetConfiguration.updatePreviewTextSize();" global="false" />
              <f:selectItems var="size" value="#{dashboardWelcomeWidgetConfigurationBean.textSizes}" itemLabel="#{size.label}" itemValue="#{size}" />
              </p:selectOneMenu>
            <h:inputHidden id="selected-welcome-text-size" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeTextSize}" />
@@ -111,8 +109,6 @@
                  rendered="#{dashboardWelcomeWidgetConfigurationBean.widget.greeting}"
                  styleClass="js-greeting-text greeting-text #{isApplicationDefaultEmailLanguage ? 'language-to-preview' : ''}" />
                <p:inputText id="welcome-text-input" value="#{text.value}" maxlength="200"
-                 required="#{isApplicationDefaultEmailLanguage}"
-                 requiredMessage="#{text.locale.getDisplayName()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
                  styleClass="#{isApplicationDefaultEmailLanguage ? 'language-to-preview' : ''} js-welcome-text-input welcome-text-input"
                  onkeyup="#{isApplicationDefaultEmailLanguage ? 'WelcomeWidgetConfiguration.updatePreviewText();' : ''}" />
              </h:panelGroup>
@@ -140,9 +136,6 @@
             </div>
           </p:fieldset>
         </div>
-
-        
-
        </div>
        <p:remoteCommand name="initGreetingTexts" update="welcome-text-input-container"
          actionListener="#{dashboardWelcomeWidgetConfigurationBean.initClientTime()}"

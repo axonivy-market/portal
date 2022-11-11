@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "1574EBDBE9576CED",
-  "data" : "ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

@@ -16,8 +16,8 @@
     </snapshotRepository>
   </distributionManagement>
   <properties>
-    <ivy.engine.version>10.0.0</ivy.engine.version>
-    <build.plugin.version>10.0.0-SNAPSHOT</build.plugin.version>
+    <ivy.engine.version>11.1.0</ivy.engine.version>
+    <build.plugin.version>10.0.0</build.plugin.version>
     <quartz.version>2.1.1</quartz.version>
   </properties>
   <dependencies>
@@ -67,7 +67,6 @@
         <extensions>true</extensions>
         <configuration>
           <compilerWarnings>false</compilerWarnings>
-          <skipScriptValidation>true</skipScriptValidation>
         </configuration>
       </plugin>
     </plugins>

@@ -38,7 +38,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private int getIndexWidgetByColumn(String columnName) {
-    ElementsCollection elementsTH = $(caseWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
+    ElementsCollection elementsTH = $(caseWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
     for (int i = 0; i < elementsTH.size(); i++) {
       if (elementsTH.get(i).getText().equalsIgnoreCase(columnName)) {
         return i;
@@ -48,11 +48,11 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private ElementsCollection getColumnsOfTableWidget() {
-    return $(caseWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$$("table tbody tr td");
+    return $(caseWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr td");
   }
 
   private ElementsCollection getColumnOfTableWidget(int rowIndex) {
-    return $(caseWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$$("table tbody tr ").get(rowIndex).$$("td");
+    return $(caseWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr ").get(rowIndex).$$("td");
   }
 
   public ElementsCollection expand() {
@@ -91,20 +91,20 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void openFilterWidget() {
-    $$("div.table-widget-panel").filter(text(caseWidgetName)).first().waitUntil(appear, DEFAULT_TIMEOUT)
+    $$("div.table-widget-panel").filter(text(caseWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT)
         .$(".widget__filter-sidebar-link").shouldBe(getClickableCondition()).click();
-    $("[id$=':widget-saved-filters-items").waitUntil(appear, DEFAULT_TIMEOUT);
+    $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public CaseEditWidgetNewDashBoardPage openEditWidget() {
     $$("div.table-widget-panel div.widget__header").filter(text(caseWidgetName)).first()
-        .waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='edit-widget']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='edit-widget']")
         .shouldBe(getClickableCondition()).click();
     return new CaseEditWidgetNewDashBoardPage();
   }
 
   private SelenideElement getFilterInput(String inputField) {
-    return $("div[id$='widget-filter-content']").waitUntil(appear, DEFAULT_TIMEOUT)
+    return $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$("div.widget-filter-panel div.ui-g").filter(text(inputField)).first().$("input.ui-inputfield");
   }
 
@@ -126,23 +126,23 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private SelenideElement getFilterCheckBox(String inputField) {
-    return $("div[id$='widget-filter-content']").waitUntil(appear, DEFAULT_TIMEOUT)
+    return $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$("div.widget-filter-panel div.ui-g").filter(text(inputField)).first();
   }
 
   private SelenideElement getCloseCheckBox() {
-    return $("div.ui-selectcheckboxmenu-panel").waitUntil(appear, DEFAULT_TIMEOUT).$("a.ui-selectcheckboxmenu-close");
+    return $("div.ui-selectcheckboxmenu-panel").shouldBe(appear, DEFAULT_TIMEOUT).$("a.ui-selectcheckboxmenu-close");
   }
 
   private SelenideElement getValueOfCheckBox(String value) {
-    return $("div.ui-selectcheckboxmenu-items-wrapper").waitUntil(appear, DEFAULT_TIMEOUT)
+    return $("div.ui-selectcheckboxmenu-items-wrapper").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$("li.ui-selectcheckboxmenu-item").filter(text(value)).first().$("div.ui-chkbox-box");
   }
 
   public void applyFilter() {
-    $("div.filter-overlay-panel__footer").waitUntil(appear, DEFAULT_TIMEOUT).$$("button[id$='apply-button']")
+    $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='apply-button']")
         .filter(text("Apply")).first().shouldBe(getClickableCondition()).click();
-    $("[id$='case-case_1:filter-overlay-panel-1']").waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+    $("[id$='case-case_1:filter-overlay-panel-1']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public void nextPageTable() {
@@ -151,7 +151,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void resetFilter() {
-    $("div.filter-overlay-panel__footer").waitUntil(appear, DEFAULT_TIMEOUT).$$("button[id$='reset-button']")
+    $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='reset-button']")
         .filter(text("Reset")).first().shouldBe(getClickableCondition()).click();
   }
   
@@ -166,13 +166,13 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   
   public void turnOffActionsPanel(int caseIndex) {
     $$("div.widget__header").filter(text(caseWidgetName)).first().shouldBe(getClickableCondition()).click();
-    $$(String.format("div.js-case-side-steps-panel-case_1-%d", caseIndex)).first().waitUntil(disappear, DEFAULT_TIMEOUT);
+    $$(String.format("div.js-case-side-steps-panel-case_1-%d", caseIndex)).first().shouldBe(disappear, DEFAULT_TIMEOUT);
   }
   
   public ElementsCollection getActiveCaseActions(int caseIndex) {
     clickOnCaseActionLink(caseIndex);
     return $$(String.format("div.js-case-side-steps-panel-case_1-%d", caseIndex)).filter(appear).first()
-        .waitUntil(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='action-step-item']");
+        .shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='action-step-item']");
   }
   
   public void destroyCase(int caseIndex) {
@@ -181,17 +181,17 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
   
   private void confirmDestroy() {
-    $("div[id$='destroy-case-confirmation-dialog']").waitUntil(appear, DEFAULT_TIMEOUT)
+    $("div[id$='destroy-case-confirmation-dialog']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("button[id$='confirm-destruction-dashboard-cases']").shouldBe(getClickableCondition()).click();
   }
 
   public SelenideElement getCreatorAvatar() {
-    return $(".dashboard-cases__creator > .has-avatar > .ui-avatar").waitUntil(appear, DEFAULT_TIMEOUT);
+    return $(".dashboard-cases__creator > .has-avatar > .ui-avatar").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
   public void deleteCaseWidget() {
     $$("div.table-widget-panel div.widget__header").filter(text(caseWidgetName)).first()
-        .waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='delete-widget']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='delete-widget']")
         .shouldBe(getClickableCondition()).click();
   }
 }

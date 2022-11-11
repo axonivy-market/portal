@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "176CBADCB53CCEEA",
-  "data" : "com.axonivy.portal.developerexamples.showcase.NavigateBackTaskPage.NavigateBackTaskPageData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.portal.developerexamples.showcase.NavigateBackTaskPage.NavigateBackTaskPageData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
