@@ -161,7 +161,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   private WidgetSample newsSample() {
-    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/NEWS"),
+    return new WidgetSample(translate("/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/NewsWidgetTitle"),
         NEWS, News.DEFAULT_NEWS_ICON,
         translate("/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/NewsWidgetDescription"), true);
   }
@@ -228,8 +228,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         widget = getDefaultWelcomeDashboardWidget();
         break;
       case NEWS:
-        newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
-            Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/NEWS")));
+        newWidgetHeader = translate("/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/NewsWidgetConfiguration");
         widget = getDefaultNewsWidget();
         break;
       default:

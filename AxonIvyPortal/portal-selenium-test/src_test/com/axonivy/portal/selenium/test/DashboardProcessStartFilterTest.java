@@ -23,8 +23,6 @@ public class DashboardProcessStartFilterTest extends BaseTest {
   private static final String SHOWCASE = "Showcase";
   private static final String CUSTOMIZED = "Customized";
   private static final String CUSTOMIZE_FILTER = "Customize Filter";
-  private static final String RESET_USER_LANGUAGE_URL =
-      "portalKitTestHelper/1511A66AF619A768/resetLanguageOfCurrentUser.ivp";
   private NewDashboardPage newDashboardPage;
   private UserProfilePage userProfilePage;
   private UserMenuPage userMenuPage;
@@ -83,6 +81,6 @@ public class DashboardProcessStartFilterTest extends BaseTest {
 
   @AfterEach
   public void resetUserLanguage() {
-    redirectToRelativeLink(RESET_USER_LANGUAGE_URL);
+    resetLanguageOfCurrentUser();
   }
 }
