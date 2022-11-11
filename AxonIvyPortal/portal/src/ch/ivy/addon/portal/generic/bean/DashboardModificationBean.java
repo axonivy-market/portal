@@ -21,6 +21,7 @@ import org.primefaces.event.UnselectEvent;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.RoleUtils;
+import com.axonivy.portal.util.WelcomeWidgetUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
@@ -31,8 +32,6 @@ import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
-import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.cm.exec.ContentManagement;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
@@ -42,8 +41,6 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   private static final long serialVersionUID = 1L;
   protected static final String PUBLIC_DASHBOARD_DEFAULT_ICON = "si-network-share";
   protected static final String PRIVATE_DASHBOARD_DEFAULT_ICON = "si-single-neutral-shield";
-  private static final String WELCOME_WIDGET_IMAGE_DIRECTORY = "DashboardWelcomeWidget";
-  private static final String DEFAULT_LOCALE_AND_DOT = "_en.";
 
   protected boolean isPublicDashboard;
   protected List<String> selectedDashboardPermissions;
@@ -139,12 +136,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   private void removeWelcomeWidgetImage(DashboardWidget selectedWidget) {
     WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) selectedWidget;
     if (StringUtils.isNotBlank(welcomeWidget.getImageLocation())) {
-      var app = IApplication.current();
-      var cms = ContentManagement.cms(app);
-      String imageType = welcomeWidget.getImageType().substring(welcomeWidget.getImageType().indexOf("/") + 1);
-      cms.root()
-        .child().folder(WELCOME_WIDGET_IMAGE_DIRECTORY).child()
-        .file(welcomeWidget.getImageLocation().substring(0, welcomeWidget.getImageLocation().indexOf(DEFAULT_LOCALE_AND_DOT)), imageType).delete();
+      WelcomeWidgetUtils.removeWelcomeImage(welcomeWidget.getImageLocation(), welcomeWidget.getImageType());
     }
   }
 

@@ -6,6 +6,7 @@
   <ui:composition template="/layouts/restricted/DashboardTemplate.xhtml">
     <ui:param name="managedBean" value="#{dashboardDetailModificationBean}" />
     <ui:param name="viewName" value="EDIT_DASHBOARD_DETAILS" />
+    <ui:param name="isInConfiguration" value="true"/>
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/pageTitle')}</ui:define>
 
     <ui:define name="headerTitle">

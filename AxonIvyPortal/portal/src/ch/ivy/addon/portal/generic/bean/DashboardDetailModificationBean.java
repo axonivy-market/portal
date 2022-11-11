@@ -31,6 +31,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.dto.UserDTO;
+import com.axonivy.portal.util.WelcomeWidgetUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
@@ -63,14 +64,11 @@ import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.DashboardService;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
-import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.Dates;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.cm.ContentObjectValue;
-import ch.ivyteam.ivy.cm.exec.ContentManagement;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
@@ -78,8 +76,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class DashboardDetailModificationBean extends DashboardBean implements Serializable, PropertyChangeListener {
 
   private static final long serialVersionUID = -5272278165636659596L;
-  private static final String WELCOME_WIDGET_IMAGE_DIRECTORY = "DashboardWelcomeWidget";
-  private static final String DEFAULT_LOCALE_AND_DOT = "_en.";
 
   private List<WidgetSample> samples;
   private String newWidgetHeader;
@@ -248,17 +244,12 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private void removeWelcomeWidgetImage(DashboardWidget selectedWidget) {
     WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) selectedWidget;
     if (StringUtils.isNotBlank(welcomeWidget.getImageLocation())) {
-      var app = IApplication.current();
-      var cms = ContentManagement.cms(app);
-      String imageType = welcomeWidget.getImageType().substring(welcomeWidget.getImageType().indexOf("/") + 1);
-      cms.root()
-        .child().folder(WELCOME_WIDGET_IMAGE_DIRECTORY).child()
-        .file(welcomeWidget.getImageLocation().substring(0, welcomeWidget.getImageLocation().indexOf(DEFAULT_LOCALE_AND_DOT)), imageType).delete();
+      WelcomeWidgetUtils.removeWelcomeImage(welcomeWidget.getImageLocation(), welcomeWidget.getImageType());
     }
   }
 
   /**
-   * Remove images of welcome widgets of a dashboard
+   * Remove images of welcome widgets
    * @param selectedDashboard
    */
   private void removeWelcomeWidgetImagesOfDashboard(Dashboard selectedDashboard) {
@@ -376,7 +367,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     if (WELCOME.equals(widget.getType())) {
       removeTempImageOfWelcomeWidget(widget);
       WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
-      if (!StringUtils.isBlank(welcomeWidget.getImageLocation()) && !getWelcomeWidgetImageObject(false, welcomeWidget).exists()) {
+      ContentObject welcomeImage = getWelcomeWidgetImageObject(false, welcomeWidget);
+      if (!StringUtils.isBlank(welcomeWidget.getImageLocation()) && welcomeImage != null && !welcomeImage.exists()) {
         welcomeWidget.setImageLocation(null);
       }
     }
@@ -417,8 +409,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     if (StringUtils.isNotBlank(welcomeWidget.getImageLocation())) {
       ContentObjectValue tempImageFile = getWelcomeWidgetImage(true, welcomeWidget);
       ContentObjectValue imageFile = getWelcomeWidgetImage(false, welcomeWidget);
-      imageFile.write().bytes(tempImageFile.read().bytes());
-      tempImageFile.delete();
+      if (imageFile != null && tempImageFile != null) {
+        imageFile.write().bytes(tempImageFile.read().bytes());
+        tempImageFile.delete();
+      }
     }
   }
 
@@ -426,7 +420,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     var welcomeWidget = (WelcomeDashboardWidget) widget;
     if (StringUtils.isNotBlank(welcomeWidget.getImageLocation())) {
       ContentObjectValue tempImageFile = getWelcomeWidgetImage(true, welcomeWidget);
-      tempImageFile.delete();
+      if (tempImageFile != null) {
+        tempImageFile.delete();
+      }
     }
   }
 
@@ -435,16 +431,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   private ContentObject getWelcomeWidgetImageObject(boolean isTempImage, WelcomeDashboardWidget widget) {
-    var app = IApplication.current();
-    var cms = ContentManagement.cms(app);
-
-    String imageName = widget.getImageLocation().substring(0, widget.getImageLocation().indexOf(DEFAULT_LOCALE_AND_DOT));
+    String imageName = WelcomeWidgetUtils.getFileNameOfImage(widget.getImageLocation());
     imageName = isTempImage ? "temp_".concat(imageName) : imageName;
-
-    String imageType = widget.getImageType().substring(widget.getImageType().indexOf("/") + 1);
-    return cms.root()
-      .child().folder(WELCOME_WIDGET_IMAGE_DIRECTORY).child()
-      .file(imageName, imageType);
+    return WelcomeWidgetUtils.getImageContentObject(imageName, widget.getImageType());
   }
 
   private void unifyCompactProcessCategory(CompactProcessDashboardWidget processWidget) {
@@ -531,7 +520,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   private void updateWidgetPosition(DashboardWidget widget) {
-    if (isEditWidget) {
+    if (isEditWidget || Objects.isNull(widget)) {
       return;
     }
 
@@ -559,24 +548,21 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       }
     }
 
-    if (widget != null) {
-      if (lastWidget != null) {
-        var nextAxisX = lastWidget.getLayout().getAxisX() + lastWidget.getLayout().getWidth();
-        var totalWidth = nextAxisX + widget.getLayout().getWidth();
-        if (totalWidth <= 12) {
-          widget.getLayout().setAxisX(nextAxisX);
-          widget.getLayout().setAxisY(lastWidget.getLayout().getAxisY());
-        }
-        else {
-          widget.getLayout().setAxisX(0);
-          widget.getLayout().setAxisY(portalGridsCurrentRow.intValue());
-        }
-      }
-      if (StringUtils.isEmpty(widget.getLayout().getStyleClass())) {
-        widget.getLayout().setStyleClass(DashboardConstants.NEW_WIDGET_STYLE_CLASS);
+    if (lastWidget != null) {
+      var nextAxisX = lastWidget.getLayout().getAxisX() + lastWidget.getLayout().getWidth();
+      var totalWidth = nextAxisX + widget.getLayout().getWidth();
+      if (totalWidth <= 12) {
+        widget.getLayout().setAxisX(nextAxisX);
+        widget.getLayout().setAxisY(lastWidget.getLayout().getAxisY());
       } else {
-        widget.getLayout().setStyleClass(widget.getLayout().getStyleClass().concat(DashboardConstants.NEW_WIDGET_STYLE_CLASS));
+        widget.getLayout().setAxisX(0);
+        widget.getLayout().setAxisY(portalGridsCurrentRow.intValue());
       }
+    }
+    if (StringUtils.isEmpty(widget.getLayout().getStyleClass())) {
+      widget.getLayout().setStyleClass(DashboardConstants.NEW_WIDGET_STYLE_CLASS);
+    } else {
+      widget.getLayout().setStyleClass(widget.getLayout().getStyleClass().concat(DashboardConstants.NEW_WIDGET_STYLE_CLASS));
     }
   }
 
@@ -598,19 +584,13 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       processPaths = getProcessPaths(displayProcesses);
     } else {
       displayProcesses = DashboardWidgetUtils.getAllPortalProcesses().stream()
-          .filter(process -> isProcessMatchedCategory(process, widget.getCategories()))
+          .filter(process -> DashboardWidgetUtils.isProcessMatchedCategory(process, widget.getCategories()))
           .collect(Collectors.toList());
     }
 
     widget.setProcessPaths(processPaths);
     widget.setDisplayProcesses(displayProcesses);
     widget.setOriginalDisplayProcesses(displayProcesses);
-  }
-
-  private boolean isProcessMatchedCategory(DashboardProcess process, List<String> categories) {
-    boolean hasNoCategory = categories.indexOf(CategoryUtils.NO_CATEGORY) > -1;
-    return categories.indexOf(process.getCategory()) > -1
-        || (StringUtils.isBlank(process.getCategory()) && hasNoCategory);
   }
 
   private List<String> getProcessPaths(List<DashboardProcess> processes) {

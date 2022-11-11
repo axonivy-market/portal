@@ -4,7 +4,7 @@ Categories:
   CreateExpressWorkflow:
     name: Créer un workflow express
   ExpressWorkflow:
-    name: Express Workflow
+    name: Flux de travail express
 ch.ivy.addon.portal.generic:
   CaseDetailsTemplate:
     noCaseId: Aucun numéro de dossier n'a été indiqué
@@ -789,6 +789,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PleaseSelectChart: Veuillez sélectionner un graphique
       PreviewText: Veuillez sélectionner un graphique pour voir les données du canevas
     WelcomeWidgetIntroduction: Ce widget affiche un texte et une image de bienvenue sur le tableau de bord.
+    WelcomeWidgetNotFoundMessage: Nous ne pouvons pas trouver l'image du widget, veuillez reconfigurer votre image !
     WidgetFilterName: Nom du filtre du widget
     WidgetFilters: Filtres widgets
     YourWelcomeWidget: Votre widget de bienvenue
@@ -893,6 +894,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processes:
       emptyProcess: Vous n'avez défini aucun processus.
       noMatchingProcess: Aucun processus correspondant.
+      noPermissionToSee: Vous n'avez pas l'autorisation nécessaire pour voir ce widget.
       noProcessSelected: Veuillez sélectionner un processus
     removeWidgetHeader: Supprimer le widget "{0}"
     removeWidgetMessage: Voulez-vous vraiment le supprimer ?
@@ -1075,12 +1077,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     noFavoriteProcess: Vous n'avez pas défini de favoris.
     noProcess: Aucun processus trouvé.
     noProcesses: Aucun processus trouvé.
+    private: Privé
     processFilterPlaceHolder: Nom, description, Catégorie
     processName: Nom du processus
     processStartLink: lien processus
     processType: type de processus
     remove: Retirer
+    rolePermissionsRequiredMessage: Les permissions doivent être définies
     seeAllProcesses: Voir tous les processus
+    selectRoles: Sélectionner les rôles
     sortByName: Trier par nom
     specialCharacterGroup: Caractère spécial
     startLink: Lien de démarrage
@@ -1631,6 +1636,7 @@ Labels:
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  Permissions: Permissions
   Task: Tâche
   TaskItemDetail: Détails de la tâche
   TaskUser-Explain: Liste d’utilisateurs séparés par des virgules

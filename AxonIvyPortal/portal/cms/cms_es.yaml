@@ -4,7 +4,7 @@ Categories:
   CreateExpressWorkflow:
     name: Crear Express Workflow
   ExpressWorkflow:
-    name: Express Workflow
+    name: Flujo de trabajo exprés
 ch.ivy.addon.portal.generic:
   CaseDetailsTemplate:
     noCaseId: No hay ID de caso especificado
@@ -789,6 +789,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PleaseSelectChart: Seleccione un gráfico
       PreviewText: Seleccione un gráfico para ver los datos del lienzo
     WelcomeWidgetIntroduction: Este widget muestra un texto y una imagen de bienvenida en el panel de control.
+    WelcomeWidgetNotFoundMessage: No podemos encontrar la imagen del widget, por favor reconfigure su imagen.
     WidgetFilterName: Nombre del filtro del widget
     WidgetFilters: Filtros de widgets
     YourWelcomeWidget: Su widget de bienvenida
@@ -893,6 +894,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processes:
       emptyProcess: No ha definido ningún proceso.
       noMatchingProcess: No hay procesos que coincidan.
+      noPermissionToSee: No tienes el permiso necesario para ver este widget.
       noProcessSelected: Seleccione un proceso
     removeWidgetHeader: Eliminar el widget "{0}"
     removeWidgetMessage: ¿Realmente quieres eliminarlo?
@@ -1075,12 +1077,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     noFavoriteProcess: No ha definido ningún favorito.
     noProcess: Ningún proceso encontrado
     noProcesses: Ningunos procesos encontrados
+    private: Privado
     processFilterPlaceHolder: Nombre, Descripción, Categoría
     processName: Nombre del proceso
     processStartLink: Enlace de inicio del proceso
     processType: Tipo de proceso
     remove: Retirar
+    rolePermissionsRequiredMessage: Hay que establecer los permisos
     seeAllProcesses: Mostrar todos los procesos
+    selectRoles: Seleccionar funciones
     sortByName: Ordenar por nombre
     specialCharacterGroup: Caracteres especiales
     startLink: Enlace de inicio
@@ -1634,6 +1639,7 @@ Labels:
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  Permissions: Permiso
   Task: Tarea
   TaskItemDetail: Detalles de la tarea
   TaskUser-Explain: Lista de usuario separados por coma

@@ -1,74 +1,59 @@
 package ch.ivy.addon.portalkit.bean;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Base64;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
 
+import com.axonivy.portal.util.WelcomeWidgetUtils;
+
 import ch.ivy.addon.portalkit.dto.DisplayName;
-import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.enums.WelcomeTextPosition;
 import ch.ivy.addon.portalkit.enums.WelcomeTextSize;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
-import ch.ivy.addon.portalkit.jsf.Attrs;
-import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.cm.ContentObjectValue;
-import ch.ivyteam.ivy.cm.exec.ContentManagement;
+import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.language.LanguageConfigurator;
 import ch.ivyteam.ivy.security.ISecurityContext;
 
+import static com.axonivy.portal.util.WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT;
+
 @ViewScoped
 @ManagedBean
-public class DashboardWelcomeWidgetConfigurationBean implements Serializable {
+public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWidgetBean implements Serializable {
 
   private static final long serialVersionUID = 597266282990903281L;
 
-  private static final String WELCOME_WIDGET_IMAGE_DIRECTORY = "DashboardWelcomeWidget";
-  private static final String DEFAULT_TEXT_COLOR = "ffffff";
-  private static final String BASE64_STRING_PATTERN = "data:%s;base64,%s";
   private static final Long UPLOAD_SIZE_LIMIT = 6291456L;
   private static final String DEFAULT_WELCOME_CMS = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/Welcome";
-  private static final String DEFAULT_IMAGE_CMS_URI = "/images/WelcomeWidget/DefaultImage";
-  private static final String DEFAULT_LOCALE_AND_DOT = "_en.";
 
   private List<WelcomeTextPosition> textPositions;
   private List<WelcomeTextSize> textSizes;
-  private WelcomeDashboardWidget widget;
-  private String encodedImg;
+  private ContentObject imageCMSObject;
   private int parsedClientTime;
 
+  @Override
   public void init() {
-    this.setEncodedImg(null);
+    super.init();
+    imageCMSObject = null;
     setTextPositions(Arrays.asList(WelcomeTextPosition.values()));
     setTextSizes(Arrays.asList(WelcomeTextSize.values()));
     initWelcomeWidget();
   }
 
   private void initWelcomeWidget() {
-    setWidget(Attrs.currentContext().getAttribute("#{cc.attrs.widget}", WelcomeDashboardWidget.class));
-
-    if (getWidget().getWelcomeTextColor() == null) {
-      getWidget().setWelcomeTextColor(DEFAULT_TEXT_COLOR);
-    }
-
-    if (getWidget().getWelcomeTextPosition() == null) {
-      getWidget().setWelcomeTextPosition(WelcomeTextPosition.BOTTOM_LEFT);
-    }
-
     if (getWidget().getWelcomeTextSize() == null) {
       getWidget().setWelcomeTextSize(WelcomeTextSize.NORMAL_TEXT);
     }
@@ -82,49 +67,36 @@ public class DashboardWelcomeWidgetConfigurationBean implements Serializable {
         getWidget().getWelcomeTexts().add(displayName);
       }
     }
-    
+
     if (StringUtils.isNotBlank(widget.getImageLocation())) {
-      updateEncodedImage(getWelcomeWidgetImage(false).read().bytes());
+      imageCMSObject = getWelcomeWidgetImageContentObject(false);
     }
   }
 
-  public void handleFileUpload(FileUploadEvent event) throws IOException {
+  public void handleFileUpload(FileUploadEvent event) {
     UploadedFile file = event.getFile();
-
     if (file != null && file.getContent() != null && file.getContent().length > 0 && file.getFileName() != null) {
       // If image is not saved, create location
       if (StringUtils.isBlank(getWidget().getImageLocation())) {
-        getWidget().setImageLocation(getWidget().getId().concat(DEFAULT_LOCALE_AND_DOT).concat(file.getContentType().substring(file.getContentType().indexOf("/") + 1)));
+        String fileName = getWidget().getId().concat(DEFAULT_LOCALE_AND_DOT).concat(FilenameUtils.getExtension(file.getFileName()));
+        getWidget().setImageLocation(fileName);
         getWidget().setImageType(file.getContentType());
       }
 
       // save the temporary image
-      getWelcomeWidgetImage(true).write().bytes(file.getContent());
-
-      // update encoded image to display in dialog
-      updateEncodedImage(file.getContent());
+      imageCMSObject = getWelcomeWidgetImageContentObject(true);
+      if (imageCMSObject != null) {
+        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageCMSObject).write().bytes(file.getContent());
+      }
     }
-  }
-
-  private void updateEncodedImage(byte[] content) {
-    setEncodedImg(String.format(BASE64_STRING_PATTERN, getWidget().getImageType(), Base64.getEncoder().encodeToString(content)));
   }
 
   public void initClientTime() {
-    parsedClientTime = 0;
-    String clientTime = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("clientTime");
-    if (clientTime != null) {
-      parsedClientTime = Integer.parseInt(clientTime);
-    }
+    parsedClientTime = WelcomeWidgetUtils.parseClientTime();
   }
 
   public String generateGreetingText(Locale locale) {
-    String greetingTextCms = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/Greeting/Afternoon";
-    if (parsedClientTime < 12) {
-      greetingTextCms = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/Greeting/Morning";
-    } else if (parsedClientTime > 18) {
-      greetingTextCms = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/Greeting/Evening";
-    }
+    String greetingTextCms = WelcomeWidgetUtils.generateGreetingTextByTime(parsedClientTime);
     return String.join(" ",
         Ivy.cms().coLocale(greetingTextCms, locale),
         Ivy.session().getSessionUser().getDisplayName(), "");
@@ -138,20 +110,8 @@ public class DashboardWelcomeWidgetConfigurationBean implements Serializable {
     this.textPositions = textPositions;
   }
 
-  public WelcomeDashboardWidget getWidget() {
-    return widget;
-  }
-
-  public void setWidget(WelcomeDashboardWidget widget) {
-    this.widget = widget;
-  }
-
-  public String getEncodedImg() {
-    return encodedImg;
-  }
-
-  public void setEncodedImg(String encodedImg) {
-    this.encodedImg = encodedImg;
+  public String getImageUri() {
+    return Objects.isNull(imageCMSObject) ? DEFAULT_IMAGE_CMS_URI : imageCMSObject.uri();
   }
 
   public List<WelcomeTextSize> getTextSizes() {
@@ -171,26 +131,14 @@ public class DashboardWelcomeWidgetConfigurationBean implements Serializable {
         Arrays.asList(FileUtils.byteCountToDisplaySize(UPLOAD_SIZE_LIMIT)));
   }
 
-  public String getDefaultImageLink() {
-    return DEFAULT_IMAGE_CMS_URI;
-  }
-
   public boolean isApplicationDefaultEmailLanguage(String language) {
     Locale defaultLocale = new LanguageConfigurator(ISecurityContext.current()).content();
     return defaultLocale.toLanguageTag().equalsIgnoreCase(language);
   }
 
-  private ContentObjectValue getWelcomeWidgetImage(boolean isTempImage) {
-    var app = IApplication.current();
-    var cms = ContentManagement.cms(app);
-
-    String imageName = widget.getImageLocation().substring(0, widget.getImageLocation().indexOf(DEFAULT_LOCALE_AND_DOT));
+  private ContentObject getWelcomeWidgetImageContentObject(boolean isTempImage) {
+    String imageName = WelcomeWidgetUtils.getFileNameOfImage(widget.getImageLocation());
     imageName = isTempImage ? "temp_".concat(imageName) : imageName;
-
-    String imageType = widget.getImageType().substring(widget.getImageType().indexOf("/") + 1);
-    return cms.root()
-      .child().folder(WELCOME_WIDGET_IMAGE_DIRECTORY).child()
-      .file(imageName, imageType)
-      .value().get("en");
+    return WelcomeWidgetUtils.getImageContentObject(imageName, widget.getImageType());
   }
 }

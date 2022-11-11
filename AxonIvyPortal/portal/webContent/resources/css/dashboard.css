@@ -909,6 +909,10 @@ span.new-widget-dialog__icon.si {
   margin: 100px 0px;
 }
 
+.process-dashboard-widget__empty-process.empty-message-container {
+  padding: 0 20px;
+}
+
 .empty-message-container .empty-message-icon {
   font-size: var(--dashboard-table-empty-message-icon-font-size);
   margin-bottom: 10px;
