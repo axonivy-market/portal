@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "15791C23B125821B",
-  "data" : "gawfs.Data",
   "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "gawfs.Data"
+  },
   "elements" : [ {
       "id" : "S10",
       "type" : "EmbeddedProcess",

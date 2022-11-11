@@ -1,7 +1,9 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "170321BD7F5539D6",
-  "data" : "com.axonivy.portal.userexamples.leaverequest.LeaveRequestProcessData",
+  "config" : {
+    "data" : "com.axonivy.portal.userexamples.leaverequest.LeaveRequestProcessData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "RequestStart",
@@ -20,7 +22,8 @@
           "After approver finish his task, the approval result will be sent back to requester"
         ],
         "startCustomFields" : [
-          { "name" : "cssIcon", "value" : "si si-advertising-megaphone-2" }
+          { "name" : "cssIcon", "value" : "si si-advertising-megaphone-2" },
+          { "name" : "processImage", "value" : "<%=ivy.cms.cr(\"/images/process/NASASTART\")%>" }
         ],
         "task" : {
           "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/createNewLeaveRequest\")%>"

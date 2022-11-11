@@ -408,7 +408,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     All: Alles
     BusinessCaseInformation: Business Case Informationen
     CollapseAll: Alles zuklappen
-    DefaultTemplate: Standard Vorlage
     ExpandAll: Alles aufklappen
     MoreItemsAvailable: weitere Artikel verfügbar
     NoSelection: Keine Auswahl
@@ -755,7 +754,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       CreateFromScratchDescription: Erstellen Sie Ihr eigenes Dashboard von Grund auf
       CreateNewPrivateDashboard: Neues privates Dashboard erstellen
       CreateNewPublicDashboard: Neues öffentliches Dashboard erstellen
-      DefaultTemplateDescription: Dashboard mit 1 Aufgabenliste, 1 Fallliste und 1 Prozessliste erstellen
       Description: In diesem Bereich können Sie die Dashboards nach Ihren Wünschen konfigurieren.
       DoNotSupportMobile: Die Dashboard-Konfiguration wird für mobile Geräte nicht unterstützt.
       EditPrivateDashboards: Private Dashboards bearbeiten
@@ -768,8 +766,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: Öffentliche Dashboards neu anordnen
       SelectAction: Wählen Sie die Aktion
       Title: Dashboard-Konfiguration
-      TwoTaskTemplate: Zwei Aufgabenlisten Dashboard
-      TwoTaskTemplateDescription: Dashboard mit 2 Aufgabenlisten und 1 Prozessliste erstellen
     EmptyFilterMessage: Kein Widget-Filter gefunden
     Filter:
       FilterOptionHeader: Filter-Optionen
@@ -812,6 +808,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     columnManagement: Spaltenverwaltung
     configuration:
       CustomWidgetExternalLinkWarning: Einige Websites sind aufgrund von Sicherheitsbedenken nicht mit iframe kompatibel. Bitte wenden Sie sich an Ihren Administrator, wenn die externe Website nicht ordnungsgemäß funktioniert.
+      CustomWidgetTitlePlaceholder: Lassen Sie es leer, um die Kopfzeile des Widgets auszublenden
       Parameters: Parameter
       RestoreDefaultDashboardTemplateTooltip: Wir können die Vorlage für Ihr Dashboard nicht finden und es daher nicht auf die Standardkonfiguration zurücksetzen. Bitte erkundigen Sie sich bei Ihrem Administrator nach weiteren Details!
       SelectTheTemplate: Wählen Sie die Vorlage
@@ -819,7 +816,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeConfigurationDescription: ''
       WelcomeWidget:
         AdvancedSettings: Erweiterte Einstellungen
-        DisplayedText: Angezeigter Text
+        DisplayedText: Anzeigetext
         Greeting:
           Afternoon: Guten Tag
           Evening: Guten Abend
@@ -1001,6 +998,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   login:
     AxonIvyPortal: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+    LoginWith: Anmelden mit
     PasswordRequiredMessage: Das Passwort ist erforderlich
     UsernameRequiredMessage: Der Nutzername ist erforderlich
     login: Anmeldung

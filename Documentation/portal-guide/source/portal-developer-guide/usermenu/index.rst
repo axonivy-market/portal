@@ -53,7 +53,16 @@ Below is a JSON example for the configuration of user items.
       },
       {
           "id" : "re-order-dashboard",
-          "title" : "cms:/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/reorderDashboard",
+          "titles": [
+              {
+              "locale": "en",
+              "value": "Reorder your dashboards"
+              },
+              {
+              "locale": "de",
+              "value": "Dashboards neu anordnen"
+              }
+          ],
           "permissions": ["Employee", "AXONIVY_PORTAL_ADMIN", "#daniel"],
           "url": "Start Processes/ExamplePortalStart/DashboardReorder.ivp",
           "params": {
@@ -68,9 +77,7 @@ Structure of JSON for each user item:
 
     ``id``: ID of the user item
 
-    ``title``: title of user item. You can enter a string as a user item
-    title, or can use CMS by adding prefix ``cms:`` before your CMS URI
-    to define a multilingual user item title.
+    ``titles``: multilingual title of user item.
 
     ``permissions``: users and roles that can see the user item.
 

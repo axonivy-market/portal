@@ -32,7 +32,7 @@ Dashboard:
 
       ``date``: type java.util.Date.
 
-   ``name``: name of the field that you want to show on the configuration dialog of the custom widget.
+   ``name``: name of the field that you want to show on the configuration dialog of the custom widget. The widget's header is hidden if the name is empty.
 
    The reason to define in the above format is to allow end-user to send parameters to the Ivy process in the proper way.
 
@@ -56,7 +56,12 @@ Below is a standard JSON definition of the custom widget in the Portal dashboard
       {
          "type": "custom",
          "id": "custom-widget",
-         "name": "Custom Widget",
+         "names": [
+            {
+               "locale": "en",
+               "value": "Custom Widget"
+            }
+         ],
          "layout": {
             "x": 10, "y": 0, "w": 2, "h": 4
          },
@@ -73,7 +78,7 @@ The basic JSON structure of the custom widget
 
    ``id``: ID of the widget.
 
-   ``name``: Name of the widget on UI.
+   ``names``: multilingual name of the widget on UI.
 
    ``data``: data for customization. Please refer to the following sections to
    understand how to use this field.
@@ -92,7 +97,12 @@ The JSON structure is the following:
       {
          "type": "custom",
          "id": "custom-widget",
-         "name": "Custom Widget",
+         "names": [
+            {
+               "locale": "en",
+               "value": "Custom Widget"
+            }
+         ],
          "layout": {
             "x": 10, "y": 0, "w": 2, "h": 4
          },
@@ -122,7 +132,12 @@ JSON structure
       {
          "type": "custom",
          "id": "custom-widget",
-         "name": "Custom Widget",
+         "names": [
+            {
+               "locale": "en",
+               "value": "Custom Widget"
+            }
+         ],
          "layout": {
             "x": 10, "y": 0, "w": 12, "h": 6
          },

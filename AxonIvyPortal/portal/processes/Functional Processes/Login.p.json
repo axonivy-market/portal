@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "1694805B8DB28D00",
-  "data" : "ch.ivy.add.portalkit.LoginData",
   "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "ch.ivy.add.portalkit.LoginData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",

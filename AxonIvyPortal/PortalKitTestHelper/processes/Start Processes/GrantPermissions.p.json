@@ -1,7 +1,9 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "14DE09882B540AD5",
-  "data" : "portalKit_test.GrantPermissionsData",
+  "config" : {
+    "data" : "portalKit_test.GrantPermissionsData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "RequestStart",

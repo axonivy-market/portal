@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import ch.ivy.addon.portalkit.constant.PortalPrefix;
+import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.util.Locales;
@@ -18,6 +18,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class UserProcess extends AbstractConfiguration {
   private ProcessType processType;
+  @Deprecated(since = "10.0", forRemoval = true)
   private String processName;
   private List<DisplayName> names;
   private String link;
@@ -60,6 +61,7 @@ public class UserProcess extends AbstractConfiguration {
 
   /**
    * Gets the display name of process by current active locale
+   * 
    * @return process name
    */
   public String getProcessName() {
@@ -73,8 +75,7 @@ public class UserProcess extends AbstractConfiguration {
   private String getActiveDisplayName() {
     Locale currentLocale = new Locales().getCurrentLocale();
     return names.stream().filter(displayName -> displayName.getLocale().equals(currentLocale))
-        .map(DisplayName::getValue)
-        .findFirst().orElse(getDisplayNameWithCms());
+        .map(DisplayName::getValue).findFirst().orElse(getDisplayNameWithCms());
   }
 
   public void setProcessName(String processName) {
@@ -144,8 +145,8 @@ public class UserProcess extends AbstractConfiguration {
   }
 
   private String getDisplayNameWithCms() {
-    return StringUtils.startsWithIgnoreCase(processName, PortalPrefix.CMS)
-        ? Ivy.cms().co(StringUtils.removeStart(processName, PortalPrefix.CMS))
+    return StringUtils.startsWithIgnoreCase(processName, DashboardConfigurationPrefix.CMS)
+        ? Ivy.cms().co(StringUtils.removeStart(processName, DashboardConfigurationPrefix.CMS))
         : processName;
   }
 }

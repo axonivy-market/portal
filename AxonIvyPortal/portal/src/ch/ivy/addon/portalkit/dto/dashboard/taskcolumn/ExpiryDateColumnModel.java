@@ -11,7 +11,6 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 
-import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -31,11 +30,6 @@ public class ExpiryDateColumnModel extends TaskColumnModel implements Serializab
   }
 
   @Override
-  public String getHeaderText() {
-    return translateHeader(defaultIfEmpty(this.header, DashboardConfigurationPrefix.CMS + getDefaultHeaderCMS()));
-  }
-
-  @Override
   public String getDefaultHeaderCMS() {
     return "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME";
   }
@@ -47,7 +41,7 @@ public class ExpiryDateColumnModel extends TaskColumnModel implements Serializab
 
   @Override
   public String getDefaultStyle() {
-    return SMALL_WIDTH;
+    return NORMAL_WIDTH;
   }
 
   @Override

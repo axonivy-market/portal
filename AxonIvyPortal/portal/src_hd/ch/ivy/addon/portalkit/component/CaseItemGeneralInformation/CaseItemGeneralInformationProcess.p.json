@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "1533586B49853633",
-  "data" : "ch.ivy.addon.portalkit.component.CaseItemGeneralInformation.CaseItemGeneralInformationData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portalkit.component.CaseItemGeneralInformation.CaseItemGeneralInformationData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

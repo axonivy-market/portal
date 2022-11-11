@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "1725FB50A0E1F50A",
-  "data" : "com.axonivy.portal.userexamples.credit.LendingDetail.LendingDetailData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.portal.userexamples.credit.LendingDetail.LendingDetailData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

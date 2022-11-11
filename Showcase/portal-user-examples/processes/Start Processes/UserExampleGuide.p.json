@@ -1,7 +1,9 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "17236DB1D3DA14C0",
-  "data" : "com.axonivy.portal.userexamples.UserExampleGuideData",
+  "config" : {
+    "data" : "com.axonivy.portal.userexamples.UserExampleGuideData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "RequestStart",
@@ -16,7 +18,8 @@
         "outLink" : "userExampleGuide.ivp",
         "startDescription" : "<%=ivy.cms.co(\"/Processes/UserExampleGuide/processDescription\")%>",
         "startCustomFields" : [
-          { "name" : "cssIcon", "value" : "si si-help-wheel" }
+          { "name" : "cssIcon", "value" : "si si-help-wheel" },
+          { "name" : "processImage", "value" : "<%=ivy.cms.cr(\"/images/process/HELPDESK2\")%>" }
         ],
         "startName" : "<%=ivy.cms.co(\"/Processes/UserExampleGuide/name\")%>"
       },

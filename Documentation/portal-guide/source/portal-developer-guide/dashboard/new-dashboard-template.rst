@@ -13,8 +13,26 @@ Below is a sample JSON definition of a Portal dashboard template.
    [
       {
          "id": "template-id"
-         "title": "cms:/your_state_header_cms",
-         "description": "Create dashboard with 1 Task list, 1 Case list, and 1 Process list",
+         "titles": [
+            {
+            "locale": "en",
+            "value": "Default template"
+            },
+            {
+            "locale": "de",
+            "value": "Standard Vorlage"
+            }
+         ],
+         "descriptions": [
+            {
+            "locale": "en",
+            "value": "Create dashboard with 1 Task list, 1 Case list, and 1 Process list"
+            },
+            {
+            "locale": "de",
+            "value": "Dashboard mit 1 Aufgabenliste, 1 Vorgangsliste und 1 Prozessliste erstellen"
+            }
+         ],
          "icon": "si-cog-double-2",
          "dashboard": {
             "id": "dashboard_id",
@@ -32,13 +50,10 @@ The structure of JSON of dashboard template
    ``id``: ID to identify the template, it is a **mandatory** field and has to
    be **unique**.
 
-   ``title``: Title for the template in dialog :guilabel:`Select your template`.
-   You can enter a string, or create a multilingual title by prefixing your CMS
-   URI with ``cms:``.
+   ``titles``: Multilingual title for the template in dialog :guilabel:`Select your template`.
 
-   ``description``: Description of the template in the :guilabel:`Select your
-   template` dialog. You can enter a string, or create a multilingual
-   description by prefixing your CMS URI with ``cms:``.
+   ``descriptions``: Multilingual description of the template in the :guilabel:`Select your
+   template` dialog.
 
    ``icon``: Icon of the template item in dialog :guilabel:`Select your
    template`. Portal only supports `Streamline icons

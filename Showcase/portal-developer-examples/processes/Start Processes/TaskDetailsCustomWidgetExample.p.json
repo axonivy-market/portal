@@ -1,7 +1,9 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "1791D27754935B10",
-  "data" : "com.axonivy.portal.developerexamples.TaskDetailsCustomWidgetExampleData",
+  "config" : {
+    "data" : "com.axonivy.portal.developerexamples.TaskDetailsCustomWidgetExampleData"
+  },
   "elements" : [ {
       "id" : "f5",
       "type" : "DialogCall",

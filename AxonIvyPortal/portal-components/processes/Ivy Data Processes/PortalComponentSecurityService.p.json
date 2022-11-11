@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "18098B8A2F5FCF38",
-  "data" : "com.axonivy.portal.components.service.PortalComponentSecurityServiceData",
   "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.portal.components.service.PortalComponentSecurityServiceData"
+  },
   "elements" : [ {
       "id" : "f4",
       "type" : "Script",

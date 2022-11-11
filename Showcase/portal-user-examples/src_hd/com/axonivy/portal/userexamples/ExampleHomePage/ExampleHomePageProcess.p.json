@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "1723A6F0283D003D",
-  "data" : "com.axonivy.portal.userexamples.ExampleHomePage.ExampleHomePageData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.portal.userexamples.ExampleHomePage.ExampleHomePageData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

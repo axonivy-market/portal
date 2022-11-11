@@ -34,9 +34,9 @@
   <c:set var="renderInfo" value="#{isReadOnlyMode and (empty isRenderInfo ? 'true': isRenderInfo)}"/>
   <c:set var="renderExpandCollapse" value="#{isReadOnlyMode and (empty isRenderExpandCollapse ? 'true': isRenderExpandCollapse)}"/>
 
-  <div class="widget__header">
-    <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis">#{not empty widget.name ? widget.name : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/yourWidget')}</h:panelGroup>
-    <p:tooltip for="widget__header" value="#{not empty widget.name ? widget.name : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/yourWidget')}" trackMouse="true" hideEvent="mouseleave click"/>
+  <h:panelGroup layout="block" class="widget__header" rendered="#{not isHeaderHidden}">
+    <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis">#{widget.name}</h:panelGroup>
+    <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" hideEvent="mouseleave click"/>
 
     <h:panelGroup id="widget-header-actions" styleClass="widget__header-actions" layout="block">
       <!-- remote-command to load data for saved filter panel -->
@@ -227,11 +227,23 @@
         </h:form>
       </p:overlayPanel>
     </h:panelGroup>
-  </div>
+  </h:panelGroup>
 
   <h:panelGroup id="widget-content" styleClass="widget__content #{widget.id} #{widgetContentStyleClass} dashboard-widget-panel-container" layout="block">
     <!-- Insert widget content here -->
     <ui:insert name="widgetContent" />
+
+    <!-- maximize and minimize buttons in custom widget no header -->
+    <p:commandButton id="expand-link-widget-no-header-#{index}"
+      type="button" icon="si si-expand-1"
+      styleClass="rounded-button ui-button-outlined expand-link widget-no-header"
+      rendered="#{renderExpandCollapse and isHeaderHidden}"
+      onclick="expandFullscreen(#{index}, '#{widget.id}')" />
+    <p:commandButton id="collapse-link-widget-no-header-#{index}"
+      type="button" icon="si si-shrink-1"
+      styleClass="rounded-button ui-button-outlined collapse-link widget-no-header"
+      rendered="#{renderExpandCollapse and isHeaderHidden}"
+      onclick="collapseFullscreen(#{index}, '#{widget.id}')" />
   </h:panelGroup>
 </h:panelGroup>
 </html>

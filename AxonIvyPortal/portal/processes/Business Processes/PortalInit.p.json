@@ -1,7 +1,9 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "1633E7FE0C8BCFA6",
-  "data" : "ch.ivy.add.portalkit.Data",
+  "config" : {
+    "data" : "ch.ivy.add.portalkit.Data"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "ProgramStart",

@@ -18,68 +18,68 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void addNote(String noteContent) {
-    $("a[id$=':task-notes:add-note-command']").waitUntil(appear, DEFAULT_TIMEOUT);
+    $("a[id$=':task-notes:add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("a[id$=':task-notes:add-note-command']").click();
-    $("div[id$=':task-notes:add-new-note-dialog']").waitUntil(appear, DEFAULT_TIMEOUT);
+    $("div[id$=':task-notes:add-new-note-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("div[id$=':task-notes:add-new-note-dialog']").find("textarea").sendKeys(noteContent);
     $("button[id$=':task-notes:task-add-new-note-form:save-add-note-command']").click();
-    $("div[id$=':task-notes:task-add-new-note-form:save-add-note-command']").waitUntil(disappear, DEFAULT_TIMEOUT);
+    $("div[id$=':task-notes:task-add-new-note-form:save-add-note-command']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public ElementsCollection getNotesWithContent(String content) {
-    $("span[id$=':task-notes:task-history-content-container']").waitUntil(appear, DEFAULT_TIMEOUT);
+    $("span[id$=':task-notes:task-history-content-container']").shouldBe(appear, DEFAULT_TIMEOUT);
     return $$("span[id$=':task-notes:task-history-content-container'] table tbody tr td a").filter(text(content));
   }
 
   public CaseDetailsPage gotoTechnicalCase() {
-    $("a[id$=':general-information:related-technical-case']").waitUntil(appear, DEFAULT_TIMEOUT);
+    $("a[id$=':general-information:related-technical-case']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("a[id$=':general-information:related-technical-case']").click();
-    $("div[id$=':general-information:business-case-information']").waitUntil(appear, DEFAULT_TIMEOUT);
+    $("div[id$=':general-information:business-case-information']").shouldBe(appear, DEFAULT_TIMEOUT);
     return new CaseDetailsPage();
   }
 
   public void gotoBusinessCase() {
-    $("a[id$=':general-information:related-case']").waitUntil(appear, DEFAULT_TIMEOUT);
+    $("a[id$=':general-information:related-case']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("a[id$=':general-information:related-case']").click();
-    $("div[id$=':general-information:business-case-information']").waitUntil(disappear, DEFAULT_TIMEOUT);
+    $("div[id$=':general-information:business-case-information']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getBreadcrumbLastDisplayedItem() {
-    return $$("span.ui-menuitem-text").last().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    return $$("span.ui-menuitem-text").last().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getInformationPanel() {
-    return $("div[id$='task-details-information-panel'").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    return $("div[id$='task-details-information-panel'").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
   
   public void openActionPanel() {
-    $("[id$=':additional-options:task-detail-more-step']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $("[id$=':additional-options:side-steps-panel']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    $("[id$=':additional-options:task-detail-more-step']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("[id$=':additional-options:side-steps-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
   
   private void openTriggerEscalationDialog() {
-    $("a[id$='\\:task-trigger-escalation-command']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $("div[id$='\\:escalation-task-confirmation-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    $("a[id$='\\:task-trigger-escalation-command']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("div[id$='\\:escalation-task-confirmation-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
   
   public void triggerEscalation() {
     openTriggerEscalationDialog();
-    $("button[id$='\\:confirm-escalation']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("button[id$='\\:confirm-escalation']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
   
   public SelenideElement getPriorityOfTask() {
-    return $("span[id$='task-priority']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).$("i[class*='priority']").closest("span");
+    return $("span[id$='task-priority']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("i[class*='priority']").closest("span");
   }
   
   public SelenideElement getStateOfTask() {
-    return $("[id$=':general-information:task-detail-state']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).$("i[class*='task-state']").closest("span");
+    return $("[id$=':general-information:task-detail-state']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("i[class*='task-state']").closest("span");
   }
   
   public void back() {
-    $("[id$=':task-detail-title-form:back-to-previous-page']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("[id$=':task-detail-title-form:back-to-previous-page']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
 
   public SelenideElement getResponsibleAvatar() {
-    return $(".security-member-container > .has-avatar > .ui-avatar").waitUntil(appear, DEFAULT_TIMEOUT);
+    return $(".security-member-container > .has-avatar > .ui-avatar").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 }

@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "1475D5F3DD0B29B3",
-  "data" : "internaltest.ui.approveLeave.approveLeaveData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "internaltest.ui.approveLeave.approveLeaveData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

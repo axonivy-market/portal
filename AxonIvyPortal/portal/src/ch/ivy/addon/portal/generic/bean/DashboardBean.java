@@ -29,7 +29,6 @@ import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.SingleProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
-import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
 import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.CaseEmptyMessage;
@@ -39,6 +38,7 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
+import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
 import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
@@ -50,7 +50,6 @@ import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.scripting.objects.File;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -142,30 +141,11 @@ public class DashboardBean implements Serializable {
       return;
     }
     for (var widget : dashboard.getWidgets()) {
-      String cmsUri = "";
       DashboardWidgetUtils.buildWidgetColumns(widget);
-      switch (widget.getType()) {
-        case TASK:
-          cmsUri = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks";
-          break;
-        case CASE:
-          cmsUri = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCases";
-          break;
-        case PROCESS:
-          cmsUri = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcesses";
-          break;
-        case CUSTOM:
-          loadCustomWidget(widget);
-          break;
-        case WELCOME:
-          loadWelcomeWidget(widget);
-          break;
-        default:
-          break;
+      if (DashboardWidgetType.CUSTOM.equals(widget.getType())) {
+        loadCustomWidget(widget);
       }
-      if (StringUtils.isBlank(widget.getName())) {
-        widget.setName(translate(cmsUri));
-      }
+      
       if (!(widget instanceof SingleProcessDashboardWidget)) {
         WidgetFilterService.getInstance().applyUserFilterFromSession(widget);
       }
@@ -187,24 +167,16 @@ public class DashboardBean implements Serializable {
       customWidget.getData().setStartProcessParams(element.startParameters());
 
       List<IWebStartable> allPortalProcesses = ProcessService.newInstance().findProcesses().getProcesses();
-      customWidget.getData().setStartableProcessStart(allPortalProcesses.stream()
+      if (customWidget.getData().getIvyProcessStartDTO() == null) {
+        customWidget.getData().setIvyProcessStartDTO(new IvyProcessStartDTO());
+      }
+      customWidget.getData().getIvyProcessStartDTO().setStartableProcessStart(allPortalProcesses.stream()
         .filter(proccess -> proccess.getLink().toString().contentEquals(url)).findFirst().get());
       customWidget.loadParameters();
       customWidget.getData().setUrl(url);
       customWidget.getData().setType(DashboardCustomWidgetType.PROCESS);
     } else {
       customWidget.getData().setType(DashboardCustomWidgetType.EXTERNAL_URL);
-    }
-  }
-
-  private void loadWelcomeWidget(DashboardWidget widget) {
-    WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
-    if (StringUtils.isNotBlank(welcomeWidget.getImageLocation())) {
-      try {
-        welcomeWidget.setUploadedImageFile(new File(welcomeWidget.getImageLocation()));
-      } catch (IOException e) {
-        Ivy.log().error(e);
-      }
     }
   }
 

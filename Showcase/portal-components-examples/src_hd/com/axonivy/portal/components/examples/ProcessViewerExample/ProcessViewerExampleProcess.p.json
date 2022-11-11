@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "1821596E460CDACC",
-  "data" : "com.axonivy.portal.components.examples.ProcessViewerExample.ProcessViewerExampleData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.portal.components.examples.ProcessViewerExample.ProcessViewerExampleData"
+  },
   "elements" : [ {
       "id" : "f3",
       "type" : "HtmlDialogEventStart",

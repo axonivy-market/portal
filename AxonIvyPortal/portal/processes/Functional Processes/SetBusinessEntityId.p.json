@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "161936E158EBC57F",
-  "data" : "ch.ivy.addon.portal.generic.SetBusinessEntityIdData",
   "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "ch.ivy.addon.portal.generic.SetBusinessEntityIdData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",

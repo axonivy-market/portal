@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "176CBAAD82714638",
-  "data" : "com.axonivy.portal.developerexamples.showcase.CustomTaskTemplate.CustomTaskTemplateData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.portal.developerexamples.showcase.CustomTaskTemplate.CustomTaskTemplateData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

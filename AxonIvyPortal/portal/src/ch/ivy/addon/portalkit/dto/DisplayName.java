@@ -10,6 +10,13 @@ public class DisplayName {
   private Locale locale;
   private String value;
 
+  public DisplayName() {}
+
+  public DisplayName(Locale locale, String value) {
+    this.locale = locale;
+    this.value = value;
+  }
+
   public Locale getLocale() {
     return locale;
   }

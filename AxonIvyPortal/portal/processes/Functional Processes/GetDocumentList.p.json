@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "16A7C7CEF44FB794",
-  "data" : "ch.ivy.add.portalkit.GetDocumentListData",
   "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "ch.ivy.add.portalkit.GetDocumentListData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",

@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "1803FB98EA8C752D",
-  "data" : "ch.ivy.addon.portal.generic.dashboard.component.DashboardTemplateSelection.DashboardTemplateSelectionData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portal.generic.dashboard.component.DashboardTemplateSelection.DashboardTemplateSelectionData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "180CC2A120F7FCC9",
-  "data" : "com.axonivy.portal.components.DownloadDocumentItemData",
   "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.portal.components.DownloadDocumentItemData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",

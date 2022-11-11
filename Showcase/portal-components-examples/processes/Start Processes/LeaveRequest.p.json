@@ -1,7 +1,9 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "182E92730FF57035",
-  "data" : "com.axonivy.portal.components.examples.LeaveRequestProcessData",
+  "config" : {
+    "data" : "com.axonivy.portal.components.examples.LeaveRequestProcessData"
+  },
   "elements" : [ {
       "id" : "f24",
       "type" : "RequestStart",

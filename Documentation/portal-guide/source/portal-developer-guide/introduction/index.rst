@@ -6,6 +6,53 @@ Introduction
 Portal Developer Guide provides information to set up, configure, customize
 Portal so that it could fit customer need.
 
+.. _introduction-new-and-note-worthy-10.0:
+
+New & Noteworthy 10
+-------------------
+
+The focus with Release 10 was to finalize the new portal approach of enabling the portal users to configure the portal to their custom needs and make the portal more adaptable to the various use cases of the Axon Ivy Platform.
+
+As part of this journey, the portal dashboards were completely redesigned giving more power to the end user in making the portal his own workbench, interacting with processes and tasks, reporting on process progress and managing workloads. With the update of the overall theme, the portal now also supports dark mode giving the portal a more modern overall look & feel.
+
+|new-dashboard|
+
+Within the dashboards, the portal now offers:
+
+- Public Dashboards with permissions
+- Private Dashboards that users can fit to their needs
+- Many Standard Widgets like configurable task, case and process start list with filters and sorting
+- Custom Widgets for integrating existing processes directly into the dashboard
+- Custom filters and sorting, even on custom task and case fields
+- Welcome Widget with custom images and messages
+
+Also other parts of the portal have improved:
+
+- Password recovery flows for an automated reset of lost passwords
+- New Password complexity rules and validations for more secure passwords.
+- Advanced absence management for personal and role deputies with full transparency
+- Advanced user specific settings for notifications, language, and formatting preferences
+- Configurable case details page
+- New menu with a cleaner look and an easier navigation between dashboards
+- Custom Avatars within all dialogs
+
+Not only for the end user but also for developers, the portal was updated:
+
+- The portal projects have been simplified, two projects are left:  Portal & Portal-Components
+- The multiapp approach is now covered by the axon ivy core, making the use of the portal for displaying tasks from more than one application much easier
+- Through the separation of process and portal by the iframe approach, supported by the portal templates on portal, can serve multiple applications
+- Dialog Templates now offer portal functions, e.g., forwarding the user in an exit event, or interacting with the portal from within the iframe template.
+- The portal-components project now offers ready to use components like a documents-component or user choosers that can be reused in your Axon Ivy Projects
+
+New Welcome Widget
+^^^^^^^^^^^^^^^^^^
+
+The new welcome widget greets the user based on the local time and enables a friendlier approach, thus also adding more CI/CD elements into the portal, making it your own.
+
+|new-welcome-widget|
+
+|
+
 Inviting and modern Look & Feel for Axon Ivy Portal 9.4. Refer to :ref:`introduction-new-and-note-worthy-9.4`.
 
 - Welcome Screen
@@ -248,3 +295,5 @@ Filter case by owner in case list and task analysis if case owner is enabled.
 .. |dashboard-configuration-wizard-create| image:: images/9.4/dashboard-configuration-wizard-create.png
 .. |dashboard-configuration-wizard| image:: images/9.4/dashboard-configuration-wizard.png
 .. |password-validation| image:: images/9.4/password-validation.png
+.. |new-welcome-widget| image:: images/10.0/new-welcome-widget.png
+.. |new-dashboard| image:: images/10.0/new-dashboard.png

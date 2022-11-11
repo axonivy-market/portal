@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "17CE41F902EF7929",
-  "data" : "ch.ivy.addon.portalkit.component.dashboard.widget.NumberFilterColumn.NumberFilterColumnData",
   "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portalkit.component.dashboard.widget.NumberFilterColumn.NumberFilterColumnData"
+  },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",

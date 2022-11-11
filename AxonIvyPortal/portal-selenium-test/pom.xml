@@ -6,15 +6,15 @@
   <version>9.1.0.0-SNAPSHOT</version>
   <packaging>iar</packaging>
   <properties>
-    <ivy.engine.version>10.0.0</ivy.engine.version>
-    <build.plugin.version>10.0.0-SNAPSHOT</build.plugin.version>
+    <ivy.engine.version>11.1.0</ivy.engine.version>
+    <build.plugin.version>10.0.0</build.plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
     <dependency>
       <groupId>com.axonivy.ivy.webtest</groupId>
       <artifactId>web-tester</artifactId>
-      <version>9.2.0</version>
+      <version>10.0.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
