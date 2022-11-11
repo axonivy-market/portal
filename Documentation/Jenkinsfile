@@ -17,7 +17,7 @@ pipeline {
           docker.withRegistry('', 'docker.io') {
             docker.image('maven:3.6.3-openjdk-17-slim').inside {
               version = getCurrentVersion()
-              sh 'mvn clean process-resources -Divy.engine.version=[11.1.0,] -Divy.engine.list.url=https://jenkins.ivyteam.io/job/core_product/job/master/lastSuccessfulBuild/ -f Documentation/public-api/pom.xml'
+              sh 'mvn clean process-resources -Divy.engine.version=[11.1.0,] -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip -f Documentation/public-api/pom.xml'
               sh 'mvn clean generate-resources -f Documentation/pom.xml'
             }
             
