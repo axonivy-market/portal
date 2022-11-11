@@ -1538,7 +1538,9 @@ Dialogs:
               AddNews: Añadir noticias
               EditNews: Editar noticias
               NewsContentMaxLengthMessage: El contenido de las noticias no debe superar los 1000 caracteres
+              NewsWidgetConfiguration: Configuración del widget de noticias
               NewsWidgetDescription: Este widget comparte información relevante como News Feed en Axon Ivy.
+              NewsWidgetTitle: Widget de noticias
   components:
     CaseDocument:
       FileDate: Modificado el

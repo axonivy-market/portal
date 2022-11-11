@@ -1533,10 +1533,12 @@ Dialogs:
               SeeLess: siehe weniger
               SeeMore: mehr sehen
             NewsWidgetConfiguration:
-              AddNews: Nachrichten hinzufügen
+              AddNews: Neuigkeiten hinzufügen
               EditNews: Nachrichten bearbeiten
               NewsContentMaxLengthMessage: Der Inhalt der Nachrichten darf 1000 Zeichen nicht überschreiten.
+              NewsWidgetConfiguration: Konfiguration des Newsfeed-Widgets
               NewsWidgetDescription: Dieses Widget teilt relevante Informationen als News Feed in Axon Ivy.
+              NewsWidgetTitle: News-Feed-Widget
   components:
     CaseDocument:
       FileDate: Änderungsdatum

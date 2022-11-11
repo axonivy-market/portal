@@ -1535,7 +1535,9 @@ Dialogs:
               AddNews: Ajouter une nouvelle
               EditNews: Nouvelles d'édition
               NewsContentMaxLengthMessage: Le contenu des actualités ne doit pas dépasser 1000 caractères
+              NewsWidgetConfiguration: Configuration du widget de flux d'informations
               NewsWidgetDescription: Ce widget partage des informations pertinentes sous forme de fil d'actualité dans Axon Ivy.
+              NewsWidgetTitle: Widget de flux d'informations
   components:
     CaseDocument:
       FileDate: Modifié le

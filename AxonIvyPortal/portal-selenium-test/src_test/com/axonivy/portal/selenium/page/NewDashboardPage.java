@@ -735,4 +735,8 @@ public class NewDashboardPage extends TemplatePage {
     return $("div[gs-id$='process_1']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$(".widget__filter-noti-number");
   }
 
+  public DashboardNewsWidgetPage selectNewsFeedWidget(String newWidgetName) {
+    return new DashboardNewsWidgetPage(newWidgetName);
+  }
+
 }

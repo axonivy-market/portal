@@ -1420,7 +1420,15 @@ span.new-widget-dialog__icon.si {
   padding-bottom: 0.5rem;
 }
 
+.card-widget-panel.statistic-chart-widget .card-widget__content {
+  min-height: 200px;
+}
+
 /* News widget */
+.news-widget-configuration.widget-configuration.card {
+  margin-right: 0;
+}
+
 .news-widget__content-panel.widget__content {
   padding-right: 0;
   padding-bottom: 0;
