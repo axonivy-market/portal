@@ -20,6 +20,7 @@
         <url>https://nexus.axonivy.com/repository/maven-snapshots/</url>
       </snapshotRepository>
     </distributionManagement>
+
     <build>
         <plugins>
             <plugin>
