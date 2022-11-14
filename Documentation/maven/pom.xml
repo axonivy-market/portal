@@ -7,7 +7,7 @@
     <version>${revision}</version>
 
     <properties>
-        <revision>11.1.0-m233</revision>
+        <revision>9.1.0.0-SNAPSHOT</revision>
     </properties>
 
     <distributionManagement>
@@ -20,13 +20,6 @@
         <url>https://nexus.axonivy.com/repository/maven-snapshots/</url>
       </snapshotRepository>
     </distributionManagement>
-	<!--distributionManagement>
-		<repository>
-			<id>repo.axonivy.io</id>
-			<name>repo.axonivy.io</name>
-			<url>https://repo.axonivy.io/artifactory/ext-release-local</url>
-		</repository>
-	</distributionManagement-->
     <build>
         <plugins>
             <plugin>
