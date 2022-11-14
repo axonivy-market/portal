@@ -25,10 +25,12 @@
     <div class="news-item__actions">
       <p:link id="news-item-see-more" styleClass="u-mar-right-5 hide"
         value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/SeeMore')}"
-        onclick="seeMoreNewsItemContent('#{newsItemId}')" href="#" />
+        onclick="seeMoreNewsItemContent('#{newsItemId}')"
+        href="##{newsItemId}" />
       <p:link id="news-item-see-less" styleClass="u-mar-right-5 hide"
         value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/SeeLess')}"
-        onclick="seeLessNewsItemContent('#{newsItemId}')" href="#" />
+        onclick="seeLessNewsItemContent('#{newsItemId}')"
+        href="##{newsItemId}" />
       <h:panelGroup rendered="#{newsWidgetBean.canManageNews and isReadOnlyMode}" styleClass="news__manage-actions">
         <p:commandLink id="news-item-edit-link"
           styleClass="si si-pencil u-mar-right-10 ui-sm-hidden"
