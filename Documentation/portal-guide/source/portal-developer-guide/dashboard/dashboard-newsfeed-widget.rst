@@ -6,7 +6,7 @@ Configure News Widget
 Define News widget
 ------------------
 
-The news widget shares relevant information as News Feed into Axon Ivy.
+The news widget shares relevant information as a News Feed into Axon Ivy.
 
 Below is a sample JSON definition of a news widget in the Portal dashboard
 
@@ -33,6 +33,8 @@ The basic JSON structure of a news widget
    ``type``: type of the widget. Use ``news`` for the news widget
 
    ``id``: ID of the widget
+
+   ``names``: multilingual name of the widget on the UI.
 
    ``layout``: layout definition of the news widget
 
