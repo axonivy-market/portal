@@ -1,12 +1,8 @@
 pipeline {
-  agent {label 'portal-slave'}
+  agent {label 'tung-pc'}
   
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
-  }
-
-  triggers {
-    cron('0 23 * * *')
   }
 
   tools { 
@@ -81,10 +77,6 @@ pipeline {
             Copy-Item Showcase/portal-components-examples/target/*iar -Destination $DEPLOYMENT
           '''
 
-          node('master') {
-            utils.remoteDesktop()
-          }
-
           utils.killUnnecessaryProcessesToRunTest()
 
           echo '====================Execute maven for testing===================='
@@ -92,10 +84,6 @@ pipeline {
           bat "mvn clean ${mavenGoal} -f AxonIvyPortal/PortalTest/document_screenshot_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
           utils.cleanDisk()
 
-          node('master') {
-            utils.closeAllRemoteDesktopConnections()
-          }
-          
           echo "====================Copy ElasticSearch log===================="
           powershell '''
             $LOG= $env:engineDir + "/elasticsearch/logs/ivy-elasticsearch-*.log"
