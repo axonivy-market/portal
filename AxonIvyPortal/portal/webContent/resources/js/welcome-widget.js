@@ -187,6 +187,9 @@ WelcomeWidget = {
 	
   },
   updateImageInlineStyle:function(imageInlineStyle){
-  	document.getElementsByClassName('js-welcome-image')[0].style.cssText = imageInlineStyle;
+  	var image = document.getElementsByClassName('js-welcome-image');
+  	for (var i = 0; i < image.length; i++){
+  	image[i].style.cssText = imageInlineStyle;
+  	}
   }
 }
