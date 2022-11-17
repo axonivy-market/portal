@@ -46,6 +46,22 @@ WelcomeWidgetConfiguration = {
       return;
     }
   },
+  
+updatePreviewImageFit : function() {
+var previewDialog = $('#new-widget-configuration-dialog');
+    var selectedFit = previewDialog.find('input[id $="selected-welcome-image-fit"]').get(0).value;
+    var image = previewDialog.find('.js-preview-image');    
+    
+    if (selectedFit == 'COVER') {
+      image.removeClass('welcome-image-fit-none welcome-image-fit-fill welcome-image-fit-contain').addClass('welcome-image-fit-cover'); 
+    } else if (selectedFit == 'FILL') {
+      image.removeClass('welcome-image-fit-none welcome-image-fit-contain welcome-image-fit-cover').addClass('welcome-image-fit-fill');
+    } else if (selectedFit == 'NONE') {
+      image.removeClass('welcome-image-fit-fill welcome-image-fit-contain welcome-image-fit-cover').addClass('welcome-image-fit-none');
+    } else if (selectedFit == 'CONTAIN') {
+      image.removeClass('welcome-image-fit-fill welcome-image-fit-cover welcome-image-fit-none').addClass('welcome-image-fit-contain');
+    }
+  },
 
   updatePreviewTextColor : function() {
     var previewDialog = $('#new-widget-configuration-dialog');
@@ -95,8 +111,10 @@ WelcomeWidgetConfiguration = {
 }
 
 WelcomeWidget = {
-  init : function(widgetId, welcomeTextColor, welcomeTextPosition, welcomeTextSize) {
+  init : function(widgetId, welcomeTextColor, welcomeTextPosition, welcomeTextSize, welcomeImageFit, imageInlineStyle) {
     this.updateWelcomeTextStyles(widgetId, welcomeTextColor, welcomeTextPosition, welcomeTextSize);
+    this.updateImageFit(widgetId, welcomeImageFit);
+    this.updateImageInlineStyle(imageInlineStyle);
   },
 
   updateWelcomeTextStyles : function(widgetId, welcomeTextColor, welcomeTextPosition, welcomeTextSize) {
@@ -142,5 +160,33 @@ WelcomeWidget = {
       default:
         break;
     }
+  },
+  updateImageFit: function(widgetId, welcomeImageFit){
+  	var widget = $('div.grid-stack-item[gs-id = ' + widgetId + ']');
+  	var defaultImage = widget.find('[id $= "default-image"]');
+  	var defaultImageDark = widget.find('[id $= "default-image-dark"]');
+  	var welcomeImage = widget.find('[id $= "welcome-image"]');
+  	  	
+  	if (welcomeImageFit == 'COVER') {
+      defaultImage.removeClass('welcome-image-fit-none welcome-image-fit-fill welcome-image-fit-contain').addClass('welcome-image-fit-cover'); 
+      defaultImageDark.removeClass('welcome-image-fit-none welcome-image-fit-fill welcome-image-fit-contain').addClass('welcome-image-fit-cover');
+      welcomeImage.removeClass('welcome-image-fit-none welcome-image-fit-fill welcome-image-fit-contain').addClass('welcome-image-fit-cover');
+    } else if (welcomeImageFit == 'FILL') {
+      defaultImage.removeClass('welcome-image-fit-none welcome-image-fit-contain welcome-image-fit-cover').addClass('welcome-image-fit-fill');
+      defaultImageDark.removeClass('welcome-image-fit-none welcome-image-fit-contain welcome-image-fit-cover').addClass('welcome-image-fit-fill');
+      welcomeImage.removeClass('welcome-image-fit-none welcome-image-fit-contain welcome-image-fit-cover').addClass('welcome-image-fit-fill');
+    } else if (welcomeImageFit == 'NONE') {
+      defaultImage.removeClass('welcome-image-fit-fill welcome-image-fit-contain welcome-image-fit-cover').addClass('welcome-image-fit-none');
+      defaultImageDark.removeClass('welcome-image-fit-fill welcome-image-fit-contain welcome-image-fit-cover').addClass('welcome-image-fit-none');
+      welcomeImage.removeClass('welcome-image-fit-fill welcome-image-fit-contain welcome-image-fit-cover').addClass('welcome-image-fit-none');
+    } else if (welcomeImageFit == 'CONTAIN') {
+      defaultImage.removeClass('welcome-image-fit-fill welcome-image-fit-cover welcome-image-fit-none').addClass('welcome-image-fit-contain');
+      defaultImageDark.removeClass('welcome-image-fit-fill welcome-image-fit-cover welcome-image-fit-none').addClass('welcome-image-fit-contain');
+      welcomeImage.removeClass('welcome-image-fit-fill welcome-image-fit-cover welcome-image-fit-none').addClass('welcome-image-fit-contain');
+    }
+	
+  },
+  updateImageInlineStyle:function(imageInlineStyle){
+  	document.getElementsByClassName('js-welcome-image')[0].style.cssText = imageInlineStyle;
   }
 }

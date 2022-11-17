@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.enums.WelcomeImageFit;
 import ch.ivy.addon.portalkit.enums.WelcomeTextPosition;
 import ch.ivy.addon.portalkit.enums.WelcomeTextSize;
 import ch.ivyteam.ivy.cm.ContentObject;
@@ -25,6 +26,8 @@ public class WelcomeDashboardWidget  extends DashboardWidget {
   private boolean isGreeting;
   private String welcomeTextStyleClass;
   private String imageStyleClass;
+  private WelcomeImageFit welcomeImageFit;
+  private String imageInlineStyle;
 
   @JsonIgnore
   private String welcomeText;
@@ -140,6 +143,22 @@ public class WelcomeDashboardWidget  extends DashboardWidget {
 
   public void setImageContentObject(ContentObject imageContentObject) {
     this.imageContentObject = imageContentObject;
+  }
+
+  public WelcomeImageFit getWelcomeImageFit() {
+    return welcomeImageFit;
+  }
+
+  public void setWelcomeImageFit(WelcomeImageFit welcomeImageFit) {
+    this.welcomeImageFit = welcomeImageFit;
+  }
+
+  public String getImageInlineStyle() {
+    return imageInlineStyle;
+  }
+
+  public void setImageInlineStyle(String imageInlineStyle) {
+    this.imageInlineStyle = imageInlineStyle;
   }
 
 }
