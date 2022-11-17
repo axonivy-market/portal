@@ -12,7 +12,7 @@ import ch.ivy.addon.portalkit.enums.WelcomeTextPosition;
 import ch.ivy.addon.portalkit.enums.WelcomeTextSize;
 import ch.ivyteam.ivy.cm.ContentObject;
 
-public class WelcomeDashboardWidget  extends DashboardWidget {
+public class WelcomeDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = 2688408047581268704L;
 
