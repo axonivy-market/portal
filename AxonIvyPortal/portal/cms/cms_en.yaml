@@ -150,6 +150,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       THURSDAY: THU
       TUESDAY: TUE
       WEDNESDAY: WED
+    WelcomeImageFit:
+      CONTAIN: Contain
+      COVER: Cover
+      FILL: Fill
+      NONE: None
     WelcomeTextPosition:
       BOTTOM_LEFT: Bottom-left corner
       BOTTOM_RIGHT: Bottom-right corner
@@ -818,12 +823,14 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeConfigurationDescription: You can configure your widget in this configuration area. Please define the welcome text and image to be used.
       WelcomeWidget:
         AdvancedSettings: Advanced settings
+        ChooseAFit: Choose a fit
         DisplayedText: display text
         Greeting:
           Afternoon: Good afternoon
           Evening: Good evening
           Morning: Good morning
         Image: Image
+        ImageInlineStyle: Image inline style
         ImageStyleClass: Image style class
         ShowGreeting: Show greeting
         TextPosition: Text position
