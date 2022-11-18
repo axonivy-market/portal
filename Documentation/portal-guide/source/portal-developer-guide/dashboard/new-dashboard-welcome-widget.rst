@@ -39,7 +39,7 @@ Below is a sample JSON definition of a welcome widget in the Portal dashboard
       "welcomeTextStyleClass" : "custom-text",
       "imageStyleClass" : "custom-image",
       "welcomeImageFit" : "COVER",
-      "imageInlineStyle" : "border:5px; border:solid;"
+      "imageInlineStyle" : "background-color:red; border:solid;"
    }
 
 The basic JSON structure of a welcome widget
