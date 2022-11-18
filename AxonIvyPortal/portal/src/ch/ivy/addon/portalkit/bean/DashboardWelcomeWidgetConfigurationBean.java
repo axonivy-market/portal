@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
+import static com.axonivy.portal.util.WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,6 +22,7 @@ import org.primefaces.model.file.UploadedFile;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.enums.WelcomeImageFit;
 import ch.ivy.addon.portalkit.enums.WelcomeTextPosition;
 import ch.ivy.addon.portalkit.enums.WelcomeTextSize;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
@@ -27,8 +30,6 @@ import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.language.LanguageConfigurator;
 import ch.ivyteam.ivy.security.ISecurityContext;
-
-import static com.axonivy.portal.util.WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT;
 
 @ViewScoped
 @ManagedBean
@@ -43,6 +44,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
   private List<WelcomeTextSize> textSizes;
   private ContentObject imageCMSObject;
   private int parsedClientTime;
+  private List<WelcomeImageFit> imageFits;
 
   @Override
   public void init() {
@@ -50,6 +52,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
     imageCMSObject = null;
     setTextPositions(Arrays.asList(WelcomeTextPosition.values()));
     setTextSizes(Arrays.asList(WelcomeTextSize.values()));
+    setImageFits(Arrays.asList(WelcomeImageFit.values()));
     initWelcomeWidget();
   }
 
@@ -140,5 +143,13 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
     String imageName = WelcomeWidgetUtils.getFileNameOfImage(widget.getImageLocation());
     imageName = isTempImage ? "temp_".concat(imageName) : imageName;
     return WelcomeWidgetUtils.getImageContentObject(imageName, widget.getImageType());
+  }
+
+  public List<WelcomeImageFit> getImageFits() {
+    return imageFits;
+  }
+
+  public void setImageFits(List<WelcomeImageFit> imageFits) {
+    this.imageFits = imageFits;
   }
 }
