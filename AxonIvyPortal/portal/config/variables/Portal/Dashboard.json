@@ -176,6 +176,7 @@
 						"value" : ", bienvenido al portal Axon Ivy!"
 					}
 				],
+				"welcomeImageFit" : "COVER",
 				"greeting" : true
 			}
 		],
