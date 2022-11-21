@@ -48,18 +48,21 @@ WelcomeWidgetConfiguration = {
   },
   
 updatePreviewImageFit : function() {
-var previewDialog = $('#new-widget-configuration-dialog');
+    var previewDialog = $('#new-widget-configuration-dialog');
     var selectedFit = previewDialog.find('input[id $="selected-welcome-image-fit"]').get(0).value;
-    var image = previewDialog.find('.js-preview-image');    
-    
+    var image = previewDialog.find('.js-preview-image');
+
+    image.removeClass (function (index, className) {
+      return (className.match (/(^|\s)welcome-image-fit-\S+/g) || []).join(' ');
+    });
     if (selectedFit == 'COVER') {
-      image.removeClass('welcome-image-fit-none welcome-image-fit-fill welcome-image-fit-contain').addClass('welcome-image-fit-cover'); 
+      image.addClass('welcome-image-fit-cover'); 
     } else if (selectedFit == 'FILL') {
-      image.removeClass('welcome-image-fit-none welcome-image-fit-contain welcome-image-fit-cover').addClass('welcome-image-fit-fill');
+      image.addClass('welcome-image-fit-fill');
     } else if (selectedFit == 'NONE') {
-      image.removeClass('welcome-image-fit-fill welcome-image-fit-contain welcome-image-fit-cover').addClass('welcome-image-fit-none');
+      image.addClass('welcome-image-fit-none');
     } else if (selectedFit == 'CONTAIN') {
-      image.removeClass('welcome-image-fit-fill welcome-image-fit-cover welcome-image-fit-none').addClass('welcome-image-fit-contain');
+      image.addClass('welcome-image-fit-contain');
     }
   },
 
@@ -95,6 +98,9 @@ var previewDialog = $('#new-widget-configuration-dialog');
   updateStyleClasses : function() {
     var previewDialog = $('#new-widget-configuration-dialog');
     var imageStyleClass = previewDialog.find('.js-image-style-class').attr('value');
+    if (typeof imageStyleClass === 'undefined') {
+      return;
+    }
     var image = previewDialog.find('.js-preview-image');
     if (this.oldImageStyleClass == "") {
       this.oldImageStyleClass = image.attr('class');
@@ -144,52 +150,33 @@ WelcomeWidget = {
         break;
     }
 
-    switch(welcomeTextSize) {
-      case 'NORMAL_TEXT':
-        welcomeText.addClass('NORMAL_TEXT');
-        break;
-      case 'HEADING_1':
-        welcomeText.addClass('HEADING_1');
-        break;
-      case 'HEADING_2':
-        welcomeText.addClass('HEADING_2');
-        break;
-      case 'HEADING_3':
-        welcomeText.addClass('HEADING_3');
-        break;
-      default:
-        break;
-    }
+    welcomeText.addClass(welcomeTextSize);
   },
-  updateImageFit: function(widgetId, welcomeImageFit){
-  	var widget = $('div.grid-stack-item[gs-id = ' + widgetId + ']');
-  	var defaultImage = widget.find('[id $= "default-image"]');
-  	var defaultImageDark = widget.find('[id $= "default-image-dark"]');
-  	var welcomeImage = widget.find('[id $= "welcome-image"]');
-  	  	
-  	if (welcomeImageFit == 'COVER') {
-      defaultImage.removeClass('welcome-image-fit-none welcome-image-fit-fill welcome-image-fit-contain').addClass('welcome-image-fit-cover'); 
-      defaultImageDark.removeClass('welcome-image-fit-none welcome-image-fit-fill welcome-image-fit-contain').addClass('welcome-image-fit-cover');
-      welcomeImage.removeClass('welcome-image-fit-none welcome-image-fit-fill welcome-image-fit-contain').addClass('welcome-image-fit-cover');
+
+  updateImageFit: function(widgetId, welcomeImageFit) {
+    var widget = $('div.grid-stack-item[gs-id = ' + widgetId + ']');
+    var image = widget.find('.js-welcome-image');
+
+    image.removeClass (function (index, className) {
+      return (className.match (/(^|\s)welcome-image-fit-\S+/g) || []).join(' ');
+    });
+
+    if (welcomeImageFit == 'COVER') {
+      image.addClass('welcome-image-fit-cover'); 
     } else if (welcomeImageFit == 'FILL') {
-      defaultImage.removeClass('welcome-image-fit-none welcome-image-fit-contain welcome-image-fit-cover').addClass('welcome-image-fit-fill');
-      defaultImageDark.removeClass('welcome-image-fit-none welcome-image-fit-contain welcome-image-fit-cover').addClass('welcome-image-fit-fill');
-      welcomeImage.removeClass('welcome-image-fit-none welcome-image-fit-contain welcome-image-fit-cover').addClass('welcome-image-fit-fill');
+      image.addClass('welcome-image-fit-fill');
     } else if (welcomeImageFit == 'NONE') {
-      defaultImage.removeClass('welcome-image-fit-fill welcome-image-fit-contain welcome-image-fit-cover').addClass('welcome-image-fit-none');
-      defaultImageDark.removeClass('welcome-image-fit-fill welcome-image-fit-contain welcome-image-fit-cover').addClass('welcome-image-fit-none');
-      welcomeImage.removeClass('welcome-image-fit-fill welcome-image-fit-contain welcome-image-fit-cover').addClass('welcome-image-fit-none');
+      image.addClass('welcome-image-fit-none');
     } else if (welcomeImageFit == 'CONTAIN') {
-      defaultImage.removeClass('welcome-image-fit-fill welcome-image-fit-cover welcome-image-fit-none').addClass('welcome-image-fit-contain');
-      defaultImageDark.removeClass('welcome-image-fit-fill welcome-image-fit-cover welcome-image-fit-none').addClass('welcome-image-fit-contain');
-      welcomeImage.removeClass('welcome-image-fit-fill welcome-image-fit-cover welcome-image-fit-none').addClass('welcome-image-fit-contain');
+      image.addClass('welcome-image-fit-contain');
     }
 	
   },
-  updateImageInlineStyle:function(imageInlineStyle){
-  	var image = document.getElementsByClassName('js-welcome-image');
-  	for (var i = 0; i < image.length; i++){
-  	image[i].style.cssText = imageInlineStyle;
-  	}
+
+  updateImageInlineStyle:function(imageInlineStyle) {
+    var image = document.getElementsByClassName('js-welcome-image');
+    for (var i = 0; i < image.length; i++) {
+      image[i].style.cssText = imageInlineStyle;
+    }
   }
 }
