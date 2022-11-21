@@ -81,6 +81,6 @@ public class SideStepService implements ISideStepService {
 
   private ICase findCase(Long caseId) {
     ICaseQueryExecutor caseQueryExecutor = Ivy.wf().getCaseQueryExecutor();
-    return caseQueryExecutor.getFirstResult(caseQueryExecutor.createCaseQuery().where().caseId().isEqual(caseId));
+    return caseQueryExecutor.createCaseQuery().where().caseId().isEqual(caseId).executor().firstResult();
   }
 }
