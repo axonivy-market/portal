@@ -67,7 +67,7 @@ public class CaseService implements ICaseService {
   }
 
   private long countCases(CaseQuery query) {
-    return Ivy.wf().getCaseQueryExecutor().getCaseQueryExecutor().getCount(query);
+    return Ivy.wf().getCaseQueryExecutor().getCount(query);
   }
 
   private CaseQuery queryForCurrentUser(boolean isTechnicalCase, boolean isCaseOwnerEnabled) {
