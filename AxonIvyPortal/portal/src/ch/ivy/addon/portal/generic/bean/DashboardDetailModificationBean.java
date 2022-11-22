@@ -409,7 +409,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     if (StringUtils.isNotBlank(welcomeWidget.getImageLocation())) {
       ContentObjectValue tempImageFile = getWelcomeWidgetImage(true, welcomeWidget);
       ContentObjectValue imageFile = getWelcomeWidgetImage(false, welcomeWidget);
-      if (imageFile != null && tempImageFile != null) {
+      if (imageFile != null && tempImageFile != null && tempImageFile.parent().exists()) {
         imageFile.write().bytes(tempImageFile.read().bytes());
         tempImageFile.delete();
       }
@@ -427,7 +427,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   private ContentObjectValue getWelcomeWidgetImage(boolean isTempImage, WelcomeDashboardWidget widget) {
-    return getWelcomeWidgetImageObject(isTempImage, widget).value().get("en");
+    return getWelcomeWidgetImageObject(isTempImage, widget). value().get("en");
   }
 
   private ContentObject getWelcomeWidgetImageObject(boolean isTempImage, WelcomeDashboardWidget widget) {
