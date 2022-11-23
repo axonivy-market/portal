@@ -21,8 +21,6 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.language.LanguageConfigurator;
-import ch.ivyteam.ivy.security.ISecurityContext;
 
 public class AnnouncementService {
   private static final String ANNOUNCEMENT = PortalVariable.ANNOUNCEMENT.key;
@@ -41,7 +39,7 @@ public class AnnouncementService {
   public boolean isDefaultApplicationLanguage(String language) {
     return IvyExecutor.executeAsSystem(
         () -> {
-          Locale content = new LanguageConfigurator(ISecurityContext.current()).content();
+          Locale content = LanguageService.newInstance().getDefaultEmailLanguage();
           return content.getLanguage().equalsIgnoreCase(language);
         });
   }
@@ -119,7 +117,7 @@ public class AnnouncementService {
 
 
   private String getDefaultEmailLanguage() {
-    return new LanguageConfigurator(ISecurityContext.current()).content().toLanguageTag();
+    return LanguageService.newInstance().getDefaultEmailLanguage().toLanguageTag();
   }
 
   private Announcement getAnnouncement() {

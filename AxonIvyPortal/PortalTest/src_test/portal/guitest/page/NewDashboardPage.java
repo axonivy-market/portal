@@ -11,7 +11,8 @@ public class NewDashboardPage extends TemplatePage {
   private static final String ADD_CUSTOM_WIDGET_BUTTON_ID = "new-widget-dialog-content:4:add-widget";
   private static final String CUSTOM_WIDGET_TYPE_DROPDOWN_ID = "widget-configuration-form:new-widget-configuration-component:custom-widget-type_label";
   private static final String CUSTOM_WIDGET_PROCESS_SELECTION_ID = "widget-configuration-form:new-widget-configuration-component:selected-process";
-  
+  private static final String NEWS_FEED_WIDGET_ID = "[class*='js-dashboard-widget-news_']";
+
   @Override
   protected String getLoadedLocator() {
     return "id('dashboard-body')";
@@ -131,5 +132,34 @@ public class NewDashboardPage extends TemplatePage {
 
   public WebElement getProcessViewerWidget() {
     return findElementByCssSelector("div[gs-id*='process_viewer']");
+  }
+
+  public WebElement getFirstNewsFeedWidget() {
+    waitForElementDisplayed(By.cssSelector(NEWS_FEED_WIDGET_ID), true);
+    return findElementByCssSelector(NEWS_FEED_WIDGET_ID);
+  }
+
+  public void waitForNewsWidgetLoadedData() {
+    getFirstNewsFeedWidget();
+    WaitHelper.assertTrueWithWait(() -> {
+      var widgetLoading = findElementByCssSelector(NEWS_FEED_WIDGET_ID + " [id*=':loading-news_']");
+      return widgetLoading.getAttribute(CLASS_PROPERTY).contains("u-display-none");
+    });
+    waitForElementDisplayed(By.cssSelector("[class*='js-loading-news_']"), false);
+    waitForElementDisplayed(By.cssSelector("[id$=':news-widget__content']"), true);
+  }
+
+  public void openManageNewsDialog() {
+    waitForNewsWidgetLoadedData();
+    waitForElementDisplayed(By.cssSelector("button[id$=':add-news-button']"), true);
+    clickByCssSelector("button[id$=':add-news-button']");
+    waitForElementDisplayed(By.cssSelector("[id$=':manage-news-dialog']"), true);
+    waitForElementDisplayed(By.cssSelector(".management-news__title-input"), true);
+  }
+
+  public WebElement getManageNewsDialog() {
+    waitForElementDisplayed(By.cssSelector("[id$=':manage-news-dialog']"), true);
+    waitForElementDisplayed(By.cssSelector(".management-news__title-input"), true);
+    return findElementByCssSelector("[id$=':manage-news-dialog']");
   }
 }
