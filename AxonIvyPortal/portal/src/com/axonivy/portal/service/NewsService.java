@@ -22,8 +22,8 @@ import org.apache.commons.lang3.time.DateUtils;
 
 import com.axonivy.portal.dto.News;
 import com.axonivy.portal.enums.NewsColumn;
+import com.axonivy.portal.util.NewsUtils;
 
-import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.cm.ContentManagementSystem;
 import ch.ivyteam.ivy.cm.ContentObject;
@@ -96,7 +96,7 @@ public class NewsService {
       writeByKey(newsByLocale, ICON, news.getIcon(), locale);
       writeByKey(newsByLocale, NAME, news.getName(), locale);
       writeByKey(newsByLocale, DESCRIPTION, news.getDescription(), locale);
-      writeByKey(newsByLocale, CREATED_DATE, Dates.format(news.getCreatedDate()), locale);
+      writeByKey(newsByLocale, CREATED_DATE, NewsUtils.formatDate(news.getCreatedDate()), locale);
     }
   }
 
@@ -111,7 +111,7 @@ public class NewsService {
       if (isNull(n2.getCreatedDate())) {
         return -1;
       }
-      return DateUtils.truncatedCompareTo(n2.getCreatedDate(), n1.getCreatedDate(), Calendar.DATE);
+      return n2.getCreatedDate().compareTo(n1.getCreatedDate());
     };
   }
 

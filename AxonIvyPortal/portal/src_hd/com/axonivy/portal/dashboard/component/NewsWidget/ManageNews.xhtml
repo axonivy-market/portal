@@ -16,7 +16,7 @@
     <h:panelGroup id="management-news-group" styleClass="management-news__group">
       <c:set var="defaultLang" value="#{newsWidgetBean.defaultLanguage.toLanguageTag()}" />
       <p:tabView id="manage-news-tabview" value="#{newsWidgetBean.editingNewsList}" var="news" dynamic="true"
-        widgetVar="manage-news-tabview">
+        widgetVar="manage-news-tabview" activeIndex="#{newsWidgetBean.activeTabIndex}">
         <c:set var="newsLanguage" value="#{news.locale.toLanguageTag()}"/>
         <c:set var="requiredLanguage" value="#{defaultLang eq newsLanguage}" />
         <p:ajax event="tabChange" oncomplete="PF('manage-news-dialog').initPosition()" />

@@ -22,6 +22,9 @@ import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 
 public class LanguageService implements ILanguageService {
+
+  private static final Comparator<Locale> LOCALE_COMPARATOR = Comparator.comparing(Locale::getDisplayName, String.CASE_INSENSITIVE_ORDER);
+
   private LanguageService() {}
 
   public static LanguageService newInstance() {
@@ -104,12 +107,13 @@ public class LanguageService implements ILanguageService {
   public List<Locale> getFormattingLocales() {
     return locales(LanguageRepository::allFormatting);
   }
-  
+
   private List<Locale> locales(Function<LanguageRepository, List<Locale>> loader) {
     return loader.apply(LanguageManager.instance().languages(ISecurityContext.current()))
-                          .stream()
-                          .sorted(Comparator.comparing(Locale::getDisplayName))
-                          .collect(Collectors.toList());
+              .stream()
+              .distinct()
+              .sorted(LOCALE_COMPARATOR)
+              .collect(Collectors.toList());
   }
 
   public Locale getDefaultEmailLanguage() {

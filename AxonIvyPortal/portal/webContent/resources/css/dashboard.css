@@ -1462,7 +1462,7 @@ span.new-widget-dialog__icon.si {
   display: block;
   padding: 1rem;
   background: var(--news-item-background);
-  border-radius: 1rem;
+  border-radius: var(--news-feed-item-border-radius);
   margin-bottom: 0.5rem;
 }
 
@@ -1489,8 +1489,8 @@ span.new-widget-dialog__icon.si {
 }
 
 .news__title {
-  line-height: 1rem;
-  font-weight: bold;
+  line-height: var(--news-feed-item-title-line-height);
+  font-weight: var(--news-feed-item-title-font-weight);
   flex: 1;
 }
 

@@ -1516,6 +1516,8 @@ Dialogs:
               ShowBusinessDetails: Détails de l'entreprise
               caseNameNotAvailable: '[Nom de cas pas disponible]'
               defaultEmptyMessage: Il n'y a pas de dossiers
+            IconSelection:
+              IconLinkTooltip: Cliquez pour changer d'icône
   com:
     axonivy:
       portal:

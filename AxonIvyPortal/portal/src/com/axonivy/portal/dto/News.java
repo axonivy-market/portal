@@ -12,11 +12,10 @@ import java.util.Locale;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.enums.NewsColumn;
+import com.axonivy.portal.util.NewsUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
-import ch.ivy.addon.portalkit.service.exception.PortalException;
-import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -43,7 +42,7 @@ public class News extends AbstractConfiguration implements Serializable {
     this.icon = getCMSValueByKey(ICON);
     this.name = getCMSValueByKey(NAME);
     this.description = getCMSValueByKey(DESCRIPTION);
-    this.createdDate = parseDateOrDefault(getCMSValueByKey(CREATED_DATE));
+    this.createdDate = NewsUtils.parseDate(getCMSValueByKey(CREATED_DATE));
   }
 
   public News(ContentObject contentObject, Locale locale) {
@@ -53,7 +52,7 @@ public class News extends AbstractConfiguration implements Serializable {
     this.icon = getCMSValueByKey(ICON, locale);
     this.name = getCMSValueByKey(NAME, locale);
     this.description = getCMSValueByKey(DESCRIPTION, locale);
-    this.createdDate = parseDateOrDefault(getCMSValueByKey(CREATED_DATE, locale));
+    this.createdDate = NewsUtils.parseDate(getCMSValueByKey(CREATED_DATE, locale));
   }
 
   public News(String icon, String name, String description, Locale locale) {
@@ -71,22 +70,11 @@ public class News extends AbstractConfiguration implements Serializable {
     return Ivy.cms().coLocale(contentObject.child().string(column.getKey()).uri(), locale);
   }
 
-  private Date parseDateOrDefault(String dateAsString) {
-    Date date = null;
-    try {
-      date = Dates.parse(dateAsString);
-    } catch (PortalException e) {
-      // Just continue
-      Ivy.log().debug("News cannot parse date " + e);
-    }
-    return date;
-  }
-
   public String getIcon() {
     return StringUtils.isEmpty(icon) ? DEFAULT_NEWS_ICON : icon;
   }
 
-  public void setIcon(String icon) {
+  public void setIcon(String icon) {  
     this.icon = icon;
   }
 

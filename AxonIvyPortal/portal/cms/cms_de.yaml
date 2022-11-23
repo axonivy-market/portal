@@ -1517,6 +1517,8 @@ Dialogs:
               ShowBusinessDetails: Business Details
               caseNameNotAvailable: '[Kein Vorgangsname verfügbar]'
               defaultEmptyMessage: Keine Vorgänge verfügbar
+            IconSelection:
+              IconLinkTooltip: Zum Ändern des Symbols anklicken
   com:
     axonivy:
       portal:

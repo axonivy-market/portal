@@ -1517,6 +1517,8 @@ Dialogs:
               ShowBusinessDetails: Business details
               caseNameNotAvailable: '[Case name not available]'
               defaultEmptyMessage: There are no cases
+            IconSelection:
+              IconLinkTooltip: Click to change icon
   com:
     axonivy:
       portal:
@@ -1525,7 +1527,7 @@ Dialogs:
             NewsWidget:
               NewsContentPlaceHolder: Enter News content
               NewsContentValidateMessage: News content of {0} is required
-              NewsTitlePlaceholder: Enter News Title
+              NewsTitlePlaceholder: Enter News title
               NewsTitleValidateMessage: News title of {0} is required
               NoNewsAvailable: There is no news yet
               Publish: Publish

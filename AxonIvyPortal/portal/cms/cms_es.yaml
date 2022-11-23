@@ -1519,6 +1519,8 @@ Dialogs:
               ShowBusinessDetails: detalles del negocio
               caseNameNotAvailable: '[Nombre del caso no disponible]'
               defaultEmptyMessage: No hay casos
+            IconSelection:
+              IconLinkTooltip: Haga clic para cambiar el icono
   com:
     axonivy:
       portal:

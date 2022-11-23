@@ -74,6 +74,11 @@ public class NewsWidgetBean implements Serializable {
     selectedNews = null;
   }
 
+  public int getActiveTabIndex() {
+    var indexOfDefaultLocale = supportLanguages.indexOf(defaultLanguage);
+    return indexOfDefaultLocale < 0 ? 0 : indexOfDefaultLocale;
+  }
+
   public List<Locale> getSupportLanguages() {
     return supportLanguages;
   }
