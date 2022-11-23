@@ -1,0 +1,5 @@
+co: name={FileFunctions} description={} changed={2019-09-13 12:12:47 CEST} changedby={nqhoan} visualorder={0} guid={15FBEBAB363C002E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15FBEBAB36562242} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:41 CEST} validto={} changed={2019-09-13 12:12:47 CEST} changedby={nqhoan} properties={} id={}
+val: guid={168DA54A94750E86} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:28 CET} validto={} changed={2019-09-13 12:12:47 CEST} changedby={nqhoan} properties={} id={}
+val: guid={15FBEBAB36D98206} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-04 22:02:38 CET} validto={} changed={2019-09-13 12:12:47 CEST} changedby={nqhoan} properties={} id={}
+val: guid={15FBEBAB37542AA3} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-09 12:49:05 CEST} validto={} changed={2019-09-13 12:12:47 CEST} changedby={nqhoan} properties={} id={}

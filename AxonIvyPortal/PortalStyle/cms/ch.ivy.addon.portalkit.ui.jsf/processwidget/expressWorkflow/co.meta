@@ -1,0 +1,5 @@
+co: name={expressWorkflow} description={} changed={2019-05-24 05:18:11 CEST} changedby={ldnam} visualorder={0} guid={16ADED81FD142049} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16ADED81FEA7E58B} datatype={} isdefault={true} langid={en} description={} validfrom={2019-05-22 11:21:07 CEST} validto={} changed={2019-05-22 11:24:48 CEST} changedby={ttthai} properties={} id={}
+val: guid={16ADEDB8152E11B5} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-05-24 05:18:11 CEST} validto={} changed={2019-05-24 05:18:11 CEST} changedby={ldnam} properties={} id={}
+val: guid={16ADEDB7EFA9E7B0} datatype={} isdefault={false} langid={de} description={} validfrom={2019-05-24 05:18:11 CEST} validto={} changed={2019-05-24 05:18:11 CEST} changedby={ldnam} properties={} id={}
+val: guid={16ADEDB814ABD7B6} datatype={} isdefault={false} langid={es} description={} validfrom={2019-05-24 05:18:11 CEST} validto={} changed={2019-05-24 05:18:11 CEST} changedby={ldnam} properties={} id={}

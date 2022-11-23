@@ -1,0 +1,5 @@
+co: name={NumberOfFiles} description={} changed={2019-02-11 03:13:28 CET} changedby={ntminh01} visualorder={0} guid={15FBEBC69D3C549B} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15FBEBC69E4E834E} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:41 CEST} validto={} changed={2017-11-15 09:12:19 CET} changedby={chnam} properties={} id={}
+val: guid={15FBEBC69D65AAAC} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-26 01:44:43 CET} validto={} changed={2017-11-15 09:12:19 CET} changedby={chnam} properties={} id={}
+val: guid={15FBEBC69DDB070F} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-09 13:15:58 CEST} validto={} changed={2017-11-15 09:12:19 CET} changedby={chnam} properties={} id={}
+val: guid={168DA54AB4C56DDA} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:28 CET} validto={} changed={2019-02-11 03:13:28 CET} changedby={ntminh01} properties={} id={}

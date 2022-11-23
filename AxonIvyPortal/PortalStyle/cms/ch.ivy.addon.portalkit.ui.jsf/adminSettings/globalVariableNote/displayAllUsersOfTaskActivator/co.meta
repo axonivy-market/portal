@@ -1,0 +1,5 @@
+co: name={displayAllUsersOfTaskActivator} description={} changed={2021-04-09 04:52:09 CEST} changedby={chnam} visualorder={0} guid={17737ECE6DF67969} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={177383F2A226FA03} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-04-09 04:52:09 CEST} validto={} changed={2021-04-09 04:52:09 CEST} changedby={chnam} properties={} id={}
+val: guid={17737ECE6EA93247} datatype={} isdefault={true} langid={en} description={} validfrom={2021-01-25 06:03:28 CET} validto={} changed={2021-01-28 04:40:39 CET} changedby={nqhoan} properties={} id={}
+val: guid={177383F29E45C7CA} datatype={} isdefault={false} langid={es} description={} validfrom={2021-04-09 04:52:09 CEST} validto={} changed={2021-04-09 04:52:09 CEST} changedby={chnam} properties={} id={}
+val: guid={177383F29614F0C3} datatype={} isdefault={false} langid={de} description={} validfrom={2021-04-09 04:52:09 CEST} validto={} changed={2021-04-09 04:52:09 CEST} changedby={chnam} properties={} id={}

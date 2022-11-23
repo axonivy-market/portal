@@ -1,0 +1,5 @@
+co: name={deleteExpressWorkflowTooltip} description={} changed={2019-02-11 03:13:34 CET} changedby={ntminh01} visualorder={0} guid={15F713A7866908B4} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A786CD0880} datatype={} isdefault={false} langid={de} description={} validfrom={2017-10-11 05:23:33 CEST} validto={} changed={2017-10-31 07:59:38 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A786899352} datatype={} isdefault={true} langid={en} description={} validfrom={2017-10-06 11:33:30 CEST} validto={} changed={2017-10-31 07:59:38 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A78715E3D6} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-10-11 05:23:30 CEST} validto={} changed={2017-10-31 07:59:38 CET} changedby={chnam} properties={} id={}
+val: guid={168DA54C208534F1} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:34 CET} validto={} changed={2019-02-11 03:13:34 CET} changedby={ntminh01} properties={} id={}

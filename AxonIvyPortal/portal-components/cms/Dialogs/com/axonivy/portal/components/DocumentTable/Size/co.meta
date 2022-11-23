@@ -1,0 +1,5 @@
+co: name={Size} description={} changed={2022-08-16 05:26:32 CEST} changedby={nkvloi} visualorder={0} guid={1811EA1C443E5DC8} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1811EA1C45A9A602} datatype={} isdefault={true} langid={en} description={} validfrom={2015-06-09 11:01:12 CEST} validto={} changed={2022-06-01 11:38:47 CEST} changedby={phhung} properties={} id={}
+val: guid={1811EA1C453EDB7B} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:04 CEST} validto={} changed={2022-06-01 11:38:47 CEST} changedby={phhung} properties={} id={}
+val: guid={1811EA1C44515A81} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:21:00 CET} validto={} changed={2022-06-01 11:38:46 CEST} changedby={phhung} properties={} id={}
+val: guid={1811EA1C44C9FA59} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:33 CET} validto={} changed={2022-06-01 11:38:46 CEST} changedby={phhung} properties={} id={}

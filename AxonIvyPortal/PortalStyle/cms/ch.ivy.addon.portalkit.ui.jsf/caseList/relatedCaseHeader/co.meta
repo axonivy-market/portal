@@ -1,0 +1,5 @@
+co: name={relatedCaseHeader} description={} changed={2019-02-11 03:13:32 CET} changedby={ntminh01} visualorder={0} guid={15F71435121A8061} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F71435127B0D6D} datatype={} isdefault={false} langid={de} description={} validfrom={2016-05-04 05:23:56 CEST} validto={} changed={2017-10-31 08:09:17 CET} changedby={chnam} properties={} id={}
+val: guid={15F714351232DC0B} datatype={} isdefault={true} langid={en} description={} validfrom={2016-05-04 05:23:35 CEST} validto={} changed={2017-10-31 08:09:17 CET} changedby={chnam} properties={} id={}
+val: guid={168DA54B9534ED23} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:32 CET} validto={} changed={2019-02-11 03:13:32 CET} changedby={ntminh01} properties={} id={}
+val: guid={15F7143512C229C0} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:23 CEST} validto={} changed={2017-10-31 08:09:17 CET} changedby={chnam} properties={} id={}

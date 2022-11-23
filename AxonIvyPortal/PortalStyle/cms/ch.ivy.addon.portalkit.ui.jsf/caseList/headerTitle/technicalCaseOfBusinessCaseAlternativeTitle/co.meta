@@ -1,0 +1,5 @@
+co: name={technicalCaseOfBusinessCaseAlternativeTitle} description={} changed={2020-02-06 08:44:07 CET} changedby={nqhoan} visualorder={0} guid={170196F810E6A9CA} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={170196F8134ECFAE} datatype={} isdefault={true} langid={en} description={} validfrom={2019-02-20 07:54:16 CET} validto={} changed={2020-02-06 08:44:07 CET} changedby={nqhoan} properties={} id={}
+val: guid={170196F811980E59} datatype={} isdefault={false} langid={de} description={} validfrom={2019-02-20 07:54:16 CET} validto={} changed={2020-02-06 08:44:07 CET} changedby={nqhoan} properties={} id={}
+val: guid={170196F812B18C4F} datatype={} isdefault={false} langid={es} description={} validfrom={2019-11-26 04:57:24 CET} validto={} changed={2020-02-06 08:44:07 CET} changedby={nqhoan} properties={} id={}
+val: guid={170196F812341C8B} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-02-20 07:54:16 CET} validto={} changed={2020-02-06 08:44:07 CET} changedby={nqhoan} properties={} id={}
