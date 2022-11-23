@@ -1656,7 +1656,8 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   overflow: hidden;
 }
 
-.task-view-container .ui-datascroller, .task-view-container .ui-datascroller .ui-datascroller-content {
+.task-view-container .ui-datascroller, .task-view-container .ui-datascroller .ui-datascroller-content,
+.news-list__datascroller.ui-datascroller .ui-datascroller-content {
   border: none;
   border-radius: 0;
 }
@@ -1665,7 +1666,8 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   border-bottom: none !important;
 }
 
-.task-view-container .ui-datascroller .ui-datascroller-content {
+.task-view-container .ui-datascroller .ui-datascroller-content,
+.news-list__datascroller.ui-datascroller .ui-datascroller-content  {
   padding: 2px;
   padding-bottom: 0;
 }
@@ -3188,17 +3190,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
     margin: auto;
   }
 
-  .line-clamp-text-5 {
-    overflow:hidden;
-    text-overflow: ellipsis;
-    white-space: initial;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-  }
-}
-
-@supports (-webkit-line-clamp: 3) {
   .line-clamp-text-3 {
     overflow:hidden;
     text-overflow: ellipsis;
@@ -3207,6 +3198,15 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     margin: auto;
+  }
+
+  .line-clamp-text-5 {
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: initial;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
   }
 }
 
