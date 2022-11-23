@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
+import static com.axonivy.portal.util.WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,10 +27,6 @@ import ch.ivy.addon.portalkit.enums.WelcomeTextSize;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.language.LanguageConfigurator;
-import ch.ivyteam.ivy.security.ISecurityContext;
-
-import static com.axonivy.portal.util.WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT;
 
 @ViewScoped
 @ManagedBean
@@ -132,7 +130,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
   }
 
   public boolean isApplicationDefaultEmailLanguage(String language) {
-    Locale defaultLocale = new LanguageConfigurator(ISecurityContext.current()).content();
+    Locale defaultLocale = LanguageService.newInstance().getDefaultEmailLanguage();
     return defaultLocale.toLanguageTag().equalsIgnoreCase(language);
   }
 

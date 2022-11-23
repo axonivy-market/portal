@@ -1,0 +1,105 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:ic="http://ivyteam.ch/jsf/component">
+
+<!-- DASHBOARD CARD WIDGET DECORATOR: uses for displaying the widget in Dashboard page as a card.
+    DEFINED 2 SECTIONS: widget header and widget content.
+    - WIDGET HEADER: info, edit and delete link
+    ** Define specific content for info overlay panel by define widgetInformationContent tag.
+
+    - WIDGET CONTENT: shows widget content by define widgetContent tag.
+
+    *** REQUIRED PARAMS:
+    * index: index of widget in Dashboard page.
+    * widget: widget model.
+    * panelId: ID of widget panel group.
+    * isReadOnlyMode: indicator to show edit/delete link.
+    * isRenderInfo: parameter to show info function.
+    * isRenderExpandCollapse: parameter to show expand/collapse function.
+    * widgetContentStyleClass: styleClass for widget content div.
+    * panelStyleClass: styleClass for the main panel.
+    -->
+
+<h:panelGroup id="#{panelId}" styleClass="card-widget-panel #{panelStyleClass}" layout="block">
+  <c:set var="renderInfo" value="#{isReadOnlyMode and (empty isRenderInfo ? 'true': isRenderInfo)}"/>
+  <c:set var="renderExpandCollapse" value="#{isReadOnlyMode and (empty isRenderExpandCollapse ? 'true': isRenderExpandCollapse)}"/>
+
+  <div layout="block" class="widget__header">
+    <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis">#{widget.name}</h:panelGroup>
+    <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" hideEvent="mouseleave click"/>
+
+    <h:panelGroup id="widget-header-actions" styleClass="widget__header-actions" layout="block">
+      <p:commandButton id="info-sidebar-link-#{index}" type="button" icon="si si-statistics-daytum"
+        styleClass="rounded-button ui-button-outlined widget__info-sidebar-link u-mar-right-5"
+        rendered="#{renderInfo}" />
+      <p:tooltip for="info-sidebar-link-#{index}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}" trackMouse="true"
+        rendered="#{renderInfo}"
+        hideEvent="mouseleave click" />
+
+      <p:commandButton id="expand-link-#{index}" type="button" icon="si si-expand-1"
+        styleClass="rounded-button ui-button-outlined expand-link u-mar-right-5"
+        rendered="#{renderExpandCollapse}"
+        onclick="expandFullscreen(#{index}, '#{widget.id}');#{onClickExpandWidget}"/>
+
+      <p:commandButton id="collapse-link-#{index}" type="button" icon="si si-shrink-1"
+        styleClass="rounded-button ui-button-outlined collapse-link u-mar-right-5"
+        rendered="#{renderExpandCollapse}"
+        onclick="collapseFullscreen(#{index}, '#{widget.id}');#{onClickCollapseWidget}"/>
+
+      <p:commandButton id="edit-widget-#{index}"
+        icon="si si-pencil"
+        styleClass="rounded-button ui-button-outlined u-hidden-sm-down u-mar-right-5"
+        oncomplete="PF('new-widget-configuration-dialog').show()"
+        global="false"
+        actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
+        update="new-widget-configuration-dialog"
+        rendered="#{!isReadOnlyMode}"
+        process="@this"
+        partialSubmit="true" />
+      <p:tooltip for="edit-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}" trackMouse="true"
+        hideEvent="mouseleave click" rendered="#{!isReadOnlyMode}"/>
+
+      <p:commandButton id="delete-widget-#{index}"
+        icon="si si-bin-1"
+        styleClass="rounded-button ui-button-outlined ui-button-danger"
+        oncomplete="PF('remove-widget-dialog').show()"
+        global="false"
+        actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
+        update="remove-widget-dialog"
+        rendered="#{!isReadOnlyMode}"
+        process="@this"
+        partialSubmit="true" />
+      <p:tooltip for="delete-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}" trackMouse="true"
+        hideEvent="mouseleave click" rendered="#{!isReadOnlyMode}"/>
+
+      <p:overlayPanel id="info-overlay-panel-#{index}"
+        widgetVar="info-overlay-panel-#{index}"
+        for="info-sidebar-link-#{index}"
+        rendered="#{renderInfo}"
+        appendTo="@(body)"
+        styleClass="info-overlay-panel js-dashboard-overlay-panel"
+        dismissable="false"
+        dynamic="true">
+        <!-- Widget Filters -->
+        <ui:insert name="widgetInfoContent" />
+
+        <div class="ui-g-12 card-widget-info-overlay-panel__footer u-padding-0">
+          <div class="ui-g-12">
+            <p:commandLink styleClass="Fright info-overlay-panel__close-link"
+              onclick="PF('info-overlay-panel-#{index}').hide();"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+              partialSubmit="true" immediate="true" global="false" process="@this"/>
+          </div>
+        </div>
+      </p:overlayPanel>
+    </h:panelGroup>
+  </div>
+
+  <h:panelGroup id="widget-content" layout="block"
+    styleClass="widget__content #{widget.id} #{widgetContentStyleClass} card-widget__content">
+    <!-- Insert widget content here -->
+    <ui:insert name="widgetContent" />
+  </h:panelGroup>
+</h:panelGroup>
+</html>
