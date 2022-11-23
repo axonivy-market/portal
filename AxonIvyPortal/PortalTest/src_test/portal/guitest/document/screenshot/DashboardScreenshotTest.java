@@ -269,21 +269,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
 
   @Test
   public void screenshotProcessViewerWidget() throws IOException {
-    login(TestAccount.ADMIN_USER);
-    updatePortalSetting(SHOW_LEGACY_UI .getKey(), "false");
-    redirectToDashboardConfiguration();
-    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
-    configPage.selectPublicDashboardType();
-    configPage.selectEditPublicDashboards();
-    configPage.configureDashboardByIndex(0);
-    newDashboardPage = new NewDashboardPage();
-    newDashboardPage.waitForPageLoaded();
-    WaitHelper.assertTrueWithWait(() -> ScreenshotUtil.isDOMStatusComplete());
-    newDashboardPage.waitForTaskWidgetLoading();
-
-    newDashboardPage.clickAddWidget();
-    WebElement newWidgetDialog = newDashboardPage.getAddWidgetDialog();
-    newWidgetDialog.findElement(By.id("new-widget-dialog-content:5:add-widget")).click();
+    loginAsAdminAndAddPublicWidget(5);
     DashboardWidgetConfigurationDialogPage configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
     configurationDialogPage.selectProcessForProcessViewerWidget("Categoried Leave Request");
     ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "process-viewer-widget-configuration");
@@ -298,6 +284,36 @@ public class DashboardScreenshotTest extends ScreenshotTest {
 
   @Test
   public void screenshotWelcomeWidget() throws IOException {
+    loginAsAdminAndAddPublicWidget(6);
+    DashboardWidgetConfigurationDialogPage configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
+    configurationDialogPage.waitUntilAnimationFinished();
+    ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "welcome-widget-configuration");
+    configurationDialogPage.saveConfiguration();
+  }
+
+  @Test
+  public void screenshotNewsFeedWidget() throws IOException {
+    redirectToRelativeLink("portalKitTestHelper/153CACC26D0D4C3D/createSampleNewsFeed.ivp");
+    loginAsAdminAndAddPublicWidget(7);
+    DashboardWidgetConfigurationDialogPage configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
+    configurationDialogPage.waitUntilAnimationFinished();
+    ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationDialog(),
+        ScreenshotUtil.NEW_DASHBOARD_FOLDER + "news-feed-widget-configuration");
+    configurationDialogPage.saveConfiguration();
+    configurationDialogPage.waitForPageLoaded();
+
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForPageLoaded();
+    newDashboardPage.waitForNewsWidgetLoadedData();
+    ScreenshotUtil.captureElementScreenshot(newDashboardPage.getFirstNewsFeedWidget(),
+        ScreenshotUtil.NEW_DASHBOARD_FOLDER + "news-feed-widget");
+    newDashboardPage.openManageNewsDialog();
+    ScreenshotUtil.captureElementScreenshot(newDashboardPage.getManageNewsDialog(),
+        ScreenshotUtil.NEW_DASHBOARD_FOLDER + "news-feed-widget-manage-content");
+  }
+
+  private void loginAsAdminAndAddPublicWidget(int widgetIndex) {
     login(TestAccount.ADMIN_USER);
     updatePortalSetting(SHOW_LEGACY_UI .getKey(), "false");
     redirectToDashboardConfiguration();
@@ -312,11 +328,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
 
     newDashboardPage.clickAddWidget();
     WebElement newWidgetDialog = newDashboardPage.getAddWidgetDialog();
-    newWidgetDialog.findElement(By.id("new-widget-dialog-content:6:add-widget")).click();
-    DashboardWidgetConfigurationDialogPage configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
-    configurationDialogPage.waitUntilAnimationFinished();
-    ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "welcome-widget-configuration");
-    configurationDialogPage.saveConfiguration();
+    newWidgetDialog.findElement(By.id("new-widget-dialog-content:" + widgetIndex + ":add-widget")).click();
   }
 
   private void showNewCustomizedDashboard() {
