@@ -24,7 +24,6 @@ import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.language.LanguageConfigurator;
 import ch.ivyteam.ivy.language.LanguageManager;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.request.IHttpRequest;
@@ -64,7 +63,7 @@ public class UserUtils {
         l = sessionUser.getLanguage();
       } else {
         // Application Default
-        Locale defaultApplicationLocal = new LanguageConfigurator(ISecurityContext.current()).content();
+        Locale defaultApplicationLocal = LanguageService.newInstance().getDefaultEmailLanguage();
         l = new Locale(defaultApplicationLocal.getLanguage(), defaultApplicationLocal.getCountry(),
             APPLICATION_DEFAULT);
       }
