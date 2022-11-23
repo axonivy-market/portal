@@ -1,0 +1,1 @@
+Client seitiges Timeout in Minuten. Es muss höher als 1 und kleiner als das Serverseitige Timeout (e.g.25) sein. Falls nicht gesetzt, gilt der Standardwert von 3 Minuten. 

@@ -1,0 +1,5 @@
+co: name={enableVirusScannerForUploadedDocumentNote} description={} changed={2021-09-08 05:19:49 CEST} changedby={chnam} visualorder={0} guid={17AA47E48AF77D8C} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={17AA47EEE5DABB4A} datatype={} isdefault={false} langid={de} description={} validfrom={2021-07-14 12:10:04 CEST} validto={} changed={2021-09-08 05:19:48 CEST} changedby={chnam} properties={} id={}
+val: guid={17AA47EEF32E10F7} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-07-14 12:09:58 CEST} validto={} changed={2021-09-08 05:19:49 CEST} changedby={chnam} properties={} id={}
+val: guid={17AA47EEEF252955} datatype={} isdefault={false} langid={es} description={} validfrom={2021-07-14 12:10:09 CEST} validto={} changed={2021-09-08 05:19:48 CEST} changedby={chnam} properties={} id={}
+val: guid={17AA47E48BB4DA42} datatype={} isdefault={true} langid={en} description={} validfrom={2021-07-14 12:09:37 CEST} validto={} changed={2021-07-14 12:09:37 CEST} changedby={nkvloi} properties={} id={}

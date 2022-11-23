@@ -1,0 +1,5 @@
+co: name={newPassword} description={} changed={2019-02-11 03:13:34 CET} changedby={ntminh01} visualorder={0} guid={15F713A769EBEC44} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A76AEADE00} datatype={} isdefault={false} langid={de} description={} validfrom={2017-08-08 05:41:27 CEST} validto={} changed={2017-10-31 07:59:37 CET} changedby={chnam} properties={} id={}
+val: guid={168DA54C160110F8} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:34 CET} validto={} changed={2019-02-11 03:13:34 CET} changedby={ntminh01} properties={} id={}
+val: guid={15F713A76A9ED6CC} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-08 05:41:25 CEST} validto={} changed={2017-10-31 07:59:37 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A76A4F4A68} datatype={} isdefault={true} langid={en} description={} validfrom={2017-08-08 05:05:31 CEST} validto={} changed={2017-10-31 07:59:37 CET} changedby={chnam} properties={} id={}

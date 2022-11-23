@@ -1,0 +1,5 @@
+co: name={deleteProcess} description={} changed={2019-02-11 03:13:34 CET} changedby={ntminh01} visualorder={0} guid={161C1F9F310CB4BE} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={161C1F9F31BE3C5E} datatype={} isdefault={true} langid={en} description={} validfrom={2018-02-23 10:23:58 CET} validto={} changed={2018-02-23 10:23:58 CET} changedby={mnhnam} properties={} id={}
+val: guid={161C1FAB7097935C} datatype={} isdefault={false} langid={de} description={} validfrom={2018-03-09 02:40:23 CET} validto={} changed={2018-03-09 02:40:23 CET} changedby={chnam} properties={} id={}
+val: guid={168DA54C20821F55} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:34 CET} validto={} changed={2019-02-11 03:13:34 CET} changedby={ntminh01} properties={} id={}
+val: guid={161C1FAB85F5D9F5} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-03-09 02:40:23 CET} validto={} changed={2018-03-09 02:40:23 CET} changedby={chnam} properties={} id={}

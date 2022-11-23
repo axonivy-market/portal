@@ -1,0 +1,5 @@
+co: name={fileContainVirus} description={} changed={2021-10-18 06:41:18 CEST} changedby={vtlong} visualorder={0} guid={17AA47F7B391CCD4} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={17AA47FD7EC43041} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-10-18 06:41:18 CEST} validto={} changed={2021-10-18 06:41:18 CEST} changedby={vtlong} properties={} id={}
+val: guid={17AA47F7B3DB9791} datatype={} isdefault={true} langid={en} description={} validfrom={2021-07-14 12:10:55 CEST} validto={} changed={2021-07-14 12:10:55 CEST} changedby={nkvloi} properties={} id={}
+val: guid={17AA47FD7301DB35} datatype={} isdefault={false} langid={de} description={} validfrom={2021-10-18 06:41:18 CEST} validto={} changed={2021-10-18 06:41:18 CEST} changedby={vtlong} properties={} id={}
+val: guid={17AA47FD7BC2EBCD} datatype={} isdefault={false} langid={es} description={} validfrom={2021-10-18 06:41:18 CEST} validto={} changed={2021-10-18 06:41:18 CEST} changedby={vtlong} properties={} id={}

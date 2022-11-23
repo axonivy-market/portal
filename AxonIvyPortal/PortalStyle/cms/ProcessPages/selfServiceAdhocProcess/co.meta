@@ -1,0 +1,5 @@
+co: name={selfServiceAdhocProcess} description={} changed={2019-02-11 03:13:29 CET} changedby={ntminh01} visualorder={0} guid={15FBEC904BB446BC} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15FBEC904BD30A0F} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:01:42 CEST} validto={} changed={2017-11-15 09:26:05 CET} changedby={chnam} properties={} id={}
+val: guid={15FBEC904CAC5027} datatype={} isdefault={false} langid={de} description={} validfrom={2016-03-16 11:27:25 CET} validto={} changed={2017-11-15 09:26:05 CET} changedby={chnam} properties={} id={}
+val: guid={15FBEC904C4FDAE5} datatype={} isdefault={true} langid={en} description={} validfrom={2016-03-16 11:27:05 CET} validto={} changed={2017-11-15 09:26:05 CET} changedby={chnam} properties={} id={}
+val: guid={168DA54AD3136831} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:29 CET} validto={} changed={2019-02-11 03:13:29 CET} changedby={ntminh01} properties={} id={}

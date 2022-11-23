@@ -1,0 +1,5 @@
+co: name={reserveTaskTooltip} description={} changed={2019-02-11 03:13:37 CET} changedby={ntminh01} visualorder={0} guid={15F713A831E7E5DF} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A8320F9B7A} datatype={} isdefault={true} langid={en} description={} validfrom={2016-04-28 13:43:32 CEST} validto={} changed={2017-10-31 07:59:40 CET} changedby={chnam} properties={} id={}
+val: guid={168DA54CE026708E} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:37 CET} validto={} changed={2019-02-11 03:13:37 CET} changedby={ntminh01} properties={} id={}
+val: guid={15F713A8324E0BCA} datatype={} isdefault={false} langid={de} description={} validfrom={2016-04-28 13:43:43 CEST} validto={} changed={2017-10-31 07:59:40 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A832969E00} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:07 CEST} validto={} changed={2017-10-31 07:59:40 CET} changedby={chnam} properties={} id={}

@@ -1,0 +1,5 @@
+co: name={fourthWeek} description={} changed={2019-02-11 03:13:35 CET} changedby={ntminh01} visualorder={0} guid={16163DC3CBF11578} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={168DA54C5048D4D3} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:35 CET} validto={} changed={2019-02-11 03:13:35 CET} changedby={ntminh01} properties={} id={}
+val: guid={161F959A9744D2ED} datatype={} isdefault={false} langid={de} description={} validfrom={2018-03-06 04:27:37 CET} validto={} changed={2018-03-06 04:34:01 CET} changedby={tdnguyen} properties={} id={}
+val: guid={161F959AA499AD4E} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-03-06 04:27:35 CET} validto={} changed={2018-03-06 04:34:02 CET} changedby={tdnguyen} properties={} id={}
+val: guid={16163DC3CC1A1A26} datatype={} isdefault={true} langid={en} description={} validfrom={2018-02-05 03:47:13 CET} validto={} changed={2018-02-05 03:47:13 CET} changedby={tntanh} properties={} id={}

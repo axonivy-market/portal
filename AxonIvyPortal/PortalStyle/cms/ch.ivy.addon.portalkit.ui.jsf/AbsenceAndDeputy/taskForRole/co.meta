@@ -1,0 +1,5 @@
+co: name={taskForRole} description={} changed={2019-02-11 03:13:30 CET} changedby={ntminh01} visualorder={0} guid={15F713A564560F20} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A56477F3E9} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 10:12:22 CEST} validto={} changed={2017-10-31 07:59:29 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A564D9FAB3} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:01 CEST} validto={} changed={2017-10-31 07:59:29 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A5653DDD21} datatype={} isdefault={true} langid={en} description={} validfrom={2015-03-05 03:38:04 CET} validto={} changed={2017-10-31 07:59:29 CET} changedby={chnam} properties={} id={}
+val: guid={168DA54B30C71724} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:30 CET} validto={} changed={2019-02-11 03:13:30 CET} changedby={ntminh01} properties={} id={}

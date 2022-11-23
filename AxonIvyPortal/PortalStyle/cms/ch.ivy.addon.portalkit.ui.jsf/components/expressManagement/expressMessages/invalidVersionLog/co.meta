@@ -1,0 +1,5 @@
+co: name={invalidVersionLog} description={} changed={2020-02-07 04:11:09 CET} changedby={ntminh01} visualorder={0} guid={16F831F0363D6A97} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16F831F037BC4CFF} datatype={} isdefault={true} langid={en} description={} validfrom={2020-01-15 02:53:48 CET} validto={} changed={2020-01-15 02:53:48 CET} changedby={chnam} properties={} id={}
+val: guid={16F831F0366C37F7} datatype={} isdefault={false} langid={de} description={} validfrom={2020-01-15 02:53:48 CET} validto={} changed={2020-01-15 02:53:48 CET} changedby={chnam} properties={} id={}
+val: guid={16F831F036DA44B5} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-01-15 02:53:48 CET} validto={} changed={2020-01-15 02:53:48 CET} changedby={chnam} properties={} id={}
+val: guid={16F831F0374B7C99} datatype={} isdefault={false} langid={es} description={} validfrom={2020-02-07 04:11:09 CET} validto={} changed={2020-02-07 04:11:09 CET} changedby={ntminh01} properties={} id={}

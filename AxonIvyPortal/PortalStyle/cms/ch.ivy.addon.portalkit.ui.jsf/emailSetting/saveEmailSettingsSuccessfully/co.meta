@@ -1,0 +1,5 @@
+co: name={saveEmailSettingsSuccessfully} description={} changed={2019-03-25 10:06:47 CET} changedby={lttung} visualorder={0} guid={15F713A72BBF8799} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A72C2D92CA} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:05 CEST} validto={} changed={2017-10-31 07:59:36 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A72BD6079A} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:21:01 CET} validto={} changed={2017-10-31 07:59:36 CET} changedby={chnam} properties={} id={}
+val: guid={169B41A2A379F9B0} datatype={} isdefault={false} langid={es} description={} validfrom={2019-03-25 10:06:47 CET} validto={} changed={2019-03-25 10:06:47 CET} changedby={lttung} properties={} id={}
+val: guid={15F713A72C7C0D6E} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:21:01 CET} validto={} changed={2017-10-31 07:59:36 CET} changedby={chnam} properties={} id={}
