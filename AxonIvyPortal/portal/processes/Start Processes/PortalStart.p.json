@@ -1447,7 +1447,7 @@
                 "  ITask task = ivy.wf.findTask(Long.valueOf(in.endedTaskId));",
                 "  caseId = task.getCase().getId();",
                 "}",
-                "out.caseSelected = ivy.wf.getGlobalContext().getCaseQueryExecutor().getFirstResult(CaseQuery.create().where().caseId().isEqual(caseId)) as ICase;"
+                "out.caseSelected = ivy.wf.getGlobalContext().getCaseQueryExecutor().createCaseQuery().where().caseId().isEqual(caseId).executor().firstResult() as ICase;"
               ]
             }
           },
@@ -1852,7 +1852,7 @@
                 "import ch.ivyteam.ivy.workflow.ICase;",
                 "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
                 "",
-                "out.caseSelected = ivy.wf.getGlobalContext().getCaseQueryExecutor().getFirstResult(CaseQuery.create().where().caseId().isEqual(in.caseId)) as ICase;"
+                "out.caseSelected = ivy.wf.getGlobalContext().getCaseQueryExecutor().createCaseQuery().where().caseId().isEqual(in.caseId).executor().firstResult() as ICase;"
               ]
             }
           },
@@ -2189,7 +2189,7 @@
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
             "import ch.ivy.addon.portalkit.comparator.NoteComparator;",
             "",
-            "in.taskSelected = ivy.wf.getGlobalContext().getTaskQueryExecutor().getFirstResult(TaskQuery.create().where().taskId().isEqual(in.taskId)) as ITask;",
+            "in.taskSelected = ivy.wf.getGlobalContext().getTaskQueryExecutor().createTaskQuery().where().taskId().isEqual(in.taskId).executor().firstResult() as ITask;",
             "ICase iCase = in.taskSelected.getCase().getBusinessCase();",
             "GlobalSettingService globalSettingService = new GlobalSettingService();",
             "boolean excludeSystemNotes = globalSettingService.findHideSystemNotesFromHistorySettingValue();",
