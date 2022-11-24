@@ -4,6 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -35,14 +40,12 @@ public class NewsWidgetBean implements Serializable {
 
   @PostConstruct
   public void init() {
-    supportLanguages = LanguageService.newInstance().getContentLocales();
-    defaultLanguage = LanguageService.newInstance().getDefaultEmailLanguage();
     canManageNews = PermissionUtils.hasPortalPermission(PortalPermission.NEWS_MANAGEMENT);
   }
 
   public void preAddingNews() {
-    manageNewsDialogTitle =
-        Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/AddNews");
+    initNewsManagement();
+    manageNewsDialogTitle = Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/AddNews");
     editingNewsList = new ArrayList<>();
     for (var language : supportLanguages) {
       var news = new News();
@@ -61,9 +64,22 @@ public class NewsWidgetBean implements Serializable {
   }
 
   public void preEditingNews(News news) {
-    manageNewsDialogTitle =
-        Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/EditNews");
+    initNewsManagement();
+    manageNewsDialogTitle = Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/EditNews");
     editingNewsList = NewsService.getInstance().findNewsBySupportedLocale(news.getId(), supportLanguages);
+  }
+
+  private void initNewsManagement() {
+    if (CollectionUtils.isEmpty(supportLanguages)) {
+      supportLanguages = LanguageService.newInstance().getContentLocales().stream()
+          .filter(distinctBylanguageTag(Locale::toLanguageTag)).collect(Collectors.toList());
+      defaultLanguage = LanguageService.newInstance().getDefaultEmailLanguage();
+    }
+  }
+
+  public static <T> Predicate<T> distinctBylanguageTag(Function<? super T, ?> keyExtractor) {
+    Set<Object> keySet = ConcurrentHashMap.newKeySet();
+    return t -> keySet.add(keyExtractor.apply(t));
   }
 
   public void deleteNews() {
@@ -75,8 +91,11 @@ public class NewsWidgetBean implements Serializable {
   }
 
   public int getActiveTabIndex() {
-    var indexOfDefaultLocale = supportLanguages.indexOf(defaultLanguage);
-    return indexOfDefaultLocale < 0 ? 0 : indexOfDefaultLocale;
+    int activeIndex = 0;
+    if (CollectionUtils.isNotEmpty(supportLanguages)) {
+      activeIndex = supportLanguages.indexOf(defaultLanguage);
+    }
+    return activeIndex < 0 ? 0 : activeIndex;
   }
 
   public List<Locale> getSupportLanguages() {
