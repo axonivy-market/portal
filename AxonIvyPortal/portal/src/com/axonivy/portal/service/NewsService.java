@@ -7,7 +7,6 @@ import static com.axonivy.portal.enums.NewsColumn.NAME;
 import static java.util.Objects.isNull;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -18,7 +17,6 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.time.DateUtils;
 
 import com.axonivy.portal.dto.News;
 import com.axonivy.portal.enums.NewsColumn;
