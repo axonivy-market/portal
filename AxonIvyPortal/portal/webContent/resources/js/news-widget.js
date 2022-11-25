@@ -18,11 +18,11 @@ function setupNewsWidgetContent(newsWidgetId, lazy) {
 function setupSeeMoreLessContent(newsItem) {
   let newsItemContent = getNewsItemContent(newsItem);
   $(newsItemContent).addClass('line-clamp-text-3');
-  const heightRatio = newsItemContent[0].scrollHeight - newsItemContent[0].clientHeight;
+  const heightDifference = newsItemContent[0].scrollHeight - newsItemContent[0].clientHeight;
   let seeMoreLink = getSeeMoreLink(newsItem);
   let seeLessLink = getSeeLessLink(newsItem);
   $(seeLessLink).addClass('hide');
-  if (heightRatio > 0) {
+  if (heightDifference > 0) {
     $(seeMoreLink).removeClass('hide');
   } else {
     $(seeMoreLink).addClass('hide');
