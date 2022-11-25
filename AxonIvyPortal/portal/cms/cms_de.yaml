@@ -1526,9 +1526,9 @@ Dialogs:
           component:
             NewsWidget:
               NewsContentPlaceHolder: Nachrichteninhalt eingeben
-              NewsContentValidateMessage: Nachrichteninhalt von {0} ist erforderlich
+              NewsContentValidateMessage: Nachrichteninhalt in {0} ist erforderlich
               NewsTitlePlaceholder: Titel der Nachricht eingeben
-              NewsTitleValidateMessage: Nachrichtentitel von {0} ist erforderlich
+              NewsTitleValidateMessage: Nachrichtentitel in {0} ist erforderlich
               NoNewsAvailable: Es gibt noch keine Neuigkeiten
               Publish: veröffentlichen.
               RemoveNewsHeader: Die Nachrichten entfernen?
