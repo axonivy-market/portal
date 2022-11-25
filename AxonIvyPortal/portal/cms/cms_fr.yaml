@@ -1525,9 +1525,9 @@ Dialogs:
           component:
             NewsWidget:
               NewsContentPlaceHolder: Saisir le contenu de l'actualité
-              NewsContentValidateMessage: Un contenu d'actualité de {0} est requis
+              NewsContentValidateMessage: Le contenu de l'actualité dans {0} est requis
               NewsTitlePlaceholder: Entrez le titre de la nouvelle
-              NewsTitleValidateMessage: Un titre d'actualité de {0} est requis
+              NewsTitleValidateMessage: Le titre de la nouvelle dans {0} est obligatoire
               NoNewsAvailable: Il n'y a pas encore de nouvelles
               Publish: Publier
               RemoveNewsHeader: Supprimer les informations ?
