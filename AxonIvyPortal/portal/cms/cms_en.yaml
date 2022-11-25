@@ -1526,9 +1526,9 @@ Dialogs:
           component:
             NewsWidget:
               NewsContentPlaceHolder: Enter News content
-              NewsContentValidateMessage: News content of {0} is required
+              NewsContentValidateMessage: News content in {0} is required
               NewsTitlePlaceholder: Enter News title
-              NewsTitleValidateMessage: News title of {0} is required
+              NewsTitleValidateMessage: News title in {0} is required
               NoNewsAvailable: There is no news yet
               Publish: Publish
               RemoveNewsHeader: Remove the news?
@@ -1539,7 +1539,7 @@ Dialogs:
               EditNews: Edit News
               NewsContentMaxLengthMessage: News content must not exceed 1000 characters
               NewsWidgetConfiguration: News feed widget configuration
-              NewsWidgetDescription: This widget shares relevant information as News Feed into Axon Ivy.
+              NewsWidgetDescription: This widget shares relevant information as a News Feed into Axon Ivy.
               NewsWidgetTitle: News feed widget
   components:
     CaseDocument:
