@@ -1405,8 +1405,8 @@ Dialogs:
               NoNewsAvailable: There is no news yet
               Publish: Publish
               RemoveNewsHeader: Remove the news?
-              SeeLess: see less
-              SeeMore: see more
+              SeeLess: See less
+              SeeMore: See more
             NewsWidgetConfiguration:
               NewsWidgetDescription: This widget shares relevant information as a News Feed into Axon Ivy.
   components:
