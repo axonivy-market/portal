@@ -1531,8 +1531,8 @@ Dialogs:
               NoNewsAvailable: Il n'y a pas encore de nouvelles
               Publish: Publier
               RemoveNewsHeader: Supprimer les informations ?
-              SeeLess: voir moins
-              SeeMore: voir plus
+              SeeLess: Voir moins
+              SeeMore: Voir plus
             NewsWidgetConfiguration:
               AddNews: Ajouter une nouvelle
               EditNews: Nouvelles d'édition
