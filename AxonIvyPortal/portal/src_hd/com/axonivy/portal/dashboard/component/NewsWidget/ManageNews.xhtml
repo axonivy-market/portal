@@ -35,7 +35,7 @@
                 <p:inputText id="news-title" required="#{requiredLanguage}"
                   placeholder="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/NewsTitlePlaceholder')}"
                   value="#{news.name}"
-                  requiredMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/NewsTitleValidateMessage', [news.locale.displayLanguage])}"
+                  requiredMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/NewsTitleValidateMessage', [news.locale.displayLanguage.toLowerCase()])}"
                   maxlength="200"/>
               </div>
             </div>
@@ -44,7 +44,7 @@
               <p:textEditor id="news-content" height="300" value="#{news.description}"
                 placeholder="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/NewsContentPlaceHolder')}"
                 required="#{requiredLanguage}"
-                requiredMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/NewsContentValidateMessage', [news.locale.displayLanguage])}">
+                requiredMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/NewsContentValidateMessage', [news.locale.displayLanguage.toLowerCase()])}">
                 <f:validator validatorId="newsEditorValidator"/>
                 <f:facet name="toolbar">
                   <span class="ql-formats">
