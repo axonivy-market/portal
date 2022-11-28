@@ -1,4 +1,0 @@
-co: name={customVarCharField5_ASC} description={} changed={2020-12-21 04:46:09 CET} changedby={dhtlong} visualorder={0} guid={1674F2834BB486A8} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={17683678989345D4} datatype={} isdefault={false} langid={de} description={} validfrom={2020-12-21 04:46:09 CET} validto={} changed={2020-12-21 04:46:09 CET} changedby={dhtlong} properties={} id={}
-val: guid={17683678998EB4CE} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-12-21 04:46:09 CET} validto={} changed={2020-12-21 04:46:09 CET} changedby={dhtlong} properties={} id={}
-val: guid={1674F2834BEED0CD} datatype={} isdefault={true} langid={en} description={} validfrom={2018-11-26 09:34:54 CET} validto={} changed={2018-11-26 09:39:41 CET} changedby={chnam} properties={} id={}

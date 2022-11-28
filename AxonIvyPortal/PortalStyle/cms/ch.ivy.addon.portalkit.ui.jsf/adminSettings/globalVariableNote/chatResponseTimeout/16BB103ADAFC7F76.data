@@ -1,1 +1,0 @@
-Chat response timeout in seconds, default value is empty, it means no timeout. If chat messages go through reverse proxy Nginx, chat response timeout must be less than Nginx timeout, e.g. less than 60s. 

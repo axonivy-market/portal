@@ -1,5 +1,0 @@
-co: name={InsertTask-Explain} description={} changed={2019-02-11 03:13:28 CET} changedby={ntminh01} visualorder={0} guid={15FBEC837E75F7E7} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15FBEC837F4DC4F0} datatype={} isdefault={false} langid={de} description={} validfrom={2016-03-04 10:34:43 CET} validto={} changed={2017-11-15 09:25:13 CET} changedby={chnam} properties={} id={}
-val: guid={15FBEC837EFC59C6} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:01:41 CEST} validto={} changed={2017-11-15 09:25:13 CET} changedby={chnam} properties={} id={}
-val: guid={168DA54AD02AF935} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:28 CET} validto={} changed={2019-02-11 03:13:28 CET} changedby={ntminh01} properties={} id={}
-val: guid={15FBEC837EAADF97} datatype={} isdefault={true} langid={en} description={} validfrom={2015-02-10 16:13:48 CET} validto={} changed={2017-11-15 09:25:13 CET} changedby={chnam} properties={} id={}

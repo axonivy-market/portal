@@ -1,5 +1,0 @@
-co: name={appNameRequiredMsg} description={} changed={2020-12-01 03:49:02 CET} changedby={lttung} visualorder={0} guid={15F713A590D8745E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F713A59199DB2A} datatype={} isdefault={false} langid={de} description={} validfrom={2020-12-01 03:49:02 CET} validto={} changed={2020-12-01 03:49:02 CET} changedby={lttung} properties={} id={}
-val: guid={15F713A59142DA0B} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-12-01 03:49:02 CET} validto={} changed={2020-12-01 03:49:02 CET} changedby={lttung} properties={} id={}
-val: guid={15F713A590FD080E} datatype={} isdefault={true} langid={en} description={} validfrom={2015-02-12 09:39:27 CET} validto={} changed={2020-11-18 11:15:25 CET} changedby={vtlong} properties={} id={}
-val: guid={168DA54B3E523924} datatype={} isdefault={false} langid={es} description={} validfrom={2020-12-01 03:49:02 CET} validto={} changed={2020-12-01 03:49:02 CET} changedby={lttung} properties={} id={}

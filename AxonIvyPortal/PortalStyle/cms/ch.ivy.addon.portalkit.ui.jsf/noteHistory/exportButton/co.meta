@@ -1,5 +1,0 @@
-co: name={exportButton} description={} changed={2019-02-11 03:13:34 CET} changedby={ntminh01} visualorder={0} guid={160488A3A39F6F75} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={168DA54C0C617BE3} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:34 CET} validto={} changed={2019-02-11 03:13:34 CET} changedby={ntminh01} properties={} id={}
-val: guid={160488A3A3C8E7C2} datatype={} isdefault={true} langid={en} description={} validfrom={2017-12-12 03:25:06 CET} validto={} changed={2017-12-12 03:25:06 CET} changedby={tdnguyen} properties={} id={}
-val: guid={1604909C5A9333FC} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-12-18 10:18:38 CET} validto={} changed={2017-12-18 10:18:38 CET} changedby={dhtlong} properties={} id={}
-val: guid={160488A85F8B4BDD} datatype={} isdefault={false} langid={de} description={} validfrom={2017-12-18 10:18:38 CET} validto={} changed={2017-12-18 10:18:38 CET} changedby={dhtlong} properties={} id={}

@@ -1,5 +1,0 @@
-co: name={engineVersion} description={} changed={2019-02-11 03:13:34 CET} changedby={ntminh01} visualorder={0} guid={16260973E3B9EC96} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16260973E45D50C6} datatype={} isdefault={true} langid={en} description={} validfrom={2018-03-26 06:35:47 CEST} validto={} changed={2018-03-26 06:35:47 CEST} changedby={dhtlong} properties={} id={}
-val: guid={16260973E4C16760} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-04-04 03:41:20 CEST} validto={} changed={2018-04-04 03:41:20 CEST} changedby={nttai} properties={} id={}
-val: guid={168DA54C30075810} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:34 CET} validto={} changed={2019-02-11 03:13:34 CET} changedby={ntminh01} properties={} id={}
-val: guid={16260973E3F35A8A} datatype={} isdefault={false} langid={de} description={} validfrom={2018-07-18 10:55:37 CEST} validto={} changed={2018-07-18 10:55:37 CEST} changedby={ldnam} properties={} id={}

@@ -1,5 +1,0 @@
-co: name={READY_FOR_JOIN} description={} changed={2020-06-16 08:01:27 GMT} changedby={nqhoan} visualorder={0} guid={172BC25B4662141D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={172BC25B48ED6E04} datatype={} isdefault={true} langid={en} description={} validfrom={2017-10-13 08:23:42 GMT} validto={} changed={2020-06-16 08:01:27 GMT} changedby={nqhoan} properties={} id={}
-val: guid={172BC25B47D56CA2} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-10-13 08:23:42 GMT} validto={} changed={2020-06-16 08:01:27 GMT} changedby={nqhoan} properties={} id={}
-val: guid={172BC25B4863F764} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 02:13:38 GMT} validto={} changed={2020-06-16 08:01:27 GMT} changedby={nqhoan} properties={} id={}
-val: guid={172BC25B4725C242} datatype={} isdefault={false} langid={de} description={} validfrom={2019-02-11 02:13:38 GMT} validto={} changed={2020-06-16 08:01:27 GMT} changedby={nqhoan} properties={} id={}

@@ -1,5 +1,0 @@
-co: name={delegateComment} description={} changed={2019-02-11 03:13:37 CET} changedby={ntminh01} visualorder={0} guid={15F713A7D19CF024} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F713A7D23BEE66} datatype={} isdefault={false} langid={de} description={} validfrom={2017-02-07 11:32:52 CET} validto={} changed={2017-10-31 07:59:39 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A7D1A95985} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 08:57:15 CEST} validto={} changed={2017-10-31 07:59:39 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A7D1FDCBC1} datatype={} isdefault={true} langid={en} description={} validfrom={2017-02-07 11:32:37 CET} validto={} changed={2017-10-31 07:59:39 CET} changedby={chnam} properties={} id={}
-val: guid={168DA54CC977D577} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:37 CET} validto={} changed={2019-02-11 03:13:37 CET} changedby={ntminh01} properties={} id={}

@@ -1,2 +1,0 @@
-co: name={Link1} description={} changed={2014-07-30 06:55:25 GMT} changedby={tauser} visualorder={0} guid={0147860CA81A4056} parentguid={} typeguid={E6AFEA1F2184828C} id={} parentid={} typeid={}
-val: guid={147860CA849D048D} datatype={} isdefault={true} langid={en} description={} validfrom={2014-07-30 06:54:41 GMT} validto={} changed={2014-07-30 06:55:25 GMT} changedby={tauser} properties={###r#n##Wed Jul 30 08:55:25 CEST 2014#r#n.KIND=timed#r#n.LREF=<%\=in.url%>#r#n.SBMT=#r#n=0#r#n} id={}

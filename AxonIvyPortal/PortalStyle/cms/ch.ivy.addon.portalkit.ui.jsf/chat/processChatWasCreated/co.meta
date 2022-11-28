@@ -1,5 +1,0 @@
-co: name={processChatWasCreated} description={} changed={2019-07-10 09:52:11 CEST} changedby={nqhoan} visualorder={0} guid={16947F639581B5A8} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16947F6395DABD70} datatype={} isdefault={true} langid={en} description={} validfrom={2019-03-04 10:08:32 CET} validto={} changed={2019-03-29 04:12:16 CET} changedby={dhtlong} properties={} id={}
-val: guid={16947FA51965BC40} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-07-10 09:52:11 CEST} validto={} changed={2019-07-10 09:52:11 CEST} changedby={nqhoan} properties={} id={}
-val: guid={16B1CB9B0E0E39F0} datatype={} isdefault={false} langid={es} description={} validfrom={2019-07-10 09:52:11 CEST} validto={} changed={2019-07-10 09:52:11 CEST} changedby={nqhoan} properties={} id={}
-val: guid={16947FA5048CF880} datatype={} isdefault={false} langid={de} description={} validfrom={2019-07-10 09:52:11 CEST} validto={} changed={2019-07-10 09:52:11 CEST} changedby={nqhoan} properties={} id={}

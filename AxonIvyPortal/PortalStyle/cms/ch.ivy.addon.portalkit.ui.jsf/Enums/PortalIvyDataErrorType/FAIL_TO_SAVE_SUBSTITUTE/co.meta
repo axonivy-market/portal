@@ -1,5 +1,0 @@
-co: name={FAIL_TO_SAVE_SUBSTITUTE} description={} changed={2019-03-25 10:06:46 CET} changedby={lttung} visualorder={0} guid={16903E7F0DE21DA3} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16903E7F0E177AC4} datatype={} isdefault={true} langid={en} description={} validfrom={2019-03-25 09:33:58 CET} validto={} changed={2019-03-25 09:33:58 CET} changedby={lttung} properties={} id={}
-val: guid={169040C74E09B58E} datatype={} isdefault={false} langid={es} description={} validfrom={2019-03-25 10:06:46 CET} validto={} changed={2019-03-25 10:06:46 CET} changedby={lttung} properties={} id={}
-val: guid={169040C73B35092B} datatype={} isdefault={false} langid={de} description={} validfrom={2019-03-25 09:33:58 CET} validto={} changed={2019-03-25 09:33:58 CET} changedby={lttung} properties={} id={}
-val: guid={169040C74E9CDCB0} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-03-25 09:33:58 CET} validto={} changed={2019-03-25 09:33:58 CET} changedby={lttung} properties={} id={}

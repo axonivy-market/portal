@@ -1,5 +1,0 @@
-co: name={workflowEventDialog} description={} changed={2022-03-04 10:48:56 CET} changedby={nqhoan} visualorder={0} guid={17F5454378345EEF} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={17F545516D1995C0} datatype={} isdefault={false} langid={es} description={} validfrom={2022-03-04 10:48:51 CET} validto={} changed={2022-03-04 10:48:56 CET} changedby={nqhoan} properties={} id={}
-val: guid={17F545516481CCF3} datatype={} isdefault={false} langid={de} description={} validfrom={2022-03-04 10:48:44 CET} validto={} changed={2022-03-04 10:48:56 CET} changedby={nqhoan} properties={} id={}
-val: guid={17F5455170F61B85} datatype={} isdefault={false} langid={fr} description={} validfrom={2022-03-04 10:48:35 CET} validto={} changed={2022-03-04 10:48:56 CET} changedby={nqhoan} properties={} id={}
-val: guid={17F5454378CE2090} datatype={} isdefault={true} langid={en} description={} validfrom={2022-03-04 10:47:59 CET} validto={} changed={2022-03-04 10:47:59 CET} changedby={nqhoan} properties={} id={}
