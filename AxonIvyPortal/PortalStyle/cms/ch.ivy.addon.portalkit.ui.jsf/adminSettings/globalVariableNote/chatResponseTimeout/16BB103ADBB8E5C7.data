@@ -1,1 +1,0 @@
-Chat-Antwortzeitüberschreitung in Sekunden, Standardwert ist leer, d.h. kein Timeout. Wenn Chatnachrichten über den Reverse-Proxy Nginx laufen, muss der Timeout der Chat-Antwort kleiner als der Timeout von Nginx sein, z.B. weniger als 60 Sekunden.

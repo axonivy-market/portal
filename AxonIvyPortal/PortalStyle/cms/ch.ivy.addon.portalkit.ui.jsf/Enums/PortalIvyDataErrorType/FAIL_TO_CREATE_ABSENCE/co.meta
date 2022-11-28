@@ -1,5 +1,0 @@
-co: name={FAIL_TO_CREATE_ABSENCE} description={} changed={2019-03-25 10:06:46 CET} changedby={lttung} visualorder={0} guid={16903E4BA127C8B3} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1690403C250628A1} datatype={} isdefault={false} langid={de} description={} validfrom={2019-03-25 09:33:57 CET} validto={} changed={2019-03-25 09:33:57 CET} changedby={lttung} properties={} id={}
-val: guid={1690403C384A097C} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-03-25 09:33:57 CET} validto={} changed={2019-03-25 09:33:57 CET} changedby={lttung} properties={} id={}
-val: guid={1690403C37AD9DEB} datatype={} isdefault={false} langid={es} description={} validfrom={2019-03-25 10:06:46 CET} validto={} changed={2019-03-25 10:06:46 CET} changedby={lttung} properties={} id={}
-val: guid={16903E4BA167D80D} datatype={} isdefault={true} langid={en} description={} validfrom={2019-03-25 09:33:57 CET} validto={} changed={2019-03-25 09:33:57 CET} changedby={lttung} properties={} id={}

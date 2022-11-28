@@ -1,5 +1,0 @@
-co: name={notAllowedToCreateChart} description={} changed={2019-02-11 03:13:35 CET} changedby={ntminh01} visualorder={0} guid={166757F89C797280} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={168DA54C6315F42F} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:35 CET} validto={} changed={2019-02-11 03:13:35 CET} changedby={ntminh01} properties={} id={}
-val: guid={166757F89CC1CCF7} datatype={} isdefault={true} langid={en} description={} validfrom={2019-02-11 03:13:35 CET} validto={} changed={2019-02-11 03:13:35 CET} changedby={ntminh01} properties={} id={}
-val: guid={16675800AFB7B646} datatype={} isdefault={false} langid={de} description={} validfrom={2019-02-11 03:13:35 CET} validto={} changed={2019-02-11 03:13:35 CET} changedby={ntminh01} properties={} id={}
-val: guid={16675800C414BFFC} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-02-11 03:13:35 CET} validto={} changed={2019-02-11 03:13:35 CET} changedby={ntminh01} properties={} id={}

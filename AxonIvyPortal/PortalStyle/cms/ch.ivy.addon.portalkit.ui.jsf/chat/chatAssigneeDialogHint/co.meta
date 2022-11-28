@@ -1,5 +1,0 @@
-co: name={chatAssigneeDialogHint} description={} changed={2019-07-10 09:52:10 CEST} changedby={nqhoan} visualorder={0} guid={16947F56F473B3AB} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16B1CB5E4FBA8C91} datatype={} isdefault={false} langid={es} description={} validfrom={2019-07-10 09:52:10 CEST} validto={} changed={2019-07-10 09:52:10 CEST} changedby={nqhoan} properties={} id={}
-val: guid={16947F70CB52ECA6} datatype={} isdefault={false} langid={de} description={} validfrom={2019-07-10 09:52:10 CEST} validto={} changed={2019-07-10 09:52:10 CEST} changedby={nqhoan} properties={} id={}
-val: guid={16947F70DBDE09A4} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-07-10 09:52:10 CEST} validto={} changed={2019-07-10 09:52:10 CEST} changedby={nqhoan} properties={} id={}
-val: guid={16947F56F4D8A18F} datatype={} isdefault={true} langid={en} description={} validfrom={2019-03-04 10:07:41 CET} validto={} changed={2019-03-04 10:09:27 CET} changedby={tdnguyen} properties={} id={}

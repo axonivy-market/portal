@@ -1,4 +1,0 @@
-co: name={customTimestampField1_ASC} description={} changed={2020-12-21 04:46:09 CET} changedby={dhtlong} visualorder={0} guid={1674F289910557D5} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1674F289912DB1FA} datatype={} isdefault={true} langid={en} description={} validfrom={2018-11-26 09:35:19 CET} validto={} changed={2018-11-26 09:39:03 CET} changedby={chnam} properties={} id={}
-val: guid={176836789567C9E2} datatype={} isdefault={false} langid={de} description={} validfrom={2020-12-21 04:46:09 CET} validto={} changed={2020-12-21 04:46:09 CET} changedby={dhtlong} properties={} id={}
-val: guid={17683678960E712B} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-12-21 04:46:09 CET} validto={} changed={2020-12-21 04:46:09 CET} changedby={dhtlong} properties={} id={}

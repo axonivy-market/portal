@@ -1,5 +1,0 @@
-co: name={FAIL_TO_LOAD_CASE_STATE_STATISTIC} description={} changed={2019-03-25 10:06:46 CET} changedby={lttung} visualorder={0} guid={16903E95A13938F8} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16904057E9F7480D} datatype={} isdefault={false} langid={es} description={} validfrom={2019-03-25 10:06:46 CET} validto={} changed={2019-03-25 10:06:46 CET} changedby={lttung} properties={} id={}
-val: guid={16903E95A16FC11C} datatype={} isdefault={true} langid={en} description={} validfrom={2019-03-25 09:33:57 CET} validto={} changed={2019-03-25 09:33:57 CET} changedby={lttung} properties={} id={}
-val: guid={16904057D031C069} datatype={} isdefault={false} langid={de} description={} validfrom={2019-03-25 09:33:57 CET} validto={} changed={2019-03-25 09:33:57 CET} changedby={lttung} properties={} id={}
-val: guid={16904057EACD4CE6} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-03-25 09:33:57 CET} validto={} changed={2019-03-25 09:33:57 CET} changedby={lttung} properties={} id={}

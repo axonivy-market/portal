@@ -1,4 +1,0 @@
-co: name={caseId} description={} changed={2020-12-21 04:46:09 CET} changedby={dhtlong} visualorder={0} guid={16707735130449C6} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16707737D8D59ED9} datatype={} isdefault={true} langid={en} description={} validfrom={2018-11-12 11:24:28 CET} validto={} changed={2018-11-12 11:24:28 CET} changedby={Oliver} properties={} id={}
-val: guid={176836787DB2079A} datatype={} isdefault={false} langid={de} description={} validfrom={2020-12-21 04:46:08 CET} validto={} changed={2020-12-21 04:46:08 CET} changedby={dhtlong} properties={} id={}
-val: guid={176836787E821330} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-12-21 04:46:09 CET} validto={} changed={2020-12-21 04:46:09 CET} changedby={dhtlong} properties={} id={}

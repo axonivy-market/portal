@@ -1,5 +1,0 @@
-co: name={cannotStartTask} description={} changed={2022-03-21 16:37:54 CET} changedby={lttung} visualorder={0} guid={17F96BB44A3AAE1A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={17F96BB44CC48E00} datatype={} isdefault={false} langid={de} description={} validfrom={2022-03-21 16:37:54 CET} validto={} changed={2022-03-21 16:37:54 CET} changedby={lttung} properties={} id={}
-val: guid={17F96BB44D6C4A96} datatype={} isdefault={true} langid={en} description={} validfrom={2017-12-08 04:02:01 CET} validto={} changed={2022-03-17 08:16:00 CET} changedby={phhung} properties={} id={}
-val: guid={17F96BB44B0F4EA9} datatype={} isdefault={false} langid={fr} description={} validfrom={2022-03-21 16:37:54 CET} validto={} changed={2022-03-21 16:37:54 CET} changedby={lttung} properties={} id={}
-val: guid={17F96BB44BF3B7F0} datatype={} isdefault={false} langid={es} description={} validfrom={2022-03-21 16:37:54 CET} validto={} changed={2022-03-21 16:37:54 CET} changedby={lttung} properties={} id={}

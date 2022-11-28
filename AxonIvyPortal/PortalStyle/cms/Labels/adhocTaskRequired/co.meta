@@ -1,5 +1,0 @@
-co: name={adhocTaskRequired} description={} changed={2019-03-25 10:06:46 CET} changedby={lttung} visualorder={0} guid={16730328CCCC4889} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16730328CDE6ECB0} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:01:42 CEST} validto={} changed={2018-11-20 09:17:58 CET} changedby={dhtlong} properties={} id={}
-val: guid={16730328CED22CBF} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-15 12:07:59 CEST} validto={} changed={2018-11-20 09:17:58 CET} changedby={dhtlong} properties={} id={}
-val: guid={16730328CF85FFA5} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-15 12:07:49 CEST} validto={} changed={2018-11-20 09:17:58 CET} changedby={dhtlong} properties={} id={}
-val: guid={169B41A26A618A45} datatype={} isdefault={false} langid={es} description={} validfrom={2019-03-25 10:06:46 CET} validto={} changed={2019-03-25 10:06:46 CET} changedby={lttung} properties={} id={}
