@@ -1,0 +1,3 @@
+co: name={logoScalingTooltip} description={} changed={2019-02-11 03:13:31 CET} changedby={ntminh01} visualorder={0} guid={1624B9B0D5C2BE95} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1624B9B0D6866CBA} datatype={} isdefault={true} langid={en} description={} validfrom={2018-03-13 11:05:28 CET} validto={} changed={2018-03-22 03:47:55 CET} changedby={dhtlong} properties={} id={}
+val: guid={168DA54B527C42C2} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:31 CET} validto={} changed={2019-02-11 03:13:31 CET} changedby={ntminh01} properties={} id={}

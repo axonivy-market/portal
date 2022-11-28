@@ -1,0 +1,5 @@
+co: name={dashboard} description={} changed={2019-11-07 11:37:53 CET} changedby={ldnam} visualorder={0} guid={16E457124D0E92B9} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16E457124EB99AF6} datatype={} isdefault={true} langid={en} description={} validfrom={2015-07-22 10:28:53 CEST} validto={} changed={2019-11-07 11:37:53 CET} changedby={ldnam} properties={} id={}
+val: guid={16E45712501F940A} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:23 CEST} validto={} changed={2019-11-07 11:37:53 CET} changedby={ldnam} properties={} id={}
+val: guid={16E457124F6EC6E5} datatype={} isdefault={false} langid={de} description={} validfrom={2016-03-04 10:24:25 CET} validto={} changed={2019-11-07 11:37:53 CET} changedby={ldnam} properties={} id={}
+val: guid={16E457124DD8AEBA} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:30 CET} validto={} changed={2019-11-07 11:37:53 CET} changedby={ldnam} properties={} id={}

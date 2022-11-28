@@ -1,0 +1,5 @@
+co: name={dateTimePattern} description={} changed={2019-08-07 13:37:09 CEST} changedby={nqhoan} visualorder={0} guid={15EE0F1C2FBCEDAF} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15EE0F1C2FD8EBC0} datatype={} isdefault={true} langid={en} description={} validfrom={2016-06-17 10:29:54 CEST} validto={} changed={2017-10-03 08:34:54 CEST} changedby={dhtlong} properties={} id={}
+val: guid={015EE0F1C308403A} datatype={} isdefault={false} langid={de} description={} validfrom={2016-06-17 10:30:01 CEST} validto={} changed={2017-10-03 08:34:54 CEST} changedby={dhtlong} properties={} id={}
+val: guid={168DA54D188296E9} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:38 CET} validto={} changed={2019-08-07 13:37:09 CEST} changedby={nqhoan} properties={} id={}
+val: guid={15EE0F1C3126BE73} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:04 CEST} validto={} changed={2017-10-03 08:34:54 CEST} changedby={dhtlong} properties={} id={}

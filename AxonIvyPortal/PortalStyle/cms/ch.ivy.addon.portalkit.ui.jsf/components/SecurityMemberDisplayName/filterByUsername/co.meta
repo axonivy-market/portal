@@ -1,0 +1,5 @@
+co: name={filterByUsername} description={} changed={2021-04-09 04:52:11 CEST} changedby={chnam} visualorder={0} guid={17741B1F356BA4D5} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={17741B28C8E3E343} datatype={} isdefault={false} langid={es} description={} validfrom={2021-04-09 04:52:11 CEST} validto={} changed={2021-04-09 04:52:11 CEST} changedby={chnam} properties={} id={}
+val: guid={17741B28C21CFCE2} datatype={} isdefault={false} langid={de} description={} validfrom={2021-04-09 04:52:11 CEST} validto={} changed={2021-04-09 04:52:11 CEST} changedby={chnam} properties={} id={}
+val: guid={17741B28CC749354} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-04-09 04:52:11 CEST} validto={} changed={2021-04-09 04:52:11 CEST} changedby={chnam} properties={} id={}
+val: guid={17741B1F362D29A9} datatype={} isdefault={true} langid={en} description={} validfrom={2021-01-27 03:35:17 CET} validto={} changed={2021-01-27 03:35:56 CET} changedby={nqhoan} properties={} id={}

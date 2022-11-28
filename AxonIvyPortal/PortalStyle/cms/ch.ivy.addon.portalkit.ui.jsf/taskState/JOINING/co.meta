@@ -1,0 +1,5 @@
+co: name={JOINING} description={} changed={2019-02-11 03:13:37 CET} changedby={ntminh01} visualorder={0} guid={15F713A8762742E8} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A8764CF1F4} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-10-13 10:23:42 CEST} validto={} changed={2017-10-31 07:59:42 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A876E517E6} datatype={} isdefault={false} langid={de} description={} validfrom={2019-02-11 03:13:37 CET} validto={} changed={2019-02-11 03:13:37 CET} changedby={ntminh01} properties={} id={}
+val: guid={168DA54D04BE79BA} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:37 CET} validto={} changed={2019-02-11 03:13:37 CET} changedby={ntminh01} properties={} id={}
+val: guid={15F713A8769F478A} datatype={} isdefault={true} langid={en} description={} validfrom={2017-10-13 10:23:42 CEST} validto={} changed={2017-10-31 07:59:42 CET} changedby={chnam} properties={} id={}

@@ -1,0 +1,5 @@
+co: name={FormDefinitionStep} description={} changed={2019-02-11 03:13:28 CET} changedby={ntminh01} visualorder={0} guid={15FBEBC6BE6811C9} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15FBEBC6BF673627} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:41 CEST} validto={} changed={2017-11-15 09:12:20 CET} changedby={chnam} properties={} id={}
+val: guid={15FBEBC6BEF9DB9A} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 09:34:20 CEST} validto={} changed={2017-11-15 09:12:20 CET} changedby={chnam} properties={} id={}
+val: guid={168DA54AC4DF1A14} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:28 CET} validto={} changed={2019-02-11 03:13:28 CET} changedby={ntminh01} properties={} id={}
+val: guid={15FBEBC6BE8DFEF8} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-10 09:34:16 CEST} validto={} changed={2017-11-15 09:12:20 CET} changedby={chnam} properties={} id={}
