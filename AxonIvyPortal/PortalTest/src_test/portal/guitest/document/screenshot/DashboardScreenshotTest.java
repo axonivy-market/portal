@@ -309,6 +309,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.captureElementScreenshot(newDashboardPage.getFirstNewsFeedWidget(),
         ScreenshotUtil.NEW_DASHBOARD_FOLDER + "news-feed-widget");
     newDashboardPage.openManageNewsDialog();
+    newDashboardPage.enterNewsTitle("Welcome to Portal News feed");
     ScreenshotUtil.captureElementScreenshot(newDashboardPage.getManageNewsDialog(),
         ScreenshotUtil.NEW_DASHBOARD_FOLDER + "news-feed-widget-manage-content");
   }
