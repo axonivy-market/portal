@@ -102,13 +102,12 @@ The basic JSON structure of a welcome widget
 
    ``welcomeImageFit``: the property is used to specify how an image should be resized to fit its container. There are four options:
 
-        ``NONE``: The image is not resized.
+        ``NONE``: The image is not resized. If it is bigger than the container, its center will be shown partially, if it is smaller than the container, it is shown centered in the container.
 
-        ``FILL``: The image is resized to fill the given dimension.
+        ``FILL``: The image is resized to fill the given dimension. The image will be distorted if the aspect ratios of image and container  differ.
 
-        ``COVER``: The image keeps its aspect ratio and fills the given dimension.
+        ``COVER``: The image will keep its aspect ratio and be resized and cropped such that it fills the container completely.
 
-        ``CONTAIN``: The image keeps its aspect ratio, but is resized to fit within the given dimension.
+        ``CONTAIN``: The image will keep its aspect ratio and will be resized such that it is shown completely within the container, showing empty side- or top/bottom bars.
 
-This widget also support user to upload an image as background.
-This feature only available when user configure widget directly on Portal.
+You may upload a background image by configuring the widget directly in Portal.
