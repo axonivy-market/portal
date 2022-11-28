@@ -9,6 +9,7 @@ WelcomeWidgetConfiguration = {
     this.updatePreviewTextColor();
     this.updatePreviewTextSize();
     this.updateStyleClasses();
+    this.updatePreviewImageFit();
   },
 
   updatePreviewText : function(isGreeting) {
