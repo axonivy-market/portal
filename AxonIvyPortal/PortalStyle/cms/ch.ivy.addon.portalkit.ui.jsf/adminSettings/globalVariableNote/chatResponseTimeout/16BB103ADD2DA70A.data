@@ -1,0 +1,1 @@
+El tiempo límite del chat en segundos. Valor inicial es nulo. En caso de que el chat funcione a través de un Nginx, el tiempo límite del chat deberá ser menor que el del Nginx.

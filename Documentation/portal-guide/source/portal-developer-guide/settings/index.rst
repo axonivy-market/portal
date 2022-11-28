@@ -210,7 +210,7 @@ Permission settings
 ===================
 
 Permissions can be configured in :dev-url:`Cockpit
-</doc/8.0.30/engine-guide/tool-reference/engine-cockpit/security.html>`.
+</doc/8.0/engine-guide/tool-reference/engine-cockpit/security.html>`.
 In the security area, you will find all these permission in the Group
 "PortalPermissions"
 

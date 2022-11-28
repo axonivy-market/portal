@@ -1,0 +1,5 @@
+co: name={behaviourWhenClickingOnLineInTaskList} description={} changed={2022-03-21 16:37:53 CET} changedby={lttung} visualorder={0} guid={17F627F11D0CEB6F} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={17F627F11E4AEC45} datatype={} isdefault={false} langid={de} description={} validfrom={2022-03-21 16:37:53 CET} validto={} changed={2022-03-21 16:37:53 CET} changedby={lttung} properties={} id={}
+val: guid={17F627F11D982A3B} datatype={} isdefault={false} langid={es} description={} validfrom={2022-03-21 16:37:53 CET} validto={} changed={2022-03-21 16:37:53 CET} changedby={lttung} properties={} id={}
+val: guid={17F627F11EBD2B9A} datatype={} isdefault={true} langid={en} description={} validfrom={2020-07-07 11:57:04 CEST} validto={} changed={2022-03-08 08:15:11 CET} changedby={phhung} properties={} id={}
+val: guid={17F627F11F33757E} datatype={} isdefault={false} langid={fr} description={} validfrom={2022-03-21 16:37:53 CET} validto={} changed={2022-03-21 16:37:53 CET} changedby={lttung} properties={} id={}

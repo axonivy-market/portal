@@ -1,0 +1,5 @@
+co: name={DueTimeInDays} description={} changed={2019-02-11 03:13:28 CET} changedby={ntminh01} visualorder={0} guid={15FBEBC6B9A62D4C} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15FBEBC6BA4824C2} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:41 CEST} validto={} changed={2017-11-15 09:12:20 CET} changedby={chnam} properties={} id={}
+val: guid={015FBEBC6BAB4D34} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 03:54:51 CEST} validto={} changed={2017-11-15 09:12:20 CET} changedby={chnam} properties={} id={}
+val: guid={168DA54AC2453B56} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:28 CET} validto={} changed={2019-02-11 03:13:28 CET} changedby={ntminh01} properties={} id={}
+val: guid={15FBEBC6B9D3F79C} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-25 05:49:50 CET} validto={} changed={2017-11-15 09:12:20 CET} changedby={chnam} properties={} id={}

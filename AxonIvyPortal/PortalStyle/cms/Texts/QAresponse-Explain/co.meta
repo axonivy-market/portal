@@ -1,0 +1,5 @@
+co: name={QAresponse-Explain} description={} changed={2019-02-11 03:13:29 CET} changedby={ntminh01} visualorder={0} guid={15FBEC9B61CBBC0C} parentguid={} typeguid={E6AFEA202AFB4911} id={} parentid={} typeid={}
+val: guid={168DA54B1032D880} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:29 CET} validto={} changed={2019-02-11 03:13:29 CET} changedby={ntminh01} properties={} id={}
+val: guid={15FBEC9B61F324B8} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:01:42 CEST} validto={} changed={2017-11-15 09:26:51 CET} changedby={chnam} properties={} id={}
+val: guid={15FBEC9B6252B050} datatype={} isdefault={false} langid={de} description={} validfrom={2016-03-04 10:40:27 CET} validto={} changed={2017-11-15 09:26:51 CET} changedby={chnam} properties={} id={}
+val: guid={15FBEC9B62B9B14A} datatype={} isdefault={true} langid={en} description={} validfrom={2018-03-09 02:40:21 CET} validto={} changed={2018-03-09 02:40:21 CET} changedby={chnam} properties={} id={}

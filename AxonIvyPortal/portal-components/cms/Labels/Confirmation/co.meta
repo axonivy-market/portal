@@ -1,0 +1,5 @@
+co: name={Confirmation} description={} changed={2022-06-14 10:42:39 CEST} changedby={phhung} visualorder={0} guid={18161610F64D27E5} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={18161610F7E26361} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 11:35:07 CEST} validto={} changed={2022-06-14 10:42:39 CEST} changedby={phhung} properties={} id={}
+val: guid={18161610F6715553} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:04 CEST} validto={} changed={2022-06-14 10:42:39 CEST} changedby={phhung} properties={} id={}
+val: guid={18161610FA012086} datatype={} isdefault={true} langid={en} description={} validfrom={2015-03-02 10:23:11 CET} validto={} changed={2022-06-14 10:42:39 CEST} changedby={phhung} properties={} id={}
+val: guid={18161610F8F1A862} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:32 CET} validto={} changed={2022-06-14 10:42:39 CEST} changedby={phhung} properties={} id={}
