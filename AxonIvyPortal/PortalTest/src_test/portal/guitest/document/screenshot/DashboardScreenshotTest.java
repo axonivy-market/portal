@@ -14,11 +14,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
+import ch.ivy.addon.portalkit.util.ConfigurationJsonUtil;
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.Variable;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.DashboardConfigurationPage;
 import portal.guitest.page.DashboardWidgetConfigurationDialogPage;
@@ -299,19 +301,18 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     configurationDialogPage.waitUntilAnimationFinished();
     ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationDialog(),
         ScreenshotUtil.NEW_DASHBOARD_FOLDER + "news-feed-widget-configuration");
-    configurationDialogPage.saveConfiguration();
-    configurationDialogPage.waitForPageLoaded();
 
+    ConfigurationJsonUtil.updateJSONSetting("dashboard-has-newsfeed.json", Variable.DASHBOARD);
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForPageLoaded();
     newDashboardPage.waitForNewsWidgetLoadedData();
     ScreenshotUtil.captureElementScreenshot(newDashboardPage.getFirstNewsFeedWidget(),
         ScreenshotUtil.NEW_DASHBOARD_FOLDER + "news-feed-widget");
+    ScreenshotUtil.resizeBrowser(new Dimension(900, 850));
     newDashboardPage.openManageNewsDialog();
     newDashboardPage.enterNewsTitle("Welcome to Portal News feed");
-    ScreenshotUtil.captureElementScreenshot(newDashboardPage.getManageNewsDialog(),
-        ScreenshotUtil.NEW_DASHBOARD_FOLDER + "news-feed-widget-manage-content");
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.NEW_DASHBOARD_FOLDER + "news-feed-widget-manage-content");
   }
 
   private void loginAsAdminAndAddPublicWidget(int widgetIndex) {
