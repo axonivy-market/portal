@@ -1,5 +1,0 @@
-co: name={showErrorLogToConsole} description={} changed={2022-05-24 05:18:19 CEST} changedby={nqhoan} visualorder={0} guid={1803AD5BA6439C15} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1803AD7A43B6D324} datatype={} isdefault={false} langid={de} description={} validfrom={2022-04-18 06:03:37 CEST} validto={} changed={2022-05-24 05:18:19 CEST} changedby={nqhoan} properties={} id={}
-val: guid={1803AD7A592FD743} datatype={} isdefault={false} langid={es} description={} validfrom={2022-04-18 06:03:41 CEST} validto={} changed={2022-05-24 05:18:19 CEST} changedby={nqhoan} properties={} id={}
-val: guid={1803AD5BA71A0215} datatype={} isdefault={true} langid={en} description={} validfrom={2022-04-18 06:02:07 CEST} validto={} changed={2022-04-18 06:03:05 CEST} changedby={htthanh01} properties={} id={}
-val: guid={1803AD7A59CD5592} datatype={} isdefault={false} langid={fr} description={} validfrom={2022-04-18 06:03:34 CEST} validto={} changed={2022-05-24 05:18:19 CEST} changedby={nqhoan} properties={} id={}

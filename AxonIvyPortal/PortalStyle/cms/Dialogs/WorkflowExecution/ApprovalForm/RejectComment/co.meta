@@ -1,5 +1,0 @@
-co: name={RejectComment} description={} changed={2019-04-09 05:37:24 CEST} changedby={tdnguyen} visualorder={0} guid={16A0029A0088D68F} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16A002B51B6A49D2} datatype={} isdefault={false} langid={es} description={} validfrom={2019-04-09 05:36:37 CEST} validto={} changed={2019-04-09 05:37:24 CEST} changedby={tdnguyen} properties={} id={}
-val: guid={16A002B51C383D32} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-04-09 05:36:32 CEST} validto={} changed={2019-04-09 05:37:24 CEST} changedby={tdnguyen} properties={} id={}
-val: guid={16A0029A00F8C771} datatype={} isdefault={true} langid={en} description={} validfrom={2019-04-09 05:34:49 CEST} validto={} changed={2019-04-09 05:35:15 CEST} changedby={tdnguyen} properties={} id={}
-val: guid={16A002B509433291} datatype={} isdefault={false} langid={de} description={} validfrom={2019-04-09 05:36:35 CEST} validto={} changed={2019-04-09 05:37:24 CEST} changedby={tdnguyen} properties={} id={}

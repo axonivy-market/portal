@@ -1,5 +1,0 @@
-co: name={InvalidFileMessage} description={} changed={2022-08-16 05:26:32 CEST} changedby={nkvloi} visualorder={0} guid={1811EA2788281494} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1811EA2788C191E8} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:41 CEST} validto={} changed={2022-06-01 11:39:33 CEST} changedby={phhung} properties={} id={}
-val: guid={1811EA278856ED37} datatype={} isdefault={false} langid={es} description={} validfrom={2019-05-24 05:18:07 CEST} validto={} changed={2022-06-01 11:39:33 CEST} changedby={phhung} properties={} id={}
-val: guid={1811EA27895A6492} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-09 12:51:53 CEST} validto={} changed={2022-06-01 11:39:33 CEST} changedby={phhung} properties={} id={}
-val: guid={1811EA2789D2920C} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-04 22:03:53 CET} validto={} changed={2022-06-01 11:39:33 CEST} changedby={phhung} properties={} id={}

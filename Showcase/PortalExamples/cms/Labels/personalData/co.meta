@@ -1,4 +1,0 @@
-co: name={personalData} description={} changed={2020-12-21 04:46:09 CET} changedby={dhtlong} visualorder={0} guid={16711A968E6E1E89} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={167369612011D10D} datatype={} isdefault={false} langid={de} description={} validfrom={2018-11-21 15:03:59 CET} validto={} changed={2018-11-21 15:04:39 CET} changedby={Oliver} properties={} id={}
-val: guid={1768367884825252} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-12-21 04:46:09 CET} validto={} changed={2020-12-21 04:46:09 CET} changedby={dhtlong} properties={} id={}
-val: guid={16711A968EC7E465} datatype={} isdefault={true} langid={en} description={} validfrom={2018-11-14 10:59:34 CET} validto={} changed={2018-11-21 15:04:39 CET} changedby={Oliver} properties={} id={}

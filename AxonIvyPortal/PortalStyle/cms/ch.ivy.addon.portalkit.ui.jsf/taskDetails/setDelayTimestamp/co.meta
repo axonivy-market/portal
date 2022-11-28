@@ -1,5 +1,0 @@
-co: name={setDelayTimestamp} description={} changed={2020-07-03 11:48:40 CEST} changedby={chnam} visualorder={0} guid={172EE8DD880893F8} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={172EE904F1F12E67} datatype={} isdefault={false} langid={de} description={} validfrom={2020-07-03 11:48:40 CEST} validto={} changed={2020-07-03 11:48:40 CEST} changedby={chnam} properties={} id={}
-val: guid={172EE8DD88C68141} datatype={} isdefault={true} langid={en} description={} validfrom={2020-06-26 04:56:12 CEST} validto={} changed={2020-06-26 04:58:54 CEST} changedby={nqhoan} properties={} id={}
-val: guid={172EE904FD4A7223} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-07-03 11:48:40 CEST} validto={} changed={2020-07-03 11:48:40 CEST} changedby={chnam} properties={} id={}
-val: guid={172EE904FB0A56DF} datatype={} isdefault={false} langid={es} description={} validfrom={2020-07-03 11:48:40 CEST} validto={} changed={2020-07-03 11:48:40 CEST} changedby={chnam} properties={} id={}

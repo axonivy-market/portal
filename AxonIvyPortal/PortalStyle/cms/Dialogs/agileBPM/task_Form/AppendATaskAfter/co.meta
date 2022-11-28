@@ -1,5 +1,0 @@
-co: name={AppendATaskAfter} description={} changed={2019-02-11 03:13:27 CET} changedby={ntminh01} visualorder={0} guid={15FBEC5AB13BDFD8} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15FBEC5AB156D6EE} datatype={} isdefault={false} langid={de} description={} validfrom={2016-03-04 10:29:51 CET} validto={} changed={2017-11-15 09:22:26 CET} changedby={chnam} properties={} id={}
-val: guid={15FBEC5AB1CF8CAC} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:01:41 CEST} validto={} changed={2017-11-15 09:22:26 CET} changedby={chnam} properties={} id={}
-val: guid={15FBEC5AB22D9106} datatype={} isdefault={true} langid={en} description={} validfrom={2015-03-18 10:39:12 CET} validto={} changed={2017-11-15 09:22:26 CET} changedby={chnam} properties={} id={}
-val: guid={168DA54A8B490812} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:27 CET} validto={} changed={2019-02-11 03:13:27 CET} changedby={ntminh01} properties={} id={}

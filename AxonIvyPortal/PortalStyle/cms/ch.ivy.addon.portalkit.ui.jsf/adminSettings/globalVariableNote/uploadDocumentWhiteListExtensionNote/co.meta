@@ -1,5 +1,0 @@
-co: name={uploadDocumentWhiteListExtensionNote} description={} changed={2019-03-25 10:06:47 CET} changedby={lttung} visualorder={0} guid={163FC717A4C8A4F3} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={163FC717A5014F96} datatype={} isdefault={true} langid={en} description={} validfrom={2018-06-14 05:58:05 CEST} validto={} changed={2018-06-14 06:29:11 CEST} changedby={tdnguyen} properties={} id={}
-val: guid={163FC8E21F567B23} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-08-27 11:51:11 CEST} validto={} changed={2018-08-27 11:51:11 CEST} changedby={chnam} properties={} id={}
-val: guid={163FC8E20FE667EA} datatype={} isdefault={false} langid={de} description={} validfrom={2018-08-08 06:39:59 CEST} validto={} changed={2018-08-08 06:39:59 CEST} changedby={mnhnam} properties={} id={}
-val: guid={169B41A28ACD1407} datatype={} isdefault={false} langid={es} description={} validfrom={2019-03-25 10:06:47 CET} validto={} changed={2019-03-25 10:06:47 CET} changedby={lttung} properties={} id={}

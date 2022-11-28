@@ -1,5 +1,0 @@
-co: name={APP_NOT_FOUND} description={} changed={2022-06-14 10:38:10 CEST} changedby={phhung} visualorder={0} guid={181615CF10B85B83} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={181615CF12264910} datatype={} isdefault={false} langid={es} description={} validfrom={2019-03-25 10:06:46 CET} validto={} changed={2022-06-14 10:38:09 CEST} changedby={phhung} properties={} id={}
-val: guid={181615CF10D1EB78} datatype={} isdefault={false} langid={de} description={} validfrom={2019-03-25 09:33:57 CET} validto={} changed={2022-06-14 10:38:09 CEST} changedby={phhung} properties={} id={}
-val: guid={181615CF132DB35E} datatype={} isdefault={true} langid={en} description={} validfrom={2018-12-10 05:23:06 CET} validto={} changed={2022-06-14 10:38:09 CEST} changedby={phhung} properties={} id={}
-val: guid={181615CF142493E2} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-03-25 09:33:57 CET} validto={} changed={2022-06-14 10:38:09 CEST} changedby={phhung} properties={} id={}

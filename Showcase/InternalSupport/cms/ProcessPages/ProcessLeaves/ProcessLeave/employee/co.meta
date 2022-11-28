@@ -1,3 +1,0 @@
-co: name={employee} description={} changed={2015-04-22 09:56:33 CEST} changedby={ptanh} visualorder={0} guid={14CE02065BDD7B74} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={14CE02065BDF4EA0} datatype={} isdefault={true} langid={en} description={} validfrom={2015-04-22 09:56:01 CEST} validto={} changed={2015-04-22 09:56:24 CEST} changedby={ptanh} properties={} id={}
-val: guid={14CE020BEF94E656} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-22 09:56:24 CEST} validto={} changed={2015-04-22 09:56:33 CEST} changedby={ptanh} properties={} id={}

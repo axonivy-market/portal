@@ -1,1 +1,0 @@
-Tiempo límite de desconexión de la aplicación deberá ser mayor a 1 y menor que el tiempo límite de desconexión del servidor. Si esta propiedad no está definida, se applicará el tiempo del servidor menos 3 minutos. 
