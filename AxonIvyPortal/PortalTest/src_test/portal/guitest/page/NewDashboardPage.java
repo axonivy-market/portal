@@ -12,6 +12,7 @@ public class NewDashboardPage extends TemplatePage {
   private static final String CUSTOM_WIDGET_TYPE_DROPDOWN_ID = "widget-configuration-form:new-widget-configuration-component:custom-widget-type_label";
   private static final String CUSTOM_WIDGET_PROCESS_SELECTION_ID = "widget-configuration-form:new-widget-configuration-component:selected-process";
   private static final String NEWS_FEED_WIDGET_ID = "[class*='js-dashboard-widget-news_']";
+  private static final String NEWS_FEED_TITLE_INPUT_ID = "input[id$=':manage-news-tabview:0:news-title']";
 
   @Override
   protected String getLoadedLocator() {
@@ -155,11 +156,19 @@ public class NewDashboardPage extends TemplatePage {
     clickByCssSelector("button[id$=':add-news-button']");
     waitForElementDisplayed(By.cssSelector("[id$=':manage-news-dialog']"), true);
     waitForElementDisplayed(By.cssSelector(".management-news__title-input"), true);
+    waitForElementReallyDisplayed(By.cssSelector(NEWS_FEED_TITLE_INPUT_ID), true);
   }
 
   public WebElement getManageNewsDialog() {
     waitForElementDisplayed(By.cssSelector("[id$=':manage-news-dialog']"), true);
     waitForElementDisplayed(By.cssSelector(".management-news__title-input"), true);
     return findElementByCssSelector("[id$=':manage-news-dialog']");
+  }
+
+  public void enterNewsTitle(String newsTitle) {
+    waitForElementReallyDisplayed(By.cssSelector(NEWS_FEED_TITLE_INPUT_ID), true);
+    WebElement newsTitleInput = findElementByCssSelector(NEWS_FEED_TITLE_INPUT_ID);
+    newsTitleInput.clear();
+    newsTitleInput.sendKeys(newsTitle);
   }
 }
