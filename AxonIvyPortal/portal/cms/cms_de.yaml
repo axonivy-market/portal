@@ -832,6 +832,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         Image: Bild
         ImageInlineStyle: Bild Inline-Stil
         ImageStyleClass: Bildstilklasse
+        PreviewTooltip: Diese Vorschau kann nicht alle Einstellungen wiedergeben, sondern soll nur einen Eindruck vermitteln, wie das endgültige Widget aussehen wird. Bildgröße, Ausrichtung und einige CSS-Einstellungen werden hier nicht angezeigt.
         ShowGreeting: Gruß anzeigen
         TextPosition: Position des Textes
         TextSizeAndColor: Textgröße und -farbe
