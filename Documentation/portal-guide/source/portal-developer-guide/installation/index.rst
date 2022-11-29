@@ -93,7 +93,7 @@ In Designer
 -----------
 
 #. Replace all Portal projects with the versions of the new release.
-#. Update portal dependency of the customer project in pom.xml.
+#. Upgrade your projects to use the latest portal version by using the **Convert Project** feature. Please find more information here: :dev-url:`Converting Projects </doc/nightly/designer-guide/process-modeling/projects/converting.html#converting-projects>`
 #. Follow detailed migration notes for each version below.
 #. If customization needs copying code from Portal, merge changes between the
    two versions of the Portal for copied code.
@@ -108,6 +108,12 @@ In Engine
 #. Redeploy Portal projects and customer project.
 
 #. Follow detailed migration notes for each version below.
+
+Migrate 8.x To 10.0
+------------------
+
+You need to do all steps starting at ``Migrate 8.x To ...`` up to and including
+``Migrate ... To 9.x``
 
 Migrate 9.3 To 9.4
 ------------------
