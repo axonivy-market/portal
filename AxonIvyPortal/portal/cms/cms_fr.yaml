@@ -830,6 +830,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         Image: Image
         ImageInlineStyle: Style d'image en ligne
         ImageStyleClass: Classe de style d'image
+        PreviewTooltip: Cet aperçu ne peut pas rendre tous les paramètres mais devrait donner une idée de ce à quoi ressemblera le widget final. La taille de l'image, l'orientation et certains paramètres CSS ne seront pas affichés ici.
         ShowGreeting: Afficher les salutations
         TextPosition: Position du texte
         TextSizeAndColor: Taille et couleur du texte
