@@ -33,14 +33,15 @@
     </p:repeat>
   </div>
 
-  <div class="new-widget-dialog__footer ui-g-12 u-text-align-right MarTop10">
+  <f:facet name="footer">
     <p:commandLink id="new-widget-close-button"
+      styleClass="MarTop10"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
       onclick="PF('new-widget-dialog').hide()"
       process="@this"
       update="@this"
       global="false"/>
-  </div>
+  </f:facet>
 </p:dialog>
 
 <p:dialog id="new-widget-configuration-dialog" widgetVar="new-widget-configuration-dialog"
@@ -49,10 +50,8 @@
   appendTo="@(body)" closeOnEscape="true" dynamic="true"
   fitViewport="true" responsive="true" modal="true">
   <c:set var="widget" value="#{dashboardDetailModificationBean.widget}" />
-  <c:set var="componentToProcess" value="#{widget eq null ? '@this' :
-   'widget-configuration-form:new-widget-configuration-component:user-filter widget-configuration-form:new-widget-configuration-component:widget-title-group'}" />
 
-  <h:form id="widget-configuration-form" styleClass="ui-g ">
+  <h:form id="widget-configuration-form" styleClass="ui-g">
     <c:if test="#{widget.type eq 'TASK'}">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidgetConfiguration id="new-widget-configuration-component" taskWidget="#{widget}"
         componentToUpdate="widget-configuration-form" />
@@ -90,6 +89,11 @@
        widget="#{widget}"
        componentToUpdate="widget-configuration-form"/>
    </c:if>
+
+   <c:if test="#{widget.type eq 'NEWS'}">
+     <ic:com.axonivy.portal.dashboard.component.NewsWidgetConfiguration id="new-widget-configuration-component"
+       widget="#{widget}"/>
+   </c:if>
   </h:form>
 
   <f:facet name="footer">
@@ -104,7 +108,7 @@
     <p:commandButton id="widget-configuration-save-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
       actionListener="#{dashboardDetailModificationBean.saveWidget()}" icon="si si-floppy-disk"
       oncomplete="if (args &amp;&amp; !args.validationFailed){PF('new-widget-configuration-dialog').hide();loadGridAfterAddedNewWidget();}"
-      process="#{componentToProcess}"
+      process="#{dashboardDetailModificationBean.componentToProcessOnSave}"
       partialSubmit="true"
       update="widget-configuration-form load-grid-after-added-new-widget-cmd"
       disabled="#{empty widget}"/>
