@@ -1232,6 +1232,10 @@ span.new-widget-dialog__icon.si {
   padding: 20px;
 }
 
+.welcome-widget-configuration-icon {
+  margin-left: 5px;
+}
+
 .welcome-widget-configuration .preview-panel {
   position: relative;
   max-height: 180px;
