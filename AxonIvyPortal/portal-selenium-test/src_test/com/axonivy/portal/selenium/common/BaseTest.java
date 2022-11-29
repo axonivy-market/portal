@@ -76,6 +76,7 @@ public class BaseTest {
   protected String denyDashboardWriteOwnPermissionUrl = "PortalKitTestHelper/14DE09882B540AD5/denyDashboardWriteOwnPermission.ivp";
   protected String grantDashboardWritePublicPermissionUrl = "PortalKitTestHelper/14DE09882B540AD5/grantDashboardWritePublicPermission.ivp";
   protected String denyDashboardWritePublicPermissionUrl = "PortalKitTestHelper/14DE09882B540AD5/denyDashboardWritePublicPermission.ivp";
+  protected String cleanPortalNewsFeedUrl = "portalKitTestHelper/1511A66AF619A768/cleanNewsFeed.ivp";
 
   protected void redirectToNewDashBoard() {
     open(EngineUrl.createProcessUrl(PORTAL_HOME_PAGE_URL));

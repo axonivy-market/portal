@@ -83,6 +83,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   padding-top: 0;
+  padding-bottom: 1.5rem;
 }
 
 .dashboard__body.dashboard__body__iframe--disabled iframe {
@@ -173,6 +174,9 @@
       padding: 10px;
       height: -webkit-fill-available;
     }
+    .news-widget__content {
+      padding-right: 10px !important;
+    }
   }
 
   @media screen and (max-width: 40em) {
@@ -193,6 +197,10 @@
 
     .expand-fullscreen .compact-processes-container.widget-content span.process-start-list-item:last-child {
       margin-bottom: 10px;
+    }
+
+    .news-widget__content {
+      padding-right: 10px !important;
     }
   }
 }
@@ -444,7 +452,6 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 
 .ui-widget-content.info-overlay-panel>.ui-overlaypanel-content {
   width: 450px;
-  padding: 0;
 }
 
 @media ( max-width : 767px) {
@@ -510,7 +517,7 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 }
 
 .widget-info-panel {
-  width: 450px;
+  max-width: 450px;
 }
 
 @media screen and (max-width: 40em) {
@@ -1167,6 +1174,7 @@ span.new-widget-dialog__icon.si {
   width: 100%;
   height: calc(100% - 44px);
   position: relative;
+  padding: 0;
 }
 
 .statistic-chart-widget__chart {
@@ -1230,10 +1238,6 @@ span.new-widget-dialog__icon.si {
   max-width: 70vh;
   overflow: auto;
   padding: 20px;
-}
-
-.welcome-widget-configuration-icon {
-  margin-left: 5px;
 }
 
 .welcome-widget-configuration .preview-panel {
@@ -1320,6 +1324,7 @@ span.new-widget-dialog__icon.si {
 }
 
 .welcome-text-container .welcome-image {
+  object-fit: cover;
   flex: auto;
 }
 
@@ -1403,6 +1408,7 @@ span.new-widget-dialog__icon.si {
 .welcome-widget-configuration .welcome-text-input-panel .welcome-text-input {
   flex: auto;
 }
+
 .welcome-image-fit-none{
   object-fit:none;
 }
@@ -1414,4 +1420,132 @@ span.new-widget-dialog__icon.si {
 }
 .welcome-image-fit-contain{
   object-fit:contain;
+}
+
+/* Card widget */
+.card-widget-panel {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.card-widget__content.widget__content {
+  padding-top: 0;
+}
+
+.card-widget-info-overlay-panel__footer .info-overlay-panel__close-link {
+  padding-bottom: 0.5rem;
+}
+
+.card-widget-panel.statistic-chart-widget .card-widget__content {
+  min-height: 200px;
+}
+
+/* News widget */
+.news-widget-configuration.widget-configuration.card {
+  margin-right: 0;
+}
+
+.news-widget__content-panel.widget__content {
+  padding-right: 0;
+  padding-bottom: 0;
+}
+
+.dashboard-news-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.news-widget__content {
+  flex: 1;
+  overflow: auto;
+  padding-right: 20px;
+  padding-bottom: 10px;
+}
+
+.news-widget__add-news-actions {
+  margin: 10px 0;
+}
+
+.news-item {
+  display: block;
+  padding: 1rem;
+  background: var(--news-item-background);
+  border-radius: var(--news-feed-item-border-radius);
+  margin-bottom: 0.5rem;
+}
+
+.news-item__header,
+.news-item__actions,
+.management-news__title-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.news__icon,
+.news__date {
+  font-size: var(--small-font-size);
+}
+
+.news__icon {
+  margin-right: 3px;
+}
+
+.news__date {
+  margin-left: 3px;
+}
+
+.news__title {
+  line-height: var(--news-feed-item-title-line-height);
+  font-weight: var(--news-feed-item-title-font-weight);
+  flex: 1;
+}
+
+.news__title-tooltip {
+  max-width: 500px;
+}
+
+.news-item__content {
+  margin: 0.5rem 0;
+}
+
+.news__content p,
+.news__content h1,
+.news__content h2,
+.news__content h3,
+.news__content h4,
+.news__content h5,
+.news__content h6 {
+  margin: auto;
+}
+
+.news__manage-actions {
+  flex: 1;
+  text-align: right;
+}
+
+.manage-news-dialog {
+  max-width: 750px;
+}
+
+.management-news__title-group {
+  display: inline-flex;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.management-news__title-input {
+  flex: 1;
+  margin-left: 1rem;
+}
+
+.management-news__content-group {
+  margin-top: 0.5rem;
+  width: 100%;
 }
