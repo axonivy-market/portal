@@ -569,4 +569,6 @@
   --combined-active-button-tab-color: hsla(0, 0%, 11%, 1);
   --combined-button-tab-background-hover: rgba(144, 221, 233, 1);
   --combined-button-tab-background-focus: rgba(144, 221, 233, 0.5);
+  /* News Widget */
+  --news-item-background: #F7F7F8;
 }

@@ -339,7 +339,7 @@
       "id" : "f35",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 64, "y" : 560 }
+        "at" : { "x" : 64, "y" : 584 }
       }
     }, {
       "id" : "f36",
@@ -387,7 +387,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 64, "y" : 416 }
+        "at" : { "x" : 64, "y" : 432 }
       },
       "connect" : { "id" : "f41", "to" : "f40" }
     }, {
@@ -401,7 +401,7 @@
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 368 },
-        "labelOffset" : { "x" : -12, "y" : -14 }
+        "labelOffset" : { "x" : 17, "y" : -15 }
       },
       "connect" : { "id" : "f38", "to" : "f36" }
     }, {
@@ -451,8 +451,55 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 64, "y" : 488 }
+        "at" : { "x" : 64, "y" : 520 }
       },
       "connect" : { "id" : "f39", "to" : "f35" }
+    }, {
+      "id" : "f42",
+      "type" : "RequestStart",
+      "name" : "cleanNewsFeed.ivp",
+      "config" : {
+        "callSignature" : "cleanNewsFeed",
+        "outLink" : "cleanNewsFeed.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 368 },
+        "labelOffset" : { "x" : 9, "y" : -15 }
+      },
+      "connect" : { "id" : "f46", "to" : "f45" }
+    }, {
+      "id" : "f43",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 240, "y" : 584 }
+      }
+    }, {
+      "id" : "f45",
+      "type" : "Script",
+      "name" : "clean all PortalNewsFeed",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.cm.ContentObject;",
+            "import java.util.Optional;",
+            "import ch.ivyteam.ivy.application.IApplication;",
+            "import ch.ivyteam.ivy.cm.exec.ContentManagement;",
+            "import ch.ivyteam.ivy.cm.ContentManagementSystem;",
+            "import com.axonivy.portal.service.NewsService;",
+            "",
+            "ContentManagementSystem cmsSystem = ContentManagement.cms(IApplication.current());",
+            "Optional<ContentObject> newsRoot = cmsSystem.root().child().get(NewsService.PORTAL_NEWS_CMS_ROOT);",
+            "if (newsRoot.isPresent()) {",
+            "   (cmsSystem.root().child().get(NewsService.PORTAL_NEWS_CMS_ROOT).get() as ContentObject).delete();",
+            "   ivy.log.debug(\"**********Delete all PortalNewsFeed\");",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 480 }
+      },
+      "connect" : { "id" : "f44", "to" : "f43" }
     } ]
 }

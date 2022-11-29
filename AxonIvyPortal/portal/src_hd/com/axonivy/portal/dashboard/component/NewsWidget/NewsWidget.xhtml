@@ -1,0 +1,91 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="widget" required="true" type="com.axonivy.portal.dto.dashboard.NewsDashboardWidget" />
+  <cc:attribute name="isReadOnlyMode" default="true" />
+  <cc:attribute name="index" default="0" />
+  <cc:attribute name="isPreviewMode" default="false" />
+  <cc:attribute name="isConfigurationMode" default="false" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="widget" value="#{cc.attrs.widget}" />
+  <c:set var="index" value="#{cc.attrs.index}" />
+  <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
+  <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}" />
+  <c:set var="isConfigurationMode" value="#{cc.attrs.isConfigurationMode}" />
+
+  <h:outputScript library="js" name="news-widget.js" />
+  <ui:decorate template="/layouts/restricted/decorator/CardWidget.xhtml">
+    <ui:param name="index" value="#{index}" />
+    <ui:param name="widget" value="#{widget}" />
+    <ui:param name="panelId" value="news-widget-#{widget.id}-panel" />
+    <ui:param name="panelStyleClass" value="news-widget" />
+    <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode or isPreviewMode}" />
+    <ui:param name="isRenderInfo" value="false" />
+    <ui:param name="widgetContentStyleClass" value="news-widget__content-panel" />
+    <ui:param name="onClickExpandWidget" value="setupNewsWidgetContent('#{widget.id}', true)" />
+    <ui:param name="onClickCollapseWidget" value="setupNewsWidgetContent('#{widget.id}', true)" />
+
+    <ui:define name="widgetContent">
+      <p:remoteCommand id="rc-load-news-firsttime-#{widget.id}" autoRun="true"
+        update="dashboard-news-container-#{widget.id}" global="false" async="true" process="@this"
+        oncomplete="loadWidgetFirstTime('js-loading-#{widget.id}', 'js-dashboard-news-container-#{widget.id}');setupNewsWidgetContent('#{widget.id}')"
+        actionListener="#{widget.buildDataFirstTime()}" />
+      <p:remoteCommand id="rc-update-news-widget-#{widget.id}" name="rcUpdateNewsWidget#{widget.id}"
+        update="#{cc.clientId}:widget-content #{cc.clientId}:manage-news-dialog" process="@this"
+        oncomplete="setupNewsWidgetContent('#{widget.id}')" />
+
+      <div class="w-full widget-height-100">
+        <h:outputText id="loading-#{widget.id}" styleClass="js-loading-#{widget.id} ui-g-12"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}" />
+
+        <h:panelGroup id="dashboard-news-container-#{widget.id}" layout="block"
+          styleClass="w-full dashboard-news-container js-dashboard-news-container-#{widget.id} u-display-none">
+          <h:panelGroup id="news-widget__content" layout="block" styleClass="news-widget__content">
+            <p:dataScroller id="news-list" value="#{widget.newsList}" var="news" chunkSize="10"
+              rendered="#{not empty widget.newsList}" styleClass="news-list__datascroller" rowIndexVar="indexVar">
+              <ui:include src="NewsItem.xhtml">
+                <ui:param name="widget" value="#{widget}"/>
+                <ui:param name="indexVar" value="#{indexVar}"/>
+                <ui:param name="news" value="#{news}"/>
+                <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode}"/>
+              </ui:include>
+              <f:facet name="loader">
+                <h:panelGroup layout="block" styleClass="u-text-align-center" rendered="#{isReadOnlyMode}">
+                  <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." icon="si si-button-refresh-arrows"
+                    styleClass="rounded-button ui-button-outlined"
+                    onclick="setupNewsWidgetContent('#{widget.id}', true)" />
+                </h:panelGroup>
+              </f:facet>
+            </p:dataScroller>
+            <h:panelGroup layout="block" id="empty-message" rendered="#{empty widget.newsList}"
+              styleClass="empty-message-container">
+              <i class="si si-advertising-megaphone-2 empty-message-icon" />
+              <br />
+              <h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/NoNewsAvailable')}" styleClass="empty-message-text" />
+            </h:panelGroup>
+          </h:panelGroup>
+          <h:panelGroup id="news-widget__add-news-actions" rendered="#{newsWidgetBean.canManageNews and isReadOnlyMode}"
+            layout="block" styleClass="news-widget__add-news-actions ui-sm-hidden">
+            <p:commandButton id="add-news-button"
+              value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/AddNews')}"
+              icon="si si-add-small"
+              actionListener="#{newsWidgetBean.preAddingNews()}" oncomplete="PF('manage-news-dialog').show();"
+              update="#{cc.clientId}:management-news-group #{cc.clientId}:manage-news-dialog" />
+          </h:panelGroup>
+        </h:panelGroup>
+      </div>
+    </ui:define>
+  </ui:decorate>
+
+  <ui:include src="ManageNews.xhtml">
+    <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode}"/>
+    <ui:param name="widget" value="#{widget}" />
+  </ui:include>
+</cc:implementation>
+
+</html>
