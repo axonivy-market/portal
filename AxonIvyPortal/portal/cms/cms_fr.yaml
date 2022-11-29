@@ -151,6 +151,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       THURSDAY: JEU
       TUESDAY: MAR
       WEDNESDAY: MER
+    WelcomeImageFit:
+      CONTAIN: Contenir
+      COVER: Couvrir
+      FILL: Remplir
+      NONE: Aucun
     WelcomeTextPosition:
       BOTTOM_LEFT: Coin inférieur gauche
       BOTTOM_RIGHT: Coin inférieur droit
@@ -817,13 +822,16 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeConfigurationDescription: ''
       WelcomeWidget:
         AdvancedSettings: Paramètres avancés
+        ChooseAFit: Choisissez un ajustement
         DisplayedText: afficher le texte
         Greeting:
           Afternoon: Bonne journée
           Evening: Bonsoir
           Morning: Bonjour
         Image: Image
+        ImageInlineStyle: Style d'image en ligne
         ImageStyleClass: Classe de style d'image
+        PreviewTooltip: Cet aperçu ne peut pas rendre tous les paramètres mais devrait donner une idée de ce à quoi ressemblera le widget final. La taille de l'image, l'orientation et certains paramètres CSS ne seront pas affichés ici.
         ShowGreeting: Afficher les salutations
         TextPosition: Position du texte
         TextSizeAndColor: Taille et couleur du texte
