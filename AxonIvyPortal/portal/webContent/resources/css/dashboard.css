@@ -1324,7 +1324,6 @@ span.new-widget-dialog__icon.si {
 }
 
 .welcome-text-container .welcome-image {
-  object-fit: cover;
   flex: auto;
 }
 
@@ -1407,6 +1406,18 @@ span.new-widget-dialog__icon.si {
 
 .welcome-widget-configuration .welcome-text-input-panel .welcome-text-input {
   flex: auto;
+}
+.welcome-image-fit-none{
+  object-fit:none;
+}
+.welcome-image-fit-fill{
+  object-fit:fill;
+}
+.welcome-image-fit-cover{
+  object-fit:cover;
+}
+.welcome-image-fit-contain{
+  object-fit:contain;
 }
 
 /* Card widget */

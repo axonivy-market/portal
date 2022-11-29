@@ -56,6 +56,18 @@
          </div>
 
          <div class="ui-g-3 ui-md-4">
+          <p:outputLabel for="welcome-image-fit" styleClass="welcome-text-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/ChooseAFit')}" />
+         </div>
+         <div class="ui-g-9 ui-md-8">
+           <p:selectOneMenu id="welcome-image-fit" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeImageFit}" styleClass="welcome-text-select-one-menu">
+             <f:selectItem value="#{null}" noSelectionOption="true" />
+             <f:selectItems var="fit" value="#{dashboardWelcomeWidgetConfigurationBean.imageFits}" itemLabel="#{fit.label}" itemValue="#{fit}" />
+             <p:ajax event="itemSelect" update="selected-welcome-image-fit" oncomplete="WelcomeWidgetConfiguration.updatePreviewImageFit();" global="false" />
+           </p:selectOneMenu>
+           <h:inputHidden id="selected-welcome-image-fit" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeImageFit}" />
+         </div>
+         
+         <div class="ui-g-3 ui-md-4">
            <p:outputLabel for="welcome-text-position" styleClass="welcome-text-label"
              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/TextPosition')}" />
          </div>
@@ -121,6 +133,14 @@
               </div>
               <div class="ui-fluid ui-g-9 ui-md-8 welcome-styles-panel u-no-padding-left">
                 <p:inputText id="image-style-class" value="#{dashboardWelcomeWidgetConfigurationBean.widget.imageStyleClass}" styleClass="js-image-style-class" onchange="WelcomeWidgetConfiguration.updateStyleClasses();" />
+              </div>
+              
+              <div class="ui-g-3 ui-md-4">
+                <p:outputLabel for="image-inline-style" styleClass="welcome-text-label"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/ImageInlineStyle')}" />
+              </div>
+              <div class="ui-fluid ui-g-9 ui-md-8 welcome-styles-panel u-no-padding-left">
+                <p:inputText id="image-inline-style" value="#{dashboardWelcomeWidgetConfigurationBean.widget.imageInlineStyle}" styleClass="js-image-style-class" onchange="WelcomeWidgetConfiguration.updateStyleClasses();" />
               </div>
 
               <div class="ui-g-3 ui-md-4">
