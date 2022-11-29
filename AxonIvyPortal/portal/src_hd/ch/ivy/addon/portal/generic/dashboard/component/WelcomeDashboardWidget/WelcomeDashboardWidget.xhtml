@@ -41,7 +41,7 @@
           </p:menu>
         </h:panelGroup>
       </h:form>
-      <h:outputText id="welcome-text" styleClass="welcome-text #{widget.welcomeTextStyleClass}" value="#{widget.welcomeText}" />
+      <h:outputText id="welcome-text" styleClass="welcome-text #{widget.welcomeTextStyleClass}" value="#{dashboardWelcomeWidgetBean.sanitizeHTML(widget.welcomeText)}" escape="false" />
 
       <p:graphicImage id="default-image" cache="true" styleClass="welcome-image default-welcome-image js-welcome-image #{widget.imageStyleClass}"
         library="ivy-cms" rendered="#{empty widget.imageLocation}" name="#{dashboardWelcomeWidgetBean.defaultImageLink}" />
@@ -67,7 +67,7 @@
       oncomplete="WelcomeWidget.updateWelcomeTextStyles('#{widget.id}','#{widget.welcomeTextColor}','#{widget.welcomeTextPosition}','#{widget.welcomeTextSize}');" />
     <script>
       $(document).ready(function() {
-        WelcomeWidget.init('#{widget.id}','#{widget.welcomeTextColor}','#{widget.welcomeTextPosition}','#{widget.welcomeTextSize}');
+        WelcomeWidget.init('#{widget.id}','#{widget.welcomeTextColor}','#{widget.welcomeTextPosition}','#{widget.welcomeTextSize}', '#{widget.welcomeImageFit}', '#{widget.imageInlineStyle}');
         if ('#{widget.greeting}' == 'true') {
           var time= new Date().getHours();
           updateWelcomeText_#{widget.id}([{name: 'clientTime', value: time}]);
