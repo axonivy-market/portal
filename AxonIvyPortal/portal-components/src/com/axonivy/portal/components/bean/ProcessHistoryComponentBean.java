@@ -8,7 +8,7 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.safety.Whitelist;
+import org.jsoup.safety.Safelist;
 
 import com.axonivy.portal.components.datamodel.internal.CaseHistoryLazyDataModel;
 import com.axonivy.portal.components.util.UserFormatUtils;
@@ -60,7 +60,7 @@ public class ProcessHistoryComponentBean implements Serializable {
   }
 
   private String sanitize(String text) {
-    return Jsoup.clean(text, Whitelist.relaxed().addAttributes(":all", "style"));
+    return Jsoup.clean(text, Safelist.relaxed().addAttributes(":all", "style"));
   }
   
   public String getState(ICase iCase) {

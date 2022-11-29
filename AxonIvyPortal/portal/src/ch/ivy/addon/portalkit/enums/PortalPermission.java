@@ -27,6 +27,7 @@ public enum PortalPermission {
   TASK_RESET_READY_FOR_JOIN("TaskResetReadyForJoin", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
   CREATE_PUBLIC_EXTERNAL_LINK("CreatePublicExternalLink", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
   ROLE_MANAGEMENT("RoleManagement", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
+  NEWS_MANAGEMENT("NewsManagement", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
   PASSWORD_VALIDATION("PasswordValidation", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP);
 
   private String value;
