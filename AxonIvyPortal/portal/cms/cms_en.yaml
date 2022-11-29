@@ -832,6 +832,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         Image: Image
         ImageInlineStyle: Image inline style
         ImageStyleClass: Image style class
+        PreviewTooltip: This Preview can’t render all settings but only should give an idea how the final widget will look like, image size, orientating and some CSS settings will not be previewed here.
         ShowGreeting: Show greeting
         TextPosition: Text position
         TextSizeAndColor: Text size and color
