@@ -22,6 +22,7 @@ import org.primefaces.model.file.UploadedFile;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.enums.WelcomeImageFit;
 import ch.ivy.addon.portalkit.enums.WelcomeTextPosition;
 import ch.ivy.addon.portalkit.enums.WelcomeTextSize;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
@@ -41,6 +42,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
   private List<WelcomeTextSize> textSizes;
   private ContentObject imageCMSObject;
   private int parsedClientTime;
+  private List<WelcomeImageFit> imageFits;
 
   @Override
   public void init() {
@@ -48,6 +50,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
     imageCMSObject = null;
     setTextPositions(Arrays.asList(WelcomeTextPosition.values()));
     setTextSizes(Arrays.asList(WelcomeTextSize.values()));
+    setImageFits(Arrays.asList(WelcomeImageFit.values()));
     initWelcomeWidget();
   }
 
@@ -138,5 +141,13 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
     String imageName = WelcomeWidgetUtils.getFileNameOfImage(widget.getImageLocation());
     imageName = isTempImage ? "temp_".concat(imageName) : imageName;
     return WelcomeWidgetUtils.getImageContentObject(imageName, widget.getImageType());
+  }
+
+  public List<WelcomeImageFit> getImageFits() {
+    return imageFits;
+  }
+
+  public void setImageFits(List<WelcomeImageFit> imageFits) {
+    this.imageFits = imageFits;
   }
 }

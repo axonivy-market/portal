@@ -151,6 +151,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       THURSDAY: Juev.
       TUESDAY: Mart.
       WEDNESDAY: Miérc.
+    WelcomeImageFit:
+      CONTAIN: Contiene
+      COVER: Cubrir
+      FILL: Rellenar
+      NONE: Ninguno
     WelcomeTextPosition:
       BOTTOM_LEFT: Esquina inferior izquierda
       BOTTOM_RIGHT: Esquina inferior derecha
@@ -817,12 +822,14 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeConfigurationDescription: ''
       WelcomeWidget:
         AdvancedSettings: Configuración avanzada
+        ChooseAFit: Elija un ajuste
         DisplayedText: mostrar texto
         Greeting:
           Afternoon: Buenas tardes
           Evening: Buenas noches
           Morning: Buenos días
         Image: Imagen
+        ImageInlineStyle: Estilo de imagen en línea
         ImageStyleClass: Clase de estilo de imagen
         ShowGreeting: Mostrar saludo
         TextPosition: Posición del texto
