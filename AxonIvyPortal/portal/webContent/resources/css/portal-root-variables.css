@@ -144,4 +144,9 @@
   --new-widget-dialog-title-font-weight: 700;
   --new-widget-dialog-title-font-style: normal;
   --new-widget-dialog-title-font-size: 1.4rem;
+
+  /* News feed widget */
+  --news-feed-item-border-radius: 1rem;
+  --news-feed-item-title-line-height: 1rem;
+  --news-feed-item-title-font-weight: bold;
 }

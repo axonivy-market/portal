@@ -110,6 +110,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CASE: Widget del caso
       CUSTOM: Widget personalizado
       NEW: Nuevo widget
+      NEWS: Noticias
       PROCESS: Widget de procesos
       PROCESS_VIEWER: Widget del visor de procesos
       STATISTIC: Widget de estadísticas
@@ -1525,6 +1526,30 @@ Dialogs:
               ShowBusinessDetails: detalles del negocio
               caseNameNotAvailable: '[Nombre del caso no disponible]'
               defaultEmptyMessage: No hay casos
+            IconSelection:
+              IconLinkTooltip: Haga clic para cambiar el icono
+  com:
+    axonivy:
+      portal:
+        dashboard:
+          component:
+            NewsWidget:
+              NewsContentPlaceHolder: Introduzca el contenido de las noticias
+              NewsContentValidateMessage: El contenido de las noticias en {0} es necesario
+              NewsTitlePlaceholder: Introduzca el título de la noticia
+              NewsTitleValidateMessage: El título de la noticia en {0} es obligatorio
+              NoNewsAvailable: Todavía no hay noticias
+              Publish: Publicar
+              RemoveNewsHeader: ¿Quitar las noticias?
+              SeeLess: Ver menos
+              SeeMore: Ver más
+            NewsWidgetConfiguration:
+              AddNews: Añadir noticias
+              EditNews: Editar noticias
+              NewsContentMaxLengthMessage: El contenido de las noticias no debe superar los 1000 caracteres
+              NewsWidgetConfiguration: Configuración del widget de noticias
+              NewsWidgetDescription: Este widget comparte información relevante como un News Feed en Axon Ivy.
+              NewsWidgetTitle: Widget de noticias
   components:
     CaseDocument:
       FileDate: Modificado el

@@ -70,7 +70,7 @@
                 "import ch.ivyteam.ivy.workflow.ICase;",
                 "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
                 "",
-                "out.caseSelected = ivy.wf.getCaseQueryExecutor().getFirstResult(CaseQuery.create().where().caseId().isEqual(in.caseId)) as ICase;"
+                "out.caseSelected = ivy.wf.getCaseQueryExecutor().createCaseQuery().where().caseId().isEqual(in.caseId).executor().firstResult() as ICase;"
               ]
             }
           },
