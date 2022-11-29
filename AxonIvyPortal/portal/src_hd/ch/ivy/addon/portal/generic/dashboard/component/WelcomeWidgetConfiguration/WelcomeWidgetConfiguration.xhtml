@@ -26,7 +26,10 @@
            <p:messages id="config-welcome-widget-message" />
          </div>
          <div class="ui-g-12">
-           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}" styleClass="welcome-text-label" for="preview-panel" />
+           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}" styleClass="welcome-text-label" for="preview-panel">
+             <h:outputText id="preview-icon" styleClass="si si-information-circle welcome-widget-configuration-icon" />
+             <p:tooltip for="preview-icon" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/PreviewTooltip')}" />
+           </p:outputLabel>
            <h:panelGroup layout="block" id="preview-panel" styleClass="preview-panel">
              <span id="preview-text" class="preview-text js-preview-text welcome-text" />
              <p:graphicImage id="preview-image"
@@ -55,6 +58,18 @@
              oncomplete="PF('new-widget-configuration-dialog').initPosition(); updateAll();"  />
          </div>
 
+         <div class="ui-g-3 ui-md-4">
+          <p:outputLabel for="welcome-image-fit" styleClass="welcome-text-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/ChooseAFit')}" />
+         </div>
+         <div class="ui-g-9 ui-md-8">
+           <p:selectOneMenu id="welcome-image-fit" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeImageFit}" styleClass="welcome-text-select-one-menu">
+            <f:selectItem value="#{null}" noSelectionOption="true" />
+             <f:selectItems var="fit" value="#{dashboardWelcomeWidgetConfigurationBean.imageFits}" itemLabel="#{fit.label}" itemValue="#{fit}" />
+             <p:ajax event="itemSelect" update="selected-welcome-image-fit" oncomplete="WelcomeWidgetConfiguration.updatePreviewImageFit();" global="false" />
+           </p:selectOneMenu>
+           <h:inputHidden id="selected-welcome-image-fit" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeImageFit}" />
+         </div>
+         
          <div class="ui-g-3 ui-md-4">
            <p:outputLabel for="welcome-text-position" styleClass="welcome-text-label"
              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/TextPosition')}" />
@@ -121,6 +136,14 @@
               </div>
               <div class="ui-fluid ui-g-9 ui-md-8 welcome-styles-panel u-no-padding-left">
                 <p:inputText id="image-style-class" value="#{dashboardWelcomeWidgetConfigurationBean.widget.imageStyleClass}" styleClass="js-image-style-class" onchange="WelcomeWidgetConfiguration.updateStyleClasses();" />
+              </div>
+              
+              <div class="ui-g-3 ui-md-4">
+                <p:outputLabel for="image-inline-style" styleClass="welcome-text-label"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/ImageInlineStyle')}" />
+              </div>
+              <div class="ui-fluid ui-g-9 ui-md-8 welcome-styles-panel u-no-padding-left">
+                <p:inputText id="image-inline-style" value="#{dashboardWelcomeWidgetConfigurationBean.widget.imageInlineStyle}" styleClass="js-image-style-class" onchange="WelcomeWidgetConfiguration.updateStyleClasses();" />
               </div>
 
               <div class="ui-g-3 ui-md-4">
