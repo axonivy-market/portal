@@ -37,7 +37,9 @@ Below is a sample JSON definition of a welcome widget in the Portal dashboard
       "welcomeTextColor" : "000000",
       "greeting" : false,
       "welcomeTextStyleClass" : "custom-text",
-      "imageStyleClass" : "custom-image"
+      "imageStyleClass" : "custom-image",
+      "welcomeImageFit" : "COVER",
+      "imageInlineStyle" : "background-color:red; border:solid;"
    }
 
 The basic JSON structure of a welcome widget
@@ -70,7 +72,7 @@ The basic JSON structure of a welcome widget
 
          ``TOP_LEFT``: Top left corner of the widget
 
-         ``TOP_RIGHT``: Top right corner of ther widget
+         ``TOP_RIGHT``: Top right corner of the widget
 
          ``CENTER``: Center of the widget
 
@@ -96,5 +98,16 @@ The basic JSON structure of a welcome widget
 
    ``imageStyleClass``: style class for the image.
 
-This widget also support user to upload an image as background.
-This feature only available when user configure widget directly on Portal.
+   ``imageInlineStyle``: inline style for the image.
+
+   ``welcomeImageFit``: the property is used to specify how an image should be resized to fit its container. There are four options:
+
+        ``NONE``: The image is not resized. If it is bigger than the container, its center will be shown partially, if it is smaller than the container, it is shown centered in the container.
+
+        ``FILL``: The image is resized to fill the given dimension. The image will be distorted if the aspect ratios of image and container  differ.
+
+        ``COVER``: The image will keep its aspect ratio and be resized and cropped such that it fills the container completely.
+
+        ``CONTAIN``: The image will keep its aspect ratio and will be resized such that it is shown completely within the container, showing empty side- or top/bottom bars.
+
+You may upload a background image by configuring the widget directly in Portal.
