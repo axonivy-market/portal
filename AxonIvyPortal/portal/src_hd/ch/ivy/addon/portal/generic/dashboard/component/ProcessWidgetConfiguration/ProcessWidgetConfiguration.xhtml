@@ -70,20 +70,17 @@
       <h:panelGroup id="user-filter" layout="block" styleClass="ui-g-12 u-padding-0">
         <h:panelGroup id="compact-filter" rendered="#{isCompact}">
           <h:panelGroup layout="block" id="compact-filter-columns">
-          <ui:repeat var="field" value="#{widget.filterableColumns}">
-            <ic:ch.ivy.addon.portalkit.component.dashboard.widget.ApplicationFilterColumn field="#{field}"
-            selectedApps="#{field.filterList}" updateComponent="#{cc.clientId}:compact-filter-columns #{cc.clientId}:processes-list"
-            appOptions="#{field.applications}" widget="#{widget}"/>
-          </ui:repeat>
-          
-          <ui:repeat var="field" value="#{widget.filterableColumns}">
-            <ic:ch.ivy.addon.portalkit.component.dashboard.widget.CategoryFilterColumn field="#{field}"
-              displaySelectedCategories="#{field.displayCategories}" configurationMode="true" updateComponent="#{cc.clientId}:processes-list"
-              categoryTree="#{field.categoryTree}" categoryNodeSelection="#{field.selectionCategoryNodes}"
-              containerStyleClass="process-category" inputCategoryStyleClass="process-category__input-text"
-              overlayCategoryStyleClass="process-category-panel" showUnselectableCheckbox="true"/>
-            
-          </ui:repeat>
+            <ui:repeat var="field" value="#{widget.filterableColumns}">
+              <ic:ch.ivy.addon.portalkit.component.dashboard.widget.ApplicationFilterColumn field="#{field}"
+                selectedApps="#{field.filterList}" updateComponent="#{cc.clientId}:compact-filter-columns #{cc.clientId}:processes-list"
+                appOptions="#{field.applications}" widget="#{widget}"/>
+
+              <ic:ch.ivy.addon.portalkit.component.dashboard.widget.CategoryFilterColumn field="#{field}"
+                displaySelectedCategories="#{field.displayCategories}" configurationMode="true" updateComponent="#{cc.clientId}:processes-list"
+                categoryTree="#{field.categoryTree}" categoryNodeSelection="#{field.selectionCategoryNodes}"
+                containerStyleClass="process-category" inputCategoryStyleClass="process-category__input-text"
+                overlayCategoryStyleClass="process-category-panel" showUnselectableCheckbox="true"/>
+            </ui:repeat>
           </h:panelGroup>
 
           <div class="ui-g-4">
