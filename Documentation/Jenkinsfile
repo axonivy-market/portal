@@ -11,6 +11,10 @@ pipeline {
     cron '@midnight'
   }
 
+  parameters {
+      string(name: 'ivyVersion', defaultValue: 'nightly-10.0', description: 'Ivy version use to replace |version| placeholder of the links which navigate to ivy documentation. e.g.: https://developer.axonivy.com/doc/nightly-10.0/designer-guide/configuration/variables.html')
+  }
+
   stages {
     stage('build') {
       steps {
@@ -22,7 +26,7 @@ pipeline {
               maven cmd: 'clean process-resources -Divy.engine.version=[11.1.0,] -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip -f Documentation/public-api/pom.xml'
               maven cmd: 'clean generate-resources -f Documentation/pom.xml'
             }
-            sh "chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${version}"
+            sh "chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${params.ivyVersion}"
             docker.image('axonivy/build-container:read-the-docs-2').inside {
               sh "make -C /doc-build html BASEDIR='${env.WORKSPACE}/Documentation/portal-guide' VERSION=${version}"
             }
