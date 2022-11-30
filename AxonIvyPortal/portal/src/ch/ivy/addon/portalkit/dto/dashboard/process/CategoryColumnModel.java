@@ -103,7 +103,6 @@ public class CategoryColumnModel extends ProcessColumnModel implements Serializa
   public void loadCategories(boolean isConfigurationMode) {
     var availableCategories = ProcessTreeUtils.buildProcessCategoryCheckboxTreeRoot(DashboardWidgetUtils.getAllPortalProcesses());
     if (isConfigurationMode) {
-      resetCompactProcessesFilterList();
       this.categoryTree = availableCategories;
       if (CollectionUtils.isNotEmpty(filterList)) {
         setSelectionCategoryNodes(CategoryUtils.recoverSelectedCategories(this.categoryTree, filterList));
@@ -115,13 +114,6 @@ public class CategoryColumnModel extends ProcessColumnModel implements Serializa
         CategoryUtils.recoverSelectedCategories(this.userCategoryTree, userFilterList);
       }
     }
-  }
-  
-  private void resetCompactProcessesFilterList() {
-    CompactDashboardProcessBean dashboardProcessBean = ManagedBeans.get("compactDashboardProcessBean");
-    if (dashboardProcessBean != null && dashboardProcessBean.getWidget() != null) {
-      DashboardWidgetUtils.buildProcessColumns(dashboardProcessBean.getWidget());
-    }    
   }
 
   public CheckboxTreeNode<CategoryNode> getCategoryTree() {
