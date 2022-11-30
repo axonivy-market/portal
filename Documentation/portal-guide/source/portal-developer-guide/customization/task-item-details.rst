@@ -146,7 +146,7 @@ How to customize Task item details UI
 
 Refer to ``portal-developer-examples`` project for examples.
 
-#. Introduce an Axon Ivy project which has ``portal`` as a
+#. Introduce an |ivy| project which has ``portal`` as a
    required library.
 
 #. To customize task item details, you must customize Portal Home first.
@@ -159,7 +159,7 @@ Refer to ``portal-developer-examples`` project for examples.
    previous step. This process is new home page and administrator should
    register this link by Portal's Admin Settings.
 
-#. Use :dev-url:`Axon Ivy HtmlOverride wizard </doc/|version|/designer-guide/how-to/overrides.html?#override-new-wizard>` to override ``PortalTaskDetails`` HTML dialog.
+#. Use :dev-url:`|ivy| HtmlOverride wizard </doc/|version|/designer-guide/how-to/overrides.html?#override-new-wizard>` to override ``PortalTaskDetails`` HTML dialog.
 
 #. After previous steps, you can override Task item details UI elements
    to show custom panels, show or hide elements.
@@ -204,7 +204,7 @@ Show Custom Panels (Widgets)
    - Go to the example homepage by the process ``Start Processes/ExamplePortalStart/DefaultApplicationHomePage.ivp``
    - And then go to task details to check the new custom layout.
 
-   About how to configure Variables, refer to :dev-url:`Axon Ivy Variables </doc/|version|/designer-guide/configuration/variables.html>`
+   About how to configure Variables, refer to :dev-url:`|ivy| Variables </doc/|version|/designer-guide/configuration/variables.html>`
 
 
 There are **two steps** for adding new custom panels.

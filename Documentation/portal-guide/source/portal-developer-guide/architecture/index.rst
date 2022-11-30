@@ -58,5 +58,5 @@ This project has been extended from portal. It allows the end user to
 
 .. |process-module-structure| image:: images/process-module-structure.png
 
-Axon Ivy Express also provides an AdHoc process feature. When Express is deployed, users can start an AdHoc process from any task.
+|ivy| Express also provides an AdHoc process feature. When Express is deployed, users can start an AdHoc process from any task.
 Adhoc allows users to define additional process steps which will be executed before the current task.

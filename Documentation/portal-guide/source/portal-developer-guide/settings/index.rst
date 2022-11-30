@@ -538,7 +538,7 @@ Data model:
 .. code-block:: html
 
    [{  "id": "01322912db224658a222804802844a7b",
-      "name": "Download latest Axon Ivy",
+      "name": "Download latest |ivy|",
       "link": "https://developer.axonivy.com/download",
       "creatorId": 2,
       "icon": "fa-paperclip",
