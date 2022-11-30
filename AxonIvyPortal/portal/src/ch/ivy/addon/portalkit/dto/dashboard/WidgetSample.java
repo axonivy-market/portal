@@ -58,11 +58,11 @@ public class WidgetSample {
     this.introduction = introduction;
   }
 
-public boolean isUseIcon() {
-	return useIcon;
-}
+  public boolean isUseIcon() {
+    return useIcon;
+  }
 
-public void setUseIcon(boolean useIcon) {
-	this.useIcon = useIcon;
-}
+  public void setUseIcon(boolean useIcon) {
+    this.useIcon = useIcon;
+  }
 }

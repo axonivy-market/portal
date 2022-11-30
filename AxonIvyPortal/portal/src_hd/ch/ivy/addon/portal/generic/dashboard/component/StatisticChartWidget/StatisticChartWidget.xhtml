@@ -8,6 +8,7 @@
   <cc:attribute name="chart" required="true" type="ch.ivy.addon.portalkit.statistics.StatisticChart" />
   <cc:attribute name="index" />
   <cc:attribute name="isReadOnlyMode" default="false" />
+  <cc:attribute name="isPreviewMode" default="false" />
   <cc:attribute name="isConfigurationMode" default="false" />
 </cc:interface>
 
@@ -18,150 +19,110 @@
   <c:set var="chart" value="#{cc.attrs.chart}" />
   <c:set var="index" value="#{cc.attrs.index}" />
   <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
+  <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}"/>
   <c:set var="isConfigurationMode" value="#{cc.attrs.isConfigurationMode}" />
   <c:set var="availableFilter" value="#{isReadOnlyMode and chart.filter ne null}"/>
   <c:set var="disabledDrillDownChart" value="#{isConfigurationMode or !isReadOnlyMode}"/>
 
   <f:event listener="#{dashboardStatisticChartBean.initSettings()}" type="preRenderComponent"/>
-  <div class="statistic-chart-widget">
-    <!-- Chart Header -->
-    <h:panelGroup styleClass="statistic-chart-widget__header widget__header">
-      <!-- Chart Name -->
-      <h:outputText id="statistic-chart-name-#{index}" rendered="#{chart ne null}"
-        styleClass="statistic-chart-name widget__header-title text-ellipsis"
-        value="#{widget.name}" />
+  <ui:decorate template="/layouts/restricted/decorator/CardWidget.xhtml">
+    <ui:param name="index" value="#{index}" />
+    <ui:param name="widget" value="#{widget}" />
+    <ui:param name="panelId" value="statistic-chart-widget-#{widget.id}" />
+    <ui:param name="panelStyleClass" value="statistic-chart-widget" />
+    <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode or isPreviewMode}" />
+    <ui:param name="isRenderInfo" value="#{!isPreviewMode}"/>
 
-      <!-- Action -->
-      <h:panelGroup id="statistic-chart-action-#{index}" rendered="#{!isConfigurationMode}"
-        styleClass="widget__header-actions statistic-chart-action">
-        <p:commandButton id="chart-info-link-#{index}" type="button" rendered="#{availableFilter}" icon="si si-statistics-daytum"
-          styleClass="rounded-button ui-button-outlined widget__info-sidebar-link u-mar-right-5"/>
-        <p:tooltip for="chart-info-link-#{index}" rendered="#{availableFilter}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}"
-          trackMouse="true" hideEvent="mouseleave click" />
+    <ui:define name="widgetInfoContent">
+      <ic:ch.ivy.addon.portalkit.component.statistic.ChartInformationDialog selectedStatisticChart="#{chart}" />
+    </ui:define>
 
-        <p:commandButton id="edit-widget-#{index}" styleClass="rounded-button ui-button-outlined u-mar-right-5" icon="si si-pencil"
-          global="false" actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}" process="@this"
-          partialSubmit="true" update="new-widget-configuration-dialog"
-          oncomplete="PF('new-widget-configuration-dialog').show()" rendered="#{!isReadOnlyMode}" />
-        <p:tooltip for="edit-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
-          trackMouse="true" hideEvent="mouseleave click" rendered="#{!isReadOnlyMode}" />
-
-        <p:commandButton id="delete-widget-#{index}" styleClass="rounded-button ui-button-outlined ui-button-danger" icon="si si-bin-1" global="false"
-          actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}" process="@this"
-          partialSubmit="true" update="remove-widget-dialog" oncomplete="PF('remove-widget-dialog').show()"
-          rendered="#{!isReadOnlyMode}" />
-        <p:tooltip for="delete-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}"
-          trackMouse="true" hideEvent="mouseleave click" rendered="#{!isReadOnlyMode}" />
-
-        <p:commandButton id="expand-link-#{index}" type="button" rendered="#{isReadOnlyMode}" icon="si si-expand-1"
-          styleClass="rounded-button ui-button-outlined expand-link u-mar-right-5"
-          onclick="expandFullscreen(#{index}, '#{widget.id}')"/>
-
-        <p:commandButton id="collapse-link-#{index}" type="button" rendered="#{isReadOnlyMode}" icon="si si-shrink-1"
-          styleClass="rounded-button ui-button-outlined collapse-link u-mar-right-5"
-          onclick="collapseFullscreen(#{index}, '#{widget.id}')"/>
-
-        <p:overlayPanel for="chart-info-link-#{index}" id="info-overlay-panel-#{index}"
-          widgetVar="info-overlay-panel-#{index}" rendered="#{availableFilter}" appendTo="@(body)"
-          styleClass="info-overlay-panel js-dashboard-overlay-panel" dismissable="false" dynamic="true">
-          <div class="chart-information-container">
-            <ic:ch.ivy.addon.portalkit.component.statistic.ChartInformationDialog selectedStatisticChart="#{chart}" />
-          </div>
-          <div class="ui-g-12 info-overlay-panel__footer">
-            <div class="ui-g-12">
-              <p:commandLink styleClass="Fright" global="false" onclick="PF('info-overlay-panel-#{index}').hide();"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" process="@this" immediate="true"/>
-            </div>
-          </div>
-        </p:overlayPanel>
+    <ui:define name="widgetContent">
+      <!-- Chart Content -->
+      <h:panelGroup rendered="#{chart eq null}" styleClass="ui-g-12">
+        <h4 class="MarTop5">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/PreviewText')}</h4>
       </h:panelGroup>
-    </h:panelGroup>
 
-    <!-- Chart Content -->
-    <h:panelGroup rendered="#{chart eq null}" styleClass="ui-g-12">
-      <h4 class="MarTop5">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/PreviewText')}</h4>
-    </h:panelGroup>
+      <p:remoteCommand id="rcLoadChartFirstTime" autoRun="true"
+        actionListener="#{widget.generateChartModel()}"
+        update="statistic-chart-widget__chart-#{index}"
+        global="false" async="true" process="@this"
+        oncomplete="loadWidgetFirstTime('js-loading-chart-#{widget.id}', 'js-dashboard-statistic-chart-#{widget.id}')" />
 
-    <p:remoteCommand id="rcLoadChartFirstTime" autoRun="true"
-      actionListener="#{widget.generateChartModel()}"
-      update="statistic-chart-widget__chart-#{index}"
-      global="false" async="true" process="@this"
-      oncomplete="loadWidgetFirstTime('js-loading-chart-#{widget.id}', 'js-dashboard-statistic-chart-#{widget.id}')" />
+      <c:set value="chart_model_dashboard_poll-#{index}" var="chartPollId"/>
+      <p:poll id="#{chartPollId}" interval="#{dashboardStatisticChartBean.statisticChartScalingInterval}" update="rcLoadChartFirstTime @this"
+        global="false" process="@this" partialSubmit="true" async="true" immediate="true" listener="#{widget.generateChartModel()}"
+        rendered="#{dashboardStatisticChartBean.renderedRefreshChartPoll}" stop="#{ivy.session.sessionUserUnknown}"
+        widgetVar="#{chartPollId}" onerror="PF(#{chartPollId}).stop()"/>
+      <h:panelGroup id="statistic-chart-widget__content" rendered="#{chart ne null}" layout="block"
+        styleClass="statistic-chart-widget__content widget__content widget__content">
 
-	<c:set value="chart_model_dashboard_poll-#{index}" var="chartPollId"/>
-    <p:poll id="#{chartPollId}" interval="#{dashboardStatisticChartBean.statisticChartScalingInterval}" update="rcLoadChartFirstTime @this"
-      global="false" process="@this" partialSubmit="true" async="true" immediate="true" listener="#{widget.generateChartModel()}"
-      rendered="#{dashboardStatisticChartBean.renderedRefreshChartPoll}" stop="#{ivy.session.sessionUserUnknown}"
-      widgetVar="#{chartPollId}" onerror="PF(#{chartPollId}).stop()"/>
-    <h:panelGroup id="statistic-chart-widget__content" rendered="#{chart ne null}" layout="block"
-      styleClass="statistic-chart-widget__content widget__content widget__content">
+        <h:outputText id="loading" styleClass="js-loading-chart-#{widget.id}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}" />
 
-      <h:outputText id="loading" styleClass="js-loading-chart-#{widget.id}"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}" />
+        <h:panelGroup id="statistic-chart-widget__chart-#{index}" layout="block"
+          styleClass="statistic-chart-widget__chart #{isConfigurationMode ? 'statistic-chart-widget__chart--small' : ''} u-invisibility js-dashboard-statistic-chart-#{widget.id}">
+          <h:panelGroup rendered="#{widget.chartEmpty}" styleClass="empty-message-container" layout="block">
+            <i class="si #{widget.emptyChartIcon} empty-message-icon"/>
+            <p class="empty-message-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/EmptyChartDataMessage')}</p>
+          </h:panelGroup>
+          <h:panelGroup rendered="#{!widget.chartEmpty}">
+            <p:donutChart id="task_by_priority_chart-#{index}" model="#{chart.donutChartModel}"
+              rendered="#{dashboardStatisticChartBean.isTaskByPriority(chart)}"
+              styleClass="statistic-chart-widget__canvas">
+              <f:attribute name="selectedChartId" value="#{chart.id}" />
+              <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.drilldownTaskByPriority}"
+                disabled="#{disabledDrillDownChart}"/>
+            </p:donutChart>
 
-      <h:panelGroup id="statistic-chart-widget__chart-#{index}" layout="block"
-        styleClass="statistic-chart-widget__chart #{isConfigurationMode ? 'statistic-chart-widget__chart--small' : ''} u-invisibility js-dashboard-statistic-chart-#{widget.id}">
-        <h:panelGroup rendered="#{widget.chartEmpty}" styleClass="empty-message-container" layout="block">
-          <i class="si #{widget.emptyChartIcon} empty-message-icon"/>
-          <p class="empty-message-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/EmptyChartDataMessage')}</p>
-        </h:panelGroup>
-        <h:panelGroup rendered="#{!widget.chartEmpty}">
-          <p:donutChart id="task_by_priority_chart-#{index}" model="#{chart.donutChartModel}"
-            rendered="#{dashboardStatisticChartBean.isTaskByPriority(chart)}"
-            styleClass="statistic-chart-widget__canvas">
-            <f:attribute name="selectedChartId" value="#{chart.id}" />
-            <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.drilldownTaskByPriority}"
-              disabled="#{disabledDrillDownChart}"/>
-          </p:donutChart>
+            <p:barChart model="#{chart.barChartModel}"
+              rendered="#{dashboardStatisticChartBean.isTaskByExpiry(chart)}"
+              styleClass="statistic-chart-widget__canvas" >
+              <f:attribute name="selectedChartId" value="#{chart.id}" />
+              <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.toTaskByExpiryTaskList}"
+                disabled="#{disabledDrillDownChart}"/>
+            </p:barChart>
 
-          <p:barChart model="#{chart.barChartModel}"
-            rendered="#{dashboardStatisticChartBean.isTaskByExpiry(chart)}"
-            styleClass="statistic-chart-widget__canvas" >
-            <f:attribute name="selectedChartId" value="#{chart.id}" />
-            <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.toTaskByExpiryTaskList}"
-              disabled="#{disabledDrillDownChart}"/>
-          </p:barChart>
+            <p:donutChart model="#{chart.donutChartModel}"
+              styleClass="statistic-chart-widget__canvas"
+              rendered="#{dashboardStatisticChartBean.isCaseByState(chart)}">
+              <f:attribute name="selectedChartId" value="#{chart.id}" />
+              <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.drilldownCaseByState}"
+                disabled="#{disabledDrillDownChart}"/>
+            </p:donutChart>
 
-          <p:donutChart model="#{chart.donutChartModel}"
-            styleClass="statistic-chart-widget__canvas"
-            rendered="#{dashboardStatisticChartBean.isCaseByState(chart)}">
-            <f:attribute name="selectedChartId" value="#{chart.id}" />
-            <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.drilldownCaseByState}"
-              disabled="#{disabledDrillDownChart}"/>
-          </p:donutChart>
+            <!-- Do not support drill-down for ElapsedTimeChartDetails -->
+            <p:barChart styleClass="statistic-chart-widget__canvas"
+              model="#{chart.barChartModel}"
+              rendered="#{dashboardStatisticChartBean.isElapsedTimeByCaseCategory(chart)}" />
 
-          <!-- Do not support drill-down for ElapsedTimeChartDetails -->
-          <p:barChart styleClass="statistic-chart-widget__canvas"
-            model="#{chart.barChartModel}"
-            rendered="#{dashboardStatisticChartBean.isElapsedTimeByCaseCategory(chart)}" />
-  
-          <p:donutChart styleClass="statistic-chart-widget__canvas"
-            model="#{chart.donutChartModel}"
-            rendered="#{dashboardStatisticChartBean.isCaseByFinishedTask(chart)}">
-            <f:attribute name="selectedChartId" value="#{chart.id}" />
-            <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.drilldownCaseByState}"
-              disabled="#{disabledDrillDownChart}"/>
-          </p:donutChart>
+            <p:donutChart styleClass="statistic-chart-widget__canvas"
+              model="#{chart.donutChartModel}"
+              rendered="#{dashboardStatisticChartBean.isCaseByFinishedTask(chart)}">
+              <f:attribute name="selectedChartId" value="#{chart.id}" />
+              <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.drilldownCaseByState}"
+                disabled="#{disabledDrillDownChart}"/>
+            </p:donutChart>
 
-          <p:donutChart styleClass="statistic-chart-widget__canvas"
-            model="#{chart.donutChartModel}"
-            rendered="#{dashboardStatisticChartBean.isCaseByFinishedTime(chart)}">
-            <f:attribute name="selectedChartId" value="#{chart.id}" />
-            <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.drilldownCaseByState}"
-              disabled="#{disabledDrillDownChart}"/>
-          </p:donutChart>
-          
-           <p:barChart model="#{chart.barChartModel}"
-            rendered="#{dashboardStatisticChartBean.isCasesByCategory(chart)}"
-            styleClass="statistic-chart-widget__canvas" >
-            <f:attribute name="selectedChartId" value="#{chart.id}" />
-            <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.toCasesByCategoryCaseList}"/>
-          </p:barChart>
+            <p:donutChart styleClass="statistic-chart-widget__canvas"
+              model="#{chart.donutChartModel}"
+              rendered="#{dashboardStatisticChartBean.isCaseByFinishedTime(chart)}">
+              <f:attribute name="selectedChartId" value="#{chart.id}" />
+              <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.drilldownCaseByState}"
+                disabled="#{disabledDrillDownChart}"/>
+            </p:donutChart>
+
+             <p:barChart model="#{chart.barChartModel}"
+              rendered="#{dashboardStatisticChartBean.isCasesByCategory(chart)}"
+              styleClass="statistic-chart-widget__canvas" >
+              <f:attribute name="selectedChartId" value="#{chart.id}" />
+              <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.toCasesByCategoryCaseList}"/>
+            </p:barChart>
+          </h:panelGroup>
         </h:panelGroup>
       </h:panelGroup>
-    </h:panelGroup>
-  </div>
+    </ui:define>
+  </ui:decorate>
 </cc:implementation>
 
 </html>

@@ -110,6 +110,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CASE: Vorfall-Widget
       CUSTOM: Benutzerdefiniertes Widget
       NEW: Neues Widget
+      NEWS: Nachrichten
       PROCESS: Prozess-Widget
       PROCESS_VIEWER: Prozess-Viewer-Widget
       STATISTIC: Statistik-Widget
@@ -150,6 +151,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       THURSDAY: Do
       TUESDAY: Di
       WEDNESDAY: Mi
+    WelcomeImageFit:
+      CONTAIN: Enthält
+      COVER: Abdeckung
+      FILL: Füllen
+      NONE: Keine
     WelcomeTextPosition:
       BOTTOM_LEFT: Linke untere Ecke
       BOTTOM_RIGHT: Rechte untere Ecke
@@ -817,13 +823,16 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeConfigurationDescription: ''
       WelcomeWidget:
         AdvancedSettings: Erweiterte Einstellungen
+        ChooseAFit: Wählen Sie eine Passform
         DisplayedText: Anzeigetext
         Greeting:
           Afternoon: Guten Tag
           Evening: Guten Abend
           Morning: Guten Morgen
         Image: Bild
+        ImageInlineStyle: Bild Inline-Stil
         ImageStyleClass: Bildstilklasse
+        PreviewTooltip: Diese Vorschau kann nicht alle Einstellungen wiedergeben, sondern soll nur einen Eindruck vermitteln, wie das endgültige Widget aussehen wird. Bildgröße, Ausrichtung und einige CSS-Einstellungen werden hier nicht angezeigt.
         ShowGreeting: Gruß anzeigen
         TextPosition: Position des Textes
         TextSizeAndColor: Textgröße und -farbe
@@ -1516,6 +1525,30 @@ Dialogs:
               ShowBusinessDetails: Business Details
               caseNameNotAvailable: '[Kein Vorgangsname verfügbar]'
               defaultEmptyMessage: Keine Vorgänge verfügbar
+            IconSelection:
+              IconLinkTooltip: Zum Ändern des Symbols anklicken
+  com:
+    axonivy:
+      portal:
+        dashboard:
+          component:
+            NewsWidget:
+              NewsContentPlaceHolder: Nachrichteninhalt eingeben
+              NewsContentValidateMessage: Nachrichteninhalt in {0} ist erforderlich
+              NewsTitlePlaceholder: Titel der Nachricht eingeben
+              NewsTitleValidateMessage: Nachrichtentitel in {0} ist erforderlich
+              NoNewsAvailable: Es gibt noch keine Neuigkeiten
+              Publish: veröffentlichen.
+              RemoveNewsHeader: Die Nachrichten entfernen?
+              SeeLess: Weniger sehen
+              SeeMore: Mehr sehen
+            NewsWidgetConfiguration:
+              AddNews: Neuigkeiten hinzufügen
+              EditNews: Nachrichten bearbeiten
+              NewsContentMaxLengthMessage: Der Inhalt der Nachrichten darf 1000 Zeichen nicht überschreiten.
+              NewsWidgetConfiguration: Konfiguration des Newsfeed-Widgets
+              NewsWidgetDescription: Dieses Widget teilt relevante Informationen als News Feed in Axon Ivy.
+              NewsWidgetTitle: News-Feed-Widget
   components:
     CaseDocument:
       FileDate: Änderungsdatum

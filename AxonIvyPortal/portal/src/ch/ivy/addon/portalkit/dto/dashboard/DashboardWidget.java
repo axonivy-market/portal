@@ -24,6 +24,7 @@ import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 import ch.ivyteam.ivy.environment.Ivy;
+import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
@@ -36,7 +37,8 @@ import ch.ivyteam.ivy.environment.Ivy;
   @Type(value = StatisticDashboardWidget.class, name = "statistic"),
   @Type(value = CustomDashboardWidget.class, name = "custom"),
   @Type(value = ProcessViewerDashboardWidget.class, name = "process-viewer"),
-  @Type(value = WelcomeDashboardWidget.class, name = "welcome")
+  @Type(value = WelcomeDashboardWidget.class, name = "welcome"),
+  @Type(value = NewsDashboardWidget.class, name = "news")
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public abstract class DashboardWidget implements Serializable {
