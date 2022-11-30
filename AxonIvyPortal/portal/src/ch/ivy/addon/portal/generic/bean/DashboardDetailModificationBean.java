@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -632,9 +633,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   public void prepareEditWidget(DashboardWidget widget) {
+    DashboardWidget editWidget = findWidgetByIdInSelectedDashboard(widget);
     switch (widget.getType()) {
       case PROCESS:
-        ProcessDashboardWidget processDashboardWidget = (ProcessDashboardWidget) widget;
+        ProcessDashboardWidget processDashboardWidget = (ProcessDashboardWidget) editWidget;
         ProcessDashboardWidget clonedWidget;
         switch (processDashboardWidget.getDisplayMode()) {
           case COMPACT_MODE:
@@ -661,11 +663,24 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         break;
 
       default:
-        setWidget(widget);
+        setWidget(editWidget);
         break;
     }
     newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/editWidgetHeader");
     isEditWidget = true;
+  }
+
+  protected DashboardWidget findWidgetByIdInSelectedDashboard(DashboardWidget widget) {
+    DashboardWidget foundWidget = collectDashboards().stream()
+        .filter(dashboard -> dashboard.getId().equals(selectedDashboardId))
+        .map(Dashboard::getWidgets).flatMap(Collection::stream)
+        .filter(dashboardWidget -> dashboardWidget.getId().equals(widget.getId()))
+        .findAny().orElse(widget);
+    DashboardWidgetUtils.buildWidgetColumns(foundWidget);
+    if (DashboardWidgetType.CUSTOM.equals(foundWidget.getType())) {
+      loadCustomWidget(foundWidget);
+    }
+    return foundWidget;
   }
 
   public void reloadParamtersFromProcessForCustomWidget(DashboardWidget widget) {
