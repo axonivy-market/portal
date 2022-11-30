@@ -52,7 +52,7 @@ HowTo: Update Portal Settings
 
 .. hint:: 
    Portal settings are stored as |ivy| variables and can be configured in the 
-   :dev-url:`|ivy| Cockpit </doc/|version|/engine-guide/tool-reference/engine-cockpit/configuration.html#engine-cockpit-variables>`.
+   :dev-url:`|ivy| Cockpit </doc/|version|/engine-guide/reference/engine-cockpit/configuration.html#engine-cockpit-variables>`.
 
 .. _portal-available-settings:
 

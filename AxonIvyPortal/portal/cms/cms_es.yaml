@@ -110,6 +110,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CASE: Widget del caso
       CUSTOM: Widget personalizado
       NEW: Nuevo widget
+      NEWS: Noticias
       PROCESS: Widget de procesos
       PROCESS_VIEWER: Widget del visor de procesos
       STATISTIC: Widget de estadísticas
@@ -150,6 +151,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       THURSDAY: Juev.
       TUESDAY: Mart.
       WEDNESDAY: Miérc.
+    WelcomeImageFit:
+      CONTAIN: Contiene
+      COVER: Cubrir
+      FILL: Rellenar
+      NONE: Ninguno
     WelcomeTextPosition:
       BOTTOM_LEFT: Esquina inferior izquierda
       BOTTOM_RIGHT: Esquina inferior derecha
@@ -816,13 +822,16 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeConfigurationDescription: ''
       WelcomeWidget:
         AdvancedSettings: Configuración avanzada
+        ChooseAFit: Elija un ajuste
         DisplayedText: mostrar texto
         Greeting:
           Afternoon: Buenas tardes
           Evening: Buenas noches
           Morning: Buenos días
         Image: Imagen
+        ImageInlineStyle: Estilo de imagen en línea
         ImageStyleClass: Clase de estilo de imagen
+        PreviewTooltip: Esta vista previa no puede mostrar todos los ajustes, pero sólo debería dar una idea de cómo se verá el widget final, el tamaño de la imagen, la orientación y algunos ajustes CSS no se verán aquí.
         ShowGreeting: Mostrar saludo
         TextPosition: Posición del texto
         TextSizeAndColor: Tamaño y color del texto
@@ -1518,6 +1527,30 @@ Dialogs:
               ShowBusinessDetails: detalles del negocio
               caseNameNotAvailable: '[Nombre del caso no disponible]'
               defaultEmptyMessage: No hay casos
+            IconSelection:
+              IconLinkTooltip: Haga clic para cambiar el icono
+  com:
+    axonivy:
+      portal:
+        dashboard:
+          component:
+            NewsWidget:
+              NewsContentPlaceHolder: Introduzca el contenido de las noticias
+              NewsContentValidateMessage: El contenido de las noticias en {0} es necesario
+              NewsTitlePlaceholder: Introduzca el título de la noticia
+              NewsTitleValidateMessage: El título de la noticia en {0} es obligatorio
+              NoNewsAvailable: Todavía no hay noticias
+              Publish: Publicar
+              RemoveNewsHeader: ¿Quitar las noticias?
+              SeeLess: Ver menos
+              SeeMore: Ver más
+            NewsWidgetConfiguration:
+              AddNews: Añadir noticias
+              EditNews: Editar noticias
+              NewsContentMaxLengthMessage: El contenido de las noticias no debe superar los 1000 caracteres
+              NewsWidgetConfiguration: Configuración del widget de noticias
+              NewsWidgetDescription: Este widget comparte información relevante como un News Feed en Axon Ivy.
+              NewsWidgetTitle: Widget de noticias
   components:
     CaseDocument:
       FileDate: Modificado el
