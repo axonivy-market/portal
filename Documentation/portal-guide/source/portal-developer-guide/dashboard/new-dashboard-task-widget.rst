@@ -136,7 +136,7 @@ The basic JSON structure of a Task widget
 Custom Columns
 --------------
 
-Axon Ivy supports custom fields for tasks. You can show them in the Task widget
+|ivy| supports custom fields for tasks. You can show them in the Task widget
 as a column.
 
 You can predefine which column to show, and other attributes such as filter, format, and style. Below is a standard JSON of a custom column.
