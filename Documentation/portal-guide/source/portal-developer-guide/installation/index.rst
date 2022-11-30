@@ -110,7 +110,7 @@ In Engine
 #. Follow detailed migration notes for each version below.
 
 Migrate 8.x To 10.0
-------------------
+-------------------
 
 You need to do all steps starting at ``Migrate 8.x To ...`` up to and including
 ``Migrate ... To 9.x``
