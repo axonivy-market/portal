@@ -60,7 +60,7 @@ Permission Settings
 ===================
 
 Configure permissions in the :dev-url:`Engine Cockpit
-</doc/nightly/engine-guide/tool-reference/engine-cockpit/security.html>`. In the
+</doc/nightly/engine-guide/reference/engine-cockpit/security.html>`. In the
 security area, you will find all these permission in group "PortalPermissions".
 
 Task Permissions
