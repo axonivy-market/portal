@@ -20,6 +20,7 @@ import ch.ivy.addon.portalkit.enums.PortalVariable;
 @IvyWebTest
 public class StatisticDashboardWidgetTest extends BaseTest {
 
+  private static final String CHART_ID= "statistic_1";
   private NewDashboardPage newDashboardPage;
 
   @Override
@@ -35,12 +36,12 @@ public class StatisticDashboardWidgetTest extends BaseTest {
     createJSonFile("dashboard-has-one-chart-example.json", PortalVariable.DASHBOARD.key);
     redirectToRelativeLink(createTestingTasksUrl);
     var chartWidget = newDashboardPage.selectStatisticWidget();
-    var chartName = chartWidget.getChartName(0);
+    var chartName = chartWidget.getChartName(CHART_ID);
     assertTrue(StringUtils.equalsIgnoreCase("Tasks by Priority", chartName));
-    var infoIcon = chartWidget.getStatisticInfoIconOfChart(0);
+    var infoIcon = chartWidget.getStatisticInfoIconOfChart(CHART_ID);
     infoIcon.should(Condition.appear);
-    chartWidget.openStatisticInfoPanel(0);
-    var chartFilter = chartWidget.countFilterOfStatistic(0);
+    chartWidget.openStatisticInfoPanel(CHART_ID);
+    var chartFilter = chartWidget.countFilterOfStatistic(CHART_ID);
     chartFilter.shouldHave(CollectionCondition.sizeGreaterThanOrEqual(4));
   }
 
@@ -50,8 +51,8 @@ public class StatisticDashboardWidgetTest extends BaseTest {
     createJSonFile("dashboard-has-one-chart-example.json", PortalVariable.DASHBOARD.key);
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
     var chartWidget = newDashboardDetailsEditPage.selectStatisticWidget();
-    chartWidget.getEditIconOfChart(0).shouldBe(Condition.visible, Condition.enabled);
-    var editChartDialog = chartWidget.openEditStatisticWidgetDialog(0);
+    chartWidget.getEditIconOfChart(CHART_ID).shouldBe(Condition.visible, Condition.enabled);
+    var editChartDialog = chartWidget.openEditStatisticWidgetDialog(CHART_ID);
     assertTrue(StringUtils.equalsIgnoreCase(editChartDialog, "Edit Widget Configuration"));
     chartWidget.clickOnCancelConfiguration();
   }
@@ -69,12 +70,12 @@ public class StatisticDashboardWidgetTest extends BaseTest {
     createJSonFile("dashboard-has-chart-cases-by-category.json", PortalVariable.DASHBOARD.key);
     redirectToRelativeLink(createTestingTasksUrl);
     var chartWidget = newDashboardPage.selectStatisticWidget();
-    var chartName = chartWidget.getChartName(0);
+    var chartName = chartWidget.getChartName(CHART_ID);
     assertTrue(StringUtils.equalsIgnoreCase("Cases by Category", chartName));
-    var infoIcon = chartWidget.getStatisticInfoIconOfChart(0);
+    var infoIcon = chartWidget.getStatisticInfoIconOfChart(CHART_ID);
     infoIcon.should(Condition.appear);
-    chartWidget.openStatisticInfoPanel(0);
-    var chartFilter = chartWidget.countFilterOfStatistic(0);
+    chartWidget.openStatisticInfoPanel(CHART_ID);
+    var chartFilter = chartWidget.countFilterOfStatistic(CHART_ID);
     chartFilter.shouldHave(CollectionCondition.sizeGreaterThanOrEqual(4));
   }
   
@@ -85,8 +86,8 @@ public class StatisticDashboardWidgetTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
     var chartWidget = newDashboardDetailsEditPage.selectStatisticWidget();
-    chartWidget.getEditIconOfChart(0).shouldBe(Condition.visible, Condition.enabled);
-    var editChartDialog = chartWidget.openEditStatisticWidgetDialog(0);
+    chartWidget.getEditIconOfChart(CHART_ID).shouldBe(Condition.visible, Condition.enabled);
+    var editChartDialog = chartWidget.openEditStatisticWidgetDialog(CHART_ID);
     assertTrue(StringUtils.equalsIgnoreCase(editChartDialog, "Edit Widget Configuration"));
     chartWidget.clickOnCancelConfiguration();
   }

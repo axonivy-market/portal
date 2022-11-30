@@ -17,6 +17,7 @@ import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.enums.WelcomeTextPosition;
 import ch.ivy.addon.portalkit.jsf.Attrs;
+import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -99,5 +100,9 @@ public class DashboardWelcomeWidgetBean implements Serializable {
 
   public String getDefaultImageDarkLink() {
     return DEFAULT_IMAGE_DARK_CMS_URI;
+  }
+  
+  public String sanitizeHTML(String text) {
+    return HtmlParser.sanitizeHTML(text);
   }
 }

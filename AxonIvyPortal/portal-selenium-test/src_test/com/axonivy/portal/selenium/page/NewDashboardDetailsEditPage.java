@@ -147,4 +147,9 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     return $("[id$='restore-button-group']").shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='restore-button']")
         .shouldBe(Condition.exist, DEFAULT_TIMEOUT);
   }
+
+  public DashboardNewsWidgetConfigurationPage addNewsFeedWidget() {
+    addWidgetByName("News feed widget");
+    return new DashboardNewsWidgetConfigurationPage();
+  }
 }
