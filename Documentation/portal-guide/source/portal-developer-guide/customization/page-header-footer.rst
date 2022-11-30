@@ -9,7 +9,7 @@ The components ``PageHeader`` and ``PageFooter`` show the header and footer appl
 
 You can add a customized header and footer to every page by overriding the
 ``PageHeader`` and ``PageFooter`` Html Dialogs. 
-Refer to :dev-url:`Axon Ivy HtmlOverride wizard
+Refer to :dev-url:`|ivy| HtmlOverride wizard
 </doc/|version|/designer-guide/how-to/overrides.html?#override-new-wizard>` to
 override HTML dialogs.
 

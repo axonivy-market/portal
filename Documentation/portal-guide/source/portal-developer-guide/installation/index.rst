@@ -74,7 +74,7 @@ Migration Notes
 
 This document informs you in detail about incompatibilities that were
 introduced between Portal versions and tells you what needs to be done
-to make your existing Portal working with current Axon Ivy engine.
+to make your existing Portal working with current |ivy-engine|.
 
 How To Migrate
 --------------
@@ -84,9 +84,9 @@ How To Migrate
    it may have changed or have been removed. Don't forget to re-implement the
    APIs concerned in your own project.
 
-   To migrate the Portal, you need to migrate Axon Ivy first. Refer to the
-   :dev-url:`Axon Ivy Migration Notes
-   </doc/|version|/axonivy/migration/index.html>`. Changes in Axon Ivy could lead
+   To migrate the Portal, you need to migrate |ivy| first. Refer to the
+   :dev-url:`|ivy| Migration Notes
+   </doc/|version|/axonivy/migration/index.html>`. Changes in |ivy| could lead
    to problems if a customer project is not migrated properly.
 
 In Designer
@@ -260,7 +260,7 @@ Migrate 9.1 To 9.2
 
 #. Deprecated callable processes: ``OpenPortalSearch.mod``, ``OpenPortalTasks.mod``, ``OpenPortalTaskDetails.mod``, ``OpenPortalCases.mod``, ``OpenPortalCaseDetails.mod`` process.
 
-   Portal recommends using :dev-url:`Axon Ivy HtmlOverride wizard </doc/|version|/designer-guide/how-to/overrides.html?#override-new-wizard>` to customize ``Portal HTML Dialog``
+   Portal recommends using :dev-url:`|ivy| HtmlOverride wizard </doc/|version|/designer-guide/how-to/overrides.html?#override-new-wizard>` to customize ``Portal HTML Dialog``
 
    .. important:: The callable process which is supporting to open customization dialog will be removed in the future, do not use it in the new project
 
@@ -346,7 +346,7 @@ Release notes
 =============
 
 This part lists all relevant changes since the last official product
-releases of Axon Ivy.
+releases of |ivy|.
 
 Changes in 10
 -------------
