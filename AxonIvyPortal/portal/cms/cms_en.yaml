@@ -110,6 +110,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CASE: Case widget
       CUSTOM: Custom widget
       NEW: New widget
+      NEWS: News feed
       PROCESS: Process widget
       PROCESS_VIEWER: Process viewer widget
       STATISTIC: Statistic widget
@@ -150,6 +151,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       THURSDAY: THU
       TUESDAY: TUE
       WEDNESDAY: WED
+    WelcomeImageFit:
+      CONTAIN: Contain
+      COVER: Cover
+      FILL: Fill
+      NONE: None
     WelcomeTextPosition:
       BOTTOM_LEFT: Bottom-left corner
       BOTTOM_RIGHT: Bottom-right corner
@@ -818,13 +824,16 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeConfigurationDescription: You can configure your widget in this configuration area. Please define the welcome text and image to be used.
       WelcomeWidget:
         AdvancedSettings: Advanced settings
+        ChooseAFit: Choose a fit
         DisplayedText: display text
         Greeting:
           Afternoon: Good afternoon
           Evening: Good evening
           Morning: Good morning
         Image: Image
+        ImageInlineStyle: Image inline style
         ImageStyleClass: Image style class
+        PreviewTooltip: This Preview can’t render all settings but only should give an idea how the final widget will look like, image size, orientating and some CSS settings will not be previewed here.
         ShowGreeting: Show greeting
         TextPosition: Text position
         TextSizeAndColor: Text size and color
@@ -1516,6 +1525,30 @@ Dialogs:
               ShowBusinessDetails: Business details
               caseNameNotAvailable: '[Case name not available]'
               defaultEmptyMessage: There are no cases
+            IconSelection:
+              IconLinkTooltip: Click to change icon
+  com:
+    axonivy:
+      portal:
+        dashboard:
+          component:
+            NewsWidget:
+              NewsContentPlaceHolder: Enter News content
+              NewsContentValidateMessage: News content in {0} is required
+              NewsTitlePlaceholder: Enter News title
+              NewsTitleValidateMessage: News title in {0} is required
+              NoNewsAvailable: There is no news yet
+              Publish: Publish
+              RemoveNewsHeader: Remove the news?
+              SeeLess: See less
+              SeeMore: See more
+            NewsWidgetConfiguration:
+              AddNews: Add News
+              EditNews: Edit News
+              NewsContentMaxLengthMessage: News content must not exceed 1000 characters
+              NewsWidgetConfiguration: News feed widget configuration
+              NewsWidgetDescription: This widget shares relevant information as a News Feed into Axon Ivy.
+              NewsWidgetTitle: News feed widget
   components:
     CaseDocument:
       FileDate: Modified at

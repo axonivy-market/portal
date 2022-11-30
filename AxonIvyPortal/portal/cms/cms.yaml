@@ -1390,6 +1390,25 @@ Dialogs:
               ShowBusinessDetails: Business details
               caseNameNotAvailable: '[Case name not available]'
               defaultEmptyMessage: There are no cases
+            IconSelection:
+              IconLinkTooltip: Click to change icon
+  com:
+    axonivy:
+      portal:
+        dashboard:
+          component:
+            NewsWidget:
+              NewsContentPlaceHolder: Enter News content
+              NewsContentValidateMessage: News content in {0} is required
+              NewsTitlePlaceholder: Enter News title
+              NewsTitleValidateMessage: News title in {0} is required
+              NoNewsAvailable: There is no news yet
+              Publish: Publish
+              RemoveNewsHeader: Remove the news?
+              SeeLess: See less
+              SeeMore: See more
+            NewsWidgetConfiguration:
+              NewsWidgetDescription: This widget shares relevant information as a News Feed into Axon Ivy.
   components:
     CaseDocument:
       FileDate: Modified at

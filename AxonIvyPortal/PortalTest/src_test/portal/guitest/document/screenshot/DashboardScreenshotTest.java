@@ -14,11 +14,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
+import ch.ivy.addon.portalkit.util.ConfigurationJsonUtil;
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.Variable;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.DashboardConfigurationPage;
 import portal.guitest.page.DashboardWidgetConfigurationDialogPage;
@@ -269,21 +271,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
 
   @Test
   public void screenshotProcessViewerWidget() throws IOException {
-    login(TestAccount.ADMIN_USER);
-    updatePortalSetting(SHOW_LEGACY_UI .getKey(), "false");
-    redirectToDashboardConfiguration();
-    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
-    configPage.selectPublicDashboardType();
-    configPage.selectEditPublicDashboards();
-    configPage.configureDashboardByIndex(0);
-    newDashboardPage = new NewDashboardPage();
-    newDashboardPage.waitForPageLoaded();
-    WaitHelper.assertTrueWithWait(() -> ScreenshotUtil.isDOMStatusComplete());
-    newDashboardPage.waitForTaskWidgetLoading();
-
-    newDashboardPage.clickAddWidget();
-    WebElement newWidgetDialog = newDashboardPage.getAddWidgetDialog();
-    newWidgetDialog.findElement(By.id("new-widget-dialog-content:5:add-widget")).click();
+    loginAsAdminAndAddPublicWidget(5);
     DashboardWidgetConfigurationDialogPage configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
     configurationDialogPage.selectProcessForProcessViewerWidget("Categoried Leave Request");
     ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "process-viewer-widget-configuration");
@@ -298,6 +286,36 @@ public class DashboardScreenshotTest extends ScreenshotTest {
 
   @Test
   public void screenshotWelcomeWidget() throws IOException {
+    loginAsAdminAndAddPublicWidget(6);
+    DashboardWidgetConfigurationDialogPage configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
+    configurationDialogPage.waitUntilAnimationFinished();
+    ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "welcome-widget-configuration");
+    configurationDialogPage.saveConfiguration();
+  }
+
+  @Test
+  public void screenshotNewsFeedWidget() throws IOException {
+    redirectToRelativeLink("portalKitTestHelper/153CACC26D0D4C3D/createSampleNewsFeed.ivp");
+    loginAsAdminAndAddPublicWidget(7);
+    DashboardWidgetConfigurationDialogPage configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
+    configurationDialogPage.waitUntilAnimationFinished();
+    ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationDialog(),
+        ScreenshotUtil.NEW_DASHBOARD_FOLDER + "news-feed-widget-configuration");
+
+    ConfigurationJsonUtil.updateJSONSetting("dashboard-has-newsfeed.json", Variable.DASHBOARD);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForPageLoaded();
+    newDashboardPage.waitForNewsWidgetLoadedData();
+    ScreenshotUtil.captureElementScreenshot(newDashboardPage.getFirstNewsFeedWidget(),
+        ScreenshotUtil.NEW_DASHBOARD_FOLDER + "news-feed-widget");
+    ScreenshotUtil.resizeBrowser(new Dimension(900, 850));
+    newDashboardPage.openManageNewsDialog();
+    newDashboardPage.enterNewsTitle("Welcome to Portal News feed");
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.NEW_DASHBOARD_FOLDER + "news-feed-widget-manage-content");
+  }
+
+  private void loginAsAdminAndAddPublicWidget(int widgetIndex) {
     login(TestAccount.ADMIN_USER);
     updatePortalSetting(SHOW_LEGACY_UI .getKey(), "false");
     redirectToDashboardConfiguration();
@@ -312,11 +330,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
 
     newDashboardPage.clickAddWidget();
     WebElement newWidgetDialog = newDashboardPage.getAddWidgetDialog();
-    newWidgetDialog.findElement(By.id("new-widget-dialog-content:6:add-widget")).click();
-    DashboardWidgetConfigurationDialogPage configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
-    configurationDialogPage.waitUntilAnimationFinished();
-    ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "welcome-widget-configuration");
-    configurationDialogPage.saveConfiguration();
+    newWidgetDialog.findElement(By.id("new-widget-dialog-content:" + widgetIndex + ":add-widget")).click();
   }
 
   private void showNewCustomizedDashboard() {

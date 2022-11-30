@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="widget" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="widget" value="#{cc.attrs.widget}" />
+
+  <!-- Configuration -->
+  <h:panelGroup id="filter-container" layout="block" styleClass="card dashboard-card widget-configuration news-widget-configuration">
+    <div class="filter-container ui-g">
+      <div id="news-widget-configuration-header" class="w-full filter-container__header">
+        <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}</h2>
+        <p>#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/NewsWidgetDescription')}</p>
+      </div>
+
+      <h:panelGroup id="widget-title-group" styleClass="w-full ui-fluid display-inline-flex-center">
+        <div class="ui-g-4 u-no-padding-left">
+          <p:outputLabel for="widget-title"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetTitle')}" />
+        </div>
+        <div class="ui-g-8 u-no-padding-right">
+          <p:inputText id="widget-title" styleClass="widget-configuration__input-text" value="#{widget.name}" />
+        </div>
+      </h:panelGroup>
+    </div>
+  </h:panelGroup>
+</cc:implementation>
+
+</html>
