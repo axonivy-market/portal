@@ -8,7 +8,7 @@ This component shows environment info when the ``Portal.ShowEnvironmentInfo`` va
 |user-with-environment-info|
 
 To change the displayed information, override the ``UserWithEnvironmentInfo``
-Html Dialog. Refer to :dev-url:`Axon Ivy HtmlOverride wizard
+Html Dialog. Refer to :dev-url:`|ivy| HtmlOverride wizard
 </doc/|version|/designer-guide/how-to/overrides.html?#override-new-wizard>` to
 override ``UserWithEnvironmentInfo`` HTML dialog.
 

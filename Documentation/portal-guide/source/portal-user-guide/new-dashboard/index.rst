@@ -6,9 +6,9 @@ Dashboard
 Introduction
 ------------
 
-The Axon Ivy Portal Dashboard is the first page you encounter after
+The |ivy| Portal Dashboard is the first page you encounter after
 successful login. You can always get back to the dashboard using the 
-**Dashboard** link in the Axon Ivy Portal navigation menu.
+**Dashboard** link in the |ivy| Portal navigation menu.
 Alternatively, you can click on the logo image at the top left of the header.
 
 The dashboard itself contains a set of widgets arranged on the page,
