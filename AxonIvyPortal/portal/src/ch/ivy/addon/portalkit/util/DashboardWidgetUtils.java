@@ -83,7 +83,6 @@ public class DashboardWidgetUtils {
     return widget;
   }
 
-  
   public static ProcessDashboardWidget buildProcessColumns(ProcessDashboardWidget processWidget) {
     for (var filter : processWidget.getFilterableColumns()) {
       if (DashboardStandardProcessColumn.CATEGORY.getField().equalsIgnoreCase(filter.getField()) && 
