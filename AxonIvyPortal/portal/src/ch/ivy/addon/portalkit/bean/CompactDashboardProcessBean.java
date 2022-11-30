@@ -14,12 +14,16 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+
+import static ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn.APPLICATION;
+import static ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn.CATEGORY;
 
 @ManagedBean
 @ViewScoped
@@ -67,7 +71,7 @@ public class CompactDashboardProcessBean
   private List<DashboardProcess> preRenderDefinedCompactProcesses() {
     List<DashboardProcess> selectedProcesses = new ArrayList<>();
     if (getWidget().getCategories() != null) {
-      setPortalCompactProcesses(new ArrayList<>(filterByCategory()));
+      setPortalCompactProcesses(new ArrayList<>(filterByCategory(getAllPortalProcesses())));
     }
     for (String processPath : getWidget().getProcessPaths()) {
       selectedProcesses.addAll(getPortalCompactProcesses().stream()
@@ -82,14 +86,14 @@ public class CompactDashboardProcessBean
     if (getWidget().getCategories() == null) {
       processes = new ArrayList<>(getAllPortalProcesses());
     } else {
-      processes = new ArrayList<>(filterByCategory());
+      processes = new ArrayList<>(filterByCategory(getAllPortalProcesses()));
     }
     getWidget().setDisplayProcesses(processes.stream().collect(Collectors.toList()));
     setPortalCompactProcesses(processes);
   }
 
-  private List<DashboardProcess> filterByCategory() {
-    return getAllPortalProcesses().stream()
+  private List<DashboardProcess> filterByCategory(List<DashboardProcess> dashboardProcesses) {
+    return CollectionUtils.emptyIfNull(dashboardProcesses).stream()
         .filter(process -> DashboardWidgetUtils.isProcessMatchedCategory(process, getWidget().getCategories()))
         .collect(Collectors.toList());
   }
@@ -109,35 +113,36 @@ public class CompactDashboardProcessBean
   @Override
   public void preview() {
     dashboardProcessBean.preview();
+    var isEmptyProcess = CollectionUtils.isEmpty(getWidget().getProcesses());
     List<DashboardProcess> displayProcesses = new ArrayList<>();
-    if (CollectionUtils.isEmpty(getWidget().getProcesses())) {
+    if (isEmptyProcess) {
       displayProcesses = getAllPortalProcesses();
       getWidget().setSelectedAllProcess(true);
     } else {
       getWidget().setSelectedAllProcess(false);
       displayProcesses = getWidget().getProcesses();
     }
-    var applicationFilter = getWidget().getFilterableColumns().stream()
-        .filter(filter -> DashboardStandardProcessColumn.APPLICATION.getField().equalsIgnoreCase(filter.getField()))
-        .findAny().orElse(null);
-    if (applicationFilter != null && CollectionUtils.isNotEmpty(applicationFilter.getFilterList())) {
+    ColumnModel applicationFilter = getFilterableColumnByField(APPLICATION);
+    if (applicationFilter != null) {
       getWidget().setApplications(applicationFilter.getFilterList());
-      if (CollectionUtils.isEmpty(getWidget().getProcesses())) {
+      if (isEmptyProcess) {
         displayProcesses = filterByApplication();
       }
     }
-    
-    
-    var categoryFilter = getWidget().getFilterableColumns().stream()
-        .filter(filter -> DashboardStandardProcessColumn.CATEGORY.getField().equalsIgnoreCase(filter.getField()))
-        .findAny().orElse(null);
-    if (categoryFilter != null && CollectionUtils.isNotEmpty(categoryFilter.getFilterList())) {
+    ColumnModel categoryFilter = getFilterableColumnByField(CATEGORY);
+    if (categoryFilter != null) {
       getWidget().setCategories(categoryFilter.getFilterList());
-      if (CollectionUtils.isEmpty(getWidget().getProcesses())) {
-        displayProcesses = filterByCategory();
+      if (isEmptyProcess) {
+        filterByCategory(displayProcesses);
       }
     }
     getWidget().setDisplayProcesses(displayProcesses);
+  }
+
+  private ColumnModel getFilterableColumnByField(DashboardStandardProcessColumn column) {
+    return getWidget().getFilterableColumns().stream()
+        .filter(filter -> column.getField().equalsIgnoreCase(filter.getField()))
+        .findAny().orElse(null);
   }
 
   public void startProcessWithCompactMode(DashboardProcess process) throws IOException {
