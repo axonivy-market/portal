@@ -93,7 +93,7 @@ In Designer
 -----------
 
 #. Replace all Portal projects with the versions of the new release.
-#. Upgrade your projects to use the latest portal version by using the **Convert Project** feature. Please find more information here: :dev-url:`Converting Projects </doc/nightly/designer-guide/process-modeling/projects/converting.html#converting-projects>`
+#. Upgrade your projects to use the latest portal version by using the **Convert Project** feature. Please find more information here: :dev-url:`Converting Projects </doc/10.0.1.1/designer-guide/process-modeling/projects/converting.html#converting-projects>`
 #. Follow detailed migration notes for each version below.
 #. If customization needs copying code from Portal, merge changes between the
    two versions of the Portal for copied code.
