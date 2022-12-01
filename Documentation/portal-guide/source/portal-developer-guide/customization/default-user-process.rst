@@ -18,7 +18,7 @@ Customization
 -------------
 
 Default user process configuration is stored in 
-:dev-url:`Variables </doc/10.0.1.1/designer-guide/configuration/variables.html>`.
+:dev-url:`Variables </doc/10.0.2/designer-guide/configuration/variables.html>`.
 Update the variable :ref:`portal-dashboard-favorite-processes` to customize default user processes.
 
 .. tip::
