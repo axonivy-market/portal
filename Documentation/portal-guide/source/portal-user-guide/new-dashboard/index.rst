@@ -30,7 +30,7 @@ The following default widgets are available:
 
 #. **Welcome widget**: This widget greets the user based on the local time and enables a friendlier approach.
 
-#. **News feed widget**: This widget shares relevant information as a News Feed into Axon Ivy.
+#. **News feed widget**: This widget shares relevant information as a News Feed into |ivy|.
 
 In addition, a developer can provide custom widgets to add relevant project information to your dashboard.
 
