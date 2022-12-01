@@ -87,7 +87,7 @@ Define External Webpage
 -----------------------
 
 You can use the custom widget to embed an external webpage into the Portal dashboard.
-This feature is extremely useful for a company using other applications besides Axon Ivy.
+This feature is extremely useful for a company using other applications besides |ivy|.
 Now users can interact with multiple systems from the Portal dashboard.
 
 The JSON structure is the following:
@@ -201,7 +201,7 @@ Attributes explanation
             }
          ..
 
-         - type ``user``: The parameter value is an Axon Ivy username. In the
+         - type ``user``: The parameter value is an |ivy| username. In the
            configuration dialog, the user can edit this parameter by choosing a
            user from a dropdown. Only Ivy usernames are accepted as values.
 
