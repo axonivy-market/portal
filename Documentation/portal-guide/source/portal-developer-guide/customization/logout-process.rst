@@ -3,7 +3,7 @@
 Logout Process
 ==============
 
-#. Create an Axon Ivy project which has ``portal`` as a
+#. Create an |ivy| project which has ``portal`` as a
    required library.
 
 #. Copy the ``PortalStart`` process from ``portal`` to your project.

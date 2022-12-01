@@ -27,7 +27,7 @@ How To Override Task Widget's UI
 
 Refer to ``portal-developer-examples`` project for examples
 
-#. Introduce an Axon Ivy project which has ``portal`` as a
+#. Introduce an |ivy| project which has ``portal`` as a
    required library.
 
 #. To customize task widget, you must customize Portal Home first. Refer
@@ -39,7 +39,7 @@ Refer to ``portal-developer-examples`` project for examples
    previous step. This process is new home page and administrator should
    register this link by Portal's Admin Settings.
 
-#. Use :dev-url:`Axon Ivy HtmlOverride wizard </doc/nightly/designer-guide/how-to/overrides.html?#override-new-wizard>` to override ``PortalTasks`` HTML dialog.
+#. Use :dev-url:`|ivy| HtmlOverride wizard </doc/|version|/designer-guide/how-to/overrides.html?#override-new-wizard>` to override ``PortalTasks`` HTML dialog.
 
    .. tip:: This action overrides ``Task widget`` in: TaskList page, Task Search result.
 
@@ -95,7 +95,7 @@ function of these columns work:
 
          <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-name-component" componentId="customer-name" column="customVarCharField5" dataModel="#{taskView.dataModel}" labelValue="#{task.customFields().stringField('CustomVarCharField5')}" />
 
-*  Use Axon Ivy Override to override the ``InitializeTaskDataModel``
+*  Use |ivy| Override to override the ``InitializeTaskDataModel``
    callable and initialize data model by your customized one.
 
 *  In your customized Portal tasks HTMLDialog, the customized data model
@@ -137,7 +137,7 @@ Task Filter
    ``initFilterContainer`` method and initialize filter container (see
    javadoc comments)
 
--  Use Axon Ivy Override to override the ``InitializeTaskDataModel``
+-  Use |ivy| Override to override the ``InitializeTaskDataModel``
    callable and initialize data model by your customized one.
 
 -  In your customized Portal tasks HTMLDialog, the customized data model
@@ -249,7 +249,7 @@ Custom Task Delegate
 Portal allows to customize the list of users and roles that a task can
 be delegated to. This can be done following these steps:
 
-#. Introduce an Axon Ivy project which has ``portal`` as a
+#. Introduce an |ivy| project which has ``portal`` as a
    required library and its own ``PortalStart`` process. Refer to step
    1, 2, 3, 4 in :ref:`override task widget's
    UI <customization-task-widget-how-to-overide-ui>` guide.
