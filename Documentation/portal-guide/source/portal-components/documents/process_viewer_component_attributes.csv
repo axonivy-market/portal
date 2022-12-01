@@ -1,0 +1,4 @@
+Name,Default,Type,Description
+caseId,,Long,Case ID.
+processLink,,String,Process or Case Map relative link.
+containerStyleClass,,String,Component container style class.
