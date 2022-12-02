@@ -29,7 +29,7 @@ How to override case widget's UI
 
 Refer to ``PortalExamples`` project for examples
 
-1. Introduce an Axon Ivy project which has ``PortalTemplate`` as a
+1. Introduce an |ivy| project which has ``PortalTemplate`` as a
    required library.
 
 2. To customize case widget, you must customize Portal Home first. Refer
@@ -53,7 +53,7 @@ Refer to ``PortalExamples`` project for examples
       .. tip:: Highly recommend to copy the ``PortalCases`` HTMLDialog in
          PortalTemplate and change the copied one's view.
 
-   -  Use Axon Ivy Override to override the ``OpenPortalCases`` callable. The
+   -  Use |ivy| Override to override the ``OpenPortalCases`` callable. The
       original implementation of this callable is
       calling ``PortalCases``, change it to call the customized Page introduced in
       the step above. The signature of this callable is ``useView(CaseView)`` and
@@ -113,7 +113,7 @@ function of these columns work:
 
        <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCustomField id="case-customer-name-component" panelGroupId="customVarCharField1-column-case-header-panel" componentId="customVarCharField1-column-case-header-text" column="customVarCharField1" dataModel="#{caseView.dataModel}" labelValue="#{case.customFields().stringField('CustomVarCharField1')}" />
 
--  Use Axon Ivy Override to override the ``InitializeCaseDataModel``
+-  Use |ivy| Override to override the ``InitializeCaseDataModel``
    callable and initialize data model by your customized one.
 
 -  In your customized portal cases HTMLDialog, the customized data model
@@ -144,7 +144,7 @@ Case filter
    ``initFilterContainer`` method and initialize filter container (see
    javadoc comments)
 
--  Use Axon Ivy Override to override the ``InitializeCaseDataModel``
+-  Use |ivy| Override to override the ``InitializeCaseDataModel``
    callable and initialize data model by your customized one.
 
 -  In your customized portal cases HTMLDialog, the customized data model

@@ -3,13 +3,13 @@
 Portal Header
 *************
 
-The Axon Ivy Portal header is always visible. On the top right of the
+The |ivy| Portal header is always visible. On the top right of the
 header you find two very useful features:
 
 #. The name of the user you’re logged in with. Additionally, if you
    click on your username you get a menu with options that allow you to
-   configure the Axon Ivy Portal to your personal needs. See `User Settings in
-   the Axon Ivy Portal`_ for a detailed overview of the configuration options.
+   configure the |ivy| Portal to your personal needs. See `User Settings in
+   the |ivy| Portal`_ for a detailed overview of the configuration options.
 
 #. Next to your username is a |search-icon| **Search Bar** providing you
    with a portal-wide search. This feature is described in detail in 
@@ -17,10 +17,10 @@ header you find two very useful features:
 
 .. figure:: images/portal-header.png
 
-User Settings in the Axon Ivy Portal
+User Settings in the |ivy| Portal
 ------------------------------------
 
-When you click on your username in the top right of the Axon Ivy Portal,
+When you click on your username in the top right of the |ivy| Portal,
 a menu is shown allowing you to configure the portal to your personal
 needs. These features are described in the following sections below.
 
@@ -92,7 +92,7 @@ Email settings
 --------------
 
 The menu entry :guilabel:`Email settings` allows you to configure your
-preferences related to standard email notifications send by the Axon Ivy
+preferences related to standard email notifications send by the |ivy|
 Engine.
 
 .. hint:: 
@@ -126,9 +126,9 @@ Language Settings
 -----------------
 
 The menu entry :guilabel:`Language settings` allows you to specify your
-preferred application language. The setting will affect all Axon Ivy
+preferred application language. The setting will affect all |ivy|
 Portal pages and – if supported – your companies applications pages as
-well. The following languages are currently supported in the Axon Ivy
+well. The following languages are currently supported in the |ivy|
 Portal:
 
 -  English
@@ -165,7 +165,7 @@ Info
 ----
 
 The menu entry :guilabel:`Info` provides you with detailed information about the
-Axon Ivy Engine, the Axon Ivy Portal and your companies application. You
+|ivy-engine|, the |ivy| Portal and your companies application. You
 might be asked for this information in case you issue a support request.
 
 .. figure:: images/portal-version-information.png
@@ -173,12 +173,12 @@ might be asked for this information in case you issue a support request.
 Logout
 ------
 
-The menu entry :guilabel:`Logout` will terminate your session in the Axon Ivy
-Portal. You’ll be routed back to the login page of the Axon Ivy
+The menu entry :guilabel:`Logout` will terminate your session in the |ivy|
+Portal. You’ll be routed back to the login page of the |ivy|
 Portal.
 
 .. hint:: 
-   The Axon Ivy Portal will also do
+   The |ivy| Portal will also do
    an automatic logout if you’re   
    inactive for a certain amount of
    time.                           
@@ -187,8 +187,8 @@ Global Search
 -------------
 
 The Global Search is a convenient tool for you to look up
-information in the whole Axon Ivy Portal. You may search for any
-keyword. By default, the Axon Ivy Portal will search for:
+information in the whole |ivy| Portal. You may search for any
+keyword. By default, the |ivy| Portal will search for:
 
 #. Processes
 
@@ -196,7 +196,7 @@ keyword. By default, the Axon Ivy Portal will search for:
 
 #. Tasks
 
-When you confirm the keyword you’re looking for, the Axon Ivy Portal
+When you confirm the keyword you’re looking for, the |ivy| Portal
 will route you to the **Global Search Results** page. For each category
 a tab is provided, giving you the results of your search.
 
@@ -206,7 +206,7 @@ a tab is provided, giving you the results of your search.
    Your company’s application may   
    provide further search           
    capabilities which are integrated
-   in the Axon Ivy Portal Global    
+   in the |ivy| Portal Global    
    Search. You’d find the results on
    the result page accordingly.     
    Contact your administrator for   
