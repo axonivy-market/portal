@@ -136,7 +136,7 @@ How to configure widgets in task details
    -  ``x``, ``y``, ``w`` and ``h`` must be **integers**.
    -  ``x + w`` must **not be larger** than **12**.
    -  For data of custom widget, if you input ``processStart``, don't input ``url``. You can only use one of them.
-   -  We support all task states for filter type ``states``. Please refer to :dev-url:`Task States </doc/10.0.2/public-api/ch/ivyteam/ivy/workflow/TaskState.html>` to check for avaiable task states.
+   -  We support all task states for filter type ``states``. Please refer to :dev-url:`Task States </doc/|version|/public-api/ch/ivyteam/ivy/workflow/TaskState.html>` to check for avaiable task states.
 
 
 .. _customization-task-item-details-how-to-overide-ui:
@@ -146,7 +146,7 @@ How to customize Task item details UI
 
 Refer to ``portal-developer-examples`` project for examples.
 
-#. Introduce an Axon Ivy project which has ``portal`` as a
+#. Introduce an |ivy| project which has ``portal`` as a
    required library.
 
 #. To customize task item details, you must customize Portal Home first.
@@ -159,7 +159,7 @@ Refer to ``portal-developer-examples`` project for examples.
    previous step. This process is new home page and administrator should
    register this link by Portal's Admin Settings.
 
-#. Use :dev-url:`Axon Ivy HtmlOverride wizard </doc/10.0.2/designer-guide/how-to/overrides.html?#override-new-wizard>` to override ``PortalTaskDetails`` HTML dialog.
+#. Use :dev-url:`|ivy| HtmlOverride wizard </doc/|version|/designer-guide/how-to/overrides.html?#override-new-wizard>` to override ``PortalTaskDetails`` HTML dialog.
 
 #. After previous steps, you can override Task item details UI elements
    to show custom panels, show or hide elements.
@@ -204,7 +204,7 @@ Show Custom Panels (Widgets)
    - Go to the example homepage by the process ``Start Processes/ExamplePortalStart/DefaultApplicationHomePage.ivp``
    - And then go to task details to check the new custom layout.
 
-   About how to configure Variables, refer to :dev-url:`Axon Ivy Variables </doc/10.0.2/designer-guide/configuration/variables.html>`
+   About how to configure Variables, refer to :dev-url:`|ivy| Variables </doc/|version|/designer-guide/configuration/variables.html>`
 
 
 There are **two steps** for adding new custom panels.

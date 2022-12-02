@@ -17,7 +17,7 @@ section to override document functions of Portal.
 Customization
 -------------
 
-#. Introduce an Axon Ivy project which has ``portal`` as a
+#. Introduce an |ivy| project which has ``portal`` as a
    required library.
 
 #. Copy the ``PortalStart`` process from ``portal`` to your
