@@ -41,7 +41,7 @@ Below is a JSON example for the configuration of user items.
   [
       {
           "id" : "axon-ivy",
-          "title" : "Axon Ivy",
+          "title" : "|ivy|",
           "permissions": ["#demo"],
           "url" : "https://www.axonivy.com/"
       },

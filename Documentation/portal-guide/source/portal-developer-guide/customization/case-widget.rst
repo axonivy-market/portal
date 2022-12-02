@@ -30,7 +30,7 @@ We provide a code sample in ``portal-developer-examples``.
 
 Follow these steps to override the case Widget UI:
 
-#. Create an Axon Ivy project and add ``portal`` as a
+#. Create an |ivy| project and add ``portal`` as a
    required library.
 
 #. To customize the case widget, you have to customize Portal Home first. Refer to
@@ -42,8 +42,8 @@ Follow these steps to override the case Widget UI:
    step. This process is the new home page. The Portal administrator has to
    register this link in the Portal Admin Settings.
 
-#. Use :dev-url:`Axon Ivy HtmlOverride wizard
-   </doc/10.0.2/designer-guide/how-to/overrides.html?#override-new-wizard>` to
+#. Use :dev-url:`|ivy| HtmlOverride wizard
+   </doc/|version|/designer-guide/how-to/overrides.html?#override-new-wizard>` to
    override the ``PortalCases`` HTML dialog.
 
    .. tip:: This action overrides ``Case widget`` in the CaseList page and the Case Search result page.
@@ -104,7 +104,7 @@ function of these columns work:
 
        <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCustomField id="case-customer-name-component" panelGroupId="customVarCharField1-column-case-header-panel" componentId="customVarCharField1-column-case-header-text" column="customVarCharField1" dataModel="#{caseView.dataModel}" labelValue="#{case.customFields().stringField('CustomVarCharField1')}" />
 
--  Use Axon Ivy Override to override the ``InitializeCaseDataModel`` callable
+-  Use |ivy| Override to override the ``InitializeCaseDataModel`` callable
    and initialize the data model with your customized one.
 
 -  In your customized Cases HTMLDialog, the customized data model
@@ -138,7 +138,7 @@ Case Filter
    ``initFilterContainer`` method and initialize filter container (see
    javadoc comments)
 
--  Use Axon Ivy Override to override the ``InitializeCaseDataModel``
+-  Use |ivy| Override to override the ``InitializeCaseDataModel``
    callable and initialize data model by your customized one.
 
 -  In your customized Cases HTMLDialog, the customized data model
