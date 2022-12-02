@@ -6,11 +6,11 @@ Full Case List
 The **Full Case List** page shows you all cases you’re involved in.
 This page provides you with extended information on the cases, as well
 as advanced search and filter capabilities. You can reach the page by
-using the |case-icon| :guilabel:`Cases` link in the Axon Ivy Portal menu.
+using the |case-icon| :guilabel:`Cases` link in the |ivy| Portal menu.
 
 .. hint:: 
    Depending on the roles you hold in the application and the configuration of
-   the Axon Ivy Portal, you might see not only the cases you’re involved in but
+   the |ivy| Portal, you might see not only the cases you’re involved in but
    all cases.                      
 
 .. figure:: images/navigate-to-full-cases-list-page.png
@@ -62,7 +62,7 @@ The case details are separated into 4 different sections:
 
    .. figure:: images/case-details-related-tasks-cases.png
 
-#. Histories, the Axon Ivy Portal adds notes
+#. Histories, the |ivy| Portal adds notes
    here for state changes of the case. You may add additional notes
    which is described below.
 

@@ -5,7 +5,7 @@ Troubleshooting
 ===============
 
 Here you will find solutions to some of the most common problems related
-to Axon Ivy Portal.
+to |ivy| Portal.
 
 If you can't find your solution here there are some other sources which
 could help:
@@ -13,7 +13,7 @@ could help:
 -  Community
 
    The `Community <http://community.axonivy.com/>`__ contains a
-   considerable amount of questions and answers related to Axon Ivy
+   considerable amount of questions and answers related to |ivy|
    Designer and Engine.
 
 -  Stack Overflow
@@ -55,7 +55,7 @@ Update default pages
 ====================
 If you copy ``PortalStart.mod`` to your project for customization, 
 you need to follow this chapter to customize standard processes in your designer and engine:
-:dev-url:`Standard Processes </doc/8.0/engine-guide/administration/standard-processes.html>`
+:dev-url:`Standard Processes |version|/engine-guide/administration/standard-processes.html>`
 
 For example, below is the default setting:
 

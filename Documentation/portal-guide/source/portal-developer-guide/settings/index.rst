@@ -210,7 +210,7 @@ Permission settings
 ===================
 
 Permissions can be configured in :dev-url:`Cockpit
-</doc/8.0/engine-guide/tool-reference/engine-cockpit/security.html>`.
+|version|/engine-guide/tool-reference/engine-cockpit/security.html>`.
 In the security area, you will find all these permission in the Group
 "PortalPermissions"
 
@@ -549,7 +549,7 @@ Global variables
    |                                             |                             | ation/quartz-2.1.7/tutori |
    |                                             |                             | als/tutorial-lesson-06.htm|
    |                                             |                             | l>`__.                    |
-   |                                             |                             | Restart Axon Ivy Engine   |
+   |                                             |                             | Restart |ivy-engine|   |
    |                                             |                             | after changing this       |
    |                                             |                             | variable.                 |
    +---------------------------------------------+-----------------------------+---------------------------+
