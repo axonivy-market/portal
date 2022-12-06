@@ -1,22 +1,23 @@
 pipeline {
   agent {
-    dockerfile {
-      dir '.'
-      filename 'build/Dockerfile'
-    }
+    label 'linux'
   }
 
- options {
+  options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '2'))
   }
 
   stages {
-    stage('test') {
+    stage('build') {
       steps {
         script {
-          maven cmd: '--threads 4 ' +
-                     'clean install ' +
-                     '-f AxonIvyPortal/portal-components/pom.xml'
+          docker.withRegistry('', 'docker.io') {
+            docker.image('maven:3.8.6-eclipse-temurin-17').inside {
+              sh 'RUN addgroup --gid 1000 build && adduser --uid 1000 --gid 1000 --disabled-password --gecos "" build'
+              sh 'mvn -version'
+              maven cmd: "clean install -f AxonIvyPortal/portal-components/pom.xml"
+            }
+          }
         }
         archiveArtifacts artifacts: "*/*/target/*.iar", allowEmptyArchive: true
       }
