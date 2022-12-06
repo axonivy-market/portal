@@ -14,7 +14,7 @@ Configure Portal Settings
 
 To manually configure Portal settings, refer to :ref:`update-portal-settings`.
 
-Portal settings are stored as :dev-url:`Variables </doc/10.0.2/designer-guide/configuration/variables.html>`.
+Portal settings are stored as :dev-url:`Variables </doc/|version|/designer-guide/configuration/variables.html>`.
 
 In development, it is a quite tedious task to configure Portal settings after
 restarting Designer. Therefore, update your variables in
@@ -60,7 +60,7 @@ Permission Settings
 ===================
 
 Configure permissions in the :dev-url:`Engine Cockpit
-</doc/10.0.2/engine-guide/reference/engine-cockpit/security.html>`. In the
+</doc/|version|/engine-guide/reference/engine-cockpit/security.html>`. In the
 security area, you will find all these permission in group "PortalPermissions".
 
 Task Permissions
@@ -538,7 +538,7 @@ Data model:
 .. code-block:: html
 
    [{  "id": "01322912db224658a222804802844a7b",
-      "name": "Download latest Axon Ivy",
+      "name": "Download latest |ivy|",
       "link": "https://developer.axonivy.com/download",
       "creatorId": 2,
       "icon": "fa-paperclip",

@@ -136,7 +136,7 @@ The basic JSON structure of a Task widget
 Custom Columns
 --------------
 
-Axon Ivy supports custom fields for tasks. You can show them in the Task widget
+|ivy| supports custom fields for tasks. You can show them in the Task widget
 as a column.
 
 You can predefine which column to show, and other attributes such as filter, format, and style. Below is a standard JSON of a custom column.
@@ -167,7 +167,7 @@ differences:
 
 .. important::
    Portal only displays custom fields declared in the ``custom-fields.yaml`` file.
-   Refer to :dev-url:`Custom Fields Meta Information </doc/10.0.2/designer-guide/how-to/workflow/custom-fields.html#meta-information>` for more information.
+   Refer to :dev-url:`Custom Fields Meta Information </doc/|version|/designer-guide/how-to/workflow/custom-fields.html#meta-information>` for more information.
 
 Filter Conditions
 -----------------
@@ -262,7 +262,7 @@ Below is the list of filterable columns and their corresponding filter condition
       If you define a list of priorities in ``filterList``, the task widget will show
       tasks that have priority listed in ``filterList``.
 
-      Refer to :dev-url:`Task Priority </doc/10.0.2/public-api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>` for
+      Refer to :dev-url:`Task Priority </doc/|version|/public-api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>` for
       available task priorities.
 
    - ``state``
@@ -285,7 +285,7 @@ Below is the list of filterable columns and their corresponding filter condition
       If you define a list of states in ``filterList``, the task widget will show
       tasks that are in one of the states listed in ``filterList``. 
 
-      Refer to :dev-url:`Task States </doc/10.0.2/public-api/ch/ivyteam/ivy/workflow/TaskState.html>` for
+      Refer to :dev-url:`Task States </doc/|version|/public-api/ch/ivyteam/ivy/workflow/TaskState.html>` for
       available task states.
 
 
