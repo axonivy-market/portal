@@ -75,9 +75,9 @@ Language settings
 -----------------
 
 **Language** allows you to specify your
-preferred application language. This setting will affect all Axon Ivy
+preferred application language. This setting will affect all |ivy|
 Portal pages, notification mails, and – if supported – your company's application pages as
-well. The following languages are currently supported in the Axon Ivy
+well. The following languages are currently supported in the |ivy|
 Portal:
 
 -  English
@@ -104,7 +104,7 @@ Email settings
 --------------
 
 **Email settings** allows you to configure your
-preferences related to standard email notifications sent by the Axon Ivy
+preferences related to standard email notifications sent by the |ivy|
 Engine.
 
 .. hint:: 
