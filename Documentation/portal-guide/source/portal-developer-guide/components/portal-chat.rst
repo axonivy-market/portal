@@ -17,7 +17,7 @@ Information
 
 - To use chat, refer to :ref:`portal-chat`
 
-- Chat feature is reimplemented from Axon Ivy 7.4.
+- Chat feature is reimplemented from |ivy| 7.4.
 
 - If browsers access Portal through a reverse proxy Nginx, set Portal setting **CHAT_RESPONSE_TIMEOUT** a number less than Nginx timeout to make chat work properly.
 
@@ -30,7 +30,7 @@ Information
 
 - Group chat supports some customizations, refer to :ref:`Group chat customization <customization-group-chat>` for more details.
 
-- If your system uses an additional **Valve**, then we recommend adding the support async in the ``Context.xml`` file, this file is available in :dev-url:`File Reference </doc/8.0/engine-guide/configuration/files/context-xml.html>`.
+- If your system uses an additional **Valve**, then we recommend adding the support async in the ``Context.xml`` file, this file is available in :dev-url:`File Reference </doc/|version|/engine-guide/configuration/files/context-xml.html>`.
 
   .. code-block:: html
 

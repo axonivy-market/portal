@@ -8,7 +8,7 @@ One way to consume statistics is through your personal dashboard (see
 **Full Statistics** page provides you with the perfect toolset. You can
 consume statistics and charts here at one glance and have the chance to setup
 your own statistics. You can reach the page by using the 
-:guilabel:`Statistics` link in the Axon Ivy Portal menu or by using the :guilabel:`Show all
+:guilabel:`Statistics` link in the |ivy| Portal menu or by using the :guilabel:`Show all
 charts` quick link in the statistics section of your dashboard.
 
 .. hint:: 
