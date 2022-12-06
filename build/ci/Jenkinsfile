@@ -1,6 +1,5 @@
 pipeline {
   agent {
-    label 'linux'
     dockerfile {
       dir '.'
       filename 'build/Dockerfile'
