@@ -28,7 +28,7 @@ of each module, refer to :ref:`architecture` .
 -  AxonIvyExpress
 
 The project deployment of Ivy project are described in :dev-url:`project
-deployment </doc/8.0/engine-guide/administration/deployment.html>`.
+deployment </doc/|version|/engine-guide/administration/deployment.html>`.
 
 .. _installation-basic-portal-mode:
 
@@ -108,7 +108,7 @@ Migration notes
 
 This document informs you in detail about incompatibilities that were
 introduced between Portal versions and tells you what needs to be done
-to make your existing Portal working with current Axon Ivy Engine.
+to make your existing Portal working with current |ivy-engine|.
 
 How to migrate
 --------------
@@ -117,10 +117,10 @@ How to migrate
    If you call any Portal API which is not mentioned in the document. It could be changed or removed without inform. Don't forget
    to re-implement the concerning API in your own project.
 
-   In order to migrate Portal, you need to migrate Axon Ivy, refer
-   :dev-url:`Axon Ivy migration
-   notes </doc/8.0/engine-guide/installation/upgrade.html>`.
-   Changes in Axon Ivy could lead to problems if customer project is not
+   In order to migrate Portal, you need to migrate |ivy|, refer
+   :dev-url:`|ivy| migration
+   notes </doc/|version|/engine-guide/installation/upgrade.html>`.
+   Changes in |ivy| could lead to problems if customer project is not
    migrated properly.
 
 In designer
@@ -251,7 +251,7 @@ Release notes
 =============
 
 This part lists all relevant changes since the last official product
-releases of Axon Ivy.
+releases of |ivy|.
 
 Changes in 8.0.27
 -----------------
