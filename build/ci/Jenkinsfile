@@ -1,61 +1,36 @@
 pipeline {
-  agent {label 'master'}
-  
+  agent {
+    label 'linux'
+  }
+
   options {
-    buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
-  }
-  
-  triggers {
-    pollSCM 'H/15 * * * *'
+    buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '2'))
   }
 
-  tools { 
-      maven '3.8' 
-      jdk '17' 
-  }
-
-  parameters {
-      string(name: 'modulesMustBeBuilt', defaultValue: '', description: 'Define modules must be built. By default, only modules which have code changes since the last successful build are built. Available modules: portal-components,portal,AxonIvyExpress,PortalKitTestHelper,portal-user-examples,portal-developer-examples,InternalSupport,portal-components-examples. E.g. portal-components code is changed, then set this property value portal => portal-components,portal will be built.')
-      choice(name: 'engine', choices: ['singleAppEngine', 'multiAppsEngine'], description: 'Which engine to deploy? If multiAppsEngine, deploy all modules.')
-
-  }
 
   stages {
     stage('build') {
       steps {
-        script {
-          builtModules = []
-          config = [singleAppEngine: [applications: ['Portal'], engineDir : 'D:/tools/ivy-server/trunk'] ,multiAppsEngine: [applications: ['Portal', 'App1', 'App2'], , engineDir : 'D:/tools/ivy-server/trunk-1']]
-          applications = config[params.engine]['applications']
-          engineDir = config[params.engine]['engineDir']
 
-          def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples']
-          def changeLog = ''
-          if (env.GIT_PREVIOUS_SUCCESSFUL_COMMIT) {
-            changeLog = bat(script: "git diff --name-only ${env.GIT_COMMIT} ${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}", returnStdout: true)
-          }
-          for (module in modules) {
-            if (changeLog.contains(module) || params.modulesMustBeBuilt.contains(module.split('/')[1]) || params.engine == 'multiAppsEngine') {
-              builtModules.add(module)
-              bat "mvn clean install -f ${module}/pom.xml"
+
+
+        script {
+          def version = 'dev'
+          docker.withRegistry('', 'docker.io') {
+            docker.image('maven:3.8.6-eclipse-temurin-17').inside {
+                def workspace = pwd()
+                maven cmd: "clean install -f AxonIvyPortal/portal-components/pom.xml -Dmaven.test.failure.ignore=true  " +
+                        "-Dengine.directory=${workspace}/target/ivyEngine " +
+                        "-Divy.engine.version='[11.1.0,]' "
             }
           }
-          archiveArtifacts artifacts: "*/*/target/*.iar", allowEmptyArchive: true
-          junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
+          
+            
         }
-      }
-    }
-
-    stage('deploy') {
-      steps {
-        script {
-          def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').getProperties().getProperty("build.plugin.version")
-          for (module in builtModules) {
-            for (application in applications) {
-              bat "mvn com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.engine.app=${application} -Divy.deploy.engine.dir=${engineDir} -Divy.test.engine=MODIFY_EXISTING"
-            }
-          }
-        }
+        
+        
+        archiveArtifacts artifacts: "*/*/target/*.iar", allowEmptyArchive: true
+        junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
       }
     }
   }
