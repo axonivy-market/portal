@@ -1,21 +1,23 @@
 pipeline {
   agent {
     label 'linux'
+    dockerfile {
+      dir '.'
+      filename 'build/Dockerfile'
+    }
   }
 
-  options {
+ options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '2'))
   }
 
   stages {
-    stage('build') {
+    stage('test') {
       steps {
         script {
-          docker.withRegistry('', 'docker.io') {
-            docker.image('maven:3.8.6-eclipse-temurin-17').inside {
-              maven cmd: "clean install -f AxonIvyPortal/portal-components/pom.xml"
-            }
-          }
+          maven cmd: '--threads 4 ' +
+                     'clean install ' +
+                     '-f AxonIvyPortal/portal-components/pom.xml'
         }
         archiveArtifacts artifacts: "*/*/target/*.iar", allowEmptyArchive: true
       }
