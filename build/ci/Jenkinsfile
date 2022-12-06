@@ -7,30 +7,17 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '2'))
   }
 
-
   stages {
     stage('build') {
       steps {
-
-
-
         script {
-          def version = 'dev'
           docker.withRegistry('', 'docker.io') {
             docker.image('maven:3.8.6-eclipse-temurin-17').inside {
-                def workspace = pwd()
-                maven cmd: "clean install -f AxonIvyPortal/portal-components/pom.xml -Dmaven.test.failure.ignore=true  " +
-                        "-Dengine.directory=${workspace}/target/ivyEngine " +
-                        "-Divy.engine.version='[11.1.0,]' "
+              maven cmd: "clean install -f AxonIvyPortal/portal-components/pom.xml"
             }
           }
-          
-            
         }
-        
-        
-        archiveArtifacts artifacts: "*/*/target/*.iar", allowEmptyArchive: true
-        junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
+        archiveArtifacts artifacts: "**/target/*.iar", allowEmptyArchive: true
       }
     }
   }
