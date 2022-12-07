@@ -17,7 +17,7 @@
   </distributionManagement>
   <properties>
     <ivy.engine.version>11.1.0</ivy.engine.version>
-    <build.plugin.version>11.1.0-SNAPSHOT</build.plugin.version>
+    <build.plugin.version>10.0.1</build.plugin.version>
   </properties>
   <dependencies>
     <dependency>
@@ -61,30 +61,6 @@
           <compilerWarnings>false</compilerWarnings>
         </configuration>
       </plugin>
-      <plugin>
-<groupId>org.codehaus.mojo</groupId>
-<artifactId>flatten-maven-plugin</artifactId>
-<version>${flatten.plugin.version}</version>
-<configuration>
-<updatePomFile>true</updatePomFile>
-</configuration>
-<executions>
-<execution>
-<id>flatten</id>
-<phase>process-resources</phase>
-<goals>
-<goal>flatten</goal>
-</goals>
-</execution>
-<execution>
-<id>flatten.clean</id>
-<phase>clean</phase>
-<goals>
-<goal>clean</goal>
-</goals>
-</execution>
-</executions>
-</plugin>
     </plugins>
   </build>
 </project>
