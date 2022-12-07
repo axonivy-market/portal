@@ -5,18 +5,10 @@ pipeline {
     stage("build") {
       steps {
         script { 
-          def random = (new Random()).nextInt(10000000)
-          def networkName = "build-" + random
-          def ivyName = "ivy-" + random
-          sh "docker network create ${networkName}"
-          try {
-            docker.image("selenium/standalone-firefox:4").withRun("-e START_XVFB=false --shm-size=2g --name ${seleniumName} --network ${networkName}") {
-              docker.build("maven-build", "-f build/ci/Dockerfile .").inside("--name ${ivyName} --network ${networkName}") {
-                maven cmd: "clean install -f AxonIvyPortal/portal-components/pom.xml"
-              }
+          docker.withRegistry('', 'docker.io') {
+            docker.build("portal", "-f build/Dockerfile .").inside() {
+              maven cmd: "clean install -f AxonIvyPortal/portal-components/pom.xml"
             }
-          } finally {
-            sh "docker network rm ${networkName}"
           }
           archiveArtifacts artifacts: "*/*/target/*.iar", allowEmptyArchive: true
         }
