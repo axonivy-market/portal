@@ -13,7 +13,7 @@ pipeline {
           sh "docker network create ${networkName}"
           try {
             docker.image("selenium/standalone-firefox:4").withRun("-e START_XVFB=false --shm-size=2g --name ${seleniumName} --network ${networkName}") {
-              docker.build("maven-build", "-f build/Dockerfile/ci .").inside("--name ${ivyName} --network ${networkName}") {
+              docker.build("maven-build", "-f build/ci/Dockerfile .").inside("--name ${ivyName} --network ${networkName}") {
                 maven cmd: "clean install -f AxonIvyPortal/test/pom.xml"
               }
             }
