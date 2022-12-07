@@ -6,6 +6,16 @@
   <artifactId>test</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>iar</packaging>
+  <distributionManagement>
+    <repository>
+      <id>nexus.axonivy.com</id>
+      <url>https://nexus.axonivy.com/repository/maven-releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>nexus.axonivy.com</id>
+      <url>https://nexus.axonivy.com/repository/maven-snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
   <build>
     <plugins>
       <plugin>
