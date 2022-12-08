@@ -1,7 +1,9 @@
 package ch.ivy.addon.portalkit.security;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -9,6 +11,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.IPermissionAccess;
+import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityDescriptor;
@@ -69,7 +72,16 @@ public enum PortalSecurity {
             IPermission.USER_CREATE_OWN_SUBSTITUTE,
             IPermission.USER_DELETE_OWN_SUBSTITUTE,
             IPermission.USER_READ_OWN_SUBSTITUTIONS);
-  
+
+    private static final List<PortalPermission> EVERYBODY_PERMISSIONS = Arrays.asList(
+        PortalPermission.STATISTIC_ADD_DASHBOARD_CHART, PortalPermission.EXPRESS_CREATE_WORKFLOW,
+        PortalPermission.ACCESS_FULL_CASE_LIST, PortalPermission.ACCESS_FULL_TASK_LIST,
+        PortalPermission.ACCESS_FULL_PROCESS_LIST, PortalPermission.ACCESS_FULL_STATISTICS_LIST,
+        PortalPermission.TASK_CASE_ADD_NOTE, PortalPermission.TASK_CASE_SHOW_MORE_NOTE,
+        PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS, PortalPermission.SHOW_ALL_TASKS_OF_CASE,
+        PortalPermission.TASK_DISPLAY_RESET_ACTION, PortalPermission.TASK_DISPLAY_RESERVE_ACTION,
+        PortalPermission.TASK_DISPLAY_DELEGATE_ACTION, PortalPermission.DASHBOARD_WRITE_OWN);
+
     private static final List<PortalPermission> ALL_PORTAL_PERMISSIONS = Arrays.asList(PortalPermission.values());
     private Permissions() {}
   }
@@ -110,25 +122,39 @@ public enum PortalSecurity {
     }
   }
 
-
   public void grantPermissionsToForSecurityMember(List<PortalPermission> iPermissions, ISecurityMember securityMember) {
     if (CollectionUtils.isEmpty(iPermissions) || securityMember == null) {
       return;
     }
-    ISecurityDescriptor portalSecurity = ISecurityContext.current().securityDescriptor();
-    
-    List<IPermission> denniedPermission = portalSecurity
-        .getPermissionAccesses(securityMember)
-        .stream()
+    List<IPermission> deniedPermission = getDeniedPermissionsOfSecurityMember(securityMember);
+    iPermissions.forEach(iPermission -> {
+      IPermission ivyPermission = IPermissionRepository.instance().findByName(iPermission.getValue());
+      if (!deniedPermission.contains(ivyPermission)) {
+        ISecurityContext.current().securityDescriptor().grantPermission(ivyPermission, securityMember);
+      }
+    });
+  }
+
+  public void considerGrantingPermissionToEverybody(PortalPermission permission) {
+    if (Objects.isNull(permission) || !Permissions.EVERYBODY_PERMISSIONS.contains(permission)) {
+      return;
+    }
+    IRole everybody = ISecurityContext.current().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
+    List<IPermission> deniedPermissions = getDeniedPermissionsOfSecurityMember(everybody);
+    IPermission ivyPermission = IPermissionRepository.instance().findByName(permission.getValue());
+    if (!deniedPermissions.contains(ivyPermission)) {
+      ISecurityContext.current().securityDescriptor().grantPermission(ivyPermission, everybody);
+    }
+  }
+
+  private List<IPermission> getDeniedPermissionsOfSecurityMember(ISecurityMember securityMember) {
+    if (Objects.isNull(securityMember)) {
+      return new ArrayList<>();
+    }
+    return ISecurityContext.current().securityDescriptor()
+        .getPermissionAccesses(securityMember).stream()
         .filter(IPermissionAccess::isDenied)
         .map(IPermissionAccess::getPermission)
         .collect(Collectors.toList());
-    
-    iPermissions.forEach(iPermission -> {
-      IPermission ivyPermission = IPermissionRepository.instance().findByName(iPermission.getValue());
-      if (!denniedPermission.contains(ivyPermission)) {
-        portalSecurity.grantPermission(ivyPermission, securityMember);
-      }
-    });
   }
 }
