@@ -24,7 +24,7 @@ pipeline {
                         def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples']
                         def changeLog = ''
                         if (env.GIT_PREVIOUS_SUCCESSFUL_COMMIT) {
-                            changeLog = sh(returnStdout: true, script: 'git diff --name-only $GIT_COMMIT env.GIT_PREVIOUS_SUCCESSFUL_COMMIT').trim()
+                            changeLog = sh(returnStdout: true, script: 'git diff --name-only $GIT_COMMIT $GIT_PREVIOUS_SUCCESSFUL_COMMIT').trim()
                         }
                         for (module in modules) {
                             if (changeLog.contains(module) || params.modulesMustBeBuilt.contains(module.split('/')[1])) {
