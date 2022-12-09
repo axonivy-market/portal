@@ -322,7 +322,8 @@ public class PortalExpressTest extends BaseTest {
 	protected void rejectWhenMultiApproval() {
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		expressTaskPage.finish();
-		assertEquals(1, new TaskWidgetPage().countTasks());
+		var taskWidgetPage = new TaskWidgetPage();
+		WaitHelper.assertTrueWithRefreshPage(taskWidgetPage, () -> taskWidgetPage.countTasks() == 1);
 		rejectApproval("Rejected at first level");
 		String approvalResult = executeReview();
 		Assert.assertEquals("Portal Demo User,Rejected at first level,No",

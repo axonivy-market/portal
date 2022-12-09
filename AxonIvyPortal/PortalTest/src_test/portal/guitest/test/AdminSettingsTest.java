@@ -113,7 +113,6 @@ public class AdminSettingsTest extends BaseTest {
 
       adminSettingsPage = newDashboardPage.openAdminSettings();
       adminSettingsPage.setShowLegacyUI();
-      adminSettingsPage.clickOnbackToHomepageOnAdminSetting();
       homePage = new HomePage();
       assertTrue(homePage.isDisplayed());
       adminSettingsPage = homePage.openAdminSettings();
