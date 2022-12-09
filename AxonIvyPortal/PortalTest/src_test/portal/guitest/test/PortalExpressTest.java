@@ -322,6 +322,13 @@ public class PortalExpressTest extends BaseTest {
 	protected void rejectWhenMultiApproval() {
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		expressTaskPage.finish();
+		var taskWidgetPage = new TaskWidgetPage();
+		if (taskWidgetPage.countTasks() != 1) {
+			WaitHelper.waitForNavigation(taskWidgetPage, () -> taskWidgetPage.clickOnLogo());
+			if (taskWidgetPage.countTasks() != 1) {
+				WaitHelper.waitForNavigation(taskWidgetPage, () -> taskWidgetPage.clickOnLogo());
+			}
+		}
 		assertEquals(1, new TaskWidgetPage().countTasks());
 		rejectApproval("Rejected at first level");
 		String approvalResult = executeReview();
