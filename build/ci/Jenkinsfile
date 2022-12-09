@@ -1,60 +1,36 @@
 pipeline {
-  agent any
+    agent any
 
-  options {
-    buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
-  }
-  
-  triggers {
-    pollSCM 'H/15 * * * *'
-  }
-
-  parameters {
-    string(name: 'modulesMustBeBuilt', defaultValue: '', description: 'Define modules must be built. By default, only modules which have code changes since the last successful build are built. Available modules: portal-components,portal,AxonIvyExpress,PortalKitTestHelper,portal-user-examples,portal-developer-examples,InternalSupport,portal-components-examples. E.g. portal-components code is changed, then set this property value portal => portal-components,portal will be built.')
-  }
-
-  stages {
-    stage("build") {
-      steps {
-        script { 
-          engineDir = "/var/tools/ivy/trunk"
-          builtModules = []
-          docker.withRegistry('', 'docker.io') {
-            docker.build("portal", "-f build/Dockerfile .").inside() {
-              def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples']
-              def changeLog = ''
-              if (env.GIT_PREVIOUS_SUCCESSFUL_COMMIT) {
-                changeLog = bat(script: "git diff --name-only ${env.GIT_COMMIT} ${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}", returnStdout: true)
-              }
-              for (module in modules) {
-                if (changeLog.contains(module) || params.modulesMustBeBuilt.contains(module.split('/')[1])) {
-                  builtModules.add(module)
-                  maven cmd: "mvn clean install -f ${module}/pom.xml"
+    stages {
+        stage("build") {
+            steps {
+                script {
+                    builtModules = ['AxonIvyPortal/portal-components']
+                    docker.withRegistry('', 'docker.io') {
+                        docker.build("portal", "-f build/Dockerfile .").inside() {
+                            for (module in builtModules) {
+                                maven cmd: "clean install -f ${module}/pom.xml"
+                            }
+                        }
+                    }
+                    archiveArtifacts artifacts: "*/*/target/*.iar", allowEmptyArchive: true
+                  
                 }
-              }
             }
-          }
-          archiveArtifacts artifacts: "*/*/target/*.iar", allowEmptyArchive: true
-          junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
         }
-      }
-    }   
 
-    stage('deploy') {
-      steps {
-        script {
-          def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').getProperties().getProperty("build.plugin.version")
-          docker.withRegistry('', 'docker.io') {
-            docker.build("portal", "-f build/Dockerfile .").inside() {
-              for (module in builtModules) {
-                for (application in applications) {
-                  maven cmd: "mvn com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.engine.app=${application} -Divy.deploy.engine.dir=${engineDir} -Divy.test.engine=MODIFY_EXISTING"
+        stage("deploy") {
+            steps {
+                script {
+                    docker.withRegistry('', 'docker.io') {
+                        docker.build("portal", "-f build/Dockerfile .").inside() {
+                            for (module in builtModules) {
+                                maven cmd: "com.axonivy.ivy.ci:project-build-plugin:10.0.1:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.server.id=NightlyPortal -Divy.deploy.engine.app=Portal -Divy.deploy.method=HTTP -Divy.deploy.engine.url=http://10.123.1.216/:8011 -Divy.test.engine=MODIFY_EXISTING"
+                            }
+                        }
+                    }
                 }
-              }
             }
-          }
         }
-      }
     }
-  }
 }
