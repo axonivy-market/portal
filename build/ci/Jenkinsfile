@@ -25,8 +25,8 @@ pipeline {
                         docker.build("portal", "-f build/Dockerfile .").inside() {
                             def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples']
                             def changeLog = ''
-                            if (${GIT_PREVIOUS_SUCCESSFUL_COMMIT}) {
-                                changeLog = sh(returnStdout: true, script: 'git diff --name-only ${GIT_COMMIT} ${GIT_PREVIOUS_SUCCESSFUL_COMMIT}').trim()
+                            if ($GIT_PREVIOUS_SUCCESSFUL_COMMIT) {
+                                changeLog = sh(returnStdout: true, script: 'git diff --name-only $GIT_COMMIT $GIT_PREVIOUS_SUCCESSFUL_COMMIT').trim()
                             }
                             for (module in modules) {
                                 if (changeLog.contains(module) || params.modulesMustBeBuilt.contains(module.split('/')[1])) {
