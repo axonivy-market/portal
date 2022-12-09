@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import portal.guitest.common.Sleeper;
+import portal.guitest.common.WaitHelper;
 
 public class AdminSettingsPage extends TemplatePage {
 
@@ -106,7 +107,7 @@ public class AdminSettingsPage extends TemplatePage {
 
   public void clickOnbackToHomepageOnAdminSetting() {
     WebElement closeButton = findElementById("back-to-home-button");
-    click(closeButton);
+    WaitHelper.waitForNavigation(this, () -> click(closeButton));
   }
 
   public void setClientSideTimeout(String timeout) {
