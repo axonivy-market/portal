@@ -157,7 +157,7 @@ public abstract class TemplatePage extends AbstractPage {
     if (displayed) {
       try {
         waitForElementDisplayed(ajaxIndicatorStartState, false);
-      } catch (NullPointerException e) {
+      } catch (NullPointerException | PortalGUITestException e) {
         System.out.println("Error when waitAjaxIndicatorDisappear");
         e.printStackTrace();
       }
