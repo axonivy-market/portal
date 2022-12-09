@@ -12,27 +12,24 @@ pipeline {
     parameters {
         string(name: 'modulesMustBeBuilt', defaultValue: '', description: 'Define modules must be built. By default, only modules which have code changes since the last successful build are built. Available modules: portal-components,portal,AxonIvyExpress,PortalKitTestHelper,portal-user-examples,portal-developer-examples,InternalSupport,portal-components-examples. E.g. portal-components code is changed, then set this property value portal => portal-components,portal will be built.')
         string(name: 'buildPluginVersion', defaultValue: '10.0.1')
-        string(name: 'engineUrl', defaultValue: 'http://10.123.1.216:8011')
-        
+        choice(name: 'engineUrl', choices: ['http://10.123.1.216:8011'])
     }
 
     stages {
         stage("build") {
             steps {
                 script {
-                    builtModules = ['AxonIvyPortal/portal-components',]
-                    docker.withRegistry('', 'docker.io') {
-                        docker.build("portal", "-f build/Dockerfile .").inside() {
-                            def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples']
-                            def changeLog = ''
-                            if ($GIT_PREVIOUS_SUCCESSFUL_COMMIT) {
-                                changeLog = sh(returnStdout: true, script: 'git diff --name-only $GIT_COMMIT $GIT_PREVIOUS_SUCCESSFUL_COMMIT').trim()
-                            }
-                            for (module in modules) {
-                                if (changeLog.contains(module) || params.modulesMustBeBuilt.contains(module.split('/')[1])) {
-                                    builtModules.add(module)
-                                    maven cmd: "clean install -f ${module}/pom.xml"
-                                }
+                    builtModules = []
+                    docker.build("portal", "-f build/Dockerfile .").inside() {
+                        def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples']
+                        def changeLog = ''
+                        if (env.GIT_PREVIOUS_SUCCESSFUL_COMMIT) {
+                            changeLog = sh(returnStdout: true, script: 'git diff --name-only $GIT_COMMIT env.GIT_PREVIOUS_SUCCESSFUL_COMMIT').trim()
+                        }
+                        for (module in modules) {
+                            if (changeLog.contains(module) || params.modulesMustBeBuilt.contains(module.split('/')[1])) {
+                                builtModules.add(module)
+                                maven cmd: "clean install -f ${module}/pom.xml"
                             }
                         }
                     }
@@ -44,17 +41,13 @@ pipeline {
         stage("deploy") {
             steps {
                 script {
-                    docker.withRegistry('', 'docker.io') {
-                        docker.build("portal", "-f build/Dockerfile .").inside() {
-                            for (module in builtModules) {
-                                maven cmd:
-                                    'com.axonivy.ivy.ci:project-build-plugin:${params.buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml ' + 
-                                    '-Divy.deploy.server.id=NightlyPortal ' +
-                                    '-Divy.deploy.engine.app=Portal ' +
-                                    '-Divy.deploy.method=HTTP '+
-                                    '-Divy.deploy.engine.url=${params.engineUrl} ' +
-                                    '-Divy.test.engine=MODIFY_EXISTING'
-                            }
+                    docker.build("portal", "-f build/Dockerfile .").inside() {
+                        for (module in builtModules) {
+                            maven cmd:
+                                'com.axonivy.ivy.ci:project-build-plugin:${params.buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml ' + 
+                                '-Divy.deploy.server.id=NightlyPortal -Divy.deploy.engine.app=Portal '
+                                '-Divy.deploy.method=HTTP -Divy.deploy.engine.url=${params.engineUrl} ' +
+                                '-Divy.test.engine=MODIFY_EXISTING'
                         }
                     }
                 }
