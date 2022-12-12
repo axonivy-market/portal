@@ -34,7 +34,6 @@ import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.configuration.GlobalSetting;
-import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.ProcessMode;
@@ -60,7 +59,6 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
 
   private static final long serialVersionUID = -5889375917550618261L;
   private static final String SPECIAL_CHARACTER_KEY = "SPECIAL_CHARACTER";
-  private static final String DEFAULT_IMAGE_CMS_FOLDER = "/images/process/";
 
   private Process deletedProcess;
   private Process editedProcess;
@@ -77,11 +75,8 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   private IProcessStart createExpressWorkflowProcessStart;
   private Map<String, List<Process>> processesByAlphabet;
 
-  private String defaultImageType = DefaultImage.DEFAULT.name();
-
   public void initConfiguration() {
     initProcessViewMode();
-    initDefaultProcessImage();
     collector = new ProcessStartCollector();
     createExpressWorkflowProcessStart = collector.findExpressCreationProcess();
   }
@@ -116,13 +111,6 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
         .filter(e -> StringUtils.equalsIgnoreCase(processLabel, e.getLabel()) || StringUtils.equalsIgnoreCase(e.name(), processLabel))
         .findFirst()
         .orElse(ProcessMode.IMAGE).toString();
-  }
-
-  private void initDefaultProcessImage() {
-    GlobalSettingService globalSettingService = new GlobalSettingService();
-    GlobalSetting defaultSetting =
-        globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_IMAGE);
-    defaultImageType = defaultSetting.getDisplayValue().toUpperCase();
   }
 
   private void groupProcessesByAlphabetIndex(List<Process> processes) {
@@ -179,30 +167,9 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     List<Process> defaultPortalProcesses = new ArrayList<>();
     processes.forEach(iWebStartable -> {
       IvyProcess ivyProcess = new IvyProcess(iWebStartable);
-      updateDefaultProcessImage(ivyProcess);
       defaultPortalProcesses.add(ivyProcess);
     });
     return defaultPortalProcesses;
-  }
-
-  private void updateDefaultProcessImage(IvyProcess ivyProcess) {
-    String customFieldProcessImage = ivyProcess.getCustomFieldImageProcess();
-    if (StringUtils.isNotBlank(customFieldProcessImage)) {
-      String processImageSrc = getImageSrc(customFieldProcessImage);
-      ivyProcess.setDefaultImageSrc(processImageSrc);
-      ivyProcess.setDefaultImageCms(StringUtils.EMPTY);
-    } else if (!this.defaultImageType.equals(DefaultImage.DEFAULT.name())) {
-      ivyProcess.setDefaultImageCms(DEFAULT_IMAGE_CMS_FOLDER + this.defaultImageType);
-      ivyProcess.setDefaultImageSrc(StringUtils.EMPTY);
-    }
-  }
-
-  private String getImageSrc(String imageElement) {
-    if(!imageElement.contains("/cm")) {
-      imageElement = Ivy.cms().cr(imageElement);
-    }
-    int indexOfImageSrc = imageElement.indexOf("/cm");
-    return imageElement.substring(indexOfImageSrc).replaceAll("\"/>", StringUtils.EMPTY);
   }
 
   public String formatName(SecurityMemberDTO responsible) {
