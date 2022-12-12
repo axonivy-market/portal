@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.constant.CustomFields;
 import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
@@ -35,7 +36,7 @@ public interface Process {
   }
 
   default public String getCustomFieldProcessImage(IWebStartable process) {
-    return process.customFields().value("processImage");
+    return process.customFields().value(CustomFields.PROCESS_IMAGE);
   }
 
   default public String getContentImageUrl(String imageUri) {
