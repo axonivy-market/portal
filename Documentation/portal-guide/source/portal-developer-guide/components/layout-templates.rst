@@ -122,6 +122,7 @@ Inside your UI, you can configure these parameters as follows; they will be rend
       window.processChainShape = "LINE";
       window.announcementInvisible = false;
       window.viewName = "TASK_DETAIL";
+      window.taskName = "TASK_NAME";
 
       // Use this code to show case details of a case different from current case of working task.
       // by send the case ID of that case.
