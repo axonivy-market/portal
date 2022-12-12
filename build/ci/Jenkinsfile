@@ -11,7 +11,6 @@ pipeline {
     
     parameters {
         string(name: 'modulesMustBeBuilt', defaultValue: '', description: 'Define modules must be built. By default, only modules which have code changes since the last successful build are built. Available modules: portal-components,portal,AxonIvyExpress,PortalKitTestHelper,portal-user-examples,portal-developer-examples,InternalSupport,portal-components-examples. E.g. portal-components code is changed, then set this property value portal => portal-components,portal will be built.')
-        choice(name: 'engineUrl', choices: ['http://10.123.1.216:8011'])
     }
 
     stages {
@@ -41,9 +40,10 @@ pipeline {
             steps {
                 script {
                     def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').getProperties().getProperty("build.plugin.version")
+                    def engineUrl = 'http://10.123.1.216:8011'
                     docker.build("portal", "-f build/Dockerfile .").inside() {
                         for (module in builtModules) {
-                            maven cmd: "com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.server.id=NightlyPortal -Divy.deploy.engine.app=Portal -Divy.deploy.method=HTTP -Divy.deploy.engine.url=${params.engineUrl} -Divy.test.engine=MODIFY_EXISTING"
+                            maven cmd: "com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.server.id=NightlyPortal -Divy.deploy.engine.app=Portal -Divy.deploy.method=HTTP -Divy.deploy.engine.url=${engineUrl} -Divy.test.engine=MODIFY_EXISTING"
                         }
                     }
                 }
