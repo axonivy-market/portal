@@ -24,9 +24,9 @@ pipeline {
                         if (env.GIT_PREVIOUS_SUCCESSFUL_COMMIT) {
                             changeLog = sh(returnStdout: true, script: 'git diff --name-only $GIT_COMMIT $GIT_PREVIOUS_SUCCESSFUL_COMMIT').trim()
                         }
-                        for (module in modules) {
-                            maven cmd: "clean install -f ${module}/pom.xml"
+                        for (module in modules) {                            
                             if (changeLog.contains(module) || params.modulesMustBeBuilt.contains(module.split('/')[1])) {
+                                maven cmd: "clean install -f ${module}/pom.xml"
                                 builtModules.add(module)
                             }
                         }
