@@ -13,26 +13,19 @@ import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
-import ch.ivy.addon.portalkit.configuration.GlobalSetting;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.DefaultImage;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.ProcessType;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.Locales;
 import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.category.Category;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DashboardProcess implements Process {
-
   private static final String EXPRESS_WORKFLOW_ID_PARAM = "?workflowID=";
-  private String defaultImageType = DefaultImage.DEFAULT.name();
-  private static final String DEFAULT_IMAGE_CMS_FOLDER = "/images/process/";
   private String id;
   private Long processStartId;
   private ProcessType type;
@@ -41,7 +34,6 @@ public class DashboardProcess implements Process {
   private List<DisplayName> names;
   private String startLink;
   private String icon;
-  private String defaultImageSrc;
   private String imageUrl;
   private String application;
   private Category category;
@@ -57,7 +49,6 @@ public class DashboardProcess implements Process {
     this.icon = process.getIcon();
     this.category = process.getCategory();
     this.imageUrl = process.getImageUrl();
-    this.defaultImageSrc = process.getDefaultImageSrc();
     this.application = process.getApplication();
   }
 
@@ -70,7 +61,7 @@ public class DashboardProcess implements Process {
     this.icon = process.customFields().value("cssIcon");
     this.category = process.getCategory();
     this.application = process.pmv().getApplication().getName();
-    updateDefaultProcessImage(process);
+    this.imageUrl = collectProcessImage(process);
   }
 
   public DashboardProcess(ExpressProcess process) {
@@ -200,49 +191,7 @@ public class DashboardProcess implements Process {
 
   @Override
   public String getImageUrl() {
-    return this.imageUrl;
-  }
-
-  @Override
-  public String getDefaultImageSrc() {
-    return this.defaultImageSrc;
-  }
-
-  public void setDefaultImageSrc(String defaultImageSrc) {
-    this.defaultImageSrc = defaultImageSrc;
-  }
-
-  public void setImageUrl(String imageUrl) {
-    this.imageUrl = imageUrl;
-  }
-  
-  private void updateDefaultProcessImage(IWebStartable startable) {
-    String customFieldProcessImage = startable.customFields().value("processImage");
-    if (StringUtils.isNotBlank(customFieldProcessImage)) {
-      this.defaultImageSrc = getImageSrc(customFieldProcessImage);
-    } else {
-      String defaultImageCms = ""; 
-      readDefaultProcessImageInSetting();
-      if (!defaultImageType.equals(DefaultImage.DEFAULT.name())) {
-        defaultImageSrc = StringUtils.EMPTY;
-        defaultImageCms = DEFAULT_IMAGE_CMS_FOLDER + this.defaultImageType;
-      }
-      this.imageUrl = StringUtils.defaultIfBlank(defaultImageCms, DefaultImage.PROCESSMODELING.getPath());
-    }
-  }
-
-  private String getImageSrc(String imageElement) {
-    if(!imageElement.contains("/cm")) {
-      imageElement = Ivy.cms().cr(imageElement);
-    }
-    int indexOfImageSrc = imageElement.indexOf("/cm");
-    return imageElement.substring(indexOfImageSrc).replaceAll("\"/>", StringUtils.EMPTY);
-  }
-  
-  private void readDefaultProcessImageInSetting() {
-    GlobalSettingService globalSettingService = new GlobalSettingService();
-    GlobalSetting defaultSetting = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_IMAGE);
-    defaultImageType = defaultSetting.getDisplayValue().toUpperCase();
+    return StringUtils.defaultIfBlank(imageUrl, DefaultImage.PROCESSMODELING.getPath());
   }
 
   @Override

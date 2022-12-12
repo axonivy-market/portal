@@ -10,13 +10,13 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 public class IvyProcess implements Process {
 
   private IWebStartable process;
-  private String defaultImageSrc;
-  private String defaultImageCms;
   private String application;
+  private String imageUrl;
 
   public IvyProcess(IWebStartable process) {
     this.application = process.pmv().getApplication().getName();
     this.process = process;
+    this.imageUrl = collectProcessImage(process);
   }
 
   @Override
@@ -67,24 +67,7 @@ public class IvyProcess implements Process {
 
   @Override
   public String getImageUrl() {
-    return StringUtils.defaultIfBlank(defaultImageCms, DefaultImage.PROCESSMODELING.getPath());
-  }
-
-  public void setDefaultImageSrc(String defaultImageSrc) {
-    this.defaultImageSrc = defaultImageSrc;
-  }
-
-  @Override
-  public String getDefaultImageSrc() {
-    return this.defaultImageSrc;
-  }
-
-  public void setDefaultImageCms(String defaultImageCms) {
-    this.defaultImageCms = defaultImageCms;
-  }
-
-  public String getCustomFieldImageProcess() {
-    return this.process.customFields().value("processImage");
+    return StringUtils.defaultIfBlank(imageUrl, DefaultImage.PROCESSMODELING.getPath());
   }
 
   @Override
