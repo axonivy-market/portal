@@ -21,8 +21,7 @@
             outlinedButtonStyle="false"
             hideActionButton="#{isInConfiguration}"/>
         </h:form>
-        <p:graphicImage styleClass="image-process-item-image" rendered="#{not empty process.defaultImageSrc}" value="#{process.defaultImageSrc}" />
-        <p:graphicImage styleClass="image-process-item-image" library="ivy-cms" rendered="#{empty process.defaultImageSrc}" name="#{process.imageUrl}" /> 
+        <img class="image-process-item-image" alt="#{process.getName()}" src="#{process.imageUrl}" />
        
         <div class="overlay-title">
           <div class="process-icon-and-name">
