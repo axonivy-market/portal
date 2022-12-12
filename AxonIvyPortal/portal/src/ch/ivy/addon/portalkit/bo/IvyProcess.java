@@ -67,7 +67,10 @@ public class IvyProcess implements Process {
 
   @Override
   public String getImageUrl() {
-    return StringUtils.defaultIfBlank(imageUrl, DefaultImage.PROCESSMODELING.getPath());
+    if (StringUtils.isEmpty(imageUrl)) {
+      imageUrl = getContentImageUrl(DefaultImage.PROCESSMODELING.getPath());
+    }
+    return imageUrl;
   }
 
   @Override
