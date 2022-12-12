@@ -73,11 +73,6 @@ public class ExternalLinkProcessItem implements Process {
   }
 
   @Override
-  public String getDefaultImageSrc() {
-    return StringUtils.EMPTY;
-  }
-
-  @Override
   public List<String> getPermissions() {
     return externalLink.getPermissions();
   }

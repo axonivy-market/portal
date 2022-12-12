@@ -9,9 +9,11 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.configuration.UserProcess;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
@@ -98,7 +100,13 @@ public class ProcessStartUtils {
   public static boolean isExpressProcess(ProcessType processType) {
     return ProcessType.EXPRESS_PROCESS == processType;
   }
-  
+
+  public static String getDefaultProcessImageSetting() {
+    return GlobalSettingService.getInstance()
+        .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_IMAGE)
+        .getDisplayValue().toUpperCase();
+  }
+
   public static String findFriendlyRequestPathContainsKeyword(String keyword){
     return IvyExecutor.executeAsSystem(() -> {
       ProcessStartCollector collector = new ProcessStartCollector();
