@@ -129,11 +129,6 @@ public class PortalExpressProcess implements Process {
   }
 
   @Override
-  public String getDefaultImageSrc() {
-    return StringUtils.EMPTY;
-  }
-
-  @Override
   public String getApplication() {
     return application;
   }
