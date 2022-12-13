@@ -351,7 +351,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskIsWaiting: La tâche est en attente
     taskStateAndResponsible: 'Etat : {0}, responsable : {1}'
     taskStateIsCreated: L'état de la tâche est créé (non sauvegardé pour l’instant)
-    taskStateIsZombie: L'état de la tâche est Zombie
   caseList:
     cases: Dossiers
     confirmDeleteMessage: Cette action ne peut pas être annulée. Voulez-vous vraiment supprimer ?
@@ -386,7 +385,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     FAILED: Échoué
     OPEN: Ouverte
     RUNNING: En cours
-    ZOMBIE: Zombie
   caseTreeTable:
     caseState: Etat du dossier
   chat:
@@ -1405,7 +1403,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     SYSTEM: SYSTÈME
     WAITING: Attente
     WAITING_FOR_INTERMEDIATE_EVENT: Attente d'un évènement
-    ZOMBIE: Zombie
   taskView:
     filterTextPlaceHolderMobile: Nom ou description!
     filterTextPlaceholder: Nom, description ou identifiant!

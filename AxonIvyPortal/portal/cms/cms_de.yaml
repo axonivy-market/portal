@@ -351,7 +351,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskIsWaiting: Aufgabe wartet
     taskStateAndResponsible: 'Status: {0}, verantwortlich: {1}'
     taskStateIsCreated: Der Zustand der Aufgabe ist Erstellt (im Speicher noch)
-    taskStateIsZombie: Der Zustand der Aufgabe ist Zombie
   caseList:
     cases: Vorgänge
     confirmDeleteMessage: Diese Aktion kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie dieses Businessobjekt löschen wollen?
@@ -386,7 +385,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     FAILED: Fehlgeschlagen
     OPEN: Offen
     RUNNING: in Bearbeitung
-    ZOMBIE: Zombie
   caseTreeTable:
     caseState: Vorgangsstatus
   chat:
@@ -1406,7 +1404,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     SYSTEM: SYSTEM
     WAITING: Wartend
     WAITING_FOR_INTERMEDIATE_EVENT: Warten auf Ereignis
-    ZOMBIE: Zombie
   taskView:
     filterTextPlaceHolderMobile: Name oder Beschreibung
     filterTextPlaceholder: Name, Beschreibung oder ID
