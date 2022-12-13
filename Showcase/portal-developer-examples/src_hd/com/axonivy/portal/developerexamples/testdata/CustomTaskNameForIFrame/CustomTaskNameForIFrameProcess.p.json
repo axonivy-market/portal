@@ -46,7 +46,7 @@
       "name" : "init task name",
       "config" : {
         "output" : {
-          "code" : "in.taskName = \"This is a custom task name\";"
+          "code" : "in.taskName = \"This Is A Custom Task Name\";"
         }
       },
       "visual" : {
