@@ -230,7 +230,7 @@ public class StatisticChartQueryUtils {
     } else if (selectedValue.equals(Ivy.cms().co(DONE_CASE_KEY))) {
       query.where().state().isEqual(CaseState.DONE);
     } else if (selectedValue.equals(Ivy.cms().co(FAILED_CASE_KEY))) {
-      query.where().state().isEqual(CaseState.DESTROYED).or().state().isEqual(CaseState.ZOMBIE);
+      query.where().state().isEqual(CaseState.DESTROYED);
     }
 
     return query;

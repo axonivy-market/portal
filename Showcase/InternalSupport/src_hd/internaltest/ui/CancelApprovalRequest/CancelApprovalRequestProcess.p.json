@@ -40,12 +40,11 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.workflow.ICase;",
             "import ch.ivyteam.ivy.workflow.INote;",
-            "import ch.ivyteam.ivy.workflow.internal.cases.Case;",
-            "",
-            "Case wfCase = ivy.wf.findCase(in.caseId) as Case;",
+            "ICase wfCase = ivy.wf.findCase(in.caseId);",
             "String cancelNote = \"Cancel Reason: \" +  out.cancelReason;",
-            "INote note =wfCase.createNote(ivy.session, cancelNote);"
+            "INote note = wfCase.createNote(ivy.session, cancelNote);"
           ]
         }
       },
