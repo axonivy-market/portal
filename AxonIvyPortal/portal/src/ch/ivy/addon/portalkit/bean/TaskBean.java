@@ -64,7 +64,6 @@ public class TaskBean implements Serializable {
       case DELAYED:
         return "si si-alarm-bell-timer task-state-delayed";
       case DESTROYED:
-      case ZOMBIE:
         return "si si-alert-circle task-state-zombie-destroyed";
       case FAILED:
       case JOIN_FAILED:
@@ -138,8 +137,6 @@ public class TaskBean implements Serializable {
         return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/DELAYED_UPPERCASE");
       case READY_FOR_JOIN:
         return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/READY_FOR_JOIN_UPPERCASE");
-      case ZOMBIE:
-        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/ZOMBIE");
       default:
         return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/SYSTEM");
     }
@@ -156,7 +153,7 @@ public class TaskBean implements Serializable {
 
     if (state == TaskState.SUSPENDED || state == TaskState.CREATED || state == TaskState.RESUMED
         || state == TaskState.DONE || state == TaskState.PARKED || state == TaskState.DESTROYED
-        || state == TaskState.DELAYED || state == TaskState.READY_FOR_JOIN || state == TaskState.ZOMBIE) {
+        || state == TaskState.DELAYED || state == TaskState.READY_FOR_JOIN) {
       return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + state);
     }
 
