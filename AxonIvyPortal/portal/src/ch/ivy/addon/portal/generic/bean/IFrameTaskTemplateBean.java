@@ -47,6 +47,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private static final String IS_HIDE_TASK_ACTION = "isHideTaskAction";
   private static final String IS_WORKING_ON_A_TASK = "isWorkingOnATask";
   private static final String VIEW_NAME = "viewName";
+  private static final String TASK_NAME = "taskName";
   public static final String PORTAL_GROWL_MESSGE_PARAM = "portalGrowlMessage";
 
   private int currentProcessStep;
@@ -61,6 +62,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private boolean isHideTaskName = true;
   private boolean isHideCaseInfo = true;
   private boolean isWorkingOnATask = true;
+  private String taskName;
   private Map<String, Object> overridePortalGrowlMap = new HashMap<>();
 
   private Long caseId = null;
@@ -154,6 +156,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     isHideTaskAction = Optional.ofNullable(requestParamMap.get(IS_HIDE_TASK_ACTION)).map(BooleanUtils::toBoolean).orElse(false);
     isWorkingOnATask = Optional.ofNullable(requestParamMap.get(IS_WORKING_ON_A_TASK)).map(p -> StringUtils.isNotBlank(p) ? BooleanUtils.toBoolean(p) : true).get();
     caseId = Optional.ofNullable(requestParamMap.get(CASE_ID_PARAM)).map(p -> StringUtils.isNotBlank(p) ? Long.parseLong(p) : null).orElse(null);
+    taskName = Optional.ofNullable(requestParamMap.get(TASK_NAME)).orElse(StringUtils.EMPTY);
   }
 
   private Map<String, String> getRequestParameterMap() {
@@ -218,4 +221,8 @@ public Long getCaseId() {
 public void setCaseId(Long caseId) {
 	this.caseId = caseId;
 }
+
+  public String getTaskName() {
+    return taskName;
+  }
 }
