@@ -107,7 +107,7 @@ public class ChartView implements Serializable {
     TaskQuery stateFieldQuery = TaskQuery.create();
 
     if (states == null || states.isEmpty()) {
-      stateFieldQuery.where().state().isNotEqual(TaskState.DONE).and().state().isNotEqual(TaskState.ZOMBIE).and()
+      stateFieldQuery.where().state().isNotEqual(TaskState.DONE).and()
           .state().isNotEqual(TaskState.DESTROYED);
     } else {
       IFilterQuery filterQuery = stateFieldQuery.where();
