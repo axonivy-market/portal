@@ -67,6 +67,9 @@ function processIFrameData(iframe) {
     }, {
       name : 'caseId',
       value : window.caseId
+      }, {
+      name : 'taskName',
+      value : window.taskName
     }]);
 }
 

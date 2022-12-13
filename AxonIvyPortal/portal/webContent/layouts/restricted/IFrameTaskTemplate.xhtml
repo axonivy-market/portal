@@ -47,7 +47,8 @@
     <!--   window.processChainDirection = "VERTICAL"; -->
     <!--   window.processChainShape = "LINE"; -->
     <!--   window.announcementInvisible = false; -->
-
+    <!--   window.taskName = "Task Name"; -->
+    
     <!--   Use this code to show case details of a case different from current case of working task
            by send the case ID of that case. -->
     <!--   window.caseId = 123456; -->
@@ -73,6 +74,7 @@
     <ui:param name="announcementStyleClass" value="annoucement-in-frame-template js-annoucement-in-frame-template u-invisibility" />
     <ui:param name="taskTemplateContainerStyleClass" value="u-invisibility" />
     <ui:param name="viewName" value="#{iFrameTaskTemplateBean.viewName}"/>
+    <ui:param name="taskName" value="#{iFrameTaskTemplateBean.taskName}" />
 
     <ui:define name="content">
       <h:form>
