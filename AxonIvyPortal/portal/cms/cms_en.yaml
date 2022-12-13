@@ -349,7 +349,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskIsWaiting: Task is waiting
     taskStateAndResponsible: 'State: {0}, responsible: {1}'
     taskStateIsCreated: Task state is Created (not persisted yet)
-    taskStateIsZombie: Task state is Zombie
   caseList:
     cases: Cases
     confirmDeleteMessage: This action can not be undone. Do you really want to delete this business object?
@@ -384,7 +383,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     FAILED: Failed
     OPEN: Open
     RUNNING: In progress
-    ZOMBIE: Zombie
   caseTreeTable:
     caseState: Case state
   chat:
@@ -1407,7 +1405,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     SYSTEM: SYSTEM
     WAITING: Waiting
     WAITING_FOR_INTERMEDIATE_EVENT: Waiting for event
-    ZOMBIE: Zombie
   taskView:
     filterTextPlaceHolderMobile: Name or Description
     filterTextPlaceholder: Name, Description or ID
