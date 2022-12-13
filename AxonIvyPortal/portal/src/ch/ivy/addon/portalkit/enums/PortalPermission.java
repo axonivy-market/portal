@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.enums;
 
+import java.util.stream.Stream;
+
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 
@@ -53,5 +55,10 @@ public enum PortalPermission {
       
     }
     return permission;
+  }
+
+  public static PortalPermission findPermission(String permissionKey) {
+    return Stream.of(values()).filter(portalPermission -> portalPermission.getValue().equals(permissionKey))
+        .findAny().orElse(null);
   }
 }
