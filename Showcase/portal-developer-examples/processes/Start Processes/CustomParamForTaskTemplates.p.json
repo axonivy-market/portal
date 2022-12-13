@@ -37,6 +37,9 @@
             "customFields" : [
               { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
             ]
+          },
+          "TaskC" : {
+            "name" : "IFrame task with custom task name"
           }
         }
       },
