@@ -9,7 +9,6 @@ import ch.ivyteam.ivy.server.restricted.EngineMode;
 /**
  * Utility for security service.
  */
-@SuppressWarnings("restriction")
 public class SecurityServiceUtils {
 
   private SecurityServiceUtils() {}

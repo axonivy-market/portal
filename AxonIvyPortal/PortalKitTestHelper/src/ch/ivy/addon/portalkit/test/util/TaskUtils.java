@@ -74,8 +74,7 @@ public class TaskUtils {
       IPropertyFilter<CaseProperty> noFilter = null;
       IQueryResult<ICase> qr = Ivy.wf().findCases(noFilter, null, 0, -1, true);
       for (ICase ivyCase : qr.getResultList()) {
-        if (ivyCase.getState() == CaseState.DESTROYED || ivyCase.getState() == CaseState.DONE
-            || ivyCase.getState() == CaseState.ZOMBIE) {
+        if (ivyCase.getState() == CaseState.DESTROYED || ivyCase.getState() == CaseState.DONE) {
           Ivy.wf().deleteCompletedCase(ivyCase);
         }
       }

@@ -42,7 +42,6 @@ public class CaseBean implements Serializable {
       case DONE:
         return "si si-check-circle-1 case-state-done";
       case DESTROYED:
-      case ZOMBIE:
         return "si si-alert-circle case-state-zombie-destroyed";
       default: 
         return "";

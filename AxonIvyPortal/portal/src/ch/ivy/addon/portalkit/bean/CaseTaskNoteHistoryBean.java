@@ -61,8 +61,6 @@ public class CaseTaskNoteHistoryBean implements Serializable {
           return createContentWithTaskState("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsDone", content);
         case DESTROYED:
           return createContentWithTaskState("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsDestroyed", content);
-        case ZOMBIE:
-          return createContentWithTaskState("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateIsZombie", content);
         case CREATED:
           return createContentWithTaskState("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateIsCreated", content);
         case FAILED:
