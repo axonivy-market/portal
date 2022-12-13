@@ -58,7 +58,7 @@ pipeline {
 
           echo '====================Run script to copy decorate js and css to Portal===================='
           sh "chmod 777 -R AxonIvyPortal"
-          sh "xonIvyPortal/PortalTest/resources/copy-decorate-js-css.sh"
+          sh "AxonIvyPortal/PortalTest/resources/copy-decorate-js-css.sh"
           
           echo "====================Build Portal modules===================="
           def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples', 'AxonIvyPortal/PortalApp', 'Showcase/portal-demo-app']
