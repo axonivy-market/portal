@@ -67,13 +67,11 @@ pipeline {
           }
 
           echo "====================Deploy Portal modules===================="
-          powershell '''
-            $DEPLOYMENT= $env:engineDir + "/system/demo-applications/demo-portal"
-            rmdir $DEPLOYMENT/* -recurse
-            Copy-Item Showcase/portal-demo-app/target/*zip -Destination $DEPLOYMENT
-            Copy-Item Showcase/portal-developer-examples/target/*iar -Destination $DEPLOYMENT
-            Copy-Item Showcase/portal-components-examples/target/*iar -Destination $DEPLOYMENT
-          '''
+          deployment = engineDir + "/system/demo-applications/demo-portal";
+          sh "rm -r ${deployment}/*"
+          sh "cp Showcase/portal-demo-app/target/*zip ${deployment}"        
+          sh "cp Showcase/portal-developer-examples/target/*iar ${deployment}"        
+          sh "cp Showcase/portal-components-examples/target/*iar ${deployment}"
 
           //node('master') {
            // utils.remoteDesktop()
