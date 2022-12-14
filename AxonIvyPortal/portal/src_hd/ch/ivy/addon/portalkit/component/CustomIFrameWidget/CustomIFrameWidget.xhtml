@@ -17,7 +17,7 @@
 
   <h:panelGroup id="custom-iframe" rendered="#{(widget.type eq 'custom') and (not empty widget.data.url)}"
     styleClass="card custom-widget-card #{cc.attrs.widgetStyleClass} grid-stack-item-content #{managedBean.readOnlyMode ? '' : 'moveable-area'} iframe-widget">
-    <ui:fragment rendered="#{not empty widget.data.processStart}">
+    <ui:fragment rendered="#{not empty widget.data.processPath}">
       <form id="custom-widget-iframe-data" target="custom-widget-iframe" action="#{widget.data.url}" method="post">
         <ui:repeat var="entry" value="#{widget.data.params.entrySet()}">
           <input type="hidden" name="#{entry.key}"
@@ -31,7 +31,7 @@
          });
        </script>
     </ui:fragment>
-    <ui:fragment rendered="#{empty widget.data.processStart}">
+    <ui:fragment rendered="#{empty widget.data.processPath}">
       <iframe name="custom-widget-iframe-url" src="#{widget.data.url}" />
     </ui:fragment>
   </h:panelGroup>
