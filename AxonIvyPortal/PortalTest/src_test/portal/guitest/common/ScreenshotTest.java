@@ -9,7 +9,6 @@ public class ScreenshotTest extends BaseTest {
   @Before
   @Override
   public void setup() {
-    killBrowsers();
     super.setup();
     updatePortalSetting(DISPLAY_MESSAGE_AFTER_FINISH_TASK.getKey(), "false");
   }
