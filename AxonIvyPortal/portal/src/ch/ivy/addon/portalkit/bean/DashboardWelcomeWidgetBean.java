@@ -103,6 +103,6 @@ public class DashboardWelcomeWidgetBean implements Serializable {
   }
   
   public String sanitizeHTML(String text) {
-    return HtmlParser.sanitizeHTML(text);
+    return StringUtils.isBlank(text) ? "" : HtmlParser.sanitizeHTML(text);
   }
 }
