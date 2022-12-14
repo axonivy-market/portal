@@ -101,9 +101,6 @@ public final class CaseUtils {
   }
 
   public static List<CaseState> filterStateByPermission(List<CaseState> states) {
-    if (PermissionUtils.checkReadAllTasksPermission()) {
-      return states;
-    }
     var validStates = getValidStates();
     return CollectionUtils.emptyIfNull(states).stream()
         .filter(state -> validStates.contains(state))
