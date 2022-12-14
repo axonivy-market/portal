@@ -66,7 +66,10 @@ public class StateColumnModel extends TaskColumnModel implements Serializable {
   
   @JsonIgnore
   public List<TaskState> getStates() {
-    return this.filterList.stream().map(String::toUpperCase).map(TaskState::valueOf).collect(Collectors.toList());
+    List<TaskState> states = this.filterList.stream().map(String::toUpperCase)
+        .map(TaskState::valueOf)
+        .collect(Collectors.toList());
+    return TaskUtils.filterStateByPermission(states);
   }
   
   @JsonIgnore

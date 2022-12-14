@@ -62,12 +62,15 @@ public class StateColumnModel extends CaseColumnModel implements Serializable {
     }
     return cms("/ch.ivy.addon.portalkit.ui.jsf/caseState/" + state.toString());
   }
-  
+
   @JsonIgnore
   public List<CaseState> getStates() {
-    return this.filterList.stream().map(String::toUpperCase).map(CaseState::valueOf).collect(Collectors.toList());
+    List<CaseState> states = filterList.stream().map(String::toUpperCase)
+        .map(CaseState::valueOf)
+        .collect(Collectors.toList());
+    return CaseUtils.filterStateByPermission(states);
   }
-  
+
   @JsonIgnore
   public void setStates(List<CaseState> states) {
     this.filterList = states.stream().map(CaseState::toString).collect(Collectors.toList());
