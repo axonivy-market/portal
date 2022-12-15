@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
@@ -15,7 +16,7 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 public class ProcessViewerDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = -6515048307703164743L;
-  private String processStart;
+  private String processPath;
   @JsonIgnore
   private DashboardProcess process;
 
@@ -26,9 +27,9 @@ public class ProcessViewerDashboardWidget extends DashboardWidget {
 
   @JsonIgnore
   public void buildProcessDataFirstTime() {
-    if (StringUtils.isNotBlank(getProcessStart())) {
+    if (StringUtils.isNotBlank(getProcessPath())) {
       List<IWebStartable> allPortalProcesses = ProcessService.newInstance().findProcesses().getProcesses();
-      setProcess(allPortalProcesses.stream().filter(proccess -> proccess.getId().contains(getProcessStart()))
+      setProcess(allPortalProcesses.stream().filter(proccess -> proccess.getId().contains(getProcessPath()))
           .map(DashboardProcess::new).findFirst().orElse(null));
     }
   }
@@ -49,12 +50,24 @@ public class ProcessViewerDashboardWidget extends DashboardWidget {
   @Override
   public void resetWidgetFilters() {}
 
-  public String getProcessStart() {
-    return processStart;
+  public String getProcessPath() {
+    return processPath;
   }
 
+  public void setProcessPath(String processPath) {
+    this.processPath = processPath;
+  }
+
+  /**
+   * @deprecated use {@link #setProcessPath()} instead
+   * The processStart is replaced by processPath
+   */
+  @Deprecated
+  @JsonProperty("processStart")
   public void setProcessStart(String processStart) {
-    this.processStart = processStart;
+    if (StringUtils.isBlank(processPath)) {
+      this.processPath = processStart;
+    }
   }
 
   public DashboardProcess getProcess() {
@@ -63,7 +76,7 @@ public class ProcessViewerDashboardWidget extends DashboardWidget {
 
   public void setProcess(DashboardProcess process) {
     this.process = process;
-    setProcessStart(process != null ? process.getId() : "");
+    setProcessPath(process != null ? process.getId() : "");
   }
 
   @JsonIgnore

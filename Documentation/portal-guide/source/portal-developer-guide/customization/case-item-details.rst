@@ -182,7 +182,7 @@ For the custom widget, we have a new node is ``data`` inside of case details wid
 
    - ``url``: URL for external website
 
-   - ``processStart``: relative link to the Ivy process which will be displayed in custom widget
+   - ``processPath``: the user-friendly request path of the Ivy process which will be displayed in custom widget
 
    - ``params``: parameters for the Ivy process above, each parameter can be defined as follows:
 
@@ -370,12 +370,12 @@ The following two steps are necessary to add new custom panels:
 
    -  ``url`` if you want to use an external URL.
 
-   -  ``processStart`` if you want to use an Ivy process start. You may
+   -  ``processPath`` if you want to use an Ivy process start. You may
       predefine parameters for the process by adding ``params`` to the ``data``
       node.
 
       .. important::
-         Use only one of ``processStart`` and ``url``.
+         Use only one of ``processPath`` and ``url``.
 
 
       Here is an example of a customized case details page using an external URL:
@@ -442,7 +442,7 @@ The following two steps are necessary to add new custom panels:
                      "x": 0, "y": 6, "w": 12, "h": 8
                   },
                   "data": {
-                     "processStart": "Start Processes/CaseDetailsCustomWidgetExample/startReview.ivp",
+                     "processPath": "Start Processes/CaseDetailsCustomWidgetExample/startReview.ivp",
                      "params": {
                         "startedCaseId": "case.id",
                         "startedCaseCategory": "case.category",
