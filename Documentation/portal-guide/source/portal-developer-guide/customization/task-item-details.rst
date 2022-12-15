@@ -73,7 +73,7 @@ How to configure widgets in task details
                      "x": 0, "y": 6, "w": 6, "h": 6
                   },
                   "data" : {
-                     "processStart": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",
+                     "processPath": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",
                      "params": {
                         "startedTaskId": "task.id",
                         "startedTaskCategory": "task.category",
@@ -118,7 +118,7 @@ How to configure widgets in task details
 
       ``url``: URL for external website
 
-      ``processStart``: relative link to the Ivy process which will be displayed in the custom widget
+      ``processPath``: the user-friendly request path of the Ivy process which will be displayed in the custom widget
 
       ``params``: parameters for the Ivy process above, each parameter can be defined as follows:
 
@@ -135,7 +135,7 @@ How to configure widgets in task details
       You can change ``x``, ``y``, ``w`` and ``h`` to update size and position of widgets.
    -  ``x``, ``y``, ``w`` and ``h`` must be **integers**.
    -  ``x + w`` must **not be larger** than **12**.
-   -  For data of custom widget, if you input ``processStart``, don't input ``url``. You can only use one of them.
+   -  For data of custom widget, if you input ``processPath``, don't input ``url``. You can only use one of them.
    -  We support all task states for filter type ``states``. Please refer to :dev-url:`Task States </doc/|version|/public-api/ch/ivyteam/ivy/workflow/TaskState.html>` to check for avaiable task states.
 
 
@@ -415,7 +415,7 @@ There are **two steps** for adding new custom panels.
                         "x": 0, "y": 6, "w": 6, "h": 6
                         },
                         "data" : {
-                           "processStart": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",
+                           "processPath": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",
                            "params": {
                               "startedTaskId": "task.id",
                               "startedTaskCategory": "task.category",

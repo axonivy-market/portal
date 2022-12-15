@@ -50,7 +50,7 @@ public class DashboardCustomWidgetBean implements Serializable {
     if (widget.getData().getIvyProcessStartDTO() == null) {
       widget.getData().setIvyProcessStartDTO(new IvyProcessStartDTO());
     }
-    widget.getData().setProcessStart(getStartableProcessStarts().stream()
+    widget.getData().setProcessPath(getStartableProcessStarts().stream()
         .filter(process -> process.getLink().getRelative().contentEquals(widget.getData().getIvyProcessStartDTO().getStartableProcessStart().getLink().getRelative()))
         .findFirst().get().getUserFriendlyRequestPath());
     widget.getData().setUrl(widget.getData().getIvyProcessStartDTO().getStartableProcessStart().getLink().getRelative());
@@ -62,7 +62,7 @@ public class DashboardCustomWidgetBean implements Serializable {
       widget.getData().setUrl("");
       widget.getData().setParams(null);
       widget.getData().setHasParamChanged(false);
-      widget.getData().setProcessStart(null);
+      widget.getData().setProcessPath(null);
       widget.getData().getIvyProcessStartDTO().setStartableProcessStart(null);
       widget.getData().setStartProcessParams(null);
     }
