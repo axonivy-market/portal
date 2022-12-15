@@ -78,7 +78,7 @@
           "x": 6, "y": 0, "w": 6, "h": 7
         },
         "data": {
-          "processStart": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",
+          "processPath": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",
           "params": {
             "startedTaskId": "task.id",
             "startedTaskCategory": "task.category",

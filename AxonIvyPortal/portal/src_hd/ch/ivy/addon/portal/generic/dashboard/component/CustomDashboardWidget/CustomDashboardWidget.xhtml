@@ -35,7 +35,7 @@
       </ui:define>
       <ui:define name="widgetContent">
         <div class="ui-g-12 widget-height-100 u-padding-0 dashboard-widget-iframe__container">
-          <ui:fragment rendered="#{not empty widget.data.processStart}">
+          <ui:fragment rendered="#{not empty widget.data.processPath}">
           <h:form id="custom-form-#{index}">
             <c:forEach var="param" items="#{widget.data.params}">
               <input type="hidden" name="#{dashboardCustomWidgetBean.generateParamName(param)}"
@@ -59,7 +59,7 @@
              </script>
           </ui:fragment>
 
-          <ui:fragment rendered="#{empty widget.data.processStart}">
+          <ui:fragment rendered="#{empty widget.data.processPath}">
             <iframe name="custom-widget-iframe-#{index}" src="#{widget.data.url}" class="dashboard-custom-iframe" />
           </ui:fragment>
         </div>
