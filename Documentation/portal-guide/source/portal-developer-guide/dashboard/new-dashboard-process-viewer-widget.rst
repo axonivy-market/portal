@@ -24,7 +24,7 @@ Below is a sample JSON definition of a process viewer widget in the Portal dashb
       "layout": {
          "x": 0, "y": 0, "w": 12, "h": 6
       }, 
-      "processStart": "Start Processes/Request/createNewRequest.ivp"
+      "processPath": "Start Processes/Request/createNewRequest.ivp"
    }
 
 The basic JSON structure of a process viewer widget

@@ -155,12 +155,12 @@ public class DashboardBean implements Serializable {
 
   protected void loadCustomWidget(DashboardWidget widget) {
     CustomDashboardWidget customWidget = (CustomDashboardWidget) widget;
-    if (StringUtils.isNotBlank(customWidget.getData().getProcessStart())) {
-      String url = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(customWidget.getData().getProcessStart());
+    if (StringUtils.isNotBlank(customWidget.getData().getProcessPath())) {
+      String url = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(customWidget.getData().getProcessPath());
 
       if(StringUtils.isBlank(url)) return;
 
-      IStartElement element = ProcessStartAPI.findStartElementByProcessStartFriendlyRequestPath(customWidget.getData().getProcessStart());
+      IStartElement element = ProcessStartAPI.findStartElementByProcessStartFriendlyRequestPath(customWidget.getData().getProcessPath());
 
       if(Objects.isNull(element)) return;
 
