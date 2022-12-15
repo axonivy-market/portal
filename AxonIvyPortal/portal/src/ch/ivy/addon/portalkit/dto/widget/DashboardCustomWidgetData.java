@@ -3,7 +3,10 @@ package ch.ivy.addon.portalkit.dto.widget;
 import java.io.Serializable;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidgetParam;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
@@ -16,7 +19,7 @@ public class DashboardCustomWidgetData implements Serializable {
 
   private String url;
 
-  private String processStart;
+  private String processPath;
 
   private List<CustomDashboardWidgetParam> params;
 
@@ -39,12 +42,24 @@ public class DashboardCustomWidgetData implements Serializable {
     this.url = url;
   }
 
-  public String getProcessStart() {
-    return processStart;
+  public String getProcessPath() {
+    return processPath;
   }
 
+  public void setProcessPath(String processPath) {
+    this.processPath = processPath;
+  }
+
+  /**
+   * @deprecated use {@link #setProcessPath()} instead
+   * The processStart is replaced by processPath
+   */
+  @Deprecated
+  @JsonProperty("processStart")
   public void setProcessStart(String processStart) {
-    this.processStart = processStart;
+    if (StringUtils.isBlank(processPath)) {
+      this.processPath = processStart;
+    }
   }
 
   public DashboardCustomWidgetType getType() {

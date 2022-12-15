@@ -150,8 +150,8 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
     for (AbstractWidget widget : widgets) {
       if (widget instanceof CustomWidget) {
         CustomWidget customWidget = (CustomWidget) widget;
-        if (StringUtils.isNotBlank(customWidget.getData().getProcessStart())) {
-          String url = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(customWidget.getData().getProcessStart());
+        if (StringUtils.isNotBlank(customWidget.getData().getProcessPath())) {
+          String url = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(customWidget.getData().getProcessPath());
           customWidget.getData().setUrl(url);
         }
       }

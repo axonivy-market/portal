@@ -66,7 +66,7 @@ public class CustomDashboardWidget extends DashboardWidget {
     data.setHasParamChanged(false);
     data.setParams(new ArrayList<>());
     data.setStartProcessParams(ProcessStartAPI
-        .findStartElementByProcessStartFriendlyRequestPath(data.getProcessStart()).startParameters());
+        .findStartElementByProcessStartFriendlyRequestPath(data.getProcessPath()).startParameters());
 
     if (CollectionUtils.isNotEmpty(data.getStartProcessParams())) {
       for (StartParameter param : data.getStartProcessParams()) {
@@ -104,7 +104,7 @@ public class CustomDashboardWidget extends DashboardWidget {
   
   public void loadParameters() {
     data.setStartProcessParams(ProcessStartAPI
-        .findStartElementByProcessStartFriendlyRequestPath(data.getProcessStart()).startParameters());
+        .findStartElementByProcessStartFriendlyRequestPath(data.getProcessPath()).startParameters());
     data.setHasParamChanged(false);
 
     List<String> paramNames = new ArrayList<>();
