@@ -28,64 +28,64 @@ pipeline {
           def utils = load 'build/common/utils.groovy'
           //utils.init()
           //utils.stopAllEngines()
+          docker.image("selenium/standalone-firefox:4").withRun("-e START_XVFB=false --shm-size=2g") {
+            docker.build("portal", "-f build/Dockerfile .").inside("-v /var/tools/maven-cache:/home/build/") {
+              if (params.checkoutCodeFromLatestReleaseTag) {
+                downloadPortalRelease()
 
-          docker.build("portal", "-f build/Dockerfile .").inside("-v /var/tools/maven-cache:/home/build/") {
-          if(params.checkoutCodeFromLatestReleaseTag) {
-              downloadPortalRelease()
+                echo '====================Check out tag of Portal latest successful release===================='
+                powershell '''
+                  $artifactPattern = ${releaseDir} + '/AxonIvyPortal/portal/target/*.iar' 
+                  $artifactName = dir $artifactPattern | select -expand BaseName
+                  $versionLastestReleasedPortal = $artifactName.substring(7)
+                  git fetch --tags
+                  git checkout tags/$versionLastestReleasedPortal
+                  git reset --hard HEAD
+                  git clean -fd
+                '''
 
-              echo '====================Check out tag of Portal latest successful release===================='
-              powershell '''
-                $artifactPattern = ${releaseDir} + '/AxonIvyPortal/portal/target/*.iar' 
-                $artifactName = dir $artifactPattern | select -expand BaseName
-                $versionLastestReleasedPortal = $artifactName.substring(7)
-                git fetch --tags
-                git checkout tags/$versionLastestReleasedPortal
-                git reset --hard HEAD
-                git clean -fd
-              '''
+                echo '====================Copy patch to workspace if any. Note: this is in a tag and we cannot change code in git repo===================='
+                powershell '''
+                  if (Test-Path ../patch/master) {
+                    copy -path ../patch/master -recurse -force -destination .
+                  }
+                '''
+              }
 
-              echo '====================Copy patch to workspace if any. Note: this is in a tag and we cannot change code in git repo===================='
-              powershell '''
-                if (Test-Path ../patch/master) {
-                  copy -path ../patch/master -recurse -force -destination .
-                }
-              '''
-          }
+              utils.extractEngine(engineDir, params.engineDownloadURL)
+    
+              echo '====================Run script to copy decorate js and css to Portal===================='
+              sh "chmod 777 -R AxonIvyPortal"
+              sh "AxonIvyPortal/PortalTest/resources/copy-decorate-js-css.sh"
+              
+              echo "====================Build Portal modules===================="
+              def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples', 'AxonIvyPortal/PortalApp', 'Showcase/portal-demo-app']
+              for (module in modules) {
+                maven cmd: "clean install -f ${module}/pom.xml -Divy.engine.directory=${engineDir}"
+              }
 
-          utils.extractEngine(engineDir, params.engineDownloadURL)
+              echo "====================Deploy Portal modules===================="
+              deployment = engineDir + "/system/demo-applications/demo-portal";
+              sh "rm -r ${deployment}/*"
+              sh "cp Showcase/portal-demo-app/target/*zip ${deployment}"        
+              sh "cp Showcase/portal-developer-examples/target/*iar ${deployment}"        
+              sh "cp Showcase/portal-components-examples/target/*iar ${deployment}"
 
-          echo '====================Run script to copy decorate js and css to Portal===================='
-          sh "chmod 777 -R AxonIvyPortal"
-          sh "AxonIvyPortal/PortalTest/resources/copy-decorate-js-css.sh"
-          
-          echo "====================Build Portal modules===================="
-          def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples', 'AxonIvyPortal/PortalApp', 'Showcase/portal-demo-app']
-          for (module in modules) {
-            maven cmd: "clean install -f ${module}/pom.xml -Divy.engine.directory=${engineDir}"
-          }
+              //node('master') {
+              // utils.remoteDesktop()
+              //}
 
-          echo "====================Deploy Portal modules===================="
-          deployment = engineDir + "/system/demo-applications/demo-portal";
-          sh "rm -r ${deployment}/*"
-          sh "cp Showcase/portal-demo-app/target/*zip ${deployment}"        
-          sh "cp Showcase/portal-developer-examples/target/*iar ${deployment}"        
-          sh "cp Showcase/portal-components-examples/target/*iar ${deployment}"
+              //utils.killUnnecessaryProcessesToRunTest()
 
-          //node('master') {
-           // utils.remoteDesktop()
-          //}
-
-          //utils.killUnnecessaryProcessesToRunTest()
-
-          echo '====================Execute maven for testing===================='
-          def mavenGoal = params.deployToRepo? 'deploy' : 'install'
-          maven cmd: "clean ${mavenGoal} -f AxonIvyPortal/PortalTest/document_screenshot_pom.xml ${params.engineDownloadURL} -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=${engineDir} -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
+              echo '====================Execute maven for testing===================='
+              def mavenGoal = params.deployToRepo? 'deploy' : 'install'
+              maven cmd: "clean ${mavenGoal} -f AxonIvyPortal/PortalTest/document_screenshot_pom.xml ${params.engineDownloadURL} -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=${engineDir} -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
           //utils.cleanDisk()
 
           //node('master') {
           //  utils.closeAllRemoteDesktopConnections()
           //}
-
+            }
           }
           
           echo "====================Copy ElasticSearch log===================="
