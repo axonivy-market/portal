@@ -136,6 +136,9 @@ public class BaseTest {
 
   public void launchBrowserAndGotoRelativeLink(String relativeProcessStartLink) {
     try {
+      System.out.println("*****launchBrowserAndGotoRelativeLink*****");
+      System.out.println("browser path: " + getDriverPath());
+      System.out.println("Platform: " + System.getenv("SELENIUM_PLATFORM"));
       browser.launch(browserType, UrlHelpers.generateAbsoluteProcessStartLink(relativeProcessStartLink), getDriverPath());
     } catch (Exception e) {
       throw new PortalGUITestException(e);
