@@ -45,30 +45,32 @@
          </p:selectOneMenu>
        </div>
      </div>
+     <c:set var="isIvyProcess" value="#{widget.data.type == 'PROCESS'}"/>
      <h:panelGroup id="external-url-panel" styleClass="ui-g-12 u-padding-0"
-       rendered="#{widget.data.type ne 'PROCESS'}">
+       rendered="#{!isIvyProcess}">
         <div class="ui-g-3">
           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardCustomWidgetType/EXTERNAL_URL')}" for="external-url" />
         </div>
         <div class="ui-g-9 ui-fluid">
-          <p:inputText id="external-url" value="#{widget.data.url}" />
+          <p:inputText id="external-url" value="#{widget.data.url}" required="#{!isIvyProcess}"/>
         </div>
         <div class="ui-g-12">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/CustomWidgetExternalLinkWarning')}" />
         </div>
       </h:panelGroup>
       <h:panelGroup id="ivy-process-panel" styleClass="ui-g-12 u-padding-0"
-        rendered="#{widget.data.type == 'PROCESS'}">
+        rendered="#{isIvyProcess}">
         <div class="ui-g-3">
           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/process')}" for="selected-process" />
         </div>
         <div class="ui-g-9 ui-fluid">
           <p:autoComplete id="selected-process" dropdown="true" scrollHeight="300" forceSelection="true"
-            completeMethod="#{dashboardCustomWidgetBean.completeProcesses}" value="#{widget.data.ivyProcessStartDTO}" var="process" itemValue="#{process}" itemLabel="#{process.startableProcessStart.name}" queryDelay="500"
+            completeMethod="#{dashboardCustomWidgetBean.completeProcesses}" value="#{widget.data.ivyProcessStartDTO}"
+            var="process" itemValue="#{process}" itemLabel="#{process.startableProcessStart.name}" queryDelay="500"
             cache="true" minQueryLength="2" itemtipAtPosition="right top" converter="pojoConverter"
-            required="#{widget.data.type == 'PROCESS' ? true : false}">
+            required="#{isIvyProcess}">
             <p:ajax event="query" global="false" />
-            <p:ajax event="itemSelect" listener="#{dashboardCustomWidgetBean.onSelectProcess(widget)}" update="user-filter"
+            <p:ajax event="itemSelect" listener="#{dashboardCustomWidgetBean.onSelectProcess(widget)}" update="user-filter parameters-panel"
               process="@this" oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
             <p:column>
               <h:outputText styleClass="autocomplete-tooltip" value="#{process.startableProcessStart.name}" title="#{process.startableProcessStart.description}" />
@@ -76,45 +78,45 @@
           </p:autoComplete>
         </div>
       </h:panelGroup>
-      
+
       <h:panelGroup id="parameters-panel" styleClass="ui-g-12 parameters-panel u-padding-0 MarTop10" layout="block"
-        rendered="#{widget.data.type == 'PROCESS' and widget.data.ivyProcessStartDTO.startableProcessStart ne null}">
+        rendered="#{isIvyProcess and widget.data.ivyProcessStartDTO.startableProcessStart ne null}">
         <p:fieldset id="parameters-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/Parameters')}"
           toggleable="true" collapsed="false" rendered="#{not empty widget.data.params || widget.data.hasParamChanged}">
           <h:panelGroup layout="block" rendered="#{widget.data.hasParamChanged}" styleClass="ui-g">
-          <div class="ui-g-12">
-            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/customWidgetParamChangedMessage')}" />
-          </div>
-          <div class="ui-g-12">
-            <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/Update')}">
-              <p:ajax event="click" listener="#{dashboardDetailModificationBean.reloadParamtersFromProcessForCustomWidget(widget)}"
-                update="parameters-panel" />
-            </p:commandButton>
-          </div>
+            <div class="ui-g-12">
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/customWidgetParamChangedMessage')}" />
+            </div>
+            <div class="ui-g-12">
+              <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/Update')}">
+                <p:ajax event="click" listener="#{dashboardDetailModificationBean.reloadParamtersFromProcessForCustomWidget(widget)}"
+                  update="parameters-panel" />
+              </p:commandButton>
+            </div>
           </h:panelGroup>
           <h:panelGroup id="parameters-container" styleClass="ui-g ui-g-12 ui-fluid parameters u-padding-0" layout="block">
-          <ui:repeat id="parammeters" value ="#{widget.data.params}" var="parameter" varStatus="status" >
-            <h:panelGroup layout="block" styleClass="ui-g-4">
-              <h:outputText styleClass="param-label" value="#{parameter.name}" />
-            </h:panelGroup>
-            <h:panelGroup layout="block" styleClass="ui-g-8">
-              <p:inputText id="param-string-#{status.index}" value="#{parameter.value}" rendered="#{parameter.type == 'STRING'}" />
-              <p:datePicker id="param-calendar-#{status.index}" value="#{parameter.valueDate}" rendered="#{parameter.type == 'DATE'}"
-                 locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.formattingLanguagePattern}" showTime="#{!dateTimePatternBean.isTimeHidden}" showIcon="true" />
-              <ic:com.axonivy.portal.components.UserSelection id="param-user-#{status.index}"
-                selectedUser="#{parameter.valueUser}" rendered="#{parameter.type == 'USER'}"
-                queryDelay="500" maxResults="100" cache="true" autoCompleteStyleClass="custom-widget-configuration__user-selection" />
-              <p:selectOneRadio id="param-boolean-#{status.index}" value="#{parameter.valueBoolean}"
-                rendered="#{parameter.type == 'BOOLEAN'}">
-                <f:selectItem id="yes-option"
-                  itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
-                  itemValue="#{true}" />
-                <f:selectItem id="no-option"
-                  itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
-                  itemValue="#{false}" />
-              </p:selectOneRadio>
-            </h:panelGroup>
-          </ui:repeat>
+            <ui:repeat id="parammeters" value ="#{widget.data.params}" var="parameter" varStatus="status" >
+              <h:panelGroup layout="block" styleClass="ui-g-4">
+                <h:outputText styleClass="param-label" value="#{parameter.name}" />
+              </h:panelGroup>
+              <h:panelGroup layout="block" styleClass="ui-g-8">
+                <p:inputText id="param-string-#{status.index}" value="#{parameter.value}" rendered="#{parameter.type == 'STRING'}" />
+                <p:datePicker id="param-calendar-#{status.index}" value="#{parameter.valueDate}" rendered="#{parameter.type == 'DATE'}"
+                   locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.formattingLanguagePattern}" showTime="#{!dateTimePatternBean.isTimeHidden}" showIcon="true" />
+                <ic:com.axonivy.portal.components.UserSelection id="param-user-#{status.index}"
+                  selectedUser="#{parameter.valueUser}" rendered="#{parameter.type == 'USER'}"
+                  queryDelay="500" maxResults="100" cache="true" autoCompleteStyleClass="custom-widget-configuration__user-selection" />
+                <p:selectOneRadio id="param-boolean-#{status.index}" value="#{parameter.valueBoolean}"
+                  rendered="#{parameter.type == 'BOOLEAN'}">
+                  <f:selectItem id="yes-option"
+                    itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
+                    itemValue="#{true}" />
+                  <f:selectItem id="no-option"
+                    itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
+                    itemValue="#{false}" />
+                </p:selectOneRadio>
+              </h:panelGroup>
+            </ui:repeat>
         </h:panelGroup>
         </p:fieldset>
       </h:panelGroup>
