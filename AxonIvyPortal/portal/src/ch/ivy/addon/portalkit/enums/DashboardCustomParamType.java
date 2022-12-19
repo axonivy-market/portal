@@ -7,6 +7,7 @@ public enum DashboardCustomParamType {
   BOOLEAN("boolean__");
   
   private final String prefix;
+  public final static String PARAM_FORMAT = "%s__%s";
 
   private DashboardCustomParamType(String prefix) {
     this.prefix = prefix;
@@ -15,5 +16,4 @@ public enum DashboardCustomParamType {
   public String getPrefix() {
     return prefix;
   }
-  
 }
