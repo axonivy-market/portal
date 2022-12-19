@@ -15,11 +15,11 @@ import ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean;
 import ch.ivyteam.ivy.process.eventstart.IProcessStartEventBeanRuntime;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.IPermissionGroup;
-import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionGroupRepository;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
+import ch.ivyteam.ivy.server.restricted.EngineMode;
 
 public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
 
@@ -36,7 +36,9 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
 
   private void initPermissions() {
     recreateAndGrantPermissions();
-    PortalSecurity.INSTANCE.assignPermissionsToDefaultUsers();
+    if (EngineMode.isAnyOf(EngineMode.DEMO, EngineMode.DESIGNER_EMBEDDED) && isIvySecuritySystem()) {
+      PortalSecurity.INSTANCE.assignPermissionsToDefaultUsers();
+    }
   }
 
   private void recreateAndGrantPermissions() {
@@ -59,12 +61,6 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
     initSystemPermission(absenceAndSubPermissionGroup, getAbsenceAndSubstitutePermissions());
     initSystemPermission(statisticsPermissionGroup, getPortalPermissionsByGroup(PortalPermissionGroup.STATISTIC_GROUP));
     initSystemPermission(expressPermissionGroup, getPortalPermissionsByGroup(PortalPermissionGroup.EXPRESS_GROUP));
-    grantPortalPermissionsForEverybody(Arrays.asList(
-            PortalPermission.STATISTIC_ADD_DASHBOARD_CHART, PortalPermission.EXPRESS_CREATE_WORKFLOW, PortalPermission.ACCESS_FULL_CASE_LIST,
-            PortalPermission.ACCESS_FULL_TASK_LIST, PortalPermission.ACCESS_FULL_PROCESS_LIST, PortalPermission.ACCESS_FULL_STATISTICS_LIST,
-            PortalPermission.TASK_CASE_ADD_NOTE, PortalPermission.TASK_CASE_SHOW_MORE_NOTE, PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS,
-            PortalPermission.SHOW_ALL_TASKS_OF_CASE, PortalPermission.TASK_DISPLAY_RESET_ACTION, PortalPermission.TASK_DISPLAY_RESERVE_ACTION,
-            PortalPermission.TASK_DISPLAY_DELEGATE_ACTION, PortalPermission.DASHBOARD_WRITE_OWN));
   }
 
   private void initSystemPermission(IPermissionGroup permissionGroup, List<IPermission> permissions) {
@@ -82,17 +78,22 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
         IPermission.TASK_WRITE_EXPIRY_TIMESTAMP, IPermission.TASK_WRITE_ORIGINAL_PRIORITY,
         IPermission.TASK_WRITE_DESCRIPTION, IPermission.TASK_WRITE_NAME, IPermission.TASK_READ_OWN_CASE_TASKS,
         IPermission.TASK_DESTROY, IPermission.TASK_WRITE_DELAY_TIMESTAMP,
-        IPermission.TASK_WRITE_EXPIRY_ACTIVATOR,
-        createPermission(PortalPermission.TASK_RESET_READY_FOR_JOIN)));
+        IPermission.TASK_WRITE_EXPIRY_ACTIVATOR));
     return result;
   }
 
-  private IPermission createPermission(PortalPermission permission) {
+  private IPermission createAndGrantPermission(PortalPermission permission) {
     IPermission iPermission = IPermissionRepository.instance().findByName(permission.getValue());
     if (Objects.isNull(iPermission)) {
       iPermission = IPermissionRepository.instance().create(permission.getValue());
+      PortalSecurity.INSTANCE.grantPermissionToEverybody(iPermission.getName());
     }
     return iPermission;
+  }
+
+  private boolean isIvySecuritySystem() {
+    return ISecurityContext.current()
+        .getExternalSecuritySystemName().equals(ISecurityConstants.IVY_ENGINE_SECURITY_SYSTEM_PROVIDER_NAME);
   }
 
   private List<IPermission> getCasePermissions() {
@@ -119,19 +120,13 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
 
   private List<IPermission> getPortalPermissionsByGroup(PortalPermissionGroup permissionGroup) {
     List<IPermission> result = new ArrayList<>();
-    List<PortalPermission> portalPermissions =
-        Stream.of(PortalPermission.values()).filter(p -> p.getGroup() == permissionGroup).collect(toList());
+    List<PortalPermission> portalPermissions = Stream.of(PortalPermission.values())
+        .filter(p -> p.getGroup() == permissionGroup).collect(toList());
     for (PortalPermission permission : portalPermissions) {
-      result.add(createPermission(permission));
+      result.add(createAndGrantPermission(permission));
     }
     return result;
   }
-
-  private void grantPortalPermissionsForEverybody(List<PortalPermission> iPermissions) {
-    IRole everybody = ISecurityContext.current().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
-    PortalSecurity.INSTANCE.grantPermissionsToForSecurityMember(iPermissions, everybody);
-  }
-
 
   private boolean hasPermission(IPermissionGroup permissionGroup, IPermission permission) {
     return permissionGroup.getPermissions().stream().anyMatch(p -> p.getId() == permission.getId());
