@@ -1,9 +1,10 @@
 package ch.ivy.addon.portalkit.util;
 
+import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.util.List;
-import java.util.Objects;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.EnumUtils;
@@ -188,7 +189,7 @@ public class CustomWidgetUtils {
     ICustomField<?> customField = customfields.all().stream()
             .filter(field -> field.name().equals(key))
             .findFirst().orElse(null);
-    if (Objects.isNull(customField) || customField.get().isEmpty()) {
+    if (isNull(customField) || customField.get().isEmpty()) {
       return EMPTY;
     }
     return String.valueOf(customField.getOrNull());
@@ -200,7 +201,7 @@ public class CustomWidgetUtils {
     if (StringUtils.isNotBlank(processPath)) {
       customWidget.getData().setUrl(EMPTY);
       IWebStartable webStartable = findWebStartableByProcessPath(processPath);
-      if (Objects.isNull(webStartable)) {
+      if (isNull(webStartable)) {
         customWidget.getData().setStartRequestPath(EMPTY);
         return;
       }
@@ -209,12 +210,12 @@ public class CustomWidgetUtils {
           .filter(process -> process.getLink().getRelative().equals(webStartableLink))
           .findAny().map(IProcessStart::getRequestPath).orElse(EMPTY);
       IStartElement startElement = ProcessStartAPI.findStartElementByRequestPath(processRequestPath);
-      if (Objects.isNull(startElement)) {
+      if (isNull(startElement)) {
         return;
       }
       var relativeLink = startElement.getLink().getRelative();
       customWidget.getData().setStartProcessParams(startElement.startParameters());
-      if (customWidget.getData().getIvyProcessStartDTO() == null) {
+      if (isNull(customWidget.getData().getIvyProcessStartDTO())) {
         customWidget.getData().setIvyProcessStartDTO(new IvyProcessStartDTO());
       }
       customWidget.getData().getIvyProcessStartDTO().setStartableProcessStart(webStartable);
@@ -233,9 +234,9 @@ public class CustomWidgetUtils {
     IWebStartable webStartable = getAllPortalProcesses().stream()
         .filter(proccess -> proccess.getId().equals(processPath))
         .findAny().orElse(null);
-    if (Objects.isNull(webStartable)) {
+    if (isNull(webStartable)) {
       IStartElement startElement = ProcessStartAPI.findStartElementByProcessStartFriendlyRequestPath(processPath);
-      if (Objects.nonNull(startElement)) {
+      if (nonNull(startElement)) {
         webStartable = getAllPortalProcesses().stream()
             .filter(proccess -> proccess.getLink().getRelative().equals(startElement.getLink().getRelative()))
             .findAny().orElse(null);
