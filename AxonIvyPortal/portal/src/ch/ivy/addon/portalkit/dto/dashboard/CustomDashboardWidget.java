@@ -65,8 +65,12 @@ public class CustomDashboardWidget extends DashboardWidget {
   public void loadParametersFromProcess() {
     data.setHasParamChanged(false);
     data.setParams(new ArrayList<>());
-    data.setStartProcessParams(ProcessStartAPI
-        .findStartElementByProcessStartFriendlyRequestPath(data.getProcessPath()).startParameters());
+    if (CollectionUtils.isEmpty(data.getStartProcessParams())) {
+      var startElement = ProcessStartAPI.findStartElementByRequestPath(data.getStartRequestPath());
+      if (startElement != null) {
+        data.setStartProcessParams(startElement.startParameters());
+      }
+    }
 
     if (CollectionUtils.isNotEmpty(data.getStartProcessParams())) {
       for (StartParameter param : data.getStartProcessParams()) {
@@ -103,17 +107,16 @@ public class CustomDashboardWidget extends DashboardWidget {
   }
   
   public void loadParameters() {
-    data.setStartProcessParams(ProcessStartAPI
-        .findStartElementByProcessStartFriendlyRequestPath(data.getProcessPath()).startParameters());
     data.setHasParamChanged(false);
-
     List<String> paramNames = new ArrayList<>();
     List<String> paramFromProcessNames = data.getStartProcessParams().stream()
         .map(StartParameter::name).collect(Collectors.toList());
 
     // Get names of current params saved in JSON
     for (CustomDashboardWidgetParam param : data.getParams()) {
-      String paramRealName = param.getType().name().toLowerCase().concat("__").concat(param.getName());
+      String paramRealName = String.format(DashboardCustomParamType.PARAM_FORMAT,
+          param.getType().name().toLowerCase(),
+          param.getName());
       paramNames.add(paramRealName);
     }
 
