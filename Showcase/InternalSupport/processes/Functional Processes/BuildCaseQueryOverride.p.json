@@ -49,6 +49,7 @@
       "type" : "Script",
       "name" : "Build case query",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
