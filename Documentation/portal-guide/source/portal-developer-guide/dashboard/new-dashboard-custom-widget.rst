@@ -142,7 +142,7 @@ JSON structure
             "x": 10, "y": 0, "w": 12, "h": 6
          },
          "data" : {
-           "processPath": "Start Processes/DashboardCustomWidgetExample/investmentList.ivp",
+           "processPath": "designer/portal-developer-examples/Start Processes/DashboardCustomWidgetExample/investmentList.ivp",
            "params": [
                {
                   "type": "user",
@@ -170,7 +170,7 @@ the relation between name and type.
 
 Attributes explanation
 
-   ``processPath``: the user-friendly request path of the Ivy process that will be displayed in custom widget
+   ``processPath``: the :dev-url:`|ivy| IWebStartable </doc/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the Ivy process that will be displayed in custom widget
 
    ``params``: parameters for the Ivy process above. Each parameter can be defined as follows:
 

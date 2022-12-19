@@ -74,12 +74,12 @@ Below is a standard JSON definition of aProcess widget in compact mode
          "layout": {
             "x": 10, "y": 0, "w": 2, "h": 4
          },
-         "processPaths": ["Start Processes/Request/createNewRequest.ivp", "Start Processes/Request/collectDataRequest.ivp"],
+         "processPaths": ["designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp", "designer/portal-developer-examples/Start Processes/Request/collectDataRequest.ivp"],
          "categories": ["/Categories/Showcase/Customized", "/Categories/Showcase/PortalDialogExample"]
       }
    ..
 
-``processPaths``: userfriendly request path of the processes that you want to
+``processPaths``: the :dev-url:`|ivy| IWebStartable </doc/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the processes that you want to
 show.
 
 ``categories``: categories of processes that you want to show. The value should be the :dev-url:`CMS URI </doc/|version|/designer-guide/how-to/workflow/categories.html#workflow-categories>` of this category. Process widget
@@ -110,12 +110,12 @@ Below is a standard JSON definition of a Process widget in combined mode
          "layout": {
             "x": 10, "y": 0, "w": 2, "h": 4
          },
-         "processPath": "Start Processes/Request/createNewRequest.ivp",
+         "processPath": "designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp",
          "rowsPerPage": 5
       }
    ..
 
-``processPath``: user friendly request path of the process you want to display.
+``processPath``: the :dev-url:`|ivy| IWebStartable </doc/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the process you want to display.
 The Process widget will show all tasks and cases of this process, too.
 
 ``rowsPerPage``: the number of tasks/cases that are displayed on one page. 
@@ -140,7 +140,7 @@ Below is a standard JSON definition of a Process widget in full mode
          "layout": {
             "x": 10, "y": 0, "w": 2, "h": 4
          },
-         "processPath": "Start Processes/Request/createNewRequest.ivp"
+         "processPath": "designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp"
       }
    ..
 
@@ -163,6 +163,6 @@ Below is a standard JSON definition of the Process widget in image mode
          "layout": {
             "x": 10, "y": 0, "w": 2, "h": 4
          },
-         "processPath": "Start Processes/Request/createNewRequest.ivp"
+         "processPath": "designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp"
       }
    ..

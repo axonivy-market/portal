@@ -45,7 +45,7 @@ public class CustomWidgetData implements Serializable {
    * @deprecated use {@link #setProcessPath()} instead
    * The processStart is replaced by processPath
    */
-  @Deprecated
+  @Deprecated(forRemoval = true, since = "10.0.3")
   @JsonProperty("processStart")
   public void setProcessStart(String processStart) {
     if (StringUtils.isBlank(processPath)) {

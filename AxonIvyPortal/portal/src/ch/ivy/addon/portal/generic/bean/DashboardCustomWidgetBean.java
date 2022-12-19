@@ -3,12 +3,14 @@ package ch.ivy.addon.portal.generic.bean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
@@ -25,44 +27,34 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 public class DashboardCustomWidgetBean implements Serializable {
 
   private static final long serialVersionUID = 7637567927058415789L;
-
   private static final String IS_DASHBOARD_PROCESS = "isDashboardProcess";
 
-  private DashboardCustomWidgetType selectedType;
+  private DashboardCustomWidgetType selectedType = DashboardCustomWidgetType.EXTERNAL_URL;
   private DashboardCustomWidgetType[] customWidgetTypes = DashboardCustomWidgetType.values();
   private String process;
   private List<IWebStartable> allPortalProcesses;
   private List<IProcessStart> startableProcessStarts;
-  
-
-  @PostConstruct
-  public void init() {
-    selectedType = DashboardCustomWidgetType.EXTERNAL_URL;
-    allPortalProcesses = ProcessService.newInstance().findProcesses().getProcesses();
-    allPortalProcesses = allPortalProcesses.stream()
-      .filter(proccess -> StringUtils.isNotBlank(proccess.customFields().value(IS_DASHBOARD_PROCESS))
-          && proccess.customFields().value(IS_DASHBOARD_PROCESS).contentEquals("true"))
-      .collect(Collectors.toList());
-    startableProcessStarts = Ivy.session().getStartableProcessStarts();
-  }
 
   public void onSelectProcess(CustomDashboardWidget widget) {
-    if (widget.getData().getIvyProcessStartDTO() == null) {
-      widget.getData().setIvyProcessStartDTO(new IvyProcessStartDTO());
+    var ivyProcessStartDTO = widget.getData().getIvyProcessStartDTO();
+    if (Objects.isNull(ivyProcessStartDTO) || Objects.isNull(ivyProcessStartDTO.getStartableProcessStart())) {
+      return;
     }
-    widget.getData().setProcessPath(getStartableProcessStarts().stream()
-        .filter(process -> process.getLink().getRelative().contentEquals(widget.getData().getIvyProcessStartDTO().getStartableProcessStart().getLink().getRelative()))
-        .findFirst().get().getUserFriendlyRequestPath());
-    widget.getData().setUrl(widget.getData().getIvyProcessStartDTO().getStartableProcessStart().getLink().getRelative());
+    var processStart = getStartableProcessStarts().stream()
+        .filter(process -> process.getLink().getRelative().equals(widget.getData().getIvyProcessStartDTO().getStartableProcessStart().getLink().getRelative()))
+        .findAny().get();
+    widget.getData().setProcessPath(ivyProcessStartDTO.getStartableProcessStart().getId());
+    widget.getData().setStartRequestPath(Optional.of(processStart).map(IProcessStart::getRequestPath).get());
     widget.loadParametersFromProcess();
   }
 
   public void onChangeType(CustomDashboardWidget widget) {
     if (widget.getData().getType() == DashboardCustomWidgetType.EXTERNAL_URL) {
-      widget.getData().setUrl("");
+      widget.getData().setUrl(null);
       widget.getData().setParams(null);
       widget.getData().setHasParamChanged(false);
       widget.getData().setProcessPath(null);
+      widget.getData().setStartRequestPath(null);
       widget.getData().getIvyProcessStartDTO().setStartableProcessStart(null);
       widget.getData().setStartProcessParams(null);
     }
@@ -73,19 +65,15 @@ public class DashboardCustomWidgetBean implements Serializable {
   }
 
   public List<IvyProcessStartDTO> completeProcesses(String query) {
-    List<IWebStartable> processes = this.allPortalProcesses.stream()
+    List<IWebStartable> processes = getAllPortalProcesses().stream()
         .filter(process -> StringUtils.containsIgnoreCase(process.getName(), query)).collect(Collectors.toList());
     List<IvyProcessStartDTO> result = new ArrayList<>();
     for (IWebStartable webStartable : processes) {
-      result.add(ivyProcessStartDTOConverter(webStartable));
+      IvyProcessStartDTO ivyProcessStartDTO = new IvyProcessStartDTO();
+      ivyProcessStartDTO.setStartableProcessStart(webStartable);
+      result.add(ivyProcessStartDTO);
     }
     return result;
-  }
-
-  private IvyProcessStartDTO ivyProcessStartDTOConverter(IWebStartable webStartable) {
-    IvyProcessStartDTO ivyProcessStartDTO = new IvyProcessStartDTO();
-    ivyProcessStartDTO.setStartableProcessStart(webStartable);
-    return ivyProcessStartDTO;
   }
 
   public DashboardCustomWidgetType getSelectedType() {
@@ -113,18 +101,20 @@ public class DashboardCustomWidgetBean implements Serializable {
   }
 
   public List<IWebStartable> getAllPortalProcesses() {
+    if (CollectionUtils.isEmpty(allPortalProcesses)) {
+      allPortalProcesses = ProcessService.newInstance().findProcesses()
+          .getProcesses().stream()
+          .filter(proccess -> StringUtils.isNotBlank(proccess.customFields().value(IS_DASHBOARD_PROCESS))
+              && proccess.customFields().value(IS_DASHBOARD_PROCESS).contentEquals("true"))
+          .collect(Collectors.toList());
+    }
     return allPortalProcesses;
   }
 
-  public void setAllPortalProcesses(List<IWebStartable> allPortalProcesses) {
-    this.allPortalProcesses = allPortalProcesses;
-  }
-
   public List<IProcessStart> getStartableProcessStarts() {
+    if (CollectionUtils.isEmpty(startableProcessStarts)) {
+      startableProcessStarts = Ivy.session().getStartableProcessStarts();
+    }
     return startableProcessStarts;
-  }
-
-  public void setStartableProcessStarts(List<IProcessStart> startableProcessStarts) {
-    this.startableProcessStarts = startableProcessStarts;
   }
 }
