@@ -129,29 +129,6 @@ public final class ProcessStartAPI {
 
   /**
    * Find start element from friendly request path
-   * @param friendlyRequestPath friendly path e.g "Start Processes/UserExampleGuide/userExampleGuide.ivp"
-   * @return start element or null
-   */
-  public static IStartElement findStartElementByProcessStartFriendlyRequestPath(String friendlyRequestPath) {
-    return IvyExecutor.executeAsSystem(() -> {
-      IStartElement startElement = getStartElement(friendlyRequestPath, Ivy.request().getProcessModelVersion());
-      if (startElement != null) {
-        return startElement;
-      }
-
-      List<IApplication> applicationsInSecurityContext = IApplicationRepository.instance().allOf(ISecurityContext.current());
-      for (IApplication app : applicationsInSecurityContext) {
-        IStartElement findStartElement = filterPMVForStartElement(friendlyRequestPath, app).findFirst().orElse(null);
-        if (findStartElement != null) {
-          return findStartElement;
-        }
-      }
-      return null;
-    });
-  }
-
-  /**
-   * Find start element from friendly request path
    * @param requestPath the request path of the start element to find
    * @return start element or null
    */
@@ -190,10 +167,6 @@ public final class ProcessStartAPI {
   private static IProcessStart getProcessStart(String requestPath, IProcessModelVersion processModelVersion) {
     return IWorkflowProcessModelVersion.of(processModelVersion).findStartElementByUserFriendlyRequestPath(requestPath);
   }
-  
-  private static IStartElement getStartElement(String requestPath, IProcessModelVersion processModelVersion) {
-    return IWorkflowProcessModelVersion.of(processModelVersion).findStartElementByUserFriendlyRequestPath(requestPath);
-  }
 
   private static IStartElement getStartElementByRequestPath(String requestPath, IProcessModelVersion processModelVersion) {
     return IWorkflowProcessModelVersion.of(processModelVersion).findStartElement(requestPath);
@@ -228,12 +201,6 @@ public final class ProcessStartAPI {
   private static Stream<IProcessStart> filterPMV(String requestPath, IApplication application) {
     return filterActivePMVOfApp(application)
       .map(p -> getProcessStart(requestPath, p))
-      .filter(Objects::nonNull);
-  }
-
-  private static Stream<IStartElement> filterPMVForStartElement(String requestPath, IApplication application) {
-    return filterActivePMVOfApp(application)
-      .map(p -> getStartElement(requestPath, p))
       .filter(Objects::nonNull);
   }
 

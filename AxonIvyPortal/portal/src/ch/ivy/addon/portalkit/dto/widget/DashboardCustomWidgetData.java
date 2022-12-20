@@ -1,7 +1,9 @@
 package ch.ivy.addon.portalkit.dto.widget;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -12,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidgetParam;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
+import ch.ivyteam.ivy.workflow.start.IWebStartable;
 import ch.ivyteam.ivy.workflow.start.StartParameter;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -28,9 +31,6 @@ public class DashboardCustomWidgetData implements Serializable {
   private DashboardCustomWidgetType type;
   @JsonIgnore
   private IvyProcessStartDTO ivyProcessStartDTO;
-  @JsonIgnore
-  private List<StartParameter> startProcessParams;
-
   @JsonIgnore
   private boolean hasParamChanged;
 
@@ -87,11 +87,8 @@ public class DashboardCustomWidgetData implements Serializable {
   }
 
   public List<StartParameter> getStartProcessParams() {
-    return startProcessParams;
-  }
-
-  public void setStartProcessParams(List<StartParameter> startProcessParams) {
-    this.startProcessParams = startProcessParams;
+    return Optional.ofNullable(ivyProcessStartDTO).map(IvyProcessStartDTO::getStartableProcessStart)
+        .map(IWebStartable::parameters).orElse(new ArrayList<>());
   }
 
   public boolean isHasParamChanged() {
