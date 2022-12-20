@@ -21,7 +21,6 @@ import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.IProcessStart;
-import ch.ivyteam.ivy.workflow.IStartElement;
 import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
 
 /**
@@ -127,29 +126,6 @@ public final class ProcessStartAPI {
     return processStart != null ? processStart.getLink().getRelative() : StringUtils.EMPTY;
   }
 
-  /**
-   * Find start element from friendly request path
-   * @param requestPath the request path of the start element to find
-   * @return start element or null
-   */
-  public static IStartElement findStartElementByRequestPath(String requestPath) {
-    return IvyExecutor.executeAsSystem(() -> {
-      IStartElement startElement = getStartElementByRequestPath(requestPath, Ivy.request().getProcessModelVersion());
-      if (startElement != null) {
-        return startElement;
-      }
-
-      List<IApplication> applicationsInSecurityContext = IApplicationRepository.instance().allOf(ISecurityContext.current());
-      for (IApplication app : applicationsInSecurityContext) {
-        IStartElement findStartElement = filterPMVForStartElementByRequestPath(requestPath, app).findFirst().orElse(null);
-        if (findStartElement != null) {
-          return findStartElement;
-        }
-      }
-      return null;
-    });
-  }
-
   private static IProcessStart findStartableProcessStartByUserFriendlyRequestPath(String requestPath, IApplication application) {
     return filterPMV(requestPath, application)
       .filter(processStart -> isStartableProcessStart(processStart.getFullUserFriendlyRequestPath()))
@@ -166,10 +142,6 @@ public final class ProcessStartAPI {
   
   private static IProcessStart getProcessStart(String requestPath, IProcessModelVersion processModelVersion) {
     return IWorkflowProcessModelVersion.of(processModelVersion).findStartElementByUserFriendlyRequestPath(requestPath);
-  }
-
-  private static IStartElement getStartElementByRequestPath(String requestPath, IProcessModelVersion processModelVersion) {
-    return IWorkflowProcessModelVersion.of(processModelVersion).findStartElement(requestPath);
   }
 
   private static boolean isStartableProcessStart(String fullUserFriendlyRequestPath) {
@@ -201,12 +173,6 @@ public final class ProcessStartAPI {
   private static Stream<IProcessStart> filterPMV(String requestPath, IApplication application) {
     return filterActivePMVOfApp(application)
       .map(p -> getProcessStart(requestPath, p))
-      .filter(Objects::nonNull);
-  }
-
-  private static Stream<IStartElement> filterPMVForStartElementByRequestPath(String requestPath, IApplication application) {
-    return filterActivePMVOfApp(application)
-      .map(p -> getStartElementByRequestPath(requestPath, p))
       .filter(Objects::nonNull);
   }
 

@@ -86,6 +86,7 @@ public class DashboardCustomWidgetData implements Serializable {
     this.params = params;
   }
 
+  @JsonIgnore
   public List<StartParameter> getStartProcessParams() {
     return Optional.ofNullable(ivyProcessStartDTO).map(IvyProcessStartDTO::getStartableProcessStart)
         .map(IWebStartable::parameters).orElse(new ArrayList<>());

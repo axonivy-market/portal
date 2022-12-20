@@ -59,10 +59,12 @@ import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetSample;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
+import ch.ivy.addon.portalkit.dto.widget.DashboardCustomWidgetData;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
+import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.DashboardService;
@@ -478,7 +480,12 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private void unifyCustomWidgetData(CustomDashboardWidget customWidget) {
     if (customWidget.getData().getType() == DashboardCustomWidgetType.PROCESS) {
       // Update processPath to latest
-      IWebStartable webStartable = CustomWidgetUtils.findWebStartableByProcessPath(customWidget.getData().getProcessPath());
+      IWebStartable webStartable = Optional.ofNullable(customWidget.getData())
+          .map(DashboardCustomWidgetData::getIvyProcessStartDTO)
+          .map(IvyProcessStartDTO::getStartableProcessStart).orElse(null);
+      if (Objects.isNull(webStartable)) {
+        webStartable = CustomWidgetUtils.findWebStartableByProcessPath(customWidget.getData().getProcessPath());
+      }
       if (Objects.nonNull(webStartable)) {
         customWidget.getData().setProcessPath(webStartable.getId());
       }
@@ -697,7 +704,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public void reloadParamtersFromProcessForCustomWidget(DashboardWidget widget) {
     CustomDashboardWidget customWidget = (CustomDashboardWidget) widget;
-    customWidget.getData().setStartProcessParams(null);
     customWidget.loadParametersFromProcess();
   }
 
