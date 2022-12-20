@@ -11,7 +11,7 @@ pipeline {
   }
 
   parameters {
-    string(name: 'testPatternToRun', defaultValue: 'portal.guitest.document.screenshot.*Test', description: 'Screenshot test pattern')
+    string(name: 'testPatternToRun', defaultValue: 'com.axonivy.portal.selenium.test.*Test', description: 'Screenshot test pattern')
     string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip', description: '''Where to download engine? e.g.
       -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip for nightly master
       -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip for dev master
