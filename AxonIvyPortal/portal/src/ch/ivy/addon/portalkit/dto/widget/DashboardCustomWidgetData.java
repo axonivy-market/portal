@@ -51,7 +51,8 @@ public class DashboardCustomWidgetData implements Serializable {
   }
 
   /**
-   * @deprecated use {@link #setProcessPath()} instead
+   * @param processStart 
+   * @deprecated use {@link #setProcessPath(String)} instead
    * The processStart is replaced by processPath
    */
   @Deprecated(forRemoval = true, since = "10.0.3")
