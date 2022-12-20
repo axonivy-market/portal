@@ -14,7 +14,6 @@ import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.widget.DashboardCustomWidgetData;
 import ch.ivy.addon.portalkit.enums.DashboardCustomParamType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
-import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
@@ -65,37 +64,27 @@ public class CustomDashboardWidget extends DashboardWidget {
   public void loadParametersFromProcess() {
     data.setHasParamChanged(false);
     data.setParams(new ArrayList<>());
-    if (CollectionUtils.isEmpty(data.getStartProcessParams())) {
-      var startElement = ProcessStartAPI.findStartElementByRequestPath(data.getStartRequestPath());
-      if (startElement != null) {
-        data.setStartProcessParams(startElement.startParameters());
+    for (StartParameter param : data.getStartProcessParams()) {
+      CustomDashboardWidgetParam customParam = new CustomDashboardWidgetParam();
+      customParam.setName(param.name());
+      if (param.name().startsWith(DashboardCustomParamType.STRING.getPrefix())) {
+        customParam.setType(DashboardCustomParamType.STRING);
+        customParam.setName(removePrefixFromParamName(param.name(), DashboardCustomParamType.STRING));
       }
-    }
-
-    if (CollectionUtils.isNotEmpty(data.getStartProcessParams())) {
-      for (StartParameter param : data.getStartProcessParams()) {
-        CustomDashboardWidgetParam customParam = new CustomDashboardWidgetParam();
-        customParam.setName(param.name());
-        if (param.name().startsWith(DashboardCustomParamType.STRING.getPrefix())) {
-          customParam.setType(DashboardCustomParamType.STRING);
-          customParam.setName(removePrefixFromParamName(param.name(), DashboardCustomParamType.STRING));
-        }
-        if (param.name().startsWith(DashboardCustomParamType.BOOLEAN.getPrefix())) {
-          customParam.setType(DashboardCustomParamType.BOOLEAN);
-          customParam.setName(removePrefixFromParamName(param.name(), DashboardCustomParamType.BOOLEAN));
-        }
-        if (param.name().startsWith(DashboardCustomParamType.DATE.getPrefix())) {
-          customParam.setType(DashboardCustomParamType.DATE);
-          customParam.setName(removePrefixFromParamName(param.name(), DashboardCustomParamType.DATE));
-        }
-        if (param.name().startsWith(DashboardCustomParamType.USER.getPrefix())) {
-          customParam.setType(DashboardCustomParamType.USER);
-          customParam.setName(removePrefixFromParamName(param.name(), DashboardCustomParamType.USER));
-        }
-        data.getParams().add(customParam);
+      if (param.name().startsWith(DashboardCustomParamType.BOOLEAN.getPrefix())) {
+        customParam.setType(DashboardCustomParamType.BOOLEAN);
+        customParam.setName(removePrefixFromParamName(param.name(), DashboardCustomParamType.BOOLEAN));
       }
+      if (param.name().startsWith(DashboardCustomParamType.DATE.getPrefix())) {
+        customParam.setType(DashboardCustomParamType.DATE);
+        customParam.setName(removePrefixFromParamName(param.name(), DashboardCustomParamType.DATE));
+      }
+      if (param.name().startsWith(DashboardCustomParamType.USER.getPrefix())) {
+        customParam.setType(DashboardCustomParamType.USER);
+        customParam.setName(removePrefixFromParamName(param.name(), DashboardCustomParamType.USER));
+      }
+      data.getParams().add(customParam);
     }
-
     data.setParams(data.getParams().stream()
         .sorted(Comparator.comparing(CustomDashboardWidgetParam::getName))
         .sorted(Comparator.comparing(CustomDashboardWidgetParam::getType))
@@ -105,13 +94,13 @@ public class CustomDashboardWidget extends DashboardWidget {
   private String removePrefixFromParamName(String paramName, DashboardCustomParamType paramType) {
     return paramName.replaceFirst("^" + paramType.getPrefix(), "");
   }
-  
+
   public void loadParameters() {
     data.setHasParamChanged(false);
     List<String> paramNames = new ArrayList<>();
     List<String> paramFromProcessNames = data.getStartProcessParams().stream()
-        .map(StartParameter::name).collect(Collectors.toList());
-
+        .map(StartParameter::name)
+        .collect(Collectors.toList());
     // Get names of current params saved in JSON
     for (CustomDashboardWidgetParam param : data.getParams()) {
       String paramRealName = String.format(DashboardCustomParamType.PARAM_FORMAT,
@@ -119,7 +108,6 @@ public class CustomDashboardWidget extends DashboardWidget {
           param.getName());
       paramNames.add(paramRealName);
     }
-
     if (!CollectionUtils.isEqualCollection(paramNames, paramFromProcessNames)) {
       data.setHasParamChanged(true);
     }
