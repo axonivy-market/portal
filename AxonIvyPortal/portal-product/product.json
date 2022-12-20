@@ -11,6 +11,12 @@
                         "type": "iar"
                     },
                     {
+                        "groupId": "ch.ivyteam.ivy.project.portal",
+                        "artifactId": "axonIvyExpress",
+                        "version": "${version}",
+                        "type": "iar"
+                    },
+                    {
                         "groupId": "com.axonivy.portal",
                         "artifactId": "portal-user-examples",
                         "version": "${version}",
