@@ -1,7 +1,6 @@
 package ch.ivy.addon.portalkit.util;
 
 import static java.util.Objects.isNull;
-import static java.util.Objects.nonNull;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.util.List;
@@ -17,11 +16,9 @@ import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
 import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.IProcessStart;
-import ch.ivyteam.ivy.workflow.IStartElement;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomField;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
@@ -205,25 +202,15 @@ public class CustomWidgetUtils {
         customWidget.getData().setStartRequestPath(EMPTY);
         return;
       }
-      String webStartableLink = webStartable.getLink().getRelative();
-      String processRequestPath = getStartableProcesses().stream()
-          .filter(process -> process.getLink().getRelative().equals(webStartableLink))
-          .findAny().map(IProcessStart::getRequestPath).orElse(EMPTY);
-      IStartElement startElement = ProcessStartAPI.findStartElementByRequestPath(processRequestPath);
-      if (isNull(startElement)) {
-        return;
-      }
-      var relativeLink = startElement.getLink().getRelative();
-      customWidget.getData().setStartProcessParams(startElement.startParameters());
       if (isNull(customWidget.getData().getIvyProcessStartDTO())) {
         customWidget.getData().setIvyProcessStartDTO(new IvyProcessStartDTO());
       }
       customWidget.getData().getIvyProcessStartDTO().setStartableProcessStart(webStartable);
       customWidget.loadParameters();
-      customWidget.getData().setStartRequestPath(relativeLink);
+      customWidget.getData().setStartRequestPath(webStartable.getLink().getRelative());
       customWidget.getData().setType(DashboardCustomWidgetType.PROCESS);
     } else {
-      customWidget.getData().setProcessPath(null);
+      customWidget.getData().setProcessPath(EMPTY);
       customWidget.getData().setType(DashboardCustomWidgetType.EXTERNAL_URL);
     }
   }
@@ -235,12 +222,10 @@ public class CustomWidgetUtils {
         .filter(proccess -> proccess.getId().equals(processPath))
         .findAny().orElse(null);
     if (isNull(webStartable)) {
-      IStartElement startElement = ProcessStartAPI.findStartElementByProcessStartFriendlyRequestPath(processPath);
-      if (nonNull(startElement)) {
-        webStartable = getAllPortalProcesses().stream()
-            .filter(proccess -> proccess.getLink().getRelative().equals(startElement.getLink().getRelative()))
-            .findAny().orElse(null);
-      }
+      String processStartLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(processPath);
+      webStartable = getAllPortalProcesses().stream()
+          .filter(proccess -> proccess.getLink().getRelative().equals(processStartLink))
+          .findAny().orElse(null);
     }
     return webStartable;
   }
@@ -250,12 +235,5 @@ public class CustomWidgetUtils {
       allPortalProcesses = ProcessService.newInstance().findProcesses().getProcesses();
     }
     return allPortalProcesses;
-  }
-
-  private static List<IProcessStart> getStartableProcesses() {
-    if (CollectionUtils.isEmpty(startableProcesses)) {
-      startableProcesses = Ivy.session().getStartableProcessStarts();
-    }
-    return startableProcesses;
   }
 }
