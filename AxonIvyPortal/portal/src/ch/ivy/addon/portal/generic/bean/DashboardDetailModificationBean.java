@@ -697,6 +697,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public void reloadParamtersFromProcessForCustomWidget(DashboardWidget widget) {
     CustomDashboardWidget customWidget = (CustomDashboardWidget) widget;
+    customWidget.getData().setStartProcessParams(null);
     customWidget.loadParametersFromProcess();
   }
 
