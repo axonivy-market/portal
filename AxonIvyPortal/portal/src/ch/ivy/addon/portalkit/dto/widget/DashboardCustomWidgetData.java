@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidgetParam;
@@ -13,21 +14,20 @@ import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
 import ch.ivyteam.ivy.workflow.start.StartParameter;
 
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class DashboardCustomWidgetData implements Serializable {
 
   private static final long serialVersionUID = -5961158791241330155L;
 
   private String url;
-
   private String processPath;
-
+  @JsonIgnore
+  private String startRequestPath;
   private List<CustomDashboardWidgetParam> params;
-
   @JsonIgnore
   private DashboardCustomWidgetType type;
   @JsonIgnore
   private IvyProcessStartDTO ivyProcessStartDTO;
-
   @JsonIgnore
   private List<StartParameter> startProcessParams;
 
@@ -54,12 +54,20 @@ public class DashboardCustomWidgetData implements Serializable {
    * @deprecated use {@link #setProcessPath()} instead
    * The processStart is replaced by processPath
    */
-  @Deprecated
+  @Deprecated(forRemoval = true, since = "10.0.3")
   @JsonProperty("processStart")
   public void setProcessStart(String processStart) {
     if (StringUtils.isBlank(processPath)) {
       this.processPath = processStart;
     }
+  }
+
+  public String getStartRequestPath() {
+    return startRequestPath;
+  }
+
+  public void setStartRequestPath(String startRequestPath) {
+    this.startRequestPath = startRequestPath;
   }
 
   public DashboardCustomWidgetType getType() {

@@ -11,61 +11,66 @@
   <c:set var="index" value="#{cc.attrs.index}" />
   <c:set var="widget" value="#{cc.attrs.widget}" />
 
+  <ui:decorate template="/layouts/restricted/decorator/TableWidget.xhtml">
+    <ui:param name="index" value="#{index}" />
+    <ui:param name="widget" value="#{widget}" />
+    <ui:param name="panelId" value="custom-panel-group-#{index}" />
+    <ui:param name="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
+    <ui:param name="isRenderFilter" value="false" />
+    <ui:param name="isRenderInfo" value="#{empty widget.info ? 'false' : 'true'}" />
+    <ui:param name="isRenderExpandCollapse" value="true" />
+    <ui:param name="isHeaderHidden" value="#{empty widget.name and cc.attrs.isReadOnlyMode}" />
+    <ui:param name="panelStyleClass" value="#{isHeaderHidden ? 'custom-widget-panel no-header' : 'custom-widget-panel'}" />
 
-<ui:decorate template="/layouts/restricted/decorator/TableWidget.xhtml">
-      <ui:param name="index" value="#{index}" />
-      <ui:param name="widget" value="#{widget}" />
-      <ui:param name="panelId" value="custom-panel-group-#{index}" />
-      <ui:param name="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
-      <ui:param name="isRenderFilter" value="false" />
-      <ui:param name="isRenderInfo" value="#{empty widget.info ? 'false' : 'true'}" />
-      <ui:param name="isRenderExpandCollapse" value="true" />
-      <ui:param name="isHeaderHidden" value="#{empty widget.name and cc.attrs.isReadOnlyMode}" />
-      <ui:param name="panelStyleClass" value="#{isHeaderHidden ? 'custom-widget-panel no-header' : 'custom-widget-panel'}" />
-      
 
-      <ui:define name="widgetInformationContent">
-        <ui:include src="ProcessInfo.xhtml">
-          <ui:param name="widget" value="#{widget}" />
-        </ui:include>
-      </ui:define>
-      
-      <ui:define name="widgetInformationContent">
-        <h:outputText id="custom-widget-info" rendered="#{not empty widget.info}" value="#{widget.info}" />
-      </ui:define>
-      <ui:define name="widgetContent">
-        <div class="ui-g-12 widget-height-100 u-padding-0 dashboard-widget-iframe__container">
-          <ui:fragment rendered="#{not empty widget.data.processPath}">
-          <h:form id="custom-form-#{index}">
-            <c:forEach var="param" items="#{widget.data.params}">
-              <input type="hidden" name="#{dashboardCustomWidgetBean.generateParamName(param)}"
-                value="#{param.value}" />
-            </c:forEach>
-            <iframe name="custom-widget-iframe-#{index}" class="dashboard-custom-iframe" />
-          </h:form>
+    <ui:define name="widgetInformationContent">
+      <ui:include src="ProcessInfo.xhtml">
+        <ui:param name="widget" value="#{widget}" />
+      </ui:include>
+    </ui:define>
+
+    <ui:define name="widgetInformationContent">
+      <h:outputText id="custom-widget-info" rendered="#{not empty widget.info}" value="#{widget.info}" />
+    </ui:define>
+    <ui:define name="widgetContent">
+      <div class="ui-g-12 widget-height-100 u-padding-0 dashboard-widget-iframe__container">
+        <ui:fragment rendered="#{not empty widget.data.processPath}">
+          <h:panelGroup rendered="#{not empty widget.data.startRequestPath}">
+            <h:form id="custom-form-#{index}">
+              <c:forEach var="param" items="#{widget.data.params}">
+                <input type="hidden" name="#{dashboardCustomWidgetBean.generateParamName(param)}" value="#{param.value}" />
+              </c:forEach>
+              <iframe name="custom-widget-iframe-#{index}" class="dashboard-custom-iframe" />
+            </h:form>
             <script type="text/javascript">
-               $(function() {
-                 var widgetForm = $('form[id $=":custom-form-#{index}"]').get(0);
-                 var action = widgetForm.action;
-                 var target = widgetForm.target;
+                   $(function() {
+                     var widgetForm = $('form[id$=":custom-form-#{index}"]').get(0);
+                     var action = widgetForm.action;
+                     var target = widgetForm.target;
 
-                 widgetForm.action = '#{widget.data.url}';
-                 widgetForm.target = 'custom-widget-iframe-#{index}';
-                 widgetForm.method = 'post';
-                 widgetForm.submit();
-                 widgetForm.action = action;
-                 widgetForm.target = target;
-               });
-             </script>
-          </ui:fragment>
+                     widgetForm.action = '#{widget.data.startRequestPath}';
+                     widgetForm.target = 'custom-widget-iframe-#{index}';
+                     widgetForm.method = 'post';
+                     widgetForm.submit();
+                     widgetForm.action = action;
+                     widgetForm.target = target;
+                   });
+               </script>
+          </h:panelGroup>
+          <h:panelGroup rendered="#{empty widget.data.startRequestPath}" layout="block" id="empty-message-container"
+            styleClass="empty-message-container">
+            <i class="si si-cog-double-2 empty-message-icon" />
+            <br />
+            <h:outputText styleClass="empty-message-text"
+              value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessDataNotFound')}"/>
+          </h:panelGroup>
+        </ui:fragment>
 
-          <ui:fragment rendered="#{empty widget.data.processPath}">
-            <iframe name="custom-widget-iframe-#{index}" src="#{widget.data.url}" class="dashboard-custom-iframe" />
-          </ui:fragment>
-        </div>
-      </ui:define>
-      
-  
-</ui:decorate>
+        <ui:fragment rendered="#{empty widget.data.processPath}">
+          <iframe name="custom-widget-iframe-#{index}" src="#{widget.data.url}" class="dashboard-custom-iframe" />
+        </ui:fragment>
+      </div>
+    </ui:define>
+  </ui:decorate>
 </cc:implementation>
 </html>
