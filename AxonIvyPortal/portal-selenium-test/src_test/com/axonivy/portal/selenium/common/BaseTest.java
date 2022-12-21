@@ -3,19 +3,12 @@ package com.axonivy.portal.selenium.common;
 import static com.axonivy.portal.selenium.common.Variable.SHOW_USER_GUIDE;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.refresh;
-import static com.codeborne.selenide.Selenide.webdriver;
 
-import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.time.Duration;
 
-import org.apache.commons.lang3.SystemUtils;
 import org.junit.jupiter.api.AfterEach;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxBinary;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 
 import com.axonivy.ivy.webtest.engine.EngineUrl;
 import com.codeborne.selenide.WebDriverRunner;
@@ -94,15 +87,6 @@ public class BaseTest {
    * It will clean up all test data and login with account demo
    */
   public void setup() {
-	  System.setProperty("webdriver.gecko.driver", "/usr/bin/geckodriver");
-		FirefoxOptions options = new FirefoxOptions();
-		if (SystemUtils.IS_OS_LINUX) {
-			options.setBinary(new FirefoxBinary(new File("/usr/bin/firefox")));
-			 options.setHeadless(true);
-		}
-		WebDriver driver = new FirefoxDriver(options);
-		driver = new FirefoxDriver();
-		WebDriverRunner.setWebDriver(driver);
     launchBrowserAndGotoRelativeLink(cleanupDataLink);
     updatePortalSetting(SHOW_USER_GUIDE.getKey(), "false");
     createJSonFile("default-dashboard.json", PortalVariable.DASHBOARD.key);

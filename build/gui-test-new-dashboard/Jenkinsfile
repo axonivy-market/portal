@@ -1,51 +1,60 @@
 pipeline {
-  agent any
-
+  agent {label 'hung-pc'}
+  
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '60'))
   }
 
-  triggers {
-    pollSCM '0 7 * * *'
-    cron('0 21 * * *')
+  tools { 
+      maven '3.8' 
+      jdk '17' 
   }
 
   parameters {
-    string(name: 'testPatternToRun', defaultValue: 'com.axonivy.portal.selenium.test.*Test', description: 'Screenshot test pattern')
-    string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip', description: '''Where to download engine? e.g.
-      -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip for nightly master
-      -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip for dev master
-    ''')
+      string(name: 'testPatternToRun', defaultValue: 'com.axonivy.portal.selenium.test.*Test', description: 'Test pattern to run')
+      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
+        -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip for nightly master
+        -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine-windows.zip for dev master
+        -Divy.engine.download.url=file:///C:/wawa/engine/AxonIvyEngineX.X.X.X_Windows_x64.zip for downloaded engine
+        -Divy.engine.list.url=https://jenkins.ivyteam.io/job/core_product/job/release%252F9.4/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.server.product/target/products/ -Divy.engine.os.arch=Windows_x64 for last successful build 9.4
+      ''')
+  }
+
+  environment {
+    engineDir = "$env.WORKSPACE/AxonIvyPortal/portal-selenium-test/engine"
   }
 
   stages {
-    stage("build") {
+    stage('build') {
       steps {
         script {
-          builtModules = []
-          def engineDir = "${pwd()}/AxonIvyPortal/portal-selenium-test/engine"
           def utils = load 'build/common/utils.groovy'
-          docker.image("selenium/standalone-firefox:4").withRun("-e START_XVFB=false --shm-size=2g") {
-            docker.build("maven", "-f build/Dockerfile .").inside("-v /var/tools/maven-cache:/home/build/") {
-              utils.extractEngine(engineDir, params.engineDownloadURL)
-              
-              echo "====================Build Portal modules===================="
-              def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples', 'AxonIvyPortal/PortalApp', 'Showcase/portal-demo-app']
-              for (module in modules) {
-                maven cmd: "clean install -f ${module}/pom.xml -Divy.engine.directory=${engineDir}"
-              }
+          utils.init()
+          utils.stopAllEngines()
+          utils.extractEngine(env.engineDir, params.engineDownloadURL)
 
-              echo "====================Deploy Portal modules===================="
-              deployment = engineDir + "/system/demo-applications/demo-portal";
-              sh "rm -r ${deployment}/*"
-              sh "cp Showcase/portal-demo-app/target/*zip ${deployment}"        
-              sh "cp Showcase/portal-developer-examples/target/*iar ${deployment}"        
-              sh "cp Showcase/portal-components-examples/target/*iar ${deployment}"
-
-              echo '====================Execute maven for testing===================='
-              maven cmd: "clean test -f AxonIvyPortal/portal-selenium-test/customized_pom.xml ${params.engineDownloadURL} -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=${engineDir} -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
-            }
+          echo "====================Build Portal modules===================="
+          def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples', 'AxonIvyPortal/PortalApp', 'Showcase/portal-demo-app']
+          for (module in modules) {
+            bat "mvn clean install -f ${module}/pom.xml -Divy.engine.directory=%engineDir%"
           }
+
+          echo "====================Deploy Portal modules===================="
+          powershell '''
+            $DEPLOYMENT= $env:engineDir + "/system/demo-applications/demo-portal"
+            rmdir $DEPLOYMENT/* -recurse
+            Copy-Item Showcase/portal-demo-app/target/*zip -Destination $DEPLOYMENT
+            Copy-Item Showcase/portal-developer-examples/target/*iar -Destination $DEPLOYMENT
+            Copy-Item Showcase/portal-components-examples/target/*iar -Destination $DEPLOYMENT
+          '''
+
+          utils.killUnnecessaryProcessesToRunTest()
+
+          echo '====================Execute maven for testing===================='
+          bat "mvn clean test -f AxonIvyPortal/portal-selenium-test/customized_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
+          utils.cleanDisk()
+
+          
         }
       }
     }

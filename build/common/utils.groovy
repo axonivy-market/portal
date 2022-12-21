@@ -34,7 +34,7 @@ def stopAllEngines() {
 def startWindowsService(String serviceName) {
   stopWindowsService(serviceName)
   echo "====================Start service ${serviceName}===================="
-  sh """
+  bat """
     @echo off
     net start "${serviceName}"
     if "%ERRORLEVEL%"=="1" (
@@ -46,7 +46,7 @@ def startWindowsService(String serviceName) {
 
 def stopWindowsService(String serviceName) {
   echo "====================Stop service ${serviceName}===================="
-  sh """
+  bat """
   @echo off
     sc query "${serviceName}" | find /i "RUNNING"
     if not "%ERRORLEVEL%"=="1" (net stop "${serviceName}")
@@ -63,7 +63,7 @@ def remoteDesktop() {
 
 def closeAllRemoteDesktopConnections() {
   echo '====================Close all remote desktop connections===================='
-  sh '''
+  bat '''
     taskkill -im mstsc.exe -F
     exit 0
   '''
@@ -71,7 +71,7 @@ def closeAllRemoteDesktopConnections() {
 
 def killUnnecessaryProcessesToRunTest() {
   echo '====================Close unnecessary processes===================='
-  sh '''
+  bat '''
     taskkill -im dwm.exe -F
     taskkill -im Taskmgr.exe -F
     taskkill -im procexp64.exe -F
@@ -85,12 +85,14 @@ def killUnnecessaryProcessesToRunTest() {
 
 def extractEngine(String engineDir, String engineDownloadURL) {
   echo '====================Extract engine===================='
-  maven cmd: "clean compile -f AxonIvyPortal/portal-components/pom.xml -Divy.engine.directory=${engineDir} ${engineDownloadURL}"
+  bat """
+    mvn clean compile -f AxonIvyPortal/portal-components/pom.xml -Divy.engine.directory=${engineDir} ${engineDownloadURL}
+  """
 }
 
 def cleanDisk() {
   echo '====================Clean disk===================='
-  sh """
+  bat """
     c:/tools/clean-disk.bat
     exit 0
   """
