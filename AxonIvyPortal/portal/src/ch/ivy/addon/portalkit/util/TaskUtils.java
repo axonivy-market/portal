@@ -228,9 +228,6 @@ public final class TaskUtils {
   }
 
   public static List<TaskState> filterStateByPermission(List<TaskState> states) {
-    if (PermissionUtils.checkReadAllTasksPermission()) {
-      return states;
-    }
     var validStates = getValidStates();
     return CollectionUtils.emptyIfNull(states).stream()
         .filter(state -> validStates.contains(state))

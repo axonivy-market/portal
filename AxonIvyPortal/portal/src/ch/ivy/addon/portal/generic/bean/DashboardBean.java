@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -23,7 +22,6 @@ import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
-import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
@@ -32,16 +30,12 @@ import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
 import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.CaseEmptyMessage;
-import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
-import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
-import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
-import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.DashboardService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
@@ -53,9 +47,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.IStartElement;
 import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ViewScoped
 @ManagedBean
@@ -95,7 +87,7 @@ public class DashboardBean implements Serializable {
       }
     }
     buildWidgetModels(selectedDashboard);
-    isRunningTaskWhenClickingOnTaskInList = new GlobalSettingService()
+    isRunningTaskWhenClickingOnTaskInList = GlobalSettingService.getInstance()
         .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
         .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
   }
@@ -142,41 +134,10 @@ public class DashboardBean implements Serializable {
     }
     for (var widget : dashboard.getWidgets()) {
       DashboardWidgetUtils.buildWidgetColumns(widget);
-      if (DashboardWidgetType.CUSTOM.equals(widget.getType())) {
-        loadCustomWidget(widget);
-      }
-      
       if (!(widget instanceof SingleProcessDashboardWidget)) {
         WidgetFilterService.getInstance().applyUserFilterFromSession(widget);
       }
       DashboardWidgetUtils.removeStyleNewWidget(widget);
-    }
-  }
-
-  protected void loadCustomWidget(DashboardWidget widget) {
-    CustomDashboardWidget customWidget = (CustomDashboardWidget) widget;
-    if (StringUtils.isNotBlank(customWidget.getData().getProcessStart())) {
-      String url = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(customWidget.getData().getProcessStart());
-
-      if(StringUtils.isBlank(url)) return;
-
-      IStartElement element = ProcessStartAPI.findStartElementByProcessStartFriendlyRequestPath(customWidget.getData().getProcessStart());
-
-      if(Objects.isNull(element)) return;
-
-      customWidget.getData().setStartProcessParams(element.startParameters());
-
-      List<IWebStartable> allPortalProcesses = ProcessService.newInstance().findProcesses().getProcesses();
-      if (customWidget.getData().getIvyProcessStartDTO() == null) {
-        customWidget.getData().setIvyProcessStartDTO(new IvyProcessStartDTO());
-      }
-      customWidget.getData().getIvyProcessStartDTO().setStartableProcessStart(allPortalProcesses.stream()
-        .filter(proccess -> proccess.getLink().toString().contentEquals(url)).findFirst().get());
-      customWidget.loadParameters();
-      customWidget.getData().setUrl(url);
-      customWidget.getData().setType(DashboardCustomWidgetType.PROCESS);
-    } else {
-      customWidget.getData().setType(DashboardCustomWidgetType.EXTERNAL_URL);
     }
   }
 

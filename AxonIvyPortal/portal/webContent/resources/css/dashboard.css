@@ -1551,3 +1551,7 @@ span.new-widget-dialog__icon.si {
   margin-top: 0.5rem;
   width: 100%;
 }
+
+.widget-preview.widget-preview--statistic .statistic-chart-widget__content {
+  height: 440px;
+}

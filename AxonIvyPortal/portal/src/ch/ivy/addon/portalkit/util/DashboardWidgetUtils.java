@@ -77,6 +77,9 @@ public class DashboardWidgetUtils {
         processWidget.buildFilterableColumns(initProcessFilterableColumns());
         buildProcessColumns(processWidget);
         break;
+      case CUSTOM:
+        CustomWidgetUtils.loadDataForCustomWidget(widget);
+        break;
       default:
         break;
     }

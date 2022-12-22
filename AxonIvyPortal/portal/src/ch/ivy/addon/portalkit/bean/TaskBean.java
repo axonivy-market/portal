@@ -64,7 +64,7 @@ public class TaskBean implements Serializable {
       case DELAYED:
         return "si si-alarm-bell-timer task-state-delayed";
       case DESTROYED:
-        return "si si-alert-circle task-state-zombie-destroyed";
+        return "si si-alert-circle task-state-destroyed";
       case FAILED:
       case JOIN_FAILED:
         return "si si-mood-warning task-state-failed";

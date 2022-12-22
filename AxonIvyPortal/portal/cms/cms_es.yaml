@@ -352,7 +352,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskIsWaiting: Tarea en espera
     taskStateAndResponsible: 'Estado: {0}, responsable: {1}'
     taskStateIsCreated: El estado de la tarea es Creado (no persistido todavía)
-    taskStateIsZombie: El estado de la tarea es Zombie
   caseList:
     cases: Casos
     confirmDeleteMessage: Esta acción no se puede deshacer. ¿De verdad quieres eliminar este objeto comercial?
@@ -387,7 +386,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     FAILED: Ha fallado
     OPEN: Pendiente
     RUNNING: En progreso
-    ZOMBIE: Zombie
   caseTreeTable:
     caseState: Estado del caso
   chat:
@@ -1408,7 +1406,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     SYSTEM: SISTEMA
     WAITING: Esperando
     WAITING_FOR_INTERMEDIATE_EVENT: Esperando el evento
-    ZOMBIE: Zombi
   taskView:
     filterTextPlaceHolderMobile: Nombre o descripción
     filterTextPlaceholder: Nombre, descripción o ID

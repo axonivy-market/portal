@@ -3,6 +3,10 @@ package ch.ivy.addon.portalkit.dto.widget;
 import java.io.Serializable;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class CustomWidgetData implements Serializable {
 
   private static final long serialVersionUID = 8763058243562205725L;
@@ -10,7 +14,7 @@ public class CustomWidgetData implements Serializable {
   private String url;
   private String type;
 
-  private String processStart;
+  private String processPath;
   private Map<String, String> params;
 
   public String getUrl() {
@@ -29,12 +33,25 @@ public class CustomWidgetData implements Serializable {
     this.params = params;
   }
 
-  public String getProcessStart() {
-    return processStart;
+  public String getProcessPath() {
+    return processPath;
   }
 
+  public void setProcessPath(String processPath) {
+    this.processPath = processPath;
+  }
+
+  /**
+   * @param processStart 
+   * @deprecated use {@link #setProcessPath(String)} instead
+   * The processStart is replaced by processPath
+   */
+  @Deprecated(forRemoval = true, since = "10.0.3")
+  @JsonProperty("processStart")
   public void setProcessStart(String processStart) {
-    this.processStart = processStart;
+    if (StringUtils.isBlank(processPath)) {
+      processPath = processStart;
+    }
   }
 
   public String getType() {

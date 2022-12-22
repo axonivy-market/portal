@@ -1,6 +1,13 @@
 package ch.ivy.addon.portal.generic.bean;
 
-import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.*;
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CASE;
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CUSTOM;
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.NEWS;
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS;
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS_VIEWER;
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.STATISTIC;
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.TASK;
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.WELCOME;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.beans.PropertyChangeEvent;
@@ -52,21 +59,25 @@ import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetSample;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
+import ch.ivy.addon.portalkit.dto.widget.DashboardCustomWidgetData;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
+import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.DashboardService;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
+import ch.ivy.addon.portalkit.util.CustomWidgetUtils;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.cm.ContentObjectValue;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ViewScoped
 @ManagedBean
@@ -353,7 +364,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         break;
       case CUSTOM:
         CustomDashboardWidget customWidget =  (CustomDashboardWidget) widget;
-        loadCustomWidget(customWidget);
+        unifyCustomWidgetData(customWidget);
         break;
       case STATISTIC:
         updateStatisticWidgetData(widget);
@@ -466,8 +477,19 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
   }
 
-  private void loadCustomWidget(CustomDashboardWidget customWidget) {
+  private void unifyCustomWidgetData(CustomDashboardWidget customWidget) {
     if (customWidget.getData().getType() == DashboardCustomWidgetType.PROCESS) {
+      // Update processPath to latest
+      IWebStartable webStartable = Optional.ofNullable(customWidget.getData())
+          .map(DashboardCustomWidgetData::getIvyProcessStartDTO)
+          .map(IvyProcessStartDTO::getStartableProcessStart).orElse(null);
+      if (Objects.isNull(webStartable)) {
+        webStartable = CustomWidgetUtils.findWebStartableByProcessPath(customWidget.getData().getProcessPath());
+      }
+      if (Objects.nonNull(webStartable)) {
+        customWidget.getData().setProcessPath(webStartable.getId());
+      }
+      customWidget.getData().setUrl(EMPTY);
       for (CustomDashboardWidgetParam param : customWidget.getData().getParams()) {
         switch (param.getType()) {
           case BOOLEAN:
@@ -677,9 +699,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         .filter(dashboardWidget -> dashboardWidget.getId().equals(widget.getId()))
         .findAny().orElse(widget);
     DashboardWidgetUtils.buildWidgetColumns(foundWidget);
-    if (DashboardWidgetType.CUSTOM.equals(foundWidget.getType())) {
-      loadCustomWidget(foundWidget);
-    }
     return foundWidget;
   }
 

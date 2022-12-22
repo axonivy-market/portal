@@ -224,7 +224,7 @@
           "x": 10, "y": 11, "w": 12, "h": 5
         },
         "data": {
-          "processStart": "Start Processes/DashboardCustomWidgetExample/investmentList.ivp",
+          "processPath": "designer/portal-developer-examples/Start Processes/DashboardCustomWidgetExample/investmentList.ivp",
           "params": [
             {
               "type": "user",

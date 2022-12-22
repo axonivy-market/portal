@@ -69,12 +69,7 @@ public class ExternalLinkProcessItem implements Process {
   
   @Override
   public String getImageUrl() {
-    return DefaultImage.ARROWRIGHT.getPath();
-  }
-
-  @Override
-  public String getDefaultImageSrc() {
-    return StringUtils.EMPTY;
+    return getContentImageUrl(DefaultImage.ARROWRIGHT.getPath());
   }
 
   @Override

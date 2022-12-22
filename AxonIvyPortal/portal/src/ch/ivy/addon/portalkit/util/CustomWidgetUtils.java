@@ -1,18 +1,28 @@
 package ch.ivy.addon.portalkit.util;
 
+import static java.util.Objects.isNull;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
-import java.util.Objects;
+import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.enums.CustomWidgetParam;
+import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
+import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
+import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
+import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomField;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
+import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class CustomWidgetUtils {
   public static final String PROPERTY_KEY_PATTERN_DELIMITER = "\\.";
@@ -21,6 +31,9 @@ public class CustomWidgetUtils {
   public static final String CUSTOM_FIELD_PREFIX = "customFields";
   public static final String USER_PREFIX = "user";
   public static final String PROPERTY_PREFIX = "property";
+
+  public static List<IWebStartable> allPortalProcesses;
+  public static List<IProcessStart> startableProcesses;
 
   public static String getPropertyByKeyPattern(Long referenceId , String keyPattern) {
     String propertyValue = keyPattern;
@@ -173,10 +186,54 @@ public class CustomWidgetUtils {
     ICustomField<?> customField = customfields.all().stream()
             .filter(field -> field.name().equals(key))
             .findFirst().orElse(null);
-    if (Objects.isNull(customField) || customField.get().isEmpty()) {
+    if (isNull(customField) || customField.get().isEmpty()) {
       return EMPTY;
     }
     return String.valueOf(customField.getOrNull());
   }
 
+  public static void loadDataForCustomWidget(DashboardWidget widget) {
+    var customWidget = (CustomDashboardWidget) widget;
+    String processPath = customWidget.getData().getProcessPath();
+    if (StringUtils.isNotBlank(processPath)) {
+      customWidget.getData().setUrl(EMPTY);
+      IWebStartable webStartable = findWebStartableByProcessPath(processPath);
+      if (isNull(webStartable)) {
+        customWidget.getData().setStartRequestPath(EMPTY);
+        return;
+      }
+      if (isNull(customWidget.getData().getIvyProcessStartDTO())) {
+        customWidget.getData().setIvyProcessStartDTO(new IvyProcessStartDTO());
+      }
+      customWidget.getData().getIvyProcessStartDTO().setStartableProcessStart(webStartable);
+      customWidget.loadParameters();
+      customWidget.getData().setStartRequestPath(webStartable.getLink().getRelative());
+      customWidget.getData().setType(DashboardCustomWidgetType.PROCESS);
+    } else {
+      customWidget.getData().setProcessPath(EMPTY);
+      customWidget.getData().setType(DashboardCustomWidgetType.EXTERNAL_URL);
+    }
+  }
+
+  public static IWebStartable findWebStartableByProcessPath(String processPath) {
+    // Find IWebStartable by ProcessID first
+    // If not found, try to find by IStartElement by friendly request path then find IWebStartable by link
+    IWebStartable webStartable = getAllPortalProcesses().stream()
+        .filter(proccess -> proccess.getId().equals(processPath))
+        .findAny().orElse(null);
+    if (isNull(webStartable)) {
+      String processStartLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(processPath);
+      webStartable = getAllPortalProcesses().stream()
+          .filter(proccess -> proccess.getLink().getRelative().equals(processStartLink))
+          .findAny().orElse(null);
+    }
+    return webStartable;
+  }
+
+  private static List<IWebStartable> getAllPortalProcesses() {
+    if (CollectionUtils.isEmpty(allPortalProcesses)) {
+      allPortalProcesses = ProcessService.newInstance().findProcesses().getProcesses();
+    }
+    return allPortalProcesses;
+  }
 }

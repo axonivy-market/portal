@@ -125,12 +125,7 @@ public class PortalExpressProcess implements Process {
 
   @Override
   public String getImageUrl() {
-    return DefaultImage.NASASTART.getPath();
-  }
-
-  @Override
-  public String getDefaultImageSrc() {
-    return StringUtils.EMPTY;
+    return getContentImageUrl(DefaultImage.NASASTART.getPath());
   }
 
   @Override
