@@ -120,7 +120,7 @@
                <h:outputText value="#{dashboardWelcomeWidgetConfigurationBean.generateGreetingText(text.locale)}"
                  rendered="#{dashboardWelcomeWidgetConfigurationBean.widget.greeting}"
                  styleClass="js-greeting-text greeting-text #{isApplicationDefaultEmailLanguage ? 'language-to-preview' : ''}" />
-               <p:inputText id="welcome-text-input" value="#{text.value}" maxlength="200"
+               <p:inputText id="welcome-text-input" value="#{text.value}"
                  styleClass="#{isApplicationDefaultEmailLanguage ? 'language-to-preview' : ''} js-welcome-text-input welcome-text-input"
                  onkeyup="#{isApplicationDefaultEmailLanguage ? 'WelcomeWidgetConfiguration.updatePreviewText();' : ''}" />
              </h:panelGroup>
