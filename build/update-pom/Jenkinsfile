@@ -21,6 +21,8 @@ pipeline {
       steps {
         script {
           docker.build("portal", "-f build/Dockerfile .").inside("-v /var/tools/maven-cache:/home/build/") {
+            sh "git config --global user.name 'wawa-axonivy'"
+            sh "git config --global user.email 'wawa.ivyteam@gmail.com'"
             echo "====================Update version===================="
             maven cmd: "--batch-mode -f AxonIvyPortal/portal-components/pom.xml versions:set-property versions:commit -Dproperty=ivy.engine.version -DnewVersion=${params.ivyEngineVersion}"
             maven cmd: "--batch-mode -f AxonIvyPortal/portal-components/pom.xml versions:set-property versions:commit -Dproperty=build.plugin.version -DnewVersion=${params.buildPluginVersion}"
