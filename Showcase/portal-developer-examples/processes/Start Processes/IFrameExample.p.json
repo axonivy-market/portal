@@ -173,7 +173,7 @@
         "startName" : "Navigate back in the IFrame example"
       },
       "visual" : {
-        "at" : { "x" : 64, "y" : 352 },
+        "at" : { "x" : 96, "y" : 352 },
         "labelOffset" : { "x" : 68, "y" : 37 }
       },
       "connect" : { "id" : "f14", "to" : "f11" }
@@ -181,7 +181,7 @@
       "id" : "f9",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 416, "y" : 352 }
+        "at" : { "x" : 448, "y" : 352 }
       }
     }, {
       "id" : "f11",
@@ -205,7 +205,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 160, "y" : 352 }
+        "at" : { "x" : 192, "y" : 352 }
       },
       "connect" : { "id" : "f17", "to" : "f16" }
     }, {
@@ -217,8 +217,94 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 288, "y" : 352 }
+        "at" : { "x" : 320, "y" : 352 }
       },
       "connect" : { "id" : "f10", "to" : "f9" }
+    }, {
+      "id" : "f18",
+      "type" : "RequestStart",
+      "name" : "PortalFrameCardExample.ivp",
+      "config" : {
+        "callSignature" : "PortalFrameCardExample",
+        "outLink" : "PortalFrameCardExample.ivp",
+        "task" : {
+          "name" : "Portal Iframe card sample"
+        },
+        "startName" : "Portal Iframe card sample"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 560 }
+      },
+      "connect" : { "id" : "f39", "to" : "f38", "var" : "in1" }
+    }, {
+      "id" : "f25",
+      "type" : "DialogCall",
+      "name" : "Frame-10 with Card",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.customization.iframe.Frame10WithCard",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 335, "y" : 469 },
+        "size" : { "width" : 143, "height" : 55 }
+      },
+      "connect" : { "id" : "f26", "to" : "f27", "via" : [ { "x" : 480, "y" : 469 } ] }
+    }, {
+      "id" : "f27",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 480, "y" : 560 }
+      }
+    }, {
+      "id" : "f28",
+      "type" : "DialogCall",
+      "name" : "Frame-10-full-width without Card",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.customization.iframe.Frame10FullWidthNoCard",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 336, "y" : 560 },
+        "size" : { "width" : 144, "height" : 55 }
+      },
+      "connect" : { "id" : "f37", "to" : "f27" }
+    }, {
+      "id" : "f31",
+      "type" : "DialogCall",
+      "name" : "Frame-10-full-width in Card",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.customization.iframe.Frame10FullWidthCard",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 336, "y" : 656 },
+        "size" : { "width" : 144, "height" : 60 }
+      },
+      "connect" : { "id" : "f29", "to" : "f27", "via" : [ { "x" : 480, "y" : 656 } ] }
+    }, {
+      "id" : "f38",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp", "TaskB.ivp", "TaskC.ivp" ],
+        "tasks" : {
+          "TaskA" : {
+            "name" : "Frame-10 with Card style"
+          },
+          "TaskB" : {
+            "name" : "Frame-10-full-width without Card style"
+          },
+          "TaskC" : {
+            "name" : "Frame-10-full-width in Card style"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 560 }
+      },
+      "connect" : [
+        { "id" : "f32", "to" : "f25", "via" : [ { "x" : 192, "y" : 469 } ], "condition" : "ivp==\"TaskA.ivp\"" },
+        { "id" : "f40", "to" : "f28", "condition" : "ivp==\"TaskB.ivp\"" },
+        { "id" : "f41", "to" : "f31", "via" : [ { "x" : 192, "y" : 656 } ], "condition" : "ivp==\"TaskC.ivp\"" }
+      ]
     } ]
 }
