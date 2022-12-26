@@ -8,7 +8,7 @@ pipeline {
   }
 
   parameters {
-      choice(name: 'engine', choices: ['master'], description: 'Engine to choose e.g. master, 10.0, 8.0')
+      choice(name: 'engine', choices: ['master'], description: 'Engine to choose e.g. master')
   }
 
   stages {
@@ -16,8 +16,9 @@ pipeline {
       steps {
         script {
           today = new Date().format('dd-MM-yyyy_HH-mm')
-          config = [master: [engineParentDir: "/var/tools/ivy/", engine: 'master', systemDatabase: 'AxonIvySystemDatabase']]
-          engineDir = config[params.engine]['engineParentDir'] + config[params.engine]['engine']
+          config = [master:[engine: 'master', systemDatabase: 'AxonIvySystemDatabase']]
+          engineParentDir: "/var/tools/ivy/"
+          engineDir = engineParentDir + config[params.engine]['engine']
           databaseBackupDir = "/var/database-backups/"
           databaseName = config[params.engine]['systemDatabase']
           dbBackupFile = databaseBackupDir + databaseName + '-' + config[params.engine]['engine'] + '-' + today + ".dump"
