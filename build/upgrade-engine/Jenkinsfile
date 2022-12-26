@@ -8,7 +8,7 @@ pipeline {
   }
 
   parameters {
-      choice(name: 'engine', choices: ['master'], defaultValue:"master", description: 'Engine to choose e.g. master, 10.0, 8.0')
+      choice(name: 'engine', choices: ['master'], description: 'Engine to choose e.g. master, 10.0, 8.0')
   }
 
   stages {
