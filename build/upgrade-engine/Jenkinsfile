@@ -25,7 +25,7 @@ pipeline {
           sh """
             echo ====================Backup database====================
             cd ${engineDir}
-            [ -d database-backup] ||  mkdir database-backup
+            [ -d database-backup ] ||  mkdir database-backup
             docker exec -u postgres postgres-master pg_dump -Fc ${databaseName} > database-backup/${dbBackupFileName}
           """
         }
