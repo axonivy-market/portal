@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/frame-10.xhtml">
+    <ui:define name="content">
+
+      <h3>
+        This is an example for start a task in frame-10 with
+        <code>window.isCardFrame = true</code>
+      </h3>
+
+      <h:form id="form">
+        <p:messages />
+        <p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank ui-fluid"
+          columnClasses="ui-g-12 ui-md-6 ui-lg-6, ui-g-12 ui-md-6 ui-lg-6">
+
+          <p:outputLabel for="input" value="Label" />
+          <p:inputText id="input" placeholder="input" />
+
+        </p:panelGrid>
+        <br />
+        <div class="command-btns">
+          <p:commandLink id="cancel" actionListener="#{ivyWorkflowView.cancel()}" value="Cancel" />
+          <p:commandButton id="proceed" actionListener="#{logic.close}" value="Proceed" update="form" icon="pi pi-check" />
+        </div>
+      </h:form>
+      <script>
+              window.isCardFrame = true;
+              window.announcementInvisible = false;
+            </script>
+    </ui:define>
+  </ui:composition>
+</h:body>
+
+</html>
