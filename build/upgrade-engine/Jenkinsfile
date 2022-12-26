@@ -17,7 +17,7 @@ pipeline {
         script {
           today = new Date().format('dd-MM-yyyy_HH-mm')
           config = [master:[engine: 'master', systemDatabase: 'AxonIvySystemDatabase']]
-          engineParentDir: "/var/tools/ivy/"
+          engineParentDir = "/var/tools/ivy/"
           engineDir = engineParentDir + config[params.engine]['engine']
           databaseBackupDir = "/var/database-backups/"
           databaseName = config[params.engine]['systemDatabase']
