@@ -18,15 +18,15 @@ pipeline {
           today = new Date().format('dd-MM-yyyy_HH-mm')
           config = [master: [engineParentDir: "/var/tools/ivy/", engine: 'master', systemDatabase: 'AxonIvySystemDatabase']]
           engineDir = config[params.engine]['engineParentDir'] + config[params.engine]['engine']
-          databaseBackupDir = engineDir + "/database-backup"
+          databaseBackupDir = "/var/backup/database/"
           databaseName = config[params.engine]['systemDatabase']
-          dbBackupFileName = databaseName + '-' + today + ".dump"
+          dbBackupFile = databaseBackupDir + databaseName + '-' + config[params.engine]['engine'] + '-' + today + ".dump"
 
           sh """
             echo ====================Backup database====================
             cd ${engineDir}
-            [ -d database-backup ] ||  mkdir database-backup
-            docker exec -u postgres postgres-master pg_dump -Fc ${databaseName} > database-backup/${dbBackupFileName}
+            [ -d ${databaseBackupDir} ] ||  mkdir -p ${databaseBackupDir}
+            docker exec -u postgres postgres-master pg_dump -Fc ${databaseName} > ${dbBackupFile}
           """
         }
       }
