@@ -16,8 +16,8 @@ pipeline {
       steps {
         script {
           today = new Date().format('dd-MM-yyyy_HH-mm')
-          config = [master: [engineParentDir: "/var/tools/ivy-server/", engineDir: 'master', systemDatabase: 'AxonIvySystemDatabase']]
-          engineDir = config[params.engine]['engineParentDir'] + engineDir
+          config = [master: [engineParentDir: "/var/tools/ivy-server/", engine: 'master', systemDatabase: 'AxonIvySystemDatabase']]
+          engineDir = config[params.engine]['engineParentDir'] + config[params.engine]['engine']
           databaseBackupDir = engineDir + "/database-backup"
           databaseName = config[params.engine]['systemDatabase']
           dbBackupFileName = databaseName + '-' + today + ".dump"
