@@ -20,7 +20,7 @@ pipeline {
     stage('build') {
       steps {
         script {
-          docker.build("portal", "-f build/Dockerfile .").inside("-v /var/tools/maven-cache:/home/build/") {
+          docker.build("update-pom", "-f build/Dockerfile .").inside("-v /var/tools/maven-cache:/home/build/") {
             withEnv(['GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no']) {
               sshagent(credentials: ['github-axonivy']) {
                 sh "git config --global user.name 'wawa-axonivy'"
@@ -32,14 +32,21 @@ pipeline {
                 updateVersion()
 
                 echo "====================Commit to GIT===================="
-                sh """
-                  git commit -a -m "Updated all pom build.plugin.version=${buildPluginVersion}, ivy.engine.version=${ivyEngineVersion}"
-                  git push origin -u $BRANCH_NAME
-                """
-                echo "====================Cache engine in local repository===================="
-                cacheEngine()
+                changeLog = sh(returnStdout: true, script: 'git diff --exit-code').trim()
+               
+                if (changeLog) {
+                  sh 'git commit -a -m "Updated all pom build.plugin.version=${params.buildPluginVersion}, ivy.engine.version=${params.ivyEngineVersion}"'
+                  sh "git push origin -u ${BRANCH_NAME}"
+                } else {
+				  echo "Nothing to commit"
+				}
               }
             }
+          }
+		  echo "====================Cache engine in local repository===================="
+		  cacheEngine()
+		  docker.build("build-portal", "-f build/Dockerfile .").inside("-v /var/tools/maven-cache:/home/build/") {
+            maven cmd: "clean install -f AxonIvyPortal/portal-components/pom.xml"
           }
         }
       }
@@ -49,8 +56,9 @@ pipeline {
 
 def updateVersion() {
   def pomFiles = ['AxonIvyPortal/portal-components/pom.xml', 'AxonIvyPortal/portal/pom.xml', 'AxonIvyPortal/AxonIvyExpress/pom.xml', 'AxonIvyPortal/portal-migration/pom.xml',
-    'AxonIvyPortal/portal-selenium-test/pom.xml', 'AxonIvyPortal/portal-selenium-test/customized_pom.xml', 'AxonIvyPortal/PortalTest/document_screenshot_pom.xml', 'AxonIvyPortal/PortalTest/customized_pom.xml', 'AxonIvyPortal/PortalTest/pom.xml',
-    'AxonIvyPortal/PortalKitTestHelper/pom.xml', 'Showcase/portal-user-examples/pom.xml', 'Showcase/portal-developer-examples/pom.xml', 'Showcase/InternalSupport/pom.xml', 'Showcase/portal-components-examples/pom.xml']
+    'AxonIvyPortal/portal-selenium-test/pom.xml', 'AxonIvyPortal/portal-selenium-test/customized_pom.xml', 'AxonIvyPortal/PortalTest/document_screenshot_pom.xml',
+    'AxonIvyPortal/PortalTest/customized_pom.xml', 'AxonIvyPortal/PortalTest/pom.xml', 'AxonIvyPortal/PortalKitTestHelper/pom.xml', 'Showcase/portal-user-examples/pom.xml',
+    'Showcase/portal-developer-examples/pom.xml', 'Showcase/InternalSupport/pom.xml', 'Showcase/portal-components-examples/pom.xml']
   for (pomFile in pomFiles) {
     maven cmd: "--batch-mode -f ${pomFile} versions:set-property versions:commit -Dproperty=ivy.engine.version -DnewVersion=${params.ivyEngineVersion}"
     maven cmd: "--batch-mode -f ${pomFile} versions:set-property versions:commit -Dproperty=build.plugin.version -DnewVersion=${params.buildPluginVersion}"
@@ -60,7 +68,6 @@ def updateVersion() {
 def cacheEngine() {
   sh """
     cd /var/tools/maven-cache/.m2/repository/.cache/ivy
-    chmod 777 -R ${ivyEngineVersion}
-    rm -r ${ivyEngineVersion}
+    if [ -d ${params.ivyEngineVersion} ]; then rm -Rf ${params.ivyEngineVersion}; fi
   """
 }
