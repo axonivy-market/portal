@@ -19,7 +19,7 @@
         "startDescription" : "Loading photo for default process image by selection",
         "startCustomFields" : [
           { "name" : "cssIcon", "value" : "si si-house-1" },
-          { "name" : "processImage", "value" : "<%=ivy.cms.cr(\"/images/process/INNOVATION\")%>" }
+          { "name" : "processImage", "value" : "<%=ivy.cms.cr(\"/Images/process/INNOVATION\")%>" }
         ],
         "outLink" : "start.ivp",
         "wfuser" : "1",
