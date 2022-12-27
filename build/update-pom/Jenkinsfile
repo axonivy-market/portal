@@ -21,20 +21,24 @@ pipeline {
       steps {
         script {
           docker.build("portal", "-f build/Dockerfile .").inside("-v /var/tools/maven-cache:/home/build/") {
-            sh "git config --global user.name 'wawa-axonivy'"
-            sh "git config --global user.email 'wawa.ivyteam@gmail.com'"
-            echo "====================Update version===================="
-            maven cmd: "--batch-mode -f AxonIvyPortal/portal-components/pom.xml versions:set-property versions:commit -Dproperty=ivy.engine.version -DnewVersion=${params.ivyEngineVersion}"
-            maven cmd: "--batch-mode -f AxonIvyPortal/portal-components/pom.xml versions:set-property versions:commit -Dproperty=build.plugin.version -DnewVersion=${params.buildPluginVersion}"
+            withEnv(['GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no']) {
+              sshagent(credentials: ['github-axonivy']) {
+                sh "git config --global user.name 'wawa-axonivy'"
+                sh "git config --global user.email 'wawa.ivyteam@gmail.com'"
+                sh "git remote set-url origin git@github.com:axonivy-market/portal.git"
+                echo "====================Update version===================="
+                maven cmd: "--batch-mode -f AxonIvyPortal/portal-components/pom.xml versions:set-property versions:commit -Dproperty=ivy.engine.version -DnewVersion=${params.ivyEngineVersion}"
+                maven cmd: "--batch-mode -f AxonIvyPortal/portal-components/pom.xml versions:set-property versions:commit -Dproperty=build.plugin.version -DnewVersion=${params.buildPluginVersion}"
 
-            echo "====================Commit to GIT===================="
-            sh """
-              git commit -a -m "Updated all pom build.plugin.version=${buildPluginVersion}, ivy.engine.version=${ivyEngineVersion}"
-              git push origin $BRANCH_NAME
-            """
-            echo "====================Cache engine in local repository===================="
-            cacheEngine()
-            maven cmd: "clean install -f AxonIvyPortal/portal-components/pom.xml"
+                echo "====================Commit to GIT===================="
+                sh """
+                  git commit -a -m "Updated all pom build.plugin.version=${buildPluginVersion}, ivy.engine.version=${ivyEngineVersion}"
+                  git push origin -u $BRANCH_NAME
+                """
+                echo "====================Cache engine in local repository===================="
+                cacheEngine()
+              }
+            }
           }
         }
       }
@@ -43,7 +47,7 @@ pipeline {
 }
 
 def cacheEngine() {
-  powershell '''
+  sh """
     rm -r /var/tools/maven-cache/.m2/repository/.cache/ivy/${ivyEngineVersion}
-  '''
+  """
 }
