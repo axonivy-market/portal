@@ -38,14 +38,14 @@ pipeline {
                   sh 'git commit -a -m "Updated all pom build.plugin.version=${params.buildPluginVersion}, ivy.engine.version=${params.ivyEngineVersion}"'
                   sh "git push origin -u ${BRANCH_NAME}"
                 } else {
-				  echo "Nothing to commit"
-				}
+				          echo "Nothing to commit"
+				        }
               }
             }
           }
-		  echo "====================Cache engine in local repository===================="
-		  cacheEngine()
-		  docker.build("build-portal", "-f build/Dockerfile .").inside("-v /var/tools/maven-cache:/home/build/") {
+		      echo "====================Cache engine in local repository===================="
+		      cacheEngine()
+		      docker.build("build-portal", "-f build/Dockerfile .").inside("-v /var/tools/maven-cache:/home/build/") {
             maven cmd: "clean install -f AxonIvyPortal/portal-components/pom.xml"
           }
         }
