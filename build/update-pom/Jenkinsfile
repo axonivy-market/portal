@@ -26,6 +26,7 @@ pipeline {
                 sh "git config --global user.name 'wawa-axonivy'"
                 sh "git config --global user.email 'wawa.ivyteam@gmail.com'"
                 sh "git remote set-url origin git@github.com:axonivy-market/portal.git"
+                sh "git checkout -b ${BRANCH_NAME}"
                 echo "====================Update version===================="
                 maven cmd: "--batch-mode -f AxonIvyPortal/portal-components/pom.xml versions:set-property versions:commit -Dproperty=ivy.engine.version -DnewVersion=${params.ivyEngineVersion}"
                 maven cmd: "--batch-mode -f AxonIvyPortal/portal-components/pom.xml versions:set-property versions:commit -Dproperty=build.plugin.version -DnewVersion=${params.buildPluginVersion}"
@@ -44,6 +45,21 @@ pipeline {
       }
     }
   }
+}
+
+def updateVersion() {
+  def modules = ['AxonIvyPortal/portal-components/pom.xml', 'AxonIvyPortal/portal/pom.xml', 'AxonIvyPortal/AxonIvyExpress/pom.xml', 'AxonIvyPortal/portal-migration/pom.xml',
+    'AxonIvyPortal/PortalKitTestHelper/pom.xml', 'Showcase/portal-user-examples/pom.xml', 'Showcase/portal-developer-examples/pom.xml', 'Showcase/InternalSupport/pom.xml', 'Showcase/portal-components-examples/pom.xml']
+                        def changeLog = ''
+                        if (env.GIT_PREVIOUS_SUCCESSFUL_COMMIT) {
+                            changeLog = sh(returnStdout: true, script: 'git diff --name-only $GIT_COMMIT $GIT_PREVIOUS_SUCCESSFUL_COMMIT').trim()
+                        }
+                        for (module in modules) {              
+                            if (changeLog.contains(module) || params.modulesMustBeBuilt.contains(module.split('/')[1])) {
+                                maven cmd: "clean install -f ${module}/pom.xml"
+                                builtModules.add(module)
+                            }
+                        }
 }
 
 def cacheEngine() {
