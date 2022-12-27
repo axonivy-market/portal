@@ -6,8 +6,10 @@ public enum DefaultImage {
   MUGBEGIN, NASASTART, PROJECTMANAGEMENT, PROJECTMANAGEMENT2, PURCHASING,
   PURCHASING2, SPORT, WARTUNG, WARTUNG2, PROCESSMODELING;
 
+  public static final String IMAGE_PATH = "/Images/process/";
+
   public String getPath() {
-    return "/images/process/" + name();
+    return IMAGE_PATH + name();
   }
   
   public String getLabel() {
