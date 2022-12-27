@@ -14,7 +14,6 @@ import ch.ivyteam.ivy.workflow.category.Category;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public interface Process {
-  public static final String DEFAULT_IMAGE_CMS_FOLDER = "/images/process/";
   public static final String DEFAULT_PROCESS_ICON = "si si-hierarchy-6 si-rotate-270";
   public String getName();
   public String getStartLink();
@@ -58,7 +57,7 @@ public interface Process {
     var imageUri = DefaultImage.PROCESSMODELING.getPath();
     var defaultImageSetting = ProcessStartUtils.getDefaultProcessImageSetting();
     if (!defaultImageSetting.equals(DefaultImage.DEFAULT.name())) {
-      imageUri = DEFAULT_IMAGE_CMS_FOLDER + defaultImageSetting;
+      imageUri = DefaultImage.IMAGE_PATH + defaultImageSetting;
     }
     if (StringUtils.isNotBlank(getCustomFieldProcessImage(process))) {
       imageUri = getCustomFieldProcessImage(process);
