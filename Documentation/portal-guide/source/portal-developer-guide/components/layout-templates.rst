@@ -127,6 +127,9 @@ Inside your UI, you can configure these parameters as follows; they will be rend
       // Use this code to show case details of a case different from current case of working task.
       // by send the case ID of that case.
       window.caseId = 123456;
+
+      // Display content of the IFrame inside a card style, true or false (default)
+      window.isCardFrame: true;
    </script>
 
 .. note::

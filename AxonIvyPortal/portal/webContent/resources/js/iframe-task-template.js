@@ -3,10 +3,10 @@ var invalidIFrameSrcPath = false;
 loadIframe(false);
 var recheckFrameTimer;
 function loadIframe(recheckIndicator) {
-  var iframe = document.getElementById('iFrame');
+  var iframe = getPortalIframe();
 
   if (!recheckIndicator) {
-    $(iframe).on('load', function() {
+    $(iframe).on('load', function () {
       processIFrameData(iframe);
       clearTimeout(recheckFrameTimer);
       return;
@@ -15,62 +15,77 @@ function loadIframe(recheckIndicator) {
   else {
     const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
     if (iframeDoc.readyState == 'complete') {
-    processIFrameData(iframe);
-    clearTimeout(recheckFrameTimer);
-    return;
+      processIFrameData(iframe);
+      clearTimeout(recheckFrameTimer);
+      return;
     }
   }
 
-  recheckFrameTimer = setTimeout(function(){ loadIframe(true); }, 500);
+  recheckFrameTimer = setTimeout(function () { loadIframe(true); }, 500);
+}
+
+function getPortalIframe() {
+  return document.getElementById('iFrame');
 }
 
 function processIFrameData(iframe) {
-    var window = iframe.contentWindow;
-    checkUrl(iframe);
-    if (invalidIFrameSrcPath) {
-      invalidIFrameSrcPath = false;
-      return;
-    }
-    getDataFromIFrame([{
-      name : 'currentProcessStep',
-      value : window.currentProcessStep
-    }, {
-      name : 'processSteps',
-      value : window.processSteps
-    }, {
-      name : 'isShowAllSteps',
-      value : window.isShowAllSteps
-    }, {
-      name : 'isHideCaseInfo',
-      value : window.isHideCaseInfo
-    }, {
-      name : 'isHideTaskName',
-      value : window.isHideTaskName
-    }, {
-      name : 'isHideTaskAction',
-      value : window.isHideTaskAction
-    }, {
-      name : 'isWorkingOnATask',
-      value : window.isWorkingOnATask
-    }, {
-      name : 'processChainDirection',
-      value : window.processChainDirection
-    }, {
-      name : 'processChainShape',
-      value : window.processChainShape
-    }, {
-      name : 'announcementInvisible',
-      value : window.announcementInvisible
-    }, {
-      name : 'viewName',
-      value : window.viewName
-    }, {
-      name : 'caseId',
-      value : window.caseId
-    }, {
-      name : 'taskName',
-      value : window.taskName
-    }]);
+  var window = iframe.contentWindow;
+  checkUrl(iframe);
+  if (invalidIFrameSrcPath) {
+    invalidIFrameSrcPath = false;
+    return;
+  }
+  streamliningPortalFrameStyle(window);
+  getDataFromIFrame([{
+    name: 'currentProcessStep',
+    value: window.currentProcessStep
+  }, {
+    name: 'processSteps',
+    value: window.processSteps
+  }, {
+    name: 'isShowAllSteps',
+    value: window.isShowAllSteps
+  }, {
+    name: 'isHideCaseInfo',
+    value: window.isHideCaseInfo
+  }, {
+    name: 'isHideTaskName',
+    value: window.isHideTaskName
+  }, {
+    name: 'isHideTaskAction',
+    value: window.isHideTaskAction
+  }, {
+    name: 'isWorkingOnATask',
+    value: window.isWorkingOnATask
+  }, {
+    name: 'processChainDirection',
+    value: window.processChainDirection
+  }, {
+    name: 'processChainShape',
+    value: window.processChainShape
+  }, {
+    name: 'announcementInvisible',
+    value: window.announcementInvisible
+  }, {
+    name: 'viewName',
+    value: window.viewName
+  }, {
+    name: 'caseId',
+    value: window.caseId
+  }, {
+    name: 'taskName',
+    value: window.taskName
+  }]);
+}
+
+function streamliningPortalFrameStyle(window) {
+  var iframeElement = getPortalIframe();
+  if (window.isCardFrame) {
+    $(iframeElement).addClass("card");
+  } else {
+    $(iframeElement).removeClass("card");
+    updateTaskHeaderContainerStyle(true);
+  }
 }
 
 function checkUrl(iFrame) {
@@ -106,13 +121,43 @@ window.addEventListener("resize", resizeIFrame, false);
 function resizeIFrame() {
   Portal.updateLayoutContent();
   Portal.updateBreadcrumb();
-  var taskHeaderContainerHeight = ($('.js-task-header-container').outerHeight(true)||0);
-  var announcementMessageContainerHeight = ($('.js-annoucement-in-frame-template').outerHeight(true)||0);
-  var mainScreenHeight = PortalLayout.getAvailableHeight() - PortalLayout.getYPaddingLayoutContent();
-  var availableHeight = mainScreenHeight - taskHeaderContainerHeight - announcementMessageContainerHeight;
+  const taskHeaderContainerHeight = (getTaskHeaderContainer().outerHeight(true) || 0);
+  const announcementMessageContainerHeight = ($('.js-annoucement-in-frame-template').outerHeight(true) || 0);
+  const $frameCard = $("iframe[id='iFrame'].task-frame.card");
+  const frameCardPadding = parseInt($frameCard.css("padding-top") || 0) + parseInt($frameCard.css("padding-bottom") || 0);
+  const mainScreenHeight = PortalLayout.getAvailableHeight() - PortalLayout.getYPaddingLayoutContent();
+  let availableHeight = mainScreenHeight - taskHeaderContainerHeight - announcementMessageContainerHeight - frameCardPadding;
   if (!!availableHeight) {
-    $('iframe[id="iFrame"]').height(availableHeight);
+    $(getPortalIframe()).height(availableHeight);
   }
+  updateTaskHeaderContainerStyle($frameCard.length == 0);
+}
+
+function updateTaskHeaderContainerStyle(noFrameCard) {
+  let frameFullWidthDocument = undefined;
+  try {
+    // Find the body of frame-10-full-width template
+    frameFullWidthDocument = getPortalIframe().contentWindow.document;
+  } catch (error) {
+    console.log("Cannot access to iframe location data: " + error);
+  }
+  if ($(frameFullWidthDocument).length == 0) {
+    getTaskHeaderContainer().removeAttr('style');
+    return;
+  }
+  const bodyHD = frameFullWidthDocument.querySelectorAll("body.body-hd");
+  const frameContent = frameFullWidthDocument.querySelectorAll("#content.container.frame.full-width");
+  if (noFrameCard && $(bodyHD).length > 0 && $(frameContent).length > 0) {
+    let leftSpacer = parseInt($(bodyHD).css("margin-left") || 0) + parseInt($(bodyHD).css("padding-left") || 0);
+    leftSpacer = leftSpacer + parseInt($(frameContent).css("margin-left") || 0) + parseInt($(frameContent).css("padding-left") || 0);
+    let rightSpacer = parseInt($(bodyHD).css("margin-right") || 0) + parseInt($(bodyHD).css("padding-right") || 0);
+    rightSpacer = rightSpacer + parseInt($(frameContent).css("margin-right") || 0) + parseInt($(frameContent).css("padding-right") || 0);
+    getTaskHeaderContainer().css({ 'margin-left': leftSpacer + 'px', 'margin-right': rightSpacer + 'px' });
+  }
+}
+
+function getTaskHeaderContainer() {
+  return $(".js-task-header-container");
 }
 
 function updateContentContainerClass() {
