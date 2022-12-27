@@ -76,17 +76,12 @@ HowTo: Add a Process as a User Favorite
 
 |how-to-add-process-favorite|
 
-.. hint:: 
+.. hint::
    -  The list of processes in the dropdown menu shows only the processes which are
       accessible to you. This depends on your roles.
-                                    
-      The list shows only processes not already added to your user favorites. 
-      You cannot add a process multiple times.
 
-   -  To add multiple languages to the favorite process display names, you need
-      to create the "AppInfo/SupportedLanguages" CMS entry which defines how
-      many languages your application supports. See :ref:`Language Settings
-      <language-settings>` in :ref:`My Profile <my-profile>` for details.
+   -  The list shows only processes not already added to your user favorites. 
+      You cannot add a process multiple times.
 
 .. _howto-delete-a-process-as-a-user-favorite:
 
