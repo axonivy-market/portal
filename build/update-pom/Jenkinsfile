@@ -64,6 +64,8 @@ def updateVersion() {
 
 def cacheEngine() {
   sh """
-    rm -r /var/tools/maven-cache/.m2/repository/.cache/ivy/${ivyEngineVersion}
+    cd /var/tools/maven-cache/.m2/repository/.cache/ivy
+    chmod 777 -R ${ivyEngineVersion}
+    rm -r ${ivyEngineVersion}
   """
 }
