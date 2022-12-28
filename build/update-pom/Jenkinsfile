@@ -42,14 +42,14 @@ pipeline {
                   """
                 } else {
                   echo "Nothing to commit."
-				        }
+                }
               }
             }
           }
 
           echo "====================Cache engine in local repository===================="
-		      cacheEngine()
-		      docker.build("fetch-cache", "-f build/Dockerfile .").inside("-v /var/tools/maven-cache:/home/build/") {
+          cacheEngine()
+          docker.build("fetch-cache", "-f build/Dockerfile .").inside("-v /var/tools/maven-cache:/home/build/") {
             maven cmd: "clean install -f AxonIvyPortal/portal-components/pom.xml"
           }
         }
@@ -64,8 +64,8 @@ def updateVersion() {
     'AxonIvyPortal/PortalTest/customized_pom.xml', 'AxonIvyPortal/PortalTest/pom.xml', 'AxonIvyPortal/PortalKitTestHelper/pom.xml', 'Showcase/portal-user-examples/pom.xml',
     'Showcase/portal-developer-examples/pom.xml', 'Showcase/InternalSupport/pom.xml', 'Showcase/portal-components-examples/pom.xml']
   for (pomFile in pomFiles) {
-    maven cmd: "--batch-mode -f ${pomFile} versions:set-property versions:commit -Dproperty=ivy.engine.version -DnewVersion=${params.ivyEngineVersion}"
-    maven cmd: "--batch-mode -f ${pomFile} versions:set-property versions:commit -Dproperty=build.plugin.version -DnewVersion=${params.buildPluginVersion}"
+    maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=ivy.engine.version -DnewVersion=${params.ivyEngineVersion}"
+    maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=build.plugin.version -DnewVersion=${params.buildPluginVersion}"
   }
 }
 
