@@ -41,12 +41,13 @@ pipeline {
                     git push origin -u ${BRANCH_NAME}
                   """
                 } else {
-				          echo "Nothing to commit."
+                  echo "Nothing to commit."
 				        }
               }
             }
           }
-		      echo "====================Cache engine in local repository===================="
+
+          echo "====================Cache engine in local repository===================="
 		      cacheEngine()
 		      docker.build("fetch-cache", "-f build/Dockerfile .").inside("-v /var/tools/maven-cache:/home/build/") {
             maven cmd: "clean install -f AxonIvyPortal/portal-components/pom.xml"
