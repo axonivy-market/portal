@@ -60,15 +60,15 @@ pipeline {
           utils.extractEngine(env.engineDir, params.engineDownloadURL)
 
           echo '====================Run script to copy decorate js and css to Portal===================='
-          bat "AxonIvyPortal/PortalTest/resources/copy-decorate-js-css.bat"
+          bat 'AxonIvyPortal/PortalTest/resources/copy-decorate-js-css.bat'
           
-          echo "====================Build Portal modules===================="
+          echo '====================Build Portal modules===================='
           def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples', 'AxonIvyPortal/PortalApp', 'Showcase/portal-demo-app']
           for (module in modules) {
             bat "mvn clean install -f ${module}/pom.xml -Divy.engine.directory=%engineDir%"
           }
 
-          echo "====================Deploy Portal modules===================="
+          echo '====================Deploy Portal modules===================='
           powershell '''
             $DEPLOYMENT= $env:engineDir + "/system/demo-applications/demo-portal"
             rmdir $DEPLOYMENT/* -recurse
@@ -84,7 +84,7 @@ pipeline {
           bat "mvn clean ${mavenGoal} -f AxonIvyPortal/PortalTest/document_screenshot_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
           utils.cleanDisk()
 
-          echo "====================Copy ElasticSearch log===================="
+          echo '====================Copy ElasticSearch log===================='
           powershell '''
             $LOG= $env:engineDir + "/elasticsearch/logs/ivy-elasticsearch-*.log"
             Copy-Item $LOG -Destination AxonIvyPortal/PortalTest/target
@@ -96,8 +96,8 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts artifacts: "AxonIvyPortal/PortalTest/target/*.zip", allowEmptyArchive: true
-      archiveArtifacts artifacts: "AxonIvyPortal/PortalTest/target/test/*/*.jpg, AxonIvyPortal/PortalTest/target/testEngineOut.log, , AxonIvyPortal/PortalTest/target/ivy-elasticsearch-*.log", allowEmptyArchive: true
+      archiveArtifacts artifacts: 'AxonIvyPortal/PortalTest/target/*.zip', allowEmptyArchive: true
+      archiveArtifacts artifacts: 'AxonIvyPortal/PortalTest/target/test/*/*.jpg, AxonIvyPortal/PortalTest/target/testEngineOut.log, , AxonIvyPortal/PortalTest/target/ivy-elasticsearch-*.log', allowEmptyArchive: true
       junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
     }
   }
@@ -105,7 +105,7 @@ pipeline {
 
 def downloadPortalRelease() {
   echo '====================Download Portal latest successful release===================='
-  def branchName = env.BRANCH_NAME.replaceAll("/", "%%2F")
+  def branchName = env.BRANCH_NAME.replaceAll('/', '%%2F')
   withCredentials([usernameColonPassword(credentialsId: 'jenkins-guest-cred', variable: 'jenkinsGuestCred')]) {
     bat "curl --user ${jenkinsGuestCred} --output archive.zip ${env.JENKINS_URL}job/PortalRelease/job/${branchName}/lastSuccessfulBuild/artifact/*zip*/archive.zip"
   }

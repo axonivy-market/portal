@@ -16,11 +16,11 @@ pipeline {
   }
 
   stages {
-    stage("build") {
+    stage('build') {
       steps {
         script {
           builtModules = []
-          docker.build("portal", "-f build/Dockerfile .").inside("-v /var/tools/maven-cache:/home/build/") {
+          docker.build('build-portal-modules', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
             def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples']
             def changeLog = ''
             if (env.GIT_PREVIOUS_SUCCESSFUL_COMMIT) {
@@ -33,17 +33,17 @@ pipeline {
               }
             }
           }
-          archiveArtifacts artifacts: "*/*/target/*.iar", allowEmptyArchive: true
+          archiveArtifacts artifacts: '*/*/target/*.iar', allowEmptyArchive: true
         }
      }
     }
 
-    stage("deploy") {
+    stage('deploy') {
       steps {
         script {
           def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').getProperties().getProperty("build.plugin.version")
           def engineUrl = 'http://10.123.1.216:8000'
-          docker.build("portal", "-f build/Dockerfile .").inside("-v /var/tools/maven-cache:/home/build/") {
+          docker.build('deploy-modules-to-engine', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
             for (module in builtModules) {
               maven cmd: "com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.server.id=portal-cockpit -Divy.deploy.engine.app=Portal -Divy.deploy.method=HTTP -Divy.deploy.engine.url=${engineUrl} -Divy.test.engine=MODIFY_EXISTING"
             }

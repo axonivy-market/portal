@@ -20,20 +20,18 @@ pipeline {
     stage('build') {
       steps {
         script {
-          docker.build("update-pom", "-f build/Dockerfile .").inside("-v /var/tools/maven-cache:/home/build/") {
+          docker.build('update-pom', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
             withEnv(['GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no']) {
               sshagent(credentials: ['github-axonivy']) {
                 sh """
-                  git config --global user.name 'wawa-axonivy'
-                  git config --global user.email 'wawa.ivyteam@gmail.com'
                   git remote set-url origin git@github.com:axonivy-market/portal.git
                   git checkout ${BRANCH_NAME} || git checkout -b ${BRANCH_NAME}
                   git pull origin ${BRANCH_NAME}
                 """
-                echo "====================Update version===================="
+                echo '====================Update version===================='
                 updateVersion()
 
-                echo "====================Commit to GIT===================="
+                echo '====================Commit to GIT===================='
                 changeLog = sh(returnStdout: true, script: 'git status -s').trim()
                 if (changeLog) {
                   sh """
@@ -41,16 +39,16 @@ pipeline {
                     git push origin -u ${BRANCH_NAME}
                   """
                 } else {
-                  echo "Nothing to commit."
+                  echo 'Nothing to commit.'
                 }
               }
             }
           }
 
-          echo "====================Cache engine in local repository===================="
+          echo '====================Cache engine in local repository===================='
           removeCacheEngine()
-          docker.build("fetch-cache", "-f build/Dockerfile .").inside("-v /var/tools/maven-cache:/home/build/") {
-            maven cmd: "clean install -f AxonIvyPortal/portal-components/pom.xml"
+          docker.build('fetch-cache', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+            maven cmd: 'clean install -f AxonIvyPortal/portal-components/pom.xml'
           }
         }
       }
