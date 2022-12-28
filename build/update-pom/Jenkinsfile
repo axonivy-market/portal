@@ -48,7 +48,7 @@ pipeline {
           }
 
           echo "====================Cache engine in local repository===================="
-          cacheEngine()
+          removeCacheEngine()
           docker.build("fetch-cache", "-f build/Dockerfile .").inside("-v /var/tools/maven-cache:/home/build/") {
             maven cmd: "clean install -f AxonIvyPortal/portal-components/pom.xml"
           }
@@ -69,7 +69,7 @@ def updateVersion() {
   }
 }
 
-def cacheEngine() {
+def removeCacheEngine() {
   sh """
     cd /var/tools/maven-cache/.m2/repository/.cache/ivy
     if [ -d ${params.ivyEngineVersion} ]; then rm -Rf ${params.ivyEngineVersion}; fi
