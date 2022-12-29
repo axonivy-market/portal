@@ -68,7 +68,7 @@ public class DashboardWelcomeWidgetBean implements Serializable {
     int parseClientTime = WelcomeWidgetUtils.parseClientTime();
     String greetingTextCms = WelcomeWidgetUtils.generateGreetingTextByTime(parseClientTime);
     var originWelcomeText = welcomeWidget.getWelcomeText();
-    if (StringUtils.isNoneBlank(originWelcomeText) && StringUtils.startsWith(originWelcomeText.trim(), ",") || StringUtils.startsWith(originWelcomeText.trim(), ".")) {
+    if (StringUtils.isNoneBlank(originWelcomeText) && (StringUtils.startsWith(originWelcomeText.trim(), ",") || StringUtils.startsWith(originWelcomeText.trim(), "."))) {
       var newWelcomeText = String.join(SPACE,
           Ivy.cms().coLocale(greetingTextCms, Ivy.session().getContentLocale()),
           Ivy.session().getSessionUser().getDisplayName());
