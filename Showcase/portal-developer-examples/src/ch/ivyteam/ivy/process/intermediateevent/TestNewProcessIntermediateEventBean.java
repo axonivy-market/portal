@@ -3,26 +3,18 @@
  */
 package ch.ivyteam.ivy.process.intermediateevent;
 
-import java.awt.Container;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-
 import ch.ivyteam.ivy.persistence.PersistencyException;
-import ch.ivyteam.ivy.process.extension.IIvyScriptEditor;
-import ch.ivyteam.ivy.process.extension.IProcessExtensionConfigurationEditorEnvironment;
-import ch.ivyteam.ivy.process.extension.impl.AbstractProcessExtensionConfigurationEditor;
+import ch.ivyteam.ivy.process.extension.ui.ExtensionUiBuilder;
+import ch.ivyteam.ivy.process.extension.ui.IUiFieldEditor;
+import ch.ivyteam.ivy.process.extension.ui.UiEditorExtension;
 
-/**
- * @author nqhoan
- *
- */
-public class TestProcessIntermediateEventBean extends AbstractProcessIntermediateEventBean {
+public class TestNewProcessIntermediateEventBean extends AbstractProcessIntermediateEventBean {
 
   /**
    * 
    */
-  public TestProcessIntermediateEventBean() {
-    super("TestProcessIntermediateEventBean", "Description of TestProcessIntermediateEventBean", String.class);
+  public TestNewProcessIntermediateEventBean() {
+    super("TestNewProcessIntermediateEventBean", "Description of TestNewProcessIntermediateEventBean", String.class);
   }
 
   @Override
@@ -49,7 +41,6 @@ public class TestProcessIntermediateEventBean extends AbstractProcessIntermediat
       try {
         getEventBeanRuntime().fireProcessIntermediateEventEx(eventIdentifier, resultObject, additionalInformation);
       } catch (PersistencyException ex) {
-
         // ===> Add here your exception handling code if the event cannot be processed <===
 
       }
@@ -60,44 +51,36 @@ public class TestProcessIntermediateEventBean extends AbstractProcessIntermediat
    * @author nqhoan
    *
    */
-  public static class Editor extends AbstractProcessExtensionConfigurationEditor {
+  public static class Editor extends UiEditorExtension {
 
     /**
      * 
      */
-    private IIvyScriptEditor demoIvyScriptField;
+    private IUiFieldEditor demoField;
 
     @Override
-    protected void createEditorPanelContent(Container editorPanel,
-        IProcessExtensionConfigurationEditorEnvironment editorEnvironment) {
+    public void initUiFields(ExtensionUiBuilder ui) {
+      // ===> Add here your code to create new ui widgets <===
 
-      // ===> Add here your code to create new ui widgets and to add them to the editor panel here <===
-      // You can use the editorEnvironment to create TextField that are ivyScript aware.
-
-      demoIvyScriptField = editorEnvironment.createIvyScriptEditor();
-      editorPanel.add(demoIvyScriptField.getComponent(), new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0,
-          GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+      demoField = ui.scriptField().create();
     }
 
     @Override
     protected void loadUiDataFromConfiguration() {
-
       // ===> Add here your code to load data from the configuration to the ui widgets <===
       // You can use the getBeanConfiguration() or getBeanConfigurationProperty() methods to load the configuration
-
-      demoIvyScriptField.setText(getBeanConfigurationProperty("demo"));
+      demoField.setText(getBeanConfigurationProperty("demo"));
     }
 
     @Override
     protected boolean saveUiDataToConfiguration() {
-
       // Clear the bean configuration and all its properties to flush outdated configurations.
       clearBeanConfiguration();
 
       // ===> Add here your code to save the data in the ui widgets to the configuration <===
       // You can use the setBeanConfiguration() or setBeanConfigurationProperty() methods to save the configuration
 
-      setBeanConfigurationProperty("demo", demoIvyScriptField.getText());
+      setBeanConfigurationProperty("demo", demoField.getText());
       return true;
     }
   }

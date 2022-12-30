@@ -35,7 +35,7 @@
               "name" : "Example ProcessIntermediateEventBean Task",
               "description" : "Example ProcessIntermediateEventBean Task"
             },
-            "eventBeanClass" : "ch.ivyteam.ivy.process.intermediateevent.TestProcessIntermediateEventBean",
+            "eventBeanClass" : "ch.ivyteam.ivy.process.intermediateevent.TestNewProcessIntermediateEventBean",
             "eventIdConfig" : "in.eventId"
           },
           "visual" : {
@@ -842,8 +842,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 312, "y" : 1032 },
-        "size" : { "width" : 72, "height" : 24 }
+        "at" : { "x" : 328, "y" : 1032 },
+        "size" : { "width" : 104, "height" : 56 }
       },
       "connect" : { "id" : "f62", "to" : "S30" }
     }, {
