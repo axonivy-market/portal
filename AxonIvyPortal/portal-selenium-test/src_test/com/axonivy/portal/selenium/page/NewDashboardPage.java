@@ -54,19 +54,6 @@ public class NewDashboardPage extends TemplatePage {
     return new ProcessEditWidgetNewDashBoardPage();
   }
 
-  public ProcessViewerWidgetNewDashBoardPage showProcessViewerWidgetConfiguration() {
-    var configurationPage = openDashboardConfigurationPage();
-    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
-    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-
-    $("button[id$='add-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $("div#new-widget-dialog").shouldBe(appear, DEFAULT_TIMEOUT);
-    $("button[id$=':5:add-widget']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-
-    $("div#new-widget-configuration-dialog").shouldBe(appear, DEFAULT_TIMEOUT);
-    return new ProcessViewerWidgetNewDashBoardPage();
-  }
-
   public ProcessViewerWidgetNewDashBoardPage showEditProcessViewerWidgetConfiguration() {
     $("button[id$=':edit-widget-4']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("div#new-widget-configuration-dialog").shouldBe(appear, DEFAULT_TIMEOUT);
