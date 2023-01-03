@@ -206,7 +206,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(newWidgetDialog, ScreenshotUtil.NEW_DASHBOARD_FOLDER + "add-widget", new ScreenshotMargin(40));
 
     // Take screenshots of Task widget configuration dialog
-    newWidgetDialog.findElement(By.id("new-widget-dialog-content:0:add-widget")).click();
+    newWidgetDialog.findElement(By.id("new-widget-dialog-content:6:add-widget")).click();
     DashboardWidgetConfigurationDialogPage configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
     ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationFilter(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "task-list-widget-configuration");
     ScreenshotUtil.captureElementScreenshot(configurationDialogPage.openManageColumnDialog(true), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "task-list-widget-table-configuration");
@@ -219,7 +219,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     // Take screenshots of Case widget configuration dialog
     newDashboardPage.clickAddWidget();
     newWidgetDialog = newDashboardPage.getAddWidgetDialog();
-    newWidgetDialog.findElement(By.id("new-widget-dialog-content:1:add-widget")).click();
+    newWidgetDialog.findElement(By.id("new-widget-dialog-content:0:add-widget")).click();
     configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
     ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationFilter(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "case-list-widget-configuration");
     ScreenshotUtil.captureElementScreenshot(configurationDialogPage.openManageColumnDialog(false), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "case-list-widget-table-configuration");
@@ -232,7 +232,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     // Take screenshot of Process widget configuration dialog
     newDashboardPage.clickAddWidget();
     newWidgetDialog = newDashboardPage.getAddWidgetDialog();
-    newWidgetDialog.findElement(By.id("new-widget-dialog-content:2:add-widget")).click();
+    newWidgetDialog.findElement(By.id("new-widget-dialog-content:3:add-widget")).click();
     configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
 
     // Combined mode
@@ -271,7 +271,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
 
   @Test
   public void screenshotProcessViewerWidget() throws IOException {
-    loginAsAdminAndAddPublicWidget(5);
+    loginAsAdminAndAddPublicWidget(4);
     DashboardWidgetConfigurationDialogPage configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
     configurationDialogPage.selectProcessForProcessViewerWidget("Categoried Leave Request");
     ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "process-viewer-widget-configuration");
@@ -286,7 +286,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
 
   @Test
   public void screenshotWelcomeWidget() throws IOException {
-    loginAsAdminAndAddPublicWidget(6);
+    loginAsAdminAndAddPublicWidget(7);
     DashboardWidgetConfigurationDialogPage configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
     configurationDialogPage.waitUntilAnimationFinished();
     ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "welcome-widget-configuration");
@@ -296,7 +296,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
   @Test
   public void screenshotNewsFeedWidget() throws IOException {
     redirectToRelativeLink("portalKitTestHelper/153CACC26D0D4C3D/createSampleNewsFeed.ivp");
-    loginAsAdminAndAddPublicWidget(7);
+    loginAsAdminAndAddPublicWidget(2);
     DashboardWidgetConfigurationDialogPage configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
     configurationDialogPage.waitUntilAnimationFinished();
     ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationDialog(),
