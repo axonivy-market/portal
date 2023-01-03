@@ -33,6 +33,11 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     addWidgetByName("Process List");
     return new ProcessEditWidgetNewDashBoardPage();
   }
+  
+  public ProcessViewerWidgetNewDashBoardPage addNewProcessViewerWidget() {
+    addWidgetByName("Process Viewer");
+    return new ProcessViewerWidgetNewDashBoardPage();
+  }
 
   private void addWidgetByName(String name) {
     $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT)
