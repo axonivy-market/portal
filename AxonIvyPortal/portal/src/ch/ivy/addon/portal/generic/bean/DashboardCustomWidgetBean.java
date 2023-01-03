@@ -47,7 +47,6 @@ public class DashboardCustomWidgetBean implements Serializable {
       widget.getData().setHasParamChanged(false);
       widget.getData().setProcessPath(null);
       widget.getData().setStartRequestPath(null);
-      widget.getData().getIvyProcessStartDTO().setStartableProcessStart(null);
     }
   }
 
