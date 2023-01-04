@@ -19,7 +19,7 @@
         "startDescription" : "<%=ivy.cms.co(\"/Processes/UserExampleGuide/processDescription\")%>",
         "startCustomFields" : [
           { "name" : "cssIcon", "value" : "si si-help-wheel" },
-          { "name" : "processImage", "value" : "<%=ivy.cms.cr(\"/images/process/HELPDESK2\")%>" }
+          { "name" : "processImage", "value" : "<%=ivy.cms.cr(\"/Images/process/HELPDESK2\")%>" }
         ],
         "startName" : "<%=ivy.cms.co(\"/Processes/UserExampleGuide/name\")%>"
       },

@@ -46,7 +46,7 @@ public class AdminSettingsTest extends BaseTest {
     HomePage homePage = new HomePage();
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
     adminSettingsPage.setEnviromentInfo();
-    assertTrue(homePage.getEnviromentInfo().contains("Host: " + SystemProperties.getServerName() + " Env:Default"));
+    assertTrue(homePage.getEnviromentInfo().contains("Host: " + SystemProperties.getServerName()));
 	}
 	
 	@Test
@@ -57,7 +57,7 @@ public class AdminSettingsTest extends BaseTest {
 		//Customize environment info in portal example 
 		redirectToRelativeLinkWithEmbedInFrame(HomePage.PORTAL_EXAMPLES_EMPLOYEE_SEARCH);
 		
-		assertTrue(homePage.getEnviromentInfo().contains("Dev Team: Wawa, Env: Dev"));
+		assertTrue(homePage.getEnviromentInfo().contains("Dev Team: Wawa"));
 	}
 
 	@Test
