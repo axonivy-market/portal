@@ -80,6 +80,9 @@ public class DashboardWidgetUtils {
       case CUSTOM:
         CustomWidgetUtils.loadDataForCustomWidget(widget);
         break;
+      case PROCESS_VIEWER:
+        CustomWidgetUtils.loadDataForProcessViewerWidget(widget);
+        break;
       default:
         break;
     }
