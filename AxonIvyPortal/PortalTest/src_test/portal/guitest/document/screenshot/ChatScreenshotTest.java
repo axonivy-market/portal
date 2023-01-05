@@ -35,6 +35,7 @@ public class ChatScreenshotTest extends ScreenshotTest {
     showNewDashboard();
     newDashboardPage = new NewDashboardPage();
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 800));
+    executeDecorateJs("highlightChatIcon()");
     ScreenshotUtil.captureHalfTopRightPageScreenShot(ScreenshotUtil.CHAT_FOLDER + "access-chat");
     TaskWidgetPage taskWidgetPage = newDashboardPage.openTaskList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
