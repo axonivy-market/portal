@@ -1192,11 +1192,11 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 .chat-panel {
   background: var(--chat-panel-background-color);
-  box-shadow: 0px 10px 40px rgb(41 50 65 / 6%); }
+  box-shadow: var(--chat-panel-box-shadow); }
 
 .contact-card:not(.no-group-chat):hover .contact-card-icon, .contact-card.active .contact-card-icon {
   color: var(--contact-card-background-color);
-  background: var(--chat-panel-background-color); }
+  background: var(--contact-card-icon-background-color); }
 
 .no-group-chat {
   color: var(--no-group-chat-color);
@@ -1204,14 +1204,16 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   cursor: default; }
 
 .contact-card:not(.no-group-chat):hover {
-  background: var(--contact-card-hover-background-color); }
-  .contact-card:not(.no-group-chat):hover .contact-card-name {
-    color: var(--contact-card-name); }
+  background: var(--contact-card-hover-background-color);
+  box-shadow: var(--chat-box-shadow); }
+.contact-card:not(.no-group-chat):hover .contact-card-name {
+  color: var(--contact-card-name); }
 
 .contact-card.active {
-  background: var(--contact-card-background-color); }
-  .contact-card.active .contact-card-name {
-    color: var(--contact-card-name); }
+  background: var(--contact-card-background-color);
+  box-shadow: var(--chat-box-shadow); }
+.contact-card.active .contact-card-name {
+  color: var(--contact-card-name); }
 
 .contact-card-icon {
   color: var(--contact-card-icon-color);
@@ -1581,6 +1583,14 @@ body.in-dialog .ui-widget-overlay {
 
 .axonivy-loader h5 {
   color: var(--ajax-loader-color);
+}
+
+.result-message__icon {
+  color: var(--success-color, green);
+}
+
+.failed-message__icon {
+  color: var(--error-color, red);
 }
 
 /* Fix around for dark mode */
