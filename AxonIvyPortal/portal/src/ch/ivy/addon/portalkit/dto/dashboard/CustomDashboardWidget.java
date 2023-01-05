@@ -102,11 +102,13 @@ public class CustomDashboardWidget extends DashboardWidget {
         .map(StartParameter::name)
         .collect(Collectors.toList());
     // Get names of current params saved in JSON
-    for (CustomDashboardWidgetParam param : data.getParams()) {
-      String paramRealName = String.format(DashboardCustomParamType.PARAM_FORMAT,
-          param.getType().name().toLowerCase(),
-          param.getName());
-      paramNames.add(paramRealName);
+    if (CollectionUtils.isNotEmpty(data.getParams())) {
+      for (CustomDashboardWidgetParam param : data.getParams()) {
+        String paramRealName = String.format(DashboardCustomParamType.PARAM_FORMAT,
+            param.getType().name().toLowerCase(),
+            param.getName());
+        paramNames.add(paramRealName);
+      }
     }
     if (!CollectionUtils.isEqualCollection(paramNames, paramFromProcessNames)) {
       data.setHasParamChanged(true);
