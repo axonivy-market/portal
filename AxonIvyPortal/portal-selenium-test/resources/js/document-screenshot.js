@@ -54,12 +54,26 @@ function numberingTaskFilter() {
 }
 
 function highlightTopBar() {
-  createRedMediumOutline($("#top-menu"));
+  var topMenu = $("#top-menu");
+  var searchIcon = topMenu.find("li.topbar-item.search-item");
+  $(searchIcon).addClass("red-topbottomleft-medium-border");
+  var themeSwitchIcon = topMenu.find("li.topbar-item.themeswitch-item");
+  $(themeSwitchIcon).addClass("red-topbottom-medium-border");
+  var chatItem = topMenu.find("li.topbar-item.chat-item");
+  $(chatItem).addClass("red-topbottom-medium-border");
+  var userNameItem = topMenu.find("li.topbar-item.user-profile.setting-container");
+  $(userNameItem).addClass("red-topbottomright-medium-border");
+}
+
+function highlightChatIcon() {
+  var topMenu = $("#top-menu");
+  var chatItem = topMenu.find("li.topbar-item.chat-item");
+  $(chatItem).addClass("red-medium-border");
 }
 
 function numberingTopBar() {
   var userSetting = $("#user-settings-menu");
-  appendStepAnnotation(userSetting, "1", -10, userSetting.width() + 5);
+  appendStepAnnotation(userSetting, "1", -10, userSetting.width() - 10);
   var globalSearch = $("#global-search-component\\:global-search-data");
   appendStepAnnotation(globalSearch, "2", -10, globalSearch.width()-30);
 }
@@ -94,8 +108,7 @@ function numberingTaskFilterAndSort() {
 }
 
 function highlightProcessNavigation() {
-  createRedThickOutlineWithOffset($('.ripplelink.PROCESS'));
-  createRedThickOutline($('.widget.process-widget'));
+  createRedThickOutlineWithOffset($('.layout-menu .PROCESS'));
 }
 
 function highlightAddExternalLink() {
@@ -150,13 +163,13 @@ function highlightEditProcessDialog() {
 }
 
 function highlightEditProcessLink() {
-  let editProcessLink = $('[id$="process-widget:image-process-group-alphabet:0:image-processes:0:process-item:process-edit"]');
+  let editProcessLink = $('[id$=":0:image-processes:0:process-item:image-process-action-component:edit-process"]');
   createRedMediumBorder(editProcessLink);
   appendStepAnnotation(editProcessLink, "2", -10, -40);
 }
 
 function highlightProcessMoreMenuButton() {
-  let processMoreMenuButton = $('[id$="process-widget:image-process-group-alphabet:0:image-processes:0:process-item:dynaButton"]');
+  let processMoreMenuButton = $('[id$=":0:image-processes:0:process-item:image-process-action-component:process-action-button"]');
   createRedMediumBorder(processMoreMenuButton);
   appendStepAnnotation(processMoreMenuButton, "1", -10, -40);
 }
@@ -164,7 +177,7 @@ function highlightProcessMoreMenuButton() {
 function numberingStatisticWidget() {
   var chartInfo = $('.chart-info:eq(0)');
   appendStepAnnotation(chartInfo, "1", -10, 25);
-  var chartCanvas = $('.chartjs-render-monitor');
+  var chartCanvas = $('.ui-carousel-items-content');
   appendStepAnnotation(chartCanvas, "2", chartCanvas.width()/4, chartCanvas.height()/2 + 10);
   appendStepAnnotation(chartCanvas, "3", 15, chartCanvas.width()*0.75);
 }
@@ -173,8 +186,13 @@ function highlightAdminSettings() {
   createRedMediumOutline($("#adminui-menu-item"));
 }
 
+function highlightUserMenuConfiguration() {
+  createRedMediumOutline($("a[id$='menu-configuration-0']"));
+  createRedMediumOutline($("a[id$='menu-configuration-1']"));
+}
+
 function highlightCaseMenuItem() {
-  createRedThickOutlineWithOffset($('.ripplelink.CASE'));
+  createRedThickOutlineWithOffset($('.layout-menu .CASE'));
 }
 
 function highlightShowMoreNoteLink() {
@@ -182,8 +200,11 @@ function highlightShowMoreNoteLink() {
 }
 
 function highlightStatisticNavigation() {
-   createRedThickOutlineWithOffset($('.ripplelink.STATISTICS'));
-   createRedMediumOutline($('#statistics-widget\\:statistic-link\\:statistic-link'));
+   createRedThickOutlineWithOffset($('.layout-menu .STATISTICS'));
+}
+
+function highlightTaskAnalysisNavigationLink() {
+  createRedMediumOutline($("a[id$=':task-analysis-page-navigation-link']"));
 }
 
 function numberingChartPanel() {
@@ -191,9 +212,9 @@ function numberingChartPanel() {
   appendStepAnnotation(chartName, "1", -30, -25);
   var chartInfo = $('.chart-info:eq(1)');
   appendStepAnnotation(chartInfo, "2", -20, 25);
-  var chartActions = $('.chart-actions-container:eq(1)');
-  appendStepAnnotation(chartActions, "3", -20, -25);
-  var chartCanvas = $('.chartjs-render-monitor:eq(1)');
+  var chartActions = $('.chart-actions-container:eq(0)');
+  appendStepAnnotation(chartActions, "3", -20, 0);
+  var chartCanvas = $('.statistic-chart:eq(1)');
   appendStepAnnotation(chartCanvas, "4", chartCanvas.width()/4, chartCanvas.height()/2 + 10);
   appendStepAnnotation(chartCanvas, "5", 15, chartCanvas.width()*0.8);
 }
@@ -309,7 +330,7 @@ function highlightCustomColumnsConfigOnTaskList() {
   appendStepAnnotation($(customColumnHeader), "1", -30, -20);
   
   var columnsCheckbox = $("[id$='task-columns-configuration:select-columns-form:columns-checkbox']");
-  var customCheckbox = columnsCheckbox.find("td:eq(6)");
+  var customCheckbox = columnsCheckbox.find("td:eq(7)");
   createRedMediumOutline(customCheckbox);
   appendStepAnnotation(customCheckbox, "2", -20, customCheckbox.width() - 10);
   
@@ -368,7 +389,7 @@ function highlightExpressTaskResponsible(stepNumber) {
 }
 
 function highlightManagementExpressTab() {
-  createRedMediumOutline($("a[href$=':adminTabView:express-management-tab']").parent());
+  $("a[href$=':adminTabView:express-management-tab']").parent().addClass("red-medium-border");
 }
 
 function highlightDeployExpress() {
@@ -467,8 +488,7 @@ function highlightTaskActionItem(taskIndex, actionIndex) {
 }
 
 function highlightShowAllProcesses() {
-  createRedThickOutlineWithOffset($('.ripplelink.PROCESS'));
-  createRedMediumOutline($("[id$='process-widget:process-link:process-link']"));
+  createRedThickOutlineWithOffset($('.layout-menu .PROCESS'));
 }
 
 function highlightShowAdditionalLink() {
@@ -476,7 +496,7 @@ function highlightShowAdditionalLink() {
 }
 
 function highlightTaskExportToExcelButton() {
-  createRedMediumOutline($("a[id$=':task-export-to-excel']"));
+  createRedMediumOutline($("[id$=':task-export-to-excel-form']"));
 }
 
 function highlightCaseExportToExcelButton() {
@@ -486,7 +506,10 @@ function highlightCaseExportToExcelButton() {
 function highlightProcessOverviewLink() {
   $(".task-detail-section-title").removeClass("u-truncate-text");
   $(".case-history-button-container").removeClass("u-truncate-text");
-  createRedMediumOutline($("a[id$=':show-process-overview-link']"));
+  var processOverviewLink = $("a[id$=':show-process-overview-link']");
+  processOverviewLink.css("outline-width", "thin");
+  processOverviewLink.css("outline-offset", "-1px")
+  createRedMediumOutline(processOverviewLink);
 }
 
 function highlightCustomWidgetInCaseDetails() {
@@ -505,4 +528,28 @@ function addStepTCustomWidgetTopTaskDetails() {
 
 function highlightIFrameWidgetTaskDetails() {
   createRedMediumOutline($(".custom-widget-card.task-detail-card"));
+}
+
+function highlightEmailSettings() {
+  createRedMediumOutline($("div[id$='email-setting-container']"));
+}
+
+function highlightUserName() {
+  createRedMediumOutline($('#user-settings-menu'));
+}
+
+function highlightServerInfo() {
+  createRedMediumOutline($("#server-infor"));
+}
+
+function highlightUserExampleNavigation() {
+  createRedThickOutlineWithOffset($('.layout-menu .CUSTOM'));
+}
+
+function highlightProcessDisplayModePanel() {
+  createRedMediumOutline($("div[id $='process-display-mode_panel']"));
+}
+
+function highlightDashboardConfiguration() {
+   createRedMediumOutline($("#dashboard-configuration"));
 }

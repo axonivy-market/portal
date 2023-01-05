@@ -38,3 +38,24 @@
 .red-outline-thick-offset {
   outline-offset: -5px;
 }
+
+.red-medium-border,
+.red-topbottom-medium-border,
+.red-topbottomleft-medium-border,
+.red-topbottomright-medium-border {
+  border: medium solid red;
+  z-index: 9999;
+}
+
+.red-topbottom-medium-border {
+  border-left: 0;
+  border-right: 0;
+}
+
+.red-topbottomleft-medium-border {
+  border-right: 0;
+}
+
+.red-topbottomright-medium-border {
+  border-left: 0;
+}
