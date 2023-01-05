@@ -492,19 +492,21 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         customWidget.getData().setProcessPath(webStartable.getId());
       }
       customWidget.getData().setUrl(EMPTY);
-      for (CustomDashboardWidgetParam param : customWidget.getData().getParams()) {
-        switch (param.getType()) {
-          case BOOLEAN:
-            param.setValue(param.getValueBoolean().toString());
-            break;
-          case DATE:
-            param.setValue(Dates.format(param.getValueDate()));
-            break;
-          case USER:
-            param.setValue(Optional.ofNullable(param.getValueUser()).map(UserDTO::getName).orElse(null));
-            break;
-          default:
-            break;
+      if (CollectionUtils.isNotEmpty(customWidget.getData().getParams())) {
+        for (CustomDashboardWidgetParam param : customWidget.getData().getParams()) {
+          switch (param.getType()) {
+            case BOOLEAN:
+              param.setValue(param.getValueBoolean().toString());
+              break;
+            case DATE:
+              param.setValue(Dates.format(param.getValueDate()));
+              break;
+            case USER:
+              param.setValue(Optional.ofNullable(param.getValueUser()).map(UserDTO::getName).orElse(null));
+              break;
+            default:
+              break;
+          }
         }
       }
     }
