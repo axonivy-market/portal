@@ -129,7 +129,7 @@ Inside your UI, you can configure these parameters as follows; they will be rend
       window.caseId = 123456;
 
       // Display content of the IFrame inside a card style, true or false (default)
-      window.isCardFrame: true;
+      window.isCardFrame = true;
    </script>
 
 .. note::
