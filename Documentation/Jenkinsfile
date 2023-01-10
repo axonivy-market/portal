@@ -12,7 +12,7 @@ pipeline {
   }
 
   parameters {
-      string(name: 'ivyVersion', defaultValue: 'nightly', description: 'Ivy version use to replace |version| placeholder of the links which navigate to ivy documentation. e.g.: https://developer.axonivy.com/doc/nightly/designer-guide/configuration/variables.html')
+      string(name: 'ivyVersion', defaultValue: 'nightly', description: 'Ivy version use to replace |version| placeholder of the links which navigate to ivy documentation. e.g.: https://developer.axonivy.com/doc/11.1.0-m236/designer-guide/configuration/variables.html')
   }
 
   stages {
