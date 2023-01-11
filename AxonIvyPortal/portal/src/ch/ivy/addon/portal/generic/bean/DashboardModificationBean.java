@@ -31,6 +31,7 @@ import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
+import ch.ivy.addon.portalkit.util.JsonVersion;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -141,6 +142,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
 
   private void saveDashboards(List<Dashboard> dashboards) {
+    dashboards.stream().forEach(dashboard -> dashboard.setVersion(JsonVersion.LATEST.getValue()));
     String dashboardJson = BusinessEntityConverter.entityToJsonValue(dashboards);
     if (isPublicDashboard) {
       Ivy.var().set(PortalVariable.DASHBOARD.key, dashboardJson);

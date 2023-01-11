@@ -20,6 +20,7 @@ import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivy.addon.portalkit.util.JsonVersion;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class AnnouncementService {
@@ -77,6 +78,7 @@ public class AnnouncementService {
   }
 
   public Announcement save(Announcement entity) {
+    entity.setVersion(JsonVersion.LATEST.getValue());
     Ivy.var().set(getConfigKey(), BusinessEntityConverter.entityToJsonValue(entity));
     invalidateCache();
     return entity;
