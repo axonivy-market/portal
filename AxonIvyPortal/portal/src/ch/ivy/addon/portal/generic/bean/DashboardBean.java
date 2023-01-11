@@ -42,6 +42,7 @@ import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivy.addon.portalkit.util.JsonVersion;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
@@ -115,6 +116,10 @@ public class DashboardBean implements Serializable {
   protected List<Dashboard> jsonToDashboards(String dashboardJSON) {
     List<Dashboard> mappingDashboards = BusinessEntityConverter.jsonValueToEntities(dashboardJSON, Dashboard.class);
     for (Dashboard dashboard : mappingDashboards) {
+      if (StringUtils.isBlank(dashboard.getVersion())) {
+        dashboard.setVersion(JsonVersion.DEFAULT.getValue());
+      }
+
       if (CollectionUtils.isEmpty(dashboard.getPermissions())) {
         ArrayList<String> defaultPermissions = new ArrayList<>();
         defaultPermissions.add(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
