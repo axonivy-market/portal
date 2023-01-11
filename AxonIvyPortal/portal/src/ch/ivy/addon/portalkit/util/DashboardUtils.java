@@ -58,6 +58,9 @@ public class DashboardUtils {
   public static List<Dashboard> jsonToDashboards(String dashboardJSON) {
     List<Dashboard> mappingDashboards = BusinessEntityConverter.jsonValueToEntities(dashboardJSON, Dashboard.class);
     for (Dashboard dashboard : mappingDashboards) {
+      if (StringUtils.isBlank(dashboard.getVersion())) {
+        dashboard.setVersion(JsonVersion.DEFAULT.getValue());
+      }
       if (CollectionUtils.isEmpty(dashboard.getPermissions())) {
         ArrayList<String> defaultPermissions = new ArrayList<>();
         defaultPermissions.add(ISecurityConstants.TOP_LEVEL_ROLE_NAME);

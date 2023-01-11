@@ -29,6 +29,7 @@ import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.Dates;
+import ch.ivy.addon.portalkit.util.JsonVersion;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class WidgetFilterService extends JsonConfigurationService<WidgetFilterModel> {
@@ -111,6 +112,7 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
     }
 
     if (userFilterCollection != null) {
+      userFilterCollection.setVersion(JsonVersion.LATEST.getValue());
       var jsonValue = BusinessEntityConverter.entityToJsonValue(userFilterCollection);
       Ivy.session().setAttribute(buildWidgetKey(widgetId, widgetType), jsonValue);
     }
