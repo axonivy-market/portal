@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.faces.context.FacesContext;
@@ -33,9 +34,9 @@ import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 
 public class PortalMenuNavigator {
-  
   public final static String LOAD_SUB_MENU_PROCESS = "loadSubMenuItems()";
   public final static String SUB_MENU = "subMenuItems";
+  private static PortalSubMenuItemWrapper portalSubMenuItemWrapper;
 
   public static void navigateToTargetPage(Map<String, List<String>> params) throws IOException {
     MenuKind selectedMenuKind = MenuKind.getKind(getMenuParam(params, PortalMenuItem.MENU_KIND));
@@ -100,23 +101,30 @@ public class PortalMenuNavigator {
   }
 
   public static List<Application> getThirdPartyApps() {
-    RegisteredApplicationService service = RegisteredApplicationService.getInstance();
-    List<Application> applications = service.getPublicConfig();
+    List<Application> applications = RegisteredApplicationService.getInstance().getPublicConfig();
     Collections.sort(applications, new ApplicationIndexAscendingComparator());
     return applications;
   }
 
   @SuppressWarnings("unchecked")
-  public static List<SubMenuItem> callSubMenuItemsProcess() {
-    List<SubMenuItem> subMenuItems = new ArrayList<>();
-    Map<String, Object> response = IvyAdapterService.startSubProcess(LOAD_SUB_MENU_PROCESS, null,
-        Arrays.asList(PortalLibrary.PORTAL.getValue()));
-    try {
-      subMenuItems = (List<SubMenuItem>) response.get(SUB_MENU);
-    } catch (Exception e) {
-      Ivy.log().error("Cannot load SubMenuItems {0}", e.getMessage());
+  public synchronized static List<SubMenuItem> callSubMenuItemsProcess() {
+    String sessionUserId = Ivy.session().getSessionUser().getSecurityMemberId();
+    Locale requestLocale = Ivy.session().getContentLocale();
+    if (portalSubMenuItemWrapper == null
+        || !sessionUserId.equals(portalSubMenuItemWrapper.userId)
+        || !requestLocale.equals(portalSubMenuItemWrapper.loadedLocale)) {
+      List<SubMenuItem> subMenuItems = new ArrayList<>();
+      Map<String, Object> response = IvyAdapterService.startSubProcess(LOAD_SUB_MENU_PROCESS, null,
+          Arrays.asList(PortalLibrary.PORTAL.getValue()));
+      try {
+        subMenuItems = (List<SubMenuItem>) response.get(SUB_MENU);
+      } catch (Exception e) {
+        Ivy.log().error("Cannot load SubMenuItems {0}", e.getMessage());
+      }
+      portalSubMenuItemWrapper = new PortalSubMenuItemWrapper(sessionUserId, requestLocale, subMenuItems);
+      return subMenuItems;
     }
-    return subMenuItems;
+    return portalSubMenuItemWrapper.portalSubMenuItems;
   }
 
   public static void navigateToTargetPage(boolean isClickOnBreadcrumb, String destinationPage, Map<String, List<String>> params) throws IOException {
@@ -134,4 +142,5 @@ public class PortalMenuNavigator {
     navigateToTargetPage(params);
   }
 
+  private record PortalSubMenuItemWrapper(String userId, Locale loadedLocale, List<SubMenuItem> portalSubMenuItems) {};
 }

@@ -109,9 +109,8 @@ public class ProcessStartUtils {
 
   public static String findFriendlyRequestPathContainsKeyword(String keyword){
     return IvyExecutor.executeAsSystem(() -> {
-      ProcessStartCollector collector = new ProcessStartCollector();
       Object portalStartPmvId = Ivy.session().getAttribute(SessionAttribute.PORTAL_START_PMV_ID.toString());
-      return collector.findFriendlyRequestPathContainsKeyword(keyword, portalStartPmvId);
+      return ProcessStartCollector.getInstance().findFriendlyRequestPathContainsKeyword(keyword, portalStartPmvId);
     });
   }
 

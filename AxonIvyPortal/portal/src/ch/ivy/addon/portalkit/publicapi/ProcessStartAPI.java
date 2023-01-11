@@ -6,6 +6,8 @@ import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.service.impl.ProcessService;
+
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.configuration.UserProcess;
@@ -22,14 +24,16 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
+import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 /**
  * Portal API for process start
  *
  */
 public final class ProcessStartAPI {
+
   private ProcessStartAPI() {}
-  
+
   /**
    * Find startable link from friendly request path
    * @param friendlyRequestPath friendly path e.g "Start Processes/UserExampleGuide/userExampleGuide.ivp"
@@ -38,9 +42,8 @@ public final class ProcessStartAPI {
   public static String findStartableLinkByUserFriendlyRequestPath(String friendlyRequestPath) {
     return IvyExecutor.executeAsSystem(() -> {
       List<IApplication> applicationsInSecurityContext = IApplicationRepository.instance().allOf(ISecurityContext.current());
-      IProcessStart processStart = null;
       for (IApplication app : applicationsInSecurityContext) {
-        processStart = findStartableProcessStartByUserFriendlyRequestPath(friendlyRequestPath, app);
+        IProcessStart processStart = findStartableProcessStartByUserFriendlyRequestPath(friendlyRequestPath, app);
         if (processStart != null) {
           return processStart.getLink().getRelative();
         }
@@ -128,7 +131,7 @@ public final class ProcessStartAPI {
 
   private static IProcessStart findStartableProcessStartByUserFriendlyRequestPath(String requestPath, IApplication application) {
     return filterPMV(requestPath, application)
-      .filter(processStart -> isStartableProcessStart(processStart.getFullUserFriendlyRequestPath()))
+      .filter(processStart -> isStartableProcessStart(processStart.getLink().getRelative()))
       .findFirst().orElse(null);
   }
 
@@ -144,11 +147,10 @@ public final class ProcessStartAPI {
     return IWorkflowProcessModelVersion.of(processModelVersion).findStartElementByUserFriendlyRequestPath(requestPath);
   }
 
-  private static boolean isStartableProcessStart(String fullUserFriendlyRequestPath) {
-    return Ivy.session().getStartableProcessStarts()
-        .stream()
-        .map(IProcessStart::getFullUserFriendlyRequestPath)
-        .filter(startablePorcessRequestPath -> startablePorcessRequestPath.equals(fullUserFriendlyRequestPath))
+  private static boolean isStartableProcessStart(String processRelativeLink) {
+    return ProcessService.getInstance().findProcesses().getProcesses().stream()
+        .map(IWebStartable::getLink)
+        .filter(webLink -> webLink.getRelative().equals(processRelativeLink))
         .findFirst().isPresent();
   }
   
@@ -159,7 +161,6 @@ public final class ProcessStartAPI {
         return processStart;
       }
       List<IApplication> applicationsInSecurityContext = IApplicationRepository.instance().allOf(ISecurityContext.current());
-      
       for (IApplication app : applicationsInSecurityContext) {
         IProcessStart findProcessStart = filterPMV(requestPath, app).findFirst().orElse(null);
         if (findProcessStart != null) {
@@ -183,4 +184,5 @@ public final class ProcessStartAPI {
       .map(IProcessModel::getReleasedProcessModelVersion)
       .filter(pmv -> isActive(pmv));
   }
+
 }
