@@ -643,7 +643,6 @@ public class NewDashboardPage extends TemplatePage {
 
   public DashboardConfigurationPage openDashboardConfigurationPage() {
     waitForDashboardPageAvailable();
-    waitForGrowlMessageDisappear();
     SelenideElement configureButton = getConfigureDashboardMenu();
     configureButton.click();
     return new DashboardConfigurationPage();
