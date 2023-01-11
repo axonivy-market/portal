@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Announcement {
 
+  private String version;
   private List<LocalizationContent> contents;
   private boolean enabled;
 
@@ -14,6 +15,14 @@ public class Announcement {
     super();
     this.contents = contents;
     this.enabled = enabled;
+  }
+
+  public String getVersion() {
+    return version;
+  }
+
+  public void setVersion(String version) {
+    this.version = version;
   }
 
   public boolean isEnabled() {

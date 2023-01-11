@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public abstract class AbstractConfiguration {
   private String id;
+  private String version;
 
   @JsonIgnore
   private boolean isPublic;
@@ -20,6 +21,14 @@ public abstract class AbstractConfiguration {
 
   public void setId(String id) {
     this.id = id;
+  }
+
+  public String getVersion() {
+    return version;
+  }
+
+  public void setVersion(String version) {
+    this.version = version;
   }
 
   public boolean getIsPublic() {
