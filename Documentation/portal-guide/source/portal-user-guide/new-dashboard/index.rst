@@ -188,6 +188,19 @@ You can define the widget name and process to be displayed.
 
   |process-viewer-widget|
 
+Statistic chart widget
+======================
+
+You can select chart to be displayed.
+
+- Configuration of a statistic chart widget:
+
+  |statistic-chart-widget-configuration|
+
+- This is sample output of the widget configured above:
+
+  |statistic-chart-widget|
+
 Welcome widget
 ==============
 
@@ -259,6 +272,10 @@ In manage news, the user can:
 .. |process-widget-image-mode| image:: ../../screenshots/new-dashboard/process-widget-image-mode.png
 .. |process-viewer-widget| image:: ../../screenshots/new-dashboard/process-viewer-widget.png
 .. |process-viewer-widget-configuration| image:: ../../screenshots/new-dashboard/process-viewer-widget-configuration.png
+
+.. |statistic-chart-widget-configuration| image:: ../../screenshots/new-dashboard/statistic-chart-widget-configuration.png
+.. |statistic-chart-widget| image:: ../../screenshots/new-dashboard/statistic-chart-widget.png
+
 .. |welcome-widget-configuration| image:: ../../screenshots/new-dashboard/welcome-widget-configuration.png
 .. |news-feed-widget-configuration| image:: ../../screenshots/new-dashboard/news-feed-widget-configuration.png
 .. |news-feed-widget| image:: ../../screenshots/new-dashboard/news-feed-widget.png
