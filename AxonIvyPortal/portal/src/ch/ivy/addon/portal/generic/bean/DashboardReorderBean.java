@@ -16,7 +16,6 @@ import ch.ivy.addon.portalkit.dto.dashboard.DashboardOrder;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
-import ch.ivy.addon.portalkit.util.JsonVersion;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
@@ -67,7 +66,6 @@ public class DashboardReorderBean implements Serializable {
       }
     }
     newDashboards.addAll(idToDashboard.values());
-    newDashboards.stream().forEach(dashboard -> dashboard.setVersion(JsonVersion.LATEST.getValue()));
     String dashboardsAsSJSON = BusinessEntityConverter.entityToJsonValue(newDashboards);
     Ivy.var().set(PortalVariable.DASHBOARD.key, dashboardsAsSJSON);
   }

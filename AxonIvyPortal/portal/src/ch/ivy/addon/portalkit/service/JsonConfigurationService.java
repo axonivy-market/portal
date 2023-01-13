@@ -5,13 +5,12 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.bo.JsonVersion;
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
-import ch.ivy.addon.portalkit.util.JsonVersion;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 
@@ -53,8 +52,7 @@ abstract class JsonConfigurationService<T extends AbstractConfiguration> {
     if (StringUtils.isBlank(jsonValue)) {
       return new ArrayList<>();
     }
-    List<T> entities = BusinessEntityConverter.jsonValueToEntities(jsonValue, getType()).stream()
-        .map(this::initJsonVersionIfEmpty).collect(Collectors.toList());
+    List<T> entities = BusinessEntityConverter.jsonValueToEntities(jsonValue, getType());
     entities.stream().forEach(e -> e.setIsPublic(true));
     return entities;
   }
@@ -64,8 +62,7 @@ abstract class JsonConfigurationService<T extends AbstractConfiguration> {
     if (StringUtils.isBlank(jsonValue)) {
       return new ArrayList<>();
     }
-    return BusinessEntityConverter.jsonValueToEntities(jsonValue, getType()).stream().map(this::initJsonVersionIfEmpty)
-        .collect(Collectors.toList());
+    return BusinessEntityConverter.jsonValueToEntities(jsonValue, getType());
   }
 
   public T save(T entity) {
@@ -123,16 +120,7 @@ abstract class JsonConfigurationService<T extends AbstractConfiguration> {
     return Ivy.session().getSessionUser();
   }
 
-  public T initJsonVersionIfEmpty(T entity) {
-    if (StringUtils.isNoneBlank(entity.getVersion())) {
-      return entity;
-    }
-    entity.setVersion(JsonVersion.DEFAULT.getValue());
-    return entity;
-  }
-
   private void updateEntities(boolean isExisted, T entity, List<T> entities) {
-    entity.setVersion(JsonVersion.LATEST.getValue());
     if (isExisted) {
       for (T e : entities) {
         if (e.getId().equals(entity.getId())) {
@@ -141,6 +129,7 @@ abstract class JsonConfigurationService<T extends AbstractConfiguration> {
         }
       }
     } else {
+      entity.setVersion(JsonVersion.LATEST.getValue());
       entities.add(entity);
     }
   }
