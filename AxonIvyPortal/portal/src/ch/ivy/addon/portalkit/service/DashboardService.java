@@ -2,7 +2,6 @@ package ch.ivy.addon.portalkit.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -47,7 +46,6 @@ public class DashboardService extends JsonConfigurationService<Dashboard> {
       return new ArrayList<>();
     }
 
-    List<Dashboard> dashboards = BusinessEntityConverter.jsonValueToEntities(jsonValue, getType());
-    return dashboards.stream().map(this::initJsonVersionIfEmpty).collect(Collectors.toList());
+    return BusinessEntityConverter.jsonValueToEntities(jsonValue, getType());
   }
 }
