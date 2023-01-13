@@ -24,6 +24,7 @@ import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.bo.JsonVersion;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
@@ -31,7 +32,6 @@ import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
-import ch.ivy.addon.portalkit.util.JsonVersion;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -104,6 +104,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     this.selectedDashboard.setDisplayedPermission(displayedPermission);
     this.selectedDashboard.setPermissions(permissions);
     if (!this.dashboards.contains(selectedDashboard)) {
+      selectedDashboard.setVersion(JsonVersion.LATEST.getValue());
       this.dashboards.add(selectedDashboard);
     }
     saveDashboards(new ArrayList<>(this.dashboards));
@@ -142,7 +143,6 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
 
   private void saveDashboards(List<Dashboard> dashboards) {
-    dashboards.stream().forEach(dashboard -> dashboard.setVersion(JsonVersion.LATEST.getValue()));
     String dashboardJson = BusinessEntityConverter.entityToJsonValue(dashboards);
     if (isPublicDashboard) {
       Ivy.var().set(PortalVariable.DASHBOARD.key, dashboardJson);

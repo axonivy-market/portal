@@ -12,7 +12,6 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.dto.UserMenu;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
-import ch.ivy.addon.portalkit.util.JsonVersion;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -43,11 +42,6 @@ public class UserMenuConfigurableBean implements Serializable {
         }
       }
       return true;
-    });
-    userMenus.stream().forEach(menu -> {
-      if (StringUtils.isBlank(menu.getVersion())) {
-        menu.setVersion(JsonVersion.DEFAULT.getValue());
-      }
     });
     return userMenus;
   }
