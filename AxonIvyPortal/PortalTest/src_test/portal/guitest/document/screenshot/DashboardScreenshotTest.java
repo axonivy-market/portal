@@ -291,6 +291,8 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     loginAsAdminAndAddPublicWidget(5);
     DashboardWidgetConfigurationDialogPage configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
     configurationDialogPage.selectChartNameForStatisticChartWidget("Tasks by Priority");
+    configurationDialogPage.clickPreviewButton();
+    configurationDialogPage.waitForStatisticChartLoadedAfterClickPreview();
     ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationDialog(),
         ScreenshotUtil.NEW_DASHBOARD_FOLDER + "statistic-chart-widget-configuration");
     configurationDialogPage.saveConfiguration();
