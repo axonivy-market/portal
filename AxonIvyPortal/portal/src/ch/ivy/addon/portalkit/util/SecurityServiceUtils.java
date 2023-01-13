@@ -38,9 +38,8 @@ public class SecurityServiceUtils {
   @Deprecated(since = "9.3", forRemoval = true)
   public static String findFriendlyRequestPathContainsKeyword(String keyword){
     return IvyExecutor.executeAsSystem(() -> {
-      ProcessStartCollector collector = new ProcessStartCollector();
       Object portalStartPmvId = getSessionAttribute(SessionAttribute.PORTAL_START_PMV_ID.toString());
-      return collector.findFriendlyRequestPathContainsKeyword(keyword, portalStartPmvId);
+      return ProcessStartCollector.getInstance().findFriendlyRequestPathContainsKeyword(keyword, portalStartPmvId);
     });
   }
 

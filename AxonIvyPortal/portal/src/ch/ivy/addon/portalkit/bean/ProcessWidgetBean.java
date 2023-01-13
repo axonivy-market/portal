@@ -227,8 +227,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
 
   public void editExpressWorkflow(ExpressProcess process) throws IOException {
-    ProcessStartCollector collector = new ProcessStartCollector();
-    String editLink = collector.findExpressWorkflowEditLink(process.getId());
+    String editLink = ProcessStartCollector.getInstance().findExpressWorkflowEditLink(process.getId());
     FacesContext.getCurrentInstance().getExternalContext().redirect(editLink);
   }
 

@@ -108,7 +108,7 @@ public class ProcessStartCollector {
   }
   
   public String findExpressAdhocWFLink() {
-    return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(EXPRESS_ADHOC_WF_FRIENDLY_REQUEST_PATH); 
+    return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(EXPRESS_ADHOC_WF_FRIENDLY_REQUEST_PATH);
   }
 
   public String findExpressWorkflowStartLink() {

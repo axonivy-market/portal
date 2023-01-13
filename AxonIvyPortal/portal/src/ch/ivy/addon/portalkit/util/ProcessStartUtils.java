@@ -116,8 +116,7 @@ public class ProcessStartUtils {
 
   public static String findFriendlyRequestPathContainsKeywordInPMV(String keyword, IProcessModelVersion processModelVersion){
     return IvyExecutor.executeAsSystem(() -> {
-      ProcessStartCollector collector = new ProcessStartCollector();
-      return collector.findFriendlyRequestPathContainsKeyword(keyword, processModelVersion);
+      return ProcessStartCollector.getInstance().findFriendlyRequestPathContainsKeyword(keyword, processModelVersion);
     });
   }
 }
