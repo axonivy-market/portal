@@ -207,6 +207,10 @@ public class DashboardWidgetConfigurationDialogPage extends TemplatePage {
         .click();
   }
 
+  public void waitForStatisticChartLoadedAfterClickPreview() {
+    waitForElementDisplayed(By.cssSelector("[id$=':task_by_priority_chart-']"), true);
+  }
+
   public void waitUntilAnimationFinished() {
     waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ajax-indicator\\\\:ajax-indicator-ajax-indicator_start", ID_PROPERTY);
   }
