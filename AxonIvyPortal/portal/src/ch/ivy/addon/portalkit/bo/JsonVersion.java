@@ -1,13 +1,10 @@
-package ch.ivy.addon.portalkit.util;
+package ch.ivy.addon.portalkit.bo;
 
 import java.util.Arrays;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
-
 public class JsonVersion implements Comparable<JsonVersion> {
-  public static final JsonVersion DEFAULT = new JsonVersion("10.0.0");
   public static final JsonVersion LATEST = new JsonVersion("10.0.0");
   
   private String value;
@@ -45,14 +42,6 @@ public class JsonVersion implements Comparable<JsonVersion> {
     return Arrays.stream(StringUtils.split(version, '.'))
             .mapToInt(part -> Integer.parseInt(part))
             .toArray();
-  }
-
-  public static AbstractConfiguration initJsonVersionIfEmpty(AbstractConfiguration json) {
-    if (StringUtils.isNoneBlank(json.getVersion())) {
-      return json;
-    }
-    json.setVersion(JsonVersion.DEFAULT.getValue());
-    return json;
   }
 
   public boolean isLatest() {
