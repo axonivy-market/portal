@@ -6,7 +6,7 @@
   <version>10.0.0.0-SNAPSHOT</version>
   <properties>
     <build.plugin.version>10.0.1</build.plugin.version>
-    <ivy.engine.version>10.0.3</ivy.engine.version>
+    <ivy.engine.version>10.0.4</ivy.engine.version>
   </properties>
   <distributionManagement>
     <repository>
