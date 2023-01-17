@@ -66,13 +66,13 @@ public class SettingScreenshotTest extends ScreenshotTest {
     showNewDashboard();
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.getUserSettings();
-    executeDecorateJs("highlightAdminSettings()");
-    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.SETTINGS_FOLDER + "select-admin-settings");
 
-    refreshPage();
-    newDashboardPage.getUserSettings();
     executeDecorateJs("highlightUserName()");
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.SETTINGS_FOLDER + "user-settings", new Dimension(1100, 800));
+
+    executeDecorateJs("clearHighlightUserName()");
+    executeDecorateJs("highlightAdminSettings()");
+    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.SETTINGS_FOLDER + "select-admin-settings");
   }
   
   @Test
