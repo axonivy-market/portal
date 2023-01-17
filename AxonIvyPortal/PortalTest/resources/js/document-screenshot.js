@@ -20,6 +20,10 @@ function createRedMediumOutline($element) {
   $element.addClass("red-medium-outline");
 }
 
+function clearRedMediumOutline($element) {
+  $element.removeClass("red-medium-outline");
+}
+
 function createRedMediumBorder($element) {
   $element.addClass("red-medium-border");
 }
@@ -536,6 +540,10 @@ function highlightEmailSettings() {
 
 function highlightUserName() {
   createRedMediumOutline($('#user-settings-menu'));
+}
+
+function clearHighlightUserName() {
+  clearRedMediumOutline($('#user-settings-menu'));
 }
 
 function highlightServerInfo() {
