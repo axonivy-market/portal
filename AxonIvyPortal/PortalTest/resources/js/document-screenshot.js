@@ -538,6 +538,10 @@ function highlightEmailSettings() {
   createRedMediumOutline($("div[id$='email-setting-container']"));
 }
 
+function clearHighlightUserName() {
+  clearRedMediumOutline($('#user-settings-menu'));
+}
+
 function highlightUserName() {
   createRedMediumOutline($('#user-settings-menu'));
 }
