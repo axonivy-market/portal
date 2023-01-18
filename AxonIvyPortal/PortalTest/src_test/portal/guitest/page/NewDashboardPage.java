@@ -124,6 +124,14 @@ public class NewDashboardPage extends TemplatePage {
     driver.switchTo().defaultContent();
   }
 
+  public void waitForStatisticChartWidgetLoading() {
+    WaitHelper.assertTrueWithWait(() -> {
+      var taskLoading = findElementByCssSelector(".statistic-chart-widget__content [id$=':loading']");
+      return taskLoading.getAttribute(CLASS_PROPERTY).contains("u-display-none");
+    });
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ui-chart statistic-chart-widget__canvas", CLASS_PROPERTY);
+  }
+
   public void waitForWidgetInfoLoading(WebElement taskInfoOverlayPanel) {
     WaitHelper.assertTrueWithWait(() -> {
       var widgetInfo = taskInfoOverlayPanel.findElements(By.cssSelector("[class*='js-loading-']")).get(0);
@@ -133,6 +141,10 @@ public class NewDashboardPage extends TemplatePage {
 
   public WebElement getProcessViewerWidget() {
     return findElementByCssSelector("div[gs-id*='process_viewer']");
+  }
+
+  public WebElement getStatisticChartWidget() {
+    return findElementByCssSelector("div[gs-id*='statistic']");
   }
 
   public WebElement getFirstNewsFeedWidget() {
