@@ -191,13 +191,13 @@ You can define the widget name and process to be displayed.
 Statistic chart widget
 ======================
 
-You can select chart to be displayed.
+You can select the chart to be displayed.
 
 - Configuration of a statistic chart widget:
 
   |statistic-chart-widget-configuration|
 
-- This is sample output of the widget configured above:
+- This is the sample output of the widget configured above:
 
   |statistic-chart-widget|
 
