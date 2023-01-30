@@ -107,22 +107,23 @@ public class PortalMenuNavigator {
   }
 
   @SuppressWarnings("unchecked")
-  public synchronized static List<SubMenuItem> callSubMenuItemsProcess() {
+  public static List<SubMenuItem> callSubMenuItemsProcess() {
     String sessionUserId = Ivy.session().getSessionUser().getSecurityMemberId();
     Locale requestLocale = Ivy.session().getContentLocale();
     if (portalSubMenuItemWrapper == null
         || !sessionUserId.equals(portalSubMenuItemWrapper.userId)
         || !requestLocale.equals(portalSubMenuItemWrapper.loadedLocale)) {
-      List<SubMenuItem> subMenuItems = new ArrayList<>();
-      Map<String, Object> response = IvyAdapterService.startSubProcess(LOAD_SUB_MENU_PROCESS, null,
-          Arrays.asList(PortalLibrary.PORTAL.getValue()));
-      try {
-        subMenuItems = (List<SubMenuItem>) response.get(SUB_MENU);
-      } catch (Exception e) {
-        Ivy.log().error("Cannot load SubMenuItems {0}", e.getMessage());
+      synchronized(PortalSubMenuItemWrapper.class) {
+        List<SubMenuItem> subMenuItems = new ArrayList<>();
+        Map<String, Object> response = IvyAdapterService.startSubProcess(LOAD_SUB_MENU_PROCESS, null,
+            Arrays.asList(PortalLibrary.PORTAL.getValue()));
+        try {
+          subMenuItems = (List<SubMenuItem>) response.get(SUB_MENU);
+        } catch (Exception e) {
+          Ivy.log().error("Cannot load SubMenuItems {0}", e.getMessage());
+        }
+        portalSubMenuItemWrapper = new PortalSubMenuItemWrapper(sessionUserId, requestLocale, subMenuItems);
       }
-      portalSubMenuItemWrapper = new PortalSubMenuItemWrapper(sessionUserId, requestLocale, subMenuItems);
-      return subMenuItems;
     }
     return portalSubMenuItemWrapper.portalSubMenuItems;
   }

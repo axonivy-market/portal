@@ -32,7 +32,7 @@ public abstract class AbstractProcessBean implements Serializable {
   protected static final String SLASH = "/";
   private List<Process> portalProcesses;
 
-  synchronized public void init() {
+  public synchronized void init() {
     List<Process> processes = new ArrayList<>();
     processes.addAll(findProcesses());
     processes.addAll(findExpressProcesses());
@@ -130,7 +130,7 @@ public abstract class AbstractProcessBean implements Serializable {
     return lengthOfCategoryPaths > 0 ? arrayOfCategoyPaths[lengthOfCategoryPaths - 1] : StringUtils.EMPTY;
   }
 
-  synchronized public List<Process> getPortalProcesses() {
+  public synchronized List<Process> getPortalProcesses() {
     return portalProcesses;
   }
 }
