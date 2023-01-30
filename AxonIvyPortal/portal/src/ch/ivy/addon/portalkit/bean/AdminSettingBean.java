@@ -44,7 +44,7 @@ public class AdminSettingBean implements Serializable {
       isTabChangeEventTriggered = false;
       return;
     }
-    isShowExpressManagementTab = new ProcessStartCollector().findExpressCreationProcess() != null;
+    isShowExpressManagementTab = ProcessStartCollector.getInstance().findExpressCreationProcess() != null;
     isShowRoleManagementTab = canSeeRoleManagement();
     isShowPasswordValidationTab = canSeePasswordValidation();
     initApplicationTab();

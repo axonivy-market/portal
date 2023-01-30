@@ -40,8 +40,7 @@ public class CaseActionBean implements Serializable {
   public String getAdditionalCaseDetailsPageUri(ICase iCase) {
     String additionalCaseDetailsPageUri = StringUtils.EMPTY;
     if (isExpressCase(iCase)) {
-      ProcessStartCollector processStartCollector =  new ProcessStartCollector();
-      additionalCaseDetailsPageUri = processStartCollector.findExpressBusinessViewStartLink() + "?caseId=" + iCase.getId();
+      additionalCaseDetailsPageUri = ProcessStartCollector.getInstance().findExpressBusinessViewStartLink() + "?caseId=" + iCase.getId();
     } else {
       additionalCaseDetailsPageUri = iCase.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).getOrNull();
       if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {

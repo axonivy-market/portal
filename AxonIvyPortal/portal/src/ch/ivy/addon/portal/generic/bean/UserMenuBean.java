@@ -11,7 +11,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
-import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.PrimeFaces;
@@ -46,11 +45,10 @@ public class UserMenuBean implements Serializable {
 
   public static final long TIME_BEFORE_LOST_SESSION = 3 * DateUtils.MILLIS_PER_MINUTE; // 3 minutes
   public static final String TASK_LEAVE_WARNING_COMPONENT = "task-leave-warning-component";
+  private static String expressStartLink;
   private String targetPage = StringUtils.EMPTY;
-
   private String loggedInUser;
   private boolean isShowGlobalSearch;
-  GlobalSettingService globalSettingService;
 
   public String getLoggedInUser() {
     return loggedInUser;
@@ -58,9 +56,8 @@ public class UserMenuBean implements Serializable {
   
   @PostConstruct
   public void init() {
-    globalSettingService = new GlobalSettingService();
     if (!Ivy.session().isSessionUserUnknown()) {
-      String format = globalSettingService.findGlobalSettingValue(GlobalVariable.LOGGED_IN_USER_FORMAT);
+      String format = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.LOGGED_IN_USER_FORMAT);
       GlobalVariable.Option option = GlobalVariable.Option.valueOf(format);
       String fullName = Ivy.session().getSessionUser().getFullName();
       String userName = Ivy.session().getSessionUserName();
@@ -80,25 +77,24 @@ public class UserMenuBean implements Serializable {
           break;
       }
     }
-    isShowGlobalSearch =
-        Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_GLOBAL_SEARCH));
+    isShowGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_GLOBAL_SEARCH);
   }
 
   public boolean isShowCaseDurationTime() {
-    return Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_CASE_DURATION_TIME));
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_CASE_DURATION_TIME);
   }
 
   public boolean isShowServerInformation() {
-    return Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_ENVIRONMENT_INFO));
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_ENVIRONMENT_INFO);
   }
 
   public boolean isHiddenLogout() {
-    return Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_LOGOUT_BUTTON));
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_LOGOUT_BUTTON);
   }
 
   public boolean isHiddenChangePassword() {
-    return loggedByExternalSecuritySystem() || Boolean
-        .parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON));
+    return loggedByExternalSecuritySystem()
+        || GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON);
   }
   
   private boolean loggedByExternalSecuritySystem() {
@@ -106,7 +102,7 @@ public class UserMenuBean implements Serializable {
   }
 
   public boolean isHiddenStatisticWidget() {
-    return BooleanUtils.toBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET));
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_STATISTIC_WIDGET);
   }
   
   public boolean getIsShowGlobalSearch() {
@@ -114,7 +110,7 @@ public class UserMenuBean implements Serializable {
   }
 
   public long getClientSideTimeout() {
-    String clientSideTimeoutInMinute = globalSettingService.findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT);
+    String clientSideTimeoutInMinute = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT);
     if (StringUtils.isNotBlank(clientSideTimeoutInMinute)) {
       Long timeoutInMinute = Long.valueOf(clientSideTimeoutInMinute);
       if (timeoutInMinute > 0) {
@@ -309,28 +305,32 @@ public class UserMenuBean implements Serializable {
       getExternalContext().redirect(getURLFromUserMenu(menu));
     }
   }
-  
+
   private String getURLFromUserMenu(UserMenu menu) {
-    if (StringUtils.isNotBlank(menu.getUrl())) {
-      if (menu.getUrl().contains(".ivp")) {
-        return PortalNavigator.buildUrlByKeyword(menu.getUrl(), menu.getUrl(), menu.getParams());
-      } else {
-        if (menu.getUrl().contains("http")) {
-          return menu.getUrl();
-        } else {
-          ProcessStartCollector processStartCollector = new ProcessStartCollector();
-          String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
-          if (StringUtils.isNotBlank(expressStartLink)) {
-            ExpressProcess workflow = ExpressProcessService.getInstance().findExpressProcessByName(menu.getUrl());
-            if (workflow != null && PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(workflow)
-                && StringUtils.isNotBlank(workflow.getId())) {
-              menu.setUrl(expressStartLink + "?workflowID=" + workflow.getId());
-            }
-          }
+    String menuUrl = menu.getUrl();
+    if (StringUtils.isNotBlank(menuUrl)) {
+      if (menuUrl.contains(".ivp")) {
+        return PortalNavigator.buildUrlByKeyword(menuUrl, menuUrl, menu.getParams());
+      }
+      if (menuUrl.contains("http")) {
+        return menuUrl;
+      }
+      if (StringUtils.isNotBlank(getExpressStartLink())) {
+        ExpressProcess workflow = ExpressProcessService.getInstance().findExpressProcessByName(menuUrl);
+        if (workflow != null && PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(workflow)
+            && StringUtils.isNotBlank(workflow.getId())) {
+          menu.setUrl(getExpressStartLink() + "?workflowID=" + workflow.getId());
         }
       }
       return menu.getUrl();
     }
     return "";
+  }
+
+  private static String getExpressStartLink() {
+    if (StringUtils.isNotBlank(expressStartLink)) {
+      expressStartLink = ProcessStartCollector.getInstance().findExpressWorkflowStartLink();
+    }
+    return expressStartLink;
   }
 }

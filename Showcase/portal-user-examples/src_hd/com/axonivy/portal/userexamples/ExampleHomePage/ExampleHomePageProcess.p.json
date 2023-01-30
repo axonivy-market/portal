@@ -16,12 +16,12 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f7", "to" : "f6" }
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 416, "y" : 64 }
+        "at" : { "x" : 264, "y" : 64 }
       }
     }, {
       "id" : "f3",
@@ -40,69 +40,6 @@
       "visual" : {
         "at" : { "x" : 264, "y" : 160 }
       }
-    }, {
-      "id" : "f6",
-      "type" : "Script",
-      "name" : "prepare data",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;",
-            "import ch.ivyteam.ivy.workflow.start.IWebStartable;",
-            "import org.apache.commons.lang3.StringUtils;",
-            "import ch.ivy.addon.portalkit.configuration.UserProcess;",
-            "",
-            "String leaveRequestStartLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(\"Start Processes/LeaveRequest/start.ivp\");",
-            "if (!StringUtils.isEmpty(leaveRequestStartLink)){  ",
-            "  UserProcess userProcess = new UserProcess();",
-            "  userProcess.setLink(leaveRequestStartLink);",
-            "  userProcess.setProcessName(ivy.cms.co(\"/Processes/LeaveRequest/leaveRequest\"));",
-            "  userProcess.setIcon(\"/Images/user-logout\");",
-            "  userProcess.setDescription(ivy.cms.co(\"/Processes/LeaveRequest/description\"));",
-            "  in.processes.add(userProcess);",
-            "}",
-            "",
-            "List<IWebStartable> startableLinks = ivy.wf.getStartables(ivy.session.getSessionUser());",
-            "IWebStartable lendingCaseMap = null;",
-            "for(IWebStartable link : startableLinks) {",
-            "  if(link.getDisplayName().equals(\"Lending (Case Map)\")) {",
-            "    lendingCaseMap = link;",
-            "  }",
-            "}",
-            "",
-            "if (lendingCaseMap != null){  ",
-            "  UserProcess userProcess = new UserProcess();",
-            "  userProcess.setLink(lendingCaseMap.getLink().getRelativeEncoded());",
-            "  userProcess.setProcessName(ivy.cms.co(\"/Processes/CaseMap/name\"));",
-            "  userProcess.setIcon(\"/Images/monetization-approve\");",
-            "  userProcess.setDescription(ivy.cms.co(\"/Processes/CaseMap/description\"));",
-            "  in.processes.add(userProcess);",
-            "}",
-            "",
-            "UserProcess procurementProcess = new UserProcess();",
-            "procurementProcess.setProcessName(ivy.cms.co(\"/Processes/Procurement/name\"));",
-            "procurementProcess.setIcon(\"/Images/shopping-cart-check\");",
-            "procurementProcess.setDescription(ivy.cms.co(\"/Processes/UserExampleGuide/comingSoon\"));",
-            "in.processes.add(procurementProcess);",
-            "",
-            "UserProcess contractNegotiationProcess = new UserProcess();",
-            "contractNegotiationProcess.setProcessName(ivy.cms.co(\"/Processes/ContractNegotiation/name\"));",
-            "contractNegotiationProcess.setIcon(\"/Images/business-contract-handshake-sign\");",
-            "contractNegotiationProcess.setDescription(ivy.cms.co(\"/Processes/UserExampleGuide/comingSoon\"));",
-            "in.processes.add(contractNegotiationProcess);",
-            "",
-            "UserProcess marketingProcess = new UserProcess();",
-            "marketingProcess.setProcessName(ivy.cms.co(\"/Processes/MarketingCampaign/name\"));",
-            "marketingProcess.setIcon(\"/Images/advertising-megaphone\");",
-            "marketingProcess.setDescription(ivy.cms.co(\"/Processes/UserExampleGuide/comingSoon\"));",
-            "in.processes.add(marketingProcess);"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 264, "y" : 64 }
-      },
-      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f9",
       "type" : "DialogCall",
