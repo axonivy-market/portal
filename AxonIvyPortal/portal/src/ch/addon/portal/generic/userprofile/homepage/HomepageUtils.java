@@ -1,7 +1,6 @@
 package ch.addon.portal.generic.userprofile.homepage;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,27 +8,24 @@ import java.util.Map;
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import ch.addon.portal.generic.menu.PortalMenuNavigator;
 import ch.addon.portal.generic.menu.SubMenuItem;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.MenuKind;
-import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class HomepageUtils {
-  
-  @SuppressWarnings("unchecked")
+
   public static List<Homepage> loadHomepages() {
     List<Homepage> homepages = new ArrayList<>();
-    Map<String, Object> response = IvyAdapterService.startSubProcess("loadSubMenuItems()", null, Arrays.asList(PortalLibrary.PORTAL.getValue()));
-    List<SubMenuItem> subMenuItems = (List<SubMenuItem>) response.get("subMenuItems");
+    List<SubMenuItem> subMenuItems = PortalMenuNavigator.callSubMenuItemsProcess();
     homepages.add(initDashboard());
     for (SubMenuItem item : subMenuItems) {
       if (item.getMenuKind() != MenuKind.EXTERNAL_LINK) {
