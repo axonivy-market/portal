@@ -21,6 +21,8 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.map.HashedMap;
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.service.impl.ProcessService;
+
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.bo.GuidePool;
@@ -33,9 +35,7 @@ import ch.ivy.addon.portalkit.configuration.UserProcess;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
-import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessResultDTO;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
-import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.service.DummyProcessService;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
@@ -180,8 +180,7 @@ private static final long serialVersionUID = -5889375917550618261L;
   }
 
   private Map<String, Process> findProcesses() {
-    IvyProcessResultDTO dto = ProcessService.newInstance().findProcesses();
-    List<IWebStartable> processes = dto.getProcesses();
+    List<IWebStartable> processes = ProcessService.getInstance().findProcesses().getProcesses();
     Map<String, Process> defaultPortalProcesses = new HashedMap<>();
     processes.forEach(process -> defaultPortalProcesses.put(process.getId(), new IvyProcess(process)));
     return defaultPortalProcesses;
@@ -189,8 +188,7 @@ private static final long serialVersionUID = -5889375917550618261L;
 
   private Map<String, Process> findExpressProcesses() {
     List<ExpressProcess> processes = new ArrayList<>();
-    ProcessStartCollector processStartCollector = new ProcessStartCollector();
-    String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
+    String expressStartLink = ProcessStartCollector.getInstance().findExpressWorkflowStartLink();
     if (StringUtils.isNotBlank(expressStartLink)) {
       List<ExpressProcess> workflows = ExpressProcessService.getInstance().findReadyToExecuteProcessOrderByName();
       for (ExpressProcess wf : workflows) {
@@ -503,5 +501,4 @@ private static final long serialVersionUID = -5889375917550618261L;
   public boolean isExpressProcess(UserProcess process) {
     return process != null && ProcessStartUtils.isExpressProcess(process.getProcessType());
   }
-  
 }
