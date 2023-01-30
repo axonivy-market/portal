@@ -30,16 +30,14 @@ public abstract class AbstractProcessBean implements Serializable {
 
   private static final long serialVersionUID = -8450309463672220642L;
   protected static final String SLASH = "/";
-
   private List<Process> portalProcesses;
-  protected ProcessStartCollector collector;
 
-  synchronized public void init() {
-    collector = new ProcessStartCollector();
-    portalProcesses = new CopyOnWriteArrayList<Process>(findProcesses());
-    portalProcesses.addAll(findExpressProcesses());
-    portalProcesses.addAll(findExternalLink());
-    portalProcesses = new CopyOnWriteArrayList<Process>(sortProcesses(portalProcesses));
+  public synchronized void init() {
+    List<Process> processes = new ArrayList<>();
+    processes.addAll(findProcesses());
+    processes.addAll(findExpressProcesses());
+    processes.addAll(findExternalLink());
+    portalProcesses = new CopyOnWriteArrayList<Process>(sortProcesses(processes));
   }
 
   public String getProcessInformationPageUrl(Process process) {
@@ -56,8 +54,7 @@ public abstract class AbstractProcessBean implements Serializable {
 
   protected List<Process> findExpressProcesses() {
     List<ExpressProcess> processes = new ArrayList<>();
-    ProcessStartCollector processStartCollector = new ProcessStartCollector();
-    String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
+    String expressStartLink = ProcessStartCollector.getInstance().findExpressWorkflowStartLink();
     if (StringUtils.isNotBlank(expressStartLink)) {
       List<ExpressProcess> workflows = ExpressProcessService.getInstance().findReadyToExecuteProcessOrderByName();
       for (ExpressProcess wf : workflows) {
@@ -81,10 +78,9 @@ public abstract class AbstractProcessBean implements Serializable {
   }
 
   protected List<Process> sortProcesses(List<Process> processes) {
-    var processesSorted = processes.stream()
+    return processes.stream()
         .sorted(Comparator.comparing(Process::getName))
         .collect(Collectors.toList());
-    return processesSorted;
   }
 
   public String getProcessIcon(Process process) {
@@ -134,7 +130,7 @@ public abstract class AbstractProcessBean implements Serializable {
     return lengthOfCategoryPaths > 0 ? arrayOfCategoyPaths[lengthOfCategoryPaths - 1] : StringUtils.EMPTY;
   }
 
-  synchronized public List<Process> getPortalProcesses() {
+  public synchronized List<Process> getPortalProcesses() {
     return portalProcesses;
   }
 }
