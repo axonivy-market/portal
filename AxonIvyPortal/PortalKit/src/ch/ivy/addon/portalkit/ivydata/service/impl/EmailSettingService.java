@@ -117,7 +117,9 @@ public class EmailSettingService implements IEmailSettingService {
             IUserEMailNotificationSettings userEmailSettings = user.getEMailNotificationSettings();
             
             userEmailSettings.setNotificationDisabled(false);
-            userEmailSettings.setSendDailyTaskSummary(EnumSet.copyOf(emailSetting.getEmailSendDailyTaskSummary()));
+            if (emailSetting.isEnableDailySummary()) {
+              userEmailSettings.setSendDailyTaskSummary(EnumSet.copyOf(emailSetting.getEmailSendDailyTaskSummary()));
+            }
             userEmailSettings.setSendOnNewWorkTasks(emailSetting.isEmailSendOnNewWorkTasks());
             if (emailSetting.isCustomMailEnabled()) { 
               user.setProperty(ENABLE_CUSTOM_MAIL, String.valueOf(emailSetting.isCustomMailEnabled()));
