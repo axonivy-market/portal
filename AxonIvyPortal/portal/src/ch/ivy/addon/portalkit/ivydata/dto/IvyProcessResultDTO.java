@@ -4,16 +4,18 @@ import java.util.List;
 
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
-public class IvyProcessResultDTO extends AbstractResultDTO {
+/**
+ * @deprecated instead use {@link com.axonivy.portal.components.dto.IvyProcessResultDTO}
+ */
+@Deprecated(forRemoval = true, since = "10.0.4")
+public class IvyProcessResultDTO extends com.axonivy.portal.components.dto.IvyProcessResultDTO {
 
-  private List<IWebStartable> processes;
-
-  public List<IWebStartable> getProcesses() {
-    return processes;
+  public IvyProcessResultDTO() {
+    super();
   }
 
-  public void setProcesses(List<IWebStartable> processes) {
-    this.processes = processes;
+  public IvyProcessResultDTO(List<IWebStartable> processes) {
+    super(processes);
   }
 
 }

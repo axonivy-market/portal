@@ -52,8 +52,7 @@ public class SideStepService implements ISideStepService {
   }
 
   private IvySideStep createAdhocSideStep() {
-    ProcessStartCollector collector = new ProcessStartCollector();
-    String expressAdhocWFLink = collector.findExpressAdhocWFLink();
+    String expressAdhocWFLink = ProcessStartCollector.getInstance().findExpressAdhocWFLink();
     if (StringUtils.isBlank(expressAdhocWFLink)) {
       return null;
     }

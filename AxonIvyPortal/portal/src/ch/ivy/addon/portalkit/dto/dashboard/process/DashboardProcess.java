@@ -167,8 +167,7 @@ public class DashboardProcess implements Process {
   }
 
   private String generateWorkflowStartLink() {
-    ProcessStartCollector processStartCollector = new ProcessStartCollector();
-    return processStartCollector.findExpressWorkflowStartLink() + EXPRESS_WORKFLOW_ID_PARAM + this.id;
+    return ProcessStartCollector.getInstance().findExpressWorkflowStartLink() + EXPRESS_WORKFLOW_ID_PARAM + this.id;
   }
 
   public Long getProcessStartId() {

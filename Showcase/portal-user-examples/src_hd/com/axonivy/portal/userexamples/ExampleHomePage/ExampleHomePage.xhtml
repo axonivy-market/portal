@@ -4,7 +4,7 @@
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/frame-10.xhtml">
-    <ui:param name="items" value="#{data.processes}" />
+    <ui:param name="items" value="#{exampleHomeBean.processes}" />
     <ui:param name="isFullScreen" value="false" />
     <ui:define name="title">#{ivy.cms.co('/Processes/UserExampleGuide/name')}</ui:define>
     <ui:define name="content">
@@ -21,7 +21,7 @@
 
       <div class="ui-g-12">
         <h:form>
-          <ui:repeat var="item" value="#{data.processes}" varStatus="itemStatus">
+          <ui:repeat var="item" value="#{exampleHomeBean.processes}" varStatus="itemStatus">
 
             <h:panelGroup layout="block"
               styleClass="#{isFullScreen? 'ui-g-2':'ui-g-4'} #{isFullScreen? 'ui-xl-2':'ui-xl-4'} #{isFullScreen? 'ui-lg-4':'ui-lg-6'} ui-md-6 ui-sm-12 #{cardContainerStyleClass} portal-card-container">

@@ -18,6 +18,8 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 
+import com.axonivy.portal.components.service.impl.ProcessService;
+
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.bo.Process;
@@ -26,7 +28,6 @@ import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
-import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -43,7 +44,8 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
 
   @Override
   @PostConstruct
-  public synchronized void init() {
+  public void init() {
+    super.init();
     displayModes = Arrays.asList(ProcessWidgetMode.values()).stream()
         .sorted((mode1, mode2) -> mode1.getLabel().compareToIgnoreCase(mode2.getLabel()))
         .collect(Collectors.toList());
@@ -52,7 +54,6 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
 
   public void initPortalDashboardProcesses(Boolean isPublicDashboard) {
     this.isPublicDashboard = isPublicDashboard;
-    super.init();
   }
 
   public void addPropertyChangeListener(PropertyChangeListener listener) {
@@ -72,7 +73,7 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
 
   @Override
   protected List<Process> findProcesses() {
-    List<IWebStartable> processes = ProcessService.newInstance().findProcesses().getProcesses();
+    List<IWebStartable> processes = ProcessService.getInstance().findProcesses().getProcesses();
     List<Process> defaultPortalProcesses = new ArrayList<>();
     processes.forEach(process -> defaultPortalProcesses.add(new DashboardProcess(process)));
     return defaultPortalProcesses;
@@ -154,7 +155,6 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
     return defaultPortalProcesses;
   }
 
-
   public List<String> getApplications() {
     return applications;
   }
@@ -162,5 +162,4 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   public void setApplications(List<String> applications) {
     this.applications = applications;
   }
-
 }
