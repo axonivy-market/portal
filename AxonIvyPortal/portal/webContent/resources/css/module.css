@@ -5453,9 +5453,10 @@ border-top: 0.14rem dashed;
 .grid-view-form .process-action-group {
   position: absolute;
   padding: 9px;
-  width: 100%;
+  width: auto;
   display: inline-flex;
   justify-content: flex-end;
+  max-width: 100%;
 }
 
 .process-group.grid-process-container .process-grid__header {
