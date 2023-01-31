@@ -5411,7 +5411,8 @@ border-top: 0.14rem dashed;
 }
 
 .process-action-group .process-category {
-  max-width: calc(100% - 3rem);
+  max-width: 100%;
+  min-width: 0;
 }
 
 .process-action-group .process-category span.ui-button-text {
@@ -5422,6 +5423,7 @@ border-top: 0.14rem dashed;
 
 .process-action-group .ui-button.icon-more-menu-button {
   margin: 0 0 0 .5rem;
+  min-width: 2.357rem;
 }
 
 .image-view-form {
