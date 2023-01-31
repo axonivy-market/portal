@@ -92,10 +92,13 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     executeDecorateJs("numberingStatisticWidget();");
     ScreenshotUtil.captureElementScreenshot(homePage.getStatisticWidgetElement(), ScreenshotUtil.DASHBOARD_FOLDER + "statistics-key-information");
 
-    ScreenshotUtil.resizeBrowser(new Dimension(1400, 800));
+    ScreenshotUtil.resizeBrowser(new Dimension(1100, 800));
     refreshHomePage();
+    homePage = new HomePage();
+    homePage.clickByCssSelector("a[id='global-search-item']");
     executeDecorateJs("numberingTopBar()");
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(homePage.getTopBar(), ScreenshotUtil.DASHBOARD_FOLDER + "portal-header-with-numbering-annotation", new ScreenshotMargin(20, 20, 20, 120));
+    ScreenshotUtil.resizeBrowser(new Dimension(1400, 800));
 
     executeDecorateJs("numberingTaskItem();");
     ScreenshotUtil.captureElementScreenshot(homePage.getTaskWidgetElement(), ScreenshotUtil.DASHBOARD_FOLDER + "personal-tasks-key-information");
@@ -117,11 +120,10 @@ public class DashboardScreenshotTest extends ScreenshotTest {
 
   @Test
   public void screenshotNewDashboard() throws IOException{
-    
     showNewDashboard();
     newDashboardPage = new NewDashboardPage();
-
-    ScreenshotUtil.resizeBrowserAndCaptureWholeScreen(ScreenshotUtil.DASHBOARD_FOLDER + "dashboard", new Dimension(1200, 800));
+    ScreenshotUtil.resizeBrowser(new Dimension(1800, 1400));
+    ScreenshotUtil.resizeBrowserAndCaptureWholeScreen(ScreenshotUtil.DASHBOARD_FOLDER + "dashboard", new Dimension(1800, 1400));
 
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
     executeDecorateJs("highlightLogo();");
@@ -282,6 +284,25 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     newDashboardPage.waitForProcessViewerWidgetLoading();
     Sleeper.sleep(2000);// wait for iframe data loading finish
     ScreenshotUtil.captureElementScreenshot(newDashboardPage.getProcessViewerWidget(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "process-viewer-widget");
+  }
+
+  @Test
+  public void screenshotStatisticChartWidget() throws IOException {
+    loginAsAdminAndAddPublicWidget(5);
+    DashboardWidgetConfigurationDialogPage configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
+    configurationDialogPage.selectChartNameForStatisticChartWidget("Tasks by Priority");
+    configurationDialogPage.clickPreviewButton();
+    configurationDialogPage.waitForStatisticChartLoadedAfterClickPreview();
+    ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationDialog(),
+        ScreenshotUtil.NEW_DASHBOARD_FOLDER + "statistic-chart-widget-configuration");
+    configurationDialogPage.saveConfiguration();
+
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForStatisticChartWidgetLoading();
+    Sleeper.sleep(2000);// wait for iframe data loading finish
+    ScreenshotUtil.captureElementScreenshot(newDashboardPage.getStatisticChartWidget(),
+        ScreenshotUtil.NEW_DASHBOARD_FOLDER + "statistic-chart-widget");
   }
 
   @Test

@@ -10,11 +10,11 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.components.util.ProcessViewerUtils;
 
 import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
-import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ManagedBean
@@ -26,7 +26,7 @@ public class DashboardProcessViewerWidgetConfigurationBean implements Serializab
   private List<DashboardProcess> defaultPortalProcesses;
 
   public void preRender() {
-    List<IWebStartable> processes = ProcessService.newInstance().findProcesses().getProcesses();
+    List<IWebStartable> processes = ProcessService.getInstance().findProcesses().getProcesses();
     defaultPortalProcesses = processes.stream().filter(process -> ProcessViewerUtils.isViewerAllowed(process))
         .map(DashboardProcess::new).sorted(Comparator.comparing(Process::getName)).collect(Collectors.toList());
   }

@@ -20,6 +20,10 @@ function createRedMediumOutline($element) {
   $element.addClass("red-medium-outline");
 }
 
+function clearRedMediumOutline($element) {
+  $element.removeClass("red-medium-outline");
+}
+
 function createRedMediumBorder($element) {
   $element.addClass("red-medium-border");
 }
@@ -54,12 +58,26 @@ function numberingTaskFilter() {
 }
 
 function highlightTopBar() {
-  createRedMediumOutline($("#top-menu"));
+  var topMenu = $("#top-menu");
+  var searchIcon = topMenu.find("li.topbar-item.search-item");
+  $(searchIcon).addClass("red-topbottomleft-medium-border");
+  var themeSwitchIcon = topMenu.find("li.topbar-item.themeswitch-item");
+  $(themeSwitchIcon).addClass("red-topbottom-medium-border");
+  var chatItem = topMenu.find("li.topbar-item.chat-item");
+  $(chatItem).addClass("red-topbottom-medium-border");
+  var userNameItem = topMenu.find("li.topbar-item.user-profile.setting-container");
+  $(userNameItem).addClass("red-topbottomright-medium-border");
+}
+
+function highlightChatIcon() {
+  var topMenu = $("#top-menu");
+  var chatItem = topMenu.find("li.topbar-item.chat-item");
+  $(chatItem).addClass("red-medium-border");
 }
 
 function numberingTopBar() {
   var userSetting = $("#user-settings-menu");
-  appendStepAnnotation(userSetting, "1", -10, userSetting.width() + 5);
+  appendStepAnnotation(userSetting, "1", -10, userSetting.width() - 10);
   var globalSearch = $("#global-search-component\\:global-search-data");
   appendStepAnnotation(globalSearch, "2", -10, globalSearch.width()-30);
 }
@@ -375,7 +393,7 @@ function highlightExpressTaskResponsible(stepNumber) {
 }
 
 function highlightManagementExpressTab() {
-  createRedMediumOutline($("a[href$=':adminTabView:express-management-tab']").parent());
+  $("a[href$=':adminTabView:express-management-tab']").parent().addClass("red-medium-border");
 }
 
 function highlightDeployExpress() {
@@ -522,6 +540,10 @@ function highlightEmailSettings() {
 
 function highlightUserName() {
   createRedMediumOutline($('#user-settings-menu'));
+}
+
+function clearHighlightUserName() {
+  clearRedMediumOutline($('#user-settings-menu'));
 }
 
 function highlightServerInfo() {

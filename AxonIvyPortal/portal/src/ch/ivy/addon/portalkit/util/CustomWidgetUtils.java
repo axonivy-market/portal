@@ -4,17 +4,21 @@ import static java.util.Objects.isNull;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.service.impl.ProcessService;
+
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.ProcessViewerDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.CustomWidgetParam;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
-import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -214,6 +218,15 @@ public class CustomWidgetUtils {
       customWidget.getData().setType(DashboardCustomWidgetType.EXTERNAL_URL);
     }
   }
+  
+  public static void loadDataForProcessViewerWidget(DashboardWidget widget) {
+    var processViewerWidget = (ProcessViewerDashboardWidget) widget;
+    String processPath = processViewerWidget.getProcessPath();
+    if (StringUtils.isNotBlank(processPath)) {
+      Optional.ofNullable(findWebStartableByProcessPath(processPath))
+          .ifPresent(webStartable -> processViewerWidget.setProcess(new DashboardProcess(webStartable)));
+    }
+  }
 
   public static IWebStartable findWebStartableByProcessPath(String processPath) {
     // Find IWebStartable by ProcessID first
@@ -232,7 +245,7 @@ public class CustomWidgetUtils {
 
   private static List<IWebStartable> getAllPortalProcesses() {
     if (CollectionUtils.isEmpty(allPortalProcesses)) {
-      allPortalProcesses = ProcessService.newInstance().findProcesses().getProcesses();
+      allPortalProcesses = ProcessService.getInstance().findProcesses().getProcesses();
     }
     return allPortalProcesses;
   }

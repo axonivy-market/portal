@@ -36,13 +36,11 @@
       "type" : "Script",
       "name" : "Find processes",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessResultDTO;",
-            "import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;",
-            "",
-            "IvyProcessResultDTO dto = ProcessService.newInstance().findProcesses();",
-            "out.processes = dto.processes;"
+            "import com.axonivy.portal.components.service.impl.ProcessService;",
+            "out.processes = ProcessService.getInstance().findProcesses().processes;"
           ]
         }
       },

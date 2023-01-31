@@ -33,6 +33,7 @@ public class CompactDashboardProcessBean
   private static final long serialVersionUID = 1L;
   private List<DashboardProcess> portalCompactProcesses;
   private DashboardProcessBean dashboardProcessBean;
+  private static String expressStartLink;
 
   public CompactProcessDashboardWidget getWidget() {
     return (CompactProcessDashboardWidget) dashboardProcessBean.getWidget();
@@ -154,10 +155,8 @@ public class CompactDashboardProcessBean
     }
 
     if (dashboardProcessBean.isExpressProcess(process) && StringUtils.isNotBlank(process.getId())) {
-      ProcessStartCollector processStartCollector = new ProcessStartCollector();
-      String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
-      if (StringUtils.isNotBlank(expressStartLink)) {
-        dashboardProcessBean.redirectToLink(expressStartLink + "?workflowID=" + process.getId(), false);
+      if (StringUtils.isNotBlank(getExpressStartLink())) {
+        dashboardProcessBean.redirectToLink(getExpressStartLink() + "?workflowID=" + process.getId(), false);
         return;
       }
     }
@@ -197,4 +196,10 @@ public class CompactDashboardProcessBean
     dashboardProcessBean.setApplications(applications);
   }
 
+  private static String getExpressStartLink() {
+    if (StringUtils.isNotBlank(expressStartLink)) {
+      expressStartLink = ProcessStartCollector.getInstance().findExpressWorkflowStartLink();
+    }
+    return expressStartLink;
+  }
 }
