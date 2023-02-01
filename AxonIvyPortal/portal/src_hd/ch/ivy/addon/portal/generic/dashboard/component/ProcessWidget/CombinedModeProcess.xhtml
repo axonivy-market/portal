@@ -64,7 +64,9 @@
   </h:form>
 </h:panelGroup>
 
-<h:panelGroup layout="block" class="ui-g-8 ui-sm-12 process-task-case-container" rendered="#{widget.process ne null}" id="process-task-case-container">
+<h:panelGroup id="process-task-case-container" layout="block"
+  styleClass="ui-g-8 ui-sm-12 process-task-case-container"
+  rendered="#{widget.process ne null}">
   <div class="process-grid-item__related-data-button">
     <p:selectOneButton id="combined-process-widget-button-selection-#{index}" value="#{widget.showCases}" styleClass="combined-process-widget-button-selection">
       <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks')}" itemValue="false" />
@@ -75,10 +77,15 @@
   </div>
 
   <h:panelGroup id="process-data-container" layout="block" styleClass="process-data-container">
-    <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessTaskWidget id="process-task-widget-component" widget="#{widget}"
-      isReadOnlyMode="#{isReadOnlyMode}" rendered="#{not widget.showCases}" isPreviewMode="#{isInConfiguration}" />
-    <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessCaseWidget id="process-case-widget-component" widget="#{widget}"
-      isReadOnlyMode="#{isReadOnlyMode}" rendered="#{widget.showCases}" isPreviewMode="#{isInConfiguration}" />
+    <h:panelGroup rendered="#{!widget.showCases}">
+      <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessTaskWidget id="process-task-widget-component" widget="#{widget}"
+        isReadOnlyMode="#{isReadOnlyMode}" isPreviewMode="#{isInConfiguration}" />
+    </h:panelGroup>
+
+    <h:panelGroup rendered="#{widget.showCases}">
+      <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessCaseWidget id="process-case-widget-component" widget="#{widget}"
+        isReadOnlyMode="#{isReadOnlyMode}" isPreviewMode="#{isInConfiguration}" />
+    </h:panelGroup>
   </h:panelGroup>
 </h:panelGroup>
 </html>

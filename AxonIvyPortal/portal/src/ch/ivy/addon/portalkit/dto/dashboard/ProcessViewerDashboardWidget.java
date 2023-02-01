@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.service.impl.ProcessService;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
-import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class ProcessViewerDashboardWidget extends DashboardWidget {
@@ -28,7 +28,7 @@ public class ProcessViewerDashboardWidget extends DashboardWidget {
   @JsonIgnore
   public void buildProcessDataFirstTime() {
     if (StringUtils.isNotBlank(getProcessPath())) {
-      List<IWebStartable> allPortalProcesses = ProcessService.newInstance().findProcesses().getProcesses();
+      List<IWebStartable> allPortalProcesses = ProcessService.getInstance().findProcesses().getProcesses();
       setProcess(allPortalProcesses.stream().filter(proccess -> proccess.getId().contains(getProcessPath()))
           .map(DashboardProcess::new).findFirst().orElse(null));
     }

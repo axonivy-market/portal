@@ -77,5 +77,4 @@ public class CombinedProcessDashboardWidget extends SingleProcessDashboardWidget
   public void setShowCases(boolean showCases) {
     this.showCases = showCases;
   }
-
 }

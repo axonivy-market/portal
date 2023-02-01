@@ -120,13 +120,15 @@ public class IvyCacheService {
    * @param cacheGroupName
    */
   //TODO: after switch to application scope for all configuration, we don't need this method, just clear cache on current app
+  @SuppressWarnings("restriction")
   public void invalidateApplicationCacheForAllAvailableApplications(String cacheGroupName) {
     try {
       Sudo.call(() -> {
+        var cacheMgr = ch.ivyteam.ivy.data.cache.restricted.IDataCacheManager.instance();
         List<IApplication> ivyApplications = IApplicationRepository.instance().all();
         ivyApplications.forEach(app -> {
           if(isActive(app)) {
-            IDataCache cache = app.getAdapter(IDataCache.class);
+            IDataCache cache = cacheMgr.getDataCache(app);
             if (cache != null) {
               IDataCacheGroup wsGroupName = cache.getGroup(cacheGroupName);
               if (wsGroupName != null){
