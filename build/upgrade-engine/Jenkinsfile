@@ -1,88 +1,48 @@
 pipeline {
-  agent none
-  
+  agent {
+    label 'linux'
+  }
+
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
   }
-  
-  tools { 
-      maven '3.8' 
-      jdk '17' 
-  }
 
   parameters {
-      choice(name: 'engine', choices: ['singleAppEngine', 'performanceTestEngine'], description: 'Which engine to be upgraded?')
-      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
-        -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip for nightly master
-        -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine-windows.zip for dev master
-        -Divy.engine.download.url=file:///C:/wawa/engine/AxonIvyEngineX.X.X.X_Windows_x64.zip for downloaded engine
-        -Divy.engine.list.url=https://jenkins.ivyteam.io/job/core_product/job/release%252F9.4/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.server.product/target/products/ -Divy.engine.os.arch=Windows_x64 for last successful build 9.4
-      ''')
-  }
-
-  environment {
-    portalApplicationName = 'Portal'
-
+    choice(name: 'engine', choices: ['master'], description: 'Engine to choose e.g. master')
   }
 
   stages {
     stage('backupDatabase') {
-      agent {label 'master'}
       steps {
         script {
           today = new Date().format('dd-MM-yyyy_HH-mm')
+          config = [master:[engine: 'master', systemDatabase: 'AxonIvySystemDatabase-master']]
+          engineParentDir = '/var/tools/ivy/'
+          engineDir = engineParentDir + config[params.engine]['engine']
+          databaseBackupDir = '/var/database-backups/'
+          databaseName = config[params.engine]['systemDatabase']
+          dbBackupFile = databaseBackupDir + databaseName + '-' + today + '.dump'
 
-          config = [singleAppEngine: [engineParentDir: 'D:\\tools\\ivy-server\\', engineName: 'trunk', databaseBackupDir: 'D:\\backup\\database', databaseName: 'ivy-trunk', serviceName: 'Axon.ivy-trunk']          
-          ,performanceTestEngine: [engineParentDir: 'C:\\tools\\ivy-server\\', engineName: 'trunk', databaseBackupDir: 'D:\\backup\\database', databaseName: 'ivy-performance-trunk', serviceName: 'Axon.ivyEngineTrunk']]
-
-          engineParentDir = config[params.engine]['engineParentDir']
-          engineName = config[params.engine]['engineName']
-          databaseBackupDir = config[params.engine]['databaseBackupDir']
-          databaseName = config[params.engine]['databaseName']
-          serviceName = config[params.engine]['serviceName']
-          engineDir = engineParentDir  + engineName
-          renamedEngineDir = engineDir + '-bk'
-          engineBackupDir = engineParentDir + 'upgrade-backup'
-          dbBackupFileName = engineName + '-' + today
-
-          bat """
+          sh """
             echo ====================Backup database====================
-            pg_dump -U postgres -f ${databaseBackupDir}\\${databaseName}-${today}.backup -F Custom -b ${databaseName}
+            cd ${engineDir}
+            [ -d ${databaseBackupDir} ] ||  mkdir -p ${databaseBackupDir}
+            docker exec -u postgres postgres-master pg_dump -Fc ${databaseName} > ${dbBackupFile}
           """
-
-          nodeToExecute = (params.engine == 'performanceTestEngine') ? 'portal-slave' : 'master'
         }
       }
     }
-    stage('replaceEngine') {
-      agent {label nodeToExecute}
+    
+    stage('upgradeEngine') {
       steps {
         script {
-          def utils = load 'build/common/utils.groovy'
-          utils.stopWindowsService(serviceName)
-          bat """
-            echo ====================Backup data to restore in case build fails====================
-            xcopy /s/y/h/e/k/i/q ${engineDir} ${engineBackupDir}\\${engineName}-${today}
-            echo ====================Rename current engine folder====================
-            if exist ${renamedEngineDir} rmdir /s /q ${renamedEngineDir}
-            :repeat
-            ren "${engineDir}" "${engineName}-bk" || goto :repeat
+          sh """
+            echo ====================Upgrade engine====================
+            cd ${engineDir}
+            docker compose stop
+            docker compose pull
+            docker compose up -d
           """
-          utils.extractEngine(engineDir, params.engineDownloadURL)
-          bat """
-            echo ====================Copy license, configuration files====================
-            copy /D/Y ${renamedEngineDir}\\configuration\\*.lic ${engineDir}\\configuration
-            copy /D/Y ${renamedEngineDir}\\configuration\\*.yaml ${engineDir}\\configuration
-            xcopy /D/S/Y/I ${renamedEngineDir}\\configuration ${engineDir}\\configuration
-          """
-          powershell """
-            echo "====================Copy applications, misc/iis (for SSO)===================="
-            if (Test-Path ${renamedEngineDir}\\applications) {
-              copy -path ${renamedEngineDir}\\applications -recurse -force -destination ${engineDir}
-            }
-            copy -path ${renamedEngineDir}\\misc\\iis -recurse -force -destination ${engineDir}\\misc
-          """
-          utils.startWindowsService(serviceName)
         }
       }
     }
