@@ -19,11 +19,6 @@
     </snapshotRepository>
   </distributionManagement>
   <dependencies>
-    <dependency>
-      <groupId>org.jsoup</groupId>
-      <artifactId>jsoup</artifactId>
-      <version>1.15.3</version>
-    </dependency>
   </dependencies>
   <build>
     <plugins>
@@ -72,22 +67,9 @@
         </executions>
       </plugin>
       <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-dependency-plugin</artifactId>
-          <version>3.5.0</version>
-          <executions>
-              <execution>
-                  <phase>initialize</phase>
-                  <goals>
-                      <goal>properties</goal>
-                  </goals>
-              </execution>
-          </executions>
-      </plugin>
-      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.4.1</version>
+        <version>3.2.0</version>
         <configuration>
           <!--On Windows, replace character : by character ;-->
           <sourcepath>../../AxonIvyPortal/portal/src:../../AxonIvyPortal/portal-components/src</sourcepath>
@@ -97,14 +79,14 @@
           <additionalOptions>
             <additionalOption>-classpath</additionalOption>
             <!--On Windows, replace character : by character ;-->
-            <additionalOption>${standardized.maven.processor.classpath}:${org.jsoup:jsoup:jar}</additionalOption>
+            <additionalOption>${standardized.maven.processor.classpath}</additionalOption>
           </additionalOptions>
           <show>public</show>
           <doclint>none</doclint>
           <windowtitle>Axon Ivy Public API</windowtitle>
           <doctitle><![CDATA[<h1>Portal Public API</h1>]]></doctitle>
           <header><![CDATA[<i><b>Portal Public API<br>Version ${project.version}</b></i>]]></header>
-          <bottom><![CDATA[<i><b>Portal Public API<br>Version ${project.version}</b></i>]]></bottom>
+          <footer><![CDATA[<i><b>Portal Public API<br>Version ${project.version}</b></i>]]></footer>
         </configuration>
         <executions>
           <execution>
