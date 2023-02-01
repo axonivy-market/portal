@@ -15,6 +15,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -71,14 +72,14 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   private List<SecurityMemberDTO> selectedSecurityMemberDTOsWhenEditingExternalLink;
   private List<String> selectedPermissionsWhenEditingExternalLink;
   private List<String> selectedPermissionsForSavingEditedExternalLink;
-
+  private boolean isShowInformationLink;
   private IProcessStart createExpressWorkflowProcessStart;
   private Map<String, List<Process>> processesByAlphabet;
 
   public void initConfiguration() {
     initProcessViewMode();
-    collector = new ProcessStartCollector();
-    createExpressWorkflowProcessStart = collector.findExpressCreationProcess();
+    createExpressWorkflowProcessStart = ProcessStartCollector.getInstance().findExpressCreationProcess();
+    isShowInformationLink = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_PROCESS_INFORMATION);
   }
 
   public void initProcesses() {
@@ -90,24 +91,19 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
 
   private void initProcessViewMode() {
-    String userProcessSetting = UserSettingService.newInstance().getDefaultProcessMode();
-    viewMode = getViewModeFromUserProcessSetting(userProcessSetting);
-  }
-
-  private String getViewModeFromUserProcessSetting(String userProcessSetting) {
+    String userProcessSetting = UserSettingService.getInstance().getDefaultProcessMode();
     if (StringUtils.isBlank(userProcessSetting)
-        || UserSettingService.newInstance().isDefaultProcessModeOption(userProcessSetting)) {
-      GlobalSettingService globalSettingService = new GlobalSettingService();
-      GlobalSetting defaultSetting =
-          globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_MODE);
-      return getProcessModeByLabel(defaultSetting.getDisplayValue());
+        || UserSettingService.getInstance().isDefaultProcessModeOption(userProcessSetting)) {
+      GlobalSetting defaultSetting = GlobalSettingService.getInstance()
+          .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_MODE);
+      viewMode = getProcessModeByLabel(defaultSetting.getDisplayValue());
+    } else {
+      viewMode = getProcessModeByLabel(userProcessSetting);
     }
-
-    return getProcessModeByLabel(userProcessSetting);
   }
 
   private String getProcessModeByLabel(String processLabel) {
-    return Arrays.stream(ProcessMode.values())
+    return Stream.of(ProcessMode.values())
         .filter(e -> StringUtils.equalsIgnoreCase(processLabel, e.getLabel()) || StringUtils.equalsIgnoreCase(e.name(), processLabel))
         .findFirst()
         .orElse(ProcessMode.IMAGE).toString();
@@ -162,8 +158,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   protected List<Process> findProcesses() {
     IvyComponentLogicCaller<List<IWebStartable>> ivyComponentLogicCaller = new IvyComponentLogicCaller<>();
     String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
-    List<IWebStartable> processes =
-        ivyComponentLogicCaller.invokeComponentLogic(componentId, "#{logic.collectProcesses}", new Object[] {});
+    List<IWebStartable> processes = ivyComponentLogicCaller.invokeComponentLogic(componentId, "#{logic.collectProcesses}", new Object[] {});
     List<Process> defaultPortalProcesses = new ArrayList<>();
     processes.forEach(iWebStartable -> {
       IvyProcess ivyProcess = new IvyProcess(iWebStartable);
@@ -232,8 +227,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
 
   public void editExpressWorkflow(ExpressProcess process) throws IOException {
-    ProcessStartCollector collector = new ProcessStartCollector();
-    String editLink = collector.findExpressWorkflowEditLink(process.getId());
+    String editLink = ProcessStartCollector.getInstance().findExpressWorkflowEditLink(process.getId());
     FacesContext.getCurrentInstance().getExternalContext().redirect(editLink);
   }
 
@@ -527,4 +521,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     this.selectedPermissionsWhenEditingExternalLink = new ArrayList<>(selectedPermissionsWhenEditingExternalLink);
   }
 
+  public boolean isShowInformationLink() {
+    return isShowInformationLink;
+  }
 }

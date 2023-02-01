@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -24,6 +25,8 @@ import ch.ivyteam.ivy.workflow.start.IProcessWebStartable;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class ProcessViewerUtils {
+
+  private static List<IWebStartable> webStartables;
 
   public static ProcessViewerDTO initProcessViewer(Long caseId, String processLink) {
     boolean isViewerAllowed = false;
@@ -93,7 +96,10 @@ public class ProcessViewerUtils {
   }
 
   private static List<IWebStartable> getWebStartables() {
-    return ProcessService.newInstance().findProcesses().getProcesses();
+    if (CollectionUtils.isEmpty(webStartables)) {
+      webStartables = ProcessService.getInstance().findProcesses().getProcesses();
+    }
+    return webStartables;
   }
 
   public static boolean isExpressCase(ICase iCase) {

@@ -11,11 +11,12 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.service.impl.ProcessService;
+
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidgetParam;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
-import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ManagedBean
@@ -87,7 +88,7 @@ public class DashboardCustomWidgetBean implements Serializable {
 
   public List<IWebStartable> getAllPortalProcesses() {
     if (CollectionUtils.isEmpty(allPortalProcesses)) {
-      allPortalProcesses = ProcessService.newInstance().findProcesses()
+      allPortalProcesses = ProcessService.getInstance().findProcesses()
           .getProcesses().stream()
           .filter(proccess -> StringUtils.isNotBlank(proccess.customFields().value(IS_DASHBOARD_PROCESS))
               && proccess.customFields().value(IS_DASHBOARD_PROCESS).contentEquals("true"))

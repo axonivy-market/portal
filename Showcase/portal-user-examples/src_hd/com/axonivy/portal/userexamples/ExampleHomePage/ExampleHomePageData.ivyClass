@@ -1,6 +1,4 @@
 ExampleHomePageData #class
 com.axonivy.portal.userexamples.ExampleHomePage #namespace
-processes java.util.List<ch.ivy.addon.portalkit.configuration.UserProcess> #field
-processes PERSISTENT #fieldModifier
 process ch.ivy.addon.portalkit.configuration.UserProcess #field
 process PERSISTENT #fieldModifier
