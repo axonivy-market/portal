@@ -20,22 +20,6 @@ existing template to define your new login component as shown below
     </ui:composition>
 ..
 
-Login Background
-----------------
-
-To change the default login background image, simply add or replace the image in
-``configuration/applications/<APPNAME>/branding/background.jpg`` with your image.
-
-Refer to :dev-url:`Engine Branding </doc/|version|/designer-guide/user-interface/branding/branding-engine.html#>` for details.
-
-.. tip::
-  - We recommend using an image with 1920x1080 pixels.
-
-  - Portal supports ``.jpg``, ``.png``, ``.svg`` extensions for background
-    images. If there are multiple files with different extensions (e.g.
-    a ``background.jpg`` and a ``background.png``) in the same directory, the
-    first found will be chosen.
-
 Login Error Page
 ----------------
 

@@ -30,7 +30,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.bean.CompactDashboardProcessBean;
+import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.AbstractColumn;
@@ -652,8 +652,8 @@ public class DashboardWidgetUtils {
   }
 
   public static List<DashboardProcess> getAllPortalProcesses() {
-    CompactDashboardProcessBean dashboardProcessBean = ManagedBeans.get("compactDashboardProcessBean");
-    return dashboardProcessBean == null ? new ArrayList<>() : dashboardProcessBean.getAllPortalProcesses();
+    DashboardProcessBean dashboardProcessBean = ManagedBeans.get("dashboardProcessBean");
+    return dashboardProcessBean == null ? new ArrayList<>() : dashboardProcessBean.getPortalDashboardProcesses();
   }
 
   private static List<DashboardProcess> filterProcessesByProcesses(List<DashboardProcess> selectedProcesses) {

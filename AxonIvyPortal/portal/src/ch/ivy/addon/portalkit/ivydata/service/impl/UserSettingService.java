@@ -10,11 +10,19 @@ import ch.ivyteam.ivy.security.IUser;
 public class UserSettingService {
 
   public static final String DEFAULT = "DEFAULT";
+  private static UserSettingService instance;
 
   private UserSettingService() {}
 
   public static UserSettingService newInstance() {
     return new UserSettingService();
+  }
+
+  public static UserSettingService getInstance() {
+    if (instance == null) {
+      instance = newInstance();
+    }
+    return instance;
   }
 
   public void saveDateFormat(String selectedDateFormat) {

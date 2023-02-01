@@ -8,6 +8,12 @@ public class IvyProcessResultDTO {
 
   private List<IWebStartable> processes;
 
+  public IvyProcessResultDTO() { }
+
+  public IvyProcessResultDTO(List<IWebStartable> processes) {
+    this.processes = processes;
+  }
+
   public List<IWebStartable> getProcesses() {
     return processes;
   }

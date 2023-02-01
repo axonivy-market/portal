@@ -56,7 +56,8 @@ public class MenuView implements Serializable {
   public final static String IS_WORKING_ON_TASK = "isWorkingOnATask";
   public final static String IS_OPEN_NEW_TAB = "isOpenOnNewTab";
   public final static String CLICK_ON_MENU_ITEM_PATTERN = "fireEventClickOnMenuItem('%s', '%s')";
-
+  private static String defaultPortalStartUrl;
+  private static String defaultDashboardUrl;
   private DefaultMenuModel mainMenuModel;
   private MenuModel breadcrumbModel;
 
@@ -138,11 +139,11 @@ public class MenuView implements Serializable {
   private MenuElement buildDashboardItem() {
     var dashboardTitle = translate(DASHBOARD);
     var dashboardId = "";
-    String dashboardLink = PortalNavigator.getPortalStartUrl();
+    String dashboardLink = getDefaultPortalStartUrl();
     String defaultHomepageConfig = HomepageUtils.getHomepageName();
     HomepageType configHomepageType = HomepageType.getType(defaultHomepageConfig);
     if (HomepageType.DASHBOARD != configHomepageType) {
-      dashboardLink = getDashboardLink();
+      dashboardLink = getDefaultDashboardUrl();
     }
 
     if (!isShowLegacyUI()) {
@@ -467,6 +468,20 @@ public class MenuView implements Serializable {
       PrimeFaces.current().executeScript(String.format(CLICK_ON_MENU_ITEM_PATTERN,
             prevSelectedMenuItemId, session().getAttribute(SELECTED_MENU_ID)));
     }
+  }
+
+  private String getDefaultPortalStartUrl() {
+    if (StringUtils.isEmpty(defaultPortalStartUrl)) {
+      defaultPortalStartUrl = PortalNavigator.getPortalStartUrl();
+    }
+    return defaultPortalStartUrl;
+  }
+
+  private String getDefaultDashboardUrl() {
+    if (StringUtils.isEmpty(defaultDashboardUrl)) {
+      defaultDashboardUrl = getDashboardLink();
+    }
+    return defaultDashboardUrl;
   }
 
   public void resetSelectedMenuItems() {

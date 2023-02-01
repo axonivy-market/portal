@@ -30,6 +30,8 @@ public class DashboardWidgetConfigurationDialogPage extends TemplatePage {
   private static final String IMAGE_MODE_PROCESS_SELECTION_PANEL_ID = "widget-configuration-form:new-widget-configuration-component:selected-image-process_panel";
   private static final String PROCESS_VIEWER_PROCESS_SELECTION_ID = "widget-configuration-form:new-widget-configuration-component:selected-process_input";
   private static final String PROCESS_VIEWER_PROCESS_SELECTION_PANEL_ID = "widget-configuration-form:new-widget-configuration-component:selected-process_panel";
+  private static final String STATISTIC_CHART_FILTER_LIST_SELECTION_ID = "widget-configuration-form:new-widget-configuration-component:statistic-list_input";
+  private static final String STATISTIC_CHART_FILTER_LIST_SELECTION_PANEL_ID = "widget-configuration-form:new-widget-configuration-component:statistic-list_panel";
 
   @Override
   protected String getLoadedLocator() {
@@ -193,6 +195,20 @@ public class DashboardWidgetConfigurationDialogPage extends TemplatePage {
     findElementById(PROCESS_VIEWER_PROCESS_SELECTION_ID).sendKeys(processName);
     waitForElementDisplayed(By.id(PROCESS_VIEWER_PROCESS_SELECTION_PANEL_ID), true);
     findElementById(PROCESS_VIEWER_PROCESS_SELECTION_PANEL_ID).findElements(By.className("ui-autocomplete-item")).get(0).click();
+  }
+
+  public void selectChartNameForStatisticChartWidget(String chartName) {
+    waitForElementDisplayed(By.id(STATISTIC_CHART_FILTER_LIST_SELECTION_ID), true);
+    findElementById(STATISTIC_CHART_FILTER_LIST_SELECTION_ID).clear();
+    findElementById(STATISTIC_CHART_FILTER_LIST_SELECTION_ID).sendKeys(chartName);
+    waitForElementDisplayed(By.id(STATISTIC_CHART_FILTER_LIST_SELECTION_PANEL_ID), true);
+    findElementById(STATISTIC_CHART_FILTER_LIST_SELECTION_PANEL_ID).findElements(By.className("ui-autocomplete-item"))
+        .get(0)
+        .click();
+  }
+
+  public void waitForStatisticChartLoadedAfterClickPreview() {
+    waitForElementDisplayed(By.cssSelector("[id$=':task_by_priority_chart-']"), true);
   }
 
   public void waitUntilAnimationFinished() {
