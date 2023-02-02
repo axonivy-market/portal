@@ -1,6 +1,5 @@
 [{
     "id": "default-case-detail",
-    "version":"10.0.0",
     "widgets": [{
         "type": "information",
         "id": "information",
