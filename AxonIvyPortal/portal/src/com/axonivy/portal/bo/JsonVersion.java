@@ -1,12 +1,12 @@
-package ch.ivy.addon.portalkit.bo;
+package com.axonivy.portal.bo;
 
 import java.util.Arrays;
 
 import org.apache.commons.lang3.StringUtils;
 
 public class JsonVersion implements Comparable<JsonVersion> {
-  public static final JsonVersion LATEST = new JsonVersion("10.0.0");
-  
+  public static final JsonVersion LATEST = new JsonVersion("11.1.0");
+
   private String value;
 
   public JsonVersion(String value) {
@@ -20,7 +20,7 @@ public class JsonVersion implements Comparable<JsonVersion> {
     }
     int[] myParts = toNumbers(getValue());
     int[] otherParts = toNumbers(other.getValue());
-    for(int i=0; i<myParts.length; i++) {
+    for (int i = 0; i < myParts.length; i++) {
       int otherPart = 0;
       if (i < otherParts.length) {
         otherPart = otherParts[i];
@@ -39,9 +39,7 @@ public class JsonVersion implements Comparable<JsonVersion> {
   }
 
   private static int[] toNumbers(String version) {
-    return Arrays.stream(StringUtils.split(version, '.'))
-            .mapToInt(part -> Integer.parseInt(part))
-            .toArray();
+    return Arrays.stream(StringUtils.split(version, '.')).mapToInt(part -> Integer.parseInt(part)).toArray();
   }
 
   public boolean isLatest() {
