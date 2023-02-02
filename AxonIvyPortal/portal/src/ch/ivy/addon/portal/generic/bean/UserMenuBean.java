@@ -328,7 +328,7 @@ public class UserMenuBean implements Serializable {
   }
 
   private static String getExpressStartLink() {
-    if (StringUtils.isNotBlank(expressStartLink)) {
+    if (StringUtils.isEmpty(expressStartLink)) {
       expressStartLink = ProcessStartCollector.getInstance().findExpressWorkflowStartLink();
     }
     return expressStartLink;
