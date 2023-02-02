@@ -20,7 +20,6 @@ public class UserFilterCollection implements Serializable {
   private static final long serialVersionUID = -4806650420632442697L;
 
   private String widgetId;
-  private String version;
   private DashboardWidgetType widgetType;
   private List<WidgetFilterModel> selectedWidgetFilters;
   private List<String> selectedWidgetFilterIds;
@@ -44,14 +43,6 @@ public class UserFilterCollection implements Serializable {
 
   public void setWidgetId(String widgetId) {
     this.widgetId = widgetId;
-  }
-
-  public String getVersion() {
-    return version;
-  }
-
-  public void setVersion(String version) {
-    this.version = version;
   }
 
   public DashboardWidgetType getWidgetType() {
