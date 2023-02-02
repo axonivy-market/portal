@@ -643,6 +643,9 @@ public class NewDashboardPage extends TemplatePage {
 
   public DashboardConfigurationPage openDashboardConfigurationPage() {
     waitForDashboardPageAvailable();
+    if ($("div[id='portal-global-growl_container']").is(appear)) {
+        waitForGrowlMessageDisappear();
+      }
     SelenideElement configureButton = getConfigureDashboardMenu();
     configureButton.click();
     return new DashboardConfigurationPage();
