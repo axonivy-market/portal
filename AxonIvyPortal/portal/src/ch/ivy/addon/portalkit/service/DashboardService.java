@@ -45,6 +45,7 @@ public class DashboardService extends JsonConfigurationService<Dashboard> {
     if (StringUtils.isBlank(jsonValue)) {
       return new ArrayList<>();
     }
+
     return BusinessEntityConverter.jsonValueToEntities(jsonValue, getType());
   }
 }
