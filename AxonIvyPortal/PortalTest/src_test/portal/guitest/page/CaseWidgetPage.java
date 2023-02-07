@@ -442,6 +442,7 @@ public class CaseWidgetPage extends TemplatePage {
     js.executeScript("arguments[0].removeAttribute('download-status')", statusDialog);
 
     // click download
+    waitForElementDisplayedByCssSelector("a[id$=':case-export-to-excel']");
     WebElement downloadLink = getExportToExcelLink();
     if (downloadLink != null) {
       downloadLink.click();
