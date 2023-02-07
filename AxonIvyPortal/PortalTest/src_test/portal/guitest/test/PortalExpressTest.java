@@ -322,7 +322,8 @@ public class PortalExpressTest extends BaseTest {
 	protected void rejectWhenMultiApproval() {
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		expressTaskPage.finish();
-		var taskWidgetPage = new TaskWidgetPage();
+		homePage = new HomePage();
+		var taskWidgetPage = homePage.openTaskList();
 		if (taskWidgetPage.countTasks() != 1) {
 			WaitHelper.waitForNavigation(taskWidgetPage, () -> taskWidgetPage.clickOnLogo());
 			if (taskWidgetPage.countTasks() != 1) {
