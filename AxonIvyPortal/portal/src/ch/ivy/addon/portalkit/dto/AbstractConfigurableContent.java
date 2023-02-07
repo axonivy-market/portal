@@ -13,6 +13,7 @@ public abstract class AbstractConfigurableContent implements Serializable {
   private static final long serialVersionUID = 2460098610486547347L;
 
   protected String id;
+  protected String version;
   protected AbstractWidgetFilter filters;
   protected List<? extends AbstractWidget> widgets;
   protected boolean changed;
