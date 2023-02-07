@@ -74,7 +74,7 @@ public class TaskFilterTest extends BaseTest {
     mainMenuPage.openCaseList();
     TaskWidgetPage taskWidgetPage2 = mainMenuPage.openTaskList();
     assertEquals(1, taskWidgetPage2.countTasks());
-    assertTrue(taskWidgetPage2.isAdvancedFilterDisplayed("description"));
+    assertEquals(true, taskWidgetPage2.isAdvancedFilterDisplayed("description"));
   }
 
   @Test
