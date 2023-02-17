@@ -15,7 +15,7 @@ pipeline {
   // }
 
   environment {
-    engineVersion = 'trunk'
+    engineVersion = 'master'
     engineDir = "C:/tools/ivy-server/${env.engineVersion}"
     portalApplicationName = 'Portal'
   }
@@ -68,15 +68,16 @@ pipeline {
           today = new Date().format('dd-MM-yyyy_HH-mm')
           fileOperations([folderCreateOperation(folderPath: "D:/PerformanceResult/${today}/${env.engineVersion}")])
 
-          docker.build('jmeter-performance-test', '-f build/performance-test/Dockerfile .').inside('''-v /var/tools/maven-cache:/home/build/ 
-              -v /var/tools/jenkins-linux/workspace/of-Master-Branch-to-new-Server_3/AxonIvyPortal/PortalTest/jmeter:/opt/apache-jmeter-5.5/bin/portal-jmeter''') {
-            for (module in builtModules) {
-              sh 'bin/jmeter -n -t bin/portal-jmeter/portal_walkthrough_testplan.jmx -l bin/portal-jmeter/result.csv'
-            }
+          docker.build('jmeter-performance-test', '-f build/performance-test/Dockerfile .')
+              .inside("""-v /var/tools/jenkins-linux/workspace/of-Master-Branch-to-new-Server_3/AxonIvyPortal/PortalTest/jmeter:/opt/apache-jmeter-5.5/bin/portal-jmeter
+              -v /var/tools/performance-result/${env.engineVersion}:/opt/apache-jmeter-5.5/bin/result""") {
+            sh 'echo abcd'
+            sh 'pwd'
+            sh '/opt/apache-jmeter-5.5/bin/jmeter -n -t /opt/apache-jmeter-5.5/bin/portal-jmeter/portal_walkthrough_testplan.jmx -l /opt/apache-jmeter-5.5/bin/result/result.jtl'
           }
 
 
-          echo "====================Test one admin user===================="
+          /*echo "====================Test one admin user===================="
           updateConfigFile('data/single_admin_user_server.csv', '1')
           bat '''
             jmeter.bat -n -t AxonIvyPortal/PortalTest/jmeter/portal_walkthrough_testplan.jmx -l temp.jtl
@@ -90,6 +91,7 @@ pipeline {
           echo "====================Test ten users===================="
           updateConfigFile('data/users_server.csv', '10')
           executeJMeter('result_10_users.jtl')
+          */
         }
       }
     }
@@ -105,8 +107,8 @@ pipeline {
       // node('linux') {
         script {
           if (binding.hasVariable('today')) {
-            archiveArtifacts artifacts: "D:/PerformanceResult/${today}/*/*.jtl", allowEmptyArchive: true
-            perfReport sourceDataFiles: "D:/PerformanceResult/${today}/*/*.jtl", compareBuildPrevious :true, ignoreFailedBuilds: true, ignoreUnstableBuilds: true, errorFailedThreshold: 1
+            archiveArtifacts artifacts: "/var/tools/performance-result/master/*.jtl", allowEmptyArchive: true
+            perfReport sourceDataFiles: "/var/tools/performance-result/master/*.jtl", compareBuildPrevious :true, ignoreFailedBuilds: true, ignoreUnstableBuilds: true, errorFailedThreshold: 1
           }
         }
       // }
