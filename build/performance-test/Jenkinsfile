@@ -1,5 +1,5 @@
 pipeline {
-  agent {label 'portal-slave'}
+  agent {label 'linux'}
   
   options {
     buildDiscarder(logRotator(numToKeepStr: '200', artifactNumToKeepStr: '5'))
@@ -9,10 +9,10 @@ pipeline {
     cron('0 13 * * *')
   }
 
-  tools { 
-      maven '3.8' 
-      jdk '17' 
-  }
+  // tools { 
+  //     maven '3.8' 
+  //     jdk '17' 
+  // }
 
   environment {
     engineVersion = 'trunk'
@@ -25,29 +25,56 @@ pipeline {
       steps {
         script {
           utils = load 'build/common/utils.groovy'
-          utils.stopAllEngines()
+          // utils.stopAllEngines()
           engineServiceName = 'Axon.ivyEngineTrunk'
-          utils.startWindowsService(engineServiceName)
+          // utils.startWindowsService(engineServiceName)
 
-          def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').getProperties().getProperty("build.plugin.version")
-          def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress']
-          for (module in modules) {
-            bat "mvn clean install -f ${module}/pom.xml"
-            bat "mvn com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.engine.app=%portalApplicationName% -Divy.deploy.engine.dir=%engineDir% -Divy.test.engine=MODIFY_EXISTING -Divy.deploy.timeout.seconds=60"
-          }
+          // docker.build('build-portal-modules', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+          //   def modules = ['AxonIvyPortal/portal-components']
+          //   for (module in modules) {
+          //     maven cmd: "clean install -f ${module}/pom.xml"
+          //   }
+          // }
+
+//////////////ok
+          // docker.build('build-portal-modules', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+          // def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress']
+          // def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').getProperties().getProperty("build.plugin.version")
+          // def engineUrl = 'http://10.123.1.216:8000'
+          //   for (module in modules) {
+          //     maven cmd: "clean install -f ${module}/pom.xml"
+          //     maven cmd: "com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.server.id=engine-cockpit -Divy.deploy.engine.app=Portal -Divy.deploy.method=HTTP -Divy.deploy.engine.url=${engineUrl} -Divy.test.engine=MODIFY_EXISTING -Divy.deploy.test.users=true"
+          //   }
+          // }
+/////////////end
+
+          // def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').getProperties().getProperty("build.plugin.version")
+          // def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress']
+          // for (module in modules) {
+          //   bat "mvn clean install -f ${module}/pom.xml"
+          //   bat "mvn com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.engine.app=%portalApplicationName% -Divy.deploy.engine.dir=%engineDir% -Divy.test.engine=MODIFY_EXISTING -Divy.deploy.timeout.seconds=60"
+          // }
         }
       }
     }
     stage('test') {
-      agent {label 'master'}
+      // agent {label 'linux'}
 
-      tools { 
-        jdk '8' 
-      }
+      // tools {
+      //   jdk '8' 
+      // }
       steps {
         script {
           today = new Date().format('dd-MM-yyyy_HH-mm')
           fileOperations([folderCreateOperation(folderPath: "D:/PerformanceResult/${today}/${env.engineVersion}")])
+
+          docker.build('jmeter-performance-test', '-f build/performance-test/Dockerfile .').inside('''-v /var/tools/maven-cache:/home/build/ 
+              -v /var/tools/jenkins-linux/workspace/of-Master-Branch-to-new-Server_3/AxonIvyPortal/PortalTest/jmeter:/opt/apache-jmeter-5.5/bin/portal-jmeter''') {
+            for (module in builtModules) {
+              sh 'bin/jmeter -n -t bin/portal-jmeter/portal_walkthrough_testplan.jmx -l bin/portal-jmeter/result.csv'
+            }
+          }
+
 
           echo "====================Test one admin user===================="
           updateConfigFile('data/single_admin_user_server.csv', '1')
@@ -72,17 +99,17 @@ pipeline {
     always {
       script {
         if (binding.hasVariable('utils')) {
-          utils.stopWindowsService(engineServiceName)
+          // utils.stopWindowsService(engineServiceName)
         }
       }
-      node('master') {
+      // node('linux') {
         script {
           if (binding.hasVariable('today')) {
             archiveArtifacts artifacts: "D:/PerformanceResult/${today}/*/*.jtl", allowEmptyArchive: true
             perfReport sourceDataFiles: "D:/PerformanceResult/${today}/*/*.jtl", compareBuildPrevious :true, ignoreFailedBuilds: true, ignoreUnstableBuilds: true, errorFailedThreshold: 1
           }
         }
-      }
+      // }
     }
   }
 }
