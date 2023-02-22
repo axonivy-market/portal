@@ -14,6 +14,7 @@ pipeline {
     devEngineDir = "/var/tools/ivy/${env.engineVersion}"
     performanceEngineDir = "/var/tools/ivy/performance-${env.engineVersion}"
     portalApplicationName = 'Portal'
+    jmeterSourceDir = 'AxonIvyPortal/PortalTest/jmeter'
   }
 
   stages {
@@ -84,16 +85,17 @@ pipeline {
 
 def updateConfigFile(acccountFilePath, numberOfUser) {
   sh """
-    awk -F'=' -v OFS='=' -v newval='${acccountFilePath}' '/^file.csv/{\$2=newval;print;next}1' AxonIvyPortal/PortalTest/jmeter/test.properties > AxonIvyPortal/PortalTest/jmeter/tmp.properties
-    awk -F'=' -v OFS='=' -v newval='${numberOfUser}' '/^portal.thread.numberOfUser/{\$2=newval;print;next}1' AxonIvyPortal/PortalTest/jmeter/tmp.properties > AxonIvyPortal/PortalTest/jmeter/test.properties
+    awk -F'=' -v OFS='=' -v newval='${acccountFilePath}' '/^file.csv/{\$2=newval;print;next}1' ${jmeterSourceDir}/test.properties > ${jmeterSourceDir}/tmp.properties
+    awk -F'=' -v OFS='=' -v newval='${numberOfUser}' '/^portal.thread.numberOfUser/{\$2=newval;print;next}1' ${jmeterSourceDir}/tmp.properties > ${jmeterSourceDir}/test.properties
   """
 }
 
 def executeJMeter(resultFileName) {
+  def binDir = '/opt/apache-jmeter-5.5/bin'
   docker.build('jmeter-performance-test', '-f build/performance-test/Dockerfile .').inside("""
-        -v /var/tools/jenkins-linux/workspace/of-Master-Branch-to-new-Server_3/AxonIvyPortal/PortalTest/jmeter:/opt/apache-jmeter-5.5/bin/portal-jmeter
-        -v ${resultDir}:/opt/apache-jmeter-5.5/bin/result
+        -v ${WORKSPACE}/${jmeterSourceDir}:${binDir}/portal-jmeter
+        -v ${resultDir}:${binDir}/result
       """) {
-    sh "/opt/apache-jmeter-5.5/bin/jmeter -n -t /opt/apache-jmeter-5.5/bin/portal-jmeter/portal_walkthrough_testplan.jmx -l /opt/apache-jmeter-5.5/bin/result/${resultFileName}"
+    sh "${binDir}/jmeter -n -t ${binDir}/portal-jmeter/portal_walkthrough_testplan.jmx -l ${binDir}/result/${resultFileName}"
   }
 }
