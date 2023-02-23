@@ -1,6 +1,6 @@
 pipeline {
-  agent {label 'portal-slave'}
-  
+  agent { label 'linux' }
+
   options {
     buildDiscarder(logRotator(numToKeepStr: '200', artifactNumToKeepStr: '5'))
   }
@@ -9,15 +9,12 @@ pipeline {
     cron('0 13 * * *')
   }
 
-  tools { 
-      maven '3.8' 
-      jdk '17' 
-  }
-
   environment {
-    engineVersion = 'trunk'
-    engineDir = "C:/tools/ivy-server/${env.engineVersion}"
+    engineVersion = 'master'
+    devEngineDir = "/var/tools/ivy/${env.engineVersion}"
+    performanceEngineDir = "/var/tools/ivy/performance-${env.engineVersion}"
     portalApplicationName = 'Portal'
+    jmeterSourceDir = 'AxonIvyPortal/PortalTest/jmeter'
   }
 
   stages {
@@ -25,42 +22,43 @@ pipeline {
       steps {
         script {
           utils = load 'build/common/utils.groovy'
-          utils.stopAllEngines()
-          engineServiceName = 'Axon.ivyEngineTrunk'
-          utils.startWindowsService(engineServiceName)
+          sh """
+            docker compose -f ${devEngineDir}/docker-compose.yml down
+            docker compose -f ${performanceEngineDir}/docker-compose.yml down
+            docker compose -f ${performanceEngineDir}/docker-compose.yml up -d
+          """
 
-          def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').getProperties().getProperty("build.plugin.version")
-          def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress']
-          for (module in modules) {
-            bat "mvn clean install -f ${module}/pom.xml"
-            bat "mvn com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.engine.app=%portalApplicationName% -Divy.deploy.engine.dir=%engineDir% -Divy.test.engine=MODIFY_EXISTING -Divy.deploy.timeout.seconds=60"
+          docker.build('build-portal-modules', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+            def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal']
+            def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').getProperties().getProperty('build.plugin.version')
+            def engineUrl = 'http://10.123.1.216:9000'
+            for (module in modules) {
+              maven cmd: "clean install -f ${module}/pom.xml"
+              maven cmd: "com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.server.id=engine-cockpit -Divy.deploy.engine.app=Portal -Divy.deploy.method=HTTP -Divy.deploy.engine.url=${engineUrl} -Divy.test.engine=MODIFY_EXISTING"
+            }
           }
         }
       }
     }
     stage('test') {
-      agent {label 'master'}
-
-      tools { 
-        jdk '8' 
-      }
       steps {
         script {
           today = new Date().format('dd-MM-yyyy_HH-mm')
-          fileOperations([folderCreateOperation(folderPath: "D:/PerformanceResult/${today}/${env.engineVersion}")])
+          resultDir = "/var/tools/performance-result/${env.engineVersion}/${today}"
+          fileOperations([folderCreateOperation(folderPath: "${resultDir}")])
 
-          echo "====================Test one admin user===================="
+          echo '====================Test one admin user===================='
           updateConfigFile('data/single_admin_user_server.csv', '1')
-          bat '''
-            jmeter.bat -n -t AxonIvyPortal/PortalTest/jmeter/portal_walkthrough_testplan.jmx -l temp.jtl
-          '''
+          // First executing takes more time, so not record the result of first time
+          executeJMeter('../tmp.jtl')
+
           executeJMeter('result_1_admin_user.jtl')
 
-          echo "====================Test for one normal user===================="
+          echo '====================Test for one normal user===================='
           updateConfigFile('data/single_normal_user_server.csv', '1')
           executeJMeter('result_1_normal_user.jtl')
 
-          echo "====================Test ten users===================="
+          echo '====================Test ten users===================='
           updateConfigFile('data/users_server.csv', '10')
           executeJMeter('result_10_users.jtl')
         }
@@ -71,16 +69,14 @@ pipeline {
   post {
     always {
       script {
-        if (binding.hasVariable('utils')) {
-          utils.stopWindowsService(engineServiceName)
-        }
+        sh """
+          docker compose -f ${performanceEngineDir}/docker-compose.yml down
+          docker compose -f ${devEngineDir}/docker-compose.yml up -d
+        """
       }
-      node('master') {
-        script {
-          if (binding.hasVariable('today')) {
-            archiveArtifacts artifacts: "D:/PerformanceResult/${today}/*/*.jtl", allowEmptyArchive: true
-            perfReport sourceDataFiles: "D:/PerformanceResult/${today}/*/*.jtl", compareBuildPrevious :true, ignoreFailedBuilds: true, ignoreUnstableBuilds: true, errorFailedThreshold: 1
-          }
+      script {
+        if (binding.hasVariable('today')) {
+          perfReport sourceDataFiles: "${resultDir}/*.jtl", compareBuildPrevious :true, ignoreFailedBuilds: true, ignoreUnstableBuilds: true, errorFailedThreshold: 1
         }
       }
     }
@@ -88,16 +84,18 @@ pipeline {
 }
 
 def updateConfigFile(acccountFilePath, numberOfUser) {
-  powershell """
-    get-content AxonIvyPortal/PortalTest/jmeter/test.properties | select-string -pattern 'portal.thread.numberOfUser' -notmatch | select-string -pattern 'file.csv' -notmatch | Out-File AxonIvyPortal/PortalTest/jmeter/out.properties -encoding ASCII
-    Add-Content AxonIvyPortal/PortalTest/jmeter/out.properties "file.csv=${acccountFilePath}"
-    Add-Content AxonIvyPortal/PortalTest/jmeter/out.properties "portal.thread.numberOfUser=${numberOfUser}"
-    move AxonIvyPortal/PortalTest/jmeter/out.properties AxonIvyPortal/PortalTest/jmeter/test.properties -Force
+  sh """
+    awk -F'=' -v OFS='=' -v newval='${acccountFilePath}' '/^file.csv/{\$2=newval;print;next}1' ${jmeterSourceDir}/test.properties > ${jmeterSourceDir}/tmp.properties
+    awk -F'=' -v OFS='=' -v newval='${numberOfUser}' '/^portal.thread.numberOfUser/{\$2=newval;print;next}1' ${jmeterSourceDir}/tmp.properties > ${jmeterSourceDir}/test.properties
   """
 }
 
 def executeJMeter(resultFileName) {
-  bat """
-    jmeter.bat -n -t AxonIvyPortal/PortalTest/jmeter/portal_walkthrough_testplan.jmx -l D:/PerformanceResult/${today}/${env.engineVersion}/${resultFileName}
-  """
+  def binDir = '/opt/apache-jmeter-5.5/bin'
+  docker.build('jmeter-performance-test', '-f build/performance-test/Dockerfile .').inside("""
+        -v ${WORKSPACE}/${jmeterSourceDir}:${binDir}/portal-jmeter
+        -v ${resultDir}:${binDir}/result
+      """) {
+    sh "${binDir}/jmeter -n -t ${binDir}/portal-jmeter/portal_walkthrough_testplan.jmx -l ${binDir}/result/${resultFileName}"
+  }
 }
