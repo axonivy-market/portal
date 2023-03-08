@@ -78,7 +78,7 @@ import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.cm.ContentObjectValue;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.workflow.start.IWebStartable;
+import ch.ivyteam.ivy.workflow.IStartElement;
 
 @ViewScoped
 @ManagedBean
@@ -482,14 +482,14 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private void unifyCustomWidgetData(CustomDashboardWidget customWidget) {
     if (customWidget.getData().getType() == DashboardCustomWidgetType.PROCESS) {
       // Update processPath to latest
-      IWebStartable webStartable = Optional.ofNullable(customWidget.getData())
+      IStartElement webStartable = Optional.ofNullable(customWidget.getData())
           .map(DashboardCustomWidgetData::getIvyProcessStartDTO)
-          .map(IvyProcessStartDTO::getStartableProcessStart).orElse(null);
+          .map(IvyProcessStartDTO::getStartElement).orElse(null);
       if (Objects.isNull(webStartable)) {
-        webStartable = CustomWidgetUtils.findWebStartableByProcessPath(customWidget.getData().getProcessPath());
+        webStartable = CustomWidgetUtils.findStartableOfCustomDashboardProcess(customWidget.getData().getProcessPath());
       }
       if (Objects.nonNull(webStartable)) {
-        customWidget.getData().setProcessPath(webStartable.getId());
+        customWidget.getData().setProcessPath(webStartable.getFullUserFriendlyRequestPath());
       }
       customWidget.getData().setUrl(EMPTY);
       if (CollectionUtils.isNotEmpty(customWidget.getData().getParams())) {
