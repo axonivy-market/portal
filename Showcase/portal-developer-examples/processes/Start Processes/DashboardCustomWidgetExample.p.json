@@ -57,6 +57,7 @@
         "startCustomFields" : [
           { "name" : "isDashboardProcess", "value" : "true" }
         ],
+        "showInStartList" : false,
         "startName" : "Investment List (Example for Custom Widget on Dashboard)"
       },
       "visual" : {
