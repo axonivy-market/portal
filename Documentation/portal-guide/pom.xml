@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>ch.ivyteam.ivy.project.portal</groupId>
+    <groupId>com.axonivy.portal</groupId>
     <artifactId>doc-config</artifactId>
     <version>${revision}</version>
     <relativePath>../maven</relativePath>
@@ -31,7 +31,7 @@
               <outputDirectory>${images.folder}</outputDirectory>
               <artifactItems>
                 <artifactItem>
-                  <groupId>ch.ivyteam.ivy.project.portal</groupId>
+                  <groupId>com.axonivy.portal</groupId>
                   <artifactId>portal-document-screenshots</artifactId>
                   <version>${project.version}</version>
                   <type>zip</type>
