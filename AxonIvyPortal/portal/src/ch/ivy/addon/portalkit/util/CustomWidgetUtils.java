@@ -201,17 +201,17 @@ public class CustomWidgetUtils {
     String processPath = customWidget.getData().getProcessPath();
     if (StringUtils.isNotBlank(processPath)) {
       customWidget.getData().setUrl(EMPTY);
-      IStartElement webStartable = findStartableOfCustomDashboardProcess(processPath);
-      if (isNull(webStartable)) {
+      IStartElement startElement = findStartElementOfCustomDashboardProcess(processPath);
+      if (isNull(startElement)) {
         customWidget.getData().setStartRequestPath(EMPTY);
         return;
       }
       if (isNull(customWidget.getData().getIvyProcessStartDTO())) {
         customWidget.getData().setIvyProcessStartDTO(new IvyProcessStartDTO());
       }
-      customWidget.getData().getIvyProcessStartDTO().setStartElement(webStartable);
+      customWidget.getData().getIvyProcessStartDTO().setStartElement(startElement);
       customWidget.loadParameters();
-      customWidget.getData().setStartRequestPath(webStartable.getLink().getRelative());
+      customWidget.getData().setStartRequestPath(startElement.getLink().getRelative());
       customWidget.getData().setType(DashboardCustomWidgetType.PROCESS);
     } else {
       customWidget.getData().setProcessPath(EMPTY);
@@ -243,17 +243,17 @@ public class CustomWidgetUtils {
     return webStartable;
   }
 
-  public static IStartElement findStartableOfCustomDashboardProcess(String processPath) {
-    IStartElement webStartable = getAllCustomDashboardProcesses().stream()
+  public static IStartElement findStartElementOfCustomDashboardProcess(String processPath) {
+    IStartElement startElement = getAllCustomDashboardProcesses().stream()
         .filter(proccess -> processPath.endsWith(proccess.getFullUserFriendlyRequestPath()))
         .findAny().orElse(null);
-    if (isNull(webStartable)) {
+    if (isNull(startElement)) {
       String processStartLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(processPath);
-      webStartable = getAllCustomDashboardProcesses().stream()
+      startElement = getAllCustomDashboardProcesses().stream()
           .filter(proccess -> proccess.getLink().getRelative().equals(processStartLink))
           .findAny().orElse(null);
     }
-    return webStartable;
+    return startElement;
   }
 
   private static List<IWebStartable> getAllPortalProcesses() {
