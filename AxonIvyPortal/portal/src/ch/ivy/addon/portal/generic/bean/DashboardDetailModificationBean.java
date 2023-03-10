@@ -482,14 +482,14 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private void unifyCustomWidgetData(CustomDashboardWidget customWidget) {
     if (customWidget.getData().getType() == DashboardCustomWidgetType.PROCESS) {
       // Update processPath to latest
-      IStartElement webStartable = Optional.ofNullable(customWidget.getData())
+      IStartElement startElement = Optional.ofNullable(customWidget.getData())
           .map(DashboardCustomWidgetData::getIvyProcessStartDTO)
           .map(IvyProcessStartDTO::getStartElement).orElse(null);
-      if (Objects.isNull(webStartable)) {
-        webStartable = CustomWidgetUtils.findStartableOfCustomDashboardProcess(customWidget.getData().getProcessPath());
+      if (Objects.isNull(startElement)) {
+        startElement = CustomWidgetUtils.findStartElementOfCustomDashboardProcess(customWidget.getData().getProcessPath());
       }
-      if (Objects.nonNull(webStartable)) {
-        customWidget.getData().setProcessPath(webStartable.getFullUserFriendlyRequestPath());
+      if (Objects.nonNull(startElement)) {
+        customWidget.getData().setProcessPath(startElement.getFullUserFriendlyRequestPath());
       }
       customWidget.getData().setUrl(EMPTY);
       if (CollectionUtils.isNotEmpty(customWidget.getData().getParams())) {
