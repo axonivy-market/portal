@@ -141,7 +141,7 @@ public class CustomDashboardWidget extends DashboardWidget {
   private void setDefaultParam(String name, CustomDashboardWidgetParam param) {
     param.setName(name);
     param.setType(DashboardCustomParamType.STRING);
-    param.setValue(data.getIvyProcessStartDTO().getStartableProcessStart().customFields().value(name));
+    param.setValue(data.getIvyProcessStartDTO().getStartElement().customFields().value(name));
   }
 
   @Override
