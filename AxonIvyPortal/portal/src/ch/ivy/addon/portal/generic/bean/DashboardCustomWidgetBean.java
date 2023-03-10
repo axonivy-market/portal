@@ -17,27 +17,26 @@ import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidgetParam;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
-import ch.ivyteam.ivy.workflow.start.IWebStartable;
+import ch.ivyteam.ivy.workflow.IStartElement;
 
 @ManagedBean
 @ViewScoped
 public class DashboardCustomWidgetBean implements Serializable {
 
   private static final long serialVersionUID = 7637567927058415789L;
-  private static final String IS_DASHBOARD_PROCESS = "isDashboardProcess";
 
   private DashboardCustomWidgetType selectedType = DashboardCustomWidgetType.EXTERNAL_URL;
   private DashboardCustomWidgetType[] customWidgetTypes = DashboardCustomWidgetType.values();
   private String process;
-  private List<IWebStartable> allPortalProcesses;
+  private List<IStartElement> allCustomDashboardProcesses;
 
   public void onSelectProcess(CustomDashboardWidget widget) {
     var ivyProcessStartDTO = widget.getData().getIvyProcessStartDTO();
-    if (Objects.isNull(ivyProcessStartDTO) || Objects.isNull(ivyProcessStartDTO.getStartableProcessStart())) {
+    if (Objects.isNull(ivyProcessStartDTO) || Objects.isNull(ivyProcessStartDTO.getStartElement())) {
       return;
     }
-    widget.getData().setProcessPath(ivyProcessStartDTO.getStartableProcessStart().getId());
-    widget.getData().setStartRequestPath(ivyProcessStartDTO.getStartableProcessStart().getLink().getRelative());
+    widget.getData().setProcessPath(ivyProcessStartDTO.getStartElement().getFullUserFriendlyRequestPath());
+    widget.getData().setStartRequestPath(ivyProcessStartDTO.getStartElement().getLink().getRelative());
     widget.loadParametersFromProcess();
   }
 
@@ -56,7 +55,7 @@ public class DashboardCustomWidgetBean implements Serializable {
   }
 
   public List<IvyProcessStartDTO> completeProcesses(String query) {
-    return getAllPortalProcesses().stream()
+    return getAllCustomDashboardProcesses().stream()
         .filter(process -> StringUtils.containsIgnoreCase(process.getName(), query))
         .map(IvyProcessStartDTO::new)
         .collect(Collectors.toList());
@@ -86,14 +85,11 @@ public class DashboardCustomWidgetBean implements Serializable {
     this.process = process;
   }
 
-  public List<IWebStartable> getAllPortalProcesses() {
-    if (CollectionUtils.isEmpty(allPortalProcesses)) {
-      allPortalProcesses = ProcessService.getInstance().findProcesses()
-          .getProcesses().stream()
-          .filter(proccess -> StringUtils.isNotBlank(proccess.customFields().value(IS_DASHBOARD_PROCESS))
-              && proccess.customFields().value(IS_DASHBOARD_PROCESS).contentEquals("true"))
-          .collect(Collectors.toList());
+  public List<IStartElement> getAllCustomDashboardProcesses() {
+    if (CollectionUtils.isEmpty(allCustomDashboardProcesses)) {
+      allCustomDashboardProcesses = ProcessService.getInstance().findCustomDashboardProcesses();
     }
-    return allPortalProcesses;
+    return allCustomDashboardProcesses;
   }
+
 }
