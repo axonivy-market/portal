@@ -42,9 +42,8 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   private List<String> applications;
   private Boolean isPublicDashboard;
 
-  @Override
   @PostConstruct
-  public void init() {
+  public void initBean() {
     super.init();
     displayModes = Arrays.asList(ProcessWidgetMode.values()).stream()
         .sorted((mode1, mode2) -> mode1.getLabel().compareToIgnoreCase(mode2.getLabel()))
