@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>ch.ivyteam.ivy.project.portal</groupId>
+        <groupId>com.axonivy.portal</groupId>
         <artifactId>doc-config</artifactId>
         <version>${revision}</version>
         <relativePath>maven</relativePath>
