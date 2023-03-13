@@ -168,8 +168,8 @@ public class CleanUpObsoletedUserDataService {
         currentIndex += OFFSET_SIZE;
       } while (currentIndex < totalCount);
     } else {
-      columnConfigs = service.getTaskConfigurationWithOffset(applicationId, 0, (int) totalCount);
-      columnConfigs.addAll(checkIfTaskColumnConfigIsObsoleted(columnConfigs));
+      List<TaskColumnsConfiguration> taskColumnsConfigurations = service.getTaskConfigurationWithOffset(applicationId, 0, (int) totalCount);
+      columnConfigs.addAll(checkIfTaskColumnConfigIsObsoleted(taskColumnsConfigurations));
     }
     
     cleanRepoColumnConfig(columnConfigs);
@@ -193,8 +193,8 @@ public class CleanUpObsoletedUserDataService {
         currentIndex += OFFSET_SIZE;
       } while (currentIndex < totalCount);
     } else {
-      columnConfigs = service.getCaseConfigurationWithOffset(applicationId, 0, (int) totalCount);
-      columnConfigs.addAll(checkIfCaseColumnConfigIsObsoleted(columnConfigs));
+      List<CaseColumnsConfiguration> caseColumnsConfigurations = service.getCaseConfigurationWithOffset(applicationId, 0, (int) totalCount);
+      columnConfigs.addAll(checkIfCaseColumnConfigIsObsoleted(caseColumnsConfigurations));
     }
     
     cleanRepoColumnConfig(columnConfigs);
