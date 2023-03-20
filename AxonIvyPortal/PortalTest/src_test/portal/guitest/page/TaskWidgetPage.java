@@ -1,5 +1,6 @@
 package portal.guitest.page;
 
+import static org.junit.Assert.assertTrue;
 import static portal.guitest.common.WaitHelper.assertTrueWithWait;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.TaskState;
+import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 
 public class TaskWidgetPage extends TemplatePage {
@@ -107,7 +109,40 @@ public class TaskWidgetPage extends TemplatePage {
         + ":task-item:task-action:additional-options:task-delegate-command");
     return delegateButton.getAttribute(CLASS).contains("ui-state-disabled");
   }
+  
+  public boolean isTaskDelegateOptionDisable(WebElement element) {
+	    String actionButton =
+	            String.format("[id$=':task-item\\:task-action\\:additional-options\\:task-side-steps-menu']");
+	    element.findElements(By.id(actionButton));
+        waitForElementDisplayed(By.className("task-action-item-label"), true);
+	    element.findElement(By.cssSelector("[id$=':task-state-component:task-state']"));
+	    WebElement delegateButton = element.findElement(By.cssSelector("[id$=':task-state-component:task-state']"));
+	    return delegateButton.getAttribute(CLASS).contains("ui-state-disabled");
+	  }
+  
+  public WebElement findFirstTaskHasPermission() {
+	List<WebElement> taskElements = findListElementsByCssSelector("div[class*='task-start-list-item']");
+    assertTrue(taskElements.size() > 0);
+    WebElement adminTask = taskElements.stream().filter(t -> {
+    	String createdUser = t.findElement(By.className("name-after-avatar")).getText();
+    	String status = t.findElement(By.cssSelector("[id$=':task-state-component:task-state']")).getText();
+    	return (TestAccount.ADMIN_USER.getFullName().equals(createdUser) || TestAccount.EVERYBODY_USER.getFullName().equals(createdUser))
+    			&& (!TaskState.DESTROYED.name().equals(status) && !TaskState.DONE.name().equals(status));
 
+    }).findFirst().orElse(null);
+    return adminTask;
+  }
+  
+  public WebElement findFistTaskHasNoPermission() {
+	List<WebElement> taskElements = findListElementsByCssSelector("div[class*='task-start-list-item']");
+    assertTrue(taskElements.size() > 0);
+    WebElement otherTask = taskElements.stream().filter(t -> {
+    	String createdUser = t.findElement(By.className("name-after-avatar")).getText();
+    	return !TestAccount.ADMIN_USER.getFullName().equals(createdUser) && !TestAccount.EVERYBODY_USER.getFullName().equals(createdUser);
+
+    }).findFirst().orElse(null);
+    return otherTask;
+  }
   public int countTasks() {
     List<WebElement> taskElements = findListElementsByCssSelector("div[class*='task-start-list-item']");
     return taskElements.size();

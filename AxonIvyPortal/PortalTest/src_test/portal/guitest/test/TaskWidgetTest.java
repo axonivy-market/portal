@@ -5,10 +5,14 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static portal.guitest.common.Variable.DISABLE_TASK_COUNT;
 
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TaskState;
@@ -84,6 +88,7 @@ public class TaskWidgetTest extends BaseTest {
     WaitHelper.assertTrueWithWait(() -> taskWidgetPage.isTaskStartEnabled(0));
   }
 
+  // need to rework the logic and do not use task index
   @Test
   public void testDisplayDelegateButton() {
     login(TestAccount.ADMIN_USER);
@@ -91,8 +96,12 @@ public class TaskWidgetTest extends BaseTest {
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.expand();
-    assertFalse(taskWidgetPage.isTaskDelegateOptionDisable(1));
-    assertTrue(taskWidgetPage.isTaskDelegateOptionDisable(2));
+    List<WebElement> taskElements = taskWidgetPage.findListElementsByCssSelector("div[class*='task-start-list-item']");
+    assertTrue(taskElements.size() > 0);
+    WebElement adminTask = taskWidgetPage.findFirstTaskHasPermission();
+    WebElement otherTask = taskWidgetPage.findFistTaskHasNoPermission();
+    assertFalse(taskWidgetPage.isTaskDelegateOptionDisable(adminTask));
+    assertTrue(taskWidgetPage.isTaskDelegateOptionDisable(otherTask));
     redirectToRelativeLink(DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
   }
   
