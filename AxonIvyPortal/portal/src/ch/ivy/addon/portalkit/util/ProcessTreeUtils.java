@@ -51,6 +51,7 @@ public class ProcessTreeUtils {
         createCategoryTreeNode(parent, (CheckboxTreeNode<CategoryNode>) parentNode, parentCategory.getParent());
       }
       rootTreeNode = (CheckboxTreeNode<CategoryNode>) parentNode;
+      parent.getChildren().add(rootTreeNode);
     }
     updateExistedParentDataToRootTree(category, categoryNode, rootTreeNode);
   }
