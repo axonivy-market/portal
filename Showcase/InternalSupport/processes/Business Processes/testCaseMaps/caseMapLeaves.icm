@@ -10,16 +10,16 @@
     "processes" : [ {
       "id" : "employee_leave_request",
       "name" : "New Leave Request",
-      "processToExecute" : "ch.ivyteam.ivy.project.portal:internalSupport:16E3F9428CFA3D20/newLeaveRequest.ivp"
+      "processToExecute" : "com.axonivy.portal:internalSupport:16E3F9428CFA3D20/newLeaveRequest.ivp"
     } ],
     "sidesteps" : [ {
       "id" : "submit_leave_reason",
       "name" : "Submit leave reason",
-      "processToExecute" : "ch.ivyteam.ivy.project.portal:internalSupport:15C7B1E826E6485F/start.ivp"
+      "processToExecute" : "com.axonivy.portal:internalSupport:15C7B1E826E6485F/start.ivp"
     }, {
       "id" : "upload_additional_data",
       "name" : "Upload additional data",
-      "processToExecute" : "ch.ivyteam.ivy.project.portal:internalSupport:15C7B1DACB6CCA9D/start.ivp"
+      "processToExecute" : "com.axonivy.portal:internalSupport:15C7B1DACB6CCA9D/start.ivp"
     } ]
   }, {
     "id" : "approve_request",
@@ -29,7 +29,7 @@
     "processes" : [ {
       "id" : "approveleave",
       "name" : "Approve leave",
-      "processToExecute" : "ch.ivyteam.ivy.project.portal:internalSupport:15C7B30FB93C827E/start.ivp"
+      "processToExecute" : "com.axonivy.portal:internalSupport:15C7B30FB93C827E/start.ivp"
     } ]
   }, {
     "id" : "postponed",
@@ -38,7 +38,7 @@
     "processes" : [ {
       "id" : "cancel_approval_request",
       "name" : "Cancel Approval Request",
-      "processToExecute" : "ch.ivyteam.ivy.project.portal:internalSupport:15D4E4EBDE11BDC2/start.ivp"
+      "processToExecute" : "com.axonivy.portal:internalSupport:15D4E4EBDE11BDC2/start.ivp"
     } ]
   } ]
 }
