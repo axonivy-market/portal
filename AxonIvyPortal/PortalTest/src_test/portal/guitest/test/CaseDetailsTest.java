@@ -52,6 +52,8 @@ public class CaseDetailsTest extends BaseTest {
       "portalKitTestHelper/14DE09882B540AD5/undoOnlyDelegateOwnTasksPermission.ivp";
   public static final String CUSTOM_CASE_WIDGET_NAME = "Create Event: Test custom case details";
   public static final String CREATE_EVENT_TEST_URL ="portal-developer-examples/17A2C6D73AB4186E/CreateEventTest.ivp";
+  private static final String SICK_LEAVE_REQUEST_TASK ="Sick Leave Request";
+  private static final String ANNUAL_LEAVE_REQUEST_TASK ="Annual Leave Request";
 
   @Override
   @Before
@@ -147,52 +149,52 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testRelatedTaskStartButtonStatus() {
     createTestingTask();
-    assertFalse(detailsPage.isRelatedTaskStartEnabled(1));
-    assertTrue(detailsPage.isRelatedTaskStartEnabled(2));
+    assertFalse(detailsPage.isRelatedTaskStartEnabled(ANNUAL_LEAVE_REQUEST_TASK));
+    assertTrue(detailsPage.isRelatedTaskStartEnabled(SICK_LEAVE_REQUEST_TASK));
   }
 
   @Test
   public void testRelatedTaskStartTask() {
     createTestingTask();
-    TaskTemplatePage taskTemplate = detailsPage.startRelatedTask(2);
-    assertEquals("Sick Leave Request", taskTemplate.getTaskName());
+    TaskTemplatePage taskTemplate = detailsPage.startRelatedTask(SICK_LEAVE_REQUEST_TASK);
+    assertEquals(SICK_LEAVE_REQUEST_TASK, taskTemplate.getTaskName());
   }
 
   @Test
   public void testRelatedTaskReserveTask() {
     createTestingTask();
-    detailsPage.clickRelatedTaskActionButton(2);
-    detailsPage.reserveTask(2);
-    assertTrue(detailsPage.isTaskState(2, TaskState.PARKED));
+    detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
+    detailsPage.reserveTask(SICK_LEAVE_REQUEST_TASK);
+    assertTrue(detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskState.PARKED));
 
-    detailsPage.clickRelatedTaskActionButton(2);
-    detailsPage.resetTask(2);
-    assertTrue(detailsPage.isTaskState(2, TaskState.SUSPENDED));
+    detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
+    detailsPage.resetTask(SICK_LEAVE_REQUEST_TASK);
+    assertTrue(detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskState.SUSPENDED));
   }
 
   @Test
   public void testRelatedTaskDestroyTask() {
     createTestingTask();
-    detailsPage.clickRelatedTaskActionButton(2);
-    Assert.assertTrue(detailsPage.isRelatedTaskDestroyEnabled(2));
-    detailsPage.destroyTask(2);
+    detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
+    Assert.assertTrue(detailsPage.isRelatedTaskDestroyEnabled(SICK_LEAVE_REQUEST_TASK));
+    detailsPage.destroyTask(SICK_LEAVE_REQUEST_TASK);
     detailsPage.confimRelatedTaskDestruction();
-    assertTrue(detailsPage.isTaskState(2, TaskState.DESTROYED));
+    assertTrue(detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskState.DESTROYED));
   }
 
   @Test
   public void testRelatedTaskDelegateTask() {
     createTestingTask();
-    assertEquals(TestRole.EVERYBODY_ROLE, detailsPage.getResponsibleOfRelatedTaskAt(2));
+    assertEquals(TestRole.EVERYBODY_ROLE, detailsPage.getResponsibleOfRelatedTaskAt(SICK_LEAVE_REQUEST_TASK));
 
-    detailsPage.openTaskDelegateDialog(2);
+    detailsPage.openTaskDelegateDialog(SICK_LEAVE_REQUEST_TASK);
     WaitHelper.assertTrueWithWait(() -> detailsPage.isDelegateTypeSelectAvailable());
     detailsPage.selectDelegateResponsible(TestAccount.HR_ROLE_USER.getFullName(), false);
-    assertEquals(TestAccount.HR_ROLE_USER.getFullName(), detailsPage.getResponsibleOfRelatedTaskAt(2));
+    assertEquals(TestAccount.HR_ROLE_USER.getFullName(), detailsPage.getResponsibleOfRelatedTaskAt(SICK_LEAVE_REQUEST_TASK));
 
-    detailsPage.openTaskDelegateDialog(2);
+    detailsPage.openTaskDelegateDialog(SICK_LEAVE_REQUEST_TASK);
     detailsPage.selectDelegateResponsible(TestRole.HR_ROLE, true);
-    assertEquals(TestRole.HR_ROLE, detailsPage.getResponsibleOfRelatedTaskAt(2));
+    assertEquals(TestRole.HR_ROLE, detailsPage.getResponsibleOfRelatedTaskAt(SICK_LEAVE_REQUEST_TASK));
   }
 
   @Test
@@ -202,15 +204,15 @@ public class CaseDetailsTest extends BaseTest {
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsOfCaseHasName(LEAVE_REQUEST_CASE_NAME);
-    assertFalse(detailsPage.isTaskDelegateOptionDisable(2));
-    assertTrue(detailsPage.isTaskDelegateOptionDisable(1));
+    assertFalse(detailsPage.isTaskDelegateOptionDisable(SICK_LEAVE_REQUEST_TASK));
+    assertTrue(detailsPage.isTaskDelegateOptionDisable(ANNUAL_LEAVE_REQUEST_TASK));
     redirectToRelativeLink(DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
   }
 
   @Test
   public void testRelatedTaskOpenDetails() {
     createTestingTask();
-    detailsPage.clickRelatedTaskActionButton(0);
+    detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
     TaskDetailsPage taskDetailsPage = detailsPage.openTasksOfCasePageViaDetailsAction(0);
     WaitHelper.assertTrueWithWait(() -> "Task Details".equals(taskDetailsPage.getPageTitle()));
   }
@@ -258,7 +260,7 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testRelatedTaskOpenWorkflowEvents() {
     createTestingTask();
-    detailsPage.clickRelatedTaskActionButton(0);
+    detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
     detailsPage.openRelatedTaskWorkflowEvents(0);
     assertTrue(detailsPage.isRelatedTaskWorkflowEventsOpened());
   }
@@ -266,9 +268,9 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testRelatedTaskAddAdHocTask() {
     createTestingTask();
-    detailsPage.clickRelatedTaskActionButton(2);
-    ExpressProcessPage expressProcessPage = detailsPage.addAdHocTask(2);
-    assertTrue(expressProcessPage.getProcessName().endsWith("Sick Leave Request"));
+    detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
+    ExpressProcessPage expressProcessPage = detailsPage.addAdHocTask(detailsPage.getTaskRowIndex(SICK_LEAVE_REQUEST_TASK));
+    assertTrue(expressProcessPage.getProcessName().endsWith(SICK_LEAVE_REQUEST_TASK));
   }
 
   @Test

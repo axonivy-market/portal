@@ -91,11 +91,11 @@ public class TaskWidgetTest extends BaseTest {
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.expand();
-    assertFalse(taskWidgetPage.isTaskDelegateOptionDisable(1));
-    assertTrue(taskWidgetPage.isTaskDelegateOptionDisable(2));
+    assertFalse(taskWidgetPage.isTaskDelegateOptionDisable("Sick Leave Request"));
+    assertTrue(taskWidgetPage.isTaskDelegateOptionDisable("Annual Leave Request"));
     redirectToRelativeLink(DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
   }
-  
+
   @Test
   public void testDestroyTask() {
     login(TestAccount.ADMIN_USER);
@@ -134,7 +134,7 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.waitUntilTaskCountDifferentThanZero();
     assertEquals("In Task list, Task Count != 3", 3, taskWidgetPage.getTaskCount().intValue());
   }
-  
+
   @Test
   public void testDisableTaskCount() {
     updatePortalSetting(DISABLE_TASK_COUNT_SETTING, "true");
