@@ -70,7 +70,7 @@ Change Portal Styles
 The Portal uses modern |css_variable| to support style customization. 
 
 To customize the Portal styles in an upgrade safe way, we suggest that you copy all CSS variables and styles
-which you plan to override from the files ``portal-root-variables.css`` and ``portal.css`` to file ``custom.css``.
+which you plan to override from the files ``portal-root-variables.css``, ``portal-variables-light.css``, and ``portal-variables-dark.css`` to file ``custom.css``.
 
 Refer to :dev-url:`Engine Branding </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>` for the
 location of :dev-url:`custom.css </doc/|version|/engine-guide/configuration/files/custom-css.html>`.
@@ -81,32 +81,11 @@ location of :dev-url:`custom.css </doc/|version|/engine-guide/configuration/file
 
 Below is the list of some Portal elements which are using customizable colors:
 
-.. table::
-
-   +------------------------------+-----------------------------+----------------------------------------------------------------+
-   | Variable                     | Default value               | Description                                                    |
-   +==============================+=============================+================================================================+
-   | ``--primary-color``          | hsl(195,100%,29%)           | - Background color of button (except Cancel button)            |
-   |                              |                             | - Background color of selected checkbox/radio button           |
-   |                              |                             | - Background color of process chain (except waiting state)     |
-   |                              |                             | - Portal header bar                                            |
-   |                              |                             | - Label and bottom border of active input field                |
-   |                              |                             | - Sidebar anchor                                               |
-   |                              |                             | - Text color of active tab                                     |
-   +------------------------------+-----------------------------+----------------------------------------------------------------+
-   | ``--primary-dark-color``     | hsl(195, 100%, 20%)         | - Background color of hovered button                           |
-   +------------------------------+-----------------------------+----------------------------------------------------------------+
-   | ``--primary-text-color``     | white                       | - Text, icon color of button, checkbox, and other elements     |
-   +------------------------------+-----------------------------+----------------------------------------------------------------+
-   | ``--accent-color``           | hsl(0, 1%, 34%)             | - Background color of active items (form elements)             |
-   |                              |                             | - Background color of active page number in datatable          |
-   |                              |                             |   (except table in Case/Task detail)                           |
-   |                              |                             | - Bottom border of active tab                                  |
-   |                              |                             | - Border color of datepicker-today                             |
-   +------------------------------+-----------------------------+----------------------------------------------------------------+
-   | ``--accent-text-color``      | white                       | - Text of active items                                         |
-   |                              |                             | - Text of active page number in datatable                      |
-   +------------------------------+-----------------------------+----------------------------------------------------------------+
+.. csv-table::
+  :file: documents/available_css_variables.csv
+  :widths: 20 10 40 
+  :header-rows: 1
+  :class: longtable
 
 You can customize the Portal styles in ``custom.css``.
 
