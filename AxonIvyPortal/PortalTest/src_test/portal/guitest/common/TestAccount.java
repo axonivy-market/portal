@@ -3,8 +3,6 @@ package portal.guitest.common;
 import java.util.Optional;
 
 public enum TestAccount {
-	
-	EVERYBODY_USER("", "", "Everybody"),
 
 	GUEST_USER(nameOfGuestUser(), passwordOfGuestUser(), "Portal Guest User"),
 

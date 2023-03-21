@@ -102,10 +102,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
         .$(".task-configuration__input-text.text-field-input-name").shouldBe(Condition.cssClass("ui-state-filled"), DEFAULT_TIMEOUT)
         .getValue();
   }
-  
-  public boolean isEmptyData() {
-	  return $("div.dashboard-tasks--table").is(Condition.hidden);
-  }
+
   public void applyFilter() {
     $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='apply-button']")
         .filter(text("Apply")).first().shouldBe(getClickableCondition()).click();

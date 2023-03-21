@@ -54,8 +54,6 @@ public class CaseDetailsTest extends BaseTest {
   public static final String CREATE_EVENT_TEST_URL ="portal-developer-examples/17A2C6D73AB4186E/CreateEventTest.ivp";
   private static final String SICK_LEAVE_REQUEST_TASK ="Sick Leave Request";
   private static final String ANNUAL_LEAVE_REQUEST_TASK ="Annual Leave Request";
-  private static final String MATERNITY_LEAVE_REQUEST_TASK ="Maternity Leave Request";
-  
 
   @Override
   @Before
@@ -159,10 +157,9 @@ public class CaseDetailsTest extends BaseTest {
   public void testRelatedTaskStartTask() {
     createTestingTask();
     TaskTemplatePage taskTemplate = detailsPage.startRelatedTask(SICK_LEAVE_REQUEST_TASK);
-    assertEquals("Sick Leave Request", taskTemplate.getTaskName());
+    assertEquals(SICK_LEAVE_REQUEST_TASK, taskTemplate.getTaskName());
   }
 
- //DOING
   @Test
   public void testRelatedTaskReserveTask() {
     createTestingTask();
@@ -185,7 +182,6 @@ public class CaseDetailsTest extends BaseTest {
     assertTrue(detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskState.DESTROYED));
   }
 
-  //Done
   @Test
   public void testRelatedTaskDelegateTask() {
     createTestingTask();
@@ -200,6 +196,7 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.selectDelegateResponsible(TestRole.HR_ROLE, true);
     assertEquals(TestRole.HR_ROLE, detailsPage.getResponsibleOfRelatedTaskAt(SICK_LEAVE_REQUEST_TASK));
   }
+
   @Test
   public void testRelatedTaskDisplayDelegateButton() {
     createTestingTask();
@@ -268,7 +265,6 @@ public class CaseDetailsTest extends BaseTest {
     assertTrue(detailsPage.isRelatedTaskWorkflowEventsOpened());
   }
 
-  //Still working
   @Test
   public void testRelatedTaskAddAdHocTask() {
     createTestingTask();

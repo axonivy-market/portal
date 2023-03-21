@@ -13,7 +13,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
-import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
@@ -552,20 +551,20 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public boolean isRelatedTaskStartEnabled(String taskName) {
-	Integer index = getTaskRowIndex(taskName);
+    Integer index = getTaskRowIndex(taskName);
     WebElement element = findListElementsByCssSelector("[id$='task-action-component']").get(index);
     return !element.getAttribute(CLASS).contains("ui-state-disabled");
   }
 
   public TaskTemplatePage startRelatedTask(String taskName) {
-	Integer index = getTaskRowIndex(taskName);
+    Integer index = getTaskRowIndex(taskName);
     WebElement element = findListElementsByCssSelector("[id$='task-action-component']").get(index);
     element.click();
     return new TaskTemplatePage();
   }
 
   public void clickRelatedTaskActionButton(String taskName) {
-	Integer index = getTaskRowIndex(taskName);
+    Integer index = getTaskRowIndex(taskName);
     clickByCssSelector(String.format("[id$=':related-tasks:%d:additional-options:task-side-steps-menu']", index));
     String actionPanel = String.format("[id$='task-widget:related-tasks:%d:additional-options:side-steps-panel']", index); 
     waitForElementDisplayed(By.cssSelector(actionPanel), true);
@@ -579,7 +578,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void reserveTask(String taskName) {
-	Integer index = getTaskRowIndex(taskName);
+    Integer index = getTaskRowIndex(taskName);
     String reserveCommandButton = String.format("[id$='task-widget:related-tasks:%d:additional-options:task-reserve-command']", index);
     waitForElementDisplayed(By.cssSelector(reserveCommandButton), true);
     findElementByCssSelector(reserveCommandButton).click();
@@ -587,7 +586,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void resetTask(String taskName) {
-	Integer index = getTaskRowIndex(taskName);
+    Integer index = getTaskRowIndex(taskName);
     String resetCommandButton = String.format("[id$='task-widget:related-tasks:%d:additional-options:task-reset-command", index);
     waitForElementDisplayed(By.cssSelector(resetCommandButton), true);
     findElementByCssSelector(resetCommandButton).click();
@@ -595,7 +594,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public boolean isTaskState(String taskName, TaskState taskState) {
-	Integer index =  getTaskRowIndex(taskName);
+    Integer index =  getTaskRowIndex(taskName);
     WebElement element = findListElementsByCssSelector("td.related-task-state-column span.task-state").get(index);
     if(element!=null) {
       String stateClass = element.getAttribute(CLASS);
@@ -631,13 +630,10 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public String getResponsibleOfRelatedTaskAt(String taskName) {
-//    return responsibles.get(index).getText();
-	  List<WebElement> taskRows = findListElementsByCssSelector("tr.ui-widget-content");
-	  String responible =  taskRows.stream()
-			  				.filter(row -> findChildElementByCssSelector(row,".task-name-value").getText().equals(taskName))
-			  				.map(row -> findChildElementByCssSelector(row, ".name-after-avatar").getText())
-			  				.findAny().get();
-	  return responible;
+    List<WebElement> taskRows = findListElementsByCssSelector("tr.ui-widget-content");
+    return taskRows.stream()
+        .filter(row -> findChildElementByCssSelector(row, ".task-name-value").getText().equals(taskName))
+        .map(row -> findChildElementByCssSelector(row, ".name-after-avatar").getText()).findAny().get();
   }
 
   public void openTaskDelegateDialog(String taskName) {
