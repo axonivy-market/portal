@@ -108,6 +108,20 @@ public class TaskWidgetPage extends TemplatePage {
     return delegateButton.getAttribute(CLASS).contains("ui-state-disabled");
   }
 
+  public boolean isTaskDelegateOptionDisable(String taskName) {
+    int index = 1;
+    List<WebElement> taskElements =
+        findListElementsByCssSelector("span[id$=':task-item:task-name-component:task-name']");
+    for (int i = 0; i < taskElements.size(); i++) {
+      if (taskElements.get(i).getText().equals(taskName)) {
+        index = i;
+        break;
+      }
+    }
+
+    return isTaskDelegateOptionDisable(index);
+  }
+
   public int countTasks() {
     List<WebElement> taskElements = findListElementsByCssSelector("div[class*='task-start-list-item']");
     return taskElements.size();

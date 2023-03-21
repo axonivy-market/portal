@@ -3,6 +3,7 @@ package portal.guitest.page;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -549,18 +550,21 @@ public class CaseDetailsPage extends TemplatePage {
     return CollectionUtils.isNotEmpty(doneTasks);
   }
 
-  public boolean isRelatedTaskStartEnabled(int index) {
+  public boolean isRelatedTaskStartEnabled(String taskName) {
+    Integer index = getTaskRowIndex(taskName);
     WebElement element = findListElementsByCssSelector("[id$='task-action-component']").get(index);
     return !element.getAttribute(CLASS).contains("ui-state-disabled");
   }
 
-  public TaskTemplatePage startRelatedTask(int index) {
+  public TaskTemplatePage startRelatedTask(String taskName) {
+    Integer index = getTaskRowIndex(taskName);
     WebElement element = findListElementsByCssSelector("[id$='task-action-component']").get(index);
     element.click();
     return new TaskTemplatePage();
   }
 
-  public void clickRelatedTaskActionButton(int index) {
+  public void clickRelatedTaskActionButton(String taskName) {
+    Integer index = getTaskRowIndex(taskName);
     clickByCssSelector(String.format("[id$=':related-tasks:%d:additional-options:task-side-steps-menu']", index));
     String actionPanel = String.format("[id$='task-widget:related-tasks:%d:additional-options:side-steps-panel']", index); 
     waitForElementDisplayed(By.cssSelector(actionPanel), true);
@@ -573,21 +577,24 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector(actionPanel), true);
   }
 
-  public void reserveTask(int index) {
+  public void reserveTask(String taskName) {
+    Integer index = getTaskRowIndex(taskName);
     String reserveCommandButton = String.format("[id$='task-widget:related-tasks:%d:additional-options:task-reserve-command']", index);
     waitForElementDisplayed(By.cssSelector(reserveCommandButton), true);
     findElementByCssSelector(reserveCommandButton).click();
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
-  public void resetTask(int index) {
+  public void resetTask(String taskName) {
+    Integer index = getTaskRowIndex(taskName);
     String resetCommandButton = String.format("[id$='task-widget:related-tasks:%d:additional-options:task-reset-command", index);
     waitForElementDisplayed(By.cssSelector(resetCommandButton), true);
     findElementByCssSelector(resetCommandButton).click();
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
-  public boolean isTaskState(int index, TaskState taskState) {
+  public boolean isTaskState(String taskName, TaskState taskState) {
+    Integer index =  getTaskRowIndex(taskName);
     WebElement element = findListElementsByCssSelector("td.related-task-state-column span.task-state").get(index);
     if(element!=null) {
       String stateClass = element.getAttribute(CLASS);
@@ -596,17 +603,18 @@ public class CaseDetailsPage extends TemplatePage {
     return false;
   }
 
-  public boolean isRelatedTaskDestroyEnabled(int index) {
-    WebElement destroyButton = findDestroyCommand(index);
+  public boolean isRelatedTaskDestroyEnabled(String taskName) {
+    WebElement destroyButton = findDestroyCommand(taskName);
     return !destroyButton.getAttribute(CLASS).contains("ui-state-disabled");
   }
 
-  public void destroyTask(int index) {
-    findDestroyCommand(index).click();
+  public void destroyTask(String taskName) {
+    findDestroyCommand(taskName).click();
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
-  public WebElement findDestroyCommand(int index) {
+  public WebElement findDestroyCommand(String taskName) {
+	Integer index =  getTaskRowIndex(taskName);
     String destroyCommandButton = String.format("[id$='task-widget:related-tasks:%d:additional-options:task-destroy-command", index);
     waitForElementDisplayed(By.cssSelector(destroyCommandButton), true);
     return findElementByCssSelector(destroyCommandButton);
@@ -621,16 +629,18 @@ public class CaseDetailsPage extends TemplatePage {
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
-  public String getResponsibleOfRelatedTaskAt(int index) {
-    List<WebElement> responsibles = findListElementsByCssSelector("td.related-task-responsible-column .name-after-avatar");
-    return responsibles.get(index).getText();
+  public String getResponsibleOfRelatedTaskAt(String taskName) {
+    List<WebElement> taskRows = findListElementsByCssSelector("tr.ui-widget-content");
+    return taskRows.stream()
+        .filter(row -> findChildElementByCssSelector(row, ".task-name-value").getText().equals(taskName))
+        .map(row -> findChildElementByCssSelector(row, ".name-after-avatar").getText()).findAny().get();
   }
 
-  public void openTaskDelegateDialog(int index) {
+  public void openTaskDelegateDialog(String taskName) {
     try {
-      clickRelatedTaskActionButton(index);
+      clickRelatedTaskActionButton(taskName);
     } catch (Exception e) {
-      clickRelatedTaskActionButton(index);
+      clickRelatedTaskActionButton(taskName);
     }
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
         .until(() -> findElementByCssSelector("a[id$='\\:task-delegate-command']").isDisplayed());
@@ -667,8 +677,9 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("div[id$='task-delegate-dialog']"), false);
   }
 
-  public boolean isTaskDelegateOptionDisable(int index) {
-    clickRelatedTaskActionButton(index);
+  public boolean isTaskDelegateOptionDisable(String taskName) {
+    clickRelatedTaskActionButton(taskName);
+    Integer index= getTaskRowIndex(taskName);
     String commandButton = String.format("[id$='task-widget:related-tasks:%d:additional-options:task-delegate-command", index);
     waitForElementDisplayed(By.cssSelector(commandButton), true);
     WebElement delegateButton = findElementByCssSelector(commandButton);
@@ -865,5 +876,11 @@ public class CaseDetailsPage extends TemplatePage {
     } catch (Exception e) {
       return false;
     }
+  }
+  
+  public Integer getTaskRowIndex(String taskName) {
+	  List<WebElement> taskNames = findListElementsByCssSelector(".task-name-value");
+	  int taskIndex = IntStream.range(0, taskNames.size()).filter(i -> taskNames.get(i).getText().equals(taskName)).findFirst().getAsInt();
+	  return taskIndex;
   }
 }

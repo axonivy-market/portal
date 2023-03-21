@@ -13,6 +13,7 @@ import ch.ivyteam.ivy.workflow.IPropertyFilter;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskProperty;
 import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class TaskUtils {
 
@@ -84,10 +85,10 @@ public class TaskUtils {
 
   public static void destroyTaskByCustomField(String customFieldName) throws Exception {
     Sudo.call(() -> {
-      ITask selectedTask = Ivy.wf().getTaskQueryExecutor().createTaskQuery().where().customField()
+      ITask selectedTask = TaskQuery.create().where().customField()
           .stringField(customFieldName).isNotNull().executor().firstResult();
       if (selectedTask != null) {
-        ch.ivy.addon.portalkit.util.TaskUtils.destroyTaskById(selectedTask.getId());
+        selectedTask.destroy();
         selectedTask.customFields().stringField(customFieldName).delete();
       }
       return null;
