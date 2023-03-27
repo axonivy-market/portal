@@ -38,33 +38,37 @@ public class ProcessTreeUtils {
   }
 
   private static void createCategoryTreeNode(CheckboxTreeNode<CategoryNode> parent, CheckboxTreeNode<CategoryNode> categoryNode, Category category) {
-    if (isNull(parent) || isNull(category)) {
+    if (nonNull(parent) && nonNull(categoryNode) && isNull(category)) {
+      parent.getChildren().add(categoryNode);
       return;
     }
-    CheckboxTreeNode<CategoryNode> rootTreeNode = parent;
-    Category parentCategory = category.getParent();
-    if (nonNull(parentCategory)) {
-      var parentNode = findTreeNodeByCmsUri(parent, parentCategory.getCmsUri());
-      if (isNull(parentNode)) {
-        parentNode = new CheckboxTreeNode<>(new CategoryNode(parentCategory));
-        parentNode.setExpanded(true);
-        createCategoryTreeNode(parent, (CheckboxTreeNode<CategoryNode>) parentNode, parentCategory.getParent());
+
+    if (nonNull(parent) && nonNull(category)) {
+      CheckboxTreeNode<CategoryNode> rootTreeNode = parent;
+      Category parentCategory = category.getParent();
+      if (nonNull(parentCategory)) {
+        var existedParentNode = findTreeNodeByCmsUri(parent, parentCategory.getCmsUri());
+        if (isNull(existedParentNode)) {
+          existedParentNode = new CheckboxTreeNode<>(new CategoryNode(parentCategory));
+          existedParentNode.setExpanded(true);
+          createCategoryTreeNode(parent, (CheckboxTreeNode<CategoryNode>) existedParentNode, parentCategory.getParent());
+        }
+        rootTreeNode = (CheckboxTreeNode<CategoryNode>) existedParentNode;
       }
-      rootTreeNode = (CheckboxTreeNode<CategoryNode>) parentNode;
+      updateExistedParentDataToRootTree(category, categoryNode, rootTreeNode);
     }
-    updateExistedParentDataToRootTree(category, categoryNode, rootTreeNode);
   }
 
   private static void updateExistedParentDataToRootTree(Category category, TreeNode<CategoryNode> categoryNode,
       TreeNode<CategoryNode> parentNode) {
-    TreeNode<CategoryNode> foundRole = findTreeNodeByCmsUri(parentNode, category.getCmsUri());
-    if (isNull(foundRole)) {
-      foundRole = buildNewSubTreeNode((CheckboxTreeNode<CategoryNode>) parentNode, category);
+    TreeNode<CategoryNode> foundCategory = findTreeNodeByCmsUri(parentNode, category.getCmsUri());
+    if (isNull(foundCategory)) {
+      foundCategory = buildNewSubTreeNode((CheckboxTreeNode<CategoryNode>) parentNode, category);
     }
     if (nonNull(categoryNode)) {
-      TreeNode<CategoryNode> foundSelectedChild = findTreeNodeByCmsUri(foundRole, categoryNode.getData().getCategory());
+      TreeNode<CategoryNode> foundSelectedChild = findTreeNodeByCmsUri(foundCategory, categoryNode.getData().getCategory());
       if (isNull(foundSelectedChild)) {
-        foundRole.getChildren().add(categoryNode);
+        foundCategory.getChildren().add(categoryNode);
       }
     }
   }
