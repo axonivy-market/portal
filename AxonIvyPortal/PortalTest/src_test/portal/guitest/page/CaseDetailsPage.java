@@ -570,6 +570,12 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector(actionPanel), true);
   }
 
+  public int getTaskRowIndexFromDetailPage(String taskName) {
+	  List<WebElement> taskNames = findListElementsByCssSelector(".task-name-value");
+	  int taskIndex = IntStream.range(0, taskNames.size()).filter(i -> taskNames.get(i).getText().equals(taskName)).findFirst().getAsInt();
+	  return taskIndex;
+  }
+  
   public void clickRelatedCaseActionButton(int index) {
     WebElement element = findListElementsByCssSelector(".related-cases .more-column .action-link").get(index);
     element.click();
