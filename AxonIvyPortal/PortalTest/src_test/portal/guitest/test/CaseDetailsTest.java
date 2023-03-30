@@ -213,7 +213,8 @@ public class CaseDetailsTest extends BaseTest {
   public void testRelatedTaskOpenDetails() {
     createTestingTask();
     detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
-    TaskDetailsPage taskDetailsPage = detailsPage.openTasksOfCasePageViaDetailsAction(0);
+    int index = detailsPage.getTaskRowIndexFromDetailPage(SICK_LEAVE_REQUEST_TASK);
+    TaskDetailsPage taskDetailsPage = detailsPage.openTasksOfCasePageViaDetailsAction(index);
     WaitHelper.assertTrueWithWait(() -> "Task Details".equals(taskDetailsPage.getPageTitle()));
   }
 
@@ -261,7 +262,8 @@ public class CaseDetailsTest extends BaseTest {
   public void testRelatedTaskOpenWorkflowEvents() {
     createTestingTask();
     detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
-    detailsPage.openRelatedTaskWorkflowEvents(0);
+    int index = detailsPage.getTaskRowIndexFromDetailPage(SICK_LEAVE_REQUEST_TASK);
+    detailsPage.openRelatedTaskWorkflowEvents(index);
     assertTrue(detailsPage.isRelatedTaskWorkflowEventsOpened());
   }
 
