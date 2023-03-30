@@ -291,12 +291,10 @@ public class TaskDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':expiry-form:expiry-calendar']"), true);
     WebElement taskExpiryInlineEdit = findElementByCssSelector("[id$=':expiry-form:expiry-calendar_input']");
     taskExpiryInlineEdit.sendKeys(dateStringLiteral);
-    taskExpiryInlineEdit.submit();
     
     WebElement editor = findElementByCssSelector("[id$=':expiry-form:edit-inplace_editor']");
     WebElement saveButton = findChildElementByClassName(editor, UI_INPLACE_SAVE);
 
-    findElementById("time-information").click();
     saveButton.click();
     waitForElementDisplayed(By.cssSelector("[id$=':expiry-form:edit-inplace_editor']"), false);
   }
