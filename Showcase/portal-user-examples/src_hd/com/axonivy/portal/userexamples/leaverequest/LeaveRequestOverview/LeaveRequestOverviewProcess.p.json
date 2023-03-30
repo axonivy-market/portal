@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "172591B4F5B4DE03",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "userProcess", "type" : "ch.ivy.addon.portalkit.configuration.UserProcess" }
+            { "name" : "userProcess", "type" : "ch.ivy.addon.portalkit.configuration.UserProcess", "desc" : "" }
           ],
           "map" : {
             "out.userProcess" : "param.userProcess"
@@ -24,7 +24,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f7", "to" : "f6" }
+      "connect" : [
+        { "id" : "f7", "to" : "f6" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -41,7 +43,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }
       },
-      "connect" : { "id" : "f5", "to" : "f4" }
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
     }, {
       "id" : "f4",
       "type" : "HtmlDialogExit",
@@ -78,7 +82,9 @@
       "visual" : {
         "at" : { "x" : 224, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f8",
       "type" : "HtmlDialogEventStart",
@@ -90,14 +96,15 @@
         "at" : { "x" : 96, "y" : 256 },
         "labelOffset" : { "x" : 12, "y" : 35 }
       },
-      "connect" : { "id" : "f10", "to" : "f9" }
+      "connect" : [
+        { "id" : "f10", "to" : "f9" }
+      ]
     }, {
       "id" : "f9",
       "type" : "DialogCall",
       "name" : "ExampleHomePage",
       "config" : {
-        "dialogId" : "com.axonivy.portal.userexamples.ExampleHomePage",
-        "startMethod" : "start()"
+        "dialog" : "com.axonivy.portal.userexamples.ExampleHomePage:start()"
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 256 },

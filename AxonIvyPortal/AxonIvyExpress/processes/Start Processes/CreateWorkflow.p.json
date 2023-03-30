@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "15798655494F25E1",
   "config" : {
     "data" : "gawfs.createWorkflowData"
@@ -26,7 +26,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f11", "to" : "f10" }
+      "connect" : [
+        { "id" : "f11", "to" : "f10" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -43,7 +45,9 @@
       "visual" : {
         "at" : { "x" : 440, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f5",
       "type" : "RequestStart",
@@ -65,7 +69,9 @@
         "at" : { "x" : 96, "y" : 192 },
         "labelOffset" : { "x" : 12, "y" : 44 }
       },
-      "connect" : { "id" : "f13", "to" : "f12" }
+      "connect" : [
+        { "id" : "f13", "to" : "f12" }
+      ]
     }, {
       "id" : "f6",
       "type" : "SubProcessCall",
@@ -73,9 +79,6 @@
       "config" : {
         "processCall" : "Functional Processes/editWorkflow:newAdhocWorkflow(Long)",
         "call" : {
-          "params" : [
-            { "name" : "originalTaskId", "type" : "Long" }
-          ],
           "map" : {
             "param.originalTaskId" : "in.originalTaskId"
           }
@@ -84,7 +87,9 @@
       "visual" : {
         "at" : { "x" : 448, "y" : 192 }
       },
-      "connect" : { "id" : "f9", "to" : "f8" }
+      "connect" : [
+        { "id" : "f9", "to" : "f8" }
+      ]
     }, {
       "id" : "f8",
       "type" : "TaskEnd",
@@ -106,7 +111,9 @@
       "visual" : {
         "at" : { "x" : 280, "y" : 64 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f12",
       "type" : "Script",
@@ -122,6 +129,8 @@
       "visual" : {
         "at" : { "x" : 280, "y" : 192 }
       },
-      "connect" : { "id" : "f7", "to" : "f6" }
+      "connect" : [
+        { "id" : "f7", "to" : "f6" }
+      ]
     } ]
 }

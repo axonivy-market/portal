@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "15B1EA24CCF377E8",
   "config" : {
     "data" : "internaltest.Data"
@@ -23,7 +23,9 @@
         "at" : { "x" : 64, "y" : 96 },
         "labelOffset" : { "x" : 86, "y" : 20 }
       },
-      "connect" : { "id" : "f9", "to" : "f8" }
+      "connect" : [
+        { "id" : "f9", "to" : "f8" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -41,7 +43,9 @@
         "at" : { "x" : 288, "y" : 96 },
         "labelOffset" : { "x" : 39, "y" : 20 }
       },
-      "connect" : { "id" : "f10", "to" : "f2" }
+      "connect" : [
+        { "id" : "f10", "to" : "f2" }
+      ]
     }, {
       "id" : "f4",
       "type" : "TaskEnd",
@@ -52,14 +56,12 @@
       "id" : "f5",
       "type" : "TaskSwitchGateway",
       "config" : {
-        "outLinks" : [ "TaskA.ivp" ],
+        "tasks" : [ {
+            "id" : "TaskA",
+            "name" : "<%=in1.taskName%>"
+          } ],
         "case" : {
           "name" : "<%=in1.caseName%>"
-        },
-        "tasks" : {
-          "TaskA" : {
-            "name" : "<%=in1.taskName%>"
-          }
         }
       },
       "visual" : {
@@ -85,7 +87,9 @@
       "visual" : {
         "at" : { "x" : 64, "y" : 192 }
       },
-      "connect" : { "id" : "f12", "to" : "f1" }
+      "connect" : [
+        { "id" : "f12", "to" : "f1" }
+      ]
     }, {
       "id" : "f2",
       "type" : "Script",
@@ -100,7 +104,9 @@
       "visual" : {
         "at" : { "x" : 288, "y" : 160 }
       },
-      "connect" : { "id" : "f6", "to" : "f5", "var" : "in1" }
+      "connect" : [
+        { "id" : "f6", "to" : "f5", "var" : "in1" }
+      ]
     }, {
       "id" : "f11",
       "type" : "RequestStart",
@@ -119,7 +125,9 @@
         "at" : { "x" : 448, "y" : 96 },
         "labelOffset" : { "x" : 60, "y" : 20 }
       },
-      "connect" : { "id" : "f14", "to" : "f13" }
+      "connect" : [
+        { "id" : "f14", "to" : "f13" }
+      ]
     }, {
       "id" : "f13",
       "type" : "TriggerCall",
@@ -130,7 +138,9 @@
       "visual" : {
         "at" : { "x" : 448, "y" : 192 }
       },
-      "connect" : { "id" : "f15", "to" : "f27", "var" : "in1" }
+      "connect" : [
+        { "id" : "f15", "to" : "f27", "var" : "in1" }
+      ]
     }, {
       "id" : "f17",
       "type" : "TaskEnd",
@@ -157,17 +167,17 @@
         "at" : { "x" : 612, "y" : 96 },
         "labelOffset" : { "x" : 53, "y" : 20 }
       },
-      "connect" : { "id" : "f21", "to" : "f20", "var" : "in1" }
+      "connect" : [
+        { "id" : "f21", "to" : "f20", "var" : "in1" }
+      ]
     }, {
       "id" : "f20",
       "type" : "TaskSwitchGateway",
       "config" : {
-        "outLinks" : [ "TaskA.ivp" ],
-        "tasks" : {
-          "TaskA" : {
+        "tasks" : [ {
+            "id" : "TaskA",
             "name" : "Make Pizza"
-          }
-        }
+          } ]
       },
       "visual" : {
         "at" : { "x" : 612, "y" : 192 }
@@ -192,7 +202,9 @@
         "at" : { "x" : 896, "y" : 96 },
         "labelOffset" : { "x" : 42, "y" : 20 }
       },
-      "connect" : { "id" : "f35", "to" : "f34", "var" : "in1" }
+      "connect" : [
+        { "id" : "f35", "to" : "f34", "var" : "in1" }
+      ]
     }, {
       "id" : "f25",
       "type" : "TaskEnd",
@@ -204,12 +216,10 @@
       "type" : "TaskSwitchGateway",
       "name" : "Eat",
       "config" : {
-        "outLinks" : [ "TaskA.ivp" ],
-        "tasks" : {
-          "TaskA" : {
+        "tasks" : [ {
+            "id" : "TaskA",
             "name" : "Eat Pizza"
-          }
-        }
+          } ]
       },
       "visual" : {
         "at" : { "x" : 448, "y" : 288 },
@@ -228,7 +238,9 @@
       "visual" : {
         "at" : { "x" : 612, "y" : 288 }
       },
-      "connect" : { "id" : "f23", "to" : "f22" }
+      "connect" : [
+        { "id" : "f23", "to" : "f22" }
+      ]
     }, {
       "id" : "f29",
       "type" : "RequestStart",
@@ -249,7 +261,9 @@
         "at" : { "x" : 768, "y" : 96 },
         "labelOffset" : { "x" : 39, "y" : 20 }
       },
-      "connect" : { "id" : "f33", "to" : "f32" }
+      "connect" : [
+        { "id" : "f33", "to" : "f32" }
+      ]
     }, {
       "id" : "f30",
       "type" : "TaskEnd",
@@ -273,19 +287,19 @@
       "visual" : {
         "at" : { "x" : 768, "y" : 224 }
       },
-      "connect" : { "id" : "f31", "to" : "f30" }
+      "connect" : [
+        { "id" : "f31", "to" : "f30" }
+      ]
     }, {
       "id" : "f34",
       "type" : "TaskSwitchGateway",
       "config" : {
-        "outLinks" : [ "TaskA.ivp" ],
+        "tasks" : [ {
+            "id" : "TaskA",
+            "name" : "Delivery Pizza"
+          } ],
         "case" : {
           "name" : "Delivery Pizza"
-        },
-        "tasks" : {
-          "TaskA" : {
-            "name" : "Delivery Pizza"
-          }
         }
       },
       "visual" : {
@@ -314,28 +328,31 @@
         "at" : { "x" : 1120, "y" : 96 },
         "labelOffset" : { "x" : 73, "y" : 20 }
       },
-      "connect" : { "id" : "f49", "to" : "f48" }
+      "connect" : [
+        { "id" : "f49", "to" : "f48" }
+      ]
     }, {
       "id" : "f37",
       "type" : "UserTask",
       "name" : "SaleDepartment",
       "config" : {
-        "dialogId" : "internaltest.ui.SaleDepartment",
-        "startMethod" : "start()",
-        "case" : {
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
-          ]
-        },
+        "dialog" : "internaltest.ui.SaleDepartment:start()",
         "task" : {
           "name" : "Work with sale department",
           "category" : "SALE/SIGNCONTRACT"
+        },
+        "case" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+          ]
         }
       },
       "visual" : {
         "at" : { "x" : 1120, "y" : 480 }
       },
-      "connect" : { "id" : "f40", "to" : "f39" }
+      "connect" : [
+        { "id" : "f40", "to" : "f39" }
+      ]
     }, {
       "id" : "f39",
       "type" : "TaskEnd",
@@ -359,7 +376,9 @@
       "visual" : {
         "at" : { "x" : 1120, "y" : 384 }
       },
-      "connect" : { "id" : "f38", "to" : "f37" }
+      "connect" : [
+        { "id" : "f38", "to" : "f37" }
+      ]
     }, {
       "id" : "f43",
       "type" : "SignalStartEvent",
@@ -371,23 +390,27 @@
         "at" : { "x" : 1296, "y" : 208 },
         "labelOffset" : { "x" : 52, "y" : 20 }
       },
-      "connect" : { "id" : "f46", "to" : "f44" }
+      "connect" : [
+        { "id" : "f46", "to" : "f44" }
+      ]
     }, {
       "id" : "f44",
       "type" : "TaskSwitchEvent",
       "config" : {
+        "task" : {
+          "name" : "Send email inform"
+        },
         "case" : {
           "name" : "Send mail inform",
           "category" : "SALE/SENDMAIL"
-        },
-        "task" : {
-          "name" : "Send email inform"
         }
       },
       "visual" : {
         "at" : { "x" : 1296, "y" : 304 }
       },
-      "connect" : { "id" : "f47", "to" : "f45" }
+      "connect" : [
+        { "id" : "f47", "to" : "f45" }
+      ]
     }, {
       "id" : "f45",
       "type" : "TaskEnd",
@@ -406,7 +429,9 @@
       "visual" : {
         "at" : { "x" : 1120, "y" : 192 }
       },
-      "connect" : { "id" : "f56", "to" : "f55" }
+      "connect" : [
+        { "id" : "f56", "to" : "f55" }
+      ]
     }, {
       "id" : "f50",
       "type" : "RequestStart",
@@ -416,7 +441,8 @@
         "outLink" : "startTriggerMail.ivp",
         "task" : {
           "responsible" : {
-            "role" : "SYSTEM"
+            "type" : "ROLE",
+            "activator" : "SYSTEM"
           }
         },
         "triggerEnabled" : true
@@ -425,7 +451,9 @@
         "at" : { "x" : 1440, "y" : 208 },
         "labelOffset" : { "x" : 75, "y" : 20 }
       },
-      "connect" : { "id" : "f54", "to" : "f53" }
+      "connect" : [
+        { "id" : "f54", "to" : "f53" }
+      ]
     }, {
       "id" : "f51",
       "type" : "TaskEnd",
@@ -436,20 +464,22 @@
       "id" : "f53",
       "type" : "TaskSwitchEvent",
       "config" : {
-        "case" : {
-          "name" : "Trigger mail",
-          "category" : "SALE/SENDMAIL"
-        },
         "task" : {
           "name" : "Trigger mail",
           "category" : "SALE/SENDMAIL",
           "skipTasklist" : true
+        },
+        "case" : {
+          "name" : "Trigger mail",
+          "category" : "SALE/SENDMAIL"
         }
       },
       "visual" : {
         "at" : { "x" : 1440, "y" : 304 }
       },
-      "connect" : { "id" : "f52", "to" : "f51" }
+      "connect" : [
+        { "id" : "f52", "to" : "f51" }
+      ]
     }, {
       "id" : "f55",
       "type" : "TriggerCall",
@@ -460,7 +490,9 @@
       "visual" : {
         "at" : { "x" : 1120, "y" : 288 }
       },
-      "connect" : { "id" : "f42", "to" : "f41" }
+      "connect" : [
+        { "id" : "f42", "to" : "f41" }
+      ]
     } ],
   "layout" : {
     "lanes" : [ {

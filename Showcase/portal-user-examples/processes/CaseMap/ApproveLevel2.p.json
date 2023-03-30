@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "170322322BB5393B",
   "config" : {
     "data" : "com.axonivy.portal.userexamples.Data"
@@ -26,7 +26,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -37,12 +39,13 @@
       "id" : "f3",
       "type" : "DialogCall",
       "config" : {
-        "dialogId" : "com.axonivy.portal.userexamples.credit.ApproveLevel2",
-        "startMethod" : "start()"
+        "dialog" : "com.axonivy.portal.userexamples.credit.ApproveLevel2:start()"
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     } ]
 }

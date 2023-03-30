@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "167CFB0D927CF955",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,14 +10,16 @@
       "type" : "HtmlDialogStart",
       "name" : "start",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "guid" : "167CEF3C0BEA1F15"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 96 },
         "labelOffset" : { "x" : -12, "y" : 35 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f3",
       "type" : "HtmlDialogEnd",
@@ -29,10 +31,10 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "collectProcesses()",
       "config" : {
-        "callSignature" : "collectProcesses",
+        "signature" : "collectProcesses",
         "result" : {
           "params" : [
-            { "name" : "userProcesses", "type" : "java.util.List<ch.ivy.addon.portalkit.configuration.UserProcess>" }
+            { "name" : "userProcesses", "type" : "java.util.List<ch.ivy.addon.portalkit.configuration.UserProcess>", "desc" : "" }
           ],
           "map" : {
             "result.userProcesses" : "in.userProcesses"
@@ -44,7 +46,9 @@
         "at" : { "x" : 96, "y" : 192 },
         "labelOffset" : { "x" : 11, "y" : 36 }
       },
-      "connect" : { "id" : "f14", "to" : "f6" }
+      "connect" : [
+        { "id" : "f14", "to" : "f6" }
+      ]
     }, {
       "id" : "f6",
       "type" : "SubProcessCall",
@@ -61,7 +65,9 @@
       "visual" : {
         "at" : { "x" : 232, "y" : 192 }
       },
-      "connect" : { "id" : "f11", "to" : "f10" }
+      "connect" : [
+        { "id" : "f11", "to" : "f10" }
+      ]
     }, {
       "id" : "f8",
       "type" : "HtmlDialogEnd",
@@ -103,7 +109,9 @@
         "at" : { "x" : 392, "y" : 192 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f9", "to" : "f12" }
+      "connect" : [
+        { "id" : "f9", "to" : "f12" }
+      ]
     }, {
       "id" : "f12",
       "type" : "Script",
@@ -125,20 +133,24 @@
         "at" : { "x" : 568, "y" : 192 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f13", "to" : "f8" }
+      "connect" : [
+        { "id" : "f13", "to" : "f8" }
+      ]
     }, {
       "id" : "f2",
       "type" : "HtmlDialogMethodStart",
       "name" : "generateProcessDisplayName()",
       "config" : {
-        "callSignature" : "generateProcessDisplayName",
+        "signature" : "generateProcessDisplayName",
         "guid" : "1762D3ECC0BAE855"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 320 },
         "labelOffset" : { "x" : 18, "y" : 41 }
       },
-      "connect" : { "id" : "f7", "to" : "f5" }
+      "connect" : [
+        { "id" : "f7", "to" : "f5" }
+      ]
     }, {
       "id" : "f5",
       "type" : "Script",
@@ -159,7 +171,9 @@
         "at" : { "x" : 248, "y" : 320 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f18", "to" : "f17" }
+      "connect" : [
+        { "id" : "f18", "to" : "f17" }
+      ]
     }, {
       "id" : "f15",
       "type" : "HtmlDialogEnd",
@@ -197,20 +211,24 @@
         "at" : { "x" : 576, "y" : 320 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f16", "to" : "f15" }
+      "connect" : [
+        { "id" : "f16", "to" : "f15" }
+      ]
     }, {
       "id" : "f24",
       "type" : "HtmlDialogMethodStart",
       "name" : "processDisplayNames()",
       "config" : {
-        "callSignature" : "processDisplayNames",
+        "signature" : "processDisplayNames",
         "guid" : "1762D45E9B96E592"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 448 },
         "labelOffset" : { "x" : 3, "y" : 40 }
       },
-      "connect" : { "id" : "f28", "to" : "f27" }
+      "connect" : [
+        { "id" : "f28", "to" : "f27" }
+      ]
     }, {
       "id" : "f25",
       "type" : "HtmlDialogEnd",
@@ -246,6 +264,8 @@
         "at" : { "x" : 256, "y" : 448 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f26", "to" : "f25" }
+      "connect" : [
+        { "id" : "f26", "to" : "f25" }
+      ]
     } ]
 }

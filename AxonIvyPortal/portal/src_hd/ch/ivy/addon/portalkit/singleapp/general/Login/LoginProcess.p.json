@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "14BE3DBF5F8C376B",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,21 +10,21 @@
       "type" : "HtmlDialogStart",
       "name" : "start(String)",
       "config" : {
-        "callSignature" : "start",
-        "result" : {
-          "params" : [
-            { "name" : "loginOk", "type" : "Boolean" }
-          ],
-          "map" : {
-            "result.loginOk" : "in.loginOk"
-          }
-        },
+        "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "callbackUrl", "type" : "String" }
+            { "name" : "callbackUrl", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.callbackUrl" : "param.callbackUrl"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "loginOk", "type" : "Boolean", "desc" : "" }
+          ],
+          "map" : {
+            "result.loginOk" : "in.loginOk"
           }
         },
         "guid" : "14739D9F00572FE2"
@@ -34,7 +34,9 @@
         "size" : { "width" : 20, "height" : 20 },
         "labelOffset" : { "x" : 53, "y" : 20 }
       },
-      "connect" : { "id" : "f14", "to" : "f7" }
+      "connect" : [
+        { "id" : "f14", "to" : "f7" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -54,7 +56,9 @@
         "size" : { "width" : 20, "height" : 20 },
         "labelOffset" : { "x" : 34, "y" : 20 }
       },
-      "connect" : { "id" : "f6", "to" : "f5" }
+      "connect" : [
+        { "id" : "f6", "to" : "f5" }
+      ]
     }, {
       "id" : "f5",
       "type" : "Script",
@@ -104,7 +108,9 @@
       "visual" : {
         "at" : { "x" : 224, "y" : 128 }
       },
-      "connect" : { "id" : "f9", "to" : "f8" }
+      "connect" : [
+        { "id" : "f9", "to" : "f8" }
+      ]
     }, {
       "id" : "f8",
       "type" : "Alternative",
@@ -130,7 +136,9 @@
       "visual" : {
         "at" : { "x" : 224, "y" : 320 }
       },
-      "connect" : { "id" : "f4", "to" : "f22" }
+      "connect" : [
+        { "id" : "f4", "to" : "f22" }
+      ]
     }, {
       "id" : "f13",
       "type" : "HtmlDialogEnd",
@@ -169,6 +177,8 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     } ]
 }

@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "1818977D467E3129",
   "config" : {
     "data" : "com.axonivy.portal.components.examples.ProcessHistoryExampleData"
@@ -17,7 +17,9 @@
         "at" : { "x" : 128, "y" : 64 },
         "labelOffset" : { "x" : 25, "y" : 38 }
       },
-      "connect" : { "id" : "f14", "to" : "f13" }
+      "connect" : [
+        { "id" : "f14", "to" : "f13" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -40,7 +42,9 @@
         "at" : { "x" : 128, "y" : 288 },
         "labelOffset" : { "x" : 20, "y" : 35 }
       },
-      "connect" : { "id" : "f5", "to" : "f4" }
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
     }, {
       "id" : "f4",
       "type" : "Script",
@@ -49,15 +53,17 @@
         "code name"
       ],
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : "ivy.case.setCategoryPath(\"Alpha Company\");"
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 344, "y" : 288 }
       },
-      "connect" : { "id" : "f7", "to" : "f6" }
+      "connect" : [
+        { "id" : "f7", "to" : "f6" }
+      ]
     }, {
       "id" : "f6",
       "type" : "SubProcessCall",
@@ -65,9 +71,6 @@
       "config" : {
         "processCall" : "Functional Processes/SetCaseBusinessEntity:call(String)",
         "call" : {
-          "params" : [
-            { "name" : "businessEntityId", "type" : "String" }
-          ],
           "map" : {
             "param.businessEntityId" : "\"alpha\""
           }
@@ -77,7 +80,9 @@
         "at" : { "x" : 520, "y" : 288 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f10", "to" : "f8" }
+      "connect" : [
+        { "id" : "f10", "to" : "f8" }
+      ]
     }, {
       "id" : "f8",
       "type" : "TaskSwitchEvent",
@@ -91,7 +96,9 @@
         "at" : { "x" : 704, "y" : 288 },
         "labelOffset" : { "x" : 19, "y" : 36 }
       },
-      "connect" : { "id" : "f11", "to" : "f9" }
+      "connect" : [
+        { "id" : "f11", "to" : "f9" }
+      ]
     }, {
       "id" : "f9",
       "type" : "TaskEnd",
@@ -120,13 +127,8 @@
       "type" : "DialogCall",
       "name" : "Alpha Company Process History",
       "config" : {
-        "dialogId" : "com.axonivy.portal.components.examples.ProcessHistoryExample",
-        "startMethod" : "start(Boolean,Boolean)",
+        "dialog" : "com.axonivy.portal.components.examples.ProcessHistoryExample:start(Boolean,Boolean)",
         "call" : {
-          "params" : [
-            { "name" : "showProcessHistoriesOfAlphaCompany", "type" : "Boolean" },
-            { "name" : "showProcessHistoriesOfBetaCompany", "type" : "Boolean" }
-          ],
           "map" : {
             "param.showProcessHistoriesOfAlphaCompany" : "true",
             "param.showProcessHistoriesOfBetaCompany" : "false"
@@ -137,7 +139,9 @@
         "at" : { "x" : 384, "y" : 64 },
         "size" : { "width" : 192, "height" : 60 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f15",
       "type" : "RequestStart",
@@ -151,19 +155,16 @@
         "at" : { "x" : 128, "y" : 416 },
         "labelOffset" : { "x" : 26, "y" : 36 }
       },
-      "connect" : { "id" : "f17", "to" : "f16" }
+      "connect" : [
+        { "id" : "f17", "to" : "f16" }
+      ]
     }, {
       "id" : "f16",
       "type" : "DialogCall",
       "name" : "Beta Company Process History",
       "config" : {
-        "dialogId" : "com.axonivy.portal.components.examples.ProcessHistoryExample",
-        "startMethod" : "start(Boolean,Boolean)",
+        "dialog" : "com.axonivy.portal.components.examples.ProcessHistoryExample:start(Boolean,Boolean)",
         "call" : {
-          "params" : [
-            { "name" : "showProcessHistoriesOfAlphaCompany", "type" : "Boolean" },
-            { "name" : "showProcessHistoriesOfBetaCompany", "type" : "Boolean" }
-          ],
           "map" : {
             "param.showProcessHistoriesOfAlphaCompany" : "false",
             "param.showProcessHistoriesOfBetaCompany" : "true"
@@ -174,7 +175,9 @@
         "at" : { "x" : 376, "y" : 416 },
         "size" : { "width" : 176, "height" : 60 }
       },
-      "connect" : { "id" : "f19", "to" : "f18" }
+      "connect" : [
+        { "id" : "f19", "to" : "f18" }
+      ]
     }, {
       "id" : "f18",
       "type" : "TaskEnd",
@@ -197,7 +200,9 @@
         "at" : { "x" : 128, "y" : 640 },
         "labelOffset" : { "x" : 13, "y" : 35 }
       },
-      "connect" : { "id" : "f22", "to" : "f21" }
+      "connect" : [
+        { "id" : "f22", "to" : "f21" }
+      ]
     }, {
       "id" : "f21",
       "type" : "Script",
@@ -206,15 +211,17 @@
         "code name"
       ],
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : "ivy.case.setCategoryPath(\"Beta Company\");"
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 344, "y" : 640 }
       },
-      "connect" : { "id" : "f24", "to" : "f23" }
+      "connect" : [
+        { "id" : "f24", "to" : "f23" }
+      ]
     }, {
       "id" : "f23",
       "type" : "Script",
@@ -233,7 +240,9 @@
         "at" : { "x" : 536, "y" : 640 },
         "size" : { "width" : 176, "height" : 60 }
       },
-      "connect" : { "id" : "f26", "to" : "f25" }
+      "connect" : [
+        { "id" : "f26", "to" : "f25" }
+      ]
     }, {
       "id" : "f25",
       "type" : "TaskEnd",
@@ -251,7 +260,9 @@
         "at" : { "x" : 128, "y" : 736 },
         "labelOffset" : { "x" : 25, "y" : 37 }
       },
-      "connect" : { "id" : "f29", "to" : "f28" }
+      "connect" : [
+        { "id" : "f29", "to" : "f28" }
+      ]
     }, {
       "id" : "f28",
       "type" : "SubProcessCall",
@@ -259,9 +270,6 @@
       "config" : {
         "processCall" : "Functional Processes/SetCaseBusinessEntity:call(String)",
         "call" : {
-          "params" : [
-            { "name" : "businessEntityId", "type" : "String" }
-          ],
           "map" : {
             "param.businessEntityId" : "\"beta\""
           }
@@ -271,7 +279,9 @@
         "at" : { "x" : 520, "y" : 736 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f31", "to" : "f30" }
+      "connect" : [
+        { "id" : "f31", "to" : "f30" }
+      ]
     }, {
       "id" : "f30",
       "type" : "TaskSwitchEvent",
@@ -285,7 +295,9 @@
         "at" : { "x" : 704, "y" : 736 },
         "labelOffset" : { "x" : 14, "y" : 36 }
       },
-      "connect" : { "id" : "f33", "to" : "f32" }
+      "connect" : [
+        { "id" : "f33", "to" : "f32" }
+      ]
     }, {
       "id" : "f32",
       "type" : "TaskEnd",
@@ -330,19 +342,16 @@
         "size" : { "width" : 32, "height" : 32 },
         "labelOffset" : { "x" : 47, "y" : 38 }
       },
-      "connect" : { "id" : "f39", "to" : "f37" }
+      "connect" : [
+        { "id" : "f39", "to" : "f37" }
+      ]
     }, {
       "id" : "f37",
       "type" : "DialogCall",
       "name" : "Alpha Company Process History",
       "config" : {
-        "dialogId" : "com.axonivy.portal.components.examples.serenity.ProcessHistoryExampleSerenity",
-        "startMethod" : "start(Boolean,Boolean)",
+        "dialog" : "com.axonivy.portal.components.examples.serenity.ProcessHistoryExampleSerenity:start(Boolean,Boolean)",
         "call" : {
-          "params" : [
-            { "name" : "showProcessHistoriesOfAlphaCompany", "type" : "Boolean" },
-            { "name" : "showProcessHistoriesOfBetaCompany", "type" : "Boolean" }
-          ],
           "map" : {
             "param.showProcessHistoriesOfAlphaCompany" : "true",
             "param.showProcessHistoriesOfBetaCompany" : "false"
@@ -353,19 +362,16 @@
         "at" : { "x" : 384, "y" : 192 },
         "size" : { "width" : 192, "height" : 60 }
       },
-      "connect" : { "id" : "f38", "to" : "f35" }
+      "connect" : [
+        { "id" : "f38", "to" : "f35" }
+      ]
     }, {
       "id" : "f40",
       "type" : "DialogCall",
       "name" : "Beta Company Process History",
       "config" : {
-        "dialogId" : "com.axonivy.portal.components.examples.serenity.ProcessHistoryExampleSerenity",
-        "startMethod" : "start(Boolean,Boolean)",
+        "dialog" : "com.axonivy.portal.components.examples.serenity.ProcessHistoryExampleSerenity:start(Boolean,Boolean)",
         "call" : {
-          "params" : [
-            { "name" : "showProcessHistoriesOfAlphaCompany", "type" : "Boolean" },
-            { "name" : "showProcessHistoriesOfBetaCompany", "type" : "Boolean" }
-          ],
           "map" : {
             "param.showProcessHistoriesOfAlphaCompany" : "false",
             "param.showProcessHistoriesOfBetaCompany" : "true"
@@ -376,7 +382,9 @@
         "at" : { "x" : 376, "y" : 544 },
         "size" : { "width" : 176, "height" : 60 }
       },
-      "connect" : { "id" : "f44", "to" : "f41" }
+      "connect" : [
+        { "id" : "f44", "to" : "f41" }
+      ]
     }, {
       "id" : "f41",
       "type" : "TaskEnd",
@@ -397,7 +405,9 @@
         "at" : { "x" : 128, "y" : 544 },
         "labelOffset" : { "x" : 48, "y" : 36 }
       },
-      "connect" : { "id" : "f43", "to" : "f40" }
+      "connect" : [
+        { "id" : "f43", "to" : "f40" }
+      ]
     } ],
   "layout" : {
     "lanes" : [ {

@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "1624D1F5CBEA5332",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.customization.AdditionalCaseDetailPage"
@@ -31,7 +31,9 @@
         "at" : { "x" : 136, "y" : 184 },
         "description" : "Investment Request for Customized Case Detail Page example"
       },
-      "connect" : { "id" : "f6", "to" : "f5" }
+      "connect" : [
+        { "id" : "f6", "to" : "f5" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -42,7 +44,6 @@
       "id" : "f3",
       "type" : "TaskSwitchEvent",
       "config" : {
-        "outLinks" : [ "TaskA.ivp" ],
         "task" : {
           "name" : "<%=ivy.cms.co(\"/Processes/CreateInvestment/Tasks/Request/name\")%>"
         }
@@ -50,7 +51,9 @@
       "visual" : {
         "at" : { "x" : 456, "y" : 184 }
       },
-      "connect" : { "id" : "f2", "to" : "f1", "condition" : "ivp==\"TaskA.ivp\"" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1", "condition" : "ivp==\"TaskA.ivp\"" }
+      ]
     }, {
       "id" : "f5",
       "type" : "SubProcessCall",
@@ -58,9 +61,6 @@
       "config" : {
         "processCall" : "Functional Processes/SetAdditonalCaseDetailPage:call(String)",
         "call" : {
-          "params" : [
-            { "name" : "linkToAddtionalCaseDetailPage", "type" : "String" }
-          ],
           "map" : {
             "param.linkToAddtionalCaseDetailPage" : "\"Start Processes/AdditionalCaseDetailPage/showInvestmentRequestCustomFields.ivp\""
           }
@@ -70,7 +70,9 @@
         "at" : { "x" : 320, "y" : 184 },
         "size" : { "width" : 176, "height" : 60 }
       },
-      "connect" : { "id" : "f4", "to" : "f3", "var" : "in1" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3", "var" : "in1" }
+      ]
     }, {
       "id" : "f7",
       "type" : "RequestStart",
@@ -96,7 +98,9 @@
       "visual" : {
         "at" : { "x" : 144, "y" : 64 }
       },
-      "connect" : { "id" : "f12", "to" : "f10" }
+      "connect" : [
+        { "id" : "f12", "to" : "f10" }
+      ]
     }, {
       "id" : "f8",
       "type" : "TaskEnd",
@@ -111,12 +115,8 @@
         "Additional Case Details Page"
       ],
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.customization.InvestmentRequestCaseDetailPage",
-        "startMethod" : "start(ch.ivyteam.ivy.workflow.ICase)",
+        "dialog" : "com.axonivy.portal.developerexamples.customization.InvestmentRequestCaseDetailPage:start(ch.ivyteam.ivy.workflow.ICase)",
         "call" : {
-          "params" : [
-            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
-          ],
           "map" : {
             "param.iCase" : "in.iCase"
           }
@@ -126,7 +126,9 @@
         "at" : { "x" : 572, "y" : 64 },
         "size" : { "width" : 192, "height" : 60 }
       },
-      "connect" : { "id" : "f11", "to" : "f8" }
+      "connect" : [
+        { "id" : "f11", "to" : "f8" }
+      ]
     }, {
       "id" : "f13",
       "type" : "ProcessAnnotation",
@@ -164,6 +166,8 @@
       "visual" : {
         "at" : { "x" : 352, "y" : 64 }
       },
-      "connect" : { "id" : "f14", "to" : "f9" }
+      "connect" : [
+        { "id" : "f14", "to" : "f9" }
+      ]
     } ]
 }

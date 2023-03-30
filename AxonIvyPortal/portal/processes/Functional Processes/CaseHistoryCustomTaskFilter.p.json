@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "14E52ACF4B6D37BF",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "filterTasks(List<ITask>)",
       "config" : {
-        "callSignature" : "call",
+        "signature" : "call",
         "input" : {
           "params" : [
-            { "name" : "tasks", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>" }
+            { "name" : "tasks", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>", "desc" : "" }
           ],
           "map" : {
             "out.tasks" : "param.tasks"
@@ -21,7 +21,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "tasks", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>" }
+            { "name" : "tasks", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>", "desc" : "" }
           ],
           "map" : {
             "result.tasks" : "in.tasks"
@@ -32,7 +32,9 @@
         "at" : { "x" : 64, "y" : 96 },
         "labelOffset" : { "x" : 89, "y" : 14 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",

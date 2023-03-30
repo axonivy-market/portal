@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "1626C02D46BF5153",
   "config" : {
     "data" : "ch.ivy.add.portalkit.Data"
@@ -23,7 +23,9 @@
         "labelOffset" : { "x" : 104, "y" : 20 },
         "description" : "This is a scheduled process of Portal"
       },
-      "connect" : { "id" : "f4", "to" : "f2" }
+      "connect" : [
+        { "id" : "f4", "to" : "f2" }
+      ]
     }, {
       "id" : "f2",
       "type" : "Script",
@@ -32,19 +34,21 @@
         "system cases"
       ],
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.service.DeleteFinishedHiddenCasesService;",
             "DeleteFinishedHiddenCasesService deletFinishedHiddenCasesService = new DeleteFinishedHiddenCasesService();",
             "deletFinishedHiddenCasesService.deleteFinishedHiddenCases();"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 120, "y" : 224 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f1", "to" : "f6" }
+      "connect" : [
+        { "id" : "f1", "to" : "f6" }
+      ]
     } ]
 }

@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "15DC1795219AF4F0",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,11 +10,20 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "autoCompleteForResponsible(String)",
       "config" : {
-        "callSignature" : "autoCompleteForResponsible",
+        "signature" : "autoCompleteForResponsible",
+        "input" : {
+          "params" : [
+            { "name" : "query", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.queryAutoComplete" : "param.query"
+          }
+        },
         "result" : {
           "params" : [
-            { "name" : "responsibles", "type" : "java.util.List<com.axonivy.portal.components.dto.SecurityMemberDTO>" }
+            { "name" : "responsibles", "type" : "java.util.List<com.axonivy.portal.components.dto.SecurityMemberDTO>", "desc" : "" }
           ],
+          "map" : { },
           "code" : [
             "import ch.ivy.addon.portalkit.constant.PortalConstants;",
             "import ch.ivy.addon.portalkit.util.SecurityMemberUtils;",
@@ -22,21 +31,15 @@
             "result.responsibles = SecurityMemberUtils.findSecurityMembers(in.queryAutoComplete, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);"
           ]
         },
-        "input" : {
-          "params" : [
-            { "name" : "query", "type" : "String" }
-          ],
-          "map" : {
-            "out.queryAutoComplete" : "param.query"
-          }
-        },
         "guid" : "15FB4A9997759979"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 192 },
         "labelOffset" : { "x" : 54, "y" : 33 }
       },
-      "connect" : { "id" : "f8", "to" : "f7" }
+      "connect" : [
+        { "id" : "f8", "to" : "f7" }
+      ]
     }, {
       "id" : "f7",
       "type" : "HtmlDialogEnd",
@@ -48,13 +51,15 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "guid" : "16827CB81F8394D6"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 96 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",

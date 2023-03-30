@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "16250B8F9D64A11E",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "call()",
       "config" : {
-        "callSignature" : "call",
+        "signature" : "call",
         "result" : {
           "params" : [
-            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" }
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel", "desc" : "" }
           ],
           "map" : {
             "result.dataModel" : "in.dataModel"
@@ -23,7 +23,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -44,7 +46,9 @@
         "at" : { "x" : 400, "y" : 210 },
         "size" : { "width" : 480, "height" : 92 }
       },
-      "connect" : { "id" : "f5", "to" : "f3" }
+      "connect" : [
+        { "id" : "f5", "to" : "f3" }
+      ]
     }, {
       "id" : "f3",
       "type" : "Script",
@@ -65,6 +69,8 @@
         "at" : { "x" : 224, "y" : 64 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     } ]
 }

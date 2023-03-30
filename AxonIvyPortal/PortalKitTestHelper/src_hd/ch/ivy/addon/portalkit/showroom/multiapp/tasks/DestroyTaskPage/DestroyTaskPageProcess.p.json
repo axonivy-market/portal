@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "1559AE0A76284C44",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,14 +10,16 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "guid" : "1559AE0A7933579C"
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 96 },
         "labelOffset" : { "x" : 38, "y" : 20 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -35,7 +37,9 @@
         "at" : { "x" : 160, "y" : 96 },
         "labelOffset" : { "x" : 37, "y" : 20 }
       },
-      "connect" : { "id" : "f5", "to" : "f4" }
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
     }, {
       "id" : "f4",
       "type" : "HtmlDialogExit",
@@ -47,19 +51,22 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "destroyTask(Long)",
       "config" : {
-        "callSignature" : "destroyTask",
-        "guid" : "1559AE82C10CF58D",
+        "signature" : "destroyTask",
         "input" : {
           "params" : [
-            { "name" : "taskId", "type" : "Long" }
-          ]
-        }
+            { "name" : "taskId", "type" : "Long", "desc" : "" }
+          ],
+          "map" : { }
+        },
+        "guid" : "1559AE82C10CF58D"
       },
       "visual" : {
         "at" : { "x" : 256, "y" : 96 },
         "labelOffset" : { "x" : 73, "y" : 20 }
       },
-      "connect" : { "id" : "f10", "to" : "f9" }
+      "connect" : [
+        { "id" : "f10", "to" : "f9" }
+      ]
     }, {
       "id" : "f7",
       "type" : "HtmlDialogEnd",
@@ -101,6 +108,8 @@
       "visual" : {
         "at" : { "x" : 256, "y" : 160 }
       },
-      "connect" : { "id" : "f8", "to" : "f7" }
+      "connect" : [
+        { "id" : "f8", "to" : "f7" }
+      ]
     } ]
 }

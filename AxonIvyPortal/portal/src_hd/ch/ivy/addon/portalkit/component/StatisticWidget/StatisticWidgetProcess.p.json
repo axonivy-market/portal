@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "1521B28EE98E8444",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "HtmlDialogStart",
       "name" : "start(List<StatisticChart>)",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "statisticChartList", "type" : "java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>" }
+            { "name" : "statisticChartList", "type" : "java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>", "desc" : "" }
           ],
           "map" : {
             "out.createMode" : "false"
@@ -34,14 +34,17 @@
       "visual" : {
         "at" : { "x" : 94, "y" : 64 }
       },
-      "connect" : { "id" : "f49", "to" : "f47" }
+      "connect" : [
+        { "id" : "f49", "to" : "f47" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogMethodStart",
       "name" : "switchMode()",
       "config" : {
-        "callSignature" : "switchMode",
+        "signature" : "switchMode",
         "input" : {
+          "map" : { },
           "code" : "out.compactMode = !out.compactMode;"
         },
         "guid" : "16034D80ACC379F5"
@@ -49,7 +52,9 @@
       "visual" : {
         "at" : { "x" : 94, "y" : 256 }
       },
-      "connect" : { "id" : "f3", "to" : "f2" }
+      "connect" : [
+        { "id" : "f3", "to" : "f2" }
+      ]
     }, {
       "id" : "f2",
       "type" : "HtmlDialogEnd",
@@ -61,10 +66,10 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "setCompactMode(Boolean)",
       "config" : {
-        "callSignature" : "setCompactMode",
+        "signature" : "setCompactMode",
         "input" : {
           "params" : [
-            { "name" : "compactMode", "type" : "Boolean" }
+            { "name" : "compactMode", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
             "out.compactMode" : "param.compactMode"
@@ -75,7 +80,9 @@
       "visual" : {
         "at" : { "x" : 94, "y" : 384 }
       },
-      "connect" : { "id" : "f35", "to" : "f34" }
+      "connect" : [
+        { "id" : "f35", "to" : "f34" }
+      ]
     }, {
       "id" : "f5",
       "type" : "HtmlDialogEnd",
@@ -107,7 +114,9 @@
       "visual" : {
         "at" : { "x" : 94, "y" : 448 }
       },
-      "connect" : { "id" : "f13", "to" : "f10" }
+      "connect" : [
+        { "id" : "f13", "to" : "f10" }
+      ]
     }, {
       "id" : "f15",
       "type" : "HtmlDialogEnd",
@@ -130,7 +139,9 @@
       "visual" : {
         "at" : { "x" : 94, "y" : 513 }
       },
-      "connect" : { "id" : "f17", "to" : "f15" }
+      "connect" : [
+        { "id" : "f17", "to" : "f15" }
+      ]
     }, {
       "id" : "f18",
       "type" : "HtmlDialogEnd",
@@ -153,7 +164,9 @@
       "visual" : {
         "at" : { "x" : 94, "y" : 577 }
       },
-      "connect" : { "id" : "f20", "to" : "f18" }
+      "connect" : [
+        { "id" : "f20", "to" : "f18" }
+      ]
     }, {
       "id" : "f9",
       "type" : "HtmlDialogEventStart",
@@ -171,7 +184,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 640 }
       },
-      "connect" : { "id" : "f14", "to" : "f11" }
+      "connect" : [
+        { "id" : "f14", "to" : "f11" }
+      ]
     }, {
       "id" : "f11",
       "type" : "HtmlDialogEnd",
@@ -183,7 +198,7 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "drillDownExpiryListener()",
       "config" : {
-        "callSignature" : "drillDownExpiryListener",
+        "signature" : "drillDownExpiryListener",
         "input" : {
           "map" : {
             "out.isBackFromDrilldown" : "false",
@@ -195,7 +210,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 704 }
       },
-      "connect" : { "id" : "f23", "to" : "f22" }
+      "connect" : [
+        { "id" : "f23", "to" : "f22" }
+      ]
     }, {
       "id" : "f22",
       "type" : "HtmlDialogEnd",
@@ -218,7 +235,9 @@
       "visual" : {
         "at" : { "x" : 824, "y" : 160 }
       },
-      "connect" : { "id" : "f25", "to" : "f7" }
+      "connect" : [
+        { "id" : "f25", "to" : "f7" }
+      ]
     }, {
       "id" : "f28",
       "type" : "HtmlDialogEventStart",
@@ -230,7 +249,9 @@
         "at" : { "x" : 94, "y" : 160 },
         "labelOffset" : { "x" : 8, "y" : 32 }
       },
-      "connect" : { "id" : "f32", "to" : "f31" }
+      "connect" : [
+        { "id" : "f32", "to" : "f31" }
+      ]
     }, {
       "id" : "f31",
       "type" : "Script",
@@ -252,7 +273,9 @@
         "at" : { "x" : 256, "y" : 160 },
         "size" : { "width" : 120, "height" : 48 }
       },
-      "connect" : { "id" : "f43", "to" : "f26" }
+      "connect" : [
+        { "id" : "f43", "to" : "f26" }
+      ]
     }, {
       "id" : "f30",
       "type" : "Script",
@@ -261,7 +284,6 @@
         "to creating new charts"
       ],
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.enums.PortalPermission;",
@@ -270,13 +292,16 @@
             "in.canCreateNewCharts = PermissionUtils.hasPortalPermission(PortalPermission.STATISTIC_ADD_DASHBOARD_CHART);",
             "in.canAnalyzeTask = PermissionUtils.hasPortalPermission(PortalPermission.STATISTIC_ANALYZE_TASK);"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 560, "y" : 320 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f39", "to" : "f5", "via" : [ { "x" : 736, "y" : 320 } ] }
+      "connect" : [
+        { "id" : "f39", "to" : "f5", "via" : [ { "x" : 736, "y" : 320 } ] }
+      ]
     }, {
       "id" : "f34",
       "type" : "Alternative",
@@ -315,7 +340,9 @@
       "visual" : {
         "at" : { "x" : 384, "y" : 320 }
       },
-      "connect" : { "id" : "f33", "to" : "f30" }
+      "connect" : [
+        { "id" : "f33", "to" : "f30" }
+      ]
     }, {
       "id" : "f29",
       "type" : "HtmlDialogEventStart",
@@ -326,7 +353,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 784 }
       },
-      "connect" : { "id" : "f42", "to" : "f41" }
+      "connect" : [
+        { "id" : "f42", "to" : "f41" }
+      ]
     }, {
       "id" : "f37",
       "type" : "HtmlDialogEnd",
@@ -338,7 +367,6 @@
       "type" : "Script",
       "name" : "Redirect to analysis page",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import java.util.HashMap;",
@@ -348,13 +376,16 @@
             "String taskAnalysisUrl = PortalNavigator.buildUrlByKeyword(\"showTaskAnalysis.ivp\", \"Start Processes/PortalStart/showTaskAnalysis.ivp\", new HashMap());",
             "FacesContext.getCurrentInstance().getExternalContext().redirect(taskAnalysisUrl);"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 288, "y" : 784 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f40", "to" : "f37" }
+      "connect" : [
+        { "id" : "f40", "to" : "f37" }
+      ]
     }, {
       "id" : "f44",
       "type" : "Script",
@@ -374,7 +405,9 @@
         "at" : { "x" : 480, "y" : 384 },
         "size" : { "width" : 160, "height" : 60 }
       },
-      "connect" : { "id" : "f6", "to" : "f5" }
+      "connect" : [
+        { "id" : "f6", "to" : "f5" }
+      ]
     }, {
       "id" : "f47",
       "type" : "HtmlDialogEnd",
@@ -386,7 +419,7 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "drillDownCasesByCategoryListener()",
       "config" : {
-        "callSignature" : "drillDownCasesByCategoryListener",
+        "signature" : "drillDownCasesByCategoryListener",
         "input" : {
           "map" : {
             "out.isBackFromDrilldown" : "false",
@@ -399,7 +432,9 @@
         "at" : { "x" : 376, "y" : 448 },
         "labelOffset" : { "x" : 42, "y" : 35 }
       },
-      "connect" : { "id" : "f27", "to" : "f24" }
+      "connect" : [
+        { "id" : "f27", "to" : "f24" }
+      ]
     }, {
       "id" : "f24",
       "type" : "HtmlDialogEnd",
@@ -424,7 +459,9 @@
         "at" : { "x" : 376, "y" : 520 },
         "labelOffset" : { "x" : 27, "y" : 35 }
       },
-      "connect" : { "id" : "f52", "to" : "f51" }
+      "connect" : [
+        { "id" : "f52", "to" : "f51" }
+      ]
     }, {
       "id" : "f51",
       "type" : "HtmlDialogEnd",

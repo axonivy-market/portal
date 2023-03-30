@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "14DE09882B540AD5",
   "config" : {
     "data" : "portalKit_test.GrantPermissionsData"
@@ -17,7 +17,9 @@
         "at" : { "x" : 80, "y" : 96 },
         "labelOffset" : { "x" : 53, "y" : -16 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -28,7 +30,6 @@
       "id" : "f3",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -37,12 +38,15 @@
             "",
             "ISecurityContext.current().securityDescriptor().grantPermission(IPermission.TASK_WRITE_EXPIRY_TIMESTAMP, ivy.session.getSessionUser());"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 80, "y" : 224 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f10",
       "type" : "RequestStart",
@@ -56,24 +60,28 @@
         "at" : { "x" : 408, "y" : 96 },
         "labelOffset" : { "x" : 28, "y" : -11 }
       },
-      "connect" : { "id" : "f15", "to" : "f14" }
+      "connect" : [
+        { "id" : "f15", "to" : "f14" }
+      ]
     }, {
       "id" : "f14",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.test.util.SecurityUtils;",
             "",
             "SecurityUtils.updatePermissionsOfTestUsers();"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 408, "y" : 193 }
       },
-      "connect" : { "id" : "f12", "to" : "f11" }
+      "connect" : [
+        { "id" : "f12", "to" : "f11" }
+      ]
     }, {
       "id" : "f11",
       "type" : "TaskEnd",
@@ -93,12 +101,13 @@
         "at" : { "x" : 79, "y" : 464 },
         "labelOffset" : { "x" : 81, "y" : -13 }
       },
-      "connect" : { "id" : "f8", "to" : "f6" }
+      "connect" : [
+        { "id" : "f8", "to" : "f6" }
+      ]
     }, {
       "id" : "f6",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -107,12 +116,15 @@
             "",
             "ISecurityContext.current().securityDescriptor().grantPermission(IPermission.TASK_READ_ALL, ivy.session.getSessionUser());"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 168, "y" : 464 }
       },
-      "connect" : { "id" : "f9", "to" : "f7", "via" : [ { "x" : 408, "y" : 464 } ] }
+      "connect" : [
+        { "id" : "f9", "to" : "f7", "via" : [ { "x" : 408, "y" : 464 } ] }
+      ]
     }, {
       "id" : "f13",
       "type" : "RequestStart",
@@ -126,12 +138,13 @@
         "at" : { "x" : 79, "y" : 527 },
         "labelOffset" : { "x" : 82, "y" : -11 }
       },
-      "connect" : { "id" : "f19", "to" : "f17" }
+      "connect" : [
+        { "id" : "f19", "to" : "f17" }
+      ]
     }, {
       "id" : "f17",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.IPermission;",
@@ -139,17 +152,19 @@
             "",
             "ISecurityContext.current().securityDescriptor().grantPermission(IPermission.CASE_READ_ALL, ivy.session.getSessionUser());"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 175, "y" : 527 }
       },
-      "connect" : { "id" : "f16", "to" : "f7" }
+      "connect" : [
+        { "id" : "f16", "to" : "f7" }
+      ]
     }, {
       "id" : "f20",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.IPermission;",
@@ -157,12 +172,15 @@
             "",
             "ISecurityContext.current().securityDescriptor().grantPermission(IPermission.TASK_READ_OWN_CASE_TASKS, ivy.session.getSessionUser());"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 175, "y" : 594 }
       },
-      "connect" : { "id" : "f18", "to" : "f7", "via" : [ { "x" : 408, "y" : 594 } ] }
+      "connect" : [
+        { "id" : "f18", "to" : "f7", "via" : [ { "x" : 408, "y" : 594 } ] }
+      ]
     }, {
       "id" : "f21",
       "type" : "RequestStart",
@@ -176,7 +194,9 @@
         "at" : { "x" : 79, "y" : 594 },
         "labelOffset" : { "x" : 107, "y" : -13 }
       },
-      "connect" : { "id" : "f24", "to" : "f20" }
+      "connect" : [
+        { "id" : "f24", "to" : "f20" }
+      ]
     }, {
       "id" : "f7",
       "type" : "TaskEnd",
@@ -187,7 +207,6 @@
       "id" : "f22",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.IPermission;",
@@ -197,12 +216,15 @@
             "ISecurityContext.current().securityDescriptor().denyPermission(IPermission.TASK_READ_ALL, ivy.session.getSessionUser());",
             "ISecurityContext.current().securityDescriptor().denyPermission(IPermission.CASE_READ_ALL, ivy.session.getSessionUser());"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 176, "y" : 653 }
       },
-      "connect" : { "id" : "f26", "to" : "f7", "via" : [ { "x" : 408, "y" : 653 } ] }
+      "connect" : [
+        { "id" : "f26", "to" : "f7", "via" : [ { "x" : 408, "y" : 653 } ] }
+      ]
     }, {
       "id" : "f23",
       "type" : "RequestStart",
@@ -216,7 +238,9 @@
         "at" : { "x" : 80, "y" : 653 },
         "labelOffset" : { "x" : 62, "y" : -13 }
       },
-      "connect" : { "id" : "f25", "to" : "f22" }
+      "connect" : [
+        { "id" : "f25", "to" : "f22" }
+      ]
     }, {
       "id" : "f27",
       "type" : "RequestStart",
@@ -229,7 +253,9 @@
         "at" : { "x" : 80, "y" : 704 },
         "labelOffset" : { "x" : 84, "y" : 40 }
       },
-      "connect" : { "id" : "f32", "to" : "f31" }
+      "connect" : [
+        { "id" : "f32", "to" : "f31" }
+      ]
     }, {
       "id" : "f28",
       "type" : "RequestStart",
@@ -242,12 +268,13 @@
         "at" : { "x" : 80, "y" : 768 },
         "labelOffset" : { "x" : 85, "y" : 35 }
       },
-      "connect" : { "id" : "f34", "to" : "f33" }
+      "connect" : [
+        { "id" : "f34", "to" : "f33" }
+      ]
     }, {
       "id" : "f31",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.IPermission;",
@@ -256,18 +283,20 @@
             "ISecurityContext.current().securityDescriptor().grantPermission(IPermission.DOCUMENT_WRITE, ivy.session.getSessionUser());",
             "ISecurityContext.current().securityDescriptor().grantPermission(IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE, ivy.session.getSessionUser());"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 176, "y" : 704 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f29", "to" : "f7", "via" : [ { "x" : 408, "y" : 704 } ] }
+      "connect" : [
+        { "id" : "f29", "to" : "f7", "via" : [ { "x" : 408, "y" : 704 } ] }
+      ]
     }, {
       "id" : "f33",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.IPermission;",
@@ -276,13 +305,16 @@
             "ISecurityContext.current().securityDescriptor().denyPermission(IPermission.DOCUMENT_WRITE, ivy.session.getSessionUser());",
             "ISecurityContext.current().securityDescriptor().denyPermission(IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE, ivy.session.getSessionUser());"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 176, "y" : 768 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f30", "to" : "f7", "via" : [ { "x" : 408, "y" : 768 } ] }
+      "connect" : [
+        { "id" : "f30", "to" : "f7", "via" : [ { "x" : 408, "y" : 768 } ] }
+      ]
     }, {
       "id" : "f35",
       "type" : "RequestStart",
@@ -295,12 +327,13 @@
         "at" : { "x" : 64, "y" : 848 },
         "labelOffset" : { "x" : 97, "y" : 37 }
       },
-      "connect" : { "id" : "f38", "to" : "f37" }
+      "connect" : [
+        { "id" : "f38", "to" : "f37" }
+      ]
     }, {
       "id" : "f37",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -317,13 +350,16 @@
             "",
             "ISecurityContext.current().securityDescriptor().denyPermission(IPermission.TASK_WRITE_ACTIVATOR, ivy.session.getSessionUser());"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 176, "y" : 848 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f36", "to" : "f7", "via" : [ { "x" : 408, "y" : 848 } ] }
+      "connect" : [
+        { "id" : "f36", "to" : "f7", "via" : [ { "x" : 408, "y" : 848 } ] }
+      ]
     }, {
       "id" : "f39",
       "type" : "RequestStart",
@@ -337,12 +373,13 @@
         "size" : { "width" : 32, "height" : 32 },
         "labelOffset" : { "x" : 88, "y" : 45 }
       },
-      "connect" : { "id" : "f42", "to" : "f41" }
+      "connect" : [
+        { "id" : "f42", "to" : "f41" }
+      ]
     }, {
       "id" : "f41",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -357,13 +394,16 @@
             "}",
             "ISecurityContext.current().securityDescriptor().grantPermission(IPermission.TASK_WRITE_ACTIVATOR, ivy.session.getSessionUser());"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 176, "y" : 944 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f40", "to" : "f7", "via" : [ { "x" : 408, "y" : 944 } ] }
+      "connect" : [
+        { "id" : "f40", "to" : "f7", "via" : [ { "x" : 408, "y" : 944 } ] }
+      ]
     }, {
       "id" : "f43",
       "type" : "RequestStart",
@@ -376,7 +416,9 @@
         "at" : { "x" : 48, "y" : 1040 },
         "labelOffset" : { "x" : 45, "y" : 41 }
       },
-      "connect" : { "id" : "f44", "to" : "f45" }
+      "connect" : [
+        { "id" : "f44", "to" : "f45" }
+      ]
     }, {
       "id" : "f47",
       "type" : "RequestStart",
@@ -389,12 +431,13 @@
         "at" : { "x" : 48, "y" : 1136 },
         "labelOffset" : { "x" : 55, "y" : 50 }
       },
-      "connect" : { "id" : "f48", "to" : "f49" }
+      "connect" : [
+        { "id" : "f48", "to" : "f49" }
+      ]
     }, {
       "id" : "f49",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -457,13 +500,16 @@
             "      ISecurityContext.current().securityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "    }"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 200, "y" : 1136 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f50", "to" : "f7", "via" : [ { "x" : 408, "y" : 1136 } ] }
+      "connect" : [
+        { "id" : "f50", "to" : "f7", "via" : [ { "x" : 408, "y" : 1136 } ] }
+      ]
     }, {
       "id" : "f60",
       "type" : "RequestStart",
@@ -485,12 +531,13 @@
         "at" : { "x" : 48, "y" : 1232 },
         "labelOffset" : { "x" : 73, "y" : 38 }
       },
-      "connect" : { "id" : "f64", "to" : "f63" }
+      "connect" : [
+        { "id" : "f64", "to" : "f63" }
+      ]
     }, {
       "id" : "f63",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -504,18 +551,20 @@
             "  ISecurityContext.current().securityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 200, "y" : 1232 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f66", "to" : "f7", "via" : [ { "x" : 408, "y" : 1232 } ] }
+      "connect" : [
+        { "id" : "f66", "to" : "f7", "via" : [ { "x" : 408, "y" : 1232 } ] }
+      ]
     }, {
       "id" : "f62",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -530,18 +579,20 @@
             "  ISecurityContext.current().securityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 200, "y" : 1296 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f67", "to" : "f7", "via" : [ { "x" : 408, "y" : 1296 } ] }
+      "connect" : [
+        { "id" : "f67", "to" : "f7", "via" : [ { "x" : 408, "y" : 1296 } ] }
+      ]
     }, {
       "id" : "f45",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -604,13 +655,16 @@
             "      ISecurityContext.current().securityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "    }"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 200, "y" : 1040 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f46", "to" : "f7", "via" : [ { "x" : 408, "y" : 1040 } ] }
+      "connect" : [
+        { "id" : "f46", "to" : "f7", "via" : [ { "x" : 408, "y" : 1040 } ] }
+      ]
     }, {
       "id" : "f61",
       "type" : "RequestStart",
@@ -632,7 +686,9 @@
         "at" : { "x" : 48, "y" : 1296 },
         "labelOffset" : { "x" : 77, "y" : 40 }
       },
-      "connect" : { "id" : "f65", "to" : "f62" }
+      "connect" : [
+        { "id" : "f65", "to" : "f62" }
+      ]
     }, {
       "id" : "f51",
       "type" : "RequestStart",
@@ -645,7 +701,9 @@
         "at" : { "x" : 48, "y" : 1360 },
         "labelOffset" : { "x" : 82, "y" : 41 }
       },
-      "connect" : { "id" : "f58", "to" : "f57" }
+      "connect" : [
+        { "id" : "f58", "to" : "f57" }
+      ]
     }, {
       "id" : "f52",
       "type" : "RequestStart",
@@ -658,12 +716,13 @@
         "at" : { "x" : 48, "y" : 1424 },
         "labelOffset" : { "x" : 82, "y" : 38 }
       },
-      "connect" : { "id" : "f55", "to" : "f54" }
+      "connect" : [
+        { "id" : "f55", "to" : "f54" }
+      ]
     }, {
       "id" : "f57",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -692,18 +751,20 @@
             "  ISecurityContext.current().securityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 200, "y" : 1360 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f59", "to" : "f7", "via" : [ { "x" : 408, "y" : 1360 } ] }
+      "connect" : [
+        { "id" : "f59", "to" : "f7", "via" : [ { "x" : 408, "y" : 1360 } ] }
+      ]
     }, {
       "id" : "f54",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -733,13 +794,16 @@
             "  ISecurityContext.current().securityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 200, "y" : 1424 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f56", "to" : "f7", "via" : [ { "x" : 408, "y" : 1424 } ] }
+      "connect" : [
+        { "id" : "f56", "to" : "f7", "via" : [ { "x" : 408, "y" : 1424 } ] }
+      ]
     }, {
       "id" : "f68",
       "type" : "RequestStart",
@@ -760,12 +824,13 @@
         "at" : { "x" : 48, "y" : 1488 },
         "labelOffset" : { "x" : 57, "y" : 38 }
       },
-      "connect" : { "id" : "f77", "to" : "f76" }
+      "connect" : [
+        { "id" : "f77", "to" : "f76" }
+      ]
     }, {
       "id" : "f69",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -779,13 +844,16 @@
             "  ISecurityContext.current().securityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 304, "y" : 1488 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f74", "to" : "f7", "via" : [ { "x" : 408, "y" : 1488 } ] }
+      "connect" : [
+        { "id" : "f74", "to" : "f7", "via" : [ { "x" : 408, "y" : 1488 } ] }
+      ]
     }, {
       "id" : "f70",
       "type" : "RequestStart",
@@ -806,12 +874,13 @@
         "at" : { "x" : 48, "y" : 1552 },
         "labelOffset" : { "x" : 61, "y" : 40 }
       },
-      "connect" : { "id" : "f79", "to" : "f78" }
+      "connect" : [
+        { "id" : "f79", "to" : "f78" }
+      ]
     }, {
       "id" : "f71",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -826,32 +895,31 @@
             "  ISecurityContext.current().securityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 304, "y" : 1552 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f75", "to" : "f7", "via" : [ { "x" : 408, "y" : 1552 } ] }
+      "connect" : [
+        { "id" : "f75", "to" : "f7", "via" : [ { "x" : 408, "y" : 1552 } ] }
+      ]
     }, {
       "id" : "f76",
       "type" : "DialogCall",
       "name" : "Deny permission HTML",
       "config" : {
-        "dialogId" : "ch.ivy.addon.portalkit.test.GrantOrDenySpecificPermission",
-        "startMethod" : "start(Boolean)",
+        "dialog" : "ch.ivy.addon.portalkit.test.GrantOrDenySpecificPermission:start(Boolean)",
+        "call" : {
+          "map" : {
+            "param.isGrantPermission" : "false"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.portalPermission" : "result.permission"
-          }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "isGrantPermission", "type" : "Boolean" }
-          ],
-          "map" : {
-            "param.isGrantPermission" : "false"
           }
         }
       },
@@ -859,26 +927,24 @@
         "at" : { "x" : 176, "y" : 1488 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f72", "to" : "f69" }
+      "connect" : [
+        { "id" : "f72", "to" : "f69" }
+      ]
     }, {
       "id" : "f78",
       "type" : "DialogCall",
       "name" : "Grant permission HTML",
       "config" : {
-        "dialogId" : "ch.ivy.addon.portalkit.test.GrantOrDenySpecificPermission",
-        "startMethod" : "start(Boolean)",
+        "dialog" : "ch.ivy.addon.portalkit.test.GrantOrDenySpecificPermission:start(Boolean)",
+        "call" : {
+          "map" : {
+            "param.isGrantPermission" : "true"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.portalPermission" : "result.permission"
-          }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "isGrantPermission", "type" : "Boolean" }
-          ],
-          "map" : {
-            "param.isGrantPermission" : "true"
           }
         }
       },
@@ -886,7 +952,9 @@
         "at" : { "x" : 176, "y" : 1552 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f73", "to" : "f71" }
+      "connect" : [
+        { "id" : "f73", "to" : "f71" }
+      ]
     }, {
       "id" : "f80",
       "type" : "RequestStart",
@@ -899,12 +967,13 @@
         "at" : { "x" : 896, "y" : 464 },
         "labelOffset" : { "x" : 114, "y" : 20 }
       },
-      "connect" : { "id" : "f82", "to" : "f81" }
+      "connect" : [
+        { "id" : "f82", "to" : "f81" }
+      ]
     }, {
       "id" : "f81",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -919,18 +988,20 @@
             "  ISecurityContext.current().securityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 688, "y" : 464 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f83", "to" : "f7", "via" : [ { "x" : 408, "y" : 464 } ] }
+      "connect" : [
+        { "id" : "f83", "to" : "f7", "via" : [ { "x" : 408, "y" : 464 } ] }
+      ]
     }, {
       "id" : "f84",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -945,13 +1016,16 @@
             "  ISecurityContext.current().securityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 688, "y" : 528 },
         "size" : { "width" : 48, "height" : 24 }
       },
-      "connect" : { "id" : "f85", "to" : "f7" }
+      "connect" : [
+        { "id" : "f85", "to" : "f7" }
+      ]
     }, {
       "id" : "f86",
       "type" : "RequestStart",
@@ -964,7 +1038,9 @@
         "at" : { "x" : 896, "y" : 528 },
         "labelOffset" : { "x" : 115, "y" : 20 }
       },
-      "connect" : { "id" : "f87", "to" : "f84" }
+      "connect" : [
+        { "id" : "f87", "to" : "f84" }
+      ]
     }, {
       "id" : "f88",
       "type" : "RequestStart",
@@ -977,12 +1053,13 @@
         "at" : { "x" : 896, "y" : 592 },
         "labelOffset" : { "x" : 113, "y" : 20 }
       },
-      "connect" : { "id" : "f91", "to" : "f90" }
+      "connect" : [
+        { "id" : "f91", "to" : "f90" }
+      ]
     }, {
       "id" : "f90",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -990,13 +1067,16 @@
             "",
             "ISecurityContext.current().securityDescriptor().grantPermission(IPermission.TASK_DESTROY, ivy.session.getSessionUser());"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 688, "y" : 592 },
         "size" : { "width" : 56, "height" : 24 }
       },
-      "connect" : { "id" : "f89", "to" : "f7", "via" : [ { "x" : 408, "y" : 592 } ] }
+      "connect" : [
+        { "id" : "f89", "to" : "f7", "via" : [ { "x" : 408, "y" : 592 } ] }
+      ]
     }, {
       "id" : "f92",
       "type" : "RequestStart",
@@ -1009,12 +1089,13 @@
         "at" : { "x" : 896, "y" : 652 },
         "labelOffset" : { "x" : 112, "y" : 20 }
       },
-      "connect" : { "id" : "f95", "to" : "f94" }
+      "connect" : [
+        { "id" : "f95", "to" : "f94" }
+      ]
     }, {
       "id" : "f94",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.IPermission;",
@@ -1022,13 +1103,16 @@
             "",
             "ISecurityContext.current().securityDescriptor().denyPermission(IPermission.TASK_DESTROY, ivy.session.getSessionUser());"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 688, "y" : 652 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f93", "to" : "f7", "via" : [ { "x" : 408, "y" : 652 } ] }
+      "connect" : [
+        { "id" : "f93", "to" : "f7", "via" : [ { "x" : 408, "y" : 652 } ] }
+      ]
     }, {
       "id" : "f96",
       "type" : "RequestStart",
@@ -1041,12 +1125,13 @@
         "at" : { "x" : 896, "y" : 704 },
         "labelOffset" : { "x" : 121, "y" : 20 }
       },
-      "connect" : { "id" : "f98", "to" : "f97" }
+      "connect" : [
+        { "id" : "f98", "to" : "f97" }
+      ]
     }, {
       "id" : "f97",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -1059,13 +1144,16 @@
             "ISecurityContext.current().securityDescriptor().grantPermission(IPermission.USER_DELETE_OWN_ABSENCE, ivy.session.getSessionUser());",
             "ISecurityContext.current().securityDescriptor().grantPermission(IPermission.USER_CREATE_OWN_ABSENCE, ivy.session.getSessionUser());"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 688, "y" : 704 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f99", "to" : "f7", "via" : [ { "x" : 408, "y" : 704 } ] }
+      "connect" : [
+        { "id" : "f99", "to" : "f7", "via" : [ { "x" : 408, "y" : 704 } ] }
+      ]
     }, {
       "id" : "f100",
       "type" : "RequestStart",
@@ -1078,12 +1166,13 @@
         "at" : { "x" : 896, "y" : 768 },
         "labelOffset" : { "x" : 134, "y" : 20 }
       },
-      "connect" : { "id" : "f102", "to" : "f101" }
+      "connect" : [
+        { "id" : "f102", "to" : "f101" }
+      ]
     }, {
       "id" : "f101",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.IPermission;",
@@ -1091,18 +1180,20 @@
             "",
             "ISecurityContext.current().securityDescriptor().grantPermission(IPermission.USER_READ_OWN_ABSENCES, ivy.session.getSessionUser());"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 688, "y" : 768 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f103", "to" : "f7", "via" : [ { "x" : 408, "y" : 768 } ] }
+      "connect" : [
+        { "id" : "f103", "to" : "f7", "via" : [ { "x" : 408, "y" : 768 } ] }
+      ]
     }, {
       "id" : "f108",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.IPermission;",
@@ -1110,13 +1201,16 @@
             "",
             "ISecurityContext.current().securityDescriptor().grantPermission(IPermission.USER_CREATE_ABSENCE, ivy.session.getSessionUser());"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 688, "y" : 848 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f111", "to" : "f7", "via" : [ { "x" : 408, "y" : 848 } ] }
+      "connect" : [
+        { "id" : "f111", "to" : "f7", "via" : [ { "x" : 408, "y" : 848 } ] }
+      ]
     }, {
       "id" : "f109",
       "type" : "RequestStart",
@@ -1129,12 +1223,13 @@
         "at" : { "x" : 896, "y" : 848 },
         "labelOffset" : { "x" : 121, "y" : 20 }
       },
-      "connect" : { "id" : "f110", "to" : "f108" }
+      "connect" : [
+        { "id" : "f110", "to" : "f108" }
+      ]
     }, {
       "id" : "f104",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.IPermission;",
@@ -1143,13 +1238,16 @@
             "",
             "ISecurityContext.current().securityDescriptor().grantPermission(IPermission.USER_DELETE_ABSENCE, ivy.session.getSessionUser());"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 688, "y" : 920 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f107", "to" : "f7", "via" : [ { "x" : 408, "y" : 920 } ] }
+      "connect" : [
+        { "id" : "f107", "to" : "f7", "via" : [ { "x" : 408, "y" : 920 } ] }
+      ]
     }, {
       "id" : "f105",
       "type" : "RequestStart",
@@ -1162,12 +1260,13 @@
         "at" : { "x" : 896, "y" : 920 },
         "labelOffset" : { "x" : 121, "y" : 20 }
       },
-      "connect" : { "id" : "f106", "to" : "f104" }
+      "connect" : [
+        { "id" : "f106", "to" : "f104" }
+      ]
     }, {
       "id" : "f112",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.IPermission;",
@@ -1180,13 +1279,16 @@
             "ISecurityContext.current().securityDescriptor().grantPermission(IPermission.USER_CREATE_OWN_SUBSTITUTE, ivy.session.getSessionUser());",
             "ISecurityContext.current().securityDescriptor().grantPermission(IPermission.USER_READ_SUBSTITUTES, ivy.session.getSessionUser());"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 688, "y" : 992 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f115", "to" : "f7", "via" : [ { "x" : 408, "y" : 992 } ] }
+      "connect" : [
+        { "id" : "f115", "to" : "f7", "via" : [ { "x" : 408, "y" : 992 } ] }
+      ]
     }, {
       "id" : "f113",
       "type" : "RequestStart",
@@ -1199,7 +1301,9 @@
         "at" : { "x" : 896, "y" : 992 },
         "labelOffset" : { "x" : 125, "y" : 20 }
       },
-      "connect" : { "id" : "f114", "to" : "f112" }
+      "connect" : [
+        { "id" : "f114", "to" : "f112" }
+      ]
     }, {
       "id" : "f116",
       "type" : "RequestStart",
@@ -1212,12 +1316,13 @@
         "at" : { "x" : 896, "y" : 1056 },
         "labelOffset" : { "x" : 137, "y" : 20 }
       },
-      "connect" : { "id" : "f118", "to" : "f117" }
+      "connect" : [
+        { "id" : "f118", "to" : "f117" }
+      ]
     }, {
       "id" : "f117",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -1229,18 +1334,20 @@
             "ISecurityContext.current().securityDescriptor().grantPermission(IPermission.USER_CREATE_OWN_SUBSTITUTE, ivy.session.getSessionUser());",
             "ISecurityContext.current().securityDescriptor().grantPermission(IPermission.USER_READ_SUBSTITUTES, ivy.session.getSessionUser());"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 688, "y" : 1056 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f119", "to" : "f7", "via" : [ { "x" : 408, "y" : 1056 } ] }
+      "connect" : [
+        { "id" : "f119", "to" : "f7", "via" : [ { "x" : 408, "y" : 1056 } ] }
+      ]
     }, {
       "id" : "f120",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -1249,13 +1356,16 @@
             "ISecurityContext.current().securityDescriptor().denyPermission(IPermission.USER_READ_SUBSTITUTES, ivy.session.getSessionUser());",
             "ISecurityContext.current().securityDescriptor().grantPermission(IPermission.USER_READ_OWN_SUBSTITUTES , ivy.session.getSessionUser());"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 688, "y" : 1120 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f123", "to" : "f7", "via" : [ { "x" : 408, "y" : 1120 }, { "x" : 408, "y" : 528 } ] }
+      "connect" : [
+        { "id" : "f123", "to" : "f7", "via" : [ { "x" : 408, "y" : 1120 }, { "x" : 408, "y" : 528 } ] }
+      ]
     }, {
       "id" : "f121",
       "type" : "RequestStart",
@@ -1268,12 +1378,13 @@
         "at" : { "x" : 896, "y" : 1120 },
         "labelOffset" : { "x" : 124, "y" : 20 }
       },
-      "connect" : { "id" : "f122", "to" : "f120" }
+      "connect" : [
+        { "id" : "f122", "to" : "f120" }
+      ]
     }, {
       "id" : "f124",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -1287,13 +1398,16 @@
             "  ISecurityContext.current().securityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 688, "y" : 1184 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f136", "to" : "f7", "via" : [ { "x" : 408, "y" : 1184 } ] }
+      "connect" : [
+        { "id" : "f136", "to" : "f7", "via" : [ { "x" : 408, "y" : 1184 } ] }
+      ]
     }, {
       "id" : "f125",
       "type" : "RequestStart",
@@ -1306,7 +1420,9 @@
         "at" : { "x" : 896, "y" : 1184 },
         "labelOffset" : { "x" : 136, "y" : 20 }
       },
-      "connect" : { "id" : "f126", "to" : "f124" }
+      "connect" : [
+        { "id" : "f126", "to" : "f124" }
+      ]
     }, {
       "id" : "f127",
       "type" : "RequestStart",
@@ -1319,12 +1435,13 @@
         "at" : { "x" : 896, "y" : 1248 },
         "labelOffset" : { "x" : 135, "y" : 20 }
       },
-      "connect" : { "id" : "f129", "to" : "f128" }
+      "connect" : [
+        { "id" : "f129", "to" : "f128" }
+      ]
     }, {
       "id" : "f128",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -1338,18 +1455,20 @@
             "  ISecurityContext.current().securityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 688, "y" : 1248 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f137", "to" : "f7", "via" : [ { "x" : 408, "y" : 1248 } ] }
+      "connect" : [
+        { "id" : "f137", "to" : "f7", "via" : [ { "x" : 408, "y" : 1248 } ] }
+      ]
     }, {
       "id" : "f130",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -1363,13 +1482,16 @@
             "  ISecurityContext.current().securityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 688, "y" : 1312 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f138", "to" : "f7", "via" : [ { "x" : 408, "y" : 1312 } ] }
+      "connect" : [
+        { "id" : "f138", "to" : "f7", "via" : [ { "x" : 408, "y" : 1312 } ] }
+      ]
     }, {
       "id" : "f131",
       "type" : "RequestStart",
@@ -1382,12 +1504,13 @@
         "at" : { "x" : 896, "y" : 1312 },
         "labelOffset" : { "x" : 141, "y" : 20 }
       },
-      "connect" : { "id" : "f132", "to" : "f130" }
+      "connect" : [
+        { "id" : "f132", "to" : "f130" }
+      ]
     }, {
       "id" : "f133",
       "type" : "Script",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -1402,13 +1525,16 @@
             "  ISecurityContext.current().securityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 688, "y" : 1376 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f139", "to" : "f7", "via" : [ { "x" : 408, "y" : 1376 } ] }
+      "connect" : [
+        { "id" : "f139", "to" : "f7", "via" : [ { "x" : 408, "y" : 1376 } ] }
+      ]
     }, {
       "id" : "f134",
       "type" : "RequestStart",
@@ -1421,7 +1547,9 @@
         "at" : { "x" : 896, "y" : 1376 },
         "labelOffset" : { "x" : 140, "y" : 20 }
       },
-      "connect" : { "id" : "f135", "to" : "f133" }
+      "connect" : [
+        { "id" : "f135", "to" : "f133" }
+      ]
     } ],
   "layout" : {
     "lanes" : [ {

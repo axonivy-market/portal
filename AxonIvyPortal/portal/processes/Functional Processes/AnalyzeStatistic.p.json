@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "1602F513613E1225",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "analyzePriorityStatistic(TaskQuery)",
       "config" : {
-        "callSignature" : "analyzePriorityStatistic",
+        "signature" : "analyzePriorityStatistic",
         "input" : {
           "params" : [
-            { "name" : "taskQuery", "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery" }
+            { "name" : "taskQuery", "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery", "desc" : "" }
           ],
           "map" : {
             "out.taskSearchCriteria.customTaskQuery" : "param.taskQuery"
@@ -21,7 +21,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "result", "type" : "ch.ivy.addon.portalkit.bo.PriorityStatistic" }
+            { "name" : "result", "type" : "ch.ivy.addon.portalkit.bo.PriorityStatistic", "desc" : "" }
           ],
           "map" : {
             "result.result" : "in.priorityStatisticResult"
@@ -31,7 +31,9 @@
       "visual" : {
         "at" : { "x" : 128, "y" : 64 }
       },
-      "connect" : { "id" : "f22", "to" : "f21" }
+      "connect" : [
+        { "id" : "f22", "to" : "f21" }
+      ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -43,10 +45,10 @@
       "type" : "CallSubStart",
       "name" : "analyzeCaseStateStatistic(CaseQuery)",
       "config" : {
-        "callSignature" : "analyzeCaseStateStatistic",
+        "signature" : "analyzeCaseStateStatistic",
         "input" : {
           "params" : [
-            { "name" : "caseQuery", "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery" }
+            { "name" : "caseQuery", "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery", "desc" : "" }
           ],
           "map" : {
             "out.caseSearchCriteria.customCaseQuery" : "param.caseQuery"
@@ -54,7 +56,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "result", "type" : "ch.ivy.addon.portalkit.bo.CaseStateStatistic" }
+            { "name" : "result", "type" : "ch.ivy.addon.portalkit.bo.CaseStateStatistic", "desc" : "" }
           ],
           "map" : {
             "result.result" : "in.caseStateStatisticResult"
@@ -64,16 +66,18 @@
       "visual" : {
         "at" : { "x" : 128, "y" : 160 }
       },
-      "connect" : { "id" : "f24", "to" : "f23" }
+      "connect" : [
+        { "id" : "f24", "to" : "f23" }
+      ]
     }, {
       "id" : "f4",
       "type" : "CallSubStart",
       "name" : "analyzeExpiryStatistic(TaskQuery)",
       "config" : {
-        "callSignature" : "analyzeExpiryStatistic",
+        "signature" : "analyzeExpiryStatistic",
         "input" : {
           "params" : [
-            { "name" : "taskQuery", "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery" }
+            { "name" : "taskQuery", "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery", "desc" : "" }
           ],
           "map" : {
             "out.taskSearchCriteria.customTaskQuery" : "param.taskQuery"
@@ -81,7 +85,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "result", "type" : "ch.ivy.addon.portalkit.bo.ExpiryStatistic" }
+            { "name" : "result", "type" : "ch.ivy.addon.portalkit.bo.ExpiryStatistic", "desc" : "" }
           ],
           "map" : {
             "result.result" : "in.expiryStatisticResult"
@@ -91,7 +95,9 @@
       "visual" : {
         "at" : { "x" : 128, "y" : 256 }
       },
-      "connect" : { "id" : "f26", "to" : "f25" }
+      "connect" : [
+        { "id" : "f26", "to" : "f25" }
+      ]
     }, {
       "id" : "f5",
       "type" : "CallSubEnd",
@@ -110,84 +116,81 @@
       "name" : "TaskService",
       "config" : {
         "processCall" : "Ivy Data Processes/TaskService:analyzePriorityStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)",
+        "call" : {
+          "map" : {
+            "param.taskSearchCriteria" : "in.taskSearchCriteria"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.priorityStatisticResult" : "result.priorityStatistic"
-          }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "taskSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria" }
-          ],
-          "map" : {
-            "param.taskSearchCriteria" : "in.taskSearchCriteria"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 440, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f15",
       "type" : "SubProcessCall",
       "name" : "CaseService",
       "config" : {
         "processCall" : "Ivy Data Processes/CaseService:analyzeCaseStateStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)",
+        "call" : {
+          "map" : {
+            "param.caseSearchCriteria" : "in.caseSearchCriteria"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.caseStateStatisticResult" : "result.caseStateStatistic"
-          }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "caseSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria" }
-          ],
-          "map" : {
-            "param.caseSearchCriteria" : "in.caseSearchCriteria"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 440, "y" : 160 }
       },
-      "connect" : { "id" : "f7", "to" : "f5" }
+      "connect" : [
+        { "id" : "f7", "to" : "f5" }
+      ]
     }, {
       "id" : "f19",
       "type" : "SubProcessCall",
       "name" : "TaskService",
       "config" : {
         "processCall" : "Ivy Data Processes/TaskService:analyzeExpiryStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)",
+        "call" : {
+          "map" : {
+            "param.taskSearchCriteria" : "in.taskSearchCriteria"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.expiryStatisticResult" : "result.expiryStatistic"
-          }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "taskSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria" }
-          ],
-          "map" : {
-            "param.taskSearchCriteria" : "in.taskSearchCriteria"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 440, "y" : 256 }
       },
-      "connect" : { "id" : "f8", "to" : "f6" }
+      "connect" : [
+        { "id" : "f8", "to" : "f6" }
+      ]
     }, {
       "id" : "f27",
       "type" : "CallSubStart",
       "name" : "analyzeElapsedTimeStatistic(CaseQuery)",
       "config" : {
-        "callSignature" : "analyzeElapsedTimeStatistic",
+        "signature" : "analyzeElapsedTimeStatistic",
         "input" : {
           "params" : [
-            { "name" : "caseQuery", "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery" }
+            { "name" : "caseQuery", "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery", "desc" : "" }
           ],
           "map" : {
             "out.caseSearchCriteria.customCaseQuery" : "param.caseQuery"
@@ -195,7 +198,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "result", "type" : "ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic" }
+            { "name" : "result", "type" : "ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic", "desc" : "" }
           ],
           "map" : {
             "result.result" : "in.elapsedTimeStatisticResult"
@@ -205,32 +208,33 @@
       "visual" : {
         "at" : { "x" : 128, "y" : 352 }
       },
-      "connect" : { "id" : "f35", "to" : "f31" }
+      "connect" : [
+        { "id" : "f35", "to" : "f31" }
+      ]
     }, {
       "id" : "f28",
       "type" : "SubProcessCall",
       "name" : "CaseService",
       "config" : {
         "processCall" : "Ivy Data Processes/CaseService:analyzeElapsedTimeByCaseCategory(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)",
+        "call" : {
+          "map" : {
+            "param.caseSearchCriteria" : "in.caseSearchCriteria"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.elapsedTimeStatisticResult" : "result.elapsedTimeStatistic"
-          }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "caseSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria" }
-          ],
-          "map" : {
-            "param.caseSearchCriteria" : "in.caseSearchCriteria"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 442, "y" : 352 }
       },
-      "connect" : { "id" : "f33", "to" : "f30" }
+      "connect" : [
+        { "id" : "f33", "to" : "f30" }
+      ]
     }, {
       "id" : "f30",
       "type" : "CallSubEnd",
@@ -242,10 +246,10 @@
       "type" : "CallSubStart",
       "name" : "findCaseCategories(CaseQuery)",
       "config" : {
-        "callSignature" : "findCaseCategories",
+        "signature" : "findCaseCategories",
         "input" : {
           "params" : [
-            { "name" : "caseQuery", "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery" }
+            { "name" : "caseQuery", "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery", "desc" : "" }
           ],
           "map" : {
             "out.caseSearchCriteria.customCaseQuery" : "param.caseQuery"
@@ -253,7 +257,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "result", "type" : "ch.ivyteam.ivy.workflow.category.CategoryTree" }
+            { "name" : "result", "type" : "ch.ivyteam.ivy.workflow.category.CategoryTree", "desc" : "" }
           ],
           "map" : {
             "result.result" : "in.caseCategoryTree"
@@ -263,7 +267,9 @@
       "visual" : {
         "at" : { "x" : 128, "y" : 448 }
       },
-      "connect" : { "id" : "f43", "to" : "f41" }
+      "connect" : [
+        { "id" : "f43", "to" : "f41" }
+      ]
     }, {
       "id" : "f37",
       "type" : "CallSubEnd",
@@ -281,17 +287,14 @@
             "out" : "in",
             "out.caseCategoryTree" : "result.categoryTree"
           }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "caseCategorySearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria" }
-          ]
         }
       },
       "visual" : {
         "at" : { "x" : 440, "y" : 448 }
       },
-      "connect" : { "id" : "f44", "to" : "f37" }
+      "connect" : [
+        { "id" : "f44", "to" : "f37" }
+      ]
     }, {
       "id" : "f23",
       "type" : "Script",
@@ -310,7 +313,9 @@
       "visual" : {
         "at" : { "x" : 280, "y" : 160 }
       },
-      "connect" : { "id" : "f10", "to" : "f15" }
+      "connect" : [
+        { "id" : "f10", "to" : "f15" }
+      ]
     }, {
       "id" : "f31",
       "type" : "Script",
@@ -329,7 +334,9 @@
       "visual" : {
         "at" : { "x" : 282, "y" : 352 }
       },
-      "connect" : { "id" : "f13", "to" : "f28" }
+      "connect" : [
+        { "id" : "f13", "to" : "f28" }
+      ]
     }, {
       "id" : "f25",
       "type" : "Script",
@@ -353,7 +360,9 @@
       "visual" : {
         "at" : { "x" : 280, "y" : 256 }
       },
-      "connect" : { "id" : "f12", "to" : "f19" }
+      "connect" : [
+        { "id" : "f12", "to" : "f19" }
+      ]
     }, {
       "id" : "f21",
       "type" : "Script",
@@ -375,7 +384,9 @@
       "visual" : {
         "at" : { "x" : 280, "y" : 64 }
       },
-      "connect" : { "id" : "f9", "to" : "f11" }
+      "connect" : [
+        { "id" : "f9", "to" : "f11" }
+      ]
     }, {
       "id" : "f41",
       "type" : "Script",
@@ -392,7 +403,9 @@
       "visual" : {
         "at" : { "x" : 280, "y" : 448 }
       },
-      "connect" : { "id" : "f14", "to" : "f39" }
+      "connect" : [
+        { "id" : "f14", "to" : "f39" }
+      ]
     }, {
       "id" : "f38",
       "type" : "CallSubEnd",
@@ -404,10 +417,10 @@
       "type" : "CallSubStart",
       "name" : "findCaseCustomFields(CaseCustomFieldSearchCriteria)",
       "config" : {
-        "callSignature" : "findCaseCustomFields",
+        "signature" : "findCaseCustomFields",
         "input" : {
           "params" : [
-            { "name" : "caseCustomFieldSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria" }
+            { "name" : "caseCustomFieldSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria", "desc" : "" }
           ],
           "map" : {
             "out.caseCustomFieldSearchCriteria" : "param.caseCustomFieldSearchCriteria"
@@ -415,7 +428,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "result", "type" : "java.util.List<String>" }
+            { "name" : "result", "type" : "java.util.List<String>", "desc" : "" }
           ],
           "map" : {
             "result.result" : "in.caseCustomFields"
@@ -426,42 +439,43 @@
         "at" : { "x" : 128, "y" : 544 },
         "labelOffset" : { "x" : 49, "y" : 37 }
       },
-      "connect" : { "id" : "f16", "to" : "f51" }
+      "connect" : [
+        { "id" : "f16", "to" : "f51" }
+      ]
     }, {
       "id" : "f51",
       "type" : "SubProcessCall",
       "name" : "CaseService",
       "config" : {
         "processCall" : "Ivy Data Processes/CaseService:findValuesOfCustomField(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria)",
+        "call" : {
+          "map" : {
+            "param.caseCustomFieldSearchCriteria" : "in.caseCustomFieldSearchCriteria"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.caseCustomFields" : "result.customFields"
-          }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "caseCustomFieldSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria" }
-          ],
-          "map" : {
-            "param.caseCustomFieldSearchCriteria" : "in.caseCustomFieldSearchCriteria"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 440, "y" : 544 }
       },
-      "connect" : { "id" : "f54", "to" : "f38" }
+      "connect" : [
+        { "id" : "f54", "to" : "f38" }
+      ]
     }, {
       "id" : "f17",
       "type" : "CallSubStart",
       "name" : "analyzeCasesByCategoryStatistic(CaseQuery,List<String>)",
       "config" : {
-        "callSignature" : "analyzeCasesByCategoryStatistic",
+        "signature" : "analyzeCasesByCategoryStatistic",
         "input" : {
           "params" : [
-            { "name" : "caseQuery", "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery" },
-            { "name" : "selectedCategories", "type" : "java.util.List<String>" }
+            { "name" : "caseQuery", "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery", "desc" : "" },
+            { "name" : "selectedCategories", "type" : "java.util.List<String>", "desc" : "" }
           ],
           "map" : {
             "out.caseSearchCriteria.customCaseQuery" : "param.caseQuery",
@@ -470,7 +484,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "result", "type" : "ch.ivy.addon.portalkit.bo.CaseCategoryStatistic" }
+            { "name" : "result", "type" : "ch.ivy.addon.portalkit.bo.CaseCategoryStatistic", "desc" : "" }
           ],
           "map" : {
             "result.result" : "in.CaseCategoryStatisticResult"
@@ -481,7 +495,9 @@
         "at" : { "x" : 128, "y" : 656 },
         "labelOffset" : { "x" : 55, "y" : 37 }
       },
-      "connect" : { "id" : "f32", "to" : "f18" }
+      "connect" : [
+        { "id" : "f32", "to" : "f18" }
+      ]
     }, {
       "id" : "f18",
       "type" : "Script",
@@ -500,34 +516,34 @@
       "visual" : {
         "at" : { "x" : 274, "y" : 656 }
       },
-      "connect" : { "id" : "f42", "to" : "f20" }
+      "connect" : [
+        { "id" : "f42", "to" : "f20" }
+      ]
     }, {
       "id" : "f20",
       "type" : "SubProcessCall",
       "name" : "CaseService",
       "config" : {
         "processCall" : "Ivy Data Processes/CaseService:analyzeCasesByCategoryStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria,java.util.List<String>)",
+        "call" : {
+          "map" : {
+            "param.caseSearchCriteria" : "in.caseSearchCriteria",
+            "param.categories" : "in.selectedCategories"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.CaseCategoryStatisticResult" : "result.CaseCategoryStatistic"
-          }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "caseSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria" },
-            { "name" : "categories", "type" : "java.util.List<String>" }
-          ],
-          "map" : {
-            "param.caseSearchCriteria" : "in.caseSearchCriteria",
-            "param.categories" : "in.selectedCategories"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 432, "y" : 656 }
       },
-      "connect" : { "id" : "f34", "to" : "f29" }
+      "connect" : [
+        { "id" : "f34", "to" : "f29" }
+      ]
     }, {
       "id" : "f29",
       "type" : "CallSubEnd",
@@ -539,11 +555,11 @@
       "type" : "CallSubStart",
       "name" : "analyzeCasesByCategoryDrilldownStatistic(CaseQuery,String)",
       "config" : {
-        "callSignature" : "analyzeCasesByCategoryDrilldownStatistic",
+        "signature" : "analyzeCasesByCategoryDrilldownStatistic",
         "input" : {
           "params" : [
-            { "name" : "caseQuery", "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery" },
-            { "name" : "selectedCategory", "type" : "String" }
+            { "name" : "caseQuery", "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery", "desc" : "" },
+            { "name" : "selectedCategory", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.caseSearchCriteria.customCaseQuery" : "param.caseQuery",
@@ -552,7 +568,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "result", "type" : "ch.ivy.addon.portalkit.bo.CaseCategoryStatistic" }
+            { "name" : "result", "type" : "ch.ivy.addon.portalkit.bo.CaseCategoryStatistic", "desc" : "" }
           ],
           "map" : {
             "result.result" : "in.CaseCategoryStatisticResult"
@@ -563,7 +579,9 @@
         "at" : { "x" : 128, "y" : 744 },
         "labelOffset" : { "x" : 64, "y" : 37 }
       },
-      "connect" : { "id" : "f49", "to" : "f46" }
+      "connect" : [
+        { "id" : "f49", "to" : "f46" }
+      ]
     }, {
       "id" : "f46",
       "type" : "Script",
@@ -582,34 +600,34 @@
       "visual" : {
         "at" : { "x" : 272, "y" : 744 }
       },
-      "connect" : { "id" : "f52", "to" : "f47" }
+      "connect" : [
+        { "id" : "f52", "to" : "f47" }
+      ]
     }, {
       "id" : "f47",
       "type" : "SubProcessCall",
       "name" : "CaseService",
       "config" : {
         "processCall" : "Ivy Data Processes/CaseService:analyzeCasesByCategoryDrilldownStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria,String)",
+        "call" : {
+          "map" : {
+            "param.caseSearchCriteria" : "in.caseSearchCriteria",
+            "param.selectedCategory" : "in.selectedCategory"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.CaseCategoryStatisticResult" : "result.CaseCategoryStatistic"
-          }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "caseSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria" },
-            { "name" : "selectedCategory", "type" : "String" }
-          ],
-          "map" : {
-            "param.caseSearchCriteria" : "in.caseSearchCriteria",
-            "param.selectedCategory" : "in.selectedCategory"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 432, "y" : 744 }
       },
-      "connect" : { "id" : "f50", "to" : "f48" }
+      "connect" : [
+        { "id" : "f50", "to" : "f48" }
+      ]
     }, {
       "id" : "f48",
       "type" : "CallSubEnd",

@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "16EF3459A3FCF253",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,11 +10,11 @@
       "type" : "HtmlDialogStart",
       "name" : "start(isTaskFinished, iCase)",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "isTaskFinished", "type" : "Boolean" },
-            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
+            { "name" : "isTaskFinished", "type" : "Boolean", "desc" : "" },
+            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
           ],
           "map" : {
             "out.iCase" : "param.iCase",
@@ -27,7 +27,9 @@
         "at" : { "x" : 96, "y" : 64 },
         "labelOffset" : { "x" : 70, "y" : 35 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -54,7 +56,9 @@
         "at" : { "x" : 224, "y" : 160 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f5", "to" : "f4" }
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
     }, {
       "id" : "f4",
       "type" : "HtmlDialogExit",
@@ -66,14 +70,16 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "close()",
       "config" : {
-        "callSignature" : "close",
+        "signature" : "close",
         "guid" : "16EF347B4B0F3ECF"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 },
         "labelOffset" : { "x" : 4, "y" : 35 }
       },
-      "connect" : { "id" : "f6", "to" : "f8" }
+      "connect" : [
+        { "id" : "f6", "to" : "f8" }
+      ]
     }, {
       "id" : "f7",
       "type" : "ProcessAnnotation",
@@ -85,6 +91,8 @@
         "at" : { "x" : 264, "y" : 224 },
         "size" : { "width" : 160, "height" : 44 }
       },
-      "connect" : { "id" : "f9", "to" : "f8" }
+      "connect" : [
+        { "id" : "f9", "to" : "f8" }
+      ]
     } ]
 }

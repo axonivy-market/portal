@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "17501D6F0762D9A7",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "HtmlDialogStart",
       "name" : "start(String)",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "callbackUrl", "type" : "String" }
+            { "name" : "callbackUrl", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.callbackUrl" : "param.callbackUrl"
@@ -25,7 +25,9 @@
         "at" : { "x" : 96, "y" : 64 },
         "labelOffset" : { "x" : 25, "y" : 35 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",

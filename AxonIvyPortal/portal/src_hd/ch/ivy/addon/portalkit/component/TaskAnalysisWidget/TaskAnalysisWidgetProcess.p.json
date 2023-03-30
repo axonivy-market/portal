@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "163DD68942416255",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,11 +10,11 @@
       "type" : "HtmlDialogStart",
       "name" : "start(TaskAnalysisLazyDataModel,Long)",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.internal.TaskAnalysisLazyDataModel" },
-            { "name" : "filterGroupId", "type" : "Long" }
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.internal.TaskAnalysisLazyDataModel", "desc" : "" },
+            { "name" : "filterGroupId", "type" : "Long", "desc" : "" }
           ],
           "map" : {
             "out.taskFilterGroupId" : "param.filterGroupId"
@@ -31,31 +31,33 @@
         "at" : { "x" : 96, "y" : 64 },
         "labelOffset" : { "x" : 34, "y" : 40 }
       },
-      "connect" : { "id" : "f10", "to" : "f8" }
+      "connect" : [
+        { "id" : "f10", "to" : "f8" }
+      ]
     }, {
       "id" : "f94",
       "type" : "HtmlDialogMethodStart",
       "name" : "findTasks(TaskSearchCriteria,Integer,Integer)",
       "config" : {
-        "callSignature" : "findTasks",
-        "result" : {
-          "params" : [
-            { "name" : "tasks", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>" }
-          ],
-          "map" : {
-            "result.tasks" : "in.tasks"
-          }
-        },
+        "signature" : "findTasks",
         "input" : {
           "params" : [
-            { "name" : "criteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria" },
-            { "name" : "startIndex", "type" : "Integer" },
-            { "name" : "count", "type" : "Integer" }
+            { "name" : "criteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria", "desc" : "" },
+            { "name" : "startIndex", "type" : "Integer", "desc" : "" },
+            { "name" : "count", "type" : "Integer", "desc" : "" }
           ],
           "map" : {
             "out.count" : "param.count",
             "out.startIndex" : "param.startIndex",
             "out.taskSearchCriteria" : "param.criteria"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "tasks", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>", "desc" : "" }
+          ],
+          "map" : {
+            "result.tasks" : "in.tasks"
           }
         },
         "guid" : "153EF14248ECB35E"
@@ -64,7 +66,9 @@
         "at" : { "x" : 96, "y" : 160 },
         "labelOffset" : { "x" : 57, "y" : 30 }
       },
-      "connect" : { "id" : "f19", "to" : "f9" }
+      "connect" : [
+        { "id" : "f19", "to" : "f9" }
+      ]
     }, {
       "id" : "f23",
       "type" : "HtmlDialogEventStart",
@@ -75,13 +79,14 @@
       "visual" : {
         "at" : { "x" : 80, "y" : 384 }
       },
-      "connect" : { "id" : "f46", "to" : "f45" }
+      "connect" : [
+        { "id" : "f46", "to" : "f45" }
+      ]
     }, {
       "id" : "f24",
       "type" : "Script",
       "name" : "save filter set",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;",
@@ -98,12 +103,15 @@
             "}",
             "in.dataModel.selectedTaskAnalysisFilterData = taskFilterData;"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 464, "y" : 384 }
       },
-      "connect" : { "id" : "f26", "to" : "f31" }
+      "connect" : [
+        { "id" : "f26", "to" : "f31" }
+      ]
     }, {
       "id" : "f28",
       "type" : "HtmlDialogEventStart",
@@ -114,7 +122,9 @@
       "visual" : {
         "at" : { "x" : 80, "y" : 480 }
       },
-      "connect" : { "id" : "f32", "to" : "f31" }
+      "connect" : [
+        { "id" : "f32", "to" : "f31" }
+      ]
     }, {
       "id" : "f29",
       "type" : "HtmlDialogEnd",
@@ -137,13 +147,14 @@
       "visual" : {
         "at" : { "x" : 464, "y" : 480 }
       },
-      "connect" : { "id" : "f30", "to" : "f29" }
+      "connect" : [
+        { "id" : "f30", "to" : "f29" }
+      ]
     }, {
       "id" : "f27",
       "type" : "Script",
       "name" : "load filter set",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.bean.PermissionBean;",
@@ -155,13 +166,16 @@
             "in.taskPublicFilters.add(in.dataModel.buildDefaultTaskAnalysisFilterData());",
             "in.filterType = FilterType.ONLY_ME;"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 384, "y" : 64 },
         "size" : { "width" : 96, "height" : 48 }
       },
-      "connect" : { "id" : "f57", "to" : "f3" }
+      "connect" : [
+        { "id" : "f57", "to" : "f3" }
+      ]
     }, {
       "id" : "f3",
       "type" : "HtmlDialogEnd",
@@ -173,19 +187,20 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "deleteFilter()",
       "config" : {
-        "callSignature" : "deleteFilter",
+        "signature" : "deleteFilter",
         "guid" : "15F5C0F9B77406B4"
       },
       "visual" : {
         "at" : { "x" : 80, "y" : 576 }
       },
-      "connect" : { "id" : "f39", "to" : "f35" }
+      "connect" : [
+        { "id" : "f39", "to" : "f35" }
+      ]
     }, {
       "id" : "f35",
       "type" : "Script",
       "name" : "remove filter",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.enums.FilterType;",
@@ -202,12 +217,15 @@
             "  in.dataModel.resetFilters();",
             "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 232, "y" : 576 }
       },
-      "connect" : { "id" : "f40", "to" : "f36" }
+      "connect" : [
+        { "id" : "f40", "to" : "f36" }
+      ]
     }, {
       "id" : "f36",
       "type" : "HtmlDialogEnd",
@@ -219,10 +237,10 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "setFilterToBeDeleted",
       "config" : {
-        "callSignature" : "setFilterToBeDeleted",
+        "signature" : "setFilterToBeDeleted",
         "input" : {
           "params" : [
-            { "name" : "taskFilterData", "type" : "ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData" }
+            { "name" : "taskFilterData", "type" : "ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData", "desc" : "" }
           ],
           "map" : {
             "out.taskFilterDataToBeRemoved" : "param.taskFilterData"
@@ -234,7 +252,9 @@
         "at" : { "x" : 80, "y" : 672 },
         "labelOffset" : { "x" : 15, "y" : 34 }
       },
-      "connect" : { "id" : "f43", "to" : "f42" }
+      "connect" : [
+        { "id" : "f43", "to" : "f42" }
+      ]
     }, {
       "id" : "f42",
       "type" : "HtmlDialogEnd",
@@ -265,7 +285,9 @@
       "visual" : {
         "at" : { "x" : 208, "y" : 384 }
       },
-      "connect" : { "id" : "f48", "to" : "f47" }
+      "connect" : [
+        { "id" : "f48", "to" : "f47" }
+      ]
     }, {
       "id" : "f47",
       "type" : "Alternative",
@@ -296,11 +318,12 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "applyFilter",
       "config" : {
-        "callSignature" : "applyFilter",
+        "signature" : "applyFilter",
         "input" : {
           "params" : [
-            { "name" : "taskFilterData", "type" : "ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData" }
+            { "name" : "taskFilterData", "type" : "ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData", "desc" : "" }
           ],
+          "map" : { },
           "code" : "out.dataModel.applyFilter(param.taskFilterData);"
         },
         "guid" : "15F772190BB92384"
@@ -308,7 +331,9 @@
       "visual" : {
         "at" : { "x" : 80, "y" : 768 }
       },
-      "connect" : { "id" : "f20", "to" : "f17" }
+      "connect" : [
+        { "id" : "f20", "to" : "f17" }
+      ]
     }, {
       "id" : "f17",
       "type" : "HtmlDialogEnd",
@@ -320,7 +345,6 @@
       "type" : "Script",
       "name" : "init data model",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.datamodel.internal.TaskAnalysisLazyDataModel;",
@@ -337,12 +361,15 @@
             "  taskAnalysisWidgetBean.setDataModel(in.dataModel);",
             "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 240, "y" : 64 }
       },
-      "connect" : { "id" : "f1", "to" : "f27" }
+      "connect" : [
+        { "id" : "f1", "to" : "f27" }
+      ]
     }, {
       "id" : "f11",
       "type" : "HtmlDialogEventStart",
@@ -353,7 +380,9 @@
       "visual" : {
         "at" : { "x" : 80, "y" : 880 }
       },
-      "connect" : { "id" : "f6", "to" : "f5" }
+      "connect" : [
+        { "id" : "f6", "to" : "f5" }
+      ]
     }, {
       "id" : "f4",
       "type" : "HtmlDialogEnd",
@@ -365,7 +394,6 @@
       "type" : "Script",
       "name" : "Redirect to Statistic page",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;",
@@ -374,33 +402,36 @@
             "String statisticPageUrl = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/PortalStart/StatisticPage.ivp\");",
             "FacesContext.getCurrentInstance().getExternalContext().redirect(statisticPageUrl);"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 232, "y" : 880 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f12", "to" : "f4" }
+      "connect" : [
+        { "id" : "f12", "to" : "f4" }
+      ]
     }, {
       "id" : "f13",
       "type" : "HtmlDialogMethodStart",
       "name" : "getExportedFile()",
       "config" : {
-        "callSignature" : "getExportedFile",
-        "result" : {
-          "params" : [
-            { "name" : "exportedFile", "type" : "org.primefaces.model.StreamedContent" }
-          ],
-          "map" : {
-            "result.exportedFile" : "in.exportedFile"
-          }
-        },
+        "signature" : "getExportedFile",
         "input" : {
           "params" : [
-            { "name" : "columnsVisibility", "type" : "java.util.Map" }
+            { "name" : "columnsVisibility", "type" : "java.util.Map", "desc" : "" }
           ],
           "map" : {
             "out.columnsVisibility" : "param.columnsVisibility"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "exportedFile", "type" : "org.primefaces.model.StreamedContent", "desc" : "" }
+          ],
+          "map" : {
+            "result.exportedFile" : "in.exportedFile"
           }
         },
         "guid" : "1646EC49808E6672"
@@ -408,7 +439,9 @@
       "visual" : {
         "at" : { "x" : 80, "y" : 992 }
       },
-      "connect" : { "id" : "f65", "to" : "f52" }
+      "connect" : [
+        { "id" : "f65", "to" : "f52" }
+      ]
     }, {
       "id" : "f14",
       "type" : "HtmlDialogEnd",
@@ -420,19 +453,21 @@
       "type" : "Script",
       "name" : "export excel",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.exporter.internal.TaskAnalysisExporter;",
             "TaskAnalysisExporter exporter = new TaskAnalysisExporter(in.columnsVisibility);",
             "in.exportedFile = exporter.getStreamedContent(in.collectedTasksForExporting);"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 616, "y" : 992 }
       },
-      "connect" : { "id" : "f56", "to" : "f14" }
+      "connect" : [
+        { "id" : "f56", "to" : "f14" }
+      ]
     }, {
       "id" : "f15",
       "type" : "SubProcessCall",
@@ -440,11 +475,6 @@
       "config" : {
         "processCall" : "Ivy Data Processes/TaskService:findTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria,Integer,Integer)",
         "call" : {
-          "params" : [
-            { "name" : "taskSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria" },
-            { "name" : "startIndex", "type" : "Integer" },
-            { "name" : "count", "type" : "Integer" }
-          ],
           "map" : {
             "param.taskSearchCriteria" : "in.taskSearchCriteria",
             "param.startIndex" : "in.loopCounter * in.maxResultNumberPerQuery",
@@ -458,36 +488,35 @@
       "visual" : {
         "at" : { "x" : 464, "y" : 1120 }
       },
-      "connect" : { "id" : "f54", "to" : "f53" }
+      "connect" : [
+        { "id" : "f54", "to" : "f53" }
+      ]
     }, {
       "id" : "f9",
       "type" : "SubProcessCall",
       "name" : "TaskService",
       "config" : {
         "processCall" : "Ivy Data Processes/TaskService:findTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria,Integer,Integer)",
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.tasks" : "result.tasks"
-          }
-        },
         "call" : {
-          "params" : [
-            { "name" : "taskSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria" },
-            { "name" : "startIndex", "type" : "Integer" },
-            { "name" : "count", "type" : "Integer" }
-          ],
           "map" : {
             "param.taskSearchCriteria" : "in.taskSearchCriteria",
             "param.startIndex" : "in.startIndex",
             "param.count" : "in.count"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.tasks" : "result.tasks"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 272, "y" : 160 }
       },
-      "connect" : { "id" : "f33", "to" : "f22" }
+      "connect" : [
+        { "id" : "f33", "to" : "f22" }
+      ]
     }, {
       "id" : "f22",
       "type" : "HtmlDialogEnd",
@@ -499,21 +528,21 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "countTasks(TaskSearchCriteria)",
       "config" : {
-        "callSignature" : "countTasks",
-        "result" : {
-          "params" : [
-            { "name" : "totalTasks", "type" : "Long" }
-          ],
-          "map" : {
-            "result.totalTasks" : "in.totalTasks"
-          }
-        },
+        "signature" : "countTasks",
         "input" : {
           "params" : [
-            { "name" : "criteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria" }
+            { "name" : "criteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria", "desc" : "" }
           ],
           "map" : {
             "out.taskSearchCriteria" : "param.criteria"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "totalTasks", "type" : "Long", "desc" : "" }
+          ],
+          "map" : {
+            "result.totalTasks" : "in.totalTasks"
           }
         },
         "guid" : "1682C611F21483D7"
@@ -521,32 +550,33 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 256 }
       },
-      "connect" : { "id" : "f44", "to" : "f7" }
+      "connect" : [
+        { "id" : "f44", "to" : "f7" }
+      ]
     }, {
       "id" : "f7",
       "type" : "SubProcessCall",
       "name" : "TaskService",
       "config" : {
         "processCall" : "Ivy Data Processes/TaskService:countTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)",
+        "call" : {
+          "map" : {
+            "param.taskSearchCriteria" : "in.taskSearchCriteria"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.totalTasks" : "result.totalTasks"
-          }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "taskSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria" }
-          ],
-          "map" : {
-            "param.taskSearchCriteria" : "in.taskSearchCriteria"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 272, "y" : 256 }
       },
-      "connect" : { "id" : "f49", "to" : "f38" }
+      "connect" : [
+        { "id" : "f49", "to" : "f38" }
+      ]
     }, {
       "id" : "f38",
       "type" : "HtmlDialogEnd",
@@ -559,25 +589,24 @@
       "name" : "count tasks",
       "config" : {
         "processCall" : "Ivy Data Processes/TaskService:countTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)",
+        "call" : {
+          "map" : {
+            "param.taskSearchCriteria" : "in.taskSearchCriteria"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.totalTasks" : "result.totalTasks"
-          }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "taskSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria" }
-          ],
-          "map" : {
-            "param.taskSearchCriteria" : "in.taskSearchCriteria"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 216, "y" : 992 }
       },
-      "connect" : { "id" : "f60", "to" : "f59" }
+      "connect" : [
+        { "id" : "f60", "to" : "f59" }
+      ]
     }, {
       "id" : "f53",
       "type" : "Script",
@@ -590,7 +619,9 @@
       "visual" : {
         "at" : { "x" : 616, "y" : 1120 }
       },
-      "connect" : { "id" : "f21", "to" : "f18" }
+      "connect" : [
+        { "id" : "f21", "to" : "f18" }
+      ]
     }, {
       "id" : "f18",
       "type" : "Alternative",
@@ -618,20 +649,24 @@
       "visual" : {
         "at" : { "x" : 360, "y" : 992 }
       },
-      "connect" : { "id" : "f58", "to" : "f18" }
+      "connect" : [
+        { "id" : "f58", "to" : "f18" }
+      ]
     }, {
       "id" : "f55",
       "type" : "HtmlDialogMethodStart",
       "name" : "restoreDefaultFilterSet()",
       "config" : {
-        "callSignature" : "restoreDefaultFilterSet",
+        "signature" : "restoreDefaultFilterSet",
         "guid" : "17055DF5174D824A"
       },
       "visual" : {
         "at" : { "x" : 80, "y" : 1248 },
         "labelOffset" : { "x" : 26, "y" : 35 }
       },
-      "connect" : { "id" : "f66", "to" : "f64" }
+      "connect" : [
+        { "id" : "f66", "to" : "f64" }
+      ]
     }, {
       "id" : "f63",
       "type" : "HtmlDialogEnd",
@@ -653,6 +688,8 @@
       "visual" : {
         "at" : { "x" : 248, "y" : 1248 }
       },
-      "connect" : { "id" : "f67", "to" : "f63" }
+      "connect" : [
+        { "id" : "f67", "to" : "f63" }
+      ]
     } ]
 }

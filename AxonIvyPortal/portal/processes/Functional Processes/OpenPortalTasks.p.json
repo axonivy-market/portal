@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "15493AEB89F5A807",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "useView(TaskView)",
       "config" : {
-        "callSignature" : "useView",
+        "signature" : "useView",
         "input" : {
           "params" : [
-            { "name" : "taskView", "type" : "ch.ivy.addon.portal.generic.view.TaskView" }
+            { "name" : "taskView", "type" : "ch.ivy.addon.portal.generic.view.TaskView", "desc" : "" }
           ],
           "map" : {
             "out.taskView" : "param.taskView"
@@ -24,7 +24,9 @@
         "at" : { "x" : 96, "y" : 112 },
         "labelOffset" : { "x" : 76, "y" : -2 }
       },
-      "connect" : { "id" : "f7", "to" : "f3" }
+      "connect" : [
+        { "id" : "f7", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -36,12 +38,8 @@
       "type" : "DialogCall",
       "name" : "PortalTasks",
       "config" : {
-        "dialogId" : "ch.ivy.addon.portal.generic.PortalTasks",
-        "startMethod" : "useTaskView(ch.ivy.addon.portal.generic.view.TaskView)",
+        "dialog" : "ch.ivy.addon.portal.generic.PortalTasks:useTaskView(ch.ivy.addon.portal.generic.view.TaskView)",
         "call" : {
-          "params" : [
-            { "name" : "taskView", "type" : "ch.ivy.addon.portal.generic.view.TaskView" }
-          ],
           "map" : {
             "param.taskView" : "in.taskView"
           }
@@ -50,16 +48,18 @@
       "visual" : {
         "at" : { "x" : 368, "y" : 112 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f4",
       "type" : "CallSubStart",
       "name" : "useViewInFrame(TaskView)",
       "config" : {
-        "callSignature" : "useViewInFrame",
+        "signature" : "useViewInFrame",
         "input" : {
           "params" : [
-            { "name" : "taskView", "type" : "ch.ivy.addon.portal.generic.view.TaskView" }
+            { "name" : "taskView", "type" : "ch.ivy.addon.portal.generic.view.TaskView", "desc" : "" }
           ],
           "map" : {
             "out.taskView" : "param.taskView"
@@ -70,7 +70,9 @@
         "at" : { "x" : 96, "y" : 384 },
         "labelOffset" : { "x" : 94, "y" : -10 }
       },
-      "connect" : { "id" : "f8", "to" : "f6" }
+      "connect" : [
+        { "id" : "f8", "to" : "f6" }
+      ]
     }, {
       "id" : "f5",
       "type" : "CallSubEnd",
@@ -82,12 +84,8 @@
       "type" : "DialogCall",
       "name" : "PortalTaskListInFrame",
       "config" : {
-        "dialogId" : "ch.ivy.addon.portal.component.iframe.PortalTaskListInFrame",
-        "startMethod" : "start(ch.ivy.addon.portal.generic.view.TaskView)",
+        "dialog" : "ch.ivy.addon.portal.component.iframe.PortalTaskListInFrame:start(ch.ivy.addon.portal.generic.view.TaskView)",
         "call" : {
-          "params" : [
-            { "name" : "taskView", "type" : "ch.ivy.addon.portal.generic.view.TaskView" }
-          ],
           "map" : {
             "param.taskView" : "in.taskView"
           }
@@ -97,7 +95,9 @@
         "at" : { "x" : 376, "y" : 384 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f9", "to" : "f5" }
+      "connect" : [
+        { "id" : "f9", "to" : "f5" }
+      ]
     }, {
       "id" : "f10",
       "type" : "ProcessAnnotation",
@@ -111,7 +111,9 @@
         "at" : { "x" : 512, "y" : 496 },
         "size" : { "width" : 736, "height" : 76 }
       },
-      "connect" : { "id" : "f11", "to" : "f4" }
+      "connect" : [
+        { "id" : "f11", "to" : "f4" }
+      ]
     }, {
       "id" : "f12",
       "type" : "ProcessAnnotation",
@@ -125,6 +127,8 @@
         "at" : { "x" : 488, "y" : 208 },
         "size" : { "width" : 672, "height" : 76 }
       },
-      "connect" : { "id" : "f13", "to" : "f0" }
+      "connect" : [
+        { "id" : "f13", "to" : "f0" }
+      ]
     } ]
 }
