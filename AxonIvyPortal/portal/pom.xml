@@ -46,16 +46,6 @@
       <name>Axonivy Repo</name>
       <url>https://maven.axonivy.com/</url>
     </repository>
-    <repository>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <id>maven.axonivy.com</id>
-      <url>https://maven.axonivy.com</url>
-    </repository>
   </repositories>
   <pluginRepositories>
     <pluginRepository>
