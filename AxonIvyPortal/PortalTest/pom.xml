@@ -42,18 +42,6 @@
       <type>iar</type>
     </dependency>
   </dependencies>
-  <repositories>
-    <repository>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <id>maven.axonivy.com</id>
-      <url>https://maven.axonivy.com</url>
-    </repository>
-  </repositories>
   <build>
     <testSourceDirectory>${basedir}/src_test/</testSourceDirectory>
     <plugins>
