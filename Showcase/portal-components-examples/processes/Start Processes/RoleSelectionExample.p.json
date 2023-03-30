@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "181899823E886ABB",
   "config" : {
     "data" : "com.axonivy.portal.components.examples.RoleSelectionExampleData"
@@ -17,7 +17,9 @@
         "at" : { "x" : 96, "y" : 64 },
         "labelOffset" : { "x" : 20, "y" : 39 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -29,25 +31,21 @@
       "type" : "DialogCall",
       "name" : "RoleSelectionExample",
       "config" : {
-        "dialogId" : "com.axonivy.portal.components.examples.RoleSelectionExample",
-        "startMethod" : "start(String)",
+        "dialog" : "com.axonivy.portal.components.examples.RoleSelectionExample:start(String)",
         "output" : {
           "map" : {
             "out" : "in",
             "out.selectedRole" : "result.selectedRole"
           }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "selectedRole", "type" : "String" }
-          ]
         }
       },
       "visual" : {
         "at" : { "x" : 280, "y" : 64 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f6", "to" : "f5" }
+      "connect" : [
+        { "id" : "f6", "to" : "f5" }
+      ]
     }, {
       "id" : "f5",
       "type" : "TaskSwitchEvent",
@@ -56,14 +54,17 @@
           "name" : "Task created by Role Selection Example",
           "description" : "This task is created by Role Selection Example",
           "responsible" : {
-            "roleFromAttribute" : "in1.selectedRole.getMemberName()"
+            "type" : "ROLE_FROM_ATTRIBUTE",
+            "activator" : "in1.selectedRole.getMemberName()"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 448, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f7",
       "type" : "RequestStart",
@@ -78,31 +79,29 @@
         "at" : { "x" : 96, "y" : 192 },
         "labelOffset" : { "x" : 42, "y" : 39 }
       },
-      "connect" : { "id" : "f11", "to" : "f8" }
+      "connect" : [
+        { "id" : "f11", "to" : "f8" }
+      ]
     }, {
       "id" : "f8",
       "type" : "DialogCall",
       "name" : "RoleSelectionExampleSerenity",
       "config" : {
-        "dialogId" : "com.axonivy.portal.components.examples.serenity.RoleSelectionExampleSerenity",
-        "startMethod" : "start(String)",
+        "dialog" : "com.axonivy.portal.components.examples.serenity.RoleSelectionExampleSerenity:start(String)",
         "output" : {
           "map" : {
             "out" : "in",
             "out.selectedRole" : "result.selectedRole"
           }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "selectedRole", "type" : "String" }
-          ]
         }
       },
       "visual" : {
         "at" : { "x" : 280, "y" : 192 },
         "size" : { "width" : 176, "height" : 60 }
       },
-      "connect" : { "id" : "f13", "to" : "f9" }
+      "connect" : [
+        { "id" : "f13", "to" : "f9" }
+      ]
     }, {
       "id" : "f9",
       "type" : "TaskSwitchEvent",
@@ -111,14 +110,17 @@
           "name" : "Task created by Role Selection Example",
           "description" : "This task is created by Role Selection Example",
           "responsible" : {
-            "roleFromAttribute" : "in1.selectedRole.getMemberName()"
+            "type" : "ROLE_FROM_ATTRIBUTE",
+            "activator" : "in1.selectedRole.getMemberName()"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 448, "y" : 192 }
       },
-      "connect" : { "id" : "f12", "to" : "f10" }
+      "connect" : [
+        { "id" : "f12", "to" : "f10" }
+      ]
     }, {
       "id" : "f10",
       "type" : "TaskEnd",

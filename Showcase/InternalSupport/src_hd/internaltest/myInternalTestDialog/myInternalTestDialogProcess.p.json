@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "146AEAC5C7816D00",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,21 +10,21 @@
       "type" : "HtmlDialogStart",
       "name" : "start(List<IvyCase>)",
       "config" : {
-        "callSignature" : "start",
-        "result" : {
-          "params" : [
-            { "name" : "cases", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>" }
-          ],
-          "map" : {
-            "result.cases" : "in.cases"
-          }
-        },
+        "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "cases", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>" }
+            { "name" : "cases", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>", "desc" : "" }
           ],
           "map" : {
             "out.cases" : "param.cases"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "cases", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>", "desc" : "" }
+          ],
+          "map" : {
+            "result.cases" : "in.cases"
           }
         },
         "guid" : "146AEAC5CA7F4CD2"
@@ -32,7 +32,9 @@
       "visual" : {
         "at" : { "x" : 64, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -50,7 +52,9 @@
         "at" : { "x" : 64, "y" : 160 },
         "labelOffset" : { "x" : 8, "y" : 32 }
       },
-      "connect" : { "id" : "f5", "to" : "f4" }
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
     }, {
       "id" : "f4",
       "type" : "HtmlDialogExit",

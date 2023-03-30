@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "176CC37C73C85D55",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -24,7 +24,9 @@
         "size" : { "width" : 20, "height" : 20 },
         "labelOffset" : { "x" : 34, "y" : 20 }
       },
-      "connect" : { "id" : "f6", "to" : "f5" }
+      "connect" : [
+        { "id" : "f6", "to" : "f5" }
+      ]
     }, {
       "id" : "f5",
       "type" : "Script",
@@ -52,7 +54,9 @@
       "visual" : {
         "at" : { "x" : 247, "y" : 288 }
       },
-      "connect" : { "id" : "f7", "to" : "f4" }
+      "connect" : [
+        { "id" : "f7", "to" : "f4" }
+      ]
     }, {
       "id" : "f8",
       "type" : "HtmlDialogEnd",
@@ -65,21 +69,21 @@
       "type" : "HtmlDialogStart",
       "name" : "start(String)",
       "config" : {
-        "callSignature" : "start",
-        "result" : {
-          "params" : [
-            { "name" : "loginOk", "type" : "Boolean" }
-          ],
-          "map" : {
-            "result.loginOk" : "in.loginOk"
-          }
-        },
+        "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "callbackUrl", "type" : "String" }
+            { "name" : "callbackUrl", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.callbackUrl" : "param.callbackUrl"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "loginOk", "type" : "Boolean", "desc" : "" }
+          ],
+          "map" : {
+            "result.loginOk" : "in.loginOk"
           }
         },
         "guid" : "176CC396F6456056"
@@ -89,6 +93,8 @@
         "size" : { "width" : 20, "height" : 20 },
         "labelOffset" : { "x" : 53, "y" : 20 }
       },
-      "connect" : { "id" : "f10", "to" : "f8" }
+      "connect" : [
+        { "id" : "f10", "to" : "f8" }
+      ]
     } ]
 }

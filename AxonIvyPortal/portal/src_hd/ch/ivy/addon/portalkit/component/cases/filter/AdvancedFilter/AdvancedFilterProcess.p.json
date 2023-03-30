@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "15F9451DFD921A3D",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,13 +10,15 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "guid" : "15F9451E014B2097"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -28,10 +30,10 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "updateCasesByFilter(String)",
       "config" : {
-        "callSignature" : "updateCasesByFilter",
+        "signature" : "updateCasesByFilter",
         "input" : {
           "params" : [
-            { "name" : "caseFilterContainerId", "type" : "String" }
+            { "name" : "caseFilterContainerId", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.caseContainerId" : "param.caseFilterContainerId"
@@ -42,7 +44,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }
       },
-      "connect" : { "id" : "f6", "to" : "f4" }
+      "connect" : [
+        { "id" : "f6", "to" : "f4" }
+      ]
     }, {
       "id" : "f4",
       "type" : "Script",
@@ -66,7 +70,9 @@
         "at" : { "x" : 264, "y" : 160 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f7", "to" : "f5" }
+      "connect" : [
+        { "id" : "f7", "to" : "f5" }
+      ]
     }, {
       "id" : "f5",
       "type" : "HtmlDialogEnd",

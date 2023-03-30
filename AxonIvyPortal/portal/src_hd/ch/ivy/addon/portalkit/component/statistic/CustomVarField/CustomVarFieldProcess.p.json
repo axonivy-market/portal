@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "163B018AA65AA403",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,13 +10,15 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "guid" : "163B018AAA51EB1F"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -34,7 +36,9 @@
         "at" : { "x" : 96, "y" : 160 },
         "labelOffset" : { "x" : 8, "y" : 32 }
       },
-      "connect" : { "id" : "f5", "to" : "f4" }
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
     }, {
       "id" : "f4",
       "type" : "HtmlDialogExit",
@@ -52,13 +56,15 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "addCustomVal()",
       "config" : {
-        "callSignature" : "addCustomVal",
+        "signature" : "addCustomVal",
         "guid" : "163B02A2C957AD5F"
       },
       "visual" : {
         "at" : { "x" : 97, "y" : 258 }
       },
-      "connect" : { "id" : "f13", "to" : "f12" }
+      "connect" : [
+        { "id" : "f13", "to" : "f12" }
+      ]
     }, {
       "id" : "f12",
       "type" : "Script",
@@ -75,6 +81,8 @@
       "visual" : {
         "at" : { "x" : 225, "y" : 258 }
       },
-      "connect" : { "id" : "f11", "to" : "f10" }
+      "connect" : [
+        { "id" : "f11", "to" : "f10" }
+      ]
     } ]
 }

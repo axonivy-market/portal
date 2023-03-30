@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "1754AA136C748BA5",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,11 +10,11 @@
       "type" : "HtmlDialogStart",
       "name" : "start(Long,Boolean)",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long" },
-            { "name" : "showBackButton", "type" : "Boolean" }
+            { "name" : "caseId", "type" : "Long", "desc" : "" },
+            { "name" : "showBackButton", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
             "out.currentCaseId" : "param.caseId",
@@ -27,7 +27,9 @@
         "at" : { "x" : 96, "y" : 64 },
         "labelOffset" : { "x" : 46, "y" : 35 }
       },
-      "connect" : { "id" : "f7", "to" : "f6" }
+      "connect" : [
+        { "id" : "f7", "to" : "f6" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -44,7 +46,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }
       },
-      "connect" : { "id" : "f5", "to" : "f4" }
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
     }, {
       "id" : "f4",
       "type" : "HtmlDialogExit",
@@ -56,18 +60,20 @@
       "type" : "Script",
       "name" : "Check read only condition",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "in.currentCase = ivy.wf.findCase(in.currentCaseId);",
             "in.readOnly = !in.currentCase.isBusinessCase();"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 304, "y" : 64 },
         "size" : { "width" : 160, "height" : 60 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     } ]
 }

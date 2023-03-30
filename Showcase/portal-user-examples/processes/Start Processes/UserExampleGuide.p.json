@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "17236DB1D3DA14C0",
   "config" : {
     "data" : "com.axonivy.portal.userexamples.UserExampleGuideData"
@@ -27,7 +27,9 @@
         "at" : { "x" : 192, "y" : 480 },
         "labelOffset" : { "x" : 39, "y" : 38 }
       },
-      "connect" : { "id" : "f7", "to" : "S31" }
+      "connect" : [
+        { "id" : "f7", "to" : "S31" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -45,7 +47,9 @@
             "at" : { "x" : 64, "y" : 256 }
           },
           "parentConnector" : "f19",
-          "connect" : { "id" : "S20-f2", "to" : "S20-f1" }
+          "connect" : [
+            { "id" : "S20-f2", "to" : "S20-f1" }
+          ]
         }, {
           "id" : "S20-g1",
           "type" : "EmbeddedEnd",
@@ -58,37 +62,43 @@
           "type" : "Script",
           "name" : "Logout SessionUser",
           "config" : {
-            "security" : "system",
             "output" : {
               "code" : "ivy.session.logoutSessionUser();"
-            }
+            },
+            "sudo" : true
           },
           "visual" : {
             "at" : { "x" : 232, "y" : 256 },
             "size" : { "width" : 128, "height" : 60 }
           },
-          "connect" : { "id" : "S20-f3", "to" : "S20-f4" }
+          "connect" : [
+            { "id" : "S20-f3", "to" : "S20-f4" }
+          ]
         }, {
           "id" : "S20-f4",
           "type" : "TaskSwitchEvent",
           "config" : {
-            "case" : {
-              "name" : "Welcome to Portal"
-            },
             "task" : {
               "name" : "Welcome to Portal",
               "skipTasklist" : true
+            },
+            "case" : {
+              "name" : "Welcome to Portal"
             }
           },
           "visual" : {
             "at" : { "x" : 600, "y" : 256 }
           },
-          "connect" : { "id" : "S20-f0", "to" : "S20-g1" }
+          "connect" : [
+            { "id" : "S20-f0", "to" : "S20-g1" }
+          ]
         } ],
       "visual" : {
         "at" : { "x" : 400, "y" : 224 }
       },
-      "connect" : { "id" : "f2", "to" : "f5" }
+      "connect" : [
+        { "id" : "f2", "to" : "f5" }
+      ]
     }, {
       "id" : "f4",
       "type" : "RequestStart",
@@ -105,7 +115,9 @@
         "at" : { "x" : 192, "y" : 224 },
         "labelOffset" : { "x" : 43, "y" : 38 }
       },
-      "connect" : { "id" : "f19", "to" : "S20" }
+      "connect" : [
+        { "id" : "f19", "to" : "S20" }
+      ]
     }, {
       "id" : "f5",
       "type" : "TaskEnd",
@@ -121,14 +133,15 @@
           "type" : "DialogCall",
           "name" : "ExampleHomePage",
           "config" : {
-            "dialogId" : "com.axonivy.portal.userexamples.ExampleHomePage",
-            "startMethod" : "start()"
+            "dialog" : "com.axonivy.portal.userexamples.ExampleHomePage:start()"
           },
           "visual" : {
             "at" : { "x" : 272, "y" : 160 },
             "size" : { "width" : 128, "height" : 60 }
           },
-          "connect" : { "id" : "S31-f1", "to" : "S31-g1" }
+          "connect" : [
+            { "id" : "S31-f1", "to" : "S31-g1" }
+          ]
         }, {
           "id" : "S31-g0",
           "type" : "EmbeddedStart",
@@ -138,7 +151,9 @@
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f7",
-          "connect" : { "id" : "S31-f0", "to" : "S31-f3" }
+          "connect" : [
+            { "id" : "S31-f0", "to" : "S31-f3" }
+          ]
         }, {
           "id" : "S31-g1",
           "type" : "EmbeddedEnd",
@@ -153,7 +168,9 @@
         "at" : { "x" : 408, "y" : 480 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f8", "to" : "f1" }
+      "connect" : [
+        { "id" : "f8", "to" : "f1" }
+      ]
     }, {
       "id" : "f3",
       "type" : "ProcessAnnotation",
@@ -167,7 +184,9 @@
         "at" : { "x" : 432, "y" : 104 },
         "size" : { "width" : 672, "height" : 76 }
       },
-      "connect" : { "id" : "f9", "to" : "f4" }
+      "connect" : [
+        { "id" : "f9", "to" : "f4" }
+      ]
     }, {
       "id" : "f6",
       "type" : "ProcessAnnotation",
@@ -180,7 +199,9 @@
         "at" : { "x" : 360, "y" : 368 },
         "size" : { "width" : 528, "height" : 60 }
       },
-      "connect" : { "id" : "f10", "to" : "f0" }
+      "connect" : [
+        { "id" : "f10", "to" : "f0" }
+      ]
     } ],
   "layout" : {
     "lanes" : [ {

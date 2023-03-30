@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "15D4E4EBDE11BDC2",
   "config" : {
     "data" : "internaltest.Data"
@@ -21,7 +21,9 @@
       "visual" : {
         "at" : { "x" : 80, "y" : 72 }
       },
-      "connect" : { "id" : "f2", "to" : "f3" }
+      "connect" : [
+        { "id" : "f2", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -33,13 +35,14 @@
       "type" : "DialogCall",
       "name" : "Cancel Approval Request",
       "config" : {
-        "dialogId" : "internaltest.ui.CancelApprovalRequest",
-        "startMethod" : "start()"
+        "dialog" : "internaltest.ui.CancelApprovalRequest:start()"
       },
       "visual" : {
         "at" : { "x" : 208, "y" : 72 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f4", "to" : "f1" }
+      "connect" : [
+        { "id" : "f4", "to" : "f1" }
+      ]
     } ]
 }

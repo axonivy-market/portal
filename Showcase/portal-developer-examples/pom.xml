@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>portal-developer-examples</artifactId>
@@ -17,7 +18,7 @@
   </distributionManagement>
   <properties>
     <ivy.engine.version>11.1.0</ivy.engine.version>
-    <build.plugin.version>10.0.3</build.plugin.version>
+    <build.plugin.version>10.0.6</build.plugin.version>
   </properties>
   <dependencies>
     <dependency>
@@ -32,6 +33,16 @@
       <id>maven.axonivy.com</id>
       <name>Axonivy Repo</name>
       <url>https://maven.axonivy.com/</url>
+    </repository>
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>maven.axonivy.com</id>
+      <url>https://maven.axonivy.com</url>
     </repository>
   </repositories>
   <pluginRepositories>

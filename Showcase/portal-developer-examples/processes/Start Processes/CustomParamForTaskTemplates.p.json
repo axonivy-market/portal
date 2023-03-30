@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "1718293B3F6E5478",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.CustomParamForTaskTemplatesData"
@@ -16,7 +16,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }
       },
-      "connect" : { "id" : "f4", "to" : "f3", "var" : "in1" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3", "var" : "in1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -27,21 +29,19 @@
       "id" : "f3",
       "type" : "TaskSwitchGateway",
       "config" : {
-        "outLinks" : [ "TaskA.ivp", "TaskB.ivp", "TaskC.ivp" ],
-        "tasks" : {
-          "TaskA" : {
+        "tasks" : [ {
+            "id" : "TaskA",
             "name" : "IFrame task with custom params"
-          },
-          "TaskB" : {
+          }, {
+            "id" : "TaskB",
             "name" : "Task template 8 with custom params",
             "customFields" : [
-              { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
             ]
-          },
-          "TaskC" : {
+          }, {
+            "id" : "TaskC",
             "name" : "IFrame with custom task name"
-          }
-        }
+          } ]
       },
       "visual" : {
         "at" : { "x" : 192, "y" : 160 }
@@ -56,39 +56,42 @@
       "type" : "DialogCall",
       "name" : "CustomParamsForIFrame",
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.testdata.CustomParamsForIFrame",
-        "startMethod" : "start()"
+        "dialog" : "com.axonivy.portal.developerexamples.testdata.CustomParamsForIFrame:start()"
       },
       "visual" : {
         "at" : { "x" : 352, "y" : 160 },
         "size" : { "width" : 160, "height" : 60 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f7",
       "type" : "DialogCall",
       "name" : "CustomParamsForTaskTemplate8",
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.testdata.CustomParamsForTaskTemplate8",
-        "startMethod" : "start()"
+        "dialog" : "com.axonivy.portal.developerexamples.testdata.CustomParamsForTaskTemplate8:start()"
       },
       "visual" : {
         "at" : { "x" : 368, "y" : 288 },
         "size" : { "width" : 208, "height" : 60 }
       },
-      "connect" : { "id" : "f9", "to" : "f1", "via" : [ { "x" : 512, "y" : 288 } ] }
+      "connect" : [
+        { "id" : "f9", "to" : "f1", "via" : [ { "x" : 512, "y" : 288 } ] }
+      ]
     }, {
       "id" : "f11",
       "type" : "DialogCall",
       "name" : "CustomTaskNameForIFrame",
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.testdata.CustomTaskNameForIFrame",
-        "startMethod" : "start()"
+        "dialog" : "com.axonivy.portal.developerexamples.testdata.CustomTaskNameForIFrame:start()"
       },
       "visual" : {
         "at" : { "x" : 359, "y" : 47 },
         "size" : { "width" : 171, "height" : 57 }
       },
-      "connect" : { "id" : "f10", "to" : "f1", "via" : [ { "x" : 512, "y" : 47 } ] }
+      "connect" : [
+        { "id" : "f10", "to" : "f1", "via" : [ { "x" : 512, "y" : 47 } ] }
+      ]
     } ]
 }
