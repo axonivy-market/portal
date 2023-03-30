@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "160070C3BA6D3702",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -16,24 +16,26 @@
       "type" : "Script",
       "name" : "get end page url",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : "in.callbackUrl = ivy.html.startRef(\"1600BDF7CC0AE52F/start.ivp\");"
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 265, "y" : 200 }
       },
-      "connect" : { "id" : "f7", "to" : "f3" }
+      "connect" : [
+        { "id" : "f7", "to" : "f3" }
+      ]
     }, {
       "id" : "f5",
       "type" : "CallSubStart",
       "name" : "handleEndPage()",
       "config" : {
-        "callSignature" : "handleEndPage",
+        "signature" : "handleEndPage",
         "result" : {
           "params" : [
-            { "name" : "callbackUrl", "type" : "String" }
+            { "name" : "callbackUrl", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "result.callbackUrl" : "in.callbackUrl"
@@ -43,7 +45,9 @@
       "visual" : {
         "at" : { "x" : 89, "y" : 200 }
       },
-      "connect" : { "id" : "f6", "to" : "f4" }
+      "connect" : [
+        { "id" : "f6", "to" : "f4" }
+      ]
     }, {
       "id" : "f0",
       "type" : "ProcessAnnotation",

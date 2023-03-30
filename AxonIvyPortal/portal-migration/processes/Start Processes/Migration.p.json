@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "175F92F71BC45295",
   "config" : {
     "data" : "portalmigration.Data"
@@ -17,7 +17,9 @@
         "at" : { "x" : 96, "y" : 192 },
         "labelOffset" : { "x" : 65, "y" : 37 }
       },
-      "connect" : { "id" : "f4", "to" : "S11" }
+      "connect" : [
+        { "id" : "f4", "to" : "S11" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -33,25 +35,27 @@
           "type" : "DialogCall",
           "name" : "Login",
           "config" : {
-            "dialogId" : "portal.migration.Login",
-            "startMethod" : "start()"
+            "dialog" : "portal.migration.Login:start()"
           },
           "visual" : {
             "at" : { "x" : 328, "y" : 256 }
           },
-          "connect" : { "id" : "S11-f9", "to" : "S11-f3", "via" : [ { "x" : 472, "y" : 256 } ] }
+          "connect" : [
+            { "id" : "S11-f9", "to" : "S11-f3", "via" : [ { "x" : 472, "y" : 256 } ] }
+          ]
         }, {
           "id" : "S11-f3",
           "type" : "DialogCall",
           "name" : "MigrationData",
           "config" : {
-            "dialogId" : "portal.migration.MigrationData",
-            "startMethod" : "start()"
+            "dialog" : "portal.migration.MigrationData:start()"
           },
           "visual" : {
             "at" : { "x" : 472, "y" : 160 }
           },
-          "connect" : { "id" : "S11-f1", "to" : "S11-g1" }
+          "connect" : [
+            { "id" : "S11-f1", "to" : "S11-g1" }
+          ]
         }, {
           "id" : "S11-f5",
           "type" : "Alternative",
@@ -73,7 +77,9 @@
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f4",
-          "connect" : { "id" : "S11-f0", "to" : "S11-f5" }
+          "connect" : [
+            { "id" : "S11-f0", "to" : "S11-f5" }
+          ]
         }, {
           "id" : "S11-g1",
           "type" : "EmbeddedEnd",
@@ -88,7 +94,9 @@
         "at" : { "x" : 336, "y" : 192 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f11", "to" : "f1" }
+      "connect" : [
+        { "id" : "f11", "to" : "f1" }
+      ]
     }, {
       "id" : "f2",
       "type" : "ProcessAnnotation",

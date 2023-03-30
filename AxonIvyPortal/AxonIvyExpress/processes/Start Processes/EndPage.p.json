@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "1600BDF7CC0AE52F",
   "config" : {
     "data" : "ch.ivy.addon.express.generic.HandleEndPageData"
@@ -16,7 +16,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -28,12 +30,13 @@
       "type" : "DialogCall",
       "name" : "express endpage",
       "config" : {
-        "dialogId" : "ch.ivy.addon.express.generic.EndPage",
-        "startMethod" : "start()"
+        "dialog" : "ch.ivy.addon.express.generic.EndPage:start()"
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     } ]
 }

@@ -1,4 +1,3 @@
 SendEmailData #class
 gawfs #namespace
-emailConfig ch.ivyteam.ivy.components.config.EmailConfiguration #field
 attachmentFiles java.util.List<File> #field

@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "18098C74EBB97195",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "handle(List<PortalIvyDataException>)",
       "config" : {
-        "callSignature" : "handle",
+        "signature" : "handle",
         "input" : {
           "params" : [
-            { "name" : "exceptions", "type" : "java.util.List<com.axonivy.portal.components.ivydata.exception.PortalIvyDataException>" }
+            { "name" : "exceptions", "type" : "java.util.List<com.axonivy.portal.components.ivydata.exception.PortalIvyDataException>", "desc" : "" }
           ],
           "map" : {
             "out.exceptions" : "param.exceptions"
@@ -24,7 +24,9 @@
         "at" : { "x" : 64, "y" : 48 },
         "labelOffset" : { "x" : 124, "y" : 20 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -53,6 +55,8 @@
       "visual" : {
         "at" : { "x" : 64, "y" : 136 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     } ]
 }

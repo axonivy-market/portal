@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "176CBB4874D688E6",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,13 +10,13 @@
       "type" : "HtmlDialogStart",
       "name" : "start(ITask,TaskLazyDataModel,PortalPage,Boolean)",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
-            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" },
-            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" },
-            { "name" : "isFromTaskList", "type" : "Boolean" }
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" },
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel", "desc" : "" },
+            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage", "desc" : "" },
+            { "name" : "isFromTaskList", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
             "out.dataModel" : "param.dataModel",
@@ -31,7 +31,9 @@
         "at" : { "x" : 96, "y" : 96 },
         "labelOffset" : { "x" : 86, "y" : 45 }
       },
-      "connect" : { "id" : "f7", "to" : "f6" }
+      "connect" : [
+        { "id" : "f7", "to" : "f6" }
+      ]
     }, {
       "id" : "f4",
       "type" : "HtmlDialogEnd",
@@ -49,7 +51,9 @@
         "at" : { "x" : 96, "y" : 288 },
         "labelOffset" : { "x" : 8, "y" : 32 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogExit",
@@ -73,19 +77,21 @@
         "at" : { "x" : 256, "y" : 96 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f5", "to" : "f4" }
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
     }, {
       "id" : "f9",
       "type" : "HtmlDialogStart",
       "name" : "startFromDashboard(ITask,DashboardTaskLazyDataModel,PortalPage,Boolean)",
       "config" : {
-        "callSignature" : "startFromDashboard",
+        "signature" : "startFromDashboard",
         "input" : {
           "params" : [
-            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
-            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel" },
-            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" },
-            { "name" : "isFromTaskList", "type" : "Boolean" }
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" },
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel", "desc" : "" },
+            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage", "desc" : "" },
+            { "name" : "isFromTaskList", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
             "out.dashboardDataModel" : "param.dataModel",
@@ -100,7 +106,9 @@
         "at" : { "x" : 96, "y" : 192 },
         "labelOffset" : { "x" : 149, "y" : 45 }
       },
-      "connect" : { "id" : "f11", "to" : "f8" }
+      "connect" : [
+        { "id" : "f11", "to" : "f8" }
+      ]
     }, {
       "id" : "f10",
       "type" : "HtmlDialogEnd",
@@ -124,6 +132,8 @@
         "at" : { "x" : 224, "y" : 192 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f12", "to" : "f10" }
+      "connect" : [
+        { "id" : "f12", "to" : "f10" }
+      ]
     } ]
 }

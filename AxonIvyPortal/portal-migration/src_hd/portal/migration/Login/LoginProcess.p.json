@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "17B85C8E8CCA8F78",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,13 +10,15 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "guid" : "17B85C8E8D4A9603"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -35,13 +37,14 @@
         "size" : { "width" : 20, "height" : 20 },
         "labelOffset" : { "x" : 12, "y" : 33 }
       },
-      "connect" : { "id" : "f9", "to" : "f8" }
+      "connect" : [
+        { "id" : "f9", "to" : "f8" }
+      ]
     }, {
       "id" : "f8",
       "type" : "Script",
       "name" : "login get user settings",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import org.apache.commons.lang3.StringUtils;",
@@ -72,13 +75,16 @@
             "  in.loginOk = false;",
             "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 240, "y" : 183 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f3",
       "type" : "Alternative",

@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "1543CB1F7FCE2CC1",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -18,9 +18,6 @@
       "config" : {
         "processCall" : "Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)",
         "call" : {
-          "params" : [
-            { "name" : "taskView", "type" : "ch.ivy.addon.portal.generic.view.TaskView" }
-          ],
           "map" : {
             "param.taskView" : "in.taskView"
           }
@@ -29,18 +26,20 @@
       "visual" : {
         "at" : { "x" : 1128, "y" : 1584 }
       },
-      "connect" : { "id" : "f11", "to" : "f10" }
+      "connect" : [
+        { "id" : "f11", "to" : "f10" }
+      ]
     }, {
       "id" : "f9",
       "type" : "CallSubStart",
       "name" : "viewTask(Long,GlobalCaseId,String)",
       "config" : {
-        "callSignature" : "viewTask",
+        "signature" : "viewTask",
         "input" : {
           "params" : [
-            { "name" : "taskId", "type" : "Long" },
-            { "name" : "caseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId" },
-            { "name" : "caseName", "type" : "String" }
+            { "name" : "taskId", "type" : "Long", "desc" : "" },
+            { "name" : "caseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId", "desc" : "" },
+            { "name" : "caseName", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.caseId",
@@ -53,13 +52,14 @@
         "at" : { "x" : 1128, "y" : 1344 },
         "labelOffset" : { "x" : 122, "y" : 20 }
       },
-      "connect" : { "id" : "f17", "to" : "f16" }
+      "connect" : [
+        { "id" : "f17", "to" : "f16" }
+      ]
     }, {
       "id" : "f14",
       "type" : "Script",
       "name" : "prepareTaskView",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.workflow.ICase;",
@@ -93,12 +93,15 @@
             "                      .dataModel(in.taskDataModel)",
             "                      .isRelatedTaskView(true).createNewTaskView();"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 1128, "y" : 1512 }
       },
-      "connect" : { "id" : "f13", "to" : "f12" }
+      "connect" : [
+        { "id" : "f13", "to" : "f12" }
+      ]
     }, {
       "id" : "f4",
       "type" : "ProcessAnnotation",
@@ -129,13 +132,14 @@
       "visual" : {
         "at" : { "x" : 1128, "y" : 1432 }
       },
-      "connect" : { "id" : "f15", "to" : "f14" }
+      "connect" : [
+        { "id" : "f15", "to" : "f14" }
+      ]
     }, {
       "id" : "f20",
       "type" : "Script",
       "name" : "prepareTaskView",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.enums.TaskAssigneeType;",
@@ -165,12 +169,15 @@
             "                .dataModel(in.taskDataModel)",
             "                .createNewTaskView();"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 1929, "y" : 1515 }
       },
-      "connect" : { "id" : "f27", "to" : "f23" }
+      "connect" : [
+        { "id" : "f27", "to" : "f23" }
+      ]
     }, {
       "id" : "f23",
       "type" : "SubProcessCall",
@@ -178,9 +185,6 @@
       "config" : {
         "processCall" : "Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)",
         "call" : {
-          "params" : [
-            { "name" : "taskView", "type" : "ch.ivy.addon.portal.generic.view.TaskView" }
-          ],
           "map" : {
             "param.taskView" : "in.taskView"
           }
@@ -189,7 +193,9 @@
       "visual" : {
         "at" : { "x" : 1929, "y" : 1587 }
       },
-      "connect" : { "id" : "f28", "to" : "f24" }
+      "connect" : [
+        { "id" : "f28", "to" : "f24" }
+      ]
     }, {
       "id" : "f24",
       "type" : "CallSubEnd",
@@ -201,11 +207,11 @@
       "type" : "CallSubStart",
       "name" : "viewTaskForAnalytic(String, TaskQuery)",
       "config" : {
-        "callSignature" : "viewTaskForAnalytic",
+        "signature" : "viewTaskForAnalytic",
         "input" : {
           "params" : [
-            { "name" : "chartName", "type" : "String" },
-            { "name" : "taskQuery", "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery" }
+            { "name" : "chartName", "type" : "String", "desc" : "" },
+            { "name" : "taskQuery", "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery", "desc" : "" }
           ],
           "map" : {
             "out.chartName" : "param.chartName",
@@ -217,7 +223,9 @@
         "at" : { "x" : 1929, "y" : 1347 },
         "labelOffset" : { "x" : 129, "y" : 20 }
       },
-      "connect" : { "id" : "f29", "to" : "f26" }
+      "connect" : [
+        { "id" : "f29", "to" : "f26" }
+      ]
     }, {
       "id" : "f26",
       "type" : "SubProcessCall",
@@ -234,7 +242,9 @@
       "visual" : {
         "at" : { "x" : 1929, "y" : 1435 }
       },
-      "connect" : { "id" : "f30", "to" : "f20" }
+      "connect" : [
+        { "id" : "f30", "to" : "f20" }
+      ]
     }, {
       "id" : "f31",
       "type" : "Script",
@@ -268,17 +278,19 @@
       "visual" : {
         "at" : { "x" : 1930, "y" : 1159 }
       },
-      "connect" : { "id" : "f37", "to" : "f35" }
+      "connect" : [
+        { "id" : "f37", "to" : "f35" }
+      ]
     }, {
       "id" : "f32",
       "type" : "CallSubStart",
       "name" : "viewCaseForAnalytic(String, CaseQuery)",
       "config" : {
-        "callSignature" : "viewCaseForAnalytic",
+        "signature" : "viewCaseForAnalytic",
         "input" : {
           "params" : [
-            { "name" : "chartName", "type" : "String" },
-            { "name" : "caseQuery", "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery" }
+            { "name" : "chartName", "type" : "String", "desc" : "" },
+            { "name" : "caseQuery", "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery", "desc" : "" }
           ],
           "map" : {
             "out.caseQuery" : "param.caseQuery",
@@ -290,7 +302,9 @@
         "at" : { "x" : 1930, "y" : 967 },
         "labelOffset" : { "x" : 132, "y" : 20 }
       },
-      "connect" : { "id" : "f38", "to" : "f34" }
+      "connect" : [
+        { "id" : "f38", "to" : "f34" }
+      ]
     }, {
       "id" : "f33",
       "type" : "CallSubEnd",
@@ -316,7 +330,9 @@
       "visual" : {
         "at" : { "x" : 1930, "y" : 1063 }
       },
-      "connect" : { "id" : "f36", "to" : "f31" }
+      "connect" : [
+        { "id" : "f36", "to" : "f31" }
+      ]
     }, {
       "id" : "f35",
       "type" : "SubProcessCall",
@@ -324,9 +340,6 @@
       "config" : {
         "processCall" : "Functional Processes/OpenPortalCases:useView(ch.ivy.addon.portal.generic.view.CaseView)",
         "call" : {
-          "params" : [
-            { "name" : "view", "type" : "ch.ivy.addon.portal.generic.view.CaseView" }
-          ],
           "map" : {
             "param.view" : "in.caseView"
           }
@@ -335,7 +348,9 @@
       "visual" : {
         "at" : { "x" : 1930, "y" : 1223 }
       },
-      "connect" : { "id" : "f39", "to" : "f33" }
+      "connect" : [
+        { "id" : "f39", "to" : "f33" }
+      ]
     }, {
       "id" : "f40",
       "type" : "ProcessAnnotation",
@@ -369,11 +384,11 @@
       "type" : "CallSubStart",
       "name" : "viewTechnicalCasesOfBusniessCase(String,GlobalCaseId)",
       "config" : {
-        "callSignature" : "viewTechnicalCasesOfBusniessCase",
+        "signature" : "viewTechnicalCasesOfBusniessCase",
         "input" : {
           "params" : [
-            { "name" : "businessCaseName", "type" : "String" },
-            { "name" : "businessCaseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId" }
+            { "name" : "businessCaseName", "type" : "String", "desc" : "" },
+            { "name" : "businessCaseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.businessCaseId",
@@ -384,7 +399,9 @@
       "visual" : {
         "at" : { "x" : 2856, "y" : 968 }
       },
-      "connect" : { "id" : "f47", "to" : "f46" }
+      "connect" : [
+        { "id" : "f47", "to" : "f46" }
+      ]
     }, {
       "id" : "f45",
       "type" : "CallSubEnd",
@@ -410,7 +427,9 @@
       "visual" : {
         "at" : { "x" : 2856, "y" : 1048 }
       },
-      "connect" : { "id" : "f50", "to" : "f48" }
+      "connect" : [
+        { "id" : "f50", "to" : "f48" }
+      ]
     }, {
       "id" : "f48",
       "type" : "Script",
@@ -441,7 +460,9 @@
       "visual" : {
         "at" : { "x" : 2856, "y" : 1160 }
       },
-      "connect" : { "id" : "f51", "to" : "f49" }
+      "connect" : [
+        { "id" : "f51", "to" : "f49" }
+      ]
     }, {
       "id" : "f49",
       "type" : "SubProcessCall",
@@ -449,9 +470,6 @@
       "config" : {
         "processCall" : "Functional Processes/OpenPortalCases:useView(ch.ivy.addon.portal.generic.view.CaseView)",
         "call" : {
-          "params" : [
-            { "name" : "view", "type" : "ch.ivy.addon.portal.generic.view.CaseView" }
-          ],
           "map" : {
             "param.view" : "in.caseView"
           }
@@ -460,7 +478,9 @@
       "visual" : {
         "at" : { "x" : 2856, "y" : 1272 }
       },
-      "connect" : { "id" : "f52", "to" : "f45" }
+      "connect" : [
+        { "id" : "f52", "to" : "f45" }
+      ]
     }, {
       "id" : "f53",
       "type" : "ProcessAnnotation",
@@ -482,10 +502,6 @@
       "config" : {
         "processCall" : "Functional Processes/OpenPortalCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean)",
         "call" : {
-          "params" : [
-            { "name" : "caseData", "type" : "ch.ivyteam.ivy.workflow.ICase" },
-            { "name" : "isShowBackButton", "type" : "Boolean" }
-          ],
           "map" : {
             "param.caseData" : "in.iCase",
             "param.isShowBackButton" : "true"
@@ -495,7 +511,9 @@
       "visual" : {
         "at" : { "x" : 1128, "y" : 1176 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -521,10 +539,10 @@
       "type" : "CallSubStart",
       "name" : "viewCase(GlobalCaseId)",
       "config" : {
-        "callSignature" : "viewCase",
+        "signature" : "viewCase",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId" }
+            { "name" : "caseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.caseId"
@@ -535,7 +553,9 @@
         "at" : { "x" : 1128, "y" : 968 },
         "labelOffset" : { "x" : 91, "y" : 20 }
       },
-      "connect" : { "id" : "f8", "to" : "f7" }
+      "connect" : [
+        { "id" : "f8", "to" : "f7" }
+      ]
     }, {
       "id" : "f7",
       "type" : "Script",
@@ -553,16 +573,18 @@
       "visual" : {
         "at" : { "x" : 1128, "y" : 1056 }
       },
-      "connect" : { "id" : "f6", "to" : "f5" }
+      "connect" : [
+        { "id" : "f6", "to" : "f5" }
+      ]
     }, {
       "id" : "f54",
       "type" : "CallSubStart",
       "name" : "viewRelatedTask(String,GlobalCaseId,String)",
       "config" : {
-        "callSignature" : "viewRelatedTask",
+        "signature" : "viewRelatedTask",
         "input" : {
           "params" : [
-            { "name" : "taskId", "type" : "Long" }
+            { "name" : "taskId", "type" : "Long", "desc" : "" }
           ],
           "map" : {
             "out.taskId" : "param.taskId"
@@ -573,7 +595,9 @@
         "at" : { "x" : 2856, "y" : 1424 },
         "labelOffset" : { "x" : 146, "y" : 20 }
       },
-      "connect" : { "id" : "f57", "to" : "f56" }
+      "connect" : [
+        { "id" : "f57", "to" : "f56" }
+      ]
     }, {
       "id" : "f19",
       "type" : "ProcessAnnotation",
@@ -611,7 +635,9 @@
       "visual" : {
         "at" : { "x" : 2856, "y" : 1520 }
       },
-      "connect" : { "id" : "f59", "to" : "f58" }
+      "connect" : [
+        { "id" : "f59", "to" : "f58" }
+      ]
     }, {
       "id" : "f58",
       "type" : "SubProcessCall",
@@ -619,12 +645,6 @@
       "config" : {
         "processCall" : "Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)",
         "call" : {
-          "params" : [
-            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
-            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" },
-            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" },
-            { "name" : "isFromTaskList", "type" : "Boolean" }
-          ],
           "map" : {
             "param.task" : "in.iTask",
             "param.portalPage" : "ch.ivy.addon.portalkit.enums.PortalPage.CASE_DETAIL_FROM_TASK",
@@ -636,7 +656,9 @@
         "at" : { "x" : 2856, "y" : 1616 },
         "size" : { "width" : 48, "height" : 24 }
       },
-      "connect" : { "id" : "f55", "to" : "f18" }
+      "connect" : [
+        { "id" : "f55", "to" : "f18" }
+      ]
     }, {
       "id" : "f60",
       "type" : "SubProcessCall",
@@ -644,9 +666,6 @@
       "config" : {
         "processCall" : "Functional Processes/OpenPortalTasks:useViewInFrame(ch.ivy.addon.portal.generic.view.TaskView)",
         "call" : {
-          "params" : [
-            { "name" : "taskView", "type" : "ch.ivy.addon.portal.generic.view.TaskView" }
-          ],
           "map" : {
             "param.taskView" : "in.taskView"
           }
@@ -655,13 +674,14 @@
       "visual" : {
         "at" : { "x" : 1128, "y" : 2040 }
       },
-      "connect" : { "id" : "f69", "to" : "f62" }
+      "connect" : [
+        { "id" : "f69", "to" : "f62" }
+      ]
     }, {
       "id" : "f61",
       "type" : "Script",
       "name" : "prepareTaskView",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.workflow.ICase;",
@@ -695,12 +715,15 @@
             "                      .dataModel(in.taskDataModel)",
             "                      .isRelatedTaskView(true).createNewTaskView();"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 1128, "y" : 1968 }
       },
-      "connect" : { "id" : "f68", "to" : "f60" }
+      "connect" : [
+        { "id" : "f68", "to" : "f60" }
+      ]
     }, {
       "id" : "f62",
       "type" : "CallSubEnd",
@@ -723,18 +746,20 @@
       "visual" : {
         "at" : { "x" : 1128, "y" : 1888 }
       },
-      "connect" : { "id" : "f66", "to" : "f61" }
+      "connect" : [
+        { "id" : "f66", "to" : "f61" }
+      ]
     }, {
       "id" : "f64",
       "type" : "CallSubStart",
       "name" : "viewTaskInFrame(Long,GlobalCaseId,String)",
       "config" : {
-        "callSignature" : "viewTaskInFrame",
+        "signature" : "viewTaskInFrame",
         "input" : {
           "params" : [
-            { "name" : "taskId", "type" : "Long" },
-            { "name" : "caseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId" },
-            { "name" : "caseName", "type" : "String" }
+            { "name" : "taskId", "type" : "Long", "desc" : "" },
+            { "name" : "caseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId", "desc" : "" },
+            { "name" : "caseName", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.caseId",
@@ -747,7 +772,9 @@
         "at" : { "x" : 1128, "y" : 1800 },
         "labelOffset" : { "x" : 145, "y" : 20 }
       },
-      "connect" : { "id" : "f67", "to" : "f63" }
+      "connect" : [
+        { "id" : "f67", "to" : "f63" }
+      ]
     }, {
       "id" : "f65",
       "type" : "ProcessAnnotation",
@@ -773,10 +800,10 @@
       "type" : "CallSubStart",
       "name" : "viewCaseItemDetailsInIFrame(GlobalCaseId)",
       "config" : {
-        "callSignature" : "viewCaseItemDetailsInIFrame",
+        "signature" : "viewCaseItemDetailsInIFrame",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId" }
+            { "name" : "caseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.caseId"
@@ -787,19 +814,16 @@
         "at" : { "x" : 1929, "y" : 1803 },
         "labelOffset" : { "x" : 147, "y" : 20 }
       },
-      "connect" : { "id" : "f73", "to" : "f72" }
+      "connect" : [
+        { "id" : "f73", "to" : "f72" }
+      ]
     }, {
       "id" : "f72",
       "type" : "DialogCall",
       "name" : "CaseInformationInIFrame",
       "config" : {
-        "dialogId" : "ch.ivy.addon.portal.component.iframe.CaseInformationInIFrame",
-        "startMethod" : "start(Long,Boolean)",
+        "dialog" : "ch.ivy.addon.portal.component.iframe.CaseInformationInIFrame:start(Long,Boolean)",
         "call" : {
-          "params" : [
-            { "name" : "caseId", "type" : "Long" },
-            { "name" : "showBackButton", "type" : "Boolean" }
-          ],
           "map" : {
             "param.caseId" : "in.caseId.id()",
             "param.showBackButton" : "!in.caseId.isBusinessCase()"
@@ -810,7 +834,9 @@
         "at" : { "x" : 1928, "y" : 1944 },
         "size" : { "width" : 160, "height" : 60 }
       },
-      "connect" : { "id" : "f74", "to" : "f70" }
+      "connect" : [
+        { "id" : "f74", "to" : "f70" }
+      ]
     }, {
       "id" : "f75",
       "type" : "Script",
@@ -828,7 +854,9 @@
       "visual" : {
         "at" : { "x" : 2440, "y" : 1896 }
       },
-      "connect" : { "id" : "f80", "to" : "f76" }
+      "connect" : [
+        { "id" : "f80", "to" : "f76" }
+      ]
     }, {
       "id" : "f76",
       "type" : "SubProcessCall",
@@ -836,12 +864,6 @@
       "config" : {
         "processCall" : "Functional Processes/OpenPortalTaskDetailsHook:callInFrame(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)",
         "call" : {
-          "params" : [
-            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
-            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" },
-            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" },
-            { "name" : "isFromTaskList", "type" : "Boolean" }
-          ],
           "map" : {
             "param.task" : "in.iTask",
             "param.portalPage" : "ch.ivy.addon.portalkit.enums.PortalPage.CASE_DETAIL_FROM_TASK",
@@ -853,16 +875,18 @@
         "at" : { "x" : 2440, "y" : 1992 },
         "size" : { "width" : 48, "height" : 24 }
       },
-      "connect" : { "id" : "f82", "to" : "f79" }
+      "connect" : [
+        { "id" : "f82", "to" : "f79" }
+      ]
     }, {
       "id" : "f77",
       "type" : "CallSubStart",
       "name" : "viewRelatedTaskInFrame(String,GlobalCaseId,String)",
       "config" : {
-        "callSignature" : "viewRelatedTaskInFrame",
+        "signature" : "viewRelatedTaskInFrame",
         "input" : {
           "params" : [
-            { "name" : "taskId", "type" : "Long" }
+            { "name" : "taskId", "type" : "Long", "desc" : "" }
           ],
           "map" : {
             "out.taskId" : "param.taskId"
@@ -873,7 +897,9 @@
         "at" : { "x" : 2440, "y" : 1800 },
         "labelOffset" : { "x" : 169, "y" : 20 }
       },
-      "connect" : { "id" : "f81", "to" : "f75" }
+      "connect" : [
+        { "id" : "f81", "to" : "f75" }
+      ]
     }, {
       "id" : "f78",
       "type" : "ProcessAnnotation",
@@ -913,7 +939,9 @@
       "visual" : {
         "at" : { "x" : 1128, "y" : 2328 }
       },
-      "connect" : { "id" : "f91", "to" : "f84" }
+      "connect" : [
+        { "id" : "f91", "to" : "f84" }
+      ]
     }, {
       "id" : "f84",
       "type" : "Script",
@@ -945,7 +973,9 @@
       "visual" : {
         "at" : { "x" : 1128, "y" : 2440 }
       },
-      "connect" : { "id" : "f90", "to" : "f87" }
+      "connect" : [
+        { "id" : "f90", "to" : "f87" }
+      ]
     }, {
       "id" : "f85",
       "type" : "ProcessAnnotation",
@@ -973,9 +1003,6 @@
       "config" : {
         "processCall" : "Functional Processes/OpenPortalCases:useViewInFrame(ch.ivy.addon.portal.generic.view.CaseView)",
         "call" : {
-          "params" : [
-            { "name" : "view", "type" : "ch.ivy.addon.portal.generic.view.CaseView" }
-          ],
           "map" : {
             "param.view" : "in.caseView"
           }
@@ -984,17 +1011,19 @@
       "visual" : {
         "at" : { "x" : 1128, "y" : 2552 }
       },
-      "connect" : { "id" : "f92", "to" : "f86" }
+      "connect" : [
+        { "id" : "f92", "to" : "f86" }
+      ]
     }, {
       "id" : "f88",
       "type" : "CallSubStart",
       "name" : "viewTechnicalCasesOfBusniessCaseInFrame(String,GlobalCaseId)",
       "config" : {
-        "callSignature" : "viewTechnicalCasesOfBusniessCaseInFrame",
+        "signature" : "viewTechnicalCasesOfBusniessCaseInFrame",
         "input" : {
           "params" : [
-            { "name" : "businessCaseName", "type" : "String" },
-            { "name" : "businessCaseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId" }
+            { "name" : "businessCaseName", "type" : "String", "desc" : "" },
+            { "name" : "businessCaseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.businessCaseId",
@@ -1006,6 +1035,8 @@
         "at" : { "x" : 1128, "y" : 2248 },
         "labelOffset" : { "x" : 209, "y" : 37 }
       },
-      "connect" : { "id" : "f89", "to" : "f83" }
+      "connect" : [
+        { "id" : "f89", "to" : "f83" }
+      ]
     } ]
 }

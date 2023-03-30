@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "1791D27754935B10",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.TaskDetailsCustomWidgetExampleData"
@@ -9,12 +9,8 @@
       "type" : "DialogCall",
       "name" : "InvoiceDetails",
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.customization.InvoiceDetails",
-        "startMethod" : "start(com.axonivy.portal.developerexamples.Invoice)",
+        "dialog" : "com.axonivy.portal.developerexamples.customization.InvoiceDetails:start(com.axonivy.portal.developerexamples.Invoice)",
         "call" : {
-          "params" : [
-            { "name" : "invoice", "type" : "com.axonivy.portal.developerexamples.Invoice" }
-          ],
           "map" : {
             "param.invoice" : "in.invoice"
           }
@@ -23,7 +19,9 @@
       "visual" : {
         "at" : { "x" : 368, "y" : 48 }
       },
-      "connect" : { "id" : "f22", "to" : "f3" }
+      "connect" : [
+        { "id" : "f22", "to" : "f3" }
+      ]
     }, {
       "id" : "f12",
       "type" : "TaskEnd",
@@ -63,46 +61,42 @@
         "at" : { "x" : 80, "y" : 48 },
         "labelOffset" : { "x" : 34, "y" : 37 }
       },
-      "connect" : { "id" : "f15", "to" : "f6" }
+      "connect" : [
+        { "id" : "f15", "to" : "f6" }
+      ]
     }, {
       "id" : "f11",
       "type" : "DialogCall",
       "name" : "InvoiceDetails",
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.customization.InvoiceDetails",
-        "startMethod" : "start(com.axonivy.portal.developerexamples.Invoice)",
-        "call" : {
-          "params" : [
-            { "name" : "invoice", "type" : "com.axonivy.portal.developerexamples.Invoice" }
-          ]
-        }
+        "dialog" : "com.axonivy.portal.developerexamples.customization.InvoiceDetails:start(com.axonivy.portal.developerexamples.Invoice)"
       },
       "visual" : {
         "at" : { "x" : 368, "y" : 208 }
       },
-      "connect" : { "id" : "f21", "to" : "f13" }
+      "connect" : [
+        { "id" : "f21", "to" : "f13" }
+      ]
     }, {
       "id" : "f8",
       "type" : "TaskSwitchGateway",
       "config" : {
-        "outLinks" : [ "TaskA.ivp", "TaskB.ivp", "TaskC.ivp" ],
-        "tasks" : {
-          "TaskA" : {
+        "tasks" : [ {
+            "id" : "TaskA",
             "name" : "Support Customer",
             "category" : "support"
-          },
-          "TaskB" : {
+          }, {
+            "id" : "TaskB",
             "name" : "Manage Invoice",
             "category" : "manage",
             "customFields" : [
-              { "name" : "invoiceDescription", "type" : "String", "value" : "\"Inventory invoice\"" }
+              { "name" : "invoiceDescription", "type" : "STRING", "value" : "\"Inventory invoice\"" }
             ]
-          },
-          "TaskC" : {
+          }, {
+            "id" : "TaskC",
             "name" : "Proceed Invoice",
             "category" : "system"
-          }
-        }
+          } ]
       },
       "visual" : {
         "at" : { "x" : 208, "y" : 112 }
@@ -125,7 +119,9 @@
         "at" : { "x" : 80, "y" : 112 },
         "labelOffset" : { "x" : 45, "y" : 37 }
       },
-      "connect" : { "id" : "f20", "to" : "f8", "var" : "in1" }
+      "connect" : [
+        { "id" : "f20", "to" : "f8", "var" : "in1" }
+      ]
     }, {
       "id" : "f13",
       "type" : "TaskEnd",
@@ -184,24 +180,22 @@
       "visual" : {
         "at" : { "x" : 208, "y" : 48 }
       },
-      "connect" : { "id" : "f9", "to" : "f5" }
+      "connect" : [
+        { "id" : "f9", "to" : "f5" }
+      ]
     }, {
       "id" : "f10",
       "type" : "DialogCall",
       "name" : "InvoiceDetails",
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.customization.InvoiceDetails",
-        "startMethod" : "start(com.axonivy.portal.developerexamples.Invoice)",
-        "call" : {
-          "params" : [
-            { "name" : "invoice", "type" : "com.axonivy.portal.developerexamples.Invoice" }
-          ]
-        }
+        "dialog" : "com.axonivy.portal.developerexamples.customization.InvoiceDetails:start(com.axonivy.portal.developerexamples.Invoice)"
       },
       "visual" : {
         "at" : { "x" : 368, "y" : 112 }
       },
-      "connect" : { "id" : "f18", "to" : "f12" }
+      "connect" : [
+        { "id" : "f18", "to" : "f12" }
+      ]
     }, {
       "id" : "f14",
       "type" : "TaskEnd",

@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "169137A20654C01B",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,13 +10,15 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "guid" : "169137A2086B150F"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -34,7 +36,9 @@
         "at" : { "x" : 96, "y" : 160 },
         "labelOffset" : { "x" : 8, "y" : 32 }
       },
-      "connect" : { "id" : "f5", "to" : "f4" }
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
     }, {
       "id" : "f4",
       "type" : "HtmlDialogExit",
@@ -52,7 +56,9 @@
         "at" : { "x" : 96, "y" : 256 },
         "labelOffset" : { "x" : 11, "y" : 40 }
       },
-      "connect" : { "id" : "f9", "to" : "f8" }
+      "connect" : [
+        { "id" : "f9", "to" : "f8" }
+      ]
     }, {
       "id" : "f7",
       "type" : "HtmlDialogExit",
@@ -90,7 +96,9 @@
       "visual" : {
         "at" : { "x" : 240, "y" : 256 }
       },
-      "connect" : { "id" : "f10", "to" : "f7" }
+      "connect" : [
+        { "id" : "f10", "to" : "f7" }
+      ]
     }, {
       "id" : "f11",
       "type" : "HtmlDialogEventStart",
@@ -102,7 +110,9 @@
         "at" : { "x" : 96, "y" : 352 },
         "labelOffset" : { "x" : 7, "y" : 36 }
       },
-      "connect" : { "id" : "f14", "to" : "f13" }
+      "connect" : [
+        { "id" : "f14", "to" : "f13" }
+      ]
     }, {
       "id" : "f12",
       "type" : "HtmlDialogExit",
@@ -140,6 +150,8 @@
       "visual" : {
         "at" : { "x" : 240, "y" : 352 }
       },
-      "connect" : { "id" : "f15", "to" : "f12" }
+      "connect" : [
+        { "id" : "f15", "to" : "f12" }
+      ]
     } ]
 }

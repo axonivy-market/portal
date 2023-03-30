@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "1612B5181308632F",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,13 +10,15 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "guid" : "15F80B73AFE43AE4"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -28,10 +30,10 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "leave(ICase)",
       "config" : {
-        "callSignature" : "leave",
+        "signature" : "leave",
         "input" : {
           "params" : [
-            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
+            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
           ],
           "map" : {
             "out.iCase" : "param.iCase"
@@ -43,16 +45,18 @@
         "at" : { "x" : 96, "y" : 192 },
         "labelOffset" : { "x" : 18, "y" : 35 }
       },
-      "connect" : { "id" : "f6", "to" : "f8" }
+      "connect" : [
+        { "id" : "f6", "to" : "f8" }
+      ]
     }, {
       "id" : "f4",
       "type" : "HtmlDialogMethodStart",
       "name" : "reserve(ICase)",
       "config" : {
-        "callSignature" : "reserve",
+        "signature" : "reserve",
         "input" : {
           "params" : [
-            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
+            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
           ],
           "map" : {
             "out.iCase" : "param.iCase"
@@ -64,7 +68,9 @@
         "at" : { "x" : 96, "y" : 256 },
         "labelOffset" : { "x" : 21, "y" : 35 }
       },
-      "connect" : { "id" : "f9", "to" : "f8", "via" : [ { "x" : 304, "y" : 256 } ] }
+      "connect" : [
+        { "id" : "f9", "to" : "f8", "via" : [ { "x" : 304, "y" : 256 } ] }
+      ]
     }, {
       "id" : "f8",
       "type" : "Script",
@@ -85,7 +91,9 @@
         "at" : { "x" : 304, "y" : 192 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f7", "to" : "f5" }
+      "connect" : [
+        { "id" : "f7", "to" : "f5" }
+      ]
     }, {
       "id" : "f5",
       "type" : "HtmlDialogEnd",
@@ -103,6 +111,8 @@
         "at" : { "x" : 400, "y" : 128 },
         "size" : { "width" : 240, "height" : 44 }
       },
-      "connect" : { "id" : "f11", "to" : "f8" }
+      "connect" : [
+        { "id" : "f11", "to" : "f8" }
+      ]
     } ]
 }

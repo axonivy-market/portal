@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "163A4BFC48261B85",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "HtmlDialogStart",
       "name" : "start(String)",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "keyword", "type" : "String" }
+            { "name" : "keyword", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.activeTabIndex" : "0",
@@ -30,7 +30,9 @@
         "at" : { "x" : 64, "y" : 96 },
         "labelOffset" : { "x" : 24, "y" : 33 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -42,11 +44,11 @@
       "type" : "HtmlDialogStart",
       "name" : "start(SearchResultsDataModel)",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel" },
-            { "name" : "activeTabIndex", "type" : "Number" }
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel", "desc" : "" },
+            { "name" : "activeTabIndex", "type" : "Number", "desc" : "" }
           ],
           "map" : {
             "out.activeTabIndex" : "param.activeTabIndex",
@@ -59,7 +61,9 @@
         "at" : { "x" : 64, "y" : 192 },
         "labelOffset" : { "x" : 42, "y" : 39 }
       },
-      "connect" : { "id" : "f5", "to" : "f4" }
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
     }, {
       "id" : "f4",
       "type" : "HtmlDialogEnd",

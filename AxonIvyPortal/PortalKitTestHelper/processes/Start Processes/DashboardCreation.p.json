@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "17F2050944B46BB0",
   "config" : {
     "data" : "portalKit_test.DashboardCreationData"
@@ -16,7 +16,9 @@
         "at" : { "x" : 56, "y" : 64 },
         "labelOffset" : { "x" : 65, "y" : 37 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -38,6 +40,8 @@
       "visual" : {
         "at" : { "x" : 216, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     } ]
 }

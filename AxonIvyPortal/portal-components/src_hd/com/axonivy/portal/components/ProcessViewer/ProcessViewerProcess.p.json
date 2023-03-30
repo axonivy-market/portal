@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "181FC5E5ED6EAE2A",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -15,7 +15,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 352 }
       },
-      "connect" : { "id" : "f5", "to" : "f4" }
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
     }, {
       "id" : "f4",
       "type" : "HtmlDialogExit",
@@ -27,7 +29,6 @@
       "type" : "Script",
       "name" : "Init ProcessViewer",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.dto.ProcessViewerDTO;",
@@ -39,12 +40,15 @@
             "in.isError = processViewerDTO.isError();",
             "in.errorMessage = processViewerDTO.getErrorMessage();"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 160 }
       },
-      "connect" : { "id" : "f15", "to" : "f8" }
+      "connect" : [
+        { "id" : "f15", "to" : "f8" }
+      ]
     }, {
       "id" : "f10",
       "type" : "Script",
@@ -68,7 +72,9 @@
       "visual" : {
         "at" : { "x" : 232, "y" : 256 }
       },
-      "connect" : { "id" : "f12", "to" : "f9" }
+      "connect" : [
+        { "id" : "f12", "to" : "f9" }
+      ]
     }, {
       "id" : "f8",
       "type" : "HtmlDialogEnd",
@@ -86,26 +92,30 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "loadProcessDetails()",
       "config" : {
-        "callSignature" : "loadProcessDetails",
+        "signature" : "loadProcessDetails",
         "guid" : "181FFBCA5DEC47B5"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 256 },
         "labelOffset" : { "x" : 27, "y" : 35 }
       },
-      "connect" : { "id" : "f13", "to" : "f10" }
+      "connect" : [
+        { "id" : "f13", "to" : "f10" }
+      ]
     }, {
       "id" : "f0",
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "guid" : "18201209D60ED0C2"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -117,11 +127,11 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "initData(Long,String)",
       "config" : {
-        "callSignature" : "initData",
+        "signature" : "initData",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long" },
-            { "name" : "processId", "type" : "String" }
+            { "name" : "caseId", "type" : "Long", "desc" : "" },
+            { "name" : "processId", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.caseId",
@@ -134,6 +144,8 @@
         "at" : { "x" : 96, "y" : 160 },
         "labelOffset" : { "x" : 39, "y" : 35 }
       },
-      "connect" : { "id" : "f7", "to" : "f6" }
+      "connect" : [
+        { "id" : "f7", "to" : "f6" }
+      ]
     } ]
 }

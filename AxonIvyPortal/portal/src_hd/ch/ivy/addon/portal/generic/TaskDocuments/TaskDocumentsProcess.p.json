@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "1802215F521FBBAA",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,11 +10,12 @@
       "type" : "HtmlDialogStart",
       "name" : "start(Long)",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "taskId", "type" : "Long" }
+            { "name" : "taskId", "type" : "Long", "desc" : "" }
           ],
+          "map" : { },
           "code" : [
             "import ch.ivy.addon.portalkit.util.TaskUtils;",
             "out.task = TaskUtils.findTaskById(param.taskId);"
@@ -26,7 +27,9 @@
         "at" : { "x" : 96, "y" : 64 },
         "labelOffset" : { "x" : 22, "y" : 35 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -43,7 +46,9 @@
       "visual" : {
         "at" : { "x" : 384, "y" : 64 }
       },
-      "connect" : { "id" : "f5", "to" : "f4" }
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
     }, {
       "id" : "f4",
       "type" : "HtmlDialogExit",
@@ -56,38 +61,39 @@
       "name" : "Find documents",
       "config" : {
         "processCall" : "Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)",
+        "call" : {
+          "map" : {
+            "param.businessCase" : "in.task.getCase().getBusinessCase()"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.documents" : "result.documents"
-          }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
-          ],
-          "map" : {
-            "param.businessCase" : "in.task.getCase().getBusinessCase()"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 160 }
       },
-      "connect" : { "id" : "f7", "to" : "f8" }
+      "connect" : [
+        { "id" : "f7", "to" : "f8" }
+      ]
     }, {
       "id" : "f6",
       "type" : "HtmlDialogMethodStart",
       "name" : "initData()",
       "config" : {
-        "callSignature" : "initData",
+        "signature" : "initData",
         "guid" : "1802244D8B3A4339"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 },
         "labelOffset" : { "x" : -7, "y" : 35 }
       },
-      "connect" : { "id" : "f9", "to" : "f30" }
+      "connect" : [
+        { "id" : "f9", "to" : "f30" }
+      ]
     }, {
       "id" : "f8",
       "type" : "HtmlDialogEnd",
@@ -106,20 +112,16 @@
       "name" : "Download Document",
       "config" : {
         "processCall" : "Functional Processes/DownloadDocument:call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
+        "call" : {
+          "map" : {
+            "param.bussinessCase" : "in.task.getCase().getBusinessCase()",
+            "param.document" : "in.document"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.streamedContent" : "result.streamedContent"
-          }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "bussinessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
-            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument" }
-          ],
-          "map" : {
-            "param.bussinessCase" : "in.task.getCase().getBusinessCase()",
-            "param.document" : "in.document"
           }
         }
       },
@@ -127,44 +129,47 @@
         "at" : { "x" : 232, "y" : 256 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f20", "to" : "f10" }
+      "connect" : [
+        { "id" : "f20", "to" : "f10" }
+      ]
     }, {
       "id" : "f12",
       "type" : "HtmlDialogMethodStart",
       "name" : "deleteDocument()",
       "config" : {
-        "callSignature" : "deleteDocument",
+        "signature" : "deleteDocument",
         "guid" : "180402B1B9EC50AB"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 352 }
       },
-      "connect" : { "id" : "f25", "to" : "f19" }
+      "connect" : [
+        { "id" : "f25", "to" : "f19" }
+      ]
     }, {
       "id" : "f38",
       "type" : "SubProcessCall",
       "name" : "Find documents",
       "config" : {
         "processCall" : "Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)",
+        "call" : {
+          "map" : {
+            "param.businessCase" : "in.task.getCase().getBusinessCase()"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.documents" : "result.documents"
-          }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
-          ],
-          "map" : {
-            "param.businessCase" : "in.task.getCase().getBusinessCase()"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 568, "y" : 352 }
       },
-      "connect" : { "id" : "f24", "to" : "f22" }
+      "connect" : [
+        { "id" : "f24", "to" : "f22" }
+      ]
     }, {
       "id" : "f22",
       "type" : "HtmlDialogEnd",
@@ -192,54 +197,54 @@
         "at" : { "x" : 392, "y" : 352 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f39", "to" : "f38" }
+      "connect" : [
+        { "id" : "f39", "to" : "f38" }
+      ]
     }, {
       "id" : "f19",
       "type" : "SubProcessCall",
       "name" : "Delete Document",
       "config" : {
         "processCall" : "Functional Processes/DeleteDocument:call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
+        "call" : {
+          "map" : {
+            "param.businessCase" : "in.task.getCase().getBusinessCase()",
+            "param.document" : "in.document"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.deleteDocumentMessage" : "result.message"
-          }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
-            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument" }
-          ],
-          "map" : {
-            "param.businessCase" : "in.task.getCase().getBusinessCase()",
-            "param.document" : "in.document"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 352 }
       },
-      "connect" : { "id" : "f26", "to" : "f50" }
+      "connect" : [
+        { "id" : "f26", "to" : "f50" }
+      ]
     }, {
       "id" : "f15",
       "type" : "HtmlDialogMethodStart",
       "name" : "downloadDocument(IvyDocument)",
       "config" : {
-        "callSignature" : "downloadDocument",
-        "result" : {
-          "params" : [
-            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent" }
-          ],
-          "map" : {
-            "result.streamedContent" : "in.streamedContent"
-          }
-        },
+        "signature" : "downloadDocument",
         "input" : {
           "params" : [
-            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument" }
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument", "desc" : "" }
           ],
           "map" : {
             "out.document" : "param.document"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent", "desc" : "" }
+          ],
+          "map" : {
+            "result.streamedContent" : "in.streamedContent"
           }
         },
         "guid" : "180402B1B9E2C8F4"
@@ -248,6 +253,8 @@
         "at" : { "x" : 96, "y" : 256 },
         "labelOffset" : { "x" : 13, "y" : 35 }
       },
-      "connect" : { "id" : "f17", "to" : "f11" }
+      "connect" : [
+        { "id" : "f17", "to" : "f11" }
+      ]
     } ]
 }

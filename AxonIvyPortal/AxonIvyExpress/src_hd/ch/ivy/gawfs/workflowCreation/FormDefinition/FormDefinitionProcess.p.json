@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "1574EBDBE9576CED",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,21 +10,21 @@
       "type" : "HtmlDialogStart",
       "name" : "start(Data)",
       "config" : {
-        "callSignature" : "start",
-        "result" : {
-          "params" : [
-            { "name" : "data", "type" : "gawfs.Data" }
-          ],
-          "map" : {
-            "result.data" : "in.data"
-          }
-        },
+        "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "data", "type" : "gawfs.Data" }
+            { "name" : "data", "type" : "gawfs.Data", "desc" : "" }
           ],
           "map" : {
             "out.data" : "param.data"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "data", "type" : "gawfs.Data", "desc" : "" }
+          ],
+          "map" : {
+            "result.data" : "in.data"
           }
         },
         "guid" : "156E35E680453115"
@@ -33,7 +33,9 @@
         "at" : { "x" : 96, "y" : 64 },
         "labelOffset" : { "x" : 9, "y" : 53 }
       },
-      "connect" : { "id" : "f47", "to" : "f46" }
+      "connect" : [
+        { "id" : "f47", "to" : "f46" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -66,19 +68,23 @@
       "visual" : {
         "at" : { "x" : 696, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f8",
       "type" : "HtmlDialogMethodStart",
       "name" : "createInputField",
       "config" : {
-        "callSignature" : "createInputField",
+        "signature" : "createInputField",
         "guid" : "15749D9D5247FA7C"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }
       },
-      "connect" : { "id" : "f10", "to" : "f9" }
+      "connect" : [
+        { "id" : "f10", "to" : "f9" }
+      ]
     }, {
       "id" : "f9",
       "type" : "Script",
@@ -96,55 +102,65 @@
         "at" : { "x" : 257, "y" : 160 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f21", "to" : "f19", "via" : [ { "x" : 576, "y" : 160 } ] }
+      "connect" : [
+        { "id" : "f21", "to" : "f19", "via" : [ { "x" : 576, "y" : 160 } ] }
+      ]
     }, {
       "id" : "f12",
       "type" : "HtmlDialogMethodStart",
       "name" : "createInputTextArea()",
       "config" : {
-        "callSignature" : "createInputTextArea",
+        "signature" : "createInputTextArea",
         "guid" : "1574A296AECB0DD4"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 224 }
       },
-      "connect" : { "id" : "f18", "to" : "f17" }
+      "connect" : [
+        { "id" : "f18", "to" : "f17" }
+      ]
     }, {
       "id" : "f14",
       "type" : "HtmlDialogMethodStart",
       "name" : "createManyCheckbox()",
       "config" : {
-        "callSignature" : "createManyCheckbox",
+        "signature" : "createManyCheckbox",
         "guid" : "1574A2979225007A"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 288 }
       },
-      "connect" : { "id" : "f34", "to" : "f33" }
+      "connect" : [
+        { "id" : "f34", "to" : "f33" }
+      ]
     }, {
       "id" : "f15",
       "type" : "HtmlDialogMethodStart",
       "name" : "createOneRadio()",
       "config" : {
-        "callSignature" : "createOneRadio",
+        "signature" : "createOneRadio",
         "guid" : "1574A2984D932DE0"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 352 }
       },
-      "connect" : { "id" : "f36", "to" : "f35" }
+      "connect" : [
+        { "id" : "f36", "to" : "f35" }
+      ]
     }, {
       "id" : "f16",
       "type" : "HtmlDialogMethodStart",
       "name" : "createFileUpload()",
       "config" : {
-        "callSignature" : "createFileUpload",
+        "signature" : "createFileUpload",
         "guid" : "1574A2991F562461"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 416 }
       },
-      "connect" : { "id" : "f40", "to" : "f39" }
+      "connect" : [
+        { "id" : "f40", "to" : "f39" }
+      ]
     }, {
       "id" : "f17",
       "type" : "Script",
@@ -162,7 +178,9 @@
         "at" : { "x" : 257, "y" : 224 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f22", "to" : "f19", "via" : [ { "x" : 576, "y" : 224 } ] }
+      "connect" : [
+        { "id" : "f22", "to" : "f19", "via" : [ { "x" : 576, "y" : 224 } ] }
+      ]
     }, {
       "id" : "f19",
       "type" : "Alternative",
@@ -177,7 +195,6 @@
       "type" : "Script",
       "name" : "Initialize controllers",
       "config" : {
-        "security" : "system",
         "output" : {
           "map" : {
             "out" : "in",
@@ -227,13 +244,16 @@
             "  in.dataProviders.addAll(foundDataProviders);",
             "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 440, "y" : 64 },
         "size" : { "width" : 112, "height" : 48 }
       },
-      "connect" : { "id" : "f20", "to" : "f19" }
+      "connect" : [
+        { "id" : "f20", "to" : "f19" }
+      ]
     }, {
       "id" : "f33",
       "type" : "Script",
@@ -258,7 +278,9 @@
         "at" : { "x" : 265, "y" : 288 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f37", "to" : "f19", "via" : [ { "x" : 576, "y" : 288 } ] }
+      "connect" : [
+        { "id" : "f37", "to" : "f19", "via" : [ { "x" : 576, "y" : 288 } ] }
+      ]
     }, {
       "id" : "f35",
       "type" : "Script",
@@ -276,7 +298,9 @@
         "at" : { "x" : 273, "y" : 351 },
         "size" : { "width" : 160, "height" : 60 }
       },
-      "connect" : { "id" : "f38", "to" : "f19", "via" : [ { "x" : 576, "y" : 351 } ] }
+      "connect" : [
+        { "id" : "f38", "to" : "f19", "via" : [ { "x" : 576, "y" : 351 } ] }
+      ]
     }, {
       "id" : "f39",
       "type" : "Script",
@@ -294,7 +318,9 @@
         "at" : { "x" : 265, "y" : 416 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f41", "to" : "f19", "via" : [ { "x" : 576, "y" : 416 } ] }
+      "connect" : [
+        { "id" : "f41", "to" : "f19", "via" : [ { "x" : 576, "y" : 416 } ] }
+      ]
     }, {
       "id" : "f44",
       "type" : "HtmlDialogEventStart",
@@ -311,7 +337,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 672 }
       },
-      "connect" : { "id" : "f45", "to" : "f4", "via" : [ { "x" : 720, "y" : 672 } ] }
+      "connect" : [
+        { "id" : "f45", "to" : "f4", "via" : [ { "x" : 720, "y" : 672 } ] }
+      ]
     }, {
       "id" : "f42",
       "type" : "HtmlDialogEventStart",
@@ -322,7 +350,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 608 }
       },
-      "connect" : { "id" : "f24", "to" : "f23" }
+      "connect" : [
+        { "id" : "f24", "to" : "f23" }
+      ]
     }, {
       "id" : "f51",
       "type" : "HtmlDialogEventStart",
@@ -333,7 +363,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 736 }
       },
-      "connect" : { "id" : "f68", "to" : "f67" }
+      "connect" : [
+        { "id" : "f68", "to" : "f67" }
+      ]
     }, {
       "id" : "f48",
       "type" : "Script",
@@ -346,13 +378,14 @@
       "visual" : {
         "at" : { "x" : 328, "y" : 816 }
       },
-      "connect" : { "id" : "f72", "to" : "f64" }
+      "connect" : [
+        { "id" : "f72", "to" : "f64" }
+      ]
     }, {
       "id" : "f46",
       "type" : "Script",
       "name" : "Initialize task",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.gawfs.enums.FormElementType;",
@@ -362,19 +395,23 @@
             "  ivy.task.setDescription(ivy.cms.co(\"/Dialogs/Tasks/FormDefinition/TaskDescription\"));",
             "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 248, "y" : 64 }
       },
-      "connect" : { "id" : "f13", "to" : "f11" }
+      "connect" : [
+        { "id" : "f13", "to" : "f11" }
+      ]
     }, {
       "id" : "f49",
       "type" : "HtmlDialogMethodStart",
       "name" : "moveNextTask()",
       "config" : {
-        "callSignature" : "moveNextTask",
+        "signature" : "moveNextTask",
         "input" : {
+          "map" : { },
           "code" : [
             "import ch.ivy.gawfs.ExpressProcessUtils;",
             "import ch.ivy.gawfs.enums.TaskType;",
@@ -392,7 +429,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 480 }
       },
-      "connect" : { "id" : "f57", "to" : "f56" }
+      "connect" : [
+        { "id" : "f57", "to" : "f56" }
+      ]
     }, {
       "id" : "f52",
       "type" : "HtmlDialogEnd",
@@ -426,17 +465,20 @@
       "visual" : {
         "at" : { "x" : 248, "y" : 480 }
       },
-      "connect" : { "id" : "f55", "to" : "f52" }
+      "connect" : [
+        { "id" : "f55", "to" : "f52" }
+      ]
     }, {
       "id" : "f58",
       "type" : "HtmlDialogMethodStart",
       "name" : "moveToTask()",
       "config" : {
-        "callSignature" : "moveToTask",
+        "signature" : "moveToTask",
         "input" : {
           "params" : [
-            { "name" : "index", "type" : "Integer" }
+            { "name" : "index", "type" : "Integer", "desc" : "" }
           ],
+          "map" : { },
           "code" : [
             "import ch.ivy.gawfs.enums.TaskType;",
             "if(out.data.definedTasks.get(out.activeTaskIndex).getTaskType() != TaskType.EMAIL) {",
@@ -452,7 +494,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 544 }
       },
-      "connect" : { "id" : "f61", "to" : "f56", "via" : [ { "x" : 248, "y" : 544 } ] }
+      "connect" : [
+        { "id" : "f61", "to" : "f56", "via" : [ { "x" : 248, "y" : 544 } ] }
+      ]
     }, {
       "id" : "f26",
       "type" : "Alternative",
@@ -488,7 +532,9 @@
         "at" : { "x" : 272, "y" : 608 },
         "size" : { "width" : 160, "height" : 60 }
       },
-      "connect" : { "id" : "f27", "to" : "f26" }
+      "connect" : [
+        { "id" : "f27", "to" : "f26" }
+      ]
     }, {
       "id" : "f53",
       "type" : "Script",
@@ -508,7 +554,9 @@
         "at" : { "x" : 720, "y" : 904 },
         "size" : { "width" : 160, "height" : 60 }
       },
-      "connect" : { "id" : "f5", "to" : "f3" }
+      "connect" : [
+        { "id" : "f5", "to" : "f3" }
+      ]
     }, {
       "id" : "f60",
       "type" : "HtmlDialogEventStart",
@@ -519,7 +567,9 @@
       "visual" : {
         "at" : { "x" : 95, "y" : 904 }
       },
-      "connect" : { "id" : "f66", "to" : "f53" }
+      "connect" : [
+        { "id" : "f66", "to" : "f53" }
+      ]
     }, {
       "id" : "f62",
       "type" : "HtmlDialogEventStart",
@@ -530,7 +580,9 @@
       "visual" : {
         "at" : { "x" : 95, "y" : 968 }
       },
-      "connect" : { "id" : "f50", "to" : "f43" }
+      "connect" : [
+        { "id" : "f50", "to" : "f43" }
+      ]
     }, {
       "id" : "f63",
       "type" : "Script",
@@ -547,7 +599,9 @@
       "visual" : {
         "at" : { "x" : 536, "y" : 968 }
       },
-      "connect" : { "id" : "f71", "to" : "f53", "via" : [ { "x" : 720, "y" : 968 } ] }
+      "connect" : [
+        { "id" : "f71", "to" : "f53", "via" : [ { "x" : 720, "y" : 968 } ] }
+      ]
     }, {
       "id" : "f3",
       "type" : "HtmlDialogExit",
@@ -598,7 +652,9 @@
       "visual" : {
         "at" : { "x" : 248, "y" : 968 }
       },
-      "connect" : { "id" : "f29", "to" : "f28" }
+      "connect" : [
+        { "id" : "f29", "to" : "f28" }
+      ]
     }, {
       "id" : "f59",
       "type" : "HtmlDialogEnd",
@@ -659,6 +715,8 @@
         "at" : { "x" : 512, "y" : 816 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f30", "to" : "f4", "via" : [ { "x" : 720, "y" : 816 } ] }
+      "connect" : [
+        { "id" : "f30", "to" : "f4", "via" : [ { "x" : 720, "y" : 816 } ] }
+      ]
     } ]
 }

@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
   "id" : "156A1AA176DE2A21",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,7 +10,7 @@
       "type" : "HtmlDialogStart",
       "name" : "StartNotRequiredLogin()",
       "config" : {
-        "callSignature" : "StartNotRequiredLogin",
+        "signature" : "StartNotRequiredLogin",
         "input" : {
           "map" : {
             "out.isNotRequiredLogin" : "true"
@@ -23,13 +23,15 @@
         "size" : { "width" : 24, "height" : 24 },
         "labelOffset" : { "x" : 89, "y" : 20 }
       },
-      "connect" : { "id" : "f25", "to" : "f9", "via" : [ { "x" : 320, "y" : 184 } ] }
+      "connect" : [
+        { "id" : "f25", "to" : "f9", "via" : [ { "x" : 320, "y" : 184 } ] }
+      ]
     }, {
       "id" : "f87",
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "guid" : "15FB36E87031CAD2"
       },
       "visual" : {
@@ -37,7 +39,9 @@
         "size" : { "width" : 24, "height" : 24 },
         "labelOffset" : { "x" : 37, "y" : 20 }
       },
-      "connect" : { "id" : "f7", "to" : "f9" }
+      "connect" : [
+        { "id" : "f7", "to" : "f9" }
+      ]
     }, {
       "id" : "f91",
       "type" : "Script",
@@ -54,7 +58,9 @@
       "visual" : {
         "at" : { "x" : 248, "y" : 496 }
       },
-      "connect" : { "id" : "f20", "to" : "f19" }
+      "connect" : [
+        { "id" : "f20", "to" : "f19" }
+      ]
     }, {
       "id" : "f14",
       "type" : "Script",
@@ -75,7 +81,9 @@
         "at" : { "x" : 248, "y" : 592 },
         "size" : { "width" : 112, "height" : 40 }
       },
-      "connect" : { "id" : "f13", "to" : "f19", "via" : [ { "x" : 480, "y" : 592 } ] }
+      "connect" : [
+        { "id" : "f13", "to" : "f19", "via" : [ { "x" : 480, "y" : 592 } ] }
+      ]
     }, {
       "id" : "f9",
       "type" : "HtmlDialogEnd",
@@ -87,10 +95,10 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "leave(ITask)",
       "config" : {
-        "callSignature" : "leave",
+        "signature" : "leave",
         "input" : {
           "params" : [
-            { "name" : "workingTask", "type" : "ch.ivyteam.ivy.workflow.ITask" }
+            { "name" : "workingTask", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
           ],
           "map" : {
             "out.workingTask" : "param.#workingTask"
@@ -102,16 +110,18 @@
         "at" : { "x" : 96, "y" : 592 },
         "labelOffset" : { "x" : 17, "y" : 34 }
       },
-      "connect" : { "id" : "f8", "to" : "f14" }
+      "connect" : [
+        { "id" : "f8", "to" : "f14" }
+      ]
     }, {
       "id" : "f12",
       "type" : "HtmlDialogMethodStart",
       "name" : "reserveTask(ITask)",
       "config" : {
-        "callSignature" : "reserveTask",
+        "signature" : "reserveTask",
         "input" : {
           "params" : [
-            { "name" : "workingTask", "type" : "ch.ivyteam.ivy.workflow.ITask" }
+            { "name" : "workingTask", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
           ],
           "map" : {
             "out.workingTask" : "param.workingTask"
@@ -123,7 +133,9 @@
         "at" : { "x" : 96, "y" : 496 },
         "labelOffset" : { "x" : 14, "y" : 36 }
       },
-      "connect" : { "id" : "f18", "to" : "f91" }
+      "connect" : [
+        { "id" : "f18", "to" : "f91" }
+      ]
     }, {
       "id" : "f19",
       "type" : "Script",
@@ -144,13 +156,15 @@
         "at" : { "x" : 480, "y" : 496 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f1", "to" : "f5" }
+      "connect" : [
+        { "id" : "f1", "to" : "f5" }
+      ]
     }, {
       "id" : "f2",
       "type" : "HtmlDialogMethodStart",
       "name" : "continueWorkingOnTask()",
       "config" : {
-        "callSignature" : "continueWorkingOnTask",
+        "signature" : "continueWorkingOnTask",
         "input" : {
           "map" : {
             "out.destinationBreadcrumbPage" : "null",
@@ -163,7 +177,9 @@
         "at" : { "x" : 104, "y" : 288 },
         "labelOffset" : { "x" : 9, "y" : 37 }
       },
-      "connect" : { "id" : "f10", "to" : "f41" }
+      "connect" : [
+        { "id" : "f10", "to" : "f41" }
+      ]
     }, {
       "id" : "f41",
       "type" : "HtmlDialogEnd",
@@ -175,11 +191,11 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "init(Boolean,ITask)",
       "config" : {
-        "callSignature" : "init",
+        "signature" : "init",
         "input" : {
           "params" : [
-            { "name" : "isWorkingOnATask", "type" : "Boolean" },
-            { "name" : "workingTask", "type" : "ch.ivyteam.ivy.workflow.ITask" }
+            { "name" : "isWorkingOnATask", "type" : "Boolean", "desc" : "" },
+            { "name" : "workingTask", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
           ],
           "map" : {
             "out.isWorkingOnATask" : "param.isWorkingOnATask",
@@ -192,7 +208,9 @@
         "at" : { "x" : 608, "y" : 96 },
         "labelOffset" : { "x" : 6, "y" : 36 }
       },
-      "connect" : { "id" : "f30", "to" : "f6" }
+      "connect" : [
+        { "id" : "f30", "to" : "f6" }
+      ]
     }, {
       "id" : "f46",
       "type" : "HtmlDialogEnd",
@@ -210,7 +228,9 @@
         "at" : { "x" : 696, "y" : 592 },
         "size" : { "width" : 256, "height" : 44 }
       },
-      "connect" : { "id" : "f26", "to" : "f19" }
+      "connect" : [
+        { "id" : "f26", "to" : "f19" }
+      ]
     }, {
       "id" : "f5",
       "type" : "Script",
@@ -229,7 +249,9 @@
       "visual" : {
         "at" : { "x" : 720, "y" : 496 }
       },
-      "connect" : { "id" : "f33", "to" : "f29" }
+      "connect" : [
+        { "id" : "f33", "to" : "f29" }
+      ]
     }, {
       "id" : "f29",
       "type" : "HtmlDialogEnd",
@@ -254,16 +276,18 @@
       "visual" : {
         "at" : { "x" : 776, "y" : 96 }
       },
-      "connect" : { "id" : "f40", "to" : "f46" }
+      "connect" : [
+        { "id" : "f40", "to" : "f46" }
+      ]
     }, {
       "id" : "f0",
       "type" : "HtmlDialogMethodStart",
       "name" : "clickBreadcrumb(String)",
       "config" : {
-        "callSignature" : "clickBreadcrumb",
+        "signature" : "clickBreadcrumb",
         "input" : {
           "params" : [
-            { "name" : "destination", "type" : "String" }
+            { "name" : "destination", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.destinationBreadcrumbPage" : "param.destination",
@@ -276,7 +300,9 @@
         "at" : { "x" : 104, "y" : 384 },
         "labelOffset" : { "x" : 10, "y" : 35 }
       },
-      "connect" : { "id" : "f17", "to" : "f15" }
+      "connect" : [
+        { "id" : "f17", "to" : "f15" }
+      ]
     }, {
       "id" : "f15",
       "type" : "HtmlDialogEnd",
@@ -288,14 +314,16 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "fireEventClickOnMenuItem()",
       "config" : {
-        "callSignature" : "fireEventClickOnMenuItem",
+        "signature" : "fireEventClickOnMenuItem",
         "guid" : "17EF66B4C689BAE3"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 688 },
         "labelOffset" : { "x" : 27, "y" : 36 }
       },
-      "connect" : { "id" : "f23", "to" : "f22" }
+      "connect" : [
+        { "id" : "f23", "to" : "f22" }
+      ]
     }, {
       "id" : "f16",
       "type" : "HtmlDialogEnd",
@@ -329,7 +357,9 @@
         "at" : { "x" : 256, "y" : 688 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f21", "to" : "f16" }
+      "connect" : [
+        { "id" : "f21", "to" : "f16" }
+      ]
     } ],
   "layout" : {
     "lanes" : [ {
