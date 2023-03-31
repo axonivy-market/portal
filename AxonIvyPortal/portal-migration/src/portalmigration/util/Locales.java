@@ -2,8 +2,9 @@ package portalmigration.util;
 
 import java.util.Locale;
 
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.language.LanguageConfigurator;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 
 public class Locales {
@@ -14,7 +15,8 @@ public class Locales {
       if (emailLanguage != null) {
         return emailLanguage;
       } else {
-        return IApplication.current().getDefaultEMailLanguage();
+        LanguageConfigurator languageConfigurator = new LanguageConfigurator(ISecurityContext.current());
+        return languageConfigurator.content();
       }
     });
   }

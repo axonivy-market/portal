@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.casefilter;
 
+import ch.ivy.addon.portalkit.casefilter.impl.CaseNameFilter;
 import ch.ivy.addon.portalkit.filter.AbstractFilter;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
