@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.taskfilter;
 
 import ch.ivy.addon.portalkit.filter.AbstractFilter;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskNameFilter;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 /**

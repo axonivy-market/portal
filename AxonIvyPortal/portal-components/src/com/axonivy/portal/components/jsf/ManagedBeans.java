@@ -6,7 +6,8 @@ import java.util.Optional;
 import javax.faces.context.FacesContext;
 
 import com.axonivy.portal.components.service.exception.PortalException;
-import ch.ivyteam.ivy.security.internal.SecurityManager;
+
+import ch.ivyteam.ivy.security.exec.Sudo;
 
 public class ManagedBeans {
 
@@ -44,7 +45,7 @@ public class ManagedBeans {
    */
   public static <T> Optional<T> find(final String beanName) {
     try {
-      return SecurityManager.getSecurityManager().executeAsSystem(
+      return Sudo.call(
           () -> {
             FacesContext context = FacesContext.getCurrentInstance();
 

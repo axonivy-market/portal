@@ -27,9 +27,7 @@ import portal.guitest.page.WorkingTaskDialogPage;
 public class TaskTemplateTest extends BaseTest {
 
   private String createImpersistentTaskUrl = "portal-developer-examples/169BDE2F368D6EC4/ApplicationShowcase.ivp";
-  private static final String SICK_LEAVE_REQUEST_TASK ="Sick Leave Request";
   private static final String ANNUAL_LEAVE_REQUEST_TASK ="Annual Leave Request";
-  private static final String MATERNITY_LEAVE_REQUEST_TASK ="Maternity Leave Request";
   @Override
   @Before
   public void setup() {

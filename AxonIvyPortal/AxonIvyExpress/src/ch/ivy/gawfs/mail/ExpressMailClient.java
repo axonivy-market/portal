@@ -23,7 +23,6 @@ import ch.ivyteam.ivy.project.IvyProjectUtil;
 import ch.ivyteam.ivy.scripting.objects.File;
 import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
 
-@SuppressWarnings("restriction")
 public class ExpressMailClient {
 
   public static void send(ExpressUserEmail mail) {

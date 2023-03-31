@@ -772,7 +772,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     }
 
     DonutChartModel model = createDonutChartModel(chartData, StatisticChartType.TASK_BY_PRIORITY);
-    DonutChartDataSet dataSet = createDonutChartDataSet(chartData, isEmptyData);
+    DonutChartDataSet dataSet = createDonutChartDataSet(chartData);
     model.getData().addChartDataSet(dataSet);
 
     if (isSetDefaultName) {
@@ -790,8 +790,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     return title;
   }
 
-  private DonutChartDataSet createDonutChartDataSet(Map<String, Number> chartData,
-      boolean isEmptyData) {
+  private DonutChartDataSet createDonutChartDataSet(Map<String, Number> chartData) {
     DonutChartDataSet dataSet = new DonutChartDataSet();
     dataSet.setData(chartData.values().stream().collect(Collectors.toList()));
     return dataSet;
@@ -902,7 +901,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     }
 
     DonutChartModel model = createDonutChartModel(chartData, chartType);
-    DonutChartDataSet dataSet = createDonutChartDataSet(chartData, isEmptyData);
+    DonutChartDataSet dataSet = createDonutChartDataSet(chartData);
     model.getData().addChartDataSet(dataSet);
     if (isSetDefaultName) {
       model.getOptions().setTitle(generateChartTitle(chartType, false));
