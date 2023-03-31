@@ -28,7 +28,7 @@ pipeline {
             docker compose -f ${performanceEngineDir}/docker-compose.yml up -d
           """
 
-          docker.build('build-portal-modules', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+          docker.build('build-portal-10-modules', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
             def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal']
             def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').getProperties().getProperty('build.plugin.version')
             def engineUrl = 'http://10.123.1.216:9010'
@@ -92,7 +92,7 @@ def updateConfigFile(acccountFilePath, numberOfUser) {
 
 def executeJMeter(resultFileName) {
   def binDir = '/opt/apache-jmeter-5.5/bin'
-  docker.build('jmeter-performance-test', '-f build/performance-test/Dockerfile .').inside("""
+  docker.build('jmeter-performance-10-test', '-f build/performance-test/Dockerfile .').inside("""
         -v ${WORKSPACE}/${jmeterSourceDir}:${binDir}/portal-jmeter
         -v ${resultDir}:${binDir}/result
       """) {
