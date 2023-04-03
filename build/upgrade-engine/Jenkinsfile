@@ -8,7 +8,7 @@ pipeline {
   }
 
   parameters {
-    choice(name: 'engine', choices: ['10'], description: 'Engine to choose e.g. 10')
+    choice(name: 'engine', choices: ['portal','performanceTest'], description: 'Which engine to be upgraded?')
   }
 
   stages {
@@ -16,7 +16,8 @@ pipeline {
       steps {
         script {
           today = new Date().format('dd-MM-yyyy_HH-mm')
-          config = [master:[engine: '10', systemDatabase: 'AxonIvySystemDatabase-10']]
+          config = [portal:[engine: '10', systemDatabase: 'AxonIvySystemDatabase-10'],
+                    performanceTest:[engine: 'performance-10', systemDatabase: 'AxonIvySystemDatabase-performance-10']]
           engineParentDir = '/var/tools/ivy/'
           engineDir = engineParentDir + config[params.engine]['engine']
           databaseBackupDir = '/var/database-backups/'
