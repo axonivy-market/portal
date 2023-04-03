@@ -24,16 +24,28 @@ pipeline {
           databaseName = config[params.engine]['systemDatabase']
           dbBackupFile = databaseBackupDir + databaseName + '-' + today + '.dump'
 
+          if (params.engine == 'performanceTest') {
+            sh """
+              docker compose -f ${engineDir}/docker-compose.yml up -d
+            """
+          }
+
           sh """
             echo ====================Backup database====================
             cd ${engineDir}
             [ -d ${databaseBackupDir} ] ||  mkdir -p ${databaseBackupDir}
             docker exec -u postgres postgres-10 pg_dump -Fc ${databaseName} > ${dbBackupFile}
           """
+
+          if (params.engine == 'performanceTest') {
+            sh """
+              docker compose -f ${engineDir}/docker-compose.yml down
+            """
+          }
         }
       }
     }
-    
+
     stage('upgradeEngine') {
       steps {
         script {
