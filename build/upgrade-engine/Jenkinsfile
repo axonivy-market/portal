@@ -27,22 +27,16 @@ pipeline {
 
           if (params.engine == 'performanceTest') {
             sh """
+              echo ====================Start engine performance test====================
               docker compose -f ${engineDir}/docker-compose.yml up -d
             """
           }
 
           sh """
             echo ====================Backup database====================
-            cd ${engineDir}
             [ -d ${databaseBackupDir} ] ||  mkdir -p ${databaseBackupDir}
             docker exec -u postgres ${postgresContainer} pg_dump -Fc ${systemDatabaseName} > ${dbBackupFile}
           """
-
-          if (params.engine == 'performanceTest') {
-            sh """
-              docker compose -f ${engineDir}/docker-compose.yml down
-            """
-          }
         }
       }
     }
@@ -50,13 +44,22 @@ pipeline {
     stage('upgradeEngine') {
       steps {
         script {
-          sh """
-            echo ====================Upgrade engine====================
-            cd ${engineDir}
-            docker compose stop
-            docker compose pull
-            docker compose up -d
-          """
+          if (params.engine == 'performanceTest') {
+            sh """
+              cd ${engineDir}
+              echo ====================Stop engine performance test====================
+              docker compose down
+              docker compose pull
+            """
+          } else {
+            sh """
+              echo ====================Upgrade engine====================
+              cd ${engineDir}
+              docker compose stop
+              docker compose pull
+              docker compose up -d
+            """
+          }
         }
       }
     }
