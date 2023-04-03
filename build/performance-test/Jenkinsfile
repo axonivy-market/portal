@@ -13,6 +13,8 @@ pipeline {
     engineVersion = '10'
     devEngineDir = "/var/tools/ivy/${env.engineVersion}"
     performanceEngineDir = "/var/tools/ivy/performance-${env.engineVersion}"
+    masterEngineDir = "/var/tools/ivy/master"
+    performanceMasterEngineDir = "/var/tools/ivy/performance-master"
     portalApplicationName = 'Portal'
     jmeterSourceDir = 'AxonIvyPortal/PortalTest/jmeter'
   }
@@ -23,13 +25,15 @@ pipeline {
         script {
           utils = load 'build/common/utils.groovy'
           sh """
+            docker compose -f ${masterEngineDir}/docker-compose.yml down
+            docker compose -f ${performanceMasterEngineDir}/docker-compose.yml down
             docker compose -f ${devEngineDir}/docker-compose.yml down
             docker compose -f ${performanceEngineDir}/docker-compose.yml down
             docker compose -f ${performanceEngineDir}/docker-compose.yml up -d
           """
 
           docker.build('build-portal-10-modules', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
-            def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal']
+            def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress']
             def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').getProperties().getProperty('build.plugin.version')
             def engineUrl = 'http://10.123.1.216:9010'
             for (module in modules) {
@@ -72,6 +76,7 @@ pipeline {
         sh """
           docker compose -f ${performanceEngineDir}/docker-compose.yml down
           docker compose -f ${devEngineDir}/docker-compose.yml up -d
+          docker compose -f ${masterEngineDir}/docker-compose.yml up -d
         """
       }
       script {
@@ -93,9 +98,9 @@ def updateConfigFile(acccountFilePath, numberOfUser) {
 def executeJMeter(resultFileName) {
   def binDir = '/opt/apache-jmeter-5.5/bin'
   docker.build('jmeter-performance-10-test', '-f build/performance-test/Dockerfile .').inside("""
-        -v ${WORKSPACE}/${jmeterSourceDir}:${binDir}/portal-jmeter
+        -v ${WORKSPACE}/${jmeterSourceDir}:${binDir}/portal-jmeter-10
         -v ${resultDir}:${binDir}/result
       """) {
-    sh "${binDir}/jmeter -Jjmeter.save.saveservice.subresults=false -n -t ${binDir}/portal-jmeter/portal_walkthrough_testplan.jmx -l ${binDir}/result/${resultFileName}"
+    sh "${binDir}/jmeter -Jjmeter.save.saveservice.subresults=false -n -t ${binDir}/portal-jmeter-10/portal_walkthrough_testplan.jmx -l ${binDir}/result/${resultFileName}"
   }
 }
