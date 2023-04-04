@@ -1,0 +1,71 @@
+package com.axonivy.portal.selenium.test;
+
+import static com.codeborne.selenide.CollectionCondition.size;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import com.axonivy.ivy.webtest.IvyWebTest;
+import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.LinkNavigator;
+import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.page.CustomEditWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
+import com.axonivy.portal.selenium.page.MainMenuPage;
+import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
+import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.ProcessWidgetPage;
+
+@IvyWebTest(headless = false)
+public class DashboardCustomAndProcessWigetTest extends BaseTest {
+
+
+  private MainMenuPage mainMenuPage;
+
+  private static final String PROCESS_NAME = "Investment List (Example for Custom Widget on Dashboard)";
+
+  @Override
+  @BeforeEach
+  public void setup() {
+    super.setup();
+    mainMenuPage = new MainMenuPage();
+  }
+
+  @Test
+  public void testAddCustomWidget() {
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
+    newDashboardDetailsEditPage.addWidget();
+    CustomEditWidgetNewDashBoardPage customEditWidgetNewDashBoardPage =
+        newDashboardDetailsEditPage.addNewCustomrWidget();
+    customEditWidgetNewDashBoardPage.selectWidgetType("Axon Ivy process");
+    customEditWidgetNewDashBoardPage.selectProcess(PROCESS_NAME);
+    customEditWidgetNewDashBoardPage.getRowOfTableProcess().shouldHave(size(1));
+
+  }
+
+  @Test
+  public void testAddProcessesWidget() {
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
+    newDashboardDetailsEditPage.addWidget();
+    ProcessEditWidgetNewDashBoardPage processEditWidgetNewDashBoardPage =
+        newDashboardDetailsEditPage.addNewProcessWidget();
+    processEditWidgetNewDashBoardPage.clickOnProcesses();
+    assertFalse(processEditWidgetNewDashBoardPage.getProcessByName(PROCESS_NAME));
+  }
+
+  @Test
+  public void testProcessesWidgetPage() {
+
+    ProcessWidgetPage processWidgetPage = mainMenuPage.openProcessList();
+    processWidgetPage.checkProcessNotExists(PROCESS_NAME);
+  }
+
+  private NewDashboardDetailsEditPage gotoEditPublicDashboardPage() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    var configurationPage = new DashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    return modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+  }
+
+}
