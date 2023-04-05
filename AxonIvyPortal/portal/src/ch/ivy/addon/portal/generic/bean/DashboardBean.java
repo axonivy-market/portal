@@ -210,7 +210,11 @@ public class DashboardBean implements Serializable {
   public String createExtractedTextFromHtml(String text) {
     return HtmlParser.extractTextFromHtml(text);
   }
-
+  
+  public String createParseTextFromHtml (String text) {
+	  return HtmlParser.parseTextFromHtml(text);
+  }
+  
   public int getCurrentTabIndex() {
     return dashboards.indexOf(getSelectedDashboard());
   }
