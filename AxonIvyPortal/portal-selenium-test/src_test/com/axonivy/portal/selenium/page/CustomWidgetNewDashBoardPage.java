@@ -6,7 +6,8 @@ import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-public class CustomEditWidgetNewDashBoardPage extends TemplatePage {
+
+public class CustomWidgetNewDashBoardPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
@@ -15,20 +16,19 @@ public class CustomEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void selectProcessAndSaveWidget(String processName) {
     selectProcess(processName);
-    clickSaveProcessViewerWidget();
+    clickSaveCustomWidget();
   }
 
   public void selectProcess(String processName) {
     getSelectedProcess().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    $("input[id$=':selected-process_input']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    $("input[id$=':selected-process_input']").sendKeys(processName);
+    $("input[id$=':selected-process_input']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).sendKeys(processName);
   }
 
   public SelenideElement getSelectedProcess() {
     return $("span[id$=':selected-process']");
   }
 
-  public void clickSaveProcessViewerWidget() {
+  public void clickSaveCustomWidget() {
     $("button[id='widget-configuration-save-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
     $("div[id='new-widget-configuration-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
@@ -48,7 +48,7 @@ public class CustomEditWidgetNewDashBoardPage extends TemplatePage {
     return $("div[id$=':custom-widget-type']");
   }
 
-  public ElementsCollection getRowOfTableProcess() {
+  public ElementsCollection getProcessList() {
     return $("span[id$=':selected-process_panel']").shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr");
   }
 

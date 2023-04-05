@@ -39,9 +39,9 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     return new ProcessViewerWidgetNewDashBoardPage();
   }
 
-  public CustomEditWidgetNewDashBoardPage addNewCustomrWidget() {
+  public CustomWidgetNewDashBoardPage addNewCustomrWidget() {
     addWidgetByName("Custom Widget");
-    return new CustomEditWidgetNewDashBoardPage();
+    return new CustomWidgetNewDashBoardPage();
   }
 
   private void addWidgetByName(String name) {

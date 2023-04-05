@@ -4,20 +4,20 @@ import static com.codeborne.selenide.CollectionCondition.size;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.TestAccount;
-import com.axonivy.portal.selenium.page.CustomEditWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.CustomWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class DashboardCustomAndProcessWigetTest extends BaseTest {
-
 
   private MainMenuPage mainMenuPage;
 
@@ -31,19 +31,18 @@ public class DashboardCustomAndProcessWigetTest extends BaseTest {
   }
 
   @Test
-  public void testAddCustomWidget() {
+  public void testTheProcessDisplayOnAddCustomWidgetPage() {
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
     newDashboardDetailsEditPage.addWidget();
-    CustomEditWidgetNewDashBoardPage customEditWidgetNewDashBoardPage =
+    CustomWidgetNewDashBoardPage customWidgetNewDashBoardPage =
         newDashboardDetailsEditPage.addNewCustomrWidget();
-    customEditWidgetNewDashBoardPage.selectWidgetType("Axon Ivy process");
-    customEditWidgetNewDashBoardPage.selectProcess(PROCESS_NAME);
-    customEditWidgetNewDashBoardPage.getRowOfTableProcess().shouldHave(size(1));
-
+    customWidgetNewDashBoardPage.selectWidgetType("Axon Ivy process");
+    customWidgetNewDashBoardPage.selectProcess(PROCESS_NAME);
+    customWidgetNewDashBoardPage.getProcessList().shouldHave(size(1));
   }
 
   @Test
-  public void testAddProcessesWidget() {
+  public void testTheProcessDoesNotDispalyOnAddProcessesWidgetPage() {
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
     newDashboardDetailsEditPage.addWidget();
     ProcessEditWidgetNewDashBoardPage processEditWidgetNewDashBoardPage =
@@ -53,8 +52,7 @@ public class DashboardCustomAndProcessWigetTest extends BaseTest {
   }
 
   @Test
-  public void testProcessesWidgetPage() {
-
+  public void testTheProcessDisplayonProcessesWidgetPage() {
     ProcessWidgetPage processWidgetPage = mainMenuPage.openProcessList();
     processWidgetPage.checkProcessNotExists(PROCESS_NAME);
   }
