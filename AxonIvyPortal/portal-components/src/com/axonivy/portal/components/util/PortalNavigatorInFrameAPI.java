@@ -5,6 +5,8 @@ import java.nio.charset.StandardCharsets;
 
 import org.primefaces.PrimeFaces;
 
+import ch.ivyteam.ivy.environment.Ivy;
+
 /**
  * Portal API for navigation in iFrame
  *
@@ -25,7 +27,15 @@ public final class PortalNavigatorInFrameAPI {
    * Navigate to portal home
    */
   public static void navigateToPortalHome() {
-    String statement = "parent.redirectToHomePageCommand()";
+    navigateToUrl(Ivy.html().applicationHomeRef());
+  }
+
+  /**
+   * Navigate to PortalEndPage without finishing a task, e.g. clicking on Cancel button then back to previous page: task list or task details or global search
+   */
+  public static void navigateToPortalEndPage() {
+    String statement = "parent.redirectToEndPageCommand([{name: 'taskId', value: " + Ivy.wfTask().getId() + "}]);";
     PrimeFaces.current().executeScript(statement);
   }
+
 }
