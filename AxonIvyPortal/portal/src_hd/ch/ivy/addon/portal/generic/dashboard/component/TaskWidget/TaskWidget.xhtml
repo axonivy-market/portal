@@ -73,7 +73,7 @@
           </h:panelGroup>
           
           <h:panelGroup rendered="#{(column.format eq 'STRING' or column.format eq 'TEXT') and column.field ne 'name'}">
-            <h:outputText value="#{dashboardBean.createExtractedTextFromHtml(column.display(task))}" styleClass="#{column.fieldStyleClass}" style="#{column.fieldStyle}" />
+            <h:outputText value="#{dashboardBean.createParseTextFromHtml(column.display(task))}" styleClass="#{column.fieldStyleClass}" style="#{column.fieldStyle}" />
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.format eq 'TIMESTAMP'}">

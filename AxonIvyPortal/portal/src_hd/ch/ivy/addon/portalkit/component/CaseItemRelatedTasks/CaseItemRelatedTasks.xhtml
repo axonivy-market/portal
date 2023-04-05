@@ -61,7 +61,7 @@
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="false"
           styleClass="related-task-description-column u-truncate-text">
-          <h:outputText value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.descriptions().current())}" title="#{task.descriptions().current()}"/>
+          <h:outputText value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.descriptions().current())}" title="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.descriptions().current())}"/>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}"
           styleClass="related-task-responsible-column" field="ACTIVATOR" sortBy="#{ACTIVATOR}" filterable="false"

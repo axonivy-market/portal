@@ -24,7 +24,7 @@ public class HtmlParser {
     return extractedText;
   }
 
-  private static String parseTextFromHtml(String text) {
+  public static String parseTextFromHtml(String text) {
     String sanitizedText = sanitize(text);
     Document doc = Jsoup.parse(sanitizedText);
     return doc.body().text();
