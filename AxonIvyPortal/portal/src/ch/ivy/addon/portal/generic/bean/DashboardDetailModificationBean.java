@@ -486,7 +486,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
           .map(DashboardCustomWidgetData::getIvyProcessStartDTO)
           .map(IvyProcessStartDTO::getStartableProcessStart).orElse(null);
       if (Objects.isNull(startable)) {
-        startable = CustomWidgetUtils.findStartElementOfCustomDashboardProcess(customWidget.getData().getProcessPath());
+        startable = CustomWidgetUtils.findStartableOfCustomDashboardProcess(customWidget.getData().getProcessPath());
       }
       if (Objects.nonNull(startable)) {
         customWidget.getData().setProcessPath(startable.getId());

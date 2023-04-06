@@ -32,11 +32,11 @@ public class DashboardCustomWidgetBean implements Serializable {
 
   public void onSelectProcess(CustomDashboardWidget widget) {
     var ivyProcessStartDTO = widget.getData().getIvyProcessStartDTO();
-    if (Objects.isNull(ivyProcessStartDTO) || Objects.isNull(ivyProcessStartDTO.getStartElement())) {
+    if (Objects.isNull(ivyProcessStartDTO) || Objects.isNull(ivyProcessStartDTO.getStartableProcessStart())) {
       return;
     }
-    widget.getData().setProcessPath(ivyProcessStartDTO.getStartElement().getFullUserFriendlyRequestPath());
-    widget.getData().setStartRequestPath(ivyProcessStartDTO.getStartElement().getLink().getRelative());
+    widget.getData().setProcessPath(ivyProcessStartDTO.getStartableProcessStart().getId());
+    widget.getData().setStartRequestPath(ivyProcessStartDTO.getStartableProcessStart().getLink().getRelative());
     widget.loadParametersFromProcess();
   }
 
