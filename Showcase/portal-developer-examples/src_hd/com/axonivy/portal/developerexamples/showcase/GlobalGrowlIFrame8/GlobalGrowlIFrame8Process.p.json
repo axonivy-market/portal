@@ -129,7 +129,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI;",
+            "import com.axonivy.portal.components.util.PortalNavigatorInFrameAPI;",
             "",
             "PortalNavigatorInFrameAPI.navigateToPortalEndPage();"
           ]
