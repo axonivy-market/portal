@@ -16,7 +16,7 @@
     <div class="login-wrapper layout-wrapper">
       <div class="login-panel">
         <div class="login-panel-header">
-          <p:graphicImage name="logo" library="ivy-branding"
+          <p:graphicImage name="#{themeBean.themeMode eq 'dark' ? 'logo_light': 'logo'}" library="ivy-branding"
             alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loginLogo')}" />
         </div>
         <p:focus for="username" />
