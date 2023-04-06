@@ -346,6 +346,12 @@ Migrate 8.x To 9.x
 You need to do all steps starting at ``Migrate 8.x To ...`` up to and including
 ``Migrate ... To 9.x``
 
+Migrate 10.0 To 10.0.7
+----------------------
+
+The ``ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI`` class is removed and no longer supported, use 
+``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` instead.
+
 .. _installation-release-notes:
 
 Release notes
