@@ -200,7 +200,7 @@ public class CustomWidgetUtils {
     String processPath = customWidget.getData().getProcessPath();
     if (StringUtils.isNotBlank(processPath)) {
       customWidget.getData().setUrl(EMPTY);
-      IWebStartable startable = findStartElementOfCustomDashboardProcess(processPath);
+      IWebStartable startable = findStartableOfCustomDashboardProcess(processPath);
       if (isNull(startable)) {
         customWidget.getData().setStartRequestPath(EMPTY);
         return;
@@ -229,7 +229,7 @@ public class CustomWidgetUtils {
 
   public static IWebStartable findWebStartableByProcessPath(String processPath) {
     // Find IWebStartable by ProcessID first
-    // If not found, try to find by IStartElement by friendly request path then find IWebStartable by link
+    // If not found, try to find by IWebStartable by friendly request path then find IWebStartable by link
     IWebStartable webStartable = getAllPortalProcesses().stream()
         .filter(proccess -> proccess.getId().equals(processPath))
         .findAny().orElse(null);
@@ -242,7 +242,7 @@ public class CustomWidgetUtils {
     return webStartable;
   }
 
-  public static IWebStartable findStartElementOfCustomDashboardProcess(String processPath) {
+  public static IWebStartable findStartableOfCustomDashboardProcess(String processPath) {
     IWebStartable startable = getAllCustomDashboardProcesses().stream()
         .filter(proccess -> processPath.endsWith(proccess.getId()))
         .findAny().orElse(null);
