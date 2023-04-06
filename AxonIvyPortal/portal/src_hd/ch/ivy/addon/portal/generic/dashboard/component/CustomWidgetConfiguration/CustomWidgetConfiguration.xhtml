@@ -80,7 +80,7 @@
       </h:panelGroup>
 
       <h:panelGroup id="parameters-panel" styleClass="ui-g-12 parameters-panel u-padding-0 MarTop10" layout="block"
-        rendered="#{isIvyProcess and widget.data.ivyProcessStartDTO.startElement ne null}">
+        rendered="#{isIvyProcess and widget.data.ivyProcessStartDTO.startableProcessStart ne null}">
         <p:fieldset id="parameters-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/Parameters')}"
           toggleable="true" collapsed="false" rendered="#{not empty widget.data.params || widget.data.hasParamChanged}">
           <h:panelGroup layout="block" rendered="#{widget.data.hasParamChanged}" styleClass="ui-g">
