@@ -22,7 +22,6 @@ import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.IStartElement;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomField;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
@@ -37,7 +36,7 @@ public class CustomWidgetUtils {
   public static final String PROPERTY_PREFIX = "property";
 
   public static List<IWebStartable> allPortalProcesses;
-  public static List<IStartElement> allCustomDashboardProcesses;
+  public static List<IWebStartable> allCustomDashboardProcesses;
 
   public static String getPropertyByKeyPattern(Long referenceId , String keyPattern) {
     String propertyValue = keyPattern;
@@ -201,17 +200,17 @@ public class CustomWidgetUtils {
     String processPath = customWidget.getData().getProcessPath();
     if (StringUtils.isNotBlank(processPath)) {
       customWidget.getData().setUrl(EMPTY);
-      IStartElement startElement = findStartElementOfCustomDashboardProcess(processPath);
-      if (isNull(startElement)) {
+      IWebStartable startable = findStartElementOfCustomDashboardProcess(processPath);
+      if (isNull(startable)) {
         customWidget.getData().setStartRequestPath(EMPTY);
         return;
       }
       if (isNull(customWidget.getData().getIvyProcessStartDTO())) {
         customWidget.getData().setIvyProcessStartDTO(new IvyProcessStartDTO());
       }
-      customWidget.getData().getIvyProcessStartDTO().setStartElement(startElement);
+      customWidget.getData().getIvyProcessStartDTO().setStartableProcessStart(startable);
       customWidget.loadParameters();
-      customWidget.getData().setStartRequestPath(startElement.getLink().getRelative());
+      customWidget.getData().setStartRequestPath(startable.getLink().getRelative());
       customWidget.getData().setType(DashboardCustomWidgetType.PROCESS);
     } else {
       customWidget.getData().setProcessPath(EMPTY);
@@ -243,17 +242,17 @@ public class CustomWidgetUtils {
     return webStartable;
   }
 
-  public static IStartElement findStartElementOfCustomDashboardProcess(String processPath) {
-    IStartElement startElement = getAllCustomDashboardProcesses().stream()
-        .filter(proccess -> processPath.endsWith(proccess.getFullUserFriendlyRequestPath()))
+  public static IWebStartable findStartElementOfCustomDashboardProcess(String processPath) {
+    IWebStartable startable = getAllCustomDashboardProcesses().stream()
+        .filter(proccess -> processPath.endsWith(proccess.getId()))
         .findAny().orElse(null);
-    if (isNull(startElement)) {
+    if (isNull(startable)) {
       String processStartLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(processPath);
-      startElement = getAllCustomDashboardProcesses().stream()
+      startable = getAllCustomDashboardProcesses().stream()
           .filter(proccess -> proccess.getLink().getRelative().equals(processStartLink))
           .findAny().orElse(null);
     }
-    return startElement;
+    return startable;
   }
 
   private static List<IWebStartable> getAllPortalProcesses() {
@@ -263,7 +262,7 @@ public class CustomWidgetUtils {
     return allPortalProcesses;
   }
 
-  public static List<IStartElement> getAllCustomDashboardProcesses() {
+  public static List<IWebStartable> getAllCustomDashboardProcesses() {
     if (CollectionUtils.isEmpty(allCustomDashboardProcesses)) {
       allCustomDashboardProcesses = ProcessService.getInstance().findCustomDashboardProcesses();
     }

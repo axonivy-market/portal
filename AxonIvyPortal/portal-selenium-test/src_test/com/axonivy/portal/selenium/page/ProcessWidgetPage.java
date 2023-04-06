@@ -43,4 +43,9 @@ public class ProcessWidgetPage extends TemplatePage {
     $(".js-loading-process-list").shouldBe(Condition.hidden, DEFAULT_TIMEOUT);
     $(".js-process-start-list-container").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
+  
+  public void checkProcessNotExists(String keyword) {
+    $("input[id='process-widget:process-search:non-ajax-keyword-filter']").sendKeys(keyword);
+    $("div.js-external-link-process-item").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
 }
