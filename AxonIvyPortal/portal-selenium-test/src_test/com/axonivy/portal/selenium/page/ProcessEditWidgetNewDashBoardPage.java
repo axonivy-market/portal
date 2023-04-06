@@ -348,4 +348,14 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   public SelenideElement getCompactModeProcessDisplayedCategoryFilter() {
     return getCompactModeProcessCategoryFilter().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
+  
+  public void clickOnProcesses() {
+    $("div[id$=':processes-list']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
+        .click();
+  }
+
+  public boolean getProcessByName(String processName) {
+    return $(".ui-selectcheckboxmenu-items").$$("li.ui-selectcheckboxmenu-item").asDynamicIterable().stream()
+        .map(SelenideElement::getText).anyMatch(text -> text.equalsIgnoreCase(processName));
+  }
 }

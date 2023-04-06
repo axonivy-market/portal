@@ -39,6 +39,11 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     return new ProcessViewerWidgetNewDashBoardPage();
   }
 
+  public CustomWidgetNewDashBoardPage addNewCustomrWidget() {
+    addWidgetByName("Custom Widget");
+    return new CustomWidgetNewDashBoardPage();
+  }
+
   private void addWidgetByName(String name) {
     $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$("div.new-widget-dialog__item").filter(text(name)).first().$("tr.ui-widget-content")
