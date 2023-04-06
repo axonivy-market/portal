@@ -66,14 +66,14 @@
         <div class="ui-g-9 ui-fluid">
           <p:autoComplete id="selected-process" dropdown="true" scrollHeight="300" forceSelection="true"
             completeMethod="#{dashboardCustomWidgetBean.completeProcesses}" value="#{widget.data.ivyProcessStartDTO}"
-            var="process" itemValue="#{process}" itemLabel="#{process.startElement.name}" queryDelay="500"
+            var="process" itemValue="#{process}" itemLabel="#{process.startableProcessStart.name}" queryDelay="500"
             cache="true" minQueryLength="2" itemtipAtPosition="right top" converter="pojoConverter"
             required="#{isIvyProcess}">
             <p:ajax event="query" global="false" />
             <p:ajax event="itemSelect" listener="#{dashboardCustomWidgetBean.onSelectProcess(widget)}" update="user-filter parameters-panel"
               process="@this" oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
             <p:column>
-              <h:outputText styleClass="autocomplete-tooltip" value="#{process.startElement.name}" title="#{process.startElement.description}" />
+              <h:outputText styleClass="autocomplete-tooltip" value="#{process.startableProcessStart.name}" title="#{process.startableProcessStart.description}" />
             </p:column>
           </p:autoComplete>
         </div>

@@ -1,15 +1,15 @@
 package com.axonivy.portal.components.service.impl;
 
 import static com.axonivy.portal.components.constant.CustomFields.IS_DASHBOARD_PROCESS;
+import static java.util.Objects.isNull;
+import static org.apache.commons.collections4.CollectionUtils.isEmpty;
 import static org.apache.commons.collections4.CollectionUtils.isNotEmpty;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -17,17 +17,8 @@ import com.axonivy.portal.components.dto.IvyProcessResultDTO;
 import com.axonivy.portal.components.service.IProcessService;
 import com.axonivy.portal.components.util.IvyExecutor;
 
-import ch.ivyteam.ivy.application.ActivityState;
-import ch.ivyteam.ivy.application.IActivity;
-import ch.ivyteam.ivy.application.IProcessModel;
-import ch.ivyteam.ivy.application.IProcessModelVersion;
-import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.ISecurityContext;
-import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.server.restricted.EngineMode;
-import ch.ivyteam.ivy.workflow.IStartElement;
-import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -37,7 +28,7 @@ public class ProcessService implements IProcessService {
   private static final String PORTAL_START_REQUEST_PATH = "/DefaultApplicationHomePage.ivp";
   private static ProcessService instance;
   private static IvyProcessResultDTO ivyProcessResultDTO;
-  private static List<IStartElement> customDashboardProcesses;
+  private static List<IWebStartable> customDashboardProcesses;
   private static String sessionUserId;
 
   public ProcessService() { }
@@ -89,32 +80,18 @@ public class ProcessService implements IProcessService {
         && StringUtils.equals(Ivy.session().getSessionUser().getSecurityMemberId(), sessionUserId);
   }
 
-  public List<IStartElement> findCustomDashboardProcesses() {
-    if (isInSession() && CollectionUtils.isNotEmpty(customDashboardProcesses)) {
+  public List<IWebStartable> findCustomDashboardProcesses() {
+    if (isInSession() && isNotEmpty(customDashboardProcesses)) {
       return customDashboardProcesses;
     }
     sessionUserId = Ivy.session().getSessionUser().getSecurityMemberId();
-    customDashboardProcesses = new ArrayList<>();
-    return Sudo.get(() -> {
-      IApplicationRepository.instance().allOf(ISecurityContext.current()).stream()
-          .filter(filterActiveState()).forEach(application -> {
-            application.getProcessModelsSortedByName().stream().filter(Objects::nonNull).filter(filterActiveState())
-                .map(IProcessModel::getReleasedProcessModelVersion).filter(Objects::nonNull).filter(filterActiveState())
-                .forEach(pmv -> {
-                  customDashboardProcesses.addAll(filterByCustomDashboardProcess(pmv));
-                });
-          });
-      return customDashboardProcesses;
-    });
+    customDashboardProcesses = new ArrayList<>(
+        Ivy.session().getAllStartables().filter(filterByCustomDashboardProcess()).collect(Collectors.toList()));
+    return customDashboardProcesses;
   }
 
-  private Predicate<? super IActivity> filterActiveState() {
-    return activityObject -> activityObject != null && activityObject.getActivityState() == ActivityState.ACTIVE;
+  private Predicate<? super IWebStartable> filterByCustomDashboardProcess() {
+    return start -> BooleanUtils.toBoolean(start.customFields().value(IS_DASHBOARD_PROCESS));
   }
 
-  private List<IStartElement> filterByCustomDashboardProcess(IProcessModelVersion pmv) {
-    return IWorkflowProcessModelVersion.of(pmv).getStartElements().stream()
-        .filter(start -> BooleanUtils.toBoolean(start.customFields().value(IS_DASHBOARD_PROCESS)))
-        .collect(Collectors.toList());
-  }
 }
