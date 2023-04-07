@@ -346,8 +346,6 @@ Migrate 8.x To 9.x
 You need to do all steps starting at ``Migrate 8.x To ...`` up to and including
 ``Migrate ... To 9.x``
 
-.. _installation-release-notes:
-
 Migrate 10.0 To 10.0.7
 ----------------------
 
