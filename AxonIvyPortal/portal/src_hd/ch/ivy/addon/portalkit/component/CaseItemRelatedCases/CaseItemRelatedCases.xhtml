@@ -53,7 +53,7 @@
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="false" styleClass="description-column u-truncate-text"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'NAME')}" >
-          <h:outputText escape="false" value="#{caseWidgetBean.formatCaseDescription(case.descriptions().current())}" title="#{case.descriptions().current()}"/>
+          <h:outputText escape="false" value="#{caseWidgetBean.formatCaseDescription(case.descriptions().current())}" title="#{caseWidgetBean.formatCaseDescription(case.descriptions().current())}"/>
         </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" field="ID" sortBy="#{ID}" filterable="false" styleClass="id-column u-hidden-md-down"
