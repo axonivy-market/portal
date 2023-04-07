@@ -352,7 +352,7 @@
         "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : [
-        { "id" : "f8", "to" : "f6" }
+        { "id" : "f174", "to" : "f150" }
       ]
     }, {
       "id" : "f59",
@@ -753,7 +753,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 440, "y" : 864 }
+        "at" : { "x" : 616, "y" : 864 }
       }
     }, {
       "id" : "f22",
@@ -2822,6 +2822,31 @@
       },
       "connect" : [
         { "id" : "f173", "to" : "f243" }
+      ]
+    }, {
+      "id" : "f150",
+      "type" : "Script",
+      "name" : [
+        "Handle blank ",
+        "callback URL"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portal.generic.navigation.PortalNavigator;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "// Blank callback URL causes issue https://1ivy.atlassian.net/browse/IVYPORTAL-14851",
+            "if (StringUtils.isBlank(in.callbackUrl)){",
+            "  in.callbackUrl = PortalNavigator.getPortalStartUrl();",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 424, "y" : 864 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f6" }
       ]
     } ]
 }
