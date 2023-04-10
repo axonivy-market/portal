@@ -23,7 +23,6 @@ pipeline {
     stage('deploy') {
       steps {
         script {
-          utils = load 'build/common/utils.groovy'
           sh """
             docker compose -f ${masterEngineDir}/docker-compose.yml down
             docker compose -f ${performanceMasterEngineDir}/docker-compose.yml down
@@ -47,7 +46,7 @@ pipeline {
     stage('test') {
       steps {
         script {
-          today = new Date().format('dd-MM-yyyy_HH-mm')
+          def today = new Date().format('dd-MM-yyyy_HH-mm')
           resultDir = "/var/tools/performance-result/${env.engineVersion}/${today}"
           fileOperations([folderCreateOperation(folderPath: "${resultDir}")])
 

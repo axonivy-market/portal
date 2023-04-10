@@ -15,15 +15,18 @@ pipeline {
     stage('backupDatabase') {
       steps {
         script {
-          today = new Date().format('dd-MM-yyyy_HH-mm')
-          config = [portal:[engine: '10', postgresContainer: 'postgres-10', systemDatabase: 'AxonIvySystemDatabase-10'],
+          def today = new Date().format('dd-MM-yyyy_HH-mm')
+          def config = [portal:[engine: '10', postgresContainer: 'postgres-10', systemDatabase: 'AxonIvySystemDatabase-10'],
                     performanceTest:[engine: 'performance-10', postgresContainer: 'postgres-performance-10', systemDatabase: 'AxonIvySystemDatabase-performance-10']]
-          engineParentDir = '/var/tools/ivy/'
+          def engineParentDir = '/var/tools/ivy/'
           engineDir = engineParentDir + config[params.engine]['engine']
-          postgresContainer = config[params.engine]['postgresContainer']
-          systemDatabaseName = config[params.engine]['systemDatabase']
-          databaseBackupDir = '/var/database-backups/'
-          dbBackupFile = databaseBackupDir + systemDatabaseName + '-' + today + '.dump'
+          def postgresContainer = config[params.engine]['postgresContainer']
+          def systemDatabaseName = config[params.engine]['systemDatabase']
+          def databaseBackupDir = '/var/database-backups/'
+          def dbBackupFile = databaseBackupDir + systemDatabaseName + '-' + today + '.dump'
+
+          // Set SystemDb Autoconvert: true - migrate System DB automatically when upgrading ivy
+          updateConfigFile(' true')
 
           if (params.engine == 'performanceTest') {
             sh """
@@ -60,10 +63,18 @@ pipeline {
               docker compose up -d
             """
           }
+
+          // Set SystemDb Autoconvert: false - avoid migrating SystemDB automatically when upgrading ivy manually
+          updateConfigFile(' false')
         }
       }
     }
   }
 }
 
+def updateConfigFile(value) {
+  sh """
+    awk -F':' -v OFS=':' -v newval='${value}' '/^  Autoconvert:/{\$2=newval;print;next}1' ${engineDir}/ivy.yaml
+  """
+}
 

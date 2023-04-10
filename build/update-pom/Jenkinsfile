@@ -31,7 +31,7 @@ pipeline {
                 updateVersion()
 
                 echo '====================Commit to GIT===================='
-                changeLog = sh(returnStdout: true, script: 'git status -s').trim()
+                def changeLog = sh(returnStdout: true, script: 'git status -s').trim()
                 if (changeLog) {
                   sh """
                     git commit -a -m "Updated all pom build.plugin.version=${params.buildPluginVersion}, ivy.engine.version=${params.ivyEngineVersion}"
