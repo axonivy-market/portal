@@ -1,23 +1,18 @@
 pipeline {
-  agent {label 'master'}
-  
+  agent {
+    label 'linux'
+  }
+
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
   }
-  
+
   triggers {
     pollSCM 'H/15 * * * *'
   }
 
-  tools { 
-      maven '3.8' 
-      jdk '17' 
-  }
-
   parameters {
-      string(name: 'modulesMustBeBuilt', defaultValue: '', description: 'Define modules must be built. By default, only modules which have code changes since the last successful build are built. Available modules: portal-components,portal,AxonIvyExpress,PortalKitTestHelper,portal-user-examples,portal-developer-examples,InternalSupport,portal-components-examples. E.g. portal-components code is changed, then set this property value portal => portal-components,portal will be built.')
-      choice(name: 'engine', choices: ['singleAppEngine', 'multiAppsEngine'], description: 'Which engine to deploy? If multiAppsEngine, deploy all modules.')
-
+    string(name: 'modulesMustBeBuilt', defaultValue: '', description: 'Define modules must be built. By default, only modules which have code changes since the last successful build are built. Available modules: portal-components,portal,AxonIvyExpress,PortalKitTestHelper,portal-user-examples,portal-developer-examples,InternalSupport,portal-components-examples. E.g. portal-components code is changed, then set this property value portal => portal-components,portal will be built.')
   }
 
   stages {
@@ -25,23 +20,20 @@ pipeline {
       steps {
         script {
           builtModules = []
-          config = [singleAppEngine: [applications: ['Portal'], engineDir : 'D:/tools/ivy-server/10.0']]
-          applications = config[params.engine]['applications']
-          engineDir = config[params.engine]['engineDir']
-
-          def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples']
-          def changeLog = ''
-          if (env.GIT_PREVIOUS_SUCCESSFUL_COMMIT) {
-            changeLog = bat(script: "git diff --name-only ${env.GIT_COMMIT} ${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}", returnStdout: true)
-          }
-          for (module in modules) {
-            if (changeLog.contains(module) || params.modulesMustBeBuilt.contains(module.split('/')[1]) || params.engine == 'multiAppsEngine') {
-              builtModules.add(module)
-              bat "mvn clean install -f ${module}/pom.xml"
+          docker.build('build-portal-modules', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+            def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples']
+            def changeLog = ''
+            if (env.GIT_PREVIOUS_SUCCESSFUL_COMMIT) {
+              changeLog = sh(returnStdout: true, script: 'git diff --name-only $GIT_COMMIT $GIT_PREVIOUS_SUCCESSFUL_COMMIT').trim()
+            }
+            for (module in modules) {
+              if (changeLog.contains(module) || params.modulesMustBeBuilt.contains(module.split('/')[1])) {
+                maven cmd: "clean install -f ${module}/pom.xml"
+                builtModules.add(module)
+              }
             }
           }
-          archiveArtifacts artifacts: "*/*/target/*.iar", allowEmptyArchive: true
-          junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
+          archiveArtifacts artifacts: '*/*/target/*.iar', allowEmptyArchive: true
         }
       }
     }
@@ -50,9 +42,10 @@ pipeline {
       steps {
         script {
           def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').getProperties().getProperty("build.plugin.version")
-          for (module in builtModules) {
-            for (application in applications) {
-              bat "mvn com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.engine.app=${application} -Divy.deploy.engine.dir=${engineDir} -Divy.test.engine=MODIFY_EXISTING"
+          def engineUrl = 'http://10.123.1.216:8010'
+          docker.build('deploy-modules-to-engine', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+            for (module in builtModules) {
+              maven cmd: "com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.server.id=engine-cockpit -Divy.deploy.engine.app=Portal -Divy.deploy.method=HTTP -Divy.deploy.engine.url=${engineUrl} -Divy.test.engine=MODIFY_EXISTING -Divy.deploy.test.users=true"
             }
           }
         }
