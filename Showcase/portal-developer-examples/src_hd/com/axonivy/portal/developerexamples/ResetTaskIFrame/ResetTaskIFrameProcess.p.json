@@ -64,7 +64,7 @@
         "security" : "system",
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI;",
+            "import com.axonivy.portal.components.util.PortalNavigatorInFrameAPI;",
             "ivy.task.reset();",
             "PortalNavigatorInFrameAPI.navigateToUrl(ivy.html.applicationHomeRef());"
           ]
@@ -97,7 +97,7 @@
         "security" : "system",
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI;",
+            "import com.axonivy.portal.components.util.PortalNavigatorInFrameAPI;",
             "ivy.task.reset();",
             "PortalNavigatorInFrameAPI.navigateToPortalEndPage();"
           ]
@@ -131,7 +131,7 @@
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;",
-            "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI;",
+            "import com.axonivy.portal.components.util.PortalNavigatorInFrameAPI;",
             "",
             "ivy.task.reset();",
             "",

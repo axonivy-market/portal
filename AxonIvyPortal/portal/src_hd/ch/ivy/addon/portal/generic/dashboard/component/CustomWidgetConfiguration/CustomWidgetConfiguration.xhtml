@@ -66,21 +66,21 @@
         <div class="ui-g-9 ui-fluid">
           <p:autoComplete id="selected-process" dropdown="true" scrollHeight="300" forceSelection="true"
             completeMethod="#{dashboardCustomWidgetBean.completeProcesses}" value="#{widget.data.ivyProcessStartDTO}"
-            var="process" itemValue="#{process}" itemLabel="#{process.startElement.name}" queryDelay="500"
+            var="process" itemValue="#{process}" itemLabel="#{process.startableProcessStart.name}" queryDelay="500"
             cache="true" minQueryLength="2" itemtipAtPosition="right top" converter="pojoConverter"
             required="#{isIvyProcess}">
             <p:ajax event="query" global="false" />
             <p:ajax event="itemSelect" listener="#{dashboardCustomWidgetBean.onSelectProcess(widget)}" update="user-filter parameters-panel"
               process="@this" oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
             <p:column>
-              <h:outputText styleClass="autocomplete-tooltip" value="#{process.startElement.name}" title="#{process.startElement.description}" />
+              <h:outputText styleClass="autocomplete-tooltip" value="#{process.startableProcessStart.name}" title="#{process.startableProcessStart.description}" />
             </p:column>
           </p:autoComplete>
         </div>
       </h:panelGroup>
 
       <h:panelGroup id="parameters-panel" styleClass="ui-g-12 parameters-panel u-padding-0 MarTop10" layout="block"
-        rendered="#{isIvyProcess and widget.data.ivyProcessStartDTO.startElement ne null}">
+        rendered="#{isIvyProcess and widget.data.ivyProcessStartDTO.startableProcessStart ne null}">
         <p:fieldset id="parameters-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/Parameters')}"
           toggleable="true" collapsed="false" rendered="#{not empty widget.data.params || widget.data.hasParamChanged}">
           <h:panelGroup layout="block" rendered="#{widget.data.hasParamChanged}" styleClass="ui-g">

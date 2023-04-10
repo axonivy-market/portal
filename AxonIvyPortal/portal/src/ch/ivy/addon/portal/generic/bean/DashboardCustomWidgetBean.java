@@ -17,7 +17,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidgetParam;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
-import ch.ivyteam.ivy.workflow.IStartElement;
+import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ManagedBean
 @ViewScoped
@@ -28,15 +28,15 @@ public class DashboardCustomWidgetBean implements Serializable {
   private DashboardCustomWidgetType selectedType = DashboardCustomWidgetType.EXTERNAL_URL;
   private DashboardCustomWidgetType[] customWidgetTypes = DashboardCustomWidgetType.values();
   private String process;
-  private List<IStartElement> allCustomDashboardProcesses;
+  private List<IWebStartable> allCustomDashboardProcesses;
 
   public void onSelectProcess(CustomDashboardWidget widget) {
     var ivyProcessStartDTO = widget.getData().getIvyProcessStartDTO();
-    if (Objects.isNull(ivyProcessStartDTO) || Objects.isNull(ivyProcessStartDTO.getStartElement())) {
+    if (Objects.isNull(ivyProcessStartDTO) || Objects.isNull(ivyProcessStartDTO.getStartableProcessStart())) {
       return;
     }
-    widget.getData().setProcessPath(ivyProcessStartDTO.getStartElement().getFullUserFriendlyRequestPath());
-    widget.getData().setStartRequestPath(ivyProcessStartDTO.getStartElement().getLink().getRelative());
+    widget.getData().setProcessPath(ivyProcessStartDTO.getStartableProcessStart().getId());
+    widget.getData().setStartRequestPath(ivyProcessStartDTO.getStartableProcessStart().getLink().getRelative());
     widget.loadParametersFromProcess();
   }
 
@@ -85,7 +85,7 @@ public class DashboardCustomWidgetBean implements Serializable {
     this.process = process;
   }
 
-  public List<IStartElement> getAllCustomDashboardProcesses() {
+  public List<IWebStartable> getAllCustomDashboardProcesses() {
     if (CollectionUtils.isEmpty(allCustomDashboardProcesses)) {
       allCustomDashboardProcesses = ProcessService.getInstance().findCustomDashboardProcesses();
     }
