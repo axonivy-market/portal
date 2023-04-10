@@ -62,7 +62,6 @@ pipeline {
             rem remove created tag
             git push --delete origin ${params.releaseVersion}
             git tag -d ${params.releaseVersion}
-
             rem Create tag for the release
             git commit -a -m "update projects version"
             git tag -a ${params.releaseVersion} -m "Tagged Portal release ${params.releaseVersion} by build job ${env.BUILD_URL}
