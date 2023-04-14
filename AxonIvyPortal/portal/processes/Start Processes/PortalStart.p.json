@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "1549F58C18A6C562",
   "config" : {
     "data" : "ch.ivy.addon.portal.generic.PortalStartData"
@@ -9,17 +9,18 @@
       "type" : "RequestStart",
       "name" : "DefaultEndPage.ivp",
       "config" : {
-        "callSignature" : "DefaultEndPage",
+        "signature" : "DefaultEndPage",
         "input" : {
           "params" : [
-            { "name" : "endedTaskId", "type" : "Number" }
+            { "name" : "endedTaskId", "type" : "Number", "desc" : "" }
           ],
           "map" : {
             "out.endedTaskId" : "param.endedTaskId"
           }
         },
-        "outLink" : "DefaultEndPage.ivp",
-        "showInStartList" : false
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 305 },
@@ -95,23 +96,24 @@
       "type" : "RequestStart",
       "name" : "DefaultApplicationHomePage.ivp",
       "config" : {
-        "callSignature" : "DefaultApplicationHomePage",
-        "case" : {
-          "name" : "<%=ivy.cms.co(\"/Processes/Cases/PortalCategory\")%>: <%=ivy.cms.co(\"/Processes/portalSettingSaved\")%>",
-          "description" : "<%=ivy.cms.co(\"/Processes/Cases/PortalInternalProcess/PortalInternalProcessDescription\")%>",
-          "category" : "<%=ivy.cms.co(\"/Processes/Cases/PortalCategory\")%>"
+        "signature" : "DefaultApplicationHomePage",
+        "request" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/portalHome\")%>",
+          "customFields" : [
+            { "name" : "cssIcon", "value" : "si si-layout-dashboard" },
+            { "name" : "embedInFrame", "value" : "false" }
+          ]
         },
-        "outLink" : "DefaultApplicationHomePage.ivp",
-        "startCustomFields" : [
-          { "name" : "cssIcon", "value" : "si si-layout-dashboard" },
-          { "name" : "embedInFrame", "value" : "false" }
-        ],
         "task" : {
           "name" : "<%=ivy.cms.co(\"/Processes/Cases/PortalCategory\")%>: <%=ivy.cms.co(\"/Processes/portalSettingSaved\")%>",
           "description" : "<%=ivy.cms.co(\"/Processes/Cases/PortalInternalProcess/PortalInternalProcessDescription\")%>",
           "category" : "<%=ivy.cms.co(\"/Processes/Cases/PortalCategory\")%>"
         },
-        "startName" : "<%=ivy.cms.co(\"/Processes/portalHome\")%>"
+        "case" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/Cases/PortalCategory\")%>: <%=ivy.cms.co(\"/Processes/portalSettingSaved\")%>",
+          "description" : "<%=ivy.cms.co(\"/Processes/Cases/PortalInternalProcess/PortalInternalProcessDescription\")%>",
+          "category" : "<%=ivy.cms.co(\"/Processes/Cases/PortalCategory\")%>"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 144 },
@@ -131,9 +133,10 @@
       "type" : "RequestStart",
       "name" : "CaseListPage.ivp",
       "config" : {
-        "callSignature" : "CaseListPage",
-        "outLink" : "CaseListPage.ivp",
-        "showInStartList" : false
+        "signature" : "CaseListPage",
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 513 },
@@ -147,17 +150,18 @@
       "type" : "RequestStart",
       "name" : "CaseDetailsPage.ivp",
       "config" : {
-        "callSignature" : "CaseDetailsPage",
+        "signature" : "CaseDetailsPage",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long" }
+            { "name" : "caseId", "type" : "Long", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.caseId"
           }
         },
-        "outLink" : "CaseDetailsPage.ivp",
-        "showInStartList" : false
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 704 },
@@ -171,9 +175,10 @@
       "type" : "RequestStart",
       "name" : "DefaultTaskListPage.ivp",
       "config" : {
-        "callSignature" : "DefaultTaskListPage",
-        "outLink" : "DefaultTaskListPage.ivp",
-        "showInStartList" : false
+        "signature" : "DefaultTaskListPage",
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 640 },
@@ -250,18 +255,19 @@
       "type" : "RequestStart",
       "name" : "BackFromTaskDetails.ivp",
       "config" : {
-        "callSignature" : "BackFromTaskDetails",
+        "signature" : "BackFromTaskDetails",
         "input" : {
           "params" : [
-            { "name" : "endedTaskId", "type" : "Number" }
+            { "name" : "endedTaskId", "type" : "Number", "desc" : "" }
           ],
           "map" : {
             "out.backFromTaskDetails" : "true",
             "out.endedTaskId" : "param.endedTaskId"
           }
         },
-        "outLink" : "BackFromTaskDetails.ivp",
-        "showInStartList" : false
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 384 },
@@ -288,9 +294,10 @@
       "type" : "RequestStart",
       "name" : "StatisticPage.ivp",
       "config" : {
-        "callSignature" : "StatisticPage",
-        "outLink" : "StatisticPage.ivp",
-        "showInStartList" : false
+        "signature" : "StatisticPage",
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 769 },
@@ -310,17 +317,18 @@
       "type" : "RequestStart",
       "name" : "DefaultLoginPage.ivp",
       "config" : {
-        "callSignature" : "DefaultLoginPage",
+        "signature" : "DefaultLoginPage",
         "input" : {
           "params" : [
-            { "name" : "originalUrl", "type" : "String" }
+            { "name" : "originalUrl", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.callbackUrl" : "param.#originalUrl is initialized ? param.originalUrl : null"
           }
         },
-        "outLink" : "DefaultLoginPage.ivp",
-        "showInStartList" : false
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 864 },
@@ -376,12 +384,12 @@
       "type" : "RequestStart",
       "name" : "RelatedTasksOfCasePage.ivp",
       "config" : {
-        "callSignature" : "RelatedTasksOfCasePage",
+        "signature" : "RelatedTasksOfCasePage",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long" },
-            { "name" : "isBusinessCase", "type" : "Boolean" },
-            { "name" : "caseName", "type" : "String" }
+            { "name" : "caseId", "type" : "Long", "desc" : "" },
+            { "name" : "isBusinessCase", "type" : "Boolean", "desc" : "" },
+            { "name" : "caseName", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.caseId",
@@ -389,8 +397,9 @@
             "out.isBusinessCase" : "param.isBusinessCase"
           }
         },
-        "outLink" : "RelatedTasksOfCasePage.ivp",
-        "showInStartList" : false
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 960 },
@@ -404,17 +413,18 @@
       "type" : "RequestStart",
       "name" : "TaskDetailsPage.ivp",
       "config" : {
-        "callSignature" : "TaskDetailsPage",
+        "signature" : "TaskDetailsPage",
         "input" : {
           "params" : [
-            { "name" : "selectedTaskId", "type" : "Long" }
+            { "name" : "selectedTaskId", "type" : "Long", "desc" : "" }
           ],
           "map" : {
             "out.selectedTaskId" : "param.selectedTaskId"
           }
         },
-        "outLink" : "TaskDetailsPage.ivp",
-        "showInStartList" : false
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1056 },
@@ -460,17 +470,18 @@
       "type" : "RequestStart",
       "name" : "GlobalSearchPage.ivp",
       "config" : {
-        "callSignature" : "GlobalSearchPage",
+        "signature" : "GlobalSearchPage",
         "input" : {
           "params" : [
-            { "name" : "keyword", "type" : "String" }
+            { "name" : "keyword", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.keyword" : "param.keyword"
           }
         },
-        "outLink" : "GlobalSearchPage.ivp",
-        "showInStartList" : false
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1152 },
@@ -494,9 +505,10 @@
       "type" : "RequestStart",
       "name" : "Error500Page.ivp",
       "config" : {
-        "callSignature" : "Error500Page",
-        "outLink" : "Error500Page.ivp",
-        "showInStartList" : false
+        "signature" : "Error500Page",
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1344 },
@@ -510,9 +522,10 @@
       "type" : "RequestStart",
       "name" : "Error404Page.ivp",
       "config" : {
-        "callSignature" : "Error404Page",
-        "outLink" : "Error404Page.ivp",
-        "showInStartList" : false
+        "signature" : "Error404Page",
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1440 },
@@ -526,9 +539,10 @@
       "type" : "RequestStart",
       "name" : "DefaultProcessStartListPage.ivp",
       "config" : {
-        "callSignature" : "DefaultProcessStartListPage",
-        "outLink" : "DefaultProcessStartListPage.ivp",
-        "showInStartList" : false
+        "signature" : "DefaultProcessStartListPage",
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1280 },
@@ -595,19 +609,20 @@
       "type" : "RequestStart",
       "name" : "DefaultFramePage.ivp",
       "config" : {
-        "callSignature" : "DefaultFramePage",
+        "signature" : "DefaultFramePage",
         "input" : {
           "params" : [
-            { "name" : "relativeUrl", "type" : "String" },
-            { "name" : "runningTaskId", "type" : "Number" }
+            { "name" : "relativeUrl", "type" : "String", "desc" : "" },
+            { "name" : "runningTaskId", "type" : "Number", "desc" : "" }
           ],
           "map" : {
             "out.callbackUrl" : "param.relativeUrl",
             "out.endedTaskId" : "param.runningTaskId"
           }
         },
-        "outLink" : "DefaultFramePage.ivp",
-        "showInStartList" : false
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1536 },
@@ -693,15 +708,18 @@
       "type" : "RequestStart",
       "name" : "UserProfile.ivp",
       "config" : {
-        "callSignature" : "UserProfile",
+        "signature" : "UserProfile",
+        "request" : {
+          "isVisibleOnStartList" : false
+        },
+        "permission" : {
+          "anonymous" : false
+        },
         "case" : {
           "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
           ]
-        },
-        "outLink" : "UserProfile.ivp",
-        "showInStartList" : false,
-        "wfuser" : "1"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1728 },
@@ -753,7 +771,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 616, "y" : 864 }
+        "at" : { "x" : 608, "y" : 864 }
       }
     }, {
       "id" : "f22",
@@ -815,17 +833,18 @@
       "type" : "RequestStart",
       "name" : "CaseDetailsInIFrame.ivp",
       "config" : {
-        "callSignature" : "CaseDetailsInIFrame",
+        "signature" : "CaseDetailsInIFrame",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long" }
+            { "name" : "caseId", "type" : "Long", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.caseId"
           }
         },
-        "outLink" : "CaseDetailsInIFrame.ivp",
-        "showInStartList" : false
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1824 },
@@ -865,12 +884,12 @@
       "type" : "RequestStart",
       "name" : "RelatedTasksOfCasePageInFrame.ivp",
       "config" : {
-        "callSignature" : "RelatedTasksOfCasePageInFrame",
+        "signature" : "RelatedTasksOfCasePageInFrame",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long" },
-            { "name" : "isBusinessCase", "type" : "Boolean" },
-            { "name" : "caseName", "type" : "String" }
+            { "name" : "caseId", "type" : "Long", "desc" : "" },
+            { "name" : "isBusinessCase", "type" : "Boolean", "desc" : "" },
+            { "name" : "caseName", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.caseId",
@@ -878,8 +897,9 @@
             "out.isBusinessCase" : "param.isBusinessCase"
           }
         },
-        "outLink" : "RelatedTasksOfCasePageInFrame.ivp",
-        "showInStartList" : false
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1920 },
@@ -926,17 +946,18 @@
       "type" : "RequestStart",
       "name" : "TaskDetailsPageInFrame.ivp",
       "config" : {
-        "callSignature" : "TaskDetailsPageInFrame",
+        "signature" : "TaskDetailsPageInFrame",
         "input" : {
           "params" : [
-            { "name" : "selectedTaskId", "type" : "Long" }
+            { "name" : "selectedTaskId", "type" : "Long", "desc" : "" }
           ],
           "map" : {
             "out.selectedTaskId" : "param.selectedTaskId"
           }
         },
-        "outLink" : "TaskDetailsPageInFrame.ivp",
-        "showInStartList" : false
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 2016 },
@@ -950,9 +971,10 @@
       "type" : "RequestStart",
       "name" : "AbsenceManagement.ivp",
       "config" : {
-        "callSignature" : "AbsenceManagement",
-        "outLink" : "AbsenceManagement.ivp",
-        "showInStartList" : false
+        "signature" : "AbsenceManagement",
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 2112 },
@@ -986,19 +1008,20 @@
       "type" : "RequestStart",
       "name" : "PasswordResetPage.ivp",
       "config" : {
-        "callSignature" : "PasswordResetPage",
+        "signature" : "PasswordResetPage",
         "input" : {
           "params" : [
-            { "name" : "token", "type" : "String" },
-            { "name" : "username", "type" : "String" }
+            { "name" : "token", "type" : "String", "desc" : "" },
+            { "name" : "username", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.passwordResetToken" : "param.token",
             "out.passwordResetUsername" : "param.username"
           }
         },
-        "outLink" : "PasswordResetPage.ivp",
-        "showInStartList" : false
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 768, "y" : 992 },
@@ -1012,9 +1035,10 @@
       "type" : "RequestStart",
       "name" : "ForgotPasswordPage.ivp",
       "config" : {
-        "callSignature" : "ForgotPasswordPage",
-        "outLink" : "ForgotPasswordPage.ivp",
-        "showInStartList" : false
+        "signature" : "ForgotPasswordPage",
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 768, "y" : 864 },
@@ -1156,17 +1180,18 @@
       "type" : "RequestStart",
       "name" : "DefaultDashboardPage.ivp",
       "config" : {
-        "callSignature" : "DefaultDashboardPage",
+        "signature" : "DefaultDashboardPage",
         "input" : {
           "params" : [
-            { "name" : "isShowDashboard", "type" : "Boolean" }
+            { "name" : "isShowDashboard", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
             "out.isShowDashboard" : "param.isShowDashboard"
           }
         },
-        "outLink" : "DefaultDashboardPage.ivp",
-        "showInStartList" : false
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
@@ -1196,19 +1221,20 @@
       "type" : "RequestStart",
       "name" : "CaseDetailsPageInFrame.ivp",
       "config" : {
-        "callSignature" : "CaseDetailsPageInFrame",
+        "signature" : "CaseDetailsPageInFrame",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long" },
-            { "name" : "isBusinessCase", "type" : "Boolean" }
+            { "name" : "caseId", "type" : "Long", "desc" : "" },
+            { "name" : "isBusinessCase", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.caseId",
             "out.isBusinessCase" : "param.isBusinessCase"
           }
         },
-        "outLink" : "CaseDetailsPageInFrame.ivp",
-        "showInStartList" : false
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 2208 },
@@ -1222,17 +1248,18 @@
       "type" : "RequestStart",
       "name" : "ProcessInformation.ivp",
       "config" : {
-        "callSignature" : "ProcessInformation",
+        "signature" : "ProcessInformation",
         "input" : {
           "params" : [
-            { "name" : "processKey", "type" : "String" }
+            { "name" : "processKey", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.processId" : "param.processKey"
           }
         },
-        "outLink" : "ProcessInformation.ivp",
-        "showInStartList" : false
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 2304 },
@@ -2132,17 +2159,18 @@
       "type" : "RequestStart",
       "name" : "showCaseNoteHistory.ivp",
       "config" : {
-        "callSignature" : "showCaseNoteHistory",
+        "signature" : "showCaseNoteHistory",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long" }
+            { "name" : "caseId", "type" : "Long", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.caseId"
           }
         },
-        "outLink" : "showCaseNoteHistory.ivp",
-        "showInStartList" : false
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 1728 }
@@ -2161,17 +2189,18 @@
       "type" : "RequestStart",
       "name" : "showTaskNoteHistory.ivp",
       "config" : {
-        "callSignature" : "showTaskNoteHistory",
+        "signature" : "showTaskNoteHistory",
         "input" : {
           "params" : [
-            { "name" : "selectedTaskId", "type" : "Long" }
+            { "name" : "selectedTaskId", "type" : "Long", "desc" : "" }
           ],
           "map" : {
             "out.taskId" : "param.selectedTaskId"
           }
         },
-        "outLink" : "showTaskNoteHistory.ivp",
-        "showInStartList" : false
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 1824 }
@@ -2279,17 +2308,18 @@
       "type" : "RequestStart",
       "name" : "showAdditionalCaseDetails.ivp",
       "config" : {
-        "callSignature" : "showAdditionalCaseDetails",
+        "signature" : "showAdditionalCaseDetails",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long" }
+            { "name" : "caseId", "type" : "Long", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.caseId"
           }
         },
-        "outLink" : "showAdditionalCaseDetails.ivp",
-        "showInStartList" : false
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 1920 }
@@ -2302,9 +2332,10 @@
       "type" : "RequestStart",
       "name" : "showTaskAnalysis.ivp",
       "config" : {
-        "callSignature" : "showTaskAnalysis",
-        "outLink" : "showTaskAnalysis.ivp",
-        "showInStartList" : false
+        "signature" : "showTaskAnalysis",
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 2016 },
@@ -2377,19 +2408,20 @@
       "type" : "RequestStart",
       "name" : "DashboardDetails.ivp",
       "config" : {
-        "callSignature" : "DashboardDetails",
+        "signature" : "DashboardDetails",
         "input" : {
           "params" : [
-            { "name" : "dashboardId", "type" : "String" },
-            { "name" : "isPublicDashboard", "type" : "Boolean" }
+            { "name" : "dashboardId", "type" : "String", "desc" : "" },
+            { "name" : "isPublicDashboard", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
             "out.dashboardId" : "param.dashboardId",
             "out.isPublicDashboard" : "param.isPublicDashboard"
           }
         },
-        "outLink" : "DashboardDetails.ivp",
-        "showInStartList" : false
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 2512 },
@@ -2429,8 +2461,7 @@
       "type" : "RequestStart",
       "name" : "DefaultApplicationHomePageInTeams.ivp",
       "config" : {
-        "callSignature" : "DefaultApplicationHomePageInTeams",
-        "outLink" : "DefaultApplicationHomePageInTeams.ivp"
+        "signature" : "DefaultApplicationHomePageInTeams"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 224 },
@@ -2474,8 +2505,7 @@
       "type" : "RequestStart",
       "name" : "DefaultCaseListPageInTeams.ivp",
       "config" : {
-        "callSignature" : "DefaultCaseListPageInTeams",
-        "outLink" : "DefaultCaseListPageInTeams.ivp"
+        "signature" : "DefaultCaseListPageInTeams"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 448 },
@@ -2549,8 +2579,7 @@
       "type" : "RequestStart",
       "name" : "DefaultTaskListPageInTeams.ivp",
       "config" : {
-        "callSignature" : "DefaultTaskListPageInTeams",
-        "outLink" : "DefaultTaskListPageInTeams.ivp"
+        "signature" : "DefaultTaskListPageInTeams"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 576 },
@@ -2573,8 +2602,7 @@
       "type" : "RequestStart",
       "name" : "DefaultProcessStartListPageInTeams.ivp",
       "config" : {
-        "callSignature" : "DefaultProcessStartListPageInTeams",
-        "outLink" : "DefaultProcessStartListPageInTeams.ivp"
+        "signature" : "DefaultProcessStartListPageInTeams"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1216 },
@@ -2635,19 +2663,20 @@
       "type" : "RequestStart",
       "name" : "PortalProcessViewer.ivp",
       "config" : {
-        "callSignature" : "PortalProcessViewer",
+        "signature" : "PortalProcessViewer",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long" },
-            { "name" : "processKey", "type" : "String" }
+            { "name" : "caseId", "type" : "Long", "desc" : "" },
+            { "name" : "processKey", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.caseId",
             "out.processId" : "param.processKey"
           }
         },
-        "outLink" : "PortalProcessViewer.ivp",
-        "showInStartList" : false
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 2112 },
@@ -2661,17 +2690,18 @@
       "type" : "RequestStart",
       "name" : "ShowTaskDocument.ivp",
       "config" : {
-        "callSignature" : "ShowTaskDocument",
+        "signature" : "ShowTaskDocument",
         "input" : {
           "params" : [
-            { "name" : "selectedTaskId", "type" : "Long" }
+            { "name" : "selectedTaskId", "type" : "Long", "desc" : "" }
           ],
           "map" : {
             "out.taskId" : "param.selectedTaskId"
           }
         },
-        "outLink" : "ShowTaskDocument.ivp",
-        "showInStartList" : false
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 2208 },
@@ -2709,17 +2739,18 @@
       "type" : "RequestStart",
       "name" : "ShowCaseDocument.ivp",
       "config" : {
-        "callSignature" : "ShowCaseDocument",
+        "signature" : "ShowCaseDocument",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long" }
+            { "name" : "caseId", "type" : "Long", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.caseId"
           }
         },
-        "outLink" : "ShowCaseDocument.ivp",
-        "showInStartList" : false
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 2304 },
@@ -2757,9 +2788,10 @@
       "type" : "RequestStart",
       "name" : "PortalManagement.ivp",
       "config" : {
-        "callSignature" : "PortalManagement",
-        "outLink" : "PortalManagement.ivp",
-        "showInStartList" : false
+        "signature" : "PortalManagement",
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 2408 },
@@ -2812,9 +2844,10 @@
       "type" : "RequestStart",
       "name" : "PortalDashboardConfiguration.ivp",
       "config" : {
-        "callSignature" : "PortalDashboardConfiguration",
-        "outLink" : "PortalDashboardConfiguration.ivp",
-        "showInStartList" : false
+        "signature" : "PortalDashboardConfiguration",
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 2408 },
@@ -2827,15 +2860,14 @@
       "id" : "f150",
       "type" : "Script",
       "name" : [
-        "Handle blank ",
-        "callback URL"
+        "Handle blank",
+        "callback url"
       ],
       "config" : {
         "output" : {
           "code" : [
             "import ch.ivy.addon.portal.generic.navigation.PortalNavigator;",
             "import org.apache.commons.lang3.StringUtils;",
-            "// Blank callback URL causes issue https://1ivy.atlassian.net/browse/IVYPORTAL-14851",
             "if (StringUtils.isBlank(in.callbackUrl)){",
             "  in.callbackUrl = PortalNavigator.getPortalStartUrl();",
             "}"
@@ -2843,7 +2875,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 424, "y" : 864 }
+        "at" : { "x" : 416, "y" : 864 }
       },
       "connect" : [
         { "id" : "f8", "to" : "f6" }

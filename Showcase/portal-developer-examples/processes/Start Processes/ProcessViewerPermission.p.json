@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "183C12775FE2BAB8",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.ProcessViewerPermissionData",
@@ -24,9 +24,7 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f4", "to" : "f3" }
-      ]
+      "connect" : { "id" : "f4", "to" : "f3" }
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -44,8 +42,6 @@
       "visual" : {
         "at" : { "x" : 216, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     } ]
 }

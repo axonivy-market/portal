@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "1826808C70BE47D1",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,11 +10,11 @@
       "type" : "HtmlDialogStart",
       "name" : "start(Long,String)",
       "config" : {
-        "signature" : "start",
+        "callSignature" : "start",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long", "desc" : "" },
-            { "name" : "processLink", "type" : "String", "desc" : "" }
+            { "name" : "caseId", "type" : "Long" },
+            { "name" : "processLink", "type" : "String" }
           ],
           "map" : {
             "out.caseId" : "param.caseId",
@@ -27,9 +27,7 @@
         "at" : { "x" : 96, "y" : 64 },
         "labelOffset" : { "x" : 39, "y" : 35 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -46,9 +44,7 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }
       },
-      "connect" : [
-        { "id" : "f5", "to" : "f4" }
-      ]
+      "connect" : { "id" : "f5", "to" : "f4" }
     }, {
       "id" : "f4",
       "type" : "HtmlDialogExit",

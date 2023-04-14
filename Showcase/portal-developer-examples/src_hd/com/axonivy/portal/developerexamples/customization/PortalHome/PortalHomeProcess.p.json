@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "176CBAE5E8EDAEE3",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "HtmlDialogStart",
       "name" : "start(TaskView)",
       "config" : {
-        "signature" : "start",
+        "callSignature" : "start",
         "input" : {
           "params" : [
-            { "name" : "taskView", "type" : "ch.ivy.addon.portal.generic.view.TaskView", "desc" : "" }
+            { "name" : "taskView", "type" : "ch.ivy.addon.portal.generic.view.TaskView" }
           ],
           "map" : {
             "out.taskView" : "param.taskView"
@@ -25,9 +25,7 @@
         "at" : { "x" : 96, "y" : 64 },
         "labelOffset" : { "x" : 34, "y" : 35 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f3" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f3" }
     }, {
       "id" : "f3",
       "type" : "HtmlDialogEnd",
@@ -45,9 +43,8 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "getDataModel()",
       "config" : {
-        "signature" : "getDataModel",
+        "callSignature" : "getDataModel",
         "input" : {
-          "map" : { },
           "code" : [
             "import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;",
             "",
@@ -59,7 +56,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel", "desc" : "" }
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" }
           ],
           "map" : {
             "result.dataModel" : "in.taskView.dataModel"
@@ -71,17 +68,14 @@
         "at" : { "x" : 96, "y" : 160 },
         "labelOffset" : { "x" : 64, "y" : 20 }
       },
-      "connect" : [
-        { "id" : "f7", "to" : "f6" }
-      ]
+      "connect" : { "id" : "f7", "to" : "f6" }
     }, {
       "id" : "f5",
       "type" : "HtmlDialogMethodStart",
       "name" : "getStatisticCharts()",
       "config" : {
-        "signature" : "getStatisticCharts",
+        "callSignature" : "getStatisticCharts",
         "input" : {
-          "map" : { },
           "code" : [
             "import ch.ivy.addon.portalkit.service.StatisticService;",
             "",
@@ -91,7 +85,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "statisticChartList", "type" : "java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>", "desc" : "" }
+            { "name" : "statisticChartList", "type" : "java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>" }
           ],
           "map" : {
             "result.statisticChartList" : "in.statisticChartList"
@@ -103,9 +97,7 @@
         "at" : { "x" : 93, "y" : 221 },
         "labelOffset" : { "x" : 74, "y" : 20 }
       },
-      "connect" : [
-        { "id" : "f8", "to" : "f4" }
-      ]
+      "connect" : { "id" : "f8", "to" : "f4" }
     }, {
       "id" : "f6",
       "type" : "HtmlDialogEnd",

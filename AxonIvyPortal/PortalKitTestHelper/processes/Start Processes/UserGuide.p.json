@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "1725F65445A6A111",
   "config" : {
     "data" : "portalKit_test.Data"
@@ -17,9 +17,7 @@
         "at" : { "x" : 96, "y" : 64 },
         "labelOffset" : { "x" : 9, "y" : 37 }
       },
-      "connect" : [
-        { "id" : "f4", "to" : "f3" }
-      ]
+      "connect" : { "id" : "f4", "to" : "f3" }
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -31,13 +29,12 @@
       "type" : "DialogCall",
       "name" : "UserGuide",
       "config" : {
-        "dialog" : "ch.ivy.addon.portalkit.test.UserGuide:start()"
+        "dialogId" : "ch.ivy.addon.portalkit.test.UserGuide",
+        "startMethod" : "start()"
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     } ]
 }

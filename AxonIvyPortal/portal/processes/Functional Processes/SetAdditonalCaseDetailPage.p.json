@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "1624CFE2532EF6BE",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "call(String)",
       "config" : {
-        "signature" : "call",
+        "callSignature" : "call",
         "input" : {
           "params" : [
-            { "name" : "linkToAddtionalCaseDetailPage", "type" : "String", "desc" : "" }
+            { "name" : "linkToAddtionalCaseDetailPage", "type" : "String" }
           ],
           "map" : {
             "out.linkToAdditonalCaseDetailPage" : "param.linkToAddtionalCaseDetailPage"
@@ -23,9 +23,7 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f4", "to" : "f3" }
-      ]
+      "connect" : { "id" : "f4", "to" : "f3" }
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -37,6 +35,7 @@
       "type" : "Script",
       "name" : "Set additional case detail page",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;",
@@ -48,15 +47,12 @@
             "                      ",
             "ivy.case.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).set(casePageUrl);"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 64 },
         "size" : { "width" : 176, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     } ]
 }

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "15B8089000CE1FF7",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -9,13 +9,13 @@
       "id" : "f0",
       "type" : "CallSubStart",
       "config" : {
-        "signature" : "call",
+        "callSignature" : "call",
         "input" : {
           "params" : [
-            { "name" : "roles", "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>", "desc" : "" },
-            { "name" : "users", "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>", "desc" : "" },
-            { "name" : "currentUser", "type" : "com.axonivy.portal.components.dto.SecurityMemberDTO", "desc" : "" },
-            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
+            { "name" : "roles", "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>" },
+            { "name" : "users", "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>" },
+            { "name" : "currentUser", "type" : "com.axonivy.portal.components.dto.SecurityMemberDTO" },
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
           ],
           "map" : {
             "out.currentUser" : "param.currentUser",
@@ -26,8 +26,8 @@
         },
         "result" : {
           "params" : [
-            { "name" : "users", "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>", "desc" : "" },
-            { "name" : "roles", "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>", "desc" : "" }
+            { "name" : "users", "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>" },
+            { "name" : "roles", "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>" }
           ],
           "map" : {
             "result.users" : "in.users",
@@ -38,9 +38,7 @@
       "visual" : {
         "at" : { "x" : 64, "y" : 96 }
       },
-      "connect" : [
-        { "id" : "f1", "to" : "f6" }
-      ]
+      "connect" : { "id" : "f1", "to" : "f6" }
     }, {
       "id" : "f7",
       "type" : "ProcessAnnotation",
@@ -56,9 +54,7 @@
         "at" : { "x" : 464, "y" : 205 },
         "size" : { "width" : 688, "height" : 108 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f6" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f6" }
     }, {
       "id" : "f6",
       "type" : "Script",
@@ -66,9 +62,7 @@
       "visual" : {
         "at" : { "x" : 216, "y" : 96 }
       },
-      "connect" : [
-        { "id" : "f4", "to" : "f3" }
-      ]
+      "connect" : { "id" : "f4", "to" : "f3" }
     }, {
       "id" : "f3",
       "type" : "CallSubEnd",

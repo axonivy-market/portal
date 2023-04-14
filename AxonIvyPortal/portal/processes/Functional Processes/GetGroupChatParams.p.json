@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "169B8DBA8236AA9F",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,7 +10,7 @@
       "type" : "CallSubStart",
       "name" : "getGroupChatParams()",
       "config" : {
-        "signature" : "getGroupChatParams",
+        "callSignature" : "getGroupChatParams",
         "input" : {
           "map" : {
             "out.params" : "new java.util.HashMap()"
@@ -18,7 +18,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "params", "type" : "java.util.Map", "desc" : "" }
+            { "name" : "params", "type" : "java.util.Map" }
           ],
           "map" : {
             "result.params" : "in.params"
@@ -28,9 +28,7 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f4", "to" : "f3" }
-      ]
+      "connect" : { "id" : "f4", "to" : "f3" }
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -44,9 +42,7 @@
       "visual" : {
         "at" : { "x" : 224, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f5",
       "type" : "ProcessAnnotation",
@@ -58,8 +54,6 @@
         "at" : { "x" : 304, "y" : 176 },
         "size" : { "width" : 256, "height" : 44 }
       },
-      "connect" : [
-        { "id" : "f6", "to" : "f3" }
-      ]
+      "connect" : { "id" : "f6", "to" : "f3" }
     } ]
 }

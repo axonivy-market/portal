@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "176CBB45115F7981",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -16,10 +16,10 @@
       "type" : "HtmlDialogStart",
       "name" : "useView(CaseView)",
       "config" : {
-        "signature" : "useView",
+        "callSignature" : "useView",
         "input" : {
           "params" : [
-            { "name" : "caseView", "type" : "ch.ivy.addon.portal.generic.view.CaseView", "desc" : "" }
+            { "name" : "caseView", "type" : "ch.ivy.addon.portal.generic.view.CaseView" }
           ],
           "map" : {
             "out.caseView" : "param.caseView"
@@ -31,8 +31,6 @@
         "at" : { "x" : 96, "y" : 96 },
         "labelOffset" : { "x" : 77, "y" : 20 }
       },
-      "connect" : [
-        { "id" : "f8", "to" : "f6" }
-      ]
+      "connect" : { "id" : "f8", "to" : "f6" }
     } ]
 }

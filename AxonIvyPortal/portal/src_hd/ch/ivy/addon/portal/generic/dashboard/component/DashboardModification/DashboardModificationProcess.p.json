@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "17F4E85A986DB827",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "HtmlDialogStart",
       "name" : "start(Boolean)",
       "config" : {
-        "signature" : "start",
+        "callSignature" : "start",
         "input" : {
           "params" : [
-            { "name" : "isPublicDashboard", "type" : "Boolean", "desc" : "" }
+            { "name" : "isPublicDashboard", "type" : "Boolean" }
           ],
           "map" : {
             "out.isPublicDashboard" : "param.isPublicDashboard"
@@ -25,9 +25,7 @@
         "at" : { "x" : 88, "y" : 56 },
         "labelOffset" : { "x" : 31, "y" : 35 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -39,16 +37,14 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "backToHome()",
       "config" : {
-        "signature" : "backToHome",
+        "callSignature" : "backToHome",
         "guid" : "17F4E86175DF7C4E"
       },
       "visual" : {
         "at" : { "x" : 88, "y" : 152 },
         "labelOffset" : { "x" : 24, "y" : 35 }
       },
-      "connect" : [
-        { "id" : "f15", "to" : "f14" }
-      ]
+      "connect" : { "id" : "f15", "to" : "f14" }
     }, {
       "id" : "f21",
       "type" : "HtmlDialogEnd",
@@ -72,8 +68,6 @@
         "at" : { "x" : 264, "y" : 152 },
         "size" : { "width" : 160, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f22", "to" : "f21" }
-      ]
+      "connect" : { "id" : "f22", "to" : "f21" }
     } ]
 }

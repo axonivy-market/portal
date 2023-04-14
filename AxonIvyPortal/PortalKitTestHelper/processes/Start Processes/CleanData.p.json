@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "1511A66AF619A768",
   "config" : {
     "data" : "portalKit_test.Data"
@@ -17,9 +17,7 @@
         "at" : { "x" : 64, "y" : 96 },
         "labelOffset" : { "x" : 24, "y" : -14 }
       },
-      "connect" : [
-        { "id" : "f4", "to" : "f3" }
-      ]
+      "connect" : { "id" : "f4", "to" : "f3" }
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -40,13 +38,12 @@
       "visual" : {
         "at" : { "x" : 64, "y" : 200 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f5",
       "type" : "Script",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.service.UserProcessService;",
@@ -59,15 +56,12 @@
             "  user.removeProperty(key);",
             "}"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 240, "y" : 200 }
       },
-      "connect" : [
-        { "id" : "f9", "to" : "f6" }
-      ]
+      "connect" : { "id" : "f9", "to" : "f6" }
     }, {
       "id" : "f6",
       "type" : "TaskEnd",
@@ -88,9 +82,7 @@
         "labelOffset" : { "x" : 8, "y" : -16 },
         "description" : "Clean all favorite processes before run UI test"
       },
-      "connect" : [
-        { "id" : "f8", "to" : "f5" }
-      ]
+      "connect" : { "id" : "f8", "to" : "f5" }
     }, {
       "id" : "f59",
       "type" : "TaskEnd",
@@ -117,9 +109,7 @@
       "visual" : {
         "at" : { "x" : 408, "y" : 200 }
       },
-      "connect" : [
-        { "id" : "f60", "to" : "f59" }
-      ]
+      "connect" : { "id" : "f60", "to" : "f59" }
     }, {
       "id" : "f61",
       "type" : "RequestStart",
@@ -137,9 +127,7 @@
         "labelOffset" : { "x" : 35, "y" : -19 },
         "description" : "Detroy all tasks & cases in system & clean all business data"
       },
-      "connect" : [
-        { "id" : "f56", "to" : "f57" }
-      ]
+      "connect" : { "id" : "f56", "to" : "f57" }
     }, {
       "id" : "f10",
       "type" : "RequestStart",
@@ -153,27 +141,23 @@
         "at" : { "x" : 600, "y" : 96 },
         "labelOffset" : { "x" : 42, "y" : -14 }
       },
-      "connect" : [
-        { "id" : "f13", "to" : "f11" }
-      ]
+      "connect" : { "id" : "f13", "to" : "f11" }
     }, {
       "id" : "f11",
       "type" : "Script",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.test.util.AbsenceUtils;",
             "AbsenceUtils.cleanAllAbsencesAndSubstitutes();"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 600, "y" : 200 }
       },
-      "connect" : [
-        { "id" : "f14", "to" : "f12" }
-      ]
+      "connect" : { "id" : "f14", "to" : "f12" }
     }, {
       "id" : "f12",
       "type" : "TaskEnd",
@@ -196,13 +180,12 @@
         "at" : { "x" : 736, "y" : 112 },
         "labelOffset" : { "x" : 14, "y" : -12 }
       },
-      "connect" : [
-        { "id" : "f18", "to" : "f16" }
-      ]
+      "connect" : { "id" : "f18", "to" : "f16" }
     }, {
       "id" : "f16",
       "type" : "Script",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.test.util.BusinessDataUtils;",
@@ -211,15 +194,12 @@
             "BusinessDataUtils.clearAllBusinessData();",
             "ivy.datacache.getAppCache().invalidate();"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 736, "y" : 192 }
       },
-      "connect" : [
-        { "id" : "f19", "to" : "f17" }
-      ]
+      "connect" : { "id" : "f19", "to" : "f17" }
     }, {
       "id" : "f17",
       "type" : "TaskEnd",
@@ -238,9 +218,7 @@
         "at" : { "x" : 864, "y" : 96 },
         "labelOffset" : { "x" : 3, "y" : -12 }
       },
-      "connect" : [
-        { "id" : "f24", "to" : "f23" }
-      ]
+      "connect" : { "id" : "f24", "to" : "f23" }
     }, {
       "id" : "f21",
       "type" : "TaskEnd",
@@ -251,21 +229,19 @@
       "id" : "f23",
       "type" : "Script",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
             "GlobalSettingService globalSettingService = new GlobalSettingService();",
             "globalSettingService.resetAll();"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 864, "y" : 192 }
       },
-      "connect" : [
-        { "id" : "f22", "to" : "f21" }
-      ]
+      "connect" : { "id" : "f22", "to" : "f21" }
     }, {
       "id" : "f25",
       "type" : "RequestStart",
@@ -279,9 +255,7 @@
         "at" : { "x" : 1056, "y" : 96 },
         "labelOffset" : { "x" : 9, "y" : -18 }
       },
-      "connect" : [
-        { "id" : "f29", "to" : "f28" }
-      ]
+      "connect" : { "id" : "f29", "to" : "f28" }
     }, {
       "id" : "f26",
       "type" : "TaskEnd",
@@ -321,9 +295,7 @@
       "visual" : {
         "at" : { "x" : 1056, "y" : 192 }
       },
-      "connect" : [
-        { "id" : "f27", "to" : "f26" }
-      ]
+      "connect" : { "id" : "f27", "to" : "f26" }
     }, {
       "id" : "f30",
       "type" : "RequestStart",
@@ -337,9 +309,7 @@
         "at" : { "x" : 1224, "y" : 96 },
         "labelOffset" : { "x" : 25, "y" : -18 }
       },
-      "connect" : [
-        { "id" : "f33", "to" : "f31" }
-      ]
+      "connect" : { "id" : "f33", "to" : "f31" }
     }, {
       "id" : "f31",
       "type" : "Script",
@@ -358,9 +328,7 @@
       "visual" : {
         "at" : { "x" : 1224, "y" : 192 }
       },
-      "connect" : [
-        { "id" : "f34", "to" : "f32" }
-      ]
+      "connect" : { "id" : "f34", "to" : "f32" }
     }, {
       "id" : "f32",
       "type" : "TaskEnd",
@@ -378,6 +346,7 @@
       "type" : "Script",
       "name" : "clean data",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.constant.UserProperty;",
@@ -415,15 +384,12 @@
             "  }",
             "}"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 432 }
       },
-      "connect" : [
-        { "id" : "f41", "to" : "f40" }
-      ]
+      "connect" : { "id" : "f41", "to" : "f40" }
     }, {
       "id" : "f37",
       "type" : "RequestStart",
@@ -437,9 +403,7 @@
         "at" : { "x" : 64, "y" : 368 },
         "labelOffset" : { "x" : 17, "y" : -15 }
       },
-      "connect" : [
-        { "id" : "f38", "to" : "f36" }
-      ]
+      "connect" : { "id" : "f38", "to" : "f36" }
     }, {
       "id" : "f40",
       "type" : "Script",
@@ -489,9 +453,7 @@
       "visual" : {
         "at" : { "x" : 64, "y" : 520 }
       },
-      "connect" : [
-        { "id" : "f39", "to" : "f35" }
-      ]
+      "connect" : { "id" : "f39", "to" : "f35" }
     }, {
       "id" : "f42",
       "type" : "RequestStart",
@@ -504,9 +466,7 @@
         "at" : { "x" : 240, "y" : 368 },
         "labelOffset" : { "x" : 9, "y" : -15 }
       },
-      "connect" : [
-        { "id" : "f46", "to" : "f45" }
-      ]
+      "connect" : { "id" : "f46", "to" : "f45" }
     }, {
       "id" : "f43",
       "type" : "TaskEnd",
@@ -518,6 +478,7 @@
       "type" : "Script",
       "name" : "clean all PortalNewsFeed",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.cm.ContentObject;",
@@ -534,14 +495,11 @@
             "   ivy.log.debug(\"**********Delete all PortalNewsFeed\");",
             "}"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 240, "y" : 480 }
       },
-      "connect" : [
-        { "id" : "f44", "to" : "f43" }
-      ]
+      "connect" : { "id" : "f44", "to" : "f43" }
     } ]
 }

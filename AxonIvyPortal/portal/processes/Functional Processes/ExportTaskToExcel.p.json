@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "1754F17410CDFE4E",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,11 +10,11 @@
       "type" : "CallSubStart",
       "name" : "exportToExcel(List<ITask>,List<String>)",
       "config" : {
-        "signature" : "exportToExcel",
+        "callSignature" : "exportToExcel",
         "input" : {
           "params" : [
-            { "name" : "collectedTasksForExporting", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>", "desc" : "" },
-            { "name" : "columnsVisibility", "type" : "java.util.List<String>", "desc" : "" }
+            { "name" : "collectedTasksForExporting", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>" },
+            { "name" : "columnsVisibility", "type" : "java.util.List<String>" }
           ],
           "map" : {
             "out.collectedTasksForExporting" : "param.collectedTasksForExporting",
@@ -23,7 +23,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "exportedFile", "type" : "org.primefaces.model.StreamedContent", "desc" : "" }
+            { "name" : "exportedFile", "type" : "org.primefaces.model.StreamedContent" }
           ],
           "map" : {
             "result.exportedFile" : "in.exportedFile"
@@ -34,9 +34,7 @@
         "at" : { "x" : 96, "y" : 64 },
         "labelOffset" : { "x" : 58, "y" : 37 }
       },
-      "connect" : [
-        { "id" : "f3", "to" : "f81" }
-      ]
+      "connect" : { "id" : "f3", "to" : "f81" }
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -48,20 +46,18 @@
       "type" : "Script",
       "name" : "export excel",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.exporter.TaskExporter;",
             "TaskExporter exporter = new TaskExporter(in.columnsVisibility);",
             "in.exportedFile = exporter.getStreamedContent(in.collectedTasksForExporting);"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 280, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     } ]
 }

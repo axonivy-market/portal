@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "1709A202E7AEC7E8",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -16,10 +16,10 @@
       "type" : "CallSubStart",
       "name" : "handleUserExamplesEndPage()",
       "config" : {
-        "signature" : "handleUserExamplesEndPage",
+        "callSignature" : "handleUserExamplesEndPage",
         "result" : {
           "params" : [
-            { "name" : "callbackUrl", "type" : "String", "desc" : "" }
+            { "name" : "callbackUrl", "type" : "String" }
           ],
           "map" : {
             "result.callbackUrl" : "in.callbackUrl"
@@ -30,14 +30,13 @@
         "at" : { "x" : 65, "y" : 88 },
         "labelOffset" : { "x" : 49, "y" : 37 }
       },
-      "connect" : [
-        { "id" : "f6", "to" : "f4" }
-      ]
+      "connect" : { "id" : "f6", "to" : "f4" }
     }, {
       "id" : "f4",
       "type" : "Script",
       "name" : "get end page url",
       "config" : {
+        "security" : "system",
         "output" : {
           "map" : {
             "out" : "in",
@@ -47,14 +46,11 @@
             "in.caseId =  ivy.task.getCase().getBusinessCase().getId();",
             "in.callbackUrl = ivy.html.startRef(\"1709A97D25EAB86E/start.ivp\")+\"?caseId=\" + in.caseId;"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 241, "y" : 88 }
       },
-      "connect" : [
-        { "id" : "f7", "to" : "f3" }
-      ]
+      "connect" : { "id" : "f7", "to" : "f3" }
     } ]
 }
