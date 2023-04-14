@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "1709A97D25EAB86E",
   "config" : {
     "data" : "com.axonivy.portal.userexamples.credit.HandleEndPageData"
@@ -24,16 +24,18 @@
       "visual" : {
         "at" : { "x" : 88, "y" : 88 }
       },
-      "connect" : [
-        { "id" : "f4", "to" : "f3" }
-      ]
+      "connect" : { "id" : "f4", "to" : "f3" }
     }, {
       "id" : "f3",
       "type" : "DialogCall",
       "name" : "CustomEndPage",
       "config" : {
-        "dialog" : "com.axonivy.portal.userexamples.credit.CustomEndPage:start(Long)",
+        "dialogId" : "com.axonivy.portal.userexamples.credit.CustomEndPage",
+        "startMethod" : "start(Long)",
         "call" : {
+          "params" : [
+            { "name" : "caseId", "type" : "Long" }
+          ],
           "map" : {
             "param.caseId" : "in.caseId"
           }
@@ -42,9 +44,7 @@
       "visual" : {
         "at" : { "x" : 280, "y" : 88 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f1",
       "type" : "TaskEnd",

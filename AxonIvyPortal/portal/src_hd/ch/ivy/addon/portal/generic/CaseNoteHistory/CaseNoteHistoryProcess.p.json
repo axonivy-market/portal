@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "160347990F681701",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,12 +10,12 @@
       "type" : "HtmlDialogStart",
       "name" : "start(List<History>,String,ICase)",
       "config" : {
-        "signature" : "start",
+        "callSignature" : "start",
         "input" : {
           "params" : [
-            { "name" : "histories", "type" : "java.util.List<ch.ivy.addon.portalkit.bo.History>", "desc" : "" },
-            { "name" : "exportedFileName", "type" : "String", "desc" : "" },
-            { "name" : "ivyCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
+            { "name" : "histories", "type" : "java.util.List<ch.ivy.addon.portalkit.bo.History>" },
+            { "name" : "exportedFileName", "type" : "String" },
+            { "name" : "ivyCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
           ],
           "map" : {
             "out.exportedFileName" : "param.exportedFileName",
@@ -29,9 +29,7 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 96 }
       },
-      "connect" : [
-        { "id" : "f1", "to" : "f0" }
-      ]
+      "connect" : { "id" : "f1", "to" : "f0" }
     }, {
       "id" : "f7",
       "type" : "HtmlDialogEnd",
@@ -43,6 +41,7 @@
       "type" : "Script",
       "name" : "Read Portal settings",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
@@ -50,15 +49,12 @@
             "GlobalSettingService service = new GlobalSettingService();",
             "in.showRelatedCaseInfo = in.ivyCase.isBusinessCase() && !service.findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_RELATED_CASE_INFO_FROM_HISTORY);"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 96 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f7" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f7" }
     } ]
 }

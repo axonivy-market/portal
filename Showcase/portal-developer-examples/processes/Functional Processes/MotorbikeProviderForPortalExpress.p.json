@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "16B40A95DA8F858E",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "portalExpressDataProvider()",
       "config" : {
-        "signature" : "portalExpressDataProvider",
+        "callSignature" : "portalExpressDataProvider",
         "result" : {
           "params" : [
-            { "name" : "data", "type" : "List<String>", "desc" : "" }
+            { "name" : "data", "type" : "List<String>" }
           ],
           "map" : {
             "result.data" : "in.items"
@@ -24,9 +24,7 @@
         "at" : { "x" : 96, "y" : 64 },
         "labelOffset" : { "x" : 109, "y" : 19 }
       },
-      "connect" : [
-        { "id" : "f4", "to" : "f3" }
-      ]
+      "connect" : { "id" : "f4", "to" : "f3" }
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -48,9 +46,7 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 184 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f5",
       "type" : "ProcessAnnotation",

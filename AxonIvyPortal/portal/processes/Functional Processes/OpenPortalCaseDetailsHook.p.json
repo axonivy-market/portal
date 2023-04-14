@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "16DCDC775655EFD5",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,11 +10,11 @@
       "type" : "CallSubStart",
       "name" : "call(ICase,Boolean)",
       "config" : {
-        "signature" : "call",
+        "callSignature" : "call",
         "input" : {
           "params" : [
-            { "name" : "caseData", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
-            { "name" : "isShowBackButton", "type" : "Boolean", "desc" : "" }
+            { "name" : "caseData", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "isShowBackButton", "type" : "Boolean" }
           ],
           "map" : {
             "out.caseView" : "param.caseData",
@@ -26,9 +26,7 @@
         "at" : { "x" : 280, "y" : 256 },
         "labelOffset" : { "x" : 22, "y" : -17 }
       },
-      "connect" : [
-        { "id" : "f3", "to" : "f2" }
-      ]
+      "connect" : { "id" : "f3", "to" : "f2" }
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -40,8 +38,13 @@
       "type" : "DialogCall",
       "name" : "PortalCaseDetails",
       "config" : {
-        "dialog" : "ch.ivy.addon.portal.generic.PortalCaseDetails:start(ch.ivyteam.ivy.workflow.ICase,Boolean)",
+        "dialogId" : "ch.ivy.addon.portal.generic.PortalCaseDetails",
+        "startMethod" : "start(ch.ivyteam.ivy.workflow.ICase,Boolean)",
         "call" : {
+          "params" : [
+            { "name" : "caseInfo", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "isShowBackButton", "type" : "Boolean" }
+          ],
           "map" : {
             "param.caseInfo" : "in.caseView",
             "param.isShowBackButton" : "in.isShowBackButton"
@@ -51,19 +54,17 @@
       "visual" : {
         "at" : { "x" : 648, "y" : 256 }
       },
-      "connect" : [
-        { "id" : "f4", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f4", "to" : "f1" }
     }, {
       "id" : "f5",
       "type" : "CallSubStart",
       "name" : "callForIFrame(ICase,Boolean)",
       "config" : {
-        "signature" : "callForIFrame",
+        "callSignature" : "callForIFrame",
         "input" : {
           "params" : [
-            { "name" : "caseData", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
-            { "name" : "isShowBackButton", "type" : "Boolean", "desc" : "" }
+            { "name" : "caseData", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "isShowBackButton", "type" : "Boolean" }
           ],
           "map" : {
             "out.caseView" : "param.caseData",
@@ -75,9 +76,7 @@
         "at" : { "x" : 280, "y" : 576 },
         "labelOffset" : { "x" : 27, "y" : -17 }
       },
-      "connect" : [
-        { "id" : "f8", "to" : "f7" }
-      ]
+      "connect" : { "id" : "f8", "to" : "f7" }
     }, {
       "id" : "f6",
       "type" : "CallSubEnd",
@@ -89,8 +88,13 @@
       "type" : "DialogCall",
       "name" : "CaseInformationInIFrame",
       "config" : {
-        "dialog" : "ch.ivy.addon.portal.component.iframe.CaseInformationInIFrame:start(Long,Boolean)",
+        "dialogId" : "ch.ivy.addon.portal.component.iframe.CaseInformationInIFrame",
+        "startMethod" : "start(Long,Boolean)",
         "call" : {
+          "params" : [
+            { "name" : "caseId", "type" : "Long" },
+            { "name" : "showBackButton", "type" : "Boolean" }
+          ],
           "map" : {
             "param.caseId" : "in.caseView.getId()",
             "param.showBackButton" : "in.isShowBackButton"
@@ -101,9 +105,7 @@
         "at" : { "x" : 648, "y" : 576 },
         "size" : { "width" : 160, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f9", "to" : "f6" }
-      ]
+      "connect" : { "id" : "f9", "to" : "f6" }
     }, {
       "id" : "f10",
       "type" : "ProcessAnnotation",

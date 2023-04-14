@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "15AF019B09976068",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "signature" : "start",
+        "callSignature" : "start",
         "input" : {
           "params" : [
-            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel", "desc" : "" }
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" }
           ],
           "map" : {
             "out.dataModel" : "param.#dataModel"
@@ -25,9 +25,7 @@
         "at" : { "x" : 64, "y" : 96 },
         "labelOffset" : { "x" : 38, "y" : 20 }
       },
-      "connect" : [
-        { "id" : "f11", "to" : "f10" }
-      ]
+      "connect" : { "id" : "f11", "to" : "f10" }
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -39,11 +37,11 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "sort(String,Boolean)",
       "config" : {
-        "signature" : "sort",
+        "callSignature" : "sort",
         "input" : {
           "params" : [
-            { "name" : "field", "type" : "String", "desc" : "" },
-            { "name" : "isDescending", "type" : "Boolean", "desc" : "" }
+            { "name" : "field", "type" : "String" },
+            { "name" : "isDescending", "type" : "Boolean" }
           ],
           "map" : {
             "out.field" : "param.field",
@@ -56,9 +54,7 @@
         "at" : { "x" : 287, "y" : 97 },
         "labelOffset" : { "x" : 77, "y" : 20 }
       },
-      "connect" : [
-        { "id" : "f8", "to" : "f6" }
-      ]
+      "connect" : { "id" : "f8", "to" : "f6" }
     }, {
       "id" : "f6",
       "type" : "Script",
@@ -74,9 +70,7 @@
       "visual" : {
         "at" : { "x" : 287, "y" : 161 }
       },
-      "connect" : [
-        { "id" : "f5", "to" : "f3" }
-      ]
+      "connect" : { "id" : "f5", "to" : "f3" }
     }, {
       "id" : "f3",
       "type" : "HtmlDialogEnd",
@@ -91,6 +85,7 @@
         "if empty"
       ],
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.bean.TaskWidgetBean;",
@@ -102,14 +97,11 @@
             "  out.dataModel = taskWidgetBean.dataModel;",
             "}"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 158 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     } ]
 }

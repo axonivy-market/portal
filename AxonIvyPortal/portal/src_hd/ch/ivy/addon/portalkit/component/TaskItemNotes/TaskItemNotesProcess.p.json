@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "15493BD80A4C7D12",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,15 +10,13 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "signature" : "start",
+        "callSignature" : "start",
         "guid" : "1682705E65C6C417"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 96 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -30,10 +28,10 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "initData(ITask)",
       "config" : {
-        "signature" : "initData",
+        "callSignature" : "initData",
         "input" : {
           "params" : [
-            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
           ],
           "map" : {
             "out.task" : "param.task"
@@ -44,14 +42,13 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 192 }
       },
-      "connect" : [
-        { "id" : "f15", "to" : "f13" }
-      ]
+      "connect" : { "id" : "f15", "to" : "f13" }
     }, {
       "id" : "f4",
       "type" : "Script",
       "name" : "Load notes",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.environment.Ivy;",
@@ -63,15 +60,12 @@
             "boolean showSystemNotes = out.showSystemNotes && out.showSystemNotesChkbox;",
             "out.notes = CaseUtils.findNotes(iCase, !showSystemNotes);"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 408, "y" : 192 }
       },
-      "connect" : [
-        { "id" : "f21", "to" : "f20" }
-      ]
+      "connect" : { "id" : "f21", "to" : "f20" }
     }, {
       "id" : "f20",
       "type" : "Script",
@@ -91,9 +85,7 @@
       "visual" : {
         "at" : { "x" : 608, "y" : 192 }
       },
-      "connect" : [
-        { "id" : "f23", "to" : "f22" }
-      ]
+      "connect" : { "id" : "f23", "to" : "f22" }
     }, {
       "id" : "f22",
       "type" : "HtmlDialogEnd",
@@ -105,50 +97,44 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "createNote()",
       "config" : {
-        "signature" : "createNote",
+        "callSignature" : "createNote",
         "guid" : "16827078DBAC9718"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 288 }
       },
-      "connect" : [
-        { "id" : "f14", "to" : "f10" }
-      ]
+      "connect" : { "id" : "f14", "to" : "f10" }
     }, {
       "id" : "f10",
       "type" : "Script",
       "name" : "Create note",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "in.task.getCase().createNote(ivy.session, in.noteContent);",
             "in.noteContent = \"\";"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 232, "y" : 288 },
         "size" : { "width" : 144, "height" : 48 }
       },
-      "connect" : [
-        { "id" : "f8", "to" : "f4" }
-      ]
+      "connect" : { "id" : "f8", "to" : "f4" }
     }, {
       "id" : "f7",
       "type" : "HtmlDialogMethodStart",
       "name" : "showHideSystemNotes()",
       "config" : {
-        "signature" : "showHideSystemNotes",
+        "callSignature" : "showHideSystemNotes",
         "guid" : "177282755F4CB896"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 384 },
         "labelOffset" : { "x" : 52, "y" : 35 }
       },
-      "connect" : [
-        { "id" : "f9", "to" : "f4", "via" : [ { "x" : 408, "y" : 384 } ] }
-      ]
+      "connect" : { "id" : "f9", "to" : "f4", "via" : [ { "x" : 408, "y" : 384 } ] }
     }, {
       "id" : "f13",
       "type" : "Script",
@@ -169,8 +155,6 @@
         "at" : { "x" : 232, "y" : 192 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f5", "to" : "f4" }
-      ]
+      "connect" : { "id" : "f5", "to" : "f4" }
     } ]
 }

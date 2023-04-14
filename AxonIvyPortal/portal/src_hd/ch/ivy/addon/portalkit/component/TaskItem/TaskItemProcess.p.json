@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "150CB86EFC2F2972",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -39,11 +39,11 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "openTask(ITask,TaskLazyDataModel)",
       "config" : {
-        "signature" : "openTask",
+        "callSignature" : "openTask",
         "input" : {
           "params" : [
-            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" },
-            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel", "desc" : "" }
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" }
           ],
           "map" : {
             "out.dataModel" : "param.dataModel",
@@ -56,9 +56,7 @@
         "at" : { "x" : 96, "y" : 232 },
         "labelOffset" : { "x" : 31, "y" : 35 }
       },
-      "connect" : [
-        { "id" : "f58", "to" : "f45" }
-      ]
+      "connect" : { "id" : "f58", "to" : "f45" }
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -70,11 +68,11 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "setSelectedTaskAndDataModel(ITask,TaskLazyDataModel)",
       "config" : {
-        "signature" : "setSelectedTaskAndDataModel",
+        "callSignature" : "setSelectedTaskAndDataModel",
         "input" : {
           "params" : [
-            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" },
-            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel", "desc" : "" }
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" }
           ],
           "map" : {
             "out.dataModel" : "param.dataModel",
@@ -96,14 +94,13 @@
         "at" : { "x" : 96, "y" : 520 },
         "labelOffset" : { "x" : 84, "y" : 37 }
       },
-      "connect" : [
-        { "id" : "f110", "to" : "f109" }
-      ]
+      "connect" : { "id" : "f110", "to" : "f109" }
     }, {
       "id" : "f80",
       "type" : "Script",
       "name" : "Check if can resume",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.util.TaskUtils;",
@@ -114,21 +111,19 @@
             "in.task = TaskUtils.findTaskById(in.task.getId());",
             "out.canUserResumeTask = taskActionBean.canResume(in.task);"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 424 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f87", "to" : "f79" }
-      ]
+      "connect" : { "id" : "f87", "to" : "f79" }
     }, {
       "id" : "f66",
       "type" : "Script",
       "name" : "Display error",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import org.primefaces.PrimeFaces;",
@@ -158,15 +153,12 @@
             "facesContext.addMessage(\"portal-global-growl-message\", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));",
             "PrimeFaces.current().ajax().update(\"portal-global-growl\");  "
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 480, "y" : 328 }
       },
-      "connect" : [
-        { "id" : "f71", "to" : "f68" }
-      ]
+      "connect" : { "id" : "f71", "to" : "f68" }
     }, {
       "id" : "f77",
       "type" : "Alternative",
@@ -200,6 +192,7 @@
         "Start task"
       ],
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.util.RequestUtils;",
@@ -221,26 +214,23 @@
             "// Then this process will open task in IFrame or not based on its \"embedInIFrame\" String custom field",
             "RequestUtils.redirect(in.task.getStartLinkEmbedded().getRelative());"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 480, "y" : 232 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f9", "to" : "f46" }
-      ]
+      "connect" : { "id" : "f9", "to" : "f46" }
     }, {
       "id" : "f97",
       "type" : "HtmlDialogMethodStart",
       "name" : "validate(ITask,TaskLazyDataModel)",
       "config" : {
-        "signature" : "validate",
+        "callSignature" : "validate",
         "input" : {
           "params" : [
-            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" },
-            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel", "desc" : "" }
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" }
           ],
           "map" : {
             "out.dataModel" : "param.dataModel",
@@ -259,9 +249,7 @@
         "at" : { "x" : 96, "y" : 424 },
         "labelOffset" : { "x" : 44, "y" : 36 }
       },
-      "connect" : [
-        { "id" : "f81", "to" : "f80" }
-      ]
+      "connect" : { "id" : "f81", "to" : "f80" }
     }, {
       "id" : "f68",
       "type" : "HtmlDialogEnd",
@@ -273,6 +261,7 @@
       "type" : "Script",
       "name" : "Check if can resume",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.util.TaskUtils;",
@@ -283,25 +272,22 @@
             "in.task = TaskUtils.findTaskById(in.task.getId());",
             "out.canUserResumeTask = taskActionBean.canResume(in.task);"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 232 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f60", "to" : "f77" }
-      ]
+      "connect" : { "id" : "f60", "to" : "f77" }
     }, {
       "id" : "f0",
       "type" : "HtmlDialogStart",
       "name" : "start(String)",
       "config" : {
-        "signature" : "start",
+        "callSignature" : "start",
         "input" : {
           "params" : [
-            { "name" : "currentPortalPage", "type" : "String", "desc" : "" }
+            { "name" : "currentPortalPage", "type" : "String" }
           ],
           "map" : {
             "out.currentPortalPage" : "param.currentPortalPage"
@@ -313,20 +299,18 @@
         "at" : { "x" : 96, "y" : 96 },
         "labelOffset" : { "x" : 24, "y" : 35 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f6",
       "type" : "HtmlDialogMethodStart",
       "name" : "openDetails(ITask,TaskLazyDataModel,Boolean)",
       "config" : {
-        "signature" : "openDetails",
+        "callSignature" : "openDetails",
         "input" : {
           "params" : [
-            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" },
-            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel", "desc" : "" },
-            { "name" : "inFrame", "type" : "Boolean", "desc" : "" }
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" },
+            { "name" : "inFrame", "type" : "Boolean" }
           ],
           "map" : {
             "out.dataModel" : "param.dataModel",
@@ -340,9 +324,7 @@
         "at" : { "x" : 96, "y" : 640 },
         "labelOffset" : { "x" : 71, "y" : 35 }
       },
-      "connect" : [
-        { "id" : "f4", "to" : "f3" }
-      ]
+      "connect" : { "id" : "f4", "to" : "f3" }
     }, {
       "id" : "f7",
       "type" : "SubProcessCall",
@@ -350,6 +332,12 @@
       "config" : {
         "processCall" : "Functional Processes/OpenPortalTaskDetailsHook:callInFrame(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)",
         "call" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" },
+            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" },
+            { "name" : "isFromTaskList", "type" : "Boolean" }
+          ],
           "map" : {
             "param.task" : "in.task",
             "param.dataModel" : "in.dataModel",
@@ -379,6 +367,12 @@
       "config" : {
         "processCall" : "Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)",
         "call" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" },
+            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" },
+            { "name" : "isFromTaskList", "type" : "Boolean" }
+          ],
           "map" : {
             "param.task" : "in.task",
             "param.dataModel" : "in.dataModel",
@@ -407,22 +401,18 @@
       "visual" : {
         "at" : { "x" : 296, "y" : 160 }
       },
-      "connect" : [
-        { "id" : "f12", "to" : "f49", "via" : [ { "x" : 480, "y" : 160 } ] }
-      ]
+      "connect" : { "id" : "f12", "to" : "f49", "via" : [ { "x" : 480, "y" : 160 } ] }
     }, {
       "id" : "f30",
       "type" : "HtmlDialogMethodStart",
       "name" : "resetAndOpenTask()",
       "config" : {
-        "signature" : "resetAndOpenTask",
+        "callSignature" : "resetAndOpenTask",
         "guid" : "17F8912746DF3225"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }
       },
-      "connect" : [
-        { "id" : "f64", "to" : "f35" }
-      ]
+      "connect" : { "id" : "f64", "to" : "f35" }
     } ]
 }

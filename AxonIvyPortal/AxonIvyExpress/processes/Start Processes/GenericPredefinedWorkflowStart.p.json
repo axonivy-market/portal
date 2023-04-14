@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "15797DC22608DA55",
   "config" : {
     "data" : "gawfs.GenericPredefinedWorkflowStartData"
@@ -34,9 +34,7 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f7", "to" : "f5" }
-      ]
+      "connect" : { "id" : "f7", "to" : "f5" }
     }, {
       "id" : "f3",
       "type" : "SubProcessCall",
@@ -44,6 +42,10 @@
       "config" : {
         "processCall" : "Functional Processes/executePredefinedWorkflow:call(Integer,String)",
         "call" : {
+          "params" : [
+            { "name" : "actualStepIndex", "type" : "Integer" },
+            { "name" : "workflowID", "type" : "String" }
+          ],
           "map" : {
             "param.actualStepIndex" : "in.actualStepIndex",
             "param.workflowID" : "in.workflowID"
@@ -54,9 +56,7 @@
         "at" : { "x" : 488, "y" : 64 },
         "size" : { "width" : 160, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f16", "to" : "f10", "via" : [ { "x" : 624, "y" : 64 } ] }
-      ]
+      "connect" : { "id" : "f16", "to" : "f10", "via" : [ { "x" : 624, "y" : 64 } ] }
     }, {
       "id" : "f6",
       "type" : "RequestStart",
@@ -89,9 +89,7 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }
       },
-      "connect" : [
-        { "id" : "f11", "to" : "f9" }
-      ]
+      "connect" : { "id" : "f11", "to" : "f9" }
     }, {
       "id" : "f12",
       "type" : "SubProcessCall",
@@ -99,6 +97,9 @@
       "config" : {
         "processCall" : "Functional Processes/editWorkflow:editWorkflow(String)",
         "call" : {
+          "params" : [
+            { "name" : "workflowID", "type" : "String" }
+          ],
           "map" : {
             "param.workflowID" : "in.workflowID"
           }
@@ -108,9 +109,7 @@
         "at" : { "x" : 496, "y" : 160 },
         "size" : { "width" : 160, "height" : 48 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f10" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f10" }
     }, {
       "id" : "f10",
       "type" : "Alternative",
@@ -141,9 +140,7 @@
       "visual" : {
         "at" : { "x" : 280, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f4", "to" : "f3" }
-      ]
+      "connect" : { "id" : "f4", "to" : "f3" }
     }, {
       "id" : "f9",
       "type" : "Script",
@@ -159,8 +156,6 @@
       "visual" : {
         "at" : { "x" : 280, "y" : 160 }
       },
-      "connect" : [
-        { "id" : "f8", "to" : "f12" }
-      ]
+      "connect" : { "id" : "f8", "to" : "f12" }
     } ]
 }

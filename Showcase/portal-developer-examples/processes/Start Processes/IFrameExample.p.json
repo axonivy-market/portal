@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "16E5DB746865BCEC",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.ExampleIFrameData"
@@ -8,19 +8,21 @@
       "id" : "f20",
       "type" : "TaskSwitchGateway",
       "config" : {
-        "tasks" : [ {
-            "id" : "TaskA",
+        "outLinks" : [ "TaskA.ivp", "TaskB.ivp" ],
+        "tasks" : {
+          "TaskA" : {
             "name" : "Approve Investment (Task in IFrame)",
             "customFields" : [
-              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
+              { "name" : "embedInFrame", "type" : "String", "value" : "\"true\"" }
             ]
-          }, {
-            "id" : "TaskB",
+          },
+          "TaskB" : {
             "name" : "Serenity Task Template",
             "customFields" : [
-              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+              { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
             ]
-          } ]
+          }
+        }
       },
       "visual" : {
         "at" : { "x" : 384, "y" : 96 }
@@ -48,24 +50,26 @@
       "type" : "DialogCall",
       "name" : "Approve",
       "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.testdata.Approve:start(com.axonivy.portal.developerexamples.ExampleIFrameData)",
-        "call" : {
-          "map" : {
-            "param.investmentRequest" : "in"
-          }
-        },
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.Approve",
+        "startMethod" : "start(com.axonivy.portal.developerexamples.ExampleIFrameData)",
         "output" : {
           "map" : {
             "out" : "result.investmentRequest"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "investmentRequest", "type" : "com.axonivy.portal.developerexamples.ExampleIFrameData" }
+          ],
+          "map" : {
+            "param.investmentRequest" : "in"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 616, "y" : 96 }
       },
-      "connect" : [
-        { "id" : "f4", "to" : "f3" }
-      ]
+      "connect" : { "id" : "f4", "to" : "f3" }
     }, {
       "id" : "f12",
       "type" : "RequestStart",
@@ -89,22 +93,19 @@
         "at" : { "x" : 96, "y" : 96 },
         "labelOffset" : { "x" : 15, "y" : 39 }
       },
-      "connect" : [
-        { "id" : "f19", "to" : "f21" }
-      ]
+      "connect" : { "id" : "f19", "to" : "f21" }
     }, {
       "id" : "f0",
       "type" : "DialogCall",
       "name" : "SimpleTaskDialog",
       "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.testdata.SimpleTaskDialog:start()"
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.SimpleTaskDialog",
+        "startMethod" : "start()"
       },
       "visual" : {
         "at" : { "x" : 616, "y" : 192 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f13" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f13" }
     }, {
       "id" : "f3",
       "type" : "TaskSwitchEvent",
@@ -114,7 +115,7 @@
           "name" : "Review Request (Skip Tasklist in IFrame)",
           "skipTasklist" : true,
           "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"true\"" }
           ]
         }
       },
@@ -122,16 +123,18 @@
         "at" : { "x" : 752, "y" : 96 },
         "labelOffset" : { "x" : 9, "y" : 42 }
       },
-      "connect" : [
-        { "id" : "f7", "to" : "f6" }
-      ]
+      "connect" : { "id" : "f7", "to" : "f6" }
     }, {
       "id" : "f6",
       "type" : "DialogCall",
       "name" : "Review",
       "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.testdata.Review:start(com.axonivy.portal.developerexamples.ExampleIFrameData)",
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.Review",
+        "startMethod" : "start(com.axonivy.portal.developerexamples.ExampleIFrameData)",
         "call" : {
+          "params" : [
+            { "name" : "investmentRequest", "type" : "com.axonivy.portal.developerexamples.ExampleIFrameData" }
+          ],
           "map" : {
             "param.investmentRequest" : "in"
           }
@@ -140,15 +143,14 @@
       "visual" : {
         "at" : { "x" : 888, "y" : 96 }
       },
-      "connect" : [
-        { "id" : "f5", "to" : "f13" }
-      ]
+      "connect" : { "id" : "f5", "to" : "f13" }
     }, {
       "id" : "f21",
       "type" : "DialogCall",
       "name" : "Create Investment",
       "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.testdata.CreateInvestment:start()",
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.CreateInvestment",
+        "startMethod" : "start()",
         "output" : {
           "map" : {
             "out" : "result.requestData"
@@ -158,9 +160,7 @@
       "visual" : {
         "at" : { "x" : 248, "y" : 96 }
       },
-      "connect" : [
-        { "id" : "f22", "to" : "f20", "var" : "in1" }
-      ]
+      "connect" : { "id" : "f22", "to" : "f20", "var" : "in1" }
     }, {
       "id" : "f8",
       "type" : "RequestStart",
@@ -176,9 +176,7 @@
         "at" : { "x" : 96, "y" : 352 },
         "labelOffset" : { "x" : 68, "y" : 37 }
       },
-      "connect" : [
-        { "id" : "f14", "to" : "f11" }
-      ]
+      "connect" : { "id" : "f14", "to" : "f11" }
     }, {
       "id" : "f9",
       "type" : "TaskEnd",
@@ -189,10 +187,6 @@
       "id" : "f11",
       "type" : "TaskSwitchEvent",
       "config" : {
-        "task" : {
-          "name" : "Navigate back in the IFrame example",
-          "skipTasklist" : true
-        },
         "case" : {
           "name" : "Navigate IFrame example",
           "description" : [
@@ -202,29 +196,30 @@
             "- A specific url: call navigateToUrl(String url) from class PortalNavigatorInFrameAPI."
           ],
           "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"true\"" }
           ]
+        },
+        "task" : {
+          "name" : "Navigate back in the IFrame example",
+          "skipTasklist" : true
         }
       },
       "visual" : {
         "at" : { "x" : 192, "y" : 352 }
       },
-      "connect" : [
-        { "id" : "f17", "to" : "f16" }
-      ]
+      "connect" : { "id" : "f17", "to" : "f16" }
     }, {
       "id" : "f16",
       "type" : "DialogCall",
       "name" : "ResetTaskIFrame",
       "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.ResetTaskIFrame:start()"
+        "dialogId" : "com.axonivy.portal.developerexamples.ResetTaskIFrame",
+        "startMethod" : "start()"
       },
       "visual" : {
         "at" : { "x" : 320, "y" : 352 }
       },
-      "connect" : [
-        { "id" : "f10", "to" : "f9" }
-      ]
+      "connect" : { "id" : "f10", "to" : "f9" }
     }, {
       "id" : "f18",
       "type" : "RequestStart",
@@ -240,23 +235,20 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 560 }
       },
-      "connect" : [
-        { "id" : "f39", "to" : "f38", "var" : "in1" }
-      ]
+      "connect" : { "id" : "f39", "to" : "f38", "var" : "in1" }
     }, {
       "id" : "f25",
       "type" : "DialogCall",
       "name" : "Frame-10 with Card",
       "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.customization.iframe.Frame10WithCard:start()"
+        "dialogId" : "com.axonivy.portal.developerexamples.customization.iframe.Frame10WithCard",
+        "startMethod" : "start()"
       },
       "visual" : {
         "at" : { "x" : 335, "y" : 469 },
         "size" : { "width" : 143, "height" : 55 }
       },
-      "connect" : [
-        { "id" : "f26", "to" : "f27", "via" : [ { "x" : 480, "y" : 469 } ] }
-      ]
+      "connect" : { "id" : "f26", "to" : "f27", "via" : [ { "x" : 480, "y" : 469 } ] }
     }, {
       "id" : "f27",
       "type" : "TaskEnd",
@@ -268,43 +260,43 @@
       "type" : "DialogCall",
       "name" : "Frame-10-full-width without Card",
       "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.customization.iframe.Frame10FullWidthNoCard:start()"
+        "dialogId" : "com.axonivy.portal.developerexamples.customization.iframe.Frame10FullWidthNoCard",
+        "startMethod" : "start()"
       },
       "visual" : {
         "at" : { "x" : 336, "y" : 560 },
         "size" : { "width" : 144, "height" : 55 }
       },
-      "connect" : [
-        { "id" : "f37", "to" : "f27" }
-      ]
+      "connect" : { "id" : "f37", "to" : "f27" }
     }, {
       "id" : "f31",
       "type" : "DialogCall",
       "name" : "Frame-10-full-width in Card",
       "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.customization.iframe.Frame10FullWidthCard:start()"
+        "dialogId" : "com.axonivy.portal.developerexamples.customization.iframe.Frame10FullWidthCard",
+        "startMethod" : "start()"
       },
       "visual" : {
         "at" : { "x" : 336, "y" : 656 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f29", "to" : "f27", "via" : [ { "x" : 480, "y" : 656 } ] }
-      ]
+      "connect" : { "id" : "f29", "to" : "f27", "via" : [ { "x" : 480, "y" : 656 } ] }
     }, {
       "id" : "f38",
       "type" : "TaskSwitchGateway",
       "config" : {
-        "tasks" : [ {
-            "id" : "TaskA",
+        "outLinks" : [ "TaskA.ivp", "TaskB.ivp", "TaskC.ivp" ],
+        "tasks" : {
+          "TaskA" : {
             "name" : "Frame-10 with Card style"
-          }, {
-            "id" : "TaskB",
+          },
+          "TaskB" : {
             "name" : "Frame-10-full-width without Card style"
-          }, {
-            "id" : "TaskC",
+          },
+          "TaskC" : {
             "name" : "Frame-10-full-width in Card style"
-          } ]
+          }
+        }
       },
       "visual" : {
         "at" : { "x" : 192, "y" : 560 }

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "176A77E608A844A8",
   "config" : {
     "data" : "internaltest.Data"
@@ -17,9 +17,7 @@
         "at" : { "x" : 96, "y" : 64 },
         "labelOffset" : { "x" : 9, "y" : 37 }
       },
-      "connect" : [
-        { "id" : "f4", "to" : "f3" }
-      ]
+      "connect" : { "id" : "f4", "to" : "f3" }
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -30,6 +28,7 @@
       "id" : "f3",
       "type" : "Script",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.vars.Variable;",
@@ -40,14 +39,11 @@
             "  }",
             "}"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     } ]
 }

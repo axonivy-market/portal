@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "171061A88CF2D492",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,15 +10,13 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "signature" : "start",
+        "callSignature" : "start",
         "guid" : "171061A8BDE2A71D"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -35,9 +33,7 @@
       "visual" : {
         "at" : { "x" : 320, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f5", "to" : "f4" }
-      ]
+      "connect" : { "id" : "f5", "to" : "f4" }
     }, {
       "id" : "f4",
       "type" : "HtmlDialogExit",
@@ -49,16 +45,14 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "navigateToCaseList()",
       "config" : {
-        "signature" : "navigateToCaseList",
+        "callSignature" : "navigateToCaseList",
         "guid" : "1715770AAA949799"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 },
         "labelOffset" : { "x" : 21, "y" : 34 }
       },
-      "connect" : [
-        { "id" : "f30", "to" : "f29" }
-      ]
+      "connect" : { "id" : "f30", "to" : "f29" }
     }, {
       "id" : "f29",
       "type" : "Script",
@@ -74,9 +68,7 @@
       "visual" : {
         "at" : { "x" : 280, "y" : 160 }
       },
-      "connect" : [
-        { "id" : "f32", "to" : "f31" }
-      ]
+      "connect" : { "id" : "f32", "to" : "f31" }
     }, {
       "id" : "f31",
       "type" : "HtmlDialogEnd",
@@ -88,10 +80,10 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "navigateToTaskList(Boolean)",
       "config" : {
-        "signature" : "navigateToTaskList",
+        "callSignature" : "navigateToTaskList",
         "input" : {
           "params" : [
-            { "name" : "isWorkingOnATask", "type" : "Boolean", "desc" : "" }
+            { "name" : "isWorkingOnATask", "type" : "Boolean" }
           ],
           "map" : {
             "out.isWorkingOnATask" : "param.isWorkingOnATask"
@@ -103,9 +95,7 @@
         "at" : { "x" : 96, "y" : 256 },
         "labelOffset" : { "x" : 38, "y" : 35 }
       },
-      "connect" : [
-        { "id" : "f35", "to" : "f34" }
-      ]
+      "connect" : { "id" : "f35", "to" : "f34" }
     }, {
       "id" : "f34",
       "type" : "Alternative",
@@ -134,9 +124,7 @@
       "visual" : {
         "at" : { "x" : 376, "y" : 336 }
       },
-      "connect" : [
-        { "id" : "f42", "to" : "f39", "via" : [ { "x" : 512, "y" : 336 } ] }
-      ]
+      "connect" : { "id" : "f42", "to" : "f39", "via" : [ { "x" : 512, "y" : 336 } ] }
     }, {
       "id" : "f37",
       "type" : "Script",
@@ -154,9 +142,7 @@
         "at" : { "x" : 376, "y" : 256 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f40", "to" : "f39" }
-      ]
+      "connect" : { "id" : "f40", "to" : "f39" }
     }, {
       "id" : "f39",
       "type" : "HtmlDialogEnd",
@@ -192,9 +178,7 @@
       "visual" : {
         "at" : { "x" : 376, "y" : 496 }
       },
-      "connect" : [
-        { "id" : "f17", "to" : "f8", "via" : [ { "x" : 512, "y" : 496 } ] }
-      ]
+      "connect" : { "id" : "f17", "to" : "f8", "via" : [ { "x" : 512, "y" : 496 } ] }
     }, {
       "id" : "f8",
       "type" : "HtmlDialogEnd",
@@ -218,18 +202,16 @@
         "at" : { "x" : 376, "y" : 416 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f11", "to" : "f8" }
-      ]
+      "connect" : { "id" : "f11", "to" : "f8" }
     }, {
       "id" : "f10",
       "type" : "HtmlDialogMethodStart",
       "name" : "navigateToPortalHome(Boolean)",
       "config" : {
-        "signature" : "navigateToPortalHome",
+        "callSignature" : "navigateToPortalHome",
         "input" : {
           "params" : [
-            { "name" : "isWorkingOnATask", "type" : "Boolean", "desc" : "" }
+            { "name" : "isWorkingOnATask", "type" : "Boolean" }
           ],
           "map" : {
             "out.isWorkingOnATask" : "param.isWorkingOnATask"
@@ -241,8 +223,6 @@
         "at" : { "x" : 96, "y" : 416 },
         "labelOffset" : { "x" : 48, "y" : 35 }
       },
-      "connect" : [
-        { "id" : "f22", "to" : "f6" }
-      ]
+      "connect" : { "id" : "f22", "to" : "f6" }
     } ]
 }

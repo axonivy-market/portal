@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "14BECA923C1F4A4B",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "findSubstitutes(String)",
       "config" : {
-        "signature" : "findSubstitutes",
+        "callSignature" : "findSubstitutes",
         "input" : {
           "params" : [
-            { "name" : "username", "type" : "String", "desc" : "" }
+            { "name" : "username", "type" : "String" }
           ],
           "map" : {
             "out.username" : "param.username"
@@ -21,7 +21,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "substitutes", "type" : "java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>", "desc" : "" }
+            { "name" : "substitutes", "type" : "java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>" }
           ],
           "map" : {
             "result.substitutes" : "in.substitutes"
@@ -31,9 +31,7 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f4", "to" : "f86" }
-      ]
+      "connect" : { "id" : "f4", "to" : "f86" }
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -58,18 +56,16 @@
       "visual" : {
         "at" : { "x" : 288, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f3", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f3", "to" : "f1" }
     }, {
       "id" : "f12",
       "type" : "CallSubStart",
       "name" : "findSubstitutions(String)",
       "config" : {
-        "signature" : "findSubstitutions",
+        "callSignature" : "findSubstitutions",
         "input" : {
           "params" : [
-            { "name" : "username", "type" : "String", "desc" : "" }
+            { "name" : "username", "type" : "String" }
           ],
           "map" : {
             "out.username" : "param.username"
@@ -77,7 +73,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "substitutes", "type" : "java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>", "desc" : "" }
+            { "name" : "substitutes", "type" : "java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>" }
           ],
           "map" : {
             "result.substitutes" : "in.substitutes"
@@ -88,9 +84,7 @@
         "at" : { "x" : 96, "y" : 160 },
         "labelOffset" : { "x" : 13, "y" : 37 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f14" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f14" }
     }, {
       "id" : "f14",
       "type" : "Script",
@@ -109,9 +103,7 @@
       "visual" : {
         "at" : { "x" : 288, "y" : 160 }
       },
-      "connect" : [
-        { "id" : "f5", "to" : "f15" }
-      ]
+      "connect" : { "id" : "f5", "to" : "f15" }
     }, {
       "id" : "f15",
       "type" : "CallSubEnd",
@@ -123,11 +115,11 @@
       "type" : "CallSubStart",
       "name" : "saveSubstitutes(UserDTO,List<IvySubstitute>)",
       "config" : {
-        "signature" : "saveSubstitutes",
+        "callSignature" : "saveSubstitutes",
         "input" : {
           "params" : [
-            { "name" : "userDTO", "type" : "com.axonivy.portal.components.dto.UserDTO", "desc" : "" },
-            { "name" : "substitutes", "type" : "java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>", "desc" : "" }
+            { "name" : "userDTO", "type" : "com.axonivy.portal.components.dto.UserDTO" },
+            { "name" : "substitutes", "type" : "java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>" }
           ],
           "map" : {
             "out.substitutes" : "param.substitutes",
@@ -139,9 +131,7 @@
         "at" : { "x" : 96, "y" : 256 },
         "labelOffset" : { "x" : 60, "y" : 40 }
       },
-      "connect" : [
-        { "id" : "f24", "to" : "f21" }
-      ]
+      "connect" : { "id" : "f24", "to" : "f21" }
     }, {
       "id" : "f21",
       "type" : "Script",
@@ -159,9 +149,7 @@
       "visual" : {
         "at" : { "x" : 288, "y" : 256 }
       },
-      "connect" : [
-        { "id" : "f6", "to" : "f23" }
-      ]
+      "connect" : { "id" : "f6", "to" : "f23" }
     }, {
       "id" : "f23",
       "type" : "CallSubEnd",

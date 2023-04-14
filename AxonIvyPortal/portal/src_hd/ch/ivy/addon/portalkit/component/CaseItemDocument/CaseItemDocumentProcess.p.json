@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "153361016FE4213A",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,15 +10,13 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "signature" : "start",
+        "callSignature" : "start",
         "guid" : "167E9DEBBFA8A8ED"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 96 }
       },
-      "connect" : [
-        { "id" : "f1", "to" : "f2" }
-      ]
+      "connect" : { "id" : "f1", "to" : "f2" }
     }, {
       "id" : "f2",
       "type" : "HtmlDialogEnd",
@@ -30,10 +28,10 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "initData(ICase)",
       "config" : {
-        "signature" : "initData",
+        "callSignature" : "initData",
         "input" : {
           "params" : [
-            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
+            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
           ],
           "map" : {
             "out.iCase" : "param.iCase"
@@ -44,9 +42,7 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 192 }
       },
-      "connect" : [
-        { "id" : "f26", "to" : "f53" }
-      ]
+      "connect" : { "id" : "f26", "to" : "f53" }
     }, {
       "id" : "f69",
       "type" : "HtmlDialogEnd",
@@ -58,10 +54,10 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "uploadDocument(FileUploadEvent)",
       "config" : {
-        "signature" : "uploadDocument",
+        "callSignature" : "uploadDocument",
         "input" : {
           "params" : [
-            { "name" : "event", "type" : "org.primefaces.event.FileUploadEvent", "desc" : "" }
+            { "name" : "event", "type" : "org.primefaces.event.FileUploadEvent" }
           ],
           "map" : {
             "out.documentUploadEvent" : "param.event"
@@ -73,9 +69,7 @@
         "at" : { "x" : 96, "y" : 288 },
         "labelOffset" : { "x" : 29, "y" : 38 }
       },
-      "connect" : [
-        { "id" : "f19", "to" : "f13" }
-      ]
+      "connect" : { "id" : "f19", "to" : "f13" }
     }, {
       "id" : "f9",
       "type" : "Script",
@@ -94,9 +88,7 @@
         "at" : { "x" : 632, "y" : 384 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f15", "to" : "f33", "via" : [ { "x" : 976, "y" : 384 } ] }
-      ]
+      "connect" : { "id" : "f15", "to" : "f33", "via" : [ { "x" : 976, "y" : 384 } ] }
     }, {
       "id" : "f51",
       "type" : "HtmlDialogEnd",
@@ -108,21 +100,21 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "downloadDocument(IvyDocument)",
       "config" : {
-        "signature" : "downloadDocument",
-        "input" : {
-          "params" : [
-            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument", "desc" : "" }
-          ],
-          "map" : {
-            "out.document" : "param.document"
-          }
-        },
+        "callSignature" : "downloadDocument",
         "result" : {
           "params" : [
-            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent", "desc" : "" }
+            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent" }
           ],
           "map" : {
             "result.streamedContent" : "in.streamedContent"
+          }
+        },
+        "input" : {
+          "params" : [
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument" }
+          ],
+          "map" : {
+            "out.document" : "param.document"
           }
         },
         "guid" : "1680301B2BFFF8D6"
@@ -131,9 +123,7 @@
         "at" : { "x" : 96, "y" : 448 },
         "labelOffset" : { "x" : 11, "y" : 37 }
       },
-      "connect" : [
-        { "id" : "f22", "to" : "f20" }
-      ]
+      "connect" : { "id" : "f22", "to" : "f20" }
     }, {
       "id" : "f24",
       "type" : "HtmlDialogEnd",
@@ -145,15 +135,13 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "resetDataUploadDialog()",
       "config" : {
-        "signature" : "resetDataUploadDialog",
+        "callSignature" : "resetDataUploadDialog",
         "guid" : "168030614DDB1EA9"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 544 }
       },
-      "connect" : [
-        { "id" : "f18", "to" : "f12" }
-      ]
+      "connect" : { "id" : "f18", "to" : "f12" }
     }, {
       "id" : "f12",
       "type" : "Script",
@@ -176,9 +164,7 @@
       "visual" : {
         "at" : { "x" : 248, "y" : 544 }
       },
-      "connect" : [
-        { "id" : "f23", "to" : "f21" }
-      ]
+      "connect" : { "id" : "f23", "to" : "f21" }
     }, {
       "id" : "f21",
       "type" : "HtmlDialogEnd",
@@ -190,15 +176,13 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "deleteDocument()",
       "config" : {
-        "signature" : "deleteDocument",
+        "callSignature" : "deleteDocument",
         "guid" : "168030735CFC1630"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 640 }
       },
-      "connect" : [
-        { "id" : "f6", "to" : "f5" }
-      ]
+      "connect" : { "id" : "f6", "to" : "f5" }
     }, {
       "id" : "f10",
       "type" : "HtmlDialogEnd",
@@ -251,9 +235,7 @@
         "at" : { "x" : 632, "y" : 288 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f32", "to" : "f14" }
-      ]
+      "connect" : { "id" : "f32", "to" : "f14" }
     }, {
       "id" : "f50",
       "type" : "Script",
@@ -274,123 +256,133 @@
       "visual" : {
         "at" : { "x" : 448, "y" : 640 }
       },
-      "connect" : [
-        { "id" : "f56", "to" : "f31" }
-      ]
+      "connect" : { "id" : "f56", "to" : "f31" }
     }, {
       "id" : "f53",
       "type" : "SubProcessCall",
       "name" : "Find documents",
       "config" : {
         "processCall" : "Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)",
-        "call" : {
-          "map" : {
-            "param.businessCase" : "in.iCase"
-          }
-        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.documents" : "result.documents"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
+          ],
+          "map" : {
+            "param.businessCase" : "in.iCase"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 192 }
       },
-      "connect" : [
-        { "id" : "f27", "to" : "f69" }
-      ]
+      "connect" : { "id" : "f27", "to" : "f69" }
     }, {
       "id" : "f31",
       "type" : "SubProcessCall",
       "name" : "Find documents",
       "config" : {
         "processCall" : "Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)",
-        "call" : {
-          "map" : {
-            "param.businessCase" : "in.iCase"
-          }
-        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.documents" : "result.documents"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
+          ],
+          "map" : {
+            "param.businessCase" : "in.iCase"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 632, "y" : 640 }
       },
-      "connect" : [
-        { "id" : "f16", "to" : "f10" }
-      ]
+      "connect" : { "id" : "f16", "to" : "f10" }
     }, {
       "id" : "f14",
       "type" : "SubProcessCall",
       "name" : "Find documents",
       "config" : {
         "processCall" : "Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)",
-        "call" : {
-          "map" : {
-            "param.businessCase" : "in.iCase"
-          }
-        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.documents" : "result.documents"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
+          ],
+          "map" : {
+            "param.businessCase" : "in.iCase"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 808, "y" : 288 }
       },
-      "connect" : [
-        { "id" : "f35", "to" : "f33" }
-      ]
+      "connect" : { "id" : "f35", "to" : "f33" }
     }, {
       "id" : "f13",
       "type" : "SubProcessCall",
       "name" : "UploadDocument",
       "config" : {
         "processCall" : "Functional Processes/UploadDocument:call(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.file.UploadedFile,Boolean,Boolean,String)",
-        "call" : {
-          "map" : {
-            "param.businessCase" : "in.iCase",
-            "param.uploadedFile" : "in.documentUploadEvent.getFile()"
-          }
-        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.uploadDocumentCheckMessage" : "result.message",
             "out.uploadDocumentCheckStatus" : "result.status"
           }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "uploadedFile", "type" : "org.primefaces.model.file.UploadedFile" },
+            { "name" : "enableScriptCheckingForUploadedDocument", "type" : "Boolean" },
+            { "name" : "enableVirusScannerForUploadedDocument", "type" : "Boolean" },
+            { "name" : "allowedUploadFileTypes", "type" : "String" }
+          ],
+          "map" : {
+            "param.businessCase" : "in.iCase",
+            "param.uploadedFile" : "in.documentUploadEvent.getFile()"
+          }
         }
       },
       "visual" : {
         "at" : { "x" : 312, "y" : 288 }
       },
-      "connect" : [
-        { "id" : "f29", "to" : "f28" }
-      ]
+      "connect" : { "id" : "f29", "to" : "f28" }
     }, {
       "id" : "f20",
       "type" : "SubProcessCall",
       "name" : "Download Document",
       "config" : {
         "processCall" : "Functional Processes/DownloadDocument:call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
-        "call" : {
-          "map" : {
-            "param.bussinessCase" : "in.iCase",
-            "param.document" : "in.document"
-          }
-        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.streamedContent" : "result.streamedContent"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "bussinessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument" }
+          ],
+          "map" : {
+            "param.bussinessCase" : "in.iCase",
+            "param.document" : "in.document"
           }
         }
       },
@@ -398,34 +390,34 @@
         "at" : { "x" : 256, "y" : 448 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f25", "to" : "f24" }
-      ]
+      "connect" : { "id" : "f25", "to" : "f24" }
     }, {
       "id" : "f5",
       "type" : "SubProcessCall",
       "name" : "Delete Document",
       "config" : {
         "processCall" : "Functional Processes/DeleteDocument:call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
-        "call" : {
-          "map" : {
-            "param.businessCase" : "in.iCase",
-            "param.document" : "in.document"
-          }
-        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.deleteDocumentMessage" : "result.message"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument" }
+          ],
+          "map" : {
+            "param.businessCase" : "in.iCase",
+            "param.document" : "in.document"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 248, "y" : 640 }
       },
-      "connect" : [
-        { "id" : "f30", "to" : "f50" }
-      ]
+      "connect" : { "id" : "f30", "to" : "f50" }
     }, {
       "id" : "f33",
       "type" : "Script",
@@ -441,8 +433,6 @@
       "visual" : {
         "at" : { "x" : 976, "y" : 288 }
       },
-      "connect" : [
-        { "id" : "f34", "to" : "f51" }
-      ]
+      "connect" : { "id" : "f34", "to" : "f51" }
     } ]
 }

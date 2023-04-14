@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "15F6AF64009AFF42",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,15 +10,13 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "signature" : "start",
+        "callSignature" : "start",
         "guid" : "15F6AF6401914AC3"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -36,9 +34,7 @@
         "at" : { "x" : 96, "y" : 208 },
         "labelOffset" : { "x" : 8, "y" : 32 }
       },
-      "connect" : [
-        { "id" : "f5", "to" : "f4" }
-      ]
+      "connect" : { "id" : "f5", "to" : "f4" }
     }, {
       "id" : "f4",
       "type" : "HtmlDialogExit",
@@ -55,15 +51,14 @@
       "visual" : {
         "at" : { "x" : 93, "y" : 145 }
       },
-      "connect" : [
-        { "id" : "f7", "to" : "f32" }
-      ]
+      "connect" : { "id" : "f7", "to" : "f32" }
     }, {
       "id" : "f32",
       "type" : "DialogCall",
       "name" : "Statistic",
       "config" : {
-        "dialog" : "ch.ivy.addon.portal.generic.admin.PortalDashBoard:start()"
+        "dialogId" : "ch.ivy.addon.portal.generic.admin.PortalDashBoard",
+        "startMethod" : "start()"
       },
       "visual" : {
         "at" : { "x" : 238, "y" : 144 }

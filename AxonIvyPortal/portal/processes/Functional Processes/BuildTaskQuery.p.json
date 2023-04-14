@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "16812A78CEF8FB1A",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "buildTaskQuery()",
       "config" : {
-        "signature" : "buildTaskQuery",
+        "callSignature" : "buildTaskQuery",
         "result" : {
           "params" : [
-            { "name" : "taskQuery", "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery", "desc" : "" }
+            { "name" : "taskQuery", "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery" }
           ],
           "map" : {
             "result.taskQuery" : "in.#taskQuery"
@@ -23,9 +23,7 @@
       "visual" : {
         "at" : { "x" : 92, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f3", "to" : "f2" }
-      ]
+      "connect" : { "id" : "f3", "to" : "f2" }
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -51,9 +49,7 @@
         "at" : { "x" : 548, "y" : 226 },
         "size" : { "width" : 640, "height" : 172 }
       },
-      "connect" : [
-        { "id" : "f6", "to" : "f2" }
-      ]
+      "connect" : { "id" : "f6", "to" : "f2" }
     }, {
       "id" : "f2",
       "type" : "Script",
@@ -61,18 +57,16 @@
       "visual" : {
         "at" : { "x" : 288, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f4", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f4", "to" : "f1" }
     }, {
       "id" : "f7",
       "type" : "CallSubStart",
       "name" : "buildTaskQuery(Boolean)",
       "config" : {
-        "signature" : "buildTaskQuery",
+        "callSignature" : "buildTaskQuery",
         "input" : {
           "params" : [
-            { "name" : "isQueryForHomePage", "type" : "Boolean", "desc" : "" }
+            { "name" : "isQueryForHomePage", "type" : "Boolean" }
           ],
           "map" : {
             "out.isQueryForHomePage" : "param.isQueryForHomePage"
@@ -80,7 +74,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "taskQuery", "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery", "desc" : "" }
+            { "name" : "taskQuery", "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery" }
           ],
           "map" : {
             "result.taskQuery" : "in.#taskQuery"
@@ -90,8 +84,6 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }
       },
-      "connect" : [
-        { "id" : "f8", "to" : "f2" }
-      ]
+      "connect" : { "id" : "f8", "to" : "f2" }
     } ]
 }

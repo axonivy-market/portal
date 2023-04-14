@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "15C7B30FB93C827E",
   "config" : {
     "data" : "internaltest.Data"
@@ -23,9 +23,7 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f4", "to" : "f3" }
-      ]
+      "connect" : { "id" : "f4", "to" : "f3" }
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -36,14 +34,23 @@
       "id" : "f3",
       "type" : "DialogCall",
       "config" : {
-        "dialog" : "internaltest.ui.approveLeave:start(String,Date,Date,Boolean,String,internalPortal.ProcessStatus)"
+        "dialogId" : "internaltest.ui.approveLeave",
+        "startMethod" : "start(String,Date,Date,Boolean,String,internalPortal.ProcessStatus)",
+        "call" : {
+          "params" : [
+            { "name" : "Mitarbeiter", "type" : "String" },
+            { "name" : "Von", "type" : "Date" },
+            { "name" : "Bis", "type" : "Date" },
+            { "name" : "beantragt", "type" : "Boolean" },
+            { "name" : "Vertretung", "type" : "String" },
+            { "name" : "processStatus", "type" : "internalPortal.ProcessStatus" }
+          ]
+        }
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f8",
       "type" : "RequestStart",
@@ -60,8 +67,7 @@
         "task" : {
           "name" : "Fix Hardware",
           "responsible" : {
-            "type" : "ROLE",
-            "activator" : "SYSTEM"
+            "role" : "SYSTEM"
           }
         },
         "triggerEnabled" : true,
@@ -71,9 +77,7 @@
       "visual" : {
         "at" : { "x" : 88, "y" : 168 }
       },
-      "connect" : [
-        { "id" : "f26", "to" : "f25" }
-      ]
+      "connect" : { "id" : "f26", "to" : "f25" }
     }, {
       "id" : "f11",
       "type" : "TaskEnd",
@@ -95,8 +99,7 @@
         "outLink" : "installOperationSystem.ivp",
         "task" : {
           "responsible" : {
-            "type" : "ROLE",
-            "activator" : "SYSTEM"
+            "role" : "SYSTEM"
           }
         },
         "triggerEnabled" : true,
@@ -106,9 +109,7 @@
       "visual" : {
         "at" : { "x" : 80, "y" : 280 }
       },
-      "connect" : [
-        { "id" : "f40", "to" : "f39" }
-      ]
+      "connect" : { "id" : "f40", "to" : "f39" }
     }, {
       "id" : "f14",
       "type" : "TaskEnd",
@@ -125,14 +126,13 @@
       "visual" : {
         "at" : { "x" : 376, "y" : 168 }
       },
-      "connect" : [
-        { "id" : "f12", "to" : "f11" }
-      ]
+      "connect" : { "id" : "f12", "to" : "f11" }
     }, {
       "id" : "f15",
       "type" : "TaskSwitchEvent",
       "name" : "Install",
       "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
         "task" : {
           "name" : "Install OperationSystem"
         }
@@ -140,9 +140,7 @@
       "visual" : {
         "at" : { "x" : 360, "y" : 280 }
       },
-      "connect" : [
-        { "id" : "f19", "to" : "f14", "condition" : "ivp==\"TaskA.ivp\"" }
-      ]
+      "connect" : { "id" : "f19", "to" : "f14", "condition" : "ivp==\"TaskA.ivp\"" }
     }, {
       "id" : "f25",
       "type" : "SubProcessCall",
@@ -150,6 +148,9 @@
       "config" : {
         "processCall" : "Functional Processes/HideSystemCase:call(Boolean)",
         "call" : {
+          "params" : [
+            { "name" : "hideBusinessCase", "type" : "Boolean" }
+          ],
           "map" : {
             "param.hideBusinessCase" : "false"
           }
@@ -158,9 +159,7 @@
       "visual" : {
         "at" : { "x" : 216, "y" : 168 }
       },
-      "connect" : [
-        { "id" : "f17", "to" : "f16" }
-      ]
+      "connect" : { "id" : "f17", "to" : "f16" }
     }, {
       "id" : "f27",
       "type" : "RequestStart",
@@ -178,9 +177,7 @@
       "visual" : {
         "at" : { "x" : 88, "y" : 376 }
       },
-      "connect" : [
-        { "id" : "f28", "to" : "f29" }
-      ]
+      "connect" : { "id" : "f28", "to" : "f29" }
     }, {
       "id" : "f29",
       "type" : "TriggerCall",
@@ -191,9 +188,7 @@
       "visual" : {
         "at" : { "x" : 336, "y" : 376 }
       },
-      "connect" : [
-        { "id" : "f31", "to" : "f30" }
-      ]
+      "connect" : { "id" : "f31", "to" : "f30" }
     }, {
       "id" : "f30",
       "type" : "TaskEnd",
@@ -214,8 +209,7 @@
         "outLink" : "RequestForm.ivp",
         "task" : {
           "responsible" : {
-            "type" : "ROLE",
-            "activator" : "SYSTEM"
+            "role" : "SYSTEM"
           }
         },
         "triggerEnabled" : true,
@@ -225,14 +219,13 @@
         "at" : { "x" : 88, "y" : 456 },
         "labelOffset" : { "x" : 4, "y" : 37 }
       },
-      "connect" : [
-        { "id" : "f38", "to" : "f37" }
-      ]
+      "connect" : { "id" : "f38", "to" : "f37" }
     }, {
       "id" : "f33",
       "type" : "TaskSwitchEvent",
       "name" : "Request form",
       "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
         "task" : {
           "name" : "Request form",
           "category" : "RequestForm"
@@ -241,9 +234,7 @@
       "visual" : {
         "at" : { "x" : 344, "y" : 456 }
       },
-      "connect" : [
-        { "id" : "f36", "to" : "f35", "condition" : "ivp==\"TaskA.ivp\"" }
-      ]
+      "connect" : { "id" : "f36", "to" : "f35", "condition" : "ivp==\"TaskA.ivp\"" }
     }, {
       "id" : "f35",
       "type" : "TaskEnd",
@@ -257,6 +248,9 @@
       "config" : {
         "processCall" : "Functional Processes/HideSystemCase:call(Boolean)",
         "call" : {
+          "params" : [
+            { "name" : "hideBusinessCase", "type" : "Boolean" }
+          ],
           "map" : {
             "param.hideBusinessCase" : "true"
           }
@@ -265,9 +259,7 @@
       "visual" : {
         "at" : { "x" : 216, "y" : 456 }
       },
-      "connect" : [
-        { "id" : "f34", "to" : "f33", "var" : "in1" }
-      ]
+      "connect" : { "id" : "f34", "to" : "f33", "var" : "in1" }
     }, {
       "id" : "f39",
       "type" : "SubProcessCall",
@@ -275,6 +267,9 @@
       "config" : {
         "processCall" : "Functional Processes/HideSystemCase:call(Boolean)",
         "call" : {
+          "params" : [
+            { "name" : "hideBusinessCase", "type" : "Boolean" }
+          ],
           "map" : {
             "param.hideBusinessCase" : "false"
           }
@@ -283,9 +278,7 @@
       "visual" : {
         "at" : { "x" : 232, "y" : 280 }
       },
-      "connect" : [
-        { "id" : "f18", "to" : "f15", "var" : "in1" }
-      ]
+      "connect" : { "id" : "f18", "to" : "f15", "var" : "in1" }
     }, {
       "id" : "f41",
       "type" : "RequestStart",
@@ -309,9 +302,7 @@
       "visual" : {
         "at" : { "x" : 88, "y" : 616 }
       },
-      "connect" : [
-        { "id" : "f51", "to" : "f50" }
-      ]
+      "connect" : { "id" : "f51", "to" : "f50" }
     }, {
       "id" : "f46",
       "type" : "Alternative",
@@ -344,6 +335,9 @@
       "config" : {
         "processCall" : "Business Processes/testCaseMaps/testProcesses/ApproveLeave:startACase(Integer)",
         "call" : {
+          "params" : [
+            { "name" : "count", "type" : "Integer" }
+          ],
           "map" : {
             "param.count" : "in.count"
           }
@@ -352,9 +346,7 @@
       "visual" : {
         "at" : { "x" : 400, "y" : 616 }
       },
-      "connect" : [
-        { "id" : "f56", "to" : "f52" }
-      ]
+      "connect" : { "id" : "f56", "to" : "f52" }
     }, {
       "id" : "f43",
       "type" : "RequestStart",
@@ -379,8 +371,7 @@
         "outLink" : "startACase.ivp",
         "task" : {
           "responsible" : {
-            "type" : "ROLE",
-            "activator" : "SYSTEM"
+            "role" : "SYSTEM"
           }
         },
         "triggerEnabled" : true,
@@ -389,27 +380,24 @@
       "visual" : {
         "at" : { "x" : 72, "y" : 840 }
       },
-      "connect" : [
-        { "id" : "f59", "to" : "f58" }
-      ]
+      "connect" : { "id" : "f59", "to" : "f58" }
     }, {
       "id" : "f47",
       "type" : "TaskSwitchEvent",
       "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "case" : {
+          "name" : "TestCase"
+        },
         "task" : {
           "name" : "Task number <%=in1.count%>",
           "category" : "<%=in1.category%>"
-        },
-        "case" : {
-          "name" : "TestCase"
         }
       },
       "visual" : {
         "at" : { "x" : 328, "y" : 840 }
       },
-      "connect" : [
-        { "id" : "f55", "to" : "f54", "condition" : "ivp==\"TaskA.ivp\"" }
-      ]
+      "connect" : { "id" : "f55", "to" : "f54", "condition" : "ivp==\"TaskA.ivp\"" }
     }, {
       "id" : "f54",
       "type" : "TaskEnd",
@@ -427,9 +415,7 @@
       "visual" : {
         "at" : { "x" : 560, "y" : 616 }
       },
-      "connect" : [
-        { "id" : "f44", "to" : "f46" }
-      ]
+      "connect" : { "id" : "f44", "to" : "f46" }
     }, {
       "id" : "f58",
       "type" : "Script",
@@ -454,8 +440,6 @@
       "visual" : {
         "at" : { "x" : 200, "y" : 840 }
       },
-      "connect" : [
-        { "id" : "f53", "to" : "f47", "var" : "in1" }
-      ]
+      "connect" : { "id" : "f53", "to" : "f47", "var" : "in1" }
     } ]
 }

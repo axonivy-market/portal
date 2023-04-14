@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "16B3FA08E0ADDCE6",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "configureRolesForGroupChat(ITask)",
       "config" : {
-        "signature" : "configureRolesForGroupChat",
+        "callSignature" : "configureRolesForGroupChat",
         "input" : {
           "params" : [
-            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
           ],
           "map" : {
             "out.task" : "param.task"
@@ -21,7 +21,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "roles", "type" : "java.util.List<ch.ivyteam.ivy.security.IRole>", "desc" : "" }
+            { "name" : "roles", "type" : "java.util.List<ch.ivyteam.ivy.security.IRole>" }
           ],
           "map" : {
             "result.roles" : "in.roles"
@@ -32,9 +32,7 @@
         "at" : { "x" : 72, "y" : 32 },
         "labelOffset" : { "x" : 113, "y" : 37 }
       },
-      "connect" : [
-        { "id" : "f6", "to" : "f5" }
-      ]
+      "connect" : { "id" : "f6", "to" : "f5" }
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -63,6 +61,7 @@
       "type" : "Script",
       "name" : "Configure",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -72,14 +71,11 @@
             "  in.roles.add(ISecurityContext.current().roles().find(\"HR\"));",
             "}"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 72, "y" : 128 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     } ]
 }
