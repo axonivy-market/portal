@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "1636734E13CEC872",
   "config" : {
     "data" : "portalKit_test.LoginData"
@@ -37,9 +37,7 @@
       "visual" : {
         "at" : { "x" : 224, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f0",
       "type" : "RequestStart",
@@ -61,9 +59,7 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f4", "to" : "f3" }
-      ]
+      "connect" : { "id" : "f4", "to" : "f3" }
     }, {
       "id" : "f5",
       "type" : "TaskEnd",
@@ -82,9 +78,7 @@
       "visual" : {
         "at" : { "x" : 224, "y" : 160 }
       },
-      "connect" : [
-        { "id" : "f9", "to" : "f5" }
-      ]
+      "connect" : { "id" : "f9", "to" : "f5" }
     }, {
       "id" : "f7",
       "type" : "RequestStart",
@@ -97,8 +91,6 @@
         "at" : { "x" : 96, "y" : 160 },
         "labelOffset" : { "x" : 13, "y" : 37 }
       },
-      "connect" : [
-        { "id" : "f8", "to" : "f6" }
-      ]
+      "connect" : { "id" : "f8", "to" : "f6" }
     } ]
 }

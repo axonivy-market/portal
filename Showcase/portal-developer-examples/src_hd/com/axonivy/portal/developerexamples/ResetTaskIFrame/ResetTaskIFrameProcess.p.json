@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "17C597F3BE08B8C1",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,15 +10,13 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "signature" : "start",
+        "callSignature" : "start",
         "guid" : "17C597F3BEA36134"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -36,9 +34,7 @@
         "at" : { "x" : 96, "y" : 160 },
         "labelOffset" : { "x" : 15, "y" : 35 }
       },
-      "connect" : [
-        { "id" : "f5", "to" : "f4" }
-      ]
+      "connect" : { "id" : "f5", "to" : "f4" }
     }, {
       "id" : "f4",
       "type" : "HtmlDialogExit",
@@ -56,9 +52,7 @@
         "at" : { "x" : 96, "y" : 256 },
         "labelOffset" : { "x" : 36, "y" : 35 }
       },
-      "connect" : [
-        { "id" : "f8", "to" : "f7" }
-      ]
+      "connect" : { "id" : "f8", "to" : "f7" }
     }, {
       "id" : "f7",
       "type" : "Script",
@@ -67,14 +61,14 @@
         "Back to homepage"
       ],
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.util.PortalNavigatorInFrameAPI;",
             "ivy.task.reset();",
             "PortalNavigatorInFrameAPI.navigateToUrl(ivy.html.applicationHomeRef());"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 248, "y" : 256 },
@@ -91,9 +85,7 @@
         "at" : { "x" : 96, "y" : 352 },
         "labelOffset" : { "x" : 44, "y" : 35 }
       },
-      "connect" : [
-        { "id" : "f11", "to" : "f10" }
-      ]
+      "connect" : { "id" : "f11", "to" : "f10" }
     }, {
       "id" : "f10",
       "type" : "Script",
@@ -102,14 +94,14 @@
         "Back to previous page"
       ],
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.util.PortalNavigatorInFrameAPI;",
             "ivy.task.reset();",
             "PortalNavigatorInFrameAPI.navigateToPortalEndPage();"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 248, "y" : 352 },
@@ -126,9 +118,7 @@
         "at" : { "x" : 96, "y" : 448 },
         "labelOffset" : { "x" : 27, "y" : 35 }
       },
-      "connect" : [
-        { "id" : "f14", "to" : "f13" }
-      ]
+      "connect" : { "id" : "f14", "to" : "f13" }
     }, {
       "id" : "f13",
       "type" : "Script",
@@ -137,6 +127,7 @@
         "Go to CreateInvestment example"
       ],
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;",
@@ -147,8 +138,7 @@
             "String friendlyRequestPath = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(\"Start Processes/IFrameExample/CreateInvestment.ivp\");",
             "PortalNavigatorInFrameAPI.navigateToUrl(friendlyRequestPath+ \"?embedInFrame\");"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 280, "y" : 448 },

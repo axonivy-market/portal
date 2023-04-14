@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "162F0A4F9FF3C1EC",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,21 +10,21 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "signature" : "start",
-        "input" : {
-          "params" : [
-            { "name" : "executePredefinedWorkflowData", "type" : "gawfs.ExecutePredefinedWorkflowData", "desc" : "" }
-          ],
-          "map" : {
-            "out.executePredefinedWorkflowData" : "param.executePredefinedWorkflowData"
-          }
-        },
+        "callSignature" : "start",
         "result" : {
           "params" : [
-            { "name" : "executePredefinedWorkflowData", "type" : "gawfs.ExecutePredefinedWorkflowData", "desc" : "" }
+            { "name" : "executePredefinedWorkflowData", "type" : "gawfs.ExecutePredefinedWorkflowData" }
           ],
           "map" : {
             "result.executePredefinedWorkflowData" : "in.executePredefinedWorkflowData"
+          }
+        },
+        "input" : {
+          "params" : [
+            { "name" : "executePredefinedWorkflowData", "type" : "gawfs.ExecutePredefinedWorkflowData" }
+          ],
+          "map" : {
+            "out.executePredefinedWorkflowData" : "param.executePredefinedWorkflowData"
           }
         },
         "guid" : "162F0A4FA20C17F1"
@@ -32,9 +32,7 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f7", "to" : "f6" }
-      ]
+      "connect" : { "id" : "f7", "to" : "f6" }
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -52,9 +50,7 @@
         "at" : { "x" : 96, "y" : 160 },
         "labelOffset" : { "x" : 8, "y" : 32 }
       },
-      "connect" : [
-        { "id" : "f13", "to" : "f12" }
-      ]
+      "connect" : { "id" : "f13", "to" : "f12" }
     }, {
       "id" : "f4",
       "type" : "HtmlDialogExit",
@@ -66,6 +62,7 @@
       "type" : "Script",
       "name" : "Initialize",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -78,34 +75,30 @@
             "  task.actualApplicant = ISecurityContext.current().users().find(task.actualApplicantName);",
             "}"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 248, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f8",
       "type" : "HtmlDialogMethodStart",
       "name" : "cancel()",
       "config" : {
-        "signature" : "cancel",
+        "callSignature" : "cancel",
         "guid" : "162F0A6B9E82BE32"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 256 }
       },
-      "connect" : [
-        { "id" : "f10", "to" : "f9" }
-      ]
+      "connect" : { "id" : "f10", "to" : "f9" }
     }, {
       "id" : "f9",
       "type" : "Script",
       "name" : "Reset task",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.util.TaskUtils;",
@@ -114,15 +107,12 @@
             "TaskUtils.resetTask(ivy.task);",
             "PortalNavigatorAPI.navigateToPortalEndPage();"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 248, "y" : 256 }
       },
-      "connect" : [
-        { "id" : "f14", "to" : "f11" }
-      ]
+      "connect" : { "id" : "f14", "to" : "f11" }
     }, {
       "id" : "f11",
       "type" : "HtmlDialogEnd",
@@ -137,6 +127,7 @@
         "information"
       ],
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.util.AdhocUtils;",
@@ -148,15 +139,12 @@
             "  ivy.case.getBusinessCase().createNote(ivy.session, ivy.task.names().current() + \": \" + description);",
             "}"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 256, "y" : 160 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f5", "to" : "f4" }
-      ]
+      "connect" : { "id" : "f5", "to" : "f4" }
     } ]
 }

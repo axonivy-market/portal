@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "1473A12DE00609FB",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "findProcesses()",
       "config" : {
-        "signature" : "findProcesses",
+        "callSignature" : "findProcesses",
         "result" : {
           "params" : [
-            { "name" : "processes", "type" : "java.util.List<ch.ivyteam.ivy.workflow.start.IWebStartable>", "desc" : "" }
+            { "name" : "processes", "type" : "java.util.List<ch.ivyteam.ivy.workflow.start.IWebStartable>" }
           ],
           "map" : {
             "result.processes" : "in.processes"
@@ -24,9 +24,7 @@
         "at" : { "x" : 96, "y" : 96 },
         "labelOffset" : { "x" : -1, "y" : 37 }
       },
-      "connect" : [
-        { "id" : "f0", "to" : "f24" }
-      ]
+      "connect" : { "id" : "f0", "to" : "f24" }
     }, {
       "id" : "f19",
       "type" : "CallSubEnd",
@@ -38,20 +36,18 @@
       "type" : "Script",
       "name" : "Find processes",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.service.impl.ProcessService;",
             "out.processes = ProcessService.getInstance().findProcesses().processes;"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 232, "y" : 96 }
       },
-      "connect" : [
-        { "id" : "f1", "to" : "f19" }
-      ]
+      "connect" : { "id" : "f1", "to" : "f19" }
     } ],
   "layout" : {
     "lanes" : [ {

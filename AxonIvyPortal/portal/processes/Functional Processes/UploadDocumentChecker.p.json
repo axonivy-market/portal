@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "16285772A1F890EE",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "call(UploadedFile)",
       "config" : {
-        "signature" : "call",
+        "callSignature" : "call",
         "input" : {
           "params" : [
-            { "name" : "uploadFile", "type" : "org.primefaces.model.file.UploadedFile", "desc" : "" }
+            { "name" : "uploadFile", "type" : "org.primefaces.model.file.UploadedFile" }
           ],
           "map" : {
             "out.uploadedFile" : "param.uploadFile"
@@ -21,8 +21,8 @@
         },
         "result" : {
           "params" : [
-            { "name" : "uploadDocumentCheckStatus", "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus", "desc" : "" },
-            { "name" : "message", "type" : "String", "desc" : "" }
+            { "name" : "uploadDocumentCheckStatus", "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus" },
+            { "name" : "message", "type" : "String" }
           ],
           "map" : {
             "result.uploadDocumentCheckStatus" : "in.checkStatus",
@@ -33,9 +33,7 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f6", "to" : "f5" }
-      ]
+      "connect" : { "id" : "f6", "to" : "f5" }
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -47,6 +45,7 @@
       "type" : "Script",
       "name" : "Check file contains code",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
@@ -60,16 +59,13 @@
             "  in.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript\");",
             "}"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 560 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f5",
       "type" : "Script",
@@ -96,9 +92,7 @@
         "at" : { "x" : 96, "y" : 176 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f13", "to" : "f12" }
-      ]
+      "connect" : { "id" : "f13", "to" : "f12" }
     }, {
       "id" : "f7",
       "type" : "Alternative",
@@ -126,6 +120,7 @@
       "type" : "Script",
       "name" : "Check file contains virus",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
@@ -139,16 +134,13 @@
             "    in.checkStatus = UploadDocumentCheckStatus.OK;",
             "}"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 336 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f8", "to" : "f7" }
-      ]
+      "connect" : { "id" : "f8", "to" : "f7" }
     }, {
       "id" : "f12",
       "type" : "Alternative",

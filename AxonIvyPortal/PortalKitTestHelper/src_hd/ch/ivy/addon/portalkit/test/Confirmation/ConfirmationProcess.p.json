@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "14B7775CB7A22AF4",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,23 +10,23 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "signature" : "start",
+        "callSignature" : "start",
+        "result" : {
+          "params" : [
+            { "name" : "approved", "type" : "Boolean" }
+          ],
+          "map" : {
+            "result.approved" : "in.approved"
+          }
+        },
         "input" : {
           "params" : [
-            { "name" : "message", "type" : "String", "desc" : "" },
-            { "name" : "title", "type" : "String", "desc" : "" }
+            { "name" : "message", "type" : "String" },
+            { "name" : "title", "type" : "String" }
           ],
           "map" : {
             "out.message" : "param.message",
             "out.title" : "param.title"
-          }
-        },
-        "result" : {
-          "params" : [
-            { "name" : "approved", "type" : "Boolean", "desc" : "" }
-          ],
-          "map" : {
-            "result.approved" : "in.approved"
           }
         },
         "guid" : "14B7775CB8651CD0"
@@ -36,9 +36,7 @@
         "size" : { "width" : 20, "height" : 20 },
         "labelOffset" : { "x" : 37, "y" : 20 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -61,9 +59,7 @@
         "size" : { "width" : 20, "height" : 20 },
         "labelOffset" : { "x" : 52, "y" : 20 }
       },
-      "connect" : [
-        { "id" : "f4", "to" : "f6" }
-      ]
+      "connect" : { "id" : "f4", "to" : "f6" }
     }, {
       "id" : "f6",
       "type" : "HtmlDialogExit",
@@ -86,9 +82,7 @@
         "size" : { "width" : 20, "height" : 20 },
         "labelOffset" : { "x" : 49, "y" : 20 }
       },
-      "connect" : [
-        { "id" : "f8", "to" : "f7" }
-      ]
+      "connect" : { "id" : "f8", "to" : "f7" }
     }, {
       "id" : "f7",
       "type" : "HtmlDialogExit",

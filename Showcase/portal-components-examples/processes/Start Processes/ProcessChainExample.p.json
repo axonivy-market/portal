@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "181897243F2BFDD3",
   "config" : {
     "data" : "com.axonivy.portal.components.examples.ProcessChainExampleData"
@@ -17,9 +17,7 @@
         "at" : { "x" : 96, "y" : 64 },
         "labelOffset" : { "x" : 37, "y" : 41 }
       },
-      "connect" : [
-        { "id" : "f4", "to" : "f3" }
-      ]
+      "connect" : { "id" : "f4", "to" : "f3" }
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -31,29 +29,27 @@
       "type" : "DialogCall",
       "name" : "ProcessChainExample",
       "config" : {
-        "dialog" : "com.axonivy.portal.components.examples.ProcessChainExample:start()"
+        "dialogId" : "com.axonivy.portal.components.examples.ProcessChainExample",
+        "startMethod" : "start()"
       },
       "visual" : {
         "at" : { "x" : 296, "y" : 64 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f5",
       "type" : "DialogCall",
       "name" : "ProcessChainExampleSerenity",
       "config" : {
-        "dialog" : "com.axonivy.portal.components.examples.serenity.ProcessChainExampleSerenity:start()"
+        "dialogId" : "com.axonivy.portal.components.examples.serenity.ProcessChainExampleSerenity",
+        "startMethod" : "start()"
       },
       "visual" : {
         "at" : { "x" : 296, "y" : 192 },
         "size" : { "width" : 176, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f9", "to" : "f7" }
-      ]
+      "connect" : { "id" : "f9", "to" : "f7" }
     }, {
       "id" : "f6",
       "type" : "RequestStart",
@@ -68,9 +64,7 @@
         "at" : { "x" : 96, "y" : 192 },
         "labelOffset" : { "x" : 59, "y" : 41 }
       },
-      "connect" : [
-        { "id" : "f8", "to" : "f5" }
-      ]
+      "connect" : { "id" : "f8", "to" : "f5" }
     }, {
       "id" : "f7",
       "type" : "TaskEnd",

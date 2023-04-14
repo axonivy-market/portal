@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "15493A537A91F8FC",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,15 +10,13 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "signature" : "start",
+        "callSignature" : "start",
         "guid" : "1682691BC1A26D76"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 96 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -30,10 +28,10 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "updateExpiryTime(ITask)",
       "config" : {
-        "signature" : "updateExpiryTime",
+        "callSignature" : "updateExpiryTime",
         "input" : {
           "params" : [
-            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
           ],
           "map" : {
             "out.task" : "param.task"
@@ -45,14 +43,13 @@
         "at" : { "x" : 96, "y" : 288 },
         "labelOffset" : { "x" : 13, "y" : 35 }
       },
-      "connect" : [
-        { "id" : "f14", "to" : "f13" }
-      ]
+      "connect" : { "id" : "f14", "to" : "f13" }
     }, {
       "id" : "f13",
       "type" : "Script",
       "name" : "Change task expiry",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.util.TaskUtils;",
@@ -85,31 +82,26 @@
             "  in.changeDeadlineNoteContent = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/taskDetails/setExpiryActivatorAndTimeNotes\", Arrays.asList(in.changeDeadlineNoteContent, in.task.getExpiryActivator().getDisplayName()));",
             "}"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 288 }
       },
-      "connect" : [
-        { "id" : "f17", "to" : "f15" }
-      ]
+      "connect" : { "id" : "f17", "to" : "f15" }
     }, {
       "id" : "f15",
       "type" : "Script",
       "name" : "Add note",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : "in.task.getCase().createNote(ivy.session, in.changeDeadlineNoteContent);"
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 384, "y" : 288 }
       },
-      "connect" : [
-        { "id" : "f20", "to" : "f19" }
-      ]
+      "connect" : { "id" : "f20", "to" : "f19" }
     }, {
       "id" : "f19",
       "type" : "HtmlDialogEnd",
@@ -127,22 +119,20 @@
       "type" : "Script",
       "name" : "prepare global case id",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.dto.GlobalCaseId;",
             "",
             "in.globalCaseId = GlobalCaseId.caseId(in.selectedCase.getId()).build();"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 192 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f24", "to" : "f9" }
-      ]
+      "connect" : { "id" : "f24", "to" : "f9" }
     }, {
       "id" : "f9",
       "type" : "SubProcessCall",
@@ -150,6 +140,9 @@
       "config" : {
         "processCall" : "Functional Processes/Navigator:viewCase(ch.ivy.addon.portalkit.dto.GlobalCaseId)",
         "call" : {
+          "params" : [
+            { "name" : "caseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId" }
+          ],
           "map" : {
             "param.caseId" : "in.globalCaseId"
           }
@@ -158,18 +151,16 @@
       "visual" : {
         "at" : { "x" : 384, "y" : 192 }
       },
-      "connect" : [
-        { "id" : "f12", "to" : "f11" }
-      ]
+      "connect" : { "id" : "f12", "to" : "f11" }
     }, {
       "id" : "f16",
       "type" : "HtmlDialogMethodStart",
       "name" : "navigateToRelatedCase(ICase)",
       "config" : {
-        "signature" : "navigateToRelatedCase",
+        "callSignature" : "navigateToRelatedCase",
         "input" : {
           "params" : [
-            { "name" : "selectedCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
+            { "name" : "selectedCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
           ],
           "map" : {
             "out.selectedCase" : "param.selectedCase"
@@ -181,18 +172,16 @@
         "at" : { "x" : 96, "y" : 192 },
         "labelOffset" : { "x" : 32, "y" : 40 }
       },
-      "connect" : [
-        { "id" : "f3", "to" : "f7" }
-      ]
+      "connect" : { "id" : "f3", "to" : "f7" }
     }, {
       "id" : "f6",
       "type" : "HtmlDialogMethodStart",
       "name" : "updateDelayTimestamp(ITask)",
       "config" : {
-        "signature" : "updateDelayTimestamp",
+        "callSignature" : "updateDelayTimestamp",
         "input" : {
           "params" : [
-            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
           ],
           "map" : {
             "out.task" : "param.task"
@@ -204,9 +193,7 @@
         "at" : { "x" : 96, "y" : 416 },
         "labelOffset" : { "x" : 17, "y" : 47 }
       },
-      "connect" : [
-        { "id" : "f23", "to" : "f22" }
-      ]
+      "connect" : { "id" : "f23", "to" : "f22" }
     }, {
       "id" : "f18",
       "type" : "HtmlDialogEnd",
@@ -236,8 +223,6 @@
       "visual" : {
         "at" : { "x" : 256, "y" : 416 }
       },
-      "connect" : [
-        { "id" : "f21", "to" : "f18" }
-      ]
+      "connect" : { "id" : "f21", "to" : "f18" }
     } ]
 }

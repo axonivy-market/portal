@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "15306A682D565719",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,15 +10,13 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "signature" : "start",
+        "callSignature" : "start",
         "guid" : "168031B841CA9289"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 96 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -30,11 +28,11 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "openDetails(iCase)",
       "config" : {
-        "signature" : "openDetails",
+        "callSignature" : "openDetails",
         "input" : {
           "params" : [
-            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
-            { "name" : "inFrame", "type" : "Boolean", "desc" : "" }
+            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "inFrame", "type" : "Boolean" }
           ],
           "map" : {
             "out.iCase" : "param.iCase",
@@ -47,9 +45,7 @@
         "at" : { "x" : 96, "y" : 192 },
         "labelOffset" : { "x" : 37, "y" : 35 }
       },
-      "connect" : [
-        { "id" : "f7", "to" : "f4" }
-      ]
+      "connect" : { "id" : "f7", "to" : "f4" }
     }, {
       "id" : "f5",
       "type" : "SubProcessCall",
@@ -57,6 +53,10 @@
       "config" : {
         "processCall" : "Functional Processes/OpenPortalCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean)",
         "call" : {
+          "params" : [
+            { "name" : "caseData", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "isShowBackButton", "type" : "Boolean" }
+          ],
           "map" : {
             "param.caseData" : "in.iCase",
             "param.isShowBackButton" : "true"
@@ -84,6 +84,10 @@
       "config" : {
         "processCall" : "Functional Processes/OpenPortalCaseDetailsHook:callForIFrame(ch.ivyteam.ivy.workflow.ICase,Boolean)",
         "call" : {
+          "params" : [
+            { "name" : "caseData", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "isShowBackButton", "type" : "Boolean" }
+          ],
           "map" : {
             "param.caseData" : "in.iCase",
             "param.isShowBackButton" : "true"

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "161936E158EBC57F",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "call(String)",
       "config" : {
-        "signature" : "call",
+        "callSignature" : "call",
         "input" : {
           "params" : [
-            { "name" : "businessEntityId", "type" : "String", "desc" : "" }
+            { "name" : "businessEntityId", "type" : "String" }
           ],
           "map" : {
             "out.caseBusinessEntity" : "param.businessEntityId"
@@ -23,9 +23,7 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f4", "to" : "f3" }
-      ]
+      "connect" : { "id" : "f4", "to" : "f3" }
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -37,6 +35,7 @@
       "type" : "Script",
       "name" : "Set case business entity to case",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.enums.AdditionalProperty;",
@@ -44,15 +43,12 @@
             "",
             "ivy.case.getBusinessCase().customFields().textField(AdditionalProperty.CASE_BUSINESS_ENTITY_PROPERTY.toString()).set(in.caseBusinessEntity);"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 264, "y" : 64 },
         "size" : { "width" : 192, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     } ]
 }

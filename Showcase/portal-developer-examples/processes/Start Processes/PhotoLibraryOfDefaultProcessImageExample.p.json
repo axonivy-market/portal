@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "179D499523153784",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.Data"
@@ -28,9 +28,7 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f4", "to" : "f3" }
-      ]
+      "connect" : { "id" : "f4", "to" : "f3" }
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -42,15 +40,14 @@
       "type" : "DialogCall",
       "name" : "PhotoLibraryOfDefaultProcessImageExample",
       "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.showcase.PhotoLibraryOfDefaultProcessImageExample:start()"
+        "dialogId" : "com.axonivy.portal.developerexamples.showcase.PhotoLibraryOfDefaultProcessImageExample",
+        "startMethod" : "start()"
       },
       "visual" : {
         "at" : { "x" : 296, "y" : 64 },
         "size" : { "width" : 256, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f6", "to" : "f5" }
-      ]
+      "connect" : { "id" : "f6", "to" : "f5" }
     }, {
       "id" : "f5",
       "type" : "TaskSwitchEvent",
@@ -63,8 +60,6 @@
       "visual" : {
         "at" : { "x" : 528, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     } ]
 }

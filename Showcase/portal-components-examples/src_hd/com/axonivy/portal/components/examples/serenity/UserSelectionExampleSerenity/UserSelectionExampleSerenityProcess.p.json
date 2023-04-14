@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "1825C575D08BF214",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -37,9 +37,7 @@
         "at" : { "x" : 96, "y" : 256 },
         "labelOffset" : { "x" : 19, "y" : 35 }
       },
-      "connect" : [
-        { "id" : "f10", "to" : "f9" }
-      ]
+      "connect" : { "id" : "f10", "to" : "f9" }
     }, {
       "id" : "f3",
       "type" : "HtmlDialogEventStart",
@@ -50,18 +48,16 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }
       },
-      "connect" : [
-        { "id" : "f5", "to" : "f4" }
-      ]
+      "connect" : { "id" : "f5", "to" : "f4" }
     }, {
       "id" : "f0",
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "signature" : "start",
+        "callSignature" : "start",
         "result" : {
           "params" : [
-            { "name" : "selectedUser", "type" : "com.axonivy.portal.components.dto.UserDTO", "desc" : "" }
+            { "name" : "selectedUser", "type" : "com.axonivy.portal.components.dto.UserDTO" }
           ],
           "map" : {
             "result.selectedUser" : "in.selectedUser"
@@ -72,9 +68,7 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f7", "to" : "f6" }
-      ]
+      "connect" : { "id" : "f7", "to" : "f6" }
     }, {
       "id" : "f9",
       "type" : "HtmlDialogEnd",
@@ -86,6 +80,7 @@
       "type" : "Script",
       "name" : "Init data",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.user.NewUser;",
@@ -110,14 +105,11 @@
             "in.selectedUserForReadOnlyField = new UserDTO(backendDev1);",
             "in.excludedUsernames = Arrays.asList(\"supporter\", \"tester\");"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     } ]
 }

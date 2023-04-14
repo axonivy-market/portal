@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "164B1B767672DF33",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,15 +10,13 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "signature" : "start",
+        "callSignature" : "start",
         "guid" : "164B1B76780607CC"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -36,9 +34,7 @@
         "at" : { "x" : 96, "y" : 160 },
         "labelOffset" : { "x" : 8, "y" : 32 }
       },
-      "connect" : [
-        { "id" : "f5", "to" : "f4" }
-      ]
+      "connect" : { "id" : "f5", "to" : "f4" }
     }, {
       "id" : "f4",
       "type" : "HtmlDialogExit",
@@ -60,19 +56,17 @@
       "visual" : {
         "at" : { "x" : 320, "y" : 224 }
       },
-      "connect" : [
-        { "id" : "f39", "to" : "f36" }
-      ]
+      "connect" : { "id" : "f39", "to" : "f36" }
     }, {
       "id" : "f15",
       "type" : "HtmlDialogMethodStart",
       "name" : "sort(CaseSortedField,Boolean)",
       "config" : {
-        "signature" : "sort",
+        "callSignature" : "sort",
         "input" : {
           "params" : [
-            { "name" : "sortedField", "type" : "String", "desc" : "" },
-            { "name" : "isSortingDescending", "type" : "Boolean", "desc" : "" }
+            { "name" : "sortedField", "type" : "String" },
+            { "name" : "isSortingDescending", "type" : "Boolean" }
           ],
           "map" : {
             "out.isSortingDescending" : "param.isSortingDescending",
@@ -85,9 +79,7 @@
         "at" : { "x" : 96, "y" : 224 },
         "labelOffset" : { "x" : 107, "y" : 20 }
       },
-      "connect" : [
-        { "id" : "f38", "to" : "f35" }
-      ]
+      "connect" : { "id" : "f38", "to" : "f35" }
     }, {
       "id" : "f36",
       "type" : "HtmlDialogEnd",

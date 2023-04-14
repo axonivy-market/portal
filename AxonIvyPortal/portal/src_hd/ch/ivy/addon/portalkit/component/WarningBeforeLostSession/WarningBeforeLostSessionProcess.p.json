@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "15F80B73A255C137",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,15 +10,13 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "signature" : "start",
+        "callSignature" : "start",
         "guid" : "15F80B73AFE43AE4"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -36,9 +34,7 @@
         "at" : { "x" : 96, "y" : 160 },
         "labelOffset" : { "x" : 8, "y" : 32 }
       },
-      "connect" : [
-        { "id" : "f5", "to" : "f4" }
-      ]
+      "connect" : { "id" : "f5", "to" : "f4" }
     }, {
       "id" : "f4",
       "type" : "HtmlDialogExit",
@@ -50,10 +46,10 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "logout(ITask)",
       "config" : {
-        "signature" : "logout",
+        "callSignature" : "logout",
         "input" : {
           "params" : [
-            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
           ],
           "map" : {
             "out.task" : "param.task"
@@ -65,9 +61,7 @@
         "at" : { "x" : 96, "y" : 256 },
         "labelOffset" : { "x" : 23, "y" : 35 }
       },
-      "connect" : [
-        { "id" : "f10", "to" : "f9" }
-      ]
+      "connect" : { "id" : "f10", "to" : "f9" }
     }, {
       "id" : "f7",
       "type" : "HtmlDialogEnd",
@@ -81,6 +75,10 @@
       "config" : {
         "processCall" : "Functional Processes/Logout:call(Boolean,ch.ivyteam.ivy.workflow.ITask)",
         "call" : {
+          "params" : [
+            { "name" : "isTaskReserve", "type" : "Boolean" },
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
+          ],
           "map" : {
             "param.isTaskReserve" : "false",
             "param.task" : "in.task"
@@ -90,23 +88,19 @@
       "visual" : {
         "at" : { "x" : 232, "y" : 256 }
       },
-      "connect" : [
-        { "id" : "f8", "to" : "f7" }
-      ]
+      "connect" : { "id" : "f8", "to" : "f7" }
     }, {
       "id" : "f11",
       "type" : "HtmlDialogMethodStart",
       "name" : "extendSession()",
       "config" : {
-        "signature" : "extendSession",
+        "callSignature" : "extendSession",
         "guid" : "15F94574C89A91BA"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 384 }
       },
-      "connect" : [
-        { "id" : "f13", "to" : "f12" }
-      ]
+      "connect" : { "id" : "f13", "to" : "f12" }
     }, {
       "id" : "f12",
       "type" : "HtmlDialogEnd",

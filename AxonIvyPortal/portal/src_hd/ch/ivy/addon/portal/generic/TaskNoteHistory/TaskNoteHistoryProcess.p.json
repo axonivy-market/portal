@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "160451A075522446",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,12 +10,12 @@
       "type" : "HtmlDialogStart",
       "name" : "start(List<INote>,String,ITask)",
       "config" : {
-        "signature" : "start",
+        "callSignature" : "start",
         "input" : {
           "params" : [
-            { "name" : "notes", "type" : "java.util.List<ch.ivyteam.ivy.workflow.INote>", "desc" : "" },
-            { "name" : "exportedFileName", "type" : "String", "desc" : "" },
-            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
+            { "name" : "notes", "type" : "java.util.List<ch.ivyteam.ivy.workflow.INote>" },
+            { "name" : "exportedFileName", "type" : "String" },
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
           ],
           "map" : {
             "out.exportedFileName" : "param.exportedFileName",
@@ -30,9 +30,7 @@
         "at" : { "x" : 96, "y" : 64 },
         "labelOffset" : { "x" : 37, "y" : 35 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",

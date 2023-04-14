@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "16EE8CACE2CB2C75",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,15 +10,13 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "signature" : "start",
+        "callSignature" : "start",
         "guid" : "16EE8CACE694620C"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -42,9 +40,7 @@
         "at" : { "x" : 96, "y" : 656 },
         "labelOffset" : { "x" : 13, "y" : 35 }
       },
-      "connect" : [
-        { "id" : "f110", "to" : "f107" }
-      ]
+      "connect" : { "id" : "f110", "to" : "f107" }
     }, {
       "id" : "f90",
       "type" : "HtmlDialogEnd",
@@ -62,38 +58,43 @@
       "type" : "Script",
       "name" : "Reset task",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.util.TaskUtils;",
             "",
             "TaskUtils.resetTask(in.task);"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 240, "y" : 528 }
       },
-      "connect" : [
-        { "id" : "f99", "to" : "f80" }
-      ]
+      "connect" : { "id" : "f99", "to" : "f80" }
     }, {
       "id" : "f86",
       "type" : "SubProcessCall",
       "name" : "SecurityService - Find Users",
       "config" : {
         "processCall" : "Ivy Data Processes/SecurityService:findUsers(String,Integer,Integer,java.util.List<String>,java.util.List<String>)",
-        "call" : {
-          "map" : {
-            "param.query" : "in.queryAutoComplete",
-            "param.startIndex" : "0",
-            "param.count" : "101"
-          }
-        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.usersToDelegate" : "result.users"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "query", "type" : "String" },
+            { "name" : "startIndex", "type" : "Integer" },
+            { "name" : "count", "type" : "Integer" },
+            { "name" : "fromRoles", "type" : "java.util.List<String>" },
+            { "name" : "excludedUsernames", "type" : "java.util.List<String>" }
+          ],
+          "map" : {
+            "param.query" : "in.queryAutoComplete",
+            "param.startIndex" : "0",
+            "param.count" : "101"
           }
         }
       },
@@ -101,29 +102,27 @@
         "at" : { "x" : 336, "y" : 432 },
         "size" : { "width" : 160, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f10", "to" : "f9" }
-      ]
+      "connect" : { "id" : "f10", "to" : "f9" }
     }, {
       "id" : "f73",
       "type" : "HtmlDialogMethodStart",
       "name" : "autoCompleteForUserDelegate(String)",
       "config" : {
-        "signature" : "autoCompleteForUserDelegate",
-        "input" : {
-          "params" : [
-            { "name" : "query", "type" : "String", "desc" : "" }
-          ],
-          "map" : {
-            "out.queryAutoComplete" : "param.query"
-          }
-        },
+        "callSignature" : "autoCompleteForUserDelegate",
         "result" : {
           "params" : [
-            { "name" : "usersToDelegate", "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>", "desc" : "" }
+            { "name" : "usersToDelegate", "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>" }
           ],
           "map" : {
             "result.usersToDelegate" : "in.usersToDelegate"
+          }
+        },
+        "input" : {
+          "params" : [
+            { "name" : "query", "type" : "String" }
+          ],
+          "map" : {
+            "out.queryAutoComplete" : "param.query"
           }
         },
         "guid" : "16EE8CC091943071"
@@ -132,14 +131,13 @@
         "at" : { "x" : 96, "y" : 432 },
         "labelOffset" : { "x" : 62, "y" : 32 }
       },
-      "connect" : [
-        { "id" : "f6", "to" : "f86" }
-      ]
+      "connect" : { "id" : "f6", "to" : "f86" }
     }, {
       "id" : "f80",
       "type" : "Script",
       "name" : "Create note",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.util.SecurityMemberUtils;",
@@ -163,21 +161,19 @@
             "",
             "in.taskDelegationComment = \"\";"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 392, "y" : 528 },
         "size" : { "width" : 112, "height" : 48 }
       },
-      "connect" : [
-        { "id" : "f100", "to" : "f92" }
-      ]
+      "connect" : { "id" : "f100", "to" : "f92" }
     }, {
       "id" : "f87",
       "type" : "Script",
       "name" : "Init data",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "in.disabledDelegateButton = true;",
@@ -187,15 +183,12 @@
             "in.selectedRole = null;",
             "in.selectedUser = null;"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 360, "y" : 168 }
       },
-      "connect" : [
-        { "id" : "f13", "to" : "f12" }
-      ]
+      "connect" : { "id" : "f13", "to" : "f12" }
     }, {
       "id" : "f106",
       "type" : "HtmlDialogEnd",
@@ -223,47 +216,42 @@
         "at" : { "x" : 224, "y" : 656 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f109", "to" : "f106" }
-      ]
+      "connect" : { "id" : "f109", "to" : "f106" }
     }, {
       "id" : "f71",
       "type" : "HtmlDialogMethodStart",
       "name" : "delegateTask()",
       "config" : {
-        "signature" : "delegateTask",
+        "callSignature" : "delegateTask",
         "guid" : "16EE8CC091941043"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 528 }
       },
-      "connect" : [
-        { "id" : "f102", "to" : "f93" }
-      ]
+      "connect" : { "id" : "f102", "to" : "f93" }
     }, {
       "id" : "f74",
       "type" : "HtmlDialogMethodStart",
       "name" : "autoCompleteForRoleDelegate(String)",
       "config" : {
-        "signature" : "autoCompleteForRoleDelegate",
-        "input" : {
-          "params" : [
-            { "name" : "query", "type" : "String", "desc" : "" }
-          ],
-          "map" : {
-            "out.queryAutoComplete" : "param.query"
-          }
-        },
+        "callSignature" : "autoCompleteForRoleDelegate",
         "result" : {
           "params" : [
-            { "name" : "rolesToDelegate", "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>", "desc" : "" }
+            { "name" : "rolesToDelegate", "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>" }
           ],
-          "map" : { },
           "code" : [
             "import ch.ivy.addon.portalkit.util.RoleUtils;",
             "",
             "result.rolesToDelegate = RoleUtils.filterRoleDTO(in.rolesToDelegate, in.queryAutoComplete);"
           ]
+        },
+        "input" : {
+          "params" : [
+            { "name" : "query", "type" : "String" }
+          ],
+          "map" : {
+            "out.queryAutoComplete" : "param.query"
+          }
         },
         "guid" : "16EE8CC09192B441"
       },
@@ -271,28 +259,32 @@
         "at" : { "x" : 96, "y" : 336 },
         "labelOffset" : { "x" : 58, "y" : 33 }
       },
-      "connect" : [
-        { "id" : "f101", "to" : "f66" }
-      ]
+      "connect" : { "id" : "f101", "to" : "f66" }
     }, {
       "id" : "f81",
       "type" : "SubProcessCall",
       "name" : "CalculateTaskDelegate",
       "config" : {
         "processCall" : "Functional Processes/CalculateTaskDelegate:call(java.util.List<com.axonivy.portal.components.dto.RoleDTO>,java.util.List<com.axonivy.portal.components.dto.UserDTO>,com.axonivy.portal.components.dto.SecurityMemberDTO,ch.ivyteam.ivy.workflow.ITask)",
-        "call" : {
-          "map" : {
-            "param.roles" : "in.rolesToDelegate",
-            "param.users" : "in.usersToDelegate",
-            "param.currentUser" : "ch.ivy.addon.portalkit.util.SecurityMemberUtils.getCurrentSessionUserAsSecurityMemberDTO()",
-            "param.task" : "in.task"
-          }
-        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.rolesToDelegate" : "result.roles",
             "out.usersToDelegate" : "result.users"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "roles", "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>" },
+            { "name" : "users", "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>" },
+            { "name" : "currentUser", "type" : "com.axonivy.portal.components.dto.SecurityMemberDTO" },
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
+          ],
+          "map" : {
+            "param.roles" : "in.rolesToDelegate",
+            "param.users" : "in.usersToDelegate",
+            "param.currentUser" : "ch.ivy.addon.portalkit.util.SecurityMemberUtils.getCurrentSessionUserAsSecurityMemberDTO()",
+            "param.task" : "in.task"
           }
         }
       },
@@ -300,29 +292,25 @@
         "at" : { "x" : 1000, "y" : 168 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f98", "to" : "f89" }
-      ]
+      "connect" : { "id" : "f98", "to" : "f89" }
     }, {
       "id" : "f92",
       "type" : "Script",
       "name" : "Delegate task",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.util.TaskUtils;",
             "",
             "TaskUtils.delegateTask(in.task, in.delegatedSecurityMember);"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 544, "y" : 528 }
       },
-      "connect" : [
-        { "id" : "f103", "to" : "f77" }
-      ]
+      "connect" : { "id" : "f103", "to" : "f77" }
     }, {
       "id" : "f76",
       "type" : "Script",
@@ -336,9 +324,7 @@
         "at" : { "x" : 552, "y" : 264 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f95", "to" : "f90", "via" : [ { "x" : 1352, "y" : 264 } ] }
-      ]
+      "connect" : { "id" : "f95", "to" : "f90", "via" : [ { "x" : 1352, "y" : 264 } ] }
     }, {
       "id" : "f88",
       "type" : "Alternative",
@@ -354,11 +340,11 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "initDataToDelegate(Long,ITask)",
       "config" : {
-        "signature" : "initDataToDelegate",
+        "callSignature" : "initDataToDelegate",
         "input" : {
           "params" : [
-            { "name" : "taskId", "type" : "Long", "desc" : "" },
-            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
+            { "name" : "taskId", "type" : "Long" },
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
           ],
           "map" : {
             "out.task" : "param.task"
@@ -376,9 +362,7 @@
         "at" : { "x" : 96, "y" : 168 },
         "labelOffset" : { "x" : 23, "y" : 35 }
       },
-      "connect" : [
-        { "id" : "f14", "to" : "f88" }
-      ]
+      "connect" : { "id" : "f14", "to" : "f88" }
     }, {
       "id" : "f89",
       "type" : "Script",
@@ -407,9 +391,7 @@
       "visual" : {
         "at" : { "x" : 1224, "y" : 168 }
       },
-      "connect" : [
-        { "id" : "f97", "to" : "f90" }
-      ]
+      "connect" : { "id" : "f97", "to" : "f90" }
     }, {
       "id" : "f69",
       "type" : "HtmlDialogEnd",
@@ -421,17 +403,15 @@
       "type" : "Script",
       "name" : "Add note",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : "in.task.getCase().createNote(ivy.session, in.delegateComment);"
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 704, "y" : 528 }
       },
-      "connect" : [
-        { "id" : "f105", "to" : "f79" }
-      ]
+      "connect" : { "id" : "f105", "to" : "f79" }
     }, {
       "id" : "f5",
       "type" : "SubProcessCall",
@@ -449,27 +429,31 @@
         "at" : { "x" : 784, "y" : 168 },
         "size" : { "width" : 160, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f7", "to" : "f81" }
-      ]
+      "connect" : { "id" : "f7", "to" : "f81" }
     }, {
       "id" : "f9",
       "type" : "SubProcessCall",
       "name" : "CalculateTaskDelegate",
       "config" : {
         "processCall" : "Functional Processes/CalculateTaskDelegate:call(java.util.List<com.axonivy.portal.components.dto.RoleDTO>,java.util.List<com.axonivy.portal.components.dto.UserDTO>,com.axonivy.portal.components.dto.SecurityMemberDTO,ch.ivyteam.ivy.workflow.ITask)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.usersToDelegate" : "result.users"
+          }
+        },
         "call" : {
+          "params" : [
+            { "name" : "roles", "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>" },
+            { "name" : "users", "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>" },
+            { "name" : "currentUser", "type" : "com.axonivy.portal.components.dto.SecurityMemberDTO" },
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
+          ],
           "map" : {
             "param.roles" : "in.rolesToDelegate",
             "param.users" : "in.usersToDelegate",
             "param.currentUser" : "ch.ivy.addon.portalkit.util.SecurityMemberUtils.getCurrentSessionUserAsSecurityMemberDTO()",
             "param.task" : "in.task"
-          }
-        },
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.usersToDelegate" : "result.users"
           }
         }
       },
@@ -477,26 +461,31 @@
         "at" : { "x" : 536, "y" : 432 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f11", "to" : "f69" }
-      ]
+      "connect" : { "id" : "f11", "to" : "f69" }
     }, {
       "id" : "f12",
       "type" : "SubProcessCall",
       "name" : "SecurityService - Find Users",
       "config" : {
         "processCall" : "Ivy Data Processes/SecurityService:findUsers(String,Integer,Integer,java.util.List<String>,java.util.List<String>)",
-        "call" : {
-          "map" : {
-            "param.query" : "\"\"",
-            "param.startIndex" : "0",
-            "param.count" : "101"
-          }
-        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.usersToDelegate" : "result.users"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "query", "type" : "String" },
+            { "name" : "startIndex", "type" : "Integer" },
+            { "name" : "count", "type" : "Integer" },
+            { "name" : "fromRoles", "type" : "java.util.List<String>" },
+            { "name" : "excludedUsernames", "type" : "java.util.List<String>" }
+          ],
+          "map" : {
+            "param.query" : "\"\"",
+            "param.startIndex" : "0",
+            "param.count" : "101"
           }
         }
       },
@@ -504,8 +493,6 @@
         "at" : { "x" : 552, "y" : 168 },
         "size" : { "width" : 160, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f8", "to" : "f5" }
-      ]
+      "connect" : { "id" : "f8", "to" : "f5" }
     } ]
 }

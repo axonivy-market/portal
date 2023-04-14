@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "1633E7FE0C8BCFA6",
   "config" : {
     "data" : "ch.ivy.add.portalkit.Data"
@@ -14,9 +14,7 @@
       "visual" : {
         "at" : { "x" : 160, "y" : 160 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f1",
       "type" : "TaskEnd",

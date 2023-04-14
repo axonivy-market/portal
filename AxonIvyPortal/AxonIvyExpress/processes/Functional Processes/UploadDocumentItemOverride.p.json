@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.16/schema.json",
+  "format" : "10.0.0",
   "id" : "16B267B1A01CFA7E",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -13,14 +13,14 @@
         "Boolean,Boolean,String)"
       ],
       "config" : {
-        "signature" : "call",
+        "callSignature" : "call",
         "input" : {
           "params" : [
-            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
-            { "name" : "uploadedFile", "type" : "org.primefaces.model.file.UploadedFile", "desc" : "" },
-            { "name" : "enableScriptCheckingForUploadedDocument", "type" : "Boolean", "desc" : "" },
-            { "name" : "enableVirusScannerForUploadedDocument", "type" : "Boolean", "desc" : "" },
-            { "name" : "allowedUploadFileTypes", "type" : "String", "desc" : "" }
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "uploadedFile", "type" : "org.primefaces.model.file.UploadedFile" },
+            { "name" : "enableScriptCheckingForUploadedDocument", "type" : "Boolean" },
+            { "name" : "enableVirusScannerForUploadedDocument", "type" : "Boolean" },
+            { "name" : "allowedUploadFileTypes", "type" : "String" }
           ],
           "map" : {
             "out.allowedUploadFileTypes" : "param.allowedUploadFileTypes",
@@ -32,9 +32,9 @@
         },
         "result" : {
           "params" : [
-            { "name" : "uploadedDocument", "type" : "ch.ivyteam.ivy.workflow.document.IDocument", "desc" : "" },
-            { "name" : "message", "type" : "String", "desc" : "" },
-            { "name" : "status", "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus", "desc" : "" }
+            { "name" : "uploadedDocument", "type" : "ch.ivyteam.ivy.workflow.document.IDocument" },
+            { "name" : "message", "type" : "String" },
+            { "name" : "status", "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus" }
           ],
           "map" : {
             "result.uploadedDocument" : "in.uploadedDocument",
@@ -47,9 +47,7 @@
         "at" : { "x" : 96, "y" : 128 },
         "labelOffset" : { "x" : -52, "y" : -26 }
       },
-      "connect" : [
-        { "id" : "f1", "to" : "f17" }
-      ]
+      "connect" : { "id" : "f1", "to" : "f17" }
     }, {
       "id" : "f8",
       "type" : "Alternative",
@@ -84,6 +82,7 @@
       "type" : "Script",
       "name" : "Upload document",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
@@ -101,15 +100,12 @@
             "  out.status = UploadDocumentCheckStatus.FAIL;",
             "}"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 1088, "y" : 128 }
       },
-      "connect" : [
-        { "id" : "f22", "to" : "f16" }
-      ]
+      "connect" : { "id" : "f22", "to" : "f16" }
     }, {
       "id" : "f11",
       "type" : "Alternative",
@@ -140,6 +136,7 @@
       "type" : "Script",
       "name" : "Check exist",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
@@ -155,15 +152,12 @@
             "  in.status = UploadDocumentCheckStatus.FAIL;",
             "}"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 816, "y" : 128 }
       },
-      "connect" : [
-        { "id" : "f20", "to" : "f11" }
-      ]
+      "connect" : { "id" : "f20", "to" : "f11" }
     }, {
       "id" : "f14",
       "type" : "Alternative",
@@ -220,25 +214,26 @@
       "visual" : {
         "at" : { "x" : 280, "y" : 128 }
       },
-      "connect" : [
-        { "id" : "f28", "to" : "f9" }
-      ]
+      "connect" : { "id" : "f28", "to" : "f9" }
     }, {
       "id" : "f18",
       "type" : "SubProcessCall",
       "name" : "UploadDocumentChecker",
       "config" : {
         "processCall" : "Functional Processes/UploadDocumentChecker:call(org.primefaces.model.file.UploadedFile)",
-        "call" : {
-          "map" : {
-            "param.uploadFile" : "in.uploadedFile"
-          }
-        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.message" : "result.message",
             "out.status" : "result.uploadDocumentCheckStatus"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "uploadFile", "type" : "org.primefaces.model.file.UploadedFile" }
+          ],
+          "map" : {
+            "param.uploadFile" : "in.uploadedFile"
           }
         }
       },
@@ -246,8 +241,6 @@
         "at" : { "x" : 544, "y" : 128 },
         "size" : { "width" : 160, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f23", "to" : "f14" }
-      ]
+      "connect" : { "id" : "f23", "to" : "f14" }
     } ]
 }
