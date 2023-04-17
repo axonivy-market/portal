@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "1703222D60B87C28",
   "config" : {
     "data" : "com.axonivy.portal.userexamples.Data"
@@ -9,22 +9,25 @@
       "type" : "RequestStart",
       "name" : "start.ivp",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
+        "request" : {
+          "name" : "Check Company Register",
+          "isVisibleOnStartList" : false
+        },
+        "triggerable" : true,
         "task" : {
           "name" : "System task : <%=ivy.cms.co(\"/Processes/CaseMap/checkCompanyRegister\")%>",
           "responsible" : {
-            "role" : "SYSTEM"
+            "activator" : "SYSTEM"
           }
-        },
-        "showInStartList" : false,
-        "outLink" : "start.ivp",
-        "triggerEnabled" : true,
-        "startName" : "Check Company Register"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f3" }
+      "connect" : [
+        { "id" : "f2", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -43,6 +46,8 @@
       "visual" : {
         "at" : { "x" : 273, "y" : 64 }
       },
-      "connect" : { "id" : "f4", "to" : "f1" }
+      "connect" : [
+        { "id" : "f4", "to" : "f1" }
+      ]
     } ]
 }

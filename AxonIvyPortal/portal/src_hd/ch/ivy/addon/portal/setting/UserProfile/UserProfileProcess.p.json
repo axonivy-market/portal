@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "172546E1FDEB1FF7",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -25,7 +25,9 @@
           "visual" : {
             "at" : { "x" : 192, "y" : 160 }
           },
-          "connect" : { "id" : "S90-f1", "to" : "S90-g1" }
+          "connect" : [
+            { "id" : "S90-f1", "to" : "S90-g1" }
+          ]
         }, {
           "id" : "S90-g0",
           "type" : "EmbeddedStart",
@@ -35,7 +37,9 @@
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f18",
-          "connect" : { "id" : "S90-f0", "to" : "S90-f17" }
+          "connect" : [
+            { "id" : "S90-f0", "to" : "S90-f17" }
+          ]
         }, {
           "id" : "S90-g1",
           "type" : "EmbeddedEnd",
@@ -49,7 +53,9 @@
       "visual" : {
         "at" : { "x" : 824, "y" : 280 }
       },
-      "connect" : { "id" : "f9", "to" : "S00" }
+      "connect" : [
+        { "id" : "f9", "to" : "S00" }
+      ]
     }, {
       "id" : "S80",
       "type" : "EmbeddedProcess",
@@ -69,7 +75,9 @@
           "visual" : {
             "at" : { "x" : 192, "y" : 160 }
           },
-          "connect" : { "id" : "S80-f1", "to" : "S80-g1" }
+          "connect" : [
+            { "id" : "S80-f1", "to" : "S80-g1" }
+          ]
         }, {
           "id" : "S80-g0",
           "type" : "EmbeddedStart",
@@ -79,7 +87,9 @@
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f5",
-          "connect" : { "id" : "S80-f0", "to" : "S80-f27" }
+          "connect" : [
+            { "id" : "S80-f0", "to" : "S80-f27" }
+          ]
         }, {
           "id" : "S80-g1",
           "type" : "EmbeddedEnd",
@@ -93,7 +103,9 @@
       "visual" : {
         "at" : { "x" : 664, "y" : 280 }
       },
-      "connect" : { "id" : "f18", "to" : "S90" }
+      "connect" : [
+        { "id" : "f18", "to" : "S90" }
+      ]
     }, {
       "id" : "S70",
       "type" : "EmbeddedProcess",
@@ -106,7 +118,6 @@
             "and selected homepage"
           ],
           "config" : {
-            "security" : "system",
             "output" : {
               "code" : [
                 "import ch.ivy.addon.portal.generic.bean.UserProfileBean;",
@@ -119,13 +130,16 @@
                 "UserProfileBean userProfileBean =  ManagedBeans.get(\"userProfileBean\") as UserProfileBean;",
                 "userProfileBean.saveHomepage(in.selectedHomepage.getName());"
               ]
-            }
+            },
+            "sudo" : true
           },
           "visual" : {
             "at" : { "x" : 216, "y" : 160 },
             "size" : { "width" : 160, "height" : 60 }
           },
-          "connect" : { "id" : "S70-f1", "to" : "S70-g1" }
+          "connect" : [
+            { "id" : "S70-f1", "to" : "S70-g1" }
+          ]
         }, {
           "id" : "S70-g0",
           "type" : "EmbeddedStart",
@@ -135,7 +149,9 @@
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f11",
-          "connect" : { "id" : "S70-f0", "to" : "S70-f28" }
+          "connect" : [
+            { "id" : "S70-f0", "to" : "S70-f28" }
+          ]
         }, {
           "id" : "S70-g1",
           "type" : "EmbeddedEnd",
@@ -150,7 +166,9 @@
         "at" : { "x" : 512, "y" : 280 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f5", "to" : "S80" }
+      "connect" : [
+        { "id" : "f5", "to" : "S80" }
+      ]
     }, {
       "id" : "S60",
       "type" : "EmbeddedProcess",
@@ -196,7 +214,9 @@
             "at" : { "x" : 200, "y" : 160 },
             "size" : { "width" : 128, "height" : 60 }
           },
-          "connect" : { "id" : "S60-f1", "to" : "S60-g1" }
+          "connect" : [
+            { "id" : "S60-f1", "to" : "S60-g1" }
+          ]
         }, {
           "id" : "S60-g0",
           "type" : "EmbeddedStart",
@@ -206,7 +226,9 @@
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f20",
-          "connect" : { "id" : "S60-f0", "to" : "S60-f11" }
+          "connect" : [
+            { "id" : "S60-f0", "to" : "S60-f11" }
+          ]
         }, {
           "id" : "S60-g1",
           "type" : "EmbeddedEnd",
@@ -220,7 +242,9 @@
       "visual" : {
         "at" : { "x" : 976, "y" : 144 }
       },
-      "connect" : { "id" : "f26", "to" : "f8" }
+      "connect" : [
+        { "id" : "f26", "to" : "f8" }
+      ]
     }, {
       "id" : "S50",
       "type" : "EmbeddedProcess",
@@ -251,7 +275,9 @@
           "visual" : {
             "at" : { "x" : 192, "y" : 160 }
           },
-          "connect" : { "id" : "S50-f1", "to" : "S50-g1" }
+          "connect" : [
+            { "id" : "S50-f1", "to" : "S50-g1" }
+          ]
         }, {
           "id" : "S50-g0",
           "type" : "EmbeddedStart",
@@ -261,7 +287,9 @@
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f4",
-          "connect" : { "id" : "S50-f0", "to" : "S50-f25" }
+          "connect" : [
+            { "id" : "S50-f0", "to" : "S50-f25" }
+          ]
         }, {
           "id" : "S50-g1",
           "type" : "EmbeddedEnd",
@@ -276,7 +304,9 @@
         "at" : { "x" : 664, "y" : 144 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f10", "to" : "S20" }
+      "connect" : [
+        { "id" : "f10", "to" : "S20" }
+      ]
     }, {
       "id" : "S20",
       "type" : "EmbeddedProcess",
@@ -318,7 +348,9 @@
           "visual" : {
             "at" : { "x" : 192, "y" : 160 }
           },
-          "connect" : { "id" : "S20-f23", "to" : "S20-f20" }
+          "connect" : [
+            { "id" : "S20-f23", "to" : "S20-f20" }
+          ]
         }, {
           "id" : "S20-f20",
           "type" : "Script",
@@ -371,7 +403,9 @@
           "visual" : {
             "at" : { "x" : 352, "y" : 160 }
           },
-          "connect" : { "id" : "S20-f1", "to" : "S20-g1" }
+          "connect" : [
+            { "id" : "S20-f1", "to" : "S20-g1" }
+          ]
         }, {
           "id" : "S20-g0",
           "type" : "EmbeddedStart",
@@ -381,7 +415,9 @@
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f10",
-          "connect" : { "id" : "S20-f0", "to" : "S20-f10" }
+          "connect" : [
+            { "id" : "S20-f0", "to" : "S20-f10" }
+          ]
         }, {
           "id" : "S20-g1",
           "type" : "EmbeddedEnd",
@@ -395,7 +431,9 @@
       "visual" : {
         "at" : { "x" : 824, "y" : 144 }
       },
-      "connect" : { "id" : "f20", "to" : "S60" }
+      "connect" : [
+        { "id" : "f20", "to" : "S60" }
+      ]
     }, {
       "id" : "S40",
       "type" : "EmbeddedProcess",
@@ -424,7 +462,9 @@
           "visual" : {
             "at" : { "x" : 232, "y" : 160 }
           },
-          "connect" : { "id" : "S40-f2", "to" : "S40-f4" }
+          "connect" : [
+            { "id" : "S40-f2", "to" : "S40-f4" }
+          ]
         }, {
           "id" : "S40-g0",
           "type" : "EmbeddedStart",
@@ -434,7 +474,9 @@
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f24",
-          "connect" : { "id" : "S40-f0", "to" : "S40-f11" }
+          "connect" : [
+            { "id" : "S40-f0", "to" : "S40-f11" }
+          ]
         }, {
           "id" : "S40-g1",
           "type" : "EmbeddedEnd",
@@ -466,12 +508,16 @@
           "visual" : {
             "at" : { "x" : 408, "y" : 160 }
           },
-          "connect" : { "id" : "S40-f1", "to" : "S40-g1" }
+          "connect" : [
+            { "id" : "S40-f1", "to" : "S40-g1" }
+          ]
         } ],
       "visual" : {
         "at" : { "x" : 504, "y" : 144 }
       },
-      "connect" : { "id" : "f4", "to" : "S50" }
+      "connect" : [
+        { "id" : "f4", "to" : "S50" }
+      ]
     }, {
       "id" : "S30",
       "type" : "EmbeddedProcess",
@@ -492,7 +538,9 @@
           "visual" : {
             "at" : { "x" : 192, "y" : 160 }
           },
-          "connect" : { "id" : "S30-f25", "to" : "S30-f9" }
+          "connect" : [
+            { "id" : "S30-f25", "to" : "S30-f9" }
+          ]
         }, {
           "id" : "S30-f9",
           "type" : "Script",
@@ -516,7 +564,9 @@
             "at" : { "x" : 344, "y" : 160 },
             "size" : { "width" : 128, "height" : 60 }
           },
-          "connect" : { "id" : "S30-f1", "to" : "S30-g1" }
+          "connect" : [
+            { "id" : "S30-f1", "to" : "S30-g1" }
+          ]
         }, {
           "id" : "S30-g0",
           "type" : "EmbeddedStart",
@@ -526,7 +576,9 @@
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f7",
-          "connect" : { "id" : "S30-f0", "to" : "S30-f11" }
+          "connect" : [
+            { "id" : "S30-f0", "to" : "S30-f11" }
+          ]
         }, {
           "id" : "S30-g1",
           "type" : "EmbeddedEnd",
@@ -540,7 +592,9 @@
       "visual" : {
         "at" : { "x" : 216, "y" : 144 }
       },
-      "connect" : { "id" : "f13", "to" : "f39" }
+      "connect" : [
+        { "id" : "f13", "to" : "f39" }
+      ]
     }, {
       "id" : "S10",
       "type" : "EmbeddedProcess",
@@ -552,9 +606,6 @@
           "config" : {
             "processCall" : "Ivy Data Processes/LanguageService:saveUserLanguage(ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage)",
             "call" : {
-              "params" : [
-                { "name" : "language", "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage" }
-              ],
               "map" : {
                 "param.language" : "in.language"
               }
@@ -563,7 +614,9 @@
           "visual" : {
             "at" : { "x" : 192, "y" : 160 }
           },
-          "connect" : { "id" : "S10-f31", "to" : "S10-f20" }
+          "connect" : [
+            { "id" : "S10-f31", "to" : "S10-f20" }
+          ]
         }, {
           "id" : "S10-f20",
           "type" : "Script",
@@ -580,7 +633,9 @@
           "visual" : {
             "at" : { "x" : 344, "y" : 160 }
           },
-          "connect" : { "id" : "S10-f1", "to" : "S10-g1" }
+          "connect" : [
+            { "id" : "S10-f1", "to" : "S10-g1" }
+          ]
         }, {
           "id" : "S10-g0",
           "type" : "EmbeddedStart",
@@ -590,7 +645,9 @@
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f35",
-          "connect" : { "id" : "S10-f0", "to" : "S10-f18" }
+          "connect" : [
+            { "id" : "S10-f0", "to" : "S10-f18" }
+          ]
         }, {
           "id" : "S10-g1",
           "type" : "EmbeddedEnd",
@@ -604,7 +661,9 @@
       "visual" : {
         "at" : { "x" : 216, "y" : 280 }
       },
-      "connect" : { "id" : "f36", "to" : "f45" }
+      "connect" : [
+        { "id" : "f36", "to" : "f45" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -622,27 +681,31 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "initSettings()",
       "config" : {
-        "callSignature" : "initSettings",
+        "signature" : "initSettings",
         "guid" : "17255599F044D2FD"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 144 },
         "labelOffset" : { "x" : 20, "y" : 37 }
       },
-      "connect" : { "id" : "f7", "to" : "S30" }
+      "connect" : [
+        { "id" : "f7", "to" : "S30" }
+      ]
     }, {
       "id" : "f19",
       "type" : "HtmlDialogMethodStart",
       "name" : "save()",
       "config" : {
-        "callSignature" : "save",
+        "signature" : "save",
         "guid" : "17255B3EA938571E"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 280 },
         "labelOffset" : { "x" : 9, "y" : 40 }
       },
-      "connect" : { "id" : "f35", "to" : "S10" }
+      "connect" : [
+        { "id" : "f35", "to" : "S10" }
+      ]
     }, {
       "id" : "f39",
       "type" : "SubProcessCall",
@@ -659,7 +722,9 @@
       "visual" : {
         "at" : { "x" : 360, "y" : 144 }
       },
-      "connect" : { "id" : "f24", "to" : "S40" }
+      "connect" : [
+        { "id" : "f24", "to" : "S40" }
+      ]
     }, {
       "id" : "f42",
       "type" : "HtmlDialogEnd",
@@ -673,9 +738,6 @@
       "config" : {
         "processCall" : "Ivy Data Processes/EmailSettingService:saveEmailSetting(ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting)",
         "call" : {
-          "params" : [
-            { "name" : "emailSetting", "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting" }
-          ],
           "map" : {
             "param.emailSetting" : "in.emailSetting"
           }
@@ -684,14 +746,17 @@
       "visual" : {
         "at" : { "x" : 360, "y" : 280 }
       },
-      "connect" : { "id" : "f11", "to" : "S70" }
+      "connect" : [
+        { "id" : "f11", "to" : "S70" }
+      ]
     }, {
       "id" : "f0",
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "input" : {
+          "map" : { },
           "code" : [
             "import ch.ivyteam.util.date.Weekday;",
             "out.dailySummaryList = [Weekday.MONDAY, Weekday.TUESDAY, Weekday.WEDNESDAY, Weekday.THURSDAY, Weekday.FRIDAY, Weekday.SATURDAY, Weekday.SUNDAY];"
@@ -702,7 +767,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f21",
       "type" : "HtmlDialogEnd",
@@ -714,14 +781,16 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "backToHome()",
       "config" : {
-        "callSignature" : "backToHome",
+        "signature" : "backToHome",
         "guid" : "1742004FD7E8D572"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 392 },
         "labelOffset" : { "x" : 24, "y" : 35 }
       },
-      "connect" : { "id" : "f15", "to" : "f14" }
+      "connect" : [
+        { "id" : "f15", "to" : "f14" }
+      ]
     }, {
       "id" : "f14",
       "type" : "Script",
@@ -738,7 +807,9 @@
       "visual" : {
         "at" : { "x" : 272, "y" : 392 }
       },
-      "connect" : { "id" : "f22", "to" : "f21" }
+      "connect" : [
+        { "id" : "f22", "to" : "f21" }
+      ]
     }, {
       "id" : "f6",
       "type" : "Script",
@@ -755,7 +826,9 @@
       "visual" : {
         "at" : { "x" : 1160, "y" : 280 }
       },
-      "connect" : { "id" : "f3", "to" : "f42" }
+      "connect" : [
+        { "id" : "f3", "to" : "f42" }
+      ]
     }, {
       "id" : "S00",
       "type" : "EmbeddedProcess",
@@ -767,7 +840,9 @@
             "at" : { "x" : 0, "y" : 256 }
           },
           "parentConnector" : "f9",
-          "connect" : { "id" : "S00-f2", "to" : "S00-f1" }
+          "connect" : [
+            { "id" : "S00-f2", "to" : "S00-f1" }
+          ]
         }, {
           "id" : "S00-g1",
           "type" : "EmbeddedEnd",
@@ -791,33 +866,37 @@
             "at" : { "x" : 288, "y" : 256 },
             "size" : { "width" : 128, "height" : 60 }
           },
-          "connect" : { "id" : "S00-f0", "to" : "S00-g1" }
+          "connect" : [
+            { "id" : "S00-f0", "to" : "S00-g1" }
+          ]
         } ],
       "visual" : {
         "at" : { "x" : 984, "y" : 280 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f17", "to" : "f6" }
+      "connect" : [
+        { "id" : "f17", "to" : "f6" }
+      ]
     }, {
       "id" : "f23",
       "type" : "HtmlDialogMethodStart",
       "name" : "completeFormattingLanguage(String)",
       "config" : {
-        "callSignature" : "completeFormattingLanguage",
-        "result" : {
-          "params" : [
-            { "name" : "result", "type" : "java.util.List<javax.faces.model.SelectItem>" }
-          ],
-          "map" : {
-            "result.result" : "in.formatLanguages"
-          }
-        },
+        "signature" : "completeFormattingLanguage",
         "input" : {
           "params" : [
-            { "name" : "queryLanguage", "type" : "String" }
+            { "name" : "queryLanguage", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.queryLanguage" : "param.queryLanguage"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "result", "type" : "java.util.List<javax.faces.model.SelectItem>", "desc" : "" }
+          ],
+          "map" : {
+            "result.result" : "in.formatLanguages"
           }
         },
         "guid" : "181ECCCA970B553D"
@@ -826,7 +905,9 @@
         "at" : { "x" : 96, "y" : 512 },
         "labelOffset" : { "x" : 86, "y" : 35 }
       },
-      "connect" : { "id" : "f27", "to" : "f25" }
+      "connect" : [
+        { "id" : "f27", "to" : "f25" }
+      ]
     }, {
       "id" : "f25",
       "type" : "Script",
@@ -851,7 +932,9 @@
         "at" : { "x" : 336, "y" : 512 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f29", "to" : "f28" }
+      "connect" : [
+        { "id" : "f29", "to" : "f28" }
+      ]
     }, {
       "id" : "f28",
       "type" : "HtmlDialogEnd",

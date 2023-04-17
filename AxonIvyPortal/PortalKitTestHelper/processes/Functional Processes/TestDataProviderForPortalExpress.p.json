@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "16B3F9C285F4279D",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "portalExpressDataProvider()",
       "config" : {
-        "callSignature" : "portalExpressDataProvider",
+        "signature" : "portalExpressDataProvider",
         "result" : {
           "params" : [
-            { "name" : "data", "type" : "List<String>" }
+            { "name" : "data", "type" : "List<String>", "desc" : "" }
           ],
           "map" : {
             "result.data" : "java.util.Arrays.asList(\"Data Provider Item 1\", \"Data Provider Item 2\", \"Data Provider Item 3\")"
@@ -24,7 +24,9 @@
         "at" : { "x" : 96, "y" : 64 },
         "labelOffset" : { "x" : 12, "y" : 47 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",

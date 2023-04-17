@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "163AFDEDB4167156",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "call(String)",
       "config" : {
-        "callSignature" : "call",
+        "signature" : "call",
         "input" : {
           "params" : [
-            { "name" : "keyword", "type" : "String" }
+            { "name" : "keyword", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.keyword" : "param.keyword"
@@ -24,7 +24,9 @@
         "at" : { "x" : 96, "y" : 128 },
         "labelOffset" : { "x" : 13, "y" : -15 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -36,12 +38,8 @@
       "type" : "DialogCall",
       "name" : "SearchResults",
       "config" : {
-        "dialogId" : "ch.ivy.addon.portal.generic.SearchResults",
-        "startMethod" : "start(String)",
+        "dialog" : "ch.ivy.addon.portal.generic.SearchResults:start(String)",
         "call" : {
-          "params" : [
-            { "name" : "keyword", "type" : "String" }
-          ],
           "map" : {
             "param.keyword" : "in.keyword"
           }
@@ -50,17 +48,19 @@
       "visual" : {
         "at" : { "x" : 448, "y" : 128 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f5",
       "type" : "CallSubStart",
       "name" : "call(SearchResultsDataModel,Number)",
       "config" : {
-        "callSignature" : "call",
+        "signature" : "call",
         "input" : {
           "params" : [
-            { "name" : "searchResultsDataModel", "type" : "ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel" },
-            { "name" : "activeTabIndex", "type" : "Number" }
+            { "name" : "searchResultsDataModel", "type" : "ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel", "desc" : "" },
+            { "name" : "activeTabIndex", "type" : "Number", "desc" : "" }
           ],
           "map" : {
             "out.activeTabIndex" : "param.activeTabIndex",
@@ -72,7 +72,9 @@
         "at" : { "x" : 96, "y" : 512 },
         "labelOffset" : { "x" : 54, "y" : -16 }
       },
-      "connect" : { "id" : "f8", "to" : "f7" }
+      "connect" : [
+        { "id" : "f8", "to" : "f7" }
+      ]
     }, {
       "id" : "f6",
       "type" : "CallSubEnd",
@@ -84,13 +86,8 @@
       "type" : "DialogCall",
       "name" : "SearchResults",
       "config" : {
-        "dialogId" : "ch.ivy.addon.portal.generic.SearchResults",
-        "startMethod" : "start(ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel,Number)",
+        "dialog" : "ch.ivy.addon.portal.generic.SearchResults:start(ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel,Number)",
         "call" : {
-          "params" : [
-            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel" },
-            { "name" : "activeTabIndex", "type" : "Number" }
-          ],
           "map" : {
             "param.dataModel" : "in.searchResultsDataModel",
             "param.activeTabIndex" : "in.activeTabIndex"
@@ -100,7 +97,9 @@
       "visual" : {
         "at" : { "x" : 442, "y" : 512 }
       },
-      "connect" : { "id" : "f9", "to" : "f6" }
+      "connect" : [
+        { "id" : "f9", "to" : "f6" }
+      ]
     }, {
       "id" : "f10",
       "type" : "ProcessAnnotation",
@@ -114,7 +113,9 @@
         "at" : { "x" : 512, "y" : 232 },
         "size" : { "width" : 688, "height" : 76 }
       },
-      "connect" : { "id" : "f12", "to" : "f0" }
+      "connect" : [
+        { "id" : "f12", "to" : "f0" }
+      ]
     }, {
       "id" : "f11",
       "type" : "ProcessAnnotation",
@@ -128,6 +129,8 @@
         "at" : { "x" : 512, "y" : 624 },
         "size" : { "width" : 688, "height" : 76 }
       },
-      "connect" : { "id" : "f13", "to" : "f5" }
+      "connect" : [
+        { "id" : "f13", "to" : "f5" }
+      ]
     } ]
 }

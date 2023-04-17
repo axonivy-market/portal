@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "1818938E7EBC9329",
   "config" : {
     "data" : "com.axonivy.portal.components.examples.DocumentTableExampleData"
@@ -9,15 +9,18 @@
       "type" : "RequestStart",
       "name" : "showDefaultDocumentTableExample.ivp",
       "config" : {
-        "callSignature" : "showDefaultDocumentTableExample",
-        "outLink" : "showDefaultDocumentTableExample.ivp",
-        "startName" : "Show Default Document Table Example"
+        "signature" : "showDefaultDocumentTableExample",
+        "request" : {
+          "name" : "Show Default Document Table Example"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
         "labelOffset" : { "x" : 62, "y" : 42 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -29,41 +32,46 @@
       "type" : "DialogCall",
       "name" : "DocumentTableExample",
       "config" : {
-        "dialogId" : "com.axonivy.portal.components.examples.DocumentTableExample",
-        "startMethod" : "start()"
+        "dialog" : "com.axonivy.portal.components.examples.DocumentTableExample:start()"
       },
       "visual" : {
         "at" : { "x" : 328, "y" : 64 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f5",
       "type" : "RequestStart",
       "name" : "showCustomizedDocumentTableExample.ivp",
       "config" : {
-        "callSignature" : "showCustomizedDocumentTableExample",
-        "outLink" : "showCustomizedDocumentTableExample.ivp",
-        "startName" : "Show Customized Document Table Example"
+        "signature" : "showCustomizedDocumentTableExample",
+        "request" : {
+          "name" : "Show Customized Document Table Example"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 192 },
         "labelOffset" : { "x" : 67, "y" : 41 }
       },
-      "connect" : { "id" : "f8", "to" : "f6" }
+      "connect" : [
+        { "id" : "f8", "to" : "f6" }
+      ]
     }, {
       "id" : "f6",
       "type" : "DialogCall",
       "name" : "CustomizedDocumentTableExample",
       "config" : {
-        "dialogId" : "com.axonivy.portal.components.examples.CustomizedDocumentTableExample",
-        "startMethod" : "start()"
+        "dialog" : "com.axonivy.portal.components.examples.CustomizedDocumentTableExample:start()"
       },
       "visual" : {
         "at" : { "x" : 360, "y" : 192 },
         "size" : { "width" : 208, "height" : 60 }
       },
-      "connect" : { "id" : "f9", "to" : "f7" }
+      "connect" : [
+        { "id" : "f9", "to" : "f7" }
+      ]
     }, {
       "id" : "f7",
       "type" : "TaskEnd",
@@ -75,14 +83,15 @@
       "type" : "DialogCall",
       "name" : "DocumentTableExampleSerenity",
       "config" : {
-        "dialogId" : "com.axonivy.portal.components.examples.serenity.DocumentTableExampleSerenity",
-        "startMethod" : "start()"
+        "dialog" : "com.axonivy.portal.components.examples.serenity.DocumentTableExampleSerenity:start()"
       },
       "visual" : {
         "at" : { "x" : 328, "y" : 320 },
         "size" : { "width" : 192, "height" : 60 }
       },
-      "connect" : { "id" : "f14", "to" : "f11" }
+      "connect" : [
+        { "id" : "f14", "to" : "f11" }
+      ]
     }, {
       "id" : "f11",
       "type" : "TaskEnd",
@@ -94,16 +103,19 @@
       "type" : "RequestStart",
       "name" : "showDefaultDocumentTableExampleSerenity.ivp",
       "config" : {
-        "callSignature" : "showDefaultDocumentTableExampleSerenity",
-        "outLink" : "showDefaultDocumentTableExampleSerenity.ivp",
-        "showInStartList" : false,
-        "startName" : "Show Default Document Table Example in Serenity theme"
+        "signature" : "showDefaultDocumentTableExampleSerenity",
+        "request" : {
+          "name" : "Show Default Document Table Example in Serenity theme",
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 320 },
         "labelOffset" : { "x" : 84, "y" : 42 }
       },
-      "connect" : { "id" : "f13", "to" : "f10" }
+      "connect" : [
+        { "id" : "f13", "to" : "f10" }
+      ]
     }, {
       "id" : "f15",
       "type" : "TaskEnd",
@@ -115,28 +127,32 @@
       "type" : "RequestStart",
       "name" : "showCustomizedDocumentTableExampleSerenity.ivp",
       "config" : {
-        "callSignature" : "showCustomizedDocumentTableExampleSerenity",
-        "outLink" : "showCustomizedDocumentTableExampleSerenity.ivp",
-        "showInStartList" : false,
-        "startName" : "Show Customized Document Table Example in Serenity theme"
+        "signature" : "showCustomizedDocumentTableExampleSerenity",
+        "request" : {
+          "name" : "Show Customized Document Table Example in Serenity theme",
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 448 },
         "labelOffset" : { "x" : 98, "y" : 42 }
       },
-      "connect" : { "id" : "f18", "to" : "f17" }
+      "connect" : [
+        { "id" : "f18", "to" : "f17" }
+      ]
     }, {
       "id" : "f17",
       "type" : "DialogCall",
       "name" : "CustomizedDocumentTableExampleSerenity",
       "config" : {
-        "dialogId" : "com.axonivy.portal.components.examples.serenity.CustomizedDocumentTableExampleSerenity",
-        "startMethod" : "start()"
+        "dialog" : "com.axonivy.portal.components.examples.serenity.CustomizedDocumentTableExampleSerenity:start()"
       },
       "visual" : {
         "at" : { "x" : 328, "y" : 448 },
         "size" : { "width" : 256, "height" : 60 }
       },
-      "connect" : { "id" : "f19", "to" : "f15" }
+      "connect" : [
+        { "id" : "f19", "to" : "f15" }
+      ]
     } ]
 }

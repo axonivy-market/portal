@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "16E1584824AEC16C",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,11 +10,11 @@
       "type" : "HtmlDialogStart",
       "name" : "start(String,Number)",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "url", "type" : "String" },
-            { "name" : "taskId", "type" : "Number" }
+            { "name" : "url", "type" : "String", "desc" : "" },
+            { "name" : "taskId", "type" : "Number", "desc" : "" }
           ],
           "map" : {
             "out.taskId" : "param.taskId",
@@ -27,7 +27,9 @@
         "at" : { "x" : 96, "y" : 64 },
         "labelOffset" : { "x" : 49, "y" : 35 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -39,14 +41,16 @@
       "type" : "Script",
       "name" : "Find task by id",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : "out.task = ivy.wf.findTask(Long.valueOf(in.taskId));"
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 256, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     } ]
 }

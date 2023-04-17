@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "180F979F5AF44684",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,13 +10,15 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "guid" : "161935DA38EB511D"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -29,39 +31,36 @@
       "name" : "OpenCaseDetails",
       "config" : {
         "processCall" : "Functional Processes/OpenCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean,Boolean)",
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.caseDetailsUrl" : "result.caseDetailsUrl"
-          }
-        },
         "call" : {
-          "params" : [
-            { "name" : "caseView", "type" : "ch.ivyteam.ivy.workflow.ICase" },
-            { "name" : "isShowBackButton", "type" : "Boolean" },
-            { "name" : "isOpenInFrame", "type" : "Boolean" }
-          ],
           "map" : {
             "param.caseView" : "in.iCase",
             "param.isShowBackButton" : "true",
             "param.isOpenInFrame" : "in.isOpenInFrame"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.caseDetailsUrl" : "result.caseDetailsUrl"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 296, "y" : 160 }
       },
-      "connect" : { "id" : "f7", "to" : "f4" }
+      "connect" : [
+        { "id" : "f7", "to" : "f4" }
+      ]
     }, {
       "id" : "f3",
       "type" : "HtmlDialogMethodStart",
       "name" : "openDetails(ICase, Boolean)",
       "config" : {
-        "callSignature" : "openDetails",
+        "signature" : "openDetails",
         "input" : {
           "params" : [
-            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
-            { "name" : "isOpenInFrame", "type" : "Boolean" }
+            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
+            { "name" : "isOpenInFrame", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
             "out.iCase" : "param.iCase",
@@ -74,7 +73,9 @@
         "at" : { "x" : 96, "y" : 160 },
         "labelOffset" : { "x" : 63, "y" : 35 }
       },
-      "connect" : { "id" : "f6", "to" : "f5" }
+      "connect" : [
+        { "id" : "f6", "to" : "f5" }
+      ]
     }, {
       "id" : "f4",
       "type" : "Alternative",
@@ -112,7 +113,9 @@
         "at" : { "x" : 648, "y" : 160 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f11", "to" : "f10" }
+      "connect" : [
+        { "id" : "f11", "to" : "f10" }
+      ]
     }, {
       "id" : "f10",
       "type" : "HtmlDialogEnd",

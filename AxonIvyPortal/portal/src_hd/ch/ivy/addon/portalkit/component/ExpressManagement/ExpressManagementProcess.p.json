@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "16F7F951DB019946",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -16,12 +16,14 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "guid" : "16F82C1E20E8A359"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 96 }
       },
-      "connect" : { "id" : "f12", "to" : "f1" }
+      "connect" : [
+        { "id" : "f12", "to" : "f1" }
+      ]
     } ]
 }

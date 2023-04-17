@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "1657E6622F0C0122",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "loadSubMenuItems()",
       "config" : {
-        "callSignature" : "loadSubMenuItems",
+        "signature" : "loadSubMenuItems",
         "result" : {
           "params" : [
-            { "name" : "subMenuItems", "type" : "List<ch.addon.portal.generic.menu.SubMenuItem>" }
+            { "name" : "subMenuItems", "type" : "List<ch.addon.portal.generic.menu.SubMenuItem>", "desc" : "" }
           ],
           "map" : {
             "result.subMenuItems" : "in.subMenuItems"
@@ -24,7 +24,9 @@
         "at" : { "x" : 96, "y" : 152 },
         "labelOffset" : { "x" : 81, "y" : 31 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -36,7 +38,6 @@
       "type" : "Script",
       "name" : "Load menu items",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;",
@@ -89,12 +90,15 @@
             "google.setLink(\"www.google.com\");",
             "in.subMenuItems.add(google);"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 248 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f5",
       "type" : "ProcessAnnotation",
@@ -106,6 +110,8 @@
         "at" : { "x" : 512, "y" : 248 },
         "size" : { "width" : 528, "height" : 44 }
       },
-      "connect" : { "id" : "f6", "to" : "f3" }
+      "connect" : [
+        { "id" : "f6", "to" : "f3" }
+      ]
     } ]
 }

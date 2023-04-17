@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "178E836A8F7CA236",
   "config" : {
     "data" : "portalKit_test.Data"
@@ -14,11 +14,14 @@
       "id" : "f3",
       "type" : "ProgramStart",
       "config" : {
-        "outerBean" : "ch.ivy.addon.portalkit.bean.PortalTestInitBean"
+        "javaClass" : "ch.ivy.addon.portalkit.bean.PortalTestInitBean",
+        "link" : "eventLink.ivp"
       },
       "visual" : {
         "at" : { "x" : 112, "y" : 64 }
       },
-      "connect" : { "id" : "f0", "to" : "f1" }
+      "connect" : [
+        { "id" : "f0", "to" : "f1" }
+      ]
     } ]
 }

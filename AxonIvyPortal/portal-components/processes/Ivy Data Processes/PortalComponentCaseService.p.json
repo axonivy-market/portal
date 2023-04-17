@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "18104AE3EB4807A1",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,12 +10,12 @@
       "type" : "CallSubStart",
       "name" : "findCasesByCriteria(CaseSearchCriteria,Integer,Integer)",
       "config" : {
-        "callSignature" : "findCasesByCriteria",
+        "signature" : "findCasesByCriteria",
         "input" : {
           "params" : [
-            { "name" : "caseSearchCriteria", "type" : "com.axonivy.portal.components.ivydata.searchcriteria.CaseSearchCriteria" },
-            { "name" : "startIndex", "type" : "Integer" },
-            { "name" : "count", "type" : "Integer" }
+            { "name" : "caseSearchCriteria", "type" : "com.axonivy.portal.components.ivydata.searchcriteria.CaseSearchCriteria", "desc" : "" },
+            { "name" : "startIndex", "type" : "Integer", "desc" : "" },
+            { "name" : "count", "type" : "Integer", "desc" : "" }
           ],
           "map" : {
             "out.caseSearchCriteria" : "param.caseSearchCriteria",
@@ -25,8 +25,8 @@
         },
         "result" : {
           "params" : [
-            { "name" : "errors", "type" : "java.util.List<com.axonivy.portal.components.ivydata.exception.PortalIvyDataException>" },
-            { "name" : "cases", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>" }
+            { "name" : "errors", "type" : "java.util.List<com.axonivy.portal.components.ivydata.exception.PortalIvyDataException>", "desc" : "" },
+            { "name" : "cases", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>", "desc" : "" }
           ],
           "map" : {
             "result.errors" : "in.errors",
@@ -38,7 +38,9 @@
         "at" : { "x" : 96, "y" : 96 },
         "labelOffset" : { "x" : 73, "y" : 46 }
       },
-      "connect" : { "id" : "f54", "to" : "f6" }
+      "connect" : [
+        { "id" : "f54", "to" : "f6" }
+      ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -64,7 +66,9 @@
       "visual" : {
         "at" : { "x" : 248, "y" : 96 }
       },
-      "connect" : { "id" : "f3", "to" : "f1" }
+      "connect" : [
+        { "id" : "f3", "to" : "f1" }
+      ]
     }, {
       "id" : "f9",
       "type" : "CallSubEnd",
@@ -89,16 +93,18 @@
       "visual" : {
         "at" : { "x" : 248, "y" : 200 }
       },
-      "connect" : { "id" : "f4", "to" : "f9" }
+      "connect" : [
+        { "id" : "f4", "to" : "f9" }
+      ]
     }, {
       "id" : "f12",
       "type" : "CallSubStart",
       "name" : "countCasesByCriteria(CaseSearchCriteria)",
       "config" : {
-        "callSignature" : "countCasesByCriteria",
+        "signature" : "countCasesByCriteria",
         "input" : {
           "params" : [
-            { "name" : "caseSearchCriteria", "type" : "com.axonivy.portal.components.ivydata.searchcriteria.CaseSearchCriteria" }
+            { "name" : "caseSearchCriteria", "type" : "com.axonivy.portal.components.ivydata.searchcriteria.CaseSearchCriteria", "desc" : "" }
           ],
           "map" : {
             "out.caseSearchCriteria" : "param.caseSearchCriteria"
@@ -106,8 +112,8 @@
         },
         "result" : {
           "params" : [
-            { "name" : "errors", "type" : "java.util.List<com.axonivy.portal.components.ivydata.exception.PortalIvyDataException>" },
-            { "name" : "totalCases", "type" : "Long" }
+            { "name" : "errors", "type" : "java.util.List<com.axonivy.portal.components.ivydata.exception.PortalIvyDataException>", "desc" : "" },
+            { "name" : "totalCases", "type" : "Long", "desc" : "" }
           ],
           "map" : {
             "result.errors" : "in.errors",
@@ -119,7 +125,9 @@
         "at" : { "x" : 96, "y" : 200 },
         "labelOffset" : { "x" : 37, "y" : 46 }
       },
-      "connect" : { "id" : "f2", "to" : "f11" }
+      "connect" : [
+        { "id" : "f2", "to" : "f11" }
+      ]
     } ],
   "layout" : {
     "lanes" : [ {

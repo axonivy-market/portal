@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "1709A97D25EAB86E",
   "config" : {
     "data" : "com.axonivy.portal.userexamples.credit.HandleEndPageData"
@@ -9,33 +9,32 @@
       "type" : "RequestStart",
       "name" : "start.ivp",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long" }
+            { "name" : "caseId", "type" : "Long", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.caseId"
           }
         },
-        "showInStartList" : false,
-        "outLink" : "start.ivp"
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 88, "y" : 88 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f3",
       "type" : "DialogCall",
       "name" : "CustomEndPage",
       "config" : {
-        "dialogId" : "com.axonivy.portal.userexamples.credit.CustomEndPage",
-        "startMethod" : "start(Long)",
+        "dialog" : "com.axonivy.portal.userexamples.credit.CustomEndPage:start(Long)",
         "call" : {
-          "params" : [
-            { "name" : "caseId", "type" : "Long" }
-          ],
           "map" : {
             "param.caseId" : "in.caseId"
           }
@@ -44,7 +43,9 @@
       "visual" : {
         "at" : { "x" : 280, "y" : 88 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",

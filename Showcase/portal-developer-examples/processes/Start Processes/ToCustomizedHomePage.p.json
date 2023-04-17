@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "1657A360018BBA71",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.Data"
@@ -9,25 +9,28 @@
       "type" : "RequestStart",
       "name" : "openCustomizedPortalHome.ivp",
       "config" : {
-        "callSignature" : "openCustomizedPortalHome",
-        "case" : {
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
-          ]
+        "signature" : "openCustomizedPortalHome",
+        "request" : {
+          "name" : "Open customized portal home",
+          "description" : "Open customized portal home"
         },
-        "outLink" : "openCustomizedPortalHome.ivp",
-        "startDescription" : "Open customized portal home",
         "task" : {
           "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
           ]
         },
-        "startName" : "Open customized portal home"
+        "case" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+          ]
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -39,14 +42,15 @@
       "type" : "DialogCall",
       "name" : "Customized Home Page",
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.customization.CustomizedHomePage",
-        "startMethod" : "start()"
+        "dialog" : "com.axonivy.portal.developerexamples.customization.CustomizedHomePage:start()"
       },
       "visual" : {
         "at" : { "x" : 304, "y" : 64 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f5",
       "type" : "ProcessAnnotation",
