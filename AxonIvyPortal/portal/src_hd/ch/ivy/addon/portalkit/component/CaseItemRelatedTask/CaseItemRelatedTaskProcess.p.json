@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "153358BE9219FD4C",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,13 +10,15 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "guid" : "167E9A75EF3D0909"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 96 }
       },
-      "connect" : { "id" : "f3", "to" : "f1" }
+      "connect" : [
+        { "id" : "f3", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -28,10 +30,10 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "initData(ICase)",
       "config" : {
-        "callSignature" : "initData",
+        "signature" : "initData",
         "input" : {
           "params" : [
-            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
+            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
           ],
           "map" : {
             "out.iCase" : "param.iCase"
@@ -42,7 +44,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 192 }
       },
-      "connect" : { "id" : "f12", "to" : "f8" }
+      "connect" : [
+        { "id" : "f12", "to" : "f8" }
+      ]
     }, {
       "id" : "f7",
       "type" : "HtmlDialogEnd",
@@ -93,7 +97,6 @@
       "type" : "Script",
       "name" : "Find related tasks",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.util.PermissionUtils;",
@@ -134,12 +137,15 @@
             "  }",
             "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 392, "y" : 192 }
       },
-      "connect" : { "id" : "f13", "to" : "f9", "var" : "in1" }
+      "connect" : [
+        { "id" : "f13", "to" : "f9", "var" : "in1" }
+      ]
     }, {
       "id" : "f17",
       "type" : "Script",
@@ -165,36 +171,35 @@
       "visual" : {
         "at" : { "x" : 296, "y" : 288 }
       },
-      "connect" : { "id" : "f20", "to" : "f19" }
+      "connect" : [
+        { "id" : "f20", "to" : "f19" }
+      ]
     }, {
       "id" : "f19",
       "type" : "SubProcessCall",
       "name" : "CaseService",
       "config" : {
         "processCall" : "Ivy Data Processes/CaseService:findCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria,Integer,Integer)",
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.technicalCases" : "result.cases"
-          }
-        },
         "call" : {
-          "params" : [
-            { "name" : "caseSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria" },
-            { "name" : "startIndex", "type" : "Integer" },
-            { "name" : "count", "type" : "Integer" }
-          ],
           "map" : {
             "param.caseSearchCriteria" : "in.caseSearchCriteria",
             "param.startIndex" : "0",
             "param.count" : "21"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.technicalCases" : "result.cases"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 464, "y" : 288 }
       },
-      "connect" : { "id" : "f29", "to" : "f28" }
+      "connect" : [
+        { "id" : "f29", "to" : "f28" }
+      ]
     }, {
       "id" : "f23",
       "type" : "SubProcessCall",
@@ -202,9 +207,6 @@
       "config" : {
         "processCall" : "Functional Processes/Navigator:viewCase(ch.ivy.addon.portalkit.dto.GlobalCaseId)",
         "call" : {
-          "params" : [
-            { "name" : "caseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId" }
-          ],
           "map" : {
             "param.caseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.caseId(in.selectedTechnicalCase.getId()).isBusinessCase(in.selectedTechnicalCase.isBusinessCase()).build()"
           }
@@ -221,10 +223,6 @@
       "config" : {
         "processCall" : "Functional Processes/Navigator:viewTechnicalCasesOfBusniessCase(String,ch.ivy.addon.portalkit.dto.GlobalCaseId)",
         "call" : {
-          "params" : [
-            { "name" : "businessCaseName", "type" : "String" },
-            { "name" : "businessCaseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId" }
-          ],
           "map" : {
             "param.businessCaseName" : "ch.ivy.addon.portalkit.util.PermissionUtils.getCaseName(in.selectedTechnicalCase)",
             "param.businessCaseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.caseId(in.selectedTechnicalCase.getId()).isBusinessCase(in.selectedTechnicalCase.isBusinessCase()).build()"
@@ -241,18 +239,15 @@
       "name" : "Count technical cases",
       "config" : {
         "processCall" : "Ivy Data Processes/CaseService:countCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)",
+        "call" : {
+          "map" : {
+            "param.caseSearchCriteria" : "in.caseSearchCriteria"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.totalRelatedCases" : "result.totalCases.intValue()"
-          }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "caseSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria" }
-          ],
-          "map" : {
-            "param.caseSearchCriteria" : "in.caseSearchCriteria"
           }
         }
       },
@@ -260,7 +255,9 @@
         "at" : { "x" : 648, "y" : 288 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f21", "to" : "f9", "var" : "in2" }
+      "connect" : [
+        { "id" : "f21", "to" : "f9", "var" : "in2" }
+      ]
     }, {
       "id" : "f33",
       "type" : "Script",
@@ -278,7 +275,9 @@
         "at" : { "x" : 248, "y" : 488 },
         "size" : { "width" : 160, "height" : 60 }
       },
-      "connect" : { "id" : "f36", "to" : "f31" }
+      "connect" : [
+        { "id" : "f36", "to" : "f31" }
+      ]
     }, {
       "id" : "f4",
       "type" : "Script",
@@ -340,7 +339,9 @@
         "at" : { "x" : 544, "y" : 592 },
         "size" : { "width" : 176, "height" : 60 }
       },
-      "connect" : { "id" : "f48", "to" : "f46" }
+      "connect" : [
+        { "id" : "f48", "to" : "f46" }
+      ]
     }, {
       "id" : "f34",
       "type" : "Script",
@@ -360,18 +361,20 @@
         "at" : { "x" : 544, "y" : 768 },
         "size" : { "width" : 176, "height" : 60 }
       },
-      "connect" : { "id" : "f24", "to" : "f22" }
+      "connect" : [
+        { "id" : "f24", "to" : "f22" }
+      ]
     }, {
       "id" : "f45",
       "type" : "HtmlDialogMethodStart",
       "name" : "navigateToSelectedTaskDetails(Long,Boolean,Boolean)",
       "config" : {
-        "callSignature" : "navigateToSelectedTaskDetails",
+        "signature" : "navigateToSelectedTaskDetails",
         "input" : {
           "params" : [
-            { "name" : "taskId", "type" : "Long" },
-            { "name" : "isWorkingOnTask", "type" : "Boolean" },
-            { "name" : "inFrame", "type" : "Boolean" }
+            { "name" : "taskId", "type" : "Long", "desc" : "" },
+            { "name" : "isWorkingOnTask", "type" : "Boolean", "desc" : "" },
+            { "name" : "inFrame", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
             "out.inFrame" : "param.inFrame",
@@ -385,17 +388,19 @@
         "at" : { "x" : 96, "y" : 488 },
         "labelOffset" : { "x" : 85, "y" : 40 }
       },
-      "connect" : { "id" : "f47", "to" : "f33" }
+      "connect" : [
+        { "id" : "f47", "to" : "f33" }
+      ]
     }, {
       "id" : "f43",
       "type" : "HtmlDialogMethodStart",
       "name" : "navigateToRelatedTasksOfCase(Boolean,Boolean)",
       "config" : {
-        "callSignature" : "navigateToRelatedTasksOfCase",
+        "signature" : "navigateToRelatedTasksOfCase",
         "input" : {
           "params" : [
-            { "name" : "isWorkingOnTask", "type" : "Boolean" },
-            { "name" : "inFrame", "type" : "Boolean" }
+            { "name" : "isWorkingOnTask", "type" : "Boolean", "desc" : "" },
+            { "name" : "inFrame", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
             "out.inFrame" : "param.inFrame",
@@ -408,18 +413,20 @@
         "at" : { "x" : 96, "y" : 384 },
         "labelOffset" : { "x" : 71, "y" : 43 }
       },
-      "connect" : { "id" : "f51", "to" : "f4" }
+      "connect" : [
+        { "id" : "f51", "to" : "f4" }
+      ]
     }, {
       "id" : "f2",
       "type" : "HtmlDialogMethodStart",
       "name" : "navigateToTechnicalCasesOfBusinessCase(ICase,Boolean,Boolean)",
       "config" : {
-        "callSignature" : "navigateToTechnicalCasesOfBusinessCase",
+        "signature" : "navigateToTechnicalCasesOfBusinessCase",
         "input" : {
           "params" : [
-            { "name" : "selectedTechnicalCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
-            { "name" : "isWorkingOnTask", "type" : "Boolean" },
-            { "name" : "inFrame", "type" : "Boolean" }
+            { "name" : "selectedTechnicalCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
+            { "name" : "isWorkingOnTask", "type" : "Boolean", "desc" : "" },
+            { "name" : "inFrame", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
             "out.inFrame" : "param.inFrame",
@@ -433,18 +440,20 @@
         "at" : { "x" : 96, "y" : 592 },
         "labelOffset" : { "x" : 110, "y" : 39 }
       },
-      "connect" : { "id" : "f11", "to" : "f39" }
+      "connect" : [
+        { "id" : "f11", "to" : "f39" }
+      ]
     }, {
       "id" : "f25",
       "type" : "HtmlDialogMethodStart",
       "name" : "navigateToRelatedCaseDetails(ICase,Boolean,Boolean)",
       "config" : {
-        "callSignature" : "navigateToRelatedCaseDetails",
+        "signature" : "navigateToRelatedCaseDetails",
         "input" : {
           "params" : [
-            { "name" : "selectedTechnicalCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
-            { "name" : "isWorkingOnTask", "type" : "Boolean" },
-            { "name" : "inFrame", "type" : "Boolean" }
+            { "name" : "selectedTechnicalCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
+            { "name" : "isWorkingOnTask", "type" : "Boolean", "desc" : "" },
+            { "name" : "inFrame", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
             "out.inFrame" : "param.inFrame",
@@ -458,7 +467,9 @@
         "at" : { "x" : 96, "y" : 768 },
         "labelOffset" : { "x" : 85, "y" : 40 }
       },
-      "connect" : { "id" : "f5", "to" : "f34" }
+      "connect" : [
+        { "id" : "f5", "to" : "f34" }
+      ]
     }, {
       "id" : "f22",
       "type" : "Alternative",
@@ -478,9 +489,6 @@
       "config" : {
         "processCall" : "Functional Processes/Navigator:viewCaseItemDetailsInIFrame(ch.ivy.addon.portalkit.dto.GlobalCaseId)",
         "call" : {
-          "params" : [
-            { "name" : "caseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId" }
-          ],
           "map" : {
             "param.caseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.caseId(in.selectedTechnicalCase.getId()).isBusinessCase(in.selectedTechnicalCase.isBusinessCase()).build()"
           }
@@ -509,10 +517,6 @@
       "config" : {
         "processCall" : "Functional Processes/Navigator:viewTechnicalCasesOfBusniessCaseInFrame(String,ch.ivy.addon.portalkit.dto.GlobalCaseId)",
         "call" : {
-          "params" : [
-            { "name" : "businessCaseName", "type" : "String" },
-            { "name" : "businessCaseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId" }
-          ],
           "map" : {
             "param.businessCaseName" : "ch.ivy.addon.portalkit.util.PermissionUtils.getCaseName(in.selectedTechnicalCase)",
             "param.businessCaseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.caseId(in.selectedTechnicalCase.getId()).isBusinessCase(in.selectedTechnicalCase.isBusinessCase()).build()"

@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "17255D74942B8265",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -11,25 +11,18 @@
       "name" : "Ivy Data Processes/SecurityService",
       "config" : {
         "processCall" : "Ivy Data Processes/SecurityService:findUsers(String,Integer,Integer,java.util.List<String>,java.util.List<String>)",
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.memberNames" : "result.users"
-          }
-        },
         "call" : {
-          "params" : [
-            { "name" : "query", "type" : "String" },
-            { "name" : "startIndex", "type" : "Integer" },
-            { "name" : "count", "type" : "Integer" },
-            { "name" : "fromRoles", "type" : "java.util.List<String>" },
-            { "name" : "excludedUsernames", "type" : "java.util.List<String>" }
-          ],
           "map" : {
             "param.query" : "in.keyword",
             "param.startIndex" : "0",
             "param.count" : "100",
             "param.fromRoles" : "java.util.Arrays.asList(in.roleName)"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.memberNames" : "result.users"
           }
         }
       },
@@ -37,7 +30,9 @@
         "at" : { "x" : 328, "y" : 352 },
         "size" : { "width" : 208, "height" : 60 }
       },
-      "connect" : { "id" : "f10", "to" : "f9" }
+      "connect" : [
+        { "id" : "f10", "to" : "f9" }
+      ]
     }, {
       "id" : "f15",
       "type" : "Script",
@@ -57,20 +52,24 @@
       "visual" : {
         "at" : { "x" : 552, "y" : 224 }
       },
-      "connect" : { "id" : "f5", "to" : "f4" }
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
     }, {
       "id" : "f0",
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "guid" : "177418D19BD97AC4"
       },
       "visual" : {
         "at" : { "x" : 128, "y" : 96 },
         "labelOffset" : { "x" : 15, "y" : 29 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f9",
       "type" : "HtmlDialogEnd",
@@ -82,10 +81,10 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "filterUserByName(String)",
       "config" : {
-        "callSignature" : "filterUserByName",
+        "signature" : "filterUserByName",
         "input" : {
           "params" : [
-            { "name" : "userName", "type" : "String" }
+            { "name" : "userName", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.keyword" : "param.userName"
@@ -97,30 +96,26 @@
         "at" : { "x" : 128, "y" : 352 },
         "labelOffset" : { "x" : 20, "y" : 35 }
       },
-      "connect" : { "id" : "f11", "to" : "f13" }
+      "connect" : [
+        { "id" : "f11", "to" : "f13" }
+      ]
     }, {
       "id" : "f8",
       "type" : "SubProcessCall",
       "name" : "Ivy Data Processes/SecurityService",
       "config" : {
         "processCall" : "Ivy Data Processes/SecurityService:findAllUsersOfRoles(Integer,Integer,java.util.List<String>,java.util.List<String>)",
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.memberNames" : "result.users"
-          }
-        },
         "call" : {
-          "params" : [
-            { "name" : "startIndex", "type" : "Integer" },
-            { "name" : "count", "type" : "Integer" },
-            { "name" : "fromRoles", "type" : "java.util.List<String>" },
-            { "name" : "excludedUsernames", "type" : "java.util.List<String>" }
-          ],
           "map" : {
             "param.startIndex" : "0",
             "param.count" : "100",
             "param.fromRoles" : "java.util.Arrays.asList(in.roleName)"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.memberNames" : "result.users"
           }
         }
       },
@@ -128,7 +123,9 @@
         "at" : { "x" : 328, "y" : 224 },
         "size" : { "width" : 208, "height" : 60 }
       },
-      "connect" : { "id" : "f16", "to" : "f15" }
+      "connect" : [
+        { "id" : "f16", "to" : "f15" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -140,10 +137,10 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "loadUsersOfRole(String)",
       "config" : {
-        "callSignature" : "loadUsersOfRole",
+        "signature" : "loadUsersOfRole",
         "input" : {
           "params" : [
-            { "name" : "roleName", "type" : "String" }
+            { "name" : "roleName", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.roleName" : "param.roleName"
@@ -159,7 +156,9 @@
         "at" : { "x" : 128, "y" : 224 },
         "labelOffset" : { "x" : 26, "y" : 42 }
       },
-      "connect" : { "id" : "f6", "to" : "f8" }
+      "connect" : [
+        { "id" : "f6", "to" : "f8" }
+      ]
     }, {
       "id" : "f4",
       "type" : "HtmlDialogEnd",
@@ -171,10 +170,10 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "loadUsersForTooltip(ISecurityMember)",
       "config" : {
-        "callSignature" : "loadUsersForTooltip",
+        "signature" : "loadUsersForTooltip",
         "input" : {
           "params" : [
-            { "name" : "securityMember", "type" : "ch.ivyteam.ivy.security.ISecurityMember" }
+            { "name" : "securityMember", "type" : "ch.ivyteam.ivy.security.ISecurityMember", "desc" : "" }
           ],
           "map" : {
             "out.securityMember" : "param.securityMember"
@@ -186,7 +185,9 @@
         "at" : { "x" : 128, "y" : 480 },
         "labelOffset" : { "x" : 14, "y" : 40 }
       },
-      "connect" : { "id" : "f27", "to" : "f26" }
+      "connect" : [
+        { "id" : "f27", "to" : "f26" }
+      ]
     }, {
       "id" : "f18",
       "type" : "HtmlDialogEnd",
@@ -214,36 +215,40 @@
       "type" : "Script",
       "name" : "Load 10 users for tooltip",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.util.SecurityMemberUtils;",
             "in.usersInTooltips = SecurityMemberUtils.buildTooltipFromUsers(in.roleName);"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 512, "y" : 480 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f19", "to" : "f18" }
+      "connect" : [
+        { "id" : "f19", "to" : "f18" }
+      ]
     }, {
       "id" : "f26",
       "type" : "Script",
       "name" : "Check SecurityMember",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "in.isRenderUserOfRole = !in.securityMember.isUser();",
             "in.roleName = in.securityMember.getName();"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 256, "y" : 480 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f21", "to" : "f20" }
+      "connect" : [
+        { "id" : "f21", "to" : "f20" }
+      ]
     } ]
 }

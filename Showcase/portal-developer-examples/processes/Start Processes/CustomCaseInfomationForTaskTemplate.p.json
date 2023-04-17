@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "180D50804A2BF9E9",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.Data"
@@ -9,44 +9,48 @@
       "type" : "RequestStart",
       "name" : "createTaskForEmployeeA.ivp",
       "config" : {
-        "callSignature" : "createTaskForEmployeeA",
-        "outLink" : "createTaskForEmployeeA.ivp",
-        "startName" : "Create Task For Employee A"
+        "signature" : "createTaskForEmployeeA",
+        "request" : {
+          "name" : "Create Task For Employee A"
+        }
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 48 },
         "labelOffset" : { "x" : 66, "y" : 37 }
       },
-      "connect" : { "id" : "f3", "to" : "f2", "var" : "in1" }
+      "connect" : [
+        { "id" : "f3", "to" : "f2", "var" : "in1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "RequestStart",
       "name" : "createTaskForEmployeeB.ivp",
       "config" : {
-        "callSignature" : "createTaskForEmployeeB",
-        "outLink" : "createTaskForEmployeeB.ivp",
-        "startName" : "Create Task For Employee B"
+        "signature" : "createTaskForEmployeeB",
+        "request" : {
+          "name" : "Create Task For Employee B"
+        }
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 128 },
         "labelOffset" : { "x" : 64, "y" : 37 }
       },
-      "connect" : { "id" : "f8", "to" : "f6", "var" : "in1" }
+      "connect" : [
+        { "id" : "f8", "to" : "f6", "var" : "in1" }
+      ]
     }, {
       "id" : "f2",
       "type" : "TaskSwitchGateway",
       "config" : {
-        "outLinks" : [ "TaskA.ivp" ],
+        "tasks" : [ {
+            "id" : "TaskA",
+            "name" : "Task for Employee Peter Parker"
+          } ],
         "case" : {
           "name" : "Case for Employee Peter Parker",
           "customFields" : [
-            { "name" : "employeeId", "type" : "Number", "value" : "1" }
+            { "name" : "employeeId", "type" : "NUMBER", "value" : "1" }
           ]
-        },
-        "tasks" : {
-          "TaskA" : {
-            "name" : "Task for Employee Peter Parker"
-          }
         }
       },
       "visual" : {
@@ -65,17 +69,15 @@
       "id" : "f6",
       "type" : "TaskSwitchGateway",
       "config" : {
-        "outLinks" : [ "TaskA.ivp" ],
+        "tasks" : [ {
+            "id" : "TaskA",
+            "name" : "Task for employee Carol Danver"
+          } ],
         "case" : {
           "name" : "Case for employee Carol Danver",
           "customFields" : [
-            { "name" : "employeeId", "type" : "Number", "value" : "2" }
+            { "name" : "employeeId", "type" : "NUMBER", "value" : "2" }
           ]
-        },
-        "tasks" : {
-          "TaskA" : {
-            "name" : "Task for employee Carol Danver"
-          }
         }
       },
       "visual" : {
@@ -108,57 +110,64 @@
       "type" : "RequestStart",
       "name" : "employeeSearchInFrame.ivp",
       "config" : {
-        "callSignature" : "employeeSearchInFrame",
+        "signature" : "employeeSearchInFrame",
+        "request" : {
+          "name" : "Employee Search In Iframe"
+        },
         "case" : {
           "name" : "Case of Search list"
-        },
-        "outLink" : "employeeSearchInFrame.ivp",
-        "startName" : "Employee Search In Iframe"
+        }
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 256 },
         "labelOffset" : { "x" : 60, "y" : 40 }
       },
-      "connect" : { "id" : "f14", "to" : "f12" }
+      "connect" : [
+        { "id" : "f14", "to" : "f12" }
+      ]
     }, {
       "id" : "f11",
       "type" : "RequestStart",
       "name" : "employeeDetailsInFrame.ivp",
       "config" : {
-        "callSignature" : "employeeDetailsInFrame",
+        "signature" : "employeeDetailsInFrame",
         "input" : {
           "params" : [
-            { "name" : "employeeId", "type" : "Integer" }
+            { "name" : "employeeId", "type" : "Integer", "desc" : "" }
           ],
           "map" : {
             "out.employeeInfo.id" : "param.employeeId"
           }
         },
+        "request" : {
+          "name" : "Employee Details in frame",
+          "isVisibleOnStartList" : false
+        },
         "case" : {
           "name" : "Case for Employee details in frame"
-        },
-        "outLink" : "employeeDetailsInFrame.ivp",
-        "showInStartList" : false,
-        "startName" : "Employee Details in frame"
+        }
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 352 },
         "labelOffset" : { "x" : 62, "y" : 41 }
       },
-      "connect" : { "id" : "f19", "to" : "f17" }
+      "connect" : [
+        { "id" : "f19", "to" : "f17" }
+      ]
     }, {
       "id" : "f12",
       "type" : "DialogCall",
       "name" : "EmployeeSearchInFrame",
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.testdata.EmployeeSearchInFrame",
-        "startMethod" : "start()"
+        "dialog" : "com.axonivy.portal.developerexamples.testdata.EmployeeSearchInFrame:start()"
       },
       "visual" : {
         "at" : { "x" : 264, "y" : 256 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f16", "to" : "f15" }
+      "connect" : [
+        { "id" : "f16", "to" : "f15" }
+      ]
     }, {
       "id" : "f15",
       "type" : "TaskEnd",
@@ -170,12 +179,8 @@
       "type" : "DialogCall",
       "name" : "EmployeeDetailsInFrame",
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.testdata.EmployeeDetailsInFrame",
-        "startMethod" : "start(Integer)",
+        "dialog" : "com.axonivy.portal.developerexamples.testdata.EmployeeDetailsInFrame:start(Integer)",
         "call" : {
-          "params" : [
-            { "name" : "employeeId", "type" : "Integer" }
-          ],
           "map" : {
             "param.employeeId" : "in.employeeInfo.id"
           }
@@ -185,7 +190,9 @@
         "at" : { "x" : 264, "y" : 352 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f20", "to" : "f18" }
+      "connect" : [
+        { "id" : "f20", "to" : "f18" }
+      ]
     }, {
       "id" : "f18",
       "type" : "TaskEnd",
@@ -213,30 +220,33 @@
       "type" : "RequestStart",
       "name" : "employeeSearch.ivp",
       "config" : {
-        "callSignature" : "employeeSearch",
+        "signature" : "employeeSearch",
+        "request" : {
+          "name" : "Employee Search"
+        },
         "case" : {
           "name" : "Case of Search list",
           "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
           ]
-        },
-        "outLink" : "employeeSearch.ivp",
-        "startName" : "Employee Search"
+        }
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 512 },
         "labelOffset" : { "x" : 42, "y" : 37 }
       },
-      "connect" : { "id" : "f26", "to" : "f24" }
+      "connect" : [
+        { "id" : "f26", "to" : "f24" }
+      ]
     }, {
       "id" : "f23",
       "type" : "RequestStart",
       "name" : "employeeDetails.ivp",
       "config" : {
-        "callSignature" : "employeeDetails",
+        "signature" : "employeeDetails",
         "input" : {
           "params" : [
-            { "name" : "employeeId", "type" : "Integer" }
+            { "name" : "employeeId", "type" : "Integer", "desc" : "" }
           ],
           "map" : {
             "out.employeeInfo.id" : "param.employeeId"
@@ -245,39 +255,37 @@
         "case" : {
           "name" : "Case for Employee details",
           "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
           ]
-        },
-        "outLink" : "employeeDetails.ivp"
+        }
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 608 },
         "labelOffset" : { "x" : 39, "y" : 37 }
       },
-      "connect" : { "id" : "f27", "to" : "f25" }
+      "connect" : [
+        { "id" : "f27", "to" : "f25" }
+      ]
     }, {
       "id" : "f24",
       "type" : "DialogCall",
       "name" : "EmployeeSearch",
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.testdata.EmployeeSearch",
-        "startMethod" : "start()"
+        "dialog" : "com.axonivy.portal.developerexamples.testdata.EmployeeSearch:start()"
       },
       "visual" : {
         "at" : { "x" : 240, "y" : 512 }
       },
-      "connect" : { "id" : "f30", "to" : "f28" }
+      "connect" : [
+        { "id" : "f30", "to" : "f28" }
+      ]
     }, {
       "id" : "f25",
       "type" : "DialogCall",
       "name" : "EmployeeDetails",
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.testdata.EmployeeDetails",
-        "startMethod" : "start(Integer)",
+        "dialog" : "com.axonivy.portal.developerexamples.testdata.EmployeeDetails:start(Integer)",
         "call" : {
-          "params" : [
-            { "name" : "employeeId", "type" : "Integer" }
-          ],
           "map" : {
             "param.employeeId" : "in.employeeInfo.id"
           }
@@ -286,7 +294,9 @@
       "visual" : {
         "at" : { "x" : 248, "y" : 608 }
       },
-      "connect" : { "id" : "f31", "to" : "f29" }
+      "connect" : [
+        { "id" : "f31", "to" : "f29" }
+      ]
     }, {
       "id" : "f28",
       "type" : "TaskEnd",

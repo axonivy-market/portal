@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "1762BBC644A56887",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "HtmlDialogStart",
       "name" : "start(ExampleIFrameData)",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "investmentRequest", "type" : "com.axonivy.portal.developerexamples.ExampleIFrameData" }
+            { "name" : "investmentRequest", "type" : "com.axonivy.portal.developerexamples.ExampleIFrameData", "desc" : "" }
           ],
           "map" : {
             "out.investmentRequest" : "param.investmentRequest"
@@ -26,7 +26,9 @@
         "size" : { "width" : 24, "height" : 24 },
         "labelOffset" : { "x" : 64, "y" : 35 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -44,7 +46,9 @@
         "at" : { "x" : 96, "y" : 160 },
         "labelOffset" : { "x" : 8, "y" : 32 }
       },
-      "connect" : { "id" : "f5", "to" : "f4" }
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
     }, {
       "id" : "f4",
       "type" : "HtmlDialogExit",

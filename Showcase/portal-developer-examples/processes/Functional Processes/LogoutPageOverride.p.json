@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "1657EA461CE412A1",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "getLogoutPage()",
       "config" : {
-        "callSignature" : "getLogoutPage",
+        "signature" : "getLogoutPage",
         "result" : {
           "params" : [
-            { "name" : "logoutPage", "type" : "String" }
+            { "name" : "logoutPage", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "result.logoutPage" : "in.logoutPage"
@@ -23,7 +23,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f6", "to" : "f5" }
+      "connect" : [
+        { "id" : "f6", "to" : "f5" }
+      ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -53,6 +55,8 @@
       "visual" : {
         "at" : { "x" : 224, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     } ]
 }

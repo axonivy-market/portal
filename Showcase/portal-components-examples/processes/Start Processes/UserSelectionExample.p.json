@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "18189AF10B521DF4",
   "config" : {
     "data" : "com.axonivy.portal.components.examples.UserSelectionExampleData"
@@ -9,15 +9,18 @@
       "type" : "RequestStart",
       "name" : "showUserSelectionExamples.ivp",
       "config" : {
-        "callSignature" : "showUserSelectionExamples",
-        "outLink" : "showUserSelectionExamples.ivp",
-        "startName" : "User Selection Example"
+        "signature" : "showUserSelectionExamples",
+        "request" : {
+          "name" : "User Selection Example"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
         "labelOffset" : { "x" : 30, "y" : 39 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -29,8 +32,7 @@
       "type" : "DialogCall",
       "name" : "UserSelectionExample",
       "config" : {
-        "dialogId" : "com.axonivy.portal.components.examples.UserSelectionExample",
-        "startMethod" : "start()",
+        "dialog" : "com.axonivy.portal.components.examples.UserSelectionExample:start()",
         "output" : {
           "map" : {
             "out" : "in",
@@ -42,7 +44,9 @@
         "at" : { "x" : 296, "y" : 64 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f6", "to" : "f5" }
+      "connect" : [
+        { "id" : "f6", "to" : "f5" }
+      ]
     }, {
       "id" : "f5",
       "type" : "TaskSwitchEvent",
@@ -51,21 +55,23 @@
           "name" : "Task created by User Selection Example",
           "description" : "This task is created by User Selection Example",
           "responsible" : {
-            "userFromAttribute" : "in1.selectedUser.getName()"
+            "type" : "USER_FROM_ATTRIBUTE",
+            "activator" : "in1.selectedUser.getName()"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 480, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f7",
       "type" : "DialogCall",
       "name" : "UserSelectionExampleSerenity",
       "config" : {
-        "dialogId" : "com.axonivy.portal.components.examples.serenity.UserSelectionExampleSerenity",
-        "startMethod" : "start()",
+        "dialog" : "com.axonivy.portal.components.examples.serenity.UserSelectionExampleSerenity:start()",
         "output" : {
           "map" : {
             "out" : "in",
@@ -77,22 +83,27 @@
         "at" : { "x" : 296, "y" : 192 },
         "size" : { "width" : 176, "height" : 60 }
       },
-      "connect" : { "id" : "f13", "to" : "f10" }
+      "connect" : [
+        { "id" : "f13", "to" : "f10" }
+      ]
     }, {
       "id" : "f8",
       "type" : "RequestStart",
       "name" : "showUserSelectionExamplesSerenity.ivp",
       "config" : {
-        "callSignature" : "showUserSelectionExamplesSerenity",
-        "outLink" : "showUserSelectionExamplesSerenity.ivp",
-        "showInStartList" : false,
-        "startName" : "User Selection Example in Serenity theme"
+        "signature" : "showUserSelectionExamplesSerenity",
+        "request" : {
+          "name" : "User Selection Example in Serenity theme",
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 192 },
         "labelOffset" : { "x" : 49, "y" : 37 }
       },
-      "connect" : { "id" : "f12", "to" : "f7" }
+      "connect" : [
+        { "id" : "f12", "to" : "f7" }
+      ]
     }, {
       "id" : "f9",
       "type" : "TaskEnd",
@@ -107,13 +118,16 @@
           "name" : "Task created by User Selection Example",
           "description" : "This task is created by User Selection Example",
           "responsible" : {
-            "userFromAttribute" : "in1.selectedUser.getName()"
+            "type" : "USER_FROM_ATTRIBUTE",
+            "activator" : "in1.selectedUser.getName()"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 480, "y" : 192 }
       },
-      "connect" : { "id" : "f11", "to" : "f9" }
+      "connect" : [
+        { "id" : "f11", "to" : "f9" }
+      ]
     } ]
 }

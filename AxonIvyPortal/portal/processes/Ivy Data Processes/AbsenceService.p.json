@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "14BDDCD00C5EA267",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "findAbsences(String)",
       "config" : {
-        "callSignature" : "findAbsences",
+        "signature" : "findAbsences",
         "input" : {
           "params" : [
-            { "name" : "username", "type" : "String" }
+            { "name" : "username", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.username" : "param.username"
@@ -21,7 +21,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "absencesByUser", "type" : "java.util.Map" }
+            { "name" : "absencesByUser", "type" : "java.util.Map", "desc" : "" }
           ],
           "map" : {
             "result.absencesByUser" : "in.absencesByUser"
@@ -31,7 +31,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f27", "to" : "f86" }
+      "connect" : [
+        { "id" : "f27", "to" : "f86" }
+      ]
     }, {
       "id" : "f82",
       "type" : "CallSubEnd",
@@ -56,17 +58,19 @@
       "visual" : {
         "at" : { "x" : 266, "y" : 64 }
       },
-      "connect" : { "id" : "f4", "to" : "f82" }
+      "connect" : [
+        { "id" : "f4", "to" : "f82" }
+      ]
     }, {
       "id" : "f0",
       "type" : "CallSubStart",
       "name" : "updateAbsences(String,Set)",
       "config" : {
-        "callSignature" : "updateAbsences",
+        "signature" : "updateAbsences",
         "input" : {
           "params" : [
-            { "name" : "username", "type" : "String" },
-            { "name" : "ivyAbsences", "type" : "java.util.Set" }
+            { "name" : "username", "type" : "String", "desc" : "" },
+            { "name" : "ivyAbsences", "type" : "java.util.Set", "desc" : "" }
           ],
           "map" : {
             "out.absences" : "param.ivyAbsences",
@@ -78,7 +82,9 @@
         "at" : { "x" : 96, "y" : 256 },
         "labelOffset" : { "x" : 15, "y" : 38 }
       },
-      "connect" : { "id" : "f1", "to" : "f3" }
+      "connect" : [
+        { "id" : "f1", "to" : "f3" }
+      ]
     }, {
       "id" : "f3",
       "type" : "Script",
@@ -95,7 +101,9 @@
       "visual" : {
         "at" : { "x" : 266, "y" : 256 }
       },
-      "connect" : { "id" : "f12", "to" : "f7" }
+      "connect" : [
+        { "id" : "f12", "to" : "f7" }
+      ]
     }, {
       "id" : "f7",
       "type" : "CallSubEnd",
@@ -107,10 +115,10 @@
       "type" : "CallSubStart",
       "name" : "deleteAbsence(IvyAbsence)",
       "config" : {
-        "callSignature" : "deleteAbsence",
+        "signature" : "deleteAbsence",
         "input" : {
           "params" : [
-            { "name" : "ivyAbsence", "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence" }
+            { "name" : "ivyAbsence", "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence", "desc" : "" }
           ],
           "map" : {
             "out.absence" : "param.ivyAbsence"
@@ -120,7 +128,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 352 }
       },
-      "connect" : { "id" : "f2", "to" : "f13" }
+      "connect" : [
+        { "id" : "f2", "to" : "f13" }
+      ]
     }, {
       "id" : "f10",
       "type" : "CallSubEnd",
@@ -143,7 +153,9 @@
       "visual" : {
         "at" : { "x" : 266, "y" : 352 }
       },
-      "connect" : { "id" : "f6", "to" : "f10" }
+      "connect" : [
+        { "id" : "f6", "to" : "f10" }
+      ]
     }, {
       "id" : "f18",
       "type" : "CallSubEnd",
@@ -166,16 +178,18 @@
       "visual" : {
         "at" : { "x" : 266, "y" : 160 }
       },
-      "connect" : { "id" : "f11", "to" : "f18" }
+      "connect" : [
+        { "id" : "f11", "to" : "f18" }
+      ]
     }, {
       "id" : "f21",
       "type" : "CallSubStart",
       "name" : "createAbsence(IvyAbsence)",
       "config" : {
-        "callSignature" : "createAbsence",
+        "signature" : "createAbsence",
         "input" : {
           "params" : [
-            { "name" : "absence", "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence" }
+            { "name" : "absence", "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence", "desc" : "" }
           ],
           "map" : {
             "out.absence" : "param.absence"
@@ -186,7 +200,9 @@
         "at" : { "x" : 96, "y" : 160 },
         "labelOffset" : { "x" : 8, "y" : 39 }
       },
-      "connect" : { "id" : "f22", "to" : "f20" }
+      "connect" : [
+        { "id" : "f22", "to" : "f20" }
+      ]
     } ],
   "layout" : {
     "lanes" : [ {

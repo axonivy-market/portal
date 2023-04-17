@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "1636734E13CEC872",
   "config" : {
     "data" : "portalKit_test.LoginData"
@@ -37,29 +37,32 @@
       "visual" : {
         "at" : { "x" : 224, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f0",
       "type" : "RequestStart",
       "name" : "login.ivp",
       "config" : {
-        "callSignature" : "login",
+        "signature" : "login",
         "input" : {
           "params" : [
-            { "name" : "username", "type" : "String" },
-            { "name" : "password", "type" : "String" }
+            { "name" : "username", "type" : "String", "desc" : "" },
+            { "name" : "password", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.password" : "param.password",
             "out.username" : "param.username"
           }
-        },
-        "outLink" : "login.ivp"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f5",
       "type" : "TaskEnd",
@@ -78,19 +81,22 @@
       "visual" : {
         "at" : { "x" : 224, "y" : 160 }
       },
-      "connect" : { "id" : "f9", "to" : "f5" }
+      "connect" : [
+        { "id" : "f9", "to" : "f5" }
+      ]
     }, {
       "id" : "f7",
       "type" : "RequestStart",
       "name" : "logout.ivp",
       "config" : {
-        "callSignature" : "logout",
-        "outLink" : "logout.ivp"
+        "signature" : "logout"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 },
         "labelOffset" : { "x" : 13, "y" : 37 }
       },
-      "connect" : { "id" : "f8", "to" : "f6" }
+      "connect" : [
+        { "id" : "f8", "to" : "f6" }
+      ]
     } ]
 }

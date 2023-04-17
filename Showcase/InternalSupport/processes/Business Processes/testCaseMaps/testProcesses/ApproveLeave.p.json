@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "15C7B30FB93C827E",
   "config" : {
     "data" : "internaltest.Data"
@@ -9,21 +9,22 @@
       "type" : "RequestStart",
       "name" : "start.ivp",
       "config" : {
-        "callSignature" : "start",
-        "case" : {
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
-          ]
-        },
+        "signature" : "start",
         "task" : {
           "name" : "Approve Leave Request"
         },
-        "outLink" : "start.ivp"
+        "case" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+          ]
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -34,50 +35,44 @@
       "id" : "f3",
       "type" : "DialogCall",
       "config" : {
-        "dialogId" : "internaltest.ui.approveLeave",
-        "startMethod" : "start(String,Date,Date,Boolean,String,internalPortal.ProcessStatus)",
-        "call" : {
-          "params" : [
-            { "name" : "Mitarbeiter", "type" : "String" },
-            { "name" : "Von", "type" : "Date" },
-            { "name" : "Bis", "type" : "Date" },
-            { "name" : "beantragt", "type" : "Boolean" },
-            { "name" : "Vertretung", "type" : "String" },
-            { "name" : "processStatus", "type" : "internalPortal.ProcessStatus" }
-          ]
-        }
+        "dialog" : "internaltest.ui.approveLeave:start(String,Date,Date,Boolean,String,internalPortal.ProcessStatus)"
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f8",
       "type" : "RequestStart",
       "name" : "Fix Hardware",
       "config" : {
-        "callSignature" : "fixHardware",
-        "case" : {
-          "name" : "Fix Hardware",
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
-          ]
+        "signature" : "fixHardware",
+        "request" : {
+          "isHttpRequestable" : false,
+          "name" : "Fix Hardware"
         },
-        "outLink" : "fixHardware.ivp",
+        "triggerable" : true,
         "task" : {
           "name" : "Fix Hardware",
           "responsible" : {
-            "role" : "SYSTEM"
+            "activator" : "SYSTEM"
           }
         },
-        "triggerEnabled" : true,
-        "requestEnabled" : false,
-        "startName" : "Fix Hardware"
+        "case" : {
+          "name" : "Fix Hardware",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+          ]
+        }
       },
       "visual" : {
         "at" : { "x" : 88, "y" : 168 }
       },
-      "connect" : { "id" : "f26", "to" : "f25" }
+      "connect" : [
+        { "id" : "f26", "to" : "f25" }
+      ]
     }, {
       "id" : "f11",
       "type" : "TaskEnd",
@@ -89,27 +84,30 @@
       "type" : "RequestStart",
       "name" : "Install Operation System",
       "config" : {
-        "callSignature" : "installOperationSystem",
+        "signature" : "installOperationSystem",
+        "request" : {
+          "isHttpRequestable" : false,
+          "name" : "Install Operation System"
+        },
+        "triggerable" : true,
+        "task" : {
+          "responsible" : {
+            "activator" : "SYSTEM"
+          }
+        },
         "case" : {
           "name" : "Install Operation System",
           "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
           ]
-        },
-        "outLink" : "installOperationSystem.ivp",
-        "task" : {
-          "responsible" : {
-            "role" : "SYSTEM"
-          }
-        },
-        "triggerEnabled" : true,
-        "requestEnabled" : false,
-        "startName" : "Install Operation System"
+        }
       },
       "visual" : {
         "at" : { "x" : 80, "y" : 280 }
       },
-      "connect" : { "id" : "f40", "to" : "f39" }
+      "connect" : [
+        { "id" : "f40", "to" : "f39" }
+      ]
     }, {
       "id" : "f14",
       "type" : "TaskEnd",
@@ -126,13 +124,14 @@
       "visual" : {
         "at" : { "x" : 376, "y" : 168 }
       },
-      "connect" : { "id" : "f12", "to" : "f11" }
+      "connect" : [
+        { "id" : "f12", "to" : "f11" }
+      ]
     }, {
       "id" : "f15",
       "type" : "TaskSwitchEvent",
       "name" : "Install",
       "config" : {
-        "outLinks" : [ "TaskA.ivp" ],
         "task" : {
           "name" : "Install OperationSystem"
         }
@@ -140,7 +139,9 @@
       "visual" : {
         "at" : { "x" : 360, "y" : 280 }
       },
-      "connect" : { "id" : "f19", "to" : "f14", "condition" : "ivp==\"TaskA.ivp\"" }
+      "connect" : [
+        { "id" : "f19", "to" : "f14", "condition" : "ivp==\"TaskA.ivp\"" }
+      ]
     }, {
       "id" : "f25",
       "type" : "SubProcessCall",
@@ -148,9 +149,6 @@
       "config" : {
         "processCall" : "Functional Processes/HideSystemCase:call(Boolean)",
         "call" : {
-          "params" : [
-            { "name" : "hideBusinessCase", "type" : "Boolean" }
-          ],
           "map" : {
             "param.hideBusinessCase" : "false"
           }
@@ -159,25 +157,30 @@
       "visual" : {
         "at" : { "x" : 216, "y" : 168 }
       },
-      "connect" : { "id" : "f17", "to" : "f16" }
+      "connect" : [
+        { "id" : "f17", "to" : "f16" }
+      ]
     }, {
       "id" : "f27",
       "type" : "RequestStart",
       "name" : "Appraisal.ivp",
       "config" : {
-        "callSignature" : "Appraisal",
+        "signature" : "Appraisal",
+        "request" : {
+          "name" : "Appraisal"
+        },
         "case" : {
           "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
           ]
-        },
-        "outLink" : "Appraisal.ivp",
-        "startName" : "Appraisal"
+        }
       },
       "visual" : {
         "at" : { "x" : 88, "y" : 376 }
       },
-      "connect" : { "id" : "f28", "to" : "f29" }
+      "connect" : [
+        { "id" : "f28", "to" : "f29" }
+      ]
     }, {
       "id" : "f29",
       "type" : "TriggerCall",
@@ -188,7 +191,9 @@
       "visual" : {
         "at" : { "x" : 336, "y" : 376 }
       },
-      "connect" : { "id" : "f31", "to" : "f30" }
+      "connect" : [
+        { "id" : "f31", "to" : "f30" }
+      ]
     }, {
       "id" : "f30",
       "type" : "TaskEnd",
@@ -200,32 +205,34 @@
       "type" : "RequestStart",
       "name" : "RequestForm",
       "config" : {
-        "callSignature" : "RequestForm",
-        "case" : {
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
-          ]
+        "signature" : "RequestForm",
+        "request" : {
+          "isHttpRequestable" : false
         },
-        "outLink" : "RequestForm.ivp",
+        "triggerable" : true,
         "task" : {
           "responsible" : {
-            "role" : "SYSTEM"
+            "activator" : "SYSTEM"
           }
         },
-        "triggerEnabled" : true,
-        "requestEnabled" : false
+        "case" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+          ]
+        }
       },
       "visual" : {
         "at" : { "x" : 88, "y" : 456 },
         "labelOffset" : { "x" : 4, "y" : 37 }
       },
-      "connect" : { "id" : "f38", "to" : "f37" }
+      "connect" : [
+        { "id" : "f38", "to" : "f37" }
+      ]
     }, {
       "id" : "f33",
       "type" : "TaskSwitchEvent",
       "name" : "Request form",
       "config" : {
-        "outLinks" : [ "TaskA.ivp" ],
         "task" : {
           "name" : "Request form",
           "category" : "RequestForm"
@@ -234,7 +241,9 @@
       "visual" : {
         "at" : { "x" : 344, "y" : 456 }
       },
-      "connect" : { "id" : "f36", "to" : "f35", "condition" : "ivp==\"TaskA.ivp\"" }
+      "connect" : [
+        { "id" : "f36", "to" : "f35", "condition" : "ivp==\"TaskA.ivp\"" }
+      ]
     }, {
       "id" : "f35",
       "type" : "TaskEnd",
@@ -248,9 +257,6 @@
       "config" : {
         "processCall" : "Functional Processes/HideSystemCase:call(Boolean)",
         "call" : {
-          "params" : [
-            { "name" : "hideBusinessCase", "type" : "Boolean" }
-          ],
           "map" : {
             "param.hideBusinessCase" : "true"
           }
@@ -259,7 +265,9 @@
       "visual" : {
         "at" : { "x" : 216, "y" : 456 }
       },
-      "connect" : { "id" : "f34", "to" : "f33", "var" : "in1" }
+      "connect" : [
+        { "id" : "f34", "to" : "f33", "var" : "in1" }
+      ]
     }, {
       "id" : "f39",
       "type" : "SubProcessCall",
@@ -267,9 +275,6 @@
       "config" : {
         "processCall" : "Functional Processes/HideSystemCase:call(Boolean)",
         "call" : {
-          "params" : [
-            { "name" : "hideBusinessCase", "type" : "Boolean" }
-          ],
           "map" : {
             "param.hideBusinessCase" : "false"
           }
@@ -278,31 +283,36 @@
       "visual" : {
         "at" : { "x" : 232, "y" : 280 }
       },
-      "connect" : { "id" : "f18", "to" : "f15", "var" : "in1" }
+      "connect" : [
+        { "id" : "f18", "to" : "f15", "var" : "in1" }
+      ]
     }, {
       "id" : "f41",
       "type" : "RequestStart",
       "name" : "create12CasesWithCategory.ivp",
       "config" : {
-        "callSignature" : "create12CasesWithCategory",
+        "signature" : "create12CasesWithCategory",
         "input" : {
           "map" : {
             "out.caseNumber" : "12",
             "out.count" : "0"
           }
         },
+        "request" : {
+          "name" : "Create 12 Cases with category"
+        },
         "case" : {
           "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
           ]
-        },
-        "outLink" : "create12CasesWithCategory.ivp",
-        "startName" : "Create 12 Cases with category"
+        }
       },
       "visual" : {
         "at" : { "x" : 88, "y" : 616 }
       },
-      "connect" : { "id" : "f51", "to" : "f50" }
+      "connect" : [
+        { "id" : "f51", "to" : "f50" }
+      ]
     }, {
       "id" : "f46",
       "type" : "Alternative",
@@ -335,9 +345,6 @@
       "config" : {
         "processCall" : "Business Processes/testCaseMaps/testProcesses/ApproveLeave:startACase(Integer)",
         "call" : {
-          "params" : [
-            { "name" : "count", "type" : "Integer" }
-          ],
           "map" : {
             "param.count" : "in.count"
           }
@@ -346,58 +353,64 @@
       "visual" : {
         "at" : { "x" : 400, "y" : 616 }
       },
-      "connect" : { "id" : "f56", "to" : "f52" }
+      "connect" : [
+        { "id" : "f56", "to" : "f52" }
+      ]
     }, {
       "id" : "f43",
       "type" : "RequestStart",
       "name" : "startACase(Integer)",
       "config" : {
-        "callSignature" : "startACase",
+        "signature" : "startACase",
         "input" : {
           "params" : [
-            { "name" : "count", "type" : "Integer" }
+            { "name" : "count", "type" : "Integer", "desc" : "" }
           ],
           "map" : {
             "out.count" : "param.count"
           }
         },
+        "request" : {
+          "isHttpRequestable" : false
+        },
+        "triggerable" : true,
+        "task" : {
+          "responsible" : {
+            "activator" : "SYSTEM"
+          }
+        },
         "case" : {
           "attachToBusinessCase" : false,
           "customFields" : [
-            { "name" : "CustomerName", "type" : "String", "value" : "\"CustomerName\" + param.count" },
-            { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" }
+            { "name" : "CustomerName", "type" : "STRING", "value" : "\"CustomerName\" + param.count" },
+            { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" }
           ]
-        },
-        "outLink" : "startACase.ivp",
-        "task" : {
-          "responsible" : {
-            "role" : "SYSTEM"
-          }
-        },
-        "triggerEnabled" : true,
-        "requestEnabled" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 72, "y" : 840 }
       },
-      "connect" : { "id" : "f59", "to" : "f58" }
+      "connect" : [
+        { "id" : "f59", "to" : "f58" }
+      ]
     }, {
       "id" : "f47",
       "type" : "TaskSwitchEvent",
       "config" : {
-        "outLinks" : [ "TaskA.ivp" ],
-        "case" : {
-          "name" : "TestCase"
-        },
         "task" : {
           "name" : "Task number <%=in1.count%>",
           "category" : "<%=in1.category%>"
+        },
+        "case" : {
+          "name" : "TestCase"
         }
       },
       "visual" : {
         "at" : { "x" : 328, "y" : 840 }
       },
-      "connect" : { "id" : "f55", "to" : "f54", "condition" : "ivp==\"TaskA.ivp\"" }
+      "connect" : [
+        { "id" : "f55", "to" : "f54", "condition" : "ivp==\"TaskA.ivp\"" }
+      ]
     }, {
       "id" : "f54",
       "type" : "TaskEnd",
@@ -415,7 +428,9 @@
       "visual" : {
         "at" : { "x" : 560, "y" : 616 }
       },
-      "connect" : { "id" : "f44", "to" : "f46" }
+      "connect" : [
+        { "id" : "f44", "to" : "f46" }
+      ]
     }, {
       "id" : "f58",
       "type" : "Script",
@@ -440,6 +455,8 @@
       "visual" : {
         "at" : { "x" : 200, "y" : 840 }
       },
-      "connect" : { "id" : "f53", "to" : "f47", "var" : "in1" }
+      "connect" : [
+        { "id" : "f53", "to" : "f47", "var" : "in1" }
+      ]
     } ]
 }

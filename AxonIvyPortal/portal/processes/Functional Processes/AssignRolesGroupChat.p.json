@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "169B2A4D199FA6EA",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "configureRolesForGroupChat(ITask)",
       "config" : {
-        "callSignature" : "configureRolesForGroupChat",
+        "signature" : "configureRolesForGroupChat",
         "input" : {
           "params" : [
-            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
           ],
           "map" : {
             "out.task" : "param.task"
@@ -21,7 +21,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "roles", "type" : "java.util.List<ch.ivyteam.ivy.security.IRole>" }
+            { "name" : "roles", "type" : "java.util.List<ch.ivyteam.ivy.security.IRole>", "desc" : "" }
           ],
           "map" : {
             "result.roles" : "in.roles"
@@ -32,7 +32,9 @@
         "at" : { "x" : 48, "y" : 40 },
         "labelOffset" : { "x" : 113, "y" : 37 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",

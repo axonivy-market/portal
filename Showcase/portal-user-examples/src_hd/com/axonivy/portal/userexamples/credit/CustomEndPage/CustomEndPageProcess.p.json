@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "17099FEAF8325AA8",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "HtmlDialogStart",
       "name" : "start(Long)",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long" }
+            { "name" : "caseId", "type" : "Long", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.caseId"
@@ -25,7 +25,9 @@
         "at" : { "x" : 96, "y" : 64 },
         "labelOffset" : { "x" : 22, "y" : 35 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -48,7 +50,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }
       },
-      "connect" : { "id" : "f5", "to" : "S40" }
+      "connect" : [
+        { "id" : "f5", "to" : "S40" }
+      ]
     }, {
       "id" : "f4",
       "type" : "HtmlDialogExit",
@@ -64,7 +68,6 @@
           "type" : "Script",
           "name" : "Find Case",
           "config" : {
-            "security" : "system",
             "output" : {
               "code" : [
                 "import ch.ivyteam.ivy.workflow.ICase;",
@@ -72,12 +75,15 @@
                 "",
                 "out.caseSelected = ivy.wf.getCaseQueryExecutor().createCaseQuery().where().caseId().isEqual(in.caseId).executor().firstResult() as ICase;"
               ]
-            }
+            },
+            "sudo" : true
           },
           "visual" : {
             "at" : { "x" : 192, "y" : 160 }
           },
-          "connect" : { "id" : "S40-f107", "to" : "S40-f104" }
+          "connect" : [
+            { "id" : "S40-f107", "to" : "S40-f104" }
+          ]
         }, {
           "id" : "S40-f104",
           "type" : "SubProcessCall",
@@ -85,10 +91,6 @@
           "config" : {
             "processCall" : "Functional Processes/OpenPortalCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean)",
             "call" : {
-              "params" : [
-                { "name" : "caseData", "type" : "ch.ivyteam.ivy.workflow.ICase" },
-                { "name" : "isShowBackButton", "type" : "Boolean" }
-              ],
               "map" : {
                 "param.caseData" : "in.caseSelected",
                 "param.isShowBackButton" : "true"
@@ -99,7 +101,9 @@
             "at" : { "x" : 360, "y" : 160 },
             "size" : { "width" : 144, "height" : 60 }
           },
-          "connect" : { "id" : "S40-f1", "to" : "S40-g1" }
+          "connect" : [
+            { "id" : "S40-f1", "to" : "S40-g1" }
+          ]
         }, {
           "id" : "S40-g0",
           "type" : "EmbeddedStart",
@@ -109,7 +113,9 @@
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f5",
-          "connect" : { "id" : "S40-f0", "to" : "S40-f106" }
+          "connect" : [
+            { "id" : "S40-f0", "to" : "S40-f106" }
+          ]
         }, {
           "id" : "S40-g1",
           "type" : "EmbeddedEnd",
@@ -123,6 +129,8 @@
       "visual" : {
         "at" : { "x" : 224, "y" : 160 }
       },
-      "connect" : { "id" : "f6", "to" : "f4" }
+      "connect" : [
+        { "id" : "f6", "to" : "f4" }
+      ]
     } ]
 }

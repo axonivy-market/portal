@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "16FA8B451814E32A",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.GlobalGrowlSkipTaskListData"
@@ -9,17 +9,20 @@
       "type" : "RequestStart",
       "name" : "start.ivp",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
+        "request" : {
+          "name" : "Global Growl Skip Task List"
+        },
         "task" : {
           "name" : "Start: Global Growl Skip Task List"
-        },
-        "outLink" : "start.ivp",
-        "startName" : "Global Growl Skip Task List"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f4", "to" : "f3", "var" : "in1" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3", "var" : "in1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -30,16 +33,14 @@
       "id" : "f3",
       "type" : "TaskSwitchGateway",
       "config" : {
-        "outLinks" : [ "TaskA.ivp" ],
-        "tasks" : {
-          "TaskA" : {
+        "tasks" : [ {
+            "id" : "TaskA",
             "name" : "Global Growl Skip Task List",
             "skipTasklist" : true,
             "customFields" : [
-              { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
             ]
-          }
-        }
+          } ]
       },
       "visual" : {
         "at" : { "x" : 192, "y" : 64 }
@@ -52,13 +53,14 @@
       "type" : "DialogCall",
       "name" : "LeaveRequestForm",
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm",
-        "startMethod" : "start()"
+        "dialog" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm:start()"
       },
       "visual" : {
         "at" : { "x" : 320, "y" : 64 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     } ]
 }

@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "18189731173CA5D4",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,13 +10,15 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "guid" : "18189731175BDAFD"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f7", "to" : "f6" }
+      "connect" : [
+        { "id" : "f7", "to" : "f6" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -33,7 +35,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }
       },
-      "connect" : { "id" : "f5", "to" : "f4" }
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
     }, {
       "id" : "f4",
       "type" : "HtmlDialogExit",
@@ -45,7 +49,6 @@
       "type" : "Script",
       "name" : "Init data",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
@@ -55,12 +58,15 @@
             "in.steps = Arrays.asList(\"Step 1\",\"Step 2\",\"Step 3\",\"Step 4\",\"Step 5\",\"Step 6\",\"Step 7\",\"Step 8\",\"Step 9\");",
             "in.processChainSerenityExampleLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessChainExample/showProcessChainExamplesSerenity.ivp\");"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f8",
       "type" : "HtmlDialogEventStart",
@@ -81,7 +87,9 @@
         "at" : { "x" : 96, "y" : 256 },
         "labelOffset" : { "x" : 5, "y" : 35 }
       },
-      "connect" : { "id" : "f10", "to" : "f9" }
+      "connect" : [
+        { "id" : "f10", "to" : "f9" }
+      ]
     }, {
       "id" : "f9",
       "type" : "HtmlDialogEnd",

@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "15DC16CB8B32F2B4",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,14 +10,16 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "guid" : "152EE20AC7136182"
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 96 },
         "labelOffset" : { "x" : 38, "y" : 20 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -29,10 +31,10 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "updateTasksByFilter()",
       "config" : {
-        "callSignature" : "updateTasksByFilter",
+        "signature" : "updateTasksByFilter",
         "input" : {
           "params" : [
-            { "name" : "taskContainerId", "type" : "String" }
+            { "name" : "taskContainerId", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.taskContainerId" : "param.taskContainerId"
@@ -43,7 +45,9 @@
       "visual" : {
         "at" : { "x" : 64, "y" : 192 }
       },
-      "connect" : { "id" : "f6", "to" : "f5" }
+      "connect" : [
+        { "id" : "f6", "to" : "f5" }
+      ]
     }, {
       "id" : "f4",
       "type" : "HtmlDialogEnd",
@@ -73,6 +77,8 @@
         "at" : { "x" : 208, "y" : 192 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f7", "to" : "f4" }
+      "connect" : [
+        { "id" : "f7", "to" : "f4" }
+      ]
     } ]
 }

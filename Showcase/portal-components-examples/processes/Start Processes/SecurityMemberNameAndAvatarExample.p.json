@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "182A5FCAF7FC6B1A",
   "config" : {
     "data" : "com.axonivy.portal.components.examples.SecurityMemberNameAndAvatarExampleData"
@@ -9,15 +9,18 @@
       "type" : "RequestStart",
       "name" : "showSecurityMemberNameAndAvatarExamples.ivp",
       "config" : {
-        "callSignature" : "showSecurityMemberNameAndAvatarExamples",
-        "outLink" : "showSecurityMemberNameAndAvatarExamples.ivp",
-        "startName" : "Security Member Name And Avatar Example"
+        "signature" : "showSecurityMemberNameAndAvatarExamples",
+        "request" : {
+          "name" : "Security Member Name And Avatar Example"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
         "labelOffset" : { "x" : 105, "y" : 37 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -29,42 +32,47 @@
       "type" : "DialogCall",
       "name" : "SecurityMemberNameAndAvatarExample",
       "config" : {
-        "dialogId" : "com.axonivy.portal.components.examples.SecurityMemberNameAndAvatarExample",
-        "startMethod" : "start()"
+        "dialog" : "com.axonivy.portal.components.examples.SecurityMemberNameAndAvatarExample:start()"
       },
       "visual" : {
         "at" : { "x" : 480, "y" : 64 },
         "size" : { "width" : 240, "height" : 60 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f5",
       "type" : "RequestStart",
       "name" : "showSecurityMemberNameAndAvatarExamplesSerenity.ivp",
       "config" : {
-        "callSignature" : "showSecurityMemberNameAndAvatarExamplesSerenity",
-        "outLink" : "showSecurityMemberNameAndAvatarExamplesSerenity.ivp",
-        "showInStartList" : false,
-        "startName" : "Security Member Name And Avatar Examples Serenity"
+        "signature" : "showSecurityMemberNameAndAvatarExamplesSerenity",
+        "request" : {
+          "name" : "Security Member Name And Avatar Examples Serenity",
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 176 },
         "labelOffset" : { "x" : 105, "y" : 37 }
       },
-      "connect" : { "id" : "f9", "to" : "f6" }
+      "connect" : [
+        { "id" : "f9", "to" : "f6" }
+      ]
     }, {
       "id" : "f6",
       "type" : "DialogCall",
       "name" : "SecurityMemberNameAndAvatarExampleSerenity",
       "config" : {
-        "dialogId" : "com.axonivy.portal.components.examples.serenity.SecurityMemberNameAndAvatarExampleSerenity",
-        "startMethod" : "start()"
+        "dialog" : "com.axonivy.portal.components.examples.serenity.SecurityMemberNameAndAvatarExampleSerenity:start()"
       },
       "visual" : {
         "at" : { "x" : 480, "y" : 176 },
         "size" : { "width" : 272, "height" : 60 }
       },
-      "connect" : { "id" : "f8", "to" : "f7" }
+      "connect" : [
+        { "id" : "f8", "to" : "f7" }
+      ]
     }, {
       "id" : "f7",
       "type" : "TaskEnd",

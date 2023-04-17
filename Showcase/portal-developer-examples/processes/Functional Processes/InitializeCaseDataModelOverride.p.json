@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "164B5BE6623EDE15",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "call()",
       "config" : {
-        "callSignature" : "call",
+        "signature" : "call",
         "result" : {
           "params" : [
-            { "name" : "caseDataModel", "type" : "ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel" }
+            { "name" : "caseDataModel", "type" : "ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel", "desc" : "" }
           ],
           "map" : {
             "result.caseDataModel" : "in.dataModel"
@@ -23,7 +23,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -47,6 +49,8 @@
         "at" : { "x" : 224, "y" : 64 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     } ]
 }

@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "171E2BB0DB49C362",
   "config" : {
     "data" : "internaltest.Data"
@@ -9,21 +9,24 @@
       "type" : "RequestStart",
       "name" : "roleInvolved.ivp",
       "config" : {
-        "callSignature" : "roleInvolved",
-        "case" : {
+        "signature" : "roleInvolved",
+        "request" : {
           "name" : "Test Process: role involved"
         },
-        "outLink" : "roleInvolved.ivp",
         "task" : {
           "name" : "Test Process: role involved"
         },
-        "startName" : "Test Process: role involved"
+        "case" : {
+          "name" : "Test Process: role involved"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
         "labelOffset" : { "x" : 12, "y" : 37 }
       },
-      "connect" : { "id" : "f4", "to" : "f3", "var" : "in1" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3", "var" : "in1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -34,15 +37,13 @@
       "id" : "f3",
       "type" : "TaskSwitchGateway",
       "config" : {
-        "outLinks" : [ "TaskA.ivp" ],
-        "tasks" : {
-          "TaskA" : {
+        "tasks" : [ {
+            "id" : "TaskA",
             "name" : "Task for role involved",
             "responsible" : {
-              "role" : "TestRoleInvolved"
+              "activator" : "TestRoleInvolved"
             }
-          }
-        }
+          } ]
       },
       "visual" : {
         "at" : { "x" : 192, "y" : 64 }

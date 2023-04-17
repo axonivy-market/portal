@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "162511D2577DBA88",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.Data"
@@ -12,18 +12,20 @@
           "id" : "S30-f63",
           "type" : "TaskSwitchEvent",
           "config" : {
-            "case" : {
-              "name" : "Task in state WAITING_FOR_INTERMEDIATE_EVENT"
-            },
             "task" : {
               "name" : "Task in state WAITING_FOR_INTERMEDIATE_EVENT",
               "description" : "Task in state WAITING_FOR_INTERMEDIATE_EVENT"
+            },
+            "case" : {
+              "name" : "Task in state WAITING_FOR_INTERMEDIATE_EVENT"
             }
           },
           "visual" : {
             "at" : { "x" : 648, "y" : 200 }
           },
-          "connect" : { "id" : "S30-f8", "to" : "S30-f7" }
+          "connect" : [
+            { "id" : "S30-f8", "to" : "S30-f7" }
+          ]
         }, {
           "id" : "S30-f2",
           "type" : "WaitEvent",
@@ -41,7 +43,9 @@
           "visual" : {
             "at" : { "x" : 408, "y" : 200 }
           },
-          "connect" : { "id" : "S30-f0", "to" : "S30-f63" }
+          "connect" : [
+            { "id" : "S30-f0", "to" : "S30-f63" }
+          ]
         }, {
           "id" : "S30-g2",
           "type" : "EmbeddedStart",
@@ -51,7 +55,9 @@
             "labelOffset" : { "x" : 13, "y" : 42 }
           },
           "parentConnector" : "f62",
-          "connect" : { "id" : "S30-f4", "to" : "S30-f2" }
+          "connect" : [
+            { "id" : "S30-f4", "to" : "S30-f2" }
+          ]
         }, {
           "id" : "S30-f7",
           "type" : "TaskEnd",
@@ -84,13 +90,14 @@
             "at" : { "x" : 184, "y" : 296 },
             "labelOffset" : { "x" : -3, "y" : 37 }
           },
-          "connect" : { "id" : "S20-f6", "to" : "S20-f3" }
+          "connect" : [
+            { "id" : "S20-f6", "to" : "S20-f3" }
+          ]
         }, {
           "id" : "S20-f60",
           "type" : "Script",
           "name" : "Send signal to create technical task",
           "config" : {
-            "security" : "system",
             "output" : {
               "code" : [
                 "import ch.ivyteam.ivy.process.model.value.SignalCode;",
@@ -100,13 +107,16 @@
                 "SignalCode code = new SignalCode(\"ch:axonivy:portal:example:createtaskfailed\");",
                 "ivy.wf.signals().send(code);"
               ]
-            }
+            },
+            "sudo" : true
           },
           "visual" : {
             "at" : { "x" : 384, "y" : 160 },
             "size" : { "width" : 208, "height" : 60 }
           },
-          "connect" : { "id" : "S20-f5", "to" : "S20-f4" }
+          "connect" : [
+            { "id" : "S20-f5", "to" : "S20-f4" }
+          ]
         }, {
           "id" : "S20-g2",
           "type" : "EmbeddedStart",
@@ -116,7 +126,9 @@
             "labelOffset" : { "x" : -3, "y" : 48 }
           },
           "parentConnector" : "f63",
-          "connect" : { "id" : "S20-f2", "to" : "S20-f60" }
+          "connect" : [
+            { "id" : "S20-f2", "to" : "S20-f60" }
+          ]
         }, {
           "id" : "S20-f4",
           "type" : "TaskEnd",
@@ -145,7 +157,9 @@
             "at" : { "x" : 312, "y" : 296 },
             "size" : { "width" : 128, "height" : 60 }
           },
-          "connect" : { "id" : "S20-f1", "to" : "S20-f41" }
+          "connect" : [
+            { "id" : "S20-f1", "to" : "S20-f41" }
+          ]
         } ],
       "visual" : {
         "at" : { "x" : 616, "y" : 936 },
@@ -172,7 +186,9 @@
             "at" : { "x" : 320, "y" : 344 },
             "labelOffset" : { "x" : 7, "y" : 37 }
           },
-          "connect" : { "id" : "S10-f6", "to" : "S10-f1" }
+          "connect" : [
+            { "id" : "S10-f6", "to" : "S10-f1" }
+          ]
         }, {
           "id" : "S10-f71",
           "type" : "Script",
@@ -191,7 +207,9 @@
             "at" : { "x" : 624, "y" : 208 },
             "size" : { "width" : 208, "height" : 60 }
           },
-          "connect" : { "id" : "S10-f5", "to" : "S10-f4" }
+          "connect" : [
+            { "id" : "S10-f5", "to" : "S10-f4" }
+          ]
         }, {
           "id" : "S10-f67",
           "type" : "Script",
@@ -200,15 +218,17 @@
             "code name"
           ],
           "config" : {
-            "security" : "system",
             "output" : {
               "code" : "ivy.case.setCategoryPath(\"Technical Task\");"
-            }
+            },
+            "sudo" : true
           },
           "visual" : {
             "at" : { "x" : 360, "y" : 208 }
           },
-          "connect" : { "id" : "S10-f74", "to" : "S10-f71" }
+          "connect" : [
+            { "id" : "S10-f74", "to" : "S10-f71" }
+          ]
         }, {
           "id" : "S10-g2",
           "type" : "EmbeddedStart",
@@ -218,7 +238,9 @@
             "labelOffset" : { "x" : -3, "y" : 58 }
           },
           "parentConnector" : "f61",
-          "connect" : { "id" : "S10-f2", "to" : "S10-f67" }
+          "connect" : [
+            { "id" : "S10-f2", "to" : "S10-f67" }
+          ]
         }, {
           "id" : "S10-f4",
           "type" : "TaskEnd",
@@ -233,7 +255,7 @@
               "name" : "Technical task(JOIN_FAILED)",
               "description" : "Task failed by runtime exception",
               "responsible" : {
-                "role" : "SYSTEM"
+                "activator" : "SYSTEM"
               },
               "skipTasklist" : true,
               "code" : "5/0;"
@@ -242,7 +264,9 @@
           "visual" : {
             "at" : { "x" : 472, "y" : 344 }
           },
-          "connect" : { "id" : "S10-f7", "to" : "S10-f69" }
+          "connect" : [
+            { "id" : "S10-f7", "to" : "S10-f69" }
+          ]
         } ],
       "visual" : {
         "at" : { "x" : 624, "y" : 840 },
@@ -253,16 +277,19 @@
       "type" : "RequestStart",
       "name" : "createTasksForTaskListCustomization.ivp",
       "config" : {
-        "callSignature" : "createTasksForTaskListCustomization",
-        "outLink" : "createTasksForTaskListCustomization.ivp",
-        "startDescription" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/description\")%>",
-        "startName" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/name\")%>"
+        "signature" : "createTasksForTaskListCustomization",
+        "request" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/name\")%>",
+          "description" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/description\")%>"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 96 },
         "labelOffset" : { "x" : 43, "y" : 40 }
       },
-      "connect" : { "id" : "f2", "to" : "f7", "var" : "in1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f7", "var" : "in1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -286,60 +313,63 @@
       "type" : "TaskSwitchGateway",
       "name" : "Create tasks",
       "config" : {
-        "outLinks" : [ "TaskA.ivp", "TaskB.ivp", "TaskC.ivp" ],
-        "case" : {
-          "name" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Cases/Party/name\")%>",
-          "description" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Cases/Party/description\")%>",
-          "category" : "Party",
-          "customFields" : [
-            { "name" : "CompanyName", "type" : "String", "value" : "\"AxonIvy\"" }
-          ]
-        },
-        "tasks" : {
-          "TaskA" : {
+        "tasks" : [ {
+            "id" : "TaskA",
             "name" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Tasks/MilkTeaOrder/name\")%>",
             "description" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Tasks/MilkTeaOrder/description\")%>",
             "category" : "Party/Drink",
             "responsible" : {
-              "userFromAttribute" : "\"demo\""
+              "type" : "USER_FROM_ATTRIBUTE",
+              "activator" : "\"demo\""
             },
             "expiry" : {
               "timeout" : "new Duration(\"3H\")"
             },
             "customFields" : [
-              { "name" : "CustomerName", "type" : "String", "value" : "\"Sarah\"" },
-              { "name" : "CustomerType", "type" : "String", "value" : "\"Exterior\"" },
-              { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" }
+              { "name" : "CustomerName", "type" : "STRING", "value" : "\"Sarah\"" },
+              { "name" : "CustomerType", "type" : "STRING", "value" : "\"Exterior\"" },
+              { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" }
             ]
-          },
-          "TaskB" : {
+          }, {
+            "id" : "TaskB",
             "name" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Tasks/BeerOrder/name\")%>",
             "description" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Tasks/BeerOrder/description\")%>",
             "category" : "Party/Drink",
-            "priority" : "HIGH",
+            "priority" : {
+              "level" : "HIGH"
+            },
             "expiry" : {
               "timeout" : "new Duration(\"1D\")"
             },
             "customFields" : [
-              { "name" : "CustomerName", "type" : "String", "value" : "\"Julie\"" },
-              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
-              { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime(\"2080-03-23 11:11:11\")" }
+              { "name" : "CustomerName", "type" : "STRING", "value" : "\"Julie\"" },
+              { "name" : "CustomerType", "type" : "STRING", "value" : "\"Interior\"" },
+              { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime(\"2080-03-23 11:11:11\")" }
             ]
-          },
-          "TaskC" : {
+          }, {
+            "id" : "TaskC",
             "name" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Tasks/PizzaOrder/name\")%>",
             "description" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Tasks/PizzaOrder/description\")%>",
             "category" : "Party/Food",
-            "priority" : "LOW",
+            "priority" : {
+              "level" : "LOW"
+            },
             "expiry" : {
               "timeout" : "new Duration(\"2D\")"
             },
             "customFields" : [
-              { "name" : "CustomerName", "type" : "String", "value" : "\"Florian\"" },
-              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
-              { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" }
+              { "name" : "CustomerName", "type" : "STRING", "value" : "\"Florian\"" },
+              { "name" : "CustomerType", "type" : "STRING", "value" : "\"Interior\"" },
+              { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" }
             ]
-          }
+          } ],
+        "case" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Cases/Party/name\")%>",
+          "description" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Cases/Party/description\")%>",
+          "category" : "Party",
+          "customFields" : [
+            { "name" : "CompanyName", "type" : "STRING", "value" : "\"AxonIvy\"" }
+          ]
         }
       },
       "visual" : {
@@ -370,7 +400,7 @@
       "type" : "RequestStart",
       "name" : "createCasesForCaseListCustomization.ivp",
       "config" : {
-        "callSignature" : "createCasesForCaseListCustomization",
+        "signature" : "createCasesForCaseListCustomization",
         "input" : {
           "map" : {
             "out.caseNumber" : "12",
@@ -381,17 +411,18 @@
           "name" : "CreateCasesForCaseListCustomization",
           "description" : "CreateCasesForCaseListCustomization",
           "customFields" : [
-            { "name" : "CustomerName", "type" : "String", "value" : "\"Parent Case\"" },
-            { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" }
+            { "name" : "CustomerName", "type" : "STRING", "value" : "\"Parent Case\"" },
+            { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" }
           ]
-        },
-        "outLink" : "createCasesForCaseListCustomization.ivp"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 256 },
         "labelOffset" : { "x" : 54, "y" : 38 }
       },
-      "connect" : { "id" : "f10", "to" : "f50" }
+      "connect" : [
+        { "id" : "f10", "to" : "f50" }
+      ]
     }, {
       "id" : "f46",
       "type" : "Alternative",
@@ -409,9 +440,6 @@
       "config" : {
         "processCall" : "Start Processes/CreateTestData:startACase(Integer)",
         "call" : {
-          "params" : [
-            { "name" : "count", "type" : "Integer" }
-          ],
           "map" : {
             "param.count" : "in.count"
           }
@@ -420,7 +448,9 @@
       "visual" : {
         "at" : { "x" : 432, "y" : 256 }
       },
-      "connect" : { "id" : "f56", "to" : "f52" }
+      "connect" : [
+        { "id" : "f56", "to" : "f52" }
+      ]
     }, {
       "id" : "f48",
       "type" : "TaskEnd",
@@ -438,7 +468,9 @@
       "visual" : {
         "at" : { "x" : 588, "y" : 255 }
       },
-      "connect" : { "id" : "f44", "to" : "f46" }
+      "connect" : [
+        { "id" : "f44", "to" : "f46" }
+      ]
     }, {
       "id" : "f50",
       "type" : "Alternative",
@@ -453,13 +485,22 @@
       "type" : "RequestStart",
       "name" : "startACase(Integer)",
       "config" : {
-        "callSignature" : "startACase",
+        "signature" : "startACase",
         "input" : {
           "params" : [
-            { "name" : "count", "type" : "Integer" }
+            { "name" : "count", "type" : "Integer", "desc" : "" }
           ],
           "map" : {
             "out.count" : "param.count"
+          }
+        },
+        "request" : {
+          "isHttpRequestable" : false
+        },
+        "triggerable" : true,
+        "task" : {
+          "responsible" : {
+            "activator" : "SYSTEM"
           }
         },
         "case" : {
@@ -467,23 +508,17 @@
           "description" : "TestCase Description <%=param.count%>",
           "attachToBusinessCase" : false,
           "customFields" : [
-            { "name" : "CustomerName", "type" : "String", "value" : "\"Customer name \" + param.count" },
-            { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" }
+            { "name" : "CustomerName", "type" : "STRING", "value" : "\"Customer name \" + param.count" },
+            { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" }
           ]
-        },
-        "outLink" : "startACase.ivp",
-        "task" : {
-          "responsible" : {
-            "role" : "SYSTEM"
-          }
-        },
-        "triggerEnabled" : true,
-        "requestEnabled" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 92, "y" : 384 }
       },
-      "connect" : { "id" : "f59", "to" : "f58" }
+      "connect" : [
+        { "id" : "f59", "to" : "f58" }
+      ]
     }, {
       "id" : "f54",
       "type" : "TaskEnd",
@@ -514,24 +549,27 @@
       "visual" : {
         "at" : { "x" : 220, "y" : 384 }
       },
-      "connect" : { "id" : "f53", "to" : "f47", "var" : "in1" }
+      "connect" : [
+        { "id" : "f53", "to" : "f47", "var" : "in1" }
+      ]
     }, {
       "id" : "f47",
       "type" : "TaskSwitchEvent",
       "config" : {
-        "outLinks" : [ "TaskA.ivp" ],
-        "case" : {
-          "name" : "TestCase <%=in1.count%>"
-        },
         "task" : {
           "name" : "Task number <%=in1.count%>",
           "category" : "<%=in1.category%>"
+        },
+        "case" : {
+          "name" : "TestCase <%=in1.count%>"
         }
       },
       "visual" : {
         "at" : { "x" : 352, "y" : 384 }
       },
-      "connect" : { "id" : "f55", "to" : "f54", "condition" : "ivp==\"TaskA.ivp\"" }
+      "connect" : [
+        { "id" : "f55", "to" : "f54", "condition" : "ivp==\"TaskA.ivp\"" }
+      ]
     }, {
       "id" : "f11",
       "type" : "DialogCall",
@@ -540,78 +578,82 @@
         "Task Form"
       ],
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm",
-        "startMethod" : "start()"
+        "dialog" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm:start()"
       },
       "visual" : {
         "at" : { "x" : 344, "y" : 520 }
       },
-      "connect" : { "id" : "f21", "to" : "f16" }
+      "connect" : [
+        { "id" : "f21", "to" : "f16" }
+      ]
     }, {
       "id" : "f12",
       "type" : "TaskSwitchGateway",
       "name" : "Create tasks",
       "config" : {
-        "outLinks" : [ "TaskB.ivp", "TaskA.ivp", "TaskC.ivp" ],
-        "case" : {
-          "name" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Cases/name\")%>",
-          "description" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Cases/description\")%>",
-          "category" : "LeaveRequest",
-          "customFields" : [
-            { "name" : "AccountNumber", "type" : "Number", "value" : "36" }
-          ]
-        },
-        "tasks" : {
-          "TaskA" : {
+        "tasks" : [ {
+            "id" : "TaskB",
+            "name" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/SickLeave/name\")%>",
+            "description" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/SickLeave/description\")%>",
+            "category" : "OtherLeave/SickLeave/Long",
+            "priority" : {
+              "level" : "HIGH"
+            },
+            "expiry" : {
+              "timeout" : "new Duration(\"1D\")"
+            },
+            "customFields" : [
+              { "name" : "AccountNumber", "type" : "NUMBER", "value" : "14" },
+              { "name" : "CustomerName", "type" : "STRING", "value" : "\"Tung Le\"" },
+              { "name" : "CustomerType", "type" : "STRING", "value" : "\"Interior\"" },
+              { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" },
+              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+            ]
+          }, {
+            "id" : "TaskA",
             "name" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/AnnualLeave/name\")%>",
             "description" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/AnnualLeave/description\")%>",
             "category" : "AnnualLeave",
             "responsible" : {
-              "userFromAttribute" : "\"demo\""
+              "type" : "USER_FROM_ATTRIBUTE",
+              "activator" : "\"demo\""
             },
             "expiry" : {
               "timeout" : "new Duration(\"3H\")"
             },
             "customFields" : [
-              { "name" : "AccountNumber", "type" : "Number", "value" : "7" },
-              { "name" : "CustomerName", "type" : "String", "value" : "\"Long Do\"" },
-              { "name" : "CustomerType", "type" : "String", "value" : "\"Exterior\"" },
-              { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" },
-              { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+              { "name" : "AccountNumber", "type" : "NUMBER", "value" : "7" },
+              { "name" : "CustomerName", "type" : "STRING", "value" : "\"Long Do\"" },
+              { "name" : "CustomerType", "type" : "STRING", "value" : "\"Exterior\"" },
+              { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" },
+              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
             ]
-          },
-          "TaskB" : {
-            "name" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/SickLeave/name\")%>",
-            "description" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/SickLeave/description\")%>",
-            "category" : "OtherLeave/SickLeave/Long",
-            "priority" : "HIGH",
-            "expiry" : {
-              "timeout" : "new Duration(\"1D\")"
-            },
-            "customFields" : [
-              { "name" : "AccountNumber", "type" : "Number", "value" : "14" },
-              { "name" : "CustomerName", "type" : "String", "value" : "\"Tung Le\"" },
-              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
-              { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" },
-              { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
-            ]
-          },
-          "TaskC" : {
+          }, {
+            "id" : "TaskC",
             "name" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/MaternityLeave/name\")%>",
             "description" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/MaternityLeave/description\")%>",
             "category" : "OtherLeave/Maternity",
-            "priority" : "LOW",
+            "priority" : {
+              "level" : "LOW"
+            },
             "expiry" : {
               "timeout" : "new Duration(\"2D\")"
             },
             "customFields" : [
-              { "name" : "AccountNumber", "type" : "Number", "value" : "13" },
-              { "name" : "CustomerName", "type" : "String", "value" : "\"Anh Nguyen\"" },
-              { "name" : "CustomerType", "type" : "String", "value" : "\"Interior\"" },
-              { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime()" },
-              { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+              { "name" : "AccountNumber", "type" : "NUMBER", "value" : "13" },
+              { "name" : "CustomerName", "type" : "STRING", "value" : "\"Anh Nguyen\"" },
+              { "name" : "CustomerType", "type" : "STRING", "value" : "\"Interior\"" },
+              { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" },
+              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
             ]
-          }
+          } ],
+        "case" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Cases/name\")%>",
+          "description" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Cases/description\")%>",
+          "category" : "LeaveRequest",
+          "customFields" : [
+            { "name" : "AccountNumber", "type" : "NUMBER", "value" : "36" }
+          ]
         },
         "output" : {
           "code" : [
@@ -635,31 +677,34 @@
       "type" : "RequestStart",
       "name" : "CategoriedLeaveRequest.ivp",
       "config" : {
-        "callSignature" : "CategoriedLeaveRequest",
-        "startCategory" : "LeaveRequest",
+        "signature" : "CategoriedLeaveRequest",
+        "request" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/name\")%>",
+          "description" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/description\")%>",
+          "category" : "LeaveRequest"
+        },
         "case" : {
           "name" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Cases/name\")%>",
           "description" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Cases/description\")%>",
           "attachToBusinessCase" : false,
           "customFields" : [
-            { "name" : "CustomerType", "type" : "String", "value" : "\"Leave Request Type\"" },
-            { "name" : "ProcessCategoryCode", "type" : "String", "value" : "\"pubRequested\"" },
-            { "name" : "ProcessCategoryName", "type" : "String", "value" : "\"Publication Requested\"" },
-            { "name" : "ProcessCode", "type" : "String", "value" : "\"pubRequested\"" },
-            { "name" : "ProcessName", "type" : "String", "value" : "\"Publication Requested\"" },
-            { "name" : "SupportData", "type" : "String", "value" : "\"Leave Request SupportData\"" },
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            { "name" : "CustomerType", "type" : "STRING", "value" : "\"Leave Request Type\"" },
+            { "name" : "ProcessCategoryCode", "type" : "STRING", "value" : "\"pubRequested\"" },
+            { "name" : "ProcessCategoryName", "type" : "STRING", "value" : "\"Publication Requested\"" },
+            { "name" : "ProcessCode", "type" : "STRING", "value" : "\"pubRequested\"" },
+            { "name" : "ProcessName", "type" : "STRING", "value" : "\"Publication Requested\"" },
+            { "name" : "SupportData", "type" : "STRING", "value" : "\"Leave Request SupportData\"" },
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
           ]
-        },
-        "outLink" : "CategoriedLeaveRequest.ivp",
-        "startDescription" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/description\")%>",
-        "startName" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/name\")%>"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 520 },
         "labelOffset" : { "x" : 14, "y" : 36 }
       },
-      "connect" : { "id" : "f18", "to" : "f12", "var" : "in1" }
+      "connect" : [
+        { "id" : "f18", "to" : "f12", "var" : "in1" }
+      ]
     }, {
       "id" : "f15",
       "type" : "DialogCall",
@@ -668,13 +713,14 @@
         "Task Form"
       ],
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm",
-        "startMethod" : "start()"
+        "dialog" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm:start()"
       },
       "visual" : {
         "at" : { "x" : 344, "y" : 576 }
       },
-      "connect" : { "id" : "f20", "to" : "f16", "via" : [ { "x" : 608, "y" : 576 } ] }
+      "connect" : [
+        { "id" : "f20", "to" : "f16", "via" : [ { "x" : 608, "y" : 576 } ] }
+      ]
     }, {
       "id" : "f16",
       "type" : "TaskEnd",
@@ -689,37 +735,40 @@
         "Task Form"
       ],
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm",
-        "startMethod" : "start()"
+        "dialog" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm:start()"
       },
       "visual" : {
         "at" : { "x" : 344, "y" : 456 }
       },
-      "connect" : { "id" : "f24", "to" : "f16", "via" : [ { "x" : 608, "y" : 456 } ] }
+      "connect" : [
+        { "id" : "f24", "to" : "f16", "via" : [ { "x" : 608, "y" : 456 } ] }
+      ]
     }, {
       "id" : "f25",
       "type" : "RequestStart",
       "name" : "createNewPayment.ivp",
       "config" : {
-        "callSignature" : "createNewPayment",
-        "startCategory" : "Payment",
+        "signature" : "createNewPayment",
+        "request" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/Payment/name\")%>",
+          "category" : "Payment"
+        },
         "case" : {
           "name" : "<%=ivy.cms.co(\"/Processes/Payment/name\")%>"
-        },
-        "outLink" : "createNewPayment.ivp",
-        "startName" : "<%=ivy.cms.co(\"/Processes/Payment/name\")%>"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 688 },
         "labelOffset" : { "x" : 5, "y" : 37 }
       },
-      "connect" : { "id" : "f30", "to" : "f26" }
+      "connect" : [
+        { "id" : "f30", "to" : "f26" }
+      ]
     }, {
       "id" : "f26",
       "type" : "Script",
       "name" : "Send signal to create company",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.process.model.value.SignalCode;",
@@ -729,13 +778,16 @@
             "SignalCode code = new SignalCode(\"ch:axonivy:portal:example:createnewpayment\");",
             "ivy.wf.signals().send(code);"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 336, "y" : 688 },
         "size" : { "width" : 176, "height" : 60 }
       },
-      "connect" : { "id" : "f35", "to" : "f27" }
+      "connect" : [
+        { "id" : "f35", "to" : "f27" }
+      ]
     }, {
       "id" : "f27",
       "type" : "TaskEnd",
@@ -749,9 +801,6 @@
       "config" : {
         "processCall" : "Functional Processes/SetBusinessEntityId:call(String)",
         "call" : {
-          "params" : [
-            { "name" : "businessEntityId", "type" : "String" }
-          ],
           "map" : {
             "param.businessEntityId" : "\"payment\""
           }
@@ -761,7 +810,9 @@
         "at" : { "x" : 920, "y" : 688 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f76", "to" : "f75" }
+      "connect" : [
+        { "id" : "f76", "to" : "f75" }
+      ]
     }, {
       "id" : "f29",
       "type" : "TaskEnd",
@@ -779,48 +830,54 @@
         "at" : { "x" : 768, "y" : 688 },
         "labelOffset" : { "x" : 5, "y" : 37 }
       },
-      "connect" : { "id" : "f34", "to" : "f28" }
+      "connect" : [
+        { "id" : "f34", "to" : "f28" }
+      ]
     }, {
       "id" : "f32",
       "type" : "UserTask",
       "name" : "NewPayment",
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.testdata.NewPayment",
-        "startMethod" : "start()",
+        "dialog" : "com.axonivy.portal.developerexamples.testdata.NewPayment:start()",
         "task" : {
           "name" : "<%=ivy.cms.co(\"/Processes/Payment/Tasks/Pay/name\")%>",
           "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
           ]
         }
       },
       "visual" : {
         "at" : { "x" : 1176, "y" : 688 }
       },
-      "connect" : { "id" : "f36", "to" : "f29" }
+      "connect" : [
+        { "id" : "f36", "to" : "f29" }
+      ]
     }, {
       "id" : "f41",
       "type" : "RequestStart",
       "name" : "createTechnicalStateTasks.ivp",
       "config" : {
-        "callSignature" : "createTechnicalStateTasks",
-        "case" : {
-          "name" : "Create Technical Tasks"
+        "signature" : "createTechnicalStateTasks",
+        "request" : {
+          "name" : "Create Technical States of Task",
+          "description" : "Create Technical States of Task: create 3 new states such as FAILED, JOIN_FAILED and WAITING_FOR_EVENT"
         },
-        "outLink" : "createTechnicalStateTasks.ivp",
-        "startDescription" : "Create Technical States of Task: create 3 new states such as FAILED, JOIN_FAILED and WAITING_FOR_EVENT",
         "task" : {
           "name" : "Create Technical Tasks",
           "description" : "Create Tasks in state such as: FAILED, JOIN_FAILED and WAITING_FOR_INTERMEDIATE_EVENT",
           "category" : "TechicalTasks"
         },
-        "startName" : "Create Technical States of Task"
+        "case" : {
+          "name" : "Create Technical Tasks"
+        }
       },
       "visual" : {
         "at" : { "x" : 104, "y" : 936 },
         "labelOffset" : { "x" : 4, "y" : 41 }
       },
-      "connect" : { "id" : "f60", "to" : "f51" }
+      "connect" : [
+        { "id" : "f60", "to" : "f51" }
+      ]
     }, {
       "id" : "f51",
       "type" : "Split",
@@ -845,7 +902,9 @@
         "at" : { "x" : 328, "y" : 1032 },
         "size" : { "width" : 104, "height" : 56 }
       },
-      "connect" : { "id" : "f62", "to" : "S30" }
+      "connect" : [
+        { "id" : "f62", "to" : "S30" }
+      ]
     }, {
       "id" : "f37",
       "type" : "DialogCall",
@@ -854,63 +913,67 @@
         "Task Form"
       ],
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm",
-        "startMethod" : "start()"
+        "dialog" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm:start()"
       },
       "visual" : {
         "at" : { "x" : 416, "y" : 1216 }
       },
-      "connect" : { "id" : "f69", "to" : "f65" }
+      "connect" : [
+        { "id" : "f69", "to" : "f65" }
+      ]
     }, {
       "id" : "f38",
       "type" : "TaskSwitchGateway",
       "name" : "Create tasks",
       "config" : {
-        "outLinks" : [ "TaskB.ivp", "TaskA.ivp", "TaskC.ivp" ],
-        "case" : {
-          "name" : "Leave Request",
-          "category" : "CostObject",
-          "customFields" : [
-            { "name" : "responsibleEmployee", "type" : "String", "value" : "\"Patricia Wells\"" },
-            { "name" : "shipmentDate", "type" : "Timestamp", "value" : "new DateTime()" }
-          ]
-        },
-        "tasks" : {
-          "TaskA" : {
+        "tasks" : [ {
+            "id" : "TaskB",
+            "name" : "Sick Leave Request",
+            "description" : "Sick Leave Request Description",
+            "category" : "OtherLeave/SickLeave/Long",
+            "priority" : {
+              "level" : "HIGH"
+            },
+            "customFields" : [
+              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" },
+              { "name" : "employee", "type" : "STRING", "value" : "\"Tung Le\"" }
+            ]
+          }, {
+            "id" : "TaskA",
             "name" : "Cost object task",
             "description" : "Cost object task description",
             "category" : "AnnualLeave",
             "responsible" : {
-              "role" : "CostObject"
+              "activator" : "CostObject"
             },
             "customFields" : [
-              { "name" : "days", "type" : "Timestamp", "value" : "new DateTime()" },
-              { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" },
-              { "name" : "employee", "type" : "String", "value" : "\"Long Do\"" }
+              { "name" : "days", "type" : "TIMESTAMP", "value" : "new DateTime()" },
+              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" },
+              { "name" : "employee", "type" : "STRING", "value" : "\"Long Do\"" }
             ]
-          },
-          "TaskB" : {
-            "name" : "Sick Leave Request",
-            "description" : "Sick Leave Request Description",
-            "category" : "OtherLeave/SickLeave/Long",
-            "priority" : "HIGH",
-            "customFields" : [
-              { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" },
-              { "name" : "employee", "type" : "String", "value" : "\"Tung Le\"" }
-            ]
-          },
-          "TaskC" : {
+          }, {
+            "id" : "TaskC",
             "name" : "Task for General manager 1",
             "description" : "Task for General manager 1",
             "responsible" : {
-              "userFromAttribute" : "\"gm1\""
+              "type" : "USER_FROM_ATTRIBUTE",
+              "activator" : "\"gm1\""
             },
-            "priority" : "LOW",
+            "priority" : {
+              "level" : "LOW"
+            },
             "customFields" : [
-              { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" },
-              { "name" : "employee", "type" : "String", "value" : "\"Anh Nguyen\"" }
+              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" },
+              { "name" : "employee", "type" : "STRING", "value" : "\"Anh Nguyen\"" }
             ]
-          }
+          } ],
+        "case" : {
+          "name" : "Leave Request",
+          "category" : "CostObject",
+          "customFields" : [
+            { "name" : "responsibleEmployee", "type" : "STRING", "value" : "\"Patricia Wells\"" },
+            { "name" : "shipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" }
+          ]
         },
         "output" : {
           "code" : [
@@ -937,13 +1000,14 @@
         "Task Form"
       ],
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm",
-        "startMethod" : "start()"
+        "dialog" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm:start()"
       },
       "visual" : {
         "at" : { "x" : 416, "y" : 1152 }
       },
-      "connect" : { "id" : "f73", "to" : "f65", "via" : [ { "x" : 680, "y" : 1152 } ] }
+      "connect" : [
+        { "id" : "f73", "to" : "f65", "via" : [ { "x" : 680, "y" : 1152 } ] }
+      ]
     }, {
       "id" : "f64",
       "type" : "DialogCall",
@@ -952,13 +1016,14 @@
         "Task Form"
       ],
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm",
-        "startMethod" : "start()"
+        "dialog" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm:start()"
       },
       "visual" : {
         "at" : { "x" : 416, "y" : 1272 }
       },
-      "connect" : { "id" : "f74", "to" : "f65", "via" : [ { "x" : 680, "y" : 1272 } ] }
+      "connect" : [
+        { "id" : "f74", "to" : "f65", "via" : [ { "x" : 680, "y" : 1272 } ] }
+      ]
     }, {
       "id" : "f65",
       "type" : "TaskEnd",
@@ -970,31 +1035,34 @@
       "type" : "RequestStart",
       "name" : "CreateTestDataForCustomizedDashboard.ivp",
       "config" : {
-        "callSignature" : "CreateTestDataForCustomizedDashboard",
-        "startCategory" : "CostObject",
+        "signature" : "CreateTestDataForCustomizedDashboard",
+        "request" : {
+          "name" : "Create Test Data For Customized Dashboard",
+          "description" : "This is the process to create data for customized Portal dashboard.",
+          "category" : "CostObject"
+        },
         "case" : {
           "name" : "Leave Request",
           "description" : "Leave Request Description",
           "attachToBusinessCase" : false,
           "customFields" : [
-            { "name" : "CustomerType", "type" : "String", "value" : "\"Leave Request Type\"" },
-            { "name" : "ProcessCategoryCode", "type" : "String", "value" : "\"pubRequested\"" },
-            { "name" : "ProcessCategoryName", "type" : "String", "value" : "\"Publication Requested\"" },
-            { "name" : "ProcessCode", "type" : "String", "value" : "\"pubRequested\"" },
-            { "name" : "ProcessName", "type" : "String", "value" : "\"Publication Requested\"" },
-            { "name" : "SupportData", "type" : "String", "value" : "\"Leave Request SupportData\"" },
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            { "name" : "CustomerType", "type" : "STRING", "value" : "\"Leave Request Type\"" },
+            { "name" : "ProcessCategoryCode", "type" : "STRING", "value" : "\"pubRequested\"" },
+            { "name" : "ProcessCategoryName", "type" : "STRING", "value" : "\"Publication Requested\"" },
+            { "name" : "ProcessCode", "type" : "STRING", "value" : "\"pubRequested\"" },
+            { "name" : "ProcessName", "type" : "STRING", "value" : "\"Publication Requested\"" },
+            { "name" : "SupportData", "type" : "STRING", "value" : "\"Leave Request SupportData\"" },
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
           ]
-        },
-        "outLink" : "CreateTestDataForCustomizedDashboard.ivp",
-        "startDescription" : "This is the process to create data for customized Portal dashboard.",
-        "startName" : "Create Test Data For Customized Dashboard"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1216 },
         "labelOffset" : { "x" : 60, "y" : 36 }
       },
-      "connect" : { "id" : "f70", "to" : "f38", "var" : "in1" }
+      "connect" : [
+        { "id" : "f70", "to" : "f38", "var" : "in1" }
+      ]
     }, {
       "id" : "f75",
       "type" : "Alternative",
@@ -1009,38 +1077,44 @@
       "type" : "RequestStart",
       "name" : "simplePayment.ivp",
       "config" : {
-        "callSignature" : "simplePayment",
-        "startCategory" : "Payment",
+        "signature" : "simplePayment",
+        "request" : {
+          "name" : "Simple Payment",
+          "category" : "Payment"
+        },
         "case" : {
           "name" : "<%=ivy.cms.co(\"/Processes/Payment/name\")%>"
-        },
-        "outLink" : "simplePayment.ivp",
-        "startName" : "Simple Payment"
+        }
       },
       "visual" : {
         "at" : { "x" : 768, "y" : 768 },
         "labelOffset" : { "x" : 39, "y" : 37 }
       },
-      "connect" : { "id" : "f78", "to" : "f75", "via" : [ { "x" : 1048, "y" : 768 } ] }
+      "connect" : [
+        { "id" : "f78", "to" : "f75", "via" : [ { "x" : 1048, "y" : 768 } ] }
+      ]
     }, {
       "id" : "f79",
       "type" : "RequestStart",
       "name" : "complexPayment.ivp",
       "config" : {
-        "callSignature" : "complexPayment",
-        "startCategory" : "Payment",
+        "signature" : "complexPayment",
+        "request" : {
+          "name" : "Complex Payment",
+          "category" : "Payment",
+          "isVisibleOnStartList" : false
+        },
         "case" : {
           "name" : "Create New Payment"
-        },
-        "outLink" : "complexPayment.ivp",
-        "showInStartList" : false,
-        "startName" : "Complex Payment"
+        }
       },
       "visual" : {
         "at" : { "x" : 768, "y" : 616 },
         "labelOffset" : { "x" : 40, "y" : -17 }
       },
-      "connect" : { "id" : "f81", "to" : "f80" }
+      "connect" : [
+        { "id" : "f81", "to" : "f80" }
+      ]
     }, {
       "id" : "f80",
       "type" : "TaskSwitchEvent",
@@ -1049,7 +1123,7 @@
         "task" : {
           "name" : "<%=ivy.cms.co(\"/Processes/Payment/Tasks/Signal/name\")%>",
           "responsible" : {
-            "role" : "SYSTEM"
+            "activator" : "SYSTEM"
           }
         }
       },
@@ -1057,22 +1131,27 @@
         "at" : { "x" : 952, "y" : 616 },
         "labelOffset" : { "x" : 3, "y" : -18 }
       },
-      "connect" : { "id" : "f82", "to" : "f75", "via" : [ { "x" : 1048, "y" : 616 } ] }
+      "connect" : [
+        { "id" : "f82", "to" : "f75", "via" : [ { "x" : 1048, "y" : 616 } ] }
+      ]
     }, {
       "id" : "f83",
       "type" : "RequestStart",
       "name" : "CreateTaskForEscalation.ivp",
       "config" : {
-        "callSignature" : "CreateTaskForEscalation",
-        "outLink" : "CreateTaskForEscalation.ivp",
-        "startDescription" : "This is the process to create data for trigger escalation task",
-        "startName" : "Create Test Data For Trigger Escalation"
+        "signature" : "CreateTaskForEscalation",
+        "request" : {
+          "name" : "Create Test Data For Trigger Escalation",
+          "description" : "This is the process to create data for trigger escalation task"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1360 },
         "labelOffset" : { "x" : 66, "y" : 37 }
       },
-      "connect" : { "id" : "f86", "to" : "f84" }
+      "connect" : [
+        { "id" : "f86", "to" : "f84" }
+      ]
     }, {
       "id" : "f84",
       "type" : "TaskSwitchEvent",
@@ -1085,16 +1164,20 @@
             "timeout" : "new Duration(\"2D\")",
             "error" : "f88",
             "responsible" : {
-              "deleteTask" : true
+              "type" : "DELETE_TASK"
             },
-            "priority" : "EXCEPTION"
+            "priority" : {
+              "level" : "EXCEPTION"
+            }
           }
         }
       },
       "visual" : {
         "at" : { "x" : 312, "y" : 1360 }
       },
-      "connect" : { "id" : "f87", "to" : "f85" }
+      "connect" : [
+        { "id" : "f87", "to" : "f85" }
+      ]
     }, {
       "id" : "f85",
       "type" : "TaskEnd",
@@ -1112,7 +1195,9 @@
         "at" : { "x" : 96, "y" : 1440 },
         "labelOffset" : { "x" : 37, "y" : 35 }
       },
-      "connect" : { "id" : "f90", "to" : "f89" }
+      "connect" : [
+        { "id" : "f90", "to" : "f89" }
+      ]
     }, {
       "id" : "f89",
       "type" : "TaskSwitchEvent",
@@ -1122,17 +1207,23 @@
           "name" : "Sick Leave Request Escalated",
           "description" : "Sick Leave Request Description Escalated",
           "category" : "OtherLeave/SickLeave/Long",
-          "priority" : "HIGH",
+          "priority" : {
+            "level" : "HIGH"
+          },
           "expiry" : {
             "timeout" : "new Duration(\"1D\")",
-            "priority" : "EXCEPTION"
+            "priority" : {
+              "level" : "EXCEPTION"
+            }
           }
         }
       },
       "visual" : {
         "at" : { "x" : 312, "y" : 1440 }
       },
-      "connect" : { "id" : "f92", "to" : "f91" }
+      "connect" : [
+        { "id" : "f92", "to" : "f91" }
+      ]
     }, {
       "id" : "f91",
       "type" : "TaskEnd",
@@ -1144,16 +1235,19 @@
       "type" : "RequestStart",
       "name" : "CreateCasesByCategory.ivp",
       "config" : {
-        "callSignature" : "CreateCasesByCategory",
-        "outLink" : "CreateCasesByCategory.ivp",
-        "startDescription" : "This is the process to create data for statistic chart cases by category",
-        "startName" : "Create Test Data For Statistic Chart Cases By Category"
+        "signature" : "CreateCasesByCategory",
+        "request" : {
+          "name" : "Create Test Data For Statistic Chart Cases By Category",
+          "description" : "This is the process to create data for statistic chart cases by category"
+        }
       },
       "visual" : {
         "at" : { "x" : 16, "y" : 1792 },
         "labelOffset" : { "x" : 64, "y" : 37 }
       },
-      "connect" : { "id" : "f96", "to" : "f95" }
+      "connect" : [
+        { "id" : "f96", "to" : "f95" }
+      ]
     }, {
       "id" : "f94",
       "type" : "TaskEnd",
@@ -1165,32 +1259,35 @@
       "type" : "RequestStart",
       "name" : "createCaseWithSpecificCategory",
       "config" : {
-        "callSignature" : "createCasesWithSpecificCategory",
+        "signature" : "createCasesWithSpecificCategory",
         "input" : {
           "params" : [
-            { "name" : "caseCategory", "type" : "String" }
+            { "name" : "caseCategory", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.category" : "param.caseCategory"
           }
         },
-        "case" : {
-          "attachToBusinessCase" : false
+        "request" : {
+          "isVisibleOnStartList" : false
         },
-        "outLink" : "createCasesWithSpecificCategory.ivp",
+        "triggerable" : true,
         "task" : {
           "responsible" : {
-            "role" : "SYSTEM"
+            "activator" : "SYSTEM"
           }
         },
-        "showInStartList" : false,
-        "triggerEnabled" : true
+        "case" : {
+          "attachToBusinessCase" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 16, "y" : 2064 },
         "labelOffset" : { "x" : -50, "y" : 46 }
       },
-      "connect" : { "id" : "f99", "to" : "f109" }
+      "connect" : [
+        { "id" : "f99", "to" : "f109" }
+      ]
     }, {
       "id" : "f109",
       "type" : "Script",
@@ -1207,7 +1304,9 @@
         "at" : { "x" : 216, "y" : 2064 },
         "size" : { "width" : 160, "height" : 60 }
       },
-      "connect" : { "id" : "f113", "to" : "f110" }
+      "connect" : [
+        { "id" : "f113", "to" : "f110" }
+      ]
     }, {
       "id" : "f110",
       "type" : "TaskSwitchEvent",
@@ -1215,14 +1314,16 @@
         "task" : {
           "name" : "System Task",
           "responsible" : {
-            "role" : "SYSTEM"
+            "activator" : "SYSTEM"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 408, "y" : 2064 }
       },
-      "connect" : { "id" : "f101", "to" : "f111" }
+      "connect" : [
+        { "id" : "f101", "to" : "f111" }
+      ]
     }, {
       "id" : "f111",
       "type" : "TaskEnd",
@@ -1240,7 +1341,9 @@
             "at" : { "x" : 64, "y" : 288 }
           },
           "parentConnector" : "f102",
-          "connect" : { "id" : "S40-f6", "to" : "S40-f10" }
+          "connect" : [
+            { "id" : "S40-f6", "to" : "S40-f10" }
+          ]
         }, {
           "id" : "S40-g1",
           "type" : "EmbeddedEnd",
@@ -1274,9 +1377,6 @@
           "config" : {
             "processCall" : "Start Processes/CreateTestData:createCasesWithSpecificCategory(String)",
             "call" : {
-              "params" : [
-                { "name" : "caseCategory", "type" : "String" }
-              ],
               "map" : {
                 "param.caseCategory" : "in.category"
               }
@@ -1286,7 +1386,9 @@
             "at" : { "x" : 472, "y" : 288 },
             "size" : { "width" : 208, "height" : 60 }
           },
-          "connect" : { "id" : "S40-f8", "to" : "S40-f7" }
+          "connect" : [
+            { "id" : "S40-f8", "to" : "S40-f7" }
+          ]
         }, {
           "id" : "S40-f7",
           "type" : "Script",
@@ -1299,7 +1401,9 @@
           "visual" : {
             "at" : { "x" : 672, "y" : 288 }
           },
-          "connect" : { "id" : "S40-f4", "to" : "S40-f3" }
+          "connect" : [
+            { "id" : "S40-f4", "to" : "S40-f3" }
+          ]
         }, {
           "id" : "S40-f10",
           "type" : "Script",
@@ -1316,13 +1420,17 @@
           "visual" : {
             "at" : { "x" : 184, "y" : 288 }
           },
-          "connect" : { "id" : "S40-f2", "to" : "S40-f1" }
+          "connect" : [
+            { "id" : "S40-f2", "to" : "S40-f1" }
+          ]
         } ],
       "visual" : {
         "at" : { "x" : 352, "y" : 1632 },
         "size" : { "width" : 224, "height" : 60 }
       },
-      "connect" : { "id" : "f97", "to" : "f94", "via" : [ { "x" : 568, "y" : 1632 } ] }
+      "connect" : [
+        { "id" : "f97", "to" : "f94", "via" : [ { "x" : 568, "y" : 1632 } ] }
+      ]
     }, {
       "id" : "S41",
       "type" : "EmbeddedProcess",
@@ -1334,7 +1442,9 @@
             "at" : { "x" : 64, "y" : 288 }
           },
           "parentConnector" : "f103",
-          "connect" : { "id" : "S41-f6", "to" : "S41-f10" }
+          "connect" : [
+            { "id" : "S41-f6", "to" : "S41-f10" }
+          ]
         }, {
           "id" : "S41-g1",
           "type" : "EmbeddedEnd",
@@ -1368,9 +1478,6 @@
           "config" : {
             "processCall" : "Start Processes/CreateTestData:createCasesWithSpecificCategory(String)",
             "call" : {
-              "params" : [
-                { "name" : "caseCategory", "type" : "String" }
-              ],
               "map" : {
                 "param.caseCategory" : "in.category"
               }
@@ -1380,7 +1487,9 @@
             "at" : { "x" : 472, "y" : 288 },
             "size" : { "width" : 208, "height" : 60 }
           },
-          "connect" : { "id" : "S41-f8", "to" : "S41-f7" }
+          "connect" : [
+            { "id" : "S41-f8", "to" : "S41-f7" }
+          ]
         }, {
           "id" : "S41-f7",
           "type" : "Script",
@@ -1393,7 +1502,9 @@
           "visual" : {
             "at" : { "x" : 672, "y" : 288 }
           },
-          "connect" : { "id" : "S41-f4", "to" : "S41-f3" }
+          "connect" : [
+            { "id" : "S41-f4", "to" : "S41-f3" }
+          ]
         }, {
           "id" : "S41-f10",
           "type" : "Script",
@@ -1410,13 +1521,17 @@
           "visual" : {
             "at" : { "x" : 184, "y" : 288 }
           },
-          "connect" : { "id" : "S41-f2", "to" : "S41-f1" }
+          "connect" : [
+            { "id" : "S41-f2", "to" : "S41-f1" }
+          ]
         } ],
       "visual" : {
         "at" : { "x" : 352, "y" : 1696 },
         "size" : { "width" : 224, "height" : 60 }
       },
-      "connect" : { "id" : "f105", "to" : "f94", "via" : [ { "x" : 568, "y" : 1696 } ] }
+      "connect" : [
+        { "id" : "f105", "to" : "f94", "via" : [ { "x" : 568, "y" : 1696 } ] }
+      ]
     }, {
       "id" : "S42",
       "type" : "EmbeddedProcess",
@@ -1428,7 +1543,9 @@
             "at" : { "x" : 64, "y" : 288 }
           },
           "parentConnector" : "f98",
-          "connect" : { "id" : "S42-f6", "to" : "S42-f10" }
+          "connect" : [
+            { "id" : "S42-f6", "to" : "S42-f10" }
+          ]
         }, {
           "id" : "S42-g1",
           "type" : "EmbeddedEnd",
@@ -1462,9 +1579,6 @@
           "config" : {
             "processCall" : "Start Processes/CreateTestData:createCasesWithSpecificCategory(String)",
             "call" : {
-              "params" : [
-                { "name" : "caseCategory", "type" : "String" }
-              ],
               "map" : {
                 "param.caseCategory" : "in.category"
               }
@@ -1474,7 +1588,9 @@
             "at" : { "x" : 472, "y" : 288 },
             "size" : { "width" : 208, "height" : 60 }
           },
-          "connect" : { "id" : "S42-f8", "to" : "S42-f7" }
+          "connect" : [
+            { "id" : "S42-f8", "to" : "S42-f7" }
+          ]
         }, {
           "id" : "S42-f7",
           "type" : "Script",
@@ -1487,7 +1603,9 @@
           "visual" : {
             "at" : { "x" : 672, "y" : 288 }
           },
-          "connect" : { "id" : "S42-f4", "to" : "S42-f3" }
+          "connect" : [
+            { "id" : "S42-f4", "to" : "S42-f3" }
+          ]
         }, {
           "id" : "S42-f10",
           "type" : "Script",
@@ -1504,13 +1622,17 @@
           "visual" : {
             "at" : { "x" : 184, "y" : 288 }
           },
-          "connect" : { "id" : "S42-f2", "to" : "S42-f1" }
+          "connect" : [
+            { "id" : "S42-f2", "to" : "S42-f1" }
+          ]
         } ],
       "visual" : {
         "at" : { "x" : 352, "y" : 1760 },
         "size" : { "width" : 224, "height" : 60 }
       },
-      "connect" : { "id" : "f106", "to" : "f94", "via" : [ { "x" : 568, "y" : 1760 } ] }
+      "connect" : [
+        { "id" : "f106", "to" : "f94", "via" : [ { "x" : 568, "y" : 1760 } ] }
+      ]
     }, {
       "id" : "S45",
       "type" : "EmbeddedProcess",
@@ -1522,7 +1644,9 @@
             "at" : { "x" : 64, "y" : 288 }
           },
           "parentConnector" : "f100",
-          "connect" : { "id" : "S45-f6", "to" : "S45-f10" }
+          "connect" : [
+            { "id" : "S45-f6", "to" : "S45-f10" }
+          ]
         }, {
           "id" : "S45-g1",
           "type" : "EmbeddedEnd",
@@ -1556,9 +1680,6 @@
           "config" : {
             "processCall" : "Start Processes/CreateTestData:createCasesWithSpecificCategory(String)",
             "call" : {
-              "params" : [
-                { "name" : "caseCategory", "type" : "String" }
-              ],
               "map" : {
                 "param.caseCategory" : "in.category"
               }
@@ -1568,7 +1689,9 @@
             "at" : { "x" : 472, "y" : 288 },
             "size" : { "width" : 208, "height" : 60 }
           },
-          "connect" : { "id" : "S45-f8", "to" : "S45-f7" }
+          "connect" : [
+            { "id" : "S45-f8", "to" : "S45-f7" }
+          ]
         }, {
           "id" : "S45-f7",
           "type" : "Script",
@@ -1581,7 +1704,9 @@
           "visual" : {
             "at" : { "x" : 672, "y" : 288 }
           },
-          "connect" : { "id" : "S45-f4", "to" : "S45-f3" }
+          "connect" : [
+            { "id" : "S45-f4", "to" : "S45-f3" }
+          ]
         }, {
           "id" : "S45-f10",
           "type" : "Script",
@@ -1598,13 +1723,17 @@
           "visual" : {
             "at" : { "x" : 184, "y" : 288 }
           },
-          "connect" : { "id" : "S45-f2", "to" : "S45-f1" }
+          "connect" : [
+            { "id" : "S45-f2", "to" : "S45-f1" }
+          ]
         } ],
       "visual" : {
         "at" : { "x" : 344, "y" : 1824 },
         "size" : { "width" : 208, "height" : 60 }
       },
-      "connect" : { "id" : "f108", "to" : "f94", "via" : [ { "x" : 568, "y" : 1824 } ] }
+      "connect" : [
+        { "id" : "f108", "to" : "f94", "via" : [ { "x" : 568, "y" : 1824 } ] }
+      ]
     }, {
       "id" : "S43",
       "type" : "EmbeddedProcess",
@@ -1616,7 +1745,9 @@
             "at" : { "x" : 64, "y" : 288 }
           },
           "parentConnector" : "f104",
-          "connect" : { "id" : "S43-f6", "to" : "S43-f10" }
+          "connect" : [
+            { "id" : "S43-f6", "to" : "S43-f10" }
+          ]
         }, {
           "id" : "S43-g1",
           "type" : "EmbeddedEnd",
@@ -1650,9 +1781,6 @@
           "config" : {
             "processCall" : "Start Processes/CreateTestData:createCasesWithSpecificCategory(String)",
             "call" : {
-              "params" : [
-                { "name" : "caseCategory", "type" : "String" }
-              ],
               "map" : {
                 "param.caseCategory" : "in.category"
               }
@@ -1662,7 +1790,9 @@
             "at" : { "x" : 472, "y" : 288 },
             "size" : { "width" : 208, "height" : 60 }
           },
-          "connect" : { "id" : "S43-f8", "to" : "S43-f7" }
+          "connect" : [
+            { "id" : "S43-f8", "to" : "S43-f7" }
+          ]
         }, {
           "id" : "S43-f7",
           "type" : "Script",
@@ -1675,7 +1805,9 @@
           "visual" : {
             "at" : { "x" : 672, "y" : 288 }
           },
-          "connect" : { "id" : "S43-f4", "to" : "S43-f3" }
+          "connect" : [
+            { "id" : "S43-f4", "to" : "S43-f3" }
+          ]
         }, {
           "id" : "S43-f10",
           "type" : "Script",
@@ -1692,13 +1824,17 @@
           "visual" : {
             "at" : { "x" : 184, "y" : 288 }
           },
-          "connect" : { "id" : "S43-f2", "to" : "S43-f1" }
+          "connect" : [
+            { "id" : "S43-f2", "to" : "S43-f1" }
+          ]
         } ],
       "visual" : {
         "at" : { "x" : 360, "y" : 1888 },
         "size" : { "width" : 240, "height" : 60 }
       },
-      "connect" : { "id" : "f112", "to" : "f94", "via" : [ { "x" : 568, "y" : 1888 } ] }
+      "connect" : [
+        { "id" : "f112", "to" : "f94", "via" : [ { "x" : 568, "y" : 1888 } ] }
+      ]
     }, {
       "id" : "f95",
       "type" : "Split",

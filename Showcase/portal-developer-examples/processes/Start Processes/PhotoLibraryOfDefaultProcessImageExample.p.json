@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "179D499523153784",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.Data"
@@ -9,26 +9,31 @@
       "type" : "RequestStart",
       "name" : "start.ivp",
       "config" : {
-        "callSignature" : "start",
-        "startCategory" : "Example",
-        "case" : {
+        "signature" : "start",
+        "request" : {
+          "name" : "Default Process Image selection example",
+          "description" : "Loading photo for default process image by selection",
+          "category" : "Example",
           "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            { "name" : "cssIcon", "value" : "si si-house-1" },
+            { "name" : "processImage", "value" : "<%=ivy.cms.cr(\"/Images/process/INNOVATION\")%>" }
           ]
         },
-        "startDescription" : "Loading photo for default process image by selection",
-        "startCustomFields" : [
-          { "name" : "cssIcon", "value" : "si si-house-1" },
-          { "name" : "processImage", "value" : "<%=ivy.cms.cr(\"/Images/process/INNOVATION\")%>" }
-        ],
-        "outLink" : "start.ivp",
-        "wfuser" : "1",
-        "startName" : "Default Process Image selection example"
+        "permission" : {
+          "anonymous" : false
+        },
+        "case" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+          ]
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -40,14 +45,15 @@
       "type" : "DialogCall",
       "name" : "PhotoLibraryOfDefaultProcessImageExample",
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.showcase.PhotoLibraryOfDefaultProcessImageExample",
-        "startMethod" : "start()"
+        "dialog" : "com.axonivy.portal.developerexamples.showcase.PhotoLibraryOfDefaultProcessImageExample:start()"
       },
       "visual" : {
         "at" : { "x" : 296, "y" : 64 },
         "size" : { "width" : 256, "height" : 60 }
       },
-      "connect" : { "id" : "f6", "to" : "f5" }
+      "connect" : [
+        { "id" : "f6", "to" : "f5" }
+      ]
     }, {
       "id" : "f5",
       "type" : "TaskSwitchEvent",
@@ -60,6 +66,8 @@
       "visual" : {
         "at" : { "x" : 528, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     } ]
 }
