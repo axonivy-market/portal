@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "17982F86EF698C57",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "HtmlDialogStart",
       "name" : "start(String)",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "processId", "type" : "String" }
+            { "name" : "processId", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.processId" : "param.processId"
@@ -26,7 +26,9 @@
         "size" : { "width" : 24, "height" : 24 },
         "labelOffset" : { "x" : 24, "y" : 35 }
       },
-      "connect" : { "id" : "f8", "to" : "f7" }
+      "connect" : [
+        { "id" : "f8", "to" : "f7" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -49,7 +51,9 @@
       "visual" : {
         "at" : { "x" : 264, "y" : 64 }
       },
-      "connect" : { "id" : "f9", "to" : "f6" }
+      "connect" : [
+        { "id" : "f9", "to" : "f6" }
+      ]
     }, {
       "id" : "f6",
       "type" : "Script",
@@ -79,6 +83,8 @@
       "visual" : {
         "at" : { "x" : 440, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     } ]
 }

@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "16A7BB2ADC9580A8",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.GlobalGrowlData"
@@ -9,23 +9,26 @@
       "type" : "RequestStart",
       "name" : "start.ivp",
       "config" : {
-        "callSignature" : "start",
-        "case" : {
-          "name" : "Global Growl",
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
-          ]
+        "signature" : "start",
+        "request" : {
+          "name" : "Global Growl"
         },
         "task" : {
           "name" : "Start: Global Growl"
         },
-        "outLink" : "start.ivp",
-        "startName" : "Global Growl"
+        "case" : {
+          "name" : "Global Growl",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+          ]
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f4", "to" : "f3", "var" : "in1" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3", "var" : "in1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -36,15 +39,13 @@
       "id" : "f3",
       "type" : "TaskSwitchGateway",
       "config" : {
-        "outLinks" : [ "TaskA.ivp" ],
-        "tasks" : {
-          "TaskA" : {
+        "tasks" : [ {
+            "id" : "TaskA",
             "name" : "Global Growl",
             "customFields" : [
-              { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
             ]
-          }
-        }
+          } ]
       },
       "visual" : {
         "at" : { "x" : 192, "y" : 64 }
@@ -57,24 +58,21 @@
       "type" : "DialogCall",
       "name" : "GlobalGrowl",
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowl",
-        "startMethod" : "start()"
+        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowl:start()"
       },
       "visual" : {
         "at" : { "x" : 320, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f7",
       "type" : "DialogCall",
       "name" : "GlobalGrowlIFrame8",
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8",
-        "startMethod" : "start(Boolean)",
+        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8:start(Boolean)",
         "call" : {
-          "params" : [
-            { "name" : "isCustomized", "type" : "Boolean" }
-          ],
           "map" : {
             "param.isCustomized" : "true"
           }
@@ -84,24 +82,29 @@
         "at" : { "x" : 320, "y" : 128 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f24", "to" : "f18" }
+      "connect" : [
+        { "id" : "f24", "to" : "f18" }
+      ]
     }, {
       "id" : "f36",
       "type" : "RequestStart",
       "name" : "frame8CustomizedMessage.ivp",
       "config" : {
-        "callSignature" : "frame8CustomizedMessage",
-        "outLink" : "frame8CustomizedMessage.ivp",
+        "signature" : "frame8CustomizedMessage",
+        "request" : {
+          "name" : "Display growl customized message for task using IFrame"
+        },
         "task" : {
           "name" : "frame8CustomizedMessage"
-        },
-        "startName" : "Display growl customized message for task using IFrame"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 192 },
         "labelOffset" : { "x" : 74, "y" : 37 }
       },
-      "connect" : { "id" : "f37", "to" : "f35" }
+      "connect" : [
+        { "id" : "f37", "to" : "f35" }
+      ]
     }, {
       "id" : "f18",
       "type" : "TaskSwitchEvent",
@@ -114,35 +117,36 @@
       "visual" : {
         "at" : { "x" : 448, "y" : 128 }
       },
-      "connect" : { "id" : "f40", "to" : "f19" }
+      "connect" : [
+        { "id" : "f40", "to" : "f19" }
+      ]
     }, {
       "id" : "f8",
       "type" : "RequestStart",
       "name" : "frame8CustomizedMessageAndSkipTasklist.ivp",
       "config" : {
-        "callSignature" : "frame8CustomizedMessageAndSkipTasklist",
-        "outLink" : "frame8CustomizedMessageAndSkipTasklist.ivp",
+        "signature" : "frame8CustomizedMessageAndSkipTasklist",
+        "request" : {
+          "name" : "Display growl customized message for task using IFrame and enable Skip Tasklist"
+        },
         "task" : {
           "name" : "frame8CustomizedMessageAndSkipTasklist"
-        },
-        "startName" : "Display growl customized message for task using IFrame and enable Skip Tasklist"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 128 },
         "labelOffset" : { "x" : 118, "y" : 37 }
       },
-      "connect" : { "id" : "f20", "to" : "f13" }
+      "connect" : [
+        { "id" : "f20", "to" : "f13" }
+      ]
     }, {
       "id" : "f22",
       "type" : "DialogCall",
       "name" : "GlobalGrowlIFrame8",
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8",
-        "startMethod" : "start(Boolean)",
+        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8:start(Boolean)",
         "call" : {
-          "params" : [
-            { "name" : "isCustomized", "type" : "Boolean" }
-          ],
           "map" : {
             "param.isCustomized" : "true"
           }
@@ -152,18 +156,16 @@
         "at" : { "x" : 824, "y" : 128 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f25", "to" : "f11", "via" : [ { "x" : 896, "y" : 128 } ] }
+      "connect" : [
+        { "id" : "f25", "to" : "f11", "via" : [ { "x" : 896, "y" : 128 } ] }
+      ]
     }, {
       "id" : "f34",
       "type" : "DialogCall",
       "name" : "GlobalGrowlIFrame8",
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8",
-        "startMethod" : "start(Boolean)",
+        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8:start(Boolean)",
         "call" : {
-          "params" : [
-            { "name" : "isCustomized", "type" : "Boolean" }
-          ],
           "map" : {
             "param.isCustomized" : "true"
           }
@@ -173,18 +175,16 @@
         "at" : { "x" : 320, "y" : 192 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f39", "to" : "f11", "via" : [ { "x" : 888, "y" : 192 } ] }
+      "connect" : [
+        { "id" : "f39", "to" : "f11", "via" : [ { "x" : 888, "y" : 192 } ] }
+      ]
     }, {
       "id" : "f19",
       "type" : "DialogCall",
       "name" : "GlobalGrowlIFrame8",
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8",
-        "startMethod" : "start(Boolean)",
+        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8:start(Boolean)",
         "call" : {
-          "params" : [
-            { "name" : "isCustomized", "type" : "Boolean" }
-          ],
           "map" : {
             "param.isCustomized" : "true"
           }
@@ -194,7 +194,9 @@
         "at" : { "x" : 576, "y" : 128 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f17", "to" : "f21" }
+      "connect" : [
+        { "id" : "f17", "to" : "f21" }
+      ]
     }, {
       "id" : "f11",
       "type" : "TaskEnd",
@@ -212,7 +214,9 @@
       "visual" : {
         "at" : { "x" : 192, "y" : 128 }
       },
-      "connect" : { "id" : "f15", "to" : "f7" }
+      "connect" : [
+        { "id" : "f15", "to" : "f7" }
+      ]
     }, {
       "id" : "f35",
       "type" : "TaskSwitchEvent",
@@ -224,7 +228,9 @@
       "visual" : {
         "at" : { "x" : 192, "y" : 192 }
       },
-      "connect" : { "id" : "f38", "to" : "f34" }
+      "connect" : [
+        { "id" : "f38", "to" : "f34" }
+      ]
     }, {
       "id" : "f21",
       "type" : "TaskSwitchEvent",
@@ -237,18 +243,16 @@
       "visual" : {
         "at" : { "x" : 696, "y" : 128 }
       },
-      "connect" : { "id" : "f23", "to" : "f22" }
+      "connect" : [
+        { "id" : "f23", "to" : "f22" }
+      ]
     }, {
       "id" : "f9",
       "type" : "DialogCall",
       "name" : "GlobalGrowlIFrame8",
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8",
-        "startMethod" : "start(Boolean)",
+        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8:start(Boolean)",
         "call" : {
-          "params" : [
-            { "name" : "isCustomized", "type" : "Boolean" }
-          ],
           "map" : {
             "param.isCustomized" : "false"
           }
@@ -258,35 +262,36 @@
         "at" : { "x" : 824, "y" : 256 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f44", "to" : "f11", "via" : [ { "x" : 896, "y" : 256 } ] }
+      "connect" : [
+        { "id" : "f44", "to" : "f11", "via" : [ { "x" : 896, "y" : 256 } ] }
+      ]
     }, {
       "id" : "f10",
       "type" : "RequestStart",
       "name" : "frame8StandardMessageAndSkipTasklist.ivp",
       "config" : {
-        "callSignature" : "frame8StandardMessageAndSkipTasklist",
-        "outLink" : "frame8StandardMessageAndSkipTasklist.ivp",
+        "signature" : "frame8StandardMessageAndSkipTasklist",
+        "request" : {
+          "name" : "Display growl standard message for task using IFrame and enable Skip Tasklist"
+        },
         "task" : {
           "name" : "frame8StandardMessageAndSkipTasklist"
-        },
-        "startName" : "Display growl standard message for task using IFrame and enable Skip Tasklist"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 256 },
         "labelOffset" : { "x" : 110, "y" : 37 }
       },
-      "connect" : { "id" : "f32", "to" : "f26" }
+      "connect" : [
+        { "id" : "f32", "to" : "f26" }
+      ]
     }, {
       "id" : "f12",
       "type" : "DialogCall",
       "name" : "GlobalGrowlIFrame8",
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8",
-        "startMethod" : "start(Boolean)",
+        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8:start(Boolean)",
         "call" : {
-          "params" : [
-            { "name" : "isCustomized", "type" : "Boolean" }
-          ],
           "map" : {
             "param.isCustomized" : "false"
           }
@@ -296,7 +301,9 @@
         "at" : { "x" : 576, "y" : 256 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f33", "to" : "f16" }
+      "connect" : [
+        { "id" : "f33", "to" : "f16" }
+      ]
     }, {
       "id" : "f14",
       "type" : "TaskSwitchEvent",
@@ -309,7 +316,9 @@
       "visual" : {
         "at" : { "x" : 448, "y" : 256 }
       },
-      "connect" : { "id" : "f43", "to" : "f12" }
+      "connect" : [
+        { "id" : "f43", "to" : "f12" }
+      ]
     }, {
       "id" : "f16",
       "type" : "TaskSwitchEvent",
@@ -322,7 +331,9 @@
       "visual" : {
         "at" : { "x" : 696, "y" : 256 }
       },
-      "connect" : { "id" : "f41", "to" : "f9" }
+      "connect" : [
+        { "id" : "f41", "to" : "f9" }
+      ]
     }, {
       "id" : "f26",
       "type" : "TaskSwitchEvent",
@@ -334,24 +345,29 @@
       "visual" : {
         "at" : { "x" : 192, "y" : 256 }
       },
-      "connect" : { "id" : "f42", "to" : "f29" }
+      "connect" : [
+        { "id" : "f42", "to" : "f29" }
+      ]
     }, {
       "id" : "f27",
       "type" : "RequestStart",
       "name" : "frame8StandardMessage.ivp",
       "config" : {
-        "callSignature" : "frame8StandardMessage",
-        "outLink" : "frame8StandardMessage.ivp",
+        "signature" : "frame8StandardMessage",
+        "request" : {
+          "name" : "Display growl standard message for task using IFrame"
+        },
         "task" : {
           "name" : "frame8StandardMessage"
-        },
-        "startName" : "Display growl standard message for task using IFrame"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 320 },
         "labelOffset" : { "x" : 66, "y" : 37 }
       },
-      "connect" : { "id" : "f31", "to" : "f28" }
+      "connect" : [
+        { "id" : "f31", "to" : "f28" }
+      ]
     }, {
       "id" : "f28",
       "type" : "TaskSwitchEvent",
@@ -363,18 +379,16 @@
       "visual" : {
         "at" : { "x" : 192, "y" : 320 }
       },
-      "connect" : { "id" : "f47", "to" : "f46" }
+      "connect" : [
+        { "id" : "f47", "to" : "f46" }
+      ]
     }, {
       "id" : "f29",
       "type" : "DialogCall",
       "name" : "GlobalGrowlIFrame8",
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8",
-        "startMethod" : "start(Boolean)",
+        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8:start(Boolean)",
         "call" : {
-          "params" : [
-            { "name" : "isCustomized", "type" : "Boolean" }
-          ],
           "map" : {
             "param.isCustomized" : "false"
           }
@@ -384,18 +398,16 @@
         "at" : { "x" : 320, "y" : 256 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f30", "to" : "f14" }
+      "connect" : [
+        { "id" : "f30", "to" : "f14" }
+      ]
     }, {
       "id" : "f46",
       "type" : "DialogCall",
       "name" : "GlobalGrowlIFrame8",
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8",
-        "startMethod" : "start(Boolean)",
+        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8:start(Boolean)",
         "call" : {
-          "params" : [
-            { "name" : "isCustomized", "type" : "Boolean" }
-          ],
           "map" : {
             "param.isCustomized" : "false"
           }
@@ -405,6 +417,8 @@
         "at" : { "x" : 320, "y" : 320 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f45", "to" : "f11", "via" : [ { "x" : 896, "y" : 320 } ] }
+      "connect" : [
+        { "id" : "f45", "to" : "f11", "via" : [ { "x" : 896, "y" : 320 } ] }
+      ]
     } ]
 }

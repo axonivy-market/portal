@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "17A2C6D73AB4186E",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.Data"
@@ -9,24 +9,27 @@
       "type" : "RequestStart",
       "name" : "CreateEventTest.ivp",
       "config" : {
-        "callSignature" : "CreateEventTest",
+        "signature" : "CreateEventTest",
+        "request" : {
+          "name" : "Create Event for test \"Custom Case Details\"",
+          "description" : "Create a case with category is \"customWidget\" to test filters by categories for case details"
+        },
         "case" : {
           "name" : "Create Event: Test custom case details",
           "description" : "Test custom widgets for case details",
           "category" : "customWidget",
           "customFields" : [
-            { "name" : "investmentDescription", "type" : "String", "value" : "\"This text get from Case customFields\"" }
+            { "name" : "investmentDescription", "type" : "STRING", "value" : "\"This text get from Case customFields\"" }
           ]
-        },
-        "outLink" : "CreateEventTest.ivp",
-        "startDescription" : "Create a case with category is \"customWidget\" to test filters by categories for case details",
-        "startName" : "Create Event for test \"Custom Case Details\""
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 84 },
         "labelOffset" : { "x" : 41, "y" : 37 }
       },
-      "connect" : { "id" : "f15", "to" : "f14" }
+      "connect" : [
+        { "id" : "f15", "to" : "f14" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -37,21 +40,19 @@
       "id" : "f3",
       "type" : "TaskSwitchGateway",
       "config" : {
-        "outLinks" : [ "TaskA.ivp", "TaskB.ivp", "TaskC.ivp" ],
-        "tasks" : {
-          "TaskA" : {
+        "tasks" : [ {
+            "id" : "TaskA",
             "name" : "Send budget request",
             "description" : "Test custom widget case details"
-          },
-          "TaskB" : {
+          }, {
+            "id" : "TaskB",
             "name" : "Send invitation",
             "description" : "Test custom widget case details"
-          },
-          "TaskC" : {
+          }, {
+            "id" : "TaskC",
             "name" : "Wait for approval",
             "description" : "Test custom widget case details"
-          }
-        }
+          } ]
       },
       "visual" : {
         "at" : { "x" : 448, "y" : 84 }
@@ -84,7 +85,9 @@
         "at" : { "x" : 272, "y" : 212 },
         "labelOffset" : { "x" : 73, "y" : 35 }
       },
-      "connect" : { "id" : "f13", "to" : "f12" }
+      "connect" : [
+        { "id" : "f13", "to" : "f12" }
+      ]
     }, {
       "id" : "f10",
       "type" : "TaskEnd",
@@ -95,18 +98,20 @@
       "id" : "f12",
       "type" : "TaskSwitchEvent",
       "config" : {
-        "case" : {
-          "name" : "Signal case of Custom case details"
-        },
         "task" : {
           "name" : "Send email",
           "description" : "Test custom widget case details"
+        },
+        "case" : {
+          "name" : "Signal case of Custom case details"
         }
       },
       "visual" : {
         "at" : { "x" : 448, "y" : 212 }
       },
-      "connect" : { "id" : "f11", "to" : "f10" }
+      "connect" : [
+        { "id" : "f11", "to" : "f10" }
+      ]
     }, {
       "id" : "f14",
       "type" : "Script",
@@ -122,21 +127,23 @@
       "visual" : {
         "at" : { "x" : 280, "y" : 84 }
       },
-      "connect" : { "id" : "f4", "to" : "f3", "var" : "in1" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3", "var" : "in1" }
+      ]
     }, {
       "id" : "f16",
       "type" : "RequestStart",
       "name" : "startReview.ivp",
       "config" : {
-        "callSignature" : "startReview",
-        "outLink" : "startReview.ivp",
+        "signature" : "startReview",
         "input" : {
           "params" : [
             { "name" : "startedCaseId", "type" : "Long", "desc" : "it will get case.id" },
             { "name" : "startedCaseCategory", "type" : "String", "desc" : "it will get case.category" },
-            { "name" : "investmentId", "type" : "Number" },
+            { "name" : "investmentId", "type" : "Number", "desc" : "" },
             { "name" : "investmentDescription", "type" : "String", "desc" : "it will get case.customFields.investmentDescription" }
           ],
+          "map" : { },
           "code" : [
             "out.exampleIFrameData.decision.note = \"Case ID is: \" + param.startedCaseId + \", with Category: \" + param.startedCaseCategory;",
             "out.exampleIFrameData.investment.company.description = param.investmentDescription;",
@@ -149,7 +156,9 @@
         "at" : { "x" : 96, "y" : 340 },
         "labelOffset" : { "x" : 28, "y" : 37 }
       },
-      "connect" : { "id" : "f22", "to" : "f21" }
+      "connect" : [
+        { "id" : "f22", "to" : "f21" }
+      ]
     }, {
       "id" : "f17",
       "type" : "TaskEnd",
@@ -161,12 +170,8 @@
       "type" : "DialogCall",
       "name" : "Review",
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.testdata.Review",
-        "startMethod" : "start(com.axonivy.portal.developerexamples.ExampleIFrameData)",
+        "dialog" : "com.axonivy.portal.developerexamples.testdata.Review:start(com.axonivy.portal.developerexamples.ExampleIFrameData)",
         "call" : {
-          "params" : [
-            { "name" : "investmentRequest", "type" : "com.axonivy.portal.developerexamples.ExampleIFrameData" }
-          ],
           "map" : {
             "param.investmentRequest" : "in.exampleIFrameData"
           }
@@ -175,7 +180,9 @@
       "visual" : {
         "at" : { "x" : 456, "y" : 340 }
       },
-      "connect" : { "id" : "f18", "to" : "f17" }
+      "connect" : [
+        { "id" : "f18", "to" : "f17" }
+      ]
     }, {
       "id" : "f21",
       "type" : "Script",
@@ -199,22 +206,27 @@
       "visual" : {
         "at" : { "x" : 248, "y" : 340 }
       },
-      "connect" : { "id" : "f20", "to" : "f19" }
+      "connect" : [
+        { "id" : "f20", "to" : "f19" }
+      ]
     }, {
       "id" : "f30",
       "type" : "RequestStart",
       "name" : "CreatePersonalRequest.ivp",
       "config" : {
-        "callSignature" : "CreatePersonalRequest",
-        "outLink" : "CreatePersonalRequest.ivp",
-        "startDescription" : "Create a Destroyed case to test filters by states in case details page",
-        "startName" : "Create Personal Request for test \"Custom Case Details\""
+        "signature" : "CreatePersonalRequest",
+        "request" : {
+          "name" : "Create Personal Request for test \"Custom Case Details\"",
+          "description" : "Create a Destroyed case to test filters by states in case details page"
+        }
       },
       "visual" : {
         "at" : { "x" : 104, "y" : 480 },
         "labelOffset" : { "x" : 53, "y" : 44 }
       },
-      "connect" : { "id" : "f24", "to" : "f23" }
+      "connect" : [
+        { "id" : "f24", "to" : "f23" }
+      ]
     }, {
       "id" : "f29",
       "type" : "Script",
@@ -223,7 +235,6 @@
         "redirect to homepage"
       ],
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;",
@@ -232,7 +243,8 @@
             "",
             "PortalNavigatorAPI.navigateToPortalHome();"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 360, "y" : 480 },
@@ -249,6 +261,8 @@
       "visual" : {
         "at" : { "x" : 200, "y" : 480 }
       },
-      "connect" : { "id" : "f25", "to" : "f29" }
+      "connect" : [
+        { "id" : "f25", "to" : "f29" }
+      ]
     } ]
 }

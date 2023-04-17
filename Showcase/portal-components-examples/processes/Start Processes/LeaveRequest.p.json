@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "182E92730FF57035",
   "config" : {
     "data" : "com.axonivy.portal.components.examples.LeaveRequestProcessData"
@@ -9,32 +9,37 @@
       "type" : "RequestStart",
       "name" : "start.ivp",
       "config" : {
-        "callSignature" : "start",
-        "case" : {
+        "signature" : "start",
+        "request" : {
           "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/leaveRequest\")%>",
+          "description" : [
+            "This process allow employee to submit their leave request, then the request will be sent to selected approver.",
+            "After approver finish his task, the approval result will be sent back to requester"
+          ],
           "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"true\"" }
+            { "name" : "cssIcon", "value" : "si si-advertising-megaphone-2" }
           ]
         },
-        "roleExceptionId" : ">>",
-        "startDescription" : [
-          "This process allow employee to submit their leave request, then the request will be sent to selected approver.",
-          "After approver finish his task, the approval result will be sent back to requester"
-        ],
-        "startCustomFields" : [
-          { "name" : "cssIcon", "value" : "si si-advertising-megaphone-2" }
-        ],
+        "permission" : {
+          "anonymous" : false,
+          "error" : ">> Ignore Exception"
+        },
         "task" : {
           "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/createNewLeaveRequest\")%>"
         },
-        "outLink" : "start.ivp",
-        "wfuser" : "1",
-        "startName" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/leaveRequest\")%>"
+        "case" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/leaveRequest\")%>",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
+          ]
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 192 }
       },
-      "connect" : { "id" : "f30", "to" : "f25" }
+      "connect" : [
+        { "id" : "f30", "to" : "f25" }
+      ]
     }, {
       "id" : "f20",
       "type" : "TaskEnd",
@@ -46,39 +51,40 @@
       "type" : "UserTask",
       "name" : "LeaveRequestCreation",
       "config" : {
-        "dialogId" : "com.axonivy.portal.components.examples.leaverequest.LeaveRequestCreation",
-        "startMethod" : "start()",
+        "dialog" : "com.axonivy.portal.components.examples.leaverequest.LeaveRequestCreation:start()",
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/createLeaveRequest\", [ivy.session.getSessionUser().getDisplayName()])%>",
+          "responsible" : {
+            "activator" : "SELF"
+          },
+          "skipTasklist" : true
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.approver" : "result.approverName",
             "out.requester" : "result.requesterName"
           }
-        },
-        "task" : {
-          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/createLeaveRequest\", [ivy.session.getSessionUser().getDisplayName()])%>",
-          "responsible" : {
-            "role" : "SELF"
-          },
-          "skipTasklist" : true
         }
       },
       "visual" : {
         "at" : { "x" : 352, "y" : 192 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f34", "to" : "f23" }
+      "connect" : [
+        { "id" : "f34", "to" : "f23" }
+      ]
     }, {
       "id" : "f29",
       "type" : "UserTask",
       "name" : "LeaveRequestSummary",
       "config" : {
-        "dialogId" : "com.axonivy.portal.components.examples.leaverequest.LeaveRequestSummary",
-        "startMethod" : "start()",
+        "dialog" : "com.axonivy.portal.components.examples.leaverequest.LeaveRequestSummary:start()",
         "task" : {
           "name" : "<%=in.isApproved? ivy.cms.co(\"/Processes/LeaveRequest/approvalTask\") : ivy.cms.co(\"/Processes/LeaveRequest/rejectedTask\")%>",
           "responsible" : {
-            "userFromAttribute" : "in.requester"
+            "type" : "USER_FROM_ATTRIBUTE",
+            "activator" : "in.requester"
           }
         }
       },
@@ -86,24 +92,26 @@
         "at" : { "x" : 928, "y" : 192 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f28", "to" : "f20" }
+      "connect" : [
+        { "id" : "f28", "to" : "f20" }
+      ]
     }, {
       "id" : "f23",
       "type" : "UserTask",
       "name" : "LeaveRequestApproval",
       "config" : {
-        "dialogId" : "com.axonivy.portal.components.examples.leaverequest.LeaveRequestApproval",
-        "startMethod" : "start()",
+        "dialog" : "com.axonivy.portal.components.examples.leaverequest.LeaveRequestApproval:start()",
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/approvalTaskName\", [ivy.security.users().find(in.requester).getDisplayName()])%>",
+          "responsible" : {
+            "type" : "USER_FROM_ATTRIBUTE",
+            "activator" : "in.approver"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.isApproved" : "result.isApproved"
-          }
-        },
-        "task" : {
-          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/approvalTaskName\", [ivy.security.users().find(in.requester).getDisplayName()])%>",
-          "responsible" : {
-            "userFromAttribute" : "in.approver"
           }
         }
       },
@@ -111,7 +119,9 @@
         "at" : { "x" : 640, "y" : 192 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f32", "to" : "f29" }
+      "connect" : [
+        { "id" : "f32", "to" : "f29" }
+      ]
     }, {
       "id" : "f26",
       "type" : "ProcessAnnotation",
@@ -124,7 +134,9 @@
         "at" : { "x" : 928, "y" : 64 },
         "size" : { "width" : 336, "height" : 60 }
       },
-      "connect" : { "id" : "f3", "to" : "f29" }
+      "connect" : [
+        { "id" : "f3", "to" : "f29" }
+      ]
     }, {
       "id" : "f27",
       "type" : "ProcessAnnotation",
@@ -133,7 +145,9 @@
         "at" : { "x" : 1008, "y" : 288 },
         "size" : { "width" : 480, "height" : 30 }
       },
-      "connect" : { "id" : "f2", "to" : "f23" }
+      "connect" : [
+        { "id" : "f2", "to" : "f23" }
+      ]
     }, {
       "id" : "f22",
       "type" : "ProcessAnnotation",
@@ -145,7 +159,9 @@
         "at" : { "x" : 352, "y" : 64 },
         "size" : { "width" : 528, "height" : 44 }
       },
-      "connect" : { "id" : "f1", "to" : "f25" }
+      "connect" : [
+        { "id" : "f1", "to" : "f25" }
+      ]
     }, {
       "id" : "f21",
       "type" : "ProcessAnnotation",
@@ -157,6 +173,8 @@
         "at" : { "x" : 384, "y" : 288 },
         "size" : { "width" : 608, "height" : 44 }
       },
-      "connect" : { "id" : "f0", "to" : "f24" }
+      "connect" : [
+        { "id" : "f0", "to" : "f24" }
+      ]
     } ]
 }

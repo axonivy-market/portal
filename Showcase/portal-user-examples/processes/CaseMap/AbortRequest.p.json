@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "1703222760AD37E2",
   "config" : {
     "data" : "com.axonivy.portal.userexamples.Data"
@@ -9,17 +9,20 @@
       "type" : "RequestStart",
       "name" : "start.ivp",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
+        "request" : {
+          "isVisibleOnStartList" : false
+        },
         "task" : {
           "name" : "<%=ivy.cms.co(\"/Processes/CaseMap/abortRequest\")%>"
-        },
-        "showInStartList" : false,
-        "outLink" : "start.ivp"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",

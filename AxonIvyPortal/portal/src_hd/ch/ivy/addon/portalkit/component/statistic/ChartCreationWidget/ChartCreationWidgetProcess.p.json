@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "15FFC669C88F7E0B",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,7 +10,7 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "input" : {
           "map" : {
             "out.isAllowedToCreateChart" : "true"
@@ -21,7 +21,9 @@
       "visual" : {
         "at" : { "x" : 112, "y" : 64 }
       },
-      "connect" : { "id" : "f47", "to" : "f39" }
+      "connect" : [
+        { "id" : "f47", "to" : "f39" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -39,7 +41,9 @@
         "at" : { "x" : 112, "y" : 160 },
         "labelOffset" : { "x" : 8, "y" : 32 }
       },
-      "connect" : { "id" : "f5", "to" : "f4" }
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
     }, {
       "id" : "f4",
       "type" : "HtmlDialogExit",
@@ -51,10 +55,10 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "createStatisticChart(List<StatisticChart>)",
       "config" : {
-        "callSignature" : "createStatisticChart",
+        "signature" : "createStatisticChart",
         "input" : {
           "params" : [
-            { "name" : "statisticChartList", "type" : "java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>" }
+            { "name" : "statisticChartList", "type" : "java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>", "desc" : "" }
           ],
           "map" : {
             "out.statisticChartList" : "param.statisticChartList"
@@ -66,14 +70,17 @@
         "at" : { "x" : 88, "y" : 976 },
         "labelOffset" : { "x" : 21, "y" : 49 }
       },
-      "connect" : { "id" : "f30", "to" : "f26" }
+      "connect" : [
+        { "id" : "f30", "to" : "f26" }
+      ]
     }, {
       "id" : "f40",
       "type" : "HtmlDialogMethodStart",
       "name" : "updateBeforeAddCaseByState()",
       "config" : {
-        "callSignature" : "updateBeforeAddCaseByState",
+        "signature" : "updateBeforeAddCaseByState",
         "input" : {
+          "map" : { },
           "code" : [
             "import ch.ivy.addon.portalkit.bean.StatisticChartCreationBean;",
             "import javax.faces.context.FacesContext;",
@@ -93,14 +100,17 @@
       "visual" : {
         "at" : { "x" : 112, "y" : 448 }
       },
-      "connect" : { "id" : "f45", "to" : "f43", "via" : [ { "x" : 448, "y" : 448 } ] }
+      "connect" : [
+        { "id" : "f45", "to" : "f43", "via" : [ { "x" : 448, "y" : 448 } ] }
+      ]
     }, {
       "id" : "f42",
       "type" : "HtmlDialogMethodStart",
       "name" : "updateBeforeAddTaskByExpiry()",
       "config" : {
-        "callSignature" : "updateBeforeAddTaskByExpiry",
+        "signature" : "updateBeforeAddTaskByExpiry",
         "input" : {
+          "map" : { },
           "code" : [
             "import ch.ivy.addon.portalkit.bean.StatisticChartCreationBean;",
             "import javax.faces.context.FacesContext;",
@@ -120,7 +130,9 @@
       "visual" : {
         "at" : { "x" : 112, "y" : 544 }
       },
-      "connect" : { "id" : "f46", "to" : "f43", "via" : [ { "x" : 448, "y" : 544 } ] }
+      "connect" : [
+        { "id" : "f46", "to" : "f43", "via" : [ { "x" : 448, "y" : 544 } ] }
+      ]
     }, {
       "id" : "f43",
       "type" : "HtmlDialogEnd",
@@ -132,19 +144,20 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "initialize()",
       "config" : {
-        "callSignature" : "initialize",
+        "signature" : "initialize",
         "guid" : "160358C7FBCD2AE2"
       },
       "visual" : {
         "at" : { "x" : 112, "y" : 256 }
       },
-      "connect" : { "id" : "f8", "to" : "f7" }
+      "connect" : [
+        { "id" : "f8", "to" : "f7" }
+      ]
     }, {
       "id" : "f15",
       "type" : "Script",
       "name" : "Initialize",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import java.util.Locale;",
@@ -171,12 +184,15 @@
             "  in.chartNames.add(displayName);",
             "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 776, "y" : 88 }
       },
-      "connect" : { "id" : "f27", "to" : "f9" }
+      "connect" : [
+        { "id" : "f27", "to" : "f9" }
+      ]
     }, {
       "id" : "f7",
       "type" : "HtmlDialogEnd",
@@ -194,8 +210,9 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "updateBeforeAddTaskByPriority()",
       "config" : {
-        "callSignature" : "updateBeforeAddTaskByPriority",
+        "signature" : "updateBeforeAddTaskByPriority",
         "input" : {
+          "map" : { },
           "code" : [
             "import ch.ivy.addon.portalkit.bean.StatisticChartCreationBean;",
             "import javax.faces.context.FacesContext;",
@@ -215,7 +232,9 @@
       "visual" : {
         "at" : { "x" : 112, "y" : 352 }
       },
-      "connect" : { "id" : "f44", "to" : "f43", "via" : [ { "x" : 448, "y" : 352 } ] }
+      "connect" : [
+        { "id" : "f44", "to" : "f43", "via" : [ { "x" : 448, "y" : 352 } ] }
+      ]
     }, {
       "id" : "f13",
       "type" : "Script",
@@ -242,14 +261,17 @@
       "visual" : {
         "at" : { "x" : 392, "y" : 1168 }
       },
-      "connect" : { "id" : "f12", "to" : "f11" }
+      "connect" : [
+        { "id" : "f12", "to" : "f11" }
+      ]
     }, {
       "id" : "f17",
       "type" : "HtmlDialogMethodStart",
       "name" : "updateBeforeAddElapsedTime()",
       "config" : {
-        "callSignature" : "updateBeforeAddElapsedTime",
+        "signature" : "updateBeforeAddElapsedTime",
         "input" : {
+          "map" : { },
           "code" : [
             "import ch.ivy.addon.portalkit.bean.StatisticChartCreationBean;",
             "import javax.faces.context.FacesContext;",
@@ -269,7 +291,9 @@
       "visual" : {
         "at" : { "x" : 112, "y" : 640 }
       },
-      "connect" : { "id" : "f18", "to" : "f43", "via" : [ { "x" : 448, "y" : 640 } ] }
+      "connect" : [
+        { "id" : "f18", "to" : "f43", "via" : [ { "x" : 448, "y" : 640 } ] }
+      ]
     }, {
       "id" : "f21",
       "type" : "Alternative",
@@ -290,14 +314,17 @@
       "visual" : {
         "at" : { "x" : 88, "y" : 1168 }
       },
-      "connect" : { "id" : "f14", "to" : "f13" }
+      "connect" : [
+        { "id" : "f14", "to" : "f13" }
+      ]
     }, {
       "id" : "f22",
       "type" : "HtmlDialogMethodStart",
       "name" : "updateBeforeAddCaseByFinishedTask()",
       "config" : {
-        "callSignature" : "updateBeforeAddCaseByFinishedTask",
+        "signature" : "updateBeforeAddCaseByFinishedTask",
         "input" : {
+          "map" : { },
           "code" : [
             "import ch.ivy.addon.portalkit.bean.StatisticChartCreationBean;",
             "import javax.faces.context.FacesContext;",
@@ -318,14 +345,17 @@
         "at" : { "x" : 112, "y" : 736 },
         "labelOffset" : { "x" : 23, "y" : 36 }
       },
-      "connect" : { "id" : "f23", "to" : "f43", "via" : [ { "x" : 448, "y" : 736 } ] }
+      "connect" : [
+        { "id" : "f23", "to" : "f43", "via" : [ { "x" : 448, "y" : 736 } ] }
+      ]
     }, {
       "id" : "f24",
       "type" : "HtmlDialogMethodStart",
       "name" : "updateBeforeAddCaseByFinishedTime()",
       "config" : {
-        "callSignature" : "updateBeforeAddCaseByFinishedTime",
+        "signature" : "updateBeforeAddCaseByFinishedTime",
         "input" : {
+          "map" : { },
           "code" : [
             "import ch.ivy.addon.portalkit.bean.StatisticChartCreationBean;",
             "import javax.faces.context.FacesContext;",
@@ -345,7 +375,9 @@
       "visual" : {
         "at" : { "x" : 112, "y" : 832 }
       },
-      "connect" : { "id" : "f25", "to" : "f43", "via" : [ { "x" : 448, "y" : 832 } ] }
+      "connect" : [
+        { "id" : "f25", "to" : "f43", "via" : [ { "x" : 448, "y" : 832 } ] }
+      ]
     }, {
       "id" : "f9",
       "type" : "SubProcessCall",
@@ -362,7 +394,9 @@
       "visual" : {
         "at" : { "x" : 976, "y" : 88 }
       },
-      "connect" : { "id" : "f29", "to" : "f28" }
+      "connect" : [
+        { "id" : "f29", "to" : "f28" }
+      ]
     }, {
       "id" : "f28",
       "type" : "Script",
@@ -380,27 +414,29 @@
       "visual" : {
         "at" : { "x" : 1192, "y" : 88 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f87",
       "type" : "HtmlDialogMethodStart",
       "name" : "isApplicationDefaultEmailLanguage(String)",
       "config" : {
-        "callSignature" : "isApplicationDefaultEmailLanguage",
-        "result" : {
-          "params" : [
-            { "name" : "result", "type" : "Boolean" }
-          ],
-          "map" : {
-            "result.result" : "in.isDefaultApplicationLanguage"
-          }
-        },
+        "signature" : "isApplicationDefaultEmailLanguage",
         "input" : {
           "params" : [
-            { "name" : "language", "type" : "String" }
+            { "name" : "language", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.language" : "param.language"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "result", "type" : "Boolean", "desc" : "" }
+          ],
+          "map" : {
+            "result.result" : "in.isDefaultApplicationLanguage"
           }
         },
         "guid" : "17597ECF890D0A64"
@@ -409,7 +445,9 @@
         "at" : { "x" : 112, "y" : 1256 },
         "labelOffset" : { "x" : 29, "y" : 36 }
       },
-      "connect" : { "id" : "f36", "to" : "f34" }
+      "connect" : [
+        { "id" : "f36", "to" : "f34" }
+      ]
     }, {
       "id" : "f89",
       "type" : "HtmlDialogEnd",
@@ -450,7 +488,9 @@
         "at" : { "x" : 256, "y" : 976 },
         "size" : { "width" : 160, "height" : 60 }
       },
-      "connect" : { "id" : "f16", "to" : "f21" }
+      "connect" : [
+        { "id" : "f16", "to" : "f21" }
+      ]
     }, {
       "id" : "f31",
       "type" : "Script",
@@ -459,7 +499,6 @@
         "show growl message"
       ],
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.language.LanguageConfigurator;",
@@ -499,19 +538,21 @@
             "FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_INFO, growlTitle, growlDetail);",
             "FacesContext.getCurrentInstance().addMessage(\"chart-creation-growl\", message);"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 392, "y" : 1072 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f19", "to" : "f13" }
+      "connect" : [
+        { "id" : "f19", "to" : "f13" }
+      ]
     }, {
       "id" : "f34",
       "type" : "Script",
       "name" : "Check language",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -522,25 +563,30 @@
             "Locale defaultLocale = new LanguageConfigurator(ISecurityContext.current()).content();",
             "in.isDefaultApplicationLanguage = defaultLocale.toLanguageTag().equalsIgnoreCase(in.language);"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 304, "y" : 1256 }
       },
-      "connect" : { "id" : "f37", "to" : "f89" }
+      "connect" : [
+        { "id" : "f37", "to" : "f89" }
+      ]
     }, {
       "id" : "f38",
       "type" : "HtmlDialogMethodStart",
       "name" : "initializeRoleAndCustomField()",
       "config" : {
-        "callSignature" : "initializeRoleAndCustomField",
+        "signature" : "initializeRoleAndCustomField",
         "guid" : "181229E2D2BA036C"
       },
       "visual" : {
         "at" : { "x" : 544, "y" : 88 },
         "labelOffset" : { "x" : 70, "y" : 35 }
       },
-      "connect" : { "id" : "f33", "to" : "f15" }
+      "connect" : [
+        { "id" : "f33", "to" : "f15" }
+      ]
     }, {
       "id" : "f39",
       "type" : "HtmlDialogEnd",
@@ -552,8 +598,9 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "updateBeforeAddCasesByCategory()",
       "config" : {
-        "callSignature" : "updateBeforeAddCasesByCategory",
+        "signature" : "updateBeforeAddCasesByCategory",
         "input" : {
+          "map" : { },
           "code" : [
             "import ch.ivy.addon.portalkit.bean.StatisticChartCreationBean;",
             "import javax.faces.context.FacesContext;",
@@ -574,6 +621,8 @@
         "at" : { "x" : 112, "y" : 904 },
         "labelOffset" : { "x" : -2, "y" : 35 }
       },
-      "connect" : { "id" : "f49", "to" : "f43", "via" : [ { "x" : 448, "y" : 904 } ] }
+      "connect" : [
+        { "id" : "f49", "to" : "f43", "via" : [ { "x" : 448, "y" : 904 } ] }
+      ]
     } ]
 }

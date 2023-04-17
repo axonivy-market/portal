@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "162F55163FD8DF16",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,22 +10,14 @@
       "type" : "HtmlDialogStart",
       "name" : "start(List,List,Integer,Boolean,Long)",
       "config" : {
-        "callSignature" : "start",
-        "result" : {
-          "params" : [
-            { "name" : "approvalResult", "type" : "gawfs.ApprovalTaskResult" }
-          ],
-          "map" : {
-            "result.approvalResult" : "in.approvalResult"
-          }
-        },
+        "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "finishedTasks", "type" : "java.util.List<gawfs.TaskDef>" },
-            { "name" : "steps", "type" : "List<String>" },
-            { "name" : "actualStepIndex", "type" : "Integer" },
-            { "name" : "isAdhocProcess", "type" : "Boolean" },
-            { "name" : "originalTaskId", "type" : "Long" }
+            { "name" : "finishedTasks", "type" : "java.util.List<gawfs.TaskDef>", "desc" : "" },
+            { "name" : "steps", "type" : "List<String>", "desc" : "" },
+            { "name" : "actualStepIndex", "type" : "Integer", "desc" : "" },
+            { "name" : "isAdhocProcess", "type" : "Boolean", "desc" : "" },
+            { "name" : "originalTaskId", "type" : "Long", "desc" : "" }
           ],
           "map" : {
             "out.actualStepIndex" : "param.actualStepIndex",
@@ -35,13 +27,23 @@
             "out.steps" : "param.steps"
           }
         },
+        "result" : {
+          "params" : [
+            { "name" : "approvalResult", "type" : "gawfs.ApprovalTaskResult", "desc" : "" }
+          ],
+          "map" : {
+            "result.approvalResult" : "in.approvalResult"
+          }
+        },
         "guid" : "162F55164217492D"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
         "labelOffset" : { "x" : 90, "y" : 35 }
       },
-      "connect" : { "id" : "f24", "to" : "f15" }
+      "connect" : [
+        { "id" : "f24", "to" : "f15" }
+      ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -58,7 +60,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }
       },
-      "connect" : { "id" : "f11", "to" : "f10" }
+      "connect" : [
+        { "id" : "f11", "to" : "f10" }
+      ]
     }, {
       "id" : "f7",
       "type" : "HtmlDialogEventStart",
@@ -69,7 +73,9 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 256 }
       },
-      "connect" : { "id" : "f12", "to" : "f9" }
+      "connect" : [
+        { "id" : "f12", "to" : "f9" }
+      ]
     }, {
       "id" : "f3",
       "type" : "Script",
@@ -93,7 +99,9 @@
       "visual" : {
         "at" : { "x" : 408, "y" : 160 }
       },
-      "connect" : { "id" : "f22", "to" : "f21" }
+      "connect" : [
+        { "id" : "f22", "to" : "f21" }
+      ]
     }, {
       "id" : "f5",
       "type" : "HtmlDialogExit",
@@ -112,7 +120,9 @@
       "visual" : {
         "at" : { "x" : 216, "y" : 256 }
       },
-      "connect" : { "id" : "f14", "to" : "f13" }
+      "connect" : [
+        { "id" : "f14", "to" : "f13" }
+      ]
     }, {
       "id" : "f10",
       "type" : "Script",
@@ -125,7 +135,9 @@
       "visual" : {
         "at" : { "x" : 216, "y" : 160 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f13",
       "type" : "Script",
@@ -149,7 +161,9 @@
       "visual" : {
         "at" : { "x" : 408, "y" : 256 }
       },
-      "connect" : { "id" : "f23", "to" : "f21", "via" : [ { "x" : 576, "y" : 256 } ] }
+      "connect" : [
+        { "id" : "f23", "to" : "f21", "via" : [ { "x" : 576, "y" : 256 } ] }
+      ]
     }, {
       "id" : "f16",
       "type" : "HtmlDialogEventStart",
@@ -160,13 +174,14 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 352 }
       },
-      "connect" : { "id" : "f18", "to" : "f17" }
+      "connect" : [
+        { "id" : "f18", "to" : "f17" }
+      ]
     }, {
       "id" : "f17",
       "type" : "Script",
       "name" : "Reset task",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;",
@@ -175,12 +190,15 @@
             "TaskUtils.resetTask(ivy.task);",
             "PortalNavigatorAPI.navigateToPortalEndPage();"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 312, "y" : 352 }
       },
-      "connect" : { "id" : "f20", "to" : "f19" }
+      "connect" : [
+        { "id" : "f20", "to" : "f19" }
+      ]
     }, {
       "id" : "f19",
       "type" : "HtmlDialogEnd",
@@ -210,13 +228,14 @@
         "at" : { "x" : 576, "y" : 160 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f8", "to" : "f5" }
+      "connect" : [
+        { "id" : "f8", "to" : "f5" }
+      ]
     }, {
       "id" : "f15",
       "type" : "Script",
       "name" : "Initialize",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
@@ -226,11 +245,14 @@
             "  task.actualApplicant = ISecurityContext.current().users().find(task.actualApplicantName);",
             "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 216, "y" : 65 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     } ]
 }

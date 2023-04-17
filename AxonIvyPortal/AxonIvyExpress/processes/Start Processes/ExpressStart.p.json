@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "17326FC2F133FBEA",
   "config" : {
     "data" : "gawfs.ExpressStartData"
@@ -9,23 +9,26 @@
       "type" : "RequestStart",
       "name" : "startExpressBusinessView.ivp",
       "config" : {
-        "callSignature" : "startExpressBusinessView",
+        "signature" : "startExpressBusinessView",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long" }
+            { "name" : "caseId", "type" : "Long", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.caseId"
           }
         },
-        "outLink" : "startExpressBusinessView.ivp",
-        "showInStartList" : false
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
         "labelOffset" : { "x" : 22, "y" : 42 }
       },
-      "connect" : { "id" : "f3", "to" : "f5" }
+      "connect" : [
+        { "id" : "f3", "to" : "f5" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -37,12 +40,8 @@
       "type" : "DialogCall",
       "name" : "Open ExpressBusinessView",
       "config" : {
-        "dialogId" : "ch.ivy.addon.express.generic.ExpressBusinessView",
-        "startMethod" : "start(Long)",
+        "dialog" : "ch.ivy.addon.express.generic.ExpressBusinessView:start(Long)",
         "call" : {
-          "params" : [
-            { "name" : "caseId", "type" : "Long" }
-          ],
           "map" : {
             "param.caseId" : "in.caseId"
           }
@@ -52,6 +51,8 @@
         "at" : { "x" : 352, "y" : 64 },
         "size" : { "width" : 176, "height" : 60 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     } ]
 }

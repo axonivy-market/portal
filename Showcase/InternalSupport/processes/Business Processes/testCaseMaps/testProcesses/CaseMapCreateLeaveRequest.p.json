@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "16E3F9428CFA3D20",
   "config" : {
     "data" : "internaltest.CaseMapCreateLeaveRequestData"
@@ -9,24 +9,25 @@
       "type" : "RequestStart",
       "name" : "newLeaveRequest.ivp",
       "config" : {
-        "callSignature" : "newLeaveRequest",
+        "signature" : "newLeaveRequest",
+        "task" : {
+          "name" : "Start Case Map: Create Leave Request 1"
+        },
         "case" : {
           "name" : "Case Map: Leave Request",
           "description" : "Case Map: Leave Request",
           "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
           ]
-        },
-        "outLink" : "newLeaveRequest.ivp",
-        "task" : {
-          "name" : "Start Case Map: Create Leave Request 1"
         }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
         "labelOffset" : { "x" : 47, "y" : 37 }
       },
-      "connect" : { "id" : "f6", "to" : "f5" }
+      "connect" : [
+        { "id" : "f6", "to" : "f5" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -38,33 +39,36 @@
       "type" : "UserTask",
       "name" : "NewLeaveRequest",
       "config" : {
-        "dialogId" : "internaltest.ui.NewLeaveRequest",
-        "startMethod" : "start()",
+        "dialog" : "internaltest.ui.NewLeaveRequest:start()",
+        "task" : {
+          "name" : "Case Map Leave Request"
+        },
         "case" : {
           "name" : "Case Map: Leave Request",
           "description" : "Case Map: Leave Request"
-        },
-        "task" : {
-          "name" : "Case Map Leave Request"
         }
       },
       "visual" : {
         "at" : { "x" : 384, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f5",
       "type" : "Script",
       "name" : "set case name",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : "ivy.case.getBusinessCase().setName(\"Business Case Map: Leave Request\");"
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 64 }
       },
-      "connect" : { "id" : "f9", "to" : "f3" }
+      "connect" : [
+        { "id" : "f9", "to" : "f3" }
+      ]
     } ]
 }

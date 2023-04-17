@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "16583F0F73864543",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.Data"
@@ -9,14 +9,17 @@
       "type" : "RequestStart",
       "name" : "HideTechnicalRole.ivp",
       "config" : {
-        "callSignature" : "HideTechnicalRole",
-        "outLink" : "HideTechnicalRole.ivp",
-        "startName" : "Hide Technical Role"
+        "signature" : "HideTechnicalRole",
+        "request" : {
+          "name" : "Hide Technical Role"
+        }
       },
       "visual" : {
         "at" : { "x" : 168, "y" : 72 }
       },
-      "connect" : { "id" : "f10", "to" : "f9" }
+      "connect" : [
+        { "id" : "f10", "to" : "f9" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -28,15 +31,18 @@
       "type" : "RequestStart",
       "name" : "createHiddenTechnicalTask.ivp",
       "config" : {
-        "callSignature" : "createHiddenTechnicalTask",
-        "outLink" : "createHiddenTechnicalTask.ivp",
-        "startName" : "Create hidden technical task"
+        "signature" : "createHiddenTechnicalTask",
+        "request" : {
+          "name" : "Create hidden technical task"
+        }
       },
       "visual" : {
         "at" : { "x" : 160, "y" : 336 },
         "size" : { "width" : 32, "height" : 32 }
       },
-      "connect" : { "id" : "f5", "to" : "f17" }
+      "connect" : [
+        { "id" : "f5", "to" : "f17" }
+      ]
     }, {
       "id" : "f4",
       "type" : "TaskEnd",
@@ -66,7 +72,9 @@
         "at" : { "x" : 368, "y" : 72 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f11",
       "type" : "Script",
@@ -89,20 +97,25 @@
         "at" : { "x" : 367, "y" : 173 },
         "size" : { "width" : 160, "height" : 60 }
       },
-      "connect" : { "id" : "f15", "to" : "f13" }
+      "connect" : [
+        { "id" : "f15", "to" : "f13" }
+      ]
     }, {
       "id" : "f12",
       "type" : "RequestStart",
       "name" : "UnhideTechnicalRole.ivp",
       "config" : {
-        "callSignature" : "UnhideTechnicalRole",
-        "outLink" : "UnhideTechnicalRole.ivp",
-        "startName" : "Unhide Technical Role"
+        "signature" : "UnhideTechnicalRole",
+        "request" : {
+          "name" : "Unhide Technical Role"
+        }
       },
       "visual" : {
         "at" : { "x" : 167, "y" : 173 }
       },
-      "connect" : { "id" : "f14", "to" : "f11" }
+      "connect" : [
+        { "id" : "f14", "to" : "f11" }
+      ]
     }, {
       "id" : "f13",
       "type" : "TaskEnd",
@@ -114,56 +127,61 @@
       "type" : "Script",
       "name" : "Hide task",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.publicapi.TaskAPI;",
             "TaskAPI.setHidePropertyToHideInPortal(ivy.task);"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 568, "y" : 336 },
         "size" : { "width" : 120, "height" : 48 }
       },
-      "connect" : { "id" : "f21", "to" : "f4" }
+      "connect" : [
+        { "id" : "f21", "to" : "f4" }
+      ]
     }, {
       "id" : "f18",
       "type" : "TaskSwitchEvent",
       "config" : {
-        "outLinks" : [ "TaskA.ivp" ],
-        "case" : {
-          "name" : "Case contains hidden task"
-        },
         "task" : {
           "name" : "Second Hidden Task",
           "description" : "Task, which has the HIDE additional property, won't be displayed in Portal",
           "skipTasklist" : true
+        },
+        "case" : {
+          "name" : "Case contains hidden task"
         }
       },
       "visual" : {
         "at" : { "x" : 440, "y" : 336 },
         "size" : { "width" : 32, "height" : 32 }
       },
-      "connect" : { "id" : "f20", "to" : "f16", "condition" : "ivp==\"TaskA.ivp\"" }
+      "connect" : [
+        { "id" : "f20", "to" : "f16", "condition" : "ivp==\"TaskA.ivp\"" }
+      ]
     }, {
       "id" : "f17",
       "type" : "Script",
       "name" : "Hide task",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.publicapi.TaskAPI;",
             "TaskAPI.setHidePropertyToHideInPortal(ivy.task);"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 320, "y" : 336 },
         "size" : { "width" : 104, "height" : 48 }
       },
-      "connect" : { "id" : "f19", "to" : "f18", "var" : "in1" }
+      "connect" : [
+        { "id" : "f19", "to" : "f18", "var" : "in1" }
+      ]
     }, {
       "id" : "f22",
       "type" : "ProcessAnnotation",
@@ -214,17 +232,20 @@
       "type" : "RequestStart",
       "name" : "createHiddenTechnicalCase.ivp",
       "config" : {
-        "callSignature" : "createHiddenTechnicalCase",
+        "signature" : "createHiddenTechnicalCase",
+        "request" : {
+          "name" : "Create hidden technical case"
+        },
         "case" : {
           "name" : "Repair Computer"
-        },
-        "outLink" : "createHiddenTechnicalCase.ivp",
-        "startName" : "Create hidden technical case"
+        }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 486 }
       },
-      "connect" : { "id" : "f6", "to" : "f31", "var" : "in1" }
+      "connect" : [
+        { "id" : "f6", "to" : "f31", "var" : "in1" }
+      ]
     }, {
       "id" : "f29",
       "type" : "TaskEnd",
@@ -238,9 +259,6 @@
       "config" : {
         "processCall" : "Functional Processes/HideSystemCase:call(Boolean)",
         "call" : {
-          "params" : [
-            { "name" : "hideBusinessCase", "type" : "Boolean" }
-          ],
           "map" : {
             "param.hideBusinessCase" : "true"
           }
@@ -249,28 +267,28 @@
       "visual" : {
         "at" : { "x" : 592, "y" : 486 }
       },
-      "connect" : { "id" : "f34", "to" : "f29" }
+      "connect" : [
+        { "id" : "f34", "to" : "f29" }
+      ]
     }, {
       "id" : "f31",
       "type" : "TaskSwitchGateway",
       "config" : {
-        "outLinks" : [ "TaskA.ivp", "TaskB.ivp" ],
-        "tasks" : {
-          "TaskA" : {
+        "tasks" : [ {
+            "id" : "TaskA",
             "name" : "Report and hide case",
             "description" : "Report and hide case",
             "responsible" : {
-              "role" : "AXONIVY_PORTAL_ADMIN"
+              "activator" : "AXONIVY_PORTAL_ADMIN"
             }
-          },
-          "TaskB" : {
+          }, {
+            "id" : "TaskB",
             "name" : "Report",
             "description" : "Report but don't hide case. This task should be hidden if you run \"Report and hide case\" task.",
             "responsible" : {
-              "role" : "CREATOR"
+              "activator" : "CREATOR"
             }
-          }
-        }
+          } ]
       },
       "visual" : {
         "at" : { "x" : 472, "y" : 486 }

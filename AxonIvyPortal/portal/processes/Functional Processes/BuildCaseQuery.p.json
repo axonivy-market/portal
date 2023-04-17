@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "15F95D721D0C7224",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "buildCaseQuery()",
       "config" : {
-        "callSignature" : "buildCaseQuery",
+        "signature" : "buildCaseQuery",
         "result" : {
           "params" : [
-            { "name" : "caseQuery", "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery" }
+            { "name" : "caseQuery", "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery", "desc" : "" }
           ],
           "map" : {
             "result.caseQuery" : "in.#caseQuery"
@@ -23,7 +23,9 @@
       "visual" : {
         "at" : { "x" : 92, "y" : 64 }
       },
-      "connect" : { "id" : "f3", "to" : "f2" }
+      "connect" : [
+        { "id" : "f3", "to" : "f2" }
+      ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -43,7 +45,9 @@
         "at" : { "x" : 404, "y" : 186 },
         "size" : { "width" : 704, "height" : 76 }
       },
-      "connect" : { "id" : "f6", "to" : "f2" }
+      "connect" : [
+        { "id" : "f6", "to" : "f2" }
+      ]
     }, {
       "id" : "f2",
       "type" : "Script",
@@ -51,6 +55,8 @@
       "visual" : {
         "at" : { "x" : 288, "y" : 64 }
       },
-      "connect" : { "id" : "f4", "to" : "f1" }
+      "connect" : [
+        { "id" : "f4", "to" : "f1" }
+      ]
     } ]
 }

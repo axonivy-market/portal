@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "14C7834636E63BEA",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "findThirdPartyApplications()",
       "config" : {
-        "callSignature" : "findThirdPartyApplications",
+        "signature" : "findThirdPartyApplications",
         "result" : {
           "params" : [
-            { "name" : "applications", "type" : "List<ch.ivy.addon.portalkit.configuration.Application>" }
+            { "name" : "applications", "type" : "List<ch.ivy.addon.portalkit.configuration.Application>", "desc" : "" }
           ],
           "map" : {
             "result.applications" : "in.applications"
@@ -24,7 +24,9 @@
         "at" : { "x" : 184, "y" : 64 },
         "labelOffset" : { "x" : 97, "y" : 20 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -48,7 +50,9 @@
       "visual" : {
         "at" : { "x" : 184, "y" : 128 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     } ],
   "layout" : {
     "lanes" : [ {

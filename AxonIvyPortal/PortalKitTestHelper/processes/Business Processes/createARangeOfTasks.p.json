@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "14B2A3DC7173EA26",
   "config" : {
     "data" : "ch.ivy.add.portalkit.task.TaskGenerationDataRange"
@@ -9,29 +9,32 @@
       "type" : "RequestStart",
       "name" : "generateTask(TaskGenerationDataRange)",
       "config" : {
-        "callSignature" : "generateTask",
+        "signature" : "generateTask",
         "input" : {
           "params" : [
-            { "name" : "rangeData", "type" : "ch.ivy.add.portalkit.task.TaskGenerationDataRange" }
+            { "name" : "rangeData", "type" : "ch.ivy.add.portalkit.task.TaskGenerationDataRange", "desc" : "" }
           ],
           "map" : {
             "out" : "param.rangeData"
           }
         },
-        "outLink" : "generateTask.ivp",
+        "request" : {
+          "isHttpRequestable" : false
+        },
+        "triggerable" : true,
         "task" : {
           "responsible" : {
-            "role" : "SYSTEM"
+            "activator" : "SYSTEM"
           }
-        },
-        "triggerEnabled" : true,
-        "requestEnabled" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 208, "y" : 224 },
         "labelOffset" : { "x" : 139, "y" : 20 }
       },
-      "connect" : { "id" : "f13", "to" : "f12" }
+      "connect" : [
+        { "id" : "f13", "to" : "f12" }
+      ]
     }, {
       "id" : "f1",
       "type" : "Alternative",
@@ -48,25 +51,23 @@
       "id" : "f2",
       "type" : "TaskSwitchGateway",
       "config" : {
-        "outLinks" : [ "TaskA.ivp", "TaskB.ivp" ],
+        "tasks" : [ {
+            "id" : "TaskA",
+            "name" : "TASK<%=in1.taskCounter%>_<%=in1.structuredData%>",
+            "customFields" : [
+              { "name" : "CustomerType", "type" : "STRING", "value" : "in1.structuredData" }
+            ]
+          }, {
+            "id" : "TaskB",
+            "responsible" : {
+              "activator" : "SYSTEM"
+            }
+          } ],
         "case" : {
           "name" : "CASE<%=in1.taskCounter%>_<%=in1.structuredData%>",
           "customFields" : [
-            { "name" : "CustomerType", "type" : "String", "value" : "in1.structuredData" }
+            { "name" : "CustomerType", "type" : "STRING", "value" : "in1.structuredData" }
           ]
-        },
-        "tasks" : {
-          "TaskA" : {
-            "name" : "TASK<%=in1.taskCounter%>_<%=in1.structuredData%>",
-            "customFields" : [
-              { "name" : "CustomerType", "type" : "String", "value" : "in1.structuredData" }
-            ]
-          },
-          "TaskB" : {
-            "responsible" : {
-              "role" : "SYSTEM"
-            }
-          }
         }
       },
       "visual" : {
@@ -100,7 +101,9 @@
       "visual" : {
         "at" : { "x" : 352, "y" : 432 }
       },
-      "connect" : { "id" : "f11", "to" : "f1", "via" : [ { "x" : 352, "y" : 344 } ] }
+      "connect" : [
+        { "id" : "f11", "to" : "f1", "via" : [ { "x" : 352, "y" : 344 } ] }
+      ]
     }, {
       "id" : "f12",
       "type" : "Script",
@@ -113,7 +116,9 @@
       "visual" : {
         "at" : { "x" : 208, "y" : 288 }
       },
-      "connect" : { "id" : "f5", "to" : "f1" }
+      "connect" : [
+        { "id" : "f5", "to" : "f1" }
+      ]
     }, {
       "id" : "f14",
       "type" : "Alternative",
@@ -136,19 +141,17 @@
       "id" : "f16",
       "type" : "TaskSwitchGateway",
       "config" : {
-        "outLinks" : [ "TaskA.ivp", "TaskB.ivp" ],
-        "tasks" : {
-          "TaskA" : {
+        "tasks" : [ {
+            "id" : "TaskA",
             "responsible" : {
-              "role" : "SYSTEM"
+              "activator" : "SYSTEM"
             }
-          },
-          "TaskB" : {
+          }, {
+            "id" : "TaskB",
             "responsible" : {
-              "role" : "SYSTEM"
+              "activator" : "SYSTEM"
             }
-          }
-        }
+          } ]
       },
       "visual" : {
         "at" : { "x" : 608, "y" : 440 }
@@ -175,7 +178,9 @@
       "visual" : {
         "at" : { "x" : 752, "y" : 440 }
       },
-      "connect" : { "id" : "f25", "to" : "f14", "via" : [ { "x" : 752, "y" : 352 } ] }
+      "connect" : [
+        { "id" : "f25", "to" : "f14", "via" : [ { "x" : 752, "y" : 352 } ] }
+      ]
     }, {
       "id" : "f18",
       "type" : "TaskEnd",
@@ -187,29 +192,32 @@
       "type" : "RequestStart",
       "name" : "splitTaskGeneration",
       "config" : {
-        "callSignature" : "splitTaskGeneration",
+        "signature" : "splitTaskGeneration",
         "input" : {
           "params" : [
-            { "name" : "rangeData", "type" : "ch.ivy.add.portalkit.task.TaskGenerationDataRange" }
+            { "name" : "rangeData", "type" : "ch.ivy.add.portalkit.task.TaskGenerationDataRange", "desc" : "" }
           ],
           "map" : {
             "out" : "param.rangeData"
           }
         },
-        "outLink" : "splitTaskGeneration.ivp",
+        "request" : {
+          "isHttpRequestable" : false
+        },
+        "triggerable" : true,
         "task" : {
           "responsible" : {
-            "role" : "SYSTEM"
+            "activator" : "SYSTEM"
           }
-        },
-        "triggerEnabled" : true,
-        "requestEnabled" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 608, "y" : 224 },
         "labelOffset" : { "x" : 77, "y" : 20 }
       },
-      "connect" : { "id" : "f26", "to" : "f20" }
+      "connect" : [
+        { "id" : "f26", "to" : "f20" }
+      ]
     }, {
       "id" : "f20",
       "type" : "Script",
@@ -222,7 +230,9 @@
       "visual" : {
         "at" : { "x" : 608, "y" : 288 }
       },
-      "connect" : { "id" : "f27", "to" : "f14" }
+      "connect" : [
+        { "id" : "f27", "to" : "f14" }
+      ]
     }, {
       "id" : "f28",
       "type" : "TriggerCall",
@@ -233,9 +243,6 @@
       "config" : {
         "processCall" : "Business Processes/createARangeOfTasks:generateTask(ch.ivy.add.portalkit.task.TaskGenerationDataRange)",
         "call" : {
-          "params" : [
-            { "name" : "rangeData", "type" : "ch.ivy.add.portalkit.task.TaskGenerationDataRange" }
-          ],
           "map" : {
             "param.rangeData.from" : "in.from",
             "param.rangeData.structuredData" : "in.structuredData",
@@ -247,35 +254,40 @@
       "visual" : {
         "at" : { "x" : 608, "y" : 496 }
       },
-      "connect" : { "id" : "f22", "to" : "f15" }
+      "connect" : [
+        { "id" : "f22", "to" : "f15" }
+      ]
     }, {
       "id" : "f30",
       "type" : "RequestStart",
       "name" : "generateTasks",
       "config" : {
-        "callSignature" : "generateTasks",
+        "signature" : "generateTasks",
         "input" : {
           "params" : [
-            { "name" : "counter", "type" : "Number" }
+            { "name" : "counter", "type" : "Number", "desc" : "" }
           ],
           "map" : {
             "out.taskCounter" : "param.counter"
           }
         },
-        "outLink" : "generateTasks.ivp",
+        "request" : {
+          "isHttpRequestable" : false
+        },
+        "triggerable" : true,
         "task" : {
           "responsible" : {
-            "role" : "SYSTEM"
+            "activator" : "SYSTEM"
           }
-        },
-        "triggerEnabled" : true,
-        "requestEnabled" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 960, "y" : 224 },
         "labelOffset" : { "x" : 63, "y" : 20 }
       },
-      "connect" : { "id" : "f34", "to" : "f33", "var" : "in1" }
+      "connect" : [
+        { "id" : "f34", "to" : "f33", "var" : "in1" }
+      ]
     }, {
       "id" : "f31",
       "type" : "TaskEnd",
@@ -286,7 +298,6 @@
       "id" : "f33",
       "type" : "TaskSwitchEvent",
       "config" : {
-        "outLinks" : [ "TaskA.ivp" ],
         "task" : {
           "name" : "Task <%=in1.taskCounter%>",
           "description" : "Sample description <%=in1.taskCounter%>",
@@ -298,6 +309,8 @@
       "visual" : {
         "at" : { "x" : 960, "y" : 320 }
       },
-      "connect" : { "id" : "f32", "to" : "f31", "condition" : "ivp==\"TaskA.ivp\"" }
+      "connect" : [
+        { "id" : "f32", "to" : "f31", "condition" : "ivp==\"TaskA.ivp\"" }
+      ]
     } ]
 }

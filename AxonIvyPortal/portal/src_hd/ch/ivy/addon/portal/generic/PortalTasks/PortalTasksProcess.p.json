@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "1520FC11167E4897",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -16,10 +16,10 @@
       "type" : "HtmlDialogStart",
       "name" : "useTaskView(TaskView)",
       "config" : {
-        "callSignature" : "useTaskView",
+        "signature" : "useTaskView",
         "input" : {
           "params" : [
-            { "name" : "taskView", "type" : "ch.ivy.addon.portal.generic.view.TaskView" }
+            { "name" : "taskView", "type" : "ch.ivy.addon.portal.generic.view.TaskView", "desc" : "" }
           ],
           "map" : {
             "out.taskView" : "param.taskView"
@@ -31,6 +31,8 @@
         "at" : { "x" : 88, "y" : 144 },
         "labelOffset" : { "x" : 39, "y" : 37 }
       },
-      "connect" : { "id" : "f3", "to" : "f1" }
+      "connect" : [
+        { "id" : "f3", "to" : "f1" }
+      ]
     } ]
 }

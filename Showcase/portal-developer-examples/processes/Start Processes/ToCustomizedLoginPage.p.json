@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "1657B2041502A14A",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.Data"
@@ -9,24 +9,27 @@
       "type" : "RequestStart",
       "name" : "toPageWithCustomLoginPage.ivp",
       "config" : {
-        "callSignature" : "toPageWithCustomLoginPage",
-        "case" : {
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
-          ]
+        "signature" : "toPageWithCustomLoginPage",
+        "request" : {
+          "name" : "Open page with custom login"
         },
-        "outLink" : "toPageWithCustomLoginPage.ivp",
         "task" : {
           "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
           ]
         },
-        "startName" : "Open page with custom login"
+        "case" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+          ]
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -38,14 +41,15 @@
       "type" : "DialogCall",
       "name" : "To Page With Customized Login",
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.customization.WelcomePage",
-        "startMethod" : "start()"
+        "dialog" : "com.axonivy.portal.developerexamples.customization.WelcomePage:start()"
       },
       "visual" : {
         "at" : { "x" : 304, "y" : 64 },
         "size" : { "width" : 192, "height" : 60 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     }, {
       "id" : "f5",
       "type" : "ProcessAnnotation",
