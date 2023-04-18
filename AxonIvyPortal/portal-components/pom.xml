@@ -16,7 +16,7 @@
     </snapshotRepository>
   </distributionManagement>
   <properties>
-    <ivy.engine.version>8.0.32</ivy.engine.version>
+    <ivy.engine.version>8.0.33</ivy.engine.version>
     <build.plugin.version>8.0.7</build.plugin.version>
   </properties>
   <build>
