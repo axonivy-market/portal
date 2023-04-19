@@ -113,7 +113,7 @@
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/${__P(portal.application.name)}/pro/${__P(portal.portal)}/1549F58C18A6C562/DefaultApplicationHomePage.ivp</stringProp>
+            <stringProp name="HTTPSampler.path">/${__P(security.system.name)}/${__P(portal.application.name)}/pro/${__P(portal.portal)}/1549F58C18A6C562/DefaultApplicationHomePage.ivp</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -279,7 +279,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/${__P(portal.application.name)}/pro/PortalKitTestHelper/17208192E0AF4185/updatePortalSetting.ivp</stringProp>
+          <stringProp name="HTTPSampler.path">/${__P(security.system.name)}/${__P(portal.application.name)}/pro/PortalKitTestHelper/17208192E0AF4185/updatePortalSetting.ivp</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
@@ -298,7 +298,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/${__P(portal.application.name)}/pro/${__P(portal.portal)}/1549F58C18A6C562/DefaultApplicationHomePage.ivp</stringProp>
+          <stringProp name="HTTPSampler.path">/${__P(security.system.name)}/${__P(portal.application.name)}/pro/${__P(portal.portal)}/1549F58C18A6C562/DefaultApplicationHomePage.ivp</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
@@ -1448,7 +1448,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/${__P(portal.application.name)}/pro/PortalKitTestHelper/17208192E0AF4185/updatePortalSetting.ivp</stringProp>
+          <stringProp name="HTTPSampler.path">/${__P(security.system.name)}/${__P(portal.application.name)}/pro/PortalKitTestHelper/17208192E0AF4185/updatePortalSetting.ivp</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
@@ -5505,7 +5505,7 @@
             </ResponseAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="UpdateCaseByStateModelCommand" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="UpdateTaskByExpiryModelCommand" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
               <collectionProp name="Arguments.arguments">
                 <elementProp name="javax.faces.partial.ajax" elementType="HTTPArgument">
@@ -5517,31 +5517,31 @@
                 </elementProp>
                 <elementProp name="javax.faces.source" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">statistics-widget:chart-creation-widget:chart-management-form:update-case-by-state-model-command</stringProp>
+                  <stringProp name="Argument.value">statistics-widget:chart-creation-widget:chart-management-form:update-task-by-expiry-model-command</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.source</stringProp>
                 </elementProp>
                 <elementProp name="javax.faces.partial.execute" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">statistics-widget:chart-creation-widget:chart-management-form:update-case-by-state-model-command</stringProp>
+                  <stringProp name="Argument.value">statistics-widget:chart-creation-widget:chart-management-form:update-task-by-expiry-model-command</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.partial.execute</stringProp>
                 </elementProp>
                 <elementProp name="javax.faces.partial.render" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">statistics-widget:chart-creation-widget:chart-management-form:case-by-state-chart</stringProp>
+                  <stringProp name="Argument.value">statistics-widget:chart-creation-widget:chart-management-form:task-by-expiry-chart</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.partial.render</stringProp>
                 </elementProp>
-                <elementProp name="statistics-widget:chart-creation-widget:chart-management-form:update-case-by-state-model-command" elementType="HTTPArgument">
+                <elementProp name="statistics-widget:chart-creation-widget:chart-management-form:update-task-by-expiry-model-command" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">statistics-widget:chart-creation-widget:chart-management-form:update-case-by-state-model-command</stringProp>
+                  <stringProp name="Argument.value">statistics-widget:chart-creation-widget:chart-management-form:update-task-by-expiry-model-command</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">statistics-widget:chart-creation-widget:chart-management-form:update-case-by-state-model-command</stringProp>
+                  <stringProp name="Argument.name">statistics-widget:chart-creation-widget:chart-management-form:update-task-by-expiry-model-command</stringProp>
                 </elementProp>
                 <elementProp name="statistics-widget:chart-creation-widget:chart-management-form:statistic-filter:statistic-filter-accordion-panel:period-time-selection_focus" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -5736,7 +5736,7 @@
             </ResponseAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="UpdateTaskByExpiryModelCommand" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="UpdateCaseByStateModelCommand" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
               <collectionProp name="Arguments.arguments">
                 <elementProp name="javax.faces.partial.ajax" elementType="HTTPArgument">
@@ -5748,31 +5748,31 @@
                 </elementProp>
                 <elementProp name="javax.faces.source" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">statistics-widget:chart-creation-widget:chart-management-form:update-task-by-expiry-model-command</stringProp>
+                  <stringProp name="Argument.value">statistics-widget:chart-creation-widget:chart-management-form:update-case-by-state-model-command</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.source</stringProp>
                 </elementProp>
                 <elementProp name="javax.faces.partial.execute" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">statistics-widget:chart-creation-widget:chart-management-form:update-task-by-expiry-model-command</stringProp>
+                  <stringProp name="Argument.value">statistics-widget:chart-creation-widget:chart-management-form:update-case-by-state-model-command</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.partial.execute</stringProp>
                 </elementProp>
                 <elementProp name="javax.faces.partial.render" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">statistics-widget:chart-creation-widget:chart-management-form:task-by-expiry-chart</stringProp>
+                  <stringProp name="Argument.value">statistics-widget:chart-creation-widget:chart-management-form:case-by-state-chart</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.partial.render</stringProp>
                 </elementProp>
-                <elementProp name="statistics-widget:chart-creation-widget:chart-management-form:update-task-by-expiry-model-command" elementType="HTTPArgument">
+                <elementProp name="statistics-widget:chart-creation-widget:chart-management-form:update-case-by-state-model-command" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">statistics-widget:chart-creation-widget:chart-management-form:update-task-by-expiry-model-command</stringProp>
+                  <stringProp name="Argument.value">statistics-widget:chart-creation-widget:chart-management-form:update-case-by-state-model-command</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">statistics-widget:chart-creation-widget:chart-management-form:update-task-by-expiry-model-command</stringProp>
+                  <stringProp name="Argument.name">statistics-widget:chart-creation-widget:chart-management-form:update-case-by-state-model-command</stringProp>
                 </elementProp>
                 <elementProp name="statistics-widget:chart-creation-widget:chart-management-form:statistic-filter:statistic-filter-accordion-panel:period-time-selection_focus" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -6675,7 +6675,7 @@
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/${__P(portal.application.name)}/pro/${__P(portal.portal)}/1549F58C18A6C562/showTaskAnalysis.ivp</stringProp>
+            <stringProp name="HTTPSampler.path">/${__P(security.system.name)}/${__P(portal.application.name)}/pro/${__P(portal.portal)}/1549F58C18A6C562/showTaskAnalysis.ivp</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
@@ -6745,7 +6745,7 @@
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/${__P(portal.application.name)}/pro/PortalKitTestHelper/17208192E0AF4185/updatePortalSetting.ivp</stringProp>
+            <stringProp name="HTTPSampler.path">/${__P(security.system.name)}/${__P(portal.application.name)}/pro/PortalKitTestHelper/17208192E0AF4185/updatePortalSetting.ivp</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
@@ -6764,7 +6764,7 @@
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/${__P(portal.application.name)}/pro/${__P(portal.portal)}/1549F58C18A6C562/DefaultApplicationHomePage.ivp</stringProp>
+            <stringProp name="HTTPSampler.path">/${__P(security.system.name)}/${__P(portal.application.name)}/pro/${__P(portal.portal)}/1549F58C18A6C562/DefaultApplicationHomePage.ivp</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
@@ -7721,7 +7721,7 @@
           <boolProp name="displaySystemProperties">false</boolProp>
         </DebugSampler>
         <hashTree/>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
