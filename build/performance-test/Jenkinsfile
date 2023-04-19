@@ -46,7 +46,7 @@ pipeline {
     stage('test') {
       steps {
         script {
-          def today = new Date().format('dd-MM-yyyy_HH-mm')
+          today = new Date().format('dd-MM-yyyy_HH-mm')
           resultDir = "/var/tools/performance-result/${env.engineVersion}/${today}"
           fileOperations([folderCreateOperation(folderPath: "${resultDir}")])
 
