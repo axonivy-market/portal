@@ -8,7 +8,7 @@ pipeline {
   }
 
   parameters {
-    choice(name: 'engine', choices: ['master'], description: 'Engine to choose e.g. master')
+    choice(name: 'engine', choices: ['master','performanceTest'], description: 'Engine to choose e.g. master')
   }
 
   stages {
@@ -16,12 +16,22 @@ pipeline {
       steps {
         script {
           today = new Date().format('dd-MM-yyyy_HH-mm')
-          config = [master:[engine: 'master', systemDatabase: 'AxonIvySystemDatabase-master']]
+          config = [master:[engine: 'master', systemDatabase: 'AxonIvySystemDatabase-master'], 
+		  performanceTest:[engine:'peformance-master', postgresContainer: 'postgres-performance-master', systemDatabase: 'AxonIvySystemDatabase-performance-master']]
           engineParentDir = '/var/tools/ivy/'
           engineDir = engineParentDir + config[params.engine]['engine']
           databaseBackupDir = '/var/database-backups/'
           databaseName = config[params.engine]['systemDatabase']
           dbBackupFile = databaseBackupDir + databaseName + '-' + today + '.dump'
+		  // Set SystemDb Autoconvert: true - migrate System DB automatically when upgrading ivy
+          updateConfigFile('true')
+		  
+		  if (params.engine == 'performanceTest') {
+            sh """
+              echo ====================Start engine performance test====================
+              docker compose -f ${engineDir}/docker-compose.yml up -d
+            """
+          }
 
           sh """
             echo ====================Backup database====================
@@ -36,6 +46,14 @@ pipeline {
     stage('upgradeEngine') {
       steps {
         script {
+		  if (params.engine == 'performanceTest') {
+            sh """
+              cd ${engineDir}
+              echo ====================Stop engine performance test====================
+              docker compose down
+              docker compose pull
+            """
+          } else {
           sh """
             echo ====================Upgrade engine====================
             cd ${engineDir}
@@ -43,6 +61,7 @@ pipeline {
             docker compose pull
             docker compose up -d
           """
+		  }
         }
       }
     }
