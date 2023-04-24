@@ -11,6 +11,21 @@ function loadGrid() {
     }
   });
 
+  grids.forEach(function (grid) {
+    grid.batchUpdate();
+    let gridItems = grid.getGridItems();
+    grid.removeAll(true);
+    let h=0;
+    gridItems.sort((a, b) => $(a).attr('gs-y2') - $(b).attr('gs-y2') || $(a).attr('gs-index') - $(b).attr('gs-index'))
+      .forEach(e => {
+        $(e).attr('gs-y', h)
+        h += parseInt($(e).attr('gs-h'));
+      });
+
+    gridItems.forEach(ele => grid.addWidget(ele));
+    grid.commit();
+  })
+
   grids.forEach(function (grid, i) {
     grid.on('change', function () {
       var serializedData = [];
