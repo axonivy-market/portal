@@ -47,7 +47,7 @@
         </h:form>
 
         <div id="dashboard-body" class="dashboard__body ui-g-12 js-dashboard__body #{dashboardBodyStyleClass} #{managedBean.isReadOnlyMode ? '':'u-invisibility'}">
-          <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack ui-g-12" style="padding-left: 0">
+          <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack ui-g-12 u-no-padding-left">
             <c:if test="#{not empty managedBean.selectedDashboard.widgets}">
               <c:forEach var="widget" items="#{managedBean.selectedDashboard.widgets}" varStatus="status">
                 <div class="grid-stack-item #{widget.type == 'WELCOME' ? 'js-welcome-widget welcome-widget' : ''}"
