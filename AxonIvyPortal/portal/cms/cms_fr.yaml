@@ -986,13 +986,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     passwordReset: Réinitialisation du mot de passe
     passwordResetEmailCantSend: Exception lors de l'envoi d'un courrier électronique. Veuillez réessayer plus tard.
     passwordResetEmailContent: '<html>Cher/e {0},<br/><br/>Veuillez cliquer sur ce lien pour réinitialiser votre mot de passe : <a href="{1}">Réinitialisation du mot de passe</a><br/><br/>Bonnes salutations</html>.'
-    passwordResetEmailSent: Un e-mail vous a été envoyé, comprenant un lien pour la réinitialisation du mot de passe. Veuillez vérifier votre boîte aux lettres électronique.
+    passwordResetEmailSent: Si cette adresse e-mail est enregistrée, nous lui avons envoyé un lien de récupération du mot de passe.
     passwordResetEmailSubject: Courriel de réinitialisation du mot de passe
     passwordResetSuccess: Votre mot de passe a été modifié avec succès
     requiredFieldMessage: '{0} est nécessaire'
     setANewPassword: Définir un nouveau mot de passe
     strong: Fort
-    userNotFound: Utilisateur non trouvé
+    userNotFound: Si cette adresse e-mail est enregistrée, nous lui avons envoyé un lien de récupération du mot de passe.
     usersHaveSameEmail: De nombreux utilisateurs utilisent ce courrier électronique. Veuillez contacter votre administrateur.
     weak: Faible
   iconselection:
