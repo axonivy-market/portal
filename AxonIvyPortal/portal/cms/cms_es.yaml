@@ -986,13 +986,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     passwordReset: Restablecer contraseña
     passwordResetEmailCantSend: 'Ha habido un problema para enviarle un E-Mail. Por favor inténtelo más tarde. '
     passwordResetEmailContent: <html>Hola {0},<br/><br/>por favor haga click en este link para restablecer su contraseña <a href="{1}">Restablecer contraseña</a><br/><br/>Saludos</html>
-    passwordResetEmailSent: Se ha enviado un E-Mail con el link para restablecer su contraseña. Por favor compruebe su correo electrónico.
+    passwordResetEmailSent: Si esta dirección de correo electrónico está registrada, le hemos enviado un enlace para recuperar la contraseña.
     passwordResetEmailSubject: E-Mail para restablecer su contraseña
     passwordResetSuccess: Su contraseña ha sido cambiada con éxito.
     requiredFieldMessage: '{0} es necesario'
     setANewPassword: Defina una nueva contraseña
     strong: Fuerte
-    userNotFound: Usuario no encontrado
+    userNotFound: Si esta dirección de correo electrónico está registrada, le hemos enviado un enlace para recuperar la contraseña.
     usersHaveSameEmail: Hay varios usuarios usando el mismo E-Mail. Por favor contacte con su administrador.
     weak: Débil
   iconselection:
