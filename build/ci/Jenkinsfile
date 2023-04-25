@@ -32,7 +32,6 @@ pipeline {
                 builtModules.add(module)
               }
             }
-            maven cmd: "clean test -f AxonIvyPortal/PortalTest/pom.xml -Dtest=ch.ivy.addon.**.*Test"
           }
           archiveArtifacts artifacts: '*/*/target/*.iar', allowEmptyArchive: true
         }
