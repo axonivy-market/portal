@@ -52,7 +52,7 @@
               <c:forEach var="widget" items="#{managedBean.selectedDashboard.widgets}" varStatus="status">
                 <div class="grid-stack-item #{widget.type == 'WELCOME' ? 'js-welcome-widget welcome-widget' : ''}"
                   gs-y2="#{widget.layout.axisY}"
-                  gs-index="#{status.index}"
+                  gs-x2="#{widget.layout.axisX}"
                   gs-x="#{widget.layout.axisX}"
                   gs-y="#{widget.layout.axisY}"
                   gs-id="#{widget.id}"
