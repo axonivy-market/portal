@@ -10,16 +10,27 @@ function loadGrid() {
       handles: 'e, se, s, sw, w'
     }
   });
-
+  let serializedData = [];
+  let mapGridItems = new Map();
   grids.forEach(function (grid) {
     grid.batchUpdate();
     let gridItems = grid.getGridItems();
     grid.removeAll(true);
     let h=0;
-    gridItems.sort((a, b) => $(a).attr('gs-y2') - $(b).attr('gs-y2') || $(a).attr('gs-index') - $(b).attr('gs-index'))
+    gridItems.sort((a, b) => $(a).attr('gs-y2') - $(b).attr('gs-y2') || $(a).attr('gs-x2') - $(b).attr('gs-x2'))
       .forEach(e => {
-        $(e).attr('gs-y', h)
-        h += parseInt($(e).attr('gs-h'));
+        let el = $(e);
+        el.attr('gs-y', h)
+        h += parseInt(el.attr('gs-h'));
+        const data = {
+           id: el.attr('gs-id'),
+           x: el.attr('gs-x'),
+           y: el.attr('gs-y'),
+           w: el.attr('gs-w'),
+           h: el.attr('gs-h')
+         };
+         serializedData.push(data);
+         mapGridItems.set(data.id, data)
       });
 
     gridItems.forEach(ele => grid.addWidget(ele));
@@ -30,6 +41,14 @@ function loadGrid() {
     grid.on('change', function () {
       var serializedData = [];
       grid.engine.nodes.forEach(function (node) {
+        let gridItem = mapGridItems.get(node.id);
+        let updateState = $('#back-to-configuration').attr('aria-disabled');
+        if (gridItem !== undefined && updateState == undefined) {
+          node.x = gridItem.x;
+          node.y = gridItem.y;
+          node.w = gridItem.w;
+          node.h = gridItem.h;
+        }
         serializedData.push({
           id: node.id,
           x: node.x,
