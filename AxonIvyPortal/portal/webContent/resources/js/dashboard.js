@@ -38,10 +38,14 @@ function loadGrid() {
   grids.forEach(function (grid, i) {
     grid.on('change', function () {
       let serializedData = [];
+      let isReadOnlyMode = false;
+      let dashboardViewModeInput = $("input[id$='dashboard-view-mode']");
+      if (dashboardViewModeInput.length > 0) {
+        isReadOnlyMode = dashboardViewModeInput.val() === 'true';
+      }
       grid.engine.nodes.forEach(function (node) {
         let gridItem = mapGridItems.get(node.id);
-        let updateState = $('#back-to-configuration').attr('aria-disabled');
-        if (gridItem !== undefined && updateState === undefined) {
+        if (gridItem !== undefined && isReadOnlyMode) {
           node.x = gridItem.x;
           node.y = gridItem.y;
           node.w = gridItem.w;
@@ -55,11 +59,7 @@ function loadGrid() {
           h: node.h
         });
       });
-      let isReadOnlyMode = false;
-      let dashboardViewModeInput = $("input[id$='dashboard-view-mode']");
-      if (dashboardViewModeInput.length > 0) {
-        isReadOnlyMode = dashboardViewModeInput.val() === 'true';
-      }
+
       if (grid.opts.minWidth < grid.el.clientWidth && !isReadOnlyMode) {
         saveConfigurationCommand([{
           name: 'nodes',
