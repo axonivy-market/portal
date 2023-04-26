@@ -5984,3 +5984,20 @@ a.dashboard-action-container label {
   word-break: break-word;
   display: flex;
 }
+
+/* =================== ADD EXTERNAL LINK PROCESS DIALOG ====================== */
+.external-link-preview-image {
+	width: inherit;
+}
+
+.external-link-delete-image-button {
+	position: absolute !important;
+    right: 7px;
+    z-index: 1;
+}
+
+.external-link-preview-image-panel {
+	position: relative;
+	display: flex;
+	justify-content: center; 
+}

@@ -5,12 +5,19 @@
   <c:set var="isExpress" value="#{processWidgetBean.isExpressProcess(process)}" />
   <c:set var="isExternalLink" value="#{processWidgetBean.isExternalLink(process)}" />
   <c:set var="isCaseMap" value="#{processWidgetBean.isCaseMap(process)}" />
+  <c:set var="isDefaultProcessImage" value="#{processWidgetBean.isDefaultProcessImage(process.imageUrl)}" />
 
   <h:panelGroup layout="block" styleClass="js-process-start-list-item ui-g-2 ui-xl-2 ui-lg-3 ui-md-6 ui-sm-12 image-process-item #{groupCode}">
     <div class="card-item card ui-g-12 u-padding-0 #{isExpress ? 'express-workflow' : ''} #{isExternalLink ? 'js-external-link-process-item' : ''}">
       <!-- Process Image -->
-      <img class="image-process-item-image" alt="#{process.getName()}" src="#{process.imageUrl}" />
-      <div class="overlay-title">
+			<h:panelGroup rendered="#{isDefaultProcessImage}">
+				<img class="image-process-item-image" alt="#{process.getName()}"
+					src="#{process.imageUrl}" />
+			</h:panelGroup>
+			<p:graphicImage rendered="#{!isDefaultProcessImage}" cache="true"
+				styleClass="image-process-item-image" alt="#{process.getName()}"
+				library="ivy-cms" name="#{process.imageUrl}" />
+			<div class="overlay-title">
         <div class="process-icon-and-name">
           <!-- Process Icon -->
           <div class="image-process-icon">

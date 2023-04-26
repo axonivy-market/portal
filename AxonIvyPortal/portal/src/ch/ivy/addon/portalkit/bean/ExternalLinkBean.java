@@ -8,7 +8,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
+import org.primefaces.event.FileUploadEvent;
+
+import com.axonivy.portal.util.ExternalLinkUtils;
 
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
@@ -17,12 +21,13 @@ import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.util.Pair;
 
 @ManagedBean
 @ViewScoped
 public class ExternalLinkBean implements Serializable {
 
-private static final long serialVersionUID = 4772777911430826945L;
+  private static final long serialVersionUID = 4772777911430826945L;
   private ExternalLink externalLink;
   private ExternalLinkService externaLinkService;
   
@@ -59,12 +64,26 @@ private static final long serialVersionUID = 4772777911430826945L;
     return processLink;
   }
 
+  public void handleImageUpload(FileUploadEvent event) {
+    removeImage();
+    Pair<String, String> imageInfo = ExternalLinkUtils.handleImageUpload(event);
+    externalLink.setImageUrl(imageInfo.getLeft());
+    externalLink.setImageType(imageInfo.getRight());
+  }
+  
+  public void removeImage() {
+    if (StringUtils.isNoneBlank(externalLink.getImageUrl())) {
+      ExternalLinkUtils.removeImage(externalLink.getImageUrl(), externalLink.getImageType());
+      externalLink.setImageUrl(null);
+      externalLink.setImageType(null);
+    }
+  }
+
   private boolean isValidProcessLink(String processLink) {
     String linkInLowerCase = processLink.toLowerCase();
     return linkInLowerCase.startsWith(Protocol.HTTP.getValue())
         || linkInLowerCase.startsWith(Protocol.HTTPS.getValue()) || linkInLowerCase.startsWith("/");
   }
-
   
   public void startExternalLink(ExternalLink selectedExternalLink) throws IOException {
     FacesContext.getCurrentInstance().getExternalContext().redirect(selectedExternalLink.getLink());
