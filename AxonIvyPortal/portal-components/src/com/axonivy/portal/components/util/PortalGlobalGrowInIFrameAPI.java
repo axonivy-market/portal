@@ -1,4 +1,4 @@
-package ch.ivy.addon.portalkit.publicapi;
+package com.axonivy.portal.components.util;
 
 import org.primefaces.PrimeFaces;
 

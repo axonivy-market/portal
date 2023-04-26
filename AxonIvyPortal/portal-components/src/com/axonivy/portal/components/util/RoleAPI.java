@@ -1,8 +1,8 @@
-package ch.ivy.addon.portalkit.publicapi;
+package com.axonivy.portal.components.util;
 
-import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
-import ch.ivy.addon.portalkit.service.IvyCacheService;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
+import com.axonivy.portal.components.constant.IvyCacheIdentifier;
+import com.axonivy.portal.components.service.IvyCacheService;
+
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
 
