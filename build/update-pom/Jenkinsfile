@@ -1,13 +1,8 @@
 pipeline {
-  agent {label 'master'}
+  agent {label 'linux'}
   
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
-  }
-
-  tools { 
-      maven '3.6' 
-      jdk '11' 
   }
 
   parameters {
@@ -24,27 +19,30 @@ pipeline {
     stage('build') {
       steps {
         script {
-          updateVersions()
-          echo "====================Commit to GIT===================="
-          bat """
-            git commit -a -m "Updated all pom build.plugin.version=${buildPluginVersion}, ivy.engine.version=${ivyEngineVersion}"
-            git push origin ${env.BRANCH_NAME}
-          """
-          echo "====================Cache engine in local repository===================="
-          cacheEngine()
+          docker.build('update-pom', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+            echo "${BRANCH_NAME}"
+          }
+          // updateVersions()
+          // echo "====================Commit to GIT===================="
+          // bat """
+          //   git commit -a -m "Updated all pom build.plugin.version=${buildPluginVersion}, ivy.engine.version=${ivyEngineVersion}"
+          //   git push origin ${env.BRANCH_NAME}
+          // """
+          // echo "====================Cache engine in local repository===================="
+          // cacheEngine()
         }
       }
     }
 
-    stage('cache-engine-on-performance-server') {
-      agent {label 'portal-slave'}
-      steps {
-        script {
-          updateVersions()
-          cacheEngine()
-        }
-      }
-    }
+    // stage('cache-engine-on-performance-server') {
+    //   agent {label 'portal-slave'}
+    //   steps {
+    //     script {
+    //       updateVersions()
+    //       cacheEngine()
+    //     }
+    //   }
+    // }
   }
 }
 
