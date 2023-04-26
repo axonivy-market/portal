@@ -51,8 +51,8 @@
             <c:if test="#{not empty managedBean.selectedDashboard.widgets}">
               <c:forEach var="widget" items="#{managedBean.selectedDashboard.widgets}" varStatus="status">
                 <div class="grid-stack-item #{widget.type == 'WELCOME' ? 'js-welcome-widget welcome-widget' : ''}"
-                  gs-y2="#{widget.layout.axisY}"
-                  gs-x2="#{widget.layout.axisX}"
+                  default-y="#{widget.layout.axisY}"
+                  default-x="#{widget.layout.axisX}"
                   gs-x="#{widget.layout.axisX}"
                   gs-y="#{widget.layout.axisY}"
                   gs-id="#{widget.id}"

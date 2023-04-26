@@ -16,7 +16,7 @@ function loadGrid() {
     let gridItems = grid.getGridItems();
     grid.removeAll(true);
     let h=0;
-    gridItems.sort((a, b) => $(a).attr('gs-y2') - $(b).attr('gs-y2') || $(a).attr('gs-x2') - $(b).attr('gs-x2'))
+    gridItems.sort((a, b) => $(a).attr('default-y') - $(b).attr('default-y') || $(a).attr('default-x') - $(b).attr('default-x'))
       .forEach(e => {
         let el = $(e);
         el.attr('gs-y', h)
@@ -37,11 +37,11 @@ function loadGrid() {
 
   grids.forEach(function (grid, i) {
     grid.on('change', function () {
-      var serializedData = [];
+      let serializedData = [];
       grid.engine.nodes.forEach(function (node) {
         let gridItem = mapGridItems.get(node.id);
         let updateState = $('#back-to-configuration').attr('aria-disabled');
-        if (gridItem !== undefined && updateState == undefined) {
+        if (gridItem !== undefined && updateState === undefined) {
           node.x = gridItem.x;
           node.y = gridItem.y;
           node.w = gridItem.w;
