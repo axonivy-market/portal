@@ -1081,6 +1081,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     favoriteProcesses: Vos favoris
     goTo: 'Aller à:'
     icon: Icône
+    image: Image
     isRequiredMessage: doit être défini
     linkDescription: Description du lien
     noFavoriteProcess: Vous n'avez pas défini de favoris.

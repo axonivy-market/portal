@@ -4,10 +4,14 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.util.ExternalLinkUtils;
+
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.ProcessType;
+import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivyteam.ivy.workflow.category.Category;
+import ch.ivyteam.util.Pair;
 
 /*
  * Used for merging external link and ivy process into a process list
@@ -15,12 +19,23 @@ import ch.ivyteam.ivy.workflow.category.Category;
 public class ExternalLinkProcessItem implements Process {
 
   public static final String DEFAULT_ICON = "si si-hyperlink-3";
+  public static final String BASE_64 = "base64";
   private ExternalLink externalLink;
   
   public ExternalLinkProcessItem(ExternalLink externalLink) {
     this.externalLink = externalLink;
+    convertBase64ImageToFile();
   }
   
+  private void convertBase64ImageToFile() {
+    if (externalLink.getImageUrl() != null && externalLink.getImageUrl().contains(BASE_64)) {
+      Pair<String, String> imageInfo = ExternalLinkUtils.imageBase64ToApplicationCMSFile(externalLink.getImageUrl());
+      externalLink.setImageUrl(imageInfo.getLeft());
+      externalLink.setImageType(imageInfo.getRight());
+      ExternalLinkService.getInstance().save(externalLink);
+    }
+  }
+
   @Override
   public String getName() {
     return externalLink.getName();
@@ -69,7 +84,12 @@ public class ExternalLinkProcessItem implements Process {
   
   @Override
   public String getImageUrl() {
-    return getContentImageUrl(DefaultImage.ARROWRIGHT.getPath());
+    String imageUrl = this.externalLink.getImageUrl();
+    return StringUtils.isBlank(imageUrl) ? getContentImageUrl(DefaultImage.ARROWRIGHT.getPath()) : imageUrl;
+  }
+
+  public String getImageType() {
+    return this.externalLink.getImageType();
   }
 
   @Override
