@@ -64,7 +64,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI;",
+            "import com.axonivy.portal.components.util.PortalGlobalGrowInIFrameAPI;",
             "if (in.isCustomized) {",
             "  PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();",
             "  api.displayCustomizedMessage(\"Task is cancelled\");",
@@ -83,7 +83,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI;",
+            "import com.axonivy.portal.components.util.PortalGlobalGrowInIFrameAPI;",
             "if (in.isCustomized) {",
             "  PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();",
             "  api.displayCustomizedMessage(\"Task is finished\");",

@@ -475,8 +475,8 @@
         "security" : "system",
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.CaseAPI;",
-            "import ch.ivy.addon.portalkit.publicapi.TaskAPI;",
+            "import com.axonivy.portal.components.util.CaseAPI;",
+            "import com.axonivy.portal.components.util.TaskAPI;",
             "TaskAPI.setHidePropertyToHideInPortal(ivy.task);",
             "CaseAPI.setHidePropertyToHideInPortal(ivy.case);"
           ]
@@ -521,7 +521,7 @@
         "security" : "system",
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.TaskAPI;",
+            "import com.axonivy.portal.components.util.TaskAPI;",
             "TaskAPI.setHidePropertyToHideInPortal(ivy.task);"
           ]
         }

@@ -127,7 +127,7 @@ API below:
 
 ::
 
-   import ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI;
+   import com.axonivy.portal.components.util.PortalGlobalGrowInIFrameAPI;
 
    PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();
    api.displayCustomizedMessage("Your customized message");
