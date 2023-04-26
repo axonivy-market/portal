@@ -10,11 +10,47 @@ function loadGrid() {
       handles: 'e, se, s, sw, w'
     }
   });
+  let mapGridItems = new Map();
+  grids.forEach(function (grid) {
+    grid.batchUpdate();
+    let gridItems = grid.getGridItems();
+    grid.removeAll(true);
+    let h=0;
+    gridItems.sort((a, b) => $(a).attr('default-y') - $(b).attr('default-y') || $(a).attr('default-x') - $(b).attr('default-x'))
+      .forEach(e => {
+        let el = $(e);
+        el.attr('gs-y', h)
+        h += parseInt(el.attr('gs-h'));
+        const data = {
+           id: el.attr('gs-id'),
+           x: el.attr('gs-x'),
+           y: el.attr('gs-y'),
+           w: el.attr('gs-w'),
+           h: el.attr('gs-h')
+         };
+         mapGridItems.set(data.id, data)
+      });
+
+    gridItems.forEach(ele => grid.addWidget(ele));
+    grid.commit();
+  })
 
   grids.forEach(function (grid, i) {
     grid.on('change', function () {
-      var serializedData = [];
+      let serializedData = [];
+      let isReadOnlyMode = false;
+      let dashboardViewModeInput = $("input[id$='dashboard-view-mode']");
+      if (dashboardViewModeInput.length > 0) {
+        isReadOnlyMode = dashboardViewModeInput.val() === 'true';
+      }
       grid.engine.nodes.forEach(function (node) {
+        let gridItem = mapGridItems.get(node.id);
+        if (gridItem !== undefined && isReadOnlyMode) {
+          node.x = gridItem.x;
+          node.y = gridItem.y;
+          node.w = gridItem.w;
+          node.h = gridItem.h;
+        }
         serializedData.push({
           id: node.id,
           x: node.x,
@@ -23,11 +59,7 @@ function loadGrid() {
           h: node.h
         });
       });
-      let isReadOnlyMode = false;
-      let dashboardViewModeInput = $("input[id$='dashboard-view-mode']");
-      if (dashboardViewModeInput.length > 0) {
-        isReadOnlyMode = dashboardViewModeInput.val() === 'true';
-      }
+
       if (grid.opts.minWidth < grid.el.clientWidth && !isReadOnlyMode) {
         saveConfigurationCommand([{
           name: 'nodes',
