@@ -10,7 +10,6 @@ function loadGrid() {
       handles: 'e, se, s, sw, w'
     }
   });
-  let serializedData = [];
   let mapGridItems = new Map();
   grids.forEach(function (grid) {
     grid.batchUpdate();
@@ -29,7 +28,6 @@ function loadGrid() {
            w: el.attr('gs-w'),
            h: el.attr('gs-h')
          };
-         serializedData.push(data);
          mapGridItems.set(data.id, data)
       });
 
