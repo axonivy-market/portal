@@ -26,6 +26,9 @@ public class ProcessWidgetPage extends TemplatePage {
     $("a[title='"+ iconClass + "']").click();
     $("div[id$='process-widget:add-external-link-form:external-link-icon:select-icon-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
     
+    $("div[id$='process-widget:add-external-link-form:external-link-image-upload']").shouldBe(Condition.appear,
+        DEFAULT_TIMEOUT);
+
     $("button[id$='adding-new-external-link-command']").click();
     $("div[id='process-widget:add-external-link-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
     
