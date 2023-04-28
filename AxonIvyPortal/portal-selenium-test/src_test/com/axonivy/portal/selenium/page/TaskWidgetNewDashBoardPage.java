@@ -65,12 +65,12 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void startFirstTask() {
-    $$("span.widget__filter-noti-number").first().shouldBe(appear, DEFAULT_TIMEOUT);
+	$(".task-dashboard-widget__panel span.widget__filter-noti-number").shouldBe(appear, DEFAULT_TIMEOUT);
     WaitHelper.waitForNavigation(() -> getColumnOfTaskHasIndex(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click());
   }
   
   public void startFirstTaskAndWaitShowHomePageButton() {
-    $$("span.widget__filter-noti-number").first().shouldBe(appear, DEFAULT_TIMEOUT);
+	$(".task-dashboard-widget__panel span.widget__filter-noti-number").shouldBe(appear, DEFAULT_TIMEOUT);
     getColumnOfTaskHasIndex(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click();
     $("a>span.si-house-chimney-2.portal-icon").shouldBe(appear, DEFAULT_TIMEOUT);
   }
