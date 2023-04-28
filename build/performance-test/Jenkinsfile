@@ -9,11 +9,6 @@ pipeline {
     cron('30 13 * * *')
   }
 
-  tools { 
-      maven '3.6' 
-      jdk '11' 
-  }
-
   environment {
     engineVersion = '8'
     devEngineDir = "/var/tools/ivy/${env.engineVersion}"
