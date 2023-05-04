@@ -18,6 +18,7 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.util.ProcessStartAPI;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -35,7 +36,6 @@ import ch.ivy.addon.portalkit.dto.widget.HistoryWidget;
 import ch.ivy.addon.portalkit.dto.widget.InformationWidget;
 import ch.ivy.addon.portalkit.dto.widget.RelatedTaskWidget;
 import ch.ivy.addon.portalkit.dto.widget.TechnicalCaseWidget;
-import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CustomWidgetUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;

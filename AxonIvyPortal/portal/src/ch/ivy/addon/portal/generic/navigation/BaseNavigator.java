@@ -8,7 +8,8 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
+import com.axonivy.portal.components.util.ProcessStartAPI;
+
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.RequestUtils;

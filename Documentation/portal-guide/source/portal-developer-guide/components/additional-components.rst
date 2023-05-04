@@ -42,7 +42,7 @@ with the following code:
 
 .. code-block:: java
 
-      import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
+      import com.axonivy.portal.components.util.ProcessStartAPI;
       import java.util.HashMap;
       import javax.faces.context.FacesContext;
 
