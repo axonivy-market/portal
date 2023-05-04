@@ -1,4 +1,4 @@
-package ch.ivy.addon.portalkit.publicapi;
+package com.axonivy.portal.components.util;
 
 import java.util.List;
 import java.util.Objects;
@@ -6,15 +6,14 @@ import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.bo.ExpressProcess;
+import com.axonivy.portal.components.configuration.ExternalLink;
+import com.axonivy.portal.components.configuration.UserProcess;
+import com.axonivy.portal.components.enums.ProcessType;
+import com.axonivy.portal.components.service.ExpressProcessService;
+import com.axonivy.portal.components.service.ExternalLinkService;
 import com.axonivy.portal.components.service.impl.ProcessService;
 
-import ch.ivy.addon.portalkit.bo.ExpressProcess;
-import ch.ivy.addon.portalkit.configuration.ExternalLink;
-import ch.ivy.addon.portalkit.configuration.UserProcess;
-import ch.ivy.addon.portalkit.enums.ProcessType;
-import ch.ivy.addon.portalkit.service.ExpressProcessService;
-import ch.ivy.addon.portalkit.service.ExternalLinkService;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModel;

@@ -169,7 +169,7 @@
         "security" : "system",
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;",
+            "import com.axonivy.portal.components.util.PortalNavigatorAPI;",
             "import ch.ivy.addon.portalkit.util.TaskUtils;",
             "",
             "TaskUtils.resetTask(ivy.task);",

@@ -1,9 +1,10 @@
-package ch.ivy.addon.portalkit.publicapi;
+package com.axonivy.portal.components.util;
 
 import java.util.HashMap;
 
-import ch.ivy.addon.portal.generic.navigation.BaseNavigator;
-import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import com.axonivy.portal.components.enums.SessionAttribute;
+import com.axonivy.portal.components.generic.navigation.BaseNavigator;
+
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.StandardProcessType;
 

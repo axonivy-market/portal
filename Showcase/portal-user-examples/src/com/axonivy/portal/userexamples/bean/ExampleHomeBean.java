@@ -12,9 +12,9 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.service.impl.ProcessService;
+import com.axonivy.portal.components.util.ProcessStartAPI;
 
 import ch.ivy.addon.portalkit.configuration.UserProcess;
-import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
