@@ -56,7 +56,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.TaskAPI;",
+            "import com.axonivy.portal.components.publicapi.TaskAPI;",
             "TaskAPI.setHidePropertyToHideInPortal(ivy.task);"
           ]
         },
@@ -74,7 +74,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.TaskAPI;",
+            "import com.axonivy.portal.components.publicapi.TaskAPI;",
             "TaskAPI.setHidePropertyToHideInPortal(ivy.task);"
           ]
         },
