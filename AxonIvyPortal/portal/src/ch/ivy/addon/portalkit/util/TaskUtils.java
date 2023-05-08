@@ -16,6 +16,8 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
+import com.axonivy.portal.components.publicapi.TaskAPI;
+
 import ch.ivy.addon.portalkit.constant.DummyTask;
 import ch.ivy.addon.portalkit.datamodel.internal.RelatedTaskLazyDataModel;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
@@ -23,7 +25,6 @@ import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.PortalPage;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
-import ch.ivy.addon.portalkit.publicapi.TaskAPI;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.service.TaskInforActionService;
 import ch.ivyteam.ivy.environment.Ivy;

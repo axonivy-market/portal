@@ -14,10 +14,10 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.dto.RoleDTO;
+import com.axonivy.portal.components.publicapi.RoleAPI;
 
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-import ch.ivy.addon.portalkit.publicapi.RoleAPI;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivyteam.api.PublicAPI;
 import ch.ivyteam.ivy.security.IRole;

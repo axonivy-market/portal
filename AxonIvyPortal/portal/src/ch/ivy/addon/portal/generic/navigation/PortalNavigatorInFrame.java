@@ -5,7 +5,8 @@ import java.nio.charset.StandardCharsets;
 
 import org.primefaces.PrimeFaces;
 
-import com.axonivy.portal.components.util.PortalNavigatorInFrameAPI;
+import com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI;
+
 import ch.ivyteam.ivy.environment.Ivy;
 
 /**

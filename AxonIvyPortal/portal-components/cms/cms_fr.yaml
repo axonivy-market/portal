@@ -83,6 +83,8 @@ Dialogs:
             ProcessIsHidden: Le processus en cours est masqué !
             ProcessType:
               CASE_MAP: Carte de cas
+              EXPRESS_PROCESS: Flux de travail express
+              EXTERNAL_LINK: Lien externe
               IVY_PROCESS: Processus d'entreprise
 Labels:
   DisabledUserPrefix: (désactivé)

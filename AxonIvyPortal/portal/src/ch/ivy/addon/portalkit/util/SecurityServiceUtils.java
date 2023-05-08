@@ -1,7 +1,8 @@
 package ch.ivy.addon.portalkit.util;
 
+import com.axonivy.portal.components.publicapi.ProcessStartAPI;
+
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.server.restricted.EngineMode;
