@@ -92,7 +92,7 @@ public class LanguageService implements ILanguageService {
   }
 
   private String getUserLanguage(IUser user) {
-    return user.getEMailLanguage() != null ? user.getEMailLanguage().toLanguageTag() : Locale.ENGLISH.toLanguageTag();
+    return user.getEMailLanguage() != null ? user.getEMailLanguage().toLanguageTag() : IApplication.current().getDefaultEMailLanguage().toLanguageTag();
   }
 
   private List<String> getSupportedLanguagesFromPmvs(List<IProcessModelVersion> pmvs) {
