@@ -8,10 +8,11 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
+import com.axonivy.portal.components.publicapi.ProcessStartAPI;
+
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
-import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.environment.Ivy;
