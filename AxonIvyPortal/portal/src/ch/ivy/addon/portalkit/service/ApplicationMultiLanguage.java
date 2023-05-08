@@ -10,8 +10,9 @@ import java.util.Set;
 
 import org.primefaces.shaded.json.JSONException;
 
+import com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI;
+
 import ch.ivy.addon.portalkit.configuration.Application;
-import ch.ivy.addon.portalkit.publicapi.ApplicationMultiLanguageAPI;
 import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;
 import ch.ivy.addon.portalkit.util.Locales;
 import ch.ivyteam.ivy.environment.Ivy;

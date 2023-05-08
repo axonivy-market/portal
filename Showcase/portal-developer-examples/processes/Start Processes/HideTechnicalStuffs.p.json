@@ -53,7 +53,7 @@
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import ch.ivy.addon.portalkit.enums.AdditionalProperty;",
-            "import ch.ivy.addon.portalkit.publicapi.RoleAPI;",
+            "import com.axonivy.portal.components.publicapi.RoleAPI;",
             "import ch.ivyteam.ivy.security.IRole;",
             "IRole role = ISecurityContext.current().roles().find(\"PortalSystem\");",
             "if(#role is initialized) {",
@@ -76,7 +76,7 @@
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import ch.ivy.addon.portalkit.enums.AdditionalProperty;",
-            "import ch.ivy.addon.portalkit.publicapi.RoleAPI;",
+            "import com.axonivy.portal.components.publicapi.RoleAPI;",
             "import ch.ivyteam.ivy.security.IRole;",
             "IRole role = ISecurityContext.current().roles().find(\"PortalSystem\");",
             "if(#role is initialized) {",
@@ -117,7 +117,7 @@
         "security" : "system",
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.TaskAPI;",
+            "import com.axonivy.portal.components.publicapi.TaskAPI;",
             "TaskAPI.setHidePropertyToHideInPortal(ivy.task);"
           ]
         }
@@ -154,7 +154,7 @@
         "security" : "system",
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.TaskAPI;",
+            "import com.axonivy.portal.components.publicapi.TaskAPI;",
             "TaskAPI.setHidePropertyToHideInPortal(ivy.task);"
           ]
         }

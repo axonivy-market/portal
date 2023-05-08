@@ -1,4 +1,4 @@
-package com.axonivy.portal.components.util;
+package com.axonivy.portal.components.publicapi;
 
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;

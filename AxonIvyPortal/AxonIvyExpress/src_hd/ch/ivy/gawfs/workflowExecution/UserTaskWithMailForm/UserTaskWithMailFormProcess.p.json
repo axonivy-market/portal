@@ -78,7 +78,7 @@
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.util.TaskUtils;",
-            "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;",
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
             "",
             "TaskUtils.resetTask(ivy.task);",
             "PortalNavigatorAPI.navigateToPortalEndPage();"
