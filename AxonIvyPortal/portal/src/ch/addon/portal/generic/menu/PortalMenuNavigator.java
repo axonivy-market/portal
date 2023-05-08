@@ -18,7 +18,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.primefaces.event.MenuActionEvent;
 import org.primefaces.model.menu.MenuItem;
 
-import com.axonivy.portal.components.util.PortalNavigatorAPI;
+import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;

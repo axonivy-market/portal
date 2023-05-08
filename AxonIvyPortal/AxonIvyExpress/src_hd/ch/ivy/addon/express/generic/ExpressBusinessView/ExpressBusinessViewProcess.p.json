@@ -58,7 +58,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.PortalNavigatorAPI;",
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
             "import javax.faces.context.FacesContext;",
             "import javax.faces.context.Flash;",
             "",

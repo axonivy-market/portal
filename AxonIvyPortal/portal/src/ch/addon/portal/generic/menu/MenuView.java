@@ -29,7 +29,7 @@ import org.primefaces.model.menu.MenuElement;
 import org.primefaces.model.menu.MenuItem;
 import org.primefaces.model.menu.MenuModel;
 
-import com.axonivy.portal.components.util.ApplicationMultiLanguageAPI;
+import com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI;
 
 import ch.addon.portal.generic.menu.PortalMenuItem.PortalMenuBuilder;
 import ch.addon.portal.generic.userprofile.homepage.HomepageType;

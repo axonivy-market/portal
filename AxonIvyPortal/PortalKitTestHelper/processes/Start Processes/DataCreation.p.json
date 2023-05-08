@@ -475,8 +475,8 @@
         "security" : "system",
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.CaseAPI;",
-            "import com.axonivy.portal.components.util.TaskAPI;",
+            "import com.axonivy.portal.components.publicapi.CaseAPI;",
+            "import com.axonivy.portal.components.publicapi.TaskAPI;",
             "TaskAPI.setHidePropertyToHideInPortal(ivy.task);",
             "CaseAPI.setHidePropertyToHideInPortal(ivy.case);"
           ]
@@ -521,7 +521,7 @@
         "security" : "system",
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.TaskAPI;",
+            "import com.axonivy.portal.components.publicapi.TaskAPI;",
             "TaskAPI.setHidePropertyToHideInPortal(ivy.task);"
           ]
         }
@@ -1678,7 +1678,7 @@
             { "name" : "processId", "type" : "String" }
           ],
           "code" : [
-            "import com.axonivy.portal.components.util.ProcessStartAPI;",
+            "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
             "param.processId = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessViewerPermission/start.ivp\");"
           ]
         }

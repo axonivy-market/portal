@@ -10,7 +10,7 @@ import java.util.Set;
 
 import org.primefaces.shaded.json.JSONException;
 
-import com.axonivy.portal.components.util.ApplicationMultiLanguageAPI;
+import com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI;
 
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;
