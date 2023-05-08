@@ -64,7 +64,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.PortalGlobalGrowInIFrameAPI;",
+            "import com.axonivy.portal.components.publicapi.PortalGlobalGrowInIFrameAPI;",
             "if (in.isCustomized) {",
             "  PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();",
             "  api.displayCustomizedMessage(\"Task is cancelled\");",
@@ -83,7 +83,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.PortalGlobalGrowInIFrameAPI;",
+            "import com.axonivy.portal.components.publicapi.PortalGlobalGrowInIFrameAPI;",
             "if (in.isCustomized) {",
             "  PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();",
             "  api.displayCustomizedMessage(\"Task is finished\");",
@@ -117,7 +117,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.PortalNavigatorInFrameAPI;",
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI;",
             "",
             "PortalNavigatorInFrameAPI.navigateToPortalEndPage();"
           ]

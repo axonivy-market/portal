@@ -14,7 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.SortMeta;
 
-import com.axonivy.portal.components.util.ProcessStartAPI;
+import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;

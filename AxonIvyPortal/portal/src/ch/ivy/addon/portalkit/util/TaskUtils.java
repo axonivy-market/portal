@@ -16,7 +16,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
-import com.axonivy.portal.components.util.TaskAPI;
+import com.axonivy.portal.components.publicapi.TaskAPI;
 
 import ch.ivy.addon.portalkit.constant.DummyTask;
 import ch.ivy.addon.portalkit.datamodel.internal.RelatedTaskLazyDataModel;

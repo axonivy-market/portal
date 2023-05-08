@@ -14,7 +14,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.dto.RoleDTO;
-import com.axonivy.portal.components.util.RoleAPI;
+import com.axonivy.portal.components.publicapi.RoleAPI;
 
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;

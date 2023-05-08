@@ -709,7 +709,7 @@
         "security" : "system",
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.PortalNavigatorAPI;",
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
             "import ch.ivy.addon.portalkit.util.TaskUtils;",
             "",
             "TaskUtils.resetTask(ivy.task);",

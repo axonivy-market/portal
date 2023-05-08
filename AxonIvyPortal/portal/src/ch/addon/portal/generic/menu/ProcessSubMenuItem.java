@@ -1,6 +1,6 @@
 package ch.addon.portal.generic.menu;
 
-import com.axonivy.portal.components.util.ApplicationMultiLanguageAPI;
+import com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI;
 
 import ch.addon.portal.generic.userprofile.homepage.HomepageType;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;

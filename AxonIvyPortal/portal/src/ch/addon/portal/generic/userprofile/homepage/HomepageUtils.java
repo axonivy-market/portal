@@ -8,7 +8,7 @@ import java.util.Map;
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.util.ProcessStartAPI;
+import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 
 import ch.addon.portal.generic.menu.PortalMenuNavigator;
 import ch.addon.portal.generic.menu.SubMenuItem;

@@ -11,8 +11,8 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.components.service.impl.ProcessService;
-import com.axonivy.portal.components.util.ProcessStartAPI;
 
 import ch.ivy.addon.portalkit.configuration.UserProcess;
 import ch.ivyteam.ivy.environment.Ivy;

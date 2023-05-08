@@ -226,7 +226,7 @@
         "security" : "system",
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.PortalNavigatorAPI;",
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
             "",
             "ivy.case.destroy();",
             "",

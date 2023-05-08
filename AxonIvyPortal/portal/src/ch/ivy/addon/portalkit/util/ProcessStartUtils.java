@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.util.ProcessStartAPI;
+import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.configuration.UserProcess;

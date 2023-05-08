@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.components.service.exception.PortalException;
-import com.axonivy.portal.components.util.ProcessStartAPI;
 import com.axonivy.portal.components.util.ProcessStartUtils;
 
 import ch.ivyteam.ivy.application.IApplication;

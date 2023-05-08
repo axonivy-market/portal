@@ -1,4 +1,4 @@
-package com.axonivy.portal.components.util;
+package com.axonivy.portal.components.publicapi;
 
 import java.util.List;
 import java.util.Objects;
@@ -13,6 +13,7 @@ import com.axonivy.portal.components.enums.ProcessType;
 import com.axonivy.portal.components.service.ExpressProcessService;
 import com.axonivy.portal.components.service.ExternalLinkService;
 import com.axonivy.portal.components.service.impl.ProcessService;
+import com.axonivy.portal.components.util.IvyExecutor;
 
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;

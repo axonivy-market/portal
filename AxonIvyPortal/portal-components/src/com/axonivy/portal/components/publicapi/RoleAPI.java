@@ -1,7 +1,8 @@
-package com.axonivy.portal.components.util;
+package com.axonivy.portal.components.publicapi;
 
 import com.axonivy.portal.components.constant.IvyCacheIdentifier;
 import com.axonivy.portal.components.service.IvyCacheService;
+import com.axonivy.portal.components.util.IvyExecutor;
 
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;

@@ -1,4 +1,4 @@
-package com.axonivy.portal.components.util;
+package com.axonivy.portal.components.publicapi;
 
 import org.primefaces.PrimeFaces;
 

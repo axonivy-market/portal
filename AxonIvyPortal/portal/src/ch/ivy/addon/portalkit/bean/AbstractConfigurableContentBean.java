@@ -18,7 +18,7 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.util.ProcessStartAPI;
+import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;

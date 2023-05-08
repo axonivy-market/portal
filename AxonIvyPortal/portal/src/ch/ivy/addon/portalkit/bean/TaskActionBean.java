@@ -13,7 +13,7 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang.StringUtils;
 import org.primefaces.PF;
 
-import com.axonivy.portal.components.util.ProcessStartAPI;
+import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
