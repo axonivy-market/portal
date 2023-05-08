@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import ch.ivyteam.ivy.data.cache.IDataCache;
 import ch.ivyteam.ivy.data.cache.IDataCacheEntry;
+import ch.ivyteam.ivy.data.cache.IDataCacheGroup;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class IvyCacheService {
@@ -30,6 +31,22 @@ public class IvyCacheService {
       return Optional.ofNullable(cacheEntry.getValue());
     }
     return Optional.empty();
+  }
+  
+  /**
+   * Invalidate the data of entry in session cache entry with key is groupIdentifier and identifier
+   * @param groupIdentifier
+   * @param identifier
+   */
+  public void invalidateSessionEntry(String groupIdentifier, String identifier) {
+    verifyIdentifier(groupIdentifier, identifier);
+    IDataCacheGroup group = sessionCache().getGroup(groupIdentifier);
+    if (group != null) {
+      IDataCacheEntry entry = sessionCache().getEntry(groupIdentifier, identifier);
+      if (entry != null) {
+        sessionCache().invalidateEntry(group, entry);
+      }
+    }
   }
 
   /**

@@ -102,7 +102,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.PortalNavigatorInFrameAPI;",
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI;",
             "",
             "PortalNavigatorInFrameAPI.navigateToUrl(in.caseDetailsUrl);"
           ]
