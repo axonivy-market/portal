@@ -507,8 +507,8 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.CaseAPI;",
-            "import ch.ivy.addon.portalkit.publicapi.TaskAPI;",
+            "import com.axonivy.portal.components.publicapi.CaseAPI;",
+            "import com.axonivy.portal.components.publicapi.TaskAPI;",
             "TaskAPI.setHidePropertyToHideInPortal(ivy.task);",
             "CaseAPI.setHidePropertyToHideInPortal(ivy.case);"
           ]
@@ -556,7 +556,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.TaskAPI;",
+            "import com.axonivy.portal.components.publicapi.TaskAPI;",
             "TaskAPI.setHidePropertyToHideInPortal(ivy.task);"
           ]
         },
@@ -1805,7 +1805,7 @@
         "call" : {
           "map" : { },
           "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;",
+            "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
             "param.processId = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessViewerPermission/start.ivp\");"
           ]
         }

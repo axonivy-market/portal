@@ -531,7 +531,7 @@
             "import ch.ivy.addon.portalkit.util.AdhocUtils;",
             "import ch.ivy.addon.portalkit.enums.AdditionalProperty;",
             "import ch.ivyteam.ivy.workflow.ICase;",
-            "import ch.ivy.addon.portalkit.publicapi.TaskAPI;",
+            "import com.axonivy.portal.components.publicapi.TaskAPI;",
             "import ch.ivyteam.ivy.workflow.ITask;",
             "",
             "if(in.isAdhocProcess){",
