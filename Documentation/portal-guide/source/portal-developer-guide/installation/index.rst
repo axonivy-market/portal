@@ -365,7 +365,7 @@ Changes in 10
 
 - Introduced the ``Application`` filter and the ``Application`` column at the following places: full task list, full case list, dashboard task list, dashboard case list, and task analysis.
 
-Changes in 10.0.9
+Changes in 11.2.0
 -----------------
 
 - The ``ch.ivy.addon.portalkit.publicapi.ApplicationMultiLanguageAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI`` instead.
