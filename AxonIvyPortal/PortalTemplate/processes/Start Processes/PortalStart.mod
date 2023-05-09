@@ -1443,10 +1443,9 @@ Bk3 f1 600 160 659 160 #arcP
 >Proto Bk2 @|BIcon #fIcon
 Bk4 f106 actionTable 'out=in;
 ' #txt
-Bk4 f106 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.query.CaseQuery;
+Bk4 f106 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;
 
-out.caseSelected = ivy.wf.getGlobalContext().getCaseQueryExecutor().getFirstResult(CaseQuery.create().where().caseId().isEqual(in.caseId).and().currentUserIsInvolved()) as ICase;' #txt
+out.caseSelected = CaseService.newInstance().findCaseById(in.caseId);' #txt
 Bk4 f106 security system #txt
 Bk4 f106 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

@@ -25,6 +25,7 @@ import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ICaseService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -271,5 +272,29 @@ public class CaseService implements ICaseService {
       result.setCustomFields(customFields);
       return result;
     });
+  }
+
+  public ICase findCaseById(long caseId) {
+    String currentUser = Ivy.session().getSessionUserName();
+    String currentApp = IApplication.current().getName();
+    CaseQuery caseQuery = CaseQuery.create();
+    CaseQuery stateQuery = CaseQuery.create().where().state().isEqual(CaseState.CREATED).or().state()
+        .isEqual(CaseState.RUNNING).or().state().isEqual(CaseState.DONE);
+    if (PermissionUtils.checkReadAllCasesPermission()) {
+      stateQuery.where().or().state().isEqual(CaseState.DESTROYED);
+      caseQuery.where().and(stateQuery).and().applicationId().isEqual(IApplication.current().getId());
+    } else {
+      caseQuery.where().and(stateQuery);
+      CaseQuery involvedUserQuery = CaseQuery.create().where().userIsInvolved(currentUser, currentApp);
+      if (isCaseOwnerEnabled()) {
+        involvedUserQuery.where().or().isOwner("#" + currentUser, currentApp);
+      }
+      caseQuery.where().and(involvedUserQuery);
+    }
+    if (isHiddenTasksCasesExcluded(Arrays.asList(currentApp))) {
+      caseQuery.where().and().customField().stringField(AdditionalProperty.HIDE.toString()).isNull();
+    }
+    caseQuery.where().and().caseId().isEqual(caseId);
+    return Ivy.wf().getGlobalContext().getCaseQueryExecutor().getFirstResult(caseQuery);
   }
 }
