@@ -10,6 +10,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.components.service.impl.ProcessService;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
@@ -19,7 +20,6 @@ import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.CustomWidgetParam;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
-import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
