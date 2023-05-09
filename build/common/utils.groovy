@@ -110,10 +110,4 @@ def cleanDisk() {
   """
 }
 
-def init() {
-  configFileProvider(
-      [configFile(fileId: 'properties-config', variable: 'PROPERTIES_CONFIG')]) {
-      props = readProperties  file: "${env.PROPERTIES_CONFIG}"
-  }
-}
 return this

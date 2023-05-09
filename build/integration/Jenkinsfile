@@ -29,7 +29,6 @@ pipeline {
       steps {
         script {
           def utils = load 'build/common/utils.groovy'
-          utils.init()
           downloadPortalRelease()
 
           echo '====================Check out tag of Portal latest successful release===================='
@@ -94,7 +93,6 @@ def downloadPortalRelease() {
   echo '====================Download Portal latest successful release===================='
   def branchName = env.BRANCH_NAME.replaceAll("/", "%%2F")
   withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
-    // bat "curl --user ${jenkinsGuestCred} --output archive.zip ${env.JENKINS_URL}job/portal/job/${branchName}/lastSuccessfulBuild/artifact/*zip*/archive.zip"
     bat "curl --user ${credentials} --output archive.zip ${env.JENKINS_URL}job/portal-release/job/${branchName}/lastSuccessfulBuild/artifact/*zip*/archive.zip"
   }
   unzip zipFile: 'archive.zip', quiet: true
