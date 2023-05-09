@@ -6,11 +6,6 @@ pipeline {
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
   }
-  
-  // tools { 
-  //     maven '3.6' 
-  //     jdk '11' 
-  // }
 
   parameters {
       choice(name: 'engine', choices: ['singleAppEngine', 'performanceTestEngine'], description: 'Which engine to be upgraded?')
@@ -26,8 +21,8 @@ pipeline {
       steps {
         script {
           def today = new Date().format('dd-MM-yyyy_HH-mm')
-          def config = [portal:[engine: '8', postgresContainer: 'postgres-8', systemDatabase: 'AxonIvySystemDatabase-8'],
-                    performanceTest:[engine: 'performance-8', postgresContainer: 'postgres-performance-8', systemDatabase: 'AxonIvySystemDatabase-performance-8']]
+          def config = [singleAppEngine:[engine: '8', postgresContainer: 'postgres-8', systemDatabase: 'AxonIvySystemDatabase-8'],
+                    performanceTestEngine:[engine: 'performance-8', postgresContainer: 'postgres-performance-8', systemDatabase: 'AxonIvySystemDatabase-performance-8']]
           def engineParentDir = '/var/tools/ivy/'
           engineDir = engineParentDir + config[params.engine]['engine']
           def postgresContainer = config[params.engine]['postgresContainer']
