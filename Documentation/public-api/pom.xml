@@ -90,10 +90,8 @@
         <version>3.4.1</version>
         <configuration>
           <!--On Windows, replace character : by character ;-->
-          <sourcepath>../../AxonIvyPortal/portal/src:../../AxonIvyPortal/portal-components/src</sourcepath>
-          <subpackages>ch.ivy.addon.portalkit.publicapi, ch.ivy.addon.portalkit.datamodel, ch.ivy.addon.portalkit.exporter, 
-            ch.ivy.addon.portalkit.taskfilter, ch.ivy.addon.portalkit.casefilter, ch.ivy.addon.portalkit.filter, 
-			com.axonivy.portal.components.dto</subpackages>
+          <sourcepath>../../AxonIvyPortal/portal-components/src</sourcepath>
+          <subpackages>com.axonivy.portal.components.publicapi</subpackages>
           <additionalOptions>
             <additionalOption>-classpath</additionalOption>
             <!--On Windows, replace character : by character ;-->

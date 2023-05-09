@@ -396,7 +396,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;",
+            "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
             "import javax.faces.context.FacesContext;",
             "",
             "String statisticPageUrl = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/PortalStart/StatisticPage.ivp\");",

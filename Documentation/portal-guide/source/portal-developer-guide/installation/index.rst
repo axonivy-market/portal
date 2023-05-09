@@ -365,6 +365,17 @@ Changes in 10
 
 - Introduced the ``Application`` filter and the ``Application`` column at the following places: full task list, full case list, dashboard task list, dashboard case list, and task analysis.
 
+Changes in 11.2.0
+-----------------
+
+- The ``ch.ivy.addon.portalkit.publicapi.ApplicationMultiLanguageAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI`` instead.
+- The ``ch.ivy.addon.portalkit.publicapi.CaseAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.CaseAPI`` instead.
+- The ``ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.PortalGlobalGrowInIFrameAPI`` instead.
+- The ``ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.PortalNavigatorAPI`` instead.
+- The ``ch.ivy.addon.portalkit.publicapi.ProcessStartAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.ProcessStartAPI`` instead.
+- The ``ch.ivy.addon.portalkit.publicapi.RoleAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.RoleAPI`` instead.
+- The ``ch.ivy.addon.portalkit.publicapi.TaskAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.TaskAPI`` instead.
+- The ``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI`` instead.
 
 Changes in 9.4
 --------------
