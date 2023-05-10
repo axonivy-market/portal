@@ -1,0 +1,9 @@
+SystemDb:
+  Url: jdbc:postgresql://postgres:5432/AxonIvySystemDatabase-10
+  UserName: postgres
+  Password: 
+  Autoconvert: false
+Administrators:
+  wawa:
+    Password: <password>
+SecuritySystems:

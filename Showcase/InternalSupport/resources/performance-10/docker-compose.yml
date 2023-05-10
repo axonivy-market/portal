@@ -1,0 +1,30 @@
+version: '3.7'
+services:
+  ivy:
+    image: axonivy/axonivy-engine:10.0
+    container_name: ivy-performance-10
+    ports:
+     - 9010:8080
+    volumes:
+     - ./licence-10.lic:/etc/axonivy-engine/licence.lic
+     - ./ivy.yaml:/etc/axonivy-engine/ivy.yaml
+     - ./configuration-app-portal:/usr/lib/axonivy-engine/configuration/applications/Portal
+     - ./applications:/usr/lib/axonivy-engine/applications
+     - ./data:/usr/lib/axonivy-engine/data
+     - ./work:/usr/lib/axonivy-engine/work
+     - ./logs:/usr/lib/axonivy-engine/logs
+  postgres:
+    image: postgres
+    container_name: postgres-performance-10
+    ports:
+     - 1435:1433
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 
+    volumes:
+     - /var/lib/postgresql/postgres-performance-10/data:/var/lib/postgresql/data
+       #  adminer:
+       #    image: adminer
+       #    container_name: postgres-adminer-performance-10
+       #    ports:
+       #     - 9002:8080
