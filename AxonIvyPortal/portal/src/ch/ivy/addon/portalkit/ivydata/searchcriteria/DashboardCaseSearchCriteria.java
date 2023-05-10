@@ -19,7 +19,7 @@ import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.app.IApplicationRepository;
-import ch.ivyteam.ivy.workflow.CaseState;
+import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.ICustomFieldFilterQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
@@ -72,7 +72,7 @@ public class DashboardCaseSearchCriteria {
     }
   }
 
-  private void queryStates(CaseQuery query, List<CaseState> states) {
+  private void queryStates(CaseQuery query, List<CaseBusinessState> states) {
     if (CollectionUtils.isNotEmpty(states)) {
       states = CaseUtils.filterStateByPermission(states);
     } else {
@@ -80,8 +80,8 @@ public class DashboardCaseSearchCriteria {
     }
     CaseQuery subQuery = CaseQuery.create();
     IFilterQuery filterQuery = subQuery.where();
-    for (CaseState state : states) {
-      filterQuery.or().state().isEqual(state);
+    for (CaseBusinessState state : states) {
+      filterQuery.or().businessState().isEqual(state);
     }
     query.where().and(subQuery);
   }
@@ -135,7 +135,7 @@ public class DashboardCaseSearchCriteria {
   }
   
   private void queryFilters(CaseQuery query) {
-    var states = new ArrayList<CaseState>();
+    var states = new ArrayList<CaseBusinessState>();
     for (ColumnModel column : columns) {
       String field = column.getField();
       String configuredFilter = column.getFilter();
@@ -164,7 +164,7 @@ public class DashboardCaseSearchCriteria {
         }
       } else if (equals(DashboardStandardCaseColumn.STATE, column)) {
         for (String state : filterList) {
-          states.add(CaseState.valueOf(state.toUpperCase()));
+          states.add(CaseBusinessState.valueOf(state.toUpperCase()));
         }
       } else if (equals(DashboardStandardCaseColumn.CREATOR, column)) {
         queryCreator(query, filterList);

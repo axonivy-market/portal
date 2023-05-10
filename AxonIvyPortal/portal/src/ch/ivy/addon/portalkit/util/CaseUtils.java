@@ -19,6 +19,7 @@ import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
+import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public final class CaseUtils {
@@ -88,7 +89,30 @@ public final class CaseUtils {
     });
   }
 
-  public static List<CaseState> getValidStates() {
+  /**
+   * Get valid business case states
+   * 
+   * @return valid business case states
+   */
+  public static List<CaseBusinessState> getValidStates() {
+    var states = new ArrayList<>(CaseSearchCriteria.STANDARD_BUSINESS_STATES);
+    if (PermissionUtils.checkReadAllCasesPermission()) {
+      states.addAll(CaseSearchCriteria.ADVANCE_BUSINESS_STATES);
+    } else {
+      states.add(CaseBusinessState.DONE);
+    }
+    return states.stream()
+        .sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString()))
+        .collect(Collectors.toList());
+  }
+
+  /**
+   * Get valid old states
+   * 
+   * @return valid old states
+   */
+  @Deprecated(since = "11.1")
+  public static List<CaseState> getOldValidStates() {
     var states = new ArrayList<>(CaseSearchCriteria.STANDARD_STATES);
     if (PermissionUtils.checkReadAllCasesPermission()) {
       states.addAll(CaseSearchCriteria.ADVANCE_STATES);
@@ -100,7 +124,7 @@ public final class CaseUtils {
         .collect(Collectors.toList());
   }
 
-  public static List<CaseState> filterStateByPermission(List<CaseState> states) {
+  public static List<CaseBusinessState> filterStateByPermission(List<CaseBusinessState> states) {
     var validStates = getValidStates();
     return CollectionUtils.emptyIfNull(states).stream()
         .filter(state -> validStates.contains(state))

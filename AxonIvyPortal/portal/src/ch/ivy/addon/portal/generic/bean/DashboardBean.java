@@ -93,7 +93,8 @@ public class DashboardBean implements Serializable {
   }
 
   protected List<Dashboard> collectDashboards() {
-    return DashboardUtils.collectDashboards();
+    List<Dashboard> results = DashboardUtils.collectDashboards();
+    return results;
   }
 
   public void loadDashboardTemplate() {

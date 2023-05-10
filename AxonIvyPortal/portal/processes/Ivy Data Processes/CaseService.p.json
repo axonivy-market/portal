@@ -532,11 +532,69 @@
       "visual" : {
         "at" : { "x" : 424, "y" : 864 }
       }
+    }, {
+      "id" : "f44",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 432, "y" : 960 }
+      }
+    }, {
+      "id" : "f45",
+      "type" : "CallSubStart",
+      "name" : "analyzeCaseBusinessStateStatistic(CaseSearchCriteria)",
+      "config" : {
+        "signature" : "analyzeCaseBusinessStateStatistic",
+        "input" : {
+          "params" : [
+            { "name" : "caseSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria", "desc" : "" }
+          ],
+          "map" : {
+            "out.caseSearchCriteria" : "param.caseSearchCriteria"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "caseStateStatistic", "type" : "ch.ivy.addon.portalkit.bo.CaseStateStatistic", "desc" : "" }
+          ],
+          "map" : {
+            "result.caseStateStatistic" : "in.caseStateStatistic"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 960 },
+        "labelOffset" : { "x" : 69, "y" : 41 }
+      },
+      "connect" : [
+        { "id" : "f47", "to" : "f46" }
+      ]
+    }, {
+      "id" : "f46",
+      "type" : "Script",
+      "name" : "Analyze case business state statistic",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;",
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
+            "",
+            "IvyCaseResultDTO dto = CaseService.newInstance().analyzeCaseBusinessStateStatistic(in.caseSearchCriteria);",
+            "out.caseStateStatistic = dto.caseStateStatistic;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 960 },
+        "size" : { "width" : 160, "height" : 60 }
+      },
+      "connect" : [
+        { "id" : "f48", "to" : "f44" }
+      ]
     } ],
   "layout" : {
     "lanes" : [ {
         "name" : "findCases",
-        "size" : 912
+        "size" : 1120
       }, {
         "name" : "addtionalProperties",
         "size" : 432
