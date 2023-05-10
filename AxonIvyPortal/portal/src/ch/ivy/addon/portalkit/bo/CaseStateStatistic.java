@@ -6,6 +6,7 @@ public class CaseStateStatistic {
   private long running;
   private long done;
   private long failed;
+  private long open;
 
   public long getCreated() {
     return created;
@@ -37,6 +38,14 @@ public class CaseStateStatistic {
 
   public void setFailed(long failed) {
     this.failed = failed;
+  }
+
+  public long getOpen() {
+    return open;
+  }
+
+  public void setOpen(long open) {
+    this.open = open;
   }
 
 

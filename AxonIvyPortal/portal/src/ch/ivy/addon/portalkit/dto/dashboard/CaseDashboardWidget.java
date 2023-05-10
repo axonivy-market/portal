@@ -18,7 +18,7 @@ import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.service.DashboardWidgetInformationService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
-import ch.ivyteam.ivy.workflow.CaseState;
+import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 
 public class CaseDashboardWidget extends DashboardWidget {
 
@@ -28,7 +28,7 @@ public class CaseDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private DashboardCaseLazyDataModel dataModel;
   @JsonIgnore
-  private Map<CaseState, Long> caseByStateStatistic;
+  private Map<CaseBusinessState, Long> caseByStateStatistic;
   @JsonIgnore
   private Map<String, Long> caseByCategoryStatistic;
   @JsonIgnore
@@ -130,7 +130,7 @@ public class CaseDashboardWidget extends DashboardWidget {
   }
 
   @JsonIgnore
-  public Map<CaseState, Long> getCaseByStateStatistic() {
+  public Map<CaseBusinessState, Long> getCaseByStateStatistic() {
     return caseByStateStatistic;
   }
 

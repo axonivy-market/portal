@@ -1,0 +1,70 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
+  "id" : "187EA329AE5A5C40",
+  "config" : {
+    "data" : "portalmigration.Data"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "startMigrate.ivp",
+      "config" : {
+        "signature" : "startMigrate"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 608, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Alternative",
+      "name" : "is login?",
+      "visual" : {
+        "at" : { "x" : 192, "y" : 64 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f5", "condition" : "ivy.session.isSessionUserUnknown()" },
+        { "id" : "f9", "to" : "f7", "via" : [ { "x" : 192, "y" : -24 }, { "x" : 480, "y" : -24 } ] }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "DialogCall",
+      "name" : "Login",
+      "config" : {
+        "dialog" : "portal.migration.Login:start()"
+      },
+      "visual" : {
+        "at" : { "x" : 320, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f7" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "DialogCall",
+      "name" : "MigrationData",
+      "config" : {
+        "dialog" : "portal.migration.MigrationData:startWithVersion(String)",
+        "call" : {
+          "map" : {
+            "param.version" : "portalmigration.constant.Version.VERSION_11_2_0"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 480, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    } ]
+}

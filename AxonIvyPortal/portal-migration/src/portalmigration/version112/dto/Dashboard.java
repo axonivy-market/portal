@@ -1,0 +1,158 @@
+package portalmigration.version112.dto;
+
+import java.io.Serializable;
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
+import portalmigration.dto.SecurityMemberDTO;
+import portalmigration.version112.configuration.AbstractConfiguration;
+import portalmigration.version112.util.LanguageUtils;
+import portalmigration.version112.util.LanguageUtils.NameResult;
+
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public class Dashboard extends AbstractConfiguration implements Serializable {
+
+  private static final long serialVersionUID = 4580715578128184706L;
+  private String templateId;
+  @Deprecated(since = "10.0", forRemoval = true)
+  @JsonProperty(access = Access.WRITE_ONLY)
+  private String title;
+  private List<DisplayName> titles;
+  private String icon;
+  private String description;
+  private List<DashboardWidget> widgets;
+  private List<String> permissions;
+  @JsonIgnore
+  private List<SecurityMemberDTO> permissionDTOs;
+  @JsonIgnore
+  private String displayedPermission;
+
+  public Dashboard() {}
+
+  public Dashboard(Dashboard dashboard) {
+    setId(dashboard.getId());
+    setIsPublic(dashboard.getIsPublic());
+    templateId = dashboard.getTemplateId();
+    title = dashboard.title;
+    titles = dashboard.titles;
+    icon = dashboard.icon;
+    description = dashboard.description;
+    widgets = dashboard.widgets;
+    permissions = dashboard.permissions;
+    permissionDTOs = dashboard.permissionDTOs;
+    displayedPermission = dashboard.displayedPermission;
+  }
+
+  public String getTitle() {
+    return LanguageUtils.getLocalizedName(titles, title);
+  }
+
+  public void setTitle(String title) {
+    NameResult nameResult = LanguageUtils.collectMultilingualNames(titles, title);
+    this.titles = nameResult.names();
+    this.title = nameResult.name();
+  }
+
+  public List<DisplayName> getTitles() {
+    return titles;
+  }
+
+  public void setTitles(List<DisplayName> titles) {
+    this.titles = titles;
+  }
+
+  public String getIcon() {
+    return icon;
+  }
+
+  public void setIcon(String icon) {
+    this.icon = icon;
+  }
+
+  @JsonIgnore
+  public String getIconClass() {
+    if (StringUtils.isBlank(this.icon)) {
+      return StringUtils.EMPTY;
+    }
+    return (this.icon.startsWith("fa") ? "fa " : "si ") + this.icon;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public List<DashboardWidget> getWidgets() {
+    return widgets;
+  }
+
+  public void setWidgets(List<DashboardWidget> widgets) {
+    this.widgets = widgets;
+  }
+
+  public List<String> getPermissions() {
+    return permissions;
+  }
+
+  public void setPermissions(List<String> permissions) {
+    this.permissions = permissions;
+  }
+
+  public List<SecurityMemberDTO> getPermissionDTOs() {
+    return permissionDTOs;
+  }
+
+  public void setPermissionDTOs(List<SecurityMemberDTO> permissionDTOs) {
+    this.permissionDTOs = permissionDTOs;
+  }
+
+  public String getDisplayedPermission() {
+    return displayedPermission;
+  }
+
+  public void setDisplayedPermission(String displayedPermission) {
+    this.displayedPermission = displayedPermission;
+  }
+
+  public String getTemplateId() {
+    return templateId;
+  }
+
+  public void setTemplateId(String templateId) {
+    this.templateId = templateId;
+  }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    Dashboard other = (Dashboard) obj;
+    if (getId() == null) {
+      if (other.getId() != null)
+        return false;
+    } else if (!getId().equals(other.getId()))
+      return false;
+    return true;
+  }
+}

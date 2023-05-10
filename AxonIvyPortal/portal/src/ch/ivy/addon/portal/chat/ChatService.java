@@ -54,8 +54,8 @@ import ch.ivyteam.ivy.cluster.restricted.IClusterManager;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.server.restricted.EngineMode;
-import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import io.swagger.v3.oas.annotations.Hidden;
 
@@ -414,8 +414,8 @@ public class ChatService {
 
   private CaseQuery buildCaseQuery() {
     return CaseUtils.createBusinessCaseQuery().where().customField()
-        .stringField(AdditionalProperty.PORTAL_GROUP_CHAT_INFO.toString()).isNotNull().and().state()
-        .isNotEqual(CaseState.DONE).and().state().isNotEqual(CaseState.DESTROYED);
+        .stringField(AdditionalProperty.PORTAL_GROUP_CHAT_INFO.toString()).isNotNull().and().businessState()
+        .isNotEqual(CaseBusinessState.DONE).and().businessState().isNotEqual(CaseBusinessState.DESTROYED);
   }
 
   private boolean isUserInvolvedInGroup(long caseId, String userName) {

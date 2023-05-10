@@ -33,9 +33,9 @@ import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 @ManagedBean
@@ -100,8 +100,8 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
   
   public boolean showDestroyLink(ICase caseItem) {
     return caseActionBean.canDestroy(caseItem)
-        && caseItem.getState() != CaseState.DONE
-        && caseItem.getState() != CaseState.DESTROYED;
+        && caseItem.getBusinessState() != CaseBusinessState.DONE
+        && caseItem.getBusinessState() != CaseBusinessState.DESTROYED;
   }
 
   public void initCaseDescription(ICase caseDetails) {

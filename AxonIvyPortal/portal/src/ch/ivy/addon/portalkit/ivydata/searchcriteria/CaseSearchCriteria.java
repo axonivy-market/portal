@@ -15,6 +15,7 @@ import org.apache.commons.lang.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivyteam.ivy.workflow.CaseState;
+import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.OrderByColumnQuery;
@@ -23,6 +24,9 @@ public class CaseSearchCriteria {
 
   public final static List<CaseState> STANDARD_STATES = Arrays.asList(CREATED, RUNNING);
   public final static List<CaseState> ADVANCE_STATES = Arrays.asList(DONE, DESTROYED);
+  public final static List<CaseBusinessState> STANDARD_BUSINESS_STATES = Arrays.asList(CaseBusinessState.OPEN);
+  public final static List<CaseBusinessState> ADVANCE_BUSINESS_STATES = Arrays.asList(CaseBusinessState.DONE, CaseBusinessState.DESTROYED);
+
   /**
    * @deprecated not used anymore, will get current login user for query
    */
