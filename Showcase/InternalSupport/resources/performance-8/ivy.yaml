@@ -1,0 +1,33 @@
+#
+# -------------------------------------------
+# Axon.ivy Engine Configuration
+# -------------------------------------------
+#
+# This file customizes the configuration of the Axon.ivy engine and its external systems.
+# Defaults are documented in the template directory configuration/defaults/
+# - ivy.yaml > https://dev.axonivy.com/doc/latest/EngineGuideHtml/configuration.html#configuration-file-ref-ivy-yaml
+# - ivy.webserver.yaml > https://dev.axonivy.com/doc/latest/EngineGuideHtml/configuration.html#configuration-file-ref-ivy-webserver-yaml
+#
+
+SystemDb:
+  Driver: org.postgresql.Driver
+  Url: jdbc:postgresql://postgres:5432/AxonIvySystemDatabase-performance-8
+  UserName: postgres
+  Password: <password>
+  Autoconvert: false
+Connector:
+#  HTTP:
+#  Port: '8008'
+  HTTPS:
+    Enabled: false
+  AJP:
+    Enabled: false
+Applications:
+  Portal:
+    StandardProcess:
+      DefaultPages: ch.ivyteam.ivy.project.portal:portalTemplate
+Administrators:
+  wawa:
+    Password: 
+    Email: ''
+    FullName: ''
