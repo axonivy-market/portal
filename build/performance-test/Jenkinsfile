@@ -74,7 +74,6 @@ pipeline {
       script {
         sh """
           docker compose -f ${performanceEngineDir}/docker-compose.yml down
-          docker compose -f ${devEngineDir}/docker-compose.yml up -d
           docker compose -f ${masterEngineDir}/docker-compose.yml up -d
         """
       }
