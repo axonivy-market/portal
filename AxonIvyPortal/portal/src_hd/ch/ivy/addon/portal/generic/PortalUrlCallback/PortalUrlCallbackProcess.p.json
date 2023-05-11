@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
   "id" : "15C67FEA143420EE",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -54,7 +54,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;",
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
             "import org.apache.commons.lang3.StringUtils;",
             "import javax.faces.context.ExternalContext;",
             "import javax.faces.context.FacesContext;",

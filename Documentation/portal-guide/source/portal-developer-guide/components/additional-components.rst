@@ -42,7 +42,7 @@ with the following code:
 
 .. code-block:: java
 
-      import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
+      import com.axonivy.portal.components.publicapi.ProcessStartAPI;
       import java.util.HashMap;
       import javax.faces.context.FacesContext;
 
@@ -127,7 +127,7 @@ API below:
 
 ::
 
-   import ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI;
+   import com.axonivy.portal.components.publicapi.PortalGlobalGrowInIFrameAPI;
 
    PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();
    api.displayCustomizedMessage("Your customized message");

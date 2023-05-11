@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
   "id" : "169137A20654C01B",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -72,10 +72,10 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.CaseAPI;",
+            "import com.axonivy.portal.components.publicapi.CaseAPI;",
             "import ch.ivyteam.ivy.workflow.ICase;",
             "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
-            "import ch.ivy.addon.portalkit.publicapi.TaskAPI;",
+            "import com.axonivy.portal.components.publicapi.TaskAPI;",
             "import ch.ivyteam.ivy.workflow.ITask;",
             "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
             "",
@@ -126,8 +126,8 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.CaseAPI;",
-            "import ch.ivy.addon.portalkit.publicapi.TaskAPI;",
+            "import com.axonivy.portal.components.publicapi.CaseAPI;",
+            "import com.axonivy.portal.components.publicapi.TaskAPI;",
             "import ch.ivyteam.ivy.workflow.ICase;",
             "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
             "import ch.ivyteam.ivy.workflow.ITask;",
