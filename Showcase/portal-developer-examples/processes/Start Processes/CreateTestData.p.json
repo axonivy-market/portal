@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
   "id" : "162511D2577DBA88",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.Data"
@@ -30,15 +30,15 @@
           "id" : "S30-f2",
           "type" : "WaitEvent",
           "config" : {
-            "timeoutConfig" : {
+            "javaClass" : "ch.ivyteam.ivy.process.intermediateevent.TestNewProcessIntermediateEventBean",
+            "eventId" : "in.eventId",
+            "timeout" : {
               "duration" : "'12H'"
             },
             "task" : {
               "name" : "Example ProcessIntermediateEventBean Task",
               "description" : "Example ProcessIntermediateEventBean Task"
-            },
-            "eventBeanClass" : "ch.ivyteam.ivy.process.intermediateevent.TestNewProcessIntermediateEventBean",
-            "eventIdConfig" : "in.eventId"
+            }
           },
           "visual" : {
             "at" : { "x" : 408, "y" : 200 }

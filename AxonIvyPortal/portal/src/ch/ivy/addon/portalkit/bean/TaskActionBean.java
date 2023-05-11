@@ -13,10 +13,11 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang.StringUtils;
 import org.primefaces.PF;
 
+import com.axonivy.portal.components.publicapi.ProcessStartAPI;
+
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
-import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.util.DateTimeFormatterUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;

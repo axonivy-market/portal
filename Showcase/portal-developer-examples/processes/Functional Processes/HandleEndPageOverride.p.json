@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
   "id" : "165801CAE71C2982",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -39,7 +39,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;",
+            "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
             "",
             "in.callbackUrl = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ToCustomizedExpressEndPage/start.ivp\");"
           ]

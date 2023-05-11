@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
   "id" : "176CBAD72A11A8EE",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -85,7 +85,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;",
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
             "",
             "PortalNavigatorAPI.navigateToPortalEndPage();"
           ]

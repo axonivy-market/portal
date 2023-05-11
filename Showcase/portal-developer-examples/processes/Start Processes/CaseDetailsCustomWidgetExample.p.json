@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
   "id" : "17A2C6D73AB4186E",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.Data"
@@ -237,7 +237,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;",
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
             "",
             "ivy.case.destroy();",
             "",
