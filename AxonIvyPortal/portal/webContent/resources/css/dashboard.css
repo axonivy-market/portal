@@ -617,7 +617,6 @@ body .ui-datatable tbody tr td.dashboard-cases__state {
 
 body .dashboard__table--edit.ui-datatable tbody tr.ui-state-highlight,
 body .dashboard__table--edit.ui-datatable tbody tr.ui-state-hover {
-  background: transparent;
   cursor: move;
 }
 
