@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
   "id" : "180F979F5AF44684",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -103,7 +103,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.PortalNavigatorInFrameAPI;",
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI;",
             "",
             "PortalNavigatorInFrameAPI.navigateToUrl(in.caseDetailsUrl);"
           ]

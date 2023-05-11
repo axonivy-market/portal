@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
   "id" : "178A0F7DD8A74A94",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -70,7 +70,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI;",
+            "import com.axonivy.portal.components.publicapi.PortalGlobalGrowInIFrameAPI;",
             "if (in.isCustomized) {",
             "  PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();",
             "  api.displayCustomizedMessage(\"Task is cancelled\");",
@@ -91,7 +91,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI;",
+            "import com.axonivy.portal.components.publicapi.PortalGlobalGrowInIFrameAPI;",
             "if (in.isCustomized) {",
             "  PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();",
             "  api.displayCustomizedMessage(\"Task is finished\");",
@@ -129,7 +129,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.PortalNavigatorInFrameAPI;",
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI;",
             "",
             "PortalNavigatorInFrameAPI.navigateToPortalEndPage();"
           ]
