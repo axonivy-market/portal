@@ -83,6 +83,7 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testDestroyCase() {
     createTestingTask();
+    assertEquals("Open", detailsPage.getCaseState());
     detailsPage.openActionMenu();
     detailsPage.onClickDestroyCase();
     detailsPage.confimDestruction();

@@ -51,6 +51,10 @@ public class CaseDetailsPage extends TemplatePage {
   public String getCaseCategory() {
     return caseItem.findElement(By.cssSelector("span[id$='case-category']")).getText();
   }
+  
+  public String getCaseState() {
+    return caseItem.findElement(By.cssSelector("span.state-with-indicator > span")).getText();
+  }
 
   public boolean isBusinessCaseInformationSectionDisplayed() {
     return isElementDisplayed(By.cssSelector("div[id$='business-case-information']"));
