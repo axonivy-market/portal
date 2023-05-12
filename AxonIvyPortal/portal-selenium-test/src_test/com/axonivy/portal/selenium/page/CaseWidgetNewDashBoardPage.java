@@ -125,6 +125,11 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     getCloseCheckBox().shouldBe(getClickableCondition()).click();
   }
 
+  public void selectStateAsOpen() {
+    getValueOfCheckBox("Open").shouldBe(getClickableCondition()).click();
+    getCloseCheckBox().shouldBe(getClickableCondition()).click();
+  }
+
   private SelenideElement getFilterCheckBox(String inputField) {
     return $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$("div.widget-filter-panel div.ui-g").filter(text(inputField)).first();
