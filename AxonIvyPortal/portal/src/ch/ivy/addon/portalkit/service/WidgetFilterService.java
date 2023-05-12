@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import ch.ivy.addon.portalkit.bean.WidgetFilterHelperBean;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
@@ -22,19 +23,22 @@ import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.UserFilterCollection;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
+import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
+import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 
 public class WidgetFilterService extends JsonConfigurationService<WidgetFilterModel> {
 
   public static final String WIDGET_FILTER_KEY_PATTERN = "WIDGET_FILTER_KEY_%s_%s";
-  
+
   private static WidgetFilterService instance;
 
   public static WidgetFilterService getInstance() {
@@ -146,13 +150,13 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
 
   private void mergeUserFilterInput(WidgetFilterModel userFilterOptions, ColumnModel column) {
     userFilterOptions.getFilterableColumns().stream()
-        .filter(userSelected -> userSelected.getField().equals(column.getField())).findFirst()
-        .ifPresent(selectedColumn -> {
-          column.setUserFilter(selectedColumn.getUserFilter());
-          column.setUserFilterList(selectedColumn.getUserFilterList());
-          column.setUserFilterFrom(selectedColumn.getUserFilterFrom());
-          column.setUserFilterTo(selectedColumn.getUserFilterTo());
-        });
+    .filter(userSelected -> userSelected.getField().equals(column.getField())).findFirst()
+    .ifPresent(selectedColumn -> {
+      column.setUserFilter(selectedColumn.getUserFilter());
+      column.setUserFilterList(selectedColumn.getUserFilterList());
+      column.setUserFilterFrom(selectedColumn.getUserFilterFrom());
+      column.setUserFilterTo(selectedColumn.getUserFilterTo());
+    });
   }
 
   private void updateSelectedSavedFiltersByUser(DashboardWidget widget) {
@@ -168,8 +172,8 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
     for (var widgetColumn : filterableColumns) {
       widgetColumn.resetUserFilter();
       var userFilter = "";
-      Date filterFrom = null;
-      Date filterTo = null;
+      String filterFrom = null;
+      String filterTo = null;
       var filterList = new HashSet<String>();
 
       for (var selected : widget.getUserFilterCollection().getSelectedWidgetFilters()) {
@@ -185,17 +189,17 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
           }
 
           if (StringUtils.isNotEmpty(selectedColumn.getUserFilterFrom())) {
-            filterFrom = getLessDate(selectedColumn.getUserFilterFrom(), filterFrom);
+            filterFrom = getLessValue(widgetColumn.getFormat(), selectedColumn.getUserFilterFrom(), filterFrom);
           }
           if (StringUtils.isNotEmpty(selectedColumn.getUserFilterTo())) {
-            filterTo = getGreaterDate(selectedColumn.getUserFilterTo(), filterTo);
+            filterTo = getGreaterValue(widgetColumn.getFormat(), selectedColumn.getUserFilterTo(), filterTo);
           }
         }
       }
       widgetColumn.setUserFilter(userFilter);
       widgetColumn.setUserFilterList(new ArrayList<>(filterList));
-      widgetColumn.setUserFilterFrom(formatDateToString(filterFrom));
-      widgetColumn.setUserFilterTo(formatDateToString(filterTo));
+      widgetColumn.setUserFilterFrom(filterFrom);
+      widgetColumn.setUserFilterTo(filterTo);
     }
   }
 
@@ -244,14 +248,15 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
       for (var column : savedFilter.getFilterableColumns()) {
         FilterColumnModel columnData = new FilterColumnModel();
         var userFilter = "";
-        Date filterFrom = null;
-        Date filterTo = null;
+        String filterFrom = null;
+        String filterTo = null;
+        DashboardWidgetUtils.buildCustomColumn(ICustomFieldMeta.cases(), column, column.getField());
         var filterList = new HashSet<String>();
         if (filterOptionMap.containsKey(column.getField())) {
           columnData = filterOptionMap.get(column.getField());
           userFilter = columnData.getUserFilter();
-          filterFrom = Dates.parse(columnData.getUserFilterFrom());
-          filterTo = Dates.parse(columnData.getUserFilterTo());
+          filterFrom = columnData.getUserFilterFrom();
+          filterTo = columnData.getUserFilterTo();
           filterList.addAll(columnData.getUserFilterList());
         }
         if (StringUtils.isNotEmpty(column.getUserFilter())) {
@@ -261,15 +266,15 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
           filterList.addAll(column.getUserFilterList());
         }
         if (StringUtils.isNotEmpty(column.getUserFilterFrom())) {
-          filterFrom = getLessDate(column.getUserFilterFrom(), filterFrom);
+          filterFrom = getLessValue(column.getFormat(), column.getUserFilterFrom(), filterFrom);
         }
         if (StringUtils.isNotEmpty(column.getUserFilterTo())) {
-          filterTo = getGreaterDate(column.getUserFilterTo(), filterTo);
+          filterTo = getGreaterValue(column.getFormat(), column.getUserFilterTo(), filterTo);
         }
         columnData.setUserFilter(userFilter);
         columnData.setUserFilterList(new ArrayList<>(filterList));
-        columnData.setUserFilterFrom(formatDateToString(filterFrom));
-        columnData.setUserFilterTo(formatDateToString(filterTo));
+        columnData.setUserFilterFrom(filterFrom);
+        columnData.setUserFilterTo(filterTo);
         filterOptionMap.put(column.getField(), columnData);
       }
     }
@@ -297,6 +302,56 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
       return selectedDate;
     }
     return date;
+  }
+
+  private String getLessValue(DashboardColumnFormat format, String selectedValueFrom, String value) {
+    switch (format) {
+      case NUMBER:
+        Double selectedNumber = NumberUtils.createDouble(selectedValueFrom);
+        Double valueNumber = NumberUtils.createDouble(value);
+        if (valueNumber == null || (selectedNumber != null && selectedNumber < valueNumber)) {
+          return selectedValueFrom;
+        }
+        break;
+      case TIMESTAMP:
+        try {
+          var selectedDate = Dates.parse(selectedValueFrom);
+          if (value == null || selectedDate.before(Dates.parse(value))) {
+            return selectedValueFrom;
+          }
+        } catch (PortalException e) {
+          return null;
+        }
+        break;
+      default:
+        return value;
+    }
+    return value;
+  }
+
+  private String getGreaterValue(DashboardColumnFormat format, String selectedValueFrom, String value) {
+    switch (format) {
+      case NUMBER:
+        Double selectedNumber = NumberUtils.createDouble(selectedValueFrom);
+        Double valueNumber = NumberUtils.createDouble(value);
+        if (valueNumber == null || (selectedNumber != null && selectedNumber > valueNumber)) {
+          return selectedValueFrom;
+        }
+        break;
+      case TIMESTAMP:
+        try {
+          var selectedDate = Dates.parse(selectedValueFrom);
+          if (value == null || selectedDate.after(Dates.parse(value))) {
+            return selectedValueFrom;
+          }
+        } catch (PortalException e) {
+          return null;
+        }
+        break;
+      default:
+        return value;
+    }
+    return value;
   }
 
   private boolean isNotEqualStringFilter(String value, String compareValue) {
