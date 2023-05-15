@@ -381,10 +381,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     title: Titre
   caseState:
     CREATED: Créé
+    CREATED_UPPERCASE: CRÉÉ
     DESTROYED: Supprimé
+    DESTROYED_UPPERCASE: SUPPRIMÉ
     DONE: Terminé
+    DONE_UPPERCASE: TERMINEE
     FAILED: Échoué
+    INPROGRESS: EN COURS
     OPEN: Ouverte
+    OPEN_UPPERCASE: OUVERTE
     RUNNING: En cours
     ZOMBIE: Zombie
   caseTreeTable:
@@ -1383,6 +1388,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     title: Priorité de la tâche
   taskState:
     CREATED: Créé
+    CREATED_UPPERCASE: CRÉÉ
     DELAYED: Retardé
     DELAYED_UPPERCASE: RETARDÉ
     DESTROYED: Détruit
@@ -1390,21 +1396,27 @@ ch.ivy.addon.portalkit.ui.jsf:
     DONE: Terminé
     DONE_UPPERCASE: TERMINEE
     FAILED: Échoué
+    FAILED_UPPERCASE: ÉCHOUÉ
     INPROGRESS: EN COURS
     JOINING: En jonction
+    JOINING_UPPERCASE: EN JONCTION
     JOIN_FAILED: Jonction échouée
+    JOIN_FAILED_UPPERCASE: JONCTION ÉCHOUÉE
     OPEN: Ouverte
     OPEN_UPPERCASE: OUVERTE
     PARKED: Réservé
     READY_FOR_JOIN: Prêt pour la jonction
     READY_FOR_JOINING: Prêt pour la jonction
+    READY_FOR_JOINING_UPPERCASE: PRÊT POUR LA JONCTION
     READY_FOR_JOIN_UPPERCASE: READY FOR JOIN
     RESERVED: RESERVEE
     RESUMED: En cours
     SUSPENDED: Affecté
+    SUSPENDED_UPPERCASE: AFFECTÉ
     SYSTEM: SYSTÈME
     WAITING: Attente
     WAITING_FOR_INTERMEDIATE_EVENT: Attente d'un évènement
+    WAITING_FOR_INTERMEDIATE_EVENT_UPPERCASE: "ATTENTE D'UN ÉVÈNEMENT  \n"
     ZOMBIE: Zombie
   taskView:
     filterTextPlaceHolderMobile: Nom ou description!
