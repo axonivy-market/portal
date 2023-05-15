@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
   "id" : "160070C3BA6D3702",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -54,7 +54,7 @@
       "name" : [
         "HOW TO CREATE CUSTOM END PAGE FOR EXPRESS PROCESS",
         "",
-        "import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;",
+        "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
         "",
         "String ourNewEndPageFriendlyRequestPath = \"Start Processes/NewEndPageOfExpress/startCustomEndPage.ivp\";",
         "in.callbackUrl = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(ourNewEndPageFriendlyRequestPath);",

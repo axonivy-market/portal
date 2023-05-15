@@ -83,6 +83,8 @@ Dialogs:
             ProcessIsHidden: El proceso actual está oculto!
             ProcessType:
               CASE_MAP: Mapa del caso
+              EXPRESS_PROCESS: Flujo de trabajo exprés
+              EXTERNAL_LINK: Link externo
               IVY_PROCESS: Proceso de negocio
 Labels:
   DisabledUserPrefix: (inactivo)

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
   "id" : "180D53829FC36BF2",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -109,7 +109,7 @@
             "import ch.ivy.addon.portalkit.util.RequestUtils;",
             "import org.primefaces.PrimeFaces;",
             "import javax.faces.context.FacesContext;",
-            "import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;",
+            "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
             "",
             "String requestPath = \"Start Processes/CustomCaseInfomationForTaskTemplate/employeeDetails.ivp\";",
             "String url = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(requestPath);",

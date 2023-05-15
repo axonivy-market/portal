@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
   "id" : "163DD68942416255",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -396,7 +396,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;",
+            "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
             "import javax.faces.context.FacesContext;",
             "",
             "String statisticPageUrl = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/PortalStart/StatisticPage.ivp\");",

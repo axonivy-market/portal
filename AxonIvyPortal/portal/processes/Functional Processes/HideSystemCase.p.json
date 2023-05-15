@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
   "id" : "15F999559D09FFA4",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -44,9 +44,9 @@
           "code" : [
             "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
             "import ch.ivyteam.ivy.workflow.ITask;",
-            "import ch.ivy.addon.portalkit.publicapi.TaskAPI;",
+            "import com.axonivy.portal.components.publicapi.TaskAPI;",
             "import ch.ivyteam.ivy.workflow.ICase;",
-            "import ch.ivy.addon.portalkit.publicapi.CaseAPI;",
+            "import com.axonivy.portal.components.publicapi.CaseAPI;",
             "",
             "ICase selectedCase = in.hideBusinessCase ? ivy.wf.findCase(ivy.case.getBusinessCase().getId()) : ivy.case;",
             "CaseAPI.setHidePropertyToHideInPortal(selectedCase);",
