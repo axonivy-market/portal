@@ -89,7 +89,6 @@ public class TaskExporter extends Exporter {
           return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
         }
         return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(task.getActivator(), task.getActivatorName());
-            task.getActivatorName());
       case PRIORITY:
         return task.getPriority().toString();
       case STATE:
