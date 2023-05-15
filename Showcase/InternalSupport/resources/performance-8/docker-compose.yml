@@ -1,0 +1,31 @@
+version: '3.7'
+services:
+  ivy:
+    image: axonivy/axonivy-engine:8.0
+    container_name: ivy-performance-8
+    ports:
+     - 9008:8080
+    volumes:
+     - ./licence-8.lic:/etc/axonivy-engine/licence.lic
+     - ./ivy.yaml:/etc/axonivy-engine/ivy.yaml
+     - ./configuration-app-portal:/usr/lib/axonivy-engine/configuration/applications/Portal
+     - ./applications:/usr/lib/axonivy-engine/applications
+     - ./data:/usr/lib/axonivy-engine/data
+     - ./work:/usr/lib/axonivy-engine/work
+     - ./logs:/usr/lib/axonivy-engine/logs
+    networks:
+     - postgres_network
+networks:
+  postgres_network:
+    external: true       
+# postgres:
+#   image: postgres
+#   shm_size: 1g
+#   container_name: postgres-performance-8
+#   ports:
+#    - 1436:1433
+#   environment:
+#     POSTGRES_USER: postgres
+#     POSTGRES_PASSWORD: <password>
+#   volumes:
+#    - /var/lib/postgresql/postgres-performance-8/data:/var/lib/postgresql/data

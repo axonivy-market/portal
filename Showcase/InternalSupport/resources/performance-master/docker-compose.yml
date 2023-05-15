@@ -1,0 +1,37 @@
+version: '3.7'
+services:
+  ivy:
+          image: axonivy/axonivy-engine:nightl
+    container_name: ivy-performance-master
+    ports:
+     - 9000:8080
+    volumes:
+     - ./licence-11.lic:/etc/axonivy-engine/licence.lic
+     - ./ivy.yaml:/etc/axonivy-engine/ivy.yaml
+     - ./configuration-app-portal:/usr/lib/axonivy-engine/configuration/applications/Portal
+     - ./applications:/usr/lib/axonivy-engine/applications
+     - ./data:/usr/lib/axonivy-engine/data
+     - ./work:/usr/lib/axonivy-engine/work
+     - ./logs:/usr/lib/axonivy-engine/logs
+    networks:
+     - postgres_network
+networks:
+  postgres_network:
+    external: true
+#  postgres:
+#   image: postgres
+#   container_name: postgres-performance-master
+#   ports:
+#    - 1434:1433
+#   environment:
+#     POSTGRES_USER: postgres
+#     POSTGRES_PASSWORD: <password>
+#   volumes:
+#    - /var/lib/postgresql/postgres-performance-master/data:/var/lib/postgresql/data
+
+#  adminer:
+#    image: adminer
+#    container_name: postgres-adminer-performance-master
+#    restart: always
+#    ports:
+#      - 9001:8080
