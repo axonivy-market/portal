@@ -17,7 +17,7 @@ pipeline {
         script {
           today = new Date().format('dd-MM-yyyy_HH-mm')
           config = [master:[engine: 'master', systemDatabase: 'AxonIvySystemDatabase-master'], 
-		  performanceTest:[engine:'performance-master', postgresContainer: 'postgres-performance-master', systemDatabase: 'AxonIvySystemDatabase-performance-master']]
+		  performanceTest:[engine:'performance-master', systemDatabase: 'AxonIvySystemDatabase-performance-master']]
           engineParentDir = '/var/tools/ivy/'
           engineDir = engineParentDir + config[params.engine]['engine']
           databaseBackupDir = '/var/database-backups/'
@@ -37,7 +37,7 @@ pipeline {
             echo ====================Backup database====================
             cd ${engineDir}
             [ -d ${databaseBackupDir} ] ||  mkdir -p ${databaseBackupDir}
-            docker exec -u postgres postgres-master pg_dump -Fc ${databaseName} > ${dbBackupFile}
+            docker exec -u postgres postgres pg_dump -Fc ${databaseName} > ${dbBackupFile}
           """
         }
       }
