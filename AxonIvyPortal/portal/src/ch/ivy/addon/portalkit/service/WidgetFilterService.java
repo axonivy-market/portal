@@ -1,12 +1,10 @@
 package ch.ivy.addon.portalkit.service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -282,26 +280,6 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
 
   private static String buildWidgetKey(String widgetId, DashboardWidgetType widgetType) {
     return String.format(WIDGET_FILTER_KEY_PATTERN, widgetType, widgetId);
-  }
-
-  private String formatDateToString(Date date) {
-    return Objects.isNull(date) ? null : Dates.format(date);
-  }
-
-  private Date getLessDate(String selectedDateFrom, Date date) {
-    var selectedDate = Dates.parse(selectedDateFrom);
-    if (date == null || selectedDate.before(date)) {
-      return selectedDate;
-    }
-    return date;
-  }
-
-  private Date getGreaterDate(String selectedDateFrom, Date date) {
-    var selectedDate = Dates.parse(selectedDateFrom);
-    if (date == null || selectedDate.after(date)) {
-      return selectedDate;
-    }
-    return date;
   }
 
   private String getLessValue(DashboardColumnFormat format, String selectedValueFrom, String value) {
