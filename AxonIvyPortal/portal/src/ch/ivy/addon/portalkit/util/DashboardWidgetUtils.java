@@ -152,7 +152,7 @@ public class DashboardWidgetUtils {
     return caseColumn.getField().equalsIgnoreCase(field);
   }
 
-  private static void buildCustomColumn(Set<ICustomFieldMeta> customFieldMetas, AbstractColumn column,
+  public static void buildCustomColumn(Set<ICustomFieldMeta> customFieldMetas, AbstractColumn column,
       String field) {
     var fieldMeta = customFieldMetas.stream().filter(meta -> meta.name().equals(field)).findFirst();
     if (fieldMeta.isPresent()) {
