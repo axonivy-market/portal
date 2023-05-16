@@ -91,7 +91,7 @@ public class DashboardWidgetUtils {
 
   public static ProcessDashboardWidget buildProcessColumns(ProcessDashboardWidget processWidget) {
     for (var filter : processWidget.getFilterableColumns()) {
-      if (DashboardStandardProcessColumn.CATEGORY.getField().equalsIgnoreCase(filter.getField()) && 
+      if (DashboardStandardProcessColumn.CATEGORY.getField().equalsIgnoreCase(filter.getField()) &&
           processWidget instanceof CompactProcessDashboardWidget) {
         filter.setFilterList(((CompactProcessDashboardWidget)processWidget).getCategories());
       } else if (DashboardStandardProcessColumn.APPLICATION.getField().equalsIgnoreCase(filter.getField())) {
@@ -147,12 +147,12 @@ public class DashboardWidgetUtils {
   private static boolean equals(DashboardStandardTaskColumn taskColumn,String field) {
     return taskColumn.getField().equalsIgnoreCase(field);
   }
-  
+
   private static boolean equals(DashboardStandardCaseColumn caseColumn,String field) {
     return caseColumn.getField().equalsIgnoreCase(field);
   }
 
-  private static void buildCustomColumn(Set<ICustomFieldMeta> customFieldMetas, AbstractColumn column,
+  public static void buildCustomColumn(Set<ICustomFieldMeta> customFieldMetas, AbstractColumn column,
       String field) {
     var fieldMeta = customFieldMetas.stream().filter(meta -> meta.name().equals(field)).findFirst();
     if (fieldMeta.isPresent()) {
@@ -169,7 +169,7 @@ public class DashboardWidgetUtils {
     }
     return columns.stream().filter(Objects::nonNull)
         .filter(col -> !StringUtils.equalsIgnoreCase(col.getField(), START.toString())
-                  && !StringUtils.equalsIgnoreCase(col.getField(), ID.toString()))
+            && !StringUtils.equalsIgnoreCase(col.getField(), ID.toString()))
         .collect(Collectors.toList());
   }
 
@@ -492,7 +492,7 @@ public class DashboardWidgetUtils {
       } else if (DashboardStandardProcessColumn.APPLICATION == col) {
         columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.ApplicationColumnModel();
       }
-      
+
       columnModel.initDefaultValue();
       columnModels.add(columnModel);
     }
@@ -596,19 +596,19 @@ public class DashboardWidgetUtils {
       }
     }
   }
-  
+
   private static List<String> getPublicExternalLinkIdsNotForIvySessionUser() {
-      List<ExternalLink> publicExternalLinksNotForIvySessionUser = ExternalLinkService.getInstance().filterPublicExternalLinksNotForIvySessionUser();
-      return publicExternalLinksNotForIvySessionUser.stream().map(link -> link.getId()).toList();
+    List<ExternalLink> publicExternalLinksNotForIvySessionUser = ExternalLinkService.getInstance().filterPublicExternalLinksNotForIvySessionUser();
+    return publicExternalLinksNotForIvySessionUser.stream().map(link -> link.getId()).toList();
   }
 
   private static void updateProcessStartIdForCombined(ProcessDashboardWidget processWidget, DashboardProcess process) {
     if (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE && process.getProcessStartId() == null) {
       Ivy.session().getStartableProcessStarts().stream()
-          .filter(processStart -> processStart.getLink().getRelative().equals(process.getStartLink())).findFirst()
-          .ifPresent(optional -> {
-            process.setProcessStartId(optional.getId());
-          });
+      .filter(processStart -> processStart.getLink().getRelative().equals(process.getStartLink())).findFirst()
+      .ifPresent(optional -> {
+        process.setProcessStartId(optional.getId());
+      });
     }
   }
 
@@ -676,7 +676,7 @@ public class DashboardWidgetUtils {
 
     return processes;
   }
-  
+
   private static List<DashboardProcess> filterProcessesByCategories(List<String> categories) {
     List<DashboardProcess> processes;
     if (CollectionUtils.isNotEmpty(categories)) {
