@@ -20,6 +20,7 @@ import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
+import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public final class CaseUtils {
@@ -109,5 +110,23 @@ public final class CaseUtils {
     return CollectionUtils.emptyIfNull(states).stream()
         .filter(state -> validStates.contains(state))
         .collect(Collectors.toList());
+  }
+
+  public static String convertToUserFriendlyCaseState(CaseState state) {
+    if (state == null) {
+      return StringUtils.EMPTY;
+    }
+    switch (state) {
+      case CREATED:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/CREATED_UPPERCASE");
+      case RUNNING:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/INPROGRESS");
+      case DESTROYED:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/DESTROYED_UPPERCASE");
+      case DONE:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/DONE_UPPERCASE");
+      default:
+        return StringUtils.EMPTY;
+    }
   }
 }
