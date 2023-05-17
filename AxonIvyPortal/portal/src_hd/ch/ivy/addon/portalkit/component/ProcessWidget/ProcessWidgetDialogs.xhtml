@@ -335,16 +335,18 @@
 					invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}" />
 			</div>
 			<h:panelGroup id="external-link-preview-image-panel" layout="block"
-				styleClass="ui-g-12 ui-fluid MarTop10 external-link-preview-image-panel">
+				styleClass="ui-g-12 ui-fluid u-padding-0 MarTop10 external-link-preview-image-panel">
 				<p:graphicImage id="external-link-preview-image"
 					rendered="#{not empty externalLinkBean.externalLink.imageUrl}"
 					styleClass="external-link-preview-image" library="ivy-cms"
 					name="#{externalLinkBean.externalLink.imageUrl}" />
-				<p:commandButton id="external-link-delete-image-button"
-					actionListener="#{externalLinkBean.removeImage()}"
-					update="external-link-preview-image-panel"
-					rendered="#{not empty externalLinkBean.externalLink.imageUrl}"
-					styleClass="external-link-delete-image-button" icon="si si-bin-1" />
+				<div class="external-link-preview-image-overlay-panel">
+					<p:commandButton id="external-link-delete-image-button"
+						actionListener="#{externalLinkBean.removeImage()}"
+						update="external-link-preview-image-panel"
+						rendered="#{not empty externalLinkBean.externalLink.imageUrl}"
+						styleClass="external-link-delete-image-button" icon="si si-bin-1" />
+				</div>
 			</h:panelGroup>
 		</h:form>
 
