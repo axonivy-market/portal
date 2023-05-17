@@ -10,8 +10,10 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.TaskState;
 
 /**
  * Export Portal task list to Excel
@@ -90,7 +92,7 @@ public class TaskExporter extends Exporter {
       case PRIORITY:
         return task.getPriority().toString();
       case STATE:
-        return task.getState().toString();
+        return TaskUtils.convertToUserFriendlyTaskState(task.getState());
       case CREATION_TIME:
         return task.getStartTimestamp();
       case EXPIRY_TIME:
