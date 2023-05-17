@@ -1416,7 +1416,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SYSTEM: SYSTÈME
     WAITING: Attente
     WAITING_FOR_INTERMEDIATE_EVENT: Attente d'un évènement
-    WAITING_FOR_INTERMEDIATE_EVENT_UPPERCASE: "ATTENTE D'UN ÉVÈNEMENT  \n"
+    WAITING_FOR_INTERMEDIATE_EVENT_UPPERCASE: "ATTENTE D'UN ÉVÈNEMENT"
     ZOMBIE: Zombie
   taskView:
     filterTextPlaceHolderMobile: Nom ou description!
