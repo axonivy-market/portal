@@ -10,22 +10,25 @@
   <h:panelGroup layout="block" styleClass="js-process-start-list-item ui-g-2 ui-xl-2 ui-lg-3 ui-md-6 ui-sm-12 image-process-item #{groupCode}">
     <div class="card-item card ui-g-12 u-padding-0 #{isExpress ? 'express-workflow' : ''} #{isExternalLink ? 'js-external-link-process-item' : ''}">
       <!-- Process Image -->
-			<h:panelGroup rendered="#{isDefaultProcessImage}">
-				<img class="image-process-item-image" alt="#{process.getName()}"
-					src="#{process.imageUrl}" />
-			</h:panelGroup>
-			<p:graphicImage rendered="#{!isDefaultProcessImage}" cache="true"
-				styleClass="image-process-item-image" alt="#{process.getName()}"
-				library="ivy-cms" name="#{process.imageUrl}" />
-			<div class="overlay-title">
+      <h:panelGroup rendered="#{isDefaultProcessImage}">
+        <img class="image-process-item-image" alt="#{process.getName()}"
+          src="#{process.imageUrl}" />
+      </h:panelGroup>
+      <p:graphicImage rendered="#{!isDefaultProcessImage}" cache="true"
+        styleClass="image-process-item-image" alt="#{process.getName()}"
+        library="ivy-cms" name="#{process.imageUrl}" />
+      <div class="overlay-title">
         <div class="process-icon-and-name">
           <!-- Process Icon -->
           <div class="image-process-icon">
-            <i id="icon" class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())} process-image-view-icon" />
+            <i id="icon"
+              class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())} process-image-view-icon" />
           </div>
           <!-- Process Name -->
           <div class="process-name js-process-start-list-item-name">
-            <h:outputText id="process-item-name" value="#{process.getName()}" styleClass="line-clamp-text-2 process-image-view-name" />
+            <h:outputText id="process-item-name"
+              value="#{process.getName()}"
+              styleClass="line-clamp-text-2 process-image-view-name" />
           </div>
         </div>
       </div>
