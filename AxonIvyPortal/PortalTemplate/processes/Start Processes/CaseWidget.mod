@@ -73,7 +73,8 @@ Cs0 f4 expr out #txt
 Cs0 f4 544 64 673 64 #arcP
 Cs0 f2 actionTable 'out=in;
 ' #txt
-Cs0 f2 actionCode 'out.iCase = ivy.wf.findCase(in.caseId);' #txt
+Cs0 f2 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;
+out.iCase = CaseService.newInstance().findCaseById(in.caseId);' #txt
 Cs0 f2 security system #txt
 Cs0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
