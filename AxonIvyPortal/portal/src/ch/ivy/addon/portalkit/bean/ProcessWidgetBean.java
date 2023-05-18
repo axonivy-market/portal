@@ -299,7 +299,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
       externalLink.setIcon(this.selectedIconProcess);
       externalLink.setName(this.editedExternalLink.getName());
       externalLink.setDescription(this.editedExternalLink.getDescription());
-      if (this.editedExternalLink.getImageUrl() != this.originExternalLinkImage) {
+      if (!Objects.equals(this.editedExternalLink.getImageUrl(), this.originExternalLinkImage)) {
         removeOriginalExternalLinkImage(externalLink.getImageUrl(), externalLink.getImageType());
         externalLink.setImageUrl(this.editedExternalLink.getImageUrl());
         externalLink.setImageType(this.editedExternalLink.getImageType());
@@ -327,7 +327,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
 
   public void removeTempExternalLinkImage() {
     if (this.editedExternalLink != null && StringUtils.isNoneBlank(this.editedExternalLink.getImageUrl())) {
-      if (this.editedExternalLink.getImageUrl() != this.originExternalLinkImage) {
+      if (!Objects.equals(this.editedExternalLink.getImageUrl(), this.originExternalLinkImage)) {
         ExternalLinkUtils.removeImage(this.editedExternalLink.getImageUrl(), this.editedExternalLink.getImageType());
       }
       this.editedExternalLink.setImageUrl(null);
