@@ -1,0 +1,88 @@
+#
+# -------------------------------------------
+# Axon.ivy Engine Configuration
+# -------------------------------------------
+#
+# This file customizes the configuration of the Axon.ivy engine and its external systems.
+# Defaults are documented in the template directory configuration/defaults/
+# - ivy.yaml > https://dev.axonivy.com/doc/latest/EngineGuideHtml/configuration.html#configuration-file-ref-ivy-yaml
+# - ivy.webserver.yaml > https://dev.axonivy.com/doc/latest/EngineGuideHtml/configuration.html#configuration-file-ref-ivy-webserver-yaml
+#
+
+SystemDb:
+  #  Url: jdbc:postgresql://10.123.1.30:5432/ivy-performance-trunk
+  Url: jdbc:postgresql://postgres_all:5432/AxonIvySystemDatabase-performance-master
+  UserName: postgres
+  Password: <password>
+  autoConvert: true
+Connector:
+  #  HTTP:
+  #    Port: '8000'
+  HTTPS:
+    Enabled: false
+  AJP:
+    Enabled: false
+Applications:
+  Portal:
+    StandardProcess:
+      DefaultPages: com.axonivy.portal:portal
+Administrators:
+  wawa:
+    Password: <password>
+#    Email: ''
+#    FullName: ''
+SecuritySystems:
+  Portal:
+    Provider: ivy Security System
+    Roles:
+      Role17:
+      Role18:
+      Role19:
+      PortalSystem:
+      Role13:
+      Role14:
+      Role15:
+      Role16:
+      CostObject:
+      Role10:
+      HR:
+      CLEANER:
+      Role11:
+      Role12:
+      FACILITY_MANAGER:
+      RECRUITER:
+      CaseOwner:
+      ACCOUNTANT:
+      Role9:
+      Test:
+      Role8:
+      Role7:
+      Role6:
+      MANAGER:
+      AXONIVY_PORTAL_ADMIN:
+      GeneralManager:
+      ENGINEERING_MANAGER:
+      COOKER:
+      Role5:
+      Role20:
+      Role4:
+      Role3:
+      Role2:
+      Everybody:
+      Role1:
+      HR_MANAGER:
+      HR_GENERAL:
+  default:
+    Roles:
+      AXONIVY_PORTAL_ADMIN:
+      Everybody:
+  system:
+    Roles:
+      SUBSTITUTES_MANAGER:
+      SystemAdministrator:
+      ABSENCES_MANAGER:
+      Everybody:
+  TestPerformance:
+    Roles:
+      AXONIVY_PORTAL_ADMIN:
+      Everybody:
