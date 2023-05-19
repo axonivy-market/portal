@@ -31,7 +31,7 @@ import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivy.addon.portalkit.service.HistoryService;
 
 List<ITask> finishedTasks = new ArrayList();
-in.internalCase = CaseService.newInstance().findCaseById(in.caseId);;
+in.internalCase = CaseService.newInstance().findCaseById(in.caseId);
 for(ITask task : in.internalCase.getTasks()) {
 	if(task.getState() == TaskState.DONE 
 	|| task.getState() == TaskState.CREATED 
