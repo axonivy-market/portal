@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  ivy:
+    image: axonivy/axonivy-engine:nightly
+    container_name: ivy-master
+    ports:
+     - 8000:8080
+    volumes:
+     - ./licence-11.lic:/etc/axonivy-engine/licence.lic
+     - ./ivy.yaml:/etc/axonivy-engine/ivy.yaml
+     - ./applications:/usr/lib/axonivy-engine/applications
+     - ./data:/usr/lib/axonivy-engine/data
+     - ./logs:/usr/lib/axonivy-engine/logs
+    networks:
+     - postgres_network
+networks:
+ postgres_network:
+   external: true
+

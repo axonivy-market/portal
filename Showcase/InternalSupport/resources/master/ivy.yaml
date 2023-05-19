@@ -1,0 +1,12 @@
+SystemDb:
+  Url: jdbc:postgresql://postgres_all:5432/AxonIvySystemDatabase-master
+  UserName: postgres
+  Password: <password>
+  Autoconvert: true
+Administrators:
+  wawa:
+    Password: <password>
+SecuritySystems:
+  Portal:
+    Provider: ivy Security System
+
