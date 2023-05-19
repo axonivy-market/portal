@@ -13,7 +13,6 @@ import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivyteam.ivy.workflow.TaskState;
 
 /**
  * Export Portal task list to Excel
@@ -75,13 +74,13 @@ public class TaskExporter extends Exporter {
 
   protected Object getCommonColumnValue(String column, ITask task) {
     if (StringUtils.equals(column, TaskLazyDataModel.DESCRIPTION)) {
-      return task.descriptions().current();
+      return task.descriptions().get(Ivy.session().getFormattingLocale());
     }
 
     TaskSortField sortField = TaskSortField.valueOf(column);
     switch (sortField) {
       case NAME:
-        return StringUtils.isEmpty(task.names().current()) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable") : task.names().current();
+        return StringUtils.isEmpty(task.names().current()) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable") : task.names().get(Ivy.session().getFormattingLocale());
       case ID:
         return String.valueOf(task.getId());
       case ACTIVATOR:
@@ -90,7 +89,7 @@ public class TaskExporter extends Exporter {
         }
         return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(task.getActivator(), task.getActivatorName());
       case PRIORITY:
-        return task.getPriority().toString();
+        return TaskUtils.convertToUserFriendlyTaskPriority(task.getPriority());
       case STATE:
         return TaskUtils.convertToUserFriendlyTaskState(task.getState());
       case CREATION_TIME:

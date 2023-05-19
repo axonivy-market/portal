@@ -111,7 +111,8 @@ public final class CaseUtils {
         .filter(state -> validStates.contains(state))
         .collect(Collectors.toList());
   }
-
+  
+  //Convert case state to friendly case state with multiple languages support
   public static String convertToUserFriendlyCaseState(CaseState state) {
     if (state == null) {
       return StringUtils.EMPTY;
