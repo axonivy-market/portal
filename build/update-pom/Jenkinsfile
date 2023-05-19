@@ -1,13 +1,18 @@
 pipeline {
-  agent {label 'linux'}
+  agent {label 'master'}
   
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
   }
 
+  tools { 
+      maven '3.6' 
+      jdk '11' 
+  }
+
   parameters {
-      string(name: 'buildPluginVersion', defaultValue: '8.0.7', description: 'Axon Ivy build plugin version of all pom will be updated to.')
-      string(name: 'ivyEngineVersion', defaultValue: '8.0.33', description: 'Axon Ivy engine version of all pom will be updated to.')
+      string(name: 'buildPluginVersion', defaultValue: '8.0.4', description: 'Axon Ivy build plugin version of all pom will be updated to.')
+      string(name: 'ivyEngineVersion', defaultValue: '8.0.4', description: 'Axon Ivy engine version of all pom will be updated to.')
       string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-8/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
         -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-8/axonivy-engine-windows.zip for nightly 8.0
         -Divy.engine.list.url=https://jenkins.ivyteam.io/job/ivy-core_product/job/release%252F8.0/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.server.product/target/products/ -Divy.engine.os.arch=Windows_x64 for last successful build 8.0
@@ -19,64 +24,55 @@ pipeline {
     stage('build') {
       steps {
         script {
-          docker.build('update-pom', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
-            sshagent(credentials: ['github-axonivy']) {
-                sh """
-                  git remote set-url origin git@github.com:axonivy-market/portal.git
-                  git checkout ${BRANCH_NAME} || git checkout -b ${BRANCH_NAME}
-                  git pull origin ${BRANCH_NAME}
-                """
-                echo '====================Update version===================='
-                updateVersion()
+          updateVersions()
+          echo "====================Commit to GIT===================="
+          bat """
+            git commit -a -m "Updated all pom build.plugin.version=${buildPluginVersion}, ivy.engine.version=${ivyEngineVersion}"
+            git push origin ${env.BRANCH_NAME}
+          """
+          echo "====================Cache engine in local repository===================="
+          cacheEngine()
+        }
+      }
+    }
 
-                echo '====================Commit to GIT===================='
-                def changeLog = sh(returnStdout: true, script: 'git status -s').trim()
-                if (changeLog) {
-                  sh """
-                    git commit -a -m "Updated all pom build.plugin.version=${params.buildPluginVersion}, ivy.engine.version=${params.ivyEngineVersion}"
-                    git push origin -u ${BRANCH_NAME}
-                  """
-                } else {
-                  echo 'Nothing to commit.'
-                }
-              }
-          }
-
-          echo '====================Cache engine in local repository===================='
-          removeCacheEngine()
-          docker.build('fetch-cache', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
-            maven cmd: 'clean install -f AxonIvyPortal/PortalStyle/pom.xml'
-          }
+    stage('cache-engine-on-performance-server') {
+      agent {label 'portal-slave'}
+      steps {
+        script {
+          updateVersions()
+          cacheEngine()
         }
       }
     }
   }
 }
 
-def updateVersion() {
-    def pomFiles = [
-    'AxonIvyPortal/AxonIvyExpress/pom.xml', 
-    'AxonIvyPortal/PortalApp/pom.xml', 
-    'AxonIvyPortal/PortalKit/pom.xml', 
-    'AxonIvyPortal/PortalKitTestHelper/pom.xml', 
-    'AxonIvyPortal/PortalStyle/pom.xml', 
-    'AxonIvyPortal/PortalTemplate/pom.xml', 
-    'AxonIvyPortal/PortalTest/customized_pom.xml', 
-    'AxonIvyPortal/PortalTest/guitest_pom.xml',
-    'AxonIvyPortal/PortalTest/pom.xml', 
-    'AxonIvyPortal/portal-components/pom.xml', 
-    'Showcase/PortalExamples/pom.xml', 
-    'Showcase/InternalSupport/pom.xml', 
-    'Showcase/portal-components-examples/pom.xml']
-  for (pomFile in pomFiles) {
-    maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=ivy.engine.version -DnewVersion=${params.ivyEngineVersion}"
-    maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=build.plugin.version -DnewVersion=${params.buildPluginVersion}"
-  }
+def updateVersions() {
+  echo "====================Update properties build.plugin.version, ivy.engine.version of all pom===================="
+  powershell '''
+    $utf8WithoutBom = New-Object System.Text.UTF8Encoding($false)
+    $files = get-childitem AxonIvyPortal\\*\\pom.xml,Showcase\\*\\pom.xml,AxonIvyPortal\\PortalTest\\customized_pom.xml,AxonIvyPortal\\PortalTest\\guitest_pom.xml,Documentation\\public-api\\pom.xml
+    foreach($file in $files) {
+      $xml = new-object xml
+      $xml.load($file)
+      if ($xml.project.properties.'build.plugin.version') {
+        $xml.project.properties.'build.plugin.version' = $env:buildPluginVersion
+      }
+      if ($xml.project.properties.'ivy.engine.version') {
+        $xml.project.properties.'ivy.engine.version' = $env:ivyEngineVersion
+      }
+      $sw = New-Object System.IO.StreamWriter($file, $false, $utf8WithoutBom)
+      $xml.Save($sw)
+    }
+  '''
 }
 
-def removeCacheEngine() {
-  sh """
-    cd /var/tools/maven-cache/.m2/repository/.cache/ivy
-    if [ -d ${params.ivyEngineVersion} ]; then rm -Rf ${params.ivyEngineVersion}; fi
-  """
+def cacheEngine() {
+  powershell '''
+    rmdir C:\\Users\\wawa\\.m2\\repository\\.cache\\ivy\\$env:ivyEngineVersion\\* -recurse -force -errorAction SilentlyContinue
+  '''
+  bat '''
+    mvn clean compile -f AxonIvyPortal\\PortalStyle\\pom.xml -Divy.engine.directory=C:\\Users\\wawa\\.m2\\repository\\.cache\\ivy\\%ivyEngineVersion% %engineDownloadURL%
+  '''
 }

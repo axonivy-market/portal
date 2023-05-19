@@ -1,14 +1,22 @@
 pipeline {
-  agent {
-    label 'linux'
-  }
-
+  agent none
+  
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
+  }
+  
+  tools { 
+      maven '3.6' 
+      jdk '11' 
   }
 
   parameters {
       choice(name: 'engine', choices: ['singleAppEngine', 'performanceTestEngine'], description: 'Which engine to be upgraded?')
+      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-8/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
+        -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-8/axonivy-engine-windows.zip for nightly 8.0
+        -Divy.engine.list.url=https://jenkins.ivyteam.io/job/ivy-core_product/job/release%%252F8.0/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.server.product/target/products/ -Divy.engine.os.arch=Windows_x64 for last successful build 8.0
+        -Divy.engine.download.url=file:///C:/wawa/engine/AxonIvyEngineX.X.X.X_Windows_x64.zip for downloaded engine
+      ''')
   }
 
   environment {
@@ -18,66 +26,63 @@ pipeline {
 
   stages {
     stage('backupDatabase') {
+      agent {label 'master'}
       steps {
         script {
-          def today = new Date().format('dd-MM-yyyy_HH-mm')
-          def config = [singleAppEngine:[engine: '8', systemDatabase: 'AxonIvySystemDatabase-8'],
-                    performanceTestEngine:[engine: 'performance-8', systemDatabase: 'AxonIvySystemDatabase-performance-8']]
-          def engineParentDir = '/var/tools/ivy/'
-          engineDir = engineParentDir + config[params.engine]['engine']
-          def systemDatabaseName = config[params.engine]['systemDatabase']
-          def databaseBackupDir = '/var/database-backups/'
-          def dbBackupFile = databaseBackupDir + systemDatabaseName + '-' + today + '.dump'
+          today = new Date().format('dd-MM-yyyy_HH-mm')
 
-          // Set SystemDb Autoconvert: true - migrate System DB automatically when upgrading ivy
-          updateConfigFile(' true')
+          config = [singleAppEngine: [engineParentDir: 'D:\\tools\\ivy-server\\', engineName: '8.0', databaseBackupDir: 'D:\\backup\\database', databaseName: 'ivy-8.0', serviceName: 'Axon.ivy-8.0']
+          ,performanceTestEngine: [engineParentDir: 'C:\\tools\\ivy-server\\', engineName: '8.0', databaseBackupDir: 'D:\\backup\\database', databaseName: 'ivy-performance-8.0', serviceName: 'Axon.ivyEngine8.0']]
 
-          if (params.engine == 'performanceTestEngine') {
-            sh """
-              echo ====================Start engine performance test====================
-              docker compose -f ${engineDir}/docker-compose.yml up -d
-            """
-          }
+          engineParentDir = config[params.engine]['engineParentDir']
+          engineName = config[params.engine]['engineName']
+          databaseBackupDir = config[params.engine]['databaseBackupDir']
+          databaseName = config[params.engine]['databaseName']
+          serviceName = config[params.engine]['serviceName']
+          engineDir = engineParentDir  + engineName
+          renamedEngineDir = engineDir + '-bk'
+          engineBackupDir = engineParentDir + 'upgrade-backup'
+          dbBackupFileName = engineName + '-' + today
 
-          sh """
+          bat """
             echo ====================Backup database====================
-            [ -d ${databaseBackupDir} ] ||  mkdir -p ${databaseBackupDir}
-            docker exec -u postgres postgres pg_dump -Fc ${systemDatabaseName} > ${dbBackupFile}
+            pg_dump -U postgres -f ${databaseBackupDir}\\${databaseName}-${today}.backup -F Custom -b ${databaseName}
           """
+
+          nodeToExecute = (params.engine == 'performanceTestEngine') ? 'portal-slave' : 'master'
         }
       }
     }
-    stage('upgradeEngine') {
+    stage('replaceEngine') {
+      agent {label nodeToExecute}
       steps {
         script {
-          if (params.engine == 'performanceTestEngine') {
-            sh """
-              cd ${engineDir}
-              echo ====================Stop engine performance test====================
-              docker compose down
-              docker compose pull
-            """
-          } else {
-            sh """
-              echo ====================Upgrade engine====================
-              cd ${engineDir}
-              docker compose down
-              docker compose pull
-              docker compose up -d
-            """
-          }
-
-          // Set SystemDb Autoconvert: false - avoid migrating SystemDB automatically when upgrading ivy manually
-          updateConfigFile(' false')
+          def utils = load 'build/common/utils.groovy'
+          utils.stopWindowsService(serviceName)
+          bat """
+            echo ====================Backup data to restore in case build fails====================
+            xcopy /s/y/h/e/k/i/q ${engineDir} ${engineBackupDir}\\${engineName}-${today}
+            echo ====================Rename current engine folder====================
+            if exist ${renamedEngineDir} rmdir /s /q ${renamedEngineDir}
+            :repeat
+            ren "${engineDir}" "${engineName}-bk" || goto :repeat
+          """
+          utils.extractEngine(engineDir, params.engineDownloadURL)
+          bat """
+            echo ====================Copy license, configuration files====================
+            copy /D/Y ${renamedEngineDir}\\configuration\\*.lic ${engineDir}\\configuration
+            copy /D/Y ${renamedEngineDir}\\configuration\\*.yaml ${engineDir}\\configuration
+          """
+          powershell """
+            echo "====================Copy applications, misc/iis (for SSO)===================="
+            if (Test-Path ${renamedEngineDir}\\applications) {
+              copy -path ${renamedEngineDir}\\applications -recurse -force -destination ${engineDir}
+            }
+            copy -path ${renamedEngineDir}\\misc\\iis -recurse -force -destination ${engineDir}\\misc
+          """
+          utils.startWindowsService(serviceName)
         }
       }
     }
   }
-}
-
-def updateConfigFile(value) {
-  sh """
-    awk -F':' -v OFS=':' -v newval='${value}' '/^  Autoconvert:/{\$2=newval;print;next}1' ${engineDir}/ivy.yaml > ${engineDir}/tmp.yaml
-    awk -F':' -v OFS=':' -v newval='${value}' '/^  Autoconvert:/{\$2=newval;print;next}1' ${engineDir}/tmp.yaml > ${engineDir}/ivy.yaml
-  """
 }
