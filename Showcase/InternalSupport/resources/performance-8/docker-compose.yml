@@ -18,14 +18,4 @@ services:
 networks:
   postgres_network:
     external: true       
-# postgres:
-#   image: postgres
-#   shm_size: 1g
-#   container_name: postgres-performance-8
-#   ports:
-#    - 1436:1433
-#   environment:
-#     POSTGRES_USER: postgres
-#     POSTGRES_PASSWORD: <password>
-#   volumes:
-#    - /var/lib/postgresql/postgres-performance-8/data:/var/lib/postgresql/data
+
