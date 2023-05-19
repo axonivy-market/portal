@@ -30,7 +30,7 @@ pipeline {
           def dbBackupFile = databaseBackupDir + systemDatabaseName + '-' + today + '.dump'
 
           // Set SystemDb Autoconvert: true - migrate System DB automatically when upgrading ivy
-          updateConfigFile('true')
+          updateConfigFile(' true')
 
           if (params.engine == 'performanceTestEngine') {
             sh """
@@ -68,7 +68,7 @@ pipeline {
           }
 
           // Set SystemDb Autoconvert: false - avoid migrating SystemDB automatically when upgrading ivy manually
-          updateConfigFile('false')
+          updateConfigFile(' false')
         }
       }
     }
