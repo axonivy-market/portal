@@ -219,7 +219,8 @@ Pt0 f10 83 180 26 26 -46 17 #rect
 Pt0 f10 @|StartRequestIcon #fIcon
 Pt0 f11 actionTable 'out=in;
 ' #txt
-Pt0 f11 actionCode 'import ch.ivy.addon.portalkit.constant.CustomFields;
+Pt0 f11 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;
+import ch.ivy.addon.portalkit.constant.CustomFields;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomField;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
@@ -232,7 +233,7 @@ import ch.ivyteam.ivy.workflow.ITask;
 
 in.isTaskFinished = SecurityServiceUtils.getSessionAttribute(SessionAttribute.IS_TASK_FINISHED.toString()).toBoolean();
 
-ITask task = ivy.wf.findTask(in.endedTaskId);
+ITask task = TaskService.newInstance().findTaskById(in.endedTaskId);
 ITask taskWithTaskEndInfo = null;
 
 if (#task is initialized && task.getStartSwitchEvent() is initialized) {
@@ -1045,13 +1046,14 @@ Pt0 f80 1 0.1556203489120305 0 0 #arcLabel
 >Proto Pt0 @|BIcon #fIcon
 Bk0 f17 actionTable 'out=in;
 ' #txt
-Bk0 f17 actionCode 'import ch.ivyteam.ivy.workflow.ITask;
+Bk0 f17 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;
+import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 long caseId = -1;
 if (in.endedTaskId is initialized) {
-	ITask task = ivy.wf.findTask(in.endedTaskId);
+	ITask task = TaskService.newInstance().findTaskById(in.endedTaskId);
 	caseId = task.getCase().getId();
 }
 out.caseSelected = ivy.wf.getGlobalContext().getCaseQueryExecutor().getFirstResult(CaseQuery.create().where().caseId().isEqual(caseId)) as ICase;' #txt
@@ -1067,7 +1069,8 @@ Bk0 f17 352 266 112 44 -27 -8 #rect
 Bk0 f17 @|StepIcon #fIcon
 Bk0 f68 actionTable 'out=in;
 ' #txt
-Bk0 f68 actionCode 'out.taskSelected = ivy.wf.findTask(in.endedTaskId);' #txt
+Bk0 f68 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;
+out.taskSelected = TaskService.newInstance().findTaskById(in.endedTaskId);' #txt
 Bk0 f68 security system #txt
 Bk0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1443,10 +1446,9 @@ Bk3 f1 600 160 659 160 #arcP
 >Proto Bk2 @|BIcon #fIcon
 Bk4 f106 actionTable 'out=in;
 ' #txt
-Bk4 f106 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.query.CaseQuery;
+Bk4 f106 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;
 
-out.caseSelected = ivy.wf.getGlobalContext().getCaseQueryExecutor().getFirstResult(CaseQuery.create().where().caseId().isEqual(in.caseId)) as ICase;' #txt
+out.caseSelected = CaseService.newInstance().findCaseById(in.caseId);' #txt
 Bk4 f106 security system #txt
 Bk4 f106 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

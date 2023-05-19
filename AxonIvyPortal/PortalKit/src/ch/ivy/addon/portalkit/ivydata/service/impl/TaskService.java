@@ -1,9 +1,22 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
 import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.isHiddenTasksCasesExcluded;
+import static ch.ivyteam.ivy.workflow.TaskState.CREATED;
+import static ch.ivyteam.ivy.workflow.TaskState.DELAYED;
+import static ch.ivyteam.ivy.workflow.TaskState.DESTROYED;
+import static ch.ivyteam.ivy.workflow.TaskState.DONE;
+import static ch.ivyteam.ivy.workflow.TaskState.FAILED;
+import static ch.ivyteam.ivy.workflow.TaskState.JOIN_FAILED;
+import static ch.ivyteam.ivy.workflow.TaskState.PARKED;
+import static ch.ivyteam.ivy.workflow.TaskState.READY_FOR_JOIN;
+import static ch.ivyteam.ivy.workflow.TaskState.RESUMED;
+import static ch.ivyteam.ivy.workflow.TaskState.SUSPENDED;
+import static ch.ivyteam.ivy.workflow.TaskState.UNASSIGNED;
+import static ch.ivyteam.ivy.workflow.TaskState.WAITING_FOR_INTERMEDIATE_EVENT;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +33,9 @@ import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ITaskService;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -29,6 +44,7 @@ import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.query.ITaskQueryExecutor;
@@ -251,6 +267,34 @@ public class TaskService implements ITaskService {
   
   private ITaskQueryExecutor taskQueryExecutor() {
     return Ivy.wf().getGlobalContext().getTaskQueryExecutor();
+  }
+
+  public ITask findTaskById(long taskId) {
+    String currentUser = Ivy.session().getSessionUserName();
+    TaskQuery taskQuery = TaskQuery.create();
+
+    List<String> apps = new RegisteredApplicationService().findActiveIvyAppsBasedOnConfiguration(currentUser);
+    if (PermissionUtils.checkReadAllTasksPermission()) {
+      EnumSet<TaskState> ADVANCE_STATES = EnumSet.of(CREATED, SUSPENDED, RESUMED, PARKED, READY_FOR_JOIN, DONE,
+          UNASSIGNED, DELAYED, DESTROYED, JOIN_FAILED, FAILED, WAITING_FOR_INTERMEDIATE_EVENT);
+      taskQuery.where().and(queryForStates(ADVANCE_STATES)).and(queryForApplications(apps));
+    } else {
+      EnumSet<TaskState> STANDARD_STATES = EnumSet.of(CREATED, SUSPENDED, RESUMED, PARKED, READY_FOR_JOIN, DONE);
+      taskQuery.where().and(queryForStates(STANDARD_STATES)).and(queryForUsers(currentUser, apps));
+    }
+    if (isHiddenTasksCasesExcluded(apps)) {
+      taskQuery.where().and(queryExcludeHiddenTasks());
+    }
+    taskQuery.where().and().taskId().isEqual(taskId);
+    return Ivy.wf().getGlobalContext().getTaskQueryExecutor().getFirstResult(taskQuery);
+  }
+
+  private TaskQuery queryForStates(EnumSet<TaskState> states) {
+    TaskQuery taskQuery = TaskQuery.create();
+    for (TaskState state : states) {
+      taskQuery.where().or().state().isEqual(state);
+    }
+    return taskQuery;
   }
 
 }

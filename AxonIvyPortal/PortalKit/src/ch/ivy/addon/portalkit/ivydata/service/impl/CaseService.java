@@ -1,9 +1,14 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
 import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.isHiddenTasksCasesExcluded;
+import static ch.ivyteam.ivy.workflow.CaseState.CREATED;
+import static ch.ivyteam.ivy.workflow.CaseState.DESTROYED;
+import static ch.ivyteam.ivy.workflow.CaseState.DONE;
+import static ch.ivyteam.ivy.workflow.CaseState.RUNNING;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +29,9 @@ import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriter
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ICaseService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -83,14 +90,17 @@ public class CaseService implements ICaseService {
   }
   
   private CaseQuery queryForUsers(String involvedUsername, List<String> apps, boolean isTechnicalCase) {
-    boolean isCaseOwnerEnabled = isCaseOwnerEnabled();
     CaseQuery caseQuery;
     if (isTechnicalCase) {
       caseQuery = CaseQuery.subCases();
     } else {
       caseQuery = CaseQuery.businessCases();
     }
+    return queryForUsers(involvedUsername, apps, caseQuery);
+  }
 
+  private CaseQuery queryForUsers(String involvedUsername, List<String> apps, CaseQuery caseQuery) {
+    boolean isCaseOwnerEnabled = isCaseOwnerEnabled();
     apps.forEach(app -> {
       caseQuery.where().or().userIsInvolved(involvedUsername, app);
       if (isCaseOwnerEnabled) {
@@ -99,7 +109,6 @@ public class CaseService implements ICaseService {
     });
     return caseQuery;
   }
-
   private boolean isCaseOwnerEnabled() {
     return Boolean.parseBoolean(new GlobalSettingService().findGlobalSettingValue(GlobalVariable.ENABLE_CASE_OWNER.toString()));
   }
@@ -271,5 +280,32 @@ public class CaseService implements ICaseService {
       result.setCustomFields(customFields);
       return result;
     });
+  }
+
+  public ICase findCaseById(long caseId) {
+    String currentUser = Ivy.session().getSessionUserName();
+    CaseQuery caseQuery = CaseQuery.create();
+
+    List<String> apps = new RegisteredApplicationService().findActiveIvyAppsBasedOnConfiguration(currentUser);
+    if (PermissionUtils.checkReadAllCasesPermission()) {
+      EnumSet<CaseState> ADVANCE_STATES = EnumSet.of(CREATED, RUNNING, DONE, DESTROYED);
+      caseQuery.where().and(queryForStates(ADVANCE_STATES)).and(queryForApplications(apps));
+    } else {
+      EnumSet<CaseState> STANDARD_STATES = EnumSet.of(CREATED, RUNNING, DONE);
+      caseQuery.where().and(queryForStates(STANDARD_STATES)).and(queryForUsers(currentUser, apps, CaseQuery.create()));
+    }
+    if (isHiddenTasksCasesExcluded(apps)) {
+      caseQuery.where().and(queryExcludeHiddenCases());
+    }
+    caseQuery.where().and().caseId().isEqual(caseId);
+    return Ivy.wf().getGlobalContext().getCaseQueryExecutor().getFirstResult(caseQuery);
+  }
+
+  private CaseQuery queryForStates(EnumSet<CaseState> states) {
+    CaseQuery caseQuery = CaseQuery.create();
+    for (CaseState state : states) {
+      caseQuery.where().or().state().isEqual(state);
+    }
+    return caseQuery;
   }
 }

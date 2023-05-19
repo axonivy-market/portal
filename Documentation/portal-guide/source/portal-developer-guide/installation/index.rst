@@ -147,6 +147,13 @@ In engine
    project.
 4. Follow detailed migration notes for each version below.
 
+Migrate 8.0.33 to 8.0.34
+------------------------
+
+PortalStart.mod file is changed to check whether current user could access task/case information or not. If you have
+customized this process in your project, copy new PortalStart from
+Portal Template to your project and re-apply your customization.
+
 Migrate 8.0.27 to 8.0.28
 ------------------------
 Project ``portal-component`` changed its name to ``portal-components``, and also changed package name, cms, and CSS file name. Please update your dependency accordingly.
