@@ -17,11 +17,3 @@ networks:
  postgres_network:
    external: true
 
-   #  postgres:
-   #    image: postgres
-   #    container_name: postgres-master
-   #    environment:
-   #  POSTGRES_USER: postgres
-   #  POSTGRES_PASSWORD: <password>
-   # volumes:
-   #  - /var/tools/postgresql/master/data:/var/lib/postgresql/data

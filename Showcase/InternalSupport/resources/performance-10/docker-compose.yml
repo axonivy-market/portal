@@ -18,18 +18,3 @@ services:
 networks:
   postgres_network:
     external: true       
-# postgres:
-#   image: postgres
-#   container_name: postgres-performance-10
-#   ports:
-#    - 1435:1433
-#   environment:
-#     POSTGRES_USER: postgres
-#     POSTGRES_PASSWORD: <password>
-#   volumes:
-#    - /var/lib/postgresql/postgres-performance-10/data:/var/lib/postgresql/data
-       #  adminer:
-       #    image: adminer
-       #    container_name: postgres-adminer-performance-10
-       #    ports:
-       #     - 9002:8080
