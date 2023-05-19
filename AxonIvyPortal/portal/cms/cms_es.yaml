@@ -381,15 +381,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     title: Título
   caseState:
     CREATED: Creado
-    CREATED_UPPERCASE: CREADO
+    CREATED_UPPERCASE: Creado
     DESTROYED: Destruido
-    DESTROYED_UPPERCASE: DESTRUIDO
+    DESTROYED_UPPERCASE: Destruido
     DONE: Hecho
-    DONE_UPPERCASE: HECHO
+    DONE_UPPERCASE: Hecho
     FAILED: Ha fallado
-    INPROGRESS: EN PROGRESO
+    INPROGRESS: En Progreso
     OPEN: Pendiente
-    OPEN_UPPERCASE: PENDIENTE
+    OPEN_UPPERCASE: Pendiente
     RUNNING: En progreso
   caseTreeTable:
     caseState: Estado del caso
@@ -1389,35 +1389,35 @@ ch.ivy.addon.portalkit.ui.jsf:
     title: Prioridad de tarea
   taskState:
     CREATED: Creado
-    CREATED_UPPERCASE: CREADO
+    CREATED_UPPERCASE: Creado
     DELAYED: Retrasado
-    DELAYED_UPPERCASE: DEMORADO
+    DELAYED_UPPERCASE: Retrasado
     DESTROYED: Destruido
-    DESTROYED_UPPERCASE: DESTRUIDO
+    DESTROYED_UPPERCASE: Destruido
     DONE: Hecho
-    DONE_UPPERCASE: HECHO
+    DONE_UPPERCASE: Hecho
     FAILED: Ha fallado
-    FAILED_UPPERCASE: HA FALLADO
-    INPROGRESS: EN PROGRESO
+    FAILED_UPPERCASE: Ha fallado
+    INPROGRESS: En Progeso
     JOINING: Unión
-    JOINING_UPPERCASE: INSCRIPCIÓN
+    JOINING_UPPERCASE: Unión
     JOIN_FAILED: Unión fallida
-    JOIN_FAILED_UPPERCASE: UNIÓN FALLIDA
+    JOIN_FAILED_UPPERCASE: Unión fallida
     OPEN: Pendiente
-    OPEN_UPPERCASE: PENDIENTE
+    OPEN_UPPERCASE: Pendiente
     PARKED: Reservado
     READY_FOR_JOIN: Listo para unirse
     READY_FOR_JOINING: Listo para unirse
-    READY_FOR_JOINING_UPPERCASE: LISTO PARA UNIRSE
+    READY_FOR_JOINING_UPPERCASE: Listo para unirse
     READY_FOR_JOIN_UPPERCASE: READY FOR JOIN
-    RESERVED: RESERVADO
+    RESERVED: Resevardo
     RESUMED: En progreso
     SUSPENDED: Suspendido
-    SUSPENDED_UPPERCASE: SUSPENDIDO
-    SYSTEM: SISTEMA
+    SUSPENDED_UPPERCASE: Suspendido
+    SYSTEM: Sistema
     WAITING: Esperando
     WAITING_FOR_INTERMEDIATE_EVENT: Esperando el evento
-    WAITING_FOR_INTERMEDIATE_EVENT_UPPERCASE: ESPERANDO EL EVENTO
+    WAITING_FOR_INTERMEDIATE_EVENT_UPPERCASE: Esperando el evento
   taskView:
     filterTextPlaceHolderMobile: Nombre o descripción
     filterTextPlaceholder: Nombre, descripción o ID

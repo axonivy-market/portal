@@ -12,7 +12,6 @@ import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 
 /**
@@ -86,13 +85,13 @@ public class CaseExporter extends Exporter{
    */
   protected Object getCommonColumnValue(String column, ICase caseItem) {
     if (StringUtils.equals(column, CaseLazyDataModel.DESCRIPTION)) {
-      return caseItem.descriptions().current();
+      return caseItem.descriptions().get(Ivy.session().getFormattingLocale());
     }
 
     CaseSortField sortField = CaseSortField.valueOf(column);
     switch (sortField) {
       case NAME:
-        return StringUtils.isEmpty(caseItem.names().current()) ? Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable") : caseItem.names().current();
+        return StringUtils.isEmpty(caseItem.names().current()) ? Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable") : caseItem.names().get(Ivy.session().getFormattingLocale());
       case ID:
         return String.valueOf(caseItem.getId());
       case CREATOR:
