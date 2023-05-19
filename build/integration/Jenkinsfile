@@ -69,13 +69,21 @@ pipeline {
             bat "mvn clean install -f ${module}/pom.xml -Divy.engine.directory=%engineDir% -Divy.compiler.engine.start.timeout=120"
           }
 
+          node('master') {
+            utils.remoteDesktop()
+          }
+
           utils.killUnnecessaryProcessesToRunTest()
+
 
           echo '====================Test Portal===================='
           bat """
-            mvn clean test -f AxonIvyPortal/PortalTest/customized_pom.xml -Dtest=%testPatternToRun% -DbrowserType=IE -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120
+            mvn clean test -f AxonIvyPortal/PortalTest/customized_pom.xml -Dtest=%testPatternToRun% -DbrowserType=${props.browserType} -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120
           """
-          utils.cleanDisk()
+
+          node('master') {
+            utils.closeAllRemoteDesktopConnections()
+          }
         }
       }
     }
@@ -92,8 +100,8 @@ pipeline {
 def downloadPortalRelease() {
   echo '====================Download Portal latest successful release===================='
   def branchName = env.BRANCH_NAME.replaceAll("/", "%%2F")
-  withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
-    bat "curl --user ${credentials} --output archive.zip ${env.JENKINS_URL}job/portal-release/job/${branchName}/lastSuccessfulBuild/artifact/*zip*/archive.zip"
+  withCredentials([usernameColonPassword(credentialsId: 'jenkins-guest-cred', variable: 'jenkinsGuestCred')]) {
+    bat "curl --user ${jenkinsGuestCred} --output archive.zip ${env.JENKINS_URL}job/PortalRelease/job/${branchName}/lastSuccessfulBuild/artifact/*zip*/archive.zip"
   }
   unzip zipFile: 'archive.zip', quiet: true
 }
