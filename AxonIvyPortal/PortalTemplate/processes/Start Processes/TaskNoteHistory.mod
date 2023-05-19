@@ -75,7 +75,8 @@ Ty0 f2 expr out #txt
 Ty0 f2 592 128 705 128 #arcP
 Ty0 f17 actionTable 'out=in;
 ' #txt
-Ty0 f17 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
+Ty0 f17 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.workflow.INote;
 import ch.ivy.addon.portalkit.bo.History;
 import ch.ivy.addon.portalkit.service.HistoryService;
@@ -87,7 +88,7 @@ import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.comparator.NoteComparator;
 
-in.task = ivy.wf.getGlobalContext().getTaskQueryExecutor().getFirstResult(TaskQuery.create().where().taskId().isEqual(in.taskId)) as ITask;
+in.task = TaskService.newInstance().findTaskById(in.taskId);
 ICase iCase = in.task.getCase().getBusinessCase();
 GlobalSettingService globalSettingService = new GlobalSettingService();
 boolean excludeSystemNotes = globalSettingService.findHideSystemNotesFromHistorySettingValue();
