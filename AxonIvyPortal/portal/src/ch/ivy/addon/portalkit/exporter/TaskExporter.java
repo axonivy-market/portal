@@ -74,13 +74,13 @@ public class TaskExporter extends Exporter {
 
   protected Object getCommonColumnValue(String column, ITask task) {
     if (StringUtils.equals(column, TaskLazyDataModel.DESCRIPTION)) {
-      return task.descriptions().get(Ivy.session().getFormattingLocale());
+      return task.descriptions().current();
     }
 
     TaskSortField sortField = TaskSortField.valueOf(column);
     switch (sortField) {
       case NAME:
-        return StringUtils.isEmpty(task.names().current()) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable") : task.names().get(Ivy.session().getFormattingLocale());
+        return StringUtils.isEmpty(task.names().current()) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable") : task.names().current();
       case ID:
         return String.valueOf(task.getId());
       case ACTIVATOR:
