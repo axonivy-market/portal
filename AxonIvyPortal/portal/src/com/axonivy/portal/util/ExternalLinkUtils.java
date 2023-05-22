@@ -7,6 +7,7 @@ import java.util.Base64;
 import java.util.UUID;
 
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
 
@@ -21,6 +22,7 @@ public class ExternalLinkUtils {
 
   public static final String IMAGE_DIRECTORY = "ExternalLinkProcess";
   public static final String DEFAULT_LOCALE_TAG = "en";
+  public static final String BASE_64 = "base64";
 
   public static Pair<String, String> handleImageUpload(FileUploadEvent event) {
     UploadedFile file = event.getFile();
@@ -64,6 +66,10 @@ public class ExternalLinkUtils {
       Ivy.log().warn("Cannot convert base64 image to cms file: {0}", e.getMessage());
     }
     return Pair.of(EMPTY, EMPTY);
+  }
+  
+  public static Boolean isValidImageUrl(String imageUrl) {
+    return StringUtils.isNotBlank(imageUrl) && (imageUrl.contains(IMAGE_DIRECTORY) || imageUrl.contains(BASE_64));
   }
 
   private static ContentObjectValue readObjectValueOfDefaultLocale(ContentObject contentObject) {
