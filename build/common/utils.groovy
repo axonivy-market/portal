@@ -101,4 +101,13 @@ def extractEngine(String engineDir, String engineDownloadURL) {
     mvn clean compile -f AxonIvyPortal/PortalStyle/pom.xml -Divy.engine.directory=${engineDir} ${engineDownloadURL}
   """
 }
+
+def cleanDisk() {
+  echo '====================Clean disk===================='
+  bat """
+    c:/tools/clean-disk.bat
+    exit 0
+  """
+}
+
 return this
