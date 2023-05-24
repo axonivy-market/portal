@@ -31,4 +31,17 @@ public class DashboardCaseService extends CaseService {
     var finalQuery = query.where().and(subQuery);
     return executeCaseQuery(finalQuery, startIndex, count);
   }
+
+  public Long countByCaseQuery(CaseQuery query) {
+    var subQuery = CaseQuery.businessCases();
+    if (!PermissionUtils.checkReadAllCasesPermission()) {
+      subQuery.where().and(queryForCurrentUser(false));
+    }
+
+    if (isHiddenTasksCasesExcluded()) {
+      subQuery.where().and(queryExcludeHiddenCases());
+    }
+    var finalQuery = query.where().and(subQuery);
+    return countCases(finalQuery);
+  }
 }
