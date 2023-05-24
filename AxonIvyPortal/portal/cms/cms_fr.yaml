@@ -869,7 +869,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       manageDashboard: Gérer le tableau de bord
       removeDashboardHeader: Supprimez le tableau de bord "{0}".
     deleteWidget: Supprimer le widget
-    downloadZipFileExplanation: Le nombre d'éléments à exporter dépasse la limite des lignes Excel, les données seront divisées en plusieurs fichiers Excel, puis compressées dans un fichier ZIP à télécharger.
+    downloadZipFileExplanation: Si le nombre d'éléments à exporter dépasse la limite des lignes Excel, les données seront divisées en plusieurs fichiers Excel, puis compressées dans un fichier ZIP à télécharger.
     editWidget: Modifier le widget
     existingField: Le champ {0} a déjà été créé
     expiryFrom: Expiration du
