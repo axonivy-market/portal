@@ -52,14 +52,6 @@
           <p:fileDownload value="#{logic.getExportedFileForCaseWidget(widget)}" />
         </p:commandLink>
       </h:form>
-      <script type="text/javascript">
-        function updateExcelExportExplanation(totalCases) {
-        debugger;
-          if (totalCases > #{dashboardBean.getMaxRowNumberInExcel()}) {
-            $('.js-excel-download-explantion').removeClass('u-hidden');
-          }
-        }
-      </script>
     </ui:define>
   </ui:decorate>
 
