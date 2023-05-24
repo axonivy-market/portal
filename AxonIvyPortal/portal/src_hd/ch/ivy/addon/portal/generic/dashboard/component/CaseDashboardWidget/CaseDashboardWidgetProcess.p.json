@@ -43,7 +43,7 @@
     }, {
       "id" : "f6",
       "type" : "HtmlDialogMethodStart",
-      "name" : "getExportedFileForCaseWidget(DashboardCaseLazyDataModel)",
+      "name" : "getExportedFileForCaseWidget(CaseDashboardWidget)",
       "config" : {
         "callSignature" : "getExportedFileForCaseWidget",
         "result" : {
@@ -56,10 +56,10 @@
         },
         "input" : {
           "params" : [
-            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.DashboardCaseLazyDataModel" }
+            { "name" : "widget", "type" : "ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget" }
           ],
           "map" : {
-            "out.dataModel" : "param.dataModel"
+            "out.widget" : "param.widget"
           }
         },
         "guid" : "1883384A85E2995B"
@@ -84,7 +84,7 @@
             "in.loopCounter = 0;",
             "in.maxResultNumberPerQuery = 100000;",
             "in.collectedCasesForExporting = new ArrayList();",
-            "in.columnsVisibility = ExportUtils.buildVisibilityColumnsForDashboardCaseWidget(in.dataModel.criteria.columns);"
+            "in.columnsVisibility = ExportUtils.buildVisibilityColumnsForDashboardCaseWidget(in.widget.dataModel.criteria.columns);"
           ]
         }
       },
@@ -131,7 +131,7 @@
             "import org.primefaces.PrimeFaces;",
             "import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardCaseService;",
             "",
-            "in.totalCases = DashboardCaseService.getInstance().countByCaseQuery(in.dataModel.criteria.buildQuery());"
+            "in.totalCases = DashboardCaseService.getInstance().countByCaseQuery(in.widget.dataModel.criteria.buildQuery());"
           ]
         }
       },
@@ -149,7 +149,7 @@
             "import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardCaseService;",
             "",
             "int startIndex = in.loopCounter * in.maxResultNumberPerQuery;",
-            "in.collectedCasesForExporting.addAll(DashboardCaseService.getInstance().findByCaseQuery(in.dataModel.getCriteria().buildQuery(), startIndex, in.maxResultNumberPerQuery));"
+            "in.collectedCasesForExporting.addAll(DashboardCaseService.getInstance().findByCaseQuery(in.widget.dataModel.getCriteria().buildQuery(), startIndex, in.maxResultNumberPerQuery));"
           ]
         }
       },
@@ -169,7 +169,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.exporter.CaseDashboardExporter;",
             "",
-            "CaseDashboardExporter exporter = new CaseDashboardExporter(in.columnsVisibility);",
+            "CaseDashboardExporter exporter = new CaseDashboardExporter(in.columnsVisibility, in.widget.name);",
             "in.exportedFile = exporter.getStreamedContent(in.collectedCasesForExporting);"
           ]
         }

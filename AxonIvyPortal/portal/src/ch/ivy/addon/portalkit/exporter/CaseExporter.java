@@ -37,7 +37,7 @@ public class CaseExporter extends Exporter{
    * In case you adds new columns, these columns need cms to show in excel file
    * </p>
    * <p>
-   * You can either add new entry to default folder below in PortalKit or override this method to create your own
+   * You can either add new entry to default folder below in Portal or override this method to create your own
    * folder column must be the same with sortField
    * </p>
    * 
