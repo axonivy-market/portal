@@ -1,7 +1,7 @@
 CaseDashboardWidgetData #class
 ch.ivy.addon.portal.generic.dashboard.component.CaseDashboardWidget #namespace
-dataModel ch.ivy.addon.portalkit.datamodel.DashboardCaseLazyDataModel #field
-dataModel PERSISTENT #fieldModifier
+widget ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget #field
+widget PERSISTENT #fieldModifier
 totalCases Long #field
 totalCases PERSISTENT #fieldModifier
 loopCounter Integer #field
