@@ -1,8 +1,5 @@
 package ch.ivy.addon.portalkit.exporter;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -18,29 +15,20 @@ import ch.ivyteam.ivy.workflow.ICase;
  * Export Portal dashboard's case widget to Excel
  *
  */
-public class CaseDashboardExporter extends Exporter{
-
-  public static final String CUSTOM_FIELD_FORMAT = "%s__%s__%s";
+public class CaseDashboardExporter extends DashboardWidgetExporter{
 
   /**
    * Constructor
    * 
    * @param columnsVisibility list of columns to export
    */
-  public CaseDashboardExporter(List<String> columnsVisibility) {
-    super(columnsVisibility);
+  public CaseDashboardExporter(List<String> columnsVisibility, String widgetName) {
+    super(columnsVisibility, widgetName, "/ch.ivy.addon.portalkit.ui.jsf/dashboard/export/exportedCasesFileName");
   }
 
   /**
    * <p>
    * Gets column label.
-   * </p>
-   * <p>
-   * In case you adds new columns, these columns need cms to show in excel file
-   * </p>
-   * <p>
-   * You can either add new entry to default folder below in PortalKit or override this method to create your own
-   * folder column must be the same with sortField
    * </p>
    * 
    * @param column column name
@@ -83,27 +71,12 @@ public class CaseDashboardExporter extends Exporter{
   }
 
   /**
-   * Gets case column value.
-   * 
-   * @param column case field like "NAME", "CREATOR", "CREATION_TIME"..
-   * @param caseItem target case
-   * @return case column value
-   */
-  public Object getColumnValue(String column, ICase caseItem) {
-    DashboardStandardCaseColumn sortField = DashboardStandardCaseColumn.findBy(column);
-    if (sortField == null) {
-      return getCustomColumnValue(column, caseItem);
-    }
-    return getCommonColumnValue(sortField, caseItem);
-  }
-
-  /**
    * Get common column value
    * @param column
    * @param caseItem
    * @return case column value
    */
-  protected Object getCommonColumnValue(DashboardStandardCaseColumn sortField, ICase caseItem) {
+  private Object getCommonColumnValue(DashboardStandardCaseColumn sortField, ICase caseItem) {
     switch (sortField) {
       case NAME:
         return StringUtils.isEmpty(caseItem.names().current()) ? Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable") : caseItem.names().current();
@@ -171,35 +144,18 @@ public class CaseDashboardExporter extends Exporter{
   }
 
   /**
-   * Generate data for export
+   * Gets case column value.
+   * 
+   * @param column case field like "NAME", "CREATOR", "CREATION_TIME"..
+   * @param caseItem target case
+   * @return case column value
    */
   @Override
-  protected <T> List<List<Object>> generateData(List<T> cases) {
-    List<List<Object>> rows = new ArrayList<>();
-    for (T t : cases) {
-      if (t instanceof ICase) {
-        List<Object> row = new ArrayList<>();
-        for (String column : columnsVisibility) {
-          row.add(getColumnValue(column, (ICase)t));
-        }
-        rows.add(row);
-      }
+  public <T> Object getColumnValue(String column, T item) {
+    DashboardStandardCaseColumn sortField = DashboardStandardCaseColumn.findBy(column);
+    if (sortField == null) {
+      return getCustomColumnValue(column, (ICase) item);
     }
-    return rows;
-
-  }
-
-  /**
-   * File name for export
-   */
-  @Override
-  protected String generateFileName(Date creationDate, String extension, String suffix) {
-    String fileNameSuffix = createFileNameSuffix(creationDate, suffix); 
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/exportedCasesFileName",
-        Arrays.asList(fileNameSuffix, extension));
-  }
-
-  private String[] getCustomColumnParts(String customColumn) {
-    return customColumn.split(CUSTOM_FIELD_SEPARATOR);
+    return getCommonColumnValue(sortField, (ICase) item);
   }
 }

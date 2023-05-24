@@ -874,6 +874,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     existingField: Le champ {0} a déjà été créé
     expiryFrom: Expiration du
     expiryTo: Date d'expiration
+    export:
+      exportedCasesFileName: AXONIVY_Dataset_Cases_{0}_{1}.{2}
     field: Champ
     fieldIsAdded: Le champ {0} est ajouté
     iconMessage:

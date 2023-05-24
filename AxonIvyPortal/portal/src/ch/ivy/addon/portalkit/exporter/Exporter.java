@@ -32,11 +32,10 @@ import ch.ivyteam.ivy.workflow.ITask;
 public abstract class Exporter {
   private static final String ZIP = "zip";
   private static final String XLSX = "xlsx";
-  protected static final String CUSTOM_FIELD_SEPARATOR = "__";
   /**
    * Excel limit row number
    */
-  public static final int MAX_ROW_NUMBER_IN_EXCEL = 1000; // = MAX ROWS (1048576) - 1 (for header row)
+  public static final int MAX_ROW_NUMBER_IN_EXCEL = 1048575; // = MAX ROWS (1048576) - 1 (for header row)
   private static final String FILE_NAME_SUFFIX_FOR_EXCEL_IN_ZIP = "_%s";
   /**
    * List of columns for export
