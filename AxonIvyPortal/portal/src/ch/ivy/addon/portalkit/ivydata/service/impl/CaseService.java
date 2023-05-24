@@ -81,7 +81,7 @@ public class CaseService implements ICaseService {
     return Ivy.wf().getCaseQueryExecutor().getResults(query, startIndex, count);
   }
 
-  private long countCases(CaseQuery query) {
+  protected long countCases(CaseQuery query) {
     return Ivy.wf().getCaseQueryExecutor().getCount(query);
   }
   

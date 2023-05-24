@@ -1598,3 +1598,9 @@ body.in-dialog .ui-widget-overlay {
 .search-results-tabview .process-group .card {
   border: 1px solid var(--card-dialog-border-color);
 }
+
+/* Dashboard Excel export */
+.dashboard-excel-export-form {
+  float: left;
+  display: inline;
+}

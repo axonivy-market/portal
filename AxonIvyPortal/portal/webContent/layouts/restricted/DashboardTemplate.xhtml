@@ -299,7 +299,28 @@
               var responsiveToolkit = ResponsiveToolkit(simpleScreen);
               Portal.init(responsiveToolkit);
             });
+
+            function startDownload() {
+              var statusDialog = PF('download-status-dialog');
+              statusDialog.jq.removeAttr("download-status");
+              statusDialog.show();
+            }
+
+            function stopDownload() {
+              if (!$('.js-excel-download-explantion').hasClass('u-hidden')) {
+                $('.js-excel-download-explantion').addClass('u-hidden');
+              }
+
+              var statusDialog = PF('download-status-dialog');
+              statusDialog.jq.attr("download-status","completed");
+              statusDialog.hide();
+            }
         </script>
+
+        <p:dialog modal="true" id="download-status-dialog" widgetVar="download-status-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/status')}" draggable="false" closable="false" resizable="false" responsive="true">
+          <div>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/waitingDownloadMessage')}</div>
+          <div class="u-hidden js-excel-download-explantion">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/downloadZipFileExplanation')}</div>
+        </p:dialog>
 
       </ui:fragment>
       </div>

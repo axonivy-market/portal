@@ -869,6 +869,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       manageDashboard: Gérer le tableau de bord
       removeDashboardHeader: Supprimez le tableau de bord "{0}".
     deleteWidget: Supprimer le widget
+    downloadZipFileExplanation: Le nombre d'éléments à exporter dépasse la limite des lignes Excel, les données seront divisées en plusieurs fichiers Excel, puis compressées dans un fichier ZIP à télécharger.
     editWidget: Modifier le widget
     existingField: Le champ {0} a déjà été créé
     expiryFrom: Expiration du
@@ -1416,7 +1417,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SYSTEM: SYSTÈME
     WAITING: Attente
     WAITING_FOR_INTERMEDIATE_EVENT: Attente d'un évènement
-    WAITING_FOR_INTERMEDIATE_EVENT_UPPERCASE: "ATTENTE D'UN ÉVÈNEMENT"
+    WAITING_FOR_INTERMEDIATE_EVENT_UPPERCASE: ATTENTE D'UN ÉVÈNEMENT
     ZOMBIE: Zombie
   taskView:
     filterTextPlaceHolderMobile: Nom ou description!

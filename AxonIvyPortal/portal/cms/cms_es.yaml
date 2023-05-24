@@ -869,6 +869,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       manageDashboard: Administrar tablero
       removeDashboardHeader: Borrar el tablero "{0}"
     deleteWidget: Eliminar el widget
+    downloadZipFileExplanation: El número de elementos a exportar supera el límite de filas de Excel, los datos se dividirán en varios archivos Excel y, a continuación, se comprimirán en un archivo ZIP para su descarga.
     editWidget: Editar widget
     existingField: El campo {0} ya existe
     expiryFrom: Caducidad desde
