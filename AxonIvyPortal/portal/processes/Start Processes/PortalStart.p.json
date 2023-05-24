@@ -22,7 +22,7 @@
         "showInStartList" : false
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 305 },
+        "at" : { "x" : 96, "y" : 304 },
         "labelOffset" : { "x" : 16, "y" : 37 }
       },
       "connect" : { "id" : "f7", "to" : "f4" }
@@ -34,6 +34,7 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;",
             "import ch.ivy.addon.portalkit.constant.CustomFields;",
             "import ch.ivy.addon.portalkit.dto.TaskEndInfo;",
             "import ch.ivy.addon.portalkit.service.StickyTaskListService;",
@@ -43,7 +44,7 @@
             "import org.apache.commons.lang3.StringUtils;",
             "import ch.ivyteam.ivy.workflow.ITask;",
             "",
-            "ITask task = ivy.wf.findTask(Long.valueOf(in.endedTaskId));",
+            "ITask task = TaskService.newInstance().findTaskById(in.endedTaskId);",
             "in.isFirstTask = true;",
             "in.portalPage = PortalPage.HOME_PAGE;",
             "",
@@ -130,7 +131,7 @@
         "showInStartList" : false
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 513 },
+        "at" : { "x" : 96, "y" : 512 },
         "labelOffset" : { "x" : 12, "y" : 36 }
       },
       "connect" : { "id" : "f210", "to" : "f209" }
@@ -263,7 +264,7 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 248, "y" : 769 }
+        "at" : { "x" : 248, "y" : 768 }
       },
       "connect" : { "id" : "f35", "to" : "f34" }
     }, {
@@ -276,7 +277,7 @@
         "showInStartList" : false
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 769 },
+        "at" : { "x" : 96, "y" : 768 },
         "labelOffset" : { "x" : 7, "y" : 37 }
       },
       "connect" : { "id" : "f33", "to" : "f32" }
@@ -350,7 +351,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 280, "y" : 960 },
+        "at" : { "x" : 440, "y" : 960 },
         "size" : { "width" : 176, "height" : 60 }
       }
     }, {
@@ -378,7 +379,7 @@
         "at" : { "x" : 96, "y" : 960 },
         "labelOffset" : { "x" : 34, "y" : 37 }
       },
-      "connect" : { "id" : "f61", "to" : "f59" }
+      "connect" : { "id" : "f179", "to" : "f178" }
     }, {
       "id" : "f62",
       "type" : "RequestStart",
@@ -400,7 +401,7 @@
         "at" : { "x" : 96, "y" : 1056 },
         "labelOffset" : { "x" : 7, "y" : 37 }
       },
-      "connect" : { "id" : "f66", "to" : "f65" }
+      "connect" : { "id" : "f181", "to" : "f180" }
     }, {
       "id" : "f65",
       "type" : "SubProcessCall",
@@ -417,7 +418,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 280, "y" : 1056 },
+        "at" : { "x" : 440, "y" : 1056 },
         "size" : { "width" : 176, "height" : 60 }
       }
     }, {
@@ -701,14 +702,14 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 248, "y" : 1728 }
+        "at" : { "x" : 432, "y" : 1728 }
       },
       "connect" : { "id" : "f46", "to" : "f45" }
     }, {
       "id" : "f45",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 448, "y" : 1728 }
+        "at" : { "x" : 600, "y" : 1728 }
       }
     }, {
       "id" : "f3",
@@ -816,7 +817,7 @@
         "at" : { "x" : 96, "y" : 1824 },
         "labelOffset" : { "x" : 36, "y" : 38 }
       },
-      "connect" : { "id" : "f53", "to" : "f52" }
+      "connect" : { "id" : "f190", "to" : "f189" }
     }, {
       "id" : "f52",
       "type" : "DialogCall",
@@ -836,7 +837,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 272, "y" : 1824 },
+        "at" : { "x" : 432, "y" : 1824 },
         "size" : { "width" : 160, "height" : 60 }
       },
       "connect" : { "id" : "f55", "to" : "f54" }
@@ -844,7 +845,7 @@
       "id" : "f54",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 448, "y" : 1824 }
+        "at" : { "x" : 600, "y" : 1824 }
       }
     }, {
       "id" : "f94",
@@ -871,7 +872,7 @@
         "at" : { "x" : 96, "y" : 1920 },
         "labelOffset" : { "x" : 37, "y" : 37 }
       },
-      "connect" : { "id" : "f96", "to" : "f56" }
+      "connect" : { "id" : "f240", "to" : "f194" }
     }, {
       "id" : "f56",
       "type" : "SubProcessCall",
@@ -891,7 +892,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 288, "y" : 1920 },
+        "at" : { "x" : 432, "y" : 1920 },
         "size" : { "width" : 192, "height" : 60 }
       }
     }, {
@@ -910,7 +911,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 280, "y" : 2016 },
+        "at" : { "x" : 432, "y" : 2016 },
         "size" : { "width" : 176, "height" : 60 }
       }
     }, {
@@ -934,7 +935,7 @@
         "at" : { "x" : 96, "y" : 2016 },
         "labelOffset" : { "x" : 19, "y" : 41 }
       },
-      "connect" : { "id" : "f98", "to" : "f95" }
+      "connect" : { "id" : "f245", "to" : "f244" }
     }, {
       "id" : "f99",
       "type" : "RequestStart",
@@ -953,7 +954,7 @@
       "id" : "f100",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 464, "y" : 2112 }
+        "at" : { "x" : 600, "y" : 2112 }
       }
     }, {
       "id" : "f101",
@@ -964,7 +965,7 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 256, "y" : 2112 },
+        "at" : { "x" : 432, "y" : 2112 },
         "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f102", "to" : "f100" }
@@ -1178,7 +1179,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 280, "y" : 2208 },
+        "at" : { "x" : 432, "y" : 2208 },
         "size" : { "width" : 176, "height" : 60 }
       }
     }, {
@@ -1204,7 +1205,7 @@
         "at" : { "x" : 96, "y" : 2208 },
         "labelOffset" : { "x" : 21, "y" : 41 }
       },
-      "connect" : { "id" : "f131", "to" : "f122" }
+      "connect" : { "id" : "f185", "to" : "f184" }
     }, {
       "id" : "f132",
       "type" : "RequestStart",
@@ -1231,7 +1232,7 @@
       "id" : "f133",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 464, "y" : 2304 }
+        "at" : { "x" : 600, "y" : 2304 }
       }
     }, {
       "id" : "f134",
@@ -1250,7 +1251,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 248, "y" : 2304 }
+        "at" : { "x" : 432, "y" : 2304 }
       },
       "connect" : { "id" : "f136", "to" : "f133" }
     }, {
@@ -1849,10 +1850,9 @@
             "security" : "system",
             "output" : {
               "code" : [
-                "import ch.ivyteam.ivy.workflow.ICase;",
-                "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
+                "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
                 "",
-                "out.caseSelected = ivy.wf.getGlobalContext().getCaseQueryExecutor().createCaseQuery().where().caseId().isEqual(in.caseId).executor().firstResult() as ICase;"
+                "out.caseSelected = CaseService.newInstance().findCaseById(in.caseId);"
               ]
             }
           },
@@ -2065,6 +2065,7 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
             "import ch.ivy.addon.portalkit.util.CaseUtils;",
             "import ch.ivyteam.ivy.workflow.ICase;",
             "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
@@ -2075,7 +2076,7 @@
             "import ch.ivy.addon.portalkit.service.HistoryService;",
             "",
             "List<ITask> finishedTasks = new ArrayList();",
-            "in.caseSelected = CaseUtils.findCase(in.caseId);",
+            "in.caseSelected = CaseService.newInstance().findCaseById(in.caseId);",
             "for(ITask task : in.caseSelected.tasks().all()) {",
             "  if(task.getState() == TaskState.DONE",
             "  || task.getState() == TaskState.CREATED ",
@@ -2181,6 +2182,7 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;",
             "import ch.ivyteam.ivy.workflow.INote;",
             "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
             "import ch.ivyteam.ivy.workflow.ITask;",
@@ -2189,7 +2191,7 @@
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
             "import ch.ivy.addon.portalkit.comparator.NoteComparator;",
             "",
-            "in.taskSelected = ivy.wf.getGlobalContext().getTaskQueryExecutor().createTaskQuery().where().taskId().isEqual(in.taskId).executor().firstResult() as ITask;",
+            "in.taskSelected = TaskService.newInstance().findTaskById(in.taskId);",
             "ICase iCase = in.taskSelected.getCase().getBusinessCase();",
             "GlobalSettingService globalSettingService = new GlobalSettingService();",
             "boolean excludeSystemNotes = globalSettingService.findHideSystemNotesFromHistorySettingValue();",
@@ -2239,7 +2241,10 @@
       "config" : {
         "security" : "system",
         "output" : {
-          "code" : "out.caseSelected = ivy.wf.findCase(in.caseId);"
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
+            "out.caseSelected = CaseService.newInstance().findCaseById(in.caseId);"
+          ]
         }
       },
       "visual" : {
@@ -2360,7 +2365,7 @@
         "at" : { "x" : 96, "y" : 2512 },
         "labelOffset" : { "x" : 22, "y" : 41 }
       },
-      "connect" : { "id" : "f198", "to" : "f193" }
+      "connect" : { "id" : "f261", "to" : "f260" }
     }, {
       "id" : "f193",
       "type" : "DialogCall",
@@ -2380,7 +2385,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 280, "y" : 2512 },
+        "at" : { "x" : 432, "y" : 2512 },
         "size" : { "width" : 208, "height" : 60 }
       },
       "connect" : { "id" : "f199", "to" : "f195" }
@@ -2388,7 +2393,7 @@
       "id" : "f195",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 464, "y" : 2512 }
+        "at" : { "x" : 600, "y" : 2512 }
       }
     }, {
       "id" : "f200",
@@ -2628,12 +2633,12 @@
         "at" : { "x" : 896, "y" : 2208 },
         "labelOffset" : { "x" : 26, "y" : 36 }
       },
-      "connect" : { "id" : "f233", "to" : "f232" }
+      "connect" : { "id" : "f253", "to" : "f252" }
     }, {
       "id" : "f230",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 1216, "y" : 2208 }
+        "at" : { "x" : 1288, "y" : 2208 }
       }
     }, {
       "id" : "f232",
@@ -2652,7 +2657,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1048, "y" : 2208 }
+        "at" : { "x" : 1160, "y" : 2208 }
       },
       "connect" : { "id" : "f231", "to" : "f230" }
     }, {
@@ -2676,12 +2681,12 @@
         "at" : { "x" : 896, "y" : 2304 },
         "labelOffset" : { "x" : 27, "y" : 38 }
       },
-      "connect" : { "id" : "f238", "to" : "f237" }
+      "connect" : { "id" : "f249", "to" : "f248" }
     }, {
       "id" : "f235",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 1216, "y" : 2304 }
+        "at" : { "x" : 1288, "y" : 2304 }
       }
     }, {
       "id" : "f237",
@@ -2700,7 +2705,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1048, "y" : 2304 }
+        "at" : { "x" : 1160, "y" : 2304 }
       },
       "connect" : { "id" : "f236", "to" : "f235" }
     }, {
@@ -2716,12 +2721,12 @@
         "at" : { "x" : 896, "y" : 2408 },
         "labelOffset" : { "x" : 17, "y" : 37 }
       },
-      "connect" : { "id" : "f239", "to" : "f137" }
+      "connect" : { "id" : "f265", "to" : "f264" }
     }, {
       "id" : "f41",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 1216, "y" : 2408 }
+        "at" : { "x" : 1288, "y" : 2408 }
       }
     }, {
       "id" : "f137",
@@ -2732,14 +2737,14 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 1048, "y" : 2408 }
+        "at" : { "x" : 1160, "y" : 2408 }
       },
       "connect" : { "id" : "f129", "to" : "f41" }
     }, {
       "id" : "f241",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 464, "y" : 2408 }
+        "at" : { "x" : 600, "y" : 2408 }
       }
     }, {
       "id" : "f243",
@@ -2750,7 +2755,7 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 264, "y" : 2408 },
+        "at" : { "x" : 432, "y" : 2408 },
         "size" : { "width" : 176, "height" : 60 }
       },
       "connect" : { "id" : "f242", "to" : "f241" }
@@ -2767,7 +2772,7 @@
         "at" : { "x" : 96, "y" : 2408 },
         "labelOffset" : { "x" : 17, "y" : 37 }
       },
-      "connect" : { "id" : "f173", "to" : "f243" }
+      "connect" : { "id" : "f257", "to" : "f256" }
     }, {
       "id" : "f150",
       "type" : "Script",
@@ -2791,5 +2796,260 @@
         "at" : { "x" : 416, "y" : 864 }
       },
       "connect" : { "id" : "f8", "to" : "f6" }
+    }, {
+      "id" : "f178",
+      "type" : "Alternative",
+      "name" : "Accessible?",
+      "visual" : {
+        "at" : { "x" : 248, "y" : 960 },
+        "labelOffset" : { "x" : 24, "y" : -24 }
+      },
+      "connect" : [
+        { "id" : "f61", "to" : "f59", "label" : {
+            "name" : "Yes",
+            "offset" : { "x" : -31, "y" : -2 }
+          }, "condition" : "ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.caseId)" },
+        { "id" : "f176", "to" : "f175", "via" : [ { "x" : 248, "y" : 1000 } ], "label" : {
+            "name" : "No",
+            "segment" : 1.11,
+            "offset" : { "x" : -6, "y" : -2 }
+          } }
+      ]
+    }, {
+      "id" : "f175",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 328, "y" : 1000 }
+      }
+    }, {
+      "id" : "f180",
+      "type" : "Alternative",
+      "name" : "Accessible?",
+      "visual" : {
+        "at" : { "x" : 248, "y" : 1056 },
+        "labelOffset" : { "x" : 16, "y" : -16 }
+      },
+      "connect" : [
+        { "id" : "f66", "to" : "f65", "label" : {
+            "name" : "Yes"
+          }, "condition" : "ch.ivy.addon.portalkit.ivydata.service.impl.TaskService.newInstance().isTaskAccessible(in.selectedTaskId)" },
+        { "id" : "f183", "to" : "f182", "via" : [ { "x" : 248, "y" : 1096 } ], "label" : {
+            "name" : "No",
+            "segment" : 1.06
+          } }
+      ]
+    }, {
+      "id" : "f182",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 328, "y" : 1096 }
+      }
+    }, {
+      "id" : "f184",
+      "type" : "Alternative",
+      "name" : "Accessible?",
+      "visual" : {
+        "at" : { "x" : 256, "y" : 2208 },
+        "labelOffset" : { "x" : 16, "y" : -16 }
+      },
+      "connect" : [
+        { "id" : "f131", "to" : "f122", "label" : {
+            "name" : "Yes"
+          }, "condition" : "ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.caseId)" },
+        { "id" : "f187", "to" : "f186", "via" : [ { "x" : 256, "y" : 2248 } ], "label" : {
+            "name" : "No",
+            "segment" : 0.91
+          } }
+      ]
+    }, {
+      "id" : "f186",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 304, "y" : 2248 }
+      }
+    }, {
+      "id" : "f189",
+      "type" : "Alternative",
+      "name" : "Accessible?",
+      "visual" : {
+        "at" : { "x" : 256, "y" : 1824 },
+        "labelOffset" : { "x" : 16, "y" : -16 }
+      },
+      "connect" : [
+        { "id" : "f53", "to" : "f52", "label" : {
+            "name" : "Yes"
+          }, "condition" : "ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.caseId)" },
+        { "id" : "f192", "to" : "f191", "via" : [ { "x" : 256, "y" : 1864 } ], "label" : {
+            "name" : "No",
+            "segment" : 1.12
+          } }
+      ]
+    }, {
+      "id" : "f191",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 304, "y" : 1864 }
+      }
+    }, {
+      "id" : "f194",
+      "type" : "Alternative",
+      "name" : "Accessible?",
+      "visual" : {
+        "at" : { "x" : 256, "y" : 1920 },
+        "labelOffset" : { "x" : 16, "y" : -16 }
+      },
+      "connect" : [
+        { "id" : "f96", "to" : "f56", "label" : {
+            "name" : "Yes"
+          }, "condition" : "ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.caseId)" },
+        { "id" : "f197", "to" : "f196", "via" : [ { "x" : 256, "y" : 1960 } ], "label" : {
+            "name" : "No",
+            "segment" : 1.12
+          } }
+      ]
+    }, {
+      "id" : "f196",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 304, "y" : 1960 }
+      }
+    }, {
+      "id" : "f244",
+      "type" : "Alternative",
+      "name" : "Accessible?",
+      "visual" : {
+        "at" : { "x" : 256, "y" : 2016 },
+        "labelOffset" : { "x" : 16, "y" : -16 }
+      },
+      "connect" : [
+        { "id" : "f98", "to" : "f95", "label" : {
+            "name" : "Yes"
+          }, "condition" : "ch.ivy.addon.portalkit.ivydata.service.impl.TaskService.newInstance().isTaskAccessible(in.selectedTaskId)" },
+        { "id" : "f247", "to" : "f246", "via" : [ { "x" : 256, "y" : 2056 } ], "label" : {
+            "name" : "No",
+            "segment" : 1.05
+          } }
+      ]
+    }, {
+      "id" : "f246",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 304, "y" : 2056 }
+      }
+    }, {
+      "id" : "f248",
+      "type" : "Alternative",
+      "name" : "Accessible?",
+      "visual" : {
+        "at" : { "x" : 1008, "y" : 2304 },
+        "labelOffset" : { "x" : 16, "y" : -16 }
+      },
+      "connect" : [
+        { "id" : "f238", "to" : "f237", "label" : {
+            "name" : "Yes"
+          }, "condition" : "ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.caseId)" },
+        { "id" : "f251", "to" : "f250", "via" : [ { "x" : 1008, "y" : 2344 } ], "label" : {
+            "name" : "No",
+            "segment" : 1.05
+          } }
+      ]
+    }, {
+      "id" : "f250",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1080, "y" : 2344 }
+      }
+    }, {
+      "id" : "f252",
+      "type" : "Alternative",
+      "name" : "Accessible?",
+      "visual" : {
+        "at" : { "x" : 1008, "y" : 2208 },
+        "labelOffset" : { "x" : 16, "y" : -16 }
+      },
+      "connect" : [
+        { "id" : "f233", "to" : "f232", "label" : {
+            "name" : "Yes"
+          }, "condition" : "ch.ivy.addon.portalkit.ivydata.service.impl.TaskService.newInstance().isTaskAccessible(in.taskId)" },
+        { "id" : "f255", "to" : "f254", "via" : [ { "x" : 1008, "y" : 2248 } ], "label" : {
+            "name" : "No",
+            "segment" : 1.12
+          } }
+      ]
+    }, {
+      "id" : "f254",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1080, "y" : 2248 }
+      }
+    }, {
+      "id" : "f256",
+      "type" : "Alternative",
+      "name" : "Accessible?",
+      "visual" : {
+        "at" : { "x" : 256, "y" : 2408 },
+        "labelOffset" : { "x" : 24, "y" : -16 }
+      },
+      "connect" : [
+        { "id" : "f173", "to" : "f243", "label" : {
+            "name" : "Yes"
+          }, "condition" : "ch.ivy.addon.portalkit.util.PermissionUtils.hasDashboardWriteOwnPermission() || ch.ivy.addon.portalkit.util.PermissionUtils.hasDashboardWritePublicPermission()" },
+        { "id" : "f259", "to" : "f258", "via" : [ { "x" : 256, "y" : 2456 } ], "label" : {
+            "name" : "No",
+            "segment" : 0.98
+          } }
+      ]
+    }, {
+      "id" : "f258",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 304, "y" : 2456 }
+      }
+    }, {
+      "id" : "f260",
+      "type" : "Alternative",
+      "name" : "Accessible?",
+      "visual" : {
+        "at" : { "x" : 256, "y" : 2512 },
+        "labelOffset" : { "x" : 16, "y" : -16 }
+      },
+      "connect" : [
+        { "id" : "f198", "to" : "f193", "label" : {
+            "name" : "Yes"
+          }, "condition" : "in.isPublicDashboard ? ch.ivy.addon.portalkit.util.PermissionUtils.hasDashboardWritePublicPermission() : ch.ivy.addon.portalkit.util.PermissionUtils.hasDashboardWriteOwnPermission()" },
+        { "id" : "f263", "to" : "f262", "via" : [ { "x" : 256, "y" : 2560 } ], "label" : {
+            "name" : "No",
+            "segment" : 1.09
+          } }
+      ]
+    }, {
+      "id" : "f262",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 304, "y" : 2560 }
+      }
+    }, {
+      "id" : "f264",
+      "type" : "Alternative",
+      "name" : "Accessible?",
+      "visual" : {
+        "at" : { "x" : 1008, "y" : 2408 },
+        "labelOffset" : { "x" : 16, "y" : -16 }
+      },
+      "connect" : [
+        { "id" : "f239", "to" : "f137", "label" : {
+            "name" : "Yes"
+          }, "condition" : "ch.ivy.addon.portalkit.util.PermissionUtils.isSessionUserHasAdminRole()" },
+        { "id" : "f267", "to" : "f266", "via" : [ { "x" : 1008, "y" : 2448 } ], "label" : {
+            "name" : "No",
+            "segment" : 1.04
+          } }
+      ]
+    }, {
+      "id" : "f266",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1080, "y" : 2448 }
+      }
     } ]
 }
