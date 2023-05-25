@@ -137,6 +137,15 @@ In the table configuration panel, you find two sections:
       - Reorder the columns by drag and drop using the arrows |move-expand-vertical|
       - Remove columns
 
+**Excel export**
+
+You can export all data of the case widget by clicking on the link ``Export to Excel`` at the end of the widget information panel.
+
+|case-export-excel|
+
+If the number of exported cases exceeds the maximum row number of the Excel file, Portal will separate data into multiple Excel
+files and put them into a single zip file.
+
 Process list widget
 ===================
 
@@ -254,6 +263,7 @@ In manage news, the user can:
 .. |dash-board| image:: ../../screenshots/new-dashboard/dashboard.png
 .. |widget-filter| image:: ../../screenshots/new-dashboard/widget-filter.png
 .. |widget-info| image:: ../../screenshots/new-dashboard/widget-info.png
+.. |case-export-excel| image:: ../../screenshots/new-dashboard/case-export-excel.png
 .. |edit-widget| image:: ../../screenshots/new-dashboard/edit-widget.png
 .. |add-widget| image:: ../../screenshots/new-dashboard/add-widget.png
 
