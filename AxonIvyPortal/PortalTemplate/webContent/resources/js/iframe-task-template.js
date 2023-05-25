@@ -145,8 +145,8 @@ function getPortalIframePath(iFrame) {
 }
 
 let updateHistory = (newHref) => {
-  const newHrefUrl = new URL(newHref);
-  const historyUrl = new URL(window.location);
+  let newHrefUrl = new URL(newHref);
+  let historyUrl = new URL(window.location);
   historyUrl.searchParams.set('taskUrl', newHrefUrl.pathname + newHrefUrl.search);
   history.replaceState({}, "", historyUrl);
 }
