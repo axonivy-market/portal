@@ -729,4 +729,9 @@ public class NewDashboardPage extends TemplatePage {
     return new DashboardNewsWidgetPage(newWidgetName);
   }
 
+  public boolean isDownloadCompleted() {
+    return $("#download-status-dialog")
+        .shouldBe(Condition.attribute("download-status", "completed"), DEFAULT_TIMEOUT)
+        .exists();
+  }
 }
