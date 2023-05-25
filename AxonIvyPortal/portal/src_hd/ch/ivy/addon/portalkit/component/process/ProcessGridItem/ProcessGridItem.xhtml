@@ -75,10 +75,12 @@
             id="start-button" actionListener="#{managedBean.startProcess(process)}" icon="si si-arrow-right-1"
             ajax="#{!isExternalLink}"
             disabled="#{cc.attrs.readOnlyMode}" />
-          <p:link id="more-information" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}"
-            href="#{managedBean.getProcessInformationPageUrl(process)}"
-            rendered="#{cc.attrs.showInformationLink and !isExpress and !isExternalLink and !isCaseMap}"
-            disabled="#{cc.attrs.readOnlyMode}" styleClass="process-more-info-link"/>
+          <div class="more-information-wrapper" >
+            <p:link id="more-information" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}"
+              href="#{managedBean.getProcessInformationPageUrl(process)}"
+              rendered="#{cc.attrs.showInformationLink and !isExpress and !isExternalLink and !isCaseMap}"
+              disabled="#{cc.attrs.readOnlyMode}" styleClass="process-more-info-link"/>
+          </div>
         </div>
         <p:tooltip for="process-name" value="#{process.name}" trackMouse="true" hideEvent="mouseleave click" styleClass="process-tooltip"/>
       </h:form>
