@@ -199,5 +199,4 @@ let updateHistory = (newHref) => {
   let historyUrl = new URL(window.location);
   historyUrl.searchParams.set('taskUrl', newHrefUrl.pathname + newHrefUrl.search);
   history.replaceState({}, "", historyUrl);
-  console.log('historyUrl ' + historyUrl);
 }
