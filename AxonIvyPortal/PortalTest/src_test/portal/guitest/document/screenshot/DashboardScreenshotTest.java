@@ -191,6 +191,15 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskInfoOverlayPanel, ScreenshotUtil.NEW_DASHBOARD_FOLDER + "widget-info", new ScreenshotMargin(20));
     taskInfoOverlayPanel.findElement(By.className("info-overlay-panel__footer")).findElement(By.className("info-overlay-panel__close-link")).click();
 
+    // Take screenshot of case Excel export link
+    newDashboardPage.clickWidgetInfo(1);
+    WebElement caseInfoOverlayPanel = newDashboardPage.getInfoOverlayPanel(1);
+    caseInfoOverlayPanel.findElement(By.className("widget-info-type--label")).click();
+    newDashboardPage.waitForWidgetInfoLoading(caseInfoOverlayPanel);
+    executeDecorateJs("highlightWidgetExportToExcelLink()");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(caseInfoOverlayPanel, ScreenshotUtil.NEW_DASHBOARD_FOLDER + "case-export-excel", new ScreenshotMargin(20));
+    caseInfoOverlayPanel.findElement(By.className("info-overlay-panel__footer")).findElement(By.className("info-overlay-panel__close-link")).click();
+
     // Take screenshot of Edit dashboard page
     redirectToDashboardConfiguration();
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
