@@ -54,6 +54,9 @@ public class TaskAnalysisWidgetBean implements Serializable {
   
   public void onToggleColumns(ToggleEvent e) {
     TaskAndCaseAnalysisColumn toggledColumn = TaskAndCaseAnalysisColumn.values()[(Integer) e.getData()];
+    if (!isCaseOwnerEnabled() && toggledColumn.equals(TaskAndCaseAnalysisColumn.CASE_OWNER)) {
+      toggledColumn = TaskAndCaseAnalysisColumn.APPLICATION;
+    }
     columns.put(toggledColumn.name(), e.getVisibility() == Visibility.VISIBLE);
   }
 
