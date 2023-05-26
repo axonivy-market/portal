@@ -47,7 +47,7 @@ to :ref:`Settings <settings>`.
       Therefore, if you want to reuse some Portal content, you have to add
       it manually to your HTML file.
 
-      For example, if you want to use the customized Serenity layout in Portal, add the code below:
+      For example, if you want to use the customized layout in Portal, add the code below:
       ``<h:outputStylesheet library="css" name="template.css" />``
 
 |portal-header|
@@ -147,15 +147,17 @@ In case your project has a navigation button that does not complete a task, e.g 
 TaskTemplate-8
 --------------
 
-Task Template 8 is a new template using the Serenity theme introduced in Portal 8.
-There is no TabView, you have to define that if needed.
+Task Template 8 is a template that uses the default theme of Portal introduced since Portal 8.
+Because there is no TabView, you have to define that if needed.
 
 .. warning::
-	Portal Styles are included. Therefore, your HTML dialogs are also affected. You might have some migration efforts in a future release.
-	We recommend to use :ref:`IFrame in Portal <iframe-in-portal>`.
+   Be aware that when using this template, your HTML dialogs are also affected by the styles of Portal.
+   Therefore, you might need some migration efforts when upgrading to future releases of Portal.
+
+   We recommend to use :ref:`IFrame in Portal <iframe-in-portal>`.
 
 .. important::
-	This template must not be used inside an iFrame.
+   This template must not be used inside an iFrame.
 
 .. _components-layout-templates-task-template-how-to-use-task-template-8:
 
@@ -171,15 +173,15 @@ template.
 
 Refer to ``TaskTemplate-8.xhtml`` for parameters and template areas.
 
-In case your project has a navigation button that does not complete a task, e.g Cancel, to redirect to
+If you want to navigate to other page without finish a task please use these methods from
+class ``PortalNavigatorAPI`` of project ``portal-components``
 
--  Home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorAPI``.
--  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorAPI``.
+-  Home page: call ``navigateToPortalHome()``
+-  Previous page: call ``navigateToPortalEndPage()``
 
 How to migrate TaskTemplate-8
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you migrate your Portal from previous versions and use ``<ui:define name="taskForm" />`` to define the content inside the Request tab,
 TabView is removed and ``<ui:define name="taskForm" />`` is DEPRECATED, use ``<ui:define name="content" />`` instead.
 
 ``<ui:define name="dynamicTabs" />`` is removed, design your TabView if needed.
@@ -189,7 +191,7 @@ Refer to ``TaskTemplate-8.xhtml`` for parameters and template areas.
 +----------------------------------------+-------------------------------+
 | Pros                                   | Cons                          |
 +========================================+===============================+
-| - Use Serenity theme                   | - Some migration effort       |
+| - Use Portal default theme             | - Some migration effort       |
 | - Usage improvements are considered    |                               |
 | - Consistent look and feel with Portal |                               |
 | - UI styles are taken over from Portal |                               |
