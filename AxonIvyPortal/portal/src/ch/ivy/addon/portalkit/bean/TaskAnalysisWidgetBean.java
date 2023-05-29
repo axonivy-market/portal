@@ -54,6 +54,10 @@ public class TaskAnalysisWidgetBean implements Serializable {
   
   public void onToggleColumns(ToggleEvent e) {
     TaskAndCaseAnalysisColumn toggledColumn = TaskAndCaseAnalysisColumn.values()[(Integer) e.getData()];
+
+    // If the selected column has index of "Case Owner" column
+    // but the case owner feature is disabled
+    // shift the selected column to "Application"
     if (!isCaseOwnerEnabled() && toggledColumn.equals(TaskAndCaseAnalysisColumn.CASE_OWNER)) {
       toggledColumn = TaskAndCaseAnalysisColumn.APPLICATION;
     }
