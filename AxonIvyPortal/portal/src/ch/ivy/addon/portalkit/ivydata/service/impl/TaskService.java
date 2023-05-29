@@ -279,19 +279,21 @@ public class TaskService implements ITaskService {
   }
 
   public ITask findTaskById(long taskId) {
-    TaskQuery taskQuery = TaskQuery.create().where().taskId().isEqual(taskId);
-    if (PermissionUtils.checkReadAllTasksPermission()) {
-      EnumSet<TaskState> ADVANCE_STATES = EnumSet.of(CREATED, SUSPENDED, RESUMED, PARKED, READY_FOR_JOIN, DONE,
-          DELAYED, DESTROYED, JOIN_FAILED, FAILED, WAITING_FOR_INTERMEDIATE_EVENT);
-      taskQuery.where().and(queryForStates(ADVANCE_STATES));
-    } else {
-      EnumSet<TaskState> STANDARD_STATES = EnumSet.of(CREATED, SUSPENDED, RESUMED, PARKED, READY_FOR_JOIN, DONE);
-      taskQuery.where().and(queryForStates(STANDARD_STATES)).and(queryInvolvedTasks());
-    }
-    if (isHiddenTasksCasesExcluded()) {
-      taskQuery.where().and(queryExcludeHiddenTasks());
-    }
-    return Sudo.get(() -> taskQueryExecutor().getFirstResult(taskQuery));
+    return Sudo.get(() -> {
+      TaskQuery taskQuery = TaskQuery.create().where().taskId().isEqual(taskId);
+      if (PermissionUtils.checkReadAllTasksPermission()) {
+        EnumSet<TaskState> ADVANCE_STATES = EnumSet.of(CREATED, SUSPENDED, RESUMED, PARKED, READY_FOR_JOIN, DONE,
+            DELAYED, DESTROYED, JOIN_FAILED, FAILED, WAITING_FOR_INTERMEDIATE_EVENT);
+        taskQuery.where().and(queryForStates(ADVANCE_STATES));
+      } else {
+        EnumSet<TaskState> STANDARD_STATES = EnumSet.of(CREATED, SUSPENDED, RESUMED, PARKED, READY_FOR_JOIN, DONE);
+        taskQuery.where().and(queryForStates(STANDARD_STATES)).and(queryInvolvedTasks());
+      }
+      if (isHiddenTasksCasesExcluded()) {
+        taskQuery.where().and(queryExcludeHiddenTasks());
+      }
+      return taskQueryExecutor().getFirstResult(taskQuery);
+    });
   }
 
   public boolean isTaskAccessible(long taskId) {

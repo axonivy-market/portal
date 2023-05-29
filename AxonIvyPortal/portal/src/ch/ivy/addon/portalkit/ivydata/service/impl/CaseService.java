@@ -405,19 +405,20 @@ public class CaseService implements ICaseService {
   }
 
   public ICase findCaseById(long caseId) {
-    CaseQuery caseQuery = CaseQuery.create().where().caseId().isEqual(caseId);
-    if (PermissionUtils.checkReadAllCasesPermission()) {
-      EnumSet<CaseState> ADVANCE_STATES = EnumSet.of(CREATED, RUNNING, DONE, DESTROYED);
-      caseQuery.where().and(queryForStates(ADVANCE_STATES));
-    } else {
-      EnumSet<CaseState> STANDARD_STATES = EnumSet.of(CREATED, RUNNING, DONE);
-      caseQuery.where().and(queryForStates(STANDARD_STATES))
-          .and(queryForCurrentUser(CaseQuery.create()));
-    }
-    if (isHiddenTasksCasesExcluded()) {
-      caseQuery.where().and(queryExcludeHiddenCases());
-    }
-    return Sudo.get(() -> Ivy.wf().getCaseQueryExecutor().getFirstResult(caseQuery));
+    return Sudo.get(() -> {
+      CaseQuery caseQuery = CaseQuery.create().where().caseId().isEqual(caseId);
+      if (PermissionUtils.checkReadAllCasesPermission()) {
+        EnumSet<CaseState> ADVANCE_STATES = EnumSet.of(CREATED, RUNNING, DONE, DESTROYED);
+        caseQuery.where().and(queryForStates(ADVANCE_STATES));
+      } else {
+        EnumSet<CaseState> STANDARD_STATES = EnumSet.of(CREATED, RUNNING, DONE);
+        caseQuery.where().and(queryForStates(STANDARD_STATES)).and(queryForCurrentUser(CaseQuery.create()));
+      }
+      if (isHiddenTasksCasesExcluded()) {
+        caseQuery.where().and(queryExcludeHiddenCases());
+      }
+      return Ivy.wf().getCaseQueryExecutor().getFirstResult(caseQuery);
+    });
   }
 
   public boolean isCaseAccessible(long caseId) {
