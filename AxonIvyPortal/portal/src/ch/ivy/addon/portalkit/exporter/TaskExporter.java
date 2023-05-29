@@ -89,7 +89,7 @@ public class TaskExporter extends Exporter {
         }
         return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(task.getActivator(), task.getActivatorName());
       case PRIORITY:
-        return task.getPriority().toString();
+        return TaskUtils.convertToUserFriendlyTaskPriority(task.getPriority());
       case STATE:
         return TaskUtils.convertToUserFriendlyTaskState(task.getState());
       case CREATION_TIME:
