@@ -13,7 +13,6 @@ import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivyteam.ivy.workflow.TaskState;
 
 /**
  * Export Portal task list to Excel
@@ -90,7 +89,7 @@ public class TaskExporter extends Exporter {
         }
         return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(task.getActivator(), task.getActivatorName());
       case PRIORITY:
-        return task.getPriority().toString();
+        return TaskUtils.convertToUserFriendlyTaskPriority(task.getPriority());
       case STATE:
         return TaskUtils.convertToUserFriendlyTaskState(task.getState());
       case CREATION_TIME:
