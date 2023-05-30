@@ -1153,6 +1153,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   align-items: center;
   padding-left: 15px;
   padding-right: 15px;
+  width: 4.4rem;
 }
 
 .process-start-list .process-start-list-item-icon {
