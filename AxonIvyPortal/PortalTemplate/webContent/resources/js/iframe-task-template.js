@@ -1,6 +1,6 @@
 var invalidIFrameSrcPath = false;
-let taskUrl = new URLSearchParams(window.location.search).get("taskUrl");
-let updateIframeSrc = (newSrc) => {
+var taskUrl = new URLSearchParams(window.location.search).get("taskUrl");
+function updateIframeSrc(newSrc) {
   document.getElementById('iFrame').src = newSrc;
 }
 if (taskUrl){
@@ -134,7 +134,7 @@ function updateContentContainerClass() {
 function getPortalIframePath(iFrame) {
   invalidIFrameSrcPath = false;
   const iframeLocation = iFrame.contentWindow.location;
-  let path = '';
+  var path = '';
   try {
     path = iframeLocation.pathname;
   } catch (error) {
@@ -144,9 +144,9 @@ function getPortalIframePath(iFrame) {
   return path;
 }
 
-let updateHistory = (newHref) => {
-  let newHrefUrl = new URL(newHref);
-  let historyUrl = new URL(window.location);
+function updateHistory(newHref) {
+  var newHrefUrl = new URL(newHref);
+  var historyUrl = new URL(window.location);
   historyUrl.searchParams.set('taskUrl', newHrefUrl.pathname + newHrefUrl.search);
   history.replaceState({}, "", historyUrl);
 }
