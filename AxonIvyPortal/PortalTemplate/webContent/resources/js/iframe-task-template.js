@@ -20,7 +20,7 @@ function loadIframe(recheckIndicator) {
   }
   else {
     const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-    if (iframeDoc.readyState == 'compvare') {
+    if (iframeDoc.readyState == 'complete') {
       processIFrameData(iframe);
       clearTimeout(recheckFrameTimer);
       return;
