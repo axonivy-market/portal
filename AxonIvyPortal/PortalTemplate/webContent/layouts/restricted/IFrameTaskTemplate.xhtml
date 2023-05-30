@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:pe="http://primefaces.org/ui/extensions">
+  xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:pe="http://primefaces.org/ui/extensions" 
+  xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 <h:body>
   <ui:composition template="/layouts/restricted/AbstractTaskTemplate.xhtml">
     <!-- THIS TEMPLATE IS ONLY USED BY PORTAL. DON'T USE IT. -->
@@ -72,6 +73,9 @@
     <ui:param name="caseId" value="#{iFrameTaskTemplateBean.caseId}" />
     <ui:param name="announcementStyleClass" value="annoucement-in-frame-template js-annoucement-in-frame-template u-invisibility" />
     <ui:param name="taskTemplateContainerStyleClass" value="u-invisibility" />
+    <ui:param name="userAgent" value="#{request.getHeader('User-Agent')}"></ui:param>
+    <ui:param name="isIE"
+      value="#{(fn:containsIgnoreCase(userAgent, 'Trident') and fn:containsIgnoreCase(userAgent, 'rv:11')) || fn:containsIgnoreCase(userAgent, 'MSIE')}" />
 
     <ui:define name="content">
       <h:form>
@@ -91,6 +95,7 @@
     </ui:define>
 
     <ui:define name="javascript">
+      <h:outputScript library="js" name="polyfill/polyfill.min.js" rendered="#{isIE}" />
       <h:outputScript name="iframe-task-template.js" library="js" />
     </ui:define>
   </ui:composition>
