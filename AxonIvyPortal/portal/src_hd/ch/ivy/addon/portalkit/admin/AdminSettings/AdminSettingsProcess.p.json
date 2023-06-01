@@ -206,6 +206,8 @@
       "config" : {
         "output" : {
           "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "import java.util.ArrayList;",
             "import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;",
             "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
             "import ch.ivy.addon.portalkit.enums.GlobalVariableType;",
@@ -227,6 +229,14 @@
             "  in.externalDropDownValues = HomepageUtils.getHomepageOptionsForAdminSettings();",
             "} else if (globalVariable.getType() == GlobalVariableType.EXTERNAL_SELECTION) {",
             "  in.externalDropDownValues = globalVariable.getExternalOptions();",
+            "} else if (globalVariable.getType() == GlobalVariableType.MULTI_EXTERNAL_SELECTIONS) {",
+            "  in.externalDropDownValues = globalVariable.getExternalOptions();",
+            "  in.selectedMultiSettings = new ArrayList();",
+            "  if (StringUtils.isNotBlank(in.selectedSetting.value)) {",
+            "    for (String setting : in.selectedSetting.value.split(\",\")) {",
+            "      in.selectedMultiSettings.add(setting.toUpperCase());",
+            "    }",
+            "  }",
             "}"
           ]
         },
@@ -704,9 +714,19 @@
       "config" : {
         "output" : {
           "code" : [
+            "import String;",
+            "import org.apache.commons.collections4.CollectionUtils;",
+            "import ch.ivy.addon.portalkit.enums.GlobalVariableType;",
             "import ch.ivy.addon.portalkit.configuration.GlobalSetting;",
             "",
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "",
+            "if (in.settingInputType == GlobalVariableType.MULTI_EXTERNAL_SELECTIONS) {",
+            "  if (CollectionUtils.isNotEmpty(in.selectedMultiSettings)) {",
+            "    String combinedSettings = \"\";",
+            "    in.selectedSetting.setValue(String.join(\",\", in.selectedMultiSettings));",
+            "  }",
+            "}",
             "",
             "GlobalSettingService globalSettingService= new GlobalSettingService();",
             "in.selectedSetting = globalSettingService.save(in.selectedSetting) as GlobalSetting;",
