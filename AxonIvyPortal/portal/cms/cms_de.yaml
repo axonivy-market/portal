@@ -232,6 +232,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       EnableSwitchThemeModeButton: Setzen Sie diesen Wert auf true, um die Schaltfläche "Thema wechseln" zu aktivieren.
       RoleDirectChildrenLimit: 'Die eingestellte Zahl steuert die Anzahl der direkten untergeordneten Rollen, die auf der Registerkarte Rollenverwaltung angezeigt werden. Gültige Zahl: 10, 50, 100'
       RoleParentLimit: 'Die eingestellte Zahl steuert die Anzahl der übergeordneten Rollen, die beim Filtern von Rollen auf der Registerkarte Rollenverwaltung angezeigt werden. Gültige Zahl: 5, 10, 20'
+      SearchScopeCaseFields: Festlegung der Felder, die bei der globalen Suche verwendet werden sollen, um neben der Fallnummer übereinstimmende Fälle zu finden (dies kann die Leistung der Suche beeinflussen)
+      SearchScopeTaskFields: Festlegung der Felder, die die globale Suche neben der Aufgabenkennung verwendet, um passende Aufgaben zu finden (dies kann die Leistung der Suche beeinflussen)
       ShowLoginPageFooter: Zum Ein-/Ausschalten der Anzeige der Fußzeile auf der Anmeldeseite.
       behaviourWhenClickingOnLineInTaskList: Zum Umschalten des Verhaltens (Ausführen der Aufgabe oder Aufrufen der Aufgabendetails) beim Klicken auf eine Zeile in der Aufgabenliste, im Aufgaben-Widget des Dashboards und bei verwandten Aufgaben auf der Seite mit den Vorgangsdetails.
       chatMaxConnection: 'Die gesetzte Nummer steuert die Anzahl der erlaubten Tabs mit aktiven Chat. Falls mehr Tabs geöffnet werden, wird der Chat in inaktive Tabs deaktiviert. Erlaubte Werte zw. 1-5 '
@@ -1420,6 +1422,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     WAITING_FOR_INTERMEDIATE_EVENT_UPPERCASE: WARTEN AUF EREIGNIS
     ZOMBIE: Zombie
   taskView:
+    GlobalSearchText: Aufgaben enthalten das Schlüsselwort "{0}" in {1}.
     filterTextPlaceHolderMobile: Name oder Beschreibung
     filterTextPlaceholder: Name, Beschreibung oder ID
     restoreDefaultFilterMessage: Wenn Sie fortfahren, wird der Standardfilter angewendet.
@@ -1534,6 +1537,7 @@ Dialogs:
                 destroyCase: Vorgang löschen
               CaseOwner: Prozessverantwortlicher
               Finished: Erledigt
+              GlobalSearchText: Die Fälle enthalten das Schlüsselwort "{0}" in {1}.
               ShowBusinessDetails: Business Details
               caseNameNotAvailable: '[Kein Vorgangsname verfügbar]'
               defaultEmptyMessage: Keine Vorgänge verfügbar
@@ -1674,6 +1678,13 @@ Labels:
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
   Enums:
+    SearchScopeCaseField:
+      CUSTOM: Benutzerdefinierte Stringfelder
+      DESCRIPTION: Beschreibung
+      NAME: Name
+    SearchScopeTaskField:
+      DESCRIPTION: Beschreibung
+      NAME: Name
     ThemeMode:
       DARK: Dunkel
       LIGHT: Hell
