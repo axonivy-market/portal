@@ -268,11 +268,11 @@ Variables:
     DashboardTemplates:
 
     SearchScope:
-      # Defining task fields will be used by global search.
+      # Defining the fields that the global search will use to find matching tasks beside task Id (this can influence the performance of the search)
       # [Enum: NAME, DESCRIPTION]
       ByTaskFields: NAME,DESCRIPTION
 
-      # Defining case fields will be used by global search.
+      # Defining the fields that the global search will use to find matching cases beside case Id (this can influence the performance of the search)
       # [Enum: NAME, DESCRIPTION, CUSTOM]
       ByCaseFields: NAME,DESCRIPTION,CUSTOM
 
