@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 
@@ -88,9 +89,9 @@ public class TaskExporter extends Exporter {
         }
         return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(task.getActivator(), task.getActivatorName());
       case PRIORITY:
-        return task.getPriority().toString();
+        return TaskUtils.convertToUserFriendlyTaskPriority(task.getPriority());
       case STATE:
-        return task.getState().toString();
+        return TaskUtils.convertToUserFriendlyTaskState(task.getState());
       case CREATION_TIME:
         return task.getStartTimestamp();
       case EXPIRY_TIME:

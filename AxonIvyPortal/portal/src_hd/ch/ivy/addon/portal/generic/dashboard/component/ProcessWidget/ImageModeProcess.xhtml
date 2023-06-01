@@ -61,11 +61,12 @@
             id="start-button" actionListener="#{dashboardProcessBean.startProcess(process)}" icon="si si-arrow-right-1"
             ajax="#{!isExternalLink}"
             disabled="#{!isReadOnlyMode or isInConfiguration}" />
-          <p:link id="more-information" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}"
-            styleClass="process-more-info-link" href="#{dashboardProcessBean.getProcessInformationPageUrl(process)}"
-            disabled="#{!isReadOnlyMode or isInConfiguration}" />
+          <div class="more-information-wrapper">
+            <p:link id="more-information" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}"
+              styleClass="process-more-info-link" href="#{dashboardProcessBean.getProcessInformationPageUrl(process)}"
+              disabled="#{!isReadOnlyMode or isInConfiguration}" rendered="#{!isExternalLink}"/>
+          </div>
         </div>
-        
       </h:form>
     </div>
   </h:panelGroup>

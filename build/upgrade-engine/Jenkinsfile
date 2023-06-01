@@ -16,11 +16,10 @@ pipeline {
       steps {
         script {
           def today = new Date().format('dd-MM-yyyy_HH-mm')
-          def config = [portal:[engine: '10', postgresContainer: 'postgres-10', systemDatabase: 'AxonIvySystemDatabase-10'],
-                    performanceTest:[engine: 'performance-10', postgresContainer: 'postgres-performance-10', systemDatabase: 'AxonIvySystemDatabase-performance-10']]
+          def config = [portal:[engine: '10', systemDatabase: 'AxonIvySystemDatabase-10'],
+                    performanceTest:[engine: 'performance-10', systemDatabase: 'AxonIvySystemDatabase-performance-10']]
           def engineParentDir = '/var/tools/ivy/'
           engineDir = engineParentDir + config[params.engine]['engine']
-          def postgresContainer = config[params.engine]['postgresContainer']
           def systemDatabaseName = config[params.engine]['systemDatabase']
           def databaseBackupDir = '/var/database-backups/'
           def dbBackupFile = databaseBackupDir + systemDatabaseName + '-' + today + '.dump'
@@ -38,7 +37,7 @@ pipeline {
           sh """
             echo ====================Backup database====================
             [ -d ${databaseBackupDir} ] ||  mkdir -p ${databaseBackupDir}
-            docker exec -u postgres ${postgresContainer} pg_dump -Fc ${systemDatabaseName} > ${dbBackupFile}
+            docker exec -u postgres postgres pg_dump -Fc ${systemDatabaseName} > ${dbBackupFile}
           """
         }
       }

@@ -34,6 +34,7 @@ import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public final class TaskUtils {
@@ -332,4 +333,54 @@ public final class TaskUtils {
     String triggerNote = new TaskInforActionService().prepareTriggerEscalationNoteContent(fullName, userName, taskId);
     task.getCase().createNote(Ivy.session(), triggerNote);
   }
+  
+//To convert Ivy task state to portal task state with multiple languages
+ public static String convertToUserFriendlyTaskState(TaskState state) {
+   if (state == null) {
+     return StringUtils.EMPTY;
+   }
+   switch (state) {
+     case SUSPENDED:
+       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/SUSPENDED_UPPERCASE");
+     case CREATED:
+       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/OPEN_UPPERCASE");
+     case RESUMED:
+       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/INPROGRESS");
+     case DONE:
+       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/DONE_UPPERCASE");
+     case PARKED:
+       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/RESERVED");
+     case DESTROYED:
+       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/DESTROYED_UPPERCASE");
+     case DELAYED:
+       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/DELAYED_UPPERCASE");
+     case READY_FOR_JOIN:
+       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/READY_FOR_JOINING_UPPERCASE");
+     case FAILED:
+       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/FAILED_UPPERCASE");
+     case JOIN_FAILED:
+       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/JOIN_FAILED_UPPERCASE");
+     case WAITING_FOR_INTERMEDIATE_EVENT:
+       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/WAITING_FOR_INTERMEDIATE_EVENT_UPPERCASE");
+     default:
+       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/SYSTEM");
+   }
+ }
+ 
+ //To get Ivy task priority with multiple languages
+ public static String convertToUserFriendlyTaskPriority (WorkflowPriority priority) {
+   if (priority == null) {
+     return StringUtils.EMPTY;
+   }
+   switch(priority) {
+     case NORMAL:
+       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/NORMAL");
+     case LOW:
+       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/LOW");
+     case HIGH:
+       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/HIGH");
+       default:
+         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/EXCEPTION");
+   }
+ }
 }

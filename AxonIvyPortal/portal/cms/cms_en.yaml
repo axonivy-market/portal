@@ -379,10 +379,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     title: Title
   caseState:
     CREATED: Created
+    CREATED_UPPERCASE: CREATED
     DESTROYED: Destroyed
+    DESTROYED_UPPERCASE: DESTROYED
     DONE: Done
+    DONE_UPPERCASE: DONE
     FAILED: Failed
+    INPROGRESS: IN PROGRESS
     OPEN: Open
+    OPEN_UPPERCASE: OPEN
     RUNNING: In progress
     ZOMBIE: Zombie
   caseTreeTable:
@@ -1386,6 +1391,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     title: Task priority
   taskState:
     CREATED: Created
+    CREATED_UPPERCASE: CREATED
     DELAYED: Delayed
     DELAYED_UPPERCASE: DELAYED
     DESTROYED: Destroyed
@@ -1393,21 +1399,27 @@ ch.ivy.addon.portalkit.ui.jsf:
     DONE: Done
     DONE_UPPERCASE: DONE
     FAILED: Failed
+    FAILED_UPPERCASE: FAILED
     INPROGRESS: IN PROGRESS
     JOINING: Joining
+    JOINING_UPPERCASE: JOINING
     JOIN_FAILED: Join failed
+    JOIN_FAILED_UPPERCASE: JOIN FAILED
     OPEN: Open
     OPEN_UPPERCASE: OPEN
     PARKED: Reserved
     READY_FOR_JOIN: Ready for joining
     READY_FOR_JOINING: Ready for joining
+    READY_FOR_JOINING_UPPERCASE: READY FOR JOINING
     READY_FOR_JOIN_UPPERCASE: READY FOR JOIN
     RESERVED: RESERVED
     RESUMED: In progress
     SUSPENDED: Suspended
+    SUSPENDED_UPPERCASE: SUSPENDED
     SYSTEM: SYSTEM
     WAITING: Waiting
     WAITING_FOR_INTERMEDIATE_EVENT: Waiting for event
+    WAITING_FOR_INTERMEDIATE_EVENT_UPPERCASE: WAITING FOR EVENT
     ZOMBIE: Zombie
   taskView:
     filterTextPlaceHolderMobile: Name or Description
