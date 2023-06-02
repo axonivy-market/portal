@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
   "id" : "178592835845348C",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -49,40 +49,58 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "getExportedFileForCaseWidget(CaseDashboardWidget)",
       "config" : {
-        "callSignature" : "getExportedFileForCaseWidget",
-        "result" : {
-          "params" : [
-            { "name" : "exportFile", "type" : "org.primefaces.model.StreamedContent" }
-          ],
-          "map" : {
-            "result.exportFile" : "in.exportedFile"
-          }
-        },
+        "signature" : "getExportedFileForCaseWidget",
         "input" : {
           "params" : [
-            { "name" : "widget", "type" : "ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget" }
+            { "name" : "widget", "type" : "ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget", "desc" : "" }
           ],
           "map" : {
             "out.widget" : "param.widget"
           }
         },
-        "guid" : "1883384A85E2995B"
+        "result" : {
+          "params" : [
+            { "name" : "exportedFile", "type" : "org.primefaces.model.StreamedContent", "desc" : "" }
+          ],
+          "map" : {
+            "result.exportedFile" : "in.exportedFile"
+          }
+        },
+        "guid" : "1887AE0B655BD342"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 272 }
       },
-      "connect" : { "id" : "f8", "to" : "f7" }
+      "connect" : [
+        { "id" : "f8", "to" : "f7" }
+      ]
     }, {
-      "id" : "f76",
+      "id" : "f7",
       "type" : "Script",
-      "name" : "init data",
+      "name" : "count cases",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardCaseService;",
+            "",
+            "in.totalCases = DashboardCaseService.getInstance().countByCaseQuery(in.widget.dataModel.criteria.buildQuery());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 320, "y" : 272 }
+      },
+      "connect" : [
+        { "id" : "f10", "to" : "f9" }
+      ]
+    }, {
+      "id" : "f9",
+      "type" : "Script",
+      "name" : "Init data",
       "config" : {
         "output" : {
           "code" : [
             "import com.axonivy.portal.util.ExportUtils;",
-            "import ch.ivy.addon.portalkit.enums.DashboardColumnType;",
-            "import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;",
-            "import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;",
             "import java.util.ArrayList;",
             "",
             "in.loopCounter = 0;",
@@ -93,58 +111,13 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 392, "y" : 272 }
-      },
-      "connect" : { "id" : "f92", "to" : "f78" }
-    }, {
-      "id" : "f79",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 992, "y" : 272 }
-      }
-    }, {
-      "id" : "f78",
-      "type" : "Alternative",
-      "visual" : {
-        "at" : { "x" : 512, "y" : 272 }
+        "at" : { "x" : 504, "y" : 272 }
       },
       "connect" : [
-        { "id" : "f11", "to" : "f10", "condition" : "in.loopCounter <= in.totalCases / in.maxResultNumberPerQuery" },
-        { "id" : "f14", "to" : "f13" }
+        { "id" : "f16", "to" : "f15" }
       ]
     }, {
-      "id" : "f82",
-      "type" : "Script",
-      "name" : "counter++",
-      "config" : {
-        "output" : {
-          "code" : "in.loopCounter++;"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 776, "y" : 464 }
-      },
-      "connect" : { "id" : "f91", "to" : "f78" }
-    }, {
-      "id" : "f7",
-      "type" : "Script",
-      "name" : "count cases",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import org.primefaces.PrimeFaces;",
-            "import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardCaseService;",
-            "",
-            "in.totalCases = DashboardCaseService.getInstance().countByCaseQuery(in.widget.dataModel.criteria.buildQuery());"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 224, "y" : 272 }
-      },
-      "connect" : { "id" : "f9", "to" : "f76" }
-    }, {
-      "id" : "f10",
+      "id" : "f11",
       "type" : "Script",
       "name" : "find cases",
       "config" : {
@@ -158,9 +131,26 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 512, "y" : 368 }
+        "at" : { "x" : 624, "y" : 376 }
       },
-      "connect" : { "id" : "f12", "to" : "f82", "via" : [ { "x" : 512, "y" : 464 } ] }
+      "connect" : [
+        { "id" : "f19", "to" : "f12" }
+      ]
+    }, {
+      "id" : "f12",
+      "type" : "Script",
+      "name" : "counter++",
+      "config" : {
+        "output" : {
+          "code" : "in.loopCounter++;"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 912, "y" : 376 }
+      },
+      "connect" : [
+        { "id" : "f20", "to" : "f15" }
+      ]
     }, {
       "id" : "f13",
       "type" : "Script",
@@ -179,8 +169,26 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 864, "y" : 272 }
+        "at" : { "x" : 912, "y" : 272 }
       },
-      "connect" : { "id" : "f15", "to" : "f79" }
+      "connect" : [
+        { "id" : "f21", "to" : "f14" }
+      ]
+    }, {
+      "id" : "f14",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 1056, "y" : 272 }
+      }
+    }, {
+      "id" : "f15",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 624, "y" : 272 }
+      },
+      "connect" : [
+        { "id" : "f17", "to" : "f11", "condition" : "in.loopCounter <= in.totalCases / in.maxResultNumberPerQuery" },
+        { "id" : "f18", "to" : "f13" }
+      ]
     } ]
 }
