@@ -199,6 +199,11 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     return field;
   }
 
+  public void saveColumn() {
+    getColumnManagementDialog().$("button[id$='column-management-save-btn']").click();
+    $("div[id$=':column-management-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
   private SelenideElement getStandardFieldSelection() {
     getColumnManagementDialog().$("div[id$='standard-field-selection'] .ui-selectonemenu-trigger").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     return getColumnManagementDialog().$("div[id$='standard-field-selection'] .ui-selectonemenu-trigger");
