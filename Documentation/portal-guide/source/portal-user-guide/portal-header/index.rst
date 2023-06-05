@@ -157,7 +157,7 @@ a tab is provided, giving you the results of your search.
 HowTo: Limit search scope of Global Search
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default, Global Search looks for data that match your input in these fields:
+By default, Global Search looks for data that matches your input in these fields:
 
    - Task fields: Id, name, and description.
    - Case fields: Id, name, description, and any custom string field.
