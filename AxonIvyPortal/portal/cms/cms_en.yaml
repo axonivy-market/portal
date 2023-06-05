@@ -869,10 +869,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       manageDashboard: Manage dashboard
       removeDashboardHeader: Remove the "{0}" dashboard
     deleteWidget: Delete widget
+    downloadZipFileExplanation: If the number of items to export exceeds the limit of Excel rows, data will be split to multiple Excel files, then compressed in a ZIP file to download.
     editWidget: Edit widget
     existingField: The {0} field has already been existing
     expiryFrom: Expiry From
     expiryTo: Expiry To
+    export:
+      exportedCasesFileName: AXONIVY_Dataset_Cases_{0}_{1}.{2}
     field: Field
     fieldIsAdded: The {0} field is added
     iconMessage:
