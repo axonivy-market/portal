@@ -219,5 +219,34 @@ public class DashboardCaseWidgetTest extends BaseTest {
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget("New Your Cases");
     caseWidget.expand().shouldHave(size(1));
   }
-  
+
+  @Test
+  public void testExportExcel() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    String caseWidgetName = "Export Excel Case";
+
+    newDashboardDetailsEditPage.addWidget();
+    CaseEditWidgetNewDashBoardPage newCaseWidget = newDashboardDetailsEditPage.addNewCaseWidget();
+    newCaseWidget.waitPreviewTableLoaded();
+    newCaseWidget.openColumnManagementDialog();
+    newCaseWidget.selectCustomType();
+    newCaseWidget.addFirstCustomField();
+    newCaseWidget.saveColumn();
+    newCaseWidget.waitPreviewTableLoaded();
+    newCaseWidget.changeWidgetTitle(caseWidgetName);
+    newCaseWidget.save();
+    redirectToNewDashBoard();
+    
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    CaseWidgetNewDashBoardPage caseWidget = dashboardPage.selectCaseWidget(caseWidgetName);
+    caseWidget.clickExportExcel();
+    dashboardPage.isDownloadCompleted();
+  }
+
 }

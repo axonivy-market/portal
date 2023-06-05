@@ -867,10 +867,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       manageDashboard: Gérer le tableau de bord
       removeDashboardHeader: Supprimez le tableau de bord "{0}".
     deleteWidget: Supprimer le widget
+    downloadZipFileExplanation: Si le nombre d'éléments à exporter dépasse la limite des lignes Excel, les données seront divisées en plusieurs fichiers Excel, puis compressées dans un fichier ZIP à télécharger.
     editWidget: Modifier le widget
     existingField: Le champ {0} a déjà été créé
     expiryFrom: Expiration du
     expiryTo: Date d'expiration
+    export:
+      exportedCasesFileName: AXONIVY_Dataset_Cases_{0}_{1}.{2}
     field: Champ
     fieldIsAdded: Le champ {0} est ajouté
     iconMessage:
@@ -1414,7 +1417,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SYSTEM: SYSTÈME
     WAITING: Attente
     WAITING_FOR_INTERMEDIATE_EVENT: Attente d'un évènement
-    WAITING_FOR_INTERMEDIATE_EVENT_UPPERCASE: "ATTENTE D'UN ÉVÈNEMENT"
+    WAITING_FOR_INTERMEDIATE_EVENT_UPPERCASE: ATTENTE D'UN ÉVÈNEMENT
   taskView:
     filterTextPlaceHolderMobile: Nom ou description!
     filterTextPlaceholder: Nom, description ou identifiant!
