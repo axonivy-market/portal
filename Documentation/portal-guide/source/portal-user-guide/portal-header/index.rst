@@ -154,6 +154,24 @@ a tab is provided, giving you the results of your search.
    Contact your administrator for
    more information.
 
+HowTo: Limit search scope of Global Search
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+By default, Global Search looks for data that matches your input in these fields:
+
+   - Task fields: Id, name, and description.
+   - Case fields: Id, name, description, and any custom string field.
+
+As an administrator, you may want to limit fields which Global Search should be looking for.
+Portal provides two variables to help you:
+
+   - ``Portal.SearchScope.ByCaseFields``: Defining the fields that the global search
+     will use to find matching cases beside case Id (this can influence the performance of the search).
+   - ``Portal.SearchScope.ByTaskFields``: Defining the fields that the global search
+     will use to find matching tasks beside task Id (this can influence the performance of the search)
+
+You can configure these variables by :ref:`settings-admin-settings`.
+
 .. include:: ../includes/_common-icon.rst
 
 
