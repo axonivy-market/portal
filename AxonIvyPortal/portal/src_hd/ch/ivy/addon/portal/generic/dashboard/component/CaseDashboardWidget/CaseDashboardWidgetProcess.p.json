@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.22/schema.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
   "id" : "178592835845348C",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -85,7 +85,8 @@
             "",
             "in.totalCases = DashboardCaseService.getInstance().countByCaseQuery(in.widget.dataModel.criteria.buildQuery());"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 320, "y" : 272 }
