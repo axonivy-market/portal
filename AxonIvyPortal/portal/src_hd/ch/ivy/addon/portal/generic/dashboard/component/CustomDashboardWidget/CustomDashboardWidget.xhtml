@@ -67,7 +67,9 @@
         </ui:fragment>
 
         <ui:fragment rendered="#{empty widget.data.processPath}">
-          <iframe name="custom-widget-iframe-#{index}" src="#{widget.data.url}" class="dashboard-custom-iframe" sandbox="" />
+          <iframe name="custom-widget-iframe-#{index}" src="#{widget.data.url}" 
+            class="dashboard-custom-iframe dashboard-custom-iframe-hidden" 
+            onload="$(this).removeClass('dashboard-custom-iframe-hidden');" />
         </ui:fragment>
       </div>
     </ui:define>
