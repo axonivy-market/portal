@@ -57,38 +57,18 @@ Ls0 f4 182 198 20 20 13 0 #rect
 Ls0 f4 @|UdExitEndIcon #fIcon
 Ls0 f5 actionTable 'out=in;
 ' #txt
-Ls0 f5 actionCode 'import javax.faces.context.FacesContext;
+Ls0 f5 actionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
+import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
-import ch.ivyteam.ivy.security.IUser;
-import java.util.Locale;
+
 in.loginOk = ivy.session.loginSessionUser(in.username, in.password);
 out.password = null;
-if (!in.loginOk) 
-{
+
+if (!in.loginOk) {
 	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/login/loginFailed"), ""));
 	FacesContext.getCurrentInstance().validationFailed();
-}else{
-		
-		//set language from user settings or application details
-		IUser sessionUser = ivy.session.getSessionUser();
-		
-		if (sessionUser.getEMailLanguage() != null &&
-				sessionUser.getEMailLanguage() instanceof Locale) {
-			Locale l = ivy.session.getSessionUser().getEMailLanguage();
-			ivy.session.setContentLocale(l);
-			ivy.session.setFormattingLocale(l);
-			ivy.log.debug("User Settings: " + l.getDisplayName());
-		} else {
-			// Application Default
-			Locale default = ivy.request.getApplication().getDefaultEMailLanguage();
-			String language = default.getLanguage();
-			String country = default.getCountry();
-			Locale l = new Locale(language, country, "APPLICATION_DEFAULT");
-			ivy.session.setContentLocale(l);
-			ivy.session.setFormattingLocale(l);
-			ivy.log.debug("Application Default: " + l.getDisplayName());
-	}
-	
+} else{
+	UserUtils.setLanguague();
 }' #txt
 Ls0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

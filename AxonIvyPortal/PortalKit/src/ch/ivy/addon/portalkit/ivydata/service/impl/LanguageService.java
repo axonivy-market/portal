@@ -86,13 +86,13 @@ public class LanguageService implements ILanguageService {
 
     ivyLanguage.setAppDisplayName(appDisplayName);
     ivyLanguage.setAppName(app.getName());
-    ivyLanguage.setUserLanguage(getUserLanguage(user).toLowerCase());
+    ivyLanguage.setUserLanguage(getUserLanguage(user, app).toLowerCase());
     ivyLanguage.setSupportedLanguages(supportedLanguages);
     return ivyLanguage;
   }
 
-  private String getUserLanguage(IUser user) {
-    return user.getEMailLanguage() != null ? user.getEMailLanguage().toLanguageTag() : IApplication.current().getDefaultEMailLanguage().toLanguageTag();
+  private String getUserLanguage(IUser user, IApplication application) {
+    return user.getEMailLanguage() != null ? user.getEMailLanguage().toLanguageTag() : application.getDefaultEMailLanguage().toLanguageTag();
   }
 
   private List<String> getSupportedLanguagesFromPmvs(List<IProcessModelVersion> pmvs) {
