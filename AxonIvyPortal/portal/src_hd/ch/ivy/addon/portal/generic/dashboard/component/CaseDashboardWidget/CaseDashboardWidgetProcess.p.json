@@ -85,8 +85,7 @@
             "",
             "in.totalCases = DashboardCaseService.getInstance().countByCaseQuery(in.widget.dataModel.criteria.buildQuery());"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 320, "y" : 272 }
