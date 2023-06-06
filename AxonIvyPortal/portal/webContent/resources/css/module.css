@@ -5801,6 +5801,10 @@ border-top: 0.14rem dashed;
   font-weight: bold;
 }
 
+.dashboard-configuration__export-button-form {
+  display: inline;
+}
+
 .dashboard-configuration__content {
   margin-bottom: 2rem;
 }
