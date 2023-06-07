@@ -5708,10 +5708,6 @@ border-top: 0.14rem dashed;
   bottom: 0;
 }
 
-.dashboard-custom-iframe-hidden{
-  display: none;
-}
-
 .parameters-panel .param-label {
   word-break: break-word;
 }
