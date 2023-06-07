@@ -1338,7 +1338,8 @@
             "out.isBusinessCase" : "param.isBusinessCase"
           }
         },
-        "outLink" : "RelatedTasksOfCasePage.ivp"
+        "outLink" : "RelatedTasksOfCasePage.ivp",
+        "showInStartList" : false
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1024 },
