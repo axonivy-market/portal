@@ -42,14 +42,24 @@ public class CaseActionBean implements Serializable {
     if (isExpressCase(iCase)) {
       additionalCaseDetailsPageUri = ProcessStartCollector.getInstance().findExpressBusinessViewStartLink() + "?caseId=" + iCase.getId();
     } else {
-      additionalCaseDetailsPageUri = iCase.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).getOrNull();
+      additionalCaseDetailsPageUri = getBusinessDetailURLFromCustomField(iCase);
       if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {
         Map<String, String> params = new HashMap<>();
         params.put("caseId", String.valueOf(iCase.getId()));
         additionalCaseDetailsPageUri = PortalNavigator.buildUrlByKeyword("showAdditionalCaseDetails", START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE, params);
       } else {
-        additionalCaseDetailsPageUri = additionalCaseDetailsPageUri + "&embedInFrame";
+        additionalCaseDetailsPageUri += (additionalCaseDetailsPageUri.contains("?") ? "&" : "?").concat("embedInFrame");
       }
+    }
+    return additionalCaseDetailsPageUri;
+  }
+
+  private String getBusinessDetailURLFromCustomField(ICase iCase) {
+    String additionalCaseDetailsPageUri =
+        iCase.customFields().textField(AdditionalProperty.businessDetails.toString()).getOrNull();
+    if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {
+      additionalCaseDetailsPageUri = iCase.customFields()
+          .textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).getOrNull();
     }
     return additionalCaseDetailsPageUri;
   }
