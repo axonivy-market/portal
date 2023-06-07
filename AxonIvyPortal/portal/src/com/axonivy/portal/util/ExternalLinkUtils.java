@@ -20,7 +20,7 @@ import ch.ivyteam.util.Pair;
 
 public class ExternalLinkUtils {
 
-  public static final String IMAGE_DIRECTORY = "ExternalLinkProcess";
+  public static final String IMAGE_DIRECTORY = "com/axonivy/portal/ExternalLink";
   public static final String DEFAULT_LOCALE_TAG = "en";
   public static final String BASE_64 = "base64";
 
@@ -68,8 +68,21 @@ public class ExternalLinkUtils {
     return Pair.of(EMPTY, EMPTY);
   }
   
-  public static Boolean isValidImageUrl(String imageUrl) {
-    return StringUtils.isNotBlank(imageUrl) && (imageUrl.contains(IMAGE_DIRECTORY) || imageUrl.contains(BASE_64));
+  public static Boolean isValidImageUrl(String imageUrl, String imageType) {
+    if (StringUtils.isBlank(imageUrl)) {
+      return false;
+    }
+
+    if (imageUrl.contains(IMAGE_DIRECTORY)) {
+      ContentObject imageCMSObject = getApplicationCMS().child().file(imageUrl, imageType);
+      return imageCMSObject.exists();
+    }
+
+    if (imageUrl.contains(BASE_64)) {
+      return true;
+    }
+
+    return false;
   }
 
   private static ContentObjectValue readObjectValueOfDefaultLocale(ContentObject contentObject) {

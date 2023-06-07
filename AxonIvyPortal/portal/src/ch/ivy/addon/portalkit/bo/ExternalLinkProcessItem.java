@@ -85,7 +85,8 @@ public class ExternalLinkProcessItem implements Process {
   @Override
   public String getImageUrl() {
     String imageUrl = this.externalLink.getImageUrl();
-    return ExternalLinkUtils.isValidImageUrl(imageUrl) ? imageUrl : getContentImageUrl(DefaultImage.ARROWRIGHT.getPath());
+    return ExternalLinkUtils.isValidImageUrl(imageUrl, this.externalLink.getImageType()) ? imageUrl : getContentImageUrl(DefaultImage.ARROWRIGHT.getPath());
+    
   }
 
   public String getImageType() {
