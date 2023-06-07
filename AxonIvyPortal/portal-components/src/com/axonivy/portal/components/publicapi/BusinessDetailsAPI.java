@@ -7,15 +7,24 @@ import com.axonivy.portal.components.dto.BusinessDetailsDTO;
 import com.axonivy.portal.components.dto.builder.BusinessDetailsBuilder;
 import com.axonivy.portal.components.service.exception.PortalException;
 
+/**
+ * Portal API for modify business case details
+ *
+ */
 public class BusinessDetailsAPI {
 
-  public static void set(BusinessDetailsBuilder builder) {
-    BusinessDetailsDTO businessDetailDTO = builder.build();
+  /**
+   * Create and set URL to BUSINESS_DETAILS custom field.
+   *
+   * @param businessDetailsBuilder Business Details Builder
+   */
+  public static void create(BusinessDetailsBuilder businessDetailsBuilder) {
+    BusinessDetailsDTO businessDetailDTO = businessDetailsBuilder.build();
     String pageUrl = createPageUrl(businessDetailDTO);
-    setCustomfield(businessDetailDTO, pageUrl);
+    setToCustomfield(businessDetailDTO, pageUrl);
   }
 
-  private static void setCustomfield(BusinessDetailsDTO businessDetailDTO, String casePageUrl) {
+  private static void setToCustomfield(BusinessDetailsDTO businessDetailDTO, String casePageUrl) {
     businessDetailDTO.getiCase().customFields().textField(CustomFields.BUSINESS_DETAILS).set(casePageUrl);
   }
 
