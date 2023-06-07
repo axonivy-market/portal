@@ -56,7 +56,8 @@ public class CaseActionBean implements Serializable {
 
   private String getBusinessDetailURLFromCustomField(ICase iCase) {
     String additionalCaseDetailsPageUri =
-        iCase.customFields().textField(AdditionalProperty.businessDetails.toString()).getOrNull();
+        iCase.customFields().textField(com.axonivy.portal.components.constant.CustomFields.BUSINESS_DETAILS)
+        .getOrNull();
     if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {
       additionalCaseDetailsPageUri = iCase.customFields()
           .textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).getOrNull();
