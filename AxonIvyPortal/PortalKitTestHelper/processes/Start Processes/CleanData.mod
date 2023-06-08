@@ -399,9 +399,10 @@ Ca0 f30 1209 81 30 30 -65 -38 #rect
 Ca0 f30 @|StartRequestIcon #fIcon
 Ca0 f31 actionTable 'out=in;
 ' #txt
-Ca0 f31 actionCode 'import java.util.Locale;
+Ca0 f31 actionCode 'import ch.ivyteam.ivy.application.IApplication;
+import java.util.Locale;
 
-Locale default = ivy.request.getApplication().getDefaultEMailLanguage();
+Locale default = IApplication.current().getDefaultEMailLanguage();
 ivy.session.getSessionUser().setEMailLanguage(default);
 ' #txt
 Ca0 f31 1168 170 112 44 0 -8 #rect
@@ -486,28 +487,13 @@ Ca0 f38 expr out #txt
 Ca0 f38 64 381 64 404 #arcP
 Ca0 f40 actionTable 'out=in;
 ' #txt
-Ca0 f40 actionCode 'import javax.faces.context.FacesContext;
+Ca0 f40 actionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
+import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
-import ch.ivyteam.ivy.security.IUser;
-import java.util.Locale;
+
 ivy.session.loginSessionUser("demo", "demo");
 //set language from user settings or application details
-IUser sessionUser = ivy.session.getSessionUser();
-
-if (sessionUser.getEMailLanguage() != null &&
-		sessionUser.getEMailLanguage() instanceof Locale) {
-	Locale l = ivy.session.getSessionUser().getEMailLanguage();
-	ivy.session.setContentLocale(l);
-	ivy.session.setFormattingLocale(l);
-} else {
-	// Application Default
-	Locale default = ivy.request.getApplication().getDefaultEMailLanguage();
-	String language = default.getLanguage();
-	String country = default.getCountry();
-	Locale l = new Locale(language, country, "APPLICATION_DEFAULT");
-	ivy.session.setContentLocale(l);
-	ivy.session.setFormattingLocale(l);
-}' #txt
+UserUtils.setLanguague();' #txt
 Ca0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

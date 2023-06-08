@@ -18,17 +18,17 @@ import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserAbsence;
-import ch.ivyteam.ivy.server.ServerFactory;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 @SuppressWarnings("deprecation")
 public class UserUtils {
 
-  private static final String APPLICATION_DEFAULT = "APPLICATION_DEFAULT";
   private static final String SELECTED_TASK_FILTER_SET = "SELECTED_TASK_FILTER_SET";
   private static final String SELECTED_TASK_FILTER = "SELECTED_TASK_FILTER";
   private static final String TASK_KEYWORD_FILTER = "TASK_KEYWORD_FILTER";
@@ -49,19 +49,12 @@ public class UserUtils {
    */
   public static void setLanguague() {
     try {
-      ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
-          IUser sessionUser = getIvySession().getSessionUser();
-          Locale l = null;
-          if (sessionUser.getEMailLanguage() != null) {
-            l = sessionUser.getEMailLanguage();
-          } else {
-            // Application Default
-            Locale defaultApplicationLocal = Ivy.request().getApplication().getDefaultEMailLanguage();
-            l = new Locale(defaultApplicationLocal.getLanguage(), defaultApplicationLocal.getCountry(), APPLICATION_DEFAULT);
-          }
-          getIvySession().setContentLocale(l);
-          getIvySession().setFormattingLocale(l);
-          return null;
+      Sudo.call(()->{
+        IUser sessionUser = getIvySession().getSessionUser();
+        Locale locale = sessionUser.getEMailLanguage() != null ? locale = sessionUser.getEMailLanguage() : IApplication.current().getDefaultEMailLanguage();
+        getIvySession().setContentLocale(locale);
+        getIvySession().setFormattingLocale(locale);
+        return null;
       });
     } catch (Exception e) {
       Ivy.log().error(e);
