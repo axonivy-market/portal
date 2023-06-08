@@ -58,7 +58,7 @@ public class UserUtils {
   public static void setLanguague() {
     Sudo.get(()->{
       IUser sessionUser = getIvySession().getSessionUser();
-      Locale locale = sessionUser.getLanguage() != null ? sessionUser.getLanguage() : LanguageService.newInstance().getDefaultEmailLanguage();;
+      Locale locale = sessionUser.getLanguage() != null ? sessionUser.getLanguage() : LanguageService.newInstance().getDefaultEmailLanguage();
       
       getIvySession().setContentLocale(locale);
       getIvySession().setFormattingLocale(locale);
