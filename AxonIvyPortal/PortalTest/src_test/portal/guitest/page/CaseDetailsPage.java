@@ -185,6 +185,13 @@ public class CaseDetailsPage extends TemplatePage {
     return new TaskDetailsPage();
   }
 
+  public TaskDetailsPage openTasksOfCasePage(String taskName) {
+    caseItem.findElement(By.cssSelector("div[id$='related-tasks']"))
+        .findElements(By.cssSelector("td.related-task-name-column")).stream()
+        .filter(element -> element.getText().equals(taskName)).findFirst().get().click();
+    return new TaskDetailsPage();
+  }
+
   public TaskDetailsPage openTasksOfCasePageViaDetailsAction(int index) {
     String openDetailsCommandButton = String.format("[id$='task-widget:related-tasks:%d:additional-options:task-open-detail-command']", index);
     waitForElementDisplayed(By.cssSelector(openDetailsCommandButton), true);
