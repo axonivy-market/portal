@@ -171,5 +171,106 @@
         "at" : { "x" : 1128, "y" : 176 },
         "size" : { "width" : 768, "height" : 316 }
       }
+    }, {
+      "id" : "f15",
+      "type" : "RequestStart",
+      "name" : "CaseDetailWithExternalLink.ivp",
+      "config" : {
+        "callSignature" : "CaseDetailWithExternalLink",
+        "outLink" : "CaseDetailWithExternalLink.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 136, "y" : 304 }
+      },
+      "connect" : { "id" : "f17", "to" : "f16" }
+    }, {
+      "id" : "f16",
+      "type" : "Script",
+      "name" : "External Link",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.dto.builder.BusinessDetailsBuilder;",
+            "import com.axonivy.portal.components.publicapi.BusinessDetailsAPI;",
+            "BusinessDetailsAPI.create(new BusinessDetailsBuilder().iCase(ivy.case)",
+            "    .URL(\"Start Processes/AdditionalCaseDetailPageIframe/showInvestmentRequestCustomFieldIframe.ivp\")",
+            "    .build());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 344, "y" : 304 }
+      },
+      "connect" : { "id" : "f21", "to" : "f19" }
+    }, {
+      "id" : "f18",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 568, "y" : 304 }
+      }
+    }, {
+      "id" : "f19",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "task" : {
+          "name" : "Investment request with custom case detail iframe"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 472, "y" : 304 }
+      },
+      "connect" : { "id" : "f20", "to" : "f18", "condition" : "ivp==\"TaskA.ivp\"" }
+    }, {
+      "id" : "f22",
+      "type" : "RequestStart",
+      "name" : "CaseDetailWithProcessPath.ivp",
+      "config" : {
+        "callSignature" : "CaseDetailWithProcessPath",
+        "outLink" : "CaseDetailWithProcessPath.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 136, "y" : 432 }
+      },
+      "connect" : { "id" : "f28", "to" : "f23" }
+    }, {
+      "id" : "f23",
+      "type" : "Script",
+      "name" : "Process Path",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.dto.builder.BusinessDetailsBuilder;",
+            "import com.axonivy.portal.components.publicapi.BusinessDetailsAPI;",
+            "BusinessDetailsAPI.create(new BusinessDetailsBuilder().iCase(ivy.case)",
+            "    .URL(\"https://www.google.com/\")",
+            "    .isFullPath(true)",
+            "    .build());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 344, "y" : 432 }
+      },
+      "connect" : { "id" : "f27", "to" : "f25" }
+    }, {
+      "id" : "f24",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 568, "y" : 432 }
+      }
+    }, {
+      "id" : "f25",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "task" : {
+          "name" : "Investment request with custom case detail iframe"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 472, "y" : 432 }
+      },
+      "connect" : { "id" : "f26", "to" : "f24", "condition" : "ivp==\"TaskA.ivp\"" }
     } ]
 }

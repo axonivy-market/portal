@@ -3,7 +3,7 @@
   "id" : "1624CFE2532EF6BE",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "ch.ivy.addon.portal.generic.SetAdditonalCaseDetailPageData"
+    "data" : "com.axonivy.portal.components.SetAdditonalCaseDetailPageData"
   },
   "elements" : [ {
       "id" : "f0",
@@ -38,14 +38,10 @@
         "security" : "system",
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
-            "import ch.ivy.addon.portalkit.util.ProcessStartUtils;",
-            "import ch.ivy.addon.portalkit.enums.AdditionalProperty;",
+            "import com.axonivy.portal.components.publicapi.BusinessDetailsAPI;",
+            "import com.axonivy.portal.components.dto.builder.BusinessDetailsBuilder;",
             "",
-            "String casePageUrl = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(in.linkToAdditonalCaseDetailPage)",
-            "    + \"?caseId=\" + ivy.case.getId();",
-            "                      ",
-            "ivy.case.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).set(casePageUrl);"
+            "BusinessDetailsAPI.create(new BusinessDetailsBuilder().iCase(ivy.case).URL(in.linkToAdditonalCaseDetailPage).build());"
           ]
         }
       },
