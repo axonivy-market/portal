@@ -54,17 +54,20 @@
   <h:form id="widget-configuration-form" styleClass="ui-g">
     <c:if test="#{widget.type eq 'TASK'}">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidgetConfiguration id="new-widget-configuration-component" taskWidget="#{widget}"
+      	managedBean="#{dashboardDetailModificationBean}"
         componentToUpdate="widget-configuration-form" />
     </c:if>
 
     <c:if test="#{widget.type eq 'CASE'}">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidgetConfiguration id="new-widget-configuration-component" caseWidget="#{widget}"
+      	managedBean="#{dashboardDetailModificationBean}"
         componentToUpdate="widget-configuration-form" />
     </c:if>
 
     <c:if test="#{widget.type eq 'PROCESS'}">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessWidgetConfiguration id="new-widget-configuration-component" processWidget="#{widget}"
-        componentToUpdate="widget-configuration-form" isPublicDashboard="#{dashboardDetailModificationBean.publicDashboard}"/>
+        componentToUpdate="widget-configuration-form" isPublicDashboard="#{dashboardDetailModificationBean.publicDashboard}"
+        managedBean="#{dashboardDetailModificationBean}"/>
     </c:if>
 
     <c:if test="#{widget.type eq 'STATISTIC'}">
@@ -75,13 +78,15 @@
    <c:if test="#{widget.type eq 'CUSTOM'}">
      <ic:ch.ivy.addon.portal.generic.dashboard.component.CustomWidgetConfiguration id="new-widget-configuration-component"
        widget="#{widget}"
-       componentToUpdate="widget-configuration-form"/>
+       componentToUpdate="widget-configuration-form"
+       managedBean="#{dashboardDetailModificationBean}"/>
    </c:if>
 
    <c:if test="#{widget.type eq 'PROCESS_VIEWER'}">
      <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessViewerWidgetConfiguration id="new-widget-configuration-component"
        widget="#{widget}"
-       componentToUpdate="widget-configuration-form"/>
+       componentToUpdate="widget-configuration-form"
+       managedBean="#{dashboardDetailModificationBean}"/>
    </c:if>
 
    <c:if test="#{widget.type eq 'WELCOME'}">
@@ -92,7 +97,8 @@
 
    <c:if test="#{widget.type eq 'NEWS'}">
      <ic:com.axonivy.portal.dashboard.component.NewsWidgetConfiguration id="new-widget-configuration-component"
-       widget="#{widget}"/>
+       widget="#{widget}" 
+       managedBean="#{dashboardDetailModificationBean}"/>
    </c:if>
   </h:form>
 

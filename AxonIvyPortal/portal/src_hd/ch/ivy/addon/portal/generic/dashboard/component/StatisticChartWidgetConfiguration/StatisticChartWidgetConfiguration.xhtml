@@ -7,12 +7,14 @@
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="widget" type="ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget"/>
+  <cc:attribute name="managedBean" />
   <cc:attribute name="componentToUpdate"/>
   <cc:attribute name="isPublicDashboard"/>
 </cc:interface>
 
 <cc:implementation>
   <c:set var="widget" value="#{cc.attrs.widget}" />
+  <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
   <c:set var="isPublicDashboard" value="#{cc.attrs.isPublicDashboard}"/>
   <c:set var="componentToUpdate" value="#{cc.attrs.componentToUpdate}" />
 

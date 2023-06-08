@@ -4,11 +4,12 @@
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="widget" />
+  <cc:attribute name="managedBean" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="widget" value="#{cc.attrs.widget}" />
-
+  <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
   <f:event listener="#{dashboardProcessViewerWidgetConfigurationBean.preRender()}" type="preRenderComponent" />
 
   <!-- Configuration -->
@@ -28,7 +29,8 @@
           <p:inputText id="widget-title" styleClass="widget-configuration__input-text" value="#{widget.name}" />
         </div>
       </h:panelGroup>
-
+	  <!-- Add language button -->
+      <ic:ch.ivy.addon.portal.generic.dashboard.component.AddingLanguage managedBean="#{managedBean}"/>
       <h:panelGroup id="user-filter" layout="block" styleClass="ui-g-12 u-padding-0">
         <div class="ui-g-4">
           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/process')}" for="selected-process" />
@@ -47,6 +49,7 @@
       </h:panelGroup>
     </div>
   </h:panelGroup>
+  <!-- Multi language dialog-->
+  <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration titles="#{managedBean.widget.names}" managedBean="#{managedBean}"/>
 </cc:implementation>
-
 </html>

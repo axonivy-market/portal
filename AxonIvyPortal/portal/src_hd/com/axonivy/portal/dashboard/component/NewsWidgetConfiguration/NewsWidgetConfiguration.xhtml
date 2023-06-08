@@ -5,11 +5,12 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="widget" />
+  <cc:attribute name="managedBean" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="widget" value="#{cc.attrs.widget}" />
-
+  <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
   <!-- Configuration -->
   <h:panelGroup id="filter-container" layout="block" styleClass="card dashboard-card widget-configuration news-widget-configuration">
     <div class="filter-container ui-g">
@@ -27,8 +28,12 @@
           <p:inputText id="widget-title" styleClass="widget-configuration__input-text" value="#{widget.name}" />
         </div>
       </h:panelGroup>
+      <!-- Add language button -->
+      <ic:ch.ivy.addon.portal.generic.dashboard.component.AddingLanguage managedBean="#{managedBean}"/>
     </div>
   </h:panelGroup>
+  <!-- Multi language dialog-->
+  <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration titles="#{managedBean.widget.names}" managedBean="#{managedBean}"/>
 </cc:implementation>
 
 </html>

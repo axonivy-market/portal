@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -19,6 +21,7 @@ import org.primefaces.event.SelectEvent;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
@@ -35,6 +38,8 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
+import ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.DashboardService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
@@ -381,4 +386,33 @@ public class DashboardBean implements Serializable {
     }
     return currentDashboardIndex;
   }
+
+  public List<String> getLanguages() {
+	  IvyLanguage ivyLanguage = LanguageService.newInstance().findUserLanguages().getIvyLanguage();
+	  return ivyLanguage.getSupportedLanguages();
+  }
+
+  public Map<String, DisplayName> getMapLanguages() {
+	  List<DisplayName> languages = this.selectedDashboard.getTitles();
+	  return languages.stream().collect(Collectors.toMap(o->o.getLocale().toLanguageTag(), o->o));
+  }
+
+  public void updateDashboardTitles() {
+	  Map<String,DisplayName> mapLanguage = getMapLanguages();
+	  List<String> supportedLanguages = getLanguages();
+	  for (String language : supportedLanguages) {
+		if (mapLanguage.get(language) == null) {
+			DisplayName displayName = new DisplayName();
+			displayName.setLocale(Locale.forLanguageTag(language));
+			displayName.setValue(Ivy.cms().coLocale("", displayName.getLocale()));
+			this.selectedDashboard.getTitles().add(displayName);	
+		}
+	  }
+  }
+  
+  public void processLanguage() {
+	  List<DisplayName>languages = this.selectedDashboard.getTitles();
+	  this.selectedDashboard.setTitle(languages.get(0).getValue());
+  }
+
 }

@@ -33,7 +33,9 @@
         value="#{widget.name}" />
       </div>
     </h:panelGroup>
-
+    <!-- Add language button -->
+	<ui:insert name="addingLanguageButton" />
+	
     <div class="ui-g-12 MarTop20 u-padding-0">
       <div class="ui-g-4 ui-md-5">
         <strong>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/availableFilters")}</strong>
@@ -47,7 +49,10 @@
           oncomplete="#{onCompletePreviewAction}" />
       </div>
     </div>
-
+    
+    <!-- Multi language dialog-->
+	<ui:insert name="multiLanguageDialog" />
+	
     <!-- Widget Filters -->
     <ui:insert name="widgetFilterContent" />
   </div>

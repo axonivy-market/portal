@@ -25,6 +25,7 @@ import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
@@ -193,5 +194,10 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
   public String generateDashboardPermisisonForDisplay(Dashboard dashboard) {
     return String.join(", ", dashboard.getPermissions());
+  }
+  
+  public void processLanguage() {
+	  List<DisplayName>languages = this.selectedDashboard.getTitles();
+	  this.selectedDashboard.setTitle(languages.get(0).getValue());
   }
 }

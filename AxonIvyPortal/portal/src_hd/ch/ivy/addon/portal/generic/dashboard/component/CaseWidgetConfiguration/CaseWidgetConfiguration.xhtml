@@ -5,6 +5,7 @@
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="caseWidget" />
+  <cc:attribute name="managedBean" />
   <cc:attribute name="componentToUpdate" />
   <cc:attribute name="isReadOnlyMode" default="false"/>
 </cc:interface>
@@ -14,6 +15,7 @@
 
   <ui:decorate template="/layouts/restricted/decorator/TableWidgetConfiguration.xhtml">
     <ui:param name="widget" value="#{cc.attrs.caseWidget}" />
+    <ui:param name="managedBean" value="#{cc.attrs.managedBean}" />
     <ui:param name="componentToUpdateOnPreviewAction" value="#{cc.clientId}:case-widget-preview:dashboard-cases" />
     <ui:param name="componentToProcessOnPreviewAction" value="user-filter" />
     <ui:param name="onCompletePreviewAction" value="PF('dashboard-cases-#{cc.attrs.caseWidget.id}').filter()" />
@@ -65,6 +67,14 @@
       <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidget id="case-widget-preview" isReadOnlyMode="#{cc.attrs.isReadOnlyMode}"
         caseWidget="#{widget}" renderColumnConfiguration="true" isPreviewMode="true"
         onCompleteLoadWidget="PF('new-widget-configuration-dialog').initPosition();" componentToUpdateCaseWidget="#{componentToUpdateOnPreviewAction}"/>
+    </ui:define>
+    
+    <ui:define name="addingLanguageButton">
+      <ic:ch.ivy.addon.portal.generic.dashboard.component.AddingLanguage managedBean="#{managedBean}"/>
+    </ui:define>
+    
+    <ui:define name="multiLanguageDialog">
+      <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration titles="#{managedBean.widget.names}" managedBean="#{managedBean}"/>
     </ui:define>
   </ui:decorate>
 
