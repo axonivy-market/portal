@@ -149,6 +149,7 @@
 
         <div class="ui-g-12 info-overlay-panel__footer">
           <div class="ui-g-12">
+            <ui:insert name="statisticPanelOtherAction" />
             <p:commandLink styleClass="Fright info-overlay-panel__close-link"
               onclick="PF('info-overlay-panel-#{index}').hide();"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"

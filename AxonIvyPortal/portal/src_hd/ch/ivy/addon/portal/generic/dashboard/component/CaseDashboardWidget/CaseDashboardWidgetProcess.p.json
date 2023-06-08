@@ -40,5 +40,143 @@
       "visual" : {
         "at" : { "x" : 224, "y" : 160 }
       }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "getExportedFileForCaseWidget(CaseDashboardWidget)",
+      "config" : {
+        "callSignature" : "getExportedFileForCaseWidget",
+        "result" : {
+          "params" : [
+            { "name" : "exportFile", "type" : "org.primefaces.model.StreamedContent" }
+          ],
+          "map" : {
+            "result.exportFile" : "in.exportedFile"
+          }
+        },
+        "input" : {
+          "params" : [
+            { "name" : "widget", "type" : "ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget" }
+          ],
+          "map" : {
+            "out.widget" : "param.widget"
+          }
+        },
+        "guid" : "1883384A85E2995B"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 272 }
+      },
+      "connect" : { "id" : "f8", "to" : "f7" }
+    }, {
+      "id" : "f76",
+      "type" : "Script",
+      "name" : "init data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.util.ExportUtils;",
+            "import ch.ivy.addon.portalkit.enums.DashboardColumnType;",
+            "import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;",
+            "import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;",
+            "import java.util.ArrayList;",
+            "",
+            "in.loopCounter = 0;",
+            "in.maxResultNumberPerQuery = 100000;",
+            "in.collectedCasesForExporting = new ArrayList();",
+            "in.columnsVisibility = ExportUtils.buildVisibilityColumnsForDashboardCaseWidget(in.widget.dataModel.criteria.columns);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 392, "y" : 272 }
+      },
+      "connect" : { "id" : "f92", "to" : "f78" }
+    }, {
+      "id" : "f79",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 992, "y" : 272 }
+      }
+    }, {
+      "id" : "f78",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 512, "y" : 272 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f10", "condition" : "in.loopCounter <= in.totalCases / in.maxResultNumberPerQuery" },
+        { "id" : "f14", "to" : "f13" }
+      ]
+    }, {
+      "id" : "f82",
+      "type" : "Script",
+      "name" : "counter++",
+      "config" : {
+        "output" : {
+          "code" : "in.loopCounter++;"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 776, "y" : 464 }
+      },
+      "connect" : { "id" : "f91", "to" : "f78" }
+    }, {
+      "id" : "f7",
+      "type" : "Script",
+      "name" : "count cases",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.primefaces.PrimeFaces;",
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardCaseService;",
+            "",
+            "in.totalCases = DashboardCaseService.getInstance().countByCaseQuery(in.widget.dataModel.criteria.buildQuery());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 272 }
+      },
+      "connect" : { "id" : "f9", "to" : "f76" }
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "find cases",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardCaseService;",
+            "",
+            "int startIndex = in.loopCounter * in.maxResultNumberPerQuery;",
+            "in.collectedCasesForExporting.addAll(DashboardCaseService.getInstance().findByCaseQuery(in.widget.dataModel.getCriteria().buildQuery(), startIndex, in.maxResultNumberPerQuery));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 512, "y" : 368 }
+      },
+      "connect" : { "id" : "f12", "to" : "f82", "via" : [ { "x" : 512, "y" : 464 } ] }
+    }, {
+      "id" : "f13",
+      "type" : "Script",
+      "name" : [
+        "Export",
+        "to Excel"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.exporter.CaseDashboardExporter;",
+            "",
+            "CaseDashboardExporter exporter = new CaseDashboardExporter(in.columnsVisibility, in.widget.name);",
+            "in.exportedFile = exporter.getStreamedContent(in.collectedCasesForExporting);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 864, "y" : 272 }
+      },
+      "connect" : { "id" : "f15", "to" : "f79" }
     } ]
 }
