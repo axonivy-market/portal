@@ -42,7 +42,7 @@
             "import com.axonivy.portal.components.publicapi.BusinessDetailsAPI;",
             "import com.axonivy.portal.components.dto.builder.BusinessDetailsBuilder;",
             "",
-            "BusinessDetailsAPI.create(new BusinessDetailsBuilder().iCase(ivy.case).URL(in.linkToAdditonalCaseDetailPage));"
+            "BusinessDetailsAPI.create(new BusinessDetailsBuilder().iCase(ivy.case).URL(in.linkToAdditonalCaseDetailPage).build());"
           ]
         },
         "sudo" : true

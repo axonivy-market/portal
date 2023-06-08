@@ -4,7 +4,6 @@ import org.apache.commons.lang.StringUtils;
 
 import com.axonivy.portal.components.constant.CustomFields;
 import com.axonivy.portal.components.dto.BusinessDetailsDTO;
-import com.axonivy.portal.components.dto.builder.BusinessDetailsBuilder;
 import com.axonivy.portal.components.service.exception.PortalException;
 
 /**
@@ -16,12 +15,11 @@ public class BusinessDetailsAPI {
   /**
    * Create and set URL to BUSINESS_DETAILS custom field.
    *
-   * @param businessDetailsBuilder Business Details Builder
+   * @param businessDetailsDTO Business Details Builder
    */
-  public static void create(BusinessDetailsBuilder businessDetailsBuilder) {
-    BusinessDetailsDTO businessDetailDTO = businessDetailsBuilder.build();
-    String pageUrl = createPageUrl(businessDetailDTO);
-    setToCustomfield(businessDetailDTO, pageUrl);
+  public static void create(BusinessDetailsDTO businessDetailsDTO) {
+    String pageUrl = createPageUrl(businessDetailsDTO);
+    setToCustomfield(businessDetailsDTO, pageUrl);
   }
 
   private static void setToCustomfield(BusinessDetailsDTO businessDetailDTO, String casePageUrl) {

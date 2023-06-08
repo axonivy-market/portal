@@ -188,7 +188,7 @@
             "import com.axonivy.portal.components.publicapi.BusinessDetailsAPI;",
             "",
             "BusinessDetailsAPI.create(new BusinessDetailsBuilder().iCase(ivy.case)",
-            "    .URL(\"Start Processes/AdditionalCaseDetailPageIframe/showInvestmentRequestCustomFieldIframe.ivp\"));"
+            "        .URL(\"Start Processes/AdditionalCaseDetailPageIframe/showInvestmentRequestCustomFieldIframe.ivp\").build());"
           ]
         }
       },
@@ -265,7 +265,7 @@
           "code" : [
             "import com.axonivy.portal.components.dto.builder.BusinessDetailsBuilder;",
             "import com.axonivy.portal.components.publicapi.BusinessDetailsAPI;",
-            "BusinessDetailsAPI.create(new BusinessDetailsBuilder().iCase(ivy.case).URL(\"Start Processes/AdditionalCaseDetailPageIframe/showInvestmentRequestCustomFieldIframe.ivp\").isFullPath(false));"
+            "BusinessDetailsAPI.create(new BusinessDetailsBuilder().iCase(ivy.case).URL(\"Start Processes/AdditionalCaseDetailPageIframe/showInvestmentRequestCustomFieldIframe.ivp\").isFullPath(false).build());"
           ]
         }
       },

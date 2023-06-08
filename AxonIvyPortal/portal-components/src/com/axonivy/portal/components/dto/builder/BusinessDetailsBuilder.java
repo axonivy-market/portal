@@ -1,6 +1,7 @@
 package com.axonivy.portal.components.dto.builder;
 
 import com.axonivy.portal.components.dto.BusinessDetailsDTO;
+import com.axonivy.portal.components.service.exception.PortalException;
 
 import ch.ivyteam.ivy.workflow.ICase;
 
@@ -16,7 +17,7 @@ public class BusinessDetailsBuilder {
 
   /**
    * Set ICase
-   * @param iCase 
+   * @param iCase
    *
    * @return BusinessDetailsBuilder
    */
@@ -27,7 +28,7 @@ public class BusinessDetailsBuilder {
 
   /**
    * Set URL
-   * @param URL 
+   * @param URL
    *
    * @return BusinessDetailsBuilder
    */
@@ -38,7 +39,7 @@ public class BusinessDetailsBuilder {
 
   /**
    * Set isFullPath
-   * @param isFullPath 
+   * @param isFullPath
    *
    * @return BusinessDetailsBuilder
    */
@@ -53,6 +54,9 @@ public class BusinessDetailsBuilder {
    * @return BusinessDetailsDTO
    */
   public BusinessDetailsDTO build() {
+    if (iCase == null || URL == null) {
+      throw new PortalException("iCase and URL cannot be null.");
+    }
     return new BusinessDetailsDTO(iCase, URL, isFullPath);
   }
 }
