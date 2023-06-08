@@ -15,7 +15,7 @@
     responsive="true" resizable="false" fitViewport="true" positionType="absolute"
     styleClass="edit-process-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editDialog/dialogHeaderTitle', [processWidgetBean.editedProcess.getName()])}">
     <p:ajax event="close" update="edit-process-dialog" resetValues="true" />
-    <h:form id="edit-process-form" styleClass="ui-g edit-process-form" onkeypress="if (event.keyCode == 13) { return false; }">
+    <h:form id="edit-process-form" styleClass="ui-g edit-process-form">
       <c:set var="process" value="#{processWidgetBean.editedProcess}" />
       <c:set var="processIcon" value="#{process.getIcon()}" />
       <div class="ui-g-12 edit-process-header-group u-no-padding-left u-no-padding-right">
@@ -180,8 +180,8 @@
                 styleClass="external-link-delete-image-button"
                 icon="si si-bin-1" />
             </h:panelGroup>
+            <p:defaultCommand target="external-link-name"/>
           </h:panelGroup>
-          <div/>         
         </h:panelGrid>
       </div>
     </h:form>
@@ -236,7 +236,8 @@
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addNewExternalLinkHeader')}" closeOnEscape="true" modal="true"
     appendTo="@(body)" resizable="false" responsive="true" positionType="absolute" fitViewport="true" styleClass="add-external-link-dialog">
     <p:ajax event="close" update="add-external-link-dialog" resetValues="true" />
-    <h:form id="add-external-link-form" styleClass="add-external-link-form ui-g" onkeypress="if (event.keyCode == 13) { return false; }">
+    <h:form id="add-external-link-form" styleClass="add-external-link-form ui-g">
+      <p:defaultCommand target="external-link-name"/>
       <p:messages styleClass="ui-g-12"/>
 
       <!-- Process Name -->

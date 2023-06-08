@@ -73,16 +73,12 @@ public class ExternalLinkUtils {
       return false;
     }
 
-    if (imageUrl.contains(IMAGE_DIRECTORY)) {
-      ContentObject imageCMSObject = getApplicationCMS().child().file(imageUrl, imageType);
-      return imageCMSObject.exists();
-    }
-
     if (imageUrl.contains(BASE_64)) {
       return true;
     }
 
-    return false;
+    ContentObject imageCMSObject = getApplicationCMS().child().file(imageUrl, imageType);
+    return imageCMSObject.exists();
   }
 
   private static ContentObjectValue readObjectValueOfDefaultLocale(ContentObject contentObject) {
