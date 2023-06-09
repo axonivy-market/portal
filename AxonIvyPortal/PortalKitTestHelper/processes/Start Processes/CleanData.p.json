@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "1511A66AF619A768",
   "config" : {
     "data" : "portalKit_test.Data"
@@ -454,12 +454,8 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivyteam.ivy.security.ISecurityContext;",
-            "import ch.ivyteam.ivy.language.LanguageConfigurator;",
-            "import javax.faces.context.FacesContext;",
-            "import javax.faces.application.FacesMessage;",
-            "import ch.ivyteam.ivy.security.IUser;",
-            "import java.util.Locale;",
+            "import ch.ivy.addon.portalkit.util.UserUtils;",
+            "",
             "ivy.session.loginSessionUser(\"demo\", \"demo\");",
             "for (int i = 0; i < 5; i++) {",
             "  if (ivy.session.isSessionUserUnknown()) {",
@@ -475,21 +471,7 @@
             "  }",
             "}",
             "",
-            "//set language from user settings or application details",
-            "IUser sessionUser = ivy.session.getSessionUser();",
-            "if (sessionUser.getLanguage() != null) {",
-            "  Locale l = ivy.session.getSessionUser().getLanguage();",
-            "  ivy.session.setContentLocale(l);",
-            "  ivy.session.setFormattingLocale(l);",
-            "} else {",
-            "  // Application Default",
-            "  Locale default = new LanguageConfigurator(ISecurityContext.current()).content();",
-            "  String language = default.getLanguage();",
-            "  String country = default.getCountry();",
-            "  Locale l = new Locale(language, country, \"APPLICATION_DEFAULT\");",
-            "  ivy.session.setContentLocale(l);",
-            "  ivy.session.setFormattingLocale(l);",
-            "}"
+            "UserUtils.setLanguague();"
           ]
         }
       },
