@@ -13,6 +13,7 @@ import static ch.ivyteam.ivy.workflow.TaskState.RESUMED;
 import static ch.ivyteam.ivy.workflow.TaskState.SUSPENDED;
 import static ch.ivyteam.ivy.workflow.TaskState.WAITING_FOR_INTERMEDIATE_EVENT;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -122,7 +123,7 @@ public class TaskService implements ITaskService {
     if (recordSet != null) {
       recordSet.getRecords().forEach(record -> {
         int priority = Integer.parseInt(record.getField("PRIORITY").toString());
-        long numberOfTasks = Long.parseLong(record.getField("COUNT").toString());
+        long numberOfTasks = ((BigDecimal)(record.getField("COUNT"))).longValue();
         if (priority == WorkflowPriority.EXCEPTION.intValue()) {
           priorityStatistic.setException(numberOfTasks);
         } else if (priority == WorkflowPriority.HIGH.intValue()) {
@@ -171,7 +172,7 @@ public class TaskService implements ITaskService {
     if (recordSet != null) {
       recordSet.getRecords().forEach(record -> {
         int state = Integer.parseInt(record.getField("STATE").toString());
-        long numberOfTasks = Long.parseLong(record.getField("COUNT").toString());
+        long numberOfTasks = ((BigDecimal)(record.getField("COUNT"))).longValue();
         taskStateStatistic.getNumberOfTasksByState().put(state, numberOfTasks);
       });
     }
@@ -197,7 +198,7 @@ public class TaskService implements ITaskService {
     taskCategoryStatistic.setNumberOfTasksByCategory(new HashMap<>());
     if (recordSet != null) {
       recordSet.getRecords().forEach(record -> {
-        long numberOfTasks = Long.parseLong(record.getField("COUNT").toString());
+        long numberOfTasks = ((BigDecimal)(record.getField("COUNT"))).longValue();
         taskCategoryStatistic.getNumberOfTasksByCategory().put(record.getField("CATEGORY").toString(), numberOfTasks);
       });
     }
