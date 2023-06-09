@@ -299,9 +299,9 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
       externalLink.setIcon(this.selectedIconProcess);
       externalLink.setName(this.editedExternalLink.getName());
       externalLink.setDescription(this.editedExternalLink.getDescription());
-      if (!Objects.equals(this.editedExternalLink.getImageUrl(), this.originalExternalLinkImage)) {
-        removeOriginalExternalLinkImage(externalLink.getImageUrl(), externalLink.getImageType());
-        externalLink.setImageUrl(this.editedExternalLink.getImageUrl());
+      if (!Objects.equals(this.editedExternalLink.getImageLocation(), this.originalExternalLinkImage)) {
+        removeOriginalExternalLinkImage(externalLink.getImageLocation(), externalLink.getImageType());
+        externalLink.setImageLocation(this.editedExternalLink.getImageLocation());
         externalLink.setImageType(this.editedExternalLink.getImageType());
       }
       if (CollectionUtils.isNotEmpty(this.selectedPermissionsForSavingEditedExternalLink)) {
@@ -321,16 +321,16 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     }
     removeTempExternalLinkImage();
     Pair<String, String> imageInfo = ExternalLinkUtils.handleImageUpload(event);
-    this.editedExternalLink.setImageUrl(imageInfo.getLeft());
+    this.editedExternalLink.setImageLocation(imageInfo.getLeft());
     this.editedExternalLink.setImageType(imageInfo.getRight());
   }
 
   public void removeTempExternalLinkImage() {
-    if (this.editedExternalLink != null && StringUtils.isNoneBlank(this.editedExternalLink.getImageUrl())) {
-      if (!Objects.equals(this.editedExternalLink.getImageUrl(), this.originalExternalLinkImage)) {
-        ExternalLinkUtils.removeImage(this.editedExternalLink.getImageUrl(), this.editedExternalLink.getImageType());
+    if (this.editedExternalLink != null && StringUtils.isNoneBlank(this.editedExternalLink.getImageLocation())) {
+      if (!Objects.equals(this.editedExternalLink.getImageLocation(), this.originalExternalLinkImage)) {
+        ExternalLinkUtils.removeImage(this.editedExternalLink.getImageLocation(), this.editedExternalLink.getImageType());
       }
-      this.editedExternalLink.setImageUrl(null);
+      this.editedExternalLink.setImageLocation(null);
       this.editedExternalLink.setImageType(null);
     }
   }
@@ -436,7 +436,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     this.editedExternalLink.setDescription(editedProcess.getDescription());
     this.editedExternalLink.setPermissions(editedProcess.getPermissions());
     if (!isDefaultProcessImage(editedProcess.getImageUrl())) {
-      this.editedExternalLink.setImageUrl(editedProcess.getImageUrl());
+      this.editedExternalLink.setImageLocation(editedProcess.getImageUrl());
       this.originalExternalLinkImage = editedProcess.getImageUrl();
       this.editedExternalLink.setImageType(((ExternalLinkProcessItem) editedProcess).getImageType());
     }

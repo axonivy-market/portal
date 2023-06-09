@@ -67,14 +67,14 @@ public class ExternalLinkBean implements Serializable {
   public void handleImageUpload(FileUploadEvent event) {
     removeImage();
     Pair<String, String> imageInfo = ExternalLinkUtils.handleImageUpload(event);
-    externalLink.setImageUrl(imageInfo.getLeft());
+    externalLink.setImageLocation(imageInfo.getLeft());
     externalLink.setImageType(imageInfo.getRight());
   }
   
   public void removeImage() {
-    if (StringUtils.isNoneBlank(externalLink.getImageUrl())) {
-      ExternalLinkUtils.removeImage(externalLink.getImageUrl(), externalLink.getImageType());
-      externalLink.setImageUrl(null);
+    if (StringUtils.isNoneBlank(externalLink.getImageLocation())) {
+      ExternalLinkUtils.removeImage(externalLink.getImageLocation(), externalLink.getImageType());
+      externalLink.setImageLocation(null);
       externalLink.setImageType(null);
     }
   }

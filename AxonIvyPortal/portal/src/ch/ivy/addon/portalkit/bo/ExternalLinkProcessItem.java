@@ -28,10 +28,12 @@ public class ExternalLinkProcessItem implements Process {
   }
   
   private void convertBase64ImageToFile() {
-    if (externalLink.getImageUrl() != null && externalLink.getImageUrl().contains(BASE_64)) {
-      Pair<String, String> imageInfo = ExternalLinkUtils.imageBase64ToApplicationCMSFile(externalLink.getImageUrl());
-      externalLink.setImageUrl(imageInfo.getLeft());
+    if (StringUtils.isNotBlank(externalLink.getImageContent()) && externalLink.getImageContent().contains(BASE_64)) {
+      Pair<String, String> imageInfo = ExternalLinkUtils.imageBase64ToApplicationCMSFile(externalLink.getImageContent());
+      ExternalLinkUtils.removeImage(externalLink.getImageLocation(), externalLink.getImageType());
+      externalLink.setImageLocation(imageInfo.getLeft());
       externalLink.setImageType(imageInfo.getRight());
+      externalLink.setImageContent(null);
       ExternalLinkService.getInstance().save(externalLink);
     }
   }
@@ -84,7 +86,7 @@ public class ExternalLinkProcessItem implements Process {
   
   @Override
   public String getImageUrl() {
-    String imageUrl = this.externalLink.getImageUrl();
+    String imageUrl = this.externalLink.getImageLocation();
     return ExternalLinkUtils.isValidImageUrl(imageUrl, this.externalLink.getImageType()) ? imageUrl : getContentImageUrl(DefaultImage.ARROWRIGHT.getPath());
   }
 

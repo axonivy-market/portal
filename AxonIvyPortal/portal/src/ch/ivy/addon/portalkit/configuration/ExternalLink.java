@@ -19,8 +19,9 @@ public class ExternalLink extends AbstractConfiguration {
   private Long creatorId;
   private String icon;
   private String description;
-  private String imageUrl;
+  private String imageLocation;
   private String imageType;
+  private String imageContent;
   private List<String> permissions;
   @JsonIgnore
   private List<String> defaultPermissions = new ArrayList<>();
@@ -62,12 +63,20 @@ public class ExternalLink extends AbstractConfiguration {
     this.description = description;
   }
 
-  public String getImageUrl() {
-    return imageUrl;
+  public String getImageLocation() {
+    return imageLocation;
   }
 
-  public void setImageUrl(String imageUrl) {
-    this.imageUrl = imageUrl;
+  public void setImageLocation(String imageLocation) {
+    this.imageLocation = imageLocation;
+  }
+
+  public String getImageContent() {
+    return imageContent;
+  }
+
+  public void setImageContent(String imageContent) {
+    this.imageContent = imageContent;
   }
 
   public String getImageType() {
