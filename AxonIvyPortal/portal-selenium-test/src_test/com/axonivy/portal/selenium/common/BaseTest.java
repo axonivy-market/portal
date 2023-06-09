@@ -230,7 +230,7 @@ public class BaseTest {
   }
   
   public void createJSonFile(String jsonFile, String key) {
-    var path = System.getProperty("user.dir") + "\\resources\\testFile\\" + jsonFile;
+    var path = FileHelper.getAbsolutePathToTestFile(jsonFile);
     String filepath = "";
     try {
       filepath = URLEncoder.encode(path, "UTF-8");
