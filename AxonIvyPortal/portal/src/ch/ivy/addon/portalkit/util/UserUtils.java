@@ -24,17 +24,18 @@ import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.language.LanguageConfigurator;
 import ch.ivyteam.ivy.language.LanguageManager;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.request.IHttpRequest;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserAbsence;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 public class UserUtils {
 
-  private static final String APPLICATION_DEFAULT = "APPLICATION_DEFAULT";
   private static final String SELECTED_TASK_FILTER_SET = "SELECTED_TASK_FILTER_SET";
   private static final String SELECTED_TASK_FILTER = "SELECTED_TASK_FILTER";
   private static final String TASK_KEYWORD_FILTER = "TASK_KEYWORD_FILTER";
@@ -56,19 +57,14 @@ public class UserUtils {
    * Set locale for session from user setting or application default
    */
   public static void setLanguague() {
-    IvyExecutor.executeAsSystem(()->{
+    Sudo.get(()->{
       IUser sessionUser = getIvySession().getSessionUser();
-      Locale l = null;
-      if (sessionUser.getLanguage() != null) {
-        l = sessionUser.getLanguage();
-      } else {
-        // Application Default
-        Locale defaultApplicationLocal = LanguageService.newInstance().getDefaultEmailLanguage();
-        l = new Locale(defaultApplicationLocal.getLanguage(), defaultApplicationLocal.getCountry(),
-            APPLICATION_DEFAULT);
-      }
-      getIvySession().setContentLocale(l);
-      getIvySession().setFormattingLocale(l);
+      LanguageConfigurator languageConfigurator = new LanguageConfigurator(ISecurityContext.current());
+      Locale contentLocale = sessionUser.getLanguage() != null ? sessionUser.getLanguage() : languageConfigurator.content();
+      Locale formattingLocale = sessionUser.getFormattingLanguage() != null ? sessionUser.getFormattingLanguage() : languageConfigurator.formatting();
+      
+      getIvySession().setContentLocale(contentLocale);
+      getIvySession().setFormattingLocale(formattingLocale);
       setDefaultDatePattern(sessionUser);
       return null;
     });
@@ -90,7 +86,7 @@ public class UserUtils {
   }
 
   public static List<IUserAbsence> findAbsenceOfUser(IUser iUser) {
-    return IvyExecutor.executeAsSystem(() -> iUser.getAbsences());
+    return Sudo.get(() -> iUser.getAbsences());
   }
 
   public static String findNextAbsenceOfUser(IUser iUser) {
@@ -228,7 +224,7 @@ public class UserUtils {
    */
   @SuppressWarnings("unchecked")
   public static List<UserDTO> findUsers(String query, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
           .withStartName("findUsers")
           .withParam("query", query)
@@ -246,25 +242,25 @@ public class UserUtils {
   }
 
   public static String getUserName(IUser user) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return user.getName();
     });
   }
 
   public static String getFullName(IUser user) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return user.getFullName();
     });
   }
 
   public static IUser findUserByUsername(String username) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return ISecurityContext.current().users().find(username);
     });
   }
 
   public static IUser findUserByUserId(Long userId) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return ISecurityContext.current().users().find(userId);
     });
   }
