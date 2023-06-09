@@ -384,10 +384,10 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
 
   public void deleteExternalLink() {
-    ExternalLinkService.getInstance().delete(this.deletedProcess.getId());
-    removeOriginalExternalLinkImage(this.deletedProcess.getImageUrl(),
-        ((ExternalLinkProcessItem) this.deletedProcess).getImageType());
-    getPortalProcesses().removeIf(process -> process.getId().equals(this.deletedProcess.getId()));
+    ExternalLinkService.getInstance().delete(deletedProcess.getId());
+    removeOriginalExternalLinkImage(deletedProcess.getImageUrl(),
+        ((ExternalLinkProcessItem) deletedProcess).getImageType());
+    getPortalProcesses().removeIf(process -> process.getId().equals(deletedProcess.getId()));
     groupProcessesByAlphabetIndex(getPortalProcesses());
   }
 

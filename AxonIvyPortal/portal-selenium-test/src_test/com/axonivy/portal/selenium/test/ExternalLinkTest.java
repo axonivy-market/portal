@@ -11,7 +11,7 @@ import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class ExternalLinkTest extends BaseTest {
 
   @Test
@@ -23,7 +23,7 @@ public class ExternalLinkTest extends BaseTest {
     ProcessWidgetPage processPage = new ProcessWidgetPage();
     processPage.waitForStartListShow();
     String iconClass = "si-server-search";
-    processPage.addExternalLink("Search page", "https://www.google.com", iconClass, "test-external-link-image.jpeg");
+    processPage.addExternalLink("Search page", "https://www.google.com", iconClass, "test-welcome-widget-image.jpg");
     
     $("i." + iconClass).should(Condition.appear);
   }
