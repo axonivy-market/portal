@@ -557,9 +557,9 @@ Data model:
 - ``creatorId``: the user id who create the link. This user can see and start the external link in any case
 - ``icon``: the style class of the link icon
 - ``description``: the description of a link
-- ``imageContent``: the base64 data format of the process image. If this value is valid then it will be converted to a physical file and the location of the file will update to ``imageLocation``
-- ``imageLocation``: the location of the process image. This image is stored in the Application CMS
-- ``imageType``: the extension of the process image
+- ``imageContent``: the base64 data format of the process image. If this value is valid then it will be converted to a physical file. If you want to configure external link images when deploying, you just need to define ``imageContent``
+- ``imageLocation``: the location of the process image. This image is stored in Application CMS. Basically, this should be handled by the engine
+- ``imageType``: the extension of the process image. Basically, this should be handled by the engine
 - ``permissions``: users have these roles can see and start the external link. If you don't define it, default role is Everybody
 
 Portal Express Processes
