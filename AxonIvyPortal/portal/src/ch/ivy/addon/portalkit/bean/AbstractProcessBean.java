@@ -112,6 +112,10 @@ public abstract class AbstractProcessBean implements Serializable {
     return !Objects.isNull(process) && process.getType() == ProcessType.EXTERNAL_LINK;
   }
 
+  public boolean isDefaultProcessImage(String objectPath) {
+    return objectPath != null && objectPath.contains("/cm");
+  }
+
   public boolean isCaseMap(Process process) {
     return !Objects.isNull(process) && process.getStartLink().endsWith(".icm");
   }
