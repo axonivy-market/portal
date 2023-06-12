@@ -471,7 +471,7 @@
             "  }",
             "}",
             "",
-            "UserUtils.setLanguague();"
+            "UserUtils.setLanguage();"
           ]
         }
       },
