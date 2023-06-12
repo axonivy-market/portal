@@ -17,7 +17,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 352, "y" : 64 }
+        "at" : { "x" : 344, "y" : 64 }
       },
       "connect" : { "id" : "f14", "to" : "f9" }
     }, {
@@ -53,7 +53,7 @@
       "id" : "f1",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 600, "y" : 184 }
+        "at" : { "x" : 616, "y" : 184 }
       }
     }, {
       "id" : "f9",
@@ -75,7 +75,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 572, "y" : 64 },
+        "at" : { "x" : 560, "y" : 64 },
         "size" : { "width" : 192, "height" : 60 }
       },
       "connect" : { "id" : "f11", "to" : "f8" }
@@ -109,7 +109,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 504, "y" : 184 }
+        "at" : { "x" : 520, "y" : 184 }
       },
       "connect" : { "id" : "f2", "to" : "f1", "condition" : "ivp==\"TaskA.ivp\"" }
     }, {
@@ -128,7 +128,7 @@
         },
         "case" : {
           "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"true\"" }
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
           ]
         },
         "outLink" : "showInvestmentRequestCustomFieldIframe.ivp",
@@ -154,30 +154,32 @@
         "",
         "1. Create the process for the customize case detail page. In this example, it is showInvestmentRequestCustomFieldIframe.ivp",
         "",
-        "2. Create custom string field name for case with name : \"embedInFrame\" and value is \"true\"",
+        "2. 2 ways to create custom page:",
         "",
-        "3. Store the URL of custom page to \"CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE\" additonal property.",
-        "We provide  the callable process \"SetAdditionalCaseDetailPage\" to do this",
-        "Input for this process is the friendly URL of your customized case detail page. ",
+        "\t- Call BusinessDetailsAPI.create()",
+        "\t",
+        "\t- Use SetAdditonalCaseDetailPage subprocess",
+        "",
+        "3. Input for this process is the friendly URL of your customized case detail page. ",
         "For this example, it's : Start Processes/AdditionalCaseDetailPageIframe/showInvestmentRequestCustomFieldIframe.ivp",
         "",
         "HOW TO RUN THIS EXAMPLE:",
         "",
-        "1. Run createInvestmentRequestIframe.ivp",
+        "1. Run createInvestmentRequestIframe.ivp to use subprocess style or run CaseDetailWithProcessPath.ivp to use public api style",
         "",
         "2. In Portal case list, expand \"Investment request with custom case detail using iFrame\" case, then click to \"Show business details\" button"
       ],
       "visual" : {
-        "at" : { "x" : 1128, "y" : 176 },
+        "at" : { "x" : 1176, "y" : 232 },
         "size" : { "width" : 768, "height" : 316 }
       }
     }, {
       "id" : "f15",
       "type" : "RequestStart",
-      "name" : "CaseDetailWithExternalLink.ivp",
+      "name" : "CaseDetailWithProcessPath.ivp",
       "config" : {
-        "callSignature" : "CaseDetailWithExternalLink",
-        "outLink" : "CaseDetailWithExternalLink.ivp"
+        "callSignature" : "CaseDetailWithProcessPath",
+        "outLink" : "CaseDetailWithProcessPath.ivp"
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 304 }
@@ -186,15 +188,20 @@
     }, {
       "id" : "f16",
       "type" : "Script",
-      "name" : "External Link",
+      "name" : "Process Path",
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.dto.builder.BusinessDetailsBuilder;",
+            "import com.axonivy.portal.components.dto.BusinessDetailsDTO;",
             "import com.axonivy.portal.components.publicapi.BusinessDetailsAPI;",
-            "BusinessDetailsAPI.create(new BusinessDetailsBuilder().iCase(ivy.case)",
-            "    .URL(\"Start Processes/AdditionalCaseDetailPageIframe/showInvestmentRequestCustomFieldIframe.ivp\")",
-            "    .build());"
+            "",
+            "",
+            "BusinessDetailsAPI.create(",
+            "    BusinessDetailsDTO.builder()",
+            "    .path(\"Start Processes/AdditionalCaseDetailPageIframe/showInvestmentRequestCustomFieldIframe.ivp\")",
+            "    .isEmbedInFrame(true)",
+            "    .build()",
+            ");"
           ]
         }
       },
@@ -206,7 +213,7 @@
       "id" : "f18",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 568, "y" : 304 }
+        "at" : { "x" : 616, "y" : 304 }
       }
     }, {
       "id" : "f19",
@@ -218,16 +225,16 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 472, "y" : 304 }
+        "at" : { "x" : 520, "y" : 304 }
       },
       "connect" : { "id" : "f20", "to" : "f18", "condition" : "ivp==\"TaskA.ivp\"" }
     }, {
       "id" : "f22",
       "type" : "RequestStart",
-      "name" : "CaseDetailWithProcessPath.ivp",
+      "name" : "caseDetailWithExternalLink.ivp",
       "config" : {
-        "callSignature" : "CaseDetailWithProcessPath",
-        "outLink" : "CaseDetailWithProcessPath.ivp"
+        "callSignature" : "caseDetailWithExternalLink",
+        "outLink" : "caseDetailWithExternalLink.ivp"
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 432 }
@@ -236,15 +243,16 @@
     }, {
       "id" : "f23",
       "type" : "Script",
-      "name" : "Process Path",
+      "name" : "External Link",
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.dto.builder.BusinessDetailsBuilder;",
+            "import com.axonivy.portal.components.dto.BusinessDetailsDTO;",
             "import com.axonivy.portal.components.publicapi.BusinessDetailsAPI;",
-            "BusinessDetailsAPI.create(new BusinessDetailsBuilder().iCase(ivy.case)",
-            "    .URL(\"https://www.google.com/\")",
-            "    .isFullPath(true)",
+            "",
+            "BusinessDetailsAPI.create(BusinessDetailsDTO.builder()",
+            "     .iCase(ivy.case)",
+            "    .path(\"https://www.google.com/\")",
             "    .build());"
           ]
         }
@@ -257,7 +265,7 @@
       "id" : "f24",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 568, "y" : 432 }
+        "at" : { "x" : 616, "y" : 432 }
       }
     }, {
       "id" : "f25",
@@ -269,8 +277,59 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 472, "y" : 432 }
+        "at" : { "x" : 520, "y" : 432 }
       },
       "connect" : { "id" : "f26", "to" : "f24", "condition" : "ivp==\"TaskA.ivp\"" }
+    }, {
+      "id" : "f29",
+      "type" : "RequestStart",
+      "name" : "oldStyleBusinessDetails.ivp",
+      "config" : {
+        "callSignature" : "oldStyleBusinessDetails",
+        "outLink" : "oldStyleBusinessDetails.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 136, "y" : 568 }
+      },
+      "connect" : { "id" : "f31", "to" : "f30" }
+    }, {
+      "id" : "f30",
+      "type" : "Script",
+      "name" : "Old style setting business case detail",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
+            "",
+            "",
+            "String casePageUrl = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/AdditionalCaseDetailPageIframe/showInvestmentRequestCustomFieldIframe.ivp\")",
+            " + \"?caseId=\" + ivy.case.getId();",
+            " ivy.case.customFields().textField(\"CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE\").set(casePageUrl);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 344, "y" : 568 }
+      },
+      "connect" : { "id" : "f35", "to" : "f33" }
+    }, {
+      "id" : "f32",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 616, "y" : 568 }
+      }
+    }, {
+      "id" : "f33",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "task" : {
+          "name" : "Investment request with custom case detail iframe"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 520, "y" : 568 }
+      },
+      "connect" : { "id" : "f34", "to" : "f32", "condition" : "ivp==\"TaskA.ivp\"" }
     } ]
 }

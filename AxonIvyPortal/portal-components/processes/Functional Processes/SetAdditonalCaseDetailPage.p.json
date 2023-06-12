@@ -38,10 +38,10 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.dto.BusinessDetailsDTO;",
             "import com.axonivy.portal.components.publicapi.BusinessDetailsAPI;",
-            "import com.axonivy.portal.components.dto.builder.BusinessDetailsBuilder;",
             "",
-            "BusinessDetailsAPI.create(new BusinessDetailsBuilder().iCase(ivy.case).URL(in.linkToAdditonalCaseDetailPage).build());"
+            "BusinessDetailsAPI.create(BusinessDetailsDTO.builder().path(in.linkToAdditonalCaseDetailPage).build());"
           ]
         }
       },
