@@ -7,6 +7,8 @@ import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.enums.SearchScopeCaseField;
+import com.axonivy.portal.enums.SearchScopeTaskField;
 import com.axonivy.portal.enums.ThemeMode;
 
 import ch.addon.portal.generic.userprofile.homepage.HomepageType;
@@ -73,11 +75,14 @@ public enum GlobalVariable {
   ROLE_PARENT_LIMIT("Portal.RoleParentLimit", GlobalVariableType.SELECTION, "10", "RoleParentLimit", new Object[] { 5, 10, 20}),
   SHOW_LOGIN_FOOTER("Portal.LoginPage.ShowFooter", GlobalVariableType.SELECTION, Option.TRUE.toString(), "ShowLoginPageFooter"),
   ENABLE_SWITCH_THEME_BUTTON("Portal.Theme.EnableSwitchThemeModeButton", GlobalVariableType.SELECTION, Option.TRUE.toString(), "EnableSwitchThemeModeButton"),
-  DEFAULT_THEME_MODE("Portal.Theme.Mode", GlobalVariableType.EXTERNAL_SELECTION, ThemeMode.LIGHT.toString(), "DefaultThemeMode", getThemeModes());
+  DEFAULT_THEME_MODE("Portal.Theme.Mode", GlobalVariableType.EXTERNAL_SELECTION, ThemeMode.LIGHT.toString(), "DefaultThemeMode", getThemeModes()),
+  SEARCH_SCOPE_BY_TASK_FIELDS("Portal.SearchScope.ByTaskFields", GlobalVariableType.MULTI_EXTERNAL_SELECTIONS, getSearchScopeTaskFields(), "SearchScopeTaskFields", getSearchScopeTaskFields()),
+  SEARCH_SCOPE_BY_CASE_FIELDS("Portal.SearchScope.ByCaseFields", GlobalVariableType.MULTI_EXTERNAL_SELECTIONS, getSearchScopeCaseFields(), "SearchScopeCaseFields", getSearchScopeCaseFields());
 
   private String key;
   private GlobalVariableType type;
   private String defaultValue;
+  private Map<String, Object> defaultValues;
   private String noteCMS;
   private Option[] options;
   private Object[] objectOptions;
@@ -141,6 +146,15 @@ public enum GlobalVariable {
     this.objectOptions = objectOptions;
   }
 
+  private GlobalVariable(String key, GlobalVariableType type, Map<String, Object> defaultValues, String noteCMS,
+      Map<String, Object> externalOptions) {
+    this.key = key;
+    this.type = type;
+    this.setDefaultValues(defaultValues);
+    this.noteCMS = noteCMS;
+    this.externalOptions = externalOptions;
+  }
+
   public String getKey() {
     return key;
   }
@@ -171,6 +185,14 @@ public enum GlobalVariable {
 
   public void setExternalOptions(Map<String, Object> externalOptions) {
     this.externalOptions = externalOptions;
+  }
+
+  public Map<String, Object> getDefaultValues() {
+    return defaultValues;
+  }
+
+  public void setDefaultValues(Map<String, Object> defaultValues) {
+    this.defaultValues = defaultValues;
   }
 
   private static Option[] getLoggedInUserFormatOptions() {
@@ -235,6 +257,22 @@ public enum GlobalVariable {
     Map<String, Object> result = new HashMap<>();
     for (ThemeMode themeMode : ThemeMode.values()) {
       result.put(themeMode.name(), themeMode);
+    }
+    return result;
+  }
+
+  private static Map<String, Object> getSearchScopeTaskFields() {
+    Map<String, Object> result = new HashMap<>();
+    for (SearchScopeTaskField field : SearchScopeTaskField.values()) {
+      result.put(field.name(), field);
+    }
+    return result;
+  }
+
+  private static Map<String, Object> getSearchScopeCaseFields() {
+    Map<String, Object> result = new HashMap<>();
+    for (SearchScopeCaseField field : SearchScopeCaseField.values()) {
+      result.put(field.name(), field);
     }
     return result;
   }

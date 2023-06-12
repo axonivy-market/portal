@@ -232,6 +232,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       EnableSwitchThemeModeButton: Défini à true pour activer le bouton de changement de thème.
       RoleDirectChildrenLimit: 'Le nombre défini contrôle la quantité de rôles d''enfants directs qui est affichée dans l''onglet Gestion des rôles. Nombre valide : 10, 50, 100'
       RoleParentLimit: 'Le nombre défini contrôle la quantité de rôles parents qui est affichée lors du filtrage des rôles dans l''onglet Gestion des rôles. Nombre valide : 5, 10, 20'
+      SearchScopeCaseFields: Définir les champs que la recherche globale utilisera pour trouver les cas correspondants en plus de l'identifiant du cas (cela peut influencer les performances de la recherche).
+      SearchScopeTaskFields: Définir les champs que la recherche globale utilisera pour trouver les tâches correspondantes à côté de l'Id de la tâche (cela peut influencer les performances de la recherche)
       ShowLoginPageFooter: Pour activer/désactiver l'affichage du pied de page sur la page de connexion.
       behaviourWhenClickingOnLineInTaskList: Pour changer de comportement (exécuter la tâche ou accéder aux détails de la tâche) en cliquant sur une ligne dans la liste des tâches, le widget des tâches du tableau de bord et les tâches liées dans la page des détails du cas.
       chatMaxConnection: Si le nombre de tabs du browser est supérieur à ce nombre maximum, le chat sera désactivé sur les tabs inactifs du browser. Les valeurs valides sont 1, 2, 3, 4, 5.
@@ -1089,6 +1091,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     favoriteProcesses: Vos favoris
     goTo: 'Aller à:'
     icon: Icône
+    image: Image
     isRequiredMessage: doit être défini
     linkDescription: Description du lien
     noFavoriteProcess: Vous n'avez pas défini de favoris.
@@ -1422,6 +1425,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     WAITING_FOR_INTERMEDIATE_EVENT_UPPERCASE: ATTENTE D'UN ÉVÈNEMENT
     ZOMBIE: Zombie
   taskView:
+    GlobalSearchText: Les tâches contiennent le mot-clé "{0}" dans Id de tâche, {1}.
     filterTextPlaceHolderMobile: Nom ou description!
     filterTextPlaceholder: Nom, description ou identifiant!
     restoreDefaultFilterMessage: Si vous continuez, le filtre standard sera appliqué.
@@ -1536,6 +1540,7 @@ Dialogs:
                 destroyCase: détruire le cas
               CaseOwner: Responsable de processus
               Finished: Terminé
+              GlobalSearchText: Les cas contiennent le mot-clé "{0}" dans Id du dossier, {1}.
               ShowBusinessDetails: Détails de l'entreprise
               caseNameNotAvailable: '[Nom de cas pas disponible]'
               defaultEmptyMessage: Il n'y a pas de dossiers
@@ -1676,6 +1681,13 @@ Labels:
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
   Enums:
+    SearchScopeCaseField:
+      CUSTOM: Champs de chaînes personnalisées
+      DESCRIPTION: Description
+      NAME: Nom
+    SearchScopeTaskField:
+      DESCRIPTION: Description
+      NAME: Nom
     ThemeMode:
       DARK: Dark
       LIGHT: Lumière
