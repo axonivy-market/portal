@@ -23,7 +23,7 @@ public class ExternalLinkTest extends BaseTest {
     ProcessWidgetPage processPage = new ProcessWidgetPage();
     processPage.waitForStartListShow();
     String iconClass = "si-server-search";
-    processPage.addExternalLink("Search page", "https://www.google.com", iconClass);
+    processPage.addExternalLink("Search page", "https://www.google.com", iconClass, "test-welcome-widget-image.jpg");
     
     $("i." + iconClass).should(Condition.appear);
   }
