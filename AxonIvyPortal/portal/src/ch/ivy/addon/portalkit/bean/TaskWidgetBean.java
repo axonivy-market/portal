@@ -203,10 +203,15 @@ public class TaskWidgetBean implements Serializable {
 
   public String getGlobalSearchText(TaskLazyDataModel model) {
     String result = "";
-    if (model.getCriteria().isGlobalSearch() && CollectionUtils.isNotEmpty(model.getCriteria().getSearchScopeTaskFields())) {
-      String searchScopeTaskFieldsString
-        = String.join(", ", model.getCriteria().getSearchScopeTaskFields().stream().map(SearchScopeTaskField::getLabel).collect(Collectors.toList()));
+    if (model.getCriteria().isGlobalSearch()) {
       String keyword = Optional.ofNullable(model.getCriteria().getKeyword()).orElse("");
+      String searchScopeTaskFieldsString = "";
+
+      if (CollectionUtils.isNotEmpty(model.getCriteria().getSearchScopeTaskFields())) {
+        searchScopeTaskFieldsString
+          = ", ".concat(String.join(", ", model.getCriteria().getSearchScopeTaskFields().stream().map(SearchScopeTaskField::getLabel).collect(Collectors.toList())));
+      }
+
       result = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskView/GlobalSearchText", Arrays.asList(keyword, searchScopeTaskFieldsString));
     }
     return result;
