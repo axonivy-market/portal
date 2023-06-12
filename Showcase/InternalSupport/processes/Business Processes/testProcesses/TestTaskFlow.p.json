@@ -1532,6 +1532,63 @@
       "connect" : [
         { "id" : "f73", "to" : "f58" }
       ]
+    }, {
+      "id" : "f76",
+      "type" : "RequestStart",
+      "name" : "CreateTaskForGlobalSearchTest.ivp",
+      "config" : {
+        "signature" : "CreateTaskForGlobalSearchTest",
+        "request" : {
+          "name" : "Create tasks for Global Search Test"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1840, "y" : 48 },
+        "labelOffset" : { "x" : 145, "y" : 25 }
+      },
+      "connect" : [
+        { "id" : "f78", "to" : "f77", "var" : "in1" }
+      ]
+    }, {
+      "id" : "f77",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "tasks" : [ {
+            "id" : "TaskA",
+            "name" : "Testing Task for Global Search (Name)",
+            "description" : "Testing Task for Global Search (Description)"
+          }, {
+            "id" : "TaskB",
+            "name" : "Temporary Task",
+            "description" : "This is temporary task"
+          } ],
+        "case" : {
+          "name" : "Testing Case for Global Search (Name)",
+          "description" : "Testing Case for Global Search (Description)",
+          "customFields" : [
+            { "name" : "testingcase", "type" : "STRING", "value" : "\"Testing Case custom field\"" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1840, "y" : 176 }
+      },
+      "connect" : [
+        { "id" : "f81", "to" : "f79", "condition" : "ivp==\"TaskA.ivp\"" },
+        { "id" : "f82", "to" : "f80", "condition" : "ivp==\"TaskB.ivp\"" }
+      ]
+    }, {
+      "id" : "f79",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1840, "y" : 352 }
+      }
+    }, {
+      "id" : "f80",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1928, "y" : 352 }
+      }
     } ],
   "layout" : {
     "lanes" : [ {
