@@ -195,11 +195,8 @@
             "import com.axonivy.portal.components.dto.BusinessDetailsDTO;",
             "import com.axonivy.portal.components.publicapi.BusinessDetailsAPI;",
             "",
-            "",
-            "BusinessDetailsAPI.create(",
-            "    BusinessDetailsDTO.builder()",
+            "BusinessDetailsAPI.create(BusinessDetailsDTO.builder()",
             "    .path(\"Start Processes/AdditionalCaseDetailPageIframe/showInvestmentRequestCustomFieldIframe.ivp\")",
-            "    .isEmbedInFrame(true)",
             "    .build()",
             ");"
           ]
