@@ -79,7 +79,7 @@ Es0 f13 actionTable 'out=in;
 Es0 f13 actionCode 'import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.util.UserUtils;
 
-UserUtils.setLanguague();' #txt
+UserUtils.setLanguage();' #txt
 Es0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -162,7 +162,7 @@ Es0 f18 actionTable 'out=in;
 ' #txt
 Es0 f18 actionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
 
-UserUtils.setLanguague();' #txt
+UserUtils.setLanguage();' #txt
 Es0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

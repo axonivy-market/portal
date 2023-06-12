@@ -493,7 +493,7 @@ import javax.faces.application.FacesMessage;
 
 ivy.session.loginSessionUser("demo", "demo");
 //set language from user settings or application details
-UserUtils.setLanguague();' #txt
+UserUtils.setLanguage();' #txt
 Ca0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

@@ -23,7 +23,6 @@ import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.property.ICustomProperties;
 import ch.ivyteam.ivy.application.property.ICustomProperty;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.workflow.IWorkflowContext;
 import ch.ivyteam.util.Property;
 
 @SuppressWarnings("unchecked")

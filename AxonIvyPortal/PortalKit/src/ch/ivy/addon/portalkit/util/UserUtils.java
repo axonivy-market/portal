@@ -47,18 +47,14 @@ public class UserUtils {
   /**
    * Set locale for session from user setting or application default
    */
-  public static void setLanguague() {
-    try {
-      Sudo.call(()->{
-        IUser sessionUser = getIvySession().getSessionUser();
-        Locale locale = sessionUser.getEMailLanguage() != null ? locale = sessionUser.getEMailLanguage() : IApplication.current().getDefaultEMailLanguage();
-        getIvySession().setContentLocale(locale);
-        getIvySession().setFormattingLocale(locale);
-        return null;
-      });
-    } catch (Exception e) {
-      Ivy.log().error(e);
-    }
+  public static void setLanguage() {
+    Sudo.get(()->{
+      IUser sessionUser = getIvySession().getSessionUser();
+      Locale locale = sessionUser.getEMailLanguage() != null ? locale = sessionUser.getEMailLanguage() : IApplication.current().getDefaultEMailLanguage();
+      getIvySession().setContentLocale(locale);
+      getIvySession().setFormattingLocale(locale);
+      return null;
+    });
   }
 
   public static String getSessionUserName() {
@@ -221,7 +217,7 @@ public class UserUtils {
    */
   @SuppressWarnings("unchecked")
   public static List<UserDTO> findUsers(String query, int startIndex, int  count, List<String> fromRoles, List<String> excludedUsernames) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
         return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
             .withStartName("findUsersOverAllApplications")
@@ -253,13 +249,13 @@ public class UserUtils {
   }
 
   public static String getUserName(IUser user) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return user.getName();
     });
   }
 
   public static String getFullName(IUser user) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return user.getFullName();
     });
   }
