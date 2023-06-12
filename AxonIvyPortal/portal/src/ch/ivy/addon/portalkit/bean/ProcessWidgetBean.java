@@ -23,10 +23,12 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
+import com.axonivy.portal.util.ExternalLinkUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
@@ -53,6 +55,7 @@ import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
+import ch.ivyteam.util.Pair;
 
 @ManagedBean
 @ViewScoped
@@ -64,6 +67,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   private Process deletedProcess;
   private Process editedProcess;
   private ExternalLink editedExternalLink;
+  private String originalExternalLinkImage;
   private String selectedIconProcess;
   private String viewMode;
   private List<ProcessMode> processViewModes;
@@ -295,6 +299,11 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
       externalLink.setIcon(this.selectedIconProcess);
       externalLink.setName(this.editedExternalLink.getName());
       externalLink.setDescription(this.editedExternalLink.getDescription());
+      if (!Objects.equals(this.editedExternalLink.getImageLocation(), this.originalExternalLinkImage)) {
+        removeOriginalExternalLinkImage(externalLink.getImageLocation(), externalLink.getImageType());
+        externalLink.setImageLocation(this.editedExternalLink.getImageLocation());
+        externalLink.setImageType(this.editedExternalLink.getImageType());
+      }
       if (CollectionUtils.isNotEmpty(this.selectedPermissionsForSavingEditedExternalLink)) {
         externalLink.setPermissions(this.selectedPermissionsForSavingEditedExternalLink);
       }
@@ -304,6 +313,32 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
       externalLinkService.save(externalLink);
     }
     return externalLink;
+  }
+
+  public void handleExternalLinkImageUpload(FileUploadEvent event) {
+    if(this.editedExternalLink == null) {
+      return;
+    }
+    removeTempExternalLinkImage();
+    Pair<String, String> imageInfo = ExternalLinkUtils.handleImageUpload(event);
+    this.editedExternalLink.setImageLocation(imageInfo.getLeft());
+    this.editedExternalLink.setImageType(imageInfo.getRight());
+  }
+
+  public void removeTempExternalLinkImage() {
+    if (this.editedExternalLink != null && StringUtils.isNoneBlank(this.editedExternalLink.getImageLocation())) {
+      if (!Objects.equals(this.editedExternalLink.getImageLocation(), this.originalExternalLinkImage)) {
+        ExternalLinkUtils.removeImage(this.editedExternalLink.getImageLocation(), this.editedExternalLink.getImageType());
+      }
+      this.editedExternalLink.setImageLocation(null);
+      this.editedExternalLink.setImageType(null);
+    }
+  }
+
+  public void removeOriginalExternalLinkImage(String imageUrl, String imageType) {
+    if (StringUtils.isNoneBlank(imageUrl) && !isDefaultProcessImage(imageUrl)) {
+      ExternalLinkUtils.removeImage(imageUrl, imageType);
+    }
   }
 
   private void updateStartProcessesList(String oldProcessName) {
@@ -349,8 +384,10 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
 
   public void deleteExternalLink() {
-    ExternalLinkService.getInstance().delete(this.deletedProcess.getId());
-    getPortalProcesses().removeIf(process -> process.getId().equals(this.deletedProcess.getId()));
+    ExternalLinkService.getInstance().delete(deletedProcess.getId());
+    removeOriginalExternalLinkImage(deletedProcess.getImageUrl(),
+        ((ExternalLinkProcessItem) deletedProcess).getImageType());
+    getPortalProcesses().removeIf(process -> process.getId().equals(deletedProcess.getId()));
     groupProcessesByAlphabetIndex(getPortalProcesses());
   }
 
@@ -398,6 +435,11 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     this.editedExternalLink.setLink(editedProcess.getStartLink());
     this.editedExternalLink.setDescription(editedProcess.getDescription());
     this.editedExternalLink.setPermissions(editedProcess.getPermissions());
+    if (!isDefaultProcessImage(editedProcess.getImageUrl())) {
+      this.editedExternalLink.setImageLocation(editedProcess.getImageUrl());
+      this.originalExternalLinkImage = editedProcess.getImageUrl();
+      this.editedExternalLink.setImageType(((ExternalLinkProcessItem) editedProcess).getImageType());
+    }
     if (CollectionUtils.isNotEmpty(editedProcess.getPermissions())) {
       List<String> permissions = editedProcess.getPermissions();
       this.editedExternalLink.setIsPublic(true);
