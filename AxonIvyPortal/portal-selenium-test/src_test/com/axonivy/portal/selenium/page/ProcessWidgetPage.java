@@ -2,6 +2,7 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Selenide.$;
 
+import com.axonivy.portal.selenium.common.FileHelper;
 import com.codeborne.selenide.Condition;
 
 public class ProcessWidgetPage extends TemplatePage {
@@ -10,7 +11,7 @@ public class ProcessWidgetPage extends TemplatePage {
     return ".view-mode-text";
   }
   
-  public void addExternalLink(String name, String link, String iconClass) {
+  public void addExternalLink(String name, String link, String iconClass, String imageName) {
     $("a[id$=':add-external-link-command']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $("a[id$=':add-external-link-command']").click();
     
@@ -25,6 +26,10 @@ public class ProcessWidgetPage extends TemplatePage {
     
     $("a[title='"+ iconClass + "']").click();
     $("div[id$='process-widget:add-external-link-form:external-link-icon:select-icon-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    
+    $("input[id$='process-widget:add-external-link-form:external-link-image-upload_input']").sendKeys(FileHelper.getAbsolutePathToTestFile(imageName));
+    
+    $("img[id$='process-widget:add-external-link-form:external-link-preview-image']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     
     $("button[id$='adding-new-external-link-command']").click();
     $("div[id='process-widget:add-external-link-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
