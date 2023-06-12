@@ -508,7 +508,7 @@
                 "",
                 "in.language.supportedLanguages.add(0, \"\");",
                 "in.language.supportedFormattingLanguages.add(0, \"\");",
-                "UserUtils.setLanguague();"
+                "UserUtils.setLanguage();"
               ]
             }
           },
@@ -573,7 +573,7 @@
               "code" : [
                 "import ch.ivy.addon.portalkit.util.UserUtils;",
                 "",
-                "UserUtils.setLanguague();"
+                "UserUtils.setLanguage();"
               ]
             }
           },

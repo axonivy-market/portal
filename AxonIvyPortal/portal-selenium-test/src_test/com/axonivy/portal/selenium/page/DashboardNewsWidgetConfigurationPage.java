@@ -1,14 +1,11 @@
 package com.axonivy.portal.selenium.page;
 
 
-import static com.codeborne.selenide.Condition.editable;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.editable;
 import static com.codeborne.selenide.Selenide.$;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class DashboardNewsWidgetConfigurationPage extends TemplatePage {
