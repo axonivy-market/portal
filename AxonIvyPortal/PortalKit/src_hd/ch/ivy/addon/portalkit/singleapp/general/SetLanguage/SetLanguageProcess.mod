@@ -35,7 +35,7 @@ Ls0 f1 @|UdProcessEndIcon #fIcon
 Ls0 f8 actionTable 'out=in;
 ' #txt
 Ls0 f8 actionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
-UserUtils.setLanguague();' #txt
+UserUtils.setLanguage();' #txt
 Ls0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
