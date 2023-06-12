@@ -4,7 +4,7 @@
     "templateId": "create-from-scratch",
     "titles": [
       {
-        "locale": "en__APPLICATION_DEFAULT",
+        "locale": "en",
         "value": "Dashboard"
       }
     ],
