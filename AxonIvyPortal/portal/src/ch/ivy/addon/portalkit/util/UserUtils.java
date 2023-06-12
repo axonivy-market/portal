@@ -24,6 +24,7 @@ import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.language.LanguageConfigurator;
 import ch.ivyteam.ivy.language.LanguageManager;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.request.IHttpRequest;
@@ -55,13 +56,15 @@ public class UserUtils {
   /**
    * Set locale for session from user setting or application default
    */
-  public static void setLanguague() {
+  public static void setLanguage() {
     Sudo.get(()->{
       IUser sessionUser = getIvySession().getSessionUser();
-      Locale locale = sessionUser.getLanguage() != null ? sessionUser.getLanguage() : LanguageService.newInstance().getDefaultEmailLanguage();
+      LanguageConfigurator languageConfigurator = new LanguageConfigurator(ISecurityContext.current());
+      Locale contentLocale = sessionUser.getLanguage() != null ? sessionUser.getLanguage() : languageConfigurator.content();
+      Locale formattingLocale = sessionUser.getFormattingLanguage() != null ? sessionUser.getFormattingLanguage() : languageConfigurator.formatting();
       
-      getIvySession().setContentLocale(locale);
-      getIvySession().setFormattingLocale(locale);
+      getIvySession().setContentLocale(contentLocale);
+      getIvySession().setFormattingLocale(formattingLocale);
       setDefaultDatePattern(sessionUser);
       return null;
     });

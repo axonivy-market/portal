@@ -429,7 +429,7 @@
             "  }",
             "}",
             "",
-            "UserUtils.setLanguague();"
+            "UserUtils.setLanguage();"
           ]
         }
       },
