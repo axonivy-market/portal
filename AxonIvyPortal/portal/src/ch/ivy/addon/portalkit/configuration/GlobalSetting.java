@@ -1,8 +1,15 @@
 package ch.ivy.addon.portalkit.configuration;
 
-import org.apache.commons.collections4.MapUtils;
-import org.apache.commons.lang.StringUtils;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.MapUtils;
+import org.apache.commons.lang3.StringUtils;
+
+import com.axonivy.portal.enums.SearchScopeCaseField;
+import com.axonivy.portal.enums.SearchScopeTaskField;
 import com.axonivy.portal.enums.ThemeMode;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -64,6 +71,8 @@ public class GlobalSetting extends AbstractConfiguration {
     } else if (variable.getType() == GlobalVariableType.EXTERNAL_SELECTION && MapUtils.isNotEmpty(variable.getExternalOptions())) {
       Object object = variable.getExternalOptions().get(defaultValue);
       return getDisplayValue(object);
+    } else if (variable.getType() == GlobalVariableType.MULTI_EXTERNAL_SELECTIONS && MapUtils.isNotEmpty(variable.getDefaultValues())) {
+      return getDisplayValueForMultiExternalSelections(variable.getDefaultValues());
     }
     return defaultValue;
   }
@@ -81,6 +90,17 @@ public class GlobalSetting extends AbstractConfiguration {
     } else if (variable.getType() == GlobalVariableType.EXTERNAL_SELECTION && MapUtils.isNotEmpty(variable.getExternalOptions())) {
       Object object = variable.getExternalOptions().get(value);
       return getDisplayValue(object);
+    } else if (variable.getType() == GlobalVariableType.MULTI_EXTERNAL_SELECTIONS && MapUtils.isNotEmpty(variable.getExternalOptions())) {
+      if (StringUtils.isBlank(value)) {
+        return value;
+      }
+      HashMap<String, Object> valueMap = new HashMap<>();
+      for (String val : Arrays.asList(value.split(","))) {
+        if (variable.getExternalOptions().get(val) != null) {
+          valueMap.put(val, variable.getExternalOptions().get(val));
+        }
+      }
+      return getDisplayValueForMultiExternalSelections(valueMap);
     }
     return value;
   }
@@ -100,13 +120,30 @@ public class GlobalSetting extends AbstractConfiguration {
       return ((DefaultImage)object).getLabel();
     } else if (object instanceof ThemeMode) {
       return ((ThemeMode)object).getLabel();
+    } else if (object instanceof SearchScopeTaskField) {
+      return ((SearchScopeTaskField)object).getLabel();
+    } else if (object instanceof SearchScopeCaseField) {
+      return ((SearchScopeCaseField)object).getLabel();
     } else {
       return (String)object;
     }
   }
 
+  private String getDisplayValueForMultiExternalSelections(Map<String, Object> optionMap) {
+    if (optionMap.isEmpty()) {
+      return "";
+    }
+    return String.join(",", optionMap.values()
+        .stream().map(o -> getDisplayValue(o)).collect(Collectors.toList()));
+  }
+
   public void setValueToDefault() {
-    value = GlobalVariable.valueOfKey(key).getDefaultValue();
+    GlobalVariable variable = GlobalVariable.valueOfKey(key);
+    if (variable.getType() == GlobalVariableType.MULTI_EXTERNAL_SELECTIONS) {
+      value =  String.join(",", variable.getDefaultValues().keySet());
+    } else {
+      value = variable.getDefaultValue();
+    }
   }
 
   @JsonIgnore

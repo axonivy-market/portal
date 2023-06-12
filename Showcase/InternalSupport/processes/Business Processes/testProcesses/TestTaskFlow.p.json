@@ -1437,11 +1437,67 @@
         "at" : { "x" : 472, "y" : 1471 }
       },
       "connect" : { "id" : "f73", "to" : "f58" }
+    }, {
+      "id" : "f76",
+      "type" : "RequestStart",
+      "name" : "CreateTaskForGlobalSearchTest.ivp",
+      "config" : {
+        "callSignature" : "CreateTaskForGlobalSearchTest",
+        "outLink" : "CreateTaskForGlobalSearchTest.ivp",
+        "startName" : "Create tasks for Global Search Test"
+      },
+      "visual" : {
+        "at" : { "x" : 1936, "y" : 48 },
+        "labelOffset" : { "x" : -47, "y" : 33 }
+      },
+      "connect" : { "id" : "f78", "to" : "f77", "var" : "in1" }
+    }, {
+      "id" : "f77",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp", "TaskB.ivp" ],
+        "case" : {
+          "name" : "Testing Case for Global Search (Name)",
+          "description" : "Testing Case for Global Search (Description)",
+          "customFields" : [
+            { "name" : "testingcase", "type" : "String", "value" : "\"Testing Case custom field\"" }
+          ]
+        },
+        "tasks" : {
+          "TaskA" : {
+            "name" : "Testing Task for Global Search (Name)",
+            "description" : "Testing Task for Global Search (Description)"
+          },
+          "TaskB" : {
+            "name" : "Temporary Task",
+            "description" : "This is temporary task"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1936, "y" : 176 }
+      },
+      "connect" : [
+        { "id" : "f81", "to" : "f80", "condition" : "ivp==\"TaskA.ivp\"" },
+        { "id" : "f82", "to" : "f79", "condition" : "ivp==\"TaskB.ivp\"" }
+      ]
+    }, {
+      "id" : "f79",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1872, "y" : 296 }
+      }
+    }, {
+      "id" : "f80",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1936, "y" : 296 }
+      }
     } ],
   "layout" : {
     "lanes" : [ {
         "name" : "Create Tasks",
-        "size" : 424
+        "size" : 440
       } ]
   }
 }
