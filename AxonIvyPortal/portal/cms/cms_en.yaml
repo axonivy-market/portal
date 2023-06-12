@@ -1423,7 +1423,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     WAITING_FOR_INTERMEDIATE_EVENT_UPPERCASE: WAITING FOR EVENT
     ZOMBIE: Zombie
   taskView:
-    GlobalSearchText: Tasks contain the keyword "{0}" in {1}.
+    GlobalSearchText: Tasks contain the keyword "{0}" in Task Id, {1}.
     filterTextPlaceHolderMobile: Name or Description
     filterTextPlaceholder: Name, Description or ID
     restoreDefaultFilterMessage: If you proceed, the standard filter will be applied.
@@ -1537,7 +1537,7 @@ Dialogs:
                 destroyCase: Destroy case
               CaseOwner: Case Owner
               Finished: Finished
-              GlobalSearchText: Cases contain the keyword "{0}" in {1}.
+              GlobalSearchText: Cases contain the keyword "{0}" in Case Id, {1}.
               ShowBusinessDetails: Business details
               caseNameNotAvailable: '[Case name not available]'
               defaultEmptyMessage: There are no cases
