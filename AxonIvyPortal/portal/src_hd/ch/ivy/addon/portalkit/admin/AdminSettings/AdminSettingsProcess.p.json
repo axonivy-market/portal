@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "150F0B4F8F3CB2CB",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -322,17 +322,23 @@
       "id" : "f115",
       "type" : "Alternative",
       "name" : "app exist ?",
+      "config" : {
+        "conditions" : {
+          "f19" : "!in.duplicateApp",
+          "f118" : "in.duplicateApp"
+        }
+      },
       "visual" : {
         "at" : { "x" : 1072, "y" : 336 },
         "labelOffset" : { "x" : -41, "y" : 7 }
       },
       "connect" : [
-        { "id" : "f19", "to" : "f209", "condition" : "!in.duplicateApp" },
+        { "id" : "f19", "to" : "f209" },
         { "id" : "f118", "to" : "f117", "label" : {
             "name" : "yes",
             "segment" : 0.68,
             "offset" : { "x" : 4, "y" : -6 }
-          }, "condition" : "in.duplicateApp" }
+          } }
       ]
     }, {
       "id" : "f117",
@@ -577,6 +583,11 @@
       "id" : "f209",
       "type" : "Alternative",
       "name" : "is add mode?",
+      "config" : {
+        "conditions" : {
+          "f211" : "in.isAddMode"
+        }
+      },
       "visual" : {
         "at" : { "x" : 1072, "y" : 416 },
         "labelOffset" : { "x" : -43, "y" : 5 }
@@ -586,7 +597,7 @@
             "name" : "yes",
             "segment" : 0.21,
             "offset" : { "x" : -12, "y" : 0 }
-          }, "condition" : "in.isAddMode" },
+          } },
         { "id" : "f213", "to" : "f212", "via" : [ { "x" : 1224, "y" : 416 } ], "label" : {
             "name" : "no",
             "segment" : 0.42,
@@ -722,10 +733,11 @@
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
             "",
             "if (in.settingInputType == GlobalVariableType.MULTI_EXTERNAL_SELECTIONS) {",
+            "  String combinedSettings = \"\";",
             "  if (CollectionUtils.isNotEmpty(in.selectedMultiSettings)) {",
-            "    String combinedSettings = \"\";",
-            "    in.selectedSetting.setValue(String.join(\",\", in.selectedMultiSettings));",
+            "    combinedSettings = String.join(\",\", in.selectedMultiSettings);",
             "  }",
+            "  in.selectedSetting.setValue(combinedSettings);",
             "}",
             "",
             "GlobalSettingService globalSettingService= new GlobalSettingService();",
