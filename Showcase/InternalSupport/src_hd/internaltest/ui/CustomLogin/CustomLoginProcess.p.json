@@ -78,7 +78,7 @@
             "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/login/loginFailed\"), \"\"));",
             "  FacesContext.getCurrentInstance().validationFailed();",
             "} else {",
-            "  UserUtils.setLanguague();",
+            "  UserUtils.setLanguage();",
             "}"
           ]
         }
