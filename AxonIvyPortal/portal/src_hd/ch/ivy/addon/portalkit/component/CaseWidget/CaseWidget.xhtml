@@ -183,6 +183,12 @@
               actionListener="#{caseWidgetBean.verifyCaseStateFilter(data.dataModel.selectedFilters)}" />
           </div>
         </h:panelGroup>
+
+        <!-- Global Search fields -->
+        <h:panelGroup id="global-search-text" rendered="#{data.dataModel.criteria.globalSearch}">
+          <h:outputText value="#{caseWidgetBean.getGlobalSearchText(data.dataModel)}" />
+        </h:panelGroup>
+
         <!-- Export to Excel, Manage Columns -->
         <h:panelGroup id="case-list-actions" styleClass="case-list-actions u-hidden-md-down  #{!cc.attrs.hideWidgetHeader ? '' : 'no-widget-header'}">
           <h:form id="case-export-to-excel-form" styleClass="case-export-to-excel-form u-mar-right-20">
