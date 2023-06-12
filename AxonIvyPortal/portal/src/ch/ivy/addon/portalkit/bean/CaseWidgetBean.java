@@ -208,10 +208,15 @@ public class CaseWidgetBean implements Serializable {
 
   public String getGlobalSearchText(CaseLazyDataModel model) {
     String result = "";
-    if (model.getCriteria().isGlobalSearch() && CollectionUtils.isNotEmpty(model.getCriteria().getSearchScopeCaseFields())) {
-      String searchScopeCaseFieldsString
-        = String.join(", ", model.getCriteria().getSearchScopeCaseFields().stream().map(SearchScopeCaseField::getLabel).collect(Collectors.toList()));
+    if (model.getCriteria().isGlobalSearch()) {
       String keyword = Optional.ofNullable(model.getCriteria().getKeyword()).orElse("");
+      String searchScopeCaseFieldsString = "";
+
+      if (CollectionUtils.isNotEmpty(model.getCriteria().getSearchScopeCaseFields())) {
+        searchScopeCaseFieldsString
+          = ", ".concat(String.join(", ", model.getCriteria().getSearchScopeCaseFields().stream().map(SearchScopeCaseField::getLabel).collect(Collectors.toList())));
+      }
+
       result = Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/GlobalSearchText", Arrays.asList(keyword, searchScopeCaseFieldsString));
     }
     return result;

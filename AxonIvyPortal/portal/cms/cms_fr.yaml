@@ -1419,7 +1419,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     WAITING_FOR_INTERMEDIATE_EVENT: Attente d'un évènement
     WAITING_FOR_INTERMEDIATE_EVENT_UPPERCASE: ATTENTE D'UN ÉVÈNEMENT
   taskView:
-    GlobalSearchText: Les tâches contiennent le mot-clé "{0}" dans Id de tâche, {1}.
+    GlobalSearchText: Les tâches contiennent le mot-clé "{0}" dans Id de tâche{1}.
     filterTextPlaceHolderMobile: Nom ou description!
     filterTextPlaceholder: Nom, description ou identifiant!
     restoreDefaultFilterMessage: Si vous continuez, le filtre standard sera appliqué.
@@ -1534,7 +1534,7 @@ Dialogs:
                 destroyCase: détruire le cas
               CaseOwner: Responsable de processus
               Finished: Terminé
-              GlobalSearchText: Les cas contiennent le mot-clé "{0}" dans Id du dossier, {1}.
+              GlobalSearchText: Les cas contiennent le mot-clé "{0}" dans Id du dossier{1}.
               ShowBusinessDetails: Détails de l'entreprise
               caseNameNotAvailable: '[Nom de cas pas disponible]'
               defaultEmptyMessage: Il n'y a pas de dossiers

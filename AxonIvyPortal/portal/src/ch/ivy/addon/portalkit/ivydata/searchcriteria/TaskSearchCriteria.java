@@ -157,8 +157,11 @@ public class TaskSearchCriteria {
         String containingIdKeyword = String.format("%%%d%%", idKeyword);
         filterByKeywordQuery.where().or().taskId().isLike(containingIdKeyword);
       } catch (NumberFormatException e) {
-        // do nothing
-    }
+        if (isGlobalSearch()) {
+          String containingIdKeyword = String.format("%%%d%%", -1);
+          filterByKeywordQuery.where().or().taskId().isLike(containingIdKeyword);
+        }
+      }
     return filterByKeywordQuery;
   }
 
