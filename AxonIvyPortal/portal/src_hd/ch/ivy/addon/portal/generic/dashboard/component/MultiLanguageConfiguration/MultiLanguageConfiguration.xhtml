@@ -29,14 +29,14 @@
 				rendered="#{titles.isEmpty()}" />
 			<h:dataTable value="#{titles}"
 				rendered="#{titles.isEmpty() eq 'false'}"
-				var="supportedLanguage">
+				var="title">
 				<h:column>
 					<h:outputText styleClass="ui-g-12"
-						value="#{supportedLanguage.locale.getDisplayName()}" />
+						value="#{title.locale.getDisplayName()}" />
 				</h:column>
 				<h:column>
 					<div class="ui-g-12 ui-fluid">
-						<p:inputText value="#{supportedLanguage.value}" />
+						<p:inputText value="#{title.value}" />
 					</div>
 				</h:column>
 			</h:dataTable>

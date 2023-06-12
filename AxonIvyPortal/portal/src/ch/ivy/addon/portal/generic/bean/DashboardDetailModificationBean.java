@@ -77,6 +77,7 @@ import ch.ivy.addon.portalkit.util.CustomWidgetUtils;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.Dates;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.cm.ContentObjectValue;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -808,28 +809,38 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     return componentId;
   }
   
-  @Override
   public Map<String, DisplayName> getMapLanguages() {
 	  List<DisplayName> languages = this.widget.getNames();
 	  return languages.stream().collect(Collectors.toMap(o->o.getLocale().toLanguageTag(), o->o));
   }
   
+  public void processLanguage() {
+	  List<DisplayName> languages = this.widget.getNames();
+	  String currentLanguage = UserUtils.getUserLanguage();
+	  Optional<DisplayName> optional = languages.stream().filter(lang -> currentLanguage.equals(lang.getValue())).findFirst();
+	  if (optional.isPresent()) {
+		  this.widget.setName(optional.get().getValue());
+	  }
+  }
+  
   public void updateWidgetTitles() {
 	  Map<String,DisplayName> mapLanguage = getMapLanguages();
 	  List<String> supportedLanguages = getLanguages();
+	  String currentName = this.widget.getName();
 	  for (String language : supportedLanguages) {
 		if (mapLanguage.get(language) == null) {
 			DisplayName displayName = new DisplayName();
 			displayName.setLocale(Locale.forLanguageTag(language));
-			displayName.setValue(Ivy.cms().coLocale("", displayName.getLocale()));
+			displayName.setValue(currentName);
 			this.widget.getNames().add(displayName);	
 		}
 	  }
-  }
-  
-  public void processLanguage() {
-	  List<DisplayName> languages = this.widget.getNames();
-	  this.widget.setName(languages.get(0).getValue());
+	  String currentLanguage = UserUtils.getUserLanguage();
+	  Optional<DisplayName> optional = this.widget.getNames()
+			  .stream().filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
+	  if (optional.isPresent()) {
+		  optional.get().setValue(currentName);
+	  }
   }
 
 }

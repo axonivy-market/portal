@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -49,6 +50,7 @@ import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.IUser;
@@ -397,27 +399,5 @@ public class DashboardBean implements Serializable {
 	  return ivyLanguage.getSupportedLanguages();
   }
 
-  public Map<String, DisplayName> getMapLanguages() {
-	  List<DisplayName> languages = this.selectedDashboard.getTitles();
-	  return languages.stream().collect(Collectors.toMap(o->o.getLocale().toLanguageTag(), o->o));
-  }
-
-  public void updateDashboardTitles() {
-	  Map<String,DisplayName> mapLanguage = getMapLanguages();
-	  List<String> supportedLanguages = getLanguages();
-	  for (String language : supportedLanguages) {
-		if (mapLanguage.get(language) == null) {
-			DisplayName displayName = new DisplayName();
-			displayName.setLocale(Locale.forLanguageTag(language));
-			displayName.setValue(Ivy.cms().coLocale("", displayName.getLocale()));
-			this.selectedDashboard.getTitles().add(displayName);
-		}
-	  }
-  }
-
-  public void processLanguage() {
-	  List<DisplayName>languages = this.selectedDashboard.getTitles();
-	  this.selectedDashboard.setTitle(languages.get(0).getValue());
-  }
 
 }

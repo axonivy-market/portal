@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.page;
 
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.Condition;
@@ -7,6 +9,16 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
+
+  private String processEditWidgetId;
+  
+  public ProcessEditWidgetNewDashBoardPage() {
+	this("div[id='new-widget-configuration-dialog']");
+  }
+  
+  public ProcessEditWidgetNewDashBoardPage(String processEditWidgetId) {
+	this.processEditWidgetId = processEditWidgetId;
+  }
 
   @Override
   protected String getLoadedLocator() {
@@ -310,7 +322,12 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     selectCompactModeProcess(processName);
     clickSaveProcessWidget();
   }
-
+  
+  public void changeProcessTitle(String name) {
+	getCompactModeWidgetTitle().clear();
+    getCompactModeWidgetTitle().sendKeys(name);
+  }
+  
   public void changeCompactModeProcessAndSaveWidget(String category) {
     selectCompactModeFromCombinedMode();
     getCompactModeWidgetTitle().clear();
@@ -357,5 +374,25 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   public boolean getProcessByName(String processName) {
     return $(".ui-selectcheckboxmenu-items").$$("li.ui-selectcheckboxmenu-item").asDynamicIterable().stream()
         .map(SelenideElement::getText).anyMatch(text -> text.equalsIgnoreCase(processName));
+  }
+
+  public SelenideElement getAddLanguageButton() {
+	SelenideElement addLanguageButton = $("button[id$='add-language-button']");
+  	addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  	addLanguageButton.shouldBe(getClickableCondition());
+  	waitUntilElementToBeClickable(addLanguageButton);
+  	return addLanguageButton;
+  }
+
+  public SelenideElement getMultipleLanguageDialog() {
+	  SelenideElement addLanguageButton = $("div[id$='multiple-languages-dialog']");
+	  addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+	  return addLanguageButton;
+  }
+  
+  public void save() {
+    $(processEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='widget-configuration-save-button']")
+        .shouldBe(getClickableCondition()).click();
+    $("[id$='task-component:loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 }
