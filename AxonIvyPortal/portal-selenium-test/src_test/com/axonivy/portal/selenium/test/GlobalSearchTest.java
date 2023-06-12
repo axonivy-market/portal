@@ -25,6 +25,7 @@ public class GlobalSearchTest extends BaseTest {
   public void setup() {
     super.setup();
     login(TestAccount.ADMIN_USER);
+    resetLanguageOfCurrentUser();
     redirectToNewDashBoard();
     newDashboardPage = new NewDashboardPage();
   }
@@ -41,7 +42,7 @@ public class GlobalSearchTest extends BaseTest {
     GlobalSearchResultPage resultPage = newDashboardPage.inputGlobalSearchKeyword(nameKeyword);
     resultPage.openTaskTab();
     assertEquals(taskName, resultPage.getNameOfTask(0));
-    assertEquals("Tasks contain the keyword \"" + nameKeyword + "\" in Name.", resultPage.getGlobalSearchByFieldTextForTaskTab());
+    assertEquals("Tasks contain the keyword \"" + nameKeyword + "\" in Task Id, Name.", resultPage.getGlobalSearchByFieldTextForTaskTab());
 
     redirectToNewDashBoard();
     newDashboardPage = new NewDashboardPage();
@@ -63,7 +64,7 @@ public class GlobalSearchTest extends BaseTest {
     GlobalSearchResultPage resultPage = newDashboardPage.inputGlobalSearchKeyword(descriptionKeyword);
     resultPage.openCaseTab();
     assertEquals(caseDescription, resultPage.getDescriptionOfCase(0));
-    assertEquals("Cases contain the keyword \"" + descriptionKeyword + "\" in Description.", resultPage.getGlobalSearchByFieldTextForCaseTab());
+    assertEquals("Cases contain the keyword \"" + descriptionKeyword + "\" in Case Id, Description.", resultPage.getGlobalSearchByFieldTextForCaseTab());
 
     redirectToNewDashBoard();
     newDashboardPage = new NewDashboardPage();
@@ -92,6 +93,6 @@ public class GlobalSearchTest extends BaseTest {
     resultPage = newDashboardPage.inputGlobalSearchKeyword(customKeyword);
     resultPage.openCaseTab();
     assertEquals(caseName, resultPage.getNameOfCase(0));
-    assertEquals("Cases contain the keyword \"" + customKeyword + "\" in Custom string fields.", resultPage.getGlobalSearchByFieldTextForCaseTab());
+    assertEquals("Cases contain the keyword \"" + customKeyword + "\" in Case Id, Custom string fields.", resultPage.getGlobalSearchByFieldTextForCaseTab());
   }
 }

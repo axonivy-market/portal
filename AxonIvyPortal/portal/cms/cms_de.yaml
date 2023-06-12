@@ -1422,7 +1422,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     WAITING_FOR_INTERMEDIATE_EVENT_UPPERCASE: WARTEN AUF EREIGNIS
     ZOMBIE: Zombie
   taskView:
-    GlobalSearchText: Aufgaben enthalten das Schlüsselwort "{0}" in {1}.
+    GlobalSearchText: Aufgaben enthalten das Schlüsselwort "{0}" in Aufgaben Id, {1}.
     filterTextPlaceHolderMobile: Name oder Beschreibung
     filterTextPlaceholder: Name, Beschreibung oder ID
     restoreDefaultFilterMessage: Wenn Sie fortfahren, wird der Standardfilter angewendet.
@@ -1537,7 +1537,7 @@ Dialogs:
                 destroyCase: Vorgang löschen
               CaseOwner: Prozessverantwortlicher
               Finished: Erledigt
-              GlobalSearchText: Die Fälle enthalten das Schlüsselwort "{0}" in {1}.
+              GlobalSearchText: Die Fälle enthalten das Schlüsselwort "{0}" in Vorgangs Id, {1}.
               ShowBusinessDetails: Business Details
               caseNameNotAvailable: '[Kein Vorgangsname verfügbar]'
               defaultEmptyMessage: Keine Vorgänge verfügbar
