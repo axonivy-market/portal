@@ -34,7 +34,7 @@
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.util.UserUtils;",
-            "UserUtils.setLanguague();"
+            "UserUtils.setLanguage();"
           ]
         }
       },

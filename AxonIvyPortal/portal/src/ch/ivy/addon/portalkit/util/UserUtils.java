@@ -56,7 +56,7 @@ public class UserUtils {
   /**
    * Set locale for session from user setting or application default
    */
-  public static void setLanguague() {
+  public static void setLanguage() {
     Sudo.get(()->{
       IUser sessionUser = getIvySession().getSessionUser();
       LanguageConfigurator languageConfigurator = new LanguageConfigurator(ISecurityContext.current());

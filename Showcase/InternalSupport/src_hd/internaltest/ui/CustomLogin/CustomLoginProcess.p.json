@@ -76,7 +76,7 @@
             "  FacesContext.getCurrentInstance().validationFailed();",
             "} else {",
             "  //set language from user settings or application details",
-            "  UserUtils.setLanguague();  ",
+            "  UserUtils.setLanguage();  ",
             "}"
           ]
         }
