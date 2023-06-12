@@ -871,10 +871,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       manageDashboard: Gérer le tableau de bord
       removeDashboardHeader: Supprimez le tableau de bord "{0}".
     deleteWidget: Supprimer le widget
+    downloadZipFileExplanation: Si le nombre d'éléments à exporter dépasse la limite des lignes Excel, les données seront divisées en plusieurs fichiers Excel, puis compressées dans un fichier ZIP à télécharger.
     editWidget: Modifier le widget
     existingField: Le champ {0} a déjà été créé
     expiryFrom: Expiration du
     expiryTo: Date d'expiration
+    export:
+      exportedCasesFileName: AXONIVY_Dataset_Cases_{0}_{1}.{2}
     field: Champ
     fieldIsAdded: Le champ {0} est ajouté
     iconMessage:
@@ -1088,6 +1091,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     favoriteProcesses: Vos favoris
     goTo: 'Aller à:'
     icon: Icône
+    image: Image
     isRequiredMessage: doit être défini
     linkDescription: Description du lien
     noFavoriteProcess: Vous n'avez pas défini de favoris.

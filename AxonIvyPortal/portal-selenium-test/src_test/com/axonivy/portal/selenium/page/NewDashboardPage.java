@@ -730,6 +730,12 @@ public class NewDashboardPage extends TemplatePage {
     return new DashboardNewsWidgetPage(newWidgetName);
   }
 
+  public boolean isDownloadCompleted() {
+    return $("#download-status-dialog")
+        .shouldBe(Condition.attribute("download-status", "completed"), DEFAULT_TIMEOUT)
+        .exists();
+  }
+
   private SelenideElement getGlobalSearchInput() {
     return $("#global-search-component\\:global-search-data").shouldBe(appear, DEFAULT_TIMEOUT);
   }
