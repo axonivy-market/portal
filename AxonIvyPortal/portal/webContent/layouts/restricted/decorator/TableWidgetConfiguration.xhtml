@@ -24,13 +24,20 @@
     </div>
 
     <h:panelGroup id="widget-title-group" styleClass="ui-g-12 u-padding-0 ui-fluid">
-      <div class="ui-g-3 ui-md-4">
+      <div class="ui-g-4 ui-md-4">
         <p:outputLabel for="widget-title" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetTitle')}" />
       </div>
-      <div class="ui-g-9 ui-md-8">
+      <div class="ui-g-8 ui-md-8 ui-inputgroup">
         <p:inputText id="widget-title"
         styleClass="widget-configuration__input-text"
         value="#{widget.name}" />
+        <!-- Add language button -->
+        <p:commandButton styleClass="app-setting-button" icon="si si-chat-translate" id="add-language-button">
+			<p:ajax event="click" listener="#{managedBean.updateWidgetTitles()}"
+					process="widget-title"
+					update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
+					oncomplete="PF('multiple-languages-dialog').show();" />
+		</p:commandButton>
       </div>
     </h:panelGroup>
 
@@ -50,6 +57,9 @@
 
     <!-- Widget Filters -->
     <ui:insert name="widgetFilterContent" />
+    
+    <!-- Multi language dialog-->
+	<ui:insert name="multiLanguageDialog" />
   </div>
 </h:panelGroup>
 

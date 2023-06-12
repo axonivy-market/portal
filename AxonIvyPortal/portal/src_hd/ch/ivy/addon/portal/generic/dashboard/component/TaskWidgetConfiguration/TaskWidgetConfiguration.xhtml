@@ -7,6 +7,7 @@
   <cc:attribute name="taskWidget" />
   <cc:attribute name="componentToUpdate" />
   <cc:attribute name="isReadOnlyMode" default="false" />
+  <cc:attribute name="managedBean" />
 </cc:interface>
 
 <cc:implementation>
@@ -17,6 +18,7 @@
     <ui:param name="componentToUpdateOnPreviewAction" value="#{cc.clientId}:task-widget-preview:dashboard-tasks" />
     <ui:param name="componentToProcessOnPreviewAction" value="user-filter" />
     <ui:param name="onCompletePreviewAction" value="PF('dashboard-tasks-#{cc.attrs.taskWidget.id}').filter()" />
+    <ui:param name="managedBean" value="#{cc.attrs.managedBean}" />
 
     <ui:define name="widgetFilterContent">
       <h:panelGroup id="user-filter" layout="block" styleClass="ui-g">
@@ -85,6 +87,12 @@
         onCompleteLoadWidget="PF('new-widget-configuration-dialog').initPosition();" componentToUpdateTaskWidget="#{componentToUpdateOnPreviewAction}"/>
     </ui:define>
 
+	<ui:define name="multiLanguageDialog">
+      <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration id="title-language-config"
+	      titles="#{managedBean.widget.names}" 
+	      managedBean="#{managedBean}"
+	      componentToUpdate="#{cc.attrs.componentToUpdate}"/>
+    </ui:define>
   </ui:decorate>
 </cc:implementation>
 </html>

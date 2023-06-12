@@ -19,6 +19,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -41,6 +42,7 @@ import com.axonivy.portal.util.WelcomeWidgetUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
 import ch.ivy.addon.portalkit.constant.DashboardConstants;
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CombinedProcessDashboardWidget;
@@ -75,6 +77,7 @@ import ch.ivy.addon.portalkit.util.CustomWidgetUtils;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.Dates;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.cm.ContentObjectValue;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -805,4 +808,39 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
     return componentId;
   }
+  
+  public Map<String, DisplayName> getMapLanguages() {
+	  List<DisplayName> languages = this.widget.getNames();
+	  return languages.stream().collect(Collectors.toMap(o->o.getLocale().toLanguageTag(), o->o));
+  }
+
+  public void processLanguage() {
+	  List<DisplayName> languages = this.widget.getNames();
+	  String currentLanguage = UserUtils.getUserLanguage();
+	  Optional<DisplayName> optional = languages.stream().filter(lang -> currentLanguage.equals(lang.getValue())).findFirst();
+	  if (optional.isPresent()) {
+		  this.widget.setName(optional.get().getValue());
+	  }
+  }
+
+  public void updateWidgetTitles() {
+	  Map<String,DisplayName> mapLanguage = getMapLanguages();
+	  List<String> supportedLanguages = getLanguages();
+	  String currentName = this.widget.getName();
+	  for (String language : supportedLanguages) {
+		if (mapLanguage.get(language) == null) {
+			DisplayName displayName = new DisplayName();
+			displayName.setLocale(Locale.forLanguageTag(language));
+			displayName.setValue(currentName);
+			this.widget.getNames().add(displayName);	
+		}
+	  }
+	  String currentLanguage = UserUtils.getUserLanguage();
+	  Optional<DisplayName> optional = this.widget.getNames()
+			  .stream().filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
+	  if (optional.isPresent()) {
+		  optional.get().setValue(currentName);
+	  }
+  }
+
 }
