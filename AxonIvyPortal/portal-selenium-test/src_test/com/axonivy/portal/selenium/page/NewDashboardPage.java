@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 import com.codeborne.selenide.Condition;
@@ -733,5 +734,19 @@ public class NewDashboardPage extends TemplatePage {
     return $("#download-status-dialog")
         .shouldBe(Condition.attribute("download-status", "completed"), DEFAULT_TIMEOUT)
         .exists();
+  }
+
+  private SelenideElement getGlobalSearchInput() {
+    return $("#global-search-component\\:global-search-data").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public GlobalSearchResultPage inputGlobalSearchKeyword(String keyword) {
+    $(".topbar-item.search-item").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("input[id$='global-search-component:global-search-data']").shouldBe(appear, DEFAULT_TIMEOUT);
+    getGlobalSearchInput().click();
+    getGlobalSearchInput().sendKeys(keyword);
+    getGlobalSearchInput().sendKeys(Keys.ENTER.toString());
+    $("#search-results-tabview").shouldBe(appear, DEFAULT_TIMEOUT);
+    return new GlobalSearchResultPage();
   }
 }

@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 import java.util.List;
 
+import com.axonivy.portal.selenium.common.FileHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 
@@ -23,7 +24,7 @@ public class WelcomeEditWidgetNewDashboardPage extends TemplatePage {
   }
   
   private String getTestFilePath(String filename) {
-    return System.getProperty("user.dir") + "\\resources\\testFile\\" + filename;
+    return FileHelper.getAbsolutePathToTestFile(filename);
   }
 
   public void inputWelcomeTexts(List<String> welcomeTexts) {
