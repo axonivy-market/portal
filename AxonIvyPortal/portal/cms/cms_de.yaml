@@ -999,13 +999,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     passwordReset: Kennwort zurücksetzen
     passwordResetEmailCantSend: Ausnahme beim Senden der E-Mail an Sie. Bitte versuchen Sie es später erneut.
     passwordResetEmailContent: '<html>Hallo {0},<br/><br/>Bitte klicken Sie auf diesen Link, um Ihr Passwort zurückzusetzen: <a href="{1}">Passwort zurücksetzen</a><br/><br/>Mit freundlichen Grüßen</html>'
-    passwordResetEmailSent: Es wurde Ihnen eine E-Mail mit einem Link zum Zurücksetzen des Passworts zugesandt. Bitte überprüfen Sie Ihr E-Mail-Postfach.
+    passwordResetEmailSent: Wenn diese E-Mail-Adresse registriert ist, haben wir einen Link zur Wiederherstellung des Passworts an diese Adresse geschickt.
     passwordResetEmailSubject: E-Mail zum Zurücksetzen des Passworts
     passwordResetSuccess: Ihr Passwort wurde erfolgreich geändert
     requiredFieldMessage: '{0} ist erforderlich'
     setANewPassword: Setzen Sie ein neues Passwort
     strong: Stark
-    userNotFound: Benutzer nicht gefunden
+    userNotFound: Wenn diese E-Mail-Adresse registriert ist, haben wir einen Link zur Wiederherstellung des Passworts an diese Adresse geschickt.
     usersHaveSameEmail: Es gibt viele Benutzer, die diese E-Mail verwenden. Bitte wenden Sie sich an Ihren Administrator.
     weak: Schwach
   iconselection:
