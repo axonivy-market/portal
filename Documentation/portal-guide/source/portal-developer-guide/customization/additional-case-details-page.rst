@@ -11,11 +11,11 @@ Introduction
 The Additional Case detail page shows all custom fields of a case. It is opened
 by clicking on ``Show business details`` in Case detail.
 
-You can customize this page for each case by providing a relative URL to case.
+You can modify this page for each case by providing a relative URL to case.
 
 .. _customization-additionalcasedetailspage.customization:
 
-Customization
+How to
 -------------
 
 #. Create a new Additional Case details UI and a start process that will display
@@ -23,29 +23,24 @@ Customization
 
    |customization-additional-case-details-page|
 
-#. When creating a task, store the URL of the start process in the custom ``TEXT`` field 
-   ``businessDetails``  of the associated case. There are 2 ways to set an URL:
 
+#. Store path of start process just created above when creating a task. There are 2 ways to perform this:
+   
+   * Use the ``SetAdditonalCaseDetailPage.p.json`` callable process, and pass the friendly URL of this process as a parameter.
 
-   .. admonition:: Use subprocess SetAdditonalCaseDetailPage.p.json in portal-components
+      |set-additonal-case-detail-page-callable-process|
 
-         Use the ``SetAdditonalCaseDetailPage.p.json`` callable process, and input the friendly URL of this process as a parameter.
-         
-         |set-additonal-case-detail-page-callable-process|
+   * Use public API ``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(BusinessDetailsDTO)``. See the Public API for more detail.
 
+      |customize-case-detail-with-public-api|
 
-   .. admonition:: Use public api
+      .. tip:: 
+         Public API also supports external links in case the business detail site is outside of Axon Ivy.    
+         You can replace the path value with any URL then Portal will take care of the rest. Eg: ``.path("https://google.com")``
 
-         Create Case Detail by using API ``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(BusinessDetailsBuilder)``
-            
-            - To build an external URL
-               ``BusinessDetailsBuilder().iCase(ICase).URL(external_url).isFullPath(true)``
-            - To build an internal process URL
-               ``BusinessDetailsBuilder().iCase(ICase).URL(process_path)``
-         For more detail, please refer to javadoc Public API
-         |customize-case-detail-with-public-api|
-
-#. If your custom Additional Case details page uses an IFrame, you need to set some additional
+Customization
+-------------
+-  If your custom Additional Case details page uses an IFrame, you may want to set some additional
    Window properties on your page: 
 
    - window.isHideCaseInfo = true;
@@ -56,13 +51,19 @@ Customization
 
    |customization-additional-case-details-page-iframe|
 
-   In your custom start process, create a custom string field name for the case named ``embedInFrame``, set value to 
+-  By using Public API, you can control business detail page will start inside IFrame or not, set ``.isEmbedInFrame(Boolean)`` value to 
    
-   	- ``true``: start inside IFrame 
-   	- ``false``: not start inside IFrame 
+   	- ``true``: start inside IFrame (default value)
+   	- ``false``: not start inside IFrame
+
+-  You can also customize ``ICase`` value, by default the API will get ``ICase`` from ``Ivy.wfCase()``. Modify it by ``.iCase(ICase)``
 
    |start-case-details-page-iframe|
 
+-  Behide the scene, the API will set path value for ``String`` custom field ``businessDetails``. So in case for deep customization, follow below step:
+
+   - Use API ``ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(String)`` to find process path.
+   - Set process path to custom field in your specific case ``Ivy.wfCase().customFields().stringField("businessDetails").set(your-process-path-url)``
 
 Permission Setting
 -------------
