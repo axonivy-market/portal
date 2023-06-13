@@ -176,7 +176,7 @@ template.
 
 Refer to ``TaskTemplate-8.xhtml`` for parameters and template areas.
 
-If you want to navigate to other page without finish a task please use these methods from
+If you want to navigate to another page without finishing a task please use these methods from
 class ``PortalNavigatorAPI`` of project ``portal-components``
 
 -  Home page: call ``navigateToPortalHome()``
@@ -194,7 +194,7 @@ Refer to ``TaskTemplate-8.xhtml`` for parameters and template areas.
 +----------------------------------------+-------------------------------+
 | Pros                                   | Cons                          |
 +========================================+===============================+
-| - Use Portal default theme             | - Some migration effort       |
+| - Use Portal default theme             | - Some migration efforts      |
 | - Usage improvements are considered    |                               |
 | - Consistent look and feel with Portal |                               |
 | - UI styles are taken over from Portal |                               |
