@@ -212,6 +212,12 @@
                 oncomplete="PF('save-filter-set-dialog').show();" />
           </div>
         </h:panelGroup>
+
+        <!-- Global Search fields -->
+        <h:panelGroup id="global-search-text" rendered="#{data.dataModel.criteria.globalSearch}">
+          <h:outputText value="#{taskWidgetBean.getGlobalSearchText(data.dataModel)}" />
+        </h:panelGroup>
+
         <!-- Export to Excel, Manage Columns -->
         <h:panelGroup id="task-list-actions" styleClass="task-list-actions u-hidden-md-down #{!cc.attrs.hideWidgetHeader ? '' : 'no-widget-header'}"
           rendered="#{!data.dataModel.compactMode}">

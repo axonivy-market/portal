@@ -5,12 +5,18 @@ import static ch.ivyteam.ivy.workflow.TaskState.DESTROYED;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+
+import com.axonivy.portal.enums.SearchScopeTaskField;
 
 import ch.ivy.addon.portalkit.bo.GuidePool;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
@@ -193,5 +199,21 @@ public class TaskWidgetBean implements Serializable {
 
   public void setRunningTaskWhenClickingOnTaskInList(boolean isRunningTaskWhenClickingOnTaskInList) {
     this.isRunningTaskWhenClickingOnTaskInList = isRunningTaskWhenClickingOnTaskInList;
+  }
+
+  public String getGlobalSearchText(TaskLazyDataModel model) {
+    String result = "";
+    if (model.getCriteria().isGlobalSearch()) {
+      String keyword = Optional.ofNullable(model.getCriteria().getKeyword()).orElse("");
+      String searchScopeTaskFieldsString = "";
+
+      if (CollectionUtils.isNotEmpty(model.getCriteria().getSearchScopeTaskFields())) {
+        searchScopeTaskFieldsString
+          = ", ".concat(String.join(", ", model.getCriteria().getSearchScopeTaskFields().stream().map(SearchScopeTaskField::getLabel).collect(Collectors.toList())));
+      }
+
+      result = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskView/GlobalSearchText", Arrays.asList(keyword, searchScopeTaskFieldsString));
+    }
+    return result;
   }
 }

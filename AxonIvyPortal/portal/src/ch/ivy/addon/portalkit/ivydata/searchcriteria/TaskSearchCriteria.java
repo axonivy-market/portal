@@ -14,10 +14,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
+
+import com.axonivy.portal.enums.SearchScopeTaskField;
 
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
@@ -50,7 +53,10 @@ public class TaskSearchCriteria {
   private TaskQuery customTaskQuery;
 
   private TaskQuery finalTaskQuery;
-  
+
+  private List<SearchScopeTaskField> searchScopeTaskFields;
+  private boolean isGlobalSearch;
+
   public TaskQuery createQueryToFindLatestTasks(TaskQuery taskQuery, Date timeStamp) {
     if (isAdminQuery) {
       taskQuery.where().and(TaskQuery.create().where().startTimestamp().isGreaterThan(timeStamp));
@@ -135,16 +141,26 @@ public class TaskSearchCriteria {
   
   private TaskQuery queryForKeyword(String keyword) {
     String containingKeyword = String.format("%%%s%%", keyword.trim());
-    TaskQuery filterByKeywordQuery =
-        TaskQuery.create().where().or().name().isLikeIgnoreCase(containingKeyword).or().description()
-            .isLikeIgnoreCase(containingKeyword);
+    TaskQuery filterByKeywordQuery = TaskQuery.create();
+    searchScopeTaskFields = Optional.ofNullable(searchScopeTaskFields).orElse(new ArrayList<>());
+
+    if (!isGlobalSearch || (isGlobalSearch && searchScopeTaskFields.contains(SearchScopeTaskField.NAME))) {
+      filterByKeywordQuery.where().or().name().isLikeIgnoreCase(containingKeyword);
+    }
+
+    if (!isGlobalSearch || (isGlobalSearch && searchScopeTaskFields.contains(SearchScopeTaskField.DESCRIPTION))) {
+      filterByKeywordQuery.where().or().description().isLikeIgnoreCase(containingKeyword);
+    }
 
     try {
         long idKeyword = Long.parseLong(keyword.trim());
         String containingIdKeyword = String.format("%%%d%%", idKeyword);
         filterByKeywordQuery.where().or().taskId().isLike(containingIdKeyword);
       } catch (NumberFormatException e) {
-        // do nothing
+        if (isGlobalSearch()) {
+          String containingIdKeyword = String.format("%%%d%%", -1);
+          filterByKeywordQuery.where().or().taskId().isLike(containingIdKeyword);
+      }
     }
     return filterByKeywordQuery;
   }
@@ -463,6 +479,22 @@ public class TaskSearchCriteria {
 
   public void setFinalTaskQuery(TaskQuery finalTaskQuery) {
     this.finalTaskQuery = finalTaskQuery;
+  }
+
+  public boolean isGlobalSearch() {
+    return isGlobalSearch;
+  }
+
+  public void setGlobalSearch(boolean isGlobalSearch) {
+    this.isGlobalSearch = isGlobalSearch;
+  }
+
+  public List<SearchScopeTaskField> getSearchScopeTaskFields() {
+    return searchScopeTaskFields;
+  }
+
+  public void setSearchScopeTaskFields(List<SearchScopeTaskField> searchScopeTaskFields) {
+    this.searchScopeTaskFields = searchScopeTaskFields;
   }
 
 }
