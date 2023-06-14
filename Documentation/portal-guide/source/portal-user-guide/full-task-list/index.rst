@@ -258,9 +258,9 @@ HowTo: Add a note to a task
 |how-to-add-note|
 
 .. note::
-   Notes of a task are display on the ``Notes`` table of the task, and its business case.
+   Notes of a task are displayed in the ``Notes`` table of the task details, and in the ``History`` table its business case.
 
-   If the task belong to a techinical case, notes are also display on the ``Notes`` table of its technical case.
+   If the task belongs to a technical case, its notes are also displayed in the ``History`` table of this technical case.
 
 HowTo: Export a task history
 ----------------------------
