@@ -245,4 +245,37 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   private String getFileName(String dashboardName) {
     return dashboardName + JSON_FILE_POSTFIX;
   }
+
+  public void handleUploadPublicDashboard(FileUploadEvent event) {
+    UploadedFile file = event.getFile();
+    if (file != null && file.getContent() != null && file.getContent().length > 0 && file.getFileName() != null) {
+      var dashboard = BusinessEntityConverter.jsonValueToEntity(new String(file.getContent()), Dashboard.class);
+      dashboard.setIsPublic(true);
+      if (CollectionUtils.isNotEmpty(dashboard.getWidgets())) {
+        for (DashboardWidget widget : dashboard.getWidgets()) {
+          if (widget instanceof WelcomeDashboardWidget) {
+            WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
+            writeWelcomeWidgetImage(welcomeWidget);
+          }
+        }
+      }
+
+      List<Dashboard> publicDashboards = DashboardUtils.getPublicDashboards();
+      publicDashboards.add(dashboard);
+      Ivy.var().set(PortalVariable.DASHBOARD.key, BusinessEntityConverter.entityToJsonValue(publicDashboards));
+
+      dashboards.add(dashboard);
+    }
+  }
+
+  private void writeWelcomeWidgetImage(WelcomeDashboardWidget widget) {
+    if (StringUtils.isNotBlank(widget.getImageContent())) {
+      // If has defined location, save to that location
+      if (StringUtils.isNotBlank(widget.getImageLocation())) {
+        ContentObject widgetImage = WelcomeWidgetUtils.getImageContentObject(widget.getImageLocation(), widget.getImageType());
+        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(widgetImage).write().bytes(Base64.getDecoder().decode(widget.getImageContent()));
+        widget.setImageContent(null);
+      }
+    }
+  }
 }
