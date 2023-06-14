@@ -75,8 +75,8 @@
           process="@this" update="@this"/>
 
        <h:form styleClass="dashboard-configuration__export-button-form" rendered="#{dashboardModificationBean.hasExportDashboardPermission()}">
-         <p:commandButton id="export-dashboard" styleClass="rounded-button ui-button-outlined action-column-icon-button u-mar-right-5" icon="si si-office-file-xls-1"
-           title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
+         <p:commandButton id="export-dashboard" styleClass="rounded-button ui-button-outlined action-column-icon-button u-mar-right-5" icon="si si-download-bottom"
+           title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportDashboard')}"
            process="@this" update="@this" immediate="true" ajax="false">
            <p:fileDownload value="#{dashboardModificationBean.exportToJsonFile(dashboard)}" />
             </p:commandButton>
