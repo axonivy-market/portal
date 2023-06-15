@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "1723A6F0283D003D",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -98,6 +98,12 @@
     }, {
       "id" : "f14",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f15" : "ivy.cms.co(\"/Processes/LeaveRequest/name\").equals(in.process.processName)",
+          "f10" : "ivy.cms.co(\"/Processes/CaseMap/name\").equals(in.process.processName)"
+        }
+      },
       "visual" : {
         "at" : { "x" : 288, "y" : 352 }
       },
@@ -106,12 +112,12 @@
             "name" : "leave request",
             "segment" : 1.36,
             "offset" : { "x" : 0, "y" : -11 }
-          }, "condition" : "ivy.cms.co(\"/Processes/LeaveRequest/name\").equals(in.process.processName)" },
+          } },
         { "id" : "f10", "to" : "f8", "label" : {
             "name" : "lending",
             "segment" : 0.38,
             "offset" : { "x" : 0, "y" : -10 }
-          }, "condition" : "ivy.cms.co(\"/Processes/CaseMap/name\").equals(in.process.processName)" },
+          } },
         { "id" : "f18", "to" : "f11", "via" : [ { "x" : 288, "y" : 464 }, { "x" : 672, "y" : 464 } ] }
       ]
     }, {

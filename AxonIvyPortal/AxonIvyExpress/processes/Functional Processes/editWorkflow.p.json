@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "15791C23B125821B",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -63,6 +63,7 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 208, "y" : 104 },
+            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f33",
@@ -75,6 +76,7 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 208, "y" : 416 },
+            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f34"
@@ -190,11 +192,16 @@
     }, {
       "id" : "f11",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f17" : "in.backFlag==true"
+        }
+      },
       "visual" : {
         "at" : { "x" : 1272, "y" : 264 }
       },
       "connect" : [
-        { "id" : "f17", "to" : "f16", "via" : [ { "x" : 1272, "y" : 168 } ], "condition" : "in.backFlag==true" },
+        { "id" : "f17", "to" : "f16", "via" : [ { "x" : 1272, "y" : 168 } ] },
         { "id" : "f25", "to" : "f22" }
       ]
     }, {
@@ -232,6 +239,11 @@
         "direct Execution",
         "for AHWF"
       ],
+      "config" : {
+        "conditions" : {
+          "f55" : "in.processType == ch.ivy.gawfs.enums.ProcessType.AD_HOC"
+        }
+      },
       "visual" : {
         "at" : { "x" : 1568, "y" : 264 },
         "labelOffset" : { "x" : -25, "y" : -29 }
@@ -241,7 +253,7 @@
             "name" : "yes",
             "segment" : 0.31,
             "offset" : { "x" : 13, "y" : 0 }
-          }, "condition" : "in.processType == ch.ivy.gawfs.enums.ProcessType.AD_HOC" },
+          } },
         { "id" : "f24", "to" : "f9" }
       ]
     }, {
@@ -300,12 +312,17 @@
       "id" : "f41",
       "type" : "Alternative",
       "name" : "Discarded?",
+      "config" : {
+        "conditions" : {
+          "f29" : "!in.discard"
+        }
+      },
       "visual" : {
         "at" : { "x" : 792, "y" : 264 },
         "labelOffset" : { "x" : 9, "y" : -13 }
       },
       "connect" : [
-        { "id" : "f29", "to" : "f27", "condition" : "!in.discard" },
+        { "id" : "f29", "to" : "f27" },
         { "id" : "f44", "to" : "f43" }
       ]
     }, {
@@ -318,11 +335,16 @@
       "id" : "f45",
       "type" : "Alternative",
       "name" : "exit?",
+      "config" : {
+        "conditions" : {
+          "f47" : "in.discard"
+        }
+      },
       "visual" : {
         "at" : { "x" : 1208, "y" : 264 }
       },
       "connect" : [
-        { "id" : "f47", "to" : "f46", "condition" : "in.discard" },
+        { "id" : "f47", "to" : "f46" },
         { "id" : "f12", "to" : "f11" }
       ]
     }, {
@@ -360,6 +382,11 @@
       "id" : "f27",
       "type" : "Alternative",
       "name" : "Use default template?",
+      "config" : {
+        "conditions" : {
+          "f30" : "in.isUseDefaultUI"
+        }
+      },
       "visual" : {
         "at" : { "x" : 888, "y" : 264 },
         "labelOffset" : { "x" : 10, "y" : -12 }
@@ -369,7 +396,7 @@
             "name" : "yes",
             "segment" : 0.35,
             "offset" : { "x" : 13, "y" : 0 }
-          }, "condition" : "in.isUseDefaultUI" },
+          } },
         { "id" : "f4", "to" : "f3", "label" : {
             "name" : "no",
             "segment" : 0.48,
@@ -398,6 +425,11 @@
       "id" : "f35",
       "type" : "Alternative",
       "name" : "Is ready to execute?",
+      "config" : {
+        "conditions" : {
+          "f38" : "!in.readyToExecute"
+        }
+      },
       "visual" : {
         "at" : { "x" : 1888, "y" : 264 },
         "labelOffset" : { "x" : 13, "y" : 38 }
@@ -407,7 +439,7 @@
             "name" : "no",
             "segment" : 0.45,
             "offset" : { "x" : -10, "y" : 0 }
-          }, "condition" : "!in.readyToExecute", "var" : "in1" },
+          }, "var" : "in1" },
         { "id" : "f40", "to" : "f32", "label" : {
             "name" : "yes",
             "segment" : 0.41,
