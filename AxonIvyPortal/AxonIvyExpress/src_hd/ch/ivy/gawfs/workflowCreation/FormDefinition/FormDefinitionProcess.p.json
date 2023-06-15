@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "1574EBDBE9576CED",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -500,11 +500,16 @@
     }, {
       "id" : "f26",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f25" : "in.isAbleToExecute"
+        }
+      },
       "visual" : {
         "at" : { "x" : 416, "y" : 608 }
       },
       "connect" : [
-        { "id" : "f25", "to" : "f4", "condition" : "in.isAbleToExecute" },
+        { "id" : "f25", "to" : "f4" },
         { "id" : "f31", "to" : "f52", "via" : [ { "x" : 416, "y" : 480 } ] }
       ]
     }, {
@@ -612,6 +617,11 @@
       "id" : "f28",
       "type" : "Alternative",
       "name" : "Validated?",
+      "config" : {
+        "conditions" : {
+          "f32" : "in.isAbleToExecute"
+        }
+      },
       "visual" : {
         "at" : { "x" : 384, "y" : 968 },
         "labelOffset" : { "x" : 11, "y" : -14 }
@@ -621,7 +631,7 @@
             "name" : "yes",
             "segment" : 0.44,
             "offset" : { "x" : 0, "y" : -9 }
-          }, "condition" : "in.isAbleToExecute" },
+          } },
         { "id" : "f65", "to" : "f59", "via" : [ { "x" : 384, "y" : 1032 } ], "label" : {
             "name" : "no",
             "segment" : 0.35,
@@ -665,12 +675,17 @@
       "id" : "f67",
       "type" : "Alternative",
       "name" : "Is saved task?",
+      "config" : {
+        "conditions" : {
+          "f70" : "in.data.savedFlag"
+        }
+      },
       "visual" : {
         "at" : { "x" : 192, "y" : 736 },
         "labelOffset" : { "x" : 7, "y" : -19 }
       },
       "connect" : [
-        { "id" : "f70", "to" : "f69", "condition" : "in.data.savedFlag" },
+        { "id" : "f70", "to" : "f69" },
         { "id" : "f54", "to" : "f48", "via" : [ { "x" : 192, "y" : 816 } ] }
       ]
     }, {

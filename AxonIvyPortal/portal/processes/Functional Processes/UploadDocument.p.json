@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "16AB53A8F6EAADFB",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -54,6 +54,11 @@
       "id" : "f70",
       "type" : "Alternative",
       "name" : "valid file?",
+      "config" : {
+        "conditions" : {
+          "f78" : "org.apache.commons.lang.StringUtils.isBlank(in.message)"
+        }
+      },
       "visual" : {
         "at" : { "x" : 368, "y" : 128 },
         "labelOffset" : { "x" : 3, "y" : -14 }
@@ -63,7 +68,7 @@
             "name" : "YES",
             "segment" : 0.26,
             "offset" : { "x" : 1, "y" : -11 }
-          }, "condition" : "org.apache.commons.lang.StringUtils.isBlank(in.message)" },
+          } },
         { "id" : "f83", "to" : "f74", "via" : [ { "x" : 368, "y" : 224 } ], "label" : {
             "name" : "NO",
             "segment" : 1.12,
@@ -120,6 +125,11 @@
       "id" : "f53",
       "type" : "Alternative",
       "name" : "Document check",
+      "config" : {
+        "conditions" : {
+          "f87" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK"
+        }
+      },
       "visual" : {
         "at" : { "x" : 656, "y" : 128 },
         "labelOffset" : { "x" : 0, "y" : -17 }
@@ -129,7 +139,7 @@
             "name" : "OK",
             "segment" : 0.33,
             "offset" : { "x" : 0, "y" : -8 }
-          }, "condition" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK" },
+          } },
         { "id" : "f90", "to" : "f74" }
       ]
     }, {
@@ -243,6 +253,11 @@
       "id" : "f72",
       "type" : "Alternative",
       "name" : "Not exist?",
+      "config" : {
+        "conditions" : {
+          "f15" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK"
+        }
+      },
       "visual" : {
         "at" : { "x" : 912, "y" : 128 },
         "labelOffset" : { "x" : 8, "y" : -14 }
@@ -252,7 +267,7 @@
             "name" : "YES",
             "segment" : 0.3,
             "offset" : { "x" : 0, "y" : -12 }
-          }, "condition" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK" },
+          } },
         { "id" : "f88", "to" : "f73" }
       ]
     }, {

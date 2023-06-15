@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "15035F535EFB1618",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -275,6 +275,11 @@
         "is filter",
         "existed?"
       ],
+      "config" : {
+        "conditions" : {
+          "f25" : "in.isFilterExisted == false"
+        }
+      },
       "visual" : {
         "at" : { "x" : 352, "y" : 384 }
       },
@@ -283,7 +288,7 @@
             "name" : "no",
             "segment" : 0.46,
             "offset" : { "x" : 0, "y" : 10 }
-          }, "condition" : "in.isFilterExisted == false" },
+          } },
         { "id" : "f51", "to" : "f50", "via" : [ { "x" : 352, "y" : 336 } ], "label" : {
             "name" : "yes",
             "segment" : 1.51,
@@ -411,11 +416,16 @@
       "id" : "f54",
       "type" : "Alternative",
       "name" : "number of tasks change ?",
+      "config" : {
+        "conditions" : {
+          "f72" : "in.numberOfNewTask > 0"
+        }
+      },
       "visual" : {
         "at" : { "x" : 512, "y" : 864 }
       },
       "connect" : [
-        { "id" : "f72", "to" : "f56", "condition" : "in.numberOfNewTask > 0" },
+        { "id" : "f72", "to" : "f56" },
         { "id" : "f63", "to" : "f59", "via" : [ { "x" : 512, "y" : 800 }, { "x" : 792, "y" : 800 } ] }
       ]
     }, {
@@ -898,11 +908,16 @@
     }, {
       "id" : "f78",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f89" : "in.loopCounter <= in.totalTasks / in.maxResultNumberPerQuery"
+        }
+      },
       "visual" : {
         "at" : { "x" : 480, "y" : 1376 }
       },
       "connect" : [
-        { "id" : "f89", "to" : "f75", "condition" : "in.loopCounter <= in.totalTasks / in.maxResultNumberPerQuery" },
+        { "id" : "f89", "to" : "f75" },
         { "id" : "f86", "to" : "f81" }
       ]
     }, {
