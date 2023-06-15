@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "15EF07D454EF13E4",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -124,11 +124,16 @@
     }, {
       "id" : "f7",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f9" : "!(in.isWorkingOnATask && in.task.getState() != ch.ivyteam.ivy.workflow.TaskState.DONE)"
+        }
+      },
       "visual" : {
         "at" : { "x" : 160, "y" : 160 }
       },
       "connect" : [
-        { "id" : "f9", "to" : "f8", "condition" : "!(in.isWorkingOnATask && in.task.getState() != ch.ivyteam.ivy.workflow.TaskState.DONE)" },
+        { "id" : "f9", "to" : "f8" },
         { "id" : "f16", "to" : "f13", "via" : [ { "x" : 160, "y" : 256 } ] }
       ]
     }, {

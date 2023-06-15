@@ -216,8 +216,8 @@
                 <div class="ui-g-7">
                   <p:inputText value="#{data.displayNameInCurrentLanguage}" id="appDisplayName3rd"
                     styleClass="admin-settings-form-input" required="true">
-                    <f:converter converterId="displayNameConvertor" />
-                    <f:validator validatorId="displayNameValidator" />
+                    <f:converter converterId="applicationDisplayNameConverter" />
+                    <f:validator validatorId="applicationDisplayNameValidator" />
                   </p:inputText>
                 </div>
                 <div class="ui-g-3">
@@ -300,6 +300,12 @@
             <p:selectOneMenu value="#{data.selectedSetting.value}" id="valueSetting" styleClass="value-setting-dropdown">
               <f:selectItems value="#{data.externalDropDownValues.entrySet()}" var="entry" itemValue="#{entry.key}" itemLabel="#{data.selectedSetting.key eq 'Portal.Homepage' ? entry.value : entry.value.getLabel()}" />
             </p:selectOneMenu>
+          </c:if>
+          
+          <c:if test="#{data.settingInputType.toString() == 'MULTI_EXTERNAL_SELECTIONS'}">
+            <p:selectManyCheckbox value="#{data.selectedMultiSettings}" id="valueSetting">
+              <f:selectItems value="#{data.externalDropDownValues.entrySet()}" var="entry" itemValue="#{entry.key}" itemLabel="#{entry.value.getLabel()}" />
+            </p:selectManyCheckbox>
           </c:if>
 
           <!-- NOTE -->

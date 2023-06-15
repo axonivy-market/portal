@@ -1,10 +1,1181 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "1549F58C18A6C562",
   "config" : {
     "data" : "ch.ivy.addon.portal.generic.PortalStartData"
   },
   "elements" : [ {
+      "id" : "S41",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S41-f168",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 320, "y" : 224 }
+          }
+        }, {
+          "id" : "S41-f165",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S41-f1" : "in.isAuthorized"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 320, "y" : 144 },
+            "labelOffset" : { "x" : 16, "y" : -16 }
+          },
+          "connect" : [
+            { "id" : "S41-f1", "to" : "S41-g1", "label" : {
+                "name" : "Yes"
+              } },
+            { "id" : "S41-f170", "to" : "S41-f168", "label" : {
+                "name" : "No",
+                "segment" : 0.53
+              } }
+          ]
+        }, {
+          "id" : "S41-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f172",
+          "connect" : [
+            { "id" : "S41-f3", "to" : "S41-f2" }
+          ]
+        }, {
+          "id" : "S41-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 488, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f196"
+        }, {
+          "id" : "S41-f2",
+          "type" : "Script",
+          "name" : "Init isAuthorized",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+                "import ch.ivy.addon.portalkit.util.PermissionUtils;",
+                "in.isAuthorized = PermissionUtils.hasPortalPermission(PortalPermission.TASK_CASE_SHOW_MORE_NOTE) && in.#caseSelected is initialized;"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 192, "y" : 144 }
+          },
+          "connect" : [
+            { "id" : "S41-f0", "to" : "S41-f165" }
+          ]
+        } ],
+      "visual" : {
+        "at" : { "x" : 344, "y" : 2704 }
+      },
+      "connect" : [
+        { "id" : "f196", "to" : "f143" }
+      ]
+    }, {
+      "id" : "S32",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S32-f167",
+          "type" : "Script",
+          "name" : "Init isAuthorized",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.util.PermissionUtils;",
+                "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+                "",
+                "in.isAuthorized = PermissionUtils.hasPermission(PortalPermission.STATISTIC_ANALYZE_TASK.getPermission());"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 176, "y" : 160 }
+          },
+          "connect" : [
+            { "id" : "S32-f170", "to" : "S32-f165" }
+          ]
+        }, {
+          "id" : "S32-f79",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 296, "y" : 240 }
+          }
+        }, {
+          "id" : "S32-f165",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S32-f1" : "in.isAuthorized"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 296, "y" : 160 },
+            "labelOffset" : { "x" : 16, "y" : -16 }
+          },
+          "connect" : [
+            { "id" : "S32-f1", "to" : "S32-g1", "label" : {
+                "name" : "Yes"
+              } },
+            { "id" : "S32-f161", "to" : "S32-f79", "label" : {
+                "name" : "No",
+                "segment" : 0.55,
+                "offset" : { "x" : 11, "y" : -13 }
+              } }
+          ]
+        }, {
+          "id" : "S32-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f171",
+          "connect" : [
+            { "id" : "S32-f0", "to" : "S32-f167" }
+          ]
+        }, {
+          "id" : "S32-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 448, "y" : 160 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f194"
+        } ],
+      "visual" : {
+        "at" : { "x" : 200, "y" : 2944 }
+      },
+      "connect" : [
+        { "id" : "f194", "to" : "f166" }
+      ]
+    }, {
+      "id" : "S22",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S22-f79",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S22-f1" : "in.isAuthorized"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 320, "y" : 144 },
+            "labelOffset" : { "x" : 16, "y" : -16 }
+          },
+          "connect" : [
+            { "id" : "S22-f1", "to" : "S22-g1", "label" : {
+                "name" : "Yes"
+              } },
+            { "id" : "S22-f212", "to" : "S22-f196", "label" : {
+                "name" : "No"
+              } }
+          ]
+        }, {
+          "id" : "S22-f196",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 320, "y" : 224 }
+          }
+        }, {
+          "id" : "S22-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f213",
+          "connect" : [
+            { "id" : "S22-f3", "to" : "S22-f2" }
+          ]
+        }, {
+          "id" : "S22-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 456, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f217"
+        }, {
+          "id" : "S22-f2",
+          "type" : "Script",
+          "name" : "Init isAuthorized",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+                "import ch.ivy.addon.portalkit.util.PermissionUtils;",
+                "in.isAuthorized = PermissionUtils.hasPortalPermission(PortalPermission.SHOW_CASE_DETAILS)",
+                "  && in.#caseSelected is initialized;"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 192, "y" : 144 }
+          },
+          "connect" : [
+            { "id" : "S22-f0", "to" : "S22-f79" }
+          ]
+        } ],
+      "visual" : {
+        "at" : { "x" : 344, "y" : 2864 }
+      },
+      "connect" : [
+        { "id" : "f217", "to" : "f156" }
+      ]
+    }, {
+      "id" : "S12",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S12-f194",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 152, "y" : 216 }
+          }
+        }, {
+          "id" : "S12-f218",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S12-f2" : "ch.ivy.addon.portalkit.util.PermissionUtils.checkAccessFullProcessListPermission()"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 152, "y" : 144 },
+            "labelOffset" : { "x" : 16, "y" : -24 }
+          },
+          "connect" : [
+            { "id" : "S12-f2", "to" : "S12-g2", "label" : {
+                "name" : "Yes"
+              } },
+            { "id" : "S12-f196", "to" : "S12-f194", "label" : {
+                "name" : "No"
+              } }
+          ]
+        }, {
+          "id" : "S12-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 152, "y" : 64 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f197",
+          "connect" : [
+            { "id" : "S12-f0", "to" : "S12-f218" }
+          ]
+        }, {
+          "id" : "S12-g1",
+          "type" : "EmbeddedStart",
+          "name" : "in 2",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f198",
+          "connect" : [
+            { "id" : "S12-f1", "to" : "S12-f218" }
+          ]
+        }, {
+          "id" : "S12-g2",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 320, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f211"
+        } ],
+      "visual" : {
+        "at" : { "x" : 200, "y" : 1344 }
+      },
+      "connect" : [
+        { "id" : "f211", "to" : "f71" }
+      ]
+    }, {
+      "id" : "S01",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S01-f266",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 152, "y" : 224 }
+          }
+        }, {
+          "id" : "S01-f264",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S01-f1" : "ch.ivy.addon.portalkit.util.PermissionUtils.isSessionUserHasAdminRole()"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 152, "y" : 144 },
+            "labelOffset" : { "x" : 16, "y" : -16 }
+          },
+          "connect" : [
+            { "id" : "S01-f1", "to" : "S01-g1", "label" : {
+                "name" : "Yes"
+              } },
+            { "id" : "S01-f267", "to" : "S01-f266", "label" : {
+                "name" : "No",
+                "segment" : 0.4
+              } }
+          ]
+        }, {
+          "id" : "S01-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f191",
+          "connect" : [
+            { "id" : "S01-f0", "to" : "S01-f264" }
+          ]
+        }, {
+          "id" : "S01-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 320, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f192"
+        } ],
+      "visual" : {
+        "at" : { "x" : 200, "y" : 3264 }
+      },
+      "connect" : [
+        { "id" : "f192", "to" : "f137" }
+      ]
+    }, {
+      "id" : "S91",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S91-f250",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 320, "y" : 224 }
+          }
+        }, {
+          "id" : "S91-f248",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S91-f1" : "in.isAuthorized"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 320, "y" : 144 },
+            "labelOffset" : { "x" : 16, "y" : -16 }
+          },
+          "connect" : [
+            { "id" : "S91-f1", "to" : "S91-g1", "label" : {
+                "name" : "Yes"
+              } },
+            { "id" : "S91-f251", "to" : "S91-f250", "label" : {
+                "name" : "No",
+                "segment" : 0.4
+              } }
+          ]
+        }, {
+          "id" : "S91-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f189",
+          "connect" : [
+            { "id" : "S91-f3", "to" : "S91-f2" }
+          ]
+        }, {
+          "id" : "S91-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 488, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f190"
+        }, {
+          "id" : "S91-f2",
+          "type" : "Script",
+          "name" : "Init isAuthorized",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
+                "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
+                "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+                "",
+                "in.isAuthorized = !GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_CASE_DOCUMENT)",
+                "  && CaseService.newInstance().isCaseAccessible(in.caseId);"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 192, "y" : 144 }
+          },
+          "connect" : [
+            { "id" : "S91-f0", "to" : "S91-f248" }
+          ]
+        } ],
+      "visual" : {
+        "at" : { "x" : 200, "y" : 3184 }
+      },
+      "connect" : [
+        { "id" : "f190", "to" : "f237" }
+      ]
+    }, {
+      "id" : "S81",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S81-f252",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S81-f1" : "in.isAuthorized"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 272, "y" : 144 },
+            "labelOffset" : { "x" : 16, "y" : -16 }
+          },
+          "connect" : [
+            { "id" : "S81-f1", "to" : "S81-g1", "label" : {
+                "name" : "Yes"
+              } },
+            { "id" : "S81-f255", "to" : "S81-f254", "label" : {
+                "name" : "No",
+                "segment" : 0.45
+              } }
+          ]
+        }, {
+          "id" : "S81-f254",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 272, "y" : 224 }
+          }
+        }, {
+          "id" : "S81-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f186",
+          "connect" : [
+            { "id" : "S81-f4", "to" : "S81-f2" }
+          ]
+        }, {
+          "id" : "S81-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 400, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f187"
+        }, {
+          "id" : "S81-f2",
+          "type" : "Script",
+          "name" : "Init isAuthorized",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;",
+                "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
+                "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+                "",
+                "in.isAuthorized = !GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_TASK_DOCUMENT)",
+                "  && TaskService.newInstance().isTaskAccessible(in.taskId);"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 168, "y" : 144 }
+          },
+          "connect" : [
+            { "id" : "S81-f3", "to" : "S81-f252" }
+          ]
+        } ],
+      "visual" : {
+        "at" : { "x" : 200, "y" : 3104 }
+      },
+      "connect" : [
+        { "id" : "f187", "to" : "f232" }
+      ]
+    }, {
+      "id" : "S72",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S72-f262",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 320, "y" : 224 }
+          }
+        }, {
+          "id" : "S72-f260",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S72-f1" : "in.isAuthorized"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 320, "y" : 144 },
+            "labelOffset" : { "x" : 16, "y" : -16 }
+          },
+          "connect" : [
+            { "id" : "S72-f1", "to" : "S72-g1", "label" : {
+                "name" : "Yes"
+              } },
+            { "id" : "S72-f263", "to" : "S72-f262", "label" : {
+                "name" : "No",
+                "segment" : 0.56
+              } }
+          ]
+        }, {
+          "id" : "S72-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f173",
+          "connect" : [
+            { "id" : "S72-f3", "to" : "S72-f2" }
+          ]
+        }, {
+          "id" : "S72-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 456, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f185"
+        }, {
+          "id" : "S72-f2",
+          "type" : "Script",
+          "name" : "Init isAuthorized",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.util.PermissionUtils;",
+                "in.isAuthorized = in.isPublicDashboard ? PermissionUtils.hasDashboardWritePublicPermission() ",
+                "  : PermissionUtils.hasDashboardWriteOwnPermission();"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 192, "y" : 144 }
+          },
+          "connect" : [
+            { "id" : "S72-f0", "to" : "S72-f260" }
+          ]
+        } ],
+      "visual" : {
+        "at" : { "x" : 200, "y" : 2384 }
+      },
+      "connect" : [
+        { "id" : "f185", "to" : "f193" }
+      ]
+    }, {
+      "id" : "S61",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S61-f256",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S61-f1" : "in.isAuthorized"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 320, "y" : 144 },
+            "labelOffset" : { "x" : 24, "y" : -16 }
+          },
+          "connect" : [
+            { "id" : "S61-f1", "to" : "S61-g1", "label" : {
+                "name" : "Yes"
+              } },
+            { "id" : "S61-f259", "to" : "S61-f258", "label" : {
+                "name" : "No"
+              } }
+          ]
+        }, {
+          "id" : "S61-f258",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 320, "y" : 224 }
+          }
+        }, {
+          "id" : "S61-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f131",
+          "connect" : [
+            { "id" : "S61-f3", "to" : "S61-f2" }
+          ]
+        }, {
+          "id" : "S61-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 456, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f184"
+        }, {
+          "id" : "S61-f2",
+          "type" : "Script",
+          "name" : "Init isAuthorized",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.util.PermissionUtils;",
+                "in.isAuthorized = PermissionUtils.hasDashboardWriteOwnPermission()",
+                "  || PermissionUtils.hasDashboardWritePublicPermission();"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 192, "y" : 144 }
+          },
+          "connect" : [
+            { "id" : "S61-f0", "to" : "S61-f256" }
+          ]
+        } ],
+      "visual" : {
+        "at" : { "x" : 200, "y" : 2304 }
+      },
+      "connect" : [
+        { "id" : "f184", "to" : "f243" }
+      ]
+    }, {
+      "id" : "S51",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S51-f186",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 152, "y" : 224 }
+          }
+        }, {
+          "id" : "S51-f184",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S51-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.caseId)"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 152, "y" : 144 },
+            "labelOffset" : { "x" : 16, "y" : -16 }
+          },
+          "connect" : [
+            { "id" : "S51-f1", "to" : "S51-g1", "label" : {
+                "name" : "Yes"
+              } },
+            { "id" : "S51-f187", "to" : "S51-f186", "label" : {
+                "name" : "No",
+                "segment" : 0.43
+              } }
+          ]
+        }, {
+          "id" : "S51-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f98",
+          "connect" : [
+            { "id" : "S51-f0", "to" : "S51-f184" }
+          ]
+        }, {
+          "id" : "S51-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 288, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f183"
+        } ],
+      "visual" : {
+        "at" : { "x" : 200, "y" : 2144 }
+      },
+      "connect" : [
+        { "id" : "f183", "to" : "f122" }
+      ]
+    }, {
+      "id" : "S40",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S40-f246",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 152, "y" : 224 }
+          }
+        }, {
+          "id" : "S40-f244",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S40-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.TaskService.newInstance().isTaskAccessible(in.selectedTaskId)"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 152, "y" : 144 },
+            "labelOffset" : { "x" : 16, "y" : -16 }
+          },
+          "connect" : [
+            { "id" : "S40-f1", "to" : "S40-g1", "label" : {
+                "name" : "Yes"
+              } },
+            { "id" : "S40-f247", "to" : "S40-f246", "label" : {
+                "name" : "No"
+              } }
+          ]
+        }, {
+          "id" : "S40-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f96",
+          "connect" : [
+            { "id" : "S40-f0", "to" : "S40-f244" }
+          ]
+        }, {
+          "id" : "S40-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 288, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f182"
+        } ],
+      "visual" : {
+        "at" : { "x" : 200, "y" : 1984 }
+      },
+      "connect" : [
+        { "id" : "f182", "to" : "f95" }
+      ]
+    }, {
+      "id" : "S31",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S31-f194",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S31-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.caseId)"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 152, "y" : 144 },
+            "labelOffset" : { "x" : 16, "y" : -16 }
+          },
+          "connect" : [
+            { "id" : "S31-f1", "to" : "S31-g1", "label" : {
+                "name" : "Yes"
+              } },
+            { "id" : "S31-f197", "to" : "S31-f196", "label" : {
+                "name" : "No",
+                "segment" : 0.54
+              } }
+          ]
+        }, {
+          "id" : "S31-f196",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 152, "y" : 216 }
+          }
+        }, {
+          "id" : "S31-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f53",
+          "connect" : [
+            { "id" : "S31-f0", "to" : "S31-f194" }
+          ]
+        }, {
+          "id" : "S31-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 288, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f181"
+        } ],
+      "visual" : {
+        "at" : { "x" : 200, "y" : 1904 }
+      },
+      "connect" : [
+        { "id" : "f181", "to" : "f56" }
+      ]
+    }, {
+      "id" : "S21",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S21-f191",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 152, "y" : 216 }
+          }
+        }, {
+          "id" : "S21-f189",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S21-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.caseId)"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 152, "y" : 144 },
+            "labelOffset" : { "x" : 16, "y" : -16 }
+          },
+          "connect" : [
+            { "id" : "S21-f1", "to" : "S21-g1", "label" : {
+                "name" : "Yes"
+              } },
+            { "id" : "S21-f192", "to" : "S21-f191", "label" : {
+                "name" : "No",
+                "segment" : 0.54
+              } }
+          ]
+        }, {
+          "id" : "S21-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f66",
+          "connect" : [
+            { "id" : "S21-f0", "to" : "S21-f189" }
+          ]
+        }, {
+          "id" : "S21-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 288, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f180"
+        } ],
+      "visual" : {
+        "at" : { "x" : 200, "y" : 1824 }
+      },
+      "connect" : [
+        { "id" : "f180", "to" : "f52" }
+      ]
+    }, {
+      "id" : "S11",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S11-f180",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S11-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.TaskService.newInstance().isTaskAccessible(in.selectedTaskId)"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 152, "y" : 144 },
+            "labelOffset" : { "x" : 16, "y" : -16 }
+          },
+          "connect" : [
+            { "id" : "S11-f1", "to" : "S11-g1", "label" : {
+                "name" : "Yes"
+              } },
+            { "id" : "S11-f183", "to" : "S11-f182", "label" : {
+                "name" : "No",
+                "segment" : 0.39
+              } }
+          ]
+        }, {
+          "id" : "S11-f182",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 152, "y" : 232 }
+          }
+        }, {
+          "id" : "S11-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f33",
+          "connect" : [
+            { "id" : "S11-f0", "to" : "S11-f180" }
+          ]
+        }, {
+          "id" : "S11-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 320, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f210"
+        } ],
+      "visual" : {
+        "at" : { "x" : 200, "y" : 1104 }
+      },
+      "connect" : [
+        { "id" : "f210", "to" : "f65" }
+      ]
+    }, {
+      "id" : "S00",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S00-f281",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 152, "y" : 232 }
+          }
+        }, {
+          "id" : "S00-f279",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S00-f1" : "ch.ivy.addon.portalkit.util.PermissionUtils.checkAccessFullStatisticsListPermission()"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 152, "y" : 144 },
+            "labelOffset" : { "x" : 16, "y" : -16 }
+          },
+          "connect" : [
+            { "id" : "S00-f1", "to" : "S00-g1", "label" : {
+                "name" : "Yes"
+              } },
+            { "id" : "S00-f282", "to" : "S00-f281", "label" : {
+                "name" : "No",
+                "segment" : 0.56
+              } }
+          ]
+        }, {
+          "id" : "S00-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f26",
+          "connect" : [
+            { "id" : "S00-f0", "to" : "S00-f279" }
+          ]
+        }, {
+          "id" : "S00-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 320, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f27"
+        } ],
+      "visual" : {
+        "at" : { "x" : 200, "y" : 864 }
+      },
+      "connect" : [
+        { "id" : "f27", "to" : "f32" }
+      ]
+    }, {
+      "id" : "S90",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S90-f26",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S90-f1" : "in.#caseSelected is initialized"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 152, "y" : 144 },
+            "labelOffset" : { "x" : 16, "y" : -16 }
+          },
+          "connect" : [
+            { "id" : "S90-f1", "to" : "S90-g1", "label" : {
+                "name" : "Yes"
+              } },
+            { "id" : "S90-f278", "to" : "S90-f277", "label" : {
+                "name" : "No",
+                "segment" : 0.48
+              } }
+          ]
+        }, {
+          "id" : "S90-f277",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 152, "y" : 224 }
+          }
+        }, {
+          "id" : "S90-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f15",
+          "connect" : [
+            { "id" : "S90-f0", "to" : "S90-f26" }
+          ]
+        }, {
+          "id" : "S90-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 320, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f209"
+        } ],
+      "visual" : {
+        "at" : { "x" : 344, "y" : 784 }
+      },
+      "connect" : [
+        { "id" : "f209", "to" : "f274" }
+      ]
+    }, {
+      "id" : "S50",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S50-f178",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S50-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.caseId)"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 152, "y" : 144 },
+            "labelOffset" : { "x" : 24, "y" : -24 }
+          },
+          "connect" : [
+            { "id" : "S50-f1", "to" : "S50-g1", "label" : {
+                "name" : "Yes"
+              } },
+            { "id" : "S50-f176", "to" : "S50-f175", "label" : {
+                "name" : "No",
+                "segment" : 0.42,
+                "offset" : { "x" : 4, "y" : -6 }
+              } }
+          ]
+        }, {
+          "id" : "S50-f175",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 152, "y" : 224 }
+          }
+        }, {
+          "id" : "S50-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f283",
+          "connect" : [
+            { "id" : "S50-f0", "to" : "S50-f178" }
+          ]
+        }, {
+          "id" : "S50-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 320, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f284"
+        } ],
+      "visual" : {
+        "at" : { "x" : 200, "y" : 1024 }
+      },
+      "connect" : [
+        { "id" : "f284", "to" : "f59" }
+      ]
+    }, {
       "id" : "f10",
       "type" : "RequestStart",
       "name" : "DefaultEndPage.ivp",
@@ -23,8 +1194,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 305 },
-        "labelOffset" : { "x" : 16, "y" : 37 }
+        "at" : { "x" : 96, "y" : 304 },
+        "labelOffset" : { "x" : -23, "y" : 41 }
       },
       "connect" : [
         { "id" : "f7", "to" : "f4" }
@@ -36,6 +1207,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;",
             "import ch.ivy.addon.portalkit.constant.CustomFields;",
             "import ch.ivy.addon.portalkit.dto.TaskEndInfo;",
             "import ch.ivy.addon.portalkit.service.StickyTaskListService;",
@@ -45,7 +1217,7 @@
             "import org.apache.commons.lang3.StringUtils;",
             "import ch.ivyteam.ivy.workflow.ITask;",
             "",
-            "ITask task = ivy.wf.findTask(Long.valueOf(in.endedTaskId));",
+            "ITask task = TaskService.newInstance().findTaskById(in.endedTaskId);",
             "in.isFirstTask = true;",
             "in.portalPage = PortalPage.HOME_PAGE;",
             "",
@@ -86,7 +1258,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 640, "y" : 304 }
+        "at" : { "x" : 488, "y" : 304 }
       },
       "connect" : [
         { "id" : "f2", "to" : "f1" }
@@ -117,7 +1289,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 144 },
-        "labelOffset" : { "x" : 17, "y" : 39 }
+        "labelOffset" : { "x" : -55, "y" : 41 }
       },
       "connect" : [
         { "id" : "f204", "to" : "f203" }
@@ -126,7 +1298,7 @@
       "id" : "f57",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 488, "y" : 513 }
+        "at" : { "x" : 592, "y" : 544 }
       }
     }, {
       "id" : "f58",
@@ -139,11 +1311,11 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 513 },
-        "labelOffset" : { "x" : 12, "y" : 36 }
+        "at" : { "x" : 96, "y" : 544 },
+        "labelOffset" : { "x" : -15, "y" : 41 }
       },
       "connect" : [
-        { "id" : "f210", "to" : "f209" }
+        { "id" : "f175", "to" : "S71" }
       ]
     }, {
       "id" : "f103",
@@ -164,11 +1336,11 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 704 },
-        "labelOffset" : { "x" : 8, "y" : 39 }
+        "at" : { "x" : 96, "y" : 784 },
+        "labelOffset" : { "x" : -23, "y" : 33 }
       },
       "connect" : [
-        { "id" : "f26", "to" : "S40" }
+        { "id" : "f275", "to" : "f272" }
       ]
     }, {
       "id" : "f63",
@@ -181,23 +1353,23 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 640 },
-        "labelOffset" : { "x" : 24, "y" : 37 }
+        "at" : { "x" : 96, "y" : 704 },
+        "labelOffset" : { "x" : -31, "y" : 41 }
       },
       "connect" : [
-        { "id" : "f213", "to" : "f212" }
+        { "id" : "f178", "to" : "S80" }
       ]
     }, {
       "id" : "f105",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 384, "y" : 704 }
+        "at" : { "x" : 736, "y" : 784 }
       }
     }, {
       "id" : "f64",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 488, "y" : 640 }
+        "at" : { "x" : 592, "y" : 704 }
       }
     }, {
       "id" : "f9",
@@ -214,8 +1386,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 936, "y" : 144 },
-        "size" : { "width" : 144, "height" : 60 }
+        "at" : { "x" : 846, "y" : 145 },
+        "size" : { "width" : 253, "height" : 63 }
       },
       "connect" : [
         { "id" : "f16", "to" : "f0" }
@@ -223,19 +1395,25 @@
     }, {
       "id" : "f1",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f30" : "in.#portalPage == null",
+          "f36" : "!in.backFromTaskDetails"
+        }
+      },
       "visual" : {
-        "at" : { "x" : 784, "y" : 304 }
+        "at" : { "x" : 592, "y" : 304 }
       },
       "connect" : [
-        { "id" : "f30", "to" : "f22", "condition" : "in.#portalPage == null" },
-        { "id" : "f36", "to" : "S70", "condition" : "!in.backFromTaskDetails" },
-        { "id" : "f19", "to" : "f5", "via" : [ { "x" : 784, "y" : 384 }, { "x" : 1072, "y" : 384 } ] }
+        { "id" : "f30", "to" : "f22" },
+        { "id" : "f36", "to" : "S70" },
+        { "id" : "f19", "to" : "f5", "via" : [ { "x" : 592, "y" : 352 }, { "x" : 1008, "y" : 352 } ] }
       ]
     }, {
       "id" : "f0",
       "type" : "Alternative",
       "visual" : {
-        "at" : { "x" : 1072, "y" : 144 }
+        "at" : { "x" : 1008, "y" : 144 }
       },
       "connect" : [
         { "id" : "f92", "to" : "S60" }
@@ -243,11 +1421,16 @@
     }, {
       "id" : "f5",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f20" : "java.util.Objects.equals(ch.ivy.addon.portalkit.enums.PortalPage.HOME_PAGE, in.#portalPage) && org.apache.commons.lang3.StringUtils.isBlank(in.#callbackUrl)"
+        }
+      },
       "visual" : {
-        "at" : { "x" : 1072, "y" : 304 }
+        "at" : { "x" : 1008, "y" : 304 }
       },
       "connect" : [
-        { "id" : "f20", "to" : "f0", "condition" : "java.util.Objects.equals(ch.ivy.addon.portalkit.enums.PortalPage.HOME_PAGE, in.#portalPage) && org.apache.commons.lang3.StringUtils.isBlank(in.#callbackUrl)" },
+        { "id" : "f20", "to" : "f0" },
         { "id" : "f18", "to" : "S10" }
       ]
     }, {
@@ -271,10 +1454,10 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 384 },
-        "labelOffset" : { "x" : 34, "y" : 36 }
+        "labelOffset" : { "x" : -39, "y" : 41 }
       },
       "connect" : [
-        { "id" : "f13", "to" : "f4", "via" : [ { "x" : 488, "y" : 384 } ] }
+        { "id" : "f13", "to" : "f4", "via" : [ { "x" : 344, "y" : 384 } ] }
       ]
     }, {
       "id" : "f32",
@@ -284,7 +1467,7 @@
         "dialog" : "ch.ivy.addon.portal.generic.admin.PortalDashBoard:start()"
       },
       "visual" : {
-        "at" : { "x" : 248, "y" : 769 }
+        "at" : { "x" : 344, "y" : 864 }
       },
       "connect" : [
         { "id" : "f35", "to" : "f34" }
@@ -300,17 +1483,17 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 769 },
-        "labelOffset" : { "x" : 7, "y" : 37 }
+        "at" : { "x" : 96, "y" : 864 },
+        "labelOffset" : { "x" : -15, "y" : 33 }
       },
       "connect" : [
-        { "id" : "f33", "to" : "f32" }
+        { "id" : "f26", "to" : "S00" }
       ]
     }, {
       "id" : "f34",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 384, "y" : 769 }
+        "at" : { "x" : 448, "y" : 864 }
       }
     }, {
       "id" : "f39",
@@ -331,8 +1514,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 864 },
-        "labelOffset" : { "x" : 21, "y" : 38 }
+        "at" : { "x" : 96, "y" : 944 },
+        "labelOffset" : { "x" : -23, "y" : 41 }
       },
       "connect" : [
         { "id" : "f42", "to" : "f51" }
@@ -356,8 +1539,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 256, "y" : 864 },
-        "size" : { "width" : 128, "height" : 60 }
+        "at" : { "x" : 200, "y" : 944 }
       },
       "connect" : [
         { "id" : "f174", "to" : "f150" }
@@ -376,8 +1558,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 280, "y" : 960 },
-        "size" : { "width" : 176, "height" : 60 }
+        "at" : { "x" : 416, "y" : 1024 },
+        "size" : { "width" : 256, "height" : 60 }
       }
     }, {
       "id" : "f60",
@@ -402,11 +1584,11 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 960 },
-        "labelOffset" : { "x" : 34, "y" : 37 }
+        "at" : { "x" : 96, "y" : 1024 },
+        "labelOffset" : { "x" : -47, "y" : 41 }
       },
       "connect" : [
-        { "id" : "f61", "to" : "f59" }
+        { "id" : "f283", "to" : "S50" }
       ]
     }, {
       "id" : "f62",
@@ -427,11 +1609,11 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 1056 },
-        "labelOffset" : { "x" : 7, "y" : 37 }
+        "at" : { "x" : 96, "y" : 1104 },
+        "labelOffset" : { "x" : -23, "y" : 41 }
       },
       "connect" : [
-        { "id" : "f66", "to" : "f65" }
+        { "id" : "f33", "to" : "S11" }
       ]
     }, {
       "id" : "f65",
@@ -446,8 +1628,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 280, "y" : 1056 },
-        "size" : { "width" : 176, "height" : 60 }
+        "at" : { "x" : 418, "y" : 1103 },
+        "size" : { "width" : 260, "height" : 58 }
       }
     }, {
       "id" : "f67",
@@ -462,8 +1644,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 304, "y" : 1152 },
-        "size" : { "width" : 224, "height" : 60 }
+        "at" : { "x" : 272, "y" : 1183 },
+        "size" : { "width" : 260, "height" : 59 }
       }
     }, {
       "id" : "f68",
@@ -484,8 +1666,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 1152 },
-        "labelOffset" : { "x" : 12, "y" : 37 }
+        "at" : { "x" : 96, "y" : 1184 },
+        "labelOffset" : { "x" : -31, "y" : 41 }
       },
       "connect" : [
         { "id" : "f69", "to" : "f67" }
@@ -498,7 +1680,7 @@
         "dialog" : "ch.ivy.addon.portal.generic.Processes:start()"
       },
       "visual" : {
-        "at" : { "x" : 352, "y" : 1280 }
+        "at" : { "x" : 342, "y" : 1344 }
       }
     }, {
       "id" : "f72",
@@ -511,8 +1693,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 1344 },
-        "labelOffset" : { "x" : 11, "y" : 37 }
+        "at" : { "x" : 96, "y" : 1424 },
+        "labelOffset" : { "x" : -15, "y" : 33 }
       },
       "connect" : [
         { "id" : "f77", "to" : "f74" }
@@ -528,8 +1710,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 1440 },
-        "labelOffset" : { "x" : 16, "y" : 37 }
+        "at" : { "x" : 96, "y" : 1504 },
+        "labelOffset" : { "x" : -15, "y" : 33 }
       },
       "connect" : [
         { "id" : "f78", "to" : "f75" }
@@ -545,11 +1727,11 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 1280 },
-        "labelOffset" : { "x" : 36, "y" : 37 }
+        "at" : { "x" : 96, "y" : 1344 },
+        "labelOffset" : { "x" : -55, "y" : 41 }
       },
       "connect" : [
-        { "id" : "f219", "to" : "f218" }
+        { "id" : "f198", "to" : "S12" }
       ]
     }, {
       "id" : "f74",
@@ -564,7 +1746,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 248, "y" : 1344 }
+        "at" : { "x" : 198, "y" : 1424 }
       }
     }, {
       "id" : "f75",
@@ -579,7 +1761,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 248, "y" : 1440 }
+        "at" : { "x" : 198, "y" : 1504 }
       }
     }, {
       "id" : "f80",
@@ -591,18 +1773,23 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 680, "y" : 1632 },
+        "at" : { "x" : 640, "y" : 1664 },
         "size" : { "width" : 128, "height" : 60 }
       }
     }, {
       "id" : "f81",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f87" : "in.embedInIFrame"
+        }
+      },
       "visual" : {
-        "at" : { "x" : 560, "y" : 1536 }
+        "at" : { "x" : 448, "y" : 1584 }
       },
       "connect" : [
-        { "id" : "f87", "to" : "f84", "condition" : "in.embedInIFrame" },
-        { "id" : "f90", "to" : "f80", "via" : [ { "x" : 560, "y" : 1632 } ] }
+        { "id" : "f87", "to" : "f84" },
+        { "id" : "f90", "to" : "f80", "via" : [ { "x" : 448, "y" : 1664 } ] }
       ]
     }, {
       "id" : "f82",
@@ -625,8 +1812,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 1536 },
-        "labelOffset" : { "x" : 21, "y" : 36 }
+        "at" : { "x" : 96, "y" : 1584 },
+        "labelOffset" : { "x" : -31, "y" : 33 }
       },
       "connect" : [
         { "id" : "f89", "to" : "f83" }
@@ -650,7 +1837,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 248, "y" : 1536 }
+        "at" : { "x" : 200, "y" : 1584 }
       },
       "connect" : [
         { "id" : "f88", "to" : "f86" }
@@ -669,7 +1856,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 680, "y" : 1536 },
+        "at" : { "x" : 640, "y" : 1584 },
         "size" : { "width" : 128, "height" : 60 }
       }
     }, {
@@ -680,8 +1867,8 @@
         "DefaultFramePage process will run"
       ],
       "visual" : {
-        "at" : { "x" : 296, "y" : 1616 },
-        "size" : { "width" : 464, "height" : 44 }
+        "at" : { "x" : 240, "y" : 1663 },
+        "size" : { "width" : 314, "height" : 63 }
       }
     }, {
       "id" : "f86",
@@ -697,8 +1884,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 424, "y" : 1536 },
-        "size" : { "width" : 160, "height" : 60 }
+        "at" : { "x" : 344, "y" : 1584 }
       },
       "connect" : [
         { "id" : "f91", "to" : "f81" }
@@ -722,8 +1908,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 1728 },
-        "labelOffset" : { "x" : 27, "y" : 37 }
+        "at" : { "x" : 96, "y" : 1744 },
+        "labelOffset" : { "x" : -7, "y" : 41 }
       },
       "connect" : [
         { "id" : "f93", "to" : "f44" }
@@ -736,7 +1922,7 @@
         "dialog" : "ch.ivy.addon.portal.setting.UserProfile:start()"
       },
       "visual" : {
-        "at" : { "x" : 248, "y" : 1728 }
+        "at" : { "x" : 200, "y" : 1744 }
       },
       "connect" : [
         { "id" : "f46", "to" : "f45" }
@@ -745,7 +1931,7 @@
       "id" : "f45",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 448, "y" : 1728 }
+        "at" : { "x" : 304, "y" : 1744 }
       }
     }, {
       "id" : "f3",
@@ -755,7 +1941,7 @@
         "homepage if you have"
       ],
       "visual" : {
-        "at" : { "x" : 1328, "y" : 144 },
+        "at" : { "x" : 1240, "y" : 144 },
         "size" : { "width" : 144, "height" : 44 }
       }
     }, {
@@ -771,43 +1957,58 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 576, "y" : 864 }
+        "at" : { "x" : 488, "y" : 944 }
       }
     }, {
       "id" : "f22",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f50" : "ch.addon.portal.generic.userprofile.homepage.HomepageUtils.isShowLegacyUI()"
+        }
+      },
       "visual" : {
-        "at" : { "x" : 784, "y" : 144 }
+        "at" : { "x" : 592, "y" : 144 }
       },
       "connect" : [
-        { "id" : "f50", "to" : "f9", "condition" : "ch.addon.portal.generic.userprofile.homepage.HomepageUtils.isShowLegacyUI()" },
-        { "id" : "f141", "to" : "f0", "via" : [ { "x" : 784, "y" : 96 }, { "x" : 1072, "y" : 96 } ] }
+        { "id" : "f50", "to" : "f9" },
+        { "id" : "f141", "to" : "f0", "via" : [ { "x" : 592, "y" : 96 }, { "x" : 1008, "y" : 96 } ] }
       ]
     }, {
       "id" : "f4",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f29" : "ivy.session.isSessionUserUnknown()"
+        }
+      },
       "visual" : {
-        "at" : { "x" : 488, "y" : 304 }
+        "at" : { "x" : 344, "y" : 304 }
       },
       "connect" : [
-        { "id" : "f29", "to" : "f31", "condition" : "ivy.session.isSessionUserUnknown()" },
+        { "id" : "f29", "to" : "f31" },
         { "id" : "f48", "to" : "f11", "label" : {
             "name" : "logged in",
             "segment" : 0.46,
-            "offset" : { "x" : 0, "y" : -10 }
+            "offset" : { "x" : -1, "y" : -18 }
           } }
       ]
     }, {
       "id" : "f21",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f49" : "ivy.session.isSessionUserUnknown()"
+        }
+      },
       "visual" : {
-        "at" : { "x" : 488, "y" : 144 }
+        "at" : { "x" : 344, "y" : 144 }
       },
       "connect" : [
-        { "id" : "f49", "to" : "f31", "condition" : "ivy.session.isSessionUserUnknown()" },
+        { "id" : "f49", "to" : "f31" },
         { "id" : "f140", "to" : "f139", "label" : {
             "name" : "logged in",
-            "offset" : { "x" : 0, "y" : -10 }
+            "offset" : { "x" : -3, "y" : -18 }
           } }
       ]
     }, {
@@ -826,7 +2027,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 488, "y" : 224 }
+        "at" : { "x" : 344, "y" : 224 }
       }
     }, {
       "id" : "f12",
@@ -848,10 +2049,10 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1824 },
-        "labelOffset" : { "x" : 36, "y" : 38 }
+        "labelOffset" : { "x" : -31, "y" : 41 }
       },
       "connect" : [
-        { "id" : "f53", "to" : "f52" }
+        { "id" : "f66", "to" : "S21" }
       ]
     }, {
       "id" : "f52",
@@ -867,8 +2068,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 272, "y" : 1824 },
-        "size" : { "width" : 160, "height" : 60 }
+        "at" : { "x" : 416, "y" : 1823 },
+        "size" : { "width" : 256, "height" : 58 }
       },
       "connect" : [
         { "id" : "f55", "to" : "f54" }
@@ -877,7 +2078,7 @@
       "id" : "f54",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 448, "y" : 1824 }
+        "at" : { "x" : 600, "y" : 1824 }
       }
     }, {
       "id" : "f94",
@@ -902,11 +2103,11 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 1920 },
-        "labelOffset" : { "x" : 37, "y" : 37 }
+        "at" : { "x" : 96, "y" : 1904 },
+        "labelOffset" : { "x" : -71, "y" : 41 }
       },
       "connect" : [
-        { "id" : "f96", "to" : "f56" }
+        { "id" : "f53", "to" : "S31" }
       ]
     }, {
       "id" : "f56",
@@ -922,8 +2123,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 288, "y" : 1920 },
-        "size" : { "width" : 192, "height" : 60 }
+        "at" : { "x" : 418, "y" : 1901 },
+        "size" : { "width" : 260, "height" : 66 }
       }
     }, {
       "id" : "f95",
@@ -938,8 +2139,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 280, "y" : 2016 },
-        "size" : { "width" : 176, "height" : 60 }
+        "at" : { "x" : 416, "y" : 1986 },
+        "size" : { "width" : 257, "height" : 64 }
       }
     }, {
       "id" : "f97",
@@ -960,11 +2161,11 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 2016 },
-        "labelOffset" : { "x" : 19, "y" : 41 }
+        "at" : { "x" : 96, "y" : 1984 },
+        "labelOffset" : { "x" : -47, "y" : 41 }
       },
       "connect" : [
-        { "id" : "f98", "to" : "f95" }
+        { "id" : "f96", "to" : "S40" }
       ]
     }, {
       "id" : "f99",
@@ -977,8 +2178,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 2112 },
-        "labelOffset" : { "x" : 16, "y" : 45 }
+        "at" : { "x" : 96, "y" : 2064 },
+        "labelOffset" : { "x" : -39, "y" : 33 }
       },
       "connect" : [
         { "id" : "f104", "to" : "f101" }
@@ -987,7 +2188,7 @@
       "id" : "f100",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 464, "y" : 2112 }
+        "at" : { "x" : 448, "y" : 2064 }
       }
     }, {
       "id" : "f101",
@@ -997,8 +2198,8 @@
         "dialog" : "ch.ivy.addon.portal.setting.AbsenceManagement:start()"
       },
       "visual" : {
-        "at" : { "x" : 256, "y" : 2112 },
-        "size" : { "width" : 128, "height" : 60 }
+        "at" : { "x" : 272, "y" : 2062 },
+        "size" : { "width" : 256, "height" : 56 }
       },
       "connect" : [
         { "id" : "f102", "to" : "f100" }
@@ -1024,8 +2225,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 768, "y" : 992 },
-        "labelOffset" : { "x" : 55, "y" : 37 }
+        "at" : { "x" : 96, "y" : 2624 },
+        "labelOffset" : { "x" : -39, "y" : 33 }
       },
       "connect" : [
         { "id" : "f128", "to" : "f127" }
@@ -1041,8 +2242,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 768, "y" : 864 },
-        "labelOffset" : { "x" : 56, "y" : 37 }
+        "at" : { "x" : 96, "y" : 2464 },
+        "labelOffset" : { "x" : -39, "y" : 41 }
       },
       "connect" : [
         { "id" : "f126", "to" : "f125" }
@@ -1055,7 +2256,7 @@
         "dialog" : "ch.ivy.addon.portal.generic.ForgotPassword:start()"
       },
       "visual" : {
-        "at" : { "x" : 1200, "y" : 816 }
+        "at" : { "x" : 632, "y" : 2464 }
       }
     }, {
       "id" : "f109",
@@ -1087,7 +2288,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 1200, "y" : 1040 }
+        "at" : { "x" : 632, "y" : 2624 }
       },
       "connect" : [
         { "id" : "f111", "to" : "f110" }
@@ -1108,7 +2309,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1368, "y" : 1040 }
+        "at" : { "x" : 776, "y" : 2624 }
       }
     }, {
       "id" : "f118",
@@ -1124,56 +2325,76 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1040, "y" : 928 },
-        "size" : { "width" : 128, "height" : 60 }
+        "at" : { "x" : 416, "y" : 2544 },
+        "size" : { "width" : 256, "height" : 60 }
       }
     }, {
       "id" : "f115",
       "type" : "Alternative",
       "name" : "isIvySecuritySystem?",
+      "config" : {
+        "conditions" : {
+          "f124" : "ch.ivy.addon.portalkit.util.SecuritySystemUtils.isIvySecuritySystem()"
+        }
+      },
       "visual" : {
-        "at" : { "x" : 1040, "y" : 1040 },
+        "at" : { "x" : 416, "y" : 2624 },
         "labelOffset" : { "x" : 20, "y" : 34 }
       },
       "connect" : [
-        { "id" : "f124", "to" : "f109", "condition" : "ch.ivy.addon.portalkit.util.SecuritySystemUtils.isIvySecuritySystem()" },
+        { "id" : "f124", "to" : "f109" },
         { "id" : "f123", "to" : "f118" }
       ]
     }, {
       "id" : "f121",
       "type" : "Alternative",
       "name" : "isIvySecuritySystem?",
+      "config" : {
+        "conditions" : {
+          "f113" : "ch.ivy.addon.portalkit.util.SecuritySystemUtils.isIvySecuritySystem()"
+        }
+      },
       "visual" : {
-        "at" : { "x" : 1040, "y" : 816 },
+        "at" : { "x" : 416, "y" : 2464 },
         "labelOffset" : { "x" : 24, "y" : -15 }
       },
       "connect" : [
-        { "id" : "f113", "to" : "f108", "condition" : "ch.ivy.addon.portalkit.util.SecuritySystemUtils.isIvySecuritySystem()" },
+        { "id" : "f113", "to" : "f108" },
         { "id" : "f117", "to" : "f118" }
       ]
     }, {
       "id" : "f125",
       "type" : "Alternative",
       "name" : "logged in?",
+      "config" : {
+        "conditions" : {
+          "f116" : "ivy.session.isSessionUserUnknown()"
+        }
+      },
       "visual" : {
-        "at" : { "x" : 896, "y" : 864 },
+        "at" : { "x" : 160, "y" : 2464 },
         "labelOffset" : { "x" : 64, "y" : 17 }
       },
       "connect" : [
-        { "id" : "f116", "to" : "f121", "via" : [ { "x" : 896, "y" : 816 } ], "condition" : "ivy.session.isSessionUserUnknown()" },
-        { "id" : "f112", "to" : "f118", "via" : [ { "x" : 896, "y" : 928 } ] }
+        { "id" : "f116", "to" : "f121" },
+        { "id" : "f112", "to" : "f118", "via" : [ { "x" : 160, "y" : 2544 } ] }
       ]
     }, {
       "id" : "f127",
       "type" : "Alternative",
       "name" : "logged in?",
+      "config" : {
+        "conditions" : {
+          "f119" : "ivy.session.isSessionUserUnknown()"
+        }
+      },
       "visual" : {
-        "at" : { "x" : 896, "y" : 992 },
+        "at" : { "x" : 160, "y" : 2624 },
         "labelOffset" : { "x" : 59, "y" : 18 }
       },
       "connect" : [
-        { "id" : "f119", "to" : "f115", "via" : [ { "x" : 896, "y" : 1040 } ], "condition" : "ivy.session.isSessionUserUnknown()" },
-        { "id" : "f114", "to" : "f118", "via" : [ { "x" : 896, "y" : 928 } ] }
+        { "id" : "f119", "to" : "f115" },
+        { "id" : "f114", "to" : "f118", "via" : [ { "x" : 160, "y" : 2544 } ] }
       ]
     }, {
       "id" : "f120",
@@ -1195,10 +2416,10 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : 17, "y" : 37 }
+        "labelOffset" : { "x" : -39, "y" : 33 }
       },
       "connect" : [
-        { "id" : "f47", "to" : "f21", "via" : [ { "x" : 488, "y" : 64 } ] }
+        { "id" : "f47", "to" : "f21", "via" : [ { "x" : 344, "y" : 64 } ] }
       ]
     }, {
       "id" : "f122",
@@ -1213,8 +2434,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 280, "y" : 2208 },
-        "size" : { "width" : 176, "height" : 60 }
+        "at" : { "x" : 416, "y" : 2143 },
+        "size" : { "width" : 256, "height" : 60 }
       }
     }, {
       "id" : "f130",
@@ -1237,11 +2458,11 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 2208 },
-        "labelOffset" : { "x" : 21, "y" : 41 }
+        "at" : { "x" : 96, "y" : 2144 },
+        "labelOffset" : { "x" : -47, "y" : 41 }
       },
       "connect" : [
-        { "id" : "f131", "to" : "f122" }
+        { "id" : "f98", "to" : "S51" }
       ]
     }, {
       "id" : "f132",
@@ -1262,8 +2483,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 2304 },
-        "labelOffset" : { "x" : 14, "y" : 36 }
+        "at" : { "x" : 96, "y" : 2224 },
+        "labelOffset" : { "x" : -31, "y" : 41 }
       },
       "connect" : [
         { "id" : "f135", "to" : "f134" }
@@ -1272,7 +2493,7 @@
       "id" : "f133",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 464, "y" : 2304 }
+        "at" : { "x" : 304, "y" : 2224 }
       }
     }, {
       "id" : "f134",
@@ -1287,7 +2508,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 248, "y" : 2304 }
+        "at" : { "x" : 200, "y" : 2224 }
       },
       "connect" : [
         { "id" : "f136", "to" : "f133" }
@@ -1310,8 +2531,8 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 648, "y" : 144 },
-        "size" : { "width" : 128, "height" : 60 }
+        "at" : { "x" : 488, "y" : 145 },
+        "size" : { "width" : 112, "height" : 62 }
       },
       "connect" : [
         { "id" : "f23", "to" : "f22" }
@@ -1361,6 +2582,11 @@
         }, {
           "id" : "S60-f54",
           "type" : "Alternative",
+          "config" : {
+            "conditions" : {
+              "S60-f7" : "ch.addon.portal.generic.userprofile.homepage.HomepageUtils.isShowDashboard(in.#homepage, in.#isShowDashboard)"
+            }
+          },
           "visual" : {
             "at" : { "x" : 284, "y" : 160 }
           },
@@ -1369,7 +2595,7 @@
                 "name" : "dashboard",
                 "segment" : 0.41,
                 "offset" : { "x" : 0, "y" : -12 }
-              }, "condition" : "ch.addon.portal.generic.userprofile.homepage.HomepageUtils.isShowDashboard(in.#homepage, in.#isShowDashboard)" },
+              } },
             { "id" : "S60-f5", "to" : "S60-f4", "via" : [ { "x" : 284, "y" : 256 } ], "label" : {
                 "name" : "others",
                 "segment" : 1.43,
@@ -1396,6 +2622,7 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
+            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f92",
@@ -1442,11 +2669,16 @@
         }, {
           "id" : "S60-f2",
           "type" : "Alternative",
+          "config" : {
+            "conditions" : {
+              "S60-f6" : "ch.addon.portal.generic.userprofile.homepage.HomepageUtils.isShowLegacyUI()"
+            }
+          },
           "visual" : {
             "at" : { "x" : 380, "y" : 160 }
           },
           "connect" : [
-            { "id" : "S60-f6", "to" : "S60-f22", "condition" : "ch.addon.portal.generic.userprofile.homepage.HomepageUtils.isShowLegacyUI()" },
+            { "id" : "S60-f6", "to" : "S60-f22" },
             { "id" : "S60-f10", "to" : "S60-f9", "via" : [ { "x" : 380, "y" : 80 } ], "label" : {
                 "name" : "new dashboard",
                 "segment" : 1.26,
@@ -1465,7 +2697,7 @@
           }
         } ],
       "visual" : {
-        "at" : { "x" : 1184, "y" : 144 }
+        "at" : { "x" : 1096, "y" : 144 }
       }
     }, {
       "id" : "S10",
@@ -1586,6 +2818,14 @@
         }, {
           "id" : "S10-f0",
           "type" : "Alternative",
+          "config" : {
+            "conditions" : {
+              "S10-f8" : "org.apache.commons.lang3.StringUtils.isNotBlank(in.#callbackUrl)",
+              "S10-f2" : "in.isTaskStartedInDetails && !in.isTaskFinished && !in.backFromTaskDetails",
+              "S10-f3" : "java.util.Objects.equals(ch.ivy.addon.portalkit.enums.PortalPage.CASE_DETAIL_FROM_TASK, in.#portalPage)",
+              "S10-f4" : "java.util.Objects.equals(ch.ivy.addon.portalkit.enums.PortalPage.TASK_LIST, in.#portalPage)"
+            }
+          },
           "visual" : {
             "at" : { "x" : 224, "y" : 96 }
           },
@@ -1594,10 +2834,10 @@
                 "name" : "Express end page",
                 "segment" : 0.47,
                 "offset" : { "x" : 0, "y" : -11 }
-              }, "condition" : "org.apache.commons.lang3.StringUtils.isNotBlank(in.#callbackUrl)" },
-            { "id" : "S10-f2", "to" : "S10-f68", "via" : [ { "x" : 288, "y" : 192 } ], "condition" : "in.isTaskStartedInDetails && !in.isTaskFinished && !in.backFromTaskDetails" },
-            { "id" : "S10-f3", "to" : "S10-f17", "via" : [ { "x" : 288, "y" : 288 } ], "condition" : "java.util.Objects.equals(ch.ivy.addon.portalkit.enums.PortalPage.CASE_DETAIL_FROM_TASK, in.#portalPage)" },
-            { "id" : "S10-f4", "to" : "S10-f19", "via" : [ { "x" : 256, "y" : 384 } ], "condition" : "java.util.Objects.equals(ch.ivy.addon.portalkit.enums.PortalPage.TASK_LIST, in.#portalPage)" },
+              } },
+            { "id" : "S10-f2", "to" : "S10-f68", "via" : [ { "x" : 288, "y" : 192 } ] },
+            { "id" : "S10-f3", "to" : "S10-f17", "via" : [ { "x" : 288, "y" : 288 } ] },
+            { "id" : "S10-f4", "to" : "S10-f19", "via" : [ { "x" : 256, "y" : 384 } ] },
             { "id" : "S10-f5", "to" : "S10-f52", "via" : [ { "x" : 224, "y" : 480 } ] }
           ]
         }, {
@@ -1606,6 +2846,7 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 96, "y" : 96 },
+            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f18",
@@ -1681,8 +2922,8 @@
           }
         } ],
       "visual" : {
-        "at" : { "x" : 1208, "y" : 304 },
-        "size" : { "width" : 160, "height" : 48 }
+        "at" : { "x" : 1165, "y" : 303 },
+        "size" : { "width" : 251, "height" : 65 }
       }
     }, {
       "id" : "S30",
@@ -1763,9 +3004,10 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
+            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
-          "parentConnector" : "f24",
+          "parentConnector" : "f176",
           "connect" : [
             { "id" : "S30-f0", "to" : "S30-f62" }
           ]
@@ -1775,12 +3017,13 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 672, "y" : 160 },
+            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f25"
         } ],
       "visual" : {
-        "at" : { "x" : 352, "y" : 513 }
+        "at" : { "x" : 488, "y" : 544 }
       },
       "connect" : [
         { "id" : "f25", "to" : "f57" }
@@ -1862,9 +3105,10 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
+            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
-          "parentConnector" : "f15",
+          "parentConnector" : "f179",
           "connect" : [
             { "id" : "S20-f0", "to" : "S20-f73" }
           ]
@@ -1874,101 +3118,30 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 672, "y" : 160 },
+            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f17"
         } ],
       "visual" : {
-        "at" : { "x" : 352, "y" : 640 }
+        "at" : { "x" : 488, "y" : 704 }
       },
       "connect" : [
         { "id" : "f17", "to" : "f64" }
       ]
     }, {
-      "id" : "S40",
-      "type" : "UserBpmnElement",
-      "name" : "Case Details Page",
-      "elements" : [ {
-          "id" : "S40-f106",
-          "type" : "Script",
-          "name" : "Find Case",
-          "config" : {
-            "output" : {
-              "code" : [
-                "import ch.ivyteam.ivy.workflow.ICase;",
-                "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
-                "",
-                "out.caseSelected = ivy.wf.getGlobalContext().getCaseQueryExecutor().createCaseQuery().where().caseId().isEqual(in.caseId).executor().firstResult() as ICase;"
-              ]
-            },
-            "sudo" : true
-          },
-          "visual" : {
-            "at" : { "x" : 192, "y" : 160 }
-          },
-          "connect" : [
-            { "id" : "S40-f107", "to" : "S40-f104" }
-          ]
-        }, {
-          "id" : "S40-f104",
-          "type" : "SubProcessCall",
-          "name" : "OpenPortalCaseDetails",
-          "config" : {
-            "processCall" : "Functional Processes/OpenPortalCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean)",
-            "call" : {
-              "map" : {
-                "param.caseData" : "in.caseSelected",
-                "param.isShowBackButton" : "true"
-              }
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 360, "y" : 160 },
-            "size" : { "width" : 144, "height" : 60 }
-          },
-          "connect" : [
-            { "id" : "S40-f1", "to" : "S40-g1" }
-          ]
-        }, {
-          "id" : "S40-g0",
-          "type" : "EmbeddedStart",
-          "name" : "in 1",
-          "visual" : {
-            "at" : { "x" : 64, "y" : 160 },
-            "labelOffset" : { "x" : 18, "y" : 25 }
-          },
-          "parentConnector" : "f26",
-          "connect" : [
-            { "id" : "S40-f0", "to" : "S40-f106" }
-          ]
-        }, {
-          "id" : "S40-g1",
-          "type" : "EmbeddedEnd",
-          "name" : "out 1",
-          "visual" : {
-            "at" : { "x" : 512, "y" : 160 },
-            "labelOffset" : { "x" : 21, "y" : 25 }
-          },
-          "parentConnector" : "f27"
-        } ],
-      "visual" : {
-        "at" : { "x" : 248, "y" : 704 }
-      },
-      "connect" : [
-        { "id" : "f27", "to" : "f105" }
-      ]
-    }, {
       "id" : "S70",
       "type" : "ServiceBpmnElement",
-      "name" : [
-        "Init data and",
-        "display growl msg",
-        "after finish task"
-      ],
+      "name" : "Init data and display growl msg after finish task",
       "elements" : [ {
           "id" : "S70-f47",
           "type" : "Alternative",
           "name" : "Is first task?",
+          "config" : {
+            "conditions" : {
+              "S70-f49" : "in.isFirstTask"
+            }
+          },
           "visual" : {
             "at" : { "x" : 152, "y" : 160 },
             "labelOffset" : { "x" : 16, "y" : -23 }
@@ -1978,7 +3151,7 @@
                 "name" : "Yes",
                 "segment" : 0.49,
                 "offset" : { "x" : 0, "y" : -13 }
-              }, "condition" : "in.isFirstTask" },
+              } },
             { "id" : "S70-f55", "to" : "S70-f7", "via" : [ { "x" : 152, "y" : 224 }, { "x" : 504, "y" : 224 } ], "label" : {
                 "name" : "No",
                 "segment" : 1.45,
@@ -2060,6 +3233,7 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
+            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f36",
@@ -2072,13 +3246,14 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 832, "y" : 160 },
+            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f40"
         } ],
       "visual" : {
-        "at" : { "x" : 936, "y" : 304 },
-        "size" : { "width" : 144, "height" : 64 }
+        "at" : { "x" : 848, "y" : 304 },
+        "size" : { "width" : 248, "height" : 64 }
       },
       "connect" : [
         { "id" : "f40", "to" : "f5" }
@@ -2087,7 +3262,7 @@
       "id" : "f138",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 1504, "y" : 1728 }
+        "at" : { "x" : 736, "y" : 2704 }
       }
     }, {
       "id" : "f142",
@@ -2104,7 +3279,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1368, "y" : 1728 }
+        "at" : { "x" : 632, "y" : 2704 }
       },
       "connect" : [
         { "id" : "f146", "to" : "f138" }
@@ -2126,7 +3301,6 @@
             "import ch.ivy.addon.portalkit.service.HistoryService;",
             "",
             "List<ITask> finishedTasks = new ArrayList();",
-            "in.caseSelected = CaseUtils.findCase(in.caseId);",
             "for(ITask task : in.caseSelected.tasks().all()) {",
             "  if(task.getState() == TaskState.DONE",
             "  || task.getState() == TaskState.CREATED ",
@@ -2149,7 +3323,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 1048, "y" : 1728 }
+        "at" : { "x" : 488, "y" : 2704 }
       },
       "connect" : [
         { "id" : "f147", "to" : "f142" }
@@ -2173,16 +3347,17 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 896, "y" : 1728 }
+        "at" : { "x" : 96, "y" : 2704 },
+        "labelOffset" : { "x" : -39, "y" : 33 }
       },
       "connect" : [
-        { "id" : "f145", "to" : "f143" }
+        { "id" : "f161", "to" : "f79" }
       ]
     }, {
       "id" : "f148",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 1504, "y" : 1824 }
+        "at" : { "x" : 736, "y" : 2784 }
       }
     }, {
       "id" : "f149",
@@ -2203,10 +3378,11 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 896, "y" : 1824 }
+        "at" : { "x" : 96, "y" : 2784 },
+        "labelOffset" : { "x" : -39, "y" : 33 }
       },
       "connect" : [
-        { "id" : "f155", "to" : "f152" }
+        { "id" : "f167", "to" : "f145" }
       ]
     }, {
       "id" : "f151",
@@ -2223,7 +3399,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1368, "y" : 1824 }
+        "at" : { "x" : 632, "y" : 2784 }
       },
       "connect" : [
         { "id" : "f153", "to" : "f148" }
@@ -2243,7 +3419,6 @@
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
             "import ch.ivy.addon.portalkit.comparator.NoteComparator;",
             "",
-            "in.taskSelected = ivy.wf.getGlobalContext().getTaskQueryExecutor().createTaskQuery().where().taskId().isEqual(in.taskId).executor().firstResult() as ITask;",
             "ICase iCase = in.taskSelected.getCase().getBusinessCase();",
             "GlobalSettingService globalSettingService = new GlobalSettingService();",
             "boolean excludeSystemNotes = globalSettingService.findHideSystemNotesFromHistorySettingValue();",
@@ -2254,10 +3429,10 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 1048, "y" : 1824 }
+        "at" : { "x" : 488, "y" : 2784 }
       },
       "connect" : [
-        { "id" : "f154", "to" : "f151" }
+        { "id" : "f168", "to" : "f151" }
       ]
     }, {
       "id" : "f156",
@@ -2275,8 +3450,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1376, "y" : 1920 },
-        "size" : { "width" : 128, "height" : 60 }
+        "at" : { "x" : 488, "y" : 2864 }
       },
       "connect" : [
         { "id" : "f162", "to" : "f157" }
@@ -2285,23 +3459,26 @@
       "id" : "f157",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 1504, "y" : 1920 }
+        "at" : { "x" : 592, "y" : 2864 }
       }
     }, {
       "id" : "f158",
       "type" : "Script",
-      "name" : "Find case by id",
+      "name" : "Find case",
       "config" : {
         "output" : {
-          "code" : "out.caseSelected = ivy.wf.findCase(in.caseId);"
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
+            "out.caseSelected = CaseService.newInstance().findCaseById(in.caseId);"
+          ]
         },
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 1048, "y" : 1920 }
+        "at" : { "x" : 200, "y" : 2864 }
       },
       "connect" : [
-        { "id" : "f161", "to" : "f156" }
+        { "id" : "f213", "to" : "S22" }
       ]
     }, {
       "id" : "f159",
@@ -2322,7 +3499,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 896, "y" : 1920 }
+        "at" : { "x" : 96, "y" : 2864 },
+        "labelOffset" : { "x" : -55, "y" : 33 }
       },
       "connect" : [
         { "id" : "f160", "to" : "f158" }
@@ -2338,37 +3516,18 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 896, "y" : 2016 },
-        "labelOffset" : { "x" : 20, "y" : 40 }
+        "at" : { "x" : 96, "y" : 2944 },
+        "labelOffset" : { "x" : -31, "y" : 41 }
       },
       "connect" : [
-        { "id" : "f168", "to" : "f167" }
+        { "id" : "f171", "to" : "S32" }
       ]
     }, {
       "id" : "f164",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 1504, "y" : 2016 }
+        "at" : { "x" : 448, "y" : 2944 }
       }
-    }, {
-      "id" : "f165",
-      "type" : "Alternative",
-      "name" : "has permission?",
-      "visual" : {
-        "at" : { "x" : 1216, "y" : 2016 }
-      },
-      "connect" : [
-        { "id" : "f172", "to" : "f166", "label" : {
-            "name" : "yes",
-            "segment" : 0.42,
-            "offset" : { "x" : 0, "y" : -11 }
-          }, "condition" : "in.hasPermission" },
-        { "id" : "f171", "to" : "f164", "via" : [ { "x" : 1216, "y" : 2064 }, { "x" : 1504, "y" : 2064 } ], "label" : {
-            "name" : "no",
-            "segment" : 1.24,
-            "offset" : { "x" : 0, "y" : -10 }
-          } }
-      ]
     }, {
       "id" : "f166",
       "type" : "DialogCall",
@@ -2377,31 +3536,10 @@
         "dialog" : "ch.ivy.addon.portal.generic.TaskAnalysis:start()"
       },
       "visual" : {
-        "at" : { "x" : 1376, "y" : 2016 },
-        "size" : { "width" : 128, "height" : 60 }
+        "at" : { "x" : 344, "y" : 2944 }
       },
       "connect" : [
         { "id" : "f169", "to" : "f164" }
-      ]
-    }, {
-      "id" : "f167",
-      "type" : "Script",
-      "name" : "Check permission",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.util.PermissionUtils;",
-            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
-            "",
-            "in.hasPermission = PermissionUtils.hasPermission(PortalPermission.STATISTIC_ANALYZE_TASK.getPermission());"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 1048, "y" : 2016 }
-      },
-      "connect" : [
-        { "id" : "f170", "to" : "f165" }
       ]
     }, {
       "id" : "f188",
@@ -2424,11 +3562,11 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 2512 },
-        "labelOffset" : { "x" : 22, "y" : 41 }
+        "at" : { "x" : 96, "y" : 2384 },
+        "labelOffset" : { "x" : -23, "y" : 41 }
       },
       "connect" : [
-        { "id" : "f198", "to" : "f193" }
+        { "id" : "f173", "to" : "S72" }
       ]
     }, {
       "id" : "f193",
@@ -2444,8 +3582,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 280, "y" : 2512 },
-        "size" : { "width" : 208, "height" : 60 }
+        "at" : { "x" : 416, "y" : 2385 },
+        "size" : { "width" : 256, "height" : 58 }
       },
       "connect" : [
         { "id" : "f199", "to" : "f195" }
@@ -2454,7 +3592,7 @@
       "id" : "f195",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 464, "y" : 2512 }
+        "at" : { "x" : 592, "y" : 2384 }
       }
     }, {
       "id" : "f200",
@@ -2465,7 +3603,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 224 },
-        "labelOffset" : { "x" : 42, "y" : 38 }
+        "labelOffset" : { "x" : -79, "y" : 41 }
       },
       "connect" : [
         { "id" : "f202", "to" : "f201" }
@@ -2486,7 +3624,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 224 }
+        "at" : { "x" : 200, "y" : 224 }
       },
       "connect" : [
         { "id" : "f205", "to" : "f203" }
@@ -2495,7 +3633,7 @@
       "id" : "f203",
       "type" : "Alternative",
       "visual" : {
-        "at" : { "x" : 224, "y" : 144 }
+        "at" : { "x" : 200, "y" : 144 }
       },
       "connect" : [
         { "id" : "f43", "to" : "f21" }
@@ -2508,8 +3646,8 @@
         "signature" : "DefaultCaseListPageInTeams"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 448 },
-        "labelOffset" : { "x" : 57, "y" : 38 }
+        "at" : { "x" : 96, "y" : 464 },
+        "labelOffset" : { "x" : -55, "y" : 41 }
       },
       "connect" : [
         { "id" : "f208", "to" : "f207" }
@@ -2530,28 +3668,10 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 448 }
+        "at" : { "x" : 200, "y" : 464 }
       },
       "connect" : [
-        { "id" : "f211", "to" : "f209" }
-      ]
-    }, {
-      "id" : "f209",
-      "type" : "Alternative",
-      "visual" : {
-        "at" : { "x" : 224, "y" : 513 }
-      },
-      "connect" : [
-        { "id" : "f24", "to" : "S30" }
-      ]
-    }, {
-      "id" : "f212",
-      "type" : "Alternative",
-      "visual" : {
-        "at" : { "x" : 224, "y" : 640 }
-      },
-      "connect" : [
-        { "id" : "f15", "to" : "S20" }
+        { "id" : "f61", "to" : "S71", "via" : [ { "x" : 344, "y" : 464 } ] }
       ]
     }, {
       "id" : "f214",
@@ -2569,10 +3689,10 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 576 }
+        "at" : { "x" : 200, "y" : 624 }
       },
       "connect" : [
-        { "id" : "f217", "to" : "f212" }
+        { "id" : "f24", "to" : "S80", "via" : [ { "x" : 344, "y" : 624 } ] }
       ]
     }, {
       "id" : "f215",
@@ -2582,20 +3702,11 @@
         "signature" : "DefaultTaskListPageInTeams"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 576 },
-        "labelOffset" : { "x" : 48, "y" : 39 }
+        "at" : { "x" : 96, "y" : 624 },
+        "labelOffset" : { "x" : -55, "y" : 41 }
       },
       "connect" : [
         { "id" : "f216", "to" : "f214" }
-      ]
-    }, {
-      "id" : "f218",
-      "type" : "Alternative",
-      "visual" : {
-        "at" : { "x" : 224, "y" : 1280 }
-      },
-      "connect" : [
-        { "id" : "f79", "to" : "f71" }
       ]
     }, {
       "id" : "f220",
@@ -2605,8 +3716,8 @@
         "signature" : "DefaultProcessStartListPageInTeams"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 1216 },
-        "labelOffset" : { "x" : 61, "y" : 37 }
+        "at" : { "x" : 96, "y" : 1264 },
+        "labelOffset" : { "x" : -79, "y" : 41 }
       },
       "connect" : [
         { "id" : "f222", "to" : "f221" }
@@ -2627,16 +3738,16 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 1216 }
+        "at" : { "x" : 198, "y" : 1264 }
       },
       "connect" : [
-        { "id" : "f223", "to" : "f218" }
+        { "id" : "f197", "to" : "S12" }
       ]
     }, {
       "id" : "f224",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 1216, "y" : 2112 }
+        "at" : { "x" : 304, "y" : 3024 }
       }
     }, {
       "id" : "f225",
@@ -2652,8 +3763,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1048, "y" : 2112 },
-        "size" : { "width" : 120, "height" : 48 }
+        "at" : { "x" : 200, "y" : 3024 },
+        "size" : { "width" : 116, "height" : 60 }
       },
       "connect" : [
         { "id" : "f228", "to" : "f224" }
@@ -2679,8 +3790,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 896, "y" : 2112 },
-        "labelOffset" : { "x" : 24, "y" : 38 }
+        "at" : { "x" : 96, "y" : 3024 },
+        "labelOffset" : { "x" : -31, "y" : 33 }
       },
       "connect" : [
         { "id" : "f227", "to" : "f225" }
@@ -2704,17 +3815,17 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 896, "y" : 2208 },
-        "labelOffset" : { "x" : 26, "y" : 36 }
+        "at" : { "x" : 96, "y" : 3104 },
+        "labelOffset" : { "x" : -31, "y" : 33 }
       },
       "connect" : [
-        { "id" : "f233", "to" : "f232" }
+        { "id" : "f186", "to" : "S81" }
       ]
     }, {
       "id" : "f230",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 1216, "y" : 2208 }
+        "at" : { "x" : 448, "y" : 3104 }
       }
     }, {
       "id" : "f232",
@@ -2729,7 +3840,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1048, "y" : 2208 }
+        "at" : { "x" : 344, "y" : 3104 }
       },
       "connect" : [
         { "id" : "f231", "to" : "f230" }
@@ -2753,17 +3864,17 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 896, "y" : 2304 },
-        "labelOffset" : { "x" : 27, "y" : 38 }
+        "at" : { "x" : 96, "y" : 3184 },
+        "labelOffset" : { "x" : -31, "y" : 33 }
       },
       "connect" : [
-        { "id" : "f238", "to" : "f237" }
+        { "id" : "f189", "to" : "S91" }
       ]
     }, {
       "id" : "f235",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 1216, "y" : 2304 }
+        "at" : { "x" : 448, "y" : 3184 }
       }
     }, {
       "id" : "f237",
@@ -2778,7 +3889,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1048, "y" : 2304 }
+        "at" : { "x" : 344, "y" : 3184 }
       },
       "connect" : [
         { "id" : "f236", "to" : "f235" }
@@ -2794,17 +3905,17 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 896, "y" : 2408 },
-        "labelOffset" : { "x" : 17, "y" : 37 }
+        "at" : { "x" : 96, "y" : 3264 },
+        "labelOffset" : { "x" : -31, "y" : 33 }
       },
       "connect" : [
-        { "id" : "f239", "to" : "f137" }
+        { "id" : "f191", "to" : "S01" }
       ]
     }, {
       "id" : "f41",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 1216, "y" : 2408 }
+        "at" : { "x" : 448, "y" : 3264 }
       }
     }, {
       "id" : "f137",
@@ -2814,7 +3925,7 @@
         "dialog" : "ch.ivy.addon.portal.setting.PortalManagement:start()"
       },
       "visual" : {
-        "at" : { "x" : 1048, "y" : 2408 }
+        "at" : { "x" : 344, "y" : 3264 }
       },
       "connect" : [
         { "id" : "f129", "to" : "f41" }
@@ -2823,7 +3934,7 @@
       "id" : "f241",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 464, "y" : 2408 }
+        "at" : { "x" : 592, "y" : 2304 }
       }
     }, {
       "id" : "f243",
@@ -2833,8 +3944,8 @@
         "dialog" : "ch.ivy.addon.portal.generic.dashboard.PortalDashboardConfiguration:start()"
       },
       "visual" : {
-        "at" : { "x" : 264, "y" : 2408 },
-        "size" : { "width" : 176, "height" : 60 }
+        "at" : { "x" : 416, "y" : 2304 },
+        "size" : { "width" : 256, "height" : 60 }
       },
       "connect" : [
         { "id" : "f242", "to" : "f241" }
@@ -2850,25 +3961,25 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 2408 },
-        "labelOffset" : { "x" : 17, "y" : 37 }
+        "at" : { "x" : 96, "y" : 2304 },
+        "labelOffset" : { "x" : -55, "y" : 33 }
       },
       "connect" : [
-        { "id" : "f173", "to" : "f243" }
+        { "id" : "f131", "to" : "S61" }
       ]
     }, {
       "id" : "f150",
       "type" : "Script",
       "name" : [
-        "handle blank ",
-        "callback url"
+        "Handle blank ",
+        "callback URL"
       ],
       "config" : {
         "output" : {
           "code" : [
             "import ch.ivy.addon.portal.generic.navigation.PortalNavigator;",
             "import org.apache.commons.lang3.StringUtils;",
-            "// bug related https://1ivy.atlassian.net/browse/IVYPORTAL-14851",
+            "// Blank callback URL causes issue https://1ivy.atlassian.net/browse/IVYPORTAL-14851",
             "if (StringUtils.isBlank(in.callbackUrl)){",
             "  in.callbackUrl = PortalNavigator.getPortalStartUrl();",
             "}"
@@ -2876,10 +3987,308 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 416, "y" : 864 }
+        "at" : { "x" : 344, "y" : 944 }
       },
       "connect" : [
         { "id" : "f8", "to" : "f6" }
+      ]
+    }, {
+      "id" : "f272",
+      "type" : "Script",
+      "name" : "Find Case",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
+            "",
+            "out.caseSelected = CaseService.newInstance().findCaseById(in.caseId);"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 784 }
+      },
+      "connect" : [
+        { "id" : "f15", "to" : "S90" }
+      ]
+    }, {
+      "id" : "f274",
+      "type" : "SubProcessCall",
+      "name" : "OpenPortalCaseDetails",
+      "config" : {
+        "processCall" : "Functional Processes/OpenPortalCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean)",
+        "call" : {
+          "map" : {
+            "param.caseData" : "in.caseSelected",
+            "param.isShowBackButton" : "true"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 560, "y" : 784 },
+        "size" : { "width" : 256, "height" : 60 }
+      },
+      "connect" : [
+        { "id" : "f276", "to" : "f105" }
+      ]
+    }, {
+      "id" : "S71",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S71-f268",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 152, "y" : 224 }
+          }
+        }, {
+          "id" : "S71-f209",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S71-f2" : "ch.ivy.addon.portalkit.util.PermissionUtils.checkAccessFullCaseListPermission()"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 152, "y" : 144 },
+            "labelOffset" : { "x" : 16, "y" : -24 }
+          },
+          "connect" : [
+            { "id" : "S71-f2", "to" : "S71-g2", "label" : {
+                "name" : "Yes"
+              } },
+            { "id" : "S71-f269", "to" : "S71-f268", "label" : {
+                "name" : "No",
+                "segment" : 0.56
+              } }
+          ]
+        }, {
+          "id" : "S71-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 64 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f61",
+          "connect" : [
+            { "id" : "S71-f0", "to" : "S71-f209", "via" : [ { "x" : 152, "y" : 64 } ] }
+          ]
+        }, {
+          "id" : "S71-g1",
+          "type" : "EmbeddedStart",
+          "name" : "in 2",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f175",
+          "connect" : [
+            { "id" : "S71-f1", "to" : "S71-f209" }
+          ]
+        }, {
+          "id" : "S71-g2",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 224, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f176"
+        } ],
+      "visual" : {
+        "at" : { "x" : 344, "y" : 544 }
+      },
+      "connect" : [
+        { "id" : "f176", "to" : "S30" }
+      ]
+    }, {
+      "id" : "S80",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S80-f212",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S80-f2" : "ch.ivy.addon.portalkit.util.PermissionUtils.checkAccessFullTaskListPermission()"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 152, "y" : 144 },
+            "labelOffset" : { "x" : 16, "y" : -24 }
+          },
+          "connect" : [
+            { "id" : "S80-f2", "to" : "S80-g2", "label" : {
+                "name" : "Yes"
+              } },
+            { "id" : "S80-f271", "to" : "S80-f270", "label" : {
+                "name" : "No"
+              } }
+          ]
+        }, {
+          "id" : "S80-f270",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 152, "y" : 224 }
+          }
+        }, {
+          "id" : "S80-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 72, "y" : 64 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f24",
+          "connect" : [
+            { "id" : "S80-f0", "to" : "S80-f212", "via" : [ { "x" : 152, "y" : 64 } ] }
+          ]
+        }, {
+          "id" : "S80-g1",
+          "type" : "EmbeddedStart",
+          "name" : "in 2",
+          "visual" : {
+            "at" : { "x" : 72, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f178",
+          "connect" : [
+            { "id" : "S80-f1", "to" : "S80-f212" }
+          ]
+        }, {
+          "id" : "S80-g2",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 232, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f179"
+        } ],
+      "visual" : {
+        "at" : { "x" : 344, "y" : 704 }
+      },
+      "connect" : [
+        { "id" : "f179", "to" : "S20" }
+      ]
+    }, {
+      "id" : "f79",
+      "type" : "Script",
+      "name" : "Find case",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
+            "in.caseSelected = CaseService.newInstance().findCaseById(in.caseId);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 2704 }
+      },
+      "connect" : [
+        { "id" : "f172", "to" : "S41" }
+      ]
+    }, {
+      "id" : "f145",
+      "type" : "Script",
+      "name" : "Find task",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;",
+            "in.taskSelected = TaskService.newInstance().findTaskById(in.taskId);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 2784 }
+      },
+      "connect" : [
+        { "id" : "f165", "to" : "S42" }
+      ]
+    }, {
+      "id" : "S42",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S42-f168",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 384, "y" : 176 }
+          }
+        }, {
+          "id" : "S42-f165",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S42-f1" : "in.isAuthorized"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 320, "y" : 144 },
+            "labelOffset" : { "x" : 16, "y" : -16 }
+          },
+          "connect" : [
+            { "id" : "S42-f1", "to" : "S42-g1", "label" : {
+                "name" : "Yes"
+              } },
+            { "id" : "S42-f170", "to" : "S42-f168", "via" : [ { "x" : 320, "y" : 176 } ], "label" : {
+                "name" : "No",
+                "segment" : 1.26
+              } }
+          ]
+        }, {
+          "id" : "S42-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f165",
+          "connect" : [
+            { "id" : "S42-f3", "to" : "S42-f2" }
+          ]
+        }, {
+          "id" : "S42-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 488, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f155"
+        }, {
+          "id" : "S42-f2",
+          "type" : "Script",
+          "name" : "Init isAuthorized",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+                "import ch.ivy.addon.portalkit.util.PermissionUtils;",
+                "in.isAuthorized = PermissionUtils.hasPortalPermission(PortalPermission.TASK_CASE_SHOW_MORE_NOTE) && in.#taskSelected is initialized;"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 192, "y" : 144 }
+          },
+          "connect" : [
+            { "id" : "S42-f0", "to" : "S42-f165" }
+          ]
+        } ],
+      "visual" : {
+        "at" : { "x" : 344, "y" : 2784 }
+      },
+      "connect" : [
+        { "id" : "f155", "to" : "f152" }
       ]
     } ]
 }

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "1521B28EE98E8444",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -306,6 +306,11 @@
       "id" : "f34",
       "type" : "Alternative",
       "name" : "is compact mode?",
+      "config" : {
+        "conditions" : {
+          "f45" : "in.compactMode"
+        }
+      },
       "visual" : {
         "at" : { "x" : 264, "y" : 384 },
         "labelOffset" : { "x" : 13, "y" : 34 }
@@ -315,7 +320,7 @@
             "name" : "yes",
             "segment" : 0.47,
             "offset" : { "x" : 0, "y" : 12 }
-          }, "condition" : "in.compactMode" },
+          } },
         { "id" : "f38", "to" : "f36", "via" : [ { "x" : 264, "y" : 320 } ] }
       ]
     }, {

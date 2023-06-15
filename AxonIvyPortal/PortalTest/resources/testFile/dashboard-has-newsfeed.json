@@ -19,7 +19,7 @@
 				"type": "news",
 				"id": "news_1",
 				"names": [{
-						"locale": "en__APPLICATION_DEFAULT",
+						"locale": "en",
 						"value": "Portal News feed"
 					}
 				],

@@ -1,8 +1,13 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
 import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.isHiddenTasksCasesExcluded;
+import static ch.ivyteam.ivy.workflow.CaseState.CREATED;
+import static ch.ivyteam.ivy.workflow.CaseState.DESTROYED;
+import static ch.ivyteam.ivy.workflow.CaseState.DONE;
+import static ch.ivyteam.ivy.workflow.CaseState.RUNNING;
 
 import java.math.BigDecimal;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -25,8 +30,10 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
@@ -82,7 +89,7 @@ public class CaseService implements ICaseService {
     return Ivy.wf().getCaseQueryExecutor().getResults(query, startIndex, count);
   }
 
-  private long countCases(CaseQuery query) {
+  protected long countCases(CaseQuery query) {
     return Ivy.wf().getCaseQueryExecutor().getCount(query);
   }
   
@@ -94,6 +101,12 @@ public class CaseService implements ICaseService {
       caseQuery = CaseQuery.businessCases();
     }
 
+    caseQuery = queryForCurrentUser(caseQuery);
+
+    return caseQuery;
+  }
+
+  private CaseQuery queryForCurrentUser(CaseQuery caseQuery) {
     caseQuery.where().or().currentUserIsInvolved();
     if (GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
       caseQuery.where().or().currentUserIsOwner();
@@ -155,7 +168,7 @@ public class CaseService implements ICaseService {
     if (recordSet != null) {
       recordSet.getRecords().forEach(record -> {
         int state = Integer.parseInt(record.getField("STATE").toString());
-        long numberOfCases = Long.parseLong(record.getField("COUNT").toString());
+        long numberOfCases = ((BigDecimal)(record.getField("COUNT"))).longValue();
         if (state == CaseState.DONE.intValue()) {
           caseStateStatistic.setDone(numberOfCases);
         } else if (state == CaseState.CREATED.intValue()) {
@@ -288,7 +301,7 @@ public class CaseService implements ICaseService {
     caseCategoryStatistic.setNumberOfCasesByCategory(new HashMap<>());
     if (recordSet != null) {
       recordSet.getRecords().forEach(record -> {
-        long numberOfCases = Long.parseLong(record.getField("COUNT").toString());
+        long numberOfCases = ((BigDecimal)(record.getField("COUNT"))).longValue();
         caseCategoryStatistic.getNumberOfCasesByCategory().put(record.getField("CATEGORY").toString(), numberOfCases);
       });
     }
@@ -423,5 +436,34 @@ public class CaseService implements ICaseService {
     }
     categoryPath.append(category.getRawPath());
     caseCategoryStatistic.getNumberOfCasesByCategory().put(categoryPath.toString(), category.count());
+  }
+
+  public ICase findCaseById(long caseId) {
+    return Sudo.get(() -> {
+      CaseQuery caseQuery = CaseQuery.create().where().caseId().isEqual(caseId);
+      if (PermissionUtils.checkReadAllCasesPermission()) {
+        EnumSet<CaseState> ADVANCE_STATES = EnumSet.of(CREATED, RUNNING, DONE, DESTROYED);
+        caseQuery.where().and(queryForStates(ADVANCE_STATES));
+      } else {
+        EnumSet<CaseState> STANDARD_STATES = EnumSet.of(CREATED, RUNNING, DONE);
+        caseQuery.where().and(queryForStates(STANDARD_STATES)).and(queryForCurrentUser(CaseQuery.create()));
+      }
+      if (isHiddenTasksCasesExcluded()) {
+        caseQuery.where().and(queryExcludeHiddenCases());
+      }
+      return Ivy.wf().getCaseQueryExecutor().getFirstResult(caseQuery);
+    });
+  }
+
+  public boolean isCaseAccessible(long caseId) {
+    return findCaseById(caseId) != null;
+  }
+
+  private CaseQuery queryForStates(EnumSet<CaseState> states) {
+    CaseQuery caseQuery = CaseQuery.create();
+    for (CaseState state : states) {
+      caseQuery.where().or().state().isEqual(state);
+    }
+    return caseQuery;
   }
 }

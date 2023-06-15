@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "16BFA568D95D2EA0",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -157,11 +157,16 @@
     }, {
       "id" : "f77",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f3" : "in.canUserResumeTask"
+        }
+      },
       "visual" : {
         "at" : { "x" : 352, "y" : 480 }
       },
       "connect" : [
-        { "id" : "f3", "to" : "f49", "condition" : "in.canUserResumeTask" },
+        { "id" : "f3", "to" : "f49" },
         { "id" : "f100", "to" : "f99" }
       ]
     }, {
@@ -296,11 +301,16 @@
     }, {
       "id" : "f79",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f92" : "in.canUserResumeTask"
+        }
+      },
       "visual" : {
         "at" : { "x" : 352, "y" : 672 }
       },
       "connect" : [
-        { "id" : "f92", "to" : "f98", "condition" : "in.canUserResumeTask" },
+        { "id" : "f92", "to" : "f98" },
         { "id" : "f4", "to" : "f99" }
       ]
     }, {

@@ -232,6 +232,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       EnableSwitchThemeModeButton: Establecer en true para habilitar el botón de cambio de tema.
       RoleDirectChildrenLimit: 'El número establecido controla la cantidad de roles hijos directos que se muestra en la pestaña de gestión de roles. Número válido: 10, 50, 100'
       RoleParentLimit: 'El número establecido controla la cantidad de roles padre que se muestra al filtrar los roles en la pestaña Gestión de roles. Número válido: 5, 10, 20'
+      SearchScopeCaseFields: Definición de los campos que la búsqueda global utilizará para encontrar casos coincidentes además del Id de caso (esto puede influir en el rendimiento de la búsqueda)
+      SearchScopeTaskFields: Definir los campos que la búsqueda global utilizará para encontrar tareas coincidentes junto al Id de tarea (esto puede influir en el rendimiento de la búsqueda).
       ShowLoginPageFooter: Para activar/desactivar la visualización del pie de página en la página de acceso.
       behaviourWhenClickingOnLineInTaskList: Para cambiar los comportamientos (ejecutar la tarea o acceder a los detalles de la tarea) al hacer clic en una línea de la lista de tareas, el widget de tareas del tablero y las tareas relacionadas en la página de detalles del caso.
       chatMaxConnection: 'El número establecido controla la cantidad de pestañas permitidas con el chat activo. Si se abren más pestañas, el chat se desactivará en las pestañas inactivas. Valores permitidos entre 1-5 '
@@ -385,10 +387,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     title: Título
   caseState:
     CREATED: Creado
+    CREATED_UPPERCASE: Creado
     DESTROYED: Destruido
+    DESTROYED_UPPERCASE: Destruido
     DONE: Hecho
+    DONE_UPPERCASE: Hecho
     FAILED: Ha fallado
+    INPROGRESS: En Progreso
     OPEN: Pendiente
+    OPEN_UPPERCASE: Pendiente
     RUNNING: En progreso
   caseTreeTable:
     caseState: Estado del caso
@@ -866,10 +873,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       manageDashboard: Administrar tablero
       removeDashboardHeader: Borrar el tablero "{0}"
     deleteWidget: Eliminar el widget
+    downloadZipFileExplanation: Si el número de elementos a exportar supera el límite de filas de Excel, los datos se dividirán en varios archivos Excel y, a continuación, se comprimirán en un archivo ZIP para su descarga.
     editWidget: Editar widget
     existingField: El campo {0} ya existe
     expiryFrom: Caducidad desde
     expiryTo: Fecha de caducidad hasta
+    export:
+      exportedCasesFileName: AXONIVY_Dataset_Cases_{0}_{1}.{2}
     field: Campo
     fieldIsAdded: El campo {0} está añadido
     iconMessage:
@@ -1083,6 +1093,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     favoriteProcesses: Favoritos del usuario
     goTo: 'Ir a:'
     icon: Icono
+    image: Imagen
     isRequiredMessage: tiene que ser configurado
     linkDescription: Descripción del enlace
     noFavoriteProcess: No ha definido ningún favorito.
@@ -1388,29 +1399,37 @@ ch.ivy.addon.portalkit.ui.jsf:
     title: Prioridad de tarea
   taskState:
     CREATED: Creado
+    CREATED_UPPERCASE: Creado
     DELAYED: Retrasado
-    DELAYED_UPPERCASE: DEMORADO
+    DELAYED_UPPERCASE: Retrasado
     DESTROYED: Destruido
-    DESTROYED_UPPERCASE: DESTRUIDO
+    DESTROYED_UPPERCASE: Destruido
     DONE: Hecho
-    DONE_UPPERCASE: HECHO
+    DONE_UPPERCASE: Hecho
     FAILED: Ha fallado
-    INPROGRESS: En progreso
+    FAILED_UPPERCASE: Ha fallado
+    INPROGRESS: En Progeso
     JOINING: Unión
+    JOINING_UPPERCASE: Unión
     JOIN_FAILED: Unión fallida
+    JOIN_FAILED_UPPERCASE: Unión fallida
     OPEN: Pendiente
-    OPEN_UPPERCASE: PENDIENTE
+    OPEN_UPPERCASE: Pendiente
     PARKED: Reservado
     READY_FOR_JOIN: Listo para unirse
     READY_FOR_JOINING: Listo para unirse
+    READY_FOR_JOINING_UPPERCASE: Listo para unirse
     READY_FOR_JOIN_UPPERCASE: READY FOR JOIN
-    RESERVED: Reservado
+    RESERVED: Resevardo
     RESUMED: En progreso
     SUSPENDED: Suspendido
-    SYSTEM: SISTEMA
+    SUSPENDED_UPPERCASE: Suspendido
+    SYSTEM: Sistema
     WAITING: Esperando
     WAITING_FOR_INTERMEDIATE_EVENT: Esperando el evento
+    WAITING_FOR_INTERMEDIATE_EVENT_UPPERCASE: Esperando el evento
   taskView:
+    GlobalSearchText: Las tareas contienen la palabra clave "{0}" en ID de tarea{1}.
     filterTextPlaceHolderMobile: Nombre o descripción
     filterTextPlaceholder: Nombre, descripción o ID
     restoreDefaultFilterMessage: Si procede, se aplicará el filtro por defecto
@@ -1525,6 +1544,7 @@ Dialogs:
                 destroyCase: Borrar caso
               CaseOwner: Responsable del proceso
               Finished: Terminado
+              GlobalSearchText: Los casos contienen la palabra clave "{0}" en ID del caso{1}.
               ShowBusinessDetails: detalles del negocio
               caseNameNotAvailable: '[Nombre del caso no disponible]'
               defaultEmptyMessage: No hay casos
@@ -1665,6 +1685,13 @@ Labels:
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
   AppendTheTask: Anexar la tarea
   Enums:
+    SearchScopeCaseField:
+      CUSTOM: Campos de cadena personalizados
+      DESCRIPTION: Descripción
+      NAME: Nombre
+    SearchScopeTaskField:
+      DESCRIPTION: Descripción
+      NAME: Nombre
     ThemeMode:
       DARK: Oscuro
       LIGHT: Luz

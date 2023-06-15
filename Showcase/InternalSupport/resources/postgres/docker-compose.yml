@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+  postgres_all:
+    image: postgres:15.2
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: <password>
+    ports:
+      - 5432:5432
+    volumes:
+     - /var/tools/postgresql/latest/data:/var/lib/postgresql/data  
+    networks:
+      - postgres_network
+networks:
+  postgres_network:
+    external: true

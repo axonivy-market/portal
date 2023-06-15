@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
+import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -21,6 +22,7 @@ public class CaseExporter extends Exporter{
   
   /**
    * Constructor
+   * 
    * @param columnsVisibility list of columns to export
    */
   public CaseExporter(List<String> columnsVisibility) {
@@ -35,7 +37,7 @@ public class CaseExporter extends Exporter{
    * In case you adds new columns, these columns need cms to show in excel file
    * </p>
    * <p>
-   * You can either add new entry to default folder below in PortalKit or override this method to create your own
+   * You can either add new entry to default folder below in Portal or override this method to create your own
    * folder column must be the same with sortField
    * </p>
    * 
@@ -107,7 +109,7 @@ public class CaseExporter extends Exporter{
       case FINISHED_TIME:
         return caseItem.getEndTimestamp();
       case STATE:
-        return caseItem.getState().toString();
+        return CaseUtils.convertToUserFriendlyCaseState(caseItem.getState());
       case CATEGORY:
         return caseItem.getCategory().getPath();
       case APPLICATION:

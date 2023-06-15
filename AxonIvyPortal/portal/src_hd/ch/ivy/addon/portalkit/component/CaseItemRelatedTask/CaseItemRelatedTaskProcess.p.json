@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "153358BE9219FD4C",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -474,12 +474,17 @@
       "id" : "f22",
       "type" : "Alternative",
       "name" : "Navigate in Case Information frame ?",
+      "config" : {
+        "conditions" : {
+          "f30" : "!in.inFrame"
+        }
+      },
       "visual" : {
         "at" : { "x" : 704, "y" : 768 },
         "labelOffset" : { "x" : 36, "y" : -26 }
       },
       "connect" : [
-        { "id" : "f30", "to" : "f23", "condition" : "!in.inFrame" },
+        { "id" : "f30", "to" : "f23" },
         { "id" : "f38", "to" : "f32", "via" : [ { "x" : 704, "y" : 872 } ] }
       ]
     }, {
@@ -502,12 +507,17 @@
       "id" : "f46",
       "type" : "Alternative",
       "name" : "Navigate in Case Information frame ?",
+      "config" : {
+        "conditions" : {
+          "f40" : "!in.inFrame"
+        }
+      },
       "visual" : {
         "at" : { "x" : 704, "y" : 592 },
         "labelOffset" : { "x" : 38, "y" : -26 }
       },
       "connect" : [
-        { "id" : "f40", "to" : "f26", "condition" : "!in.inFrame" },
+        { "id" : "f40", "to" : "f26" },
         { "id" : "f50", "to" : "f49", "via" : [ { "x" : 704, "y" : 680 } ] }
       ]
     }, {

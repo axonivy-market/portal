@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "162511D2577DBA88",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.Data"
@@ -52,6 +52,7 @@
           "name" : "createTechnicalStateTasks",
           "visual" : {
             "at" : { "x" : 176, "y" : 200 },
+            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 13, "y" : 42 }
           },
           "parentConnector" : "f62",
@@ -123,6 +124,7 @@
           "name" : "createTechnicalStateTasks",
           "visual" : {
             "at" : { "x" : 128, "y" : 160 },
+            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : -3, "y" : 48 }
           },
           "parentConnector" : "f63",
@@ -235,6 +237,7 @@
           "name" : "createTechnicalStateTasks",
           "visual" : {
             "at" : { "x" : 152, "y" : 208 },
+            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : -3, "y" : 58 }
           },
           "parentConnector" : "f61",
@@ -426,11 +429,16 @@
     }, {
       "id" : "f46",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f49" : "in.count == in.caseNumber"
+        }
+      },
       "visual" : {
         "at" : { "x" : 716, "y" : 255 }
       },
       "connect" : [
-        { "id" : "f49", "to" : "f48", "condition" : "in.count == in.caseNumber" },
+        { "id" : "f49", "to" : "f48" },
         { "id" : "f57", "to" : "f50", "via" : [ { "x" : 716, "y" : 192 }, { "x" : 216, "y" : 192 } ] }
       ]
     }, {
@@ -1338,7 +1346,8 @@
           "id" : "S40-g0",
           "type" : "EmbeddedStart",
           "visual" : {
-            "at" : { "x" : 64, "y" : 288 }
+            "at" : { "x" : 64, "y" : 288 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f102",
           "connect" : [
@@ -1348,7 +1357,8 @@
           "id" : "S40-g1",
           "type" : "EmbeddedEnd",
           "visual" : {
-            "at" : { "x" : 872, "y" : 288 }
+            "at" : { "x" : 872, "y" : 288 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f97"
         }, {
@@ -1363,11 +1373,16 @@
         }, {
           "id" : "S40-f3",
           "type" : "Alternative",
+          "config" : {
+            "conditions" : {
+              "S40-f0" : "in.count == in.caseNumber"
+            }
+          },
           "visual" : {
             "at" : { "x" : 784, "y" : 288 }
           },
           "connect" : [
-            { "id" : "S40-f0", "to" : "S40-g1", "condition" : "in.count == in.caseNumber" },
+            { "id" : "S40-f0", "to" : "S40-g1" },
             { "id" : "S40-f9", "to" : "S40-f1", "via" : [ { "x" : 784, "y" : 88 }, { "x" : 288, "y" : 88 } ] }
           ]
         }, {
@@ -1439,7 +1454,8 @@
           "id" : "S41-g0",
           "type" : "EmbeddedStart",
           "visual" : {
-            "at" : { "x" : 64, "y" : 288 }
+            "at" : { "x" : 64, "y" : 288 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f103",
           "connect" : [
@@ -1449,7 +1465,8 @@
           "id" : "S41-g1",
           "type" : "EmbeddedEnd",
           "visual" : {
-            "at" : { "x" : 872, "y" : 288 }
+            "at" : { "x" : 872, "y" : 288 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f105"
         }, {
@@ -1464,11 +1481,16 @@
         }, {
           "id" : "S41-f3",
           "type" : "Alternative",
+          "config" : {
+            "conditions" : {
+              "S41-f0" : "in.count == in.caseNumber"
+            }
+          },
           "visual" : {
             "at" : { "x" : 784, "y" : 288 }
           },
           "connect" : [
-            { "id" : "S41-f0", "to" : "S41-g1", "condition" : "in.count == in.caseNumber" },
+            { "id" : "S41-f0", "to" : "S41-g1" },
             { "id" : "S41-f9", "to" : "S41-f1", "via" : [ { "x" : 784, "y" : 88 }, { "x" : 288, "y" : 88 } ] }
           ]
         }, {
@@ -1540,7 +1562,8 @@
           "id" : "S42-g0",
           "type" : "EmbeddedStart",
           "visual" : {
-            "at" : { "x" : 64, "y" : 288 }
+            "at" : { "x" : 64, "y" : 288 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f98",
           "connect" : [
@@ -1550,7 +1573,8 @@
           "id" : "S42-g1",
           "type" : "EmbeddedEnd",
           "visual" : {
-            "at" : { "x" : 872, "y" : 288 }
+            "at" : { "x" : 872, "y" : 288 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f106"
         }, {
@@ -1565,11 +1589,16 @@
         }, {
           "id" : "S42-f3",
           "type" : "Alternative",
+          "config" : {
+            "conditions" : {
+              "S42-f0" : "in.count == in.caseNumber"
+            }
+          },
           "visual" : {
             "at" : { "x" : 784, "y" : 288 }
           },
           "connect" : [
-            { "id" : "S42-f0", "to" : "S42-g1", "condition" : "in.count == in.caseNumber" },
+            { "id" : "S42-f0", "to" : "S42-g1" },
             { "id" : "S42-f9", "to" : "S42-f1", "via" : [ { "x" : 784, "y" : 88 }, { "x" : 288, "y" : 88 } ] }
           ]
         }, {
@@ -1641,7 +1670,8 @@
           "id" : "S45-g0",
           "type" : "EmbeddedStart",
           "visual" : {
-            "at" : { "x" : 64, "y" : 288 }
+            "at" : { "x" : 64, "y" : 288 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f100",
           "connect" : [
@@ -1651,7 +1681,8 @@
           "id" : "S45-g1",
           "type" : "EmbeddedEnd",
           "visual" : {
-            "at" : { "x" : 872, "y" : 288 }
+            "at" : { "x" : 872, "y" : 288 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f108"
         }, {
@@ -1666,11 +1697,16 @@
         }, {
           "id" : "S45-f3",
           "type" : "Alternative",
+          "config" : {
+            "conditions" : {
+              "S45-f0" : "in.count == in.caseNumber"
+            }
+          },
           "visual" : {
             "at" : { "x" : 784, "y" : 288 }
           },
           "connect" : [
-            { "id" : "S45-f0", "to" : "S45-g1", "condition" : "in.count == in.caseNumber" },
+            { "id" : "S45-f0", "to" : "S45-g1" },
             { "id" : "S45-f9", "to" : "S45-f1", "via" : [ { "x" : 784, "y" : 88 }, { "x" : 288, "y" : 88 } ] }
           ]
         }, {
@@ -1742,7 +1778,8 @@
           "id" : "S43-g0",
           "type" : "EmbeddedStart",
           "visual" : {
-            "at" : { "x" : 64, "y" : 288 }
+            "at" : { "x" : 64, "y" : 288 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f104",
           "connect" : [
@@ -1752,7 +1789,8 @@
           "id" : "S43-g1",
           "type" : "EmbeddedEnd",
           "visual" : {
-            "at" : { "x" : 872, "y" : 288 }
+            "at" : { "x" : 872, "y" : 288 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f112"
         }, {
@@ -1767,11 +1805,16 @@
         }, {
           "id" : "S43-f3",
           "type" : "Alternative",
+          "config" : {
+            "conditions" : {
+              "S43-f0" : "in.count == in.caseNumber"
+            }
+          },
           "visual" : {
             "at" : { "x" : 784, "y" : 288 }
           },
           "connect" : [
-            { "id" : "S43-f0", "to" : "S43-g1", "condition" : "in.count == in.caseNumber" },
+            { "id" : "S43-f0", "to" : "S43-g1" },
             { "id" : "S43-f9", "to" : "S43-f1", "via" : [ { "x" : 784, "y" : 88 }, { "x" : 288, "y" : 88 } ] }
           ]
         }, {

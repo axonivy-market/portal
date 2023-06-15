@@ -1,0 +1,69 @@
+#
+# -------------------------------------------
+# Axon.ivy Engine Configuration
+# -------------------------------------------
+#
+# This file customizes the configuration of the Axon.ivy engine and its external systems.
+# Defaults are documented in the template directory configuration/defaults/
+# - ivy.yaml > https://dev.axonivy.com/doc/latest/EngineGuideHtml/configuration.html#configuration-file-ref-ivy-yaml
+# - ivy.webserver.yaml > https://dev.axonivy.com/doc/latest/EngineGuideHtml/configuration.html#configuration-file-ref-ivy-webserver-yaml
+#
+SystemDb:
+  Url: jdbc:postgresql://postgres_all:5432/AxonIvySystemDatabase-performance-10
+  UserName: postgres
+  Password: <password>
+  Autoconvert: false
+Connector:
+#  HTTP:
+#    Port: '8000'
+  HTTPS:
+    Enabled: false
+  AJP:
+    Enabled: false
+Applications:
+  Portal:
+    StandardProcess:
+      DefaultPages: com.axonivy.portal:portal
+Administrators:
+  wawa:
+    Password: <password>
+#    Email: ''
+#    FullName: ''
+SecuritySystems:
+  default:
+    Roles:
+      AXONIVY_PORTAL_ADMIN:
+      Everybody:
+  system:
+    Roles:
+      SUBSTITUTES_MANAGER:
+      SystemAdministrator:
+      ABSENCES_MANAGER:
+      Everybody:
+    Provider: ivy Security System
+  BuildApp17E0453695CCFDCE:
+    Provider: ivy Security System
+  BuildApp17E4EA3748AD7D6C:
+    Provider: ivy Security System
+  BuildApp17F1F08E373FAB8C:
+    Provider: ivy Security System
+  BuildApp17FA818E9DEC7CF0:
+    Provider: ivy Security System
+  BuildApp1801CE1D42680A85:
+    Provider: ivy Security System
+  BuildApp180ABEF6085AA0B5:
+    Provider: ivy Security System
+  BuildApp180F0ED217343C09:
+    Provider: ivy Security System
+  BuildApp181939BA608E37C6:
+    Provider: ivy Security System
+  BuildApp181CC54D2A7EB10F:
+    Provider: ivy Security System
+  BuildApp1821F0D06D3C7FFF:
+    Provider: ivy Security System
+  BuildApp18316531A4CE7854:
+    Provider: ivy Security System
+  BuildApp183A257EE08E27B4:
+    Provider: ivy Security System
+  BuildApp18432E6EFDC867D8:
+    Provider: ivy Security System
