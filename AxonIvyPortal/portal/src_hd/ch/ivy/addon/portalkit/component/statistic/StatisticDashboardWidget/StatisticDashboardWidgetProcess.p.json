@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "1600AC95D2CA7CEA",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -35,14 +35,16 @@
           "id" : "S10-g2",
           "type" : "EmbeddedEnd",
           "visual" : {
-            "at" : { "x" : 792, "y" : 160 }
+            "at" : { "x" : 792, "y" : 160 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f1"
         }, {
           "id" : "S10-g1",
           "type" : "EmbeddedStart",
           "visual" : {
-            "at" : { "x" : 88, "y" : 160 }
+            "at" : { "x" : 88, "y" : 160 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f67",
           "connect" : [
@@ -52,7 +54,8 @@
           "id" : "S10-g0",
           "type" : "EmbeddedStart",
           "visual" : {
-            "at" : { "x" : 336, "y" : 272 }
+            "at" : { "x" : 336, "y" : 272 },
+            "size" : { "width" : 26, "height" : 26 }
           }
         } ],
       "visual" : {
@@ -358,11 +361,16 @@
     }, {
       "id" : "f39",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f37" : "in.showTaskListImmediately || in.isDrilldownToTaskList"
+        }
+      },
       "visual" : {
         "at" : { "x" : 232, "y" : 272 }
       },
       "connect" : [
-        { "id" : "f37", "to" : "f36", "condition" : "in.showTaskListImmediately || in.isDrilldownToTaskList" },
+        { "id" : "f37", "to" : "f36" },
         { "id" : "f99", "to" : "f98", "via" : [ { "x" : 232, "y" : 208 } ] }
       ]
     }, {
@@ -497,6 +505,11 @@
     }, {
       "id" : "f62",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f79" : "in.isCompactMode"
+        }
+      },
       "visual" : {
         "at" : { "x" : 800, "y" : 64 }
       },
@@ -505,12 +518,20 @@
             "name" : "compact mode",
             "segment" : 1.0,
             "offset" : { "x" : 35, "y" : 17 }
-          }, "condition" : "in.isCompactMode" },
+          } },
         { "id" : "f31", "to" : "f5" }
       ]
     }, {
       "id" : "f3",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f51" : "in.isGuide",
+          "f50" : "in.statisticChartList.isEmpty()",
+          "f54" : "in.isFinishLoadCharts && ch.ivy.addon.portalkit.service.StatisticService.getInstance().isSame(in.prevStatisticList, in.statisticChartList)",
+          "f56" : "in.isCompactMode"
+        }
+      },
       "visual" : {
         "at" : { "x" : 1080, "y" : 288 }
       },
@@ -519,13 +540,13 @@
             "name" : "isGuide",
             "segment" : 1.27,
             "offset" : { "x" : 0, "y" : -14 }
-          }, "condition" : "in.isGuide" },
-        { "id" : "f50", "to" : "f4", "via" : [ { "x" : 1096, "y" : 384 } ], "condition" : "in.statisticChartList.isEmpty()" },
+          } },
+        { "id" : "f50", "to" : "f4", "via" : [ { "x" : 1096, "y" : 384 } ] },
         { "id" : "f54", "to" : "f2", "via" : [ { "x" : 1096, "y" : 336 }, { "x" : 1480, "y" : 336 } ], "label" : {
             "name" : "haven't data changed in Statistics",
             "segment" : 0.5
-          }, "condition" : "in.isFinishLoadCharts && ch.ivy.addon.portalkit.service.StatisticService.getInstance().isSame(in.prevStatisticList, in.statisticChartList)" },
-        { "id" : "f56", "to" : "f65", "via" : [ { "x" : 1096, "y" : 224 } ], "condition" : "in.isCompactMode" },
+          } },
+        { "id" : "f56", "to" : "f65", "via" : [ { "x" : 1096, "y" : 224 } ] },
         { "id" : "f57", "to" : "f30" }
       ]
     }, {
@@ -900,11 +921,16 @@
     }, {
       "id" : "f59",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f68" : "in.isFinishLoadCharts"
+        }
+      },
       "visual" : {
         "at" : { "x" : 808, "y" : 288 }
       },
       "connect" : [
-        { "id" : "f68", "to" : "f3", "via" : [ { "x" : 808, "y" : 232 }, { "x" : 1080, "y" : 232 } ], "condition" : "in.isFinishLoadCharts" },
+        { "id" : "f68", "to" : "f3", "via" : [ { "x" : 808, "y" : 232 }, { "x" : 1080, "y" : 232 } ] },
         { "id" : "f67", "to" : "S10" }
       ]
     }, {
@@ -1049,11 +1075,16 @@
     }, {
       "id" : "f90",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f93" : "in.isDrilldownToCaseList"
+        }
+      },
       "visual" : {
         "at" : { "x" : 968, "y" : 1072 }
       },
       "connect" : [
-        { "id" : "f93", "to" : "f94", "condition" : "in.isDrilldownToCaseList" },
+        { "id" : "f93", "to" : "f94" },
         { "id" : "f95", "to" : "f92" }
       ]
     }, {
