@@ -344,7 +344,7 @@ body .statistic-carousel .ui-widget-header.ui-carousel-header {
   line-height: var(--chart-name-line-height); }
 
 .ui-columntoggler[id$='task-table-toggler'] .ui-columntoggler-item label {
-  font-size: var(--large-font-size); }
+  font-size: var(--default-font-size); }
 
 .chart-info-header {
   font-size: var(--large-font-size);
@@ -1597,4 +1597,10 @@ body.in-dialog .ui-widget-overlay {
 .ui-dialog-content .card,
 .search-results-tabview .process-group .card {
   border: 1px solid var(--card-dialog-border-color);
+}
+
+/* Dashboard Excel export */
+.dashboard-excel-export-form {
+  float: left;
+  display: inline;
 }

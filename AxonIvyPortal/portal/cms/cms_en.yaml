@@ -232,6 +232,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       EnableSwitchThemeModeButton: Set to true to enable the switch theme button.
       RoleDirectChildrenLimit: 'The set number controls the amount of direct children roles that is shown in Role Management tab. Valid number: 10, 50, 100'
       RoleParentLimit: 'The set number controls the amount of parent roles that is shown when filtering roles in Role Management tab. Valid number: 5, 10, 20'
+      SearchScopeCaseFields: Defining the fields that the global search will use to find matching cases beside case Id (this can influence the performance of the search)
+      SearchScopeTaskFields: Defining the fields that the global search will use to find matching tasks beside task Id (this can influence the performance of the search)
       ShowLoginPageFooter: For switch on/off the display of the footer on the login page.
       behaviourWhenClickingOnLineInTaskList: For switch behaviours (run the task or access task details) when clicking on a line in task list, task widget of dashboard and related tasks  in case details page.
       chatMaxConnection: 'The set number controls the amount of tabs allowed with active chat. If more tabs are opened, the chat will be disabled in inactive tabs. Allowed values between 1-5 '
@@ -382,10 +384,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     title: Title
   caseState:
     CREATED: Created
+    CREATED_UPPERCASE: CREATED
     DESTROYED: Destroyed
+    DESTROYED_UPPERCASE: DESTROYED
     DONE: Done
+    DONE_UPPERCASE: DONE
     FAILED: Failed
+    INPROGRESS: IN PROGRESS
     OPEN: Open
+    OPEN_UPPERCASE: OPEN
     RUNNING: In progress
   caseTreeTable:
     caseState: Case state
@@ -868,10 +875,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       manageDashboard: Manage dashboard
       removeDashboardHeader: Remove the "{0}" dashboard
     deleteWidget: Delete widget
+    downloadZipFileExplanation: If the number of items to export exceeds the limit of Excel rows, data will be split to multiple Excel files, then compressed in a ZIP file to download.
     editWidget: Edit widget
     existingField: The {0} field has already been existing
     expiryFrom: Expiry From
     expiryTo: Expiry To
+    export:
+      exportedCasesFileName: AXONIVY_Dataset_Cases_{0}_{1}.{2}
     field: Field
     fieldIsAdded: The {0} field is added
     iconMessage:
@@ -1085,6 +1095,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     favoriteProcesses: User Favorites
     goTo: 'Go to: '
     icon: Icon
+    image: Image
     isRequiredMessage: has to be set
     linkDescription: Link description
     noFavoriteProcess: You have not defined any favorites.
@@ -1387,6 +1398,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     title: Task priority
   taskState:
     CREATED: Created
+    CREATED_UPPERCASE: CREATED
     DELAYED: Delayed
     DELAYED_UPPERCASE: DELAYED
     DESTROYED: Destroyed
@@ -1394,22 +1406,29 @@ ch.ivy.addon.portalkit.ui.jsf:
     DONE: Done
     DONE_UPPERCASE: DONE
     FAILED: Failed
+    FAILED_UPPERCASE: FAILED
     INPROGRESS: IN PROGRESS
     JOINING: Joining
+    JOINING_UPPERCASE: JOINING
     JOIN_FAILED: Join failed
+    JOIN_FAILED_UPPERCASE: JOIN FAILED
     OPEN: Open
     OPEN_UPPERCASE: OPEN
     PARKED: Reserved
     READY_FOR_JOIN: Ready for joining
     READY_FOR_JOINING: Ready for joining
+    READY_FOR_JOINING_UPPERCASE: READY FOR JOINING
     READY_FOR_JOIN_UPPERCASE: READY FOR JOIN
     RESERVED: RESERVED
     RESUMED: In progress
     SUSPENDED: Suspended
+    SUSPENDED_UPPERCASE: SUSPENDED
     SYSTEM: SYSTEM
     WAITING: Waiting
     WAITING_FOR_INTERMEDIATE_EVENT: Waiting for event
+    WAITING_FOR_INTERMEDIATE_EVENT_UPPERCASE: WAITING FOR EVENT
   taskView:
+    GlobalSearchText: Tasks contain the keyword "{0}" in Task Id{1}.
     filterTextPlaceHolderMobile: Name or Description
     filterTextPlaceholder: Name, Description or ID
     restoreDefaultFilterMessage: If you proceed, the standard filter will be applied.
@@ -1523,6 +1542,7 @@ Dialogs:
                 destroyCase: Destroy case
               CaseOwner: Case Owner
               Finished: Finished
+              GlobalSearchText: Cases contain the keyword "{0}" in Case Id{1}.
               ShowBusinessDetails: Business details
               caseNameNotAvailable: '[Case name not available]'
               defaultEmptyMessage: There are no cases
@@ -1666,6 +1686,13 @@ Labels:
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
   Enums:
+    SearchScopeCaseField:
+      CUSTOM: Custom string fields
+      DESCRIPTION: Description
+      NAME: Name
+    SearchScopeTaskField:
+      DESCRIPTION: Description
+      NAME: Name
     ThemeMode:
       DARK: Dark
       LIGHT: Light

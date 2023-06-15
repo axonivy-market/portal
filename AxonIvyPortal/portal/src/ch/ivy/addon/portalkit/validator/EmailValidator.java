@@ -24,7 +24,6 @@ public class EmailValidator implements Validator {
     if (!matcher.matches()) {
       FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/emailSetting/invalidEmailFormat"), null);
-      context.addMessage(component.getClientId(), message);
       throw new ValidatorException(message);
     }
   }

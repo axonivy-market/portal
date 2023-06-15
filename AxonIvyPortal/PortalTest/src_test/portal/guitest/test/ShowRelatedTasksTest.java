@@ -79,7 +79,7 @@ public class ShowRelatedTasksTest extends BaseTest {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
     openCaseDetail();
-    TaskDetailsPage taskDetailsPage = detailsPage.openTasksOfCasePage(0);
+    TaskDetailsPage taskDetailsPage = detailsPage.openTasksOfCasePage("Sick Leave Request");
     assertEquals("Task Details", taskDetailsPage.getPageTitle());
   }
   

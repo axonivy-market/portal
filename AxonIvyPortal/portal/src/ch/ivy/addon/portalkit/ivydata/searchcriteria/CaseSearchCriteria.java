@@ -8,10 +8,13 @@ import static ch.ivyteam.ivy.workflow.CaseState.RUNNING;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
+
+import com.axonivy.portal.enums.SearchScopeCaseField;
 
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -48,6 +51,9 @@ public class CaseSearchCriteria {
   private CaseQuery customCaseQuery;
   
   private CaseQuery finalCaseQuery;
+
+  private boolean isGlobalSearch;
+  private List<SearchScopeCaseField> searchScopeCaseFields;
 
   public CaseQuery createQuery() {
     CaseQuery finalQuery;
@@ -98,15 +104,30 @@ public class CaseSearchCriteria {
 
   private CaseQuery queryForKeyword(String keyword) {
     String containingKeyword = String.format("%%%s%%", keyword.trim());
+    CaseQuery filterByKeywordQuery = newCaseQuery();
+    searchScopeCaseFields = Optional.ofNullable(searchScopeCaseFields).orElse(new ArrayList<>());
 
-    CaseQuery filterByKeywordQuery = newCaseQuery().where().or().name().isLikeIgnoreCase(containingKeyword).or()
-        .description().isLikeIgnoreCase(containingKeyword).or().customField().anyStringField().isLikeIgnoreCase(containingKeyword);
+    if (!isGlobalSearch || (isGlobalSearch && searchScopeCaseFields.contains(SearchScopeCaseField.NAME))) {
+      filterByKeywordQuery.where().or().name().isLikeIgnoreCase(containingKeyword);
+    }
+
+    if (!isGlobalSearch || (isGlobalSearch && searchScopeCaseFields.contains(SearchScopeCaseField.DESCRIPTION))) {
+      filterByKeywordQuery.where().or().description().isLikeIgnoreCase(containingKeyword);
+    }
+
+    if (!isGlobalSearch || (isGlobalSearch && searchScopeCaseFields.contains(SearchScopeCaseField.CUSTOM))) {
+      filterByKeywordQuery.where().or().customField().anyStringField().isLikeIgnoreCase(containingKeyword);
+    }
 
     try {
       long idKeyword = Long.parseLong(keyword.trim());
       String containingIdKeyword = String.format("%%%d%%", idKeyword);
       filterByKeywordQuery.where().or().caseId().isLike(containingIdKeyword);
     } catch (NumberFormatException e) {
+      if (isGlobalSearch()) {
+        String containingIdKeyword = String.format("%%%d%%", -1);
+        filterByKeywordQuery.where().or().caseId().isLike(containingIdKeyword);
+      }
       // do nothing
     }
     return filterByKeywordQuery;
@@ -396,6 +417,22 @@ public class CaseSearchCriteria {
 
   public void setFinalCaseQuery(CaseQuery finalCaseQuery) {
     this.finalCaseQuery = finalCaseQuery;
+  }
+
+  public List<SearchScopeCaseField> getSearchScopeCaseFields() {
+    return searchScopeCaseFields;
+  }
+
+  public void setSearchScopeCaseFields(List<SearchScopeCaseField> searchScopeCaseFields) {
+    this.searchScopeCaseFields = searchScopeCaseFields;
+  }
+
+  public boolean isGlobalSearch() {
+    return isGlobalSearch;
+  }
+
+  public void setGlobalSearch(boolean isGlobalSearch) {
+    this.isGlobalSearch = isGlobalSearch;
   }
 
 }

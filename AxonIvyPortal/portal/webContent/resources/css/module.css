@@ -205,6 +205,11 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   transition: all .2s;
 }
 
+.case-export-to-excel-form .ui-widget,
+.task-export-to-excel-form .ui-widget {
+  width: max-content;	
+}
+
 .task-widget .advanced-filter:hover, .case-widget-container .advanced-filter:hover,
 .task-widget .filter-selection-container:hover, .case-widget-container .filter-selection-container:hover,
 .analysis-task-widget .task-analysis-filter-selection-container:hover {
@@ -1153,6 +1158,12 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   align-items: center;
   padding-left: 15px;
   padding-right: 15px;
+  width: 4.4rem;
+}
+
+.process-start-list-item-icon .fa {
+  text-align: center;
+  width: 100%;
 }
 
 .process-start-list .process-start-list-item-icon {
@@ -4603,6 +4614,10 @@ _:-ms-fullscreen, :root .content-link-history {
   margin-left: -0.5rem;
 }
 
+.task-details-priority .portal-edit-inplace .ui-inplace-display {
+  padding: 0.75rem 0.5rem 0 0.5rem;	
+}
+
 .truncate-note {
   width: 100%;
   display: inline;
@@ -5665,6 +5680,7 @@ border-top: 0.14rem dashed;
   width: 24px;
   font-size: 24px;
   margin: 12px;
+  text-align: center;
 }
 
 .image-process-item .card-item.card {
@@ -5983,4 +5999,38 @@ a.dashboard-action-container label {
 .role-permissions-editor-for-external-link {
   word-break: break-word;
   display: flex;
+}
+
+/* =================== ADD EXTERNAL LINK PROCESS DIALOG ====================== */
+.external-link-preview-image {
+  width: inherit;
+}
+
+.external-link-preview-image-panel {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.external-link-preview-image-panel .external-link-preview-image-overlay-panel
+  {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(27, 27, 27, 0) 21.68%,
+    rgba(27, 27, 27, 1) 100%);
+  display: none;
+}
+
+.external-link-preview-image-panel:hover .external-link-preview-image-overlay-panel
+  {
+  display: block;
+}
+
+.external-link-preview-image-panel .external-link-delete-image-button {
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  z-index: 1;
+  border-radius: 50%;
 }

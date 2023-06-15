@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "16EE8CACE2CB2C75",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -342,11 +342,16 @@
     }, {
       "id" : "f88",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f3" : "ch.ivy.addon.portalkit.util.TaskUtils.isTaskCurrentOpeningTask(in.task)"
+        }
+      },
       "visual" : {
         "at" : { "x" : 224, "y" : 168 }
       },
       "connect" : [
-        { "id" : "f3", "to" : "f76", "via" : [ { "x" : 224, "y" : 264 } ], "condition" : "ch.ivy.addon.portalkit.util.TaskUtils.isTaskCurrentOpeningTask(in.task)" },
+        { "id" : "f3", "to" : "f76", "via" : [ { "x" : 224, "y" : 264 } ] },
         { "id" : "f4", "to" : "f87" }
       ]
     }, {
