@@ -384,10 +384,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     title: Titre
   caseState:
     CREATED: Créé
+    CREATED_UPPERCASE: CRÉÉ
     DESTROYED: Supprimé
+    DESTROYED_UPPERCASE: SUPPRIMÉ
     DONE: Terminé
+    DONE_UPPERCASE: TERMINEE
     FAILED: Échoué
+    INPROGRESS: EN COURS
     OPEN: Ouverte
+    OPEN_UPPERCASE: OUVERTE
     RUNNING: En cours
   caseTreeTable:
     caseState: Etat du dossier
@@ -866,10 +871,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       manageDashboard: Gérer le tableau de bord
       removeDashboardHeader: Supprimez le tableau de bord "{0}".
     deleteWidget: Supprimer le widget
+    downloadZipFileExplanation: Si le nombre d'éléments à exporter dépasse la limite des lignes Excel, les données seront divisées en plusieurs fichiers Excel, puis compressées dans un fichier ZIP à télécharger.
     editWidget: Modifier le widget
     existingField: Le champ {0} a déjà été créé
     expiryFrom: Expiration du
     expiryTo: Date d'expiration
+    export:
+      exportedCasesFileName: AXONIVY_Dataset_Cases_{0}_{1}.{2}
     field: Champ
     fieldIsAdded: Le champ {0} est ajouté
     iconMessage:
@@ -1083,6 +1091,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     favoriteProcesses: Vos favoris
     goTo: 'Aller à:'
     icon: Icône
+    image: Image
     isRequiredMessage: doit être défini
     linkDescription: Description du lien
     noFavoriteProcess: Vous n'avez pas défini de favoris.
@@ -1385,6 +1394,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     title: Priorité de la tâche
   taskState:
     CREATED: Créé
+    CREATED_UPPERCASE: CRÉÉ
     DELAYED: Retardé
     DELAYED_UPPERCASE: RETARDÉ
     DESTROYED: Détruit
@@ -1392,22 +1402,29 @@ ch.ivy.addon.portalkit.ui.jsf:
     DONE: Terminé
     DONE_UPPERCASE: TERMINEE
     FAILED: Échoué
+    FAILED_UPPERCASE: ÉCHOUÉ
     INPROGRESS: EN COURS
     JOINING: En jonction
+    JOINING_UPPERCASE: EN JONCTION
     JOIN_FAILED: Jonction échouée
+    JOIN_FAILED_UPPERCASE: JONCTION ÉCHOUÉE
     OPEN: Ouverte
     OPEN_UPPERCASE: OUVERTE
     PARKED: Réservé
     READY_FOR_JOIN: Prêt pour la jonction
     READY_FOR_JOINING: Prêt pour la jonction
+    READY_FOR_JOINING_UPPERCASE: PRÊT POUR LA JONCTION
     READY_FOR_JOIN_UPPERCASE: READY FOR JOIN
     RESERVED: RESERVEE
     RESUMED: En cours
     SUSPENDED: Affecté
+    SUSPENDED_UPPERCASE: AFFECTÉ
     SYSTEM: SYSTÈME
     WAITING: Attente
     WAITING_FOR_INTERMEDIATE_EVENT: Attente d'un évènement
+    WAITING_FOR_INTERMEDIATE_EVENT_UPPERCASE: ATTENTE D'UN ÉVÈNEMENT
   taskView:
+    GlobalSearchText: Les tâches contiennent le mot-clé "{0}" dans Id de tâche{1}.
     filterTextPlaceHolderMobile: Nom ou description!
     filterTextPlaceholder: Nom, description ou identifiant!
     restoreDefaultFilterMessage: Si vous continuez, le filtre standard sera appliqué.
@@ -1522,6 +1539,7 @@ Dialogs:
                 destroyCase: détruire le cas
               CaseOwner: Responsable de processus
               Finished: Terminé
+              GlobalSearchText: Les cas contiennent le mot-clé "{0}" dans Id du dossier{1}.
               ShowBusinessDetails: Détails de l'entreprise
               caseNameNotAvailable: '[Nom de cas pas disponible]'
               defaultEmptyMessage: Il n'y a pas de dossiers

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "153CACC26D0D4C3D",
   "config" : {
     "data" : "portalKit_test.DataCreationData"
@@ -139,11 +139,16 @@
     }, {
       "id" : "f32",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f82" : "in.handler.createMoreTasks()"
+        }
+      },
       "visual" : {
         "at" : { "x" : 416, "y" : 96 }
       },
       "connect" : [
-        { "id" : "f82", "to" : "f81", "condition" : "in.handler.createMoreTasks()" },
+        { "id" : "f82", "to" : "f81" },
         { "id" : "f35", "to" : "f34" }
       ]
     }, {
@@ -413,11 +418,16 @@
     }, {
       "id" : "f59",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f68" : "in.counter <= in.numerOfUsers"
+        }
+      },
       "visual" : {
         "at" : { "x" : 1096, "y" : 384 }
       },
       "connect" : [
-        { "id" : "f68", "to" : "f61", "condition" : "in.counter <= in.numerOfUsers" },
+        { "id" : "f68", "to" : "f61" },
         { "id" : "f64", "to" : "f62", "via" : [ { "x" : 1096, "y" : 448 } ] }
       ]
     }, {
@@ -661,11 +671,16 @@
     }, {
       "id" : "f70",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f73" : "in.counter <= in.numberOfCases"
+        }
+      },
       "visual" : {
         "at" : { "x" : 1472, "y" : 96 }
       },
       "connect" : [
-        { "id" : "f73", "to" : "f72", "condition" : "in.counter <= in.numberOfCases" },
+        { "id" : "f73", "to" : "f72" },
         { "id" : "f113", "to" : "f112", "var" : "in1" }
       ]
     }, {
@@ -736,11 +751,16 @@
     }, {
       "id" : "f81",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f29" : "!in.attachToBusinessCase"
+        }
+      },
       "visual" : {
         "at" : { "x" : 512, "y" : 96 }
       },
       "connect" : [
-        { "id" : "f29", "to" : "f28", "condition" : "!in.attachToBusinessCase" },
+        { "id" : "f29", "to" : "f28" },
         { "id" : "f84", "to" : "f83", "via" : [ { "x" : 512, "y" : 160 } ] }
       ]
     }, {
@@ -939,11 +959,16 @@
     }, {
       "id" : "f102",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f104" : "in.counter < in.numOfCats"
+        }
+      },
       "visual" : {
         "at" : { "x" : 384, "y" : 992 }
       },
       "connect" : [
-        { "id" : "f104", "to" : "f99", "condition" : "in.counter < in.numOfCats" },
+        { "id" : "f104", "to" : "f99" },
         { "id" : "f106", "to" : "f105" }
       ]
     }, {
@@ -1176,7 +1201,8 @@
           "id" : "S10-g0",
           "type" : "EmbeddedStart",
           "visual" : {
-            "at" : { "x" : 64, "y" : 256 }
+            "at" : { "x" : 64, "y" : 256 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f139",
           "connect" : [
@@ -1186,7 +1212,8 @@
           "id" : "S10-g1",
           "type" : "EmbeddedEnd",
           "visual" : {
-            "at" : { "x" : 736, "y" : 256 }
+            "at" : { "x" : 736, "y" : 256 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f138"
         }, {

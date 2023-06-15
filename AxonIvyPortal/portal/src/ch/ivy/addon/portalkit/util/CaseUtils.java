@@ -131,4 +131,23 @@ public final class CaseUtils {
         .filter(state -> validStates.contains(state))
         .collect(Collectors.toList());
   }
+  
+  //Convert case state to friendly case state with multiple languages support
+  public static String convertToUserFriendlyCaseState(CaseState state) {
+    if (state == null) {
+      return StringUtils.EMPTY;
+    }
+    switch (state) {
+      case CREATED:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/CREATED_UPPERCASE");
+      case RUNNING:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/INPROGRESS");
+      case DESTROYED:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/DESTROYED_UPPERCASE");
+      case DONE:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/DONE_UPPERCASE");
+      default:
+        return StringUtils.EMPTY;
+    }
+  }
 }

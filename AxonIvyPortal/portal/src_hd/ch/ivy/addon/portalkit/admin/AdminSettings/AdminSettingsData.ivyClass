@@ -40,3 +40,5 @@ isAnnouncementActivated Boolean #field
 isAnnouncementActivated PERSISTENT #fieldModifier
 announcement ch.ivy.addon.portalkit.configuration.Announcement #field
 announcement PERSISTENT #fieldModifier
+selectedMultiSettings java.util.List<String> #field
+selectedMultiSettings PERSISTENT #fieldModifier

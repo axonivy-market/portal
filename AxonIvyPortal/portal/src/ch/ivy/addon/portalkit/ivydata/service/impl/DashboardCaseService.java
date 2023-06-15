@@ -4,6 +4,7 @@ import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.isHiddenTasksCa
 
 import java.util.List;
 
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -20,15 +21,32 @@ public class DashboardCaseService extends CaseService {
   }
 
   public List<ICase> findByCaseQuery(CaseQuery query, int startIndex, int count) {
-    var subQuery = CaseQuery.businessCases();
-    if (!PermissionUtils.checkReadAllCasesPermission()) {
-      subQuery.where().and(queryForCurrentUser(false));
-    }
+    return IvyExecutor.executeAsSystem(() -> {
+      var subQuery = CaseQuery.businessCases();
+      if (!PermissionUtils.checkReadAllCasesPermission()) {
+        subQuery.where().and(queryForCurrentUser(false));
+      }
+  
+      if (isHiddenTasksCasesExcluded()) {
+        subQuery.where().and(queryExcludeHiddenCases());
+      }
+      var finalQuery = query.where().and(subQuery);
+      return executeCaseQuery(finalQuery, startIndex, count);
+    });
+  }
 
-    if (isHiddenTasksCasesExcluded()) {
-      subQuery.where().and(queryExcludeHiddenCases());
-    }
-    var finalQuery = query.where().and(subQuery);
-    return executeCaseQuery(finalQuery, startIndex, count);
+  public Long countByCaseQuery(CaseQuery query) {
+    return IvyExecutor.executeAsSystem(() -> {
+      var subQuery = CaseQuery.businessCases();
+      if (!PermissionUtils.checkReadAllCasesPermission()) {
+        subQuery.where().and(queryForCurrentUser(false));
+      }
+  
+      if (isHiddenTasksCasesExcluded()) {
+        subQuery.where().and(queryExcludeHiddenCases());
+      }
+      var finalQuery = query.where().and(subQuery);
+      return countCases(finalQuery);
+    });
   }
 }

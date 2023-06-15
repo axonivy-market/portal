@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "1576FA61C4EDC8B1",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -355,6 +355,11 @@
       "id" : "f36",
       "type" : "Alternative",
       "name" : "Validated?",
+      "config" : {
+        "conditions" : {
+          "f39" : "in.isValidAssignee"
+        }
+      },
       "visual" : {
         "at" : { "x" : 376, "y" : 776 },
         "labelOffset" : { "x" : 10, "y" : -17 }
@@ -364,7 +369,7 @@
             "name" : "YES",
             "segment" : 0.43,
             "offset" : { "x" : 0, "y" : -11 }
-          }, "condition" : "in.isValidAssignee" },
+          } },
         { "id" : "f40", "to" : "f18", "via" : [ { "x" : 376, "y" : 832 }, { "x" : 672, "y" : 832 } ], "label" : {
             "name" : "NO",
             "segment" : 1.17,
@@ -664,12 +669,17 @@
       "id" : "f59",
       "type" : "Alternative",
       "name" : "reset data?",
+      "config" : {
+        "conditions" : {
+          "f50" : "in.resetData"
+        }
+      },
       "visual" : {
         "at" : { "x" : 928, "y" : 288 },
         "labelOffset" : { "x" : 6, "y" : -23 }
       },
       "connect" : [
-        { "id" : "f50", "to" : "f49", "condition" : "in.resetData" },
+        { "id" : "f50", "to" : "f49" },
         { "id" : "f61", "to" : "f48", "via" : [ { "x" : 928, "y" : 336 }, { "x" : 1184, "y" : 336 } ] }
       ]
     }, {
@@ -706,11 +716,16 @@
     }, {
       "id" : "f64",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f53" : "in.isValidated"
+        }
+      },
       "visual" : {
         "at" : { "x" : 1048, "y" : 528 }
       },
       "connect" : [
-        { "id" : "f53", "to" : "f52", "condition" : "in.isValidated" },
+        { "id" : "f53", "to" : "f52" },
         { "id" : "f67", "to" : "f66", "via" : [ { "x" : 1048, "y" : 608 } ] }
       ]
     }, {
@@ -747,12 +762,17 @@
       "id" : "f70",
       "type" : "Alternative",
       "name" : "Is saved task?",
+      "config" : {
+        "conditions" : {
+          "f73" : "in.data.savedFlag"
+        }
+      },
       "visual" : {
         "at" : { "x" : 192, "y" : 544 },
         "labelOffset" : { "x" : 11, "y" : -22 }
       },
       "connect" : [
-        { "id" : "f73", "to" : "f72", "condition" : "in.data.savedFlag" },
+        { "id" : "f73", "to" : "f72" },
         { "id" : "f32", "to" : "f28", "via" : [ { "x" : 192, "y" : 624 } ] }
       ]
     }, {

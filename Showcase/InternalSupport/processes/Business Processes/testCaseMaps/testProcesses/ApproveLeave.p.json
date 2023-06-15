@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "15C7B30FB93C827E",
   "config" : {
     "data" : "internaltest.Data"
@@ -316,11 +316,16 @@
     }, {
       "id" : "f46",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f49" : "in.count == in.caseNumber"
+        }
+      },
       "visual" : {
         "at" : { "x" : 688, "y" : 616 }
       },
       "connect" : [
-        { "id" : "f49", "to" : "f48", "condition" : "in.count == in.caseNumber" },
+        { "id" : "f49", "to" : "f48" },
         { "id" : "f57", "to" : "f50", "via" : [ { "x" : 688, "y" : 752 }, { "x" : 184, "y" : 752 } ] }
       ]
     }, {

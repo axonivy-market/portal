@@ -1,5 +1,12 @@
 var invalidIFrameSrcPath = false;
 
+let taskUrl = new URLSearchParams(window.location.search).get("taskUrl");
+let updateIframeSrc = (newSrc) => {
+  getPortalIframe().src = newSrc;
+}
+if (taskUrl){
+  updateIframeSrc(taskUrl)
+}
 loadIframe(false);
 var recheckFrameTimer;
 function loadIframe(recheckIndicator) {
@@ -114,6 +121,7 @@ function checkUrl(iFrame) {
       name: 'url',
       value: path
     }]);
+    updateHistory(iFrame.contentWindow.location.href);
   }
 }
 
@@ -184,4 +192,11 @@ function getPortalIframePath(iFrame) {
     console.log("Cannot access to iframe location data: " + error);
   }
   return path;
+}
+
+let updateHistory = (newHref) => {
+  let newHrefUrl = new URL(newHref);
+  let historyUrl = new URL(window.location);
+  historyUrl.searchParams.set('taskUrl', newHrefUrl.pathname + newHrefUrl.search);
+  history.replaceState({}, "", historyUrl);
 }
