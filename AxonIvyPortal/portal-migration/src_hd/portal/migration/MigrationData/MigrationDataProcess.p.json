@@ -8,22 +8,18 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
-      "name" : "startWithVersion(String)",
+      "name" : "start()",
       "config" : {
-        "signature" : "startWithVersion",
+        "signature" : "start",
         "input" : {
-          "params" : [
-            { "name" : "version", "type" : "String", "desc" : "" }
-          ],
           "map" : {
-            "out.mustMigrateData" : "true",
-            "out.version" : "param.version"
+            "out.mustMigrateData" : "true"
           }
         },
         "guid" : "175F959BFAA127EB"
       },
       "visual" : {
-        "at" : { "x" : 88, "y" : 136 }
+        "at" : { "x" : 88, "y" : 64 }
       },
       "connect" : [
         { "id" : "f2", "to" : "f1" }
@@ -32,7 +28,7 @@
       "id" : "f1",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 224, "y" : 136 }
+        "at" : { "x" : 224, "y" : 64 }
       }
     }, {
       "id" : "f3",
@@ -42,7 +38,7 @@
         "guid" : "175F959BFB013917"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 544 }
+        "at" : { "x" : 96, "y" : 480 }
       },
       "connect" : [
         { "id" : "f5", "to" : "f4" }
@@ -51,7 +47,7 @@
       "id" : "f4",
       "type" : "HtmlDialogExit",
       "visual" : {
-        "at" : { "x" : 224, "y" : 544 }
+        "at" : { "x" : 224, "y" : 480 }
       }
     }, {
       "id" : "f15",
@@ -62,11 +58,11 @@
         "guid" : "17AF169359777882"
       },
       "visual" : {
-        "at" : { "x" : 88, "y" : 240 },
+        "at" : { "x" : 88, "y" : 176 },
         "labelOffset" : { "x" : 9, "y" : 35 }
       },
       "connect" : [
-        { "id" : "f23", "to" : "f21" }
+        { "id" : "f20", "to" : "f18" }
       ]
     }, {
       "id" : "f17",
@@ -87,7 +83,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 680, "y" : 240 }
+        "at" : { "x" : 472, "y" : 176 }
       },
       "connect" : [
         { "id" : "f22", "to" : "f19" }
@@ -95,7 +91,7 @@
     }, {
       "id" : "f18",
       "type" : "Script",
-      "name" : "Migrate data 9.4",
+      "name" : "Migrate data",
       "config" : {
         "output" : {
           "code" : [
@@ -109,37 +105,32 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 312, "y" : 240 }
+        "at" : { "x" : 216, "y" : 176 }
       },
       "connect" : [
-        { "id" : "f25", "to" : "f24" }
+        { "id" : "f7", "to" : "f6" }
       ]
     }, {
       "id" : "f19",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 808, "y" : 240 }
+        "at" : { "x" : 600, "y" : 176 }
       }
     }, {
       "id" : "f6",
       "type" : "Alternative",
-      "config" : {
-        "conditions" : {
-          "f8" : "!in.hasError"
-        }
-      },
       "visual" : {
-        "at" : { "x" : 552, "y" : 240 }
+        "at" : { "x" : 344, "y" : 176 }
       },
       "connect" : [
-        { "id" : "f8", "to" : "f17" },
+        { "id" : "f8", "to" : "f17", "condition" : "!in.hasError" },
         { "id" : "f12", "to" : "f11" }
       ]
     }, {
       "id" : "f9",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 552, "y" : 432 }
+        "at" : { "x" : 344, "y" : 368 }
       }
     }, {
       "id" : "f11",
@@ -164,79 +155,10 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 552, "y" : 336 }
+        "at" : { "x" : 344, "y" : 272 }
       },
       "connect" : [
         { "id" : "f10", "to" : "f9" }
-      ]
-    }, {
-      "id" : "f13",
-      "type" : "HtmlDialogStart",
-      "name" : "start()",
-      "config" : {
-        "signature" : "start",
-        "input" : {
-          "map" : {
-            "out.mustMigrateData" : "true"
-          }
-        },
-        "guid" : "187EA3BC5C4F0EF4"
-      },
-      "visual" : {
-        "at" : { "x" : 88, "y" : 64 }
-      },
-      "connect" : [
-        { "id" : "f16", "to" : "f14" }
-      ]
-    }, {
-      "id" : "f14",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 224, "y" : 64 }
-      }
-    }, {
-      "id" : "f21",
-      "type" : "Alternative",
-      "visual" : {
-        "at" : { "x" : 184, "y" : 240 }
-      },
-      "connect" : [
-        { "id" : "f20", "to" : "f18", "condition" : "org.apache.commons.lang3.StringUtils.isBlank(in.version)" },
-        { "id" : "f27", "to" : "f26", "via" : [ { "x" : 184, "y" : 344 } ], "condition" : "in.version.contentEquals(portalmigration.constant.Version.VERSION_11_2_0)" }
-      ]
-    }, {
-      "id" : "f24",
-      "type" : "Alternative",
-      "visual" : {
-        "at" : { "x" : 456, "y" : 240 }
-      },
-      "connect" : [
-        { "id" : "f7", "to" : "f6" }
-      ]
-    }, {
-      "id" : "f26",
-      "type" : "Script",
-      "name" : "Migrate data 11.2",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import portalmigration.version112.migrate.DashboardMigrationService;",
-            "import portalmigration.service.PortalMigrationService;",
-            "",
-            "DashboardMigrationService.migrateDashboardsTo112();",
-            "",
-            "DashboardMigrationService.migrateDashboardTemplatesTo112();",
-            "",
-            "DashboardMigrationService.migrateWidgetFilterSetsTo112();"
-          ]
-        },
-        "sudo" : true
-      },
-      "visual" : {
-        "at" : { "x" : 312, "y" : 344 }
-      },
-      "connect" : [
-        { "id" : "f28", "to" : "f24", "via" : [ { "x" : 456, "y" : 344 } ] }
       ]
     } ]
 }
