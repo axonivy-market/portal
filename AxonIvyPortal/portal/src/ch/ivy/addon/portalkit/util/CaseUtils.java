@@ -133,15 +133,13 @@ public final class CaseUtils {
   }
   
   //Convert case state to friendly case state with multiple languages support
-  public static String convertToUserFriendlyCaseState(CaseState state) {
+  public static String convertToUserFriendlyCaseState(CaseBusinessState state) {
     if (state == null) {
       return StringUtils.EMPTY;
     }
     switch (state) {
-      case CREATED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/CREATED_UPPERCASE");
-      case RUNNING:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/INPROGRESS");
+      case OPEN:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/OPEN_UPPERCASE");
       case DESTROYED:
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/DESTROYED_UPPERCASE");
       case DONE:
