@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.time.Duration;
+
 import ch.ivy.addon.portalkit.service.UserProcessService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean;
@@ -15,7 +17,7 @@ public class PortalTestInitBean extends AbstractProcessStartEventBean {
   @Override
   public void initialize(IProcessStartEventBeanRuntime eventRuntime, String configuration) {
     super.initialize(eventRuntime, configuration);
-    getEventBeanRuntime().setPollTimeInterval(0);
+    getEventBeanRuntime().poll().every(Duration.ofMillis(0));
     initUserProcesses();
   }
 
