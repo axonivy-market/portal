@@ -433,4 +433,25 @@ public class CaseService implements ICaseService {
     }
     return caseQuery;
   }
+  
+  public ICase findCaseByUUID(String uuid) {
+    return Sudo.get(() -> {
+      CaseQuery caseQuery = CaseQuery.create().where().uuid().isEqual(uuid);
+      if (PermissionUtils.checkReadAllCasesPermission()) {
+        EnumSet<CaseState> ADVANCE_STATES = EnumSet.of(CREATED, RUNNING, DONE, DESTROYED);
+        caseQuery.where().and(queryForStates(ADVANCE_STATES));
+      } else {
+        EnumSet<CaseState> STANDARD_STATES = EnumSet.of(CREATED, RUNNING, DONE);
+        caseQuery.where().and(queryForStates(STANDARD_STATES)).and(queryForCurrentUser(CaseQuery.create()));
+      }
+      if (isHiddenTasksCasesExcluded()) {
+        caseQuery.where().and(queryExcludeHiddenCases());
+      }
+      return Ivy.wf().getCaseQueryExecutor().getFirstResult(caseQuery);
+    });
+  }
+  
+  public boolean isCaseAccessible(String uuid) {
+    return findCaseByUUID(uuid) != null;
+  }
 }

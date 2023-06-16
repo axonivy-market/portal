@@ -131,7 +131,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.dto.GlobalCaseId;",
             "",
-            "in.globalCaseId = GlobalCaseId.caseId(in.selectedCase.getId()).build();"
+            "in.globalCaseId = GlobalCaseId.uuid(in.selectedCase.uuid()).build();"
           ]
         },
         "sudo" : true
