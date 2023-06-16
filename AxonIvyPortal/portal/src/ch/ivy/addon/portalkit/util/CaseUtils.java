@@ -20,7 +20,6 @@ import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
-import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public final class CaseUtils {

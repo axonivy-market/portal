@@ -45,7 +45,7 @@ public class CaseActionBean implements Serializable {
       additionalCaseDetailsPageUri = iCase.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).getOrNull();
       if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {
         Map<String, String> params = new HashMap<>();
-        params.put("caseId", String.valueOf(iCase.getId()));
+        params.put("uuid", iCase.uuid());
         additionalCaseDetailsPageUri = PortalNavigator.buildUrlByKeyword("showAdditionalCaseDetails", START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE, params);
       } else {
         additionalCaseDetailsPageUri = additionalCaseDetailsPageUri + "&embedInFrame";

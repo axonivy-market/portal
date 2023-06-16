@@ -44,12 +44,12 @@ public class CaseTaskNoteHistoryBean implements Serializable {
   }
 
   public String getCaseNoteHistoryLink(ICase iCase) {
-    return getCaseNoteHistoryLink(iCase.getId());
+    return getCaseNoteHistoryLink(iCase.uuid());
   }
   
-  public String getCaseNoteHistoryLink(Long caseId) {
+  public String getCaseNoteHistoryLink(String uuid) {
     Map<String, String> params = new HashMap<>();
-    params.put("caseId", String.valueOf(caseId));
+    params.put("uuid", uuid);
     return PortalNavigator.buildUrlByKeyword("showCaseNoteHistory.ivp", SHOW_CASE_NOTE_HISTORY_FRIENDLY_REQUEST_PATH, params);
   }
 
