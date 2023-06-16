@@ -109,7 +109,7 @@ public class CaseExporter extends Exporter{
       case FINISHED_TIME:
         return caseItem.getEndTimestamp();
       case STATE:
-        return CaseUtils.convertToUserFriendlyCaseState(caseItem.getState());
+        return CaseUtils.convertToUserFriendlyCaseState(caseItem.getBusinessState());
       case CATEGORY:
         return caseItem.getCategory().getPath();
       case APPLICATION:

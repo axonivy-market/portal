@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.bean;
 
 import static java.util.stream.Collectors.toList;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,9 +33,9 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
   @Override
   public void initialize(IProcessStartEventBeanRuntime eventRuntime, String configuration) {
     super.initialize(eventRuntime, configuration);
-    getEventBeanRuntime().setPollTimeInterval(0);
+    getEventBeanRuntime().poll().every(Duration.ofMillis(0));
     initPermissions();
-    silentMigrate();
+    migrate();
   }
 
   private void initPermissions() {
@@ -44,7 +45,7 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
     }
   }
 
-  private void silentMigrate() {
+  private void migrate() {
     MigrationService.migrateWhenStartEngine();
   }
 
