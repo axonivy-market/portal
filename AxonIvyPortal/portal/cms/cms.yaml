@@ -878,13 +878,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     passwordReset: Password Reset
     passwordResetEmailCantSend: Exception while sending email to you. Please try again later.
     passwordResetEmailContent: '<html>Dear {0},<br/><br/>Please click to this link to reset your password: <a href="{1}">Reset Password</a><br/><br/>Best regards</html>'
-    passwordResetEmailSent: An E-Mail was sent to you, including a link to reset your password. Please check your mail box.
+    passwordResetEmailSent: If this e-mail address is registered then we have sent a password recovery link to it.
     passwordResetEmailSubject: Email to reset your password
     passwordResetSuccess: Your password has been changed successfully
     requiredFieldMessage: '{0} is required'
     setANewPassword: Set a new password
     strong: Strong
-    userNotFound: User not found
+    userNotFound: If this e-mail address is registered then we have sent a password recovery link to it.
     usersHaveSameEmail: There are many users using this email. Please contact your administrator.
     weak: Weak
   iconselection:
