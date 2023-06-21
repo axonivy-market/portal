@@ -2,7 +2,6 @@
     <wb-module deploy-name="PortalKit_test">
         <wb-resource deploy-path="/" source-path="/webContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_hd"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_dataClasses"/>
         <property name="context-root" value="PortalKit_test"/>
         <property name="java-output-path" value="/PortalKit_test/classes"/>

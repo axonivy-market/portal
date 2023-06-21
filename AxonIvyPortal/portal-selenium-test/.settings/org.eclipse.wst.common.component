@@ -2,7 +2,6 @@
     <wb-module deploy-name="newPortalTest">
         <wb-resource deploy-path="/" source-path="/webContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_hd"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_wsproc"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_dataClasses"/>
         <property name="context-root" value="newPortalTest"/>

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "15FFC669C88F7E0B",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -297,11 +297,16 @@
     }, {
       "id" : "f21",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f32" : "!in.isChartNameExisted"
+        }
+      },
       "visual" : {
         "at" : { "x" : 392, "y" : 976 }
       },
       "connect" : [
-        { "id" : "f32", "to" : "f31", "condition" : "!in.isChartNameExisted" },
+        { "id" : "f32", "to" : "f31" },
         { "id" : "f20", "to" : "f11", "via" : [ { "x" : 648, "y" : 976 } ] }
       ]
     }, {

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "1549452C001D8A69",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -80,6 +80,11 @@
       "id" : "f41",
       "type" : "Alternative",
       "name" : "Upload successfully?",
+      "config" : {
+        "conditions" : {
+          "f27" : "in.uploadDocumentCheckStatus == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK"
+        }
+      },
       "visual" : {
         "at" : { "x" : 408, "y" : 288 },
         "labelOffset" : { "x" : 13, "y" : -19 }
@@ -89,7 +94,7 @@
             "name" : "YES",
             "segment" : 0.29,
             "offset" : { "x" : -2, "y" : -7 }
-          }, "condition" : "in.uploadDocumentCheckStatus == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK" },
+          } },
         { "id" : "f86", "to" : "f67" }
       ]
     }, {
