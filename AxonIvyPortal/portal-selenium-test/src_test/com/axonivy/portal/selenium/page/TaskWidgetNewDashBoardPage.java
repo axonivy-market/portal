@@ -478,4 +478,11 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public SelenideElement getResponsibleAvatar() {
     return $(".dashboard-tasks__responsible > .has-avatar > .ui-avatar").shouldBe(appear, DEFAULT_TIMEOUT);
   }
+  
+  public void clickExportExcel() {
+    clickOnButtonWidgetInformation();
+    $("div.info-overlay-panel__footer")
+    .$(".dashboard-excel-export-form").$("a")
+    .shouldBe(getClickableCondition()).click();
+  }
 }

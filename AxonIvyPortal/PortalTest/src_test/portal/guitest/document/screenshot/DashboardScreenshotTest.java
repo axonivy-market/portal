@@ -189,6 +189,9 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     taskInfoOverlayPanel.findElement(By.className("widget-info-type--label")).click();
     newDashboardPage.waitForWidgetInfoLoading(taskInfoOverlayPanel);
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskInfoOverlayPanel, ScreenshotUtil.NEW_DASHBOARD_FOLDER + "widget-info", new ScreenshotMargin(20));
+    // Take screenshot of task Excel export link
+    executeDecorateJs("highlightWidgetExportToExcelLinkForTask()");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskInfoOverlayPanel, ScreenshotUtil.NEW_DASHBOARD_FOLDER + "task-export-excel", new ScreenshotMargin(20));
     taskInfoOverlayPanel.findElement(By.className("info-overlay-panel__footer")).findElement(By.className("info-overlay-panel__close-link")).click();
 
     // Take screenshot of case Excel export link
@@ -196,7 +199,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     WebElement caseInfoOverlayPanel = newDashboardPage.getInfoOverlayPanel(1);
     caseInfoOverlayPanel.findElement(By.className("widget-info-type--label")).click();
     newDashboardPage.waitForWidgetInfoLoading(caseInfoOverlayPanel);
-    executeDecorateJs("highlightWidgetExportToExcelLink()");
+    executeDecorateJs("highlightWidgetExportToExcelLinkForCase()");
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(caseInfoOverlayPanel, ScreenshotUtil.NEW_DASHBOARD_FOLDER + "case-export-excel", new ScreenshotMargin(20));
     caseInfoOverlayPanel.findElement(By.className("info-overlay-panel__footer")).findElement(By.className("info-overlay-panel__close-link")).click();
 

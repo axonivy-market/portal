@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
+import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 
 public class ExportUtils {
 
@@ -30,5 +32,28 @@ public class ExportUtils {
     }
 
     return columnsVisibility;
+  }
+  
+  /**
+   * Build dashboard task widget's visible column list for export function
+   * 
+   * @param columns
+   * @return
+   */
+  public static List<String> builVisibleColumnsForDashboardTaskWidget(List<TaskColumnModel> columns) {
+    List<String> visibleColumns = new ArrayList<>();
+    for (TaskColumnModel column : columns) {
+      if (column.getVisible() && !column.getField().contentEquals(DashboardStandardTaskColumn.ACTIONS.getField())
+          && !column.getField().contentEquals(DashboardStandardTaskColumn.START.getField())) {
+        if (DashboardColumnType.CUSTOM == column.getType()) {
+          visibleColumns.add(
+              String.format(CUSTOM_FIELD_FORMAT, column.getFormat().name(), column.getField(), column.getHeader()));
+        } else {
+          visibleColumns.add(column.getField());
+        }
+      }
+    }
+
+    return visibleColumns;
   }
 }
