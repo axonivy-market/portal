@@ -36,7 +36,11 @@
 				</h:column>
 				<h:column>
 					<div class="ui-g-12 ui-fluid">
-						<p:inputText value="#{title.value}" />
+						<p:inputText value="#{title.value}" id="title"/>
+						<p:commandLink id="tranlate-link" actionListener="#{managedBean.translate(title)}" update="@form">
+							<span class="fa fa-language" />
+							<h:outputText value="Auto. translation" />
+						</p:commandLink>
 					</div>
 				</h:column>
 			</h:dataTable>

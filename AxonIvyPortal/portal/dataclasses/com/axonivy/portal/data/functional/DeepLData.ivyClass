@@ -1,0 +1,5 @@
+DeepLData #class
+com.axonivy.portal.data.functional #namespace
+input String #field
+output String #field
+targetLanguage com.deepl.api.v2.client.TargetLanguage #field
