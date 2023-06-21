@@ -35,19 +35,25 @@
         </div>
         
         <div class="ui-g-4 manage-dashboard__label">
-          <p:outputLabel 
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}" />
+          <p:outputLabel for="dashboard-title"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}">
+<!--            <span class="dashboard_ui-outputlabel-rfi">*</span>-->
+          </p:outputLabel>
         </div>
         <div class="ui-g-8 ui-fluid ui-inputgroup">
           <p:inputText id="dashboard-title" value="#{managedBean.selectedDashboard.title}"
-            required="true" styleClass="manage-dashboard__input" />
-            <p:commandButton id="add-language-button"
-          			icon="si si-chat-translate">
-            	<p:ajax event="click" listener="#{managedBean.updateDashboardTitles()}" process="dashboard-title"
-					update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
-					oncomplete="PF('multiple-languages-dialog').show();" />
-          </p:commandButton>
-        </div>
+                       required="true"  styleClass="manage-dashboard__input">
+<!--            <f:validator validatorId="dashboardTitleValidator" />-->
+          </p:inputText>
+        <p:commandButton id="add-language-button"
+          icon="si si-chat-translate">
+          <p:ajax event="click"
+            listener="#{managedBean.updateDashboardTitleByLocale()}"
+            process="dashboard-title"
+            update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
+            oncomplete="PF('multiple-languages-dialog').show();" />
+        </p:commandButton>
+      </div>
 
         <h:panelGroup layout="block" styleClass="ui-g-4 manage-dashboard__label"
           rendered="#{cc.attrs.isPublicDashboard}">
@@ -85,10 +91,11 @@
             required="false" styleClass="manage-dashboard__input" />
         </div>
     </h:form>
-    <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration id="title-language-config" 
-    	titles="#{managedBean.selectedDashboard.titles}"
-    	managedBean="#{managedBean}"
-    	componentToUpdate="dashboard-modification-component:configuration-dashboard-detail-component:dashboard-detail-form:dashboard-title"/>
+    <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
+      id="title-language-config" titles="#{managedBean.getTitles()}"
+      updateCurrentLanguage="#{managedBean.updateCurrentLanguage()}"
+      componentToUpdateOnModify="dashboard-modification-component:configuration-dashboard-detail-component:dashboard-detail-form:dashboard-title"
+      componentToUpdateOnCreate="dashboard-template-selection-component:dashboard-creation-component:dashboard-detail-form:dashboard-title" />
     <f:facet name="footer">
       <h:panelGroup layout="block" styleClass="u-text-align-right">
         <p:commandLink id="dashboard-detail-close-button" type="button"

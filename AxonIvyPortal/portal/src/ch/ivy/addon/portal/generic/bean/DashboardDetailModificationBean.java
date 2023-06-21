@@ -810,37 +810,31 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
   
   public Map<String, DisplayName> getMapLanguages() {
-	  List<DisplayName> languages = this.widget.getNames();
-	  return languages.stream().collect(Collectors.toMap(o->o.getLocale().toLanguageTag(), o->o));
+    List<DisplayName> languages = this.widget.getNames();
+    return languages.stream().collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
   }
-  
-  public void processLanguage() {
-	  List<DisplayName> languages = this.widget.getNames();
-	  String currentLanguage = UserUtils.getUserLanguage();
-	  Optional<DisplayName> optional = languages.stream().filter(lang -> currentLanguage.equals(lang.getValue())).findFirst();
-	  if (optional.isPresent()) {
-		  this.widget.setName(optional.get().getValue());
-	  }
-  }
-  
-  public void updateWidgetTitles() {
-	  Map<String,DisplayName> mapLanguage = getMapLanguages();
-	  List<String> supportedLanguages = getLanguages();
-	  String currentName = this.widget.getName();
-	  for (String language : supportedLanguages) {
-		if (mapLanguage.get(language) == null) {
-			DisplayName displayName = new DisplayName();
-			displayName.setLocale(Locale.forLanguageTag(language));
-			displayName.setValue(currentName);
-			this.widget.getNames().add(displayName);	
-		}
-	  }
-	  String currentLanguage = UserUtils.getUserLanguage();
-	  Optional<DisplayName> optional = this.widget.getNames()
-			  .stream().filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
-	  if (optional.isPresent()) {
-		  optional.get().setValue(currentName);
-	  }
+
+  public void updateWidgetNameByLocale() {
+    Map<String, DisplayName> mapLanguage = getMapLanguages();
+    List<String> supportedLanguages = getLanguages();
+    String currentName = this.widget.getName();
+    for (String language : supportedLanguages) {
+      DisplayName localeLanguage = mapLanguage.get(language);
+      if (localeLanguage == null) {
+        DisplayName displayName = new DisplayName();
+        displayName.setLocale(Locale.forLanguageTag(language));
+        displayName.setValue(currentName);
+        this.widget.getNames().add(displayName);
+      } else if (localeLanguage.getValue() == null || localeLanguage.getValue().isBlank()) {
+        localeLanguage.setValue(currentName);
+      }
+    }
+    String currentLanguage = UserUtils.getUserLanguage();
+    Optional<DisplayName> optional = this.widget.getNames().stream()
+        .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
+    if (optional.isPresent()) {
+      optional.get().setValue(currentName);
+    }
   }
 
 }

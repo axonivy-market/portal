@@ -72,8 +72,7 @@
     <ui:define name="multiLanguageDialog">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration id="title-language-config"
       	titles="#{managedBean.widget.names}" 
-      	managedBean="#{managedBean}"
-      	componentToUpdate="#{cc.attrs.componentToUpdate}"/>
+      	componentToUpdateOnCreate="#{cc.attrs.componentToUpdate}"/>
     </ui:define>
   </ui:decorate>
 
