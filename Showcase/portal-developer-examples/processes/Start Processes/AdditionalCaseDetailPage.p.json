@@ -56,7 +56,7 @@
       "type" : "SubProcessCall",
       "name" : "SetAdditonalCaseDetailPage",
       "config" : {
-        "processCall" : "Functional Processes/SetAdditonalCaseDetailPage:call(String)",
+        "processCall" : "Functional Processes/SetAdditonalCaseDetailsPage:call(String)",
         "call" : {
           "params" : [
             { "name" : "linkToAddtionalCaseDetailPage", "type" : "String" }

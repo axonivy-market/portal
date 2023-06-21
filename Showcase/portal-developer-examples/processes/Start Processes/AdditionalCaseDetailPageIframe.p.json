@@ -84,7 +84,7 @@
       "type" : "SubProcessCall",
       "name" : "SetAdditonalCaseDetailPage",
       "config" : {
-        "processCall" : "Functional Processes/SetAdditonalCaseDetailPage:call(String)",
+        "processCall" : "Functional Processes/SetAdditonalCaseDetailsPage:call(String)",
         "call" : {
           "params" : [
             { "name" : "linkToAddtionalCaseDetailPage", "type" : "String" }
@@ -247,10 +247,7 @@
             "import com.axonivy.portal.components.dto.BusinessDetailsDTO;",
             "import com.axonivy.portal.components.publicapi.BusinessDetailsAPI;",
             "",
-            "BusinessDetailsAPI.create(BusinessDetailsDTO.builder()",
-            "     .iCase(ivy.case)",
-            "    .path(\"https://www.google.com/\")",
-            "    .build());"
+            "BusinessDetailsAPI.create(\"https://www.google.com/\");"
           ]
         }
       },

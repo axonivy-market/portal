@@ -98,13 +98,13 @@ public class BusinessDetailsDTO {
      * @return BusinessDetailsDTO
      */
     public BusinessDetailsDTO build() {
-      if (this.path == null) {
+      if (path == null) {
         throw new PortalException("Path cannot be null.");
       }
-      if (this.iCase == null) {
-        this.iCase = Ivy.wfCase();
+      if (iCase == null) {
+        iCase = Ivy.wfCase();
       }
-      return new BusinessDetailsDTO(this.iCase, this.path, this.isEmbedInFrame);
+      return new BusinessDetailsDTO(iCase, path, isEmbedInFrame);
     }
 
   }
