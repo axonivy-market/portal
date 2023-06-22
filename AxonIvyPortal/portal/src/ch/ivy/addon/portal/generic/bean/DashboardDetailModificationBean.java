@@ -809,14 +809,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     return componentId;
   }
   
-  public Map<String, DisplayName> getMapLanguages() {
-    List<DisplayName> languages = this.widget.getNames();
-    return languages.stream().collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
-  }
-
   public void updateWidgetNameByLocale() {
     Map<String, DisplayName> mapLanguage = getMapLanguages();
-    List<String> supportedLanguages = getLanguages();
+    List<String> supportedLanguages = getSupportedLanguages();
     String currentName = this.widget.getName();
     for (String language : supportedLanguages) {
       DisplayName localeLanguage = mapLanguage.get(language);
@@ -837,4 +832,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
   }
 
+  private Map<String, DisplayName> getMapLanguages() {
+    List<DisplayName> languages = this.widget.getNames();
+    return languages.stream().collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
+  }
 }

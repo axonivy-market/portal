@@ -199,14 +199,9 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     return String.join(", ", dashboard.getPermissions());
   }
   
-  public Map<String, DisplayName> getMapLanguages() {
-    List<DisplayName> languages = this.selectedDashboard.getTitles();
-    return languages.stream().collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
-  }
-
   public void updateDashboardTitleByLocale() {
     Map<String, DisplayName> mapLanguage = getMapLanguages();
-    List<String> supportedLanguages = getLanguages();
+    List<String> supportedLanguages = getSupportedLanguages();
     String currentTitle = this.selectedDashboard.getTitle();
     for (String language : supportedLanguages) {
       DisplayName localeLanguage = mapLanguage.get(language);
@@ -240,7 +235,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
   public List<DisplayName> getTitles() {
     if (this.selectedDashboard.getTitles().isEmpty()) {
-      List<String> supportedLanguages = getLanguages();
+      List<String> supportedLanguages = getSupportedLanguages();
       for (String language : supportedLanguages) {
         DisplayName displayName = new DisplayName();
         displayName.setLocale(Locale.forLanguageTag(language));
@@ -249,4 +244,10 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     }
     return this.selectedDashboard.getTitles();
   }
+
+  private Map<String, DisplayName> getMapLanguages() {
+    List<DisplayName> languages = this.selectedDashboard.getTitles();
+    return languages.stream().collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
+  }
+
 }
