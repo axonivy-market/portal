@@ -116,4 +116,18 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public void waitPreviewTableLoaded() {
     $(taskEditWidgetId).$("div[id$=':dashboard-tasks-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
+
+  public SelenideElement getAddLanguageButton() {
+	  SelenideElement addLanguageButton = $("button[id$='add-language-button']");
+	  addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+	  addLanguageButton.shouldBe(getClickableCondition());
+	  waitUntilElementToBeClickable(addLanguageButton);
+	  return addLanguageButton;
+  }
+
+  public SelenideElement getMultipleLanguageDialog() {
+	  SelenideElement addLanguageButton = $("div[id$='multiple-languages-dialog']");
+	  addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+	  return addLanguageButton;
+  }
 }

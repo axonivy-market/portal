@@ -171,11 +171,11 @@ public class MenuView implements Serializable {
                   .workingTaskId(this.workingTaskId).build();
             dashboardMenu.setId(String.format(DASHBOARD_MENU_ITEM_PATTERN, board.getId()));
             
-            String defaultTitlte = (String) dashboardMenu.getValue();
+            String defaultTitle = (String) dashboardMenu.getValue();
             String title = board.getTitles().stream()
             		.filter(name -> StatisticService.equalsLanguageLocale(name, currentLanguage) && !name.getValue().isBlank())
                     .map(DisplayName::getValue)
-                    .findFirst().orElse(defaultTitlte);
+                    .findFirst().orElse(defaultTitle);
             dashboardMenu.setValue(title);
             dashboardGroupMenu.getElements().add(dashboardMenu);
           }

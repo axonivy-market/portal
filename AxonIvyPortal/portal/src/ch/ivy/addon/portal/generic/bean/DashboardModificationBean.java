@@ -199,37 +199,55 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     return String.join(", ", dashboard.getPermissions());
   }
   
-  public Map<String, DisplayName> getMapLanguages() {
-	  List<DisplayName> languages = this.selectedDashboard.getTitles();
-	  return languages.stream().collect(Collectors.toMap(o->o.getLocale().toLanguageTag(), o->o));
+  public void updateDashboardTitleByLocale() {
+    Map<String, DisplayName> mapLanguage = getMapLanguages();
+    List<String> supportedLanguages = getSupportedLanguages();
+    String currentTitle = this.selectedDashboard.getTitle();
+    for (String language : supportedLanguages) {
+      DisplayName localeLanguage = mapLanguage.get(language);
+      if (localeLanguage == null) {
+        DisplayName displayName = new DisplayName();
+        displayName.setLocale(Locale.forLanguageTag(language));
+        displayName.setValue(currentTitle);
+        this.selectedDashboard.getTitles().add(displayName);
+      } else if (localeLanguage.getValue() == null || localeLanguage.getValue().isBlank()) {
+        localeLanguage.setValue(currentTitle);
+      }
+    }
+    String currentLanguage = UserUtils.getUserLanguage();
+    Optional<DisplayName> optional = this.selectedDashboard.getTitles().stream()
+        .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
+    if (optional.isPresent()) {
+      optional.get().setValue(currentTitle);
+    }
   }
 
-  public void updateDashboardTitles() {
-	  Map<String,DisplayName> mapLanguage = getMapLanguages();
-	  List<String> supportedLanguages = getLanguages();
-	  String currentTitle = this.selectedDashboard.getTitle();
-	  for (String language : supportedLanguages) {
-		if (mapLanguage.get(language) == null) {
-			DisplayName displayName = new DisplayName();
-			displayName.setLocale(Locale.forLanguageTag(language));
-			displayName.setValue(currentTitle);
-			this.selectedDashboard.getTitles().add(displayName);
-		}
-	  }
-	  String currentLanguage = UserUtils.getUserLanguage();
-	  Optional<DisplayName> optional = this.selectedDashboard.getTitles()
-			  .stream().filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
-	  if (optional.isPresent()) {
-		  optional.get().setValue(currentTitle);
-	  }
+  public void updateCurrentLanguage() {
+    List<DisplayName> languages = this.selectedDashboard.getTitles();
+    String currentLanguage = UserUtils.getUserLanguage();
+    Optional<DisplayName> optional = languages.stream()
+        .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage()))
+        .findFirst();
+    if (optional.isPresent()) {
+      this.selectedDashboard.setTitle(optional.get().getValue());
+    }
   }
 
-  public void processLanguage() {
-	  List<DisplayName> languages = this.selectedDashboard.getTitles();
-	  String currentLanguage = UserUtils.getUserLanguage();
-	  Optional<DisplayName> optional = languages.stream().filter(lang -> currentLanguage.equals(lang.getValue())).findFirst();
-	  if (optional.isPresent()) {
-		  this.selectedDashboard.setTitle(optional.get().getValue());
-	  }
+  public List<DisplayName> getTitles() {
+    if (this.selectedDashboard.getTitles().isEmpty()) {
+      List<String> supportedLanguages = getSupportedLanguages();
+      for (String language : supportedLanguages) {
+        DisplayName displayName = new DisplayName();
+        displayName.setLocale(Locale.forLanguageTag(language));
+        this.selectedDashboard.getTitles().add(displayName);
+      }
+    }
+    return this.selectedDashboard.getTitles();
   }
+
+  private Map<String, DisplayName> getMapLanguages() {
+    List<DisplayName> languages = this.selectedDashboard.getTitles();
+    return languages.stream().collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
+  }
+
 }
