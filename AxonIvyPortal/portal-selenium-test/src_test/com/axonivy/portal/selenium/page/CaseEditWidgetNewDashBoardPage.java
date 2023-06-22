@@ -40,23 +40,23 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     return $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='user-filter']").$$("div").get(index + 1)
         .$("input");
   }
-  
+
   private SelenideElement getAvailableFilterCheckbox(String filterName) {
     int index = getIndexFiltertByName(filterName);
     return $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='user-filter']").$$("div").get(index + 1)
         .$(".ui-selectcheckboxmenu");
   }
-  
-  
+
+
   private SelenideElement getValueOfCheckBox(String value) {
     return $("div.ui-selectcheckboxmenu-items-wrapper").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$("li.ui-selectcheckboxmenu-item").filter(text(value)).first().$("div.ui-chkbox-box");
   }
-  
+
   private SelenideElement getCloseCheckBox() {
     return $("div.ui-selectcheckboxmenu-panel").shouldBe(appear, DEFAULT_TIMEOUT).$("a.ui-selectcheckboxmenu-close");
   }
-  
+
   public void selectStateAsInProgress() {
     getValueOfCheckBox("In progress").shouldBe(getClickableCondition()).click();
     getCloseCheckBox().shouldBe(getClickableCondition()).click();
@@ -80,7 +80,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   public void filterCaseName(String caseName) {
     getAvailableFilterInput(FILTER_CASE_NAME).sendKeys(caseName);
   }
-  
+
   public void filterCaseState() {
     getAvailableFilterCheckbox(FILTER_CASE_STATE).shouldBe(getClickableCondition()).click();
   }
@@ -217,18 +217,18 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   protected String getLoadedLocator() {
     return ".case-configuration__creators";
   }
-  
+
   public SelenideElement getAddLanguageButton() {
-	  SelenideElement addLanguageButton = $("button[id$='add-language-button']");
-	  addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-	  addLanguageButton.shouldBe(getClickableCondition());
-	  waitUntilElementToBeClickable(addLanguageButton);
-	  return addLanguageButton;
+    SelenideElement addLanguageButton = $("button[id$='add-language-button']");
+    addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    addLanguageButton.shouldBe(getClickableCondition());
+    waitUntilElementToBeClickable(addLanguageButton);
+    return addLanguageButton;
   }
-  
+
   public SelenideElement getMultipleLanguageDialog() {
-	  SelenideElement addLanguageButton = $("div[id$='multiple-languages-dialog']");
-	  addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-	  return addLanguageButton;
+    SelenideElement addLanguageButton = $("div[id$='multiple-languages-dialog']");
+    addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return addLanguageButton;
   }
 }

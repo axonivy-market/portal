@@ -11,13 +11,13 @@ import com.codeborne.selenide.SelenideElement;
 public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   private String processEditWidgetId;
-  
+
   public ProcessEditWidgetNewDashBoardPage() {
-	this("div[id='new-widget-configuration-dialog']");
+    this("div[id='new-widget-configuration-dialog']");
   }
-  
+
   public ProcessEditWidgetNewDashBoardPage(String processEditWidgetId) {
-	this.processEditWidgetId = processEditWidgetId;
+    this.processEditWidgetId = processEditWidgetId;
   }
 
   @Override
@@ -322,12 +322,12 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     selectCompactModeProcess(processName);
     clickSaveProcessWidget();
   }
-  
+
   public void changeProcessTitle(String name) {
 	getCompactModeWidgetTitle().clear();
     getCompactModeWidgetTitle().sendKeys(name);
   }
-  
+
   public void changeCompactModeProcessAndSaveWidget(String category) {
     selectCompactModeFromCombinedMode();
     getCompactModeWidgetTitle().clear();
@@ -365,7 +365,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   public SelenideElement getCompactModeProcessDisplayedCategoryFilter() {
     return getCompactModeProcessCategoryFilter().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
-  
+
   public void clickOnProcesses() {
     $("div[id$=':processes-list']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
         .click();
@@ -377,19 +377,19 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getAddLanguageButton() {
-	SelenideElement addLanguageButton = $("button[id$='add-language-button']");
-  	addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-  	addLanguageButton.shouldBe(getClickableCondition());
-  	waitUntilElementToBeClickable(addLanguageButton);
-  	return addLanguageButton;
+    SelenideElement addLanguageButton = $("button[id$='add-language-button']");
+    addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    addLanguageButton.shouldBe(getClickableCondition());
+    waitUntilElementToBeClickable(addLanguageButton);
+    return addLanguageButton;
   }
 
   public SelenideElement getMultipleLanguageDialog() {
-	  SelenideElement addLanguageButton = $("div[id$='multiple-languages-dialog']");
-	  addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-	  return addLanguageButton;
+    SelenideElement addLanguageButton = $("div[id$='multiple-languages-dialog']");
+    addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return addLanguageButton;
   }
-  
+
   public void save() {
     $(processEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='widget-configuration-save-button']")
         .shouldBe(getClickableCondition()).click();
