@@ -6,5 +6,5 @@ showBackButton Boolean #field
 showBackButton PERSISTENT #fieldModifier
 readOnly Boolean #field
 readOnly PERSISTENT #fieldModifier
-currentCaseId Long #field
-currentCaseId PERSISTENT #fieldModifier
+uuid String #field
+uuid PERSISTENT #fieldModifier

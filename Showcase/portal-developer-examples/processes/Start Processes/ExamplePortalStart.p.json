@@ -1325,10 +1325,10 @@
         "signature" : "CaseDetailsPage",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long", "desc" : "" }
+            { "name" : "uuid", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.caseId" : "param.caseId"
+            "out.uuid" : "param.uuid"
           }
         },
         "request" : {
@@ -1569,14 +1569,14 @@
         "signature" : "RelatedTasksOfCasePage",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long", "desc" : "" },
+            { "name" : "uuid", "type" : "String", "desc" : "" },
             { "name" : "isBusinessCase", "type" : "Boolean", "desc" : "" },
             { "name" : "caseName", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.caseId" : "param.caseId",
             "out.caseName" : "param.caseName",
-            "out.isBusinessCase" : "param.isBusinessCase"
+            "out.isBusinessCase" : "param.isBusinessCase",
+            "out.uuid" : "param.uuid"
           }
         },
         "request" : {
@@ -2037,10 +2037,10 @@
         "signature" : "CaseDetailsInIFrame",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long", "desc" : "" }
+            { "name" : "uuid", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.caseId" : "param.caseId"
+            "out.uuid" : "param.uuid"
           }
         },
         "request" : {
@@ -2059,16 +2059,16 @@
       "type" : "DialogCall",
       "name" : "CaseInformationInIFrame",
       "config" : {
-        "dialog" : "ch.ivy.addon.portal.component.iframe.CaseInformationInIFrame:start(Long,Boolean)",
+        "dialog" : "ch.ivy.addon.portal.component.iframe.CaseInformationInIFrame:start(String,Boolean)",
         "call" : {
           "map" : {
-            "param.caseId" : "in.caseId",
+            "param.uuid" : "param.uuid",
             "param.showBackButton" : "false"
           }
         }
       },
       "visual" : {
-        "at" : { "x" : 1016, "y" : 2391 },
+        "at" : { "x" : 1016, "y" : 2392 },
         "size" : { "width" : 256, "height" : 58 }
       },
       "connect" : [
@@ -2088,14 +2088,14 @@
         "signature" : "RelatedTasksOfCasePageInFrame",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long", "desc" : "" },
+            { "name" : "uuid", "type" : "String", "desc" : "" },
             { "name" : "isBusinessCase", "type" : "Boolean", "desc" : "" },
             { "name" : "caseName", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.caseId" : "param.caseId",
             "out.caseName" : "param.caseName",
-            "out.isBusinessCase" : "param.isBusinessCase"
+            "out.isBusinessCase" : "param.isBusinessCase",
+            "out.uuid" : "param.uuid"
           }
         },
         "request" : {
@@ -2445,12 +2445,12 @@
         "signature" : "CaseDetailsPageInFrame",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long", "desc" : "" },
+            { "name" : "uuid", "type" : "String", "desc" : "" },
             { "name" : "isBusinessCase", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
-            "out.caseId" : "param.caseId",
-            "out.isBusinessCase" : "param.isBusinessCase"
+            "out.isBusinessCase" : "param.isBusinessCase",
+            "out.uuid" : "param.uuid"
           }
         },
         "request" : {
@@ -3336,10 +3336,10 @@
         "signature" : "showCaseNoteHistory",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long", "desc" : "" }
+            { "name" : "uuid", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.caseId" : "param.caseId"
+            "out.uuid" : "param.uuid"
           }
         },
         "request" : {
@@ -3488,10 +3488,10 @@
         "signature" : "showAdditionalCaseDetails",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long", "desc" : "" }
+            { "name" : "uuid", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.caseId" : "param.caseId"
+            "out.uuid" : "param.uuid"
           }
         },
         "request" : {
@@ -3853,10 +3853,10 @@
         "signature" : "ShowCaseDocument",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long", "desc" : "" }
+            { "name" : "uuid", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.caseId" : "param.caseId"
+            "out.uuid" : "param.uuid"
           }
         },
         "request" : {
