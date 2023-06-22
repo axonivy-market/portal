@@ -19,6 +19,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -41,6 +42,7 @@ import com.axonivy.portal.util.WelcomeWidgetUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
 import ch.ivy.addon.portalkit.constant.DashboardConstants;
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CombinedProcessDashboardWidget;
@@ -75,6 +77,7 @@ import ch.ivy.addon.portalkit.util.CustomWidgetUtils;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.Dates;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.cm.ContentObjectValue;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -379,6 +382,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
     updateWidgetPosition(widget);
     resetUserFilter();
+    initMultipleLanguagesForWidgetName(this.widget.getName());
     this.widget.buildPredefinedFilterData();
     if (widgets.contains(this.widget)) {
       widgets.set(widgets.indexOf(this.widget), this.widget);
@@ -804,5 +808,37 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       }
     }
     return componentId;
+  }
+  
+  public void updateWidgetNameByLocale() {
+    String currentName = this.widget.getName();
+    initMultipleLanguagesForWidgetName(currentName);
+    String currentLanguage = UserUtils.getUserLanguage();
+    Optional<DisplayName> optional = this.widget.getNames().stream()
+        .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
+    if (optional.isPresent()) {
+      optional.get().setValue(currentName);
+    }
+  }
+
+  private Map<String, DisplayName> getMapLanguages() {
+    List<DisplayName> languages = this.widget.getNames();
+    return languages.stream().collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
+  }
+
+  private void initMultipleLanguagesForWidgetName(String currentName) {
+    Map<String, DisplayName> mapLanguage = getMapLanguages();
+    List<String> supportedLanguages = getSupportedLanguages();
+    for (String language : supportedLanguages) {
+      DisplayName localeLanguage = mapLanguage.get(language);
+      if (localeLanguage == null) {
+        DisplayName displayName = new DisplayName();
+        displayName.setLocale(Locale.forLanguageTag(language));
+        displayName.setValue(currentName);
+        this.widget.getNames().add(displayName);
+      } else if (StringUtils.isBlank(localeLanguage.getValue())) {
+        localeLanguage.setValue(currentName);
+      }
+    }
   }
 }

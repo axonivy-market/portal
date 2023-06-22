@@ -314,6 +314,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreAllToDefault: Alle auf Standard Zurücksetzen
     restoreDefault: Auf Standard Zurücksetzen.
     settingApplicationName: Anwendungsname angeben
+    settingMultipleLanguages: Einstellung mehrerer Sprachen
     usernameHint: Benutzername eines System Administrators.
     usernameRequiredMsg: Bitte geben Sie den Benutzernamen an.
     value: Wert
