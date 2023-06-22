@@ -389,9 +389,9 @@ public class DashboardBean implements Serializable {
     return Exporter.MAX_ROW_NUMBER_IN_EXCEL;
   }
 
-  public List<String> getLanguages() {
-	  IvyLanguage ivyLanguage = LanguageService.newInstance().findUserLanguages().getIvyLanguage();
-	  return ivyLanguage.getSupportedLanguages();
+  protected List<String> getSupportedLanguages() {
+    IvyLanguage ivyLanguage = LanguageService.newInstance().findUserLanguages().getIvyLanguage();
+    return ivyLanguage.getSupportedLanguages();
   }
 
 }

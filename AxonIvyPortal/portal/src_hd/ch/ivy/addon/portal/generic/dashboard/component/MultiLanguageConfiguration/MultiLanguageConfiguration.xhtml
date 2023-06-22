@@ -1,64 +1,53 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:ic="http://ivyteam.ch/jsf/component"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions"
-	xmlns:cc="http://xmlns.jcp.org/jsf/composite"
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+  xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <cc:interface componentType="IvyComponent">
-	<cc:attribute name="managedBean" required="true" />
-	<cc:attribute name="titles" required="true" />
-	<cc:attribute name="componentToUpdate" />
+  <cc:attribute name="titles" required="true" />
+  <cc:attribute name="componentToUpdateOnCreate" />
+  <cc:attribute name="componentToUpdateOnModify" />
+  <cc:attribute name="updateCurrentLanguage" />
 </cc:interface>
 
 <cc:implementation>
-	<c:set var="managedBean" value="#{cc.attrs.managedBean}" />
-	<c:set var="titles" value="#{cc.attrs.titles}" />
-	<p:dialog appendTo="@(body)" styleClass="setting-multiple-languages"
-		header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/settingMultipleLanguages')}"
-		resizable="false" id="multiple-languages-dialog"
-		widgetVar="multiple-languages-dialog" dynamic="true" modal="true"
-		responsive="true">
-		<h:form id="add-language-detail-form">
-			<h:outputLabel
-				value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/emptySupportedLanguages')}"
-				rendered="#{titles.isEmpty()}" />
-			<h:dataTable value="#{titles}"
-				rendered="#{titles.isEmpty() eq 'false'}" var="title">
-				<h:column>
-					<h:outputText styleClass="ui-g-12"
-						value="#{title.locale.getDisplayName()}" />
-				</h:column>
-				<h:column>
-					<div class="ui-g-12 ui-fluid">
-						<p:inputText value="#{title.value}" id="title"/>
-						<p:commandLink id="tranlate-link" actionListener="#{managedBean.translate(title)}" update="@form">
-							<span class="fa fa-language" />
-							<h:outputText value="Auto. translation" />
-						</p:commandLink>
-					</div>
-				</h:column>
-			</h:dataTable>
+  <c:set var="titles" value="#{cc.attrs.titles}" />
+  <p:dialog appendTo="@(body)" styleClass="setting-multiple-languages"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/settingMultipleLanguages')}" resizable="false"
+    id="multiple-languages-dialog" widgetVar="multiple-languages-dialog" dynamic="true" modal="true" responsive="true">
+    <h:form id="add-language-detail-form">
+      <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/emptySupportedLanguages')}"
+        rendered="#{titles.isEmpty()}" />
+        <h:dataTable value="#{titles}"
+                     rendered="#{titles.isEmpty() eq 'false'}" var="title">
+            <h:column>
+                <h:outputText styleClass="ui-g-12"
+                              value="#{title.locale.getDisplayName()}" />
+            </h:column>
+            <h:column>
+                <div class="ui-g-12 ui-fluid">
+                    <p:inputText value="#{title.value}" id="title"/>
+                    <p:commandLink id="tranlate-link" actionListener="#{managedBean.translate(title)}" update="@form">
+                        <span class="fa fa-language" />
+                        <h:outputText value="Auto. translation" />
+                    </p:commandLink>
+                </div>
+            </h:column>
+        </h:dataTable>
 
-			<div class="u-dialog-footer-actions-group">
-				<p:commandLink
-					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-					onclick="PF('multiple-languages-dialog').hide();" />
-				<p:spacer width="15px" rendered="#{!titles.isEmpty()}" />
-				<p:commandButton
-					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-					update="#{cc.attrs.componentToUpdate}" process="@form"
-					oncomplete="PF('multiple-languages-dialog').hide();"
-					actionListener="#{managedBean.processLanguage()}"
-					rendered="#{!titles.isEmpty()}" />
-			</div>
-		</h:form>
-	</p:dialog>
+      <div class="u-dialog-footer-actions-group">
+        <p:commandLink id="multi-language-cancel-button"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          onclick="PF('multiple-languages-dialog').hide();" />
+        <p:spacer width="15px" rendered="#{!titles.isEmpty()}" />
+        <p:commandButton id="multi-language-ok-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+          update="#{cc.attrs.componentToUpdateOnCreate},#{cc.attrs.componentToUpdateOnModify}" process="@form"
+          oncomplete="PF('multiple-languages-dialog').hide();" actionListener="#{cc.attrs.updateCurrentLanguage}"
+          rendered="#{!titles.isEmpty()}" />
+      </div>
+    </h:form>
+  </p:dialog>
 
 </cc:implementation>
 
