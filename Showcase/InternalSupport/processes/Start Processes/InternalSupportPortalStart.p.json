@@ -2059,10 +2059,10 @@
       "type" : "DialogCall",
       "name" : "CaseInformationInIFrame",
       "config" : {
-        "dialog" : "ch.ivy.addon.portal.component.iframe.CaseInformationInIFrame:start(Long,Boolean)",
+        "dialog" : "ch.ivy.addon.portal.component.iframe.CaseInformationInIFrame:start(String,Boolean)",
         "call" : {
           "map" : {
-            "param.caseId" : "in.caseId",
+            "param.uuid" : "param.uuid",
             "param.showBackButton" : "false"
           }
         }

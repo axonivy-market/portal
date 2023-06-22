@@ -2059,10 +2059,10 @@
       "type" : "DialogCall",
       "name" : "CaseInformationInIFrame",
       "config" : {
-        "dialog" : "ch.ivy.addon.portal.component.iframe.CaseInformationInIFrame:start(Long,Boolean)",
+        "dialog" : "ch.ivy.addon.portal.component.iframe.CaseInformationInIFrame:start(String,Boolean)",
         "call" : {
           "map" : {
-            "param.caseId" : "in.caseId",
+            "param.uuid" : "in.uuid",
             "param.showBackButton" : "false"
           }
         }
@@ -2088,14 +2088,14 @@
         "signature" : "RelatedTasksOfCasePageInFrame",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long", "desc" : "" },
+            { "name" : "uuid", "type" : "String", "desc" : "" },
             { "name" : "isBusinessCase", "type" : "Boolean", "desc" : "" },
             { "name" : "caseName", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.caseId" : "param.caseId",
             "out.caseName" : "param.caseName",
-            "out.isBusinessCase" : "param.isBusinessCase"
+            "out.isBusinessCase" : "param.isBusinessCase",
+            "out.uuid" : "param.uuid"
           }
         },
         "request" : {
@@ -2123,7 +2123,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 418, "y" : 1901 },
+        "at" : { "x" : 416, "y" : 1904 },
         "size" : { "width" : 260, "height" : 66 }
       }
     }, {
@@ -3854,10 +3854,10 @@
         "signature" : "ShowCaseDocument",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long", "desc" : "" }
+            { "name" : "uuid", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.caseId" : "param.caseId"
+            "out.uuid" : "param.uuid"
           }
         },
         "request" : {

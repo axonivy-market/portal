@@ -157,9 +157,9 @@
             "import ch.ivy.addon.portal.generic.navigation.PortalNavigator;",
             "",
             "if (in.inFrame) {",
-            "  PortalNavigator.navigateToPortalRelatedTasksOfCaseInFrame(in.iCase.getId(), true, PermissionUtils.getCaseName(in.iCase));",
+            "  PortalNavigator.navigateToPortalRelatedTasksOfCaseInFrame(in.iCase.uuid(), true, PermissionUtils.getCaseName(in.iCase));",
             "} else {",
-            "  PortalNavigator.navigateToPortalRelatedTasksOfCase(in.iCase.getId(), true, PermissionUtils.getCaseName(in.iCase));",
+            "  PortalNavigator.navigateToPortalRelatedTasksOfCase(in.iCase.uuid(), true, PermissionUtils.getCaseName(in.iCase));",
             "}"
           ]
         }

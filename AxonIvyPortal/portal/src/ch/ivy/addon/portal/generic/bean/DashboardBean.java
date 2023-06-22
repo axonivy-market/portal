@@ -185,8 +185,8 @@ public class DashboardBean implements Serializable {
   }
 
   public void navigateToSelectedCaseDetails(SelectEvent<Object> event) {
-    Long caseId = ((ICase) event.getObject()).getId();
-    PortalNavigator.navigateToPortalCaseDetails(caseId);
+    String uuid = ((ICase) event.getObject()).uuid();
+    PortalNavigator.navigateToPortalCaseDetails(uuid);
   }
 
   public void resetAndOpenTask() throws IOException {
