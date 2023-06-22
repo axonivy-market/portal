@@ -208,7 +208,7 @@
         "processCall" : "Functional Processes/Navigator:viewCase(ch.ivy.addon.portalkit.dto.GlobalCaseId)",
         "call" : {
           "map" : {
-            "param.caseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.caseId(in.selectedTechnicalCase.getId()).isBusinessCase(in.selectedTechnicalCase.isBusinessCase()).build()"
+            "param.caseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.uuid(in.selectedTechnicalCase.uuid()).isBusinessCase(in.selectedTechnicalCase.isBusinessCase()).build()"
           }
         }
       },
@@ -225,7 +225,7 @@
         "call" : {
           "map" : {
             "param.businessCaseName" : "ch.ivy.addon.portalkit.util.PermissionUtils.getCaseName(in.selectedTechnicalCase)",
-            "param.businessCaseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.caseId(in.selectedTechnicalCase.getId()).isBusinessCase(in.selectedTechnicalCase.isBusinessCase()).build()"
+            "param.businessCaseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.uuid(in.selectedTechnicalCase.uuid()).isBusinessCase(in.selectedTechnicalCase.isBusinessCase()).build()"
           }
         }
       },
@@ -289,9 +289,9 @@
             "import ch.ivy.addon.portal.generic.navigation.PortalNavigator;",
             "",
             "if (in.inFrame) {",
-            "  PortalNavigator.navigateToPortalRelatedTasksOfCaseInFrame(in.iCase.getId(), true, PermissionUtils.getCaseName(in.iCase));",
+            "  PortalNavigator.navigateToPortalRelatedTasksOfCaseInFrame(in.iCase.uuid(), true, PermissionUtils.getCaseName(in.iCase));",
             "} else {",
-            "  PortalNavigator.navigateToPortalRelatedTasksOfCase(in.iCase.getId(), true, PermissionUtils.getCaseName(in.iCase));",
+            "  PortalNavigator.navigateToPortalRelatedTasksOfCase(in.iCase.uuid(), true, PermissionUtils.getCaseName(in.iCase));",
             "}"
           ]
         }
@@ -495,7 +495,7 @@
         "processCall" : "Functional Processes/Navigator:viewCaseItemDetailsInIFrame(ch.ivy.addon.portalkit.dto.GlobalCaseId)",
         "call" : {
           "map" : {
-            "param.caseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.caseId(in.selectedTechnicalCase.getId()).isBusinessCase(in.selectedTechnicalCase.isBusinessCase()).build()"
+            "param.caseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.uuid(in.selectedTechnicalCase.uuid()).isBusinessCase(in.selectedTechnicalCase.isBusinessCase()).build()"
           }
         }
       },
@@ -529,7 +529,7 @@
         "call" : {
           "map" : {
             "param.businessCaseName" : "ch.ivy.addon.portalkit.util.PermissionUtils.getCaseName(in.selectedTechnicalCase)",
-            "param.businessCaseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.caseId(in.selectedTechnicalCase.getId()).isBusinessCase(in.selectedTechnicalCase.isBusinessCase()).build()"
+            "param.businessCaseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.uuid(in.selectedTechnicalCase.uuid()).isBusinessCase(in.selectedTechnicalCase.isBusinessCase()).build()"
           }
         }
       },

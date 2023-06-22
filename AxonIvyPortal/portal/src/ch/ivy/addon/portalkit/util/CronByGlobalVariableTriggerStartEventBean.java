@@ -4,7 +4,6 @@ import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.TriggerBuilder.newTrigger;
 
-import java.time.Duration;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -62,7 +61,7 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
   public void initialize(IProcessStartEventBeanRuntime eventRuntime, String configuration) {
     super.initialize(eventRuntime, configuration);
     // Disable Ivy polling
-    getEventBeanRuntime().poll().every(Duration.ofMillis(0));
+    getEventBeanRuntime().setPollTimeInterval(0);
 
     try {
       Variable var = Variables.of(eventRuntime.getProcessModelVersion().getApplication()).variable(configuration);
