@@ -119,11 +119,16 @@
     }, {
       "id" : "f6",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f8" : "!in.hasError"
+        }
+      },
       "visual" : {
         "at" : { "x" : 344, "y" : 176 }
       },
       "connect" : [
-        { "id" : "f8", "to" : "f17", "condition" : "!in.hasError" },
+        { "id" : "f8", "to" : "f17" },
         { "id" : "f12", "to" : "f11" }
       ]
     }, {
