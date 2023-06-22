@@ -32,7 +32,7 @@
         rendered="#{titles.isEmpty() eq 'false'}" var="title">
         <h:column>
           <h:outputText styleClass="ui-g-12"
-            value="#{title.locale.getDisplayName()}" />
+            value="#{title.locale.getDisplayName(ivy.session.getContentLocale())}" />
         </h:column>
         <h:column>
           <div class="ui-g-12 ui-fluid">
