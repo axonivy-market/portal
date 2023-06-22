@@ -101,21 +101,4 @@ public class DashboardConfigurationPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("input[id$=':dashboard-detail-form:dashboard-title']"), true);
     return findElementByCssSelector("div[id$=':dashboard-creation-details-dialog']");
   }
-
-  public void openMultiLanguageDialog() {
-    clickByCssSelector("button[id$=':add-language-button']");
-    waitForElementDisplayed(
-        By.cssSelector("div[id$=':dashboard-creation-component:title-language-config:multiple-languages-dialog']"),
-        true);
-  }
-
-  public void cancelMultiLanguageDialog() {
-    clickByCssSelector("a[id$=':multi-language-cancel-button']");
-  }
-
-  public WebElement getDashboardMultiLanguageDialog() {
-    return findElementById(
-            "dashboard-template-selection-component:dashboard-creation-component:title-language-config:multiple-languages-dialog");
-  }
-
 }

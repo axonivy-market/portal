@@ -214,23 +214,4 @@ public class DashboardWidgetConfigurationDialogPage extends TemplatePage {
   public void waitUntilAnimationFinished() {
     waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ajax-indicator\\\\:ajax-indicator-ajax-indicator_start", ID_PROPERTY);
   }
-
-  public void openMultiLanguageDialog() {
-    clickByCssSelector("button[id$=':add-language-button']");
-    waitForElementDisplayed(
-        By.cssSelector(
-            "div[id$='widget-configuration-form:new-widget-configuration-component:title-language-config:multiple-languages-dialog']"),
-        true);
-  }
-
-  public void clickOkMultiLanguageDialog() {
-    clickByCssSelector(
-        "button[id$='widget-configuration-form:new-widget-configuration-component:title-language-config:add-language-detail-form:multi-language-ok-button']");
-  }
-
-  public WebElement getMultiLanguageDialogForTaskWidget() {
-    return findElementById(
-            "widget-configuration-form:new-widget-configuration-component:title-language-config:multiple-languages-dialog");
-  }
-
 }
