@@ -439,7 +439,7 @@
                 "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
                 "",
                 "in.isAuthorized = !GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_CASE_DOCUMENT)",
-                "  && CaseService.newInstance().isCaseAccessible(in.caseId);"
+                "  && CaseService.newInstance().isCaseAccessible(in.uuid);"
               ]
             }
           },
@@ -711,7 +711,7 @@
           "name" : "Authorized?",
           "config" : {
             "conditions" : {
-              "S51-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.caseId)"
+              "S51-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.uuid)"
             }
           },
           "visual" : {
@@ -824,7 +824,7 @@
           "name" : "Authorized?",
           "config" : {
             "conditions" : {
-              "S31-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.caseId)"
+              "S31-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.uuid)"
             }
           },
           "visual" : {
@@ -890,7 +890,7 @@
           "name" : "Authorized?",
           "config" : {
             "conditions" : {
-              "S21-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.caseId)"
+              "S21-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.uuid)"
             }
           },
           "visual" : {
@@ -1124,7 +1124,7 @@
           "name" : "Authorized?",
           "config" : {
             "conditions" : {
-              "S50-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.caseId)"
+              "S50-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.uuid)"
             }
           },
           "visual" : {
@@ -3469,7 +3469,7 @@
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
-            "out.caseSelected = CaseService.newInstance().findCaseById(in.caseId);"
+            "out.caseSelected = CaseService.newInstance().findCaseByUUID(in.uuid);"
           ]
         },
         "sudo" : true
@@ -3881,10 +3881,10 @@
       "type" : "DialogCall",
       "name" : "CaseDocuments",
       "config" : {
-        "dialog" : "ch.ivy.addon.portal.generic.CaseDocuments:start(Long)",
+        "dialog" : "ch.ivy.addon.portal.generic.CaseDocuments:start(String)",
         "call" : {
           "map" : {
-            "param.caseId" : "in.caseId"
+            "param.uuid" : "in.uuid"
           }
         }
       },
@@ -4001,7 +4001,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
             "",
-            "out.caseSelected = CaseService.newInstance().findCaseById(in.caseId);"
+            "out.caseSelected = CaseService.newInstance().findCaseByUUID(in.uuid);"
           ]
         },
         "sudo" : true
@@ -4183,7 +4183,7 @@
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
-            "in.caseSelected = CaseService.newInstance().findCaseById(in.caseId);"
+            "in.caseSelected = CaseService.newInstance().findCaseByUUID(in.uuid);"
           ]
         }
       },
