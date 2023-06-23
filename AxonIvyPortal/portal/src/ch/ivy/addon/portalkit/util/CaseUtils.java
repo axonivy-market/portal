@@ -17,6 +17,7 @@ import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
@@ -27,11 +28,15 @@ public final class CaseUtils {
   private CaseUtils() {}
 
   public static ICase findCase(long caseId) {
-    return IvyExecutor.executeAsSystem(() -> Ivy.wf().findCase(caseId));
+    return Sudo.get(() -> Ivy.wf().findCase(caseId));
+  }
+  
+  public static ICase findCase(String uuid) {
+    return Sudo.get(() -> Ivy.wf().findCase(uuid));
   }
 
   public static List<ICase> findSubCasesByBusinessCaseId(long caseId) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       CaseSearchCriteria criteria = new CaseSearchCriteria();
       criteria.setBusinessCase(false);
       criteria.setTechnicalCase(true);
@@ -83,7 +88,7 @@ public final class CaseUtils {
   }
   
   public static void destroyCase(ICase selectedCase) {
-    IvyExecutor.executeAsSystem(() -> {
+    Sudo.get(() -> {
       selectedCase.destroy();
       return Void.class;
     });

@@ -74,7 +74,7 @@ public class CaseTaskDocumentBean implements Serializable {
 
   public String getCaseDocumentsLink(ICase iCase) {
     Map<String, String> params = new HashMap<>();
-    params.put("caseId", String.valueOf(iCase.getId()));
+    params.put("uuid", iCase.uuid());
     return PortalNavigator.buildUrlByKeyword("ShowCaseDocument.ivp", SHOW_CASE_DOCUMENT_FRIENDLY_REQUEST_PATH,
         params);
   }

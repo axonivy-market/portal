@@ -29,7 +29,6 @@ import ch.ivy.addon.portalkit.ivydata.service.ICaseService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
@@ -49,7 +48,7 @@ public class CaseService implements ICaseService {
   
   @Override
   public IvyCaseResultDTO findCasesByCriteria(CaseSearchCriteria criteria, int startIndex, int count) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       CaseQuery finalQuery = extendQuery(criteria);
       result.setCases(executeCaseQuery(finalQuery, startIndex, count));
@@ -59,7 +58,7 @@ public class CaseService implements ICaseService {
 
   @Override
   public IvyCaseResultDTO findCasesByCriteria(CaseSearchCriteria criteria) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       CaseQuery finalQuery = extendQuery(criteria);
       result.setCases(executeCaseQuery(finalQuery));
@@ -68,14 +67,14 @@ public class CaseService implements ICaseService {
   }
 
   private List<ICase> executeCaseQuery(CaseQuery query) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return Ivy.wf().getCaseQueryExecutor().getResults(query);
     });
   }
 
   @Override
   public IvyCaseResultDTO countCasesByCriteria(CaseSearchCriteria criteria) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       CaseQuery finalQuery = extendQuery(criteria);
       result.setTotalCases(countCases(finalQuery));
@@ -116,7 +115,7 @@ public class CaseService implements ICaseService {
 
   @Override
   public IvyCaseResultDTO findCategoriesByCriteria(CaseCategorySearchCriteria criteria) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       CaseQuery finalQuery = criteria.createQuery();
       
@@ -136,7 +135,7 @@ public class CaseService implements ICaseService {
   
   @Override
   public IvyCaseResultDTO analyzeCaseStateStatistic(CaseSearchCriteria criteria) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       CaseQuery finalQuery = extendQuery(criteria);
       finalQuery.aggregate().countRows().groupBy().state();
@@ -170,7 +169,7 @@ public class CaseService implements ICaseService {
   
   @Override
   public IvyCaseResultDTO analyzeElapsedTimeByCaseCategory(CaseSearchCriteria criteria) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       CaseQuery finalQuery = extendQuery(criteria);
       finalQuery.where().and().businessRuntime().isNotNull();
@@ -241,7 +240,7 @@ public class CaseService implements ICaseService {
 
   @Override
   public IvyCaseResultDTO findValuesOfCustomString(CaseCustomFieldSearchCriteria criteria) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       List<String> customFields = collectCustomField(criteria);
       result.setCustomFields(customFields);
@@ -251,7 +250,7 @@ public class CaseService implements ICaseService {
 
   @Override
   public IvyCaseResultDTO analyzeCaseCategoryStatistic(CaseSearchCriteria criteria) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       CaseQuery finalQuery = extendQuery(criteria);
       finalQuery.aggregate().countRows().groupBy().category().orderBy().category();
@@ -277,7 +276,7 @@ public class CaseService implements ICaseService {
   
   @Override
   public IvyCaseResultDTO analyzeCasesByCategoryStatistic(CaseSearchCriteria criteria, List<String> selectedCategories) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       CaseQuery finalQuery = extendQuery(criteria);
       result.setCategoryTree(CategoryTree.createFor(finalQuery));
@@ -346,7 +345,7 @@ public class CaseService implements ICaseService {
   
   @Override
   public IvyCaseResultDTO analyzeCasesByCategoryStatisticDrilldown(CaseSearchCriteria criteria, String selectedCategory) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       CaseQuery finalQuery = extendQuery(criteria);
       result.setCategoryTree(CategoryTree.createFor(finalQuery));
@@ -403,27 +402,6 @@ public class CaseService implements ICaseService {
     }
     categoryPath.append(category.getRawPath());
     caseCategoryStatistic.getNumberOfCasesByCategory().put(categoryPath.toString(), category.count());
-  }
-
-  public ICase findCaseById(long caseId) {
-    return Sudo.get(() -> {
-      CaseQuery caseQuery = CaseQuery.create().where().caseId().isEqual(caseId);
-      if (PermissionUtils.checkReadAllCasesPermission()) {
-        EnumSet<CaseState> ADVANCE_STATES = EnumSet.of(CREATED, RUNNING, DONE, DESTROYED);
-        caseQuery.where().and(queryForStates(ADVANCE_STATES));
-      } else {
-        EnumSet<CaseState> STANDARD_STATES = EnumSet.of(CREATED, RUNNING, DONE);
-        caseQuery.where().and(queryForStates(STANDARD_STATES)).and(queryForCurrentUser(CaseQuery.create()));
-      }
-      if (isHiddenTasksCasesExcluded()) {
-        caseQuery.where().and(queryExcludeHiddenCases());
-      }
-      return Ivy.wf().getCaseQueryExecutor().getFirstResult(caseQuery);
-    });
-  }
-
-  public boolean isCaseAccessible(long caseId) {
-    return findCaseById(caseId) != null;
   }
 
   private CaseQuery queryForStates(EnumSet<CaseState> states) {
