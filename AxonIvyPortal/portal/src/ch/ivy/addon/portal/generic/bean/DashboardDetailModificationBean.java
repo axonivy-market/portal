@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -71,6 +72,7 @@ import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.DashboardService;
+import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.CustomWidgetUtils;
@@ -830,6 +832,25 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     if (optional.isPresent()) {
       optional.get().setValue(currentName);
     }
+  }
+
+  public void translate(DisplayName title) {
+    if (!title.getLocale().getLanguage().equals(UserUtils.getUserLanguage())) {
+      List<DisplayName> languages = this.widget.getNames();
+      String currentLanguage = UserUtils.getUserLanguage();
+      Optional<DisplayName> optional = languages.stream()
+          .filter(lang -> currentLanguage.equals(languages.get(0).getLocale().getLanguage())).findFirst();
+      if (optional.isPresent()) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("text", optional.get().getValue());
+        params.put("targetLanguage", getTargetLanguageFromValue(title.getLocale().getLanguage().toUpperCase()));
+        Map<String, Object> response = IvyAdapterService
+            .startSubProcess("translateText(String,com.deepl.api.v2.client.TargetLanguage)", params, new ArrayList<>());
+        translatedText = response.get("translation").toString();
+        Ivy.log().warn(response.get("translation"));
+      }
+    }
+
   }
 
   private Map<String, DisplayName> getMapLanguages() {

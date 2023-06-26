@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -17,8 +18,11 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 
+import com.deepl.api.v2.client.TargetLanguage;
+
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
@@ -46,6 +50,7 @@ import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.IUser;
@@ -71,6 +76,7 @@ public class DashboardBean implements Serializable {
   private CaseEmptyMessage noCasesMessage;
   private TaskEmptyMessage noTasksMessage;
   private List<DashboardTemplate> dashboardTemplates;
+  protected String translatedText;
 
   @PostConstruct
   public void init() {
@@ -392,6 +398,30 @@ public class DashboardBean implements Serializable {
   protected List<String> getSupportedLanguages() {
     IvyLanguage ivyLanguage = LanguageService.newInstance().findUserLanguages().getIvyLanguage();
     return ivyLanguage.getSupportedLanguages();
+  }
+
+  public boolean isShowTranslation(DisplayName title) {
+    String deepLAuthKey = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.DEEPL_AUTH_KEY);
+    boolean enableDeepL = GlobalSettingService.getInstance()
+        .findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_DEEPL_TRANSLATION);
+    boolean isShow = !title.getLocale().getLanguage().equals(UserUtils.getUserLanguage()) && enableDeepL
+        && StringUtils.isNotBlank(deepLAuthKey);
+    return isShow;
+  }
+
+  public String getTranslatedText() {
+    return translatedText;
+  }
+
+  public void applyTranslatedText(DisplayName displayName) {
+    displayName.setValue(translatedText);
+  }
+
+  public TargetLanguage getTargetLanguageFromValue(String language) {
+    if (Locale.ENGLISH.getLanguage().equalsIgnoreCase(language)) {
+      return TargetLanguage.EN_US;
+    }
+    return TargetLanguage.fromValue(language);
   }
 
 }

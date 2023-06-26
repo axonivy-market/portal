@@ -5,13 +5,16 @@
   xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
   xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <cc:interface componentType="IvyComponent">
+  <cc:attribute name="managedBean" required="true"/>
   <cc:attribute name="titles" required="true" />
   <cc:attribute name="componentToUpdateOnCreate" />
   <cc:attribute name="componentToUpdateOnModify" />
   <cc:attribute name="updateCurrentLanguage" />
+  
 </cc:interface>
 
 <cc:implementation>
+  <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
   <c:set var="titles" value="#{cc.attrs.titles}" />
   <p:dialog appendTo="@(body)" styleClass="setting-multiple-languages"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/settingMultipleLanguages')}" resizable="false"
@@ -19,22 +22,36 @@
     <h:form id="add-language-detail-form">
       <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/emptySupportedLanguages')}"
         rendered="#{titles.isEmpty()}" />
-        <h:dataTable value="#{titles}"
-                     rendered="#{titles.isEmpty() eq 'false'}" var="title">
-            <h:column>
-                <h:outputText styleClass="ui-g-12"
-                              value="#{title.locale.getDisplayName()}" />
-            </h:column>
-            <h:column>
-                <div class="ui-g-12 ui-fluid">
-                    <p:inputText value="#{title.value}" id="title"/>
-                    <p:commandLink id="tranlate-link" actionListener="#{managedBean.translate(title)}" update="@form">
-                        <span class="fa fa-language" />
-                        <h:outputText value="Auto. translation" />
-                    </p:commandLink>
-                </div>
-            </h:column>
-        </h:dataTable>
+      <h:dataTable value="#{titles}" rendered="#{titles.isEmpty() eq 'false'}" var="title">
+        <h:column>
+          <h:outputText styleClass="ui-g-12" value="#{title.locale.getDisplayName()}" />
+        </h:column>
+        <h:column>
+          <div class="ui-g-12 ui-fluid">
+            <p:inputText value="#{title.value}" id="title-input" autocomplete="off">
+               <p:ajax event="click" listener="#{managedBean.translate(title)}"
+               disabled="#{managedBean.isShowTranslation(title) eq 'false'}"
+               process="overlay-panel-input" partialSubmit="true" global="false" update="translated-text-panel" />
+            </p:inputText>
+            <p:overlayPanel rendered="#{managedBean.isShowTranslation(title)}"
+             for="title-input" appendTo="@(body)" my="right top" at="right bottom"
+             id="overlay-panel-input"
+             styleClass="filter-name-overlay-panel" dynamic="false" dismissable="true" showCloseIcon="true">
+              <p:commandLink id="tranlate-link" actionListener="#{managedBean.applyTranslatedText(title)}" update="@form" process="@this" partialSubmit="true">
+                <span class="fa fa-language"/>
+                <h:outputText value="Auto. translation" />
+              </p:commandLink>
+              <h:panelGroup id="translated-text-panel" layout="block">
+                <p:outputPanel id="translating-title" styleClass="#{empty managedBean.translatedText ? '' : 'u-hidden'}">translating...</p:outputPanel>
+                <p:outputPanel id="translated-title" styleClass="#{empty managedBean.translatedText ? 'u-hidden' : ''}">#{managedBean.translatedText}</p:outputPanel>
+              </h:panelGroup>
+              
+              
+            </p:overlayPanel>
+            
+          </div>
+        </h:column>
+      </h:dataTable>
 
       <div class="u-dialog-footer-actions-group">
         <p:commandLink id="multi-language-cancel-button"
@@ -42,7 +59,7 @@
           onclick="PF('multiple-languages-dialog').hide();" />
         <p:spacer width="15px" rendered="#{!titles.isEmpty()}" />
         <p:commandButton id="multi-language-ok-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-          update="#{cc.attrs.componentToUpdateOnCreate},#{cc.attrs.componentToUpdateOnModify}" process="@form"
+          update="#{cc.attrs.componentToUpdateOnCreate}, #{cc.attrs.componentToUpdateOnModify}" process="@form"
           oncomplete="PF('multiple-languages-dialog').hide();" actionListener="#{cc.attrs.updateCurrentLanguage}"
           rendered="#{!titles.isEmpty()}" />
       </div>

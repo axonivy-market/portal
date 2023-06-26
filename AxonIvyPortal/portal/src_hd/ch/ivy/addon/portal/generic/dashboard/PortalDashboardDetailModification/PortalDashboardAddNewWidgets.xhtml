@@ -99,6 +99,7 @@
    <c:if test="#{widget.type eq 'NEWS'}">
      <ic:com.axonivy.portal.dashboard.component.NewsWidgetConfiguration id="new-widget-configuration-component"
        widget="#{widget}"
+       componentToUpdate="widget-configuration-form"
        managedBean="#{dashboardDetailModificationBean}"/>
    </c:if>
   </h:form>
