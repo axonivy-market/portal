@@ -31,7 +31,7 @@ public class CaseStateFilter extends CaseFilter {
    * Advance note: if current user is Administrator, will consider to add system states
    */
   public CaseStateFilter() {
-    this.filteredStates = CaseUtils.getValidStates();
+    this.filteredStates = CaseUtils.getOldValidStates();
     setSelectedFilteredStatesAtBeginning(new ArrayList<>(filteredStates));
     setSubmittedFilteredStates(new ArrayList<>(filteredStates));
     this.selectedFilteredStates = new ArrayList<>();
