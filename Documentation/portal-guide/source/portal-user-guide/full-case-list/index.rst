@@ -230,6 +230,15 @@ HowTo: Add a Note to a Case
 
 |how-to-add-task-note|
 
+.. note::
+   Notes of a technical case are displayed on the ``Notes`` table of the case, and its tasks.
+
+   Visibility rule for notes of business case:
+   
+      - Displayed in the ``History`` table of the case details and its direct tasks
+      - Displayed in the ``History`` table of its technical case details.
+      - Not displayed in the ``Notes`` table of tasks belong to technical case.
+
 HowTo: Export a Case History
 ----------------------------
 
