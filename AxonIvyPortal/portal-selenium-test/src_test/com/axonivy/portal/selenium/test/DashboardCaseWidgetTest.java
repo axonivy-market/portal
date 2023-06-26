@@ -21,7 +21,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest 
+@IvyWebTest
 public class DashboardCaseWidgetTest extends BaseTest {
 
   // WIDGET
@@ -157,12 +157,16 @@ public class DashboardCaseWidgetTest extends BaseTest {
     redirectToNewDashBoard();
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));   
+
     //Filter Case Name
     caseWidget.openFilterWidget();
     caseWidget.filterCaseName("TestCase");
     caseWidget.applyFilter();
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.sizeGreaterThanOrEqual(4));
-    //Filter State
+    caseWidget.openFilterWidget();
+    caseWidget.resetFilter();
+
+    //Filter State Done
     caseWidget.openFilterWidget();
     caseWidget.clearFilterCaseName();
     caseWidget.filterCaseName(CREATE_12_CASES_WITH_CATEGORY_CASE);
@@ -170,6 +174,15 @@ public class DashboardCaseWidgetTest extends BaseTest {
     caseWidget.selectStateAsDone();
     caseWidget.applyFilter();
     caseWidget.stateOfFirstCase().shouldHave(text("Done"));
+    caseWidget.openFilterWidget();
+    caseWidget.resetFilter();
+
+    //Filter State Open
+    caseWidget.openFilterWidget();
+    caseWidget.filterCaseState();
+    caseWidget.selectStateAsOpen();
+    caseWidget.applyFilter();
+    caseWidget.stateOfFirstCase().shouldHave(text("Open"));
   }
   
   @Test
@@ -188,7 +201,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     caseEditWidget.changeWidgetTitle("New Your Cases");
     caseEditWidget.filterCaseName("TestCase");
     caseEditWidget.filterCaseState();
-    caseEditWidget.selectStateAsInProgress();
+    caseEditWidget.selectStateAsOpen();
     caseEditWidget.preview();
     caseEditWidget.countCases().shouldHave(size(5));
     caseEditWidget.nextPageTable();
