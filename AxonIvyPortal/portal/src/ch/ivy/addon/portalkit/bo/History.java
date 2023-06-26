@@ -18,9 +18,11 @@ public class History {
   private String involvedUsername;
   private IUser involvedUser;
   private String displayName;
-  private Long caseId;
   private String displayCaseName;
   private boolean isDisabledCaseName;
+  private String caseUUID;
+  @Deprecated
+  private Long caseId;
 
   public enum HistoryType {
     TASK, NOTE, EVENT;
@@ -93,10 +95,20 @@ public class History {
     this.displayName = displayName;
   }
 
+  /**
+   * @deprecated use getCaseUUID instead
+   * @return caseId
+   */
+  @Deprecated
   public Long getCaseId() {
     return caseId;
   }
 
+  /**
+   * @deprecated user setCaseUUID instead
+   * @param caseId
+   */
+  @Deprecated
   public void setCaseId(Long caseId) {
     this.caseId = caseId;
   }
@@ -115,5 +127,13 @@ public class History {
 
   public void setDisabledCaseName(boolean isDisabledCaseName) {
     this.isDisabledCaseName = isDisabledCaseName;
+  }
+
+  public String getCaseUUID() {
+    return caseUUID;
+  }
+
+  public void setCaseUUID(String caseUUID) {
+    this.caseUUID = caseUUID;
   }
 }
