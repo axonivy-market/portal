@@ -113,7 +113,7 @@ The basic JSON structure of the case widget
 
             - ``description``: case description
 
-            - ``state``: case state
+            - ``state``: case business state
 
             - ``creator``: case creator
 
@@ -223,7 +223,7 @@ conditions.
       If you define a string such as "request", the case widget will only show cases that
       contain the word "request" in their description.
 
-   - ``state``: Case state
+   - ``state``: Case business state
 
       .. code-block:: html
 
@@ -233,18 +233,18 @@ conditions.
             "columns": [
                {
                   "field": "state",
-                  "filterList": ["CREATED","DONE"]
+                  "filterList": ["OPEN","DONE","DESTROYED"]
                }
             ]
          }
       ..
 
-      This column only accepts a list of case state names as the filter condition.
-      If you define a list of states in ``filterList``, the case widget will only show cases that have
-      states listed in ``filterList``. 
+      This column only accepts a list of case business state names as the filter condition.
+      If you define a list of business states in ``filterList``, the case widget will only show cases that have
+      business states listed in ``filterList``. 
 
-      Refer to :dev-url:`Case States </doc/|version|/public-api/ch/ivyteam/ivy/workflow/CaseState.html>` for
-      available case states.
+      Refer to :dev-url:`Case business states </doc/|version|/public-api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` for
+      available case business states.
 
    - ``creator``
 
