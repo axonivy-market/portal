@@ -896,4 +896,8 @@ public class CaseDetailsPage extends TemplatePage {
 	  int taskIndex = IntStream.range(0, taskNames.size()).filter(i -> taskNames.get(i).getText().equals(taskName)).findFirst().getAsInt();
 	  return taskIndex;
   }
+
+  public String getCaseUUID() {
+    return findElementByCssSelector("input[id$='general-information:case-uuid']").getAttribute("value");
+  }
 }

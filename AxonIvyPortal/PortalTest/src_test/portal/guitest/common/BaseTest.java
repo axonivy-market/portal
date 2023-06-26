@@ -81,7 +81,7 @@ public class BaseTest {
   protected String startUserExampleProcess = "portal-user-examples/17236DB1D3DA14C0/userExampleGuide.ivp";
   protected String userIsOwnerUrl = "internalSupport/16A68510A341BE6E/userIsOwner.ivp";
   protected String showTaskNoteHistoryUrl = "portal/1549F58C18A6C562/showTaskNoteHistory.ivp?selectedTaskId=%s";
-  protected String showCaseNoteHistoryUrl = "portal/1549F58C18A6C562/showCaseNoteHistory.ivp?caseId=%s";
+  protected String showCaseNoteHistoryUrl = "portal/1549F58C18A6C562/showCaseNoteHistory.ivp?uuid=%s";
   protected String createTaskWithSystemState = "portalKitTestHelper/153CACC26D0D4C3D/createTaskWithSystemState.ivp";
   protected String createTechnicalStateUrl = "portal-developer-examples/162511D2577DBA88/createTechnicalStateTasks.ivp";
   protected String portalKitTestHelperPasswordResetUrl = "portalKitTestHelper/176463FD4BBF6C93/PasswordReset.ivp";
@@ -304,8 +304,8 @@ public class BaseTest {
      redirectToRelativeLink(String.format(showTaskNoteHistoryUrl, taskId));
   }
   
-  public void goToCaseNoteHistoryPage(String caseId) {
-    redirectToRelativeLink(String.format(showCaseNoteHistoryUrl, caseId));
+  public void goToCaseNoteHistoryPage(String uuid) {
+    redirectToRelativeLink(String.format(showCaseNoteHistoryUrl, uuid));
  }
 
   

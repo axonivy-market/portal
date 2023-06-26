@@ -44,10 +44,11 @@ public class SystemNoteVisibilityTest extends BaseTest {
     
     CaseDetailsPage caseDetailsPage = openCaseDetails();
     String caseId = caseDetailsPage.getCaseId();
+    String caseUUID = caseDetailsPage.getCaseUUID();
     List<String> caseNoteAuthors = caseDetailsPage.getCaseNoteAuthors();
     Assert.assertTrue(caseNoteAuthors.contains(SYSTEM_USER_NAME));
     
-    NoteHistoryPage caseNoteHistoryPage = openCaseNoteHistory(caseId);
+    NoteHistoryPage caseNoteHistoryPage = openCaseNoteHistory(caseUUID);
     caseNoteAuthors = caseNoteHistoryPage.getNoteAuthors();
     Assert.assertTrue(caseNoteAuthors.contains(SYSTEM_USER_NAME));
   }
@@ -126,8 +127,8 @@ public class SystemNoteVisibilityTest extends BaseTest {
     return casePage.openDetailsOfCaseHasName("Create note");
   }
 
-  private NoteHistoryPage openCaseNoteHistory(String caseId) {
-    goToCaseNoteHistoryPage(caseId);
+  private NoteHistoryPage openCaseNoteHistory(String uuid) {
+    goToCaseNoteHistoryPage(uuid);
     return new NoteHistoryPage();
   }
   
