@@ -57,8 +57,8 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     return $("div.ui-selectcheckboxmenu-panel").shouldBe(appear, DEFAULT_TIMEOUT).$("a.ui-selectcheckboxmenu-close");
   }
   
-  public void selectStateAsInProgress() {
-    getValueOfCheckBox("In progress").shouldBe(getClickableCondition()).click();
+  public void selectStateAsOpen() {
+    getValueOfCheckBox("Open").shouldBe(getClickableCondition()).click();
     getCloseCheckBox().shouldBe(getClickableCondition()).click();
   }
 

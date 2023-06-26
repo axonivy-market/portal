@@ -28,4 +28,6 @@ public interface ICaseService {
   IvyCaseResultDTO analyzeCasesByCategoryStatistic(CaseSearchCriteria criteria, List<String> selectedCategories);
   
   IvyCaseResultDTO analyzeCasesByCategoryStatisticDrilldown(CaseSearchCriteria criteria, String selectedCategory);
+
+  IvyCaseResultDTO analyzeCaseBusinessStateStatistic(CaseSearchCriteria criteria);
 }
