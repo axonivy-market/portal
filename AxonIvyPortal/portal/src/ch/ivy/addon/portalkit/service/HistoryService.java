@@ -59,7 +59,7 @@ public class HistoryService {
   }
 
   private void buildDisplayCaseNameForNote(Long selectedCaseId, ICase caseHistory, History history) {
-    history.setCaseId(caseHistory.getId());
+    history.setCaseUUID(caseHistory.uuid());
     history.setDisabledCaseName(selectedCaseId == caseHistory.getId());
     var caseName = caseHistory.names().current();
     if (StringUtils.isBlank(caseName)) {

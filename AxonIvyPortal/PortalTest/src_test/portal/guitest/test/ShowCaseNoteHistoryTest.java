@@ -42,8 +42,9 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
     detailsPage = casePage.openDetailsOfCaseHasName(CASE_NAME);
     String caseName = detailsPage.getCaseName();
     String caseId = detailsPage.getCaseId();
+    String caseUUID = detailsPage.getCaseUUID();
     detailsPage.addNote(NOTE_CONTENT);
-    goToCaseNoteHistoryPage(caseId);
+    goToCaseNoteHistoryPage(caseUUID);
 
     caseHistoryPage = new NoteHistoryPage();
     int numberOfNotes = caseHistoryPage.countNotes();
@@ -62,9 +63,9 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
     taskTemplatePage.openCaseInfo();
     taskTemplatePage.addNewNote(NOTE_CONTENT);
     String caseName = taskTemplatePage.getCaseName();
-    String caseId = taskTemplatePage.getCaseId();
     getBrowser().getDriver().switchTo().defaultContent();
-    goToCaseNoteHistoryPage(caseId);
+    String caseUUID = taskTemplatePage.getCaseUUID();
+    goToCaseNoteHistoryPage(caseUUID);
 
     caseHistoryPage = new NoteHistoryPage();
     int numberOfNotes = caseHistoryPage.countNotes();

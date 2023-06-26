@@ -2062,7 +2062,7 @@
         "dialog" : "ch.ivy.addon.portal.component.iframe.CaseInformationInIFrame:start(String,Boolean)",
         "call" : {
           "map" : {
-            "param.uuid" : "param.uuid",
+            "param.uuid" : "in.uuid",
             "param.showBackButton" : "false"
           }
         }
