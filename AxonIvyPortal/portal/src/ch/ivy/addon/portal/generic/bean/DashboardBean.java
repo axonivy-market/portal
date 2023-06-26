@@ -415,6 +415,7 @@ public class DashboardBean implements Serializable {
 
   public void applyTranslatedText(DisplayName displayName) {
     displayName.setValue(translatedText);
+    translatedText = "";
   }
 
   public TargetLanguage getTargetLanguageFromValue(String language) {

@@ -31,7 +31,7 @@
             <p:inputText value="#{title.value}" id="title-input" autocomplete="off">
                <p:ajax event="click" listener="#{managedBean.translate(title)}"
                disabled="#{managedBean.isShowTranslation(title) eq 'false'}"
-               process="overlay-panel-input" partialSubmit="true" global="false" update="translated-text-panel" />
+               process="@form" partialSubmit="true" global="false" update="translated-text-panel" />
             </p:inputText>
             <p:overlayPanel rendered="#{managedBean.isShowTranslation(title)}"
              for="title-input" appendTo="@(body)" my="right top" at="right bottom"
@@ -42,13 +42,10 @@
                 <h:outputText value="Auto. translation" />
               </p:commandLink>
               <h:panelGroup id="translated-text-panel" layout="block">
-                <p:outputPanel id="translating-title" styleClass="#{empty managedBean.translatedText ? '' : 'u-hidden'}">translating...</p:outputPanel>
+                <i id="translating-title" class="#{empty managedBean.translatedText ? 'pi pi-spin pi-spinner' : 'u-hidden'}"></i>
                 <p:outputPanel id="translated-title" styleClass="#{empty managedBean.translatedText ? 'u-hidden' : ''}">#{managedBean.translatedText}</p:outputPanel>
               </h:panelGroup>
-              
-              
             </p:overlayPanel>
-            
           </div>
         </h:column>
       </h:dataTable>
