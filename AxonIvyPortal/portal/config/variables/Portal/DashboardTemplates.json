@@ -162,8 +162,7 @@
             {
               "field": "state",
               "filterList": [
-                "CREATED",
-                "RUNNING"
+                "OPEN"
               ]
             },
             {

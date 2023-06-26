@@ -85,7 +85,7 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
       case DESCRIPTION:
         return caseItem.descriptions().current();
       case STATE:
-        return CaseUtils.convertToUserFriendlyCaseState(caseItem.getState());
+        return CaseUtils.convertToUserFriendlyCaseState(caseItem.getBusinessState());
       case CREATOR:
         if (caseItem.getCreatorUserName() == null) {
           return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");

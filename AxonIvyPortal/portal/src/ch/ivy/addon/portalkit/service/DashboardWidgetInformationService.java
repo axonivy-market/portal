@@ -30,8 +30,8 @@ import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.util.TimesUtils;
-import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 
 public class DashboardWidgetInformationService {
 
@@ -42,7 +42,7 @@ public class DashboardWidgetInformationService {
   private static final String ANALYZE_TASK_STATE = "analyzeTaskStateStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)";
   private static final String ANALYZE_TASK_EXPIRY = "analyzeExpiryStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)";
   private static final String ANALYZE_TASK_CATEGORY = "analyzeTaskCategoryStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)";
-  private static final String ANALYZE_CASE_STATE = "analyzeCaseStateStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)";
+  private static final String ANALYZE_CASE_STATE = "analyzeCaseBusinessStateStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)";
   private static final String ANALYZE_CASE_CATEGORY = "analyzeCaseCategoryStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)";
 
   private static DashboardWidgetInformationService instance;
@@ -122,7 +122,7 @@ public class DashboardWidgetInformationService {
     return taskSearchCriteria;
   }
 
-  public Map<CaseState, Long> buildStatisticOfCaseByState(DashboardCaseLazyDataModel dataModel) {
+  public Map<CaseBusinessState, Long> buildStatisticOfCaseByState(DashboardCaseLazyDataModel dataModel) {
     Map<String, Object> params = new HashMap<>();
     params.put(CASE_CRITERIA_PARAM, generateCaseSearchCriteriaWithoutOrderByClause(dataModel));
 
@@ -130,25 +130,22 @@ public class DashboardWidgetInformationService {
         Arrays.asList(PortalLibrary.PORTAL.getValue()));
 
     var caseStateStatistic = (CaseStateStatistic) response.get("caseStateStatistic");
-    Map<CaseState, Long> result = new HashMap<>();
+    Map<CaseBusinessState, Long> result = new HashMap<>();
     Optional<CaseColumnModel> caseStateColumn = dataModel.getCriteria().getColumns().stream()
         .filter(column -> DashboardStandardCaseColumn.STATE.getField().equalsIgnoreCase(column.getField())).findFirst();
-    List<CaseState> selectedStates = null;
+    List<CaseBusinessState> selectedStates = null;
     if (caseStateColumn.isPresent()) {
       selectedStates = ((ch.ivy.addon.portalkit.dto.dashboard.casecolumn.StateColumnModel) caseStateColumn.get()).getStates();
-      for (CaseState state : selectedStates) {
+      for (CaseBusinessState state : selectedStates) {
         switch (state) {
-          case CREATED:
-            result.put(CaseState.CREATED, caseStateStatistic.getCreated());
+          case OPEN:
+            result.put(CaseBusinessState.OPEN, caseStateStatistic.getOpen());
             break;
           case DONE:
-            result.put(CaseState.DONE, caseStateStatistic.getDone());
-            break;
-          case RUNNING:
-            result.put(CaseState.RUNNING, caseStateStatistic.getRunning());
+            result.put(CaseBusinessState.DONE, caseStateStatistic.getDone());
             break;
           case DESTROYED:
-            result.put(CaseState.DESTROYED, caseStateStatistic.getFailed());
+            result.put(CaseBusinessState.DESTROYED, caseStateStatistic.getFailed());
             break;
           default:
             break;
@@ -157,17 +154,16 @@ public class DashboardWidgetInformationService {
     }
 
     if (!caseStateColumn.isPresent() || CollectionUtils.isEmpty(selectedStates)) {
-      result.put(CaseState.CREATED, caseStateStatistic.getCreated());
-      result.put(CaseState.DONE, caseStateStatistic.getDone());
-      result.put(CaseState.DESTROYED, caseStateStatistic.getFailed());
-      result.put(CaseState.RUNNING, caseStateStatistic.getRunning());
+      result.put(CaseBusinessState.OPEN, caseStateStatistic.getOpen());
+      result.put(CaseBusinessState.DONE, caseStateStatistic.getDone());
+      result.put(CaseBusinessState.DESTROYED, caseStateStatistic.getFailed());
     }
 
     return result.entrySet().stream().sorted(Comparator.comparingInt(s -> s.getKey().ordinal()))
         .collect(collectToCaseStateMap());
   }
 
-  private Collector<Entry<CaseState, Long>, ?, LinkedHashMap<CaseState, Long>> collectToCaseStateMap() {
+  private Collector<Entry<CaseBusinessState, Long>, ?, LinkedHashMap<CaseBusinessState, Long>> collectToCaseStateMap() {
     return Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue,
         LinkedHashMap::new);
   }
