@@ -16,13 +16,13 @@
 <cc:implementation>
   <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
   <c:set var="titles" value="#{cc.attrs.titles}" />
-  <p:dialog appendTo="@(body)" styleClass="setting-multiple-languages"
+  <p:dialog appendTo="@(body)" fitViewport="true" width="500" closeOnEscape="true"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/settingMultipleLanguages')}" resizable="false"
     id="multiple-languages-dialog" widgetVar="multiple-languages-dialog" dynamic="true" modal="true" responsive="true">
     <h:form id="add-language-detail-form">
       <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/emptySupportedLanguages')}"
         rendered="#{titles.isEmpty()}" />
-      <h:dataTable value="#{titles}" rendered="#{titles.isEmpty() eq 'false'}" var="title">
+      <h:dataTable value="#{titles}" rendered="#{titles.isEmpty() eq 'false'}" var="title" width="460">
         <h:column>
           <h:outputText styleClass="ui-g-12" value="#{title.locale.getDisplayName()}" />
         </h:column>
@@ -38,7 +38,7 @@
              id="overlay-panel-input"
              styleClass="filter-name-overlay-panel" dynamic="false" dismissable="true" showCloseIcon="true">
               <p:commandLink id="tranlate-link" actionListener="#{managedBean.applyTranslatedText(title)}" update="@form" process="@this" partialSubmit="true">
-                <span class="fa fa-language"/>
+                <span class="fa fa-language language-icon-padding-right"/>
                 <h:outputText value="Auto. translation" />
               </p:commandLink>
               <h:panelGroup id="translated-text-panel" layout="block">
