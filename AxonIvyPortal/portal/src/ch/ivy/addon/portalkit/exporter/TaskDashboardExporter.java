@@ -75,7 +75,7 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
   private Object getCommonColumnValue(DashboardStandardTaskColumn sortField, ITask taskItem) {
     switch(sortField) {
     case PRIORITY:
-      return taskItem.getPriority().name();
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/" + taskItem.getPriority().name());
     case NAME:
       return StringUtils.isEmpty(taskItem.names().current()) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable" ): taskItem.names().current();
     case RESPONSIBLE:

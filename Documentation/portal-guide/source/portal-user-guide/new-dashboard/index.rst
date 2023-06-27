@@ -104,7 +104,7 @@ In the column management panel, you will find two sections:
 
 **Excel export**
 
-You can export all data of the task widget by clicking on the link ``Export to Excel`` at the end of the widget information panel.
+You can export all data of the task widget by clicking on the link ``Export to Excel`` at the bottom left corner of the widget information panel.
 
 |task-export-excel|
 
