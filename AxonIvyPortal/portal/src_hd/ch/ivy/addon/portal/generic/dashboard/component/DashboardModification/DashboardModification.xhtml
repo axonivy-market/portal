@@ -22,18 +22,6 @@
         update="#{cc.attrs.componentToUpdateOnBackAction}" process="@this" styleClass="ui-button-flat"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" icon="si si-arrow-left-1" />
     </h:panelGroup>
-    <div class="ui-g-12">
-    <h:form>
-      <p:fileUpload id="dashboard-upload-panel"
-             listener="#{dashboardModificationBean.handleUploadPublicDashboard}"
-             chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
-             dragDropSupport="true" auto="true"
-             allowTypes="/(\.|\/)(json)$/i"
-             accept=".json"
-             update="dashboard-modification-component:dashboard-table"
-             label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"/>
-     </h:form>
-     </div>
 
     <p:dataTable id="dashboard-table" lazy="false"
       value="#{dashboardModificationBean.dashboards}" var="dashboard"
@@ -75,11 +63,11 @@
           process="@this" update="@this"/>
 
        <h:form styleClass="dashboard-configuration__export-button-form" rendered="#{dashboardModificationBean.hasExportDashboardPermission()}">
-         <p:commandButton id="export-dashboard" styleClass="rounded-button ui-button-outlined action-column-icon-button u-mar-right-5" icon="si si-download-bottom"
+         <p:commandButton id="export-dashboard" styleClass="rounded-button ui-button-outlined action-column-icon-button u-mar-right-5 export-dashboard" icon="si si-download-bottom"
            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportDashboard')}"
            process="@this" update="@this" immediate="true" ajax="false">
            <p:fileDownload value="#{dashboardModificationBean.exportToJsonFile(dashboard)}" />
-            </p:commandButton>
+         </p:commandButton>
         </h:form>
 
         <p:commandButton id="delete-dashboard" process="@this"

@@ -5805,6 +5805,10 @@ border-top: 0.14rem dashed;
   display: inline;
 }
 
+.dashboard-configuration__export-button-form .export-dashboard {
+  margin-left: 0.1em;
+}
+
 .dashboard-configuration__content {
   margin-bottom: 2rem;
 }
