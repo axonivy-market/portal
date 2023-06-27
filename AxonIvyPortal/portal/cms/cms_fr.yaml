@@ -319,6 +319,10 @@ ch.ivy.addon.portalkit.ui.jsf:
   applicationMenuHeader:
     adminSettings: Administration
     changePassword: Modifier le mot de passe
+  businessCaseState:
+    DESTROYED: Supprimé
+    DONE: Terminé
+    OPEN: Ouverte
   caseDetails:
     addDocumentHelpText: Pour ajouter des fichiers, glissez-les ou sélectionnez-les
     addNoteHelpText: Ecrivez votre texte ici

@@ -321,6 +321,10 @@ ch.ivy.addon.portalkit.ui.jsf:
   applicationMenuHeader:
     adminSettings: Administration
     changePassword: Passwort ändern
+  businessCaseState:
+    DESTROYED: Gelöscht
+    DONE: Erledigt
+    OPEN: Offen
   caseDetails:
     addDocumentHelpText: Zum Hochladen Dateien per Drag & Drop hier ablegen oder Dateien auswählen
     addNoteHelpText: Schreiben Sie hier Ihren Text
@@ -387,7 +391,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     DESTROYED: Gelöscht
     DESTROYED_UPPERCASE: GELÖSCHT
     DONE: Erledigt
-    DONE_UPPERCASE: ABGESCHLOSSEN
+    DONE_UPPERCASE: ERLEDIGT
     FAILED: Fehlgeschlagen
     INPROGRESS: IN BEARBEITUNG
     OPEN: Offen
@@ -1400,7 +1404,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     DESTROYED: Vernichtet
     DESTROYED_UPPERCASE: GELÖSCHT
     DONE: Erledigt
-    DONE_UPPERCASE: ABGESCHLOSSEN
+    DONE_UPPERCASE: ERLEDIGT
     FAILED: Fehlerhaft
     FAILED_UPPERCASE: FEHLERHAFT
     INPROGRESS: IN BEARBEITUNG

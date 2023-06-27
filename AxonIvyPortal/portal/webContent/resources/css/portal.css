@@ -694,7 +694,7 @@ body .ui-datepicker .ui-timepicker-div dl dd {
   color: var(--task-state-suspended-color); }
 
 .state-cell .resumed-task-state,
-.state-column .running-case-state, .case-detail-body .resumed-task-state {
+.case-detail-body .resumed-task-state {
   color: var(--ivy-primary-color-black);
   background: var(--task-state-resumed-background);
   border-color: var(--task-state-resumed-background); }
@@ -710,10 +710,10 @@ body .ui-datepicker .ui-timepicker-div dl dd {
   background: var(--task-state-parked-background);
   border-color: var(--task-state-parked-background); }
 
-.state-cell .created-case-state,
-.state-cell .created-task-state,
-.state-column .created-case-state,
-.state-column .created-task-state{
+.state-cell .open-case-state,
+.state-cell .open-task-state,
+.state-column .open-case-state,
+.state-column .open-task-state{
   background: var(--task-state-open-color);
   border-color: var(--task-state-open-color); }
 

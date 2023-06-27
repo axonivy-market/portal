@@ -14,10 +14,10 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivyteam.ivy.security.IPermission;
-import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INoteable;
 import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 
 @ManagedBean
 public class CaseTaskDocumentBean implements Serializable {
@@ -39,7 +39,7 @@ public class CaseTaskDocumentBean implements Serializable {
     }
     var isHideUploadDocForDoneCase = GlobalSettingService.getInstance()
         .findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE);
-    return !(currentCase.getState() == CaseState.DONE && isHideUploadDocForDoneCase) && hasPermissionWriteDocument(iNoteable);
+    return !(currentCase.getBusinessState() == CaseBusinessState.DONE && isHideUploadDocForDoneCase) && hasPermissionWriteDocument(iNoteable);
   }
 
   private ICase getCurrentBusinessCase(INoteable iNoteable) {
