@@ -5,6 +5,7 @@ import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.WELCOME;
 
 import java.io.ByteArrayInputStream;
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collection;
@@ -19,12 +20,10 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
-import org.primefaces.model.file.UploadedFile;
 
 import com.axonivy.portal.bo.JsonVersion;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
@@ -52,6 +51,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   protected static final String PUBLIC_DASHBOARD_DEFAULT_ICON = "si-network-share";
   protected static final String PRIVATE_DASHBOARD_DEFAULT_ICON = "si-single-neutral-shield";
   private static final String JSON_FILE_POSTFIX = "_Dashboard_Export.json";
+  private static final String BASE64_DATATYPE_STRING = "data:image/%s;base64,";
 
   protected boolean isPublicDashboard;
   protected List<String> selectedDashboardPermissions;
@@ -220,7 +220,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
         }
       });
 
-    var inputStream = new ByteArrayInputStream(BusinessEntityConverter.prettyPrintEntityToJsonValue(dashboard).getBytes());
+    var inputStream = new ByteArrayInputStream(BusinessEntityConverter.prettyPrintEntityToJsonValue(dashboard).getBytes(StandardCharsets.UTF_8));
     return DefaultStreamedContent
         .builder()
         .stream(() -> inputStream)
@@ -238,44 +238,12 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     ContentObject widgetImage = WelcomeWidgetUtils.getImageContentObject(widget.getImageLocation(), widget.getImageType());
     if (widgetImage != null && widgetImage.exists()) {
       result = new String(Base64.getEncoder().encode(WelcomeWidgetUtils.readObjectValueOfDefaultLocale(widgetImage).read().bytes()));
+      return String.format(BASE64_DATATYPE_STRING, Optional.ofNullable(widget).map(WelcomeDashboardWidget::getImageType).orElse("png")).concat(result);
     }
     return result;
   }
 
   private String getFileName(String dashboardName) {
     return dashboardName + JSON_FILE_POSTFIX;
-  }
-
-  public void handleUploadPublicDashboard(FileUploadEvent event) {
-    UploadedFile file = event.getFile();
-    if (file != null && file.getContent() != null && file.getContent().length > 0 && file.getFileName() != null) {
-      var dashboard = BusinessEntityConverter.jsonValueToEntity(new String(file.getContent()), Dashboard.class);
-      dashboard.setIsPublic(true);
-      if (CollectionUtils.isNotEmpty(dashboard.getWidgets())) {
-        for (DashboardWidget widget : dashboard.getWidgets()) {
-          if (widget instanceof WelcomeDashboardWidget) {
-            WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
-            writeWelcomeWidgetImage(welcomeWidget);
-          }
-        }
-      }
-
-      List<Dashboard> publicDashboards = DashboardUtils.getPublicDashboards();
-      publicDashboards.add(dashboard);
-      Ivy.var().set(PortalVariable.DASHBOARD.key, BusinessEntityConverter.entityToJsonValue(publicDashboards));
-
-      dashboards.add(dashboard);
-    }
-  }
-
-  private void writeWelcomeWidgetImage(WelcomeDashboardWidget widget) {
-    if (StringUtils.isNotBlank(widget.getImageContent())) {
-      // If has defined location, save to that location
-      if (StringUtils.isNotBlank(widget.getImageLocation())) {
-        ContentObject widgetImage = WelcomeWidgetUtils.getImageContentObject(widget.getImageLocation(), widget.getImageType());
-        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(widgetImage).write().bytes(Base64.getDecoder().decode(widget.getImageContent()));
-        widget.setImageContent(null);
-      }
-    }
   }
 }
