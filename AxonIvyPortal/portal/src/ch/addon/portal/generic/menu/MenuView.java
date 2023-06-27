@@ -173,9 +173,9 @@ public class MenuView implements Serializable {
             
             String defaultTitle = (String) dashboardMenu.getValue();
             String title = board.getTitles().stream()
-            		.filter(name -> StatisticService.equalsLanguageLocale(name, currentLanguage) && !name.getValue().isBlank())
-                    .map(DisplayName::getValue)
-                    .findFirst().orElse(defaultTitle);
+                .filter(name -> StatisticService.equalsLanguageLocale(name, currentLanguage)
+                    && StringUtils.isNotBlank(name.getValue()))
+                .map(DisplayName::getValue).findFirst().orElse(defaultTitle);
             dashboardMenu.setValue(title);
             dashboardGroupMenu.getElements().add(dashboardMenu);
           }
