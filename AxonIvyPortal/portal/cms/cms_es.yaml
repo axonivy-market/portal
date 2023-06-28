@@ -315,12 +315,17 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreAllToDefault: Restaurar todos los valores predeterminados
     restoreDefault: Restaurar valor predeterminado
     settingApplicationName: Definir el nombre de la aplicación
+    settingMultipleLanguages: Establecer varios idiomas
     usernameHint: Nombre de usuario de un administrador de sistema.
     usernameRequiredMsg: Por favor ingrese nombre de usuario.
     value: Valor
   applicationMenuHeader:
     adminSettings: Configuración de administrador
     changePassword: Cambiar contraseña
+  businessCaseState:
+    DESTROYED: Destruido
+    DONE: Hecho
+    OPEN: Pendiente
   caseDetails:
     addDocumentHelpText: Para cargar archivos, arrastrar y soltar o seleccionar archivos
     addNoteHelpText: Escriba su texto aquí.
@@ -876,6 +881,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     expiryTo: Fecha de caducidad hasta
     export:
       exportedCasesFileName: AXONIVY_Dataset_Cases_{0}_{1}.{2}
+      exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}_{1}.{2}
     field: Campo
     fieldIsAdded: El campo {0} está añadido
     iconMessage:

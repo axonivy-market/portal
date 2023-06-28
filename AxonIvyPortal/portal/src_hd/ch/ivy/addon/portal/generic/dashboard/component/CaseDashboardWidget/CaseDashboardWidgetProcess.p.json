@@ -106,7 +106,7 @@
             "in.loopCounter = 0;",
             "in.maxResultNumberPerQuery = 100000;",
             "in.collectedCasesForExporting = new ArrayList();",
-            "in.columnsVisibility = ExportUtils.buildVisibilityColumnsForDashboardCaseWidget(in.widget.dataModel.criteria.columns);"
+            "in.columnsVisibility = ExportUtils.buildVisibleColumns(in.widget.dataModel.criteria.columns);"
           ]
         }
       },

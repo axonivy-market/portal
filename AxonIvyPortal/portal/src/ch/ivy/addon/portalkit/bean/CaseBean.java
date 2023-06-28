@@ -16,39 +16,14 @@ import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.TimesUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 
 @ManagedBean(name = "caseBean")
 public class CaseBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  private static final String STATE_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/caseState/";
   private static final String OPEN_CASES_LIST = "Start Processes/PortalStart/CaseListPage.ivp";
-
-  /**
-   * Get correspondence icon classes and color class for case state
-   * 
-   * @param state CaseState
-   * @return css classes for case state
-   */
-  public String getCaseStateIcon(CaseState state) {
-    if(state == null)  {
-      return "";
-    }
-    switch(state) {
-      case CREATED:
-      case RUNNING:
-        return "si si-hourglass case-state-in-progress";
-      case DONE:
-        return "si si-check-circle-1 case-state-done";
-      case DESTROYED:
-        return "si si-alert-circle case-state-destroyed";
-      default: 
-        return "";
-    }
-      
-  }
 
   /**
    * Get the state of case
@@ -60,21 +35,11 @@ public class CaseBean implements Serializable {
     if (iCase == null) {
       return "";
     }
-    return getDisplayState(iCase.getState());
+    return getDisplayState(iCase.getBusinessState());
   }
 
-  public String getDisplayState(CaseState caseState) {
-    if (caseState == CaseState.CREATED) {
-      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/OPEN");
-    }
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/" + caseState);
-  }
-  
-  public String getTranslatedState(CaseState state) {
-    if (state == null) {
-      return StringUtils.EMPTY;
-    }
-    return Ivy.cms().co(STATE_CMS_PATH + state);
+  public String getDisplayState(CaseBusinessState caseState) {
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/businessCaseState/" + caseState);
   }
 
   public void backToCasesList() {
