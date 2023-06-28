@@ -878,7 +878,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     expiryTo: Fecha de caducidad hasta
     export:
       exportedCasesFileName: AXONIVY_Dataset_Cases_{0}_{1}.{2}
-      exportedTasksFileName: AXONIVY_Dataset_Tasks{0}_{1}.{2}
+      exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}_{1}.{2}
     field: Campo
     fieldIsAdded: El campo {0} está añadido
     iconMessage:
