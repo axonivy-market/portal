@@ -2037,10 +2037,10 @@
         "signature" : "CaseDetailsInIFrame",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long", "desc" : "" }
+            { "name" : "uuid", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.caseId" : "param.caseId"
+            "out.uuid" : "param.uuid"
           }
         },
         "request" : {
