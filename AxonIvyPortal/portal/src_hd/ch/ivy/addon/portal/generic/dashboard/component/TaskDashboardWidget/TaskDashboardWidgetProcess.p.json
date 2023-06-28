@@ -145,6 +145,7 @@
       "type" : "Script",
       "name" : "find task",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardTaskService;",
