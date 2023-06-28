@@ -84,7 +84,7 @@
             "in.loopCounter = 0;",
             "in.maxResultNumberPerQuery = 100000;",
             "in.collectedTasksForExporting = new ArrayList();",
-            "in.columnsVisibility = ExportUtils.builVisibleColumnsForDashboardTaskWidget(in.widget.dataModel.criteria.columns);"
+            "in.columnsVisibility = ExportUtils.buildVisibleColumns(in.widget.dataModel.criteria.columns);"
           ]
         }
       },
