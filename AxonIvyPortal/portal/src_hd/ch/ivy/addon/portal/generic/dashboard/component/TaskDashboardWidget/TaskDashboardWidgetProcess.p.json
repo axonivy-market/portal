@@ -45,7 +45,7 @@
       "type" : "HtmlDialogMethodStart",
       "name" : "getExportedFileForTaskWidget(TaskDashboardWidget)",
       "config" : {
-        "callSignature" : "getExportedFileForCaseWidget",
+        "callSignature" : "getExportedFileForTaskWidget",
         "result" : {
           "params" : [
             { "name" : "exportFile", "type" : "org.primefaces.model.StreamedContent" }
