@@ -37,9 +37,10 @@ public class BusinessDetailsAPI {
   }
   
   /**
-   * <p>Creates and sets path to case custom string field {@code businessDetails} for displaying business case details page.</p>
+   * <p>Creates and sets path to case custom string field {@code businessDetails} of current case for displaying business case details page.</p>
    *
    * <p>Examples:</p>
+   * <pre><code>BusinessDetailsAPI.create("Start Processes/ProcessDemo");</code></pre>
    * <pre><code>BusinessDetailsAPI.create("https://www.google.com");</code></pre>
    *
    * @param link String
