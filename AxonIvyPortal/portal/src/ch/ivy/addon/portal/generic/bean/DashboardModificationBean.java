@@ -65,7 +65,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     collectDashboardsForManagement();
   }
 
-  private void collectDashboardsForManagement() {
+  protected void collectDashboardsForManagement() {
     this.dashboards = new ArrayList<>();
     String dashboardInUserProperty = readDashboardBySessionUser();
     if (isPublicDashboard) {
