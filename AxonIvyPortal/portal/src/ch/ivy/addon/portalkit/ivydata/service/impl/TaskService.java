@@ -81,7 +81,7 @@ public class TaskService implements ITaskService {
     return taskQueryExecutor().getResults(query, startIndex, count);
   }
 
-  private long countTasks(TaskQuery query) {
+  protected long countTasks(TaskQuery query) {
     return taskQueryExecutor().getCount(query);
   }
   

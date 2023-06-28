@@ -39,6 +39,7 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
   public Dashboard(Dashboard dashboard) {
     setId(dashboard.getId());
     setIsPublic(dashboard.getIsPublic());
+    setVersion(dashboard.getVersion());
     templateId = dashboard.getTemplateId();
     title = dashboard.title;
     titles = dashboard.titles;

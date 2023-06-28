@@ -312,12 +312,17 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreAllToDefault: Restore all to defaults
     restoreDefault: Restore Default
     settingApplicationName: Setting application name
+    settingMultipleLanguages: Setting multiple languages
     usernameHint: Username of a system administrator.
     usernameRequiredMsg: Please input username.
     value: Value
   applicationMenuHeader:
     adminSettings: Admin settings
     changePassword: Change password
+  businessCaseState:
+    DESTROYED: Destroyed
+    DONE: Done
+    OPEN: Open
   caseDetails:
     addDocumentHelpText: To upload files, drag & drop or select files
     addNoteHelpText: Write your text here.
@@ -878,6 +883,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     expiryTo: Expiry To
     export:
       exportedCasesFileName: AXONIVY_Dataset_Cases_{0}_{1}.{2}
+      exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}_{1}.{2}
     field: Field
     fieldIsAdded: The {0} field is added
     iconMessage:

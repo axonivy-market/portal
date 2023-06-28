@@ -314,12 +314,17 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreAllToDefault: Alle auf Standard Zurücksetzen
     restoreDefault: Auf Standard Zurücksetzen.
     settingApplicationName: Anwendungsname angeben
+    settingMultipleLanguages: Einstellung mehrerer Sprachen
     usernameHint: Benutzername eines System Administrators.
     usernameRequiredMsg: Bitte geben Sie den Benutzernamen an.
     value: Wert
   applicationMenuHeader:
     adminSettings: Administration
     changePassword: Passwort ändern
+  businessCaseState:
+    DESTROYED: Gelöscht
+    DONE: Erledigt
+    OPEN: Offen
   caseDetails:
     addDocumentHelpText: Zum Hochladen Dateien per Drag & Drop hier ablegen oder Dateien auswählen
     addNoteHelpText: Schreiben Sie hier Ihren Text
@@ -386,7 +391,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     DESTROYED: Gelöscht
     DESTROYED_UPPERCASE: GELÖSCHT
     DONE: Erledigt
-    DONE_UPPERCASE: ABGESCHLOSSEN
+    DONE_UPPERCASE: ERLEDIGT
     FAILED: Fehlgeschlagen
     INPROGRESS: IN BEARBEITUNG
     OPEN: Offen
@@ -877,6 +882,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     expiryTo: Ablauf bis
     export:
       exportedCasesFileName: AXONIVY_Dataset_Cases_{0}_{1}.{2}
+      exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}_{1}.{2}
     field: Feld
     fieldIsAdded: Das Feld {0} wurde hinzugefügt
     iconMessage:
@@ -1399,7 +1405,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     DESTROYED: Vernichtet
     DESTROYED_UPPERCASE: GELÖSCHT
     DONE: Erledigt
-    DONE_UPPERCASE: ABGESCHLOSSEN
+    DONE_UPPERCASE: ERLEDIGT
     FAILED: Fehlerhaft
     FAILED_UPPERCASE: FEHLERHAFT
     INPROGRESS: IN BEARBEITUNG

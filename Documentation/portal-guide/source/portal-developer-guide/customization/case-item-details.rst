@@ -83,7 +83,10 @@ How to Configure Widgets in Case Details
       ``filters``: conditions to determine which cases are eligible to use the layout. There are two types of case filters:
       
       -  ``categories`` (case categories)
-      -  ``states`` (case states).
+      -  ``states`` (case business states).
+
+         Refer to :dev-url:`Case business states </doc/|version|/public-api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` for
+         available case business states.
 
    -  The structure of each widget inside the case details layout is stored in variable **Portal.CaseDetails**:
 
@@ -119,7 +122,7 @@ How to Configure Widgets in Case Details
       - You can change ``x``, ``y``, ``w`` and ``h`` to update size and position of widgets.
       - ``x``, ``y``, ``w`` and ``h`` have to be **integers**.
       - ``x + w`` must **not be larger** than **12**.
-      - We support all case states in filter type ``states``.
+      - We support all case business states in filter type ``states``.
 
 
    .. _customization-case-item-details-how-to-override-ui:
