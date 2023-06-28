@@ -62,7 +62,7 @@
             { "name" : "linkToAddtionalCaseDetailPage", "type" : "String" }
           ],
           "map" : {
-            "param.linkToAddtionalCaseDetailPage" : "\"Start Processes/AdditionalCaseDetailPage/showInvestmentRequestCustomFields.ivp\""
+            "param.linkToAddtionalCaseDetailPage" : "\"Start Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp\""
           }
         }
       },
@@ -167,7 +167,7 @@
             "import com.axonivy.portal.components.publicapi.BusinessDetailsAPI;",
             "",
             "BusinessDetailsAPI.create(BusinessDetailsDTO.builder()",
-            "    .path(\"Start Processes/AdditionalCaseDetailPageIframe/showInvestmentRequestCustomFieldIframe.ivp\")",
+            "    .path(\"Start Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp\")",
             "    .build()",
             ");"
           ]
