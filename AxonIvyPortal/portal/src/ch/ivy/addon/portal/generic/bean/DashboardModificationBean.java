@@ -7,8 +7,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
@@ -25,6 +27,7 @@ import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
@@ -33,6 +36,7 @@ import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
@@ -89,6 +93,8 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
 
   public void saveDashboardDetail() {
+    String currentTitle = this.selectedDashboard.getTitle();
+    initMultipleLanguagesForDashboardName(currentTitle);
     List<SecurityMemberDTO> responsibles = this.selectedDashboard.getPermissionDTOs();
     List<String> permissions = new ArrayList<>();
     String displayedPermission = "";
@@ -194,4 +200,60 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   public String generateDashboardPermisisonForDisplay(Dashboard dashboard) {
     return String.join(", ", dashboard.getPermissions());
   }
+  
+  public void updateDashboardTitleByLocale() {
+    String currentTitle = this.selectedDashboard.getTitle();
+    initMultipleLanguagesForDashboardName(currentTitle);
+    String currentLanguage = UserUtils.getUserLanguage();
+    Optional<DisplayName> optional = this.selectedDashboard.getTitles().stream()
+        .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
+    if (optional.isPresent()) {
+      optional.get().setValue(currentTitle);
+    }
+  }
+
+  public void updateCurrentLanguage() {
+    List<DisplayName> languages = this.selectedDashboard.getTitles();
+    String currentLanguage = UserUtils.getUserLanguage();
+    Optional<DisplayName> optional = languages.stream()
+        .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage()))
+        .findFirst();
+    if (optional.isPresent()) {
+      this.selectedDashboard.setTitle(optional.get().getValue());
+    }
+  }
+
+  public List<DisplayName> getTitles() {
+    if (this.selectedDashboard.getTitles().isEmpty()) {
+      List<String> supportedLanguages = getSupportedLanguages();
+      for (String language : supportedLanguages) {
+        DisplayName displayName = new DisplayName();
+        displayName.setLocale(Locale.forLanguageTag(language));
+        this.selectedDashboard.getTitles().add(displayName);
+      }
+    }
+    return this.selectedDashboard.getTitles();
+  }
+
+  private Map<String, DisplayName> getMapLanguages() {
+    List<DisplayName> languages = this.selectedDashboard.getTitles();
+    return languages.stream().collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
+  }
+
+  private void initMultipleLanguagesForDashboardName(String currentTitle) {
+    Map<String, DisplayName> mapLanguage = getMapLanguages();
+    List<String> supportedLanguages = getSupportedLanguages();
+    for (String language : supportedLanguages) {
+      DisplayName localeLanguage = mapLanguage.get(language);
+      if (localeLanguage == null) {
+        DisplayName displayName = new DisplayName();
+        displayName.setLocale(Locale.forLanguageTag(language));
+        displayName.setValue(currentTitle);
+        this.selectedDashboard.getTitles().add(displayName);
+      } else if (StringUtils.isBlank(localeLanguage.getValue())) {
+        localeLanguage.setValue(currentTitle);
+      }
+    }
+  }
+
 }

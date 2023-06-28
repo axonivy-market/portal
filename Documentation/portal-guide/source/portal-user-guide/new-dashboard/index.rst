@@ -84,6 +84,10 @@ your widget, and get a preview of it by clicking on the preview button.
 
 |task-list-widget-configuration|
 
+Setting multiple languages for the widget title:
+
+|dashboard-multi-language-widget-dialog|
+
 **Table configuration panel**
 
 Edit the default sort order of the table rows by clicking on the column headers
@@ -279,6 +283,7 @@ In manage news, the user can:
 
 .. |task-list-widget| image:: ../../screenshots/new-dashboard/task-list-widget.png
 .. |task-list-widget-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-configuration.png
+.. |dashboard-multi-language-widget-dialog| image:: ../../screenshots/new-dashboard/dashboard-multi-language-widget-dialog.png
 .. |task-list-widget-table-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-table-configuration.png
 
 .. |case-list-widget| image:: ../../screenshots/new-dashboard/case-list-widget.png
