@@ -219,6 +219,9 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     // Take screenshots of Task widget configuration dialog
     newWidgetDialog.findElement(By.id("new-widget-dialog-content:6:add-widget")).click();
     DashboardWidgetConfigurationDialogPage configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
+    configurationDialogPage.openMultiLanguageDialog();
+    ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getMultiLanguageDialogForTaskWidget(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "dashboard-multi-language-widget-dialog");
+    configurationDialogPage.clickOkMultiLanguageDialog();
     ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationFilter(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "task-list-widget-configuration");
     ScreenshotUtil.captureElementScreenshot(configurationDialogPage.openManageColumnDialog(true), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "task-list-widget-table-configuration");
     configurationDialogPage.closeManageColumnDialog();
