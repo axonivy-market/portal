@@ -92,7 +92,8 @@
             "in.collectedTasksForExporting = new ArrayList();",
             "in.columnsVisibility = ExportUtils.buildVisibleColumns(in.widget.dataModel.criteria.columns);"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 392, "y" : 248 }
@@ -149,7 +150,8 @@
             "",
             "in.totalTasks = DashboardTaskService.getInstance().countByTaskQuery(in.widget.dataModel.criteria.buildQuery());"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 248 }
@@ -169,7 +171,8 @@
             "int startIndex = in.loopCounter * in.maxResultNumberPerQuery;",
             "in.collectedTasksForExporting.addAll(DashboardTaskService.getInstance().findByTaskQuery(in.widget.dataModel.getCriteria().buildQuery(), startIndex, in.maxResultNumberPerQuery));"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 512, "y" : 344 }
