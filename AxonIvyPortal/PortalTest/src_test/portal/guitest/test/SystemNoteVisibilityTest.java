@@ -56,11 +56,11 @@ public class SystemNoteVisibilityTest extends BaseTest {
   @Test
   public void testSystemNoteVisibilityInCaseForNormalUser() {
     CaseDetailsPage caseDetailsPage = openCaseDetails();
-    String caseId = caseDetailsPage.getCaseId();
+    String uuid = caseDetailsPage.getCaseUUID();
     List<String> caseNoteAuthors = caseDetailsPage.getCaseNoteAuthors();
     Assert.assertFalse(caseNoteAuthors.contains(SYSTEM_USER_NAME));
     
-    NoteHistoryPage caseNoteHistoryPage = openCaseNoteHistory(caseId);
+    NoteHistoryPage caseNoteHistoryPage = openCaseNoteHistory(uuid);
     caseNoteAuthors = caseNoteHistoryPage.getNoteAuthors();
     Assert.assertFalse(caseNoteAuthors.contains(SYSTEM_USER_NAME));
   }
