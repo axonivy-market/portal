@@ -207,7 +207,7 @@
       "config" : {
         "outLinks" : [ "TaskA.ivp" ],
         "task" : {
-          "name" : "Investment request with custom case detail iframe"
+          "name" : "<%=ivy.cms.co(\"/Processes/CreateInvestment/Tasks/Request/name\")%>"
         }
       },
       "visual" : {
@@ -236,7 +236,7 @@
         "2. In Portal case list, click on action menu of \"Investment request\" case, then click on \"Business details\" link"
       ],
       "visual" : {
-        "at" : { "x" : 1184, "y" : 192 },
+        "at" : { "x" : 1176, "y" : 192 },
         "size" : { "width" : 768, "height" : 316 }
       }
     } ]
