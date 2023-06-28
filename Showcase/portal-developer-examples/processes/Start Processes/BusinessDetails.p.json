@@ -29,7 +29,8 @@
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 184 },
-        "description" : "Investment Request for Customized Case Detail Page example"
+        "labelOffset" : { "x" : 17, "y" : 33 },
+        "description" : "Investment Request for Customized Case Detail Page with subprocess example"
       },
       "connect" : { "id" : "f6", "to" : "f5" }
     }, {
@@ -149,11 +150,14 @@
       "name" : "caseDetailWithProcessPath.ivp",
       "config" : {
         "callSignature" : "caseDetailWithProcessPath",
-        "outLink" : "caseDetailWithProcessPath.ivp"
+        "outLink" : "caseDetailWithProcessPath.ivp",
+        "startDescription" : "<%=ivy.cms.co(\"/Processes/CreateInvestment/description\")%>",
+        "startName" : "<%=ivy.cms.co(\"/Processes/CreateInvestment/description\")%>"
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 296 },
-        "labelOffset" : { "x" : 17, "y" : 33 }
+        "labelOffset" : { "x" : 17, "y" : 33 },
+        "description" : "Investment Request for Customized Case Detail Page with public API example"
       },
       "connect" : { "id" : "f23", "to" : "f20" }
     }, {
@@ -204,16 +208,16 @@
         "HOW TO CUSTOMIZE CASE DETAIL PAGE USING IFRAME:",
         "We need to do 3 steps:",
         "",
-        "1. Create the process for the customize case detail page. In this example, it is showInvestmentRequestCustomFieldIframe.ivp",
+        "1. Create the process for the customize case detail page. In this example, it is showInvestmentRequestCustomFields.ivp",
         "",
         "2. 2 ways to create custom page:",
         "",
-        "\t- Call BusinessDetailsAPI.create()",
+        "\t- Call BusinessDetailsAPI.create(BusinessDetailsDTO.builder()) or BusinessDetailsAPI.create(\"your-external-url\")",
         "\t",
         "\t- Use SetBusinessDetailPage subprocess",
         "",
         "3. Input for this process is the friendly URL of your customized case detail page. ",
-        "For this example, it's : Start Processes/BusinessDetails/showInvestmentRequestCustomFieldIframe.ivp",
+        "For this example, it's : Start Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp",
         "",
         "HOW TO RUN THIS EXAMPLE:",
         "",
