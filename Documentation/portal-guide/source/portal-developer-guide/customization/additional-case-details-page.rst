@@ -11,7 +11,7 @@ Introduction
 The Additional Case detail page shows all custom fields of a case. It is opened
 by clicking on ``Show business details`` in Case detail.
 
-You can modify this page for each case by providing a relative URL to case.
+You can modify this page for each case by providing a relative URL to the case.
 
 .. _customization-additionalcasedetailspage.customization:
 
@@ -60,17 +60,17 @@ Customization
 
    |start-case-details-page-iframe|
 
--  Behide the scene, the API will set path value for ``String`` custom field ``businessDetails``. So in case for deep customization, follow below step:
+- Behind the scene, the API will set path value for ``String`` custom field ``businessDetails``. So in case of deep customization, follow below steps:
 
    - Use API ``ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(String)`` to find process path.
-   - Set process path to custom field in your specific case ``Ivy.wfCase().customFields().stringField("businessDetails").set(your-process-path-url)``
+   - Set process path to a customfield in your specific case ``Ivy.wfCase().customFields().stringField("businessDetails").set(your-process-path-url)``
 
 Permission Setting
 -------------
 Configure permissions in the :dev-url:`Engine Cockpit
 </doc/|version|/engine-guide/reference/engine-cockpit/security.html>`. In the security area, open PortalPermissions -> PortalCasePermissions -> ShowCaseDetails.
 
-Or search "ShowCaseDetails" in permisions search bar.
+Or search "ShowCaseDetails" in permissions search bar.
 
 
 .. |start-case-details-page-iframe| image:: images/additional-case-details-page/start-case-details-page-iframe.png
