@@ -26,6 +26,8 @@ pipeline {
             docker compose -f ${devEngineDir}/docker-compose.yml down
             docker compose -f ${performanceEngineDir}/docker-compose.yml down
             docker compose -f ${performanceEngineDir}/docker-compose.yml up -d
+			#Workaround because PMV Portal starts slow
+			sleep 100
           """
 
           docker.build('build-portal-modules', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
