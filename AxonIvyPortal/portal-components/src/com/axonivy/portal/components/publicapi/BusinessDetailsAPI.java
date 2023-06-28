@@ -6,9 +6,6 @@ import com.axonivy.portal.components.constant.CustomFields;
 import com.axonivy.portal.components.dto.BusinessDetailsDTO;
 import com.axonivy.portal.components.service.exception.PortalException;
 
-import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.workflow.ICase;
-
 /**
  * Portal API for modify business case details
  *
@@ -41,7 +38,6 @@ public class BusinessDetailsAPI {
   
   /**
    * <p>Creates and sets path to case custom string field {@code businessDetails} for displaying business case details page.</p>
-   * <p>This API supports create external link for business details </p> 
    *
    * <p>Examples:</p>
    * <pre><code>BusinessDetailsAPI.create("https://www.google.com");</code></pre>

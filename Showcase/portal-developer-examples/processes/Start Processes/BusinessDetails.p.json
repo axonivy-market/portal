@@ -2,7 +2,7 @@
   "format" : "10.0.0",
   "id" : "1624D1F5CBEA5332",
   "config" : {
-    "data" : "com.axonivy.portal.developerexamples.customization.AdditionalCaseDetailPage"
+    "data" : "com.axonivy.portal.developerexamples.customization.BusinessDetailsData"
   },
   "elements" : [ {
       "id" : "f0",
@@ -54,9 +54,9 @@
     }, {
       "id" : "f5",
       "type" : "SubProcessCall",
-      "name" : "SetAdditonalCaseDetailPage",
+      "name" : "SetBusinessDetailsPage",
       "config" : {
-        "processCall" : "Functional Processes/SetAdditonalCaseDetailsPage:call(String)",
+        "processCall" : "Functional Processes/SetBusinessDetailsPage:call(String)",
         "call" : {
           "params" : [
             { "name" : "linkToAddtionalCaseDetailPage", "type" : "String" }
@@ -128,28 +128,6 @@
       },
       "connect" : { "id" : "f11", "to" : "f8" }
     }, {
-      "id" : "f13",
-      "type" : "ProcessAnnotation",
-      "name" : [
-        "HOW TO CUSTOMIZE CASE DETAIL PAGE:",
-        "We need to do 2 steps:",
-        "",
-        "1. Create the process for the customize case detail page. In this example, it is showInvestmentRequestCustomFields.ivp",
-        "",
-        "2. If you want to have customized case detail page, store the URL of custom page to \"CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE\" additonal property.",
-        "We also provide  the callable process \"SetAdditionalCaseDetailPage\", you could use this if you need information from case only.",
-        "Input for this process is the friendly URL of your customized case detail page. Example: Start Processes/CustomizedCaseDetail/example.ivp",
-        "",
-        "HOW TO RUN THIS EXAMPLE:",
-        "1. Run createInvestmentRequest.ivp process",
-        "",
-        "2. Enter Portal case list, expand Investment Request case, then click to \"Show business details\" button. New tab will open, showing customized case detail page."
-      ],
-      "visual" : {
-        "at" : { "x" : 1232, "y" : 136 },
-        "size" : { "width" : 896, "height" : 268 }
-      }
-    }, {
       "id" : "f10",
       "type" : "Script",
       "name" : "Find case by id",
@@ -165,5 +143,87 @@
         "at" : { "x" : 352, "y" : 64 }
       },
       "connect" : { "id" : "f14", "to" : "f9" }
+    }, {
+      "id" : "f19",
+      "type" : "RequestStart",
+      "name" : "caseDetailWithProcessPath.ivp",
+      "config" : {
+        "callSignature" : "caseDetailWithProcessPath",
+        "outLink" : "caseDetailWithProcessPath.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 136, "y" : 296 },
+        "labelOffset" : { "x" : 17, "y" : 33 }
+      },
+      "connect" : { "id" : "f23", "to" : "f20" }
+    }, {
+      "id" : "f20",
+      "type" : "Script",
+      "name" : "Process Path",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.dto.BusinessDetailsDTO;",
+            "import com.axonivy.portal.components.publicapi.BusinessDetailsAPI;",
+            "",
+            "BusinessDetailsAPI.create(BusinessDetailsDTO.builder()",
+            "    .path(\"Start Processes/AdditionalCaseDetailPageIframe/showInvestmentRequestCustomFieldIframe.ivp\")",
+            "    .build()",
+            ");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 320, "y" : 295 },
+        "size" : { "width" : 174, "height" : 58 }
+      },
+      "connect" : { "id" : "f25", "to" : "f22" }
+    }, {
+      "id" : "f21",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 552, "y" : 296 }
+      }
+    }, {
+      "id" : "f22",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "task" : {
+          "name" : "Investment request with custom case detail iframe"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 456, "y" : 296 }
+      },
+      "connect" : { "id" : "f24", "to" : "f21", "condition" : "ivp==\"TaskA.ivp\"" }
+    }, {
+      "id" : "f15",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "HOW TO CUSTOMIZE CASE DETAIL PAGE USING IFRAME:",
+        "We need to do 3 steps:",
+        "",
+        "1. Create the process for the customize case detail page. In this example, it is showInvestmentRequestCustomFieldIframe.ivp",
+        "",
+        "2. 2 ways to create custom page:",
+        "",
+        "\t- Call BusinessDetailsAPI.create()",
+        "\t",
+        "\t- Use SetBusinessDetailPage subprocess",
+        "",
+        "3. Input for this process is the friendly URL of your customized case detail page. ",
+        "For this example, it's : Start Processes/BusinessDetails/showInvestmentRequestCustomFieldIframe.ivp",
+        "",
+        "HOW TO RUN THIS EXAMPLE:",
+        "",
+        "1. Run createInvestmentRequestIframe.ivp to use subprocess style or run caseDetailWithProcessPath.ivp to use public api style",
+        "",
+        "2. In Portal case list, expand \"Investment request with custom case detail using iFrame\" case, then click to \"Show business details\" button"
+      ],
+      "visual" : {
+        "at" : { "x" : 1184, "y" : 192 },
+        "size" : { "width" : 768, "height" : 316 }
+      }
     } ]
 }
