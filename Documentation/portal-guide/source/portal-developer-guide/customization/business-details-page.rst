@@ -30,7 +30,7 @@ How to
 
       |set-business-details-page-callable-process|
 
-   * Use public API ``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(String)`` or ``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(BusinessDetailsDTO)``. See the Public API for more detail.
+   * Use public API ``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(String)`` or ``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(BusinessDetailsDTO)``. See the Public API section for more detail.
 
       |customize-business-details-with-public-api|
 
@@ -51,12 +51,12 @@ Customization
 
    |customization-business-details-page-iframe|
 
--  By using Public API, you can control business detail page will start inside IFrame or not, set ``.isEmbedInFrame(Boolean)`` value to 
+-  By using Public API, you can control business detail page will start inside IFrame or not, set ``BusinessDetailsDTO.builder().isEmbedInFrame(Boolean)`` value to 
    
    	- ``true``: start inside IFrame (default value)
    	- ``false``: not start inside IFrame
 
--  You can also customize ``ICase`` value, by default the API will get ``ICase`` from ``Ivy.wfCase()``. Modify it by ``.iCase(ICase)``
+-  You can also customize ``ICase`` value, by default the API will get ``ICase`` from ``Ivy.wfCase()``. Modify it by ``BusinessDetailsDTO.builder().iCase(ICase)``
 
    |start-business-details-page-iframe|
 
