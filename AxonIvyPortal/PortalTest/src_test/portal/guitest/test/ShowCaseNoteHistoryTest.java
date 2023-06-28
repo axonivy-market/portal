@@ -25,7 +25,7 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
   private NoteHistoryPage caseHistoryPage;
   private static final String NOTE_CONTENT = "test";
   private static final String CASE_NAME = "Leave Request";
-  private static final String CASE_STATUS = "In Progress";
+  private static final String CASE_STATUS = "Open";
 
   @Override
   @Before
