@@ -126,10 +126,10 @@
       "type" : "Script",
       "name" : "count tasks",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardTaskService;",
-            "import ch.ivyteam.ivy.environment.Ivy;",
             "import org.primefaces.PrimeFaces;",
             "",
             "in.totalTasks = DashboardTaskService.getInstance().countByTaskQuery(in.widget.dataModel.criteria.buildQuery());"
