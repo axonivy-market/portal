@@ -24,15 +24,17 @@ public class DashboardTaskService extends TaskService {
   }
 
   public List<ITask> findByTaskQuery(TaskQuery query, int startIndex, int count) {
-    var subQuery = TaskQuery.create();
-    if (!PermissionUtils.checkReadAllTasksPermission()) {
-      subQuery.where().and(queryInvolvedTasks());
-    }
-    if (isHiddenTasksCasesExcluded()) {
-      subQuery.where().and(queryExcludeHiddenTasks());
-    }
-    var finalQuery = query.where().and(subQuery);
-    return executeTaskQuery(finalQuery, startIndex, count);
+    return Sudo.get(() -> {
+      var subQuery = TaskQuery.create();
+      if (!PermissionUtils.checkReadAllTasksPermission()) {
+        subQuery.where().and(queryInvolvedTasks());
+      }
+      if (isHiddenTasksCasesExcluded()) {
+        subQuery.where().and(queryExcludeHiddenTasks());
+      }
+      var finalQuery = query.where().and(subQuery);
+      return executeTaskQuery(finalQuery, startIndex, count);
+    });
   }
   
   public Long countByTaskQuery(TaskQuery query) {
