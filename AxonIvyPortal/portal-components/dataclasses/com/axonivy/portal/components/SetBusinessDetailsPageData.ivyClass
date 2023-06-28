@@ -1,0 +1,3 @@
+SetBusinessDetailsPageData #class
+com.axonivy.portal.components #namespace
+linkToAdditonalCaseDetailPage String #field
