@@ -106,6 +106,15 @@ In the column management panel, you will find two sections:
       - Reorder the columns by drag and drop using the arrows |move-expand-vertical|
       - Remove columns
 
+**Excel export**
+
+You can export all data of the task widget by clicking on the link ``Export to Excel`` at the bottom left corner of the widget information panel.
+
+|task-export-excel|
+
+If the number of exported tasks exceed the maximum row number of the Excel file, Portal will separate data into multiple Excel
+files and put them into a single zip file.
+
 Case list widget
 ================
 
@@ -147,7 +156,7 @@ You can export all data of the case widget by clicking on the link ``Export to E
 
 |case-export-excel|
 
-If the number of exported cases exceeds the maximum row number of the Excel file, Portal will separate data into multiple Excel
+If the number of exported cases exceed the maximum row number of the Excel file, Portal will separate data into multiple Excel
 files and put them into a single zip file.
 
 Process list widget
@@ -268,6 +277,7 @@ In manage news, the user can:
 .. |widget-filter| image:: ../../screenshots/new-dashboard/widget-filter.png
 .. |widget-info| image:: ../../screenshots/new-dashboard/widget-info.png
 .. |case-export-excel| image:: ../../screenshots/new-dashboard/case-export-excel.png
+.. |task-export-excel| image:: ../../screenshots/new-dashboard/task-export-excel.png
 .. |edit-widget| image:: ../../screenshots/new-dashboard/edit-widget.png
 .. |add-widget| image:: ../../screenshots/new-dashboard/add-widget.png
 
