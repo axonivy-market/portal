@@ -21,18 +21,18 @@ How to
 #. Create a new business details page UI and a start process that will display
    the new UI.
 
-   |customization-additional-case-details-page|
+   |customization-business-details-page|
 
 
 #. Store path of start process just created above when creating a task. There are 2 ways to perform this:
    
    * Use the ``SetBusinessDetailsPage.p.json`` callable process, and pass the friendly URL of this process as a parameter.
 
-      |set-additonal-case-detail-page-callable-process|
+      |set-business-details-page-callable-process|
 
    * Use public API ``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(String)`` or ``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(BusinessDetailsDTO)``. See the Public API for more detail.
 
-      |customize-case-detail-with-public-api|
+      |customize-business-details-with-public-api|
 
       .. tip:: 
          Public API also supports external links in case the business detail site is outside of Axon Ivy.    
@@ -49,7 +49,7 @@ Customization
    - window.isWorkingOnATask = false;
    - window.viewName = '';
 
-   |customization-additional-case-details-page-iframe|
+   |customization-business-details-page-iframe|
 
 -  By using Public API, you can control business detail page will start inside IFrame or not, set ``.isEmbedInFrame(Boolean)`` value to 
    
@@ -75,7 +75,7 @@ Or search "ShowCaseDetails" in permissions search bar.
 
 
 .. |start-business-details-page-iframe| image:: images/business-details-page/start-business-details-page-iframe.png
-.. |customization-additional-case-details-page-iframe| image:: images/business-details-page/customization-additional-case-details-page-iframe.png
-.. |customization-additional-case-details-page| image:: images/business-details-page/customization-additional-case-details-page.png
-.. |set-additonal-case-detail-page-callable-process| image:: images/business-details-page/set-additonal-case-detail-page-callable-process.png
-.. |customize-case-detail-with-public-api| image:: images/business-details-page/customize-case-detail-with-public-api.png
+.. |customization-business-details-page-iframe| image:: images/business-details-page/customization-business-details-page-iframe.png
+.. |customization-business-details-page| image:: images/business-details-page/customization-business-details-page.png
+.. |set-business-details-page-callable-process| image:: images/business-details-page/set-business-details-page-callable-process.png
+.. |customize-business-details-with-public-api| image:: images/business-details-page/customize-business-details-with-public-api.png
