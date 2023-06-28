@@ -1,2 +1,4 @@
 PortalManagementData #class
 ch.ivy.addon.portal.setting.PortalManagement #namespace
+selectedDashboard ch.ivy.addon.portalkit.dto.dashboard.Dashboard #field
+selectedDashboard PERSISTENT #fieldModifier

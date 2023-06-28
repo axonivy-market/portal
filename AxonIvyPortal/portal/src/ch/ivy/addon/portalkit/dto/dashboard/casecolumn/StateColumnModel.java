@@ -12,8 +12,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.util.CaseUtils;
-import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 
 public class StateColumnModel extends CaseColumnModel implements Serializable {
 
@@ -53,42 +53,42 @@ public class StateColumnModel extends CaseColumnModel implements Serializable {
     if (caze == null) {
       return null;
     }
-    return getUserFriendlyCaseState(caze.getState());
+    return getUserFriendlyCaseState(caze.getBusinessState());
   }
   
-  private String getUserFriendlyCaseState(CaseState state) {
+  private String getUserFriendlyCaseState(CaseBusinessState state) {
     if (state == null) {
       return StringUtils.EMPTY;
     }
-    return cms("/ch.ivy.addon.portalkit.ui.jsf/caseState/" + state.toString());
+    return cms("/ch.ivy.addon.portalkit.ui.jsf/businessCaseState/" + state.toString());
   }
 
   @JsonIgnore
-  public List<CaseState> getStates() {
-    List<CaseState> states = filterList.stream().map(String::toUpperCase)
-        .map(CaseState::valueOf)
+  public List<CaseBusinessState> getStates() {
+    List<CaseBusinessState> states = filterList.stream().map(String::toUpperCase)
+        .map(CaseBusinessState::valueOf)
         .collect(Collectors.toList());
     return CaseUtils.filterStateByPermission(states);
   }
 
   @JsonIgnore
-  public void setStates(List<CaseState> states) {
-    this.filterList = states.stream().map(CaseState::toString).collect(Collectors.toList());
+  public void setStates(List<CaseBusinessState> states) {
+    this.filterList = states.stream().map(CaseBusinessState::toString).collect(Collectors.toList());
   }
 
   @JsonIgnore
-  public List<CaseState> getUserFilterStates() {
-    return this.userFilterList.stream().map(String::toUpperCase).map(CaseState::valueOf).collect(Collectors.toList());
+  public List<CaseBusinessState> getUserFilterStates() {
+    return this.userFilterList.stream().map(String::toUpperCase).map(CaseBusinessState::valueOf).collect(Collectors.toList());
   }
   
   @JsonIgnore
-  public void setUserFilterStates(List<CaseState> states) {
-    this.userFilterList = states.stream().map(CaseState::toString).collect(Collectors.toList());
+  public void setUserFilterStates(List<CaseBusinessState> states) {
+    this.userFilterList = states.stream().map(CaseBusinessState::toString).collect(Collectors.toList());
   }
 
   @JsonIgnore
-  public List<CaseState> getUserFilterStateOptions() {
-    List<CaseState> states = getStates();
+  public List<CaseBusinessState> getUserFilterStateOptions() {
+    List<CaseBusinessState> states = getStates();
     if (CollectionUtils.isEmpty(states)) {
       states = CaseUtils.getValidStates();
     } else {
