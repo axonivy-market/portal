@@ -142,15 +142,11 @@ public final class CaseUtils {
     if (state == null) {
       return StringUtils.EMPTY;
     }
-    switch (state) {
-      case OPEN:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/OPEN_UPPERCASE");
-      case DESTROYED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/DESTROYED_UPPERCASE");
-      case DONE:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/DONE_UPPERCASE");
-      default:
-        return StringUtils.EMPTY;
-    }
+    return switch(state) {
+      case OPEN -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/OPEN_UPPERCASE");
+      case DESTROYED -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/DESTROYED_UPPERCASE");
+      case DONE -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/DONE_UPPERCASE");
+      default -> StringUtils.EMPTY;
+    };
   }
 }

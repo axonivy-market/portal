@@ -19,6 +19,7 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
    * Constructor
    * 
    * @param visibleColumns list of columns to export
+   * @param widgetName 
    * 
    */
   public TaskDashboardExporter(List<String> visibleColumns, String widgetName) {
@@ -61,7 +62,7 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
    * Custom column format: fieldType__fieldName__header
    * 
    * @param column
-   * @return
+   * @return custom column name
    */
   private String getCustomColumnName(String column) {
     String[] columnParts = getCustomColumnParts(column);
@@ -73,31 +74,23 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
   }
   
   private Object getCommonColumnValue(DashboardStandardTaskColumn sortField, ITask taskItem) {
-    switch(sortField) {
-    case PRIORITY:
-      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/" + taskItem.getPriority().name());
-    case NAME:
-      return StringUtils.isEmpty(taskItem.names().current()) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable" ): taskItem.names().current();
-    case RESPONSIBLE:
-      if(taskItem.getActivator() == null) {
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
+    return switch(sortField) {
+      case PRIORITY -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/" + taskItem.getPriority().name());
+      case NAME -> StringUtils.isEmpty(taskItem.names().current()) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable" ): taskItem.names().current();
+      case RESPONSIBLE -> {
+        if(taskItem.getActivator() == null) {
+          yield Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
+        }
+        yield taskItem.getActivator().getDisplayName();
       }
-      return taskItem.getActivator().getDisplayName();
-    case ID:
-      return String.valueOf(taskItem.getId());
-    case CREATED:
-      return taskItem.getStartTimestamp();
-    case EXPIRY:
-      return taskItem.getExpiryTimestamp();
-    case STATE:
-      return taskItem.getState();
-    case CATEGORY:
-      return taskItem.getCategory().getPath();
-    case DESCRIPTION:
-      return taskItem.getDescription();
-    default:
-      return "";
-    }
+      case ID -> String.valueOf(taskItem.getId());
+      case CREATED -> taskItem.getStartTimestamp();
+      case EXPIRY -> taskItem.getExpiryTimestamp();
+      case STATE -> taskItem.getState();
+      case CATEGORY -> taskItem.getCategory().getPath();
+      case DESCRIPTION -> taskItem.getDescription();
+      default -> "";
+    };
   }
   
   private Object getCustomColumnValue(String column, ITask taskItem) {
@@ -112,25 +105,20 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
       return "";
     }
     
-    switch (fieldFormat) {
-      case NUMBER: 
-        return taskItem.customFields().numberField(fieldName).getOrNull();
-      case STRING:
-        return taskItem.customFields().stringField(fieldName).getOrNull();
-      case TEXT:
-        return taskItem.customFields().textField(fieldName).getOrNull();
-      case TIMESTAMP:
-        return taskItem.customFields().timestampField(fieldName).getOrNull();
-      default:
-        return "";
-    }
+    return switch (fieldFormat) {
+      case NUMBER -> taskItem.customFields().numberField(fieldName).getOrNull();
+      case STRING -> taskItem.customFields().stringField(fieldName).getOrNull();
+      case TEXT -> taskItem.customFields().textField(fieldName).getOrNull();
+      case TIMESTAMP -> taskItem.customFields().timestampField(fieldName).getOrNull();
+      default -> "";
+    };
   }
 
   /**
    * Get task column value.
    * 
    * @param column task field like "START", "PRIORITY", "RESPONSIBLE"...
-   * @param taskItem target task 
+   * @param item target task 
    * @return task column value 
    */
   @Override

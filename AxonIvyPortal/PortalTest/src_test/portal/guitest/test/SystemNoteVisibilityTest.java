@@ -43,7 +43,6 @@ public class SystemNoteVisibilityTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     
     CaseDetailsPage caseDetailsPage = openCaseDetails();
-    String caseId = caseDetailsPage.getCaseId();
     String caseUUID = caseDetailsPage.getCaseUUID();
     List<String> caseNoteAuthors = caseDetailsPage.getCaseNoteAuthors();
     Assert.assertTrue(caseNoteAuthors.contains(SYSTEM_USER_NAME));
