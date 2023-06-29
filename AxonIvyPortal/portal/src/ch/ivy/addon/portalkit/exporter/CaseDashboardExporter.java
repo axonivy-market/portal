@@ -60,7 +60,7 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
    * Get header text from the custom column
    * Custom column format: fieldType__fieldName__header
    * @param column
-   * @return
+   * @return custom column name
    */
   private String getCustomColumnName(String column) {
     String[] columnParts = getCustomColumnParts(column);
@@ -77,36 +77,29 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
    * @return case column value
    */
   private Object getCommonColumnValue(DashboardStandardCaseColumn sortField, ICase caseItem) {
-    switch (sortField) {
-      case NAME:
-        return StringUtils.isEmpty(caseItem.names().current()) ? Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable") : caseItem.names().current();
-      case ID:
-        return String.valueOf(caseItem.getId());
-      case DESCRIPTION:
-        return caseItem.descriptions().current();
-      case STATE:
-        return CaseUtils.convertToUserFriendlyCaseState(caseItem.getBusinessState());
-      case CREATOR:
+    return switch (sortField) {
+      case NAME -> StringUtils.isEmpty(caseItem.names().current()) ? Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable") : caseItem.names().current();
+      case ID -> String.valueOf(caseItem.getId());
+      case DESCRIPTION -> caseItem.descriptions().current();
+      case STATE -> CaseUtils.convertToUserFriendlyCaseState(caseItem.getBusinessState());
+      case CREATOR -> {
         if (caseItem.getCreatorUserName() == null) {
-          return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
+          yield Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
         }
-        return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(caseItem.getCreatorUser(), caseItem.getCreatorUserName());
-      case CREATED:
-        return caseItem.getStartTimestamp();
-      case FINISHED:
-        return caseItem.getEndTimestamp();
-      case OWNER:
+        yield SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(caseItem.getCreatorUser(), caseItem.getCreatorUserName());
+      }
+      case CREATED -> caseItem.getStartTimestamp();
+      case FINISHED -> caseItem.getEndTimestamp();
+      case OWNER ->{
         if (caseItem.getOwnerName() == null) {
-          return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
+          yield Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
         }
-        return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(caseItem.getOwner(), caseItem.getOwnerName());
-      case CATEGORY:
-        return caseItem.getCategory().getPath();
-      case APPLICATION:
-        return caseItem.getApplication().getName();
-      default:
-        return "";
-    }
+        yield SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(caseItem.getOwner(), caseItem.getOwnerName());
+      }
+      case CATEGORY -> caseItem.getCategory().getPath();
+      case APPLICATION -> caseItem.getApplication().getName();
+      default -> "";
+    };
   }
 
   /**
@@ -129,18 +122,13 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
       return "";
     }
 
-    switch (fieldFormat) {
-      case NUMBER: 
-        return caseItem.customFields().numberField(fieldName).getOrNull();
-      case STRING:
-        return caseItem.customFields().stringField(fieldName).getOrNull();
-      case TEXT:
-        return caseItem.customFields().textField(fieldName).getOrNull();
-      case TIMESTAMP:
-        return caseItem.customFields().timestampField(fieldName).getOrNull();
-      default:
-        return "";
-    }
+    return switch (fieldFormat) {
+      case NUMBER -> caseItem.customFields().numberField(fieldName).getOrNull();
+      case STRING -> caseItem.customFields().stringField(fieldName).getOrNull();
+      case TEXT -> caseItem.customFields().textField(fieldName).getOrNull();
+      case TIMESTAMP -> caseItem.customFields().timestampField(fieldName).getOrNull();
+      default -> "";
+    };
   }
 
   /**
