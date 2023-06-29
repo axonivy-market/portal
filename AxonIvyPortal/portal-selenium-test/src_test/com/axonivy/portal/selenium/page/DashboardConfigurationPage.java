@@ -105,7 +105,7 @@ public class DashboardConfigurationPage extends TemplatePage {
     inputCreateDashboardDialog(newName, icon, newDescription, permissions);
   }
 
-  public SelenideElement setupDataPublicDashboardFromScratch(String title) {
+  public SelenideElement setupDataPublicDashboardFromScratch() {
     $("a[id$=':create-from-scratch']").shouldBe(getClickableCondition()).click();
     String creationDetailsDialogId = "div[id$=':dashboard-creation-details-dialog']";
     $(creationDetailsDialogId).shouldBe(appear, DEFAULT_TIMEOUT);
@@ -116,13 +116,13 @@ public class DashboardConfigurationPage extends TemplatePage {
   public void createPublicDashboardFromScratch(SelenideElement createDashboardDialog, List<String> permissions) {
     String creationDetailsDialogId = "div[id$=':dashboard-creation-details-dialog']";
     if (permissions != null) {
-      createDashboardDialog.$("div[id$=':dashboard-permission']").$$("li.ui-state-active").forEach(permission -> {
+      createDashboardDialog.$("div[id$=':dashboard-permission']").$$("li.ui-state-active").asDynamicIterable().forEach(permission -> {
         permission.$("span.ui-icon-close").shouldBe(getClickableCondition()).click();
       });
 
       createDashboardDialog.$("div[id$=':dashboard-permission']").$("button.ui-autocomplete-dropdown").click();
       $("span[id$=':dashboard-permission_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-          .$$("tr.ui-autocomplete-item").forEach(item -> {
+          .$$("tr.ui-autocomplete-item").asDynamicIterable().forEach(item -> {
             for (String permissionName : permissions) {
               if (item.$("td").getText().contains(permissionName)) {
                 item.shouldBe(getClickableCondition()).click();

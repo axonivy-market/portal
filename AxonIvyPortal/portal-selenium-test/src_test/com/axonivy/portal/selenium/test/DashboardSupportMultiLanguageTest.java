@@ -44,7 +44,7 @@ public class DashboardSupportMultiLanguageTest extends BaseTest {
 		LinkNavigator.redirectToPortalDashboardConfiguration();
 		var configurationPage = new DashboardConfigurationPage();
 		configurationPage.openCreatePublicDashboardMenu();
-		var newDashboardDialog = configurationPage.setupDataPublicDashboardFromScratch(name);
+		var newDashboardDialog = configurationPage.setupDataPublicDashboardFromScratch();
 		configurationPage.changeDashboardTitle(newDashboardDialog, name);
 		var addLanguageButton = configurationPage.getAddLanguageButton();
 		addLanguageButton.click();
@@ -80,7 +80,7 @@ public class DashboardSupportMultiLanguageTest extends BaseTest {
 		LinkNavigator.redirectToPortalDashboardConfiguration();
 		var configurationPage = new DashboardConfigurationPage();
 		configurationPage.openCreatePrivateDashboardMenu();
-		var newDashboardDialog = configurationPage.setupDataPublicDashboardFromScratch(name);
+		var newDashboardDialog = configurationPage.setupDataPublicDashboardFromScratch();
 		configurationPage.changeDashboardTitle(newDashboardDialog, name);
 		var addLanguageButton = configurationPage.getAddLanguageButton();
 		addLanguageButton.click();
