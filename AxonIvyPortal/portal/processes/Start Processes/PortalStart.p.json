@@ -1549,7 +1549,7 @@
       "type" : "SubProcessCall",
       "name" : "Functional Processes/Navigator",
       "config" : {
-        "processCall" : "Functional Processes/Navigator:viewTask(Long,ch.ivy.addon.portalkit.dto.GlobalCaseId,String)",
+        "processCall" : "Functional Processes/Navigator:viewTask(ch.ivy.addon.portalkit.dto.GlobalCaseId,String)",
         "call" : {
           "map" : {
             "param.caseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.uuid(in.uuid).isBusinessCase(in.isBusinessCase).build()",
@@ -1620,10 +1620,10 @@
       "type" : "SubProcessCall",
       "name" : "Functional Processes/Navigator",
       "config" : {
-        "processCall" : "Functional Processes/Navigator:viewRelatedTask(Long)",
+        "processCall" : "Functional Processes/Navigator:viewRelatedTask(String)",
         "call" : {
           "map" : {
-            "param.taskId" : "in.selectedTaskId"
+            "param.taskUUID" : "in.uuid"
           }
         }
       },
@@ -2114,7 +2114,7 @@
       "type" : "SubProcessCall",
       "name" : "Functional Processes/Navigator",
       "config" : {
-        "processCall" : "Functional Processes/Navigator:viewTaskInFrame(Long,ch.ivy.addon.portalkit.dto.GlobalCaseId,String)",
+        "processCall" : "Functional Processes/Navigator:viewTaskInFrame(ch.ivy.addon.portalkit.dto.GlobalCaseId,String)",
         "call" : {
           "map" : {
             "param.caseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.uuid(in.uuid).isBusinessCase(in.isBusinessCase).build()",
@@ -2131,10 +2131,10 @@
       "type" : "SubProcessCall",
       "name" : "Functional Processes/Navigator",
       "config" : {
-        "processCall" : "Functional Processes/Navigator:viewRelatedTaskInFrame(Long)",
+        "processCall" : "Functional Processes/Navigator:viewRelatedTask(String)",
         "call" : {
           "map" : {
-            "param.taskId" : "in.selectedTaskId"
+            "param.taskUUID" : "in.uuid"
           }
         }
       },

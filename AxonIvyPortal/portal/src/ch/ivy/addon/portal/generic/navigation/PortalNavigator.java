@@ -86,23 +86,13 @@ public final class PortalNavigator extends BaseNavigator{
   }
 
   public static String getSubMenuItemUrlOfCurrentApplication(MenuKind menuKind) {
-    String subMenuUrl = StringUtils.EMPTY;
-    switch (menuKind) {
-      case PROCESS:
-        subMenuUrl = PORTAL_PROCESS;
-        break;
-      case TASK:
-        subMenuUrl = PORTAL_TASK;
-        break;
-      case CASE:
-        subMenuUrl = PORTAL_CASE;
-        break;
-      case STATISTICS:
-        subMenuUrl = PORTAL_STATISTIC;
-        break;
-      default:
-        break;
-    }
+    String subMenuUrl = switch (menuKind) {
+      case PROCESS -> PORTAL_PROCESS;
+      case TASK -> PORTAL_TASK;
+      case CASE -> PORTAL_CASE;
+      case STATISTICS -> PORTAL_STATISTIC;
+      default -> StringUtils.EMPTY;
+    };
     return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(subMenuUrl);
   }
 
@@ -169,15 +159,15 @@ public final class PortalNavigator extends BaseNavigator{
     navigateByKeyword("RelatedTasksOfCasePageInFrame.ivp", PORTAL_RELATED_TASKS_OF_CASE_IN_FRAME, params);
   }
 
-  public static void navigateToPortalTaskDetails(Long taskId) {
+  public static void navigateToPortalTaskDetails(String uuid) {
     Map<String, String> params = new HashMap<>();
-    params.put("selectedTaskId", String.valueOf(taskId));
+    params.put(UUID, uuid);
     navigateByKeyword("TaskDetailsPage.ivp", PORTAL_TASK_DETAILS, params);
   }
 
-  public static void navigateToPortalTaskDetailsInFrame(Long taskId) {
+  public static void navigateToPortalTaskDetailsInFrame(String uuid) {
     Map<String, String> params = new HashMap<>();
-    params.put("selectedTaskId", String.valueOf(taskId));
+    params.put(UUID, uuid);
     navigateByKeyword("TaskDetailsPageInFrame.ivp", PORTAL_TASK_DETAILS_IN_FRAME, params);
   }
   
