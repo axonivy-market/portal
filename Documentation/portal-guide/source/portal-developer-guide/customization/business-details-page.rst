@@ -1,7 +1,7 @@
 .. _customization-businessdetailspage:
 
 Business Details Page
-============================
+=====================
 
 .. _customization-additionalcasedetailspage.introduction:
 
@@ -16,7 +16,7 @@ You can modify this page for each case by providing a relative URL to the case.
 .. _customization-additionalcasedetailspage.customization:
 
 How to
--------------
+------
 
 #. Create a new business details page UI and a start process that will display
    the new UI.
@@ -40,7 +40,7 @@ How to
 
 Customization
 -------------
--  If your custom Additional Case details page uses an IFrame, you may want to set some additional
+-  If your custom Business Details page uses an IFrame, you may want to set some additional
    Window properties on your page: 
 
    - window.isHideCaseInfo = true;
