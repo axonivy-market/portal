@@ -27,7 +27,7 @@ public class BusinessDetailsDTO {
   }
 
   /**
-   * Gets the business detail path
+   * Gets the business details path
    * @return string path
    */
   public String getPath() {

@@ -47,8 +47,7 @@ public class BusinessDetailsAPI {
    */
   public static void create(String link) {
     BusinessDetailsDTO businessDetailsDTO = BusinessDetailsDTO.builder().path(link).build();
-    String pageUrl = createPageUrl(businessDetailsDTO);
-    setToCustomField(businessDetailsDTO, pageUrl);
+    create(businessDetailsDTO);
   }
   
   private static void setToCustomField(BusinessDetailsDTO businessDetailDTO, String casePageUrl) {
