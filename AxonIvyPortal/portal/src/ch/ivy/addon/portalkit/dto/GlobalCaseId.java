@@ -1,7 +1,7 @@
 package ch.ivy.addon.portalkit.dto;
 
 public class GlobalCaseId {
-  private long caseId;
+//  private long caseId;
   private boolean isBusinessCase;
   private String uuid;
 
@@ -10,10 +10,10 @@ public class GlobalCaseId {
     this.uuid = uuid;
   }
   
-  public GlobalCaseId(long caseId, boolean isBusinessCase) {
-  this.caseId = caseId;
-  this.isBusinessCase = isBusinessCase;
-}
+//  public GlobalCaseId(long caseId, boolean isBusinessCase) {
+//  this.caseId = caseId;
+//  this.isBusinessCase = isBusinessCase;
+//}
 
   public static class Builder {
 //    private long caseId;
@@ -56,9 +56,9 @@ public class GlobalCaseId {
     return new GlobalCaseId("", false);
   }
 
-  public long id() {
-    return caseId;
-  }
+//  public long id() {
+//    return caseId;
+//  }
   
   public String uuid() {
     return this.uuid;

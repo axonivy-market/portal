@@ -180,11 +180,10 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
   }
 
   public void navigateToSelectedTaskDetails(ITask task) {
-    Long taskId = task.getId();
     if (inFrame) {
-      PortalNavigator.navigateToPortalTaskDetailsInFrame(taskId);
+      PortalNavigator.navigateToPortalTaskDetailsInFrame(task.uuid());
     } else {
-      PortalNavigator.navigateToPortalTaskDetails(taskId);
+      PortalNavigator.navigateToPortalTaskDetails(task.uuid());
     }
   }
 
