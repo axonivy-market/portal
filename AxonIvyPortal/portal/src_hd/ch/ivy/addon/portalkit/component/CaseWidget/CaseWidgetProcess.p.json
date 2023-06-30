@@ -747,7 +747,7 @@
             "import ch.ivy.addon.portalkit.dto.GlobalCaseId;",
             "",
             "ICase foundCase = ivy.wf.findCase(in.dataModel.criteria.businessCaseId);",
-            "in.globalCaseId = new GlobalCaseId(foundCase.getId(), foundCase.isBusinessCase());"
+            "in.globalCaseId = new GlobalCaseId(foundCase.uuid(), foundCase.isBusinessCase());"
           ]
         },
         "sudo" : true
