@@ -13,16 +13,17 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="importDialogId" required="true" />
   <cc:attribute name="managedBean" required="true" />
+  <cc:attribute name="isPublicDashboard" required="true" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
 
   <p:dialog id="#{cc.attrs.importDialogId}"
-    widgetVar="#{cc.attrs.importDialogId}" header="Import Dashboard"
+    widgetVar="#{cc.attrs.importDialogId}" header="#{cc.attrs.isPublicDashboard ? 'Import Public Dashboard' : 'Import Private Dashboard'}"
     appendTo="@(body)" closeOnEscape="true" draggable="false"
     fitViewport="true" responsive="true" modal="true" width="70%"
-    styleClass="L"
+    styleClass="import-dashboard-dialog"
     onShow="PF('#{cc.attrs.importDialogId}').initPosition()">
     <h:form id="import-dashboard-form">
       <h:panelGroup id="dashboard-upload-panel" layout="block"
@@ -74,11 +75,11 @@
         </div>
 
         <h:panelGroup layout="block"
-          styleClass="ui-g-2 import-dashboard-label">
+          styleClass="ui-g-2 import-dashboard-label" rendered="#{cc.attrs.isPublicDashboard}">
           <p:outputLabel for="dashboard-permission"
             value="#{ivy.cms.co('/Labels/Permissions')}" />
         </h:panelGroup>
-        <h:panelGroup layout="block" styleClass="ui-g-10 ui-fluid">
+        <h:panelGroup layout="block" styleClass="ui-g-10 ui-fluid" rendered="#{cc.attrs.isPublicDashboard}" >
           <p:autoComplete id="dashboard-permission" scrollHeight="210"
             dropdown="true" required="true"
             completeMethod="#{managedBean.completePermissions}"

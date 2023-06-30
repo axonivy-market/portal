@@ -2,8 +2,6 @@ package com.axonivy.portal.bean.dashboard;
 
 import static ch.ivy.addon.portalkit.constant.PortalConstants.MAX_USERS_IN_AUTOCOMPLETE;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -26,7 +24,6 @@ import org.primefaces.model.file.UploadedFile;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
-import com.fasterxml.jackson.databind.JsonNode;
 
 import ch.ivy.addon.portal.generic.bean.DashboardModificationBean;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
@@ -94,7 +91,12 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
     if (StringUtils.isNotBlank(widget.getImageContent()) && StringUtils.isNotBlank(widget.getImageLocation())) {
       // If has defined location, save to that location
       ContentObject widgetImage = WelcomeWidgetUtils.getImageContentObject(widget.getImageLocation(), widget.getImageType());
-      WelcomeWidgetUtils.readObjectValueOfDefaultLocale(widgetImage).write().bytes(Base64.getDecoder().decode(widget.getImageContent()));
+      String[] test = widget.getImageContent().split(",");
+      try {
+        widget.setImageContent(test[1]);
+        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(widgetImage).write().bytes(Base64.getDecoder().decode(widget.getImageContent()));
+      }catch (Exception ex) {
+      }
       widget.setImageContent(null);
     }
   }
