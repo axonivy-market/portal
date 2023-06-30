@@ -13,10 +13,10 @@
         "callSignature" : "call",
         "input" : {
           "params" : [
-            { "name" : "linkToAddtionalCaseDetailPage", "type" : "String" }
+            { "name" : "linkToBusinessDetailsPage", "type" : "String" }
           ],
           "map" : {
-            "out.linkToAdditonalCaseDetailPage" : "param.linkToAddtionalCaseDetailPage"
+            "out.linkToBusinessDetailsPage" : "param.linkToBusinessDetailsPage"
           }
         }
       },
@@ -33,15 +33,14 @@
     }, {
       "id" : "f3",
       "type" : "Script",
-      "name" : "Set additional case detail page",
+      "name" : "Set business details page",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.dto.BusinessDetailsDTO;",
             "import com.axonivy.portal.components.publicapi.BusinessDetailsAPI;",
             "",
-            "BusinessDetailsAPI.create(BusinessDetailsDTO.builder().path(in.linkToAdditonalCaseDetailPage).build());"
+            "BusinessDetailsAPI.create(BusinessDetailsDTO.builder().path(in.linkToBusinessDetailsPage).build());"
           ]
         }
       },

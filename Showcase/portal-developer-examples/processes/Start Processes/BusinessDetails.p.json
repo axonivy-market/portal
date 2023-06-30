@@ -60,10 +60,10 @@
         "processCall" : "Functional Processes/SetBusinessDetailsPage:call(String)",
         "call" : {
           "params" : [
-            { "name" : "linkToAddtionalCaseDetailPage", "type" : "String" }
+            { "name" : "linkToBusinessDetailsPage", "type" : "String" }
           ],
           "map" : {
-            "param.linkToAddtionalCaseDetailPage" : "\"Start Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp\""
+            "param.linkToBusinessDetailsPage" : "\"Start Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp\""
           }
         }
       },
@@ -86,11 +86,6 @@
             "out.caseId" : "param.caseId"
           }
         },
-        "case" : {
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
-          ]
-        },
         "outLink" : "showInvestmentRequestCustomFields.ivp",
         "showInStartList" : false
       },
@@ -109,7 +104,7 @@
       "type" : "DialogCall",
       "name" : [
         "Customization",
-        "Additional Case Details Page"
+        "Business Details Page"
       ],
       "config" : {
         "dialogId" : "com.axonivy.portal.developerexamples.customization.InvestmentRequestCaseDetailPage",
@@ -149,11 +144,11 @@
       "type" : "RequestStart",
       "name" : "createInvestmentRequestWithPublicAPI.ivp",
       "config" : {
-        "callSignature" : "caseDetailWithProcessPath",
+        "callSignature" : "createInvestmentRequestWithPublicAPI",
         "startCategory" : "Investment",
         "case" : {
-          "name" : "<%=ivy.cms.co(\"/Processes/CreateInvestment/name\")%>",
-          "description" : "<%=ivy.cms.co(\"/Processes/CreateInvestment/description\")%>",
+          "name" : "<%=ivy.cms.co(\"/Processes/CreateInvestmentWithPublicAPI/name\")%>",
+          "description" : "<%=ivy.cms.co(\"/Processes/CreateInvestmentWithPublicAPI/description\")%>",
           "customFields" : [
             { "name" : "AccountNumber", "type" : "Number", "value" : "100" },
             { "name" : "CustomerName", "type" : "String", "value" : "\"Apartment A\"" },
@@ -163,9 +158,9 @@
             { "name" : "SupportData", "type" : "String", "value" : "\"Request for new computer\"" }
           ]
         },
-        "outLink" : "caseDetailWithProcessPath.ivp",
-        "startDescription" : "<%=ivy.cms.co(\"/Processes/CreateInvestment/description\")%>",
-        "startName" : "<%=ivy.cms.co(\"/Processes/CreateInvestment/name\")%>"
+        "outLink" : "createInvestmentRequestWithPublicAPI.ivp",
+        "startDescription" : "<%=ivy.cms.co(\"/Processes/CreateInvestmentWithPublicAPI/description\")%>",
+        "startName" : "<%=ivy.cms.co(\"/Processes/CreateInvestmentWithPublicAPI/name\")%>"
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 296 },
@@ -184,7 +179,7 @@
             "import com.axonivy.portal.components.publicapi.BusinessDetailsAPI;",
             "",
             "BusinessDetailsAPI.create(BusinessDetailsDTO.builder()",
-            "    .path(\"Start Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp\")",
+            "    .path(\"Start Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp\").isEmbedInFrame(false)",
             "    .build()",
             ");"
           ]
@@ -207,7 +202,7 @@
       "config" : {
         "outLinks" : [ "TaskA.ivp" ],
         "task" : {
-          "name" : "<%=ivy.cms.co(\"/Processes/CreateInvestment/Tasks/Request/name\")%>"
+          "name" : "<%=ivy.cms.co(\"/Processes/CreateInvestmentWithPublicAPI/Tasks/Request/name\")%>"
         }
       },
       "visual" : {
