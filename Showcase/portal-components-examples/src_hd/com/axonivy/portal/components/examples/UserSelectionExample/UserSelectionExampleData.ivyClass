@@ -16,3 +16,5 @@ selectedUserForInsertChildren com.axonivy.portal.components.dto.UserDTO #field
 selectedUserForInsertChildren PERSISTENT #fieldModifier
 userSelectionSerenityExampleLink String #field
 userSelectionSerenityExampleLink PERSISTENT #fieldModifier
+excludeAllRoleNames List<String> #field
+excludeAllRoleNames PERSISTENT #fieldModifier
