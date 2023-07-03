@@ -271,6 +271,12 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
   public StreamedContent exportToJsonFile(Dashboard dashboard) {
     dashboard.setVersion(JsonVersion.LATEST.getValue());
+
+    // For private dashboard, we don't need to export permission
+    if (!dashboard.getIsPublic()) {
+      dashboard.setPermissions(null);
+    }
+
     Optional.ofNullable(dashboard).map(Dashboard::getWidgets).orElse(new ArrayList<>())
       .stream().forEach(widget -> {
         if (widget instanceof WelcomeDashboardWidget) {
