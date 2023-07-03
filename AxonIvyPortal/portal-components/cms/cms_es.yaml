@@ -70,6 +70,7 @@ Dialogs:
               FAILED: Ha fallado
               OPEN: Pendiente
               RUNNING: En progreso
+              ZOMBIE: Zombie
             DefaultEmptyMessage: No hay casos
             NoDescription: Sin descripción
             NoName: Sin nombre
@@ -89,4 +90,5 @@ Dialogs:
 Labels:
   DisabledUserPrefix: (inactivo)
   NoName: Sin nombre
+  NoResults: Sin resultados
   NotAvailable: N/A
