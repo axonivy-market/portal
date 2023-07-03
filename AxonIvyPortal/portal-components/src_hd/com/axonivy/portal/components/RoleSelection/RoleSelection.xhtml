@@ -36,6 +36,7 @@
   <cc:attribute name="queryDelay" default="300" />
   <cc:attribute name="maxResults" default="100" type="java.lang.Integer" />
   <cc:attribute name="hasCustomizedSelectionList" default="false" />
+  <cc:attribute name="emptyMessage" shortDescription="Message to show when there's no option in selection list." default="#{ivy.cms.co('/Labels/NoResults')}" />
 
   <!-- Avatar in Selection list attributes  -->
   <cc:attribute name="isShowAvatarInSelectionList" default="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}" />
@@ -92,6 +93,7 @@
       moreText="#{cc.attrs.moreText}"
       queryDelay="#{cc.attrs.queryDelay}"
       maxResults="#{cc.attrs.maxResults}"
+      emptyMessage="#{cc.attrs.emptyMessage}"
       inputStyleClass="#{cc.attrs.inputStyleClass}">
       <p:column rendered="#{!cc.attrs.hasCustomizedSelectionList}">
         <pc:securityMemberNameAndAvatar displayName="#{role.getDisplayName()}" securityMember="#{role}" isStandAlone="false"

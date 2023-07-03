@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "format" : "10.0.0",
   "id" : "1818999DCC4266A8",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -10,29 +10,26 @@
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
-        "signature" : "start",
-        "input" : {
-          "params" : [
-            { "name" : "selectedRole", "type" : "String", "desc" : "" }
-          ],
-          "map" : { }
-        },
+        "callSignature" : "start",
         "result" : {
           "params" : [
-            { "name" : "selectedRole", "type" : "com.axonivy.portal.components.dto.RoleDTO", "desc" : "" }
+            { "name" : "selectedRole", "type" : "com.axonivy.portal.components.dto.RoleDTO" }
           ],
           "map" : {
             "result.selectedRole" : "in.selectedRole"
           }
         },
-        "guid" : "1818999DCC563E55"
+        "guid" : "1818999DCC563E55",
+        "input" : {
+          "params" : [
+            { "name" : "selectedRole", "type" : "String" }
+          ]
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f7", "to" : "f6" }
-      ]
+      "connect" : { "id" : "f7", "to" : "f6" }
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -49,9 +46,7 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }
       },
-      "connect" : [
-        { "id" : "f5", "to" : "f4" }
-      ]
+      "connect" : { "id" : "f5", "to" : "f4" }
     }, {
       "id" : "f4",
       "type" : "HtmlDialogExit",
@@ -63,6 +58,7 @@
       "type" : "Script",
       "name" : "Init data",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
@@ -81,17 +77,15 @@
             "}",
             "in.excludedRoleNames = Arrays.asList(\"Tester\", \"Supporter\");",
             "in.definedRoleNames = Arrays.asList(\"Everybody\");",
+            "in.emptyRoleNames = Arrays.asList(\"\");",
             "in.roleSelectionSerenityExampleLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/RoleSelectionExample/showRoleSelectionExamplesSerenity.ivp\");"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 64 }
       },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
+      "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f8",
       "type" : "HtmlDialogEventStart",
@@ -111,9 +105,7 @@
         "at" : { "x" : 96, "y" : 256 },
         "labelOffset" : { "x" : 46, "y" : 35 }
       },
-      "connect" : [
-        { "id" : "f10", "to" : "f9" }
-      ]
+      "connect" : { "id" : "f10", "to" : "f9" }
     }, {
       "id" : "f9",
       "type" : "HtmlDialogEnd",

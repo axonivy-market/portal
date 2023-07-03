@@ -69,6 +69,7 @@ Dialogs:
               DONE: Erledigt
               OPEN: Offen
               RUNNING: in Bearbeitung
+              ZOMBIE: Zombie
             DefaultEmptyMessage: Keine Vorgänge verfügbar
             NoDescription: Keine Beschreibung vorhanden
             NoName: kein Name
@@ -88,4 +89,5 @@ Dialogs:
 Labels:
   DisabledUserPrefix: (inaktiv)
   NoName: kein Name
+  NoResults: Keine Ergebnisse
   NotAvailable: N/V
