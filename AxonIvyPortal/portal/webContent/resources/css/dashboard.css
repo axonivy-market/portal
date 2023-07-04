@@ -1559,3 +1559,15 @@ span.new-widget-dialog__icon.si {
 .more-information-wrapper {
   height: 2.2rem
 }
+
+.widget__content.case-widget {
+  max-height: fit-content;
+}
+
+.dashboard-cases--table .ui-datatable-scrollable-body {
+  max-height: 340px;
+}
+
+.dashboard-cases--table .ui-datatable-scrollable-body-fullscreen {
+  max-height: 1100px;
+}

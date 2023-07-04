@@ -5,17 +5,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
-import org.primefaces.model.SortOrder;
+import org.primefaces.model.FilterMeta;
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortMeta;
 
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardCaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardCaseService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
-import ch.ivyteam.ivy.jsf.primefaces.legazy.LazyDataModel7;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.util.threadcontext.IvyThreadContext;
 
-public class DashboardCaseLazyDataModel extends LazyDataModel7<ICase> {
+public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
 
   private static final long serialVersionUID = -6615871274830927272L;
 
@@ -25,8 +26,10 @@ public class DashboardCaseLazyDataModel extends LazyDataModel7<ICase> {
   private DashboardCaseSearchCriteria criteria;
   private boolean isFirstTime = true;
   private List<ICase> cases;
-  private CompletableFuture<Void> future;
   private CaseQuery query;
+  private int rowIndex;
+  private CompletableFuture<Void> future;
+  private int countLoad;
 
   public DashboardCaseLazyDataModel() {
     criteria = new DashboardCaseSearchCriteria();
@@ -34,7 +37,7 @@ public class DashboardCaseLazyDataModel extends LazyDataModel7<ICase> {
   }
 
   @Override
-  public List<ICase> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+  public List<ICase> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
     if (isFirstTime) {
       isFirstTime = false;
       if (future != null) {
@@ -46,18 +49,25 @@ public class DashboardCaseLazyDataModel extends LazyDataModel7<ICase> {
       }
     } else {
       if (first == 0) {
-        criteria.setSortField(sortField);
-        criteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
+        Map.Entry<String, SortMeta> sortEntry = sortBy.entrySet().iterator().next();
+        if (sortEntry != null && sortEntry.getValue() != null) {
+          SortMeta sortMeta = sortEntry.getValue();
+          criteria.setSortField(sortMeta.getField());
+          criteria.setSortDescending(sortMeta.getOrder().isDescending());
+        }
         query = criteria.buildQuery();
       }
-      cases = DashboardCaseService.getInstance().findByCaseQuery(query, first, pageSize * (first <= pageSize ? QUERY_PAGES_AT_FIRST_TIME : QUERY_PAGES));
+      cases = DashboardCaseService.getInstance().findByCaseQuery(query, first,
+          pageSize * (first <= pageSize ? QUERY_PAGES_AT_FIRST_TIME : QUERY_PAGES));
     }
+
     int rowCount = cases.size() + first;
     List<ICase> result = new ArrayList<>();
     for (int i = 0; i < Math.min(pageSize, cases.size()); i++) {
       result.add(cases.get(i));
     }
     setRowCount(rowCount);
+    setCountLoad(getCountLoad() + 1);
     return result;
   }
 
@@ -70,6 +80,7 @@ public class DashboardCaseLazyDataModel extends LazyDataModel7<ICase> {
       IvyThreadContext.reset();
     });
     isFirstTime = true;
+    setCountLoad(getCountLoad() + 1);
   }
 
   @Override
@@ -92,7 +103,11 @@ public class DashboardCaseLazyDataModel extends LazyDataModel7<ICase> {
    */
   @Override
   public void setRowIndex(int index) {
-    super.setRowIndex(index);
+    int idx = index;
+    if (idx >= cases.size()) {
+      idx = -1;
+    }
+    this.rowIndex = idx;
   }
 
   /**
@@ -100,7 +115,7 @@ public class DashboardCaseLazyDataModel extends LazyDataModel7<ICase> {
    */
   @Override
   public ICase getRowData() {
-    return super.getRowData();
+    return cases.get(rowIndex);
   }
 
   /**
@@ -108,7 +123,10 @@ public class DashboardCaseLazyDataModel extends LazyDataModel7<ICase> {
    */
   @Override
   public boolean isRowAvailable() {
-    return super.isRowAvailable();
+    if (cases == null) {
+      return false;
+    }
+    return rowIndex >= 0 && rowIndex < cases.size();
   }
 
   public DashboardCaseSearchCriteria getCriteria() {
@@ -118,4 +136,18 @@ public class DashboardCaseLazyDataModel extends LazyDataModel7<ICase> {
   public void setCriteria(DashboardCaseSearchCriteria criteria) {
     this.criteria = criteria;
   }
+
+  @Override
+  public int count(Map<String, FilterMeta> filterBy) {
+    return this.getRowCount();
+  }
+
+  public int getCountLoad() {
+    return countLoad;
+  }
+
+  public void setCountLoad(int countLoad) {
+    this.countLoad = countLoad;
+  }
+
 }

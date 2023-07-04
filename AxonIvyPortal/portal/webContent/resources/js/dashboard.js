@@ -205,6 +205,8 @@ function expandFullscreen(index, widgetId) {
   // Hide dashboard overlay panel is opening
   hideAllDashboardOverlayPanels();
 
+  $('div.ui-datatable-scrollable-body').removeClass('ui-datatable-scrollable-body')
+
   var isSafari = isSafariBrowser();
   if (isSafari) {
     $(widget.get(0)).parent().addClass('expand-fullscreen');
@@ -217,6 +219,7 @@ function collapseFullscreen(index, widgetId) {
   var widget = $('div.grid-stack-item[gs-id = "' + widgetId + '"]');
   widget.removeClass('expand-fullscreen');
 
+  $('div.ui-datatable-scrollable-body').addClass('ui-datatable-scrollable-body')
   var isSafari = isSafariBrowser();
 
   if (isSafari) {
@@ -406,7 +409,7 @@ function getAvailableHeightOfWidget(widget) {
   let $processStartContainer = $(widget).find("[id^='start-button-wrap-']");
   const startProcessButtonHeight = $(widget).find("button[id$=':start-button']").outerHeight(true);
   const processStartContainerXSpaces = parseInt($processStartContainer.outerHeight(true) - $processStartContainer.height());
-  
+
   return $(widget).height() - $processHeader.outerHeight(true) - startProcessButtonHeight - processDescriptionXSpaces - processStartContainerXSpaces;
 }
 // End Process Dashboard Widget
