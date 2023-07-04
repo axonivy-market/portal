@@ -957,6 +957,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     download: Download
     fileContainScript: This file is not allowed to upload because it contains some script!
     fileContainVirus: Upload failed, virus/infection detected!
+    fileEmptyMessage: File is empty
     name: Filename
     size: File size
     type: Type
@@ -1556,6 +1557,9 @@ Dialogs:
           component:
             DashboardImportDetails:
               FileInfomation: File Infomation
+              ImportPrivate: Import Private Dashboard
+              ImportPublic: Import Public Dashboard
+              chooseAJsonFile: Choose a json file
             NewsWidget:
               NewsContentPlaceHolder: Enter News content
               NewsContentValidateMessage: News content in {0} is required

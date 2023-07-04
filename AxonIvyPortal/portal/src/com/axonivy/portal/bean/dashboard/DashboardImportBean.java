@@ -1,13 +1,13 @@
 package com.axonivy.portal.bean.dashboard;
 
 import static ch.ivy.addon.portalkit.constant.PortalConstants.MAX_USERS_IN_AUTOCOMPLETE;
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.WELCOME;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import javax.faces.application.FacesMessage;
@@ -29,11 +29,11 @@ import ch.ivy.addon.portal.generic.bean.DashboardModificationBean;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
-import ch.ivy.addon.portalkit.enums.ExpressMessageType;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.CaseDocumentService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
+import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -43,12 +43,11 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class DashboardImportBean extends DashboardModificationBean implements Serializable{
   private static final long serialVersionUID = 1L;
   private boolean isLoaded = false;
-  private String msgOutput;
-  private String loadStatus;
-  private UploadedFile importDashboardFile; 
+  private UploadedFile importFile; 
   private FacesMessage validateMessage;
   private Boolean isError = false;
   private String fileSize;
+  private static final String ROLE_EVERYBODY = "Everybody";
   
   public void importDashboard(boolean isPublicDashboard) {
     this.isPublicDashboard = isPublicDashboard;
@@ -56,48 +55,76 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
   }
   
   public void loadImportedFile(FileUploadEvent event) {
-    importDashboardFile = event.getFile();
+    this.selectedDashboardPermissions = new ArrayList<>();
+    importFile = event.getFile();
     if (validateFile()) {
       displayedMessage();
       return;
     }
     try {
-      this.selectedDashboard = BusinessEntityConverter.jsonValueToEntity(new String(importDashboardFile.getContent()), Dashboard.class);      
+      selectedDashboard = BusinessEntityConverter.jsonValueToEntity(new String(importFile.getContent()), Dashboard.class);      
     } catch (PortalException e) {
       isError = true;
       validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
       displayedMessage();
+      Ivy.log().error(e);
       return;
     }
-    this.selectedDashboard.setIsPublic(isPublicDashboard);
-    this.selectedDashboard.setId(DashboardUtils.generateId());
-    this.selectedDashboard.setPermissionDTOs(new ArrayList<>());
+    selectedDashboard.setIsPublic(isPublicDashboard);
+    selectedDashboard.setId(DashboardUtils.generateId());
+    selectedDashboard.setPermissionDTOs(new ArrayList<>());
+    
     Map<String, SecurityMemberDTO> nameToSecurityMemberDTO = SecurityMemberUtils.findSecurityMembers("", 0, MAX_USERS_IN_AUTOCOMPLETE)
             .stream().filter(securityMember -> !securityMember.isUser())
             .collect(Collectors.toMap(SecurityMemberDTO::getMemberName, v -> v));
     List<String> permissions = selectedDashboard.getPermissions();
     if (CollectionUtils.isNotEmpty(permissions)) {
-      var responsibles = permissions.stream().filter(Objects::nonNull).distinct()
-          .filter(permission -> !permission.startsWith("#")).map(permission -> nameToSecurityMemberDTO.get(permission))
-          .filter(Objects::nonNull).collect(Collectors.toSet());
-      this.selectedDashboardPermissions = responsibles.stream().map(SecurityMemberDTO::getName).collect(Collectors.toList());
-      this.selectedDashboard.setPermissionDTOs(new ArrayList<>(responsibles));
+      List<SecurityMemberDTO> securityMemberDTOs = new ArrayList<>();
+      for(String permission : permissions) {
+        if (permission != null && !permission.startsWith("#")) {
+          var dto = nameToSecurityMemberDTO.get(permission);
+          if (dto == null) {
+            dto = nameToSecurityMemberDTO.get(ROLE_EVERYBODY);
+          }
+          securityMemberDTOs.add(dto);
+        }
+      }
+      var responsibles = securityMemberDTOs.stream().distinct().collect(Collectors.toSet());
+      selectedDashboardPermissions = responsibles.stream().map(SecurityMemberDTO::getName).collect(Collectors.toList());
+      selectedDashboard.setPermissionDTOs(new ArrayList<>(responsibles));
     }
-    fileSize = FileUtils.byteCountToDisplaySize(this.importDashboardFile.getSize());
+    fileSize = FileUtils.byteCountToDisplaySize(importFile.getSize());
     isLoaded = true;
   }
   
+  
+  /**
+   * Create new image with new widgetId
+   * 
+   * @param widget
+   */
   private void writeWelcomeWidgetImage(WelcomeDashboardWidget widget) {
-    if (StringUtils.isNotBlank(widget.getImageContent()) && StringUtils.isNotBlank(widget.getImageLocation())) {
-      // If has defined location, save to that location
-      ContentObject widgetImage = WelcomeWidgetUtils.getImageContentObject(widget.getImageLocation(), widget.getImageType());
-      String[] test = widget.getImageContent().split(",");
-      try {
-        widget.setImageContent(test[1]);
-        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(widgetImage).write().bytes(Base64.getDecoder().decode(widget.getImageContent()));
-      }catch (Exception ex) {
+    if (widget.getImageType() == null) {
+      Ivy.log().warn("WidgetId {0} does not has imageType. Skip write to cms.", widget.getId());
+      return;
+    }
+    if (StringUtils.isNotBlank(widget.getImageLocation())) {
+      String widgetId = DashboardWidgetUtils.generateNewWidgetId(WELCOME);
+      String fileExtension = WelcomeWidgetUtils.getFileTypeOfImage(widget.getImageType());
+      String imageLocation = widgetId.concat(WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT).concat(fileExtension);
+      ContentObject newImageObject = WelcomeWidgetUtils.getImageContentObject(WelcomeWidgetUtils.getFileNameOfImage(imageLocation), fileExtension);
+      if (StringUtils.isNotBlank(widget.getImageContent())) {
+        // If has defined content, create new image
+        if (newImageObject != null) {
+          WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObject).write().bytes(Base64.getDecoder().decode(widget.getImageContent()));
+        }
+        widget.setImageLocation(imageLocation);
+        widget.setImageContent(null);
+      } else {
+        // If has defined location, clone new image
+        byte[] oldFileContent = WelcomeWidgetUtils.getImageAsByteData(widget.getImageLocation());
+        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObject).write().bytes(oldFileContent);
       }
-      widget.setImageContent(null);
     }
   }
   
@@ -115,24 +142,22 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
   }
   
   private void displayedMessage() {
-    FacesContext.getCurrentInstance().addMessage("import-express-form:import-express-dialog-message", validateMessage);
-    loadStatus = ExpressMessageType.FAILED.getLabel();
+    FacesContext.getCurrentInstance().addMessage("import-dashboard-form:import-dashboard-dialog-message", validateMessage);
   }
 
   private boolean validateFile() {
     isError = false;
-    msgOutput = StringUtils.EMPTY;
     
-    if (importDashboardFile == null || importDashboardFile.getSize() == 0) {
+    if (importFile == null || importFile.getSize() == 0) {
       isError = true;
-      validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/fileEmptyMessage"), null);
-    } else if (CaseDocumentService.enableVirusScannerForUploadedDocument() && CaseDocumentService.isDocumentTypeHasVirus(importDashboardFile)) {
+      validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileEmptyMessage"), null);
+    } else if (CaseDocumentService.enableVirusScannerForUploadedDocument() && CaseDocumentService.isDocumentTypeHasVirus(importFile)) {
       isError = true;
       validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainVirus"), null);
-    } else if (CaseDocumentService.enableScriptCheckingForUploadedDocument() && !CaseDocumentService.isDocumentSafe(importDashboardFile)) {
+    } else if (CaseDocumentService.enableScriptCheckingForUploadedDocument() && !CaseDocumentService.isDocumentSafe(importFile)) {
       isError = true;
       validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
-    } else if (!FilenameUtils.isExtension(importDashboardFile.getFileName(), "json")) {
+    } else if (!FilenameUtils.isExtension(importFile.getFileName(), "json")) {
       isError = true;
       validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/Dialogs/components/CaseDocument/invalidFileMessage"), null);
     }
@@ -140,9 +165,9 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
   }
   
   private void resetDialog() {
-    this.selectedDashboard = new Dashboard();
+    selectedDashboard = new Dashboard();
     fileSize = null;
-    importDashboardFile = null;
+    importFile = null;
     isLoaded = isError = false;
   }
   
@@ -154,30 +179,14 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
     this.isLoaded = isLoaded;
   }
   
-  public String getMsgOutput() {
-    return msgOutput;
+  public UploadedFile getImportFile() {
+    return importFile;
   }
 
-  public void setMsgOutput(String msgOutput) {
-    this.msgOutput = msgOutput;
+  public void setImportFile(UploadedFile importFile) {
+    this.importFile = importFile;
   }
 
-  public String getLoadStatus() {
-    return loadStatus;
-  }
-
-  public void setLoadStatus(String loadStatus) {
-    this.loadStatus = loadStatus;
-  }
-
-  public UploadedFile getImportDashboardFile() {
-    return importDashboardFile;
-  }
-  
-  public void setImportDashboardFile(UploadedFile importDashboardFile) {
-    this.importDashboardFile = importDashboardFile;
-  }
-  
   public FacesMessage getValidateMessage() {
     return validateMessage;
   }

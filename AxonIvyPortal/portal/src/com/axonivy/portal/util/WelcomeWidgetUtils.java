@@ -48,7 +48,7 @@ public class WelcomeWidgetUtils {
     }
   }
 
-  private static byte[] getImageAsByteData(String filePath) {
+  public static byte[] getImageAsByteData(String filePath) {
     byte[] fileContent = null;
     try {
       File file = new File(filePath);

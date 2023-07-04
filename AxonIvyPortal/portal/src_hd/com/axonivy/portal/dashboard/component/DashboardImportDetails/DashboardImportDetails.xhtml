@@ -18,9 +18,10 @@
 
 <cc:implementation>
   <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
+  <c:set var="isPublicDashboard" value="#{cc.attrs.isPublicDashboard}"/>
 
   <p:dialog id="#{cc.attrs.importDialogId}"
-    widgetVar="#{cc.attrs.importDialogId}" header="#{cc.attrs.isPublicDashboard ? 'Import Public Dashboard' : 'Import Private Dashboard'}"
+    widgetVar="#{cc.attrs.importDialogId}" header="#{ivy.cms.co(isPublicDashboard ? '/Dialogs/com/axonivy/portal/dashboard/component/DashboardImportDetails/ImportPublic' : '/Dialogs/com/axonivy/portal/dashboard/component/DashboardImportDetails/ImportPrivate')}"
     appendTo="@(body)" closeOnEscape="true" draggable="false"
     fitViewport="true" responsive="true" modal="true" width="70%"
     styleClass="import-dashboard-dialog"
@@ -29,7 +30,7 @@
       <h:panelGroup id="dashboard-upload-panel" layout="block"
         styleClass="ui-g">
         <div class="ui-g-12">
-          <h5 class="import-header-title">Choose a json file</h5>
+          <h5 class="import-header-title"><h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/DashboardImportDetails/chooseAJsonFile')}" /></h5>
         </div>
         <div class="ui-g-12">
           <p:fileUpload id="dashboard-upload" chooseIcon="#{visibilityBean.generateButtonIcon('si si-touchpad-finger')}"
@@ -38,7 +39,7 @@
             skinSimple="true" listener="#{managedBean.loadImportedFile}"
             allowTypes="/(\.|\/)(json)$/i"
             update="import-dashboard-form import-dashboard-dialog-message #{p:resolveFirstComponentWithId('footer-button-container', view).clientId}"
-            value="#{managedBean.importDashboardFile}" auto="true">
+            value="#{managedBean.importFile}" auto="true">
           </p:fileUpload>
         </div>
 
@@ -52,7 +53,7 @@
           <p:outputLabel value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/DashboardImportDetails/FileInfomation')}" />
         </div>
         <div class="ui-g-10 ui-fluid">
-          <h:outputText>#{managedBean.importDashboardFile.getFileName()} | #{managedBean.fileSize}</h:outputText>
+          <h:outputText>#{managedBean.importFile.getFileName()} | #{managedBean.fileSize}</h:outputText>
         </div>
       
         <div class="ui-g-2 import-dashboard-label">

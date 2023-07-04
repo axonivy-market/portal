@@ -955,6 +955,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     download: Télécharger
     fileContainScript: Ce fichier n'est pas autorisé à être téléchargé en raison du contenu du script!
     fileContainVirus: Erreur de téléchargement, virus/infection détecté !
+    fileEmptyMessage: Le fichier est vide
     name: Nom du fichier
     size: Taille du fichier
     type: Type
@@ -1555,6 +1556,9 @@ Dialogs:
           component:
             DashboardImportDetails:
               FileInfomation: File Infomation
+              ImportPrivate: Importer un tableau de bord privé
+              ImportPublic: Importer un tableau de bord public
+              chooseAJsonFile: Choisissez un fichier json
             NewsWidget:
               NewsContentPlaceHolder: Saisir le contenu de l'actualité
               NewsContentValidateMessage: Le contenu de l'actualité dans {0} est requis
