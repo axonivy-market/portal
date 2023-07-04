@@ -510,7 +510,11 @@ function highlightCaseExportToExcelButton() {
   createRedMediumOutline($("a[id$=':case-export-to-excel']"));
 }
 
-function highlightWidgetExportToExcelLink() {
+function highlightWidgetExportToExcelLinkForTask() {
+  createRedMediumOutline($("form[id$=':export-to-excel-form-0'] > a"));
+}
+
+function highlightWidgetExportToExcelLinkForCase() {
   createRedMediumOutline($("form[id$=':export-to-excel-form-1'] > a"));
 }
 
