@@ -54,7 +54,6 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   protected static final String PUBLIC_DASHBOARD_DEFAULT_ICON = "si-network-share";
   protected static final String PRIVATE_DASHBOARD_DEFAULT_ICON = "si-single-neutral-shield";
   private static final String JSON_FILE_POSTFIX = "_Dashboard_Export.json";
-  private static final String BASE64_DATATYPE_STRING = "data:image/%s;base64,";
 
   protected boolean isPublicDashboard;
   protected List<String> selectedDashboardPermissions;
@@ -272,6 +271,12 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
   public StreamedContent exportToJsonFile(Dashboard dashboard) {
     dashboard.setVersion(JsonVersion.LATEST.getValue());
+
+    // For private dashboard, we don't need to export permission
+    if (!dashboard.getIsPublic()) {
+      dashboard.setPermissions(null);
+    }
+
     Optional.ofNullable(dashboard).map(Dashboard::getWidgets).orElse(new ArrayList<>())
       .stream().forEach(widget -> {
         if (widget instanceof WelcomeDashboardWidget) {
@@ -298,7 +303,6 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     ContentObject widgetImage = WelcomeWidgetUtils.getImageContentObject(widget.getImageLocation(), widget.getImageType());
     if (widgetImage != null && widgetImage.exists()) {
       result = new String(Base64.getEncoder().encode(WelcomeWidgetUtils.readObjectValueOfDefaultLocale(widgetImage).read().bytes()));
-      return String.format(BASE64_DATATYPE_STRING, Optional.ofNullable(widget).map(WelcomeDashboardWidget::getImageType).orElse("png")).concat(result);
     }
     return result;
   }
