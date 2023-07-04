@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -41,18 +42,15 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
       return getCustomColumnName(column);
     }
 
-    switch(columnField) {
-      case NAME:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/caseName");
-      case DESCRIPTION:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/description");
-      case CREATED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME");
-      case FINISHED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME");
-      default:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/" + columnField.name());
-    }
+    String url = switch (columnField) {
+      case NAME -> "/ch.ivy.addon.portalkit.ui.jsf/common/caseName";
+      case DESCRIPTION -> "/ch.ivy.addon.portalkit.ui.jsf/common/description";
+      case CREATED -> "/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME";
+      case FINISHED -> "/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME";
+      default -> "/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/" + columnField.name();
+    };
+
+    return Ivy.cms().co(url);
   }
 
   /**
@@ -91,10 +89,16 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
           return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
         }
         return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(caseItem.getCreatorUser(), caseItem.getCreatorUserName());
-      case CREATED:
-        return caseItem.getStartTimestamp();
-      case FINISHED:
-        return caseItem.getEndTimestamp();
+      case CREATED: {
+        String exportedCreatedDate = DateTimeGlobalSettingService.getInstance()
+            .convertDateByFormattingLanguageAndKeepContentLocale(caseItem.getStartTimestamp());
+        return exportedCreatedDate;
+      }
+      case FINISHED: {
+        String exportedFinishedDate = DateTimeGlobalSettingService.getInstance()
+            .convertDateByFormattingLanguageAndKeepContentLocale(caseItem.getEndTimestamp());
+        return exportedFinishedDate;
+      }
       case OWNER:
         if (caseItem.getOwnerName() == null) {
           return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
