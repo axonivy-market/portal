@@ -58,11 +58,11 @@ public class LanguageService implements ILanguageService {
     return ivyLanguage;
   }
 
-  private String getUserLanguage() {
+  public String getUserLanguage() {
     return loadLanguage(IUser::getLanguage);
   }
   
-  private String getUserFormatLanguage() {
+  public String getUserFormatLanguage() {
     return loadLanguage(IUser::getFormattingLanguage);
   }
 

@@ -21,13 +21,13 @@
         for="from-created-calendar" />
       <p:datePicker id="from-created-calendar" value="#{cc.attrs.filter.fromCreationDate}"
         locale="#{localeBean.locale}"
-        pattern="#{dateTimePatternBean.configuredDateFilterPattern}" showIcon="true" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
+        showIcon="true" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
         converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongFromDateFormat', [dateTimePatternBean.configuredDateFilterPattern])}" />
 
       <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" for="to-created-calendar" />
       <p:datePicker id="to-created-calendar" value="#{cc.attrs.filter.toCreationDate}"
         locale="#{localeBean.locale}"
-        pattern="#{dateTimePatternBean.configuredDateFilterPattern}" showIcon="true" showTime="#{dateTimePatternBean.isDateFilterWithTime}" 
+        showIcon="true" showTime="#{dateTimePatternBean.isDateFilterWithTime}" 
         converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongToDateFormat', [dateTimePatternBean.configuredDateFilterPattern])}" />
     </h:panelGrid>
   </ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter>

@@ -126,7 +126,7 @@
       <h:outputText value="#{case.customFields().timestampField('ShipmentDate').getOrNull()}"
         styleClass="u-text-align-center case-header-end-time-cell customized-case-header-column  js-hidden-when-expand-menu u-hidden-lg-down"
         rendered="#{dataModel.caseDataModel.isSelectedColumn('ShipmentDate')}">
-        <f:convertDateTime locale="#{localeBean.locale}" dateStyle="medium" type="both" timeStyle="short"/>
+        <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}/>
       </h:outputText>
     </ui:define>
 

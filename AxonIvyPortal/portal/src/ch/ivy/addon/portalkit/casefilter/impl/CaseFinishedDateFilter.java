@@ -1,7 +1,6 @@
 package ch.ivy.addon.portalkit.casefilter.impl;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.faces.application.FacesMessage;
@@ -32,7 +31,7 @@ public class CaseFinishedDateFilter extends CaseFilter {
 
   @Override
   public String value() {
-    DateFormat formatter = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getDateTimePattern(), Ivy.session().getContentLocale());
+    DateFormat formatter = DateTimeGlobalSettingService.getInstance().getDefaultDateTimeFormater();
     if (fromFinishedDate != null && toFinishedDate != null) {
       return String.format(DASH, formatter.format(fromFinishedDate), formatter.format(toFinishedDate));
     }

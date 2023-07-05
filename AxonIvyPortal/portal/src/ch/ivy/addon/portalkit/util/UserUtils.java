@@ -26,7 +26,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.language.LanguageConfigurator;
 import ch.ivyteam.ivy.language.LanguageManager;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
-import ch.ivyteam.ivy.request.IHttpRequest;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserAbsence;
@@ -46,8 +45,6 @@ public class UserUtils {
   private static final String FILTER_GROUP_ID = "FILTER_GROUP_ID";
   private static final String SELECTED_DEFAULT_TASK_FILTER_SET = "SELECTED_DEFAULT_TASK_FILTER_SET";
   private static final String SELECTED_DEFAULT_CASE_FILTER_SET = "SELECTED_DEFAULT_CASE_FILTER_SET";
-  private static final String SHORT_YEAR_PATTERN = "y";
-  private static final String FULL_YEAR_PATTERN = "yyyy";
 
   private UserUtils() {
   }
@@ -64,7 +61,6 @@ public class UserUtils {
       
       getIvySession().setContentLocale(contentLocale);
       getIvySession().setFormattingLocale(formattingLocale);
-      setDefaultDatePattern(sessionUser);
       return null;
     });
   }
@@ -89,7 +85,7 @@ public class UserUtils {
   }
 
   public static String findNextAbsenceOfUser(IUser iUser) {
-    DateFormat formatter = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getDateWithoutTimePattern());
+    DateFormat formatter = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getDefaultDatePattern());
 
     List<IUserAbsence> findAbsenceOfUser = findAbsenceOfUser(iUser);
     String returnString = "";

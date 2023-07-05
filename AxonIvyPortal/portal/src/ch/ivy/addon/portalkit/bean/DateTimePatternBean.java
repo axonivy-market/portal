@@ -1,16 +1,12 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
-
 @ManagedBean
 @SessionScoped
 public class DateTimePatternBean implements Serializable {
@@ -44,7 +40,7 @@ public class DateTimePatternBean implements Serializable {
   }
 
   public String getConfiguredDateWithoutTimePattern() {
-    return dateTimePatternService.getDateWithoutTimePattern();
+    return dateTimePatternService.getDefaultDatePattern();
   }
 
   public boolean getIsDateFilterWithTime() {
