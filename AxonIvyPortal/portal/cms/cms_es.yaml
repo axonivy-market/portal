@@ -850,6 +850,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       configurationDescription: Puede configurar su widget en esta área de configuración. Por favor, defina los filtros requeridos así como las columnas a mostrar.
       customWidgetParamChangedMessage: Este proceso ha cambiado. Presione aktualizar para continuar.
       editWidgetHeader: Editar configuración del widget
+      import: Importar
+      importFromJsonFile: Importar desde archivo JSON
       newWidgetHeader: Nueva {0} configuración del widget
       pageTitle: Configuración del panel de control
       processConfigurationDescription: Puede configurar su widget en esta área de configuración. Por favor, defina los filtros requeridos así como las propiedades a mostrar.

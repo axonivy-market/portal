@@ -42,7 +42,7 @@
             </div>
           </p:commandLink>
         </div>
-        <div class="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12">
+        <h:panelGroup styleClass="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12" rendered="#{dashboardModificationBean.hasImportDashboardPermission()}"> 
           <p:commandLink id="import-dashboard" styleClass="dashboard-action-container"
             oncomplete="PF('dashboard-import-dialog').show()" 
             actionListener="#{dashboardImportBean.importDashboard(isPublicDashboard)}"
@@ -50,16 +50,16 @@
             resetValues="true"
             global="false">
             <div class="dashboard-action__icon">
-              <span class="si si-common-file-empty dashboard-action-container-icon" ></span>
+              <span class="si si-file-code-upload-1 dashboard-action-container-icon" ></span>
             </div>
             <div class="dashboard-action__text">
               <p:outputLabel styleClass="dashboard-action-container-label"
-                value="Import" />
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/import')}" />
               <p:outputLabel styleClass="dashboard-action-container-description"
-                value="Import from a json file" />
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/importFromJsonFile')}" />
             </div>
           </p:commandLink>
-        </div>
+        </h:panelGroup>
         <ui:repeat var="template" value="#{dashboardTemplateSelectionBean.dashboardTemplates}" varStatus="status">
           <div class="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12">
             <p:commandLink id="template" styleClass="dashboard-action-container"

@@ -73,7 +73,6 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
     selectedDashboard.setIsPublic(isPublicDashboard);
     selectedDashboard.setId(DashboardUtils.generateId());
     selectedDashboard.setPermissionDTOs(new ArrayList<>());
-    
     Map<String, SecurityMemberDTO> nameToSecurityMemberDTO = SecurityMemberUtils.findSecurityMembers("", 0, MAX_USERS_IN_AUTOCOMPLETE)
             .stream().filter(securityMember -> !securityMember.isUser())
             .collect(Collectors.toMap(SecurityMemberDTO::getMemberName, v -> v));
@@ -84,6 +83,7 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
         if (permission != null && !permission.startsWith("#")) {
           var dto = nameToSecurityMemberDTO.get(permission);
           if (dto == null) {
+            Ivy.log().warn("Role [{0}] could not be found. Will be replaced by role Everybody.", permission);
             dto = nameToSecurityMemberDTO.get(ROLE_EVERYBODY);
           }
           securityMemberDTOs.add(dto);
@@ -105,7 +105,7 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
    */
   private void writeWelcomeWidgetImage(WelcomeDashboardWidget widget) {
     if (widget.getImageType() == null) {
-      Ivy.log().warn("WidgetId {0} does not has imageType. Skip write to cms.", widget.getId());
+      Ivy.log().warn("WidgetId [{0}] does not has imageType. Skip write to cms.", widget.getId());
       return;
     }
     if (StringUtils.isNotBlank(widget.getImageLocation())) {
@@ -115,9 +115,7 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
       ContentObject newImageObject = WelcomeWidgetUtils.getImageContentObject(WelcomeWidgetUtils.getFileNameOfImage(imageLocation), fileExtension);
       if (StringUtils.isNotBlank(widget.getImageContent())) {
         // If has defined content, create new image
-        if (newImageObject != null) {
-          WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObject).write().bytes(Base64.getDecoder().decode(widget.getImageContent()));
-        }
+        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObject).write().bytes(Base64.getDecoder().decode(widget.getImageContent()));
         widget.setImageLocation(imageLocation);
         widget.setImageContent(null);
       } else {
