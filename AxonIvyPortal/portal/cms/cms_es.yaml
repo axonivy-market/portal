@@ -773,6 +773,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: La configuración del panel de control no es compatible con los dispositivos móviles.
       EditPrivateDashboards: Editar sus tableros privados
       EditPublicDashboards: Editar tableros públicos
+      ExportDashboard: Exportar el cuadro de mandos
       PrivateDashboard: Cuadros de mando privados
       PrivateDashboardConfiguration: Configuración de tableros privados
       PublicDashboard: Cuadros de mando públicos

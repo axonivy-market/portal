@@ -47,7 +47,7 @@
           <p:tooltip for="dashboard-description-group" value="#{dashboard.description}" trackMouse="true" hideEvent="mouseleave click" styleClass="dashboard-configuration-tooltip"/>
         </h:panelGroup>
       </p:column>
-      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" width="120"
+      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" width="#{dashboardModificationBean.hasExportDashboardPermission() ? '160' : '120'}"
         styleClass="u-text-align-center">
         <p:commandButton id="edit" process="@this" icon="si si-graphic-tablet-drawing-pen"
           styleClass="rounded-button ui-button-outlined action-column-icon-button u-mar-right-5"
@@ -61,6 +61,14 @@
           actionListener="#{dashboardModificationBean.navigateToDashboardDetailsPage(dashboard.id)}"
           title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}"
           process="@this" update="@this"/>
+
+       <h:form styleClass="dashboard-configuration__export-button-form" rendered="#{dashboardModificationBean.hasExportDashboardPermission()}">
+         <p:commandButton id="export-dashboard" styleClass="rounded-button ui-button-outlined action-column-icon-button u-mar-right-5 export-dashboard" icon="si si-download-bottom"
+           title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportDashboard')}"
+           process="@this" update="@this" immediate="true" ajax="false">
+           <p:fileDownload value="#{dashboardModificationBean.exportToJsonFile(dashboard)}" />
+         </p:commandButton>
+        </h:form>
 
         <p:commandButton id="delete-dashboard" process="@this"
           styleClass="rounded-button ui-button-outlined action-column-icon-button ui-button-danger" icon="si si-bin-1"
