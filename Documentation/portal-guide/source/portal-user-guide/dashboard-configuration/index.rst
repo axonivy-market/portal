@@ -171,7 +171,7 @@ A table of public dashboards is shown with the following information:
 #. Description
 
 #. :guilabel:`Actions` for further actions: |edit-icon| edit (name, description), |settings-icon| configure
-   (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| export to download dashboard configuration,
+   (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| export dashboard,
    and |trash-icon| delete a public dashboard.
 
    .. note::
