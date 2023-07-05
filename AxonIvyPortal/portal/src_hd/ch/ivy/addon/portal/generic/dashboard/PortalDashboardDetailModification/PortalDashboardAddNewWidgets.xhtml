@@ -54,14 +54,14 @@
   <h:form id="widget-configuration-form" styleClass="ui-g">
     <c:if test="#{widget.type eq 'TASK'}">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidgetConfiguration id="new-widget-configuration-component" taskWidget="#{widget}"
-        componentToUpdate="widget-configuration-form" 
-        managedBean="#{dashboardDetailModificationBean}"/>
+      	managedBean="#{dashboardDetailModificationBean}"
+        componentToUpdate="widget-configuration-form" />
     </c:if>
 
     <c:if test="#{widget.type eq 'CASE'}">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidgetConfiguration id="new-widget-configuration-component" caseWidget="#{widget}"
-        componentToUpdate="widget-configuration-form" 
-        managedBean="#{dashboardDetailModificationBean}"/>
+      	managedBean="#{dashboardDetailModificationBean}"
+        componentToUpdate="widget-configuration-form" />
     </c:if>
 
     <c:if test="#{widget.type eq 'PROCESS'}">
@@ -99,8 +99,8 @@
    <c:if test="#{widget.type eq 'NEWS'}">
      <ic:com.axonivy.portal.dashboard.component.NewsWidgetConfiguration id="new-widget-configuration-component"
        widget="#{widget}"
-       componentToUpdate="widget-configuration-form"
-       managedBean="#{dashboardDetailModificationBean}"/>
+       managedBean="#{dashboardDetailModificationBean}"
+       componentToUpdate="widget-configuration-form"/>
    </c:if>
   </h:form>
 

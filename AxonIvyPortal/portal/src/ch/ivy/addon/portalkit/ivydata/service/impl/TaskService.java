@@ -78,11 +78,11 @@ public class TaskService implements ITaskService {
   }
   
   protected List<ITask> executeTaskQuery(TaskQuery query, Integer startIndex, Integer count) {
-    return taskQueryExecutor().getResults(query, startIndex, count);
+    return Ivy.wf().getTaskQueryExecutor().getResults(query, startIndex, count);
   }
 
-  private long countTasks(TaskQuery query) {
-    return taskQueryExecutor().getCount(query);
+  protected long countTasks(TaskQuery query) {
+    return Ivy.wf().getTaskQueryExecutor().getCount(query);
   }
   
   protected TaskQuery queryExcludeHiddenTasks() {

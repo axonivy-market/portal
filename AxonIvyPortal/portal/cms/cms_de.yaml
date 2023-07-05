@@ -391,7 +391,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     DESTROYED: Gelöscht
     DESTROYED_UPPERCASE: GELÖSCHT
     DONE: Erledigt
-    DONE_UPPERCASE: ABGESCHLOSSEN
+    DONE_UPPERCASE: ERLEDIGT
     FAILED: Fehlgeschlagen
     INPROGRESS: IN BEARBEITUNG
     OPEN: Offen
@@ -883,6 +883,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     expiryTo: Ablauf bis
     export:
       exportedCasesFileName: AXONIVY_Dataset_Cases_{0}_{1}.{2}
+      exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}_{1}.{2}
     field: Feld
     fieldIsAdded: Das Feld {0} wurde hinzugefügt
     iconMessage:
@@ -1405,7 +1406,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     DESTROYED: Vernichtet
     DESTROYED_UPPERCASE: GELÖSCHT
     DONE: Erledigt
-    DONE_UPPERCASE: ABGESCHLOSSEN
+    DONE_UPPERCASE: ERLEDIGT
     FAILED: Fehlerhaft
     FAILED_UPPERCASE: FEHLERHAFT
     INPROGRESS: IN BEARBEITUNG

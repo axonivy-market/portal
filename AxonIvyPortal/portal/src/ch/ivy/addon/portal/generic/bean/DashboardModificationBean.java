@@ -96,6 +96,8 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
 
   public void saveDashboardDetail() {
+    String currentTitle = this.selectedDashboard.getTitle();
+    initMultipleLanguagesForDashboardName(currentTitle);
     List<SecurityMemberDTO> responsibles = this.selectedDashboard.getPermissionDTOs();
     List<String> permissions = new ArrayList<>();
     String displayedPermission = "";
@@ -201,22 +203,10 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   public String generateDashboardPermisisonForDisplay(Dashboard dashboard) {
     return String.join(", ", dashboard.getPermissions());
   }
-  
+
   public void updateDashboardTitleByLocale() {
-    Map<String, DisplayName> mapLanguage = getMapLanguages();
-    List<String> supportedLanguages = getSupportedLanguages();
     String currentTitle = this.selectedDashboard.getTitle();
-    for (String language : supportedLanguages) {
-      DisplayName localeLanguage = mapLanguage.get(language);
-      if (localeLanguage == null) {
-        DisplayName displayName = new DisplayName();
-        displayName.setLocale(Locale.forLanguageTag(language));
-        displayName.setValue(currentTitle);
-        this.selectedDashboard.getTitles().add(displayName);
-      } else if (localeLanguage.getValue() == null || localeLanguage.getValue().isBlank()) {
-        localeLanguage.setValue(currentTitle);
-      }
-    }
+    initMultipleLanguagesForDashboardName(currentTitle);
     String currentLanguage = UserUtils.getUserLanguage();
     Optional<DisplayName> optional = this.selectedDashboard.getTitles().stream()
         .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
@@ -248,6 +238,27 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     return this.selectedDashboard.getTitles();
   }
 
+  private Map<String, DisplayName> getMapLanguages() {
+    List<DisplayName> languages = this.selectedDashboard.getTitles();
+    return languages.stream().collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
+  }
+
+  private void initMultipleLanguagesForDashboardName(String currentTitle) {
+    Map<String, DisplayName> mapLanguage = getMapLanguages();
+    List<String> supportedLanguages = getSupportedLanguages();
+    for (String language : supportedLanguages) {
+      DisplayName localeLanguage = mapLanguage.get(language);
+      if (localeLanguage == null) {
+        DisplayName displayName = new DisplayName();
+        displayName.setLocale(Locale.forLanguageTag(language));
+        displayName.setValue(currentTitle);
+        this.selectedDashboard.getTitles().add(displayName);
+      } else if (StringUtils.isBlank(localeLanguage.getValue())) {
+        localeLanguage.setValue(currentTitle);
+      }
+    }
+  }
+
   public void translate(DisplayName title) {
     translatedText = "";
     warningText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/InvalidDeepLAuthKey");
@@ -262,7 +273,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
         Map<String, Object> response = null;
         try {
           response = IvyAdapterService.startSubProcess("translateText(String,com.deepl.api.v2.client.TargetLanguage)",
-              params, new ArrayList<>());
+                  params, new ArrayList<>());
         } catch (ServiceException ex) {
           Ivy.log().error(ex.getMessage());
         }
@@ -275,10 +286,4 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     }
 
   }
-
-  private Map<String, DisplayName> getMapLanguages() {
-    List<DisplayName> languages = this.selectedDashboard.getTitles();
-    return languages.stream().collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
-  }
-
 }

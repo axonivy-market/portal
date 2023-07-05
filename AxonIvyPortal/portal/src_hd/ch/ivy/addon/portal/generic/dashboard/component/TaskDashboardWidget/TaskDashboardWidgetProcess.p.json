@@ -44,5 +44,164 @@
       "visual" : {
         "at" : { "x" : 224, "y" : 160 }
       }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "getExportedFileForTaskWidget(TaskDashboardWidget)",
+      "config" : {
+        "signature" : "getExportedFileForTaskWidget",
+        "input" : {
+          "params" : [
+            { "name" : "widget", "type" : "ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget", "desc" : "" }
+          ],
+          "map" : {
+            "out.widget" : "param.widget"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "exportFile", "type" : "org.primefaces.model.StreamedContent", "desc" : "" }
+          ],
+          "map" : {
+            "result.exportFile" : "in.exportedFile"
+          }
+        },
+        "guid" : "188C39FA50F4AB57"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 248 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f7" }
+      ]
+    }, {
+      "id" : "f76",
+      "type" : "Script",
+      "name" : "init data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.util.ExportUtils;",
+            "import ch.ivy.addon.portalkit.enums.DashboardColumnType;",
+            "import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;",
+            "import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;",
+            "import java.util.ArrayList;",
+            "",
+            "in.loopCounter = 0;",
+            "in.maxResultNumberPerQuery = 100000;",
+            "in.collectedTasksForExporting = new ArrayList();",
+            "in.columnsVisibility = ExportUtils.buildVisibleColumns(in.widget.dataModel.criteria.columns);"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 392, "y" : 248 }
+      },
+      "connect" : [
+        { "id" : "f12", "to" : "f78" }
+      ]
+    }, {
+      "id" : "f79",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 992, "y" : 248 }
+      }
+    }, {
+      "id" : "f78",
+      "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f11" : "in.loopCounter <= in.totalTasks / in.maxResultNumberPerQuery"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 512, "y" : 248 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f10", "condition" : "in.loopCounter <= in.totalTasks/ in.maxResultNumberPerQuery" },
+        { "id" : "f14", "to" : "f13" }
+      ]
+    }, {
+      "id" : "f82",
+      "type" : "Script",
+      "name" : "counter++",
+      "config" : {
+        "output" : {
+          "code" : "in.loopCounter++;"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 744, "y" : 344 }
+      },
+      "connect" : [
+        { "id" : "f16", "to" : "f78" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "Script",
+      "name" : "count tasks",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardTaskService;",
+            "import ch.ivyteam.ivy.environment.Ivy;",
+            "import org.primefaces.PrimeFaces;",
+            "",
+            "in.totalTasks = DashboardTaskService.getInstance().countByTaskQuery(in.widget.dataModel.criteria.buildQuery());"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 248 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f76" }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "find task",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardTaskService;",
+            "",
+            "int startIndex = in.loopCounter * in.maxResultNumberPerQuery;",
+            "in.collectedTasksForExporting.addAll(DashboardTaskService.getInstance().findByTaskQuery(in.widget.dataModel.getCriteria().buildQuery(), startIndex, in.maxResultNumberPerQuery));"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 512, "y" : 344 }
+      },
+      "connect" : [
+        { "id" : "f15", "to" : "f82" }
+      ]
+    }, {
+      "id" : "f13",
+      "type" : "Script",
+      "name" : [
+        "Export",
+        "to Excel"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.exporter.TaskDashboardExporter;",
+            "",
+            "TaskDashboardExporter exporter = new TaskDashboardExporter(in.columnsVisibility, in.widget.name);",
+            "in.exportedFile = exporter.getStreamedContent(in.collectedTasksForExporting);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 864, "y" : 248 }
+      },
+      "connect" : [
+        { "id" : "f17", "to" : "f79" }
+      ]
     } ]
 }

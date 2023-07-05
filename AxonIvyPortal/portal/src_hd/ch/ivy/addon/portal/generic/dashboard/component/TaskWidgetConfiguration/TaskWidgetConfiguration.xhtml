@@ -5,9 +5,9 @@
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="taskWidget" />
+  <cc:attribute name="managedBean" />
   <cc:attribute name="componentToUpdate" />
   <cc:attribute name="isReadOnlyMode" default="false" />
-  <cc:attribute name="managedBean" />
 </cc:interface>
 
 <cc:implementation>
@@ -15,10 +15,10 @@
 
   <ui:decorate template="/layouts/restricted/decorator/TableWidgetConfiguration.xhtml">
     <ui:param name="widget" value="#{cc.attrs.taskWidget}" />
+    <ui:param name="managedBean" value="#{cc.attrs.managedBean}" />
     <ui:param name="componentToUpdateOnPreviewAction" value="#{cc.clientId}:task-widget-preview:dashboard-tasks" />
     <ui:param name="componentToProcessOnPreviewAction" value="user-filter" />
     <ui:param name="onCompletePreviewAction" value="PF('dashboard-tasks-#{cc.attrs.taskWidget.id}').filter()" />
-    <ui:param name="managedBean" value="#{cc.attrs.managedBean}" />
 
     <ui:define name="widgetFilterContent">
       <h:panelGroup id="user-filter" layout="block" styleClass="ui-g">

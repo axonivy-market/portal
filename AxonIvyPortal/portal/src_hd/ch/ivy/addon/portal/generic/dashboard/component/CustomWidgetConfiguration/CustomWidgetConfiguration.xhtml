@@ -6,12 +6,11 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="widget" />
   <cc:attribute name="componentToUpdate" />
-  <cc:attribute name="managedBean" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="widget" value="#{cc.attrs.widget}" />
-  <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
+  
   <!-- Configuration -->
   <h:panelGroup id="user-filter" layout="block" styleClass="card dashboard-card widget-configuration custom-widget-configuration">
      <div class="user-filter ui-g">
@@ -125,8 +124,8 @@
               </h:panelGroup>
             </ui:repeat>
         </h:panelGroup>
-        </p:fieldset>
-      </h:panelGroup>
+      </p:fieldset>
+    </h:panelGroup>
   </h:panelGroup>
     <!-- Multi language dialog-->
   <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration id="title-language-config"

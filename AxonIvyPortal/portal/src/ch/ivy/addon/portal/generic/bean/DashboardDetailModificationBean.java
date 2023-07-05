@@ -385,6 +385,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
     updateWidgetPosition(widget);
     resetUserFilter();
+    initMultipleLanguagesForWidgetName(this.widget.getName());
     this.widget.buildPredefinedFilterData();
     if (widgets.contains(this.widget)) {
       widgets.set(widgets.indexOf(this.widget), this.widget);
@@ -811,22 +812,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
     return componentId;
   }
-  
+
   public void updateWidgetNameByLocale() {
-    Map<String, DisplayName> mapLanguage = getMapLanguages();
-    List<String> supportedLanguages = getSupportedLanguages();
     String currentName = this.widget.getName();
-    for (String language : supportedLanguages) {
-      DisplayName localeLanguage = mapLanguage.get(language);
-      if (localeLanguage == null) {
-        DisplayName displayName = new DisplayName();
-        displayName.setLocale(Locale.forLanguageTag(language));
-        displayName.setValue(currentName);
-        this.widget.getNames().add(displayName);
-      } else if (localeLanguage.getValue() == null || localeLanguage.getValue().isBlank()) {
-        localeLanguage.setValue(currentName);
-      }
-    }
+    initMultipleLanguagesForWidgetName(currentName);
     String currentLanguage = UserUtils.getUserLanguage();
     Optional<DisplayName> optional = this.widget.getNames().stream()
         .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
@@ -835,6 +824,26 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
   }
 
+  private Map<String, DisplayName> getMapLanguages() {
+    List<DisplayName> languages = this.widget.getNames();
+    return languages.stream().collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
+  }
+
+  private void initMultipleLanguagesForWidgetName(String currentName) {
+    Map<String, DisplayName> mapLanguage = getMapLanguages();
+    List<String> supportedLanguages = getSupportedLanguages();
+    for (String language : supportedLanguages) {
+      DisplayName localeLanguage = mapLanguage.get(language);
+      if (localeLanguage == null) {
+        DisplayName displayName = new DisplayName();
+        displayName.setLocale(Locale.forLanguageTag(language));
+        displayName.setValue(currentName);
+        this.widget.getNames().add(displayName);
+      } else if (StringUtils.isBlank(localeLanguage.getValue())) {
+        localeLanguage.setValue(currentName);
+      }
+    }
+  }
   public void translate(DisplayName title) {
     translatedText = "";
     warningText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/InvalidDeepLAuthKey");
@@ -842,7 +851,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       List<DisplayName> languages = this.widget.getNames();
       String currentLanguage = UserUtils.getUserLanguage();
       Optional<DisplayName> optional = languages.stream()
-          .filter(lang -> currentLanguage.equals(languages.get(0).getLocale().getLanguage())).findFirst();
+              .filter(lang -> currentLanguage.equals(languages.get(0).getLocale().getLanguage())).findFirst();
       if (optional.isPresent()) {
         Map<String, Object> params = new HashMap<>();
         params.put("text", optional.get().getValue());
@@ -850,7 +859,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         Map<String, Object> response = null;
         try {
           response = IvyAdapterService.startSubProcess("translateText(String,com.deepl.api.v2.client.TargetLanguage)",
-              params, new ArrayList<>());
+                  params, new ArrayList<>());
         } catch (ServiceException ex) {
           Ivy.log().error(ex.getMessage());
         }
@@ -863,10 +872,4 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
 
   }
-
-  private Map<String, DisplayName> getMapLanguages() {
-    List<DisplayName> languages = this.widget.getNames();
-    return languages.stream().collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
-  }
-
 }
