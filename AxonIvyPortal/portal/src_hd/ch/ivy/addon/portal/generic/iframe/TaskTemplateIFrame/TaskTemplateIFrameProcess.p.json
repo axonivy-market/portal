@@ -8,16 +8,16 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
-      "name" : "start(String,Number)",
+      "name" : "start(String,String)",
       "config" : {
         "signature" : "start",
         "input" : {
           "params" : [
             { "name" : "url", "type" : "String", "desc" : "" },
-            { "name" : "taskId", "type" : "Number", "desc" : "" }
+            { "name" : "taskUUID", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.taskId" : "param.taskId",
+            "out.taskUUID" : "param.taskUUID",
             "out.url" : "param.url"
           }
         },
@@ -42,7 +42,7 @@
       "name" : "Find task by id",
       "config" : {
         "output" : {
-          "code" : "out.task = ivy.wf.findTask(Long.valueOf(in.taskId));"
+          "code" : "out.task = ivy.wf.findTask(in.taskUUID);"
         },
         "sudo" : true
       },
