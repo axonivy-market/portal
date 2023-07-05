@@ -35,7 +35,7 @@ How to
       |customize-business-details-with-public-api|
 
       .. tip:: 
-         Business details page also supports external links in case the business detail site is outside of |ivy|.
+         Public API also supports external links in case the business detail site is outside of Axon Ivy.    
          You can replace the path value with any URL then Portal will take care of the rest. Eg: ``BusinessDetailsAPI.create("https://google.com")``
 
 Customization
