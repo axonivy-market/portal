@@ -129,7 +129,7 @@ public abstract class Exporter {
    * @return name of export file
    */
   protected String createFileNameSuffix(Date creationDate, String suffix) {
-    SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy_HHmm");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmm");
     Date createdFileTime = creationDate != null ? creationDate : new Date();
     String fileNameSuffix = suffix == null ? dateFormat.format(createdFileTime) : dateFormat.format(createdFileTime) + suffix;
     return fileNameSuffix;
