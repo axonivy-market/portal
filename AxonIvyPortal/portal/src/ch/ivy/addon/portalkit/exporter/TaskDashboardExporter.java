@@ -6,7 +6,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
-import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 
@@ -69,43 +68,23 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
   }
   
   private Object getCommonColumnValue(DashboardStandardTaskColumn sortField, ITask taskItem) {
-    switch(sortField) {
-      case PRIORITY:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/" + taskItem.getPriority().name());
-      case NAME:
-        return StringUtils.isEmpty(taskItem.names().current())
-            ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable")
-                : taskItem.names().current();
-      case RESPONSIBLE:
-        if(taskItem.getActivator() == null) {
-          return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
-        }
-        return taskItem.getActivator().getDisplayName();
-      case ID:
-        return String.valueOf(taskItem.getId());
-      case CREATED: {
-        String exportedCreatedDate = DateTimeGlobalSettingService.getInstance()
-            .convertDateByFormattingLanguageAndKeepContentLocale(taskItem.getStartTimestamp());
-
-        return exportedCreatedDate;
-      }
-      case EXPIRY: {
-        String exportedExpiryDate = DateTimeGlobalSettingService.getInstance()
-            .convertDateByFormattingLanguageAndKeepContentLocale(taskItem.getExpiryTimestamp());
-
-        return exportedExpiryDate;
-      }
-      case STATE:
-        return taskItem.getState();
-      case CATEGORY:
-        return taskItem.getCategory().getPath();
-      case DESCRIPTION:
-        return taskItem.getDescription();
-      case APPLICATION:
-        return taskItem.getApplication().getName();
-      default:
-        return "";
-    }
+    return switch(sortField) {
+      case PRIORITY -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/" + taskItem.getPriority().name());
+      case NAME -> StringUtils.isEmpty(taskItem.names().current())
+          ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable")
+          : taskItem.names().current();
+      case RESPONSIBLE -> taskItem.getActivator() == null
+          ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable")
+          : taskItem.getActivator().getDisplayName();
+      case ID -> String.valueOf(taskItem.getId());
+      case CREATED -> taskItem.getStartTimestamp();
+      case EXPIRY -> taskItem.getExpiryTimestamp();
+      case STATE -> taskItem.getState();
+      case CATEGORY -> taskItem.getCategory().getPath();
+      case DESCRIPTION -> taskItem.getDescription();
+      case APPLICATION -> taskItem.getApplication().getName();
+      default -> "";
+    };
   }
 
   private Object getCustomColumnValue(String column, ITask taskItem) {

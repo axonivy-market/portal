@@ -1,9 +1,5 @@
 package ch.ivy.addon.portalkit.service;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -12,7 +8,6 @@ public class DateTimeGlobalSettingService {
   private final String SPACE_CHARACTER = " ";
   private final String COMMA_CHARACTER = ",";
   private final String YEAR_PATTERN = "\\W?[Yy]+\\W?";
-  private final String FOUR_DIGITS_YEAR_PATTERN = "yyyy";
   private GlobalSettingService globalSettingService;
   private static DateTimeGlobalSettingService instance;
 
@@ -45,10 +40,7 @@ public class DateTimeGlobalSettingService {
   }
 
   private String getDatePatternByYearSetting() {
-    SimpleDateFormat formatter =
-        (SimpleDateFormat) DateFormat.getDateInstance(DateFormat.LONG, Ivy.session().getFormattingLocale());
-    String pattern = formatter.toPattern().replaceAll(YEAR_PATTERN, SPACE_CHARACTER.concat(FOUR_DIGITS_YEAR_PATTERN));
-
+    String pattern = UserSettingService.newInstance().getDateFormat();
     return isYearHidden() ? getDateWithoutYearPattern(pattern) : pattern;
   }
 
@@ -85,11 +77,5 @@ public class DateTimeGlobalSettingService {
 
   public String getDateWithoutTimePattern() {
     return UserSettingService.newInstance().getDateFormat();
-  }
-
-  public String convertDateByFormattingLanguageAndKeepContentLocale(Date dateToFormat) {
-    DateFormat formatter = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalSettingPattern(),
-        Ivy.session().getContentLocale());
-    return formatter.format(dateToFormat);
   }
 }
