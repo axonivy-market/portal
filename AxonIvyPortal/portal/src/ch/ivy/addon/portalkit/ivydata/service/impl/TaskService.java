@@ -279,7 +279,7 @@ public class TaskService implements ITaskService {
     return Ivy.wf().getTaskQueryExecutor();
   }
 
-  public ITask findTaskById(long taskId) {
+  public ITask findTaskById(long taskId) {//DefaultEndPage.ivp  DefaultFramePage  BackFromTaskDetails.ivp runningTaskID showTaskNoteHistory command-group http://localhost:8081/designer/pro/portal/1549F58C18A6C562/ShowTaskDocument.ivp?selectedTaskId=10
     return Sudo.get(() -> {
       TaskQuery taskQuery = TaskQuery.create().where().taskId().isEqual(taskId);
       if (PermissionUtils.checkReadAllTasksPermission()) {
@@ -296,9 +296,27 @@ public class TaskService implements ITaskService {
       return taskQueryExecutor().getFirstResult(taskQuery);
     });
   }
+  
+  public ITask findTaskByUUID(String uuid) {//DefaultEndPage.ivp  DefaultFramePage  BackFromTaskDetails.ivp runningTaskID showTaskNoteHistory command-group showCaseNoteHistory
+    return Sudo.get(() -> {
+      TaskQuery taskQuery = TaskQuery.create().where().uuid().isEqual(uuid);
+      if (PermissionUtils.checkReadAllTasksPermission()) {
+        EnumSet<TaskState> ADVANCE_STATES = EnumSet.of(CREATED, SUSPENDED, RESUMED, PARKED, READY_FOR_JOIN, DONE,
+            DELAYED, DESTROYED, JOIN_FAILED, FAILED, WAITING_FOR_INTERMEDIATE_EVENT);
+        taskQuery.where().and(queryForStates(ADVANCE_STATES));
+      } else {
+        EnumSet<TaskState> STANDARD_STATES = EnumSet.of(CREATED, SUSPENDED, RESUMED, PARKED, READY_FOR_JOIN, DONE);
+        taskQuery.where().and(queryForStates(STANDARD_STATES)).and(queryInvolvedTasks());
+      }
+      if (isHiddenTasksCasesExcluded()) {
+        taskQuery.where().and(queryExcludeHiddenTasks());
+      }
+      return taskQueryExecutor().getFirstResult(taskQuery);
+    });
+  }
 
-  public boolean isTaskAccessible(long taskId) {
-    return findTaskById(taskId) != null;
+  public boolean isTaskAccessible(String uuid) {
+    return findTaskByUUID(uuid) != null;
   }
 
   private TaskQuery queryForStates(EnumSet<TaskState> states) {
