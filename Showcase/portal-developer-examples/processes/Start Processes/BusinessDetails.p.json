@@ -179,9 +179,7 @@
             "import com.axonivy.portal.components.publicapi.BusinessDetailsAPI;",
             "",
             "BusinessDetailsAPI.create(BusinessDetailsDTO.builder()",
-            "    .path(\"Start Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp\").isEmbedInFrame(false)",
-            "    .build()",
-            ");"
+            "  .path(\"Start Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp\").build());"
           ]
         }
       },
