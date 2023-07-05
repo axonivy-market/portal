@@ -34,7 +34,7 @@
             "at" : { "x" : 64, "y" : 160 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
-          "parentConnector" : "f18",
+          "parentConnector" : "f5",
           "connect" : { "id" : "S90-f0", "to" : "S90-f17" }
         }, {
           "id" : "S90-g1",
@@ -280,7 +280,7 @@
             "at" : { "x" : 64, "y" : 160 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
-          "parentConnector" : "f10",
+          "parentConnector" : "f4",
           "connect" : { "id" : "S20-f0", "to" : "S20-f10" }
         }, {
           "id" : "S20-g1",

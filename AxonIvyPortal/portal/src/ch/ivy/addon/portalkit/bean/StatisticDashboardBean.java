@@ -2,7 +2,6 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -181,8 +180,7 @@ public class StatisticDashboardBean implements Serializable {
 
     Date createdDateForm = filter.getCreatedDateFrom();
     Date createdDateTo = filter.getCreatedDateTo();
-    String pattern = DateTimeGlobalSettingService.getInstance().getDateTimePattern();
-    DateFormat formatter = new SimpleDateFormat(pattern, Ivy.session().getContentLocale());
+    DateFormat formatter = DateTimeGlobalSettingService.getInstance().getDefaultDateTimeFormater();
 
     if (createdDateForm != null && createdDateTo != null) {
       return String.format(DASH, formatter.format(createdDateForm), formatter.format(createdDateTo));

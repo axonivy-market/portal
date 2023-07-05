@@ -1,7 +1,6 @@
 package ch.ivy.addon.portalkit.taskfilter.impl;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.faces.application.FacesMessage;
@@ -27,7 +26,7 @@ public class TaskCompletedDateFilter extends TaskFilter {
 
 	@Override
 	public String value() {
-		DateFormat formatter = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getDateTimePattern(), Ivy.session().getContentLocale());
+		DateFormat formatter = DateTimeGlobalSettingService.getInstance().getDefaultDateFormater();
 		if (fromCompletedDate != null && toCompletedDate != null) {
 			return String.format(DASH, formatter.format(fromCompletedDate), formatter.format(toCompletedDate));
 		}

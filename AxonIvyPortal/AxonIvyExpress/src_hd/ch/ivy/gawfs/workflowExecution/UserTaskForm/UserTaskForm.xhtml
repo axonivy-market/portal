@@ -45,7 +45,7 @@
               </pe:dynaFormControl>
 
               <pe:dynaFormControl type="InputFieldDate" for="input-field-date" styleClass="calendar">
-                <p:datePicker locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.configuredCalendarPattern}" showTime="#{!dateTimePatternBean.isTimeHidden}" id="input-field-date" value="#{dynaData.value}"
+                <p:datePicker locale="#{localeBean.locale}" showTime="#{!dateTimePatternBean.isTimeHidden}" id="input-field-date" value="#{dynaData.value}"
                   required="#{dynaData.required}" showIcon="true"
                   requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
               </pe:dynaFormControl>
