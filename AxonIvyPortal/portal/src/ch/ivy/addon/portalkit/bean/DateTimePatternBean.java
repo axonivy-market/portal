@@ -1,17 +1,12 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
-import ch.ivyteam.ivy.environment.Ivy;
-
 @ManagedBean
 @SessionScoped
 public class DateTimePatternBean implements Serializable {
@@ -24,9 +19,9 @@ public class DateTimePatternBean implements Serializable {
     dateTimePatternService = DateTimeGlobalSettingService.getInstance();
   }
   
-  public String getConfiguredPattern() {
-    return dateTimePatternService.getGlobalSettingPattern();
-  }
+//  public String getConfiguredPattern() {
+//    return dateTimePatternService.getGlobalSettingPattern();
+//  }
   
   public String getDatePattern() {
     return dateTimePatternService.getDatePattern();
@@ -49,7 +44,7 @@ public class DateTimePatternBean implements Serializable {
   }
 
   public String getConfiguredDateWithoutTimePattern() {
-    return dateTimePatternService.getDateWithoutTimePattern();
+    return dateTimePatternService.getDefaultDatePattern();
   }
   
   public boolean getIsDateFilterWithTime() {
@@ -60,12 +55,12 @@ public class DateTimePatternBean implements Serializable {
     return dateTimePatternService.isTimeHidden();
   }
   
-  public String getFormattingLanguagePattern() {
-    Locale formattingLanguage = Ivy.session().getSessionUser().getFormattingLanguage();
-    if (formattingLanguage == null) {
-      formattingLanguage = Ivy.session().getFormattingLocale();
-    }
-    return ((SimpleDateFormat) DateFormat.getDateInstance(DateFormat.LONG, formattingLanguage)).toLocalizedPattern();
-  }
+//  public String getFormattingLanguagePattern() {
+//    Locale formattingLanguage = Ivy.session().getSessionUser().getFormattingLanguage();
+//    if (formattingLanguage == null) {
+//      formattingLanguage = Ivy.session().getFormattingLocale();
+//    }
+//    return ((SimpleDateFormat) DateFormat.getDateInstance(DateFormat.LONG, formattingLanguage)).toLocalizedPattern();
+//  }
   
 }

@@ -322,7 +322,7 @@ public class ExpressManagementUtils {
 
   private static String addResultLog(String message, ExpressMessageType messageType) {
     StringBuilder importExpressResult = new StringBuilder();
-    String pattern = DateTimeGlobalSettingService.getInstance().getDatePattern();
+    String pattern = DateTimeGlobalSettingService.getInstance().getGlobalSettingPattern();
     String curentDate = new SimpleDateFormat(pattern).format(new Date());
     importExpressResult.append(curentDate).append(SPACE);
 

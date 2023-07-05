@@ -181,7 +181,7 @@
         </div>
         <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 text-ellipsis">
           <h:outputText id="start-date" value="#{task.startTimestamp}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
+            <f:convertDateTime locale="#{localeBean.locale}" dateStyle="long" type="both" timeStyle="short"/>
           </h:outputText>
         </div>
       </h:panelGroup>
@@ -207,7 +207,7 @@
               <p:ajax event="save" listener="#{logic.updateDelayTimestamp(task)}"
                 update="delay-form #{cc.clientId}:task-detail-state #{cc.attrs.componentToUpdate}" resetValues="true" />
               <p:datePicker id="delay-date-calendar" styleClass="delay-date-calendar" value="#{task.delayTimestamp}"
-                pattern="#{dateTimePatternBean.configuredPattern}" showTime="#{!dateTimePatternBean.isTimeHidden}"  locale="#{localeBean.locale}" >
+                showTime="#{!dateTimePatternBean.isTimeHidden}"  locale="#{localeBean.locale}" >
                 <f:validator validatorId="taskDelayTimestampValidator" />
               </p:datePicker>
             </p:inplace>
@@ -237,7 +237,7 @@
                 <p:ajax event="save" listener="#{logic.updateExpiryTime(task)}"
                   update="expiry-form #{cc.attrs.componentToUpdate}" process="@this expiry-calendar"/>
                 <p:datePicker id="expiry-calendar" styleClass="task-details-data-expiry" value="#{data.expiryTimestamp}"
-                  pattern="#{dateTimePatternBean.configuredPattern}" showTime="#{!dateTimePatternBean.isTimeHidden}" locale="#{localeBean.locale}" >
+                  showTime="#{!dateTimePatternBean.isTimeHidden}" locale="#{localeBean.locale}" >
                   <f:validator validatorId="taskExpiryTimestampValidator" />
                 </p:datePicker>
               </p:inplace>
@@ -246,12 +246,12 @@
             <h:outputText id="no-expiry-available"
               value="#{empty task.expiryTimestamp ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable') : task.expiryTimestamp}"
               rendered="#{!taskActionBean.canChangeExpiry(task)}">
-              <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
+              <f:convertDateTime locale="#{localeBean.locale}" dateStyle="medium" type="both" timeStyle="short"/>
             </h:outputText>
           </ui:fragment>
           <ui:fragment rendered="#{taskBean.isDone(task)}">
             <h:outputText rendered="#{task.expiryTimestamp ne null}" value="#{task.expiryTimestamp}" >
-              <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
+              <f:convertDateTime locale="#{localeBean.locale}" dateStyle="medium" type="both" timeStyle="short"/>
             </h:outputText>
             <h:outputText rendered="#{task.expiryTimestamp eq null}"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable')}" />
@@ -267,7 +267,7 @@
         </div>
         <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 text-ellipsis">
           <h:outputText id="end-date" value="#{task.endTimestamp}" rendered="#{not empty task.endTimestamp}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
+            <f:convertDateTime locale="#{localeBean.locale}" dateStyle="medium" type="both" timeStyle="short"/>
           </h:outputText>
         </div>
       </h:panelGroup>

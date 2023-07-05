@@ -85,7 +85,7 @@
             sortBy="#{document.creation.timestamp}"
             width="150px">
             <h:outputText value="#{document.creation.timestamp}">
-              <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
+              <f:convertDateTime locale="#{localeBean.locale}" dateStyle="long" type="both" timeStyle="short"/>
             </h:outputText>
           </p:column>
         </p:dataTable>

@@ -96,16 +96,16 @@ public class UserProfileBean implements Serializable {
     return Ivy.cms().co(DEFAULT_OPTION, Arrays.asList(sortFieldName));
   }
 
-  public String getDisplayDatePattern(String selectedPattern) {
-    String datePattern =
-        StringUtils.equals(selectedPattern, DEFAULT) ? UserSettingService.newInstance().getDefaultDateFormat()
-            : selectedPattern;
-    String displayDate = prepareDisplayCurrentDate(datePattern);
-    return StringUtils.equals(selectedPattern, DEFAULT)
-        ? Ivy.cms().co(DEFAULT_OPTION, Arrays.asList(UserSettingService.newInstance().getDefaultDateFormat()))
-            + displayDate
-        : datePattern + displayDate;
-  }
+//  public String getDisplayDatePattern(String selectedPattern) {
+//    String datePattern =
+//        StringUtils.equals(selectedPattern, DEFAULT) ? UserSettingService.newInstance().getDefaultDateFormat()
+//            : selectedPattern;
+//    String displayDate = prepareDisplayCurrentDate(datePattern);
+//    return StringUtils.equals(selectedPattern, DEFAULT)
+//        ? Ivy.cms().co(DEFAULT_OPTION, Arrays.asList(UserSettingService.newInstance().getDefaultDateFormat()))
+//            + displayDate
+//        : datePattern + displayDate;
+//  }
 
   public String prepareDisplayCurrentDate(String pattern) {
     SimpleDateFormat dateFormat = new SimpleDateFormat(pattern, Ivy.session().getContentLocale());

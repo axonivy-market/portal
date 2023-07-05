@@ -96,7 +96,7 @@
       <h:panelGroup styleClass="customized-case-header-column js-hidden-when-expand-menu u-hidden-lg-down" rendered="#{caseView.dataModel.isSelectedColumn('ShipmentDate')}">
         <h:outputText value="#{case.customFields().timestampField('ShipmentDate').getOrNull()}"
           styleClass="case-header-default-cell">
-          <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
+          <f:convertDateTime locale="#{localeBean.locale}" dateStyle="long" type="both" timeStyle="short"/>
         </h:outputText>
       </h:panelGroup>
     </ui:define>
@@ -133,14 +133,14 @@
             for="from-created-calendar" />
           <p:spacer width="5" />
           <p:datePicker id="from-created-calendar" value="#{filterContainer.shipmentDateFieldFilter.fromFinishedDate}"
-            locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.configuredDateFilterPattern}" showIcon="true" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
+            locale="#{localeBean.locale}" showIcon="true" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
             converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongFromDateFormat', [dateTimePatternBean.configuredDateFilterPattern])}" />
 
           <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}"
             for="to-created-calendar" />
           <p:spacer width="5" />
           <p:datePicker id="to-created-calendar" value="#{filterContainer.shipmentDateFieldFilter.toFinishedDate}"
-            locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.configuredDateFilterPattern}" showIcon="true" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
+            locale="#{localeBean.locale}" showIcon="true" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
             converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongToDateFormat', [dateTimePatternBean.configuredDateFilterPattern])}" />
         </h:panelGrid>
       </ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter>

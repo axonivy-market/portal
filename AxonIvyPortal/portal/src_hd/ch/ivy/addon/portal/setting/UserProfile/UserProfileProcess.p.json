@@ -37,7 +37,7 @@
             "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
-          "parentConnector" : "f18",
+          "parentConnector" : "f5",
           "connect" : [
             { "id" : "S90-f0", "to" : "S90-f17" }
           ]
@@ -53,62 +53,10 @@
           "parentConnector" : "f9"
         } ],
       "visual" : {
-        "at" : { "x" : 824, "y" : 280 }
+        "at" : { "x" : 728, "y" : 280 }
       },
       "connect" : [
         { "id" : "f9", "to" : "S00" }
-      ]
-    }, {
-      "id" : "S80",
-      "type" : "EmbeddedProcess",
-      "name" : "Save Date Format",
-      "elements" : [ {
-          "id" : "S80-f27",
-          "type" : "Script",
-          "name" : "save date format",
-          "config" : {
-            "output" : {
-              "code" : [
-                "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
-                "UserSettingService.newInstance().saveDateFormat(in.selectedDateFormat);"
-              ]
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 192, "y" : 160 }
-          },
-          "connect" : [
-            { "id" : "S80-f1", "to" : "S80-g1" }
-          ]
-        }, {
-          "id" : "S80-g0",
-          "type" : "EmbeddedStart",
-          "name" : "in 1",
-          "visual" : {
-            "at" : { "x" : 64, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
-            "labelOffset" : { "x" : 18, "y" : 25 }
-          },
-          "parentConnector" : "f5",
-          "connect" : [
-            { "id" : "S80-f0", "to" : "S80-f27" }
-          ]
-        }, {
-          "id" : "S80-g1",
-          "type" : "EmbeddedEnd",
-          "name" : "out 1",
-          "visual" : {
-            "at" : { "x" : 320, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
-            "labelOffset" : { "x" : 21, "y" : 25 }
-          },
-          "parentConnector" : "f18"
-        } ],
-      "visual" : {
-        "at" : { "x" : 664, "y" : 280 }
-      },
-      "connect" : [
-        { "id" : "f18", "to" : "S90" }
       ]
     }, {
       "id" : "S70",
@@ -173,7 +121,7 @@
         "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : [
-        { "id" : "f5", "to" : "S80" }
+        { "id" : "f5", "to" : "S90" }
       ]
     }, {
       "id" : "S60",
@@ -248,74 +196,10 @@
           "parentConnector" : "f26"
         } ],
       "visual" : {
-        "at" : { "x" : 976, "y" : 144 }
+        "at" : { "x" : 896, "y" : 144 }
       },
       "connect" : [
         { "id" : "f26", "to" : "f8" }
-      ]
-    }, {
-      "id" : "S50",
-      "type" : "EmbeddedProcess",
-      "name" : "Init Date Format Setting",
-      "elements" : [ {
-          "id" : "S50-f25",
-          "type" : "Script",
-          "name" : "init date formats",
-          "config" : {
-            "output" : {
-              "code" : [
-                "import ch.ivyteam.ivy.environment.Ivy;",
-                "import ch.ivy.addon.portalkit.util.UserUtils;",
-                "import org.apache.commons.collections.CollectionUtils;",
-                "import java.util.ArrayList;",
-                "",
-                "if (CollectionUtils.isEmpty(in.dateFormats)) {",
-                "  in.dateFormats = new ArrayList();",
-                "  in.dateFormats.add(\"DEFAULT\");",
-                "  in.dateFormats.add(Ivy.cms().co(\"/patterns/datePattern\"));",
-                "  in.dateFormats.add(Ivy.cms().co(\"/patterns/monthDatePattern\"));",
-                "}",
-                "",
-                "in.selectedDateFormat = UserUtils.getSelectedDateFormat(in.dateFormats);"
-              ]
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 192, "y" : 160 }
-          },
-          "connect" : [
-            { "id" : "S50-f1", "to" : "S50-g1" }
-          ]
-        }, {
-          "id" : "S50-g0",
-          "type" : "EmbeddedStart",
-          "name" : "in 1",
-          "visual" : {
-            "at" : { "x" : 64, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
-            "labelOffset" : { "x" : 18, "y" : 25 }
-          },
-          "parentConnector" : "f4",
-          "connect" : [
-            { "id" : "S50-f0", "to" : "S50-f25" }
-          ]
-        }, {
-          "id" : "S50-g1",
-          "type" : "EmbeddedEnd",
-          "name" : "out 1",
-          "visual" : {
-            "at" : { "x" : 320, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
-            "labelOffset" : { "x" : 21, "y" : 25 }
-          },
-          "parentConnector" : "f10"
-        } ],
-      "visual" : {
-        "at" : { "x" : 664, "y" : 144 },
-        "size" : { "width" : 144, "height" : 60 }
-      },
-      "connect" : [
-        { "id" : "f10", "to" : "S20" }
       ]
     }, {
       "id" : "S20",
@@ -425,7 +309,7 @@
             "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
-          "parentConnector" : "f10",
+          "parentConnector" : "f4",
           "connect" : [
             { "id" : "S20-f0", "to" : "S20-f10" }
           ]
@@ -441,7 +325,7 @@
           "parentConnector" : "f20"
         } ],
       "visual" : {
-        "at" : { "x" : 824, "y" : 144 }
+        "at" : { "x" : 680, "y" : 144 }
       },
       "connect" : [
         { "id" : "f20", "to" : "S60" }
@@ -530,7 +414,7 @@
         "at" : { "x" : 504, "y" : 144 }
       },
       "connect" : [
-        { "id" : "f4", "to" : "S50" }
+        { "id" : "f4", "to" : "S20" }
       ]
     }, {
       "id" : "S30",
@@ -891,7 +775,7 @@
           ]
         } ],
       "visual" : {
-        "at" : { "x" : 984, "y" : 280 },
+        "at" : { "x" : 960, "y" : 280 },
         "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : [

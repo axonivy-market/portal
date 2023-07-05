@@ -1,5 +1,8 @@
 package ch.ivy.addon.portalkit.service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -23,7 +26,7 @@ public class DateTimeGlobalSettingService {
   }
 
   public String getGlobalSettingPattern() {
-    return isTimeHidden() ? getDatePattern() : getDateTimePattern();
+    return isTimeHidden() ? getDefaultDatePattern() : getDefaultDateTimePattern();
   }
 
   public boolean isTimeHidden() {
@@ -40,8 +43,7 @@ public class DateTimeGlobalSettingService {
   }
 
   private String getDatePatternByYearSetting() {
-    String pattern = UserSettingService.newInstance().getDateFormat();
-    return isYearHidden() ? getDateWithoutYearPattern(pattern) : pattern;
+    return isYearHidden() ? getDateWithoutYearPattern(getDefaultDatePattern()) : getDefaultDatePattern();
   }
 
   private boolean isYearHidden() {
@@ -53,13 +55,8 @@ public class DateTimeGlobalSettingService {
     return expectedPattern.endsWith(COMMA_CHARACTER) ? expectedPattern.substring(0, expectedPattern.length() - 1) : expectedPattern;
   }
 
-  public String getDateTimestampPattern() {
-    return UserSettingService.newInstance().getDateFormat() + SPACE_CHARACTER
-        + Ivy.cms().co("/patterns/timestampPattern");
-  }
-
   public String getGlobalSettingDateFilterPattern() {
-    String dateFilterPattern = UserSettingService.newInstance().getDateFormat();
+    String dateFilterPattern = getDefaultDatePattern();
     String dateTimeFilterPattern = dateFilterPattern + SPACE_CHARACTER + Ivy.cms().co("/patterns/timePattern");
     return isDateFilterWithTime() ? dateTimeFilterPattern : dateFilterPattern;
   }
@@ -77,5 +74,21 @@ public class DateTimeGlobalSettingService {
 
   public String getDateWithoutTimePattern() {
     return UserSettingService.newInstance().getDateFormat();
+  }
+  
+  public DateFormat getDefaultDateTimeFormater() {
+    return DateFormat.getDateTimeInstance(DateFormat.LONG,DateFormat.SHORT, Ivy.session().getFormattingLocale());
+  }
+  
+  public DateFormat getDefaultDateFormater() {
+    return DateFormat.getDateInstance(DateFormat.LONG,Ivy.session().getFormattingLocale());
+  }
+  
+  public String getDefaultDateTimePattern() {
+    return  ((SimpleDateFormat)getDefaultDateFormater()).toPattern();
+  }
+  
+  public String getDefaultDatePattern() {
+    return ((SimpleDateFormat)getDefaultDateFormater()).toPattern();
   }
 }

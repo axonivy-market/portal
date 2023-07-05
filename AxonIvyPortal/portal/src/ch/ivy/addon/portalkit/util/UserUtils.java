@@ -27,7 +27,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.language.LanguageConfigurator;
 import ch.ivyteam.ivy.language.LanguageManager;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
-import ch.ivyteam.ivy.request.IHttpRequest;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserAbsence;
@@ -47,8 +46,6 @@ public class UserUtils {
   private static final String FILTER_GROUP_ID = "FILTER_GROUP_ID";
   private static final String SELECTED_DEFAULT_TASK_FILTER_SET = "SELECTED_DEFAULT_TASK_FILTER_SET";
   private static final String SELECTED_DEFAULT_CASE_FILTER_SET = "SELECTED_DEFAULT_CASE_FILTER_SET";
-  private static final String SHORT_YEAR_PATTERN = "y";
-  private static final String FULL_YEAR_PATTERN = "yyyy";
 
   private UserUtils() {
   }
@@ -65,7 +62,6 @@ public class UserUtils {
       
       getIvySession().setContentLocale(contentLocale);
       getIvySession().setFormattingLocale(formattingLocale);
-      setDefaultDatePattern(sessionUser);
       return null;
     });
   }
@@ -90,7 +86,7 @@ public class UserUtils {
   }
 
   public static String findNextAbsenceOfUser(IUser iUser) {
-    DateFormat formatter = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getDateWithoutTimePattern());
+    DateFormat formatter = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getDefaultDatePattern());
 
     List<IUserAbsence> findAbsenceOfUser = findAbsenceOfUser(iUser);
     String returnString = "";
@@ -274,29 +270,6 @@ public class UserUtils {
       return token.equals(tokenInDb) && currentTime < expiryTime;
     }
     return false;
-  }
-
-  public static void setDefaultDatePattern(IUser sessionUser) {
-    if (StringUtils.isBlank(sessionUser.getProperty(UserProperty.DEFAULT_DATE_FORMAT))) {
-      IHttpRequest request = (IHttpRequest) Ivy.request();
-      Locale locale = request.getHttpServletRequest().getLocale();
-      String defaultPattern = getDefaultPatternByLocale(locale);
-      defaultPattern = formatToPrimeFacesPattern(defaultPattern);
-      sessionUser.setProperty(UserProperty.DEFAULT_DATE_FORMAT, defaultPattern);
-      sessionUser.setProperty(UserProperty.DATE_FORMAT, defaultPattern);
-    }
-  }
-
-  private static String getDefaultPatternByLocale(Locale locale) {
-    SimpleDateFormat simpleDateFormat =
-        (SimpleDateFormat) DateFormat.getDateInstance(DateFormat.DEFAULT, locale);
-    return simpleDateFormat.toLocalizedPattern();
-  }
-
-  private static String formatToPrimeFacesPattern(String pattern) {
-    return StringUtils.countMatches(pattern.toLowerCase(), SHORT_YEAR_PATTERN) == 1
-        ? pattern.replaceAll(SHORT_YEAR_PATTERN, FULL_YEAR_PATTERN)
-        : pattern;
   }
 
   public static String getSelectedDateFormat(List<String> dateFormats) {

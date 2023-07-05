@@ -25,10 +25,10 @@ public class UserSettingService {
     return instance;
   }
 
-  public void saveDateFormat(String selectedDateFormat) {
-    String dateFormat = StringUtils.equals(selectedDateFormat, DEFAULT) ? getDefaultDateFormat() : selectedDateFormat;
-    getSessionUser().setProperty(UserProperty.DATE_FORMAT, dateFormat);
-  }
+//  public void saveDateFormat(String selectedDateFormat) {
+//    String dateFormat = StringUtils.equals(selectedDateFormat, DEFAULT) ? getDefaultDateFormat() : selectedDateFormat;
+//    getSessionUser().setProperty(UserProperty.DATE_FORMAT, dateFormat);
+//  }
 
   public void saveDefaultSortFieldOfTaskList(String fieldName, String sortDirection) {
     IUser user = getSessionUser();
@@ -85,9 +85,9 @@ public class UserSettingService {
     return getUserProperty(UserProperty.DATE_FORMAT);
   }
 
-  public String getDefaultDateFormat() {
-    return getUserProperty(UserProperty.DEFAULT_DATE_FORMAT);
-  }
+//  public String getDefaultDateFormat() {
+//    return getUserProperty(UserProperty.DEFAULT_DATE_FORMAT);
+//  }
 
   public String getDefaultProcessMode() {
     return getUserProperty(UserProperty.DEFAULT_PROCESS_MODE);

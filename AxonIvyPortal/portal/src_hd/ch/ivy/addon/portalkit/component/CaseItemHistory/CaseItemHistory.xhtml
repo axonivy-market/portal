@@ -110,7 +110,7 @@
           sortBy="#{history.timestamp}"
           styleClass="case-history-date js-column-priority-3" width="150px">
           <h:outputText value="#{history.timestamp}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
+            <f:convertDateTime locale="#{localeBean.locale}" dateStyle="long" type="both" timeStyle="short"/>
           </h:outputText>
         </p:column>
       </p:dataTable>

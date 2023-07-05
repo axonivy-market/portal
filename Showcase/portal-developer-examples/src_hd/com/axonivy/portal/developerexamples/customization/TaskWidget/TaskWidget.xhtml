@@ -52,7 +52,7 @@
         styleClass="u-text-align-center custom-datetime u-hidden-lg-down js-hidden-when-expand-menu"
         value="#{task.customFields().timestampField('ShipmentDate').getOrNull()}"
         rendered="#{taskView.dataModel.isSelectedColumn('ShipmentDate')}">
-        <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
+        <f:convertDateTime locale="#{localeBean.locale}" dateStyle="long" type="both" timeStyle="short"/>
       </h:outputText>
     </ui:define>
 
@@ -76,14 +76,14 @@
             for="from-shipment-calendar" />
           <p:spacer width="5" />
           <p:datePicker id="from-shipment-calendar" value="#{filterContainer.shipmentDateFilter.fromShipmentDate}"
-            pattern="#{dateTimePatternBean.configuredDateFilterPattern}" showIcon="true" locale="#{localeBean.locale}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
+            showIcon="true" locale="#{localeBean.locale}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
             converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongFromDateFormat', [dateTimePatternBean.configuredDateFilterPattern])}" />
 
           <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}"
             for="to-shipment-calendar" />
           <p:spacer width="5" />
           <p:datePicker id="to-shipment-calendar" value="#{filterContainer.shipmentDateFilter.toShipmentDate}"
-            pattern="#{dateTimePatternBean.configuredDateFilterPattern}" showIcon="true" locale="#{localeBean.locale}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
+            showIcon="true" locale="#{localeBean.locale}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
             converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongToDateFormat', [dateTimePatternBean.configuredDateFilterPattern])}" />
         </h:panelGrid>
       </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
