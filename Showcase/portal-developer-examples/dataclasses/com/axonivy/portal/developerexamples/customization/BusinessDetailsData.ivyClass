@@ -1,4 +1,4 @@
-AdditionalCaseDetailPage #class
+BusinessDetailsData #class
 com.axonivy.portal.developerexamples.customization #namespace
 iCase ch.ivyteam.ivy.workflow.ICase #field
 caseId Long #field
