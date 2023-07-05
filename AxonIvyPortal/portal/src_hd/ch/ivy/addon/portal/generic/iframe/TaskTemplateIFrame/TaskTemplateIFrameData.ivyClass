@@ -4,5 +4,5 @@ url String #field
 url PERSISTENT #fieldModifier
 task ch.ivyteam.ivy.workflow.ITask #field
 task PERSISTENT #fieldModifier
-taskId Number #field
-taskId PERSISTENT #fieldModifier
+taskUUID String #field
+taskUUID PERSISTENT #fieldModifier

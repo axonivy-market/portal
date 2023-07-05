@@ -70,11 +70,11 @@ public class SystemNoteVisibilityTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     
     TaskDetailsPage taskDetailsPage = openTaskDetails();
-    String taskId = taskDetailsPage.getTaskId();
+    String uuid = taskDetailsPage.getTaskUUID();
     List<String> taskNoteAuthors = taskDetailsPage.getTaskNoteAuthors();
     Assert.assertTrue(taskNoteAuthors.contains(SYSTEM_USER_NAME));
     
-    NoteHistoryPage taskNoteHistoryPage = openTaskNoteHistory(taskId);
+    NoteHistoryPage taskNoteHistoryPage = openTaskNoteHistory(uuid);
     taskNoteAuthors = taskNoteHistoryPage.getNoteAuthors();
     Assert.assertTrue(taskNoteAuthors.contains(SYSTEM_USER_NAME));
     
@@ -83,7 +83,7 @@ public class SystemNoteVisibilityTest extends BaseTest {
     taskNoteAuthors = taskDetailsPage.getTaskNoteAuthors();
     Assert.assertFalse(taskNoteAuthors.contains(SYSTEM_USER_NAME));
     
-    taskNoteHistoryPage = openTaskNoteHistory(taskId);
+    taskNoteHistoryPage = openTaskNoteHistory(uuid);
     taskNoteAuthors = taskNoteHistoryPage.getNoteAuthors();
     Assert.assertFalse(taskNoteAuthors.contains(SYSTEM_USER_NAME));
   }
@@ -92,11 +92,11 @@ public class SystemNoteVisibilityTest extends BaseTest {
   public void testSystemNoteVisibilityInTaskDetailForNormalUser() {
     updatePortalSetting(HIDE_SYSTEM_NOTES_FROM_HISTORY.getKey(), "true");
     TaskDetailsPage taskDetailsPage = openTaskDetails();
-    String taskId = taskDetailsPage.getTaskId();
+    String uuid = taskDetailsPage.getTaskUUID();
     List<String> taskNoteAuthors = taskDetailsPage.getTaskNoteAuthors();
     Assert.assertFalse(taskNoteAuthors.contains(SYSTEM_USER_NAME));
     
-    NoteHistoryPage taskNoteHistoryPage = openTaskNoteHistory(taskId);
+    NoteHistoryPage taskNoteHistoryPage = openTaskNoteHistory(uuid);
     taskNoteAuthors = taskNoteHistoryPage.getNoteAuthors();
     Assert.assertFalse(taskNoteAuthors.contains(SYSTEM_USER_NAME));
     
@@ -107,7 +107,7 @@ public class SystemNoteVisibilityTest extends BaseTest {
     taskNoteAuthors = taskDetailsPage.getTaskNoteAuthors();
     Assert.assertTrue(taskNoteAuthors.contains(SYSTEM_USER_NAME));
     
-    taskNoteHistoryPage = openTaskNoteHistory(taskId);
+    taskNoteHistoryPage = openTaskNoteHistory(uuid);
     taskNoteAuthors = taskNoteHistoryPage.getNoteAuthors();
     Assert.assertTrue(taskNoteAuthors.contains(SYSTEM_USER_NAME));
   }
@@ -131,8 +131,8 @@ public class SystemNoteVisibilityTest extends BaseTest {
     return new NoteHistoryPage();
   }
   
-  private NoteHistoryPage openTaskNoteHistory(String taskId) {
-    goToTaskNoteHistoryPage(taskId);
+  private NoteHistoryPage openTaskNoteHistory(String uuid) {
+    goToTaskNoteHistoryPage(uuid);
     return new NoteHistoryPage();
   }
   

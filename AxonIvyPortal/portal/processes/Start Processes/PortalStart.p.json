@@ -521,7 +521,7 @@
                 "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
                 "",
                 "in.isAuthorized = !GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_TASK_DOCUMENT)",
-                "  && TaskService.newInstance().isTaskAccessible(in.taskId);"
+                "  && TaskService.newInstance().isTaskAccessible(in.uuid);"
               ]
             }
           },
@@ -771,7 +771,7 @@
           "name" : "Authorized?",
           "config" : {
             "conditions" : {
-              "S40-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.TaskService.newInstance().isTaskAccessible(in.selectedTaskId)"
+              "S40-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.TaskService.newInstance().isTaskAccessible(in.uuid)"
             }
           },
           "visual" : {
@@ -944,7 +944,7 @@
           "name" : "Authorized?",
           "config" : {
             "conditions" : {
-              "S11-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.TaskService.newInstance().isTaskAccessible(in.selectedTaskId)"
+              "S11-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.TaskService.newInstance().isTaskAccessible(in.uuid)"
             }
           },
           "visual" : {
@@ -1598,10 +1598,10 @@
         "signature" : "TaskDetailsPage",
         "input" : {
           "params" : [
-            { "name" : "selectedTaskId", "type" : "Long", "desc" : "" }
+            { "name" : "uuid", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.selectedTaskId" : "param.selectedTaskId"
+            "out.uuid" : "param.uuid"
           }
         },
         "request" : {
@@ -1800,11 +1800,11 @@
         "input" : {
           "params" : [
             { "name" : "relativeUrl", "type" : "String", "desc" : "" },
-            { "name" : "runningTaskId", "type" : "Number", "desc" : "" }
+            { "name" : "runningTaskUUID", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.callbackUrl" : "param.relativeUrl",
-            "out.endedTaskId" : "param.runningTaskId"
+            "out.uuid" : "param.runningTaskUUID"
           }
         },
         "request" : {
@@ -1828,7 +1828,7 @@
             "import ch.ivyteam.ivy.workflow.ITask;",
             "import ch.ivyteam.ivy.bpm.error.BpmError;",
             "",
-            "ITask task = ivy.wf.findTask(Long.valueOf(in.endedTaskId));",
+            "ITask task = ivy.wf.findTask(in.uuid);",
             "if (!in.callbackUrl.startsWith(task.getApplication().getContextPath())) {",
             "  BpmError.create(\"frame:unsupported:url\").withMessage(\"only relative urls are supported (security reasons)\").throwError();",
             "}"
@@ -1847,11 +1847,11 @@
       "type" : "DialogCall",
       "name" : "TaskTemplateIFrame",
       "config" : {
-        "dialog" : "ch.ivy.addon.portal.generic.iframe.TaskTemplateIFrame:start(String,Number)",
+        "dialog" : "ch.ivy.addon.portal.generic.iframe.TaskTemplateIFrame:start(String,String)",
         "call" : {
           "map" : {
             "param.url" : "in.callbackUrl",
-            "param.taskId" : "in.endedTaskId"
+            "param.taskUUID" : "in.uuid"
           }
         }
       },
@@ -1878,7 +1878,7 @@
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.service.IFrameService;",
-            "out.embedInIFrame = IFrameService.embedInFrame(in.endedTaskId);"
+            "out.embedInIFrame = IFrameService.embedInFrame(in.uuid);"
           ]
         },
         "sudo" : true
@@ -2150,10 +2150,10 @@
         "signature" : "TaskDetailsPageInFrame",
         "input" : {
           "params" : [
-            { "name" : "selectedTaskId", "type" : "Long", "desc" : "" }
+            { "name" : "uuid", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.selectedTaskId" : "param.selectedTaskId"
+            "out.uuid" : "param.uuid"
           }
         },
         "request" : {
@@ -2718,8 +2718,8 @@
                 "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
                 "",
                 "long caseId = -1;",
-                "if (in.endedTaskId is initialized) {",
-                "  ITask task = ivy.wf.findTask(Long.valueOf(in.endedTaskId));",
+                "if (in.#uuid is initialized) {",
+                "  ITask task = ivy.wf.findTask(in.uuid);",
                 "  caseId = task.getCase().getId();",
                 "}",
                 "out.caseSelected = ivy.wf.getGlobalContext().getCaseQueryExecutor().createCaseQuery().where().caseId().isEqual(caseId).executor().firstResult() as ICase;"
@@ -2739,7 +2739,7 @@
           "name" : "find task by id",
           "config" : {
             "output" : {
-              "code" : "out.taskSelected = ivy.wf.findTask(Long.valueOf(in.endedTaskId));"
+              "code" : "out.taskSelected = ivy.wf.findTask(in.uuid);"
             },
             "sudo" : true
           },
@@ -3367,10 +3367,10 @@
         "signature" : "showTaskNoteHistory",
         "input" : {
           "params" : [
-            { "name" : "selectedTaskId", "type" : "Long", "desc" : "" }
+            { "name" : "uuid", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.taskId" : "param.selectedTaskId"
+            "out.uuid" : "param.uuid"
           }
         },
         "request" : {
@@ -3805,10 +3805,10 @@
         "signature" : "ShowTaskDocument",
         "input" : {
           "params" : [
-            { "name" : "selectedTaskId", "type" : "Long", "desc" : "" }
+            { "name" : "uuid", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.taskId" : "param.selectedTaskId"
+            "out.uuid" : "param.uuid"
           }
         },
         "request" : {
@@ -3833,10 +3833,10 @@
       "type" : "DialogCall",
       "name" : "TaskDocuments",
       "config" : {
-        "dialog" : "ch.ivy.addon.portal.generic.TaskDocuments:start(Long)",
+        "dialog" : "ch.ivy.addon.portal.generic.TaskDocuments:start(String)",
         "call" : {
           "map" : {
-            "param.taskId" : "in.taskId"
+            "param.uuid" : "in.uuid"
           }
         }
       },
@@ -4202,7 +4202,7 @@
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;",
-            "in.taskSelected = TaskService.newInstance().findTaskById(in.taskId);"
+            "in.taskSelected = TaskService.newInstance().findTaskByUUID(in.uuid);"
           ]
         }
       },

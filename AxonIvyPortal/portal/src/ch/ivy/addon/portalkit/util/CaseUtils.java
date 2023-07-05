@@ -32,10 +32,6 @@ public final class CaseUtils {
     return Sudo.get(() -> Ivy.wf().findCase(caseId));
   }
   
-  public static ICase findCase(String uuid) {
-    return Sudo.get(() -> Ivy.wf().findCase(uuid));
-  }
-
   public static List<ICase> findSubCasesByBusinessCaseId(long caseId) {
     return Sudo.get(() -> {
       CaseSearchCriteria criteria = new CaseSearchCriteria();

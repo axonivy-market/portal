@@ -7,10 +7,12 @@
   <cc:attribute name="styleClass" />
   <cc:attribute name="dataModel" />
   <cc:attribute name="responsiveStyleClass" default="u-hidden-sm-down" />
+  <cc:attribute name="uuid" />
 </cc:interface>
 
 <cc:implementation>
   <h:outputText id="#{cc.attrs.componentId}" value="#{cc.attrs.value}" rendered="#{cc.attrs.dataModel.isSelectedColumn('ID')}"
     styleClass="id-cell default-task-cell #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}" />
+  <h:inputHidden id="task-uuid" value="#{cc.attrs.uuid}"/>
 </cc:implementation>
 </html>

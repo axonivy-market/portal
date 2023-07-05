@@ -17,8 +17,9 @@
           ],
           "map" : { },
           "code" : [
-            "import ch.ivy.addon.portalkit.util.CaseUtils;",
-            "out.selectedCase = CaseUtils.findCase(param.uuid);"
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
+            "",
+            "out.selectedCase = CaseService.newInstance().findCaseByUUID(param.uuid);"
           ]
         },
         "guid" : "1802215F56A1C1AA"
