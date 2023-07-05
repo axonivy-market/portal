@@ -37,10 +37,9 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.dto.BusinessDetailsDTO;",
             "import com.axonivy.portal.components.publicapi.BusinessDetailsAPI;",
             "",
-            "BusinessDetailsAPI.create(BusinessDetailsDTO.builder().path(in.linkToBusinessDetailsPage).build());"
+            "BusinessDetailsAPI.create(in.linkToBusinessDetailsPage);"
           ]
         }
       },
