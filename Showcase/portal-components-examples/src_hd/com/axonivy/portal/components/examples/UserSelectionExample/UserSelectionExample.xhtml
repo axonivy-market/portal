@@ -37,7 +37,7 @@
         <div class="ui-g ui-fluid" style="margin-bottom: 20px;">
           <div id="user-by-role-component" class="ui-g-8 ui-xl-4 ui-md-6 ui-sm-12">
             <ic:com.axonivy.portal.components.UserSelection componentId="user-by-role-autocomplete" fromRoleNames="#{data.definedRoleNames}"
-              selectedUser="#{data.selectedUserForDefinedRoles}" autoCompleteStyleClass="width-100" label="Users from defined rolenames"
+              selectedUser="#{data.selectedUserForDefinedRoles}" autoCompleteStyleClass="width-100" label="Users from defined rolenames" excludedUsernames="#{data.excludedUsernames}"
               labelPanelStyleClass="ui-g-6 ui-md-6 ui-sm-12" autoCompletePanelStyleClass="ui-g-6 ui-sm-12" />
           </div>
           <div id="item-select-with-ajax-event-component" class="ui-g-4 ui-xl-4 ui-md-6 ui-sm-12">
@@ -52,6 +52,13 @@
                   update="#{p:resolveFirstComponentWithId('item-select-event-for-user-selection-message', view).clientId}" />
               </f:facet>
             </ic:com.axonivy.portal.components.UserSelection>
+          </div>
+        </div>
+        <div class="ui-g ui-fluid" style="margin-bottom: 20px;">
+          <div id="user-by-role-component" class="ui-g-8 ui-xl-4 ui-md-6 ui-sm-12">
+            <ic:com.axonivy.portal.components.UserSelection componentId="user-by-role-autocomplete" fromRoleNames="#{data.nonExistedRoles}"
+              selectedUser="#{data.selectedUserForDefinedRoles}" autoCompleteStyleClass="width-100" label="Empty users selection" excludedUsernames="#{data.excludeAllRoleNames}"
+              labelPanelStyleClass="ui-g-6 ui-md-6 ui-sm-12" autoCompletePanelStyleClass="ui-g-6 ui-sm-12" emptyMessage="There's no user to show"/>
           </div>
         </div>
       </h:form>
