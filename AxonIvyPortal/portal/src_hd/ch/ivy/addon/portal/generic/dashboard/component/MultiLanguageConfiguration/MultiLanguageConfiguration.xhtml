@@ -22,42 +22,48 @@
     <h:form id="add-language-detail-form">
       <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/emptySupportedLanguages')}"
         rendered="#{titles.isEmpty()}" />
-      <h:dataTable value="#{titles}" rendered="#{titles.isEmpty() eq 'false'}" var="title" width="460">
+      <h:dataTable id="table-titles" value="#{titles}" rendered="#{titles.isEmpty() eq 'false'}" var="title" width="460" >
         <h:column>
-          <h:outputText styleClass="ui-g-12" value="#{title.locale.getDisplayName()}" />
+          <p:outputLabel styleClass="ui-g-12" value="#{title.locale.getDisplayName()}" for="title-input"/>
         </h:column>
         <h:column>
           <div class="ui-g-12 ui-fluid">
-            <p:inputText value="#{title.value}" id="title-input" autocomplete="off">
+          <p:focus for="title-input" rendered="#{managedBean.isShowTranslation(title) eq 'false'}" />
+            <p:inputText value="#{title.value}" id="title-input" autocomplete="off"
+              required="#{managedBean.isRequiredField(title)}"
+              requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
                <p:ajax event="click" listener="#{managedBean.translate(title)}"
                disabled="#{managedBean.isShowTranslation(title) eq 'false'}"
-               process="@form" partialSubmit="true" global="false" update="translated-text-panel" />
+               process="@form" partialSubmit="true" global="false" update="translated-text-panel, tranlate-link" />
             </p:inputText>
             <p:overlayPanel rendered="#{managedBean.isShowTranslation(title)}"
              for="title-input" appendTo="@(body)" my="right top" at="right bottom"
              id="overlay-panel-input"
              styleClass="filter-name-overlay-panel" dynamic="false" dismissable="true" showCloseIcon="true">
-              <p:commandLink id="tranlate-link" actionListener="#{managedBean.applyTranslatedText(title)}" update="@form" process="@this" partialSubmit="true">
+              <p:commandLink id="tranlate-link" actionListener="#{managedBean.applyTranslatedText(title)}" update="@form" process="@this" partialSubmit="true" disabled="#{not empty managedBean.warningText}">
                 <span class="fa fa-language language-icon-padding-right"/>
                 <h:outputText value="Auto. translation" />
               </p:commandLink>
               <h:panelGroup id="translated-text-panel" layout="block">
-                <i id="translating-title" class="#{empty managedBean.translatedText ? 'pi pi-spin pi-spinner' : 'u-hidden'}"></i>
+                <i id="translating-title" class="#{empty managedBean.translatedText and empty managedBean.warningText? 'pi pi-spin pi-spinner' : 'u-hidden'}"></i>
                 <p:outputPanel id="translated-title" styleClass="#{empty managedBean.translatedText ? 'u-hidden' : ''}">#{managedBean.translatedText}</p:outputPanel>
+                <p:outputLabel id="warning-text" styleClass="#{empty managedBean.warningText? 'u-hidden' : ''}"><span class="ui-outputlabel-rfi">#{managedBean.warningText}</span></p:outputLabel>
               </h:panelGroup>
             </p:overlayPanel>
           </div>
         </h:column>
       </h:dataTable>
-
+      
       <div class="u-dialog-footer-actions-group">
         <p:commandLink id="multi-language-cancel-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('multiple-languages-dialog').hide();" />
         <p:spacer width="15px" rendered="#{!titles.isEmpty()}" />
         <p:commandButton id="multi-language-ok-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-          update="#{cc.attrs.componentToUpdateOnCreate}, #{cc.attrs.componentToUpdateOnModify}" process="@form"
-          oncomplete="PF('multiple-languages-dialog').hide();" actionListener="#{cc.attrs.updateCurrentLanguage}"
+          update="#{cc.attrs.componentToUpdateOnCreate}, #{cc.attrs.componentToUpdateOnModify}, @form" process="@form"
+          oncomplete="PF('multiple-languages-dialog').hide();"
+          actionListener="#{cc.attrs.updateCurrentLanguage}"
+          validateClient="true"
           rendered="#{!titles.isEmpty()}" />
       </div>
     </h:form>

@@ -279,6 +279,7 @@ Variables:
     # Support the translation from English to the other languages or from German to the other languages (German, English, French, Spanish)
     DeepL:
       # DeepL Authentication Key (should end with :fx)
+      # [password]
       AuthKey: ''
       # Set this property to true to enable the DeepL translation support
       Enable: true

@@ -83,6 +83,7 @@ import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.cm.ContentObjectValue;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.service.ServiceException;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ViewScoped
@@ -835,6 +836,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   public void translate(DisplayName title) {
+    translatedText = "";
+    warningText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/InvalidDeepLAuthKey");
     if (!title.getLocale().getLanguage().equals(UserUtils.getUserLanguage())) {
       List<DisplayName> languages = this.widget.getNames();
       String currentLanguage = UserUtils.getUserLanguage();
@@ -844,10 +847,18 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         Map<String, Object> params = new HashMap<>();
         params.put("text", optional.get().getValue());
         params.put("targetLanguage", getTargetLanguageFromValue(title.getLocale().getLanguage().toUpperCase()));
-        Map<String, Object> response = IvyAdapterService
-            .startSubProcess("translateText(String,com.deepl.api.v2.client.TargetLanguage)", params, new ArrayList<>());
-        translatedText = response.get("translation").toString();
-        Ivy.log().warn(response.get("translation"));
+        Map<String, Object> response = null;
+        try {
+          response = IvyAdapterService.startSubProcess("translateText(String,com.deepl.api.v2.client.TargetLanguage)",
+              params, new ArrayList<>());
+        } catch (ServiceException ex) {
+          Ivy.log().error(ex.getMessage());
+        }
+        if (response != null) {
+          translatedText = response.get("translation").toString();
+          warningText = "";
+          Ivy.log().warn(response.get("translation"));
+        }
       }
     }
 

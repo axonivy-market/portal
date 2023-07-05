@@ -314,7 +314,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreAllToDefault: Alle auf Standard Zurücksetzen
     restoreDefault: Auf Standard Zurücksetzen.
     settingApplicationName: Anwendungsname angeben
-    settingMultipleLanguages: TODO Setting multiple languages
+    settingMultipleLanguages: Einstellung mehrerer Sprachen
     usernameHint: Benutzername eines System Administrators.
     usernameRequiredMsg: Bitte geben Sie den Benutzernamen an.
     value: Wert
@@ -774,6 +774,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: Die Dashboard-Konfiguration wird für mobile Geräte nicht unterstützt.
       EditPrivateDashboards: Private Dashboards bearbeiten
       EditPublicDashboards: Öffentliche Dashboards bearbeiten
+      InvalidDeepLAuthKey: Ungültiger DeepL Authentifizierungsschlüssel
       PrivateDashboard: Private Dashboards
       PrivateDashboardConfiguration: Private Dashboard-Konfiguration
       PublicDashboard: Öffentliche Dashboards

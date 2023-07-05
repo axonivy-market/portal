@@ -77,6 +77,7 @@ public class DashboardBean implements Serializable {
   private TaskEmptyMessage noTasksMessage;
   private List<DashboardTemplate> dashboardTemplates;
   protected String translatedText;
+  protected String warningText;
 
   @PostConstruct
   public void init() {
@@ -404,7 +405,8 @@ public class DashboardBean implements Serializable {
     String deepLAuthKey = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.DEEPL_AUTH_KEY);
     boolean enableDeepL = GlobalSettingService.getInstance()
         .findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_DEEPL_TRANSLATION);
-    boolean isShow = !title.getLocale().getLanguage().equals(UserUtils.getUserLanguage()) && enableDeepL
+    boolean isShow = StringUtils.isNotBlank(title.getValue())
+        && !title.getLocale().getLanguage().equals(UserUtils.getUserLanguage()) && enableDeepL
         && StringUtils.isNotBlank(deepLAuthKey);
     return isShow;
   }
@@ -414,8 +416,10 @@ public class DashboardBean implements Serializable {
   }
 
   public void applyTranslatedText(DisplayName displayName) {
-    displayName.setValue(translatedText);
-    translatedText = "";
+    if (StringUtils.isNotBlank(translatedText)) {
+      displayName.setValue(translatedText);
+      translatedText = "";
+    }
   }
 
   public TargetLanguage getTargetLanguageFromValue(String language) {
@@ -423,6 +427,16 @@ public class DashboardBean implements Serializable {
       return TargetLanguage.EN_US;
     }
     return TargetLanguage.fromValue(language);
+  }
+
+  public boolean isRequiredField(DisplayName displayName) {
+    String currentLanguage = UserUtils.getUserLanguage();
+    String displayLanguage = displayName.getLocale().getLanguage();
+    return currentLanguage.equals(displayLanguage);
+  }
+
+  public String getWarningText() {
+    return warningText;
   }
 
 }

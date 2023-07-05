@@ -114,47 +114,54 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public void createPublicDashboardFromScratch(SelenideElement createDashboardDialog, List<String> permissions) {
-	  String creationDetailsDialogId = "div[id$=':dashboard-creation-details-dialog']";
-	  if (permissions != null) {
-	      createDashboardDialog.$("div[id$=':dashboard-permission']").$$("li.ui-state-active").forEach(permission -> {
-	        permission.$("span.ui-icon-close").shouldBe(getClickableCondition()).click();
-	      });
+    String creationDetailsDialogId = "div[id$=':dashboard-creation-details-dialog']";
+    if (permissions != null) {
+      createDashboardDialog.$("div[id$=':dashboard-permission']").$$("li.ui-state-active").forEach(permission -> {
+        permission.$("span.ui-icon-close").shouldBe(getClickableCondition()).click();
+      });
 
-	      createDashboardDialog.$("div[id$=':dashboard-permission']").$("button.ui-autocomplete-dropdown").click();
-	      $("span[id$=':dashboard-permission_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-	          .$$("tr.ui-autocomplete-item").forEach(item -> {
-	            for (String permissionName : permissions) {
-	              if (item.$("td").getText().contains(permissionName)) {
-	                item.shouldBe(getClickableCondition()).click();
-	              }
-	            }
-	          });
-	    }
+      createDashboardDialog.$("div[id$=':dashboard-permission']").$("button.ui-autocomplete-dropdown").click();
+      $("span[id$=':dashboard-permission_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+          .$$("tr.ui-autocomplete-item").forEach(item -> {
+            for (String permissionName : permissions) {
+              if (item.$("td").getText().contains(permissionName)) {
+                item.shouldBe(getClickableCondition()).click();
+              }
+            }
+          });
+    }
 
-	    createDashboardDialog.$("button[id$='dashboard-create-button']").click();
-	    $(creationDetailsDialogId).shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    createDashboardDialog.$("button[id$='dashboard-create-button']").click();
+    $(creationDetailsDialogId).shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public void changeDashboardTitle(SelenideElement dashboardDialog, String title) {
-	dashboardDialog.$("input[id$=':dashboard-title']").clear();
-	dashboardDialog.$("input[id$=':dashboard-title']").sendKeys(title);
+    dashboardDialog.$("input[id$=':dashboard-title']").clear();
+    dashboardDialog.$("input[id$=':dashboard-title']").sendKeys(title);
   }
 
   public SelenideElement getAddLanguageButton() {
-	SelenideElement addLanguageButton = $("button[id$='add-language-button']");
-  	addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-  	addLanguageButton.shouldBe(getClickableCondition());
-  	waitUntilElementToBeClickable(addLanguageButton);
-  	return addLanguageButton;
+    SelenideElement addLanguageButton = $("button[id$='add-language-button']");
+    addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    addLanguageButton.shouldBe(getClickableCondition());
+    waitUntilElementToBeClickable(addLanguageButton);
+    return addLanguageButton;
   }
 
   public SelenideElement getMultipleLanguageDialog() {
-	  SelenideElement addLanguageButton = $("div[id$='multiple-languages-dialog']");
-	  addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    SelenideElement addLanguageButton = $("div[id$='multiple-languages-dialog']");
+    addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
 
-	  return addLanguageButton;
+    return addLanguageButton;
   }
 
+  public SelenideElement getTranslationOverlayPanel(int index) {
+    SelenideElement translationOverlay = $(String.format("div[id$=':%s:overlay-panel-input']", index));
+    waitUntilElementToBeClickable(translationOverlay);
+    translationOverlay.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
+    return translationOverlay;
+  }
   public void reorderPublicDashboard() {
     selectPublicDashboardType();
     $("a[id$='reorder-dashboard-action'].js-public-dashboard").shouldBe(Condition.appear, DEFAULT_TIMEOUT)

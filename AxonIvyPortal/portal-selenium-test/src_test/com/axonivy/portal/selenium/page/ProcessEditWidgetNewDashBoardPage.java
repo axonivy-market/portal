@@ -13,11 +13,11 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   private String processEditWidgetId;
 
   public ProcessEditWidgetNewDashBoardPage() {
-	this("div[id='new-widget-configuration-dialog']");
+    this("div[id='new-widget-configuration-dialog']");
   }
 
   public ProcessEditWidgetNewDashBoardPage(String processEditWidgetId) {
-	this.processEditWidgetId = processEditWidgetId;
+    this.processEditWidgetId = processEditWidgetId;
   }
 
   @Override
@@ -377,22 +377,30 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getAddLanguageButton() {
-	SelenideElement addLanguageButton = $("button[id$='add-language-button']");
-  	addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-  	addLanguageButton.shouldBe(getClickableCondition());
-  	waitUntilElementToBeClickable(addLanguageButton);
-  	return addLanguageButton;
+    SelenideElement addLanguageButton = $("button[id$='add-language-button']");
+    addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    addLanguageButton.shouldBe(getClickableCondition());
+    waitUntilElementToBeClickable(addLanguageButton);
+    return addLanguageButton;
   }
 
   public SelenideElement getMultipleLanguageDialog() {
-	  SelenideElement addLanguageButton = $("div[id$='multiple-languages-dialog']");
-	  addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-	  return addLanguageButton;
+    SelenideElement addLanguageButton = $("div[id$='multiple-languages-dialog']");
+    addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return addLanguageButton;
   }
 
   public void save() {
     $(processEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='widget-configuration-save-button']")
         .shouldBe(getClickableCondition()).click();
     $("[id$='task-component:loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+  
+  public SelenideElement getTranslationOverlayPanel(int index) {
+    SelenideElement translationOverlay = $(String.format("div[id$=':%s:overlay-panel-input']", index));
+    waitUntilElementToBeClickable(translationOverlay);
+    translationOverlay.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
+    return translationOverlay;
   }
 }

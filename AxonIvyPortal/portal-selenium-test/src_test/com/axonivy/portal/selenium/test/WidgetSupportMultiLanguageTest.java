@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.test;
 
+import static com.axonivy.portal.selenium.common.Variable.DEEPL_AUTH_KEY;
+import static com.axonivy.portal.selenium.common.Variable.ENABLE_DEEPL_TRANSLATION;
 import static com.codeborne.selenide.CollectionCondition.size;
 
 import org.junit.jupiter.api.AfterEach;
@@ -20,8 +22,9 @@ import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.UserMenuPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class WidgetSupportMultiLanguageTest extends BaseTest {
 
   private NewDashboardPage newDashboardPage;
@@ -34,6 +37,8 @@ public class WidgetSupportMultiLanguageTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     resetLanguageOfCurrentUser();
+    updatePortalSetting(ENABLE_DEEPL_TRANSLATION.getKey(), "true");
+    updatePortalSetting(DEEPL_AUTH_KEY.getKey(), "deepLAuthKey");
   }
 
   @Test
@@ -56,7 +61,13 @@ public class WidgetSupportMultiLanguageTest extends BaseTest {
     elementsInput.get(3).shouldBe(Condition.value(widgetTitle));
 
     elementsInput.get(2).setValue(updatedTitle);
+    elementsInput.get(1).click();
+    SelenideElement translation = newCaseWidget.getTranslationOverlayPanel(1);
+    translation.$("span.ui-icon-closethick").click();
+
     multipleLanguageDialog.$("button[type='submit']").click();
+    multipleLanguageDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+
     newCaseWidget.save();
 
     changeUserLanguage();
@@ -83,7 +94,13 @@ public class WidgetSupportMultiLanguageTest extends BaseTest {
     elementsInput.get(3).shouldBe(Condition.value(widgetTitle));
 
     elementsInput.get(2).setValue(updatedTitle);
+    elementsInput.get(1).click();
+    SelenideElement translation = newTaskWidget.getTranslationOverlayPanel(1);
+    translation.$("span.ui-icon-closethick").click();
+
     multipleLanguageDialog.$("button[type='submit']").click();
+    multipleLanguageDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+
     newTaskWidget.save();
 
     changeUserLanguage();
@@ -109,7 +126,13 @@ public class WidgetSupportMultiLanguageTest extends BaseTest {
     elementsInput.get(3).shouldBe(Condition.value(processTitle));
 
     elementsInput.get(2).setValue(updatedTitle);
+    elementsInput.get(1).click();
+    SelenideElement translation = newProcessWidget.getTranslationOverlayPanel(1);
+    translation.$("span.ui-icon-closethick").click();
+
     multipleLanguageDialog.$("button[type='submit']").click();
+    multipleLanguageDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+
     newProcessWidget.save();
 
     changeUserLanguage();

@@ -67,7 +67,7 @@
           "entity" : {
             "type" : "com.fasterxml.jackson.databind.JsonNode",
             "map" : {
-              "out.output" : "result.get(\"translations\").get(0).get(\"text\").asText();"
+              "out.output" : "result != null ? result.get(\"translations\").get(0).get(\"text\").asText() : \"\";"
             }
           }
         }
