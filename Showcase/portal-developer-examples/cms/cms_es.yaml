@@ -193,18 +193,6 @@ Processes:
       #Resumen
       Solicitante obtendrá un resumen
       Tomar nota del resultado
-  CreateInvestment:
-    Tasks:
-      Request:
-        name: Solicitud de inversión
-    description: Ejemplo de solicitud de inversión para la página de detalles de casos personalizados
-    name: Crear investición
-  CreateInvestmentWithPublicAPI:
-    Task:
-      Request:
-        name: Solicitud de inversión
-    description: Solicitud de inversión para la página de detalles comerciales personalizados con ejemplo de API pública
-    name: Crear inversión con API pública
   Payment:
     Tasks:
       Pay:

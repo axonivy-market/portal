@@ -1,4 +1,4 @@
 InvestmentRequestBusinessDetailsPageData #class
-com.axonivy.portal.developerexamples.customization.InvestmentRequestBusinessDetailsPage #namespace
+com.axonivy.portal.components.examples.InvestmentRequestBusinessDetailsPage #namespace
 ivyCase ch.ivyteam.ivy.workflow.ICase #field
 ivyCase PERSISTENT #fieldModifier

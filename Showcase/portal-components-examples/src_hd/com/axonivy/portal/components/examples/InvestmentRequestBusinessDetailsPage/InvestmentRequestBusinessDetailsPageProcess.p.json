@@ -1,9 +1,9 @@
 {
   "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
-  "id" : "1764650BF6568EE3",
+  "id" : "1892A183A71471E8",
   "kind" : "HTML_DIALOG",
   "config" : {
-    "data" : "com.axonivy.portal.developerexamples.customization.InvestmentRequestBusinessDetailsPage.InvestmentRequestBusinessDetailsPageData"
+    "data" : "com.axonivy.portal.components.examples.InvestmentRequestBusinessDetailsPage.InvestmentRequestBusinessDetailsPageData"
   },
   "elements" : [ {
       "id" : "f0",
@@ -19,11 +19,10 @@
             "out.ivyCase" : "param.ivyCase"
           }
         },
-        "guid" : "1764650BF9EC990B"
+        "guid" : "1892A183A756DE47"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : 24, "y" : 35 }
+        "at" : { "x" : 96, "y" : 64 }
       },
       "connect" : [
         { "id" : "f2", "to" : "f1" }
@@ -39,7 +38,7 @@
       "type" : "HtmlDialogEventStart",
       "name" : "close",
       "config" : {
-        "guid" : "1764650BFAF61D23"
+        "guid" : "1892A183A78C4853"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }

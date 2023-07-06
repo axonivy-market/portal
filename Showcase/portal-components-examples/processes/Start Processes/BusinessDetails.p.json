@@ -2,7 +2,7 @@
   "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "176465FBFE257CF3",
   "config" : {
-    "data" : "com.axonivy.portal.developerexamples.customization.BusinessDetailsData"
+    "data" : "com.axonivy.portal.components.examples.BusinessDetailsData"
   },
   "elements" : [ {
       "id" : "f10",
@@ -11,7 +11,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.util.CaseUtils;",
+            "import com.axonivy.portal.components.util.CaseUtils;",
             "out.iCase = CaseUtils.findCase(in.caseId);"
           ]
         }
@@ -39,9 +39,7 @@
           "customFields" : [
             { "name" : "AccountNumber", "type" : "NUMBER", "value" : "100" },
             { "name" : "CustomerName", "type" : "STRING", "value" : "\"Apartment A\"" },
-            { "name" : "InvoiceDate", "type" : "TIMESTAMP", "value" : "new DateTime(2018, 2, 2, 2, 2, 2)" },
             { "name" : "InvoiceNumber", "type" : "NUMBER", "value" : "2000" },
-            { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime(2018, 1, 1, 1, 1, 1)" },
             { "name" : "SupportData", "type" : "STRING", "value" : "\"Request for new computer\"" }
           ]
         }
@@ -68,7 +66,7 @@
         "Business Details Page"
       ],
       "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.customization.InvestmentRequestBusinessDetailsPage:start(ch.ivyteam.ivy.workflow.ICase)",
+        "dialog" : "com.axonivy.portal.components.examples.InvestmentRequestBusinessDetailsPage:start(ch.ivyteam.ivy.workflow.ICase)",
         "call" : {
           "map" : {
             "param.ivyCase" : "in.iCase"
@@ -76,7 +74,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 572, "y" : 64 },
+        "at" : { "x" : 576, "y" : 64 },
         "size" : { "width" : 192, "height" : 60 }
       },
       "connect" : [
@@ -210,8 +208,6 @@
           "customFields" : [
             { "name" : "AccountNumber", "type" : "NUMBER", "value" : "100" },
             { "name" : "CustomerName", "type" : "STRING", "value" : "\"Apartment A\"" },
-            { "name" : "InvoiceDate", "type" : "TIMESTAMP", "value" : "new DateTime(2018, 2, 2, 2, 2, 2)" },
-            { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime(2018, 1, 1, 1, 1, 1)" },
             { "name" : "SupportData", "type" : "STRING", "value" : "\"Request for new computer\"" }
           ]
         }
