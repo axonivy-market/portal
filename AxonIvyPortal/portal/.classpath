@@ -5,7 +5,7 @@
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="src_dataClasses">
+		<classpathentry kind="src" path="src_dataClasses">
 		<attributes>
 			<attribute name="optional" value="true"/>
 		</attributes>
@@ -24,6 +24,5 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="lib/generated/rest/jaxRsClient_4a403c04-f107-44f0-9eb8-92f9c27f7ed1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
