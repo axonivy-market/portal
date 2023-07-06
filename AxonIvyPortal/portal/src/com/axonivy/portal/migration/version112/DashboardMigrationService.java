@@ -32,7 +32,7 @@ public class DashboardMigrationService {
     try {
       Ivy.var().set(PortalVariable.DASHBOARD.key, publicDashboardJson);
     } catch (Exception e) {
-      Ivy.log().warn("Error occurred when migrate Portal dashboards");
+      Ivy.log().error("Error occurred when migrate Portal dashboards");
     }
 
     // Migrate all private dashboards
@@ -46,7 +46,7 @@ public class DashboardMigrationService {
       try {
         user.setProperty(PortalVariable.DASHBOARD.key, userDashboardJson);
       } catch (Exception e) {
-        Ivy.log().warn("Error occurred when migrate Portal dashboards");
+        Ivy.log().error("Error occurred when migrate Portal dashboards");
       }
     });
 
@@ -79,7 +79,7 @@ public class DashboardMigrationService {
     try {
       Ivy.var().set(PortalVariable.DASHBOARD_TEMPLATES.key, templatesJson);
     } catch (Exception e) {
-      Ivy.log().warn("Error occurred when migrate Portal dashboards");
+      Ivy.log().error("Error occurred when migrate Portal dashboards");
     }
   }
 
