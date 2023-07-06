@@ -80,7 +80,7 @@ public enum GlobalVariable {
   SEARCH_SCOPE_BY_CASE_FIELDS("Portal.SearchScope.ByCaseFields", GlobalVariableType.MULTI_EXTERNAL_SELECTIONS,
       getSearchScopeCaseFields(), "SearchScopeCaseFields", getSearchScopeCaseFields()),
   DEEPL_AUTH_KEY("Portal.DeepL.AuthKey", GlobalVariableType.TEXT, "", "deepLAuthKey"), ENABLE_DEEPL_TRANSLATION(
-      "Portal.DeepL.Enable", GlobalVariableType.SELECTION, Option.TRUE.toString(), "enableDeepLTranslation");
+      "Portal.DeepL.Enable", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableDeepLTranslation");
 
   private String key;
   private GlobalVariableType type;
