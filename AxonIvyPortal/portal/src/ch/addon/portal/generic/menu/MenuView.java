@@ -36,11 +36,14 @@ import ch.addon.portal.generic.userprofile.homepage.HomepageType;
 import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.configuration.Application;
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
+import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -142,6 +145,7 @@ public class MenuView implements Serializable {
     var dashboardId = "";
     String dashboardLink = getDefaultPortalStartUrl();
     String defaultHomepageConfig = HomepageUtils.getHomepageName();
+    String currentLanguage = UserUtils.getUserLanguage();
     HomepageType configHomepageType = HomepageType.getType(defaultHomepageConfig);
     if (HomepageType.DASHBOARD != configHomepageType) {
       dashboardLink = getDefaultDashboardUrl();
