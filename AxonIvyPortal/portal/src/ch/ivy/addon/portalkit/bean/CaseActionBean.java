@@ -40,27 +40,29 @@ public class CaseActionBean implements Serializable {
   public String getAdditionalCaseDetailsPageUri(ICase iCase) {
     String additionalCaseDetailsPageUri = StringUtils.EMPTY;
     if (isExpressCase(iCase)) {
-      additionalCaseDetailsPageUri = ProcessStartCollector.getInstance().findExpressBusinessViewStartLink() + "?caseId=" + iCase.getId();
+      additionalCaseDetailsPageUri =
+          ProcessStartCollector.getInstance().findExpressBusinessViewStartLink() + "?caseId=" + iCase.getId();
     } else {
       additionalCaseDetailsPageUri = getBusinessDetailURLFromCustomField(iCase);
-      if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {
-        Map<String, String> params = new HashMap<>();
-        params.put("caseId", String.valueOf(iCase.getId()));
-        additionalCaseDetailsPageUri = PortalNavigator.buildUrlByKeyword("showAdditionalCaseDetails", START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE, params);
-      } else {
-        additionalCaseDetailsPageUri += (additionalCaseDetailsPageUri.contains("?") ? "&" : "?").concat("embedInFrame");
-      }
     }
     return additionalCaseDetailsPageUri;
   }
 
   private String getBusinessDetailURLFromCustomField(ICase iCase) {
-    String additionalCaseDetailsPageUri =
-        iCase.customFields().textField(com.axonivy.portal.components.constant.CustomFields.BUSINESS_DETAILS)
-        .getOrNull();
+    String additionalCaseDetailsPageUri = iCase.customFields()
+        .stringField(com.axonivy.portal.components.constant.CustomFields.BUSINESS_DETAILS).getOrNull();
     if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {
       additionalCaseDetailsPageUri = iCase.customFields()
           .textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).getOrNull();
+      if (StringUtils.isNotEmpty(additionalCaseDetailsPageUri)) {
+        additionalCaseDetailsPageUri += (additionalCaseDetailsPageUri.contains("?") ? "&" : "?").concat("embedInFrame");
+      }
+    }
+    if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {
+      Map<String, String> params = new HashMap<>();
+      params.put("caseId", String.valueOf(iCase.getId()));
+      additionalCaseDetailsPageUri = PortalNavigator.buildUrlByKeyword("showAdditionalCaseDetails",
+          START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE, params);
     }
     return additionalCaseDetailsPageUri;
   }
