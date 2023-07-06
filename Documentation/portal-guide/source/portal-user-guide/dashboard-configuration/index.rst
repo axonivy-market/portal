@@ -184,6 +184,27 @@ A table of public dashboards is shown with the following information:
 
 .. include:: ../includes/_common-icon.rst
 
+.. _howto-import-public-dashboard:
+
+How to: import public dashboard
+============================
+
+#. Select |import-icon| Add.
+
+#. Select Import.
+
+#. The :guilabel:`Create new public dashboard` dialog is opened.
+
+#. In the open dialog, press the Select button and choose the JSON file that contains the dashboard you want to import.
+
+#. Edit the mandatory title, permissions to see the public dashboard and the optional description for the public dashboard.
+
+#. Import the public dashboard by selecting Save button.
+
+#. Configuration public dashboard (see: :ref:`Dashboard <new-dashboard>`).
+
+#. Go back to the dashboards list to see that a new public dashboard has been added.
+
 .. |dashboard-configuration| image:: ../../screenshots/settings/dashboard-configuration.png
 .. |dashboard-configuration-page| image:: ../../screenshots/dashboard-configuration/dashboard-configuration-page.png
 .. |private-dashboard-configuration| image:: ../../screenshots/dashboard-configuration/private-dashboard-configuration.png
