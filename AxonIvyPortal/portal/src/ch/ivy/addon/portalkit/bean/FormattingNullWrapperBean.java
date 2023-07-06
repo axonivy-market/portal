@@ -22,7 +22,7 @@ public class FormattingNullWrapperBean implements Serializable {
       return DEFAULT_VALUE_IF_NULL;
     }
     String pattern = DateTimeGlobalSettingService.getInstance().getGlobalSettingPattern();
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, Ivy.session().getContentLocale());
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, Ivy.session().getFormattingLocale());
     return simpleDateFormat.format(date);
   }
 }

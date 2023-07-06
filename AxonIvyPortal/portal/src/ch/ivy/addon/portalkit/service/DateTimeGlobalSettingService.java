@@ -1,7 +1,6 @@
 package ch.ivy.addon.portalkit.service;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class DateTimeGlobalSettingService {
@@ -50,7 +49,8 @@ public class DateTimeGlobalSettingService {
 
   private String getDateWithoutYearPattern(String pattern) {
     String expectedPattern = pattern.replaceAll(YEAR_PATTERN, "").trim();
-    return expectedPattern.endsWith(COMMA_CHARACTER) ? expectedPattern.substring(0, expectedPattern.length() - 1) : expectedPattern;
+    return expectedPattern.endsWith(COMMA_CHARACTER) ? expectedPattern.substring(0, expectedPattern.length() - 1)
+        : expectedPattern;
   }
 
   public String getDateTimestampPattern() {
@@ -70,12 +70,27 @@ public class DateTimeGlobalSettingService {
   }
 
   public String getGlobalSettingCalendarPattern() {
-    String datePattern = UserSettingService.newInstance().getDateFormat();
-    String dateTimePattern = datePattern + SPACE_CHARACTER + Ivy.cms().co("/patterns/timePattern");
-    return isTimeHidden() ? datePattern : dateTimePattern;
+    return isTimeHidden() ? getDefaultDatePattern() : getDefaultDateTimePattern();
   }
 
   public String getDateWithoutTimePattern() {
-    return UserSettingService.newInstance().getDateFormat();
+    return getDefaultDatePattern();
   }
+
+  public DateFormat getDefaultDateTimeFormater() {
+    return DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.SHORT, Ivy.session().getFormattingLocale());
+  }
+
+  public DateFormat getDefaultDateFormater() {
+    return DateFormat.getDateInstance(DateFormat.LONG, Ivy.session().getFormattingLocale());
+  }
+
+  public String getDefaultDateTimePattern() {
+    return ((SimpleDateFormat) getDefaultDateFormater()).toPattern();
+  }
+
+  public String getDefaultDatePattern() {
+    return ((SimpleDateFormat) getDefaultDateFormater()).toPattern();
+  }
+
 }

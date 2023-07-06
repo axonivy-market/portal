@@ -19,7 +19,6 @@ import ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
-import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
@@ -276,35 +275,6 @@ public class UserUtils {
     return false;
   }
 
-  public static void setDefaultDatePattern(IUser sessionUser) {
-    if (StringUtils.isBlank(sessionUser.getProperty(UserProperty.DEFAULT_DATE_FORMAT))) {
-      IHttpRequest request = (IHttpRequest) Ivy.request();
-      Locale locale = request.getHttpServletRequest().getLocale();
-      String defaultPattern = getDefaultPatternByLocale(locale);
-      defaultPattern = formatToPrimeFacesPattern(defaultPattern);
-      sessionUser.setProperty(UserProperty.DEFAULT_DATE_FORMAT, defaultPattern);
-      sessionUser.setProperty(UserProperty.DATE_FORMAT, defaultPattern);
-    }
-  }
-
-  private static String getDefaultPatternByLocale(Locale locale) {
-    SimpleDateFormat simpleDateFormat =
-        (SimpleDateFormat) DateFormat.getDateInstance(DateFormat.DEFAULT, locale);
-    return simpleDateFormat.toLocalizedPattern();
-  }
-
-  private static String formatToPrimeFacesPattern(String pattern) {
-    return StringUtils.countMatches(pattern.toLowerCase(), SHORT_YEAR_PATTERN) == 1
-        ? pattern.replaceAll(SHORT_YEAR_PATTERN, FULL_YEAR_PATTERN)
-        : pattern;
-  }
-
-  public static String getSelectedDateFormat(List<String> dateFormats) {
-    String format = UserSettingService.newInstance().getDateFormat();
-    int index = dateFormats.indexOf(format);
-    return index > -1 ? dateFormats.get(index) : dateFormats.get(0);
-  }
-  
   public static String getUserLanguage() {
     String userLanguage = LanguageService.newInstance().findUserLanguages().getIvyLanguage().getUserLanguage();
     String systemLanguage = LanguageManager.instance().configurator(ISecurityContext.current()).content().toString();
