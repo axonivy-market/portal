@@ -6,10 +6,9 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-	<ui:composition template="/layouts/BasicTemplate.xhtml">
-		<ui:param name="isNotRequiredLogin" value="false" />
+	<ui:composition template="/layouts/frame-10.xhtml">
 		<ui:define name="title">Investment Request Case Detail Page</ui:define>
-		<ui:define name="pageContent">
+		<ui:define name="content">
           <p:dataTable 
             id="additional-case-detail-table" 
             value="#{data.ivyCase.customFields().all()}" 
