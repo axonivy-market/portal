@@ -37,6 +37,7 @@ import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
+import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public class CaseService implements ICaseService {
@@ -147,13 +148,27 @@ public class CaseService implements ICaseService {
       return result;
     });
   }
+
+  @Override
+  public IvyCaseResultDTO analyzeCaseBusinessStateStatistic(CaseSearchCriteria criteria) {
+    return IvyExecutor.executeAsSystem(() -> {
+      IvyCaseResultDTO result = new IvyCaseResultDTO();
+      CaseQuery finalQuery = extendQuery(criteria);
+      finalQuery.aggregate().countRows().groupBy().businessState();
+
+      Recordset recordSet = Ivy.wf().getCaseQueryExecutor().getRecordset(finalQuery);
+      CaseStateStatistic caseStateStatistic = createCaseBusinessStateStatistic(recordSet);
+      result.setCaseStateStatistic(caseStateStatistic);
+      return result;
+    });
+  }
   
   private CaseStateStatistic createCaseStateStatistic(Recordset recordSet) {
     CaseStateStatistic caseStateStatistic = new CaseStateStatistic();
     if (recordSet != null) {
       recordSet.getRecords().forEach(record -> {
         int state = Integer.parseInt(record.getField("STATE").toString());
-        long numberOfCases = Long.parseLong(record.getField("COUNT").toString());
+        long numberOfCases = ((BigDecimal)(record.getField("COUNT"))).longValue();
         if (state == CaseState.DONE.intValue()) {
           caseStateStatistic.setDone(numberOfCases);
         } else if (state == CaseState.CREATED.intValue()) {
@@ -162,6 +177,24 @@ public class CaseService implements ICaseService {
           caseStateStatistic.setFailed(numberOfCases);
         } else if (state == CaseState.RUNNING.intValue()) {
           caseStateStatistic.setRunning(numberOfCases);
+        }
+      });
+    }
+    return caseStateStatistic;
+  }
+  
+  private CaseStateStatistic createCaseBusinessStateStatistic(Recordset recordSet) {
+    CaseStateStatistic caseStateStatistic = new CaseStateStatistic();
+    if (recordSet != null) {
+      recordSet.getRecords().forEach(record -> {
+        int state = Integer.parseInt(record.getField("BUSINESSSTATE").toString());
+        long numberOfCases = Long.parseLong(record.getField("COUNT").toString());
+        if (state == CaseBusinessState.DONE.intValue()) {
+          caseStateStatistic.setDone(numberOfCases);
+        } else if (state == CaseBusinessState.DESTROYED.intValue()) {
+          caseStateStatistic.setFailed(numberOfCases);
+        } else if (state == CaseBusinessState.OPEN.intValue()) {
+          caseStateStatistic.setOpen(numberOfCases);
         }
       });
     }
@@ -268,7 +301,7 @@ public class CaseService implements ICaseService {
     caseCategoryStatistic.setNumberOfCasesByCategory(new HashMap<>());
     if (recordSet != null) {
       recordSet.getRecords().forEach(record -> {
-        long numberOfCases = Long.parseLong(record.getField("COUNT").toString());
+        long numberOfCases = ((BigDecimal)(record.getField("COUNT"))).longValue();
         caseCategoryStatistic.getNumberOfCasesByCategory().put(record.getField("CATEGORY").toString(), numberOfCases);
       });
     }

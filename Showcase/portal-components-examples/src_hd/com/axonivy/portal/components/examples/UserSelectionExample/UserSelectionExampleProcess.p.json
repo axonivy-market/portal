@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "18189B0AEEFA7D89",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -79,7 +79,9 @@
             "}",
             "in.selectedUserForReadOnlyField = new UserDTO(backendDev1);",
             "in.excludedUsernames = Arrays.asList(\"supporter\", \"tester\");",
-            "in.userSelectionSerenityExampleLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/UserSelectionExample/showUserSelectionExamplesSerenity.ivp\");"
+            "in.excludeAllRoleNames = Arrays.asList(\"supporter\", \"tester\", \"backendDev1\", \"backendDev2\");",
+            "in.userSelectionSerenityExampleLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/UserSelectionExample/showUserSelectionExamplesSerenity.ivp\");",
+            "in.nonExistedRoles = Arrays.asList(\"EmptyRole\");"
           ]
         },
         "sudo" : true

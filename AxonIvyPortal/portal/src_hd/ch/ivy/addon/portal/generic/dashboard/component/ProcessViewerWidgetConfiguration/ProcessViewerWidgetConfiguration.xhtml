@@ -4,11 +4,13 @@
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="widget" />
+  <cc:attribute name="managedBean" />
+  <cc:attribute name="componentToUpdate" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="widget" value="#{cc.attrs.widget}" />
-
+  <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
   <f:event listener="#{dashboardProcessViewerWidgetConfigurationBean.preRender()}" type="preRenderComponent" />
 
   <!-- Configuration -->
@@ -20,12 +22,25 @@
         <p>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/processViewerConfigurationDescription')}</p>
       </div>
 
-      <h:panelGroup id="widget-title-group" styleClass="ui-g-12 u-padding-0 ui-fluid">
+      <h:panelGroup id="widget-title-group"
+        styleClass="ui-g-12 u-padding-0 ui-fluid">
         <div class="ui-g-4">
-          <p:outputLabel for="widget-title" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetTitle')}" />
+          <p:outputLabel for="widget-title"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetTitle')}" />
         </div>
-        <div class="ui-g-8">
-          <p:inputText id="widget-title" styleClass="widget-configuration__input-text" value="#{widget.name}" />
+        <div class="ui-g-8 ui-inputgroup">
+          <p:inputText id="widget-title"
+            styleClass="widget-configuration__input-text"
+            value="#{widget.name}" />
+          <!-- Add language button -->
+          <p:commandButton styleClass="app-setting-button"
+            icon="si si-chat-translate" id="add-language-button">
+            <p:ajax event="click"
+              listener="#{managedBean.updateWidgetNameByLocale()}"
+              process="widget-title"
+              update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
+              oncomplete="PF('multiple-languages-dialog').show();" />
+          </p:commandButton>
         </div>
       </h:panelGroup>
 
@@ -47,6 +62,9 @@
       </h:panelGroup>
     </div>
   </h:panelGroup>
+  <!-- Multi language dialog-->
+  <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
+    id="title-language-config" titles="#{managedBean.widget.names}"
+    componentToUpdateOnCreate="#{cc.attrs.componentToUpdate}" />
 </cc:implementation>
-
 </html>

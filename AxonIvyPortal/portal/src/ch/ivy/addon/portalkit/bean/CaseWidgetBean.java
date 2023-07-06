@@ -2,11 +2,17 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+
+import org.apache.commons.collections4.CollectionUtils;
+
+import com.axonivy.portal.enums.SearchScopeCaseField;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData;
@@ -198,5 +204,21 @@ public class CaseWidgetBean implements Serializable {
       visibilityColumns.add(TaskLazyDataModel.DESCRIPTION);
     }
     return visibilityColumns;
+  }
+
+  public String getGlobalSearchText(CaseLazyDataModel model) {
+    String result = "";
+    if (model.getCriteria().isGlobalSearch()) {
+      String keyword = Optional.ofNullable(model.getCriteria().getKeyword()).orElse("");
+      String searchScopeCaseFieldsString = "";
+
+      if (CollectionUtils.isNotEmpty(model.getCriteria().getSearchScopeCaseFields())) {
+        searchScopeCaseFieldsString
+          = ", ".concat(String.join(", ", model.getCriteria().getSearchScopeCaseFields().stream().map(SearchScopeCaseField::getLabel).collect(Collectors.toList())));
+      }
+
+      result = Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/GlobalSearchText", Arrays.asList(keyword, searchScopeCaseFieldsString));
+    }
+    return result;
   }
 }

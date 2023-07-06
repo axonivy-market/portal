@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "14B2A3DC7173EA26",
   "config" : {
     "data" : "ch.ivy.add.portalkit.task.TaskGenerationDataRange"
@@ -39,12 +39,17 @@
       "id" : "f1",
       "type" : "Alternative",
       "name" : "in.taskCounter < in.to",
+      "config" : {
+        "conditions" : {
+          "f6" : "in.taskCounter < in.to"
+        }
+      },
       "visual" : {
         "at" : { "x" : 208, "y" : 344 },
         "labelOffset" : { "x" : 80, "y" : 20 }
       },
       "connect" : [
-        { "id" : "f6", "to" : "f2", "condition" : "in.taskCounter < in.to", "var" : "in1" },
+        { "id" : "f6", "to" : "f2", "var" : "in1" },
         { "id" : "f8", "to" : "f3" }
       ]
     }, {
@@ -123,12 +128,17 @@
       "id" : "f14",
       "type" : "Alternative",
       "name" : "in.taskCounter <= in.to",
+      "config" : {
+        "conditions" : {
+          "f21" : "in.taskCounter <= in.to"
+        }
+      },
       "visual" : {
         "at" : { "x" : 608, "y" : 352 },
         "labelOffset" : { "x" : 83, "y" : 20 }
       },
       "connect" : [
-        { "id" : "f21", "to" : "f16", "condition" : "in.taskCounter <= in.to", "var" : "in1" },
+        { "id" : "f21", "to" : "f16", "var" : "in1" },
         { "id" : "f23", "to" : "f18" }
       ]
     }, {

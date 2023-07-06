@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "16BF516D50A96350",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -236,6 +236,11 @@
       "id" : "f13",
       "type" : "Alternative",
       "name" : "in frame ?",
+      "config" : {
+        "conditions" : {
+          "f8" : "in.inFrame"
+        }
+      },
       "visual" : {
         "at" : { "x" : 320, "y" : 400 },
         "labelOffset" : { "x" : 10, "y" : -14 }
@@ -244,7 +249,7 @@
         { "id" : "f8", "to" : "f7", "label" : {
             "name" : "yes",
             "offset" : { "x" : 0, "y" : -14 }
-          }, "condition" : "in.inFrame" },
+          } },
         { "id" : "f19", "to" : "f15", "via" : [ { "x" : 320, "y" : 496 } ] }
       ]
     }, {

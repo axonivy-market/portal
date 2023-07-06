@@ -58,6 +58,15 @@
             </ic:com.axonivy.portal.components.RoleSelection>
           </div>
         </div>
+        <div class="ui-g ui-fluid">
+          <div id="role-from-defined-role-component" class="ui-g-8 ui-xl-4 ui-md-6 ui-sm-12">
+            <ic:com.axonivy.portal.components.RoleSelection componentId="role-from-defined-role-autocomplete" fromRoleNames="#{data.emptyRoleNames}"
+              selectedRole="#{data.selectedRoleForDefinedRoles}" autoCompleteStyleClass="width-100" label="Empty roles selection"
+              labelPanelStyleClass="ui-g-5 ui-md-6 ui-sm-12" autoCompletePanelStyleClass="ui-g-6 ui-sm-12" emptyMessage="There's no role to show"/>
+          </div>
+          <div id="item-select-with-ajax-event-component" class="ui-g-4 ui-xl-4 ui-md-6 ui-sm-12">
+        </div>
+        </div>
       </h:form>
       </div>
     </ui:define>

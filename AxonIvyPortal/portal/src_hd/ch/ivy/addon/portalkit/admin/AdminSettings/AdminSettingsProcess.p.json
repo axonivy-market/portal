@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "150F0B4F8F3CB2CB",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -206,6 +206,8 @@
       "config" : {
         "output" : {
           "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "import java.util.ArrayList;",
             "import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;",
             "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
             "import ch.ivy.addon.portalkit.enums.GlobalVariableType;",
@@ -227,6 +229,14 @@
             "  in.externalDropDownValues = HomepageUtils.getHomepageOptionsForAdminSettings();",
             "} else if (globalVariable.getType() == GlobalVariableType.EXTERNAL_SELECTION) {",
             "  in.externalDropDownValues = globalVariable.getExternalOptions();",
+            "} else if (globalVariable.getType() == GlobalVariableType.MULTI_EXTERNAL_SELECTIONS) {",
+            "  in.externalDropDownValues = globalVariable.getExternalOptions();",
+            "  in.selectedMultiSettings = new ArrayList();",
+            "  if (StringUtils.isNotBlank(in.selectedSetting.value)) {",
+            "    for (String setting : in.selectedSetting.value.split(\",\")) {",
+            "      in.selectedMultiSettings.add(setting.toUpperCase());",
+            "    }",
+            "  }",
             "}"
           ]
         },
@@ -312,17 +322,23 @@
       "id" : "f115",
       "type" : "Alternative",
       "name" : "app exist ?",
+      "config" : {
+        "conditions" : {
+          "f19" : "!in.duplicateApp",
+          "f118" : "in.duplicateApp"
+        }
+      },
       "visual" : {
         "at" : { "x" : 1072, "y" : 336 },
         "labelOffset" : { "x" : -41, "y" : 7 }
       },
       "connect" : [
-        { "id" : "f19", "to" : "f209", "condition" : "!in.duplicateApp" },
+        { "id" : "f19", "to" : "f209" },
         { "id" : "f118", "to" : "f117", "label" : {
             "name" : "yes",
             "segment" : 0.68,
             "offset" : { "x" : 4, "y" : -6 }
-          }, "condition" : "in.duplicateApp" }
+          } }
       ]
     }, {
       "id" : "f117",
@@ -567,6 +583,11 @@
       "id" : "f209",
       "type" : "Alternative",
       "name" : "is add mode?",
+      "config" : {
+        "conditions" : {
+          "f211" : "in.isAddMode"
+        }
+      },
       "visual" : {
         "at" : { "x" : 1072, "y" : 416 },
         "labelOffset" : { "x" : -43, "y" : 5 }
@@ -576,7 +597,7 @@
             "name" : "yes",
             "segment" : 0.21,
             "offset" : { "x" : -12, "y" : 0 }
-          }, "condition" : "in.isAddMode" },
+          } },
         { "id" : "f213", "to" : "f212", "via" : [ { "x" : 1224, "y" : 416 } ], "label" : {
             "name" : "no",
             "segment" : 0.42,
@@ -704,9 +725,20 @@
       "config" : {
         "output" : {
           "code" : [
+            "import String;",
+            "import org.apache.commons.collections4.CollectionUtils;",
+            "import ch.ivy.addon.portalkit.enums.GlobalVariableType;",
             "import ch.ivy.addon.portalkit.configuration.GlobalSetting;",
             "",
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "",
+            "if (in.settingInputType == GlobalVariableType.MULTI_EXTERNAL_SELECTIONS) {",
+            "  String combinedSettings = \"\";",
+            "  if (CollectionUtils.isNotEmpty(in.selectedMultiSettings)) {",
+            "    combinedSettings = String.join(\",\", in.selectedMultiSettings);",
+            "  }",
+            "  in.selectedSetting.setValue(combinedSettings);",
+            "}",
             "",
             "GlobalSettingService globalSettingService= new GlobalSettingService();",
             "in.selectedSetting = globalSettingService.save(in.selectedSetting) as GlobalSetting;",

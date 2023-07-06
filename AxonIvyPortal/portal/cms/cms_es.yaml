@@ -232,6 +232,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       EnableSwitchThemeModeButton: Establecer en true para habilitar el botón de cambio de tema.
       RoleDirectChildrenLimit: 'El número establecido controla la cantidad de roles hijos directos que se muestra en la pestaña de gestión de roles. Número válido: 10, 50, 100'
       RoleParentLimit: 'El número establecido controla la cantidad de roles padre que se muestra al filtrar los roles en la pestaña Gestión de roles. Número válido: 5, 10, 20'
+      SearchScopeCaseFields: Definición de los campos que la búsqueda global utilizará para encontrar casos coincidentes además del Id de caso (esto puede influir en el rendimiento de la búsqueda)
+      SearchScopeTaskFields: Definir los campos que la búsqueda global utilizará para encontrar tareas coincidentes junto al Id de tarea (esto puede influir en el rendimiento de la búsqueda).
       ShowLoginPageFooter: Para activar/desactivar la visualización del pie de página en la página de acceso.
       behaviourWhenClickingOnLineInTaskList: Para cambiar los comportamientos (ejecutar la tarea o acceder a los detalles de la tarea) al hacer clic en una línea de la lista de tareas, el widget de tareas del tablero y las tareas relacionadas en la página de detalles del caso.
       chatMaxConnection: 'El número establecido controla la cantidad de pestañas permitidas con el chat activo. Si se abren más pestañas, el chat se desactivará en las pestañas inactivas. Valores permitidos entre 1-5 '
@@ -313,12 +315,17 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreAllToDefault: Restaurar todos los valores predeterminados
     restoreDefault: Restaurar valor predeterminado
     settingApplicationName: Definir el nombre de la aplicación
+    settingMultipleLanguages: Establecer varios idiomas
     usernameHint: Nombre de usuario de un administrador de sistema.
     usernameRequiredMsg: Por favor ingrese nombre de usuario.
     value: Valor
   applicationMenuHeader:
     adminSettings: Configuración de administrador
     changePassword: Cambiar contraseña
+  businessCaseState:
+    DESTROYED: Destruido
+    DONE: Hecho
+    OPEN: Pendiente
   caseDetails:
     addDocumentHelpText: Para cargar archivos, arrastrar y soltar o seleccionar archivos
     addNoteHelpText: Escriba su texto aquí.
@@ -874,6 +881,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     expiryTo: Fecha de caducidad hasta
     export:
       exportedCasesFileName: AXONIVY_Dataset_Cases_{0}_{1}.{2}
+      exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}_{1}.{2}
     field: Campo
     fieldIsAdded: El campo {0} está añadido
     iconMessage:
@@ -1087,6 +1095,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     favoriteProcesses: Favoritos del usuario
     goTo: 'Ir a:'
     icon: Icono
+    image: Imagen
     isRequiredMessage: tiene que ser configurado
     linkDescription: Descripción del enlace
     noFavoriteProcess: No ha definido ningún favorito.
@@ -1422,6 +1431,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     WAITING_FOR_INTERMEDIATE_EVENT: Esperando el evento
     WAITING_FOR_INTERMEDIATE_EVENT_UPPERCASE: Esperando el evento
   taskView:
+    GlobalSearchText: Las tareas contienen la palabra clave "{0}" en ID de tarea{1}.
     filterTextPlaceHolderMobile: Nombre o descripción
     filterTextPlaceholder: Nombre, descripción o ID
     restoreDefaultFilterMessage: Si procede, se aplicará el filtro por defecto
@@ -1536,6 +1546,7 @@ Dialogs:
                 destroyCase: Borrar caso
               CaseOwner: Responsable del proceso
               Finished: Terminado
+              GlobalSearchText: Los casos contienen la palabra clave "{0}" en ID del caso{1}.
               ShowBusinessDetails: detalles del negocio
               caseNameNotAvailable: '[Nombre del caso no disponible]'
               defaultEmptyMessage: No hay casos
@@ -1676,6 +1687,13 @@ Labels:
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
   AppendTheTask: Anexar la tarea
   Enums:
+    SearchScopeCaseField:
+      CUSTOM: Campos de cadena personalizados
+      DESCRIPTION: Descripción
+      NAME: Nombre
+    SearchScopeTaskField:
+      DESCRIPTION: Descripción
+      NAME: Nombre
     ThemeMode:
       DARK: Oscuro
       LIGHT: Luz

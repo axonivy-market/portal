@@ -136,8 +136,11 @@ function highlightAddExternalDialogItem() {
   var icon = $("[id$='add-external-link-form:external-link-icon:awesome-icon-selection']");
   appendStepAnnotation(icon, "6", -10, icon.width());
   
+  var uploadButton = $("[id$='add-external-link-form:external-link-image-upload']");
+  appendStepAnnotation(uploadButton, "7", 0, 80);
+  
   var addButton = $("[id$='process-widget:adding-new-external-link-command']");
-  appendStepAnnotation(addButton, "7", -25, -5);
+  appendStepAnnotation(addButton, "8", -25, -5);
 }
 
 function highlightProcessItems() {
@@ -507,7 +510,11 @@ function highlightCaseExportToExcelButton() {
   createRedMediumOutline($("a[id$=':case-export-to-excel']"));
 }
 
-function highlightWidgetExportToExcelLink() {
+function highlightWidgetExportToExcelLinkForTask() {
+  createRedMediumOutline($("form[id$=':export-to-excel-form-0'] > a"));
+}
+
+function highlightWidgetExportToExcelLinkForCase() {
   createRedMediumOutline($("form[id$=':export-to-excel-form-1'] > a"));
 }
 

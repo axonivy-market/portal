@@ -16,3 +16,5 @@ definedRoleNames List<String> #field
 definedRoleNames PERSISTENT #fieldModifier
 roleSelectionSerenityExampleLink String #field
 roleSelectionSerenityExampleLink PERSISTENT #fieldModifier
+emptyRoleNames List<String> #field
+emptyRoleNames PERSISTENT #fieldModifier

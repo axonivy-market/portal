@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.1.26/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
   "id" : "1602F513613E1225",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -634,5 +634,85 @@
       "visual" : {
         "at" : { "x" : 568, "y" : 744 }
       }
+    }, {
+      "id" : "f53",
+      "type" : "CallSubStart",
+      "name" : "analyzeCaseBusinessStateStatistic(CaseQuery)",
+      "config" : {
+        "signature" : "analyzeCaseBusinessStateStatistic",
+        "input" : {
+          "params" : [
+            { "name" : "caseQuery", "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery", "desc" : "" }
+          ],
+          "map" : {
+            "out.caseSearchCriteria.customCaseQuery" : "param.caseQuery"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "result", "type" : "ch.ivy.addon.portalkit.bo.CaseStateStatistic", "desc" : "" }
+          ],
+          "map" : {
+            "result.result" : "in.caseStateStatisticResult"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 120, "y" : 840 }
+      },
+      "connect" : [
+        { "id" : "f58", "to" : "f57" }
+      ]
+    }, {
+      "id" : "f55",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 568, "y" : 840 }
+      }
+    }, {
+      "id" : "f56",
+      "type" : "SubProcessCall",
+      "name" : "CaseService",
+      "config" : {
+        "processCall" : "Ivy Data Processes/CaseService:analyzeCaseBusinessStateStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)",
+        "call" : {
+          "map" : {
+            "param.caseSearchCriteria" : "in.caseSearchCriteria"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.caseStateStatisticResult" : "result.caseStateStatistic"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 432, "y" : 840 }
+      },
+      "connect" : [
+        { "id" : "f59", "to" : "f55" }
+      ]
+    }, {
+      "id" : "f57",
+      "type" : "Script",
+      "name" : "Initialize",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.PermissionUtils;",
+            "",
+            "in.caseSearchCriteria.businessCase = true;",
+            "in.caseSearchCriteria.adminQuery = PermissionUtils.checkReadAllCasesPermission();",
+            "in.caseSearchCriteria.sorted = false;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 840 }
+      },
+      "connect" : [
+        { "id" : "f60", "to" : "f56" }
+      ]
     } ]
 }

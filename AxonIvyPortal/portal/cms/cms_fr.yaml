@@ -312,12 +312,17 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreAllToDefault: Restaurer tous les paramètres par défaut
     restoreDefault: Restaurer par défaut
     settingApplicationName: Entrer le nom de l'application
+    settingMultipleLanguages: Définition de plusieurs langues
     usernameHint: Nom d'utilisateur d'un administrateur système
     usernameRequiredMsg: Veuillez rentrer le nom d'utilisateur
     value: Valeur
   applicationMenuHeader:
     adminSettings: Administration
     changePassword: Modifier le mot de passe
+  businessCaseState:
+    DESTROYED: Supprimé
+    DONE: Terminé
+    OPEN: Ouverte
   caseDetails:
     addDocumentHelpText: Pour ajouter des fichiers, glissez-les ou sélectionnez-les
     addNoteHelpText: Ecrivez votre texte ici
@@ -874,6 +879,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     expiryTo: Date d'expiration
     export:
       exportedCasesFileName: AXONIVY_Dataset_Cases_{0}_{1}.{2}
+      exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}_{1}.{2}
     field: Champ
     fieldIsAdded: Le champ {0} est ajouté
     iconMessage:
@@ -1087,6 +1093,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     favoriteProcesses: Vos favoris
     goTo: 'Aller à:'
     icon: Icône
+    image: Image
     isRequiredMessage: doit être défini
     linkDescription: Description du lien
     noFavoriteProcess: Vous n'avez pas défini de favoris.
@@ -1419,6 +1426,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     WAITING_FOR_INTERMEDIATE_EVENT: Attente d'un évènement
     WAITING_FOR_INTERMEDIATE_EVENT_UPPERCASE: ATTENTE D'UN ÉVÈNEMENT
   taskView:
+    GlobalSearchText: Les tâches contiennent le mot-clé "{0}" dans Id de tâche{1}.
     filterTextPlaceHolderMobile: Nom ou description!
     filterTextPlaceholder: Nom, description ou identifiant!
     restoreDefaultFilterMessage: Si vous continuez, le filtre standard sera appliqué.
@@ -1533,6 +1541,7 @@ Dialogs:
                 destroyCase: détruire le cas
               CaseOwner: Responsable de processus
               Finished: Terminé
+              GlobalSearchText: Les cas contiennent le mot-clé "{0}" dans Id du dossier{1}.
               ShowBusinessDetails: Détails de l'entreprise
               caseNameNotAvailable: '[Nom de cas pas disponible]'
               defaultEmptyMessage: Il n'y a pas de dossiers

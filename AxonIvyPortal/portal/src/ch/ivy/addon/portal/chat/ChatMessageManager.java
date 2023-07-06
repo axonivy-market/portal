@@ -28,8 +28,8 @@ import ch.ivy.addon.portalkit.persistence.converter.UserEntityConverter;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.scripting.objects.File;
 import ch.ivyteam.ivy.security.IUser;
-import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 
 public final class ChatMessageManager {
 
@@ -286,7 +286,8 @@ public final class ChatMessageManager {
     String caseId = getCaseId(senderId);
     if (StringUtils.isNotBlank(caseId)) {
       ICase findcase = findCase(caseId);
-      if (findcase != null && (findcase.getState() == CaseState.DESTROYED || findcase.getState() == CaseState.DONE)) {
+      if (findcase != null &&
+          (findcase.getBusinessState() == CaseBusinessState.DESTROYED || findcase.getBusinessState() == CaseBusinessState.DONE)) {
         return true;
       }
     }

@@ -34,3 +34,4 @@ isShowAvatarInSelectionList,,Boolean,"| Boolean value to specify avatar showing.
 displayNameRenderedInSelectionList,true,Boolean,"If false, the name of security member in the selection list is hidden."
 displayNameInSelectionListStyleClass,null,String,"Style class of display name in the selection list"
 selectionListContainerStyleClass,null,String,"Style class of item's container in the selection list"
+emptyMessage,"No results",String,"Message to show when there's no option in selection list."
