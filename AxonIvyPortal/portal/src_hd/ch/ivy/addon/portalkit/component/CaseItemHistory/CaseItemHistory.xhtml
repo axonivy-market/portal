@@ -99,8 +99,6 @@
               jsf:rendered="#{not avatarBean.isShowAvatar() and history.type eq 'TASK' and history.taskState.toString() eq 'DONE'}" />
               <i class="si si-alert-circle" jsf:id="destroyed-task"
               jsf:rendered="#{not avatarBean.isShowAvatar() and history.type eq 'TASK' and history.taskState.toString() eq 'DESTROYED'}" />
-              <i class="si si-alert-circle" jsf:id="zombie-task"
-              jsf:rendered="#{not avatarBean.isShowAvatar() and history.type eq 'TASK' and history.taskState.toString() eq 'ZOMBIE'}" />
               <i class="si si-check-circle-1" jsf:id="created-task"
               jsf:rendered="#{not avatarBean.isShowAvatar() and history.type eq 'TASK' and history.taskState.toString() eq 'CREATED'}" />
               <i class="si si-notes-quill" jsf:rendered="#{not avatarBean.isShowAvatar() and history.type eq 'NOTE'}" />
@@ -112,7 +110,7 @@
           sortBy="#{history.timestamp}"
           styleClass="case-history-date js-column-priority-3" width="150px">
           <h:outputText value="#{history.timestamp}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
+            <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
           </h:outputText>
         </p:column>
       </p:dataTable>
