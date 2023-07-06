@@ -52,7 +52,7 @@
         styleClass="u-text-align-center custom-datetime u-hidden-lg-down js-hidden-when-expand-menu"
         value="#{task.customFields().timestampField('ShipmentDate').getOrNull()}"
         rendered="#{taskView.dataModel.isSelectedColumn('ShipmentDate')}">
-        <f:convertDateTime locale="#{localeBean.locale}" dateStyle="long" type="both" timeStyle="short"/>
+        <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
       </h:outputText>
     </ui:define>
 

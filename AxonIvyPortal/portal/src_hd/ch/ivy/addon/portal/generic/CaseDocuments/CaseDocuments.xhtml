@@ -75,7 +75,7 @@
               styleClass="case-history-date u-truncate-text ui-sm-hidden ui-lg-2 ui-md-4"
               sortBy="#{document.creation.timestamp}">
               <h:outputText value="#{document.creation.timestamp}">
-                <f:convertDateTime locale="#{localeBean.locale}" dateStyle="long" type="both" timeStyle="short"/>
+                <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
               </h:outputText>
             </p:column>
           </p:dataTable>

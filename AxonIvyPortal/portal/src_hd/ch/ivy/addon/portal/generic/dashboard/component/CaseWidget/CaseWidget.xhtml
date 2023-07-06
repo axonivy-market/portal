@@ -75,7 +75,7 @@
 
           <h:panelGroup rendered="#{column.format eq 'TIMESTAMP'}">
             <h:outputText value="#{column.display(caseItem)}" style="#{column.fieldStyle}">
-              <f:convertDateTime locale="#{localeBean.locale}" dateStyle="long" type="both" timeStyle="short"/>
+              <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
             </h:outputText>
           </h:panelGroup>
 

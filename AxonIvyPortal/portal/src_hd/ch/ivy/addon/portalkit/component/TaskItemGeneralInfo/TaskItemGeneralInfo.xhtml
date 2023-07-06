@@ -181,7 +181,7 @@
         </div>
         <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 text-ellipsis">
           <h:outputText id="start-date" value="#{task.startTimestamp}">
-            <f:convertDateTime locale="#{localeBean.locale}" dateStyle="long" type="both" timeStyle="short"/>
+            <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
           </h:outputText>
         </div>
       </h:panelGroup>

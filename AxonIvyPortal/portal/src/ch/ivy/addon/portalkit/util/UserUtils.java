@@ -19,7 +19,6 @@ import ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
-import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
@@ -272,12 +271,6 @@ public class UserUtils {
     return false;
   }
 
-  public static String getSelectedDateFormat(List<String> dateFormats) {
-    String format = UserSettingService.newInstance().getDateFormat();
-    int index = dateFormats.indexOf(format);
-    return index > -1 ? dateFormats.get(index) : dateFormats.get(0);
-  }
-  
   public static String getUserLanguage() {
     String userLanguage = LanguageService.newInstance().findUserLanguages().getIvyLanguage().getUserLanguage();
     String systemLanguage = LanguageManager.instance().configurator(ISecurityContext.current()).content().toString();

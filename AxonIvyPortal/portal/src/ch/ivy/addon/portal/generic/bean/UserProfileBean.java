@@ -1,9 +1,7 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -96,19 +94,4 @@ public class UserProfileBean implements Serializable {
     return Ivy.cms().co(DEFAULT_OPTION, Arrays.asList(sortFieldName));
   }
 
-//  public String getDisplayDatePattern(String selectedPattern) {
-//    String datePattern =
-//        StringUtils.equals(selectedPattern, DEFAULT) ? UserSettingService.newInstance().getDefaultDateFormat()
-//            : selectedPattern;
-//    String displayDate = prepareDisplayCurrentDate(datePattern);
-//    return StringUtils.equals(selectedPattern, DEFAULT)
-//        ? Ivy.cms().co(DEFAULT_OPTION, Arrays.asList(UserSettingService.newInstance().getDefaultDateFormat()))
-//            + displayDate
-//        : datePattern + displayDate;
-//  }
-
-  public String prepareDisplayCurrentDate(String pattern) {
-    SimpleDateFormat dateFormat = new SimpleDateFormat(pattern, Ivy.session().getContentLocale());
-    return " (" + dateFormat.format(new Date()) + ")";
-  }
 }

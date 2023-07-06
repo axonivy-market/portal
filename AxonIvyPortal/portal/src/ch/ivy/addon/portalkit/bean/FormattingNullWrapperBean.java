@@ -1,7 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
-import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.faces.bean.ApplicationScoped;
@@ -21,7 +21,8 @@ public class FormattingNullWrapperBean implements Serializable {
     if (date == null) {
       return DEFAULT_VALUE_IF_NULL;
     }
-    DateFormat dateFormat = DateTimeGlobalSettingService.getInstance().getDefaultDateFormater();
-    return dateFormat.format(date);
+    String pattern = DateTimeGlobalSettingService.getInstance().getGlobalSettingPattern();
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, Ivy.session().getFormattingLocale());
+    return simpleDateFormat.format(date);
   }
 }

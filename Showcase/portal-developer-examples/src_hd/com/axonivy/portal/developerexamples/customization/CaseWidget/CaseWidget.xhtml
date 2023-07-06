@@ -96,7 +96,7 @@
       <h:panelGroup styleClass="customized-case-header-column js-hidden-when-expand-menu u-hidden-lg-down" rendered="#{caseView.dataModel.isSelectedColumn('ShipmentDate')}">
         <h:outputText value="#{case.customFields().timestampField('ShipmentDate').getOrNull()}"
           styleClass="case-header-default-cell">
-          <f:convertDateTime locale="#{localeBean.locale}" dateStyle="long" type="both" timeStyle="short"/>
+          <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
         </h:outputText>
       </h:panelGroup>
     </ui:define>
