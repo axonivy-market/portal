@@ -866,7 +866,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         if (response != null) {
           translatedText = response.get("translation").toString();
           warningText = "";
-          Ivy.log().warn(response.get("translation"));
         }
       }
     }

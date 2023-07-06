@@ -6,11 +6,12 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="widget" />
   <cc:attribute name="componentToUpdate" />
+  <cc:attribute name="managedBean" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="widget" value="#{cc.attrs.widget}" />
-  
+  <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
   <!-- Configuration -->
   <h:panelGroup id="user-filter" layout="block"
     styleClass="card dashboard-card widget-configuration custom-widget-configuration">
@@ -21,9 +22,7 @@
       </div>
     </div>
     <div class="ui-g-12">
-      <p:messages id="config-custom-widget-message">
-        <p:autoUpdate />
-      </p:messages>
+      <p:messages id="config-custom-widget-message" />
     </div>
     <h:panelGroup id="widget-title-group"
       styleClass="ui-g-12 u-padding-0 ui-fluid">
@@ -180,7 +179,7 @@
     </h:panelGroup>
   </h:panelGroup>
     <!-- Multi language dialog-->
-  <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration id="title-language-config"
+  <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration id="title-language-config" titleRequired="false"
     titles="#{managedBean.widget.names}" managedBean="#{managedBean}" componentToUpdateOnCreate="#{cc.attrs.componentToUpdate}" />
 </cc:implementation>
 </html>

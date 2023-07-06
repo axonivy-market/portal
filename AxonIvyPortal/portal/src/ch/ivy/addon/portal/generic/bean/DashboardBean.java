@@ -411,6 +411,10 @@ public class DashboardBean implements Serializable {
     return isShow;
   }
 
+  public boolean isFocus(DisplayName title) {
+    return !isShowTranslation(title) && title.getLocale().getLanguage().equals(UserUtils.getUserLanguage());
+  }
+
   public String getTranslatedText() {
     return translatedText;
   }
