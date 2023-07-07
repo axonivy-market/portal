@@ -74,8 +74,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationAndRole: Applikation und Rolle
     definedDeputies: Definierte Stellvertreter
     deputyFor: Ich bin Ersatz für
+    myAbsences: Meine Abwesenheit
     myDeputies: Meine Stellvertreter
-    myPlannedAbsences: Meine geplanten Abwesenheiten
     nextAbsence: Bevorstehende Abwesenheit
     selectedDeputyFor: Ausgewählter Benutzer ist Stellvertreter für
     selectedUser: Ausgewählter Benutzer
