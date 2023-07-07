@@ -68,10 +68,11 @@
         caseWidget="#{widget}" renderColumnConfiguration="true" isPreviewMode="true"
         onCompleteLoadWidget="PF('new-widget-configuration-dialog').initPosition();" componentToUpdateCaseWidget="#{componentToUpdateOnPreviewAction}"/>
     </ui:define>
-    
+
     <ui:define name="multiLanguageDialog">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration id="title-language-config"
-      	titles="#{managedBean.widget.names}" 
+      	titles="#{managedBean.widget.names}"
+      	managedBean="#{managedBean}"
       	componentToUpdateOnCreate="#{cc.attrs.componentToUpdate}"/>
     </ui:define>
   </ui:decorate>

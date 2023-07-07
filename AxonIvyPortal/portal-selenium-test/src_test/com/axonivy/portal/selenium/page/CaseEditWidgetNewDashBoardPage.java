@@ -40,19 +40,19 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     return $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='user-filter']").$$("div").get(index + 1)
         .$("input");
   }
-
+  
   private SelenideElement getAvailableFilterCheckbox(String filterName) {
     int index = getIndexFiltertByName(filterName);
     return $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='user-filter']").$$("div").get(index + 1)
         .$(".ui-selectcheckboxmenu");
   }
-
-
+  
+  
   private SelenideElement getValueOfCheckBox(String value) {
     return $("div.ui-selectcheckboxmenu-items-wrapper").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$("li.ui-selectcheckboxmenu-item").filter(text(value)).first().$("div.ui-chkbox-box");
   }
-
+  
   private SelenideElement getCloseCheckBox() {
     return $("div.ui-selectcheckboxmenu-panel").shouldBe(appear, DEFAULT_TIMEOUT).$("a.ui-selectcheckboxmenu-close");
   }
@@ -80,7 +80,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   public void filterCaseName(String caseName) {
     getAvailableFilterInput(FILTER_CASE_NAME).sendKeys(caseName);
   }
-
+  
   public void filterCaseState() {
     getAvailableFilterCheckbox(FILTER_CASE_STATE).shouldBe(getClickableCondition()).click();
   }
@@ -230,5 +230,13 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     SelenideElement addLanguageButton = $("div[id$='multiple-languages-dialog']");
     addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return addLanguageButton;
+  }
+
+  public SelenideElement getTranslationOverlayPanel(int index) {
+    SelenideElement translationOverlay = $(String.format("div[id$=':%s:overlay-panel-input']", index));
+    waitUntilElementToBeClickable(translationOverlay);
+    translationOverlay.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
+    return translationOverlay;
   }
 }
