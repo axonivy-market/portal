@@ -29,7 +29,7 @@ Processes:
     Tasks:
       Request:
         name: Investment request
-    description: Investment Request for Customized Case Detail Page example
+    description: Investment Request for Customized Business Details Page example
     name: Create Investment
   CreateInvestmentWithPublicAPI:
     Task:

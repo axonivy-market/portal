@@ -29,7 +29,7 @@ Processes:
     Tasks:
       Request:
         name: Investitionsantrag
-    description: Beispiel für eine Investitionsanfrage für eine kundenspezifische Falldetail-Seite
+    description: Beispiel für eine Investitionsanfrage für eine benutzerdefinierte Geschäftsdetailseite
     name: Investition anlegen
   CreateInvestmentWithPublicAPI:
     Task:
