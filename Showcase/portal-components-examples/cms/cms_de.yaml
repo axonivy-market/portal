@@ -25,6 +25,18 @@ Labels:
     submitLeaveRequest: Urlaubsantrag einreichen
     to: Bis
 Processes:
+  CreateInvestment:
+    Tasks:
+      Request:
+        name: Investitionsantrag
+    description: Beispiel für eine Investitionsanfrage für eine benutzerdefinierte Geschäftsdetailseite
+    name: Investition anlegen
+  CreateInvestmentWithPublicAPI:
+    Tasks:
+      Request:
+        name: Investitionsantrag
+    description: Beispiel für eine Investitionsanfrage für eine benutzerdefinierte Geschäftsdetailseite mit öffentlicher API
+    name: Schaffen Sie Investitionen mit öffentlicher API
   LeaveRequest:
     approvalTask: Ihr Urlaubsantrag wird genehmigt
     approvalTaskName: Genehmigung eines Urlaubsantrags von {0}
