@@ -287,6 +287,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       showUserGuide: 'Activates the interactive user guide "first steps" in the portal at first login. '
       statisticChartScalingInterval: Interval in seconds to do periodic statistic chart scaling requests. If the interval value is less than 10, periodic statistic chart scaling is disabled.
       uploadDocumentWhiteListExtensionNote: 'Leave value empty if you allow all extensions. If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.'
+      deepLAuthKey: DeepL Authentication Key (should end with :fx)
+      enableDeepLTranslation: Set this property to true to enable the DeepL translation support
     key: Key
     link: Link
     loading: LOADING
@@ -775,6 +777,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: Dashboard configuration is not supported for mobile devices.
       EditPrivateDashboards: Edit your private dashboards
       EditPublicDashboards: Edit public dashboards
+      InvalidDeepLAuthKey: Invalid DeepL authentication key
       PrivateDashboard: Private dashboards
       PrivateDashboardConfiguration: Private dashboard configuration
       PublicDashboard: Public dashboards
