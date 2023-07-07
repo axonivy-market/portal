@@ -6,6 +6,7 @@ import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.WELCOME;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -34,10 +35,12 @@ import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
+import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.service.ServiceException;
 
 @ViewScoped
 @ManagedBean
@@ -200,7 +203,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   public String generateDashboardPermisisonForDisplay(Dashboard dashboard) {
     return String.join(", ", dashboard.getPermissions());
   }
-  
+
   public void updateDashboardTitleByLocale() {
     String currentTitle = this.selectedDashboard.getTitle();
     initMultipleLanguagesForDashboardName(currentTitle);
@@ -256,4 +259,32 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     }
   }
 
+  public void translate(DisplayName title) {
+    translatedText = "";
+    warningText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/InvalidDeepLAuthKey");
+    if (!title.getLocale().getLanguage().equals(UserUtils.getUserLanguage())) {
+      Map<String, DisplayName> languages = getMapLanguages();
+      String currentLanguage = UserUtils.getUserLanguage();
+      DisplayName defaultTitle = languages.get(currentLanguage);
+      if (defaultTitle != null) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("text", defaultTitle.getValue());
+        params.put("targetLanguage", getTargetLanguageFromValue(title.getLocale().getLanguage().toUpperCase()));
+        params.put("sourceLanguage", getSourceLanguageFromValue(defaultTitle.getLocale().getLanguage().toUpperCase()));
+        Map<String, Object> response = null;
+        try {
+          response = IvyAdapterService.startSubProcess(
+              "translateText(String,com.deepl.api.v2.client.TargetLanguage,com.deepl.api.v2.client.SourceLanguage)",
+                  params, new ArrayList<>());
+        } catch (ServiceException ex) {
+          Ivy.log().error(ex.getMessage());
+        }
+        if (response != null) {
+          translatedText = response.get("translation").toString();
+          warningText = "";
+        }
+      }
+    }
+
+  }
 }
