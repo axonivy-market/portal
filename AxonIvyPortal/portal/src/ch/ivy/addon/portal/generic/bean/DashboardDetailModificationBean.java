@@ -856,9 +856,12 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         Map<String, Object> params = new HashMap<>();
         params.put("text", optional.get().getValue());
         params.put("targetLanguage", getTargetLanguageFromValue(title.getLocale().getLanguage().toUpperCase()));
+        params.put("sourceLanguage",
+            getSourceLanguageFromValue(optional.get().getLocale().getLanguage().toUpperCase()));
         Map<String, Object> response = null;
         try {
-          response = IvyAdapterService.startSubProcess("translateText(String,com.deepl.api.v2.client.TargetLanguage)",
+          response = IvyAdapterService.startSubProcess(
+              "translateText(String,com.deepl.api.v2.client.TargetLanguage,com.deepl.api.v2.client.SourceLanguage)",
                   params, new ArrayList<>());
         } catch (ServiceException ex) {
           Ivy.log().error(ex.getMessage());
