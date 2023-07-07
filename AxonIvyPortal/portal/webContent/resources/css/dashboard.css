@@ -313,6 +313,16 @@ td.dashboard-cases__name span {
   overflow: hidden;
 }
 
+@media screen and (max-width: 40em) {
+  td.dashboard-tasks__description span,
+  td.dashboard-tasks__name span,
+  td.dashboard-cases__description span,
+  td.dashboard-cases__name span {
+     max-width: 300px;
+  }
+}
+
+
 .prototype-task-table .default-column {
 	max-width: 300px;
 	width: 300px;
