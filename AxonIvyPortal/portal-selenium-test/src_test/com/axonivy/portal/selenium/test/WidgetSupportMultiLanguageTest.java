@@ -24,7 +24,7 @@ import com.axonivy.portal.selenium.page.UserProfilePage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class WidgetSupportMultiLanguageTest extends BaseTest {
 
   private NewDashboardPage newDashboardPage;
