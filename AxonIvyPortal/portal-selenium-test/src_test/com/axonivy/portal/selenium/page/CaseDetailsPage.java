@@ -142,7 +142,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public ElementsCollection countAdditionalFieldsPage() {
-    return $("div[id$='additional-case-detail-table']").shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr");
+    return $("div[id$='additional-case-detail-table'] > div > table > tbody").shouldBe(appear, DEFAULT_TIMEOUT).$$("tr");
   }
 
   public SelenideElement firstAdditionalFieldsPage() {
@@ -153,5 +153,9 @@ public class CaseDetailsPage extends TemplatePage {
     $("a[id$=':action-group:case-details-action-link']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
     $("div[id$=':action-group:action-steps-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void switchToIframe() {
+    switchToIframeWithId("iFrame");
   }
 }

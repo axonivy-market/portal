@@ -33,6 +33,10 @@ public abstract class TemplatePage extends AbstractPage {
     tabs.remove(oldTab);
     WebDriverRunner.getWebDriver().switchTo().window(tabs.get(0));
   }
+  
+  public void switchToIframeWithId(String id) {
+    WebDriverRunner.getWebDriver().switchTo().frame($("iframe[id='" + id + "']"));
+  }
 
   public void waitUntilElementToBeClickable(SelenideElement element) {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)

@@ -2,7 +2,7 @@
   "format" : "10.0.0",
   "id" : "1624D1F5CBEA5332",
   "config" : {
-    "data" : "com.axonivy.portal.developerexamples.customization.BusinessDetailsData"
+    "data" : "com.axonivy.portal.components.examples.BusinessDetailsData"
   },
   "elements" : [ {
       "id" : "f0",
@@ -17,9 +17,7 @@
           "customFields" : [
             { "name" : "AccountNumber", "type" : "Number", "value" : "100" },
             { "name" : "CustomerName", "type" : "String", "value" : "\"Apartment A\"" },
-            { "name" : "InvoiceDate", "type" : "Timestamp", "value" : "new DateTime(2018, 2, 2, 2, 2, 2)" },
             { "name" : "InvoiceNumber", "type" : "Number", "value" : "2000" },
-            { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime(2018, 1, 1, 1, 1, 1)" },
             { "name" : "SupportData", "type" : "String", "value" : "\"Request for new computer\"" }
           ]
         },
@@ -107,19 +105,19 @@
         "Business Details Page"
       ],
       "config" : {
-        "dialogId" : "com.axonivy.portal.developerexamples.customization.InvestmentRequestCaseDetailPage",
+        "dialogId" : "com.axonivy.portal.components.examples.InvestmentRequestBusinessDetailsPage",
         "startMethod" : "start(ch.ivyteam.ivy.workflow.ICase)",
         "call" : {
           "params" : [
-            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
+            { "name" : "ivyCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
           ],
           "map" : {
-            "param.iCase" : "in.iCase"
+            "param.ivyCase" : "in.iCase"
           }
         }
       },
       "visual" : {
-        "at" : { "x" : 572, "y" : 64 },
+        "at" : { "x" : 576, "y" : 64 },
         "size" : { "width" : 192, "height" : 60 }
       },
       "connect" : { "id" : "f11", "to" : "f8" }
@@ -130,7 +128,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.util.CaseUtils;",
+            "import com.axonivy.portal.components.util.CaseUtils;",
             "out.iCase = CaseUtils.findCase(in.caseId);"
           ]
         }
@@ -152,9 +150,7 @@
           "customFields" : [
             { "name" : "AccountNumber", "type" : "Number", "value" : "100" },
             { "name" : "CustomerName", "type" : "String", "value" : "\"Apartment A\"" },
-            { "name" : "InvoiceDate", "type" : "Timestamp", "value" : "new DateTime(2018, 2, 2, 2, 2, 2)" },
             { "name" : "InvoiceNumber", "type" : "Number", "value" : "2000" },
-            { "name" : "ShipmentDate", "type" : "Timestamp", "value" : "new DateTime(2018, 1, 1, 1, 1, 1)" },
             { "name" : "SupportData", "type" : "String", "value" : "\"Request for new computer\"" }
           ]
         },
@@ -179,7 +175,7 @@
             "import com.axonivy.portal.components.publicapi.BusinessDetailsAPI;",
             "",
             "BusinessDetailsAPI.create(BusinessDetailsDTO.builder()",
-            "  .path(\"Start Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp\").build());"
+            "  .path(\"Start Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp\").isEmbedInFrame(false).build());"
           ]
         }
       },
@@ -192,7 +188,7 @@
       "id" : "f21",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 616, "y" : 296 }
+        "at" : { "x" : 624, "y" : 296 }
       }
     }, {
       "id" : "f22",
