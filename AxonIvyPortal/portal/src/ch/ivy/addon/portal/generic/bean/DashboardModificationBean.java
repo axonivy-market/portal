@@ -270,9 +270,11 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
         Map<String, Object> params = new HashMap<>();
         params.put("text", defaultTitle.getValue());
         params.put("targetLanguage", getTargetLanguageFromValue(title.getLocale().getLanguage().toUpperCase()));
+        params.put("sourceLanguage", getSourceLanguageFromValue(defaultTitle.getLocale().getLanguage().toUpperCase()));
         Map<String, Object> response = null;
         try {
-          response = IvyAdapterService.startSubProcess("translateText(String,com.deepl.api.v2.client.TargetLanguage)",
+          response = IvyAdapterService.startSubProcess(
+              "translateText(String,com.deepl.api.v2.client.TargetLanguage,com.deepl.api.v2.client.SourceLanguage)",
                   params, new ArrayList<>());
         } catch (ServiceException ex) {
           Ivy.log().error(ex.getMessage());

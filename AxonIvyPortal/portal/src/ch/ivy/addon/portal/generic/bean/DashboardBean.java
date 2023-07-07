@@ -18,6 +18,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 
+import com.deepl.api.v2.client.SourceLanguage;
 import com.deepl.api.v2.client.TargetLanguage;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -433,6 +434,12 @@ public class DashboardBean implements Serializable {
     return TargetLanguage.fromValue(language);
   }
 
+  public SourceLanguage getSourceLanguageFromValue(String language) {
+    if (Locale.ENGLISH.getLanguage().equalsIgnoreCase(language)) {
+      return SourceLanguage.UK;
+    }
+    return SourceLanguage.fromValue(language);
+  }
   public boolean isRequiredField(DisplayName displayName) {
     String currentLanguage = UserUtils.getUserLanguage();
     String displayLanguage = displayName.getLocale().getLanguage();
