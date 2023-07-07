@@ -11,6 +11,33 @@ your HTML dialog independent of the  **Portal**. It is rendered automatically in
 
 .. _iframe-usage:
 
+Templates to use with IFrame:
+
+#. frame-8 template (Provided by core, uses Serenity theme)
+
+#. frame-10 template (Provided by core, uses Freya theme)
+
+These templates have the same header, which is a menu of applications that you
+configure on the Administration page. Since version 8.0, Portal officially
+supports responsiveness. Every template has its default responsiveness. Refer to
+:ref:`Responsiveness <components-layout-templates-responsiveness>` to override
+it.
+
+Additionally, there are user settings like My Profile, Absences, Email, and
+Administration (for Administrators only). For details about user settings, refer
+to :ref:`Settings <settings>`.
+
+.. note::
+
+      The frame-8 and frame-10 templates do not contain any content from the Portal.
+      Therefore, if you want to reuse some Portal content, you have to add
+      it manually to your HTML file.
+
+      For example, if you want to use the customized layout in Portal, add the code below:
+      ``<h:outputStylesheet library="css" name="template.css" />``
+
+|portal-header|
+
 How To Use
 ==========
 
@@ -95,3 +122,99 @@ Now you can develop your own processes inside the ``BusinessProject`` and the di
 
 .. |task-embedInFrame| image:: images/task-embedInFrame.png
 .. |case-embedInFrame| image:: images/case-embedInFrame.png
+
+configuration Parameters
+--------------------
+
+Inside IFrame, you can configure these parameters as follows; they will be rendered by the template automatically:
+
+::
+
+   <script>
+      // Follow one of these formats to set process steps:
+      window.processSteps = ["Create Investment Request", "Approve Investment Request"];
+      window.processSteps = "Create Investment Request,Approve Investment Request";
+
+      // If process steps are set in HTML dialog logic or Java code, convert it to one of above formats by jstl (following code) or Java code
+      // Include this namespace xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions" to the "html" tag
+      // Use this code if process steps are a Java String list
+      window.processSteps = "#{fn:join(data.steps.toArray(), ',')}";
+      // Use this code if process steps are a Java String array
+      window.processSteps = "#{fn:join(data.steps, ',')}";
+
+      // Current process step could be a number or String:
+      window.currentProcessStep = 0;
+      window.currentProcessStep = #{data.currentProcessStep};
+      window.currentProcessStep = "#{data.currentProcessStep}";
+      window.isShowAllSteps = true;
+      window.isHideTaskName= false;
+      window.isHideTaskAction = false;
+      window.isHideCaseInfo = false;
+      window.isWorkingOnATask = false;
+      window.processChainDirection = "VERTICAL";
+      window.processChainShape = "LINE";
+      window.announcementInvisible = false;
+      window.viewName = "TASK_DETAIL";
+      window.taskName = "Your New Task Name";
+
+      // Use this code to show case details of a case different from current case of working task.
+      // by send the case ID of that case.
+      window.caseId = 123456;
+
+      // Display content of the IFrame inside a card style, true or false (default)
+      window.isCardFrame = true;
+   </script>
+
+.. note::
+
+       When you define parameter processSteps, please make sure that you add the jsp function tag to your XHTML file:
+       ``xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions``
+
+In case your project has a navigation button that does not complete a task, e.g Cancel, to
+
+-  One of the default pages (application home, task list, process list, etc.): in your HTMLDialog, redirect to the page you want to display.
+-  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrameAPI``.
+-  A specific URL: call ``navigateToUrl(String url)`` from class ``PortalNavigatorInFrameAPI``.
+
+Responsiveness
+--------------
+
+Since version 8.0, Portal has a simplified ResponsiveToolKit. Now, the Portal
+supports various screen resolutions, not just the fixed three screen widths as before.
+
+To apply your styles for the specific resolution, you can add your own
+media query CSS:
+
+.. code-block:: css
+
+    @media screen and (max-width: 1365px) {/*.....*/}
+
+In the Portal's new design, the width of the main container should be changed
+according to menu state (expand/collapse).
+
+To adapt to the change, you need to initialize the ``ResponsiveToolkit``
+JavaScript object and introduce one object to handle screen resolutions.
+Your object has to implement the ``updateMainContainer`` method.
+
+Portal templates define their own responsiveness, you can redefine the
+footer section to override:
+
+E.g. Initialize ``ResponsiveToolkit`` for a TaskList page.
+
+.. code-block:: html
+
+      <ui:define name="footer">
+      <script type="text/javascript">
+      $(function(){
+      var simpleScreen = new TaskListScreenHandler();
+      var responsiveToolkit = ResponsiveToolkit(simpleScreen);
+      Portal.init(responsiveToolkit);
+      });
+      </script>
+      </ui:define>
+
+.. |basic-template| image:: ../../screenshots/layout-template/basic-template.png
+.. |case-list-template| image:: ../../screenshots/case/case-key-information.png
+.. |portal-header| image:: ../../screenshots/settings/user-settings.png
+.. |task-list-template| image:: ../../screenshots/task/task-key-information.png
+.. |task-name-template| image:: ../../screenshots/layout-template/task-template.png

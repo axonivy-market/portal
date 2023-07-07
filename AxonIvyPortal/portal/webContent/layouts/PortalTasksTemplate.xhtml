@@ -6,6 +6,13 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
   xmlns:jsf="http://xmlns.jcp.org/jsf">
 <h:body>
+    
+    <!-- WARNING: -->
+    <!-- This template is used for Portal only. -->
+    
+    <!-- DEPRECATED:  -->
+    <!-- Since Portal 11.0 -->
+    
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="taskView" value="#{data.taskView}" />
     <ui:param name="viewName" value="#{data.taskView.isRelatedTaskView() ? 'RELATED_TASK' : 'TASK'}" />
