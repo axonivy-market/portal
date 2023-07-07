@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-import com.axonivy.portal.migration.MigrationService;
-
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalPermissionGroup;
 import ch.ivy.addon.portalkit.security.PortalSecurity;
@@ -34,7 +32,6 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
     super.initialize(eventRuntime, configuration);
     getEventBeanRuntime().poll().disable();
     initPermissions();
-    migrate();
   }
 
   private void initPermissions() {
@@ -42,10 +39,6 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
     if (EngineMode.isAnyOf(EngineMode.DEMO, EngineMode.DESIGNER_EMBEDDED) && isIvySecuritySystem()) {
       PortalSecurity.INSTANCE.assignPermissionsToDefaultUsers();
     }
-  }
-
-  private void migrate() {
-    MigrationService.migrateWhenStartEngine();
   }
 
   private void recreateAndGrantPermissions() {
