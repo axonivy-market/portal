@@ -270,7 +270,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
         PermissionUtils.hasDashboardExportPublicPermission() : PermissionUtils.hasDashboardExportOwnPermission();
   }
   
-  public boolean hasImportDashboardPermission() {
+  public boolean hasImportDashboardPermission(boolean isPublicDashboard) {
     return isPublicDashboard ?
         PermissionUtils.hasDashboardImportPublicPermission() : PermissionUtils.hasDashboardImportOwnPermission();
   }

@@ -42,7 +42,7 @@
             </div>
           </p:commandLink>
         </div>
-        <h:panelGroup styleClass="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12" rendered="#{dashboardModificationBean.hasImportDashboardPermission()}"> 
+        <h:panelGroup styleClass="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12" rendered="#{dashboardModificationBean.hasImportDashboardPermission(isPublicDashboard)}"> 
           <p:commandLink id="import-dashboard" styleClass="dashboard-action-container"
             oncomplete="PF('dashboard-import-dialog').show()" 
             actionListener="#{dashboardImportBean.importDashboard(isPublicDashboard)}"
