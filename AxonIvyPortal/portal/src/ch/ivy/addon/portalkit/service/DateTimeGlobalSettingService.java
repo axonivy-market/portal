@@ -55,12 +55,6 @@ public class DateTimeGlobalSettingService {
         : expectedPattern;
   }
 
-  public String getGlobalSettingDateFilterPattern() {
-    String dateFilterPattern = getDefaultDatePattern();
-    String dateTimeFilterPattern = dateFilterPattern + SPACE_CHARACTER + Ivy.cms().co("/patterns/timePattern");
-    return isDateFilterWithTime() ? dateTimeFilterPattern : dateFilterPattern;
-  }
-
   public boolean isDateFilterWithTime() {
     String dateFilterGlobalSetting = globalSettingService.findGlobalSettingValue(GlobalVariable.DATE_FILTER_WITH_TIME);
     return Boolean.valueOf(dateFilterGlobalSetting);
@@ -74,20 +68,20 @@ public class DateTimeGlobalSettingService {
     return getDefaultDatePattern();
   }
 
-  public DateFormat getDefaultDateTimeFormater() {
-    return DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.SHORT, Ivy.session().getFormattingLocale());
+  public DateFormat getDefaultDateTimeFormatter() {
+    return DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT, Ivy.session().getFormattingLocale());
   }
 
-  public DateFormat getDefaultDateFormater() {
-    return DateFormat.getDateInstance(DateFormat.LONG, Ivy.session().getFormattingLocale());
+  public DateFormat getDefaultDateFormatter() {
+    return DateFormat.getDateInstance(DateFormat.MEDIUM, Ivy.session().getFormattingLocale());
   }
 
   public String getDefaultDateTimePattern() {
-    return ((SimpleDateFormat) getDefaultDateFormater()).toPattern();
+    return ((SimpleDateFormat) getDefaultDateTimeFormatter()).toPattern();
   }
 
   public String getDefaultDatePattern() {
-    return ((SimpleDateFormat) getDefaultDateFormater()).toPattern();
+    return ((SimpleDateFormat) getDefaultDateFormatter()).toPattern();
   }
 
 }

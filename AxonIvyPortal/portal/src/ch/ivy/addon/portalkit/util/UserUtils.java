@@ -85,7 +85,8 @@ public class UserUtils {
   }
 
   public static String findNextAbsenceOfUser(IUser iUser) {
-    DateFormat formatter = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getDefaultDatePattern());
+
+    DateFormat formatter = DateTimeGlobalSettingService.getInstance().getDefaultDateFormatter();
 
     List<IUserAbsence> findAbsenceOfUser = findAbsenceOfUser(iUser);
     String returnString = "";
