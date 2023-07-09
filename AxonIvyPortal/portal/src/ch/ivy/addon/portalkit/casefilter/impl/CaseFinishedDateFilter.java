@@ -31,7 +31,7 @@ public class CaseFinishedDateFilter extends CaseFilter {
 
   @Override
   public String value() {
-    DateFormat formatter = DateTimeGlobalSettingService.getInstance().getDefaultDateTimeFormater();
+    DateFormat formatter = DateTimeGlobalSettingService.getInstance().getDefaultDateTimeFormatter();
     if (fromFinishedDate != null && toFinishedDate != null) {
       return String.format(DASH, formatter.format(fromFinishedDate), formatter.format(toFinishedDate));
     }

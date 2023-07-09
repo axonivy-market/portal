@@ -34,7 +34,7 @@ public class TaskInforActionService {
   }
 
   private String formatDate(Date datetime) {
-    DateFormat formatter = DateTimeGlobalSettingService.getInstance().getDefaultDateTimeFormater();
+    DateFormat formatter = DateTimeGlobalSettingService.getInstance().getDefaultDateTimeFormatter();
     return formatter.format(datetime);
   }
   

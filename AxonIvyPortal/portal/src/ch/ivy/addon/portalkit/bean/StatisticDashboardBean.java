@@ -180,7 +180,7 @@ public class StatisticDashboardBean implements Serializable {
 
     Date createdDateForm = filter.getCreatedDateFrom();
     Date createdDateTo = filter.getCreatedDateTo();
-    DateFormat formatter = DateTimeGlobalSettingService.getInstance().getDefaultDateTimeFormater();
+    DateFormat formatter = DateTimeGlobalSettingService.getInstance().getDefaultDateTimeFormatter();
 
     if (createdDateForm != null && createdDateTo != null) {
       return String.format(DASH, formatter.format(createdDateForm), formatter.format(createdDateTo));
