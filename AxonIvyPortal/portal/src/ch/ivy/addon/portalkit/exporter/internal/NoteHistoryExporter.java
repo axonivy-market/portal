@@ -3,7 +3,6 @@ package ch.ivy.addon.portalkit.exporter.internal;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -137,7 +136,7 @@ public class NoteHistoryExporter {
   }
 
   private String formatDate(Date datetime) {
-    return DateTimeGlobalSettingService.getInstance().getDefaultDateTimeFormater().format(datetime);
+    return DateTimeGlobalSettingService.getInstance().getDefaultDateTimeFormatter().format(datetime);
   }
 
 }
