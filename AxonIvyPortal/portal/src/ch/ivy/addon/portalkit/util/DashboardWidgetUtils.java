@@ -37,6 +37,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.AbstractColumn;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.SingleProcessDashboardWidget;
@@ -704,5 +705,11 @@ public class DashboardWidgetUtils {
 
   public static String generateNewWidgetId(DashboardWidgetType type) {
     return String.format(WIDGET_ID_PATTERN, type.name(), DashboardUtils.generateId()).toLowerCase();
+  }
+
+  public static DashboardWidget findWidget(Dashboard dashboard, String widgetId) {
+    return Optional.ofNullable(dashboard).map(Dashboard::getWidgets).orElse(new ArrayList<>()).stream()
+        .filter(Objects::nonNull).filter(widget -> widget.getId() != null && widget.getId().equals(widgetId))
+        .findFirst().orElse(null);
   }
 }

@@ -443,6 +443,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       ContentObjectValue tempImageFile = getWelcomeWidgetImage(true, welcomeWidget);
       ContentObjectValue imageFile = getWelcomeWidgetImage(false, welcomeWidget);
       if (imageFile != null && tempImageFile != null && tempImageFile.parent().exists()) {
+        WelcomeDashboardWidget oldWidget =
+            (WelcomeDashboardWidget) DashboardWidgetUtils.findWidget(selectedDashboard, widget.getId());
+        Optional.ofNullable(getWelcomeWidgetImage(false, oldWidget)).ifPresent(co -> co.delete());
         imageFile.write().bytes(tempImageFile.read().bytes());
         tempImageFile.delete();
       }
