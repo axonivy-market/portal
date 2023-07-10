@@ -165,7 +165,21 @@ public class TaskService implements ITaskService {
       return result;
     });
   }
-  
+
+  @Override
+  public IvyTaskResultDTO analyzeTaskBusinessStateStatistic(TaskSearchCriteria criteria) {
+    return IvyExecutor.executeAsSystem(() -> {
+      IvyTaskResultDTO result = new IvyTaskResultDTO();
+      TaskQuery finalQuery = extendQueryWithInvolvedUser(criteria);
+      finalQuery.aggregate().countRows().groupBy().state();
+
+      Recordset recordSet = taskQueryExecutor().getRecordset(finalQuery);
+      TaskStateStatistic taskStateStatistic = createTaskStateStatistic(recordSet);
+      result.setTaskStateStatistic(taskStateStatistic);
+      return result;
+    });
+  }
+
   private TaskStateStatistic createTaskStateStatistic(Recordset recordSet) {
     TaskStateStatistic taskStateStatistic = new TaskStateStatistic();
     taskStateStatistic.setNumberOfTasksByState(new HashMap<>());

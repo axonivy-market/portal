@@ -19,4 +19,6 @@ public interface ITaskService {
   IvyTaskResultDTO analyzeTaskStateStatistic(TaskSearchCriteria criteria);
   
   IvyTaskResultDTO analyzeTaskCategoryStatistic(TaskSearchCriteria criteria);
+
+  IvyTaskResultDTO analyzeTaskBusinessStateStatistic(TaskSearchCriteria criteria);
 }

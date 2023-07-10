@@ -74,11 +74,12 @@
             "field": "state",
             "visible": false,
             "filterList": [
-              "CREATED",
+              "OPEN",
+              "IN_PROGRESS",
               "DONE",
-              "PARKED",
-              "RESUMED",
-              "SUSPENDED"
+              "DESTROYED",
+              "DELAYED",
+              "ERROR"
             ]
           },
           {

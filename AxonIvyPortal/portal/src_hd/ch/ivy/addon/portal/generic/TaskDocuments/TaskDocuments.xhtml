@@ -26,7 +26,7 @@
             securityMember="#{data.task.getActivator()}" securityMemberName="#{data.task.getActivatorName()}" />
 
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" />
-          <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state" state="#{data.task.state}"
+          <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state" state="#{data.task.businessState}"
             showIndicatorBesideText="true" responsiveStyleClass="" />
         </h:panelGrid>
 

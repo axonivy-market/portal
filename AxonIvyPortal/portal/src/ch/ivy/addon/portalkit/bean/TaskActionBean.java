@@ -20,14 +20,14 @@ import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.util.DateTimeFormatterUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.PortalProcessViewerUtils;
+import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.TimesUtils;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 @ManagedBean
 @ViewScoped
@@ -57,13 +57,13 @@ public class TaskActionBean implements Serializable {
       return false;
     }
     
-    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.READY_FOR_JOIN,
-        TaskState.FAILED);
-    if (!taskStates.contains(task.getState())) {
+    EnumSet<TaskBusinessState> taskStates = EnumSet.of(TaskBusinessState.IN_PROGRESS, TaskBusinessState.OPEN, TaskBusinessState.DONE,
+        TaskBusinessState.ERROR);
+    if (!taskStates.contains(task.getBusinessState())) {
       return false;
     }
     
-    if (task.getState() == TaskState.READY_FOR_JOIN) {
+    if (task.getBusinessState() == TaskBusinessState.DONE) {
       IPermission resetTaskReadyForJoin = IPermissionRepository.instance().findByName(PortalPermission.TASK_RESET_READY_FOR_JOIN.getValue());
       return hasPermission(task, resetTaskReadyForJoin);
     }
@@ -78,9 +78,9 @@ public class TaskActionBean implements Serializable {
       return false;
     }
     
-    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.DONE, TaskState.FAILED, TaskState.DESTROYED,
-        TaskState.CREATED, TaskState.READY_FOR_JOIN, TaskState.FAILED, TaskState.JOIN_FAILED, TaskState.WAITING_FOR_INTERMEDIATE_EVENT);
-    if (taskStates.contains(task.getState())) {
+    EnumSet<TaskBusinessState> taskStates = EnumSet.of(TaskBusinessState.OPEN, TaskBusinessState.IN_PROGRESS,
+        TaskBusinessState.DONE, TaskBusinessState.DESTROYED, TaskBusinessState.ERROR);
+    if (taskStates.contains(task.getBusinessState())) {
       return false;
     }
 
@@ -110,8 +110,9 @@ public class TaskActionBean implements Serializable {
 
   public boolean canPark(ITask task) {
     if (task == null 
-        || (task.getState() != TaskState.SUSPENDED && task.getState() != TaskState.CREATED && task.getState() != TaskState.RESUMED) 
-        || (!canResume(task) && task.getState() != TaskState.CREATED)) {
+        || (task.getBusinessState() != TaskBusinessState.OPEN 
+        && task.getBusinessState() != TaskBusinessState.IN_PROGRESS) 
+        || (!canResume(task) && task.getBusinessState() != TaskBusinessState.IN_PROGRESS)) {
       return false;
     }
     
@@ -135,7 +136,7 @@ public class TaskActionBean implements Serializable {
   }
   
   public boolean canChangeDelayTimestamp(ITask task) {
-    if (TaskState.DELAYED != task.getState()) {
+    if (TaskBusinessState.DELAYED != task.getBusinessState()) {
       return false;
     }
     return hasPermission(task, IPermission.TASK_WRITE_DELAY_TIMESTAMP);
@@ -159,8 +160,8 @@ public class TaskActionBean implements Serializable {
   }
 
   public boolean canDestroyTask(ITask task) {
-    List<TaskState> taskStates = Arrays.asList(TaskState.DONE, TaskState.DESTROYED);
-    return hasPermission(task, IPermission.TASK_DESTROY) && !taskStates.contains(task.getState());
+    List<TaskBusinessState> taskStates = Arrays.asList(TaskBusinessState.DONE, TaskBusinessState.DESTROYED);
+    return hasPermission(task, IPermission.TASK_DESTROY) && !taskStates.contains(task.getBusinessState());
   }
 
   public boolean canChangeTaskExpiryActivator(ITask task) {
@@ -171,9 +172,8 @@ public class TaskActionBean implements Serializable {
     if (task == null) {
       return false;
     }
-    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED,
-        TaskState.CREATED, TaskState.DELAYED);
-    return taskStates.contains(task.getState());
+    EnumSet<TaskBusinessState> taskStates = EnumSet.of(TaskBusinessState.IN_PROGRESS, TaskBusinessState.OPEN, TaskBusinessState.DELAYED);
+    return taskStates.contains(task.getBusinessState());
   }
   
   public boolean isNotDoneForWorkingUser(ITask task) {
@@ -191,9 +191,8 @@ public class TaskActionBean implements Serializable {
   }
   
   public boolean isTechnicalState(ITask task) {
-    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.WAITING_FOR_INTERMEDIATE_EVENT, TaskState.FAILED,
-        TaskState.JOIN_FAILED);
-    return taskStates.contains(task.getState());
+    EnumSet<TaskBusinessState> taskStates = EnumSet.of(TaskBusinessState.OPEN, TaskBusinessState.ERROR);
+    return taskStates.contains(task.getBusinessState());
   }
   
   public boolean showAdditionalOptions(ITask task) {
@@ -258,7 +257,7 @@ public class TaskActionBean implements Serializable {
   }
 
   public boolean showClearDelayTime(ITask task) {
-    return TaskState.DELAYED.equals(task.getState()) && task.getDelayTimestamp() != null && isNotDoneForWorkingUser(task);
+    return TaskBusinessState.DELAYED.equals(task.getBusinessState()) && task.getDelayTimestamp() != null && isNotDoneForWorkingUser(task);
   }
 
   public boolean showClearExpiryTime(ITask task) {
@@ -343,9 +342,9 @@ public class TaskActionBean implements Serializable {
     if (task == null) {
       return false;
     }
-    EnumSet<TaskState> taskStates =
-        EnumSet.of(TaskState.DONE, TaskState.DESTROYED, TaskState.RESUMED, TaskState.FAILED);
-    return !taskStates.contains(task.getState());
+    EnumSet<TaskBusinessState> taskStates =
+        EnumSet.of(TaskBusinessState.DONE, TaskBusinessState.DESTROYED, TaskBusinessState.IN_PROGRESS, TaskBusinessState.ERROR);
+    return !taskStates.contains(task.getBusinessState());
   }
 
 }

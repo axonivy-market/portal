@@ -21,13 +21,13 @@ import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
+import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 @ManagedBean
 @ViewScoped
 public class DashboardTaskFilterBean {
-  private List<TaskState> states;
+  private List<TaskBusinessState> states;
   private List<WorkflowPriority> priorities;
   private UserDTO selectedUser;
   private List<SecurityMemberDTO> responsibles;
@@ -62,11 +62,11 @@ public class DashboardTaskFilterBean {
     return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);
   }
 
-  public String getUserFriendlyTaskState(TaskState state) {
+  public String getUserFriendlyTaskState(TaskBusinessState state) {
     if (state == null) {
       return EMPTY;
     }
-    String displayState = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + state.toString());
+    String displayState = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/" + state);
     return StringUtils.isBlank(displayState) ? state.name() : displayState;
   }
 
@@ -92,11 +92,11 @@ public class DashboardTaskFilterBean {
     return DashboardWidgetUtils.hasPredefinedFilter(widget);
   }
 
-  public List<TaskState> getStates() {
+  public List<TaskBusinessState> getStates() {
     return states;
   }
 
-  public void setStates(List<TaskState> states) {
+  public void setStates(List<TaskBusinessState> states) {
     this.states = states;
   }
 

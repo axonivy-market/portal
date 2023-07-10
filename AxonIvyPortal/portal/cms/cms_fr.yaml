@@ -1278,6 +1278,20 @@ ch.ivy.addon.portalkit.ui.jsf:
     cannotAssignTask: Cette tâche ne peut être assignée à aucun autre utilisateur ou groupe.
     escalationActivatorDesc: Changer l'activateur d'escalade de la tâche à un utilisateur ou un groupe spécifié.
     escalationActivatorHeader: Sélection de l'activateur d'escalade de la tâche
+  taskBusinessState:
+    DELAYED: Retardé
+    DELAYED_UPPERCASE: RETARDÉ
+    DESTROYED: Détruit
+    DESTROYED_UPPERCASE: SUPPRIMÉ
+    DONE: Terminé
+    DONE_UPPERCASE: TERMINEE
+    ERROR: Erreur
+    ERROR_UPPERCASE: ERREUR
+    IN_PROGRESS: En cours
+    IN_PROGRESS_UPPERCASE: EN COURS
+    OPEN: Ouverte
+    OPEN_UPPERCASE: OUVERTE
+    SYSTEM: SYSTÈME
   taskDelegate:
     afterEscalation:
       delegateNotes: L'activateur d'escalade de la tâche {0} a été changé de {1} en {2}.
