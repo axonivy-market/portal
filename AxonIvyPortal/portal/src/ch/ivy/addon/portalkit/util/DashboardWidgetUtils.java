@@ -707,9 +707,9 @@ public class DashboardWidgetUtils {
     return String.format(WIDGET_ID_PATTERN, type.name(), DashboardUtils.generateId()).toLowerCase();
   }
 
-  public static DashboardWidget findWidget(Dashboard dashboard, String widgetId) {
+  public static Optional<DashboardWidget> findWidget(Dashboard dashboard, String widgetId) {
     return Optional.ofNullable(dashboard).map(Dashboard::getWidgets).orElse(new ArrayList<>()).stream()
         .filter(Objects::nonNull).filter(widget -> widget.getId() != null && widget.getId().equals(widgetId))
-        .findFirst().orElse(null);
+        .findFirst();
   }
 }
