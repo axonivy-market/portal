@@ -110,6 +110,26 @@ A table of private dashboards is shown with the following information:
    automatically added to the end of your personal sort order. New public dashboards are added
    in front of new private dashboards.
 
+How to: import private dashboards
+===============================
+
+#. Select |import-icon| Import.
+
+#. The :guilabel:`Import private dashboard` dialog is opened.
+
+#. In the open dialog, press the Choose button and select the JSON file that contains the dashboard you want to import.
+
+#. Edit the mandatory title and the optional description for the private dashboard.
+
+#. Import the dashboard by selecting the Save button.
+
+#. Configuration your private dashboard (see: :ref:`Dashboard <new-dashboard>`).
+
+#. Back on the dashboard list, you see that a new private dashboard has been added.
+
+|import-private-dashboard-dialog|
+
+
 Public dashboards configuration
 -------------------------------
 
@@ -197,21 +217,21 @@ A table of public dashboards is shown with the following information:
 How to: import public dashboard
 ============================
 
-#. Select |import-icon| Add.
+#. Select |import-icon| Import.
 
-#. Select Import.
+#. The :guilabel:`Import public dashboard` dialog is opened.
 
-#. The :guilabel:`Create new public dashboard` dialog is opened.
-
-#. In the open dialog, press the Select button and choose the JSON file that contains the dashboard you want to import.
+#. In the open dialog, press the Choose button and select the JSON file that contains the dashboard you want to import.
 
 #. Edit the mandatory title, permissions to see the public dashboard and the optional description for the public dashboard.
 
-#. Import the public dashboard by selecting Save button.
+#. Import the public dashboard by selecting the Save button.
 
 #. Configuration public dashboard (see: :ref:`Dashboard <new-dashboard>`).
 
-#. Go back to the dashboards list to see that a new public dashboard has been added.
+#. Go back to the dashboard list to see that a new public dashboard has been added.
+
+|import-public-dashboard-dialog|
 
 .. |dashboard-configuration| image:: ../../screenshots/settings/dashboard-configuration.png
 .. |dashboard-configuration-page| image:: ../../screenshots/dashboard-configuration/dashboard-configuration-page.png
@@ -225,3 +245,6 @@ How to: import public dashboard
 .. |edit-public-dashboards| image:: ../../screenshots/dashboard-configuration/edit-public-dashboards.png
 .. |reorder-public-dashboards| image:: ../../screenshots/dashboard-configuration/reorder-public-dashboards.png
 .. |dashboard-templates| image:: ../../screenshots/dashboard-configuration/dashboard-templates.png
+.. |import-public-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/import-public-dashboard-dialog.png
+.. |import-private-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/import-private-dashboard-dialog.png
+

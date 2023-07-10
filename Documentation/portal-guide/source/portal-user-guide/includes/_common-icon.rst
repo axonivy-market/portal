@@ -46,3 +46,5 @@
    :width: 15px 
 .. |settings-icon| image:: ../includes/images/settings.svg
    :width: 15px 
+.. |import-icon| image:: ../includes/images/import-json.svg
+   :width: 15px
