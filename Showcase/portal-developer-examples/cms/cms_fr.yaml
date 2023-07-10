@@ -197,8 +197,14 @@ Processes:
     Tasks:
       Request:
         name: Demande d'investissement
-    description: Exemple de page de demande d'investissement pour un cas personnalisé
+    description: Exemple de demande d'investissement pour une page de détails commerciaux personnalisés
     name: Réaliser un investissement
+  CreateInvestmentWithPublicAPI:
+    Tasks:
+      Request:
+        name: Demande d'investissement
+    description: Demande d'investissement pour une page de détails d'entreprise personnalisée avec un exemple d'API publique
+    name: Créer un investissement avec l'API publique
   Payment:
     Tasks:
       Pay:

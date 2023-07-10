@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -53,7 +54,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   private static final long serialVersionUID = 1L;
   protected static final String PUBLIC_DASHBOARD_DEFAULT_ICON = "si-network-share";
   protected static final String PRIVATE_DASHBOARD_DEFAULT_ICON = "si-single-neutral-shield";
-  private static final String JSON_FILE_POSTFIX = "_Dashboard_Export.json";
+  private static final String JSON_FILE_SUFFIX = "_Dashboard_Export.json";
 
   protected boolean isPublicDashboard;
   protected List<String> selectedDashboardPermissions;
@@ -269,7 +270,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
         PermissionUtils.hasDashboardExportPublicPermission() : PermissionUtils.hasDashboardExportOwnPermission();
   }
   
-  public boolean hasImportDashboardPermission() {
+  public boolean hasImportDashboardPermission(boolean isPublicDashboard) {
     return isPublicDashboard ?
         PermissionUtils.hasDashboardImportPublicPermission() : PermissionUtils.hasDashboardImportOwnPermission();
   }
@@ -294,7 +295,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     return DefaultStreamedContent
         .builder()
         .stream(() -> inputStream)
-        .contentType("application/json")
+        .contentType(MediaType.APPLICATION_JSON)
         .name(getFileName(dashboard.getTitle()))
         .build();
   }
@@ -313,6 +314,6 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
 
   private String getFileName(String dashboardName) {
-    return dashboardName + JSON_FILE_POSTFIX;
+    return dashboardName + JSON_FILE_SUFFIX;
   }
 }
