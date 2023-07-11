@@ -287,6 +287,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       showUserGuide: 'Active le guide d''utilisation interactif "premiers pas" dans le portail lors de la première connexion. '
       statisticChartScalingInterval: Intervalle en secondes pour effectuer les demandes de mise à l'échelle périodique des graphiques statistiques. Si la valeur de l'intervalle est inférieure à 10, la mise à l'échelle périodique des graphiques statistiques est désactivée.
       uploadDocumentWhiteListExtensionNote: 'Laissez la valeur vide si vous autorisez toutes les extensions. Si juste autoriser quelques extensions, listez les extensions ici, séparées par des virgules. Exemple: pdf, txt, doc, docx.'
+      deepLAuthKey: DeepL Clé d'authentification (doit se terminer par :fx)
+      enableDeepLTranslation: Attribuez la valeur true à cette propriété pour activer la prise en charge de la traduction de DeepL.
     key: Clé
     link: Lien
     loading: CHARGEMENT
@@ -771,6 +773,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: La configuration du tableau de bord n'est pas prise en charge pour les appareils mobiles.
       EditPrivateDashboards: Modifier vos tableaux de bord privés
       EditPublicDashboards: Modifier les tableaux de bord publics
+      InvalidDeepLAuthKey: Clé d'authentification invalide DeepL
       ExportDashboard: Exporter le tableau de bord
       PrivateDashboard: Tableaux de bord privés
       PrivateDashboardConfiguration: Configuration des tableaux de bord privés
