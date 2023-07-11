@@ -774,6 +774,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EditPrivateDashboards: Modifier vos tableaux de bord privés
       EditPublicDashboards: Modifier les tableaux de bord publics
       InvalidDeepLAuthKey: Clé d'authentification invalide DeepL
+      ExportDashboard: Exporter le tableau de bord
       PrivateDashboard: Tableaux de bord privés
       PrivateDashboardConfiguration: Configuration des tableaux de bord privés
       PublicDashboard: Tableaux de bord publics
