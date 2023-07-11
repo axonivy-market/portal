@@ -773,6 +773,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: Dashboard configuration is not supported for mobile devices.
       EditPrivateDashboards: Edit your private dashboards
       EditPublicDashboards: Edit public dashboards
+      ExportDashboard: Export dashboard
       PrivateDashboard: Private dashboards
       PrivateDashboardConfiguration: Private dashboard configuration
       PublicDashboard: Public dashboards
