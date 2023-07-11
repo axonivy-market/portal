@@ -194,12 +194,6 @@ Processes:
       #Summary
       Requester will get a summary of the request
       Acknoledge the result
-  CreateInvestment:
-    Tasks:
-      Request:
-        name: Investment request
-    description: Investment Request for Customized Case Detail Page example
-    name: Create Investment
   Payment:
     Tasks:
       Pay:
