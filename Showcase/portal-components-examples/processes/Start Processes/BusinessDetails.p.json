@@ -1,0 +1,243 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "id" : "176465FBFE257CF3",
+  "config" : {
+    "data" : "com.axonivy.portal.components.examples.BusinessDetailsData"
+  },
+  "elements" : [ {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "Find case by id",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.CaseUtils;",
+            "out.iCase = CaseUtils.findCase(in.caseId);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 328, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f14", "to" : "f9" }
+      ]
+    }, {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "createInvestmentRequestWithPublicAPI.ivp",
+      "config" : {
+        "signature" : "createInvestmentRequestWithPublicAPI",
+        "request" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/CreateInvestmentWithPublicAPI/name\")%>",
+          "description" : "<%=ivy.cms.co(\"/Processes/CreateInvestmentWithPublicAPI/description\")%>",
+          "category" : "Investment"
+        },
+        "case" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/CreateInvestmentWithPublicAPI/name\")%>",
+          "description" : "<%=ivy.cms.co(\"/Processes/CreateInvestmentWithPublicAPI/description\")%>",
+          "customFields" : [
+            { "name" : "AccountNumber", "type" : "NUMBER", "value" : "100" },
+            { "name" : "CustomerName", "type" : "STRING", "value" : "\"Apartment A\"" },
+            { "name" : "InvoiceNumber", "type" : "NUMBER", "value" : "2000" },
+            { "name" : "SupportData", "type" : "STRING", "value" : "\"Request for new computer\"" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 136, "y" : 328 },
+        "labelOffset" : { "x" : 26, "y" : 37 },
+        "description" : "Investment Request for Customized Case Detail Page with public API example"
+      },
+      "connect" : [
+        { "id" : "f16", "to" : "f15" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 600, "y" : 328 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "DialogCall",
+      "name" : [
+        "Customization",
+        "Business Details Page"
+      ],
+      "config" : {
+        "dialog" : "com.axonivy.portal.components.examples.InvestmentRequestBusinessDetailsPage:start(ch.ivyteam.ivy.workflow.ICase)",
+        "call" : {
+          "map" : {
+            "param.ivyCase" : "in.iCase"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 576, "y" : 64 },
+        "size" : { "width" : 192, "height" : 60 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f8" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "SubProcessCall",
+      "name" : "SetBusinessDetailsPage",
+      "config" : {
+        "processCall" : "Functional Processes/SetBusinessDetailsPage:call(String)",
+        "call" : {
+          "map" : {
+            "param.linkToBusinessDetailsPage" : "\"Start Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp\""
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 336, "y" : 200 },
+        "size" : { "width" : 176, "height" : 60 }
+      },
+      "connect" : [
+        { "id" : "f20", "to" : "f18" }
+      ]
+    }, {
+      "id" : "f3",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/CreateInvestment/Tasks/Request/name\")%>"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 520, "y" : 328 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1", "condition" : "ivp==\"TaskA.ivp\"" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "RequestStart",
+      "name" : "showInvestmentRequestCustomFields.ivp",
+      "config" : {
+        "signature" : "showInvestmentRequestCustomFields",
+        "input" : {
+          "params" : [
+            { "name" : "caseId", "type" : "Long", "desc" : "" }
+          ],
+          "map" : {
+            "out.caseId" : "param.caseId"
+          }
+        },
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 144, "y" : 64 },
+        "labelOffset" : { "x" : 22, "y" : 37 }
+      },
+      "connect" : [
+        { "id" : "f12", "to" : "f10" }
+      ]
+    }, {
+      "id" : "f8",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 716, "y" : 64 }
+      }
+    }, {
+      "id" : "f13",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "HOW TO CUSTOMIZE BUSINESS DETAILS PAGE:",
+        "We need to do 2 steps:",
+        "",
+        "1. Create the process for the business details page. In this example, it is showInvestmentRequestCustomFields.ivp",
+        "",
+        "2. 2 ways to set business details page:",
+        "",
+        "\t- Call BusinessDetailsAPI.create(BusinessDetailsDTO) or BusinessDetailsAPI.create(String)",
+        "\t",
+        "\t- Use SetBusinessDetailsPage subprocess. Input for this process is the friendly URL of your business details page like Start Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp or absolute URL like http://www.google.com",
+        "",
+        "HOW TO RUN THIS EXAMPLE:",
+        "",
+        "1. Run createInvestmentRequest.ivp to use subprocess style or run createInvestmentRequestWithPublicAPI.ivp to use public API style",
+        "",
+        "2. In Portal case list, click on action menu of \"Investment request\" case, then click on \"Business details\" link"
+      ],
+      "visual" : {
+        "at" : { "x" : 1144, "y" : 192 },
+        "size" : { "width" : 768, "height" : 316 }
+      }
+    }, {
+      "id" : "f15",
+      "type" : "Script",
+      "name" : "Set business details page using Public API",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.dto.BusinessDetailsDTO;",
+            "import com.axonivy.portal.components.publicapi.BusinessDetailsAPI;",
+            "",
+            "BusinessDetailsAPI.create(BusinessDetailsDTO.builder()",
+            "  .path(\"Start Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp\").build());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 336, "y" : 328 },
+        "size" : { "width" : 176, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "RequestStart",
+      "name" : "createInvestmentRequest",
+      "config" : {
+        "signature" : "createInvestmentRequest",
+        "request" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/CreateInvestment/name\")%>",
+          "description" : "<%=ivy.cms.co(\"/Processes/CreateInvestment/description\")%>",
+          "category" : "Investment"
+        },
+        "case" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/CreateInvestment/name\")%>",
+          "description" : "<%=ivy.cms.co(\"/Processes/CreateInvestment/description\")%>",
+          "customFields" : [
+            { "name" : "AccountNumber", "type" : "NUMBER", "value" : "100" },
+            { "name" : "CustomerName", "type" : "STRING", "value" : "\"Apartment A\"" },
+            { "name" : "SupportData", "type" : "STRING", "value" : "\"Request for new computer\"" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 144, "y" : 200 },
+        "description" : "Investment Request for Customized Case Detail Page with subprocess example"
+      },
+      "connect" : [
+        { "id" : "f17", "to" : "f5" }
+      ]
+    }, {
+      "id" : "f18",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/CreateInvestment/Tasks/Request/name\")%>"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 528, "y" : 200 }
+      },
+      "connect" : [
+        { "id" : "f21", "to" : "f19" }
+      ]
+    }, {
+      "id" : "f19",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 608, "y" : 200 }
+      }
+    } ]
+}

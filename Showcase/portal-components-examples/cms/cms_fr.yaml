@@ -25,6 +25,18 @@ Labels:
     submitLeaveRequest: Soumettre une demande de congé
     to: Au
 Processes:
+  CreateInvestment:
+    Tasks:
+      Request:
+        name: Demande d'investissement
+    description: Exemple de demande d'investissement pour une page de détails commerciaux personnalisés
+    name: Réaliser un investissement
+  CreateInvestmentWithPublicAPI:
+    Task:
+      Request:
+        name: Demande d'investissement
+    description: Demande d'investissement pour une page de détails d'entreprise personnalisée avec un exemple d'API publique
+    name: Créer un investissement avec l'API publique
   LeaveRequest:
     approvalTask: Votre demande de congé est approuvée
     approvalTaskName: Approbation de la demande de congé de {0}
