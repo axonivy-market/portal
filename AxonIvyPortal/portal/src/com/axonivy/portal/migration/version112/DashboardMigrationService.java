@@ -28,7 +28,12 @@ public class DashboardMigrationService {
 
     // Save public dashboards
     String publicDashboardJson = BusinessEntityConverter.entityToJsonValue(publicDashboards);
-    Ivy.var().set(PortalVariable.DASHBOARD.key, publicDashboardJson);
+
+    try {
+      Ivy.var().set(PortalVariable.DASHBOARD.key, publicDashboardJson);
+    } catch (Exception e) {
+      Ivy.log().error("Error occurred when migrate Portal dashboards");
+    }
 
     // Migrate all private dashboards
     Ivy.security().users().paged(100) .forEach(user -> {
@@ -38,7 +43,11 @@ public class DashboardMigrationService {
 
       // save private dashboards
       String userDashboardJson = BusinessEntityConverter.entityToJsonValue(publicDashboards);
-      user.setProperty(PortalVariable.DASHBOARD.key, userDashboardJson);
+      try {
+        user.setProperty(PortalVariable.DASHBOARD.key, userDashboardJson);
+      } catch (Exception e) {
+        Ivy.log().error("Error occurred when migrate Portal dashboards");
+      }
     });
 
     // Migrate dashboard templates
@@ -67,7 +76,11 @@ public class DashboardMigrationService {
 
     // Save dashboard templates
     String templatesJson = BusinessEntityConverter.entityToJsonValue(templates);
-    Ivy.var().set(PortalVariable.DASHBOARD_TEMPLATES.key, templatesJson);
+    try {
+      Ivy.var().set(PortalVariable.DASHBOARD_TEMPLATES.key, templatesJson);
+    } catch (Exception e) {
+      Ivy.log().error("Error occurred when migrate Portal dashboards");
+    }
   }
 
   private static void migrateWidgetFilterSets() {

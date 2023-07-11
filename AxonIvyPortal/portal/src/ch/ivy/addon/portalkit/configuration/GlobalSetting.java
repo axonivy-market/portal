@@ -101,6 +101,8 @@ public class GlobalSetting extends AbstractConfiguration {
         }
       }
       return getDisplayValueForMultiExternalSelections(valueMap);
+    } else if (GlobalVariableType.PASSWORD.equals(variable.getType()) && StringUtils.isNoneBlank(value)) {
+      return "******";
     }
     return value;
   }

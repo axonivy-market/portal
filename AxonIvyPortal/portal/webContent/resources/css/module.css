@@ -4135,6 +4135,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 body .ui-widget-content.filter-name-overlay-panel {
   padding: 0;
+  line-height: 1.75
 }
 
 /* Display icon filter on mobile as a button */
@@ -6041,4 +6042,8 @@ a.dashboard-action-container label {
   top: 7px;
   z-index: 1;
   border-radius: 50%;
+}
+
+.language-icon-padding-right {
+  padding-right: 0.4em;
 }
