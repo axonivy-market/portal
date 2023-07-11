@@ -34,8 +34,7 @@ public class TaskInforActionService {
   }
 
   private String formatDate(Date datetime) {
-    String dateTimePattern = DateTimeGlobalSettingService.getInstance().getDateTimePattern();
-    DateFormat formatter = new SimpleDateFormat(dateTimePattern, Ivy.session().getContentLocale());
+    DateFormat formatter = DateTimeGlobalSettingService.getInstance().getDefaultDateTimeFormatter();
     return formatter.format(datetime);
   }
   
