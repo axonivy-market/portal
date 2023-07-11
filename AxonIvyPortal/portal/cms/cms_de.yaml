@@ -777,6 +777,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EditPrivateDashboards: Private Dashboards bearbeiten
       EditPublicDashboards: Öffentliche Dashboards bearbeiten
       InvalidDeepLAuthKey: Ungültiger DeepL Authentifizierungsschlüssel
+      ExportDashboard: Dashboard exportieren
       PrivateDashboard: Private Dashboards
       PrivateDashboardConfiguration: Private Dashboard-Konfiguration
       PublicDashboard: Öffentliche Dashboards

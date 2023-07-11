@@ -778,6 +778,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EditPrivateDashboards: Edit your private dashboards
       EditPublicDashboards: Edit public dashboards
       InvalidDeepLAuthKey: Invalid DeepL authentication key
+      ExportDashboard: Export dashboard
       PrivateDashboard: Private dashboards
       PrivateDashboardConfiguration: Private dashboard configuration
       PublicDashboard: Public dashboards
