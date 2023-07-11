@@ -115,7 +115,7 @@ The basic JSON structure of a Task widget
 
             - ``activator``: task activator
 
-            - ``state``: task state
+            - ``state``: task business state
 
             - ``startTimestamp``: created date and time of the task
 
@@ -275,18 +275,18 @@ Below is the list of filterable columns and their corresponding filter condition
             "columns": [
                {
                   "field": "state",
-                  "filterList": ["CREATED","DONE"]
+                  "filterList": ["OPEN","IN_PROGRESS","DONE","DESTROYED"]
                },
             ]
          }
       ..
 
-      This column only accepts a list of task state names as its filter condition.
-      If you define a list of states in ``filterList``, the task widget will show
+      This column only accepts a list of task business state names as its filter condition.
+      If you define a list of business states in ``filterList``, the task widget will show
       tasks that are in one of the states listed in ``filterList``. 
 
-      Refer to :dev-url:`Task States </doc/|version|/public-api/ch/ivyteam/ivy/workflow/TaskState.html>` for
-      available task states.
+      Refer to :dev-url:`Task Business States </doc/|version|/public-api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` for
+      available task business states.
 
 
    - ``startTimestamp``

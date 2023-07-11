@@ -41,7 +41,7 @@ How to configure widgets in task details
             "id": "default-task-detail",
             "filters": {
                "categories" : ["support"],
-               "states" : ["DONE", "SUSPENDED"]
+               "states" : ["DONE", "OPEN"]
             },
             "widgets": 
             [
@@ -94,7 +94,7 @@ How to configure widgets in task details
 
    ``widgets``: definition of widgets in layout.
 
-   ``filters``: conditions to determine which tasks able to use the layout. There are 2 types of filter ``categories`` (task categories) and ``states`` (task states).
+   ``filters``: conditions to determine which tasks able to use the layout. There are 2 types of filter ``categories`` (task categories) and ``states`` (task business states).
 
 -  Structure of each widget inside task details layout in variable **Portal.TaskDetails**:
 
@@ -136,7 +136,7 @@ How to configure widgets in task details
    -  ``x``, ``y``, ``w`` and ``h`` must be **integers**.
    -  ``x + w`` must **not be larger** than **12**.
    -  For data of custom widget, if you input ``processPath``, don't input ``url``. You can only use one of them.
-   -  We support all task states for filter type ``states``. Please refer to :dev-url:`Task States </doc/|version|/public-api/ch/ivyteam/ivy/workflow/TaskState.html>` to check for avaiable task states.
+   -  We support all task busines states for filter type ``states``. Please refer to :dev-url:`Task Business States </doc/|version|/public-api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` to check for avaiable task business states.
 
 
 .. _customization-task-item-details-how-to-overide-ui:
@@ -198,11 +198,11 @@ Show Custom Panels (Widgets)
    - Refer to ``variables.Portal.TaskDetails.json`` file in ``portal-developer-examples/resources/files`` project.
    - Copy to the corresponding application folder located in the designer.
 
-      - e.g: AxonIvyDesigner/configuration/applications/designer
+      - E.g., AxonIvyDesigner/configuration/applications/designer
 
    - Create some destroyed task or start the process ``Start Processes/TaskDetailsCustomWidgetExample/SalesManagement.ivp`` in ``portal-developer-examples`` project.
    - Go to the example homepage by the process ``Start Processes/ExamplePortalStart/DefaultApplicationHomePage.ivp``
-   - And then go to task details to check the new custom layout.
+   - Lastly, go to task details to check the new custom layout.
 
    About how to configure Variables, refer to :dev-url:`|ivy| Variables </doc/|version|/designer-guide/configuration/variables.html>`
 
