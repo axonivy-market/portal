@@ -334,7 +334,7 @@ public class TaskDetailsPage extends TemplatePage {
     return findElementByCssSelector("span[id$='general-information:delay-form:delay-date_display']").getText();
   }
 
-  public void updateDelayTimestamp(String tomorrow) {
+  public void updateDelayTimestamp(String tomorrow, String tomorrowWithLocale) {
     findElementByCssSelector("span[id$='general-information:delay-form:delay-date_display']").click();
     waitForElementDisplayed(findElementByCssSelector("[id$='general-information:delay-form:delay-date-calendar_panel']"), true);
     WebElement delayInput = findElementByCssSelector("[id$='delay-form:delay-date-calendar_input']");
@@ -343,7 +343,7 @@ public class TaskDetailsPage extends TemplatePage {
     delayInput.sendKeys(tomorrow);
     WebElement buttonAction = findElementByCssSelector("[id$='delay-form:delay-date_editor']");
     buttonAction.findElement(By.className("ui-inplace-save")).click();
-    WaitHelper.assertTrueWithWait(() -> findElementByCssSelector("span[id$=':delay-form:delay-date_display']").getText().equalsIgnoreCase(tomorrow));
+    WaitHelper.assertTrueWithWait(() -> findElementByCssSelector("span[id$=':delay-form:delay-date_display']").getText().equalsIgnoreCase(tomorrowWithLocale));
   }
 
   public boolean isShowWorkflowEventsLinkDisplayed() {
