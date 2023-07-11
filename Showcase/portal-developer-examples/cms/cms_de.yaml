@@ -196,8 +196,14 @@ Processes:
     Tasks:
       Request:
         name: Investitionsantrag
-    description: Beispiel für eine Investitionsanfrage für eine kundenspezifische Falldetail-Seite
+    description: Beispiel für eine Investitionsanfrage für eine benutzerdefinierte Geschäftsdetailseite
     name: Investition anlegen
+  CreateInvestmentWithPublicAPI:
+    Tasks:
+      Request:
+        name: Investitionsantrag
+    description: Beispiel für eine Investitionsanfrage für eine benutzerdefinierte Geschäftsdetailseite mit öffentlicher API
+    name: Schaffen Sie Investitionen mit öffentlicher API
   Payment:
     Tasks:
       Pay:

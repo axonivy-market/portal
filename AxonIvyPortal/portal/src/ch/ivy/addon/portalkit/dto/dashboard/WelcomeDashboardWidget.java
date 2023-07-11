@@ -28,6 +28,7 @@ public class WelcomeDashboardWidget extends DashboardWidget {
   private String imageStyleClass;
   private WelcomeImageFit welcomeImageFit;
   private String imageInlineStyle;
+  private String imageContent;
 
   @JsonIgnore
   private String welcomeText;
@@ -159,6 +160,14 @@ public class WelcomeDashboardWidget extends DashboardWidget {
 
   public void setImageInlineStyle(String imageInlineStyle) {
     this.imageInlineStyle = imageInlineStyle;
+  }
+
+  public String getImageContent() {
+    return imageContent;
+  }
+
+  public void setImageContent(String imageContent) {
+    this.imageContent = imageContent;
   }
 
 }

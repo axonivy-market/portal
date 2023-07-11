@@ -198,8 +198,14 @@ Processes:
     Tasks:
       Request:
         name: Investment request
-    description: Investment Request for Customized Case Detail Page example
+    description: Investment Request for Customized Business Details Page example
     name: Create Investment
+  CreateInvestmentWithPublicAPI:
+    Tasks:
+      Request:
+        name: Investment request
+    description: Investment Request for Customized Business Details Page With Public API example
+    name: Create Investment With Public API
   Payment:
     Tasks:
       Pay:
