@@ -139,12 +139,14 @@ public class TaskDetailsTest extends BaseTest {
     openDelayTask();
     assertTrue(StringUtils.equalsIgnoreCase("DELAYED", taskDetailsPage.getTaskState()));
     String tomorrow = prepareTomorrowAsString();
-    taskDetailsPage.updateDelayTimestamp(tomorrow);
+    String tomorrowWithLocale = prepareTomorrowAsLocaleDateString();
+    taskDetailsPage.updateDelayTimestamp(tomorrow,tomorrowWithLocale);
     assertTrue(StringUtils.equalsIgnoreCase("DELAYED", taskDetailsPage.getTaskState()));
     refreshPage();
     taskDetailsPage = new TaskDetailsPage();
     String yesterday = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
-    taskDetailsPage.updateDelayTimestamp(yesterday);
+    String yesterdayWithLocale = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.LOCALE_DATE_TIME_PATTERN));
+    taskDetailsPage.updateDelayTimestamp(yesterday,yesterdayWithLocale);
     assertTrue(StringUtils.equalsIgnoreCase("SUSPENDED", taskDetailsPage.getTaskState()));
   }
 
