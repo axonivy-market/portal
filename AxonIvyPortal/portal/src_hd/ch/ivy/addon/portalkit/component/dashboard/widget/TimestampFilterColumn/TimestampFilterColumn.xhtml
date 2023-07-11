@@ -20,9 +20,9 @@
       <p:datePicker id="from-date-field-input" showIcon="true" styleClass="task-configuration__calendar ui-g-12 u-padding-0"
         value="#{cc.attrs.filterFrom}"
         mindate="#{cc.attrs.minFilterFrom}"
-        pattern="#{dateTimePatternBean.configuredDateFilterPattern}" locale="#{localeBean.locale}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
+        locale="#{localeBean.locale}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
         validator="#{field.validate}"
-        converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongFromDateFormat', [dateTimePatternBean.configuredDateFilterPattern])}"/>
+        converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongFromDateFormat', [dateTimePatternBean.dateTimestampPattern])}"/>
       <p:message for="from-date-field-input" styleClass="ui-g-12 u-padding-0"/>
     </div>
 
@@ -34,9 +34,9 @@
       <p:datePicker id="to-date-field-input" showIcon="true" styleClass="task-configuration__calendar ui-g-12 u-padding-0"
         value="#{cc.attrs.filterTo}"
         maxdate="#{cc.attrs.maxFilterTo}"
-        pattern="#{dateTimePatternBean.configuredDateFilterPattern}" locale="#{localeBean.locale}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
+        locale="#{localeBean.locale}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
         validator="#{field.validate}"
-        converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongToDateFormat', [dateTimePatternBean.configuredDateFilterPattern])}" />
+        converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongToDateFormat', [dateTimePatternBean.dateTimestampPattern])}" />
       <p:message for="to-date-field-input" styleClass="ui-g-12 u-padding-0"/>
     </div>
   </h:panelGroup>

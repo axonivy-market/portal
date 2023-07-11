@@ -69,7 +69,7 @@ public class TaskDetailsTest extends BaseTest {
     String tomorrowStringLiteral = prepareTomorrowAsString();
     taskDetailsPage = openDetailsPageOfFirstTask();
     taskDetailsPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
-    assertTrue(StringUtils.equalsIgnoreCase(tomorrowStringLiteral, taskDetailsPage.getExpiryOfTaskAt()));
+    assertTrue(StringUtils.equalsIgnoreCase(prepareTomorrowAsLocaleDateString(), taskDetailsPage.getExpiryOfTaskAt()));
   }
 
   @Test
@@ -116,6 +116,11 @@ public class TaskDetailsTest extends BaseTest {
   private String prepareTomorrowAsString() {
     LocalDateTime tomorrow = LocalDateTime.now().plusDays(1);
     return tomorrow.format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
+  }
+  
+  private String prepareTomorrowAsLocaleDateString() {
+    LocalDateTime tommorrow = LocalDateTime.now().plusDays(1);
+    return tommorrow.format(DateTimeFormatter.ofPattern(DateTimePattern.LOCALE_DATE_TIME_PATTERN));
   }
 
   @Test
