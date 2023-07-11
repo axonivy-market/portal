@@ -192,12 +192,6 @@ Processes:
       #Zusammenfassung
       Antragssteller bekommt eine Zusammenfassung
       Ergebnis zur Kenntnis nehmen
-  CreateInvestment:
-    Tasks:
-      Request:
-        name: Investitionsantrag
-    description: Beispiel für eine Investitionsanfrage für eine kundenspezifische Falldetail-Seite
-    name: Investition anlegen
   Payment:
     Tasks:
       Pay:

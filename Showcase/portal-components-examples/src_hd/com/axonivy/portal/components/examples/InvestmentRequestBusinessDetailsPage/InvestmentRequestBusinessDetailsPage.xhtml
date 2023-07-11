@@ -3,13 +3,13 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-  <ui:composition template="/layouts/frame-8.xhtml">
-    <ui:define name="title">Investment request case detail </ui:define>
+  <ui:composition template="/layouts/frame-10.xhtml">
+    <ui:define name="title">Investment request business details </ui:define>
 
     <ui:define name="content">
       <h:panelGrid columns="1">
       
-      <h2>This is custom case detail page using iframe</h2>
+      <h2>This is custom business details page</h2>
       <p:dataTable id="additional-case-detail-table" value="#{data.ivyCase.customFields().all()}" var="item"
         reflow="true" lazy="false">
         <f:facet name="header">
@@ -21,9 +21,6 @@
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/value')}">
           <h:outputText id="number-value" value="#{item.getOrNull()}" rendered="#{item.type() eq 'NUMBER'}">
             <f:convertNumber type="number" integerOnly="true" pattern="#,##0.00" />
-          </h:outputText>
-          <h:outputText id="timestamp-value" value="#{item.getOrNull()}" rendered="#{item.type() eq 'TIMESTAMP'}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
           </h:outputText>
           <h:outputText id="value" value="#{item.getOrNull()}"
             rendered="#{item.type() ne 'TIMESTAMP' and item.type() ne 'NUMBER'}" />

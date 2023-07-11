@@ -328,7 +328,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   caseDetails:
     addDocumentHelpText: Pour ajouter des fichiers, glissez-les ou sélectionnez-les
     addNoteHelpText: Ecrivez votre texte ici
-    additionalCaseDetailsTitle: Détails supplémentaires de cas
+    businessDetailsTitle: Détails de l'entreprise
     deleteFile: Supprimer le fichier
     documents: Documents
     downloadFile: Télécharger le fichier
