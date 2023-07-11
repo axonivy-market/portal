@@ -22,9 +22,7 @@
       </div>
     </div>
     <div class="ui-g-12">
-      <p:messages id="config-custom-widget-message">
-        <p:autoUpdate />
-      </p:messages>
+      <p:messages id="config-custom-widget-message" />
     </div>
     <h:panelGroup id="widget-title-group"
       styleClass="ui-g-12 u-padding-0 ui-fluid">
@@ -179,10 +177,8 @@
       </p:fieldset>
     </h:panelGroup>
   </h:panelGroup>
-
-  <!-- Multi language dialog-->
-  <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
-    id="title-language-config" titles="#{managedBean.widget.names}"
-    componentToUpdateOnCreate="#{cc.attrs.componentToUpdate}" />
+    <!-- Multi language dialog-->
+  <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration id="title-language-config" titleRequired="false"
+    titles="#{managedBean.widget.names}" managedBean="#{managedBean}" componentToUpdateOnCreate="#{cc.attrs.componentToUpdate}" />
 </cc:implementation>
 </html>
