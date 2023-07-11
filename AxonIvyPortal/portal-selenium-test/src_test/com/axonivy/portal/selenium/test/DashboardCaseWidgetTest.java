@@ -147,7 +147,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     detailsCase.openAdditionalCaseDetailsPage();
     newDashboardPage.switchLastBrowserTab();
     detailsCase.switchToIframe();
-    detailsCase.countAdditionalFieldsPage().shouldHave(size(4));
+    detailsCase.countAdditionalFieldsPage().shouldHave(size(5));
     detailsCase.firstAdditionalFieldsPage().shouldBe(text("Apartment A"));
   }
   

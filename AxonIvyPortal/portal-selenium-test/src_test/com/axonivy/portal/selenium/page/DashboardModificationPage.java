@@ -108,4 +108,10 @@ public class DashboardModificationPage extends TemplatePage {
     dashboard.shouldBe(Condition.appear);
     return dashboard.$("td:nth-child(" + position + ")");
   }
+
+  public SelenideElement getDashboardExportButtonOfDashboard(String dashboardName) {
+    SelenideElement dashboard = getDashboardRowByName(dashboardName);
+    dashboard.shouldBe(Condition.appear);
+    return dashboard.$("td:last-child button[id $=':export-dashboard']");
+  }
 }
