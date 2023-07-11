@@ -11,25 +11,19 @@ pipeline {
 
   environment {
     engineVersion = '10'
-    devEngineDir = "/var/tools/ivy/${env.engineVersion}"
-    performanceEngineDir = "/var/tools/ivy/performance-${env.engineVersion}"
-    masterEngineDir = "/var/tools/ivy/master"
-    performanceMasterEngineDir = "/var/tools/ivy/performance-master"
-    portalApplicationName = 'Portal'
     jmeterSourceDir = 'AxonIvyPortal/PortalTest/jmeter'
+    ivyDir = '/var/tools/ivy'
   }
 
   stages {
     stage('deploy') {
       steps {
         script {
-          sh """
-            docker compose -f ${masterEngineDir}/docker-compose.yml down
-            docker compose -f ${performanceMasterEngineDir}/docker-compose.yml down
-            docker compose -f ${devEngineDir}/docker-compose.yml down
-            docker compose -f ${performanceEngineDir}/docker-compose.yml down
-            docker compose -f ${performanceEngineDir}/docker-compose.yml up -d
-          """
+          engineNames = ['master', '10', '8', 'performance-master', 'performance-10', 'performance-8']
+          for (engineName in engineNames) {
+            sh "docker compose -f ${ivyDir}/${engineName}/docker-compose.yml down"
+          }
+          sh "docker compose -f ${ivyDir}/${engineNames[4]}/docker-compose.yml up -d"
 
           docker.build('build-portal-10-modules', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
             def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal']
@@ -72,10 +66,12 @@ pipeline {
   post {
     always {
       script {
+        for (engineName in engineNames) {
+          sh "docker compose -f ${ivyDir}/${engineName}/docker-compose.yml down"
+        }
         sh """
-          docker compose -f ${performanceEngineDir}/docker-compose.yml down
-          docker compose -f ${devEngineDir}/docker-compose.yml up -d
-          docker compose -f ${masterEngineDir}/docker-compose.yml up -d
+          docker compose -f ${ivyDir}/${engineNames[0]}/docker-compose.yml up -d
+          docker compose -f ${ivyDir}/${engineNames[1]}/docker-compose.yml up -d
         """
       }
       script {
