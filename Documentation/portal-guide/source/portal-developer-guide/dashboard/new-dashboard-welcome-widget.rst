@@ -111,3 +111,9 @@ The basic JSON structure of a welcome widget
         ``CONTAIN``: The image will keep its aspect ratio and will be resized such that it is shown completely within the container, showing empty side- or top/bottom bars.
 
 You may upload a background image by configuring the widget directly in Portal.
+
+.. warning::
+
+   Portal is using these attributes internally: ``imageLocation``, ``imageType``, ``imageContent``.
+
+   Please don't change them manually because it could cause errors for the widget.
