@@ -90,4 +90,5 @@ Dialogs:
 Labels:
   DisabledUserPrefix: (disabled)
   NoName: no name
+  NoResults: No results
   NotAvailable: N/A

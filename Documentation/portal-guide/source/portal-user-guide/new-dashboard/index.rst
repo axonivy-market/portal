@@ -84,6 +84,10 @@ your widget, and get a preview of it by clicking on the preview button.
 
 |task-list-widget-configuration|
 
+Setting multiple languages for the widget title:
+
+|dashboard-multi-language-widget-dialog|
+
 **Table configuration panel**
 
 Edit the default sort order of the table rows by clicking on the column headers
@@ -101,6 +105,15 @@ In the column management panel, you will find two sections:
       - Enable visibility
       - Reorder the columns by drag and drop using the arrows |move-expand-vertical|
       - Remove columns
+
+**Excel export**
+
+You can export all data of the task widget by clicking on the link ``Export to Excel`` at the bottom left corner of the widget information panel.
+
+|task-export-excel|
+
+If the number of exported tasks exceed the maximum row number of the Excel file, Portal will separate data into multiple Excel
+files and put them into a single zip file.
 
 Case list widget
 ================
@@ -143,7 +156,7 @@ You can export all data of the case widget by clicking on the link ``Export to E
 
 |case-export-excel|
 
-If the number of exported cases exceeds the maximum row number of the Excel file, Portal will separate data into multiple Excel
+If the number of exported cases exceed the maximum row number of the Excel file, Portal will separate data into multiple Excel
 files and put them into a single zip file.
 
 Process list widget
@@ -264,11 +277,13 @@ In manage news, the user can:
 .. |widget-filter| image:: ../../screenshots/new-dashboard/widget-filter.png
 .. |widget-info| image:: ../../screenshots/new-dashboard/widget-info.png
 .. |case-export-excel| image:: ../../screenshots/new-dashboard/case-export-excel.png
+.. |task-export-excel| image:: ../../screenshots/new-dashboard/task-export-excel.png
 .. |edit-widget| image:: ../../screenshots/new-dashboard/edit-widget.png
 .. |add-widget| image:: ../../screenshots/new-dashboard/add-widget.png
 
 .. |task-list-widget| image:: ../../screenshots/new-dashboard/task-list-widget.png
 .. |task-list-widget-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-configuration.png
+.. |dashboard-multi-language-widget-dialog| image:: ../../screenshots/new-dashboard/dashboard-multi-language-widget-dialog.png
 .. |task-list-widget-table-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-table-configuration.png
 
 .. |case-list-widget| image:: ../../screenshots/new-dashboard/case-list-widget.png
