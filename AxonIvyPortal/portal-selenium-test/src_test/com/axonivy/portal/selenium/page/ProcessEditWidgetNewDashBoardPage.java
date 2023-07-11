@@ -365,7 +365,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   public SelenideElement getCompactModeProcessDisplayedCategoryFilter() {
     return getCompactModeProcessCategoryFilter().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
-
+  
   public void clickOnProcesses() {
     $("div[id$=':processes-list']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
         .click();
@@ -394,5 +394,13 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     $(processEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='widget-configuration-save-button']")
         .shouldBe(getClickableCondition()).click();
     $("[id$='task-component:loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+  
+  public SelenideElement getTranslationOverlayPanel(int index) {
+    SelenideElement translationOverlay = $(String.format("div[id$=':%s:overlay-panel-input']", index));
+    waitUntilElementToBeClickable(translationOverlay);
+    translationOverlay.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
+    return translationOverlay;
   }
 }

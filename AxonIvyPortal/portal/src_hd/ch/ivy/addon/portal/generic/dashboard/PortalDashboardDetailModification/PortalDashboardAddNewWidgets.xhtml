@@ -78,7 +78,7 @@
    <c:if test="#{widget.type eq 'CUSTOM'}">
      <ic:ch.ivy.addon.portal.generic.dashboard.component.CustomWidgetConfiguration id="new-widget-configuration-component"
        widget="#{widget}"
-       componentToUpdate="widget-configuration-form"
+       componentToUpdate="#{p:resolveFirstComponentWithId('widget-title', view).clientId}"
        managedBean="#{dashboardDetailModificationBean}"/>
    </c:if>
 
@@ -92,12 +92,13 @@
    <c:if test="#{widget.type eq 'WELCOME'}">
      <ic:ch.ivy.addon.portal.generic.dashboard.component.WelcomeWidgetConfiguration id="new-widget-configuration-component"
        widget="#{widget}"
-       componentToUpdate="widget-configuration-form"/>
+       componentToUpdate="widget-configuration-form"
+       managedBean="#{dashboardDetailModificationBean}"/>
    </c:if>
 
    <c:if test="#{widget.type eq 'NEWS'}">
      <ic:com.axonivy.portal.dashboard.component.NewsWidgetConfiguration id="new-widget-configuration-component"
-       widget="#{widget}" 
+       widget="#{widget}"
        managedBean="#{dashboardDetailModificationBean}"
        componentToUpdate="widget-configuration-form"/>
    </c:if>

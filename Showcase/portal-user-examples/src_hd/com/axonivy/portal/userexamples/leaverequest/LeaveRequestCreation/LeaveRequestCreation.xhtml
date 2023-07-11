@@ -44,7 +44,7 @@
                 <h:panelGroup class="md-inputfield MarTop20">
                   <p:outputLabel for="from" value="#{ivy.cms.co('/Labels/LeaveRequest/from')}" />
                   <p:datePicker id="from" value="#{data.leaveRequestData.from}" locale="#{localeBean.locale}"
-                    styleClass="MarTop10" pattern="#{dateTimePatternBean.configuredCalendarPattern}" required="true"
+                    styleClass="MarTop10" required="true"
                     showTime="#{!dateTimePatternBean.isTimeHidden}"
                     requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/from')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
                 </h:panelGroup>
@@ -52,7 +52,7 @@
                 <h:panelGroup class="md-inputfield MarTop20">
                   <p:outputLabel for="to" value="#{ivy.cms.co('/Labels/LeaveRequest/to')} " />
                   <p:datePicker id="to" value="#{data.leaveRequestData.to}" locale="#{localeBean.locale}"
-                    styleClass="MarTop10" pattern="#{dateTimePatternBean.configuredCalendarPattern}" required="true"
+                    styleClass="MarTop10" required="true"
                     showTime="#{!dateTimePatternBean.isTimeHidden}"
                     requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/to')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
                 </h:panelGroup>

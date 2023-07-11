@@ -8,9 +8,9 @@
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="isNotRequiredLogin" value="false" />
-    <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/additionalCaseDetailsTitle')}</ui:define>
+    <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/businessDetailsTitle')}</ui:define>
     <ui:define name="pageContent">
-      <div class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/additionalCaseDetailsTitle')}</div>
+      <div class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/businessDetailsTitle')}</div>
       <div class="Separator" />
       <p:dataTable 
         id="additional-case-detail-table" 
@@ -26,7 +26,7 @@
             <f:convertNumber type="number" integerOnly="true" pattern="#,##0.00" />
           </h:outputText>
           <h:outputText id="timestamp-value" value="#{item.getOrNull()}" rendered="#{item.type() eq 'TIMESTAMP'}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
+            <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
           </h:outputText>
           <h:outputText id="value" value="#{item.getOrNull()}" rendered="#{item.type() ne 'TIMESTAMP' and item.type() ne 'NUMBER'}" />
         </p:column>
