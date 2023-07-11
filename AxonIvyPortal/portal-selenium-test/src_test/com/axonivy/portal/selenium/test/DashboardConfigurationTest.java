@@ -136,15 +136,10 @@ public class DashboardConfigurationTest extends BaseTest {
 
   @Test
   public void testAddPublishDashboardUseTemplate() {
+    createPublicDashboardUseTemplate();
     String name = "New public dashboard";
     String icon = "fa-coffee";
     String description = "New public dashboard description";
-    List<String> permissions = new ArrayList<>();
-    permissions.add("Cost Object (CostObject)");
-
-    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
-    configurationPage.openCreatePublicDashboardMenu();
-    configurationPage.createPublicDashboardFromTemplate(name, icon, description, permissions, 0);
 
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
@@ -156,13 +151,10 @@ public class DashboardConfigurationTest extends BaseTest {
 
   @Test
   public void testAddPrivateDashboardUseTemplate() {
+    createPrivateDashboardUseTemplate();
     String name = "New private dashboard";
     String icon = "fa-coffee";
     String description = "New private dashboard description";
-
-    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
-    configurationPage.openCreatePrivateDashboardMenu();
-    configurationPage.createPrivateDashboardFromTemplate(name, icon, description, 0);
 
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
@@ -304,6 +296,30 @@ public class DashboardConfigurationTest extends BaseTest {
     newDashboardPage.selectTaskWidget(" ").expand().shouldHave(size(2));
   }
 
+  @Test
+  public void testExportOnlyPrivateDashboards() {
+    createPrivateDashboardUseTemplate();
+    createPublicDashboardUseTemplate();
+    redirectToRelativeLink(grantDashboardExportOwnPermissionUrl);
+    redirectToRelativeLink(denyDashboardExportPublicPermissionUrl);
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    var configurationPage = new DashboardConfigurationPage();
+    configurationPage.openEditPublicDashboardsPage().getDashboardExportButtonOfDashboard("New public dashboard").shouldBe(Condition.disappear);
+    configurationPage.openEditPrivateDashboardsPage().getDashboardExportButtonOfDashboard("New private dashboard").shouldBe(Condition.appear);
+  }
+
+  @Test
+  public void testCanExportOnlyPublicDashboards() {
+    createPrivateDashboardUseTemplate();
+    createPublicDashboardUseTemplate();
+    redirectToRelativeLink(denyDashboardExportOwnPermissionUrl);
+    redirectToRelativeLink(grantDashboardExportPublicPermissionUrl);
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    var configurationPage = new DashboardConfigurationPage();
+    configurationPage.openEditPublicDashboardsPage().getDashboardExportButtonOfDashboard("New public dashboard").shouldBe(Condition.appear);
+    configurationPage.openEditPrivateDashboardsPage().getDashboardExportButtonOfDashboard("New private dashboard").shouldBe(Condition.disappear);
+  }
+
   private DashboardModificationPage navigateToConfigurationAndEditDashboards(boolean isPublicDashboard) {
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();
@@ -330,5 +346,27 @@ public class DashboardConfigurationTest extends BaseTest {
     } else {
       modificationPage.getDashboardCellByNameAndPosition(name, 2).shouldHave(Condition.exactText(description));
     }
+  }
+
+  private void createPrivateDashboardUseTemplate() {
+    String name = "New private dashboard";
+    String icon = "fa-coffee";
+    String description = "New private dashboard description";
+
+    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    configurationPage.openCreatePrivateDashboardMenu();
+    configurationPage.createPrivateDashboardFromTemplate(name, icon, description, 0);
+  }
+
+  private void createPublicDashboardUseTemplate() {
+    String name = "New public dashboard";
+    String icon = "fa-coffee";
+    String description = "New public dashboard description";
+    List<String> permissions = new ArrayList<>();
+    permissions.add("Cost Object (CostObject)");
+
+    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    configurationPage.openCreatePublicDashboardMenu();
+    configurationPage.createPublicDashboardFromTemplate(name, icon, description, permissions, 0);
   }
 }

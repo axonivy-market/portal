@@ -41,18 +41,15 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
       return getCustomColumnName(column);
     }
 
-    switch(columnField) {
-      case NAME:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/caseName");
-      case DESCRIPTION:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/description");
-      case CREATED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME");
-      case FINISHED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME");
-      default:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/" + columnField.name());
-    }
+    String url = switch (columnField) {
+      case NAME -> "/ch.ivy.addon.portalkit.ui.jsf/common/caseName";
+      case DESCRIPTION -> "/ch.ivy.addon.portalkit.ui.jsf/common/description";
+      case CREATED -> "/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME";
+      case FINISHED -> "/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME";
+      default -> "/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/" + columnField.name();
+    };
+
+    return Ivy.cms().co(url);
   }
 
   /**
@@ -77,36 +74,25 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
    * @return case column value
    */
   private Object getCommonColumnValue(DashboardStandardCaseColumn sortField, ICase caseItem) {
-    switch (sortField) {
-      case NAME:
-        return StringUtils.isEmpty(caseItem.names().current()) ? Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable") : caseItem.names().current();
-      case ID:
-        return String.valueOf(caseItem.getId());
-      case DESCRIPTION:
-        return caseItem.descriptions().current();
-      case STATE:
-        return CaseUtils.convertToUserFriendlyCaseState(caseItem.getState());
-      case CREATOR:
-        if (caseItem.getCreatorUserName() == null) {
-          return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
-        }
-        return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(caseItem.getCreatorUser(), caseItem.getCreatorUserName());
-      case CREATED:
-        return caseItem.getStartTimestamp();
-      case FINISHED:
-        return caseItem.getEndTimestamp();
-      case OWNER:
-        if (caseItem.getOwnerName() == null) {
-          return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
-        }
-        return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(caseItem.getOwner(), caseItem.getOwnerName());
-      case CATEGORY:
-        return caseItem.getCategory().getPath();
-      case APPLICATION:
-        return caseItem.getApplication().getName();
-      default:
-        return "";
-    }
+    return switch (sortField) {
+      case NAME -> StringUtils.isEmpty(caseItem.names().current()) 
+          ? Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable") 
+          : caseItem.names().current();
+      case ID -> String.valueOf(caseItem.getId());
+      case DESCRIPTION -> caseItem.descriptions().current();
+      case STATE -> CaseUtils.convertToUserFriendlyCaseState(caseItem.getState());
+      case CREATOR -> caseItem.getCreatorUserName() == null
+          ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable")
+          : SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(caseItem.getCreatorUser(), caseItem.getCreatorUserName());
+      case CREATED -> caseItem.getStartTimestamp();
+      case FINISHED -> caseItem.getEndTimestamp();
+      case OWNER -> caseItem.getOwnerName() == null
+          ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable")
+          : SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(caseItem.getOwner(), caseItem.getOwnerName());
+      case CATEGORY-> caseItem.getCategory().getPath();
+      case APPLICATION -> caseItem.getApplication().getName();
+      default -> "";
+    };
   }
 
   /**

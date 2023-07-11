@@ -41,7 +41,7 @@ public class BaseTest {
   protected String businessCaseUrl = "internalSupport/15B1EA24CCF377E8/updateCheckInTime.ivp";
   protected String hideCaseUrl = "portal-developer-examples/16583F0F73864543/createHiddenTechnicalCase.ivp";
   protected String createTestingCaseMapUrl = "internalSupport/764871e4-cf70-401f-83fb-9e99fa897fc4.icm";
-  protected String createTestingCaseUrlForCustomizationAdditionalCaseDetails = "portal-developer-examples/1624D1F5CBEA5332/createInvestmentRequest.ivp";
+  protected String createTestingCaseUrlForCustomizationAdditionalCaseDetails = "portal-components-examples/1624D1F5CBEA5332/createInvestmentRequest.ivp";
   protected String createTestingCaseUrlForDefaultAdditionalCaseDetails = "internalSupport/14B2FC03D2E87141/DefaultAdditionalCaseDetails.ivp";
   protected String createTestingCaseContainOneTask = "internalSupport/14B2FC03D2E87141/CreateSupportTicket.ivp";
   protected String createTaskWithNotExistedActivatorUrl = "internalSupport/14B2FC03D2E87141/createTaskWithNotExistedActivator.ivp";
@@ -77,6 +77,10 @@ public class BaseTest {
   protected String grantDashboardWritePublicPermissionUrl = "PortalKitTestHelper/14DE09882B540AD5/grantDashboardWritePublicPermission.ivp";
   protected String denyDashboardWritePublicPermissionUrl = "PortalKitTestHelper/14DE09882B540AD5/denyDashboardWritePublicPermission.ivp";
   protected String cleanPortalNewsFeedUrl = "portalKitTestHelper/1511A66AF619A768/cleanNewsFeed.ivp";
+  protected String grantDashboardExportOwnPermissionUrl = "PortalKitTestHelper/14DE09882B540AD5/grantDashboardExportOwnPermission.ivp";
+  protected String denyDashboardExportOwnPermissionUrl = "PortalKitTestHelper/14DE09882B540AD5/denyDashboardExportOwnPermission.ivp";
+  protected String grantDashboardExportPublicPermissionUrl = "PortalKitTestHelper/14DE09882B540AD5/grantDashboardExportPublicPermission.ivp";
+  protected String denyDashboardExportPublicPermissionUrl = "PortalKitTestHelper/14DE09882B540AD5/denyDashboardExportPublicPermission.ivp";
 
   protected void redirectToNewDashBoard() {
     open(EngineUrl.createProcessUrl(PORTAL_HOME_PAGE_URL));
