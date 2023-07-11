@@ -64,7 +64,7 @@
           <div class="more-information-wrapper">
             <p:link id="more-information" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}"
               styleClass="process-more-info-link" href="#{dashboardProcessBean.getProcessInformationPageUrl(process)}"
-              disabled="#{!isReadOnlyMode or isInConfiguration}" rendered="#{!isExternalLink}"/>
+              disabled="#{!isReadOnlyMode or isInConfiguration}" rendered="#{data.showInformationLink and !isExternalLink and !isExpress and !isCaseMap}"/>
           </div>
         </div>
       </h:form>
