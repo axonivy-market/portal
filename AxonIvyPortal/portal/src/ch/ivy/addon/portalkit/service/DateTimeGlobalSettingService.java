@@ -24,7 +24,7 @@ public class DateTimeGlobalSettingService {
     globalSettingService = new GlobalSettingService();
   }
 
-  public String getGlobalSettingPattern() {
+  public String getGlobalDateTimePattern() {
     return isTimeHidden() ? getDatePattern() : getDateTimePattern();
   }
 
@@ -58,10 +58,6 @@ public class DateTimeGlobalSettingService {
   public boolean isDateFilterWithTime() {
     String dateFilterGlobalSetting = globalSettingService.findGlobalSettingValue(GlobalVariable.DATE_FILTER_WITH_TIME);
     return Boolean.valueOf(dateFilterGlobalSetting);
-  }
-
-  public String getGlobalSettingCalendarPattern() {
-    return isTimeHidden() ? getDefaultDatePattern() : getDefaultDateTimePattern();
   }
 
   public String getDateWithoutTimePattern() {
