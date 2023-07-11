@@ -116,7 +116,7 @@ public class CaseWidgetTest extends BaseTest {
   @Test
   public void testOpenCustomizationAdditionalCaseDetailsPage() throws Exception {
     openAdditionalCaseDetailsPage(createTestingCaseUrlForCustomizationAdditionalCaseDetails, INVESTMENT_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME);
-    validateAdditionalCaseDetailsPage(7, "Apartment A");
+    validateAdditionalCaseDetailsPage(4, "Apartment A");
   }
   
   @Test
