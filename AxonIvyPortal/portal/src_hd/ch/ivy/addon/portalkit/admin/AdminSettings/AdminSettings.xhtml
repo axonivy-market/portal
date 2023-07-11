@@ -307,6 +307,10 @@
               <f:selectItems value="#{data.externalDropDownValues.entrySet()}" var="entry" itemValue="#{entry.key}" itemLabel="#{entry.value.getLabel()}" />
             </p:selectManyCheckbox>
           </c:if>
+          
+          <c:if test="#{data.settingInputType.toString() == 'PASSWORD'}">
+            <p:inputText value="#{data.selectedSetting.value}" id="valueSetting" type="password"/>
+          </c:if>
 
           <!-- NOTE -->
           <p:outputLabel styleClass="Fright" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')}"

@@ -155,6 +155,13 @@ public class DashboardConfigurationPage extends TemplatePage {
     return addLanguageButton;
   }
 
+  public SelenideElement getTranslationOverlayPanel(int index) {
+    SelenideElement translationOverlay = $(String.format("div[id$=':%s:overlay-panel-input']", index));
+    waitUntilElementToBeClickable(translationOverlay);
+    translationOverlay.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
+    return translationOverlay;
+  }
   public void reorderPublicDashboard() {
     selectPublicDashboardType();
     $("a[id$='reorder-dashboard-action'].js-public-dashboard").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
