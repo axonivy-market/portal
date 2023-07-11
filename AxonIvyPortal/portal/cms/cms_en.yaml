@@ -74,8 +74,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationAndRole: Application and role
     definedDeputies: Defined substitutes
     deputyFor: I am substitute for
+    myAbsences: My absences
     myDeputies: My substitutes
-    myPlannedAbsences: My planned absences
     nextAbsence: Upcomming absence
     selectedDeputyFor: Selected user is substitute for
     selectedUser: Selected user
@@ -287,6 +287,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       showUserGuide: 'Activates the interactive user guide "first steps" in the portal at first login. '
       statisticChartScalingInterval: Interval in seconds to do periodic statistic chart scaling requests. If the interval value is less than 10, periodic statistic chart scaling is disabled.
       uploadDocumentWhiteListExtensionNote: 'Leave value empty if you allow all extensions. If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.'
+      deepLAuthKey: DeepL Authentication Key (should end with :fx)
+      enableDeepLTranslation: Set this property to true to enable the DeepL translation support
     key: Key
     link: Link
     loading: LOADING
@@ -326,7 +328,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   caseDetails:
     addDocumentHelpText: To upload files, drag & drop or select files
     addNoteHelpText: Write your text here.
-    additionalCaseDetailsTitle: Additional Case Details
+    businessDetailsTitle: Busniness Details
     deleteFile: Delete file
     documents: Documents
     downloadFile: Download file
@@ -775,6 +777,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: Dashboard configuration is not supported for mobile devices.
       EditPrivateDashboards: Edit your private dashboards
       EditPublicDashboards: Edit public dashboards
+      InvalidDeepLAuthKey: Invalid DeepL authentication key
+      ExportDashboard: Export dashboard
       PrivateDashboard: Private dashboards
       PrivateDashboardConfiguration: Private dashboard configuration
       PublicDashboard: Public dashboards

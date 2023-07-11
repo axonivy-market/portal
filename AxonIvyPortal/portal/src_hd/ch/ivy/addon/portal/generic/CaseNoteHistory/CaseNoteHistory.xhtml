@@ -77,7 +77,7 @@
               <p:column width="20%" sortBy="#{history.timestamp}"
                 headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}">
                 <h:outputText value="#{history.timestamp}">
-                  <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
+                  <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
                 </h:outputText>
               </p:column>
             </p:dataTable>

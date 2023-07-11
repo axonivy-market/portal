@@ -25,6 +25,18 @@ Labels:
     submitLeaveRequest: Submit leave request
     to: To
 Processes:
+  CreateInvestment:
+    Tasks:
+      Request:
+        name: Investment request
+    description: Investment Request for Customized Business Details Page example
+    name: Create Investment
+  CreateInvestmentWithPublicAPI:
+    Task:
+      Request:
+        name: Investment request
+    description: Investment Request for Customized Business Details Page With Public API example
+    name: Create Investment With Public API
   LeaveRequest:
     approvalTask: Your leave request is approved
     approvalTaskName: Approval for leave request of {0}

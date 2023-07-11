@@ -50,14 +50,14 @@
 
           <p:outputLabel styleClass="item-label" for="filter-from" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')} " />
           <p:datePicker id="filter-from" value="#{filter.createdDateFrom}" disabled="#{filter.timePeriodSelection ne 'CUSTOM'}"
-            pattern="#{dateTimePatternBean.configuredDateFilterPattern}" locale="#{localeBean.locale}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
+            locale="#{localeBean.locale}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
             converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
             <p:ajax global="false" />
           </p:datePicker>
 
           <p:outputLabel for="filter-to" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')} " styleClass="item-label"/>
           <p:datePicker id="filter-to" value="#{filter.createdDateTo}" disabled="#{filter.timePeriodSelection ne 'CUSTOM'}"
-            pattern="#{dateTimePatternBean.configuredDateFilterPattern}" locale="#{localeBean.locale}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
+            locale="#{localeBean.locale}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
             converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
             <p:ajax global="false" />
           </p:datePicker>

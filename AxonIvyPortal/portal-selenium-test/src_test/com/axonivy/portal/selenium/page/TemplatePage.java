@@ -38,6 +38,10 @@ public abstract class TemplatePage extends AbstractPage {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
         .until(ExpectedConditions.elementToBeClickable(element));
   }
+  
+  public void switchToIframeWithId(String id) {
+    WebDriverRunner.getWebDriver().switchTo().frame($("iframe[id='" + id + "']"));
+  }
 
   public void waitForGrowlMessageDisappear() {
     $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT)

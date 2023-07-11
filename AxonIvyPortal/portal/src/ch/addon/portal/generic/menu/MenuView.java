@@ -170,7 +170,7 @@ public class MenuView implements Serializable {
                   .url(dashboardLink)
                   .workingTaskId(this.workingTaskId).build();
             dashboardMenu.setId(String.format(DASHBOARD_MENU_ITEM_PATTERN, board.getId()));
-            
+
             String defaultTitle = (String) dashboardMenu.getValue();
             String title = board.getTitles().stream()
                 .filter(name -> StatisticService.equalsLanguageLocale(name, currentLanguage)

@@ -76,7 +76,7 @@
               styleClass="task-history-date u-truncate-text ui-sm-hidden" width="20%"
               sortBy="#{document.creation.timestamp}">
               <h:outputText value="#{document.creation.timestamp}">
-                <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
+                <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
               </h:outputText>
             </p:column>
           </p:dataTable>

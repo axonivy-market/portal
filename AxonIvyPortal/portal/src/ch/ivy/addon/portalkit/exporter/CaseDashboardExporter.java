@@ -19,8 +19,8 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
 
   /**
    * Constructor
+   * 
    * @param columnsVisibility list of columns to export
-   * @param widgetName
    */
   public CaseDashboardExporter(List<String> columnsVisibility, String widgetName) {
     super(columnsVisibility, widgetName, "/ch.ivy.addon.portalkit.ui.jsf/dashboard/export/exportedCasesFileName");
@@ -41,26 +41,23 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
       return getCustomColumnName(column);
     }
 
-    switch(columnField) {
-      case NAME:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/caseName");
-      case DESCRIPTION:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/description");
-      case CREATED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME");
-      case FINISHED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME");
-      default:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/" + columnField.name());
-    }
+    String url = switch (columnField) {
+      case NAME -> "/ch.ivy.addon.portalkit.ui.jsf/common/caseName";
+      case DESCRIPTION -> "/ch.ivy.addon.portalkit.ui.jsf/common/description";
+      case CREATED -> "/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME";
+      case FINISHED -> "/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME";
+      default -> "/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/" + columnField.name();
+    };
+
+    return Ivy.cms().co(url);
   }
 
-  
   /**
    * Get header text from the custom column
    * Custom column format: fieldType__fieldName__header
+   * 
    * @param column
-   * @return custom column name
+   * @return
    */
   private String getCustomColumnName(String column) {
     String[] columnParts = getCustomColumnParts(column);
@@ -72,31 +69,27 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
 
   /**
    * Get common column value
-   * @param sortField
+   * @param column
    * @param caseItem
    * @return case column value
    */
   private Object getCommonColumnValue(DashboardStandardCaseColumn sortField, ICase caseItem) {
     return switch (sortField) {
-      case NAME -> StringUtils.isEmpty(caseItem.names().current()) ? Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable") : caseItem.names().current();
+      case NAME -> StringUtils.isEmpty(caseItem.names().current()) 
+          ? Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable") 
+          : caseItem.names().current();
       case ID -> String.valueOf(caseItem.getId());
       case DESCRIPTION -> caseItem.descriptions().current();
       case STATE -> CaseUtils.convertToUserFriendlyCaseState(caseItem.getBusinessState());
-      case CREATOR -> {
-        if (caseItem.getCreatorUserName() == null) {
-          yield Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
-        }
-        yield SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(caseItem.getCreatorUser(), caseItem.getCreatorUserName());
-      }
+      case CREATOR -> caseItem.getCreatorUserName() == null
+          ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable")
+          : SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(caseItem.getCreatorUser(), caseItem.getCreatorUserName());
       case CREATED -> caseItem.getStartTimestamp();
       case FINISHED -> caseItem.getEndTimestamp();
-      case OWNER ->{
-        if (caseItem.getOwnerName() == null) {
-          yield Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
-        }
-        yield SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(caseItem.getOwner(), caseItem.getOwnerName());
-      }
-      case CATEGORY -> caseItem.getCategory().getPath();
+      case OWNER -> caseItem.getOwnerName() == null
+          ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable")
+          : SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(caseItem.getOwner(), caseItem.getOwnerName());
+      case CATEGORY-> caseItem.getCategory().getPath();
       case APPLICATION -> caseItem.getApplication().getName();
       default -> "";
     };
@@ -122,20 +115,25 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
       return "";
     }
 
-    return switch (fieldFormat) {
-      case NUMBER -> caseItem.customFields().numberField(fieldName).getOrNull();
-      case STRING -> caseItem.customFields().stringField(fieldName).getOrNull();
-      case TEXT -> caseItem.customFields().textField(fieldName).getOrNull();
-      case TIMESTAMP -> caseItem.customFields().timestampField(fieldName).getOrNull();
-      default -> "";
-    };
+    switch (fieldFormat) {
+      case NUMBER: 
+        return caseItem.customFields().numberField(fieldName).getOrNull();
+      case STRING:
+        return caseItem.customFields().stringField(fieldName).getOrNull();
+      case TEXT:
+        return caseItem.customFields().textField(fieldName).getOrNull();
+      case TIMESTAMP:
+        return caseItem.customFields().timestampField(fieldName).getOrNull();
+      default:
+        return "";
+    }
   }
 
   /**
    * Gets case column value.
    * 
    * @param column case field like "NAME", "CREATOR", "CREATION_TIME"..
-   * @param item target case
+   * @param caseItem target case
    * @return case column value
    */
   @Override

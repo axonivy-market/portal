@@ -1,5 +1,8 @@
 package com.axonivy.portal.selenium.test;
 
+import static com.axonivy.portal.selenium.common.Variable.DEEPL_AUTH_KEY;
+import static com.axonivy.portal.selenium.common.Variable.ENABLE_DEEPL_TRANSLATION;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,106 +26,118 @@ import com.codeborne.selenide.SelenideElement;
 
 @IvyWebTest
 public class DashboardSupportMultiLanguageTest extends BaseTest {
-	private UserProfilePage userProfilePage;
-	private MainMenuPage mainMenuPage;
-	private UserMenuPage userMenuPage;
+  private UserProfilePage userProfilePage;
+  private MainMenuPage mainMenuPage;
+  private UserMenuPage userMenuPage;
 
-	@Override
-	@BeforeEach
-	public void setup() {
-		super.setup();
-		login(TestAccount.ADMIN_USER);
-		redirectToNewDashBoard();
-		resetLanguageOfCurrentUser();
-	}
+  @Override
+  @BeforeEach
+  public void setup() {
+    super.setup();
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    resetLanguageOfCurrentUser();
+    updatePortalSetting(ENABLE_DEEPL_TRANSLATION.getKey(), "true");
+    updatePortalSetting(DEEPL_AUTH_KEY.getKey(), "deepLAuthKey");
+  }
 
-	@Test
-	public void testAddPublicDashboard() {
-		String name = "New public dashboard";
-		String updatedName = "German public dashboard";
-		List<String> permissions = Arrays.asList("Everybody");
-		LinkNavigator.redirectToPortalDashboardConfiguration();
-		var configurationPage = new DashboardConfigurationPage();
-		configurationPage.openCreatePublicDashboardMenu();
-		var newDashboardDialog = configurationPage.setupDataPublicDashboardFromScratch();
-		configurationPage.changeDashboardTitle(newDashboardDialog, name);
-		var addLanguageButton = configurationPage.getAddLanguageButton();
-		addLanguageButton.click();
-		var multipleLanguageDialog = configurationPage.getMultipleLanguageDialog();
-		var elementsInput = multipleLanguageDialog.$$("td input");
-		elementsInput.get(0).shouldBe(Condition.value(name));
-		elementsInput.get(1).shouldBe(Condition.value(name));
-		elementsInput.get(2).shouldBe(Condition.value(name));
-		elementsInput.get(3).shouldBe(Condition.value(name));
+  @Test
+  public void testAddPublicDashboard() {
+    String name = "New public dashboard";
+    String updatedName = "German public dashboard";
+    List<String> permissions = Arrays.asList("Everybody");
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    var configurationPage = new DashboardConfigurationPage();
+    configurationPage.openCreatePublicDashboardMenu();
+    var newDashboardDialog = configurationPage.setupDataPublicDashboardFromScratch(name);
+    configurationPage.changeDashboardTitle(newDashboardDialog, name);
+    var addLanguageButton = configurationPage.getAddLanguageButton();
+    addLanguageButton.click();
+    var multipleLanguageDialog = configurationPage.getMultipleLanguageDialog();
+    var elementsInput = multipleLanguageDialog.$$("td input");
+    elementsInput.get(0).shouldBe(Condition.value(name));
+    elementsInput.get(1).shouldBe(Condition.value(name));
+    elementsInput.get(2).shouldBe(Condition.value(name));
+    elementsInput.get(3).shouldBe(Condition.value(name));
 
-		elementsInput.get(2).setValue(updatedName);
-		multipleLanguageDialog.$("button[type='submit']").click();
+    elementsInput.get(2).setValue(updatedName);
+    elementsInput.get(1).click();
+    SelenideElement translation = configurationPage.getTranslationOverlayPanel(1);
+    translation.$("span.ui-icon-closethick").click();
 
-		configurationPage.createPublicDashboardFromScratch(newDashboardDialog, permissions);
+    multipleLanguageDialog.$("button[type='submit']").click();
+    multipleLanguageDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
 
-		NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
-		newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
-		newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.empty);
+    configurationPage.createPublicDashboardFromScratch(newDashboardDialog, permissions);
 
-		changeUserLanguage();
-		LinkNavigator.redirectToPortalDashboardConfiguration();
-		var configurationPage2 = new DashboardConfigurationPage();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
+    newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
+    newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.empty);
 
-		DashboardModificationPage modificationPage = configurationPage2.openEditPublicDashboardsPage();
-		SelenideElement dashboard = modificationPage.getDashboardRowByName(updatedName);
-		dashboard.shouldBe(Condition.appear);
-	}
+    changeUserLanguage();
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    var configurationPage2 = new DashboardConfigurationPage();
 
-	@Test
-	public void testAddPrivateDashboard() {
-		String name = "New private dashboard";
-		String updatedName = "German private dashboard";
-		LinkNavigator.redirectToPortalDashboardConfiguration();
-		var configurationPage = new DashboardConfigurationPage();
-		configurationPage.openCreatePrivateDashboardMenu();
-		var newDashboardDialog = configurationPage.setupDataPublicDashboardFromScratch();
-		configurationPage.changeDashboardTitle(newDashboardDialog, name);
-		var addLanguageButton = configurationPage.getAddLanguageButton();
-		addLanguageButton.click();
-		var multipleLanguageDialog = configurationPage.getMultipleLanguageDialog();
-		var elementsInput = multipleLanguageDialog.$$("td input");
-		elementsInput.get(0).shouldBe(Condition.value(name));
-		elementsInput.get(1).shouldBe(Condition.value(name));
-		elementsInput.get(2).shouldBe(Condition.value(name));
-		elementsInput.get(3).shouldBe(Condition.value(name));
+    DashboardModificationPage modificationPage = configurationPage2.openEditPublicDashboardsPage();
+    SelenideElement dashboard = modificationPage.getDashboardRowByName(updatedName);
+    dashboard.shouldBe(Condition.appear);
+  }
 
-		elementsInput.get(2).setValue(updatedName);
-		multipleLanguageDialog.$("button[type='submit']").click();
+  @Test
+  public void testAddPrivateDashboard() {
+    String name = "New private dashboard";
+    String updatedName = "German private dashboard";
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    var configurationPage = new DashboardConfigurationPage();
+    configurationPage.openCreatePrivateDashboardMenu();
+    var newDashboardDialog = configurationPage.setupDataPublicDashboardFromScratch(name);
+    configurationPage.changeDashboardTitle(newDashboardDialog, name);
+    var addLanguageButton = configurationPage.getAddLanguageButton();
+    addLanguageButton.click();
+    var multipleLanguageDialog = configurationPage.getMultipleLanguageDialog();
+    var elementsInput = multipleLanguageDialog.$$("td input");
+    elementsInput.get(0).shouldBe(Condition.value(name));
+    elementsInput.get(1).shouldBe(Condition.value(name));
+    elementsInput.get(2).shouldBe(Condition.value(name));
+    elementsInput.get(3).shouldBe(Condition.value(name));
 
-		configurationPage.createPublicDashboardFromScratch(newDashboardDialog, null);
+    elementsInput.get(2).setValue(updatedName);
+    elementsInput.get(1).click();
+    SelenideElement translation = configurationPage.getTranslationOverlayPanel(1);
+    translation.$("span.ui-icon-closethick").click();
 
-		NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
-		newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
-		newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.empty);
-		changeUserLanguage();
-		LinkNavigator.redirectToPortalDashboardConfiguration();
-		var configurationPage2 = new DashboardConfigurationPage();
+    multipleLanguageDialog.$("button[type='submit']").click();
+    multipleLanguageDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
 
-		DashboardModificationPage modificationPage = configurationPage2.openEditPrivateDashboardsPage();
-		SelenideElement dashboard = modificationPage.getDashboardRowByName(updatedName);
-		dashboard.shouldBe(Condition.appear);
-	}
+    configurationPage.createPublicDashboardFromScratch(newDashboardDialog, null);
 
-	private void changeUserLanguage() {
-		NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
-		var configurationPage = newDashboardDetailsEditPage.backToConfigurationPage();
-		configurationPage.backToHomePage();
-		mainMenuPage = new MainMenuPage();
-		mainMenuPage.openUserSettingMenu();
-		userMenuPage = new UserMenuPage();
-		userMenuPage.accessMenu("My profile");
-		userProfilePage = new UserProfilePage();
-		userProfilePage.selectLanguage(3);
-		userProfilePage.save();
-	}
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
+    newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
+    newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.empty);
+    changeUserLanguage();
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    var configurationPage2 = new DashboardConfigurationPage();
 
-	@AfterEach
-	public void resetUserLanguage() {
-		resetLanguageOfCurrentUser();
-	}
+    DashboardModificationPage modificationPage = configurationPage2.openEditPrivateDashboardsPage();
+    SelenideElement dashboard = modificationPage.getDashboardRowByName(updatedName);
+    dashboard.shouldBe(Condition.appear);
+  }
+
+  private void changeUserLanguage() {
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
+    var configurationPage = newDashboardDetailsEditPage.backToConfigurationPage();
+    configurationPage.backToHomePage();
+    mainMenuPage = new MainMenuPage();
+    mainMenuPage.openUserSettingMenu();
+    userMenuPage = new UserMenuPage();
+    userMenuPage.accessMenu("My profile");
+    userProfilePage = new UserProfilePage();
+    userProfilePage.selectLanguage(3);
+    userProfilePage.save();
+  }
+
+  @AfterEach
+  public void resetUserLanguage() {
+    resetLanguageOfCurrentUser();
+  }
 }
