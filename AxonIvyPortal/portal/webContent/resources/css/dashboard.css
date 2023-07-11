@@ -311,7 +311,15 @@ td.dashboard-cases__name span {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  max-width: 300px;
+}
+
+@media screen and (max-width: 40em) {
+  td.dashboard-tasks__description span,
+  td.dashboard-tasks__name span,
+  td.dashboard-cases__description span,
+  td.dashboard-cases__name span {
+     max-width: 300px;
+  }
 }
 
 .prototype-task-table .default-column {
@@ -1559,3 +1567,7 @@ span.new-widget-dialog__icon.si {
 .more-information-wrapper {
   height: 2.2rem
 }
+
+.dashboard_ui-outputlabel-rfi {
+  margin-left: 0.1em;
+  color: var(--asterik-icon-color); }
