@@ -1,6 +1,0 @@
-ParallelTasksUtilData #class
-gawfs #namespace
-counter Integer #field
-counter PERSISTENT #fieldModifier
-numberOfTasks Number #field
-numberOfTasks PERSISTENT #fieldModifier
