@@ -118,6 +118,11 @@ public class TaskDetailsTest extends BaseTest {
     LocalDateTime tomorrow = LocalDateTime.now().plusDays(1);
     return tomorrow.format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
   }
+  
+  private String prepareTomorrowAsLocaleDateString() {
+    LocalDateTime tommorrow = LocalDateTime.now().plusDays(1);
+    return tommorrow.format(DateTimeFormatter.ofPattern(DateTimePattern.LOCALE_DATE_TIME_PATTERN));
+  }
 
   @Test
   public void testClearTheDelayTimestampOfTask() {
