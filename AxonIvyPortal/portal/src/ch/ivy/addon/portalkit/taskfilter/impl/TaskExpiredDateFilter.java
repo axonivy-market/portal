@@ -31,7 +31,7 @@ public class TaskExpiredDateFilter extends TaskFilter {
 
   @Override
   public String value() {
-    DateFormat formatter = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getDateTimePattern(), Ivy.session().getContentLocale());
+    DateFormat formatter = DateTimeGlobalSettingService.getInstance().getDefaultDateFormatter();
     if (fromExpiredDate != null && toExpiredDate != null) {
       return String.format(DASH, formatter.format(fromExpiredDate), formatter.format(toExpiredDate));
     }
