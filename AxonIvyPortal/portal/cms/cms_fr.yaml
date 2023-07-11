@@ -1533,6 +1533,12 @@ Dialogs:
             expressNoItem: Pas de tâche Express terminée
             expressNoItemDescription: Les résultats des tâches terminées sont affichés ici
             expressWorkflowName: 'Détails de cas #{0}'
+        portal:
+          generic:
+            dashboard:
+              component:
+                CustomDashboardWidget:
+                  CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
         portalkit:
           component:
             CaseWidget:
