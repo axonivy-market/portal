@@ -1534,6 +1534,12 @@ Dialogs:
             expressNoItem: There is no completed Express Task yet
             expressNoItemDescription: The results of completed tasks are displayed here
             expressWorkflowName: 'Business Details of Case #{0}'
+        portal:
+          generic:
+            dashboard:
+              component:
+                CustomDashboardWidget:
+                  CouldNotFindLinkedProcess: Could not find the linked process!
         portalkit:
           component:
             CaseWidget:
