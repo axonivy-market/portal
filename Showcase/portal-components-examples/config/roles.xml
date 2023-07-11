@@ -21,4 +21,8 @@
         <identifier>ProjectManager</identifier>
         <displayName>Project Manager</displayName>
     </role>
+    <role>
+        <identifier>EmptyRole</identifier>
+        <displayName>Empty role for testing</displayName>
+    </role>
 </role>

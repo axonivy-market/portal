@@ -32,6 +32,15 @@ public class BusinessEntityConverter {
     }
   }
 
+  public static String prettyPrintEntityToJsonValue(Object entity) {
+    try {
+      return getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(entity);
+    } catch (JsonProcessingException e) {
+      Ivy.log().error("Can't write json value", e);
+      throw new PortalException(e);
+    }
+  }
+
   public static <T> T jsonValueToEntity(String jsonValue, Class<T> classType) {
     try {
       return getObjectMapper().readValue(jsonValue, classType);
