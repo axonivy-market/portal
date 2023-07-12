@@ -469,7 +469,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   private ContentObjectValue getWelcomeWidgetImage(boolean isTempImage, WelcomeDashboardWidget widget) {
-    return getWelcomeWidgetImageObject(isTempImage, widget). value().get("en");
+    ContentObject contentObject = getWelcomeWidgetImageObject(isTempImage, widget);
+    if (contentObject != null) {
+      return contentObject.value().get("en");
+    }
+    return null;
   }
 
   private ContentObject getWelcomeWidgetImageObject(boolean isTempImage, WelcomeDashboardWidget widget) {
