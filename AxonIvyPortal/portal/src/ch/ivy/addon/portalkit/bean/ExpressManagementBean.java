@@ -17,12 +17,13 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.file.UploadedFile;
 
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
+import com.axonivy.portal.util.UploadDocumentUtils;
+
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
-import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.enums.ExpressMessageType;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
-import ch.ivy.addon.portalkit.service.CaseDocumentService;
 import ch.ivy.addon.portalkit.util.ExpressManagementUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
@@ -114,10 +115,10 @@ public class ExpressManagementBean implements Serializable {
     if (importExpressFile == null || importExpressFile.getSize() == 0) {
       isError = true;
       validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/fileEmptyMessage"), null);
-    } else if (CaseDocumentService.enableVirusScannerForUploadedDocument() && CaseDocumentService.isDocumentTypeHasVirus(importExpressFile)) {
+    } else if (UploadDocumentUtils.enableVirusScannerForUploadedDocument() && UploadDocumentUtils.isDocumentTypeHasVirus(importExpressFile)) {
       isError = true;
       validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainVirus"), null);
-    } else if (CaseDocumentService.enableScriptCheckingForUploadedDocument() && !CaseDocumentService.isDocumentSafe(importExpressFile)) {
+    } else if (UploadDocumentUtils.enableScriptCheckingForUploadedDocument() && !UploadDocumentUtils.isDocumentSafe(importExpressFile)) {
       isError = true;
       validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
     } else if (!FilenameUtils.isExtension(importExpressFile.getFileName(), "json")) {

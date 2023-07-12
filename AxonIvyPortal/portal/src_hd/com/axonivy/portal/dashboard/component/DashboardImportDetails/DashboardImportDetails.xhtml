@@ -22,7 +22,7 @@
 
   <p:dialog id="#{cc.attrs.importDialogId}"
     widgetVar="#{cc.attrs.importDialogId}" header="#{ivy.cms.co(isPublicDashboard ? '/Dialogs/com/axonivy/portal/dashboard/component/DashboardImportDetails/ImportPublic' : '/Dialogs/com/axonivy/portal/dashboard/component/DashboardImportDetails/ImportPrivate')}"
-    appendTo="@(body)" closeOnEscape="true" draggable="false"
+    appendTo="@(body)" draggable="false"
     fitViewport="true" responsive="true" modal="true" width="70%"
     styleClass="import-dashboard-dialog"
     onShow="PF('#{cc.attrs.importDialogId}').initPosition()">
@@ -35,11 +35,12 @@
         <div class="ui-g-12">
           <p:fileUpload id="dashboard-upload" chooseIcon="#{visibilityBean.generateButtonIcon('si si-touchpad-finger')}"
             dragDropSupport="true" fileLimit="1"
-            styleClass="dashboard-upload" mode="simple"
-            skinSimple="true" listener="#{managedBean.loadImportedFile}"
+            styleClass="dashboard-upload" mode="advanced"
+            listener="#{managedBean.loadImportedFile}"
             allowTypes="/(\.|\/)(json)$/i"
             update="import-dashboard-form import-dashboard-dialog-message #{p:resolveFirstComponentWithId('footer-button-container', view).clientId}"
-            value="#{managedBean.importFile}" auto="true">
+            value="#{managedBean.importFile}" auto="true" 
+            requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
           </p:fileUpload>
         </div>
 
@@ -90,8 +91,7 @@
             var="responsible" itemValue="#{responsible}"
             itemLabel="#{responsible.briefDisplayNameWithState}"
             converter="pojoConverter" cache="true" maxResults="100"
-            multiple="true" moreTextSelect="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
-            dynamic="true" forceSelection="true">
+            multiple="true" dynamic="true" forceSelection="true">
             <p:ajax event="itemSelect"
               listener="#{managedBean.onSelectPermissionForDashboard}"
               update="dashboard-permission" global="false"
