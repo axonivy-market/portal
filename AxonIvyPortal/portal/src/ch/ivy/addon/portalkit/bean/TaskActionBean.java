@@ -27,6 +27,7 @@ import ch.ivy.addon.portalkit.util.TimesUtils;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 @ManagedBean
@@ -78,9 +79,10 @@ public class TaskActionBean implements Serializable {
       return false;
     }
     
-    EnumSet<TaskBusinessState> taskStates = EnumSet.of(TaskBusinessState.OPEN, TaskBusinessState.IN_PROGRESS,
-        TaskBusinessState.DONE, TaskBusinessState.DESTROYED, TaskBusinessState.ERROR);
-    if (taskStates.contains(task.getBusinessState())) {
+    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.DONE, TaskState.FAILED, TaskState.DESTROYED,
+        TaskState.CREATED, TaskState.READY_FOR_JOIN, TaskState.FAILED, TaskState.JOIN_FAILED,
+        TaskState.WAITING_FOR_INTERMEDIATE_EVENT);
+    if (taskStates.contains(task.getState())) {
       return false;
     }
 
@@ -172,8 +174,9 @@ public class TaskActionBean implements Serializable {
     if (task == null) {
       return false;
     }
-    EnumSet<TaskBusinessState> taskStates = EnumSet.of(TaskBusinessState.IN_PROGRESS, TaskBusinessState.OPEN, TaskBusinessState.DELAYED);
-    return taskStates.contains(task.getBusinessState());
+    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED,
+        TaskState.CREATED, TaskState.DELAYED);
+    return taskStates.contains(task.getState());
   }
   
   public boolean isNotDoneForWorkingUser(ITask task) {
@@ -191,8 +194,9 @@ public class TaskActionBean implements Serializable {
   }
   
   public boolean isTechnicalState(ITask task) {
-    EnumSet<TaskBusinessState> taskStates = EnumSet.of(TaskBusinessState.OPEN, TaskBusinessState.ERROR);
-    return taskStates.contains(task.getBusinessState());
+    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.WAITING_FOR_INTERMEDIATE_EVENT, TaskState.FAILED,
+        TaskState.JOIN_FAILED);
+    return taskStates.contains(task.getState());
   }
   
   public boolean showAdditionalOptions(ITask task) {

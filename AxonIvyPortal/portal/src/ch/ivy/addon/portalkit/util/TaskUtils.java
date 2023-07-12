@@ -46,8 +46,8 @@ public final class TaskUtils {
 
   public static void resetTask(final ITask task) {
     IvyExecutor.executeAsSystem(() -> {
-      if (Arrays.asList(TaskBusinessState.OPEN, TaskBusinessState.IN_PROGRESS, TaskBusinessState.ERROR)
-          .contains(task.getBusinessState())) {
+      if (Arrays.asList(TaskState.RESUMED, TaskState.CREATED, TaskState.PARKED, TaskState.READY_FOR_JOIN, TaskState.FAILED)
+          .contains(task.getState())) {
         task.reset();
       }
       return Void.class;
@@ -207,8 +207,7 @@ public final class TaskUtils {
   public static void destroyTaskById(long taskId) {
     if (PermissionUtils.checkDestroyTaskPermission()) {
       ITask task = findTaskById(taskId);
-      if (task == null
-          || Arrays.asList(TaskBusinessState.DONE, TaskBusinessState.DESTROYED).contains(task.getBusinessState())) {
+      if (task == null || Arrays.asList(TaskState.DONE, TaskState.DESTROYED).contains(task.getState())) {
         return;
       }
       IvyExecutor.executeAsSystem(() -> {

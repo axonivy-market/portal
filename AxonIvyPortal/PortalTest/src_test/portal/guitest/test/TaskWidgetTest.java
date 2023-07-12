@@ -65,11 +65,11 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.sideStepMenuOnActionButton(0);
     taskWidgetPage.reserveTask(0);
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertEquals(TaskState.RESERVED, taskWidgetPage.getTaskState(0));
+    assertEquals(TaskState.OPEN, taskWidgetPage.getTaskState(0));
     taskWidgetPage.sideStepMenuOnActionButton(0);
     taskWidgetPage.resetTask(0);
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertEquals(TaskState.SUSPENDED, taskWidgetPage.getTaskState(0));
+    assertEquals(TaskState.OPEN, taskWidgetPage.getTaskState(0));
   }
 
   @Test

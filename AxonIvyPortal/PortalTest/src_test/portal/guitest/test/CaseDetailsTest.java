@@ -19,7 +19,7 @@ import com.jayway.awaitility.Duration;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.util.ConfigurationJsonUtil;
-import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.CaseState;
 import portal.guitest.common.TestAccount;
@@ -166,11 +166,11 @@ public class CaseDetailsTest extends BaseTest {
     createTestingTask();
     detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
     detailsPage.reserveTask(SICK_LEAVE_REQUEST_TASK);
-    assertTrue(detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskState.PARKED));
+    assertTrue(detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskBusinessState.OPEN));
 
     detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
     detailsPage.resetTask(SICK_LEAVE_REQUEST_TASK);
-    assertTrue(detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskState.SUSPENDED));
+    assertTrue(detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskBusinessState.OPEN));
   }
 
   @Test
@@ -180,7 +180,7 @@ public class CaseDetailsTest extends BaseTest {
     Assert.assertTrue(detailsPage.isRelatedTaskDestroyEnabled(SICK_LEAVE_REQUEST_TASK));
     detailsPage.destroyTask(SICK_LEAVE_REQUEST_TASK);
     detailsPage.confimRelatedTaskDestruction();
-    assertTrue(detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskState.DESTROYED));
+    assertTrue(detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskBusinessState.DESTROYED));
   }
 
   @Test

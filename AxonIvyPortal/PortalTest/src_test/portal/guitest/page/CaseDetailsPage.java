@@ -16,7 +16,7 @@ import org.openqa.selenium.interactions.Actions;
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
-import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.WaitHelper;
 
@@ -610,7 +610,7 @@ public class CaseDetailsPage extends TemplatePage {
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
-  public boolean isTaskState(String taskName, TaskState taskState) {
+  public boolean isTaskState(String taskName, TaskBusinessState taskState) {
     Integer index =  getTaskRowIndex(taskName);
     WebElement element = findListElementsByCssSelector("td.related-task-state-column span.task-state").get(index);
     if(element!=null) {
