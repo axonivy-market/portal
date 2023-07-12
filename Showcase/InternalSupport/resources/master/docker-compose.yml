@@ -9,6 +9,7 @@ services:
      - ./licence-11.lic:/etc/axonivy-engine/licence.lic
      - ./ivy.yaml:/etc/axonivy-engine/ivy.yaml
      - ./applications:/usr/lib/axonivy-engine/applications
+     - ./configuration:/usr/lib/axonivy-engine/configuration
      - ./data:/usr/lib/axonivy-engine/data
      - ./logs:/usr/lib/axonivy-engine/logs
     networks:
