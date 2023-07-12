@@ -186,7 +186,7 @@ This decorator offers the following parameters:
   :class: longtable
   :widths: 20 10 25 45
 
-Portal Cronjob Trigger
+Portal Cronjob Trigger (Deprecated)
 ----------------------
 
 Portal provides the helper bean
