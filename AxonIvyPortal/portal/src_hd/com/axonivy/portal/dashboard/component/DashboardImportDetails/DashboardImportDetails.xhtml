@@ -35,6 +35,7 @@
         <div class="ui-g-12">
           <p:fileUpload id="dashboard-upload" chooseIcon="#{visibilityBean.generateButtonIcon('si si-touchpad-finger')}"
             dragDropSupport="true" fileLimit="1"
+            label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
             styleClass="dashboard-upload" mode="advanced"
             listener="#{managedBean.loadImportedFile}"
             allowTypes="/(\.|\/)(json)$/i"
