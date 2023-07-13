@@ -454,7 +454,7 @@ Data model:
          "selectedTaskPriorities": ["HIGH"],
          "isAllTaskPrioritiesSelected": false,
          "customFieldFilters": {
-            "CustomVarCharField": ["Request for new computer"],
+            "CustomVarCharField": ["Request for new computer"]
          }
       },
       "position": 1
