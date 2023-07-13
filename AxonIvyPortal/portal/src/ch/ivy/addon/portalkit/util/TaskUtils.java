@@ -347,15 +347,8 @@ public final class TaskUtils {
     if (state == null) {
       return StringUtils.EMPTY;
     }
-    switch (state) {
-      case OPEN:
-      case IN_PROGRESS:
-      case DONE:
-      case DESTROYED:
-      case DELAYED:
-      case ERROR: return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/" + state + "_UPPERCASE");
-      default: return "/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/SYSTEM";
-    }
+
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/" + state + "_UPPERCASE");
   }
 
   //To get Ivy task priority with multiple languages

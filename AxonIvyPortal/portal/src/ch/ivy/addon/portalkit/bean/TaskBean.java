@@ -78,36 +78,11 @@ public class TaskBean implements Serializable {
     if (state == null) {
       return StringUtils.EMPTY;
     }
-    switch (state) {
-      case OPEN:
-      case IN_PROGRESS:
-      case DONE:
-      case DESTROYED:
-      case DELAYED:
-      case ERROR: return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + state + "_UPPERCASE");
-      default:  return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/SYSTEM");
-    }
+    return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + state + "_UPPERCASE");
   }
 
   private String cms(String uri) {
     return Ivy.cms().co(uri);
-  }
-
-  public String getUserFriendlyTaskStateInCapitalization(TaskBusinessState state) {
-    if (state == null) {
-      return StringUtils.EMPTY;
-    }
-
-    if (state == TaskBusinessState.OPEN ||
-        state == TaskBusinessState.DONE ||
-        state == TaskBusinessState.IN_PROGRESS ||
-        state == TaskBusinessState.DESTROYED ||
-        state == TaskBusinessState.DELAYED ||
-        state == TaskBusinessState.ERROR) {
-      return cms("/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/" + state + "_UPPERCASE");
-    }
-
-    return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/SYSTEM");
   }
 
   public String shortenTaskState(TaskBusinessState state) {
@@ -116,9 +91,6 @@ public class TaskBean implements Serializable {
     }
     if (state == TaskBusinessState.OPEN ||
         state == TaskBusinessState.DONE ||
-        state == TaskBusinessState.DESTROYED ||
-        state == TaskBusinessState.DELAYED ||
-        state == TaskBusinessState.IN_PROGRESS ||
         state == TaskBusinessState.ERROR) {
       return cms("/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/" + state);
     }
