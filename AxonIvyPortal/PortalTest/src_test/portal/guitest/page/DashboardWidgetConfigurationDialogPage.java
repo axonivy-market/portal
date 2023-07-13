@@ -226,6 +226,7 @@ public class DashboardWidgetConfigurationDialogPage extends TemplatePage {
   public void clickOkMultiLanguageDialog() {
     clickByCssSelector(
         "button[id$='widget-configuration-form:new-widget-configuration-component:title-language-config:add-language-detail-form:multi-language-ok-button']");
+    waitUntilAnimationFinished();
   }
 
   public WebElement getMultiLanguageDialogForTaskWidget() {
