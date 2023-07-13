@@ -36,9 +36,6 @@ public class AbsenceTest extends BaseTest {
 
   private HomePage changeDateFormat() {
     HomePage homePage = new HomePage();
-    UserProfilePage profilePage = homePage.openMyProfilePage();
-    profilePage.changeDateFormatToPattern(DateTimePattern.DATE_PATTERN);
-    homePage = profilePage.save();
     return homePage;
   }
 

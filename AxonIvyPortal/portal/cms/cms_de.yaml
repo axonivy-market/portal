@@ -74,8 +74,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationAndRole: Applikation und Rolle
     definedDeputies: Definierte Stellvertreter
     deputyFor: Ich bin Ersatz für
+    myAbsences: Meine Abwesenheit
     myDeputies: Meine Stellvertreter
-    myPlannedAbsences: Meine geplanten Abwesenheiten
     nextAbsence: Bevorstehende Abwesenheit
     selectedDeputyFor: Ausgewählter Benutzer ist Stellvertreter für
     selectedUser: Ausgewählter Benutzer
@@ -330,7 +330,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   caseDetails:
     addDocumentHelpText: Zum Hochladen Dateien per Drag & Drop hier ablegen oder Dateien auswählen
     addNoteHelpText: Schreiben Sie hier Ihren Text
-    additionalCaseDetailsTitle: Zusätzliche Vorgangsdaten
+    businessDetailsTitle: Geschäftsdetails
     deleteFile: Datei löschen
     documents: Dokumente
     downloadFile: Datei herunterladen
@@ -777,6 +777,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EditPrivateDashboards: Private Dashboards bearbeiten
       EditPublicDashboards: Öffentliche Dashboards bearbeiten
       InvalidDeepLAuthKey: Ungültiger DeepL Authentifizierungsschlüssel
+      ExportDashboard: Dashboard exportieren
       PrivateDashboard: Private Dashboards
       PrivateDashboardConfiguration: Private Dashboard-Konfiguration
       PublicDashboard: Öffentliche Dashboards

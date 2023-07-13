@@ -37,7 +37,7 @@ You find ``portal-developer-examples`` in the engine demo mode or import them in
    express-external-data-provider
    navigate-back
    hide-technical-stuffs
-   additional-case-details-page
+   business-details-page
    global-search-result
    document-processes
    responsive-css

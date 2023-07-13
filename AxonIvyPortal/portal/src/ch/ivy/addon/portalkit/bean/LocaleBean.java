@@ -13,6 +13,6 @@ public class LocaleBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public String getLocale(){
-    return Ivy.session().getContentLocale().getLanguage();
+    return Ivy.session().getFormattingLocale().toString();
   }
 }

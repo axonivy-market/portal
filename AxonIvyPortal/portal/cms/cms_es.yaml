@@ -74,8 +74,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationAndRole: Aplicación y rol
     definedDeputies: Sustitutos definidos
     deputyFor: Soy sustituto de
+    myAbsences: Mi ausencia
     myDeputies: Mis sustitutos
-    myPlannedAbsences: Mis ausencias programadas
     nextAbsence: Siguiente ausencia
     selectedDeputyFor: El usuario seleccionado es el sustituto de
     selectedUser: Usuario seleccionado
@@ -331,7 +331,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   caseDetails:
     addDocumentHelpText: Para cargar archivos, arrastrar y soltar o seleccionar archivos
     addNoteHelpText: Escriba su texto aquí.
-    additionalCaseDetailsTitle: Detalles adicionales de casos
+    businessDetailsTitle: Detalles del negocio
     deleteFile: Borrar archivo
     documents: Documentos
     downloadFile: Descargar archivo
@@ -776,6 +776,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EditPrivateDashboards: Editar sus tableros privados
       EditPublicDashboards: Editar tableros públicos
       InvalidDeepLAuthKey: Clave de autenticación no válida DeepL
+      ExportDashboard: Exportar el cuadro de mandos
       PrivateDashboard: Cuadros de mando privados
       PrivateDashboardConfiguration: Configuración de tableros privados
       PublicDashboard: Cuadros de mando públicos

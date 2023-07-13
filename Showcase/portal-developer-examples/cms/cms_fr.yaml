@@ -193,12 +193,6 @@ Processes:
       #Résumé
       Le demandeur recevra un résumé de la demande
       Connaître le résultat
-  CreateInvestment:
-    Tasks:
-      Request:
-        name: Demande d'investissement
-    description: Exemple de page de demande d'investissement pour un cas personnalisé
-    name: Réaliser un investissement
   Payment:
     Tasks:
       Pay:
