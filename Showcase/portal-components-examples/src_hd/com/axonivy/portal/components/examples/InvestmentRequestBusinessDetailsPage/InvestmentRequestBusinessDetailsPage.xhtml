@@ -3,13 +3,13 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-  <ui:composition template="/layouts/frame-8.xhtml">
+  <ui:composition template="/layouts/frame-10.xhtml">
     <ui:define name="title">Investment request case detail </ui:define>
 
     <ui:define name="content">
       <h:panelGrid columns="1">
       
-      <h2>This is custom case detail page using iframe</h2>
+      <h2>This is custom business details page using iframe</h2>
       <p:dataTable id="additional-case-detail-table" value="#{data.ivyCase.customFields().all()}" var="item"
         reflow="true" lazy="false">
         <f:facet name="header">
