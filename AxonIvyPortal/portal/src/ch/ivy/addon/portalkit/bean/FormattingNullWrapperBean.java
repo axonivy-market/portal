@@ -21,7 +21,7 @@ public class FormattingNullWrapperBean implements Serializable {
     if (date == null) {
       return DEFAULT_VALUE_IF_NULL;
     }
-    DateFormat dateFormat = DateTimeGlobalSettingService.getInstance().getDefaultDateFormatter();
+    DateFormat dateFormat = DateTimeGlobalSettingService.getInstance().getDefaultDateTimeFormatter();
     return dateFormat.format(date);
   }
 }
