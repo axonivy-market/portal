@@ -11,7 +11,7 @@ HowTo: Enable the translation
 
 To use DeepL powered translations:
 
-- You need to redirect to :ref:`admin-settings`, set this Portal setting to true: :guilabel:`Portal.DeepL.Enable`.
+- Open :ref:`admin-settings`, set :guilabel:`Portal.DeepL.Enable` to true.
 
 - Get a `free developer account <https://www.deepl.com/pro#developer/>`__ from DeepL.com, then copy the API-Key of your account into this Portal setting: :guilabel:`Portal.DeepL.AuthKey`.
 
@@ -20,20 +20,20 @@ HowTo: Translate a pure text
 
 .. note::
 
-   The Portal translation only works if both Portal.DeepL.Enable is set to true and Portal.DeepL.AuthKey has a valid key.
+   The Portal translation only works if both Portal.DeepL.Enable is set to true and Portal.DeepL.AuthKey contains a valid key.
 
-   Otherwise, you can translate the inputText manually.
+   Otherwise, you can translate the input text field manually.
 
-#. If any inputText is supported the translation, a :guilabel:`translator icon` will be shown.
-   For example, let's create a private dashboard. Then, clicking on the :guilabel:`translator icon`.
+#. If any input text field is supported the translation, a :guilabel:`translator icon` will be shown.
+   For example, let's create a private dashboard. Then, click on the :guilabel:`translator icon`.
 
    |create-private-dashboard-dialog|
 
-#. A Setting multiple languages dialog will be shown.
+#. A Setting multiple languages dialog is shown.
 
    |dashboard-multi-language-dialog|
 
-#. You can click on the inputText of a foreign language to translate it. To apply the translated text, clicking on :guilabel:`Auto. translation`.
+#. Click on the input text field of a foreign language to have it translated by DeepL. To accept the translated text, clicking on :guilabel:`Auto. translation`.
 
    |overlay-panel-translation|
 
