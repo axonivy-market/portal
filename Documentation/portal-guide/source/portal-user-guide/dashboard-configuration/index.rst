@@ -68,7 +68,13 @@ A table of private dashboards is shown with the following information:
 
 #. Description
 
-#. :guilabel:`Actions` for further actions: |edit-icon| edit (name, description), |settings-icon| configure (see: :ref:`Dashboards <new-dashboard>` ), and |trash-icon| delete a private dashboard.
+#. :guilabel:`Actions` for further actions: |edit-icon| edit (name, description), |settings-icon| configure
+   (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| export dashboard,
+   and |trash-icon| delete a private dashboard.
+
+   .. note::
+
+      the Export function only available for users who have the permission ``DASHBOARD_EXPORT_OWN``.
 
 |edit-private-dashboards|
 
@@ -184,7 +190,13 @@ A table of public dashboards is shown with the following information:
 
 #. Description
 
-#. :guilabel:`Actions` for further actions: |edit-icon| edit (name, roles, and description), |settings-icon| configure (see: :ref:`Dashboards <new-dashboard>` ), and |trash-icon| delete a public dashboard.
+#. :guilabel:`Actions` for further actions: |edit-icon| edit (name, description), |settings-icon| configure
+   (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| export dashboard,
+   and |trash-icon| delete a public dashboard.
+
+   .. note::
+
+      the Export function only available for users who have the permission ``DASHBOARD_EXPORT_PUBLIC``.
 
 |edit-public-dashboards|
 

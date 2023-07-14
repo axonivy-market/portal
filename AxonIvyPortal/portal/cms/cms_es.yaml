@@ -74,8 +74,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationAndRole: Aplicación y rol
     definedDeputies: Sustitutos definidos
     deputyFor: Soy sustituto de
+    myAbsences: Mi ausencia
     myDeputies: Mis sustitutos
-    myPlannedAbsences: Mis ausencias programadas
     nextAbsence: Siguiente ausencia
     selectedDeputyFor: El usuario seleccionado es el sustituto de
     selectedUser: Usuario seleccionado
@@ -958,6 +958,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     download: Descargar
     fileContainScript: ¡Este archivo no puede cargarse porque contiene algunos scripts!
     fileContainVirus: Carga fallida, ¡se ha detectado un virus/infección!
+    fileCouldNotParse: No se pudo analizar el archivo
     fileEmptyMessage: El archivo está vacío
     name: Nombre de archivo
     size: Tamaño de archivo
@@ -1561,7 +1562,7 @@ Dialogs:
         dashboard:
           component:
             DashboardImportDetails:
-              FileInfomation: File Infomation
+              FileInfomation: Informacion del archivo
               ImportPrivate: Importar panel privado
               ImportPublic: Importar panel público
               chooseAJsonFile: Elija un archivo json
