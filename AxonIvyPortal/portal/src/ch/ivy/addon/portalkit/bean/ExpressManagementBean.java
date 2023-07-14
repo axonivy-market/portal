@@ -11,7 +11,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.StreamedContent;
@@ -93,8 +92,9 @@ public class ExpressManagementBean implements Serializable {
 
   public void importExpress(FileUploadEvent event) {
     importExpressFile = event.getFile();
-    validate();
-    if (isError) {
+    String validateStr = UploadDocumentUtils.validateUploadedFile(importExpressFile);
+    if (StringUtils.isNotEmpty(validateStr)) {
+      isError = true;
       displayedMessage();
     } else {
       importExpressProcesses();
@@ -106,25 +106,6 @@ public class ExpressManagementBean implements Serializable {
       exportExpressFile = ExpressManagementUtils.exportExpressProcess(selectedExpressProcesses);
     }
     return exportExpressFile;
-  }
-
-  private void validate() {
-    isError = false;
-    importOutput = StringUtils.EMPTY;
-
-    if (importExpressFile == null || importExpressFile.getSize() == 0) {
-      isError = true;
-      validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/fileEmptyMessage"), null);
-    } else if (UploadDocumentUtils.enableVirusScannerForUploadedDocument() && UploadDocumentUtils.isDocumentTypeHasVirus(importExpressFile)) {
-      isError = true;
-      validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainVirus"), null);
-    } else if (UploadDocumentUtils.enableScriptCheckingForUploadedDocument() && !UploadDocumentUtils.isDocumentSafe(importExpressFile)) {
-      isError = true;
-      validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
-    } else if (!FilenameUtils.isExtension(importExpressFile.getFileName(), "json")) {
-      isError = true;
-      validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/Dialogs/components/CaseDocument/invalidFileMessage"), null);
-    }
   }
 
   private void displayedMessage() {
