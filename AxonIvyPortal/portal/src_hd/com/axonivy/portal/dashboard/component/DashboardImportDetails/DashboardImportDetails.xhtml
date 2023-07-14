@@ -136,7 +136,7 @@
         <p:spacer width="15" />
         <p:commandButton id="dashboard-detail-save-button"
           disabled="#{!managedBean.loaded}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/CreateDashboard')}"
           actionListener="#{managedBean.createDashboard()}"
           process="import-dashboard-form" partialSubmit="true"
           icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
