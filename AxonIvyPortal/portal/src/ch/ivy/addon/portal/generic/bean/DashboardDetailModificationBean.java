@@ -861,7 +861,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       List<DisplayName> languages = this.widget.getNames();
       String currentLanguage = UserUtils.getUserLanguage();
       Optional<DisplayName> optional = languages.stream()
-              .filter(lang -> currentLanguage.equals(languages.get(0).getLocale().getLanguage())).findFirst();
+              .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
       if (optional.isPresent()) {
         Map<String, Object> params = new HashMap<>();
         params.put("text", optional.get().getValue());
