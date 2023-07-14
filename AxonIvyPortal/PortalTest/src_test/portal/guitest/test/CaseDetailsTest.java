@@ -235,7 +235,7 @@ public class CaseDetailsTest extends BaseTest {
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> caseDetailsPage.countBrowserTab() > 1);
     caseDetailsPage.switchLastBrowserTab();
     AdditionalCaseDetailsPage additionalCaseDetailsPage = new AdditionalCaseDetailsPage();
-    WaitHelper.assertTrueWithWait(() -> "Additional Case Details".equals(additionalCaseDetailsPage.getPageTitle()));
+    WaitHelper.assertTrueWithWait(() -> "Business Details".equals(additionalCaseDetailsPage.getPageTitle()));
   }
 
   @Test
