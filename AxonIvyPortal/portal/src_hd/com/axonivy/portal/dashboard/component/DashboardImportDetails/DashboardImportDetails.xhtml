@@ -84,7 +84,7 @@
         </h:panelGroup>
         <h:panelGroup layout="block" styleClass="ui-g-10 ui-fluid" rendered="#{cc.attrs.isPublicDashboard}" >
           <p:autoComplete id="dashboard-permission" scrollHeight="210"
-            dropdown="true" required="true"
+            dropdown="true" required="#{param['skipValidator'] == null}"
             completeMethod="#{managedBean.completePermissions}"
             styleClass="manage-dashboard__input"
             inputStyleClass="manage-dashboard__autocomplete-input"
@@ -101,6 +101,7 @@
               listener="#{managedBean.onUnSelectPermissionForDashboard}"
               update="dashboard-permission" global="false"
               process="@this" immediate="true" />
+            <f:param name="skipValidator" value="true" />
             <p:column>
               <pc:securityMemberNameAndAvatar
                 displayName="#{dashboardTaskFilterBean.formatName(responsible)}"

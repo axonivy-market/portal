@@ -82,7 +82,7 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
         if (permission != null && !permission.startsWith("#")) {
           var dto = nameToSecurityMemberDTO.get(permission);
           if (dto == null) {
-            Ivy.log().warn("Role [{0}] could not be found. Will be replaced by role Everybody.", permission);
+            Ivy.log().warn("Role [{0}] could not be found. Will be replaced by role {1}.", permission, ISecurityConstants.TOP_LEVEL_ROLE_NAME);
             dto = nameToSecurityMemberDTO.get(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
           }
           securityMemberDTOs.add(dto);
