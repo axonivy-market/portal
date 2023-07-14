@@ -77,7 +77,7 @@ public class DateTimeGlobalSettingService {
   }
 
   public String getDefaultDateTimePattern() {
-    return ((SimpleDateFormat) getDefaultDateTimeFormater()).toPattern();
+    return ((SimpleDateFormat) getDefaultDateFormatter()).toPattern();
   }
 
   public String getDefaultDatePattern() {

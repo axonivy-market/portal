@@ -22,13 +22,13 @@
       <p:datePicker id="from-finished-calendar" value="#{cc.attrs.filter.fromFinishedDate}"
         locale="#{localeBean.locale}"
         showIcon="true" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
-        converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongFromDateFormat', [dateTimePatternBean.configuredDateFilterPattern])}" />
+        converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongFromDateFormat', [dateTimePatternBean.dateTimestampPattern])}" />
 
       <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" for="to-finished-calendar" />
       <p:datePicker id="to-finished-calendar" value="#{cc.attrs.filter.toFinishedDate}"
         locale="#{localeBean.locale}"
         showIcon="true" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
-        converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongToDateFormat', [dateTimePatternBean.configuredDateFilterPattern])}" />
+        converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongToDateFormat', [dateTimePatternBean.dateTimestampPattern])}" />
     </h:panelGrid>
   </ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter>
 </cc:implementation>
