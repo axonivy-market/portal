@@ -89,13 +89,8 @@ public class TaskBean implements Serializable {
     if (state == null) {
       return StringUtils.EMPTY;
     }
-    if (state == TaskBusinessState.OPEN ||
-        state == TaskBusinessState.DONE ||
-        state == TaskBusinessState.ERROR) {
-      return cms("/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/" + state);
-    }
 
-    return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/SYSTEM");
+    return cms("/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/" + state);
   }
 
   public String displayCaseName(ITask task) {
