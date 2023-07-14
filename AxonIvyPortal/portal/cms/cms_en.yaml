@@ -960,6 +960,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     download: Download
     fileContainScript: This file is not allowed to upload because it contains some script!
     fileContainVirus: Upload failed, virus/infection detected!
+    fileCouldNotParse: Could not parse the file
     fileEmptyMessage: File is empty
     name: Filename
     size: File size
