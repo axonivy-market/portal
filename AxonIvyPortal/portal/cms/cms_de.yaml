@@ -1567,8 +1567,10 @@ Dialogs:
               NoNewsAvailable: Es gibt noch keine Neuigkeiten
               Publish: veröffentlichen.
               RemoveNewsHeader: Die Nachrichten entfernen?
+              RevertTranslation: Rückgängig machen der Übersetzung
               SeeLess: Weniger sehen
               SeeMore: Mehr sehen
+              Translate: Übersetzen Sie
             NewsWidgetConfiguration:
               AddNews: Neuigkeiten hinzufügen
               EditNews: Nachrichten bearbeiten

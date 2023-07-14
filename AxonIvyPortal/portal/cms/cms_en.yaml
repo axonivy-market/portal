@@ -1567,8 +1567,10 @@ Dialogs:
               NoNewsAvailable: There is no news yet
               Publish: Publish
               RemoveNewsHeader: Remove the news?
+              RevertTranslation: Revert the translation
               SeeLess: See less
               SeeMore: See more
+              Translate: Translate
             NewsWidgetConfiguration:
               AddNews: Add News
               EditNews: Edit News
