@@ -240,6 +240,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       chatResponseTimeout: Chat response timeout in seconds, default value is 0 and means no timeout. If chat messages go through the reverse proxy Nginx, chat response timeout must be less than the Nginx timeout, e.g. less than 60 seconds.
       clientSideTimeoutNote: Client side timeout in minutes, must be more than 0 and less than the server side timeout (e.g. 25 seconds). Default value is 0, it means default client side timeout is applied. Default client side timeout is server side timeout minus 3 minutes.
       dateFilterWithTime: Set to true to enable date filtering with time. This setting affects on task list, case list, and statistics.
+      deepLAuthKey: DeepL Authentication Key (should end with :fx)
       defaultHomepage: To set the standard homepage which will be redirect to when clicking on home icon or logo. This setting also applies to the ends page after finished a task.
       defaultProcessImage: The standard setting of default image that will be displayed in the image process list.
       defaultProcessMode: The standard setting of view mode in the process list.
@@ -253,6 +254,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       displayMessageAfterFinishOrLeaveTask: A feedback message will be displayed after user finishes or leaves a task.
       embedInFrame: Set to true to start a process/task in IFrame mode
       enableCaseOwner: Set to true to enable filtering case owner when cases are queried. This setting affects all case queries, e.g. for case list, global search, statistic.
+      enableDeepLTranslation: Set this property to true to enable the DeepL translation support
       enableGroupChat: Set this property to true to enable group chat function
       enablePrivateChat: Set this property to true to enable private chat function
       enableProcessViewer: Set this property to true to enable process viewer option in Task/Case actions
@@ -287,8 +289,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showUserGuide: 'Activates the interactive user guide "first steps" in the portal at first login. '
       statisticChartScalingInterval: Interval in seconds to do periodic statistic chart scaling requests. If the interval value is less than 10, periodic statistic chart scaling is disabled.
       uploadDocumentWhiteListExtensionNote: 'Leave value empty if you allow all extensions. If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.'
-      deepLAuthKey: DeepL Authentication Key (should end with :fx)
-      enableDeepLTranslation: Set this property to true to enable the DeepL translation support
     key: Key
     link: Link
     loading: LOADING
@@ -328,7 +328,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   caseDetails:
     addDocumentHelpText: To upload files, drag & drop or select files
     addNoteHelpText: Write your text here.
-    businessDetailsTitle: Busniness Details
+    businessDetailsTitle: Business Details
     deleteFile: Delete file
     documents: Documents
     downloadFile: Download file
@@ -777,8 +777,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: Dashboard configuration is not supported for mobile devices.
       EditPrivateDashboards: Edit your private dashboards
       EditPublicDashboards: Edit public dashboards
-      InvalidDeepLAuthKey: Invalid DeepL authentication key
       ExportDashboard: Export dashboard
+      InvalidDeepLAuthKey: Invalid DeepL authentication key
       PrivateDashboard: Private dashboards
       PrivateDashboardConfiguration: Private dashboard configuration
       PublicDashboard: Public dashboards
