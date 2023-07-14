@@ -106,7 +106,7 @@
         "at" : { "x" : 512, "y" : 280 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f5", "to" : "S80" }
+      "connect" : { "id" : "f5", "to" : "S90" }
     }, {
       "id" : "S60",
       "type" : "EmbeddedProcess",
@@ -371,7 +371,7 @@
       "visual" : {
         "at" : { "x" : 528, "y" : 144 }
       },
-      "connect" : { "id" : "f4", "to" : "S50" }
+      "connect" : { "id" : "f4", "to" : "S20" }
     }, {
       "id" : "S30",
       "type" : "EmbeddedProcess",
