@@ -1,6 +1,7 @@
 package portal.guitest.page;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 public class DashboardConfigurationPage extends TemplatePage {
@@ -48,6 +49,7 @@ public class DashboardConfigurationPage extends TemplatePage {
     createPrivateDashboard();
     clickByCssSelector("a[id$=':create-from-scratch']");
     waitForElementDisplayed(By.cssSelector("div[id$=':dashboard-creation-details-dialog']"), true);
+    findElementByCssSelector("[id$=':dashboard-title']").sendKeys("My dashboard");
   }
   
   public void createPrivateDashboard() {
@@ -60,6 +62,10 @@ public class DashboardConfigurationPage extends TemplatePage {
     clickByCssSelector("a[id$='dashboard-creation-component:dashboard-detail-close-button']");
   }
   
+  public void clickOkCreateDashboard() {
+    clickByCssSelector("button[id$='dashboard-creation-component:dashboard-create-button']");
+  }
+
   public void openEditPrivateDashboards() {
     selectPrivateDashboardType();
     clickByCssSelector("a[id$='edit-dashboard-action'].js-private-dashboard");
@@ -78,6 +84,7 @@ public class DashboardConfigurationPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("div[id$=':create-new-dashboard-section']"), true);
     clickByCssSelector("a[id$=':create-from-scratch']");
     waitForElementDisplayed(By.cssSelector("div[id$=':dashboard-creation-details-dialog']"), true);
+    findElementByCssSelector("[id$=':dashboard-title']").sendKeys("My dashboard");
   }
   
   public void openEditPublicDashboards() {
@@ -102,6 +109,10 @@ public class DashboardConfigurationPage extends TemplatePage {
     return findElementByCssSelector("div[id$=':dashboard-creation-details-dialog']");
   }
 
+  public WebElement getAddLanguageButton() {
+    return findElementByCssSelector("button[id$=':add-language-button']");
+  }
+
   public void openMultiLanguageDialog() {
     clickByCssSelector("button[id$=':add-language-button']");
     waitForElementDisplayed(
@@ -113,9 +124,34 @@ public class DashboardConfigurationPage extends TemplatePage {
     clickByCssSelector("a[id$=':multi-language-cancel-button']");
   }
 
+  public void clickOkMultiLanguageDialog() {
+    waitForElementDisplayed(By.cssSelector("button[id$=':multi-language-ok-button']"), true);
+    clickByCssSelector("button[id$=':multi-language-ok-button']");
+  }
+
   public WebElement getDashboardMultiLanguageDialog() {
     return findElementById(
             "dashboard-template-selection-component:dashboard-creation-component:title-language-config:multiple-languages-dialog");
   }
 
+  public void clickOnTextToTranslate(int index) {
+    clickByCssSelector(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", index));
+    waitForElementDisplayed(By.cssSelector("div[id$=':overlay-panel-input']"), true);
+  }
+
+  public void setTranslatedTitle() {
+    findElementByCssSelector(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", 1))
+        .sendKeys(Keys.CONTROL, "a");
+    findElementByCssSelector(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", 1))
+        .sendKeys("Mon tableau de bord");
+
+    findElementByCssSelector(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", 2))
+        .sendKeys(Keys.CONTROL, "a");
+    findElementByCssSelector(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", 2))
+        .sendKeys("Mein Armaturenbrett");
+    findElementByCssSelector(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", 3))
+        .sendKeys(Keys.CONTROL, "a");
+    findElementByCssSelector(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", 3))
+        .sendKeys("Mi cuadro de mandos");
+  }
 }

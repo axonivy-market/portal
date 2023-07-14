@@ -45,9 +45,7 @@ How to: add private dashboard
 
 |create-private-dashboard-dialog|
 
-Setting multiple languages for the dashboard title:
-
-|dashboard-multi-language-dialog|
+To set multi languages for the dashboard title, see at :ref:`portal-multi-language`:
 
 Available dashboard templates:
 
@@ -145,9 +143,7 @@ How to: add public dashboard
 
 |create-public-dashboard-dialog|
 
-Setting multiple languages for the dashboard title:
-
-|dashboard-multi-language-dialog|
+To set multi languages for the dashboard title, see at :ref:`portal-multi-language`:
 
 Available dashboard templates:
 
@@ -208,7 +204,6 @@ A table of public dashboards is shown with the following information:
 .. |dashboard-configuration-page| image:: ../../screenshots/dashboard-configuration/dashboard-configuration-page.png
 .. |private-dashboard-configuration| image:: ../../screenshots/dashboard-configuration/private-dashboard-configuration.png
 .. |create-private-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/create-private-dashboard-dialog.png
-.. |dashboard-multi-language-dialog| image:: ../../screenshots/dashboard-configuration/dashboard-multi-language-dialog.png
 .. |edit-private-dashboards| image:: ../../screenshots/dashboard-configuration/edit-private-dashboards.png
 .. |reorder-your-dashboards| image:: ../../screenshots/dashboard-configuration/reorder-your-dashboards.png
 .. |public-dashboard-configuration| image:: ../../screenshots/dashboard-configuration/public-dashboard-configuration.png
