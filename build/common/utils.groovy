@@ -97,4 +97,15 @@ def cleanDisk() {
     exit 0
   """
 }
+
+def downloadExpress() {
+  echo '====================Download Express===================='
+  def branchName = env.BRANCH_NAME.replaceAll("/", "%%2F")
+  branchName = 'master'
+  withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
+    bat "curl --user ${credentials} --output archive.zip ${env.JENKINS_URL}job/axonivy-express/job/${branchName}/lastSuccessfulBuild/artifact/*zip*/archive.zip"
+  }
+  unzip zipFile: 'archive.zip', quiet: true
+}
+
 return this
