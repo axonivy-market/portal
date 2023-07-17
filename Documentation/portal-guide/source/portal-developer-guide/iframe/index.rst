@@ -20,21 +20,11 @@ Templates to use with IFrame:
 These templates have the same header, which is a menu of applications that you
 configure on the Administration page. Since version 8.0, Portal officially
 supports responsiveness. Every template has its default responsiveness. Refer to
-:ref:`Responsiveness <components-layout-templates-responsiveness>` to override
-it.
+Responsiveness to override it.
 
 Additionally, there are user settings like My Profile, Absences, Email, and
 Administration (for Administrators only). For details about user settings, refer
 to :ref:`Settings <settings>`.
-
-.. note::
-
-      The frame-8 and frame-10 templates do not contain any content from the Portal.
-      Therefore, if you want to reuse some Portal content, you have to add
-      it manually to your HTML file.
-
-      For example, if you want to use the customized layout in Portal, add the code below:
-      ``<h:outputStylesheet library="css" name="template.css" />``
 
 |portal-header|
 
@@ -49,9 +39,6 @@ Follow these steps to use the IFrame approach:
 #. Your HTML User Dialog has to be independent of the **Portal**. You can use
    the ``frame-_x_`` template in designer, or your own template. **Portal** will
    render it automatically in an IFrame.
-	
-#. To pass some supported params into the IFrame such as process steps, refer to
-   :ref:`IFrameTaskTemplate <components-layout-templates-iframe-task-template>`
 
 #. If you don't want to use the default configuration, apply one of the following three
    levels to open your task(s) in an IFrame:
@@ -123,10 +110,10 @@ Now you can develop your own processes inside the ``BusinessProject`` and the di
 .. |task-embedInFrame| image:: images/task-embedInFrame.png
 .. |case-embedInFrame| image:: images/case-embedInFrame.png
 
-configuration Parameters
+configuration
 --------------------
 
-Inside IFrame, you can configure these parameters as follows; they will be rendered by the template automatically:
+When using templates, you can configure parameters for the content of IFrame as follows; they will be rendered by the template automatically:
 
 ::
 
@@ -173,8 +160,6 @@ Inside IFrame, you can configure these parameters as follows; they will be rende
 In case your project has a navigation button that does not complete a task, e.g Cancel, to
 
 -  One of the default pages (application home, task list, process list, etc.): in your HTMLDialog, redirect to the page you want to display.
--  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrameAPI``.
--  A specific URL: call ``navigateToUrl(String url)`` from class ``PortalNavigatorInFrameAPI``.
 
 Responsiveness
 --------------

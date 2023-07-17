@@ -14,9 +14,6 @@ Build Your Own Portal Using portal
 
    - Create a new ``HTML Dialog`` for your home page and then use ``ui:composition`` to define the template you use in it. If you want to keep the look of the default homepage, choose ``DefaultHomePageTemplate``.
 
-     .. tip:: Find more information about templates at :ref:`Layout templates <components-layout-templates>`.
-     ..
-
      .. warning::
         * Portal uses some template files in the folder ``"webContent/layouts"``
           in the Portal Template project. Do not create files with the same
