@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -30,7 +31,6 @@ import ch.ivy.addon.portalkit.util.RoleUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
-import ch.ivyteam.ivy.security.ISecurityConstants;
 
 @ViewScoped
 @ManagedBean
@@ -41,6 +41,12 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
   private FacesMessage validateMessage;
   private Boolean isError = false;
   private String fileSize;
+  private IRole everybodyRole;
+
+  @PostConstruct
+  public void init() {
+    everybodyRole = Ivy.security().roles().topLevel();
+  }
 
   public void importDashboard(boolean isPublicDashboard) {
     this.isPublicDashboard = isPublicDashboard;
@@ -82,24 +88,20 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
     List<String> permissions = selectedDashboard.getPermissions();
     if (CollectionUtils.isNotEmpty(permissions)) {
       List<IRole> iRoles = new ArrayList<>();
-      IRole everyBodyRole = null;
       for (String permission : permissions) {
-        if (permission != null && !permission.startsWith("#")) {
           IRole iRole = RoleUtils.findRole(permission);
           if (iRole == null) {
             Ivy.log().warn("Role [{0}] could not be found. Will be replaced by role {1}.", permission,
-                ISecurityConstants.TOP_LEVEL_ROLE_NAME);
-            iRole = everyBodyRole =
-                everyBodyRole != null ? everyBodyRole : RoleUtils.findRole(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
+                everybodyRole.getName());
+            iRole = everybodyRole;
           }
           iRoles.add(iRole);
-        }
       }
       var distinctRoles = iRoles.stream().distinct().collect(Collectors.toList());
       List<SecurityMemberDTO> securityMemberDTOs = SecurityMemberUtils.convertIRoleToSecurityMemberDTO(distinctRoles);
       selectedDashboardPermissions =
           securityMemberDTOs.stream().map(SecurityMemberDTO::getName).collect(Collectors.toList());
-      selectedDashboard.setPermissionDTOs(new ArrayList<>(securityMemberDTOs));
+      selectedDashboard.setPermissionDTOs(securityMemberDTOs);
     }
   }
 
