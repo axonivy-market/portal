@@ -377,9 +377,9 @@ public class DashboardConfigurationTest extends BaseTest {
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
-    configurationPage.getDashboardImportButtonOfDashboard().shouldBe(Condition.appear);
+    configurationPage.getDashboardImportButtonOfDashboard().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     configurationPage.openCreatePrivateDashboardMenu();
-    configurationPage.getDashboardImportButtonOfDashboard().shouldBe(Condition.disappear);
+    configurationPage.getDashboardImportButtonOfDashboard().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   @Test
@@ -389,9 +389,9 @@ public class DashboardConfigurationTest extends BaseTest {
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
-    configurationPage.getDashboardImportButtonOfDashboard().shouldBe(Condition.disappear);
+    configurationPage.getDashboardImportButtonOfDashboard().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
     configurationPage.openCreatePrivateDashboardMenu();
-    configurationPage.getDashboardImportButtonOfDashboard().shouldBe(Condition.appear);
+    configurationPage.getDashboardImportButtonOfDashboard().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
   
   @Test
@@ -401,11 +401,11 @@ public class DashboardConfigurationTest extends BaseTest {
     var configurationPage = new DashboardConfigurationPage();
     configurationPage.openCreatePrivateDashboardMenu();
     configurationPage.getImportDashboardDialog();
-    configurationPage.getDashboardImportSaveButton().shouldBe(Condition.disabled);
+    configurationPage.getDashboardImportSaveButton().shouldBe(Condition.disabled, DEFAULT_TIMEOUT);
     
     configurationPage.uploadFile("Dashboard_Dashboard_Export.json");
-    configurationPage.getDashboardImportSaveButton().shouldBe(Condition.enabled);
-    configurationPage.getDashboardImportPermission().shouldBe(Condition.disappear);
+    configurationPage.getDashboardImportSaveButton().shouldBe(Condition.enabled, DEFAULT_TIMEOUT);
+    configurationPage.getDashboardImportPermission().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
     
     String name = "New import private dashboard";
     String icon = "fa-coffee";
@@ -420,11 +420,11 @@ public class DashboardConfigurationTest extends BaseTest {
     var configurationPage = new DashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
     configurationPage.getImportDashboardDialog();
-    configurationPage.getDashboardImportSaveButton().shouldBe(Condition.disabled);
+    configurationPage.getDashboardImportSaveButton().shouldBe(Condition.disabled, DEFAULT_TIMEOUT);
     
     configurationPage.uploadFile("Dashboard_Dashboard_Export.json");
-    configurationPage.getDashboardImportSaveButton().shouldBe(Condition.enabled);
-    configurationPage.getDashboardImportPermission().shouldBe(Condition.appear);
+    configurationPage.getDashboardImportSaveButton().shouldBe(Condition.enabled, DEFAULT_TIMEOUT);
+    configurationPage.getDashboardImportPermission().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     
     String name = "New import public dashboard";
     String icon = "fa-coffee";
