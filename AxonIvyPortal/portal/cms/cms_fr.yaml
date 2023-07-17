@@ -853,6 +853,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       configurationDescription: Vous pouvez configurer votre widget dans cette zone de configuration. Veuillez définir les filtres requis ainsi que les colonnes à afficher.
       customWidgetParamChangedMessage: Ce processus a changé. Cliquez sur Update pour continuer.
       editWidgetHeader: Modifier la configuration du widget
+      import: Importer
+      importFromJsonFile: Importer depuis un fichier JSON
       newWidgetHeader: Nouvelle configuration du widget {0}
       pageTitle: Configuration du tableau de bord
       processConfigurationDescription: Vous pouvez configurer votre widget dans cette zone de configuration. Veuillez définir les filtres requis ainsi que les propriétés à afficher.
@@ -959,6 +961,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     download: Télécharger
     fileContainScript: Ce fichier n'est pas autorisé à être téléchargé en raison du contenu du script!
     fileContainVirus: Erreur de téléchargement, virus/infection détecté !
+    fileCouldNotParse: Impossible d'analyser le fichier
+    fileEmptyMessage: Le fichier est vide
     name: Nom du fichier
     size: Taille du fichier
     type: Type
@@ -1562,6 +1566,11 @@ Dialogs:
       portal:
         dashboard:
           component:
+            DashboardImportDetails:
+              FileInfomation: Informations sur le fichier
+              ImportPrivate: Importer un tableau de bord privé
+              ImportPublic: Importer un tableau de bord public
+              chooseAJsonFile: Choisissez un fichier json
             NewsWidget:
               NewsContentPlaceHolder: Saisir le contenu de l'actualité
               NewsContentValidateMessage: Le contenu de l'actualité dans {0} est requis
