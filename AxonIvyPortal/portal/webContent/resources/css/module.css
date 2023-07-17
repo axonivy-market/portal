@@ -6042,3 +6042,16 @@ a.dashboard-action-container label {
   z-index: 1;
   border-radius: 50%;
 }
+
+/* ============ DASHBOARD ======== */
+body .ui-dialog.ui-widget.import-dashboard-dialog{
+  min-width: 450px;
+  max-width: 1000px;
+}
+
+@media screen and (max-width: 40em) {
+  body .ui-dialog.ui-widget.import-dashboard-dialog {
+    min-width: 85vw;
+    max-width: 95%;
+  }	
+}

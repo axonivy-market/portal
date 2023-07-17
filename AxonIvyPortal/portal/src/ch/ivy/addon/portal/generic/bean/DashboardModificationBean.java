@@ -43,8 +43,8 @@ import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
-import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivy.addon.portalkit.util.UserUtils;
+import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
@@ -65,7 +65,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     collectDashboardsForManagement();
   }
 
-  private void collectDashboardsForManagement() {
+  protected void collectDashboardsForManagement() {
     this.dashboards = new ArrayList<>();
     String dashboardInUserProperty = readDashboardBySessionUser();
     if (isPublicDashboard) {
@@ -268,6 +268,11 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   public boolean hasExportDashboardPermission() {
     return isPublicDashboard ?
         PermissionUtils.hasDashboardExportPublicPermission() : PermissionUtils.hasDashboardExportOwnPermission();
+  }
+  
+  public boolean hasImportDashboardPermission(boolean isPublicDashboard) {
+    return isPublicDashboard ?
+        PermissionUtils.hasDashboardImportPublicPermission() : PermissionUtils.hasDashboardImportOwnPermission();
   }
 
   public StreamedContent exportToJsonFile(Dashboard dashboard) {

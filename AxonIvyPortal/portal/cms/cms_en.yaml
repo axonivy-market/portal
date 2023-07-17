@@ -852,6 +852,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       configurationDescription: You can configure your widget in this configuration area. Please define the required filters as well as columns to be shown.
       customWidgetParamChangedMessage: This process has changed. Click on Update to proceed.
       editWidgetHeader: Edit Widget Configuration
+      import: Import
+      importFromJsonFile: Import from JSON file
       newWidgetHeader: New {0} Widget Configuration
       pageTitle: Dashboard Configuration
       processConfigurationDescription: You can configure your widget in this configuration area. Please define the required filters as well as properties to be shown.
@@ -958,6 +960,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     download: Download
     fileContainScript: This file is not allowed to upload because it contains some script!
     fileContainVirus: Upload failed, virus/infection detected!
+    fileCouldNotParse: Could not parse the file
+    fileEmptyMessage: File is empty
     name: Filename
     size: File size
     type: Type
@@ -1555,6 +1559,11 @@ Dialogs:
       portal:
         dashboard:
           component:
+            DashboardImportDetails:
+              FileInfomation: File Infomation
+              ImportPrivate: Import Private Dashboard
+              ImportPublic: Import Public Dashboard
+              chooseAJsonFile: Choose a json file
             NewsWidget:
               NewsContentPlaceHolder: Enter News content
               NewsContentValidateMessage: News content in {0} is required

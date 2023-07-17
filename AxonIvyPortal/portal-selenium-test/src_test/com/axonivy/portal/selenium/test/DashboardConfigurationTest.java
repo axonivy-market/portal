@@ -369,4 +369,69 @@ public class DashboardConfigurationTest extends BaseTest {
     configurationPage.openCreatePublicDashboardMenu();
     configurationPage.createPublicDashboardFromTemplate(name, icon, description, permissions, 0);
   }
+  
+  @Test
+  public void testImportOnlyPublicDashboards() {
+    redirectToRelativeLink(grantDashboardImportPublicPermissionUrl);
+    redirectToRelativeLink(denyDashboardImportOwnPermissionUrl);
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    var configurationPage = new DashboardConfigurationPage();
+    configurationPage.openCreatePublicDashboardMenu();
+    configurationPage.getDashboardImportButtonOfDashboard().shouldBe(Condition.appear);
+    configurationPage.openCreatePrivateDashboardMenu();
+    configurationPage.getDashboardImportButtonOfDashboard().shouldBe(Condition.disappear);
+  }
+
+  @Test
+  public void testImportOnlyPrivateDashboards() {
+    redirectToRelativeLink(denyDashboardImportPublicPermissionUrl);
+    redirectToRelativeLink(grantDashboardImportOwnPermissionUrl);
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    var configurationPage = new DashboardConfigurationPage();
+    configurationPage.openCreatePublicDashboardMenu();
+    configurationPage.getDashboardImportButtonOfDashboard().shouldBe(Condition.disappear);
+    configurationPage.openCreatePrivateDashboardMenu();
+    configurationPage.getDashboardImportButtonOfDashboard().shouldBe(Condition.appear);
+  }
+  
+  @Test
+  public void testImportPrivateDashboard() {
+    redirectToRelativeLink(grantDashboardImportOwnPermissionUrl);
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    var configurationPage = new DashboardConfigurationPage();
+    configurationPage.openCreatePrivateDashboardMenu();
+    configurationPage.getImportDashboardDialog();
+    configurationPage.getDashboardImportSaveButton().shouldBe(Condition.disabled);
+    
+    configurationPage.uploadFile("Dashboard_Dashboard_Export.json");
+    configurationPage.getDashboardImportSaveButton().shouldBe(Condition.enabled);
+    configurationPage.getDashboardImportPermission().shouldBe(Condition.disappear);
+    
+    String name = "New import private dashboard";
+    String icon = "fa-coffee";
+    String description = "New import private dashboard description";
+    configurationPage.saveImportDashboard(name, description, icon, null);
+  }
+  
+  @Test
+  public void testImportPublicDashboard() {
+    redirectToRelativeLink(grantDashboardImportPublicPermissionUrl);
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    var configurationPage = new DashboardConfigurationPage();
+    configurationPage.openCreatePublicDashboardMenu();
+    configurationPage.getImportDashboardDialog();
+    configurationPage.getDashboardImportSaveButton().shouldBe(Condition.disabled);
+    
+    configurationPage.uploadFile("Dashboard_Dashboard_Export.json");
+    configurationPage.getDashboardImportSaveButton().shouldBe(Condition.enabled);
+    configurationPage.getDashboardImportPermission().shouldBe(Condition.appear);
+    
+    String name = "New import public dashboard";
+    String icon = "fa-coffee";
+    String description = "New import public dashboard description";
+    List<String> permissions = new ArrayList<>();
+    permissions.add("Cost Object (CostObject)");
+    
+    configurationPage.saveImportDashboard(name, description, icon, permissions);
+  }
 }

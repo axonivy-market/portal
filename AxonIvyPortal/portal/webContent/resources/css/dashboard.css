@@ -449,6 +449,12 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
   justify-content: flex-end;
 }
 
+.import-dashboard-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 .field-add-fieldset__custom-field-type-container, .field-add-fieldset__number-pattern-container {
   padding: 0;
 }
