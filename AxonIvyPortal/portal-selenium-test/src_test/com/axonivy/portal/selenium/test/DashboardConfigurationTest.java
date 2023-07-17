@@ -24,7 +24,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class DashboardConfigurationTest extends BaseTest {
 
   private NewDashboardPage newDashboardPage;
@@ -419,7 +419,7 @@ public class DashboardConfigurationTest extends BaseTest {
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
-    configurationPage.getImportDashboardDialog();
+    configurationPage.getImportDashboardDialog().find("button[id$=':dashboard-detail-save-button']").shouldBe(Condition.disabled, DEFAULT_TIMEOUT);
     configurationPage.getDashboardImportSaveButton().shouldBe(Condition.disabled, DEFAULT_TIMEOUT);
     
     configurationPage.uploadFile("Dashboard_Dashboard_Export.json");
@@ -429,9 +429,7 @@ public class DashboardConfigurationTest extends BaseTest {
     String name = "New import public dashboard";
     String icon = "fa-coffee";
     String description = "New import public dashboard description";
-    List<String> permissions = new ArrayList<>();
-    permissions.add("Cost Object (CostObject)");
     
-    configurationPage.saveImportDashboard(name, description, icon, permissions);
+    configurationPage.saveImportDashboard(name, description, icon, null);
   }
 }

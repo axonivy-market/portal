@@ -262,8 +262,7 @@ public class DashboardConfigurationPage extends TemplatePage {
     if (permissions != null) {
       setPermissions(permissions, getDashboardImportPermission());
     }
-    
-    getDashboardImportSaveButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    importDialog.$("button[id$=':dashboard-detail-save-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     importDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 }
