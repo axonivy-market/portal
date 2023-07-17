@@ -224,7 +224,7 @@ public final class TaskUtils {
     } else {
       states.add(TaskBusinessState.DONE);
     }
-    return states.stream().sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString()))
+    return states.stream().sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString())).distinct()
         .collect(Collectors.toList());
   }
 
