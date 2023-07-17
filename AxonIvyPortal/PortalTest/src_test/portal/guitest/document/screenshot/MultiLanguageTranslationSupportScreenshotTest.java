@@ -33,14 +33,14 @@ public class MultiLanguageTranslationSupportScreenshotTest extends ScreenshotTes
     var dashboardConfigurationPage = homePage.openDashboardConfigurationPage();
     dashboardConfigurationPage.createPrivateDashboardFromScratch();
     ScreenshotUtil.captureElementScreenshot(dashboardConfigurationPage.getDashboardCreationDialog(),
-        ScreenshotUtil.MULTIPLE_LANGUAGE_CONFIGURATION_FOLDER + "create-private-dashboard-dialog");
+        ScreenshotUtil.DASHBOARD_CONFIGURATION_FOLDER + "create-private-dashboard-dialog-ml");
     dashboardConfigurationPage.openMultiLanguageDialog();
     ScreenshotUtil.captureElementScreenshot(dashboardConfigurationPage.getDashboardMultiLanguageDialog(),
-        ScreenshotUtil.MULTIPLE_LANGUAGE_CONFIGURATION_FOLDER + "dashboard-multi-language-dialog");
+        ScreenshotUtil.DASHBOARD_CONFIGURATION_FOLDER + "dashboard-multi-language-dialog-ml");
     dashboardConfigurationPage.setTranslatedTitle();
     dashboardConfigurationPage.clickOnTextToTranslate(1);
     ScreenshotUtil.captureElementScreenshot(dashboardConfigurationPage.getDashboardMultiLanguageDialog(),
-        ScreenshotUtil.MULTIPLE_LANGUAGE_CONFIGURATION_FOLDER + "overlay-panel-translation");
+        ScreenshotUtil.DASHBOARD_CONFIGURATION_FOLDER + "overlay-panel-translation-ml");
     dashboardConfigurationPage.clickOkMultiLanguageDialog();
     dashboardConfigurationPage.clickOkCreateDashboard();
   }
