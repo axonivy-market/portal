@@ -1,14 +1,11 @@
 package com.axonivy.portal.bean.dashboard;
 
-import static ch.ivy.addon.portalkit.constant.PortalConstants.MAX_USERS_IN_AUTOCOMPLETE;
-
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -30,25 +27,32 @@ import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
+import ch.ivy.addon.portalkit.util.RoleUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.ISecurityConstants;
+import ch.ivyteam.ivy.security.IRole;
 
 @ViewScoped
 @ManagedBean
-public class DashboardImportBean extends DashboardModificationBean implements Serializable{
+public class DashboardImportBean extends DashboardModificationBean implements Serializable {
   private static final long serialVersionUID = 1L;
   private boolean isLoaded = false;
-  private UploadedFile importFile; 
+  private UploadedFile importFile;
   private FacesMessage validateMessage;
   private Boolean isError = false;
   private String fileSize;
-  
+  private IRole everybodyRole;
+
+  @PostConstruct
+  public void init() {
+    everybodyRole = Ivy.security().roles().topLevel();
+  }
+
   public void importDashboard(boolean isPublicDashboard) {
     this.isPublicDashboard = isPublicDashboard;
     resetDialog();
   }
-  
+
   public void loadImportedFile(FileUploadEvent event) {
     resetDialog();
     this.selectedDashboardPermissions = new ArrayList<>();
@@ -62,40 +66,45 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
     }
     try {
       selectedDashboard = BusinessEntityConverter.inputStreamToEntity(importFile.getInputStream(), Dashboard.class);
-    } catch (IOException e) {
+    } catch (Exception e) {
       isError = true;
-      validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileCouldNotParse"), null);
+      validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileCouldNotParse"), null);
       displayedMessage();
       Ivy.log().error(e);
       return;
     }
+
     selectedDashboard.setIsPublic(isPublicDashboard);
     selectedDashboard.setId(DashboardUtils.generateId());
     selectedDashboard.setPermissionDTOs(new ArrayList<>());
-    Map<String, SecurityMemberDTO> nameToSecurityMemberDTO = SecurityMemberUtils.findSecurityMembers("", 0, MAX_USERS_IN_AUTOCOMPLETE)
-            .stream().filter(securityMember -> !securityMember.isUser())
-            .collect(Collectors.toMap(SecurityMemberDTO::getMemberName, v -> v));
-    List<String> permissions = selectedDashboard.getPermissions();
-    if (CollectionUtils.isNotEmpty(permissions)) {
-      List<SecurityMemberDTO> securityMemberDTOs = new ArrayList<>();
-      for(String permission : permissions) {
-        if (permission != null && !permission.startsWith("#")) {
-          var dto = nameToSecurityMemberDTO.get(permission);
-          if (dto == null) {
-            Ivy.log().warn("Role [{0}] could not be found. Will be replaced by role {1}.", permission, ISecurityConstants.TOP_LEVEL_ROLE_NAME);
-            dto = nameToSecurityMemberDTO.get(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
-          }
-          securityMemberDTOs.add(dto);
-        }
-      }
-      var responsibles = securityMemberDTOs.stream().distinct().collect(Collectors.toSet());
-      selectedDashboardPermissions = responsibles.stream().map(SecurityMemberDTO::getName).collect(Collectors.toList());
-      selectedDashboard.setPermissionDTOs(new ArrayList<>(responsibles));
-    }
+    findAndSetPermissions();
+
     fileSize = FileUtils.byteCountToDisplaySize(importFile.getSize());
     isLoaded = true;
   }
-  
+
+  private void findAndSetPermissions() {
+    List<String> permissions = selectedDashboard.getPermissions();
+    if (CollectionUtils.isNotEmpty(permissions)) {
+      List<IRole> iRoles = new ArrayList<>();
+      for (String permission : permissions) {
+          IRole iRole = RoleUtils.findRole(permission);
+          if (iRole == null) {
+            Ivy.log().warn("Role [{0}] could not be found. Will be replaced by role {1}.", permission,
+                everybodyRole.getName());
+            iRole = everybodyRole;
+          }
+          iRoles.add(iRole);
+      }
+      var distinctRoles = iRoles.stream().distinct().collect(Collectors.toList());
+      List<SecurityMemberDTO> securityMemberDTOs = SecurityMemberUtils.convertIRoleToSecurityMemberDTO(distinctRoles);
+      selectedDashboardPermissions =
+          securityMemberDTOs.stream().map(SecurityMemberDTO::getName).collect(Collectors.toList());
+      selectedDashboard.setPermissionDTOs(securityMemberDTOs);
+    }
+  }
+
   @Override
   public void createDashboard() {
     if (CollectionUtils.isNotEmpty(this.selectedDashboard.getWidgets())) {
@@ -108,9 +117,10 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
     }
     super.createDashboard();
   }
-  
+
   private void displayedMessage() {
-    FacesContext.getCurrentInstance().addMessage("import-dashboard-form:import-dashboard-dialog-message", validateMessage);
+    FacesContext.getCurrentInstance().addMessage("import-dashboard-form:import-dashboard-dialog-message",
+        validateMessage);
   }
 
   private void resetDialog() {
@@ -120,15 +130,15 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
     importFile = null;
     isLoaded = isError = false;
   }
-  
+
   public boolean isLoaded() {
     return isLoaded;
   }
-  
+
   public void setLoaded(boolean isLoaded) {
     this.isLoaded = isLoaded;
   }
-  
+
   public UploadedFile getImportFile() {
     return importFile;
   }
@@ -140,15 +150,15 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
   public FacesMessage getValidateMessage() {
     return validateMessage;
   }
-  
+
   public void setValidateMessage(FacesMessage validateMessage) {
     this.validateMessage = validateMessage;
   }
-  
+
   public Boolean getIsError() {
     return isError;
   }
-  
+
   public void setIsError(Boolean isError) {
     this.isError = isError;
   }
