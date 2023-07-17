@@ -1135,9 +1135,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     escalationActivatorDesc: Change the escalation activator of task to a specified user or group
     escalationActivatorHeader: Task escalation activator selection
   taskBusinessState:
+    DELAYED: Delayed
     DELAYED_UPPERCASE: DELAYED
+    DESTROYED: Destroyed
     DESTROYED_UPPERCASE: DESTROYED
+    DONE: Done
     DONE_UPPERCASE: DONE
+    ERROR: Error
+    ERROR_UPPERCASE: ERROR
+    IN_PROGRESS: In progress
     IN_PROGRESS_UPPERCASE: IN PROGRESS
     OPEN: Open
     OPEN_UPPERCASE: OPEN

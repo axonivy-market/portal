@@ -79,7 +79,7 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
       case ID -> String.valueOf(taskItem.getId());
       case CREATED -> taskItem.getStartTimestamp();
       case EXPIRY -> taskItem.getExpiryTimestamp();
-      case STATE -> taskItem.getState();
+      case STATE -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/" + taskItem.getBusinessState() + "_UPPERCASE");
       case CATEGORY -> taskItem.getCategory().getPath();
       case DESCRIPTION -> taskItem.getDescription();
       case APPLICATION -> taskItem.getApplication().getName();
