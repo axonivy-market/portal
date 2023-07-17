@@ -77,12 +77,14 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
   public void handleFileUpload(FileUploadEvent event) {
     UploadedFile file = event.getFile();
     if (file != null && file.getContent() != null && file.getContent().length > 0 && file.getFileName() != null) {
-      // If image is not saved, create location
-      if (StringUtils.isBlank(getWidget().getImageLocation())) {
-        String fileName = getWidget().getId().concat(DEFAULT_LOCALE_AND_DOT).concat(FilenameUtils.getExtension(file.getFileName()));
-        getWidget().setImageLocation(fileName);
-        getWidget().setImageType(file.getContentType());
+      if (StringUtils.isNotBlank(getWidget().getImageLocation())) {
+        getWelcomeWidgetImageContentObject(true).delete();
       }
+      // If image is not saved, create location
+      String extension = FilenameUtils.getExtension(file.getFileName());
+      String fileName = getWidget().getId().concat(DEFAULT_LOCALE_AND_DOT).concat(extension);
+      getWidget().setImageLocation(fileName);
+      getWidget().setImageType(extension);
 
       // save the temporary image
       imageCMSObject = getWelcomeWidgetImageContentObject(true);

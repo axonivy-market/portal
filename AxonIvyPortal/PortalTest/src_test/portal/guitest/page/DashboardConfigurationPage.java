@@ -3,6 +3,8 @@ package portal.guitest.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import portal.guitest.common.FileHelper;
+
 public class DashboardConfigurationPage extends TemplatePage {
 
   @Override
@@ -100,5 +102,47 @@ public class DashboardConfigurationPage extends TemplatePage {
     mouseOver(findElementByCssSelector("input[id$=':dashboard-detail-form:dashboard-title']"));
     waitForElementDisplayed(By.cssSelector("input[id$=':dashboard-detail-form:dashboard-title']"), true);
     return findElementByCssSelector("div[id$=':dashboard-creation-details-dialog']");
+  }
+
+  public void openMultiLanguageDialog() {
+    clickByCssSelector("button[id$=':add-language-button']");
+    waitForElementDisplayed(
+        By.cssSelector("div[id$=':dashboard-creation-component:title-language-config:multiple-languages-dialog']"),
+        true);
+  }
+
+  public void cancelMultiLanguageDialog() {
+    clickByCssSelector("a[id$=':multi-language-cancel-button']");
+  }
+
+  public WebElement getDashboardMultiLanguageDialog() {
+    return findElementById(
+            "dashboard-template-selection-component:dashboard-creation-component:title-language-config:multiple-languages-dialog");
+  }
+  
+  public void openImportPublicDashboards() {
+    selectPublicDashboardType();
+    clickByCssSelector("a[id$='create-dashboard-action'].js-public-dashboard");
+    waitForElementDisplayed(By.cssSelector("div[id$=':create-new-dashboard-section']"), true);
+    openImportDashboardDialog();
+  }
+  
+  public void openImportPrivateDashboards() {
+    createPrivateDashboard();
+    openImportDashboardDialog();
+  }
+  
+  public void openImportDashboardDialog() {
+    clickByCssSelector("a[id$=':import-dashboard']");
+    waitForElementDisplayed(By.cssSelector("div[id$=':dashboard-import-dialog']"), true);
+    findElementByCssSelector("[id$=':dashboard-upload_input']").sendKeys(FileHelper.getAbsolutePathToTestFile("Dashboard_Dashboard_Export.json"));
+    waitForElementDisplayed(By.cssSelector("input[id$=':import-dashboard-form:dashboard-title']"), true);    
+  }
+
+  
+  public WebElement getImportDashboardDialog() {
+    mouseOver(findElementByCssSelector("input[id$=':import-dashboard-form:dashboard-title']"));
+    waitForElementDisplayed(By.cssSelector("input[id$=':import-dashboard-form:dashboard-title']"), true);
+    return findElementByCssSelector("div[id$=':dashboard-import-dialog']");
   }
 }

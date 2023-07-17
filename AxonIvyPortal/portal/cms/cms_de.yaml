@@ -74,8 +74,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationAndRole: Applikation und Rolle
     definedDeputies: Definierte Stellvertreter
     deputyFor: Ich bin Ersatz für
+    myAbsences: Meine Abwesenheit
     myDeputies: Meine Stellvertreter
-    myPlannedAbsences: Meine geplanten Abwesenheiten
     nextAbsence: Bevorstehende Abwesenheit
     selectedDeputyFor: Ausgewählter Benutzer ist Stellvertreter für
     selectedUser: Ausgewählter Benutzer
@@ -388,7 +388,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     DESTROYED: Gelöscht
     DESTROYED_UPPERCASE: GELÖSCHT
     DONE: Erledigt
-    DONE_UPPERCASE: ABGESCHLOSSEN
+    DONE_UPPERCASE: ERLEDIGT
     FAILED: Fehlgeschlagen
     INPROGRESS: IN BEARBEITUNG
     OPEN: Offen
@@ -772,6 +772,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: Die Dashboard-Konfiguration wird für mobile Geräte nicht unterstützt.
       EditPrivateDashboards: Private Dashboards bearbeiten
       EditPublicDashboards: Öffentliche Dashboards bearbeiten
+      ExportDashboard: Dashboard exportieren
       PrivateDashboard: Private Dashboards
       PrivateDashboardConfiguration: Private Dashboard-Konfiguration
       PublicDashboard: Öffentliche Dashboards
@@ -850,6 +851,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       configurationDescription: In diesem Konfigurationsbereich kann das Widget konfiguriert werden. Bitte definieren Sie die gewünschten Filter sowie die anzuzeigenden Spalten.
       customWidgetParamChangedMessage: Dieser Prozess hat sich geändert. Klicken Sie auf Update, um fortzufahren.
       editWidgetHeader: Widget-Konfiguration bearbeiten
+      import: Importieren
+      importFromJsonFile: Aus JSON-Datei importieren
       newWidgetHeader: Neue {0} Widget-Konfiguration
       pageTitle: Dashboard-Konfiguration
       processConfigurationDescription: In diesem Konfigurationsbereich kann das Widget konfiguriert werden. Bitte definieren Sie die gewünschten Filter sowie die Eigenschaften, die angezeigt werden sollen.
@@ -880,6 +883,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     expiryTo: Ablauf bis
     export:
       exportedCasesFileName: AXONIVY_Dataset_Cases_{0}_{1}.{2}
+      exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}_{1}.{2}
     field: Feld
     fieldIsAdded: Das Feld {0} wurde hinzugefügt
     iconMessage:
@@ -955,6 +959,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     download: Herunterladen
     fileContainScript: Diese Datei darf aufgrund von Skript-Inhalten nicht hochgeladen werden!
     fileContainVirus: Upload fehlgeschlagen, Virus/Infektion erkannt!
+    fileCouldNotParse: Die Datei konnte nicht analysiert werden
+    fileEmptyMessage: Datei ist leer
     name: Dateiname
     size: Dateigröße
     type: Typ
@@ -1402,7 +1408,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     DESTROYED: Vernichtet
     DESTROYED_UPPERCASE: GELÖSCHT
     DONE: Erledigt
-    DONE_UPPERCASE: ABGESCHLOSSEN
+    DONE_UPPERCASE: ERLEDIGT
     FAILED: Fehlerhaft
     FAILED_UPPERCASE: FEHLERHAFT
     INPROGRESS: IN BEARBEITUNG
@@ -1532,6 +1538,12 @@ Dialogs:
             expressNoItem: Es gibt noch keine abgeschlossene Express Aufgabe
             expressNoItemDescription: Hier werden die Ergebnisse der abgeschlossenen Aufgaben angezeigt
             expressWorkflowName: 'Business Details des Vorgangs: #{0}'
+        portal:
+          generic:
+            dashboard:
+              component:
+                CustomDashboardWidget:
+                  CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
         portalkit:
           component:
             CaseWidget:
@@ -1553,6 +1565,11 @@ Dialogs:
       portal:
         dashboard:
           component:
+            DashboardImportDetails:
+              FileInfomation: Dateiinformationen
+              ImportPrivate: Privates Dashboard importieren
+              ImportPublic: Öffentliches Dashboard importieren
+              chooseAJsonFile: Wählen Sie eine JSON-Datei
             NewsWidget:
               NewsContentPlaceHolder: Nachrichteninhalt eingeben
               NewsContentValidateMessage: Nachrichteninhalt in {0} ist erforderlich

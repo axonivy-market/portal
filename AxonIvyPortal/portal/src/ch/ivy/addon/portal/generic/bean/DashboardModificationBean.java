@@ -3,8 +3,11 @@ package ch.ivy.addon.portal.generic.bean;
 import static ch.ivy.addon.portalkit.constant.PortalConstants.MAX_USERS_IN_AUTOCOMPLETE;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.WELCOME;
 
+import java.io.ByteArrayInputStream;
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
@@ -15,11 +18,14 @@ import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 import com.axonivy.portal.bo.JsonVersion;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
@@ -35,8 +41,10 @@ import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
+import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
@@ -46,6 +54,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   private static final long serialVersionUID = 1L;
   protected static final String PUBLIC_DASHBOARD_DEFAULT_ICON = "si-network-share";
   protected static final String PRIVATE_DASHBOARD_DEFAULT_ICON = "si-single-neutral-shield";
+  private static final String JSON_FILE_SUFFIX = "_Dashboard_Export.json";
 
   protected boolean isPublicDashboard;
   protected List<String> selectedDashboardPermissions;
@@ -56,7 +65,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     collectDashboardsForManagement();
   }
 
-  private void collectDashboardsForManagement() {
+  protected void collectDashboardsForManagement() {
     this.dashboards = new ArrayList<>();
     String dashboardInUserProperty = readDashboardBySessionUser();
     if (isPublicDashboard) {
@@ -256,4 +265,55 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     }
   }
 
+  public boolean hasExportDashboardPermission() {
+    return isPublicDashboard ?
+        PermissionUtils.hasDashboardExportPublicPermission() : PermissionUtils.hasDashboardExportOwnPermission();
+  }
+  
+  public boolean hasImportDashboardPermission(boolean isPublicDashboard) {
+    return isPublicDashboard ?
+        PermissionUtils.hasDashboardImportPublicPermission() : PermissionUtils.hasDashboardImportOwnPermission();
+  }
+
+  public StreamedContent exportToJsonFile(Dashboard dashboard) {
+    dashboard.setVersion(JsonVersion.LATEST.getValue());
+
+    // For private dashboard, we don't need to export permission
+    if (!dashboard.getIsPublic()) {
+      dashboard.setPermissions(null);
+    }
+
+    Optional.ofNullable(dashboard).map(Dashboard::getWidgets).orElse(new ArrayList<>())
+      .stream().forEach(widget -> {
+        if (widget instanceof WelcomeDashboardWidget) {
+          var welcomeWidget = (WelcomeDashboardWidget) widget;
+          welcomeWidget.setImageContent(encodeWelcomeWidgetImage(welcomeWidget));
+        }
+      });
+
+    var inputStream = new ByteArrayInputStream(BusinessEntityConverter.prettyPrintEntityToJsonValue(dashboard).getBytes(StandardCharsets.UTF_8));
+    return DefaultStreamedContent
+        .builder()
+        .stream(() -> inputStream)
+        .contentType(MediaType.APPLICATION_JSON)
+        .name(getFileName(dashboard.getTitle()))
+        .build();
+  }
+
+  private String encodeWelcomeWidgetImage(WelcomeDashboardWidget widget) {
+    if (Optional.ofNullable(widget).map(WelcomeDashboardWidget::getImageLocation).isEmpty()) {
+      return null;
+    }
+
+    String result = "";
+    ContentObject widgetImage = WelcomeWidgetUtils.getImageContentObject(widget.getImageLocation(), widget.getImageType());
+    if (widgetImage != null && widgetImage.exists()) {
+      result = new String(Base64.getEncoder().encode(WelcomeWidgetUtils.readObjectValueOfDefaultLocale(widgetImage).read().bytes()));
+    }
+    return result;
+  }
+
+  private String getFileName(String dashboardName) {
+    return dashboardName + JSON_FILE_SUFFIX;
+  }
 }

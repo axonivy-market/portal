@@ -401,7 +401,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       removeTempImageOfWelcomeWidget(widget);
       WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
       ContentObject welcomeImage = getWelcomeWidgetImageObject(false, welcomeWidget);
-      if (!StringUtils.isBlank(welcomeWidget.getImageLocation()) && welcomeImage != null && !welcomeImage.exists()) {
+      if (welcomeImage != null && !StringUtils.isBlank(welcomeWidget.getImageLocation()) && !welcomeImage.exists()) {
         welcomeWidget.setImageLocation(null);
       }
     }
@@ -443,6 +443,12 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       ContentObjectValue tempImageFile = getWelcomeWidgetImage(true, welcomeWidget);
       ContentObjectValue imageFile = getWelcomeWidgetImage(false, welcomeWidget);
       if (imageFile != null && tempImageFile != null && tempImageFile.parent().exists()) {
+        Optional<DashboardWidget> oldWidgetOptional = DashboardWidgetUtils.findWidget(selectedDashboard,
+            widget.getId());
+        if (oldWidgetOptional.isPresent()) {
+          WelcomeDashboardWidget oldWidget = (WelcomeDashboardWidget) oldWidgetOptional.get();
+          Optional.ofNullable(getWelcomeWidgetImage(false, oldWidget)).ifPresent(co -> co.delete());
+        }
         imageFile.write().bytes(tempImageFile.read().bytes());
         tempImageFile.delete();
       }
@@ -460,7 +466,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   private ContentObjectValue getWelcomeWidgetImage(boolean isTempImage, WelcomeDashboardWidget widget) {
-    return getWelcomeWidgetImageObject(isTempImage, widget).value().get("en");
+	  ContentObject contentObject = getWelcomeWidgetImageObject(isTempImage, widget);
+	    if (contentObject != null) {
+	      return contentObject.value().get("en");
+	    }
+	    return null;
   }
 
   private ContentObject getWelcomeWidgetImageObject(boolean isTempImage, WelcomeDashboardWidget widget) {

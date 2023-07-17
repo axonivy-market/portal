@@ -74,8 +74,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationAndRole: Application et rôle
     definedDeputies: Substituts définis
     deputyFor: Je suis remplaçant pour
+    myAbsences: Mon absence
     myDeputies: Mes substituts
-    myPlannedAbsences: Mes absences prévues
     nextAbsence: Absence à venir
     selectedDeputyFor: L'utilisateur sélectionné est un substitut de
     selectedUser: Utilisateur sélectionné
@@ -771,6 +771,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: La configuration du tableau de bord n'est pas prise en charge pour les appareils mobiles.
       EditPrivateDashboards: Modifier vos tableaux de bord privés
       EditPublicDashboards: Modifier les tableaux de bord publics
+      ExportDashboard: Exporter le tableau de bord
       PrivateDashboard: Tableaux de bord privés
       PrivateDashboardConfiguration: Configuration des tableaux de bord privés
       PublicDashboard: Tableaux de bord publics
@@ -849,6 +850,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       configurationDescription: Vous pouvez configurer votre widget dans cette zone de configuration. Veuillez définir les filtres requis ainsi que les colonnes à afficher.
       customWidgetParamChangedMessage: Ce processus a changé. Cliquez sur Update pour continuer.
       editWidgetHeader: Modifier la configuration du widget
+      import: Importer
+      importFromJsonFile: Importer depuis un fichier JSON
       newWidgetHeader: Nouvelle configuration du widget {0}
       pageTitle: Configuration du tableau de bord
       processConfigurationDescription: Vous pouvez configurer votre widget dans cette zone de configuration. Veuillez définir les filtres requis ainsi que les propriétés à afficher.
@@ -879,6 +882,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     expiryTo: Date d'expiration
     export:
       exportedCasesFileName: AXONIVY_Dataset_Cases_{0}_{1}.{2}
+      exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}_{1}.{2}
     field: Champ
     fieldIsAdded: Le champ {0} est ajouté
     iconMessage:
@@ -954,6 +958,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     download: Télécharger
     fileContainScript: Ce fichier n'est pas autorisé à être téléchargé en raison du contenu du script!
     fileContainVirus: Erreur de téléchargement, virus/infection détecté !
+    fileCouldNotParse: Impossible d'analyser le fichier
+    fileEmptyMessage: Le fichier est vide
     name: Nom du fichier
     size: Taille du fichier
     type: Type
@@ -1531,6 +1537,12 @@ Dialogs:
             expressNoItem: Pas de tâche Express terminée
             expressNoItemDescription: Les résultats des tâches terminées sont affichés ici
             expressWorkflowName: 'Détails de cas #{0}'
+        portal:
+          generic:
+            dashboard:
+              component:
+                CustomDashboardWidget:
+                  CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
         portalkit:
           component:
             CaseWidget:
@@ -1552,6 +1564,11 @@ Dialogs:
       portal:
         dashboard:
           component:
+            DashboardImportDetails:
+              FileInfomation: Informations sur le fichier
+              ImportPrivate: Importer un tableau de bord privé
+              ImportPublic: Importer un tableau de bord public
+              chooseAJsonFile: Choisissez un fichier json
             NewsWidget:
               NewsContentPlaceHolder: Saisir le contenu de l'actualité
               NewsContentValidateMessage: Le contenu de l'actualité dans {0} est requis
