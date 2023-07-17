@@ -186,8 +186,8 @@ This decorator offers the following parameters:
   :class: longtable
   :widths: 20 10 25 45
 
-Portal Cronjob Trigger
-----------------------
+Portal Cronjob Trigger (Deprecated)
+-----------------------------------
 
 Portal provides the helper bean
 ``ch.ivy.addon.portalkit.util.CronByGlobalVariableTriggerStartEventBean``. It
@@ -198,6 +198,11 @@ trigger the process as required.
 To generate cron patterns, use the online site `Cron Maker
 <http://www.cronmaker.com>`_. It makes creating your own cron job patterns a
 breeze.
+
+.. important::
+
+      This component is deprecated. Please use `Cron Job <https://market.axonivy.com/cronjob>`_ on
+      Axon Ivy Market instead.
 
 .. |task-analysis| image:: ../../screenshots/components/task-analysis.png
 .. |example-global-growl-finished-task| image:: ../../screenshots/components/example-global-growl-finished-task.png
