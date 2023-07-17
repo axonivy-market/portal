@@ -1540,6 +1540,12 @@ Dialogs:
             expressNoItem: Aún no se ha completado ninguna Tarea Express
             expressNoItemDescription: Aquí se mostrarán los resultados de las tareas completadas
             expressWorkflowName: 'Detalles de negocio del caso #{0}'
+        portal:
+          generic:
+            dashboard:
+              component:
+                CustomDashboardWidget:
+                  CouldNotFindLinkedProcess: ¡No se pudo encontrar el proceso vinculado!
         portalkit:
           component:
             CaseWidget:
