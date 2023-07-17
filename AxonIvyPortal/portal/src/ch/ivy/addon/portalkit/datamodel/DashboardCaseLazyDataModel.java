@@ -103,11 +103,7 @@ public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
    */
   @Override
   public void setRowIndex(int index) {
-    int idx = index;
-    if (idx >= cases.size()) {
-      idx = -1;
-    }
-    this.rowIndex = idx;
+    super.setRowIndex(index);
   }
 
   /**
@@ -115,7 +111,7 @@ public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
    */
   @Override
   public ICase getRowData() {
-    return cases.get(rowIndex);
+    return super.getRowData();
   }
 
   /**
@@ -123,10 +119,7 @@ public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
    */
   @Override
   public boolean isRowAvailable() {
-    if (cases == null) {
-      return false;
-    }
-    return rowIndex >= 0 && rowIndex < cases.size();
+    return super.isRowAvailable();
   }
 
   public DashboardCaseSearchCriteria getCriteria() {
