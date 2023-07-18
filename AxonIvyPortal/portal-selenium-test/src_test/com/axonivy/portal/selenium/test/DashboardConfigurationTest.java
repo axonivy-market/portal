@@ -24,7 +24,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class DashboardConfigurationTest extends BaseTest {
 
   private NewDashboardPage newDashboardPage;
@@ -429,7 +429,9 @@ public class DashboardConfigurationTest extends BaseTest {
     String name = "New import public dashboard";
     String icon = "fa-coffee";
     String description = "New import public dashboard description";
+    List<String> permissions = new ArrayList<>();
+    permissions.add("Everybody");
     
-    configurationPage.saveImportDashboard(name, description, icon, null);
+    configurationPage.saveImportDashboard(name, description, icon, permissions);
   }
 }

@@ -41,7 +41,7 @@
             allowTypes="/(\.|\/)(json)$/i"
             update="import-dashboard-form import-dashboard-dialog-message #{p:resolveFirstComponentWithId('footer-button-container', view).clientId}"
             value="#{managedBean.importFile}" auto="true" 
-            requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
+            requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" oncomplete="PF('#{cc.attrs.importDialogId}').initPosition();">
           </p:fileUpload>
         </div>
 
