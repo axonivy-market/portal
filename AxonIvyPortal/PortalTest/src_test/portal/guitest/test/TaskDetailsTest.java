@@ -69,7 +69,7 @@ public class TaskDetailsTest extends BaseTest {
     String tomorrowStringLiteral = prepareTomorrowAsString();
     taskDetailsPage = openDetailsPageOfFirstTask();
     taskDetailsPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
-    assertTrue(StringUtils.equalsIgnoreCase(tomorrowStringLiteral, taskDetailsPage.getExpiryOfTaskAt()));
+    assertTrue(StringUtils.equalsIgnoreCase(prepareTomorrowAsLocaleDateString(), taskDetailsPage.getExpiryOfTaskAt()));
   }
 
   @Test
@@ -79,7 +79,7 @@ public class TaskDetailsTest extends BaseTest {
     String tomorrowStringLiteral = prepareTomorrowAsString();
     taskDetailsPage = openDetailsPageOfFirstTask();
     taskDetailsPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
-    assertTrue(StringUtils.equalsIgnoreCase(tomorrowStringLiteral, taskDetailsPage.getExpiryOfTaskAt()));
+    assertTrue(StringUtils.equalsIgnoreCase(prepareTomorrowAsLocaleDateString(), taskDetailsPage.getExpiryOfTaskAt()));
     String firstTaskNoteComment = taskDetailsPage.getFirstTaskNoteComment();
     assertTrue(StringUtils.contains(firstTaskNoteComment, "Portal Admin User (admin) has set deadline to task"));
     assertTrue(StringUtils.contains(firstTaskNoteComment, "assign Everybody as the task escalation activator"));
@@ -117,6 +117,11 @@ public class TaskDetailsTest extends BaseTest {
     LocalDateTime tomorrow = LocalDateTime.now().plusDays(1);
     return tomorrow.format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
   }
+  
+  private String prepareTomorrowAsLocaleDateString() {
+    LocalDateTime tommorrow = LocalDateTime.now().plusDays(1);
+    return tommorrow.format(DateTimeFormatter.ofPattern(DateTimePattern.LOCALE_DATE_TIME_PATTERN));
+  }
 
   @Test
   public void testClearTheDelayTimestampOfTask() {
@@ -134,12 +139,14 @@ public class TaskDetailsTest extends BaseTest {
     openDelayTask();
     assertTrue(StringUtils.equalsIgnoreCase("DELAYED", taskDetailsPage.getTaskState()));
     String tomorrow = prepareTomorrowAsString();
-    taskDetailsPage.updateDelayTimestamp(tomorrow);
+    String tomorrowWithLocale = prepareTomorrowAsLocaleDateString();
+    taskDetailsPage.updateDelayTimestamp(tomorrow,tomorrowWithLocale);
     assertTrue(StringUtils.equalsIgnoreCase("DELAYED", taskDetailsPage.getTaskState()));
     refreshPage();
     taskDetailsPage = new TaskDetailsPage();
     String yesterday = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
-    taskDetailsPage.updateDelayTimestamp(yesterday);
+    String yesterdayWithLocale = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.LOCALE_DATE_TIME_PATTERN));
+    taskDetailsPage.updateDelayTimestamp(yesterday,yesterdayWithLocale);
     assertTrue(StringUtils.equalsIgnoreCase("SUSPENDED", taskDetailsPage.getTaskState()));
   }
 

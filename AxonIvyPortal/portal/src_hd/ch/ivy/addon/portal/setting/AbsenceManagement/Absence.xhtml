@@ -47,9 +47,10 @@
           <h:outputLabel for="absence-start-date" styleClass="ui-g-12"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/from')}:" />
           <div class="ui-g-12">
-            <p:datePicker id="absence-start-date" value="#{data.selectedAbsence.from}" locale="#{localeBean.locale}"
+            <p:datePicker id="absence-start-date" value="#{data.selectedAbsence.from}" 
+              locale="#{localeBean.locale}"
               showIcon="true" converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}"
-              pattern="#{dateTimePatternBean.configuredDateWithoutTimePattern}" required="true"
+              required="true"
               requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateRequired')}">
               <p:ajax event="dateSelect" listener="#{logic.dateChange}"
                 update="#{p:resolveFirstComponentWithId('absence-messages', view).clientId} #{p:resolveFirstComponentWithId('save-absence', view).clientId}" />
@@ -63,8 +64,8 @@
           <div class="ui-g-12">
             <p:datePicker id="absence-end-date" value="#{data.selectedAbsence.until}" showIcon="true"
               locale="#{localeBean.locale}"
+              required="true"
               converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}"
-              pattern="#{dateTimePatternBean.configuredDateWithoutTimePattern}" required="true"
               requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateRequired')}">
               <p:ajax event="dateSelect" listener="#{logic.dateChange}"
                 update="#{p:resolveFirstComponentWithId('absence-messages', view).clientId} #{p:resolveFirstComponentWithId('save-absence', view).clientId}" />

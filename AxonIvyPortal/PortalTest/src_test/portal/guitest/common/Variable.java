@@ -64,6 +64,7 @@ public enum Variable {
   USER_MENU("Portal.UserMenu"),
   ENABLE_SWITCH_THEME_BUTTON("Portal.Theme.EnableSwitchThemeModeButton"),
   DEFAULT_THEME_MODE("Portal.Theme.Mode"),
+  DEEPL_AUTH_KEY("Portal.DeepL.AuthKey"), ENABLE_DEEPL_TRANSLATION("Portal.DeepL.Enable"),
   DASHBOARD("Portal.Dashboard");
 
   private String key;
