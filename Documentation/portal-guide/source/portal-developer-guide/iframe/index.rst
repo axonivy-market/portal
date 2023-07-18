@@ -15,18 +15,9 @@ Templates to use with IFrame:
 
 #. frame-8 template (Provided by core, uses Serenity theme)
 
-#. frame-10 template (Provided by core, uses Freya theme)
+#. frame-10 templates (Provided by core, uses Freya theme)
 
-These templates have the same header, which is a menu of applications that you
-configure on the Administration page. Since version 8.0, Portal officially
-supports responsiveness. Every template has its default responsiveness. Refer to
-Responsiveness to override it.
-
-Additionally, there are user settings like My Profile, Absences, Email, and
-Administration (for Administrators only). For details about user settings, refer
-to :ref:`Settings <settings>`.
-
-|portal-header|
+These templates fully support responsiveness.
 
 How To Use
 ==========
@@ -66,6 +57,171 @@ Follow these steps to use the IFrame approach:
        ``Portal.EmbedInFrame`` Portal setting. refer to
        :ref:`update-portal-settings`
 
+Configure template
+==================
+
+**Portal** supports some layout options for the templates mentioned above.
+
+#. ``Task name``: name of the working task.
+
+#. ``Process steps``: Refer to :ref:`components-portal-components-process-chain`.
+
+#. ``Show Information``: button to show Case details and other actions.
+
+|task-name-template|
+
+You can configure those options by using Javascript from your HTML dialog as follows:
+
+.. code-block:: xml
+
+   <h:body>
+      <ui:composition template="/layouts/frame-10.xhtml">
+         ...
+         <script>
+            window.processSteps = "Create Investment Request,Approve Investment Request";
+            window.currentProcessStep = 0;
+            window.currentProcessStep = #{data.currentProcessStep};
+            window.isHideTaskName= false;
+            window.isHideCaseInfo = false;
+            window.isWorkingOnATask = false;
+            window.taskName = "Your New Task Name";
+
+            // show case details of a case different from current case.
+            window.caseId = 123456;
+
+            // Display content of the IFrame inside a card style.
+            window.isCardFrame = true;
+         </script>
+         ...
+      </ui:composition>
+   </h:body>
+
+Configure Task name
+-------------------
+
+By default, **Portal** uses the name of the working task.
+
+Options for ``Task name``
+
+.. csv-table::
+  :file: documents/available_task_options.csv
+  :widths: 20 50
+  :header-rows: 1
+  :class: longtable
+
+Example:
+
+.. code-block:: xml
+
+   <h:body>
+      <ui:composition template="/layouts/frame-10.xhtml">
+         ...
+         <script>
+            window.taskName = "Your New Task Name";
+         </script>
+         ...
+      </ui:composition>
+   </h:body>
+
+Configure Show Information
+--------------------------
+
+When you click the ``Show Information`` button, **Portal** will show  details of the
+running case in a modal dialog.
+
+Options for ``Show Information``
+
+   - ``caseId``: Case ID of the case you want to show in the modal dialog.
+   - ``isHideCaseInfo``: Hide the ``Show Information`` button
+
+.. csv-table::
+  :file: documents/available_show_information_options.csv
+  :widths: 20 50
+  :header-rows: 1
+  :class: longtable
+
+Example:
+
+.. code-block:: xml
+
+   <h:body>
+      <ui:composition template="/layouts/frame-10.xhtml">
+         ...
+         <script>
+            window.caseId = "163421";
+         </script>
+         ...
+      </ui:composition>
+   </h:body>
+
+Configure Process steps
+-----------------------
+
+``Process steps`` have many options to be configured from the list of steps to layout and shape.
+
+Options for ``Process steps``
+
+.. csv-table::
+  :file: documents/available_process_steps_options.csv
+  :widths: 20 50
+  :header-rows: 1
+  :class: longtable
+
+
+.. note::
+
+       When defining parameter ``processSteps``, please make sure that you add this JSP function tag to your HTML dialog:
+       ``xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"``
+
+Example:
+
+.. code-block:: xml
+
+   <h:body>
+      <ui:composition template="/layouts/frame-10.xhtml">
+         ...
+         <script>
+            window.currentProcessStep = 0;
+            window.processSteps = ["Create Investment Request", "Approve Investment Request"];
+            window.processChainDirection = "VERTICAL";
+            window.processChainShape = "LINE";
+         </script>
+         ...
+      </ui:composition>
+   </h:body>
+
+Other options
+-------------
+
+Various options can affect functions and layout.
+
+.. csv-table::
+  :file: documents/available_other_options.csv
+  :widths: 20 50
+  :header-rows: 1
+  :class: longtable
+
+Example:
+
+.. code-block:: xml
+
+   <h:body>
+      <ui:composition template="/layouts/frame-10.xhtml">
+         ...
+         <script>
+            window.isHideTaskAction = true;
+            window.isWorkingOnATask = false;
+         </script>
+         ...
+      </ui:composition>
+   </h:body>
+
+Developer tips
+==============
+
+In case your project has a navigation button that does not complete a task, e.g Cancel, to
+
+-  One of the default pages (application home, task list, process list, etc.): in your HTML dialog, redirect to the page you want to display.
 
 Customization
 =============
@@ -109,97 +265,6 @@ Now you can develop your own processes inside the ``BusinessProject`` and the di
 
 .. |task-embedInFrame| image:: images/task-embedInFrame.png
 .. |case-embedInFrame| image:: images/case-embedInFrame.png
-
-configuration
---------------------
-
-When using templates, you can configure parameters for the content of IFrame as follows; they will be rendered by the template automatically:
-
-::
-
-   <script>
-      // Follow one of these formats to set process steps:
-      window.processSteps = ["Create Investment Request", "Approve Investment Request"];
-      window.processSteps = "Create Investment Request,Approve Investment Request";
-
-      // If process steps are set in HTML dialog logic or Java code, convert it to one of above formats by jstl (following code) or Java code
-      // Include this namespace xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions" to the "html" tag
-      // Use this code if process steps are a Java String list
-      window.processSteps = "#{fn:join(data.steps.toArray(), ',')}";
-      // Use this code if process steps are a Java String array
-      window.processSteps = "#{fn:join(data.steps, ',')}";
-
-      // Current process step could be a number or String:
-      window.currentProcessStep = 0;
-      window.currentProcessStep = #{data.currentProcessStep};
-      window.currentProcessStep = "#{data.currentProcessStep}";
-      window.isShowAllSteps = true;
-      window.isHideTaskName= false;
-      window.isHideTaskAction = false;
-      window.isHideCaseInfo = false;
-      window.isWorkingOnATask = false;
-      window.processChainDirection = "VERTICAL";
-      window.processChainShape = "LINE";
-      window.announcementInvisible = false;
-      window.viewName = "TASK_DETAIL";
-      window.taskName = "Your New Task Name";
-
-      // Use this code to show case details of a case different from current case of working task.
-      // by send the case ID of that case.
-      window.caseId = 123456;
-
-      // Display content of the IFrame inside a card style, true or false (default)
-      window.isCardFrame = true;
-   </script>
-
-.. note::
-
-       When you define parameter processSteps, please make sure that you add the jsp function tag to your XHTML file:
-       ``xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions``
-
-In case your project has a navigation button that does not complete a task, e.g Cancel, to
-
--  One of the default pages (application home, task list, process list, etc.): in your HTMLDialog, redirect to the page you want to display.
-
-Responsiveness
---------------
-
-Since version 8.0, Portal has a simplified ResponsiveToolKit. Now, the Portal
-supports various screen resolutions, not just the fixed three screen widths as before.
-
-To apply your styles for the specific resolution, you can add your own
-media query CSS:
-
-.. code-block:: css
-
-    @media screen and (max-width: 1365px) {/*.....*/}
-
-In the Portal's new design, the width of the main container should be changed
-according to menu state (expand/collapse).
-
-To adapt to the change, you need to initialize the ``ResponsiveToolkit``
-JavaScript object and introduce one object to handle screen resolutions.
-Your object has to implement the ``updateMainContainer`` method.
-
-Portal templates define their own responsiveness, you can redefine the
-footer section to override:
-
-E.g. Initialize ``ResponsiveToolkit`` for a TaskList page.
-
-.. code-block:: html
-
-      <ui:define name="footer">
-      <script type="text/javascript">
-      $(function(){
-      var simpleScreen = new TaskListScreenHandler();
-      var responsiveToolkit = ResponsiveToolkit(simpleScreen);
-      Portal.init(responsiveToolkit);
-      });
-      </script>
-      </ui:define>
-
-.. |basic-template| image:: ../../screenshots/layout-template/basic-template.png
 .. |case-list-template| image:: ../../screenshots/case/case-key-information.png
-.. |portal-header| image:: ../../screenshots/settings/user-settings.png
 .. |task-list-template| image:: ../../screenshots/task/task-key-information.png
 .. |task-name-template| image:: ../../screenshots/layout-template/task-template.png
