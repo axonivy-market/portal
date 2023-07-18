@@ -42,24 +42,6 @@
             </div>
           </p:commandLink>
         </div>
-        <h:panelGroup styleClass="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12" rendered="#{dashboardModificationBean.hasImportDashboardPermission(isPublicDashboard)}"> 
-          <p:commandLink id="import-dashboard" styleClass="dashboard-action-container"
-            oncomplete="PF('dashboard-import-dialog').show()" 
-            actionListener="#{dashboardImportBean.importDashboard(isPublicDashboard)}"
-            update="#{cc.clientId}:dashboard-import-component:dashboard-import-dialog"
-            resetValues="true"
-            global="false">
-            <div class="dashboard-action__icon">
-              <span class="si si-file-code-upload-1 dashboard-action-container-icon" ></span>
-            </div>
-            <div class="dashboard-action__text">
-              <p:outputLabel styleClass="dashboard-action-container-label"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/import')}" />
-              <p:outputLabel styleClass="dashboard-action-container-description"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/importFromJsonFile')}" />
-            </div>
-          </p:commandLink>
-        </h:panelGroup>
         <ui:repeat var="template" value="#{dashboardTemplateSelectionBean.dashboardTemplates}" varStatus="status">
           <div class="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12">
             <p:commandLink id="template" styleClass="dashboard-action-container"
@@ -88,8 +70,5 @@
     title="#{ivy.cms.co(isPublicDashboard ? '/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/CreateNewPublicDashboard':'/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/CreateNewPrivateDashboard')}"
     isPublicDashboard="#{isPublicDashboard}"
     isDashboardCreation="true" />
-   
-   <ic:com.axonivy.portal.dashboard.component.DashboardImportDetails id="dashboard-import-component" importDialogId="dashboard-import-dialog" managedBean="#{dashboardImportBean}" isPublicDashboard="#{isPublicDashboard}"/>
-
 </cc:implementation>
 </html>
