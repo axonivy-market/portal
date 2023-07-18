@@ -572,3 +572,19 @@ function highlightProcessDisplayModePanel() {
 function highlightDashboardConfiguration() {
    createRedMediumOutline($("#dashboard-configuration"));
 }
+
+function highlightAndNumberingTaskTemplate() {
+  $(".task-template-title-horizontal-container").css("padding-top", "10px");
+
+  var title = $("#task-template-title");
+  title.css("padding-left", "10px");
+
+  appendStepAnnotation(title, "1", 0 , title.width()/2 + 70);
+
+  var processChain = $(".process-chain-container");
+  appendStepAnnotation(processChain, "2", 0, processChain.width()/2 - 150);
+
+  var other = $("#horizontal-task-template-tasks-command");
+  createRedMediumOutline(other);
+  appendStepAnnotation(other, "3", 27, -20);
+}
