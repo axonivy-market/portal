@@ -714,8 +714,9 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 .state-cell .open-task-state,
 .state-column .open-case-state,
 .state-column .open-task-state{
-  background: var(--task-state-open-color);
-  border-color: var(--task-state-open-color); }
+  background: var(--task-state-suspended-background);
+  border-color: var(--task-state-suspended-background); 
+  color: var(--task-state-suspended-color); }
 
 .state-cell .failed-task-state,
 .state-column .failed-task-state,
