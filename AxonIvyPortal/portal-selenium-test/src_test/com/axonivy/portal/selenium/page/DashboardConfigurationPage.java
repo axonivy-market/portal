@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 import java.util.List;
 
+import com.axonivy.portal.selenium.common.FileHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
@@ -116,19 +117,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   public void createPublicDashboardFromScratch(SelenideElement createDashboardDialog, List<String> permissions) {
     String creationDetailsDialogId = "div[id$=':dashboard-creation-details-dialog']";
     if (permissions != null) {
-      createDashboardDialog.$("div[id$=':dashboard-permission']").$$("li.ui-state-active").forEach(permission -> {
-        permission.$("span.ui-icon-close").shouldBe(getClickableCondition()).click();
-      });
-
-      createDashboardDialog.$("div[id$=':dashboard-permission']").$("button.ui-autocomplete-dropdown").click();
-      $("span[id$=':dashboard-permission_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-          .$$("tr.ui-autocomplete-item").forEach(item -> {
-            for (String permissionName : permissions) {
-              if (item.$("td").getText().contains(permissionName)) {
-                item.shouldBe(getClickableCondition()).click();
-              }
-            }
-          });
+      setPermissions(permissions, createDashboardDialog.$("div[id$=':dashboard-permission']"));
     }
 
     createDashboardDialog.$("button[id$='dashboard-create-button']").click();
@@ -155,6 +144,13 @@ public class DashboardConfigurationPage extends TemplatePage {
     return addLanguageButton;
   }
 
+  public SelenideElement getTranslationOverlayPanel(int index) {
+    SelenideElement translationOverlay = $(String.format("div[id$=':%s:overlay-panel-input']", index));
+    waitUntilElementToBeClickable(translationOverlay);
+    translationOverlay.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
+    return translationOverlay;
+  }
   public void reorderPublicDashboard() {
     selectPublicDashboardType();
     $("a[id$='reorder-dashboard-action'].js-public-dashboard").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
@@ -214,5 +210,59 @@ public class DashboardConfigurationPage extends TemplatePage {
     $("[id$='actions-group']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("[id$='back-to-home-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     return new NewDashboardPage();
+  }
+  
+  public SelenideElement getImportDashboardDialog() {
+    $("a[id$=':import-dashboard']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    return $("div[id$='dashboard-import-dialog']");
+  }
+  
+  public SelenideElement getDashboardImportButtonOfDashboard() {
+    return $("a[id$=':import-dashboard']");  
+  }
+  
+  public SelenideElement getDashboardImportSaveButton() {
+    return $("button[id$=':dashboard-detail-save-button']");  
+  }
+  
+  public SelenideElement getDashboardImportPermission() {
+    return $("div[id$=':dashboard-permission']");
+  }
+  
+  public void uploadFile(String fileName) {
+    var importDialog = $("div[id$='dashboard-import-dialog']");
+    importDialog.find("[id$=':dashboard-upload_input']").sendKeys(FileHelper.getAbsolutePathToTestFile(fileName));
+  }
+  
+  public void setPermissions(List<String> permissions, SelenideElement permissionElement) {
+    getDashboardImportPermission().$$("li.ui-state-active").forEach(permission -> {
+      permission.$("span.ui-icon-close").shouldBe(getClickableCondition()).click();
+    });
+
+    getDashboardImportPermission().$("button.ui-autocomplete-dropdown").click();
+    $("span[id$=':dashboard-permission_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$$("tr.ui-autocomplete-item").forEach(item -> {
+          for (String permissionName : permissions) {
+            if (item.$("td").getText().contains(permissionName)) {
+              item.shouldBe(getClickableCondition()).click();
+            }
+          }
+        });
+  }
+  
+  public void saveImportDashboard(String name, String desc, String icon, List<String> permissions) {
+    var importDialog = $("div[id$='dashboard-import-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("a[id$=':change-icon-link']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    selectDashboardIcon(icon);
+    importDialog.$("input[id$=':dashboard-title']").clear();
+    importDialog.$("input[id$=':dashboard-title']").sendKeys(name);
+    importDialog.$("input[id$=':dashboard-description']").clear();
+    importDialog.$("input[id$=':dashboard-description']").sendKeys(desc);
+
+    if (permissions != null) {
+      setPermissions(permissions, getDashboardImportPermission());
+    }
+    importDialog.$("button[id$=':dashboard-detail-save-button']").shouldBe(getClickableCondition()).click();
+    importDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 }

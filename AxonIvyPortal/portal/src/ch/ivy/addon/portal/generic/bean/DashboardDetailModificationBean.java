@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -71,6 +72,7 @@ import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.DashboardService;
+import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.CustomWidgetUtils;
@@ -81,6 +83,7 @@ import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.cm.ContentObjectValue;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.service.ServiceException;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ViewScoped
@@ -443,6 +446,12 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       ContentObjectValue tempImageFile = getWelcomeWidgetImage(true, welcomeWidget);
       ContentObjectValue imageFile = getWelcomeWidgetImage(false, welcomeWidget);
       if (imageFile != null && tempImageFile != null && tempImageFile.parent().exists()) {
+        Optional<DashboardWidget> oldWidgetOptional = DashboardWidgetUtils.findWidget(selectedDashboard,
+            widget.getId());
+        if (oldWidgetOptional.isPresent()) {
+          WelcomeDashboardWidget oldWidget = (WelcomeDashboardWidget) oldWidgetOptional.get();
+          Optional.ofNullable(getWelcomeWidgetImage(false, oldWidget)).ifPresent(co -> co.delete());
+        }
         imageFile.write().bytes(tempImageFile.read().bytes());
         tempImageFile.delete();
       }
@@ -460,7 +469,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   private ContentObjectValue getWelcomeWidgetImage(boolean isTempImage, WelcomeDashboardWidget widget) {
-    return getWelcomeWidgetImageObject(isTempImage, widget). value().get("en");
+    ContentObject contentObject = getWelcomeWidgetImageObject(isTempImage, widget);
+    if (contentObject != null) {
+      return contentObject.value().get("en");
+    }
+    return null;
   }
 
   private ContentObject getWelcomeWidgetImageObject(boolean isTempImage, WelcomeDashboardWidget widget) {
@@ -809,7 +822,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
     return componentId;
   }
-  
+
   public void updateWidgetNameByLocale() {
     String currentName = this.widget.getName();
     initMultipleLanguagesForWidgetName(currentName);
@@ -840,5 +853,35 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         localeLanguage.setValue(currentName);
       }
     }
+  }
+  public void translate(DisplayName title) {
+    translatedText = "";
+    warningText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/InvalidDeepLAuthKey");
+    if (!title.getLocale().getLanguage().equals(UserUtils.getUserLanguage())) {
+      List<DisplayName> languages = this.widget.getNames();
+      String currentLanguage = UserUtils.getUserLanguage();
+      Optional<DisplayName> optional = languages.stream()
+              .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
+      if (optional.isPresent()) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("text", optional.get().getValue());
+        params.put("targetLanguage", getTargetLanguageFromValue(title.getLocale().getLanguage().toUpperCase()));
+        params.put("sourceLanguage",
+            getSourceLanguageFromValue(optional.get().getLocale().getLanguage().toUpperCase()));
+        Map<String, Object> response = null;
+        try {
+          response = IvyAdapterService.startSubProcess(
+              "translateText(String,com.deepl.api.v2.client.TargetLanguage,com.deepl.api.v2.client.SourceLanguage)",
+                  params, new ArrayList<>());
+        } catch (ServiceException ex) {
+          Ivy.log().error(ex.getMessage());
+        }
+        if (response != null) {
+          translatedText = response.get("translation").toString();
+          warningText = "";
+        }
+      }
+    }
+
   }
 }

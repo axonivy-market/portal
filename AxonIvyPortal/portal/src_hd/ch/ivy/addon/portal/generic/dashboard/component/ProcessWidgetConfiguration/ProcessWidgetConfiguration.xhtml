@@ -62,7 +62,7 @@
           </p:commandButton>
         </div>
       </h:panelGroup>
-      
+
       <div class="ui-g-12 MarTop20 u-padding-0">
         <div class="ui-g-4">
           <strong>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/availableFilters")}</strong>
@@ -200,8 +200,8 @@
   </h:panelGroup>
 
   <!-- Multi language dialog-->
-  <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
-    id="title-language-config" titles="#{managedBean.widget.names}"
+  <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration id="title-language-config"
+    titles="#{managedBean.widget.names}" managedBean="#{managedBean}"
     componentToUpdateOnCreate="#{cc.attrs.componentToUpdate}" />
 
 </cc:implementation>

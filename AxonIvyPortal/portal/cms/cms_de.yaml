@@ -74,8 +74,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationAndRole: Applikation und Rolle
     definedDeputies: Definierte Stellvertreter
     deputyFor: Ich bin Ersatz für
+    myAbsences: Meine Abwesenheit
     myDeputies: Meine Stellvertreter
-    myPlannedAbsences: Meine geplanten Abwesenheiten
     nextAbsence: Bevorstehende Abwesenheit
     selectedDeputyFor: Ausgewählter Benutzer ist Stellvertreter für
     selectedUser: Ausgewählter Benutzer
@@ -289,6 +289,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       showUserGuide: 'Aktiviert die interaktive Benutzeranleitung "erste Schritte" im Portal bei erstmaliger Anmeldung. '
       statisticChartScalingInterval: Intervall in Sekunden, in dem die Skalierung des statistischen Diagramms regelmäßig angefordert wird. Ist der Intervallwert kleiner als 10, wird die periodische Skalierung des statistischen Diagramms deaktiviert.
       uploadDocumentWhiteListExtensionNote: 'Leer lassen, falls Sie alle Formate erlauben. Falls Sie nur eine geringe Anzahl an Formate erlauben möchten (White list), können Sie diese hier, mit Komma getrennt, aufführen. Z.B.: pdf, txt, doc, docx.'
+      deepLAuthKey: DeepL Authentifizierungsschlüssel (sollte mit :fx enden)
+      enableDeepLTranslation: Setzen Sie diese Eigenschaft auf true, um die DeepL Übersetzungsunterstützung zu aktivieren.
     key: Schlüssel
     link: Link
     loading: WIRD GELADEN
@@ -328,7 +330,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   caseDetails:
     addDocumentHelpText: Zum Hochladen Dateien per Drag & Drop hier ablegen oder Dateien auswählen
     addNoteHelpText: Schreiben Sie hier Ihren Text
-    additionalCaseDetailsTitle: Zusätzliche Vorgangsdaten
+    businessDetailsTitle: Geschäftsdetails
     deleteFile: Datei löschen
     documents: Dokumente
     downloadFile: Datei herunterladen
@@ -774,6 +776,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: Die Dashboard-Konfiguration wird für mobile Geräte nicht unterstützt.
       EditPrivateDashboards: Private Dashboards bearbeiten
       EditPublicDashboards: Öffentliche Dashboards bearbeiten
+      InvalidDeepLAuthKey: Ungültiger DeepL Authentifizierungsschlüssel
+      ExportDashboard: Dashboard exportieren
       PrivateDashboard: Private Dashboards
       PrivateDashboardConfiguration: Private Dashboard-Konfiguration
       PublicDashboard: Öffentliche Dashboards
@@ -852,6 +856,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       configurationDescription: In diesem Konfigurationsbereich kann das Widget konfiguriert werden. Bitte definieren Sie die gewünschten Filter sowie die anzuzeigenden Spalten.
       customWidgetParamChangedMessage: Dieser Prozess hat sich geändert. Klicken Sie auf Update, um fortzufahren.
       editWidgetHeader: Widget-Konfiguration bearbeiten
+      import: Importieren
+      importFromJsonFile: Aus JSON-Datei importieren
       newWidgetHeader: Neue {0} Widget-Konfiguration
       pageTitle: Dashboard-Konfiguration
       processConfigurationDescription: In diesem Konfigurationsbereich kann das Widget konfiguriert werden. Bitte definieren Sie die gewünschten Filter sowie die Eigenschaften, die angezeigt werden sollen.
@@ -958,6 +964,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     download: Herunterladen
     fileContainScript: Diese Datei darf aufgrund von Skript-Inhalten nicht hochgeladen werden!
     fileContainVirus: Upload fehlgeschlagen, Virus/Infektion erkannt!
+    fileCouldNotParse: Die Datei konnte nicht analysiert werden
+    fileEmptyMessage: Datei ist leer
     name: Dateiname
     size: Dateigröße
     type: Typ
@@ -1534,6 +1542,12 @@ Dialogs:
             expressNoItem: Es gibt noch keine abgeschlossene Express Aufgabe
             expressNoItemDescription: Hier werden die Ergebnisse der abgeschlossenen Aufgaben angezeigt
             expressWorkflowName: 'Business Details des Vorgangs: #{0}'
+        portal:
+          generic:
+            dashboard:
+              component:
+                CustomDashboardWidget:
+                  CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
         portalkit:
           component:
             CaseWidget:
@@ -1555,6 +1569,11 @@ Dialogs:
       portal:
         dashboard:
           component:
+            DashboardImportDetails:
+              FileInfomation: Dateiinformationen
+              ImportPrivate: Privates Dashboard importieren
+              ImportPublic: Öffentliches Dashboard importieren
+              chooseAJsonFile: Wählen Sie eine JSON-Datei
             NewsWidget:
               NewsContentPlaceHolder: Nachrichteninhalt eingeben
               NewsContentValidateMessage: Nachrichteninhalt in {0} ist erforderlich

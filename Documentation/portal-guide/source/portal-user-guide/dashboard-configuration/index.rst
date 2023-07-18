@@ -45,9 +45,7 @@ How to: add private dashboard
 
 |create-private-dashboard-dialog|
 
-Setting multiple languages for the dashboard title:
-
-|dashboard-multi-language-dialog|
+To set multi languages for the dashboard title, see at :ref:`portal-multi-language`:
 
 Available dashboard templates:
 
@@ -55,6 +53,27 @@ Available dashboard templates:
 
 .. hint::
    The list of private dashboards shows only the private dashboards that have been created by you.
+
+How to: import private dashboards
+=================================
+
+#. Select |add-icon| Add.
+
+#. Select |import-icon| Import.
+
+#. The :guilabel:`Import Private Dashboard` dialog is opened.
+
+#. Press the Select button and choose the JSON file that contains the dashboard you want to import.
+
+#. Edit the mandatory title and the optional description for the private dashboard.
+
+#. Import the dashboard by selecting the Create Dashboard button.
+
+#. Configuration your private dashboard (see: :ref:`Dashboard <new-dashboard>`).
+
+#. Back on the dashboard list, you see that a new private dashboard has been added.
+
+|import-private-dashboard-dialog|
 
 How to: edit private dashboards
 ===============================
@@ -68,7 +87,13 @@ A table of private dashboards is shown with the following information:
 
 #. Description
 
-#. :guilabel:`Actions` for further actions: |edit-icon| edit (name, description), |settings-icon| configure (see: :ref:`Dashboards <new-dashboard>` ), and |trash-icon| delete a private dashboard.
+#. :guilabel:`Actions` for further actions: |edit-icon| edit (name, description), |settings-icon| configure
+   (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| export dashboard,
+   and |trash-icon| delete a private dashboard.
+
+   .. note::
+
+      the Export function only available for users who have the permission ``DASHBOARD_EXPORT_OWN``.
 
 |edit-private-dashboards|
 
@@ -139,9 +164,7 @@ How to: add public dashboard
 
 |create-public-dashboard-dialog|
 
-Setting multiple languages for the dashboard title:
-
-|dashboard-multi-language-dialog|
+To set multi languages for the dashboard title, see at :ref:`portal-multi-language`:
 
 Available dashboard templates:
 
@@ -149,6 +172,27 @@ Available dashboard templates:
 
 .. hint::
    Depending on dashboard roles, you might see other public dashboards in the dashboards list.
+
+How to: import public dashboard
+===============================
+
+#. Select |add-icon| Add.
+
+#. Select |import-icon| Import.
+
+#. The :guilabel:`Import Public Dashboard` dialog is opened.
+
+#. Press the Select button and choose the JSON file that contains the dashboard you want to import.
+
+#. Edit the mandatory title, permissions to see the public dashboard and the optional description for the public dashboard.
+
+#. Import the dashboard by selecting the Create Dashboard button.
+
+#. Configuration public dashboard (see: :ref:`Dashboard <new-dashboard>`).
+
+#. Go back to the dashboard list to see that a new public dashboard has been added.
+
+|import-public-dashboard-dialog|
 
 How to: edit public dashboards
 ==============================
@@ -164,7 +208,13 @@ A table of public dashboards is shown with the following information:
 
 #. Description
 
-#. :guilabel:`Actions` for further actions: |edit-icon| edit (name, roles, and description), |settings-icon| configure (see: :ref:`Dashboards <new-dashboard>` ), and |trash-icon| delete a public dashboard.
+#. :guilabel:`Actions` for further actions: |edit-icon| edit (name, description), |settings-icon| configure
+   (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| export dashboard,
+   and |trash-icon| delete a public dashboard.
+
+   .. note::
+
+      the Export function only available for users who have the permission ``DASHBOARD_EXPORT_PUBLIC``.
 
 |edit-public-dashboards|
 
@@ -196,7 +246,6 @@ A table of public dashboards is shown with the following information:
 .. |dashboard-configuration-page| image:: ../../screenshots/dashboard-configuration/dashboard-configuration-page.png
 .. |private-dashboard-configuration| image:: ../../screenshots/dashboard-configuration/private-dashboard-configuration.png
 .. |create-private-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/create-private-dashboard-dialog.png
-.. |dashboard-multi-language-dialog| image:: ../../screenshots/dashboard-configuration/dashboard-multi-language-dialog.png
 .. |edit-private-dashboards| image:: ../../screenshots/dashboard-configuration/edit-private-dashboards.png
 .. |reorder-your-dashboards| image:: ../../screenshots/dashboard-configuration/reorder-your-dashboards.png
 .. |public-dashboard-configuration| image:: ../../screenshots/dashboard-configuration/public-dashboard-configuration.png
@@ -204,3 +253,5 @@ A table of public dashboards is shown with the following information:
 .. |edit-public-dashboards| image:: ../../screenshots/dashboard-configuration/edit-public-dashboards.png
 .. |reorder-public-dashboards| image:: ../../screenshots/dashboard-configuration/reorder-public-dashboards.png
 .. |dashboard-templates| image:: ../../screenshots/dashboard-configuration/dashboard-templates.png
+.. |import-public-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/import-public-dashboard-dialog.png
+.. |import-private-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/import-private-dashboard-dialog.png

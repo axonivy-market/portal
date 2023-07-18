@@ -1533,11 +1533,351 @@
       "connect" : [
         { "id" : "f135", "to" : "f133" }
       ]
+    }, {
+      "id" : "f53",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.DASHBOARD_EXPORT_PUBLIC.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ISecurityContext.current().securityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 1520 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : [
+        { "id" : "f152", "to" : "f7", "via" : [ { "x" : 408, "y" : 1520 } ] }
+      ]
+    }, {
+      "id" : "f140",
+      "type" : "RequestStart",
+      "name" : "denyDashboardExportPublicPermission.ivp",
+      "config" : {
+        "signature" : "denyDashboardExportPublicPermission"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 1520 },
+        "labelOffset" : { "x" : 145, "y" : 25 }
+      },
+      "connect" : [
+        { "id" : "f141", "to" : "f53" }
+      ]
+    }, {
+      "id" : "f142",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.DASHBOARD_EXPORT_OWN.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ISecurityContext.current().securityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 1584 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : [
+        { "id" : "f153", "to" : "f7", "via" : [ { "x" : 408, "y" : 1584 } ] }
+      ]
+    }, {
+      "id" : "f143",
+      "type" : "RequestStart",
+      "name" : "grantDashboardExportOwnPermission.ivp",
+      "config" : {
+        "signature" : "grantDashboardExportOwnPermission"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 1584 },
+        "labelOffset" : { "x" : 145, "y" : 25 }
+      },
+      "connect" : [
+        { "id" : "f144", "to" : "f142" }
+      ]
+    }, {
+      "id" : "f145",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.DASHBOARD_EXPORT_PUBLIC.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ISecurityContext.current().securityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 1456 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : [
+        { "id" : "f151", "to" : "f7", "via" : [ { "x" : 408, "y" : 1456 } ] }
+      ]
+    }, {
+      "id" : "f146",
+      "type" : "RequestStart",
+      "name" : "grantDashboardExportPublicPermission.ivp",
+      "config" : {
+        "signature" : "grantDashboardExportPublicPermission"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 1456 },
+        "labelOffset" : { "x" : 145, "y" : 25 }
+      },
+      "connect" : [
+        { "id" : "f147", "to" : "f145" }
+      ]
+    }, {
+      "id" : "f148",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.DASHBOARD_EXPORT_OWN.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ISecurityContext.current().securityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 1648 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : [
+        { "id" : "f154", "to" : "f7", "via" : [ { "x" : 408, "y" : 1648 } ] }
+      ]
+    }, {
+      "id" : "f149",
+      "type" : "RequestStart",
+      "name" : "denyDashboardExportOwnPermission.ivp",
+      "config" : {
+        "signature" : "denyDashboardExportOwnPermission"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 1648 },
+        "labelOffset" : { "x" : 145, "y" : 25 }
+      },
+      "connect" : [
+        { "id" : "f150", "to" : "f148" }
+      ]
+    }, {
+      "id" : "f155",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.DASHBOARD_IMPORT_PUBLIC.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ISecurityContext.current().securityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 1776 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : [
+        { "id" : "f168", "to" : "f7", "via" : [ { "x" : 408, "y" : 1776 } ] }
+      ]
+    }, {
+      "id" : "f156",
+      "type" : "RequestStart",
+      "name" : "denyDashboardImportPublicPermission.ivp",
+      "config" : {
+        "signature" : "denyDashboardImportPublicPermission",
+        "request" : {
+          "name" : "Deny Dashboard Import Public Permission"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 1776 },
+        "labelOffset" : { "x" : 145, "y" : 25 }
+      },
+      "connect" : [
+        { "id" : "f165", "to" : "f155" }
+      ]
+    }, {
+      "id" : "f157",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.DASHBOARD_IMPORT_OWN.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ISecurityContext.current().securityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 1840 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : [
+        { "id" : "f169", "to" : "f7", "via" : [ { "x" : 408, "y" : 1840 } ] }
+      ]
+    }, {
+      "id" : "f158",
+      "type" : "RequestStart",
+      "name" : "grantDashboardImportOwnPermission.ivp",
+      "config" : {
+        "signature" : "grantDashboardImportOwnPermission",
+        "request" : {
+          "name" : "Grant Dashboard Import Own Permission"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 1840 },
+        "labelOffset" : { "x" : 145, "y" : 25 }
+      },
+      "connect" : [
+        { "id" : "f166", "to" : "f157" }
+      ]
+    }, {
+      "id" : "f159",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.DASHBOARD_IMPORT_PUBLIC.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ISecurityContext.current().securityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 1712 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : [
+        { "id" : "f167", "to" : "f7", "via" : [ { "x" : 408, "y" : 1712 } ] }
+      ]
+    }, {
+      "id" : "f160",
+      "type" : "RequestStart",
+      "name" : "grantDashboardImportPublicPermission.ivp",
+      "config" : {
+        "signature" : "grantDashboardImportPublicPermission",
+        "request" : {
+          "name" : "Grant Dashboard Import Public Permission"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 1712 },
+        "labelOffset" : { "x" : 145, "y" : 25 }
+      },
+      "connect" : [
+        { "id" : "f164", "to" : "f159" }
+      ]
+    }, {
+      "id" : "f161",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.DASHBOARD_IMPORT_OWN.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ISecurityContext.current().securityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 1904 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : [
+        { "id" : "f170", "to" : "f7", "via" : [ { "x" : 408, "y" : 1904 } ] }
+      ]
+    }, {
+      "id" : "f162",
+      "type" : "RequestStart",
+      "name" : "denyDashboardImportOwnPermission.ivp",
+      "config" : {
+        "signature" : "denyDashboardImportOwnPermission",
+        "request" : {
+          "name" : "Deny Dashboard Import Own Permission"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 1904 },
+        "labelOffset" : { "x" : 145, "y" : 25 }
+      },
+      "connect" : [
+        { "id" : "f163", "to" : "f161" }
+      ]
     } ],
   "layout" : {
     "lanes" : [ {
         "name" : "Request start",
-        "size" : 1160
+        "size" : 1976
       } ]
   }
 }
