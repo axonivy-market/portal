@@ -171,6 +171,12 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
     detailsPage.resetTask(SICK_LEAVE_REQUEST_TASK);
     assertTrue(detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskBusinessState.OPEN));
+    detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
+    detailsPage.openRelatedTaskWorkflowEvents(detailsPage.getTaskRowIndex(SICK_LEAVE_REQUEST_TASK));
+
+    String dataFromWorkflowEvents = detailsPage.getEventTypeInWorkflowEvents();
+    assertTrue(dataFromWorkflowEvents.contains("EVENT_ROLLBACK_TASK"));
+    assertTrue(dataFromWorkflowEvents.contains("EVENT_PARK_TASK"));
   }
 
   @Test

@@ -841,6 +841,12 @@ public class CaseDetailsPage extends TemplatePage {
     var steps = findListElementsByCssSelector("[id$=':action-group:action-steps-panel'].action-steps-panel a.action-step-item");
     return steps.stream().map(WebElement::getText).collect(Collectors.toList());
   }
+  
+  public String getEventTypeInWorkflowEvents(){
+    waitForElementDisplayed(By.cssSelector("[id$=':task-widget:workflow-event-component:events-table_data']"), true);
+    var eventTypeList = findElementByCssSelector("[id$=':task-widget:workflow-event-component:events-table_data']").getText();
+    return eventTypeList;
+  }
 
   public List<String> getAvailableActionStepsOfTechnicalCase(int caseIndex) {
     var panelId = String.format("[id$=':related-cases-widget:related-cases:%d:action-step-component:action-steps-panel']", caseIndex);
