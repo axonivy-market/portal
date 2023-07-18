@@ -54,6 +54,27 @@ Available dashboard templates:
 .. hint::
    The list of private dashboards shows only the private dashboards that have been created by you.
 
+How to: import private dashboards
+=================================
+
+#. Select |add-icon| Add.
+
+#. Select |import-icon| Import.
+
+#. The :guilabel:`Import Private Dashboard` dialog is opened.
+
+#. Press the Select button and choose the JSON file that contains the dashboard you want to import.
+
+#. Edit the mandatory title and the optional description for the private dashboard.
+
+#. Import the dashboard by selecting the Create Dashboard button.
+
+#. Configuration your private dashboard (see: :ref:`Dashboard <new-dashboard>`).
+
+#. Back on the dashboard list, you see that a new private dashboard has been added.
+
+|import-private-dashboard-dialog|
+
 How to: edit private dashboards
 ===============================
 
@@ -152,6 +173,27 @@ Available dashboard templates:
 .. hint::
    Depending on dashboard roles, you might see other public dashboards in the dashboards list.
 
+How to: import public dashboard
+===============================
+
+#. Select |add-icon| Add.
+
+#. Select |import-icon| Import.
+
+#. The :guilabel:`Import Public Dashboard` dialog is opened.
+
+#. Press the Select button and choose the JSON file that contains the dashboard you want to import.
+
+#. Edit the mandatory title, permissions to see the public dashboard and the optional description for the public dashboard.
+
+#. Import the dashboard by selecting the Create Dashboard button.
+
+#. Configuration public dashboard (see: :ref:`Dashboard <new-dashboard>`).
+
+#. Go back to the dashboard list to see that a new public dashboard has been added.
+
+|import-public-dashboard-dialog|
+
 How to: edit public dashboards
 ==============================
 
@@ -211,3 +253,5 @@ A table of public dashboards is shown with the following information:
 .. |edit-public-dashboards| image:: ../../screenshots/dashboard-configuration/edit-public-dashboards.png
 .. |reorder-public-dashboards| image:: ../../screenshots/dashboard-configuration/reorder-public-dashboards.png
 .. |dashboard-templates| image:: ../../screenshots/dashboard-configuration/dashboard-templates.png
+.. |import-public-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/import-public-dashboard-dialog.png
+.. |import-private-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/import-private-dashboard-dialog.png
