@@ -32,10 +32,6 @@ public class DateTimePatternBean implements Serializable {
     return dateTimePatternService.getGlobalDateTimePattern();
   }
 
-  public String getConfiguredDateWithoutTimePattern() {
-    return dateTimePatternService.getDefaultDatePattern();
-  }
-
   public boolean getIsDateFilterWithTime() {
     return dateTimePatternService.isDateFilterWithTime();
   }

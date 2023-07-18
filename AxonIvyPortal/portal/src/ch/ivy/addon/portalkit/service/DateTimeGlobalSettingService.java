@@ -60,10 +60,6 @@ public class DateTimeGlobalSettingService {
     return Boolean.valueOf(dateFilterGlobalSetting);
   }
 
-  public String getDateWithoutTimePattern() {
-    return getDefaultDatePattern();
-  }
-
   public DateFormat getDefaultDateTimeFormatter() {
     return DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT, Ivy.session().getFormattingLocale());
   }
@@ -72,11 +68,7 @@ public class DateTimeGlobalSettingService {
     return DateFormat.getDateInstance(DateFormat.MEDIUM, Ivy.session().getFormattingLocale());
   }
 
-  public String getDefaultDateTimePattern() {
-    return ((SimpleDateFormat) getDefaultDateTimeFormatter()).toPattern();
-  }
-
-  public String getDefaultDatePattern() {
+  private String getDefaultDatePattern() {
     return ((SimpleDateFormat) getDefaultDateFormatter()).toPattern();
   }
 
