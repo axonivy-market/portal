@@ -1567,11 +1567,3 @@ span.new-widget-dialog__icon.si {
 .widget__content.case-widget {
   max-height: fit-content;
 }
-
-.dashboard-cases--table .collapse-body-fullscreen {
-  max-height: 340px;
-}
-
-.dashboard-cases--table .expand-body-fullscreen {
-  max-height: 1100px;
-}

@@ -205,9 +205,7 @@ function expandFullscreen(index, widgetId) {
   // Hide dashboard overlay panel is opening
   hideAllDashboardOverlayPanels();
 
-  let tableBody = $('div.ui-datatable-scrollable-body');
-  tableBody.addClass('expand-body-fullscreen')
-  tableBody.removeClass('collapse-body-fullscreen')
+  resizeTableBody();
 
   var isSafari = isSafariBrowser();
   if (isSafari) {
@@ -215,6 +213,22 @@ function expandFullscreen(index, widgetId) {
     $(widget.get(0)).closest('.js-dashboard__body').addClass('expand-fullscreen');
     $(widget.get(0)).closest('.js-layout-content').addClass('expand-fullscreen');
   }
+}
+
+function resizeTableBody() {
+  const scrollableBody = document.querySelector('.ui-datatable-scrollable-body');
+
+  const resizeObserver = new ResizeObserver(() => {
+    let tableBody = $('div.ui-datatable-scrollable-body');
+    tableBody.addClass('expand-body-fullscreen')
+    tableBody.removeClass('collapse-body-fullscreen')
+
+    let parentHeight = tableBody.parents('.case-dashboard-widget__panel').height();
+    tableBody.height(parentHeight - 100);
+  });
+
+  resizeObserver.observe(scrollableBody);
+
 }
 
 function collapseFullscreen(index, widgetId) {
@@ -252,7 +266,8 @@ function loadWidgetFirstTime(loadingClass, widgetClass) {
     widget.removeClass('u-display-none');
     widget.removeClass('u-invisibility');
   }
-  $('div.ui-datatable-scrollable-body').addClass('collapse-body-fullscreen');
+
+  resizeTableBody();
 }
 
 function hideAllDashboardOverlayPanels() {
