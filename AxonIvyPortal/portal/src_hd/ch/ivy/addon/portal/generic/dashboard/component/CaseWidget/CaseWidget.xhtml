@@ -36,7 +36,7 @@
       </h:panelGroup>
 
       <p:dataTable id="dashboard-cases" widgetVar="dashboard-cases-#{caseWidget.id}" value="#{caseWidget.dataModel}" var="caseItem"
-        lazy="true" rows="25" scrollRows="10"
+        lazy="true" rows="25" scrollRows="25"
         liveScroll="true" scrollable="true" sortBy="#{caseWidget.sortBy}"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
         styleClass="dashboard-cases--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and caseWidget.caseCount lt 1 ? 'u-display-none' : ''}"
