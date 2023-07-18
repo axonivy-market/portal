@@ -4,7 +4,7 @@ public enum PortalLibrary {
   PORTAL("portal"),
   PORTAL_KIT("portalKit"), 
   PORTAL_TEMPLATE("portalTemplate"),
-  AXON_EXPRESS("axonIvyExpress"),
+  AXON_EXPRESS("axonivy-express"),
   SELF_SERVICE("selfService");
   private String value;
 
