@@ -24,8 +24,8 @@ public class DateTimeGlobalSettingService {
     globalSettingService = new GlobalSettingService();
   }
 
-  public String getGlobalSettingPattern() {
-    return isTimeHidden() ? getDefaultDatePattern() : getDefaultDateTimePattern();
+  public String getGlobalDateTimePattern() {
+    return isTimeHidden() ? getDatePattern() : getDateTimePattern();
   }
 
   public boolean isTimeHidden() {
@@ -54,18 +54,13 @@ public class DateTimeGlobalSettingService {
     return expectedPattern.endsWith(COMMA_CHARACTER) ? expectedPattern.substring(0, expectedPattern.length() - 1)
         : expectedPattern;
   }
-
   public boolean isDateFilterWithTime() {
     String dateFilterGlobalSetting = globalSettingService.findGlobalSettingValue(GlobalVariable.DATE_FILTER_WITH_TIME);
     return Boolean.valueOf(dateFilterGlobalSetting);
   }
 
-  public String getGlobalSettingCalendarPattern() {
-    return isTimeHidden() ? getDefaultDatePattern() : getDefaultDateTimePattern();
-  }
-
   public String getDateWithoutTimePattern() {
-    return getDefaultDatePattern();
+   return getDefaultDatePattern();
   }
 
   public DateFormat getDefaultDateTimeFormatter() {
@@ -76,11 +71,8 @@ public class DateTimeGlobalSettingService {
     return DateFormat.getDateInstance(DateFormat.MEDIUM, Ivy.session().getFormattingLocale());
   }
 
-  public String getDefaultDateTimePattern() {
-    return ((SimpleDateFormat) getDefaultDateTimeFormatter()).toPattern();
-  }
 
-  public String getDefaultDatePattern() {
+  private String getDefaultDatePattern() {
     return ((SimpleDateFormat) getDefaultDateFormatter()).toPattern();
   }
 

@@ -28,16 +28,9 @@ public class DateTimePatternBean implements Serializable {
   }
 
   public String getDateTimestampPattern() {
-    return dateTimePatternService.getGlobalSettingPattern();
+    return dateTimePatternService.getGlobalDateTimePattern();
   }
 
-  public String getConfiguredCalendarPattern() {
-    return dateTimePatternService.getGlobalSettingCalendarPattern();
-  }
-
-  public String getConfiguredDateWithoutTimePattern() {
-    return dateTimePatternService.getDefaultDatePattern();
-  }
 
   public boolean getIsDateFilterWithTime() {
     return dateTimePatternService.isDateFilterWithTime();
