@@ -49,10 +49,11 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.util.UploadDocumentUtils;",
             "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
             "import ch.ivy.addon.portalkit.service.CaseDocumentService;",
             "",
-            "if(CaseDocumentService.isDocumentSafe(in.uploadedFile)){",
+            "if(UploadDocumentUtils.isDocumentSafe(in.uploadedFile)){",
             "  in.checkStatus = UploadDocumentCheckStatus.OK;",
             "}",
             "else{",
@@ -104,7 +105,7 @@
       "type" : "Alternative",
       "config" : {
         "conditions" : {
-          "f4" : "in.checkStatus == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK && ch.ivy.addon.portalkit.service.CaseDocumentService.enableScriptCheckingForUploadedDocument()"
+          "f4" : "in.checkStatus == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK && com.axonivy.portal.util.UploadDocumentUtils.enableScriptCheckingForUploadedDocument()"
         }
       },
       "visual" : {
@@ -133,10 +134,10 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.util.UploadDocumentUtils;",
             "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
-            "import ch.ivy.addon.portalkit.service.CaseDocumentService;",
             "",
-            "if(CaseDocumentService.isDocumentTypeHasVirus(in.uploadedFile)){",
+            "if(UploadDocumentUtils.isDocumentTypeHasVirus(in.uploadedFile)){",
             "    in.checkStatus = UploadDocumentCheckStatus.FAIL;",
             "    in.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainVirus\");",
             "}",
@@ -159,7 +160,7 @@
       "type" : "Alternative",
       "config" : {
         "conditions" : {
-          "f11" : "in.checkStatus == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK && ch.ivy.addon.portalkit.service.CaseDocumentService.enableVirusScannerForUploadedDocument()"
+          "f11" : "in.checkStatus == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK && com.axonivy.portal.util.UploadDocumentUtils.enableVirusScannerForUploadedDocument()"
         }
       },
       "visual" : {
