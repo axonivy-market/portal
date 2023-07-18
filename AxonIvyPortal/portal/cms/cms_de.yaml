@@ -856,6 +856,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       configurationDescription: In diesem Konfigurationsbereich kann das Widget konfiguriert werden. Bitte definieren Sie die gewünschten Filter sowie die anzuzeigenden Spalten.
       customWidgetParamChangedMessage: Dieser Prozess hat sich geändert. Klicken Sie auf Update, um fortzufahren.
       editWidgetHeader: Widget-Konfiguration bearbeiten
+      import: Importieren
+      importFromJsonFile: Aus JSON-Datei importieren
       newWidgetHeader: Neue {0} Widget-Konfiguration
       pageTitle: Dashboard-Konfiguration
       processConfigurationDescription: In diesem Konfigurationsbereich kann das Widget konfiguriert werden. Bitte definieren Sie die gewünschten Filter sowie die Eigenschaften, die angezeigt werden sollen.
@@ -962,6 +964,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     download: Herunterladen
     fileContainScript: Diese Datei darf aufgrund von Skript-Inhalten nicht hochgeladen werden!
     fileContainVirus: Upload fehlgeschlagen, Virus/Infektion erkannt!
+    fileCouldNotParse: Die Datei konnte nicht analysiert werden
+    fileEmptyMessage: Datei ist leer
     name: Dateiname
     size: Dateigröße
     type: Typ
@@ -1538,6 +1542,12 @@ Dialogs:
             expressNoItem: Es gibt noch keine abgeschlossene Express Aufgabe
             expressNoItemDescription: Hier werden die Ergebnisse der abgeschlossenen Aufgaben angezeigt
             expressWorkflowName: 'Business Details des Vorgangs: #{0}'
+        portal:
+          generic:
+            dashboard:
+              component:
+                CustomDashboardWidget:
+                  CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
         portalkit:
           component:
             CaseWidget:
@@ -1559,6 +1569,11 @@ Dialogs:
       portal:
         dashboard:
           component:
+            DashboardImportDetails:
+              FileInfomation: Dateiinformationen
+              ImportPrivate: Privates Dashboard importieren
+              ImportPublic: Öffentliches Dashboard importieren
+              chooseAJsonFile: Wählen Sie eine JSON-Datei
             NewsWidget:
               NewsContentPlaceHolder: Nachrichteninhalt eingeben
               NewsContentValidateMessage: Nachrichteninhalt in {0} ist erforderlich

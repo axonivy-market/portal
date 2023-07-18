@@ -66,7 +66,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     collectDashboardsForManagement();
   }
 
-  private void collectDashboardsForManagement() {
+  protected void collectDashboardsForManagement() {
     this.dashboards = new ArrayList<>();
     String dashboardInUserProperty = readDashboardBySessionUser();
     if (isPublicDashboard) {
@@ -287,6 +287,11 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   public boolean hasExportDashboardPermission() {
     return isPublicDashboard ?
         PermissionUtils.hasDashboardExportPublicPermission() : PermissionUtils.hasDashboardExportOwnPermission();
+  }
+  
+  public boolean hasImportDashboardPermission(boolean isPublicDashboard) {
+    return isPublicDashboard ?
+        PermissionUtils.hasDashboardImportPublicPermission() : PermissionUtils.hasDashboardImportOwnPermission();
   }
 
   public StreamedContent exportToJsonFile(Dashboard dashboard) {
