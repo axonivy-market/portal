@@ -30,7 +30,6 @@ import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.util.TimesUtils;
-import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
@@ -61,49 +60,16 @@ public class DashboardWidgetInformationService {
     Map<String, Object> response = IvyAdapterService.startSubProcess(ANALYZE_TASK_STATE, params,
           Arrays.asList(PortalLibrary.PORTAL.getValue()));
 
-    Map<TaskState, Long> taskStateResult = new HashMap<>();
+    Map<TaskBusinessState, Long> taskStateResult = new HashMap<>();
     TaskStateStatistic taskStateStatistic = (TaskStateStatistic) response.get("taskStateStatistic");
     for (Entry<Integer, Long> entry : taskStateStatistic.getNumberOfTasksByState().entrySet()) {
       if (entry.getValue() != 0) {
-        taskStateResult.put(TaskState.valueOf(entry.getKey()), entry.getValue());
+        taskStateResult.put(TaskBusinessState.valueOf(entry.getKey()), entry.getValue());
       }
     }
-    
-    Map<TaskBusinessState, Long> result = new HashMap<>();
-    
-    for(var entry : taskStateResult.entrySet()) {
-      if (entry.getKey().ordinal() == TaskState.SUSPENDED.ordinal()
-          || entry.getKey().ordinal() == TaskState.PARKED.ordinal()
-          || entry.getKey().ordinal() == TaskState.WAITING_FOR_INTERMEDIATE_EVENT.ordinal()) {
-        result.put(TaskBusinessState.OPEN, entry.getValue());
-      }
-
-      if (entry.getKey().ordinal() == TaskState.RESUMED.ordinal()
-          || entry.getKey().ordinal() == TaskState.CREATED.ordinal()) {
-        result.put(TaskBusinessState.IN_PROGRESS, entry.getValue());
-      }
-
-      if (entry.getKey().ordinal() == TaskState.DONE.ordinal()
-          || entry.getKey().ordinal() == TaskState.READY_FOR_JOIN.ordinal()
-          || entry.getKey().ordinal() == TaskState.JOINING.ordinal()) {
-        result.put(TaskBusinessState.DONE, entry.getValue());
-      }
-
-      if (entry.getKey().ordinal() == TaskState.DESTROYED.ordinal()) {
-        result.put(TaskBusinessState.DESTROYED, entry.getValue());
-      }
-
-      if (entry.getKey().ordinal() == TaskState.DELAYED.ordinal()) {
-        result.put(TaskBusinessState.DELAYED, entry.getValue());
-      }
-
-      if (entry.getKey().ordinal() == TaskState.FAILED.ordinal()
-          || entry.getKey().ordinal() == TaskState.JOIN_FAILED.ordinal()) {
-        result.put(TaskBusinessState.ERROR, entry.getValue());
-      }
-    }
-
-    return result;
+    Map<TaskBusinessState, Long> taskByStateStatistic = taskStateResult.entrySet().stream()
+        .sorted(Comparator.comparingInt(s -> s.getKey().ordinal())).collect(collectToTaskStateMap());
+    return taskByStateStatistic;
   }
 
   private static Collector<Entry<TaskBusinessState, Long>, ?, LinkedHashMap<TaskBusinessState, Long>> collectToTaskStateMap() {

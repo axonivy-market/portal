@@ -76,10 +76,7 @@
             "filterList": [
               "OPEN",
               "IN_PROGRESS",
-              "DONE",
-              "DESTROYED",
-              "DELAYED",
-              "ERROR"
+              "DONE"
             ]
           },
           {

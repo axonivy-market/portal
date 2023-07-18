@@ -18,6 +18,7 @@ import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 public class StateColumnModel extends TaskColumnModel implements Serializable {
 
   private static final long serialVersionUID = -4315469062114036720L;
+  private static final String TASK_BUSINESS_STATE_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/";
 
   @Override
   public void initDefaultValue() {
@@ -61,7 +62,7 @@ public class StateColumnModel extends TaskColumnModel implements Serializable {
     if (state == null) {
       return StringUtils.EMPTY;
     }
-    return cms("/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/" + state.toString());
+    return cms(TASK_BUSINESS_STATE_CMS_PATH + state);
   }
   
   @JsonIgnore

@@ -96,10 +96,7 @@
               "filterList": [
                 "OPEN",
                 "IN_PROGRESS",
-                "DONE",
-                "DESTROYED",
-                "DELAYED",
-                "ERROR"
+                "DONE"
               ]
             },
             {
@@ -344,12 +341,7 @@
             {
               "field": "state",
               "filterList": [
-                "OPEN",
-                "IN_PROGRESS",
-                "DONE",
-                "DESTROYED",
-                "DELAYED",
-                "ERROR"
+                "OPEN"
               ]
             },
             {
@@ -412,11 +404,7 @@
               "field": "state",
               "filterList": [
                 "OPEN",
-                "IN_PROGRESS",
-                "DONE",
-                "DESTROYED",
-                "DELAYED",
-                "ERROR"
+                "IN_PROGRESS"
               ]
             },
             {

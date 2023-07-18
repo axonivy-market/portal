@@ -41,6 +41,8 @@ import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 public final class TaskUtils {
   private static final String PORTAL_GLOBAL_GROWL= "portal-global-growl";
   private static final String PORTAL_GLOBAL_GROWL_MESSAGE= "portal-global-growl-message";
+  private static final String PRIORITY_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskPriority/";
+  private static final String TASK_BUSINESS_STATE_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/";
 
   private TaskUtils() {}
 
@@ -348,7 +350,7 @@ public final class TaskUtils {
       return StringUtils.EMPTY;
     }
 
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/" + state + "_UPPERCASE");
+    return Ivy.cms().co(TASK_BUSINESS_STATE_CMS_PATH + state + "_UPPERCASE");
   }
 
   //To get Ivy task priority with multiple languages
@@ -356,12 +358,7 @@ public final class TaskUtils {
     if (priority == null) {
       return StringUtils.EMPTY;
     }
-    String url = switch(priority) {
-      case NORMAL -> "/ch.ivy.addon.portalkit.ui.jsf/taskPriority/NORMAL";
-      case LOW -> "/ch.ivy.addon.portalkit.ui.jsf/taskPriority/LOW";
-      case HIGH -> "/ch.ivy.addon.portalkit.ui.jsf/taskPriority/HIGH";
-      default -> "/ch.ivy.addon.portalkit.ui.jsf/taskPriority/EXCEPTION";
-    };
-    return Ivy.cms().co(url);
+
+    return Ivy.cms().co(PRIORITY_CMS_PATH + priority);
   }
 }

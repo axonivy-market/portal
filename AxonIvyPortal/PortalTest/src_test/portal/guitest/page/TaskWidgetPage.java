@@ -180,7 +180,6 @@ public class TaskWidgetPage extends TemplatePage {
         String.format("[id$='%d\\:task-item\\:task-action\\:additional-options\\:task-side-steps-menu']", index);
     clickByCssSelector(actionButton);
     String actionPanel = String.format("task-widget:task-list-scroller:%d:task-item:task-action:additional-options:side-steps-panel", index); 
-    System.out.println(actionPanel);
     waitForElementDisplayed(By.id(actionPanel), true);
   }
 

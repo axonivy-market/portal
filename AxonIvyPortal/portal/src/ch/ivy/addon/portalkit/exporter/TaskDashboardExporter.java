@@ -8,12 +8,14 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 /**
  * Export Portal dashboard's task widget to Excel file
  *
  */
 public class TaskDashboardExporter extends DashboardWidgetExporter{
+  private static final String TASK_BUSINESS_STATE_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/";
 
   /**
    * Constructor
@@ -79,7 +81,7 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
       case ID -> String.valueOf(taskItem.getId());
       case CREATED -> taskItem.getStartTimestamp();
       case EXPIRY -> taskItem.getExpiryTimestamp();
-      case STATE -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/" + taskItem.getBusinessState() + "_UPPERCASE");
+      case STATE -> getTaskBusinessState(taskItem.getBusinessState());
       case CATEGORY -> taskItem.getCategory().getPath();
       case DESCRIPTION -> taskItem.getDescription();
       case APPLICATION -> taskItem.getApplication().getName();
@@ -129,4 +131,7 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
     return getCommonColumnValue(sortField, (ITask) item);
   }
 
+  private String getTaskBusinessState(TaskBusinessState state) {
+    return Ivy.cms().co(TASK_BUSINESS_STATE_CMS_PATH + state + "_UPPERCASE");
+  }
 }

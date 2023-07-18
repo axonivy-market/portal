@@ -32,7 +32,10 @@ public class DashboardTaskFilterBean {
   private UserDTO selectedUser;
   private List<SecurityMemberDTO> responsibles;
   private TaskDashboardWidget widget;
-  
+
+  private static final String TASK_BUSINESS_STATE_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/";
+  private static final String TASK_PRIORITY_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskPriority/";
+
   @PostConstruct
   public void init() {
     this.states = TaskUtils.getValidStates();
@@ -66,7 +69,7 @@ public class DashboardTaskFilterBean {
     if (state == null) {
       return EMPTY;
     }
-    String displayState = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/" + state);
+    String displayState = Ivy.cms().co(TASK_BUSINESS_STATE_CMS_PATH + state.toString());
     return StringUtils.isBlank(displayState) ? state.name() : displayState;
   }
 
@@ -74,18 +77,9 @@ public class DashboardTaskFilterBean {
     if (priority == null) {
       return EMPTY;
     }
-    switch (priority) {
-      case LOW:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/LOW_LOWERCASE");
-      case NORMAL:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/NORMAL_LOWERCASE");
-      case HIGH:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/HIGH_LOWERCASE");
-      case EXCEPTION:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/EXCEPTION_LOWERCASE");
-      default:
-        return EMPTY;
-    }
+
+    return Ivy.cms().co(TASK_PRIORITY_CMS_PATH + priority + "_LOWERCASE");
+
   }
 
   public boolean hasPredefinedFilter(TaskDashboardWidget widget) {

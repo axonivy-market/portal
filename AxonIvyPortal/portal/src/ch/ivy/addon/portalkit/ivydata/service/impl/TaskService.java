@@ -153,40 +153,25 @@ public class TaskService implements ITaskService {
   }
   
   @Override
-  public IvyTaskResultDTO analyzeTaskStateStatistic(TaskSearchCriteria criteria) {
-    return IvyExecutor.executeAsSystem(() -> {
-      IvyTaskResultDTO result = new IvyTaskResultDTO();
-      TaskQuery finalQuery = extendQueryWithInvolvedUser(criteria);
-      finalQuery.aggregate().countRows().groupBy().state();
-
-      Recordset recordSet = taskQueryExecutor().getRecordset(finalQuery);
-      TaskStateStatistic taskStateStatistic = createTaskStateStatistic(recordSet);
-      result.setTaskStateStatistic(taskStateStatistic);
-      return result;
-    });
-  }
-
-  @Override
   public IvyTaskResultDTO analyzeTaskBusinessStateStatistic(TaskSearchCriteria criteria) {
     return IvyExecutor.executeAsSystem(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       TaskQuery finalQuery = extendQueryWithInvolvedUser(criteria);
-      finalQuery.aggregate().countRows().groupBy().state();
-
+      finalQuery.aggregate().countRows().groupBy().businessState();
       Recordset recordSet = taskQueryExecutor().getRecordset(finalQuery);
-      TaskStateStatistic taskStateStatistic = createTaskStateStatistic(recordSet);
+      TaskStateStatistic taskStateStatistic = createTaskBusinessStateStatistic(recordSet);
       result.setTaskStateStatistic(taskStateStatistic);
       return result;
     });
   }
 
-  private TaskStateStatistic createTaskStateStatistic(Recordset recordSet) {
+  private TaskStateStatistic createTaskBusinessStateStatistic(Recordset recordSet) {
     TaskStateStatistic taskStateStatistic = new TaskStateStatistic();
     taskStateStatistic.setNumberOfTasksByState(new HashMap<>());
     if (recordSet != null) {
       recordSet.getRecords().forEach(record -> {
-        int state = Integer.parseInt(record.getField("STATE").toString());
-        long numberOfTasks = ((BigDecimal)(record.getField("COUNT"))).longValue();
+        int state = Integer.parseInt(record.getField("BUSINESSSTATE").toString());
+        long numberOfTasks = ((BigDecimal) (record.getField("COUNT"))).longValue();
         taskStateStatistic.getNumberOfTasksByState().put(state, numberOfTasks);
       });
     }

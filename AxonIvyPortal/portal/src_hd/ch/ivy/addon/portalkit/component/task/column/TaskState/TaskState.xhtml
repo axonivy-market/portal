@@ -22,16 +22,16 @@
 
   <h:panelGroup rendered="#{showState}">
     <h:panelGroup id="#{cc.attrs.componentId}" styleClass="state-cell default-task-cell #{cc.attrs.stateStyleClass} #{cc.attrs.responsiveStyleClass}">
-      <h:outputText rendered="#{!showIndicatorBesideText}" value="#{taskBean.shortenTaskState(state)}"
+      <h:outputText rendered="#{!showIndicatorBesideText}" value="#{taskBean.getTaskBusinessState(state)}"
         styleClass="#{cc.attrs.stateIconStyleClass} task-state #{state.toString().toLowerCase()}-task-state #{ellipsisText ? 'ellipsis-state':''}" />
       <h:panelGroup rendered="#{showIndicatorBesideText}" styleClass="state-with-indicator">
         <i class="task-state #{state.toString().toLowerCase()}-task-state state-indicator"/>
-        <span class="#{ellipsisText ? 'text-ellipsis':''}">#{taskBean.shortenTaskState(state)}</span>
+        <span class="#{ellipsisText ? 'text-ellipsis':''}">#{taskBean.getTaskBusinessState(state)}</span>
       </h:panelGroup>
     </h:panelGroup>
   </h:panelGroup>
   <p:tooltip rendered="#{showState}" id="state-tooltip" for="#{cc.attrs.componentId}"
-    value="#{taskBean.shortenTaskState(state)}" styleClass="#{cc.attrs.stateTooltipStyleClass}"
+    value="#{taskBean.getTaskBusinessState(state)}" styleClass="#{cc.attrs.stateTooltipStyleClass}"
     trackMouse="true" hideEvent="mouseleave click" />
 </cc:implementation>
 </html>

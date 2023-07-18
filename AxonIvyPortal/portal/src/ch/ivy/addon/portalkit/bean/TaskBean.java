@@ -31,9 +31,7 @@ import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 public class TaskBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  private static final String TASKSTATE_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskBusinesState/";
-  
-
+  private static final String TASK_BUSINESS_STATE_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/";
 
   public String getPriority(WorkflowPriority priority) {
     return cms("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/" + priority.name());
@@ -61,7 +59,7 @@ public class TaskBean implements Serializable {
     if (state == null) {
       return StringUtils.EMPTY;
     }
-    return cms(TASKSTATE_CMS_PATH + state);
+    return cms(TASK_BUSINESS_STATE_CMS_PATH + state);
   }
 
   public String displayRelatedTaskToolTip(ITask task) {
@@ -74,23 +72,15 @@ public class TaskBean implements Serializable {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateAndResponsible", params);
   }
 
-  public String getUserFriendlyTaskState(TaskBusinessState state) {
-    if (state == null) {
-      return StringUtils.EMPTY;
-    }
-    return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + state + "_UPPERCASE");
-  }
-
   private String cms(String uri) {
     return Ivy.cms().co(uri);
   }
 
-  public String shortenTaskState(TaskBusinessState state) {
+  public String getTaskBusinessState(TaskBusinessState state) {
     if (state == null) {
       return StringUtils.EMPTY;
     }
-
-    return cms("/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/" + state);
+    return cms(TASK_BUSINESS_STATE_CMS_PATH + state);
   }
 
   public String displayCaseName(ITask task) {
