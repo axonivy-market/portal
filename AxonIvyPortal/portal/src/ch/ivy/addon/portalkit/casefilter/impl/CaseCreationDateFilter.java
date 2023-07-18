@@ -30,7 +30,7 @@ public class CaseCreationDateFilter extends CaseFilter {
 
   @Override
   public String value() {
-    DateFormat formatter = DateTimeGlobalSettingService.getInstance().getDefaultDateTimeFormatter();;
+    DateFormat formatter = DateTimeGlobalSettingService.getInstance().getDefaultDateTimeFormatter();
     if (fromCreationDate != null && toCreationDate != null) {
       return String.format(DASH, formatter.format(fromCreationDate), formatter.format(toCreationDate));
     }

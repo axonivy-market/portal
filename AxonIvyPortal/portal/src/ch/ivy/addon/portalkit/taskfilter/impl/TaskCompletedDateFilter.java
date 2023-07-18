@@ -26,7 +26,7 @@ public class TaskCompletedDateFilter extends TaskFilter {
 
 	@Override
 	public String value() {
-		DateFormat formatter = DateTimeGlobalSettingService.getInstance().getDefaultDateFormatter();
+		DateFormat formatter = DateTimeGlobalSettingService.getInstance().getDefaultDateTimeFormatter();
 		if (fromCompletedDate != null && toCompletedDate != null) {
 			return String.format(DASH, formatter.format(fromCompletedDate), formatter.format(toCompletedDate));
 		}
