@@ -8,6 +8,8 @@ import javax.faces.bean.RequestScoped;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.util.UploadDocumentUtils;
+
 import ch.ivy.addon.portalkit.service.CaseDocumentService;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
@@ -40,10 +42,10 @@ public class UserTaskFormBean implements Serializable {
   }
 
   public boolean getEnableScriptCheckingForUploadedDocument() {
-    return CaseDocumentService.enableScriptCheckingForUploadedDocument();
+    return UploadDocumentUtils.enableScriptCheckingForUploadedDocument();
   }
 
   public boolean getEnableVirusScannerForUploadedDocument() {
-    return CaseDocumentService.enableVirusScannerForUploadedDocument();
+    return UploadDocumentUtils.enableVirusScannerForUploadedDocument();
   }
 }
