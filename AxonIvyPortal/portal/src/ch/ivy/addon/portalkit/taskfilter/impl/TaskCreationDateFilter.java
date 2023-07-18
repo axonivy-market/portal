@@ -31,7 +31,7 @@ public class TaskCreationDateFilter extends TaskFilter {
 
   @Override
   public String value() {
-    DateFormat formatter = DateTimeGlobalSettingService.getInstance().getDefaultDateFormatter();
+    DateFormat formatter = DateTimeGlobalSettingService.getInstance().getDefaultDateTimeFormatter();
     if (fromCreationDate != null && toCreationDate != null) {
       return String.format(DASH, formatter.format(fromCreationDate), formatter.format(toCreationDate));
     }
