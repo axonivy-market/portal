@@ -1,18 +1,14 @@
 package com.axonivy.portal.util;
 
-import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.WELCOME;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.io.IOException;
-import java.util.Base64;
 
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
-import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.cm.ContentObjectValue;
@@ -52,7 +48,7 @@ public class WelcomeWidgetUtils {
     }
   }
 
-  public static byte[] getImageAsByteData(String filePath) {
+  private static byte[] getImageAsByteData(String filePath) {
     byte[] fileContent = null;
     try {
       File file = new File(filePath);
@@ -123,32 +119,5 @@ public class WelcomeWidgetUtils {
   public static String getFileNameOfImage(String imageLocation) {
     return StringUtils.defaultIfEmpty(imageLocation, EMPTY).split(DEFAULT_LOCALE_AND_DOT)[0];
   }
-  
-  /**
-   * Create new image with new widgetId
-   * 
-   * @param widget
-   */
-  public static void writeWelcomeWidgetImage(WelcomeDashboardWidget widget) {
-    if (widget.getImageType() == null) {
-      Ivy.log().warn("WidgetId [{0}] does not has imageType. Skip write to cms.", widget.getId());
-      return;
-    }
-    if (StringUtils.isNotBlank(widget.getImageLocation())) {
-      String widgetId = DashboardWidgetUtils.generateNewWidgetId(WELCOME);
-      String fileExtension = WelcomeWidgetUtils.getFileTypeOfImage(widget.getImageType());
-      String imageLocation = widgetId.concat(WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT).concat(fileExtension);
-      ContentObject newImageObject = WelcomeWidgetUtils.getImageContentObject(WelcomeWidgetUtils.getFileNameOfImage(imageLocation), fileExtension);
-      if (StringUtils.isNotBlank(widget.getImageContent())) {
-        // If has defined content, create new image
-        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObject).write().bytes(Base64.getDecoder().decode(widget.getImageContent()));
-        widget.setImageLocation(imageLocation);
-        widget.setImageContent(null);
-      } else {
-        // If has defined location, clone new image
-        byte[] oldFileContent = WelcomeWidgetUtils.getImageAsByteData(widget.getImageLocation());
-        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObject).write().bytes(oldFileContent);
-      }
-    }
-  }
+
 }
