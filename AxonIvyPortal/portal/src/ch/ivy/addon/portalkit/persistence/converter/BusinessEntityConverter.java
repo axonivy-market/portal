@@ -1,6 +1,9 @@
 package ch.ivy.addon.portalkit.persistence.converter;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +47,16 @@ public class BusinessEntityConverter {
   public static <T> T jsonValueToEntity(String jsonValue, Class<T> classType) {
     try {
       return getObjectMapper().readValue(jsonValue, classType);
+    } catch (IOException e) {
+      Ivy.log().error("Can't read json value", e);
+      throw new PortalException(e);
+    }
+  }
+
+  public static <T> T inputStreamToEntity(InputStream inputStream, Class<T> classType) {
+    try {
+      new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+      return getObjectMapper().readValue(inputStream, classType);
     } catch (IOException e) {
       Ivy.log().error("Can't read json value", e);
       throw new PortalException(e);
