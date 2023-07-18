@@ -6047,16 +6047,3 @@ a.dashboard-action-container label {
 .language-icon-padding-right {
   padding-right: 0.4em;
 }
-
-/* ============ DASHBOARD ======== */
-body .ui-dialog.ui-widget.import-dashboard-dialog{
-  min-width: 450px;
-  max-width: 1000px;
-}
-
-@media screen and (max-width: 40em) {
-  body .ui-dialog.ui-widget.import-dashboard-dialog {
-    min-width: 85vw;
-    max-width: 95%;
-  }	
-}
