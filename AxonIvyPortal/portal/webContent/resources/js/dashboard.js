@@ -224,10 +224,15 @@ function resizeTableBody() {
     tableBody.removeClass('collapse-body-fullscreen')
 
     let parentHeight = tableBody.parents('.case-dashboard-widget__panel').height();
-    tableBody.height(parentHeight - 100);
+    if (!window.matchMedia("(max-width: 767px)").matches) {
+      tableBody.height(parentHeight - 100);
+    } else {
+      tableBody.height(parentHeight * 0.85);
+    }
   });
-
-  resizeObserver.observe(scrollableBody);
+  setTimeout(function() {
+    resizeObserver.observe(scrollableBody);
+  }, 50);
 
 }
 
@@ -248,7 +253,7 @@ function collapseFullscreen(index, widgetId) {
   }
 
   $(widget.get(0)).parent('.grid-stack').height(originalGridstackHeight);
-
+    resizeTableBody();
   // Hide dashboard overlay panel is opening
   hideAllDashboardOverlayPanels();
 }
@@ -266,7 +271,7 @@ function loadWidgetFirstTime(loadingClass, widgetClass) {
     widget.removeClass('u-display-none');
     widget.removeClass('u-invisibility');
   }
-
+  minHeight = 280;
   resizeTableBody();
 }
 

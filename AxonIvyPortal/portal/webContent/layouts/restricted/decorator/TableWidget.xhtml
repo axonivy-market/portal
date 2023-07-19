@@ -65,7 +65,7 @@
       <!-- remote-command to apply widget filter -->
       <p:remoteCommand id="apply-widget-filter-command-#{index}"
         name="applyWidgetFilterCommand#{index}"
-        oncomplete="PF('filter-overlay-panel-#{index}').hide(); #{onCompleteApplyFilters};"
+        oncomplete="PF('filter-overlay-panel-#{index}').hide(); #{onCompleteApplyFilters}; resizeTableBody()"
         update="widget-header-actions #{componentToUpdateOnApplyFilter}"
         global="false" process="@this" partialSubmit="true" immediate="true"
         rendered="#{renderFilter}"/>
