@@ -68,7 +68,7 @@ public class TaskActionTest extends BaseTest {
     redirectToRelativeLink(createTaskWithSystemState);
     gotoTaskList();
     // Ready for Join
-    assertTaskActionsByTaskState("Ready for joining", Arrays.asList("Details", "Reset", "Destroy", "Workflow Events", "Process Viewer"));
+    assertTaskActionsByTaskState("Ready for joining", Arrays.asList("Details", "Reset", "Destroy", "Trigger Escalation", "Workflow Events", "Process Viewer"));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Suspended
