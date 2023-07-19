@@ -132,8 +132,11 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public WebElement getDashboardMultiLanguageDialog() {
+    waitForElementDisplayed(By.cssSelector(
+        "div[id$='dashboard-template-selection-component:dashboard-creation-component:title-language-config:multiple-languages-dialog']"),
+        true);
     return findElementById(
-            "dashboard-template-selection-component:dashboard-creation-component:title-language-config:multiple-languages-dialog");
+        "dashboard-template-selection-component:dashboard-creation-component:title-language-config:multiple-languages-dialog");
   }
   
   public void openImportPublicDashboards() {
