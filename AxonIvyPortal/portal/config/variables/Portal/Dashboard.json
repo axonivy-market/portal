@@ -74,11 +74,9 @@
             "field": "state",
             "visible": false,
             "filterList": [
-              "CREATED",
-              "DONE",
-              "PARKED",
-              "RESUMED",
-              "SUSPENDED"
+              "OPEN",
+              "IN_PROGRESS",
+              "DONE"
             ]
           },
           {

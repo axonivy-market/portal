@@ -687,14 +687,14 @@ body .ui-datepicker .ui-timepicker-div dl dd {
   line-height: var(--task-state-line-height);
   border: 1px solid; }
 
-.state-cell .suspended-task-state,
-.state-column .open-task-state, .case-detail-body .suspended-task-state {
+.state-cell .open-task-state,
+.state-column .open-task-state, .case-detail-body .open-task-state {
   background: var(--task-state-suspended-background);
   border-color: var(--task-state-suspended-background);
   color: var(--task-state-suspended-color); }
 
-.state-cell .resumed-task-state,
-.case-detail-body .resumed-task-state {
+.state-cell .in_progress-task-state,
+.case-detail-body .in_progress-task-state {
   color: var(--ivy-primary-color-black);
   background: var(--task-state-resumed-background);
   border-color: var(--task-state-resumed-background); }
@@ -705,8 +705,8 @@ body .ui-datepicker .ui-timepicker-div dl dd {
   border-color: var(--task-state-done-background);
   color: var(--task-state-done-color) }
 
-.state-cell .parked-task-state,
-.state-column .parked-task-state {
+.state-cell .open-task-state,
+.state-column .open-task-state {
   background: var(--task-state-parked-background);
   border-color: var(--task-state-parked-background); }
 
@@ -717,10 +717,8 @@ body .ui-datepicker .ui-timepicker-div dl dd {
   background: var(--task-state-open-color);
   border-color: var(--task-state-open-color); }
 
-.state-cell .failed-task-state,
-.state-column .failed-task-state,
-.state-cell .join_failed-task-state,
-.state-column .join_failed-task-state {
+.state-cell .error-task-state,
+.state-column .error-task-state {
   background: var(--task-state-failed-background);
   border-color: var(--task-state-failed-background);
   color: var(--task-state-failed-text-color) }
