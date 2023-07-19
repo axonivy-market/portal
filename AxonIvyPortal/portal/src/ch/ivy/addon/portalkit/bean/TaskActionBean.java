@@ -130,8 +130,10 @@ public class TaskActionBean implements Serializable {
   }
 
   public boolean canChangeExpiry(ITask task) {
-    return hasPermission(task, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP)
-        || (task != null && StringUtils.isNotBlank(task.getExpiryTaskStartElementPid()));
+    List<TaskState> taskStates = Arrays.asList(TaskState.DONE, TaskState.DESTROYED);
+    return (hasPermission(task, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP)
+        || (task != null && StringUtils.isNotBlank(task.getExpiryTaskStartElementPid())))
+        && !taskStates.contains(task.getState());
   }
   
   public boolean canChangeDelayTimestamp(ITask task) {
