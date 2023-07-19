@@ -98,17 +98,6 @@
             </configuration>
             <phase>process-test-classes</phase>
           </execution>
-          <execution>
-            <id>axonivyexpress.deploy</id>
-            <goals>
-              <goal>deploy-to-engine</goal>
-            </goals>
-            <configuration>
-              <deployFile>..\..\archive\axonivy-express\target\axonivy-express-11.1.0-SNAPSHOT.iar</deployFile>
-              <deployToEngineApplication>demo-portal</deployToEngineApplication>
-            </configuration>
-            <phase>process-test-classes</phase>
-          </execution>
         </executions>
       </plugin>
       <plugin>
