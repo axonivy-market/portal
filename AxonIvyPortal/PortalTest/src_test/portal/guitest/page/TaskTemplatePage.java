@@ -1,8 +1,5 @@
 package portal.guitest.page;
 
-import java.util.List;
-import java.util.stream.IntStream;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -83,9 +80,8 @@ public class TaskTemplatePage extends TemplatePage {
     return findListElementsByCssSelector("td.related-task-name-column").size();
   }
 
-  public TaskDetailsPage openRelatedTaskInList(String taskName) {
+  public TaskDetailsPage openRelatedTaskInList(int index) {
     switchToCaseInfoIframe();
-    Integer index = getTaskRowIndex(taskName); 
     waitForElementDisplayed(By.cssSelector("td.related-task-name-column"), true);
     findListElementsByCssSelector("td.related-task-name-column").get(index).click();
     return new TaskDetailsPage();
@@ -107,6 +103,10 @@ public class TaskTemplatePage extends TemplatePage {
 
   public void clickCancelLink() {
     click(By.linkText("Cancel"));
+  }
+
+  public void clickResetLink() {
+    click(By.linkText("Reset"));
   }
 
   public void showNoteHistory() {
@@ -326,11 +326,5 @@ public class TaskTemplatePage extends TemplatePage {
   public void waitForChartAssigneeDialogDisplay() {
     waitForElementDisplayed(By.id("chat-assignee-dialog"), true);
     waitUntilAnimationFinished(DEFAULT_TIMEOUT, "chat-assignee-selection-form\\\\:chat-user-selection-component\\\\:chat-user-selection_input", ID_PROPERTY);
-  }
-  
-  public Integer getTaskRowIndex(String taskName) {
-	  List<WebElement> taskNames = findListElementsByCssSelector(".task-name-value");
-	  int taskIndex = IntStream.range(0, taskNames.size()).filter(i -> taskNames.get(i).getText().equals(taskName)).findFirst().getAsInt();
-	  return taskIndex;
   }
 }
