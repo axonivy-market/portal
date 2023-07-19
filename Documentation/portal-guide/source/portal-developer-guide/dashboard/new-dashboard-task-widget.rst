@@ -275,7 +275,7 @@ Below is the list of filterable columns and their corresponding filter condition
             "columns": [
                {
                   "field": "state",
-                  "filterList": ["OPEN","IN_PROGRESS","DONE","DESTROYED"]
+                  "filterList": ["IN_PROGRESS","DONE"]
                },
             ]
          }
