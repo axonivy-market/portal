@@ -20,14 +20,15 @@ import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.util.DateTimeFormatterUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.PortalProcessViewerUtils;
+import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.TimesUtils;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 @ManagedBean
 @ViewScoped
@@ -258,7 +259,7 @@ public class TaskActionBean implements Serializable {
   }
 
   public boolean showClearDelayTime(ITask task) {
-    return TaskState.DELAYED.equals(task.getState()) && task.getDelayTimestamp() != null && isNotDoneForWorkingUser(task);
+    return TaskBusinessState.DELAYED.equals(task.getBusinessState()) && task.getDelayTimestamp() != null && isNotDoneForWorkingUser(task);
   }
 
   public boolean showClearExpiryTime(ITask task) {

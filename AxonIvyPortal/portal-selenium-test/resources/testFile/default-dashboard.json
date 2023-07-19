@@ -61,7 +61,7 @@
           },
           {
             "field": "state",
-            "filterList": ["PARKED", "RESUMED", "SUSPENDED"]
+            "filterList": ["OPEN", "IN_PROGRESS"]
           },
           {
             "field": "startTimestamp"

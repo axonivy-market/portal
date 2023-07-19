@@ -12,3 +12,4 @@ caseCustomFieldSearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.Case
 CaseCategoryStatisticResult ch.ivy.addon.portalkit.bo.CaseCategoryStatistic #field
 selectedCategories java.util.List<String> #field
 selectedCategory String #field
+taskStateStatisticResult ch.ivy.addon.portalkit.bo.TaskStateStatistic #field
