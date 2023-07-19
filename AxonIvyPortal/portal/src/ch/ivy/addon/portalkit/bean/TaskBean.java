@@ -17,8 +17,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
+import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 
 /**
@@ -31,51 +31,7 @@ import ch.ivyteam.ivy.workflow.WorkflowPriority;
 public class TaskBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  private static final String TASKSTATE_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskState/";
-  
-
-  /**
-   * Return icon for TaskState
-   * 
-   * @param state : state of the task
-   * @return String : String content the code of icon and color
-   */
-  public String getStateIcon(TaskState state) {
-
-    if (state == null) {
-      return StringUtils.EMPTY;
-    }
-
-    switch (state) {
-    // Open
-      case SUSPENDED:
-        return "si si-controls-play task-state-open";
-        // In progress
-      case CREATED:
-      case RESUMED:
-        return "si si-hourglass task-state-in-progress";
-        // Reserved
-      case PARKED:
-        return "si si-touch-finger_1 task-state-reserved";
-        // Done
-      case DONE:
-        return "si si-check-circle-1 task-state-done";
-        // Destroy
-      case DELAYED:
-        return "si si-alarm-bell-timer task-state-delayed";
-      case DESTROYED:
-        return "si si-alert-circle task-state-destroyed";
-      case FAILED:
-      case JOIN_FAILED:
-        return "si si-mood-warning task-state-failed";
-      case WAITING_FOR_INTERMEDIATE_EVENT:
-        return "si si-synchronize-arrow-clock task-state-waiting";
-        // System
-      default:
-        return "si si-synchronize-arrows task-state-system";
-    }
-
-  }
+  private static final String TASK_BUSINESS_STATE_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/";
 
   public String getPriority(WorkflowPriority priority) {
     return cms("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/" + priority.name());
@@ -85,8 +41,8 @@ public class TaskBean implements Serializable {
     if (task == null) {
       return false;
     }
-    EnumSet<TaskState> taskStages = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED);
-    return taskStages.contains(task.getState());
+    EnumSet<TaskBusinessState> taskStages = EnumSet.of(TaskBusinessState.OPEN, TaskBusinessState.IN_PROGRESS);
+    return taskStages.contains(task.getBusinessState());
   }
 
   public boolean isDone(ITask task) {
@@ -99,11 +55,11 @@ public class TaskBean implements Serializable {
    * @param state
    * @return the state of task
    */
-  public String getTranslatedState(TaskState state) {
+  public String getTranslatedState(TaskBusinessState state) {
     if (state == null) {
       return StringUtils.EMPTY;
     }
-    return cms(TASKSTATE_CMS_PATH + state);
+    return cms(TASK_BUSINESS_STATE_CMS_PATH + state);
   }
 
   public String displayRelatedTaskToolTip(ITask task) {
@@ -111,70 +67,20 @@ public class TaskBean implements Serializable {
     if (task != null) {
       ISecurityMember taskActivator = task.getActivator();
       String taskActivatorName = taskActivator != null? taskActivator.getDisplayName() : StringUtils.stripStart(task.getActivatorName(), "#");
-      params = Arrays.asList(getTranslatedState(task.getState()), Objects.toString(taskActivatorName, ""));
+      params = Arrays.asList(getTranslatedState(task.getBusinessState()), Objects.toString(taskActivatorName, ""));
     }
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateAndResponsible", params);
-  }
-
-  public String getUserFriendlyTaskState(TaskState state) {
-    if (state == null) {
-      return StringUtils.EMPTY;
-    }
-    switch (state) {
-      case SUSPENDED:
-        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/SUSPENDED");
-      case CREATED:
-        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/OPEN");
-      case RESUMED:
-        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/INPROGRESS");
-      case DONE:
-        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/DONE_UPPERCASE");
-      case PARKED:
-        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/RESERVED");
-      case DESTROYED:
-        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/DESTROYED_UPPERCASE");
-      case DELAYED:
-        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/DELAYED_UPPERCASE");
-      case READY_FOR_JOIN:
-        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/READY_FOR_JOIN_UPPERCASE");
-      default:
-        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/SYSTEM");
-    }
   }
 
   private String cms(String uri) {
     return Ivy.cms().co(uri);
   }
 
-  public String getUserFriendlyTaskStateInCapitalization(TaskState state) {
+  public String getTaskBusinessState(TaskBusinessState state) {
     if (state == null) {
       return StringUtils.EMPTY;
     }
-
-    if (state == TaskState.SUSPENDED || state == TaskState.CREATED || state == TaskState.RESUMED
-        || state == TaskState.DONE || state == TaskState.PARKED || state == TaskState.DESTROYED
-        || state == TaskState.DELAYED || state == TaskState.READY_FOR_JOIN) {
-      return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + state);
-    }
-
-    return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/SYSTEM");
-  }
-
-  public String shortenTaskState(TaskState state) {
-    if (state == null) {
-      return StringUtils.EMPTY;
-    }
-    if (state == TaskState.READY_FOR_JOIN || state == TaskState.JOINING) {
-      return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/JOINING");
-    }
-    if (state == TaskState.WAITING_FOR_INTERMEDIATE_EVENT) {
-      return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/WAITING");
-    }
-    if (state == TaskState.JOIN_FAILED || state == TaskState.FAILED) {
-      return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + state);
-    }
-
-    return getUserFriendlyTaskStateInCapitalization(state);
+    return cms(TASK_BUSINESS_STATE_CMS_PATH + state);
   }
 
   public String displayCaseName(ITask task) {
@@ -200,7 +106,7 @@ public class TaskBean implements Serializable {
    * @return failedReason see more {@link ITask#getFailReason()}
    */
   public String getTaskFailedReason(ITask task) {
-    if ((task.getState() == TaskState.FAILED || task.getState() == TaskState.JOIN_FAILED)
+    if ((task.getBusinessState() == TaskBusinessState.ERROR)
          && StringUtils.isNotEmpty(task.getFailReason())) {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/noteHistory/taskFailReason", Arrays.asList(task.getFailReason()));
     }

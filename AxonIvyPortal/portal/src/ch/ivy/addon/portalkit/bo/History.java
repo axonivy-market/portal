@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 public class History {
 
@@ -15,6 +16,7 @@ public class History {
   private String content;
   private Date timestamp;
   private TaskState taskState;
+  private TaskBusinessState taskBusinessState;
   private String involvedUsername;
   private IUser involvedUser;
   private String displayName;
@@ -64,6 +66,14 @@ public class History {
 
   public void setTaskState(TaskState taskState) {
     this.taskState = taskState;
+  }
+
+  public TaskBusinessState getTaskBusinessState() {
+    return taskBusinessState;
+  }
+
+  public void setTaskBusinessState(TaskBusinessState taskBusinessState) {
+    this.taskBusinessState = taskBusinessState;
   }
 
   public String getInvolvedUsername() {

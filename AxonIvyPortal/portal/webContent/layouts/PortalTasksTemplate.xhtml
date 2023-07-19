@@ -83,7 +83,7 @@
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-completed-date-component" rendered="#{taskView.dataModel.isSelectedColumn('COMPLETED_ON')}"
                   componentId="completed-time" value="#{task.endTimestamp}" />
                 
-                <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component" dataModel="#{taskView.dataModel}" state="#{task.state}"/>
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component" dataModel="#{taskView.dataModel}" state="#{task.businessState}"/>
                 
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskCategory id="task-category-component" tooltip="#{task.getCategory().getPath()}" 
                   value="#{task.getCategory().getName()}" rendered="#{taskView.dataModel.isSelectedColumn('CATEGORY')}"/>
