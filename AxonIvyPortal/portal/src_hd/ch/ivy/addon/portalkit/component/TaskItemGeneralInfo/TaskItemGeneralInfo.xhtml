@@ -222,7 +222,7 @@
           <h:outputText id="expiry-task-time" styleClass="task-detail-column-title"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" />
         </div>
-        <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left">
+        <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 #{!taskActionBean.canChangeExpiry(task) or cc.attrs.readOnly ? '':'u-no-padding-left'}">
           <ui:fragment rendered="#{taskBean.isNotDone(task)}">
             <h:form id="expiry-form">
               <p:inplace id="edit-inplace" styleClass="expiry-edit-inplace portal-edit-inplace" editor="true"
