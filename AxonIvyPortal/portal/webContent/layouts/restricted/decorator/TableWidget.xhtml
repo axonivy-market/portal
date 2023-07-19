@@ -200,7 +200,7 @@
               <p:commandButton id="reset-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
                 styleClass="secondary-btn u-mar-right-5" partialSubmit="true"
                 update="filter-form-#{index} #{cc.clientId}:widget-header-actions #{componentToUpdateOnResetFilter}"
-                oncomplete="#{onCompleteResetFilters}; #{onCompleteApplyFilters}; PF('filter-overlay-panel-#{index}').hide();"
+                oncomplete="#{onCompleteResetFilters}; #{onCompleteApplyFilters}; PF('filter-overlay-panel-#{index}').hide(); resizeTableBody();"
                 actionListener="#{widget.onResetUserFilters()}"
                 icon="si si-button-refresh-arrows" resetValues="true"/>
   

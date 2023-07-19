@@ -1,9 +1,12 @@
 package ch.ivy.addon.portalkit.datamodel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
@@ -21,12 +24,12 @@ public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
   private static final long serialVersionUID = -6615871274830927272L;
 
   private static final int QUERY_PAGES_AT_FIRST_TIME = 5;
-  private static final int QUERY_PAGES = 1;
+  private static final int QUERY_PAGES = 3;
 
   private DashboardCaseSearchCriteria criteria;
   private boolean isFirstTime = true;
   private List<ICase> cases;
-  private List<ICase> tempCases;
+  private Map<Long, ICase> mapCases;
   private CaseQuery query;
   private CompletableFuture<Void> future;
   private int countLoad;
@@ -34,7 +37,7 @@ public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
   public DashboardCaseLazyDataModel() {
     criteria = new DashboardCaseSearchCriteria();
     cases = new ArrayList<>();
-    tempCases = new ArrayList<>();
+    mapCases = new HashMap<>();
   }
 
   @Override
@@ -58,15 +61,15 @@ public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
         }
         query = criteria.buildQuery();
       }
-      tempCases = DashboardCaseService.getInstance().findByCaseQuery(query, first,
+      cases = DashboardCaseService.getInstance().findByCaseQuery(query, first,
           pageSize * (first <= pageSize ? QUERY_PAGES_AT_FIRST_TIME : QUERY_PAGES));
-      cases.addAll(tempCases);
+      mapCases.putAll(cases.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
     }
 
     int rowCount = cases.size() + first;
     List<ICase> result = new ArrayList<>();
-    for (int i = 0; i < Math.min(pageSize, tempCases.size()); i++) {
-      result.add(tempCases.get(i));
+    for (int i = 0; i < Math.min(pageSize, cases.size()); i++) {
+      result.add(cases.get(i));
     }
     setRowCount(rowCount);
     setCountLoad(getCountLoad() + 1);
@@ -78,20 +81,19 @@ public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
     Object memento = IvyThreadContext.saveToMemento();
     future = CompletableFuture.runAsync(() -> {
       IvyThreadContext.restoreFromMemento(memento);
-      cases.addAll(DashboardCaseService.getInstance().findByCaseQuery(query, 0, getPageSize() * QUERY_PAGES_AT_FIRST_TIME));
+      cases = DashboardCaseService.getInstance().findByCaseQuery(query, 0, getPageSize() * QUERY_PAGES_AT_FIRST_TIME);
+      mapCases.putAll(cases.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
       IvyThreadContext.reset();
     });
     isFirstTime = false;
-    setRowCount(cases.size());
     setCountLoad(getCountLoad() + 1);
   }
 
   @Override
   public ICase getRowData(String rowKey) {
-    for (ICase caze : cases) {
-      if (caze.getId() == Long.valueOf(rowKey)) {
-        return caze;
-      }
+    ICase caze = mapCases.get(Long.valueOf(rowKey));
+    if (caze != null) {
+      return caze;
     }
     return null;
   }

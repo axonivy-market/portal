@@ -216,23 +216,24 @@ function expandFullscreen(index, widgetId) {
 }
 
 function resizeTableBody() {
-  const scrollableBody = document.querySelector('.ui-datatable-scrollable-body');
+  const scrollableBody = document.querySelectorAll('.ui-datatable-scrollable-body');
+  scrollableBody.forEach((sb) => {
+    const resizeObserver = new ResizeObserver(() => {
+      let tableBody = $(sb);
+      tableBody.addClass('expand-body-fullscreen')
+      tableBody.removeClass('collapse-body-fullscreen')
 
-  const resizeObserver = new ResizeObserver(() => {
-    let tableBody = $('div.ui-datatable-scrollable-body');
-    tableBody.addClass('expand-body-fullscreen')
-    tableBody.removeClass('collapse-body-fullscreen')
-
-    let parentHeight = tableBody.parents('.case-dashboard-widget__panel').height();
-    if (!window.matchMedia("(max-width: 767px)").matches) {
-      tableBody.height(parentHeight - 100);
-    } else {
-      tableBody.height(parentHeight * 0.85);
-    }
-  });
-  setTimeout(function() {
-    resizeObserver.observe(scrollableBody);
-  }, 50);
+      let parentHeight = tableBody.parents('.case-dashboard-widget__panel').height();
+      if (!window.matchMedia("(max-width: 767px)").matches) {
+        tableBody.height(parentHeight - 100);
+      } else {
+        tableBody.height(parentHeight * 0.85);
+      }
+    });
+    setTimeout(function() {
+      resizeObserver.observe(sb);
+    }, 50);
+  })
 
 }
 
@@ -271,7 +272,6 @@ function loadWidgetFirstTime(loadingClass, widgetClass) {
     widget.removeClass('u-display-none');
     widget.removeClass('u-invisibility');
   }
-  minHeight = 280;
   resizeTableBody();
 }
 
