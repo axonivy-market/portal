@@ -21,19 +21,20 @@ public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
   private static final long serialVersionUID = -6615871274830927272L;
 
   private static final int QUERY_PAGES_AT_FIRST_TIME = 5;
-  private static final int QUERY_PAGES = 3;
+  private static final int QUERY_PAGES = 1;
 
   private DashboardCaseSearchCriteria criteria;
   private boolean isFirstTime = true;
   private List<ICase> cases;
+  private List<ICase> tempCases;
   private CaseQuery query;
-  private int rowIndex;
   private CompletableFuture<Void> future;
   private int countLoad;
 
   public DashboardCaseLazyDataModel() {
     criteria = new DashboardCaseSearchCriteria();
     cases = new ArrayList<>();
+    tempCases = new ArrayList<>();
   }
 
   @Override
@@ -57,14 +58,15 @@ public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
         }
         query = criteria.buildQuery();
       }
-      cases = DashboardCaseService.getInstance().findByCaseQuery(query, first,
+      tempCases = DashboardCaseService.getInstance().findByCaseQuery(query, first,
           pageSize * (first <= pageSize ? QUERY_PAGES_AT_FIRST_TIME : QUERY_PAGES));
+      cases.addAll(tempCases);
     }
 
     int rowCount = cases.size() + first;
     List<ICase> result = new ArrayList<>();
-    for (int i = 0; i < Math.min(pageSize, cases.size()); i++) {
-      result.add(cases.get(i));
+    for (int i = 0; i < Math.min(pageSize, tempCases.size()); i++) {
+      result.add(tempCases.get(i));
     }
     setRowCount(rowCount);
     setCountLoad(getCountLoad() + 1);
@@ -76,10 +78,11 @@ public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
     Object memento = IvyThreadContext.saveToMemento();
     future = CompletableFuture.runAsync(() -> {
       IvyThreadContext.restoreFromMemento(memento);
-      cases = DashboardCaseService.getInstance().findByCaseQuery(query, 0, getPageSize() * QUERY_PAGES_AT_FIRST_TIME);
+      cases.addAll(DashboardCaseService.getInstance().findByCaseQuery(query, 0, getPageSize() * QUERY_PAGES_AT_FIRST_TIME));
       IvyThreadContext.reset();
     });
-    isFirstTime = true;
+    isFirstTime = false;
+    setRowCount(cases.size());
     setCountLoad(getCountLoad() + 1);
   }
 
