@@ -87,7 +87,7 @@ You can configure those options by using Javascript from your HTML dialog as fol
             window.taskName = "Your New Task Name";
 
             // show case details of a case different from current case.
-            window.caseId = 123456;
+            window.caseId = "Case-Id";
 
             // Display content of the IFrame inside a card style.
             window.isCardFrame = true;
@@ -148,7 +148,7 @@ Example:
       <ui:composition template="/layouts/frame-10.xhtml">
          ...
          <script>
-            window.caseId = "163421";
+            window.caseId = "Case-Id";
          </script>
          ...
       </ui:composition>
@@ -219,9 +219,8 @@ Example:
 Developer tips
 ==============
 
-In case your project has a navigation button that does not complete a task, e.g Cancel, to
-
--  One of the default pages (application home, task list, process list, etc.): in your HTML dialog, redirect to the page you want to display.
+In case your project has a navigation button that does not complete a task, e.g.,Cancel, redirect in your HTML dialog 
+to the page you want to display (i.e., default pages like application home, task list, process list, etc.)
 
 Customization
 =============
