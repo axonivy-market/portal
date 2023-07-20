@@ -1,0 +1,5 @@
+Variable,Description
+isHideTaskAction,"hide task action button, false (default) or true"
+isWorkingOnATask,"working on a task in order to display warning when leaving page, false or true (default)"
+announcementInvisible,false or true (default)
+isCardFrame,display content of the IFrame inside a card style
