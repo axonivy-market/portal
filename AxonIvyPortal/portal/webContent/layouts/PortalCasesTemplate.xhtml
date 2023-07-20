@@ -5,6 +5,13 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
+    
+    <!-- WARNING: -->
+    <!-- This template is used for Portal only. -->
+    
+    <!-- DEPRECATED:  -->
+    <!-- Since Portal 11.0 -->
+    
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="caseView" value="#{data.caseView}" />
     <ui:param name="viewName" value="#{data.caseView.isTechnicalCaseView() ? 'TECHNICAL_CASE' : 'CASE'}" />
