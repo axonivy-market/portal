@@ -1223,7 +1223,10 @@
             "tasks" : [ {
                 "id" : "TaskA",
                 "name" : "Task Switch A",
-                "skipTasklist" : true
+                "skipTasklist" : true,
+                "expiry" : {
+                  "timeout" : "new Duration(\"2D\")"
+                }
               }, {
                 "id" : "TaskB",
                 "name" : "Task Switch B",
