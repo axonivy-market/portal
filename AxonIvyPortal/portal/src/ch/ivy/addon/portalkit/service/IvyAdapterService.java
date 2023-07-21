@@ -85,7 +85,7 @@ public class IvyAdapterService {
       Builder subprocessFilter = SubProcessSearchFilter.create();
       SubProcessSearchFilter filter = subprocessFilter
           .setSignature(subprocessSignature)
-          .setSearchScope(SearchScope.PROJECT_AND_ALL_REQUIRED)
+          .setSearchScope(SearchScope.APPLICATION)
           .toFilter();
       return findSubprocess(filter);
     }
