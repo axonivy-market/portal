@@ -231,7 +231,7 @@ public class DashboardConfigurationPage extends TemplatePage {
         });
   }
   
-  public void saveImportDashboard(String name, String desc, String icon, List<String> permissions) {
+  public void saveImportDashboard(String name, String otherLangName, String desc, String icon, List<String> permissions) {
     var importDialog = $("div[id$='dashboard-import-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("a[id$=':change-icon-link']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     selectDashboardIcon(icon);
@@ -239,6 +239,7 @@ public class DashboardConfigurationPage extends TemplatePage {
     importDialog.$("input[id$=':dashboard-title']").sendKeys(name);
     importDialog.$("input[id$=':dashboard-description']").clear();
     importDialog.$("input[id$=':dashboard-description']").sendKeys(desc);
+    editMultiLangDashboardImportTitle(name, otherLangName);
 
     if (permissions != null) {
       setPermissions(permissions, getDashboardImportPermission());
@@ -246,5 +247,16 @@ public class DashboardConfigurationPage extends TemplatePage {
     
     getDashboardImportSaveButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     importDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+  
+  public void editMultiLangDashboardImportTitle(String name, String updatedName) {
+    getAddLanguageButton().click();;
+    var multipleLanguageDialog = getMultipleLanguageDialog();
+    var elementsInput = multipleLanguageDialog.$$("td input");
+
+    elementsInput.get(2).setValue(updatedName);
+
+    multipleLanguageDialog.$("button[type='submit']").click();
+    multipleLanguageDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 }
