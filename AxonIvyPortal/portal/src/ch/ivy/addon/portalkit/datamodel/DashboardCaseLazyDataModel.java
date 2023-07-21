@@ -4,34 +4,25 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.primefaces.model.FilterMeta;
-import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
 
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardCaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardCaseService;
-import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
-import ch.ivyteam.util.threadcontext.IvyThreadContext;
 
-public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
+public class DashboardCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
 
   private static final long serialVersionUID = -6615871274830927272L;
 
-  private static final int QUERY_PAGES_AT_FIRST_TIME = 5;
-  private static final int QUERY_PAGES = 3;
-
   private DashboardCaseSearchCriteria criteria;
-  private boolean isFirstTime = true;
   private List<ICase> cases;
   private Map<Long, ICase> mapCases;
   private CaseQuery query;
-  private CompletableFuture<Void> future;
   private int countLoad;
 
   public DashboardCaseLazyDataModel() {
@@ -42,53 +33,33 @@ public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
 
   @Override
   public List<ICase> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
-    if (isFirstTime) {
-      isFirstTime = false;
-      if (future != null) {
-        try {
-          future.get();
-        } catch (Exception e) {
-          throw new PortalException(e);
-        }
+    if (first == 0) {
+      Map.Entry<String, SortMeta> sortEntry = sortBy.entrySet().iterator().next();
+      if (sortEntry != null && sortEntry.getValue() != null) {
+        SortMeta sortMeta = sortEntry.getValue();
+        criteria.setSortField(sortMeta.getField());
+        criteria.setSortDescending(sortMeta.getOrder().isDescending());
       }
-    } else {
-      if (first == 0) {
-        Map.Entry<String, SortMeta> sortEntry = sortBy.entrySet().iterator().next();
-        if (sortEntry != null && sortEntry.getValue() != null) {
-          SortMeta sortMeta = sortEntry.getValue();
-          criteria.setSortField(sortMeta.getField());
-          criteria.setSortDescending(sortMeta.getOrder().isDescending());
-        }
-        query = criteria.buildQuery();
-      }
-      cases = DashboardCaseService.getInstance().findByCaseQuery(query, first,
-          pageSize * (first <= pageSize ? QUERY_PAGES_AT_FIRST_TIME : QUERY_PAGES));
-      mapCases.putAll(cases.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
+      query = criteria.buildQuery();
     }
-
-    int rowCount = cases.size() + first;
-    List<ICase> result = new ArrayList<>();
-    for (int i = 0; i < Math.min(pageSize, cases.size()); i++) {
-      result.add(cases.get(i));
+    List<ICase> foundCases = DashboardCaseService.getInstance().findByCaseQuery(query, first, pageSize);
+    cases.addAll(foundCases);
+    mapCases.putAll(foundCases.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
+    int rowCount = 0;
+    if (foundCases.size() >= pageSize) {
+      rowCount = first + pageSize + 1;
+    } else {
+      rowCount = first + foundCases.size();
     }
     setRowCount(rowCount);
-    setCountLoad(getCountLoad() + 1);
-    return result;
+    return foundCases;
   }
 
-  public void loadFirstTime() {
-    query = criteria.buildQuery();
-    Object memento = IvyThreadContext.saveToMemento();
-    future = CompletableFuture.runAsync(() -> {
-      IvyThreadContext.restoreFromMemento(memento);
-      cases = DashboardCaseService.getInstance().findByCaseQuery(query, 0, getPageSize() * QUERY_PAGES_AT_FIRST_TIME);
-      mapCases.putAll(cases.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
-      IvyThreadContext.reset();
-    });
-    isFirstTime = false;
-    setCountLoad(getCountLoad() + 1);
+  @Override
+  public List<ICase> getResults() {
+    return this.cases;
   }
-
+  
   @Override
   public ICase getRowData(String rowKey) {
     ICase caze = mapCases.get(Long.valueOf(rowKey));
@@ -101,30 +72,6 @@ public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
   @Override
   public String getRowKey(ICase caze) {
     return String.valueOf(caze.getId());
-  }
-
-  /**
-   * @hidden
-   */
-  @Override
-  public void setRowIndex(int index) {
-    super.setRowIndex(index);
-  }
-
-  /**
-   * @hidden
-   */
-  @Override
-  public ICase getRowData() {
-    return super.getRowData();
-  }
-
-  /**
-   * @hidden
-   */
-  @Override
-  public boolean isRowAvailable() {
-    return super.isRowAvailable();
   }
 
   public DashboardCaseSearchCriteria getCriteria() {
