@@ -15,12 +15,11 @@ Basic Installation
 Project Modules
 ---------------
 
-The application consists of 3 process modules. For detailed information
+The application consists of 2 process modules. For detailed information
 on each module, refer to :ref:`architecture`.
 
 -  portal-components
 -  portal
--  AxonIvyExpress
 
 The deployment of Ivy projects is described in :dev-url:`project
 deployment </doc/|version|/engine-guide/deployment/index.html>`
@@ -33,6 +32,7 @@ Designer
 ^^^^^^^^
 
 Import Portal modules to Designer.
+axonivy-express is excluded from the Portal application. You can install axonivy-express from the market if you want to use it.
 
 
 Engine Without License (Demo Mode)

@@ -10,8 +10,8 @@ Architecture
       only used internally in Portal. Don't use them because they can be
       changed in future versions.
 
-The Portal system consists of the following modules: portal-components, portal and AxonIvyExpress.
-While AxonIvyExpress is optional, all other modules are mandatory.
+The Portal system consists of the following modules: portal-components, portal and axonivy-express.
+While axonivy-express is optional, all other modules are mandatory.
 
 |process-module-structure|
 
@@ -24,7 +24,7 @@ portal-components
 
 This module contains Ivy components such as User Selection, Role Selection,
 Document Table, Process Chain, Process History, and Process Viewer,... These components are independent
-of the modules portal and AxonIvyExpress. You can use them in your own applications.
+of the modules portal and axonivy-express. You can use them in your own applications.
 
 .. _architecture-portal:
 
@@ -43,7 +43,7 @@ We advise developers to depend on this module to facilitate Portal customization
 
 .. _architecture-axonivy-express:
 
-AxonIvyExpress
+axonivy-express
 ==============
 
 **No Code Process Management**
