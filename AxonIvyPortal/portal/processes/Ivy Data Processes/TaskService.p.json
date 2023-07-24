@@ -297,64 +297,6 @@
         "at" : { "x" : 528, "y" : 448 }
       }
     }, {
-      "id" : "f14",
-      "type" : "Script",
-      "name" : "Analyze expiry statistic",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;",
-            "import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;",
-            "",
-            "IvyTaskResultDTO dto = TaskService.newInstance().analyzeTaskStateStatistic(in.taskSearchCriteria);",
-            "out.taskStateStatistic = dto.taskStateStatistic;"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 336, "y" : 576 },
-        "size" : { "width" : 128, "height" : 60 }
-      },
-      "connect" : [
-        { "id" : "f20", "to" : "f15" }
-      ]
-    }, {
-      "id" : "f15",
-      "type" : "CallSubEnd",
-      "visual" : {
-        "at" : { "x" : 528, "y" : 576 }
-      }
-    }, {
-      "id" : "f16",
-      "type" : "CallSubStart",
-      "name" : "analyzeTaskStateStatistic(TaskSearchCriteria)",
-      "config" : {
-        "signature" : "analyzeTaskStateStatistic",
-        "input" : {
-          "params" : [
-            { "name" : "criteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria", "desc" : "" }
-          ],
-          "map" : {
-            "out.taskSearchCriteria" : "param.criteria"
-          }
-        },
-        "result" : {
-          "params" : [
-            { "name" : "taskStateStatistic", "type" : "ch.ivy.addon.portalkit.bo.TaskStateStatistic", "desc" : "" }
-          ],
-          "map" : {
-            "result.taskStateStatistic" : "in.taskStateStatistic"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 576 },
-        "labelOffset" : { "x" : 66, "y" : 41 }
-      },
-      "connect" : [
-        { "id" : "f19", "to" : "f14" }
-      ]
-    }, {
       "id" : "f23",
       "type" : "CallSubStart",
       "name" : "analyzeTaskCategoryStatistic(TaskSearchCriteria)",
@@ -411,6 +353,63 @@
       },
       "connect" : [
         { "id" : "f31", "to" : "f28" }
+      ]
+    }, {
+      "id" : "f32",
+      "type" : "CallSubStart",
+      "name" : "analyzeTaskBusinessStateStatistic(TaskSearchCriteria)",
+      "config" : {
+        "signature" : "analyzeTaskBusinessStateStatistic",
+        "input" : {
+          "params" : [
+            { "name" : "taskSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria", "desc" : "" }
+          ],
+          "map" : {
+            "out.taskSearchCriteria" : "param.taskSearchCriteria"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "taskStateStatistic", "type" : "ch.ivy.addon.portalkit.bo.TaskStateStatistic", "desc" : "" }
+          ],
+          "map" : {
+            "result.taskStateStatistic" : "in.taskStateStatistic"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 104, "y" : 824 }
+      },
+      "connect" : [
+        { "id" : "f35", "to" : "f34" }
+      ]
+    }, {
+      "id" : "f33",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 528, "y" : 824 }
+      }
+    }, {
+      "id" : "f34",
+      "type" : "Script",
+      "name" : "Analyze task business state statistic",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;",
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;",
+            "",
+            "IvyTaskResultDTO dto = TaskService.newInstance().analyzeTaskBusinessStateStatistic(in.taskSearchCriteria);",
+            "out.taskStateStatistic = dto.taskStateStatistic;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 344, "y" : 823 },
+        "size" : { "width" : 160, "height" : 65 }
+      },
+      "connect" : [
+        { "id" : "f36", "to" : "f33" }
       ]
     } ],
   "layout" : {

@@ -1891,5 +1891,40 @@
         { "id" : "f103", "to" : "S41", "via" : [ { "x" : 128, "y" : 1696 } ], "outVar" : "out4" },
         { "id" : "f104", "to" : "S43", "via" : [ { "x" : 128, "y" : 1888 } ], "outVar" : "out5" }
       ]
+    }, {
+      "id" : "f114",
+      "type" : "RequestStart",
+      "name" : "createTaskWithFrameTemplate",
+      "config" : {
+        "signature" : "createTaskWithFrameTemplate",
+        "request" : {
+          "name" : "Create Task With Frame Template"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 16, "y" : 2184 }
+      },
+      "connect" : [
+        { "id" : "f117", "to" : "f115" }
+      ]
+    }, {
+      "id" : "f115",
+      "type" : "DialogCall",
+      "name" : "TemplateExampleInFrame",
+      "config" : {
+        "dialog" : "com.axonivy.portal.developerexamples.testdata.TemplateExampleInFrame:start()"
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 2184 }
+      },
+      "connect" : [
+        { "id" : "f118", "to" : "f116" }
+      ]
+    }, {
+      "id" : "f116",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 416, "y" : 2184 }
+      }
     } ]
 }

@@ -28,6 +28,7 @@ import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 @ManagedBean
 @ViewScoped
@@ -130,8 +131,10 @@ public class TaskActionBean implements Serializable {
   }
 
   public boolean canChangeExpiry(ITask task) {
-    return hasPermission(task, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP)
-        || (task != null && StringUtils.isNotBlank(task.getExpiryTaskStartElementPid()));
+    List<TaskBusinessState> taskStates = Arrays.asList(TaskBusinessState.DONE, TaskBusinessState.DESTROYED);
+    return (hasPermission(task, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP)
+        || (task != null && StringUtils.isNotBlank(task.getExpiryTaskStartElementPid())))
+        && !taskStates.contains(task.getBusinessState());
   }
   
   public boolean canChangeDelayTimestamp(ITask task) {

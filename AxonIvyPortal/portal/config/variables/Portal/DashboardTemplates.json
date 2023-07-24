@@ -94,11 +94,9 @@
               "field": "state",
               "visible": false,
               "filterList": [
-                "CREATED",
-                "DONE",
-                "PARKED",
-                "RESUMED",
-                "SUSPENDED"
+                "OPEN",
+                "IN_PROGRESS",
+                "DONE"
               ]
             },
             {
@@ -343,7 +341,7 @@
             {
               "field": "state",
               "filterList": [
-                "SUSPENDED"
+                "OPEN"
               ]
             },
             {
@@ -405,8 +403,8 @@
             {
               "field": "state",
               "filterList": [
-                "PARKED",
-                "RESUMED"
+                "OPEN",
+                "IN_PROGRESS"
               ]
             },
             {

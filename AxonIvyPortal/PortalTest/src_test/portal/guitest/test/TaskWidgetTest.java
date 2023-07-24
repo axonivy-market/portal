@@ -5,6 +5,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static portal.guitest.common.Variable.DISABLE_TASK_COUNT;
 
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Before;
@@ -33,6 +35,8 @@ public class TaskWidgetTest extends BaseTest {
       "portalKitTestHelper/14DE09882B540AD5/undoOnlyDelegateOwnTasksPermission.ivp";
   private static final String DENY_DESTROY_TASK_URL = "portalKitTestHelper/14DE09882B540AD5/denyDestroyTaskPermission.ivp";
   private static final String GRANT_DESTROY_TASK_URL = "portalKitTestHelper/14DE09882B540AD5/grantDestroyTaskPermission.ivp";
+
+  private static final String MATERNITY_LEAVE_REQUEST = "Maternity Leave Request";
 
   private TaskDetailsPage taskDetailsPage;
   
@@ -63,13 +67,20 @@ public class TaskWidgetTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
     taskWidgetPage.sideStepMenuOnActionButton(0);
+    assertEquals(MATERNITY_LEAVE_REQUEST, taskWidgetPage.getNameOfTaskAt(0));
     taskWidgetPage.reserveTask(0);
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertEquals(TaskState.RESERVED, taskWidgetPage.getTaskState(0));
+    assertEquals(TaskState.OPEN, taskWidgetPage.getTaskState(0));
+    taskWidgetPage.clickOnTaskStatesAndApply(List.of("Reserved"));
+    assertEquals(MATERNITY_LEAVE_REQUEST, taskWidgetPage.getNameOfTaskAt(0));
     taskWidgetPage.sideStepMenuOnActionButton(0);
     taskWidgetPage.resetTask(0);
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertEquals(TaskState.SUSPENDED, taskWidgetPage.getTaskState(0));
+    assertEquals(TaskState.OPEN, taskWidgetPage.getTaskState(0));
+    taskWidgetPage.clickOnTaskStatesAndApply(List.of("Reserved"));
+    assertEquals(0, taskWidgetPage.countTasks());
+    taskWidgetPage.clickOnTaskStatesAndApply(List.of("Suspended"));
+    assertEquals(MATERNITY_LEAVE_REQUEST, taskWidgetPage.getNameOfTaskAt(0));
   }
 
   @Test

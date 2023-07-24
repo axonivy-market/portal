@@ -459,11 +459,24 @@ public class CaseService implements ICaseService {
       if (isHiddenTasksCasesExcluded()) {
         caseQuery.where().and(queryExcludeHiddenCases());
       }
-      return Ivy.wf().getCaseQueryExecutor().getFirstResult(caseQuery);
+      ICase caze = Ivy.wf().getCaseQueryExecutor().getFirstResult(caseQuery);
+      if (caze == null) {
+        caze = findNonpersistentInvolvedCase(uuid);
+      }
+      return caze;
     });
   }
   
   public boolean isCaseAccessible(String uuid) {
     return findCaseByUUID(uuid) != null;
   }
+
+  private ICase findNonpersistentInvolvedCase(String uuid) {
+    ICase caze = Ivy.wf().findCase(uuid);
+    if (caze != null && !caze.isPersistent() && caze.getCreatorUser().equals(Ivy.session().getSessionUser())) {
+      return caze;
+    }
+    return null;
+  }
+
 }

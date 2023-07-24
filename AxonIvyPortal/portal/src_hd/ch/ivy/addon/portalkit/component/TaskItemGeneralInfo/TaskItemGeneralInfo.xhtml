@@ -87,7 +87,7 @@
         <div class="ui-g-12 no-padding-column text-content last-line text-ellipsis">
           <h:panelGroup id="task-detail-state" styleClass="state-cell default-task-cell">
             <ic:ch.ivy.addon.portalkit.component.task.column.TaskState
-              state="#{task.state}" showIndicatorBesideText="true" responsiveStyleClass="" />
+              state="#{task.businessState}" showIndicatorBesideText="true" responsiveStyleClass="" />
           </h:panelGroup>
           <p:tooltip rendered="#{state == 'FAILED' or state == 'JOIN_FAILED'}" for="task-detail-state"
             value="#{taskBean.getTaskFailedReason(task)}" trackMouse="true" hideEvent="mouseleave click" />
@@ -223,7 +223,7 @@
           <h:outputText id="expiry-task-time" styleClass="task-detail-column-title"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" />
         </div>
-        <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left">
+        <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 #{!taskActionBean.canChangeExpiry(task) or cc.attrs.readOnly ? '':'u-no-padding-left'}">
           <ui:fragment rendered="#{taskBean.isNotDone(task)}">
             <h:form id="expiry-form">
               <p:inplace id="edit-inplace" styleClass="expiry-edit-inplace portal-edit-inplace" editor="true"

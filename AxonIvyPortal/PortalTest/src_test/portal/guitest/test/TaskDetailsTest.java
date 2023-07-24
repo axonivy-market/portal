@@ -79,7 +79,7 @@ public class TaskDetailsTest extends BaseTest {
     String tomorrowStringLiteral = prepareTomorrowAsString();
     taskDetailsPage = openDetailsPageOfFirstTask();
     taskDetailsPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
-    assertTrue(StringUtils.equalsIgnoreCase(tomorrowStringLiteral, taskDetailsPage.getExpiryOfTaskAt()));
+    assertTrue(StringUtils.equalsIgnoreCase(prepareTomorrowAsLocaleDateString(), taskDetailsPage.getExpiryOfTaskAt()));
     String firstTaskNoteComment = taskDetailsPage.getFirstTaskNoteComment();
     assertTrue(StringUtils.contains(firstTaskNoteComment, "Portal Admin User (admin) has set deadline to task"));
     assertTrue(StringUtils.contains(firstTaskNoteComment, "assign Everybody as the task escalation activator"));
@@ -130,7 +130,7 @@ public class TaskDetailsTest extends BaseTest {
     taskDetailsPage.openActionPanel();
     assertTrue(taskDetailsPage.isClearDelayTimeDisplayed());
     taskDetailsPage.clickOnClearDelayTime();
-    assertTrue(StringUtils.equalsIgnoreCase("SUSPENDED", taskDetailsPage.getTaskState()));
+    assertTrue(StringUtils.equalsIgnoreCase("OPEN", taskDetailsPage.getTaskState()));
     assertTrue(StringUtils.equalsIgnoreCase("N/A", taskDetailsPage.getTaskDelayTime()));
   }
 
@@ -147,7 +147,7 @@ public class TaskDetailsTest extends BaseTest {
     String yesterday = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     String yesterdayWithLocale = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.LOCALE_DATE_TIME_PATTERN));
     taskDetailsPage.updateDelayTimestamp(yesterday,yesterdayWithLocale);
-    assertTrue(StringUtils.equalsIgnoreCase("SUSPENDED", taskDetailsPage.getTaskState()));
+    assertTrue(StringUtils.equalsIgnoreCase("OPEN", taskDetailsPage.getTaskState()));
   }
 
   @Test

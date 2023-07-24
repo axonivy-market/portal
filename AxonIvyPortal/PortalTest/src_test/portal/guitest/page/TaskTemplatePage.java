@@ -109,6 +109,10 @@ public class TaskTemplatePage extends TemplatePage {
     click(By.linkText("Cancel"));
   }
 
+  public void clickResetLink() {
+    click(By.linkText("Reset"));
+  }
+
   public void showNoteHistory() {
     click(driver.findElement(By.cssSelector("a[id$='show-more-note-link']")));
   }
