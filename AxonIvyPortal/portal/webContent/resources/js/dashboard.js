@@ -1,7 +1,7 @@
 var grids;
 var originalGridstackHeight = 0;
 loadGrid();
-
+resizeTableBody();
 function loadGrid() {
   grids = GridStack.initAll({
     column: 12,
@@ -205,8 +205,6 @@ function expandFullscreen(index, widgetId) {
   // Hide dashboard overlay panel is opening
   hideAllDashboardOverlayPanels();
 
-  resizeTableBody();
-
   var isSafari = isSafariBrowser();
   if (isSafari) {
     $(widget.get(0)).parent().addClass('expand-fullscreen');
@@ -247,7 +245,6 @@ function collapseFullscreen(index, widgetId) {
   }
 
   $(widget.get(0)).parent('.grid-stack').height(originalGridstackHeight);
-  resizeTableBody();
   // Hide dashboard overlay panel is opening
   hideAllDashboardOverlayPanels();
 }
@@ -265,7 +262,6 @@ function loadWidgetFirstTime(loadingClass, widgetClass) {
     widget.removeClass('u-display-none');
     widget.removeClass('u-invisibility');
   }
-  resizeTableBody();
 }
 
 function hideAllDashboardOverlayPanels() {
