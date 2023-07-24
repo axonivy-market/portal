@@ -92,4 +92,13 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   public void waitUntilLeaveRequestPageDisplayed() {
     waitForElementDisplayed(By.id("leave-request:button-submit"), true);
   }
+
+  public void fulfillAndSendMaternityLeaveRequest() {
+    type(findElementById("leave-request:from_input"), "Jun 23, 2023 10:37");
+    type(findElementById("leave-request:to_input"), "Jun 24, 2023 10:37");
+    type(findElementById("leave-request:fullname"), "John Doe");
+    type(findElementById("leave-request:substitute"), "John Wick");
+    click(By.id("leave-request:button-submit"));
+  }
+  
 }

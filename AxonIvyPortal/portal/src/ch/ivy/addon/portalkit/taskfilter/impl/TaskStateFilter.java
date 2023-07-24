@@ -31,7 +31,7 @@ public class TaskStateFilter extends TaskFilter {
    * Advance note: if current user is Administrator, will consider to add system states
    */
   public TaskStateFilter() {
-    this.filteredStates = TaskUtils.getValidStates();
+    this.filteredStates = TaskUtils.getOldValidStates();
     setSelectedFilteredStatesAtBeginning(new ArrayList<>(filteredStates));
     setSubmittedFilteredStates(new ArrayList<>(filteredStates));
     this.selectedFilteredStates = new ArrayList<>();

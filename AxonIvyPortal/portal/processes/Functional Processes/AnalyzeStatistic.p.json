@@ -714,5 +714,88 @@
       "connect" : [
         { "id" : "f60", "to" : "f56" }
       ]
+    }, {
+      "id" : "f61",
+      "type" : "CallSubStart",
+      "name" : "analyzeTaskBusinessStateStatistic(TaskQuery)",
+      "config" : {
+        "signature" : "analyzeTaskBusinessStateStatistic",
+        "input" : {
+          "params" : [
+            { "name" : "taskQuery", "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery", "desc" : "" }
+          ],
+          "map" : {
+            "out.taskSearchCriteria.customTaskQuery" : "param.taskQuery"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "result", "type" : "ch.ivy.addon.portalkit.bo.TaskStateStatistic", "desc" : "" }
+          ],
+          "map" : {
+            "result.result" : "in.taskStateStatisticResult"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 120, "y" : 944 }
+      },
+      "connect" : [
+        { "id" : "f65", "to" : "f63" }
+      ]
+    }, {
+      "id" : "f62",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 568, "y" : 944 }
+      }
+    }, {
+      "id" : "f63",
+      "type" : "Script",
+      "name" : "Initialize",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;",
+            "import ch.ivy.addon.portalkit.util.PermissionUtils;",
+            "",
+            "in.taskSearchCriteria.sorted = false;",
+            "if (PermissionUtils.checkReadAllTasksPermission()) {",
+            "  in.taskSearchCriteria.includedStates.addAll(TaskSearchCriteria.ADVANCE_BUSINESS_STATES);",
+            "  in.taskSearchCriteria.extendStatesQueryByPermission(PermissionUtils.checkReadAllTasksPermission());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 944 }
+      },
+      "connect" : [
+        { "id" : "f66", "to" : "f64" }
+      ]
+    }, {
+      "id" : "f64",
+      "type" : "SubProcessCall",
+      "name" : "TaskService",
+      "config" : {
+        "processCall" : "Ivy Data Processes/TaskService:analyzeTaskBusinessStateStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)",
+        "call" : {
+          "map" : {
+            "param.taskSearchCriteria" : "in.taskSearchCriteria"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.taskStateStatisticResult" : "result.taskStateStatistic"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 440, "y" : 944 }
+      },
+      "connect" : [
+        { "id" : "f67", "to" : "f62" }
+      ]
     } ]
 }
