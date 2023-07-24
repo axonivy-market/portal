@@ -204,7 +204,7 @@ function expandFullscreen(index, widgetId) {
 
   // Hide dashboard overlay panel is opening
   hideAllDashboardOverlayPanels();
-
+  resizeTableBody();
   var isSafari = isSafariBrowser();
   if (isSafari) {
     $(widget.get(0)).parent().addClass('expand-fullscreen');
@@ -247,6 +247,7 @@ function collapseFullscreen(index, widgetId) {
   $(widget.get(0)).parent('.grid-stack').height(originalGridstackHeight);
   // Hide dashboard overlay panel is opening
   hideAllDashboardOverlayPanels();
+  resizeTableBody();
 }
 
 function loadWidgetFirstTime(loadingClass, widgetClass) {
