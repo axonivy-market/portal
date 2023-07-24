@@ -15,11 +15,12 @@ Basic Installation
 Project Modules
 ---------------
 
-The application consists of 2 process modules. For detailed information
+The application consists of 3 process modules. For detailed information
 on each module, refer to :ref:`architecture`.
 
 -  portal-components
 -  portal
+-  axonivy-express
 
 The deployment of Ivy projects is described in :dev-url:`project
 deployment </doc/|version|/engine-guide/deployment/index.html>`
@@ -352,6 +353,16 @@ Migrate 10.0 To 10.0.7
 The ``ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI`` class is removed and no longer supported, use 
 ``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` instead.
 
+Migrate 11.1.0 To 11.2.0
+------------------------
+
+The ``AxonIvyExpress`` module is removed from the Portal application and bring it to the market, To migrate it you need to do following steps:
+
+- Go to **Setting** -> **Express Management**. Export all Express configurations.
+- Go to **Engine** and stop PM **AxonIvyExpress**.
+- Deploy **axonivy-express** which get from the market.
+- Go to **Setting** -> **Express Management**. Import the configuration which is exported at the first step.
+
 .. _installation-release-notes:
 
 Release notes
@@ -376,6 +387,8 @@ Changes in 11.2.0
 - The ``ch.ivy.addon.portalkit.publicapi.RoleAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.RoleAPI`` instead.
 - The ``ch.ivy.addon.portalkit.publicapi.TaskAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.TaskAPI`` instead.
 - The ``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI`` instead.
+
+- The ``AxonIvyExpress`` module is removed from the Portal application. Rename it to ``axonivy-express`` and bring it to the market.
 
 Changes in 9.4
 --------------
