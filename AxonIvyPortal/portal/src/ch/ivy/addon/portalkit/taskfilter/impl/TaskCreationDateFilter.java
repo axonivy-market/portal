@@ -1,7 +1,6 @@
 package ch.ivy.addon.portalkit.taskfilter.impl;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.faces.application.FacesMessage;
@@ -31,7 +30,7 @@ public class TaskCreationDateFilter extends TaskFilter {
 
   @Override
   public String value() {
-    DateFormat formatter = DateTimeGlobalSettingService.getInstance().getDefaultDateFormatter();
+    DateFormat formatter = DateTimeGlobalSettingService.getInstance().getDefaultDateTimeFormatter();
     if (fromCreationDate != null && toCreationDate != null) {
       return String.format(DASH, formatter.format(fromCreationDate), formatter.format(toCreationDate));
     }

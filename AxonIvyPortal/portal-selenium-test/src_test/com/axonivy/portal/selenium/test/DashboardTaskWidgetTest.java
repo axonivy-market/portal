@@ -35,7 +35,6 @@ public class DashboardTaskWidgetTest extends BaseTest {
   private static final String TASK_NUMBER = "Task number";
   private static final String DONE = "Done";
   private static final String NEW_YOUR_TASK = "New Your Tasks";
-  private static final String SUSPENDED = "Suspended";
   private static final String EXPIRE_TODAY = "Expire today";
   private static final String TASK_NAME = "Task name";
   private static final String MATERNITY_LEAVE_REQUEST = "Maternity Leave Request";
@@ -43,6 +42,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
   private static final String TASK_PRIORITY = "Prio";
   private static final String EXPIRY = "Expiry";
   private static final String IN_PROGRESS = "In progress";
+  private static final String OPEN = "Open";
   
   private NewDashboardPage newDashboardPage;
   
@@ -137,7 +137,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskEditWidget.changeWidgetTitle(NEW_YOUR_TASK);
     taskEditWidget.filterTaskName(TASK_NUMBER);
     taskEditWidget.clickOnStateToShowDropdown();
-    taskEditWidget.selectState(SUSPENDED);
+    taskEditWidget.selectState(OPEN);
     taskEditWidget.preview();
     taskEditWidget.waitPageSelected(1);
     taskEditWidget.countAllTasks().shouldHave(size(5));
@@ -182,7 +182,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.clickOnButtonWidgetInformation();
     taskWidget.getExpiryTodayLabelInWidgetInfo().shouldHave(text(EXPIRE_TODAY));
     taskWidget.clickToExpandNumberOfTaskByState();
-    taskWidget.getFirstStateLabelInWidgetInfo().shouldHave(text(SUSPENDED));
+    taskWidget.getFirstStateLabelInWidgetInfo().shouldHave(text(OPEN));
     taskWidget.clickToExpandNumberOfTaskByCategory();    
     taskWidget.clickToExpandPredefinedFilters();
     taskWidget.closeWidgetInformationDialog();

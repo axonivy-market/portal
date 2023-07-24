@@ -21,18 +21,21 @@ import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
+import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 @ManagedBean
 @ViewScoped
 public class DashboardTaskFilterBean {
-  private List<TaskState> states;
+  private List<TaskBusinessState> states;
   private List<WorkflowPriority> priorities;
   private UserDTO selectedUser;
   private List<SecurityMemberDTO> responsibles;
   private TaskDashboardWidget widget;
-  
+
+  private static final String TASK_BUSINESS_STATE_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/";
+  private static final String TASK_PRIORITY_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskPriority/";
+
   @PostConstruct
   public void init() {
     this.states = TaskUtils.getValidStates();
@@ -62,11 +65,11 @@ public class DashboardTaskFilterBean {
     return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);
   }
 
-  public String getUserFriendlyTaskState(TaskState state) {
+  public String getUserFriendlyTaskState(TaskBusinessState state) {
     if (state == null) {
       return EMPTY;
     }
-    String displayState = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + state.toString());
+    String displayState = Ivy.cms().co(TASK_BUSINESS_STATE_CMS_PATH + state.toString());
     return StringUtils.isBlank(displayState) ? state.name() : displayState;
   }
 
@@ -74,29 +77,20 @@ public class DashboardTaskFilterBean {
     if (priority == null) {
       return EMPTY;
     }
-    switch (priority) {
-      case LOW:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/LOW_LOWERCASE");
-      case NORMAL:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/NORMAL_LOWERCASE");
-      case HIGH:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/HIGH_LOWERCASE");
-      case EXCEPTION:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/EXCEPTION_LOWERCASE");
-      default:
-        return EMPTY;
-    }
+
+    return Ivy.cms().co(TASK_PRIORITY_CMS_PATH + priority + "_LOWERCASE");
+
   }
 
   public boolean hasPredefinedFilter(TaskDashboardWidget widget) {
     return DashboardWidgetUtils.hasPredefinedFilter(widget);
   }
 
-  public List<TaskState> getStates() {
+  public List<TaskBusinessState> getStates() {
     return states;
   }
 
-  public void setStates(List<TaskState> states) {
+  public void setStates(List<TaskBusinessState> states) {
     this.states = states;
   }
 

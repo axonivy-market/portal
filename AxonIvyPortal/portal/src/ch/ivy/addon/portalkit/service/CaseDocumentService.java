@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.service;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,16 +9,10 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
-import org.primefaces.model.file.UploadedFile;
-import org.primefaces.virusscan.VirusException;
-import org.primefaces.virusscan.VirusScanner;
-import org.primefaces.virusscan.VirusScannerService;
 
 import com.axonivy.portal.components.ivydata.bo.IvyDocument;
 
 import ch.ivy.addon.portalkit.configuration.GlobalSetting;
-import ch.ivy.addon.portalkit.document.DocumentDetector;
-import ch.ivy.addon.portalkit.document.DocumentDetectorFactory;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -102,50 +95,6 @@ public class CaseDocumentService {
     } else {
       return allowedFileType.contains(StringUtils.lowerCase(fileType));
     }
-  }
-
-  public static boolean isDocumentSafe(UploadedFile uploadedFile) {
-    if (uploadedFile != null) {
-      DocumentDetectorFactory documentDetectorFactory = new DocumentDetectorFactory();
-      DocumentDetector documentDetector = documentDetectorFactory
-          .getDocumentDetector(FilenameUtils.getExtension(StringUtils.lowerCase(uploadedFile.getFileName())));
-      if (documentDetector != null) {
-        try {
-          return documentDetector.isSafe(uploadedFile.getInputStream());
-        } catch (IOException e) {
-          Ivy.log().error(e);
-          return false;
-        }
-      }
-      // File type doesn't support for scanning inside script
-      else
-        return true;
-    }
-    return false;
-  }
-
-  public static boolean isDocumentTypeHasVirus(UploadedFile uploadedFile) {
-	  VirusScannerService service = new VirusScannerService(VirusScanner.class.getClassLoader());
-	  try {
-		service.performVirusScan(uploadedFile);
-	  } catch (VirusException e) {
-		 Ivy.log().error(e);
-         return true;
-	  }
-	  return false;
-  }
-
-  public static boolean enableScriptCheckingForUploadedDocument() {
-    GlobalSettingService globalSettingService = new GlobalSettingService();
-    String enableScriptCheckingForUploadedDocument = globalSettingService
-        .findGlobalSettingValue(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT);
-    return Boolean.parseBoolean(enableScriptCheckingForUploadedDocument);
-  }
-
-  public static boolean enableVirusScannerForUploadedDocument() {
-	    GlobalSettingService globalSettingService = new GlobalSettingService();
-	    return globalSettingService
-	        .findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_VIRUS_SCANNER_FOR_UPLOADED_DOCUMENT);
   }
 
   private IDocumentService documentsOf(ICase iCase) {

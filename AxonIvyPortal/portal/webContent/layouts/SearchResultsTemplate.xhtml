@@ -5,6 +5,13 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
+    
+    <!-- WARNING: -->
+    <!-- This template is used for Portal only. -->
+    
+    <!-- DEPRECATED:  -->
+    <!-- Since Portal 11.0 -->
+    
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="dataModel" value="#{data.dataModel}" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/searchResults')}</ui:define>
@@ -85,7 +92,7 @@
                       rendered="#{dataModel.taskDataModel.isSelectedColumn('COMPLETED_ON')}" componentId="completed-time"
                       value="#{task.endTimestamp}" />
                     <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component"
-                      dataModel="#{dataModel.taskDataModel}" state="#{task.state}" />
+                      dataModel="#{dataModel.taskDataModel}" state="#{task.businessState}" />
                     <ic:ch.ivy.addon.portalkit.component.task.column.TaskCategory id="task-category-component" tooltip="#{task.getCategory().getPath()}" 
                       rendered="#{dataModel.taskDataModel.isSelectedColumn('CATEGORY')}" value="#{task.getCategory().getName()}"  />
                   </ui:fragment>
