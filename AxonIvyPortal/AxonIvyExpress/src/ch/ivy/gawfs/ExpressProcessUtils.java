@@ -29,6 +29,7 @@ import ch.ivyteam.ivy.process.call.ISubProcessStart;
 import ch.ivyteam.ivy.process.call.SubProcessRunner;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter.Builder;
+import ch.ivyteam.ivy.process.call.SubProcessSearchFilter.SearchScope;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
@@ -444,8 +445,7 @@ public class ExpressProcessUtils {
   public List<ExternalDataProvider> findDataProviders() {
     Builder subprocessFilter = SubProcessSearchFilter.create();
     SubProcessSearchFilter filter = subprocessFilter.setSignature("portalExpressDataProvider()")
-        .setSearchInAllProjects(true)
-        .setSearchInDependentProjects(false).toFilter();
+        .setSearchScope(SearchScope.APPLICATION).toFilter();
     return SubProcessRunner.findSubProcessStarts(filter).stream().map(this::toDataProvider).collect(Collectors.toList());
   }
 
