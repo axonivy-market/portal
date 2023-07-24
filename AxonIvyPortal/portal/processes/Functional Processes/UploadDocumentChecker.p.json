@@ -49,9 +49,9 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
-            "import ch.ivy.addon.portalkit.service.CaseDocumentService;",
+            "import com.axonivy.portal.util.UploadDocumentUtils;",
             "",
-            "if(CaseDocumentService.isDocumentSafe(in.uploadedFile)){",
+            "if(UploadDocumentUtils.isDocumentSafe(in.uploadedFile)){",
             "  in.checkStatus = UploadDocumentCheckStatus.OK;",
             "}",
             "else{",
@@ -108,7 +108,7 @@
             "name" : "Yes",
             "segment" : 0.45,
             "offset" : { "x" : -25, "y" : 0 }
-          }, "condition" : "in.checkStatus == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK && ch.ivy.addon.portalkit.service.CaseDocumentService.enableScriptCheckingForUploadedDocument()" },
+          }, "condition" : "in.checkStatus == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK && com.axonivy.portal.util.UploadDocumentUtils.enableScriptCheckingForUploadedDocument()" },
         { "id" : "f9", "to" : "f1", "via" : [ { "x" : 224, "y" : 464 }, { "x" : 224, "y" : 720 } ], "label" : {
             "name" : "No",
             "segment" : 1.16,
@@ -123,10 +123,10 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import com.axonivy.portal.util.UploadDocumentUtils;",
             "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
-            "import ch.ivy.addon.portalkit.service.CaseDocumentService;",
             "",
-            "if(CaseDocumentService.isDocumentTypeHasVirus(in.uploadedFile)){",
+            "if(UploadDocumentUtils.isDocumentTypeHasVirus(in.uploadedFile)){",
             "    in.checkStatus = UploadDocumentCheckStatus.FAIL;",
             "    in.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainVirus\");",
             "}",
@@ -156,7 +156,7 @@
             "name" : "Yes",
             "segment" : 0.52,
             "offset" : { "x" : 18, "y" : 0 }
-          }, "condition" : "in.checkStatus == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK && ch.ivy.addon.portalkit.service.CaseDocumentService.enableVirusScannerForUploadedDocument()" },
+          }, "condition" : "in.checkStatus == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK && com.axonivy.portal.util.UploadDocumentUtils.enableVirusScannerForUploadedDocument()" },
         { "id" : "f14", "to" : "f7", "via" : [ { "x" : 288, "y" : 272 }, { "x" : 288, "y" : 392 }, { "x" : 96, "y" : 392 } ], "label" : {
             "name" : "No",
             "segment" : 1.48

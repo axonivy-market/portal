@@ -1113,6 +1113,9 @@
                 "name" : "Task Switch B",
                 "skipTasklist" : true,
                 "delay" : "new Duration(50000)",
+                "expiry" : {
+                  "timeout" : "new Duration(\"2D\")"
+                },
                 "customFields" : [
                   { "name" : "StateExampleTaskSwitchB", "type" : "String", "value" : "\"TaskWillBeDestroyed\"" }
                 ]

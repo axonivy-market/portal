@@ -74,8 +74,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationAndRole: Aplicación y rol
     definedDeputies: Sustitutos definidos
     deputyFor: Soy sustituto de
+    myAbsences: Mi ausencia
     myDeputies: Mis sustitutos
-    myPlannedAbsences: Mis ausencias programadas
     nextAbsence: Siguiente ausencia
     selectedDeputyFor: El usuario seleccionado es el sustituto de
     selectedUser: Usuario seleccionado
@@ -771,6 +771,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: La configuración del panel de control no es compatible con los dispositivos móviles.
       EditPrivateDashboards: Editar sus tableros privados
       EditPublicDashboards: Editar tableros públicos
+      ExportDashboard: Exportar el cuadro de mandos
       PrivateDashboard: Cuadros de mando privados
       PrivateDashboardConfiguration: Configuración de tableros privados
       PublicDashboard: Cuadros de mando públicos
@@ -849,6 +850,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       configurationDescription: Puede configurar su widget en esta área de configuración. Por favor, defina los filtros requeridos así como las columnas a mostrar.
       customWidgetParamChangedMessage: Este proceso ha cambiado. Presione aktualizar para continuar.
       editWidgetHeader: Editar configuración del widget
+      import: Importar
+      importFromJsonFile: Importar desde archivo JSON
       newWidgetHeader: Nueva {0} configuración del widget
       pageTitle: Configuración del panel de control
       processConfigurationDescription: Puede configurar su widget en esta área de configuración. Por favor, defina los filtros requeridos así como las propiedades a mostrar.
@@ -955,6 +958,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     download: Descargar
     fileContainScript: ¡Este archivo no puede cargarse porque contiene algunos scripts!
     fileContainVirus: Carga fallida, ¡se ha detectado un virus/infección!
+    fileCouldNotParse: No se pudo analizar el archivo
+    fileEmptyMessage: El archivo está vacío
     name: Nombre de archivo
     size: Tamaño de archivo
     type: Tipo
@@ -1535,6 +1540,12 @@ Dialogs:
             expressNoItem: Aún no se ha completado ninguna Tarea Express
             expressNoItemDescription: Aquí se mostrarán los resultados de las tareas completadas
             expressWorkflowName: 'Detalles de negocio del caso #{0}'
+        portal:
+          generic:
+            dashboard:
+              component:
+                CustomDashboardWidget:
+                  CouldNotFindLinkedProcess: ¡No se pudo encontrar el proceso vinculado!
         portalkit:
           component:
             CaseWidget:
@@ -1556,6 +1567,11 @@ Dialogs:
       portal:
         dashboard:
           component:
+            DashboardImportDetails:
+              FileInfomation: Informacion del archivo
+              ImportPrivate: Importar panel privado
+              ImportPublic: Importar panel público
+              chooseAJsonFile: Elija un archivo json
             NewsWidget:
               NewsContentPlaceHolder: Introduzca el contenido de las noticias
               NewsContentValidateMessage: El contenido de las noticias en {0} es necesario

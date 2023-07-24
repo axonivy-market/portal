@@ -14,7 +14,7 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class DateTimeDisplayTest extends BaseTest {
   
-  private static final String DATE_TIME_REGEX_PATTERN = "^\\D{3}\\s\\d{1,2},\\s\\d{4}\\s\\d{1,2}:\\d{1,2}$"; //Matched date: May 19, 2021 15:00
+  private static final String DATE_TIME_REGEX_PATTERN = "\\d{1,2} [a-zA-Z]+ \\d{4} \\d{2}:\\d{2}"; //Matched date: 6 July 2022 10:00
   private HomePage homePage;
   
   @Override
@@ -23,6 +23,7 @@ public class DateTimeDisplayTest extends BaseTest {
     super.setup();
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     createTestingTasks();
+    resetLanguageOfCurrentUser();
     homePage = new HomePage();
   }
 
@@ -34,6 +35,7 @@ public class DateTimeDisplayTest extends BaseTest {
     TaskDetailsPage taskDetailsPage = taskWidget.openTaskDetails(0);
     String createdDateLiteral = taskDetailsPage.getCreatedOnDateText();
     boolean matches = Pattern.matches(DATE_TIME_REGEX_PATTERN, createdDateLiteral);
+    
     Assert.assertTrue(matches);
   }
 

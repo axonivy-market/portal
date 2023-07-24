@@ -1,7 +1,9 @@
 package ch.ivy.addon.portalkit.service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class DateTimeGlobalSettingService {
@@ -22,7 +24,7 @@ public class DateTimeGlobalSettingService {
     globalSettingService = new GlobalSettingService();
   }
 
-  public String getGlobalSettingPattern() {
+  public String getGlobalDateTimePattern() {
     return isTimeHidden() ? getDatePattern() : getDateTimePattern();
   }
 
@@ -40,8 +42,7 @@ public class DateTimeGlobalSettingService {
   }
 
   private String getDatePatternByYearSetting() {
-    String pattern = UserSettingService.newInstance().getDateFormat();
-    return isYearHidden() ? getDateWithoutYearPattern(pattern) : pattern;
+    return isYearHidden() ? getDateWithoutYearPattern(getDefaultDatePattern()) : getDefaultDatePattern();
   }
 
   private boolean isYearHidden() {
@@ -50,32 +51,23 @@ public class DateTimeGlobalSettingService {
 
   private String getDateWithoutYearPattern(String pattern) {
     String expectedPattern = pattern.replaceAll(YEAR_PATTERN, "").trim();
-    return expectedPattern.endsWith(COMMA_CHARACTER) ? expectedPattern.substring(0, expectedPattern.length() - 1) : expectedPattern;
+    return expectedPattern.endsWith(COMMA_CHARACTER) ? expectedPattern.substring(0, expectedPattern.length() - 1)
+        : expectedPattern;
   }
-
-  public String getDateTimestampPattern() {
-    return UserSettingService.newInstance().getDateFormat() + SPACE_CHARACTER
-        + Ivy.cms().co("/patterns/timestampPattern");
-  }
-
-  public String getGlobalSettingDateFilterPattern() {
-    String dateFilterPattern = UserSettingService.newInstance().getDateFormat();
-    String dateTimeFilterPattern = dateFilterPattern + SPACE_CHARACTER + Ivy.cms().co("/patterns/timePattern");
-    return isDateFilterWithTime() ? dateTimeFilterPattern : dateFilterPattern;
-  }
-
   public boolean isDateFilterWithTime() {
     String dateFilterGlobalSetting = globalSettingService.findGlobalSettingValue(GlobalVariable.DATE_FILTER_WITH_TIME);
     return Boolean.valueOf(dateFilterGlobalSetting);
   }
 
-  public String getGlobalSettingCalendarPattern() {
-    String datePattern = UserSettingService.newInstance().getDateFormat();
-    String dateTimePattern = datePattern + SPACE_CHARACTER + Ivy.cms().co("/patterns/timePattern");
-    return isTimeHidden() ? datePattern : dateTimePattern;
+  public DateFormat getDefaultDateTimeFormatter() {
+    return DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT, Ivy.session().getFormattingLocale());
   }
 
-  public String getDateWithoutTimePattern() {
-    return UserSettingService.newInstance().getDateFormat();
+  public DateFormat getDefaultDateFormatter() {
+    return DateFormat.getDateInstance(DateFormat.MEDIUM, Ivy.session().getFormattingLocale());
+  }
+
+  private String getDefaultDatePattern() {
+    return ((SimpleDateFormat) getDefaultDateFormatter()).toPattern();
   }
 }

@@ -74,8 +74,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationAndRole: Application and role
     definedDeputies: Defined substitutes
     deputyFor: I am substitute for
+    myAbsences: My absences
     myDeputies: My substitutes
-    myPlannedAbsences: My planned absences
     nextAbsence: Upcomming absence
     selectedDeputyFor: Selected user is substitute for
     selectedUser: Selected user
@@ -773,6 +773,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: Dashboard configuration is not supported for mobile devices.
       EditPrivateDashboards: Edit your private dashboards
       EditPublicDashboards: Edit public dashboards
+      ExportDashboard: Export dashboard
       PrivateDashboard: Private dashboards
       PrivateDashboardConfiguration: Private dashboard configuration
       PublicDashboard: Public dashboards
@@ -851,6 +852,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       configurationDescription: You can configure your widget in this configuration area. Please define the required filters as well as columns to be shown.
       customWidgetParamChangedMessage: This process has changed. Click on Update to proceed.
       editWidgetHeader: Edit Widget Configuration
+      import: Import
+      importFromJsonFile: Import from JSON file
       newWidgetHeader: New {0} Widget Configuration
       pageTitle: Dashboard Configuration
       processConfigurationDescription: You can configure your widget in this configuration area. Please define the required filters as well as properties to be shown.
@@ -957,6 +960,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     download: Download
     fileContainScript: This file is not allowed to upload because it contains some script!
     fileContainVirus: Upload failed, virus/infection detected!
+    fileCouldNotParse: Could not parse the file
+    fileEmptyMessage: File is empty
     name: Filename
     size: File size
     type: Type
@@ -1533,6 +1538,12 @@ Dialogs:
             expressNoItem: There is no completed Express Task yet
             expressNoItemDescription: The results of completed tasks are displayed here
             expressWorkflowName: 'Business Details of Case #{0}'
+        portal:
+          generic:
+            dashboard:
+              component:
+                CustomDashboardWidget:
+                  CouldNotFindLinkedProcess: Could not find the linked process!
         portalkit:
           component:
             CaseWidget:
@@ -1554,6 +1565,11 @@ Dialogs:
       portal:
         dashboard:
           component:
+            DashboardImportDetails:
+              FileInfomation: File Infomation
+              ImportPrivate: Import Private Dashboard
+              ImportPublic: Import Public Dashboard
+              chooseAJsonFile: Choose a json file
             NewsWidget:
               NewsContentPlaceHolder: Enter News content
               NewsContentValidateMessage: News content in {0} is required

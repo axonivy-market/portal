@@ -161,8 +161,8 @@
               chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
               dragDropSupport="true" auto="true"
               update="file-upload-panel"
-              allowTypes="/(\.|\/)(png|jpg|jpeg)$/i"
-              accept=".png,.jpg,.jpeg"
+              allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
+              accept=".png,.jpg,.jpeg,.svg"
               label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
               invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}" />
             <p:graphicImage id="editing-external-link-preview-image"
@@ -340,8 +340,8 @@
           listener="#{externalLinkBean.handleImageUpload}"
           chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
           dragDropSupport="true" auto="true" update="file-upload-panel"
-          allowTypes="/(\.|\/)(png|jpg|jpeg)$/i"
-          accept=".png,.jpg,.jpeg"
+          allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
+          accept=".png,.jpg,.jpeg,.svg"
           label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
           invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}" />
         <p:graphicImage id="external-link-preview-image"

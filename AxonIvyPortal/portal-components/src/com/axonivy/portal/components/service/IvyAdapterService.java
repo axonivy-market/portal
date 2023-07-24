@@ -11,6 +11,7 @@ import ch.ivyteam.ivy.process.call.ISubProcessStart;
 import ch.ivyteam.ivy.process.call.SubProcessRunner;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter.Builder;
+import ch.ivyteam.ivy.process.call.SubProcessSearchFilter.SearchScope;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.service.ServiceException;
 
@@ -99,8 +100,9 @@ public class IvyAdapterService {
     public ISubProcessStart call() {
       Builder subprocessFilter = SubProcessSearchFilter.create();
       SubProcessSearchFilter filter =
-          subprocessFilter.setSignature(subprocessSignature).setSearchInAllProjects(true)
-              .setSearchInDependentProjects(false).toFilter();
+          subprocessFilter.setSignature(subprocessSignature)
+          .setSearchScope(SearchScope.APPLICATION)
+          .toFilter();
       return findSubprocess(filter);
     }
 

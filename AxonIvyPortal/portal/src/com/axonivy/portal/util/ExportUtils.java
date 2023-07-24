@@ -5,12 +5,12 @@ import java.util.List;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
-import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 
 public class ExportUtils {
 
   private final static String CUSTOM_FIELD_FORMAT = "%s__%s__%s";
-  private final static String FIRST_COLUMN_OF_TASK_DASHBOARD_WIDGET = "start";
+  private final static String START_COLUMN = "start";
+  private final static String ACTIONS_COLUMN = "actions";
 
   /**
    * Build dashboard task/case widget's column visibility list for export function
@@ -21,7 +21,7 @@ public class ExportUtils {
   public static List<String> buildVisibleColumns(List<ColumnModel> columns){
     List<String> visibleColumns = new ArrayList<>();
     for (ColumnModel column : columns) {
-      if (column.getVisible() && !column.getField().contentEquals(DashboardStandardCaseColumn.ACTIONS.getField())) {
+      if (column.getVisible()) {
         if (column.getType() == DashboardColumnType.CUSTOM) {
           visibleColumns.add(
               String.format(CUSTOM_FIELD_FORMAT, column.getFormat().name(), column.getField(), column.getHeader()));
@@ -30,8 +30,11 @@ public class ExportUtils {
         }
       }
     }
-    if (columns.get(0).getField().equals(FIRST_COLUMN_OF_TASK_DASHBOARD_WIDGET)) {
-      visibleColumns.remove(FIRST_COLUMN_OF_TASK_DASHBOARD_WIDGET);
+    if (visibleColumns.contains(START_COLUMN)) {
+      visibleColumns.remove(START_COLUMN);
+    }
+    if (visibleColumns.contains(ACTIONS_COLUMN)) {
+      visibleColumns.remove(ACTIONS_COLUMN);
     }
     return visibleColumns;
   }
