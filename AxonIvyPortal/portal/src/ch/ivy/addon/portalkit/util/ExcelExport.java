@@ -91,7 +91,7 @@ public final class ExcelExport
   }
 
   private short getDateFormat() {
-    String dateFormat = DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern();;
+    String dateFormat = DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern();
     return workBook.createDataFormat().getFormat(dateFormat);
   }
 

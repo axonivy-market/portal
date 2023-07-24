@@ -40,7 +40,7 @@
         <h:outputText value="#{event.content}" styleClass="case-task-note-histories" />
       </p:column>
 
-      <c:set var="taskState" value="#{taskBean.getTranslatedState(event.taskState)}" />
+      <c:set var="taskState" value="#{taskBean.getTranslatedState(event.taskBusinessState)}" />
       <p:column width="200" sortBy="#{taskState}"
         styleClass="note-history-fullname-column">
         <f:facet name="header">

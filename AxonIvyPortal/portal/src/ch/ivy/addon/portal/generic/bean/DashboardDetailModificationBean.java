@@ -446,6 +446,12 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       ContentObjectValue tempImageFile = getWelcomeWidgetImage(true, welcomeWidget);
       ContentObjectValue imageFile = getWelcomeWidgetImage(false, welcomeWidget);
       if (imageFile != null && tempImageFile != null && tempImageFile.parent().exists()) {
+        Optional<DashboardWidget> oldWidgetOptional = DashboardWidgetUtils.findWidget(selectedDashboard,
+            widget.getId());
+        if (oldWidgetOptional.isPresent()) {
+          WelcomeDashboardWidget oldWidget = (WelcomeDashboardWidget) oldWidgetOptional.get();
+          Optional.ofNullable(getWelcomeWidgetImage(false, oldWidget)).ifPresent(co -> co.delete());
+        }
         imageFile.write().bytes(tempImageFile.read().bytes());
         tempImageFile.delete();
       }
@@ -463,7 +469,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   private ContentObjectValue getWelcomeWidgetImage(boolean isTempImage, WelcomeDashboardWidget widget) {
-    return getWelcomeWidgetImageObject(isTempImage, widget). value().get("en");
+    ContentObject contentObject = getWelcomeWidgetImageObject(isTempImage, widget);
+    if (contentObject != null) {
+      return contentObject.value().get("en");
+    }
+    return null;
   }
 
   private ContentObject getWelcomeWidgetImageObject(boolean isTempImage, WelcomeDashboardWidget widget) {
@@ -851,7 +861,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       List<DisplayName> languages = this.widget.getNames();
       String currentLanguage = UserUtils.getUserLanguage();
       Optional<DisplayName> optional = languages.stream()
-              .filter(lang -> currentLanguage.equals(languages.get(0).getLocale().getLanguage())).findFirst();
+              .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
       if (optional.isPresent()) {
         Map<String, Object> params = new HashMap<>();
         params.put("text", optional.get().getValue());

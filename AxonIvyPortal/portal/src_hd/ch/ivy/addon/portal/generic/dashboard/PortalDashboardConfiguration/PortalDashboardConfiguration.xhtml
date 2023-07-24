@@ -58,7 +58,7 @@
                 <ic:ch.ivy.addon.portal.generic.dashboard.component.DashboardTemplateSelection id="dashboard-template-selection-component"
                   listenerOnBackAction="#{dashboardConfigurationBean.backToConfigurationTab()}"
                   componentToUpdateOnBackAction="dashboard-configuration-content"
-                  isPublicDashboard="#{isPublicDashboard}"/>
+                  isPublicDashboard="#{dashboardConfigurationBean.publicDashboard}"/>
               </ui:fragment>
 
               <ui:fragment rendered="#{dashboardConfigurationBean.editingDashboard}">

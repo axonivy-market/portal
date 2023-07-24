@@ -18,7 +18,7 @@ import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.service.DashboardWidgetInformationService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
-import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 public class TaskDashboardWidget extends DashboardWidget {
 
@@ -28,7 +28,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private DashboardTaskLazyDataModel dataModel;
   @JsonIgnore
-  private Map<TaskState, Long> taskByStateStatistic;
+  private Map<TaskBusinessState, Long> taskByStateStatistic;
   @JsonIgnore
   private Map<String, Long> taskByCategoryStatistic;
   @JsonIgnore
@@ -147,7 +147,7 @@ public class TaskDashboardWidget extends DashboardWidget {
     this.dataModel.getCriteria().setInConfiguration(isInConfiguration);
   }
 
-  public Map<TaskState, Long> getTaskByStateStatistic() {
+  public Map<TaskBusinessState, Long> getTaskByStateStatistic() {
     return taskByStateStatistic;
   }
 

@@ -755,7 +755,7 @@ public class TaskWidgetPage extends TemplatePage {
   public boolean isTaskStateOpen(int index) {
     try {
       WebElement stateComponent = findElementById(String.format(TASK_STATE_COMPONENT_ID, index));
-      stateComponent.findElement(By.className("suspended-task-state"));
+      stateComponent.findElement(By.className("open-task-state"));
     } catch (NoSuchElementException e) {
       return false;
     }
@@ -765,7 +765,7 @@ public class TaskWidgetPage extends TemplatePage {
   public boolean isTaskStateReserved(int index) {
     try {
       WebElement stateComponent = findElementById(String.format(TASK_STATE_COMPONENT_ID, index));
-      stateComponent.findElement(By.className("parked-task-state"));
+      stateComponent.findElement(By.className("open-task-state"));
     } catch (NoSuchElementException e) {
       return false;
     }

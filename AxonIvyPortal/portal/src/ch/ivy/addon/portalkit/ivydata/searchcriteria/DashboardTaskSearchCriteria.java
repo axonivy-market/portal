@@ -18,7 +18,6 @@ import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.app.IApplicationRepository;
-import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.ICustomFieldFilterQuery;
@@ -26,6 +25,7 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.ICustomFieldOrderBy;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IOrderByQueryColumns;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.OrderByColumnQuery;
+import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 public class DashboardTaskSearchCriteria {
 
@@ -108,7 +108,7 @@ public class DashboardTaskSearchCriteria {
     }
   }
 
-  private void queryStates(TaskQuery query, List<TaskState> states) {
+  private void queryStates(TaskQuery query, List<TaskBusinessState> states) {
     if (CollectionUtils.isNotEmpty(states)) {
       states = TaskUtils.filterStateByPermission(states);
     } else {
@@ -116,8 +116,8 @@ public class DashboardTaskSearchCriteria {
     }
     TaskQuery subQuery = TaskQuery.create();
     IFilterQuery filterQuery = subQuery.where();
-    for (TaskState state : states) {
-      filterQuery.or().state().isEqual(state);
+    for (TaskBusinessState state : states) {
+      filterQuery.or().businessState().isEqual(state);
     }
     query.where().and(subQuery);
   }
@@ -171,7 +171,7 @@ public class DashboardTaskSearchCriteria {
   }
   
   private void queryFilters(TaskQuery query) {
-    var states = new ArrayList<TaskState>();
+    var states = new ArrayList<TaskBusinessState>();
     for (ColumnModel column : columns) {
       String field = column.getField();
       String configuredFilter = column.getFilter();
@@ -207,7 +207,7 @@ public class DashboardTaskSearchCriteria {
       
       } else if (equals(column, DashboardStandardTaskColumn.STATE)) {
         for (String state : filterList) {
-          states.add(TaskState.valueOf(state.toUpperCase()));
+          states.add(TaskBusinessState.valueOf(state.toUpperCase()));
         }
       
       } else if (equals(column, DashboardStandardTaskColumn.CATEGORY)) {

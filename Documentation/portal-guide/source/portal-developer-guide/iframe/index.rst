@@ -11,6 +11,14 @@ your HTML dialog independent of the  **Portal**. It is rendered automatically in
 
 .. _iframe-usage:
 
+Templates to use with IFrame:
+
+#. frame-8 template (Provided by core, uses Serenity theme)
+
+#. frame-10 templates (Provided by core, uses Freya theme)
+
+These templates fully support responsiveness.
+
 How To Use
 ==========
 
@@ -22,9 +30,6 @@ Follow these steps to use the IFrame approach:
 #. Your HTML User Dialog has to be independent of the **Portal**. You can use
    the ``frame-_x_`` template in designer, or your own template. **Portal** will
    render it automatically in an IFrame.
-	
-#. To pass some supported params into the IFrame such as process steps, refer to
-   :ref:`IFrameTaskTemplate <components-layout-templates-iframe-task-template>`
 
 #. If you don't want to use the default configuration, apply one of the following three
    levels to open your task(s) in an IFrame:
@@ -52,6 +57,170 @@ Follow these steps to use the IFrame approach:
        ``Portal.EmbedInFrame`` Portal setting. refer to
        :ref:`update-portal-settings`
 
+Configure template
+==================
+
+**Portal** supports some layout options for the templates mentioned above.
+
+#. ``Task name``: name of the working task.
+
+#. ``Process steps``: Refer to :ref:`components-portal-components-process-chain`.
+
+#. ``Show Information``: button to show Case details and other actions.
+
+|task-name-template|
+
+You can configure those options by using Javascript from your HTML dialog as follows:
+
+.. code-block:: xml
+
+   <h:body>
+      <ui:composition template="/layouts/frame-10.xhtml">
+         ...
+         <script>
+            window.processSteps = "Create Investment Request,Approve Investment Request";
+            window.currentProcessStep = 0;
+            window.currentProcessStep = #{data.currentProcessStep};
+            window.isHideTaskName= false;
+            window.isHideCaseInfo = false;
+            window.isWorkingOnATask = false;
+            window.taskName = "Your New Task Name";
+
+            // show case details of a case different from current case.
+            window.caseId = "Case-Id";
+
+            // Display content of the IFrame inside a card style.
+            window.isCardFrame = true;
+         </script>
+         ...
+      </ui:composition>
+   </h:body>
+
+Configure Task name
+-------------------
+
+By default, **Portal** uses the name of the working task.
+
+Options for ``Task name``
+
+.. csv-table::
+  :file: documents/available_task_options.csv
+  :widths: 20 50
+  :header-rows: 1
+  :class: longtable
+
+Example:
+
+.. code-block:: xml
+
+   <h:body>
+      <ui:composition template="/layouts/frame-10.xhtml">
+         ...
+         <script>
+            window.taskName = "Your New Task Name";
+         </script>
+         ...
+      </ui:composition>
+   </h:body>
+
+Configure Show Information
+--------------------------
+
+When you click the ``Show Information`` button, **Portal** will show  details of the
+running case in a modal dialog.
+
+Options for ``Show Information``
+
+   - ``caseId``: Case ID of the case you want to show in the modal dialog.
+   - ``isHideCaseInfo``: Hide the ``Show Information`` button
+
+.. csv-table::
+  :file: documents/available_show_information_options.csv
+  :widths: 20 50
+  :header-rows: 1
+  :class: longtable
+
+Example:
+
+.. code-block:: xml
+
+   <h:body>
+      <ui:composition template="/layouts/frame-10.xhtml">
+         ...
+         <script>
+            window.caseId = "Case-Id";
+         </script>
+         ...
+      </ui:composition>
+   </h:body>
+
+Configure Process steps
+-----------------------
+
+``Process steps`` have many options to be configured from the list of steps to layout and shape.
+
+Options for ``Process steps``
+
+.. csv-table::
+  :file: documents/available_process_steps_options.csv
+  :widths: 20 50
+  :header-rows: 1
+  :class: longtable
+
+
+.. note::
+
+       When defining parameter ``processSteps``, please make sure that you add this JSP function tag to your HTML dialog:
+       ``xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"``
+
+Example:
+
+.. code-block:: xml
+
+   <h:body>
+      <ui:composition template="/layouts/frame-10.xhtml">
+         ...
+         <script>
+            window.currentProcessStep = 0;
+            window.processSteps = ["Create Investment Request", "Approve Investment Request"];
+            window.processChainDirection = "VERTICAL";
+            window.processChainShape = "LINE";
+         </script>
+         ...
+      </ui:composition>
+   </h:body>
+
+Other options
+-------------
+
+Various options can affect functions and layout.
+
+.. csv-table::
+  :file: documents/available_other_options.csv
+  :widths: 20 50
+  :header-rows: 1
+  :class: longtable
+
+Example:
+
+.. code-block:: xml
+
+   <h:body>
+      <ui:composition template="/layouts/frame-10.xhtml">
+         ...
+         <script>
+            window.isHideTaskAction = true;
+            window.isWorkingOnATask = false;
+         </script>
+         ...
+      </ui:composition>
+   </h:body>
+
+Developer tips
+==============
+
+In case your project has a navigation button that does not complete a task, e.g.,Cancel, redirect in your HTML dialog 
+to the page you want to display (i.e., default pages like application home, task list, process list, etc.)
 
 Customization
 =============
@@ -95,3 +264,6 @@ Now you can develop your own processes inside the ``BusinessProject`` and the di
 
 .. |task-embedInFrame| image:: images/task-embedInFrame.png
 .. |case-embedInFrame| image:: images/case-embedInFrame.png
+.. |case-list-template| image:: ../../screenshots/case/case-key-information.png
+.. |task-list-template| image:: ../../screenshots/task/task-key-information.png
+.. |task-name-template| image:: ../../screenshots/layout-template/task-template.png
