@@ -220,9 +220,6 @@ function resizeTableBody() {
   scrollableBody.forEach((sb) => {
     const resizeObserver = new ResizeObserver(() => {
       let tableBody = $(sb);
-      tableBody.addClass('expand-body-fullscreen')
-      tableBody.removeClass('collapse-body-fullscreen')
-
       let parentHeight = tableBody.parents('.case-dashboard-widget__panel').height();
       if (!window.matchMedia("(max-width: 767px)").matches) {
         tableBody.height(parentHeight - 100);
@@ -241,10 +238,6 @@ function collapseFullscreen(index, widgetId) {
   var widget = $('div.grid-stack-item[gs-id = "' + widgetId + '"]');
   widget.removeClass('expand-fullscreen');
 
-  let tableBody = $('div.ui-datatable-scrollable-body');
-  tableBody.removeClass('expand-body-fullscreen');
-  tableBody.addClass('collapse-body-fullscreen');
-
   var isSafari = isSafariBrowser();
 
   if (isSafari) {
@@ -254,7 +247,7 @@ function collapseFullscreen(index, widgetId) {
   }
 
   $(widget.get(0)).parent('.grid-stack').height(originalGridstackHeight);
-    resizeTableBody();
+  resizeTableBody();
   // Hide dashboard overlay panel is opening
   hideAllDashboardOverlayPanels();
 }
