@@ -34,6 +34,7 @@ public class DashboardCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
   @Override
   public List<ICase> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
     if (first == 0) {
+      cases.clear();
       Map.Entry<String, SortMeta> sortEntry = sortBy.entrySet().iterator().next();
       if (sortEntry != null && sortEntry.getValue() != null) {
         SortMeta sortMeta = sortEntry.getValue();
