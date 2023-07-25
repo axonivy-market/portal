@@ -9,8 +9,13 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.bo.JsonVersion;
+import com.axonivy.portal.migration.migrator.JsonDashboardConfigurationMigrator;
+import com.axonivy.portal.migration.migrator.JsonDashboardTemplateMigrator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
+import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
@@ -63,7 +68,18 @@ abstract class JsonConfigurationService<T extends AbstractConfiguration> {
     if (StringUtils.isBlank(jsonValue)) {
       return new ArrayList<>();
     }
-    return BusinessEntityConverter.jsonValueToEntities(jsonValue, getType());
+    return convertToLatestVersion(jsonValue);
+  }
+
+  private List<T> convertToLatestVersion(String json) {
+    try {
+      ObjectMapper mapper = new ObjectMapper();
+      JsonDashboardConfigurationMigrator migrator = new JsonDashboardConfigurationMigrator(mapper.readTree(json));
+      return BusinessEntityConverter.jsonValueToEntities(migrator.migrate(), getType());
+    } catch (JsonProcessingException ex) {
+      Ivy.log().error("Failed to read dashboard template from JSON {0}", ex, json);
+    }
+    return null;
   }
 
   public T save(T entity) {
