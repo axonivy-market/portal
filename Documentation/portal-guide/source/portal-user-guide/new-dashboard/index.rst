@@ -258,9 +258,13 @@ The :guilabel:`Manage News` dialog.
 
 |news-feed-widget-manage-content|
 
+|news-feed-widget-overlay-panel|
+
 In manage news, the user can:
 
 #. Create one entry in multiple languages. When creating the entry, the user can switch between the available languages with a click on the tab view header.
+
+#. Translate the title by clicking on the input label. Translate the content by clicking on the |translate-icon| icon.
 
 #. Choose an icon for the news by clicking directly on the icon, the :guilabel:`Icon browser` browser will be shown.
 
@@ -268,8 +272,7 @@ In manage news, the user can:
 
 #. Provide news content, i.e., the main information for the newsfeed. The content is limited to 1000 characters, max.
 
-
-.. include:: ../includes/_common-icon.rst  
+.. include:: ../includes/_common-icon.rst
 
 .. |dash-board| image:: ../../screenshots/new-dashboard/dashboard.png
 .. |widget-filter| image:: ../../screenshots/new-dashboard/widget-filter.png
@@ -302,3 +305,4 @@ In manage news, the user can:
 .. |news-feed-widget-configuration| image:: ../../screenshots/new-dashboard/news-feed-widget-configuration.png
 .. |news-feed-widget| image:: ../../screenshots/new-dashboard/news-feed-widget.png
 .. |news-feed-widget-manage-content| image:: ../../screenshots/new-dashboard/news-feed-widget-manage-content.png
+.. |news-feed-widget-overlay-panel| image:: ../../screenshots/new-dashboard/news-feed-widget-overlay-panel.png
