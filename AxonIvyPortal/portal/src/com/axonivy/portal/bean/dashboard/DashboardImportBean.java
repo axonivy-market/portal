@@ -25,7 +25,6 @@ import ch.ivy.addon.portal.generic.bean.DashboardModificationBean;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
-import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.RoleUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
@@ -65,7 +64,7 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
       return;
     }
     try {
-      selectedDashboard = BusinessEntityConverter.inputStreamToEntity(importFile.getInputStream(), Dashboard.class);
+      selectedDashboard = DashboardUtils.convertDashboardToLatestVersion(importFile.getInputStream());
     } catch (Exception e) {
       isError = true;
       validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR,
