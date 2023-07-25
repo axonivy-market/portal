@@ -17,6 +17,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.logging.log4j.util.Strings;
 
 import com.axonivy.portal.dto.News;
 import com.axonivy.portal.service.DeepLTranslationService;
@@ -129,23 +130,15 @@ public class NewsWidgetBean implements Serializable {
       }
     }
   }
-  
-  public void refreshTranslation(Locale language) {
-    translatedText = "";
-    Optional<News> optionalDefaultNews = getDefaultNews();
-    Optional<News> optionalCurrentNews = editingNewsList.stream()
-        .filter(news -> news.getLocale().getLanguage().equals(language.getLanguage())).findFirst();
-    if (optionalCurrentNews.isPresent()) {
-      optionalCurrentNews.get().setDescription(optionalDefaultNews.get().getDescription());
-    }
-  }
 
   public String translate(String text, Locale target) {
-    String translatedText = "";
-    warningText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/InvalidDeepLAuthKey");
-    translatedText = DeepLTranslationService.getInstance().translate(text, defaultLanguage, target);
-    if (translatedText != null) {
-      warningText = "";
+    String translatedText = Strings.EMPTY;
+    warningText = Strings.EMPTY;
+    try {
+      translatedText = DeepLTranslationService.getInstance().translate(text, defaultLanguage, target);
+    } catch (Exception e) {
+      warningText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
+      Ivy.log().warn("DeepL Translation Service error: ", e.getMessage());
     }
     return translatedText;
 

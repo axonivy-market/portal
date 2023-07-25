@@ -778,7 +778,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       EditPrivateDashboards: Edit your private dashboards
       EditPublicDashboards: Edit public dashboards
       ExportDashboard: Export dashboard
-      InvalidDeepLAuthKey: Invalid DeepL authentication key
       PrivateDashboard: Private dashboards
       PrivateDashboardConfiguration: Private dashboard configuration
       PublicDashboard: Public dashboards
@@ -786,6 +785,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPrivateDashboards: Reorder your dashboards
       ReorderPublicDashboards: Reorder public dashboards
       SelectAction: Select the action
+      SomeThingWentWrong: Something went wrong
       Title: Dashboard configuration
     EmptyFilterMessage: No widget filter found
     Filter:
@@ -1582,7 +1582,6 @@ Dialogs:
               NoNewsAvailable: There is no news yet
               Publish: Publish
               RemoveNewsHeader: Remove the news?
-              RevertTranslation: Revert the translation
               SeeLess: See less
               SeeMore: See more
               Translate: Translate
