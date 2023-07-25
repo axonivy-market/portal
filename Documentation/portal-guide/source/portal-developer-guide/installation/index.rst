@@ -33,7 +33,7 @@ Designer
 ^^^^^^^^
 
 Import Portal modules to Designer.
-axonivy-express is excluded from the Portal application. You can install axonivy-express from the market if you want to use it.
+axonivy-express is excluded from the Portal application. If you want to use axonivy-express, you should import it from Axon Ivy Market.
 
 
 Engine Without License (Demo Mode)
@@ -356,12 +356,13 @@ The ``ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI`` class is remo
 Migrate 11.1.0 To 11.2.0
 ------------------------
 
-The ``AxonIvyExpress`` module is removed from the Portal application and bring it to the market, To migrate it you need to do following steps:
+The ``AxonIvyExpress`` module is renamed to ``axonivy-express`` and becomes an item on the Axon Ivy Market, To migrate it you need to do the following steps:
 
-- Go to **Setting** -> **Express Management**. Export all Express configurations.
-- Go to **Engine** and stop PM **AxonIvyExpress**.
-- Deploy **axonivy-express** which get from the market.
-- Go to **Setting** -> **Express Management**. Import the configuration which is exported at the first step.
+- Open **Portal**, go to **Setting** -> **Express Management**. Export all Express configurations.
+- Open the **Cockpit**, stop the PM **AxonIvyExpress** in your **Portal** application.
+- Deploy the **axonivy-express** module which gets from the Axon Ivy Market into the **Portal** application.
+- Restart Engine.
+- Open **Portal**, go to **Setting** -> **Express Management**. Import the configuration which is exported at the first step.
 
 .. _installation-release-notes:
 
@@ -388,7 +389,7 @@ Changes in 11.2.0
 - The ``ch.ivy.addon.portalkit.publicapi.TaskAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.TaskAPI`` instead.
 - The ``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI`` instead.
 
-- The ``AxonIvyExpress`` module is removed from the Portal application. Rename it to ``axonivy-express`` and bring it to the market.
+- The ``AxonIvyExpress`` module is renamed to ``axonivy-express`` and becomes an item on the Axon Ivy Market.
 
 Changes in 9.4
 --------------
