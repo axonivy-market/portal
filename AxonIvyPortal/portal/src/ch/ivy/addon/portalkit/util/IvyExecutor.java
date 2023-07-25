@@ -12,14 +12,20 @@ import ch.ivyteam.ivy.application.IApplicationConfigurationManager;
 import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.application.ReleaseState;
-import ch.ivyteam.ivy.security.ISecurityManager;
+import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.exec.Sudo;
 
 public class IvyExecutor {
 
   private IvyExecutor() {}
 
   public static <T> T executeAsSystem(Callable<T> callable) {
-    return ISecurityManager.instance().executeAsSystem2(callable);
+    try {
+      return Sudo.call(callable);
+    } catch (Exception e) {
+      Ivy.log().equals(e);
+      return null;
+    }
   }
 
   public static void executeOnceInAllProcessModelVersion(IProcessModelVersion pmv, Runnable runnable) {
