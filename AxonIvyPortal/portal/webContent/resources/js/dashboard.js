@@ -1,7 +1,7 @@
 var grids;
 var originalGridstackHeight = 0;
 loadGrid();
-resizeTableBody();
+
 function loadGrid() {
   grids = GridStack.initAll({
     column: 12,
@@ -213,25 +213,6 @@ function expandFullscreen(index, widgetId) {
   }
 }
 
-function resizeTableBody() {
-  const scrollableBody = document.querySelectorAll('.ui-datatable-scrollable-body');
-  scrollableBody.forEach((sb) => {
-    const resizeObserver = new ResizeObserver(() => {
-      let tableBody = $(sb);
-      let parentHeight = tableBody.parents('.case-dashboard-widget__panel').height();
-      if (!window.matchMedia("(max-width: 767px)").matches) {
-        tableBody.height(parentHeight - 100);
-      } else {
-        tableBody.height(parentHeight * 0.85);
-      }
-    });
-    setTimeout(function() {
-      resizeObserver.observe(sb);
-    }, 50);
-  })
-
-}
-
 function collapseFullscreen(index, widgetId) {
   var widget = $('div.grid-stack-item[gs-id = "' + widgetId + '"]');
   widget.removeClass('expand-fullscreen');
@@ -245,6 +226,7 @@ function collapseFullscreen(index, widgetId) {
   }
 
   $(widget.get(0)).parent('.grid-stack').height(originalGridstackHeight);
+
   // Hide dashboard overlay panel is opening
   hideAllDashboardOverlayPanels();
 }
@@ -424,7 +406,7 @@ function getAvailableHeightOfWidget(widget) {
   let $processStartContainer = $(widget).find("[id^='start-button-wrap-']");
   const startProcessButtonHeight = $(widget).find("button[id$=':start-button']").outerHeight(true);
   const processStartContainerXSpaces = parseInt($processStartContainer.outerHeight(true) - $processStartContainer.height());
-
+  
   return $(widget).height() - $processHeader.outerHeight(true) - startProcessButtonHeight - processDescriptionXSpaces - processStartContainerXSpaces;
 }
 // End Process Dashboard Widget
