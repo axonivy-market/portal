@@ -1,8 +1,6 @@
 package com.axonivy.portal.components.service.impl;
 
 import static com.axonivy.portal.components.constant.CustomFields.IS_DASHBOARD_PROCESS;
-import static java.util.Objects.isNull;
-import static org.apache.commons.collections4.CollectionUtils.isEmpty;
 import static org.apache.commons.collections4.CollectionUtils.isNotEmpty;
 
 import java.util.ArrayList;

@@ -10,6 +10,7 @@ public class ProcessService extends com.axonivy.portal.components.service.impl.P
     return new ProcessService();
   }
 
+  @Override
   public ch.ivy.addon.portalkit.ivydata.dto.IvyProcessResultDTO findProcesses() {
     return new ch.ivy.addon.portalkit.ivydata.dto.IvyProcessResultDTO(super.findProcesses().getProcesses());
   }

@@ -16,7 +16,7 @@ public class ExportUtils {
    * Build dashboard task/case widget's column visibility list for export function
    * 
    * @param columns
-   * @return
+   * @return column list
    */
   public static List<String> buildVisibleColumns(List<ColumnModel> columns){
     List<String> visibleColumns = new ArrayList<>();
