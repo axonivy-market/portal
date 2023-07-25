@@ -270,20 +270,23 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   public void translate(DisplayName title) {
     translatedText = Strings.EMPTY;
     warningText = Strings.EMPTY;
-    try {
-      String currentLanguage = UserUtils.getUserLanguage();
-      if (!title.getLocale().getLanguage().equals(currentLanguage)) {
-        Map<String, DisplayName> languages = getMapLanguages();
-        DisplayName defaultTitle = languages.get(currentLanguage);
-        if (defaultTitle != null) {
+
+    String currentLanguage = UserUtils.getUserLanguage();
+    if (!title.getLocale().getLanguage().equals(currentLanguage)) {
+      Map<String, DisplayName> languages = getMapLanguages();
+      DisplayName defaultTitle = languages.get(currentLanguage);
+      if (defaultTitle != null) {
+        try {
           translatedText = DeepLTranslationService.getInstance().translate(defaultTitle.getValue(),
               defaultTitle.getLocale(), title.getLocale());
+        } catch (Exception e) {
+          warningText = Ivy.cms()
+              .co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
+          Ivy.log().error("DeepL Translation Service error: ", e.getMessage());
         }
       }
-    } catch (Exception e) {
-      warningText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
-      Ivy.log().warn("DeepL Translation Service error: ", e.getMessage());
     }
+
   }
 
   public boolean hasExportDashboardPermission() {

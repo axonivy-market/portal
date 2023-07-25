@@ -857,21 +857,24 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void translate(DisplayName title) {
     translatedText = Strings.EMPTY;
     warningText = Strings.EMPTY;
-    try {
-      String currentLanguage = UserUtils.getUserLanguage();
-      if (!title.getLocale().getLanguage().equals(currentLanguage)) {
-        List<DisplayName> languages = this.widget.getNames();
-        Optional<DisplayName> optional = languages.stream()
-            .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
-        if (optional.isPresent()) {
+
+    String currentLanguage = UserUtils.getUserLanguage();
+    if (!title.getLocale().getLanguage().equals(currentLanguage)) {
+      List<DisplayName> languages = this.widget.getNames();
+      Optional<DisplayName> optional = languages.stream()
+          .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
+      if (optional.isPresent()) {
+        try {
           translatedText = DeepLTranslationService.getInstance().translate(optional.get().getValue(),
               optional.get().getLocale(), title.getLocale());
+        } catch (Exception e) {
+          warningText = Ivy.cms()
+              .co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
+          Ivy.log().error("DeepL Translation Service error: ", e.getMessage());
         }
       }
-    } catch (Exception e) {
-      warningText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
-      Ivy.log().warn("DeepL Translation Service error: ", e.getMessage());
     }
+
   }
 
 }
