@@ -32,6 +32,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.util.Strings;
 import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.dto.UserDTO;
@@ -854,23 +855,23 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   public void translate(DisplayName title) {
-    translatedText = "";
-    warningText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/InvalidDeepLAuthKey");
-
-    if (!title.getLocale().getLanguage().equals(UserUtils.getUserLanguage())) {
-      List<DisplayName> languages = this.widget.getNames();
+    translatedText = Strings.EMPTY;
+    warningText = Strings.EMPTY;
+    try {
       String currentLanguage = UserUtils.getUserLanguage();
-      Optional<DisplayName> optional = languages.stream()
-          .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
-      if (optional.isPresent()) {
-        translatedText = DeepLTranslationService.getInstance().translate(optional.get().getValue(),
-            optional.get().getLocale(), title.getLocale());
-        if (translatedText != null) {
-          warningText = "";
+      if (!title.getLocale().getLanguage().equals(currentLanguage)) {
+        List<DisplayName> languages = this.widget.getNames();
+        Optional<DisplayName> optional = languages.stream()
+            .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
+        if (optional.isPresent()) {
+          translatedText = DeepLTranslationService.getInstance().translate(optional.get().getValue(),
+              optional.get().getLocale(), title.getLocale());
         }
       }
+    } catch (Exception e) {
+      warningText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
+      Ivy.log().warn("DeepL Translation Service error: ", e.getMessage());
     }
-
   }
 
 }

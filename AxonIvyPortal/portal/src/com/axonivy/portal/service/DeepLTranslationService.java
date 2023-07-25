@@ -6,6 +6,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.util.Strings;
 
 import com.deepl.api.v2.client.InlineResponse200;
 import com.deepl.api.v2.client.SourceLanguage;
@@ -15,8 +16,6 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.UserUtils;
-import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.service.ServiceException;
 
 public class DeepLTranslationService {
   private static DeepLTranslationService instance;
@@ -29,25 +28,22 @@ public class DeepLTranslationService {
   }
 
   public String translate(String text, Locale source, Locale target) {
-    String translatedText = null;
-    Map<String, Object> params = new HashMap<>();
-    params.put("text", text);
-    params.put("targetLanguage", getTargetLanguageFromValue(target.getLanguage().toUpperCase()));
-    params.put("sourceLanguage", getSourceLanguageFromValue(source.getLanguage().toUpperCase()));
-    params.put("preserveFormatting", "1");
-    params.put("tagHandling", "html");
-    Map<String, Object> response = null;
-    try {
+    String translatedText = Strings.EMPTY;
+    if (StringUtils.isNotBlank(text)) {
+      Map<String, Object> params = new HashMap<>();
+      params.put("text", text);
+      params.put("targetLanguage", getTargetLanguageFromValue(target.getLanguage().toUpperCase()));
+      params.put("sourceLanguage", getSourceLanguageFromValue(source.getLanguage().toUpperCase()));
+      params.put("preserveFormatting", "1");
+      params.put("tagHandling", "html");
+      Map<String, Object> response = null;
       response = IvyAdapterService.startSubProcess(
           "translateText(String,com.deepl.api.v2.client.TargetLanguage,com.deepl.api.v2.client.SourceLanguage,String,String)",
           params, new ArrayList<>());
-    } catch (ServiceException ex) {
-      Ivy.log().error(ex.getMessage());
-      return translatedText;
-    }
-    if (response != null) {
-      InlineResponse200 inlineResponse = (InlineResponse200) response.get("translation");
-      translatedText = inlineResponse.getTranslations().get(0).getText();
+      if (response != null) {
+        InlineResponse200 inlineResponse = (InlineResponse200) response.get("translation");
+        translatedText = inlineResponse.getTranslations().get(0).getText();
+      }
     }
     return translatedText;
   }
@@ -65,7 +61,7 @@ public class DeepLTranslationService {
     }
     return SourceLanguage.fromValue(language);
   }
-  
+
   public boolean isShowTranslation(Locale language) {
     String deepLAuthKey = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.DEEPL_AUTH_KEY);
     boolean enableDeepL = GlobalSettingService.getInstance()

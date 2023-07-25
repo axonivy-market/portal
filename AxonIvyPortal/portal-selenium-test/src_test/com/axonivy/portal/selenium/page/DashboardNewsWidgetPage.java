@@ -168,9 +168,4 @@ public class DashboardNewsWidgetPage extends TemplatePage {
     $(String.format("[id$=':%s:translate-language-button']", tabIndex))
         .shouldBe(appear, DEFAULT_TIMEOUT);
   }
-  
-  public void findRevertTranslationButton(String tabIndex) {
-    $(String.format("[id$=':%s:revert-translate-language-button']", tabIndex))
-        .shouldBe(appear, DEFAULT_TIMEOUT);
-  }
 }

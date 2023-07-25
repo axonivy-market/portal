@@ -75,7 +75,6 @@ public class DashboardNewsWidgetTest extends BaseTest {
     SelenideElement translation = newsWidget.getTranslationOverlayPanel(1);
     translation.$("span.ui-icon-closethick").click();
     newsWidget.findTranslationButton(tabIndex);
-    newsWidget.findTranslationButton(tabIndex);
     
     newsWidget.clickOnCancelAddingNewsItem();
     newsWidget.getNewsEmptyMessage().shouldBe(Condition.appear, DEFAULT_TIMEOUT);

@@ -18,16 +18,16 @@
         widgetVar="manage-news-tabview" activeIndex="#{newsWidgetBean.activeTabIndex}">
         <c:set var="newsLanguage" value="#{news.locale.toLanguageTag()}" />
         <c:set var="requiredLanguage" value="#{defaultLang eq newsLanguage}" />
-        <p:ajax event="tabChange" oncomplete="PF('manage-news-dialog').initPosition()" />
+        <p:ajax event="tabChange" oncomplete="PF('manage-news-dialog').initPosition()"/>
 
-        <p:tab title="#{requiredLanguage ? '* ':''}#{news.locale.displayLanguage}"
+        <p:tab title="#{requiredLanguage ? '* ':''}#{news.locale.displayLanguage}" 
           titleStyleClass="news-language-tab-#{newsLanguage}">
           <h:panelGroup id="manage-news-details-container" layout="block">
             <p:messages id="management-news-message" redisplay="false">
               <p:autoUpdate />
             </p:messages>
 
-            <div class="management-news__title-group ">
+            <div class="management-news__title-group">
               <ic:ch.ivy.addon.portalkit.component.IconSelection id="news-icon" value="#{news.icon}"
                 hideChangeIconLink="true" />
               <div class="ui-fluid management-news__title-input ui-inputgroup">
@@ -38,7 +38,7 @@
                   maxlength="200">
                   <p:ajax event="click" listener="#{newsWidgetBean.translateTitle(news.locale)}"
                     disabled="#{requiredLanguage}" process="@form"
-                    partialSubmit="true" global="false" update="translated-text-panel, tranlate-link" />
+                    partialSubmit="true" global="false" update="translated-text-panel, tranlate-link, #{p:resolveFirstComponentWithId('management-news-group',view).clientId}" />
                 </p:inputText>
                 <p:overlayPanel for="news-title" appendTo="@(body)" my="right top" at="right bottom"
                   id="overlay-panel-input"
@@ -81,15 +81,6 @@
                       title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/Translate')}">
                       <p:ajax event="click"
                         listener="#{newsWidgetBean.translateDescription(news.locale)}"
-                        process="news-content" update="news-content, revert-translate-language-button" />
-                    </p:commandButton>
-                    
-                    <p:commandButton
-                      styleClass="ui-button-flat #{requiredLanguage ? 'u-hidden' : ''}"
-                      title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/RevertTranslation')}"
-                      id="revert-translate-language-button" icon="si si-undo si-md">
-                      <p:ajax event="click"
-                        listener="#{newsWidgetBean.refreshTranslation(news.locale)}"
                         process="news-content" update="news-content" />
                     </p:commandButton>
                   </span>
