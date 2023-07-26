@@ -119,7 +119,6 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
    * Get task column value.
    * 
    * @param column task field like "START", "PRIORITY", "RESPONSIBLE"...
-   * @param taskItem target task 
    * @return task column value 
    */
   @Override

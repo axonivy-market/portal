@@ -19,12 +19,11 @@ public class IvyExecutor {
 
   private IvyExecutor() {}
 
-  public static <T> T executeAsSystem(Callable<T> callable){
+  public static <T> T executeAsSystem(Callable<T> callable) {
     try {
       return Sudo.call(callable);
     } catch (Exception e) {
-      // TODO Auto-generated catch block
-      Ivy.log().error(e);
+      Ivy.log().equals(e);
       return null;
     }
   }
