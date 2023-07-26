@@ -15,6 +15,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.PrimeFaces;
 
+import com.axonivy.portal.components.constant.Signatures;
+
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bean.PermissionBean;
@@ -291,7 +293,7 @@ public class UserMenuBean implements Serializable {
   }
   
   private String getCustomizedLogoutPage() {
-    Map<String, Object> response = IvyAdapterService.startSubProcess("getLogoutPage()", null,
+    Map<String, Object> response = IvyAdapterService.startSubProcess(Signatures.logOutPage, null,
             Arrays.asList(PortalLibrary.PORTAL.getValue()));
     return (String) response.get("logoutPage");
   }
