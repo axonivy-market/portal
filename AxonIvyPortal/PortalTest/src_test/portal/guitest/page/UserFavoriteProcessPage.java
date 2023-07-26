@@ -65,6 +65,7 @@ public class UserFavoriteProcessPage extends TemplatePage {
     return element.getAttribute("class").contains(AwesomeIcon.DEFAULT_ICON);
   }
 
+  @SuppressWarnings("deprecation")
   public SettingProcessLanguageDialog openAddlanguageDialog() {
     click(findElementByCssSelector("button[id$='process-widget:add-languages']"));
     waitForElementDisplayed(By.cssSelector("span[id$='process-widget:favorite-process-name_title']"), true);
@@ -80,6 +81,7 @@ public class UserFavoriteProcessPage extends TemplatePage {
       return "id('process-widget:favorite-process-name')";
     }
     
+    @SuppressWarnings("deprecation")
     public void fillProcessNamesByLocaleName() {
       WebElement defaultDisplayName = findElementByCssSelector("input[id$='process-widget:process-display-name']");
       String defaultDisplayNameText = defaultDisplayName.getAttribute("value");
