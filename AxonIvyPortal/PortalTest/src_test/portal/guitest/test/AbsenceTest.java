@@ -14,13 +14,11 @@ import org.junit.Test;
 
 import ch.ivy.addon.portalkit.enums.DeputyRoleType;
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.DateTimePattern;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AbsencePage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.NewAbsencePage;
 import portal.guitest.page.TemplatePage;
-import portal.guitest.page.UserProfilePage;
 
 public class AbsenceTest extends BaseTest {
   private static final LocalDate TODAY = LocalDate.now();

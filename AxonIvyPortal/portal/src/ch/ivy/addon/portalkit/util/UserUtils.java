@@ -1,7 +1,6 @@
 package ch.ivy.addon.portalkit.util;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;

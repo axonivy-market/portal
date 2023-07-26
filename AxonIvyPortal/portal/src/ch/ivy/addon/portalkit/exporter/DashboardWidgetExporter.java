@@ -30,8 +30,9 @@ public abstract class DashboardWidgetExporter extends Exporter {
   /**
    * Gets column value.
    * @param <T>
-   * @param column
-   * @param item
+   * @param column 
+   * @param item 
+   * 
    * @return column value
    */
   public abstract <T> Object getColumnValue(String column, T item);

@@ -61,8 +61,7 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
   public void initialize(IProcessStartEventBeanRuntime eventRuntime, String configuration) {
     super.initialize(eventRuntime, configuration);
     // Disable Ivy polling
-    getEventBeanRuntime().setPollTimeInterval(0);
-
+    eventRuntime.poll().disable();
     try {
       Variable var = Variables.of(eventRuntime.getProcessModelVersion().getApplication()).variable(configuration);
       if (var != null) {
