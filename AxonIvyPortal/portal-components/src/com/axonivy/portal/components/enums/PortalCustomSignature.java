@@ -17,7 +17,7 @@ public enum PortalCustomSignature {
 
   public String getDefaultSignature() {
     String defaultSignature = signature.replaceFirst("portal", "");
-    return defaultSignature.substring(1, 0).toLowerCase() + signature.substring(1);
+    return defaultSignature.substring(0, 1).toLowerCase() + defaultSignature.substring(1);
   }
 
 }
