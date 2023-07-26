@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Objects;
 import java.util.Optional;
+
+import org.apache.commons.collections4.CollectionUtils;
 
 import ch.ivyteam.ivy.process.call.SubProcessCallStart;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter;
@@ -66,11 +67,11 @@ public class IvyAdapterService {
           .setSignature(signature).toFilter();
 
       // Find sub process
-      var subProcessStart = Optional.ofNullable(SubProcessCallStart.find(filter))
-          .map(processes -> processes.get(0)).orElse(null);
-      if (Objects.isNull(subProcessStart)) {
+      var subProcessStartList = SubProcessCallStart.find(filter);
+      if (CollectionUtils.isEmpty(subProcessStartList)) {
         return null;
       }
+      var subProcessStart = subProcessStartList.get(0);
 
       // Add param to the sub process and execute
       return Optional.ofNullable(params).map(Map::entrySet).isEmpty() ?
