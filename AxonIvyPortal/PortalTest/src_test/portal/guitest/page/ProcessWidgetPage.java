@@ -156,18 +156,21 @@ public class ProcessWidgetPage extends TemplatePage {
     return name;
   }
 
+  @SuppressWarnings("deprecation")
   public void clickEditSwitchLink() {
     waitForElementDisplayed(By.cssSelector("[id$='editing-switch-command']"), true, DEFAULT_TIMEOUT);
     click(findElementByCssSelector("[id$='editing-switch-command']"));
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
+  @SuppressWarnings("deprecation")
   public void clickSaveProcess() {
     WebElement deleteProcessLink = findChildElementByCssSelector(processWidget, "[id$='save-process-command']");
     click(deleteProcessLink);
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
+  @SuppressWarnings("deprecation")
   public UserFavoriteProcessPage openNewProcessDialog() {
     click(findChildElementByCssSelector(processWidget, "[id$='show-adding-dialog-commmand']"));
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
@@ -197,6 +200,7 @@ public class ProcessWidgetPage extends TemplatePage {
     return styleClass.contains("si-undo");
   }
 
+  @SuppressWarnings("deprecation")
   public void checkDeleteItem(int itemIndex) {
     List<WebElement> deleteCheckboxes = findDeleteIcons();
     WebElement checkBox = deleteCheckboxes.get(itemIndex);
@@ -210,12 +214,14 @@ public class ProcessWidgetPage extends TemplatePage {
     return processes.size();
   }
 
+  @SuppressWarnings("deprecation")
   public void clickSortFavoriteProcessByName() {
     waitForElementDisplayed(By.cssSelector("[id$='name-sort-command']"), true, DEFAULT_TIMEOUT);
     click(findElementByCssSelector("[id$='name-sort-command']"));
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
+  @SuppressWarnings("deprecation")
   public void clickSortDefaultProcessByName() {
     waitForElementDisplayed(By.cssSelector("[id$='default-process-name-sort-command']"), true, DEFAULT_TIMEOUT);
     click(findElementByCssSelector("[id$='default-process-name-sort-command']"));
@@ -237,6 +243,7 @@ public class ProcessWidgetPage extends TemplatePage {
     return !findElements.isEmpty();
   }
 
+  @SuppressWarnings("deprecation")
   public void expand() {
     loadSwitchModeButton();
     click(switchModeButton);
