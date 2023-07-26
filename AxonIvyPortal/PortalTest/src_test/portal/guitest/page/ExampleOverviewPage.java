@@ -22,6 +22,7 @@ public class ExampleOverviewPage extends TemplatePage {
     return new LendingOverviewPage();
   }
   
+  @SuppressWarnings("deprecation")
   public void startUserExampleProcess(int index) {
     String userProcessId = String.format("[id$=':%d:start-button']", index);
     click(findElementByCssSelector(userProcessId));

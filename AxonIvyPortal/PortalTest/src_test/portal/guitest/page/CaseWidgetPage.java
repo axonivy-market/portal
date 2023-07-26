@@ -291,7 +291,8 @@ public class CaseWidgetPage extends TemplatePage {
 		waitForElementDisplayedByCssSelector("label[for$='columns-checkbox:3']");
 	}
 
-	public void clickColumnCheckbox(int columnIndex) {
+	@SuppressWarnings("deprecation")
+  public void clickColumnCheckbox(int columnIndex) {
 		WebElement columnCheckbox = findElementByXpath(String.format(SELECT_ITEM_XPATH, columnIndex));
 		click(columnCheckbox);
 	}
@@ -305,7 +306,8 @@ public class CaseWidgetPage extends TemplatePage {
         });
   }
 
-	public void clickDefaultCheckbox() {
+	@SuppressWarnings("deprecation")
+  public void clickDefaultCheckbox() {
 		WebElement columnCheckbox = findElementByXpath(DEFAULT_COLUMNS_XPATH);
 		click(columnCheckbox);
 		WaitHelper.assertTrueWithWait(() -> !findElementByCssSelector("label[for$='columns-checkbox:3']").getAttribute("class").equals("ui-state-disabled"));
@@ -330,7 +332,8 @@ public class CaseWidgetPage extends TemplatePage {
 		waitForElementDisplayed(By.cssSelector(".advanced-filter-panel.ui-connected-overlay-enter-done"), true);
 	}
 
-	public void toggleNoCategory() {
+	@SuppressWarnings("deprecation")
+  public void toggleNoCategory() {
 		List<WebElement> categories = findListElementsByCssSelector(".filter-category-checkbox-tree .ui-tree-selectable");
 		for (WebElement category : categories) {
 			if (category.getText().equals("[No Category]")) {
@@ -375,6 +378,7 @@ public class CaseWidgetPage extends TemplatePage {
     return true;
   }
 
+  @SuppressWarnings("deprecation")
   public void openSavedFilters(String filterName) {
     refreshAndWaitElement("a[id$='case-widget:filter-selection-form:filter-name']");
     click(findElementById("case-widget:filter-selection-form:filter-name"));
