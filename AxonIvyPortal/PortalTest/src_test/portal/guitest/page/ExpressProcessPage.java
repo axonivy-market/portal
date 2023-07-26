@@ -31,6 +31,7 @@ public class ExpressProcessPage extends TemplatePage {
 		type(By.id("form:process-description"), processDescription);
 	}
 
+  @SuppressWarnings("deprecation")
   private void selectCheckbox(String forAttribute) {
 		WebElement checkboxLabel = findElementByXpath(String.format("//label[@for='%s']", forAttribute));
 		click(checkboxLabel);
