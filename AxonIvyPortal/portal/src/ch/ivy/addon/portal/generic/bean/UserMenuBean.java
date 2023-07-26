@@ -2,7 +2,6 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -15,8 +14,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.PrimeFaces;
 
+import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.components.constant.Signatures;
-
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bean.PermissionBean;
@@ -24,13 +23,11 @@ import ch.ivy.addon.portalkit.bean.PortalExceptionBean;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.dto.UserMenu;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -293,8 +290,7 @@ public class UserMenuBean implements Serializable {
   }
   
   private String getCustomizedLogoutPage() {
-    Map<String, Object> response = IvyAdapterService.startSubProcess(Signatures.logOutPage, null,
-            Arrays.asList(PortalLibrary.PORTAL.getValue()));
+    Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(Signatures.logOutPage, null);
     return (String) response.get("logoutPage");
   }
   

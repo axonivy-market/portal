@@ -23,7 +23,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.dto.RoleDTO;
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.dto.UserDTO;
+import com.axonivy.portal.components.service.IvyAdapterService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -32,11 +34,8 @@ import ch.ivy.addon.portal.chat.ChatReferencesContainer;
 import ch.ivy.addon.portal.chat.CreateGroupChatStatus;
 import ch.ivy.addon.portal.chat.GroupChat;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
-import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
-import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -282,8 +281,7 @@ public class ChatAssigneeBean implements Serializable {
 
   @SuppressWarnings("unchecked")
   private String getGroupChatName(GroupChat group) {
-    Map<String, Object> response = IvyAdapterService.startSubProcess("setGroupChatName()", null,
-        Arrays.asList(PortalLibrary.PORTAL.getValue()));
+    Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext("setGroupChatName()", null);
     String groupChatName = response.get("name").toString();
     ObjectMapper objectMapper = new ObjectMapper();
     Map<String, Object> mappedObject = objectMapper.convertValue(group, Map.class);
@@ -323,8 +321,7 @@ public class ChatAssigneeBean implements Serializable {
     group.setApplicationName(task.getApplication().getName());
     group.setCreator(Ivy.session().getSessionUserName());
     group.setAssignees(selectedAssignees);
-    Map<String, Object> response = IvyAdapterService.startSubProcess("getGroupChatParams()", null,
-        Arrays.asList(PortalLibrary.PORTAL.getValue()));
+    Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext("getGroupChatParams()", null);
     @SuppressWarnings("unchecked")
     Map<String, String> params = (Map<String, String>) response.get("params");
     group.setParams(params);
@@ -355,8 +352,7 @@ public class ChatAssigneeBean implements Serializable {
   private List<IRole> getConfiguredRoles() {
     Map<String, Object> params = new HashMap<>();
     params.put("task", task);
-    Map<String, Object> response = IvyAdapterService.startSubProcess(CONFIGURED_ROLES_SUB_PROCESS, params,
-        Arrays.asList(PortalLibrary.PORTAL.getValue()));
+    Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(CONFIGURED_ROLES_SUB_PROCESS, params);
     List<IRole> roles = (List<IRole>) response.get("roles");
     return roles.stream().filter(role -> !Objects.isNull(role)).collect(Collectors.toList());
   }
