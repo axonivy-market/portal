@@ -1,12 +1,15 @@
 package com.axonivy.portal.components.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 
 import org.apache.commons.collections4.CollectionUtils;
+
+import com.axonivy.portal.components.ivydata.exception.PortalIvyDataException;
 
 import ch.ivyteam.ivy.process.call.SubProcessCallStart;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter;
@@ -56,8 +59,11 @@ public class IvyAdapterService {
    * @return The response of the process execution.
    */
   public static Map<String, Object> startSubProcessInSecurityContextWithDefault(String signature, Map<String, Object> params, String defaultSignature) {
-    return Optional.ofNullable(startSubProcessInSecurityContext(signature, params))
-        .orElse(startSubProcessInSecurityContext(defaultSignature, params));
+    var result = startSubProcessInSecurityContext(signature, params);
+    if (Optional.ofNullable(result).map(r -> r.get("callProcessError")).isPresent()) {
+      return startSubProcessInSecurityContext(defaultSignature, params);
+    }
+    return result;
   }
 
   private static Map<String, Object> startSubProcess(String signature, Map<String, Object> params, SearchScope scope) {
@@ -69,7 +75,9 @@ public class IvyAdapterService {
       // Find sub process
       var subProcessStartList = SubProcessCallStart.find(filter);
       if (CollectionUtils.isEmpty(subProcessStartList)) {
-        return null;
+        Map<String, Object> result = new HashMap<>();
+        result.put("callProcessError", new PortalIvyDataException(String.format("Cannot find sub process with signature %s", signature)));
+        return result;
       }
       var subProcessStart = subProcessStartList.get(0);
 

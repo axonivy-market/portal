@@ -9,11 +9,11 @@
       "id" : "f0",
       "type" : "CallSubStart",
       "name" : [
-        "call(ICase,UploadedFile,",
+        "customUploadDocumentItem(ICase,UploadedFile,",
         "Boolean,Boolean,String)"
       ],
       "config" : {
-        "callSignature" : "call",
+        "callSignature" : "customUploadDocumentItem",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
@@ -45,7 +45,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 128 },
-        "labelOffset" : { "x" : -52, "y" : -26 }
+        "labelOffset" : { "x" : 25, "y" : -39 }
       },
       "connect" : { "id" : "f3", "to" : "f36" }
     }, {
@@ -255,18 +255,6 @@
         "size" : { "width" : 176, "height" : 60 }
       },
       "connect" : { "id" : "f80", "to" : "f53" }
-    }, {
-      "id" : "f5",
-      "type" : "ProcessAnnotation",
-      "name" : [
-        "Override this sub process to upload your file to DMS",
-        "This sub process also contains some validation, so if you override it, you have to implement validation by your own"
-      ],
-      "visual" : {
-        "at" : { "x" : 480, "y" : 344 },
-        "size" : { "width" : 640, "height" : 44 }
-      },
-      "connect" : { "id" : "f6", "to" : "f0" }
     }, {
       "id" : "f4",
       "type" : "Script",
