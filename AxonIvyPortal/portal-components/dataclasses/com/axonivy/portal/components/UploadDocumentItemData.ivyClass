@@ -9,4 +9,3 @@ enableVirusScannerForUploadedDocument Boolean #field
 enableScriptCheckingForUploadedDocument Boolean #field
 allowedUploadFileTypes String #field
 hasCustomProcess Boolean #field
-result java.util.Map #field
