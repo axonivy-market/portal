@@ -8,9 +8,9 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "call(ICase,IvyDocument)",
+      "name" : "customDownloadDocumentItem(ICase,IvyDocument)",
       "config" : {
-        "callSignature" : "call",
+        "callSignature" : "customDownloadDocumentItem",
         "input" : {
           "params" : [
             { "name" : "bussinessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
@@ -32,14 +32,14 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -2, "y" : 50 }
+        "labelOffset" : { "x" : 9, "y" : 41 }
       },
       "connect" : { "id" : "f4", "to" : "f3" }
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 352, "y" : 64 }
+        "at" : { "x" : 480, "y" : 64 }
       }
     }, {
       "id" : "f3",
@@ -57,18 +57,9 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 64 },
+        "at" : { "x" : 320, "y" : 64 },
         "size" : { "width" : 160, "height" : 60 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
-    }, {
-      "id" : "f5",
-      "type" : "ProcessAnnotation",
-      "name" : "Override this subprocess to download file from DMS",
-      "visual" : {
-        "at" : { "x" : 312, "y" : 200 },
-        "size" : { "width" : 288, "height" : 30 }
-      },
-      "connect" : { "id" : "f6", "to" : "f0", "via" : [ { "x" : 328, "y" : 184 } ] }
     } ]
 }

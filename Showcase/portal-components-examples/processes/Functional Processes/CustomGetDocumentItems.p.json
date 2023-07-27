@@ -8,9 +8,9 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "call(ICase)",
+      "name" : "customGetDocumentItems(ICase)",
       "config" : {
-        "callSignature" : "call",
+        "callSignature" : "customGetDocumentItems",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
@@ -32,14 +32,14 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : 6, "y" : 44 }
+        "labelOffset" : { "x" : 17, "y" : 33 }
       },
       "connect" : { "id" : "f4", "to" : "f3" }
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 352, "y" : 64 }
+        "at" : { "x" : 408, "y" : 64 }
       }
     }, {
       "id" : "f3",
@@ -81,24 +81,9 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 64 },
+        "at" : { "x" : 280, "y" : 64 },
         "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
-    }, {
-      "id" : "f5",
-      "type" : "ProcessAnnotation",
-      "name" : [
-        "After get document list from DMS, convert them into List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>",
-        "Some mandatory fields when mapping:",
-        "- id",
-        "- name",
-        "- contentType"
-      ],
-      "visual" : {
-        "at" : { "x" : 344, "y" : 240 },
-        "size" : { "width" : 624, "height" : 108 }
-      },
-      "connect" : { "id" : "f6", "to" : "f0" }
     } ]
 }
