@@ -3,8 +3,9 @@ package com.axonivy.portal.components.enums;
 public enum PortalCustomSignature {
   LOGOUT_PAGE("portalGetLogoutPage()"),
   RESET_PASSWORD("portalResetPassword(String,String,String,String)"),
-  SEND_PASSWORD_RESET_EMAIL("portalSendPasswordResetEmail(String)");
-
+  SEND_PASSWORD_RESET_EMAIL("portalSendPasswordResetEmail(String)"),
+  CHANGE_PASSWORD("portalChangePassword(String, String)");
+  
   private String signature;
 
   private PortalCustomSignature(String signature) {
