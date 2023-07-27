@@ -2,14 +2,14 @@ package ch.ivy.addon.portalkit.dto.statisticChart;
 
 public class callbackData {
 
-  private String id;
+  private String chartId;
 
-  public String getId() {
-    return id;
+  public String getChartId() {
+    return chartId;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setChartId(String chartId) {
+    this.chartId = chartId;
   }
 
 
