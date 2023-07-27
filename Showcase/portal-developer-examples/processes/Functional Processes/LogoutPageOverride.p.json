@@ -8,7 +8,7 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "getLogoutPage()",
+      "name" : "portalGetLogoutPage()",
       "config" : {
         "callSignature" : "getLogoutPage",
         "result" : {
