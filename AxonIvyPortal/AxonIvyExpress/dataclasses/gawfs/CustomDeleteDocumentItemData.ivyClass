@@ -1,4 +1,4 @@
-DeleteDocumentItemOverrideData #class
+CustomDeleteDocumentItemData #class
 gawfs #namespace
 document com.axonivy.portal.components.ivydata.bo.IvyDocument #field
 businessCase ch.ivyteam.ivy.workflow.ICase #field
