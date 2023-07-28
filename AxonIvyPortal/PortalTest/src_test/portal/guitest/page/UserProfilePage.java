@@ -45,6 +45,7 @@ public class UserProfilePage extends TemplatePage {
     return new HomePage();
   }
   
+  @SuppressWarnings("deprecation")
   public void saveWithoutWaitingNavigation() {
     WebElement save = findElementByCssSelector("button[id$='save-settings']");
     WaitHelper.waitForNavigation(new UserProfilePage(), () -> click(save));
@@ -71,6 +72,7 @@ public class UserProfilePage extends TemplatePage {
     switchOffSetting(FURTHER_EMAIL_FROM_APP_SELECTOR);
   }
 
+  @SuppressWarnings("deprecation")
   private void switchOnSetting(String cssSelector) {
     WebElement inputSwitch = findElementByCssSelector(cssSelector);
     if (!inputSwitch.getAttribute("class").contains("ui-inputswitch-checked")) {
@@ -78,6 +80,7 @@ public class UserProfilePage extends TemplatePage {
     }
   }
   
+  @SuppressWarnings("deprecation")
   private void switchOffSetting(String cssSelector) {
     WebElement inputSwitch = findElementByCssSelector(cssSelector);
     if (inputSwitch.getAttribute("class").contains("ui-inputswitch-checked")) {
@@ -85,6 +88,7 @@ public class UserProfilePage extends TemplatePage {
     }
   }
 
+  @SuppressWarnings("deprecation")
   public void selectDaysForDailySummary(List<Integer> indices) {
     List<WebElement> selectDays = findListElementsByXpath(SELECTED_DAY_XPATH);
     for(int index : indices) {
@@ -125,6 +129,7 @@ public class UserProfilePage extends TemplatePage {
     return checkbox.getAttribute("class").contains("ui-state-disabled");
   }
 
+  @SuppressWarnings("deprecation")
   public void checkShowTutorial() {
     WebElement checkbox = findElementByXpath(SHOW_TUTORIAL_XPATH);
     if (!checkbox.getAttribute("class").contains("ui-state-active")) {
@@ -182,6 +187,7 @@ public class UserProfilePage extends TemplatePage {
     waitUntilTextToBePresentInElement(findElementById(homepageLabel), "Cases", getTimeOutForLocator());
   }
   
+  @SuppressWarnings("deprecation")
   public HomePage clickOnCancelLink() {
     click(findElementByCssSelector("a[id^='my-profile-form:']"));
     waitForPageLoaded();
