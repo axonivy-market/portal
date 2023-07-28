@@ -242,6 +242,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       clientSideTimeoutNote: Tiempo de espera del lado del cliente en minutos, debe ser mayor que 0 y menor que el tiempo de espera del lado del servidor (por ejemplo, 25 segundos). El valor por defecto es 0, lo que significa que se aplica el tiempo de espera por defecto del lado del cliente. El tiempo
         de espera por defecto del lado del cliente es el tiempo de espera del lado del servidor menos 3 minutos.
       dateFilterWithTime: Cambiar a "True" para activar filtros de fecha con tiempo. Esta configuración afectará la lista de tareas, de casos y estadísticas.
+      deepLAuthKey: DeepL Clave de autenticación (debe terminar en :fx)
       defaultHomepage: Para establecer la página de inicio estándar a la que se redirigirá al hacer clic en el icono de inicio o en el logotipo. Esta configuración también se aplica a la página final después de terminar una tarea.
       defaultProcessImage: La configuración estándar de la imagen por defecto que se mostrará en la lista de procesos de imagen.
       defaultProcessMode: La configuración estándar del modo de vista en la lista de procesos.
@@ -256,6 +257,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       displayMessageAfterFinishOrLeaveTask: Se mostrará un mensaje después de finalizar una tarea
       embedInFrame: Cambiar a "true" para abrir un proceso o tarea en modo iFrame
       enableCaseOwner: 'Cambiar a "true" para también mostrar los casos en los que usted es el responsable del caso en su lista de casos. '
+      enableDeepLTranslation: Establezca esta propiedad en true para activar la traducción de DeepL
       enableGroupChat: Cambie esta propiedad a "true" para activar el chat de grupos
       enablePrivateChat: Cambie esta propiedad a "true" para activar el chat privado
       enableProcessViewer: Defina esta propiedad como true para habilitar la opción de visor de procesos en las acciones de Tarea/Caso
@@ -290,8 +292,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showUserGuide: Activa la guía de usuario interactiva "primeros pasos" en el portal durante el primer acceso del usuario.
       statisticChartScalingInterval: Intervalo en segundos para realizar peticiones periódicas de escalado de gráficos estadísticos. Si el valor del intervalo es inferior a 10, se desactiva el escalado periódico de gráficos estadísticos.
       uploadDocumentWhiteListExtensionNote: 'Dejar libre, sie quiere permitir todos los anexos. Si quiere reducir los formatos permitidos, cree una lista separada por coma. Por ejemplo: pdf, txt, doc, docx.'
-      deepLAuthKey: DeepL Clave de autenticación (debe terminar en :fx)
-      enableDeepLTranslation: Establezca esta propiedad en true para activar la traducción de DeepL
     key: Llave
     link: Enlazar
     loading: CARGANDO
@@ -775,7 +775,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: La configuración del panel de control no es compatible con los dispositivos móviles.
       EditPrivateDashboards: Editar sus tableros privados
       EditPublicDashboards: Editar tableros públicos
-      InvalidDeepLAuthKey: Clave de autenticación no válida DeepL
       ExportDashboard: Exportar el cuadro de mandos
       PrivateDashboard: Cuadros de mando privados
       PrivateDashboardConfiguration: Configuración de tableros privados
@@ -784,6 +783,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPrivateDashboards: Reordenar tableros privados
       ReorderPublicDashboards: Reordenar tableros públicos
       SelectAction: Seleccione la acción
+      SomeThingWentWrong: Algo salió mal
       Title: Configuración de tablero
     EmptyFilterMessage: No se ha encontrado ningún filtro de widget
     Filter:
@@ -1600,6 +1600,7 @@ Dialogs:
               RemoveNewsHeader: ¿Quitar las noticias?
               SeeLess: Ver menos
               SeeMore: Ver más
+              Translate: Traducir
             NewsWidgetConfiguration:
               AddNews: Añadir noticias
               EditNews: Editar noticias
