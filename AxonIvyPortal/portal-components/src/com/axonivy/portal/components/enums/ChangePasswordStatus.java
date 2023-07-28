@@ -1,4 +1,4 @@
-package ch.ivy.addon.portalkit.enums;
+package com.axonivy.portal.components.enums;
 
 public enum ChangePasswordStatus {
   OK, FAIL;
