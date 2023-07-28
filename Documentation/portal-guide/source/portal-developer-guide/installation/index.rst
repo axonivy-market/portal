@@ -109,6 +109,50 @@ In Engine
 
 #. Follow detailed migration notes for each version below.
 
+Migrate 10.0 To 10.0.12
+-----------------------
+
+#. Portal no longer supports the override process approach for :ref:`Document processes <customization-document-processes>`.
+   Please do as below to migrate your override sub processes
+
+      - Remove Sub Process Override of ``GetDocumentList``, ``UploadDocument``,
+      ``DeleteDocument``, and ``DownloadDocument`` from your project.
+
+      - Change the signature of your callable starts as below.
+
+         +----------------------+----------------------------+
+         | Sub process          | New signature              |
+         +======================+============================+
+         | GetDocumentList      | portalGetDocumentList      |
+         +----------------------+----------------------------+
+         | UploadDocument       | portalUploadDocument       |
+         +----------------------+----------------------------+
+         | DeleteDocument       | portalDeleteDocument       |
+         +----------------------+----------------------------+
+         | DownloadDocument     | portalDownloadDocument     |
+         +----------------------+----------------------------+
+
+#. Portal no longer supports the override process approach for :ref:`Customize Password Resetting <customization-password-reset>`.
+   Please do as below to migrate your override sub processes
+
+      - Remove Sub Process Override of ``ResetPassword`` from your project.
+
+      - Change the signature of your callable start as below.
+
+         +----------------------+----------------------------+
+         | Sub process          | New signature              |
+         +======================+============================+
+         | ResetPassword        | portalResetPassword        |
+         +----------------------+----------------------------+
+
+Migrate 10.0 To 10.0.7
+----------------------
+
+The ``ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI`` class is removed and no longer supported, use 
+``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` instead.
+
+.. _installation-release-notes:
+
 Migrate 8.x To 10.0
 -------------------
 
@@ -346,24 +390,11 @@ Migrate 8.x To 9.x
 You need to do all steps starting at ``Migrate 8.x To ...`` up to and including
 ``Migrate ... To 9.x``
 
-Migrate 10.0 To 10.0.7
-----------------------
-
-The ``ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI`` class is removed and no longer supported, use 
-``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` instead.
-
-.. _installation-release-notes:
-
 Release notes
 =============
 
 This part lists all relevant changes since the last official product
 releases of |ivy|.
-
-Changes in 10
--------------
-
-- Introduced the ``Application`` filter and the ``Application`` column at the following places: full task list, full case list, dashboard task list, dashboard case list, and task analysis.
 
 Changes in 10.0.9
 -----------------
@@ -376,6 +407,11 @@ Changes in 10.0.9
 - The ``ch.ivy.addon.portalkit.publicapi.RoleAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.RoleAPI`` instead.
 - The ``ch.ivy.addon.portalkit.publicapi.TaskAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.TaskAPI`` instead.
 - The ``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI`` instead.
+
+Changes in 10
+-------------
+
+- Introduced the ``Application`` filter and the ``Application`` column at the following places: full task list, full case list, dashboard task list, dashboard case list, and task analysis.
 
 Changes in 9.4
 --------------
