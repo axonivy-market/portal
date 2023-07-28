@@ -3,7 +3,7 @@
   "id" : "1818961DF63F4295",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "com.axonivy.portal.components.examples.override.UploadDocumentItemOverrideData"
+    "data" : "com.axonivy.portal.components.examples.override.CustomUploadDocumentItemData"
   },
   "elements" : [ {
       "id" : "f0",
