@@ -136,7 +136,6 @@ public class TaskActionTest extends BaseTest {
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
   }
 
-  @SuppressWarnings("deprecation")
   @Test
   public void testVisibleTaskActionsWhenTaskStatusIsDoneAndDestroyed() {
     login(TestAccount.ADMIN_USER);

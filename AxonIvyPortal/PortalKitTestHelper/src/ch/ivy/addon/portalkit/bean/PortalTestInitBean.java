@@ -15,7 +15,7 @@ public class PortalTestInitBean extends AbstractProcessStartEventBean {
   @Override
   public void initialize(IProcessStartEventBeanRuntime eventRuntime, String configuration) {
     super.initialize(eventRuntime, configuration);
-    getEventBeanRuntime().setPollTimeInterval(0);
+    getEventBeanRuntime().poll().disable();
     initUserProcesses();
   }
 

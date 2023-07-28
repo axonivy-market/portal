@@ -42,8 +42,7 @@ public class CaseBusinessStateMigrationService {
   /**
    * Adapt case business state for widget filter sets
    * IVYPORTAL-14663: Introduce CaseBusinessState
-   * 
-   * @param dashboard
+   * @param widgetFilters 
    */
   public static void adaptCaseBusinessStateForWidgetFilterSets(List<WidgetFilterModel> widgetFilters) {
     widgetFilters.stream().filter(f -> f.getWidgetType() == DashboardWidgetType.CASE).forEach(filter -> {

@@ -31,14 +31,15 @@
               <ic:ch.ivy.addon.portalkit.component.IconSelection id="news-icon" value="#{news.icon}"
                 hideChangeIconLink="true" />
               <div class="ui-fluid management-news__title-input ui-inputgroup">
-                <p:inputText id="news-title" required="#{requiredLanguage}"
+                <p:inputText id="news-title" required="#{requiredLanguage and param['skipValidator'] == null}"
                   placeholder="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/NewsTitlePlaceholder')}"
                   value="#{news.name}"
                   requiredMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/NewsTitleValidateMessage', [news.locale.displayLanguage.toLowerCase()])}"
                   maxlength="200">
                   <p:ajax event="click" listener="#{newsWidgetBean.translateTitle(news.locale)}"
                     disabled="#{requiredLanguage}" process="@form"
-                    partialSubmit="true" global="false" update="translated-text-panel, tranlate-link, #{p:resolveFirstComponentWithId('management-news-group',view).clientId}" />
+                    partialSubmit="true" global="false" update="translated-text-panel, tranlate-link" />
+                  <f:param name="skipValidator" value="true" />
                 </p:inputText>
                 <p:overlayPanel for="news-title" appendTo="@(body)" my="right top" at="right bottom"
                   id="overlay-panel-input"
@@ -66,7 +67,7 @@
             <div class="management-news__content-group">
               <p:textEditor id="news-content" height="300" value="#{news.description}"
                 placeholder="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/NewsContentPlaceHolder')}"
-                required="#{requiredLanguage}"
+                required="#{requiredLanguage and param['skipValidator'] == null}"
                 requiredMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/NewsContentValidateMessage', [news.locale.displayLanguage.toLowerCase()])}">
                 <f:validator validatorId="newsEditorValidator" />
                 <f:facet name="toolbar">
@@ -81,7 +82,8 @@
                       title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/Translate')}">
                       <p:ajax event="click"
                         listener="#{newsWidgetBean.translateDescription(news.locale)}"
-                        process="news-content" update="news-content" />
+                        process="@form" update="news-content" />
+                        <f:param name="skipValidator" value="true" />
                     </p:commandButton>
                   </span>
                 </f:facet>
