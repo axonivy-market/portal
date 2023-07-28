@@ -1,6 +1,6 @@
 package ch.ivy.addon.portalkit.dto.statisticChart;
 
-public class callbackData {
+public class StatisticDataDto {
 
   private String chartId;
 
@@ -11,6 +11,5 @@ public class callbackData {
   public void setChartId(String chartId) {
     this.chartId = chartId;
   }
-
 
 }

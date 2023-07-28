@@ -5,7 +5,7 @@ import java.util.Arrays;
 import javax.naming.NoPermissionException;
 import javax.ws.rs.NotFoundException;
 
-import ch.ivy.addon.portalkit.dto.statisticChart.callbackData;
+import ch.ivy.addon.portalkit.dto.statisticChart.StatisticDataDto;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.statistics.NewStatisticChart;
 import ch.ivyteam.ivy.elasticsearch.client.agg.AggregationResult;
@@ -24,7 +24,7 @@ public class StatisticChartService extends JsonConfigurationService<NewStatistic
     return StatisticChartService.instance;
   }
 
-  public AggregationResult callBack(callbackData payload) throws NotFoundException, NoPermissionException {
+  public AggregationResult callBack(StatisticDataDto payload) throws NotFoundException, NoPermissionException {
     NewStatisticChart chart = findById(payload.getChartId());
     if (chart == null) {
       Ivy.log().error(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/exception/idNotFound",

@@ -17,7 +17,7 @@ import javax.ws.rs.core.Response.Status;
 import com.google.gson.GsonBuilder;
 
 import ch.ivy.addon.portal.chat.GsonUTCDateAdapter;
-import ch.ivy.addon.portalkit.dto.statisticChart.callbackData;
+import ch.ivy.addon.portalkit.dto.statisticChart.StatisticDataDto;
 import ch.ivy.addon.portalkit.service.StatisticChartService;
 import ch.ivyteam.ivy.elasticsearch.client.agg.AggregationResult;
 
@@ -29,17 +29,17 @@ public class StatisticRestService {
   private StatisticChartService service = new StatisticChartService();
 
   @GET
-  @Path(value = "callback")
+  @Path(value = "Data")
   @Produces(value = "application/json")
-  public Response callback() {
+  public Response getData() {
     return Response.ok().build();
   }
 
   @POST
-  @Path(value = "callback")
+  @Path(value = "Data")
   @Consumes(value = "application/json")
   @Produces(value = "application/json")
-  public Response callback(callbackData payload) {
+  public Response getData(StatisticDataDto payload) {
     if (Objects.isNull(payload) || Objects.isNull(payload.getChartId())) {
       return Response.status(Status.NOT_ACCEPTABLE).build();
     } else {
