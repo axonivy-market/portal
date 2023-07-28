@@ -15,6 +15,7 @@ import com.axonivy.portal.components.dto.IvyProcessResultDTO;
 import com.axonivy.portal.components.enums.SessionAttribute;
 import com.axonivy.portal.components.service.IProcessService;
 import com.axonivy.portal.components.util.IvyExecutor;
+import com.axonivy.portal.components.util.UserUtils;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
@@ -28,7 +29,7 @@ public class ProcessService implements IProcessService {
   private static IvyProcessResultDTO ivyProcessResultDTO;
   private static List<IWebStartable> customDashboardProcesses;
   private static String sessionUserId;
-
+  private static String userLanguage; 
   public ProcessService() { }
 
   /**
@@ -54,12 +55,17 @@ public class ProcessService implements IProcessService {
     if (isInSession() && isNotEmpty(ivyProcessResultDTO.getProcesses())) {
       return ivyProcessResultDTO;
     }
-    sessionUserId = Ivy.session().getAttribute(SessionAttribute.SESSION_IDENTIFIER.toString()).toString();
+    updateUserSessionAtributes();
     ivyProcessResultDTO = new IvyProcessResultDTO();
     return IvyExecutor.executeAsSystem(() -> {
       ivyProcessResultDTO.setProcesses(findStartablesWithoutPortalHomeAndMSTeamsProcess(Ivy.session()));
       return ivyProcessResultDTO;
     });
+  }
+
+  private void updateUserSessionAtributes() {
+    sessionUserId = Ivy.session().getAttribute(SessionAttribute.SESSION_IDENTIFIER.toString()).toString();
+    userLanguage = UserUtils.getUserLanguage();
   }
 
   private List<IWebStartable> findStartablesWithoutPortalHomeAndMSTeamsProcess(IWorkflowSession session) {
@@ -74,18 +80,20 @@ public class ProcessService implements IProcessService {
   }
 
   private boolean isInSession() {
+    String currentUserLanguage = UserUtils.getUserLanguage();
     String sessionIdAttribute = SessionAttribute.SESSION_IDENTIFIER.toString();
     if (Ivy.session().getAttribute(sessionIdAttribute) == null) {
       Ivy.session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
     }
-    return Ivy.session().getAttribute(sessionIdAttribute).toString().equals(sessionUserId);
+    return currentUserLanguage.equals(userLanguage)
+        && Ivy.session().getAttribute(sessionIdAttribute).toString().equals(sessionUserId);
   }
 
   public List<IWebStartable> findCustomDashboardProcesses() {
     if (isInSession() && isNotEmpty(customDashboardProcesses)) {
       return customDashboardProcesses;
     }
-    sessionUserId = Ivy.session().getAttribute(SessionAttribute.SESSION_IDENTIFIER.toString()).toString();
+    updateUserSessionAtributes();
     customDashboardProcesses = new ArrayList<>(
         Ivy.session().getAllStartables().filter(filterByCustomDashboardProcess()).collect(Collectors.toList()));
     return customDashboardProcesses;
