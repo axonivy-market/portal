@@ -3,7 +3,7 @@
   "id" : "1818968119A51953",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "com.axonivy.portal.components.examples.override.DeleteDocumentItemOverrideData"
+    "data" : "com.axonivy.portal.components.examples.override.CustomDeleteDocumentItemData"
   },
   "elements" : [ {
       "id" : "f0",
