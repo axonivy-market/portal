@@ -18,9 +18,4 @@
         <password>guest</password>
         <fullName>Portal Guest User</fullName>
     </user>
-    <user>
-        <username>api</username>
-        <password>api</password>
-        <role>api</role>
-    </user>
 </userConfig>
