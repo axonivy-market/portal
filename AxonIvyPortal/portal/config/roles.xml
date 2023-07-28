@@ -4,5 +4,9 @@
     <role>
         <identifier>AXONIVY_PORTAL_ADMIN</identifier>
         <displayName>Portal Admin</displayName>
+        <role>
+            <identifier>api</identifier>
+            <displayName>api</displayName>
+        </role>
     </role>
 </role>

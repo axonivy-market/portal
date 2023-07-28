@@ -1,8 +1,9 @@
 package ch.ivy.addon.portalkit.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Arrays;
+
+import javax.naming.NoPermissionException;
+import javax.ws.rs.NotFoundException;
 
 import ch.ivy.addon.portalkit.dto.statisticChart.callbackData;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
@@ -15,7 +16,6 @@ import ch.ivyteam.ivy.workflow.stats.WorkflowStats;
 public class StatisticChartService extends JsonConfigurationService<NewStatisticChart> {
 
   private static StatisticChartService instance;
-  private List<NewStatisticChart> availableCharts;
 
   public StatisticChartService getInstance() {
     if (instance == null) {
@@ -24,45 +24,30 @@ public class StatisticChartService extends JsonConfigurationService<NewStatistic
     return StatisticChartService.instance;
   }
 
-  public AggregationResult callBack(callbackData payload) {
+  public AggregationResult callBack(callbackData payload) throws NotFoundException, NoPermissionException {
     NewStatisticChart chart = findById(payload.getChartId());
     if (chart == null) {
-      Ivy.log().error("chart null");
-      return null;
-    } else if (!isPemissionValid(chart)) {
-      Ivy.log().error("Role null");
-      return null;
+      Ivy.log().error(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/exception/idNotFound",
+          Arrays.asList(payload.getChartId())));
+      throw new NotFoundException(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/exception/idNotFound",
+          Arrays.asList(payload.getChartId())));
+    } else if (!isPermissionValid(chart)) {
+      Ivy.log().error(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/exception/noPermission"));
+      throw new NoPermissionException(
+          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/exception/noPermission"));
     } else {
-       if (chart.getIsCaseFilter()) {
-         return getCaseData(chart.getAggregates(), chart.getFilter());
-       } else {
-         return getTaskData(chart.getAggregates(), chart.getFilter());
-       }
+      if (chart.getIsCaseFilter()) {
+        return getCaseData(chart.getAggregates(), chart.getFilter());
+      } else {
+        return getTaskData(chart.getAggregates(), chart.getFilter());
+      }
     }
 
   }
 
-  @Override
-  public NewStatisticChart findById(String chartId) {
-    List<NewStatisticChart> findList = getStatisticChart().stream()
-        .filter(statisticChart -> statisticChart.getId().equalsIgnoreCase(chartId)).collect(Collectors.toList());
-    if (findList.size() == 0) {
-      return null;
-    } else {
-      return findList.get(0);
-    }
-  }
-
-  private Boolean isPemissionValid(NewStatisticChart chart) {
-    Ivy.log().error("Role" + Ivy.session().getSessionUser().getRoles().toString());
-    return Ivy.session().getSessionUser().getAllRoles().stream().map(IRole::getDisplayName)
-        .anyMatch(displayName -> displayName.equalsIgnoreCase(chart.getPermissions().get(0)));
-  }
-
-  private List<NewStatisticChart> getStatisticChart() {
-    availableCharts = new ArrayList<>();
-    availableCharts.addAll(getPublicConfig());
-    return availableCharts;
+  private boolean isPermissionValid(NewStatisticChart chart) {
+    return chart.getPermissions().stream().anyMatch(permission -> Ivy.session().getSessionUser().getAllRoles().stream()
+        .map(IRole::getDisplayName).anyMatch(displayName -> displayName.equalsIgnoreCase(permission)));
   }
 
   private AggregationResult getTaskData(String agg, String filter) {
@@ -81,6 +66,6 @@ public class StatisticChartService extends JsonConfigurationService<NewStatistic
 
   @Override
   public String getConfigKey() {
-    return PortalVariable.STATISTIC_CHART.key;
+    return PortalVariable.NEW_STATISTIC_CHART.key;
   }
 }
