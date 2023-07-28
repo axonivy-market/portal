@@ -3,17 +3,17 @@
   "id" : "16B267B1A01CFA7E",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "gawfs.UploadDocumentItemOverrideData"
+    "data" : "gawfs.CustomUploadDocumentItemData"
   },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
       "name" : [
-        "call(ICase,UploadedFile,",
+        "customUploadDocumentItem(ICase,UploadedFile,",
         "Boolean,Boolean,String)"
       ],
       "config" : {
-        "callSignature" : "call",
+        "callSignature" : "customUploadDocumentItem",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
