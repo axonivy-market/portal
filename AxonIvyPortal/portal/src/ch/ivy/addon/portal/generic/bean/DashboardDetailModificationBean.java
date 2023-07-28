@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -33,11 +32,13 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.util.Strings;
 import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.dto.News;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
+import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -72,7 +73,6 @@ import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.DashboardService;
-import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.CustomWidgetUtils;
@@ -83,7 +83,6 @@ import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.cm.ContentObjectValue;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.service.ServiceException;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ViewScoped
@@ -854,34 +853,28 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       }
     }
   }
+
   public void translate(DisplayName title) {
-    translatedText = "";
-    warningText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/InvalidDeepLAuthKey");
-    if (!title.getLocale().getLanguage().equals(UserUtils.getUserLanguage())) {
+    translatedText = Strings.EMPTY;
+    warningText = Strings.EMPTY;
+
+    String currentLanguage = UserUtils.getUserLanguage();
+    if (!title.getLocale().getLanguage().equals(currentLanguage)) {
       List<DisplayName> languages = this.widget.getNames();
-      String currentLanguage = UserUtils.getUserLanguage();
       Optional<DisplayName> optional = languages.stream()
-              .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
+          .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
       if (optional.isPresent()) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("text", optional.get().getValue());
-        params.put("targetLanguage", getTargetLanguageFromValue(title.getLocale().getLanguage().toUpperCase()));
-        params.put("sourceLanguage",
-            getSourceLanguageFromValue(optional.get().getLocale().getLanguage().toUpperCase()));
-        Map<String, Object> response = null;
         try {
-          response = IvyAdapterService.startSubProcess(
-              "translateText(String,com.deepl.api.v2.client.TargetLanguage,com.deepl.api.v2.client.SourceLanguage)",
-                  params, new ArrayList<>());
-        } catch (ServiceException ex) {
-          Ivy.log().error(ex.getMessage());
-        }
-        if (response != null) {
-          translatedText = response.get("translation").toString();
-          warningText = "";
+          translatedText = DeepLTranslationService.getInstance().translate(optional.get().getValue(),
+              optional.get().getLocale(), title.getLocale());
+        } catch (Exception e) {
+          warningText = Ivy.cms()
+              .co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
+          Ivy.log().error("DeepL Translation Service error: ", e.getMessage());
         }
       }
     }
 
   }
+
 }
