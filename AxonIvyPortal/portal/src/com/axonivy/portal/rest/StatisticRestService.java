@@ -1,4 +1,4 @@
-package ch.ivy.addon.portalkit.rest;
+package com.axonivy.portal.rest;
 
 import java.util.Date;
 import java.util.Objects;
@@ -14,11 +14,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import com.axonivy.portal.dto.statisticChart.StatisticDataDto;
+import com.axonivy.portal.service.StatisticChartService;
 import com.google.gson.GsonBuilder;
 
 import ch.ivy.addon.portal.chat.GsonUTCDateAdapter;
-import ch.ivy.addon.portalkit.dto.statisticChart.StatisticDataDto;
-import ch.ivy.addon.portalkit.service.StatisticChartService;
 import ch.ivyteam.ivy.elasticsearch.client.agg.AggregationResult;
 
 
@@ -44,7 +44,7 @@ public class StatisticRestService {
       return Response.status(Status.NOT_ACCEPTABLE).build();
     } else {
       try {
-        AggregationResult result = service.getInstance().callBack(payload);
+        AggregationResult result = service.getInstance().getData(payload);
         return Response.ok(result).build();
       } catch (NotFoundException e) {
         return Response.status(Status.NOT_FOUND).entity(toJson(e.getMessage())).build();

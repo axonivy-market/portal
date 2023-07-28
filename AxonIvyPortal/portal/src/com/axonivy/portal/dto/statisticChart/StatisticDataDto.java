@@ -1,4 +1,4 @@
-package ch.ivy.addon.portalkit.dto.statisticChart;
+package com.axonivy.portal.dto.statisticChart;
 
 public class StatisticDataDto {
 
