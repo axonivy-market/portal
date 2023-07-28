@@ -5,18 +5,18 @@ import static org.apache.commons.collections4.CollectionUtils.isNotEmpty;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.BooleanUtils;
-import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.dto.IvyProcessResultDTO;
+import com.axonivy.portal.components.enums.SessionAttribute;
 import com.axonivy.portal.components.service.IProcessService;
 import com.axonivy.portal.components.util.IvyExecutor;
 
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.server.restricted.EngineMode;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -54,7 +54,7 @@ public class ProcessService implements IProcessService {
     if (isInSession() && isNotEmpty(ivyProcessResultDTO.getProcesses())) {
       return ivyProcessResultDTO;
     }
-    sessionUserId = Ivy.session().getSessionUser().getSecurityMemberId();
+    sessionUserId = Ivy.session().getAttribute(SessionAttribute.SESSION_IDENTIFIER.toString()).toString();
     ivyProcessResultDTO = new IvyProcessResultDTO();
     return IvyExecutor.executeAsSystem(() -> {
       ivyProcessResultDTO.setProcesses(findStartablesWithoutPortalHomeAndMSTeamsProcess(Ivy.session()));
@@ -74,15 +74,18 @@ public class ProcessService implements IProcessService {
   }
 
   private boolean isInSession() {
-    return EngineMode.isNot(EngineMode.DESIGNER_EMBEDDED)
-        && StringUtils.equals(Ivy.session().getSessionUser().getSecurityMemberId(), sessionUserId);
+    String sessionIdAttribute = SessionAttribute.SESSION_IDENTIFIER.toString();
+    if (Ivy.session().getAttribute(sessionIdAttribute) == null) {
+      Ivy.session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
+    }
+    return Ivy.session().getAttribute(sessionIdAttribute).toString().equals(sessionUserId);
   }
 
   public List<IWebStartable> findCustomDashboardProcesses() {
     if (isInSession() && isNotEmpty(customDashboardProcesses)) {
       return customDashboardProcesses;
     }
-    sessionUserId = Ivy.session().getSessionUser().getSecurityMemberId();
+    sessionUserId = Ivy.session().getAttribute(SessionAttribute.SESSION_IDENTIFIER.toString()).toString();
     customDashboardProcesses = new ArrayList<>(
         Ivy.session().getAllStartables().filter(filterByCustomDashboardProcess()).collect(Collectors.toList()));
     return customDashboardProcesses;
