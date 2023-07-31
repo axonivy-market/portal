@@ -1,6 +1,6 @@
 .. _customization-change-password-process:
 
-Change password process
+Change Password Process
 =======================
 
 .. _customization-change-password-process-introduction:
@@ -14,21 +14,32 @@ leaked passwords databases when the user changes his password.
 
 .. _customization-change-password-process-customization:
 
-Customization
--------------
+Customization Change Password Process
+-------------------------------------
 
-Create a callable subprocess in your project with the signature
-``changePassword(String,String)``. Make sure that this signature is unique in
-your application. It has to return an enumeration ``ChangePasswordStatus`` and the
-``message`` to be shown to the user. You can override this process in ``portal``.
+Create a callable subprocess in your project with 
 
-|change-password-process|
+**Signature**: portalChangePassword
 
-|change-password-input|
++-----------------------+-----------------------------------------------------------+
+| Name                  | Type                                                      |
++=======================+===========================================================+
+| **Parameter**                                                                     |
++-----------------------+-----------------------------------------------------------+
+| currentPassword       | java.lang.String                                          |
++-----------------------+-----------------------------------------------------------+
+| newPassword           | java.lang.String                                          |
++-----------------------+-----------------------------------------------------------+
+|**Result**                                                                         |
++-----------------------+-----------------------------------------------------------+
+| message               | java.lang.String                                          |
++-----------------------+-----------------------------------------------------------+
+| status                | com.axonivy.portal.components.enums.ChangePasswordStatus  |
++-----------------------+-----------------------------------------------------------+
 
-|change-password-output|
+.. tip::
 
-.. |change-password-input| image:: images/change-password/change-password-input.png
-.. |change-password-output| image:: images/change-password/change-password-output.png
-.. |change-password-process| image:: images/change-password/change-password-process.png
+   Refer to process ``CustomChangePassword`` in project ``portal-developer-examples``
+   for an example of how to customize change password process.
+
 
