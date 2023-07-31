@@ -61,7 +61,7 @@ public class JsonDashboardTemplateMigrator {
   }
 
   private void run(IJsonConverter converter, JsonNode template) {
-    Ivy.log().info("converting Portal dashboard template " + template.get("id") + " to version "+converter.version().getValue()
+    Ivy.log().info("Converting Portal dashboard template " + template.get("id") + " to version "+converter.version().getValue()
         +" using "+converter.getClass().getSimpleName());
 
     Optional.ofNullable(template).map(t -> t.get("dashboard")).ifPresent(dashboard -> {
