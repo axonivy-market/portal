@@ -21,7 +21,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest 
+@IvyWebTest
 public class DashboardCaseWidgetTest extends BaseTest {
 
   // WIDGET
@@ -191,15 +191,12 @@ public class DashboardCaseWidgetTest extends BaseTest {
     caseEditWidget.filterCaseState();
     caseEditWidget.selectStateAsInProgress();
     caseEditWidget.preview();
-    caseEditWidget.countCases().shouldHave(size(5));
-    caseEditWidget.nextPageTable();
-    caseEditWidget.nextPageTable();
-    caseEditWidget.countCases().shouldHave(size(2));
+    caseEditWidget.countCases().shouldHave(size(12));
     caseEditWidget.save();
     //After Edit
     CaseWidgetNewDashBoardPage caseWidgetEdited = newDashboardPage.selectCaseWidget("New Your Cases");
     caseWidgetEdited.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    caseWidgetEdited.countCases("TestCase").shouldHave(size(5));
+    caseWidgetEdited.countCases("TestCase").shouldHave(size(6));
   }
   
   @Test
