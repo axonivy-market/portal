@@ -1,4 +1,4 @@
-package com.axonivy.portal.migration.visitor;
+package com.axonivy.portal.migration.common.visitor;
 
 import java.util.Optional;
 import java.util.function.Consumer;

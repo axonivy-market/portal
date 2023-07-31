@@ -1,6 +1,6 @@
-package com.axonivy.portal.migration.converter;
+package com.axonivy.portal.migration.common;
 
-import com.axonivy.portal.bo.JsonVersion;
+import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.fasterxml.jackson.databind.JsonNode;
 
 public interface IJsonConverter {
@@ -8,7 +8,7 @@ public interface IJsonConverter {
   /**
    * @return the version which is introduced by this converter
    */
-  JsonVersion version();
+  AbstractJsonVersion version();
 
   void convert(JsonNode jsonNode);
 }
