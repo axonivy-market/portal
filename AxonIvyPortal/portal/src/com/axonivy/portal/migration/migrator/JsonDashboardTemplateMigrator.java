@@ -53,9 +53,9 @@ public class JsonDashboardTemplateMigrator {
         .orElse(new JsonVersion(V_10));
   }
 
-  public String migrate() {
+  public JsonNode migrate() {
     node.elements().forEachRemaining(template -> migrate(template));
-    return node.toString();
+    return node;
   }
 
   private void migrate(JsonNode template) {

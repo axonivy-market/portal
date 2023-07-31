@@ -10,12 +10,10 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.bo.JsonVersion;
 import com.axonivy.portal.migration.migrator.JsonDashboardConfigurationMigrator;
-import com.axonivy.portal.migration.migrator.JsonDashboardTemplateMigrator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
-import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
@@ -75,7 +73,7 @@ abstract class JsonConfigurationService<T extends AbstractConfiguration> {
     try {
       ObjectMapper mapper = new ObjectMapper();
       JsonDashboardConfigurationMigrator migrator = new JsonDashboardConfigurationMigrator(mapper.readTree(json));
-      return BusinessEntityConverter.jsonValueToEntities(migrator.migrate(), getType());
+      return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), getType());
     } catch (JsonProcessingException ex) {
       Ivy.log().error("Failed to read dashboard template from JSON {0}", ex, json);
     }

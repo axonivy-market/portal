@@ -37,7 +37,6 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
   private static final long serialVersionUID = 1L;
   private boolean isLoaded = false;
   private UploadedFile importFile;
-  private FacesMessage validateMessage;
   private Boolean isError = false;
   private String fileSize;
   private IRole everybodyRole;
@@ -55,21 +54,19 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
   public void loadImportedFile(FileUploadEvent event) {
     resetDialog();
     this.selectedDashboardPermissions = new ArrayList<>();
-    importFile = event.getFile();
+    importFile = event.getFile(); 
     String validateStr = UploadDocumentUtils.validateUploadedFile(importFile);
     if (StringUtils.isNotEmpty(validateStr)) {
       isError = true;
-      validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, validateStr, null);
-      displayedMessage();
+      displayedMessage(new FacesMessage(FacesMessage.SEVERITY_ERROR, validateStr, null));
       return;
     }
     try {
       selectedDashboard = DashboardUtils.convertDashboardToLatestVersion(importFile.getInputStream());
     } catch (Exception e) {
       isError = true;
-      validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileCouldNotParse"), null);
-      displayedMessage();
+      displayedMessage(new FacesMessage(FacesMessage.SEVERITY_ERROR,
+          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileCouldNotParse"), null));
       Ivy.log().error(e);
       return;
     }
@@ -117,7 +114,7 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
     super.createDashboard();
   }
 
-  private void displayedMessage() {
+  private void displayedMessage(FacesMessage validateMessage) {
     FacesContext.getCurrentInstance().addMessage("import-dashboard-form:import-dashboard-dialog-message",
         validateMessage);
   }
@@ -144,14 +141,6 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
 
   public void setImportFile(UploadedFile importFile) {
     this.importFile = importFile;
-  }
-
-  public FacesMessage getValidateMessage() {
-    return validateMessage;
-  }
-
-  public void setValidateMessage(FacesMessage validateMessage) {
-    this.validateMessage = validateMessage;
   }
 
   public Boolean getIsError() {

@@ -7,7 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 public class JsonVersion implements Comparable<JsonVersion> {
   public static final String VERSION_FIELD_NAME = "version";
 
-  public static final JsonVersion LATEST = new JsonVersion("11.1.0");
+  public static final JsonVersion LATEST = new JsonVersion("11.2.0");
 
   private String value;
 
