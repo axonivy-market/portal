@@ -19,17 +19,17 @@ public class JsonDashboardMigrator {
   private static final Logger LOGGER = Logger.getLogger(JsonDashboardMigrator.class);
   private static final String V_10 = "10.0.0";
 
-  private final JsonNode dashboardNode;
+  private final JsonNode node;
   private final JsonVersion version;
   private String name;
 
-  public JsonDashboardMigrator(JsonNode dashboardNode) {
-    this.dashboardNode = dashboardNode;
+  public JsonDashboardMigrator(JsonNode node) {
+    this.node = node;
     this.version = JsonVersion.LATEST;
   }
 
-  public JsonDashboardMigrator(JsonNode dashboardNode, JsonVersion version) {
-    this.dashboardNode = dashboardNode;
+  public JsonDashboardMigrator(JsonNode node, JsonVersion version) {
+    this.node = node;
     this.version = version;
   }
 
@@ -52,13 +52,13 @@ public class JsonDashboardMigrator {
         .orElse(new JsonVersion(V_10));
   }
 
-  public String migrate() {
-    if (dashboardNode.isArray()) {
-      dashboardNode.elements().forEachRemaining(dashboard -> migrate(dashboard));
+  public JsonNode migrate() {
+    if (node.isArray()) {
+      node.elements().forEachRemaining(dashboard -> migrate(dashboard));
     } else {
-      migrate(dashboardNode);
+      migrate(node);
     }
-    return dashboardNode.toString();
+    return node;
   }
 
   private void migrate(JsonNode dashboard) {

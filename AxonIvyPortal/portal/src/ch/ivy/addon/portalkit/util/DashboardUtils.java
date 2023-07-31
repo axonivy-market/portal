@@ -187,7 +187,7 @@ public class DashboardUtils {
     try {
       ObjectMapper mapper = new ObjectMapper();
       JsonDashboardMigrator migrator = new JsonDashboardMigrator(mapper.readTree(json));
-      return BusinessEntityConverter.jsonValueToEntities(migrator.migrate(), Dashboard.class);
+      return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), Dashboard.class);
     } catch (JsonProcessingException ex) {
       Ivy.log().error("Failed to read dashboard from JSON {0}", ex, json);
     }
@@ -199,7 +199,7 @@ public class DashboardUtils {
     try {
       ObjectMapper mapper = new ObjectMapper();
       JsonDashboardMigrator migrator = new JsonDashboardMigrator(mapper.readTree(inputStream));
-      return BusinessEntityConverter.jsonValueToEntity(migrator.migrate(), Dashboard.class);
+      return BusinessEntityConverter.convertJsonNodeToEntity(migrator.migrate(), Dashboard.class);
     } catch (JsonProcessingException ex) {
       Ivy.log().error("Failed to read dashboard from JSON {0}", ex);
     }
@@ -210,7 +210,7 @@ public class DashboardUtils {
     try {
       ObjectMapper mapper = new ObjectMapper();
       JsonDashboardTemplateMigrator migrator = new JsonDashboardTemplateMigrator(mapper.readTree(json));
-      return BusinessEntityConverter.jsonValueToEntities(migrator.migrate(), DashboardTemplate.class);
+      return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), DashboardTemplate.class);
     } catch (JsonProcessingException ex) {
       Ivy.log().error("Failed to read dashboard template from JSON {0}", ex, json);
     }

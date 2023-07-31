@@ -23,7 +23,7 @@ public class DashboardCaseWidgetFilterConverter implements IJsonConverter {
 
   @Override
   public JsonVersion version() {
-    return new JsonVersion("11.1.0");
+    return new JsonVersion("11.2.0");
   }
 
   @Override
