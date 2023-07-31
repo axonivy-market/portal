@@ -5,13 +5,27 @@ Forgot Password
 
 .. _customization-case-widget-how-to-override-token-generation-and-email-sending:
 
-How To Override Token Generation And Email Sending
+Customize Token Generation And Email Sending
 --------------------------------------------------
 
-Create a new callable process to override ``SendPasswordResetEmail``.
-In project ``portal-developer-examples``, you find the following example:
+Token Generation And Email Sending is the process that will send an email to reset password.
 
-|token-generation-and-email-sending|
+To do that, you should create a callable subprocess with:
+
+**Signature**: portalSendPasswordResetEmail
+
++-----------------------+-------------------+
+| Name                  | Type              |
++=======================+===================+
+| **Parameter**                             |
++-----------------------+-------------------+
+| email                 | java.lang.String  |
++-----------------------+-------------------+
+
+.. tip::
+
+   Please refer to process ``CustomSendPasswordResetEmail`` in project ``portal-developer-examples``
+   for an example of how to customize token generation and email sending process.
 
 .. _customization-case-widget-how-to-override-password-resetting:
 
