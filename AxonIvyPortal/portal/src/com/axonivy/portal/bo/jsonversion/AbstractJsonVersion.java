@@ -1,22 +1,23 @@
-package com.axonivy.portal.bo;
+package com.axonivy.portal.bo.jsonversion;
 
 import java.util.Arrays;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class JsonVersion implements Comparable<JsonVersion> {
+public abstract class AbstractJsonVersion implements Comparable<AbstractJsonVersion> {
   public static final String VERSION_FIELD_NAME = "version";
 
-  public static final JsonVersion LATEST = new JsonVersion("11.2.0");
+  public static final String LATEST = "11.2.0";
+  public static final String OLDEST = "10.0.0";
 
   private String value;
 
-  public JsonVersion(String value) {
+  public AbstractJsonVersion(String value) {
     this.value = value;
   }
 
   @Override
-  public int compareTo(JsonVersion other) {
+  public int compareTo(AbstractJsonVersion other) {
     if (other == null) {
       return -1;
     }
@@ -45,10 +46,10 @@ public class JsonVersion implements Comparable<JsonVersion> {
   }
 
   public boolean isLatest() {
-    return LATEST.equals(this);
+    return this.getValue().contentEquals(LATEST);
   }
 
-  public boolean isOlderThan(JsonVersion other) {
+  public boolean isOlderThan(AbstractJsonVersion other) {
     return this.compareTo(other) < 0;
   }
 
@@ -59,5 +60,4 @@ public class JsonVersion implements Comparable<JsonVersion> {
   public void setValue(String value) {
     this.value = value;
   }
-
 }

@@ -15,8 +15,8 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
-import com.axonivy.portal.migration.migrator.JsonDashboardMigrator;
-import com.axonivy.portal.migration.migrator.JsonDashboardTemplateMigrator;
+import com.axonivy.portal.migration.dashboard.migrator.JsonDashboardMigrator;
+import com.axonivy.portal.migration.dashboardtemplate.migrator.JsonDashboardTemplateMigrator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

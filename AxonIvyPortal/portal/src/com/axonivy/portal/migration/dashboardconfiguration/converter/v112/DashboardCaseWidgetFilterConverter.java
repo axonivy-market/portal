@@ -1,4 +1,4 @@
-package com.axonivy.portal.migration.converter.v112;
+package com.axonivy.portal.migration.dashboardconfiguration.converter.v112;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,10 +6,11 @@ import java.util.Objects;
 
 import org.apache.commons.lang3.EnumUtils;
 
-import com.axonivy.portal.bo.JsonVersion;
-import com.axonivy.portal.migration.converter.IJsonConverter;
-import com.axonivy.portal.migration.search.JsonWidgetSearch;
-import com.axonivy.portal.migration.visitor.JsonDashboardVisitor;
+import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
+import com.axonivy.portal.bo.jsonversion.DashboardConfigurationJsonVersion;
+import com.axonivy.portal.migration.common.IJsonConverter;
+import com.axonivy.portal.migration.common.search.JCondition;
+import com.axonivy.portal.migration.common.search.JsonDashboardConfigurationSearch;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.TextNode;
@@ -19,36 +20,27 @@ import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 
-public class DashboardTemplateCaseWidgetConverter implements IJsonConverter {
+public class DashboardCaseWidgetFilterConverter implements IJsonConverter {
 
   @Override
-  public JsonVersion version() {
-    return new JsonVersion("11.2.0");
+  public AbstractJsonVersion version() {
+    return new DashboardConfigurationJsonVersion("11.2.0");
   }
 
   @Override
   public void convert(JsonNode jsonNode) {
-      new JsonWidgetSearch(jsonNode)
+      new JsonDashboardConfigurationSearch(jsonNode)
       .type(DashboardWidgetType.CASE.name())
-      .findColumns().forEach(columns -> {
-        columns.elements().forEachRemaining(col -> {
-          if (col.get("field").asText().contentEquals(DashboardStandardCaseColumn.STATE.getField())) {
-            convertCaseBusinessStates(col.get("filterList"));
+      .findFilterableColumns()
+      .ifPresent(columns -> columns.elements().forEachRemaining(col -> {
+          if (JCondition.isField(DashboardStandardCaseColumn.STATE.getField()).test(col)) {
+            convertCaseBusinessStates(col.get("userFilterList"));
           }
-        });
-      });
-  }
-
-  public List<JsonNode> findWidgets(JsonNode dashboard) {
-    List<JsonNode> matches = new ArrayList<>();
-    new JsonDashboardVisitor(dashboard).visitWidgets(widget -> {
-      matches.add(widget);
-    });
-    return matches;
+      }));
   }
 
   /**
-   * Adapt case business state for dashboards
+   * Adapt case business state for widget filter set
    * IVYPORTAL-14663: Introduce CaseBusinessState
    * 
    */
@@ -65,7 +57,7 @@ public class DashboardTemplateCaseWidgetConverter implements IJsonConverter {
   }
 
   /**
-   * Adapt case business state for dashboards
+   * Adapt case business state for widget filter set
    * IVYPORTAL-14663: Introduce CaseBusinessState
    * 
    */

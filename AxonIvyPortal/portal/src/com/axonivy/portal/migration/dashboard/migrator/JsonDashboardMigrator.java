@@ -1,41 +1,33 @@
-package com.axonivy.portal.migration.migrator;
+package com.axonivy.portal.migration.dashboard.migrator;
 
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 
-import com.axonivy.portal.bo.JsonVersion;
-import com.axonivy.portal.migration.converter.IJsonConverter;
-import com.axonivy.portal.migration.converter.JsonDashboardConverterFactory;
+import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
+import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
+import com.axonivy.portal.migration.common.IJsonConverter;
+import com.axonivy.portal.migration.dashboard.converter.JsonDashboardConverterFactory;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 
-import ch.ivyteam.log.Logger;
+import ch.ivyteam.ivy.environment.Ivy;
 
 public class JsonDashboardMigrator {
 
-  private static final Logger LOGGER = Logger.getLogger(JsonDashboardMigrator.class);
-  private static final String V_10 = "10.0.0";
-
   private final JsonNode node;
-  private final JsonVersion version;
-  private String name;
+  private final DashboardJsonVersion version;
 
   public JsonDashboardMigrator(JsonNode node) {
     this.node = node;
-    this.version = JsonVersion.LATEST;
+    this.version = DashboardJsonVersion.LATEST_VERSION;
   }
 
-  public JsonDashboardMigrator(JsonNode node, JsonVersion version) {
+  public JsonDashboardMigrator(JsonNode node, DashboardJsonVersion version) {
     this.node = node;
     this.version = version;
-  }
-
-  public JsonDashboardMigrator setName(String dashboardsName) {
-    this.name = dashboardsName;
-    return this;
   }
 
   /**
@@ -45,11 +37,11 @@ public class JsonDashboardMigrator {
    * @param dashboard
    * @return
    */
-  private static JsonVersion readVersion(JsonNode node) {
+  private static AbstractJsonVersion readVersion(JsonNode node) {
     return Optional.ofNullable(node)
-        .map(jsonNode -> jsonNode.get(JsonVersion.VERSION_FIELD_NAME))
-        .map(field -> new JsonVersion(field.asText()))
-        .orElse(new JsonVersion(V_10));
+        .map(jsonNode -> jsonNode.get(AbstractJsonVersion.VERSION_FIELD_NAME))
+        .map(field -> new DashboardJsonVersion(field.asText()))
+        .orElse(DashboardJsonVersion.OLDEST_VERSION);
   }
 
   public JsonNode migrate() {
@@ -72,7 +64,7 @@ public class JsonDashboardMigrator {
   }
 
   private void run(IJsonConverter converter, JsonNode dashboard) {
-    LOGGER.info("converting " + name + " '" + dashboard.get("id") + "' to version "+converter.version()
+    Ivy.log().info("converting Portal dashboard " + dashboard.get("id") + " to version "+converter.version().getValue()
       +" using "+converter.getClass().getSimpleName());
 
     converter.convert(dashboard);
@@ -83,6 +75,6 @@ public class JsonDashboardMigrator {
     TextNode versionNode = Optional.ofNullable(version)
         .map(v -> v.getValue())
         .map(val -> new TextNode(val)).get();
-    ((ObjectNode) node).set(JsonVersion.VERSION_FIELD_NAME, versionNode);
+    ((ObjectNode) node).set(AbstractJsonVersion.VERSION_FIELD_NAME, versionNode);
   }
 }

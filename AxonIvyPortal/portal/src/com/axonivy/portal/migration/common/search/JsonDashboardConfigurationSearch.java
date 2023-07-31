@@ -1,4 +1,4 @@
-package com.axonivy.portal.migration.search;
+package com.axonivy.portal.migration.common.search;
 
 import java.util.Optional;
 import java.util.function.Predicate;

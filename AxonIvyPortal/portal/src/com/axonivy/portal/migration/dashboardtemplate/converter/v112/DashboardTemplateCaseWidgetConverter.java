@@ -1,4 +1,4 @@
-package com.axonivy.portal.migration.converter.v112;
+package com.axonivy.portal.migration.dashboardtemplate.converter.v112;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,10 +6,11 @@ import java.util.Objects;
 
 import org.apache.commons.lang3.EnumUtils;
 
-import com.axonivy.portal.bo.JsonVersion;
-import com.axonivy.portal.migration.converter.IJsonConverter;
-import com.axonivy.portal.migration.search.JsonWidgetSearch;
-import com.axonivy.portal.migration.visitor.JsonDashboardVisitor;
+import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
+import com.axonivy.portal.bo.jsonversion.DashboardTemplateJsonVersion;
+import com.axonivy.portal.migration.common.IJsonConverter;
+import com.axonivy.portal.migration.common.search.JsonWidgetSearch;
+import com.axonivy.portal.migration.common.visitor.JsonDashboardVisitor;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.TextNode;
@@ -19,11 +20,11 @@ import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 
-public class DashboardCaseWidgetConverter implements IJsonConverter {
+public class DashboardTemplateCaseWidgetConverter implements IJsonConverter {
 
   @Override
-  public JsonVersion version() {
-    return new JsonVersion("11.2.0");
+  public AbstractJsonVersion version() {
+    return new DashboardTemplateJsonVersion("11.2.0");
   }
 
   @Override

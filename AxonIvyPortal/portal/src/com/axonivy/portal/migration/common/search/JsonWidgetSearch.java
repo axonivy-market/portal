@@ -1,4 +1,4 @@
-package com.axonivy.portal.migration.search;
+package com.axonivy.portal.migration.common.search;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-import com.axonivy.portal.migration.visitor.JsonDashboardVisitor;
+import com.axonivy.portal.migration.common.visitor.JsonDashboardVisitor;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
