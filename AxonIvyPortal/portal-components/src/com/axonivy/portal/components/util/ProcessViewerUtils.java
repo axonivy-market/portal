@@ -68,7 +68,7 @@ public class ProcessViewerUtils {
       isError = true;
       errorMessage = webStartable != null && !isViewerAllowed
           ? Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessIsHidden")
-          : Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessDataNotFound");
+          : Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/CouldNotFindLinkedProcess");
     }
     return new ProcessViewerDTO(webStartable, webLink, isError, errorMessage);
   }
