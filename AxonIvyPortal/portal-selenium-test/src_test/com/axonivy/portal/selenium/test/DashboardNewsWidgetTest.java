@@ -143,10 +143,11 @@ public class DashboardNewsWidgetTest extends BaseTest {
     newsWidget.clickOnEditIconOfNews(newsItemIndex);
     String tabIndex = newsWidget.enterNewsItemData(langTag, editIcon, editTitle, editContent);
     newsWidget.clickOnTitle(tabIndex);
+    String tabIndexFr = newsWidget.selectNewsLanguage("fr");
+    newsWidget.clickOnTitle(tabIndexFr);
     SelenideElement translation = newsWidget.getTranslationOverlayPanel(1);
     translation.$("span.ui-icon-closethick").click();
-    newsWidget.findTranslationButton(tabIndex);
-    newsWidget.findTranslationButton(tabIndex);
+    newsWidget.findTranslationButton(tabIndexFr);
     newsWidget.publishNews();
     newsWidget.waitForNewsWidgetContentDisplayClearly(1);
     newsWidget.getTotalNewsItem().shouldHave(CollectionCondition.size(1));
