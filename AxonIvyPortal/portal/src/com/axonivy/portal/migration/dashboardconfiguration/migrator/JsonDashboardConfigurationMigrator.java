@@ -60,7 +60,7 @@ public class JsonDashboardConfigurationMigrator {
   }
 
   private void run(IJsonConverter converter, JsonNode config) {
-    Ivy.log().info("converting Portal dashboard configuration " + config.get("id") + " to version "+converter.version().getValue()
+    Ivy.log().info("Converting Portal dashboard configuration " + config.get("id") + " to version "+converter.version().getValue()
         +" using "+converter.getClass().getSimpleName());
 
     converter.convert(config);
