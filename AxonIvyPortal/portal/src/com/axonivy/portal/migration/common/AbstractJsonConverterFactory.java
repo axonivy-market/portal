@@ -1,14 +1,14 @@
-package com.axonivy.portal.migration.converter;
+package com.axonivy.portal.migration.common;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.axonivy.portal.bo.JsonVersion;
+import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 
 public abstract class AbstractJsonConverterFactory {
 
-  static List<IJsonConverter> selectConverters(List<IJsonConverter> converters, JsonVersion version) {
+  protected static List<IJsonConverter> selectConverters(List<IJsonConverter> converters, AbstractJsonVersion version) {
     return converters.stream()
             .filter(converter -> version.isOlderThan(converter.version()))
             .sorted(olderBeforeNewer())

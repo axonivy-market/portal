@@ -8,8 +8,8 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.bo.JsonVersion;
-import com.axonivy.portal.migration.migrator.JsonDashboardConfigurationMigrator;
+import com.axonivy.portal.bo.jsonversion.DashboardConfigurationJsonVersion;
+import com.axonivy.portal.migration.dashboardconfiguration.migrator.JsonDashboardConfigurationMigrator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -144,7 +144,7 @@ abstract class JsonConfigurationService<T extends AbstractConfiguration> {
         }
       }
     } else {
-      entity.setVersion(JsonVersion.LATEST.getValue());
+      entity.setVersion(DashboardConfigurationJsonVersion.LATEST_VERSION.getValue());
       entities.add(entity);
     }
   }
