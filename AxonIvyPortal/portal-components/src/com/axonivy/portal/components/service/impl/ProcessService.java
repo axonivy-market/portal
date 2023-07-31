@@ -18,6 +18,7 @@ import com.axonivy.portal.components.util.IvyExecutor;
 import com.axonivy.portal.components.util.UserUtils;
 
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.server.restricted.EngineMode;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -85,7 +86,7 @@ public class ProcessService implements IProcessService {
     if (Ivy.session().getAttribute(sessionIdAttribute) == null) {
       Ivy.session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
     }
-    return currentUserLanguage.equals(userLanguage)
+    return EngineMode.isNot(EngineMode.DESIGNER_EMBEDDED) && currentUserLanguage.equals(userLanguage)
         && Ivy.session().getAttribute(sessionIdAttribute).toString().equals(sessionUserId);
   }
 
