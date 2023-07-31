@@ -1,4 +1,4 @@
-CustomUploadDocumentItemData #class
+CustomDocumentFeaturesData #class
 com.axonivy.portal.components.examples.override #namespace
 businessCase ch.ivyteam.ivy.workflow.ICase #field
 message String #field
@@ -8,3 +8,6 @@ uploadedFile org.primefaces.model.file.UploadedFile #field
 enableVirusScannerForUploadedDocument Boolean #field
 enableScriptCheckingForUploadedDocument Boolean #field
 allowedUploadFileTypes String #field
+document com.axonivy.portal.components.ivydata.bo.IvyDocument #field
+streamedContent org.primefaces.model.StreamedContent #field
+documents java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument> #field
