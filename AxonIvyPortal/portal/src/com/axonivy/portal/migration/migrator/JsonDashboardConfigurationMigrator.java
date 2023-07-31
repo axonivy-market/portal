@@ -19,17 +19,17 @@ public class JsonDashboardConfigurationMigrator {
   private static final Logger LOGGER = Logger.getLogger(JsonDashboardMigrator.class);
   private static final String V_10 = "10.0.0";
 
-  private final JsonNode main;
+  private final JsonNode node;
   private final JsonVersion version;
   private String name;
 
-  public JsonDashboardConfigurationMigrator(JsonNode main) {
-    this.main = main;
+  public JsonDashboardConfigurationMigrator(JsonNode node) {
+    this.node = node;
     this.version = JsonVersion.LATEST;
   }
 
-  public JsonDashboardConfigurationMigrator(JsonNode main, JsonVersion version) {
-    this.main = main;
+  public JsonDashboardConfigurationMigrator(JsonNode node, JsonVersion version) {
+    this.node = node;
     this.version = version;
   }
 
@@ -52,9 +52,9 @@ public class JsonDashboardConfigurationMigrator {
         .orElse(new JsonVersion(V_10));
   }
 
-  public String migrate() {
-    main.elements().forEachRemaining(config -> migrate(config));
-    return main.toString();
+  public JsonNode migrate() {
+    node.elements().forEachRemaining(config -> migrate(config));
+    return node;
   }
 
   private void migrate(JsonNode node) {
