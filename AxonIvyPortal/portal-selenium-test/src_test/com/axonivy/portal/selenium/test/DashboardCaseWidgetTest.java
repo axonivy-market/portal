@@ -196,7 +196,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     //After Edit
     CaseWidgetNewDashBoardPage caseWidgetEdited = newDashboardPage.selectCaseWidget("New Your Cases");
     caseWidgetEdited.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    caseWidgetEdited.countCases("TestCase").shouldHave(size(6));
+    caseWidgetEdited.countCases("TestCase").shouldHave(size(12));
   }
   
   @Test
