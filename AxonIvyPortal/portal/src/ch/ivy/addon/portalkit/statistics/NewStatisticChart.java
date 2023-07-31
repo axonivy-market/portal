@@ -2,9 +2,6 @@ package ch.ivy.addon.portalkit.statistics;
 
 import java.util.List;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -35,24 +32,6 @@ public class NewStatisticChart extends AbstractConfiguration {
 
   public void setFilter(String filter) {
     this.filter = filter;
-  }
-
-  @Override
-  public boolean equals(Object object) {
-    if (object == null) {
-      return false;
-    }
-    StatisticChart chart = (StatisticChart) object;
-    EqualsBuilder builder = new EqualsBuilder();
-    builder.append(getId(), chart.getId());
-    return builder.isEquals();
-  }
-
-  @Override
-  public int hashCode() {
-    HashCodeBuilder builder = new HashCodeBuilder();
-    builder.append(getId());
-    return builder.hashCode();
   }
 
   public String getName() {
