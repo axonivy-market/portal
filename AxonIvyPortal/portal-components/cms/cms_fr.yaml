@@ -76,7 +76,7 @@ Dialogs:
             NoName: Aucun nom
             NotAvailable: '-'
           ProcessViewer:
-            ProcessDataNotFound: Impossible de trouver les données du processus !
+            CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
             ProcessDetails: Détails du processus
             ProcessId: Id du processus
             ProcessInfo: Informations sur le processus
