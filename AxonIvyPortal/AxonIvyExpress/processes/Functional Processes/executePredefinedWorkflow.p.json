@@ -848,6 +848,10 @@
             "security" : "system",
             "output" : {
               "code" : [
+                "import ch.ivy.addon.portalkit.service.StickyTaskListService;",
+                "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
+                "import ch.ivy.addon.portalkit.enums.PortalPage;",
+                "import ch.ivy.addon.portalkit.dto.TaskEndInfo;",
                 "import ch.ivy.addon.portalkit.constant.CustomFields;",
                 "import java.util.Map;",
                 "import ch.ivy.addon.portalkit.enums.PortalLibrary;",
@@ -856,7 +860,13 @@
                 "",
                 "Map x = IvyAdapterService.startSubProcess(\"handleEndPage()\", null, Arrays.asList(PortalLibrary.AXON_EXPRESS.getValue()));",
                 "String callbackUrl = x.get(\"callbackUrl\") as String;",
-                "ivy.task.customFields().stringField(CustomFields.EXPRESS_END_PAGE_URL.toString()).set(callbackUrl);"
+                "ivy.task.customFields().stringField(CustomFields.EXPRESS_END_PAGE_URL.toString()).set(callbackUrl);",
+                "",
+                "TaskEndInfo taskEndInfo = new TaskEndInfo();",
+                "taskEndInfo.setDataModel(null);",
+                "taskEndInfo.setPortalPage(PortalPage.DASHBOARD);",
+                "String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(ivy.task.getId());",
+                "SecurityServiceUtils.setSessionAttribute(taskEndInfoSessionAttributeKey, taskEndInfo);"
               ]
             }
           },
