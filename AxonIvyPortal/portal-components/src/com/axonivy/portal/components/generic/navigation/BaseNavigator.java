@@ -13,6 +13,7 @@ import com.axonivy.portal.components.service.exception.PortalException;
 import com.axonivy.portal.components.util.ProcessStartUtils;
 
 import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.StandardProcessType;
@@ -56,6 +57,7 @@ public class BaseNavigator {
         String paramStr = params.entrySet().stream().map(e -> {
             return e.getKey() + "=" + URLEncoder.encode(e.getValue(), StandardCharsets.ISO_8859_1);
         }).collect(Collectors.joining("&"));
+        Ivy.log().error(requestPath + (StringUtils.isNotBlank(paramStr) ? "?" + paramStr : StringUtils.EMPTY));
         return requestPath + (StringUtils.isNotBlank(paramStr) ? "?" + paramStr : StringUtils.EMPTY);
     }
 }
