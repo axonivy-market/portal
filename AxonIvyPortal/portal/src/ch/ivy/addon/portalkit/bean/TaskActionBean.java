@@ -291,7 +291,7 @@ public class TaskActionBean implements Serializable {
     String requestPath = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(friendlyRequestPath);
     if (StringUtils.isNotEmpty(requestPath)) {
       TaskUtils.updateTaskStartedAttribute(false);
-      PortalNavigator.redirect(requestPath + "?uuid=" + task.uuid());
+      PortalNavigator.redirect(requestPath + "?endedTaskId=" + task.getId());
     }
   }
 
