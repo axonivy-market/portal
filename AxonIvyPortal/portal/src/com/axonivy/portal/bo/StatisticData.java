@@ -5,24 +5,14 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
-import ch.ivy.addon.portalkit.dto.DisplayName;
 
 public class StatisticData extends AbstractConfiguration{
-  private List<DisplayName> names;
   private String aggregates;
   private String filter;
   private List<String> permissions;
   private Boolean isCaseFilter;
   @JsonIgnore
   private String name;
-
-  public List<DisplayName> getNames() {
-    return names;
-  }
-
-  public void setNames(List<DisplayName> names) {
-    this.names = names;
-  }
 
   public String getFilter() {
     return filter;

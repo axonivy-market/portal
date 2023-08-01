@@ -59,6 +59,6 @@ public class StatisticDataService extends JsonConfigurationService<StatisticData
 
   @Override
   public String getConfigKey() {
-    return PortalVariable.NEW_STATISTIC_CHART.key;
+    return PortalVariable.STATISTIC_DATA.key;
   }
 }
