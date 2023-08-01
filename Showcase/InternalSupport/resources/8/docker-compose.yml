@@ -6,7 +6,6 @@ services:
     ports:
      - 8008:8080
     volumes:
-     - ./licence-8.lic:/etc/axonivy-engine/licence.lic
      - ./ivy.yaml:/etc/axonivy-engine/ivy.yaml
      - ./applications:/usr/lib/axonivy-engine/applications
      - ./configuration:/usr/lib/axonivy-engine/configuration
@@ -18,4 +17,3 @@ services:
 networks:
   postgres_network:
     external: true
-
