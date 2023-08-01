@@ -1800,11 +1800,11 @@
         "input" : {
           "params" : [
             { "name" : "relativeUrl", "type" : "String", "desc" : "" },
-            { "name" : "runningTaskUUID", "type" : "String", "desc" : "" }
+            { "name" : "runningTaskId", "type" : "Number", "desc" : "" }
           ],
           "map" : {
             "out.callbackUrl" : "param.relativeUrl",
-            "out.uuid" : "param.runningTaskUUID"
+            "out.endedTaskId" : "param.runningTaskId"
           }
         },
         "request" : {
@@ -1828,7 +1828,7 @@
             "import ch.ivyteam.ivy.workflow.ITask;",
             "import ch.ivyteam.ivy.bpm.error.BpmError;",
             "",
-            "ITask task = ivy.wf.findTask(in.uuid);",
+            "ITask task = ivy.wf.findTask(Long.valueOf(in.endedTaskId));",
             "if (!in.callbackUrl.startsWith(task.getApplication().getContextPath())) {",
             "  BpmError.create(\"frame:unsupported:url\").withMessage(\"only relative urls are supported (security reasons)\").throwError();",
             "}"
@@ -1847,11 +1847,11 @@
       "type" : "DialogCall",
       "name" : "TaskTemplateIFrame",
       "config" : {
-        "dialog" : "ch.ivy.addon.portal.generic.iframe.TaskTemplateIFrame:start(String,String)",
+        "dialog" : "ch.ivy.addon.portal.generic.iframe.TaskTemplateIFrame:start(String,Number)",
         "call" : {
           "map" : {
             "param.url" : "in.callbackUrl",
-            "param.taskUUID" : "in.uuid"
+            "param.taskId" : "in.endedTaskId"
           }
         }
       },
@@ -1878,7 +1878,7 @@
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.service.IFrameService;",
-            "out.embedInIFrame = IFrameService.embedInFrame(in.uuid);"
+            "out.embedInIFrame = IFrameService.embedInFrame(in.endedTaskId);"
           ]
         },
         "sudo" : true
