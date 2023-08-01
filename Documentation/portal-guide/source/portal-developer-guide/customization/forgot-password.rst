@@ -6,7 +6,7 @@ Forgot Password
 .. _customization-case-widget-how-to-override-token-generation-and-email-sending:
 
 Customize Token Generation And Email Sending
---------------------------------------------------
+--------------------------------------------
 
 Token Generation And Email Sending is the process that will send an email to reset password.
 
