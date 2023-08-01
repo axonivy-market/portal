@@ -346,11 +346,11 @@
         "callSignature" : "customDownloadDocumentItem",
         "input" : {
           "params" : [
-            { "name" : "bussinessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
             { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument" }
           ],
           "map" : {
-            "out.businessCase" : "param.bussinessCase",
+            "out.businessCase" : "param.businessCase",
             "out.document" : "param.document"
           }
         },
