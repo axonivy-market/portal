@@ -343,6 +343,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.CaseUtils;",
             "import org.apache.commons.lang3.StringUtils;",
             "import com.axonivy.portal.components.enums.CustomSignature;",
             "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
@@ -359,7 +360,8 @@
             "params.put(\"enableVirusScannerForUploadedDocument\", in.enableVirusScannerForUploadedDocument);",
             "params.put(\"allowedUploadFileTypes\", in.allowedUploadFileTypes);",
             "",
-            "Map result = IvyAdapterService.startSubProcessInApplication(CustomSignature.UPLOAD_DOCUMENT_ITEM.getSignature(), params);",
+            "CustomSignature signature = CaseUtils.isExpressCase(ivy.case) ? CustomSignature.EXPRESS_UPLOAD_DOCUMENT_ITEM : CustomSignature.UPLOAD_DOCUMENT_ITEM;",
+            "Map result = IvyAdapterService.startSubProcessInApplication(signature.getSignature(), params);",
             "if (result.get(\"callProcessError\") != null) {",
             "  in.hasCustomProcess = false;",
             "} else {",

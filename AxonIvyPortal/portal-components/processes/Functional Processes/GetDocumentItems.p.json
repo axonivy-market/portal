@@ -105,7 +105,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import org.apache.commons.lang3.StringUtils;",
+            "import com.axonivy.portal.components.util.CaseUtils;",
             "import com.axonivy.portal.components.enums.CustomSignature;",
             "import java.util.HashMap;",
             "import java.util.Map;",
@@ -114,7 +114,8 @@
             "Map params = new HashMap();",
             "params.put(\"businessCase\", in.businessCase);",
             "",
-            "Map result = IvyAdapterService.startSubProcessInApplication(CustomSignature.GET_DOCUMENT_ITEMS.getSignature(), params);",
+            "CustomSignature signature = CaseUtils.isExpressCase(ivy.case) ? CustomSignature.EXPRESS_GET_DOCUMENT_ITEMS : CustomSignature.GET_DOCUMENT_ITEMS;",
+            "Map result = IvyAdapterService.startSubProcessInApplication(signature.getSignature(), params);",
             "",
             "if (result.get(\"callProcessError\") != null) {",
             "  in.hasCustomProcess = false;",
