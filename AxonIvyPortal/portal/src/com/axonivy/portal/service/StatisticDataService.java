@@ -7,28 +7,28 @@ import java.util.Optional;
 import javax.naming.NoPermissionException;
 import javax.ws.rs.NotFoundException;
 
+import com.axonivy.portal.bo.StatisticData;
 import com.axonivy.portal.dto.statisticChart.StatisticDataDto;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.service.JsonConfigurationService;
-import ch.ivy.addon.portalkit.statistics.NewStatisticChart;
 import ch.ivyteam.ivy.elasticsearch.client.agg.AggregationResult;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.stats.WorkflowStats;
 
-public class StatisticChartService extends JsonConfigurationService<NewStatisticChart> {
+public class StatisticDataService extends JsonConfigurationService<StatisticData> {
 
-  private static StatisticChartService instance;
+  private static StatisticDataService instance;
 
-  public StatisticChartService getInstance() {
+  public StatisticDataService getInstance() {
     if (instance == null) {
-      instance = new StatisticChartService();
+      instance = new StatisticDataService();
     }
-    return StatisticChartService.instance;
+    return StatisticDataService.instance;
   }
 
   public AggregationResult getData(StatisticDataDto payload) throws NotFoundException, NoPermissionException {
-    NewStatisticChart chart = findById(payload.getChartId());
+	  StatisticData chart = findById(payload.getChartId());
     if (chart == null) {
       throw new NotFoundException(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/exception/idNotFound",
           Arrays.asList(payload.getChartId())));
@@ -42,19 +42,19 @@ public class StatisticChartService extends JsonConfigurationService<NewStatistic
     return getData(chart);
   }
 
-  private AggregationResult getData(NewStatisticChart chart) {
+  private AggregationResult getData(StatisticData chart) {
     return chart.getIsCaseFilter() ? WorkflowStats.current().caze().aggregate(chart.getAggregates(), chart.getFilter())
         : WorkflowStats.current().task().aggregate(chart.getAggregates(), chart.getFilter());
   }
 
-  private boolean isPermissionValid(NewStatisticChart chart) {
-    return Optional.ofNullable(chart.getPermissions()).orElse(new ArrayList<>()).stream()
+  private boolean isPermissionValid(StatisticData data) {
+    return Optional.ofNullable(data.getPermissions()).orElse(new ArrayList<>()).stream()
         .anyMatch(permission -> Ivy.session().getSessionUser().has().role(permission));
   }
 
   @Override
-  public Class<NewStatisticChart> getType() {
-    return NewStatisticChart.class;
+  public Class<StatisticData> getType() {
+    return StatisticData.class;
   }
 
   @Override

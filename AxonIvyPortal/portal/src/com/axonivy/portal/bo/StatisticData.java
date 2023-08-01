@@ -1,15 +1,13 @@
-package ch.ivy.addon.portalkit.statistics;
+package com.axonivy.portal.bo;
 
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class NewStatisticChart extends AbstractConfiguration {
+public class StatisticData extends AbstractConfiguration{
   private List<DisplayName> names;
   private String aggregates;
   private String filter;
@@ -64,6 +62,6 @@ public class NewStatisticChart extends AbstractConfiguration {
 
   public void setIsCaseFilter(Boolean isCaseFilter) {
     this.isCaseFilter = isCaseFilter;
-  }
+    }
 
 }
