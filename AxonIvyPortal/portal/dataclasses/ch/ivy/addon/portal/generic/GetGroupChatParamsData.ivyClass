@@ -1,3 +1,4 @@
 GetGroupChatParamsData #class
 ch.ivy.addon.portal.generic #namespace
 params java.util.Map #field
+hasCustomProcess Boolean #field

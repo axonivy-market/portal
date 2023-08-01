@@ -9,7 +9,10 @@ public enum PortalCustomSignature {
   UPLOAD_DOCUMENT("portalUploadDocument(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.file.UploadedFile,Boolean,Boolean,String)"),
   DOWNLOAD_DOCUMENT("portalDownloadDocument(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)"),
   DELETE_DOCUMENT("portalDeleteDocument(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)"),
-  CONFIGURE_ROLES_FOR_GROUP_CHAT("portalConfigureRolesForGroupChat(ch.ivyteam.ivy.workflow.ITask)");
+  CONFIGURE_ROLES_FOR_GROUP_CHAT("portalConfigureRolesForGroupChat(ch.ivyteam.ivy.workflow.ITask)"),
+  SET_GROUP_CHAT_NAME("portalSetGroupChatName()"),
+  GET_GROUP_CHAT_PARAMS("portalGetGroupChatParams()"),
+  SET_GROUP_CHAT_PARAMS("portalSetGroupChatParams()");
 
   private String signature;
 
