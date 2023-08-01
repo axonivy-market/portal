@@ -8,9 +8,9 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "configureRolesForGroupChat(ITask)",
+      "name" : "portalConfigureRolesForGroupChat(ITask)",
       "config" : {
-        "callSignature" : "configureRolesForGroupChat",
+        "callSignature" : "portalConfigureRolesForGroupChat",
         "input" : {
           "params" : [
             { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
@@ -30,7 +30,7 @@
       },
       "visual" : {
         "at" : { "x" : 72, "y" : 32 },
-        "labelOffset" : { "x" : 113, "y" : 37 }
+        "labelOffset" : { "x" : 153, "y" : 25 }
       },
       "connect" : { "id" : "f6", "to" : "f5" }
     }, {
