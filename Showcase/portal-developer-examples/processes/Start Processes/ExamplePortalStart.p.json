@@ -1878,7 +1878,7 @@
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.service.IFrameService;",
-            "out.embedInIFrame = IFrameService.embedInFrame(in.uuid);"
+            "out.embedInIFrame = IFrameService.embedInFrame(in.endedTaskId);"
           ]
         },
         "sudo" : true
@@ -2718,7 +2718,7 @@
                 "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
                 "",
                 "long caseId = -1;",
-                "if (in.#uuid is initialized) {",
+                "if (in.endedTaskId is initialized) {",
                 "  ITask task = ivy.wf.findTask(Long.valueOf(in.endedTaskId));",
                 "  caseId = task.getCase().getId();",
                 "}",
