@@ -112,8 +112,24 @@ In Engine
 Migrate 10.0 To 10.0.12
 -----------------------
 
-#. Portal no longer supports the override process approach for :ref:`Document processes <customization-document-processes>`.
-   Please do as below to migrate your override sub processes
+Portal no longer supports the override process approach for some sub processes.
+Please do as below to migrate your override sub processes.
+
+#. :ref:`Customize Forgot Password <customization-forgot-password>`
+
+      - Remove Sub Process Override of ``ResetPassword`` and ``SendPasswordResetEmail``` from your project.
+
+      - Change the signature of your callable start as below.
+
+         +-------------------------+-------------------------------+
+         | Sub process             | New signature                 |
+         +=========================+===============================+
+         | ResetPassword           | portalResetPassword           |
+         +-------------------------+-------------------------------+
+         | SendPasswordResetEmail  | portalSendPasswordResetEmail  |
+         +-------------------------+-------------------------------+
+
+#. :ref:`Document processes <customization-document-processes>`
 
       - Remove Sub Process Override of ``GetDocumentList``, ``UploadDocument``,
       ``DeleteDocument``, and ``DownloadDocument`` from your project.
@@ -132,18 +148,30 @@ Migrate 10.0 To 10.0.12
          | DownloadDocument     | portalDownloadDocument     |
          +----------------------+----------------------------+
 
-#. Portal no longer supports the override process approach for :ref:`Customize Password Resetting <customization-password-reset>`.
-   Please do as below to migrate your override sub processes
+#. :ref:`Customize Logout Process <customization-logout>`
 
-      - Remove Sub Process Override of ``ResetPassword`` from your project.
+      - Remove Sub Process Override of ``LogoutPage`` from your project.
 
       - Change the signature of your callable start as below.
 
          +----------------------+----------------------------+
          | Sub process          | New signature              |
          +======================+============================+
-         | ResetPassword        | portalResetPassword        |
+         | LogoutPage           | logoutPage                 |
          +----------------------+----------------------------+
+
+#. :ref:`Customize Change Password Process <customization-change-password-process>`
+
+      - Remove Sub Process Override of ``ChangePassword`` from your project.
+
+      - Change the signature of your callable start as below.
+
+         +----------------------+----------------------------+
+         | Sub process          | New signature              |
+         +======================+============================+
+         | ChangePassword       | portalChangePassword       |
+         +----------------------+----------------------------+
+
 
 Migrate 10.0 To 10.0.7
 ----------------------
