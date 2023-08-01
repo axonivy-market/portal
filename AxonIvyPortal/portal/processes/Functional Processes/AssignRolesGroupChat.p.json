@@ -29,15 +29,15 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 48, "y" : 40 },
-        "labelOffset" : { "x" : 113, "y" : 37 }
+        "at" : { "x" : 112, "y" : 40 },
+        "labelOffset" : { "x" : 145, "y" : 1 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : { "id" : "f4", "to" : "f7" }
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 48, "y" : 248 }
+        "at" : { "x" : 112, "y" : 248 }
       }
     }, {
       "id" : "f3",
@@ -53,8 +53,40 @@
         "}"
       ],
       "visual" : {
-        "at" : { "x" : 328, "y" : 152 },
+        "at" : { "x" : 448, "y" : 152 },
         "size" : { "width" : 512, "height" : 140 }
       }
+    }, {
+      "id" : "f7",
+      "type" : "Script",
+      "name" : [
+        "Call customized",
+        "sub process"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.IRole;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "import com.axonivy.portal.components.enums.PortalCustomSignature;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "",
+            "Map params = new HashMap();",
+            "params.put(\"task\", in.task);",
+            "",
+            "Map result = IvyAdapterService.startSubProcessInSecurityContext(PortalCustomSignature.CONFIGURE_ROLES_FOR_GROUP_CHAT.getSignature(), params);",
+            "",
+            "if (result.get(\"callProcessError\") == null) {",
+            "  in.roles = result.get(\"roles\") as List;",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 112, "y" : 144 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
     } ]
 }
