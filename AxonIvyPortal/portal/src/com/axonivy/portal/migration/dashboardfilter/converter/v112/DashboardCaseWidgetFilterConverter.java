@@ -1,4 +1,4 @@
-package com.axonivy.portal.migration.dashboardconfiguration.converter.v112;
+package com.axonivy.portal.migration.dashboardfilter.converter.v112;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import java.util.Objects;
 import org.apache.commons.lang3.EnumUtils;
 
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
-import com.axonivy.portal.bo.jsonversion.DashboardConfigurationJsonVersion;
+import com.axonivy.portal.bo.jsonversion.DashboardFilterJsonVersion;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.axonivy.portal.migration.common.search.JCondition;
 import com.axonivy.portal.migration.common.search.JsonDashboardConfigurationSearch;
@@ -24,7 +24,7 @@ public class DashboardCaseWidgetFilterConverter implements IJsonConverter {
 
   @Override
   public AbstractJsonVersion version() {
-    return new DashboardConfigurationJsonVersion("11.2.0");
+    return new DashboardFilterJsonVersion("11.2.0");
   }
 
   @Override
