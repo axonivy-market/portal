@@ -235,8 +235,8 @@ public class DashboardConfigurationPage extends TemplatePage {
     var importDialog = $("div[id$='dashboard-import-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("a[id$=':change-icon-link']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     selectDashboardIcon(icon);
-    importDialog.$("input[id$=':dashboard-title']").clear();
-    importDialog.$("input[id$=':dashboard-title']").sendKeys(name);
+    importDialog.$("input[id$=':import-dashboard-title']").clear();
+    importDialog.$("input[id$=':import-dashboard-title']").sendKeys(name);
     importDialog.$("input[id$=':dashboard-description']").clear();
     importDialog.$("input[id$=':dashboard-description']").sendKeys(desc);
     editMultiLangDashboardImportTitle(name, otherLangName);
