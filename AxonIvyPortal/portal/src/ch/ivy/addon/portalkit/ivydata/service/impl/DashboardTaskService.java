@@ -4,7 +4,6 @@ import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.isHiddenTasksCa
 
 import java.util.List;
 
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ITask;

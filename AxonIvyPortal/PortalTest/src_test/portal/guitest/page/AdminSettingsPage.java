@@ -39,6 +39,7 @@ public class AdminSettingsPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
 
+  @SuppressWarnings("deprecation")
   private void editGlobalVariable(String variableName, String variableValue, boolean isBooleanType) {
     List<WebElement> tableRows = getAdminTable().findElements(By.tagName("tr"));
     for (WebElement row : tableRows) {
@@ -56,6 +57,7 @@ public class AdminSettingsPage extends TemplatePage {
     }
   }
 
+  @SuppressWarnings("deprecation")
   private void resetGlobalVariable(String variableName) {
     List<WebElement> tableRows = getAdminTable().findElements(By.tagName("tr"));
     for (WebElement row : tableRows) {
@@ -79,6 +81,7 @@ public class AdminSettingsPage extends TemplatePage {
     return findElementByCssSelector("[id$=':adminTabView:settingTable']");
   }
 
+  @SuppressWarnings("deprecation")
   public void resetAllSettings() {
     openSettingTab();
     WebElement restoreAllToDefaultButton = findElementById("admin-setting-component:adminTabView:restore-all-to-default-button");
@@ -89,6 +92,7 @@ public class AdminSettingsPage extends TemplatePage {
     closeConfirmationDialog();
   }
 
+  @SuppressWarnings("deprecation")
   private void saveGlobalVariable(String value, boolean isBooleanType) {
     if (!isBooleanType) {
       WebElement valueInput = findElementById("admin-setting-component:valueSetting");
@@ -105,6 +109,7 @@ public class AdminSettingsPage extends TemplatePage {
     click(saveButton);
   }
 
+  @SuppressWarnings("deprecation")
   public void clickOnbackToHomepageOnAdminSetting() {
     WebElement closeButton = findElementById("back-to-home-button");
     WaitHelper.waitForNavigation(this, () -> click(closeButton));
