@@ -122,6 +122,7 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
 
   private void resetDialog() {
     selectedDashboard = new Dashboard();
+    this.selectedDashboard.setTitles(new ArrayList<>());
     this.selectedDashboardPermissions = new ArrayList<>();
     fileSize = null;
     importFile = null;
