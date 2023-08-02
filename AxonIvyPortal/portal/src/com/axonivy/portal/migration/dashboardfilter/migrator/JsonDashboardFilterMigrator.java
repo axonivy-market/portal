@@ -1,4 +1,4 @@
-package com.axonivy.portal.migration.dashboardconfiguration.migrator;
+package com.axonivy.portal.migration.dashboardfilter.migrator;
 
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -6,26 +6,26 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
-import com.axonivy.portal.bo.jsonversion.DashboardConfigurationJsonVersion;
+import com.axonivy.portal.bo.jsonversion.DashboardFilterJsonVersion;
 import com.axonivy.portal.migration.common.IJsonConverter;
-import com.axonivy.portal.migration.dashboardconfiguration.converter.JsonDashboardConfigurationConverterFactory;
+import com.axonivy.portal.migration.dashboardfilter.converter.JsonDashboardFilterConverterFactory;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
-public class JsonDashboardConfigurationMigrator {
+public class JsonDashboardFilterMigrator {
 
   private final JsonNode node;
-  private final DashboardConfigurationJsonVersion version;
+  private final DashboardFilterJsonVersion version;
 
-  public JsonDashboardConfigurationMigrator(JsonNode node) {
+  public JsonDashboardFilterMigrator(JsonNode node) {
     this.node = node;
-    this.version = DashboardConfigurationJsonVersion.LATEST_VERSION;
+    this.version = DashboardFilterJsonVersion.LATEST_VERSION;
   }
 
-  public JsonDashboardConfigurationMigrator(JsonNode node, DashboardConfigurationJsonVersion version) {
+  public JsonDashboardFilterMigrator(JsonNode node, DashboardFilterJsonVersion version) {
     this.node = node;
     this.version = version;
   }
@@ -40,8 +40,8 @@ public class JsonDashboardConfigurationMigrator {
   private static AbstractJsonVersion readVersion(JsonNode node) {
     return Optional.ofNullable(node)
         .map(jsonNode -> jsonNode.get(AbstractJsonVersion.VERSION_FIELD_NAME))
-        .map(field -> new DashboardConfigurationJsonVersion(field.asText()))
-        .orElse(DashboardConfigurationJsonVersion.OLDEST_VERSION);
+        .map(field -> new DashboardFilterJsonVersion(field.asText()))
+        .orElse(DashboardFilterJsonVersion.OLDEST_VERSION);
   }
 
   public JsonNode migrate() {
@@ -50,7 +50,7 @@ public class JsonDashboardConfigurationMigrator {
   }
 
   private void migrate(JsonNode node) {
-    var converters = JsonDashboardConfigurationConverterFactory.getConverters(readVersion(node)).stream()
+    var converters = JsonDashboardFilterConverterFactory.getConverters(readVersion(node)).stream()
         .filter(conv -> conv.version().compareTo(version) <= 0)
         .collect(Collectors.toList());
 
