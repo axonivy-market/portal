@@ -20,6 +20,7 @@
           ],
           "map" : {
             "out.dataModel" : "param.model",
+            "out.isBackButtonNeeded" : "true",
             "out.isFromTaskList" : "param.isFromTaskList",
             "out.portalPage" : "param.portalPage",
             "out.task" : "param.task"
@@ -73,5 +74,69 @@
         "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogStart",
+      "name" : "start2(Long,Boolean)",
+      "config" : {
+        "callSignature" : "start2",
+        "input" : {
+          "params" : [
+            { "name" : "taskId", "type" : "Long" },
+            { "name" : "isBackButtonNeeded", "type" : "Boolean" }
+          ],
+          "map" : {
+            "out.isFromTaskList" : "true",
+            "out.portalPage" : "ch.ivy.addon.portalkit.enums.PortalPage.CASE_DETAIL_FROM_TASK",
+            "out.taskId" : "param.taskId"
+          }
+        },
+        "guid" : "189B5AE836434BAA"
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 264 },
+        "labelOffset" : { "x" : 77, "y" : 49 }
+      },
+      "connect" : { "id" : "f14", "to" : "f13" }
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 504, "y" : 264 }
+      }
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "Check task is started",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
+            "",
+            "in.isTaskStartedInDetails = ivy.session.getAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString()) as Boolean;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 376, "y" : 264 },
+        "size" : { "width" : 128, "height" : 60 }
+      },
+      "connect" : { "id" : "f12", "to" : "f9" }
+    }, {
+      "id" : "f13",
+      "type" : "Script",
+      "name" : "initiate task",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.workflow.ITask;",
+            "in.task = ivy.wf.getGlobalContext().getTaskQueryExecutor().createTaskQuery().where().taskId().isEqual(in.taskId).executor().firstResult() as ITask;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 216, "y" : 264 }
+      },
+      "connect" : { "id" : "f11", "to" : "f10" }
     } ]
 }

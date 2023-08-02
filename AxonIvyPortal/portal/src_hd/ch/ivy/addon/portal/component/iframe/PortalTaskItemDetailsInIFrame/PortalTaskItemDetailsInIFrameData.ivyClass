@@ -10,3 +10,7 @@ task ch.ivyteam.ivy.workflow.ITask #field
 task PERSISTENT #fieldModifier
 isTaskStartedInDetails Boolean #field
 isTaskStartedInDetails PERSISTENT #fieldModifier
+taskId Long #field
+taskId PERSISTENT #fieldModifier
+isBackButtonNeeded Boolean #field
+isBackButtonNeeded PERSISTENT #fieldModifier

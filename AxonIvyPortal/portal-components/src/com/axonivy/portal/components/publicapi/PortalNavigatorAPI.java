@@ -1,6 +1,7 @@
 package com.axonivy.portal.components.publicapi;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import com.axonivy.portal.components.enums.SessionAttribute;
 import com.axonivy.portal.components.generic.navigation.BaseNavigator;
@@ -12,10 +13,14 @@ import ch.ivyteam.ivy.workflow.StandardProcessType;
  * Portal API for navigation not in iFrame
  *
  */
-public final class PortalNavigatorAPI extends BaseNavigator{
+public final class PortalNavigatorAPI extends BaseNavigator {
   private static final String PORTAL_PROCESS_START_NAME = "Start Processes/PortalStart/DefaultApplicationHomePage.ivp";
+  private static final String PORTAL_PROCESS_START_CASE_DETAIL = "Start Processes/PortalStart/CaseDetailsInIFrame.ivp";
+  private static final String PORTAL_PROCESS_START_TASK_DETAIL = "Start Processes/PortalStart/TaskDetailsInIFrame.ivp";
+
+
   private PortalNavigatorAPI() {}
-  
+
   /**
    * Navigate to Portal home
    */
@@ -31,5 +36,17 @@ public final class PortalNavigatorAPI extends BaseNavigator{
     String customizePortalEndPage = getRelativeLink(StandardProcessType.DefaultEndPage);
     Ivy.session().setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);
     redirectURL(String.format("%s?endedTaskId=%s", customizePortalEndPage, Ivy.wfTask().getId()));
+  }
+
+  public static void navigateToPortalCaseDetailPage(String caseId) {
+    Map<String, String> param = new HashMap<>();
+    param.put("caseId", caseId);
+    navigateByKeyword("CaseDetailsInIFrame.ivp", PORTAL_PROCESS_START_CASE_DETAIL, param);
+  }
+
+  public static void navigateToPortalTaskDetailPage(String taskId) {
+    Map<String, String> param = new HashMap<>();
+    param.put("taskId", taskId);
+    navigateByKeyword("TaskDetailsInIframe.ivp", PORTAL_PROCESS_START_TASK_DETAIL, param);
   }
 }

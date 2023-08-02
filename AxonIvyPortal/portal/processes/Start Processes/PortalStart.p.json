@@ -3875,5 +3875,105 @@
         "at" : { "x" : 344, "y" : 2784 }
       },
       "connect" : { "id" : "f155", "to" : "f152" }
+    }, {
+      "id" : "S33",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S33-f191",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 152, "y" : 216 }
+          }
+        }, {
+          "id" : "S33-f189",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "visual" : {
+            "at" : { "x" : 152, "y" : 144 },
+            "labelOffset" : { "x" : 16, "y" : -16 }
+          },
+          "connect" : [
+            { "id" : "S33-f1", "to" : "S33-g1", "label" : {
+                "name" : "Yes"
+              }, "condition" : "ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.caseId)" },
+            { "id" : "S33-f192", "to" : "S33-f191", "label" : {
+                "name" : "No",
+                "segment" : 0.54
+              } }
+          ]
+        }, {
+          "id" : "S33-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 144 }
+          },
+          "parentConnector" : "f218",
+          "connect" : { "id" : "S33-f0", "to" : "S33-f189" }
+        }, {
+          "id" : "S33-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 288, "y" : 144 }
+          },
+          "parentConnector" : "f223"
+        } ],
+      "visual" : {
+        "at" : { "x" : 200, "y" : 3376 }
+      },
+      "connect" : { "id" : "f223", "to" : "f170" }
+    }, {
+      "id" : "f154",
+      "type" : "RequestStart",
+      "name" : "TaskDetailsInIframe.ivp",
+      "config" : {
+        "callSignature" : "TaskDetailsInIframe",
+        "input" : {
+          "params" : [
+            { "name" : "taskId", "type" : "Long" }
+          ],
+          "map" : {
+            "out.taskId" : "param.taskId"
+          }
+        },
+        "outLink" : "TaskDetailsInIframe.ivp",
+        "showInStartList" : false
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 3376 },
+        "labelOffset" : { "x" : -31, "y" : 41 }
+      },
+      "connect" : { "id" : "f218", "to" : "S33" }
+    }, {
+      "id" : "f170",
+      "type" : "DialogCall",
+      "name" : "PortalTaskItemDetailsInIFrame",
+      "config" : {
+        "dialogId" : "ch.ivy.addon.portal.component.iframe.PortalTaskItemDetailsInIFrame",
+        "startMethod" : "start2(Long,Boolean)",
+        "call" : {
+          "params" : [
+            { "name" : "taskId", "type" : "Long" },
+            { "name" : "isBackButtonNeeded", "type" : "Boolean" }
+          ],
+          "map" : {
+            "param.taskId" : "in.taskId",
+            "param.isBackButtonNeeded" : "false"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 416, "y" : 3376 },
+        "size" : { "width" : 256, "height" : 58 }
+      },
+      "connect" : { "id" : "f219", "to" : "f212" }
+    }, {
+      "id" : "f212",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 600, "y" : 3376 }
+      }
     } ]
 }
