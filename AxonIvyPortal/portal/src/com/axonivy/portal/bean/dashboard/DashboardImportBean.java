@@ -41,6 +41,7 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
   private String fileSize;
   private IRole everybodyRole;
 
+  @Override
   @PostConstruct
   public void init() {
     everybodyRole = Ivy.security().roles().topLevel();

@@ -91,7 +91,7 @@ public class TaskExporter extends Exporter {
       case PRIORITY:
         return TaskUtils.convertToUserFriendlyTaskPriority(task.getPriority());
       case STATE:
-        return TaskUtils.convertToUserFriendlyTaskState(task.getState());
+        return TaskUtils.convertToUserFriendlyTaskState(task.getBusinessState());
       case CREATION_TIME:
         return task.getStartTimestamp();
       case EXPIRY_TIME:
@@ -119,7 +119,7 @@ public class TaskExporter extends Exporter {
         for (String column : columnsVisibility) {
           row.add(getColumnValue(column, (ITask)t));
         }
-      rows.add(row);
+        rows.add(row);
       }
     }
     return rows;
