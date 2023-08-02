@@ -204,15 +204,12 @@ public class DashboardCaseWidgetTest extends BaseTest {
     caseEditWidget.filterCaseState();
     caseEditWidget.selectStateAsOpen();
     caseEditWidget.preview();
-    caseEditWidget.countCases().shouldHave(size(5));
-    caseEditWidget.nextPageTable();
-    caseEditWidget.nextPageTable();
-    caseEditWidget.countCases().shouldHave(size(2));
+    caseEditWidget.countCases().shouldHave(size(12));
     caseEditWidget.save();
     //After Edit
     CaseWidgetNewDashBoardPage caseWidgetEdited = newDashboardPage.selectCaseWidget("New Your Cases");
     caseWidgetEdited.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    caseWidgetEdited.countCases("TestCase").shouldHave(size(5));
+    caseWidgetEdited.countCases("TestCase").shouldHave(size(12));
   }
   
   @Test
