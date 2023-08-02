@@ -1576,3 +1576,7 @@ span.new-widget-dialog__icon.si {
 .dashboard_ui-outputlabel-rfi {
   margin-left: 0.1em;
   color: var(--asterik-icon-color); }
+
+.widget__content.case-widget {
+  max-height: fit-content;
+}

@@ -349,6 +349,12 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     newDashboardPage.openManageNewsDialog();
     newDashboardPage.enterNewsTitle("Welcome to Portal News feed");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.NEW_DASHBOARD_FOLDER + "news-feed-widget-manage-content");
+    String tabIndex = newDashboardPage.selectNewsLanguage("fr");
+    newDashboardPage.clickOnTitle(tabIndex);
+    WebElement translation = newDashboardPage.getTranslationOverlayPanel(1);
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.NEW_DASHBOARD_FOLDER + "news-feed-widget-overlay-panel");
+    translation.findElement(By.cssSelector("span.ui-icon-closethick")).click();
+    newDashboardPage.findTranslationButton(tabIndex);
   }
 
   private void loginAsAdminAndAddPublicWidget(int widgetIndex) {

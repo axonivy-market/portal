@@ -9,7 +9,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -23,6 +22,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.util.Strings;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 import org.primefaces.model.DefaultStreamedContent;
@@ -31,6 +31,7 @@ import org.primefaces.model.StreamedContent;
 import com.axonivy.portal.bo.JsonVersion;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.RoleUtils;
+import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -41,14 +42,12 @@ import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
-import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.service.ServiceException;
 
 @ViewScoped
 @ManagedBean
@@ -269,28 +268,21 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
 
   public void translate(DisplayName title) {
-    translatedText = "";
-    warningText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/InvalidDeepLAuthKey");
-    if (!title.getLocale().getLanguage().equals(UserUtils.getUserLanguage())) {
+    translatedText = Strings.EMPTY;
+    warningText = Strings.EMPTY;
+
+    String currentLanguage = UserUtils.getUserLanguage();
+    if (!title.getLocale().getLanguage().equals(currentLanguage)) {
       Map<String, DisplayName> languages = getMapLanguages();
-      String currentLanguage = UserUtils.getUserLanguage();
       DisplayName defaultTitle = languages.get(currentLanguage);
       if (defaultTitle != null) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("text", defaultTitle.getValue());
-        params.put("targetLanguage", getTargetLanguageFromValue(title.getLocale().getLanguage().toUpperCase()));
-        params.put("sourceLanguage", getSourceLanguageFromValue(defaultTitle.getLocale().getLanguage().toUpperCase()));
-        Map<String, Object> response = null;
         try {
-          response = IvyAdapterService.startSubProcess(
-              "translateText(String,com.deepl.api.v2.client.TargetLanguage,com.deepl.api.v2.client.SourceLanguage)",
-                  params, new ArrayList<>());
-        } catch (ServiceException ex) {
-          Ivy.log().error(ex.getMessage());
-        }
-        if (response != null) {
-          translatedText = response.get("translation").toString();
-          warningText = "";
+          translatedText = DeepLTranslationService.getInstance().translate(defaultTitle.getValue(),
+              defaultTitle.getLocale(), title.getLocale());
+        } catch (Exception e) {
+          warningText = Ivy.cms()
+              .co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
+          Ivy.log().error("DeepL Translation Service error: ", e.getMessage());
         }
       }
     }
