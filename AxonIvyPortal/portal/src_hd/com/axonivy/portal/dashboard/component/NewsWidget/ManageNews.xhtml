@@ -4,54 +4,87 @@
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
-  <p:dialog id="manage-news-dialog" widgetVar="manage-news-dialog"
-    dynamic="true" fitViewport="true" responsive="true"
-    styleClass="manage-news-dialog" appendTo="@(body)"
-    modal="true" resizable="false" width="700"
-    onShow="PF('manage-news-dialog').initPosition()"
-    rendered="#{newsWidgetBean.canManageNews and isReadOnlyMode}">
-    <f:facet name="header">
-      <h:outputText value="#{newsWidgetBean.manageNewsDialogTitle}" />
-    </f:facet>
+<p:dialog id="manage-news-dialog" widgetVar="manage-news-dialog" dynamic="true" fitViewport="true" responsive="true"
+  styleClass="manage-news-dialog" appendTo="@(body)" modal="true" resizable="false" width="700"
+  onShow="PF('manage-news-dialog').initPosition()" rendered="#{newsWidgetBean.canManageNews and isReadOnlyMode}">
+  <f:facet name="header">
+    <h:outputText value="#{newsWidgetBean.manageNewsDialogTitle}" />
+  </f:facet>
+  
     <h:panelGroup id="management-news-group" styleClass="management-news__group">
+    <h:form>
       <c:set var="defaultLang" value="#{newsWidgetBean.defaultLanguage.toLanguageTag()}" />
       <p:tabView id="manage-news-tabview" value="#{newsWidgetBean.editingNewsList}" var="news" dynamic="true"
         widgetVar="manage-news-tabview" activeIndex="#{newsWidgetBean.activeTabIndex}">
-        <c:set var="newsLanguage" value="#{news.locale.toLanguageTag()}"/>
+        <c:set var="newsLanguage" value="#{news.locale.toLanguageTag()}" />
         <c:set var="requiredLanguage" value="#{defaultLang eq newsLanguage}" />
-        <p:ajax event="tabChange" oncomplete="PF('manage-news-dialog').initPosition()" />
+        <p:ajax event="tabChange" oncomplete="PF('manage-news-dialog').initPosition()"/>
 
-        <p:tab title="#{requiredLanguage ? '* ':''}#{news.locale.displayLanguage}"
+        <p:tab title="#{requiredLanguage ? '* ':''}#{news.locale.displayLanguage}" 
           titleStyleClass="news-language-tab-#{newsLanguage}">
           <h:panelGroup id="manage-news-details-container" layout="block">
             <p:messages id="management-news-message" redisplay="false">
-              <p:autoUpdate/>
+              <p:autoUpdate />
             </p:messages>
 
             <div class="management-news__title-group">
               <ic:ch.ivy.addon.portalkit.component.IconSelection id="news-icon" value="#{news.icon}"
                 hideChangeIconLink="true" />
-              <div class="ui-fluid management-news__title-input">
-                <p:inputText id="news-title" required="#{requiredLanguage}"
+              <div class="ui-fluid management-news__title-input ui-inputgroup">
+                <p:inputText id="news-title" required="#{requiredLanguage and param['skipValidator'] == null}"
                   placeholder="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/NewsTitlePlaceholder')}"
                   value="#{news.name}"
                   requiredMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/NewsTitleValidateMessage', [news.locale.displayLanguage.toLowerCase()])}"
-                  maxlength="200"/>
+                  maxlength="200">
+                  <p:ajax event="click" listener="#{newsWidgetBean.translateTitle(news.locale)}"
+                    disabled="#{requiredLanguage}" process="@form"
+                    partialSubmit="true" global="false" update="translated-text-panel, tranlate-link" />
+                  <f:param name="skipValidator" value="true" />
+                </p:inputText>
+                <p:overlayPanel for="news-title" appendTo="@(body)" my="right top" at="right bottom"
+                  id="overlay-panel-input"
+                  styleClass="filter-name-overlay-panel #{requiredLanguage ? 'u-hidden' : ''}"
+                  dynamic="false" dismissable="true" showCloseIcon="true">
+                  <p:commandLink id="tranlate-link" update="@form" process="@this" partialSubmit="true"
+                    actionListener="#{newsWidgetBean.resetTranslation()}"
+                    disabled="#{not empty newsWidgetBean.warningText}">
+                    <span class="fa fa-language language-icon-padding-right" />
+                    <h:outputText value="Auto. translation" />
+                  </p:commandLink>
+                  <h:panelGroup id="translated-text-panel" layout="block">
+                    <i id="translating-title"
+                      class="#{empty newsWidgetBean.translatedText and empty newsWidgetBean.warningText? 'pi pi-spin pi-spinner' : 'u-hidden'}"></i>
+                    <p:outputPanel id="translated-title"
+                      styleClass="#{empty newsWidgetBean.translatedText ? 'u-hidden' : ''}">#{newsWidgetBean.translatedText}</p:outputPanel>
+                    <p:outputLabel id="warning-text" styleClass="#{empty newsWidgetBean.warningText? 'u-hidden' : ''}">
+                      <span class="ui-outputlabel-rfi">#{newsWidgetBean.warningText}</span>
+                    </p:outputLabel>
+                  </h:panelGroup>
+                </p:overlayPanel>
               </div>
             </div>
 
             <div class="management-news__content-group">
               <p:textEditor id="news-content" height="300" value="#{news.description}"
                 placeholder="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/NewsContentPlaceHolder')}"
-                required="#{requiredLanguage}"
+                required="#{requiredLanguage and param['skipValidator'] == null}"
                 requiredMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/NewsContentValidateMessage', [news.locale.displayLanguage.toLowerCase()])}">
-                <f:validator validatorId="newsEditorValidator"/>
+                <f:validator validatorId="newsEditorValidator" />
                 <f:facet name="toolbar">
                   <span class="ql-formats">
                     <button class="ql-bold"></button>
                     <button class="ql-italic"></button>
                     <button class="ql-underline"></button>
                     <button class="ql-strike"></button>
+                    <p:commandButton
+                      styleClass="ui-button-flat #{requiredLanguage ? 'u-hidden' : ''}"
+                      id="translate-language-button" icon="si si-chat-translate si-lg"
+                      title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/Translate')}">
+                      <p:ajax event="click"
+                        listener="#{newsWidgetBean.translateDescription(news.locale)}"
+                        process="@form" update="news-content" />
+                        <f:param name="skipValidator" value="true" />
+                    </p:commandButton>
                   </span>
                 </f:facet>
               </p:textEditor>
@@ -59,42 +92,42 @@
           </h:panelGroup>
         </p:tab>
       </p:tabView>
+      </h:form>
     </h:panelGroup>
+  
+  <f:facet name="footer">
+    <p:commandLink id="cancel-news-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+      onclick="PF('manage-news-dialog').hide()" immediate="true" global="false" process="@none" update="@none"
+      styleClass="u-mar-right-10" />
+    <p:commandButton id="publish-news-button"
+      value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/Publish')}"
+      oncomplete="if (args &amp;&amp; !args.validationFailed){PF('manage-news-dialog').hide();rcUpdateNewsWidget#{widget.id}();}PF('manage-news-dialog').initPosition()"
+      actionListener="#{newsWidgetBean.publishNews()}" process="management-news-group" update="management-news-group"
+      partialSubmit="true" />
 
-    <f:facet name="footer">
-      <p:commandLink id="cancel-news-link"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        onclick="PF('manage-news-dialog').hide()" immediate="true" global="false"
-        process="@none" update="@none" styleClass="u-mar-right-10" />
-      <p:commandButton id="publish-news-button"
-        value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/Publish')}"
-        oncomplete="if (args &amp;&amp; !args.validationFailed){PF('manage-news-dialog').hide();rcUpdateNewsWidget#{widget.id}();}PF('manage-news-dialog').initPosition()"
-        actionListener="#{newsWidgetBean.publishNews()}" process="management-news-group"
-        update="management-news-group" partialSubmit="true" />
-    </f:facet>
-  </p:dialog>
+  </f:facet>
+</p:dialog>
 
-  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
-    <ui:param name="id" value="delete-news-dialog" />
-    <ui:param name="widgetVar" value="delete-news-dialog" />
-    <ui:param name="appendTo" value="@(body)" />
-    <ui:param name="iconClass" value="si si-delete-1" />
-    <ui:param name="iconStyleClass" value="portal-dialog-error-icon portal-dialog-icon" />
-    <ui:param name="headerText" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/RemoveNewsHeader')}" />
-    <ui:define name="dialogContentSection">
-      <div class="u-text-align-center">
-        <h5>"#{newsWidgetBean.selectedNews.name}"</h5>
-        <p>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/removeWidgetMessage')}</p>
-      </div>
-    </ui:define>
-    <ui:define name="dialogFooter">
-      <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        onclick="PF('delete-news-dialog').hide();" styleClass="u-mar-right-15" />
-      <p:commandButton id="remove-widget-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
-        actionListener="#{newsWidgetBean.deleteNews()}"
-        icon="#{visibilityBean.generateButtonIcon('si si-remove-circle')}"
-        oncomplete="PF('delete-news-dialog').hide();"
-        update="#{cc.clientId}:widget-content" />
-    </ui:define>
-  </ui:decorate>
+<ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+  <ui:param name="id" value="delete-news-dialog" />
+  <ui:param name="widgetVar" value="delete-news-dialog" />
+  <ui:param name="appendTo" value="@(body)" />
+  <ui:param name="iconClass" value="si si-delete-1" />
+  <ui:param name="iconStyleClass" value="portal-dialog-error-icon portal-dialog-icon" />
+  <ui:param name="headerText"
+    value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/RemoveNewsHeader')}" />
+  <ui:define name="dialogContentSection">
+    <div class="u-text-align-center">
+      <h5>"#{newsWidgetBean.selectedNews.name}"</h5>
+      <p>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/removeWidgetMessage')}</p>
+    </div>
+  </ui:define>
+  <ui:define name="dialogFooter">
+    <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+      onclick="PF('delete-news-dialog').hide();" styleClass="u-mar-right-15" />
+    <p:commandButton id="remove-widget-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
+      actionListener="#{newsWidgetBean.deleteNews()}" icon="#{visibilityBean.generateButtonIcon('si si-remove-circle')}"
+      oncomplete="PF('delete-news-dialog').hide();" update="#{cc.clientId}:widget-content" />
+  </ui:define>
+</ui:decorate>
 </html>

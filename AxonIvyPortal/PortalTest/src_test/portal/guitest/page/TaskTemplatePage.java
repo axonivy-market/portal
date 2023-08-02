@@ -91,6 +91,7 @@ public class TaskTemplatePage extends TemplatePage {
     return new TaskDetailsPage();
   }
 
+  @SuppressWarnings("deprecation")
   public void startSideStep() {
     String actionPanelId = "horizontal-task-action-form:horizontal-task-action-menu";
     waitForElementDisplayed(By.id(actionPanelId), true);
@@ -109,6 +110,11 @@ public class TaskTemplatePage extends TemplatePage {
     click(By.linkText("Cancel"));
   }
 
+  public void clickResetLink() {
+    click(By.linkText("Reset"));
+  }
+
+  @SuppressWarnings("deprecation")
   public void showNoteHistory() {
     click(driver.findElement(By.cssSelector("a[id$='show-more-note-link']")));
   }

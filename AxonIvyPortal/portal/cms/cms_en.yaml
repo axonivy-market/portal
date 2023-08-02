@@ -778,7 +778,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       EditPrivateDashboards: Edit your private dashboards
       EditPublicDashboards: Edit public dashboards
       ExportDashboard: Export dashboard
-      InvalidDeepLAuthKey: Invalid DeepL authentication key
       PrivateDashboard: Private dashboards
       PrivateDashboardConfiguration: Private dashboard configuration
       PublicDashboard: Public dashboards
@@ -786,6 +785,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPrivateDashboards: Reorder your dashboards
       ReorderPublicDashboards: Reorder public dashboards
       SelectAction: Select the action
+      SomeThingWentWrong: Something went wrong
       Title: Dashboard configuration
     EmptyFilterMessage: No widget filter found
     Filter:
@@ -1287,6 +1287,20 @@ ch.ivy.addon.portalkit.ui.jsf:
     cannotAssignTask: This task cannot be assigned to any other user or group.
     escalationActivatorDesc: Change the escalation activator of task to a specified user or group
     escalationActivatorHeader: Task escalation activator selection
+  taskBusinessState:
+    DELAYED: Delayed
+    DELAYED_UPPERCASE: DELAYED
+    DESTROYED: Destroyed
+    DESTROYED_UPPERCASE: DESTROYED
+    DONE: Done
+    DONE_UPPERCASE: DONE
+    ERROR: Error
+    ERROR_UPPERCASE: ERROR
+    IN_PROGRESS: In progress
+    IN_PROGRESS_UPPERCASE: IN PROGRESS
+    OPEN: Open
+    OPEN_UPPERCASE: OPEN
+    SYSTEM: SYSTEM
   taskDelegate:
     afterEscalation:
       delegateNotes: The escalation activator of the {0} task was changed from {1} to {2}
@@ -1584,6 +1598,7 @@ Dialogs:
               RemoveNewsHeader: Remove the news?
               SeeLess: See less
               SeeMore: See more
+              Translate: Translate
             NewsWidgetConfiguration:
               AddNews: Add News
               EditNews: Edit News

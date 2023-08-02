@@ -40,7 +40,7 @@
           componentId="expiry-time" value="#{task.expiryTimestamp}" />
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate rendered="#{taskView.dataModel.isSelectedColumn('COMPLETED_ON')}"
           componentId="completed-time" value="#{task.endTimestamp}" />
-        <ic:ch.ivy.addon.portalkit.component.task.column.TaskState dataModel="#{taskView.dataModel}" state="#{task.state}" />
+        <ic:ch.ivy.addon.portalkit.component.task.column.TaskState dataModel="#{taskView.dataModel}" state="#{task.businessState}" />
 
         <!-- New field -->
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-name-component" componentId="customer-name" column="CustomerName"

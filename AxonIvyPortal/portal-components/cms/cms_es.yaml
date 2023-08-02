@@ -76,7 +76,7 @@ Dialogs:
             NoName: Sin nombre
             NotAvailable: NA
           ProcessViewer:
-            ProcessDataNotFound: No se han encontrado datos del proceso
+            CouldNotFindLinkedProcess: ¡No se pudo encontrar el proceso vinculado!
             ProcessDetails: Detalles del proceso
             ProcessId: ID del proceso
             ProcessInfo: Información del proceso

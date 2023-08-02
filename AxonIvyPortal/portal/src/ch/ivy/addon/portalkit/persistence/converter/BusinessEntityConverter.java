@@ -103,9 +103,11 @@ public class BusinessEntityConverter {
 
   public static ObjectMapper getObjectMapper() {
     if (objectMapper == null) {
-      objectMapper = JsonMapper.builder()
+      objectMapper = JsonMapper
+          .builder()
           .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-          .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS).build();
+          .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS)
+          .build(); 
     }
     return objectMapper;
   }
