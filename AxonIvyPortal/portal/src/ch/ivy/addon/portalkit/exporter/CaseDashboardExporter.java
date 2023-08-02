@@ -21,6 +21,7 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
    * Constructor
    * 
    * @param columnsVisibility list of columns to export
+   * @param widgetName 
    */
   public CaseDashboardExporter(List<String> columnsVisibility, String widgetName) {
     super(columnsVisibility, widgetName, "/ch.ivy.addon.portalkit.ui.jsf/dashboard/export/exportedCasesFileName");
@@ -57,7 +58,7 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
    * Custom column format: fieldType__fieldName__header
    * 
    * @param column
-   * @return
+   * @return header text
    */
   private String getCustomColumnName(String column) {
     String[] columnParts = getCustomColumnParts(column);
@@ -69,7 +70,6 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
 
   /**
    * Get common column value
-   * @param column
    * @param caseItem
    * @return case column value
    */
@@ -133,7 +133,6 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
    * Gets case column value.
    * 
    * @param column case field like "NAME", "CREATOR", "CREATION_TIME"..
-   * @param caseItem target case
    * @return case column value
    */
   @Override
