@@ -17,6 +17,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.service.impl.ProcessService;
 
@@ -138,7 +139,7 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
       super.init();
     }
     return getPortalProcesses().stream()
-        .filter(process -> CollectionUtils.isEmpty(applications) || applications.contains(process.getApplication()))
+        .filter(process -> StringUtils.isBlank(process.getApplication()) || CollectionUtils.isEmpty(applications) || applications.contains(process.getApplication()))
         .map(toDashboardProcess()).collect(Collectors.toList());
   }
 
