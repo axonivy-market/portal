@@ -408,10 +408,9 @@ public class DashboardConfigurationTest extends BaseTest {
     configurationPage.getDashboardImportPermission().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
     
     String name = "New import private dashboard";
-    String newGermanName = "German public dashboard";
+    String newGermanName = "German dashboard";
     String icon = "fa-coffee";
     String description = "New import private dashboard description";
-
     configurationPage.saveImportDashboard(name, newGermanName, description, icon, null);
   }
   

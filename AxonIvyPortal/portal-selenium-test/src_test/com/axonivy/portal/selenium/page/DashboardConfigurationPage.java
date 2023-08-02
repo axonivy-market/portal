@@ -254,8 +254,8 @@ public class DashboardConfigurationPage extends TemplatePage {
     var importDialog = $("div[id$='dashboard-import-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("a[id$=':change-icon-link']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     selectDashboardIcon(icon);
-    importDialog.$("input[id$=':dashboard-title']").clear();
-    importDialog.$("input[id$=':dashboard-title']").sendKeys(name);
+    importDialog.$("input[id$=':import-dashboard-title']").clear();
+    importDialog.$("input[id$=':import-dashboard-title']").sendKeys(name);
     importDialog.$("input[id$=':dashboard-description']").clear();
     importDialog.$("input[id$=':dashboard-description']").sendKeys(desc);
     editMultiLangDashboardImportTitle(name, otherLangName);
@@ -273,9 +273,6 @@ public class DashboardConfigurationPage extends TemplatePage {
     var elementsInput = multipleLanguageDialog.$$("td input");
 
     elementsInput.get(2).setValue(updatedName);
-    elementsInput.get(1).click();
-    SelenideElement translation = getTranslationOverlayPanel(1);
-    translation.$("span.ui-icon-closethick").click();
 
     multipleLanguageDialog.$("button[type='submit']").click();
     multipleLanguageDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
