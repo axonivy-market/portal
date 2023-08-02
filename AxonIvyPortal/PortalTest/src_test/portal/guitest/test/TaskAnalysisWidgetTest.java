@@ -58,6 +58,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     assertTrue(statisticWidgetPage.isDisplayed());
   }
 
+  @SuppressWarnings("deprecation")
   @Test
   public void testAddColumns() {
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
@@ -79,6 +80,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     assertEquals(numberOfColumns, numberOfCheckboxes);
   }
 
+  @SuppressWarnings("deprecation")
   @Test
   public void testRemoveColumns() {
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();

@@ -105,7 +105,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void save() {
     $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='widget-configuration-save-button']")
-        .shouldBe(getClickableCondition()).click();
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $(caseEditWidgetId).shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 

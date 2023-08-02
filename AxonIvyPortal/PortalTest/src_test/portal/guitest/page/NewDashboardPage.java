@@ -13,7 +13,7 @@ public class NewDashboardPage extends TemplatePage {
   private static final String CUSTOM_WIDGET_PROCESS_SELECTION_ID = "widget-configuration-form:new-widget-configuration-component:selected-process";
   private static final String NEWS_FEED_WIDGET_ID = "[class*='js-dashboard-widget-news_']";
   private static final String NEWS_FEED_TITLE_INPUT_ID = "input[id$=':manage-news-tabview:0:news-title']";
-
+  private static final String MANAGE_NEWS_TABVIEW_FORMAT = "[id$=':manage-news-tabview:%s:%s']";
   @Override
   protected String getLoadedLocator() {
     return "id('dashboard-body')";
@@ -182,5 +182,28 @@ public class NewDashboardPage extends TemplatePage {
     WebElement newsTitleInput = findElementByCssSelector(NEWS_FEED_TITLE_INPUT_ID);
     newsTitleInput.clear();
     newsTitleInput.sendKeys(newsTitle);
+  }
+
+  public String selectNewsLanguage(String languageTag) {
+    var languageTabClass = "li.ui-tabs-header.news-language-tab-" + languageTag;
+    findElementByCssSelector(languageTabClass).click();
+    return findElementByCssSelector(languageTabClass).getAttribute("data-index");
+  }
+
+  public void clickOnTitle(String tabIndex) {
+    String tabLanguage = "input" + String.format(MANAGE_NEWS_TABVIEW_FORMAT, tabIndex, "news-title");
+    waitForElementDisplayed(By.cssSelector(tabLanguage), true);
+    findElementByCssSelector(tabLanguage).click();
+  }
+
+  public WebElement getTranslationOverlayPanel(int index) {
+    WebElement translationOverlay = findElementByCssSelector(
+        String.format("div[id$=':%s:overlay-panel-input']", index));
+    waitForElementDisplayed(translationOverlay, true);
+    return translationOverlay;
+  }
+
+  public void findTranslationButton(String tabIndex) {
+    findElementByCssSelector(String.format("[id$=':%s:translate-language-button']", tabIndex)).click();
   }
 }
