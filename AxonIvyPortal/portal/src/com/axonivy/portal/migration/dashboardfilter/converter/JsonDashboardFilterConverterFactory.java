@@ -1,4 +1,4 @@
-package com.axonivy.portal.migration.dashboardconfiguration.converter;
+package com.axonivy.portal.migration.dashboardfilter.converter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,9 +6,9 @@ import java.util.List;
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.migration.common.AbstractJsonConverterFactory;
 import com.axonivy.portal.migration.common.IJsonConverter;
-import com.axonivy.portal.migration.dashboardconfiguration.converter.v112.DashboardCaseWidgetFilterConverter;
+import com.axonivy.portal.migration.dashboardfilter.converter.v112.DashboardCaseWidgetFilterConverter;
 
-public class JsonDashboardConfigurationConverterFactory extends AbstractJsonConverterFactory {
+public class JsonDashboardFilterConverterFactory extends AbstractJsonConverterFactory {
 
   private static final List<IJsonConverter> CONVERTERS = new ArrayList<>();
 
