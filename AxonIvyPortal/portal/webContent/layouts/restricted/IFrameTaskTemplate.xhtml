@@ -61,7 +61,8 @@
     <ui:param name="layoutContentStyleClass" value="frame-container" />
     <ui:param name="abstractTaskTemplateBean" value="#{iFrameTaskTemplateBean}" />
     <ui:param name="actualStepIndex" value="#{iFrameTaskTemplateBean.currentProcessStep}" />
-    <ui:param name="steps" value="#{iFrameTaskTemplateBean.processSteps}" />
+    <ui:param name="steps" value="#{iFrameTaskTemplateBean.formattedProcessSteps}" />
+    <ui:param name="actualSteps" value="#{iFrameTaskTemplateBean.processSteps}" />
     <ui:param name="isShowAllSteps" value="#{iFrameTaskTemplateBean.isShowAllSteps}" />
     <ui:param name="isHideCaseInfo" value="#{iFrameTaskTemplateBean.isHideCaseInfo}" />
     <ui:param name="isHideTaskName" value="#{iFrameTaskTemplateBean.isHideTaskName}" />

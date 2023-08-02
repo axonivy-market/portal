@@ -18,6 +18,7 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="componentId" type="java.lang.String" default="process-chain-component-id" shortDescription="The component identifier. Default is process-chain-component-id"/>
   <cc:attribute name="steps" shortDescription="List of step in the process chain" />
+  <cc:attribute name="actualSteps" shortDescription="List of actual step in the process chain" />
   <cc:attribute name="actualStepIndex" type="java.lang.Integer" default="0" shortDescription="Actual step index or current step index. Default is 0" />
 
   <cc:attribute name="direction" type="java.lang.String" default="HORIZONTAL" shortDescription="Direction of process chain: VERTICAL, HORIZONTAL. Default is HORIZONTAL" />
@@ -41,13 +42,13 @@
   <h:panelGroup id="#{cc.attrs.componentId}"
     styleClass="#{isShapeCircle ? 'circle-process-chain' : 'line-process-chain'}">
     <h:panelGroup styleClass="ui-sm-hidden ui-md-hidden #{isDirectionHorizontal ? 'horizontal-process-chain' : 'vertical-process-chain'}">
-      <c:forEach items="#{cc.attrs.steps}" var="stepName" varStatus="counter">
+      <c:forEach items="#{cc.attrs.steps}" var="step" varStatus="counter">
+        <c:set var="stepName" value="#{cc.attrs.actualSteps.get(counter.index)}" />
         <c:set var="isFirstStep" value="#{counter.index eq 0}" />
         <c:set var="isLastStep" value="#{counter.index eq (cc.attrs.steps.size() - 1)}" />
         <c:set var="isCurrentStep" value="#{counter.index eq cc.attrs.actualStepIndex}" />
         <c:set var="isPreCurrentStep" value="#{counter.index eq (cc.attrs.actualStepIndex - 1)}" />
         <c:set var="isNextCurrentStep" value="#{counter.index eq (cc.attrs.actualStepIndex + 1)}" />
-
         <c:set var="isVisitedStep" value="#{cc.attrs.actualStepIndex > counter.index}" />
         <c:set var="isCurrentStepPassedThreeSteps" value="#{cc.attrs.actualStepIndex > 2}" />
         <c:set var="isStepNeedMoreThreeSteps" value="#{counter.index lt (cc.attrs.steps.size()-2)}" />
@@ -111,10 +112,10 @@
     </h:panelGroup>
 
     <h:panelGroup styleClass="ui-lg-hidden ui-xl-hidden process-chain-mobile-container" 
-      rendered="#{not empty cc.attrs.steps}">
+      rendered="#{not empty cc.attrs.actualSteps}">
       <c:set var="currentIndex" value="#{cc.attrs.actualStepIndex}" />
-      <c:set var="stepSize" value="#{cc.attrs.steps.size()}" />
-      <c:set var="stepName" value="#{currentIndex gt cc.attrs.steps.size() ? '' : cc.attrs.steps.get(currentIndex)}" />
+      <c:set var="stepSize" value="#{cc.attrs.actualSteps.size()}" />
+      <c:set var="stepName" value="#{currentIndex gt cc.attrs.actualSteps.size() ? '' : cc.attrs.actualSteps.get(currentIndex)}" />
       <c:set var="isHideLeftSteps" value="#{currentIndex eq 0}" />
       <c:set var="isHideRightSteps" value="#{currentIndex eq (stepSize - 1)}" />
 
