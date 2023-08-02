@@ -408,9 +408,10 @@ public class DashboardConfigurationTest extends BaseTest {
     configurationPage.getDashboardImportPermission().shouldBe(Condition.disappear);
     
     String name = "New import private dashboard";
+    String newGermanName = "German dashboard";
     String icon = "fa-coffee";
     String description = "New import private dashboard description";
-    configurationPage.saveImportDashboard(name, description, icon, null);
+    configurationPage.saveImportDashboard(name, newGermanName, description, icon, null);
   }
   
   @Test
@@ -427,11 +428,12 @@ public class DashboardConfigurationTest extends BaseTest {
     configurationPage.getDashboardImportPermission().shouldBe(Condition.appear);
     
     String name = "New import public dashboard";
+    String newGermanName = "German public dashboard";
     String icon = "fa-coffee";
     String description = "New import public dashboard description";
     List<String> permissions = new ArrayList<>();
     permissions.add("Cost Object (CostObject)");
     
-    configurationPage.saveImportDashboard(name, description, icon, permissions);
+    configurationPage.saveImportDashboard(name, newGermanName, description, icon, permissions);
   }
 }
