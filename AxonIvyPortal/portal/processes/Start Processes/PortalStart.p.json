@@ -3469,8 +3469,7 @@
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
-            "out.caseSelected = CaseService.newInstance().findCaseByUUID(in.uuid);",
-            "ivy.log.error(\"uuid is {0}\", in.uuid);"
+            "out.caseSelected = CaseService.newInstance().findCaseByUUID(in.uuid);"
           ]
         },
         "sudo" : true

@@ -42,7 +42,7 @@ public final class GrowlMessageUtils {
 
   private static void addMessageToFacesContext(ICase iCase, boolean isTaskFinished) {
     String caseDetailsUrl =
-        iCase != null ? PortalNavigator.buildPortalCaseDetailsUrl(iCase.uuid()) : null;
+        iCase != null ? PortalNavigator.buildPortalCaseDetailsUrl(iCase.getBusinessCase().uuid()) : null;
     FacesMessage message = null;
     if (isCaseDetailsAvailable(iCase, caseDetailsUrl)) {
       message = addMessageWithoutCaseDetails(isTaskFinished);

@@ -278,7 +278,7 @@ public class TaskService implements ITaskService {
     return Ivy.wf().getTaskQueryExecutor();
   }
 
-  public ITask findTaskById(long taskId) {//DefaultEndPage.ivp  DefaultFramePage  BackFromTaskDetails.ivp runningTaskID showTaskNoteHistory command-group http://localhost:8081/designer/pro/portal/1549F58C18A6C562/ShowTaskDocument.ivp?selectedTaskId=10
+  public ITask findTaskById(long taskId) {
     return Sudo.get(() -> {
       TaskQuery taskQuery = TaskQuery.create().where().taskId().isEqual(taskId);
       if (PermissionUtils.checkReadAllTasksPermission()) {
@@ -296,7 +296,7 @@ public class TaskService implements ITaskService {
     });
   }
   
-  public ITask findTaskByUUID(String uuid) {//DefaultEndPage.ivp  DefaultFramePage  BackFromTaskDetails.ivp runningTaskID showTaskNoteHistory command-group showCaseNoteHistory
+  public ITask findTaskByUUID(String uuid) {
     return Sudo.get(() -> {
       TaskQuery taskQuery = TaskQuery.create().where().uuid().isEqual(uuid);
       if (PermissionUtils.checkReadAllTasksPermission()) {

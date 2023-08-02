@@ -23,8 +23,6 @@ public class History {
   private String displayCaseName;
   private boolean isDisabledCaseName;
   private String caseUUID;
-  @Deprecated
-  private Long caseId;
 
   public enum HistoryType {
     TASK, NOTE, EVENT;
@@ -95,32 +93,11 @@ public class History {
   }
 
   public String getDisplayName() {
-    if(StringUtils.isBlank(this.displayName)) {
-      this.displayName = SecurityMemberDisplayNameUtils.generateBriefDisplayNameForUser(this.involvedUser, this.involvedUsername);
-    }
-    return displayName;
+    return StringUtils.defaultIfBlank(this.displayName, SecurityMemberDisplayNameUtils.generateBriefDisplayNameForUser(this.involvedUser, this.involvedUsername));
   }
 
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
-  }
-
-  /**
-   * @deprecated use getCaseUUID instead
-   * @return caseId
-   */
-  @Deprecated
-  public Long getCaseId() {
-    return caseId;
-  }
-
-  /**
-   * @deprecated user setCaseUUID instead
-   * @param caseId
-   */
-  @Deprecated
-  public void setCaseId(Long caseId) {
-    this.caseId = caseId;
   }
 
   public String getDisplayCaseName() {
