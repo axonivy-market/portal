@@ -577,6 +577,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     showRelatedCaseInfo: Zugehöriger Vorfall
     showSystemNotes: Systemhinweise
     showSystemTasks: Systemaufgaben
+    sorting: Sorting
     start: Start
     state: Status
     status: Status

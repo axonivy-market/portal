@@ -105,6 +105,14 @@
               <p:ajax oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
             </p:selectCheckboxMenu>
           </div>
+           <div class="ui-g-4">
+            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sorting')}" for="sorting" />
+          </div>
+          <div class="ui-g-8 ui-fluid">
+            <p:selectOneMenu id="sorting" value="#{widget.processes}" panelStyleClass="process-selection__panel">
+              <f:selectItems value="#{compactDashboardProcessBean.portalCompactProcesses}" var="process" itemValue="#{process}" itemLabel="#{process.name}" />
+            </p:selectOneMenu>
+          </div>
         </h:panelGroup>
 
         <h:panelGroup id="full-filter" rendered="#{isFull}">
