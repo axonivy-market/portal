@@ -16,7 +16,7 @@ import ch.ivyteam.ivy.workflow.StandardProcessType;
 public final class PortalNavigatorAPI extends BaseNavigator {
   private static final String PORTAL_PROCESS_START_NAME = "Start Processes/PortalStart/DefaultApplicationHomePage.ivp";
   private static final String PORTAL_PROCESS_START_CASE_DETAIL = "Start Processes/PortalStart/CaseDetailsInIFrame.ivp";
-  private static final String PORTAL_PROCESS_START_TASK_DETAIL = "Start Processes/PortalStart/TaskDetailsInIFrame.ivp";
+  private static final String PORTAL_PROCESS_START_TASK_DETAIL = "Start Processes/PortalStart/TaskDetailsInIframe.ivp";
 
 
   private PortalNavigatorAPI() {}
@@ -38,15 +38,21 @@ public final class PortalNavigatorAPI extends BaseNavigator {
     redirectURL(String.format("%s?endedTaskId=%s", customizePortalEndPage, Ivy.wfTask().getId()));
   }
 
-  public static void navigateToPortalCaseDetailPage(String caseId) {
+  /**
+   * Navigate to Portal case details page by case id
+   */
+  public static void navigateToPortalCaseDetailsPage(String caseId) {
     Map<String, String> param = new HashMap<>();
     param.put("caseId", caseId);
     navigateByKeyword("CaseDetailsInIFrame.ivp", PORTAL_PROCESS_START_CASE_DETAIL, param);
   }
 
-  public static void navigateToPortalTaskDetailPage(String taskId) {
+  /**
+   * Navigate to Portal task details page by case id
+   */
+  public static void navigateToPortalTaskDetailsPage(String taskId) {
     Map<String, String> param = new HashMap<>();
-    param.put("taskId", taskId);
+    param.put("taskDetailsId", taskId);
     navigateByKeyword("TaskDetailsInIframe.ivp", PORTAL_PROCESS_START_TASK_DETAIL, param);
   }
 }

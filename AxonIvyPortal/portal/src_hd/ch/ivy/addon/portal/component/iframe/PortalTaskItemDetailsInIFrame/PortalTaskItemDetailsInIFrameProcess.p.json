@@ -86,6 +86,7 @@
             { "name" : "isBackButtonNeeded", "type" : "Boolean" }
           ],
           "map" : {
+            "out.isBackButtonNeeded" : "param.isBackButtonNeeded",
             "out.isFromTaskList" : "true",
             "out.portalPage" : "ch.ivy.addon.portalkit.enums.PortalPage.CASE_DETAIL_FROM_TASK",
             "out.taskId" : "param.taskId"

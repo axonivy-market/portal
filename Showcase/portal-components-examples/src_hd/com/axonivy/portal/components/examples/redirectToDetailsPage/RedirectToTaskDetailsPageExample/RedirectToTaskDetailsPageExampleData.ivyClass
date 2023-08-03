@@ -1,0 +1,4 @@
+RedirectToTaskDetailsPageExampleData #class
+com.axonivy.portal.components.examples.redirectToDetailsPage.RedirectToTaskDetailsPageExample #namespace
+taskId String #field
+taskId PERSISTENT #fieldModifier

@@ -3896,7 +3896,7 @@
           "connect" : [
             { "id" : "S33-f1", "to" : "S33-g1", "label" : {
                 "name" : "Yes"
-              }, "condition" : "ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.caseId)" },
+              }, "condition" : "ch.ivy.addon.portalkit.ivydata.service.impl.TaskService.newInstance().isTaskAccessible(in.taskId)" },
             { "id" : "S33-f192", "to" : "S33-f191", "label" : {
                 "name" : "No",
                 "segment" : 0.54
@@ -3932,10 +3932,10 @@
         "callSignature" : "TaskDetailsInIframe",
         "input" : {
           "params" : [
-            { "name" : "taskId", "type" : "Long" }
+            { "name" : "taskDetailsId", "type" : "Long" }
           ],
           "map" : {
-            "out.taskId" : "param.taskId"
+            "out.taskId" : "param.taskDetailsId"
           }
         },
         "outLink" : "TaskDetailsInIframe.ivp",
