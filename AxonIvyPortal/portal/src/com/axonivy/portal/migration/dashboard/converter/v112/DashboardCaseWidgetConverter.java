@@ -54,6 +54,9 @@ public class DashboardCaseWidgetConverter implements IJsonConverter {
    * 
    */
   private void convertCaseBusinessStates(JsonNode statesNode) {
+    if (Objects.isNull(statesNode)) {
+      return;
+    }
     List<TextNode> newStates = new ArrayList<>();
     statesNode.elements().forEachRemaining(node -> {
       TextNode newState = convertCaseBusinessState(node.asText());
