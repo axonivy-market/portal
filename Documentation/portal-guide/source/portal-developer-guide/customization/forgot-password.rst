@@ -30,6 +30,7 @@ To do that, you should create a callable subprocess with:
 .. _customization-case-widget-how-to-override-password-resetting:
 
 .. _customization-password-reset:
+
 Customize Password Resetting
 ----------------------------
 
