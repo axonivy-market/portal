@@ -25,6 +25,7 @@ import org.primefaces.PrimeFaces;
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.dto.UserDTO;
+import com.axonivy.portal.components.enums.PortalCustomSignature;
 import com.axonivy.portal.components.service.IvyAdapterService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -281,7 +282,7 @@ public class ChatAssigneeBean implements Serializable {
 
   @SuppressWarnings("unchecked")
   private String getGroupChatName(GroupChat group) {
-    Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext("setGroupChatName()", null);
+    Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(PortalCustomSignature.SET_GROUP_CHAT_NAME.getSignature(), null);
     String groupChatName = response.get("name").toString();
     ObjectMapper objectMapper = new ObjectMapper();
     Map<String, Object> mappedObject = objectMapper.convertValue(group, Map.class);
@@ -321,7 +322,7 @@ public class ChatAssigneeBean implements Serializable {
     group.setApplicationName(task.getApplication().getName());
     group.setCreator(Ivy.session().getSessionUserName());
     group.setAssignees(selectedAssignees);
-    Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext("getGroupChatParams()", null);
+    Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(PortalCustomSignature.GET_GROUP_CHAT_PARAMS.getSignature(), null);
     @SuppressWarnings("unchecked")
     Map<String, String> params = (Map<String, String>) response.get("params");
     group.setParams(params);

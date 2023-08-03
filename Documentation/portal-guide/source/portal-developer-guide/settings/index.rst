@@ -544,7 +544,7 @@ Data model:
       "creatorId": 2,
       "icon": "fa-paperclip",
       "description": "https://developer.axonivy.com/download",
-      "imageContent": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wCEAAMCAgMCAgMDAgM",
+      "imageContent": "/9j/4AAQSkZJRgABAQEAYABgAAD/2wCEAAMCAgMCAgMDAgM",
       "imageLocation": "/com/axonivy/portal/ExternalLink/dd91ec84-c5aa-4202-aeea-4500fbd394ef",
       "imageType": "jpeg",
       "permissions": ["Everybody"]

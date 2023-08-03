@@ -1,15 +1,19 @@
 package com.axonivy.portal.components.util;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.constant.PortalComponentConstants;
 import com.axonivy.portal.components.dto.UserDTO;
 
-import com.axonivy.portal.components.constant.PortalComponentConstants;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 public class UserUtils {
@@ -58,5 +62,17 @@ public class UserUtils {
 
   public static List<UserDTO> filterOut(List<UserDTO> users, UserDTO excludedUser) {
     return users.stream().filter(user -> !StringUtils.equals(user.getName(), excludedUser.getName())).collect(Collectors.toList());
+  }
+
+  private static String loadLanguage(Function<IUser, Locale> userLocaleLoader) {
+    var languageTag = "";
+    if (!Ivy.session().isSessionUserUnknown()) {
+      Locale apply = userLocaleLoader.apply(Ivy.session().getSessionUser());
+      languageTag = Objects.nonNull(apply) ? apply.toLanguageTag() : languageTag;
+    }
+    return languageTag;
+  }
+  public static String getUserLanguage() {
+    return loadLanguage(IUser::getLanguage);
   }
 }
