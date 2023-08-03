@@ -6,7 +6,6 @@
 .process-viewer-data.has-error-message {
   font-weight: var(--process-viewer-data-has-error-message-font-weight);
   font-size: var(--process-viewer-data-has-error-message-font-size);
-  height: 200px;
 }
 
 .process-viewer-information {
@@ -67,4 +66,8 @@
 
 .process-viewer-frame {
   height: 100%;
+}
+
+.process-viewer-data .empty-message-container {
+	margin: 90px 0px;
 }

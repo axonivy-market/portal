@@ -8,9 +8,9 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "setGroupChatName()",
+      "name" : "portalSetGroupChatName()",
       "config" : {
-        "callSignature" : "setGroupChatName",
+        "callSignature" : "portalSetGroupChatName",
         "result" : {
           "params" : [
             { "name" : "name", "type" : "String" }

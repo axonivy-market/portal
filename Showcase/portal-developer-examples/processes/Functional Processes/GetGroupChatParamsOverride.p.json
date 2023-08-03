@@ -8,9 +8,9 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "getGroupChatParams()",
+      "name" : "portalGetGroupChatParams()",
       "config" : {
-        "callSignature" : "getGroupChatParams",
+        "callSignature" : "portalGetGroupChatParams",
         "input" : {
           "map" : {
             "out.params" : "new java.util.HashMap()"
@@ -33,7 +33,7 @@
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 352, "y" : 64 }
+        "at" : { "x" : 392, "y" : 64 }
       }
     }, {
       "id" : "f3",
@@ -46,7 +46,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 64 }
+        "at" : { "x" : 256, "y" : 64 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {

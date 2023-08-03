@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -25,6 +26,7 @@ import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
 import ch.ivy.addon.portalkit.enums.MenuKind;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.util.PrimeFacesUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -107,10 +109,14 @@ public class PortalMenuNavigator {
 
   @SuppressWarnings("unchecked")
   public static List<SubMenuItem> callSubMenuItemsProcess() {
-    String sessionUserId = Ivy.session().getSessionUser().getSecurityMemberId();
     Locale requestLocale = Ivy.session().getContentLocale();
+    String sessionIdAttribute = SessionAttribute.SESSION_IDENTIFIER.toString();
+    if (Ivy.session().getAttribute(sessionIdAttribute) == null) {
+      Ivy.session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
+    }
+    String sessionUserId = (String) Ivy.session().getAttribute(sessionIdAttribute);
     if (portalSubMenuItemWrapper == null
-        || !sessionUserId.equals(portalSubMenuItemWrapper.userId)
+        || !sessionUserId.equals(portalSubMenuItemWrapper.sessionUserId)
         || !requestLocale.equals(portalSubMenuItemWrapper.loadedLocale)) {
       synchronized(PortalSubMenuItemWrapper.class) {
         List<SubMenuItem> subMenuItems = new ArrayList<>();
@@ -140,6 +146,5 @@ public class PortalMenuNavigator {
     }
     navigateToTargetPage(params);
   }
-
-  private record PortalSubMenuItemWrapper(String userId, Locale loadedLocale, List<SubMenuItem> portalSubMenuItems) {};
+  private record PortalSubMenuItemWrapper(String sessionUserId, Locale loadedLocale, List<SubMenuItem> portalSubMenuItems) {};
 }

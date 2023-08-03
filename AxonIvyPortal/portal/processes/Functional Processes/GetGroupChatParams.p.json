@@ -28,19 +28,19 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : { "id" : "f8", "to" : "f7" }
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 352, "y" : 64 }
+        "at" : { "x" : 608, "y" : 64 }
       }
     }, {
       "id" : "f3",
       "type" : "Script",
       "name" : "Set params",
       "visual" : {
-        "at" : { "x" : 224, "y" : 64 }
+        "at" : { "x" : 488, "y" : 64 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {
@@ -51,9 +51,52 @@
         "out.params.put(\"accountHolder\", <VALUE>);"
       ],
       "visual" : {
-        "at" : { "x" : 304, "y" : 176 },
+        "at" : { "x" : 576, "y" : 200 },
         "size" : { "width" : 256, "height" : 44 }
       },
       "connect" : { "id" : "f6", "to" : "f3" }
+    }, {
+      "id" : "f7",
+      "type" : "Script",
+      "name" : [
+        "Call customized",
+        "sub process"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.Map;",
+            "import com.axonivy.portal.components.enums.PortalCustomSignature;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "",
+            "Map result = IvyAdapterService.startSubProcessInSecurityContext(PortalCustomSignature.GET_GROUP_CHAT_PARAMS.getSignature(), null);",
+            "if (result.get(\"callProcessError\") != null) {",
+            "  in.hasCustomProcess = false;",
+            "} else {",
+            "  in.params = result.get(\"params\") as Map;",
+            "  in.hasCustomProcess = true;",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 64 }
+      },
+      "connect" : { "id" : "f10", "to" : "f9" }
+    }, {
+      "id" : "f9",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 368, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f12", "to" : "f1", "via" : [ { "x" : 368, "y" : 112 }, { "x" : 608, "y" : 112 } ], "label" : {
+            "name" : "Yes",
+            "segment" : 0.5
+          }, "condition" : "in.hasCustomProcess" },
+        { "id" : "f11", "to" : "f3", "label" : {
+            "name" : "No"
+          } }
+      ]
     } ]
 }
