@@ -17,6 +17,7 @@ import com.axonivy.portal.components.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.ivydata.bo.IvySideStep;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.SideStepSearchCriteria;
 import ch.ivy.addon.portalkit.util.UrlUtils;
+import ch.ivyteam.ivy.process.call.SubProcessSearchFilter.SearchScope;
 
 @ManagedBean
 @ViewScoped
@@ -64,7 +65,7 @@ public class SideStepBean implements Serializable {
     
     Map<String, Object> params = new HashMap<>();
     params.put("sideStepSearchCriteria", criteria);
-    Map<String, Object> response = IvyAdapterService.startSubProcessInApplication("findSideStepsByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.SideStepSearchCriteria)", params);
+    Map<String, Object> response = IvyAdapterService.startSubProcessWithScope("findSideStepsByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.SideStepSearchCriteria)", params, SearchScope.PROJECT);
     @SuppressWarnings("unchecked")
     List<IvySideStep> sideSteps =  (List<IvySideStep>) response.get("sideSteps");
     return sideSteps;

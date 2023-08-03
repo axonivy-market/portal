@@ -77,8 +77,7 @@
             "params.put(\"task\", in.task);",
             "",
             "Map result = IvyAdapterService.startSubProcessInSecurityContext(PortalCustomSignature.CONFIGURE_ROLES_FOR_GROUP_CHAT.getSignature(), params);",
-            "",
-            "if (result.get(\"callProcessError\") == null) {",
+            "if (result != null) {",
             "  in.roles = result.get(\"roles\") as List;",
             "}"
           ]

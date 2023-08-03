@@ -344,7 +344,6 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.util.CaseUtils;",
-            "import org.apache.commons.lang3.StringUtils;",
             "import com.axonivy.portal.components.enums.CustomSignature;",
             "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
             "import ch.ivyteam.ivy.workflow.document.IDocument;",
@@ -362,13 +361,12 @@
             "",
             "CustomSignature signature = CaseUtils.isExpressCase(ivy.case) ? CustomSignature.EXPRESS_UPLOAD_DOCUMENT_ITEM : CustomSignature.UPLOAD_DOCUMENT_ITEM;",
             "Map result = IvyAdapterService.startSubProcessInApplication(signature.getSignature(), params);",
-            "if (result.get(\"callProcessError\") != null) {",
-            "  in.hasCustomProcess = false;",
-            "} else {",
+            "",
+            "in.hasCustomProcess = result != null;",
+            "if (in.hasCustomProcess) {",
             "  in.uploadedDocument = result.get(\"uploadedDocument\") as IDocument;",
             "  in.message = result.get(\"message\").toString();",
             "  in.status = result.get(\"status\") as UploadDocumentCheckStatus;",
-            "  in.hasCustomProcess = true;",
             "}"
           ]
         }
