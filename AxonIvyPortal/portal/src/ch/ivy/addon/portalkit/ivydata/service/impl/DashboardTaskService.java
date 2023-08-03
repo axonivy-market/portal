@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.ivydata.service.impl;
 
 import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.isHiddenTasksCasesExcluded;
 
+import java.util.Collections;
 import java.util.List;
 
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -13,7 +14,8 @@ public class DashboardTaskService extends TaskService {
 
   private static DashboardTaskService instance;
 
-  public DashboardTaskService() {}
+  public DashboardTaskService() {
+  }
 
   public static DashboardTaskService getInstance() {
     if (instance == null) {
@@ -23,8 +25,26 @@ public class DashboardTaskService extends TaskService {
   }
 
   public List<ITask> findByTaskQuery(TaskQuery query, int startIndex, int count) {
+    try {
+      return Sudo.get(() -> {
+        var subQuery = TaskQuery.create();
+        if (!PermissionUtils.checkReadAllTasksPermission()) {
+          subQuery.where().and(queryInvolvedTasks());
+        }
+        if (isHiddenTasksCasesExcluded()) {
+          subQuery.where().and(queryExcludeHiddenTasks());
+        }
+        var finalQuery = query.where().and(subQuery);
+        return executeTaskQuery(finalQuery, startIndex, count);
+      });
+    } catch (Exception e) {
+      return Collections.emptyList();
+    }
+  }
+
+  public Long countByTaskQuery(TaskQuery query) {
     return Sudo.get(() -> {
-      var subQuery = TaskQuery.create();
+      TaskQuery subQuery = TaskQuery.create();
       if (!PermissionUtils.checkReadAllTasksPermission()) {
         subQuery.where().and(queryInvolvedTasks());
       }
@@ -32,21 +52,7 @@ public class DashboardTaskService extends TaskService {
         subQuery.where().and(queryExcludeHiddenTasks());
       }
       var finalQuery = query.where().and(subQuery);
-      return executeTaskQuery(finalQuery, startIndex, count);
-    });
-  }
-  
-  public Long countByTaskQuery(TaskQuery query) {
-    return Sudo.get(() ->{
-      TaskQuery subQuery = TaskQuery.create();
-      if(!PermissionUtils.checkReadAllTasksPermission()) {
-        subQuery.where().and(queryInvolvedTasks());
-      }
-      if (isHiddenTasksCasesExcluded()) {
-        subQuery.where().and(queryExcludeHiddenTasks());
-      }
-      var finalQuery = query.where().and(subQuery);
-      
+
       return countTasks(finalQuery);
     });
   }
