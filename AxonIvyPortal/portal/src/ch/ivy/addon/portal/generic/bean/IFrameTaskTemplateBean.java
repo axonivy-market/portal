@@ -53,16 +53,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
 
   private int currentProcessStep;
   private List<String> processSteps;
-  private List<String> stepNames;
-
-  public List<String> getStepNames() {
-    return stepNames;
-  }
-
-  public void setStepNames(List<String> stepNames) {
-    this.stepNames = stepNames;
-  }
-
+  private List<String> stepIndexes;
   private boolean isShowAllSteps;
   private String processChainDirection;
   private String processChainShape;
@@ -155,9 +146,9 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     Map<String, String> requestParamMap = getRequestParameterMap();
     String currentProcessStepText = requestParamMap.get(CURRENT_PROCESS_STEP_PARAM);
     processSteps = StringUtils.isNotBlank(requestParamMap.get(PROCESS_STEPS_PARAM)) ? Arrays.asList(requestParamMap.get(PROCESS_STEPS_PARAM).split("\\s*,\\s*")) : new ArrayList<>();
-    stepNames = new ArrayList<>();
+    stepIndexes = new ArrayList<>();
     for (int i= 0; i < processSteps.size(); i++) {
-     stepNames.add(String.valueOf(i));
+      stepIndexes.add(String.valueOf(i));
     }
     currentProcessStep = StringUtils.isBlank(currentProcessStepText) ? 0
         : (NumberUtils.isCreatable(currentProcessStepText) ? Integer.parseInt(currentProcessStepText)
@@ -239,5 +230,13 @@ public void setCaseId(Long caseId) {
 
   public String getTaskName() {
     return taskName;
+  }
+
+  public List<String> getStepIndexes() {
+    return stepIndexes;
+  }
+
+  public void setStepIndexes(List<String> stepIndexes) {
+    this.stepIndexes = stepIndexes;
   }
 }
