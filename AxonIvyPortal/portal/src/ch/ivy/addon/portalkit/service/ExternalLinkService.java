@@ -57,4 +57,9 @@ public class ExternalLinkService extends JsonConfigurationService<ExternalLink> 
   public String getConfigKey() {
     return EXTERNAL_LINKS;
   }
+
+  @Override
+  public List<ExternalLink> findAll() {
+    return super.findAll();
+  }
 }

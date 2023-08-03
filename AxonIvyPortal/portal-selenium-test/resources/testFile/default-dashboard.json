@@ -178,6 +178,9 @@
         ],
         "greeting": true
       }
+    ],
+    "permissions": [
+      "Everybody"
     ]
   }
 ]
