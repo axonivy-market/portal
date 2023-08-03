@@ -42,7 +42,6 @@ public class ExpressManagementBean implements Serializable {
   private String importOutput;
   private String importStatus;
   private FacesMessage validateMessage;
-  private Boolean isError;
 
   public void initWorkflowSummaryTable() {
     activeMemberList = findAllActiveUser();
@@ -94,7 +93,7 @@ public class ExpressManagementBean implements Serializable {
     importExpressFile = event.getFile();
     String validateStr = UploadDocumentUtils.validateUploadedFile(importExpressFile);
     if (StringUtils.isNotEmpty(validateStr)) {
-      isError = true;
+      validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, validateStr, null); 
       displayedMessage();
     } else {
       importExpressProcesses();
@@ -125,10 +124,6 @@ public class ExpressManagementBean implements Serializable {
     } catch (Exception e) {
       importStatus = ExpressMessageType.FAILED.getLabel();
       importOutput = e.getMessage();
-    }
-
-    if (importStatus.equalsIgnoreCase(ExpressMessageType.FAILED.getLabel())) {
-      isError = true;
     }
   }
 

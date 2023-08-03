@@ -1192,6 +1192,9 @@ ch.ivy.addon.portalkit.ui.jsf:
         withRole: 'Con Rol:'
       emptystate:
         defaultEmptyMessages: No hay tabla de estadísticas para mostrar.
+      exception:
+        idNotFound: 'Chart Id not found with id: {0}'
+        noPermission: You do not have the permission to send this request!
       expiryPeriod: Período de caducidad
       loadingCharts: Por favor espere, los diagramas se están cargando
       notAllowedToCreateChart: Ha cambiado los filtros aplicados. Por favor aplique los filtros.
