@@ -53,13 +53,14 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
 
   private int currentProcessStep;
   private List<String> processSteps;
-  private List<String> formattedProcessSteps;
-  public List<String> getFormattedProcessSteps() {
-    return formattedProcessSteps;
+  private List<String> stepNames;
+
+  public List<String> getStepNames() {
+    return stepNames;
   }
 
-  public void setFormattedProcessSteps(List<String> formattedProcessSteps) {
-    this.formattedProcessSteps = formattedProcessSteps;
+  public void setStepNames(List<String> stepNames) {
+    this.stepNames = stepNames;
   }
 
   private boolean isShowAllSteps;
@@ -154,9 +155,9 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     Map<String, String> requestParamMap = getRequestParameterMap();
     String currentProcessStepText = requestParamMap.get(CURRENT_PROCESS_STEP_PARAM);
     processSteps = StringUtils.isNotBlank(requestParamMap.get(PROCESS_STEPS_PARAM)) ? Arrays.asList(requestParamMap.get(PROCESS_STEPS_PARAM).split("\\s*,\\s*")) : new ArrayList<>();
-    formattedProcessSteps = new ArrayList<>();
+    stepNames = new ArrayList<>();
     for (int i= 0; i < processSteps.size(); i++) {
-     formattedProcessSteps.add("Step " + i);
+     stepNames.add(String.valueOf(i));
     }
     currentProcessStep = StringUtils.isBlank(currentProcessStepText) ? 0
         : (NumberUtils.isCreatable(currentProcessStepText) ? Integer.parseInt(currentProcessStepText)
