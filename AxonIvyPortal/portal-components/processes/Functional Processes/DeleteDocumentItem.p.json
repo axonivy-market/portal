@@ -117,11 +117,9 @@
             "CustomSignature signature = CaseUtils.isExpressCase(ivy.case) ? CustomSignature.EXPRESS_DELETE_DOCUMENT_ITEM : CustomSignature.DELETE_DOCUMENT_ITEM;",
             "Map result = IvyAdapterService.startSubProcessInApplication(signature.getSignature(), params);",
             "",
-            "if (result.get(\"callProcessError\") != null) {",
-            "  in.hasCustomProcess = false;",
-            "} else {",
+            "in.hasCustomProcess = result != null;",
+            "if (in.hasCustomProcess) {",
             "  in.message = result.get(\"message\").toString();",
-            "  in.hasCustomProcess = true;",
             "}"
           ]
         }

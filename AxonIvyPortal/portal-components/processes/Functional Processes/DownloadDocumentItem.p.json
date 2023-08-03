@@ -124,11 +124,9 @@
             "CustomSignature signature = CaseUtils.isExpressCase(ivy.case) ? CustomSignature.EXPRESS_DOWNLOAD_DOCUMENT_ITEM : CustomSignature.DOWNLOAD_DOCUMENT_ITEM;",
             "Map result = IvyAdapterService.startSubProcessInApplication(signature.getSignature(), params);",
             "",
-            "if (result.get(\"callProcessError\") != null) {",
-            "  in.hasCustomProcess = false;",
-            "} else {",
+            "in.hasCustomProcess = result != null;",
+            "if (in.hasCustomProcess) {",
             "  in.streamedContent = result.get(\"streamedContent\") as StreamedContent;",
-            "  in.hasCustomProcess = true;",
             "}"
           ]
         }

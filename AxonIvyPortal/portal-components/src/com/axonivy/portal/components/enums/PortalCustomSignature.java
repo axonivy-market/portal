@@ -1,6 +1,7 @@
 package com.axonivy.portal.components.enums;
 
 public enum PortalCustomSignature {
+  LOGOUT("portalLogout(Boolean,ch.ivyteam.ivy.workflow.ITask)"),
   LOGOUT_PAGE("portalGetLogoutPage()"),
   RESET_PASSWORD("portalResetPassword(String,String,String,String)"),
   SEND_PASSWORD_RESET_EMAIL("portalSendPasswordResetEmail(String)"),

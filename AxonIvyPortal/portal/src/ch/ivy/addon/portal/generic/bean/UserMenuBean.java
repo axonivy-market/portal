@@ -3,6 +3,7 @@ package ch.ivy.addon.portal.generic.bean;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -292,11 +293,8 @@ public class UserMenuBean implements Serializable {
   
   private String getCustomizedLogoutPage() {
     Map<String, Object> response =
-        IvyAdapterService.startSubProcessInSecurityContextWithDefault(
-            PortalCustomSignature.LOGOUT_PAGE.getSignature(),
-            null,
-            PortalCustomSignature.LOGOUT_PAGE.getDefaultSignature());
-    return (String) response.get("logoutPage");
+        IvyAdapterService.startSubProcessInSecurityContext(PortalCustomSignature.LOGOUT_PAGE.getSignature(), null);
+    return (String) Optional.ofNullable(response).map(r -> r.get("logoutPage")).orElse("");
   }
   
   public void navigateToURLOrDisplayWorkingTaskWarning(UserMenu menu, boolean isWorkingOnATask, ITask task) throws IOException {

@@ -18,6 +18,7 @@ import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
+import ch.ivyteam.ivy.process.call.SubProcessSearchFilter.SearchScope;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
@@ -44,8 +45,8 @@ public class TaskTreeUtils {
     TaskCategorySearchCriteria criteria = new TaskCategorySearchCriteria();
     criteria.setCustomTaskQuery(taskQuery);
     params.put("taskCategorySearchCriteria", criteria);
-    Map<String, Object> response = IvyAdapterService.startSubProcessInApplication(
-        "findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria)", params);
+    Map<String, Object> response = IvyAdapterService.startSubProcessWithScope(
+        "findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria)", params, SearchScope.PROJECT);
     return (CategoryTree) response.get("categoryTree");
   }
 
