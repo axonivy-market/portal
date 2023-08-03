@@ -132,7 +132,7 @@ Please do as below to migrate your override sub processes.
 #. :ref:`Document processes <customization-document-processes>`
 
       - Remove Sub Process Override of ``GetDocumentList``, ``UploadDocument``,
-      ``DeleteDocument``, and ``DownloadDocument`` from your project.
+        ``DeleteDocument``, and ``DownloadDocument`` from your project.
 
       - Change the signature of your callable starts as below.
 
@@ -150,14 +150,16 @@ Please do as below to migrate your override sub processes.
 
 #. :ref:`Customize Logout Process <customization-logout>`
 
-      - Remove Sub Process Override of ``LogoutPage`` from your project.
+      - Remove Sub Process Override of ``LogoutPage`` and ``Logout`` from your project.
 
       - Change the signature of your callable start as below.
 
          +----------------------+----------------------------+
          | Sub process          | New signature              |
          +======================+============================+
-         | LogoutPage           | logoutPage                 |
+         | LogoutPage           | portalGetLogoutPage        |
+         +----------------------+----------------------------+
+         | Logout               | portalLogout               |
          +----------------------+----------------------------+
 
 #. :ref:`Customize Change Password Process <customization-change-password-process>`
