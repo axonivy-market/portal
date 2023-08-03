@@ -20,7 +20,7 @@ import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 
-abstract class JsonConfigurationService<T extends AbstractConfiguration> {
+public abstract class JsonConfigurationService<T extends AbstractConfiguration> {
 
   public List<T> saveAllPublicConfig(List<T> entities) {
     var existedIds = entities.stream().map(e -> e.getId()).collect(toList());

@@ -1190,6 +1190,9 @@ ch.ivy.addon.portalkit.ui.jsf:
         withRole: 'Avec rôle:'
       emptystate:
         defaultEmptyMessages: Pas de diagrammes à afficher
+      exception:
+        idNotFound: 'Chart Id not found with id: {0}'
+        noPermission: You do not have the permission to send this request!
       expiryPeriod: Période d'expiration
       loadingCharts: Veuillez patienter, les graphiques sont en cours de chargement …
       notAllowedToCreateChart: Vous n'êtes pas autorisé à créer un diagramme avant de cliquer sur le bouton Appliquer les filtres
