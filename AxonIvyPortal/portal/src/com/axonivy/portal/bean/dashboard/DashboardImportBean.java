@@ -55,19 +55,18 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
   public void loadImportedFile(FileUploadEvent event) {
     resetDialog();
     this.selectedDashboardPermissions = new ArrayList<>();
-    importFile = event.getFile(); 
+    importFile = event.getFile();
     String validateStr = UploadDocumentUtils.validateUploadedFile(importFile);
     if (StringUtils.isNotEmpty(validateStr)) {
       isError = true;
-      displayedMessage(new FacesMessage(FacesMessage.SEVERITY_ERROR, validateStr, null));
+      displayedMessage(validateStr);
       return;
     }
     try {
       selectedDashboard = DashboardUtils.convertDashboardToLatestVersion(importFile.getInputStream());
     } catch (Exception e) {
       isError = true;
-      displayedMessage(new FacesMessage(FacesMessage.SEVERITY_ERROR,
-          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileCouldNotParse"), null));
+      displayedMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileCouldNotParse"));
       Ivy.log().error(e);
       return;
     }
@@ -115,9 +114,9 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
     super.createDashboard();
   }
 
-  private void displayedMessage(FacesMessage validateMessage) {
+  private void displayedMessage(String validateMessage) {
     FacesContext.getCurrentInstance().addMessage("import-dashboard-form:import-dashboard-dialog-message",
-        validateMessage);
+        new FacesMessage(FacesMessage.SEVERITY_ERROR, validateMessage, null));
   }
 
   private void resetDialog() {
