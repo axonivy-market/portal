@@ -12,12 +12,10 @@ import ch.ivyteam.ivy.workflow.StandardProcessType;
  * Portal API for navigation not in iFrame
  *
  */
-public final class PortalNavigatorAPI extends BaseNavigator {
+public final class PortalNavigatorAPI extends BaseNavigator{
   private static final String PORTAL_PROCESS_START_NAME = "Start Processes/PortalStart/DefaultApplicationHomePage.ivp";
-
-
   private PortalNavigatorAPI() {}
-
+  
   /**
    * Navigate to Portal home
    */
@@ -34,5 +32,4 @@ public final class PortalNavigatorAPI extends BaseNavigator {
     Ivy.session().setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);
     redirectURL(String.format("%s?endedTaskId=%s", customizePortalEndPage, Ivy.wfTask().getId()));
   }
-
 }
