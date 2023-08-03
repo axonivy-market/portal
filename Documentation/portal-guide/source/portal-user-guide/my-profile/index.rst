@@ -3,7 +3,7 @@
 My Profile
 **********
 
-Help you adjust your general settings, language, email settings and date format configuration.
+Help you adjust your general settings, language and email settings.
 
 |my-profile-save|
 
@@ -121,3 +121,5 @@ to activate or deactivate further email notifications.
 
 The daily checkboxes :guilabel:`Receive daily summary at` allow you to specify the weekdays 
 on which you receive a summary of all tasks assigned to you or one of your roles.
+
+.. |my-profile-save| image:: ../../screenshots/my-profile/my-profile.png
