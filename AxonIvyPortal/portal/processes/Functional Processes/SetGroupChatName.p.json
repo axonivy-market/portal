@@ -76,9 +76,9 @@
             "import com.axonivy.portal.components.service.IvyAdapterService;",
             "",
             "Map result = IvyAdapterService.startSubProcessInSecurityContext(PortalCustomSignature.SET_GROUP_CHAT_NAME.getSignature(), null);",
-            "if (result.get(\"callProcessError\") != null) {",
-            "  in.hasCustomProcess = false;",
-            "} else {",
+            "",
+            "in.hasCustomProcess = result != null;",
+            "if (in.hasCustomProcess) {",
             "  in.name = result.get(\"name\").toString();",
             "  in.hasCustomProcess = true;",
             "}"
