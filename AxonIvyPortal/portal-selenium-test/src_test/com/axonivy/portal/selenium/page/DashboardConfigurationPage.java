@@ -138,10 +138,15 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public SelenideElement getMultipleLanguageDialog() {
-    SelenideElement addLanguageButton = $("div[id$='multiple-languages-dialog']");
-    addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    SelenideElement multipleLanguageDialog = $("div[id$='dashboard-creation-component:title-language-config:multiple-languages-dialog']");
+    multipleLanguageDialog.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return multipleLanguageDialog;
+  }
 
-    return addLanguageButton;
+  public SelenideElement getImportMultipleLanguageDialog() {
+    SelenideElement multipleLanguageDialog = $("div[id$='dashboard-import-component:title-language-config:multiple-languages-dialog']");
+    multipleLanguageDialog.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return multipleLanguageDialog;
   }
 
   public void reorderPublicDashboard() {
@@ -251,7 +256,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   
   public void editMultiLangDashboardImportTitle(String name, String updatedName) {
     getAddLanguageButton().click();;
-    var multipleLanguageDialog = getMultipleLanguageDialog();
+    var multipleLanguageDialog = getImportMultipleLanguageDialog();
     var elementsInput = multipleLanguageDialog.$$("td input");
 
     elementsInput.get(2).setValue(updatedName);
