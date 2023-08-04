@@ -40,9 +40,6 @@ public final class PortalNavigatorInFrameAPI extends BaseNavigator {
   /**
    * Navigate to PortalEndPage without finishing a task, e.g. clicking on Cancel button then back to previous page: task list or task details or global search
    */
-  /**
-   * 
-   */
   public static void navigateToPortalEndPage() {
     String statement = "parent.redirectToEndPageCommand([{name: 'taskId', value: " + Ivy.wfTask().getId() + "}]);";
     PrimeFaces.current().executeScript(statement);
@@ -54,7 +51,7 @@ public final class PortalNavigatorInFrameAPI extends BaseNavigator {
    * @param caseId
    * @return Absolute url to case details page of case id
    */
-  public static String BuildUrlToPortalCaseDetailsPage(String caseId) {
+  public static String buildUrlToPortalCaseDetailsPage(String caseId) {
     Map<String, String> param = new HashMap<>();
     param.put("caseId", caseId);
     return buildAbsoluteUrl(PORTAL_PROCESS_START_CASE_DETAIL, param);
