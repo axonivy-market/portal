@@ -19,7 +19,7 @@ Portal supports you to customize:
 Customize logout function
 -------------------------
 
-Create callable subprocess with
+Create callable sub process with
 
 **Signature**: potalLogout
 
@@ -36,7 +36,7 @@ Create callable subprocess with
 Customize logout page
 ---------------------
 
-Create callable subprocess with 
+Create callable sub process with 
 
 **Signature**: potalGetLogoutPage
 

@@ -10,7 +10,7 @@ Customize Token Generation And Email Sending
 
 Token Generation And Email Sending is the process that will send an email to reset password.
 
-To do that, you should create a callable subprocess with:
+To do that, you should create a callable sub process with:
 
 **Signature**: portalSendPasswordResetEmail
 
@@ -39,7 +39,7 @@ Password resetting is the process that validates and updates the password for th
 You can customize how to validate new passwords or messages you want to show to
 user when he creates the new password successfully.
 
-To do that, you should create a callable subprocess with:
+To do that, you should create a callable sub process with:
 
 **Signature**: portalResetPassword
 
