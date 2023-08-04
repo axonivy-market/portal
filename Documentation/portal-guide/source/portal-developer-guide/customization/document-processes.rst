@@ -22,7 +22,7 @@ to customize document functions.
 Get document list
 +++++++++++++++++
 
-Customize how Portal gets documents, create a callable subprocess with:
+Customize how Portal gets documents, create a callable sub process with:
 
 **Signature**: portalGetDocumentList
 
@@ -49,7 +49,7 @@ Upload document
 +++++++++++++++
 
 Customize what Portal should do when a user uploads a document,
-create a callable subprocess with:
+create a callable sub process with:
 
 **Signature**: portalUploadDocument
 
@@ -81,7 +81,7 @@ Download document
 +++++++++++++++++
 
 Customize behavior when a user downloads a document from Portal,
-create a callable subprocess with:
+create a callable sub process with:
 
 **Signature**: portalDownloadDocument
 
@@ -103,7 +103,7 @@ Delete document
 +++++++++++++++
 
 Customize behavior when an user deletes a document from Portal,
-create a callable subprocess with:
+create a callable sub process with:
 
 **Signature**: portalDeleteDocument
 
