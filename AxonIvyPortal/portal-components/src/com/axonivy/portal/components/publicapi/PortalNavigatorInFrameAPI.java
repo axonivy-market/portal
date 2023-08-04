@@ -40,9 +40,6 @@ public final class PortalNavigatorInFrameAPI extends BaseNavigator {
   /**
    * Navigate to PortalEndPage without finishing a task, e.g. clicking on Cancel button then back to previous page: task list or task details or global search
    */
-  /**
-   * 
-   */
   public static void navigateToPortalEndPage() {
     String statement = "parent.redirectToEndPageCommand([{name: 'taskId', value: " + Ivy.wfTask().getId() + "}]);";
     PrimeFaces.current().executeScript(statement);
