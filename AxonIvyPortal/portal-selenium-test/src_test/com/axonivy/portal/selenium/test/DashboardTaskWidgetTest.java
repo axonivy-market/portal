@@ -139,18 +139,11 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskEditWidget.clickOnStateToShowDropdown();
     taskEditWidget.selectState(OPEN);
     taskEditWidget.preview();
-    taskEditWidget.waitPageSelected(1);
-    taskEditWidget.countAllTasks().shouldHave(size(5));
-    taskEditWidget.nextPageTable();
-    taskEditWidget.waitPageSelected(2);
-    taskEditWidget.countAllTasks().shouldHave(size(5));
-    taskEditWidget.nextPageTable();
-    taskEditWidget.waitPageSelected(3);
-    taskEditWidget.countAllTasks().shouldHave(size(2));
+    taskEditWidget.countAllTasks().shouldHave(size(12));
     taskEditWidget.save();
     TaskWidgetNewDashBoardPage taskWidgetEdited = newDashboardPage.selectTaskWidget(NEW_YOUR_TASK);
     taskWidgetEdited.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    taskWidgetEdited.countAllTasks().shouldHave(size(5));
+    taskWidgetEdited.countAllTasks().shouldHave(size(12));
   }
   
   @Test
