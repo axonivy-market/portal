@@ -180,7 +180,7 @@ public class DashboardBean implements Serializable {
   
   public void handleStartTask(ITask task) throws IOException {
     selectedTask = task;
-    TaskUtils.handleStartTask(task, PortalPage.DASHBOARD, PortalConstants.RESET_TASK_CONFIRMATION_DIALOG);
+    TaskUtils.handleStartTask(task, PortalPage.HOME_PAGE, PortalConstants.RESET_TASK_CONFIRMATION_DIALOG);
   }
 
   public void navigateToSelectedTaskDetails(ITask task) {
