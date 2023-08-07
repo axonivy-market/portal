@@ -44,7 +44,7 @@ public final class PortalNavigatorAPI extends BaseNavigator {
    * @param caseId
    * @return Absolute url to case details page of case id
    */
-  public static String BuildUrlToPortalCaseDetailsPage(Long caseId) {
+  public static String buildUrlToPortalCaseDetailsPage(Long caseId) {
     String id = Long.toString(caseId);
     Map<String, String> param = new HashMap<>();
     param.put("caseId", id);

@@ -103,7 +103,7 @@
             "import ch.ivyteam.ivy.request.IHttpResponse;",
             "",
             "IHttpResponse taskDetailsUrl = ivy.response as IHttpResponse;",
-            "taskDetailsUrl.sendRedirect(PortalNavigatorAPI.BuildUrlToPortalCaseDetailsPage(in.caseId));"
+            "taskDetailsUrl.sendRedirect(PortalNavigatorAPI.buildUrlToPortalCaseDetailsPage(in.caseId));"
           ]
         }
       },
