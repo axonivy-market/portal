@@ -13,7 +13,7 @@
         "callSignature" : "start",
         "result" : {
           "params" : [
-            { "name" : "caseId", "type" : "String" }
+            { "name" : "caseId", "type" : "Long" }
           ],
           "map" : {
             "result.caseId" : "in.caseId"

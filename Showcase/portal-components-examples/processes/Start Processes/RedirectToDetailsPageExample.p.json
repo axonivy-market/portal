@@ -44,13 +44,14 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI;",
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
+            "import PortalNavigatorAPI;",
             "import java.net.http.HttpResponse;",
             "import ch.ivyteam.ivy.request.IHttpResponse;",
             "import com.axonivy.portal.components.generic.navigation.BaseNavigator;",
             "",
             "IHttpResponse taskDetailsUrl = ivy.response as IHttpResponse;",
-            "taskDetailsUrl.sendRedirect(PortalNavigatorInFrameAPI.buildUrlToPortalTaskDetailsPage(in.taskId));"
+            "taskDetailsUrl.sendRedirect(PortalNavigatorAPI.buildUrlToPortalTaskDetailsPage(in.taskId));"
           ]
         }
       },
@@ -97,11 +98,12 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI;",
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
+            "import PortalNavigatorAPI;",
             "import ch.ivyteam.ivy.request.IHttpResponse;",
             "",
             "IHttpResponse taskDetailsUrl = ivy.response as IHttpResponse;",
-            "taskDetailsUrl.sendRedirect(PortalNavigatorInFrameAPI.buildUrlToPortalCaseDetailsPage(in.caseId));"
+            "taskDetailsUrl.sendRedirect(PortalNavigatorAPI.BuildUrlToPortalCaseDetailsPage(in.caseId));"
           ]
         }
       },
