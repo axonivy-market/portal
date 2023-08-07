@@ -58,25 +58,6 @@ public class IvyAdapterService {
     return startSubProcess(signature, params, scope);
   }
 
-  /**
-   * Find the sub process in security context scope then calls it with the given signature
-   * with the given params. Exactly one sub process with the given signature is expected.
-   * If system cannot find the sub process then calls the default sub process with the
-   * given defaultSignature instead.
-   *
-   * @param signature The signature of the sub process to be triggered.
-   * @param params The parameters to pass to the process.
-   * @param defaultSignature The signature of the default sub process.
-   * @return The response of the process execution.
-   */
-  public static Map<String, Object> startSubProcessInSecurityContextWithDefault(String signature, Map<String, Object> params, String defaultSignature) {
-    var result = startSubProcessInSecurityContext(signature, params);
-    if (Optional.ofNullable(result).isPresent()) {
-      return startSubProcessInSecurityContext(defaultSignature, params);
-    }
-    return result;
-  }
-
   private static Map<String, Object> startSubProcess(String signature, Map<String, Object> params, SearchScope scope) {
     return Sudo.get(() -> {
       var filter = SubProcessSearchFilter.create()

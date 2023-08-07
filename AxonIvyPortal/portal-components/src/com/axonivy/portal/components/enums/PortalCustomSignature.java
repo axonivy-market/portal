@@ -1,5 +1,7 @@
 package com.axonivy.portal.components.enums;
 
+import org.apache.commons.lang3.StringUtils;
+
 public enum PortalCustomSignature {
   LOGOUT("portalLogout(Boolean,ch.ivyteam.ivy.workflow.ITask)"),
   LOGOUT_PAGE("portalGetLogoutPage()"),
@@ -27,7 +29,7 @@ public enum PortalCustomSignature {
 
   public String getDefaultSignature() {
     String defaultSignature = signature.replaceFirst("portal", "");
-    return defaultSignature.substring(0, 1).toLowerCase() + defaultSignature.substring(1);
+    return StringUtils.uncapitalize(defaultSignature);
   }
 
 }
