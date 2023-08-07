@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
@@ -52,6 +53,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
 
   private int currentProcessStep;
   private List<String> processSteps;
+  private List<String> stepIndexes;
   private boolean isShowAllSteps;
   private String processChainDirection;
   private String processChainShape;
@@ -142,11 +144,15 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
 
   public void getDataFromIFrame() throws Exception {
     Map<String, String> requestParamMap = getRequestParameterMap();
-    currentProcessStep = Optional.ofNullable(requestParamMap.get(CURRENT_PROCESS_STEP_PARAM))
-        .filter(str -> str.matches("-?\\d+"))
-        .map(Integer::parseInt)
-        .orElse(0);
+    String currentProcessStepText = requestParamMap.get(CURRENT_PROCESS_STEP_PARAM);
     processSteps = StringUtils.isNotBlank(requestParamMap.get(PROCESS_STEPS_PARAM)) ? Arrays.asList(requestParamMap.get(PROCESS_STEPS_PARAM).split("\\s*,\\s*")) : new ArrayList<>();
+    stepIndexes = new ArrayList<>();
+    for (int i= 0; i < processSteps.size(); i++) {
+      stepIndexes.add(String.valueOf(i));
+    }
+    currentProcessStep = StringUtils.isBlank(currentProcessStepText) ? 0
+        : (NumberUtils.isCreatable(currentProcessStepText) ? Integer.parseInt(currentProcessStepText)
+            : Math.max(processSteps.indexOf(currentProcessStepText), 0));
     isShowAllSteps = Optional.ofNullable(requestParamMap.get(IS_SHOW_ALL_STEPS_PARAM)).map(BooleanUtils::toBoolean).orElse(false);
     processChainDirection = Optional.ofNullable(requestParamMap.get(PROCESS_CHAIN_DIRECTION_PARAM)).orElse(StringUtils.EMPTY);
     processChainShape = Optional.ofNullable(requestParamMap.get(PROCESS_CHAIN_SHAPE_PARAM)).orElse(StringUtils.EMPTY);
@@ -224,5 +230,13 @@ public void setCaseId(Long caseId) {
 
   public String getTaskName() {
     return taskName;
+  }
+
+  public List<String> getStepIndexes() {
+    return stepIndexes;
+  }
+
+  public void setStepIndexes(List<String> stepIndexes) {
+    this.stepIndexes = stepIndexes;
   }
 }

@@ -10,7 +10,6 @@
 
 <cc:implementation>
   <c:set var="filterContainer" value="#{cc.attrs.dataModel.filterContainer}" />
-  <f:event listener="#{cc.attrs.dataModel.updateSelectedFilter}" type="preRenderComponent" />
   <ic:ch.ivy.addon.portalkit.component.task.filter.TaskIdFilter filter="#{filterContainer.idFilter}"
     dataModel="#{cc.attrs.dataModel}" />
   <ic:ch.ivy.addon.portalkit.component.task.filter.TaskNameFilter filter="#{filterContainer.nameFilter}"

@@ -60,17 +60,14 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
     String validateStr = UploadDocumentUtils.validateUploadedFile(importFile);
     if (StringUtils.isNotEmpty(validateStr)) {
       isError = true;
-      validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, validateStr, null);
-      displayedMessage();
+      displayedMessage(validateStr);
       return;
     }
     try {
       selectedDashboard = BusinessEntityConverter.inputStreamToEntity(importFile.getInputStream(), Dashboard.class);
     } catch (Exception e) {
       isError = true;
-      validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileCouldNotParse"), null);
-      displayedMessage();
+      displayedMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileCouldNotParse"));
       Ivy.log().error(e);
       return;
     }
@@ -118,9 +115,9 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
     super.createDashboard();
   }
 
-  private void displayedMessage() {
+  private void displayedMessage(String validateMessage) {
     FacesContext.getCurrentInstance().addMessage("import-dashboard-form:import-dashboard-dialog-message",
-        validateMessage);
+        new FacesMessage(FacesMessage.SEVERITY_ERROR, validateMessage, null));
   }
 
   private void resetDialog() {

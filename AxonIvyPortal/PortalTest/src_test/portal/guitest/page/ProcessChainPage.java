@@ -18,6 +18,7 @@ public class ProcessChainPage extends TemplatePage {
   public void nextStep() {
     waitForElementDisplayed(By.id("form:next-button"), true);
     click(findElementById("form:next-button"));
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
   
   public String getCurrentStep() {
