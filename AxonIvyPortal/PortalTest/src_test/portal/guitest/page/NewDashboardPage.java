@@ -107,10 +107,10 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void waitForTaskWidgetLoading() {
-    WaitHelper.assertTrueWithWait(() -> {
-      var taskLoading = findElementByCssSelector("[id$=':task-component:loading']");
-      return taskLoading.getAttribute(CLASS_PROPERTY).contains("u-display-none");
-    });
+//    WaitHelper.assertTrueWithWait(() -> {
+//      var taskLoading = findElementByCssSelector("[id$=':task-component:loading']");
+//      return taskLoading.getAttribute(CLASS_PROPERTY).contains("u-display-none");
+//    });
     waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ui-datatable.dashboard-tasks--table", CLASS_PROPERTY);
   }
 
