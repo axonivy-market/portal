@@ -1,4 +1,4 @@
 RedirectToCaseDetailsExampleData #class
 com.axonivy.portal.components.examples.redirectToDetailsPage.RedirectToCaseDetailsExample #namespace
-caseId String #field
+caseId Long #field
 caseId PERSISTENT #fieldModifier

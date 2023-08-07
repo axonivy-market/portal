@@ -2,8 +2,6 @@ package com.axonivy.portal.components.publicapi;
 
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.primefaces.PrimeFaces;
 
@@ -17,9 +15,6 @@ import ch.ivyteam.ivy.environment.Ivy;
  */
 public final class PortalNavigatorInFrameAPI extends BaseNavigator {
   private PortalNavigatorInFrameAPI() {}
-
-  private static final String PORTAL_PROCESS_START_CASE_DETAIL = "Start Processes/PortalStart/CaseDetailsInIFrame.ivp";
-  private static final String PORTAL_PROCESS_START_TASK_DETAIL = "Start Processes/PortalStart/TaskDetailsInIframe.ivp";
 
   /**
    * Navigate to target url
@@ -45,27 +40,4 @@ public final class PortalNavigatorInFrameAPI extends BaseNavigator {
     PrimeFaces.current().executeScript(statement);
   }
 
-  /**
-   * Build url to case details page of case id
-   * 
-   * @param caseId
-   * @return Absolute url to case details page of case id
-   */
-  public static String buildUrlToPortalCaseDetailsPage(String caseId) {
-    Map<String, String> param = new HashMap<>();
-    param.put("caseId", caseId);
-    return buildAbsoluteUrl(PORTAL_PROCESS_START_CASE_DETAIL, param);
-  }
-
-  /**
-   * Build url to task details page of task id
-   * 
-   * @param taskId
-   * @return Absolute url to task details page of task id
-   */
-  public static String buildUrlToPortalTaskDetailsPage(String taskId) {
-    Map<String, String> param = new HashMap<>();
-    param.put("taskDetailsId", taskId);
-    return buildAbsoluteUrl(PORTAL_PROCESS_START_TASK_DETAIL, param);
-  }
 }

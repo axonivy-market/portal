@@ -1,4 +1,4 @@
 RedirectToDetailsPageExampleData #class
 com.axonivy.portal.components.examples #namespace
-taskId String #field
-caseId String #field
+taskId Long #field
+caseId Long #field

@@ -13,7 +13,7 @@
         "callSignature" : "start",
         "result" : {
           "params" : [
-            { "name" : "taskId", "type" : "String" }
+            { "name" : "taskId", "type" : "Long" }
           ],
           "map" : {
             "result.taskId" : "in.taskId"
