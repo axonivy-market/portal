@@ -149,5 +149,5 @@ public class PortalMenuNavigator {
     }
     navigateToTargetPage(params);
   }
-  private record PortalSubMenuItemWrapper(String sessionUserId, Locale loadedLocale, List<SubMenuItem> portalSubMenuItems) {};
+  private record PortalSubMenuItemWrapper(String sessionUserId, Locale loadedLocale, List<SubMenuItem> portalSubMenuItems) {}
 }

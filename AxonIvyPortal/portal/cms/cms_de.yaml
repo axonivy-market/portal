@@ -1193,6 +1193,9 @@ ch.ivy.addon.portalkit.ui.jsf:
         withRole: 'Mit Rolle:'
       emptystate:
         defaultEmptyMessages: Es sind keine Auswertungen vorhanden.
+      exception:
+        idNotFound: 'Chart Id not found with id: {0}'
+        noPermission: You do not have the permission to send this request!
       expiryPeriod: Fristende
       loadingCharts: Bitte warten während die Diagramme geladen werden…
       notAllowedToCreateChart: Sie haben die Filtereinstellungen geändert. Bitte aktualisieren Sie gesetzten Filter mit "Filter anwenden", um das Diagramm anschließend erstellen zu können

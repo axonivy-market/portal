@@ -8,17 +8,17 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
-      "name" : "start(Long)",
+      "name" : "start(String)",
       "config" : {
         "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "taskId", "type" : "Long", "desc" : "" }
+            { "name" : "uuid", "type" : "String", "desc" : "" }
           ],
           "map" : { },
           "code" : [
-            "import ch.ivy.addon.portalkit.util.TaskUtils;",
-            "out.task = TaskUtils.findTaskById(param.taskId);"
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;",
+            "out.task = TaskService.newInstance().findTaskByUUID(param.uuid);"
           ]
         },
         "guid" : "1802215F56A1C1AA"

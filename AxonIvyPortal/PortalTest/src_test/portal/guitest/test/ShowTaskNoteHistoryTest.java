@@ -27,12 +27,12 @@ public class ShowTaskNoteHistoryTest extends BaseTest {
     public void testShowTaskNoteHistory() {
         HomePage homePage = new HomePage();
         TaskWidgetPage taskWidgetPage = homePage.openTaskList();
-        String taskId = taskWidgetPage.getTaskIdOfRow(0);
+        String taskUUID = taskWidgetPage.getTaskUUIDOfRow(0);
         TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
         taskTemplatePage.openCaseInfo();
         taskTemplatePage.addNewNote(NOTE_CONTENT);
         
-        goToTaskNoteHistoryPage(taskId);
+        goToTaskNoteHistoryPage(taskUUID);
         taskHistoryPage = new NoteHistoryPage();
         int numberOfNotes = taskHistoryPage.countNotes();
         

@@ -6,13 +6,11 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.persistence.domain.BusinessEntity;
+import com.axonivy.portal.components.service.exception.PortalException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import com.axonivy.portal.components.persistence.domain.BusinessEntity;
-import com.axonivy.portal.components.service.exception.PortalException;
-import ch.ivyteam.ivy.environment.Ivy;
 
 /**
  * This class provides method to convert Business entity object into Json value
@@ -28,7 +26,6 @@ public final class BusinessEntityConverter {
 		try {
 			return getObjectMapper().writeValueAsString(entity);
 		} catch (JsonProcessingException e) {
-			Ivy.log().error("Can't write json value", e);
 			throw new PortalException(e);
 		}
 	}
@@ -37,7 +34,6 @@ public final class BusinessEntityConverter {
 		try {
 			return getObjectMapper().readValue(jsonValue, classType);
 		} catch (IOException e) {
-			Ivy.log().error("Can't read json value", e);
 			throw new PortalException(e);
 		}
 	}
@@ -46,7 +42,6 @@ public final class BusinessEntityConverter {
 		try {
 			return getObjectMapper().writeValueAsString(entity);
 		} catch (JsonProcessingException e) {
-			Ivy.log().error("Can't write json value", e);
 			throw new PortalException(e);
 		}
 	}
@@ -59,7 +54,6 @@ public final class BusinessEntityConverter {
 			return getObjectMapper().readValue(jsonValue,
 					getObjectMapper().getTypeFactory().constructCollectionType(List.class, classType));
 		} catch (IOException e) {
-			Ivy.log().error("Can't read json value", e);
 			throw new PortalException(e);
 		}
 	}

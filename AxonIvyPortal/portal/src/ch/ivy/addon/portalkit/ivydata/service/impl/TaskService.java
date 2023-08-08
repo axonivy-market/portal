@@ -295,9 +295,27 @@ public class TaskService implements ITaskService {
       return taskQueryExecutor().getFirstResult(taskQuery);
     });
   }
+  
+  public ITask findTaskByUUID(String uuid) {
+    return Sudo.get(() -> {
+      TaskQuery taskQuery = TaskQuery.create().where().uuid().isEqual(uuid);
+      if (PermissionUtils.checkReadAllTasksPermission()) {
+        EnumSet<TaskState> ADVANCE_STATES = EnumSet.of(CREATED, SUSPENDED, RESUMED, PARKED, READY_FOR_JOIN, DONE,
+            DELAYED, DESTROYED, JOIN_FAILED, FAILED, WAITING_FOR_INTERMEDIATE_EVENT);
+        taskQuery.where().and(queryForStates(ADVANCE_STATES));
+      } else {
+        EnumSet<TaskState> STANDARD_STATES = EnumSet.of(CREATED, SUSPENDED, RESUMED, PARKED, READY_FOR_JOIN, DONE);
+        taskQuery.where().and(queryForStates(STANDARD_STATES)).and(queryInvolvedTasks());
+      }
+      if (isHiddenTasksCasesExcluded()) {
+        taskQuery.where().and(queryExcludeHiddenTasks());
+      }
+      return taskQueryExecutor().getFirstResult(taskQuery);
+    });
+  }
 
-  public boolean isTaskAccessible(long taskId) {
-    return findTaskById(taskId) != null;
+  public boolean isTaskAccessible(String uuid) {
+    return findTaskByUUID(uuid) != null;
   }
 
   private TaskQuery queryForStates(EnumSet<TaskState> states) {

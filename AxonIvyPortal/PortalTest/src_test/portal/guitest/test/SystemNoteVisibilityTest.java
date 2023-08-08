@@ -43,11 +43,11 @@ public class SystemNoteVisibilityTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     
     CaseDetailsPage caseDetailsPage = openCaseDetails();
-    String caseId = caseDetailsPage.getCaseId();
+    String caseUUID = caseDetailsPage.getCaseUUID();
     List<String> caseNoteAuthors = caseDetailsPage.getCaseNoteAuthors();
     Assert.assertTrue(caseNoteAuthors.contains(SYSTEM_USER_NAME));
     
-    NoteHistoryPage caseNoteHistoryPage = openCaseNoteHistory(caseId);
+    NoteHistoryPage caseNoteHistoryPage = openCaseNoteHistory(caseUUID);
     caseNoteAuthors = caseNoteHistoryPage.getNoteAuthors();
     Assert.assertTrue(caseNoteAuthors.contains(SYSTEM_USER_NAME));
   }
@@ -55,11 +55,11 @@ public class SystemNoteVisibilityTest extends BaseTest {
   @Test
   public void testSystemNoteVisibilityInCaseForNormalUser() {
     CaseDetailsPage caseDetailsPage = openCaseDetails();
-    String caseId = caseDetailsPage.getCaseId();
+    String uuid = caseDetailsPage.getCaseUUID();
     List<String> caseNoteAuthors = caseDetailsPage.getCaseNoteAuthors();
     Assert.assertFalse(caseNoteAuthors.contains(SYSTEM_USER_NAME));
     
-    NoteHistoryPage caseNoteHistoryPage = openCaseNoteHistory(caseId);
+    NoteHistoryPage caseNoteHistoryPage = openCaseNoteHistory(uuid);
     caseNoteAuthors = caseNoteHistoryPage.getNoteAuthors();
     Assert.assertFalse(caseNoteAuthors.contains(SYSTEM_USER_NAME));
   }
@@ -70,11 +70,11 @@ public class SystemNoteVisibilityTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     
     TaskDetailsPage taskDetailsPage = openTaskDetails();
-    String taskId = taskDetailsPage.getTaskId();
+    String uuid = taskDetailsPage.getTaskUUID();
     List<String> taskNoteAuthors = taskDetailsPage.getTaskNoteAuthors();
     Assert.assertTrue(taskNoteAuthors.contains(SYSTEM_USER_NAME));
     
-    NoteHistoryPage taskNoteHistoryPage = openTaskNoteHistory(taskId);
+    NoteHistoryPage taskNoteHistoryPage = openTaskNoteHistory(uuid);
     taskNoteAuthors = taskNoteHistoryPage.getNoteAuthors();
     Assert.assertTrue(taskNoteAuthors.contains(SYSTEM_USER_NAME));
     
@@ -83,7 +83,7 @@ public class SystemNoteVisibilityTest extends BaseTest {
     taskNoteAuthors = taskDetailsPage.getTaskNoteAuthors();
     Assert.assertFalse(taskNoteAuthors.contains(SYSTEM_USER_NAME));
     
-    taskNoteHistoryPage = openTaskNoteHistory(taskId);
+    taskNoteHistoryPage = openTaskNoteHistory(uuid);
     taskNoteAuthors = taskNoteHistoryPage.getNoteAuthors();
     Assert.assertFalse(taskNoteAuthors.contains(SYSTEM_USER_NAME));
   }
@@ -92,11 +92,11 @@ public class SystemNoteVisibilityTest extends BaseTest {
   public void testSystemNoteVisibilityInTaskDetailForNormalUser() {
     updatePortalSetting(HIDE_SYSTEM_NOTES_FROM_HISTORY.getKey(), "true");
     TaskDetailsPage taskDetailsPage = openTaskDetails();
-    String taskId = taskDetailsPage.getTaskId();
+    String uuid = taskDetailsPage.getTaskUUID();
     List<String> taskNoteAuthors = taskDetailsPage.getTaskNoteAuthors();
     Assert.assertFalse(taskNoteAuthors.contains(SYSTEM_USER_NAME));
     
-    NoteHistoryPage taskNoteHistoryPage = openTaskNoteHistory(taskId);
+    NoteHistoryPage taskNoteHistoryPage = openTaskNoteHistory(uuid);
     taskNoteAuthors = taskNoteHistoryPage.getNoteAuthors();
     Assert.assertFalse(taskNoteAuthors.contains(SYSTEM_USER_NAME));
     
@@ -107,7 +107,7 @@ public class SystemNoteVisibilityTest extends BaseTest {
     taskNoteAuthors = taskDetailsPage.getTaskNoteAuthors();
     Assert.assertTrue(taskNoteAuthors.contains(SYSTEM_USER_NAME));
     
-    taskNoteHistoryPage = openTaskNoteHistory(taskId);
+    taskNoteHistoryPage = openTaskNoteHistory(uuid);
     taskNoteAuthors = taskNoteHistoryPage.getNoteAuthors();
     Assert.assertTrue(taskNoteAuthors.contains(SYSTEM_USER_NAME));
   }
@@ -126,13 +126,13 @@ public class SystemNoteVisibilityTest extends BaseTest {
     return casePage.openDetailsOfCaseHasName("Create note");
   }
 
-  private NoteHistoryPage openCaseNoteHistory(String caseId) {
-    goToCaseNoteHistoryPage(caseId);
+  private NoteHistoryPage openCaseNoteHistory(String uuid) {
+    goToCaseNoteHistoryPage(uuid);
     return new NoteHistoryPage();
   }
   
-  private NoteHistoryPage openTaskNoteHistory(String taskId) {
-    goToTaskNoteHistoryPage(taskId);
+  private NoteHistoryPage openTaskNoteHistory(String uuid) {
+    goToTaskNoteHistoryPage(uuid);
     return new NoteHistoryPage();
   }
   

@@ -28,7 +28,7 @@ import org.primefaces.event.UnselectEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
-import com.axonivy.portal.bo.JsonVersion;
+import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.service.DeepLTranslationService;
@@ -121,7 +121,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     this.selectedDashboard.setDisplayedPermission(displayedPermission);
     this.selectedDashboard.setPermissions(permissions);
     if (!this.dashboards.contains(selectedDashboard)) {
-      selectedDashboard.setVersion(JsonVersion.LATEST.getValue());
+      selectedDashboard.setVersion(DashboardJsonVersion.LATEST_VERSION.getValue());
       this.dashboards.add(selectedDashboard);
     }
     saveDashboards(new ArrayList<>(this.dashboards));
@@ -209,7 +209,10 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
 
   public String generateDashboardPermisisonForDisplay(Dashboard dashboard) {
-    return String.join(", ", dashboard.getPermissions());
+    return Optional.ofNullable(dashboard)
+        .map(Dashboard::getPermissions)
+        .filter(l -> CollectionUtils.isNotEmpty(l))
+        .isPresent() ? String.join(", ", dashboard.getPermissions()) : "";
   }
 
   public void updateDashboardTitleByLocale() {
@@ -300,7 +303,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
 
   public StreamedContent exportToJsonFile(Dashboard dashboard) {
-    dashboard.setVersion(JsonVersion.LATEST.getValue());
+    dashboard.setVersion(DashboardJsonVersion.LATEST_VERSION.getValue());
 
     // For private dashboard, we don't need to export permission
     if (!dashboard.getIsPublic()) {
