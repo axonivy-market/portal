@@ -12,15 +12,21 @@ import ch.ivyteam.ivy.application.IApplicationConfigurationManager;
 import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.application.ReleaseState;
-import ch.ivyteam.ivy.persistence.PersistencyException;
-import ch.ivyteam.ivy.security.ISecurityManager;
+import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.exec.Sudo;
 
 public class IvyExecutor {
 
   private IvyExecutor() {}
 
-  public static <T> T executeAsSystem(Callable<T> callable) throws PersistencyException{
-    return ISecurityManager.instance().executeAsSystem2(callable);
+  public static <T> T executeAsSystem(Callable<T> callable){
+    try {
+      return Sudo.call(callable);
+    } catch (Exception e) {
+      // TODO Auto-generated catch block
+      Ivy.log().error(e);
+      return null;
+    }
   }
 
   public static void executeOnceInAllProcessModelVersion(IProcessModelVersion pmv, Runnable runnable) {

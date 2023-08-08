@@ -13,8 +13,8 @@ import ch.ivy.addon.portalkit.enums.MenuKind;
 public class NavigatorBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public void navigateToCaseDetail(long caseId) {
-    PortalNavigator.navigateToPortalCaseDetails(caseId);
+  public void navigateToCaseDetail(String uuid) {
+    PortalNavigator.navigateToPortalCaseDetails(uuid);
   }
   
   public String getProcessPage() {
