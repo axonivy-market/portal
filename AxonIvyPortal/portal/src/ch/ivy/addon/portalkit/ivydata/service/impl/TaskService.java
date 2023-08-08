@@ -230,6 +230,7 @@ public class TaskService implements ITaskService {
       return expiryStatistic;
     }
 
+  @SuppressWarnings("deprecation")
   private TaskQuery extendQueryWithUserHasPermissionToSee(TaskSearchCriteria criteria) {
     TaskQuery clonedQuery = TaskQuery.fromJson(criteria.getFinalTaskQuery().asJson()); // clone to keep the final query in TaskSearchCriteria
     if (!criteria.isAdminQuery()) {
@@ -250,6 +251,7 @@ public class TaskService implements ITaskService {
     return currentUserIsInvolved;
   }
 
+  @SuppressWarnings("deprecation")
   private TaskQuery extendQueryWithInvolvedUser(TaskSearchCriteria criteria) {
     TaskQuery finalQuery = criteria.getFinalTaskQuery();
     TaskQuery clonedQuery = TaskQuery.fromJson(finalQuery.asJson()); // clone to keep the final query in TaskSearchCriteria
