@@ -128,6 +128,11 @@ public class TaskTemplatePage extends TemplatePage {
     switchToCaseInfoIframe();
     return findElementByCssSelector("span[id$='case-id']").getText();
   }
+  
+  public String getCaseUUID() {
+    switchToCaseInfoIframe();
+    return findElementByCssSelector("input[id$='case-uuid']").getAttribute("value");
+  }
 
   public void clickAdhocCreationButton() {
     clickTaskActionMenu();

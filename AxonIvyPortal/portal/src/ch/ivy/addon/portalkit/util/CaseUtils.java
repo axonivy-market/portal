@@ -17,6 +17,7 @@ import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
@@ -28,11 +29,11 @@ public final class CaseUtils {
   private CaseUtils() {}
 
   public static ICase findCase(long caseId) {
-    return IvyExecutor.executeAsSystem(() -> Ivy.wf().findCase(caseId));
+    return Sudo.get(() -> Ivy.wf().findCase(caseId));
   }
-
+  
   public static List<ICase> findSubCasesByBusinessCaseId(long caseId) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       CaseSearchCriteria criteria = new CaseSearchCriteria();
       criteria.setBusinessCase(false);
       criteria.setTechnicalCase(true);
@@ -84,7 +85,7 @@ public final class CaseUtils {
   }
   
   public static void destroyCase(ICase selectedCase) {
-    IvyExecutor.executeAsSystem(() -> {
+    Sudo.get(() -> {
       selectedCase.destroy();
       return Void.class;
     });
@@ -137,15 +138,11 @@ public final class CaseUtils {
     if (state == null) {
       return StringUtils.EMPTY;
     }
-    switch (state) {
-      case OPEN:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/OPEN_UPPERCASE");
-      case DESTROYED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/DESTROYED_UPPERCASE");
-      case DONE:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/DONE_UPPERCASE");
-      default:
-        return StringUtils.EMPTY;
-    }
+    return switch(state) {
+      case OPEN -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/OPEN_UPPERCASE");
+      case DESTROYED -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/DESTROYED_UPPERCASE");
+      case DONE -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/DONE_UPPERCASE");
+      default -> StringUtils.EMPTY;
+    };
   }
 }
