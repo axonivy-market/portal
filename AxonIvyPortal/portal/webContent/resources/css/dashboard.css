@@ -1580,3 +1580,7 @@ span.new-widget-dialog__icon.si {
 .widget__content.case-widget {
   max-height: fit-content;
 }
+
+.widget__content.task-widget {
+  max-height: fit-content;
+}

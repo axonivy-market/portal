@@ -3,7 +3,7 @@
 My Profile
 **********
 
-Help you adjust your general settings, language, email settings and date format configuration.
+Help you adjust your general settings, language and email settings.
 
 |my-profile-save|
 
@@ -121,35 +121,5 @@ to activate or deactivate further email notifications.
 
 The daily checkboxes :guilabel:`Receive daily summary at` allow you to specify the weekdays 
 on which you receive a summary of all tasks assigned to you or one of your roles.
-
-Date format configuration
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This section allows you to configure the date field format.
-These are the options:
-
-.. table:: 
-
-   +-----------------------+-----------------------------------------------+
-   | Option                | Description                                   |
-   +=======================+===============================================+
-   | Default               | Default date format will be detected by       |
-   |                       | browser's locale for your first login.        |
-   |                       |                                               |
-   |                       | Example: Default format is dd/MM/yyyy.        |
-   |                       | Date fields will be displayed as "31/01/2021" |
-   +-----------------------+-----------------------------------------------+
-   | dd.MM.yyyy            | Date fields will be displayed by              |
-   |                       | Day.Month.Year.                               |
-   |                       |                                               |
-   |                       | Example: With this format, date fields will   |
-   |                       | be displayed as "31.01.2021"                  |
-   +-----------------------+-----------------------------------------------+
-   | MM.dd.yyyy            | Date fields will be displayed by              |
-   |                       | Month.Day.Year.                               |
-   |                       |                                               |
-   |                       | Example: With this format, date fields will   |   
-   |                       | be displayed as "01.31.2021"                  |
-   +-----------------------+-----------------------------------------------+
 
 .. |my-profile-save| image:: ../../screenshots/my-profile/my-profile.png

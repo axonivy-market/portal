@@ -218,7 +218,7 @@ function resizeTableBody() {
   scrollableBody.forEach((sb) => {
     const resizeObserver = new ResizeObserver(() => {
       let tableBody = $(sb);
-      let parentHeight = tableBody.parents('.case-dashboard-widget__panel').height();
+      let parentHeight = tableBody.parents('.grid-stack-item-content.card.dashboard-card').height();
       if (!window.matchMedia("(max-width: 767px)").matches) {
         tableBody.height(parentHeight - 100);
       } else {
