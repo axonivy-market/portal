@@ -49,6 +49,7 @@ public final class PortalNavigator extends BaseNavigator{
   public static final String PORTAL_STATISTIC_START = "/StatisticPage.ivp";
   public static final String PORTAL_USER_PROFILE_START =  "/UserProfile.ivp";
   public static final String PORTAL_CASE_DETAILS_IN_IFRAME_START = "/CaseDetailsInIFrame.ivp";
+  private static final String UUID = "uuid";
 
   private final static String DASHBOARD_PARAM = "isShowDashboard";
   
@@ -85,23 +86,13 @@ public final class PortalNavigator extends BaseNavigator{
   }
 
   public static String getSubMenuItemUrlOfCurrentApplication(MenuKind menuKind) {
-    String subMenuUrl = StringUtils.EMPTY;
-    switch (menuKind) {
-      case PROCESS:
-        subMenuUrl = PORTAL_PROCESS;
-        break;
-      case TASK:
-        subMenuUrl = PORTAL_TASK;
-        break;
-      case CASE:
-        subMenuUrl = PORTAL_CASE;
-        break;
-      case STATISTICS:
-        subMenuUrl = PORTAL_STATISTIC;
-        break;
-      default:
-        break;
-    }
+    String subMenuUrl = switch (menuKind) {
+      case PROCESS -> PORTAL_PROCESS;
+      case TASK -> PORTAL_TASK;
+      case CASE -> PORTAL_CASE;
+      case STATISTICS -> PORTAL_STATISTIC;
+      default -> StringUtils.EMPTY;
+    };
     return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(subMenuUrl);
   }
 
@@ -146,43 +137,43 @@ public final class PortalNavigator extends BaseNavigator{
     navigateByKeyword("DefaultApplicationHomePage.ivp", PORTAL_PROCESS_START_NAME, new HashMap<>());
   }
   
-  public static void navigateToPortalCaseDetails(Long caseId) {
+  public static void navigateToPortalCaseDetails(String uuid) {
     Map<String, String> params = new HashMap<>();
-    params.put("caseId", String.valueOf(caseId));
+    params.put(UUID, uuid);
     navigateByKeyword("CaseDetailsPage.ivp", PORTAL_CASE_DETAILS, params);
   }
 
-  public static void navigateToPortalRelatedTasksOfCase(Long caseId, boolean isBusinessCase, String caseName) {
+  public static void navigateToPortalRelatedTasksOfCase(String uuid, boolean isBusinessCase, String caseName) {
     Map<String, String> params = new HashMap<>();
-    params.put("caseId", String.valueOf(caseId));
+    params.put(UUID, uuid);
     params.put("isBusinessCase", String.valueOf(isBusinessCase));
     params.put("caseName", caseName);
     navigateByKeyword("RelatedTasksOfCasePage.ivp", PORTAL_RELATED_TASKS_OF_CASE, params);
   }
 
-  public static void navigateToPortalRelatedTasksOfCaseInFrame(Long caseId, boolean isBusinessCase, String caseName) {
+  public static void navigateToPortalRelatedTasksOfCaseInFrame(String uuid, boolean isBusinessCase, String caseName) {
     Map<String, String> params = new HashMap<>();
-    params.put("caseId", String.valueOf(caseId));
+    params.put(UUID, uuid);
     params.put("isBusinessCase", String.valueOf(isBusinessCase));
     params.put("caseName", caseName);
     navigateByKeyword("RelatedTasksOfCasePageInFrame.ivp", PORTAL_RELATED_TASKS_OF_CASE_IN_FRAME, params);
   }
 
-  public static void navigateToPortalTaskDetails(Long taskId) {
+  public static void navigateToPortalTaskDetails(String uuid) {
     Map<String, String> params = new HashMap<>();
-    params.put("selectedTaskId", String.valueOf(taskId));
+    params.put(UUID, uuid);
     navigateByKeyword("TaskDetailsPage.ivp", PORTAL_TASK_DETAILS, params);
   }
 
-  public static void navigateToPortalTaskDetailsInFrame(Long taskId) {
+  public static void navigateToPortalTaskDetailsInFrame(String uuid) {
     Map<String, String> params = new HashMap<>();
-    params.put("selectedTaskId", String.valueOf(taskId));
+    params.put(UUID, uuid);
     navigateByKeyword("TaskDetailsPageInFrame.ivp", PORTAL_TASK_DETAILS_IN_FRAME, params);
   }
   
-  public static void navigateToPortalCaseDetailsInFrame(Long caseId, boolean isBusinessCase) {
+  public static void navigateToPortalCaseDetailsInFrame(String uuid, boolean isBusinessCase) {
     Map<String, String> params = new HashMap<>();
-    params.put("caseId", String.valueOf(caseId));
+    params.put(UUID, uuid);
     params.put("isBusinessCase", String.valueOf(isBusinessCase));
     navigateByKeyword("CaseDetailsPageInFrame.ivp", PORTAL_CASE_DETAILS_IN_FRAME, params);
   }
@@ -226,21 +217,21 @@ public final class PortalNavigator extends BaseNavigator{
     return buildUrlByKeyword("AbsenceManagement.ivp", PORTAL_ABSENCE_MANAGEMENT, new HashMap<>());
   }
 
-  public static String buildPortalCaseDetailsUrl(Long caseId) {
+  public static String buildPortalCaseDetailsUrl(String uuid) {
     Map<String, String> params = new HashMap<>();
-    params.put("caseId", String.valueOf(caseId));
+    params.put(UUID, uuid);
     return buildUrlByKeyword("CaseDetailsPage.ivp", PORTAL_CASE_DETAILS, params);
   }
 
-  public static String buildPortalCaseDetailInFrameUrl(Long caseId, IProcessModelVersion processModelVersion) {
+  public static String buildPortalCaseDetailInFrameUrl(String uuid, IProcessModelVersion processModelVersion) {
     Map<String, String> params = new HashMap<>();
-    params.put("caseId", String.valueOf(caseId));
+    params.put(UUID, uuid);
     return buildUrlByKeywordInPMV(PORTAL_CASE_DETAILS_IN_IFRAME_START, processModelVersion, PORTAL_CASE_DETAILS_IN_FRAME, params);
   }
 
-  public static String buildPortalCaseDetailInFrameUrl(Long caseId) {
+  public static String buildPortalCaseDetailInFrameUrl(String uuid) {
     Map<String, String> params = new HashMap<>();
-    params.put("caseId", String.valueOf(caseId));
+    params.put(UUID, uuid);
     return buildUrlByKeyword(PORTAL_CASE_DETAILS_IN_IFRAME_START, PORTAL_CASE_DETAILS_IN_FRAME, params);
   }
   

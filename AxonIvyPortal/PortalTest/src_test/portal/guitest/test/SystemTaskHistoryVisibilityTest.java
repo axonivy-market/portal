@@ -28,14 +28,14 @@ public class SystemTaskHistoryVisibilityTest extends BaseTest {
     HomePage homePage = new HomePage();
     CaseWidgetPage caseWidgetPage = homePage.openCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openCaseDetailsFromActionMenuByCaseName("Create New Payment");
-    String caseId = caseDetailsPage.getCaseId();
-    goToCaseNoteHistoryPage(caseId);
+    String caseUUID = caseDetailsPage.getCaseUUID();
+    goToCaseNoteHistoryPage(caseUUID);
     NoteHistoryPage noteHistoryPage = new NoteHistoryPage();
     assertFalse(noteHistoryPage.getNoteAuthors().contains("System user"));
     
     updatePortalSetting(HIDE_SYSTEM_TASKS_FROM_HISTORY.getKey(), "false");
     WaitHelper.assertTrueWithRefreshPage(homePage, () -> {
-      goToCaseNoteHistoryPage(caseId);
+      goToCaseNoteHistoryPage(caseUUID);
       return new NoteHistoryPage().getNoteAuthors().contains("System user");
     });
   }
@@ -47,14 +47,14 @@ public class SystemTaskHistoryVisibilityTest extends BaseTest {
     HomePage homePage = new HomePage();
     CaseWidgetPage caseWidgetPage = homePage.openCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openCaseDetailsFromActionMenuByCaseName("Create New Payment");
-    String caseId = caseDetailsPage.getCaseId();
+    String caseUUID = caseDetailsPage.getCaseUUID();
     WaitHelper.assertTrueWithRefreshPage(homePage, () -> {
-      goToCaseNoteHistoryPage(caseId);
+      goToCaseNoteHistoryPage(caseUUID);
       return new NoteHistoryPage().getNoteAuthors().contains("System user");
     });
     
     updatePortalSetting(HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR.getKey(), "true");
-    goToCaseNoteHistoryPage(caseId);
+    goToCaseNoteHistoryPage(caseUUID);
     assertFalse(new NoteHistoryPage().getNoteAuthors().contains("System user"));
   }
 }
