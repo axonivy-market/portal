@@ -2445,12 +2445,12 @@
         "signature" : "CaseDetailsPageInFrame",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long", "desc" : "" },
+            { "name" : "uuid", "type" : "String", "desc" : "" },
             { "name" : "isBusinessCase", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
-            "out.caseId" : "param.caseId",
-            "out.isBusinessCase" : "param.isBusinessCase"
+            "out.isBusinessCase" : "param.isBusinessCase",
+            "out.uuid" : "param.uuid"
           }
         },
         "request" : {
