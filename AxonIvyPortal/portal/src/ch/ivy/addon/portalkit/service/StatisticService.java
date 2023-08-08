@@ -132,7 +132,6 @@ import ch.ivy.addon.portalkit.statistics.StatisticFilter;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
-import ch.ivyteam.ivy.process.call.SubProcessSearchFilter.SearchScope;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
@@ -212,7 +211,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     params.put(TASK_QUERY, taskQuery);
 
     Map<String, Object> response =
-        IvyAdapterService.startSubProcessWithScope("analyzePriorityStatistic(ch.ivyteam.ivy.workflow.query.TaskQuery)", params, SearchScope.PROJECT);
+        IvyAdapterService.startSubProcessInProject("analyzePriorityStatistic(ch.ivyteam.ivy.workflow.query.TaskQuery)", params);
     return (PriorityStatistic) response.get(RESULT);
   }
 
@@ -227,7 +226,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     params.put(TASK_QUERY, taskQuery);
 
     Map<String, Object> response =
-        IvyAdapterService.startSubProcessWithScope("analyzeExpiryStatistic(ch.ivyteam.ivy.workflow.query.TaskQuery)", params, SearchScope.PROJECT);
+        IvyAdapterService.startSubProcessInProject("analyzeExpiryStatistic(ch.ivyteam.ivy.workflow.query.TaskQuery)", params);
     return (ExpiryStatistic) response.get(RESULT);
   }
 
@@ -242,7 +241,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     params.put(CASE_QUERY, caseQuery);
 
     Map<String, Object> response =
-        IvyAdapterService.startSubProcessWithScope("analyzeCaseStateStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery)", params, SearchScope.PROJECT);
+        IvyAdapterService.startSubProcessInProject("analyzeCaseStateStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery)", params);
     return (CaseStateStatistic) response.get(RESULT);
   }
 
@@ -257,7 +256,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     params.put(CASE_QUERY, caseQuery);
 
     Map<String, Object> response =
-        IvyAdapterService.startSubProcessWithScope("analyzeElapsedTimeStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery)", params, SearchScope.PROJECT);
+        IvyAdapterService.startSubProcessInProject("analyzeElapsedTimeStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery)", params);
     return (ElapsedTimeStatistic) response.get(RESULT);
   }
   
@@ -273,7 +272,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     params.put(CASE_QUERY, caseQuery);
     params.put(SELECTED_CATEGORIES, categoryNodes);
     Map<String, Object> response =
-        IvyAdapterService.startSubProcessWithScope("analyzeCasesByCategoryStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery,java.util.List<String>)", params, SearchScope.PROJECT);
+        IvyAdapterService.startSubProcessInProject("analyzeCasesByCategoryStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery,java.util.List<String>)", params);
     return (CaseCategoryStatistic) response.get(RESULT);
   }
   
@@ -282,7 +281,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     params.put(CASE_QUERY, caseQuery);
     params.put(SELECTED_CATEGORY, categoryNode);
     Map<String, Object> response =
-        IvyAdapterService.startSubProcessWithScope("analyzeCasesByCategoryDrilldownStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery,String)", params, SearchScope.PROJECT);
+        IvyAdapterService.startSubProcessInProject("analyzeCasesByCategoryDrilldownStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery,String)", params);
     return (CaseCategoryStatistic) response.get(RESULT);
   }
 

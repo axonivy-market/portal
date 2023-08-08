@@ -18,7 +18,6 @@ import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
-import ch.ivyteam.ivy.process.call.SubProcessSearchFilter.SearchScope;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
@@ -46,7 +45,7 @@ public class CaseTreeUtils {
     criteria.setCustomCaseQuery(caseQuery);
     params.put("caseCategorySearchCriteria", criteria);
     Map<String, Object> response =
-        IvyAdapterService.startSubProcessWithScope("findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria)", params, SearchScope.PROJECT);
+        IvyAdapterService.startSubProcessInProject("findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria)", params);
     return (CategoryTree) response.get("categoryTree");
   }
 

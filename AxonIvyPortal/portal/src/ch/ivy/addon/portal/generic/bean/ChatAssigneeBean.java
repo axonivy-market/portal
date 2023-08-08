@@ -2,7 +2,6 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -25,12 +24,10 @@ import org.primefaces.PrimeFaces;
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.dto.UserDTO;
-import com.axonivy.portal.components.enums.PortalCustomSignature;
 import com.axonivy.portal.components.service.IvyAdapterService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import ch.ivy.addon.portal.chat.ChatGroupUtils;
 import ch.ivy.addon.portal.chat.ChatReferencesContainer;
 import ch.ivy.addon.portal.chat.CreateGroupChatStatus;
 import ch.ivy.addon.portal.chat.GroupChat;
@@ -41,7 +38,6 @@ import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
-import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.businesscase.IBusinessCase;
@@ -77,33 +73,6 @@ public class ChatAssigneeBean implements Serializable {
   private void checkCaseHasGroupChat() {
     CaseQuery caseQuery = queryCaseHasGroupChat();
     doesGroupChatExist = Ivy.wf().getCaseQueryExecutor().getFirstResult(caseQuery) != null;
-  }
-
-  public void handleConfiguredRoleList() {
-    List<IRole> configuredRoles = getConfiguredRoles();
-
-    if (CollectionUtils.isEmpty(configuredRoles)) {
-      isShowCreateGroupChatDialog = true;
-    } else {
-      List<IRole> memberRoles = hasRole(configuredRoles, Ivy.session().getSessionUser());
-      if (CollectionUtils.isNotEmpty(memberRoles)) {
-        isShowCreateGroupChatDialog = true;
-        selectedAssignees.remove(SecurityMemberUtils.getCurrentSessionUserAsSecurityMemberDTO());
-        selectedAssignees.addAll(SecurityMemberUtils.convertIRoleToSecurityMemberDTO(memberRoles));
-      } else {
-        selectedAssignees.addAll(SecurityMemberUtils.convertIRoleToSecurityMemberDTO(configuredRoles));
-      }
-    }
-  }
-
-  private List<IRole> hasRole(List<IRole> roles, IUser user) {
-    List<IRole> memberRoles = new ArrayList<>();
-    for (int i = 0; i < roles.size(); i++) {
-      if (ChatGroupUtils.hasRole(roles.get(i), user)) {
-        memberRoles.add(roles.get(i));
-      }
-    }
-    return memberRoles;
   }
 
   public void changeAssigneeType() {
@@ -214,13 +183,7 @@ public class ChatAssigneeBean implements Serializable {
   public void createGroupChatForConfiguredRoleList(ITask task) {
     this.task = task;
     checkCaseHasGroupChat();
-    handleConfiguredRoleList();
-
-    if (isShowCreateGroupChatDialog) {
-      PrimeFaces.current().executeScript("PF('chat-assignee-dialog').show()");
-    } else if (!doesGroupChatExist) {
-      createGroupChat();
-    }
+    PrimeFaces.current().executeScript("PF('chat-assignee-dialog').show()");
 
     if (doesGroupChatExist) {
       PrimeFaces.current().executeScript("PF('chat-assignee-dialog').show()");
@@ -282,8 +245,7 @@ public class ChatAssigneeBean implements Serializable {
 
   @SuppressWarnings("unchecked")
   private String getGroupChatName(GroupChat group) {
-    Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(PortalCustomSignature.SET_GROUP_CHAT_NAME.getSignature(), null);
-    String groupChatName = response.get("name").toString();
+    String groupChatName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/case") + "-{caseId}" + " {caseName}";
     ObjectMapper objectMapper = new ObjectMapper();
     Map<String, Object> mappedObject = objectMapper.convertValue(group, Map.class);
     for (Map.Entry<String, Object> entry : mappedObject.entrySet()) {
@@ -322,10 +284,6 @@ public class ChatAssigneeBean implements Serializable {
     group.setApplicationName(task.getApplication().getName());
     group.setCreator(Ivy.session().getSessionUserName());
     group.setAssignees(selectedAssignees);
-    Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(PortalCustomSignature.GET_GROUP_CHAT_PARAMS.getSignature(), null);
-    @SuppressWarnings("unchecked")
-    Map<String, String> params = (Map<String, String>) response.get("params");
-    group.setParams(params);
     return group;
   }
 
