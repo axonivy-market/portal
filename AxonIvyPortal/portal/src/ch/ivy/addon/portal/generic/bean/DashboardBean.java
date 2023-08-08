@@ -35,6 +35,7 @@ import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.CaseEmptyMessage;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.PortalPage;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
@@ -185,7 +186,7 @@ public class DashboardBean implements Serializable {
   
   public void handleStartTask(ITask task) throws IOException {
     selectedTask = task;
-    TaskUtils.handleStartTask(task, null, PortalConstants.RESET_TASK_CONFIRMATION_DIALOG);
+    TaskUtils.handleStartTask(task, PortalPage.HOME_PAGE, PortalConstants.RESET_TASK_CONFIRMATION_DIALOG);
   }
 
   public void navigateToSelectedTaskDetails(ITask task) {
