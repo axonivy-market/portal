@@ -15,10 +15,9 @@ import ch.ivyteam.ivy.workflow.StandardProcessType;
  */
 public final class PortalNavigatorAPI extends BaseNavigator {
   private static final String PORTAL_PROCESS_START_NAME = "Start Processes/PortalStart/DefaultApplicationHomePage.ivp";
-  private static final String PORTAL_PROCESS_START_CASE_DETAIL =
-      "Start Processes/PortalStart/CaseDetailsPageInFrame.ivp";
-  private static final String PORTAL_PROCESS_START_TASK_DETAIL =
-      "Start Processes/PortalStart/TaskDetailsPageInFrame.ivp";
+  private static final String PORTAL_PROCESS_START_CASE_DETAIL = "Start Processes/PortalStart/CaseDetailsLink.ivp";
+  private static final String PORTAL_PROCESS_START_TASK_DETAIL = "Start Processes/PortalStart/TaskDetailsLink.ivp";
+
 
   private PortalNavigatorAPI() {}
 
@@ -39,16 +38,29 @@ public final class PortalNavigatorAPI extends BaseNavigator {
     redirectURL(String.format("%s?endedTaskId=%s", customizePortalEndPage, Ivy.wfTask().getId()));
   }
 
-  public static void navigateToPortalCaseDetailPage(String caseId) {
-    Map<String, String> params = new HashMap<>();
-    params.put("caseId", caseId);
-    params.put("isBusinessCase", "true");
-    navigateByKeyword("CaseDetailsPageInFrame.ivp", PORTAL_PROCESS_START_CASE_DETAIL, params);
+  /**
+   * Build url to case details page of case id
+   * 
+   * @param caseId
+   * @return Absolute url to case details page of case id
+   */
+  public static String buildUrlToPortalCaseDetailsPage(Long caseId) {
+    String id = Long.toString(caseId);
+    Map<String, String> param = new HashMap<>();
+    param.put("caseId", id);
+    return buildAbsoluteUrl(PORTAL_PROCESS_START_CASE_DETAIL, param);
   }
 
-  public static void navigateToPortalTaskDetailPage(String taskId) {
-    Map<String, String> params = new HashMap<>();
-    params.put("selectedTaskId", taskId);
-    navigateByKeyword("TaskDetailsPageInFrame.ivp", PORTAL_PROCESS_START_TASK_DETAIL, params);
+  /**
+   * Build url to task details page of task id
+   * 
+   * @param taskId
+   * @return Absolute url to task details page of task id
+   */
+  public static String buildUrlToPortalTaskDetailsPage(Long taskId) {
+    String id = Long.toString(taskId);
+    Map<String, String> param = new HashMap<>();
+    param.put("taskDetailsId", id);
+    return buildAbsoluteUrl(PORTAL_PROCESS_START_TASK_DETAIL, param);
   }
 }

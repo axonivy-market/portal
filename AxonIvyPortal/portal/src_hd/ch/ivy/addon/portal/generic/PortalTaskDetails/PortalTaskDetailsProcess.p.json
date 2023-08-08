@@ -43,11 +43,13 @@
             { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel", "desc" : "" },
             { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage", "desc" : "" },
             { "name" : "isFromTaskList", "type" : "Boolean", "desc" : "" }
+            { "name" : "showItemDetailsHeader", "type" : "Boolean" }
           ],
           "map" : {
             "out.dataModel" : "param.dataModel",
             "out.isFromTaskList" : "param.isFromTaskList",
             "out.portalPage" : "param.portalPage",
+            "out.showItemDetailsHeader" : "param.#showItemDetailsHeader is initialized ? param.showItemDetailsHeader : true",
             "out.task" : "param.task"
           }
         },
