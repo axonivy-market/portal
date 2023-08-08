@@ -60,8 +60,7 @@
             "param.portalPage" : "in.portalPage",
             "param.isFromTaskList" : "in.isFromTaskList",
             "param.showItemDetailsHeader" : "in.showItemDetailsHeader"
-          },
-          "code" : "ivy.log.error(\"2\"+in.showItemDetailsHeader);"
+          }
         }
       },
       "visual" : {

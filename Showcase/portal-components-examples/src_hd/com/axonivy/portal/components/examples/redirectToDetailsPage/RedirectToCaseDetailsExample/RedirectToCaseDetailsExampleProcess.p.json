@@ -48,5 +48,41 @@
       "visual" : {
         "at" : { "x" : 224, "y" : 160 }
       }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "generate()",
+      "config" : {
+        "callSignature" : "generate",
+        "guid" : "189D354DED93DA00"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 248 }
+      },
+      "connect" : { "id" : "f10", "to" : "f9" }
+    }, {
+      "id" : "f7",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 248 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "Script",
+      "name" : "Generate Link",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
+            "in.caseLink = PortalNavigatorAPI.buildUrlToPortalCaseDetailsPage(in.caseId);",
+            "in.isLinkEnable = StringUtils.isNotEmpty(in.caseLink);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 248 }
+      },
+      "connect" : { "id" : "f8", "to" : "f7" }
     } ]
 }

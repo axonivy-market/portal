@@ -606,8 +606,7 @@
             "import ch.ivyteam.ivy.workflow.ITask;",
             "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
             "",
-            "out.iTask = ivy.wf.getGlobalContext().getTaskQueryExecutor().createTaskQuery().where().taskId().isEqual(in.taskId).executor().firstResult() as ITask;",
-            "ivy.log.error(\"1\"+in.showItemDetailsHeader);"
+            "out.iTask = ivy.wf.getGlobalContext().getTaskQueryExecutor().createTaskQuery().where().taskId().isEqual(in.taskId).executor().firstResult() as ITask;"
           ]
         }
       },

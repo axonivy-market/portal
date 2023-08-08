@@ -35,28 +35,6 @@
       "visual" : {
         "at" : { "x" : 304, "y" : 64 },
         "size" : { "width" : 224, "height" : 60 }
-      },
-      "connect" : { "id" : "f6", "to" : "f5" }
-    }, {
-      "id" : "f5",
-      "type" : "Script",
-      "name" : "redirect",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
-            "import PortalNavigatorAPI;",
-            "import java.net.http.HttpResponse;",
-            "import ch.ivyteam.ivy.request.IHttpResponse;",
-            "import com.axonivy.portal.components.generic.navigation.BaseNavigator;",
-            "",
-            "IHttpResponse taskDetailsUrl = ivy.response as IHttpResponse;",
-            "taskDetailsUrl.sendRedirect(PortalNavigatorAPI.buildUrlToPortalTaskDetailsPage(in.taskId));"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 520, "y" : 64 }
       }
     }, {
       "id" : "f1",
@@ -89,26 +67,6 @@
       "visual" : {
         "at" : { "x" : 304, "y" : 168 },
         "size" : { "width" : 224, "height" : 60 }
-      },
-      "connect" : { "id" : "f9", "to" : "f7" }
-    }, {
-      "id" : "f7",
-      "type" : "Script",
-      "name" : "redirect",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
-            "import PortalNavigatorAPI;",
-            "import ch.ivyteam.ivy.request.IHttpResponse;",
-            "",
-            "IHttpResponse taskDetailsUrl = ivy.response as IHttpResponse;",
-            "taskDetailsUrl.sendRedirect(PortalNavigatorAPI.buildUrlToPortalCaseDetailsPage(in.caseId));"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 520, "y" : 168 }
       }
     } ]
 }
