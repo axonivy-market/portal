@@ -15,8 +15,10 @@ import ch.ivyteam.ivy.workflow.StandardProcessType;
  */
 public final class PortalNavigatorAPI extends BaseNavigator {
   private static final String PORTAL_PROCESS_START_NAME = "Start Processes/PortalStart/DefaultApplicationHomePage.ivp";
-  private static final String PORTAL_PROCESS_START_CASE_DETAIL = "Start Processes/PortalStart/CaseDetailsLink.ivp";
-  private static final String PORTAL_PROCESS_START_TASK_DETAIL = "Start Processes/PortalStart/TaskDetailsLink.ivp";
+  private static final String PORTAL_PROCESS_START_CASE_DETAIL_BY_ID = "Start Processes/PortalStart/CaseDetailsLinkById.ivp";
+  private static final String PORTAL_PROCESS_START_TASK_DETAIL_BY_ID = "Start Processes/PortalStart/TaskDetailsLinkById.ivp";
+  private static final String PORTAL_PROCESS_START_CASE_DETAIL_BY_UUID = "Start Processes/PortalStart/CaseDetailsLinkByUUID.ivp";
+  private static final String PORTAL_PROCESS_START_TASK_DETAIL_BY_UUID = "Start Processes/PortalStart/TaskDetailsLinkByUUID.ivp";
 
 
   private PortalNavigatorAPI() {}
@@ -44,11 +46,11 @@ public final class PortalNavigatorAPI extends BaseNavigator {
    * @param caseId
    * @return Absolute url to case details page of case id
    */
-  public static String buildUrlToPortalCaseDetailsPage(Long caseId) {
+  public static String buildUrlToPortalCaseDetailsPageById(Long caseId) {
     String id = Long.toString(caseId);
     Map<String, String> param = new HashMap<>();
     param.put("caseId", id);
-    return buildAbsoluteUrl(PORTAL_PROCESS_START_CASE_DETAIL, param);
+    return buildAbsoluteUrl(PORTAL_PROCESS_START_CASE_DETAIL_BY_ID, param);
   }
 
   /**
@@ -57,10 +59,34 @@ public final class PortalNavigatorAPI extends BaseNavigator {
    * @param taskId
    * @return Absolute url to task details page of task id
    */
-  public static String buildUrlToPortalTaskDetailsPage(Long taskId) {
+  public static String buildUrlToPortalTaskDetailsPageById(Long taskId) {
     String id = Long.toString(taskId);
     Map<String, String> param = new HashMap<>();
     param.put("taskDetailsId", id);
-    return buildAbsoluteUrl(PORTAL_PROCESS_START_TASK_DETAIL, param);
+    return buildAbsoluteUrl(PORTAL_PROCESS_START_TASK_DETAIL_BY_ID, param);
+  }
+  
+  /**
+   * Build url to case details page of task uuid
+   * 
+   * @param uuid
+   * @return Absolute url to case details page of case uuid
+   */
+  public static String buildUrlToPortalCaseDetailsPageByUUID(String uuid) {
+    Map<String, String> param = new HashMap<>();
+    param.put("uuid", uuid);
+    return buildAbsoluteUrl(PORTAL_PROCESS_START_CASE_DETAIL_BY_UUID, param);
+  }
+
+  /**
+   * Build url to task details page of task uuid
+   * 
+   * @param uuid
+   * @return Absolute url to task details page of task uuid
+   */
+  public static String buildUrlToPortalTaskDetailsPageByUUID(String uuid) {
+    Map<String, String> param = new HashMap<>();
+    param.put("uuid", uuid);
+    return buildAbsoluteUrl(PORTAL_PROCESS_START_TASK_DETAIL_BY_UUID, param);
   }
 }

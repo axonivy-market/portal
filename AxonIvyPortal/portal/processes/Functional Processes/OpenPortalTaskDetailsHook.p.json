@@ -52,7 +52,8 @@
             "param.task" : "in.task",
             "param.dataModel" : "in.dataModel",
             "param.portalPage" : "in.portalPage",
-            "param.isFromTaskList" : "in.isFromTaskList"
+            "param.isFromTaskList" : "in.isFromTaskList",
+            "param.showItemDetailsHeader" : "in.showItemDetailsHeader"
           }
         }
       },

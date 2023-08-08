@@ -327,4 +327,8 @@ public class TaskService implements ITaskService {
     }
     return taskQuery;
   }
+
+  public ITask findTaskById(Long id) {
+    return Sudo.get(() -> Ivy.wf().findTask(id));
+  }
 }
