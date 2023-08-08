@@ -78,7 +78,7 @@
             "params.put(\"isTaskReserve\", in.isTaskReserve);",
             "params.put(\"task\", in.task);",
             "",
-            "Map result = IvyAdapterService.startSubProcessInApplication(PortalCustomSignature.LOGOUT.getSignature(), params);",
+            "Map result = IvyAdapterService.startSubProcessInSecurityContext(PortalCustomSignature.LOGOUT.getSignature(), params);",
             "in.hasCustomProcess = result != null;"
           ]
         }

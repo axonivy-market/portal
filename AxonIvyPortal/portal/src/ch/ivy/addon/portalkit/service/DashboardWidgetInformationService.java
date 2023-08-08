@@ -30,7 +30,6 @@ import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.util.TimesUtils;
-import ch.ivyteam.ivy.process.call.SubProcessSearchFilter.SearchScope;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.TaskState;
 
@@ -58,7 +57,7 @@ public class DashboardWidgetInformationService {
   public Map<TaskState, Long> buildStatisticOfTaskByState(DashboardTaskLazyDataModel dataModel) {
     Map<String, Object> params = new HashMap<>();
     params.put(TASK_CRITERIA_PARAM, generateTaskSearchCriteriaWithoutOrderByClause(dataModel));
-    Map<String, Object> response = IvyAdapterService.startSubProcessWithScope(ANALYZE_TASK_STATE, params, SearchScope.PROJECT);
+    Map<String, Object> response = IvyAdapterService.startSubProcessInProject(ANALYZE_TASK_STATE, params);
 
     Map<TaskState, Long> result = new HashMap<>();
     TaskStateStatistic taskStateStatistic = (TaskStateStatistic) response.get("taskStateStatistic");
@@ -86,7 +85,7 @@ public class DashboardWidgetInformationService {
     Map<String, Object> params = new HashMap<>();
     params.put("taskSearchCriteria", generateTaskSearchCriteriaWithoutOrderByClause(dataModel));
 
-    Map<String, Object> response = IvyAdapterService.startSubProcessWithScope(ANALYZE_TASK_EXPIRY, params, SearchScope.PROJECT);
+    Map<String, Object> response = IvyAdapterService.startSubProcessInProject(ANALYZE_TASK_EXPIRY, params);
     var expiryStatistic = (ExpiryStatistic) response.get("expiryStatistic");
 
     for (Entry<Date, Long> entry : expiryStatistic.getNumberOfTasksByExpiryTime().entrySet()) {
@@ -107,7 +106,7 @@ public class DashboardWidgetInformationService {
     Map<String, Object> params = new HashMap<>();
     params.put(TASK_CRITERIA_PARAM, generateTaskSearchCriteriaWithoutOrderByClause(dataModel));
 
-    Map<String, Object> response = IvyAdapterService.startSubProcessWithScope(ANALYZE_TASK_CATEGORY, params, SearchScope.PROJECT);
+    Map<String, Object> response = IvyAdapterService.startSubProcessInProject(ANALYZE_TASK_CATEGORY, params);
 
     var taskCategoryStatistic = (TaskCategoryStatistic) response.get("taskCategoryStatistic");
     taskByCategoryStatistic.putAll(taskCategoryStatistic.getNumberOfTasksByCategory());
@@ -124,7 +123,7 @@ public class DashboardWidgetInformationService {
     Map<String, Object> params = new HashMap<>();
     params.put(CASE_CRITERIA_PARAM, generateCaseSearchCriteriaWithoutOrderByClause(dataModel));
 
-    var response = IvyAdapterService.startSubProcessWithScope(ANALYZE_CASE_STATE, params, SearchScope.PROJECT);
+    var response = IvyAdapterService.startSubProcessInProject(ANALYZE_CASE_STATE, params);
 
     var caseStateStatistic = (CaseStateStatistic) response.get("caseStateStatistic");
     Map<CaseState, Long> result = new HashMap<>();
@@ -174,7 +173,7 @@ public class DashboardWidgetInformationService {
     Map<String, Object> params = new HashMap<>();
     params.put(CASE_CRITERIA_PARAM, generateCaseSearchCriteriaWithoutOrderByClause(dataModel));
 
-    var response = IvyAdapterService.startSubProcessWithScope(ANALYZE_CASE_CATEGORY, params, SearchScope.PROJECT);
+    var response = IvyAdapterService.startSubProcessInProject(ANALYZE_CASE_CATEGORY, params);
 
     var caseCategoryStatistic = (CaseCategoryStatistic) response.get("caseCategoryStatistic");
     caseByCategoryStatistic.putAll(caseCategoryStatistic.getNumberOfCasesByCategory());
