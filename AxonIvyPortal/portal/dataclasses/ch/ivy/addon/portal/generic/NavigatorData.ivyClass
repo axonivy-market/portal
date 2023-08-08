@@ -14,3 +14,4 @@ caseQuery ch.ivyteam.ivy.workflow.query.CaseQuery #field
 chartName String #field
 iCase ch.ivyteam.ivy.workflow.ICase #field
 iTask ch.ivyteam.ivy.workflow.ITask #field
+showItemDetailsHeader Boolean #field
