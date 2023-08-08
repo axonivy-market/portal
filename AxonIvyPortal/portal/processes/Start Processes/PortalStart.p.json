@@ -1622,10 +1622,6 @@
       "config" : {
         "processCall" : "Functional Processes/Navigator:viewRelatedTask(Long,Boolean)",
         "call" : {
-          "params" : [
-            { "name" : "taskId", "type" : "Long" },
-            { "name" : "showItemDetailsHeader", "type" : "Boolean" }
-          ],
           "map" : {
             "param.taskId" : "in.selectedTaskId"
           }
@@ -2881,13 +2877,6 @@
           "config" : {
             "processCall" : "Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean,Boolean)",
             "call" : {
-              "params" : [
-                { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
-                { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" },
-                { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" },
-                { "name" : "isFromTaskList", "type" : "Boolean" },
-                { "name" : "showItemDetailsHeader", "type" : "Boolean" }
-              ],
               "map" : {
                 "param.task" : "in.taskSelected",
                 "param.dataModel" : "in.dataModel",
@@ -4304,25 +4293,25 @@
     }, {
       "id" : "f154",
       "type" : "RequestStart",
-      "name" : "TaskDetailsLink.ivp",
+      "name" : "TaskDetailsLinkById.ivp",
       "config" : {
-        "callSignature" : "TaskDetailsLink",
+        "signature" : "TaskDetailsLinkById",
         "input" : {
           "params" : [
-            { "name" : "taskDetailsId", "type" : "Long" }
+            { "name" : "taskDetailsId", "type" : "Long", "desc" : "" }
           ],
           "map" : {
             "out.taskId" : "param.taskDetailsId"
           }
-        },
-        "outLink" : "TaskDetailsLink.ivp",
-        "showInStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 3376 },
         "labelOffset" : { "x" : -31, "y" : 41 }
       },
-      "connect" : { "id" : "f170", "to" : "S43" }
+      "connect" : [
+        { "id" : "f170", "to" : "S43" }
+      ]
     }, {
       "id" : "f212",
       "type" : "TaskEnd",
@@ -4332,25 +4321,25 @@
     }, {
       "id" : "f233",
       "type" : "RequestStart",
-      "name" : "CaseDetailsLink.ivp",
+      "name" : "CaseDetailsLinkById.ivp",
       "config" : {
-        "callSignature" : "CaseDetailsLink",
+        "signature" : "CaseDetailsLinkById",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long" }
+            { "name" : "caseId", "type" : "Long", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.caseId"
           }
-        },
-        "outLink" : "CaseDetailsLink.ivp",
-        "showInStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 104, "y" : 3464 },
         "labelOffset" : { "x" : -31, "y" : 41 }
       },
-      "connect" : { "id" : "f246", "to" : "f238" }
+      "connect" : [
+        { "id" : "f223", "to" : "f238" }
+      ]
     }, {
       "id" : "f239",
       "type" : "TaskEnd",
@@ -4389,29 +4378,31 @@
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
-            "at" : { "x" : 64, "y" : 144 }
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
-          "parentConnector" : "f244",
-          "connect" : { "id" : "S62-f0", "to" : "S62-f26" }
+          "parentConnector" : "f244"
         }, {
           "id" : "S62-g1",
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 320, "y" : 144 }
+            "at" : { "x" : 320, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f245"
         } ],
       "visual" : {
         "at" : { "x" : 344, "y" : 3464 }
       },
-      "connect" : { "id" : "f245", "to" : "f240" }
+      "connect" : [
+        { "id" : "f245", "to" : "f240" }
+      ]
     }, {
       "id" : "f238",
       "type" : "Script",
       "name" : "Find Case",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
@@ -4423,7 +4414,9 @@
       "visual" : {
         "at" : { "x" : 200, "y" : 3464 }
       },
-      "connect" : { "id" : "f244", "to" : "S62" }
+      "connect" : [
+        { "id" : "f244", "to" : "S62" }
+      ]
     }, {
       "id" : "f240",
       "type" : "SubProcessCall",
@@ -4431,10 +4424,6 @@
       "config" : {
         "processCall" : "Functional Processes/OpenPortalCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean)",
         "call" : {
-          "params" : [
-            { "name" : "caseData", "type" : "ch.ivyteam.ivy.workflow.ICase" },
-            { "name" : "isShowBackButton", "type" : "Boolean" }
-          ],
           "map" : {
             "param.caseData" : "in.caseSelected",
             "param.isShowBackButton" : "false"
@@ -4445,7 +4434,9 @@
         "at" : { "x" : 560, "y" : 3464 },
         "size" : { "width" : 256, "height" : 60 }
       },
-      "connect" : { "id" : "f247", "to" : "f239" }
+      "connect" : [
+        { "id" : "f246", "to" : "f239" }
+      ]
     }, {
       "id" : "S43",
       "type" : "EmbeddedProcess",
@@ -4478,23 +4469,26 @@
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
-            "at" : { "x" : 64, "y" : 144 }
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
-          "parentConnector" : "f170",
-          "connect" : { "id" : "S43-f0", "to" : "S43-f180" }
+          "parentConnector" : "f170"
         }, {
           "id" : "S43-g1",
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 320, "y" : 144 }
+            "at" : { "x" : 320, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
-          "parentConnector" : "f251"
+          "parentConnector" : "f218"
         } ],
       "visual" : {
         "at" : { "x" : 200, "y" : 3376 }
       },
-      "connect" : { "id" : "f251", "to" : "f250" }
+      "connect" : [
+        { "id" : "f218", "to" : "f250" }
+      ]
     }, {
       "id" : "f250",
       "type" : "SubProcessCall",
@@ -4502,10 +4496,6 @@
       "config" : {
         "processCall" : "Functional Processes/Navigator:viewRelatedTask(Long,Boolean)",
         "call" : {
-          "params" : [
-            { "name" : "taskId", "type" : "Long" },
-            { "name" : "showItemDetailsHeader", "type" : "Boolean" }
-          ],
           "map" : {
             "param.taskId" : "in.taskId",
             "param.showItemDetailsHeader" : "false"
@@ -4516,6 +4506,8 @@
         "at" : { "x" : 416, "y" : 3376 },
         "size" : { "width" : 260, "height" : 58 }
       },
-      "connect" : { "id" : "f218", "to" : "f212" }
+      "connect" : [
+        { "id" : "f219", "to" : "f212" }
+      ]
     } ]
 }

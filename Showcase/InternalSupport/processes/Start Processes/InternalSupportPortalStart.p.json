@@ -1622,10 +1622,6 @@
       "config" : {
         "processCall" : "Functional Processes/Navigator:viewRelatedTask(Long,Boolean)",
         "call" : {
-          "params" : [
-            { "name" : "taskId", "type" : "Long" },
-            { "name" : "showItemDetailsHeader", "type" : "Boolean" }
-          ],
           "map" : {
             "param.taskId" : "in.selectedTaskId"
           }
@@ -2881,13 +2877,6 @@
           "config" : {
             "processCall" : "Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean,Boolean)",
             "call" : {
-              "params" : [
-                { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
-                { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" },
-                { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" },
-                { "name" : "isFromTaskList", "type" : "Boolean" },
-                { "name" : "showItemDetailsHeader", "type" : "Boolean" }
-              ],
               "map" : {
                 "param.task" : "in.taskSelected",
                 "param.dataModel" : "in.dataModel",

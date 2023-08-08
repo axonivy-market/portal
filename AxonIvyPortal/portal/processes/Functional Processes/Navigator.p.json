@@ -584,8 +584,8 @@
         "signature" : "viewRelatedTask",
         "input" : {
           "params" : [
-            { "name" : "taskId", "type" : "Long", "desc" : "" }
-            { "name" : "showItemDetailsHeader", "type" : "Boolean" }
+            { "name" : "taskId", "type" : "Long", "desc" : "" },
+            { "name" : "showItemDetailsHeader", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
             "out.showItemDetailsHeader" : "param.#showItemDetailsHeader is initialized ? param.showItemDetailsHeader : true",
@@ -647,18 +647,10 @@
       "config" : {
         "processCall" : "Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean,Boolean)",
         "call" : {
-          "params" : [
-            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
-            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" },
-            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" },
-            { "name" : "isFromTaskList", "type" : "Boolean" },
-            { "name" : "showItemDetailsHeader", "type" : "Boolean" }
-          ],
           "map" : {
             "param.task" : "in.iTask",
             "param.portalPage" : "ch.ivy.addon.portalkit.enums.PortalPage.CASE_DETAIL_FROM_TASK",
-            "param.isFromTaskList" : "false",
-            "param.showItemDetailsHeader" : "in.showItemDetailsHeader"
+            "param.isFromTaskList" : "false"
           }
         }
       },

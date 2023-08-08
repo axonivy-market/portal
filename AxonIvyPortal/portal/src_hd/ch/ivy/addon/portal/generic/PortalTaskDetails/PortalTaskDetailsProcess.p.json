@@ -34,7 +34,7 @@
     }, {
       "id" : "f0",
       "type" : "HtmlDialogStart",
-      "name" : "start(ITask,TaskLazyDataModel,PortalPage,Boolean)",
+      "name" : "start(ITask,TaskLazyDataModel,PortalPage,Boolean,Boolean)",
       "config" : {
         "signature" : "start",
         "input" : {
@@ -42,8 +42,8 @@
             { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" },
             { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel", "desc" : "" },
             { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage", "desc" : "" },
-            { "name" : "isFromTaskList", "type" : "Boolean", "desc" : "" }
-            { "name" : "showItemDetailsHeader", "type" : "Boolean" }
+            { "name" : "isFromTaskList", "type" : "Boolean", "desc" : "" },
+            { "name" : "showItemDetailsHeader", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
             "out.dataModel" : "param.dataModel",

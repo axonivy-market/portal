@@ -51,17 +51,6 @@ public class BaseNavigator {
     });
   }
 
-  private static String buildUrl(String friendlyRequestPath, Map<String, String> params) {
-    String requestPath = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(friendlyRequestPath);
-    if (StringUtils.isEmpty(requestPath)) {
-      return StringUtils.EMPTY;
-    }
-    String paramStr = params.entrySet().stream().map(e -> {
-      return e.getKey() + "=" + URLEncoder.encode(e.getValue(), StandardCharsets.ISO_8859_1);
-    }).collect(Collectors.joining("&"));
-    return requestPath + (StringUtils.isNotBlank(paramStr) ? "?" + paramStr : StringUtils.EMPTY);
-  }
-
   public static String buildAbsoluteUrl(String friendlyRequestPath, Map<String, String> params) {
     String requestPath = findAbsoluteUrlByProcessStartFriendlyRequestPath(friendlyRequestPath);
     if (StringUtils.isEmpty(requestPath)) {
