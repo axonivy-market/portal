@@ -34,8 +34,7 @@ public class JsonDashboardMigrator {
    * Read dashboard version
    * If version is null, assume that this dashboard is created since version 10.0.0 (oldest version)
    * 
-   * @param dashboard
-   * @return
+   * @return json version
    */
   private static AbstractJsonVersion readVersion(JsonNode node) {
     return Optional.ofNullable(node)

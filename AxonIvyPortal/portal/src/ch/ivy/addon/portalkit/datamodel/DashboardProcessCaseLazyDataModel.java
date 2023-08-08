@@ -15,6 +15,7 @@ import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.util.threadcontext.IvyThreadContext;
 
+@SuppressWarnings("deprecation")
 public class DashboardProcessCaseLazyDataModel extends LazyDataModel7<ICase> {
 
   private static final long serialVersionUID = -6615871274830927272L;

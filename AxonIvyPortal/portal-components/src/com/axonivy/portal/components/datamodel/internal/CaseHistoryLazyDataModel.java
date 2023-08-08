@@ -20,6 +20,7 @@ import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
+@SuppressWarnings("deprecation")
 public class CaseHistoryLazyDataModel extends LazyDataModel7<ICase> {
 
   private static final long serialVersionUID = 3023805225538732101L;
