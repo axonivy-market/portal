@@ -20,7 +20,6 @@
           ],
           "map" : {
             "out.dataModel" : "param.model",
-            "out.isBackButtonNeeded" : "true",
             "out.isFromTaskList" : "param.isFromTaskList",
             "out.portalPage" : "param.portalPage",
             "out.task" : "param.task"
