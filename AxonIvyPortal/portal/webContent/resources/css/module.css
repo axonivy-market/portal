@@ -295,6 +295,11 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   transition: none;
 }
 
+.task-widget .ui-overlaypanel.advanced-filter-panel .loading-panel,
+.case-widget-container .ui-overlaypanel.advanced-filter-panel .loading-panel {
+  width: 200px;
+}
+
 .filter-add-panel.ui-overlaypanel .config-checkbox-select-all {
   margin-left: 1rem;
   margin-bottom: .5rem;
