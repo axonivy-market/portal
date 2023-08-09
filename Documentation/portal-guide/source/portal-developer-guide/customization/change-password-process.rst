@@ -21,7 +21,7 @@ Create a callable sub process in your project with
 **Signature**: portalChangePassword
 
 +-----------------------+-----------------------+------------------+
-| Name                  | Type                  |       Note       |
+| Name                  | Type                  | Note             |
 +=======================+=======================+==================+
 | **Parameter**                                 |                  |
 +-----------------------+-----------------------+------------------+
