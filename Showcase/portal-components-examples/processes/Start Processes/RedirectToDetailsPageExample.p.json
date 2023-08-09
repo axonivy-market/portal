@@ -1,0 +1,72 @@
+{
+  "format" : "10.0.0",
+  "id" : "189B5CA2807EB1E7",
+  "config" : {
+    "data" : "com.axonivy.portal.components.examples.RedirectToDetailsPageExampleData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "redirectToTaskDetailsPage.ivp",
+      "config" : {
+        "callSignature" : "redirectToTaskDetailsPage",
+        "outLink" : "redirectToTaskDetailsPage.ivp",
+        "startDescription" : "Example Process To redirect to task details page by task id",
+        "startName" : "Redirect To Task Details Page"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "RedirectToTaskDetailsPageExample",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.components.examples.redirectToDetailsPage.RedirectToTaskDetailsPageExample",
+        "startMethod" : "start()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.taskId" : "result.taskId"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 304, "y" : 64 },
+        "size" : { "width" : 224, "height" : 60 }
+      }
+    }, {
+      "id" : "f1",
+      "type" : "RequestStart",
+      "name" : "redirectToCaseDetailsPage.ivp",
+      "config" : {
+        "callSignature" : "redirectToCaseDetailsPage",
+        "outLink" : "redirectToCaseDetailsPage.ivp",
+        "startDescription" : "Example Process To redirect to task details page by case id",
+        "startName" : "Redirect To Case Details Page"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 168 }
+      },
+      "connect" : { "id" : "f8", "to" : "f2" }
+    }, {
+      "id" : "f2",
+      "type" : "DialogCall",
+      "name" : "RedirectToCaseDetailsExample",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.components.examples.redirectToDetailsPage.RedirectToCaseDetailsExample",
+        "startMethod" : "start()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.caseId" : "result.caseId"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 304, "y" : 168 },
+        "size" : { "width" : 224, "height" : 60 }
+      }
+    } ]
+}
