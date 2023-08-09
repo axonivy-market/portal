@@ -111,7 +111,7 @@
             "name" : "YES",
             "segment" : 0.29,
             "offset" : { "x" : 0, "y" : -7 }
-          }, "condition" : "in.uploadDocumentCheckStatus == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK" },
+          }, "condition" : "in.uploadDocumentCheckStatus == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK.toString()" },
         { "id" : "f37", "to" : "f36" }
       ]
     }, {

@@ -34,7 +34,7 @@
           "params" : [
             { "name" : "uploadedDocument", "type" : "ch.ivyteam.ivy.workflow.document.IDocument" },
             { "name" : "message", "type" : "String" },
-            { "name" : "status", "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus" }
+            { "name" : "status", "type" : "String" }
           ],
           "map" : {
             "result.uploadedDocument" : "in.uploadedDocument",
@@ -67,20 +67,20 @@
             "import java.util.Arrays;",
             "",
             "in.message = \"\";",
-            "in.status = UploadDocumentCheckStatus.OK;",
+            "in.status = UploadDocumentCheckStatus.OK.toString();",
             "",
             "if (in.uploadedFile == null) {",
             "  in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/InvalidFileMessage\");",
-            "  in.status = UploadDocumentCheckStatus.FAIL;",
+            "  in.status = UploadDocumentCheckStatus.FAIL.toString();",
             "} else if (in.uploadedFile.getSize() == 0) {",
             "  in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/EmptyFileMessage\");",
-            "  in.status = UploadDocumentCheckStatus.FAIL;",
+            "  in.status = UploadDocumentCheckStatus.FAIL.toString();",
             "} else {",
             "  Long maxFileUploadSize = MasterData.getFileUploadSizeLimit();",
             "  if (in.uploadedFile.getSize() > maxFileUploadSize) {",
             "    in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/ErrorFileUploadSize\", Arrays.asList(FileUtils.byteCountToDisplaySize(maxFileUploadSize)));",
             "  }",
-            "  in.status = UploadDocumentCheckStatus.FAIL;",
+            "  in.status = UploadDocumentCheckStatus.FAIL.toString();",
             "}"
           ]
         }
@@ -102,7 +102,7 @@
             "name" : "YES",
             "segment" : 0.3,
             "offset" : { "x" : 0, "y" : -12 }
-          }, "condition" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK" },
+          }, "condition" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK.toString()" },
         { "id" : "f88", "to" : "f73" }
       ]
     }, {
@@ -122,7 +122,7 @@
             "import org.primefaces.model.file.UploadedFile;",
             "",
             "out.message = \"\";",
-            "out.status = UploadDocumentCheckStatus.OK;",
+            "out.status = UploadDocumentCheckStatus.OK.toString();",
             "String fileName = in.uploadedFile.getFileName();",
             "out.uploadedDocument = CaseDocumentService.newInstance(in.businessCase).upload(fileName, in.uploadedFile.getInputStream());",
             "",
@@ -132,7 +132,7 @@
             "  out.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/UploadSucceed\");",
             "} else {",
             "  out.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/UploadFailed\");",
-            "  out.status = UploadDocumentCheckStatus.FAIL;",
+            "  out.status = UploadDocumentCheckStatus.FAIL.toString();",
             "}"
           ]
         }
@@ -159,7 +159,7 @@
             "",
             "if (doesDocumentExist) {",
             "  in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/UploadFileExists\", [fileName]);",
-            "  in.status = UploadDocumentCheckStatus.FAIL;",
+            "  in.status = UploadDocumentCheckStatus.FAIL.toString();",
             "}"
           ]
         }
@@ -219,7 +219,7 @@
             "name" : "OK",
             "segment" : 0.33,
             "offset" : { "x" : 0, "y" : -8 }
-          }, "condition" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK" },
+          }, "condition" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK.toString()" },
         { "id" : "f90", "to" : "f74" }
       ]
     }, {
@@ -232,7 +232,7 @@
           "map" : {
             "out" : "in",
             "out.message" : "result.message",
-            "out.status" : "result.uploadDocumentCheckStatus"
+            "out.status" : "result.uploadDocumentCheckStatus.toString()"
           }
         },
         "call" : {
