@@ -20,7 +20,7 @@ typeColumnRendered Boolean #field
 typeColumnRendered PERSISTENT #fieldModifier
 typeSelection com.axonivy.portal.components.enums.DocumentType #field
 typeSelection PERSISTENT #fieldModifier
-uploadDocumentCheckStatus com.axonivy.portal.components.enums.UploadDocumentCheckStatus #field
+uploadDocumentCheckStatus String #field
 uploadDocumentCheckStatus PERSISTENT #fieldModifier
 uploadedDocument ch.ivyteam.ivy.workflow.document.IDocument #field
 uploadedDocument PERSISTENT #fieldModifier
