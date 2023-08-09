@@ -359,7 +359,7 @@
             "if (in.hasCustomProcess) {",
             "  in.uploadedDocument = result.get(\"uploadedDocument\") as IDocument;",
             "  in.message = result.get(\"message\").toString();",
-            "  in.status = result.get(\"status\") as UploadDocumentCheckStatus;",
+            "  in.status = UploadDocumentCheckStatus.toEnum(result.get(\"status\").toString());",
             "}"
           ]
         }

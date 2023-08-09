@@ -117,12 +117,11 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.service.CaseDocumentService;",
-            "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
             "import java.util.Arrays;",
             "import org.primefaces.model.file.UploadedFile;",
             "",
             "out.message = \"\";",
-            "out.status = UploadDocumentCheckStatus.OK.toString();",
+            "out.status = \"OK\";",
             "String fileName = in.uploadedFile.getFileName();",
             "out.uploadedDocument = CaseDocumentService.newInstance(in.businessCase).upload(fileName, in.uploadedFile.getInputStream());",
             "",
@@ -132,7 +131,7 @@
             "  out.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/UploadSucceed\");",
             "} else {",
             "  out.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/UploadFailed\");",
-            "  out.status = UploadDocumentCheckStatus.FAIL.toString();",
+            "  out.status = \"FAIL\";",
             "}"
           ]
         }
