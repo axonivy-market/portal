@@ -67,5 +67,3 @@ To do that, you should create a callable sub process with:
 
    Please refer to process ``CustomResetPassword`` in project ``portal-developer-examples``
    for an example of how to customize Password Resetting.
-
-.. |token-generation-and-email-sending| image:: images/forgot-password/generate-token-and-send-email.png
