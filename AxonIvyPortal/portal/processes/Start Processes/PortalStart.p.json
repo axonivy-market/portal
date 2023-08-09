@@ -4558,7 +4558,9 @@
           "params" : [
             { "name" : "uuid", "type" : "String", "desc" : "" }
           ],
-          "map" : { }
+          "map" : {
+            "out.uuid" : "param.uuid"
+          }
         }
       },
       "visual" : {
@@ -4610,6 +4612,11 @@
           "id" : "S63-f26",
           "type" : "Alternative",
           "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S63-f1" : "in.#caseSelected is initialized"
+            }
+          },
           "visual" : {
             "at" : { "x" : 152, "y" : 144 },
             "labelOffset" : { "x" : 16, "y" : -16 }
@@ -4704,6 +4711,11 @@
           "id" : "S73-f180",
           "type" : "Alternative",
           "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S73-f1" : "in.#taskSelected is initialized"
+            }
+          },
           "visual" : {
             "at" : { "x" : 152, "y" : 144 },
             "labelOffset" : { "x" : 16, "y" : -16 }
