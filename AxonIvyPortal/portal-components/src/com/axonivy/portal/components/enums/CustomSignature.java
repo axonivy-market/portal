@@ -20,9 +20,4 @@ public enum CustomSignature {
     return signature;
   }
 
-  public String getDefaultSignature() {
-    String defaultSignature = signature.replaceFirst("custom", "").replaceFirst("express", "");
-    return defaultSignature.substring(0, 1).toLowerCase() + defaultSignature.substring(1);
-  }
-
 }
