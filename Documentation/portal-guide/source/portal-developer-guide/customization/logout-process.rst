@@ -8,8 +8,8 @@ Introduction
 
 Portal supports you to customize:
 
-   - Logout function when user logout from Portal.
-   - The page which will be show to the user after he logged out.
+   - Logout function when the user logs out from Portal.
+   - The page will be shown to the user after he logs out.
 
 .. tip::
 
