@@ -69,6 +69,7 @@ public class TaskDetailsTest extends BaseTest {
     String tomorrowStringLiteral = prepareTomorrowAsString();
     taskDetailsPage = openDetailsPageOfFirstTask();
     taskDetailsPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
+    System.out.println("expected - real," + tomorrowStringLiteral + "===" + taskDetailsPage.getExpiryOfTaskAt());
     assertTrue(StringUtils.equalsIgnoreCase(prepareTomorrowAsLocaleDateString(), taskDetailsPage.getExpiryOfTaskAt()));
   }
 
