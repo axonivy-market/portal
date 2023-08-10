@@ -35,12 +35,15 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
   public List<ITask> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
     if (first == 0) {
       tasks.clear();
-      Map.Entry<String, SortMeta> sortEntry = sortBy.entrySet().iterator().next();
-      if (sortEntry != null && sortEntry.getValue() != null) {
-        SortMeta sortMeta = sortEntry.getValue();
-        criteria.setSortField(sortMeta.getField());
-        criteria.setSortDescending(sortMeta.getOrder().isDescending());
+      if (sortBy.entrySet().iterator().hasNext()) {
+        Map.Entry<String, SortMeta> sortEntry = sortBy.entrySet().iterator().next();
+        if (sortEntry != null && sortEntry.getValue() != null) {
+          SortMeta sortMeta = sortEntry.getValue();
+          criteria.setSortField(sortMeta.getField());
+          criteria.setSortDescending(sortMeta.getOrder().isDescending());
+        }
       }
+
       query = criteria.buildQuery();
     }
     List<ITask> foundTasks = DashboardTaskService.getInstance().findByTaskQuery(query, first, pageSize);

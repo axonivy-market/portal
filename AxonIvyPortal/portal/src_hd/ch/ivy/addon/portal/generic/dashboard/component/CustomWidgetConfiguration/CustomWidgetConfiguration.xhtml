@@ -5,7 +5,6 @@
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="widget" />
-  <cc:attribute name="componentToUpdate" />
   <cc:attribute name="managedBean" />
 </cc:interface>
 
@@ -23,7 +22,6 @@
     </div>
     <div class="ui-g-12">
       <p:messages id="config-custom-widget-message">
-        <p:autoUpdate />
       </p:messages>
     </div>
     <h:panelGroup id="widget-title-group"
@@ -183,6 +181,7 @@
   <!-- Multi language dialog-->
   <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
     id="title-language-config" titles="#{managedBean.widget.names}"
-    componentToUpdateOnCreate="#{cc.attrs.componentToUpdate}" />
+    updateCurrentLanguage="#{managedBean.updateWidgetNameByLocale()}"
+    componentToUpdateOnCreate="#{cc.clientId}:widget-title" />
 </cc:implementation>
 </html>
