@@ -511,9 +511,11 @@
         "signature" : "viewRelatedTask",
         "input" : {
           "params" : [
-            { "name" : "taskUUID", "type" : "String", "desc" : "" }
+            { "name" : "taskUUID", "type" : "String", "desc" : "" },
+            { "name" : "showItemDetailsHeader", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
+            "out.showItemDetailsHeader" : "param.#showItemDetailsHeader is initialized ? param.showItemDetailsHeader : true",
             "out.uuid" : "param.taskUUID"
           }
         }
@@ -556,12 +558,13 @@
       "type" : "SubProcessCall",
       "name" : "OpenPortalTaskDetails",
       "config" : {
-        "processCall" : "Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)",
+        "processCall" : "Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean,Boolean)",
         "call" : {
           "map" : {
             "param.task" : "in.task",
             "param.portalPage" : "ch.ivy.addon.portalkit.enums.PortalPage.CASE_DETAIL_FROM_TASK",
-            "param.isFromTaskList" : "false"
+            "param.isFromTaskList" : "false",
+            "param.showItemDetailsHeader" : "in.showItemDetailsHeader"
           }
         }
       },

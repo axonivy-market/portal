@@ -1620,7 +1620,7 @@
       "type" : "SubProcessCall",
       "name" : "Functional Processes/Navigator",
       "config" : {
-        "processCall" : "Functional Processes/Navigator:viewRelatedTask(String)",
+        "processCall" : "Functional Processes/Navigator:viewRelatedTask(String,Boolean)",
         "call" : {
           "map" : {
             "param.taskUUID" : "in.uuid"
@@ -2131,7 +2131,7 @@
       "type" : "SubProcessCall",
       "name" : "Functional Processes/Navigator",
       "config" : {
-        "processCall" : "Functional Processes/Navigator:viewRelatedTask(String)",
+        "processCall" : "Functional Processes/Navigator:viewRelatedTask(String,Boolean)",
         "call" : {
           "map" : {
             "param.taskUUID" : "in.uuid"
@@ -2875,7 +2875,7 @@
           "type" : "SubProcessCall",
           "name" : "OpenPortalTaskDetailsHook",
           "config" : {
-            "processCall" : "Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)",
+            "processCall" : "Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean,Boolean)",
             "call" : {
               "map" : {
                 "param.task" : "in.taskSelected",
@@ -3717,7 +3717,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1264 },
-        "labelOffset" : { "x" : -79, "y" : 41 }
+        "labelOffset" : { "x" : -7, "y" : -239 }
       },
       "connect" : [
         { "id" : "f222", "to" : "f221" }
@@ -4289,6 +4289,269 @@
       },
       "connect" : [
         { "id" : "f155", "to" : "f152" }
+      ]
+    }, {
+      "id" : "f249",
+      "type" : "RequestStart",
+      "name" : "TaskDetailsLink.ivp",
+      "config" : {
+        "signature" : "TaskDetailsLink",
+        "input" : {
+          "params" : [
+            { "name" : "uuid", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.uuid" : "param.uuid"
+          }
+        },
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 3344 },
+        "labelOffset" : { "x" : -31, "y" : 41 }
+      },
+      "connect" : [
+        { "id" : "f265", "to" : "f257" }
+      ]
+    }, {
+      "id" : "f251",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 832, "y" : 3344 }
+      }
+    }, {
+      "id" : "f252",
+      "type" : "RequestStart",
+      "name" : "CaseDetailsLink.ivp",
+      "config" : {
+        "signature" : "CaseDetailsLink",
+        "input" : {
+          "params" : [
+            { "name" : "uuid", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.uuid" : "param.uuid"
+          }
+        },
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 3432 },
+        "labelOffset" : { "x" : -31, "y" : 41 }
+      },
+      "connect" : [
+        { "id" : "f258", "to" : "f254" }
+      ]
+    }, {
+      "id" : "f253",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 800, "y" : 3432 }
+      }
+    }, {
+      "id" : "S63",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S63-f26",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S63-f1" : "in.#caseSelected is initialized"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 152, "y" : 144 },
+            "labelOffset" : { "x" : 16, "y" : -16 }
+          },
+          "connect" : [
+            { "id" : "S63-f1", "to" : "S63-g1", "label" : {
+                "name" : "Yes"
+              }, "condition" : "in.#caseSelected is initialized" },
+            { "id" : "S63-f278", "to" : "S63-f277", "label" : {
+                "name" : "No",
+                "segment" : 0.48
+              } }
+          ]
+        }, {
+          "id" : "S63-f277",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 152, "y" : 224 }
+          }
+        }, {
+          "id" : "S63-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f263",
+          "connect" : [
+            { "id" : "S63-f0", "to" : "S63-f26" }
+          ]
+        }, {
+          "id" : "S63-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 320, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f260"
+        } ],
+      "visual" : {
+        "at" : { "x" : 384, "y" : 3432 }
+      },
+      "connect" : [
+        { "id" : "f260", "to" : "f255" }
+      ]
+    }, {
+      "id" : "f254",
+      "type" : "Script",
+      "name" : "Find Case",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang3.ObjectUtils;",
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
+            "",
+            "in.caseSelected = CaseService.newInstance().findCaseByUUID(in.uuid);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 212, "y" : 3432 },
+        "size" : { "width" : 136, "height" : 60 }
+      },
+      "connect" : [
+        { "id" : "f263", "to" : "S63" }
+      ]
+    }, {
+      "id" : "f255",
+      "type" : "SubProcessCall",
+      "name" : "OpenPortalCaseDetails",
+      "config" : {
+        "processCall" : "Functional Processes/OpenPortalCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean)",
+        "call" : {
+          "map" : {
+            "param.caseData" : "in.caseSelected",
+            "param.isShowBackButton" : "false"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 600, "y" : 3432 },
+        "size" : { "width" : 256, "height" : 60 }
+      },
+      "connect" : [
+        { "id" : "f259", "to" : "f253" }
+      ]
+    }, {
+      "id" : "S73",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S73-f180",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S73-f1" : "in.#taskSelected is initialized"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 152, "y" : 144 },
+            "labelOffset" : { "x" : 16, "y" : -16 }
+          },
+          "connect" : [
+            { "id" : "S73-f1", "to" : "S73-g1", "label" : {
+                "name" : "Yes"
+              }, "condition" : "ch.ivy.addon.portalkit.ivydata.service.impl.TaskService.newInstance().isTaskAccessible(in.taskId)" },
+            { "id" : "S73-f183", "to" : "S73-f182", "label" : {
+                "name" : "No",
+                "segment" : 0.39
+              } }
+          ]
+        }, {
+          "id" : "S73-f182",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 152, "y" : 232 }
+          }
+        }, {
+          "id" : "S73-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f264",
+          "connect" : [
+            { "id" : "S73-f0", "to" : "S73-f180" }
+          ]
+        }, {
+          "id" : "S73-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 320, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
+          },
+          "parentConnector" : "f261"
+        } ],
+      "visual" : {
+        "at" : { "x" : 384, "y" : 3344 }
+      },
+      "connect" : [
+        { "id" : "f261", "to" : "f256" }
+      ]
+    }, {
+      "id" : "f256",
+      "type" : "SubProcessCall",
+      "name" : "Functional Processes/Navigator",
+      "config" : {
+        "processCall" : "Functional Processes/Navigator:viewRelatedTask(String,Boolean)",
+        "call" : {
+          "map" : {
+            "param.taskUUID" : "in.uuid",
+            "param.showItemDetailsHeader" : "false"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 600, "y" : 3344 },
+        "size" : { "width" : 260, "height" : 58 }
+      },
+      "connect" : [
+        { "id" : "f262", "to" : "f251" }
+      ]
+    }, {
+      "id" : "f257",
+      "type" : "Script",
+      "name" : "Find Task",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang3.ObjectUtils;",
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;",
+            "in.taskSelected = TaskService.newInstance().findTaskByUUID(in.uuid);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 212, "y" : 3344 },
+        "size" : { "width" : 136, "height" : 60 }
+      },
+      "connect" : [
+        { "id" : "f264", "to" : "S73" }
       ]
     } ]
 }
