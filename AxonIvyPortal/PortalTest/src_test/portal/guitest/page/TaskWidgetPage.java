@@ -91,12 +91,6 @@ public class TaskWidgetPage extends TemplatePage {
         String.format("task-widget:task-list-scroller:%d:task-item:task-id-component:task-id", taskRowIndex)).getText();
   }
 
-  public String getTaskUUIDOfRow(int taskRowIndex) {
-    return findElementById(
-        String.format("task-widget:task-list-scroller:%d:task-item:task-id-component:task-uuid", taskRowIndex)).getAttribute("value");
-  }
-
-  
   public TaskTemplatePage startTaskWithouWaitForTaskActionPresent(int index) {
     waitTaskAppearThenClick(index);
     return new TaskTemplatePage();
