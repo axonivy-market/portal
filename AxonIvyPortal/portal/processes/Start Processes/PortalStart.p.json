@@ -4291,161 +4291,6 @@
         { "id" : "f155", "to" : "f152" }
       ]
     }, {
-      "id" : "f154",
-      "type" : "RequestStart",
-      "name" : "TaskDetailsLinkById.ivp",
-      "config" : {
-        "signature" : "TaskDetailsLinkById",
-        "input" : {
-          "params" : [
-            { "name" : "taskDetailsId", "type" : "Long", "desc" : "" }
-          ],
-          "map" : {
-            "out.taskId" : "param.taskDetailsId"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 3376 },
-        "labelOffset" : { "x" : -31, "y" : 41 }
-      },
-      "connect" : [
-        { "id" : "f170", "to" : "f247" }
-      ]
-    }, {
-      "id" : "f212",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 832, "y" : 3376 }
-      }
-    }, {
-      "id" : "f233",
-      "type" : "RequestStart",
-      "name" : "CaseDetailsLinkById.ivp",
-      "config" : {
-        "signature" : "CaseDetailsLinkById",
-        "input" : {
-          "params" : [
-            { "name" : "caseId", "type" : "Long", "desc" : "" }
-          ],
-          "map" : {
-            "out.caseId" : "param.caseId"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 3464 },
-        "labelOffset" : { "x" : -31, "y" : 41 }
-      },
-      "connect" : [
-        { "id" : "f223", "to" : "f238" }
-      ]
-    }, {
-      "id" : "f239",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 800, "y" : 3464 }
-      }
-    }, {
-      "id" : "S62",
-      "type" : "EmbeddedProcess",
-      "name" : "Authorize",
-      "elements" : [ {
-          "id" : "S62-f26",
-          "type" : "Alternative",
-          "name" : "Authorized?",
-          "config" : {
-            "conditions" : {
-              "S62-f1" : "in.#caseSelected is initialized"
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 152, "y" : 144 },
-            "labelOffset" : { "x" : 16, "y" : -16 }
-          },
-          "connect" : [
-            { "id" : "S62-f1", "to" : "S62-g1", "label" : {
-                "name" : "Yes"
-              }, "condition" : "in.#caseSelected is initialized" },
-            { "id" : "S62-f278", "to" : "S62-f277", "label" : {
-                "name" : "No",
-                "segment" : 0.48
-              } }
-          ]
-        }, {
-          "id" : "S62-f277",
-          "type" : "TaskEnd",
-          "visual" : {
-            "at" : { "x" : 152, "y" : 224 }
-          }
-        }, {
-          "id" : "S62-g0",
-          "type" : "EmbeddedStart",
-          "name" : "in 1",
-          "visual" : {
-            "at" : { "x" : 64, "y" : 144 },
-            "size" : { "width" : 26, "height" : 26 }
-          },
-          "parentConnector" : "f244",
-          "connect" : [
-            { "id" : "S62-f0", "to" : "S62-f26" }
-          ]
-        }, {
-          "id" : "S62-g1",
-          "type" : "EmbeddedEnd",
-          "name" : "out 1",
-          "visual" : {
-            "at" : { "x" : 320, "y" : 144 },
-            "size" : { "width" : 26, "height" : 26 }
-          },
-          "parentConnector" : "f245"
-        } ],
-      "visual" : {
-        "at" : { "x" : 384, "y" : 3464 }
-      },
-      "connect" : [
-        { "id" : "f245", "to" : "f240" }
-      ]
-    }, {
-      "id" : "f238",
-      "type" : "Script",
-      "name" : "Find Case",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
-            "",
-            "out.caseSelected = out.caseSelected = CaseService.newInstance().findCaseById(in.caseId);"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 224, "y" : 3464 }
-      },
-      "connect" : [
-        { "id" : "f244", "to" : "S62" }
-      ]
-    }, {
-      "id" : "f240",
-      "type" : "SubProcessCall",
-      "name" : "OpenPortalCaseDetails",
-      "config" : {
-        "processCall" : "Functional Processes/OpenPortalCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean)",
-        "call" : {
-          "map" : {
-            "param.caseData" : "in.caseSelected",
-            "param.isShowBackButton" : "false"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 600, "y" : 3464 },
-        "size" : { "width" : 256, "height" : 60 }
-      },
-      "connect" : [
-        { "id" : "f246", "to" : "f239" }
-      ]
-    }, {
       "id" : "S43",
       "type" : "EmbeddedProcess",
       "name" : "Authorize",
@@ -4485,7 +4330,6 @@
             "at" : { "x" : 64, "y" : 144 },
             "size" : { "width" : 26, "height" : 26 }
           },
-          "parentConnector" : "f248",
           "connect" : [
             { "id" : "S43-f0", "to" : "S43-f180" }
           ]
@@ -4496,35 +4340,11 @@
           "visual" : {
             "at" : { "x" : 320, "y" : 144 },
             "size" : { "width" : 26, "height" : 26 }
-          },
-          "parentConnector" : "f218"
+          }
         } ],
       "visual" : {
         "at" : { "x" : 384, "y" : 3376 }
-      },
-      "connect" : [
-        { "id" : "f218", "to" : "f250" }
-      ]
-    }, {
-      "id" : "f250",
-      "type" : "SubProcessCall",
-      "name" : "Functional Processes/Navigator",
-      "config" : {
-        "processCall" : "Functional Processes/Navigator:viewRelatedTask(String,Boolean)",
-        "call" : {
-          "map" : {
-            "param.taskUUID" : "in.uuid",
-            "param.showItemDetailsHeader" : "false"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 600, "y" : 3376 },
-        "size" : { "width" : 260, "height" : 58 }
-      },
-      "connect" : [
-        { "id" : "f219", "to" : "f212" }
-      ]
+      }
     }, {
       "id" : "f247",
       "type" : "Script",
@@ -4544,16 +4364,13 @@
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 3376 }
-      },
-      "connect" : [
-        { "id" : "f248", "to" : "S43" }
-      ]
+      }
     }, {
       "id" : "f249",
       "type" : "RequestStart",
-      "name" : "TaskDetailsLinkByUUID.ivp",
+      "name" : "TaskDetailsLink.ivp",
       "config" : {
-        "signature" : "TaskDetailsLinkByUUID",
+        "signature" : "TaskDetailsLink",
         "input" : {
           "params" : [
             { "name" : "uuid", "type" : "String", "desc" : "" }
@@ -4561,10 +4378,13 @@
           "map" : {
             "out.uuid" : "param.uuid"
           }
+        },
+        "request" : {
+          "isVisibleOnStartList" : false
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 3568 },
+        "at" : { "x" : 96, "y" : 3472 },
         "labelOffset" : { "x" : -31, "y" : 41 }
       },
       "connect" : [
@@ -4574,14 +4394,14 @@
       "id" : "f251",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 832, "y" : 3568 }
+        "at" : { "x" : 832, "y" : 3472 }
       }
     }, {
       "id" : "f252",
       "type" : "RequestStart",
-      "name" : "CaseDetailsLinkByUUID.ivp",
+      "name" : "CaseDetailsLink.ivp",
       "config" : {
-        "signature" : "CaseDetailsLinkByUUID",
+        "signature" : "CaseDetailsLink",
         "input" : {
           "params" : [
             { "name" : "uuid", "type" : "String", "desc" : "" }
@@ -4589,10 +4409,13 @@
           "map" : {
             "out.uuid" : "param.uuid"
           }
+        },
+        "request" : {
+          "isVisibleOnStartList" : false
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 3656 },
+        "at" : { "x" : 96, "y" : 3560 },
         "labelOffset" : { "x" : -31, "y" : 41 }
       },
       "connect" : [
@@ -4602,7 +4425,7 @@
       "id" : "f253",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 800, "y" : 3656 }
+        "at" : { "x" : 800, "y" : 3560 }
       }
     }, {
       "id" : "S63",
@@ -4659,7 +4482,7 @@
           "parentConnector" : "f260"
         } ],
       "visual" : {
-        "at" : { "x" : 384, "y" : 3656 }
+        "at" : { "x" : 384, "y" : 3560 }
       },
       "connect" : [
         { "id" : "f260", "to" : "f255" }
@@ -4671,14 +4494,15 @@
       "config" : {
         "output" : {
           "code" : [
+            "import org.apache.commons.lang3.ObjectUtils;",
             "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
             "",
-            "out.caseSelected = out.caseSelected = CaseService.newInstance().findCaseByUUID(in.uuid);"
+            "in.caseSelected = CaseService.newInstance().findCaseByUUID(in.uuid);"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 3656 }
+        "at" : { "x" : 224, "y" : 3560 }
       },
       "connect" : [
         { "id" : "f263", "to" : "S63" }
@@ -4697,7 +4521,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 600, "y" : 3656 },
+        "at" : { "x" : 600, "y" : 3560 },
         "size" : { "width" : 256, "height" : 60 }
       },
       "connect" : [
@@ -4758,7 +4582,7 @@
           "parentConnector" : "f261"
         } ],
       "visual" : {
-        "at" : { "x" : 384, "y" : 3568 }
+        "at" : { "x" : 384, "y" : 3472 }
       },
       "connect" : [
         { "id" : "f261", "to" : "f256" }
@@ -4777,7 +4601,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 600, "y" : 3568 },
+        "at" : { "x" : 600, "y" : 3472 },
         "size" : { "width" : 260, "height" : 58 }
       },
       "connect" : [
@@ -4797,7 +4621,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 3568 }
+        "at" : { "x" : 224, "y" : 3472 }
       },
       "connect" : [
         { "id" : "f264", "to" : "S73" }

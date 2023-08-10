@@ -479,8 +479,4 @@ public class CaseService implements ICaseService {
     return null;
   }
 
-  public ICase findCaseById(Long id) {
-    return Sudo.get(() -> Ivy.wf().findCase(id));
-  }
-
 }
