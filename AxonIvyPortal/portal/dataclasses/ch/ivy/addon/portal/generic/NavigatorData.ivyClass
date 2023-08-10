@@ -14,3 +14,4 @@ chartName String #field
 caze ch.ivyteam.ivy.workflow.ICase #field
 task ch.ivyteam.ivy.workflow.ITask #field
 uuid String #field
+showItemDetailsHeader Boolean #field

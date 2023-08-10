@@ -22,7 +22,6 @@
   <c:set var="documentWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('DocumentWidget') gt -1 ? documentsContainerID:''}" />
   <c:set var="noteContainerID" value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('HistoryWidget')}:task-detail-note-container" />
   <c:set var="historyWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('HistoryWidget') gt -1 ? noteContainerID:''}" />
-
   <div class="ui-g">
     <h:panelGroup id="task-detail-container" rendered="#{cc.attrs.showItemDetailsHeader}"
       styleClass="u-truncate-text task-detail-container ui-g-12 u-no-padding-bottom">

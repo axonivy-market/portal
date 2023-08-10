@@ -257,7 +257,7 @@
       "type" : "SubProcessCall",
       "name" : "OpenPortalTaskDetails",
       "config" : {
-        "processCall" : "Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)",
+        "processCall" : "Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean,Boolean)",
         "call" : {
           "map" : {
             "param.task" : "in.task",
