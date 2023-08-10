@@ -226,10 +226,6 @@ public class TaskDetailsPage extends TemplatePage {
     return findElementByCssSelector("[id$=':task-id']").getText();
   }
   
-  public String getTaskUUID() {
-    return findElementByCssSelector("[id$=':task-uuid']").getAttribute("value");
-  }
-
   public String getFirstTaskNoteComment() {
     return findElementByCssSelector("a[id$=':task-notes:task-note-table:0:note-message']").getText();
   }
