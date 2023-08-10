@@ -86,7 +86,7 @@ public class CaseCategoryFilter extends CaseFilter {
     this.root = root;
   }
 
-  public void initializeRoot(boolean skipValidate) {
+  public void initializeRoot(boolean forceRebuildFilter) {
     String allCategoriesText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/allCategories");
     // If language is changed, category tree needs to be rebuilt
     String allCategoriesTextInTree = Optional.ofNullable(root)
@@ -96,7 +96,7 @@ public class CaseCategoryFilter extends CaseFilter {
         .map(TreeNode::getData)
         .map(data -> data.getValue())
         .orElse(StringUtils.EMPTY);
-    if (skipValidate || root == null || !StringUtils.equals(allCategoriesTextInTree, allCategoriesText)) {
+    if (forceRebuildFilter || root == null || !StringUtils.equals(allCategoriesTextInTree, allCategoriesText)) {
       root = CaseTreeUtils.buildCaseCategoryCheckboxTreeRoot();
       categories = CategoryUtils.recoverSelectedCategories(root, categoryPaths);
     }
