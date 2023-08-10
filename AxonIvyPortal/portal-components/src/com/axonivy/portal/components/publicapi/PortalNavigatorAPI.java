@@ -3,8 +3,6 @@ package com.axonivy.portal.components.publicapi;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.lang3.ObjectUtils;
-
 import com.axonivy.portal.components.enums.SessionAttribute;
 import com.axonivy.portal.components.generic.navigation.BaseNavigator;
 
@@ -52,10 +50,7 @@ public final class PortalNavigatorAPI extends BaseNavigator {
   public static String buildUrlToPortalCaseDetailsPageById(Long caseId) {
     String id = Long.toString(caseId);
     ICase caze = Sudo.get(() -> Ivy.wf().findCase(caseId));
-    if (ObjectUtils.isNotEmpty(caze)) {
-      return buildUrlToPortalCaseDetailsPageByUUID(caze.uuid());
-    }
-    return buildUrlToPortalCaseDetailsPageByUUID(id);
+    return buildUrlToPortalCaseDetailsPageByUUID(caze != null ? caze.uuid() : id);
   }
 
   /**
@@ -67,10 +62,7 @@ public final class PortalNavigatorAPI extends BaseNavigator {
   public static String buildUrlToPortalTaskDetailsPageById(Long taskId) {
     String id = Long.toString(taskId);
     ITask task = Sudo.get(() -> Ivy.wf().findTask(taskId));
-    if (ObjectUtils.isNotEmpty(task)) {
-      return buildUrlToPortalTaskDetailsPageByUUID(task.uuid());
-    }
-    return buildUrlToPortalTaskDetailsPageByUUID(id);
+    return buildUrlToPortalTaskDetailsPageByUUID(task != null ? task.uuid() : id);
   }
   
   /**
