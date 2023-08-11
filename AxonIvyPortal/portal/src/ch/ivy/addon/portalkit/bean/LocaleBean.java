@@ -5,6 +5,9 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import org.apache.commons.lang3.StringUtils;
+
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -13,6 +16,9 @@ public class LocaleBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public String getLocale(){
-    return Ivy.session().getFormattingLocale().toString();
+    if (Ivy.session().getFormattingLocale() != null && StringUtils.isNotBlank(Ivy.session().getFormattingLocale().toString())) {
+      return Ivy.session().getFormattingLocale().toString();
+    } 
+    return LanguageService.newInstance().getDefaultFormattingLanguage().toString();
   }
 }

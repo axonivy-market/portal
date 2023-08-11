@@ -202,6 +202,7 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.openAdvancedFilter("Category", taskCategoryId);
     assertEquals("Category: All", taskWidgetPage.getFilterValue(taskCategoryId + "-filter"));
     taskWidgetPage.openCategoryFilter();
+    assertTrue(taskWidgetPage.isLoadingCategories());
     assertTrue(taskWidgetPage.isAllCategoriesSelected());
 
     taskWidgetPage.toggleNoCategory();
