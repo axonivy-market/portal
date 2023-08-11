@@ -319,11 +319,17 @@ public class CaseWidgetPage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 	}
 
+	public boolean isLoadingCategories() {
+		return isElementDisplayed(By.cssSelector(".loading-panel"));
+	}
+
 	public boolean isAllCategoriesSelected() {
+		waitForElementDisplayed(By.cssSelector(".filter-category-checkbox-tree"), true);
 		return isElementDisplayed(By.cssSelector(".filter-category-checkbox-tree .ui-treenode-selected"));
 	}
 
 	public boolean isAllCategoriesUnselected() {
+		waitForElementDisplayed(By.cssSelector(".filter-category-checkbox-tree"), true);
 		return isElementDisplayed(By.cssSelector(".filter-category-checkbox-tree .ui-treenode-hasselected"));
 	}
 
