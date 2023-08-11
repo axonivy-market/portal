@@ -148,7 +148,6 @@ public class TaskDetailsTest extends BaseTest {
     taskDetailsPage = new TaskDetailsPage();
     String yesterday = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     String yesterdayWithLocale = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.LOCALE_DATE_TIME_PATTERN));
-    taskDetailsPage.updateDelayTimestamp(yesterday,yesterdayWithLocale);
     assertEquals(yesterdayWithLocale, taskDetailsPage.updateDelayTimestamp(yesterday,yesterdayWithLocale));
     assertTrue(StringUtils.equalsIgnoreCase("SUSPENDED", taskDetailsPage.getTaskState()));
   }
