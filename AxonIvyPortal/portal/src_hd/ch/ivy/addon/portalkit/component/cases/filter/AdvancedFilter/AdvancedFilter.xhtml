@@ -22,6 +22,7 @@
   <cc:attribute name="position" type="java.lang.Integer" />
   <cc:attribute name="selectedFilters" />
   <cc:attribute name="resultContainerUpdated" />
+  <cc:attribute name="dynamicUpdate" default="false" />
 </cc:interface>
 
 <cc:implementation>
@@ -57,14 +58,22 @@
       <p:overlayPanel id="advanced-filter-panel" widgetVar="#{widgetVarPanel}"
         dismissable="#{cc.attrs.dismissableOverlayPanel}" styleClass="advanced-filter-panel #{widgetVarPanel}"
         for="#{cc.clientId}:filter-open-form:advanced-filter-command" my="left top" at="left bottom"
-        onHide="$(this.targetElement).parents('form').siblings('form').find('.portal-cancel-button').click();">
-        <h:panelGroup id="advanced-filter-panel-content" layout="block" styleClass="ui-overlaypanel-filter-content #{cc.attrs.contentStyleClass}">
+        onHide="$(this.targetElement).parents('form').siblings('form').find('.portal-cancel-button').click(); #{cc.attrs.dynamicUpdate? 'hideFilterContent();' : ''}">
+        <p:ajax disabled="#{!cc.attrs.dynamicUpdate}" event="show" listener="#{caseFilter.update()}" global="false" update="advanced-filter-panel-content"
+          onstart="hideFilterContent();" oncomplete="showFilterContent();" />
+
+        <h:panelGroup layout="block" rendered="#{cc.attrs.dynamicUpdate}" styleClass="js-loading-panel loading-panel">
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}" />
+        </h:panelGroup>
+
+        <h:panelGroup id="advanced-filter-panel-content" layout="block"
+          styleClass="ui-overlaypanel-filter-content #{cc.attrs.contentStyleClass} #{cc.attrs.dynamicUpdate? 'u-hidden js-filter-content' : ''}">
           <p:messages for="advanced-filter-error-messages" showIcon="false"/>
           <cc:insertChildren />
         </h:panelGroup>
 
-        <h:panelGroup id="advanced-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer"
-          rendered="#{cc.attrs.displayFooterButtons}">
+        <h:panelGroup id="advanced-filter-panel-footer" layout="block"
+          rendered="#{cc.attrs.displayFooterButtons}" styleClass="ui-overlaypanel-footer #{cc.attrs.dynamicUpdate? 'u-hidden js-filter-content' : ''}">
           <p:commandLink id="cancel-command" process="@this" global="false"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="#{cc.clientId}:filter-open-form @form" resetValues="true"
             oncomplete="PF('#{widgetVarPanel}').hide(); #{facesContext.validationFailed ? caseFilter.resetValues() : ''};" />
@@ -81,6 +90,22 @@
           </p:commandButton>
         </h:panelGroup>
       </p:overlayPanel>
+
+      <h:panelGroup rendered="#{cc.attrs.dynamicUpdate}">
+        <script>
+        function showFilterContent() {
+          var panel = document.getElementById('#{cc.clientId}:filter-input-form:advanced-filter-panel');
+          $(panel).find('.js-loading-panel').addClass('u-hidden');
+          $(panel).find('.js-filter-content').removeClass('u-hidden');
+        }
+
+        function hideFilterContent() {
+          var panel = document.getElementById('#{cc.clientId}:filter-input-form:advanced-filter-panel');
+          $(panel).find('.js-loading-panel').removeClass('u-hidden');
+          $(panel).find('.js-filter-content').addClass('u-hidden');
+        }
+      </script>
+      </h:panelGroup>
     </h:form>
   </h:panelGroup>
 </cc:implementation>
