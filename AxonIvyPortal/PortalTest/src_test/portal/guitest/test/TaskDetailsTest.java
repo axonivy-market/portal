@@ -1,5 +1,6 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -69,7 +70,7 @@ public class TaskDetailsTest extends BaseTest {
     String tomorrowStringLiteral = prepareTomorrowAsString();
     taskDetailsPage = openDetailsPageOfFirstTask();
     taskDetailsPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
-    assertTrue(StringUtils.equalsIgnoreCase(prepareTomorrowAsLocaleDateString(), taskDetailsPage.getExpiryOfTaskAt()));
+    assertEquals(prepareTomorrowAsLocaleDateString(), taskDetailsPage.getExpiryOfTaskAt());
   }
 
   @Test
