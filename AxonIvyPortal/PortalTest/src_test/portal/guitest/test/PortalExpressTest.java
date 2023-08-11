@@ -390,7 +390,7 @@ public class PortalExpressTest extends BaseTest {
 		formDefinition.createTextInputField("Input Text", INPUT_TEXT_TYPE_INDEX, false);
 		formDefinition.moveAllElementToDragAndDrogPanel();
 		formDefinition.nextStep();
-		formDefinition.inputMailRecipient("wawa@axonivy.io");
+		formDefinition.inputMailRecipient("wawa@axongroupio.ch");
 		formDefinition.inputMailSubject("Information for task 2");
 		formDefinition.inputMailContent("Task is finished");
 		formDefinition.nextStep();
@@ -421,7 +421,7 @@ public class PortalExpressTest extends BaseTest {
 		UserTaskWithMailFormPage userTaskWithMailFormPage = new UserTaskWithMailFormPage();
 		userTaskWithMailFormPage.waitForPageLoaded();
 		userTaskWithMailFormPage.selectEmailTab();
-		userTaskWithMailFormPage.inputData("wawa@axonivy.io", "Task information", "Task is created");
+		userTaskWithMailFormPage.inputData("wawa@axongroupio.ch", "Task information", "Task is created");
 		userTaskWithMailFormPage.finish();
 		executeApproval("Approved at first level");
 		executeUserTask();
