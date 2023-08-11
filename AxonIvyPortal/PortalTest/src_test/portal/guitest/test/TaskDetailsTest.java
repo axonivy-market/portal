@@ -1,5 +1,6 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -141,13 +142,14 @@ public class TaskDetailsTest extends BaseTest {
     assertTrue(StringUtils.equalsIgnoreCase("DELAYED", taskDetailsPage.getTaskState()));
     String tomorrow = prepareTomorrowAsString();
     String tomorrowWithLocale = prepareTomorrowAsLocaleDateString();
-    taskDetailsPage.updateDelayTimestamp(tomorrow,tomorrowWithLocale);
+    assertEquals(tomorrowWithLocale, taskDetailsPage.updateDelayTimestamp(tomorrow,tomorrowWithLocale));
     assertTrue(StringUtils.equalsIgnoreCase("DELAYED", taskDetailsPage.getTaskState()));
     refreshPage();
     taskDetailsPage = new TaskDetailsPage();
     String yesterday = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     String yesterdayWithLocale = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.LOCALE_DATE_TIME_PATTERN));
     taskDetailsPage.updateDelayTimestamp(yesterday,yesterdayWithLocale);
+    assertEquals(yesterdayWithLocale, taskDetailsPage.updateDelayTimestamp(yesterday,yesterdayWithLocale));
     assertTrue(StringUtils.equalsIgnoreCase("SUSPENDED", taskDetailsPage.getTaskState()));
   }
 
