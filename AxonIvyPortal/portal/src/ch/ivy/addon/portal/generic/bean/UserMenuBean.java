@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -14,6 +15,9 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.PrimeFaces;
+
+import com.axonivy.portal.components.enums.PortalCustomSignature;
+import com.axonivy.portal.components.service.IvyAdapterService;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
@@ -28,7 +32,6 @@ import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -291,9 +294,8 @@ public class UserMenuBean implements Serializable {
   }
   
   private String getCustomizedLogoutPage() {
-    Map<String, Object> response = IvyAdapterService.startSubProcess("getLogoutPage()", null,
-            Arrays.asList(PortalLibrary.PORTAL.getValue()));
-    return (String) response.get("logoutPage");
+    Map<String, Object> response =  IvyAdapterService.startSubProcessInSecurityContext(PortalCustomSignature.LOGOUT_PAGE.getSignature(), null);
+    return (String) Optional.ofNullable(response).map(r -> r.get("logoutPage")).orElse("");
   }
   
   public void navigateToURLOrDisplayWorkingTaskWarning(UserMenu menu, boolean isWorkingOnATask, ITask task) throws IOException {
