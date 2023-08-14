@@ -11,7 +11,7 @@
     <ui:param name="loadOptionalSerenityCss" value="false" />
   	<ui:param name="inDialog" value="true" />
   	<ui:define name="pageContent">
-  		 <ic:ch.ivy.addon.portalkit.component.TaskItemDetails id="task-detail-template" task="#{data.task}" showItemDetailsHeader="#{data.isBackButtonNeeded}"
+  		 <ic:ch.ivy.addon.portalkit.component.TaskItemDetails id="task-detail-template" task="#{data.task}" showItemDetailsHeader="true"
 	        showItemDetailsNotes="true" showItemDetailDocuments="true" dataModel="#{dataModel}"
 	        portalPage="#{data.portalPage}" isFromTaskList="#{data.isFromTaskList}"
 	        isTaskStartedInDetails="#{data.isTaskStartedInDetails}" readOnly="true">
