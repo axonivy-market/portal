@@ -1,7 +1,6 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
@@ -10,10 +9,10 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
+import com.axonivy.portal.components.service.IvyAdapterService;
+
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -35,8 +34,7 @@ public class ChatRendererBean implements Serializable {
       GlobalSettingService globalSettingService = new GlobalSettingService();
       String enableGroupChatCreation = globalSettingService.findGlobalSettingValue(GlobalVariable.ENABLE_GROUP_CHAT);
       if (StringUtils.isBlank(enableGroupChatCreation)) {
-        Map<String, Object> response = IvyAdapterService.startSubProcess("activateGroupChat()", null,
-            Arrays.asList(PortalLibrary.PORTAL.getValue()));
+        Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext("activateGroupChat()", null);
         isGroupChatRendered = Boolean.parseBoolean(response.get("isActivated").toString());
       } else {
         isGroupChatRendered = Boolean.parseBoolean(enableGroupChatCreation);
@@ -55,9 +53,7 @@ public class ChatRendererBean implements Serializable {
   }
   
   public void getGroupChatName() {
-    Map<String, Object> response = IvyAdapterService.startSubProcess("setGroupChatName()", null,
-        Arrays.asList(PortalLibrary.PORTAL.getValue()));
-    String groupChatName = response.get("name").toString();
+    String groupChatName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/case") + "-{caseId}" + " {caseName}";
     PrimeFaces.current().executeScript("var groupChatFormat = '" + groupChatName + "'");
   }
 

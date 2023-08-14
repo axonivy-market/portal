@@ -55,7 +55,7 @@
       "type" : "SubProcessCall",
       "name" : "Extend logout",
       "config" : {
-        "processCall" : "Functional Processes/Logout:call(Boolean,ch.ivyteam.ivy.workflow.ITask)",
+        "processCall" : "Functional Processes/Logout:logout(Boolean,ch.ivyteam.ivy.workflow.ITask)",
         "call" : {
           "params" : [
             { "name" : "isTaskReserve", "type" : "Boolean" },
@@ -97,7 +97,7 @@
       "type" : "SubProcessCall",
       "name" : "Extend logout",
       "config" : {
-        "processCall" : "Functional Processes/Logout:call(Boolean,ch.ivyteam.ivy.workflow.ITask)",
+        "processCall" : "Functional Processes/Logout:logout(Boolean,ch.ivyteam.ivy.workflow.ITask)",
         "call" : {
           "params" : [
             { "name" : "isTaskReserve", "type" : "Boolean" },
@@ -110,7 +110,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 193, "y" : 449 }
+        "at" : { "x" : 192, "y" : 448 }
       },
       "connect" : { "id" : "f6", "to" : "f15" }
     }, {
@@ -196,7 +196,7 @@
       "type" : "SubProcessCall",
       "name" : "Extend logout",
       "config" : {
-        "processCall" : "Functional Processes/Logout:call(Boolean,ch.ivyteam.ivy.workflow.ITask)",
+        "processCall" : "Functional Processes/Logout:logout(Boolean,ch.ivyteam.ivy.workflow.ITask)",
         "call" : {
           "params" : [
             { "name" : "isTaskReserve", "type" : "Boolean" },
