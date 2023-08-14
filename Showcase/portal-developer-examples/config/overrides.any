@@ -1,16 +1,11 @@
 {
   /PROCESS {
     /Functional-Processes.CalculateTaskDelegate "Functional Processes/CalculateTaskDelegateOverride"
-    /Functional-Processes.AssignRolesGroupChat "Functional Processes/AssignRolesGroupChatOverride"
-    /Functional-Processes.ResetPassword "Functional Processes/ResetPasswordOverride"
-    /Functional-Processes.InitializeTaskDataModel "Functional Processes/InitializeTaskDataModelOverride"
-    /Functional-Processes.GetGroupChatParams "Functional Processes/GetGroupChatParamsOverride"
-    /Functional-Processes.LoadSubMenuItems "Functional Processes/LoadSubMenuItemsOverride"
-    /Functional-Processes.SendPasswordResetEmail "Functional Processes/SendPasswordResetEmailOverride"
     /Functional-Processes.ExportTaskToExcel "Functional Processes/ExportTaskToExcelOverride"
     /Functional-Processes.InitializeCaseDataModel "Functional Processes/InitializeCaseDataModelOverride"
-    /Functional-Processes.SetGroupChatName "Functional Processes/SetGroupChatNameOverride"
+    /Functional-Processes.InitializeTaskDataModel "Functional Processes/InitializeTaskDataModelOverride"
     /Functional-Processes.ExportCaseToExcel "Functional Processes/ExportCaseToExcelOverride"
+    /Functional-Processes.LoadSubMenuItems "Functional Processes/LoadSubMenuItemsOverride"
     /Functional-Processes.BuildTaskQuery "Functional Processes/BuildTaskQueryOverride"
     /Functional-Processes.DefaultStatisticCustomField "Functional Processes/DefaultStatisticCustomFieldOverride"
   }
