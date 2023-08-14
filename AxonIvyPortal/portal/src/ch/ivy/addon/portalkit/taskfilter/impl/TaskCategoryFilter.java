@@ -85,7 +85,7 @@ public class TaskCategoryFilter extends TaskFilter {
     this.root = root;
   }
 
-  private void initializeRoot(boolean skipValidate) {
+  private void initializeRoot(boolean forceRebuildFilter) {
     String allCategoriesText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/allCategories");
     // If language is changed, category tree needs to be rebuilt
     String allCategoriesTextInTree = Optional.ofNullable(root)
@@ -95,7 +95,7 @@ public class TaskCategoryFilter extends TaskFilter {
         .map(TreeNode::getData)
         .map(data -> data.getValue())
         .orElse(StringUtils.EMPTY);
-    if (skipValidate || root == null || !StringUtils.equals(allCategoriesTextInTree, allCategoriesText)) {
+    if (forceRebuildFilter || root == null || !StringUtils.equals(allCategoriesTextInTree, allCategoriesText)) {
       root = TaskTreeUtils.buildTaskCategoryCheckboxTreeRoot();
       categories = CategoryUtils.recoverSelectedCategories(root, categoryPaths);
     }

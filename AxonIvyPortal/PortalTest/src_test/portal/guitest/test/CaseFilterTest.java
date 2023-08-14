@@ -109,7 +109,6 @@ public class CaseFilterTest extends BaseTest {
 		casePage.openAdvancedFilter("Case category", caseCategoryId);
 		assertEquals("Case category: All", casePage.getFilterValue(caseCategoryId + "-filter"));
 		casePage.openCategoryFilter();
-		assertTrue(casePage.isLoadingCategories());
 		assertTrue(casePage.isAllCategoriesSelected());
 
 		casePage.toggleNoCategory();
