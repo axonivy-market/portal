@@ -1,38 +1,38 @@
 {
   "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
-  "id" : "16B25F2844868AE2",
+  "id" : "16B266ED2EA90665",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "gawfs.GetDocumentItemsOverrideData"
+    "data" : "gawfs.CustomDeleteDocumentItemData"
   },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "call(ICase)",
+      "name" : "expressDeleteDocumentItem(ICase,IvyDocument)",
       "config" : {
-        "signature" : "call",
+        "signature" : "expressDeleteDocumentItem",
         "input" : {
           "params" : [
-            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument", "desc" : "" }
           ],
           "map" : {
-            "out.businessCase" : "param.businessCase"
+            "out.businessCase" : "param.businessCase",
+            "out.document" : "param.document"
           }
         },
         "result" : {
           "params" : [
-            { "name" : "documents", "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>", "desc" : "" },
             { "name" : "message", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "result.documents" : "in.documents",
             "result.message" : "in.message"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : 6, "y" : 44 }
+        "labelOffset" : { "x" : 1, "y" : 41 }
       },
       "connect" : [
         { "id" : "f4", "to" : "f3" }
@@ -41,24 +41,24 @@
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 352, "y" : 64 }
+        "at" : { "x" : 416, "y" : 64 }
       }
     }, {
       "id" : "f3",
       "type" : "Script",
-      "name" : "get document items",
+      "name" : "Delete document item",
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.util.DocumentFileUtils;",
+            "import java.util.Arrays;",
             "",
-            "in.documents = DocumentFileUtils.expressDocuments(in.businessCase);"
+            "in.businessCase.documents().delete(Long.valueOf(in.document.id));",
+            "in.message = ivy.cms.co(\"/Dialogs/components/CaseDocument/deleteSucceed\");"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 64 },
+        "at" : { "x" : 256, "y" : 64 },
         "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : [
@@ -67,16 +67,10 @@
     }, {
       "id" : "f5",
       "type" : "ProcessAnnotation",
-      "name" : [
-        "After get document list from DMS, convert them into List<ch.ivy.addon.portal.components.ivydata.bo.IvyDocument>",
-        "Some mandatory fields when mapping:",
-        "- id",
-        "- name",
-        "- contentType"
-      ],
+      "name" : "Override this sub process to delete file in DMS",
       "visual" : {
-        "at" : { "x" : 344, "y" : 240 },
-        "size" : { "width" : 624, "height" : 108 }
+        "at" : { "x" : 288, "y" : 184 },
+        "size" : { "width" : 256, "height" : 40 }
       },
       "connect" : [
         { "id" : "f6", "to" : "f0" }
