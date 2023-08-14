@@ -21,7 +21,7 @@ Customize logout function
 
 Create callable sub process with
 
-**Signature**: potalLogout
+**Signature**: portalLogout
 
 +-----------------------+-------------------+
 | Name                  | Type              |
@@ -38,7 +38,7 @@ Customize logout page
 
 Create callable sub process with 
 
-**Signature**: potalGetLogoutPage
+**Signature**: portalGetLogoutPage
 
 +-----------------------+-------------------+
 | Name                  | Type              |
