@@ -44,7 +44,7 @@
             "import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;",
             "",
             "",
-            "IvyLanguageResultDTO dto = LanguageService.newInstance().findUserLanguages();//getSupportedLanguages();",
+            "IvyLanguageResultDTO dto = LanguageService.newInstance().findUserLanguages();",
             "out.language = dto.ivyLanguage;"
           ]
         }
