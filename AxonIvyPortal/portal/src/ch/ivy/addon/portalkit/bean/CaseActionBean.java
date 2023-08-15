@@ -41,7 +41,7 @@ public class CaseActionBean implements Serializable {
     String additionalCaseDetailsPageUri = StringUtils.EMPTY;
     if (isExpressCase(iCase)) {
       additionalCaseDetailsPageUri =
-          ProcessStartCollector.getInstance().findExpressBusinessViewStartLink() + "?caseId=" + iCase.getId();
+          ProcessStartCollector.getInstance().findExpressBusinessViewStartLink() + "?uuid=" + iCase.uuid();
     } else {
       additionalCaseDetailsPageUri = getBusinessDetailURLFromCustomField(iCase);
     }
@@ -60,7 +60,7 @@ public class CaseActionBean implements Serializable {
     }
     if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {
       Map<String, String> params = new HashMap<>();
-      params.put("caseId", String.valueOf(iCase.getId()));
+      params.put("uuid", String.valueOf(iCase.uuid()));
       additionalCaseDetailsPageUri = PortalNavigator.buildUrlByKeyword("showAdditionalCaseDetails",
           START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE, params);
     }

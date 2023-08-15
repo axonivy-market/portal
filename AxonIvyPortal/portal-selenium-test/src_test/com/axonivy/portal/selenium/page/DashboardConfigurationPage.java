@@ -263,7 +263,7 @@ public class DashboardConfigurationPage extends TemplatePage {
     importDialog.$("input[id$=':import-dashboard-title']").sendKeys(name);
     importDialog.$("input[id$=':dashboard-description']").clear();
     importDialog.$("input[id$=':dashboard-description']").sendKeys(desc);
-    editMultiLangDashboardImportTitle(name, otherLangName);
+    editMultiLangDashboardImportTitle(otherLangName);
 
     if (permissions != null) {
       setPermissions(permissions);
@@ -272,8 +272,8 @@ public class DashboardConfigurationPage extends TemplatePage {
     importDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
   
-  public void editMultiLangDashboardImportTitle(String name, String updatedName) {
-    getAddLanguageButton().click();;
+  public void editMultiLangDashboardImportTitle(String updatedName) {
+    getAddLanguageButton().click();
     var multipleLanguageDialog = getImportMultipleLanguageDialog();
     var elementsInput = multipleLanguageDialog.$$("td input");
 
