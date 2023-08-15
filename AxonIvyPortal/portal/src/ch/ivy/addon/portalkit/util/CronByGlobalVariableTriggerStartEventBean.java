@@ -145,9 +145,7 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
             eventRuntime.executeAsSystem(new Callable<Void>() {
               @Override
               public Void call() throws Exception {
-                String firingReason = "Cron Trigger started " + triggerIdentifier;
-                Map<String, Object> parameters = new HashMap<>();
-                eventRuntime.fireProcessStartEventRequest(null, firingReason, parameters);
+                eventRuntime.processStarter().withReason("Cron Trigger started " + triggerIdentifier).start();
                 return null;
               }
             });

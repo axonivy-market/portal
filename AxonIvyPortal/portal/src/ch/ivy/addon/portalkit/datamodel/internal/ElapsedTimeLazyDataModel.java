@@ -21,6 +21,7 @@ import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.OrderByColumnQuery;
 
+@SuppressWarnings("deprecation")
 public class ElapsedTimeLazyDataModel extends LazyDataModel7<ICase> {
   private static final long serialVersionUID = 1L;
   protected final List<ICase> data;

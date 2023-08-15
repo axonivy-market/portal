@@ -6,41 +6,6 @@
     "data" : "com.axonivy.portal.developerexamples.customization.PortalTaskDetailsOverride.PortalTaskDetailsOverrideData"
   },
   "elements" : [ {
-      "id" : "f0",
-      "type" : "HtmlDialogStart",
-      "name" : "start(ITask,TaskLazyDataModel,PortalPage,Boolean)",
-      "config" : {
-        "signature" : "start",
-        "input" : {
-          "params" : [
-            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" },
-            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel", "desc" : "" },
-            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage", "desc" : "" },
-            { "name" : "isFromTaskList", "type" : "Boolean", "desc" : "" }
-          ],
-          "map" : {
-            "out.dataModel" : "param.dataModel",
-            "out.isFromTaskList" : "param.isFromTaskList",
-            "out.portalPage" : "param.portalPage",
-            "out.task" : "param.task"
-          }
-        },
-        "guid" : "16C421FBB76376F6"
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 96 },
-        "labelOffset" : { "x" : 86, "y" : 45 }
-      },
-      "connect" : [
-        { "id" : "f7", "to" : "f6" }
-      ]
-    }, {
-      "id" : "f4",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 424, "y" : 96 }
-      }
-    }, {
       "id" : "f3",
       "type" : "HtmlDialogEventStart",
       "name" : "close",
@@ -60,26 +25,6 @@
       "visual" : {
         "at" : { "x" : 224, "y" : 288 }
       }
-    }, {
-      "id" : "f6",
-      "type" : "Script",
-      "name" : "Check task is started",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
-            "",
-            "in.isTaskStartedInDetails = ivy.session.getAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString()) as Boolean;"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 256, "y" : 96 },
-        "size" : { "width" : 128, "height" : 60 }
-      },
-      "connect" : [
-        { "id" : "f5", "to" : "f4" }
-      ]
     }, {
       "id" : "f9",
       "type" : "HtmlDialogStart",
@@ -134,6 +79,63 @@
       },
       "connect" : [
         { "id" : "f12", "to" : "f10" }
+      ]
+    }, {
+      "id" : "f0",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 96 }
+      }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogStart",
+      "name" : "start(ITask,TaskLazyDataModel,PortalPage,Boolean,Boolean)",
+      "config" : {
+        "signature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" },
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel", "desc" : "" },
+            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage", "desc" : "" },
+            { "name" : "isFromTaskList", "type" : "Boolean", "desc" : "" },
+            { "name" : "showItemDetailsHeader", "type" : "Boolean", "desc" : "" }
+          ],
+          "map" : {
+            "out.dataModel" : "param.dataModel",
+            "out.isFromTaskList" : "param.isFromTaskList",
+            "out.portalPage" : "param.portalPage",
+            "out.showItemDetailsHeader" : "param.#showItemDetailsHeader is initialized ? param.showItemDetailsHeader : true",
+            "out.task" : "param.task"
+          }
+        },
+        "guid" : "189E26AA53864706"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 96 },
+        "labelOffset" : { "x" : 73, "y" : 45 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f6" }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "Check task is started",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
+            "",
+            "in.isTaskStartedInDetails = ivy.session.getAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString()) as Boolean;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 96 },
+        "size" : { "width" : 128, "height" : 60 }
+      },
+      "connect" : [
+        { "id" : "f5", "to" : "f0" }
       ]
     } ]
 }
