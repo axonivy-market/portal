@@ -4,8 +4,60 @@
     "aggregates": "businessState:bucket",
     "filter": "businessState:OPEN",
     "permissions": [
-      "everybody"
-  ] ,
-  "isCaseFilter" : "false"
+      "Everybody"
+    ] ,
+    "isCaseFilter" : "false"
+  },
+    {
+    "id": "1",
+    "aggregates": "priority",
+    "filter": "priority:LOW NORMAL",
+    "isCaseFilter": "false",
+    "permissions": [
+      "Everybody"
+    ]
+  },
+  {
+    "id": "2",
+    "aggregates": "workingTime",
+    "filter": "businessState:DONE DESTROYED",
+    "isCaseFilter": "false",
+    "permissions": [
+      "Everybody"
+    ]
+  },
+  {
+    "id": "3",
+    "aggregates": "priority",
+    "isCaseFilter": "false",
+    "permissions": [
+      "Everybody"
+    ]
+  },
+  {
+    "id": "4",
+    "aggregates": "expiryTimestamp:bucket",
+    "isCaseFilter": "false",
+    "permissions": [
+      "Everybody"
+    ]
+  },
+  {
+    "id": "5",
+    "aggregates": "businessState",
+    "filter": "businessState:OPEN",
+    "permissions": [
+      "Everybody"
+    ] ,
+    "isCaseFilter" : "false"
+  },
+  {
+    "id": "6",
+    "aggregates": "startTimestamp:bucket:day",
+    "filter": "businessState:DONE",
+    "permissions": [
+      "Everybody"
+    ] ,
+    "isCaseFilter" : "false"
   }
 ]
