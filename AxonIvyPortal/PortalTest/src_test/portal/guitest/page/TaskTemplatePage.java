@@ -128,7 +128,7 @@ public class TaskTemplatePage extends TemplatePage {
     switchToCaseInfoIframe();
     return findElementByCssSelector("span[id$='case-id']").getText();
   }
-
+  
   public void clickAdhocCreationButton() {
     clickTaskActionMenu();
     clickOnStartAdhocLink();

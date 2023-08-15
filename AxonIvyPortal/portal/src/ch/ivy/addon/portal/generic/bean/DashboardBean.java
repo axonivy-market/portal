@@ -167,8 +167,8 @@ public class DashboardBean implements Serializable {
   }
 
   public void navigateToSelectedTaskDetails(SelectEvent<Object> event) {
-    Long taskId = ((ITask) event.getObject()).getId();
-    PortalNavigator.navigateToPortalTaskDetails(taskId);
+    String uuid = ((ITask) event.getObject()).uuid();
+    PortalNavigator.navigateToPortalTaskDetails(uuid);
   }
 
   public void handleRowSelectEventOnTaskWidget(SelectEvent<Object> event) throws IOException {
@@ -190,12 +190,12 @@ public class DashboardBean implements Serializable {
   }
 
   public void navigateToSelectedTaskDetails(ITask task) {
-    PortalNavigator.navigateToPortalTaskDetails(task.getId());
+    PortalNavigator.navigateToPortalTaskDetails(task.uuid());
   }
 
   public void navigateToSelectedCaseDetails(SelectEvent<Object> event) {
-    Long caseId = ((ICase) event.getObject()).getId();
-    PortalNavigator.navigateToPortalCaseDetails(caseId);
+    String uuid = ((ICase) event.getObject()).uuid();
+    PortalNavigator.navigateToPortalCaseDetails(uuid);
   }
 
   public void resetAndOpenTask() throws IOException {

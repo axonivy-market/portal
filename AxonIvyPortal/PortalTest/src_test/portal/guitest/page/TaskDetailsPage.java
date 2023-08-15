@@ -225,7 +225,7 @@ public class TaskDetailsPage extends TemplatePage {
   public String getTaskId() {
     return findElementByCssSelector("[id$=':task-id']").getText();
   }
-
+  
   public String getFirstTaskNoteComment() {
     return findElementByCssSelector("a[id$=':task-notes:task-note-table:0:note-message']").getText();
   }
