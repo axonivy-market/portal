@@ -319,17 +319,23 @@ public class CaseWidgetPage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 	}
 
+	public boolean isLoadingCategories() {
+		return isElementDisplayed(By.cssSelector(".loading-panel"));
+	}
+
 	public boolean isAllCategoriesSelected() {
+		waitForElementDisplayed(By.cssSelector(".filter-category-checkbox-tree"), true);
 		return isElementDisplayed(By.cssSelector(".filter-category-checkbox-tree .ui-treenode-selected"));
 	}
 
 	public boolean isAllCategoriesUnselected() {
+		waitForElementDisplayed(By.cssSelector(".filter-category-checkbox-tree"), true);
 		return isElementDisplayed(By.cssSelector(".filter-category-checkbox-tree .ui-treenode-hasselected"));
 	}
 
 	public void openCategoryFilter() {
 		click(By.cssSelector("button[id$='case-category-filter:filter-open-form:advanced-filter-command']"));
-		waitForElementDisplayed(By.cssSelector(".advanced-filter-panel.ui-connected-overlay-enter-done"), true);
+		waitForElementDisplayed(By.cssSelector("div[id$=':case-category-filter-tree']"), true);
 	}
 
 	@SuppressWarnings("deprecation")

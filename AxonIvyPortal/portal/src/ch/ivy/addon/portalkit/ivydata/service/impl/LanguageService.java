@@ -117,6 +117,14 @@ public class LanguageService implements ILanguageService {
   }
 
   public Locale getDefaultEmailLanguage() {
-    return new LanguageConfigurator(ISecurityContext.current()).content();
+    return getLanguageConfigurator().content();
+  }
+
+  public Locale getDefaultFormattingLanguage() {
+    return getLanguageConfigurator().formatting();
+  }
+  
+  private LanguageConfigurator getLanguageConfigurator() {
+    return new LanguageConfigurator(ISecurityContext.current());
   }
 }
