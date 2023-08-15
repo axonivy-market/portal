@@ -39,6 +39,13 @@ public class UserProfilePage extends TemplatePage {
     clickByCssSelector(LANGUAGE_SELECTION_SELECTOR);
     clickByCssSelector("li[id$='language-selection_" + newLanguage + "']");
   }
+  
+  public void inputFormattingLanguage(String newLanguage) {
+    waitForElementDisplayed(By.cssSelector(LANGUAGE_SELECTION_SELECTOR), true);
+    WebElement formattingLanguage = findElementByCssSelector("[id$='my-profile-form:format-language-selection_input']");
+    formattingLanguage.clear();
+    formattingLanguage.sendKeys(newLanguage);
+  }
 
   public HomePage save() {
     saveWithoutWaitingNavigation();
