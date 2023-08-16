@@ -478,7 +478,7 @@
       "id" : "f122",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 1248, "y" : 960 }
+        "at" : { "x" : 1264, "y" : 960 }
       }
     }, {
       "id" : "f130",
@@ -875,7 +875,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1112, "y" : 960 }
+        "at" : { "x" : 1144, "y" : 960 }
       },
       "connect" : [
         { "id" : "f134", "to" : "f122" }
@@ -1379,6 +1379,40 @@
       },
       "connect" : [
         { "id" : "f21", "to" : "f121" }
+      ]
+    }, {
+      "id" : "f88",
+      "type" : "HtmlDialogEventStart",
+      "name" : "fromDateChange",
+      "config" : {
+        "guid" : "189FD20984613545"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 1144 }
+      },
+      "connect" : [
+        { "id" : "f89", "to" : "f92" }
+      ]
+    }, {
+      "id" : "f92",
+      "type" : "Script",
+      "name" : "Validate until date",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;",
+            "boolean fromBiggerThanTill = AbsenceAndSubstituteUtils.isFromDateAfterTill(in.selectedAbsence);",
+            "if (fromBiggerThanTill) {",
+            "  in.selectedAbsence.until = in.selectedAbsence.from;",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1024, "y" : 1144 }
+      },
+      "connect" : [
+        { "id" : "f93", "to" : "f13", "via" : [ { "x" : 1144, "y" : 1144 } ] }
       ]
     } ]
 }
