@@ -5,6 +5,7 @@
   xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions">
+
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:define name="title">ChartJS and REST Workflow Task Statistic API Demo</ui:define>
@@ -13,207 +14,33 @@
       <!-- Loads the ChartJs library needed to render the chart -->
       <h:outputScript library="primefaces" name="chartjs/chartjs.js" />
 
-      <h:form id="form">
+      <h:panelGroup id="form">
         <p:messages />
 
         <h1>ChartJS and REST Workflow Task Statistic API Demo</h1>
-        
+
         <h2>My Tasks by Priority</h2>
-        <div>
-          <!-- Placeholder to render the Chart chart1 into it -->
-          <canvas id="chart1"></canvas>
+        <div style="height: 400px; max-width: 800px;">
+          <canvas id="chart1" width="800" height="400"></canvas>
         </div>
 
-        <h2>All tasks by hour and by state</h2>
-        <div>
-          <!-- Placeholder to render the Chart chart2 into it -->
-          <canvas id="chart2" style="height: 200px;"></canvas>
+<!--         <h2>Tasks grouped by expiry</h2>
+        <div style="height: 400px; max-width: 800px;">
+          <canvas id="chart2" width="800" height="400"></canvas>
+        </div> -->
+
+        <h2>Number of “Open”-Tasks</h2>
+        <div style="height: 400px; max-width: 800px;">
+          <canvas id="chart3" width="800" height="400"></canvas>
         </div>
 
-        <h2>Only OPEN and DONE tasks by hour and by state</h2>
-        <div>
-          <!-- Placeholder to render the Chart chart2 into it -->
-          <canvas id="chart3" style="height: 200px;"></canvas>
+        <h2>Completed Tasks per Day</h2>
+        <div style="height: 400px; max-width: 800px;">
+          <canvas id="chart4" width="800" height="400"></canvas>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-        <script>
-const instance = axios.create({
-  baseURL: '/',
-  timeout: 60000,
-  headers: {'X-Requested-By': 'ivy'}
-});
-const chart1 = document.getElementById('chart1');
-const userActionChart1 = async () => {
-  var basePath = window.location.pathname;
-  basePath = basePath.substring(0, basePath.indexOf('/faces/')); 
-  
-  // Calls the Workflow Task Statistic REST API to aggregate states
-  const response = await instance.post('/designer/api/statistic-data-service/Data', {"chartId": "3"});
-  const result = await response.data.aggs[0].buckets;  
-  new Chart(chart1, {
-    type: 'bar',
-    data: {
-      labels: result.map(bucket => bucket.key),
-      datasets: [{
-          label: 'Priority',
-          backgroundColor: 'rgba(75, 192, 192, 0.2)',
-          data: result.map(bucket => bucket.count)
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-      legend: {
-        position: 'top',
-      }
-    },
-      scales: {
-        y: {
-          beginAtZero: true,
-          title: {
-            text: 'Count',
-            display: true
-          }
-        },
-        x: {
-          title: {
-            text: 'Priority',
-            display: true
-          }
-        }
-      }
-    }
-  });
-}
- 
-const chart2 = document.getElementById('chart2');
-const userActionChart2 = async () => {
-  var basePath = window.location.pathname;
-  basePath = basePath.substring(0, basePath.indexOf('/faces/')); 
-  
-  // Calls the Workflow Task Statistic REST API to aggregate startTimeStamps by hour and state 
-  const response = await fetch('/api/workflow/tasks/stats?agg=startTimestamp:bucket:hour,businessState');
-  const result = await response.json();
-  new Chart(chart2, {
-    type: 'bar',
-    data: {
-      labels: result.map(bucket => toLabel(bucket.key)),
-      datasets: [{
-          label: 'OPEN',
-          borderWidth: 1,
-          backgroundColor: 'gray',
-          data: getStateCount(result, 'OPEN')
-        },
-        {
-          label: 'IN_PROGRESS',
-          borderWidth: 1,
-          backgroundColor: 'blue',
-          data: getStateCount(result,'IN_PROGRESS')
-        },
-        {
-          label: 'DONE',
-          borderWidth: 1,
-          backgroundColor: 'green',
-          data: getStateCount(result,'DONE')
-        },
-        {
-          label: 'ERROR',
-          borderWidth: 1,
-          backgroundColor: 'red',
-          data: getStateCount(result,'ERROR')
-        }
-      ]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          title: {
-            text: 'Tasks',
-            display: true
-          }
-        },
-        x: {
-          title: {
-            text: 'Hour',
-            display: true
-          }
-        }
-      }
-    }
-  });
-}
-
-const chart3 = document.getElementById('chart3');
-const userActionChart3 = async () => {
-  var basePath = window.location.pathname;
-  basePath = basePath.substring(0, basePath.indexOf('/faces/'));
-  
-  // Calls the Workflow Task Statistic REST API to aggregate startTimeStamps by hour and state 
-  const response = await fetch('/api/workflow/tasks/stats?agg=startTimestamp:bucket:hour,businessState&amp;filter=businessState:OPEN DONE');
-  const result = await response.json();
-  new Chart(chart3, {
-    type: 'bar',
-    data: {
-      labels: result.map(bucket => toLabel(bucket.key)),
-      datasets: [{
-          label: 'OPEN',
-          borderWidth: 1,
-          backgroundColor: 'gray',
-          data: getStateCount(result, 'OPEN')
-        },
-        {
-          label: 'DONE',
-          borderWidth: 1,
-          backgroundColor: 'green',
-          data: getStateCount(result,'DONE')
-        }
-      ]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          title: {
-            text: 'Tasks',
-            display: true
-          }
-        },
-        x: {
-          title: {
-            text: 'Hour',
-            display: true
-          }
-        }
-      }
-    }
-  });
-}
-
-function getStateCount(result, state) {
-    let aggs = result.map(bucket => bucket.count > 0 ? bucket.aggs.find(a => a.key === state) : undefined);
-    let stateCount = aggs.map(a => a === undefined ? 0 : a.count)
-    return stateCount;
-}
-
-function toLabel(utc) {
-  const date = new Date(utc);
-  return date.toLocaleString(undefined, {year : 'numeric', month: 'short', day: 'numeric', hour: 'numeric'});
-}
-
-userActionChart1();
-userActionChart2();
-userActionChart3();
-          </script>
-        <div class="command-btns">
-          <p:commandLink id="cancel"
-            actionListener="#{ivyWorkflowView.cancel()}" value="Cancel" />
-          <p:commandButton id="proceed" actionListener="#{logic.close}"
-            value="Proceed" update="form" icon="pi pi-check" />
-        </div>
-      </h:form>
-
+        
+      </h:panelGroup>
+      
     </ui:define>
   </ui:composition>
 </h:body>
