@@ -69,7 +69,7 @@
       "name" : [
         "This sub process can be customized to delete file in DMS",
         "",
-        "The custom proccess signature must be: customDeleteDocumentItem(ICase,IvyDocument)\""
+        "The custom proccess signature must be: portalDeleteDocumentItem(ICase,IvyDocument)\""
       ],
       "visual" : {
         "at" : { "x" : 264, "y" : 128 },

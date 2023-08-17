@@ -66,7 +66,7 @@
       "name" : [
         "This sub process can be customized  to download file from DMS",
         "",
-        "The custom proccess signature must be: \"customDownloadDocumentItem(ICase,IvyDocument)\""
+        "The custom proccess signature must be: \"portalDownloadDocumentItem(ICase,IvyDocument)\""
       ],
       "visual" : {
         "at" : { "x" : 296, "y" : 48 },
