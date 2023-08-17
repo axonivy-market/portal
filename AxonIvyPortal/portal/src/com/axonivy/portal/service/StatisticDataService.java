@@ -77,7 +77,7 @@ public class StatisticDataService extends JsonConfigurationService<StatisticData
   }
 
   private AggregationResult getDataExpiredTasks(StatisticData chart) {
-    String nextWeek = getDateAtNextWeek();
+    String nextWeek = getEndDateAtNextWeek();
     chart.setFilter("expiryTimestamp:<=" + nextWeek);
     AggregationResult data = getData(chart);
     Map<String, Object> convertObject = BusinessEntityConverter.convertValue(data.aggs().get(0), Map.class);
@@ -88,7 +88,17 @@ public class StatisticDataService extends JsonConfigurationService<StatisticData
     return data;
   }
 
-  private String getDateAtNextWeek() {
+  private String getEndDateAtNextWeek() {
+    Calendar cal = Calendar.getInstance();
+    cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+    cal.add(Calendar.DATE, 14);
+    Date date = cal.getTime();
+    DateFormat dateFormat = new SimpleDateFormat(pattern);
+    String strDate = dateFormat.format(date);
+    return strDate;
+  }
+
+  private String getEndDateAtThisWeek() {
     Calendar cal = Calendar.getInstance();
     cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
     cal.add(Calendar.DATE, 7);
