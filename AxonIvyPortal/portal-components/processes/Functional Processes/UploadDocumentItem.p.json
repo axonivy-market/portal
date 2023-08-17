@@ -300,7 +300,7 @@
         " This sub process can be customized to upload your file to DMS",
         "This sub process also contains some validation, so if you override it, you have to implement validation by your own",
         "",
-        "The custom proccess signature must be: \"customUploadDocumentItem(ICase,UploadedFile,Boolean,Boolean,String)\""
+        "The custom proccess signature must be: \"portalUploadDocumentItem(ICase,UploadedFile,Boolean,Boolean,String)\""
       ],
       "visual" : {
         "at" : { "x" : 351, "y" : 86 },
