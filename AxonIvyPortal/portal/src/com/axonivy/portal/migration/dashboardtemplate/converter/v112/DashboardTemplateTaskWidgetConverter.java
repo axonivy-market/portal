@@ -64,46 +64,28 @@ public class DashboardTemplateTaskWidgetConverter implements IJsonConverter {
   private TextNode convertTaskBusinessState(String oldTaskStateString) {
     TaskState oldTaskState = EnumUtils.getEnum(TaskState.class, oldTaskStateString);
     TextNode result = new TextNode(oldTaskStateString);
-        
+
     if (Objects.nonNull(oldTaskState)) {
-      switch (oldTaskState) {
-        case PARKED:
-        case WAITING_FOR_INTERMEDIATE_EVENT:
-        case SUSPENDED: {
-          result = new TextNode(TaskBusinessState.OPEN.name());
-          break;
-        }
+      result = switch (oldTaskState) {
+        case PARKED, WAITING_FOR_INTERMEDIATE_EVENT, SUSPENDED 
+          -> new TextNode(TaskBusinessState.OPEN.name());
 
-        case CREATED:
-        case RESUMED: {
-          result = new TextNode(TaskBusinessState.IN_PROGRESS.name());
-          break;
-        }
+        case CREATED, RESUMED 
+          -> new TextNode(TaskBusinessState.IN_PROGRESS.name());
 
-        case DONE:
-        case READY_FOR_JOIN:
-        case JOINING: {
-          result = new TextNode(TaskBusinessState.DONE.name());
-          break;
-        }
+        case DONE, READY_FOR_JOIN, JOINING 
+          -> new TextNode(TaskBusinessState.DONE.name());
 
-        case DESTROYED: {
-          result = new TextNode(TaskBusinessState.DESTROYED.name());
-          break;
-        }
+        case DESTROYED 
+          -> new TextNode(TaskBusinessState.DESTROYED.name());
 
-        case DELAYED: {
-          result = new TextNode(TaskBusinessState.DELAYED.name());
-          break;
-        }
+        case DELAYED 
+          -> new TextNode(TaskBusinessState.DELAYED.name());
 
-        case JOIN_FAILED:
-        case FAILED: {
-          result = new TextNode(TaskBusinessState.ERROR.name());
-          break;
-        }
+        case JOIN_FAILED, FAILED 
+          -> new TextNode(TaskBusinessState.ERROR.name());
 
-        default: result = null;
+        default -> null;
       };
     }
     return result;
