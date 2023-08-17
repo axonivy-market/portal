@@ -44,7 +44,7 @@ public class ChatScreenshotTest extends ScreenshotTest {
     executeDecorateJs("highlightJoinGroupChatOption()");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CHAT_FOLDER + "create-new-group-chat");
     
-    taskTemplatePage.clickChatGroup(false);
+    taskTemplatePage.clickChatGroup();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskTemplatePage.getAddMemberToChatDialog(), ScreenshotUtil.CHAT_FOLDER + "chat-group-assignee", new ScreenshotMargin(20));
     taskTemplatePage.clickCreateGroupChatBtn();
     
