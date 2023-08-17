@@ -8,15 +8,9 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-<<<<<<<< HEAD:Showcase/portal-components-examples/processes/Functional Processes/CustomDeleteDocumentItem.p.json
-      "name" : "customDeleteDocumentItem(ICase,IvyDocument)",
-      "config" : {
-        "callSignature" : "customDeleteDocumentItem",
-========
       "name" : "expressDeleteDocumentItem(ICase,IvyDocument)",
       "config" : {
         "callSignature" : "expressDeleteDocumentItem",
->>>>>>>> release/10.0:AxonIvyPortal/AxonIvyExpress/processes/Functional Processes/CustomDeleteDocumentItem.p.json
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
@@ -38,22 +32,14 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-<<<<<<<< HEAD:Showcase/portal-components-examples/processes/Functional Processes/CustomDeleteDocumentItem.p.json
-        "labelOffset" : { "x" : 25, "y" : 41 }
-========
         "labelOffset" : { "x" : 1, "y" : 37 }
->>>>>>>> release/10.0:AxonIvyPortal/AxonIvyExpress/processes/Functional Processes/CustomDeleteDocumentItem.p.json
       },
       "connect" : { "id" : "f4", "to" : "f3" }
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-<<<<<<<< HEAD:Showcase/portal-components-examples/processes/Functional Processes/CustomDeleteDocumentItem.p.json
-        "at" : { "x" : 464, "y" : 64 }
-========
         "at" : { "x" : 416, "y" : 64 }
->>>>>>>> release/10.0:AxonIvyPortal/AxonIvyExpress/processes/Functional Processes/CustomDeleteDocumentItem.p.json
       }
     }, {
       "id" : "f3",
@@ -70,12 +56,6 @@
         }
       },
       "visual" : {
-<<<<<<<< HEAD:Showcase/portal-components-examples/processes/Functional Processes/CustomDeleteDocumentItem.p.json
-        "at" : { "x" : 336, "y" : 64 },
-        "size" : { "width" : 128, "height" : 60 }
-      },
-      "connect" : { "id" : "f2", "to" : "f1" }
-========
         "at" : { "x" : 256, "y" : 64 },
         "size" : { "width" : 128, "height" : 60 }
       },
@@ -89,6 +69,5 @@
         "size" : { "width" : 256, "height" : 40 }
       },
       "connect" : { "id" : "f6", "to" : "f0" }
->>>>>>>> release/10.0:AxonIvyPortal/AxonIvyExpress/processes/Functional Processes/CustomDeleteDocumentItem.p.json
     } ]
 }
