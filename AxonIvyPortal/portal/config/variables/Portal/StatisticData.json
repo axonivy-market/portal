@@ -36,7 +36,7 @@
   },
   {
     "id": "4",
-    "aggregates": "expiryTimestamp:bucket",
+    "aggregates": "expiryTimestamp",
     "isCaseFilter": "false",
     "permissions": [
       "Everybody"
