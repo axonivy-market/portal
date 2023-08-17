@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -16,7 +14,6 @@ import org.primefaces.model.SortMeta;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardTaskSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardTaskService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.util.threadcontext.IvyThreadContext;
@@ -34,18 +31,15 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
   private CompletableFuture<Void> future;
   List<ITask> foundTasks;
 
-  Executor testExecutor;
   public DashboardTaskLazyDataModel() {
     criteria = new DashboardTaskSearchCriteria();
     tasks = new ArrayList<>();
     foundTasks = new ArrayList<>();
     mapTasks = new HashedMap<>();
-    testExecutor = Executors.newSingleThreadExecutor();
   }
 
   @Override
   public List<ITask> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
-    long start = System.currentTimeMillis();
     if (isFirstTime) {
       isFirstTime = false;
       if (future != null) {
@@ -72,8 +66,6 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
       tasks.addAll(foundTasks);
       mapTasks.putAll(foundTasks.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
     }
-    // List<UIComponent> children = FacesContext.getCurrentInstance().getViewRoot()
-    // .findComponent("ui-datatable-scrollable-body").getChildren();
 
     int rowCount = 0;
     if (foundTasks.size() >= pageSize) {
@@ -82,7 +74,6 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
       rowCount = first + foundTasks.size();
     }
     setRowCount(rowCount);
-    Ivy.log().warn("time {0}", System.currentTimeMillis() - start);
     return foundTasks;
   }
 
@@ -91,9 +82,7 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
     Object memento = IvyThreadContext.saveToMemento();
     future = CompletableFuture.runAsync(() -> {
       IvyThreadContext.restoreFromMemento(memento);
-      long start = System.currentTimeMillis();
       foundTasks = DashboardTaskService.getInstance().findByTaskQuery(query, 0, 25);
-      Ivy.log().warn("First time {0}, size {1}", System.currentTimeMillis() - start, foundTasks.size());
       tasks.addAll(foundTasks);
       mapTasks.putAll(foundTasks.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
       IvyThreadContext.reset();
