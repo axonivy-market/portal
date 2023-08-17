@@ -52,7 +52,7 @@ Get document list
 
 Customize how **Document Table** gets documents, create a callable subprocess with:
 
-**Signature**: customGetDocumentItems
+**Signature**: portalGetDocumentItems
 
 +------------------------+----------------------------------------------------------------------+
 | Name                   | Type                                                                 |
@@ -79,7 +79,7 @@ Upload document
 Customize what **Document Table** should do when a user uploads a document,
 create a callable subprocess with:
 
-**Signature**: customUploadDocumentItem
+**Signature**: portalUploadDocumentItem
 
 +-----------------------------------------+---------------------------------------------------------------+
 | Name                                    | Type                                                          |
@@ -111,7 +111,7 @@ Download document
 Customize behavior when a user downloads a document from **Document Table**,
 create a callable subprocess with:
 
-**Signature**: customDownloadDocumentItem
+**Signature**: portalDownloadDocumentItem
 
 +------------------------+------------------------------------------------------+
 | Name                   | Type                                                 |
@@ -133,7 +133,7 @@ Delete document
 Customize behavior when an user deletes a document from **Document Table**,
 create a callable subprocess with:
 
-**Signature**: customDeleteDocumentItem
+**Signature**: portalDeleteDocumentItem
 
 +------------------------+------------------------------------------------------+
 | Name                   | Type                                                 |
@@ -202,13 +202,13 @@ Please do as below to migrate your override sub processes
       +----------------------+----------------------------+
       | Sub process          | New signature              |
       +======================+============================+
-      | GetDocumentItems     | customGetDocumentItems     |
+      | GetDocumentItems     | portalGetDocumentItems     |
       +----------------------+----------------------------+
-      | UploadDocumentItem   | customUploadDocumentItem   |
+      | UploadDocumentItem   | portalUploadDocumentItem   |
       +----------------------+----------------------------+
-      | DeleteDocumentItem   | customDownloadDocumentItem |
+      | DeleteDocumentItem   | portalDownloadDocumentItem |
       +----------------------+----------------------------+
-      | DownloadDocumentItem | customDeleteDocumentItem   |
+      | DownloadDocumentItem | portalDeleteDocumentItem   |
       +----------------------+----------------------------+
 
 Now your **Document Table** should work as before.
