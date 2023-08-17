@@ -92,7 +92,9 @@ public class LanguageService implements ILanguageService {
       currentUser.setLanguage(userLanguage);
       
       Locale userFormatLocale = null;
-      if (language.getItemFormattingLanguage() != null && language.getItemFormattingLanguage().getValue() != null) {
+      if (language.getItemFormattingLanguage() != null && 
+          language.getItemFormattingLanguage().getValue() != null && 
+          StringUtils.isNotBlank(language.getItemFormattingLanguage().getValue().toString())) {
         userFormatLocale = Locale.forLanguageTag(language.getItemFormattingLanguage().getValue().toString());
       }
       currentUser.setFormattingLanguage(userFormatLocale);
@@ -117,6 +119,14 @@ public class LanguageService implements ILanguageService {
   }
 
   public Locale getDefaultEmailLanguage() {
-    return new LanguageConfigurator(ISecurityContext.current()).content();
+    return getLanguageConfigurator().content();
+  }
+
+  public Locale getDefaultFormattingLanguage() {
+    return getLanguageConfigurator().formatting();
+  }
+  
+  private LanguageConfigurator getLanguageConfigurator() {
+    return new LanguageConfigurator(ISecurityContext.current());
   }
 }

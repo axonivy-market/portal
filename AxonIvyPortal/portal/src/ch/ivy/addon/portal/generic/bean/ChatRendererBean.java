@@ -53,8 +53,7 @@ public class ChatRendererBean implements Serializable {
   }
   
   public void getGroupChatName() {
-    Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext("setGroupChatName()", null);
-    String groupChatName = response.get("name").toString();
+    String groupChatName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/case") + "-{caseId}" + " {caseName}";
     PrimeFaces.current().executeScript("var groupChatFormat = '" + groupChatName + "'");
   }
 

@@ -406,7 +406,7 @@
           "code" : [
             "import com.axonivy.portal.components.document.DocumentCustomField;",
             "",
-            "if (in.typeColumnRendered) {",
+            "if (in.typeColumnRendered && in.uploadedDocument != null) {",
             "  String stringField = DocumentCustomField.TYPE_PREFIX + in.uploadedDocument.getId();",
             "  in.ivyCase.customFields().stringField(stringField).set(in.typeSelection.name());",
             "}"

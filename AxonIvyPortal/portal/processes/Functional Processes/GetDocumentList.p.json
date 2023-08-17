@@ -118,12 +118,10 @@
             "",
             "Map result = IvyAdapterService.startSubProcessInSecurityContext(PortalCustomSignature.GET_DOCUMENT_LIST.getSignature(), params);",
             "",
-            "if (result.get(\"callProcessError\") != null) {",
-            "  in.hasCustomProcess = false;",
-            "} else {",
+            "in.hasCustomProcess = result != null;",
+            "if (in.hasCustomProcess) {",
             "  in.documents = result.get(\"documents\") as List;",
             "  in.message = result.get(\"message\").toString();",
-            "  in.hasCustomProcess = true;",
             "}"
           ]
         }

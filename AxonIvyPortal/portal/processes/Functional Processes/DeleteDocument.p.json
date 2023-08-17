@@ -97,12 +97,9 @@
             "params.put(\"document\", in.document);",
             "",
             "Map result = IvyAdapterService.startSubProcessInSecurityContext(PortalCustomSignature.DELETE_DOCUMENT.getSignature(), params);",
-            "",
-            "if (result.get(\"callProcessError\") != null) {",
-            "  in.hasCustomProcess = false;",
-            "} else {",
+            "in.hasCustomProcess = result != null;",
+            "if (in.hasCustomProcess) {",
             "  in.message = result.get(\"message\").toString();",
-            "  in.hasCustomProcess = true;",
             "}"
           ]
         }

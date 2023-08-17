@@ -40,12 +40,14 @@
             { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
             { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" },
             { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" },
-            { "name" : "isFromTaskList", "type" : "Boolean" }
+            { "name" : "isFromTaskList", "type" : "Boolean" },
+            { "name" : "showItemDetailsHeader", "type" : "Boolean" }
           ],
           "map" : {
             "out.dataModel" : "param.dataModel",
             "out.isFromTaskList" : "param.isFromTaskList",
             "out.portalPage" : "param.portalPage",
+            "out.showItemDetailsHeader" : "param.#showItemDetailsHeader is initialized ? param.showItemDetailsHeader : true",
             "out.task" : "param.task"
           }
         },

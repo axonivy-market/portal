@@ -355,13 +355,11 @@
             "params.put(\"allowedUploadFileTypes\", in.allowedUploadFileTypes);",
             "",
             "Map result = IvyAdapterService.startSubProcessInSecurityContext(PortalCustomSignature.UPLOAD_DOCUMENT.getSignature(), params);",
-            "if (result.get(\"callProcessError\") != null) {",
-            "  in.hasCustomProcess = false;",
-            "} else {",
+            "in.hasCustomProcess = result != null;",
+            "if (in.hasCustomProcess) {",
             "  in.uploadedDocument = result.get(\"uploadedDocument\") as IDocument;",
             "  in.message = result.get(\"message\").toString();",
-            "  in.status = result.get(\"status\") as UploadDocumentCheckStatus;",
-            "  in.hasCustomProcess = true;",
+            "  in.status = UploadDocumentCheckStatus.toEnum(result.get(\"status\").toString());",
             "}"
           ]
         }

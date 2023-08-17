@@ -95,12 +95,9 @@
             "params.put(\"document\", in.document);",
             "",
             "Map result = IvyAdapterService.startSubProcessInSecurityContext(PortalCustomSignature.DOWNLOAD_DOCUMENT.getSignature(), params);",
-            "",
-            "if (result.get(\"callProcessError\") != null) {",
-            "  in.hasCustomProcess = false;",
-            "} else {",
+            "in.hasCustomProcess = result != null;",
+            "if (in.hasCustomProcess) {",
             "  in.streamedContent = result.get(\"streamedContent\") as StreamedContent;",
-            "  in.hasCustomProcess = true;",
             "}"
           ]
         }

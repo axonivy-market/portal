@@ -432,6 +432,7 @@ public abstract class TemplatePage extends AbstractPage {
     return isElementDisplayed(By.cssSelector("#theme-switcher .topbar-icon.pi.pi-sun"));
   }
 
+  @SuppressWarnings("deprecation")
   public ChatPage getChat() {
     waitForElementDisplayed(By.id("toggle-chat-panel-command"), true, 5);
     click(findElementById("toggle-chat-panel-command"));
@@ -441,6 +442,7 @@ public abstract class TemplatePage extends AbstractPage {
     return findElementById("absence-management-dialog");
   }
   
+  @SuppressWarnings("deprecation")
   public WebElement getUserSettings() {
     waitForElementDisplayed(By.id("user-settings-menu"), true);
     click(findElementById("user-settings-menu"));
@@ -461,6 +463,7 @@ public abstract class TemplatePage extends AbstractPage {
     waitForElementDisplayed(By.className("notification-container"), true);
   }
   
+  @SuppressWarnings("deprecation")
   public void clickOnShowMoreLinkOfErrorMessages() {
     click(findElementByCssSelector("a[class$='notification-content-action-more-details']"));
   }
