@@ -14,7 +14,6 @@ import org.primefaces.model.SortMeta;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardCaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardCaseService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.util.threadcontext.IvyThreadContext;
@@ -41,7 +40,6 @@ public class DashboardCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
 
   @Override
   public List<ICase> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
-    long start = System.currentTimeMillis();
     if (isFirstTime) {
       isFirstTime = false;
       if (future != null) {
@@ -76,7 +74,6 @@ public class DashboardCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
       rowCount = first + foundCases.size();
     }
     setRowCount(rowCount);
-    Ivy.log().warn("CASES First time {0}, size {1}", System.currentTimeMillis() - start, foundCases.size());
     return foundCases;
   }
 
@@ -85,9 +82,7 @@ public class DashboardCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
     Object memento = IvyThreadContext.saveToMemento();
     future = CompletableFuture.runAsync(() -> {
       IvyThreadContext.restoreFromMemento(memento);
-      long start = System.currentTimeMillis();
       foundCases = DashboardCaseService.getInstance().findByCaseQuery(query, 0, 25);
-      Ivy.log().warn("First time {0}, size {1}", System.currentTimeMillis() - start, foundCases.size());
       cases.addAll(foundCases);
       mapCases.putAll(foundCases.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
       IvyThreadContext.reset();
