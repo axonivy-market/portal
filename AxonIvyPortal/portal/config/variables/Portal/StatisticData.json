@@ -6,7 +6,8 @@
     "permissions": [
       "Everybody"
     ] ,
-    "isCaseFilter" : "false"
+    "isCaseFilter" : "false",
+    "type": "UNDEFINED"
   },
     {
     "id": "1",
@@ -15,7 +16,8 @@
     "isCaseFilter": "false",
     "permissions": [
       "Everybody"
-    ]
+    ],
+    "type": "UNDEFINED"
   },
   {
     "id": "2",
@@ -24,7 +26,8 @@
     "isCaseFilter": "false",
     "permissions": [
       "Everybody"
-    ]
+    ],
+    "type": "UNDEFINED"
   },
   {
     "id": "3",
@@ -32,7 +35,8 @@
     "isCaseFilter": "false",
     "permissions": [
       "Everybody"
-    ]
+    ],
+    "type": "TASKS_BY_PRIORITY"
   },
   {
     "id": "4",
@@ -40,7 +44,8 @@
     "isCaseFilter": "false",
     "permissions": [
       "Everybody"
-    ]
+    ],
+    "type": "TASKS_BY_EXPIRY"
   },
   {
     "id": "5",
@@ -49,7 +54,8 @@
     "permissions": [
       "Everybody"
     ] ,
-    "isCaseFilter" : "false"
+    "isCaseFilter" : "false",
+    "type": "NUMBER_OF_OPEN_TASKS"
   },
   {
     "id": "6",
@@ -58,6 +64,7 @@
     "permissions": [
       "Everybody"
     ] ,
-    "isCaseFilter" : "false"
+    "isCaseFilter" : "false",
+    "type": "COMPLETED_TASKS_PER_DAY"
   }
 ]

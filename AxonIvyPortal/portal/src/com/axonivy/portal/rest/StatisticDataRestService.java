@@ -26,32 +26,26 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
-
 @Path(value = "statistic-data-service")
-@RolesAllowed(value = {ISecurityConstants.TOP_LEVEL_ROLE_NAME})
+@RolesAllowed(value = { ISecurityConstants.TOP_LEVEL_ROLE_NAME })
 public class StatisticDataRestService {
-
-  private StatisticDataService service = new StatisticDataService();
 
   @POST
   @Path(value = "Data")
   @Consumes(value = MediaType.APPLICATION_JSON)
   @Produces(value = MediaType.APPLICATION_JSON)
   @ApiResponses(value = {
-		  @ApiResponse(responseCode = "200", 
-				  description = "Get chart data by Id", 
-				  content = { @Content(mediaType = "application/json", 
-				  schema =  @Schema(implementation = AggregationResult.class))}),
-		  @ApiResponse(responseCode = "404", description = "Chart Id not found"),
-		  @ApiResponse(responseCode = "403", description = "Don't have permission to get the data"),
-		  @ApiResponse(responseCode = "406", description = "Invalid call")
-		  })
+      @ApiResponse(responseCode = "200", description = "Get chart data by Id", content = {
+          @Content(mediaType = "application/json", schema = @Schema(implementation = AggregationResult.class)) }),
+      @ApiResponse(responseCode = "404", description = "Chart Id not found"),
+      @ApiResponse(responseCode = "403", description = "Don't have permission to get the data"),
+      @ApiResponse(responseCode = "406", description = "Invalid call") })
   public Response getData(StatisticDataDto payload) {
     if (Optional.ofNullable(payload).map(StatisticDataDto::getChartId).isEmpty()) {
       return Response.status(Status.NOT_ACCEPTABLE).build();
     }
     try {
-      AggregationResult result = service.getInstance().getData(payload);
+      AggregationResult result = StatisticDataService.getInstance().getData(payload);
       return Response.ok(result).build();
     } catch (NotFoundException e) {
       return buildResponse(Status.NOT_FOUND, e);
