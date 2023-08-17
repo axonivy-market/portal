@@ -196,7 +196,7 @@ $(document).ready(function () {
     }
 
     userActionChart1();
-//userActionChart2();
+    userActionChart2();
     userActionChart3();
     userActionChart4();
 });
