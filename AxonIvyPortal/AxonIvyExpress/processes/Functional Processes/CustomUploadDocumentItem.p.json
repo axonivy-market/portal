@@ -3,17 +3,17 @@
   "id" : "16B267B1A01CFA7E",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "gawfs.UploadDocumentItemOverrideData"
+    "data" : "gawfs.CustomUploadDocumentItemData"
   },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
       "name" : [
-        "call(ICase,UploadedFile,",
+        "customUploadDocumentItem(ICase,UploadedFile,",
         "Boolean,Boolean,String)"
       ],
       "config" : {
-        "callSignature" : "call",
+        "callSignature" : "experssUploadDocumentItem",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
@@ -34,7 +34,7 @@
           "params" : [
             { "name" : "uploadedDocument", "type" : "ch.ivyteam.ivy.workflow.document.IDocument" },
             { "name" : "message", "type" : "String" },
-            { "name" : "status", "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus" }
+            { "name" : "status", "type" : "String" }
           ],
           "map" : {
             "result.uploadedDocument" : "in.uploadedDocument",
@@ -93,11 +93,11 @@
             "boolean isUploaded = DocumentFileUtils.uploadExpressDocument(ivy.case, in.uploadedFile.getInputStream(), fileName);",
             "",
             "if (isUploaded) {",
-            "  out.status = UploadDocumentCheckStatus.OK;",
+            "  out.status = UploadDocumentCheckStatus.OK.toString();",
             "  out.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadSucceed\");",
             "} else {",
             "  out.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadFailed\");",
-            "  out.status = UploadDocumentCheckStatus.FAIL;",
+            "  out.status = UploadDocumentCheckStatus.FAIL.toString();",
             "}"
           ]
         }
@@ -119,7 +119,7 @@
             "name" : "YES",
             "segment" : 0.33,
             "offset" : { "x" : -1, "y" : -8 }
-          }, "condition" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK" },
+          }, "condition" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK.toString()" },
         { "id" : "f26", "to" : "f8" }
       ]
     }, {
@@ -149,7 +149,7 @@
             "",
             "if (doesDocumentExist) {",
             "  in.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadFileExists\", [fileName]);",
-            "  in.status = UploadDocumentCheckStatus.FAIL;",
+            "  in.status = UploadDocumentCheckStatus.FAIL.toString();",
             "}"
           ]
         }
@@ -171,7 +171,7 @@
             "name" : "OK",
             "segment" : 0.33,
             "offset" : { "x" : 0, "y" : -8 }
-          }, "condition" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK" },
+          }, "condition" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK.toString()" },
         { "id" : "f25", "to" : "f12" }
       ]
     }, {
@@ -193,20 +193,20 @@
             "import ch.ivy.addon.portalkit.masterdata.MasterData;",
             "",
             "in.message = \"\";",
-            "in.status = UploadDocumentCheckStatus.OK;",
+            "in.status = UploadDocumentCheckStatus.OK.toString();",
             "",
             "if (in.uploadedFile == null) {",
             "  in.message = ivy.cms.co(\"/Dialogs/components/CaseDocument/invalidFileMessage\");",
-            "  in.status = UploadDocumentCheckStatus.FAIL;",
+            "  in.status = UploadDocumentCheckStatus.FAIL.toString();",
             "} else if (in.uploadedFile.getSize() == 0) {",
             "  in.message = ivy.cms.co(\"/Dialogs/components/CaseDocument/emptyFileMessage\");",
-            "  in.status = UploadDocumentCheckStatus.FAIL;",
+            "  in.status = UploadDocumentCheckStatus.FAIL.toString();",
             "} else {",
             "  Long maxFileUploadSize = MasterData.getFileUploadSizeLimit();",
             "  if (in.uploadedFile.getSize() > maxFileUploadSize) {",
             "    in.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize\", Arrays.asList(FileUtils.byteCountToDisplaySize(maxFileUploadSize)));",
             "  }",
-            "  in.status = UploadDocumentCheckStatus.FAIL;",
+            "  in.status = UploadDocumentCheckStatus.FAIL.toString();",
             "}"
           ]
         }
@@ -225,7 +225,7 @@
           "map" : {
             "out" : "in",
             "out.message" : "result.message",
-            "out.status" : "result.uploadDocumentCheckStatus"
+            "out.status" : "result.uploadDocumentCheckStatus.toString()"
           }
         },
         "call" : {

@@ -75,7 +75,7 @@ Dialogs:
             NoName: kein Name
             NotAvailable: NV
           ProcessViewer:
-            ProcessDataNotFound: Konnte die Prozessdaten nicht finden!
+            CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
             ProcessDetails: Prozess-Details
             ProcessId: Prozess-ID
             ProcessInfo: Prozess-Informationen

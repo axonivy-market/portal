@@ -109,6 +109,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.CaseUtils;",
             "import org.apache.commons.lang3.StringUtils;",
             "import com.axonivy.portal.components.enums.CustomSignature;",
             "import org.primefaces.model.StreamedContent;",
@@ -120,13 +121,12 @@
             "params.put(\"businessCase\", in.businessCase);",
             "params.put(\"document\", in.document);",
             "",
-            "Map result = IvyAdapterService.startSubProcessInApplication(CustomSignature.DOWNLOAD_DOCUMENT_ITEM.getSignature(), params);",
+            "CustomSignature signature = CaseUtils.isExpressCase(ivy.case) ? CustomSignature.EXPRESS_DOWNLOAD_DOCUMENT_ITEM : CustomSignature.DOWNLOAD_DOCUMENT_ITEM;",
+            "Map result = IvyAdapterService.startSubProcessInApplication(signature.getSignature(), params);",
             "",
-            "if (result.get(\"callProcessError\") != null) {",
-            "  in.hasCustomProcess = false;",
-            "} else {",
+            "in.hasCustomProcess = result != null;",
+            "if (in.hasCustomProcess) {",
             "  in.streamedContent = result.get(\"streamedContent\") as StreamedContent;",
-            "  in.hasCustomProcess = true;",
             "}"
           ]
         }

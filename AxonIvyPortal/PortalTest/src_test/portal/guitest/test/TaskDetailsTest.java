@@ -1,5 +1,6 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -23,6 +24,7 @@ import portal.guitest.common.Variable;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
+import portal.guitest.page.UserProfilePage;
 
 public class TaskDetailsTest extends BaseTest {
 
@@ -64,19 +66,28 @@ public class TaskDetailsTest extends BaseTest {
     taskWidgetPage.expand();
     return taskWidgetPage.openTaskDetails(0);
   }
+  
+  private void setFormattingLanguage() {
+    HomePage homePage = new HomePage();
+    UserProfilePage userProfilePage = homePage.openMyProfilePage();
+    userProfilePage.inputFormattingLanguage("English (United Kingdom)");
+    homePage = userProfilePage.save();
+  }
 
   @Test
   public void testChangeTaskDeadline() {
+    setFormattingLanguage();
     String tomorrowStringLiteral = prepareTomorrowAsString();
     taskDetailsPage = openDetailsPageOfFirstTask();
     taskDetailsPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
-    assertTrue(StringUtils.equalsIgnoreCase(prepareTomorrowAsLocaleDateString(), taskDetailsPage.getExpiryOfTaskAt()));
+    assertEquals(prepareTomorrowAsLocaleDateString(), taskDetailsPage.getExpiryOfTaskAt());
   }
 
   @Test
   public void testChangeTaskDeadlineWithAfterEscalationIsNA() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTestingCaseMapUrl);
+    setFormattingLanguage();
     String tomorrowStringLiteral = prepareTomorrowAsString();
     taskDetailsPage = openDetailsPageOfFirstTask();
     taskDetailsPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
@@ -137,17 +148,18 @@ public class TaskDetailsTest extends BaseTest {
 
   @Test
   public void testChangeDelayTimestamp() {
+    setFormattingLanguage();
     openDelayTask();
     assertTrue(StringUtils.equalsIgnoreCase("DELAYED", taskDetailsPage.getTaskState()));
     String tomorrow = prepareTomorrowAsString();
     String tomorrowWithLocale = prepareTomorrowAsLocaleDateString();
-    taskDetailsPage.updateDelayTimestamp(tomorrow,tomorrowWithLocale);
+    assertEquals(tomorrowWithLocale, taskDetailsPage.updateDelayTimestamp(tomorrow,tomorrowWithLocale));
     assertTrue(StringUtils.equalsIgnoreCase("DELAYED", taskDetailsPage.getTaskState()));
     refreshPage();
     taskDetailsPage = new TaskDetailsPage();
     String yesterday = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     String yesterdayWithLocale = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.LOCALE_DATE_TIME_PATTERN));
-    taskDetailsPage.updateDelayTimestamp(yesterday,yesterdayWithLocale);
+    assertEquals(yesterdayWithLocale, taskDetailsPage.updateDelayTimestamp(yesterday,yesterdayWithLocale));
     assertTrue(StringUtils.equalsIgnoreCase("SUSPENDED", taskDetailsPage.getTaskState()));
   }
 

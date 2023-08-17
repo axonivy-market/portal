@@ -87,6 +87,7 @@ public class TaskTemplatePage extends TemplatePage {
     return new TaskDetailsPage();
   }
 
+  @SuppressWarnings("deprecation")
   public void startSideStep() {
     String actionPanelId = "horizontal-task-action-form:horizontal-task-action-menu";
     waitForElementDisplayed(By.id(actionPanelId), true);
@@ -109,6 +110,7 @@ public class TaskTemplatePage extends TemplatePage {
     click(By.linkText("Reset"));
   }
 
+  @SuppressWarnings("deprecation")
   public void showNoteHistory() {
     click(driver.findElement(By.cssSelector("a[id$='show-more-note-link']")));
   }
@@ -212,13 +214,10 @@ public class TaskTemplatePage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("div[id$='adhoc-task-reset-confirmation-dialog_content']"), true);
   }
 
-  public void clickChatGroup(boolean growlMessageExpected) {
+  public void clickChatGroup() {
     String chatGroup = "a[id$='chat-group']";
     waitForElementDisplayed(By.cssSelector(chatGroup), true);
     clickByCssSelector(chatGroup);
-    if (growlMessageExpected) {
-      waitForElementDisplayedByCssSelector("span.ui-growl-title");
-    }
   }
 
   @SuppressWarnings("deprecation")
@@ -254,6 +253,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public void clickCreateGroupChatBtn() {
+    waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-group-create-button"), true);
     click(By.id("chat-assignee-selection-form:chat-group-create-button"));
     waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-group-create-button"), false);
   }

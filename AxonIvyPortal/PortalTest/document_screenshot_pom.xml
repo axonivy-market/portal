@@ -8,16 +8,16 @@
   <properties>
     <powermock.version>2.0.2</powermock.version>
     <build.plugin.version>10.0.6</build.plugin.version>
-    <ivy.engine.version>10.0.11</ivy.engine.version>
+    <ivy.engine.version>10.0.12</ivy.engine.version>
   </properties>
   <distributionManagement>
     <repository>
-      <id>repo.axonivy.io</id>
-      <url>https://repo.axonivy.io/artifactory/ext-release-local/</url>
+      <id>repo.axongroupio.ch</id>
+      <url>https://repo.axongroupio.ch/artifactory/ext-release-local/</url>
     </repository>
     <snapshotRepository>
-      <id>repo.axonivy.io</id>
-      <url>https://repo.axonivy.io/artifactory/ext-snapshot-local/</url>
+      <id>repo.axongroupio.ch</id>
+      <url>https://repo.axongroupio.ch/artifactory/ext-snapshot-local/</url>
     </snapshotRepository>
   </distributionManagement>
   <dependencies>

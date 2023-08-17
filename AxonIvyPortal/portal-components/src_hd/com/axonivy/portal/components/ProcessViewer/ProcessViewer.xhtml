@@ -78,10 +78,14 @@
       </div>
     </h:panelGroup>
 
-    <h:outputText rendered="#{data.isError}" styleClass="ui-g-12">
-      <i class="si si-cog-double-2" />
-      <span>#{data.errorMessage}</span>
-    </h:outputText>
+	<h:panelGroup rendered="#{data.isError}"
+		layout="block" id="empty-message-container"
+		styleClass="empty-message-container">
+		<i class="si si-cog-double-2 empty-message-icon" />
+		<br />
+		<h:outputText styleClass="empty-message-text"
+			value="#{data.errorMessage}" />
+	</h:panelGroup>
   </h:panelGroup>
 </cc:implementation>
 
