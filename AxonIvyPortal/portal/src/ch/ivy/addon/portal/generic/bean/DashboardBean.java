@@ -72,7 +72,8 @@ public class DashboardBean implements Serializable {
   private CaseEmptyMessage noCasesMessage;
   private TaskEmptyMessage noTasksMessage;
   private List<DashboardTemplate> dashboardTemplates;
-
+  protected String dashboardUrl;
+  
   @PostConstruct
   public void init() {
     currentDashboardIndex = 0;
@@ -393,6 +394,14 @@ public class DashboardBean implements Serializable {
   protected List<String> getSupportedLanguages() {
     IvyLanguage ivyLanguage = LanguageService.newInstance().findUserLanguages().getIvyLanguage();
     return ivyLanguage.getSupportedLanguages();
+  }
+
+  public String getDashboardUrl() {
+    return dashboardUrl;
+  }
+
+  public void setDashboardUrl(String dashboardUrl) {
+    this.dashboardUrl = dashboardUrl;
   }
 
 }

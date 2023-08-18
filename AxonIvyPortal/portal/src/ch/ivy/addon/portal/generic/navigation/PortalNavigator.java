@@ -41,6 +41,8 @@ public final class PortalNavigator extends BaseNavigator{
   private static final String PORTAL_NEW_DASHBOARD_CONFIGURATION = "Start Processes/PortalStart/PortalDashboardConfiguration.ivp";
   private static final String PORTAL_PROCESS_INFO = "Start Processes/PortalStart/ProcessInformation.ivp";
   private static final String PORTAL_DASHBOARD_DETAILS = "Start Processes/PortalStart/DashboardDetails.ivp";
+  private static final String PORTAL_DASHBOARD_PAGE = "Start Processes/PortalStart/DashboardPage.ivp";
+
 
   public static final String PORTAL_DASHBOARD_START = "/DefaultDashboardPage.ivp";
   public static final String PORTAL_PROCESS_START = "/DefaultProcessStartListPage.ivp";
@@ -79,7 +81,13 @@ public final class PortalNavigator extends BaseNavigator{
     params.put("username", username);
     return buildUrl(PORTAL_PASSWORD_RESET, params);
   }
-
+  
+  public static String getDashboardPageUrl(String dashboardId) {
+    Map<String, String> params = new HashMap<>();
+    params.put("dashboardId", dashboardId);
+    return buildUrl(PORTAL_DASHBOARD_PAGE, params);
+  }
+  
   public static void redirect(String url) {
     redirectURL(url);
   }

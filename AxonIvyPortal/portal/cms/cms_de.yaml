@@ -1544,6 +1544,8 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
+                DashboardSharing:
+                  CopyLink: Link kopieren
         portalkit:
           component:
             CaseWidget:
