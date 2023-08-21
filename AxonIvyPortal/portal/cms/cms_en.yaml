@@ -1548,7 +1548,7 @@ Dialogs:
                   Share: Share
                 DashboardSharing:
                   CopyLink: Copy link
-                  LinkCoppied: Link copied!
+                  LinkCopied: Link copied!
         portalkit:
           component:
             CaseWidget:

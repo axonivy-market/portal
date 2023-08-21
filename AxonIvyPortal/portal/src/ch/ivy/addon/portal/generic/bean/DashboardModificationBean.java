@@ -327,4 +327,8 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   public void showDashboardUrlCopiedMessage(String message) {
     FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
   }
+  
+  public boolean isShowSharingButton(boolean isPublicDashboard) {
+    return PermissionUtils.hasShareDashboardPermission() && isPublicDashboard;
+  }
 }

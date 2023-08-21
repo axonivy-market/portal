@@ -1400,7 +1400,7 @@ Dialogs:
                   Share: Share
                 DashboardSharing:
                   CopyLink: Copy link
-                  LinkCoppied: Link coppied!
+                  LinkCopied: Link coppied!
         portalkit:
           component:
             CaseWidget:

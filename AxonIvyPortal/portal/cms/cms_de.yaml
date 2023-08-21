@@ -1548,7 +1548,7 @@ Dialogs:
                   Share: Aktie
                 DashboardSharing:
                   CopyLink: Link kopieren
-                  LinkCoppied: Link kopiert!
+                  LinkCopied: Link kopiert!
         portalkit:
           component:
             CaseWidget:

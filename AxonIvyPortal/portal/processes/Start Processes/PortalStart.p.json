@@ -4101,16 +4101,18 @@
         "callSignature" : "DashboardPage",
         "input" : {
           "params" : [
-            { "name" : "dashboardId", "type" : "String" }
+            { "name" : "dashboardId", "type" : "String" },
+            { "name" : "openInFrame", "type" : "Boolean" }
           ],
           "map" : {
-            "out.dashboardId" : "param.dashboardId"
+            "out.dashboardId" : "param.dashboardId",
+            "out.isOpenInFrame" : "param.openInFrame"
           }
         },
         "outLink" : "DashboardPage.ivp"
       },
       "visual" : {
-        "at" : { "x" : 128, "y" : 64 }
+        "at" : { "x" : 136, "y" : 64 }
       },
       "connect" : { "id" : "f248", "to" : "f223" }
     }, {
@@ -4121,13 +4123,21 @@
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.util.DashboardUtils;",
-            "DashboardUtils.storeDashboardInSession(in.dashboardId);"
+            "import ch.addon.portal.generic.userprofile.homepage.HomepageType;",
+            "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
+            "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
+            "",
+            "DashboardUtils.storeDashboardInSession(in.dashboardId);",
+            "if (in.isOpenInFrame) {",
+            "  SecurityServiceUtils.setSessionAttribute(SessionAttribute.PORTAL_IN_TEAMS.toString(), true);",
+            "  SecurityServiceUtils.setSessionAttribute(SessionAttribute.DEFAULT_PAGE_IN_TEAMS.toString(), HomepageType.DASHBOARD.toString()); ",
+            "}"
           ]
         }
       },
       "visual" : {
         "at" : { "x" : 296, "y" : 64 }
       },
-      "connect" : { "id" : "f249", "to" : "f21", "via" : [ { "x" : 384, "y" : 136 } ] }
+      "connect" : { "id" : "f249", "to" : "f21", "via" : [ { "x" : 384, "y" : 144 } ] }
     } ]
 }
