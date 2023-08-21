@@ -7,10 +7,13 @@
   <cc:attribute name="inputTextValue" shortDescription="Value for filter type is LIKE"/>
   <cc:attribute name="selectedTexts" shortDescription="Value for filter type is SELECTION"/>
   <cc:attribute name="selectOptions"/>
+  <cc:attribute name="focusOnTextField" default="false"/>
 </cc:interface>
 
 <cc:implementation>
   <h:panelGroup rendered="#{cc.attrs.field.format eq 'STRING' or cc.attrs.field.format eq 'TEXT'}">
+    <p:focus for="text-field-input" rendered="#{cc.attrs.focusOnTextField}" />
+
     <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down display-flex-center">
       <h:outputText value="#{cc.attrs.field.headerText}" />
     </div>
