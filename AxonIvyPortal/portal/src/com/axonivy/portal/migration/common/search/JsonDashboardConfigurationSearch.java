@@ -35,7 +35,8 @@ public class JsonDashboardConfigurationSearch {
   }
 
   public Optional<ArrayNode> findFilterableColumns() {
-    return Optional.ofNullable(findConfig().get("filterableColumns"))
+    return Optional.ofNullable(findConfig())
+        .map(config -> config.get("filterableColumns"))
         .filter(JsonNode::isArray)
         .map(ArrayNode.class::cast);
   }

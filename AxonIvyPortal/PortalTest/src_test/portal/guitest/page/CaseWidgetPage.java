@@ -70,6 +70,12 @@ public class CaseWidgetPage extends TemplatePage {
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
+  public void openAdditionalCaseDetails() {
+    waitForElementDisplayed(By.cssSelector("[id$=':show-additional-case-details-link']"), true);
+    clickByCssSelector("[id$=':show-additional-case-details-link']");
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+  }
+
 	private WebElement getMoreActionsPanel() {
 		openActionStepMenu();
 		waitForElementDisplayed(By.cssSelector("div[id$='action-steps-panel']"), true);
@@ -335,7 +341,7 @@ public class CaseWidgetPage extends TemplatePage {
 
 	public void openCategoryFilter() {
 		click(By.cssSelector("button[id$='case-category-filter:filter-open-form:advanced-filter-command']"));
-		waitForElementDisplayed(By.cssSelector(".advanced-filter-panel.ui-connected-overlay-enter-done"), true);
+		waitForElementDisplayed(By.cssSelector("div[id$=':case-category-filter-tree']"), true);
 	}
 
 	@SuppressWarnings("deprecation")

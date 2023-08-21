@@ -8,15 +8,15 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
-      "name" : "start(Long)",
+      "name" : "start(String)",
       "config" : {
         "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long", "desc" : "" }
+            { "name" : "uuid", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.caseId" : "param.caseId"
+            "out.uuid" : "param.uuid"
           }
         },
         "guid" : "17326ECC68E24F98"

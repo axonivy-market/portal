@@ -24,6 +24,7 @@ import portal.guitest.common.Variable;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
+import portal.guitest.page.UserProfilePage;
 
 public class TaskDetailsTest extends BaseTest {
 
@@ -67,16 +68,26 @@ public class TaskDetailsTest extends BaseTest {
 
   @Test
   public void testChangeTaskDeadline() {
+    setFormattingLanguage();
+    
     String tomorrowStringLiteral = prepareTomorrowAsString();
     taskDetailsPage = openDetailsPageOfFirstTask();
     taskDetailsPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
     assertEquals(prepareTomorrowAsLocaleDateString(), taskDetailsPage.getExpiryOfTaskAt());
   }
 
+  private void setFormattingLanguage() {
+    HomePage homePage = new HomePage();
+    UserProfilePage userProfilePage = homePage.openMyProfilePage();
+    userProfilePage.inputFormattingLanguage("English (United Kingdom)");
+    homePage = userProfilePage.save();
+  }
+
   @Test
   public void testChangeTaskDeadlineWithAfterEscalationIsNA() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTestingCaseMapUrl);
+    setFormattingLanguage();
     String tomorrowStringLiteral = prepareTomorrowAsString();
     taskDetailsPage = openDetailsPageOfFirstTask();
     taskDetailsPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
@@ -137,6 +148,7 @@ public class TaskDetailsTest extends BaseTest {
 
   @Test
   public void testChangeDelayTimestamp() {
+    setFormattingLanguage();
     openDelayTask();
     assertTrue(StringUtils.equalsIgnoreCase("DELAYED", taskDetailsPage.getTaskState()));
     String tomorrow = prepareTomorrowAsString();
