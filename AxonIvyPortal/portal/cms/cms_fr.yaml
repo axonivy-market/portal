@@ -1545,6 +1545,7 @@ Dialogs:
                   CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
                 DashboardSharing:
                   CopyLink: Copier le lien
+                  LinkCoppied: Link coppied!
         portalkit:
           component:
             CaseWidget:
