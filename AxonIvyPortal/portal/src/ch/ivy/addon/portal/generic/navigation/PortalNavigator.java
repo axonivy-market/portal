@@ -14,6 +14,7 @@ import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
+import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.IHttpRequest;
@@ -66,7 +67,7 @@ public final class PortalNavigator extends BaseNavigator{
   public static void navigateToPortalLoginPage() {
     IHttpRequest request = (IHttpRequest) Ivy.request();
     String loginPage = getRelativeLink(StandardProcessType.DefaultLoginPage);
-    String originalUrl = URLEncoder.encode(request.getHttpServletRequest().getRequestURI(), StandardCharsets.ISO_8859_1);
+    String originalUrl = URLEncoder.encode(RequestUtils.getFullURL(request.getHttpServletRequest()), StandardCharsets.ISO_8859_1);
     redirect(String.format("%s?originalUrl=%s", loginPage, originalUrl));
   }
 

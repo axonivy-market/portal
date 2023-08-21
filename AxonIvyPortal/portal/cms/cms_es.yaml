@@ -1546,6 +1546,8 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: ¡No se pudo encontrar el proceso vinculado!
+                DashboardModification:
+                  Share: Compartir
                 DashboardSharing:
                   CopyLink: Copiar link
                   LinkCoppied: Link coppied!
