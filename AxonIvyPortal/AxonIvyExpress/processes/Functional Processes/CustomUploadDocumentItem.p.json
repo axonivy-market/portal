@@ -9,7 +9,7 @@
       "id" : "f0",
       "type" : "CallSubStart",
       "name" : [
-        "customUploadDocumentItem(ICase,UploadedFile,",
+        "experssUploadDocumentItem(ICase,UploadedFile,",
         "Boolean,Boolean,String)"
       ],
       "config" : {

@@ -9,11 +9,11 @@
       "id" : "f0",
       "type" : "CallSubStart",
       "name" : [
-        "customUploadDocumentItem(ICase,UploadedFile,",
+        "portalUploadDocumentItem(ICase,UploadedFile,",
         "Boolean,Boolean,String)"
       ],
       "config" : {
-        "callSignature" : "customUploadDocumentItem",
+        "callSignature" : "portalUploadDocumentItem",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
@@ -280,9 +280,9 @@
     }, {
       "id" : "f5",
       "type" : "CallSubStart",
-      "name" : "customDeleteDocumentItem(ICase,IvyDocument)",
+      "name" : "portalDeleteDocumentItem(ICase,IvyDocument)",
       "config" : {
-        "callSignature" : "customDeleteDocumentItem",
+        "callSignature" : "portalDeleteDocumentItem",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
@@ -340,9 +340,9 @@
     }, {
       "id" : "f12",
       "type" : "CallSubStart",
-      "name" : "customDownloadDocumentItem(ICase,IvyDocument)",
+      "name" : "portalDownloadDocumentItem(ICase,IvyDocument)",
       "config" : {
-        "callSignature" : "customDownloadDocumentItem",
+        "callSignature" : "portalDownloadDocumentItem",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
@@ -396,9 +396,9 @@
     }, {
       "id" : "f18",
       "type" : "CallSubStart",
-      "name" : "customGetDocumentItems(ICase)",
+      "name" : "portalGetDocumentItems(ICase)",
       "config" : {
-        "callSignature" : "customGetDocumentItems",
+        "callSignature" : "portalGetDocumentItems",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }

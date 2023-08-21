@@ -92,7 +92,9 @@ public class LanguageService implements ILanguageService {
       currentUser.setLanguage(userLanguage);
       
       Locale userFormatLocale = null;
-      if (language.getItemFormattingLanguage() != null && language.getItemFormattingLanguage().getValue() != null) {
+      if (language.getItemFormattingLanguage() != null && 
+          language.getItemFormattingLanguage().getValue() != null && 
+          StringUtils.isNotBlank(language.getItemFormattingLanguage().getValue().toString())) {
         userFormatLocale = Locale.forLanguageTag(language.getItemFormattingLanguage().getValue().toString());
       }
       currentUser.setFormattingLanguage(userFormatLocale);
