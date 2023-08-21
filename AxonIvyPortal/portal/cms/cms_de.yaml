@@ -113,6 +113,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       NEWS: Nachrichten
       PROCESS: Prozess-Widget
       PROCESS_VIEWER: Prozess-Viewer-Widget
+      STAT: Statistik-Widget
       STATISTIC: Statistik-Widget
       TASK: Aufgaben-Widget
       WELCOME: Willkommens-Widget

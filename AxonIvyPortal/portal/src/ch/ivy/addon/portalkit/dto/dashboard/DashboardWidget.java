@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
+import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -24,7 +25,6 @@ import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 import ch.ivyteam.ivy.environment.Ivy;
-import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
@@ -38,7 +38,8 @@ import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
   @Type(value = CustomDashboardWidget.class, name = "custom"),
   @Type(value = ProcessViewerDashboardWidget.class, name = "process-viewer"),
   @Type(value = WelcomeDashboardWidget.class, name = "welcome"),
-  @Type(value = NewsDashboardWidget.class, name = "news")
+  @Type(value = NewsDashboardWidget.class, name = "news"),
+  @Type(value = StatDashboardWidget.class, name = "stat")
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public abstract class DashboardWidget implements Serializable {

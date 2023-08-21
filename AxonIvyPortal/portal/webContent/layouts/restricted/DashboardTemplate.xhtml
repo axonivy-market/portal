@@ -128,6 +128,14 @@
                         index="#{status.index}"
                         id="news-#{widget.id}" />
                     </c:if>
+
+                    <!-- Stat widget -->
+                    <c:if test="#{widget.type eq 'STAT'}">
+                      <ic:com.axonivy.portal.dashboard.component.StatWidget widget="#{widget}"
+                        isReadOnlyMode="#{managedBean.isReadOnlyMode}"
+                        index="#{status.index}"
+                        id="stat-#{widget.id}" />
+                    </c:if>
                   </div>
                 </div>
               </c:forEach>
