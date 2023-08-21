@@ -263,6 +263,7 @@ function loadWidgetFirstTime(loadingClass, widgetClass) {
     widget.removeClass('u-display-none');
     widget.removeClass('u-invisibility');
   }
+  resizeTableBody();
 }
 
 function hideAllDashboardOverlayPanels() {

@@ -148,8 +148,6 @@ public class PortalMenuNavigator {
     navigateToTargetPage(params);
   }
   private record PortalSubMenuItemWrapper(String sessionUserId, Locale loadedLocale, List<SubMenuItem> portalSubMenuItems) {};
-
-  
   private static List<SubMenuItem> getSubmenuList() {
     List<SubMenuItem> subMenuItems = new ArrayList<>();
     GlobalSettingService globalSettingService = new GlobalSettingService();

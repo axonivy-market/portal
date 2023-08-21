@@ -367,7 +367,7 @@
       "id" : "f19",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 1248, "y" : 768 }
+        "at" : { "x" : 1312, "y" : 768 }
       }
     }, {
       "id" : "f138",
@@ -436,14 +436,14 @@
         "guid" : "1756E446A9CC288A"
       },
       "visual" : {
-        "at" : { "x" : 704, "y" : 768 }
+        "at" : { "x" : 768, "y" : 768 }
       },
       "connect" : { "id" : "f33", "to" : "f48" }
     }, {
       "id" : "f122",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 1248, "y" : 960 }
+        "at" : { "x" : 1424, "y" : 960 }
       }
     }, {
       "id" : "f130",
@@ -504,7 +504,7 @@
         "guid" : "1756E446A9DE09BB"
       },
       "visual" : {
-        "at" : { "x" : 704, "y" : 960 },
+        "at" : { "x" : 768, "y" : 960 },
         "labelOffset" : { "x" : 6, "y" : 35 }
       },
       "connect" : { "id" : "f91", "to" : "f90" }
@@ -578,7 +578,7 @@
         "guid" : "1756E446A9D252D7"
       },
       "visual" : {
-        "at" : { "x" : 704, "y" : 864 },
+        "at" : { "x" : 768, "y" : 864 },
         "labelOffset" : { "x" : 26, "y" : 42 }
       },
       "connect" : { "id" : "f46", "to" : "f45" }
@@ -586,7 +586,7 @@
       "id" : "f90",
       "type" : "Alternative",
       "visual" : {
-        "at" : { "x" : 808, "y" : 960 }
+        "at" : { "x" : 984, "y" : 960 }
       },
       "connect" : [
         { "id" : "f128", "to" : "f14" }
@@ -599,10 +599,10 @@
         "guid" : "1756E446A9DB886F"
       },
       "visual" : {
-        "at" : { "x" : 704, "y" : 1056 },
+        "at" : { "x" : 768, "y" : 1056 },
         "labelOffset" : { "x" : 18, "y" : 34 }
       },
-      "connect" : { "id" : "f84", "to" : "f90", "via" : [ { "x" : 808, "y" : 1056 } ] }
+      "connect" : { "id" : "f84", "to" : "f90", "via" : [ { "x" : 984, "y" : 1056 } ] }
     }, {
       "id" : "f136",
       "type" : "HtmlDialogEnd",
@@ -785,7 +785,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 960, "y" : 864 },
+        "at" : { "x" : 1024, "y" : 864 },
         "size" : { "width" : 192, "height" : 60 }
       },
       "connect" : { "id" : "f15", "to" : "f10" }
@@ -793,7 +793,7 @@
       "id" : "f10",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 1248, "y" : 864 }
+        "at" : { "x" : 1312, "y" : 864 }
       }
     }, {
       "id" : "f13",
@@ -819,7 +819,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1112, "y" : 960 }
+        "at" : { "x" : 1288, "y" : 960 }
       },
       "connect" : { "id" : "f134", "to" : "f122" }
     }, {
@@ -848,7 +848,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 920, "y" : 960 }
+        "at" : { "x" : 1096, "y" : 960 }
       },
       "connect" : { "id" : "f40", "to" : "f13" }
     }, {
@@ -932,7 +932,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 920, "y" : 768 }
+        "at" : { "x" : 984, "y" : 768 }
       },
       "connect" : { "id" : "f43", "to" : "f19" }
     }, {
@@ -1289,5 +1289,39 @@
         "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f21", "to" : "f121" }
+    }, {
+      "id" : "f88",
+      "type" : "HtmlDialogEventStart",
+      "name" : "fromDateChange",
+      "config" : {
+        "guid" : "189FC866E38F99A7"
+      },
+      "visual" : {
+        "at" : { "x" : 768, "y" : 1152 }
+      },
+      "connect" : { "id" : "f92", "to" : "f89" }
+    }, {
+      "id" : "f89",
+      "type" : "Script",
+      "name" : "Validate until date",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;",
+            "",
+            "boolean fromBiggerThanTill = AbsenceAndSubstituteUtils.isFromDateAfterTill(in.selectedAbsence);",
+            "",
+            "",
+            "if (fromBiggerThanTill) {",
+            "  in.selectedAbsence.until = in.selectedAbsence.from;",
+            "",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1056, "y" : 1152 }
+      },
+      "connect" : { "id" : "f94", "to" : "f13", "via" : [ { "x" : 1288, "y" : 1152 } ] }
     } ]
 }

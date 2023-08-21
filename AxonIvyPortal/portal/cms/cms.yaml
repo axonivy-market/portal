@@ -76,7 +76,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     deputyFor: I am substitute for
     myAbsences: My absences
     myDeputies: My substitutes
-    nextAbsence: Upcomming absence
+    nextAbsence: Upcoming absence
     selectedDeputyFor: Selected user is substitute for
     selectedUser: Selected user
   AllTasks:
