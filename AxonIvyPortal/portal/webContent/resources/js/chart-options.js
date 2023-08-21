@@ -12,7 +12,7 @@ $(document).ready(function () {
         // Calls the Workflow Task Statistic REST API to aggregate states
         const response = await instance.post('/designer/api/statistic-data-service/Data', {"chartId": "3"});
         const result = await response.data.aggs[0].buckets;
-        new Chart(chart1, {
+        chart1Object = new Chart(chart1, {
             type: 'bar',
             data: {
                 labels: result.map(bucket => bucket.key),
@@ -51,6 +51,22 @@ $(document).ready(function () {
                 }
             }
         });
+    }
+
+    setInterval(() => {
+        if (typeof chart1Object != "undefined") {
+            userActionChartNew(chart1Object);
+        }
+    }, 10000);
+
+    const userActionChartNew = async (chartObject) => {
+        const response = await instance.post('/designer/api/statistic-data-service/Data', {"chartId": "3"});
+        const result = await response.data.aggs[0].buckets;
+        chartObject.data.labels = result.map(bucket => bucket.key);
+        chartObject.data.datasets.forEach(dataset => {
+            dataset.data = result.map(bucket => bucket.count);
+          });
+        chartObject.update();
     }
 
     const chart2 = document.getElementById('chart2');
