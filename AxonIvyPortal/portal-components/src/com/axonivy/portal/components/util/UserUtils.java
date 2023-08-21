@@ -84,6 +84,12 @@ public class UserUtils {
     return loadLanguage(IUser::getLanguage);
   }
 
+  /**
+   * Distinct a list of UserDTO by id then sort by display name.
+   * 
+   * @param userList original list of users
+   * @return distinct and sorted list of users
+   */
   public static List<UserDTO> distinctAndSortUserList(List<UserDTO> userList) {
     if (CollectionUtils.isEmpty(userList)) {
       return null;
