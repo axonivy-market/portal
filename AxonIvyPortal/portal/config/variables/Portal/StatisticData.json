@@ -81,7 +81,7 @@
       "Everybody"
     ] ,
     "isCaseFilter" : "false",
-    "chartType": "bar",
+    "chartType": "number",
     "label": "Number of OPEN tasks",
     "barChartConfig": {
        "xTitle": "Status",
@@ -98,6 +98,21 @@
     "isCaseFilter" : "false",
     "chartType": "bar",
     "label": "Completed Tasks per Day",
+    "barChartConfig": {
+       "xTitle": "Day",
+       "yTitle": "Number of tasks"
+     }
+  },
+  {
+    "id": "7",
+    "aggregates": "endTimestamp",
+    "filter": "businessState:OPEN",
+    "permissions": [
+      "Everybody"
+    ] ,
+    "isCaseFilter" : "false",
+    "chartType": "bar",
+    "label": "Open Tasks per Day",
     "barChartConfig": {
        "xTitle": "Day",
        "yTitle": "Number of tasks"
