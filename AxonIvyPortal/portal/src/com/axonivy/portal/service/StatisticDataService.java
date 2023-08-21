@@ -6,24 +6,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import javax.naming.NoPermissionException;
 import javax.ws.rs.NotFoundException;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.bo.StatisticData;
 import com.axonivy.portal.dto.statisticChart.StatisticDataDto;
-import com.axonivy.portal.enums.ChartType;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
-import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.JsonConfigurationService;
+import ch.ivy.addon.portalkit.statistics.StatisticsChartResponse;
 import ch.ivyteam.ivy.elasticsearch.client.agg.AggregationResult;
-import ch.ivyteam.ivy.elasticsearch.client.agg.Bucket;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.stats.WorkflowStats;
 
@@ -39,7 +35,7 @@ public class StatisticDataService extends JsonConfigurationService<StatisticData
     return StatisticDataService.instance;
   }
 
-  public AggregationResult getData(StatisticDataDto payload) throws NotFoundException, NoPermissionException {
+  public StatisticsChartResponse getData(StatisticDataDto payload) throws NotFoundException, NoPermissionException {
     StatisticData chart = findById(payload.getChartId());
     if (chart == null) {
       throw new NotFoundException(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/exception/idNotFound",
@@ -50,10 +46,13 @@ public class StatisticDataService extends JsonConfigurationService<StatisticData
       throw new NoPermissionException(
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/exception/noPermission"));
     }
-    if (ChartType.TASKS_BY_EXPIRY.equals(chart.getType())) {
-      return getDataExpiredTasks(chart);
+    if (chart.getFilter() != null && chart.getFilter().contains("plusDays")) {
+      int numberOfDays = Integer.parseInt(StringUtils.substringAfterLast(chart.getFilter(), ":"));
+      String filterBy = StringUtils.substringBefore(chart.getFilter(), ":");
+      chart.setFilter(filterBy + ":<=" + plusDays(numberOfDays));
     }
-    return getData(chart);
+    AggregationResult result = getData(chart);
+    return new StatisticsChartResponse(result, chart);
   }
 
   private AggregationResult getData(StatisticData chart) {
@@ -76,35 +75,16 @@ public class StatisticDataService extends JsonConfigurationService<StatisticData
     return PortalVariable.STATISTIC_DATA.key;
   }
 
-  private AggregationResult getDataExpiredTasks(StatisticData chart) {
-    String nextWeek = getEndDateAtNextWeek();
-    chart.setFilter("expiryTimestamp:<=" + nextWeek);
-    AggregationResult data = getData(chart);
-    Map<String, Object> convertObject = BusinessEntityConverter.convertValue(data.aggs().get(0), Map.class);
-    List<Bucket> buckets = (List<Bucket>) convertObject.get("buckets");
-    if (CollectionUtils.isNotEmpty(buckets)) {
-
-    }
-    return data;
-  }
-
-  private String getEndDateAtNextWeek() {
+  private String plusDays(int numberOfDays) {
     Calendar cal = Calendar.getInstance();
-    cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-    cal.add(Calendar.DATE, 14);
+    cal.add(Calendar.DATE, numberOfDays);
+    cal.set(Calendar.HOUR_OF_DAY, 23);
+    cal.set(Calendar.MINUTE, 59);
+    cal.set(Calendar.SECOND, 59);
     Date date = cal.getTime();
     DateFormat dateFormat = new SimpleDateFormat(pattern);
     String strDate = dateFormat.format(date);
     return strDate;
   }
 
-  private String getEndDateAtThisWeek() {
-    Calendar cal = Calendar.getInstance();
-    cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-    cal.add(Calendar.DATE, 7);
-    Date date = cal.getTime();
-    DateFormat dateFormat = new SimpleDateFormat(pattern);
-    String strDate = dateFormat.format(date);
-    return strDate;
-  }
 }
