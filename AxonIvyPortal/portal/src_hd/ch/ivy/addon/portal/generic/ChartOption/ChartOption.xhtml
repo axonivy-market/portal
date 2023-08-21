@@ -14,33 +14,40 @@
       <!-- Loads the ChartJs library needed to render the chart -->
       <h:outputScript library="primefaces" name="chartjs/chartjs.js" />
 
-      <h:panelGroup id="form">
-        <p:messages />
+      <div id="chart-options">
 
-        <h1>ChartJS and REST Workflow Task Statistic API Demo</h1>
-
-        <h2>My Tasks by Priority</h2>
-        <div style="height: 400px; max-width: 800px;">
-          <canvas id="chart1" width="800" height="400"></canvas>
+        <div class="chart-options">
+          <h2>My Tasks by Priority</h2>
+          <div style="max-height: 800px; max-width: 800px;">
+            <canvas id="chart1" data-chart-id="3" width="800" height="800"></canvas>
+          </div>
         </div>
 
-<!--         <h2>Tasks grouped by expiry</h2>
-        <div style="height: 400px; max-width: 800px;">
-          <canvas id="chart2" width="800" height="400"></canvas>
-        </div> -->
-
-        <h2>Number of “Open”-Tasks</h2>
-        <div style="height: 400px; max-width: 800px;">
-          <canvas id="chart3" width="800" height="400"></canvas>
+        <div class="chart-options">
+          <h2>Tasks grouped by expiry</h2>
+          <div style="height: 800px; max-width: 800px;">
+            <canvas id="chart2" data-chart-id="4" width="800" height="800"></canvas>
+          </div>
         </div>
 
-        <h2>Completed Tasks per Day</h2>
-        <div style="height: 400px; max-width: 800px;">
-          <canvas id="chart4" width="800" height="400"></canvas>
+        <div classs="chart-options">
+          <h2>Number of “Open”-Tasks</h2>
+          <div id="chart3" data-chart-id="5"
+            style="height: 150px; max-width: 300px; background-color: #2980b9; color: white;"
+            class="card">
+            <h4 id="card-name">Number of “Open”-Tasks</h4>
+            <h1 id="card-number"></h1>
+          </div>
         </div>
         
-      </h:panelGroup>
-      
+        <div class="chart-options">
+          <h2>Completed Tasks per Day</h2>
+          <div style="height: 800px; max-width: 800px;">
+            <canvas id="chart4" data-chart-id="6" width="800" height="800"></canvas>
+          </div>
+        </div>
+      </div>
+
     </ui:define>
   </ui:composition>
 </h:body>

@@ -7,7 +7,12 @@
       "Everybody"
     ] ,
     "isCaseFilter" : "false",
-    "type": "UNDEFINED"
+    "chartType": "bar",
+    "label": "Test char",
+    "barChartConfig": {
+       "xTitle": "",
+       "yTitle": ""
+     }
   },
     {
     "id": "1",
@@ -17,7 +22,12 @@
     "permissions": [
       "Everybody"
     ],
-    "type": "UNDEFINED"
+    "chartType": "bar",
+    "label": "Test char",
+    "barChartConfig": {
+       "xTitle": "",
+       "yTitle": ""
+     }
   },
   {
     "id": "2",
@@ -27,7 +37,12 @@
     "permissions": [
       "Everybody"
     ],
-    "type": "UNDEFINED"
+    "chartType": "bar",
+    "label": "Test char",
+    "barChartConfig": {
+       "xTitle": "",
+       "yTitle": ""
+     }
   },
   {
     "id": "3",
@@ -36,16 +51,27 @@
     "permissions": [
       "Everybody"
     ],
-    "type": "TASKS_BY_PRIORITY"
+    "chartType": "bar",
+    "label": "My Tasks by Priority",
+    "barChartConfig": {
+       "xTitle": "Priority",
+       "yTitle": "Number of tasks"
+     }
   },
   {
     "id": "4",
     "aggregates": "expiryTimestamp",
+    "filter": "expiryTimestamp:plusDays:4",
     "isCaseFilter": "false",
     "permissions": [
       "Everybody"
     ],
-    "type": "TASKS_BY_EXPIRY"
+    "chartType": "bar",
+    "label": "Tasks grouped by expiry",
+    "barChartConfig": {
+       "xTitle": "Day",
+       "yTitle": "Number of tasks"
+     }
   },
   {
     "id": "5",
@@ -55,16 +81,26 @@
       "Everybody"
     ] ,
     "isCaseFilter" : "false",
-    "type": "NUMBER_OF_OPEN_TASKS"
+    "chartType": "bar",
+    "label": "Number of OPEN tasks",
+    "barChartConfig": {
+       "xTitle": "Status",
+       "yTitle": "Number of tasks"
+     }
   },
   {
     "id": "6",
-    "aggregates": "startTimestamp:bucket:day",
+    "aggregates": "endTimestamp",
     "filter": "businessState:DONE",
     "permissions": [
       "Everybody"
     ] ,
     "isCaseFilter" : "false",
-    "type": "COMPLETED_TASKS_PER_DAY"
+    "chartType": "bar",
+    "label": "Completed Tasks per Day",
+    "barChartConfig": {
+       "xTitle": "Day",
+       "yTitle": "Number of tasks"
+     }
   }
 ]
