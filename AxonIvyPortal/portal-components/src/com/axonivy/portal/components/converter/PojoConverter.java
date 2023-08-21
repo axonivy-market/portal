@@ -1,6 +1,7 @@
 package com.axonivy.portal.components.converter;
 
 import java.util.Map;
+import java.util.UUID;
 
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIViewRoot;
@@ -34,11 +35,11 @@ public class PojoConverter implements Converter {
   public String getAsString(FacesContext context, UIComponent component, Object item) throws ConverterException {
     if (item != null && !isEmptyString(item)) {
       Map<String, Object> viewMap = getViewMap(context);
-      String hash = String.valueOf(item.hashCode());
-      String mapKey = String.format(MAP_KEY_TEMPLATE, component.getId(), hash);
+      String uuid = UUID.randomUUID().toString();
+      String mapKey = String.format(MAP_KEY_TEMPLATE, component.getId(), uuid);
       viewMap.put(mapKey, item);
 
-      return hash;
+      return uuid;
     }
     return "";
   }
