@@ -44,6 +44,29 @@ public class IvyAdapterService {
     return startSubProcess(signature, params, SearchScope.SECURITY_CONTEXT);
   }
 
+  public static List<Map<String, Object>> startSubProcessesInSecurityContext(String signature, Map<String, Object> params) {
+    return Sudo.get(() -> {
+      var result = new ArrayList<Map<String, Object>>();
+
+      var filter = SubProcessSearchFilter.create()
+          .setSearchScope(SearchScope.SECURITY_CONTEXT)
+          .setSignature(signature).toFilter();
+
+      var subProcessStartList = SubProcessCallStart.find(filter);
+      if (CollectionUtils.isEmpty(subProcessStartList)) {
+        return null;
+      }
+
+      subProcessStartList.forEach(subProcessStart -> {
+        result.add(Optional.ofNullable(params).map(Map::entrySet).isEmpty() ?
+            subProcessStart.call().asMap() : 
+              startSubProcessWithParams(subProcessStart, params));
+      });
+
+      return result;
+    });
+  }
+
   /**
    * Find the sub process in current project scope then calls it with the given signature
    * with the given params. Exactly one sub process with the given signature is expected.
