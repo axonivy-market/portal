@@ -114,13 +114,18 @@
             "Map params = new HashMap();",
             "params.put(\"businessCase\", in.businessCase);",
             "",
-            "CustomSignature signature = CaseUtils.isExpressCase(ivy.case) ? CustomSignature.EXPRESS_GET_DOCUMENT_ITEMS : CustomSignature.GET_DOCUMENT_ITEMS;",
-            "Map result = IvyAdapterService.startSubProcessInApplication(signature.getSignature(), params);",
-            "",
+            "List result = IvyAdapterService.startSubProcessesInSecurityContext(CustomSignature.GET_DOCUMENT_ITEMS.getSignature(), params);",
             "in.hasCustomProcess = result != null;",
+            "",
             "if (in.hasCustomProcess) {",
-            "  in.documents = result.get(\"documents\") as List;",
-            "  in.message = result.get(\"message\").toString();",
+            "  for (Map map : result) {",
+            "    boolean isSkip = map.get(\"skip\") as boolean;",
+            "    if (!isSkip) {",
+            "      in.documents = map.get(\"documents\") as List;",
+            "      in.message = map.get(\"message\").toString();",
+            "      break;",
+            "    }",
+            "  }",
             "}"
           ]
         }

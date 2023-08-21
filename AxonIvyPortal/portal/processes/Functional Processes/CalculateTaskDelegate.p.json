@@ -55,8 +55,9 @@
       "config" : {
         "output" : {
           "code" : [
-            "import org.apache.commons.collections4.CollectionUtils;",
-            "",
+            "import com.axonivy.portal.components.util.UserUtils;",
+            "import com.axonivy.portal.components.util.RoleUtils;",
+            "import java.util.stream.Collectors;",
             "import com.axonivy.portal.components.dto.UserDTO;",
             "import ch.ivyteam.ivy.workflow.ITask;",
             "import com.axonivy.portal.components.dto.SecurityMemberDTO;",
@@ -75,14 +76,19 @@
             "in.hasCustomProcess = result != null;",
             "",
             "if (in.hasCustomProcess) {",
+            "  in.roles.clear();",
+            "  in.users.clear();",
             "  for (Map map : result) {",
             "    boolean isSkip = map.get(\"skip\") as boolean;",
             "    if (!isSkip) {",
-            "      in.roles = map.get(\"roles\") as List;",
-            "      in.users = map.get(\"users\") as List;",
+            "      in.roles.addAll(map.get(\"roles\") as List);",
+            "      in.users.addAll(map.get(\"users\") as List);",
             "      break;",
             "    }",
             "  }",
+            "",
+            "  in.roles = RoleUtils.distinctAndSortRoleList(in.roles);",
+            "  in.users = UserUtils.distinctAndSortUserList(in.users);",
             "}"
           ]
         }

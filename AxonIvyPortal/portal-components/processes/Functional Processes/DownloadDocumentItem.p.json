@@ -121,12 +121,17 @@
             "params.put(\"businessCase\", in.businessCase);",
             "params.put(\"document\", in.document);",
             "",
-            "CustomSignature signature = CaseUtils.isExpressCase(ivy.case) ? CustomSignature.EXPRESS_DOWNLOAD_DOCUMENT_ITEM : CustomSignature.DOWNLOAD_DOCUMENT_ITEM;",
-            "Map result = IvyAdapterService.startSubProcessInApplication(signature.getSignature(), params);",
-            "",
+            "List result = IvyAdapterService.startSubProcessesInSecurityContext(CustomSignature.DOWNLOAD_DOCUMENT_ITEM.getSignature(), params);",
             "in.hasCustomProcess = result != null;",
+            "",
             "if (in.hasCustomProcess) {",
-            "  in.streamedContent = result.get(\"streamedContent\") as StreamedContent;",
+            "  for (Map map : result) {",
+            "    boolean isSkip = map.get(\"skip\") as boolean;",
+            "    if (!isSkip) {",
+            "      in.streamedContent = map.get(\"streamedContent\") as StreamedContent;",
+            "      break;",
+            "    }",
+            "  }",
             "}"
           ]
         }
