@@ -100,7 +100,6 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
   
   public void openShareDashboardDialog(Dashboard dashboard) {
-      Ivy.log().info("vao day");
       setDashboardUrl(UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId()));
   }
   
