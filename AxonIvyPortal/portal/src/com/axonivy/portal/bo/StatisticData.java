@@ -2,7 +2,6 @@ package com.axonivy.portal.bo;
 
 import java.util.List;
 
-import com.axonivy.portal.enums.ChartType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
@@ -14,14 +13,32 @@ public class StatisticData extends AbstractConfiguration{
   private Boolean isCaseFilter;
   @JsonIgnore
   private String name;
-  private ChartType type;
+  private String chartType;
+  private String label;
+  private BarChartConfig barChartConfig;
 
-  public ChartType getType() {
-    return type;
+  public String getChartType() {
+    return chartType;
   }
 
-  public void setType(ChartType type) {
-    this.type = type;
+  public void setChartType(String chartType) {
+    this.chartType = chartType;
+  }
+
+  public String getLabel() {
+    return label;
+  }
+
+  public void setLabel(String label) {
+    this.label = label;
+  }
+
+  public BarChartConfig getBarChartConfig() {
+    return barChartConfig;
+  }
+
+  public void setBarChartConfig(BarChartConfig barChartConfig) {
+    this.barChartConfig = barChartConfig;
   }
 
   public String getFilter() {
