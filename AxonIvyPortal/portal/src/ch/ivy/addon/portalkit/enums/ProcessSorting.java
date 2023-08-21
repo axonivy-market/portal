@@ -1,22 +1,18 @@
 package ch.ivy.addon.portalkit.enums;
 
-import java.util.Arrays;
-
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
-public enum ProcessType {
-  EXPRESS_PROCESS("ExpressProcess"),
-  EXTERNAL_LINK("ExternalLink"),
-  IVY_PROCESS("IvyProcess");
-  
+public enum ProcessSorting {
+  ALPHABETICALLY("Alphabetically"), SORTING_INDEX("SortingIndex");
+
   private final String value;
-  
-  private ProcessType(String value) {
+
+  private ProcessSorting(String value) {
     this.value = value;
   }
-  
+
   public String getValue() {
     return value;
   }
@@ -24,11 +20,5 @@ public enum ProcessType {
   public String getLabel() {
     String label = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/Enums/ProcessSorting" + name());
     return StringUtils.isBlank(label) ? name() : label;
-  }
-  
-  public static ProcessType typeOf(String value) {
-    return Arrays.stream(values())
-        .filter(type -> type.getValue().equalsIgnoreCase(value))
-        .findAny().orElse(null);
   }
 }
