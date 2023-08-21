@@ -148,6 +148,12 @@ public final class RoleUtils {
     return filterRoles;
   }
 
+  /**
+   * Distinct a list of RoleDTO by id then sort by display name.
+   * 
+   * @param roleList original list of roles
+   * @return distinct and sorted list of roles
+   */
   public static List<RoleDTO> distinctAndSortRoleList(List<RoleDTO> roleList) {
     if (CollectionUtils.isEmpty(roleList)) {
       return null;
