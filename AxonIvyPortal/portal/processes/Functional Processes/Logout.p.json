@@ -76,7 +76,7 @@
             "import java.util.HashMap;",
             "import java.util.Map;",
             "import com.axonivy.portal.components.service.IvyAdapterService;",
-            "import com.axonivy.portal.components.enums.PortalCustomSignature;",
+            "import com.axonivy.portal.enums.PortalCustomSignature;",
             "",
             "Map params = new HashMap();",
             "params.put(\"isTaskReserve\", in.isTaskReserve);",
