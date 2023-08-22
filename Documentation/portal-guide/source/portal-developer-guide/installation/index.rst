@@ -112,17 +112,17 @@ In Engine
 Migrate 10.0 To 10.0.12
 -----------------------
 
-Portal no longer supports the override process approach for some sub processes.
-Please do as below to migrate your override sub processes.
+Portal no longer supports the override process approach for some subprocesses.
+Please follow the guidelines below to migrate your override subprocesses.
 
 #. :ref:`Customize Forgot Password <customization-forgot-password>`
 
-      - Remove Sub Process Override of ``ResetPassword`` and ``SendPasswordResetEmail``` from your project.
+      - Remove subprocess override of ``ResetPassword`` and ``SendPasswordResetEmail``` from your project.
 
-      - Change the signature of your callable start as below.
+      - Change the signature of your callable start as described below.
 
          +-------------------------+-------------------------------+
-         | Sub process             | New signature                 |
+         | Subprocess              | New signature                 |
          +=========================+===============================+
          | ResetPassword           | portalResetPassword           |
          +-------------------------+-------------------------------+
@@ -131,13 +131,13 @@ Please do as below to migrate your override sub processes.
 
 #. :ref:`Document processes <customization-document-processes>`
 
-      - Remove Sub Process Override of ``GetDocumentList``, ``UploadDocument``,
+      - Remove subprocess override of ``GetDocumentList``, ``UploadDocument``,
         ``DeleteDocument``, and ``DownloadDocument`` from your project.
 
-      - Change the signature of your callable starts as below.
+      - Change the signature of your callable starts as described below.
 
          +----------------------+----------------------------+
-         | Sub process          | New signature              |
+         | Subprocess           | New signature              |
          +======================+============================+
          | GetDocumentList      | portalGetDocumentList      |
          +----------------------+----------------------------+
@@ -150,12 +150,12 @@ Please do as below to migrate your override sub processes.
 
 #. :ref:`Customize Logout Process <customization-logout>`
 
-      - Remove Sub Process Override of ``LogoutPage`` and ``Logout`` from your project.
+      - Remove subprocess override of ``LogoutPage`` and ``Logout`` from your project.
 
-      - Change the signature of your callable start as below.
+      - Change the signature of your callable start as described below.
 
          +----------------------+----------------------------+
-         | Sub process          | New signature              |
+         | Subprocess           | New signature              |
          +======================+============================+
          | LogoutPage           | portalGetLogoutPage        |
          +----------------------+----------------------------+
@@ -164,12 +164,12 @@ Please do as below to migrate your override sub processes.
 
 #. :ref:`Customize Change Password Process <customization-change-password-process>`
 
-      - Remove Sub Process Override of ``ChangePassword`` from your project.
+      - Remove subprocess override of ``ChangePassword`` from your project.
 
-      - Change the signature of your callable start as below.
+      - Change the signature of your callable start as described below.
 
          +----------------------+----------------------------+
-         | Sub process          | New signature              |
+         | Subprocess           | New signature              |
          +======================+============================+
          | ChangePassword       | portalChangePassword       |
          +----------------------+----------------------------+
@@ -230,8 +230,8 @@ Migrate 9.3 To 9.4
 #. The ``customization.css`` file has been removed, in case you use it in your project, please switch to using
    :dev-url:`Engine Branding </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>` to customize styling
 
-#. Sub processes related to documents are moved to the independent project ``portal-components``.
-   If you customized these processes, please override the correspond sub process again and added your customization to it.
+#. Subprocesses related to documents are moved to the independent project ``portal-components``.
+   If you customized these processes, please override the correspond subprocess again and added your customization to it.
 
    Below is a list of deprecated processes in project ``portal`` and new processes in project ``portal-components``.
 
@@ -270,7 +270,7 @@ Migrate 9.3 To 9.4
 #. Portal dashboard widgets only support the ``CustomFields`` declared in the ``custom-fields.yaml`` file.
    If your ``CustomFields`` are used in the dashboard widget, please follow the :dev-url:`Custom Fields Meta Information </doc/|version|/designer-guide/how-to/workflow/custom-fields.html#meta-information>` to adapt the data.
 
-#. The ``DefaultChartColor.p.json`` sub process has been removed, in case you use it in your project, please remove override this sub process and switch to using
+#. The ``DefaultChartColor.p.json`` subprocess has been removed, in case you use it in your project, please remove override this subprocess and switch to using
    :dev-url:`Engine Branding </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>` to customize chart, data labels, legend color.
    Refer to :ref:`Default chart colors <customization-default-chart-colors>`.
 
@@ -441,7 +441,7 @@ Changes in 10.0.9
 Changes in 10
 -------------
 
-- Introduced the ``Application`` filter and the ``Application`` column at the following places: full task list, full case list, dashboard task list, dashboard case list, and task analysis.
+- Introduced the ``Application`` filter and the ``Application`` column in the following places: full task list, full case list, dashboard task list, dashboard case list, and task analysis.
 
 Changes in 9.4
 --------------
@@ -465,7 +465,7 @@ Changes in 9.4
 
 - Introduced the ``Formatting language setting`` to format values, for example the decimal separator is displayed differently in different regions of the world.
 
-- Removed sub process ``DefaultChartColor.p.json``, introduced some Portal variables for customizing the default chart color. See details: :ref:`Default chart colors <customization-default-chart-colors>`.
+- Removed subprocess ``DefaultChartColor.p.json``, introduced some Portal variables for customizing the default chart color. See details: :ref:`Default chart colors <customization-default-chart-colors>`.
 
 - Introduce some components in new ``portal-components`` project.
 

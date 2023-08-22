@@ -3,7 +3,7 @@
 Document Table
 **************
 
-This component is a case document table with functions: display, upload,
+This component is a case document table with functions display, upload,
 download and delete document entries.
 
 |document-table|
@@ -36,10 +36,10 @@ Please refer to :ref:`settings-virus-scanning-setting` for more details about vi
 
 .. _components-portal-components-migrate-from-old-document-table:
 
-Customization
-^^^^^^^^^^^^^
+Customize
+^^^^^^^^^
 
-From your project, create four callable sub processes with the below information to customize
+In your project, create four callable subprocesses with the information below to customize
 the functions of the **Document Table**.
 
 .. tip::
@@ -50,7 +50,7 @@ the functions of the **Document Table**.
 Get document list
 -----------------
 
-Customize how **Document Table** gets documents, create a callable subprocess with:
+To customize how **Document Table** gets documents, create a callable subprocess with:
 
 **Signature**: portalGetDocumentItems
 
@@ -70,13 +70,13 @@ Customize how **Document Table** gets documents, create a callable subprocess wi
 
 .. note::
 
-   After get document list from DMS, convert them into ``List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>``
-   Some mandatory fields when mapping: ``id``, ``name``, ``contentType``
+   After you get the document list from DMS, convert it into ``List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>``
+   These fields are mandatory when mapping: ``id``, ``name``, ``contentType``
 
 Upload document
 ---------------
 
-Customize what **Document Table** should do when a user uploads a document,
+To customize what **Document Table** should do when a user uploads a document,
 create a callable subprocess with:
 
 **Signature**: portalUploadDocumentItem
@@ -108,7 +108,7 @@ create a callable subprocess with:
 Download document
 -----------------
 
-Customize behavior when a user downloads a document from **Document Table**,
+To customize behavior when a user downloads a document from **Document Table**,
 create a callable subprocess with:
 
 **Signature**: portalDownloadDocumentItem
@@ -130,7 +130,7 @@ create a callable subprocess with:
 Delete document
 ---------------
 
-Customize behavior when an user deletes a document from **Document Table**,
+To customize behavior when a user deletes a document from **Document Table**,
 create a callable subprocess with:
 
 **Signature**: portalDeleteDocumentItem
@@ -192,15 +192,15 @@ Migrate 10.0.x to 10.0.12
 -------------------------
 
 Since this version, we no longer support the override process approach for functions of **Document Table**.
-Please do as below to migrate your override sub processes
+Please follow our guidelines below to migrate your override subprocesses.
 
-   - Remove Sub Process Override of ``GetDocumentItems``, ``UploadDocumentItem``,
+   - Remove Subprocess Override of ``GetDocumentItems``, ``UploadDocumentItem``,
      ``DeleteDocumentItem``, and ``DownloadDocumentItem`` from your project.
 
-   - Change the signature of your callable starts as below.
+   - Change the signature of your callable starts as described below.
 
       +----------------------+----------------------------+
-      | Sub process          | New signature              |
+      | Subprocess           | New signature              |
       +======================+============================+
       | GetDocumentItems     | portalGetDocumentItems     |
       +----------------------+----------------------------+
@@ -223,7 +223,7 @@ Migrate to 10.0.0
 #. Override subprocesses if you want and adapt your business accordingly.
 
    +-----------------------------------+--------------------------+
-   | New sub process                   | Deprecated sub process   |
+   | New subprocess                    | Deprecated subprocess    |
    +===================================+==========================+
    | GetDocumentItems                  | GetDocumentList          |
    +-----------------------------------+--------------------------+

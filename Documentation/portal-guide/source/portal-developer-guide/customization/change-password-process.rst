@@ -8,15 +8,15 @@ Change Password Process
 Introduction
 ------------
 
-Portal supports you to customize the change password process, e.g. to check new passwords against
+The Portal allows the change password process, e.g. to check new passwords against
 leaked passwords databases when the user changes his password.
 
 .. _customization-change-password-process-customization:
 
-Customization Change Password Process
--------------------------------------
+Customize
+---------
 
-Create a callable sub process in your project with 
+Create a callable subprocess in your project with 
 
 **Signature**: portalChangePassword
 
@@ -39,6 +39,6 @@ Create a callable sub process in your project with
 .. tip::
 
    Refer to process ``CustomChangePassword`` in project ``portal-developer-examples``
-   for an example of how to customize change password process.
+   for an example of change password process customization.
 
 
