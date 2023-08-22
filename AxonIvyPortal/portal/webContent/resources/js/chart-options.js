@@ -19,6 +19,13 @@ function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
+function formatISODate(date) {
+    let year = date.getFullYear();
+    let month = date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth();
+    let day = date.getDay() < 10 ? '0' + date.getDay() : date.getDay();
+    return `${year}-${month}-${day}`;
+}
+
 $(document).ready(function () {
     $('.chart-options').each(async (index, chart) => {
         let chartId = chart.getAttribute('data-chart-id');
@@ -83,7 +90,7 @@ $(document).ready(function () {
 
     function formatChartLabel(label) {
         if (isNumeric((new Date(label)).getTime())) {
-            return label.substring(0, 10);
+            return formatISODate(new Date(label));
         }
         return label
     }
