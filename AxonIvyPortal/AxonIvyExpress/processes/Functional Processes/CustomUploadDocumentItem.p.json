@@ -99,11 +99,11 @@
             "boolean isUploaded = DocumentFileUtils.uploadExpressDocument(ivy.case, in.uploadedFile.getInputStream(), fileName);",
             "",
             "if (isUploaded) {",
-            "  out.status = UploadDocumentCheckStatus.OK.toString();",
+            "  out.status = UploadDocumentCheckStatus.OK.name();",
             "  out.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadSucceed\");",
             "} else {",
             "  out.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadFailed\");",
-            "  out.status = UploadDocumentCheckStatus.FAIL.toString();",
+            "  out.status = UploadDocumentCheckStatus.FAIL.name();",
             "}"
           ]
         },
@@ -121,7 +121,7 @@
       "name" : "Not exist?",
       "config" : {
         "conditions" : {
-          "f93" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK.toString()"
+          "f93" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK.name()"
         }
       },
       "visual" : {
@@ -162,7 +162,7 @@
             "",
             "if (doesDocumentExist) {",
             "  in.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadFileExists\", [fileName]);",
-            "  in.status = UploadDocumentCheckStatus.FAIL.toString();",
+            "  in.status = UploadDocumentCheckStatus.FAIL.name();",
             "}"
           ]
         },
@@ -180,7 +180,7 @@
       "name" : "Document check",
       "config" : {
         "conditions" : {
-          "f27" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK.toString()"
+          "f27" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK.name()"
         }
       },
       "visual" : {
@@ -214,20 +214,20 @@
             "import ch.ivy.addon.portalkit.masterdata.MasterData;",
             "",
             "in.message = \"\";",
-            "in.status = UploadDocumentCheckStatus.OK.toString();",
+            "in.status = UploadDocumentCheckStatus.OK.name();",
             "",
             "if (in.uploadedFile == null) {",
             "  in.message = ivy.cms.co(\"/Dialogs/components/CaseDocument/invalidFileMessage\");",
-            "  in.status = UploadDocumentCheckStatus.FAIL.toString();",
+            "  in.status = UploadDocumentCheckStatus.FAIL.name();",
             "} else if (in.uploadedFile.getSize() == 0) {",
             "  in.message = ivy.cms.co(\"/Dialogs/components/CaseDocument/emptyFileMessage\");",
-            "  in.status = UploadDocumentCheckStatus.FAIL.toString();",
+            "  in.status = UploadDocumentCheckStatus.FAIL.name();",
             "} else {",
             "  Long maxFileUploadSize = MasterData.getFileUploadSizeLimit();",
             "  if (in.uploadedFile.getSize() > maxFileUploadSize) {",
             "    in.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize\", Arrays.asList(FileUtils.byteCountToDisplaySize(maxFileUploadSize)));",
             "  }",
-            "  in.status = UploadDocumentCheckStatus.FAIL.toString();",
+            "  in.status = UploadDocumentCheckStatus.FAIL.name();",
             "}"
           ]
         }

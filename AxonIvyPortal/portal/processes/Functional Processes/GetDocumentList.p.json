@@ -88,7 +88,7 @@
       "type" : "ProcessAnnotation",
       "name" : [
         "This sub process can be customized to get files in DMS",
-        "The custom proccess signature must be: \"customGetDocumentItems(ICase)\"",
+        "The custom proccess signature must be: \"portalGetDocumentList(ICase)\"",
         "",
         "After get document list from DMS, convert them into List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>",
         "Some mandatory fields when mapping:",

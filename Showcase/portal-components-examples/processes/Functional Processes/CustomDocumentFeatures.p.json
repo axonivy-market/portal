@@ -8,9 +8,9 @@
   "elements" : [ {
       "id" : "f3",
       "type" : "CallSubStart",
-      "name" : "customDeleteDocumentItem(ICase,IvyDocument)",
+      "name" : "portalDeleteDocumentItem(ICase,IvyDocument)",
       "config" : {
-        "signature" : "customDeleteDocumentItem",
+        "signature" : "portalDeleteDocumentItem",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
@@ -72,9 +72,9 @@
     }, {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "customDownloadDocumentItem(ICase,IvyDocument)",
+      "name" : "portalDownloadDocumentItem(ICase,IvyDocument)",
       "config" : {
-        "signature" : "customDownloadDocumentItem",
+        "signature" : "portalDownloadDocumentItem",
         "input" : {
           "params" : [
             { "name" : "bussinessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
@@ -132,9 +132,9 @@
     }, {
       "id" : "f10",
       "type" : "CallSubStart",
-      "name" : "customGetDocumentItems(ICase)",
+      "name" : "portalGetDocumentItems(ICase)",
       "config" : {
-        "signature" : "customGetDocumentItems",
+        "signature" : "portalGetDocumentItems",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
@@ -217,11 +217,11 @@
       "id" : "f15",
       "type" : "CallSubStart",
       "name" : [
-        "customUploadDocumentItem(ICase,UploadedFile,",
+        "portalUploadDocumentItem(ICase,UploadedFile,",
         "Boolean,Boolean,String)"
       ],
       "config" : {
-        "signature" : "customUploadDocumentItem",
+        "signature" : "portalUploadDocumentItem",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
@@ -281,16 +281,16 @@
             "",
             "if (in.uploadedFile == null) {",
             "  in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/InvalidFileMessage\");",
-            "  in.status = UploadDocumentCheckStatus.FAIL.toString();",
+            "  in.status = UploadDocumentCheckStatus.FAIL.name();",
             "} else if (in.uploadedFile.getSize() == 0) {",
             "  in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/EmptyFileMessage\");",
-            "  in.status = UploadDocumentCheckStatus.FAIL.toString();",
+            "  in.status = UploadDocumentCheckStatus.FAIL.name();",
             "} else {",
             "  Long maxFileUploadSize = MasterData.getFileUploadSizeLimit();",
             "  if (in.uploadedFile.getSize() > maxFileUploadSize) {",
             "    in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/ErrorFileUploadSize\", Arrays.asList(FileUtils.byteCountToDisplaySize(maxFileUploadSize)));",
             "  }",
-            "  in.status = UploadDocumentCheckStatus.FAIL.toString();",
+            "  in.status = UploadDocumentCheckStatus.FAIL.name();",
             "}"
           ]
         }
@@ -307,7 +307,7 @@
       "name" : "Not exist?",
       "config" : {
         "conditions" : {
-          "f19" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK.toString()"
+          "f19" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK.name()"
         }
       },
       "visual" : {
@@ -338,7 +338,7 @@
             "import org.primefaces.model.file.UploadedFile;",
             "",
             "out.message = \"\";",
-            "out.status = UploadDocumentCheckStatus.OK.toString();",
+            "out.status = UploadDocumentCheckStatus.OK.name();",
             "String fileName = in.uploadedFile.getFileName();",
             "out.uploadedDocument = CaseDocumentService.newInstance(in.businessCase).upload(fileName, in.uploadedFile.getInputStream());",
             "",
@@ -348,7 +348,7 @@
             "  out.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/UploadSucceed\");",
             "} else {",
             "  out.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/UploadFailed\");",
-            "  out.status = UploadDocumentCheckStatus.FAIL.toString();",
+            "  out.status = UploadDocumentCheckStatus.FAIL.name();",
             "}"
           ]
         },
@@ -377,7 +377,7 @@
             "",
             "if (doesDocumentExist) {",
             "  in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/UploadFileExists\", [fileName]);",
-            "  in.status = UploadDocumentCheckStatus.FAIL.toString();",
+            "  in.status = UploadDocumentCheckStatus.FAIL.name();",
             "}"
           ]
         },
@@ -438,7 +438,7 @@
       "name" : "Document check",
       "config" : {
         "conditions" : {
-          "f87" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK.toString()"
+          "f87" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK.name()"
         }
       },
       "visual" : {
