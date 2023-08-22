@@ -55,16 +55,14 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.CustomProcessUtils;",
             "import com.axonivy.portal.components.util.UserUtils;",
             "import com.axonivy.portal.components.util.RoleUtils;",
-            "import java.util.stream.Collectors;",
-            "import com.axonivy.portal.components.dto.UserDTO;",
-            "import ch.ivyteam.ivy.workflow.ITask;",
-            "import com.axonivy.portal.components.dto.SecurityMemberDTO;",
             "import com.axonivy.portal.components.enums.PortalCustomSignature;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "",
             "import java.util.HashMap;",
             "import java.util.Map;",
-            "import com.axonivy.portal.components.service.IvyAdapterService;",
             "",
             "Map params = new HashMap();",
             "params.put(\"roles\", in.roles);",
@@ -77,8 +75,7 @@
             "",
             "if (in.hasCustomProcess) {",
             "  for (Map map : result) {",
-            "    boolean isSkip = map.get(\"skip\") as boolean;",
-            "    if (!isSkip) {",
+            "    if (!CustomProcessUtils.isSkipCustomProcess(map)) {",
             "      in.roles.clear();",
             "      in.users.clear();",
             "",
@@ -95,7 +92,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 192, "y" : 96 }
+        "at" : { "x" : 200, "y" : 96 }
       },
       "connect" : { "id" : "f1", "to" : "f3" }
     } ]

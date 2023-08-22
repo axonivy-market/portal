@@ -35,14 +35,12 @@
           "params" : [
             { "name" : "uploadedDocument", "type" : "ch.ivyteam.ivy.workflow.document.IDocument" },
             { "name" : "message", "type" : "String" },
-            { "name" : "status", "type" : "String" },
-            { "name" : "skip", "type" : "Boolean" }
+            { "name" : "status", "type" : "String" }
           ],
           "map" : {
             "result.uploadedDocument" : "in.uploadedDocument",
             "result.message" : "in.message",
-            "result.status" : "in.status",
-            "result.skip" : "in.skip"
+            "result.status" : "in.status"
           }
         }
       },
@@ -254,9 +252,8 @@
         "labelOffset" : { "x" : 14, "y" : 34 }
       },
       "connect" : [
-        { "id" : "f15", "to" : "f4", "via" : [ { "x" : 192, "y" : 16 }, { "x" : 1296, "y" : 16 } ], "label" : {
-            "name" : "YES",
-            "segment" : 0.5
+        { "id" : "f22", "to" : "f1", "via" : [ { "x" : 192, "y" : 16 } ], "label" : {
+            "name" : "YES"
           }, "condition" : "in.skip" },
         { "id" : "f7", "to" : "f17", "label" : {
             "name" : "NO"
@@ -271,5 +268,21 @@
       "connect" : [
         { "id" : "f6", "to" : "f16" }
       ]
+    }, {
+      "id" : "f1",
+      "type" : "Script",
+      "name" : "Update status",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.CustomProcessUtils;",
+            "in.status = CustomProcessUtils.SKIP_STATUS;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 328, "y" : 16 }
+      },
+      "connect" : { "id" : "f15", "to" : "f4", "via" : [ { "x" : 1296, "y" : 16 } ] }
     } ]
 }
