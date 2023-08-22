@@ -15,8 +15,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.PrimeFaces;
 
-import com.axonivy.portal.components.enums.PortalCustomSignature;
 import com.axonivy.portal.components.service.IvyAdapterService;
+import com.axonivy.portal.enums.PortalCustomSignature;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
