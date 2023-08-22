@@ -29,22 +29,19 @@ $(document).ready(function () {
         let chartType = data.chartType;
         let chartObject;
         if ('number' === chartType) {
+            let html = renderNumberChart(data.label);
+            $(chart).html(html);
             $(chart).find('.card-number').text(result.map(bucket => bucket.count));
         }
         if ('bar' === chartType) {
+            let html = renderBarChart(chartId);
+            $(chart).html(html);
             let canvasObject = $(chart).find('canvas');
-            result.map(bucket => console.log((" " + bucket.key + " " + isNumeric((new Date(bucket.key)).getTime()))));
-
             chartObject = new Chart(canvasObject, {
                 type: chartType,
                 label: data.label,
                 data: {
-                    labels: result.map(bucket => {
-                        if (isNumeric((new Date(bucket.key)).getTime())) {
-                            return bucket.key.substring(0, 10);
-                        }
-                        return bucket.key
-                    }),
+                    labels: result.map(bucket => formatChartLabel(bucket.key)),
                     datasets: [{
                         label: data.label,
                         data: result.map(bucket => bucket.count),
@@ -84,6 +81,13 @@ $(document).ready(function () {
 
     });
 
+    function formatChartLabel(label) {
+        if (isNumeric((new Date(label)).getTime())) {
+            return label.substring(0, 10);
+        }
+        return label
+    }
+
     setInterval(() => {
         for (let i = 0; i < intervalObjects.length; i++) {
             let intervalObject = intervalObjects[i];
@@ -96,10 +100,26 @@ $(document).ready(function () {
     const userActionChartNew = async (chartObject, chartId) => {
         const response = await instance.post('/designer/api/statistic-data-service/Data', {"chartId": chartId});
         const result = response.data.result.aggs[0].buckets;
-        chartObject.data.labels = result.map(bucket => bucket.key);
+        chartObject.data.labels = result.map(bucket => formatChartLabel(bucket.key));
         chartObject.data.datasets.forEach(dataset => {
             dataset.data = result.map(bucket => bucket.count);
         });
         chartObject.update();
     }
+
+    const renderBarChart = (chartId) => {
+      let html = `<div style="max-height: 400px; max-width: 600px;">
+              <canvas id="${chartId}" width="600" height="400"></canvas>
+            </div>`;
+      return html;
+    };
+
+    const renderNumberChart = (label) => {
+        let html = `
+         <div style="height: 150px; max-width: 300px; background-color: #2980b9; color: white;" class="card">
+              <h4 class="card-name">${label}</h4>
+              <h1 class="card-number"></h1>
+            </div>`;
+        return html;
+    };
 });

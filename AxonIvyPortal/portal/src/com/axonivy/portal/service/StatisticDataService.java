@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import javax.naming.NoPermissionException;
@@ -33,6 +34,10 @@ public class StatisticDataService extends JsonConfigurationService<StatisticData
       instance = new StatisticDataService();
     }
     return StatisticDataService.instance;
+  }
+
+  public List<StatisticData> findAllCharts() {
+    return findAll();
   }
 
   public StatisticsChartResponse getData(StatisticDataDto payload) throws NotFoundException, NoPermissionException {
