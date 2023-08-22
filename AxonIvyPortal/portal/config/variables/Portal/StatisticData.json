@@ -16,7 +16,7 @@
   {
     "id": "4",
     "aggregates": "expiryTimestamp",
-    "filter": "expiryTimestamp:plusDays:4",
+    "filter": "expiryTimestamp:>=now <=now+4d",
     "isCaseFilter": "false",
     "permissions": [
       "Everybody"
