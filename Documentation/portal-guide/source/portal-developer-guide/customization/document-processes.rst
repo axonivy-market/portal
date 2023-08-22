@@ -8,21 +8,21 @@ Document processes
 Introduction
 ------------
 
-When you upload documents but want to manage them outside ivy, for
-example: in Document Management System (DMS), you should follow this
+When you upload documents but want to manage them outside of Ivy, for
+example: in a Document Management System (DMS), you should follow this
 section to customize the document functions of Portal.
 
 .. _customization-document-processes-customization:
 
-Customization
--------------
-From your project, create four callable sub processes with the below information
+Customize
+---------
+In your project, create four callable subprocesses with the below information
 to customize document functions.
 
 Get document list
 +++++++++++++++++
 
-Customize how Portal gets documents, create a callable sub process with:
+Customize how Portal gets documents, create a callable subprocess with:
 
 **Signature**: portalGetDocumentList
 
@@ -49,7 +49,7 @@ Upload document
 +++++++++++++++
 
 Customize what Portal should do when a user uploads a document,
-create a callable sub process with:
+create a callable subprocess with:
 
 **Signature**: portalUploadDocument
 
@@ -81,7 +81,7 @@ Download document
 +++++++++++++++++
 
 Customize behavior when a user downloads a document from Portal,
-create a callable sub process with:
+create a callable subprocess with:
 
 **Signature**: portalDownloadDocument
 
@@ -103,7 +103,7 @@ Delete document
 +++++++++++++++
 
 Customize behavior when an user deletes a document from Portal,
-create a callable sub process with:
+create a callable subprocess with:
 
 **Signature**: portalDeleteDocument
 
