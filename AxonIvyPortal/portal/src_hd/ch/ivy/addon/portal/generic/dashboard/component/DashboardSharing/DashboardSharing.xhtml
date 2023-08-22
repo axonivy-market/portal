@@ -13,10 +13,10 @@
 
   <p:dialog id="#{cc.attrs.shareDialogId}"
     widgetVar="#{cc.attrs.shareDialogId}"
-    styleClass="js-#{cc.attrs.detailDialogId}"
+    styleClass="js-#{cc.attrs.shareDialogId}"
     header="#{cc.attrs.title}" appendTo="@(body)" closeOnEscape="true"
-    draggable="false" fitViewport="true" responsive="true" modal="true"
-    width="30%" dynamic="true" focus="@(none)">
+    draggable="false" fitViewport="true" responsive="true" modal="true" closable="false"
+    width="30%" dynamic="true" focus="@(none)" onShow="checkCopyFeature()">
 
     <div class="ui-fluid ui-inputgroup">
       <p:inputText id="dashboard-url"
@@ -25,6 +25,10 @@
     </div>
     <f:facet name="footer">
       <h:panelGroup layout="block" styleClass="u-text-align-right">
+        <p:commandLink id="dashboard-detail-close-button" type="button"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          onclick="PF('#{cc.attrs.shareDialogId}').hide()" />
+        <p:spacer width="15" />
         <p:commandButton id="dashboard-share-copy-button" 
           value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/DashboardSharing/CopyLink')}"
           onclick="copyToClipboard('#{managedBean.dashboardUrl}')" 
@@ -34,8 +38,14 @@
     </f:facet>
   </p:dialog>
     <script type="text/javascript">
+      var clipboard = navigator.clipboard;
+      function checkCopyFeature(){
+        if (clipboard == undefined) {
+          $("button[id$=':dashboard-share-copy-button']")[0].remove();
+        }
+      }
       function copyToClipboard(text) {
-        navigator.clipboard.writeText(text);
+        clipboard.writeText(text);
         PF('#{cc.attrs.shareDialogId}').hide();
       }
     </script>

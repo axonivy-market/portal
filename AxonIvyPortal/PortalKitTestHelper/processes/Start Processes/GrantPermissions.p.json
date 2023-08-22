@@ -1758,15 +1758,15 @@
     }, {
       "id" : "f172",
       "type" : "RequestStart",
-      "name" : "grantDashboardShareLink.ivp",
+      "name" : "grantDashboardShareLinkPermission.ivp",
       "config" : {
-        "callSignature" : "grantDashboardShareLink",
-        "outLink" : "grantDashboardShareLink.ivp",
-        "startName" : "Deny Dashboard Import Own Permission"
+        "callSignature" : "grantDashboardShareLinkPermission",
+        "outLink" : "grantDashboardShareLinkPermission.ivp",
+        "startName" : "Grant Share Link Dashboard Permision"
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 1952 },
-        "labelOffset" : { "x" : 113, "y" : 25 }
+        "labelOffset" : { "x" : 145, "y" : 25 }
       },
       "connect" : { "id" : "f173", "to" : "f171" }
     }, {
@@ -1797,15 +1797,15 @@
     }, {
       "id" : "f175",
       "type" : "RequestStart",
-      "name" : "denyGrantDashboardShareLink.ivp",
+      "name" : "denyDashboardShareLinkPermission.ivp",
       "config" : {
-        "callSignature" : "denyGrantDashboardShareLink",
-        "outLink" : "denyGrantDashboardShareLink.ivp",
-        "startName" : "Deny Dashboard Import Own Permission"
+        "callSignature" : "denyDashboardShareLinkPermission",
+        "outLink" : "denyDashboardShareLinkPermission.ivp",
+        "startName" : "Deny Share Link Dashboard Permision"
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 2016 },
-        "labelOffset" : { "x" : 129, "y" : 25 }
+        "labelOffset" : { "x" : 145, "y" : 25 }
       },
       "connect" : { "id" : "f176", "to" : "f174" }
     } ],
