@@ -62,7 +62,7 @@ public class DashboardCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
           query = criteria.buildQuery();
         }
       }
-      List<ICase> foundCases = DashboardCaseService.getInstance().findByCaseQuery(query, first, pageSize);
+      foundCases = DashboardCaseService.getInstance().findByCaseQuery(query, first, pageSize);
       cases.addAll(foundCases);
       mapCases.putAll(foundCases.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
     }
