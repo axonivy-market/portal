@@ -23,12 +23,12 @@
           "params" : [
             { "name" : "documents", "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>" },
             { "name" : "message", "type" : "String" },
-            { "name" : "skip", "type" : "Boolean" }
+            { "name" : "status", "type" : "String" }
           ],
           "map" : {
             "result.documents" : "in.documents",
             "result.message" : "in.message",
-            "result.skip" : "in.skip"
+            "result.status" : "in.skip ? com.axonivy.portal.components.util.CustomProcessUtils.SKIP_STATUS : null"
           }
         }
       },

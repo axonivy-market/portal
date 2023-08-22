@@ -34,14 +34,12 @@
           "params" : [
             { "name" : "uploadedDocument", "type" : "ch.ivyteam.ivy.workflow.document.IDocument" },
             { "name" : "message", "type" : "String" },
-            { "name" : "status", "type" : "String" },
-            { "name" : "skip", "type" : "Boolean" }
+            { "name" : "status", "type" : "String" }
           ],
           "map" : {
             "result.uploadedDocument" : "in.uploadedDocument",
             "result.message" : "in.message",
-            "result.status" : "in.status",
-            "result.skip" : "in.skip"
+            "result.status" : "in.status"
           }
         }
       },
@@ -299,11 +297,11 @@
         "result" : {
           "params" : [
             { "name" : "message", "type" : "String" },
-            { "name" : "skip", "type" : "Boolean" }
+            { "name" : "status", "type" : "String" }
           ],
           "map" : {
             "result.message" : "in.message",
-            "result.skip" : "in.skip"
+            "result.status" : "in.skip ? com.axonivy.portal.components.util.CustomProcessUtils.SKIP_STATUS : null"
           }
         }
       },
@@ -361,11 +359,11 @@
         "result" : {
           "params" : [
             { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent" },
-            { "name" : "skip", "type" : "Boolean" }
+            { "name" : "status", "type" : "String" }
           ],
           "map" : {
             "result.streamedContent" : "in.streamedContent",
-            "result.skip" : "in.skip"
+            "result.status" : "in.skip ? com.axonivy.portal.components.util.CustomProcessUtils.SKIP_STATUS : null"
           }
         }
       },
@@ -418,12 +416,12 @@
           "params" : [
             { "name" : "documents", "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>" },
             { "name" : "message", "type" : "String" },
-            { "name" : "skip", "type" : "Boolean" }
+            { "name" : "status", "type" : "String" }
           ],
           "map" : {
             "result.documents" : "in.documents",
             "result.message" : "in.message",
-            "result.skip" : "in.skip"
+            "result.status" : "in.skip ? com.axonivy.portal.components.util.CustomProcessUtils.SKIP_STATUS : null"
           }
         }
       },
@@ -507,9 +505,8 @@
         "labelOffset" : { "x" : 14, "y" : 34 }
       },
       "connect" : [
-        { "id" : "f30", "to" : "f27", "via" : [ { "x" : 424, "y" : 32 }, { "x" : 1704, "y" : 32 } ], "label" : {
-            "name" : "YES",
-            "segment" : 0.5
+        { "id" : "f55", "to" : "f22", "via" : [ { "x" : 424, "y" : 32 } ], "label" : {
+            "name" : "YES"
           }, "condition" : "in.skip" },
         { "id" : "f29", "to" : "f36", "label" : {
             "name" : "NO"
@@ -650,5 +647,22 @@
       "connect" : [
         { "id" : "f21", "to" : "f19" }
       ]
+    }, {
+      "id" : "f22",
+      "type" : "Script",
+      "name" : "Update status",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.CustomProcessUtils;",
+            "",
+            "in.status = CustomProcessUtils.SKIP_STATUS;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 552, "y" : 32 }
+      },
+      "connect" : { "id" : "f30", "to" : "f27", "via" : [ { "x" : 1704, "y" : 32 } ] }
     } ]
 }

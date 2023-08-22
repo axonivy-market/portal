@@ -27,12 +27,12 @@
         },
         "result" : {
           "params" : [
-            { "name" : "skip", "type" : "Boolean" },
+            { "name" : "status", "type" : "String" },
             { "name" : "roles", "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>" },
             { "name" : "users", "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>" }
           ],
           "map" : {
-            "result.skip" : "in.skip",
+            "result.status" : "in.skip ? \"skip\" : null",
             "result.roles" : "in.roles",
             "result.users" : "in.users"
           }

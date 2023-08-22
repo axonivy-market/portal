@@ -109,6 +109,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.CustomProcessUtils;",
             "import com.axonivy.portal.components.util.CaseUtils;",
             "import org.apache.commons.lang3.StringUtils;",
             "import com.axonivy.portal.components.enums.CustomSignature;",
@@ -126,8 +127,7 @@
             "",
             "if (in.hasCustomProcess) {",
             "  for (Map map : result) {",
-            "    boolean isSkip = map.get(\"skip\") as boolean;",
-            "    if (!isSkip) {",
+            "    if (!CustomProcessUtils.isSkipCustomProcess(map)) {",
             "      in.streamedContent = map.get(\"streamedContent\") as StreamedContent;",
             "      break;",
             "    }",
