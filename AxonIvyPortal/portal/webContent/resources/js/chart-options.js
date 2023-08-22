@@ -1,8 +1,10 @@
-const instance = axios.create({
-    baseURL: '/',
-    timeout: 60000,
-    headers: {'X-Requested-By': 'ivy'}
-});
+const pathName = window.location.pathname;
+const baseURL = pathName.substring(0, pathName.indexOf('/faces/'));
+const instance =  axios.create({
+        baseURL: baseURL,
+        timeout: 60000,
+        headers: {'X-Requested-By': 'ivy'}
+    });
 const CHART_COLORS = [
     'hsl(192, 63%, 70%)',
     'hsl(192, 63%, 60%)',
@@ -13,23 +15,30 @@ const CHART_COLORS = [
     'hsl(192, 63%, 10%)',
 ];
 
+const PIE_COLORS = [
+    'rgb(255, 99, 132)',
+    'rgb(54, 162, 235)',
+    'rgb(255, 205, 86)',
+    'rgb(255, 105, 86)'
+]
+
 const intervalObjects = [];
 
 function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
-function formatISODate(date) {
-    let year = date.getFullYear();
-    let month = date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth();
-    let day = date.getDay() < 10 ? '0' + date.getDay() : date.getDay();
-    return `${year}-${month}-${day}`;
+function formatISODate(dt) {
+    let year = dt.getFullYear();
+    let month = dt.getMonth() < 10 ? '0' + dt.getMonth() : dt.getMonth();
+    let date = dt.getDate() < 10 ? '0' + dt.getDate() : dt.getDate();
+    return `${year}-${month}-${date}`;
 }
 
 $(document).ready(function () {
     $('.chart-options').each(async (index, chart) => {
         let chartId = chart.getAttribute('data-chart-id');
-        let response = await instance.post('/designer/api/statistic-data-service/Data', {"chartId": chartId});
+        let response = await instance.post('/api/statistic-data-service/Data', {"chartId": chartId});
 
         let data = await response.data;
         let result = data.result.aggs[0].buckets;
@@ -82,6 +91,27 @@ $(document).ready(function () {
             });
 
         }
+        if ('pie' === chartType || 'doughnut' === chartType) {
+            let html = renderBarChart(chartId);
+            $(chart).html(html);
+            let canvasObject = $(chart).find('canvas');
+            chartObject = new Chart(canvasObject, {
+                type: chartType,
+                label: data.label,
+                data: {
+                    labels: result.map(bucket => formatChartLabel(bucket.key)),
+                    datasets: [{
+                        label: data.label,
+                        data: result.map(bucket => bucket.count),
+                        backgroundColor: PIE_COLORS
+                    }
+                    ],
+                    hoverOffset: 4
+                }
+            });
+
+        }
+
         if (chartObject !== undefined) {
             intervalObjects.push({'chartObject': chartObject, 'chartType': chartType, 'chartId': chartId})
         }
@@ -105,7 +135,7 @@ $(document).ready(function () {
     }, 10000);
 
     const userActionChartNew = async (chartObject, chartId) => {
-        const response = await instance.post('/designer/api/statistic-data-service/Data', {"chartId": chartId});
+        const response = await instance.post('/api/statistic-data-service/Data', {"chartId": chartId});
         const result = response.data.result.aggs[0].buckets;
         chartObject.data.labels = result.map(bucket => formatChartLabel(bucket.key));
         chartObject.data.datasets.forEach(dataset => {
@@ -115,8 +145,8 @@ $(document).ready(function () {
     }
 
     const renderBarChart = (chartId) => {
-      let html = `<div style="max-height: 400px; max-width: 600px;">
-              <canvas id="${chartId}" width="600" height="400"></canvas>
+      let html = `<div style="max-height: 600px; max-width: 600px;">
+              <canvas id="${chartId}" width="600" height="600"></canvas>
             </div>`;
       return html;
     };

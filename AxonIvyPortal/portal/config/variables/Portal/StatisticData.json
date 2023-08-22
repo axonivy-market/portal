@@ -6,7 +6,7 @@
     "permissions": [
       "Everybody"
     ],
-    "chartType": "bar",
+    "chartType": "pie",
     "label": "My Tasks by Priority",
     "barChartConfig": {
        "xTitle": "Priority",
@@ -16,7 +16,7 @@
   {
     "id": "4",
     "aggregates": "expiryTimestamp",
-    "filter": "expiryTimestamp:>=now <=now+4d",
+    "filter": "expiryTimestamp:>=now <=now+4d/d",
     "isCaseFilter": "false",
     "permissions": [
       "Everybody"
