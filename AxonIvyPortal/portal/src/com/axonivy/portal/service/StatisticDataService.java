@@ -1,18 +1,12 @@
 package com.axonivy.portal.service;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import javax.naming.NoPermissionException;
 import javax.ws.rs.NotFoundException;
-
-import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.bo.StatisticData;
 import com.axonivy.portal.dto.statisticChart.StatisticDataDto;
@@ -51,11 +45,6 @@ public class StatisticDataService extends JsonConfigurationService<StatisticData
       throw new NoPermissionException(
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/exception/noPermission"));
     }
-    if (chart.getFilter() != null && chart.getFilter().contains("plusDays")) {
-      int numberOfDays = Integer.parseInt(StringUtils.substringAfterLast(chart.getFilter(), ":"));
-      String filterBy = StringUtils.substringBefore(chart.getFilter(), ":");
-      chart.setFilter(filterBy + ":<=" + plusDays(numberOfDays));
-    }
     AggregationResult result = getData(chart);
     return new StatisticsChartResponse(result, chart);
   }
@@ -80,16 +69,16 @@ public class StatisticDataService extends JsonConfigurationService<StatisticData
     return PortalVariable.STATISTIC_DATA.key;
   }
 
-  private String plusDays(int numberOfDays) {
-    Calendar cal = Calendar.getInstance();
-    cal.add(Calendar.DATE, numberOfDays);
-    cal.set(Calendar.HOUR_OF_DAY, 23);
-    cal.set(Calendar.MINUTE, 59);
-    cal.set(Calendar.SECOND, 59);
-    Date date = cal.getTime();
-    DateFormat dateFormat = new SimpleDateFormat(pattern);
-    String strDate = dateFormat.format(date);
-    return strDate;
-  }
+//  private String plusDays(int numberOfDays) {
+//    Calendar cal = Calendar.getInstance();
+//    cal.add(Calendar.DATE, numberOfDays);
+//    cal.set(Calendar.HOUR_OF_DAY, 23);
+//    cal.set(Calendar.MINUTE, 59);
+//    cal.set(Calendar.SECOND, 59);
+//    Date date = cal.getTime();
+//    DateFormat dateFormat = new SimpleDateFormat(pattern);
+//    String strDate = dateFormat.format(date);
+//    return strDate;
+//  }
 
 }
