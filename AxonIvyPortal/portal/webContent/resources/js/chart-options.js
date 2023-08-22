@@ -36,9 +36,11 @@ function formatISODate(dt) {
 }
 
 $(document).ready(function () {
+    let intervalObjects = [];
     $('.chart-options').each(async (index, chart) => {
         let chartId = chart.getAttribute('data-chart-id');
         let response = await instance.post('/api/statistic-data-service/Data', {"chartId": chartId});
+        let refreshInterval = chart.getAttribute('refresh-interval');
 
         let data = await response.data;
         let result = data.result.aggs[0].buckets;
@@ -113,9 +115,11 @@ $(document).ready(function () {
         }
 
         if (chartObject !== undefined) {
-            intervalObjects.push({'chartObject': chartObject, 'chartType': chartType, 'chartId': chartId})
+            intervalObjects.push({'chartObject': chartObject, 'chartType': chartType, 'chartId': chartId, 'refreshInterval': refreshInterval})
         }
-
+        if ($('.chart-options').length === intervalObjects.length) {
+            initChartRefresh(intervalObjects);
+        }
     });
 
     function formatChartLabel(label) {
@@ -125,14 +129,16 @@ $(document).ready(function () {
         return label
     }
 
-    setInterval(() => {
+    function initChartRefresh(intervalObjects) {
         for (let i = 0; i < intervalObjects.length; i++) {
             let intervalObject = intervalObjects[i];
-            if (typeof intervalObject !== "undefined") {
-                userActionChartNew(intervalObject.chartObject, intervalObject.chartId);
-            }
+            setInterval(() => {
+                if (typeof intervalObject !== "undefined") {
+                    userActionChartNew(intervalObject.chartObject, intervalObject.chartId);
+                }
+            }, intervalObject.refreshInterval * 1000);
         }
-    }, 10000);
+    }
 
     const userActionChartNew = async (chartObject, chartId) => {
         const response = await instance.post('/api/statistic-data-service/Data', {"chartId": chartId});
