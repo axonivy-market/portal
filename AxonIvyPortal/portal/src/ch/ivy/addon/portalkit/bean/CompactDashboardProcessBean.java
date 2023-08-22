@@ -1,5 +1,8 @@
 package ch.ivy.addon.portalkit.bean;
 
+import static ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn.APPLICATION;
+import static ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn.CATEGORY;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,12 +21,10 @@ import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
+import ch.ivy.addon.portalkit.enums.ProcessSorting;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
-
-import static ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn.APPLICATION;
-import static ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn.CATEGORY;
 
 @ManagedBean
 @ViewScoped
@@ -201,5 +202,9 @@ public class CompactDashboardProcessBean
       expressStartLink = ProcessStartCollector.getInstance().findExpressWorkflowStartLink();
     }
     return expressStartLink;
+  }
+
+  public ProcessSorting[] getProcessSorting() {
+    return ProcessSorting.values();
   }
 }
