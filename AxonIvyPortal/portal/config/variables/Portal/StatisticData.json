@@ -1,50 +1,5 @@
 [
   {
-    "id": "0",
-    "aggregates": "businessState:bucket",
-    "filter": "businessState:OPEN",
-    "permissions": [
-      "Everybody"
-    ] ,
-    "isCaseFilter" : "false",
-    "chartType": "bar",
-    "label": "Test char",
-    "barChartConfig": {
-       "xTitle": "",
-       "yTitle": ""
-     }
-  },
-    {
-    "id": "1",
-    "aggregates": "priority",
-    "filter": "priority:LOW NORMAL",
-    "isCaseFilter": "false",
-    "permissions": [
-      "Everybody"
-    ],
-    "chartType": "bar",
-    "label": "Test char",
-    "barChartConfig": {
-       "xTitle": "",
-       "yTitle": ""
-     }
-  },
-  {
-    "id": "2",
-    "aggregates": "workingTime",
-    "filter": "businessState:DONE DESTROYED",
-    "isCaseFilter": "false",
-    "permissions": [
-      "Everybody"
-    ],
-    "chartType": "bar",
-    "label": "Test char",
-    "barChartConfig": {
-       "xTitle": "",
-       "yTitle": ""
-     }
-  },
-  {
     "id": "3",
     "aggregates": "priority",
     "isCaseFilter": "false",
@@ -113,6 +68,20 @@
     "isCaseFilter" : "false",
     "chartType": "bar",
     "label": "Open Tasks per Day",
+    "barChartConfig": {
+       "xTitle": "Day",
+       "yTitle": "Number of tasks"
+     }
+  },
+  {
+    "id": "8",
+    "aggregates": "businessState:bucket",
+    "permissions": [
+      "Everybody"
+    ] ,
+    "isCaseFilter" : "false",
+    "chartType": "bar",
+    "label": "Business Tasks per Day",
     "barChartConfig": {
        "xTitle": "Day",
        "yTitle": "Number of tasks"
