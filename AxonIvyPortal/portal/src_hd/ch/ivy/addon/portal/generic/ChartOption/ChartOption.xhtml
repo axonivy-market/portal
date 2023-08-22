@@ -2,11 +2,17 @@
   xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite"
   xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions">
-
-<h:body>
+  xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="index" required="true" />
+  <cc:attribute name="widget" required="true" />
+  <cc:attribute name="isReadOnlyMode" default="false" />
+</cc:interface>
+<cc:implementation>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:define name="title">ChartJS and REST Workflow Task Statistic API Demo</ui:define>
     <ui:define name="pageContent">
@@ -14,48 +20,41 @@
       <!-- Loads the ChartJs library needed to render the chart -->
       <h:outputScript library="primefaces" name="chartjs/chartjs.js" />
 
-      <div id="chart-options">
+      <div id="chart-options" class="ui-g-12">
+        <h:panelGroup id="grid-stack" layout="block"
+          styleClass="grid-stack ui-g-12 u-no-padding-left">
+          <c:if test="#{not empty chartOptionBean.statisticDataList}">
+            <c:forEach items="#{chartOptionBean.statisticDataList}"
+              var="chartOption" varStatus="counter">
+              <c:set var="chartId" value="#{chartOption.id}" />
+              <c:set var="chartType" value="#{chartOption.chartType}" />
+              <div class="grid-stack-item chart-options"
+                data-chart-id="#{chartId}">
+                <div class="grid-stack-item-content card dashboard-card">
+                  <h2>#{chartOption.label}</h2>
+                  <c:if test="#{chartType == 'bar'}">
 
-        <div class="chart-options" data-chart-id="3">
-          <h2>My Tasks by Priority</h2>
-          <div style="max-height: 800px; max-width: 800px;">
-            <canvas id="chart1" width="800" height="800"></canvas>
-          </div>
-        </div>
-
-        <div class="chart-options" data-chart-id="4">
-          <h2>Tasks grouped by expiry</h2>
-          <div style="height: 800px; max-width: 800px;">
-            <canvas id="chart2" width="800" height="800"></canvas>
-          </div>
-        </div>
-
-        <div class="chart-options" data-chart-id="5">
-          <h2>Number of “Open”-Tasks</h2>
-          <div style="height: 150px; max-width: 300px; background-color: #2980b9; color: white;"
-            class="card">
-            <h4 class="card-name">Number of “Open”-Tasks</h4>
-            <h1 class="card-number"></h1>
-          </div>
-        </div>
-
-        <div class="chart-options" data-chart-id="6">
-          <h2>Completed Tasks per Day</h2>
-          <div style="height: 800px; max-width: 800px;">
-            <canvas id="chart4" width="800" height="800"></canvas>
-          </div>
-        </div>
-
-        <div class="chart-options" data-chart-id="7">
-          <h2>Open Tasks per Day</h2>
-          <div style="height: 800px; max-width: 800px;">
-            <canvas id="chart7" width="800" height="800"></canvas>
-          </div>
-        </div>
-
+                    <div style="max-height: 800px; max-width: 800px;">
+                      <canvas id="chart-#{chartId}" width="800"
+                        height="800"></canvas>
+                    </div>
+                  </c:if>
+                  <c:if test="#{chartType == 'number'}">
+                    <div
+                      style="height: 150px; max-width: 300px; background-color: #2980b9; color: white;"
+                      class="card">
+                      <h4 class="card-name">#{chartOption.label}</h4>
+                      <h1 class="card-number"></h1>
+                    </div>
+                  </c:if>
+                </div>
+              </div>
+            </c:forEach>
+          </c:if>
+        </h:panelGroup>
       </div>
 
     </ui:define>
   </ui:composition>
-</h:body>
+</cc:implementation>
 </html>
