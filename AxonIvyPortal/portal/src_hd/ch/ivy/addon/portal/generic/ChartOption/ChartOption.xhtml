@@ -26,6 +26,7 @@
           <c:forEach items="#{chartOptionBean.statisticDataList}"
             var="chartOption" varStatus="counter">
             <div class="w-full widget-height-100">
+              <h2>#{chartOption.label}</h2>
               <div class="chart-options" data-chart-id="#{chartOption.id}">
               </div>
              </div>
