@@ -4,8 +4,11 @@ public enum CustomProcessStatus {
   OK, SKIP;
 
   public static CustomProcessStatus toEnum(String value) {
-    for(CustomProcessStatus v : values())
-        if(v.toString().equalsIgnoreCase(value)) return v;
+    for(CustomProcessStatus status : values()) {
+      if (status.toString().equalsIgnoreCase(value)) {
+        return status;
+      }
+    }
     return OK;
   }
 }
