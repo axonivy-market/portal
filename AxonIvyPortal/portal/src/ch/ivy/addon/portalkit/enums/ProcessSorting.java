@@ -18,7 +18,7 @@ public enum ProcessSorting {
   }
 
   public String getLabel() {
-    String label = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/Enums/ProcessSorting" + name());
+    String label = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/Enums/ProcessSorting/" + name());
     return StringUtils.isBlank(label) ? name() : label;
   }
 }

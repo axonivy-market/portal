@@ -12,11 +12,14 @@ public class IvyProcess implements Process {
   private IWebStartable process;
   private String application;
   private String imageUrl;
+  private String index;
+  private static final String INDEX_CUSTOM_FIELD = "portalSortIndex";
 
   public IvyProcess(IWebStartable process) {
     this.application = process.pmv().getApplication().getName();
     this.process = process;
     this.imageUrl = collectProcessImage(process);
+    this.index = process.customFields().value(INDEX_CUSTOM_FIELD);
   }
 
   @Override
@@ -80,5 +83,10 @@ public class IvyProcess implements Process {
 
   public void setApplication(String application) {
     this.application = application;
+  }
+
+  @Override
+  public String getSortIndex() {
+    return index;
   }
 }
