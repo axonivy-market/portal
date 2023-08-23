@@ -20,6 +20,7 @@ import org.primefaces.event.MenuActionEvent;
 import org.primefaces.model.menu.MenuItem;
 
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
+import com.axonivy.portal.components.service.IvyAdapterService;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;
@@ -28,7 +29,6 @@ import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.util.PrimeFacesUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -122,8 +122,7 @@ public class PortalMenuNavigator {
         || !requestLocale.equals(portalSubMenuItemWrapper.loadedLocale)) {
       synchronized(PortalSubMenuItemWrapper.class) {
         List<SubMenuItem> subMenuItems = new ArrayList<>();
-        Map<String, Object> response = IvyAdapterService.startSubProcess(LOAD_SUB_MENU_PROCESS, null,
-            Arrays.asList(PortalLibrary.PORTAL.getValue()));
+        Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(LOAD_SUB_MENU_PROCESS, null);
         try {
           subMenuItems = (List<SubMenuItem>) response.get(SUB_MENU);
         } catch (Exception e) {
