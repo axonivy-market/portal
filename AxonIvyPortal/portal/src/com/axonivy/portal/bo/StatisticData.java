@@ -10,7 +10,7 @@ public class StatisticData extends AbstractConfiguration{
   private String aggregates;
   private String filter;
   private List<String> permissions;
-  private Boolean isCaseFilter;
+  private ChartTarget chartTarget;
   @JsonIgnore
   private String name;
   private String chartType;
@@ -73,12 +73,12 @@ public class StatisticData extends AbstractConfiguration{
     this.aggregates = aggregates;
   }
 
-  public Boolean getIsCaseFilter() {
-    return isCaseFilter;
+  public ChartTarget getChartTarget() {
+    return chartTarget;
   }
 
-  public void setIsCaseFilter(Boolean isCaseFilter) {
-    this.isCaseFilter = isCaseFilter;
-    }
+  public void setChartTarget(ChartTarget chartTarget) {
+    this.chartTarget = chartTarget;
+  }
 
 }
