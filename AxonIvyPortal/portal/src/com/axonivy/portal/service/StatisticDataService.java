@@ -1,5 +1,6 @@
 package com.axonivy.portal.service;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.Optional;
 import javax.naming.NoPermissionException;
 import javax.ws.rs.NotFoundException;
 
+import com.axonivy.portal.bo.ChartTarget;
 import com.axonivy.portal.bo.StatisticData;
 import com.axonivy.portal.dto.statisticChart.StatisticDataDto;
 
@@ -19,7 +21,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.stats.WorkflowStats;
 
 public class StatisticDataService extends JsonConfigurationService<StatisticData> {
-  private static final String pattern = "yyyy-MM-dd'T'HH:mm:ssZ";
 
   private static StatisticDataService instance;
 
@@ -50,8 +51,14 @@ public class StatisticDataService extends JsonConfigurationService<StatisticData
   }
 
   private AggregationResult getData(StatisticData chart) {
-    return chart.getIsCaseFilter() ? WorkflowStats.current().caze().aggregate(chart.getAggregates(), chart.getFilter())
-        : WorkflowStats.current().task().aggregate(chart.getAggregates(), chart.getFilter());
+    if (ChartTarget.CASE.equals(chart.getChartTarget())) {
+      return WorkflowStats.current().caze().aggregate(chart.getAggregates(), chart.getFilter());
+    } else if (ChartTarget.TASK.equals(chart.getChartTarget())) {
+      return WorkflowStats.current().task().aggregate(chart.getAggregates(), chart.getFilter());
+    } else {
+      throw new InvalidParameterException();
+    }
+
   }
 
   private boolean isPermissionValid(StatisticData data) {
@@ -68,17 +75,5 @@ public class StatisticDataService extends JsonConfigurationService<StatisticData
   public String getConfigKey() {
     return PortalVariable.STATISTIC_DATA.key;
   }
-
-//  private String plusDays(int numberOfDays) {
-//    Calendar cal = Calendar.getInstance();
-//    cal.add(Calendar.DATE, numberOfDays);
-//    cal.set(Calendar.HOUR_OF_DAY, 23);
-//    cal.set(Calendar.MINUTE, 59);
-//    cal.set(Calendar.SECOND, 59);
-//    Date date = cal.getTime();
-//    DateFormat dateFormat = new SimpleDateFormat(pattern);
-//    String strDate = dateFormat.format(date);
-//    return strDate;
-//  }
 
 }

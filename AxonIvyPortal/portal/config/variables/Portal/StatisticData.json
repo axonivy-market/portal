@@ -2,7 +2,7 @@
   {
     "id": "3",
     "aggregates": "priority",
-    "isCaseFilter": "false",
+    "chartTarget": "TASK",
     "permissions": [
       "Everybody"
     ],
@@ -17,7 +17,7 @@
     "id": "4",
     "aggregates": "expiryTimestamp",
     "filter": "expiryTimestamp:>=now <=now+4d/d",
-    "isCaseFilter": "false",
+    "chartTarget": "TASK",
     "permissions": [
       "Everybody"
     ],
@@ -35,7 +35,7 @@
     "permissions": [
       "Everybody"
     ] ,
-    "isCaseFilter" : "false",
+    "chartTarget": "TASK",
     "chartType": "number",
     "label": "Number of OPEN tasks",
     "barChartConfig": {
@@ -50,7 +50,7 @@
     "permissions": [
       "Everybody"
     ] ,
-    "isCaseFilter" : "false",
+    "chartTarget": "TASK",
     "chartType": "bar",
     "label": "Completed Tasks per Day",
     "barChartConfig": {
@@ -65,7 +65,7 @@
     "permissions": [
       "Everybody"
     ] ,
-    "isCaseFilter" : "false",
+    "chartTarget": "TASK",
     "chartType": "bar",
     "label": "Open Tasks per Day",
     "barChartConfig": {
@@ -79,7 +79,7 @@
     "permissions": [
       "Everybody"
     ] ,
-    "isCaseFilter" : "false",
+    "chartTarget": "TASK",
     "chartType": "bar",
     "label": "Business Tasks per Day",
     "barChartConfig": {
