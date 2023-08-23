@@ -148,25 +148,21 @@ $(document).ready(function () {
     }
 
     const renderBarChart = (chartId) => {
-      let html = `<div style="max-height: 400px; max-width: 600px;">
-              <canvas id="${chartId}" width="600" height="400"></canvas>
-            </div>`;
+      let html = `
+              <canvas id="${chartId}"></canvas>
+            `;
       return html;
     };
 
     const renderPieChart = (chartId) => {
-        let html = `<div style="max-height: 400px; max-width: 400px;">
-              <canvas id="${chartId}" width="400" height="400"></canvas>
-            </div>`;
+        let html = `<canvas id="${chartId}"></canvas>`;
         return html;
     };
 
     const renderNumberChart = (label) => {
         let html = `
-         <div style="height: 150px; max-width: 300px; background-color: #2980b9; color: white;" class="card">
               <h4 class="card-name">${label}</h4>
-              <h1 class="card-number"></h1>
-            </div>`;
+              <h1 class="card-number"></h1>`;
         return html;
     };
 });

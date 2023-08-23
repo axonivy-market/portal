@@ -19,7 +19,7 @@ import com.axonivy.portal.service.StatisticDataService;
 import com.google.gson.GsonBuilder;
 
 import ch.ivy.addon.portal.chat.GsonUTCDateAdapter;
-import ch.ivy.addon.portalkit.statistics.StatisticsChartResponse;
+import ch.ivy.addon.portalkit.statistics.StatisticChartResponse;
 import ch.ivyteam.ivy.elasticsearch.client.agg.AggregationResult;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -46,7 +46,7 @@ public class StatisticDataRestService {
       return Response.status(Status.NOT_ACCEPTABLE).build();
     }
     try {
-      StatisticsChartResponse result = StatisticDataService.getInstance().getData(payload);
+      StatisticChartResponse result = StatisticDataService.getInstance().getData(payload);
       return Response.ok(result).build();
     } catch (NotFoundException e) {
       return buildResponse(Status.NOT_FOUND, e);

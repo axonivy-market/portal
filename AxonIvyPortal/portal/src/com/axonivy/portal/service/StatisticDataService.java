@@ -15,7 +15,7 @@ import com.axonivy.portal.dto.statisticChart.StatisticDataDto;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.service.JsonConfigurationService;
-import ch.ivy.addon.portalkit.statistics.StatisticsChartResponse;
+import ch.ivy.addon.portalkit.statistics.StatisticChartResponse;
 import ch.ivyteam.ivy.elasticsearch.client.agg.AggregationResult;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.stats.WorkflowStats;
@@ -35,7 +35,7 @@ public class StatisticDataService extends JsonConfigurationService<StatisticData
     return findAll();
   }
 
-  public StatisticsChartResponse getData(StatisticDataDto payload) throws NotFoundException, NoPermissionException {
+  public StatisticChartResponse getData(StatisticDataDto payload) throws NotFoundException, NoPermissionException {
     StatisticData chart = findById(payload.getChartId());
     if (chart == null) {
       throw new NotFoundException(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/exception/idNotFound",
@@ -47,7 +47,7 @@ public class StatisticDataService extends JsonConfigurationService<StatisticData
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/exception/noPermission"));
     }
     AggregationResult result = getData(chart);
-    return new StatisticsChartResponse(result, chart);
+    return new StatisticChartResponse(result, chart);
   }
 
   private AggregationResult getData(StatisticData chart) {
