@@ -919,8 +919,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     processes:
       emptyProcess: Sie haben keine Prozesse definiert.
       noMatchingProcess: Keine passenden Prozesse.
-      noPermissionToSee: Sie haben nicht die erforderliche Berechtigung, dieses Widget zu sehen.
+      noPermissionToSee: Sie besitzen nicht die erforderlichen Rechte um diesen Prozess zu starten.
       noProcessSelected: Bitte wählen Sie einen Prozess
+      processCanNotBeLoaded: Prozess kann nicht geladen werden.
+      processNotFound: Der definierte Process kann nicht gefunden werden.
     removeWidgetHeader: Widget "{0}" löschen
     removeWidgetMessage: Möchten Sie es wirklich löschen?
     reorder:

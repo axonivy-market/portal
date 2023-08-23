@@ -24,6 +24,18 @@ public class CustomDashboardWidget extends DashboardWidget {
 
   private DashboardCustomWidgetData data;
   private String info;
+  @JsonIgnore
+  private String errorMessage;
+  @JsonIgnore
+  private Boolean hasPermissionToSee;
+
+  public Boolean getHasPermissionToSee() {
+    return hasPermissionToSee;
+  }
+
+  public void setHasPermissionToSee(Boolean hasPermissionToSee) {
+    this.hasPermissionToSee = hasPermissionToSee;
+  }
 
   @Override
   public DashboardWidgetType getType() {
@@ -146,4 +158,12 @@ public class CustomDashboardWidget extends DashboardWidget {
 
   @Override
   public void resetWidgetFilters() {}
+
+  public String getErrorMessage() {
+    return errorMessage;
+  }
+
+  public void setErrorMessage(String errorMessage) {
+    this.errorMessage = errorMessage;
+  }
 }

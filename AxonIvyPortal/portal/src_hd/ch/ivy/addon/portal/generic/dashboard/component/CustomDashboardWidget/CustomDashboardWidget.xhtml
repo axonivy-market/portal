@@ -59,10 +59,10 @@
           </h:panelGroup>
           <h:panelGroup rendered="#{empty widget.data.startRequestPath}" layout="block" id="empty-message-container"
             styleClass="empty-message-container">
-            <i class="si si-cog-double-2 empty-message-icon" />
+            <i class="#{widget.hasPermissionToSee ? 'si si-alert-circle' : 'si si-lock-1'} empty-message-icon" />
             <br />
             <h:outputText styleClass="empty-message-text"
-              value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/CustomDashboardWidget/CouldNotFindLinkedProcess')}"/>
+              value="#{widget.errorMessage}"/>
           </h:panelGroup>
         </ui:fragment>
 

@@ -221,13 +221,13 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
   
   public void setPermissions(List<String> permissions, SelenideElement permissionElement) {
-    getDashboardImportPermission().$$("li.ui-state-active").forEach(permission -> {
+    getDashboardImportPermission().$$("li.ui-state-active").asDynamicIterable().forEach(permission -> {
       permission.$("span.ui-icon-close").shouldBe(getClickableCondition()).click();
     });
 
     getDashboardImportPermission().$("button.ui-autocomplete-dropdown").click();
     $("span[id$=':dashboard-permission_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$$("tr.ui-autocomplete-item").forEach(item -> {
+        .$$("tr.ui-autocomplete-item").asDynamicIterable().forEach(item -> {
           for (String permissionName : permissions) {
             if (item.$("td").getText().contains(permissionName)) {
               item.shouldBe(getClickableCondition()).click();

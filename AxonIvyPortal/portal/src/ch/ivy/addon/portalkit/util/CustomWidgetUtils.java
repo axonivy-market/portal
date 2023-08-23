@@ -20,6 +20,9 @@ import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.CustomWidgetParam;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
+import ch.ivyteam.ivy.application.ActivityState;
+import ch.ivyteam.ivy.application.ReleaseState;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -200,10 +203,26 @@ public class CustomWidgetUtils {
     String processPath = customWidget.getData().getProcessPath();
     if (StringUtils.isNotBlank(processPath)) {
       customWidget.getData().setUrl(EMPTY);
-      IWebStartable startable = findStartableOfCustomDashboardProcess(processPath);
+      IWebStartable startable = findStartableOfCustomDashboardProcessInSecurityContext(processPath);
       if (isNull(startable)) {
         customWidget.getData().setStartRequestPath(EMPTY);
+        customWidget.setErrorMessage(Ivy.cms().co("/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/CustomDashboardWidget/CouldNotFindLinkedProcess"));
         return;
+      } else {
+        boolean isViewerAllowed = Ivy.session().getAllStartables().anyMatch(item-> item.getId().equals(startable.getId()));
+        if (!isViewerAllowed) {
+          customWidget.getData().setStartRequestPath(EMPTY);
+          customWidget.setHasPermissionToSee(false);
+          customWidget.setErrorMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noPermissionToSee"));
+          return;
+        }
+        
+        customWidget.setHasPermissionToSee(true);
+        if (startable.pmv().getActivityState() != ActivityState.ACTIVE || startable.pmv().getReleaseState() != ReleaseState.RELEASED) {
+          customWidget.setErrorMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/processCanNotBeLoaded"));
+          return;
+        }
+        
       }
       if (isNull(customWidget.getData().getIvyProcessStartDTO())) {
         customWidget.getData().setIvyProcessStartDTO(new IvyProcessStartDTO());
@@ -221,8 +240,10 @@ public class CustomWidgetUtils {
   public static void loadDataForProcessViewerWidget(DashboardWidget widget) {
     var processViewerWidget = (ProcessViewerDashboardWidget) widget;
     String processPath = processViewerWidget.getProcessPath();
+    Ivy.log().error("processPath of processViewerWidget is {0}", processViewerWidget.getProcessPath());
     if (StringUtils.isNotBlank(processPath)) {
-      Optional.ofNullable(findWebStartableByProcessPath(processPath))
+      Optional
+          .ofNullable(ProcessService.getInstance().findWebStartableInSecurityContextById(processPath) /* findWebStartableByProcessPath(processPath) */)
           .ifPresent(webStartable -> processViewerWidget.setProcess(new DashboardProcess(webStartable)));
     }
   }
@@ -251,6 +272,15 @@ public class CustomWidgetUtils {
       startable = getAllCustomDashboardProcesses().stream()
           .filter(proccess -> proccess.getLink().getRelative().equals(processStartLink))
           .findAny().orElse(null);
+    }
+    return startable;
+  }
+  
+  public static IWebStartable findStartableOfCustomDashboardProcessInSecurityContext(String processPath) {
+    IWebStartable startable = ProcessService.getInstance().findCustomDashboardProcessInSecurityContextByProcessId(processPath);
+    if (isNull(startable)) {
+      String processStartLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(processPath);
+      startable = ProcessService.getInstance().findCustomDashboardProcessInSecurityContextByRelativePath(processStartLink);
     }
     return startable;
   }
