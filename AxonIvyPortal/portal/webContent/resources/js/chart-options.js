@@ -22,8 +22,6 @@ const PIE_COLORS = [
     'rgb(255, 105, 86)'
 ]
 
-const intervalObjects = [];
-
 function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
@@ -36,7 +34,7 @@ function formatISODate(dt) {
 }
 
 $(document).ready(function () {
-    let intervalObjects = [];
+    let refreshInfos = [];
     $('.chart-options').each(async (index, chart) => {
         let chartId = chart.getAttribute('data-chart-id');
         let response = await instance.post('/api/statistic-data-service/Data', {"chartId": chartId});
@@ -113,12 +111,11 @@ $(document).ready(function () {
             });
 
         }
-
         if (chartObject !== undefined) {
-            intervalObjects.push({'chartObject': chartObject, 'chartType': chartType, 'chartId': chartId, 'refreshInterval': refreshInterval})
+            refreshInfos.push({'chartObject': chartObject, 'chartType': chartType, 'chartId': chartId, 'refreshInterval': refreshInterval});
         }
-        if ($('.chart-options').length === intervalObjects.length) {
-            initChartRefresh(intervalObjects);
+        if ($('.chart-options').length === refreshInfos.length) {
+            initRefresh(refreshInfos);
         }
     });
 
@@ -129,18 +126,18 @@ $(document).ready(function () {
         return label
     }
 
-    function initChartRefresh(intervalObjects) {
-        for (let i = 0; i < intervalObjects.length; i++) {
-            let intervalObject = intervalObjects[i];
-            setInterval(() => {
-                if (typeof intervalObject !== "undefined") {
-                    userActionChartNew(intervalObject.chartObject, intervalObject.chartId);
-                }
-            }, intervalObject.refreshInterval * 1000);
+    function initRefresh(refreshInfos) {
+        for (let i = 0; i < refreshInfos.length; i++) {
+            let refreshInfo = refreshInfos[i];
+            if (refreshInfo.refreshInterval && refreshInfo.refreshInterval > 0) {
+                setInterval(() => {
+                    refreshChart(refreshInfo.chartObject, refreshInfo.chartId);
+                }, refreshInfo.refreshInterval * 1000);
+            }
         }
     }
 
-    const userActionChartNew = async (chartObject, chartId) => {
+    async function refreshChart(chartObject, chartId) {
         const response = await instance.post('/api/statistic-data-service/Data', {"chartId": chartId});
         const result = response.data.result.aggs[0].buckets;
         chartObject.data.labels = result.map(bucket => formatChartLabel(bucket.key));
