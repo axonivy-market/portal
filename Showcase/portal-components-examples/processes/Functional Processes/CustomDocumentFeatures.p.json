@@ -301,7 +301,7 @@
           ],
           "map" : {
             "result.message" : "in.message",
-            "result.status" : "in.skip ? com.axonivy.portal.components.util.CustomProcessUtils.SKIP_STATUS : null"
+            "result.status" : "in.skip ? com.axonivy.portal.components.enums.CustomProcessStatus.SKIP.name() : com.axonivy.portal.components.enums.CustomProcessStatus.OK.name()"
           }
         }
       },
@@ -363,7 +363,7 @@
           ],
           "map" : {
             "result.streamedContent" : "in.streamedContent",
-            "result.status" : "in.skip ? com.axonivy.portal.components.util.CustomProcessUtils.SKIP_STATUS : null"
+            "result.status" : "in.skip ? com.axonivy.portal.components.enums.CustomProcessStatus.SKIP.name() : com.axonivy.portal.components.enums.CustomProcessStatus.OK.name()"
           }
         }
       },
@@ -421,7 +421,7 @@
           "map" : {
             "result.documents" : "in.documents",
             "result.message" : "in.message",
-            "result.status" : "in.skip ? com.axonivy.portal.components.util.CustomProcessUtils.SKIP_STATUS : null"
+            "result.status" : "in.skip ? com.axonivy.portal.components.enums.CustomProcessStatus.SKIP.name() : com.axonivy.portal.components.enums.CustomProcessStatus.OK.name()"
           }
         }
       },
@@ -654,9 +654,9 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.CustomProcessUtils;",
+            "import com.axonivy.portal.components.enums.CustomProcessStatus;",
             "",
-            "in.status = CustomProcessUtils.SKIP_STATUS;"
+            "in.status = CustomProcessStatus.SKIP.name();"
           ]
         }
       },
