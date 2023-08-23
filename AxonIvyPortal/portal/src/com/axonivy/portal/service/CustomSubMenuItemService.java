@@ -14,7 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.comparator.CustomSubMenuItemComparator;
 import com.axonivy.portal.components.configuration.CustomSubMenuItem;
-import com.axonivy.portal.components.enums.PortalCustomSignature;
+import com.axonivy.portal.enums.PortalCustomSignature;
 
 import ch.addon.portal.generic.menu.SubMenuItem;
 import ch.ivy.addon.portalkit.enums.MenuKind;
@@ -32,7 +32,7 @@ public class CustomSubMenuItemService {
   public final static String DEFAULT_ICON = "si si si-hierarchy-6 si-rotate-270";
 
   public static List<SubMenuItem> findAll() {
-    List<CustomSubMenuItem> customMenus = Optional.ofNullable(loadFromSubProcess()).orElse(new ArrayList<>());
+    List<CustomSubMenuItem> customMenus = loadFromSubProcess();
     customMenus.addAll(loadFromConfiguration());
 
     return customMenus.stream()
@@ -51,7 +51,7 @@ public class CustomSubMenuItemService {
 
       var subProcessStartList = SubProcessCallStart.find(filter);
       if (CollectionUtils.isEmpty(subProcessStartList)) {
-        return null;
+        return new ArrayList<>();
       }
 
       List<CustomSubMenuItem> customSubMenuItems = new ArrayList<>();
