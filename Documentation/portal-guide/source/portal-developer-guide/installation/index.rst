@@ -109,6 +109,31 @@ In Engine
 
 #. Follow detailed migration notes for each version below.
 
+Migrate 10.0 To 10.0.12
+-----------------------
+
+Portal no longer supports the override process approach for some sub processes.
+Please do as below to migrate your override sub processes.
+
+#. :ref:`Customize Menu Items <customization-menu-customization>`
+
+      - Remove Sub Process Override of ``LoadSubMenuItems`` from your project.
+
+      - Change the signature of your callable start as below.
+
+         +-------------------------+-------------------------------+
+         | Sub process             | New signature                 |
+         +=========================+===============================+
+         | LoadSubMenuItems        | portalLoadSubMenuItems        |
+         +-------------------------+-------------------------------+
+
+      - You cannot hide default menu items from sub process anymore. Please refer to :ref:`Show/hide default menu items <customization-menu-hide-default-menu-item>`
+        to use variables to hide default menu items.
+
+      - Update ``index`` for each custom menu items.
+
+      - Refer to process ``CustomLoadSubMenuItems`` in project ``portal-developer-examples`` for an example of how to create custom menu items.
+
 Migrate 8.x To 10.0
 -------------------
 
