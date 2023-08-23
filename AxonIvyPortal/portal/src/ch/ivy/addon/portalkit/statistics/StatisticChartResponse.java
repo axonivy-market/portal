@@ -5,13 +5,13 @@ import com.axonivy.portal.bo.StatisticData;
 
 import ch.ivyteam.ivy.elasticsearch.client.agg.AggregationResult;
 
-public class StatisticsChartResponse {
+public class StatisticChartResponse {
   private AggregationResult result;
   private String chartType;
   private String label;
   private BarChartConfig barChartConfig;
 
-  public StatisticsChartResponse(AggregationResult result, StatisticData config) {
+  public StatisticChartResponse(AggregationResult result, StatisticData config) {
     this.result = result;
     this.chartType = config.getChartType();
     this.label = config.getLabel();
