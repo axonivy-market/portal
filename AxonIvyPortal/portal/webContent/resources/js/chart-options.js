@@ -92,7 +92,7 @@ $(document).ready(function () {
 
         }
         if ('pie' === chartType || 'doughnut' === chartType) {
-            let html = renderBarChart(chartId);
+            let html = renderPieChart(chartId);
             $(chart).html(html);
             let canvasObject = $(chart).find('canvas');
             chartObject = new Chart(canvasObject, {
@@ -148,10 +148,17 @@ $(document).ready(function () {
     }
 
     const renderBarChart = (chartId) => {
-      let html = `<div style="max-height: 600px; max-width: 600px;">
-              <canvas id="${chartId}" width="600" height="600"></canvas>
+      let html = `<div style="max-height: 400px; max-width: 600px;">
+              <canvas id="${chartId}" width="600" height="400"></canvas>
             </div>`;
       return html;
+    };
+
+    const renderPieChart = (chartId) => {
+        let html = `<div style="max-height: 400px; max-width: 400px;">
+              <canvas id="${chartId}" width="400" height="400"></canvas>
+            </div>`;
+        return html;
     };
 
     const renderNumberChart = (label) => {
