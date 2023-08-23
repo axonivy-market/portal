@@ -20,8 +20,8 @@
       <!-- Loads the ChartJs library needed to render the chart -->
       <h:outputScript library="primefaces" name="chartjs/chartjs.js" />
 
-      <h:panelGroup id="grid-stack" layout="block"
-        styleClass="grid-stack ui-g-12 u-no-padding-left">
+      <h:panelGroup layout="block"
+        styleClass="statistic-chart-widget__canvas">
         <c:if test="#{not empty chartOptionBean.statisticDataList}">
           <c:forEach items="#{chartOptionBean.statisticDataList}"
             var="chartOption" varStatus="counter">

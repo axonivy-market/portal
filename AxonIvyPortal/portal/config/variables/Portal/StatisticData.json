@@ -6,7 +6,7 @@
     "permissions": [
       "Everybody"
     ],
-    "chartType": "pie",
+    "chartType": "bar",
     "label": "My Tasks by Priority",
     "barChartConfig": {
        "xTitle": "Priority",
@@ -72,19 +72,6 @@
        "xTitle": "Day",
        "yTitle": "Number of tasks"
      }
-  },
-  {
-    "id": "8",
-    "aggregates": "businessState:bucket",
-    "permissions": [
-      "Everybody"
-    ] ,
-    "chartTarget": "TASK",
-    "chartType": "bar",
-    "label": "Business Tasks per Day",
-    "barChartConfig": {
-       "xTitle": "Day",
-       "yTitle": "Number of tasks"
-     }
   }
+  
 ]
