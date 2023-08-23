@@ -275,8 +275,8 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.CustomProcessUtils;",
-            "in.status = CustomProcessUtils.SKIP_STATUS;"
+            "import com.axonivy.portal.components.enums.CustomProcessStatus;",
+            "in.status = CustomProcessStatus.SKIP.name();"
           ]
         }
       },

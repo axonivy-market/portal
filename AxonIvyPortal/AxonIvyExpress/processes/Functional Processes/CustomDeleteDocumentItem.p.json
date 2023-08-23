@@ -28,7 +28,7 @@
           ],
           "map" : {
             "result.message" : "in.message",
-            "result.status" : "in.skip ? com.axonivy.portal.components.util.CustomProcessUtils.SKIP_STATUS : null"
+            "result.status" : "in.status.name()"
           }
         }
       },
@@ -50,10 +50,13 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.enums.CustomProcessStatus;",
             "import ch.ivy.addon.portalkit.util.ExecutingExpressProcessUtils;",
             "",
-            "in.skip = !ExecutingExpressProcessUtils.isExpressCase(in.businessCase);",
-            "if (!in.skip) {",
+            "in.status = CustomProcessStatus.SKIP;",
+            "",
+            "if (ExecutingExpressProcessUtils.isExpressCase(in.businessCase)) {",
+            "  in.status = CustomProcessStatus.OK;",
             "  in.businessCase.documents().delete(Long.valueOf(in.document.id));",
             "  in.message = ivy.cms.co(\"/Dialogs/components/CaseDocument/deleteSucceed\");",
             "}"

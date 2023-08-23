@@ -32,7 +32,7 @@
             { "name" : "users", "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>" }
           ],
           "map" : {
-            "result.status" : "in.skip ? \"skip\" : null",
+            "result.status" : "in.status.name()",
             "result.roles" : "in.roles",
             "result.users" : "in.users"
           }
@@ -56,11 +56,12 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.enums.CustomProcessStatus;",
             "import com.axonivy.portal.components.dto.RoleDTO;",
             "import com.axonivy.portal.components.dto.UserDTO;",
             "import java.util.ArrayList;",
             "",
-            "in.skip = true;",
+            "in.status = CustomProcessStatus.SKIP;",
             "",
             "if (\"#admin\".equalsIgnoreCase(in.currentUser.getMemberName())) {",
             "  if (\"Maternity Leave Request\".equalsIgnoreCase(in.task.names().current())) {",
@@ -70,11 +71,11 @@
             "    in.roles = new ArrayList();",
             "    in.roles.add(new RoleDTO(ivy.wf.getSecurityContext().roles().find(\"GeneralManager\")));",
             "  }",
-            "  in.skip = false;",
+            "  in.status = CustomProcessStatus.OK;",
             "} else if (\"#demo\".equalsIgnoreCase(in.currentUser.getMemberName())) {",
             "  in.users = new ArrayList();",
             "  in.roles = new ArrayList();",
-            "  in.skip = false;",
+            "  in.status = CustomProcessStatus.OK;",
             "}"
           ]
         }
