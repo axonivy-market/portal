@@ -362,10 +362,10 @@
         "signature" : "analyzeTaskBusinessStateStatistic",
         "input" : {
           "params" : [
-            { "name" : "taskSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria", "desc" : "" }
+            { "name" : "criteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria", "desc" : "" }
           ],
           "map" : {
-            "out.taskSearchCriteria" : "param.taskSearchCriteria"
+            "out.taskSearchCriteria" : "param.criteria"
           }
         },
         "result" : {

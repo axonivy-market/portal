@@ -593,7 +593,7 @@
           ]
         } ],
       "visual" : {
-        "at" : { "x" : 526, "y" : 162 }
+        "at" : { "x" : 528, "y" : 160 }
       },
       "connect" : [
         { "id" : "f6", "to" : "f5" }
@@ -939,9 +939,9 @@
                 "import java.util.Map;",
                 "import ch.ivy.addon.portalkit.enums.PortalLibrary;",
                 "import java.util.Arrays;",
-                "import ch.ivy.addon.portalkit.service.IvyAdapterService;",
+                "import com.axonivy.portal.components.service.IvyAdapterService;",
                 "",
-                "Map x = IvyAdapterService.startSubProcess(\"handleEndPage()\", null, Arrays.asList(PortalLibrary.AXON_EXPRESS.getValue()));",
+                "Map x = IvyAdapterService.startSubProcessInApplication(\"handleEndPage()\", null);",
                 "String callbackUrl = x.get(\"callbackUrl\") as String;",
                 "ivy.task.customFields().stringField(CustomFields.EXPRESS_END_PAGE_URL.toString()).set(callbackUrl);"
               ]

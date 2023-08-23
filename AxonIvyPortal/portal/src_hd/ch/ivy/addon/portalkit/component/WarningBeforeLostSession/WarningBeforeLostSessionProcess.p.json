@@ -79,7 +79,7 @@
       "type" : "SubProcessCall",
       "name" : "Logout",
       "config" : {
-        "processCall" : "Functional Processes/Logout:call(Boolean,ch.ivyteam.ivy.workflow.ITask)",
+        "processCall" : "Functional Processes/Logout:logout(Boolean,ch.ivyteam.ivy.workflow.ITask)",
         "call" : {
           "map" : {
             "param.isTaskReserve" : "false",
