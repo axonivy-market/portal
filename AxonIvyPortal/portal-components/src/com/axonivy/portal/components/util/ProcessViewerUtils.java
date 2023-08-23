@@ -29,6 +29,7 @@ public class ProcessViewerUtils {
   private static List<IWebStartable> webStartables;
 
   public static ProcessViewerDTO initProcessViewer(Long caseId, String processLink) {
+    Ivy.log().error("initProcessViewer ==== case ID is {0}, process link is {1}", caseId, processLink);
     boolean isViewerAllowed = false;
     IWebStartable webStartable = null;
     WebLink webLink = null;
@@ -51,8 +52,11 @@ public class ProcessViewerUtils {
 
       // try to init data using processLink
       if (webLink == null) {
-        webStartable = findWebStartable(processLink);
-        isViewerAllowed = isViewerAllowed(webStartable);
+        webStartable = ProcessService.getInstance().findWebStartableInSecurityContextByRelativeLink(processLink);//findWebStartable(processLink);
+        String processId = webStartable.getId();
+        isViewerAllowed = Ivy.session().getAllStartables().anyMatch(startable-> startable.getId().equals(processId));
+        //Ivy.session().getAllStartables().anyMatch(startable-> startable.getId().equals(webStartable.getId()));
+        
         if (isViewerAllowed) {
           if (webStartable instanceof ICaseMapWebStartable) {
             webLink = CaseMapViewer.of((ICaseMapWebStartable) webStartable).url().toWebLink();
@@ -65,10 +69,15 @@ public class ProcessViewerUtils {
 
     // check result
     if (webLink == null) {
+      Ivy.log().error("web link is null, isViewAllow {0}, webstartable is null: {1}", isViewerAllowed, webStartable == null);
       isError = true;
-      errorMessage = webStartable != null && !isViewerAllowed
-          ? Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessIsHidden")
-          : Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/CouldNotFindLinkedProcess");
+      
+      if (webStartable == null) {
+        errorMessage = Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/CouldNotFindLinkedProcess");
+      } else {
+        errorMessage = Ivy.cms().co(isViewerAllowed ? "/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/processCanNotBeLoaded" : "/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessIsHidden");
+      }
+      
     }
     return new ProcessViewerDTO(webStartable, webLink, isError, errorMessage);
   }
@@ -84,6 +93,7 @@ public class ProcessViewerUtils {
     if (StringUtils.isNotBlank(processLink)) {
       return getWebStartables().stream().filter(filterByRelativeLink(processLink)).findFirst().orElse(null);
     }
+    
     return null;
   }
 
