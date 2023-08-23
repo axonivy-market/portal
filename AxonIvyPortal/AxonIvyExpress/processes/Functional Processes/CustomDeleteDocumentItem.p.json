@@ -1,16 +1,16 @@
 {
   "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
-  "id" : "1818968119A51953",
+  "id" : "16B266ED2EA90665",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "com.axonivy.portal.components.examples.override.DeleteDocumentItemOverrideData"
+    "data" : "gawfs.CustomDeleteDocumentItemData"
   },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "call(ICase,IvyDocument)",
+      "name" : "expressDeleteDocumentItem(ICase,IvyDocument)",
       "config" : {
-        "signature" : "call",
+        "signature" : "expressDeleteDocumentItem",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
@@ -32,7 +32,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -7, "y" : 46 }
+        "labelOffset" : { "x" : 1, "y" : 41 }
       },
       "connect" : [
         { "id" : "f4", "to" : "f3" }
@@ -41,7 +41,7 @@
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 352, "y" : 64 }
+        "at" : { "x" : 416, "y" : 64 }
       }
     }, {
       "id" : "f3",
@@ -52,18 +52,13 @@
           "code" : [
             "import java.util.Arrays;",
             "",
-            "ivy.log.warn(\"Call to override process delete document item\");",
             "in.businessCase.documents().delete(Long.valueOf(in.document.id));",
-            "",
-            "String note = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/DeleteDocumentNote\", Arrays.asList(ivy.session.getSessionUserName(), in.document.getName()));",
-            "in.businessCase.createNote(ivy.session, note);",
-            "in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/DeleteSuceed\");"
+            "in.message = ivy.cms.co(\"/Dialogs/components/CaseDocument/deleteSucceed\");"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 64 },
+        "at" : { "x" : 256, "y" : 64 },
         "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : [
@@ -74,11 +69,11 @@
       "type" : "ProcessAnnotation",
       "name" : "Override this sub process to delete file in DMS",
       "visual" : {
-        "at" : { "x" : 256, "y" : 192 },
-        "size" : { "width" : 256, "height" : 30 }
+        "at" : { "x" : 288, "y" : 184 },
+        "size" : { "width" : 256, "height" : 40 }
       },
       "connect" : [
-        { "id" : "f6", "to" : "f0", "via" : [ { "x" : 288, "y" : 176 } ] }
+        { "id" : "f6", "to" : "f0" }
       ]
     } ]
 }

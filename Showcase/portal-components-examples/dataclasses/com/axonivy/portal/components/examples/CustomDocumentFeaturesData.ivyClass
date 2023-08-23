@@ -1,11 +1,13 @@
-UploadDocumentData #class
-ch.ivy.add.portalkit #namespace
+CustomDocumentFeaturesData #class
+com.axonivy.portal.components.examples #namespace
 businessCase ch.ivyteam.ivy.workflow.ICase #field
 message String #field
-status com.axonivy.portal.components.enums.UploadDocumentCheckStatus #field
+status String #field
 uploadedDocument ch.ivyteam.ivy.workflow.document.IDocument #field
 uploadedFile org.primefaces.model.file.UploadedFile #field
 enableVirusScannerForUploadedDocument Boolean #field
 enableScriptCheckingForUploadedDocument Boolean #field
 allowedUploadFileTypes String #field
-hasCustomProcess Boolean #field
+document com.axonivy.portal.components.ivydata.bo.IvyDocument #field
+streamedContent org.primefaces.model.StreamedContent #field
+documents java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument> #field
