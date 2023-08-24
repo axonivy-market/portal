@@ -281,7 +281,7 @@ The lists ``in.users`` and ``in.roles`` contain all possible users
 and roles that the task can be delegated to. Modify those two to have
 your delegate list.
 
-The Portal will call subprocesses with the above details in the same security context then combine all
+Portal will call subprocesses with the above details in the same security context then combine all
 ``roles`` and ``users`` from the results into the available users and roles whoe can delegate the task.
 To skip combine result from your callable subprocess, please set ``status`` to ``"SKIP"``.
 
