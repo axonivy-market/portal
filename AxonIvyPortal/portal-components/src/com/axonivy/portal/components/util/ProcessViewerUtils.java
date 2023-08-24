@@ -78,7 +78,15 @@ public class ProcessViewerUtils {
       }
       
     }
-    return new ProcessViewerDTO(webStartable, webLink, isError, errorMessage, errorIcon);
+    
+    return ProcessViewerDTO
+        .builder()
+        .webStartable(webStartable)
+        .webLink(webLink)
+        .isError(isError)
+        .errorMessage(errorMessage)
+        .errorIcon(errorIcon)
+        .build();
   }
 
   public static IWebStartable findWebStartable(ICaseMap caseMap) {

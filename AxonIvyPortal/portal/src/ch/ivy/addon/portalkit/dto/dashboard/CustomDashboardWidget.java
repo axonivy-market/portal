@@ -27,15 +27,7 @@ public class CustomDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private String errorMessage;
   @JsonIgnore
-  private Boolean hasPermissionToSee;
-
-  public Boolean getHasPermissionToSee() {
-    return hasPermissionToSee;
-  }
-
-  public void setHasPermissionToSee(Boolean hasPermissionToSee) {
-    this.hasPermissionToSee = hasPermissionToSee;
-  }
+  private String errorIcon;
 
   @Override
   public DashboardWidgetType getType() {
@@ -165,5 +157,13 @@ public class CustomDashboardWidget extends DashboardWidget {
 
   public void setErrorMessage(String errorMessage) {
     this.errorMessage = errorMessage;
+  }
+
+  public String getErrorIcon() {
+    return errorIcon;
+  }
+
+  public void setErrorIcon(String errorIcon) {
+    this.errorIcon = errorIcon;
   }
 }
