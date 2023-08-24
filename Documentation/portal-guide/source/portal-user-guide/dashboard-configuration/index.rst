@@ -214,7 +214,7 @@ A table of public dashboards is shown with the following information:
 #. Description
 
 #. :guilabel:`Actions` for further actions: |edit-icon| edit (name, description), |settings-icon| configure
-   (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| export dashboard,
+   (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| export dashboard, |share-icon| share
    and |trash-icon| delete a public dashboard.
 
    .. note::
@@ -222,6 +222,13 @@ A table of public dashboards is shown with the following information:
       the Export function only available for users who have the permission ``DASHBOARD_EXPORT_PUBLIC``.
 
 |edit-public-dashboards|
+
+How to: share public dashboards
+===============================
+
+To generate a public dashboard link, simply click on the |share-icon| Share in the :guilabel:`Edit public dashboards` section.
+
+|share-public-dashboards|
 
 How to: reorder public dashboards
 =================================
