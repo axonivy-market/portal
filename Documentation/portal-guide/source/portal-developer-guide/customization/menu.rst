@@ -8,11 +8,11 @@ Menu And Default Homepage In User Profile
 Introduction
 ------------
 
-By default, the Portal main menu has five items: Dashboard, Processes, Tasks, Cases and Statistics.
+The Portal main menu has five default items: Dashboard, Processes, Tasks, Cases and Statistics.
 
 |default-menu-items|
 
-Portal allows you to add custom menu items or hide some default items by using Portal permissions.
+Portal allows you to add custom menu items or hide some default items by using the Portal permissions.
 
 All menu items except external links can be set as the user profile's default homepage.
 
