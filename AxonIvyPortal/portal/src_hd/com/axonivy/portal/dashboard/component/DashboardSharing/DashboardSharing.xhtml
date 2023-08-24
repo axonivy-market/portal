@@ -4,7 +4,6 @@
   xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="managedBean" required="true" />
-  <cc:attribute name="title" required="true" />
   <cc:attribute name="shareDialogId" required="true" />
 </cc:interface>
 
@@ -14,7 +13,7 @@
   <p:dialog id="#{cc.attrs.shareDialogId}"
     widgetVar="#{cc.attrs.shareDialogId}"
     styleClass="js-#{cc.attrs.shareDialogId}"
-    header="#{cc.attrs.title}" appendTo="@(body)" closeOnEscape="true"
+    header="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/DashboardSharing/ShareDashboard')}" appendTo="@(body)" closeOnEscape="true"
     draggable="false" fitViewport="true" responsive="true" modal="true" closable="false"
     width="30%" dynamic="true" focus="@(none)" onShow="checkCopyFeature()">
 
@@ -30,13 +29,14 @@
           onclick="PF('#{cc.attrs.shareDialogId}').hide()" />
         <p:spacer width="15" />
         <p:commandButton id="dashboard-share-copy-button" 
-          value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/DashboardSharing/CopyLink')}"
+          value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/DashboardSharing/CopyLink')}"
           onclick="copyToClipboard('#{managedBean.dashboardUrl}')" 
-          actionListener="#{managedBean.showDashboardUrlCopiedMessage(ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/DashboardSharing/LinkCopied'))}"
+          actionListener="#{managedBean.showDashboardUrlCopiedMessage(ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/DashboardSharing/LinkCopied'))}"
           update=":portal-global-growl" />
       </h:panelGroup>
     </f:facet>
   </p:dialog>
+    
     <script type="text/javascript">
       var clipboard = navigator.clipboard;
       function checkCopyFeature(){

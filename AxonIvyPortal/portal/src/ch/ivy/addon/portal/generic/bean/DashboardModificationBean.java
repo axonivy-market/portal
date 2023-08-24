@@ -16,10 +16,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -45,7 +43,6 @@ import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
-import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -97,10 +94,6 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
       this.selectedDashboardPermissions = responsibles.stream().map(SecurityMemberDTO::getName).collect(Collectors.toList());
       dashboard.setPermissionDTOs(new ArrayList<>(responsibles));
     }
-  }
-  
-  public void openShareDashboardDialog(Dashboard dashboard) {
-      setDashboardUrl(UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId()));
   }
   
   public List<SecurityMemberDTO> completePermissions(String query) {
@@ -322,10 +315,6 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
   private String getFileName(String dashboardName) {
     return dashboardName + JSON_FILE_SUFFIX;
-  }
-  
-  public void showDashboardUrlCopiedMessage(String message) {
-    FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
   }
   
   public boolean isShowSharingButton(boolean isPublicDashboard) {

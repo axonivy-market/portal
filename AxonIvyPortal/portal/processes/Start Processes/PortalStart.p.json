@@ -4102,11 +4102,11 @@
         "input" : {
           "params" : [
             { "name" : "dashboardId", "type" : "String" },
-            { "name" : "openInFrame", "type" : "Boolean" }
+            { "name" : "openWithoutFrame", "type" : "Boolean" }
           ],
           "map" : {
             "out.dashboardId" : "param.dashboardId",
-            "out.isOpenInFrame" : "param.openInFrame"
+            "out.isOpenWithoutFrame" : "param.openWithoutFrame"
           }
         },
         "outLink" : "DashboardPage.ivp"
@@ -4128,7 +4128,7 @@
             "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
             "",
             "DashboardUtils.storeDashboardInSession(in.dashboardId);",
-            "if (in.isOpenInFrame) {",
+            "if (in.isOpenWithoutFrame) {",
             "  SecurityServiceUtils.setSessionAttribute(SessionAttribute.PORTAL_IN_TEAMS.toString(), true);",
             "  SecurityServiceUtils.setSessionAttribute(SessionAttribute.DEFAULT_PAGE_IN_TEAMS.toString(), HomepageType.DASHBOARD.toString()); ",
             "}"

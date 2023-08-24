@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -47,6 +48,7 @@ import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.IUser;
@@ -403,5 +405,12 @@ public class DashboardBean implements Serializable {
   public void setDashboardUrl(String dashboardUrl) {
     this.dashboardUrl = dashboardUrl;
   }
-
+  
+  public void showDashboardUrlCopiedMessage(String message) {
+    FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
+  }
+  
+  public void openShareDashboardDialog(Dashboard dashboard) {
+    setDashboardUrl(UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId()));
+  }
 }

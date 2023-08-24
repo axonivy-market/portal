@@ -1,9 +1,9 @@
 {
   "format" : "10.0.0",
-  "id" : "18A06C023D15A146",
+  "id" : "18A25A591D589CF2",
   "kind" : "HTML_DIALOG",
   "config" : {
-    "data" : "ch.ivy.addon.portal.generic.dashboard.component.DashboardSharing.DashboardSharingData"
+    "data" : "com.axonivy.portal.dashboard.component.DashboardSharing.DashboardSharingData"
   },
   "elements" : [ {
       "id" : "f0",
