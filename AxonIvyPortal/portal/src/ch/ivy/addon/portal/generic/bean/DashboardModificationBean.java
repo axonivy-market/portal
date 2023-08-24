@@ -34,6 +34,7 @@ import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
+import ch.addon.portal.generic.menu.MenuView;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
@@ -41,6 +42,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -166,6 +168,9 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     } else {
       currentUser().setProperty(PortalVariable.DASHBOARD.key, dashboardJson);
     }
+
+    MenuView menuView = (MenuView) ManagedBeans.get("menuView");
+    menuView.storeDashboardCache(dashboards);
   }
 
   private List<Dashboard> getVisibleDashboards(String dashboardJson) {
