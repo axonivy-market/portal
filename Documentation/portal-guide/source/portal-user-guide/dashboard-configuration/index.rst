@@ -270,4 +270,4 @@ A table of public dashboards is shown with the following information:
 .. |dashboard-templates| image:: ../../screenshots/dashboard-configuration/dashboard-templates.png
 .. |import-public-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/import-public-dashboard-dialog.png
 .. |import-private-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/import-private-dashboard-dialog.png
-
+.. |share-public-dashboards| image:: ../../screenshots/dashboard-configuration/share-dashboard-dialog.png
