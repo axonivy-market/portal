@@ -317,7 +317,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     return dashboardName + JSON_FILE_SUFFIX;
   }
   
-  public boolean isShowSharingButton(boolean isPublicDashboard) {
+  public boolean isShowShareButtonOnConfig(boolean isPublicDashboard) {
     return PermissionUtils.hasShareDashboardPermission() && isPublicDashboard;
   }
 }

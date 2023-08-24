@@ -47,6 +47,7 @@ import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -412,5 +413,9 @@ public class DashboardBean implements Serializable {
   
   public void openShareDashboardDialog(Dashboard dashboard) {
     setDashboardUrl(UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId()));
+  }
+  
+  public boolean isShowShareButtonOnDashboard() {
+    return PermissionUtils.hasShareDashboardPermission() && selectedDashboard != null && !getIsEditMode();
   }
 }

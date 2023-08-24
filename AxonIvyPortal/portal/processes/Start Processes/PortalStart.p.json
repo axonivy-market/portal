@@ -2301,7 +2301,7 @@
             { "id" : "S60-f5", "to" : "S60-f4", "via" : [ { "x" : 284, "y" : 256 } ], "label" : {
                 "name" : "others",
                 "segment" : 1.43,
-                "offset" : { "x" : 0, "y" : -10 }
+                "offset" : { "x" : -22, "y" : -6 }
               } }
           ]
         }, {
@@ -2337,12 +2337,15 @@
             "output" : {
               "code" : [
                 "import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;",
-                "out.homepage = HomepageUtils.findHomepage();"
+                "",
+                "if (!in.isOpenDashboardFromLink) {",
+                "  out.homepage = HomepageUtils.findHomepage();",
+                "}"
               ]
             }
           },
           "visual" : {
-            "at" : { "x" : 180, "y" : 160 }
+            "at" : { "x" : 184, "y" : 160 }
           },
           "connect" : { "id" : "S60-f0", "to" : "S60-f54" }
         }, {
@@ -4109,7 +4112,8 @@
             "out.isOpenWithoutFrame" : "param.openWithoutFrame"
           }
         },
-        "outLink" : "DashboardPage.ivp"
+        "outLink" : "DashboardPage.ivp",
+        "showInStartList" : false
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 64 }
@@ -4128,6 +4132,7 @@
             "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
             "",
             "DashboardUtils.storeDashboardInSession(in.dashboardId);",
+            "in.isOpenDashboardFromLink = true;",
             "if (in.isOpenWithoutFrame) {",
             "  SecurityServiceUtils.setSessionAttribute(SessionAttribute.PORTAL_IN_TEAMS.toString(), true);",
             "  SecurityServiceUtils.setSessionAttribute(SessionAttribute.DEFAULT_PAGE_IN_TEAMS.toString(), HomepageType.DASHBOARD.toString()); ",

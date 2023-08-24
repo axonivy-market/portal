@@ -37,3 +37,4 @@ isPublicDashboard 'used in configuring new dashboard' #fieldComment
 dashboardId String #field
 isAuthorized Boolean #field
 isOpenWithoutFrame Boolean #field
+isOpenDashboardFromLink Boolean #field
