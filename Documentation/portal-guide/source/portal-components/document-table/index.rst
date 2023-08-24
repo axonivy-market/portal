@@ -16,8 +16,8 @@ Attributes
   :class: longtable
   :widths: 1 1 1 3
 
-Script checking and virus scanning
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Virus scanning
+^^^^^^^^^^^^^^
 
 The **Document Table** has options to check for harmful scripts and viruses inside the file before uploading it to the system.
 
