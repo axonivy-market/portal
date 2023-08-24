@@ -3,7 +3,7 @@
   "id" : "18A25A591D589CF2",
   "kind" : "HTML_DIALOG",
   "config" : {
-    "data" : "com.axonivy.portal.dashboard.component.DashboardSharing.DashboardSharingData"
+    "data" : "com.axonivy.portal.dashboard.component.ShareDialog.ShareDialogData"
   },
   "elements" : [ {
       "id" : "f0",

@@ -12,10 +12,10 @@
 
   <p:dialog id="#{cc.attrs.shareDialogId}"
     widgetVar="#{cc.attrs.shareDialogId}"
-    styleClass="js-#{cc.attrs.shareDialogId}"
+    styleClass="share-dialog"
     header="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/DashboardSharing/ShareDashboard')}" appendTo="@(body)" closeOnEscape="true"
-    draggable="false" fitViewport="true" responsive="true" modal="true" closable="false"
-    width="30%" dynamic="true" focus="@(none)" onShow="checkCopyFeature()">
+    draggable="false" fitViewport="true" responsive="true" modal="true" closable="false" 
+    width="auto" dynamic="true" focus="@(none)" onShow="checkCopyFeature()">
 
     <div class="ui-fluid ui-inputgroup">
       <p:inputText id="dashboard-url"
