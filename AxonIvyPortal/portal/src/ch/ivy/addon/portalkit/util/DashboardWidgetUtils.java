@@ -78,7 +78,6 @@ public class DashboardWidgetUtils {
         yield widget;
       }
       case PROCESS_VIEWER -> {
-        Ivy.log().error("CustomWidgetUtils.loadDataForProcessViewerWidget(widget)");
         CustomWidgetUtils.loadDataForProcessViewerWidget(widget);
         yield widget;
       }

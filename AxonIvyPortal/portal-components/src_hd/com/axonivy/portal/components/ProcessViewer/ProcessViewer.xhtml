@@ -81,7 +81,7 @@
 	<h:panelGroup rendered="#{data.isError}"
 		layout="block" id="empty-message-container"
 		styleClass="empty-message-container">
-		<i class="#{widget.hasPermissionToSee ? 'si si-alert-circle' : 'si si-lock-1'} empty-message-icon" />
+		<i class="#{data.errorIcon} empty-message-icon" />
 		<br />
 		<h:outputText styleClass="empty-message-text" value="#{data.errorMessage}" />
 	</h:panelGroup>

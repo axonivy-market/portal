@@ -33,7 +33,8 @@ public class ProcessViewerUtils {
     IWebStartable webStartable = null;
     WebLink webLink = null;
     boolean isError = false;
-    String errorMessage = null;
+    String errorMessage = "";
+    String errorIcon = "";
     if (caseId != 0 || StringUtils.isNotBlank(processLink)) {
       // init data using caseId
       ICase selectedCase = CaseUtils.findCase(caseId);
@@ -68,15 +69,16 @@ public class ProcessViewerUtils {
     // check result
     if (webLink == null) {
       isError = true;
-      
       if (webStartable == null) {
+        errorIcon = "si si-alert-circle";
         errorMessage = Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/CouldNotFindLinkedProcess");
       } else {
+        errorIcon = isViewerAllowed ? "si si-alert-circle" : "si si-lock-1";
         errorMessage = Ivy.cms().co(isViewerAllowed ? "/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/processCanNotBeLoaded" : "/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessIsHidden");
       }
       
     }
-    return new ProcessViewerDTO(webStartable, webLink, isError, errorMessage);
+    return new ProcessViewerDTO(webStartable, webLink, isError, errorMessage, errorIcon);
   }
 
   public static IWebStartable findWebStartable(ICaseMap caseMap) {
