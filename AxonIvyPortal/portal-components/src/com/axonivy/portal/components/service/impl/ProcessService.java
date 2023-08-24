@@ -114,13 +114,11 @@ public class ProcessService implements IProcessService {
   }
 
   public IWebStartable findWebStartableInSecurityContextById(String processId){
-    Ivy.log().error("processId is {0}", processId);
     Predicate<? super IWebStartable> predicate = startable -> StringUtils.equals(startable.getId(), processId) && isNotPortalHomeAndMSTeamsProcess(startable);
     return findStartable(predicate);
   }
 
   public IWebStartable findWebStartableInSecurityContextByRelativeLink(String processRelativeLink){
-    Ivy.log().error("processRelativeLink is {0}", processRelativeLink);
     Predicate<? super IWebStartable> predicate = startable -> StringUtils.equals(processRelativeLink, startable.getLink().getRelative()) && isNotPortalHomeAndMSTeamsProcess(startable);
     return findStartable(predicate);
   }
