@@ -143,6 +143,7 @@ How to configure widgets in task details
 
 How to customize Task item details UI
 -------------------------------------
+.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 Refer to ``portal-developer-examples`` project for examples.
 
@@ -190,6 +191,7 @@ List of valid ``ui:param``:
 
 Show Custom Panels (Widgets)
 ----------------------------
+.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 
 .. tip:: 
