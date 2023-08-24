@@ -243,27 +243,47 @@ How To Override Export Feature
 
 .. _customization-task-widget-custom-task-delegate:
 
-Custom Task Delegate
---------------------
+Customize task delegation
+-------------------------
 
-Portal allows to customize the list of users and roles that a task can
-be delegated to. This can be done following these steps:
+To customize the list of users and roles that a task can be delegated to,
+create a callable subprocess with:
 
-#. Introduce an |ivy| project which has ``portal`` as a
-   required library and its own ``PortalStart`` process. Refer to step
-   1, 2, 3, 4 in :ref:`override task widget's
-   UI <customization-task-widget-how-to-overide-ui>` guide.
+**Signature**: portalCalculateTaskDelegate
 
-#. In your project, override the callable subprocess
-   ``CalculateTaskDelegate``
++--------------------+-----------------------------------------------------------+---------------+
+| Name               | Type                                                      | Note          |
++====================+===========================================================+===============+
+| **Parameter**                                                                                  |
++--------------------+-----------------------------------------------------------+---------------+
+| roles              | java.util.List<com.axonivy.portal.components.dto.RoleDTO> |               |
++--------------------+-----------------------------------------------------------+---------------+
+| users              | java.util.List<com.axonivy.portal.components.dto.UserDTO> |               |
++--------------------+-----------------------------------------------------------+---------------+
+| currentUser        | com.axonivy.portal.components.dto.SecurityMemberDTO       |               |
++--------------------+-----------------------------------------------------------+---------------+
+| task               | ch.ivyteam.ivy.workflow.ITask                             |               |
++--------------------+-----------------------------------------------------------+---------------+
+| **Result**                                                                                     |
++--------------------+-----------------------------------------------------------+---------------+
+| status             | java.lang.String                                          | OK or SKIP    |
++--------------------+-----------------------------------------------------------+---------------+
+| roles              | java.util.List<com.axonivy.portal.components.dto.RoleDTO> |               |
++--------------------+-----------------------------------------------------------+---------------+
+| users              | java.util.List<com.axonivy.portal.components.dto.UserDTO> |               |
++--------------------+-----------------------------------------------------------+---------------+
 
-   |calculate-task-delegate|
+|calculate-task-delegate|
 
-#. The callable subprocess data contains the current user
-   ``in.currentUser`` and the current task to be delegated ``in.task``.
-   The lists ``in.users`` and ``in.roles`` contain all possible users
-   and roles that the task can be delegated to. Modify those two to have
-   your own delegate list.
+The parameters of the callable subprocess data contain the current user
+``in.currentUser`` and the current task to be delegated ``in.task``.
+The lists ``in.users`` and ``in.roles`` contain all possible users
+and roles that the task can be delegated to. Modify those two to have
+your delegate list.
+
+The Portal will call subprocesses with the above details in the same security context then combine all
+``roles`` and ``users`` from the results into the available users and roles whoe can delegate the task.
+To skip combine result from your callable subprocess, please set ``status`` to ``"SKIP"``.
 
 .. _customization-task-widget-responsive-layout:
 
