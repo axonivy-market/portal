@@ -14,7 +14,7 @@ By default, the Portal main menu has five items: Dashboard, Processes, Tasks, Ca
 
 Portal allows you to add custom menu items or hide some default items by using Portal permissions.
 
-Please be informed that all menu items beside external links can be select as default homepage in the user profile.
+All menu items except external links can be set as the user profile's default homepage.
 
 .. _customization-menu-customization:
 
@@ -24,26 +24,26 @@ Custom menu items
 Menu type
 +++++++++
 
-There are two type of custom menu items:
+There are two types of custom menu items:
 
-    - Ivy process: This kind of menu will call an Ivy process when be clicked and can set as the default homepage in user profile.
+    - Ivy process: trigger an Ivy process when clicked and can be set as the default homepage in a user's profile.
 
-    - External link: This kind of menu will open its link in a new tab and cannot set as the default homepage in user profile.
+    - External link: open an external link in a new tab and cannot be set as the default homepage in a user's profile.
 
-By default, the type of custom menu item is Ivy process. To change its type to external link, set the ``isExternalLink`` attribute to ``true``.
+The Ivy process is the default custom menu item type. To change custom menu item type to external link, set the ``isExternalLink`` attribute to ``true``.
 
 Menu index
 ++++++++++
 
-The custom menu items are under the default menu items.
+The custom menu items can be found below the default menu items.
 
-To define the order of custom menu items, set a number to the ``index`` attribute, it will displayed by the given index.
-If you don't set index for custom menu items, they will be sort by alphabetical order.
+To set the order of custom menu items, assign a number to the ``index`` attribute. The item will be displayed based on the given index.
+If custom menu items are not indexed, they will be sorted alphabetically.
 
 Add custom menu items
 ---------------------
 
-Portal provides two approaches to add custom menu items. Please read below sections for more details.
+There are two ways to add custom menu items in Portal. Please refer to the following sections for more information.
 
 Callable subprocess
 +++++++++++++++++++
@@ -103,14 +103,14 @@ Example of an external link:
    for an example of how to create custom menu items.
 
 .. tip::
-    | If you want it to show label of the custom menu item in different 
+    | If you want the label of a custom menu item to display in multiple 
     | languages, create a CMS entry and use the ``ApplicationMultiLanguageAPI.getCmsValueByUserLocale`` method.
     | E.g. ``subMenuItem.setLabel(ApplicationMultiLanguageAPI.getCmsValueByUserLocale<CMS_URI>));``
 
 Portal variable
 +++++++++++++++
 
-Beside the callable subprocess approach, you can define custom menu items in the Portal variable
+Beside the callable subprocess approach, you can also define custom menu items in the Portal variable
 ``Portal.Menu.CustomMenuItems``.
 
 Example of custom menu items in the ``Portal.Menu.CustomMenuItems`` variable.
@@ -136,11 +136,11 @@ Example of custom menu items in the ``Portal.Menu.CustomMenuItems`` variable.
 
 The basic JSON structure of a custom menu items
 
-    ``index``: Index of the menu item on the main menu.
+    ``index``: index of the menu item on the main menu.
 
-    ``link``: Link of the menu item. In case of Ivy process, You can set a friendly user request path or a process ID.
+    ``link``: link of the menu item. You can set a user-friendly request path or a process ID for Ivy process.
 
-    ``label``: Label of the menu item.
+    ``label``: label of the menu item.
 
     ``isExternal``: set to ``true`` to mark this custom menu item as an external link.
 
