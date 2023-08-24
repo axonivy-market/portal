@@ -45,19 +45,12 @@ public class CustomWidgetUtils {
     String propertyValue = keyPattern;
     String[] keyParts = keyPattern.split(PROPERTY_KEY_PATTERN_DELIMITER);
     if (isValidKey(keyParts)) {
-      switch (getPrefixKey(keyParts)) {
-        case TASK_PROPERTY_PREFIX:
-          propertyValue = getTaskPropertyKey(referenceId, keyParts);
-          break;
-        case CASE_PROPERTY_PREFIX:
-          propertyValue = getCasePropertyKey(referenceId, keyParts);
-          break;
-        case USER_PREFIX:
-          propertyValue = getUserPropertyKey(referenceId, keyParts);
-          break;
-        default:
-          break;
-      }
+      propertyValue = switch (getPrefixKey(keyParts)) {
+        case TASK_PROPERTY_PREFIX -> getTaskPropertyKey(referenceId, keyParts);
+        case CASE_PROPERTY_PREFIX -> getCasePropertyKey(referenceId, keyParts);
+        case USER_PREFIX -> getUserPropertyKey(referenceId, keyParts);
+        default -> keyPattern;
+      };
     }
     return propertyValue;
   }
@@ -87,12 +80,8 @@ public class CustomWidgetUtils {
     }
 
     if(hasCustomFields(keyParts)) {
-      switch (keyParts[1]) {
-        case CUSTOM_FIELD_PREFIX:
-          propertyValue = getCustomFieldByKey(caze.customFields(), keyParts[2]);
-          break;
-        default:
-          break;
+      if (CUSTOM_FIELD_PREFIX.equals(keyParts[1])) {
+        propertyValue = getCustomFieldByKey(caze.customFields(), keyParts[2]);
       }
     } else {
       propertyValue = getCasePropertyByKey(caze, keyParts[1]);
@@ -108,12 +97,8 @@ public class CustomWidgetUtils {
     }
 
     if(hasCustomFields(keyParts)) {
-      switch (keyParts[1]) {
-        case CUSTOM_FIELD_PREFIX:
-          propertyValue = getCustomFieldByKey(task.customFields(), keyParts[2]);
-          break;
-        default:
-          break;
+      if (CUSTOM_FIELD_PREFIX.equals(keyParts[1])) {
+        propertyValue = getCustomFieldByKey(task.customFields(), keyParts[2]);
       }
     } else {
       propertyValue = getTaskPropertyByKey(task, keyParts[1]);
@@ -131,12 +116,8 @@ public class CustomWidgetUtils {
     boolean isUserProperty = keyParts.length == 3
         && keyParts[1].contentEquals(PROPERTY_PREFIX);
     if(isUserProperty) {
-      switch (keyParts[1]) {
-        case PROPERTY_PREFIX:
-          propertyValue = user.getProperty(keyParts[2]);
-          break;
-        default:
-          break;
+      if (PROPERTY_PREFIX.equals(keyParts[1])) {
+        propertyValue = user.getProperty(keyParts[2]);
       }
     } else {
       propertyValue = getUserPropertyByKey(user, keyParts[1]);
@@ -154,38 +135,29 @@ public class CustomWidgetUtils {
 
   private static String getCasePropertyByKey(ICase caze, String key) {
     CustomWidgetParam foundKey = EnumUtils.getEnum(CustomWidgetParam.class, key.toUpperCase());
-    switch (foundKey) {
-      case ID:
-        return String.valueOf(caze.getId());
-      case CATEGORY:
-        return caze.getCategory().getPath();
-      default:
-        return StringUtils.EMPTY;
-    }
+    return switch (foundKey) {
+      case ID -> String.valueOf(caze.getId());
+      case CATEGORY -> caze.getCategory().getPath();
+      default -> StringUtils.EMPTY;
+    };
   }
 
   private static String getTaskPropertyByKey(ITask task, String key) {
     CustomWidgetParam foundKey = EnumUtils.getEnum(CustomWidgetParam.class, key.toUpperCase());
-    switch(foundKey) {
-      case ID:
-          return String.valueOf(task.getId());
-      case CATEGORY:
-          return String.valueOf(task.getCategory().getPath());
-      default:
-          return StringUtils.EMPTY;
-    }
+    return switch(foundKey) {
+      case ID -> String.valueOf(task.getId());
+      case CATEGORY -> String.valueOf(task.getCategory().getPath());
+      default -> StringUtils.EMPTY;
+    };
   }
 
   private static String getUserPropertyByKey(IUser user, String key) {
     CustomWidgetParam foundKey = EnumUtils.getEnum(CustomWidgetParam.class, key.toUpperCase());
-    switch(foundKey) {
-      case USERNAME:
-        return String.valueOf(user.getName());
-      case EMAIL:
-        return String.valueOf(user.getEMailAddress());
-      default:
-        return StringUtils.EMPTY;
-    }
+    return switch(foundKey) {
+      case USERNAME -> String.valueOf(user.getName());
+      case EMAIL -> String.valueOf(user.getEMailAddress());
+      default -> StringUtils.EMPTY;
+    };
   }
 
   private static String getCustomFieldByKey(ICustomFields customfields, String key) {
@@ -207,18 +179,20 @@ public class CustomWidgetUtils {
       if (isNull(startable)) {
         customWidget.getData().setStartRequestPath(EMPTY);
         customWidget.setErrorMessage(Ivy.cms().co("/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/CustomDashboardWidget/CouldNotFindLinkedProcess"));
+        customWidget.setErrorIcon("si si-alert-circle");
         return;
       } else {
         boolean isViewerAllowed = Ivy.session().getAllStartables().anyMatch(item-> item.getId().equals(startable.getId()));
         if (!isViewerAllowed) {
           customWidget.getData().setStartRequestPath(EMPTY);
-          customWidget.setHasPermissionToSee(false);
+          customWidget.setErrorIcon("si si-lock-1");
           customWidget.setErrorMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noPermissionToSee"));
           return;
         }
         
-        customWidget.setHasPermissionToSee(true);
         if (startable.pmv().getActivityState() != ActivityState.ACTIVE || startable.pmv().getReleaseState() != ReleaseState.RELEASED) {
+          customWidget.getData().setStartRequestPath(EMPTY);
+          customWidget.setErrorIcon("si si-alert-circle");
           customWidget.setErrorMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/processCanNotBeLoaded"));
           return;
         }

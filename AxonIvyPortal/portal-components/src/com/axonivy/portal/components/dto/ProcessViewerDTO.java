@@ -9,56 +9,66 @@ public class ProcessViewerDTO {
   private boolean isError;
   private String errorMessage;
   private String errorIcon;
-
-  public ProcessViewerDTO() {}
-
-  public ProcessViewerDTO(IWebStartable webStartable, WebLink webLink, boolean isError, String errorMessage, String errorIcon) {
-    super();
-    this.webStartable = webStartable;
-    this.webLink = webLink;
-    this.isError = isError;
-    this.errorMessage = errorMessage;
-    this.errorIcon = errorIcon;
+  
+  public static final class Builder{
+    private ProcessViewerDTO processViewerDTO;
+    private Builder() {
+      processViewerDTO = new ProcessViewerDTO();
+    }
+    
+    public Builder webStartable(IWebStartable webStartable) {
+      processViewerDTO.webStartable = webStartable;
+      return this;
+    }
+    
+    public Builder webLink(WebLink webLink) {
+      processViewerDTO.webLink = webLink;
+      return this;
+    }
+    
+    public Builder isError(boolean isError) {
+      processViewerDTO.isError = isError;
+      return this;
+    }
+    
+    public Builder errorMessage(String errorMessage) {
+      processViewerDTO.errorMessage = errorMessage;
+      return this;
+    }
+    
+    public Builder errorIcon(String errorIcon) {
+      processViewerDTO.errorIcon = errorIcon;
+      return this;
+    }
+    
+    public ProcessViewerDTO build() {
+      return processViewerDTO;
+    }
   }
-
+  
+  public static Builder builder() {
+    return new Builder();
+  }
+  
+  public ProcessViewerDTO() {}
+  
   public IWebStartable getWebStartable() {
     return webStartable;
-  }
-
-  public void setWebStartable(IWebStartable webStartable) {
-    this.webStartable = webStartable;
   }
 
   public WebLink getWebLink() {
     return webLink;
   }
 
-  public void setWebLink(WebLink webLink) {
-    this.webLink = webLink;
-  }
-
   public boolean isError() {
     return isError;
-  }
-
-  public void setError(boolean isError) {
-    this.isError = isError;
   }
 
   public String getErrorMessage() {
     return errorMessage;
   }
 
-  public void setErrorMessage(String errorMessage) {
-    this.errorMessage = errorMessage;
-  }
-
   public String getErrorIcon() {
     return errorIcon;
   }
-
-  public void setErrorIcon(String errorIcon) {
-    this.errorIcon = errorIcon;
-  }
-
 }
