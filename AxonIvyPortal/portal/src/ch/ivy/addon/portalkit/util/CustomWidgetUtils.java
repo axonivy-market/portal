@@ -240,7 +240,6 @@ public class CustomWidgetUtils {
   public static void loadDataForProcessViewerWidget(DashboardWidget widget) {
     var processViewerWidget = (ProcessViewerDashboardWidget) widget;
     String processPath = processViewerWidget.getProcessPath();
-    Ivy.log().error("processPath of processViewerWidget is {0}", processViewerWidget.getProcessPath());
     if (StringUtils.isNotBlank(processPath)) {
       Optional
           .ofNullable(ProcessService.getInstance().findWebStartableInSecurityContextById(processPath) /* findWebStartableByProcessPath(processPath) */)
