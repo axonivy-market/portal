@@ -29,7 +29,6 @@ public class ProcessViewerUtils {
   private static List<IWebStartable> webStartables;
 
   public static ProcessViewerDTO initProcessViewer(Long caseId, String processLink) {
-    Ivy.log().error("initProcessViewer ==== case ID is {0}, process link is {1}", caseId, processLink);
     boolean isViewerAllowed = false;
     IWebStartable webStartable = null;
     WebLink webLink = null;
@@ -52,10 +51,9 @@ public class ProcessViewerUtils {
 
       // try to init data using processLink
       if (webLink == null) {
-        webStartable = ProcessService.getInstance().findWebStartableInSecurityContextByRelativeLink(processLink);//findWebStartable(processLink);
+        webStartable = ProcessService.getInstance().findWebStartableInSecurityContextByRelativeLink(processLink);
         String processId = webStartable.getId();
         isViewerAllowed = Ivy.session().getAllStartables().anyMatch(startable-> startable.getId().equals(processId));
-        //Ivy.session().getAllStartables().anyMatch(startable-> startable.getId().equals(webStartable.getId()));
         
         if (isViewerAllowed) {
           if (webStartable instanceof ICaseMapWebStartable) {
@@ -69,7 +67,6 @@ public class ProcessViewerUtils {
 
     // check result
     if (webLink == null) {
-      Ivy.log().error("web link is null, isViewAllow {0}, webstartable is null: {1}", isViewerAllowed, webStartable == null);
       isError = true;
       
       if (webStartable == null) {
@@ -133,9 +130,8 @@ public class ProcessViewerUtils {
       return false;
     } else if (hasCaseMap(caze.getBusinessCase())) {
       return true;
-    } else {
-      return ProcessViewer.of(caze).isViewAllowed();
-    }
+    } 
+    return ProcessViewer.of(caze).isViewAllowed();
   }
 
   public static boolean isViewerAllowed(IWebStartable webStartable) {
@@ -143,8 +139,7 @@ public class ProcessViewerUtils {
       return false;
     } else if (webStartable instanceof ICaseMapWebStartable) {
       return true;
-    } else {
-      return ProcessViewer.of((IProcessWebStartable) webStartable).isViewAllowed();
     }
+    return ProcessViewer.of((IProcessWebStartable) webStartable).isViewAllowed();
   }
 }
