@@ -112,7 +112,7 @@ In Engine
 Migrate 10.0 To 10.0.12
 -----------------------
 
-Portal is no longer supports the override process approach for some subprocesses.
+Portal no longer supports the override process approach for some subprocesses.
 To migrate your override subprocesses, please follow the steps below.
 
 #. :ref:`Customize Menu Items <customization-menu-customization>`
