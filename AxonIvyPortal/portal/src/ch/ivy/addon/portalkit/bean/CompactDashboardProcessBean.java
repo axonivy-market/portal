@@ -116,7 +116,9 @@ public class CompactDashboardProcessBean
   public void preview() {
     dashboardProcessBean.preview();
     var isEmptyProcess = CollectionUtils.isEmpty(getWidget().getProcesses());
+    String processSorting = getWidget().getSorting();
     List<DashboardProcess> displayProcesses = new ArrayList<>();
+    List<DashboardProcess> processAfterSorting = new ArrayList<>();
     if (isEmptyProcess) {
       displayProcesses = getAllPortalProcesses();
       getWidget().setSelectedAllProcess(true);
@@ -138,7 +140,12 @@ public class CompactDashboardProcessBean
         filterByCategory(displayProcesses);
       }
     }
-    getWidget().setDisplayProcesses(displayProcesses);
+    if (processSorting == null || ProcessSorting.ALPHABETICALLY.name().equals(processSorting)) {
+      processAfterSorting = DashboardWidgetUtils.sortProcessByAlphabet(displayProcesses);
+    } else if (ProcessSorting.SORTING_INDEX.name().equals(processSorting)) {
+      processAfterSorting = DashboardWidgetUtils.sortProcessByIndex(displayProcesses);
+    }
+    getWidget().setDisplayProcesses(processAfterSorting);
   }
 
   private ColumnModel getFilterableColumnByField(DashboardStandardProcessColumn column) {

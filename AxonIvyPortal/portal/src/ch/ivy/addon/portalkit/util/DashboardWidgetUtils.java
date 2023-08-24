@@ -17,9 +17,12 @@ import static ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn.RESPONSIB
 import static ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn.START;
 import static ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn.STATE;
 
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -54,6 +57,7 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.enums.ProcessSorting;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
@@ -624,6 +628,8 @@ public class DashboardWidgetUtils {
 
   private static List<DashboardProcess> getCompactProcessesForPreview(CompactProcessDashboardWidget processWidget) {
     List<DashboardProcess> processes;
+    List<DashboardProcess> processesAfterSorting = new ArrayList<>();
+    String processSorting = processWidget.getSorting();
     if (processWidget.isSelectedAllProcess()) {
       processes = getAllPortalProcesses();
     }
@@ -633,12 +639,18 @@ public class DashboardWidgetUtils {
     } else {
       processes = filterProcessesByCategories(processWidget.getCategories());
     }
-
-    return processes;
+    if (processSorting == null || ProcessSorting.ALPHABETICALLY.name().equals(processSorting)) {
+      processesAfterSorting = DashboardWidgetUtils.sortProcessByAlphabet(processes);
+    } else if (ProcessSorting.SORTING_INDEX.name().equals(processSorting)) {
+      processesAfterSorting = DashboardWidgetUtils.sortProcessByIndex(processes);
+    }
+    return processesAfterSorting;
   }
 
   private static List<DashboardProcess> getCompactProcessesOfWidget(CompactProcessDashboardWidget processWidget) {
     List<DashboardProcess> processes;
+    List<DashboardProcess> processesAfterSorting = new ArrayList<>();
+    String processSorting = processWidget.getSorting();
     if (processWidget.isSelectedAllProcess()) {
       processes = getAllPortalProcesses();
     }
@@ -648,8 +660,12 @@ public class DashboardWidgetUtils {
     } else {
       processes = filterProcessesByCategories(processWidget.getCategories());
     }
-
-    return processes;
+    if (processSorting == null || ProcessSorting.ALPHABETICALLY.name().equals(processSorting)) {
+      processesAfterSorting = DashboardWidgetUtils.sortProcessByAlphabet(processes);
+    } else if (ProcessSorting.SORTING_INDEX.name().equals(processSorting)) {
+      processesAfterSorting = DashboardWidgetUtils.sortProcessByIndex(processes);
+    }
+    return processesAfterSorting;
   }
 
   public static List<DashboardProcess> getAllPortalProcesses() {
@@ -712,4 +728,25 @@ public class DashboardWidgetUtils {
         .filter(Objects::nonNull).filter(widget -> widget.getId() != null && widget.getId().equals(widgetId))
         .findFirst();
   }
+
+  public static List<DashboardProcess> sortProcessByAlphabet(List<DashboardProcess> processes) {
+    Collator collator = Collator.getInstance(Ivy.session().getContentLocale());
+    return processes.stream()
+        .sorted(Comparator.comparing(dashboardProcess -> dashboardProcess.getName().toLowerCase(), collator::compare))
+        .toList();
+  }
+
+  public static List<DashboardProcess> sortProcessByIndex(List<DashboardProcess> processes) {
+    Collator collator = Collator.getInstance(Locale.ENGLISH);
+    List<DashboardProcess> processWithIndex = processes.stream()
+        .filter(process -> StringUtils.isNoneEmpty(process.getSortIndex()))
+        .sorted(Comparator.comparing(dashboardProcess -> dashboardProcess.getName().toLowerCase(), collator::compare))
+        .collect(Collectors.toList());
+    List<DashboardProcess> processWithoutIndex = processes.stream()
+        .filter(process -> StringUtils.isEmpty(process.getSortIndex()))
+        .sorted(Comparator.comparing(dashboardProcess -> dashboardProcess.getName().toLowerCase(), collator::compare))
+        .collect(Collectors.toList());
+    processWithIndex.addAll(processWithoutIndex);
+    return processWithIndex;
+}
 }

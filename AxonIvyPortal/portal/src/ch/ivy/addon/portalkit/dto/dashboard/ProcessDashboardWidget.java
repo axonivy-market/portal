@@ -13,7 +13,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.dto.dashboard.process.ProcessColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
-import ch.ivy.addon.portalkit.enums.ProcessSorting;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardProcessSearchCriteria;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
@@ -32,8 +31,7 @@ public class ProcessDashboardWidget extends DashboardWidget {
   private boolean isPreview;
   @JsonIgnore
   protected DashboardProcessSearchCriteria criteria;
-  @JsonIgnore
-  protected List<ProcessSorting> sorting;
+  protected String sorting;
 
   public ProcessDashboardWidget() {
     criteria = new DashboardProcessSearchCriteria();
@@ -44,6 +42,7 @@ public class ProcessDashboardWidget extends DashboardWidget {
     criteria = widget.getCriteria();
     displayMode = widget.getDisplayMode();
     isPreview = widget.isPreview();
+    sorting = widget.getSorting();
   }
 
   @Override
@@ -122,11 +121,11 @@ public class ProcessDashboardWidget extends DashboardWidget {
     this.criteria.setApplications(applications);
   }
 
-  public List<ProcessSorting> getSorting() {
+  public String getSorting() {
     return sorting;
   }
 
-  public void setSorting(List<ProcessSorting> sorting) {
+  public void setSorting(String sorting) {
     this.sorting = sorting;
   }
 
