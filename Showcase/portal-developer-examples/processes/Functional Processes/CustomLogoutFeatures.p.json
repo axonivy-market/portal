@@ -1,0 +1,120 @@
+{
+  "format" : "10.0.0",
+  "id" : "1657EA461CE412A1",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "_com.axonivy.portal.developerexamples.CustomLogoutFeaturesData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "portalGetLogoutPage()",
+      "config" : {
+        "callSignature" : "getLogoutPage",
+        "result" : {
+          "params" : [
+            { "name" : "logoutPage", "type" : "String" }
+          ],
+          "map" : {
+            "result.logoutPage" : "in.logoutPage"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f6", "to" : "f5" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "This is the process to send a custom logout page Portal. It set the logout page to the url of application home page.",
+        "So whenever user logged out of Portal, he will be redirected to the URL from result \"logoutPage\" of this process"
+      ],
+      "visual" : {
+        "at" : { "x" : 744, "y" : 32 },
+        "size" : { "width" : 704, "height" : 44 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "Script",
+      "name" : "Set logout page",
+      "config" : {
+        "output" : {
+          "code" : "in.logoutPage = ivy.html.applicationHomeRef();"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f4",
+      "type" : "CallSubStart",
+      "name" : "portalLogout(Boolean,ITask)",
+      "config" : {
+        "callSignature" : "portalLogout",
+        "input" : {
+          "params" : [
+            { "name" : "isTaskReserve", "type" : "Boolean" },
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 104, "y" : 232 },
+        "labelOffset" : { "x" : 25, "y" : 49 }
+      },
+      "connect" : { "id" : "f10", "to" : "f9" }
+    }, {
+      "id" : "f7",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 360, "y" : 232 }
+      }
+    }, {
+      "id" : "f8",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "This is the process to custom logout function Portal.",
+        "So whenever user logout of Portal, he will perform this function instead of standard logout function."
+      ],
+      "visual" : {
+        "at" : { "x" : 752, "y" : 200 },
+        "size" : { "width" : 704, "height" : 44 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "Script",
+      "name" : "logout",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.context.FacesContext;",
+            "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
+            "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
+            "if (in.isTaskReserve) {",
+            "  ivy.session.parkTask(in.#task != null ? in.task : ivy.task);",
+            "}",
+            "ivy.session.logoutSessionUser();",
+            "",
+            "for (SessionAttribute item: SessionAttribute.values()){",
+            "  SecurityServiceUtils.removeSessionAttribute(item.toString());",
+            "}",
+            "",
+            "ivy.log.warn(\"Called customized logout function!\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 232 }
+      },
+      "connect" : { "id" : "f11", "to" : "f7" }
+    } ]
+}

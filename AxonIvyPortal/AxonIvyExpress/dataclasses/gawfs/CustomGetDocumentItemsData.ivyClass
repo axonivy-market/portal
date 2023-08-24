@@ -1,4 +1,4 @@
-GetDocumentItemsOverrideData #class
+CustomGetDocumentItemsData #class
 gawfs #namespace
 businessCase ch.ivyteam.ivy.workflow.ICase #field
 message String #field

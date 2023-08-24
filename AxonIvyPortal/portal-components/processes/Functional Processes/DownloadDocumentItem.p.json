@@ -8,9 +8,9 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "call(ICase,IvyDocument)",
+      "name" : "downloadDocumentItem(ICase,IvyDocument)",
       "config" : {
-        "callSignature" : "call",
+        "callSignature" : "downloadDocumentItem",
         "input" : {
           "params" : [
             { "name" : "bussinessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
@@ -31,15 +31,15 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 64 },
+        "at" : { "x" : 296, "y" : 208 },
         "labelOffset" : { "x" : -2, "y" : 50 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : { "id" : "f13", "to" : "f4" }
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 352, "y" : 64 }
+        "at" : { "x" : 1040, "y" : 208 }
       }
     }, {
       "id" : "f3",
@@ -56,18 +56,84 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 64 },
+        "at" : { "x" : 760, "y" : 208 },
         "size" : { "width" : 160, "height" : 60 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : { "id" : "f10", "to" : "f9" }
     }, {
       "id" : "f5",
       "type" : "ProcessAnnotation",
-      "name" : "Override this subprocess to download file from DMS",
+      "name" : [
+        "This sub process can be customized  to download file from DMS",
+        "",
+        "The custom proccess signature must be: \"portalDownloadDocumentItem(ICase,IvyDocument)\""
+      ],
       "visual" : {
-        "at" : { "x" : 312, "y" : 200 },
-        "size" : { "width" : 288, "height" : 30 }
+        "at" : { "x" : 296, "y" : 48 },
+        "size" : { "width" : 560, "height" : 56 }
       },
-      "connect" : { "id" : "f6", "to" : "f0", "via" : [ { "x" : 328, "y" : 184 } ] }
+      "connect" : { "id" : "f6", "to" : "f0" }
+    }, {
+      "id" : "f7",
+      "type" : "Alternative",
+      "name" : "Has custom sub process?",
+      "visual" : {
+        "at" : { "x" : 576, "y" : 208 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f12", "to" : "f9", "via" : [ { "x" : 576, "y" : 120 }, { "x" : 920, "y" : 120 } ], "label" : {
+            "name" : "Yes",
+            "segment" : 0.5
+          }, "condition" : "in.hasCustomProcess" },
+        { "id" : "f11", "to" : "f3", "label" : {
+            "name" : "No"
+          } }
+      ]
+    }, {
+      "id" : "f9",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 920, "y" : 208 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f4",
+      "type" : "Script",
+      "name" : [
+        "Call customized",
+        "sub process"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.CaseUtils;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "import com.axonivy.portal.components.enums.CustomSignature;",
+            "import org.primefaces.model.StreamedContent;",
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "",
+            "Map params = new HashMap();",
+            "params.put(\"businessCase\", in.businessCase);",
+            "params.put(\"document\", in.document);",
+            "",
+            "CustomSignature signature = CaseUtils.isExpressCase(ivy.case) ? CustomSignature.EXPRESS_DOWNLOAD_DOCUMENT_ITEM : CustomSignature.DOWNLOAD_DOCUMENT_ITEM;",
+            "Map result = IvyAdapterService.startSubProcessInApplication(signature.getSignature(), params);",
+            "",
+            "in.hasCustomProcess = result != null;",
+            "if (in.hasCustomProcess) {",
+            "  in.streamedContent = result.get(\"streamedContent\") as StreamedContent;",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 424, "y" : 208 }
+      },
+      "connect" : { "id" : "f8", "to" : "f7" }
     } ]
 }

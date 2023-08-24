@@ -2,15 +2,14 @@ package ch.ivy.addon.portal.chat;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.security.ISecurityMember;
 
@@ -24,7 +23,6 @@ public class GroupChat implements Serializable {
   private String applicationName;
   private String creator;
   private Set<String> assigneeNames;
-  private Map<String, String> params;
   @JsonIgnore
   private Set<SecurityMemberDTO> assignees;
 
@@ -105,14 +103,6 @@ public class GroupChat implements Serializable {
         }
       });
     }
-  }
-
-  public Map<String, String> getParams() {
-    return params;
-  }
-
-  public void setParams(Map<String, String> params) {
-    this.params = params;
   }
 
   @Override
