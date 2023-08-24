@@ -1,8 +1,7 @@
 .. _customization-forgot-password:
 
-Forgot Password (Deprecated)
+Forgot Password
 ===============
-.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 .. _customization-case-widget-how-to-override-token-generation-and-email-sending:
 

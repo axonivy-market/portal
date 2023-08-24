@@ -2,12 +2,12 @@
 
 Build Your Own Portal (Deprecated)
 =====================
+.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 .. _customization-build-your-own-portal-build-your-own-portal-using-portal:
 
 Build Your Own Portal Using portal
 ----------------------------------
-.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 #. Create a new project that depends on ``portal``.
 

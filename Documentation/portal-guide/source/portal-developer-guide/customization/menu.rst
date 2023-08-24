@@ -19,7 +19,6 @@ external links are shown in the homepage selection.
 
 Customization
 -------------
-.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 Create a callable subprocess with signature ``loadSubMenuItems()`` in your
 project. Make sure that this signature is unique in your application and follow

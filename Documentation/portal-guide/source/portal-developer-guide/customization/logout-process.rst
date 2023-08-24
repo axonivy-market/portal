@@ -1,8 +1,7 @@
 .. _customization-logout:
 
-Logout Process (Deprecated)
+Logout Process
 ==============
-.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 Introduction
 ------------

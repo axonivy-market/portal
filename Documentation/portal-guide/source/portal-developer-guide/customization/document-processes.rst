@@ -1,8 +1,7 @@
 .. _customization-document-processes:
 
-Document processes (Deprecated)
+Document processes
 ==================
-.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 .. _customization-document-processes-introduction:
 
