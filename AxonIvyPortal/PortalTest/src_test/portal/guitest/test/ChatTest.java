@@ -1,6 +1,5 @@
 package portal.guitest.test;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static portal.guitest.common.Variable.ENABLE_GROUP_CHAT;
