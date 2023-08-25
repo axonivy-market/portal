@@ -1,0 +1,31 @@
+{
+  "format" : "10.0.0",
+  "id" : "18A2384BC56F7904",
+  "config" : {
+    "data" : "com.axonivy.portal.developerexamples.Data"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "processWithIndex2.ivp",
+      "config" : {
+        "callSignature" : "processWithIndex2",
+        "startDescription" : "Process With Index",
+        "startCustomFields" : [
+          { "name" : "portalSortIndex", "value" : "2" }
+        ],
+        "outLink" : "start.ivp",
+        "startName" : "<%=ivy.cms.co(\"/Processes/ProcessWithIndex/name2\")%>"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    } ]
+}

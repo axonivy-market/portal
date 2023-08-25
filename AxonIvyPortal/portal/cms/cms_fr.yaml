@@ -129,8 +129,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       GRID: Carte
       IMAGE: Image
     ProcessSorting:
-      ALPHABETICALLY: Alphabetically
-      SORTING_INDEX: Sorting Index
+      ALPHABETICALLY: Alphabétiquement
+      SORTING_INDEX: Index de tri
     ProcessType:
       EXPRESS_PROCESS: Flux de travail express
       EXTERNAL_LINK: Lien externe

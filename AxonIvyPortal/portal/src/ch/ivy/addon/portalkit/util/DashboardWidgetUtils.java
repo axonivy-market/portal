@@ -730,23 +730,36 @@ public class DashboardWidgetUtils {
   }
 
   public static List<DashboardProcess> sortProcessByAlphabet(List<DashboardProcess> processes) {
-    Collator collator = Collator.getInstance(Ivy.session().getContentLocale());
+    Locale currentLocale = Ivy.session().getContentLocale();
+    Collator collator = Collator.getInstance(currentLocale);
+
+    Comparator<DashboardProcess> comparator =
+        Comparator.comparing(process -> process.getName().toLowerCase(), collator::compare);
+
     return processes.stream()
-        .sorted(Comparator.comparing(dashboardProcess -> dashboardProcess.getName().toLowerCase(), collator::compare))
-        .toList();
+        .sorted(comparator).collect(Collectors.toList());
   }
 
   public static List<DashboardProcess> sortProcessByIndex(List<DashboardProcess> processes) {
-    Collator collator = Collator.getInstance(Locale.ENGLISH);
+    Locale currentLocale = Ivy.session().getContentLocale();
+    Collator collator = Collator.getInstance(currentLocale);
+
+    Comparator<DashboardProcess> byIndex = Comparator.comparing(DashboardProcess::getSortIndex, collator::compare);
+    Comparator<DashboardProcess> byName =
+        Comparator.comparing(process -> process.getName().toLowerCase(), collator::compare);
+
     List<DashboardProcess> processWithIndex = processes.stream()
         .filter(process -> StringUtils.isNoneEmpty(process.getSortIndex()))
-        .sorted(Comparator.comparing(dashboardProcess -> dashboardProcess.getName().toLowerCase(), collator::compare))
+        .sorted(byIndex)
         .collect(Collectors.toList());
+
     List<DashboardProcess> processWithoutIndex = processes.stream()
         .filter(process -> StringUtils.isEmpty(process.getSortIndex()))
-        .sorted(Comparator.comparing(dashboardProcess -> dashboardProcess.getName().toLowerCase(), collator::compare))
+        .sorted(byName)
         .collect(Collectors.toList());
+
     processWithIndex.addAll(processWithoutIndex);
+
     return processWithIndex;
-}
+  }
 }

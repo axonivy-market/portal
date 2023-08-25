@@ -31,7 +31,6 @@ public class ProcessDashboardWidget extends DashboardWidget {
   private boolean isPreview;
   @JsonIgnore
   protected DashboardProcessSearchCriteria criteria;
-  protected String sorting;
 
   public ProcessDashboardWidget() {
     criteria = new DashboardProcessSearchCriteria();
@@ -42,7 +41,6 @@ public class ProcessDashboardWidget extends DashboardWidget {
     criteria = widget.getCriteria();
     displayMode = widget.getDisplayMode();
     isPreview = widget.isPreview();
-    sorting = widget.getSorting();
   }
 
   @Override
@@ -119,14 +117,6 @@ public class ProcessDashboardWidget extends DashboardWidget {
   
   public void setApplications(List<String> applications) {
     this.criteria.setApplications(applications);
-  }
-
-  public String getSorting() {
-    return sorting;
-  }
-
-  public void setSorting(String sorting) {
-    this.sorting = sorting;
   }
 
 }
