@@ -121,6 +121,6 @@ public class DashboardModificationPage extends TemplatePage {
   
   public void getDashboardShareLinkDialog() {
     getDashboardShareLinkButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $("div[id$=':dashboard-import-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("div[id$=':share-dashboard-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 }
