@@ -8,7 +8,6 @@ import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ICase;
 
-@SuppressWarnings("restriction")
 public class CaseUtils {
   public static void createSystemNote(final ICase wfCase, final String note) {
     final ISecurityContext s = ISecurityContext.current();

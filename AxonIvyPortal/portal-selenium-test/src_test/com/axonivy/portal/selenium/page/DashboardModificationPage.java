@@ -74,7 +74,7 @@ public class DashboardModificationPage extends TemplatePage {
     editDashboardDialog.$("div[id$=':dashboard-permission']").$("button.ui-autocomplete-dropdown").click();
     
     $("span[id$=':dashboard-permission_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    $("span[id$=':dashboard-permission_panel']").$$("tr.ui-autocomplete-item").forEach(item -> {
+    $("span[id$=':dashboard-permission_panel']").$$("tr.ui-autocomplete-item").asDynamicIterable().forEach(item -> {
       for(String permissionName : permissions) {
         if (item.$("td").getText().contains(permissionName)) {
           item.click();

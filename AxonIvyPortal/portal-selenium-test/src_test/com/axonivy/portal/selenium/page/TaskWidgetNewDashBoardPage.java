@@ -153,7 +153,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   categoriesPanel.$("[id$=':widget-category-filter-tree']")
     .$$(".ui-chkbox").first().shouldBe(getClickableCondition()).click();
   
-    categoriesPanel.$$(".ui-treenode").forEach(leaf -> {
+    categoriesPanel.$$(".ui-treenode").asDynamicIterable().forEach(leaf -> {
        for (var category : categories) {
          var leafValue = leaf.$(".ui-treenode-label").getText();
          if (category.equalsIgnoreCase(leafValue)) {
