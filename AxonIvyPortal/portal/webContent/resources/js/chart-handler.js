@@ -36,17 +36,20 @@ $(document).ready(function () {
         let config = data.chartConfig;
         let chartType = config.chartType;
         let chartObject;
+        let chartData;
+
         if ('number' === chartType) {
             let html = renderNumberChart(config.label);
             $(chart).html(html);
             let cardNumber = result.map(bucket => bucket.count)+ `${config.numberChartConfig.suffixSymbol}`;
             $(chart).find('.card-number').html(cardNumber);
+            chartData = $(chart);
         }
         if ('bar' === chartType) {
             let html = renderBarChart(chartId);
             $(chart).html(html);
             let canvasObject = $(chart).find('canvas');
-            chartObject = new Chart(canvasObject, {
+            chartData = new Chart(canvasObject, {
                 type: chartType,
                 label: config.label,
                 data: {
@@ -88,7 +91,7 @@ $(document).ready(function () {
             let html = renderPieChart(chartId);
             $(chart).html(html);
             let canvasObject = $(chart).find('canvas');
-            chartObject = new Chart(canvasObject, {
+            chartData = new Chart(canvasObject, {
                 type: chartType,
                 label: config.label,
                 data: {
@@ -111,7 +114,7 @@ $(document).ready(function () {
             let html = renderPieChart(chartId);
             $(chart).html(html);
             let canvasObject = $(chart).find('canvas');
-            chartObject = new Chart(canvasObject, {
+            chartData = new Chart(canvasObject, {
                 type: chartType,
                 label: config.label,
                 data: {
@@ -127,10 +130,17 @@ $(document).ready(function () {
                     maintainAspectRatio : false
                 }
             });
-
         }
-        if (chartObject !== undefined) {
-            refreshInfos.push({'chartObject': chartObject, 'chartType': chartType, 'chartId': chartId, 'refreshInterval': refreshInterval});
+
+        chartObject = {
+            'chartData': chartData,
+            'chartType': chartType,
+            'chartId': chartId,
+            'refreshInterval': refreshInterval
+        }
+
+        if (chartData !== undefined) {
+            refreshInfos.push(chartObject);
         }
         if ($('.chart-options').length === refreshInfos.length) {
             initRefresh(refreshInfos);
@@ -149,20 +159,29 @@ $(document).ready(function () {
             let refreshInfo = refreshInfos[i];
             if (refreshInfo.refreshInterval && refreshInfo.refreshInterval > 0) {
                 setInterval(() => {
-                    refreshChart(refreshInfo.chartObject, refreshInfo.chartId);
+                    refreshChart(refreshInfo);
                 }, refreshInfo.refreshInterval * 1000);
             }
         }
     }
 
-    async function refreshChart(chartObject, chartId) {
+    async function refreshChart(chartObject) {
+        let chartId = chartObject.chartId;
         const response = await instance.post('/api/statistic-data-service/Data', {"chartId": chartId});
         const result = response.data.result.aggs[0].buckets;
-        chartObject.data.labels = result.map(bucket => formatChartLabel(bucket.key));
-        chartObject.data.datasets.forEach(dataset => {
-            dataset.data = result.map(bucket => bucket.count);
-        });
-        chartObject.update();
+        let chartData = chartObject.chartData;
+        if (chartObject.chartType !== 'number') {
+            chartData.data.labels = result.map(bucket => formatChartLabel(bucket.key));
+            chartData.data.datasets.forEach(dataset => {
+                dataset.data = result.map(bucket => bucket.count);
+            });
+            chartData.update();
+        } else {
+            let data = await response.data;
+            let config = data.chartConfig;
+            let cardNumber = result.map(bucket => bucket.count)+ `${config.numberChartConfig.suffixSymbol}`;
+            chartData.find('.card-number').html(cardNumber);
+        }
     }
 
     const renderBarChart = (chartId) => {
