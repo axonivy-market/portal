@@ -249,7 +249,7 @@ function expandFullscreen(index, widgetId) {
     $(widget.get(0)).closest('.js-dashboard__body').addClass('expand-fullscreen');
     $(widget.get(0)).closest('.js-layout-content').addClass('expand-fullscreen');
   }
-  setTimeout(() => resizeChartWidget() , 100);
+  setTimeout(() => resizeChartWidget() , 300);
 }
 
 function resizeTableBody() {
