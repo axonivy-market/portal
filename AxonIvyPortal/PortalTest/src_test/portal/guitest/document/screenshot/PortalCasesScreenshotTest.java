@@ -125,36 +125,6 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
   }
   
   @Test
-  public void screenshotCustomCaseList() throws IOException {
-    caseWidget = homePage.openCaseList();
-    executeDecorateJs("highlightCustomCaseList()");
-    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.CASE_WIDGET_CUSTOMIZATION_FOLDER + "case-list", new Dimension(SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT));
-  }
-  
-  @Test
-  public void screenshotCustomCaseListColumnConfig() throws IOException {
-    ScreenshotUtil.maximizeBrowser();
-    redirectToRelativeLink(createCasesForCaseListCustomization);
-    login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
-    caseWidget = homePage.openMainMenu().selectCaseMenu();
-    caseWidget.clickColumnsButton();
-    executeDecorateJs("highlightCustomColumnsConfigOnCaseList()");
-    ScreenshotUtil.captureHalfTopRightPageScreenShot(ScreenshotUtil.CASE_WIDGET_CUSTOMIZATION_FOLDER + "case-columns-configuration");
-  }
-  
-  @Test
-  public void screenshotCaseFilter() throws IOException {
-    ScreenshotUtil.maximizeBrowser();
-    caseWidget = homePage.openCaseList();
-    caseWidget.openAdvancedFilter("Creator", "creator");
-    caseWidget.filterByCreator("Demo");
-    caseWidget.getCreator();
-    executeDecorateJs("highlightCaseCreatorFilter()");
-    ScreenshotUtil.captureHalfCenterTopPageScreenShot(ScreenshotUtil.CASE_WIDGET_CUSTOMIZATION_FOLDER + "case-filter");
-  }
-  
-  @Test
   public void screenshotCustomizeCaseDetails() throws IOException {
     ScreenshotUtil.resizeBrowser(new Dimension(1366, 1200));
     redirectToRelativeLink(createNewPaymentUrl);
