@@ -41,7 +41,6 @@ You find ``portal-developer-examples`` in the engine demo mode or import them in
    global-search-result
    document-processes
    responsive-css
-   group-chat-customization
    user-with-environment-info
    page-header-footer
    process-information
