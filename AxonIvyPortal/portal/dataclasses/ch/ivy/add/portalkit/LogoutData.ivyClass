@@ -2,3 +2,4 @@ LogoutData #class
 ch.ivy.add.portalkit #namespace
 isTaskReserve Boolean #field
 task ch.ivyteam.ivy.workflow.ITask #field
+hasCustomProcess Boolean #field

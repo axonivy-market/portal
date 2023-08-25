@@ -922,7 +922,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processes:
       emptyProcess: Vous n'avez défini aucun processus.
       noMatchingProcess: Aucun processus correspondant.
-      noPermissionToSee: Vous n'avez pas l'autorisation nécessaire pour voir ce widget.
+      noPermissionToSee: Vous n'avez pas l'autorisation requise pour lancer ce processus.
       noProcessSelected: Veuillez sélectionner un processus
     removeWidgetHeader: Supprimer le widget "{0}"
     removeWidgetMessage: Voulez-vous vraiment le supprimer ?
@@ -1541,12 +1541,6 @@ Dialogs:
             expressNoItem: Pas de tâche Express terminée
             expressNoItemDescription: Les résultats des tâches terminées sont affichés ici
             expressWorkflowName: 'Détails de cas #{0}'
-        portal:
-          generic:
-            dashboard:
-              component:
-                CustomDashboardWidget:
-                  CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
         portalkit:
           component:
             CaseWidget:

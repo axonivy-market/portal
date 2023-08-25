@@ -214,13 +214,10 @@ public class TaskTemplatePage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("div[id$='adhoc-task-reset-confirmation-dialog_content']"), true);
   }
 
-  public void clickChatGroup(boolean growlMessageExpected) {
+  public void clickChatGroup() {
     String chatGroup = "a[id$='chat-group']";
     waitForElementDisplayed(By.cssSelector(chatGroup), true);
     clickByCssSelector(chatGroup);
-    if (growlMessageExpected) {
-      waitForElementDisplayedByCssSelector("span.ui-growl-title");
-    }
   }
 
   @SuppressWarnings("deprecation")
@@ -256,6 +253,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public void clickCreateGroupChatBtn() {
+    waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-group-create-button"), true);
     click(By.id("chat-assignee-selection-form:chat-group-create-button"));
     waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-group-create-button"), false);
   }

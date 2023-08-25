@@ -3,17 +3,17 @@
   "id" : "1818961DF63F4295",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "com.axonivy.portal.components.examples.override.UploadDocumentItemOverrideData"
+    "data" : "com.axonivy.portal.components.examples.override.CustomDocumentFeaturesData"
   },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
       "name" : [
-        "call(ICase,UploadedFile,",
+        "portalUploadDocumentItem(ICase,UploadedFile,",
         "Boolean,Boolean,String)"
       ],
       "config" : {
-        "callSignature" : "call",
+        "callSignature" : "portalUploadDocumentItem",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
@@ -34,7 +34,7 @@
           "params" : [
             { "name" : "uploadedDocument", "type" : "ch.ivyteam.ivy.workflow.document.IDocument" },
             { "name" : "message", "type" : "String" },
-            { "name" : "status", "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus" }
+            { "name" : "status", "type" : "String" }
           ],
           "map" : {
             "result.uploadedDocument" : "in.uploadedDocument",
@@ -45,7 +45,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 128 },
-        "labelOffset" : { "x" : -52, "y" : -26 }
+        "labelOffset" : { "x" : 25, "y" : -39 }
       },
       "connect" : { "id" : "f3", "to" : "f36" }
     }, {
@@ -67,20 +67,20 @@
             "import java.util.Arrays;",
             "",
             "in.message = \"\";",
-            "in.status = UploadDocumentCheckStatus.OK;",
+            "in.status = UploadDocumentCheckStatus.OK.toString();",
             "",
             "if (in.uploadedFile == null) {",
             "  in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/InvalidFileMessage\");",
-            "  in.status = UploadDocumentCheckStatus.FAIL;",
+            "  in.status = UploadDocumentCheckStatus.FAIL.toString();",
             "} else if (in.uploadedFile.getSize() == 0) {",
             "  in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/EmptyFileMessage\");",
-            "  in.status = UploadDocumentCheckStatus.FAIL;",
+            "  in.status = UploadDocumentCheckStatus.FAIL.toString();",
             "} else {",
             "  Long maxFileUploadSize = MasterData.getFileUploadSizeLimit();",
             "  if (in.uploadedFile.getSize() > maxFileUploadSize) {",
             "    in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/ErrorFileUploadSize\", Arrays.asList(FileUtils.byteCountToDisplaySize(maxFileUploadSize)));",
             "  }",
-            "  in.status = UploadDocumentCheckStatus.FAIL;",
+            "  in.status = UploadDocumentCheckStatus.FAIL.toString();",
             "}"
           ]
         }
@@ -102,7 +102,7 @@
             "name" : "YES",
             "segment" : 0.3,
             "offset" : { "x" : 0, "y" : -12 }
-          }, "condition" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK" },
+          }, "condition" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK.toString()" },
         { "id" : "f88", "to" : "f73" }
       ]
     }, {
@@ -117,12 +117,11 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.service.CaseDocumentService;",
-            "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
             "import java.util.Arrays;",
             "import org.primefaces.model.file.UploadedFile;",
             "",
             "out.message = \"\";",
-            "out.status = UploadDocumentCheckStatus.OK;",
+            "out.status = \"OK\";",
             "String fileName = in.uploadedFile.getFileName();",
             "out.uploadedDocument = CaseDocumentService.newInstance(in.businessCase).upload(fileName, in.uploadedFile.getInputStream());",
             "",
@@ -132,7 +131,7 @@
             "  out.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/UploadSucceed\");",
             "} else {",
             "  out.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/UploadFailed\");",
-            "  out.status = UploadDocumentCheckStatus.FAIL;",
+            "  out.status = \"FAIL\";",
             "}"
           ]
         }
@@ -159,7 +158,7 @@
             "",
             "if (doesDocumentExist) {",
             "  in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/UploadFileExists\", [fileName]);",
-            "  in.status = UploadDocumentCheckStatus.FAIL;",
+            "  in.status = UploadDocumentCheckStatus.FAIL.toString();",
             "}"
           ]
         }
@@ -219,7 +218,7 @@
             "name" : "OK",
             "segment" : 0.33,
             "offset" : { "x" : 0, "y" : -8 }
-          }, "condition" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK" },
+          }, "condition" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK.toString()" },
         { "id" : "f90", "to" : "f74" }
       ]
     }, {
@@ -232,7 +231,7 @@
           "map" : {
             "out" : "in",
             "out.message" : "result.message",
-            "out.status" : "result.uploadDocumentCheckStatus"
+            "out.status" : "result.uploadDocumentCheckStatus.toString()"
           }
         },
         "call" : {
@@ -256,18 +255,6 @@
       },
       "connect" : { "id" : "f80", "to" : "f53" }
     }, {
-      "id" : "f5",
-      "type" : "ProcessAnnotation",
-      "name" : [
-        "Override this sub process to upload your file to DMS",
-        "This sub process also contains some validation, so if you override it, you have to implement validation by your own"
-      ],
-      "visual" : {
-        "at" : { "x" : 480, "y" : 344 },
-        "size" : { "width" : 640, "height" : 44 }
-      },
-      "connect" : { "id" : "f6", "to" : "f0" }
-    }, {
       "id" : "f4",
       "type" : "Script",
       "name" : [
@@ -290,5 +277,201 @@
         "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f5",
+      "type" : "CallSubStart",
+      "name" : "portalDeleteDocumentItem(ICase,IvyDocument)",
+      "config" : {
+        "callSignature" : "portalDeleteDocumentItem",
+        "input" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument" }
+          ],
+          "map" : {
+            "out.businessCase" : "param.businessCase",
+            "out.document" : "param.document"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "message", "type" : "String" }
+          ],
+          "map" : {
+            "result.message" : "in.message"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 320 },
+        "labelOffset" : { "x" : 25, "y" : 41 }
+      },
+      "connect" : { "id" : "f10", "to" : "f9" }
+    }, {
+      "id" : "f6",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 528, "y" : 320 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "Script",
+      "name" : "Delete document item",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import java.util.Arrays;",
+            "",
+            "ivy.log.warn(\"Call to override process delete document item\");",
+            "in.businessCase.documents().delete(Long.valueOf(in.document.id));",
+            "",
+            "String note = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/DeleteDocumentNote\", Arrays.asList(ivy.session.getSessionUserName(), in.document.getName()));",
+            "in.businessCase.createNote(ivy.session, note);",
+            "in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/DeleteSuceed\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 336, "y" : 320 },
+        "size" : { "width" : 128, "height" : 60 }
+      },
+      "connect" : { "id" : "f11", "to" : "f6" }
+    }, {
+      "id" : "f12",
+      "type" : "CallSubStart",
+      "name" : "portalDownloadDocumentItem(ICase,IvyDocument)",
+      "config" : {
+        "callSignature" : "portalDownloadDocumentItem",
+        "input" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument" }
+          ],
+          "map" : {
+            "out.businessCase" : "param.businessCase",
+            "out.document" : "param.document"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent" }
+          ],
+          "map" : {
+            "result.streamedContent" : "in.streamedContent"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 464 },
+        "labelOffset" : { "x" : 9, "y" : 41 }
+      },
+      "connect" : { "id" : "f17", "to" : "f14" }
+    }, {
+      "id" : "f13",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 528, "y" : 464 }
+      }
+    }, {
+      "id" : "f14",
+      "type" : "Script",
+      "name" : "Download document item",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.service.CaseDocumentService;",
+            "",
+            "ivy.log.warn(\"Call to override process download document item\");",
+            "out.streamedContent = CaseDocumentService.newInstance(in.businessCase).download(in.document);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 464 },
+        "size" : { "width" : 160, "height" : 60 }
+      },
+      "connect" : { "id" : "f16", "to" : "f13" }
+    }, {
+      "id" : "f18",
+      "type" : "CallSubStart",
+      "name" : "portalGetDocumentItems(ICase)",
+      "config" : {
+        "callSignature" : "portalGetDocumentItems",
+        "input" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
+          ],
+          "map" : {
+            "out.businessCase" : "param.businessCase"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "documents", "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>" },
+            { "name" : "message", "type" : "String" }
+          ],
+          "map" : {
+            "result.documents" : "in.documents",
+            "result.message" : "in.message"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 608 },
+        "labelOffset" : { "x" : 17, "y" : 33 }
+      },
+      "connect" : { "id" : "f22", "to" : "f20" }
+    }, {
+      "id" : "f19",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 528, "y" : 608 }
+      }
+    }, {
+      "id" : "f20",
+      "type" : "Script",
+      "name" : "get document items",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.examples.enums.ExtendedDocumentType;",
+            "import com.axonivy.portal.components.examples.document.CustomizedIvyDocument;",
+            "import com.axonivy.portal.components.examples.document.CustomizedIvyDocumentTransformer;",
+            "import com.axonivy.portal.components.document.DocumentCustomField;",
+            "import com.axonivy.portal.components.service.CaseDocumentService;",
+            "",
+            "import org.apache.commons.lang3.StringUtils;",
+            "import ch.ivyteam.ivy.workflow.document.IDocument;",
+            "",
+            "if (in.#businessCase is initialized) {",
+            "  List<IDocument> iDocuments = CaseDocumentService.newInstance(in.businessCase).getAll();",
+            "  CustomizedIvyDocumentTransformer transformer = new CustomizedIvyDocumentTransformer();",
+            "  in.documents = transformer.transform(iDocuments);",
+            "  for(CustomizedIvyDocument doc : in.documents) {",
+            "    doc.setName(\"Overridden: \" + doc.getName());",
+            "    String typeStringField = DocumentCustomField.TYPE_PREFIX + doc.id;",
+            "    String typeString = in.businessCase.customFields().stringField(typeStringField).getOrNull();",
+            "    if (StringUtils.isNotBlank(typeString)) {",
+            "      doc.setType(ExtendedDocumentType.valueOf(typeString.toUpperCase()));",
+            "    }",
+            "    ",
+            "    String customerStringField = \"IvyDocumentCustomer-\" + doc.id;",
+            "    String customer = in.businessCase.customFields().stringField(customerStringField).getOrNull();",
+            "    if (StringUtils.isNotBlank(customer)) {",
+            "      doc.setCustomer(customer);",
+            "    }",
+            "  }",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 336, "y" : 608 },
+        "size" : { "width" : 128, "height" : 60 }
+      },
+      "connect" : { "id" : "f21", "to" : "f19" }
     } ]
 }

@@ -76,7 +76,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     deputyFor: I am substitute for
     myAbsences: My absences
     myDeputies: My substitutes
-    nextAbsence: Upcomming absence
+    nextAbsence: Upcoming absence
     selectedDeputyFor: Selected user is substitute for
     selectedUser: Selected user
   AllTasks:
@@ -924,7 +924,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processes:
       emptyProcess: You have not defined any processes.
       noMatchingProcess: No matching processes.
-      noPermissionToSee: You do not have the necessary permission to see this widget.
+      noPermissionToSee: You do not have the required permission to start this process.
       noProcessSelected: Please select a process
     removeWidgetHeader: Remove the "{0}" widget
     removeWidgetMessage: Do you really want to remove it?
@@ -1542,12 +1542,6 @@ Dialogs:
             expressNoItem: There is no completed Express Task yet
             expressNoItemDescription: The results of completed tasks are displayed here
             expressWorkflowName: 'Business Details of Case #{0}'
-        portal:
-          generic:
-            dashboard:
-              component:
-                CustomDashboardWidget:
-                  CouldNotFindLinkedProcess: Could not find the linked process!
         portalkit:
           component:
             CaseWidget:

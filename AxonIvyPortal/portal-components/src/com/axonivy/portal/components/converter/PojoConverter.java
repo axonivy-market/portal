@@ -34,11 +34,11 @@ public class PojoConverter implements Converter {
   public String getAsString(FacesContext context, UIComponent component, Object item) throws ConverterException {
     if (item != null && !isEmptyString(item)) {
       Map<String, Object> viewMap = getViewMap(context);
-      String hash = String.valueOf(item.hashCode());
-      String mapKey = String.format(MAP_KEY_TEMPLATE, component.getId(), hash);
+      String identityHashCode = String.valueOf(System.identityHashCode(item));
+      String mapKey = String.format(MAP_KEY_TEMPLATE, component.getId(), identityHashCode);
       viewMap.put(mapKey, item);
 
-      return hash;
+      return identityHashCode;
     }
     return "";
   }

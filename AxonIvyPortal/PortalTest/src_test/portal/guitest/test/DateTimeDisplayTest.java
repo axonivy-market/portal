@@ -11,6 +11,7 @@ import portal.guitest.common.Variable;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
+import portal.guitest.page.UserProfilePage;
 
 public class DateTimeDisplayTest extends BaseTest {
   
@@ -25,6 +26,9 @@ public class DateTimeDisplayTest extends BaseTest {
     createTestingTasks();
     resetLanguageOfCurrentUser();
     homePage = new HomePage();
+    UserProfilePage userProfilePage = homePage.openMyProfilePage();
+    userProfilePage.inputFormattingLanguage("English (United Kingdom)");
+    homePage = userProfilePage.save();
   }
 
   @Test

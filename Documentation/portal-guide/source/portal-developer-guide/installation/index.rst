@@ -109,6 +109,97 @@ In Engine
 
 #. Follow detailed migration notes for each version below.
 
+Migrate 10.0 To 10.0.12
+-----------------------
+
+Portal no longer supports the override process approach for some subprocesses.
+Please follow the guidelines below to migrate your override subprocesses.
+
+#. :ref:`Customize Forgot Password <customization-forgot-password>`
+
+      - Remove subprocess override of ``ResetPassword`` and ``SendPasswordResetEmail``` from your project.
+
+      - Change the signature of your callable start as described below.
+
+         +-------------------------+-------------------------------+
+         | Subprocess              | New signature                 |
+         +=========================+===============================+
+         | ResetPassword           | portalResetPassword           |
+         +-------------------------+-------------------------------+
+         | SendPasswordResetEmail  | portalSendPasswordResetEmail  |
+         +-------------------------+-------------------------------+
+
+#. :ref:`Document processes <customization-document-processes>`
+
+      - Remove subprocess override of ``GetDocumentList``, ``UploadDocument``,
+        ``DeleteDocument``, and ``DownloadDocument`` from your project.
+
+      - Change the signature of your callable starts as described below.
+
+         +----------------------+----------------------------+
+         | Subprocess           | New signature              |
+         +======================+============================+
+         | GetDocumentList      | portalGetDocumentList      |
+         +----------------------+----------------------------+
+         | UploadDocument       | portalUploadDocument       |
+         +----------------------+----------------------------+
+         | DeleteDocument       | portalDeleteDocument       |
+         +----------------------+----------------------------+
+         | DownloadDocument     | portalDownloadDocument     |
+         +----------------------+----------------------------+
+
+#. :ref:`Customize Logout Process <customization-logout>`
+
+      - Remove subprocess override of ``LogoutPage`` and ``Logout`` from your project.
+
+      - Change the signature of your callable start as described below.
+
+         +----------------------+----------------------------+
+         | Subprocess           | New signature              |
+         +======================+============================+
+         | LogoutPage           | portalGetLogoutPage        |
+         +----------------------+----------------------------+
+         | Logout               | portalLogout               |
+         +----------------------+----------------------------+
+
+#. :ref:`Customize Change Password Process <customization-change-password-process>`
+
+      - Remove subprocess override of ``ChangePassword`` from your project.
+
+      - Change the signature of your callable start as described below.
+
+         +----------------------+----------------------------+
+         | Subprocess           | New signature              |
+         +======================+============================+
+         | ChangePassword       | portalChangePassword       |
+         +----------------------+----------------------------+
+
+#. :ref:`Customize Menu Items <customization-menu-customization>`
+
+      - Remove subprocess override of ``LoadSubMenuItems`` from your project.
+
+      - Change the signature of your callable start as described below.
+
+         +-------------------------+-------------------------------+
+         | Subprocess              | New signature                 |
+         +=========================+===============================+
+         | LoadSubMenuItems        | portalLoadSubMenuItems        |
+         +-------------------------+-------------------------------+
+
+      - To hide default menu items, you can utilize variables. Here's a link :ref:`Show/hide default menu items <customization-menu-hide-default-menu-item>` that provides instructions on how to do so.
+
+      - Update ``index`` for each custom menu item.
+
+      - Refer to process ``CustomLoadSubMenuItems`` in the project ``portal-developer-examples`` for an example of how to create custom menu items.
+
+Migrate 10.0 To 10.0.7
+----------------------
+
+The ``ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI`` class is removed and no longer supported, use 
+``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` instead.
+
+.. _installation-release-notes:
+
 Migrate 8.x To 10.0
 -------------------
 
@@ -156,8 +247,8 @@ Migrate 9.3 To 9.4
 #. The ``customization.css`` file has been removed, in case you use it in your project, please switch to using
    :dev-url:`Engine Branding </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>` to customize styling
 
-#. Sub processes related to documents are moved to the independent project ``portal-components``.
-   If you customized these processes, please override the correspond sub process again and added your customization to it.
+#. Subprocesses related to documents are moved to the independent project ``portal-components``.
+   If you customized these processes, please override the correspond subprocess again and added your customization to it.
 
    Below is a list of deprecated processes in project ``portal`` and new processes in project ``portal-components``.
 
@@ -196,7 +287,7 @@ Migrate 9.3 To 9.4
 #. Portal dashboard widgets only support the ``CustomFields`` declared in the ``custom-fields.yaml`` file.
    If your ``CustomFields`` are used in the dashboard widget, please follow the :dev-url:`Custom Fields Meta Information </doc/|version|/designer-guide/how-to/workflow/custom-fields.html#meta-information>` to adapt the data.
 
-#. The ``DefaultChartColor.p.json`` sub process has been removed, in case you use it in your project, please remove override this sub process and switch to using
+#. The ``DefaultChartColor.p.json`` subprocess has been removed, in case you use it in your project, please remove override this subprocess and switch to using
    :dev-url:`Engine Branding </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>` to customize chart, data labels, legend color.
    Refer to :ref:`Default chart colors <customization-default-chart-colors>`.
 
@@ -346,24 +437,11 @@ Migrate 8.x To 9.x
 You need to do all steps starting at ``Migrate 8.x To ...`` up to and including
 ``Migrate ... To 9.x``
 
-Migrate 10.0 To 10.0.7
-----------------------
-
-The ``ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI`` class is removed and no longer supported, use 
-``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` instead.
-
-.. _installation-release-notes:
-
 Release notes
 =============
 
 This part lists all relevant changes since the last official product
 releases of |ivy|.
-
-Changes in 10
--------------
-
-- Introduced the ``Application`` filter and the ``Application`` column at the following places: full task list, full case list, dashboard task list, dashboard case list, and task analysis.
 
 Changes in 10.0.9
 -----------------
@@ -376,6 +454,11 @@ Changes in 10.0.9
 - The ``ch.ivy.addon.portalkit.publicapi.RoleAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.RoleAPI`` instead.
 - The ``ch.ivy.addon.portalkit.publicapi.TaskAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.TaskAPI`` instead.
 - The ``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI`` instead.
+
+Changes in 10
+-------------
+
+- Introduced the ``Application`` filter and the ``Application`` column in the following places: full task list, full case list, dashboard task list, dashboard case list, and task analysis.
 
 Changes in 9.4
 --------------
@@ -399,7 +482,7 @@ Changes in 9.4
 
 - Introduced the ``Formatting language setting`` to format values, for example the decimal separator is displayed differently in different regions of the world.
 
-- Removed sub process ``DefaultChartColor.p.json``, introduced some Portal variables for customizing the default chart color. See details: :ref:`Default chart colors <customization-default-chart-colors>`.
+- Removed subprocess ``DefaultChartColor.p.json``, introduced some Portal variables for customizing the default chart color. See details: :ref:`Default chart colors <customization-default-chart-colors>`.
 
 - Introduce some components in new ``portal-components`` project.
 

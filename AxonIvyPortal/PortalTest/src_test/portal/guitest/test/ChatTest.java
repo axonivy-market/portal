@@ -1,5 +1,6 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static portal.guitest.common.Variable.ENABLE_GROUP_CHAT;
 import static portal.guitest.common.Variable.ENABLE_PRIVATE_CHAT;
@@ -41,24 +42,23 @@ public class ChatTest extends BaseTest {
   @Test
   public void chatAddGroup() {
     ChatPage chatPage = enableChatGroup();
-    createChatGroupWithPredifinedGroup(true, TestAccount.DEMO_USER);
+    createChatGroup(TestAccount.DEMO_USER);
     joinChatGroupWhichAlreadyHadChatGroup(TestAccount.ADMIN_USER);
     chatMessageInGroup(TestAccount.DEMO_USER, CHAT_MESSAGE_USER_DEMO);
     launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     ChatPage chatPage2 = chatMessageInGroup(TestAccount.ADMIN_USER, CHAT_MESSAGE_USER_ADMIN);
 
     launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    ChatPage chatPage3 = createChatGroupWithPredifinedGroup(false, TestAccount.GUEST_USER);
-    chatPage3.addUserToChatGroup(Arrays.asList(chatUser1, chatGroupEveryBody));
+    createChatGroup(TestAccount.GUEST_USER, chatUser1, chatGroupEveryBody);
 
-    assertTrue(chatPage2.isChatGroupDisplayed("Leave Request"));
-    assertTrue(chatPage.isChatGroupDisplayed("Leave Request"));
+    assertEquals(2, chatPage2.refreshAndCountGroupChat());
+    assertEquals(2, chatPage.refreshAndCountGroupChat());
   }
 
   @Test
   public void chatGroupOnTwoInstanceOfBrowser() {
     ChatPage chatPage = enableChatGroup();
-    createChatGroupWithPredifinedGroup(true, TestAccount.DEMO_USER);
+    createChatGroup(TestAccount.DEMO_USER);
     joinChatGroupWhichAlreadyHadChatGroup(TestAccount.ADMIN_USER);
     chatMessageInGroup(TestAccount.DEMO_USER, CHAT_MESSAGE_USER_DEMO);
     launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
@@ -66,7 +66,7 @@ public class ChatTest extends BaseTest {
     chatPage2.closeChatMessageList();
     chatPage.sendMessage("from 1 to 2");
     assertChatNotification(chatPage2, true);
-    chatPage2.selectPortalDemoUserChatGroup();
+    chatPage2.openFirstGroupChat();
     chatPage2.sendMessage("from 2 to 1");
     assertContainMessage(chatPage, "from 2 to 1");
     assertContainMessage(chatPage2, "from 1 to 2");
@@ -91,33 +91,9 @@ public class ChatTest extends BaseTest {
   }
 
   @Test
-  public void chatGroupWithPredifinedGroup() {
-    enableChatGroup();
-    createChatGroupWithPredifinedGroup(true, TestAccount.DEMO_USER);
-  }
-
-  @Test
-  public void chatGroupWithOutPredifinedGroup() {
-    ChatPage chatPage = enableChatGroup();
-    createChatGroupWithPredifinedGroup(false, TestAccount.DEMO_USER);
-    chatPage.addUserToChatGroup(Arrays.asList(chatUser1, chatGroup1));
-
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    Sleeper.sleep(1000); // chat groups are not loading at the beginning, wait a bit for Firefox browser
-    new HomePage().getChat();
-    chatPage.selectPortalDemoUserChatGroup();
-    chatPage.getAllParticipants();
-
-    assertTrue("Admin in chat group", chatPage.getAllParticipants().contains(TestAccount.ADMIN_USER.getUsername()));
-    assertTrue("Demo in chat group", chatPage.getAllParticipants().contains(TestAccount.DEMO_USER.getUsername()));
-    chatPage.closeModalParticipants();
-    chatPage.closeChatMessageList();
-  }
-
-  @Test
   public void joinChatGroupAlreadyCreated() {
     ChatPage chatPage = enableChatGroup();
-    createChatGroupWithPredifinedGroup(true, TestAccount.DEMO_USER);
+    createChatGroup(TestAccount.DEMO_USER);
     joinChatGroupWhichAlreadyHadChatGroup(TestAccount.ADMIN_USER);
     chatMessageInGroup(TestAccount.DEMO_USER, CHAT_MESSAGE_USER_DEMO);
     chatMessageInGroup(TestAccount.ADMIN_USER, CHAT_MESSAGE_USER_ADMIN);
@@ -132,7 +108,7 @@ public class ChatTest extends BaseTest {
   @Test
   public void chatGroupMultiTabs() {
     enableChatGroup();
-    createChatGroupWithPredifinedGroup(true, TestAccount.DEMO_USER);
+    createChatGroup(TestAccount.DEMO_USER);
     ChatPage chatPageDemo1 = new ChatPage();
     launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     ChatPage chatPageDemo2 = openChatGroup(TestAccount.DEMO_USER);
@@ -151,7 +127,7 @@ public class ChatTest extends BaseTest {
     assertChatNotification(chatPageAdmin1, true);
     assertChatNotification(chatPageAdmin2, true);
     // admin1 opens group
-    chatPageAdmin1.selectPortalDemoUserChatGroup();
+    chatPageAdmin1.openFirstGroupChat();
     assertContainMessage(chatPageAdmin1, DEMO1_1);
     assertChatNotification(chatPageAdmin2, false);
 
@@ -199,16 +175,12 @@ public class ChatTest extends BaseTest {
     login(chatUser);
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     ChatPage chatPage = new HomePage().getChat();
-    chatPage.selectPortalDemoUserChatGroup();
+    chatPage.openFirstGroupChat();
     return chatPage;
   }
 
-  private ChatPage createChatGroupWithPredifinedGroup(boolean isPredifinedGroup, TestAccount creatorChatGroup) {
-    if (isPredifinedGroup) {
-      redirectToRelativeLink(createTestingTasksUrl);
-    } else {
-      redirectToRelativeLink(createTestingCaseUrlForDefaultAdditionalCaseDetails);
-    }
+  private ChatPage createChatGroup(TestAccount creatorChatGroup, ExpressResponsible ...participants) {
+    redirectToRelativeLink(createTestingCaseUrlForDefaultAdditionalCaseDetails);
     login(creatorChatGroup);
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     ChatPage chatPage = new HomePage().getChat();
@@ -216,7 +188,11 @@ public class ChatTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.clickTaskActionMenu();
-    taskTemplatePage.clickChatGroup(isPredifinedGroup);
+    taskTemplatePage.clickChatGroup();
+    if (participants.length != 0) {
+      chatPage.addUserToChatGroup(Arrays.asList(participants));
+    }
+    taskTemplatePage.clickCreateGroupChatBtn();
     return chatPage;
   }
 
@@ -226,7 +202,7 @@ public class ChatTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.clickTaskActionMenu();
-    taskTemplatePage.clickChatGroup(false);
+    taskTemplatePage.clickChatGroup();
     taskTemplatePage.joinProcessChatAlreadyCreated();
   }
 

@@ -8,9 +8,9 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "call(ICase)",
+      "name" : "getDocumentList(ICase)",
       "config" : {
-        "callSignature" : "call",
+        "callSignature" : "getDocumentList",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
@@ -31,15 +31,15 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 64 },
+        "at" : { "x" : 328, "y" : 288 },
         "labelOffset" : { "x" : 6, "y" : 44 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : { "id" : "f8", "to" : "f7" }
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 352, "y" : 64 }
+        "at" : { "x" : 1008, "y" : 288 }
       }
     }, {
       "id" : "f3",
@@ -75,14 +75,17 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 64 },
+        "at" : { "x" : 784, "y" : 288 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : { "id" : "f12", "to" : "f11" }
     }, {
       "id" : "f5",
       "type" : "ProcessAnnotation",
       "name" : [
+        "This sub process can be customized to get files in DMS",
+        "The custom proccess signature must be: \"portalGetDocumentList(ICase)\"",
+        "",
         "After get document list from DMS, convert them into List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>",
         "Some mandatory fields when mapping:",
         "- id",
@@ -90,9 +93,68 @@
         "- contentType"
       ],
       "visual" : {
-        "at" : { "x" : 344, "y" : 240 },
-        "size" : { "width" : 624, "height" : 108 }
+        "at" : { "x" : 327, "y" : 87 },
+        "size" : { "width" : 627, "height" : 149 }
       },
       "connect" : { "id" : "f6", "to" : "f0" }
+    }, {
+      "id" : "f7",
+      "type" : "Script",
+      "name" : [
+        "Call customized",
+        "sub process"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "import com.axonivy.portal.enums.PortalCustomSignature;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "",
+            "Map params = new HashMap();",
+            "params.put(\"businessCase\", in.businessCase);",
+            "",
+            "Map result = IvyAdapterService.startSubProcessInSecurityContext(PortalCustomSignature.GET_DOCUMENT_LIST.getSignature(), params);",
+            "",
+            "in.hasCustomProcess = result != null;",
+            "if (in.hasCustomProcess) {",
+            "  in.documents = result.get(\"documents\") as List;",
+            "  in.message = result.get(\"message\").toString();",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 456, "y" : 288 }
+      },
+      "connect" : { "id" : "f10", "to" : "f9" }
+    }, {
+      "id" : "f9",
+      "type" : "Alternative",
+      "name" : "Has custom sub process?",
+      "visual" : {
+        "at" : { "x" : 616, "y" : 288 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f14", "to" : "f11", "via" : [ { "x" : 616, "y" : 208 }, { "x" : 912, "y" : 208 } ], "label" : {
+            "name" : "Yes",
+            "segment" : 0.5
+          }, "condition" : "in.hasCustomProcess" },
+        { "id" : "f13", "to" : "f3", "label" : {
+            "name" : "No"
+          } }
+      ]
+    }, {
+      "id" : "f11",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 912, "y" : 288 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     } ]
 }

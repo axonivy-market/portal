@@ -1,7 +1,8 @@
 .. _customization-user-with-environment-info:
 
-User With Environment Info
-==========================
+User With Environment Info (Deprecated)
+=======================================
+.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 This component shows environment info when the ``Portal.ShowEnvironmentInfo`` variable is TRUE.
 
