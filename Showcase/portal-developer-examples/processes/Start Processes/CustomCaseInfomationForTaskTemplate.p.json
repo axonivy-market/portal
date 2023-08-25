@@ -221,6 +221,9 @@
           ]
         },
         "outLink" : "employeeSearch.ivp",
+        "startCustomFields" : [
+          { "name" : "portalSortIndex", "value" : "2" }
+        ],
         "startName" : "Employee Search"
       },
       "visual" : {

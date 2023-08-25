@@ -68,7 +68,7 @@ public interface Process {
   }
 
   /**
-   * This method collect the index of process
+   * This method collect the index of process define by custom field name portalSortIndex
    * 
    * @param process
    * @return the value of index in process custom field
