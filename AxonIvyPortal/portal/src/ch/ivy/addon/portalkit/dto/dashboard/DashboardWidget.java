@@ -28,18 +28,18 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
-  @Type(value = TaskDashboardWidget.class, name = "task"),
-  @Type(value = CaseDashboardWidget.class, name = "case"),
-  @Type(value = FullProcessDashboardWidget.class, name = "full-process"),
-  @Type(value = ImageProcessDashboardWidget.class, name = "image-process"),
-  @Type(value = CompactProcessDashboardWidget.class, name = "compact-process"),
-  @Type(value = CombinedProcessDashboardWidget.class, name = "combined-process"),
-  @Type(value = StatisticDashboardWidget.class, name = "statistic"),
-  @Type(value = CustomDashboardWidget.class, name = "custom"),
-  @Type(value = ProcessViewerDashboardWidget.class, name = "process-viewer"),
-  @Type(value = WelcomeDashboardWidget.class, name = "welcome"),
-  @Type(value = NewsDashboardWidget.class, name = "news"),
-  @Type(value = StatDashboardWidget.class, name = "stat")
+    @Type(value = TaskDashboardWidget.class, name = "task"),
+    @Type(value = CaseDashboardWidget.class, name = "case"),
+    @Type(value = FullProcessDashboardWidget.class, name = "full-process"),
+    @Type(value = ImageProcessDashboardWidget.class, name = "image-process"),
+    @Type(value = CompactProcessDashboardWidget.class, name = "compact-process"),
+    @Type(value = CombinedProcessDashboardWidget.class, name = "combined-process"),
+    @Type(value = StatisticDashboardWidget.class, name = "statistic"),
+    @Type(value = CustomDashboardWidget.class, name = "custom"),
+    @Type(value = ProcessViewerDashboardWidget.class, name = "process-viewer"),
+    @Type(value = WelcomeDashboardWidget.class, name = "welcome"),
+    @Type(value = NewsDashboardWidget.class, name = "news"),
+    @Type(value = ClientStatisticDashboardWidget.class, name = "client-statistic")
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public abstract class DashboardWidget implements Serializable {

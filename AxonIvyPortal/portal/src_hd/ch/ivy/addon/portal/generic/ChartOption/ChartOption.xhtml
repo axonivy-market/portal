@@ -14,22 +14,23 @@
 </cc:interface>
 <cc:implementation>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
-    <ui:define name="title">ChartJS and REST Workflow Task Statistic API Demo</ui:define>
+    <ui:define name="title">Client statistic charts</ui:define>
     <ui:define name="pageContent">
 
       <!-- Loads the ChartJs library needed to render the chart -->
       <h:outputScript library="primefaces" name="chartjs/chartjs.js" />
 
-      <h:panelGroup layout="block"
-        styleClass="statistic-chart-widget__canvas">
+      <h:panelGroup layout="block" styleClass="statistic-chart-widget__content widget__content widget__content">
         <c:if test="#{not empty chartOptionBean.statisticDataList}">
           <c:forEach items="#{chartOptionBean.statisticDataList}"
             var="chartOption" varStatus="counter">
-            <div class="w-full widget-height-100">
+            <h:panelGroup>
               <h2>#{chartOption.label}</h2>
-              <div class="chart-options" data-chart-id="#{chartOption.id}">
-              </div>
-             </div>
+              <div
+                class="ui-chart statistic-chart-widget__canvas chart-options"
+                style="height: 500px; max-width: 500px"
+                data-chart-id="#{chartOption.id}"></div>
+            </h:panelGroup>
           </c:forEach>
         </c:if>
       </h:panelGroup>

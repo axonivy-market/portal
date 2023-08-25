@@ -6,13 +6,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class StatDashboardWidget extends DashboardWidget {
+public class ClientStatisticDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = 1L;
   private String chartId;
   private long refreshInterval; // in seconds
 
-  public StatDashboardWidget() {}
+  public ClientStatisticDashboardWidget() {}
 
   @JsonIgnore
   @Override
@@ -20,7 +20,7 @@ public class StatDashboardWidget extends DashboardWidget {
 
   @Override
   public DashboardWidgetType getType() {
-    return DashboardWidgetType.STAT;
+    return DashboardWidgetType.CLIENT_STATISTIC;
   }
 
   public String getChartId() {

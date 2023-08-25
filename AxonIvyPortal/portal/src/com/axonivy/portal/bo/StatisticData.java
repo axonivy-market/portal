@@ -16,6 +16,15 @@ public class StatisticData extends AbstractConfiguration{
   private String chartType;
   private String label;
   private BarChartConfig barChartConfig;
+  private NumberChartConfig numberChartConfig;
+  
+  public NumberChartConfig getNumberChartConfig() {
+    return numberChartConfig;
+  }
+
+  public void setNumberChartConfig(NumberChartConfig numberChartConfig) {
+    this.numberChartConfig = numberChartConfig;
+  }
 
   public String getChartType() {
     return chartType;

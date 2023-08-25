@@ -112,7 +112,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       NEW: New widget
       PROCESS: Process widget
       PROCESS_VIEWER: Process viewer widget
-      STAT: Statistic widget
+      CLIENT_STATISTIC: Statistic widget
       STATISTIC: Statistic widget
       TASK: Task widget
     GlobalVariable:

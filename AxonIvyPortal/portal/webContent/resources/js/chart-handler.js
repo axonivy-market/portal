@@ -6,21 +6,12 @@ const instance =  axios.create({
         headers: {'X-Requested-By': 'ivy'}
     });
 const CHART_COLORS = [
-    'hsl(192, 63%, 70%)',
+    'hsl(192, 63%, 80%)',
     'hsl(192, 63%, 60%)',
-    'hsl(192, 63%, 50%)',
     'hsl(192, 63%, 40%)',
     'hsl(192, 63%, 30%)',
     'hsl(192, 63%, 20%)',
-    'hsl(192, 63%, 10%)',
 ];
-
-const PIE_COLORS = [
-    'rgb(255, 99, 132)',
-    'rgb(54, 162, 235)',
-    'rgb(255, 205, 86)',
-    'rgb(255, 105, 86)'
-]
 
 function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
@@ -42,12 +33,14 @@ $(document).ready(function () {
 
         let data = await response.data;
         let result = data.result.aggs[0].buckets;
-        let chartType = data.chartType;
+        let config = data.chartConfig;
+        let chartType = config.chartType;
         let chartObject;
         if ('number' === chartType) {
-            let html = renderNumberChart(data.label);
+            let html = renderNumberChart(config.label);
             $(chart).html(html);
-            $(chart).find('.card-number').text(result.map(bucket => bucket.count));
+            let cardNumber = result.map(bucket => bucket.count)+ `${config.numberChartConfig.suffixSymbol}`;
+            $(chart).find('.card-number').html(cardNumber);
         }
         if ('bar' === chartType) {
             let html = renderBarChart(chartId);
@@ -55,18 +48,18 @@ $(document).ready(function () {
             let canvasObject = $(chart).find('canvas');
             chartObject = new Chart(canvasObject, {
                 type: chartType,
-                label: data.label,
+                label: config.label,
                 data: {
                     labels: result.map(bucket => formatChartLabel(bucket.key)),
                     datasets: [{
-                        label: data.label,
+                        label: config.label,
                         data: result.map(bucket => bucket.count),
                         backgroundColor: CHART_COLORS
-                    }
-                    ]
+                    }]
                 },
                 options: {
                     responsive: true,
+                    maintainAspectRatio : false,
                     plugins: {
                         legend: {
                             position: 'top',
@@ -76,13 +69,13 @@ $(document).ready(function () {
                         y: {
                             beginAtZero: true,
                             title: {
-                                text: data.barChartConfig.yTitle,
+                                text: config.barChartConfig.yTitle,
                                 display: true
                             }
                         },
                         x: {
                             title: {
-                                text: data.barChartConfig.xTitle,
+                                text: config.barChartConfig.xTitle,
                                 display: true
                             }
                         }
@@ -97,16 +90,41 @@ $(document).ready(function () {
             let canvasObject = $(chart).find('canvas');
             chartObject = new Chart(canvasObject, {
                 type: chartType,
-                label: data.label,
+                label: config.label,
                 data: {
                     labels: result.map(bucket => formatChartLabel(bucket.key)),
                     datasets: [{
-                        label: data.label,
+                        label: config.label,
                         data: result.map(bucket => bucket.count),
-                        backgroundColor: PIE_COLORS
-                    }
-                    ],
+                        backgroundColor: CHART_COLORS
+                    }],
                     hoverOffset: 4
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio : false
+                }
+            });
+
+        }
+        if ('line' === chartType) {
+            let html = renderPieChart(chartId);
+            $(chart).html(html);
+            let canvasObject = $(chart).find('canvas');
+            chartObject = new Chart(canvasObject, {
+                type: chartType,
+                label: config.label,
+                data: {
+                    labels: result.map(bucket => formatChartLabel(bucket.key)),
+                    datasets: [{
+                        label: config.label,
+                        data: result.map(bucket => bucket.count),
+                        backgroundColor: CHART_COLORS
+                    }],
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio : false
                 }
             });
 
@@ -148,21 +166,30 @@ $(document).ready(function () {
     }
 
     const renderBarChart = (chartId) => {
-      let html = `
-              <canvas id="${chartId}"></canvas>
-            `;
+      let html = `<canvas id="${chartId}"></canvas>`;
       return html;
     };
 
     const renderPieChart = (chartId) => {
-        let html = `<canvas id="${chartId}"></canvas>`;
+        let html = `<canvas id="${chartId}" ></canvas>`;
         return html;
     };
 
     const renderNumberChart = (label) => {
         let html = `
-              <h4 class="card-name">${label}</h4>
-              <h1 class="card-number"></h1>`;
+                <div class="u-text-align-center" style="position: relative; top: 10%">
+                    <div class="chart-icon-font-size">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <div>
+                        <h1 style="font-weight: bolder" class="card-number chart-number-font-size"></h1>
+                    </div>
+                    <div>
+                        <h6 class="card-name chart-name-font-size">${label}</h6>
+                    </div>
+                </div>
+            `;
         return html;
     };
+
 });
