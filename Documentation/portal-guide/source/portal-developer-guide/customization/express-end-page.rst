@@ -1,7 +1,7 @@
 .. _customization-express-endpage:
 
 Express end page (Deprecated)
-================
+=============================
 .. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 .. _customization-express-endpage-introduction:
