@@ -29,7 +29,7 @@ public class CustomTaskDelegateTest extends BaseTest {
 
   @Test
   public void testCustomTaskDelegateOnlyToGroup() {
-    login(TestAccount.ADMIN_USER);
+    login(TestAccount.HR_ROLE_USER);
     redirectToNewDashBoard();
     MainMenuPage menu = new MainMenuPage();
     menu.openTaskList();
@@ -47,7 +47,7 @@ public class CustomTaskDelegateTest extends BaseTest {
 
   @Test
   public void testCustomTaskDelegateOnlyToUser() {
-    login(TestAccount.ADMIN_USER);
+    login(TestAccount.HR_ROLE_USER);
     redirectToNewDashBoard();
     MainMenuPage menu = new MainMenuPage();
     menu.openTaskList();

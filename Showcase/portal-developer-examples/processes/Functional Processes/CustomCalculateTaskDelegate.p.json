@@ -61,9 +61,9 @@
             "import com.axonivy.portal.components.dto.UserDTO;",
             "import java.util.ArrayList;",
             "",
-            "in.status = CustomProcessStatus.SKIP;",
+            "in.status = CustomProcessStatus.OK;",
             "",
-            "if (\"#admin\".equalsIgnoreCase(in.currentUser.getMemberName())) {",
+            "if (\"#david\".equalsIgnoreCase(in.currentUser.getMemberName())) {",
             "  if (\"Maternity Leave Request\".equalsIgnoreCase(in.task.names().current())) {",
             "    in.users = new ArrayList();",
             "    in.users.add(new UserDTO(ivy.wf.getSecurityContext().users().find(\"demo\")));",
@@ -71,11 +71,9 @@
             "    in.roles = new ArrayList();",
             "    in.roles.add(new RoleDTO(ivy.wf.getSecurityContext().roles().find(\"GeneralManager\")));",
             "  }",
-            "  in.status = CustomProcessStatus.OK;",
             "} else if (\"#demo\".equalsIgnoreCase(in.currentUser.getMemberName())) {",
             "  in.users = new ArrayList();",
             "  in.roles = new ArrayList();",
-            "  in.status = CustomProcessStatus.OK;",
             "}"
           ]
         }

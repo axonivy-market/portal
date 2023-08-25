@@ -55,7 +55,7 @@ public class IvyAdapterService {
    * @return The list of responses from the process executions.
    */
   public static List<Map<String, Object>> startSubProcessesInSecurityContext(String signature, Map<String, Object> params) {
-    return Sudo.get(() -> {
+    var x = Sudo.get(() -> {
       var result = new ArrayList<Map<String, Object>>();
 
       var filter = SubProcessSearchFilter.create()
@@ -75,6 +75,7 @@ public class IvyAdapterService {
 
       return result;
     });
+    return x;
   }
 
   /**
