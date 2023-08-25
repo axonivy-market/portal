@@ -33,7 +33,7 @@ Build Your Own Portal Using portal
 #. Set category for tasks
 
    To categorize tasks, set values for ``Category`` field. Task category
-   can be multi-level if it is separated by slash ``/`` signs, as below.
+   can be multi-level if it is separated by slash ``/`` signs, as described below.
 
    |task-category-config|
 
