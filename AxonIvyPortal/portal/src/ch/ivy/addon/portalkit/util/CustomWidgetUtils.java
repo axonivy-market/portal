@@ -216,7 +216,7 @@ public class CustomWidgetUtils {
     String processPath = processViewerWidget.getProcessPath();
     if (StringUtils.isNotBlank(processPath)) {
       Optional
-          .ofNullable(ProcessService.getInstance().findWebStartableInSecurityContextById(processPath) /* findWebStartableByProcessPath(processPath) */)
+          .ofNullable(ProcessService.getInstance().findWebStartableInSecurityContextById(processPath))
           .ifPresent(webStartable -> processViewerWidget.setProcess(new DashboardProcess(webStartable)));
     }
   }
