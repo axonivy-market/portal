@@ -33,10 +33,11 @@ function loadGrid() {
 
     gridItems.forEach(ele => grid.addWidget(ele));
     grid.commit();
+
   })
 
   grids.forEach(function (grid, i) {
-    grid.on('change', function () {
+    grid.on('change', function (e) {
       let serializedData = [];
       let isReadOnlyMode = false;
       let dashboardViewModeInput = $("input[id$='dashboard-view-mode']");
@@ -74,7 +75,7 @@ function loadGrid() {
       if (descriptionElement.length > 0) {
         setupImageProcessWidgetDescription(descriptionElement);
       }
-
+      resizeChartWidget();
       setupGridProcessWidget();
     });
 
@@ -87,7 +88,44 @@ function loadGrid() {
     }
   });
 }
-
+$(window).on('load', function () {
+  resizeChartWidget();
+});
+function resizeChartWidget() {
+  let chartNumber = $('.chart-number-font-size');
+  let chartName = $('.chart-name-font-size');
+  let chartIcon = $('.chart-icon-font-size');
+  if (chartNumber.length && chartNumber.length > 0) {
+    chartNumber.each((i, item) => {
+      let parent = $(item).closest('.chart-options')[0];
+      let ratio = parent.offsetHeight <= parent.offsetWidth ? 2.2 * parent.offsetHeight / parent.offsetWidth
+          : parent.offsetHeight / (2.2*parent.offsetWidth);
+      let h = Math.pow(parent.offsetWidth,2) + Math.pow(parent.offsetHeight, 2);
+      let fs = Math.sqrt(h) * ratio;
+      item.style.fontSize = fs + '%';
+    })
+  }
+  if (chartName.length && chartName.length > 0) {
+    chartName.each((i, item) => {
+      let parent = $(item).closest('.chart-options')[0];
+      let ratio = parent.offsetHeight <= parent.offsetWidth ? 2.2 * parent.offsetHeight / parent.offsetWidth
+          : parent.offsetHeight / (2.2*parent.offsetWidth);
+      let h = Math.pow(parent.offsetWidth,2) + Math.pow(parent.offsetHeight, 2);
+      let fs = Math.sqrt(h) * 0.25 * ratio;
+      item.style.fontSize = fs + '%';
+    })
+  }
+  if (chartIcon.length && chartIcon.length > 0) {
+    chartIcon.each((i, item) => {
+      let parent = $(item).closest('.chart-options')[0];
+      let ratio = parent.offsetHeight <= parent.offsetWidth ? 2.2 * parent.offsetHeight / parent.offsetWidth
+          : parent.offsetHeight / (2.2*parent.offsetWidth);
+      let h = Math.pow(parent.offsetWidth,2) + Math.pow(parent.offsetHeight, 2);
+      let fs = Math.sqrt(h) * 0.5 * ratio;
+      item.style.fontSize = fs + '%';
+    })
+  }
+}
 function getPortalGridsCurrentRow(widgetType) {
   let currentRowNumber = 0;
   let dashboard = $("#dashboard-body");
@@ -211,6 +249,7 @@ function expandFullscreen(index, widgetId) {
     $(widget.get(0)).closest('.js-dashboard__body').addClass('expand-fullscreen');
     $(widget.get(0)).closest('.js-layout-content').addClass('expand-fullscreen');
   }
+  setTimeout(() => resizeChartWidget() , 100);
 }
 
 function resizeTableBody() {
@@ -248,6 +287,7 @@ function collapseFullscreen(index, widgetId) {
   // Hide dashboard overlay panel is opening
   hideAllDashboardOverlayPanels();
   resizeTableBody();
+  setTimeout(() => resizeChartWidget() , 300);
 }
 
 function loadWidgetFirstTime(loadingClass, widgetClass) {
