@@ -1,10 +1,10 @@
 const pathName = window.location.pathname;
 const baseURL = pathName.substring(0, pathName.indexOf('/faces/'));
-const instance =  axios.create({
-        baseURL: baseURL,
-        timeout: 60000,
-        headers: {'X-Requested-By': 'ivy'}
-    });
+const instance = axios.create({
+    baseURL: baseURL,
+    timeout: 60000,
+    headers: {'X-Requested-By': 'ivy'}
+});
 const CHART_COLORS = [
     'hsl(192, 63%, 80%)',
     'hsl(192, 63%, 60%)',
@@ -41,7 +41,7 @@ $(document).ready(function () {
         if ('number' === chartType) {
             let html = renderNumberChart(config.label);
             $(chart).html(html);
-            let cardNumber = result.map(bucket => bucket.count)+ `${config.numberChartConfig.suffixSymbol}`;
+            let cardNumber = result.map(bucket => bucket.count) + `${config.numberChartConfig.suffixSymbol}`;
             $(chart).find('.card-number').html(cardNumber);
             chartData = $(chart);
         }
@@ -62,7 +62,7 @@ $(document).ready(function () {
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio : false,
+                    maintainAspectRatio: false,
                     plugins: {
                         legend: {
                             position: 'top',
@@ -105,7 +105,7 @@ $(document).ready(function () {
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio : false
+                    maintainAspectRatio: false
                 }
             });
 
@@ -127,7 +127,7 @@ $(document).ready(function () {
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio : false
+                    maintainAspectRatio: false
                 }
             });
         }
@@ -165,28 +165,27 @@ $(document).ready(function () {
         }
     }
 
-    async function refreshChart(chartObject) {
-        let chartId = chartObject.chartId;
+    async function refreshChart(chartInfo) {
+        let chartId = chartInfo.chartId;
         const response = await instance.post('/api/statistic-data-service/Data', {"chartId": chartId});
         const result = response.data.result.aggs[0].buckets;
-        let chartData = chartObject.chartData;
-        if (chartObject.chartType !== 'number') {
+        let chartData = chartInfo.chartData;
+        if (chartInfo.chartType !== 'number') {
             chartData.data.labels = result.map(bucket => formatChartLabel(bucket.key));
             chartData.data.datasets.forEach(dataset => {
                 dataset.data = result.map(bucket => bucket.count);
             });
             chartData.update();
         } else {
-            let data = await response.data;
-            let config = data.chartConfig;
-            let cardNumber = result.map(bucket => bucket.count)+ `${config.numberChartConfig.suffixSymbol}`;
+            let config = response.data.chartConfig;
+            let cardNumber = result.map(bucket => bucket.count) + `${config.numberChartConfig.suffixSymbol}`;
             chartData.find('.card-number').html(cardNumber);
         }
     }
 
     const renderBarChart = (chartId) => {
-      let html = `<canvas id="${chartId}"></canvas>`;
-      return html;
+        let html = `<canvas id="${chartId}"></canvas>`;
+        return html;
     };
 
     const renderPieChart = (chartId) => {
@@ -196,15 +195,15 @@ $(document).ready(function () {
 
     const renderNumberChart = (label) => {
         let html = `
-                <div class="u-text-align-center" style="position: relative; top: 10%">
+                <div class="u-text-align-center chart-content-card">
                     <div class="chart-icon-font-size">
                         <i class="fa-solid fa-chart-line"></i>
                     </div>
                     <div>
-                        <h1 style="font-weight: bolder" class="card-number chart-number-font-size"></h1>
+                        <span class="card-number chart-number-font-size"></span>
                     </div>
                     <div>
-                        <h6 class="card-name chart-name-font-size">${label}</h6>
+                        <span class="card-name chart-name-font-size">${label}</span>
                     </div>
                 </div>
             `;

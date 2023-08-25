@@ -88,44 +88,44 @@ function loadGrid() {
     }
   });
 }
+
 $(window).on('load', function () {
   resizeChartWidget();
 });
+
+function getFontSizeRatio(item, scaleRatio) {
+  let parent = $(item).closest('.chart-options')[0];
+  let d = parent.offsetHeight > 100 ? 2.2 : 3.3;
+  let ratio = parent.offsetHeight <= parent.offsetWidth ? d * parent.offsetHeight / parent.offsetWidth
+      : parent.offsetHeight / (d * parent.offsetWidth);
+  let h = Math.pow(parent.offsetWidth, 2) + Math.pow(parent.offsetHeight, 2);
+  return Math.sqrt(h) * ratio * scaleRatio;
+}
+
 function resizeChartWidget() {
   let chartNumber = $('.chart-number-font-size');
   let chartName = $('.chart-name-font-size');
   let chartIcon = $('.chart-icon-font-size');
   if (chartNumber.length && chartNumber.length > 0) {
     chartNumber.each((i, item) => {
-      let parent = $(item).closest('.chart-options')[0];
-      let ratio = parent.offsetHeight <= parent.offsetWidth ? 2.2 * parent.offsetHeight / parent.offsetWidth
-          : parent.offsetHeight / (2.2*parent.offsetWidth);
-      let h = Math.pow(parent.offsetWidth,2) + Math.pow(parent.offsetHeight, 2);
-      let fs = Math.sqrt(h) * ratio;
+      let fs = getFontSizeRatio(item, 1);
       item.style.fontSize = fs + '%';
     })
   }
   if (chartName.length && chartName.length > 0) {
     chartName.each((i, item) => {
-      let parent = $(item).closest('.chart-options')[0];
-      let ratio = parent.offsetHeight <= parent.offsetWidth ? 2.2 * parent.offsetHeight / parent.offsetWidth
-          : parent.offsetHeight / (2.2*parent.offsetWidth);
-      let h = Math.pow(parent.offsetWidth,2) + Math.pow(parent.offsetHeight, 2);
-      let fs = Math.sqrt(h) * 0.25 * ratio;
+      let fs = getFontSizeRatio(item, 0.25);
       item.style.fontSize = fs + '%';
     })
   }
   if (chartIcon.length && chartIcon.length > 0) {
     chartIcon.each((i, item) => {
-      let parent = $(item).closest('.chart-options')[0];
-      let ratio = parent.offsetHeight <= parent.offsetWidth ? 2.2 * parent.offsetHeight / parent.offsetWidth
-          : parent.offsetHeight / (2.2*parent.offsetWidth);
-      let h = Math.pow(parent.offsetWidth,2) + Math.pow(parent.offsetHeight, 2);
-      let fs = Math.sqrt(h) * 0.5 * ratio;
+      let fs = getFontSizeRatio(item, 0.5);
       item.style.fontSize = fs + '%';
     })
   }
 }
+
 function getPortalGridsCurrentRow(widgetType) {
   let currentRowNumber = 0;
   let dashboard = $("#dashboard-body");

@@ -1587,6 +1587,7 @@ span.new-widget-dialog__icon.si {
 
 .chart-number-font-size {
   font-size: 22px;
+  font-weight: bolder;
   -webkit-transition: all .3s ease;
   -moz-transition: all .3s ease;
   transition: all .3s ease;
@@ -1603,4 +1604,9 @@ span.new-widget-dialog__icon.si {
   -webkit-transition: all .3s ease;
   -moz-transition: all .3s ease;
   transition: all .3s ease;
+}
+
+.chart-content-card {
+  position: relative;
+  top: 10%
 }
