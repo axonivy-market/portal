@@ -26,16 +26,16 @@ Menu type
 
 There are two types of custom menu items:
 
-    - Ivy process: trigger an Ivy process when clicked and can be set as the default homepage in a user's profile.
+    - Ivy process: triggers an Ivy process when clicked. Can be set as the default homepage in a user's profile.
 
-    - External link: open an external link in a new tab and cannot be set as the default homepage in a user's profile.
+    - External link: opens an external link in a new tab. Cannot be set as the default homepage in a user's profile.
 
 The Ivy process is the default custom menu item type. To change custom menu item type to external link, set the ``isExternalLink`` attribute to ``true``.
 
 Menu index
 ++++++++++
 
-The custom menu items can be found below the default menu items.
+You can find the custom menu items below the default menu items.
 
 To set the order of custom menu items, assign a number to the ``index`` attribute. The item will be displayed based on the given index.
 If custom menu items are not indexed, they will be sorted alphabetically.
@@ -60,7 +60,7 @@ To add custom menu items, create a callable subprocess with:
 | subMenuItems          | java.util.List<com.axonivy.portal.components.configuration.CustomSubMenuItem> |
 +-----------------------+-------------------------------------------------------------------------------+
 
-Example of a menu that redirect to an Ivy process.
+Example of a menu that redirects to an Ivy process.
 
    .. code-block:: javascript
 
@@ -113,7 +113,7 @@ Portal variable
 Beside the callable subprocess approach, you can also define custom menu items in the Portal variable
 ``Portal.Menu.CustomMenuItems``.
 
-Example of custom menu items in the ``Portal.Menu.CustomMenuItems`` variable.
+Here's an example of custom menu items in the Portal.Menu.CustomMenuItems variable.
 
    .. code-block:: json
 
@@ -134,11 +134,11 @@ Example of custom menu items in the ``Portal.Menu.CustomMenuItems`` variable.
             }
         ]
 
-The basic JSON structure of a custom menu items
+The basic JSON structure of a custom menu item
 
     ``index``: index of the menu item on the main menu.
 
-    ``link``: link of the menu item. You can set a user-friendly request path or a process ID for Ivy process.
+    ``link``: link of the menu item. You can set a user-friendly request path or a process ID for an Ivy process.
 
     ``label``: label of the menu item.
 
