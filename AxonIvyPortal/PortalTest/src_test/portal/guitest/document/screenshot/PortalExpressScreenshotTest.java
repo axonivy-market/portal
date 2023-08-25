@@ -35,7 +35,6 @@ public class PortalExpressScreenshotTest extends ScreenshotTest {
   private static final int USER_TASK_INDEX = 0;
   private static final int USER_TASK_WITH_EMAIL_INDEX = 1;
   private static final int INFORMATION_EMAIL_INDEX = 2;
-  private String expressAdditionalBusinessUrl = "AxonIvyExpress/17326FC2F133FBEA/startExpressBusinessView.ivp";
 
   private HomePage homePage;
   private NewDashboardPage newDashboardPage;
