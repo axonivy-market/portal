@@ -55,6 +55,8 @@
       "config" : {
         "output" : {
           "code" : [
+            "import java.util.ArrayList;",
+            "import com.axonivy.portal.components.dto.UserDTO;",
             "import com.axonivy.portal.components.util.CustomProcessUtils;",
             "import com.axonivy.portal.components.util.UserUtils;",
             "import com.axonivy.portal.components.util.RoleUtils;",
@@ -74,18 +76,19 @@
             "in.hasCustomProcess = result != null;",
             "",
             "if (in.hasCustomProcess) {",
-            "  in.roles.clear();",
-            "  in.users.clear();",
+            "",
+            "  java.util.List customRoles = new ArrayList();",
+            "  java.util.List customUsers = new ArrayList();",
             "",
             "  for (Map map : result) {",
             "    if (!CustomProcessUtils.isSkipCustomProcess(map)) {",
-            "      in.roles.addAll(map.get(\"roles\") as List);",
-            "      in.users.addAll(map.get(\"users\") as List);",
+            "      customRoles.addAll(map.get(\"roles\") as List);",
+            "      customUsers.addAll(map.get(\"users\") as List);",
             "    }",
             "  }",
             "",
-            "  in.roles = RoleUtils.distinctAndSortRoleList(in.roles);",
-            "  in.users = UserUtils.distinctAndSortUserList(in.users);",
+            "  in.roles = RoleUtils.distinctAndSortRoleList(customRoles);",
+            "  in.users = UserUtils.distinctAndSortUserList(customUsers);",
             "}"
           ]
         }
