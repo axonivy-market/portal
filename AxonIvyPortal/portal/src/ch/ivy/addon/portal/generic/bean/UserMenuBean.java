@@ -2,7 +2,6 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 
@@ -26,7 +25,6 @@ import ch.ivy.addon.portalkit.bean.PortalExceptionBean;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.dto.UserMenu;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
@@ -65,20 +63,12 @@ public class UserMenuBean implements Serializable {
       String fullName = Ivy.session().getSessionUser().getFullName();
       String userName = Ivy.session().getSessionUserName();
       String fullDisplayFormat = "%s (%s)";
-      switch (option) {
-        case USERNAME:
-          loggedInUser = userName;
-          break;
-        case DISPLAY_NAME:
-          loggedInUser = fullName;
-          break;
-        case DISPLAY_NAME_USERNAME:
-          loggedInUser = String.format(fullDisplayFormat, fullName, userName);
-          break;
-        default:
-          loggedInUser = String.format(fullDisplayFormat, userName, fullName);
-          break;
-      }
+      loggedInUser = switch (option) {
+        case USERNAME -> userName;
+        case DISPLAY_NAME -> fullName;
+        case DISPLAY_NAME_USERNAME -> String.format(fullDisplayFormat, fullName, userName);
+        default -> String.format(fullDisplayFormat, userName, fullName);
+      };
     }
     isShowGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_GLOBAL_SEARCH);
   }
