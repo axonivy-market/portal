@@ -1,7 +1,7 @@
 .. _customization-portal-home:
 
 Legacy Portal Home (Deprecated)
-==================
+===============================
 .. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 .. _customization-portal-home-before-beginning:

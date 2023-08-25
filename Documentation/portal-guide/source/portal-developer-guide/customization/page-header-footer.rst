@@ -1,7 +1,7 @@
 .. _page-header-footer:
 
 Page Header And Footer (Deprecated)
-======================
+===================================
 .. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 The components ``PageHeader`` and ``PageFooter`` show the header and footer applied to every Portal page.

@@ -1,7 +1,7 @@
 .. _components-portal-components-process-history:
 
 Process History (Deprecated)
-***************
+****************************
 .. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 .. _components-portal-components-process-history-introduction:

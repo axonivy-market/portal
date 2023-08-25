@@ -1,7 +1,7 @@
 .. _customization-task-widget:
 
 Task widget (Deprecated)
-===========
+========================
 .. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 TaskWidget is a built-in component of Portal which contains the tasks
