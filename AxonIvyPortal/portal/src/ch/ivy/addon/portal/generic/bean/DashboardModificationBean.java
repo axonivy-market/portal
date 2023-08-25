@@ -318,6 +318,6 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
   
   public boolean isShowShareButtonOnConfig(boolean isPublicDashboard) {
-    return PermissionUtils.hasShareDashboardPermission() && isPublicDashboard;
+    return isPublicDashboard && PermissionUtils.hasShareDashboardPermission();
   }
 }

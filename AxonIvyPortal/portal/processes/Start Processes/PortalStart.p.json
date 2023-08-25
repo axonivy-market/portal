@@ -4105,11 +4105,11 @@
         "input" : {
           "params" : [
             { "name" : "dashboardId", "type" : "String" },
-            { "name" : "openWithoutFrame", "type" : "Boolean" }
+            { "name" : "openWithoutMenu", "type" : "Boolean" }
           ],
           "map" : {
             "out.dashboardId" : "param.dashboardId",
-            "out.isOpenWithoutFrame" : "param.openWithoutFrame"
+            "out.isOpenWithoutMenu" : "param.openWithoutMenu"
           }
         },
         "outLink" : "DashboardPage.ivp",
@@ -4133,7 +4133,7 @@
             "",
             "DashboardUtils.storeDashboardInSession(in.dashboardId);",
             "in.isOpenDashboardFromLink = true;",
-            "if (in.isOpenWithoutFrame) {",
+            "if (in.isOpenWithoutMenu) {",
             "  SecurityServiceUtils.setSessionAttribute(SessionAttribute.PORTAL_IN_TEAMS.toString(), true);",
             "  SecurityServiceUtils.setSessionAttribute(SessionAttribute.DEFAULT_PAGE_IN_TEAMS.toString(), HomepageType.DASHBOARD.toString()); ",
             "}"

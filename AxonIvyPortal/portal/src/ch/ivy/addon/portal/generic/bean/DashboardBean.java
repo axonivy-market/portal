@@ -47,6 +47,7 @@ import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
@@ -76,6 +77,7 @@ public class DashboardBean implements Serializable {
   private TaskEmptyMessage noTasksMessage;
   private List<DashboardTemplate> dashboardTemplates;
   protected String dashboardUrl;
+  protected String serverUrl;
   
   @PostConstruct
   public void init() {
@@ -130,6 +132,14 @@ public class DashboardBean implements Serializable {
       }
     }
     return mappingDashboards;
+  }
+
+  public String getServerUrl() {
+    return serverUrl;
+  }
+
+  public void setServerUrl(String serverUrl) {
+    this.serverUrl = serverUrl;
   }
 
   protected String readDashboardBySessionUser() {
@@ -408,11 +418,15 @@ public class DashboardBean implements Serializable {
   }
   
   public void showDashboardUrlCopiedMessage(String message) {
-    FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
+    FacesContext.getCurrentInstance().addMessage(GrowlMessageUtils.PORTAL_GLOBAL_GROWL_MESSAGE, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
   }
   
   public void openShareDashboardDialog(Dashboard dashboard) {
-    setDashboardUrl(UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId()));
+    if (StringUtils.isBlank(serverUrl)) {
+      serverUrl = UrlUtils.getServerUrl();
+    }
+
+    setDashboardUrl(serverUrl + PortalNavigator.getDashboardPageUrl(dashboard.getId()));
   }
   
   public boolean isShowShareButtonOnDashboard() {
