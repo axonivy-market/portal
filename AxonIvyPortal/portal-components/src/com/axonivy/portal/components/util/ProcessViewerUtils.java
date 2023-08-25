@@ -71,10 +71,10 @@ public class ProcessViewerUtils {
       isError = true;
       if (webStartable == null) {
         errorIcon = "si si-alert-circle";
-        errorMessage = Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/CouldNotFindLinkedProcess");
+        errorMessage = Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessNotFound");
       } else {
         errorIcon = isViewerAllowed ? "si si-alert-circle" : "si si-lock-1";
-        errorMessage = Ivy.cms().co(isViewerAllowed ? "/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/processCanNotBeLoaded" : "/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessIsHidden");
+        errorMessage = Ivy.cms().co(isViewerAllowed ? "/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessCanNotBeLoaded" : "/Dialogs/com/axonivy/portal/components/ProcessViewer/NoPermissionToView");
       }
       
     }

@@ -178,7 +178,7 @@ public class CustomWidgetUtils {
       IWebStartable startable = findStartableOfCustomDashboardProcessInSecurityContext(processPath);
       if (isNull(startable)) {
         customWidget.getData().setStartRequestPath(EMPTY);
-        customWidget.setErrorMessage(Ivy.cms().co("/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/CustomDashboardWidget/CouldNotFindLinkedProcess"));
+        customWidget.setErrorMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessNotFound"));
         customWidget.setErrorIcon("si si-alert-circle");
         return;
       } else {
@@ -186,14 +186,14 @@ public class CustomWidgetUtils {
         if (!isViewerAllowed) {
           customWidget.getData().setStartRequestPath(EMPTY);
           customWidget.setErrorIcon("si si-lock-1");
-          customWidget.setErrorMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noPermissionToSee"));
+          customWidget.setErrorMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/NoPermissionToView"));
           return;
         }
         
         if (startable.pmv().getActivityState() != ActivityState.ACTIVE || startable.pmv().getReleaseState() != ReleaseState.RELEASED) {
           customWidget.getData().setStartRequestPath(EMPTY);
           customWidget.setErrorIcon("si si-alert-circle");
-          customWidget.setErrorMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/processCanNotBeLoaded"));
+          customWidget.setErrorMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessCanNotBeLoaded"));
           return;
         }
         

@@ -76,12 +76,13 @@ Dialogs:
             NoName: Sin nombre
             NotAvailable: NA
           ProcessViewer:
-            CouldNotFindLinkedProcess: ¡No se pudo encontrar el proceso vinculado!
+            NoPermissionToView: No tiene los permisos necesarios para ver este proceso.
+            ProcessCanNotBeLoaded: No se puede cargar el proceso.
             ProcessDetails: Detalles del proceso
             ProcessId: ID del proceso
             ProcessInfo: Información del proceso
             ProcessInfoIconTooltip: Haga clic para ver los detalles del inicio del proceso
-            ProcessIsHidden: El proceso actual está oculto!
+            ProcessNotFound: No se encuentra el proceso definido.
             ProcessType:
               CASE_MAP: Mapa del caso
               EXPRESS_PROCESS: Flujo de trabajo exprés
