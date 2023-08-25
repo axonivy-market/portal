@@ -1584,3 +1584,23 @@ span.new-widget-dialog__icon.si {
 .widget__content.task-widget {
   max-height: fit-content;
 }
+
+.chart-number-font-size {
+  font-size: 22px;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  transition: all .4s ease;
+}
+.chart-name-font-size {
+  font-size: 5px;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  transition: all .4s ease;
+}
+
+.chart-icon-font-size {
+  font-size: 10px;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  transition: all .4s ease;
+}

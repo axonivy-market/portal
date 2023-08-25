@@ -6,7 +6,7 @@
     "permissions": [
       "Everybody"
     ],
-    "chartType": "bar",
+    "chartType": "pie",
     "label": "My Tasks by Priority",
     "barChartConfig": {
        "xTitle": "Priority",
@@ -29,24 +29,9 @@
      }
   },
   {
-    "id": "5",
-    "aggregates": "businessState",
-    "filter": "businessState:OPEN",
-    "permissions": [
-      "Everybody"
-    ] ,
-    "chartTarget": "TASK",
-    "chartType": "number",
-    "label": "Number of OPEN tasks",
-    "barChartConfig": {
-       "xTitle": "Status",
-       "yTitle": "Number of tasks"
-     }
-  },
-  {
     "id": "6",
     "aggregates": "endTimestamp",
-    "filter": "businessState:DONE",
+    "filter": "endTimestamp:>=now-4d/d <=now+1d,businessState:DONE",
     "permissions": [
       "Everybody"
     ] ,
@@ -59,18 +44,17 @@
      }
   },
   {
-    "id": "7",
-    "aggregates": "endTimestamp",
+    "id": "5",
+    "aggregates": "businessState",
     "filter": "businessState:OPEN",
     "permissions": [
       "Everybody"
     ] ,
     "chartTarget": "TASK",
-    "chartType": "bar",
-    "label": "Open Tasks per Day",
-    "barChartConfig": {
-       "xTitle": "Day",
-       "yTitle": "Number of tasks"
+    "chartType": "number",
+    "label": "Number of OPEN tasks",
+    "numberChartConfig": {
+       "suffixSymbol": "k"
      }
   }
   

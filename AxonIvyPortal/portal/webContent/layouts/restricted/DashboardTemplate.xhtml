@@ -129,12 +129,12 @@
                         id="news-#{widget.id}" />
                     </c:if>
 
-                    <!-- Stat widget -->
-                    <c:if test="#{widget.type eq 'STAT'}">
-                      <ic:com.axonivy.portal.dashboard.component.StatWidget widget="#{widget}"
+                    <!-- Client statistic widget -->
+                    <c:if test="#{widget.type eq 'CLIENT_STATISTIC'}">
+                      <ic:com.axonivy.portal.dashboard.component.ClientStatisticWidget widget="#{widget}"
                         isReadOnlyMode="#{managedBean.isReadOnlyMode}"
                         index="#{status.index}"
-                        id="stat-#{widget.id}" />
+                        id="client-statistic-#{widget.id}" />
                     </c:if>
                   </div>
                 </div>
