@@ -103,37 +103,37 @@ public class DashboardWidgetUtils {
       TaskColumnModel column = columns.get(i);
       
       String field = column.getField();
-      Class<? extends TaskColumnModel> t = null;
+      Class<? extends TaskColumnModel> taskColumnModelClass = null;
       if (equals(DashboardStandardTaskColumn.START, field)) {
-        t = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.StartColumnModel.class;
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.StartColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.PRIORITY, field)) {
-        t = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.PriorityColumnModel.class;
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.PriorityColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.ID, field)) {
-        t = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.IdColumnModel.class;
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.IdColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.NAME, field)) {
-        t = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.NameColumnModel.class;
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.NameColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.DESCRIPTION, field)) {
-        t = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.DescriptionColumnModel.class;
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.DescriptionColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.RESPONSIBLE, field)) {
-        t = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ResponsibleColumnModel.class;
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ResponsibleColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.STATE, field)) {
-        t = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.StateColumnModel.class;
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.StateColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.CREATED, field)) {
-        t = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.CreatedDateColumnModel.class;
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.CreatedDateColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.EXPIRY, field)) {
-        t = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ExpiryDateColumnModel.class;
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ExpiryDateColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.CATEGORY, field)) {
-        t = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.CategoryColumnModel.class;
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.CategoryColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.APPLICATION, field)) {
-        t = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ApplicationColumnModel.class;
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ApplicationColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.ACTIONS, field)) {
-        t = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ActionsColumnModel.class;
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ActionsColumnModel.class;
       } else {
         column.setType(DashboardColumnType.CUSTOM);
       }
       
-      if (t != null) {
-        column = BusinessEntityConverter.convertValue(column, t);
+      if (taskColumnModelClass != null) {
+        column = BusinessEntityConverter.convertValue(column, taskColumnModelClass);
       } 
       
       column.initDefaultValue();
@@ -179,36 +179,36 @@ public class DashboardWidgetUtils {
     List<CaseColumnModel> columns = widget.getColumns();
     for (int i = 0; i < columns.size(); i++) {
       CaseColumnModel column = columns.get(i);
-      Class<? extends CaseColumnModel> t = null;
+      Class<? extends CaseColumnModel> caseColumnModelClass = null;
       String field = column.getField();
       if (equals(DashboardStandardCaseColumn.ID, field)) {
-        t = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.IdColumnModel.class;
+        caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.IdColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.NAME, field)) {
-        t = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.NameColumnModel.class;
+        caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.NameColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.DESCRIPTION, field)) {
-        t = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.DescriptionColumnModel.class;
+        caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.DescriptionColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.CREATOR, field)) {
-        t = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CreatorColumnModel.class;
+        caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CreatorColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.STATE, field)) {
-        t = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.StateColumnModel.class;
+        caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.StateColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.CREATED, field)) {
-        t = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CreatedDateColumnModel.class;
+        caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CreatedDateColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.FINISHED, field)) {
-        t = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.FinishedDateColumnModel.class;
+        caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.FinishedDateColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.OWNER, field)) {
-        t = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.OwnerColumnModel.class;
+        caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.OwnerColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.CATEGORY, field)) {
-        t = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CategoryColumnModel.class;
+        caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CategoryColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.APPLICATION, field)) {
-        t = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.ApplicationColumnModel.class;
+        caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.ApplicationColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.ACTIONS, field)) {
-        t = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.ActionsColumnModel.class;
+        caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.ActionsColumnModel.class;
       } else {
         column.setType(DashboardColumnType.CUSTOM);
       }
       
-      if (t != null) {
-        column = BusinessEntityConverter.convertValue(column, t);
+      if (caseColumnModelClass != null) {
+        column = BusinessEntityConverter.convertValue(column, caseColumnModelClass);
       } 
 
       column.initDefaultValue();
@@ -570,7 +570,7 @@ public class DashboardWidgetUtils {
     
     IWebStartable startProcess = ProcessService.getInstance().findWebStartableInSecurityContextById(processPath);
     if (startProcess == null) {
-      processWidget.setEmptyProcessMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/processNotFound"));
+      processWidget.setEmptyProcessMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessNotFound"));
       return;
     } else {
       // check permission with Ivy processes
@@ -583,7 +583,7 @@ public class DashboardWidgetUtils {
 
       // Found but can not load
       if (startProcess.pmv().getActivityState() != ActivityState.ACTIVE || startProcess.pmv().getReleaseState() != ReleaseState.RELEASED) {
-        processWidget.setEmptyProcessMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/processCanNotBeLoaded"));
+        processWidget.setEmptyProcessMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessCanNotBeLoaded"));
         return;
       }
       if (startProcess.getId().contains(processPath)) {
@@ -596,8 +596,8 @@ public class DashboardWidgetUtils {
   }
   
   private static List<String> getPublicExternalLinkIdsNotForIvySessionUser() {
-      List<ExternalLink> publicExternalLinksNotForIvySessionUser = ExternalLinkService.getInstance().filterPublicExternalLinksNotForIvySessionUser();
-      return publicExternalLinksNotForIvySessionUser.stream().map(link -> link.getId()).toList();
+    List<ExternalLink> publicExternalLinksNotForIvySessionUser = ExternalLinkService.getInstance().filterPublicExternalLinksNotForIvySessionUser();
+    return publicExternalLinksNotForIvySessionUser.stream().map(link -> link.getId()).toList();
   }
 
   private static void updateProcessStartIdForCombined(ProcessDashboardWidget processWidget, DashboardProcess process) {
@@ -611,7 +611,7 @@ public class DashboardWidgetUtils {
   }
 
   private static void loadCompactProcesses(CompactProcessDashboardWidget processWidget) {
-    List<DashboardProcess> processes = getCompactProcesses(processWidget);//processWidget.isPreview() ? getCompactProcessesForPreview(processWidget) : getCompactProcessesOfWidget(processWidget);
+    List<DashboardProcess> processes = getCompactProcesses(processWidget);
     processWidget.setDisplayProcesses(processes);
     processWidget.setOriginalDisplayProcesses(processes);
     if (!processWidget.getCriteria().isInConfiguration()) {
