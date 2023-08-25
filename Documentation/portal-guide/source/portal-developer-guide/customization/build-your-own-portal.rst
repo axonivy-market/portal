@@ -1,7 +1,8 @@
 .. _customization-build-your-own-portal:
 
-Build Your Own Portal
-=====================
+Build Your Own Portal (Deprecated)
+==================================
+.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 .. _customization-build-your-own-portal-build-your-own-portal-using-portal:
 
