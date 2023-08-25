@@ -276,14 +276,14 @@ create a callable subprocess with:
 |calculate-task-delegate|
 
 The parameters of the callable subprocess data contain the current user
-``in.currentUser`` and the current task to be delegated ``in.task``.
-The lists ``in.users`` and ``in.roles`` contain all possible users
-and roles that the task can be delegated to. Modify those two to have
+``currentUser`` and the current task to be delegated ``task``.
+Users and roles that the task can delegate to is get from
+the lists ``users`` and ``roles``. Modify those two to have
 your delegate list.
 
-Portal will call subprocesses with the above details in the same security context then combine all
-``roles`` and ``users`` from the results into the available users and roles whoe can delegate the task.
-To skip combine result from your callable subprocess, please set ``status`` to ``"SKIP"``.
+Portal will call subprocesses with the above details and then combine all
+``roles`` and ``users`` from the results into a list of roles and users whose the task can delegate to.
+To skip the result of one callable subprocess, please set the result variable ``status`` to ``"SKIP"``.
 
 .. _customization-task-widget-responsive-layout:
 
