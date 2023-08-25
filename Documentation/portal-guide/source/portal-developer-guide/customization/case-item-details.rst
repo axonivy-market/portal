@@ -213,7 +213,6 @@ For the custom widget, we have a new node is ``data`` inside of case details wid
 
 Adding New Custom Panels
 ^^^^^^^^^^^^^^^^^^^^^^^^
-.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 The following two steps are necessary to add new custom panels:
 
