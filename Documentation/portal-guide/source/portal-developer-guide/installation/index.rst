@@ -192,7 +192,7 @@ Please follow the guidelines below to migrate your override subprocesses.
 
       - Refer to process ``CustomLoadSubMenuItems`` in the project ``portal-developer-examples`` for an example of how to create custom menu items.
 
-#. :ref:`Customize task delegation <customization-task-widget-custom-task-delegate>`
+#. :ref:`Task Delegation <customization-task-delegation>`
 
 
       - Remove subprocess override of ``CalculateTaskDelegate`` from your project.
