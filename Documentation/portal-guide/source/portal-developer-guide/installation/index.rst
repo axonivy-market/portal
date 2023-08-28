@@ -192,6 +192,19 @@ Please follow the guidelines below to migrate your override subprocesses.
 
       - Refer to process ``CustomLoadSubMenuItems`` in the project ``portal-developer-examples`` for an example of how to create custom menu items.
 
+#. :ref:`Customize task delegation <customization-task-widget-custom-task-delegate>`
+
+
+      - Remove subprocess override of ``CalculateTaskDelegate`` from your project.
+
+      - Change the signature of your callable start as described below.
+
+         +-------------------------+-------------------------------+
+         | Subprocess              | New signature                 |
+         +=========================+===============================+
+         | CalculateTaskDelegate   | portalCalculateTaskDelegate   |
+         +-------------------------+-------------------------------+
+
 Migrate 10.0 To 10.0.7
 ----------------------
 
