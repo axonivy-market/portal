@@ -1,7 +1,6 @@
 package com.axonivy.portal.components.converter;
 
 import java.util.Map;
-import java.util.UUID;
 
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIViewRoot;
@@ -18,6 +17,8 @@ import javax.faces.convert.FacesConverter;
  * 
  * Attention: If the POJOs must match each other (e.g. in a dropdown) over multiple views it is
  * required that the POJOs implement the hasCode method properly.
+ * 
+ * Attention: This converter could fail in rare cases because it is based on the identityHashcode which is not unique for an object.
  */
 @FacesConverter("pojoConverter")
 public class PojoConverter implements Converter {
@@ -35,11 +36,11 @@ public class PojoConverter implements Converter {
   public String getAsString(FacesContext context, UIComponent component, Object item) throws ConverterException {
     if (item != null && !isEmptyString(item)) {
       Map<String, Object> viewMap = getViewMap(context);
-      String uuid = UUID.randomUUID().toString();
-      String mapKey = String.format(MAP_KEY_TEMPLATE, component.getId(), uuid);
+      String identityHashCode = String.valueOf(System.identityHashCode(item));
+      String mapKey = String.format(MAP_KEY_TEMPLATE, component.getId(), identityHashCode);
       viewMap.put(mapKey, item);
 
-      return uuid;
+      return identityHashCode;
     }
     return "";
   }
