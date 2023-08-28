@@ -1,4 +1,4 @@
-CalculateTaskDelegateOverrideData #class
+CustomCalculateTaskDelegateData #class
 _com.axonivy.portal.developerexamples #namespace
 currentUser com.axonivy.portal.components.dto.SecurityMemberDTO #field
 task ch.ivyteam.ivy.workflow.ITask #field
