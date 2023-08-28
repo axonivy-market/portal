@@ -1,4 +1,4 @@
-package com.axonivy.portal.components.enums;
+package com.axonivy.portal.enums;
 
 public enum PortalCustomSignature {
   LOGOUT("portalLogout(Boolean,ch.ivyteam.ivy.workflow.ITask)"),

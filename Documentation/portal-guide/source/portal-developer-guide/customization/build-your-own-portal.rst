@@ -1,7 +1,8 @@
 .. _customization-build-your-own-portal:
 
-Build Your Own Portal
-=====================
+Build Your Own Portal (Deprecated)
+==================================
+.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 .. _customization-build-your-own-portal-build-your-own-portal-using-portal:
 
@@ -36,7 +37,7 @@ Build Your Own Portal Using portal
 #. Set category for tasks
 
    To categorize tasks, set values for ``Category`` field. Task category
-   can be multi-level if it is separated by slash ``/`` signs, as below.
+   can be multi-level if it is separated by slash ``/`` signs, as described below.
 
    |task-category-config|
 
