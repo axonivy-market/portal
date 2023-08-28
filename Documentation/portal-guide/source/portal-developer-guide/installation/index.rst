@@ -174,7 +174,7 @@ Please follow the guidelines below to migrate your override subprocesses.
          | ChangePassword       | portalChangePassword       |
          +----------------------+----------------------------+
 
-#. :ref:`Customize task delegation <customization-task-widget-custom-task-delegate>`
+#. :ref:`Task Delegation <customization-task-delegation>`
 
 
       - Remove subprocess override of ``CalculateTaskDelegate`` from your project.
