@@ -18,6 +18,8 @@ public class SingleProcessDashboardWidget extends ProcessDashboardWidget {
   private DashboardProcess process;
   @JsonIgnore
   private boolean hasPermissionToSee;
+  @JsonIgnore
+  private String emptyProcessMessage;
 
   public SingleProcessDashboardWidget(SingleProcessDashboardWidget widget) {
     super(widget);
@@ -60,4 +62,11 @@ public class SingleProcessDashboardWidget extends ProcessDashboardWidget {
     this.hasPermissionToSee = hasPermissionToSee;
   }
   
+  public String getEmptyProcessMessage() {
+    return emptyProcessMessage;
+  }
+
+  public void setEmptyProcessMessage(String emptyProcessMessage) {
+    this.emptyProcessMessage = emptyProcessMessage;
+  }
 }
