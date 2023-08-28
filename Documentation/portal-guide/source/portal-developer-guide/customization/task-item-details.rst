@@ -1,6 +1,6 @@
 .. _customization-task-item-details:
 
-Task item details
+Task Item Details
 =================
 
 TaskItemDetails is a built-in component of Portal which contains the
