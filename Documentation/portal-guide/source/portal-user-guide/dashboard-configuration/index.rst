@@ -230,6 +230,10 @@ To generate a public dashboard link, simply click on the |share-icon| Share in t
 
 |share-public-dashboards|
 
+.. note::
+   To share the dashboard without the menu frame, add the parameter ``openWithoutMenu=true`` to the URL. However, please be aware that this option is only for embedding purposes.
+
+
 How to: reorder public dashboards
 =================================
 
