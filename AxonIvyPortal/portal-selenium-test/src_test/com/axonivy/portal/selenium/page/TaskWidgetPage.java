@@ -106,7 +106,34 @@ public class TaskWidgetPage extends TemplatePage {
     openTriggerEscalationDialog();
     $("button[id$='confirm-escalation']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
-  
+
+  public void openTaskDelegationDialog() {
+    $("a[id$='task-delegate-command']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("div[id$='task-delegate-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public boolean isDelegateTypeDisabled(int index) {
+    return getDelegateType(index).getDomAttribute("class").contains("ui-state-disabled");
+  }
+
+  public boolean isDelegateTypeAvailable() {
+    return $("div[id$=':task-delegate-form:activator-panel']").isDisplayed();
+  }
+
+  public String getCannotDelegateText() {
+    return $("div[id$='task-delegate-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$(".ui-dialog-content span").shouldBe(Condition.appear, DEFAULT_TIMEOUT).getText();
+  }
+
+  public SelenideElement getDelegateType(int index) {
+    return $("div[id$=':task-delegate-form:activator-panel']").$$(".ui-radiobutton-box").get(index)
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public boolean isDelegateListSelectionAvailable() {
+    return $("div[id$='select-delegate-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).exists();
+  }
+
   public SelenideElement getTaskState(int taskRowIndex) {
     return $(String.format("[id='task-widget:task-list-scroller:%d:task-item:task-state-component:task-state']",
         taskRowIndex)).shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span");
