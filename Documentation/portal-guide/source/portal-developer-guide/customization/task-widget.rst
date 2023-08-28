@@ -246,7 +246,7 @@ How To Override Export Feature
 Customize task delegation
 -------------------------
 
-To customize the list of users and roles that a task can be delegated to,
+To customize the list of users and roles a task can be delegated to,
 create a callable subprocess with:
 
 **Signature**: portalCalculateTaskDelegate
@@ -275,14 +275,15 @@ create a callable subprocess with:
 
 |calculate-task-delegate|
 
-The parameters of the callable subprocess data contain the current user
-``currentUser`` and the current task to be delegated ``task``.
-Users and roles that the task can delegate to is get from
-the lists ``users`` and ``roles``. Modify those two to have
+The parameters of the callable subprocess data contain the
+``currentUser`` and the current ``task`` to be delegated.
+
+Get the users and roles the task can be delegated to from
+the lists ``users`` and ``roles``. Modify those two to create
 your delegate list.
 
-Portal will call subprocesses with the above details and then combine all
-``roles`` and ``users`` from the results into a list of roles and users whose the task can delegate to.
+Portal will call subprocesses with the details above and then combine all
+``roles`` and ``users`` from the results into a list of roles and users the task can be delegate to.
 To skip the result of one callable subprocess, please set the result variable ``status`` to ``"SKIP"``.
 
 .. _customization-task-widget-responsive-layout:

@@ -70,10 +70,8 @@ To customize how **Document Table** gets documents, create a callable subprocess
 | status                 | java.lang.String                                                     | OK or SKIP     |
 +------------------------+----------------------------------------------------------------------+----------------+
 
-The parameters of the callable subprocess data contain the current business case ``businessCase``.
-
 Portal will call subprocesses with the above details in the same security context and then
-get the first result that ``status`` is ``"OK"``.
+get the first result where ``status`` is ``"OK"``.
 
 .. note::
 
@@ -112,11 +110,11 @@ create a callable subprocess with:
 | status                                  | java.lang.String                                         | OK or SKIP     |
 +-----------------------------------------+----------------------------------------------------------+----------------+
 
-The parameters of the callable subprocess data contain the current business case ``businessCase``, the
-file you want to upload ``uploadedFile``, and other variables to validate the file before upload it.
+The parameters of the callable subprocess data contain the file you want to upload ``uploadedFile``
+and other variables to validate the file before uploading it.
 
 Portal will call subprocesses with the above details in the same security context and then
-get the first result that ``status`` is ``"OK"``.
+get the first result where ``status`` is ``"OK"``.
 
 Download document
 -----------------
@@ -142,11 +140,10 @@ create a callable subprocess with:
 | status                 | org.primefaces.model.StreamedContent                 | OK or SKIP     |
 +------------------------+------------------------------------------------------+----------------+
 
-The parameters of the callable subprocess data contain the current business case ``businessCase``,
-and the Ivy document you want to download ``document``.
+The parameters of the callable subprocess data contain the Ivy ``document`` you want to download.
 
 Portal will call subprocesses with the above details in the same security context and then
-get the first result that ``status`` is ``"OK"``.
+get the first result where ``status`` is ``"OK"``.
 
 Delete document
 ---------------
@@ -172,11 +169,10 @@ create a callable subprocess with:
 | status                 | java.lang.String                                     | OK or SKIP     |
 +------------------------+------------------------------------------------------+----------------+
 
-The parameters of the callable subprocess data contain the current business case ``businessCase``,
-and the Ivy document to delete ``document``.
+The parameters of the callable subprocess data contain the Ivy ``document`` to delete.
 
 Portal will call subprocesses with the above details in the same security context and then
-get the first result that ``status`` is ``"OK"``.
+get the first result where ``status`` is ``"OK"``.
 
 User interface
 --------------
