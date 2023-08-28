@@ -45,7 +45,7 @@ public class TaskDetailsTest extends BaseTest {
 
   @Test
   public void testDelegateTaskInTaskDetail() {
-    login(TestAccount.HR_ROLE_USER);
+    login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     homePage = new HomePage();
     taskDetailsPage = openDetailsPageOfFirstTask();

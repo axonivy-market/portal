@@ -10,6 +10,11 @@
       "name" : "showDefaultDocumentTableExample.ivp",
       "config" : {
         "callSignature" : "showDefaultDocumentTableExample",
+        "case" : {
+          "customFields" : [
+            { "name" : "custom", "type" : "String", "value" : "\"true\"" }
+          ]
+        },
         "outLink" : "showDefaultDocumentTableExample.ivp",
         "startName" : "Show Default Document Table Example"
       },
@@ -43,6 +48,11 @@
       "name" : "showCustomizedDocumentTableExample.ivp",
       "config" : {
         "callSignature" : "showCustomizedDocumentTableExample",
+        "case" : {
+          "customFields" : [
+            { "name" : "custom", "type" : "String", "value" : "\"true\"" }
+          ]
+        },
         "outLink" : "showCustomizedDocumentTableExample.ivp",
         "startName" : "Show Customized Document Table Example"
       },
@@ -95,6 +105,11 @@
       "name" : "showDefaultDocumentTableExampleSerenity.ivp",
       "config" : {
         "callSignature" : "showDefaultDocumentTableExampleSerenity",
+        "case" : {
+          "customFields" : [
+            { "name" : "custom", "type" : "String", "value" : "\"true\"" }
+          ]
+        },
         "outLink" : "showDefaultDocumentTableExampleSerenity.ivp",
         "showInStartList" : false,
         "startName" : "Show Default Document Table Example in Serenity theme"
@@ -116,6 +131,11 @@
       "name" : "showCustomizedDocumentTableExampleSerenity.ivp",
       "config" : {
         "callSignature" : "showCustomizedDocumentTableExampleSerenity",
+        "case" : {
+          "customFields" : [
+            { "name" : "custom", "type" : "String", "value" : "\"true\"" }
+          ]
+        },
         "outLink" : "showCustomizedDocumentTableExampleSerenity.ivp",
         "showInStartList" : false,
         "startName" : "Show Customized Document Table Example in Serenity theme"
