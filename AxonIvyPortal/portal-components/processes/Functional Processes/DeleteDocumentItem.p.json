@@ -103,8 +103,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.CaseUtils;",
-            "import org.apache.commons.lang3.StringUtils;",
+            "import com.axonivy.portal.components.predicate.CustomProcessPredicate;",
             "import com.axonivy.portal.components.enums.CustomSignature;",
             "import java.util.HashMap;",
             "import java.util.Map;",
@@ -114,10 +113,9 @@
             "params.put(\"businessCase\", in.businessCase);",
             "params.put(\"document\", in.document);",
             "",
-            "CustomSignature signature = CaseUtils.isExpressCase(ivy.case) ? CustomSignature.EXPRESS_DELETE_DOCUMENT_ITEM : CustomSignature.DELETE_DOCUMENT_ITEM;",
-            "Map result = IvyAdapterService.startSubProcessInApplication(signature.getSignature(), params);",
+            "Map result = IvyAdapterService.startSubProcessesInSecurityContext(CustomSignature.DELETE_DOCUMENT_ITEM.getSignature(), params, new CustomProcessPredicate());",
+            "in.hasCustomProcess = !result.isEmpty();",
             "",
-            "in.hasCustomProcess = result != null;",
             "if (in.hasCustomProcess) {",
             "  in.message = result.get(\"message\").toString();",
             "}"
