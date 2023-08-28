@@ -95,7 +95,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
       dashboard.setPermissionDTOs(new ArrayList<>(responsibles));
     }
   }
-
+  
   public List<SecurityMemberDTO> completePermissions(String query) {
     return RoleUtils.findRoles(null, selectedDashboardPermissions, query).stream()
         .map(SecurityMemberDTOMapper::mapFromRoleDTO).collect(Collectors.toList());
@@ -315,5 +315,9 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
   private String getFileName(String dashboardName) {
     return dashboardName + JSON_FILE_SUFFIX;
+  }
+  
+  public boolean isShowShareButtonOnConfig(boolean isPublicDashboard) {
+    return isPublicDashboard && PermissionUtils.hasShareDashboardPermission();
   }
 }

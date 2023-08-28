@@ -6,13 +6,19 @@ import java.net.URL;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.Protocol;
+import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class UrlUtils {
   private static final String EMBED_IN_FRAME = "embedInFrame";
 
-  public static String getServerUrl() throws MalformedURLException {
-    URL url = new URL(Ivy.html().applicationHomeRef());
+  public static String getServerUrl() {
+    URL url;
+    try {
+      url = new URL(Ivy.html().applicationHomeRef());
+    } catch (MalformedURLException e) {
+      throw new PortalException(e);
+    }
     StringBuilder builder = new StringBuilder(url.getProtocol()).append("://").append(url.getHost());
     if (url.getPort() != -1) {
       builder.append(":").append(url.getPort());

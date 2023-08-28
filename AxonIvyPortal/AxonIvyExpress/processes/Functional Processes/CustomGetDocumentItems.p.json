@@ -8,9 +8,9 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "expressGetDocumentItems(ICase)",
+      "name" : "portalGetDocumentItems(ICase)",
       "config" : {
-        "callSignature" : "expressGetDocumentItems",
+        "callSignature" : "portalGetDocumentItems",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
@@ -22,11 +22,13 @@
         "result" : {
           "params" : [
             { "name" : "documents", "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>" },
-            { "name" : "message", "type" : "String" }
+            { "name" : "message", "type" : "String" },
+            { "name" : "status", "type" : "String" }
           ],
           "map" : {
             "result.documents" : "in.documents",
-            "result.message" : "in.message"
+            "result.message" : "in.message",
+            "result.status" : "in.status.name()"
           }
         }
       },
@@ -49,9 +51,16 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.enums.CustomProcessStatus;",
+            "import ch.ivy.addon.portalkit.util.ExecutingExpressProcessUtils;",
             "import ch.ivy.addon.portalkit.util.DocumentFileUtils;",
             "",
-            "in.documents = DocumentFileUtils.expressDocuments(in.businessCase);"
+            "in.status = CustomProcessStatus.SKIP;",
+            "",
+            "if (ExecutingExpressProcessUtils.isExpressCase(in.businessCase)) {",
+            "  in.status = CustomProcessStatus.OK;",
+            "  in.documents = DocumentFileUtils.expressDocuments(in.businessCase);",
+            "}"
           ]
         }
       },

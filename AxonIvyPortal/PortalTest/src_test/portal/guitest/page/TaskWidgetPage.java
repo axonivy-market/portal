@@ -335,10 +335,6 @@ public class TaskWidgetPage extends TemplatePage {
     return Optional.ofNullable(delegateTypeRadioButton.getAttribute("disabled")).isPresent();
   }
 
-  public boolean isDelegateListSelectionAvailable() {
-    return isElementPresent(By.cssSelector("div[id$='select-delegate-panel']"));
-  }
-
   @SuppressWarnings("deprecation")
   public AdhocPage addAdhoc(int taskIndex) {
     clickByCssSelector(ID_END + taskIndex + ":task-item:task-side-steps-menu']");
