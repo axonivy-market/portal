@@ -35,22 +35,3 @@ Portal Installation with Reverse Proxy
 If you install the Portal in an environment that uses a reverse proxy (Nginx,
 IIS or Apache httpd), you have to define the proxy in the |ivy-engine|
 configuration.
-
-Update Default Pages
-====================
-If you copy ``PortalStart.p.json`` to your project for customization, you need
-to follow this chapter to customize the default pages in your designer and
-engine: :dev-url:`Default Pages </doc/|version|/designer-guide/user-interface/default-pages/index.html>`
-
-For example, if you start with the default settings:
-
-.. literalinclude:: files/app-designer.yaml
-  :language: yaml
-
-and your Portal project has a different package and name, such as:
-``com.example:customizedPortal``, then you have to change the configuration as
-shown below:
-
-.. literalinclude:: files/app-designer-customized.yaml
-  :language: yaml
-
