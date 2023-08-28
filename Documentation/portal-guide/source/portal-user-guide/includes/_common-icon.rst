@@ -50,3 +50,5 @@
    :width: 15px
 .. |import-icon| image:: ../includes/images/import-json.svg
    :width: 15px
+.. |share-icon| image:: ../includes/images/share.svg
+   :width: 15px
