@@ -9,13 +9,6 @@ import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.NUMBER;
 import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.STRING;
 import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.TEXT;
 import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.TIMESTAMP;
-import static ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn.APPLICATION;
-import static ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn.CATEGORY;
-import static ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn.ID;
-import static ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn.PRIORITY;
-import static ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn.RESPONSIBLE;
-import static ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn.START;
-import static ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn.STATE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,11 +17,14 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
+
+import com.axonivy.portal.components.service.impl.ProcessService;
 
 import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
@@ -60,39 +56,38 @@ import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivyteam.ivy.application.ActivityState;
+import ch.ivyteam.ivy.application.ReleaseState;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
+import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class DashboardWidgetUtils {
 
   public static DashboardWidget buildWidgetColumns(DashboardWidget widget) {
-    switch (widget.getType()) {
-      case TASK:
-        buildTaskColumns((TaskDashboardWidget) widget);
-        break;
-      case CASE:
-        buildCaseColumns((CaseDashboardWidget) widget);
-        break;
-      case PROCESS:
+    return switch (widget.getType()) {
+      case TASK -> buildTaskColumns((TaskDashboardWidget) widget);
+      case CASE -> buildCaseColumns((CaseDashboardWidget) widget);
+      case PROCESS -> {
         ProcessDashboardWidget processWidget = (ProcessDashboardWidget) widget;
         processWidget.buildFilterableColumns(initProcessFilterableColumns());
-        buildProcessColumns(processWidget);
-        break;
-      case CUSTOM:
+        yield buildProcessColumns(processWidget);
+      }
+      case CUSTOM -> {
         CustomWidgetUtils.loadDataForCustomWidget(widget);
-        break;
-      case PROCESS_VIEWER:
+        yield widget;
+      }
+      case PROCESS_VIEWER -> {
         CustomWidgetUtils.loadDataForProcessViewerWidget(widget);
-        break;
-      default:
-        break;
-    }
-    return widget;
+        yield widget;
+      }
+      default -> widget;
+    };
   }
 
   public static ProcessDashboardWidget buildProcessColumns(ProcessDashboardWidget processWidget) {
     for (var filter : processWidget.getFilterableColumns()) {
-      if (DashboardStandardProcessColumn.CATEGORY.getField().equalsIgnoreCase(filter.getField()) &&
+      if (DashboardStandardProcessColumn.CATEGORY.getField().equalsIgnoreCase(filter.getField()) && 
           processWidget instanceof CompactProcessDashboardWidget) {
         filter.setFilterList(((CompactProcessDashboardWidget)processWidget).getCategories());
       } else if (DashboardStandardProcessColumn.APPLICATION.getField().equalsIgnoreCase(filter.getField())) {
@@ -106,35 +101,41 @@ public class DashboardWidgetUtils {
     List<TaskColumnModel> columns = widget.getColumns();
     for (int i = 0; i < columns.size(); i++) {
       TaskColumnModel column = columns.get(i);
+      
       String field = column.getField();
+      Class<? extends TaskColumnModel> taskColumnModelClass = null;
       if (equals(DashboardStandardTaskColumn.START, field)) {
-        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.StartColumnModel.class);
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.StartColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.PRIORITY, field)) {
-        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.PriorityColumnModel.class);
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.PriorityColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.ID, field)) {
-        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.IdColumnModel.class);
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.IdColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.NAME, field)) {
-        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.NameColumnModel.class);
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.NameColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.DESCRIPTION, field)) {
-        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.DescriptionColumnModel.class);
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.DescriptionColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.RESPONSIBLE, field)) {
-        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ResponsibleColumnModel.class);
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ResponsibleColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.STATE, field)) {
-        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.StateColumnModel.class);
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.StateColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.CREATED, field)) {
-        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.CreatedDateColumnModel.class);
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.CreatedDateColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.EXPIRY, field)) {
-        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ExpiryDateColumnModel.class);
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ExpiryDateColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.CATEGORY, field)) {
-        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.CategoryColumnModel.class);
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.CategoryColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.APPLICATION, field)) {
-        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ApplicationColumnModel.class);
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ApplicationColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.ACTIONS, field)) {
-        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ActionsColumnModel.class);
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ActionsColumnModel.class;
       } else {
         column.setType(DashboardColumnType.CUSTOM);
       }
-
+      
+      if (taskColumnModelClass != null) {
+        column = BusinessEntityConverter.convertValue(column, taskColumnModelClass);
+      } 
+      
       column.initDefaultValue();
       if (column.getType() == DashboardColumnType.CUSTOM) {
         buildCustomColumn(ICustomFieldMeta.tasks(), column, field);
@@ -148,7 +149,7 @@ public class DashboardWidgetUtils {
   private static boolean equals(DashboardStandardTaskColumn taskColumn,String field) {
     return taskColumn.getField().equalsIgnoreCase(field);
   }
-
+  
   private static boolean equals(DashboardStandardCaseColumn caseColumn,String field) {
     return caseColumn.getField().equalsIgnoreCase(field);
   }
@@ -169,8 +170,8 @@ public class DashboardWidgetUtils {
       return new ArrayList<>();
     }
     return columns.stream().filter(Objects::nonNull)
-        .filter(col -> !StringUtils.equalsIgnoreCase(col.getField(), START.toString())
-            && !StringUtils.equalsIgnoreCase(col.getField(), ID.toString()))
+        .filter(col -> !StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardTaskColumn.START.toString())
+                  && !StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardTaskColumn.ID.toString()))
         .collect(Collectors.toList());
   }
 
@@ -178,32 +179,37 @@ public class DashboardWidgetUtils {
     List<CaseColumnModel> columns = widget.getColumns();
     for (int i = 0; i < columns.size(); i++) {
       CaseColumnModel column = columns.get(i);
+      Class<? extends CaseColumnModel> caseColumnModelClass = null;
       String field = column.getField();
       if (equals(DashboardStandardCaseColumn.ID, field)) {
-        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.IdColumnModel.class);
+        caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.IdColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.NAME, field)) {
-        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.NameColumnModel.class);
+        caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.NameColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.DESCRIPTION, field)) {
-        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.DescriptionColumnModel.class);
+        caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.DescriptionColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.CREATOR, field)) {
-        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CreatorColumnModel.class);
+        caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CreatorColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.STATE, field)) {
-        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.StateColumnModel.class);
+        caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.StateColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.CREATED, field)) {
-        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CreatedDateColumnModel.class);
+        caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CreatedDateColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.FINISHED, field)) {
-        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.FinishedDateColumnModel.class);
+        caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.FinishedDateColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.OWNER, field)) {
-        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.OwnerColumnModel.class);
+        caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.OwnerColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.CATEGORY, field)) {
-        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CategoryColumnModel.class);
+        caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CategoryColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.APPLICATION, field)) {
-        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.ApplicationColumnModel.class);
+        caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.ApplicationColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.ACTIONS, field)) {
-        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.ActionsColumnModel.class);
+        caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.ActionsColumnModel.class;
       } else {
         column.setType(DashboardColumnType.CUSTOM);
       }
+      
+      if (caseColumnModelClass != null) {
+        column = BusinessEntityConverter.convertValue(column, caseColumnModelClass);
+      } 
 
       column.initDefaultValue();
       if (column.getType() == DashboardColumnType.CUSTOM) {
@@ -231,8 +237,8 @@ public class DashboardWidgetUtils {
 
   public static DashboardWidget simplifyWidgetColumnData(DashboardWidget widget) {
     List<String> deprecatedFields = new ArrayList<>();
-    switch (widget.getType()) {
-      case TASK:
+    return switch (widget.getType()) {
+      case TASK -> {
         var taskCustomFieldMetas = ICustomFieldMeta.tasks();
         List<TaskColumnModel> columns = ((TaskDashboardWidget) widget).getColumns();
         columns.forEach(column -> {
@@ -241,8 +247,9 @@ public class DashboardWidgetUtils {
         deprecatedFields.forEach(field -> {
           columns.removeIf(column -> column.getField().equals(field));
         });
-        break;
-      case CASE:
+        yield widget;
+        }
+      case CASE ->{
         var caseCustomFieldMetas = ICustomFieldMeta.cases();
         List<CaseColumnModel> caseColumns = ((CaseDashboardWidget) widget).getColumns();
         caseColumns.forEach(column -> {
@@ -251,11 +258,10 @@ public class DashboardWidgetUtils {
         deprecatedFields.forEach(field -> {
           caseColumns.removeIf(column -> column.getField().equals(field));
         });
-        break;
-      default:
-        break;
-    }
-    return widget;
+        yield widget;
+        }
+      default -> widget;
+    };
   }
 
   private static void simplifyColumnData(AbstractColumn column, Set<ICustomFieldMeta> customFieldMetas,
@@ -317,18 +323,11 @@ public class DashboardWidgetUtils {
   }
 
   public static boolean hasPredefinedFilter(DashboardWidget widget) {
-    boolean hasPredefinedFilter = false;
-    switch (widget.getType()) {
-      case TASK:
-        hasPredefinedFilter = hasPredefinedTaskFilter((TaskDashboardWidget) widget);
-        break;
-      case CASE:
-        hasPredefinedFilter = hasPredefinedCaseFilter((CaseDashboardWidget) widget);
-        break;
-      default:
-        break;
-    }
-    return hasPredefinedFilter;
+    return switch (widget.getType()) {
+      case TASK -> hasPredefinedTaskFilter((TaskDashboardWidget) widget);
+      case CASE -> hasPredefinedCaseFilter((CaseDashboardWidget) widget);
+      default -> false;
+    };
   }
 
   public static boolean hasPredefinedCaseFilter(CaseDashboardWidget widget) {
@@ -341,12 +340,12 @@ public class DashboardWidgetUtils {
       if (hasPredefinedFilter) {
         break;
       }
-      if ((DashboardStandardCaseColumn.STATE.getField().equalsIgnoreCase(col.getField())
-          || DashboardStandardCaseColumn.CREATOR.getField().equalsIgnoreCase(col.getField())
-          || DashboardStandardCaseColumn.OWNER.getField().equalsIgnoreCase(col.getField())
-          || DashboardStandardCaseColumn.CATEGORY.getField().equalsIgnoreCase(col.getField())
-          || DashboardStandardCaseColumn.APPLICATION.getField().equalsIgnoreCase(col.getField()))
-          && CollectionUtils.isNotEmpty(col.getFilterList())) {
+      List<String> asList = Arrays.asList(DashboardStandardCaseColumn.STATE.getField(), 
+                                          DashboardStandardCaseColumn.CREATOR.getField(), 
+                                          DashboardStandardCaseColumn.OWNER.getField(), 
+                                          DashboardStandardCaseColumn.CATEGORY.getField(), 
+                                          DashboardStandardCaseColumn.APPLICATION.getField());
+      if (asList.stream().anyMatch(col.getField()::equalsIgnoreCase) && CollectionUtils.isNotEmpty(col.getFilterList())) {
         hasPredefinedFilter = true;
       } else {
         hasPredefinedFilter = hasPredefinedCustomField(col);
@@ -365,11 +364,12 @@ public class DashboardWidgetUtils {
       if (hasPredefinedFilter) {
         break;
       }
-      if ((PRIORITY.getField().equalsIgnoreCase(col.getField()) || STATE.getField().equalsIgnoreCase(col.getField())
-          || RESPONSIBLE.getField().equalsIgnoreCase(col.getField())
-          || CATEGORY.getField().equalsIgnoreCase(col.getField())
-          || APPLICATION.getField().equalsIgnoreCase(col.getField()))
-          && !CollectionUtils.isEmpty(col.getFilterList())) {
+      List<String> asList = Arrays.asList(DashboardStandardTaskColumn.PRIORITY.getField(), 
+                                          DashboardStandardTaskColumn.STATE.getField(), 
+                                          DashboardStandardTaskColumn.RESPONSIBLE.getField(), 
+                                          DashboardStandardTaskColumn.CATEGORY.getField(), 
+                                          DashboardStandardTaskColumn.APPLICATION.getField());
+      if (asList.stream().anyMatch(col.getField()::equalsIgnoreCase)&& !CollectionUtils.isEmpty(col.getFilterList())) {
         hasPredefinedFilter = true;
       } else {
         hasPredefinedFilter = hasPredefinedCustomField(col);
@@ -379,29 +379,18 @@ public class DashboardWidgetUtils {
   }
 
   public static boolean hasPredefinedCustomField(ColumnModel col) {
-    if (((TEXT == col.getFormat() || STRING == col.getFormat()) && !(CollectionUtils.isEmpty(col.getFilterList()) && StringUtils.isBlank(col.getFilter())))
+    return ((TEXT == col.getFormat() || STRING == col.getFormat()) && !(CollectionUtils.isEmpty(col.getFilterList()) && StringUtils.isBlank(col.getFilter())))
         || (NUMBER == col.getFormat() && !(StringUtils.isBlank(col.getFilterFrom()) && StringUtils.isBlank(col.getFilterTo())))
-        || (TIMESTAMP == col.getFormat() && !(col.getDateFilterFrom() == null && col.getDateFilterTo() == null))) {
-      return true;
-    }
-    return false;
+        || (TIMESTAMP == col.getFormat() && !(col.getDateFilterFrom() == null && col.getDateFilterTo() == null));
   }
 
   public static Optional<String> countDefinedUserFilter(DashboardWidget widget) {
-    List<ColumnModel> filterableColumns = new ArrayList<>();
-    switch (widget.getType()) {
-      case CASE:
-        filterableColumns = ((CaseDashboardWidget) widget).getFilterableColumns();
-        break;
-      case TASK:
-        filterableColumns = ((TaskDashboardWidget) widget).getFilterableColumns();
-        break;
-      case PROCESS:
-        filterableColumns = ((CompactProcessDashboardWidget) widget).getFilterableColumns();
-        break;
-      default:
-        break;
-    }
+    List<ColumnModel> filterableColumns = switch (widget.getType()) {
+      case CASE -> ((CaseDashboardWidget) widget).getFilterableColumns();
+      case TASK -> ((TaskDashboardWidget) widget).getFilterableColumns();
+      case PROCESS -> ((CompactProcessDashboardWidget) widget).getFilterableColumns();
+      default ->  new ArrayList<>();
+    };
     if (CollectionUtils.isEmpty(filterableColumns)) {
       return Optional.empty();
     }
@@ -426,24 +415,13 @@ public class DashboardWidgetUtils {
   }
 
   public static DashboardWidget buildDefaultWidget(String id, String name, DashboardWidgetType type) {
-    DashboardWidget widget = null;
-    switch (type) {
-      case TASK:
-        widget = buildDefaultTaskWidget(id, name);
-        break;
-      case CASE:
-        widget = buildDefaultCaseWidget(id, name);
-        break;
-      case PROCESS:
-        widget = buildDefaultProcessWidget(id, name);
-        break;
-      case STATISTIC:
-        widget = buildDefaultStatisticWidget(id, name);
-        break;
-      default:
-        break;
-    }
-    return widget;
+    return switch (type) {
+      case TASK -> buildDefaultTaskWidget(id, name);
+      case CASE -> buildDefaultCaseWidget(id, name);
+      case PROCESS -> buildDefaultProcessWidget(id, name);
+      case STATISTIC -> buildDefaultStatisticWidget(id, name);
+      default -> null;
+    };
   }
 
 
@@ -484,16 +462,14 @@ public class DashboardWidgetUtils {
       }
       var columnModel = new ProcessColumnModel();
       columnModel.setField(col.getField());
-      if (DashboardStandardProcessColumn.NAME == col) {
-        columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.NameColumnModel();
-      } else if (DashboardStandardProcessColumn.TYPE == col) {
-        columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.TypeColumnModel();
-      } else if (DashboardStandardProcessColumn.CATEGORY == col) {
-        columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.CategoryColumnModel();
-      } else if (DashboardStandardProcessColumn.APPLICATION == col) {
-        columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.ApplicationColumnModel();
+      switch (col) {
+        case NAME -> {columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.NameColumnModel();}
+        case TYPE -> {columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.TypeColumnModel();}
+        case APPLICATION -> {columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.ApplicationColumnModel();}
+        case CATEGORY -> {columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.CategoryColumnModel();}
+        default -> {}
       }
-
+      
       columnModel.initDefaultValue();
       columnModels.add(columnModel);
     }
@@ -577,27 +553,48 @@ public class DashboardWidgetUtils {
   }
 
   private static void loadProcessByPath(SingleProcessDashboardWidget processWidget) {
-    var processPath = processWidget.getProcessPath();
+    String processPath = processWidget.getProcessPath();
     if (processPath == null || processWidget.getProcess() != null) {
       return;
     }
 
-    if (getPublicExternalLinkIdsNotForIvySessionUser().indexOf(processPath) > -1) {
+    List<String> publicExternalLinkIdsNotForIvySessionUser = getPublicExternalLinkIdsNotForIvySessionUser();
+    // check permission with external processes
+    if (publicExternalLinkIdsNotForIvySessionUser.indexOf(processPath) > -1) {
       processWidget.setHasPermissionToSee(false);
+      processWidget.setEmptyProcessMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noPermissionToSee"));
       return;
     } else {
       processWidget.setHasPermissionToSee(true);
     }
+    
+    IWebStartable startProcess = ProcessService.getInstance().findWebStartableInSecurityContextById(processPath);
+    if (startProcess == null) {
+      processWidget.setEmptyProcessMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessNotFound"));
+      return;
+    } else {
+      // check permission with Ivy processes
+      boolean hasPermissionToSee = Ivy.session().getAllStartables().anyMatch(startable-> startable.getId().equals(startProcess.getId()));
+      processWidget.setHasPermissionToSee(hasPermissionToSee);
+      if (!hasPermissionToSee) {
+        processWidget.setEmptyProcessMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noPermissionToSee"));
+        return;
+      }
 
-    for (DashboardProcess process : getAllPortalProcesses()) {
-      if (process.getId() != null && process.getId().contains(processPath)) {
-        updateProcessStartIdForCombined(processWidget, process);
+      // Found but can not load
+      if (startProcess.pmv().getActivityState() != ActivityState.ACTIVE || startProcess.pmv().getReleaseState() != ReleaseState.RELEASED) {
+        processWidget.setEmptyProcessMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessCanNotBeLoaded"));
+        return;
+      }
+      if (startProcess.getId().contains(processPath)) {
+        DashboardProcess process = new DashboardProcess(startProcess);
+        updateProcessStartIdForCombined(processWidget, process );
         processWidget.setProcess(process);
-        break;
       }
     }
+    
   }
-
+  
   private static List<String> getPublicExternalLinkIdsNotForIvySessionUser() {
     List<ExternalLink> publicExternalLinksNotForIvySessionUser = ExternalLinkService.getInstance().filterPublicExternalLinksNotForIvySessionUser();
     return publicExternalLinksNotForIvySessionUser.stream().map(link -> link.getId()).toList();
@@ -606,15 +603,15 @@ public class DashboardWidgetUtils {
   private static void updateProcessStartIdForCombined(ProcessDashboardWidget processWidget, DashboardProcess process) {
     if (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE && process.getProcessStartId() == null) {
       Ivy.session().getStartableProcessStarts().stream()
-      .filter(processStart -> processStart.getLink().getRelative().equals(process.getStartLink())).findFirst()
-      .ifPresent(optional -> {
-        process.setProcessStartId(optional.getId());
-      });
+          .filter(processStart -> processStart.getLink().getRelative().equals(process.getStartLink())).findFirst()
+          .ifPresent(optional -> {
+            process.setProcessStartId(optional.getId());
+          });
     }
   }
 
   private static void loadCompactProcesses(CompactProcessDashboardWidget processWidget) {
-    List<DashboardProcess> processes = processWidget.isPreview() ? getCompactProcessesForPreview(processWidget) : getCompactProcessesOfWidget(processWidget);
+    List<DashboardProcess> processes = getCompactProcesses(processWidget);
     processWidget.setDisplayProcesses(processes);
     processWidget.setOriginalDisplayProcesses(processes);
     if (!processWidget.getCriteria().isInConfiguration()) {
@@ -622,73 +619,57 @@ public class DashboardWidgetUtils {
     }
   }
 
-  private static List<DashboardProcess> getCompactProcessesForPreview(CompactProcessDashboardWidget processWidget) {
+  private static List<DashboardProcess> getCompactProcesses(CompactProcessDashboardWidget processWidget) {
     List<DashboardProcess> processes;
     if (processWidget.isSelectedAllProcess()) {
       processes = getAllPortalProcesses();
     }
-    if (CollectionUtils.isNotEmpty(processWidget.getProcesses())) {
-      processes = filterProcessesByProcesses(processWidget.getProcesses());
-      processWidget.setProcesses(processes);
+    if (processWidget.isPreview()) {
+      if (CollectionUtils.isNotEmpty(processWidget.getProcesses())) {
+        processes = filterProcessesByProcesses(processWidget.getProcesses());
+        processWidget.setProcesses(processes);
+      } else {
+        processes = filterProcessesByCategories(processWidget.getCategories());
+      }
     } else {
-      processes = filterProcessesByCategories(processWidget.getCategories());
+      if (CollectionUtils.isNotEmpty(processWidget.getProcessPaths())) {
+        processes = filterProcessesByProcessPaths(processWidget.getProcessPaths());
+        processWidget.setProcesses(processes);
+      } else {
+        processes = filterProcessesByCategories(processWidget.getCategories());
+      }
     }
-
     return processes;
   }
-
-  private static List<DashboardProcess> getCompactProcessesOfWidget(CompactProcessDashboardWidget processWidget) {
-    List<DashboardProcess> processes;
-    if (processWidget.isSelectedAllProcess()) {
-      processes = getAllPortalProcesses();
-    }
-    if (CollectionUtils.isNotEmpty(processWidget.getProcessPaths())) {
-      processes = filterProcessesByProcessPaths(processWidget.getProcessPaths());
-      processWidget.setProcesses(processes);
-    } else {
-      processes = filterProcessesByCategories(processWidget.getCategories());
-    }
-
-    return processes;
-  }
-
+  
   public static List<DashboardProcess> getAllPortalProcesses() {
     DashboardProcessBean dashboardProcessBean = ManagedBeans.get("dashboardProcessBean");
     return dashboardProcessBean == null ? new ArrayList<>() : dashboardProcessBean.getPortalDashboardProcesses();
   }
 
   private static List<DashboardProcess> filterProcessesByProcesses(List<DashboardProcess> selectedProcesses) {
-    List<DashboardProcess> processes = new ArrayList<>();
-    for (DashboardProcess selectedProcess : selectedProcesses) {
-      processes.addAll(getAllPortalProcesses().stream()
-          .filter(process -> process.getId().equalsIgnoreCase(selectedProcess.getId()))
-          .collect(Collectors.toList()));
-    }
-
-    return processes;
+    List<String> ids = ListUtilities.transformList(selectedProcesses, DashboardProcess::getId);
+    Predicate<? super DashboardProcess> predicate = process -> ids.contains(process.getId());
+    return ListUtilities.filterList(getAllPortalProcesses(), predicate);
   }
 
   private static List<DashboardProcess> filterProcessesByProcessPaths(List<String> processPaths) {
-    List<DashboardProcess> processes = new ArrayList<>();
-    for (String processPath : processPaths) {
-      processes.addAll(getAllPortalProcesses().stream()
-          .filter(process -> process.getId() != null && process.getId().contains(processPath)).collect(Collectors.toList()));
-    }
-
-    return processes;
+    Predicate<? super DashboardProcess> predicate = process -> process.getId() != null && doesIdContainPath(process.getId(), processPaths);
+    return ListUtilities.filterList(getAllPortalProcesses(), predicate);
   }
-
-  private static List<DashboardProcess> filterProcessesByCategories(List<String> categories) {
-    List<DashboardProcess> processes;
-    if (CollectionUtils.isNotEmpty(categories)) {
-      processes = getAllPortalProcesses().stream()
-          .filter(process -> isProcessMatchedCategory(process, categories))
-          .collect(Collectors.toList());
-    } else {
-      processes = getAllPortalProcesses();
+  
+  private static boolean doesIdContainPath(String id, List<String> paths) {
+    for (String path: paths) {
+      if (id.contains(path)) {
+        return true;
+      }
     }
-
-    return processes;
+    return false;
+  }
+  
+  private static List<DashboardProcess> filterProcessesByCategories(List<String> categories) {
+    Predicate<? super DashboardProcess> predicate = process -> isProcessMatchedCategory(process, categories);
+    return ListUtilities.filterList(getAllPortalProcesses(), predicate);
   }
 
   public static boolean isProcessMatchedCategory(DashboardProcess process, List<String> categories) {
@@ -708,8 +689,12 @@ public class DashboardWidgetUtils {
   }
 
   public static Optional<DashboardWidget> findWidget(Dashboard dashboard, String widgetId) {
-    return Optional.ofNullable(dashboard).map(Dashboard::getWidgets).orElse(new ArrayList<>()).stream()
-        .filter(Objects::nonNull).filter(widget -> widget.getId() != null && widget.getId().equals(widgetId))
+    return Optional.ofNullable(dashboard)
+        .map(Dashboard::getWidgets)
+        .orElse(new ArrayList<>())
+        .stream()
+        .filter(Objects::nonNull)
+        .filter(widget -> widget.getId() != null && widget.getId().equals(widgetId))
         .findFirst();
   }
 }
