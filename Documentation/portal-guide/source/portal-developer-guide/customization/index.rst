@@ -17,33 +17,20 @@ You find ``portal-developer-examples`` in the engine demo mode or import them in
 .. toctree::
    :maxdepth: 1
 
-   build-your-own-portal
    portal-style-customization-logos-colors-date-patterns
-   login
    forgot-password
    menu
-   portal-home
-   task-widget
    task-item-details
-   case-widget
    case-item-details
    default-user-process
    default-chart
-   default-statistic-custom-field
    default-chart-colors
    change-password-process
    logout-process
-   express-end-page
-   express-external-data-provider
    navigate-back
    hide-technical-stuffs
    business-details-page
-   global-search-result
    document-processes
-   responsive-css
-   user-with-environment-info
-   page-header-footer
-   process-information
    process-image
 
 .. |engine-demo-mode| image:: images/customization/engine-demo-mode.png
