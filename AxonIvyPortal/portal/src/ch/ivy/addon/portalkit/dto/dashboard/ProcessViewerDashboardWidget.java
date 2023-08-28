@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.dto.dashboard;
 
-import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.service.impl.ProcessService;
@@ -28,9 +26,8 @@ public class ProcessViewerDashboardWidget extends DashboardWidget {
   @JsonIgnore
   public void buildProcessDataFirstTime() {
     if (StringUtils.isNotBlank(getProcessPath())) {
-      List<IWebStartable> allPortalProcesses = ProcessService.getInstance().findProcesses().getProcesses();
-      setProcess(allPortalProcesses.stream().filter(proccess -> proccess.getId().contains(getProcessPath()))
-          .map(DashboardProcess::new).findFirst().orElse(null));
+       IWebStartable startable = ProcessService.getInstance().findWebStartableInSecurityContextById(getProcessPath());
+       setProcess(startable != null ? new DashboardProcess(startable) : null);
     }
   }
 

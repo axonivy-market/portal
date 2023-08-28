@@ -41,7 +41,6 @@ public class ProjectVersionBean implements Serializable {
     return projectLibraries;
   }
   
-  @SuppressWarnings("restriction")
   public void loadProjectVesion() {
     engineVersion = ch.ivyteam.ivy.Advisor.getAdvisor().getVersion().toString();
     ILibrary portalLibrary = IApplication.current().findReleasedLibrary(PortalLibrary.PORTAL.getValue());

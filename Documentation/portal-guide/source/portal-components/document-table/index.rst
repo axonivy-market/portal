@@ -137,7 +137,7 @@ create a callable subprocess with:
 +------------------------+------------------------------------------------------+----------------+
 | streamedContent        | org.primefaces.model.StreamedContent                 |                |
 +------------------------+------------------------------------------------------+----------------+
-| status                 | org.primefaces.model.StreamedContent                 | OK or SKIP     |
+| status                 | java.lang.String                                     | OK or SKIP     |
 +------------------------+------------------------------------------------------+----------------+
 
 The parameters of the callable subprocess data contain the Ivy ``document`` you want to download.
