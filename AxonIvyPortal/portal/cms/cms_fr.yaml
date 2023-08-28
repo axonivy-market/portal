@@ -794,6 +794,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SaveNewWidgetFilterHeader: Save a new widget filter
     SavedFilterHeader: Saved filters
     SearchForFilter: Search for filter
+    ShareThisDashboard: Partager ce tableau de bord
     StatisticWidget:
       AvailableCharts: Graphiques de statistiques disponibles
       Charts: 'Graphique(s) : {0}'
@@ -1537,6 +1538,14 @@ Dialogs:
             expressNoItem: Pas de tâche Express terminée
             expressNoItemDescription: Les résultats des tâches terminées sont affichés ici
             expressWorkflowName: 'Détails de cas #{0}'
+        portal:
+          generic:
+            dashboard:
+              component:
+                CustomDashboardWidget:
+                  CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
+                DashboardModification:
+                  Share: Partager
         portalkit:
           component:
             CaseWidget:
@@ -1563,6 +1572,10 @@ Dialogs:
               ImportPrivate: Importer un tableau de bord privé
               ImportPublic: Importer un tableau de bord public
               chooseAJsonFile: Choisissez un fichier json
+            DashboardSharing:
+              CopyLink: Copier le lien
+              LinkCopied: Lien copié !
+              ShareDashboard: Partager le tableau de bord
             NewsWidget:
               NewsContentPlaceHolder: Saisir le contenu de l'actualité
               NewsContentValidateMessage: Le contenu de l'actualité dans {0} est requis
