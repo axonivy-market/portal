@@ -24,6 +24,7 @@ You find ``portal-developer-examples`` in the engine demo mode or import them in
    menu
    portal-home
    task-widget
+   task-delegation
    task-item-details
    case-widget
    case-item-details
