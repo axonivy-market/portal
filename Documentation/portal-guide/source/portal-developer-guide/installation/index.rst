@@ -129,7 +129,7 @@ Please follow the guidelines below to migrate your override subprocesses.
          | SendPasswordResetEmail  | portalSendPasswordResetEmail  |
          +-------------------------+-------------------------------+
 
-#. :ref:`Document processes <customization-document-processes>`
+#. :ref:`Document Processes <customization-document-processes>`
 
       - Remove subprocess override of ``GetDocumentList``, ``UploadDocument``,
         ``DeleteDocument``, and ``DownloadDocument`` from your project.
@@ -494,7 +494,7 @@ Changes in 9.2
 
 - Introduced new approach to customize :ref:`Portal Case Item details <customization-case-item-details>`. Now, your case information in Case details page and Case Info dialog is the same
 
-- Introduced new approach to customize :ref:`Portal Task item details <customization-task-item-details>`.
+- Introduced new approach to customize :ref:`Portal Task Item Details <customization-task-item-details>`.
 
 - Introduced new Portal Setting ``Portal.ShowButtonIcon`` to control visibility of icon of button in Portal.
 
