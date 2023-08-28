@@ -925,7 +925,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processes:
       emptyProcess: You have not defined any processes.
       noMatchingProcess: No matching processes.
-      noPermissionToSee: You do not have the necessary permission to see this widget.
+      noPermissionToSee: You do not have the required permission to start this process.
       noProcessSelected: Please select a process
     removeWidgetHeader: Remove the "{0}" widget
     removeWidgetMessage: Do you really want to remove it?

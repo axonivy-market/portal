@@ -151,5 +151,5 @@ public abstract class AbstractFilter<T extends Query<?>> {
    * Update filter when open filter content
    * </p>
    */
-  public void update() {};
+  public void update() {}
 }
