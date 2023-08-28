@@ -203,6 +203,7 @@ Administrators can create, update and delete all workflows in the application.
 Normal users can update and delete workflows that have been created by them and can interact
 with tasks that have been assigned to them.
 
+.. _settings-permission-settings-others:
 
 Other Permissions
 -----------------

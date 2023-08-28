@@ -37,7 +37,8 @@
             "in.webStartable = processViewerDTO.getWebStartable();",
             "in.webLink = processViewerDTO.getWebLink();",
             "in.isError = processViewerDTO.isError();",
-            "in.errorMessage = processViewerDTO.getErrorMessage();"
+            "in.errorMessage = processViewerDTO.getErrorMessage();",
+            "in.errorIcon = processViewerDTO.getErrorIcon();"
           ]
         }
       },
