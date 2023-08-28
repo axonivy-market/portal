@@ -17,6 +17,8 @@ import javax.faces.convert.FacesConverter;
  * 
  * Attention: If the POJOs must match each other (e.g. in a dropdown) over multiple views it is
  * required that the POJOs implement the hasCode method properly.
+ * 
+ * Attention: This converter could fail in rare cases because it is based on the identityHashcode which is not unique for an object.
  */
 @FacesConverter("pojoConverter")
 public class PojoConverter implements Converter {
