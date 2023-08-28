@@ -6065,3 +6065,18 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
     max-width: 95%;
   }	
 }
+
+
+/* =================== SHARE DIALOG ====================== */
+
+.share-dialog{
+  min-width: 40%;
+  max-width: 60%;
+}
+
+@media screen and (max-width: 40em) {
+  .share-dialog {
+    min-width: 85vw;
+    max-width: 95%;
+  }	 
+}
