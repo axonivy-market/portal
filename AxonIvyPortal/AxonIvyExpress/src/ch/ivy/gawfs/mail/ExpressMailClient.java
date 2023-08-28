@@ -83,12 +83,7 @@ public class ExpressMailClient {
   }
 
   private static MailClientConfig getMailClientConfig() {
-    IIvyProject ivyProject = IvyProjectUtil.getIvyProjectByName(getProjectName());
-    return MailClientConfigProvider.get(ivyProject);
-  }
-
-  private static String getProjectName() {
-    return IWorkflowProcessModelVersion.of(Ivy.request().getProcessModelVersion()).getProjectName();
+    return MailClientConfigProvider.get();
   }
 
 }
