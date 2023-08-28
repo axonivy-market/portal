@@ -701,6 +701,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SaveNewWidgetFilterHeader: Save a new widget filter
     SavedFilterHeader: Saved filters
     SearchForFilter: Search for filter
+    ShareThisDashboard: Share this dashboard
     StatisticWidget:
       AvailableCharts: Available statistics charts
       Charts: 'Chart(s): {0}'
@@ -1396,6 +1397,8 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Could not find the the linked process!
+                DashboardModification:
+                  Share: Share
         portalkit:
           component:
             CaseWidget:
@@ -1418,6 +1421,10 @@ Dialogs:
           component:
             DashboardImportDetails:
               FileInfomation: File Infomation
+            DashboardSharing:
+              CopyLink: Copy link
+              LinkCopied: Link coppied!
+              ShareDashboard: Share Dashboard
             NewsWidget:
               NewsContentPlaceHolder: Enter News content
               NewsContentValidateMessage: News content in {0} is required

@@ -74,7 +74,7 @@ public class DashboardModificationPage extends TemplatePage {
     editDashboardDialog.$("div[id$=':dashboard-permission']").$("button.ui-autocomplete-dropdown").click();
     
     $("span[id$=':dashboard-permission_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    $("span[id$=':dashboard-permission_panel']").$$("tr.ui-autocomplete-item").forEach(item -> {
+    $("span[id$=':dashboard-permission_panel']").$$("tr.ui-autocomplete-item").asDynamicIterable().forEach(item -> {
       for(String permissionName : permissions) {
         if (item.$("td").getText().contains(permissionName)) {
           item.click();
@@ -113,5 +113,14 @@ public class DashboardModificationPage extends TemplatePage {
     SelenideElement dashboard = getDashboardRowByName(dashboardName);
     dashboard.shouldBe(Condition.appear);
     return dashboard.$("td:last-child button[id $=':export-dashboard']");
+  }
+  
+  public SelenideElement getDashboardShareLinkButton() {
+    return $("button[id$='share-dashboard']");
+  }
+  
+  public void getDashboardShareLinkDialog() {
+    getDashboardShareLinkButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("div[id$=':share-dashboard-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 }

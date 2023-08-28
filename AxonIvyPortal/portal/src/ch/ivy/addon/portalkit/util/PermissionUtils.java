@@ -228,6 +228,10 @@ public class PermissionUtils {
   public static boolean hasDashboardImportPublicPermission() {
     return hasPortalPermission(PortalPermission.DASHBOARD_IMPORT_PUBLIC);
   }
+  
+  public static boolean hasShareDashboardPermission() {
+    return hasPortalPermission(PortalPermission.DASHBOARD_SHARE_LINK);
+  }
 
   public static String getCaseName(ICase iCase) {
     return IvyExecutor.executeAsSystem(() -> {
