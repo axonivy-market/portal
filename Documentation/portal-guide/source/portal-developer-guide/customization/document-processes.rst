@@ -1,6 +1,6 @@
 .. _customization-document-processes:
 
-Document processes
+Document Processes
 ==================
 
 .. _customization-document-processes-introduction:

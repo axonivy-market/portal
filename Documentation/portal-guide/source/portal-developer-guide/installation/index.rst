@@ -129,7 +129,7 @@ Please follow the guidelines below to migrate your override subprocesses.
          | SendPasswordResetEmail  | portalSendPasswordResetEmail  |
          +-------------------------+-------------------------------+
 
-#. :ref:`Document processes <customization-document-processes>`
+#. :ref:`Document Processes <customization-document-processes>`
 
       - Remove subprocess override of ``GetDocumentList``, ``UploadDocument``,
         ``DeleteDocument``, and ``DownloadDocument`` from your project.
@@ -275,8 +275,6 @@ Migrate 9.3 To 9.4
 
    - :ref:`Migration steps <components-portal-components-migrate-from-old-document-table>` for the new :ref:`Document Table <components-portal-components-document-table>` component.
 
-   - :ref:`Migration steps <components-portal-components-migrate-from-old-process-history>` for the new :ref:`Process History <components-portal-components-process-history>` component.
-
    - :ref:`Migration steps <components-portal-components-migrate-from-old-process-chain>` for the new :ref:`Process Chain <components-portal-components-process-chain>` component.
 
 #. Portal dashboard widgets only support the ``CustomFields`` declared in the ``custom-fields.yaml`` file.
@@ -347,8 +345,6 @@ Migrate 9.1 To 9.2
 #. In PortalNavigatorInFrame.java, change the methods from non-static to static.
 
 #. CaseDetails component in PortalTemplate is removed.
-
-#. If you have TaskLazyDataModel, CaseLazyDataModel customization, follow :ref:`How to override export feature of Task list <customization-task-widget-how-to-override-export-feature>` and :ref:`How to override export feature of Case list <customization-case-widget-how-to-override-export-feature>` to customize label and value of custom columns that will be exported.
 
 #. Deprecated callable processes: ``OpenPortalSearch.mod``, ``OpenPortalTasks.mod``, ``OpenPortalTaskDetails.mod``, ``OpenPortalCases.mod``, ``OpenPortalCaseDetails.mod`` process.
 
@@ -487,8 +483,6 @@ Changes in 9.4
 
    - :ref:`Document Table Component <components-portal-components-document-table>`
 
-   - :ref:`Process History Component <components-portal-components-process-history>`
-
    - :ref:`Process Chain Component <components-portal-components-process-chain>`
 
    - :ref:`Process Viewer Component <components-portal-components-process-viewer>`
@@ -512,7 +506,7 @@ Changes in 9.2
 
 - Introduced new approach to customize :ref:`Portal Case Item details <customization-case-item-details>`. Now, your case information in Case details page and Case Info dialog is the same
 
-- Introduced new approach to customize :ref:`Portal Task item details <customization-task-item-details>`.
+- Introduced new approach to customize :ref:`Portal Task Item Details <customization-task-item-details>`.
 
 - Introduced new Portal Setting ``Portal.ShowButtonIcon`` to control visibility of icon of button in Portal.
 
@@ -530,9 +524,6 @@ Changes in 9.1
 --------------
 
 - Refactored style customization approach. From now on, Portal use CSS Variable as technology to customize CSS.
-
-- Introduced the User Guide feature, using the ``Portal.Dashboard.ShowUserGuide`` Portal Setting to activate/deactivate it,
-  and follow :ref:`Customize user guide <customization-portal-home-user-guide>` for your customization.
 
 - Introduced new Portal Setting ``Portal.ShowButtonIcon`` to control visibility of icon of button in Portal.
 
