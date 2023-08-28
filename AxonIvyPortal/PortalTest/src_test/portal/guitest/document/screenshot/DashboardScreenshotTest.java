@@ -1,7 +1,6 @@
 package portal.guitest.document.screenshot;
 
 import static portal.guitest.common.Variable.ENABLE_GROUP_CHAT;
-import static portal.guitest.common.Variable.SHOW_ENVIRONMENT_INFO;
 import static portal.guitest.common.Variable.SHOW_LEGACY_UI;
 import static portal.guitest.common.Variable.SHOW_USER_GUIDE;
 
@@ -57,17 +56,6 @@ public class DashboardScreenshotTest extends ScreenshotTest {
   }
   
   @Test
-  public void takeScreenshotWithEnvironmentInfo() throws IOException {
-    updatePortalSetting(SHOW_ENVIRONMENT_INFO.getKey(), "true");
-    showNewDashboard();
-    newDashboardPage = new NewDashboardPage();
-    ScreenshotUtil.resizeBrowser(new Dimension(1200, 500));
-    executeDecorateJs("highlightServerInfo()");
-    ScreenshotUtil.captureHalfRightPageScreenShot(ScreenshotUtil.DASHBOARD_FOLDER + "environment-info");
-  }
-  
-  
-  @Test
   public void screenshotDashboard() throws IOException {
     ScreenshotUtil.maximizeBrowser();
     homePage.waitUtilProcessWidgetDisplayed();
@@ -75,14 +63,6 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.captureElementScreenshot(homePage.getStatisticWidgetElement(), ScreenshotUtil.DASHBOARD_FOLDER + "statistic-widget");
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_HD_WIDTH, 800));
     ScreenshotUtil.captureElementScreenshot(homePage.getTaskWidgetElement(), ScreenshotUtil.DASHBOARD_FOLDER + "task-widget");
-  }
-  
-  @Test
-  public void screenshotCustomizedDashboard() throws IOException {
-    showNewCustomizedDashboard();
-    newDashboardPage = new NewDashboardPage();
-    newDashboardPage.openTaskList();
-    ScreenshotUtil.resizeBrowserAndCaptureWholeScreen(ScreenshotUtil.DASHBOARD_FOLDER + "page-header-footer", new Dimension(SCREENSHOT_WIDTH, 900));
   }
   
   @Test
@@ -105,7 +85,6 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
     refreshHomePage();
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DASHBOARD_FOLDER + "legacy-dashboard");
     executeDecorateJs("highlightAndNumberingDashboardSections();");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DASHBOARD_FOLDER + "dashboard-3-sections");
 
