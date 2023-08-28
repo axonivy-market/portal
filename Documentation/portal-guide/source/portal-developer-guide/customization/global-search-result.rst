@@ -1,7 +1,8 @@
 .. _customization-global-search-result:
 
-Global Search Result
-====================
+Global Search Result (Deprecated)
+=================================
+.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 Global Search Result
 --------------------

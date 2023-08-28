@@ -1,7 +1,8 @@
 .. _customization-responsive-css:
 
-Responsive CSS
-==============
+Responsive CSS (Deprecated)
+===========================
+.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 .. _customization-responsive-css-introduction:
 

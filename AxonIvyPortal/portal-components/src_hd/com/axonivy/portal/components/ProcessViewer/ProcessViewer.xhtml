@@ -81,10 +81,9 @@
 	<h:panelGroup rendered="#{data.isError}"
 		layout="block" id="empty-message-container"
 		styleClass="empty-message-container">
-		<i class="si si-cog-double-2 empty-message-icon" />
+		<i class="#{data.errorIcon} empty-message-icon" />
 		<br />
-		<h:outputText styleClass="empty-message-text"
-			value="#{data.errorMessage}" />
+		<h:outputText styleClass="empty-message-text" value="#{data.errorMessage}" />
 	</h:panelGroup>
   </h:panelGroup>
 </cc:implementation>
