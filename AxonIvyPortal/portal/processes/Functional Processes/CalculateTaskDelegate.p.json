@@ -55,12 +55,12 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.enums.PortalCustomSignature;",
             "import java.util.ArrayList;",
             "import com.axonivy.portal.components.dto.UserDTO;",
             "import com.axonivy.portal.components.util.CustomProcessUtils;",
             "import com.axonivy.portal.components.util.UserUtils;",
             "import com.axonivy.portal.components.util.RoleUtils;",
-            "import com.axonivy.portal.components.enums.PortalCustomSignature;",
             "import com.axonivy.portal.components.service.IvyAdapterService;",
             "",
             "import java.util.HashMap;",
