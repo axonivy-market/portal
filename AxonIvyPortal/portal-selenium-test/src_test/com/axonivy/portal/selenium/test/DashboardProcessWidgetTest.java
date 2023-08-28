@@ -18,7 +18,7 @@ import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest 
+@IvyWebTest
 public class DashboardProcessWidgetTest extends BaseTest {
   private static final String EXPRESS_PROCESS = "EXPRESS_PROCESS";
   private static final String CASE_LEAVE_REQUEST_TEST_FOR_IVYPORTAL_3369 =
