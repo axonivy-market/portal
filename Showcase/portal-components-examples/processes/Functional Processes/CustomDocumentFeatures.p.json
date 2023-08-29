@@ -23,10 +23,12 @@
         },
         "result" : {
           "params" : [
-            { "name" : "message", "type" : "String", "desc" : "" }
+            { "name" : "message", "type" : "String", "desc" : "" },
+            { "name" : "status", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "result.message" : "in.message"
+            "result.message" : "in.message",
+            "result.status" : "in.skip ? com.axonivy.portal.components.enums.CustomProcessStatus.SKIP.name() : com.axonivy.portal.components.enums.CustomProcessStatus.OK.name()"
           }
         }
       },
@@ -87,10 +89,12 @@
         },
         "result" : {
           "params" : [
-            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent", "desc" : "" }
+            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent", "desc" : "" },
+            { "name" : "status", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "result.streamedContent" : "in.streamedContent"
+            "result.streamedContent" : "in.streamedContent",
+            "result.status" : "in.skip ? com.axonivy.portal.components.enums.CustomProcessStatus.SKIP.name() : com.axonivy.portal.components.enums.CustomProcessStatus.OK.name()"
           }
         }
       },
@@ -146,11 +150,13 @@
         "result" : {
           "params" : [
             { "name" : "documents", "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>", "desc" : "" },
-            { "name" : "message", "type" : "String", "desc" : "" }
+            { "name" : "message", "type" : "String", "desc" : "" },
+            { "name" : "status", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "result.documents" : "in.documents",
-            "result.message" : "in.message"
+            "result.message" : "in.message",
+            "result.status" : "in.skip ? com.axonivy.portal.components.enums.CustomProcessStatus.SKIP.name() : com.axonivy.portal.components.enums.CustomProcessStatus.OK.name()"
           }
         }
       },
