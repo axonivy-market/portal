@@ -119,9 +119,6 @@
       "config" : {
         "callSignature" : "SalesManagement",
         "outLink" : "SalesManagement.ivp",
-        "startCustomFields" : [
-          { "name" : "portalSortIndex", "value" : "3" }
-        ],
         "startName" : "Sales Management"
       },
       "visual" : {

@@ -81,9 +81,6 @@
           "name" : "Investment Creation (IFrame + Task custom fields)"
         },
         "outLink" : "CreateInvestment.ivp",
-        "startCustomFields" : [
-          { "name" : "portalSortIndex", "value" : "1" }
-        ],
         "task" : {
           "name" : "Create Investment",
           "customFields" : [

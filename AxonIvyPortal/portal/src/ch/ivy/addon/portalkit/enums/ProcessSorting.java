@@ -5,7 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public enum ProcessSorting {
-  ALPHABETICALLY("Alphabetically"), SORTING_INDEX("SortingIndex");
+  BY_ALPHABETICALLY("Alphabetically"), BY_INDEX("SortingIndex");
 
   private final String value;
 

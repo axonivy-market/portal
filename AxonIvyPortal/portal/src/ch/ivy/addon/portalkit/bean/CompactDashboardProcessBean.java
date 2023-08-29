@@ -140,9 +140,9 @@ public class CompactDashboardProcessBean
         filterByCategory(displayProcesses);
       }
     }
-    if (processSorting == null || ProcessSorting.ALPHABETICALLY.name().equals(processSorting)) {
+    if (processSorting == null || ProcessSorting.BY_ALPHABETICALLY.name().equals(processSorting)) {
       processAfterSorting = DashboardWidgetUtils.sortProcessByAlphabet(displayProcesses);
-    } else if (ProcessSorting.SORTING_INDEX.name().equals(processSorting)) {
+    } else if (ProcessSorting.BY_INDEX.name().equals(processSorting)) {
       processAfterSorting = DashboardWidgetUtils.sortProcessByIndex(displayProcesses);
     }
     getWidget().setDisplayProcesses(processAfterSorting);

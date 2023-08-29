@@ -645,9 +645,9 @@ public class DashboardWidgetUtils {
         processes = filterProcessesByCategories(processWidget.getCategories());
       }
     }
-    if (processSorting == null || ProcessSorting.ALPHABETICALLY.name().equals(processSorting)) {
+    if (processSorting == null || ProcessSorting.BY_ALPHABETICALLY.name().equals(processSorting)) {
       processesAfterSorting = DashboardWidgetUtils.sortProcessByAlphabet(processes);
-    } else if (ProcessSorting.SORTING_INDEX.name().equals(processSorting)) {
+    } else if (ProcessSorting.BY_INDEX.name().equals(processSorting)) {
       processesAfterSorting = DashboardWidgetUtils.sortProcessByIndex(processes);
     }
     return processesAfterSorting;
@@ -724,7 +724,8 @@ public class DashboardWidgetUtils {
     Locale currentLocale = Ivy.session().getContentLocale();
     Collator collator = Collator.getInstance(currentLocale);
 
-    Comparator<DashboardProcess> byIndex = Comparator.comparing(DashboardProcess::getSortIndex, collator::compare);
+    Comparator<DashboardProcess> byIndex = Comparator.comparing(DashboardProcess::getSortIndex, collator::compare)
+        .thenComparing(process -> process.getName().toLowerCase(), collator::compare);
     Comparator<DashboardProcess> byName =
         Comparator.comparing(process -> process.getName().toLowerCase(), collator::compare);
 
