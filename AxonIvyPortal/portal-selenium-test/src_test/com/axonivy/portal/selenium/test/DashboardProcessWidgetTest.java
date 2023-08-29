@@ -5,7 +5,6 @@ import static com.codeborne.selenide.CollectionCondition.size;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
@@ -18,7 +17,6 @@ import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest
 public class DashboardProcessWidgetTest extends BaseTest {
   private static final String EXPRESS_PROCESS = "EXPRESS_PROCESS";
   private static final String CASE_LEAVE_REQUEST_TEST_FOR_IVYPORTAL_3369 =
@@ -36,7 +34,11 @@ public class DashboardProcessWidgetTest extends BaseTest {
   private static final String CATEGORIED_LEAVE_REQUEST = "Categoried Leave Request";
   private static final String SHOWCASE = "Showcase";
   private static final String SHOWCASE_APPLICATION = "Showcase Application";
+  private static final String CLEAN_ABSENCES = "(For autotest) Clean absences ";
+  private static final String PROCESS_WITH_INDEX_1 = "Process With Index 1";
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
+  private static final String ALPHABETICALLY_SORTING = "Alphabetically";
+  private static final String SORTING_INDEX = "Sorting Index";
   private NewDashboardPage newDashboardPage;
 
   @Override
@@ -392,6 +394,30 @@ public class DashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.previewCompactModeProcess();
     editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItem().shouldBe(Condition.appear)
         .shouldHave(Condition.cssValue(POINTER_EVENTS_PROPERTY, NONE));
+  }
+
+  @Test
+  public void testSortProcessCompactProcessModeAlphabetically() {
+    ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
+        newDashboardPage.editProcessWidgetConfiguration();
+    editProcessWidgetConfiguration.selectCompactMode();
+    editProcessWidgetConfiguration.selectCompactProcessSorting(ALPHABETICALLY_SORTING);
+    editProcessWidgetConfiguration.getPreviewButton().click();
+    editProcessWidgetConfiguration.getCompactModeProcessPreview().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName().shouldBe(Condition.appear)
+        .shouldHave(Condition.exactTextCaseSensitive(CLEAN_ABSENCES));
+  }
+
+  @Test
+  public void testSortProcessCompactProcessModeSortingIndex() {
+    ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
+        newDashboardPage.editProcessWidgetConfiguration();
+    editProcessWidgetConfiguration.selectCompactMode();
+    editProcessWidgetConfiguration.selectCompactProcessSorting(SORTING_INDEX);
+    editProcessWidgetConfiguration.getPreviewButton().click();
+    editProcessWidgetConfiguration.getCompactModeProcessPreview().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName().shouldBe(Condition.appear)
+        .shouldHave(Condition.exactTextCaseSensitive(PROCESS_WITH_INDEX_1));
   }
 
   @Test

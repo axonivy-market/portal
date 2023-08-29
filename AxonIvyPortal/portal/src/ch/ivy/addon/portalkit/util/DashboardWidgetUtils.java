@@ -10,9 +10,12 @@ import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.STRING;
 import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.TEXT;
 import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.TIMESTAMP;
 
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -51,6 +54,7 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.enums.ProcessSorting;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
@@ -642,6 +646,8 @@ public class DashboardWidgetUtils {
 
   private static List<DashboardProcess> getCompactProcesses(CompactProcessDashboardWidget processWidget) {
     List<DashboardProcess> processes;
+    List<DashboardProcess> processesAfterSorting = new ArrayList<>();
+    String processSorting = processWidget.getSorting();
     if (processWidget.isSelectedAllProcess()) {
       processes = getAllPortalProcesses();
     }
@@ -660,7 +666,12 @@ public class DashboardWidgetUtils {
         processes = filterProcessesByCategories(processWidget.getCategories());
       }
     }
-    return processes;
+    if (processSorting == null || ProcessSorting.BY_ALPHABETICALLY.name().equals(processSorting)) {
+      processesAfterSorting = DashboardWidgetUtils.sortProcessByAlphabet(processes);
+    } else if (ProcessSorting.BY_INDEX.name().equals(processSorting)) {
+      processesAfterSorting = DashboardWidgetUtils.sortProcessByIndex(processes);
+    }
+    return processesAfterSorting;
   }
   
   public static List<DashboardProcess> getAllPortalProcesses() {
@@ -717,5 +728,40 @@ public class DashboardWidgetUtils {
         .filter(Objects::nonNull)
         .filter(widget -> widget.getId() != null && widget.getId().equals(widgetId))
         .findFirst();
+  }
+
+  public static List<DashboardProcess> sortProcessByAlphabet(List<DashboardProcess> processes) {
+    Locale currentLocale = Ivy.session().getContentLocale();
+    Collator collator = Collator.getInstance(currentLocale);
+
+    Comparator<DashboardProcess> comparator =
+        Comparator.comparing(process -> process.getName().toLowerCase(), collator::compare);
+
+    return processes.stream()
+        .sorted(comparator).collect(Collectors.toList());
+  }
+
+  public static List<DashboardProcess> sortProcessByIndex(List<DashboardProcess> processes) {
+    Locale currentLocale = Ivy.session().getContentLocale();
+    Collator collator = Collator.getInstance(currentLocale);
+
+    Comparator<DashboardProcess> byIndex = Comparator.comparing(DashboardProcess::getSortIndex, collator::compare)
+        .thenComparing(process -> process.getName().toLowerCase(), collator::compare);
+    Comparator<DashboardProcess> byName =
+        Comparator.comparing(process -> process.getName().toLowerCase(), collator::compare);
+
+    List<DashboardProcess> processWithIndex = processes.stream()
+        .filter(process -> StringUtils.isNoneEmpty(process.getSortIndex()))
+        .sorted(byIndex)
+        .collect(Collectors.toList());
+
+    List<DashboardProcess> processWithoutIndex = processes.stream()
+        .filter(process -> StringUtils.isEmpty(process.getSortIndex()))
+        .sorted(byName)
+        .collect(Collectors.toList());
+
+    processWithIndex.addAll(processWithoutIndex);
+
+    return processWithIndex;
   }
 }
