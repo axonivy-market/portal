@@ -18,6 +18,10 @@
         "request" : {
           "name" : "Test Process Viewer Permission"
         },
+        "permission" : {
+          "anonymous" : false,
+          "role" : "GeneralManager"
+        },
         "case" : {
           "name" : "Process Viewer Permission Example Case"
         }
