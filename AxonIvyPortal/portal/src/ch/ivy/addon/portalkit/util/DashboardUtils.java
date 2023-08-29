@@ -216,4 +216,9 @@ public class DashboardUtils {
     }
     return null;
   }
+  
+  
+  public static void storeDashboardInSession(String id) {
+    Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), id);
+  }
 }
