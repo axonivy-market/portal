@@ -182,14 +182,6 @@ public class CustomWidgetUtils {
         customWidget.setErrorIcon("si si-alert-circle");
         return;
       } else {
-        boolean isViewerAllowed = Ivy.session().getAllStartables().anyMatch(item-> item.getId().equals(startable.getId()));
-        if (!isViewerAllowed) {
-          customWidget.getData().setStartRequestPath(EMPTY);
-          customWidget.setErrorIcon("si si-lock-1");
-          customWidget.setErrorMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/NoPermissionToView"));
-          return;
-        }
-        
         if (startable.pmv().getActivityState() != ActivityState.ACTIVE || startable.pmv().getReleaseState() != ReleaseState.RELEASED) {
           customWidget.getData().setStartRequestPath(EMPTY);
           customWidget.setErrorIcon("si si-alert-circle");
@@ -197,6 +189,13 @@ public class CustomWidgetUtils {
           return;
         }
         
+        boolean isViewerAllowed = Ivy.session().getAllStartables().anyMatch(item-> item.getId().equals(startable.getId()));
+        if (!isViewerAllowed) {
+          customWidget.getData().setStartRequestPath(EMPTY);
+          customWidget.setErrorIcon("si si-lock-1");
+          customWidget.setErrorMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/NoPermissionToView"));
+          return;
+        }
       }
       if (isNull(customWidget.getData().getIvyProcessStartDTO())) {
         customWidget.getData().setIvyProcessStartDTO(new IvyProcessStartDTO());

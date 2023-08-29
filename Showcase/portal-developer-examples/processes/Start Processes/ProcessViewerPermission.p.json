@@ -15,10 +15,12 @@
       "name" : "start.ivp",
       "config" : {
         "callSignature" : "start",
+        "responsible" : "GeneralManager",
         "case" : {
           "name" : "Process Viewer Permission Example Case"
         },
         "outLink" : "start.ivp",
+        "wfuser" : "1",
         "startName" : "Test Process Viewer Permission"
       },
       "visual" : {
