@@ -14,8 +14,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import com.axonivy.portal.dto.statisticChart.StatisticDataDto;
-import com.axonivy.portal.service.StatisticDataService;
+import com.axonivy.portal.dto.statisticChart.StatisticChartDataDto;
+import com.axonivy.portal.service.StatisticChartDataService;
 import com.google.gson.GsonBuilder;
 
 import ch.ivy.addon.portal.chat.GsonUTCDateAdapter;
@@ -29,7 +29,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @Path(value = "statistic-data-service")
 @RolesAllowed(value = { ISecurityConstants.TOP_LEVEL_ROLE_NAME })
-public class StatisticDataRestService {
+public class StatisticChartDataRestService {
 
   @POST
   @Path(value = "Data")
@@ -41,12 +41,12 @@ public class StatisticDataRestService {
       @ApiResponse(responseCode = "404", description = "Chart Id not found"),
       @ApiResponse(responseCode = "403", description = "Don't have permission to get the data"),
       @ApiResponse(responseCode = "406", description = "Invalid call") })
-  public Response getData(StatisticDataDto payload) {
-    if (Optional.ofNullable(payload).map(StatisticDataDto::getChartId).isEmpty()) {
+  public Response getData(StatisticChartDataDto payload) {
+    if (Optional.ofNullable(payload).map(StatisticChartDataDto::getChartId).isEmpty()) {
       return Response.status(Status.NOT_ACCEPTABLE).build();
     }
     try {
-      StatisticChartResponse result = StatisticDataService.getInstance().getData(payload);
+      StatisticChartResponse result = StatisticChartDataService.getInstance().getData(payload);
       return Response.ok(result).build();
     } catch (NotFoundException e) {
       return buildResponse(Status.NOT_FOUND, e);
