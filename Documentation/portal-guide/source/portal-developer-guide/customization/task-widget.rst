@@ -242,30 +242,6 @@ How To Override Export Feature
       TaskExporter exporter = new CustomizedTaskExporter(in.columnsVisibility);
       in.exportedFile = exporter.getStreamedContent(in.collectedTasksForExporting);
 
-.. _customization-task-widget-custom-task-delegate:
-
-Custom Task Delegate
---------------------
-
-Portal allows to customize the list of users and roles that a task can
-be delegated to. This can be done following these steps:
-
-#. Introduce an |ivy| project which has ``portal`` as a
-   required library and its own ``PortalStart`` process. Refer to step
-   1, 2, 3, 4 in :ref:`override task widget's
-   UI <customization-task-widget-how-to-overide-ui>` guide.
-
-#. In your project, override the callable subprocess
-   ``CalculateTaskDelegate``
-
-   |calculate-task-delegate|
-
-#. The callable subprocess data contains the current user
-   ``in.currentUser`` and the current task to be delegated ``in.task``.
-   The lists ``in.users`` and ``in.roles`` contain all possible users
-   and roles that the task can be delegated to. Modify those two to have
-   your own delegate list.
-
 .. _customization-task-widget-responsive-layout:
 
 How To Make Responsive Task List
@@ -395,7 +371,6 @@ You can refer to ``portal-developer-examples`` project for examples
       decide which columns need to be hidden.
 
 .. |task-filter| image:: ../../screenshots/task/customization/task-filter.png
-.. |calculate-task-delegate| image:: images/task-widget/calculate-task-delegate.png
 .. |task-columns-configuration| image:: ../../screenshots/task/customization/task-columns-configuration.png
 .. |task-list| image:: ../../screenshots/task/customization/task-list.png
 .. |task-sort-override| image:: images/task-widget/task-sort-override.png

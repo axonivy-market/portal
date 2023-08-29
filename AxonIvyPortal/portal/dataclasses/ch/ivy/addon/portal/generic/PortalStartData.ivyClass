@@ -36,3 +36,5 @@ isPublicDashboard Boolean #field
 isPublicDashboard 'used in configuring new dashboard' #fieldComment
 dashboardId String #field
 isAuthorized Boolean #field
+isOpenDashboardFromLink Boolean #field
+isOpenWithoutMenu Boolean #field

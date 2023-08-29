@@ -270,6 +270,8 @@ Other Permissions
  |           | other users can see that link in|                                                    |
  |           | full process list and can also  |                                                    |
  |           | add it to User Favorite         |                                                    |
+ |           +---------------------------------+----------------------------------------------------+
+ |           | Dashboard sharing               | ``PortalPermission.DASHBOARD_SHARE_LINK``          |
  +-----------+---------------------------------+----------------------------------------------------+
 
 .. _settings-virus-scanning-setting:
