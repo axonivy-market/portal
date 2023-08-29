@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 
-public class StatisticData extends AbstractConfiguration{
+public class StatisticChartData extends AbstractConfiguration{
   private String aggregates;
   private String filter;
   private List<String> permissions;

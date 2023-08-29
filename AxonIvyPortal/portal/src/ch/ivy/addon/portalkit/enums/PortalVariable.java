@@ -15,7 +15,7 @@ public enum PortalVariable {
   DASHBOARD_ORDER("Portal.Dashboard.Order"),
   DASHBOARD_TEMPLATES("Portal.DashboardTemplates"),
   USER_MENU("Portal.UserMenu"), 
-  STATISTIC_DATA("Portal.StatisticData");
+  STATISTIC_CHART_DATA("Portal.StatisticChartData");
 
   public String key;
 
