@@ -1,4 +1,0 @@
-LoadSubMenuItemsOverrideData #class
-_com.axonivy.portal.developerexamples #namespace
-subMenuItems List<ch.addon.portal.generic.menu.SubMenuItem> #field
-subMenuItems PERSISTENT #fieldModifier

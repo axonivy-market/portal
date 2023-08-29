@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.service;
 import static java.util.stream.Collectors.toList;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -31,6 +32,10 @@ public class GlobalSettingService {
   public String findGlobalSettingValue(GlobalVariable variable) {
     String key = variable.getKey();
     return Ivy.var().get(key);
+  }
+
+  public boolean findBooleanGlobalSettingValue(GlobalVariable variable) {
+    return Optional.ofNullable(Ivy.var().get(variable.getKey())).map(Boolean::parseBoolean).orElse(false);
   }
 
   /**
