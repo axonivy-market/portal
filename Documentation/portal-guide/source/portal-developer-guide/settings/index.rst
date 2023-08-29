@@ -204,6 +204,8 @@ Normal users can update and delete workflows that have been created by them and 
 with tasks that have been assigned to them.
 
 
+.. _settings-permission-settings-others:
+
 Other Permissions
 -----------------
 
