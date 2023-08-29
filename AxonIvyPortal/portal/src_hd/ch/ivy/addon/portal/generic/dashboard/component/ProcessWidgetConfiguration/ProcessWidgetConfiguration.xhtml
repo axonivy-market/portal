@@ -105,6 +105,16 @@
               <p:ajax oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
             </p:selectCheckboxMenu>
           </div>
+          
+           <div class="ui-g-4">
+            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sorting')}" for="processes-sorting" />
+          </div>
+          <div class="ui-g-8 ui-fluid">
+            <p:selectOneMenu id="processes-sorting" value="#{widget.sorting}">
+              <f:selectItems value="#{compactDashboardProcessBean.processSorting}" var="sorting" itemValue="#{sorting}" itemLabel="#{sorting.label}" />
+              <p:ajax oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
+            </p:selectOneMenu>
+          </div>
         </h:panelGroup>
 
         <h:panelGroup id="full-filter" rendered="#{isFull}">
@@ -192,7 +202,7 @@
       <!-- Widget data -->
       <div class="ui-g-12">
         <h:panelGroup id="preview-process" class="ui-g-12 u-padding-0 #{isImage ? 'widget-preview--image-height' : ''}">
-          <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessWidget processWidget="#{widget}" isReadOnlyMode="true" isInConfiguration="true"
+          <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessWidget processWidget="#{cc.attrs.processWidget}" isReadOnlyMode="true" isInConfiguration="true"
             onLoadProcessComplete="PF('new-widget-configuration-dialog').initPosition();" />
         </h:panelGroup>
       </div>
