@@ -58,9 +58,11 @@ import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.ReleaseState;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -570,14 +572,6 @@ public class DashboardWidgetUtils {
       processWidget.setHasPermissionToSee(true);
     }
     
-    for (DashboardProcess process : getAllPortalProcesses()) {
-      if (process.getId() != null && process.getId().contains(processPath)) {
-        updateProcessStartIdForCombined(processWidget, process);
-        processWidget.setProcess(process);
-        return;
-      }
-    }
-    
     IWebStartable startProcess = ProcessService.getInstance().findWebStartableInSecurityContextById(processPath);
     ExpressProcess expressProcess = ExpressProcessService.getInstance().findExpressProcessById(processPath);
     
@@ -587,25 +581,39 @@ public class DashboardWidgetUtils {
     } else {
       boolean hasPermissionToSee = false;
       if (startProcess != null) {
-        hasPermissionToSee = Ivy.session().getAllStartables().anyMatch(startable-> startable.getId().equals(startProcess.getId()));
         // Found but can not load
         if (startProcess.pmv().getActivityState() != ActivityState.ACTIVE || startProcess.pmv().getReleaseState() != ReleaseState.RELEASED) {
           processWidget.setEmptyProcessMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessCanNotBeLoaded"));
           return;
         }
+        hasPermissionToSee = Ivy.session().getAllStartables().anyMatch(startable-> startable.getId().equals(startProcess.getId()));
+        processWidget.setHasPermissionToSee(hasPermissionToSee);
+        if (!hasPermissionToSee) {
+          processWidget.setEmptyProcessMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noPermissionToSee"));
+          return;
+        }
+        if (startProcess.getId().contains(processPath)) {
+          DashboardProcess process = new DashboardProcess(startProcess);
+          updateProcessStartIdForCombined(processWidget, process );
+          processWidget.setProcess(process);
+        }
       } else if (expressProcess != null) {
+        IProcessStart findExpressCreationProcess = ProcessStartCollector.getInstance().findExpressCreationProcess();
+        if (findExpressCreationProcess == null || 
+            findExpressCreationProcess.getProcessModelVersion().getActivityState() != ActivityState.ACTIVE || 
+            findExpressCreationProcess.getProcessModelVersion().getReleaseState() != ReleaseState.RELEASED) {
+          processWidget.setEmptyProcessMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessCanNotBeLoaded"));
+          return;
+        }
         hasPermissionToSee = PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(expressProcess);
-      }
-      // check permission with Ivy processes
-      processWidget.setHasPermissionToSee(hasPermissionToSee);
-      if (!hasPermissionToSee) {
-        processWidget.setEmptyProcessMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noPermissionToSee"));
-        return;
+        processWidget.setHasPermissionToSee(hasPermissionToSee);
+        if (!hasPermissionToSee) {
+          processWidget.setEmptyProcessMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noPermissionToSee"));
+          return;
+        }
+        processWidget.setProcess(new DashboardProcess(expressProcess));
       }
     }
-    
-    
-    
   }
   
   private static List<String> getPublicExternalLinkIdsNotForIvySessionUser() {
