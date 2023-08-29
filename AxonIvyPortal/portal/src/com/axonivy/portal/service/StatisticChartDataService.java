@@ -10,8 +10,8 @@ import javax.naming.NoPermissionException;
 import javax.ws.rs.NotFoundException;
 
 import com.axonivy.portal.bo.ChartTarget;
-import com.axonivy.portal.bo.StatisticData;
-import com.axonivy.portal.dto.statisticChart.StatisticDataDto;
+import com.axonivy.portal.bo.StatisticChartData;
+import com.axonivy.portal.dto.statisticChart.StatisticChartDataDto;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.service.JsonConfigurationService;
@@ -20,23 +20,23 @@ import ch.ivyteam.ivy.elasticsearch.client.agg.AggregationResult;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.stats.WorkflowStats;
 
-public class StatisticDataService extends JsonConfigurationService<StatisticData> {
+public class StatisticChartDataService extends JsonConfigurationService<StatisticChartData> {
 
-  private static StatisticDataService instance;
+  private static StatisticChartDataService instance;
 
-  public static StatisticDataService getInstance() {
+  public static StatisticChartDataService getInstance() {
     if (instance == null) {
-      instance = new StatisticDataService();
+      instance = new StatisticChartDataService();
     }
-    return StatisticDataService.instance;
+    return StatisticChartDataService.instance;
   }
 
-  public List<StatisticData> findAllCharts() {
+  public List<StatisticChartData> findAllCharts() {
     return findAll();
   }
 
-  public StatisticChartResponse getData(StatisticDataDto payload) throws NotFoundException, NoPermissionException {
-    StatisticData chart = findById(payload.getChartId());
+  public StatisticChartResponse getData(StatisticChartDataDto payload) throws NotFoundException, NoPermissionException {
+    StatisticChartData chart = findById(payload.getChartId());
     if (chart == null) {
       throw new NotFoundException(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/exception/idNotFound",
           Arrays.asList(payload.getChartId())));
@@ -50,7 +50,7 @@ public class StatisticDataService extends JsonConfigurationService<StatisticData
     return new StatisticChartResponse(result, chart);
   }
 
-  private AggregationResult getData(StatisticData chart) {
+  private AggregationResult getData(StatisticChartData chart) {
     if (ChartTarget.CASE.equals(chart.getChartTarget())) {
       return WorkflowStats.current().caze().aggregate(chart.getAggregates(), chart.getFilter());
     } else if (ChartTarget.TASK.equals(chart.getChartTarget())) {
@@ -61,19 +61,19 @@ public class StatisticDataService extends JsonConfigurationService<StatisticData
 
   }
 
-  private boolean isPermissionValid(StatisticData data) {
+  private boolean isPermissionValid(StatisticChartData data) {
     return Optional.ofNullable(data.getPermissions()).orElse(new ArrayList<>()).stream()
         .anyMatch(permission -> Ivy.session().getSessionUser().has().role(permission));
   }
 
   @Override
-  public Class<StatisticData> getType() {
-    return StatisticData.class;
+  public Class<StatisticChartData> getType() {
+    return StatisticChartData.class;
   }
 
   @Override
   public String getConfigKey() {
-    return PortalVariable.STATISTIC_DATA.key;
+    return PortalVariable.STATISTIC_CHART_DATA.key;
   }
 
 }
