@@ -1,6 +1,7 @@
 package com.axonivy.portal.components.configuration;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class CustomSubMenuItem {
@@ -8,7 +9,10 @@ public class CustomSubMenuItem {
   private String icon;
   private String label;
   private Integer index;
+
+  @JsonProperty("isExternal")
   private Boolean isExternalLink; 
+
   private String version;
 
   public String getLink() {
