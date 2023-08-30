@@ -33,7 +33,7 @@ public class DashboardNewsWidgetPage extends TemplatePage {
   }
 
   public void openAddNewsFeedItemDialog() {
-    $(".news-widget__content-panel").shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$=':add-news-button']")
+    $(".news-widget__content-panel").shouldBe(appear, DEFAULT_TIMEOUT).$("a[id$=':add-news-button']")
         .shouldBe(getClickableCondition()).click();
     manageNewsDialogShouldBe(appear).$("[id$=':news-icon:awesome-icon-selection']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
