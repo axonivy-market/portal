@@ -18,10 +18,6 @@
         "request" : {
           "name" : "Test Process Viewer Permission"
         },
-        "permission" : {
-          "anonymous" : false,
-          "role" : "GeneralManager"
-        },
         "case" : {
           "name" : "Process Viewer Permission Example Case"
         }
@@ -51,6 +47,34 @@
       },
       "connect" : [
         { "id" : "f2", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "RequestStart",
+      "name" : "startWithPermission.ivp",
+      "config" : {
+        "signature" : "startWithPermission"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 176 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f7" }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 176 }
+      }
+    }, {
+      "id" : "f7",
+      "type" : "Script",
+      "visual" : {
+        "at" : { "x" : 232, "y" : 176 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f6" }
       ]
     } ]
 }

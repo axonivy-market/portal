@@ -1201,8 +1201,7 @@
           "id" : "S10-g0",
           "type" : "EmbeddedStart",
           "visual" : {
-            "at" : { "x" : 64, "y" : 256 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 64, "y" : 256 }
           },
           "parentConnector" : "f139",
           "connect" : [
@@ -1212,8 +1211,7 @@
           "id" : "S10-g1",
           "type" : "EmbeddedEnd",
           "visual" : {
-            "at" : { "x" : 736, "y" : 256 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 736, "y" : 256 }
           },
           "parentConnector" : "f138"
         }, {
@@ -1836,7 +1834,7 @@
           "map" : { },
           "code" : [
             "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
-            "param.processId = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessViewerPermission/start.ivp\");"
+            "param.processId = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessViewerPermission/startWithPermission.ivp\");"
           ]
         }
       },
