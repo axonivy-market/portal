@@ -53,7 +53,11 @@
       "type" : "RequestStart",
       "name" : "startWithPermission.ivp",
       "config" : {
-        "signature" : "startWithPermission"
+        "signature" : "startWithPermission",
+        "permission" : {
+          "anonymous" : false,
+          "role" : "GeneralManager"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 176 }
