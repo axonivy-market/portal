@@ -160,8 +160,8 @@ public class NewDashboardPage extends TemplatePage {
 
   public void openManageNewsDialog() {
     waitForNewsWidgetLoadedData();
-    waitForElementDisplayed(By.cssSelector("button[id$=':add-news-button']"), true);
-    clickByCssSelector("button[id$=':add-news-button']");
+    waitForElementDisplayed(By.cssSelector("a[id$=':add-news-button']"), true);
+    clickByCssSelector("a[id$=':add-news-button']");
     waitForElementDisplayed(By.cssSelector("[id$=':manage-news-dialog']"), true);
     waitForElementDisplayed(By.cssSelector(".management-news__title-input"), true);
     waitForElementReallyDisplayed(By.cssSelector(NEWS_FEED_TITLE_INPUT_ID), true);
