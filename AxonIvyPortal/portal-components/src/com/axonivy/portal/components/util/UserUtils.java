@@ -77,7 +77,7 @@ public class UserUtils {
     }
     return languageTag;
   }
-
+  
   public static String getUserLanguage() {
     return loadLanguage(IUser::getLanguage);
   }

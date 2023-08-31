@@ -10,11 +10,10 @@ import java.util.Set;
 
 import org.primefaces.shaded.json.JSONException;
 
-import com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI;
+import com.axonivy.portal.components.util.Locales;
 
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;
-import ch.ivy.addon.portalkit.util.Locales;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class ApplicationMultiLanguage {
@@ -61,17 +60,5 @@ public class ApplicationMultiLanguage {
       }
     }
     return new ArrayList<>(supportedLanguages);
-  }
-
-  /**
-   * Get CMS value for specific URI based on current locale
-   * @deprecated Use {@link ApplicationMultiLanguageAPI#getCmsValueByUserLocale(String)} instead
-   * @param cmsURI cms uri
-   * @return label
-   */
-  @Deprecated
-  public static String getCmsValueByUserLocale(String cmsURI) {
-    Locale currentUserLocale = new Locales().getCurrentLocale();
-    return Ivy.cms().coLocale(cmsURI, currentUserLocale);
   }
 }
