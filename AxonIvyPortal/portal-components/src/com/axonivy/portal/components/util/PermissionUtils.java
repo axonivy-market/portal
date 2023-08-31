@@ -1,6 +1,7 @@
 package com.axonivy.portal.components.util;
 
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IPermission;
 
 public class PermissionUtils {
 
@@ -14,6 +15,6 @@ public class PermissionUtils {
    */
   public static boolean checkReadAllCasesPermission() {
     return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
-        ch.ivyteam.ivy.security.IPermission.CASE_READ_ALL);
+        IPermission.CASE_READ_ALL);
   }
 }

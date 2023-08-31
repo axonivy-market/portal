@@ -15,6 +15,7 @@ import com.axonivy.portal.components.enums.AdditionalProperty;
 
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
+import ch.ivyteam.ivy.security.exec.Sudo;
 
 public final class RoleUtils {
 
@@ -63,7 +64,7 @@ public final class RoleUtils {
    * @return <IRole> : role
    */
   public static IRole findRole(String name) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return ISecurityContext.current().roles().find(name);
     });
   }
@@ -100,7 +101,7 @@ public final class RoleUtils {
    * @return List<IRole> : All roles of current Ivy Application
    */
   public static List<IRole> getAllRoles() {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return ISecurityContext.current().roles().all();
     });
   }
