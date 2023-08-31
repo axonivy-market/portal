@@ -574,8 +574,9 @@ public class DashboardWidgetUtils {
     
     IWebStartable startProcess = ProcessService.getInstance().findWebStartableInSecurityContextById(processPath);
     ExpressProcess expressProcess = ExpressProcessService.getInstance().findExpressProcessById(processPath);
+    ExternalLink externalLink = ExternalLinkService.getInstance().findById(processPath);
     
-    if (startProcess == null && expressProcess == null) {
+    if (startProcess == null && expressProcess == null && externalLink == null) {
       processWidget.setEmptyProcessMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessNotFound"));
       return;
     } else {
@@ -612,6 +613,8 @@ public class DashboardWidgetUtils {
           return;
         }
         processWidget.setProcess(new DashboardProcess(expressProcess));
+      } else if (externalLink != null) {
+        processWidget.setProcess(new DashboardProcess(externalLink));
       }
     }
   }
