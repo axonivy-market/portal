@@ -3,8 +3,9 @@ package com.axonivy.portal.components.enums;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.constant.PortalComponentConstants;
-import com.axonivy.portal.components.util.IvyExecutor;
+
 import ch.ivyteam.ivy.process.call.SubProcessCall;
+import ch.ivyteam.ivy.security.exec.Sudo;
 
 public enum PortalLibrary {
   PORTAL("portal"),
@@ -16,7 +17,7 @@ public enum PortalLibrary {
   }
 
   public String getValue() {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       String groupId = SubProcessCall.withPath(PortalComponentConstants.GET_GROUP_ID_CALLABLE)
           .withStartName("getGroupId")
           .call()
