@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import com.axonivy.portal.components.util.Locales;
+
 import ch.ivy.addon.portalkit.dto.DisplayName;
-import ch.ivy.addon.portalkit.util.Locales;
 
 /**
  * This class provides method for loading supported language.
