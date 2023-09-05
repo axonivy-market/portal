@@ -47,7 +47,7 @@
           <p:tooltip for="dashboard-description-group" value="#{dashboard.description}" trackMouse="true" hideEvent="mouseleave click" styleClass="dashboard-configuration-tooltip"/>
         </h:panelGroup>
       </p:column>
-      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" width="#{dashboardModificationBean.hasExportDashboardPermission() ? '160' : '120'}"
+      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" width="#{dashboardModificationBean.hasExportDashboardPermission() ? '200' : '160'}"
         styleClass="u-text-align-center">
         <p:commandButton id="edit" process="@this" icon="si si-graphic-tablet-drawing-pen"
           styleClass="rounded-button ui-button-outlined action-column-icon-button u-mar-right-5"
@@ -70,6 +70,13 @@
          </p:commandButton>
         </h:form>
 
+        <p:commandButton id="share-dashboard" rendered="#{dashboardModificationBean.isShowShareButtonOnConfig(isPublicDashboard)}"
+          styleClass="rounded-button ui-button-outlined action-column-icon-button u-mar-right-5"
+          actionListener="#{dashboardModificationBean.openShareDashboardDialog(dashboard)}"
+          oncomplete="PF('share-dashboard-dialog').show()"
+          icon="si si-share" update="#{cc.clientId}:share-dashboard-component:share-dashboard-dialog"
+          title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/DashboardModification/Share')}" global="false"/>
+
         <p:commandButton id="delete-dashboard" process="@this"
           styleClass="rounded-button ui-button-outlined action-column-icon-button ui-button-danger" icon="si si-bin-1"
           actionListener="#{dashboardModificationBean.onSelectedDeleteDashboard(dashboard)}"
@@ -87,6 +94,10 @@
     isPublicDashboard="#{isPublicDashboard}"
     componentToUpdate="dashboard-modification-component:dashboard-table"
     isDashboardCreation="false" />
+    
+  <ic:com.axonivy.portal.dashboard.component.ShareDialog id="share-dashboard-component" 
+    shareDialogId="share-dashboard-dialog" 
+    managedBean="#{dashboardModificationBean}" /> 
 
   <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
     <ui:param name="id" value="remove-dashboard-dialog" />

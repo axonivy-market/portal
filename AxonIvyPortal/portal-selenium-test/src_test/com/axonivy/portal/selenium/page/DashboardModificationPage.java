@@ -114,4 +114,13 @@ public class DashboardModificationPage extends TemplatePage {
     dashboard.shouldBe(Condition.appear);
     return dashboard.$("td:last-child button[id $=':export-dashboard']");
   }
+
+  public SelenideElement getDashboardShareLinkButton() {
+    return $("button[id$='share-dashboard']");
+  }
+  
+  public void getDashboardShareLinkDialog() {
+    getDashboardShareLinkButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("div[id$=':share-dashboard-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
 }
