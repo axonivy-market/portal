@@ -10,9 +10,12 @@ import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.STRING;
 import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.TEXT;
 import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.TIMESTAMP;
 
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -27,6 +30,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.components.service.impl.ProcessService;
 
 import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
+import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.AbstractColumn;
@@ -50,15 +54,19 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.enums.ProcessSorting;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
+import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.ReleaseState;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -569,30 +577,50 @@ public class DashboardWidgetUtils {
     }
     
     IWebStartable startProcess = ProcessService.getInstance().findWebStartableInSecurityContextById(processPath);
-    if (startProcess == null) {
+    ExpressProcess expressProcess = ExpressProcessService.getInstance().findExpressProcessById(processPath);
+    ExternalLink externalLink = ExternalLinkService.getInstance().findById(processPath);
+    
+    if (startProcess == null && expressProcess == null && externalLink == null) {
       processWidget.setEmptyProcessMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessNotFound"));
       return;
     } else {
-      // check permission with Ivy processes
-      boolean hasPermissionToSee = Ivy.session().getAllStartables().anyMatch(startable-> startable.getId().equals(startProcess.getId()));
-      processWidget.setHasPermissionToSee(hasPermissionToSee);
-      if (!hasPermissionToSee) {
-        processWidget.setEmptyProcessMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noPermissionToSee"));
-        return;
-      }
-
-      // Found but can not load
-      if (startProcess.pmv().getActivityState() != ActivityState.ACTIVE || startProcess.pmv().getReleaseState() != ReleaseState.RELEASED) {
-        processWidget.setEmptyProcessMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessCanNotBeLoaded"));
-        return;
-      }
-      if (startProcess.getId().contains(processPath)) {
-        DashboardProcess process = new DashboardProcess(startProcess);
-        updateProcessStartIdForCombined(processWidget, process );
-        processWidget.setProcess(process);
+      boolean hasPermissionToSee = false;
+      if (startProcess != null) {
+        // Found but can not load
+        if (startProcess.pmv().getActivityState() != ActivityState.ACTIVE || startProcess.pmv().getReleaseState() != ReleaseState.RELEASED) {
+          processWidget.setEmptyProcessMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessCanNotBeLoaded"));
+          return;
+        }
+        hasPermissionToSee = Ivy.session().getAllStartables().anyMatch(startable-> startable.getId().equals(startProcess.getId()));
+        processWidget.setHasPermissionToSee(hasPermissionToSee);
+        if (!hasPermissionToSee) {
+          processWidget.setEmptyProcessMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noPermissionToSee"));
+          return;
+        }
+        if (startProcess.getId().contains(processPath)) {
+          DashboardProcess process = new DashboardProcess(startProcess);
+          updateProcessStartIdForCombined(processWidget, process );
+          processWidget.setProcess(process);
+        }
+      } else if (expressProcess != null) {
+        IProcessStart findExpressCreationProcess = ProcessStartCollector.getInstance().findExpressCreationProcess();
+        if (findExpressCreationProcess == null || 
+            findExpressCreationProcess.getProcessModelVersion().getActivityState() != ActivityState.ACTIVE || 
+            findExpressCreationProcess.getProcessModelVersion().getReleaseState() != ReleaseState.RELEASED) {
+          processWidget.setEmptyProcessMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessCanNotBeLoaded"));
+          return;
+        }
+        hasPermissionToSee = PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(expressProcess);
+        processWidget.setHasPermissionToSee(hasPermissionToSee);
+        if (!hasPermissionToSee) {
+          processWidget.setEmptyProcessMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noPermissionToSee"));
+          return;
+        }
+        processWidget.setProcess(new DashboardProcess(expressProcess));
+      } else if (externalLink != null) {
+        processWidget.setProcess(new DashboardProcess(externalLink));
       }
     }
-    
   }
   
   private static List<String> getPublicExternalLinkIdsNotForIvySessionUser() {
@@ -621,6 +649,8 @@ public class DashboardWidgetUtils {
 
   private static List<DashboardProcess> getCompactProcesses(CompactProcessDashboardWidget processWidget) {
     List<DashboardProcess> processes;
+    List<DashboardProcess> processesAfterSorting = new ArrayList<>();
+    String processSorting = processWidget.getSorting();
     if (processWidget.isSelectedAllProcess()) {
       processes = getAllPortalProcesses();
     }
@@ -639,7 +669,12 @@ public class DashboardWidgetUtils {
         processes = filterProcessesByCategories(processWidget.getCategories());
       }
     }
-    return processes;
+    if (processSorting == null || ProcessSorting.BY_ALPHABETICALLY.name().equals(processSorting)) {
+      processesAfterSorting = DashboardWidgetUtils.sortProcessByAlphabet(processes);
+    } else if (ProcessSorting.BY_INDEX.name().equals(processSorting)) {
+      processesAfterSorting = DashboardWidgetUtils.sortProcessByIndex(processes);
+    }
+    return processesAfterSorting;
   }
   
   public static List<DashboardProcess> getAllPortalProcesses() {
@@ -696,5 +731,40 @@ public class DashboardWidgetUtils {
         .filter(Objects::nonNull)
         .filter(widget -> widget.getId() != null && widget.getId().equals(widgetId))
         .findFirst();
+  }
+
+  public static List<DashboardProcess> sortProcessByAlphabet(List<DashboardProcess> processes) {
+    Locale currentLocale = Ivy.session().getContentLocale();
+    Collator collator = Collator.getInstance(currentLocale);
+
+    Comparator<DashboardProcess> comparator =
+        Comparator.comparing(process -> process.getName().toLowerCase(), collator::compare);
+
+    return processes.stream()
+        .sorted(comparator).collect(Collectors.toList());
+  }
+
+  public static List<DashboardProcess> sortProcessByIndex(List<DashboardProcess> processes) {
+    Locale currentLocale = Ivy.session().getContentLocale();
+    Collator collator = Collator.getInstance(currentLocale);
+
+    Comparator<DashboardProcess> byIndex = Comparator.comparing(DashboardProcess::getSortIndex, collator::compare)
+        .thenComparing(process -> process.getName().toLowerCase(), collator::compare);
+    Comparator<DashboardProcess> byName =
+        Comparator.comparing(process -> process.getName().toLowerCase(), collator::compare);
+
+    List<DashboardProcess> processWithIndex = processes.stream()
+        .filter(process -> StringUtils.isNoneEmpty(process.getSortIndex()))
+        .sorted(byIndex)
+        .collect(Collectors.toList());
+
+    List<DashboardProcess> processWithoutIndex = processes.stream()
+        .filter(process -> StringUtils.isEmpty(process.getSortIndex()))
+        .sorted(byName)
+        .collect(Collectors.toList());
+
+    processWithIndex.addAll(processWithoutIndex);
+
+    return processWithIndex;
   }
 }

@@ -52,3 +52,5 @@
    :width: 15px
 .. |translate-icon| image:: ../includes/images/translate.png
    :width: 25px
+.. |share-icon| image:: ../includes/images/share.svg
+   :width: 15px

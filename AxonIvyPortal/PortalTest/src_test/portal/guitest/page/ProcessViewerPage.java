@@ -15,7 +15,7 @@ public class ProcessViewerPage extends TemplatePage {
   }
 
   public String getErrorMessage() {
-    return findElementByCssSelector(".process-viewer-data.has-error-message span").getText();
+    return findElementByCssSelector(".empty-message-text").getText();
   }
 
   public void waitForSprottyToolDisplayed() {
