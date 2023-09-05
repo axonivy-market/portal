@@ -342,4 +342,9 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
   private String getFileName(String dashboardName) {
     return dashboardName + JSON_FILE_SUFFIX;
-  }}
+  }
+  
+  public boolean isShowShareButtonOnConfig(boolean isPublicDashboard) {
+    return isPublicDashboard && PermissionUtils.hasShareDashboardPermission();
+  }  
+}

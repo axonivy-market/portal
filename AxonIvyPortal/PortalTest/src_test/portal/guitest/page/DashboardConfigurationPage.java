@@ -185,4 +185,10 @@ public class DashboardConfigurationPage extends TemplatePage {
     findElementByCssSelector(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", 3))
         .sendKeys("Mi cuadro de mandos");
   }
+  
+  public WebElement getShareDashboardDialog() {
+    clickByCssSelector("button[id$=':share-dashboard']");
+    waitForElementDisplayed(By.cssSelector("div[id$=':share-dashboard-dialog']"), true);
+    return findElementByCssSelector("div[id$=':share-dashboard-dialog']");
+  }
 }

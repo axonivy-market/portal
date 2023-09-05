@@ -183,6 +183,13 @@ public class CustomWidgetUtils {
         return;
       } else {
         boolean isViewerAllowed = Ivy.session().getAllStartables().anyMatch(item-> item.getId().equals(startable.getId()));
+        if (startable.pmv().getActivityState() != ActivityState.ACTIVE || startable.pmv().getReleaseState() != ReleaseState.RELEASED) {
+          customWidget.getData().setStartRequestPath(EMPTY);
+          customWidget.setErrorIcon("si si-alert-circle");
+          customWidget.setErrorMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessCanNotBeLoaded"));
+          return;
+        }
+        
         if (!isViewerAllowed) {
           customWidget.getData().setStartRequestPath(EMPTY);
           customWidget.setErrorIcon("si si-lock-1");
@@ -190,12 +197,6 @@ public class CustomWidgetUtils {
           return;
         }
         
-        if (startable.pmv().getActivityState() != ActivityState.ACTIVE || startable.pmv().getReleaseState() != ReleaseState.RELEASED) {
-          customWidget.getData().setStartRequestPath(EMPTY);
-          customWidget.setErrorIcon("si si-alert-circle");
-          customWidget.setErrorMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessCanNotBeLoaded"));
-          return;
-        }
         
       }
       if (isNull(customWidget.getData().getIvyProcessStartDTO())) {
