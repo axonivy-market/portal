@@ -68,7 +68,6 @@ public class TaskDetailsTest extends BaseTest {
     return taskWidgetPage.openTaskDetails(0);
   }
 
-  @Ignore("Ignore for release")
   @Test
   public void testChangeTaskDeadline() {
     setFormattingLanguage();
