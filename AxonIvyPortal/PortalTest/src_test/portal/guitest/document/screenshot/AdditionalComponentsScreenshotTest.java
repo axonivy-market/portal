@@ -18,7 +18,6 @@ import portal.guitest.page.DocumentTableComponentPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.NewDashboardPage;
-import portal.guitest.page.ProcessHistoryPage;
 import portal.guitest.page.ProcessViewerComponentPage;
 import portal.guitest.page.ProcessViewerPage;
 import portal.guitest.page.RoleSelectionComponentPage;
@@ -62,21 +61,6 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
     newDashboardPage.waitForTaskStartButtonDisplay(1);
     newDashboardPage.waitForGrowlMessageDisplayClearly();
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.COMPONENTS_FOLDER + "example-global-growl-cancelled-task");
-  }
-  
-  @Test
-  public void captureScreenshotProcessHistoryComponent() throws IOException {
-    redirectToRelativeLink(createAlphaCompanyUrl);
-    redirectToRelativeLink(createBetaCompanyUrl);
-    
-    redirectToRelativeLink(viewAlphaCompanyProcessHistoryUrl);
-    ProcessHistoryPage processHistoryPage = new ProcessHistoryPage();
-    ScreenshotUtil.resizeBrowser(new Dimension(1500, 600));
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.COMPONENTS_FOLDER + "process-history-example");
-    
-    redirectToRelativeLink(viewBetaCompanyProcessHistoryInDialogUrl);
-    processHistoryPage = new ProcessHistoryPage();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(processHistoryPage.getProcessHistoryDialog(), ScreenshotUtil.COMPONENTS_FOLDER + "process-history-dialog-example", new ScreenshotMargin(200, 200));
   }
   
   @Test

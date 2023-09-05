@@ -2,11 +2,15 @@ package portal.guitest.document.screenshot;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
+
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
 
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
@@ -31,7 +35,6 @@ public class PortalExpressScreenshotTest extends ScreenshotTest {
   private static final int USER_TASK_INDEX = 0;
   private static final int USER_TASK_WITH_EMAIL_INDEX = 1;
   private static final int INFORMATION_EMAIL_INDEX = 2;
-  private String expressAdditionalBusinessUrl = "AxonIvyExpress/17326FC2F133FBEA/startExpressBusinessView.ivp";
 
   private HomePage homePage;
   private NewDashboardPage newDashboardPage;
@@ -97,7 +100,6 @@ public class PortalExpressScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.resizeBrowser(new Dimension(1100, 1100));
     ExpressFormDefinitionPage formDefinition = expressProcessPage.goToFormDefinition();
     formDefinition.switchToCheckBoxTab();
-    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.EXPRESS_FOLDER + "express-workflow");
     
     formDefinition.createUploadComponent("Upload");
     formDefinition.moveAllElementToDragAndDrogPanel();
@@ -177,9 +179,11 @@ public class PortalExpressScreenshotTest extends ScreenshotTest {
     caseWidgetPage.openActionStepMenu();
     executeDecorateJs("highlightShowAdditionalLink()");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "express-case");
-    
-    String caseId = caseWidgetPage.getCaseId(0);
-    redirectToRelativeLink(expressAdditionalBusinessUrl + "?caseId=" + caseId);
+
+    caseWidgetPage.openAdditionalCaseDetails();
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
+    homePage.switchLastBrowserTab();
+
     ScreenshotUtil.resizeBrowser(new Dimension(1050, 1000));
     ExpressBusinessViewPage expressBusinessView = new ExpressBusinessViewPage();
     expressBusinessView.clickOnLegendOfFieldset(1);

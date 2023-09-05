@@ -258,10 +258,13 @@ function resizeTableBody() {
     const resizeObserver = new ResizeObserver(() => {
       let tableBody = $(sb);
       let parentHeight = tableBody.parents('.grid-stack-item-content.card.dashboard-card').height();
+      tableBody.height(parentHeight * 0.85);
       if (!window.matchMedia("(max-width: 767px)").matches) {
         tableBody.height(parentHeight - 100);
+        tableBody.attr('attr-item-size', parentHeight - 100);
       } else {
         tableBody.height(parentHeight * 0.85);
+        tableBody.attr('attr-item-size', parentHeight * 0.85);
       }
     });
     setTimeout(function() {
@@ -303,6 +306,7 @@ function loadWidgetFirstTime(loadingClass, widgetClass) {
     widget.removeClass('u-display-none');
     widget.removeClass('u-invisibility');
   }
+  resizeTableBody();
 }
 
 function hideAllDashboardOverlayPanels() {

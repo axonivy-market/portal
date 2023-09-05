@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.util;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -12,11 +11,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.CheckboxTreeNode;
 import org.primefaces.model.TreeNode;
 
+import com.axonivy.portal.components.service.IvyAdapterService;
+
 import ch.ivy.addon.portalkit.bo.CategoryNode;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
-import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria;
-import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
@@ -45,9 +44,8 @@ public class TaskTreeUtils {
     TaskCategorySearchCriteria criteria = new TaskCategorySearchCriteria();
     criteria.setCustomTaskQuery(taskQuery);
     params.put("taskCategorySearchCriteria", criteria);
-    Map<String, Object> response = IvyAdapterService.startSubProcess(
-        "findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria)", params,
-        Arrays.asList(PortalLibrary.PORTAL.getValue()));
+    Map<String, Object> response = IvyAdapterService.startSubProcessInProject(
+        "findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria)", params);
     return (CategoryTree) response.get("categoryTree");
   }
 

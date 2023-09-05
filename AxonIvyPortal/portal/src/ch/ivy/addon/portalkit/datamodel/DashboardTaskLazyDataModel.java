@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.datamodel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -12,8 +13,10 @@ import org.primefaces.model.SortMeta;
 
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardTaskSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardTaskService;
+import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
+import ch.ivyteam.util.threadcontext.IvyThreadContext;
 
 public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
 
@@ -24,31 +27,46 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
   private Map<Long, ITask> mapTasks;
   private TaskQuery query;
   private int countLoad;
+  private boolean isFirstTime = true;
+  private CompletableFuture<Void> future;
+  List<ITask> foundTasks;
 
   public DashboardTaskLazyDataModel() {
     criteria = new DashboardTaskSearchCriteria();
     tasks = new ArrayList<>();
+    foundTasks = new ArrayList<>();
     mapTasks = new HashedMap<>();
   }
 
   @Override
   public List<ITask> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
-    if (first == 0) {
-      tasks.clear();
-      if (sortBy.entrySet().iterator().hasNext()) {
-        Map.Entry<String, SortMeta> sortEntry = sortBy.entrySet().iterator().next();
-        if (sortEntry != null && sortEntry.getValue() != null) {
-          SortMeta sortMeta = sortEntry.getValue();
-          criteria.setSortField(sortMeta.getField());
-          criteria.setSortDescending(sortMeta.getOrder().isDescending());
+    if (isFirstTime) {
+      isFirstTime = false;
+      if (future != null) {
+        try {
+          future.get();
+        } catch (Exception e) {
+          throw new PortalException(e);
         }
       }
-
-      query = criteria.buildQuery();
+    } else {
+      if (first == 0) {
+        tasks.clear();
+        if (sortBy.entrySet().iterator().hasNext()) {
+          Map.Entry<String, SortMeta> sortEntry = sortBy.entrySet().iterator().next();
+          if (sortEntry != null && sortEntry.getValue() != null) {
+            SortMeta sortMeta = sortEntry.getValue();
+            criteria.setSortField(sortMeta.getField());
+            criteria.setSortDescending(sortMeta.getOrder().isDescending());
+          }
+          query = criteria.buildQuery();
+        }
+      }
+      foundTasks = DashboardTaskService.getInstance().findByTaskQuery(query, first, pageSize);
+      tasks.addAll(foundTasks);
+      mapTasks.putAll(foundTasks.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
     }
-    List<ITask> foundTasks = DashboardTaskService.getInstance().findByTaskQuery(query, first, pageSize);
-    tasks.addAll(foundTasks);
-    mapTasks.putAll(foundTasks.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
+
     int rowCount = 0;
     if (foundTasks.size() >= pageSize) {
       rowCount = first + pageSize + 1;
@@ -57,6 +75,19 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
     }
     setRowCount(rowCount);
     return foundTasks;
+  }
+
+  public void loadFirstTime() {
+    query = criteria.buildQuery();
+    Object memento = IvyThreadContext.saveToMemento();
+    future = CompletableFuture.runAsync(() -> {
+      IvyThreadContext.restoreFromMemento(memento);
+      foundTasks = DashboardTaskService.getInstance().findByTaskQuery(query, 0, 25);
+      tasks.addAll(foundTasks);
+      mapTasks.putAll(foundTasks.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
+      IvyThreadContext.reset();
+    });
+    isFirstTime = true;
   }
 
   @Override
@@ -98,7 +129,7 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
   public int count(Map<String, FilterMeta> filterBy) {
     return this.getRowCount();
   }
-  
+
   public int getCountLoad() {
     return countLoad;
   }

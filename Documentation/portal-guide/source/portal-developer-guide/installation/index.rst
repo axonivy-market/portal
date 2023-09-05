@@ -109,6 +109,80 @@ In Engine
 
 #. Follow detailed migration notes for each version below.
 
+Migrate 10.0 To 10.0.12
+-----------------------
+
+Portal no longer supports the override process approach for some subprocesses.
+Please follow the guidelines below to migrate your override subprocesses.
+
+#. :ref:`Customize Forgot Password <customization-forgot-password>`
+
+      - Remove subprocess override of ``ResetPassword`` and ``SendPasswordResetEmail``` from your project.
+
+      - Change the signature of your callable start as described below.
+
+         +-------------------------+-------------------------------+
+         | Subprocess              | New signature                 |
+         +=========================+===============================+
+         | ResetPassword           | portalResetPassword           |
+         +-------------------------+-------------------------------+
+         | SendPasswordResetEmail  | portalSendPasswordResetEmail  |
+         +-------------------------+-------------------------------+
+
+#. :ref:`Document Processes <customization-document-processes>`
+
+      - Remove subprocess override of ``GetDocumentList``, ``UploadDocument``,
+        ``DeleteDocument``, and ``DownloadDocument`` from your project.
+
+      - Change the signature of your callable starts as described below.
+
+         +----------------------+----------------------------+
+         | Subprocess           | New signature              |
+         +======================+============================+
+         | GetDocumentList      | portalGetDocumentList      |
+         +----------------------+----------------------------+
+         | UploadDocument       | portalUploadDocument       |
+         +----------------------+----------------------------+
+         | DeleteDocument       | portalDeleteDocument       |
+         +----------------------+----------------------------+
+         | DownloadDocument     | portalDownloadDocument     |
+         +----------------------+----------------------------+
+
+#. :ref:`Customize Logout Process <customization-logout>`
+
+      - Remove subprocess override of ``LogoutPage`` and ``Logout`` from your project.
+
+      - Change the signature of your callable start as described below.
+
+         +----------------------+----------------------------+
+         | Subprocess           | New signature              |
+         +======================+============================+
+         | LogoutPage           | portalGetLogoutPage        |
+         +----------------------+----------------------------+
+         | Logout               | portalLogout               |
+         +----------------------+----------------------------+
+
+#. :ref:`Customize Change Password Process <customization-change-password-process>`
+
+      - Remove subprocess override of ``ChangePassword`` from your project.
+
+      - Change the signature of your callable start as described below.
+
+         +----------------------+----------------------------+
+         | Subprocess           | New signature              |
+         +======================+============================+
+         | ChangePassword       | portalChangePassword       |
+         +----------------------+----------------------------+
+
+
+Migrate 10.0 To 10.0.7
+----------------------
+
+The ``ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI`` class is removed and no longer supported, use 
+``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` instead.
+
+.. _installation-release-notes:
+
 Migrate 8.x To 10.0
 -------------------
 
@@ -156,8 +230,8 @@ Migrate 9.3 To 9.4
 #. The ``customization.css`` file has been removed, in case you use it in your project, please switch to using
    :dev-url:`Engine Branding </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>` to customize styling
 
-#. Sub processes related to documents are moved to the independent project ``portal-components``.
-   If you customized these processes, please override the correspond sub process again and added your customization to it.
+#. Subprocesses related to documents are moved to the independent project ``portal-components``.
+   If you customized these processes, please override the correspond subprocess again and added your customization to it.
 
    Below is a list of deprecated processes in project ``portal`` and new processes in project ``portal-components``.
 
@@ -189,14 +263,12 @@ Migrate 9.3 To 9.4
 
    - :ref:`Migration steps <components-portal-components-migrate-from-old-document-table>` for the new :ref:`Document Table <components-portal-components-document-table>` component.
 
-   - :ref:`Migration steps <components-portal-components-migrate-from-old-process-history>` for the new :ref:`Process History <components-portal-components-process-history>` component.
-
    - :ref:`Migration steps <components-portal-components-migrate-from-old-process-chain>` for the new :ref:`Process Chain <components-portal-components-process-chain>` component.
 
 #. Portal dashboard widgets only support the ``CustomFields`` declared in the ``custom-fields.yaml`` file.
    If your ``CustomFields`` are used in the dashboard widget, please follow the :dev-url:`Custom Fields Meta Information </doc/|version|/designer-guide/how-to/workflow/custom-fields.html#meta-information>` to adapt the data.
 
-#. The ``DefaultChartColor.p.json`` sub process has been removed, in case you use it in your project, please remove override this sub process and switch to using
+#. The ``DefaultChartColor.p.json`` subprocess has been removed, in case you use it in your project, please remove override this subprocess and switch to using
    :dev-url:`Engine Branding </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>` to customize chart, data labels, legend color.
    Refer to :ref:`Default chart colors <customization-default-chart-colors>`.
 
@@ -261,8 +333,6 @@ Migrate 9.1 To 9.2
 #. In PortalNavigatorInFrame.java, change the methods from non-static to static.
 
 #. CaseDetails component in PortalTemplate is removed.
-
-#. If you have TaskLazyDataModel, CaseLazyDataModel customization, follow :ref:`How to override export feature of Task list <customization-task-widget-how-to-override-export-feature>` and :ref:`How to override export feature of Case list <customization-case-widget-how-to-override-export-feature>` to customize label and value of custom columns that will be exported.
 
 #. Deprecated callable processes: ``OpenPortalSearch.mod``, ``OpenPortalTasks.mod``, ``OpenPortalTaskDetails.mod``, ``OpenPortalCases.mod``, ``OpenPortalCaseDetails.mod`` process.
 
@@ -346,24 +416,11 @@ Migrate 8.x To 9.x
 You need to do all steps starting at ``Migrate 8.x To ...`` up to and including
 ``Migrate ... To 9.x``
 
-Migrate 10.0 To 10.0.7
-----------------------
-
-The ``ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI`` class is removed and no longer supported, use 
-``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` instead.
-
-.. _installation-release-notes:
-
 Release notes
 =============
 
 This part lists all relevant changes since the last official product
 releases of |ivy|.
-
-Changes in 10
--------------
-
-- Introduced the ``Application`` filter and the ``Application`` column at the following places: full task list, full case list, dashboard task list, dashboard case list, and task analysis.
 
 Changes in 11.2.0
 -----------------
@@ -376,6 +433,11 @@ Changes in 11.2.0
 - The ``ch.ivy.addon.portalkit.publicapi.RoleAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.RoleAPI`` instead.
 - The ``ch.ivy.addon.portalkit.publicapi.TaskAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.TaskAPI`` instead.
 - The ``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI`` instead.
+
+Changes in 10
+-------------
+
+- Introduced the ``Application`` filter and the ``Application`` column in the following places: full task list, full case list, dashboard task list, dashboard case list, and task analysis.
 
 Changes in 9.4
 --------------
@@ -399,7 +461,7 @@ Changes in 9.4
 
 - Introduced the ``Formatting language setting`` to format values, for example the decimal separator is displayed differently in different regions of the world.
 
-- Removed sub process ``DefaultChartColor.p.json``, introduced some Portal variables for customizing the default chart color. See details: :ref:`Default chart colors <customization-default-chart-colors>`.
+- Removed subprocess ``DefaultChartColor.p.json``, introduced some Portal variables for customizing the default chart color. See details: :ref:`Default chart colors <customization-default-chart-colors>`.
 
 - Introduce some components in new ``portal-components`` project.
 
@@ -408,8 +470,6 @@ Changes in 9.4
    - :ref:`Role Selection Component <components-portal-components-role-selection>`
 
    - :ref:`Document Table Component <components-portal-components-document-table>`
-
-   - :ref:`Process History Component <components-portal-components-process-history>`
 
    - :ref:`Process Chain Component <components-portal-components-process-chain>`
 
@@ -434,7 +494,7 @@ Changes in 9.2
 
 - Introduced new approach to customize :ref:`Portal Case Item details <customization-case-item-details>`. Now, your case information in Case details page and Case Info dialog is the same
 
-- Introduced new approach to customize :ref:`Portal Task item details <customization-task-item-details>`.
+- Introduced new approach to customize :ref:`Portal Task Item Details <customization-task-item-details>`.
 
 - Introduced new Portal Setting ``Portal.ShowButtonIcon`` to control visibility of icon of button in Portal.
 
@@ -452,9 +512,6 @@ Changes in 9.1
 --------------
 
 - Refactored style customization approach. From now on, Portal use CSS Variable as technology to customize CSS.
-
-- Introduced the User Guide feature, using the ``Portal.Dashboard.ShowUserGuide`` Portal Setting to activate/deactivate it,
-  and follow :ref:`Customize user guide <customization-portal-home-user-guide>` for your customization.
 
 - Introduced new Portal Setting ``Portal.ShowButtonIcon`` to control visibility of icon of button in Portal.
 

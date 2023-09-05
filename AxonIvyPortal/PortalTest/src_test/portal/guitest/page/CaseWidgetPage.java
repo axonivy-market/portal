@@ -70,6 +70,12 @@ public class CaseWidgetPage extends TemplatePage {
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
+  public void openAdditionalCaseDetails() {
+    waitForElementDisplayed(By.cssSelector("[id$=':show-additional-case-details-link']"), true);
+    clickByCssSelector("[id$=':show-additional-case-details-link']");
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+  }
+
 	private WebElement getMoreActionsPanel() {
 		openActionStepMenu();
 		waitForElementDisplayed(By.cssSelector("div[id$='action-steps-panel']"), true);

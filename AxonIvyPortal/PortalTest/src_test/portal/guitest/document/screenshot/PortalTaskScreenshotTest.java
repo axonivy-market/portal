@@ -4,7 +4,6 @@ import static portal.guitest.common.FileHelper.getAbsolutePathToTestFile;
 import static portal.guitest.common.Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
@@ -51,34 +50,6 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_WIDGET_FOLDER + "task-key-information");
     WebElement saveTaskFilterDialog = taskWidgetPage.getSaveFilterDialog();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(saveTaskFilterDialog, ScreenshotUtil.TASK_WIDGET_FOLDER + "how-to-create-task-filter",new ScreenshotMargin(100, 200));
-  }
-  
-  @Test
-  public void screenshotCustomTaskList() throws IOException {
-    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 900));
-    login(TestAccount.ADMIN_USER);
-    refreshPage();
-    TaskWidgetPage taskWidget = new TaskWidgetPage();
-    taskWidget.expand();
-    executeDecorateJs("highlightCustomTaskList()");
-    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.TASK_WIDGET_CUSTOMIZATION_FOLDER + "task-list");
-    
-    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
-    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
-    taskWidget = new TaskWidgetPage();
-    taskWidget.expand();
-    taskWidget.clickColumnsButton();
-    executeDecorateJs("highlightCustomColumnsConfigOnTaskList()");
-    ScreenshotUtil.captureHalfRightPageScreenShot(ScreenshotUtil.TASK_WIDGET_CUSTOMIZATION_FOLDER + "task-columns-configuration");
-  }
-  
-  @Test
-  public void screenshotTaskFilter() throws IOException {
-    TaskWidgetPage taskWidget = homePage.openTaskList();
-    taskWidget.clickOnTaskStatesAndApply(Arrays.asList("Created", "Suspended", "Reserved", "Done"));
-    taskWidget.openStateFilter();
-    executeDecorateJs("highlightTaskStateFilter()");
-    ScreenshotUtil.captureHalfCenterTopPageScreenShot(ScreenshotUtil.TASK_WIDGET_CUSTOMIZATION_FOLDER + "task-filter");
   }
   
   @Test
@@ -223,13 +194,8 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
   public void screenshotCustomTaskDetails() throws IOException {
     redirectToRelativeLink("portal-developer-examples/1791D27754935B10/SaleManagment.ivp");
     TaskDetailsPage taskDetails = setupCustomWidgetByJSONFile("task-details-custom-panel.json");
-    executeDecorateJs("addStepToCustomWidgetTopTaskDetails()");
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-top");
     refreshPage();
     taskDetails.waitUtilsTaskDetailsDisplayed();
-    executeDecorateJs("scrollToBottomOfLayoutContent()");
-    executeDecorateJs("addStepTCustomWidgetTopTaskDetails()");
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-bottom");
 
     setupCustomWidgetByJSONFile("task-details-custom-iframe.json");
     executeDecorateJs("highlightIFrameWidgetTaskDetails()");

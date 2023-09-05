@@ -210,7 +210,7 @@ var MainMenu = {
       var $dashboardGroup = $(".js-dashboard-group");
       if ($currentPageMenu.hasClass("DASHBOARD") && $dashboardGroup.length > 0) {
         $.each( activeMenuItemList, function( i, menuItem ) {
-            if (!(menuItem.id.includes('-sub-dashboard') || menuItem.id.includes('-main-dashboard'))) {
+            if (!(menuItem.id.includes('-main-dashboard'))) {
               deactivateMenuItemOnLeftMenu(menuItem.id);
             }
         });
