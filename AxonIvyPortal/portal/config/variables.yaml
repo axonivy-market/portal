@@ -69,6 +69,7 @@ Variables:
       HideLogoutMenu: false
 
       # Set to true, the change password option in top menu will be hidden, otherwise it will be shown.
+      # [boolean]
       HideChangePasswordMenu: false
 
     # You can configure the look and feel for dashboard according to your needs via this json file.

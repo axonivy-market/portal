@@ -38,6 +38,7 @@
         <!-- Add language button -->
         <p:commandButton styleClass="app-setting-button"
           icon="si si-chat-translate" id="add-language-button">
+          <f:param name="skipValidator" value="true" />
           <p:ajax event="click"
             listener="#{managedBean.updateWidgetNameByLocale()}"
             process="widget-title"
@@ -75,7 +76,7 @@
       </div>
       <div class="ui-g-8 ui-fluid">
         <p:inputText id="external-url" value="#{widget.data.url}"
-          required="#{!isIvyProcess}" />
+          required="#{!isIvyProcess and param['skipValidator'] == null}" />
       </div>
       <div class="ui-g-12">
         <h:outputText

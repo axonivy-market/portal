@@ -22,14 +22,13 @@ public class IFrameService {
       return false;
     }
     
-    Boolean isIFrameCustomField = IvyAdapterService.getEmbedInIFrameCustomField(task);
+    Boolean isIFrameCustomField = getEmbedInIFrameCustomField(task);
     if (isIFrameCustomField != null) {
       return isIFrameCustomField;
     }
     
     return new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.EMBED_IN_FRAME);
   }
-  
   
   public static boolean embedInFrame(String taskUUID) {
     ITask task = Ivy.wf().findTask(taskUUID);
@@ -42,11 +41,23 @@ public class IFrameService {
       return false;
     }
     
-    Boolean isIFrameCustomField = IvyAdapterService.getEmbedInIFrameCustomField(task);
+    Boolean isIFrameCustomField = getEmbedInIFrameCustomField(task);
     if (isIFrameCustomField != null) {
       return isIFrameCustomField;
     }
     
     return new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.EMBED_IN_FRAME);
+  }
+
+  /**
+   * @param task
+   * @return whether task embed in IFrame
+   */
+  private static Boolean getEmbedInIFrameCustomField(ITask task) {
+    String embedInIFrame = task.customFields().stringField(CustomFields.EMBED_IN_FRAME).getOrNull();
+    if (embedInIFrame == null) {
+      embedInIFrame = task.getCase().customFields().stringField(CustomFields.EMBED_IN_FRAME).getOrNull();
+    }
+    return embedInIFrame != null ? Boolean.valueOf(embedInIFrame) : null;
   }
 }

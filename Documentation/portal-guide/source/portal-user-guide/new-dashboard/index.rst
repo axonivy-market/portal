@@ -272,6 +272,8 @@ In manage news, the user can:
 
 #. Provide news content, i.e., the main information for the newsfeed. The content is limited to 1000 characters, max.
 
+After setting up everything, simply click on the :guilabel:`Share this dashboard` link at the bottom of your dashboard to share it with colleagues.
+
 .. include:: ../includes/_common-icon.rst
 
 .. |dash-board| image:: ../../screenshots/new-dashboard/dashboard.png

@@ -3,3 +3,5 @@ com.axonivy.portal.components #namespace
 businessCase ch.ivyteam.ivy.workflow.ICase #field
 message String #field
 documents java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument> #field
+hasCustomProcess Boolean #field
+hasCustomProcess PERSISTENT #fieldModifier

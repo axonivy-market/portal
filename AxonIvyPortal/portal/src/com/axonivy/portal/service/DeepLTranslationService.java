@@ -1,6 +1,5 @@
 package com.axonivy.portal.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -8,13 +7,13 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.util.Strings;
 
+import com.axonivy.portal.components.service.IvyAdapterService;
 import com.deepl.api.v2.client.InlineResponse200;
 import com.deepl.api.v2.client.SourceLanguage;
 import com.deepl.api.v2.client.TargetLanguage;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.UserUtils;
 
 public class DeepLTranslationService {
@@ -37,9 +36,8 @@ public class DeepLTranslationService {
       params.put("preserveFormatting", "1");
       params.put("tagHandling", "html");
       Map<String, Object> response = null;
-      response = IvyAdapterService.startSubProcess(
-          "translateText(String,com.deepl.api.v2.client.TargetLanguage,com.deepl.api.v2.client.SourceLanguage,String,String)",
-          params, new ArrayList<>());
+      response = IvyAdapterService.startSubProcessInProject(
+          "translateText(String,com.deepl.api.v2.client.TargetLanguage,com.deepl.api.v2.client.SourceLanguage,String,String)", params);
       if (response != null) {
         InlineResponse200 inlineResponse = (InlineResponse200) response.get("translation");
         translatedText = inlineResponse.getTranslations().get(0).getText();

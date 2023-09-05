@@ -12,10 +12,10 @@
         "signature" : "startExpressBusinessView",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long", "desc" : "" }
+            { "name" : "uuid", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.caseId" : "param.caseId"
+            "out.uuid" : "param.uuid"
           }
         },
         "request" : {
@@ -40,10 +40,10 @@
       "type" : "DialogCall",
       "name" : "Open ExpressBusinessView",
       "config" : {
-        "dialog" : "ch.ivy.addon.express.generic.ExpressBusinessView:start(Long)",
+        "dialog" : "ch.ivy.addon.express.generic.ExpressBusinessView:start(String)",
         "call" : {
           "map" : {
-            "param.caseId" : "in.caseId"
+            "param.uuid" : "in.uuid"
           }
         }
       },
