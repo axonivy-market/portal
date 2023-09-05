@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.Before;
@@ -67,7 +68,6 @@ public class TaskDetailsTest extends BaseTest {
     return taskWidgetPage.openTaskDetails(0);
   }
 
-  @Ignore("Ignore for release")
   @Test
   public void testChangeTaskDeadline() {
     setFormattingLanguage();
@@ -134,7 +134,7 @@ public class TaskDetailsTest extends BaseTest {
   
   private String prepareTomorrowAsLocaleDateString() {
     LocalDateTime tommorrow = LocalDateTime.now().plusDays(1);
-    return tommorrow.format(DateTimeFormatter.ofPattern(DateTimePattern.LOCALE_DATE_TIME_PATTERN));
+    return tommorrow.format(DateTimeFormatter.ofPattern(DateTimePattern.LOCALE_DATE_TIME_PATTERN, Locale.UK));
   }
 
   @Test
@@ -160,7 +160,7 @@ public class TaskDetailsTest extends BaseTest {
     refreshPage();
     taskDetailsPage = new TaskDetailsPage();
     String yesterday = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
-    String yesterdayWithLocale = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.LOCALE_DATE_TIME_PATTERN));
+    String yesterdayWithLocale = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.LOCALE_DATE_TIME_PATTERN, Locale.UK));
     taskDetailsPage.updateDelayTimestamp(yesterday,yesterdayWithLocale);
     assertTrue(StringUtils.equalsIgnoreCase("OPEN", taskDetailsPage.getTaskState()));
   }
