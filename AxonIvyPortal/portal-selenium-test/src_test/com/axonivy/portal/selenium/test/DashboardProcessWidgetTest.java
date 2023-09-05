@@ -35,7 +35,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
   private static final String SHOWCASE = "Showcase";
   private static final String SHOWCASE_APPLICATION = "Showcase Application";
   private static final String CLEAN_ABSENCES = "(For autotest) Clean absences ";
-  private static final String PROCESS_WITH_INDEX_1 = "Process With Index 1a";
+  private static final String PROCESS_WITH_INDEX_1 = "Process Sorting By Index 1a";
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
   private static final String ALPHABETICALLY_SORTING = "Alphabetically";
   private static final String SORTING_INDEX = "Sorting Index";
