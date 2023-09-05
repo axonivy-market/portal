@@ -79,11 +79,11 @@
         "signature" : "portalDownloadDocumentItem",
         "input" : {
           "params" : [
-            { "name" : "bussinessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
             { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument", "desc" : "" }
           ],
           "map" : {
-            "out.businessCase" : "param.bussinessCase",
+            "out.businessCase" : "param.businessCase",
             "out.document" : "param.document"
           }
         },
