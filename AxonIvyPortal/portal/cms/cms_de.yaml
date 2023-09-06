@@ -792,6 +792,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       SomeThingWentWrong: Etwas ist schief gelaufen
       Title: Dashboard-Konfiguration
     EmptyFilterMessage: Kein Widget-Filter gefunden
+    ExternalPageWidget: Externe Seite
+    ExternalPageWidgetIntroduction: Dieses Widget kann eine externe Webseite anzeigen.
     Filter:
       FilterOptionHeader: Filter-Optionen
       ManageWidgetFilterHeader: Widget-Filter-Verwaltung
@@ -876,8 +878,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     createdFrom: Erstellt von
     createdTo: Erzeugt bis
     customFieldType: Benutzerdefinierter Feldtyp
-    customWidget: Benutzerdefiniertes Widget
-    customWidgetIntroduction: Dieses Widget kann einen Axon Ivy-Prozess oder eine externe Webseite anzeigen.
     dashboardManagement:
       CreateDashboard: Dashboard erstellen
       addDashboard: Dashboard hinzufügen

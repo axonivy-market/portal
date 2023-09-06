@@ -793,6 +793,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       SomeThingWentWrong: Something went wrong
       Title: Dashboard configuration
     EmptyFilterMessage: No widget filter found
+    ExternalPageWidget: External Page
+    ExternalPageWidgetIntroduction: This widget can display an external webpage.
     Filter:
       FilterOptionHeader: Filter options
       ManageWidgetFilterHeader: Widget filter management
@@ -877,8 +879,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     createdFrom: Created From
     createdTo: Created To
     customFieldType: Custom Field Type
-    customWidget: Custom Widget
-    customWidgetIntroduction: This widget can display an ivy process or an external webpage.
     dashboardManagement:
       CreateDashboard: Create Dashboard
       addDashboard: Add dashboard

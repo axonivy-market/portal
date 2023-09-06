@@ -94,6 +94,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private static final long serialVersionUID = -5272278165636659596L;
   private static final String DEFAULT_USER_FILTER_ID = "widget-configuration-form:new-widget-configuration-component:user-filter";
   private static final String DEFAULT_WIDGET_TITLE_ID = "widget-configuration-form:new-widget-configuration-component:widget-title-group";
+  private static final String PROCESS_ICON_CUSTOM_FIELD = "cssIcon";
+  private static final String DEFAULT_PROCESS_ICON = "si si si-hierarchy-6 si-rotate-270";
 
   private List<WidgetSample> samples;
   private String newWidgetHeader;
@@ -123,7 +125,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public void initSampleWidgets() {
     if (CollectionUtils.isEmpty(samples)) {
-      samples = List.of(taskSample(), caseSample(), processSample(), statisticSample(), customSample(),
+      samples = List.of(taskSample(), caseSample(), processSample(), statisticSample(), externalPageSample(),
           processViewerSample(), welcomeWidgetSample(), newsSample());
       samples = samples.stream().sorted(Comparator.comparing(WidgetSample::getName)).collect(Collectors.toList());
     }
@@ -131,13 +133,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   private void initCustomWidgets() {
-    if (CollectionUtils.isEmpty(getCustomWidgets())) {
-      setCustomWidgets(new ArrayList<>());
-      getCustomWidgets().addAll(ProcessService.getInstance().findCustomDashboardProcesses()
-          .stream().map(convertToDashboardProcess())
-          .collect(Collectors.toList()));
-    }
-    
+    setCustomWidgets(new ArrayList<>());
+    getCustomWidgets().addAll(ProcessService.getInstance().findCustomDashboardProcesses()
+        .stream().map(convertToDashboardProcess())
+        .collect(Collectors.toList()));
   }
 
   private Function<IWebStartable, DashboardProcess> convertToDashboardProcess() {
@@ -146,7 +145,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       process.setName(startable.getDisplayName());
       process.setDescription(startable.getDescription());
       process.setId(startable.getId());
-      process.setIcon(startable.customFields().value("cssIcon"));
+      process.setIcon(Optional.ofNullable(startable.customFields().value(PROCESS_ICON_CUSTOM_FIELD))
+          .orElse(DEFAULT_PROCESS_ICON));
       return process;
     };
   }
@@ -189,9 +189,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         "statistic-widget-sample.png", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticChartIntroduction"));
   }
 
-  private WidgetSample customSample() {
-    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/customWidget"), CUSTOM,
-        "si si-cog-double-2", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/customWidgetIntroduction"), true);
+  private WidgetSample externalPageSample() {
+    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/ExternalPageWidget"), CUSTOM,
+        "si si-network-arrow", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/ExternalPageWidgetIntroduction"), true);
   }
 
   private WidgetSample processViewerSample() {

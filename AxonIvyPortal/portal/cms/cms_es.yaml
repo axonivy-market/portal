@@ -791,6 +791,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       SomeThingWentWrong: Algo salió mal
       Title: Configuración de tablero
     EmptyFilterMessage: No se ha encontrado ningún filtro de widget
+    ExternalPageWidget: Página externa
+    ExternalPageWidgetIntroduction: Este widget puede mostrar una página web externa.
     Filter:
       FilterOptionHeader: Opciones de filtro
       ManageWidgetFilterHeader: Gestión de filtros de widgets
@@ -875,8 +877,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     createdFrom: Creado desde
     createdTo: Creado para
     customFieldType: Tipo de campo personalizado
-    customWidget: Widget personalizado
-    customWidgetIntroduction: Con este widget puede añadir procesos de Axon Ivy o páginas web externas.
     dashboardManagement:
       CreateDashboard: Crear tablero
       addDashboard: Añadir tablero

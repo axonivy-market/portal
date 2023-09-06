@@ -11,7 +11,9 @@
   position="center center"
   onShow="PF('new-widget-dialog').initPosition()">
   <div class="new-widget-dialog__content ">
-    <p:fieldset id="standard-widget-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StandardWidgets')}" toggleable="true">
+    <p:fieldset id="standard-widget-fieldset" toggleable="true"
+      legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StandardWidgets')}"
+      styleClass="new-widget-dialog__fieldset">
       <div class="new-widget-dialog__standard-item-container">
         <p:repeat id="new-widget-dialog-content"
           var="sample"
@@ -43,12 +45,16 @@
 
     <p:spacer height="10" />
 
-    <p:fieldset id="custom-widget-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CustomWidgets')}" toggleable="true">
-      <p:repeat var="widget" value="#{dashboardDetailModificationBean.customWidgets}">
+    <p:fieldset id="custom-widget-fieldset" toggleable="true"
+      legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CustomWidgets')}"
+      styleClass="new-widget-dialog__fieldset">
+      <div class="new-widget-dialog__standard-item-container">
+        <p:repeat var="widget" value="#{dashboardDetailModificationBean.customWidgets}">
           <div class="new-widget-dialog__item card">
 
             <div class="new-widget-dialog__item-title">
-              <p:outputLabel id="sample-name" value="#{widget.name}" styleClass="new-widget-dialog__widget-name"/>
+              <p:outputLabel id="custom-widget-name" value="#{widget.name}" styleClass="new-widget-dialog__widget-name"/>
+              <p:tooltip id="custom-widget-name-tooltip" for="custom-widget-name" value="#{widget.name}" trackMouse="true" />
             </div>
 
             <div class="new-widget-dialog__item-details">
@@ -68,12 +74,13 @@
             </div>
           </div>
         </p:repeat>
+      </div>
     </p:fieldset>
   </div>
 
   <f:facet name="footer">
     <p:commandLink id="new-widget-close-button"
-      styleClass="MarTop10"
+      styleClass="new-widget-dialog__close-button"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
       onclick="PF('new-widget-dialog').hide()"
       process="@this"
