@@ -3,8 +3,10 @@ package ch.ivy.addon.portalkit.bean;
 import java.io.Serializable;
 import java.util.Arrays;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.BooleanUtils;
@@ -17,6 +19,7 @@ import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
 import ch.ivy.addon.portalkit.masterdata.MasterData;
+import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -94,5 +97,9 @@ public class MasterDataBean implements Serializable {
   
   public String getTaskSortFieldApplication() {
     return TaskSortField.APPLICATION.toString();
-    }
+  }
+  
+  public void showSuccessfulCopiedMessage(String message) {
+    FacesContext.getCurrentInstance().addMessage(GrowlMessageUtils.PORTAL_GLOBAL_GROWL_MESSAGE, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
+  }
 }

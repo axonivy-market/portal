@@ -1574,6 +1574,8 @@ Dialogs:
                   Share: Aktie
         portalkit:
           component:
+            CaseItemDetails:
+              ShareCaseDetails: Teilen Sie Falldetails mit
             CaseWidget:
               CaseCategory: Vorgangskategorie
               CaseDetail:
@@ -1588,6 +1590,8 @@ Dialogs:
               defaultEmptyMessage: Keine Vorgänge verfügbar
             IconSelection:
               IconLinkTooltip: Zum Ändern des Symbols anklicken
+            TaskItemDetails:
+              ShareTaskDetails: Teilen Sie Aufgabendetails
   com:
     axonivy:
       portal:
@@ -1749,6 +1753,7 @@ Labels:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Permissions: Berechtigungen
+  Share: Aktie
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails
   TaskUser-Explain: Kommaseparierte Liste von Benutzern

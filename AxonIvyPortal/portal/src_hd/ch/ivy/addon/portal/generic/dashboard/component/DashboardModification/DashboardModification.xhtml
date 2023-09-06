@@ -97,7 +97,8 @@
     
   <ic:com.axonivy.portal.dashboard.component.ShareDialog id="share-dashboard-component" 
     shareDialogId="share-dashboard-dialog" 
-    managedBean="#{dashboardModificationBean}" /> 
+    url="#{dashboardModificationBean.dashboardUrl}"
+    title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/DashboardSharing/ShareDashboard')}"/> 
 
   <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
     <ui:param name="id" value="remove-dashboard-dialog" />
