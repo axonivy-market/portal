@@ -1397,8 +1397,6 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Could not find the the linked process!
-                DashboardModification:
-                  Share: Share
         portalkit:
           component:
             CaseWidget:

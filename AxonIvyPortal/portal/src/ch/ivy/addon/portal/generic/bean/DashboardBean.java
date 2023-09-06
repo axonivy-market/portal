@@ -417,10 +417,6 @@ public class DashboardBean implements Serializable {
     this.dashboardUrl = dashboardUrl;
   }
   
-  public void showDashboardUrlCopiedMessage(String message) {
-    FacesContext.getCurrentInstance().addMessage(GrowlMessageUtils.PORTAL_GLOBAL_GROWL_MESSAGE, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
-  }
-  
   public void openShareDashboardDialog(Dashboard dashboard) {
     if (StringUtils.isBlank(serverUrl)) {
       serverUrl = UrlUtils.getServerUrl();

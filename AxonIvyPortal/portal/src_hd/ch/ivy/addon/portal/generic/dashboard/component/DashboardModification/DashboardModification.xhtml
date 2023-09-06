@@ -79,7 +79,7 @@
           actionListener="#{dashboardModificationBean.openShareDashboardDialog(dashboard)}"
           oncomplete="PF('share-dashboard-dialog').show()"
           icon="si si-share" update="#{cc.clientId}:share-dashboard-component:share-dashboard-dialog"
-          title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/DashboardModification/Share')}" global="false"/>
+          title="#{ivy.cms.co('/Labels/Share')}" global="false"/>
 
         <p:commandButton id="delete-dashboard" process="@this"
           styleClass="rounded-button ui-button-outlined action-column-icon-button ui-button-danger" icon="si si-bin-1"
@@ -101,7 +101,8 @@
     
   <ic:com.axonivy.portal.dashboard.component.ShareDialog id="share-dashboard-component" 
     shareDialogId="share-dashboard-dialog" 
-    managedBean="#{dashboardModificationBean}" /> 
+    url="#{dashboardModificationBean.dashboardUrl}"
+    title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/DashboardSharing/ShareDashboard')}"/> 
 
   <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
     <ui:param name="id" value="remove-dashboard-dialog" />

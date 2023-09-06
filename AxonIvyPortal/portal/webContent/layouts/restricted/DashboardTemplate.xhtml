@@ -300,7 +300,8 @@
             <ic:com.axonivy.portal.dashboard.component.ShareDialog
               id="share-dashboard-component"
               shareDialogId="share-dashboard-dialog"
-              managedBean="#{managedBean}"/>
+              url="#{managedBean.dashboardUrl}"
+              title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/DashboardSharing/ShareDashboard')}" />
           </div>
         <h:outputScript library="js" name="dashboard.js" />
 
