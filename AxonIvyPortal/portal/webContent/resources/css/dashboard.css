@@ -2,9 +2,15 @@
   line-height: 2;
 }
 
+.new-widget-dialog__content {
+  max-height: 80vh;
+  max-width: 90vw;
+}
+
 .new-widget-dialog__content .ui-datagrid-content{
   padding: 0;
   border: none;
+  overflow: auto;
 }
 
 .new-widget-dialog__content .ui-datagrid-content .ui-widget-content{
@@ -13,9 +19,36 @@
   border-bottom: 1px solid #d8d8d8;
 }
 
+.new-widget-dialog__standard-item-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-evenly;
+  align-content: stretch;
+  width: 50vw;
+}
+
 .new-widget-dialog__item {
+  box-sizing: content-box;
+  width: 46%;
+  height: 100%;
+  padding: 1rem;
   text-align: left;
-  padding: 0.5em;
+  margin-bottom: 1rem;
+}
+
+.new-widget-dialog__item:nth-last-child(1),
+.new-widget-dialog__item:nth-last-child(2) {
+  margin-bottom: 0;
+}
+.new-widget-dialog__item-title {
+  margin-bottom: 1rem;
+}
+
+.new-widget-dialog__item-details {
+  display: flex;
+  flex-direction: row;
 }
 
 .ui-resizable-handle {
@@ -715,6 +748,7 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 .new-widget-dialog__image {
   width: 120px;
   height: 75px;
+  margin-right: 1em;
 }
 
 span.new-widget-dialog__icon.si {
@@ -732,24 +766,30 @@ span.new-widget-dialog__icon.si {
 }
 
 .new-widget-dialog__item-content {
-  display: block;
+  display: flex;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 600px;
-  height: 75px;	
+  height: 75px;
+  width: 100%;
+  flex-direction: column;
 }
 
-.new-widget-dialog__widget-name {
+body .ui-widget.new-widget-dialog__widget-name {
   font-weight: var(--new-widget-dialog-title-font-weight);
   font-style: var(--new-widget-dialog-title-font-style);
   font-size: var(--new-widget-dialog-title-font-size);
 }
 
-.new-widget-dialog__introduction {
+body .ui-widget.new-widget-dialog__introduction {
   font-weight: var(--new-widget-dialog-description-font-weight);
   font-style: var(--new-widget-dialog-description-font-style);
   font-size: var(--new-widget-dialog-description-font-size);
   color: var(--new-widget-dialog-description-color);
+  height: 100%;
+}
+
+.new-widget-dialog__add-widget-button {
+  align-self: flex-end;
 }
 
 .widget__content.process-widget.dashboard-widget-panel-container {

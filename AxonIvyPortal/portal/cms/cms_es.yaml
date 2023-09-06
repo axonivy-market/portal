@@ -770,6 +770,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Público
       savedFilters: 'Filtros guardados:'
   dashboard:
+    CustomWidgets: Widgets personalizados
     DashboardConfiguration:
       CreateFromScratch: Crear desde cero
       CreateFromScratchDescription: Cree su propio panel de control desde cero
@@ -804,6 +805,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Filtros guardados
     SearchForFilter: Búsqueda del filtro
     ShareThisDashboard: Comparte este panel
+    StandardWidgets: Widgets estándar
     StatisticWidget:
       AvailableCharts: Gráficos estadísticos disponibles
       Charts: 'Gráfico(s): {0}'

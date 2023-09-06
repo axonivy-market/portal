@@ -772,6 +772,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Public
       savedFilters: 'Saved filters:'
   dashboard:
+    CustomWidgets: Custom Widgets
     DashboardConfiguration:
       CreateFromScratch: Create from scratch
       CreateFromScratchDescription: Create your own dashboard from scratch
@@ -806,6 +807,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Saved filters
     SearchForFilter: Search for filter
     ShareThisDashboard: Share this dashboard
+    StandardWidgets: Standard Widgets
     StatisticWidget:
       AvailableCharts: Available statistics charts
       Charts: 'Chart(s): {0}'

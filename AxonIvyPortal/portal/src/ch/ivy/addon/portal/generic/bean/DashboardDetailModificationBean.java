@@ -23,6 +23,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -36,6 +37,7 @@ import org.apache.logging.log4j.util.Strings;
 import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.dto.UserDTO;
+import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.dto.News;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.axonivy.portal.service.DeepLTranslationService;
@@ -104,6 +106,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private List<String> categories;
   private String restoreDashboardMessage;
   private Optional<DashboardTemplate> foundTemplate;
+  private List<DashboardProcess> customWidgets;
 
   @PostConstruct
   public void initConfigration() {
@@ -124,6 +127,28 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
           processViewerSample(), welcomeWidgetSample(), newsSample());
       samples = samples.stream().sorted(Comparator.comparing(WidgetSample::getName)).collect(Collectors.toList());
     }
+    initCustomWidgets();
+  }
+
+  private void initCustomWidgets() {
+    if (CollectionUtils.isEmpty(getCustomWidgets())) {
+      setCustomWidgets(new ArrayList<>());
+      getCustomWidgets().addAll(ProcessService.getInstance().findCustomDashboardProcesses()
+          .stream().map(convertToDashboardProcess())
+          .collect(Collectors.toList()));
+    }
+    
+  }
+
+  private Function<IWebStartable, DashboardProcess> convertToDashboardProcess() {
+    return startable -> {
+      DashboardProcess process = new DashboardProcess();
+      process.setName(startable.getDisplayName());
+      process.setDescription(startable.getDescription());
+      process.setId(startable.getId());
+      process.setIcon(startable.customFields().value("cssIcon"));
+      return process;
+    };
   }
 
   @Override
@@ -877,4 +902,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   }
 
+  public List<DashboardProcess> getCustomWidgets() {
+    return customWidgets;
+  }
+
+  public void setCustomWidgets(List<DashboardProcess> customWidgets) {
+    this.customWidgets = customWidgets;
+  }
 }
