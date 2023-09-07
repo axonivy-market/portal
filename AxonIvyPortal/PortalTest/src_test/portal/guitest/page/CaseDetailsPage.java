@@ -880,4 +880,8 @@ public class CaseDetailsPage extends TemplatePage {
       return false;
     }
   }
+
+  public WebElement getSharePageButtonElement() {
+    return findElementByCssSelector("[id$=':share-page-button']");
+  }
 }

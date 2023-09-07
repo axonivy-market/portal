@@ -1552,7 +1552,7 @@ Dialogs:
         portalkit:
           component:
             CaseItemDetails:
-              ShareCaseDetails: Teilen Sie Falldetails mit
+              ShareCaseDetails: Falldetails teilen
             CaseWidget:
               CaseCategory: Vorgangskategorie
               CaseDetail:

@@ -1551,7 +1551,7 @@ Dialogs:
         portalkit:
           component:
             CaseItemDetails:
-              ShareCaseDetails: Partager les détails du cas
+              ShareCaseDetails: Partager les détails de l'affaire
             CaseWidget:
               CaseCategory: Catégorie de cas
               CaseDetail:

@@ -1552,7 +1552,7 @@ Dialogs:
         portalkit:
           component:
             CaseItemDetails:
-              ShareCaseDetails: Share case details
+              ShareCaseDetails: Share Case Details
             CaseWidget:
               CaseCategory: Case Category
               CaseDetail:
@@ -1568,7 +1568,7 @@ Dialogs:
             IconSelection:
               IconLinkTooltip: Click to change icon
             TaskItemDetails:
-              ShareTaskDetails: Share task details
+              ShareTaskDetails: Share Task Details
   com:
     axonivy:
       portal:
