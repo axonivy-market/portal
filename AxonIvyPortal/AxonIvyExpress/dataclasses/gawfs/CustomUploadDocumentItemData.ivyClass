@@ -8,3 +8,4 @@ uploadedFile org.primefaces.model.file.UploadedFile #field
 enableVirusScannerForUploadedDocument Boolean #field
 enableScriptCheckingForUploadedDocument Boolean #field
 allowedUploadFileTypes String #field
+skip Boolean #field
