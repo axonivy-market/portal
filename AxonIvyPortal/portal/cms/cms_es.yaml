@@ -802,6 +802,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ManageFilter: Gestión de filtros
     NoData: No hay datos
     NoSavedFilterMessage: No se ha encontrado ningún filtro guardado. Intente crear uno nuevo haciendo clic en el botón Guardar filtro
+    NoWidgetAvailable: No existen widgets.
     RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
     SaveNewWidgetFilterHeader: Guardar un nuevo filtro de widget
     SavedFilterHeader: Filtros guardados

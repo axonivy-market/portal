@@ -5,6 +5,8 @@
 .new-widget-dialog__content {
   max-height: 80vh;
   max-width: 90vw;
+  overflow: auto;
+  padding-bottom: 1rem;
 }
 
 .new-widget-dialog__content .ui-datagrid-content{
@@ -19,7 +21,7 @@
   border-bottom: 1px solid #d8d8d8;
 }
 
-.new-widget-dialog__standard-item-container {
+.new-widget-dialog__item-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -49,23 +51,29 @@
   flex-direction: row;
 }
 
-@media screen and (min-width: 768px) {
-  .new-widget-dialog__fieldset {
-    width: 90vw;
-  }
-
-  .new-widget-dialog__item {
-    width: 46%;
-  }
+.new-widget-dialog__fieldset:nth-child(1) {
+  margin-bottom: 1rem;
 }
 
-@media screen and (min-width: 1900px) {
-  .new-widget-dialog__fieldset {
+@media screen and (min-width: 768px) {
+  .new-widget-dialog__fieldset,
+  .new-widget-dialog__no-widget-text {
     width: 70vw;
   }
 
   .new-widget-dialog__item {
-    width: 47%;
+    width: 45%;
+  }
+}
+
+@media screen and (min-width: 1900px) {
+  .new-widget-dialog__fieldset,
+  .new-widget-dialog__no-widget-text {
+    width: 50vw;
+  }
+
+  .new-widget-dialog__item {
+    width: 46%;
   }
 }
 
@@ -816,9 +824,21 @@ body .ui-widget.new-widget-dialog__introduction {
   align-self: flex-end;
 }
 
-.new-widget-dialog__close-button {
-  display: block;
-  padding-top: 1rem;
+.new-widget-dialog__search {
+  display: flex;
+  flex-direction: row-reverse;
+  height: 3rem;
+}
+
+.new-widget-dialog__search-input {
+  width: 20vw;
+  position: absolute;
+}
+
+.new-widget-dialog__search-icon {
+  position: relative;
+  top: 0.7rem;
+  right: 0.7rem;
 }
 
 .widget__content.process-widget.dashboard-widget-panel-container {
