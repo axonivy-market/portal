@@ -303,6 +303,15 @@ You may export the Task List by clicking on the button **Export to Excel**.
 
 |export-to-excel-button|
 
+
+HowTo: Share A Task Details
+---------------------------
+
+You may share a task details by clicking on the share button |share-icon|.
+
+|how-to-share-task-details|
+
+
 .. include:: ../includes/_common-icon.rst
 
 
@@ -324,3 +333,4 @@ You may export the Task List by clicking on the button **Export to Excel**.
 .. |how-to-switch-to-view-mode| image:: ../../screenshots/task-detail/how-to-switch-to-view-mode.png
 .. |how-to-switch-to-edit-mode| image:: ../../screenshots/task-detail/how-to-switch-to-edit-mode.png
 .. |how-to-reset-to-default| image:: ../../screenshots/task-detail/how-to-reset-to-default.png
+.. |how-to-share-task-details| image:: ../../screenshots/task-detail/share-page-button.png

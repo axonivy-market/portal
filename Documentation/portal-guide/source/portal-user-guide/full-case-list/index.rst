@@ -374,6 +374,14 @@ HowTo: Show Process Viewer
 
 |portal-process-viewer|
 
+
+HowTo: Share Case Details
+---------------------------
+
+You may share case details by clicking on the share button |share-icon|.
+
+|how-to-share-case-details|
+
 .. include:: ../includes/_common-icon.rst
 
 .. |navigate-to-full-cases-list-page| image:: ../../screenshots/case/navigate-to-full-cases-list-page.png
@@ -394,3 +402,4 @@ HowTo: Show Process Viewer
 .. |how-to-switch-to-edit-mode| image:: ../../screenshots/case-detail/how-to-switch-to-edit-mode.png
 .. |how-to-reset-to-default| image:: ../../screenshots/case-detail/how-to-reset-to-default.png
 .. |portal-process-viewer| image:: ../../screenshots/case/portal-process-viewer.png
+.. |how-to-share-case-details| image:: ../../screenshots/case-detail/share-page-button.png
