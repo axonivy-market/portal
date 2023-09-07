@@ -173,4 +173,5 @@ Below is a standard JSON definition of the Process widget in image mode
          "processPath": "designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp"
       }
    ..
+
 .. |dashboard-process-sort-index| image:: images/new-dashboard-process-widget/process-sort-index.png
