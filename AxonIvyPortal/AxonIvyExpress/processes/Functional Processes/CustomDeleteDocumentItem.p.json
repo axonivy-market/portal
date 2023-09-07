@@ -52,7 +52,7 @@
           "code" : [
             "import java.util.Arrays;",
             "",
-            "in.businessCase.documents().delete(in.document.uuid);",
+            "in.businessCase.documents().delete(Long.valueOf(in.document.id));",
             "in.message = ivy.cms.co(\"/Dialogs/components/CaseDocument/deleteSucceed\");"
           ]
         }
