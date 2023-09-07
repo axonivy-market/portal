@@ -20,7 +20,6 @@ public class CustomizedIvyDocumentTransformer {
     result.setSize(document.getSize());
     result.setCreation(document.getCreation());
     result.setLastModification(document.getLastModification());
-    result.setUuid(document.uuid());
 
     try {
       File file = new File(document.getPath().asString());
