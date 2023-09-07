@@ -345,7 +345,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.CaseUtils;",
+            "import com.axonivy.portal.components.predicate.CustomProcessPredicate;",
             "import com.axonivy.portal.components.enums.CustomSignature;",
             "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
             "import ch.ivyteam.ivy.workflow.document.IDocument;",
@@ -361,14 +361,13 @@
             "params.put(\"enableVirusScannerForUploadedDocument\", in.enableVirusScannerForUploadedDocument);",
             "params.put(\"allowedUploadFileTypes\", in.allowedUploadFileTypes);",
             "",
-            "CustomSignature signature = CaseUtils.isExpressCase(ivy.case) ? CustomSignature.EXPRESS_UPLOAD_DOCUMENT_ITEM : CustomSignature.UPLOAD_DOCUMENT_ITEM;",
-            "Map result = IvyAdapterService.startSubProcessInApplication(signature.getSignature(), params);",
+            "Map result = IvyAdapterService.startSubProcessesInSecurityContext(CustomSignature.UPLOAD_DOCUMENT_ITEM.getSignature(), params, new CustomProcessPredicate());",
+            "in.hasCustomProcess = !result.isEmpty();",
             "",
-            "in.hasCustomProcess = result != null;",
             "if (in.hasCustomProcess) {",
-            "  in.uploadedDocument = result.get(\"uploadedDocument\") as IDocument;",
             "  in.message = result.get(\"message\").toString();",
-            "  in.status = UploadDocumentCheckStatus.toEnum(result.get(\"status\").toString());",
+            "  in.uploadedDocument = result.get(\"uploadedDocument\") as IDocument;",
+            "  in.status = UploadDocumentCheckStatus.valueOf(result.get(\"status\") as String);",
             "}"
           ]
         }
