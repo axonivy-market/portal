@@ -87,7 +87,10 @@ public class BaseTest {
   protected String denyDashboardImportPublicPermissionUrl = "PortalKitTestHelper/14DE09882B540AD5/denyDashboardImportPublicPermission.ivp";
   protected String grantDashboardShareLinkPermissionUrl = "PortalKitTestHelper/14DE09882B540AD5/grantDashboardShareLinkPermission.ivp";
   protected String denyDashboardShareLinkPermissionUrl = "PortalKitTestHelper/14DE09882B540AD5/denyDashboardShareLinkPermission.ivp";
-  
+  protected String grantShareLinkCaseDetailsPermission = "PortalKitTestHelper/14DE09882B540AD5/grantShareLinkCaseDetailsPermission.ivp";
+  protected String denyShareLinkCaseDetailsPermission = "PortalKitTestHelper/14DE09882B540AD5/denyShareLinkCaseDetailsPermission.ivp";
+  protected String grantShareLinkTaskDetailsPermission = "PortalKitTestHelper/14DE09882B540AD5/grantShareLinkTaskDetailsPermission.ivp";
+  protected String denyShareLinkTaskDetailsPermission = "PortalKitTestHelper/14DE09882B540AD5/denyShareLinkTaskDetailsPermission.ivp";
 
   protected void redirectToNewDashBoard() {
     open(EngineUrl.createProcessUrl(PORTAL_HOME_PAGE_URL));
