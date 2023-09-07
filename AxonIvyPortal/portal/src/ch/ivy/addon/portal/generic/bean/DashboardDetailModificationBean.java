@@ -255,6 +255,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
             Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/statistic/timePeriod/custom")));
         widget = getDefaultCustomDashboardWidget();
+        ((CustomDashboardWidget) widget).getData().setType(DashboardCustomWidgetType.EXTERNAL_URL);
         break;
       case STATISTIC:
         newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
@@ -278,6 +279,28 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       default:
         break;
     }
+  }
+  
+  public void createCustomDashboardWidget(DashboardProcess process) {
+    newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
+        Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/statistic/timePeriod/custom")));
+    
+    widget = getDefaultCustomDashboardWidget();
+    var customWidget = ((CustomDashboardWidget) widget); 
+    customWidget.getData().setType(DashboardCustomWidgetType.PROCESS);
+    
+    var iWebStartable = ProcessService.getInstance()
+        .findCustomDashboardProcessInSecurityContextByProcessId(process.getId());
+
+    if (Objects.isNull(iWebStartable)) {
+      return;
+    }
+
+    var ivyProcessStartDTO = new IvyProcessStartDTO(iWebStartable);
+    customWidget.getData().setIvyProcessStartDTO(ivyProcessStartDTO);
+    customWidget.getData().setProcessPath(ivyProcessStartDTO.getStartableProcessStart().getId());
+    customWidget.getData().setStartRequestPath(ivyProcessStartDTO.getStartableProcessStart().getLink().getRelative());
+    customWidget.loadParametersFromProcess();
   }
 
   public void removeWidget() {

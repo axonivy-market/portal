@@ -48,24 +48,6 @@
       </div>
     </h:panelGroup>
 
-    <div class="ui-g-12 u-padding-0">
-      <div class="ui-g-4">
-        <p:outputLabel
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetType')}"
-          for="custom-widget-type" />
-      </div>
-      <div class="ui-g-8 ui-fluid">
-        <p:selectOneMenu id="custom-widget-type"
-          value="#{widget.data.type}">
-          <f:selectItems
-            value="#{dashboardCustomWidgetBean.customWidgetTypes}"
-            var="type" itemLabel="#{type.label}" itemValue="#{type}" />
-          <p:ajax event="itemSelect" process="@this widget-title"
-            partialSubmit="true" update="user-filter"
-            listener="#{dashboardCustomWidgetBean.onChangeType(widget)}" />
-        </p:selectOneMenu>
-      </div>
-    </div>
     <c:set var="isIvyProcess" value="#{widget.data.type == 'PROCESS'}" />
     <h:panelGroup id="external-url-panel"
       styleClass="ui-g-12 u-padding-0" rendered="#{!isIvyProcess}">
@@ -83,37 +65,6 @@
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/CustomWidgetExternalLinkWarning')}" />
       </div>
     </h:panelGroup>
-    <h:panelGroup id="ivy-process-panel"
-      styleClass="ui-g-12 u-padding-0" rendered="#{isIvyProcess}">
-      <div class="ui-g-4">
-        <p:outputLabel
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/process')}"
-          for="selected-process" />
-      </div>
-      <div class="ui-g-8 ui-fluid">
-        <p:autoComplete id="selected-process" dropdown="true"
-          scrollHeight="300" forceSelection="true"
-          completeMethod="#{dashboardCustomWidgetBean.completeProcesses}"
-          value="#{widget.data.ivyProcessStartDTO}" var="process"
-          itemValue="#{process}"
-          itemLabel="#{process.startableProcessStart.name}"
-          queryDelay="500" cache="true" minQueryLength="2"
-          itemtipAtPosition="right top" converter="pojoConverter"
-          required="#{isIvyProcess}">
-          <p:ajax event="query" global="false" />
-          <p:ajax event="itemSelect"
-            listener="#{dashboardCustomWidgetBean.onSelectProcess(widget)}"
-            update="user-filter parameters-panel" process="@this"
-            oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
-          <p:column>
-            <h:outputText styleClass="autocomplete-tooltip"
-              value="#{process.startableProcessStart.name}"
-              title="#{process.startableProcessStart.description}" />
-          </p:column>
-        </p:autoComplete>
-      </div>
-    </h:panelGroup>
-
     <h:panelGroup id="parameters-panel"
       styleClass="ui-g-12 parameters-panel u-padding-0 MarTop10"
       layout="block"

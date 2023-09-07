@@ -70,6 +70,7 @@
                 <p:outputLabel value="#{widget.description}" styleClass="new-widget-dialog__introduction"/>
                 <p:commandButton id="add-widget" styleClass="new-widget-dialog__add-widget-button"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
+                  actionListener="#{dashboardDetailModificationBean.createCustomDashboardWidget(widget)}" 
                   update="new-widget-configuration-dialog widget-configuration-form"
                   oncomplete="PF('new-widget-configuration-dialog').show(); PF('new-widget-dialog').hide();"
                   icon="si si-add" onstart="getPortalGridsCurrentRow();"/>
