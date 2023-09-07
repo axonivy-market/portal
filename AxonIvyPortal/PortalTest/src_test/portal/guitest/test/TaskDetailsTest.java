@@ -47,7 +47,7 @@ public class TaskDetailsTest extends BaseTest {
 
   @Test
   public void testDelegateTaskInTaskDetail() {
-    login(TestAccount.HR_ROLE_USER);
+    login(TestAccount.ADMIN_USER);
     homePage = new HomePage();
     taskDetailsPage = openDetailsPageOfFirstTask();
     assertTrue(StringUtils.equalsIgnoreCase(TestRole.EVERYBODY_ROLE, taskDetailsPage.getTaskResponsible()));
