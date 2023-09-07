@@ -1,0 +1,122 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+  xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:ic="http://ivyteam.ch/jsf/component">
+
+<h:body>
+  <ui:composition>
+    <ui:param name="userAgent" value="#{request.getHeader('User-Agent')}"></ui:param>
+    <ui:param name="isIE"
+      value="#{(fn:containsIgnoreCase(userAgent, 'Trident') and fn:containsIgnoreCase(userAgent, 'rv:11')) || fn:containsIgnoreCase(userAgent, 'MSIE')}" />
+
+    <!-- <p:remoteCommand id="rcLoadCaseFirstTime" autoRun="true" 
+      actionListener="#{notificationBean.dataModel.loadOnlyUnread()}" update="dashboard-cases-container"
+      global="false" async="true" process="@this"
+      oncomplete="loadWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); PF('dashboard-cases-#{caseWidget.id}').init(PF('dashboard-cases-#{caseWidget.id}').cfg); #{cc.attrs.onCompleteLoadWidget}" /> -->
+    <h:panelGroup id="chat-form">
+      <h:outputScript library="js" name="polyfill/promise.min.js" rendered="#{isIE}" />
+      <h:outputScript library="js" name="polyfill/fetch.js" rendered="#{isIE}" />
+      <h:outputScript library="js" name="polyfill/babel-runtime.js" rendered="#{isIE}" />
+      <h:outputScript library="js" name="chat-transpiled.js" rendered="#{isIE}" />
+      <h:outputScript library="js" name="notification.js" />
+
+      <h:outputScript library="js" name="chat.js" rendered="#{!isIE}" />
+
+<!--       <script type="text/javascript">
+              var userName = "#{ivy.session.getSessionUserName()}";
+              var contextPath = "#{ivy.task.getApplication().getContextPath()}";
+              var resource = new IvyUri().rest() + "/chat";
+              var isChatGroupEnabled = "#{chatRendererBean.isGroupChatRendered}";
+              var isChatPrivateEnabled = "#{chatRendererBean.isPrivateChatRendered}";
+
+              var view = new View(resource);
+              var chat = new Chat(resource, view);
+              window.addEventListener("load", function() {
+                setTimeout(function(){
+                  chat.listen(true, "INITIAL_RESPONSE_ID", "CHAT_LONG_POLLING_REQUEST");
+                  chat.getSendersOfUnreadMessages();
+                }, 2000);
+              });
+
+              document.addEventListener(visibilityChange, function() {
+                if (!document[hidden] &amp;&amp; isChatDeactivated === true) {
+                  chat.reloadChat();
+                }
+              }, false);
+            </script> -->
+      <h:outputStylesheet library="css" name="chat.css" />
+      <div id="notification-panel" class="notification-panel js-notification-panel ">
+        <div class="notification-item-list js-chat-contact-panel active">
+          <div class="notification-container-content">
+            <h:panelGroup id="group-chat-container" class="js-group-chat-container" layout="block" rendered="true" />
+            <div class="notification-items-container" >
+              <h:panelGroup id="notifications">
+                <div class="p-d-flex p-jc-between">
+                <h4 class="widget__header-title text-ellipsis">Notifications</h4>
+                  
+                  <div class="p-d-flex">
+                    <p:selectBooleanCheckbox value="false" itemLabel="Only unread">
+                      <!-- <p:ajax listener="#{cc.attrs.filter.onSelectedAllStates()}" update="state-selection" partialSubmit="true"/> -->
+                    </p:selectBooleanCheckbox>  
+                    <p:commandLink id="notificationFullScreen" update="notifications unreadNotifications" styleClass="notification-icon">
+                      <i class="notification-button si si-expand-6 " />
+                    </p:commandLink>
+                    <p:tooltip for="notificationFullScreen" value="Show full screen notifications" />
+                    
+                    <p:commandLink id="notificationMarkAllAsRead" rendered="#{notificationBean.hasUnreadNotifications()}" styleClass="notification-icon"
+                      update="#{p:resolveFirstComponentWithId('notificationForm:notifications-scroller', view).clientId}"
+                      actionListener="#{notificationBean.readAll()}">
+                      <i class="notification-button si si-check-double-1 p-mr-1" />
+                    </p:commandLink>
+                    <p:tooltip for="notificationMarkAllAsRead" value="Mark all notifications as read" />
+
+                   
+                    <p:commandLink id="notificationSetting"  styleClass="notification-icon"
+                      update="#{p:resolveFirstComponentWithId('notificationForm:notifications-scroller', view).clientId}">
+                      <i class="notification-button si si-cog" />
+                    </p:commandLink>
+                    <p:tooltip for="notificationSetting" value="Setting notifications" />
+                    
+                  </div>
+                </div>
+
+                <h:panelGroup id="no-notifications" rendered="#{!notificationBean.hasNotifications()}">
+                  <div class="p-text-center" style="padding: 20px;">No Notifications</div>
+                </h:panelGroup>
+
+                <h:panelGroup id="has-notifications" rendered="#{notificationBean.hasNotifications()}">
+                  <h:form id="notificationForm">
+                    <p:dataScroller id="notifications-scroller" lazy="true" styleClass="notification-scroll" value="#{notificationBean.dataModel}" var="notification"
+                      chunkSize="20" mode="inline" widgetVar="notifications-scroller" >
+                      <div class="#{notification.style} notification-container-top">
+                        <div class="p-d-flex p-jc-between">
+                          <div class="p-d-flex">
+                            <p:commandLink id="notificationMarkAsRead" process="@this"
+                              actionListener="#{notificationBean.markAsRead(notification)}" update="notifications-scroller unreadNotifications">
+                              <i class="notification-button fa #{notification.read ? 'fa-circle-thin': 'fa-circle'}" />
+                            </p:commandLink>
+                            <p:tooltip for="notificationMarkAsRead" value="Mark as read" />
+                          </div>
+                          <h:outputText id="notificationMessage" value="#{notification.message}" />
+
+                        </div>
+
+                        <div>
+                          <h:outputText value="#{notification.timeAgo}" styleClass="notification-item-time-since" />
+                        </div>
+                      </div>
+                    </p:dataScroller>
+                  </h:form>
+                </h:panelGroup>
+              </h:panelGroup>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+    </h:panelGroup>
+
+  </ui:composition>
+</h:body>
+</html>
