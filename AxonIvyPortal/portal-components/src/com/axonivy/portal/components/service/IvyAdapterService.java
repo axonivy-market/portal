@@ -45,16 +45,16 @@ public class IvyAdapterService {
   }
 
   /**
-   * Find the sub process in current project scope then calls it with the given signature
-   * with the given params. Exactly one sub process with the given signature is expected.
+   * Find the subprocess in current project and all required projects recursively scope then calls it with the given signature
+   * with the given params. Exactly one subprocess with the given signature is expected.
    *
-   * @param signature The signature of the sub process to be triggered.
+   * @param signature The signature of the subprocess to be triggered.
    * @param params The parameters to pass to the process.
    * @return The response of the process execution.
    */
 
-  public static Map<String, Object> startSubProcessInProject(String signature, Map<String, Object> params) {
-    return startSubProcess(signature, params, SearchScope.PROJECT);
+  public static Map<String, Object> startSubProcessInProjectAndAllRequired(String signature, Map<String, Object> params) {
+    return startSubProcess(signature, params, SearchScope.PROJECT_AND_ALL_REQUIRED);
   }
 
   private static Map<String, Object> startSubProcess(String signature, Map<String, Object> params, SearchScope scope) {
