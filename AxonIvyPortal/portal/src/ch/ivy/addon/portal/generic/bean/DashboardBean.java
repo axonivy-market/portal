@@ -94,7 +94,7 @@ public class DashboardBean implements Serializable {
 
     if (isReadOnlyMode) {
       MenuView menuView = (MenuView) ManagedBeans.get("menuView");
-      menuView.storeDashboardCache(dashboards);
+      menuView.updateDashboardCache(dashboards);
     }
 
     if (CollectionUtils.isNotEmpty(dashboards)) {
