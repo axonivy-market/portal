@@ -41,7 +41,7 @@
   <h:panelGroup id="case-details-actions" rendered="#{not isWorkingOnTask and not inFrame}"
     styleClass="switch-and-reset-buttons-area ui-g-12 ui-sm-hidden u-no-padding-bottom">
     <p:commandButton id="share-page-button" rendered="#{caseDetailsBean.isShowShareButton}"
-     	oncomplete="PF('share-case-details-dialog').show()" actionListener="#{caseDetailsBean.openShareDialog(case)}"
+     	oncomplete="PF('share-case-details-dialog').show()" 
         icon="#{visibilityBean.generateButtonIcon('si si-share')}" 
         title="#{ivy.cms.co('/Labels/Share')}" 
         global="false" styleClass="u-mar-right-5"
@@ -210,7 +210,7 @@
     </ui:define>
   </ui:decorate>
   
-  <ic:com.axonivy.portal.dashboard.component.ShareDialog
+  <ic:com.axonivy.portal.component.ShareLinkDialog
     id="share-case-details-component"
     shareDialogId="share-case-details-dialog" url="#{caseDetailsBean.caseDetailsUrl}"
     title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseItemDetails/ShareCaseDetails')}"/> 

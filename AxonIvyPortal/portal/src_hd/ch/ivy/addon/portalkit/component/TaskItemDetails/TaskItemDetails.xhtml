@@ -43,7 +43,7 @@
       rendered="#{not cc.attrs.readOnly and cc.attrs.showItemDetailsHeader}"
       styleClass="switch-and-reset-buttons-area ui-g-12 u-no-padding-bottom ui-sm-hidden">
       <p:commandButton id="share-page-button" rendered="#{taskDetailsBean.isShowShareButton}"
-     	oncomplete="PF('share-task-details-dialog').show()" actionListener="#{taskDetailsBean.openShareDialog(task)}"
+     	oncomplete="PF('share-task-details-dialog').show()"
         icon="#{visibilityBean.generateButtonIcon('si si-share')}" 
         title="#{ivy.cms.co('/Labels/Share')}" 
         global="false" styleClass="u-mar-right-5"
@@ -254,7 +254,7 @@
   <ic:ch.ivy.addon.portalkit.component.TaskExpiryActivatorSelection task="#{task}"
     componentToUpdate="#{informationWidgetComponent} #{historyWidgetComponent}"/>
 
-  <ic:com.axonivy.portal.dashboard.component.ShareDialog
+  <ic:com.axonivy.portal.component.ShareLinkDialog
     id="share-task-details-component"
     shareDialogId="share-task-details-dialog" url="#{taskDetailsBean.taskDetailsUrl}"
     title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/TaskItemDetails/ShareTaskDetails')}"/>
