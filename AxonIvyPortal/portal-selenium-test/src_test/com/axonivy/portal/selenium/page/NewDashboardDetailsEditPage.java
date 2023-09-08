@@ -46,7 +46,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
   private void addWidgetByName(String name) {
     $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$$("div.new-widget-dialog__item").filter(text(name)).first().$("tr.ui-widget-content")
+        .$$("div.new-widget-dialog__item").filter(text(name)).first()
         .$("button[id^='new-widget-dialog-content']").shouldBe(getClickableCondition()).click();
   }
 
