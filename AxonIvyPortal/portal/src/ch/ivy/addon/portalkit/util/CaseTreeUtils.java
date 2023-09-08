@@ -45,7 +45,7 @@ public class CaseTreeUtils {
     criteria.setCustomCaseQuery(caseQuery);
     params.put("caseCategorySearchCriteria", criteria);
     Map<String, Object> response =
-        IvyAdapterService.startSubProcessInProject("findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria)", params);
+        IvyAdapterService.startSubProcessInProjectAndAllRequired("findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria)", params);
     return (CategoryTree) response.get("categoryTree");
   }
 

@@ -44,7 +44,7 @@ public class TaskTreeUtils {
     TaskCategorySearchCriteria criteria = new TaskCategorySearchCriteria();
     criteria.setCustomTaskQuery(taskQuery);
     params.put("taskCategorySearchCriteria", criteria);
-    Map<String, Object> response = IvyAdapterService.startSubProcessInProject(
+    Map<String, Object> response = IvyAdapterService.startSubProcessInProjectAndAllRequired(
         "findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria)", params);
     return (CategoryTree) response.get("categoryTree");
   }
