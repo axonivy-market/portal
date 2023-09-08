@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -47,7 +46,6 @@ import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
-import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
@@ -77,7 +75,6 @@ public class DashboardBean implements Serializable {
   private TaskEmptyMessage noTasksMessage;
   private List<DashboardTemplate> dashboardTemplates;
   protected String dashboardUrl;
-  protected String serverUrl;
   
   @PostConstruct
   public void init() {
@@ -87,6 +84,7 @@ public class DashboardBean implements Serializable {
       selectedDashboardId = readDashboardFromSession();
       currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
       selectedDashboard = dashboards.get(currentDashboardIndex);
+      initShareDashboardLink();
       // can not find dashboard by dashboard id session in view mode
       if (StringUtils.isBlank(selectedDashboardId)
           || (!selectedDashboardId.equalsIgnoreCase(selectedDashboard.getId()) && dashboards.size() > 1)) {
@@ -132,14 +130,6 @@ public class DashboardBean implements Serializable {
       }
     }
     return mappingDashboards;
-  }
-
-  public String getServerUrl() {
-    return serverUrl;
-  }
-
-  public void setServerUrl(String serverUrl) {
-    this.serverUrl = serverUrl;
   }
 
   protected String readDashboardBySessionUser() {
@@ -417,12 +407,8 @@ public class DashboardBean implements Serializable {
     this.dashboardUrl = dashboardUrl;
   }
   
-  public void openShareDashboardDialog(Dashboard dashboard) {
-    if (StringUtils.isBlank(serverUrl)) {
-      serverUrl = UrlUtils.getServerUrl();
-    }
-
-    setDashboardUrl(serverUrl + PortalNavigator.getDashboardPageUrl(dashboard.getId()));
+  private void initShareDashboardLink() {
+    setDashboardUrl(UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(selectedDashboard.getId()));
   }
   
   public boolean isShowShareButtonOnDashboard() {

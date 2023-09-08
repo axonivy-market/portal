@@ -41,11 +41,9 @@
   <h:panelGroup id="case-details-actions" rendered="#{not isWorkingOnTask and not inFrame}"
     styleClass="switch-and-reset-buttons-area ui-g-12 ui-sm-hidden u-no-padding-bottom">
     <p:commandButton id="share-page-button" rendered="#{caseDetailsBean.isShowShareButton}"
-     	oncomplete="PF('share-case-details-dialog').show()" 
+        onclick="PF('share-case-details-dialog').show()" type="button"
         icon="#{visibilityBean.generateButtonIcon('si si-share')}" 
-        title="#{ivy.cms.co('/Labels/Share')}" 
-        global="false" styleClass="u-mar-right-5"
-        update="#{p:resolveFirstComponentWithId('share-case-details-dialog', view).clientId}"/>
+        title="#{ivy.cms.co('/Labels/Share')}" styleClass="u-mar-right-5" />
     <p:commandButton id="switch-to-edit-mode-button" rendered="#{caseDetailsBean.readOnlyMode}"
       value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToEditMode')}" actionListener="#{caseDetailsBean.switchToEditMode()}"
       icon="#{visibilityBean.generateButtonIcon('si si-pencil')}" styleClass="u-mar-right-5"
