@@ -2657,7 +2657,12 @@
           "type" : "DialogCall",
           "name" : "PortalDashboard",
           "config" : {
-            "dialog" : "ch.ivy.addon.portal.generic.dashboard.PortalDashboard:start()"
+            "dialog" : "ch.ivy.addon.portal.generic.dashboard.PortalDashboard:startWithoutMenu(Boolean)",
+            "call" : {
+              "map" : {
+                "param.openWithoutMenu" : "in.isOpenWithoutMenu"
+              }
+            }
           },
           "visual" : {
             "at" : { "x" : 656, "y" : 80 }

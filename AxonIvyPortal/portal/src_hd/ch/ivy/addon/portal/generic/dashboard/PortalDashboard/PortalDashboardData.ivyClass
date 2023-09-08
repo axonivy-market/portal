@@ -1,2 +1,4 @@
 PortalDashboardData #class
 ch.ivy.addon.portal.generic.dashboard.PortalDashboard #namespace
+isOpenWithoutMenu Boolean #field
+isOpenWithoutMenu PERSISTENT #fieldModifier
