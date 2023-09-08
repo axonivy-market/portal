@@ -3,14 +3,14 @@
   "id" : "16F3229F28D3A455",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "_com.axonivy.portal.developerexamples.CalculateTaskDelegateOverrideData"
+    "data" : "_com.axonivy.portal.developerexamples.CustomCalculateTaskDelegateData"
   },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
       "name" : "call()",
       "config" : {
-        "signature" : "call",
+        "signature" : "portalCalculateTaskDelegate",
         "input" : {
           "params" : [
             { "name" : "roles", "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>", "desc" : "" },
@@ -28,11 +28,13 @@
         "result" : {
           "params" : [
             { "name" : "users", "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>", "desc" : "" },
-            { "name" : "roles", "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>", "desc" : "" }
+            { "name" : "roles", "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>", "desc" : "" },
+            { "name" : "status", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "result.users" : "in.users",
-            "result.roles" : "in.roles"
+            "result.roles" : "in.roles",
+            "result.status" : "in.status.name()"
           }
         }
       },
@@ -67,17 +69,28 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.enums.CustomProcessStatus;",
+            "import com.axonivy.portal.components.dto.RoleDTO;",
+            "import com.axonivy.portal.components.dto.UserDTO;",
             "import java.util.ArrayList;",
-            "if (\"#admin\".equalsIgnoreCase(in.currentUser.getMemberName())) {",
+            "",
+            "in.status = CustomProcessStatus.OK;",
+            "",
+            "if (\"#david\".equalsIgnoreCase(in.currentUser.getMemberName())) {",
+            "  in.users = new ArrayList();",
+            "  in.roles = new ArrayList();",
             "  if (\"Maternity Leave Request\".equalsIgnoreCase(in.task.names().current())) {",
-            "    in.users = new ArrayList();",
+            "    in.users.add(new UserDTO(ivy.wf.getSecurityContext().users().find(\"demo\")));",
+            "  } else if (\"Sick Leave Request\".equalsIgnoreCase(in.task.names().current())) {",
+            "    in.roles.add(new RoleDTO(ivy.wf.getSecurityContext().roles().find(\"GeneralManager\")));",
             "  }",
-            "} else {",
+            "} else if (\"#demo\".equalsIgnoreCase(in.currentUser.getMemberName())) {",
             "  in.users = new ArrayList();",
             "  in.roles = new ArrayList();",
             "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 216, "y" : 96 }

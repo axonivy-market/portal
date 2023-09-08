@@ -12,6 +12,8 @@ import com.axonivy.portal.components.constant.CustomFields;
 import com.axonivy.portal.components.dto.ProcessViewerDTO;
 import com.axonivy.portal.components.service.impl.ProcessService;
 
+import ch.ivyteam.ivy.application.ActivityState;
+import ch.ivyteam.ivy.application.ReleaseState;
 import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
 import ch.ivyteam.ivy.casemap.runtime.model.ICaseMap;
 import ch.ivyteam.ivy.casemap.viewer.api.CaseMapViewer;
@@ -73,8 +75,14 @@ public class ProcessViewerUtils {
         errorIcon = "si si-alert-circle";
         errorMessage = Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessNotFound");
       } else {
-        errorIcon = isViewerAllowed ? "si si-alert-circle" : "si si-lock-1";
-        errorMessage = Ivy.cms().co(isViewerAllowed ? "/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessCanNotBeLoaded" : "/Dialogs/com/axonivy/portal/components/ProcessViewer/NoPermissionToView");
+        if (webStartable.pmv().getActivityState() != ActivityState.ACTIVE || webStartable.pmv().getReleaseState() != ReleaseState.RELEASED) {
+          errorIcon = "si si-alert-circle";
+          errorMessage = Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessCanNotBeLoaded");
+        } else {
+          errorIcon = "si si-lock-1";
+          errorMessage = Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/NoPermissionToView");
+        }
+        
       }
       
     }
