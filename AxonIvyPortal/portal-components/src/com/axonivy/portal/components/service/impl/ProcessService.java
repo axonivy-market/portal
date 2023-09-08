@@ -92,4 +92,50 @@ public class ProcessService implements IProcessService {
     return start -> BooleanUtils.toBoolean(start.customFields().value(IS_DASHBOARD_PROCESS));
   }
 
+  public IWebStartable findWebStartableInSecurityContextById(String processId){
+    Predicate<? super IWebStartable> predicate = startable -> StringUtils.endsWith(startable.getId(), processId) && isNotPortalHomeAndMSTeamsProcess(startable);
+    return findStartable(predicate);
+  }
+
+  public IWebStartable findWebStartableInSecurityContextByRelativeLink(String processRelativeLink){
+    Predicate<? super IWebStartable> predicate = startable -> StringUtils.equals(processRelativeLink, startable.getLink().getRelative()) && isNotPortalHomeAndMSTeamsProcess(startable);
+    return findStartable(predicate);
+  }
+  
+  public IWebStartable findCustomDashboardProcessInSecurityContextByProcessId(String processId) {
+    Predicate<? super IWebStartable> predicate = startable -> StringUtils.endsWith(startable.getId(),processId) && 
+        BooleanUtils.toBoolean(startable.customFields().value(IS_DASHBOARD_PROCESS));
+    return findStartable(predicate);
+  }
+  
+  public IWebStartable findCustomDashboardProcessInSecurityContextByRelativePath(String processRelativeLink) {
+    Predicate<? super IWebStartable> predicate = startable -> StringUtils.equals(processRelativeLink, startable.getLink().getRelative()) && 
+        BooleanUtils.toBoolean(startable.customFields().value(IS_DASHBOARD_PROCESS));
+    return findStartable(predicate);
+  }
+  
+  
+  private IWebStartable findStartable(Predicate<? super IWebStartable> predicate) {
+    List<IApplication> applicationsInSecurityContext = IApplicationRepository.instance().allOf(ISecurityContext.current());
+    IWebStartable foundStartable = null;
+    for (IApplication app : applicationsInSecurityContext) {
+      List<IProcessModelVersion> pmvs = app.getProcessModels()
+                                            .stream()
+                                            .map(IProcessModel::getProcessModelVersions)
+                                            .flatMap(List::stream)
+                                            .collect(Collectors.toList());
+      for (IProcessModelVersion pmv : pmvs) {
+        foundStartable = IWorkflowProcessModelVersion.of(pmv)
+            .getAllStartables()
+            .filter(predicate)
+            .findFirst()
+            .orElse(null);
+        if (foundStartable != null) {
+          return foundStartable;
+        }
+      }
+    }
+    return foundStartable;
+  }
+  
 }
