@@ -12,6 +12,11 @@
         "signature" : "showDefaultDocumentTableExample",
         "request" : {
           "name" : "Show Default Document Table Example"
+        },
+        "case" : {
+          "customFields" : [
+            { "name" : "custom", "type" : "STRING", "value" : "\"true\"" }
+          ]
         }
       },
       "visual" : {
@@ -49,6 +54,11 @@
         "signature" : "showCustomizedDocumentTableExample",
         "request" : {
           "name" : "Show Customized Document Table Example"
+        },
+        "case" : {
+          "customFields" : [
+            { "name" : "custom", "type" : "STRING", "value" : "\"true\"" }
+          ]
         }
       },
       "visual" : {
@@ -107,6 +117,11 @@
         "request" : {
           "name" : "Show Default Document Table Example in Serenity theme",
           "isVisibleOnStartList" : false
+        },
+        "case" : {
+          "customFields" : [
+            { "name" : "custom", "type" : "STRING", "value" : "\"true\"" }
+          ]
         }
       },
       "visual" : {
@@ -131,6 +146,11 @@
         "request" : {
           "name" : "Show Customized Document Table Example in Serenity theme",
           "isVisibleOnStartList" : false
+        },
+        "case" : {
+          "customFields" : [
+            { "name" : "custom", "type" : "STRING", "value" : "\"true\"" }
+          ]
         }
       },
       "visual" : {
