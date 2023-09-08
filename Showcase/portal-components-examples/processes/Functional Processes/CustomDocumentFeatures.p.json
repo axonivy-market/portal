@@ -23,25 +23,27 @@
         },
         "result" : {
           "params" : [
-            { "name" : "message", "type" : "String", "desc" : "" }
+            { "name" : "message", "type" : "String", "desc" : "" },
+            { "name" : "status", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "result.message" : "in.message"
+            "result.message" : "in.message",
+            "result.status" : "in.skip ? com.axonivy.portal.components.enums.CustomProcessStatus.SKIP.name() : com.axonivy.portal.components.enums.CustomProcessStatus.OK.name()"
           }
         }
       },
       "visual" : {
-        "at" : { "x" : 136, "y" : 240 },
+        "at" : { "x" : 136, "y" : 384 },
         "labelOffset" : { "x" : -7, "y" : 46 }
       },
       "connect" : [
-        { "id" : "f7", "to" : "f5" }
+        { "id" : "f7", "to" : "f32" }
       ]
     }, {
       "id" : "f4",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 496, "y" : 240 }
+        "at" : { "x" : 800, "y" : 384 }
       }
     }, {
       "id" : "f5",
@@ -53,7 +55,7 @@
             "import java.util.Arrays;",
             "",
             "ivy.log.warn(\"Call to override process delete document item\");",
-            "in.businessCase.documents().delete(in.document.uuid);",
+            "in.businessCase.documents().delete(Long.valueOf(in.document.id));",
             "",
             "String note = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/DeleteDocumentNote\", Arrays.asList(ivy.session.getSessionUserName(), in.document.getName()));",
             "in.businessCase.createNote(ivy.session, note);",
@@ -63,11 +65,11 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 368, "y" : 240 },
+        "at" : { "x" : 544, "y" : 384 },
         "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : [
-        { "id" : "f8", "to" : "f4" }
+        { "id" : "f8", "to" : "f46" }
       ]
     }, {
       "id" : "f0",
@@ -77,35 +79,37 @@
         "signature" : "portalDownloadDocumentItem",
         "input" : {
           "params" : [
-            { "name" : "bussinessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
             { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument", "desc" : "" }
           ],
           "map" : {
-            "out.businessCase" : "param.bussinessCase",
+            "out.businessCase" : "param.businessCase",
             "out.document" : "param.document"
           }
         },
         "result" : {
           "params" : [
-            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent", "desc" : "" }
+            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent", "desc" : "" },
+            { "name" : "status", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "result.streamedContent" : "in.streamedContent"
+            "result.streamedContent" : "in.streamedContent",
+            "result.status" : "in.skip ? com.axonivy.portal.components.enums.CustomProcessStatus.SKIP.name() : com.axonivy.portal.components.enums.CustomProcessStatus.OK.name()"
           }
         }
       },
       "visual" : {
-        "at" : { "x" : 136, "y" : 408 },
+        "at" : { "x" : 136, "y" : 552 },
         "labelOffset" : { "x" : -2, "y" : 50 }
       },
       "connect" : [
-        { "id" : "f9", "to" : "f2" }
+        { "id" : "f9", "to" : "f34" }
       ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 512, "y" : 408 }
+        "at" : { "x" : 800, "y" : 552 }
       }
     }, {
       "id" : "f2",
@@ -123,11 +127,11 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 384, "y" : 408 },
+        "at" : { "x" : 560, "y" : 552 },
         "size" : { "width" : 160, "height" : 60 }
       },
       "connect" : [
-        { "id" : "f6", "to" : "f1" }
+        { "id" : "f6", "to" : "f48" }
       ]
     }, {
       "id" : "f10",
@@ -146,26 +150,28 @@
         "result" : {
           "params" : [
             { "name" : "documents", "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>", "desc" : "" },
-            { "name" : "message", "type" : "String", "desc" : "" }
+            { "name" : "message", "type" : "String", "desc" : "" },
+            { "name" : "status", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "result.documents" : "in.documents",
-            "result.message" : "in.message"
+            "result.message" : "in.message",
+            "result.status" : "in.skip ? com.axonivy.portal.components.enums.CustomProcessStatus.SKIP.name() : com.axonivy.portal.components.enums.CustomProcessStatus.OK.name()"
           }
         }
       },
       "visual" : {
-        "at" : { "x" : 144, "y" : 568 },
+        "at" : { "x" : 144, "y" : 712 },
         "labelOffset" : { "x" : 6, "y" : 44 }
       },
       "connect" : [
-        { "id" : "f14", "to" : "f12" }
+        { "id" : "f14", "to" : "f37" }
       ]
     }, {
       "id" : "f11",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 504, "y" : 568 }
+        "at" : { "x" : 800, "y" : 712 }
       }
     }, {
       "id" : "f12",
@@ -189,13 +195,13 @@
             "  in.documents = transformer.transform(iDocuments);",
             "  for(CustomizedIvyDocument doc : in.documents) {",
             "    doc.setName(\"Overridden: \" + doc.getName());",
-            "    String typeStringField = DocumentCustomField.TYPE_PREFIX + doc.uuid;",
+            "    String typeStringField = DocumentCustomField.TYPE_PREFIX + doc.id;",
             "    String typeString = in.businessCase.customFields().stringField(typeStringField).getOrNull();",
             "    if (StringUtils.isNotBlank(typeString)) {",
             "      doc.setType(ExtendedDocumentType.valueOf(typeString.toUpperCase()));",
             "    }",
             "    ",
-            "    String customerStringField = \"IvyDocumentCustomer-\" + doc.uuid;",
+            "    String customerStringField = \"IvyDocumentCustomer-\" + doc.id;",
             "    String customer = in.businessCase.customFields().stringField(customerStringField).getOrNull();",
             "    if (StringUtils.isNotBlank(customer)) {",
             "      doc.setCustomer(customer);",
@@ -207,11 +213,11 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 376, "y" : 568 },
+        "at" : { "x" : 544, "y" : 712 },
         "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : [
-        { "id" : "f13", "to" : "f11" }
+        { "id" : "f13", "to" : "f50" }
       ]
     }, {
       "id" : "f15",
@@ -252,17 +258,17 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 128, "y" : 48 },
+        "at" : { "x" : 128, "y" : 160 },
         "labelOffset" : { "x" : -52, "y" : -26 }
       },
       "connect" : [
-        { "id" : "f21", "to" : "f36" }
+        { "id" : "f21", "to" : "f23" }
       ]
     }, {
       "id" : "f16",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 1440, "y" : 48 }
+        "at" : { "x" : 1760, "y" : 160 }
       }
     }, {
       "id" : "f36",
@@ -296,7 +302,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 288, "y" : 48 }
+        "at" : { "x" : 512, "y" : 160 }
       },
       "connect" : [
         { "id" : "f79", "to" : "f70" }
@@ -311,7 +317,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 952, "y" : 48 },
+        "at" : { "x" : 1176, "y" : 160 },
         "labelOffset" : { "x" : 8, "y" : -14 }
       },
       "connect" : [
@@ -355,7 +361,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 1120, "y" : 48 },
+        "at" : { "x" : 1344, "y" : 160 },
         "size" : { "width" : 160, "height" : 60 }
       },
       "connect" : [
@@ -384,7 +390,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 824, "y" : 48 }
+        "at" : { "x" : 1048, "y" : 160 }
       },
       "connect" : [
         { "id" : "f91", "to" : "f72" }
@@ -393,7 +399,7 @@
       "id" : "f74",
       "type" : "Alternative",
       "visual" : {
-        "at" : { "x" : 696, "y" : 144 }
+        "at" : { "x" : 920, "y" : 256 }
       },
       "connect" : [
         { "id" : "f92", "to" : "f73" }
@@ -402,10 +408,10 @@
       "id" : "f73",
       "type" : "Alternative",
       "visual" : {
-        "at" : { "x" : 952, "y" : 144 }
+        "at" : { "x" : 1176, "y" : 256 }
       },
       "connect" : [
-        { "id" : "f20", "to" : "f16", "via" : [ { "x" : 1440, "y" : 144 } ] }
+        { "id" : "f20", "to" : "f16", "via" : [ { "x" : 1760, "y" : 256 } ] }
       ]
     }, {
       "id" : "f70",
@@ -417,7 +423,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 408, "y" : 48 },
+        "at" : { "x" : 632, "y" : 160 },
         "labelOffset" : { "x" : 3, "y" : -14 }
       },
       "connect" : [
@@ -426,7 +432,7 @@
             "segment" : 0.26,
             "offset" : { "x" : 1, "y" : -11 }
           } },
-        { "id" : "f83", "to" : "f74", "via" : [ { "x" : 408, "y" : 144 } ], "label" : {
+        { "id" : "f83", "to" : "f74", "via" : [ { "x" : 632, "y" : 256 } ], "label" : {
             "name" : "NO",
             "segment" : 1.12,
             "offset" : { "x" : -1, "y" : -9 }
@@ -442,7 +448,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 696, "y" : 48 },
+        "at" : { "x" : 920, "y" : 160 },
         "labelOffset" : { "x" : 0, "y" : -17 }
       },
       "connect" : [
@@ -476,7 +482,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 552, "y" : 48 },
+        "at" : { "x" : 776, "y" : 160 },
         "size" : { "width" : 176, "height" : 60 }
       },
       "connect" : [
@@ -495,17 +501,233 @@
             "import java.util.Random;",
             "",
             "Random rand = new Random();",
-            "String customerStringField = \"IvyDocumentCustomer-\" + in.uploadedDocument.uuid();",
+            "String customerStringField = \"IvyDocumentCustomer-\" + in.uploadedDocument.getId();",
             "in.businessCase.customFields().stringField(customerStringField).set(\"Customer \" + rand.nextInt(50));"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 1312, "y" : 48 },
+        "at" : { "x" : 1536, "y" : 160 },
         "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : [
-        { "id" : "f18", "to" : "f16" }
+        { "id" : "f18", "to" : "f29" }
+      ]
+    }, {
+      "id" : "f23",
+      "type" : "Script",
+      "name" : [
+        "detect if need to",
+        "skip upload"
+      ],
+      "config" : {
+        "output" : {
+          "code" : "in.skip = !Boolean.parseBoolean(in.businessCase.customFields().stringField(\"custom\").getOrDefault(\"false\"));"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f24", "to" : "f25" }
+      ]
+    }, {
+      "id" : "f25",
+      "type" : "Alternative",
+      "name" : "skip custom upload?",
+      "config" : {
+        "conditions" : {
+          "f28" : "in.skip",
+          "f26" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 384, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f26", "to" : "f36", "label" : {
+            "name" : "NO"
+          } },
+        { "id" : "f28", "to" : "f27", "via" : [ { "x" : 384, "y" : 48 } ], "label" : {
+            "name" : "YES",
+            "segment" : 1.1,
+            "offset" : { "x" : -11, "y" : 36 }
+          } }
+      ]
+    }, {
+      "id" : "f27",
+      "type" : "Script",
+      "name" : "Update status",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.enums.CustomProcessStatus;",
+            "",
+            "in.status = CustomProcessStatus.SKIP.name();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 512, "y" : 48 }
+      },
+      "connect" : [
+        { "id" : "f31", "to" : "f29", "via" : [ { "x" : 1664, "y" : 48 } ] }
+      ]
+    }, {
+      "id" : "f29",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 1664, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f30", "to" : "f16" }
+      ]
+    }, {
+      "id" : "f32",
+      "type" : "Script",
+      "name" : [
+        "detect if need to",
+        "skip upload"
+      ],
+      "config" : {
+        "output" : {
+          "code" : "in.skip = !Boolean.parseBoolean(in.businessCase.customFields().stringField(\"custom\").getOrDefault(\"false\"));"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 264, "y" : 384 }
+      },
+      "connect" : [
+        { "id" : "f33", "to" : "f40" }
+      ]
+    }, {
+      "id" : "f34",
+      "type" : "Script",
+      "name" : [
+        "detect if need to",
+        "skip upload"
+      ],
+      "config" : {
+        "output" : {
+          "code" : "in.skip = !Boolean.parseBoolean(in.businessCase.customFields().stringField(\"custom\").getOrDefault(\"false\"));"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 264, "y" : 552 }
+      },
+      "connect" : [
+        { "id" : "f35", "to" : "f42" }
+      ]
+    }, {
+      "id" : "f37",
+      "type" : "Script",
+      "name" : [
+        "detect if need to",
+        "skip upload"
+      ],
+      "config" : {
+        "output" : {
+          "code" : "in.skip = !Boolean.parseBoolean(in.businessCase.customFields().stringField(\"custom\").getOrDefault(\"false\"));"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 712 }
+      },
+      "connect" : [
+        { "id" : "f39", "to" : "f44" }
+      ]
+    }, {
+      "id" : "f40",
+      "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f52" : "in.skip",
+          "f41" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 392, "y" : 384 }
+      },
+      "connect" : [
+        { "id" : "f41", "to" : "f5", "label" : {
+            "name" : "NO"
+          } },
+        { "id" : "f52", "to" : "f46", "via" : [ { "x" : 392, "y" : 288 }, { "x" : 704, "y" : 288 } ], "label" : {
+            "name" : "YES",
+            "segment" : 1.53,
+            "offset" : { "x" : -155, "y" : 46 }
+          } }
+      ]
+    }, {
+      "id" : "f42",
+      "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f54" : "in.skip",
+          "f43" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 392, "y" : 552 }
+      },
+      "connect" : [
+        { "id" : "f43", "to" : "f2", "label" : {
+            "name" : "NO"
+          } },
+        { "id" : "f54", "to" : "f48", "via" : [ { "x" : 392, "y" : 464 }, { "x" : 704, "y" : 464 } ], "label" : {
+            "name" : "YES",
+            "segment" : 1.53,
+            "offset" : { "x" : -157, "y" : 46 }
+          } }
+      ]
+    }, {
+      "id" : "f44",
+      "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f55" : "in.skip",
+          "f45" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 400, "y" : 712 }
+      },
+      "connect" : [
+        { "id" : "f45", "to" : "f12", "label" : {
+            "name" : "NO"
+          } },
+        { "id" : "f55", "to" : "f50", "via" : [ { "x" : 400, "y" : 624 }, { "x" : 704, "y" : 624 } ], "label" : {
+            "name" : "YES",
+            "segment" : 1.55,
+            "offset" : { "x" : -157, "y" : 38 }
+          } }
+      ]
+    }, {
+      "id" : "f46",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 704, "y" : 384 }
+      },
+      "connect" : [
+        { "id" : "f47", "to" : "f4" }
+      ]
+    }, {
+      "id" : "f48",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 704, "y" : 552 }
+      },
+      "connect" : [
+        { "id" : "f49", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f50",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 704, "y" : 712 }
+      },
+      "connect" : [
+        { "id" : "f51", "to" : "f11" }
       ]
     } ]
 }
