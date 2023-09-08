@@ -8,7 +8,7 @@ import portal.guitest.common.WaitHelper;
 public class NewDashboardPage extends TemplatePage {
   private static final String CONFIGURATION_DIALOG_ID = "new-widget-configuration-dialog";
   private static final String ADD_WIDGET_DIALOG_ID = "new-widget-dialog";
-  private static final String ADD_CUSTOM_WIDGET_BUTTON_ID = "new-widget-dialog-content:1:add-widget";
+  private static final String ADD_CUSTOM_WIDGET_BUTTON_ID = "new-custom-widget-dialog-content:0:add-widget";
   private static final String CUSTOM_WIDGET_TYPE_DROPDOWN_ID = "widget-configuration-form:new-widget-configuration-component:custom-widget-type_label";
   private static final String CUSTOM_WIDGET_PROCESS_SELECTION_ID = "widget-configuration-form:new-widget-configuration-component:selected-process";
   private static final String NEWS_FEED_WIDGET_ID = "[class*='js-dashboard-widget-news_']";

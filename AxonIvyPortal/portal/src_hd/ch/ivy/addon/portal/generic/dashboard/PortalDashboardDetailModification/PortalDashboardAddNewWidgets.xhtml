@@ -53,7 +53,8 @@
       legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CustomWidgets')}"
       styleClass="new-widget-dialog__fieldset js-widget-fieldset">
       <div class="new-widget-dialog__item-container">
-        <p:repeat var="widget" value="#{dashboardDetailModificationBean.customWidgets}">
+        <p:repeat id="new-custom-widget-dialog-content"
+         var="widget" value="#{dashboardDetailModificationBean.customWidgets}">
           <div class="new-widget-dialog__item card js-widget">
 
             <div class="new-widget-dialog__item-title">
