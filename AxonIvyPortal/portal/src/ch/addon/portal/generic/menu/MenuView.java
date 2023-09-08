@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
@@ -38,12 +37,14 @@ import ch.addon.portal.generic.userprofile.homepage.HomepageType;
 import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.configuration.Application;
+import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
+import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
@@ -72,7 +73,6 @@ public class MenuView implements Serializable {
   private long workingTaskId;
   private boolean isWorkingOnATask;
   private Map<String, List<String>> params;
-  private static PortalDashboardMenuItemWrapper dashboardMenuWrapper;
 
   public void onClickMenuItem(ActionEvent event) throws IOException {
     this.params = PortalMenuNavigator.extractMenuParams(event);
@@ -157,8 +157,7 @@ public class MenuView implements Serializable {
     }
 
     if (!isShowLegacyUI()) {
-      storeDashboardCache(null);
-      var dashboards = dashboardMenuWrapper.dashboards;
+      var dashboards = updateDashboardCache(null).dashboards;
       if (CollectionUtils.isNotEmpty(dashboards)) {
         DefaultSubMenu dashboardGroupMenu = DefaultSubMenu.builder()
                 .label(dashboardTitle)
@@ -207,18 +206,24 @@ public class MenuView implements Serializable {
     return dashboardMenu;
   }
 
-  public void storeDashboardCache(List<Dashboard> dashboards) {
-    Locale requestLocale = Ivy.session().getContentLocale();
+  public PortalDashboardItemWrapper updateDashboardCache(List<Dashboard> dashboards) {
     String sessionIdAttribute = SessionAttribute.DASHBOARD_MENU_SESSION_IDENTIFIER.toString();
     if (Ivy.session().getAttribute(sessionIdAttribute) == null) {
       Ivy.session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
     }
     String sessionUserId = (String) Ivy.session().getAttribute(sessionIdAttribute);
 
-    synchronized(PortalDashboardMenuItemWrapper.class) {
-      dashboardMenuWrapper = new PortalDashboardMenuItemWrapper(
-          sessionUserId, requestLocale, Optional.ofNullable(dashboards).orElse(DashboardUtils.collectDashboards()));
+    IvyCacheService cacheService = IvyCacheService.newInstance();
+    PortalDashboardItemWrapper portalDashboardItemWrapper =
+        (PortalDashboardItemWrapper) cacheService.getSessionCacheValue(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId).orElse(null);
+
+    if (portalDashboardItemWrapper == null || dashboards != null) {
+      synchronized(PortalDashboardItemWrapper.class) {
+        portalDashboardItemWrapper = new PortalDashboardItemWrapper(Optional.ofNullable(dashboards).orElse(DashboardUtils.collectDashboards()));
+        cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId, portalDashboardItemWrapper);
+      }
     }
+    return portalDashboardItemWrapper;
   }
 
   public String getDashboardLink() {
@@ -525,5 +530,5 @@ public class MenuView implements Serializable {
     return Ivy.session();
   }
 
-  private record PortalDashboardMenuItemWrapper(String sessionUserId, Locale loadedLocale, List<Dashboard> dashboards) {};
+  private record PortalDashboardItemWrapper(List<Dashboard> dashboards) {};
 }
