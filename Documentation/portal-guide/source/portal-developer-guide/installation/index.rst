@@ -174,6 +174,19 @@ Please follow the guidelines below to migrate your override subprocesses.
          | ChangePassword       | portalChangePassword       |
          +----------------------+----------------------------+
 
+#. :ref:`Task Delegation <customization-task-delegation>`
+
+
+      - Remove subprocess override of ``CalculateTaskDelegate`` from your project.
+
+      - Change the signature of your callable start as described below.
+
+         +-------------------------+-------------------------------+
+         | Subprocess              | New signature                 |
+         +=========================+===============================+
+         | CalculateTaskDelegate   | portalCalculateTaskDelegate   |
+         +-------------------------+-------------------------------+
+
 #. :ref:`Customize Menu Items <customization-menu-customization>`
 
       - Remove subprocess override of ``LoadSubMenuItems`` from your project.

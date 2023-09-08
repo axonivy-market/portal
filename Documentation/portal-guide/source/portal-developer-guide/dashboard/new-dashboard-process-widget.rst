@@ -75,7 +75,8 @@ Below is a standard JSON definition of aProcess widget in compact mode
             "x": 10, "y": 0, "w": 2, "h": 4
          },
          "processPaths": ["designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp", "designer/portal-developer-examples/Start Processes/Request/collectDataRequest.ivp"],
-         "categories": ["/Categories/Showcase/Customized", "/Categories/Showcase/PortalDialogExample"]
+         "categories": ["/Categories/Showcase/Customized", "/Categories/Showcase/PortalDialogExample"],
+         "sorting": "SORTING_INDEX"
       }
    ..
 
@@ -90,6 +91,12 @@ show processes by ``processPaths``.
 
 If you don't define these attributes, the process widget will show all available
 processes by default.
+
+``sorting``: define the order of process shown on widget. The default value is sorting by alphabetically. 
+
+   If you want to order processes by Index, you must define a custom field name ``portalSortIndex`` with numeric value in process start.
+
+   |dashboard-process-sort-index|
 
 Combined Mode
 -------------
@@ -166,3 +173,5 @@ Below is a standard JSON definition of the Process widget in image mode
          "processPath": "designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp"
       }
    ..
+
+.. |dashboard-process-sort-index| image:: images/new-dashboard-process-widget/process-sort-index.png
