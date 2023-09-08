@@ -114,7 +114,7 @@ public class ProcessService implements IProcessService {
   }
 
   public IWebStartable findWebStartableInSecurityContextById(String processId){
-    Predicate<? super IWebStartable> predicate = startable -> StringUtils.equals(startable.getId(), processId) && isNotPortalHomeAndMSTeamsProcess(startable);
+    Predicate<? super IWebStartable> predicate = startable -> StringUtils.endsWith(startable.getId(), processId) && isNotPortalHomeAndMSTeamsProcess(startable);
     return findStartable(predicate);
   }
 
