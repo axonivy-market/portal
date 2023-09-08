@@ -378,7 +378,7 @@ HowTo: Show Process Viewer
 HowTo: Share Case Details
 ---------------------------
 
-You may share case details by clicking on the share button |share-icon|.
+To share case details, simply click on the share button |share-icon|.
 
 |how-to-share-case-details|
 

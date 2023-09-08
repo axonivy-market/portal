@@ -304,10 +304,10 @@ You may export the Task List by clicking on the button **Export to Excel**.
 |export-to-excel-button|
 
 
-HowTo: Share A Task Details
+HowTo: Share Task Details
 ---------------------------
 
-You may share a task details by clicking on the share button |share-icon|.
+To share task details, simply click on the share button |share-icon|.
 
 |how-to-share-task-details|
 
