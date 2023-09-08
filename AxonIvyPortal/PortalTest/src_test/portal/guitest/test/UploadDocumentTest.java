@@ -75,18 +75,6 @@ public class UploadDocumentTest extends BaseTest{
   }
   
   @Test
-  public void addUnspportedFileTypeToSettingAndUploadFile() {
-    updateFileExtensionWhiteListInPortalSetting();
-    initHomePage(TestAccount.ADMIN_USER);
-    casePage = homePage.openCaseList();
-    caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
-    int numberOfDocument = caseDetailsPage.countNumberOfDocument();
-    caseDetailsPage.uploadDocumentWithoutError(getAbsolutePathToTestFile("unsupportedExtension.abc"));
-    assertEquals(numberOfDocument + 1, caseDetailsPage.countNumberOfDocument());
-  }
-  
-
-  @Test
   public void uploadDocumentAndCheckDocumentName() {
     final String pdfFile = "test-no-files-no-js.pdf";
     final String wordFile = "test-ms-word-extension.doc";
@@ -122,8 +110,20 @@ public class UploadDocumentTest extends BaseTest{
     return false;
   }
   
+  @Test
+  public void addUnspportedFileTypeToSettingAndUploadFile() {
+    updateFileExtensionWhiteListInPortalSetting();
+    initHomePage(TestAccount.ADMIN_USER);
+    casePage = homePage.openCaseList();
+    caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
+    int numberOfDocument = caseDetailsPage.countNumberOfDocument();
+    caseDetailsPage.uploadDocumentWithoutError(getAbsolutePathToTestFile("unsupportedExtension.abc"));
+    assertEquals(numberOfDocument + 1, caseDetailsPage.countNumberOfDocument());
+  }
+  
   private void initHomePage(TestAccount account) {
     login(account);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     homePage = new HomePage();
   }
   
