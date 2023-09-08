@@ -1,10 +1,14 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Selenide.$;
-
-import com.axonivy.portal.selenium.common.WaitHelper;
+import static com.codeborne.selenide.Condition.disappear;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+
+import java.util.stream.Collectors;
+import com.axonivy.portal.selenium.common.WaitHelper;
 
 public class MainMenuPage extends TemplatePage {
 
@@ -44,5 +48,20 @@ public class MainMenuPage extends TemplatePage {
 
   private void waitLeftMenuReady() {
     $("[id$=':main-navigator:main-menu']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void expandMainMenu() {
+    waitLeftMenuReady();
+    if ($("a[id$='user-menu-required-login:toggle-menu']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).is(disappear)) {
+      $("[id$=':main-navigator:main-menu']").hover();
+    }
+    $("a[id$='user-menu-required-login:toggle-menu']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public String getMenuItemsAsString() {
+    expandMainMenu();
+    return String.join(",", $$(".layout-menu li[role='menuitem'] a span")
+        .asFixedIterable().stream()
+        .map(SelenideElement::getText).collect(Collectors.toList()));
   }
 }
