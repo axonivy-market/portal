@@ -76,7 +76,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
     this.selectedCase = selectedCase;
     this.showBackButton = showBackButton;
     this.isTaskStartedInDetails = BooleanUtils.toBooleanDefaultIfNull((Boolean) Ivy.session().getAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString()), false);
-    
+    this.caseDetailsUrl = PortalNavigatorAPI.buildUrlToPortalCaseDetailsPageByUUID(selectedCase.uuid());
     if (isFirstTime) {
       isFirstTime = false;
       try {
@@ -232,10 +232,6 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
       return clientId + ":widgets:" + widgetPosition +":history-container";
     }
     return "";
-  }
-  
-  public void openShareDialog(ICase selectedCase) {
-    setCaseDetailsUrl(PortalNavigatorAPI.buildUrlToPortalCaseDetailsPageByUUID(selectedCase.uuid()));
   }
 
   @Override

@@ -72,7 +72,7 @@
 
         <p:commandButton id="share-dashboard" rendered="#{dashboardModificationBean.isShowShareButtonOnConfig(isPublicDashboard)}"
           styleClass="rounded-button ui-button-outlined action-column-icon-button u-mar-right-5"
-          actionListener="#{dashboardModificationBean.openShareDashboardDialog(dashboard)}"
+          actionListener="#{dashboardModificationBean.initShareDashboardLink(dashboard)}"
           oncomplete="PF('share-dashboard-dialog').show()"
           icon="si si-share" update="#{cc.clientId}:share-dashboard-component:share-dashboard-dialog"
           title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/DashboardModification/Share')}" global="false"/>
@@ -95,7 +95,7 @@
     componentToUpdate="dashboard-modification-component:dashboard-table"
     isDashboardCreation="false" />
     
-  <ic:com.axonivy.portal.dashboard.component.ShareDialog id="share-dashboard-component" 
+  <ic:com.axonivy.portal.component.ShareLinkDialog id="share-dashboard-component" 
     shareDialogId="share-dashboard-dialog" 
     url="#{dashboardModificationBean.dashboardUrl}"
     title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/DashboardSharing/ShareDashboard')}"/> 

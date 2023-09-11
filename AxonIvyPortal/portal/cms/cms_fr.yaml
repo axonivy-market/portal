@@ -1592,6 +1592,10 @@ Dialogs:
   com:
     axonivy:
       portal:
+        component:
+          ShareLinkDialog:
+            CopyLink: Copier le lien
+            LinkCopied: Lien copié !
         dashboard:
           component:
             DashboardImportDetails:
@@ -1600,8 +1604,6 @@ Dialogs:
               ImportPublic: Importer un tableau de bord public
               chooseAJsonFile: Choisissez un fichier json
             DashboardSharing:
-              CopyLink: Copier le lien
-              LinkCopied: Lien copié !
               ShareDashboard: Partager le tableau de bord
             NewsWidget:
               NewsContentPlaceHolder: Saisir le contenu de l'actualité

@@ -43,7 +43,7 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
     if (selectedTask == null) {
       return;
     }
-    
+    setTaskDetailsUrl(PortalNavigatorAPI.buildUrlToPortalTaskDetailsPageByUUID(selectedTask.uuid()));
     super.loadWidgets();
   }
 
@@ -121,9 +121,5 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
   @Override
   protected String getDefaultConfigId() {
     return "default-task-detail";
-  }
-  
-  public void openShareDialog(ITask task) {
-    setTaskDetailsUrl(PortalNavigatorAPI.buildUrlToPortalTaskDetailsPageByUUID(task.uuid()));
   }
 }

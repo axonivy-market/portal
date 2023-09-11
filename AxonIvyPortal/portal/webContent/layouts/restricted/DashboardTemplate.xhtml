@@ -289,20 +289,15 @@
             </h:form>
           </p:dialog>
 
-          <h:panelGroup rendered="#{managedBean.isShowShareButtonOnDashboard()}">
-            <div class="u-text-align-center">
-              <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ShareThisDashboard')}" 
-                    actionListener="#{managedBean.openShareDashboardDialog(managedBean.selectedDashboard)}"
-                    global="false"
-                    update="#{p:resolveFirstComponentWithId('share-dashboard-dialog', view).clientId}"
-                    oncomplete="PF('share-dashboard-dialog').show()"/>
-            </div>
+		  <h:panelGroup rendered="#{managedBean.isShowShareButtonOnDashboard()}" layout="block" styleClass="u-text-align-center">
+            <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ShareThisDashboard')}" 
+                  onclick="PF('share-dashboard-dialog').show(); return false;" />
           </h:panelGroup>
-
-          <ic:com.axonivy.portal.dashboard.component.ShareDialog
+          <ic:com.axonivy.portal.component.ShareLinkDialog
             id="share-dashboard-component"
-            shareDialogId="share-dashboard-dialog" url="#{managedBean.dashboardUrl}"
-            title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/DashboardSharing/ShareDashboard')}"/>
+            shareDialogId="share-dashboard-dialog"
+            url="#{managedBean.dashboardUrl}"
+            title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/DashboardSharing/ShareDashboard')}" />
 
           </div>
         <h:outputScript library="js" name="dashboard.js" />

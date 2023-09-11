@@ -83,7 +83,6 @@ public class DashboardBean implements Serializable {
   protected String translatedText;
   protected String warningText;
   protected String dashboardUrl;
-  private String serverUrl;
   
   @PostConstruct
   public void init() {
@@ -93,6 +92,7 @@ public class DashboardBean implements Serializable {
       selectedDashboardId = readDashboardFromSession();
       currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
       selectedDashboard = dashboards.get(currentDashboardIndex);
+      initShareDashboardLink(selectedDashboard);
       // can not find dashboard by dashboard id session in view mode
       if (StringUtils.isBlank(selectedDashboardId)
           || (!selectedDashboardId.equalsIgnoreCase(selectedDashboard.getId()) && dashboards.size() > 1)) {
@@ -443,12 +443,8 @@ public class DashboardBean implements Serializable {
     this.dashboardUrl = dashboardUrl;
   }
   
-  public void openShareDashboardDialog(Dashboard dashboard) {
-    if (StringUtils.isBlank(serverUrl)) {
-      serverUrl = UrlUtils.getServerUrl();
-    }
-
-    setDashboardUrl(serverUrl + PortalNavigator.getDashboardPageUrl(dashboard.getId()));
+  public void initShareDashboardLink(Dashboard dashboard) {
+    setDashboardUrl(UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId()));
   }
   
   public boolean isShowShareButtonOnDashboard() {

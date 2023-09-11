@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.BooleanUtils;
+import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.enums.BasicDocumentType;
 import com.axonivy.portal.components.enums.DocumentType;
@@ -99,7 +100,9 @@ public class MasterDataBean implements Serializable {
     return TaskSortField.APPLICATION.toString();
   }
   
-  public void showSuccessfulCopiedMessage(String message) {
+  public void showLinkCopiedMessage() {
+    String message = Ivy.cms().co("/Dialogs/com/axonivy/portal/component/ShareLinkDialog/LinkCopied");
     FacesContext.getCurrentInstance().addMessage(GrowlMessageUtils.PORTAL_GLOBAL_GROWL_MESSAGE, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
+    PrimeFaces.current().ajax().update(GrowlMessageUtils.PORTAL_GLOBAL_GROWL);
   }
 }
