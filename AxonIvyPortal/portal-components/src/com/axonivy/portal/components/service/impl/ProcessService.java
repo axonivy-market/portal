@@ -15,8 +15,14 @@ import com.axonivy.portal.components.dto.IvyProcessResultDTO;
 import com.axonivy.portal.components.service.IProcessService;
 import com.axonivy.portal.components.util.IvyExecutor;
 
+import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.IProcessModel;
+import ch.ivyteam.ivy.application.IProcessModelVersion;
+import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.server.restricted.EngineMode;
+import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
