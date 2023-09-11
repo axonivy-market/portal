@@ -43,11 +43,9 @@
       rendered="#{not cc.attrs.readOnly and cc.attrs.showItemDetailsHeader}"
       styleClass="switch-and-reset-buttons-area ui-g-12 u-no-padding-bottom ui-sm-hidden">
       <p:commandButton id="share-page-button" rendered="#{taskDetailsBean.isShowShareButton}"
-     	oncomplete="PF('share-task-details-dialog').show()"
+        onclick="PF('share-task-details-dialog').show()" type="button"
         icon="#{visibilityBean.generateButtonIcon('si si-share')}" 
-        title="#{ivy.cms.co('/Labels/Share')}" 
-        global="false" styleClass="u-mar-right-5"
-        update="#{p:resolveFirstComponentWithId('share-task-details-dialog', view).clientId}"/>
+        title="#{ivy.cms.co('/Labels/Share')}" styleClass="u-mar-right-5" />
       <p:commandButton id="switch-to-edit-mode-button" rendered="#{taskDetailsBean.readOnlyMode}"
         value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToEditMode')}" actionListener="#{taskDetailsBean.switchToEditMode()}"
         icon="#{visibilityBean.generateButtonIcon('si si-pencil')}" update="task-item-body task-details-actions"
