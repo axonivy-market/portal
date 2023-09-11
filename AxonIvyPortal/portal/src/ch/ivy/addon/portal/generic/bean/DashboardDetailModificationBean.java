@@ -355,6 +355,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
           if (CollectionUtils.isEmpty((compactProcessWidget).getFilterableColumns())) {
             (compactProcessWidget).buildFilterableColumns(DashboardWidgetUtils.initProcessFilterableColumns());
           }
+          List<String> processPaths = compactProcessWidget.getProcessPaths();
+          for (int i = 0; i < processPaths.size(); i ++) {
+            Ivy.log().error("path at index {0}, path is :{1}", i, processPaths.get(i));
+          }
         } else if (processWidget.getDisplayMode() == ProcessWidgetMode.IMAGE_MODE) {
           updateProcessWidget((SingleProcessDashboardWidget) processWidget, 5, 2);
         }
