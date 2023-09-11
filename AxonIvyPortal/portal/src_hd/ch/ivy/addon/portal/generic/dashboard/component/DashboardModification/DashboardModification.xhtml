@@ -76,7 +76,7 @@
 
         <p:commandButton id="share-dashboard" rendered="#{dashboardModificationBean.isShowShareButtonOnConfig(isPublicDashboard)}"
           styleClass="rounded-button ui-button-outlined action-column-icon-button u-mar-right-5"
-          actionListener="#{dashboardModificationBean.openShareDashboardDialog(dashboard)}"
+          actionListener="#{dashboardModificationBean.initShareDashboardLink(dashboard)}"
           oncomplete="PF('share-dashboard-dialog').show()"
           icon="si si-share" update="#{cc.clientId}:share-dashboard-component:share-dashboard-dialog"
           title="#{ivy.cms.co('/Labels/Share')}" global="false"/>
