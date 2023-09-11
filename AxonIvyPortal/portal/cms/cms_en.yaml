@@ -1059,6 +1059,22 @@ ch.ivy.addon.portalkit.ui.jsf:
   notes:
     newNoteHeader: Add new note
     wroteAt: wrote at
+  notifications:
+    linkToFullScreen: Link to full screen
+    linkToNotificationSettings: Link to notification settings
+    markAllAsRead: Mark all as read
+    markAsRead: Mark as read
+    noNotificationText: No Notifications
+    notificationTitle: Notifications
+    olderText: Older
+    onlyUnread: Only unread
+    todayText: Today
+    xDaysAgo: '%s days ago'
+    xHoursAgo: '%s hours ago'
+    xMinutesAgo: '%s minutes ago'
+    xMonthsAgo: '%s months ago'
+    xSecondsAgo: '%s seconds ago'
+    xYearsAgo: '%s years ago'
   passwordSetting:
     changePasswordWSError: An error occurred while changing your password. Please contact your administrator if this problem persists.
     confirmNewPassword: Confirm new password

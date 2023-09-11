@@ -22,15 +22,6 @@
   <div class="layout-topbar-right">
     <ui:insert name="menu-bar">
       <ul id="top-menu" class="layout-topbar-actions topbar-menu animated js-top-menu">
-        <li class="topbar-item">
-          <a href="#" id="show-notifications-panel" onclick="openNav()">
-            <i class="topbar-icon pi pi-bell" />
-            <div class="notification-badge">
-              <h:outputText id="unreadNotifications"
-                value="" />
-            </div>
-          </a></li>
-        
         <li class="topbar-item breadcrumb-container" >
           <h:panelGroup id="breadcrumb-container">
             <ic:ch.ivy.addon.portal.generic.PortalBreadcrumb id="portal-breadcrumb"
@@ -39,7 +30,6 @@
               task="#{task}" case="#{case}" />
           </h:panelGroup>
         </li>
-
         <li class="topbar-item search-item" jsf:rendered="#{showGlobalSearch}">
             
           <a href="#" id="global-search-item">
@@ -48,7 +38,6 @@
           <ic:ch.ivy.addon.portal.generic.GlobalSearch id="global-search-component"
             isWorkingOnATask="#{isWorkingOnATask}" case="#{case}" />
         </li>
-
         <li class="topbar-item themeswitch-item">
           <p:commandLink id="theme-switcher" disabled="#{!themeBean.enableSwitchThemeButton}"
             onclick="PrimeFaces.FreyaConfigurator.changeLayout('ivy', '#{ivyFreyaTheme.mode == 'light' ? 'dark' : 'light'}');Portal.changePortalVariableTheme('#{ivyFreyaTheme.mode == 'light' ? 'dark' : 'light'}');">
@@ -57,7 +46,15 @@
               listener="#{themeBean.toggleTheme()}" update="theme-switcher" />
           </p:commandLink>
         </li>
-
+        <li class="topbar-item">
+          <a href="#" id="open-notifications-panel" onclick="openNotificationPanel()">
+            <i class="topbar-icon pi pi-bell" />
+            <div class="notification-badge">
+              <h:outputText id="topbar-unread-notifications"
+                value="#{notificationBean.getUnreadNotifications()}" />
+            </div>
+          </a>
+        </li>
         <li jsf:rendered="#{chatRendererBean.isChatRendered}" class="topbar-item chat-item">
           <p:commandLink id="toggle-chat-panel-command" global="false" styleClass="notification-badge mod-chat-menu">
             <i class="topbar-icon si si-messages-bubble" />

@@ -41,8 +41,10 @@ public class NotificationBean {
   }
 
   public void markAsRead(NotificationDto dto) {
-    webNotifications.markAsRead(dto.getNotification());
-    countUnread--;
+    if (!dto.isRead()) {
+      webNotifications.markAsRead(dto.getNotification());
+      countUnread--;
+    }
   }
 
   public boolean hasNotifications() {
@@ -53,7 +55,7 @@ public class NotificationBean {
     return countUnread != 0;
   }
 
-  public long getUnreadNotifications() {
-    return countUnread;
+  public String getUnreadNotifications() {
+    return countUnread > 99 ? "99+" : String.valueOf(countUnread);
   }
 }

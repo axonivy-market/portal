@@ -92,7 +92,7 @@ var Portal = {
     }
 
     let notificationPanel = $('.js-notification-panel');
-    let notificationContentHeight = $('.notification-container-content').outerHeight();
+    let notificationContentHeight = $('.notification-item-list').outerHeight();
     if (notificationPanel.length > 0) {
       const notificationPanelHeight = 'calc(100% - ' + (headerFooterHeight + layoutTopbarHeight + envHeight) + 'px)';
       const notificationPanelTop = (headerHeight + layoutTopbarHeight) + 'px';
@@ -101,7 +101,7 @@ var Portal = {
         'top': notificationPanelTop,
         'bottom': footerHeight + 'px'
       });
-      $('.notification-scroll .ui-datascroller-content').outerHeight(notificationContentHeight*0.8 + 'px')
+      $('.notification-scroll .ui-datascroller-content').outerHeight(notificationContentHeight * 0.95 + 'px')
     }
     
     $portalHeader.removeClass('u-invisibility');

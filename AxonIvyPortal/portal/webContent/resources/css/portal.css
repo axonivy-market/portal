@@ -1616,7 +1616,11 @@ body.in-dialog .ui-widget-overlay {
   background-color:var(--ivy-primary-color);
 }
 .notification-button.si {
-  font-size: 1.2em;
+  font-size: 1rem;
+}
+.notification-checkbox {
+   width: 1rem;
+   height: 1rem;
 }
 .notification-button.fa {
   font-size: 0.9em;
@@ -1636,11 +1640,18 @@ body .notification-scroll>.ui-datascroller-content  {
 body .notification-scroll>.ui-datascroller-content::-webkit-scrollbar {
   display: none;
 }
+body .notification-checkbox .ui-chkbox-box {
+  width: 1rem;
+  height: 1rem;
+}
+.notification-checkbox .ui-chkbox-label {
+  font-size: 12px;
+}
 .notification-items-container {
   padding: 20px 10px 5px 10px;
-  display: inline-block;
+  display: block;
   overflow: hidden;
-  /*min-height: 60px;*/
+  background-color: var(--notification-title-color)
 }
 .notification-panel {
   box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
@@ -1655,7 +1666,7 @@ body .notification-scroll>.ui-datascroller-content::-webkit-scrollbar {
   padding-right: 5px;
 }
 .notification-panel {
-  background: #ffffff;
+  background: var(--notification-panel-color);
   position: fixed;
   top: 0;
   right: 0;
@@ -1686,4 +1697,25 @@ body .notification-scroll>.ui-datascroller-content::-webkit-scrollbar {
 .notification-item-time-since {
   font-size: 0.75em;
   padding-left: 1.3rem;
+}
+.notification-title-header {
+  flex: 1;
+  font-weight: bold;
+  font-size: 1.5rem;
+  display: contents;
+}
+
+.notification-group-name {
+  position: relative;
+  display: block;
+}
+
+.notification-group-name:after {
+  position: absolute;
+  content: "";
+  height: 1px;
+  background-color: var(--ivy-primary-color-black);
+  width: 100%;
+  margin-left: 15px;
+  top: 50%;
 }
