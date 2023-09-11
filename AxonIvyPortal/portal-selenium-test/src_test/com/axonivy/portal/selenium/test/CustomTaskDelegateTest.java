@@ -13,7 +13,7 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class CustomTaskDelegateTest extends BaseTest {
 
   private static final String SICK_LEAVE_REQUEST = "Sick Leave Request";
