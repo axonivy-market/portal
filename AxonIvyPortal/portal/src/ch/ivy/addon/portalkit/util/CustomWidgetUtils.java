@@ -244,7 +244,7 @@ public class CustomWidgetUtils {
 
   public static IWebStartable findStartableOfCustomDashboardProcess(String processPath) {
     IWebStartable startable = getAllCustomDashboardProcesses().stream()
-        .filter(proccess -> processPath.endsWith(proccess.getId()))
+        .filter(proccess -> proccess.getId().endsWith(processPath))
         .findAny().orElse(null);
     if (isNull(startable)) {
       String processStartLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(processPath);
