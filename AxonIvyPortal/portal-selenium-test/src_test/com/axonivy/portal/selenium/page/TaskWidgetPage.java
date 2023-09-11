@@ -7,11 +7,14 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.By;
 
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 
 public class TaskWidgetPage extends TemplatePage {
 
@@ -109,6 +112,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void openTaskDelegationDialog() {
     $("a[id$='task-delegate-command']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    WaitHelper.waitNumberOfElementsToBe(WebDriverRunner.getWebDriver(), By.cssSelector("div[id$='task-delegate-dialog']"), 1);
     $("div[id$='task-delegate-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
@@ -159,5 +163,9 @@ public class TaskWidgetPage extends TemplatePage {
 
   public SelenideElement getResponsibleAvatar() {
     return $(".security-member-container > .has-avatar > .ui-avatar").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void waitTillOnlyOneTaskAppear() {
+    WaitHelper.waitNumberOfElementsToBe(WebDriverRunner.getWebDriver(), By.cssSelector("div[id$='task-widget:task-view-container'] ul li"), 1);
   }
 }
