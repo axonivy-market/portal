@@ -8,9 +8,9 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "loadSubMenuItems()",
+      "name" : "portalLoadSubMenuItems()",
       "config" : {
-        "signature" : "loadSubMenuItems",
+        "signature" : "portalLoadSubMenuItems",
         "result" : {
           "params" : [
             { "name" : "subMenuItems", "type" : "java.util.List<com.axonivy.portal.components.configuration.CustomSubMenuItem>", "desc" : "" }
