@@ -577,6 +577,7 @@ public class DashboardWidgetUtils {
       processWidget.setHasPermissionToSee(true);
     }
     
+    
     IWebStartable startProcess = ProcessService.getInstance().findWebStartableInSecurityContextById(processPath);
     ExpressProcess expressProcess = ExpressProcessService.getInstance().findExpressProcessById(processPath);
     ExternalLink externalLink = ExternalLinkService.getInstance().findById(processPath);
@@ -673,6 +674,8 @@ public class DashboardWidgetUtils {
     if (processSorting == null || ProcessSorting.BY_ALPHABETICALLY.name().equals(processSorting)) {
       processesAfterSorting = DashboardWidgetUtils.sortProcessByAlphabet(processes);
     } else if (ProcessSorting.BY_INDEX.name().equals(processSorting)) {
+      processesAfterSorting = DashboardWidgetUtils.sortProcessByIndex(processes);
+    } else if (ProcessSorting.BY_CUSTOM_ORDER.name().equals(processSorting)) {
       processesAfterSorting = DashboardWidgetUtils.sortProcessByIndex(processes);
     }
     return processesAfterSorting;

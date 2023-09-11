@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.dto.dashboard;
 
-import static ch.ivy.addon.portalkit.enums.ProcessWidgetMode.COMPACT_MODE;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +33,7 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
 
   public CompactProcessDashboardWidget(CompactProcessDashboardWidget widget) {
     super(widget);
-    setDisplayMode(COMPACT_MODE);
+    setDisplayMode(ProcessWidgetMode.COMPACT_MODE);
     processPaths = widget.getProcessPaths();
     displayProcesses = widget.getDisplayProcesses();
     processByTypeStatistic = widget.getProcessByTypeStatistic();
@@ -47,14 +45,14 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
 
   public CompactProcessDashboardWidget(ProcessDashboardWidget widget) {
     super(widget);
-    setDisplayMode(COMPACT_MODE);
+    setDisplayMode(ProcessWidgetMode.COMPACT_MODE);
     filterableColumns = new ArrayList<>();
     processes = new ArrayList<>();
   }
 
   public CompactProcessDashboardWidget() {
     super();
-    setDisplayMode(COMPACT_MODE);
+    setDisplayMode(ProcessWidgetMode.COMPACT_MODE);
     filterableColumns = new ArrayList<>();
     processes = new ArrayList<>();
   }

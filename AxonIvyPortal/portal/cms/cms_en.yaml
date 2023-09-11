@@ -130,6 +130,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       IMAGE: Image
     ProcessSorting:
       BY_ALPHABETICALLY: Alphabetically
+      BY_CUSTOM_ORDER: Custom order
       BY_INDEX: Sorting Index
     ProcessType:
       EXPRESS_PROCESS: Express Workflow

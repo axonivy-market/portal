@@ -144,12 +144,16 @@ public class CompactDashboardProcessBean
       processAfterSorting = DashboardWidgetUtils.sortProcessByAlphabet(displayProcesses);
     } else if (ProcessSorting.BY_INDEX.name().equals(processSorting)) {
       processAfterSorting = DashboardWidgetUtils.sortProcessByIndex(displayProcesses);
+    } else if (ProcessSorting.BY_CUSTOM_ORDER.name().equals(processSorting)) {
+      processAfterSorting = DashboardWidgetUtils.sortProcessByIndex(displayProcesses);
     }
     getWidget().setDisplayProcesses(processAfterSorting);
   }
 
   private ColumnModel getFilterableColumnByField(DashboardStandardProcessColumn column) {
-    return getWidget().getFilterableColumns().stream()
+    return getWidget()
+        .getFilterableColumns()
+        .stream()
         .filter(filter -> column.getField().equalsIgnoreCase(filter.getField()))
         .findAny().orElse(null);
   }
@@ -162,19 +166,20 @@ public class CompactDashboardProcessBean
       return;
     }
 
-    if (dashboardProcessBean.isExpressProcess(process) && StringUtils.isNotBlank(process.getId())) {
-      if (StringUtils.isNotBlank(getExpressStartLink())) {
-        dashboardProcessBean.redirectToLink(getExpressStartLink() + "?workflowID=" + process.getId(), false);
-        return;
-      }
+    if (dashboardProcessBean.isExpressProcess(process) && StringUtils.isNotBlank(process.getId()) && StringUtils.isNotBlank(getExpressStartLink())) {
+      dashboardProcessBean.redirectToLink(getExpressStartLink() + "?workflowID=" + process.getId(), false);
+      return;
     }
 
     dashboardProcessBean.redirectToLink(link, true);
   }
 
   public boolean isBrokenLink(DashboardProcess dashboardProcess) {
-    return !getAllPortalProcesses().stream().filter(process -> process.getId().equals(dashboardProcess.getId()))
-        .findFirst().isPresent();
+    return !getAllPortalProcesses()
+        .stream()
+        .filter(process -> process.getId().equals(dashboardProcess.getId()))
+        .findFirst()
+        .isPresent();
   }
 
   public List<DashboardProcess> getPortalCompactProcesses() {
@@ -213,5 +218,13 @@ public class CompactDashboardProcessBean
 
   public ProcessSorting[] getProcessSorting() {
     return ProcessSorting.values();
+  }
+  
+  public boolean isPreviewCustomOrder() {
+    CompactProcessDashboardWidget widget = getWidget();
+    if (widget == null) {
+      return false;
+    }
+    return widget.isPreview() && ProcessSorting.BY_CUSTOM_ORDER.name().equals(widget.getSorting());
   }
 }
