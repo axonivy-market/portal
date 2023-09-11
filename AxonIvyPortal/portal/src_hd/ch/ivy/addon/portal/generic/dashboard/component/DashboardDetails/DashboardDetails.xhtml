@@ -69,7 +69,7 @@
             <p:ajax event="itemSelect" listener="#{managedBean.onSelectPermissionForDashboard}"
               update="dashboard-permission" global="false" process="@this"/>
             <p:ajax event="itemUnselect" listener="#{managedBean.onUnSelectPermissionForDashboard}"
-              update="dashboard-permission" global="false" process="@this" immediate="true"/>
+              global="false" process="@this" />
             <p:column>
               <pc:securityMemberNameAndAvatar
                 displayName="#{dashboardTaskFilterBean.formatName(responsible)}" securityMember="#{responsible}">
