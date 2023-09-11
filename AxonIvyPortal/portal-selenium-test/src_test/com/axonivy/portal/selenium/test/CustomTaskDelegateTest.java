@@ -13,7 +13,7 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class CustomTaskDelegateTest extends BaseTest {
 
   private static final String SICK_LEAVE_REQUEST = "Sick Leave Request";
@@ -34,6 +34,7 @@ public class CustomTaskDelegateTest extends BaseTest {
     menu.openTaskList();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy(SICK_LEAVE_REQUEST);
+    taskWidgetPage.waitTillOnlyOneTaskAppear();
     taskWidgetPage.clickOnTaskActionLink(0);
     taskWidgetPage.openTaskDelegationDialog();
 
@@ -52,6 +53,7 @@ public class CustomTaskDelegateTest extends BaseTest {
     menu.openTaskList();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy(MATERNITY_LEAVE_REQUEST);
+    taskWidgetPage.waitTillOnlyOneTaskAppear();
     taskWidgetPage.clickOnTaskActionLink(0);
     taskWidgetPage.openTaskDelegationDialog();
 
@@ -70,6 +72,7 @@ public class CustomTaskDelegateTest extends BaseTest {
     menu.openTaskList();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy(MATERNITY_LEAVE_REQUEST);
+    taskWidgetPage.waitTillOnlyOneTaskAppear();
     taskWidgetPage.clickOnTaskActionLink(0);
     taskWidgetPage.openTaskDelegationDialog();
     assertFalse(taskWidgetPage.isDelegateTypeAvailable());
