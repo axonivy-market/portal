@@ -305,9 +305,11 @@ You may export the Task List by clicking on the button **Export to Excel**.
 
 
 HowTo: Share Task Details
----------------------------
+-------------------------
 
-To share task details, simply click on the share button |share-icon|.
+#. Open the task details
+
+#. Click on the share button |share-icon|
 
 |how-to-share-task-details|
 
