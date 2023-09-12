@@ -117,6 +117,8 @@
         dataModel="#{caseView.dataModel}" rendered="#{caseBean.isCaseOwnerEnabled()}" />
       <ic:ch.ivy.addon.portalkit.component.cases.filter.CaseApplicationFilter filter="#{filterContainer.applicationFilter}"
         dataModel="#{caseView.dataModel}" />
+      <ic:ch.ivy.addon.portalkit.component.cases.filter.CaseCategoryFilter filter="#{filterContainer.caseCategoryFilter}"
+        dataModel="#{caseView.dataModel}" />
 
       <!-- Add new filter -->
       <ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter id="customerNameField-case-filter"

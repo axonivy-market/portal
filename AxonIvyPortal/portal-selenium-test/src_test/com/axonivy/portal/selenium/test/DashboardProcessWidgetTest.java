@@ -5,6 +5,7 @@ import static com.codeborne.selenide.CollectionCondition.size;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
@@ -17,6 +18,7 @@ import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.codeborne.selenide.Condition;
 
+@IvyWebTest
 public class DashboardProcessWidgetTest extends BaseTest {
   private static final String EXPRESS_PROCESS = "EXPRESS_PROCESS";
   private static final String CASE_LEAVE_REQUEST_TEST_FOR_IVYPORTAL_3369 =
@@ -35,7 +37,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
   private static final String SHOWCASE = "Showcase";
   private static final String SHOWCASE_APPLICATION = "Showcase Application";
   private static final String CLEAN_ABSENCES = "(For autotest) Clean absences ";
-  private static final String PROCESS_WITH_INDEX_1 = "Process With Index 1";
+  private static final String PROCESS_WITH_INDEX_1 = "Process Sorting By Index 1a";
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
   private static final String ALPHABETICALLY_SORTING = "Alphabetically";
   private static final String SORTING_INDEX = "Sorting Index";
