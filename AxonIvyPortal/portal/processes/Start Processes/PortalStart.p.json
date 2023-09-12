@@ -2646,26 +2646,21 @@
           },
           "connect" : [
             { "id" : "S60-f6", "to" : "S60-f22" },
-            { "id" : "S60-f10", "to" : "S60-f9", "via" : [ { "x" : 380, "y" : 80 } ], "label" : {
+            { "id" : "S60-f10", "to" : "S60-f12", "via" : [ { "x" : 380, "y" : 72 } ], "label" : {
                 "name" : "new dashboard",
                 "segment" : 1.26,
                 "offset" : { "x" : 0, "y" : -10 }
               } }
           ]
         }, {
-          "id" : "S60-f9",
+          "id" : "S60-f12",
           "type" : "DialogCall",
           "name" : "PortalDashboard",
           "config" : {
-            "dialog" : "ch.ivy.addon.portal.generic.dashboard.PortalDashboard:startWithoutMenu(Boolean)",
-            "call" : {
-              "map" : {
-                "param.openWithoutMenu" : "in.isOpenWithoutMenu"
-              }
-            }
+            "dialog" : "ch.ivy.addon.portal.generic.dashboard.PortalDashboard:start()"
           },
           "visual" : {
-            "at" : { "x" : 656, "y" : 80 }
+            "at" : { "x" : 656, "y" : 72 }
           }
         } ],
       "visual" : {

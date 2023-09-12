@@ -46,36 +46,5 @@
       "visual" : {
         "at" : { "x" : 224, "y" : 200 }
       }
-    }, {
-      "id" : "f6",
-      "type" : "HtmlDialogStart",
-      "name" : "startWithoutMenu",
-      "config" : {
-        "signature" : "startWithoutMenu",
-        "input" : {
-          "params" : [
-            { "name" : "openWithoutMenu", "type" : "Boolean", "desc" : "" }
-          ],
-          "map" : {
-            "out.isOpenWithoutMenu" : "param.openWithoutMenu"
-          }
-        },
-        "result" : {
-          "params" : [
-            { "name" : "isOpenWithoutMenu", "type" : "Boolean", "desc" : "" }
-          ],
-          "map" : {
-            "result.isOpenWithoutMenu" : "in.isOpenWithoutMenu"
-          }
-        },
-        "guid" : "18A6F3AEF6094571"
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 128 },
-        "labelOffset" : { "x" : 9, "y" : 35 }
-      },
-      "connect" : [
-        { "id" : "f7", "to" : "f1" }
-      ]
     } ]
 }
