@@ -3,14 +3,25 @@
 Architecture
 ************
 
-.. _architecture-portal-process-modules-structure:
-
 .. important::
       The CSS styles, Java methods, etc. which are not explicitly documented are
       only used internally in Portal. Don't use them because they can be
       changed in future versions.
 
-The Portal system consists of the following modules: portal-components, portal and AxonIvyExpress.
+.. _multi-app-structure:
+
+The Portal multi applications
+=============================
+
+The Portal and Projects should be deployed in different applications but in the same security context.
+
+|multi-app-structure|
+
+
+.. _architecture-portal-process-modules-structure:
+
+
+The Portal App consists of the following modules: portal-components, portal and AxonIvyExpress.
 While AxonIvyExpress is optional, all other modules are mandatory.
 
 |process-module-structure|
@@ -56,7 +67,8 @@ This project has been extended from portal. It allows the end user to
 -  Create his own workflow
 -  Create and modify a web form for this workflow
 
-.. |process-module-structure| image:: images/process-module-structure.png
-
 |ivy| Express also provides an AdHoc process feature. When Express is deployed, users can start an AdHoc process from any task.
 Adhoc allows users to define additional process steps which will be executed before the current task.
+
+.. |process-module-structure| image:: images/process-module-structure.png
+.. |multi-app-structure| image:: images/multi-app-structure.png
