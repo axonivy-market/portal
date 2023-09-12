@@ -64,7 +64,7 @@ public class SideStepBean implements Serializable {
     
     Map<String, Object> params = new HashMap<>();
     params.put("sideStepSearchCriteria", criteria);
-    Map<String, Object> response = IvyAdapterService.startSubProcessInProject("findSideStepsByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.SideStepSearchCriteria)", params);
+    Map<String, Object> response = IvyAdapterService.startSubProcessInProjectAndAllRequired("findSideStepsByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.SideStepSearchCriteria)", params);
     @SuppressWarnings("unchecked")
     List<IvySideStep> sideSteps =  (List<IvySideStep>) response.get("sideSteps");
     return sideSteps;
