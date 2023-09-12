@@ -415,12 +415,13 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public boolean isAdvancedFilterDisplayed(String filterIdName) {
+    WaitHelper.waitForVisibilityOfElementLocated(driver, "span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']");
     return isElementDisplayed(
         By.cssSelector("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']"));
   }
 
   public String getFilterValue(String filterId) {
-    waitForElementDisplayed(By.cssSelector("[id$='" + filterId + ":advanced-filter-component']"), true);
+    WaitHelper.waitForVisibilityOfElementLocated(driver, "[id$='" + filterId + ":advanced-filter-component']");
     WebElement filterElement =
         findElementByCssSelector("button[id$='" + filterId + ":filter-open-form:advanced-filter-command']");
     return filterElement.getText();
