@@ -145,7 +145,7 @@ public class CompactDashboardProcessBean
     } else if (ProcessSorting.BY_INDEX.name().equals(processSorting)) {
       processAfterSorting = DashboardWidgetUtils.sortProcessByIndex(displayProcesses);
     } else if (ProcessSorting.BY_CUSTOM_ORDER.name().equals(processSorting)) {
-      processAfterSorting = DashboardWidgetUtils.sortProcessByIndex(displayProcesses);
+      processAfterSorting = DashboardWidgetUtils.sortProcessByCustomOrder(displayProcesses, getWidget().getCustomIndexs());
     }
     getWidget().setDisplayProcesses(processAfterSorting);
   }
