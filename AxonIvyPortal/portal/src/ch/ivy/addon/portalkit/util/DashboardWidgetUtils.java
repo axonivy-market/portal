@@ -17,6 +17,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -24,6 +25,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -676,7 +678,8 @@ public class DashboardWidgetUtils {
     } else if (ProcessSorting.BY_INDEX.name().equals(processSorting)) {
       processesAfterSorting = DashboardWidgetUtils.sortProcessByIndex(processes);
     } else if (ProcessSorting.BY_CUSTOM_ORDER.name().equals(processSorting)) {
-      processesAfterSorting = DashboardWidgetUtils.sortProcessByIndex(processes);
+      Map<String, Integer> customIndexs = processWidget.getCustomIndexs();
+      processesAfterSorting = DashboardWidgetUtils.sortProcessByCustomOrder(processes, customIndexs);
     }
     return processesAfterSorting;
   }
@@ -770,5 +773,23 @@ public class DashboardWidgetUtils {
     processWithIndex.addAll(processWithoutIndex);
 
     return processWithIndex;
+  }
+  
+  public static List<DashboardProcess> sortProcessByCustomOrder(List<DashboardProcess> processes, Map<String, Integer> indexes) {
+    List<DashboardProcess> result = new ArrayList<>();
+    result.addAll(processes);
+    if (MapUtils.isNotEmpty(indexes)) {
+    for (Entry<String, Integer> entry : indexes.entrySet()) {
+      String processId = entry.getKey();
+      Integer index = entry.getValue();
+      for (int i = 0; i < processes.size(); i ++) {
+        if (processes.get(i).getId().equals(processId)) {
+          result.set(index, processes.get(i));
+        }
+      }
+    }
+    }
+    return result;
+    
   }
 }

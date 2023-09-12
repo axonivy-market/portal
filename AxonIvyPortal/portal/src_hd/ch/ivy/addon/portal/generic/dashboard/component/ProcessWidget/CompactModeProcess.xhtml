@@ -5,9 +5,8 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <ui:composition>
-  <h:form rendered="#{not empty processes}">
+  <!-- <h:form rendered="#{not empty processes}" id="compact-process-form"> -->
     <!-- INDEX OR ALPHABET SORT -->
-    <h:outputText value="isPreviewCustomOrder-#{compactDashboardProcessBean.isPreviewCustomOrder()}"></h:outputText>
     <h:panelGroup id="process-list" layout="block" styleClass="compact-processes-container widget-content" rendered="#{!compactDashboardProcessBean.isPreviewCustomOrder()}">
       <ui:repeat varStatus="status" var="process" value="#{processes}">
         <span class="process-start-list-item">
@@ -40,7 +39,7 @@
     
     
     <h:panelGroup id="custom-order-process-list" layout="block" styleClass="compact-processes-container widget-content" rendered="#{compactDashboardProcessBean.isPreviewCustomOrder()}">
-      <p:orderList id="compact-order-list" value="#{processes}" var="process" itemValue="#{process}" 
+      <p:orderList id="compact-order-list" value="#{processes}" var="process" itemValue="#{process}" converter="pojoConverter"
         controlsLocation="none" responsive="true" styleClass="order-list-items">
         <p:column>
           <div class="process-start-list-item">
@@ -53,8 +52,15 @@
           </div>
         </p:column>
       </p:orderList>
+    <!-- <p:commandButton value="Submit" update="displayCities" process="@form"  oncomplete="PF('test').show()" style="margin-top:5px" />
+    
+    <p:dialog draggable="true" widgetVar="test" header="Result" width="400">
+        <p:dataList id="displayCities" value="#{processes}" var="process">
+            <h:outputText value="#{process.name}" />
+        </p:dataList>
+    </p:dialog> -->
     </h:panelGroup>
     
-  </h:form>
+  <!-- </h:form> -->
 </ui:composition>
 </html>
