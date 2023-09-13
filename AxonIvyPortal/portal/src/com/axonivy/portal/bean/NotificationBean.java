@@ -1,5 +1,7 @@
 package com.axonivy.portal.bean;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -10,8 +12,9 @@ import ch.ivyteam.ivy.notification.web.WebNotifications;
 
 @ViewScoped
 @ManagedBean
-public class NotificationBean {
+public class NotificationBean implements Serializable {
 
+  private static final long serialVersionUID = 4467991301954952570L;
   private final WebNotifications webNotifications;
   private final NotificationLazyModel dataModel;
 

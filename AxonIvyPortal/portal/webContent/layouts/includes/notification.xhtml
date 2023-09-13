@@ -4,17 +4,10 @@
 
 <h:body>
   <ui:composition>
-    <ui:param name="userAgent" value="#{request.getHeader('User-Agent')}"></ui:param>
-    <ui:param name="isIE"
-      value="#{(fn:containsIgnoreCase(userAgent, 'Trident') and fn:containsIgnoreCase(userAgent, 'rv:11')) || fn:containsIgnoreCase(userAgent, 'MSIE')}" />
     <ui:param name="unreadNotificationsId" value="#{p:resolveFirstComponentWithId('topbar-unread-notifications', view).clientId}" />
     <ui:param name="notificationScrollerId" value="#{p:resolveFirstComponentWithId('notifications-scroller', view).clientId}" />
 
     <h:panelGroup id="notification-form">
-      <h:outputScript library="js" name="polyfill/promise.min.js" rendered="#{isIE}" />
-      <h:outputScript library="js" name="polyfill/fetch.js" rendered="#{isIE}" />
-      <h:outputScript library="js" name="polyfill/babel-runtime.js" rendered="#{isIE}" />
-      <h:outputScript library="js" name="chat-transpiled.js" rendered="#{isIE}" />
       <h:outputScript library="js" name="notification.js" />
 
       <h:outputStylesheet library="css" name="chat.css" />

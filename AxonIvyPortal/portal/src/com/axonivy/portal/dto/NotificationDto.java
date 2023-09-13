@@ -2,6 +2,8 @@ package com.axonivy.portal.dto;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.time.DateUtils;
+
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.notification.web.WebNotification;
 
@@ -50,30 +52,30 @@ public class NotificationDto {
   }
 
   private String getTimeSince(Date date) {
-    int seconds = (int) (new Date().getTime() - date.getTime()) / 1000;
+    long milliseconds = new Date().getTime() - date.getTime();
 
-    int interval = seconds / 31536000;
+    long interval = milliseconds / (365 * DateUtils.MILLIS_PER_DAY);
 
     if (interval >= 1) {
       return String.format(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/notifications/xYearsAgo"), interval);
     }
-    interval = seconds / 2592000;
+    interval = milliseconds / (30 * DateUtils.MILLIS_PER_DAY);
     if (interval >= 1) {
       return String.format(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/notifications/xMonthsAgo"), interval);
     }
-    interval = seconds / 86400;
+    interval = milliseconds / DateUtils.MILLIS_PER_DAY;
     if (interval >= 1) {
       return String.format(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/notifications/xDaysAgo"), interval);
     }
-    interval = seconds / 3600;
+    interval = milliseconds / DateUtils.MILLIS_PER_HOUR;
     if (interval >= 1) {
       return String.format(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/notifications/xHoursAgo"), interval);
     }
-    interval = seconds / 60;
+    interval = milliseconds / DateUtils.MILLIS_PER_MINUTE;
     if (interval >= 1) {
       return String.format(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/notifications/xMinutesAgo"), interval);
     }
-    return String.format(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/notifications/xSecondsAgo"), seconds);
+    return String.format(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/notifications/xSecondsAgo"), milliseconds / 1000);
   }
 
   public WebNotification getNotification() {
