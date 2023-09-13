@@ -149,4 +149,7 @@
   --news-feed-item-border-radius: 1rem;
   --news-feed-item-title-line-height: 1rem;
   --news-feed-item-title-font-weight: bold;
+  
+  /* Notification */
+  --notification-background-color: #293241;
 }
