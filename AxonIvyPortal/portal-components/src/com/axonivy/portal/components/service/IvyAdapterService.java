@@ -112,7 +112,7 @@ public class IvyAdapterService {
   }
 
   /**
-   * Find the subprocess in current project scope then calls it with the given signature
+   * Find the subprocess in current project and all required projects recursively scope then calls it with the given signature
    * with the given params. Exactly one subprocess with the given signature is expected.
    *
    * @param signature The signature of the subprocess to be triggered.
@@ -120,10 +120,10 @@ public class IvyAdapterService {
    * @return The response of the process execution.
    */
 
-  public static Map<String, Object> startSubProcessInProject(String signature, Map<String, Object> params) {
-    return startSubProcess(signature, params, SearchScope.PROJECT);
+  public static Map<String, Object> startSubProcessInProjectAndAllRequired(String signature, Map<String, Object> params) {
+    return startSubProcess(signature, params, SearchScope.PROJECT_AND_ALL_REQUIRED);
   }
-
+ 
   private static Map<String, Object> startSubProcess(String signature, Map<String, Object> params, SearchScope scope) {
     return Sudo.get(() -> {
       var filter = SubProcessSearchFilter.create()
@@ -143,6 +143,7 @@ public class IvyAdapterService {
           startSubProcessWithParams(subProcessStart, params);
     });
   }
+
 
   private static Map<String, Object> startSubProcessWithParams(SubProcessCallStart subProcess, Map<String, Object> params) {
     Map<String, Object> result = null;
