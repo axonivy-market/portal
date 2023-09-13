@@ -5,13 +5,6 @@ const instance = axios.create({
     timeout: 60000,
     headers: {'X-Requested-By': 'ivy'}
 });
-const CHART_COLORS = [
-    'hsl(192, 63%, 80%)',
-    'hsl(192, 63%, 60%)',
-    'hsl(192, 63%, 40%)',
-    'hsl(192, 63%, 30%)',
-    'hsl(192, 63%, 20%)',
-];
 
 function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
@@ -25,39 +18,62 @@ function formatISODate(dt) {
 }
 
 $(document).ready(function () {
+    initStatistics();
+});
+
+function initStatistics() {
+    var chartColors = [];
+    chartColors.push(getComputedStyle(document.body).getPropertyValue('--statistics-1-color'));
+    chartColors.push(getComputedStyle(document.body).getPropertyValue('--statistics-2-color'));
+    chartColors.push(getComputedStyle(document.body).getPropertyValue('--statistics-3-color'));
+    chartColors.push(getComputedStyle(document.body).getPropertyValue('--statistics-4-color'));
+    chartColors.push(getComputedStyle(document.body).getPropertyValue('--statistics-5-color'));
+    chartColors.push(getComputedStyle(document.body).getPropertyValue('--statistics-6-color'));
+    chartColors.push(getComputedStyle(document.body).getPropertyValue('--statistics-7-color'));
+    chartColors.push(getComputedStyle(document.body).getPropertyValue('--statistics-8-color'));
+
     let refreshInfos = [];
     $('.chart-options').each(async (index, chart) => {
         let chartId = chart.getAttribute('data-chart-id');
         let response = await instance.post('/api/statistic-data-service/Data', {"chartId": chartId});
-        let refreshInterval = chart.getAttribute('refresh-interval');
-
         let data = await response.data;
         let result = data.result.aggs[0].buckets;
         let config = data.chartConfig;
         let chartType = config.chartType;
+        let refreshInterval = config.refreshInterval;
         let chartObject;
         let chartData;
-
+        $('.dashboard__widget').each(function() {
+            if ($(this).find("div[data-chart-id='"+ chartId + "']").length) {
+                if ('number' === chartType) {
+                    $(this).find('.widget__header-title').text("");
+                } else {
+                    $(this).find('.widget__header-title').text(config.name);
+                }
+                return;
+            }
+        });
         if ('number' === chartType) {
-            let html = renderNumberChart(config.label);
+            let html = renderNumberChart(config.name);
             $(chart).html(html);
             let cardNumber = result.map(bucket => bucket.count) + `${config.numberChartConfig.suffixSymbol}`;
             $(chart).find('.card-number').html(cardNumber);
             chartData = $(chart);
+            resizeChartWidget();
+
         }
-        if ('bar' === chartType) {
+        if ('bar' === chartType || 'line' === chartType) {
             let html = renderBarChart(chartId);
             $(chart).html(html);
             let canvasObject = $(chart).find('canvas');
             chartData = new Chart(canvasObject, {
                 type: chartType,
-                label: config.label,
                 data: {
                     labels: result.map(bucket => formatChartLabel(bucket.key)),
                     datasets: [{
-                        label: config.label,
+                        label: config.name,
                         data: result.map(bucket => bucket.count),
-                        backgroundColor: CHART_COLORS
+                        backgroundColor: chartColors
                     }]
                 },
                 options: {
@@ -65,7 +81,7 @@ $(document).ready(function () {
                     maintainAspectRatio: false,
                     plugins: {
                         legend: {
-                            position: 'top',
+                            display: false
                         }
                     },
                     scales: {
@@ -93,13 +109,13 @@ $(document).ready(function () {
             let canvasObject = $(chart).find('canvas');
             chartData = new Chart(canvasObject, {
                 type: chartType,
-                label: config.label,
+                label: config.name,
                 data: {
                     labels: result.map(bucket => formatChartLabel(bucket.key)),
                     datasets: [{
-                        label: config.label,
+                        label: config.name,
                         data: result.map(bucket => bucket.count),
-                        backgroundColor: CHART_COLORS
+                        backgroundColor: chartColors
                     }],
                     hoverOffset: 4
                 },
@@ -109,27 +125,6 @@ $(document).ready(function () {
                 }
             });
 
-        }
-        if ('line' === chartType) {
-            let html = renderPieChart(chartId);
-            $(chart).html(html);
-            let canvasObject = $(chart).find('canvas');
-            chartData = new Chart(canvasObject, {
-                type: chartType,
-                label: config.label,
-                data: {
-                    labels: result.map(bucket => formatChartLabel(bucket.key)),
-                    datasets: [{
-                        label: config.label,
-                        data: result.map(bucket => bucket.count),
-                        backgroundColor: CHART_COLORS
-                    }],
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
-            });
         }
 
         chartObject = {
@@ -158,7 +153,11 @@ $(document).ready(function () {
         for (let i = 0; i < refreshInfos.length; i++) {
             let refreshInfo = refreshInfos[i];
             if (refreshInfo.refreshInterval && refreshInfo.refreshInterval > 0) {
-                setInterval(() => {
+                 // when init statistic again, e.g., AJAX update statistic, clear exising interval
+                if (typeof refreshIntervalId !== 'undefined') {
+                    clearInterval(refreshIntervalId);
+                }
+                refreshIntervalId = setInterval(() => {
                     refreshChart(refreshInfo);
                 }, refreshInfo.refreshInterval * 1000);
             }
@@ -209,5 +208,4 @@ $(document).ready(function () {
             `;
         return html;
     };
-
-});
+}

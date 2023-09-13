@@ -10,7 +10,6 @@ public class ClientStatisticDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = 1L;
   private String chartId;
-  private long refreshInterval; // in seconds
 
   public ClientStatisticDashboardWidget() {}
 
@@ -29,14 +28,6 @@ public class ClientStatisticDashboardWidget extends DashboardWidget {
 
   public void setChartId(String chartId) {
     this.chartId = chartId;
-  }
-
-  public long getRefreshInterval() {
-    return refreshInterval;
-  }
-
-  public void setRefreshInterval(long refreshInterval) {
-    this.refreshInterval = refreshInterval;
   }
 
 }

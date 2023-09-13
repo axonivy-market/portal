@@ -2,22 +2,30 @@ package com.axonivy.portal.bo;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.axonivy.portal.util.DisplayNameUtils;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
+import ch.ivy.addon.portalkit.dto.DisplayName;
 
-public class StatisticChartData extends AbstractConfiguration{
+public class StatisticChartData extends AbstractConfiguration {
   private String aggregates;
   private String filter;
   private List<String> permissions;
   private ChartTarget chartTarget;
-  @JsonIgnore
-  private String name;
   private String chartType;
-  private String label;
+  private long refreshInterval; // in seconds
+
   private BarChartConfig barChartConfig;
   private NumberChartConfig numberChartConfig;
-  
+  private List<DisplayName> names;
+  @JsonProperty(access = Access.READ_ONLY)
+  private String name;
+  private List<DisplayName> descriptions;
+  @JsonProperty(access = Access.READ_ONLY)
+  private String description;
+
   public NumberChartConfig getNumberChartConfig() {
     return numberChartConfig;
   }
@@ -34,12 +42,12 @@ public class StatisticChartData extends AbstractConfiguration{
     this.chartType = chartType;
   }
 
-  public String getLabel() {
-    return label;
+  public long getRefreshInterval() {
+    return refreshInterval;
   }
 
-  public void setLabel(String label) {
-    this.label = label;
+  public void setRefreshInterval(long refreshInterval) {
+    this.refreshInterval = refreshInterval;
   }
 
   public BarChartConfig getBarChartConfig() {
@@ -56,14 +64,6 @@ public class StatisticChartData extends AbstractConfiguration{
 
   public void setFilter(String filter) {
     this.filter = filter;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
   }
 
   public List<String> getPermissions() {
@@ -89,5 +89,32 @@ public class StatisticChartData extends AbstractConfiguration{
   public void setChartTarget(ChartTarget chartTarget) {
     this.chartTarget = chartTarget;
   }
+
+  public List<DisplayName> getNames() {
+    return names;
+  }
+
+  public void setNames(List<DisplayName> names) {
+    this.names = names;
+    name = DisplayNameUtils.findDisplayNameOfUserLanguage(names);
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public List<DisplayName> getDescriptions() {
+    return descriptions;
+  }
+
+  public void setDescriptions(List<DisplayName> descriptions) {
+    this.descriptions = descriptions;
+    description = DisplayNameUtils.findDisplayNameOfUserLanguage(descriptions);
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
 
 }
