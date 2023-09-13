@@ -14,6 +14,7 @@
     * widget: widget model.
     * panelId: ID of widget panel group.
     * isReadOnlyMode: indicator to show edit/delete link.
+    * isRenderEdit: parameter to show edit function.
     * isRenderInfo: parameter to show info function.
     * isRenderExpandCollapse: parameter to show expand/collapse function.
     * widgetContentStyleClass: styleClass for widget content div.
@@ -22,6 +23,7 @@
 
 <h:panelGroup id="#{panelId}" styleClass="card-widget-panel #{panelStyleClass}" layout="block">
   <c:set var="renderInfo" value="#{isReadOnlyMode and (empty isRenderInfo ? 'true': isRenderInfo)}"/>
+  <c:set var="renderEdit" value="#{not isReadOnlyMode and (empty isRenderEdit ? 'true': isRenderEdit)}"/>
   <c:set var="renderExpandCollapse" value="#{isReadOnlyMode and (empty isRenderExpandCollapse ? 'true': isRenderExpandCollapse)}"/>
 
   <div class="widget__header">
@@ -54,7 +56,7 @@
         global="false"
         actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
         update="new-widget-configuration-dialog"
-        rendered="#{!isReadOnlyMode}"
+        rendered="#{renderEdit}"
         process="@this"
         partialSubmit="true" />
       <p:tooltip for="edit-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}" trackMouse="true"

@@ -7,11 +7,44 @@
       "Everybody"
     ],
     "chartType": "pie",
-    "label": "My Tasks by Priority",
-    "barChartConfig": {
-       "xTitle": "Priority",
-       "yTitle": "Number of tasks"
-     }
+    "names": [
+      {
+        "locale": "de",
+        "value": "Aufgaben nach Priorität chartId 3"
+      },
+      {
+        "locale": "en",
+        "value": "Tasks by Priority chartId 3"
+      },
+      {
+        "locale": "fr",
+        "value": "Tãches par priorité chartId 3"
+      },
+      {
+        "locale": "es",
+        "value": "Tareas por prioridad chartId 3"
+      }
+    ],
+    "description": [
+      {
+        "locale": "de",
+        "value": "TODO Description Aufgaben nach Priorität chartId 3"
+      },
+      {
+        "locale": "en",
+        "value": "TODO Description Tasks by Priority chartId 3"
+      },
+      {
+        "locale": "fr",
+        "value": "TODO Description Tãches par priorité chartId 3"
+      },
+      {
+        "locale": "es",
+        "value": "TODO Description Tareas por prioridad chartId 3"
+      }
+    ],
+    "icon": "si si-pie-line-graph",
+    "refreshInterval": 3
   },
   {
     "id": "4",
@@ -22,25 +55,81 @@
       "Everybody"
     ],
     "chartType": "bar",
-    "label": "Tasks grouped by expiry",
+    "names": [
+      {
+        "locale": "de",
+        "value": "TODO DE Tasks grouped by expiry chartId 4"
+      },
+      {
+        "locale": "en",
+        "value": "Tasks grouped by expiry chartId 4"
+      },
+      {
+        "locale": "fr",
+        "value": "TODO FR Tasks grouped by expiry chartId 4"
+      },
+      {
+        "locale": "es",
+        "value": "TODO ES Tasks grouped by expiry chartId 4"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "de",
+        "value": "TODO Description DE Tasks grouped by expiry chartId 4"
+      },
+      {
+        "locale": "en",
+        "value": "TODO DescriptionTasks grouped by expiry chartId 4"
+      },
+      {
+        "locale": "fr",
+        "value": "TODO Description FR Tasks grouped by expiry chartId 4"
+      },
+      {
+        "locale": "es",
+        "value": "TODO Description ES Tasks grouped by expiry chartId 4"
+      }
+    ],
+    "icon": "si si-pie-line-graph",
+    "refreshInterval": 4,
     "barChartConfig": {
-       "xTitle": "Day",
-       "yTitle": "Number of tasks"
-     }
-  },
-  {
-    "id": "6",
-    "aggregates": "endTimestamp",
-    "filter": "endTimestamp:>=now-4d/d <=now+1d,businessState:DONE",
-    "permissions": [
-      "Everybody"
-    ] ,
-    "chartTarget": "TASK",
-    "chartType": "bar",
-    "label": "Completed Tasks per Day",
-    "barChartConfig": {
-       "xTitle": "Day",
-       "yTitle": "Number of tasks"
+      "xTitles": [
+        {
+          "locale": "de",
+          "value": "TODO Day"
+        },
+        {
+          "locale": "en",
+          "value": "Day"
+        },
+        {
+          "locale": "fr",
+          "value": "TODO Day"
+        },
+        {
+          "locale": "es",
+          "value": "TODO Day"
+        }
+      ],
+      "yTitles": [
+        {
+          "locale": "de",
+          "value": "TODO Number of tasks"
+        },
+        {
+          "locale": "en",
+          "value": "Number of tasks"
+        },
+        {
+          "locale": "fr",
+          "value": "TODO Number of tasks"
+        },
+        {
+          "locale": "es",
+          "value": "TODO Number of tasks"
+        }
+      ]
      }
   },
   {
@@ -52,9 +141,218 @@
     ] ,
     "chartTarget": "TASK",
     "chartType": "number",
-    "label": "Number of OPEN tasks",
+    "names": [
+      {
+        "locale": "de",
+        "value": "TODO DE Number of OPEN tasks chartId 5"
+      },
+      {
+        "locale": "en",
+        "value": "Tasks Number of OPEN tasks chartId 5"
+      },
+      {
+        "locale": "fr",
+        "value": "TODO FR Number of OPEN tasks chartId 5"
+      },
+      {
+        "locale": "es",
+        "value": "TODO ES Number of OPEN tasks chartId 5"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "de",
+        "value": "TODO Description DE Number of OPEN tasks chartId 5"
+      },
+      {
+        "locale": "en",
+        "value": "TODO Description Tasks Number of OPEN tasks chartId 5"
+      },
+      {
+        "locale": "fr",
+        "value": "TODO Description FR Number of OPEN tasks chartId 5"
+      },
+      {
+        "locale": "es",
+        "value": "TODO Description ES Number of OPEN tasks chartId 5"
+      }
+    ],
+    "icon": "si si-pie-line-graph",
+    "refreshInterval": 5,
     "numberChartConfig": {
        "suffixSymbol": "k"
+     }
+  },
+  {
+    "id": "6",
+    "aggregates": "endTimestamp",
+    "filter": "endTimestamp:>=now-4d/d <=now+1d,businessState:DONE",
+    "permissions": [
+      "Everybody"
+    ] ,
+    "chartTarget": "TASK",
+    "chartType": "bar",
+    "names": [
+      {
+        "locale": "de",
+        "value": "TODO DE Completed Tasks per Day chartId 6"
+      },
+      {
+        "locale": "en",
+        "value": "Tasks Completed Tasks per Day chartId 6"
+      },
+      {
+        "locale": "fr",
+        "value": "TODO FR Completed Tasks per Day chartId 6"
+      },
+      {
+        "locale": "es",
+        "value": "TODO ES Completed Tasks per Day chartId 6"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "de",
+        "value": "TODO Description DE Completed Tasks per Day chartId 6"
+      },
+      {
+        "locale": "en",
+        "value": "TODO  Description Tasks Completed Tasks per Day chartId 6"
+      },
+      {
+        "locale": "fr",
+        "value": "TODO Description FR Completed Tasks per Day chartId 6"
+      },
+      {
+        "locale": "es",
+        "value": "TODO Description ES Completed Tasks per Day chartId 6"
+      }
+    ],
+    "icon": "si si-pie-line-graph",
+    "refreshInterval": 6,
+    "barChartConfig": {
+      "xTitles": [
+        {
+          "locale": "de",
+          "value": "TODO Day"
+        },
+        {
+          "locale": "en",
+          "value": "Day"
+        },
+        {
+          "locale": "fr",
+          "value": "TODO Day"
+        },
+        {
+          "locale": "es",
+          "value": "TODO Day"
+        }
+      ],
+      "yTitles": [
+        {
+          "locale": "de",
+          "value": "TODO Number of tasks"
+        },
+        {
+          "locale": "en",
+          "value": "Number of tasks"
+        },
+        {
+          "locale": "fr",
+          "value": "TODO Number of tasks"
+        },
+        {
+          "locale": "es",
+          "value": "TODO Number of tasks"
+        }
+      ]
+     }
+  },
+  {
+    "id": "7",
+    "aggregates": "expiryTimestamp",
+    "filter": "expiryTimestamp:>=now <=now+4d/d",
+    "chartTarget": "TASK",
+    "permissions": [
+      "Everybody"
+    ],
+    "chartType": "line",
+    "names": [
+      {
+        "locale": "de",
+        "value": "TODO DE Tasks grouped by expiry chartId 7"
+      },
+      {
+        "locale": "en",
+        "value": "Tasks grouped by expiry chartId 7"
+      },
+      {
+        "locale": "fr",
+        "value": "TODO FR Tasks grouped by expiry chartId 7"
+      },
+      {
+        "locale": "es",
+        "value": "TODO ES Tasks grouped by expiry chartId 7"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "de",
+        "value": "TODO Description DE Tasks grouped by expiry chartId 7"
+      },
+      {
+        "locale": "en",
+        "value": "TODO DescriptionTasks grouped by expiry chartId 7"
+      },
+      {
+        "locale": "fr",
+        "value": "TODO Description FR Tasks grouped by expiry chartId 7"
+      },
+      {
+        "locale": "es",
+        "value": "TODO Description ES Tasks grouped by expiry chartId 7"
+      }
+    ],
+    "icon": "si si-pie-line-graph",
+    "refreshInterval": 4,
+    "barChartConfig": {
+      "xTitles": [
+        {
+          "locale": "de",
+          "value": "TODO Day"
+        },
+        {
+          "locale": "en",
+          "value": "Day"
+        },
+        {
+          "locale": "fr",
+          "value": "TODO Day"
+        },
+        {
+          "locale": "es",
+          "value": "TODO Day"
+        }
+      ],
+      "yTitles": [
+        {
+          "locale": "de",
+          "value": "TODO Number of tasks"
+        },
+        {
+          "locale": "en",
+          "value": "Number of tasks"
+        },
+        {
+          "locale": "fr",
+          "value": "TODO Number of tasks"
+        },
+        {
+          "locale": "es",
+          "value": "TODO Number of tasks"
+        }
+      ]
      }
   }
   

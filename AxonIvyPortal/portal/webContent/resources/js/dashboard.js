@@ -89,10 +89,6 @@ function loadGrid() {
   });
 }
 
-$(window).on('load', function () {
-  resizeChartWidget();
-});
-
 function getFontSizeRatio(item, scaleRatio) {
   let parent = $(item).closest('.chart-options')[0];
   let d = parent.offsetHeight > 100 ? 2.2 : 3.3;
