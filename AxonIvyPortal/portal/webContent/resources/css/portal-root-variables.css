@@ -149,4 +149,14 @@
   --news-feed-item-border-radius: 1rem;
   --news-feed-item-title-line-height: 1rem;
   --news-feed-item-title-font-weight: bold;
+
+  /* Statistics color pallete */
+  --statistics-1-color: hsl(192, 63%, 80%);
+  --statistics-2-color: hsl(192, 63%, 70%);
+  --statistics-3-color: hsl(192, 63%, 60%);
+  --statistics-4-color: hsl(192, 63%, 50%);
+  --statistics-5-color: hsl(192, 63%, 45%);
+  --statistics-6-color: hsl(192, 63%, 40%);
+  --statistics-7-color: hsl(192, 63%, 35%);
+  --statistics-8-color: hsl(192, 63%, 30%);
 }
