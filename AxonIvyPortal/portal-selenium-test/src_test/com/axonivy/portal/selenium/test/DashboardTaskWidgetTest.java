@@ -141,6 +141,8 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskEditWidget.preview();
     taskEditWidget.countAllTasks().shouldHave(size(12));
     taskEditWidget.save();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitPageLoaded();
     TaskWidgetNewDashBoardPage taskWidgetEdited = newDashboardPage.selectTaskWidget(NEW_YOUR_TASK);
     taskWidgetEdited.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidgetEdited.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1));
