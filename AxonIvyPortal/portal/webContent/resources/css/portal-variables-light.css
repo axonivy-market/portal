@@ -574,4 +574,6 @@
   --combined-button-tab-background-focus: rgba(144, 221, 233, 0.5);
   /* News Widget */
   --news-item-background: #F7F7F8;
+  /* Notification */
+  --notification-panel-color: var(--ivy-primary-color-white)
 }

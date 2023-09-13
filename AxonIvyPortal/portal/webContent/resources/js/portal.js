@@ -90,6 +90,20 @@ var Portal = {
       const chatPanelTop = (headerHeight + layoutTopbarHeight) + 'px';
       chatPanel.css({'height': chatPanelHeight, 'top': chatPanelTop, 'bottom': footerHeight + 'px'});
     }
+
+    let notificationPanel = $('.js-notification-panel');
+    let notificationContentHeight = $('.notification-item-list').outerHeight();
+    if (notificationPanel.length > 0) {
+      const notificationPanelHeight = 'calc(100% - ' + (headerFooterHeight + layoutTopbarHeight + envHeight) + 'px)';
+      const notificationPanelTop = (headerHeight + layoutTopbarHeight) + 'px';
+      notificationPanel.css({
+        'height': notificationPanelHeight,
+        'top': notificationPanelTop,
+        'bottom': footerHeight + 'px'
+      });
+      $('.notification-scroll .ui-datascroller-content').outerHeight(notificationContentHeight * 0.95 + 'px')
+    }
+    
     $portalHeader.removeClass('u-invisibility');
     $layoutMain.removeClass('u-invisibility');
     $portalFooter.removeClass('u-invisibility');
