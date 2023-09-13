@@ -5,7 +5,6 @@
 .new-widget-dialog__content {
   max-height: 80vh;
   max-width: 90vw;
-  overflow: auto;
   padding-bottom: 1rem;
 }
 
