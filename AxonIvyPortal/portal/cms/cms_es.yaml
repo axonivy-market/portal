@@ -771,6 +771,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Público
       savedFilters: 'Filtros guardados:'
   dashboard:
+    CustomWidgets: Widgets personalizados
     DashboardConfiguration:
       CreateFromScratch: Crear desde cero
       CreateFromScratchDescription: Cree su propio panel de control desde cero
@@ -791,6 +792,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       SomeThingWentWrong: Algo salió mal
       Title: Configuración de tablero
     EmptyFilterMessage: No se ha encontrado ningún filtro de widget
+    ExternalPageWidget: Página externa
+    ExternalPageWidgetIntroduction: Este widget puede mostrar una página web externa.
     Filter:
       FilterOptionHeader: Opciones de filtro
       ManageWidgetFilterHeader: Gestión de filtros de widgets
@@ -800,11 +803,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     ManageFilter: Gestión de filtros
     NoData: No hay datos
     NoSavedFilterMessage: No se ha encontrado ningún filtro guardado. Intente crear uno nuevo haciendo clic en el botón Guardar filtro
+    NoWidgetAvailable: No existen widgets.
     RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
     SaveNewWidgetFilterHeader: Guardar un nuevo filtro de widget
     SavedFilterHeader: Filtros guardados
     SearchForFilter: Búsqueda del filtro
     ShareThisDashboard: Comparte este panel
+    StandardWidgets: Widgets estándar
     StatisticWidget:
       AvailableCharts: Gráficos estadísticos disponibles
       Charts: 'Gráfico(s): {0}'
@@ -874,8 +879,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     createdFrom: Creado desde
     createdTo: Creado para
     customFieldType: Tipo de campo personalizado
-    customWidget: Widget personalizado
-    customWidgetIntroduction: Con este widget puede añadir procesos de Axon Ivy o páginas web externas.
     dashboardManagement:
       CreateDashboard: Crear tablero
       addDashboard: Añadir tablero

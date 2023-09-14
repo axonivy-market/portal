@@ -772,6 +772,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Öffentlich
       savedFilters: 'Gespeicherte Filter:'
   dashboard:
+    CustomWidgets: Benutzerdefinierte Widgets
     DashboardConfiguration:
       CreateFromScratch: Von Grund auf neu erstellen
       CreateFromScratchDescription: Erstellen Sie Ihr eigenes Dashboard von Grund auf
@@ -792,6 +793,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       SomeThingWentWrong: Etwas ist schief gelaufen
       Title: Dashboard-Konfiguration
     EmptyFilterMessage: Kein Widget-Filter gefunden
+    ExternalPageWidget: Externe Webseite
+    ExternalPageWidgetIntroduction: Dieses Widget kann eine externe Webseite anzeigen.
     Filter:
       FilterOptionHeader: Filter-Optionen
       ManageWidgetFilterHeader: Widget-Filter-Verwaltung
@@ -801,11 +804,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     ManageFilter: Filterverwaltung
     NoData: Keine Daten
     NoSavedFilterMessage: Kein gespeicherter Filter gefunden. Versuchen Sie, einen neuen zu erstellen, indem Sie auf die Schaltfläche Filter speichern klicken.
+    NoWidgetAvailable: Es gibt keine Widgets.
     RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
     SaveNewWidgetFilterHeader: Speichere neuen Widget-Filter
     SavedFilterHeader: Gespeicherte Filter
     SearchForFilter: Suche nach Filter
     ShareThisDashboard: Teilen Sie dieses Dashboard
+    StandardWidgets: Standard-Widgets
     StatisticWidget:
       AvailableCharts: Verfügbare Statistikdiagramme
       Charts: 'Diagramm(e): {0}'
@@ -875,8 +880,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     createdFrom: Erstellt von
     createdTo: Erzeugt bis
     customFieldType: Benutzerdefinierter Feldtyp
-    customWidget: Benutzerdefiniertes Widget
-    customWidgetIntroduction: Dieses Widget kann einen Axon Ivy-Prozess oder eine externe Webseite anzeigen.
     dashboardManagement:
       CreateDashboard: Dashboard erstellen
       addDashboard: Dashboard hinzufügen
