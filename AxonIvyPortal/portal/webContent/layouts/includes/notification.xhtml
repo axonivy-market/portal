@@ -14,7 +14,7 @@
       <div id="notification-panel" class="notification-panel js-notification-panel ">
         <div class="notification-item-list js-chat-contact-panel active">
           <div class="notification-container-content">
-            <h:panelGroup id="group-chat-container" class="js-group-chat-container" layout="block" rendered="true" />
+            <h:panelGroup id="notification-container" class="js-notification-container" layout="block" />
             <div class="notification-items-container" >
               <h:panelGroup id="notifications">
                 <div class="p-d-flex p-jc-between">
@@ -57,11 +57,11 @@
                 <h:panelGroup id="has-notifications" rendered="#{notificationBean.hasNotifications()}">
                   <h:form id="notificationForm">
                     <p:dataScroller id="notifications-scroller" lazy="true" styleClass="notification-scroll" value="#{notificationBean.dataModel}" var="notification"
-                      chunkSize="20" mode="inline" widgetVar="notifications-scroller">
+                      rendered="#{notificationBean.render}" chunkSize="20" mode="inline" widgetVar="notifications-scroller">
                       <span class="notification-group-name #{notification.markedToday ? '' : 'u-hidden'}" >#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/todayText')}</span>
                       <span class="notification-group-name #{notification.markedOlder ? '' : 'u-hidden'}" >#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/olderText')}</span>
                       <div class="#{notification.style} notification-container-top">
-                        <div class="p-d-flex p-jc-between">
+                        <div class="p-d-flex">
                           <div class="p-d-flex">
                             <p:commandLink id="notificationMarkAsRead" process="@this"
                               actionListener="#{notificationBean.markAsRead(notification)}"

@@ -130,8 +130,6 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     configPage.configureDashboardByIndex(0);
     newDashboardPage.waitForPageLoaded();
     newDashboardPage.addNewCustomWidget();
-    newDashboardPage.selectCustomWidgetTypeProcess();
-    newDashboardPage.selectIvyProcessForCustomWidget("Investment List (Example for Custom Widget on Dashboard)");
 
     WebElement dateField = newDashboardPage.findElementById("widget-configuration-form:new-widget-configuration-component:parammeters:1:param-calendar-_input");
     newDashboardPage.type(dateField, "24 Nov, 2021 00:00");

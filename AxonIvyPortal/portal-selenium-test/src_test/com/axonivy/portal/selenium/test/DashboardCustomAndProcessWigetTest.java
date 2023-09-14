@@ -1,7 +1,7 @@
 package com.axonivy.portal.selenium.test;
 
-import static com.codeborne.selenide.CollectionCondition.size;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,6 +15,7 @@ import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetPage;
+import com.codeborne.selenide.Condition;
 
 @IvyWebTest
 public class DashboardCustomAndProcessWigetTest extends BaseTest {
@@ -31,14 +32,12 @@ public class DashboardCustomAndProcessWigetTest extends BaseTest {
   }
 
   @Test
-  public void testTheProcessDisplayOnAddCustomWidgetPage() {
+  public void testTheProcessParamDisplayOnAddCustomWidgetPage() {
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
     newDashboardDetailsEditPage.addWidget();
     CustomWidgetNewDashBoardPage customWidgetNewDashBoardPage =
-        newDashboardDetailsEditPage.addNewCustomrWidget();
-    customWidgetNewDashBoardPage.selectWidgetType("Axon Ivy process");
-    customWidgetNewDashBoardPage.selectProcess(PROCESS_NAME);
-    customWidgetNewDashBoardPage.getProcessList().shouldHave(size(1));
+        newDashboardDetailsEditPage.addNewCustomrWidget(PROCESS_NAME);
+    customWidgetNewDashBoardPage.processParam().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   @Test

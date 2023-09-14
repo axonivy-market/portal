@@ -773,6 +773,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Public
       savedFilters: 'Saved filters:'
   dashboard:
+    CustomWidgets: Custom Widgets
     DashboardConfiguration:
       CreateFromScratch: Create from scratch
       CreateFromScratchDescription: Create your own dashboard from scratch
@@ -793,6 +794,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       SomeThingWentWrong: Something went wrong
       Title: Dashboard configuration
     EmptyFilterMessage: No widget filter found
+    ExternalPageWidget: External Page
+    ExternalPageWidgetIntroduction: This widget can display an external webpage.
     Filter:
       FilterOptionHeader: Filter options
       ManageWidgetFilterHeader: Widget filter management
@@ -802,11 +805,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     ManageFilter: Manage filters
     NoData: No data
     NoSavedFilterMessage: No saved filter found. Try to create a new by click on Save Filter button
+    NoWidgetAvailable: There are no widgets.
     RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
     SaveNewWidgetFilterHeader: Save a new widget filter
     SavedFilterHeader: Saved filters
     SearchForFilter: Search for filter
     ShareThisDashboard: Share this dashboard
+    StandardWidgets: Standard Widgets
     StatisticWidget:
       AvailableCharts: Available statistics charts
       Charts: 'Chart(s): {0}'
@@ -876,8 +881,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     createdFrom: Created From
     createdTo: Created To
     customFieldType: Custom Field Type
-    customWidget: Custom Widget
-    customWidgetIntroduction: This widget can display an ivy process or an external webpage.
     dashboardManagement:
       CreateDashboard: Create Dashboard
       addDashboard: Add dashboard
