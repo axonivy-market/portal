@@ -792,7 +792,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SomeThingWentWrong: Etwas ist schief gelaufen
       Title: Dashboard-Konfiguration
     EmptyFilterMessage: Kein Widget-Filter gefunden
-    ExternalPageWidget: Externe Seite
+    ExternalPageWidget: Externe Webseite
     ExternalPageWidgetIntroduction: Dieses Widget kann eine externe Webseite anzeigen.
     Filter:
       FilterOptionHeader: Filter-Optionen
