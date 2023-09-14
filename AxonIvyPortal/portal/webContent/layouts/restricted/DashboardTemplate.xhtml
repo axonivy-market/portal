@@ -37,7 +37,7 @@
 
         <h:form id="dashboard-remote-command-form" prependId="false">
           <h:inputHidden id="dashboard-view-mode" value="#{managedBean.isReadOnlyMode}"/>
-          <p:remoteCommand name="updateDashboardWidget" update="grid-stack" oncomplete="loadGrid();dashboardToolKit.responsive();" />
+          <p:remoteCommand name="updateDashboardWidget" update="grid-stack" oncomplete="loadGrid();dashboardToolKit.responsive(); initStatistics();" />
           <p:remoteCommand name="loadAllWidgetSavedFilters" actionListener="#{managedBean.loadAllWidgetSavedFilters()}"
             global="false" process="@this" immediate="true" partialSubmit="true"
             update="delete-saved-filter-form:quick-filter-table"

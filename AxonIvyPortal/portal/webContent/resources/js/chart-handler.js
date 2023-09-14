@@ -3,7 +3,7 @@ const baseURL = pathName.substring(0, pathName.indexOf('/faces/'));
 const instance = axios.create({
     baseURL: baseURL,
     timeout: 60000,
-    headers: {'X-Requested-By': 'ivy'}
+    headers: { 'X-Requested-By': 'ivy' }
 });
 
 function isNumeric(n) {
@@ -35,7 +35,7 @@ function initStatistics() {
     let refreshInfos = [];
     $('.chart-options').each(async (index, chart) => {
         let chartId = chart.getAttribute('data-chart-id');
-        let response = await instance.post('/api/statistic-data-service/Data', {"chartId": chartId});
+        let response = await instance.post('/api/statistic-data-service/Data', { "chartId": chartId });
         let data = await response.data;
         let result = data.result.aggs[0].buckets;
         let config = data.chartConfig;
@@ -43,8 +43,8 @@ function initStatistics() {
         let refreshInterval = config.refreshInterval;
         let chartObject;
         let chartData;
-        $('.dashboard__widget').each(function() {
-            if ($(this).find("div[data-chart-id='"+ chartId + "']").length) {
+        $('.dashboard__widget').each(function () {
+            if ($(this).find("div[data-chart-id='" + chartId + "']").length) {
                 if ('number' === chartType) {
                     $(this).find('.widget__header-title').text("");
                 } else {
@@ -56,75 +56,80 @@ function initStatistics() {
         if ('number' === chartType) {
             let html = renderNumberChart(config.name);
             $(chart).html(html);
-            let cardNumber = result.map(bucket => bucket.count) + `${config.numberChartConfig.suffixSymbol}`;
+            let cardNumber = (result.length == 0 ? 0 : result.map(bucket => bucket.count)) + `${config.numberChartConfig.suffixSymbol}`;
             $(chart).find('.card-number').html(cardNumber);
             chartData = $(chart);
             resizeChartWidget();
-
         }
         if ('bar' === chartType || 'line' === chartType) {
-            let html = renderBarChart(chartId);
-            $(chart).html(html);
-            let canvasObject = $(chart).find('canvas');
-            chartData = new Chart(canvasObject, {
-                type: chartType,
-                data: {
-                    labels: result.map(bucket => formatChartLabel(bucket.key)),
-                    datasets: [{
-                        label: config.name,
-                        data: result.map(bucket => bucket.count),
-                        backgroundColor: chartColors
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
+            if (result.length == 0) {
+                renderEmptyStatistics(chart);
+            } else {
+                let html = renderBarChart(chartId);
+                $(chart).html(html);
+                let canvasObject = $(chart).find('canvas');
+                chartData = new Chart(canvasObject, {
+                    type: chartType,
+                    data: {
+                        labels: result.map(bucket => formatChartLabel(bucket.key)),
+                        datasets: [{
+                            label: config.name,
+                            data: result.map(bucket => bucket.count),
+                            backgroundColor: chartColors
+                        }]
                     },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                text: config.barChartConfig.yTitle,
-                                display: true
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
                             }
                         },
-                        x: {
-                            title: {
-                                text: config.barChartConfig.xTitle,
-                                display: true
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    text: config.barChartConfig.yTitle,
+                                    display: true
+                                }
+                            },
+                            x: {
+                                title: {
+                                    text: config.barChartConfig.xTitle,
+                                    display: true
+                                }
                             }
                         }
                     }
-                }
-            });
-
+                });
+            }
         }
         if ('pie' === chartType || 'doughnut' === chartType) {
-            let html = renderPieChart(chartId);
-            $(chart).html(html);
-            let canvasObject = $(chart).find('canvas');
-            chartData = new Chart(canvasObject, {
-                type: chartType,
-                label: config.name,
-                data: {
-                    labels: result.map(bucket => formatChartLabel(bucket.key)),
-                    datasets: [{
-                        label: config.name,
-                        data: result.map(bucket => bucket.count),
-                        backgroundColor: chartColors
-                    }],
-                    hoverOffset: 4
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
-            });
-
+            if (result.length == 0) {
+                renderEmptyStatistics(chart);
+            } else {
+                let html = renderPieChart(chartId);
+                $(chart).html(html);
+                let canvasObject = $(chart).find('canvas');
+                chartData = new Chart(canvasObject, {
+                    type: chartType,
+                    label: config.name,
+                    data: {
+                        labels: result.map(bucket => formatChartLabel(bucket.key)),
+                        datasets: [{
+                            label: config.name,
+                            data: result.map(bucket => bucket.count),
+                            backgroundColor: chartColors
+                        }],
+                        hoverOffset: 4
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false
+                    }
+                });
+            }
         }
 
         chartObject = {
@@ -153,7 +158,7 @@ function initStatistics() {
         for (let i = 0; i < refreshInfos.length; i++) {
             let refreshInfo = refreshInfos[i];
             if (refreshInfo.refreshInterval && refreshInfo.refreshInterval > 0) {
-                 // when init statistic again, e.g., AJAX update statistic, clear exising interval
+                // when init statistic again, e.g., AJAX update statistic, clear exising interval
                 if (typeof refreshIntervalId !== 'undefined') {
                     clearInterval(refreshIntervalId);
                 }
@@ -166,7 +171,7 @@ function initStatistics() {
 
     async function refreshChart(chartInfo) {
         let chartId = chartInfo.chartId;
-        const response = await instance.post('/api/statistic-data-service/Data', {"chartId": chartId});
+        const response = await instance.post('/api/statistic-data-service/Data', { "chartId": chartId });
         const result = response.data.result.aggs[0].buckets;
         let chartData = chartInfo.chartData;
         if (chartInfo.chartType !== 'number') {
@@ -180,6 +185,16 @@ function initStatistics() {
             let cardNumber = result.map(bucket => bucket.count) + `${config.numberChartConfig.suffixSymbol}`;
             chartData.find('.card-number').html(cardNumber);
         }
+    }
+
+    function renderEmptyStatistics(chart) {
+        let emptyChartHtml = `
+        <div class="empty-message-container">
+            <i class="si si-analytics-pie-2 empty-message-icon"></i>
+            <p class="empty-message-text">We do not have enough data to create a nice chart!</p>
+        </div>
+        `;
+        $(chart).html(emptyChartHtml);
     }
 
     const renderBarChart = (chartId) => {
