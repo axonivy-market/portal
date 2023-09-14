@@ -28,4 +28,7 @@ public class DashboardNewsWidgetConfigurationPage extends TemplatePage {
     $("div[id$='new-widget-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
+  public SelenideElement getConfigurationDialog() {
+    return $("div[id='new-widget-configuration-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
 }

@@ -31,4 +31,8 @@ public class TaskTemplatePage extends TemplatePage {
     WaitHelper.waitForIFrameAvailable(WebDriverRunner.getWebDriver(), "iFrame");
     return $(cssSelector);
   }
+  
+  public void clickCancelButton() {
+    $("a[id$='button-cancel']").shouldBe(getClickableCondition()).click();
+  }
 }

@@ -1,16 +1,18 @@
 package com.axonivy.portal.selenium.common;
 
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
-import com.codeborne.selenide.WebDriverRunner;
 
 @IvyWebTest
 public class ScreenshotBaseTest extends BaseTest{
-
-  @AfterEach
-  public void tearDown() {
-    WebDriverRunner.getWebDriver().quit();
-  }
   
+  @Override
+  @BeforeEach
+  public void setup() {
+    super.setup();
+    updatePortalSetting(Variable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.getKey(), "false");
+//    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "true");
+  }
+
 }

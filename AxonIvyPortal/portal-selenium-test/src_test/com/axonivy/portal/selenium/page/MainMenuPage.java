@@ -14,6 +14,10 @@ import java.util.stream.Collectors;
 import org.openqa.selenium.By;
 
 import com.axonivy.portal.selenium.common.WaitHelper;
+import com.axonivy.portal.selenium.page.legacy.LegacyDashboardPage;
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 
 public class MainMenuPage extends TemplatePage {
 
@@ -46,12 +50,30 @@ public class MainMenuPage extends TemplatePage {
     return new ProcessWidgetPage();
   }
 
+  public StatisticWidgetPage openStatisticPage() {
+    waitLeftMenuReady();
+    WaitHelper.waitForNavigation(() -> {
+      clickByJavaScript($(".layout-menu li[role='menuitem'] a.STATISTICS").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()));
+    });
+    return new StatisticWidgetPage();
+  }
+
+  public LegacyDashboardPage openLegacyDashboard() {
+    waitLeftMenuReady();
+    WaitHelper.waitForNavigation(() -> {
+      clickByJavaScript($("a[id='user-menu-required-login:logo-small']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()));
+    });
+    return new LegacyDashboardPage();
+  }
+  
+
   public void openUserSettingMenu() {
     $("#top-menu").shouldBe(appear, DEFAULT_TIMEOUT);
     clickByJavaScript($("a[id='user-settings-menu']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()));
   }
 
-  private void waitLeftMenuReady() {
+  public void waitLeftMenuReady() {
+    WaitHelper.waitNumberOfElementsToBe(WebDriverRunner.getWebDriver(), By.cssSelector("[id$=':main-navigator:main-menu']"), 1);
     $("[id$=':main-navigator:main-menu']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
