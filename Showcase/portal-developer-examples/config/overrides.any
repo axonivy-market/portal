@@ -12,15 +12,13 @@
     /ch.ivy.addon.portal.generic.PortalCaseDetails "com.axonivy.portal.developerexamples.customization.PortalCaseDetailsOverride"
   }
   /PROCESS {
-    /Functional-Processes.CalculateTaskDelegate "Functional Processes/CalculateTaskDelegateOverride"
-    /Functional-Processes.AssignRolesGroupChat "Functional Processes/AssignRolesGroupChatOverride"
-    /Functional-Processes.InitializeTaskDataModel "Functional Processes/InitializeTaskDataModelOverride"
-    /Functional-Processes.GetGroupChatParams "Functional Processes/GetGroupChatParamsOverride"
-    /Functional-Processes.LoadSubMenuItems "Functional Processes/LoadSubMenuItemsOverride"
     /Functional-Processes.ExportTaskToExcel "Functional Processes/ExportTaskToExcelOverride"
     /Functional-Processes.InitializeCaseDataModel "Functional Processes/InitializeCaseDataModelOverride"
+    /Functional-Processes.AssignRolesGroupChat "Functional Processes/AssignRolesGroupChatOverride"
     /Functional-Processes.SetGroupChatName "Functional Processes/SetGroupChatNameOverride"
+    /Functional-Processes.InitializeTaskDataModel "Functional Processes/InitializeTaskDataModelOverride"
     /Functional-Processes.ExportCaseToExcel "Functional Processes/ExportCaseToExcelOverride"
+    /Functional-Processes.GetGroupChatParams "Functional Processes/GetGroupChatParamsOverride"
     /Functional-Processes.BuildTaskQuery "Functional Processes/BuildTaskQueryOverride"
     /Functional-Processes.DefaultStatisticCustomField "Functional Processes/DefaultStatisticCustomFieldOverride"
   }

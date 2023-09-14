@@ -159,4 +159,7 @@
   --statistics-6-color: hsl(192, 63%, 40%);
   --statistics-7-color: hsl(192, 63%, 35%);
   --statistics-8-color: hsl(192, 63%, 30%);
+  
+  /* Notification */
+  --notification-background-color: #293241;
 }

@@ -73,4 +73,9 @@ public final class ExecutingExpressProcessUtils {
       return CollectionUtils.isEmpty(result) ? null : result.get(0);
     });
   }
+
+  public static boolean isExpressCase(ICase caze) {
+    String isExpress = caze.customFields().stringField(CustomFields.IS_EXPRESS_PROCESS).getOrDefault("false");
+    return Boolean.parseBoolean(isExpress);
+  }
 }

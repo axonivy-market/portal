@@ -277,6 +277,10 @@ Variables:
       # [Enum: NAME, DESCRIPTION, CUSTOM]
       ByCaseFields: NAME,DESCRIPTION,CUSTOM
 
+    # Additional menu items for the main menu of Portal. Could be an Ivy process or an external link.
+    # [file: json]
+    CustomMenuItems:
+
     # Support the translation from English to the other languages or from German to the other languages (German, English, French, Spanish)
     DeepL:
       # DeepL Authentication Key (should end with :fx)
