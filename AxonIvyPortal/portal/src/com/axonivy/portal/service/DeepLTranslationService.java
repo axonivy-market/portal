@@ -36,7 +36,7 @@ public class DeepLTranslationService {
       params.put("preserveFormatting", "1");
       params.put("tagHandling", "html");
       Map<String, Object> response = null;
-      response = IvyAdapterService.startSubProcessInProject(
+      response = IvyAdapterService.startSubProcessInProjectAndAllRequired(
           "translateText(String,com.deepl.api.v2.client.TargetLanguage,com.deepl.api.v2.client.SourceLanguage,String,String)", params);
       if (response != null) {
         InlineResponse200 inlineResponse = (InlineResponse200) response.get("translation");

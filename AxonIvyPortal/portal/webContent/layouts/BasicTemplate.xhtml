@@ -90,7 +90,7 @@
         <ic:ch.ivy.addon.portalkit.component.PageHeader />
       </div>
 
-      <div class="layout-wrapper layout-sidebar layout-topbar-#{ivyFreyaTheme.mode} layout-menu-#{ivyFreyaTheme.mode}
+      <div class="#{isPortalInTeams ? '' : 'layout-wrapper layout-sidebar'} layout-topbar-#{ivyFreyaTheme.mode} layout-menu-#{ivyFreyaTheme.mode}
         js-layout-wrapper #{isPortalInTeams ? 'ms-teams-layout' : ''}">
 
         <h:panelGroup layout="block" rendered="#{!isPortalInTeams}" styleClass="layout-topbar js-layout-topbar">

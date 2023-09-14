@@ -174,6 +174,36 @@ Please follow the guidelines below to migrate your override subprocesses.
          | ChangePassword       | portalChangePassword       |
          +----------------------+----------------------------+
 
+#. :ref:`Task Delegation <customization-task-delegation>`
+
+
+      - Remove subprocess override of ``CalculateTaskDelegate`` from your project.
+
+      - Change the signature of your callable start as described below.
+
+         +-------------------------+-------------------------------+
+         | Subprocess              | New signature                 |
+         +=========================+===============================+
+         | CalculateTaskDelegate   | portalCalculateTaskDelegate   |
+         +-------------------------+-------------------------------+
+
+#. :ref:`Customize Menu Items <customization-menu-customization>`
+
+      - Remove subprocess override of ``LoadSubMenuItems`` from your project.
+
+      - Change the signature of your callable start as described below.
+
+         +-------------------------+-------------------------------+
+         | Subprocess              | New signature                 |
+         +=========================+===============================+
+         | LoadSubMenuItems        | portalLoadSubMenuItems        |
+         +-------------------------+-------------------------------+
+
+      - To hide default menu items, you can utilize variables. Here's a link :ref:`Show/hide default menu items <customization-menu-hide-default-menu-item>` that provides instructions on how to do so.
+
+      - Update ``index`` for each custom menu item.
+
+      - Refer to process ``CustomLoadSubMenuItems`` in the project ``portal-developer-examples`` for an example of how to create custom menu items.
 
 Migrate 10.0 To 10.0.7
 ----------------------

@@ -1063,6 +1063,22 @@ ch.ivy.addon.portalkit.ui.jsf:
   notes:
     newNoteHeader: Neue Notiz hinzufügen
     wroteAt: Erstellt am
+  notifications:
+    linkToFullScreen: Link zum Vollbild
+    linkToNotificationSettings: Link zu den Benachrichtigungseinstellungen
+    markAllAsRead: Alle als gelesen markieren
+    markAsRead: Als gelesen markieren
+    noNotificationText: Keine Benachrichtigungen
+    notificationTitle: Benachrichtigungen
+    olderText: Ältere
+    onlyUnread: Nur ungelesen
+    todayText: Heute
+    xDaysAgo: vor %s Tagen
+    xHoursAgo: vor %s Stunden
+    xMinutesAgo: vor %s Minuten
+    xMonthsAgo: vor %s Monaten
+    xSecondsAgo: vor %s Sekunden
+    xYearsAgo: vor %s Jahren
   passwordSetting:
     changePasswordWSError: Ein Fehler ist während der Passwortänderung aufgetreten. Bitte, kontaktieren Sie Ihren Administrator falls das Problem nach mehreren Versuchen besteht.
     confirmNewPassword: Neues Password bestätigen
