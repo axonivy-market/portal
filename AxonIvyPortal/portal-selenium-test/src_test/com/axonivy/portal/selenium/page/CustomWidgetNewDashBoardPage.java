@@ -3,6 +3,7 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -52,4 +53,7 @@ public class CustomWidgetNewDashBoardPage extends TemplatePage {
     return $("span[id$=':selected-process_panel']").shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr");
   }
 
+  public SelenideElement processParam() {
+    return $("div[id$=':parameters-panel']");
+  }
 }

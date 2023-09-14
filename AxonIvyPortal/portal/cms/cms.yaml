@@ -743,8 +743,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     createdFrom: Created From
     createdTo: Created To
     customFieldType: Custom Field Type
-    customWidget: Custom Widget
-    customWidgetIntroduction: This widget can display an ivy process or an external webpage.
     dashboardManagement:
       CreateDashboard: Create Dashboard
       addDashboard: Add dashboard

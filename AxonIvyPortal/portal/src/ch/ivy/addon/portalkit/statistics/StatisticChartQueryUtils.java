@@ -608,7 +608,7 @@ public class StatisticChartQueryUtils {
 
     TaskQuery taskQueryForExpiryDate = TaskQuery.create();
     IFilterQuery filterQueryForExpiryDate = taskQueryForExpiryDate.where();
-    filterQueryForExpiryDate.and().expiryTimestamp().isGreaterOrEqualThan(firsDateOfThisYear).and().expiryTimestamp()
+    filterQueryForExpiryDate.and().state().isNotEqual(TaskState.DESTROYED).and().expiryTimestamp().isGreaterOrEqualThan(firsDateOfThisYear).and().expiryTimestamp()
         .isLowerThan(firsDateOfNextYear).and().expiryTimestamp().isNotNull();
 
     taskQuery.where().and(taskQueryForExpiryDate);
