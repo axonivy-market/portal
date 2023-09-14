@@ -66,9 +66,14 @@
         </ui:fragment>
 
         <ui:fragment rendered="#{empty widget.data.processPath}">
-          <iframe name="custom-widget-iframe-#{index}" src="#{widget.data.url}" 
-            class="dashboard-custom-iframe u-hidden" 
-            onload="$(this).removeClass('u-hidden');" />
+          <iframe name="custom-widget-iframe-#{index}" src="#{widget.data.url}"
+            id="id-custom-widget-iframe-#{index}"
+            class="dashboard-custom-iframe u-hidden" />
+          <script type="text/javascript">
+              setTimeout(function(){
+               $(`#id-custom-widget-iframe-${index}`).removeClass('u-hidden');
+              },3000);
+          </script>
         </ui:fragment>
       </div>
     </ui:define>

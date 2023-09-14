@@ -43,27 +43,53 @@
         { "id" : "f1", "to" : "f6" }
       ]
     }, {
-      "id" : "f7",
-      "type" : "ProcessAnnotation",
-      "name" : [
-        "Return your own list of users & roles to delegate task to",
-        "",
-        "if (\"admin\".equalsIgnoreCase(in.currentUser.getDisplayName()) && \"System task\".equalsIgnoreCase(in.task.names().current())) {",
-        "  in.users = new ArrayList();",
-        "  in.roles = new ArrayList();",
-        "}"
-      ],
-      "visual" : {
-        "at" : { "x" : 464, "y" : 205 },
-        "size" : { "width" : 688, "height" : 108 }
-      },
-      "connect" : [
-        { "id" : "f2", "to" : "f6" }
-      ]
-    }, {
       "id" : "f6",
       "type" : "Script",
-      "name" : "Calculate",
+      "name" : [
+        "Call customized",
+        "processes"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.enums.PortalCustomSignature;",
+            "import java.util.ArrayList;",
+            "import com.axonivy.portal.components.dto.UserDTO;",
+            "import com.axonivy.portal.components.util.CustomProcessUtils;",
+            "import com.axonivy.portal.components.util.UserUtils;",
+            "import com.axonivy.portal.components.util.RoleUtils;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "",
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "",
+            "Map params = new HashMap();",
+            "params.put(\"roles\", in.roles);",
+            "params.put(\"users\", in.users);",
+            "params.put(\"currentUser\", in.currentUser);",
+            "params.put(\"task\", in.task);",
+            "",
+            "List result = IvyAdapterService.startSubProcessesInSecurityContext(PortalCustomSignature.DELEGATE.getSignature(), params);",
+            "in.hasCustomProcess = result != null;",
+            "",
+            "if (in.hasCustomProcess) {",
+            "",
+            "  java.util.List customRoles = new ArrayList();",
+            "  java.util.List customUsers = new ArrayList();",
+            "",
+            "  for (Map map : result) {",
+            "    if (!CustomProcessUtils.isSkipCustomProcess(map)) {",
+            "      customRoles.addAll(map.get(\"roles\") as List);",
+            "      customUsers.addAll(map.get(\"users\") as List);",
+            "    }",
+            "  }",
+            "",
+            "  in.roles = RoleUtils.distinctAndSortRoleList(customRoles);",
+            "  in.users = UserUtils.distinctAndSortUserList(customUsers);",
+            "}"
+          ]
+        }
+      },
       "visual" : {
         "at" : { "x" : 216, "y" : 96 }
       },

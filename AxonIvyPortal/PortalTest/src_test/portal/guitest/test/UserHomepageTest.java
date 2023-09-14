@@ -18,7 +18,6 @@ public class UserHomepageTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
   }
 
-  @SuppressWarnings("unused")
   @Test
   public void testHomepageInUserProfile() {
     HomePage homePage = new HomePage();

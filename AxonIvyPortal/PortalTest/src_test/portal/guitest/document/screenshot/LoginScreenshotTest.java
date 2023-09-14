@@ -1,10 +1,16 @@
 package portal.guitest.document.screenshot;
 
-import org.junit.Before;
+import java.io.IOException;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.Dimension;
+
+import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import portal.guitest.common.ScreenshotTest;
 import portal.guitest.page.HomePage;
+import portal.guitest.page.LoginPage;
 import vn.wawa.guitest.base.client.Browser;
 
 public class LoginScreenshotTest extends ScreenshotTest {
@@ -17,5 +23,12 @@ public class LoginScreenshotTest extends ScreenshotTest {
     if (SecurityServiceUtils.isDesigner()) {
       logoutDesigner();
     }
+  }
+
+  @Test
+  public void testLogin() throws IOException {
+    ScreenshotUtil.resizeBrowser(new Dimension(1024, 768));
+    new LoginPage().waitForUsernameInputIsFocused();
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.LOGIN_FOLDER + "login-form");
   }
 }
