@@ -157,7 +157,7 @@ public class MenuView implements Serializable {
     }
 
     if (!isShowLegacyUI()) {
-      var dashboards = updateDashboardCache(null).dashboards;
+      var dashboards = getDashboardCache().dashboards;
       if (CollectionUtils.isNotEmpty(dashboards)) {
         DefaultSubMenu dashboardGroupMenu = DefaultSubMenu.builder()
                 .label(dashboardTitle)
@@ -206,24 +206,40 @@ public class MenuView implements Serializable {
     return dashboardMenu;
   }
 
-  public PortalDashboardItemWrapper updateDashboardCache(List<Dashboard> dashboards) {
-    String sessionIdAttribute = SessionAttribute.DASHBOARD_MENU_SESSION_IDENTIFIER.toString();
-    if (Ivy.session().getAttribute(sessionIdAttribute) == null) {
-      Ivy.session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
-    }
-    String sessionUserId = (String) Ivy.session().getAttribute(sessionIdAttribute);
-
+  public PortalDashboardItemWrapper getDashboardCache() {
+    String sessionUserId = getSessionUserId();
     IvyCacheService cacheService = IvyCacheService.newInstance();
-    PortalDashboardItemWrapper portalDashboardItemWrapper =
-        (PortalDashboardItemWrapper) cacheService.getSessionCacheValue(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId).orElse(null);
+    PortalDashboardItemWrapper portalDashboardItemWrapper = getPortalDashboardItemWrapper(sessionUserId, cacheService);
 
-    if (portalDashboardItemWrapper == null || dashboards != null) {
+    if (portalDashboardItemWrapper == null) {
       synchronized(PortalDashboardItemWrapper.class) {
-        portalDashboardItemWrapper = new PortalDashboardItemWrapper(Optional.ofNullable(dashboards).orElse(DashboardUtils.collectDashboards()));
+        portalDashboardItemWrapper = new PortalDashboardItemWrapper(DashboardUtils.collectDashboards());
         cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId, portalDashboardItemWrapper);
       }
     }
     return portalDashboardItemWrapper;
+  }
+
+  public void updateDashboardCache(List<Dashboard> dashboards) {
+    String sessionUserId = getSessionUserId();
+    IvyCacheService cacheService = IvyCacheService.newInstance();
+
+    synchronized(PortalDashboardItemWrapper.class) {
+      cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId,
+          new PortalDashboardItemWrapper(dashboards));
+    }
+  }
+
+  private String getSessionUserId() {
+    String sessionIdAttribute = SessionAttribute.SESSION_IDENTIFIER.name();
+    if (Ivy.session().getAttribute(sessionIdAttribute) == null) {
+      Ivy.session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
+    }
+    return (String) Ivy.session().getAttribute(sessionIdAttribute);
+  }
+
+  private PortalDashboardItemWrapper getPortalDashboardItemWrapper(String sessionUserId, IvyCacheService cacheService) {
+    return (PortalDashboardItemWrapper) cacheService.getSessionCacheValue(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId).orElse(null);
   }
 
   public String getDashboardLink() {
