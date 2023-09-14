@@ -115,7 +115,7 @@
 
     <p:commandButton id="widget-configuration-save-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
       actionListener="#{dashboardDetailModificationBean.saveWidget()}" icon="si si-floppy-disk"
-      oncomplete="if (args &amp;&amp; !args.validationFailed){PF('new-widget-configuration-dialog').hide();loadGridAfterAddedNewWidget();}"
+      oncomplete="if (args &amp;&amp; !args.validationFailed){PF('new-widget-configuration-dialog').hide();loadGridAfterAddedNewWidget(); initStatistics();}"
       process="#{dashboardDetailModificationBean.componentToProcessOnSave}"
       partialSubmit="true"
       update="widget-configuration-form load-grid-after-added-new-widget-cmd"
