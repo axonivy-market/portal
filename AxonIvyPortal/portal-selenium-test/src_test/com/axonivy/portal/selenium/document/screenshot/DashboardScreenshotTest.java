@@ -42,9 +42,10 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
   public void setup() {
     super.setup();
     updatePortalSetting(Variable.ENABLE_GROUP_CHAT.getKey(), "true");
+    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "false");
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createTestingTasksUrl);
-    homePage = new NewDashboardPage();
+    login(TestAccount.ADMIN_USER);
   }
 
   @Test
@@ -72,9 +73,6 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
 
   @Test
   public void screenshotConfigureCustomWidget() throws IOException {
-    login(TestAccount.ADMIN_USER);
-    showNewDashboard();
-    homePage = new NewDashboardPage();
     redirectToDashboardConfiguration();
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
     configPage.selectPublicDashboardType();
@@ -95,7 +93,6 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
 
   @Test
   public void screenshotNewDashboardUserGuide() throws IOException {
-    login(TestAccount.ADMIN_USER);
     showNewDashboard();
     ScreenshotUtil.maximizeBrowser();
     homePage = new NewDashboardPage();
@@ -172,28 +169,28 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
     processConfigurationPage.selectProcessForCombinedMode("Categoried Leave Request");
     processConfigurationPage.clickPreviewButton();
     processConfigurationPage.getCombinedModeProcessPreview();
-    ScreenshotUtil.captureElementScreenshot(processConfigurationPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "process-widget-combined-mode");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(processConfigurationPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "process-widget-combined-mode", new ScreenshotMargin(20));
 
     // Compact mode
     processConfigurationPage.selectCompactMode();
     processConfigurationPage.selectProcessesForCompactMode(Arrays.asList("Create New Payment", "Create Support Ticket", "Sales Management"));
     processConfigurationPage.clickPreviewButton();
     processConfigurationPage.getCompactModeProcessPreview();
-    ScreenshotUtil.captureElementScreenshot(processConfigurationPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "process-widget-compact-mode");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(processConfigurationPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "process-widget-compact-mode", new ScreenshotMargin(20));
 
     // Full mode
     processConfigurationPage.selectFullMode();
     processConfigurationPage.selectProcessForFullMode("Sales Management");
     processConfigurationPage.clickPreviewButton();
     processConfigurationPage.getFullModeProcessPreview();
-    ScreenshotUtil.captureElementScreenshot(processConfigurationPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "process-widget-full-mode");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(processConfigurationPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "process-widget-full-mode", new ScreenshotMargin(20));
 
     // Image mode
     processConfigurationPage.selectImageMode();
     processConfigurationPage.selectProcessForImageMode("Create New Payment");
     processConfigurationPage.clickPreviewButton();
     processConfigurationPage.getImageModeProcessPreview();
-    ScreenshotUtil.captureElementScreenshot(processConfigurationPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "process-widget-image-mode");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(processConfigurationPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "process-widget-image-mode", new ScreenshotMargin(20));
 
     processConfigurationPage.getProcessDisplayMode().click();
     ScreenshotUtil.executeDecorateJs("highlightProcessDisplayModePanel()");
@@ -203,7 +200,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
   @Test
   public void screenshotProcessViewerWidget() throws IOException {
     ScreenshotUtil.maximizeBrowser();
-    loginAsAdminAndAddPublicWidget(NewDashboardDetailsEditPage.PROCESS_VIEWER_WIDGET);
+    addPublicWidget(NewDashboardDetailsEditPage.PROCESS_VIEWER_WIDGET);
     ProcessViewerWidgetNewDashBoardPage processViewerPage = new ProcessViewerWidgetNewDashBoardPage();
     processViewerPage.selectProcess("Categoried Leave Request");
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(processViewerPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "process-viewer-widget-configuration", new ScreenshotMargin(20));
@@ -217,7 +214,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
   @Test
   public void screenshotStatisticChartWidget() throws IOException {
     ScreenshotUtil.maximizeBrowser();
-    loginAsAdminAndAddPublicWidget(NewDashboardDetailsEditPage.STATISTIC_WIDGET);
+    addPublicWidget(NewDashboardDetailsEditPage.STATISTIC_WIDGET);
     StatisticEditWidgetNewDashboardPage statisticPage = new StatisticEditWidgetNewDashboardPage();
     statisticPage.selectFirstChart();
     statisticPage.clickPreviewButton();
@@ -232,7 +229,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
   @Test
   public void screenshotWelcomeWidget() throws IOException {
     ScreenshotUtil.maximizeBrowser();
-    loginAsAdminAndAddPublicWidget(NewDashboardDetailsEditPage.WELCOME_WIDGET);
+    addPublicWidget(NewDashboardDetailsEditPage.WELCOME_WIDGET);
     WelcomeEditWidgetNewDashboardPage welcomeWidgetPage = new WelcomeEditWidgetNewDashboardPage();
     welcomeWidgetPage.waitForDialogLoaded();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(welcomeWidgetPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "welcome-widget-configuration", new ScreenshotMargin(20));
@@ -243,7 +240,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink("portalKitTestHelper/153CACC26D0D4C3D/createSampleNewsFeed.ivp");
     ScreenshotUtil.maximizeBrowser();
-    loginAsAdminAndAddPublicWidget(NewDashboardDetailsEditPage.NEWS_WIDGET);
+    addPublicWidget(NewDashboardDetailsEditPage.NEWS_WIDGET);
     DashboardNewsWidgetConfigurationPage newsWidgetPage = new DashboardNewsWidgetConfigurationPage();
 
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(newsWidgetPage.getConfigurationDialog(),
@@ -269,8 +266,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
     redirectToRelativeLink("portal/1549F58C18A6C562/PortalDashboardConfiguration.ivp");
   }
 
-  private void loginAsAdminAndAddPublicWidget(String widgetName) {
-    login(TestAccount.ADMIN_USER);
+  private void addPublicWidget(String widgetName) {
 //    updatePortalSetting(Variable.SHOW_LEGACY_UI .getKey(), "false");
     redirectToDashboardConfiguration();
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
