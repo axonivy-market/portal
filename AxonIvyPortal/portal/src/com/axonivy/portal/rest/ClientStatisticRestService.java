@@ -15,11 +15,11 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import com.axonivy.portal.dto.ClientStatisticDto;
-import com.axonivy.portal.service.StatisticChartDataService;
+import com.axonivy.portal.service.ClientStatisticService;
 import com.google.gson.GsonBuilder;
 
 import ch.ivy.addon.portal.chat.GsonUTCDateAdapter;
-import ch.ivy.addon.portalkit.statistics.StatisticChartResponse;
+import ch.ivy.addon.portalkit.statistics.ClientStatisticResponse;
 import ch.ivyteam.ivy.elasticsearch.client.agg.AggregationResult;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -29,7 +29,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @Path(value = "statistic-data-service")
 @RolesAllowed(value = { ISecurityConstants.TOP_LEVEL_ROLE_NAME })
-public class StatisticChartDataRestService {
+public class ClientStatisticRestService {
 
   @POST
   @Path(value = "Data")
@@ -46,7 +46,7 @@ public class StatisticChartDataRestService {
       return Response.status(Status.NOT_ACCEPTABLE).build();
     }
     try {
-      StatisticChartResponse result = StatisticChartDataService.getInstance().getData(payload);
+      ClientStatisticResponse result = ClientStatisticService.getInstance().getData(payload);
       return Response.ok(result).build();
     } catch (NotFoundException e) {
       return buildResponse(Status.NOT_FOUND, e);
