@@ -346,5 +346,38 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   
   public boolean isShowShareButtonOnConfig(boolean isPublicDashboard) {
     return isPublicDashboard && PermissionUtils.hasShareDashboardPermission();
-  }  
+  }
+
+  public void save() {
+    if (isPublicDashboard) {
+      savePublicArrangement();
+    } else {
+      savePrivateArrangement();
+    }
+  }
+
+  public void savePublicArrangement() {
+    List<Dashboard> dashboards = DashboardUtils.getPublicDashboards();
+    for (Dashboard dashboard : dashboards) {
+      if (dashboard.getId() == null) {
+        dashboard.setId(DashboardUtils.generateId());
+      }
+    }
+
+    Map<String, Dashboard> idToDashboard = DashboardUtils.createMapIdToDashboard(dashboards);
+    List<Dashboard> newDashboards = new ArrayList<>();
+    for (Dashboard dashboardOrder : this.dashboards) {
+      if (idToDashboard.containsKey(dashboardOrder.getId())) {
+        newDashboards.add(idToDashboard.remove(dashboardOrder.getId()));
+      }
+    }
+    newDashboards.addAll(idToDashboard.values());
+    String dashboardsAsSJSON = BusinessEntityConverter.entityToJsonValue(newDashboards);
+    Ivy.var().set(PortalVariable.DASHBOARD.key, dashboardsAsSJSON);
+  }
+
+  public void savePrivateArrangement() {
+    String dashboardJson = BusinessEntityConverter.entityToJsonValue(this.dashboards);
+    Ivy.session().getSessionUser().setProperty(PortalVariable.DASHBOARD.key, dashboardJson);
+  }
 }

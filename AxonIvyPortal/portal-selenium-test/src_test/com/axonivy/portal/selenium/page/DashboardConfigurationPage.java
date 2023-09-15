@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.axonivy.portal.selenium.common.FileHelper;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.DragAndDropOptions;
 import com.codeborne.selenide.SelenideElement;
 
 public class DashboardConfigurationPage extends TemplatePage {
@@ -217,6 +218,11 @@ public class DashboardConfigurationPage extends TemplatePage {
     return new NewDashboardPage();
   }
   
+  public NewDashboardPage backToHomePageBottom() {
+    $("[id$='back-to-home-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    return new NewDashboardPage();
+  }
+
   public SelenideElement getImportDashboardDialog() {
     $("a[id$=':import-dashboard']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     return $("div[id$='dashboard-import-dialog']");
@@ -281,5 +287,38 @@ public class DashboardConfigurationPage extends TemplatePage {
 
     multipleLanguageDialog.$("button[type='submit']").click();
     multipleLanguageDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  private SelenideElement findPrivateDashboardRowByName(String dashboardName) {
+    return $("[id$=':dashboard-table_data']").shouldBe(appear, DEFAULT_TIMEOUT).$$("tr[role='row']").asFixedIterable()
+        .stream().filter(row -> row.getText().contains(dashboardName)).findFirst().get();
+  }
+
+
+  public void reorderPrivateDashboard(String fromDashboardName, String toDashboardName) {
+    var toRow = findPrivateDashboardRowByName(toDashboardName).$("i.si-move-expand-vertical");
+    var fromRow = findPrivateDashboardRowByName(fromDashboardName).$("i.si-move-expand-vertical");
+    dragAndDropTo(toRow, fromRow);
+  }
+
+  private void dragAndDropTo(SelenideElement toRow, SelenideElement fromRow) {
+    var targetCssSelector = String.format("[id$='%s']", toRow.getAttribute("id"));
+    fromRow.dragAndDropTo(targetCssSelector, DragAndDropOptions.usingActions());
+  }
+
+  public void reorderPublicDashboard(String fromDashboardName, String toDashboardName) {
+    var toRow = findPublicDashboardRowByName(toDashboardName).$("i.si-move-expand-vertical");
+    var fromRow = findPublicDashboardRowByName(fromDashboardName).$("i.si-move-expand-vertical");
+    dragAndDropTo(toRow, fromRow);
+  }
+
+  public void saveSetting() {
+    $("button[id$='save-settings']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id$='dashboard-configuration-content']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  private SelenideElement findPublicDashboardRowByName(String dashboardName) {
+    return $("[id$=':dashboard-table_data']").shouldBe(appear, DEFAULT_TIMEOUT).$$("tr[role='row']")
+        .asFixedIterable().stream().filter(row -> row.getText().contains(dashboardName)).findFirst().get();
   }
 }
