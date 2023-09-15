@@ -30,7 +30,7 @@ public class WelcomeEditWidgetNewDashboardPage extends TemplatePage {
   public void inputWelcomeTexts(List<String> welcomeTexts) {
     var configDialog = $("#new-widget-configuration-dialog");
     ElementsCollection welcomeTextInputs = configDialog.findAll(".js-welcome-text-input");
-    welcomeTextInputs.forEach(elem -> {
+    welcomeTextInputs.asDynamicIterable().forEach(elem -> {
       elem.clear();
       elem.sendKeys(welcomeTexts.stream().filter(text -> welcomeTexts.indexOf(text) == welcomeTextInputs.indexOf(elem)).findFirst().orElse(""));
     });
@@ -41,7 +41,7 @@ public class WelcomeEditWidgetNewDashboardPage extends TemplatePage {
     configDialog.find("[id $= ':welcome-text-size']").click();
     var selectionPanel = $("[id $= ':welcome-text-size_panel']");
     selectionPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    selectionPanel.findAll("li.ui-selectonemenu-item").forEach( item -> {
+    selectionPanel.findAll("li.ui-selectonemenu-item").asDynamicIterable().forEach( item -> {
       if (item.innerText().contentEquals(value)) {
         item.click();
         selectionPanel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
@@ -55,7 +55,7 @@ public class WelcomeEditWidgetNewDashboardPage extends TemplatePage {
     configDialog.find("[id $= ':welcome-text-position']").click();
     var selectionPanel = $("[id $= ':welcome-text-position_panel']");
     selectionPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    selectionPanel.findAll("li.ui-selectonemenu-item").forEach( item -> {
+    selectionPanel.findAll("li.ui-selectonemenu-item").asDynamicIterable().forEach( item -> {
       if (item.innerText().contentEquals(value)) {
         item.click();
         selectionPanel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);

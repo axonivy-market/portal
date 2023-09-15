@@ -25,6 +25,8 @@
      <p:inputText id="search-saved-filter-input"
         placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/SearchForFilter')}"
         styleClass="saved-filter__search" value="#{widget.searchSavedFilterKeyword}"
+        onfocus="#{widget.type == 'PROCESS'} ? preventFocus() : 'false' "
+        onclick="retrieveFocus()"
         valueChangeListener="#{widget.searchSavedFilters()}">
         <p:ajax event="keyup" delay="50" partialSubmit="true" global="false" process="@this"
           onstart="searchWigetFilter#{index}()" />
@@ -70,6 +72,18 @@
         $(loadingMessage).addClass('u-display-none');
         $(widgetFilterItems).removeClass('u-display-none');
       }
+    }
+    
+    function preventFocus(){
+      var saveFilterSearch = '.saved-filter__search';
+      $(saveFilterSearch).removeClass('ui-state-focus');
+      $(saveFilterSearch).trigger("blur");
+    }
+    
+    function retrieveFocus(){
+      var saveFilterSearch = '.saved-filter__search';
+      $(saveFilterSearch).removeAttr('onfocus');
+      $(saveFilterSearch).trigger("focus");
     }
 </script>
 </html>

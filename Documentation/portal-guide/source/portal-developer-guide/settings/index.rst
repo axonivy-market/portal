@@ -203,6 +203,7 @@ Administrators can create, update and delete all workflows in the application.
 Normal users can update and delete workflows that have been created by them and can interact
 with tasks that have been assigned to them.
 
+.. _settings-permission-settings-others:
 
 Other Permissions
 -----------------
@@ -269,6 +270,8 @@ Other Permissions
  |           | other users can see that link in|                                                    |
  |           | full process list and can also  |                                                    |
  |           | add it to User Favorite         |                                                    |
+ |           +---------------------------------+----------------------------------------------------+
+ |           | Dashboard sharing               | ``PortalPermission.DASHBOARD_SHARE_LINK``          |
  +-----------+---------------------------------+----------------------------------------------------+
 
 .. _settings-virus-scanning-setting:

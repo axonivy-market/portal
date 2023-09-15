@@ -4,9 +4,13 @@ import static com.codeborne.selenide.Selenide.$;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
+
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 
 public class DashboardModificationPage extends TemplatePage {
 
@@ -72,9 +76,8 @@ public class DashboardModificationPage extends TemplatePage {
     }
 
     editDashboardDialog.$("div[id$=':dashboard-permission']").$("button.ui-autocomplete-dropdown").click();
-    
-    $("span[id$=':dashboard-permission_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    $("span[id$=':dashboard-permission_panel']").$$("tr.ui-autocomplete-item").forEach(item -> {
+    WaitHelper.waitNumberOfElementsToBe(WebDriverRunner.getWebDriver(), By.cssSelector("span[id$=':dashboard-permission_panel']"), 1);
+    $("span[id$=':dashboard-permission_panel']").$$("tr.ui-autocomplete-item").asDynamicIterable().forEach(item -> {
       for(String permissionName : permissions) {
         if (item.$("td").getText().contains(permissionName)) {
           item.click();
@@ -113,5 +116,14 @@ public class DashboardModificationPage extends TemplatePage {
     SelenideElement dashboard = getDashboardRowByName(dashboardName);
     dashboard.shouldBe(Condition.appear);
     return dashboard.$("td:last-child button[id $=':export-dashboard']");
+  }
+  
+  public SelenideElement getDashboardShareLinkButton() {
+    return $("button[id$='share-dashboard']");
+  }
+  
+  public void getDashboardShareLinkDialog() {
+    getDashboardShareLinkButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("div[id$=':share-dashboard-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 }

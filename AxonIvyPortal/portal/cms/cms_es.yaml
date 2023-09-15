@@ -128,6 +128,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       COMPACT: Compacto
       GRID: Carta
       IMAGE: Imagen
+    ProcessSorting:
+      BY_ALPHABETICALLY: Alfabéticamente
+      BY_INDEX: Índice de clasificación
     ProcessType:
       EXPRESS_PROCESS: Flujo de trabajo exprés
       EXTERNAL_LINK: Link externo
@@ -578,6 +581,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     showRelatedCaseInfo: Casos relacionados
     showSystemNotes: Notas del sistema
     showSystemTasks: Tareas del sistema
+    sorting: Sorting
     start: Abrir
     state: Estatus
     status: Estado
@@ -794,6 +798,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SaveNewWidgetFilterHeader: Guardar un nuevo filtro de widget
     SavedFilterHeader: Filtros guardados
     SearchForFilter: Búsqueda del filtro
+    ShareThisDashboard: Comparte este panel
     StatisticWidget:
       AvailableCharts: Gráficos estadísticos disponibles
       Charts: 'Gráfico(s): {0}'
@@ -918,7 +923,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processes:
       emptyProcess: No ha definido ningún proceso.
       noMatchingProcess: No hay procesos que coincidan.
-      noPermissionToSee: No tienes el permiso necesario para ver este widget.
+      noPermissionToSee: Usted no tiene el permiso necesario para iniciar este proceso.
       noProcessSelected: Seleccione un proceso
     removeWidgetHeader: Eliminar el widget "{0}"
     removeWidgetMessage: ¿Realmente quieres eliminarlo?
@@ -1546,6 +1551,8 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: ¡No se pudo encontrar el proceso vinculado!
+                DashboardModification:
+                  Share: Compartir
         portalkit:
           component:
             CaseWidget:
@@ -1572,6 +1579,10 @@ Dialogs:
               ImportPrivate: Importar panel privado
               ImportPublic: Importar panel público
               chooseAJsonFile: Elija un archivo json
+            DashboardSharing:
+              CopyLink: Copiar link
+              LinkCopied: ¡Enlace copiado!
+              ShareDashboard: Compartir panel
             NewsWidget:
               NewsContentPlaceHolder: Introduzca el contenido de las noticias
               NewsContentValidateMessage: El contenido de las noticias en {0} es necesario

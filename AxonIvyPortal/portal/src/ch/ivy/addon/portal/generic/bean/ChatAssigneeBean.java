@@ -3,13 +3,9 @@ package ch.ivy.addon.portal.generic.bean;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -24,7 +20,6 @@ import org.primefaces.PrimeFaces;
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.dto.UserDTO;
-import com.axonivy.portal.components.service.IvyAdapterService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -37,7 +32,6 @@ import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.businesscase.IBusinessCase;
@@ -49,7 +43,6 @@ public class ChatAssigneeBean implements Serializable {
 
   private static final String TASK_TEMPLATE_GROWL_ID = "task-template-growl";
   private static final String CHAT_ASSIGNEE_ERROR_MESSAGE_ID = "chat-assignee-selection-form:error-message";
-  private static final String CONFIGURED_ROLES_SUB_PROCESS = "configureRolesForGroupChat(ch.ivyteam.ivy.workflow.ITask)";
 
 
   private static final long serialVersionUID = 4691697531600235758L;
@@ -305,15 +298,6 @@ public class ChatAssigneeBean implements Serializable {
       return true;
     }
     return false;
-  }
-
-  @SuppressWarnings("unchecked")
-  private List<IRole> getConfiguredRoles() {
-    Map<String, Object> params = new HashMap<>();
-    params.put("task", task);
-    Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(CONFIGURED_ROLES_SUB_PROCESS, params);
-    List<IRole> roles = (List<IRole>) response.get("roles");
-    return roles.stream().filter(role -> !Objects.isNull(role)).collect(Collectors.toList());
   }
 
   public boolean getIsAssignToUser() {

@@ -25,6 +25,7 @@ public class DashboardProcessSearchCriteria {
   private boolean isSelectedAllProcess;
   private List<String> categories;
   private List<String> applications;
+  private String sorting;
 
   public List<DashboardProcess> searchProcessesByFilters(CompactProcessDashboardWidget widget) {
     if (widget == null || COMPACT_MODE != widget.getDisplayMode()) {
@@ -90,5 +91,13 @@ public class DashboardProcessSearchCriteria {
 
   public void setApplications(List<String> applications) {
     this.applications = applications;
+  }
+
+  public String getSorting() {
+    return sorting;
+  }
+
+  public void setSorting(String sorting) {
+    this.sorting = sorting;
   }
 }

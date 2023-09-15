@@ -76,12 +76,13 @@ Dialogs:
             NoName: Aucun nom
             NotAvailable: '-'
           ProcessViewer:
-            CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
+            NoPermissionToView: Vous n'avez pas l'autorisation requise pour visualiser ce processus.
+            ProcessCanNotBeLoaded: Le processus ne peut pas être chargé.
             ProcessDetails: Détails du processus
             ProcessId: Id du processus
             ProcessInfo: Informations sur le processus
             ProcessInfoIconTooltip: Cliquez pour voir les détails du démarrage du processus
-            ProcessIsHidden: Le processus en cours est masqué !
+            ProcessNotFound: Le processus défini est introuvable.
             ProcessType:
               CASE_MAP: Carte de cas
               EXPRESS_PROCESS: Flux de travail express

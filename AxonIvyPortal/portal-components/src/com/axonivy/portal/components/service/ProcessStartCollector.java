@@ -15,7 +15,6 @@ import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
 
 public class ProcessStartCollector {
-    @SuppressWarnings("unused")
     private final List<IApplication> applicationsInSecurityContext;
     private static ProcessStartCollector instance;
 

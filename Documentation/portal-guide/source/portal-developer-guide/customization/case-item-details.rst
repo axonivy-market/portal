@@ -126,6 +126,7 @@ How to Configure Widgets in Case Details
 
 How to Customize the Case Details UI
 ------------------------------------
+.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 We included sample code for this customization in ``portal-developer-examples``.
 
@@ -159,6 +160,7 @@ We included sample code for this customization in ``portal-developer-examples``.
 
 Show/Hide Components by Keywords
 --------------------------------
+.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 Refer to the ``ui:param`` tag list in ``CaseInformation.xhtml`` of
 ``portal``. In case, we want to show/hide any elements on
@@ -278,6 +280,7 @@ The following two steps are necessary to add new custom panels:
 
 #. Refer to the ``caseItemDetailCustom*`` section in ``CaseInformation.xhtml`` of ``portal``.
 
+   .. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
    -  You need to define ``ui:define`` with a valid name such as
       ``caseItemDetailCustomTop``, ``caseItemDetailCustomMiddle`` and

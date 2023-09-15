@@ -57,7 +57,7 @@ public class DashboardWidgetInformationService {
   public Map<TaskState, Long> buildStatisticOfTaskByState(DashboardTaskLazyDataModel dataModel) {
     Map<String, Object> params = new HashMap<>();
     params.put(TASK_CRITERIA_PARAM, generateTaskSearchCriteriaWithoutOrderByClause(dataModel));
-    Map<String, Object> response = IvyAdapterService.startSubProcessInProject(ANALYZE_TASK_STATE, params);
+    Map<String, Object> response = IvyAdapterService.startSubProcessInProjectAndAllRequired(ANALYZE_TASK_STATE, params);
 
     Map<TaskState, Long> result = new HashMap<>();
     TaskStateStatistic taskStateStatistic = (TaskStateStatistic) response.get("taskStateStatistic");
@@ -85,7 +85,7 @@ public class DashboardWidgetInformationService {
     Map<String, Object> params = new HashMap<>();
     params.put("taskSearchCriteria", generateTaskSearchCriteriaWithoutOrderByClause(dataModel));
 
-    Map<String, Object> response = IvyAdapterService.startSubProcessInProject(ANALYZE_TASK_EXPIRY, params);
+    Map<String, Object> response = IvyAdapterService.startSubProcessInProjectAndAllRequired(ANALYZE_TASK_EXPIRY, params);
     var expiryStatistic = (ExpiryStatistic) response.get("expiryStatistic");
 
     for (Entry<Date, Long> entry : expiryStatistic.getNumberOfTasksByExpiryTime().entrySet()) {
@@ -106,7 +106,7 @@ public class DashboardWidgetInformationService {
     Map<String, Object> params = new HashMap<>();
     params.put(TASK_CRITERIA_PARAM, generateTaskSearchCriteriaWithoutOrderByClause(dataModel));
 
-    Map<String, Object> response = IvyAdapterService.startSubProcessInProject(ANALYZE_TASK_CATEGORY, params);
+    Map<String, Object> response = IvyAdapterService.startSubProcessInProjectAndAllRequired(ANALYZE_TASK_CATEGORY, params);
 
     var taskCategoryStatistic = (TaskCategoryStatistic) response.get("taskCategoryStatistic");
     taskByCategoryStatistic.putAll(taskCategoryStatistic.getNumberOfTasksByCategory());
@@ -123,7 +123,7 @@ public class DashboardWidgetInformationService {
     Map<String, Object> params = new HashMap<>();
     params.put(CASE_CRITERIA_PARAM, generateCaseSearchCriteriaWithoutOrderByClause(dataModel));
 
-    var response = IvyAdapterService.startSubProcessInProject(ANALYZE_CASE_STATE, params);
+    var response = IvyAdapterService.startSubProcessInProjectAndAllRequired(ANALYZE_CASE_STATE, params);
 
     var caseStateStatistic = (CaseStateStatistic) response.get("caseStateStatistic");
     Map<CaseState, Long> result = new HashMap<>();
@@ -173,7 +173,7 @@ public class DashboardWidgetInformationService {
     Map<String, Object> params = new HashMap<>();
     params.put(CASE_CRITERIA_PARAM, generateCaseSearchCriteriaWithoutOrderByClause(dataModel));
 
-    var response = IvyAdapterService.startSubProcessInProject(ANALYZE_CASE_CATEGORY, params);
+    var response = IvyAdapterService.startSubProcessInProjectAndAllRequired(ANALYZE_CASE_CATEGORY, params);
 
     var caseCategoryStatistic = (CaseCategoryStatistic) response.get("caseCategoryStatistic");
     caseByCategoryStatistic.putAll(caseCategoryStatistic.getNumberOfCasesByCategory());

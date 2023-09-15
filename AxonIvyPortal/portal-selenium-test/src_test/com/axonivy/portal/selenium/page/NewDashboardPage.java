@@ -593,7 +593,8 @@ public class NewDashboardPage extends TemplatePage {
 
   private void testSearchCompactModeProcessFilters() {
     SelenideElement searchInput = getCompactModeProcessFilterPanelSearchInput();
-    searchInput.shouldBe(Condition.appear).clear();
+    searchInput.shouldBe(Condition.appear).click();
+    searchInput.clear();
     searchInput.sendKeys(SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME);
     getCompactModeProcessFilterPanelSavedFilter(0)
         .shouldBe(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME), DEFAULT_TIMEOUT);

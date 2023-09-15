@@ -46,7 +46,7 @@ public class ProcessViewerTest extends BaseTest {
   public void testPermissionForProcessViewerComponent() {
     redirectToRelativeLink(testProcessViewerPermissionUrl);
     ProcessViewerPage processViewerPage = new ProcessViewerPage();
-    assertTrue(processViewerPage.getErrorMessage().equalsIgnoreCase("The current process is hidden!"));
+    assertTrue(processViewerPage.getErrorMessage().equalsIgnoreCase("You do not have the required permission to view this process."));
   }
 
   @Test

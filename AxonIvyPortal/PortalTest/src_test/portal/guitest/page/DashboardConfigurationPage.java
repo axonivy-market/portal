@@ -145,4 +145,10 @@ public class DashboardConfigurationPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("input[id$=':import-dashboard-form:import-dashboard-title']"), true);
     return findElementByCssSelector("div[id$=':dashboard-import-dialog']");
   }
+  
+  public WebElement getShareDashboardDialog() {
+    clickByCssSelector("button[id$=':share-dashboard']");
+    waitForElementDisplayed(By.cssSelector("div[id$=':share-dashboard-dialog']"), true);
+    return findElementByCssSelector("div[id$=':share-dashboard-dialog']");
+  }
 }

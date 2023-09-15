@@ -1,7 +1,8 @@
 .. _customization-login:
 
-Login
-=====
+Login (Deprecated)
+==================
+.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 Login Page
 ----------

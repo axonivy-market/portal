@@ -43,5 +43,32 @@
         "at" : { "x" : 216, "y" : 64 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f5",
+      "type" : "RequestStart",
+      "name" : "startWithPermission.ivp",
+      "config" : {
+        "callSignature" : "startWithPermission",
+        "responsible" : "GeneralManager",
+        "outLink" : "startWithPermission.ivp",
+        "wfuser" : "1"
+      },
+      "visual" : {
+        "at" : { "x" : 56, "y" : 224 }
+      },
+      "connect" : { "id" : "f8", "to" : "f7" }
+    }, {
+      "id" : "f6",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 224 }
+      }
+    }, {
+      "id" : "f7",
+      "type" : "Script",
+      "visual" : {
+        "at" : { "x" : 208, "y" : 224 }
+      },
+      "connect" : { "id" : "f9", "to" : "f6" }
     } ]
 }

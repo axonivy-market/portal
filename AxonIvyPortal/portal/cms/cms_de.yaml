@@ -128,6 +128,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       COMPACT: Kompakt
       GRID: Raster
       IMAGE: Bild
+    ProcessSorting:
+      BY_ALPHABETICALLY: Alphabetisch
+      BY_INDEX: Sortierindex
     ProcessType:
       EXPRESS_PROCESS: Express Workflow
       EXTERNAL_LINK: External Link
@@ -577,6 +580,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     showRelatedCaseInfo: Zugehöriger Vorfall
     showSystemNotes: Systemhinweise
     showSystemTasks: Systemaufgaben
+    sorting: Sortierung
     start: Start
     state: Status
     status: Status
@@ -795,6 +799,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SaveNewWidgetFilterHeader: Speichere neuen Widget-Filter
     SavedFilterHeader: Gespeicherte Filter
     SearchForFilter: Suche nach Filter
+    ShareThisDashboard: Teilen Sie dieses Dashboard
     StatisticWidget:
       AvailableCharts: Verfügbare Statistikdiagramme
       Charts: 'Diagramm(e): {0}'
@@ -919,7 +924,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processes:
       emptyProcess: Sie haben keine Prozesse definiert.
       noMatchingProcess: Keine passenden Prozesse.
-      noPermissionToSee: Sie haben nicht die erforderliche Berechtigung, dieses Widget zu sehen.
+      noPermissionToSee: Sie besitzen nicht die erforderlichen Rechte um diesen Prozess zu starten.
       noProcessSelected: Bitte wählen Sie einen Prozess
     removeWidgetHeader: Widget "{0}" löschen
     removeWidgetMessage: Möchten Sie es wirklich löschen?
@@ -1544,6 +1549,8 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
+                DashboardModification:
+                  Share: Aktie
         portalkit:
           component:
             CaseWidget:
@@ -1570,6 +1577,10 @@ Dialogs:
               ImportPrivate: Privates Dashboard importieren
               ImportPublic: Öffentliches Dashboard importieren
               chooseAJsonFile: Wählen Sie eine JSON-Datei
+            DashboardSharing:
+              CopyLink: Link kopieren
+              LinkCopied: Link kopiert!
+              ShareDashboard: Dashboard teilen
             NewsWidget:
               NewsContentPlaceHolder: Nachrichteninhalt eingeben
               NewsContentValidateMessage: Nachrichteninhalt in {0} ist erforderlich

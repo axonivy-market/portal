@@ -143,6 +143,7 @@ How to configure widgets in task details
 
 How to customize Task item details UI
 -------------------------------------
+.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 Refer to ``portal-developer-examples`` project for examples.
 
@@ -175,6 +176,7 @@ Refer to ``portal-developer-examples`` project for examples.
 
 Show or hide elements
 ---------------------
+.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 Refer to list of ``ui:param`` tag in ``PortalTaskDetails.xhtml`` of
 ``portal``. If you want to show or hide elements on
@@ -267,6 +269,8 @@ There are **two steps** for adding new custom panels.
 
 #. To customize task details which do not use IFrame, refer to the ``taskItemDetailCustomPanel*`` section in ``PortalTaskDetails.xhtml`` of ``portal``.
 
+   .. warning:: Deprecated: This feature is marked for removal in version LTS 12.
+
    -  We need to define the ``ui:define`` tag with the valid name such as
       ``taskItemDetailCustomPanelTop`` and ``taskItemDetailCustomPanelBottom``.
    
@@ -349,6 +353,7 @@ There are **two steps** for adding new custom panels.
    
       |task-customized-top|
       |task-customized-bottom|
+
 
 #. To customize task details use IFrame, please make sure
 

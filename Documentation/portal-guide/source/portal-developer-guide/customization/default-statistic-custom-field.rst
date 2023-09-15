@@ -1,7 +1,8 @@
 .. _customization-default-custom-field:
 
-Default Statistic Custom Field
-==============================
+Default Statistic Custom Field (Deprecated)
+===========================================
+.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 .. _customization-default-custom-field-introduction:
 

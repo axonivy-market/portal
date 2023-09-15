@@ -1730,11 +1730,89 @@
         "labelOffset" : { "x" : 145, "y" : 25 }
       },
       "connect" : { "id" : "f166", "to" : "f161" }
+    }, {
+      "id" : "f171",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.DASHBOARD_SHARE_LINK.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ISecurityContext.current().securityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 1952 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f177", "to" : "f7", "via" : [ { "x" : 408, "y" : 1952 } ] }
+    }, {
+      "id" : "f172",
+      "type" : "RequestStart",
+      "name" : "grantDashboardShareLinkPermission.ivp",
+      "config" : {
+        "callSignature" : "grantDashboardShareLinkPermission",
+        "outLink" : "grantDashboardShareLinkPermission.ivp",
+        "startName" : "Grant Share Link Dashboard Permision"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 1952 },
+        "labelOffset" : { "x" : 145, "y" : 25 }
+      },
+      "connect" : { "id" : "f173", "to" : "f171" }
+    }, {
+      "id" : "f174",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.DASHBOARD_SHARE_LINK.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ISecurityContext.current().securityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 2016 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f178", "to" : "f7", "via" : [ { "x" : 408, "y" : 2016 } ] }
+    }, {
+      "id" : "f175",
+      "type" : "RequestStart",
+      "name" : "denyDashboardShareLinkPermission.ivp",
+      "config" : {
+        "callSignature" : "denyDashboardShareLinkPermission",
+        "outLink" : "denyDashboardShareLinkPermission.ivp",
+        "startName" : "Deny Share Link Dashboard Permision"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 2016 },
+        "labelOffset" : { "x" : 145, "y" : 25 }
+      },
+      "connect" : { "id" : "f176", "to" : "f174" }
     } ],
   "layout" : {
     "lanes" : [ {
         "name" : "Request start",
-        "size" : 1944
+        "size" : 2080
       } ]
   }
 }

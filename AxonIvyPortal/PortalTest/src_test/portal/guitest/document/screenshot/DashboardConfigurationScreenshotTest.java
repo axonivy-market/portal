@@ -59,6 +59,7 @@ public class DashboardConfigurationScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.captureElementScreenshot(dashboardConfigurationPage.getImportDashboardDialog(), ScreenshotUtil.DASHBOARD_CONFIGURATION_FOLDER + "import-public-dashboard-dialog");
     dashboardConfigurationPage.openImportPrivateDashboards();
     ScreenshotUtil.captureElementScreenshot(dashboardConfigurationPage.getImportDashboardDialog(), ScreenshotUtil.DASHBOARD_CONFIGURATION_FOLDER + "import-private-dashboard-dialog");
-
+    dashboardConfigurationPage.openEditPublicDashboards();
+    ScreenshotUtil.captureElementScreenshot(dashboardConfigurationPage.getShareDashboardDialog(), ScreenshotUtil.DASHBOARD_CONFIGURATION_FOLDER + "share-dashboard-dialog");
   }
 }

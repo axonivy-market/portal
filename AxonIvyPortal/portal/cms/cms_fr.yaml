@@ -128,6 +128,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       COMPACT: Compact
       GRID: Carte
       IMAGE: Image
+    ProcessSorting:
+      BY_ALPHABETICALLY: Alphabétiquement
+      BY_INDEX: Index de tri
     ProcessType:
       EXPRESS_PROCESS: Flux de travail express
       EXTERNAL_LINK: Lien externe
@@ -577,6 +580,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     showRelatedCaseInfo: Cas connexe
     showSystemNotes: Notes du système
     showSystemTasks: Tâches du système
+    sorting: triage
     start: Démarrage
     state: Etat
     status: Etat
@@ -794,6 +798,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SaveNewWidgetFilterHeader: Save a new widget filter
     SavedFilterHeader: Saved filters
     SearchForFilter: Search for filter
+    ShareThisDashboard: Partager ce tableau de bord
     StatisticWidget:
       AvailableCharts: Graphiques de statistiques disponibles
       Charts: 'Graphique(s) : {0}'
@@ -918,7 +923,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processes:
       emptyProcess: Vous n'avez défini aucun processus.
       noMatchingProcess: Aucun processus correspondant.
-      noPermissionToSee: Vous n'avez pas l'autorisation nécessaire pour voir ce widget.
+      noPermissionToSee: Vous n'avez pas l'autorisation requise pour lancer ce processus.
       noProcessSelected: Veuillez sélectionner un processus
     removeWidgetHeader: Supprimer le widget "{0}"
     removeWidgetMessage: Voulez-vous vraiment le supprimer ?
@@ -1543,6 +1548,8 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
+                DashboardModification:
+                  Share: Partager
         portalkit:
           component:
             CaseWidget:
@@ -1569,6 +1576,10 @@ Dialogs:
               ImportPrivate: Importer un tableau de bord privé
               ImportPublic: Importer un tableau de bord public
               chooseAJsonFile: Choisissez un fichier json
+            DashboardSharing:
+              CopyLink: Copier le lien
+              LinkCopied: Lien copié !
+              ShareDashboard: Partager le tableau de bord
             NewsWidget:
               NewsContentPlaceHolder: Saisir le contenu de l'actualité
               NewsContentValidateMessage: Le contenu de l'actualité dans {0} est requis
