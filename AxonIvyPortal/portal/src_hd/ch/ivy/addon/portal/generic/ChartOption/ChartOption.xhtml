@@ -25,7 +25,7 @@
           <c:forEach items="#{chartOptionBean.statisticDataList}"
             var="chartOption" varStatus="counter">
             <h:panelGroup>
-              <h2>#{chartOption.label}</h2>
+              <h2>#{chartOption.name}</h2>
               <div
                 class="ui-chart statistic-chart-widget__canvas chart-options"
                 style="height: 500px; max-width: 500px"
