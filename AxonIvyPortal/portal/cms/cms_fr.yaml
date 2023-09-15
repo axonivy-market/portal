@@ -768,6 +768,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Publique
       savedFilters: 'Filtres enregistrés:'
   dashboard:
+    CustomWidgets: Widgets personnalisés
     DashboardConfiguration:
       CreateFromScratch: Créer à partir de rien
       CreateFromScratchDescription: Créez votre propre tableau de bord à partir de zéro
@@ -788,6 +789,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       SomeThingWentWrong: Quelque chose n'a pas fonctionné
       Title: Configuration du tableau de bord
     EmptyFilterMessage: Aucun filtre de widget trouvé
+    ExternalPageWidget: Page externe
+    ExternalPageWidgetIntroduction: Ce widget peut afficher une page web externe.
     Filter:
       FilterOptionHeader: Options de filtre
       ManageWidgetFilterHeader: Gestion des filtres des widgets
@@ -797,11 +800,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     ManageFilter: Gérer les filtres
     NoData: Pas de données
     NoSavedFilterMessage: Aucun filtre enregistré n'a été trouvé. Essayez d'en créer un nouveau en cliquant sur le bouton Enregistrer le filtre.
+    NoWidgetAvailable: Il n'y a pas de widgets.
     RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
     SaveNewWidgetFilterHeader: Save a new widget filter
     SavedFilterHeader: Saved filters
     SearchForFilter: Search for filter
     ShareThisDashboard: Partager ce tableau de bord
+    StandardWidgets: Widgets standard
     StatisticWidget:
       AvailableCharts: Graphiques de statistiques disponibles
       Charts: 'Graphique(s) : {0}'
@@ -871,8 +876,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     createdFrom: Créé de
     createdTo: Créé à
     customFieldType: Type de champ personnalisé
-    customWidget: Widget personnalisé
-    customWidgetIntroduction: Ce widget peut afficher un processus Axon Ivy ou une page web externe.
     dashboardManagement:
       CreateDashboard: Créer un tableau de bord
       addDashboard: Ajouter un tableau de bord
@@ -1059,6 +1062,22 @@ ch.ivy.addon.portalkit.ui.jsf:
   notes:
     newNoteHeader: Ajouter une nouvelle note
     wroteAt: Ajoutée le
+  notifications:
+    linkToFullScreen: Lien vers le plein écran
+    linkToNotificationSettings: Lien vers les paramètres de notification
+    markAllAsRead: Marquer tous les textes comme lus
+    markAsRead: Marquer comme lu
+    noNotificationText: Pas de notification
+    notificationTitle: Notifications
+    olderText: Plus ancien
+    onlyUnread: Uniquement non lu
+    todayText: Aujourd'hui
+    xDaysAgo: Il y a %s jours
+    xHoursAgo: Il y a %s heures
+    xMinutesAgo: Il y a %s minutes
+    xMonthsAgo: Il y a %s mois
+    xSecondsAgo: Il y a %s secondes
+    xYearsAgo: Il y a %s ans
   passwordSetting:
     changePasswordWSError: Une error s'est produite lors du changement de mot de passe. Veuillez contacter votre administrateur si le problème persiste après plusieurs essais.
     confirmNewPassword: Confirmer le nouveau mot de passe
