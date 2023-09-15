@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 
-public class StatisticChartData extends AbstractConfiguration {
+public class ClientStatistic extends AbstractConfiguration {
   private String aggregates;
   private String filter;
   private List<String> permissions;
