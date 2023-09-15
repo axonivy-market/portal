@@ -562,4 +562,7 @@
   --combined-button-tab-background-focus: rgba(144, 221, 233, 0.5);
   /* News Widget */
   --news-item-background: rgb(62, 71, 84);
+  /* Notification */
+  --notification-title-color: var(--notification-background-color);
+  --notification-panel-color: var(--notification-background-color)
 }

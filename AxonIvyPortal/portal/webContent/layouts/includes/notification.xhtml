@@ -1,0 +1,97 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+  xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:ic="http://ivyteam.ch/jsf/component">
+
+<h:body>
+  <ui:composition>
+    <ui:param name="unreadNotificationsId" value="#{p:resolveFirstComponentWithId('topbar-unread-notifications', view).clientId}" />
+    <ui:param name="notificationScrollerId" value="#{p:resolveFirstComponentWithId('notifications-scroller', view).clientId}" />
+
+    <h:panelGroup id="notification-form">
+      <h:outputScript library="js" name="notification.js" />
+
+      <h:outputStylesheet library="css" name="chat.css" />
+      <div id="notification-panel" class="notification-panel js-notification-panel ">
+        <div class="notification-item-list js-chat-contact-panel active">
+          <div class="notification-container-content">
+            <h:panelGroup id="notification-container" class="js-notification-container" layout="block" />
+            <div class="notification-items-container" >
+              <h:panelGroup id="notifications">
+                <div class="p-d-flex p-jc-between">
+                <span class="notification-title-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationTitle')}</span>
+                  
+                  <div class="p-d-flex">
+                    <p:selectBooleanCheckbox value="#{notificationBean.dataModel.onlyUnread}" disabled="#{!notificationBean.hasUnreadNotifications()}" 
+                      itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/onlyUnread')}" styleClass="notification-checkbox" >
+                      <p:ajax listener="#{notificationBean.dataModel.onSelectedFilter()}" oncomplete="Portal.updateLayoutContent()"
+                      update="#{unreadNotificationsId}, #{notificationScrollerId}" global="false" partialSubmit="true"/>
+                    </p:selectBooleanCheckbox>  
+                    <p:commandLink id="notificationFullScreen"
+                      styleClass="notification-icon" global="false">
+                      <i class="notification-button si si-expand-6 " />
+                    </p:commandLink>
+                    <p:tooltip for="notificationFullScreen" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/linkToFullScreen')}" />
+                    
+                    <p:commandLink id="notificationMarkAllAsRead" styleClass="notification-icon"
+                      disabled="#{!notificationBean.hasUnreadNotifications()}"
+                      update="#{unreadNotificationsId}, #{notificationScrollerId}"
+                      oncomplete="Portal.updateLayoutContent()"
+                      actionListener="#{notificationBean.readAll()}">
+                      <i class="notification-button si si-check-double-1 p-mr-1" />
+                    </p:commandLink>
+                    <p:tooltip for="notificationMarkAllAsRead" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAllAsRead')}" />
+                   
+                    <p:commandLink id="notificationSetting"  styleClass="notification-icon"
+                      oncomplete="Portal.updateLayoutContent()" global="false">
+                      <i class="notification-button si si-cog" />
+                    </p:commandLink>
+                    <p:tooltip for="notificationSetting" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/linkToNotificationSettings')}" />
+                    
+                  </div>
+                </div>
+
+                <h:panelGroup id="no-notifications" rendered="#{!notificationBean.hasNotifications()}">
+                  <div class="p-text-center message">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/noNotificationText')}</div>
+                </h:panelGroup>
+                
+                <h:panelGroup id="has-notifications" rendered="#{notificationBean.hasNotifications()}">
+                  <h:form id="notificationForm">
+                    <p:dataScroller id="notifications-scroller" lazy="true" styleClass="notification-scroll" value="#{notificationBean.dataModel}" var="notification"
+                      rendered="#{notificationBean.render}" chunkSize="20" mode="inline" widgetVar="notifications-scroller">
+                      <span class="notification-group-name #{notification.markedToday ? '' : 'u-hidden'}" >#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/todayText')}</span>
+                      <span class="notification-group-name #{notification.markedOlder ? '' : 'u-hidden'}" >#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/olderText')}</span>
+                      <div class="#{notification.style} notification-container-top">
+                        <div class="p-d-flex">
+                          <div class="p-d-flex">
+                            <p:commandLink id="notificationMarkAsRead" process="@this"
+                              actionListener="#{notificationBean.markAsRead(notification)}"
+                              global="false"
+                              oncomplete="Portal.updateLayoutContent()"
+                              update="#{unreadNotificationsId}, #{notificationScrollerId}">
+                              <i class="notification-button fa #{notification.read ? 'fa-circle-thin': 'fa-circle'}" />
+                            </p:commandLink>
+                            <p:tooltip for="notificationMarkAsRead" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}" />
+                          </div>
+                          <h:outputText id="notificationMessage" value="#{notification.message}" />
+                        </div>
+
+                        <div>
+                          <h:outputText value="#{notification.timeSince}" styleClass="notification-item-time-since" />
+                        </div>
+                      </div>
+                    </p:dataScroller>
+                  </h:form>
+                </h:panelGroup>
+              </h:panelGroup>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+    </h:panelGroup>
+
+  </ui:composition>
+</h:body>
+</html>

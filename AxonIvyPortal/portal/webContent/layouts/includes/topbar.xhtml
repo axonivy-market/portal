@@ -30,7 +30,6 @@
               task="#{task}" case="#{case}" />
           </h:panelGroup>
         </li>
-
         <li class="topbar-item search-item" jsf:rendered="#{showGlobalSearch}">
             
           <a href="#" id="global-search-item">
@@ -39,7 +38,6 @@
           <ic:ch.ivy.addon.portal.generic.GlobalSearch id="global-search-component"
             isWorkingOnATask="#{isWorkingOnATask}" case="#{case}" />
         </li>
-
         <li class="topbar-item themeswitch-item">
           <p:commandLink id="theme-switcher" disabled="#{!themeBean.enableSwitchThemeButton}"
             onclick="PrimeFaces.FreyaConfigurator.changeLayout('ivy', '#{ivyFreyaTheme.mode == 'light' ? 'dark' : 'light'}');Portal.changePortalVariableTheme('#{ivyFreyaTheme.mode == 'light' ? 'dark' : 'light'}');">
@@ -48,7 +46,16 @@
               listener="#{themeBean.toggleTheme()}" update="theme-switcher" />
           </p:commandLink>
         </li>
-
+        <li class="topbar-item">
+          <p:commandLink id="open-notifications-panel" global="false" update="#{p:resolveFirstComponentWithId('has-notifications', view).clientId}"
+          actionListener="#{notificationBean.setRender(true)}" oncomplete="openNotificationPanel()" >
+            <i class="topbar-icon pi pi-bell" />
+            <div class="notifications-badge">
+              <h:outputText id="topbar-unread-notifications"
+                value="#{notificationBean.getUnreadNotifications()}" />
+            </div>
+          </p:commandLink>
+        </li>
         <li jsf:rendered="#{chatRendererBean.isChatRendered}" class="topbar-item chat-item">
           <p:commandLink id="toggle-chat-panel-command" global="false" styleClass="notification-badge mod-chat-menu">
             <i class="topbar-icon si si-messages-bubble" />
@@ -145,5 +152,6 @@
   <c:if test="#{chatRendererBean.isChatRendered}">
     <ui:include src="/layouts/includes/chat.xhtml" />
   </c:if>
+  <ui:include src="/layouts/includes/notification.xhtml" />
   <!-- TOPBAR END -->
 </ui:composition>
