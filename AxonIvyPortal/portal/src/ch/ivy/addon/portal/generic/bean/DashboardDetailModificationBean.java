@@ -23,6 +23,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -36,6 +37,7 @@ import org.apache.logging.log4j.util.Strings;
 import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.dto.UserDTO;
+import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.dto.News;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.axonivy.portal.service.DeepLTranslationService;
@@ -92,6 +94,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private static final long serialVersionUID = -5272278165636659596L;
   private static final String DEFAULT_USER_FILTER_ID = "widget-configuration-form:new-widget-configuration-component:user-filter";
   private static final String DEFAULT_WIDGET_TITLE_ID = "widget-configuration-form:new-widget-configuration-component:widget-title-group";
+  private static final String PROCESS_ICON_CUSTOM_FIELD = "cssIcon";
+  private static final String DEFAULT_PROCESS_ICON = "si si si-hierarchy-6 si-rotate-270";
 
   private List<WidgetSample> samples;
   private String newWidgetHeader;
@@ -104,6 +108,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private List<String> categories;
   private String restoreDashboardMessage;
   private Optional<DashboardTemplate> foundTemplate;
+  private List<DashboardProcess> customWidgets;
 
   @PostConstruct
   public void initConfigration() {
@@ -120,10 +125,30 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public void initSampleWidgets() {
     if (CollectionUtils.isEmpty(samples)) {
-      samples = List.of(taskSample(), caseSample(), processSample(), statisticSample(), customSample(),
+      samples = List.of(taskSample(), caseSample(), processSample(), statisticSample(), externalPageSample(),
           processViewerSample(), welcomeWidgetSample(), newsSample());
       samples = samples.stream().sorted(Comparator.comparing(WidgetSample::getName)).collect(Collectors.toList());
     }
+    initCustomWidgets();
+  }
+
+  private void initCustomWidgets() {
+    setCustomWidgets(new ArrayList<>());
+    getCustomWidgets().addAll(ProcessService.getInstance().findCustomDashboardProcesses()
+        .stream().map(convertToDashboardProcess())
+        .collect(Collectors.toList()));
+  }
+
+  private Function<IWebStartable, DashboardProcess> convertToDashboardProcess() {
+    return startable -> {
+      DashboardProcess process = new DashboardProcess();
+      process.setName(startable.getDisplayName());
+      process.setDescription(startable.getDescription());
+      process.setId(startable.getId());
+      process.setIcon(Optional.ofNullable(startable.customFields().value(PROCESS_ICON_CUSTOM_FIELD))
+          .orElse(DEFAULT_PROCESS_ICON));
+      return process;
+    };
   }
 
   @Override
@@ -164,9 +189,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         "statistic-widget-sample.png", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticChartIntroduction"));
   }
 
-  private WidgetSample customSample() {
-    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/customWidget"), CUSTOM,
-        "si si-cog-double-2", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/customWidgetIntroduction"), true);
+  private WidgetSample externalPageSample() {
+    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/ExternalPageWidget"), CUSTOM,
+        "si si-network-arrow", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/ExternalPageWidgetIntroduction"), true);
   }
 
   private WidgetSample processViewerSample() {
@@ -230,6 +255,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
             Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/statistic/timePeriod/custom")));
         widget = getDefaultCustomDashboardWidget();
+        ((CustomDashboardWidget) widget).getData().setType(DashboardCustomWidgetType.EXTERNAL_URL);
         break;
       case STATISTIC:
         newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
@@ -253,6 +279,28 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       default:
         break;
     }
+  }
+  
+  public void createCustomDashboardWidget(DashboardProcess process) {
+    newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
+        Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/statistic/timePeriod/custom")));
+    
+    widget = getDefaultCustomDashboardWidget();
+    var customWidget = ((CustomDashboardWidget) widget); 
+    customWidget.getData().setType(DashboardCustomWidgetType.PROCESS);
+    
+    var iWebStartable = ProcessService.getInstance()
+        .findCustomDashboardProcessInSecurityContextByProcessId(process.getId());
+
+    if (Objects.isNull(iWebStartable)) {
+      return;
+    }
+
+    var ivyProcessStartDTO = new IvyProcessStartDTO(iWebStartable);
+    customWidget.getData().setIvyProcessStartDTO(ivyProcessStartDTO);
+    customWidget.getData().setProcessPath(ivyProcessStartDTO.getStartableProcessStart().getId());
+    customWidget.getData().setStartRequestPath(ivyProcessStartDTO.getStartableProcessStart().getLink().getRelative());
+    customWidget.loadParametersFromProcess();
   }
 
   public void removeWidget() {
@@ -877,4 +925,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   }
 
+  public List<DashboardProcess> getCustomWidgets() {
+    return customWidgets;
+  }
+
+  public void setCustomWidgets(List<DashboardProcess> customWidgets) {
+    this.customWidgets = customWidgets;
+  }
 }

@@ -8,7 +8,6 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -103,5 +102,9 @@ public class CustomWidgetNewDashBoardPage extends TemplatePage {
 
   private void unfocusInput() {
     $("[id='new-widget-configuration-dialog_title']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+  }  
+
+  public SelenideElement processParam() {
+    return $("div[id$=':parameters-panel']");
   }
 }
