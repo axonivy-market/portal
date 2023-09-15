@@ -118,4 +118,5 @@ public class ProcessDashboardWidget extends DashboardWidget {
   public void setApplications(List<String> applications) {
     this.criteria.setApplications(applications);
   }
+
 }

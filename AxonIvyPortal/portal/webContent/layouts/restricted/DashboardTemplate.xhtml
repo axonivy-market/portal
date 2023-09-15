@@ -288,7 +288,19 @@
               </h:panelGroup>
             </h:form>
           </p:dialog>
-
+            <h:panelGroup rendered="#{managedBean.isShowShareButtonOnDashboard()}">
+              <div class="u-text-align-center">
+                <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ShareThisDashboard')}" 
+                      actionListener="#{managedBean.openShareDashboardDialog(managedBean.selectedDashboard)}"
+                      global="false"
+                      update="#{p:resolveFirstComponentWithId('share-dashboard-dialog', view).clientId}"
+                      oncomplete="PF('share-dashboard-dialog').show()"/>
+              </div>
+            </h:panelGroup>
+            <ic:com.axonivy.portal.dashboard.component.ShareDialog
+              id="share-dashboard-component"
+              shareDialogId="share-dashboard-dialog"
+              managedBean="#{managedBean}"/>
           </div>
         <h:outputScript library="js" name="dashboard.js" />
 

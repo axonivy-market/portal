@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import java.time.Duration;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -27,6 +28,10 @@ public final class WaitHelper {
 
   public static void waitForIFrameAvailable(WebDriver driver, String frameId) {
     wait(driver).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameId));
+  }
+
+  public static void waitNumberOfElementsToBe(WebDriver dirver, By selector, Integer expectedSize) {
+    wait(dirver).until(ExpectedConditions.numberOfElementsToBe(selector, expectedSize));
   }
 
   public static WebDriverWait wait(WebDriver driver) {

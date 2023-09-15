@@ -24,6 +24,10 @@ public class CustomDashboardWidget extends DashboardWidget {
 
   private DashboardCustomWidgetData data;
   private String info;
+  @JsonIgnore
+  private String errorMessage;
+  @JsonIgnore
+  private String errorIcon;
 
   @Override
   public DashboardWidgetType getType() {
@@ -146,4 +150,20 @@ public class CustomDashboardWidget extends DashboardWidget {
 
   @Override
   public void resetWidgetFilters() {}
+
+  public String getErrorMessage() {
+    return errorMessage;
+  }
+
+  public void setErrorMessage(String errorMessage) {
+    this.errorMessage = errorMessage;
+  }
+
+  public String getErrorIcon() {
+    return errorIcon;
+  }
+
+  public void setErrorIcon(String errorIcon) {
+    this.errorIcon = errorIcon;
+  }
 }

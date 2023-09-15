@@ -1,7 +1,8 @@
 .. _customization-case-widget:
 
-Case Widget
-===========
+Case Widget (Deprecated)
+========================
+.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 CaseWidget is a built-in component of the Portal that contains the cases which
 users can interact with. To show needed case information, the Portal allows to

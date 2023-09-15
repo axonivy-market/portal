@@ -80,12 +80,10 @@
           <p:tooltip for="empty-process-delete-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}"
             trackMouse="true" hideEvent="mouseleave click" />
         </h:panelGroup>
-
         <h:panelGroup styleClass="process-dashboard-widget__empty-process empty-message-container" layout="block">
           <i class="#{widget.hasPermissionToSee ? 'si si-alert-circle' : 'si si-lock-1'} empty-message-icon" />
           <br />
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noPermissionToSee')}" rendered="#{not widget.hasPermissionToSee}" styleClass="empty-message-text" />
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/emptyProcess')}" rendered="#{widget.hasPermissionToSee}" styleClass="empty-message-text" />
+          <h:outputText value="#{widget.emptyProcessMessage}" styleClass="empty-message-text" />
         </h:panelGroup>
       </h:panelGroup>
 

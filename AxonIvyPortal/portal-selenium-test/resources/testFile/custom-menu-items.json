@@ -1,0 +1,35 @@
+[
+  {
+    "id": "1",
+    "link": "https://google.com",
+    "label": "A link",
+    "isExternal": "true",
+    "version": "10.0.0"
+  }, {
+    "id": "2",
+    "link": "https://google.com",
+    "label": "B link",
+    "isExternal": "true",
+    "version": "10.0.0"
+  }, {
+    "id": "3",
+    "link": "https://google.com",
+    "label": "Testing link google",
+    "isExternal": "true",
+    "index": 2,
+    "version": "10.0.0"
+  }, {
+    "id": "4",
+    "link": "/designer/pro/portal-user-examples/17236DB1D3DA14C0/userExampleGuide.ivp",
+    "label": "Testing example",
+    "isExternal": "false",
+    "index": 3,
+    "version": "10.0.0"
+  }, {
+    "id": "5",
+    "label": "Broken link",
+    "isExternal": "false",
+    "index": 4,
+    "version": "10.0.0"
+  }
+]

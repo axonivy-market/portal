@@ -22,7 +22,6 @@ import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.language.LanguageConfigurator;
 import ch.ivyteam.ivy.language.LanguageManager;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.ISecurityContext;

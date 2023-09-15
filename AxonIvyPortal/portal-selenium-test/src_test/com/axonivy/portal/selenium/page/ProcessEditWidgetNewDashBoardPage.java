@@ -233,6 +233,15 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     getCompactModeProcessProcessFilter().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
+  public void selectCompactProcessSorting(String sorting) {
+    getCompactModeSorting().shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("li[data-label='" + sorting + "']").click();
+  }
+
+  private SelenideElement getCompactModeSorting() {
+    return $("div[id$=':processes-sorting']");
+  }
+
   private SelenideElement getCompactModeWidgetTitle() {
     return $("input[id$=':widget-title']");
   }

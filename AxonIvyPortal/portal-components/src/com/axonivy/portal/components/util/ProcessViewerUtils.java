@@ -12,6 +12,8 @@ import com.axonivy.portal.components.constant.CustomFields;
 import com.axonivy.portal.components.dto.ProcessViewerDTO;
 import com.axonivy.portal.components.service.impl.ProcessService;
 
+import ch.ivyteam.ivy.application.ActivityState;
+import ch.ivyteam.ivy.application.ReleaseState;
 import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
 import ch.ivyteam.ivy.casemap.runtime.model.ICaseMap;
 import ch.ivyteam.ivy.casemap.viewer.api.CaseMapViewer;
@@ -33,7 +35,8 @@ public class ProcessViewerUtils {
     IWebStartable webStartable = null;
     WebLink webLink = null;
     boolean isError = false;
-    String errorMessage = null;
+    String errorMessage = "";
+    String errorIcon = "";
     if (caseId != 0 || StringUtils.isNotBlank(processLink)) {
       // init data using caseId
       ICase selectedCase = CaseUtils.findCase(caseId);
@@ -51,8 +54,10 @@ public class ProcessViewerUtils {
 
       // try to init data using processLink
       if (webLink == null) {
-        webStartable = findWebStartable(processLink);
-        isViewerAllowed = isViewerAllowed(webStartable);
+        webStartable = ProcessService.getInstance().findWebStartableInSecurityContextByRelativeLink(processLink);
+        String processId = webStartable.getId();
+        isViewerAllowed = Ivy.session().getAllStartables().anyMatch(startable-> startable.getId().equals(processId));
+        
         if (isViewerAllowed) {
           if (webStartable instanceof ICaseMapWebStartable) {
             webLink = CaseMapViewer.of((ICaseMapWebStartable) webStartable).url().toWebLink();
@@ -66,11 +71,28 @@ public class ProcessViewerUtils {
     // check result
     if (webLink == null) {
       isError = true;
-      errorMessage = webStartable != null && !isViewerAllowed
-          ? Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessIsHidden")
-          : Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/CouldNotFindLinkedProcess");
+      if (webStartable == null) {
+        errorIcon = "si si-alert-circle";
+        errorMessage = Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessNotFound");
+      } else {
+        if (webStartable.pmv().getActivityState() != ActivityState.ACTIVE || webStartable.pmv().getReleaseState() != ReleaseState.RELEASED) {
+          errorIcon = "si si-alert-circle";
+          errorMessage = Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessCanNotBeLoaded");
+        } else {
+          errorIcon = "si si-lock-1";
+          errorMessage = Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/NoPermissionToView");
+        }
+      }
     }
-    return new ProcessViewerDTO(webStartable, webLink, isError, errorMessage);
+    
+    return ProcessViewerDTO
+        .builder()
+        .webStartable(webStartable)
+        .webLink(webLink)
+        .isError(isError)
+        .errorMessage(errorMessage)
+        .errorIcon(errorIcon)
+        .build();
   }
 
   public static IWebStartable findWebStartable(ICaseMap caseMap) {
@@ -84,6 +106,7 @@ public class ProcessViewerUtils {
     if (StringUtils.isNotBlank(processLink)) {
       return getWebStartables().stream().filter(filterByRelativeLink(processLink)).findFirst().orElse(null);
     }
+    
     return null;
   }
 
@@ -123,9 +146,8 @@ public class ProcessViewerUtils {
       return false;
     } else if (hasCaseMap(caze.getBusinessCase())) {
       return true;
-    } else {
-      return ProcessViewer.of(caze).isViewAllowed();
-    }
+    } 
+    return ProcessViewer.of(caze).isViewAllowed();
   }
 
   public static boolean isViewerAllowed(IWebStartable webStartable) {
@@ -133,8 +155,7 @@ public class ProcessViewerUtils {
       return false;
     } else if (webStartable instanceof ICaseMapWebStartable) {
       return true;
-    } else {
-      return ProcessViewer.of((IProcessWebStartable) webStartable).isViewAllowed();
     }
+    return ProcessViewer.of((IProcessWebStartable) webStartable).isViewAllowed();
   }
 }

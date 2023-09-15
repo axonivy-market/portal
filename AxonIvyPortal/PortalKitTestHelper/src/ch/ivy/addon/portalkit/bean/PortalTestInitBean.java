@@ -6,7 +6,6 @@ import ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean;
 import ch.ivyteam.ivy.process.eventstart.IProcessStartEventBeanRuntime;
 import ch.ivyteam.ivy.server.restricted.EngineMode;
 
-@SuppressWarnings("restriction")
 public class PortalTestInitBean extends AbstractProcessStartEventBean {
 
   public PortalTestInitBean() {

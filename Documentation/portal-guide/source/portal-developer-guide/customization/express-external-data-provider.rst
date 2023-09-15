@@ -1,7 +1,8 @@
 .. _customization-express-external-data-provider:
 
-Express External Data Provider
-==============================
+Express External Data Provider (Deprecated)
+===========================================
+.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 .. _customization-express-external-data-provider-introduction:
 

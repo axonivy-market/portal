@@ -81,13 +81,14 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import ch.ivyteam.ivy.environment.Ivy;",
             "import com.axonivy.portal.components.dto.RoleDTO;",
             "import ch.ivyteam.ivy.security.IRole;",
             "import java.util.Arrays;",
             "",
             "String everybodyRoleName = \"Everybody\";",
-            "IRole everybodyRole = ivy.wf.getSecurityContext().findRole(everybodyRoleName);",
+            "IRole everybodyRole = ISecurityContext.current().roles().find(everybodyRoleName);",
             "in.selectedRoleForReadOnlyField = new RoleDTO(everybodyRole);",
             "Ivy.log().info(\"selected Role for read only field: \" + in.selectedRoleForReadOnlyField.getDisplayName());",
             "in.excludedRoleNames = Arrays.asList(\"Tester\", \"Supporter\");",

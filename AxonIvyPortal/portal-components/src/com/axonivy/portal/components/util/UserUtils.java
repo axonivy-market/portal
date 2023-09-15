@@ -1,11 +1,18 @@
 package com.axonivy.portal.components.util;
 
+import static java.util.Comparator.comparingLong;
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toCollection;
+import static java.util.stream.Collectors.toList;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.TreeSet;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.constant.PortalComponentConstants;
@@ -15,6 +22,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
+
 
 public class UserUtils {
 
@@ -61,7 +69,7 @@ public class UserUtils {
   }
 
   public static List<UserDTO> filterOut(List<UserDTO> users, UserDTO excludedUser) {
-    return users.stream().filter(user -> !StringUtils.equals(user.getName(), excludedUser.getName())).collect(Collectors.toList());
+    return users.stream().filter(user -> !StringUtils.equals(user.getName(), excludedUser.getName())).collect(toList());
   }
 
   private static String loadLanguage(Function<IUser, Locale> userLocaleLoader) {
@@ -74,5 +82,23 @@ public class UserUtils {
   }
   public static String getUserLanguage() {
     return loadLanguage(IUser::getLanguage);
+  }
+
+  /**
+   * Distinct a list of UserDTO by id then sort by display name.
+   * 
+   * @param userList original list of users
+   * @return distinct and sorted list of users
+   */
+  public static List<UserDTO> distinctAndSortUserList(List<UserDTO> userList) {
+    if (CollectionUtils.isEmpty(userList)) {
+      return null;
+    }
+
+    List<UserDTO> result = userList.stream()
+        .collect(collectingAndThen(toCollection(() -> new TreeSet<>(comparingLong(UserDTO::getId))), ArrayList::new));
+
+    result.sort((u1, u2) -> u1.getDisplayName().compareTo(u2.getDisplayName()));
+    return result;
   }
 }

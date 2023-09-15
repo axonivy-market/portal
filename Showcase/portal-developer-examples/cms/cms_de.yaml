@@ -211,6 +211,9 @@ Processes:
       Signal:
         name: Signal erstellen Neue Zahlung
     name: Neue Zahlung erstellen
+  ProcessWithIndex:
+    name1: Ä (eh)
+    name2: Ö (ouh)
   TasksForTaskListCustomization:
     Cases:
       Party:

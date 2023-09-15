@@ -1,7 +1,8 @@
 .. _customization-process-information:
 
-Process Information
-===================
+Process Information (Deprecated)
+================================
+.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 .. _customization-process-information-introduction:
 

@@ -8,9 +8,9 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "expressDeleteDocumentItem(ICase,IvyDocument)",
+      "name" : "portalDeleteDocumentItem(ICase,IvyDocument)",
       "config" : {
-        "callSignature" : "expressDeleteDocumentItem",
+        "callSignature" : "portalDeleteDocumentItem",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
@@ -23,10 +23,12 @@
         },
         "result" : {
           "params" : [
-            { "name" : "message", "type" : "String" }
+            { "name" : "message", "type" : "String" },
+            { "name" : "status", "type" : "String" }
           ],
           "map" : {
-            "result.message" : "in.message"
+            "result.message" : "in.message",
+            "result.status" : "in.status.name()"
           }
         }
       },
@@ -48,10 +50,16 @@
       "config" : {
         "output" : {
           "code" : [
-            "import java.util.Arrays;",
+            "import com.axonivy.portal.components.enums.CustomProcessStatus;",
+            "import ch.ivy.addon.portalkit.util.ExecutingExpressProcessUtils;",
             "",
-            "in.businessCase.documents().delete(Long.valueOf(in.document.id));",
-            "in.message = ivy.cms.co(\"/Dialogs/components/CaseDocument/deleteSucceed\");"
+            "in.status = CustomProcessStatus.SKIP;",
+            "",
+            "if (ExecutingExpressProcessUtils.isExpressCase(in.businessCase)) {",
+            "  in.status = CustomProcessStatus.OK;",
+            "  in.businessCase.documents().delete(Long.valueOf(in.document.id));",
+            "  in.message = ivy.cms.co(\"/Dialogs/components/CaseDocument/deleteSucceed\");",
+            "}"
           ]
         }
       },

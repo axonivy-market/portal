@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -48,7 +49,10 @@ import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.IUser;
@@ -74,7 +78,9 @@ public class DashboardBean implements Serializable {
   private CaseEmptyMessage noCasesMessage;
   private TaskEmptyMessage noTasksMessage;
   private List<DashboardTemplate> dashboardTemplates;
-
+  protected String dashboardUrl;
+  protected String serverUrl;
+  
   @PostConstruct
   public void init() {
     currentDashboardIndex = 0;
@@ -134,6 +140,14 @@ public class DashboardBean implements Serializable {
       }
     }
     return mappingDashboards;
+  }
+
+  public String getServerUrl() {
+    return serverUrl;
+  }
+
+  public void setServerUrl(String serverUrl) {
+    this.serverUrl = serverUrl;
   }
 
   protected String readDashboardBySessionUser() {
@@ -403,4 +417,27 @@ public class DashboardBean implements Serializable {
     return ivyLanguage.getSupportedLanguages();
   }
 
+  public String getDashboardUrl() {
+    return dashboardUrl;
+  }
+
+  public void setDashboardUrl(String dashboardUrl) {
+    this.dashboardUrl = dashboardUrl;
+  }
+  
+  public void showDashboardUrlCopiedMessage(String message) {
+    FacesContext.getCurrentInstance().addMessage(GrowlMessageUtils.PORTAL_GLOBAL_GROWL_MESSAGE, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
+  }
+  
+  public void openShareDashboardDialog(Dashboard dashboard) {
+    if (StringUtils.isBlank(serverUrl)) {
+      serverUrl = UrlUtils.getServerUrl();
+    }
+
+    setDashboardUrl(serverUrl + PortalNavigator.getDashboardPageUrl(dashboard.getId()));
+  }
+  
+  public boolean isShowShareButtonOnDashboard() {
+    return PermissionUtils.hasShareDashboardPermission() && selectedDashboard != null && !getIsEditMode() && selectedDashboard.getIsPublic();
+  }
 }

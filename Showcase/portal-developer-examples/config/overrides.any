@@ -1,11 +1,9 @@
 {
   /PROCESS {
-    /Functional-Processes.CalculateTaskDelegate "Functional Processes/CalculateTaskDelegateOverride"
     /Functional-Processes.ExportTaskToExcel "Functional Processes/ExportTaskToExcelOverride"
     /Functional-Processes.InitializeCaseDataModel "Functional Processes/InitializeCaseDataModelOverride"
     /Functional-Processes.InitializeTaskDataModel "Functional Processes/InitializeTaskDataModelOverride"
     /Functional-Processes.ExportCaseToExcel "Functional Processes/ExportCaseToExcelOverride"
-    /Functional-Processes.LoadSubMenuItems "Functional Processes/LoadSubMenuItemsOverride"
     /Functional-Processes.BuildTaskQuery "Functional Processes/BuildTaskQueryOverride"
     /Functional-Processes.DefaultStatisticCustomField "Functional Processes/DefaultStatisticCustomFieldOverride"
   }

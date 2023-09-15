@@ -1485,6 +1485,7 @@ span.new-widget-dialog__icon.si {
 
 .news-widget__add-news-actions {
   margin: 10px 0;
+  padding: 0.2rem 1.5rem 0.2rem 0;
 }
 
 .news-item {

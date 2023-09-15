@@ -14,12 +14,10 @@ Dialogs:
               Activator: Responsible
             Type: Type
           ProcessViewer:
-            CouldNotFindLinkedProcess: Could not find the linked process!
             ProcessDetails: Process details
             ProcessId: Process Id
             ProcessInfo: Process Information
             ProcessInfoIconTooltip: Click to see details of the process start
-            ProcessIsHidden: The current process is hidden!
             ProcessType:
               CASE_MAP: Case Map
               EXPRESS_PROCESS: Express Workflow

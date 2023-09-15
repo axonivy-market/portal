@@ -47,12 +47,12 @@
         "at" : { "x" : 96, "y" : 128 },
         "labelOffset" : { "x" : 25, "y" : -39 }
       },
-      "connect" : { "id" : "f3", "to" : "f36" }
+      "connect" : { "id" : "f24", "to" : "f23" }
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 1408, "y" : 128 }
+        "at" : { "x" : 1800, "y" : 128 }
       }
     }, {
       "id" : "f36",
@@ -86,7 +86,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 256, "y" : 128 }
+        "at" : { "x" : 552, "y" : 128 }
       },
       "connect" : { "id" : "f79", "to" : "f70" }
     }, {
@@ -94,7 +94,7 @@
       "type" : "Alternative",
       "name" : "Not exist?",
       "visual" : {
-        "at" : { "x" : 920, "y" : 128 },
+        "at" : { "x" : 1216, "y" : 128 },
         "labelOffset" : { "x" : 8, "y" : -14 }
       },
       "connect" : [
@@ -137,7 +137,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1088, "y" : 128 },
+        "at" : { "x" : 1384, "y" : 128 },
         "size" : { "width" : 160, "height" : 60 }
       },
       "connect" : { "id" : "f8", "to" : "f4" }
@@ -164,14 +164,14 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 792, "y" : 128 }
+        "at" : { "x" : 1088, "y" : 128 }
       },
       "connect" : { "id" : "f91", "to" : "f72" }
     }, {
       "id" : "f74",
       "type" : "Alternative",
       "visual" : {
-        "at" : { "x" : 664, "y" : 224 }
+        "at" : { "x" : 960, "y" : 224 }
       },
       "connect" : [
         { "id" : "f92", "to" : "f73" }
@@ -180,17 +180,17 @@
       "id" : "f73",
       "type" : "Alternative",
       "visual" : {
-        "at" : { "x" : 920, "y" : 224 }
+        "at" : { "x" : 1216, "y" : 224 }
       },
       "connect" : [
-        { "id" : "f7", "to" : "f1", "via" : [ { "x" : 1408, "y" : 224 } ] }
+        { "id" : "f7", "to" : "f1", "via" : [ { "x" : 1800, "y" : 224 } ] }
       ]
     }, {
       "id" : "f70",
       "type" : "Alternative",
       "name" : "valid file?",
       "visual" : {
-        "at" : { "x" : 376, "y" : 128 },
+        "at" : { "x" : 672, "y" : 128 },
         "labelOffset" : { "x" : 3, "y" : -14 }
       },
       "connect" : [
@@ -199,7 +199,7 @@
             "segment" : 0.26,
             "offset" : { "x" : 1, "y" : -11 }
           }, "condition" : "org.apache.commons.lang.StringUtils.isBlank(in.message)" },
-        { "id" : "f83", "to" : "f74", "via" : [ { "x" : 376, "y" : 224 } ], "label" : {
+        { "id" : "f83", "to" : "f74", "via" : [ { "x" : 672, "y" : 224 } ], "label" : {
             "name" : "NO",
             "segment" : 1.12,
             "offset" : { "x" : -1, "y" : -9 }
@@ -210,7 +210,7 @@
       "type" : "Alternative",
       "name" : "Document check",
       "visual" : {
-        "at" : { "x" : 664, "y" : 128 },
+        "at" : { "x" : 960, "y" : 128 },
         "labelOffset" : { "x" : 0, "y" : -17 }
       },
       "connect" : [
@@ -250,7 +250,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 520, "y" : 128 },
+        "at" : { "x" : 816, "y" : 128 },
         "size" : { "width" : 176, "height" : 60 }
       },
       "connect" : { "id" : "f80", "to" : "f53" }
@@ -273,10 +273,10 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1280, "y" : 128 },
+        "at" : { "x" : 1576, "y" : 128 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : { "id" : "f28", "to" : "f27" }
     }, {
       "id" : "f5",
       "type" : "CallSubStart",
@@ -290,28 +290,31 @@
           ],
           "map" : {
             "out.businessCase" : "param.businessCase",
-            "out.document" : "param.document"
+            "out.document" : "param.document",
+            "out.skip" : "Boolean.parseBoolean(param.businessCase.customFields().stringField(\"custom\").getOrDefault(\"false\"))"
           }
         },
         "result" : {
           "params" : [
-            { "name" : "message", "type" : "String" }
+            { "name" : "message", "type" : "String" },
+            { "name" : "status", "type" : "String" }
           ],
           "map" : {
-            "result.message" : "in.message"
+            "result.message" : "in.message",
+            "result.status" : "in.skip ? com.axonivy.portal.components.enums.CustomProcessStatus.SKIP.name() : com.axonivy.portal.components.enums.CustomProcessStatus.OK.name()"
           }
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 320 },
+        "at" : { "x" : 96, "y" : 336 },
         "labelOffset" : { "x" : 25, "y" : 41 }
       },
-      "connect" : { "id" : "f10", "to" : "f9" }
+      "connect" : { "id" : "f31", "to" : "f3" }
     }, {
       "id" : "f6",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 528, "y" : 320 }
+        "at" : { "x" : 816, "y" : 336 }
       }
     }, {
       "id" : "f9",
@@ -333,10 +336,10 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 336, "y" : 320 },
+        "at" : { "x" : 592, "y" : 336 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f11", "to" : "f6" }
+      "connect" : { "id" : "f35", "to" : "f34" }
     }, {
       "id" : "f12",
       "type" : "CallSubStart",
@@ -355,23 +358,25 @@
         },
         "result" : {
           "params" : [
-            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent" }
+            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent" },
+            { "name" : "status", "type" : "String" }
           ],
           "map" : {
-            "result.streamedContent" : "in.streamedContent"
+            "result.streamedContent" : "in.streamedContent",
+            "result.status" : "in.skip ? com.axonivy.portal.components.enums.CustomProcessStatus.SKIP.name() : com.axonivy.portal.components.enums.CustomProcessStatus.OK.name()"
           }
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 464 },
+        "at" : { "x" : 96, "y" : 512 },
         "labelOffset" : { "x" : 9, "y" : 41 }
       },
-      "connect" : { "id" : "f17", "to" : "f14" }
+      "connect" : { "id" : "f40", "to" : "f10" }
     }, {
       "id" : "f13",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 528, "y" : 464 }
+        "at" : { "x" : 816, "y" : 512 }
       }
     }, {
       "id" : "f14",
@@ -389,10 +394,10 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 352, "y" : 464 },
+        "at" : { "x" : 608, "y" : 512 },
         "size" : { "width" : 160, "height" : 60 }
       },
-      "connect" : { "id" : "f16", "to" : "f13" }
+      "connect" : { "id" : "f44", "to" : "f43" }
     }, {
       "id" : "f18",
       "type" : "CallSubStart",
@@ -410,24 +415,26 @@
         "result" : {
           "params" : [
             { "name" : "documents", "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>" },
-            { "name" : "message", "type" : "String" }
+            { "name" : "message", "type" : "String" },
+            { "name" : "status", "type" : "String" }
           ],
           "map" : {
             "result.documents" : "in.documents",
-            "result.message" : "in.message"
+            "result.message" : "in.message",
+            "result.status" : "in.skip ? com.axonivy.portal.components.enums.CustomProcessStatus.SKIP.name() : com.axonivy.portal.components.enums.CustomProcessStatus.OK.name()"
           }
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 608 },
+        "at" : { "x" : 96, "y" : 672 },
         "labelOffset" : { "x" : 17, "y" : 33 }
       },
-      "connect" : { "id" : "f22", "to" : "f20" }
+      "connect" : { "id" : "f47", "to" : "f17" }
     }, {
       "id" : "f19",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 528, "y" : 608 }
+        "at" : { "x" : 888, "y" : 672 }
       }
     }, {
       "id" : "f20",
@@ -469,9 +476,193 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 336, "y" : 608 },
+        "at" : { "x" : 640, "y" : 672 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f21", "to" : "f19" }
+      "connect" : { "id" : "f51", "to" : "f50" }
+    }, {
+      "id" : "f23",
+      "type" : "Script",
+      "name" : [
+        "detect if need to",
+        "skip upload"
+      ],
+      "config" : {
+        "output" : {
+          "code" : "in.skip = !Boolean.parseBoolean(in.businessCase.customFields().stringField(\"custom\").getOrDefault(\"false\"));"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 296, "y" : 128 }
+      },
+      "connect" : { "id" : "f26", "to" : "f25" }
+    }, {
+      "id" : "f25",
+      "type" : "Alternative",
+      "name" : "skip custom upload?",
+      "visual" : {
+        "at" : { "x" : 424, "y" : 128 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f55", "to" : "f22", "via" : [ { "x" : 424, "y" : 32 } ], "label" : {
+            "name" : "YES"
+          }, "condition" : "in.skip" },
+        { "id" : "f29", "to" : "f36", "label" : {
+            "name" : "NO"
+          } }
+      ]
+    }, {
+      "id" : "f27",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 1704, "y" : 128 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : [
+        "detect if need to",
+        "skip upload"
+      ],
+      "config" : {
+        "output" : {
+          "code" : "in.skip = !Boolean.parseBoolean(in.businessCase.customFields().stringField(\"custom\").getOrDefault(\"false\"));"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 312, "y" : 336 }
+      },
+      "connect" : { "id" : "f33", "to" : "f32" }
+    }, {
+      "id" : "f32",
+      "type" : "Alternative",
+      "name" : "skip custom delete?",
+      "visual" : {
+        "at" : { "x" : 440, "y" : 336 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f39", "to" : "f34", "via" : [ { "x" : 440, "y" : 256 }, { "x" : 736, "y" : 256 } ], "label" : {
+            "name" : "YES",
+            "segment" : 0.5
+          }, "condition" : "in.skip" },
+        { "id" : "f37", "to" : "f9", "label" : {
+            "name" : "NO"
+          } }
+      ]
+    }, {
+      "id" : "f34",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 736, "y" : 336 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f6" }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : [
+        "detect if need to",
+        "skip upload"
+      ],
+      "config" : {
+        "output" : {
+          "code" : "in.skip = !Boolean.parseBoolean(in.businessCase.customFields().stringField(\"custom\").getOrDefault(\"false\"));"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 312, "y" : 512 }
+      },
+      "connect" : { "id" : "f42", "to" : "f41" }
+    }, {
+      "id" : "f41",
+      "type" : "Alternative",
+      "name" : "skip custom download?",
+      "visual" : {
+        "at" : { "x" : 440, "y" : 512 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f46", "to" : "f43", "via" : [ { "x" : 440, "y" : 432 }, { "x" : 752, "y" : 432 } ], "label" : {
+            "name" : "YES",
+            "segment" : 0.5
+          }, "condition" : "in.skip" },
+        { "id" : "f45", "to" : "f14", "label" : {
+            "name" : "NO"
+          } }
+      ]
+    }, {
+      "id" : "f43",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 752, "y" : 512 }
+      },
+      "connect" : [
+        { "id" : "f16", "to" : "f13" }
+      ]
+    }, {
+      "id" : "f17",
+      "type" : "Script",
+      "name" : [
+        "detect if need to",
+        "skip upload"
+      ],
+      "config" : {
+        "output" : {
+          "code" : "in.skip = !Boolean.parseBoolean(in.businessCase.customFields().stringField(\"custom\").getOrDefault(\"false\"));"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 312, "y" : 672 }
+      },
+      "connect" : { "id" : "f49", "to" : "f48" }
+    }, {
+      "id" : "f48",
+      "type" : "Alternative",
+      "name" : "Skip custom get documents?",
+      "visual" : {
+        "at" : { "x" : 464, "y" : 672 },
+        "labelOffset" : { "x" : 24, "y" : 32 }
+      },
+      "connect" : [
+        { "id" : "f54", "to" : "f50", "via" : [ { "x" : 464, "y" : 592 }, { "x" : 824, "y" : 592 } ], "label" : {
+            "name" : "YES",
+            "segment" : 0.5
+          }, "condition" : "in.skip" },
+        { "id" : "f52", "to" : "f20", "label" : {
+            "name" : "NO"
+          } }
+      ]
+    }, {
+      "id" : "f50",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 824, "y" : 672 }
+      },
+      "connect" : [
+        { "id" : "f21", "to" : "f19" }
+      ]
+    }, {
+      "id" : "f22",
+      "type" : "Script",
+      "name" : "Update status",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.enums.CustomProcessStatus;",
+            "",
+            "in.status = CustomProcessStatus.SKIP.name();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 552, "y" : 32 }
+      },
+      "connect" : { "id" : "f30", "to" : "f27", "via" : [ { "x" : 1704, "y" : 32 } ] }
     } ]
 }

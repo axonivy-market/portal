@@ -212,6 +212,9 @@ Processes:
       Signal:
         name: Signal de création d'un nouveau paiement
     name: Créer un nouveau paiement
+  ProcessWithIndex:
+    name1: ''
+    name2: ''
   TasksForTaskListCustomization:
     Cases:
       Party:

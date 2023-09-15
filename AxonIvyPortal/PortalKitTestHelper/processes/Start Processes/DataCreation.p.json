@@ -1682,7 +1682,7 @@
           ],
           "code" : [
             "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
-            "param.processId = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessViewerPermission/start.ivp\");"
+            "param.processId = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessViewerPermission/startWithPermission.ivp\");"
           ]
         }
       },

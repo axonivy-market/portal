@@ -13,7 +13,7 @@
         "Boolean,Boolean,String)"
       ],
       "config" : {
-        "callSignature" : "experssUploadDocumentItem",
+        "callSignature" : "portalUploadDocumentItem",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
@@ -27,6 +27,7 @@
             "out.businessCase" : "param.businessCase",
             "out.enableScriptCheckingForUploadedDocument" : "param.enableScriptCheckingForUploadedDocument",
             "out.enableVirusScannerForUploadedDocument" : "param.enableVirusScannerForUploadedDocument",
+            "out.skip" : "!ch.ivy.addon.portalkit.util.ExecutingExpressProcessUtils.isExpressCase(param.businessCase)",
             "out.uploadedFile" : "param.uploadedFile"
           }
         },
@@ -47,22 +48,22 @@
         "at" : { "x" : 96, "y" : 128 },
         "labelOffset" : { "x" : -52, "y" : -26 }
       },
-      "connect" : { "id" : "f1", "to" : "f17" }
+      "connect" : { "id" : "f3", "to" : "f2" }
     }, {
       "id" : "f8",
       "type" : "Alternative",
       "visual" : {
-        "at" : { "x" : 944, "y" : 224 }
+        "at" : { "x" : 1008, "y" : 224 }
       },
       "connect" : [
-        { "id" : "f24", "to" : "f16", "via" : [ { "x" : 1296, "y" : 224 } ] }
+        { "id" : "f24", "to" : "f16", "via" : [ { "x" : 1392, "y" : 224 } ] }
       ]
     }, {
       "id" : "f9",
       "type" : "Alternative",
       "name" : "valid file?",
       "visual" : {
-        "at" : { "x" : 400, "y" : 128 },
+        "at" : { "x" : 464, "y" : 128 },
         "labelOffset" : { "x" : 3, "y" : -14 }
       },
       "connect" : [
@@ -71,7 +72,7 @@
             "segment" : 0.26,
             "offset" : { "x" : 0, "y" : -11 }
           }, "condition" : "org.apache.commons.lang.StringUtils.isBlank(in.message)" },
-        { "id" : "f29", "to" : "f12", "via" : [ { "x" : 400, "y" : 224 } ], "label" : {
+        { "id" : "f29", "to" : "f12", "via" : [ { "x" : 464, "y" : 224 } ], "label" : {
             "name" : "NO",
             "segment" : 1.12,
             "offset" : { "x" : -1, "y" : -9 }
@@ -103,15 +104,15 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1088, "y" : 128 }
+        "at" : { "x" : 1152, "y" : 128 }
       },
-      "connect" : { "id" : "f22", "to" : "f16" }
+      "connect" : { "id" : "f5", "to" : "f4" }
     }, {
       "id" : "f11",
       "type" : "Alternative",
       "name" : "Not exist?",
       "visual" : {
-        "at" : { "x" : 944, "y" : 128 },
+        "at" : { "x" : 1008, "y" : 128 },
         "labelOffset" : { "x" : 8, "y" : -14 }
       },
       "connect" : [
@@ -126,7 +127,7 @@
       "id" : "f12",
       "type" : "Alternative",
       "visual" : {
-        "at" : { "x" : 688, "y" : 224 }
+        "at" : { "x" : 752, "y" : 224 }
       },
       "connect" : [
         { "id" : "f19", "to" : "f8" }
@@ -155,7 +156,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 816, "y" : 128 }
+        "at" : { "x" : 880, "y" : 128 }
       },
       "connect" : { "id" : "f20", "to" : "f11" }
     }, {
@@ -163,7 +164,7 @@
       "type" : "Alternative",
       "name" : "Document check",
       "visual" : {
-        "at" : { "x" : 688, "y" : 128 },
+        "at" : { "x" : 752, "y" : 128 },
         "labelOffset" : { "x" : 0, "y" : -17 }
       },
       "connect" : [
@@ -178,7 +179,7 @@
       "id" : "f16",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 1296, "y" : 128 }
+        "at" : { "x" : 1392, "y" : 128 }
       }
     }, {
       "id" : "f17",
@@ -212,7 +213,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 280, "y" : 128 }
+        "at" : { "x" : 344, "y" : 128 }
       },
       "connect" : { "id" : "f28", "to" : "f9" }
     }, {
@@ -238,9 +239,50 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 544, "y" : 128 },
+        "at" : { "x" : 608, "y" : 128 },
         "size" : { "width" : 160, "height" : 60 }
       },
       "connect" : { "id" : "f23", "to" : "f14" }
+    }, {
+      "id" : "f2",
+      "type" : "Alternative",
+      "name" : "skip upload?",
+      "visual" : {
+        "at" : { "x" : 192, "y" : 128 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f22", "to" : "f1", "via" : [ { "x" : 192, "y" : 16 } ], "label" : {
+            "name" : "YES"
+          }, "condition" : "in.skip" },
+        { "id" : "f7", "to" : "f17", "label" : {
+            "name" : "NO"
+          } }
+      ]
+    }, {
+      "id" : "f4",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 1296, "y" : 128 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f16" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "Script",
+      "name" : "Update status",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.enums.CustomProcessStatus;",
+            "in.status = CustomProcessStatus.SKIP.name();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 328, "y" : 16 }
+      },
+      "connect" : { "id" : "f15", "to" : "f4", "via" : [ { "x" : 1296, "y" : 16 } ] }
     } ]
 }

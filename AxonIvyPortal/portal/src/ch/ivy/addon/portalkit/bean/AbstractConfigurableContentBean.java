@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 
 import ch.ivy.addon.portalkit.constant.WidgetType;
 import ch.ivy.addon.portalkit.dto.AbstractConfigurableContent;
@@ -59,8 +60,11 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
 
   public void initConfig() {
     if (mapper == null) {
-      mapper = new ObjectMapper().enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
-      mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+      mapper = JsonMapper
+          .builder()
+          .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+          .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS)
+          .build();
     }
 
     globalSettingService = new GlobalSettingService();

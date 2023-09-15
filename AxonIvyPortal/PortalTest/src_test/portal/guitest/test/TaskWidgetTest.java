@@ -178,7 +178,8 @@ public class TaskWidgetTest extends BaseTest {
   
   @Test
   public void testDelegateTask() {
-    login(TestAccount.HR_ROLE_USER);
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.expand();
