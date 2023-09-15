@@ -11,7 +11,7 @@ import javax.ws.rs.NotFoundException;
 
 import com.axonivy.portal.bo.ChartTarget;
 import com.axonivy.portal.bo.StatisticChartData;
-import com.axonivy.portal.dto.statisticChart.StatisticChartDataDto;
+import com.axonivy.portal.dto.ClientStatisticDto;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.service.JsonConfigurationService;
@@ -35,7 +35,7 @@ public class StatisticChartDataService extends JsonConfigurationService<Statisti
     return findAll();
   }
 
-  public StatisticChartResponse getData(StatisticChartDataDto payload) throws NotFoundException, NoPermissionException {
+  public StatisticChartResponse getData(ClientStatisticDto payload) throws NotFoundException, NoPermissionException {
     StatisticChartData chart = findById(payload.getChartId());
     if (chart == null) {
       throw new NotFoundException(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/exception/idNotFound",
