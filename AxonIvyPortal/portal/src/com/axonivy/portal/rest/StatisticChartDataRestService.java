@@ -14,7 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import com.axonivy.portal.dto.statisticChart.StatisticChartDataDto;
+import com.axonivy.portal.dto.ClientStatisticDto;
 import com.axonivy.portal.service.StatisticChartDataService;
 import com.google.gson.GsonBuilder;
 
@@ -41,8 +41,8 @@ public class StatisticChartDataRestService {
       @ApiResponse(responseCode = "404", description = "Chart Id not found"),
       @ApiResponse(responseCode = "403", description = "Don't have permission to get the data"),
       @ApiResponse(responseCode = "406", description = "Invalid call") })
-  public Response getData(StatisticChartDataDto payload) {
-    if (Optional.ofNullable(payload).map(StatisticChartDataDto::getChartId).isEmpty()) {
+  public Response getData(ClientStatisticDto payload) {
+    if (Optional.ofNullable(payload).map(ClientStatisticDto::getChartId).isEmpty()) {
       return Response.status(Status.NOT_ACCEPTABLE).build();
     }
     try {

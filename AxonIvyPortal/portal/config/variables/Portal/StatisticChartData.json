@@ -1,6 +1,6 @@
 [
   {
-    "id": "3",
+    "id": "1",
     "aggregates": "priority",
     "chartTarget": "TASK",
     "permissions": [
@@ -10,44 +10,44 @@
     "names": [
       {
         "locale": "de",
-        "value": "Aufgaben nach Priorität chartId 3"
+        "value": "Aufgaben nach Priorität chartId 1"
       },
       {
         "locale": "en",
-        "value": "Tasks by Priority chartId 3"
+        "value": "Tasks by Priority chartId 1"
       },
       {
         "locale": "fr",
-        "value": "Tãches par priorité chartId 3"
+        "value": "Tãches par priorité chartId 1"
       },
       {
         "locale": "es",
-        "value": "Tareas por prioridad chartId 3"
+        "value": "Tareas por prioridad chartId 1"
       }
     ],
     "description": [
       {
         "locale": "de",
-        "value": "TODO Description Aufgaben nach Priorität chartId 3"
+        "value": "TODO Description Aufgaben nach Priorität chartId 1"
       },
       {
         "locale": "en",
-        "value": "TODO Description Tasks by Priority chartId 3"
+        "value": "TODO Description Tasks by Priority chartId 1"
       },
       {
         "locale": "fr",
-        "value": "TODO Description Tãches par priorité chartId 3"
+        "value": "TODO Description Tãches par priorité chartId 1"
       },
       {
         "locale": "es",
-        "value": "TODO Description Tareas por prioridad chartId 3"
+        "value": "TODO Description Tareas por prioridad chartId 1"
       }
     ],
     "icon": "si si-pie-line-graph",
     "refreshInterval": 3
   },
   {
-    "id": "4",
+    "id": "2",
     "aggregates": "expiryTimestamp",
     "filter": "expiryTimestamp:>=now <=now+4d/d",
     "chartTarget": "TASK",
@@ -58,37 +58,37 @@
     "names": [
       {
         "locale": "de",
-        "value": "TODO DE Tasks grouped by expiry chartId 4"
+        "value": "TODO DE Tasks grouped by expiry chartId 2"
       },
       {
         "locale": "en",
-        "value": "Tasks grouped by expiry chartId 4"
+        "value": "Tasks grouped by expiry chartId 2"
       },
       {
         "locale": "fr",
-        "value": "TODO FR Tasks grouped by expiry chartId 4"
+        "value": "TODO FR Tasks grouped by expiry chartId 2"
       },
       {
         "locale": "es",
-        "value": "TODO ES Tasks grouped by expiry chartId 4"
+        "value": "TODO ES Tasks grouped by expiry chartId 2"
       }
     ],
     "descriptions": [
       {
         "locale": "de",
-        "value": "TODO Description DE Tasks grouped by expiry chartId 4"
+        "value": "TODO Description DE Tasks grouped by expiry chartId 2"
       },
       {
         "locale": "en",
-        "value": "TODO DescriptionTasks grouped by expiry chartId 4"
+        "value": "TODO DescriptionTasks grouped by expiry chartId 2"
       },
       {
         "locale": "fr",
-        "value": "TODO Description FR Tasks grouped by expiry chartId 4"
+        "value": "TODO Description FR Tasks grouped by expiry chartId 2"
       },
       {
         "locale": "es",
-        "value": "TODO Description ES Tasks grouped by expiry chartId 4"
+        "value": "TODO Description ES Tasks grouped by expiry chartId 2"
       }
     ],
     "icon": "si si-pie-line-graph",
@@ -133,7 +133,7 @@
      }
   },
   {
-    "id": "5",
+    "id": "3",
     "aggregates": "businessState",
     "filter": "businessState:OPEN",
     "permissions": [
@@ -144,47 +144,47 @@
     "names": [
       {
         "locale": "de",
-        "value": "TODO DE Number of OPEN tasks chartId 5"
+        "value": "TODO DE Number of OPEN tasks chartId 3"
       },
       {
         "locale": "en",
-        "value": "Tasks Number of OPEN tasks chartId 5"
+        "value": "Tasks Number of OPEN tasks chartId 3"
       },
       {
         "locale": "fr",
-        "value": "TODO FR Number of OPEN tasks chartId 5"
+        "value": "TODO FR Number of OPEN tasks chartId 3"
       },
       {
         "locale": "es",
-        "value": "TODO ES Number of OPEN tasks chartId 5"
+        "value": "TODO ES Number of OPEN tasks chartId 3"
       }
     ],
     "descriptions": [
       {
         "locale": "de",
-        "value": "TODO Description DE Number of OPEN tasks chartId 5"
+        "value": "TODO Description DE Number of OPEN tasks chartId 3"
       },
       {
         "locale": "en",
-        "value": "TODO Description Tasks Number of OPEN tasks chartId 5"
+        "value": "TODO Description Tasks Number of OPEN tasks chartId 3"
       },
       {
         "locale": "fr",
-        "value": "TODO Description FR Number of OPEN tasks chartId 5"
+        "value": "TODO Description FR Number of OPEN tasks chartId 3"
       },
       {
         "locale": "es",
-        "value": "TODO Description ES Number of OPEN tasks chartId 5"
+        "value": "TODO Description ES Number of OPEN tasks chartId 3"
       }
     ],
     "icon": "si si-pie-line-graph",
     "refreshInterval": 5,
     "numberChartConfig": {
-       "suffixSymbol": "k"
+       "suffixSymbol": ""
      }
   },
   {
-    "id": "6",
+    "id": "4",
     "aggregates": "endTimestamp",
     "filter": "endTimestamp:>=now-4d/d <=now+1d,businessState:DONE",
     "permissions": [
@@ -195,37 +195,37 @@
     "names": [
       {
         "locale": "de",
-        "value": "TODO DE Completed Tasks per Day chartId 6"
+        "value": "TODO DE Completed Tasks per Day chartId 4"
       },
       {
         "locale": "en",
-        "value": "Tasks Completed Tasks per Day chartId 6"
+        "value": "Tasks Completed Tasks per Day chartId 4"
       },
       {
         "locale": "fr",
-        "value": "TODO FR Completed Tasks per Day chartId 6"
+        "value": "TODO FR Completed Tasks per Day chartId 4"
       },
       {
         "locale": "es",
-        "value": "TODO ES Completed Tasks per Day chartId 6"
+        "value": "TODO ES Completed Tasks per Day chartId 4"
       }
     ],
     "descriptions": [
       {
         "locale": "de",
-        "value": "TODO Description DE Completed Tasks per Day chartId 6"
+        "value": "TODO Description DE Completed Tasks per Day chartId 4"
       },
       {
         "locale": "en",
-        "value": "TODO  Description Tasks Completed Tasks per Day chartId 6"
+        "value": "TODO  Description Tasks Completed Tasks per Day chartId 4"
       },
       {
         "locale": "fr",
-        "value": "TODO Description FR Completed Tasks per Day chartId 6"
+        "value": "TODO Description FR Completed Tasks per Day chartId 4"
       },
       {
         "locale": "es",
-        "value": "TODO Description ES Completed Tasks per Day chartId 6"
+        "value": "TODO Description ES Completed Tasks per Day chartId 4"
       }
     ],
     "icon": "si si-pie-line-graph",
@@ -270,7 +270,7 @@
      }
   },
   {
-    "id": "7",
+    "id": "5",
     "aggregates": "expiryTimestamp",
     "filter": "expiryTimestamp:>=now <=now+4d/d",
     "chartTarget": "TASK",
@@ -281,37 +281,37 @@
     "names": [
       {
         "locale": "de",
-        "value": "TODO DE Tasks grouped by expiry chartId 7"
+        "value": "TODO DE Tasks grouped by expiry chartId 5"
       },
       {
         "locale": "en",
-        "value": "Tasks grouped by expiry chartId 7"
+        "value": "Tasks grouped by expiry chartId 5"
       },
       {
         "locale": "fr",
-        "value": "TODO FR Tasks grouped by expiry chartId 7"
+        "value": "TODO FR Tasks grouped by expiry chartId 5"
       },
       {
         "locale": "es",
-        "value": "TODO ES Tasks grouped by expiry chartId 7"
+        "value": "TODO ES Tasks grouped by expiry chartId 5"
       }
     ],
     "descriptions": [
       {
         "locale": "de",
-        "value": "TODO Description DE Tasks grouped by expiry chartId 7"
+        "value": "TODO Description DE Tasks grouped by expiry chartId 5"
       },
       {
         "locale": "en",
-        "value": "TODO DescriptionTasks grouped by expiry chartId 7"
+        "value": "TODO DescriptionTasks grouped by expiry chartId 5"
       },
       {
         "locale": "fr",
-        "value": "TODO Description FR Tasks grouped by expiry chartId 7"
+        "value": "TODO Description FR Tasks grouped by expiry chartId 5"
       },
       {
         "locale": "es",
-        "value": "TODO Description ES Tasks grouped by expiry chartId 7"
+        "value": "TODO Description ES Tasks grouped by expiry chartId 5"
       }
     ],
     "icon": "si si-pie-line-graph",
