@@ -2,20 +2,20 @@ CustomFields:
   Tasks:
     HIDE:
       Label: Hide task custom field
-      Description: Set HIDE to this custom field to mark a task as a hidden task on Portal
+      Description: Set HIDE to this custom field to mark a task as a hidden task on the Portal
       Type: STRING
   Cases:
     HIDE:
       Label: Hide case custom field
-      Description: Set HIDE to this custom field to mark a case as a hidden task on Portal
+      Description: Set HIDE to this custom field to mark a case as a hidden task on the Portal
       Type: STRING
   Starts:
     portalSortIndex:
       Label: Sort index on the Portal dashboard
-      Description: Predefined sort index for this start on the Portal dashboard
+      Description: The predefined sort index for this startable process on the Portal dashboard
     processImage:
       Label: Process image
       Description: Predefined image location for this start
     isDashboardProcess:
       Label: Portal Custom widget
-      Description: Set to 'true' to mark this start can be use as a Custom widget on the Portal dashboard
+      Description: Set to 'true' to mark this start can be used as a Custom widget on the Portal dashboard
