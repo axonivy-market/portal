@@ -29,7 +29,7 @@ function initStatistics() {
         let chartId = chart.getAttribute('data-chart-id');
         let response = await instance.post('/api/statistic-data-service/Data', { "chartId": chartId });
         let data = await response.data;
-        let result = data.result.aggs[0].buckets;
+        let result = data.result.aggs?.[0]?.buckets ?? [];
         let config = data.chartConfig;
         let chartType = config.chartType;
         let refreshInterval = config.refreshInterval;
@@ -67,7 +67,7 @@ function initStatistics() {
             let cardNumber = (result.length == 0 ? 0 : result.map(bucket => bucket.count)) + `${config.numberChartConfig.suffixSymbol}`;
             $(chart).find('.card-number').html(cardNumber);
             chartData = $(chart);
-            resizeChartWidget();
+            resizeNumberChart();
         }
 
         function renderPieChart() {
@@ -144,7 +144,7 @@ function initStatistics() {
     });
 
     function getChartColors() {
-        var chartColors = [];
+        let chartColors = [];
         chartColors.push(getComputedStyle(document.body).getPropertyValue('--statistics-1-color'));
         chartColors.push(getComputedStyle(document.body).getPropertyValue('--statistics-2-color'));
         chartColors.push(getComputedStyle(document.body).getPropertyValue('--statistics-3-color'));
@@ -240,4 +240,29 @@ function initStatistics() {
             `;
         return html;
     };
+
+}
+
+function resizeNumberChart() {
+    let chartNumber = $('.chart-number-font-size');
+    let chartName = $('.chart-name-font-size');
+    let chartIcon = $('.chart-icon-font-size');
+    if (chartNumber.length && chartNumber.length > 0) {
+        chartNumber.each((i, item) => {
+            let fs = getFontSizeRatio(item, 1);
+            item.style.fontSize = fs + '%';
+        })
+    }
+    if (chartName.length && chartName.length > 0) {
+        chartName.each((i, item) => {
+            let fs = getFontSizeRatio(item, 0.25);
+            item.style.fontSize = fs + '%';
+        })
+    }
+    if (chartIcon.length && chartIcon.length > 0) {
+        chartIcon.each((i, item) => {
+            let fs = getFontSizeRatio(item, 0.5);
+            item.style.fontSize = fs + '%';
+        })
+    }
 }
