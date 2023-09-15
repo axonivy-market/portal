@@ -50,7 +50,6 @@ to use and administer (or manage) the portal, templates for developer and portal
 The templates offer features like top
 menu, application menu and user menu. It also contains start process links to
 default pages like Portal home, Portal task list, Portal case list etc..
-We advise developers to depend on this module to facilitate Portal customization.
 
 .. _architecture-axonivy-express:
 

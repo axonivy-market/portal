@@ -72,7 +72,7 @@ Setup Portal multi applications
 
    Used for related applications App 1, App 2... of which we need to see all tasks/cases in one page. Task/Case list of application named ``Portal`` would display all tasks/cases of applications App 1, App 2...
 
-All applications are in the same security context and the **portal-components** should be the only port being deployed in the other applications. See :ref:`multi-app-structure` overview.
+All applications are in the same security context and the **portal-components** should be the only part being deployed in the other applications. See :ref:`multi-app-structure` overview.
 
 -  Create a new application named ``Portal``. Deploy Portal (portal, portal-components, AxonIvyExpress) to this application. AxonIvyExpress is optional, all other modules are mandatory.
 
