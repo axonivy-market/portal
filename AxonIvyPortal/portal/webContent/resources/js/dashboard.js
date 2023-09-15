@@ -75,7 +75,7 @@ function loadGrid() {
       if (descriptionElement.length > 0) {
         setupImageProcessWidgetDescription(descriptionElement);
       }
-      resizeChartWidget();
+      resizeNumberChart();
       setupGridProcessWidget();
     });
 
@@ -96,30 +96,6 @@ function getFontSizeRatio(item, scaleRatio) {
       : parent.offsetHeight / (d * parent.offsetWidth);
   let h = Math.pow(parent.offsetWidth, 2) + Math.pow(parent.offsetHeight, 2);
   return Math.sqrt(h) * ratio * scaleRatio;
-}
-
-function resizeChartWidget() {
-  let chartNumber = $('.chart-number-font-size');
-  let chartName = $('.chart-name-font-size');
-  let chartIcon = $('.chart-icon-font-size');
-  if (chartNumber.length && chartNumber.length > 0) {
-    chartNumber.each((i, item) => {
-      let fs = getFontSizeRatio(item, 1);
-      item.style.fontSize = fs + '%';
-    })
-  }
-  if (chartName.length && chartName.length > 0) {
-    chartName.each((i, item) => {
-      let fs = getFontSizeRatio(item, 0.25);
-      item.style.fontSize = fs + '%';
-    })
-  }
-  if (chartIcon.length && chartIcon.length > 0) {
-    chartIcon.each((i, item) => {
-      let fs = getFontSizeRatio(item, 0.5);
-      item.style.fontSize = fs + '%';
-    })
-  }
 }
 
 function getPortalGridsCurrentRow(widgetType) {
@@ -245,7 +221,7 @@ function expandFullscreen(index, widgetId) {
     $(widget.get(0)).closest('.js-dashboard__body').addClass('expand-fullscreen');
     $(widget.get(0)).closest('.js-layout-content').addClass('expand-fullscreen');
   }
-  setTimeout(() => resizeChartWidget() , 300);
+  setTimeout(() => resizeNumberChart() , 300);
 }
 
 function resizeTableBody() {
@@ -286,7 +262,7 @@ function collapseFullscreen(index, widgetId) {
   // Hide dashboard overlay panel is opening
   hideAllDashboardOverlayPanels();
   resizeTableBody();
-  setTimeout(() => resizeChartWidget() , 300);
+  setTimeout(() => resizeNumberChart() , 300);
 }
 
 function loadWidgetFirstTime(loadingClass, widgetClass) {
