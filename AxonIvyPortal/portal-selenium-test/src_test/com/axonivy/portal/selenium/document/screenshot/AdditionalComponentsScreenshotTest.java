@@ -28,7 +28,7 @@ import com.axonivy.portal.selenium.page.component.SecurityMemberNameAndAvatarCom
 import com.axonivy.portal.selenium.page.component.UserSelectionComponentPage;
 
 @IvyWebTest(headless = false)
-public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest{
+public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
   
   @Test
   public void captureScreenshotForProcessChainComponent() throws IOException {
@@ -41,7 +41,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest{
   public void captureScreenshotGrowlMessage() throws IOException {
     login(TestAccount.ADMIN_USER);
     updatePortalSetting(Variable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.getKey(), "true");
-//    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "false");
+    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "false");
     redirectToRelativeLink(createTestingCaseContainOneTask);
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 1500));
 
@@ -52,10 +52,10 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest{
     newDashboardPage.waitForGrowlMessageDisplayClearly();
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.COMPONENTS_FOLDER + "example-global-growl-finished-task");
     
-    redirectToRelativeLink(createTestingTasksUrl);
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 1500));
-    newDashboardPage = new NewDashboardPage();
-    newDashboardPage.startTask(1);
+    redirectToRelativeLink(cleanupDataLink);
+    redirectToRelativeLink(createTestingTasksUrl);
+    WaitHelper.waitForNavigation(() -> new NewDashboardPage().startTask(1));
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     WaitHelper.waitForNavigation(() -> taskTemplatePage.clickCancelButton());
     ScreenshotUtil.resizeBrowser(new Dimension(1366, 800));
