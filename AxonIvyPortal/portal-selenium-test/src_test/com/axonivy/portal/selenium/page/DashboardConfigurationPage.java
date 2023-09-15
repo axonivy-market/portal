@@ -6,6 +6,8 @@ import static com.codeborne.selenide.Selenide.$;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.FileHelper;
@@ -373,5 +375,33 @@ public class DashboardConfigurationPage extends TemplatePage {
   public void closeConfigurationDialog() {
     getConfigurationDialog().$(".ui-dialog-footer").$("a").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id='new-widget-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+  
+  public SelenideElement getDashboardMultiLanguageDialog() {
+    $("div[id$='dashboard-template-selection-component:dashboard-creation-component:title-language-config:multiple-languages-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $("[id='dashboard-template-selection-component:dashboard-creation-component:title-language-config:multiple-languages-dialog']");
+  }
+  
+  public void clickOnTextToTranslate(int index) {
+    $(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", index)).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div[id$=':overlay-panel-input']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void setTranslatedTitle() {
+    $(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", 1)).sendKeys(Keys.CONTROL, "a");
+    $(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", 1)).sendKeys("Mon tableau de bord");
+    $(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", 2)).sendKeys(Keys.CONTROL, "a");
+    $(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", 2)).sendKeys("Mein Armaturenbrett");
+    $(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", 3)).sendKeys(Keys.CONTROL, "a");
+    $(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", 3)).sendKeys("Mi cuadro de mandos");
+  }
+  
+  public void clickOkMultiLanguageDialog() {
+    $("button[id$=':multi-language-ok-button']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("button[id$=':multi-language-ok-button']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void clickOkCreateDashboard() {
+    $("button[id$='dashboard-creation-component:dashboard-create-button']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 }

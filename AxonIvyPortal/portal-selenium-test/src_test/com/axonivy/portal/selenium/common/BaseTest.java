@@ -255,7 +255,7 @@ public class BaseTest {
   }
   
   protected void showNewDashboard() {
-//    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "false");
+    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "false");
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
   }
 }

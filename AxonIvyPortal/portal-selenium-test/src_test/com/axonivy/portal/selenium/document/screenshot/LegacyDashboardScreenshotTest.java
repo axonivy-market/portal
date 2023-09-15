@@ -17,7 +17,7 @@ import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.legacy.LegacyDashboardPage;
 import com.axonivy.portal.selenium.page.legacy.LegacyTaskWidgetPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class LegacyDashboardScreenshotTest extends ScreenshotBaseTest{
   private LegacyDashboardPage homePage;
   private static final int SCREENSHOT_WIDTH = 1500;
