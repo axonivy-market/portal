@@ -8,7 +8,7 @@ Configure External Page Widget
 Define An External Page Widget
 ------------------------------
 
-You can use the custom widget to embed an external webpage into the Portal dashboard.
+You can use this widget to embed an external webpage into the Portal dashboard.
 This feature is extremely useful for a company using other applications besides |ivy|.
 Now users can interact with multiple systems from the Portal dashboard.
 
