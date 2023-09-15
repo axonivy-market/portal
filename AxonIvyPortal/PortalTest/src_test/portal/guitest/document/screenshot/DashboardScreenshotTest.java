@@ -144,6 +144,24 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     Sleeper.sleep(300); // wait for datepicker and autocomplete selection hide
     ScreenshotUtil.captureElementScreenshot(newDashboardPage.getConfigurationDialog(), ScreenshotUtil.DASHBOARD_FOLDER + "process-custom-widget-configuration");
   }
+  
+  @Test
+  public void screenshotConfigureExternalPageWidget() throws IOException {
+    login(TestAccount.ADMIN_USER);
+    showNewDashboard();
+    newDashboardPage = new NewDashboardPage();
+    redirectToDashboardConfiguration();
+    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.selectPublicDashboardType();
+    configPage.selectEditPublicDashboards();
+    configPage.configureDashboardByIndex(0);
+    newDashboardPage.waitForPageLoaded();
+    newDashboardPage.addNewExternalPageWidget();
+
+    WebElement urlField = newDashboardPage.findElementById("widget-configuration-form:new-widget-configuration-component:external-url");
+    newDashboardPage.type(urlField, "https://developer.axonivy.com");
+    ScreenshotUtil.captureElementScreenshot(newDashboardPage.getConfigurationDialog(), ScreenshotUtil.DASHBOARD_FOLDER + "external-page-widget-configuration");
+  }
 
   @Test
   public void screenshotNewDashboardUserGuide() throws IOException {

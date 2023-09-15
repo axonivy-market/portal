@@ -32,6 +32,8 @@ The following default widgets are available:
 
 #. **News feed widget**: This widget shares relevant information as a News Feed into |ivy|.
 
+#. **External page widget**: This widget displays an external webpage on your dashboard.
+
 In addition, a developer can provide custom widgets to add relevant project information to your dashboard.
 
 **Task list widget, Case list widget, Process list widget (compact mode)** has the following standard features:
@@ -274,6 +276,13 @@ In manage news, the user can:
 
 After setting up everything, simply click on the :guilabel:`Share this dashboard` link at the bottom of your dashboard to share it with colleagues.
 
+External page widget
+====================
+
+You enter an URL to embed an external webpage into the Portal dashboard.
+
+|external-page-widget-configuration|
+
 .. include:: ../includes/_common-icon.rst
 
 .. |dash-board| image:: ../../screenshots/new-dashboard/dashboard.png
@@ -308,3 +317,5 @@ After setting up everything, simply click on the :guilabel:`Share this dashboard
 .. |news-feed-widget| image:: ../../screenshots/new-dashboard/news-feed-widget.png
 .. |news-feed-widget-manage-content| image:: ../../screenshots/new-dashboard/news-feed-widget-manage-content.png
 .. |news-feed-widget-overlay-panel| image:: ../../screenshots/new-dashboard/news-feed-widget-overlay-panel.png
+
+.. |external-page-widget-configuration| image:: ../../screenshots/dashboard/external-page-widget-configuration.png
