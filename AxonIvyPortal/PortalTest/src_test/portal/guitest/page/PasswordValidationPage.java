@@ -60,6 +60,8 @@ public class PasswordValidationPage extends TemplatePage {
   }
 
   public boolean isCheckBoxInTableEnabled() {
-    return findElementByClassName("ui-chkbox-box").getAttribute("class").contains("ui-state-active");
+    return findElementByCssSelector(
+        "[id^='admin-setting-component:adminTabView:password-validation-component:password-validation-form:password-policy-setting']")
+        .findElement(By.className("ui-chkbox-box")).getAttribute("class").contains("ui-state-active");
   }
 }
