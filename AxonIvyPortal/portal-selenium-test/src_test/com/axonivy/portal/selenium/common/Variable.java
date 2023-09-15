@@ -64,7 +64,8 @@ public enum Variable {
   GLOBAL_SEARCH_BY_CASE_FIELDS("Portal.SearchScope.ByCaseFields"),
   DEEPL_AUTH_KEY("Portal.DeepL.AuthKey"),
   ENABLE_DEEPL_TRANSLATION("Portal.DeepL.Enable"),
-  DASHBOARD("Portal.Dashboard");
+  DASHBOARD("Portal.Dashboard"),
+  SHOW_LEGACY_UI("Portal.ShowLegacyUI");
 
   private String key;
 

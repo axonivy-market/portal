@@ -271,7 +271,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
 
   private void loginAsAdminAndAddPublicWidget(String widgetName) {
     login(TestAccount.ADMIN_USER);
-    updatePortalSetting(Variable.SHOW_LEGACY_UI .getKey(), "false");
+//    updatePortalSetting(Variable.SHOW_LEGACY_UI .getKey(), "false");
     redirectToDashboardConfiguration();
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
     configPage.selectPublicDashboardType();
