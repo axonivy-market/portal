@@ -130,8 +130,6 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     configPage.configureDashboardByIndex(0);
     newDashboardPage.waitForPageLoaded();
     newDashboardPage.addNewCustomWidget();
-    newDashboardPage.selectCustomWidgetTypeProcess();
-    newDashboardPage.selectIvyProcessForCustomWidget("Investment List (Example for Custom Widget on Dashboard)");
 
     WebElement dateField = newDashboardPage.findElementById("widget-configuration-form:new-widget-configuration-component:parammeters:1:param-calendar-_input");
     newDashboardPage.type(dateField, "24 Nov, 2021 00:00");
@@ -145,6 +143,24 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     newDashboardPage.click(By.xpath("//*[@id='widget-configuration-form:new-widget-configuration-component:parammeters:0:param-user-:user-selection_panel']/table/tbody/tr"));
     Sleeper.sleep(300); // wait for datepicker and autocomplete selection hide
     ScreenshotUtil.captureElementScreenshot(newDashboardPage.getConfigurationDialog(), ScreenshotUtil.DASHBOARD_FOLDER + "process-custom-widget-configuration");
+  }
+  
+  @Test
+  public void screenshotConfigureExternalPageWidget() throws IOException {
+    login(TestAccount.ADMIN_USER);
+    showNewDashboard();
+    newDashboardPage = new NewDashboardPage();
+    redirectToDashboardConfiguration();
+    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.selectPublicDashboardType();
+    configPage.selectEditPublicDashboards();
+    configPage.configureDashboardByIndex(0);
+    newDashboardPage.waitForPageLoaded();
+    newDashboardPage.addNewExternalPageWidget();
+
+    WebElement urlField = newDashboardPage.findElementById("widget-configuration-form:new-widget-configuration-component:external-url");
+    newDashboardPage.type(urlField, "https://developer.axonivy.com");
+    ScreenshotUtil.captureElementScreenshot(newDashboardPage.getConfigurationDialog(), ScreenshotUtil.DASHBOARD_FOLDER + "external-page-widget-configuration");
   }
 
   @Test

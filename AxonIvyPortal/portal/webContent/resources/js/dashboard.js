@@ -441,3 +441,31 @@ function setLineClamp(element, number) {
 function removeStyle(element) {
   $(element).removeAttr('style');
 }
+
+function searcNewhWidgetByNameOrDescription(input) {
+  var keyword = input.value.toLowerCase();
+  $('.js-widget').each(function() {
+    var hasKeyword = false;
+
+    $(this).find('label').each(function() {
+      if (this.innerText.toLowerCase().includes(keyword)) {
+        hasKeyword = true;
+        return;
+      }
+    });
+
+    hasKeyword ? $(this).removeClass('u-hidden') : $(this).addClass('u-hidden');
+  });
+
+  var noResult = true;
+  $('.js-widget-fieldset').each(function() {
+    if ($(this).find('.js-widget:not(".u-hidden")').length == 0) {
+      $(this).addClass('u-hidden');
+    } else {
+      $(this).removeClass('u-hidden');
+      noResult = false;
+    }
+  });
+
+  noResult ? $('.js-no-widget').removeClass('u-hidden') : $('.js-no-widget').addClass('u-hidden');
+}

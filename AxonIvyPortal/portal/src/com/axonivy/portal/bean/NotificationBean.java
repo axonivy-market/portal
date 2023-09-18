@@ -20,6 +20,7 @@ public class NotificationBean implements Serializable {
 
   private long countAll;
   private long countUnread;
+  private boolean isRender;
 
   public NotificationBean() {
     this.webNotifications = WebNotifications.current();
@@ -60,5 +61,13 @@ public class NotificationBean implements Serializable {
 
   public String getUnreadNotifications() {
     return countUnread > 99 ? "99+" : String.valueOf(countUnread);
+  }
+
+  public void setRender(boolean isRender) {
+    this.isRender = isRender;
+  }
+
+  public boolean isRender() {
+    return isRender;
   }
 }
