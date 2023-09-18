@@ -38,7 +38,7 @@
       var clipboard = navigator.clipboard;
       function checkCopyFeature(){
         if (clipboard == undefined) {
-          $("button[id$=':copy-button']")[0].remove();
+          $("button[id$=':share-link-copy-button']")[0].remove();
         }
       }
       function copyToClipboard(text) {
