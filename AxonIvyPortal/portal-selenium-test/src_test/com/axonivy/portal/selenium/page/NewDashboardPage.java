@@ -832,7 +832,10 @@ public class NewDashboardPage extends TemplatePage {
   public void waitForTaskStartButtonDisplay(int index) {
     String cssSelector = String.format("a[id*='task-component:dashboard-tasks:%d']", index);
     $(cssSelector).shouldBe(appear, DEFAULT_TIMEOUT);
+  }
 
-    
+  public ChatPage openChatDialog() {
+    $("[id='toggle-chat-panel-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return new ChatPage();
   }
 }
