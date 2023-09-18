@@ -35,7 +35,6 @@ import com.axonivy.portal.selenium.util.ConfigurationJsonUtil;
 public class DashboardScreenshotTest extends ScreenshotBaseTest{
   private NewDashboardPage homePage;
   private static final int SCREENSHOT_WIDTH = 1500;
-  private static final int SCREENSHOT_HD_WIDTH = 1920;
 
   @Override
   @BeforeEach
@@ -81,9 +80,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
     detailsEditPage.waitPageLoaded();
     detailsEditPage.addWidget();
 
-    CustomWidgetNewDashBoardPage customWidgetPage = detailsEditPage.addNewCustomrWidget();
-    customWidgetPage.selectWidgetType("Axon Ivy process");
-    customWidgetPage.selectProcessAndWaitForParameterPanel("Investment List (Example for Custom Widget on Dashboard)");
+    CustomWidgetNewDashBoardPage customWidgetPage = detailsEditPage.addNewCustomrWidget("Investment List (Example for Custom Widget on Dashboard)");
     customWidgetPage.inputDateField(1, "24 Nov, 2021 00:00");
     customWidgetPage.inputStringField(2, "a short note");
     customWidgetPage.inputUserField(0, "demo");
@@ -143,7 +140,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
     taskConfigurationPage.removeAddedField("description");
     taskConfigurationPage.removeAddedField("expiryTimestamp");
     taskConfigurationPage.saveColumn();
-    ScreenshotUtil.captureElementScreenshot(taskConfigurationPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "task-list-widget");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskConfigurationPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "task-list-widget", new ScreenshotMargin(20));
     taskConfigurationPage.closeConfigurationDialog();
 
     // Take screenshots of Case widget configuration dialog
@@ -157,7 +154,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
     caseConfigurationPage.removeAddedField("endTimestamp");
     caseConfigurationPage.saveColumn();
     caseConfigurationPage.waitPreviewTableLoaded();
-    ScreenshotUtil.captureElementScreenshot(caseConfigurationPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "case-list-widget");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(caseConfigurationPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "case-list-widget", new ScreenshotMargin(20));
     caseConfigurationPage.closeConfigurationDialog();
 
     // Take screenshot of Process widget configuration dialog
@@ -194,7 +191,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
 
     processConfigurationPage.getProcessDisplayMode().click();
     ScreenshotUtil.executeDecorateJs("highlightProcessDisplayModePanel()");
-    ScreenshotUtil.captureElementScreenshot(processConfigurationPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "process-widget-modes");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(processConfigurationPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "process-widget-modes", new ScreenshotMargin(20));
   }
 
   @Test

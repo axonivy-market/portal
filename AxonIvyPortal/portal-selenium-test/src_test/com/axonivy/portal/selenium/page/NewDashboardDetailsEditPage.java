@@ -28,7 +28,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public WebElement addWidget() {
     $("button[id='add-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    return $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $("div[id$='new-widget-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public TaskEditWidgetNewDashBoardPage addNewTaskWidget() {

@@ -6,8 +6,8 @@ import static com.codeborne.selenide.Condition.editable;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -55,16 +55,6 @@ public class CustomWidgetNewDashBoardPage extends TemplatePage {
 
   public ElementsCollection getSelectedProcessList() {
     return $$("span[id$=':selected-process_panel'] tr");
-  }
-
-  public void selectWidgetType(String type) {
-    getWidgetType().shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("label[id$=':custom-widget-type_label']")
-        .shouldBe(getClickableCondition()).click();
-    $("li[data-label='" + type + "']").click();
-  }
-
-  private SelenideElement getWidgetType() {
-    return $("div[id$=':custom-widget-type']");
   }
 
   public ElementsCollection getProcessList() {

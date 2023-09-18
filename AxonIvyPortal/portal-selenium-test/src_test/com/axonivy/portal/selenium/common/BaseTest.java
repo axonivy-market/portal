@@ -90,6 +90,7 @@ public class BaseTest {
   protected String showProcessViewerUrl = "portal/1549F58C18A6C562/PortalProcessViewer.ivp?caseId=%s&processKey=%s";
   protected String processViewerExampleInFrameUrl = "portal-components-examples/1821592826979C20/showProcessViewerOfLeaveRequestUsingProcessLink.ivp";
   protected String securityMemberNameAndAvatarExampleInFrameUrl = "/portal-components-examples/182A5FCAF7FC6B1A/showSecurityMemberNameAndAvatarExamples.ivp?embedInFrame";
+  protected String templateInFrameExampleInFrameUrl = "/portal-developer-examples/162511D2577DBA88/createTaskWithFrameTemplate.ivp?embedInFrame";
 
 
   protected void redirectToNewDashBoard() {
