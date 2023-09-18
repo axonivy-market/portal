@@ -5,7 +5,6 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <ui:composition>
-  <!-- <h:form rendered="#{not empty processes}" id="compact-process-form"> -->
     <!-- INDEX OR ALPHABET SORT -->
     <h:panelGroup id="process-list" layout="block" styleClass="compact-processes-container widget-content" rendered="#{!compactDashboardProcessBean.isPreviewCustomOrder()}">
       <ui:repeat varStatus="status" var="process" value="#{processes}">
@@ -52,15 +51,7 @@
           </div>
         </p:column>
       </p:orderList>
-    <!-- <p:commandButton value="Submit" update="displayCities" process="@form"  oncomplete="PF('test').show()" style="margin-top:5px" />
-    
-    <p:dialog draggable="true" widgetVar="test" header="Result" width="400">
-        <p:dataList id="displayCities" value="#{processes}" var="process">
-            <h:outputText value="#{process.name}" />
-        </p:dataList>
-    </p:dialog> -->
     </h:panelGroup>
     
-  <!-- </h:form> -->
 </ui:composition>
 </html>

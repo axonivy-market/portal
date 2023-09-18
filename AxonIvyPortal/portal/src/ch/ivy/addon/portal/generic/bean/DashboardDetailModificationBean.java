@@ -67,6 +67,7 @@ import ch.ivy.addon.portalkit.dto.widget.DashboardCustomWidgetData;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.enums.ProcessSorting;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
 import ch.ivy.addon.portalkit.jsf.Attrs;
@@ -256,7 +257,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void removeWidget() {
     if (this.getDeleteWidget() != null) {
       this.getSelectedDashboard().getWidgets().remove(getDeleteWidget());
-      if (WELCOME.equals(this.deleteWidget.getType())) {
+      if (WELCOME == this.deleteWidget.getType()) {
         removeWelcomeWidgetImage(this.deleteWidget);
       }
       saveSelectedDashboard();
@@ -280,7 +281,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
    */
   private void removeWelcomeWidgetImagesOfDashboard(Dashboard selectedDashboard) {
     for (DashboardWidget selectedWidget : selectedDashboard.getWidgets()) {
-      if (WELCOME.equals(selectedWidget.getType())) {
+      if (WELCOME == selectedWidget.getType()) {
         removeWelcomeWidgetImage(selectedWidget);
       }
     }
@@ -339,7 +340,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
     List<DashboardWidget> widgets = this.getSelectedDashboard().getWidgets();
     switch (widget.getType()) {
-      case PROCESS:
+      case PROCESS -> {
         ProcessDashboardWidget processWidget = (ProcessDashboardWidget) this.widget;
         processWidget.setPreview(false);
         if (processWidget.getDisplayMode() == ProcessWidgetMode.FULL_MODE) {
@@ -350,12 +351,16 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
           
           updateProcessWidgetSize(processWidget, 5, 3);
           CompactProcessDashboardWidget compactProcessWidget = (CompactProcessDashboardWidget) processWidget;
-          List<DashboardProcess> processes = compactProcessWidget.getDisplayProcesses();// getProcesses();
-          Map<String, Integer> customIndexs = new HashMap<>();
-          for (int i = 0; i <processes.size();i++) {
-            customIndexs.put(processes.get(i).getId(), i);
+          List<DashboardProcess> processes = compactProcessWidget.getDisplayProcesses();
+          if (ProcessSorting.BY_CUSTOM_ORDER.name().equals(compactProcessWidget.getSorting())) {
+            Map<String, Integer> customIndexs = new HashMap<>();
+            for (int i = 0; i <processes.size();i++) {
+              customIndexs.put(processes.get(i).getId(), i);
+            }
+            compactProcessWidget.setCustomIndexs(customIndexs);
+          } else {
+            compactProcessWidget.setCustomIndexs(null);
           }
-          compactProcessWidget.setCustomIndexs(customIndexs);
           
           unifyCompactProcessCategory(compactProcessWidget);
           updateProcessesOfWidget(compactProcessWidget);
@@ -374,19 +379,18 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         } else {
           widgets.add(widget);
         }
-        break;
-      case CUSTOM:
+      }
+      case CUSTOM -> {
         CustomDashboardWidget customWidget =  (CustomDashboardWidget) widget;
         unifyCustomWidgetData(customWidget);
-        break;
-      case STATISTIC:
+      }
+      case STATISTIC -> {
         updateStatisticWidgetData(widget);
-        break;
-      case WELCOME:
+      }
+      case WELCOME -> {
         updateWelcomeWidget(widget);
-        break;
-      default:
-        break;
+      }
+      default -> {}
     }
     updateWidgetPosition(widget);
     resetUserFilter();
@@ -493,7 +497,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     processWidget.setCategories(null);
     processWidget.getFilterableColumns().stream()
         .filter(column -> DashboardStandardProcessColumn.CATEGORY.getField().equalsIgnoreCase(column.getField()))
-        .findAny().ifPresent(categoryColumn -> {
+        .findAny()
+        .ifPresent(categoryColumn -> {
           processWidget.setCategories(categoryColumn.getFilterList());
         });
     if (CollectionUtils.isEmpty(processWidget.getCategories()) && (CollectionUtils.isEmpty(processWidget.getProcesses())
@@ -507,7 +512,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       // Update processPath to latest
       IWebStartable startable = Optional.ofNullable(customWidget.getData())
           .map(DashboardCustomWidgetData::getIvyProcessStartDTO)
-          .map(IvyProcessStartDTO::getStartableProcessStart).orElse(null);
+          .map(IvyProcessStartDTO::getStartableProcessStart)
+          .orElse(null);
       if (Objects.isNull(startable)) {
         startable = CustomWidgetUtils.findStartableOfCustomDashboardProcess(customWidget.getData().getProcessPath());
       }
@@ -537,12 +543,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void updatePortalGridsCurrentRow() {
     Map<String, String> requestParamMap = getRequestParameterMap();
     var currentRowNumber = Optional.ofNullable(requestParamMap.get("portalGridsCurrentRow")).orElse(StringUtils.EMPTY);
-    if (currentRowNumber.isEmpty()) {
-      portalGridsCurrentRow = 0l;
-    }
-    else {
-      portalGridsCurrentRow = Long.valueOf(currentRowNumber);
-    }
+    portalGridsCurrentRow = currentRowNumber.isEmpty() ? 0l : Long.valueOf(currentRowNumber);
   }
 
   public void save() {
@@ -588,7 +589,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       return;
     }
 
-    if (WELCOME.equals(widget.getType())) {
+    if (WELCOME == widget.getType()) {
       for (var otherWidget : CollectionUtils.emptyIfNull(selectedDashboard.getWidgets())) {
         if (otherWidget.getId().contentEquals(widget.getId())) {
           continue;
@@ -681,36 +682,25 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void prepareEditWidget(DashboardWidget widget) {
     DashboardWidget editWidget = findWidgetByIdInSelectedDashboard(widget);
     switch (widget.getType()) {
-      case PROCESS:
+      case PROCESS -> {
         ProcessDashboardWidget processDashboardWidget = (ProcessDashboardWidget) editWidget;
         ProcessDashboardWidget clonedWidget;
-        switch (processDashboardWidget.getDisplayMode()) {
-          case COMPACT_MODE:
-            clonedWidget = new CompactProcessDashboardWidget((CompactProcessDashboardWidget) processDashboardWidget);
-            break;
-          case COMBINED_MODE:
-            clonedWidget = new CombinedProcessDashboardWidget((CombinedProcessDashboardWidget) processDashboardWidget);
-            break;
-          case FULL_MODE:
-            clonedWidget = new FullProcessDashboardWidget((FullProcessDashboardWidget) processDashboardWidget);
-            break;
-          case IMAGE_MODE:
-            clonedWidget = new ImageProcessDashboardWidget((ImageProcessDashboardWidget) processDashboardWidget);
-            break;
-          default:
-            clonedWidget = new ProcessDashboardWidget(processDashboardWidget);
-            break;
-        }
+        clonedWidget = switch (processDashboardWidget.getDisplayMode()) {
+          case COMPACT_MODE -> new CompactProcessDashboardWidget((CompactProcessDashboardWidget) processDashboardWidget);
+          case COMBINED_MODE -> new CombinedProcessDashboardWidget((CombinedProcessDashboardWidget) processDashboardWidget);
+          case FULL_MODE -> new FullProcessDashboardWidget((FullProcessDashboardWidget) processDashboardWidget);
+          case IMAGE_MODE -> new ImageProcessDashboardWidget((ImageProcessDashboardWidget) processDashboardWidget);
+          default -> new ProcessDashboardWidget(processDashboardWidget);
+        };
         setWidget(clonedWidget);
-        break;
-      case STATISTIC:
+      }
+      case STATISTIC -> {
         var statisticDashboardWidget = new StatisticDashboardWidget((StatisticDashboardWidget) widget);
         setWidget(statisticDashboardWidget);
-        break;
-
-      default:
+      }
+      default -> {
         setWidget(editWidget);
-        break;
+      }
     }
     newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/editWidgetHeader");
     isEditWidget = true;
@@ -786,11 +776,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   public String getRestoreDashboardMessage() {
-    if (StringUtils.isBlank(restoreDashboardMessage) && Objects.nonNull(foundTemplate)) {
-      if (foundTemplate.isPresent()) {
-        restoreDashboardMessage = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/RestoreDefaultDashboardMessage",
+    if (StringUtils.isBlank(restoreDashboardMessage) && Objects.nonNull(foundTemplate) && foundTemplate.isPresent()) {
+      restoreDashboardMessage = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/RestoreDefaultDashboardMessage",
             Arrays.asList(foundTemplate.get().getTitle()));
-      }
     }
     return restoreDashboardMessage;
   }
@@ -802,8 +790,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       scratchDashboard.setTitle(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/CreateFromScratch"));
       return Optional.of(scratchDashboard);
     }
-    return CollectionUtils.emptyIfNull(getDashboardTemplates()).stream()
-        .filter(template -> template.getId().equals(templateId)).findFirst();
+    return CollectionUtils.emptyIfNull(getDashboardTemplates())
+        .stream()
+        .filter(template -> template.getId().equals(templateId))
+        .findFirst();
   }
 
   public Optional<DashboardTemplate> getFoundTemplate() {
@@ -822,10 +812,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       if (NEWS != getWidget().getType()) {
         componentId = componentId.concat(" ").concat(DEFAULT_USER_FILTER_ID); 
       }
-    } else {
-      Ivy.log().error("get widget is null");
-    }
-    Ivy.log().error("component to process {0}", componentId);
+    } 
     return componentId;
   }
   

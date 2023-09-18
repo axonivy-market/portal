@@ -60,14 +60,16 @@ public class CompactDashboardProcessBean
   }
 
   private void preRenderCompactProcessStartWidget() {
-    if (getWidget().isSelectedAllProcess()) {
-      getWidget().setDisplayProcesses(getAllPortalProcesses());
-    } else if (CollectionUtils.isNotEmpty(getWidget().getProcessPaths())) {
+    CompactProcessDashboardWidget widget = getWidget();
+    if (widget.isSelectedAllProcess()) {
+      widget.setDisplayProcesses(getAllPortalProcesses());
+    } else if (CollectionUtils.isNotEmpty(widget.getProcessPaths())) {
       List<DashboardProcess> selectedProcesses = preRenderDefinedCompactProcesses();
-      getWidget().setProcesses(selectedProcesses);
+      widget.setProcesses(selectedProcesses);
     } else {
       updatePortalCompactProcesses();
     }
+    
   }
 
   private List<DashboardProcess> preRenderDefinedCompactProcesses() {
@@ -115,39 +117,32 @@ public class CompactDashboardProcessBean
   @Override
   public void preview() {
     dashboardProcessBean.preview();
-    var isEmptyProcess = CollectionUtils.isEmpty(getWidget().getProcesses());
-    String processSorting = getWidget().getSorting();
+    CompactProcessDashboardWidget widget = getWidget();
+    var isEmptyProcess = CollectionUtils.isEmpty(widget.getProcesses());
     List<DashboardProcess> displayProcesses = new ArrayList<>();
     List<DashboardProcess> processAfterSorting = new ArrayList<>();
     if (isEmptyProcess) {
       displayProcesses = getAllPortalProcesses();
-      getWidget().setSelectedAllProcess(true);
+      widget.setSelectedAllProcess(true);
     } else {
-      getWidget().setSelectedAllProcess(false);
-      displayProcesses = getWidget().getProcesses();
+      widget.setSelectedAllProcess(false);
+      displayProcesses = widget.getProcesses();
     }
     ColumnModel applicationFilter = getFilterableColumnByField(APPLICATION);
     if (applicationFilter != null) {
-      getWidget().setApplications(applicationFilter.getFilterList());
+      widget.setApplications(applicationFilter.getFilterList());
       if (isEmptyProcess) {
         displayProcesses = filterByApplication();
       }
     }
     ColumnModel categoryFilter = getFilterableColumnByField(CATEGORY);
     if (categoryFilter != null) {
-      getWidget().setCategories(categoryFilter.getFilterList());
+      widget.setCategories(categoryFilter.getFilterList());
       if (isEmptyProcess) {
         filterByCategory(displayProcesses);
       }
     }
-    if (processSorting == null || ProcessSorting.BY_ALPHABETICALLY.name().equals(processSorting)) {
-      processAfterSorting = DashboardWidgetUtils.sortProcessByAlphabet(displayProcesses);
-    } else if (ProcessSorting.BY_INDEX.name().equals(processSorting)) {
-      processAfterSorting = DashboardWidgetUtils.sortProcessByIndex(displayProcesses);
-    } else if (ProcessSorting.BY_CUSTOM_ORDER.name().equals(processSorting)) {
-      processAfterSorting = DashboardWidgetUtils.sortProcessByCustomOrder(displayProcesses, getWidget().getCustomIndexs());
-    }
-    getWidget().setDisplayProcesses(processAfterSorting);
+    widget.setDisplayProcesses(processAfterSorting);
   }
 
   private ColumnModel getFilterableColumnByField(DashboardStandardProcessColumn column) {

@@ -17,7 +17,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -674,12 +673,12 @@ public class DashboardWidgetUtils {
       }
     }
     if (processSorting == null || ProcessSorting.BY_ALPHABETICALLY.name().equals(processSorting)) {
-      processesAfterSorting = DashboardWidgetUtils.sortProcessByAlphabet(processes);
+      processesAfterSorting = sortProcessByAlphabet(processes);
     } else if (ProcessSorting.BY_INDEX.name().equals(processSorting)) {
-      processesAfterSorting = DashboardWidgetUtils.sortProcessByIndex(processes);
+      processesAfterSorting = sortProcessByIndex(processes);
     } else if (ProcessSorting.BY_CUSTOM_ORDER.name().equals(processSorting)) {
       Map<String, Integer> customIndexs = processWidget.getCustomIndexs();
-      processesAfterSorting = DashboardWidgetUtils.sortProcessByCustomOrder(processes, customIndexs);
+      processesAfterSorting = sortProcessByCustomOrder(processes, customIndexs);
     }
     return processesAfterSorting;
   }
@@ -777,17 +776,21 @@ public class DashboardWidgetUtils {
   
   public static List<DashboardProcess> sortProcessByCustomOrder(List<DashboardProcess> processes, Map<String, Integer> indexes) {
     List<DashboardProcess> result = new ArrayList<>();
-    result.addAll(processes);
     if (MapUtils.isNotEmpty(indexes)) {
-    for (Entry<String, Integer> entry : indexes.entrySet()) {
-      String processId = entry.getKey();
-      Integer index = entry.getValue();
-      for (int i = 0; i < processes.size(); i ++) {
-        if (processes.get(i).getId().equals(processId)) {
-          result.set(index, processes.get(i));
+      indexes.entrySet().stream().sorted(Map.Entry.comparingByValue()).forEach(entry -> {
+        String processId = entry.getKey();
+        for (int i = 0; i < processes.size(); i ++) {
+          if (processes.get(i).getId().equals(processId)) {
+            result.add(processes.get(i));
+            processes.remove(i);
+            break;
+          } 
         }
-      }
-    }
+      });
+      // add the rest of processes which are not indexed to the end of the list
+      result.addAll(processes);
+    } else {
+      result.addAll(processes);
     }
     return result;
     
