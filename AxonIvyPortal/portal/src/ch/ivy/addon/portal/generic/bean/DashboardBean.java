@@ -18,6 +18,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 
+import ch.addon.portal.generic.menu.MenuView;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
@@ -40,6 +41,7 @@ import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
 import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.DashboardService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
@@ -83,6 +85,12 @@ public class DashboardBean implements Serializable {
   public void init() {
     currentDashboardIndex = 0;
     dashboards = collectDashboards();
+
+    if (isReadOnlyMode) {
+      MenuView menuView = (MenuView) ManagedBeans.get("menuView");
+      menuView.updateDashboardCache(dashboards);
+    }
+
     if (CollectionUtils.isNotEmpty(dashboards)) {
       selectedDashboardId = readDashboardFromSession();
       currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
