@@ -110,7 +110,7 @@ public class ProcessService implements IProcessService {
     return start -> BooleanUtils.toBoolean(start.customFields().value(IS_DASHBOARD_PROCESS));
   }
   public IWebStartable findWebStartableInSecurityContextById(String processId){
-    Predicate<? super IWebStartable> predicate = startable -> StringUtils.equals(startable.getId(), processId) && isNotPortalHomeAndMSTeamsProcess(startable);
+    Predicate<? super IWebStartable> predicate = startable -> StringUtils.endsWith(startable.getId(), processId) && isNotPortalHomeAndMSTeamsProcess(startable);
     return findStartable(predicate);
   }
 
@@ -120,7 +120,7 @@ public class ProcessService implements IProcessService {
   }
   
   public IWebStartable findCustomDashboardProcessInSecurityContextByProcessId(String processId) {
-    Predicate<? super IWebStartable> predicate = startable -> StringUtils.equals(processId, startable.getId()) && 
+    Predicate<? super IWebStartable> predicate = startable -> StringUtils.endsWith(startable.getId(),processId) && 
         BooleanUtils.toBoolean(startable.customFields().value(IS_DASHBOARD_PROCESS));
     return findStartable(predicate);
   }
