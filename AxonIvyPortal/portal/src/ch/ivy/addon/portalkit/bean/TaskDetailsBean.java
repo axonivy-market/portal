@@ -6,10 +6,13 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
+
 import ch.ivy.addon.portalkit.dto.taskdetails.TaskDetails;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.jsf.Attrs;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 
@@ -20,9 +23,12 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
   private static final long serialVersionUID = 8566646437739271552L;
   private boolean hasShowDurationTime;
   private String taskDetailsDescription;
-
+  private String taskDetailsUrl;
+  private Boolean isShowShareButton;
+  
   public void init() {
     super.initConfig();
+    isShowShareButton = PermissionUtils.hasShareTaskDetailsPermission();
     try {
       hasShowDurationTime = Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_TASK_DURATION_TIME));
       loadWidgets();
@@ -37,7 +43,7 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
     if (selectedTask == null) {
       return;
     }
-    
+    this.taskDetailsUrl = PortalNavigatorAPI.buildUrlToPortalTaskDetailsPage(selectedTask.getId());
     super.loadWidgets();
   }
 
@@ -72,6 +78,22 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
     this.taskDetailsDescription = taskDetailsDescription;
   }
 
+  public String getTaskDetailsUrl() {
+    return taskDetailsUrl;
+  }
+
+  public void setTaskDetailsUrl(String taskDetailsUrl) {
+    this.taskDetailsUrl = taskDetailsUrl;
+  }
+
+  public Boolean getIsShowShareButton() {
+    return isShowShareButton;
+  }
+
+  public void setIsShowShareButton(Boolean isShowShareButton) {
+    this.isShowShareButton = isShowShareButton;
+  }
+
   @Override
   public String getVariableKey() {
     return PortalVariable.TASK_DETAIL.key;
@@ -100,5 +122,4 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
   protected String getDefaultConfigId() {
     return "default-task-detail";
   }
-
 }
