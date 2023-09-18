@@ -1,9 +1,9 @@
 {
   "format" : "10.0.0",
-  "id" : "18A25A591D589CF2",
+  "id" : "18A72B2C976EDF17",
   "kind" : "HTML_DIALOG",
   "config" : {
-    "data" : "com.axonivy.portal.dashboard.component.ShareDialog.ShareDialogData"
+    "data" : "com.axonivy.portal.component.ShareLinkDialog.ShareLinkDialogData"
   },
   "elements" : [ {
       "id" : "f0",

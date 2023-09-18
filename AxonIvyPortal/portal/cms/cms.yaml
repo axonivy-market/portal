@@ -1397,8 +1397,6 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Could not find the the linked process!
-                DashboardModification:
-                  Share: Share
         portalkit:
           component:
             CaseWidget:
@@ -1417,13 +1415,15 @@ Dialogs:
   com:
     axonivy:
       portal:
+        component:
+          ShareLinkDialog:
+            CopyLink: Copy link
+            LinkCopied: Link coppied!
         dashboard:
           component:
             DashboardImportDetails:
               FileInfomation: File Infomation
             DashboardSharing:
-              CopyLink: Copy link
-              LinkCopied: Link coppied!
               ShareDashboard: Share Dashboard
             NewsWidget:
               NewsContentPlaceHolder: Enter News content

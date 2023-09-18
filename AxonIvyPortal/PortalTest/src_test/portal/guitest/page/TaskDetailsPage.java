@@ -191,6 +191,10 @@ public class TaskDetailsPage extends TemplatePage {
     return findElementByCssSelector("[id$=':switch-to-edit-mode-button']");
   }
   
+  public WebElement getSharePageButtonElement() {
+    return findElementByCssSelector("[id$=':share-page-button']");
+  }
+  
   public WebElement getSwitchToViewModeButtonElement() {
     return findElementByCssSelector("[id$=':switch-to-view-mode-button']");
   }
