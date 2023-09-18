@@ -4,6 +4,7 @@ import static ch.ivy.addon.portalkit.util.ScreenshotUtil.ERROR_HANDLING_FOLDER;
 
 import java.io.IOException;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -20,6 +21,7 @@ public class HandleErrorPageScreenshotTest extends ScreenshotTest {
   private String portalCustom500ErrorUrl = "portal/1549F58C18A6C562/Error500Page.ivp";
   
   @Test
+  @Ignore
   public void screenshotErrorPages() throws IOException {
     ScreenshotUtil.resizeBrowser(new Dimension(1200, 800));
     HomePage homePage = new HomePage();

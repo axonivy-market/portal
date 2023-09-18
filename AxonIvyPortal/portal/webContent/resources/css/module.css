@@ -4126,6 +4126,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .case-filter-selection-checkbox {
   width: 160px;
+  white-space: nowrap;
 }
 
 .additional-filter-container {
@@ -5471,6 +5472,7 @@ border-top: 0.14rem dashed;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 0.5rem;
 }
 
 .grid-view-form .process-action-group {

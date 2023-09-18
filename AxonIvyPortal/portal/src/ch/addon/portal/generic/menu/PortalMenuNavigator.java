@@ -19,15 +19,20 @@ import org.primefaces.event.MenuActionEvent;
 import org.primefaces.model.menu.MenuItem;
 
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
-import com.axonivy.portal.components.service.IvyAdapterService;
+import com.axonivy.portal.service.CustomSubMenuItemService;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;
 import ch.ivy.addon.portalkit.configuration.Application;
+import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.service.IvyCacheService;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.PrimeFacesUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -37,7 +42,6 @@ import ch.ivyteam.ivy.workflow.TaskState;
 public class PortalMenuNavigator {
   public final static String LOAD_SUB_MENU_PROCESS = "loadSubMenuItems()";
   public final static String SUB_MENU = "subMenuItems";
-  private static PortalSubMenuItemWrapper portalSubMenuItemWrapper;
 
   public static void navigateToTargetPage(Map<String, List<String>> params) throws IOException {
     MenuKind selectedMenuKind = MenuKind.getKind(getMenuParam(params, PortalMenuItem.MENU_KIND));
@@ -107,7 +111,6 @@ public class PortalMenuNavigator {
     return applications;
   }
 
-  @SuppressWarnings("unchecked")
   public static List<SubMenuItem> callSubMenuItemsProcess() {
     Locale requestLocale = Ivy.session().getContentLocale();
     String sessionIdAttribute = SessionAttribute.SESSION_IDENTIFIER.toString();
@@ -115,18 +118,22 @@ public class PortalMenuNavigator {
       Ivy.session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
     }
     String sessionUserId = (String) Ivy.session().getAttribute(sessionIdAttribute);
+    IvyCacheService cacheService = IvyCacheService.newInstance();
+    PortalSubMenuItemWrapper portalSubMenuItemWrapper =
+        (PortalSubMenuItemWrapper) cacheService.getSessionCacheValue(IvyCacheIdentifier.PORTAL_MENU, sessionUserId).orElse(null);
+    
     if (portalSubMenuItemWrapper == null
-        || !sessionUserId.equals(portalSubMenuItemWrapper.sessionUserId)
         || !requestLocale.equals(portalSubMenuItemWrapper.loadedLocale)) {
       synchronized(PortalSubMenuItemWrapper.class) {
         List<SubMenuItem> subMenuItems = new ArrayList<>();
-        Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(LOAD_SUB_MENU_PROCESS, null);
         try {
-          subMenuItems = (List<SubMenuItem>) response.get(SUB_MENU);
+          subMenuItems = getSubmenuList();
         } catch (Exception e) {
           Ivy.log().error("Cannot load SubMenuItems {0}", e.getMessage());
         }
-        portalSubMenuItemWrapper = new PortalSubMenuItemWrapper(sessionUserId, requestLocale, subMenuItems);
+
+        portalSubMenuItemWrapper = new PortalSubMenuItemWrapper(requestLocale, subMenuItems);
+        cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_MENU, sessionUserId, portalSubMenuItemWrapper);
       }
     }
     return portalSubMenuItemWrapper.portalSubMenuItems;
@@ -146,5 +153,30 @@ public class PortalMenuNavigator {
     }
     navigateToTargetPage(params);
   }
-  private record PortalSubMenuItemWrapper(String sessionUserId, Locale loadedLocale, List<SubMenuItem> portalSubMenuItems) {}
+  private record PortalSubMenuItemWrapper(Locale loadedLocale, List<SubMenuItem> portalSubMenuItems) {};
+
+  private static List<SubMenuItem> getSubmenuList() {
+    List<SubMenuItem> subMenuItems = new ArrayList<>();
+    GlobalSettingService globalSettingService = new GlobalSettingService();
+
+    if(PermissionUtils.checkAccessFullProcessListPermission()) {
+      subMenuItems.add(new ProcessSubMenuItem());
+    }
+
+    if(PermissionUtils.checkAccessFullTaskListPermission()) {
+      subMenuItems.add(new TaskSubMenuItem());
+    }
+
+    if(PermissionUtils.checkAccessFullCaseListPermission()) {
+      subMenuItems.add(new CaseSubMenuItem());
+    }
+
+    if(PermissionUtils.checkAccessFullStatisticsListPermission()
+        && !globalSettingService.findBooleanGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET)) {
+      subMenuItems.add(new StatisticSubMenuItem());
+    }
+
+    subMenuItems.addAll(CustomSubMenuItemService.findAll());
+    return subMenuItems;
+  }
 }
