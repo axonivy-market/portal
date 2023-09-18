@@ -25,7 +25,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class DashboardNewsWidgetTest extends BaseTest {
 
   private static final String DEFAULT_NEWS_WIDGET_NAME = "News feed";

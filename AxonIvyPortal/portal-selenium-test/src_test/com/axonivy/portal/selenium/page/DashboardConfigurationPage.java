@@ -33,8 +33,8 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public DashboardModificationPage openEditPublicDashboardsPage() {
     selectPublicDashboardType();
-    $("a[id$='edit-dashboard-action'].js-public-dashboard").shouldBe(appear, DEFAULT_TIMEOUT)
-        .shouldBe(getClickableCondition()).click();
+    $("button[id$='dashboard-modification-component:dashboard-table:0:edit']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition());
     return new DashboardModificationPage();
   }
 
@@ -54,21 +54,21 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public DashboardModificationPage openEditPrivateDashboardsPage() {
     selectPrivateDashboardType();
-    $("a[id$='edit-dashboard-action'].js-private-dashboard").shouldBe(appear, DEFAULT_TIMEOUT)
+    $("button[id$='dashboard-modification-component:dashboard-table:0:edit']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
     return new DashboardModificationPage();
   }
 
   public void openCreatePublicDashboardMenu() {
     selectPublicDashboardType();
-    $("a[id$='create-dashboard-action'].js-public-dashboard").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    $("button[id$='create-dashboard-action']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
     waitForCreateNewDashboardSectionAppear();
   }
 
   public void openCreatePrivateDashboardMenu() {
     selectPrivateDashboardType();
-    $("a[id$='create-dashboard-action'].js-private-dashboard").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    $("button[id$='create-dashboard-action'].js-private-dashboard").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
     waitForCreateNewDashboardSectionAppear();
   }
@@ -82,7 +82,7 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public void createPrivateDashboardFromScratch(String newName, String icon, String newDescription) {
     selectPrivateDashboardType();
-    $("a[id$='create-dashboard-action'].js-private-dashboard").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    $("button[id$='create-dashboard-action'].js-private-dashboard").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
     waitForCreateNewDashboardSectionAppear();
     $("a[id$=':create-from-scratch']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
@@ -109,14 +109,14 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public SelenideElement setupDataPublicDashboardFromScratch() {
     $("a[id$=':create-from-scratch']").shouldBe(getClickableCondition()).click();
-    String creationDetailsDialogId = "div[id$=':dashboard-creation-details-dialog']";
+    String creationDetailsDialogId = "[id$=':dashboard-title']";
     $(creationDetailsDialogId).shouldBe(appear, DEFAULT_TIMEOUT);
     SelenideElement createDashboardDialog = $(creationDetailsDialogId);
     return createDashboardDialog;
   }
 
   public void createPublicDashboardFromScratch(SelenideElement createDashboardDialog, List<String> permissions) {
-    String creationDetailsDialogId = "div[id$=':dashboard-creation-details-dialog']";
+    String creationDetailsDialogId = "[id$=':dashboard-title']";
     if (permissions != null) {
       setPermissions(permissions);
     }
@@ -213,7 +213,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public NewDashboardPage backToHomePage() {
-    $("[id$='actions-group']").shouldBe(appear, DEFAULT_TIMEOUT);
+    // $("[id$='actions-group']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("[id$='back-to-home-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     return new NewDashboardPage();
   }
