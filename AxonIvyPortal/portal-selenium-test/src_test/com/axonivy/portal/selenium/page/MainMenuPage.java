@@ -81,6 +81,14 @@ public class MainMenuPage extends TemplatePage {
       $("a[id$='user-menu-required-login:toggle-menu']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     }
   }
+  
+  public void closeMainMenu() {
+    waitLeftMenuReady();
+    if ($("a[id$='user-menu-required-login:toggle-menu']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).is(appear)) {
+      $("a[id$='user-menu-required-login:toggle-menu']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+      $(".portal-home-logo-small").shouldBe(Condition.hidden, DEFAULT_TIMEOUT);
+    }
+  }
 
   public String getMenuItemsAsString() {
     expandMainMenu();
