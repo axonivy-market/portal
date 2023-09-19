@@ -259,4 +259,12 @@ public class BaseTest {
     updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "false");
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
   }
+  
+  public void redirectToRelativeLinkWithEmbedInFrame(String relativeProcessStartUrl) {
+    try {
+      open(UrlHelpers.generateAbsoluteProcessStartLink(relativeProcessStartUrl) + "?embedInFrame");
+    } catch (Exception e) {
+      throw new PortalGUITestException(e);
+    }
+  }
 }

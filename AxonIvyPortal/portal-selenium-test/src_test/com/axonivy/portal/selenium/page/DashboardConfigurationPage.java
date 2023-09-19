@@ -6,7 +6,6 @@ import static com.codeborne.selenide.Selenide.$;
 
 import java.util.List;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
@@ -298,6 +297,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   public void createPrivateDashboardFromScratch() {
     openCreatePrivateDashboardMenu();
     $("a[id$=':create-from-scratch']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("[id$=':dashboard-title']").sendKeys("My dashboard");
   }
 
   public SelenideElement getDashboardCreationDialog() {
