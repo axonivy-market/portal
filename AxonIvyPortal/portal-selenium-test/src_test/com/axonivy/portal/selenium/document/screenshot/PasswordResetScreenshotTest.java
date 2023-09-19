@@ -23,13 +23,13 @@ public class PasswordResetScreenshotTest extends ScreenshotBaseTest {
     launchBrowserAndGotoRelativeLink(PORTAL_HOME_PAGE_URL);
     redirectToRelativeLink(portalKitTestHelperPasswordResetUrl);
     login(TestAccount.ADMIN_USER);
-    showNewDashboard();
-    NewDashboardPage homePage = new NewDashboardPage();
-    homePage.clickOnLogout();
   }
 
   @Test
   public void testResetPassword() throws IOException {
+    showNewDashboard();
+    NewDashboardPage homePage = new NewDashboardPage();
+    homePage.clickOnLogout();
     redirectToRelativeLink(String.format(portalPasswordResetUrl, TestAccount.TEST_FORGOT_PASSWORD_USER.getPassword(),
         TestAccount.TEST_FORGOT_PASSWORD_USER.getUsername()));
     ScreenshotUtil.resizeBrowser(new Dimension(1024, 768));
