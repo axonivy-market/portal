@@ -221,6 +221,12 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     homePage.closeMainMenu();
     CaseDetailsPage caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Order Pizza");
     caseDetailsPage.waitForCaseDetailsDisplay();
+    
+    executeDecorateJs("highlightSharePageButton()");
+    WebElement sharePageBtn = caseDetailsPage.getSharePageButtonElement();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(sharePageBtn,
+        ScreenshotUtil.CASE_DETAIL_FOLDER + "share-page-button", new ScreenshotMargin(100, 200));
+    refreshPage();
 
     executeDecorateJs("highlightSwitchToEditMode()");
     WebElement switchToEditMode = caseDetailsPage.getSwitchToEditModeButton();

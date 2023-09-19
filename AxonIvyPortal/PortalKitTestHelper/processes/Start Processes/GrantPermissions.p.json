@@ -1808,6 +1808,162 @@
         "labelOffset" : { "x" : 145, "y" : 25 }
       },
       "connect" : { "id" : "f176", "to" : "f174" }
+    }, {
+      "id" : "f179",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.TASK_DETAILS_SHARE_LINK.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ISecurityContext.current().securityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 1624 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f191", "to" : "f7", "via" : [ { "x" : 408, "y" : 1624 } ] }
+    }, {
+      "id" : "f180",
+      "type" : "RequestStart",
+      "name" : "grantShareLinkTaskDetailsPermission.ivp",
+      "config" : {
+        "callSignature" : "grantShareLinkTaskDetailsPermission",
+        "outLink" : "grantShareLinkTaskDetailsPermission.ivp",
+        "startName" : "Grant Share Link Task Details Permision"
+      },
+      "visual" : {
+        "at" : { "x" : 48, "y" : 1624 },
+        "labelOffset" : { "x" : 97, "y" : 33 }
+      },
+      "connect" : { "id" : "f183", "to" : "f179" }
+    }, {
+      "id" : "f181",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.TASK_DETAILS_SHARE_LINK.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ISecurityContext.current().securityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 1688 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f192", "to" : "f7", "via" : [ { "x" : 408, "y" : 1688 } ] }
+    }, {
+      "id" : "f182",
+      "type" : "RequestStart",
+      "name" : "denyShareLinkTaskDetailsPermission.ivp",
+      "config" : {
+        "callSignature" : "denyShareLinkTaskDetailsPermission",
+        "outLink" : "denyShareLinkTaskDetailsPermission.ivp",
+        "startName" : "Deny Share Link Task Details Permision"
+      },
+      "visual" : {
+        "at" : { "x" : 48, "y" : 1688 },
+        "labelOffset" : { "x" : 97, "y" : 33 }
+      },
+      "connect" : { "id" : "f184", "to" : "f181" }
+    }, {
+      "id" : "f185",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.CASE_DETAILS_SHARE_LINK.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ISecurityContext.current().securityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 1752 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f193", "to" : "f7", "via" : [ { "x" : 408, "y" : 1752 } ] }
+    }, {
+      "id" : "f186",
+      "type" : "RequestStart",
+      "name" : "grantShareLinkCaseDetailsPermission.ivp",
+      "config" : {
+        "callSignature" : "grantShareLinkCaseDetailsPermission",
+        "outLink" : "grantShareLinkCaseDetailsPermission.ivp",
+        "startName" : "Grant Share Link Case Details Permision"
+      },
+      "visual" : {
+        "at" : { "x" : 48, "y" : 1752 },
+        "labelOffset" : { "x" : 97, "y" : 41 }
+      },
+      "connect" : { "id" : "f190", "to" : "f185" }
+    }, {
+      "id" : "f187",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.CASE_DETAILS_SHARE_LINK.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ISecurityContext.current().securityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 1816 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f194", "to" : "f7", "via" : [ { "x" : 408, "y" : 1816 } ] }
+    }, {
+      "id" : "f188",
+      "type" : "RequestStart",
+      "name" : "denyShareLinkCaseDetailsPermission.ivp",
+      "config" : {
+        "callSignature" : "denyShareLinkCaseDetailsPermission",
+        "outLink" : "denyShareLinkCaseDetailsPermission.ivp",
+        "startName" : "Deny Share Link Case Details Permision"
+      },
+      "visual" : {
+        "at" : { "x" : 48, "y" : 1816 },
+        "labelOffset" : { "x" : 97, "y" : 33 }
+      },
+      "connect" : { "id" : "f189", "to" : "f187" }
     } ],
   "layout" : {
     "lanes" : [ {
