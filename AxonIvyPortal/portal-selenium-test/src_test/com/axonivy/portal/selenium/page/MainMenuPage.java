@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -75,9 +74,10 @@ public class MainMenuPage extends TemplatePage {
 
   public void expandMainMenu() {
     waitLeftMenuReady();
-    if ($("a[id$='user-menu-required-login:toggle-menu']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).is(disappear)) {
-      $(".sidebar-logo").hover();
-      $("a[id$='user-menu-required-login:toggle-menu']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    if ($("[id='user-menu-required-login:logo-small']").isDisplayed()) {
+      $("[id='user-menu-required-login:logo-small']").shouldBe(appear, DEFAULT_TIMEOUT).hover();
+      $("[id='user-menu-required-login:logo']").shouldBe(appear, DEFAULT_TIMEOUT);
+      $("a[id='user-menu-required-login:toggle-menu']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     }
   }
   

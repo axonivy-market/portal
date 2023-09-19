@@ -158,6 +158,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
   @Test
   public void captureScreenshotProcessViewerPage() throws IOException {
     createTestingTasks();
+    showNewDashboard();
     MainMenuPage mainMenuPage = new MainMenuPage();
     var caseWidgetPage = mainMenuPage.openCaseList();
     var caseId = caseWidgetPage.getCaseId(0);
