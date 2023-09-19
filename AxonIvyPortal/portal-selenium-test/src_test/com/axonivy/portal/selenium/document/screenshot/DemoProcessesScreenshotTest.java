@@ -18,7 +18,7 @@ import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
 
   private static String LEAVE_REQUEST_START_LINK = "portal-user-examples/170321BD7F5539D6/start.ivp";
