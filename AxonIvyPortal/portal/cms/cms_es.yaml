@@ -1551,10 +1551,10 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: ¡No se pudo encontrar el proceso vinculado!
-                DashboardModification:
-                  Share: Compartir
         portalkit:
           component:
+            CaseItemDetails:
+              ShareCaseDetails: Compartir detalles del caso
             CaseWidget:
               CaseCategory: Categoría del caso
               CaseDetail:
@@ -1569,9 +1569,15 @@ Dialogs:
               defaultEmptyMessage: No hay casos
             IconSelection:
               IconLinkTooltip: Haga clic para cambiar el icono
+            TaskItemDetails:
+              ShareTaskDetails: Compartir detalles de la tarea
   com:
     axonivy:
       portal:
+        component:
+          ShareLinkDialog:
+            CopyLink: Copiar link
+            LinkCopied: ¡Enlace copiado!
         dashboard:
           component:
             DashboardImportDetails:
@@ -1580,8 +1586,6 @@ Dialogs:
               ImportPublic: Importar panel público
               chooseAJsonFile: Elija un archivo json
             DashboardSharing:
-              CopyLink: Copiar link
-              LinkCopied: ¡Enlace copiado!
               ShareDashboard: Compartir panel
             NewsWidget:
               NewsContentPlaceHolder: Introduzca el contenido de las noticias
@@ -1729,6 +1733,7 @@ Labels:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Permissions: Permiso
+  Share: Compartir
   Task: Tarea
   TaskItemDetail: Detalles de la tarea
   TaskUser-Explain: Lista de usuario separados por coma
