@@ -355,6 +355,10 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   width: 1px;
 }
 
+.case-name-center {
+  align-self: center;
+}
+
 .case-detail-name-inplace-edit .ui-button.ui-widget.ui-button-icon-only.ui-inplace-save,
 .case-description-edit-inplace .ui-button.ui-widget.ui-button-icon-only.ui-inplace-save {
   margin-right: 0.3em;
@@ -4126,6 +4130,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .case-filter-selection-checkbox {
   width: 160px;
+  white-space: nowrap;
 }
 
 .additional-filter-container {

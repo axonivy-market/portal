@@ -82,4 +82,12 @@ public class TaskDetailsPage extends TemplatePage {
   public SelenideElement getResponsibleAvatar() {
     return $(".security-member-container > .has-avatar > .ui-avatar").shouldBe(appear, DEFAULT_TIMEOUT);
   }
+  
+  public SelenideElement getShareButton() {
+    return $("button[id$=':share-page-button']");
+  }
+  
+  public SelenideElement getShareDialog() {
+    return $("div[id$=':share-task-details-dialog']");
+  }
 }
