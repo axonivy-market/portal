@@ -29,7 +29,6 @@
         <h:panelGroup id="#{cc.attrs.nameId}-edit-form" styleClass="js-task-name-details task-name u-truncate-text MarTop5">
           <h:outputText value="#{ivy.cms.co('/Labels/Task')}: #{task.names().current()}" />
         </h:panelGroup>
-
         <p:commandLink id="back-to-previous-page"
           actionListener="#{taskActionBean.backToPrevPage(cc.attrs.task, cc.attrs.isFromTaskList, cc.attrs.isTaskStartedInDetails)}"
           styleClass="task-details-back-btn" process="@this">
@@ -37,6 +36,10 @@
           <p:spacer width="3px" />
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
         </p:commandLink>
+        <p:commandButton id="share-page-button-mobile" rendered="#{taskDetailsBean.isShowShareButton}"
+		  onclick="PF('share-task-details-dialog').show()" type="button"
+	      icon="#{visibilityBean.generateButtonIcon('si si-share')}" 
+	      title="#{ivy.cms.co('/Labels/Share')}" styleClass="ui-sm-hidden-op ui-button-flat"/>
       </h:form>
     </h:panelGroup>
     <h:panelGroup id="task-details-actions"
@@ -45,7 +48,7 @@
       <p:commandButton id="share-page-button" rendered="#{taskDetailsBean.isShowShareButton}"
      	onclick="PF('share-task-details-dialog').show()" type="button"
         icon="#{visibilityBean.generateButtonIcon('si si-share')}" 
-        title="#{ivy.cms.co('/Labels/Share')}" styleClass="u-mar-right-5"/>
+        title="#{ivy.cms.co('/Labels/Share')}" styleClass="u-mar-right-5 ui-button-flat task-case-detail-share-button"/>
       <p:commandButton id="switch-to-edit-mode-button" rendered="#{taskDetailsBean.readOnlyMode}"
         value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToEditMode')}" actionListener="#{taskDetailsBean.switchToEditMode()}"
         icon="#{visibilityBean.generateButtonIcon('si si-pencil')}" update="task-item-body task-details-actions"
