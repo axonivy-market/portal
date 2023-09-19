@@ -3901,12 +3901,12 @@
         "at" : { "x" : 136, "y" : 3456 },
         "labelOffset" : { "x" : -31, "y" : 41 }
       },
-      "connect" : { "id" : "f170", "to" : "S43" }
+      "connect" : { "id" : "f246", "to" : "f252" }
     }, {
       "id" : "f212",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 688, "y" : 3456 }
+        "at" : { "x" : 848, "y" : 3456 }
       }
     }, {
       "id" : "f233",
@@ -3926,15 +3926,15 @@
         "showInStartList" : false
       },
       "visual" : {
-        "at" : { "x" : 144, "y" : 3544 },
+        "at" : { "x" : 136, "y" : 3656 },
         "labelOffset" : { "x" : -31, "y" : 41 }
       },
-      "connect" : { "id" : "f246", "to" : "f238" }
+      "connect" : { "id" : "f256", "to" : "f255" }
     }, {
       "id" : "f239",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 816, "y" : 3544 }
+        "at" : { "x" : 968, "y" : 3656 }
       }
     }, {
       "id" : "S62",
@@ -3982,7 +3982,7 @@
           "parentConnector" : "f245"
         } ],
       "visual" : {
-        "at" : { "x" : 384, "y" : 3544 }
+        "at" : { "x" : 536, "y" : 3656 }
       },
       "connect" : { "id" : "f245", "to" : "f240" }
     }, {
@@ -4000,7 +4000,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 240, "y" : 3544 }
+        "at" : { "x" : 392, "y" : 3656 }
       },
       "connect" : { "id" : "f244", "to" : "S62" }
     }, {
@@ -4021,7 +4021,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 600, "y" : 3544 },
+        "at" : { "x" : 752, "y" : 3656 },
         "size" : { "width" : 256, "height" : 60 }
       },
       "connect" : { "id" : "f247", "to" : "f239" }
@@ -4059,7 +4059,7 @@
           "visual" : {
             "at" : { "x" : 64, "y" : 144 }
           },
-          "parentConnector" : "f170",
+          "parentConnector" : "f257",
           "connect" : { "id" : "S43-f0", "to" : "S43-f180" }
         }, {
           "id" : "S43-g1",
@@ -4071,7 +4071,7 @@
           "parentConnector" : "f251"
         } ],
       "visual" : {
-        "at" : { "x" : 240, "y" : 3456 }
+        "at" : { "x" : 400, "y" : 3456 }
       },
       "connect" : { "id" : "f251", "to" : "f250" }
     }, {
@@ -4092,7 +4092,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 456, "y" : 3456 },
+        "at" : { "x" : 616, "y" : 3456 },
         "size" : { "width" : 260, "height" : 58 }
       },
       "connect" : { "id" : "f218", "to" : "f212" }
@@ -4144,5 +4144,43 @@
         "at" : { "x" : 296, "y" : 64 }
       },
       "connect" : { "id" : "f249", "to" : "f21", "via" : [ { "x" : 384, "y" : 144 } ] }
+    }, {
+      "id" : "f252",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 240, "y" : 3456 }
+      },
+      "connect" : [
+        { "id" : "f259", "to" : "f253", "condition" : "ivy.session.isSessionUserUnknown()" },
+        { "id" : "f257", "to" : "S43" }
+      ]
+    }, {
+      "id" : "f253",
+      "type" : "Script",
+      "name" : [
+        "Redirect to",
+        "login page"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portal.generic.navigation.PortalNavigator;",
+            "PortalNavigator.navigateToPortalLoginPage();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 3552 }
+      }
+    }, {
+      "id" : "f255",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 240, "y" : 3656 }
+      },
+      "connect" : [
+        { "id" : "f254", "to" : "f253", "condition" : "ivy.session.isSessionUserUnknown()" },
+        { "id" : "f170", "to" : "f238" }
+      ]
     } ]
 }
