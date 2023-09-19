@@ -1407,6 +1407,8 @@ Dialogs:
                   CouldNotFindLinkedProcess: Could not find the linked process!
         portalkit:
           component:
+            CaseItemDetails:
+              ShareCaseDetails: Share case details
             CaseWidget:
               CaseCategory: Case Category
               CaseDetail:
@@ -1420,6 +1422,8 @@ Dialogs:
               defaultEmptyMessage: There are no cases
             IconSelection:
               IconLinkTooltip: Click to change icon
+            TaskItemDetails:
+              ShareTaskDetails: Share task details
   com:
     axonivy:
       portal:
