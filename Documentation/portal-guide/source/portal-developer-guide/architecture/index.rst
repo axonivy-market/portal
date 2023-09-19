@@ -13,7 +13,7 @@ Architecture
 The Portal multi applications
 =============================
 
-The Portal and Projects using it in different applications but in the same security context.
+The Portal and Projects using it should be deployed in different applications but in the same security context.
 
 |multi-app-structure|
 
