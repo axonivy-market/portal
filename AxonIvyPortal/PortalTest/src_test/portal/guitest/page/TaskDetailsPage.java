@@ -475,4 +475,8 @@ public class TaskDetailsPage extends TemplatePage {
     driver.switchTo().frame("custom-widget-iframe-url");
     WaitHelper.assertTrueWithWait(() -> findElementByCssSelector("a[href='https://www.axonivy.com']").isDisplayed());
   }
+  
+  public WebElement getSharePageButtonElement() {
+    return findElementByCssSelector("[id$=':share-page-button']");
+  }
 }
