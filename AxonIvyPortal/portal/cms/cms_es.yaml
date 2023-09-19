@@ -1589,7 +1589,7 @@ Dialogs:
           generic:
             dashboard:
               PortalDashboardConfiguration:
-                NewDashboard: New Dashboard
+                NewDashboard: Nuevo panel de control
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: ¡No se pudo encontrar el proceso vinculado!
@@ -1755,6 +1755,7 @@ Labels:
   AdhocWorkflow: Describe tu Flujo de Trabajo
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
   AppendTheTask: Anexar la tarea
+  CreateNewDashboard: Crear un nuevo cuadro de mandos
   Enums:
     SearchScopeCaseField:
       CUSTOM: Campos de cadena personalizados

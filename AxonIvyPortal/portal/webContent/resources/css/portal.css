@@ -1720,7 +1720,7 @@ body .notification-checkbox .ui-chkbox-box {
   top: 50%;
 }
 
-i.dashboard-icon-drap-drop {
+i.dashboard-icon-drag-drop {
     border: 1px solid var(--ivy-primary-color);
     color: var(--ivy-primary-color);
     width: 2.357rem;

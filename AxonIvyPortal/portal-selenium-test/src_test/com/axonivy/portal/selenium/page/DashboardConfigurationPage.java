@@ -213,7 +213,6 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public NewDashboardPage backToHomePage() {
-    // $("[id$='actions-group']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("[id$='back-to-home-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     return new NewDashboardPage();
   }
