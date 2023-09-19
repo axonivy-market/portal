@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Condition.disappear;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -22,11 +23,14 @@ public class PasswordResetPage extends TemplatePage{
         "input[id='password-reset:reset-password-form:password-confirmation']");
     this.resetButton = $("button[id='password-reset:reset-password-form:reset-command']");
   }
-  
-  @SuppressWarnings("deprecation")
+
   public void resetPassword(String newPassword, Boolean strongPasswordEnough) {
     newPasswordTextField.sendKeys(newPassword);
+    $(".login-footer").click();
+    $("[id='password-reset:reset-password-form:new-password_panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
     passwordConfirmationTextField.sendKeys(newPassword);
+    $(".login-footer").click();
+    $("[id='password-reset:reset-password-form:password-confirmation_panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
     resetButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
 
     if (strongPasswordEnough) {

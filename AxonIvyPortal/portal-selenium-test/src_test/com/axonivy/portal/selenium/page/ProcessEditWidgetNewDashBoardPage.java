@@ -429,6 +429,9 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
     $("[id='widget-configuration-form:new-widget-configuration-component:selected-combined-process_panel']")
       .shouldBe(appear, DEFAULT_TIMEOUT).$$("tr").get(0).shouldBe(appear, DEFAULT_TIMEOUT).click();
+
+    clickDialogTitle();
+    $("[id='widget-configuration-form:new-widget-configuration-component:selected-combined-process_panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void selectProcessesForCompactMode(List<String> processes) {
@@ -439,6 +442,9 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
         process.$(".ui-chkbox-box").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
       }
     });
+
+    clickDialogTitle();
+    $("div[id='widget-configuration-form:new-widget-configuration-component:processes-list_panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void selectProcessForFullMode(String processName) {
@@ -447,14 +453,23 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
     $("[id='widget-configuration-form:new-widget-configuration-component:selected-full-process_panel']")
       .shouldBe(appear, DEFAULT_TIMEOUT).$$("tr").get(0).shouldBe(appear, DEFAULT_TIMEOUT).click();
+
+    clickDialogTitle();
+    $("[id='widget-configuration-form:new-widget-configuration-component:selected-full-process_panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void selectProcessForImageMode(String processName) {
     $("[id='widget-configuration-form:new-widget-configuration-component:selected-image-process_input']")
     .shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(processName);
+    $("[id='widget-configuration-form:new-widget-configuration-component:selected-image-process_panel']")
+      .shouldBe(appear, DEFAULT_TIMEOUT).$$("tr").get(0).shouldBe(appear, DEFAULT_TIMEOUT).click();
 
-  $("[id='widget-configuration-form:new-widget-configuration-component:selected-image-process_panel']")
-    .shouldBe(appear, DEFAULT_TIMEOUT).$$("tr").get(0).shouldBe(appear, DEFAULT_TIMEOUT).click();
+    clickDialogTitle();
+    $("[id='widget-configuration-form:new-widget-configuration-component:selected-image-process_panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  private void clickDialogTitle() {
+    $("[id='new-widget-configuration-dialog_title']").shouldBe(appear, DEFAULT_TIMEOUT).click();
   }
 
   public void clickPreviewButton() {
