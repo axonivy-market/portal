@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 
 import com.codeborne.selenide.Condition;
@@ -26,9 +27,11 @@ public class PasswordResetPage extends TemplatePage{
 
   public void resetPassword(String newPassword, Boolean strongPasswordEnough) {
     newPasswordTextField.sendKeys(newPassword);
+    $("[id='password-reset:reset-password-form:new-password_panel']").shouldBe(appear, DEFAULT_TIMEOUT);
     $(".login-footer").click();
     $("[id='password-reset:reset-password-form:new-password_panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
     passwordConfirmationTextField.sendKeys(newPassword);
+    $("[id='password-reset:reset-password-form:password-confirmation_panel']").shouldBe(appear, DEFAULT_TIMEOUT);
     $(".login-footer").click();
     $("[id='password-reset:reset-password-form:password-confirmation_panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
     resetButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();

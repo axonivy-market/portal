@@ -98,7 +98,6 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);   
     MainMenuPage mainMenuPage = new MainMenuPage();
-    mainMenuPage.expandMainMenu();
     StatisticWidgetPage statisticWidgetDashboardPage = mainMenuPage.openStatisticPage();
     statisticWidgetDashboardPage.navigateToTaskAnalysisPage();
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 1000));
