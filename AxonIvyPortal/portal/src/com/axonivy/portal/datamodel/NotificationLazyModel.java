@@ -21,8 +21,6 @@ public class NotificationLazyModel extends LazyDataModel<NotificationDto> {
   private static final long serialVersionUID = 4026276222222837138L;
 
   private final WebNotifications webNotifications;
-  private AtomicBoolean isMarkedToday = new AtomicBoolean();
-  private AtomicBoolean isMarkedOlder = new AtomicBoolean();
 
   public NotificationLazyModel() {
     this.webNotifications = WebNotifications.current();
@@ -52,18 +50,18 @@ public class NotificationLazyModel extends LazyDataModel<NotificationDto> {
       Map<String, FilterMeta> filterBy) {
 
     Date today = new Date();
+    AtomicBoolean isMarkedToday = new AtomicBoolean();
+    AtomicBoolean isMarkedOlder = new AtomicBoolean();
     List<NotificationDto> results = webNotifications.read(first, pageSize).stream().map(noti -> {
       NotificationDto dto = new NotificationDto(noti);
       if (DateUtils.isSameDay(dto.getCreatedAt(), today)) {
-        if (!isMarkedToday.get()) {
+        if (!isMarkedToday.get() && first == 0) {
           dto.setMarkedToday(true);
           isMarkedToday.getAndSet(true);
         }
-      } else {
-        if (!isMarkedOlder.get()) {
+      } else if (!isMarkedOlder.get()) {
           dto.setMarkedOlder(true);
           isMarkedOlder.getAndSet(true);
-        }
       }
 
       return dto;
