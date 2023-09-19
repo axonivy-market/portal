@@ -348,6 +348,10 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   align-self: center;
 }
 
+.case-detail-name {
+  align-self: center;
+}
+
 .case-detail-name-inplace-edit {
   flex: 1;
   flex-grow: 0;

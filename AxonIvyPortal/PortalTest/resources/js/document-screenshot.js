@@ -374,6 +374,10 @@ function highlightSwitchToEditMode() {
   createRedMediumOutline($("[id$=':switch-to-edit-mode-button']"));
 }
 
+function highlightSharePageButton() {
+  createRedMediumOutline($("[id$=':share-page-button']"));
+}
+
 function highlightSwitchToViewMode() {
   createRedMediumOutline($("[id$=':switch-to-view-mode-button']"));
 }
