@@ -1615,18 +1615,22 @@ body.in-dialog .ui-widget-overlay {
   border-radius:50%;
   background-color:var(--ivy-primary-color);
 }
-.notification-button.si {
+.notifications-button.si {
   font-size: 1rem;
 }
-.notification-checkbox {
+.notifications-checkbox {
    width: 1rem;
    height: 1rem;
 }
-.notification-button.fa {
+
+.notifications-checkbox .ui-chkbox-label {
+  font-size: 12px;
+}
+.notifications-button.fa {
   font-size: 0.9em;
   padding-right: 5px;
 }
-.notification-container-top {
+.notifications-container-top {
   padding:10px;
   padding-left:0px;
   padding-right:0px;
@@ -1647,17 +1651,17 @@ body .notification-checkbox .ui-chkbox-box {
 .notification-checkbox .ui-chkbox-label {
   font-size: 12px;
 }
-.notification-items-container {
+.notifications-item-container {
   padding: 20px 10px 5px 10px;
   display: block;
   overflow: hidden;
   background-color: var(--notification-title-color)
 }
-.notification-panel {
+.notifications-panel {
   box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
 }
 
-.notification-icon {
+.notifications-icon {
   display: inline-flex;
   justify-content: center;
   height: auto;
@@ -1665,7 +1669,7 @@ body .notification-checkbox .ui-chkbox-box {
   align-items: center;
   padding-right: 5px;
 }
-.notification-panel {
+.notifications-panel {
   background: var(--notification-panel-color);
   position: fixed;
   top: 0;
@@ -1681,12 +1685,12 @@ body .notification-checkbox .ui-chkbox-box {
   /* set it in front of top-layout */
   z-index: 999;
 }
-.notification-panel.active {
+.notifications-panel.active {
   width: 400px;
   visibility: visible;
   opacity: 1;
 }
-.notification-item-list {
+.notifications-item-list {
   width: 400px;
   position: relative;
   z-index: 999;
@@ -1694,23 +1698,23 @@ body .notification-checkbox .ui-chkbox-box {
   min-width: 200px;
 }
 
-.notification-item-time-since {
+.notifications-item-time-since {
   font-size: 0.75em;
   padding-left: 1.3rem;
 }
-.notification-title-header {
+.notifications-title-header {
   flex: 1;
   font-weight: bold;
   font-size: 1.5rem;
   display: contents;
 }
 
-.notification-group-name {
+.notifications-group-name {
   position: relative;
   display: block;
 }
 
-.notification-group-name:after {
+.notifications-group-name:after {
   position: absolute;
   content: "";
   height: 1px;
