@@ -6080,3 +6080,7 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
     max-width: 95%;
   }	
 }
+
+.task-case-detail-share-button .ui-icon {
+  font-size: 1.2rem!important;
+}
