@@ -91,8 +91,8 @@ var Portal = {
       chatPanel.css({'height': chatPanelHeight, 'top': chatPanelTop, 'bottom': footerHeight + 'px'});
     }
 
-    let notificationPanel = $('.js-notification-panel');
-    let notificationContentHeight = $('.notification-item-list').outerHeight();
+    let notificationPanel = $('.js-notifications-panel');
+    let notificationContentHeight = $('.notifications-item-list').outerHeight();
     if (notificationPanel.length > 0) {
       const notificationPanelHeight = 'calc(100% - ' + (headerFooterHeight + layoutTopbarHeight + envHeight) + 'px)';
       const notificationPanelTop = (headerHeight + layoutTopbarHeight) + 'px';
