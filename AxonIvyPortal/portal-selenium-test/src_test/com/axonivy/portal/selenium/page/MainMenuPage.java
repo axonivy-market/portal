@@ -76,8 +76,7 @@ public class MainMenuPage extends TemplatePage {
   public void expandMainMenu() {
     waitLeftMenuReady();
     if ($("a[id$='user-menu-required-login:toggle-menu']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).is(disappear)) {
-      $("[id$=':main-navigator:main-menu']").hover();
-      WaitHelper.waitNumberOfElementsToBe(WebDriverRunner.getWebDriver(), By.id("user-menu-required-login:toggle-menu"), 1);
+      $(".sidebar-logo").hover();
       $("a[id$='user-menu-required-login:toggle-menu']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     }
   }
