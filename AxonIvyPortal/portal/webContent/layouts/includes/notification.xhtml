@@ -11,14 +11,13 @@
       <h:outputScript library="js" name="notification.js" />
 
       <h:outputStylesheet library="css" name="chat.css" />
-      <div id="notification-panel" class="notification-panel js-notification-panel ">
-        <div class="notification-item-list js-chat-contact-panel active">
-          <div class="notification-container-content">
-            <h:panelGroup id="notification-container" class="js-notification-container" layout="block" />
-            <div class="notification-items-container" >
+      <div id="notifications-panel" class="notifications-panel js-notifications-panel ">
+        <div class="notifications-item-list active">
+          <div class="notifications-container-content">
+            <div class="notifications-item-container" >
               <h:panelGroup id="notifications">
                 <div class="p-d-flex p-jc-between">
-                <span class="notification-title-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationTitle')}</span>
+                <span class="notifications-title-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationTitle')}</span>
                   
                   <div class="p-d-flex">
                     <p:selectBooleanCheckbox value="#{notificationBean.dataModel.onlyUnread}" disabled="#{!notificationBean.hasUnreadNotifications()}" 
@@ -27,23 +26,23 @@
                       update="#{unreadNotificationsId}, #{notificationScrollerId}" global="false" partialSubmit="true"/>
                     </p:selectBooleanCheckbox>  
                     <p:commandLink id="notificationFullScreen"
-                      styleClass="notification-icon" global="false">
-                      <i class="notification-button si si-expand-6 " />
+                      styleClass="notifications-icon" global="false">
+                      <i class="notifications-button si si-expand-6 " />
                     </p:commandLink>
                     <p:tooltip for="notificationFullScreen" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/linkToFullScreen')}" />
                     
-                    <p:commandLink id="notificationMarkAllAsRead" styleClass="notification-icon"
+                    <p:commandLink id="notificationMarkAllAsRead" styleClass="notifications-icon"
                       disabled="#{!notificationBean.hasUnreadNotifications()}"
                       update="#{unreadNotificationsId}, #{notificationScrollerId}"
                       oncomplete="Portal.updateLayoutContent()"
                       actionListener="#{notificationBean.readAll()}">
-                      <i class="notification-button si si-check-double-1 p-mr-1" />
+                      <i class="notifications-button si si-check-double-1 p-mr-1" />
                     </p:commandLink>
                     <p:tooltip for="notificationMarkAllAsRead" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAllAsRead')}" />
                    
-                    <p:commandLink id="notificationSetting"  styleClass="notification-icon"
+                    <p:commandLink id="notificationSetting"  styleClass="notifications-icon"
                       oncomplete="Portal.updateLayoutContent()" global="false">
-                      <i class="notification-button si si-cog" />
+                      <i class="notifications-button si si-cog" />
                     </p:commandLink>
                     <p:tooltip for="notificationSetting" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/linkToNotificationSettings')}" />
                     
@@ -58,9 +57,9 @@
                   <h:form id="notificationForm">
                     <p:dataScroller id="notifications-scroller" lazy="true" styleClass="notification-scroll" value="#{notificationBean.dataModel}" var="notification"
                       rendered="#{notificationBean.render}" chunkSize="20" mode="inline" widgetVar="notifications-scroller">
-                      <span class="notification-group-name #{notification.markedToday ? '' : 'u-hidden'}" >#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/todayText')}</span>
-                      <span class="notification-group-name #{notification.markedOlder ? '' : 'u-hidden'}" >#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/olderText')}</span>
-                      <div class="#{notification.style} notification-container-top">
+                      <span class="notifications-group-name #{notification.markedToday} #{notification.markedToday ? '' : 'u-hidden'}" >#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/todayText')}</span>
+                      <span class="notifications-group-name #{notification.markedOlder ? '' : 'u-hidden'}" >#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/olderText')}</span>
+                      <div class="#{notification.style} notifications-container-top">
                         <div class="p-d-flex">
                           <div class="p-d-flex">
                             <p:commandLink id="notificationMarkAsRead" process="@this"
@@ -68,7 +67,7 @@
                               global="false"
                               oncomplete="Portal.updateLayoutContent()"
                               update="#{unreadNotificationsId}, #{notificationScrollerId}">
-                              <i class="notification-button fa #{notification.read ? 'fa-circle-thin': 'fa-circle'}" />
+                              <i class="notifications-button fa #{notification.read ? 'fa-circle-thin': 'fa-circle'}" />
                             </p:commandLink>
                             <p:tooltip for="notificationMarkAsRead" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}" />
                           </div>
@@ -76,7 +75,7 @@
                         </div>
 
                         <div>
-                          <h:outputText value="#{notification.timeSince}" styleClass="notification-item-time-since" />
+                          <h:outputText value="#{notification.timeSince}" styleClass="notifications-item-time-since" />
                         </div>
                       </div>
                     </p:dataScroller>
