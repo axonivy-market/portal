@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -18,6 +17,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 
+import ch.addon.portal.generic.menu.MenuView;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
@@ -40,6 +40,7 @@ import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
 import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.DashboardService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
@@ -47,7 +48,6 @@ import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
-import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
@@ -77,16 +77,22 @@ public class DashboardBean implements Serializable {
   private TaskEmptyMessage noTasksMessage;
   private List<DashboardTemplate> dashboardTemplates;
   protected String dashboardUrl;
-  protected String serverUrl;
   
   @PostConstruct
   public void init() {
     currentDashboardIndex = 0;
     dashboards = collectDashboards();
+
+    if (isReadOnlyMode) {
+      MenuView menuView = (MenuView) ManagedBeans.get("menuView");
+      menuView.updateDashboardCache(dashboards);
+    }
+
     if (CollectionUtils.isNotEmpty(dashboards)) {
       selectedDashboardId = readDashboardFromSession();
       currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
       selectedDashboard = dashboards.get(currentDashboardIndex);
+      initShareDashboardLink(selectedDashboard);
       // can not find dashboard by dashboard id session in view mode
       if (StringUtils.isBlank(selectedDashboardId)
           || (!selectedDashboardId.equalsIgnoreCase(selectedDashboard.getId()) && dashboards.size() > 1)) {
@@ -132,14 +138,6 @@ public class DashboardBean implements Serializable {
       }
     }
     return mappingDashboards;
-  }
-
-  public String getServerUrl() {
-    return serverUrl;
-  }
-
-  public void setServerUrl(String serverUrl) {
-    this.serverUrl = serverUrl;
   }
 
   protected String readDashboardBySessionUser() {
@@ -417,16 +415,8 @@ public class DashboardBean implements Serializable {
     this.dashboardUrl = dashboardUrl;
   }
   
-  public void showDashboardUrlCopiedMessage(String message) {
-    FacesContext.getCurrentInstance().addMessage(GrowlMessageUtils.PORTAL_GLOBAL_GROWL_MESSAGE, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
-  }
-  
-  public void openShareDashboardDialog(Dashboard dashboard) {
-    if (StringUtils.isBlank(serverUrl)) {
-      serverUrl = UrlUtils.getServerUrl();
-    }
-
-    setDashboardUrl(serverUrl + PortalNavigator.getDashboardPageUrl(dashboard.getId()));
+  public void initShareDashboardLink(Dashboard dashboard) {
+    setDashboardUrl(UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId()));
   }
   
   public boolean isShowShareButtonOnDashboard() {

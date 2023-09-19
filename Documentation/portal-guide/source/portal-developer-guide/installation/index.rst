@@ -66,6 +66,18 @@ Engine With License (Production Mode)
 The engine does not deploy anything, you need to deploy and configure the Portal
 application manually.
 
+Setup Portal multi applications
+"""""""""""""""""""""""""""""""
+.. important::
+
+   This is used to display common task lists of users in several applications. Task/Case list of application named ``Portal`` would display all tasks/cases of applications using the Portal running in the same security context.
+
+All applications are in the same security context and the **portal-components** should be the only part being deployed in the other applications. See :ref:`multi-app-structure` overview.
+
+-  Create a new application named ``Portal``. Deploy Portal (portal, portal-components, optionally AxonIvyExpress) to this application.
+
+-  Create new applications: App 1, App 2,... Deploy your projects to the new applications.
+
 
 .. _installation-migration-notes:
 
