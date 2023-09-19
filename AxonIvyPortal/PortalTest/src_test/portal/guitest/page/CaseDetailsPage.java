@@ -914,4 +914,8 @@ public class CaseDetailsPage extends TemplatePage {
 	  int taskIndex = IntStream.range(0, taskNames.size()).filter(i -> taskNames.get(i).getText().equals(taskName)).findFirst().getAsInt();
 	  return taskIndex;
   }
+  
+  public WebElement getSharePageButtonElement() {
+    return findElementByCssSelector("[id$=':share-page-button']");
+  }
 }
