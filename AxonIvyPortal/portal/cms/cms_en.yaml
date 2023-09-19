@@ -131,7 +131,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ProcessSorting:
       BY_ALPHABETICALLY: Alphabetically
       BY_CUSTOM_ORDER: Custom order
-      BY_INDEX: Sorting Index
+      BY_INDEX: Sorting index
     ProcessType:
       EXPRESS_PROCESS: Express Workflow
       EXTERNAL_LINK: External Link
