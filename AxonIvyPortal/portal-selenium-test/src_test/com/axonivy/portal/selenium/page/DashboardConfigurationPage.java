@@ -301,7 +301,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public SelenideElement getDashboardCreationDialog() {
-    return $("div[id$=':dashboard-creation-details-dialog']");
+    return $("div[id$=':dashboard-creation-details-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
   public WebElement openMultiLanguageDialog() {
