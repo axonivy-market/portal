@@ -158,4 +158,12 @@ public class CaseDetailsPage extends TemplatePage {
   public void switchToIframe() {
     switchToIframeWithId("iFrame");
   }
+  
+  public SelenideElement getShareButton() {
+    return $("button[id$=':share-page-button']");
+  }
+
+  public SelenideElement getShareDialog() {
+    return $("div[id$=':share-case-details-dialog']");
+  }
 }
