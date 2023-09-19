@@ -118,7 +118,7 @@ public class CompactDashboardProcessBean
   public void preview() {
     dashboardProcessBean.preview();
     CompactProcessDashboardWidget widget = getWidget();
-    var isEmptyProcess = CollectionUtils.isEmpty(widget.getProcesses());
+    boolean isEmptyProcess = CollectionUtils.isEmpty(widget.getProcesses());
     List<DashboardProcess> displayProcesses = new ArrayList<>();
     List<DashboardProcess> processAfterSorting = new ArrayList<>();
     if (isEmptyProcess) {

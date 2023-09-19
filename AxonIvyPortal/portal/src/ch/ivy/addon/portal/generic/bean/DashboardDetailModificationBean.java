@@ -810,9 +810,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     if (getWidget() != null) {
       componentId = DEFAULT_WIDGET_TITLE_ID;
       if (NEWS != getWidget().getType()) {
-        componentId = componentId.concat(" ").concat(DEFAULT_USER_FILTER_ID); 
+        componentId = componentId.concat(" ").concat(DEFAULT_USER_FILTER_ID);
       }
-    } 
+    }
     return componentId;
   }
   
