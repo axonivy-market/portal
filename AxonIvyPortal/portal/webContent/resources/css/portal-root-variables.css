@@ -162,4 +162,7 @@
   
   /* Notification */
   --notification-background-color: #293241;
+  --notification-label-font-size: 12px;
+  --notification-label-item-font-size: 0.75em;
+  --notifications-title-header-font-weight: bold;
 }

@@ -232,6 +232,14 @@ public class PermissionUtils {
   public static boolean hasShareDashboardPermission() {
     return hasPortalPermission(PortalPermission.DASHBOARD_SHARE_LINK);
   }
+  
+  public static boolean hasShareTaskDetailsPermission() {
+    return hasPortalPermission(PortalPermission.TASK_DETAILS_SHARE_LINK);
+  }
+  
+  public static boolean hasShareCaseDetailsPermission() {
+    return hasPortalPermission(PortalPermission.CASE_DETAILS_SHARE_LINK);
+  }
 
   public static String getCaseName(ICase iCase) {
     return IvyExecutor.executeAsSystem(() -> {

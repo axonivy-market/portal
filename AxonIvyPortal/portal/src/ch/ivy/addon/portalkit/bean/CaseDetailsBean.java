@@ -14,6 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.SortMeta;
 
+import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -30,6 +31,7 @@ import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -55,12 +57,15 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
   private boolean isFirstTime;
   private boolean isRunningTaskWhenClickingOnTaskInList;
   private String caseDetailsDescription;
+  private String caseDetailsUrl;
+  private Boolean isShowShareButton;
 
   public void init() {
     super.initConfig();
     isHideCaseDocument = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_CASE_DOCUMENT);
     caseActionBean = ManagedBeans.get("caseActionBean");
     isFirstTime = true;
+    isShowShareButton = PermissionUtils.hasShareCaseDetailsPermission();
     isRunningTaskWhenClickingOnTaskInList = new GlobalSettingService()
         .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
         .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
@@ -71,7 +76,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
     this.selectedCase = selectedCase;
     this.showBackButton = showBackButton;
     this.isTaskStartedInDetails = BooleanUtils.toBooleanDefaultIfNull((Boolean) Ivy.session().getAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString()), false);
-    
+    this.caseDetailsUrl = PortalNavigatorAPI.buildUrlToPortalCaseDetailsPageByUUID(selectedCase.uuid());
     if (isFirstTime) {
       isFirstTime = false;
       try {
@@ -294,5 +299,21 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
 
   public SortMeta getSortById() {
     return SortFieldUtil.buildSortMeta("ID", false);
+  }
+
+  public String getCaseDetailsUrl() {
+    return caseDetailsUrl;
+  }
+
+  public void setCaseDetailsUrl(String caseDetailsUrl) {
+    this.caseDetailsUrl = caseDetailsUrl;
+  }
+
+  public Boolean getIsShowShareButton() {
+    return isShowShareButton;
+  }
+
+  public void setIsShowShareButton(Boolean isShowShareButton) {
+    this.isShowShareButton = isShowShareButton;
   }
 }

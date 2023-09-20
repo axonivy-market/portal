@@ -1587,6 +1587,8 @@ Dialogs:
         portal:
           generic:
             dashboard:
+              PortalDashboardConfiguration:
+                NewDashboard: Neues Dashboard
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
@@ -1594,6 +1596,8 @@ Dialogs:
                   Share: Aktie
         portalkit:
           component:
+            CaseItemDetails:
+              ShareCaseDetails: Teilen Sie Falldetails mit
             CaseWidget:
               CaseCategory: Vorgangskategorie
               CaseDetail:
@@ -1608,9 +1612,15 @@ Dialogs:
               defaultEmptyMessage: Keine Vorgänge verfügbar
             IconSelection:
               IconLinkTooltip: Zum Ändern des Symbols anklicken
+            TaskItemDetails:
+              ShareTaskDetails: Teilen Sie Aufgabendetails
   com:
     axonivy:
       portal:
+        component:
+          ShareLinkDialog:
+            CopyLink: Link kopieren
+            LinkCopied: Link kopiert!
         dashboard:
           component:
             DashboardImportDetails:
@@ -1619,8 +1629,6 @@ Dialogs:
               ImportPublic: Öffentliches Dashboard importieren
               chooseAJsonFile: Wählen Sie eine JSON-Datei
             DashboardSharing:
-              CopyLink: Link kopieren
-              LinkCopied: Link kopiert!
               ShareDashboard: Dashboard teilen
             NewsWidget:
               NewsContentPlaceHolder: Nachrichteninhalt eingeben
@@ -1752,6 +1760,7 @@ Labels:
   AdhocWorkflow: Beschreiben Sie Ihren Workflow
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
+  CreateNewDashboard: Neues Dashboard erstellen
   Enums:
     SearchScopeCaseField:
       CUSTOM: Benutzerdefinierte Stringfelder
@@ -1769,6 +1778,7 @@ Labels:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Permissions: Berechtigungen
+  Share: Aktie
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails
   TaskUser-Explain: Kommaseparierte Liste von Benutzern

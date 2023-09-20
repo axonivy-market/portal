@@ -1,18 +1,18 @@
 function openNotificationPanel() {
-    $('#notification-panel').addClass('active')
-    let right = document.getElementById("notification-panel").style.right;
+    $('#notifications-panel').addClass('active')
+    let right = document.getElementById("notifications-panel").style.right;
     if (right !== '-420px') {
-        document.getElementById("notification-panel").style.right = "0";
+        document.getElementById("notifications-panel").style.right = "0";
     }
 }
 
 function closeNotificationPanel() {
-    document.getElementById("notification-panel").style.right = "-420px";
+    document.getElementById("notifications-panel").style.right = "-420px";
 }
 
 $(document).ready(function () {
     closeNotificationPanel();
-    let notificationPanel = document.getElementById("notification-panel");
+    let notificationPanel = document.getElementById("notifications-panel");
     let bellIcon = document.getElementById('open-notifications-panel');
     document.addEventListener('click', event => {
         const isClickInside = notificationPanel.contains(event.target);

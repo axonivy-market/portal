@@ -76,6 +76,12 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
     taskDetails.waitUtilsTaskDetailsDisplayed();
 
+    executeDecorateJs("highlightSharePageButton()");
+    WebElement sharePageBtn = taskDetails.getSharePageButtonElement();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(sharePageBtn,
+        ScreenshotUtil.TASK_DETAIL_FOLDER + "share-page-button", new ScreenshotMargin(100, 200));
+    refreshPage();
+    
     executeDecorateJs("highlightSwitchToEditMode()");
     WebElement switchToEditMode = taskDetails.getSwitchToEditModeButtonElement();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(switchToEditMode,

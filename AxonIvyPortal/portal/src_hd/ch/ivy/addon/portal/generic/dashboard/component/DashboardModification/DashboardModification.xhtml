@@ -12,21 +12,13 @@
 <cc:implementation>
   <c:set var="isPublicDashboard" value="#{cc.attrs.isPublicDashboard}" scope="request"/>
   <f:event listener="#{dashboardModificationBean.initConfigration(isPublicDashboard)}" type="preRenderComponent" />
-
   <h:panelGroup id="dashboard-modification-container" styleClass="ui-g-12">
-    <h:panelGroup styleClass="ui-g-12 dashboard-configuration__sub-header u-no-padding-left u-no-padding-right u-no-padding-top">
-      <h:outputText styleClass="sub-title"
-        value="#{ivy.cms.co(isPublicDashboard ? '/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/EditPublicDashboards':'/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/EditPrivateDashboards')}"/>
 
-      <p:commandButton actionListener="#{cc.attrs.listenerOnBackAction}"
-        update="#{cc.attrs.componentToUpdateOnBackAction}" process="@this" styleClass="ui-button-flat"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" icon="si si-arrow-left-1" />
-    </h:panelGroup>
-
-    <p:dataTable id="dashboard-table" lazy="false"
+    <p:dataTable id="dashboard-table" lazy="false" draggableRows="true" rowDragSelector="i.si-move-expand-vertical"
       value="#{dashboardModificationBean.dashboards}" var="dashboard"
       styleClass="ui-g-12 u-no-padding-left u-no-padding-right"
       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
+      <p:ajax event="rowReorder" global="false" update="dashboard-table" listener="#{dashboardModificationBean.save()}"/>
       <p:column width="20%"
         headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}">
         <h:panelGroup id="dashboard-title-group" styleClass="u-truncate-text" layout="block">
@@ -47,8 +39,13 @@
           <p:tooltip for="dashboard-description-group" value="#{dashboard.description}" trackMouse="true" hideEvent="mouseleave click" styleClass="dashboard-configuration-tooltip"/>
         </h:panelGroup>
       </p:column>
-      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" width="#{dashboardModificationBean.hasExportDashboardPermission() ? '200' : '160'}"
+      
+      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" width="#{dashboardModificationBean.hasExportDashboardPermission() ? '250' : '210'}"
         styleClass="u-text-align-center">
+        <h:panelGroup styleClass="rounded-button ui-button-outlined action-column-icon-button u-mar-right-5">
+         <i id="reorder-button-#{dashboard.id}" class="si si-move-expand-vertical dashboard-icon-drag-drop" />
+        </h:panelGroup>
+          
         <p:commandButton id="edit" process="@this" icon="si si-graphic-tablet-drawing-pen"
           styleClass="rounded-button ui-button-outlined action-column-icon-button u-mar-right-5"
           actionListener="#{dashboardModificationBean.openDashboardDetailDialog(dashboard)}"
@@ -72,7 +69,7 @@
 
         <p:commandButton id="share-dashboard" rendered="#{dashboardModificationBean.isShowShareButtonOnConfig(isPublicDashboard)}"
           styleClass="rounded-button ui-button-outlined action-column-icon-button u-mar-right-5"
-          actionListener="#{dashboardModificationBean.openShareDashboardDialog(dashboard)}"
+          actionListener="#{dashboardModificationBean.initShareDashboardLink(dashboard)}"
           oncomplete="PF('share-dashboard-dialog').show()"
           icon="si si-share" update="#{cc.clientId}:share-dashboard-component:share-dashboard-dialog"
           title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/DashboardModification/Share')}" global="false"/>
@@ -95,9 +92,10 @@
     componentToUpdate="dashboard-modification-component:dashboard-table"
     isDashboardCreation="false" />
     
-  <ic:com.axonivy.portal.dashboard.component.ShareDialog id="share-dashboard-component" 
+  <ic:com.axonivy.portal.component.ShareLinkDialog id="share-dashboard-component" 
     shareDialogId="share-dashboard-dialog" 
-    managedBean="#{dashboardModificationBean}" /> 
+    url="#{dashboardModificationBean.dashboardUrl}"
+    title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/DashboardSharing/ShareDashboard')}"/> 
 
   <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
     <ui:param name="id" value="remove-dashboard-dialog" />
