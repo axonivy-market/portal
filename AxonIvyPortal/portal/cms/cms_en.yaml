@@ -1587,6 +1587,8 @@ Dialogs:
         portal:
           generic:
             dashboard:
+              PortalDashboardConfiguration:
+                NewDashboard: New Dashboard
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Could not find the linked process!
@@ -1594,6 +1596,8 @@ Dialogs:
                   Share: Share
         portalkit:
           component:
+            CaseItemDetails:
+              ShareCaseDetails: Share case details
             CaseWidget:
               CaseCategory: Case Category
               CaseDetail:
@@ -1608,9 +1612,15 @@ Dialogs:
               defaultEmptyMessage: There are no cases
             IconSelection:
               IconLinkTooltip: Click to change icon
+            TaskItemDetails:
+              ShareTaskDetails: Share task details
   com:
     axonivy:
       portal:
+        component:
+          ShareLinkDialog:
+            CopyLink: Copy link
+            LinkCopied: Link copied!
         dashboard:
           component:
             DashboardImportDetails:
@@ -1619,8 +1629,6 @@ Dialogs:
               ImportPublic: Import Public Dashboard
               chooseAJsonFile: Choose a json file
             DashboardSharing:
-              CopyLink: Copy link
-              LinkCopied: Link copied!
               ShareDashboard: Share Dashboard
             NewsWidget:
               NewsContentPlaceHolder: Enter News content
@@ -1755,6 +1763,7 @@ Labels:
   AdhocWorkflow: Describe your Workflow
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
+  CreateNewDashboard: Create new dashboard
   Enums:
     SearchScopeCaseField:
       CUSTOM: Custom string fields
@@ -1772,6 +1781,7 @@ Labels:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Permissions: Permissions
+  Share: Share
   Task: Task
   TaskItemDetail: Task Details
   TaskUser-Explain: Comma separated list of users

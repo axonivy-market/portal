@@ -1,9 +1,9 @@
-.. _configure-new-dashboard-custom-widget:
+.. _configure-new-dashboard-external-page-widget:
 
 Configure External Page Widget
 ==============================
 
-.. _define-an-ivy-process-for-the-custom-widget:
+.. _define-an-external-page-widget:
 
 Define An External Page Widget
 ------------------------------
