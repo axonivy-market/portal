@@ -4,6 +4,7 @@ import static ch.ivy.addon.portalkit.util.ScreenshotUtil.ERROR_HANDLING_FOLDER;
 
 import java.io.IOException;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;

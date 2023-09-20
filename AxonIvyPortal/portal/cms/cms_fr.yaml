@@ -1584,6 +1584,8 @@ Dialogs:
         portal:
           generic:
             dashboard:
+              PortalDashboardConfiguration:
+                NewDashboard: Nouveau tableau de bord
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
@@ -1591,6 +1593,8 @@ Dialogs:
                   Share: Partager
         portalkit:
           component:
+            CaseItemDetails:
+              ShareCaseDetails: Partager les détails du cas
             CaseWidget:
               CaseCategory: Catégorie de cas
               CaseDetail:
@@ -1605,9 +1609,15 @@ Dialogs:
               defaultEmptyMessage: Il n'y a pas de dossiers
             IconSelection:
               IconLinkTooltip: Cliquez pour changer d'icône
+            TaskItemDetails:
+              ShareTaskDetails: Partager les détails de la tâche
   com:
     axonivy:
       portal:
+        component:
+          ShareLinkDialog:
+            CopyLink: Copier le lien
+            LinkCopied: Lien copié !
         dashboard:
           component:
             DashboardImportDetails:
@@ -1616,8 +1626,6 @@ Dialogs:
               ImportPublic: Importer un tableau de bord public
               chooseAJsonFile: Choisissez un fichier json
             DashboardSharing:
-              CopyLink: Copier le lien
-              LinkCopied: Lien copié !
               ShareDashboard: Partager le tableau de bord
             NewsWidget:
               NewsContentPlaceHolder: Saisir le contenu de l'actualité
@@ -1749,6 +1757,7 @@ Labels:
   AdhocWorkflow: Décrivez votre workflow
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
+  CreateNewDashboard: Créer un nouveau tableau de bord
   Enums:
     ThemeMode:
       DARK: Dark
@@ -1759,6 +1768,7 @@ Labels:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Permissions: Permissions
+  Share: Partager
   Task: Tâche
   TaskItemDetail: Détails de la tâche
   TaskUser-Explain: Liste d’utilisateurs séparés par des virgules
