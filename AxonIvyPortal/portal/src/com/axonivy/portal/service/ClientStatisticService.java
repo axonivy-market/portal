@@ -1,6 +1,7 @@
 package com.axonivy.portal.service;
 
 import java.security.InvalidParameterException;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,6 +13,7 @@ import javax.ws.rs.NotFoundException;
 import com.axonivy.portal.bo.ChartTarget;
 import com.axonivy.portal.bo.ClientStatistic;
 import com.axonivy.portal.dto.ClientStatisticDto;
+import com.axonivy.portal.enums.AdditionalChartConfig;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.service.JsonConfigurationService;
@@ -47,6 +49,8 @@ public class ClientStatisticService extends JsonConfigurationService<ClientStati
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/exception/noPermission"));
     }
     AggregationResult result = getData(chart);
+    chart.setAdditionalConfig(List.of(new SimpleEntry<>(AdditionalChartConfig.EMPTY_CHART_DATA_MESSAGE.getKey(),
+        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/EmptyChartDataMessage"))));
     return new ClientStatisticResponse(result, chart);
   }
 
