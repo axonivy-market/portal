@@ -69,6 +69,34 @@
         </configuration>
         <executions>
           <execution>
+            <id>default-installEngine</id>
+            <goals>
+              <goal>installEngine</goal>
+            </goals>
+            <phase>initialize</phase>
+          </execution>
+          <execution>
+            <id>default-compileProject</id>
+            <goals>
+              <goal>compileProject</goal>
+            </goals>
+            <phase>compile</phase>
+          </execution>
+          <execution>
+            <id>default-test-compile</id>
+            <goals>
+              <goal>test-compile</goal>
+            </goals>
+            <phase>test-compile</phase>
+          </execution>
+          <execution>
+            <id>default-ivy-test-properties</id>
+            <goals>
+              <goal>ivy-test-properties</goal>
+            </goals>
+            <phase>test</phase>
+          </execution>
+          <execution>
             <id>start.test.engine</id>
             <phase>process-test-classes</phase>
             <goals>
@@ -103,6 +131,13 @@
               <deployToEngineApplication>demo-portal</deployToEngineApplication>
             </configuration>
             <phase>process-test-classes</phase>
+          </execution>
+          <execution>
+            <id>default-pack-iar</id>
+            <goals>
+              <goal>pack-iar</goal>
+            </goals>
+            <phase>none</phase>
           </execution>
         </executions>
       </plugin>
