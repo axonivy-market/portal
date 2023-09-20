@@ -102,7 +102,7 @@ pipeline {
   post {
     always {
       archiveArtifacts artifacts: 'AxonIvyPortal/portal-selenium-test/target/*.zip', allowEmptyArchive: true
-      archiveArtifacts artifacts: 'AxonIvyPortal/portal-selenium-test/target/screenshots/*/*.png, AxonIvyPortal/portal-selenium-test/target/testEngineOut.log, AxonIvyPortal/portal-selenium-test/target/ivy-elasticsearch-*.log', allowEmptyArchive: true
+      archiveArtifacts artifacts: 'AxonIvyPortal/portal-selenium-test/target/selenide/reports/*/*/*.png, AxonIvyPortal/portal-selenium-test/target/testEngineOut.log, AxonIvyPortal/portal-selenium-test/target/ivy-elasticsearch-*.log', allowEmptyArchive: true
       junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
     }
   }
