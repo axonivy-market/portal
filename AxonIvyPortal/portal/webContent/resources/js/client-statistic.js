@@ -72,7 +72,7 @@ function initStatistics() {
 
         function renderPieChart() {
             if (result.length == 0) {
-                renderEmptyStatistics(chart);
+                renderEmptyStatistics(chart, config.additionalConfig);
             } else {
                 let html = renderChartCanvas(chartId);
                 $(chart).html(html);
@@ -99,7 +99,7 @@ function initStatistics() {
 
         function renderBarChart() {
             if (result.length == 0) {
-                renderEmptyStatistics(chart);
+                renderEmptyStatistics(chart, config.additionalConfig);
             } else {
                 let html = renderChartCanvas(chartId);
                 $(chart).html(html);
@@ -209,11 +209,18 @@ function initStatistics() {
         }
     }
 
-    function renderEmptyStatistics(chart) {
+    function renderEmptyStatistics(chart, additionalConfig) {
+        let emptyChartDataMessage;
+        additionalConfig.find(function (item) {
+            if (Object.keys(item)[0] === "emptyChartDataMessage") {
+                emptyChartDataMessage = item.emptyChartDataMessage;
+            }
+        });
+
         let emptyChartHtml = `
         <div class="empty-message-container">
             <i class="si si-analytics-pie-2 empty-message-icon"></i>
-            <p class="empty-message-text">We do not have enough data to create a nice chart!</p>
+            <p class="empty-message-text">` + emptyChartDataMessage + `</p>
         </div>
         `;
         $(chart).html(emptyChartHtml);

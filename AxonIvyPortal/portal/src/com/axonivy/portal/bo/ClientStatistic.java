@@ -1,6 +1,7 @@
 package com.axonivy.portal.bo;
 
 import java.util.List;
+import java.util.Map.Entry;
 
 import com.axonivy.portal.util.DisplayNameUtils;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -25,6 +26,8 @@ public class ClientStatistic extends AbstractConfiguration {
   private List<DisplayName> descriptions;
   @JsonProperty(access = Access.READ_ONLY)
   private String description;
+  @JsonProperty(access = Access.READ_ONLY)
+  private List<Entry<String, String>> additionalConfig;
 
   public NumberChartConfig getNumberChartConfig() {
     return numberChartConfig;
@@ -116,5 +119,12 @@ public class ClientStatistic extends AbstractConfiguration {
     return description;
   }
 
+  public List<Entry<String, String>> getAdditionalConfig() {
+    return additionalConfig;
+  }
+
+  public void setAdditionalConfig(List<Entry<String, String>> additionalConfig) {
+    this.additionalConfig = additionalConfig;
+  }
 
 }
