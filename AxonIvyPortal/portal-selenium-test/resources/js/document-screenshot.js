@@ -316,7 +316,9 @@ function highlightProcessMoreInformationLink() {
     if($(this).css('display') != 'none')
            return $(this);
   });
-  
+  displayingProcessItem.find(".process-more-info-link").css('padding-bottom', '0.3rem');
+  displayingProcessItem.find(".process-more-info-link").css('padding-top', '0.3rem');
+  displayingProcessItem.find(".process-more-info-link").css('margin-top', '0.2rem');
   createRedMediumOutline(displayingProcessItem.find(".process-more-info-link"));
 }
 
