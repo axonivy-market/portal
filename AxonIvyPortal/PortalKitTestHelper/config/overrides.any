@@ -1,5 +1,4 @@
 {
-  /PROCESS {
-    /Functional-Processes.CaseHistoryCustomTaskFilter "Functional Processes/CaseHistoryCustomTaskFilterOverride"
-  }
+  /HTML_DIALOG *
+  /PROCESS *
 }
