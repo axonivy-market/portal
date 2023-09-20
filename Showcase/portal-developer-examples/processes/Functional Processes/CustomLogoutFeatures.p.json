@@ -10,7 +10,7 @@
       "type" : "CallSubStart",
       "name" : "portalGetLogoutPage()",
       "config" : {
-        "callSignature" : "getLogoutPage",
+        "callSignature" : "portalGetLogoutPage",
         "result" : {
           "params" : [
             { "name" : "logoutPage", "type" : "String" }
