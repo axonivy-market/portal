@@ -32,7 +32,7 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public void selectEditPublicDashboards() {
     waitForElementDisplayed(By.cssSelector(".dashboard-configuration__content.js-public-dashboard-configuration"), true);
-    clickByCssSelector("button[id$='dashboard-modification-component:dashboard-table:0:configure-dashboard']");
+    clickByCssSelector("a[id$='edit-dashboard-action'].js-public-dashboard");
     waitForElementDisplayed(By.cssSelector("[id$=':dashboard-modification-container']"), true);
   }
   
@@ -56,7 +56,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   
   public void createPrivateDashboard() {
     selectPrivateDashboardType();
-    clickByCssSelector("button[id$='create-dashboard-action']");
+    clickByCssSelector("a[id$='create-dashboard-action'].js-private-dashboard");
     waitForElementDisplayed(By.cssSelector("div[id$=':create-new-dashboard-section']"), true);
   }
   
