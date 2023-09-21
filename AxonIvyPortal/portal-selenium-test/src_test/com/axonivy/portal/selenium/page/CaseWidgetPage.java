@@ -6,7 +6,10 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -14,7 +17,19 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 public class CaseWidgetPage extends TemplatePage {
+  
+  private String caseWidgetId;
+  private static final String CASE_ITEM_LIST_SELECTOR = "li[class='ui-datascroller-item']";
+  private static final String CASE_NAME_CSS_SELECTOR = "span[class*='case-header-name-cell']";
 
+  public CaseWidgetPage() {
+    this("case-widget");
+  }
+
+  public CaseWidgetPage(String caseWidgetId) {
+    this.caseWidgetId = caseWidgetId;
+  }
+  
   @Override
   protected String getLoadedLocator() {
     return ".js-case-widget-header";
@@ -80,5 +95,28 @@ public class CaseWidgetPage extends TemplatePage {
     SelenideElement selectedCaseIdElement = $(String.format("[id$='case-list-scroller:%d:case-item:case-item-container']", caseIndex)).find(By.cssSelector("[id$=':case-id-cell']"));
     return selectedCaseIdElement.getText();
   }
+  
+  public void openActionStepMenu(int caseIndex) {
+    $(String.format("a[id^='case-widget:case-list-scroller:%d:case-item:case-item-action-form']", caseIndex)).shouldBe(getClickableCondition()).click();
+    $(String.format("[id='case-widget:case-list-scroller:%d:case-item:case-item-action-form:action-step-component:action-steps-panel']", caseIndex)).shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+  }
 
+  public SelenideElement getSaveFilterDialog() {
+    $(By.id(caseWidgetId + ":filter-save-action")).shouldBe(getClickableCondition()).click();
+    $(By.id(caseWidgetId + ":filter-save-form:save-filter-set-name-input")).shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    return $(By.id(caseWidgetId + ":save-filter-set-dialog")).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  public CaseDetailsPage openDetailsOfCaseHasName(String caseName) {
+    List<SelenideElement> caseItems = $$(CASE_ITEM_LIST_SELECTOR);
+    for (SelenideElement caseItem : caseItems) {
+      System.out.println(caseItem.findElement(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText());
+      if (caseItem.findElement(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText().equals(caseName)) {
+        caseItem.findElement(By.cssSelector("span[id*='case-info-row']")).click();
+        return new CaseDetailsPage();
+      }
+    }
+    throw new NoSuchElementException("Cannot find case has name " + caseName);
+  }
+  
 }
