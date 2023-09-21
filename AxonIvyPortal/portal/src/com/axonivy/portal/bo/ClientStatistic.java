@@ -19,6 +19,7 @@ public class ClientStatistic extends AbstractConfiguration {
   private long refreshInterval; // in seconds
 
   private BarChartConfig barChartConfig;
+  private LineChartConfig lineChartConfig;
   private NumberChartConfig numberChartConfig;
   private List<DisplayName> names;
   @JsonProperty(access = Access.READ_ONLY)
@@ -61,7 +62,15 @@ public class ClientStatistic extends AbstractConfiguration {
     this.barChartConfig = barChartConfig;
   }
 
-  public String getFilter() {
+  public LineChartConfig getLineChartConfig() {
+    return lineChartConfig;
+  }
+
+  public void setLineChartConfig(LineChartConfig lineChartConfig) {
+    this.lineChartConfig = lineChartConfig;
+  }
+
+public String getFilter() {
     return filter;
   }
 

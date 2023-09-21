@@ -98,50 +98,55 @@ function initStatistics() {
         }
 
         function renderBarChart() {
-            if (result.length == 0) {
-                renderEmptyStatistics(chart, config.additionalConfig);
-            } else {
-                let html = renderChartCanvas(chartId);
-                $(chart).html(html);
-                let canvasObject = $(chart).find('canvas');
-                chartData = new Chart(canvasObject, {
-                    type: chartType,
-                    data: {
-                        labels: result.map(bucket => formatChartLabel(bucket.key)),
-                        datasets: [{
-                            label: config.name,
-                            data: result.map(bucket => bucket.count),
-                            backgroundColor: chartColors
-                        }]
+            chartData = renderBarLineChart(result, chart, config);
+        }
+    });
+
+    function renderBarLineChart(result, chart, config) {
+        if (result.length == 0) {
+            renderEmptyStatistics(chart, config.additionalConfig);
+        } else {
+            let html = renderChartCanvas(chart.getAttribute('data-chart-id'));
+            $(chart).html(html);
+            let canvasObject = $(chart).find('canvas');
+            let chartData = new Chart(canvasObject, {
+                type: config.chartType,
+                data: {
+                    labels: result.map(bucket => formatChartLabel(bucket.key)),
+                    datasets: [{
+                        label: config.name,
+                        data: result.map(bucket => bucket.count),
+                        backgroundColor: chartColors
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
                     },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                display: false
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                text: (config.chartType === "bar" ?  config.barChartConfig : config.lineChartConfig).yTitle,
+                                display: true
                             }
                         },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                title: {
-                                    text: config.barChartConfig.yTitle,
-                                    display: true
-                                }
-                            },
-                            x: {
-                                title: {
-                                    text: config.barChartConfig.xTitle,
-                                    display: true
-                                }
+                        x: {
+                            title: {
+                                text: (config.chartType === "bar" ?  config.barChartConfig : config.lineChartConfig).xTitle,
+                                display: true
                             }
                         }
                     }
-                });
-            }
+                }
+            });
         }
-    });
+        return chartData;
+    }
 
     function getChartColors() {
         let chartColors = [];
