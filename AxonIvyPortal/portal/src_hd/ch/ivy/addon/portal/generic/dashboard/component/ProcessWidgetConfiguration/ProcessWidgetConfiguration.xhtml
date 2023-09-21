@@ -20,6 +20,7 @@
   <c:set var="dashboardProcessBeanHandler" value="#{widget.displayMode eq 'COMPACT_MODE' ? compactDashboardProcessBean : 
   (widget.displayMode eq 'COMBINED_MODE' ? combinedDashboardProcessBean : 
   (widget.displayMode eq 'FULL_MODE' ? fullDashboardProcessBean : imageDashboardProcessBean))}" />
+  <c:set var="isRenderPreviewButton" value="#{widget.displayMode eq 'COMPACT_MODE' ? compactDashboardProcessBean.sorting ne 'BY_CUSTOM_ORDER' : true}" />
 
   <f:event listener="#{dashboardProcessBeanHandler.preRender(widget)}" type="preRenderComponent" />
   <f:event listener="#{dashboardProcessBean.initPortalDashboardProcesses(cc.attrs.isPublicDashboard)}" type="preRenderComponent" />
@@ -67,14 +68,15 @@
         <div class="ui-g-4">
           <strong>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/availableFilters")}</strong>
         </div>
-        <div class="ui-g-8">
-          <p:commandButton id="preview-button"
+        <h:panelGroup layout="block" styleClass="ui-g-8" id="preview-button-container">
+          <p:commandButton id="preview-button" 
+            rendered="#{isRenderPreviewButton}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}" 
             styleClass="Fright preview-button" icon="si si-search" 
             actionListener="#{dashboardProcessBeanHandler.preview()}"
             update="#{cc.clientId}:preview-process #{cc.clientId}:widget-preview" 
             process="user-filter widget-title-group" oncomplete="PF('new-widget-configuration-dialog').initPosition();"/>
-        </div>
+        </h:panelGroup>
       </div>
 
       <!-- Widget Filters -->
@@ -112,7 +114,7 @@
           <div class="ui-g-8 ui-fluid">
             <p:selectOneMenu id="processes-sorting" value="#{widget.sorting}">
               <f:selectItems value="#{compactDashboardProcessBean.processSorting}" var="sorting" itemValue="#{sorting}" itemLabel="#{sorting.label}" />
-              <p:ajax oncomplete="PF('new-widget-configuration-dialog').initPosition();"/>
+              <p:ajax oncomplete="PF('new-widget-configuration-dialog').initPosition();" update="preview-button-container widget-preview"/>
             </p:selectOneMenu>
           </div>
         </h:panelGroup>

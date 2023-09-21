@@ -21,7 +21,9 @@ import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
+import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.ProcessSorting;
+import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
@@ -53,10 +55,14 @@ public class CompactDashboardProcessBean
   }
 
   @Override
-  public void preRender(CompactProcessDashboardWidget widget) {
-    dashboardProcessBean.preRender(widget);
-    getWidget().setInConfiguration(true);
+  public void preRender(CompactProcessDashboardWidget compactDashboardWidget) {
+    dashboardProcessBean.preRender(compactDashboardWidget);
+    CompactProcessDashboardWidget widget = getWidget();
+    widget.setInConfiguration(true);
     preRenderCompactProcessStartWidget();
+    if (widget != null && widget.getType() == DashboardWidgetType.PROCESS && widget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) {
+      widget.setPreview(true);
+    }
   }
 
   private void preRenderCompactProcessStartWidget() {
@@ -221,5 +227,9 @@ public class CompactDashboardProcessBean
       return false;
     }
     return widget.isPreview() && ProcessSorting.BY_CUSTOM_ORDER.name().equals(widget.getSorting());
+  }
+  
+  public String getSorting() {
+    return getWidget().getSorting();
   }
 }
