@@ -85,7 +85,8 @@ public class MainMenuPage extends TemplatePage {
     waitLeftMenuReady();
     if ($("a[id$='user-menu-required-login:toggle-menu']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).is(appear)) {
       $("a[id$='user-menu-required-login:toggle-menu']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-      $(".portal-home-logo-small").shouldBe(Condition.hidden, DEFAULT_TIMEOUT);
+      $(".js-layout-main").hover();
+      $(".portal-home-logo.portal-home-logo-small").should(Condition.visible, DEFAULT_TIMEOUT);
     }
   }
 

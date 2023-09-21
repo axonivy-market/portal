@@ -7,6 +7,8 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import org.openqa.selenium.By;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -157,5 +159,31 @@ public class CaseDetailsPage extends TemplatePage {
   
   public void switchToIframe() {
     switchToIframeWithId("iFrame");
+  }
+  
+  public SelenideElement getGeneralInforBox() {
+    return $("[id$='case-detail-general-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getRelatedRunningTaskBox() {
+    return $("[id$='case-details-related-running-tasks-card']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public void waitForCaseDetailsDisplay() {
+    $(By.id("case-item-details:case-details-container:case-detail-body")).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  public SelenideElement getAddNoteDialog() {
+    onClickHistoryIcon();
+//    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+    $(".ui-inputtextarea.note-content-textarea").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+//    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ui-inputtextarea.note-content-textarea", CLASS_PROPERTY);
+    return $("[id$='case-histories:add-note-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  @SuppressWarnings("deprecation")
+  public void onClickHistoryIcon() {
+    $("a[id$=':case-histories:add-note-command']").shouldBe(getClickableCondition()).click();
+//    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 }
