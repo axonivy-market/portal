@@ -219,7 +219,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
   private TaskDetailsPage setupCustomWidgetByJSONFile(String configFile) throws IOException {
     ConfigurationJsonUtil.updateJSONSetting(configFile, Variable.TASK_DETAIL);
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     homePage = new HomePage();
     ScreenshotUtil.resizeBrowser(new Dimension(1366, 1200));
     TaskWidgetPage taskWidgetPage = homePage.openTaskList();
