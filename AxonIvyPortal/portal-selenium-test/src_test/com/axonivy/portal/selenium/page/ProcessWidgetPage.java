@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Selenide.$$;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.FileHelper;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
@@ -129,5 +130,16 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public SelenideElement getFilterTextfield() {
     return $("[id='process-widget:process-search:non-ajax-keyword-filter']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public ExpressProcessPage openExpressPage() {
+    WaitHelper.waitForNavigation(() -> {
+      clickByJavaScript($("[id='process-widget:create-express-workflow']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT));
+    });
+    return new ExpressProcessPage();
+  }
+
+  public void startProcessByName(String processName) {
+    WaitHelper.waitForNavigation(() -> getProcessItem(processName).$("[id$=':start-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
   }
 }

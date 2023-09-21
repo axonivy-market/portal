@@ -81,4 +81,14 @@ public class CaseWidgetPage extends TemplatePage {
     return selectedCaseIdElement.getText();
   }
 
+  public SelenideElement openActionStepMenu(int index) {
+    String menuSelector = String.format("[id='case-widget:case-list-scroller:%d:case-item:case-item-action-form:action-step-component:action-steps-menu']", index);
+    String menuPanelSelector = String.format("[id='case-widget:case-list-scroller:%d:case-item:case-item-action-form:action-step-component:action-steps-panel']", index);
+    $(menuSelector).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return $(menuPanelSelector).shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void openAdditionalCaseDetails(SelenideElement actionMenu) {
+    actionMenu.$("[id$=':show-additional-case-details-link']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
 }
