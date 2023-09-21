@@ -86,4 +86,19 @@ public abstract class TemplatePage extends AbstractPage {
   public void waitForAjaxIndicatorDisappeared() {
     WaitHelper.waitAttributeToBe(WebDriverRunner.getWebDriver(), By.id("ajax-indicator:ajax-indicator-ajax-indicator_start"), "display", "none");
   }
+
+  private void clickUserMenuItem(String menuItemSelector) {
+    openUserSettingMenu();
+    $("[id='" + menuItemSelector + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public ChangePasswordPage openChangePasswordPage() {
+    clickUserMenuItem("change-password-menu-item");
+    return new ChangePasswordPage();
+  }
+
+  public ProjectVersionPage openProjectVersionPage() {
+    clickUserMenuItem("project-info-menu-item");
+    return new ProjectVersionPage();
+  }
 }
