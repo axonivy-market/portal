@@ -41,7 +41,8 @@
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
-            "at" : { "x" : 64, "y" : 144 }
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f172",
           "connect" : [
@@ -52,7 +53,8 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 488, "y" : 144 }
+            "at" : { "x" : 488, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f196"
         }, {
@@ -139,7 +141,8 @@
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
-            "at" : { "x" : 64, "y" : 160 }
+            "at" : { "x" : 64, "y" : 160 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f171",
           "connect" : [
@@ -150,7 +153,8 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 448, "y" : 160 }
+            "at" : { "x" : 448, "y" : 160 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f194"
         } ],
@@ -196,7 +200,8 @@
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
-            "at" : { "x" : 64, "y" : 144 }
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f213",
           "connect" : [
@@ -207,7 +212,8 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 456, "y" : 144 }
+            "at" : { "x" : 456, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f217"
         }, {
@@ -273,7 +279,8 @@
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
-            "at" : { "x" : 152, "y" : 64 }
+            "at" : { "x" : 152, "y" : 64 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f197",
           "connect" : [
@@ -284,7 +291,8 @@
           "type" : "EmbeddedStart",
           "name" : "in 2",
           "visual" : {
-            "at" : { "x" : 64, "y" : 144 }
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f198",
           "connect" : [
@@ -295,7 +303,8 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 320, "y" : 144 }
+            "at" : { "x" : 320, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f211"
         } ],
@@ -342,7 +351,8 @@
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
-            "at" : { "x" : 64, "y" : 144 }
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f191",
           "connect" : [
@@ -353,7 +363,8 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 320, "y" : 144 }
+            "at" : { "x" : 320, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f192"
         } ],
@@ -400,7 +411,8 @@
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
-            "at" : { "x" : 64, "y" : 144 }
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f189",
           "connect" : [
@@ -411,7 +423,8 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 488, "y" : 144 }
+            "at" : { "x" : 488, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f190"
         }, {
@@ -480,7 +493,8 @@
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
-            "at" : { "x" : 64, "y" : 144 }
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f186",
           "connect" : [
@@ -491,7 +505,8 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 400, "y" : 144 }
+            "at" : { "x" : 400, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f187"
         }, {
@@ -560,7 +575,8 @@
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
-            "at" : { "x" : 64, "y" : 144 }
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f173",
           "connect" : [
@@ -571,7 +587,8 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 456, "y" : 144 }
+            "at" : { "x" : 456, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f185"
         }, {
@@ -636,7 +653,8 @@
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
-            "at" : { "x" : 64, "y" : 144 }
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f131",
           "connect" : [
@@ -647,7 +665,8 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 456, "y" : 144 }
+            "at" : { "x" : 456, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f184"
         }, {
@@ -713,7 +732,8 @@
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
-            "at" : { "x" : 64, "y" : 144 }
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f98",
           "connect" : [
@@ -724,7 +744,8 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 288, "y" : 144 }
+            "at" : { "x" : 288, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f183"
         } ],
@@ -770,7 +791,8 @@
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
-            "at" : { "x" : 64, "y" : 144 }
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f96",
           "connect" : [
@@ -781,7 +803,8 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 288, "y" : 144 }
+            "at" : { "x" : 288, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f182"
         } ],
@@ -828,7 +851,8 @@
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
-            "at" : { "x" : 64, "y" : 144 }
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f53",
           "connect" : [
@@ -839,7 +863,8 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 288, "y" : 144 }
+            "at" : { "x" : 288, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f181"
         } ],
@@ -886,7 +911,8 @@
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
-            "at" : { "x" : 64, "y" : 144 }
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f66",
           "connect" : [
@@ -897,7 +923,8 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 288, "y" : 144 }
+            "at" : { "x" : 288, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f180"
         } ],
@@ -944,7 +971,8 @@
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
-            "at" : { "x" : 64, "y" : 144 }
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f33",
           "connect" : [
@@ -955,7 +983,8 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 320, "y" : 144 }
+            "at" : { "x" : 320, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f210"
         } ],
@@ -1002,7 +1031,8 @@
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
-            "at" : { "x" : 64, "y" : 144 }
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f26",
           "connect" : [
@@ -1013,7 +1043,8 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 320, "y" : 144 }
+            "at" : { "x" : 320, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f27"
         } ],
@@ -1060,7 +1091,8 @@
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
-            "at" : { "x" : 64, "y" : 144 }
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f15",
           "connect" : [
@@ -1071,7 +1103,8 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 320, "y" : 144 }
+            "at" : { "x" : 320, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f209"
         } ],
@@ -1119,7 +1152,8 @@
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
-            "at" : { "x" : 64, "y" : 144 }
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f283",
           "connect" : [
@@ -1130,7 +1164,8 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 320, "y" : 144 }
+            "at" : { "x" : 320, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f284"
         } ],
@@ -2587,6 +2622,7 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
+            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f92",
@@ -2810,6 +2846,7 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 96, "y" : 96 },
+            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f18",
@@ -2967,6 +3004,7 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
+            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f176",
@@ -2979,6 +3017,7 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 672, "y" : 160 },
+            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f25"
@@ -3066,6 +3105,7 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
+            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f179",
@@ -3078,6 +3118,7 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 672, "y" : 160 },
+            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f17"
@@ -3192,6 +3233,7 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
+            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f36",
@@ -3204,6 +3246,7 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 832, "y" : 160 },
+            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f40"
@@ -4026,7 +4069,8 @@
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
-            "at" : { "x" : 64, "y" : 64 }
+            "at" : { "x" : 64, "y" : 64 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f61",
           "connect" : [
@@ -4037,7 +4081,8 @@
           "type" : "EmbeddedStart",
           "name" : "in 2",
           "visual" : {
-            "at" : { "x" : 64, "y" : 144 }
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f175",
           "connect" : [
@@ -4048,7 +4093,8 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 224, "y" : 144 }
+            "at" : { "x" : 224, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f176"
         } ],
@@ -4094,7 +4140,8 @@
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
-            "at" : { "x" : 72, "y" : 64 }
+            "at" : { "x" : 72, "y" : 64 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f24",
           "connect" : [
@@ -4105,7 +4152,8 @@
           "type" : "EmbeddedStart",
           "name" : "in 2",
           "visual" : {
-            "at" : { "x" : 72, "y" : 144 }
+            "at" : { "x" : 72, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f178",
           "connect" : [
@@ -4116,7 +4164,8 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 232, "y" : 144 }
+            "at" : { "x" : 232, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f179"
         } ],
@@ -4199,7 +4248,8 @@
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
-            "at" : { "x" : 64, "y" : 144 }
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f165",
           "connect" : [
@@ -4210,7 +4260,8 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 488, "y" : 144 }
+            "at" : { "x" : 488, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f155"
         }, {
@@ -4253,11 +4304,6 @@
           "id" : "S13-f165",
           "type" : "Alternative",
           "name" : "Authorized?",
-          "config" : {
-            "conditions" : {
-              "S13-f1" : "in.isAuthorized"
-            }
-          },
           "visual" : {
             "at" : { "x" : 320, "y" : 144 },
             "labelOffset" : { "x" : 16, "y" : -16 }
@@ -4276,7 +4322,8 @@
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
-            "at" : { "x" : 64, "y" : 144 }
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f249",
           "connect" : [
@@ -4287,7 +4334,8 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 488, "y" : 144 }
+            "at" : { "x" : 488, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f252"
         }, {
@@ -4532,17 +4580,12 @@
           "id" : "S52-f168",
           "type" : "TaskEnd",
           "visual" : {
-            "at" : { "x" : 320, "y" : 232 }
+            "at" : { "x" : 384, "y" : 176 }
           }
         }, {
           "id" : "S52-f165",
           "type" : "Alternative",
           "name" : "Authorized?",
-          "config" : {
-            "conditions" : {
-              "S52-f1" : "in.isAuthorized"
-            }
-          },
           "visual" : {
             "at" : { "x" : 320, "y" : 144 },
             "labelOffset" : { "x" : 16, "y" : -16 }
@@ -4551,9 +4594,9 @@
             { "id" : "S52-f1", "to" : "S52-g1", "label" : {
                 "name" : "Yes"
               } },
-            { "id" : "S52-f170", "to" : "S52-f168", "label" : {
+            { "id" : "S52-f170", "to" : "S52-f168", "via" : [ { "x" : 320, "y" : 176 } ], "label" : {
                 "name" : "No",
-                "segment" : 0.53
+                "segment" : 1.26
               } }
           ]
         }, {
@@ -4561,7 +4604,8 @@
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
-            "at" : { "x" : 64, "y" : 144 }
+            "at" : { "x" : 64, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f251",
           "connect" : [
@@ -4572,7 +4616,8 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 488, "y" : 144 }
+            "at" : { "x" : 488, "y" : 144 },
+            "size" : { "width" : 26, "height" : 26 }
           },
           "parentConnector" : "f244"
         }, {
