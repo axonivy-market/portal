@@ -151,14 +151,14 @@
   --news-feed-item-title-font-weight: bold;
 
   /* Statistics color pallete */
-  --statistics-1-color: hsl(192, 63%, 80%);
-  --statistics-2-color: hsl(192, 63%, 70%);
-  --statistics-3-color: hsl(192, 63%, 60%);
-  --statistics-4-color: hsl(192, 63%, 50%);
-  --statistics-5-color: hsl(192, 63%, 45%);
-  --statistics-6-color: hsl(192, 63%, 40%);
-  --statistics-7-color: hsl(192, 63%, 35%);
-  --statistics-8-color: hsl(192, 63%, 30%);
+  --statistics-1-color: #00a8e1;
+  --statistics-2-color: #0095c7;
+  --statistics-3-color: #0082ae;
+  --statistics-4-color: #006f94;
+  --statistics-5-color: #005c7b;
+  --statistics-6-color: #004961;
+  --statistics-7-color: #003648;
+  --statistics-8-color: #00232f;
   
   /* Notification */
   --notification-background-color: #293241;

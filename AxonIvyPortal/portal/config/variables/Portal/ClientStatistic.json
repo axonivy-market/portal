@@ -10,37 +10,37 @@
     "names": [
       {
         "locale": "de",
-        "value": "Aufgaben nach Priorität chartId 1"
+        "value": "Aufgaben nach Priorität"
       },
       {
         "locale": "en",
-        "value": "Tasks by Priority chartId 1"
+        "value": "Tasks by Priority"
       },
       {
         "locale": "fr",
-        "value": "Tãches par priorité chartId 1"
+        "value": "Tãches par priorité"
       },
       {
         "locale": "es",
-        "value": "Tareas por prioridad chartId 1"
+        "value": "Tareas por prioridad"
       }
     ],
     "description": [
       {
         "locale": "de",
-        "value": "TODO Description Aufgaben nach Priorität chartId 1"
+        "value": "Aufgaben nach Priorität"
       },
       {
         "locale": "en",
-        "value": "TODO Description Tasks by Priority chartId 1"
+        "value": "Tasks by Priority"
       },
       {
         "locale": "fr",
-        "value": "TODO Description Tãches par priorité chartId 1"
+        "value": "Tãches par priorité"
       },
       {
         "locale": "es",
-        "value": "TODO Description Tareas por prioridad chartId 1"
+        "value": "Tareas por prioridad"
       }
     ],
     "icon": "si si-pie-line-graph",
@@ -58,37 +58,37 @@
     "names": [
       {
         "locale": "de",
-        "value": "TODO DE Tasks grouped by expiry chartId 2"
+        "value": "Aufgaben gruppiert nach Ablaufdatum"
       },
       {
         "locale": "en",
-        "value": "Tasks grouped by expiry chartId 2"
+        "value": "Tasks grouped by expiry"
       },
       {
         "locale": "fr",
-        "value": "TODO FR Tasks grouped by expiry chartId 2"
+        "value": "Tâches regroupées par échéance"
       },
       {
         "locale": "es",
-        "value": "TODO ES Tasks grouped by expiry chartId 2"
+        "value": "Tareas agrupadas por vencimiento"
       }
     ],
     "descriptions": [
       {
         "locale": "de",
-        "value": "TODO Description DE Tasks grouped by expiry chartId 2"
+        "value": "Aufgaben gruppiert nach Ablaufdatum"
       },
       {
         "locale": "en",
-        "value": "TODO DescriptionTasks grouped by expiry chartId 2"
+        "value": "Tasks grouped by expiry"
       },
       {
         "locale": "fr",
-        "value": "TODO Description FR Tasks grouped by expiry chartId 2"
+        "value": "Tâches regroupées par échéance"
       },
       {
         "locale": "es",
-        "value": "TODO Description ES Tasks grouped by expiry chartId 2"
+        "value": "Tareas agrupadas por vencimiento"
       }
     ],
     "icon": "si si-pie-line-graph",
@@ -97,7 +97,7 @@
       "xTitles": [
         {
           "locale": "de",
-          "value": "TODO Day"
+          "value": "Tag"
         },
         {
           "locale": "en",
@@ -105,17 +105,17 @@
         },
         {
           "locale": "fr",
-          "value": "TODO Day"
+          "value": "Jour"
         },
         {
           "locale": "es",
-          "value": "TODO Day"
+          "value": "Día"
         }
       ],
       "yTitles": [
         {
           "locale": "de",
-          "value": "TODO Number of tasks"
+          "value": "Anzahl der Aufgaben"
         },
         {
           "locale": "en",
@@ -123,11 +123,11 @@
         },
         {
           "locale": "fr",
-          "value": "TODO Number of tasks"
+          "value": "Nombre de tâches"
         },
         {
           "locale": "es",
-          "value": "TODO Number of tasks"
+          "value": "Número de tareas"
         }
       ]
      }
@@ -144,37 +144,37 @@
     "names": [
       {
         "locale": "de",
-        "value": "TODO DE Number of OPEN tasks chartId 3"
+        "value": "Anzahl der OFFENEN Aufgaben"
       },
       {
         "locale": "en",
-        "value": "Tasks Number of OPEN tasks chartId 3"
+        "value": "Number of OPEN Tasks"
       },
       {
         "locale": "fr",
-        "value": "TODO FR Number of OPEN tasks chartId 3"
+        "value": "Nombre de tâches OUVERTES"
       },
       {
         "locale": "es",
-        "value": "TODO ES Number of OPEN tasks chartId 3"
+        "value": "Número de tareas ABIERTAS"
       }
     ],
     "descriptions": [
       {
         "locale": "de",
-        "value": "TODO Description DE Number of OPEN tasks chartId 3"
+        "value": "Anzahl der OFFENEN Aufgaben"
       },
       {
         "locale": "en",
-        "value": "TODO Description Tasks Number of OPEN tasks chartId 3"
+        "value": "Tasks Number of OPEN tasks"
       },
       {
         "locale": "fr",
-        "value": "TODO Description FR Number of OPEN tasks chartId 3"
+        "value": "Nombre de tâches OUVERTES"
       },
       {
         "locale": "es",
-        "value": "TODO Description ES Number of OPEN tasks chartId 3"
+        "value": "Número de tareas ABIERTAS"
       }
     ],
     "icon": "si si-pie-line-graph",
@@ -195,37 +195,37 @@
     "names": [
       {
         "locale": "de",
-        "value": "TODO DE Completed Tasks per Day chartId 4"
+        "value": "Erledigte Aufgaben pro Tag"
       },
       {
         "locale": "en",
-        "value": "Tasks Completed Tasks per Day chartId 4"
+        "value": "Completed Tasks per Day"
       },
       {
         "locale": "fr",
-        "value": "TODO FR Completed Tasks per Day chartId 4"
+        "value": "Tâches accomplies par jour"
       },
       {
         "locale": "es",
-        "value": "TODO ES Completed Tasks per Day chartId 4"
+        "value": "Tareas completadas por día"
       }
     ],
     "descriptions": [
       {
         "locale": "de",
-        "value": "TODO Description DE Completed Tasks per Day chartId 4"
+        "value": "Erledigte Aufgaben pro Tag"
       },
       {
         "locale": "en",
-        "value": "TODO  Description Tasks Completed Tasks per Day chartId 4"
+        "value": "Completed Tasks per Day"
       },
       {
         "locale": "fr",
-        "value": "TODO Description FR Completed Tasks per Day chartId 4"
+        "value": "Tâches accomplies par jour"
       },
       {
         "locale": "es",
-        "value": "TODO Description ES Completed Tasks per Day chartId 4"
+        "value": "Tareas completadas por día"
       }
     ],
     "icon": "si si-pie-line-graph",
@@ -234,7 +234,7 @@
       "xTitles": [
         {
           "locale": "de",
-          "value": "TODO Day"
+          "value": "Tag"
         },
         {
           "locale": "en",
@@ -242,17 +242,17 @@
         },
         {
           "locale": "fr",
-          "value": "TODO Day"
+          "value": "Jour"
         },
         {
           "locale": "es",
-          "value": "TODO Day"
+          "value": "Día"
         }
       ],
       "yTitles": [
         {
           "locale": "de",
-          "value": "TODO Number of tasks"
+          "value": "Anzahl der Aufgaben"
         },
         {
           "locale": "en",
@@ -260,11 +260,11 @@
         },
         {
           "locale": "fr",
-          "value": "TODO Number of tasks"
+          "value": "Nombre de tâches"
         },
         {
           "locale": "es",
-          "value": "TODO Number of tasks"
+          "value": "Número de tareas"
         }
       ]
      }
@@ -272,7 +272,7 @@
   {
     "id": "5",
     "aggregates": "expiryTimestamp",
-    "filter": "expiryTimestamp:>=now <=now+4d/d",
+    "filter": "expiryTimestamp:>=now <=now+2M/d",
     "chartTarget": "TASK",
     "permissions": [
       "Everybody"
@@ -281,46 +281,46 @@
     "names": [
       {
         "locale": "de",
-        "value": "TODO DE Tasks grouped by expiry chartId 5"
+        "value": "Angefangene Fälle pro Tag"
       },
       {
         "locale": "en",
-        "value": "Tasks grouped by expiry chartId 5"
+        "value": "Started Cases per Day"
       },
       {
         "locale": "fr",
-        "value": "TODO FR Tasks grouped by expiry chartId 5"
+        "value": "Cas initiés par jour"
       },
       {
         "locale": "es",
-        "value": "TODO ES Tasks grouped by expiry chartId 5"
+        "value": "Casos iniciados por día"
       }
     ],
     "descriptions": [
       {
         "locale": "de",
-        "value": "TODO Description DE Tasks grouped by expiry chartId 5"
+        "value": "Angefangene Fälle pro Tag"
       },
       {
         "locale": "en",
-        "value": "TODO DescriptionTasks grouped by expiry chartId 5"
+        "value": "Started Cases per Day"
       },
       {
         "locale": "fr",
-        "value": "TODO Description FR Tasks grouped by expiry chartId 5"
+        "value": "Cas initiés par jour"
       },
       {
         "locale": "es",
-        "value": "TODO Description ES Tasks grouped by expiry chartId 5"
+        "value": "Casos iniciados por día"
       }
     ],
     "icon": "si si-pie-line-graph",
     "refreshInterval": 4,
-    "barChartConfig": {
+    "lineChartConfig": {
       "xTitles": [
         {
           "locale": "de",
-          "value": "TODO Day"
+          "value": "Tag"
         },
         {
           "locale": "en",
@@ -328,29 +328,29 @@
         },
         {
           "locale": "fr",
-          "value": "TODO Day"
+          "value": "Jour"
         },
         {
           "locale": "es",
-          "value": "TODO Day"
+          "value": "Día"
         }
       ],
       "yTitles": [
         {
           "locale": "de",
-          "value": "TODO Number of tasks"
+          "value": "Anzahl der Fälle"
         },
         {
           "locale": "en",
-          "value": "Number of tasks"
+          "value": "Number of cases"
         },
         {
           "locale": "fr",
-          "value": "TODO Number of tasks"
+          "value": "Nombre de cas"
         },
         {
           "locale": "es",
-          "value": "TODO Number of tasks"
+          "value": "Número de casos"
         }
       ]
      }
