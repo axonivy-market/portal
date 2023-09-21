@@ -29,8 +29,6 @@ public class DashboardConfigurationBean implements Serializable {
     initPermissions();
     resetAllIndicators();
     isSelectingAction = true;
-    this.isEditingDashboard = true;
-    this.isPublicDashboard = false;
   }
 
   private void initPermissions() {

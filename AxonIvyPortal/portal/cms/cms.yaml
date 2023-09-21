@@ -1402,8 +1402,6 @@ Dialogs:
         portal:
           generic:
             dashboard:
-              PortalDashboardConfiguration:
-                NewDashboard: New Dashboard
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Could not find the linked process!
@@ -1560,7 +1558,6 @@ Labels:
   AdhocWorkflow: Describe your Workflow
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
-  CreateNewDashboard: Create new dashboard
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
   Task: Task
