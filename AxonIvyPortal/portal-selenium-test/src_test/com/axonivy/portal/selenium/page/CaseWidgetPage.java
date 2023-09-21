@@ -95,11 +95,6 @@ public class CaseWidgetPage extends TemplatePage {
     SelenideElement selectedCaseIdElement = $(String.format("[id$='case-list-scroller:%d:case-item:case-item-container']", caseIndex)).find(By.cssSelector("[id$=':case-id-cell']"));
     return selectedCaseIdElement.getText();
   }
-  
-  public void openActionStepMenu(int caseIndex) {
-    $(String.format("a[id^='case-widget:case-list-scroller:%d:case-item:case-item-action-form']", caseIndex)).shouldBe(getClickableCondition()).click();
-    $(String.format("[id='case-widget:case-list-scroller:%d:case-item:case-item-action-form:action-step-component:action-steps-panel']", caseIndex)).shouldBe(Condition.visible, DEFAULT_TIMEOUT);
-  }
 
   public SelenideElement openActionStepMenu(int index) {
     String menuSelector = String.format("[id='case-widget:case-list-scroller:%d:case-item:case-item-action-form:action-step-component:action-steps-menu']", index);
