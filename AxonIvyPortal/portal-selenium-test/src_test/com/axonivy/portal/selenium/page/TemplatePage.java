@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 import java.util.ArrayList;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -20,6 +21,7 @@ import com.codeborne.selenide.WebDriverRunner;
 
 public abstract class TemplatePage extends AbstractPage {
   protected static final String LAYOUT_WRAPPER = ".layout-wrapper";
+  public static final String CLASS_PROPERTY = "class";
 
   // If page load more than 45s, mark it failed by timeout
   protected long getTimeOutForLocator() {
@@ -63,10 +65,25 @@ public abstract class TemplatePage extends AbstractPage {
     WebDriverRunner.getWebDriver().switchTo().parentFrame();
   }
 
-  public LoginPage clickOnLogout() {
+  public void openUserSettingMenu() {
     $("[id='user-settings-menu']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id='user-setting-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public LoginPage clickOnLogout() {
+    openUserSettingMenu();
     $("[id='logout-setting:logout-menu-item']").shouldBe(appear, DEFAULT_TIMEOUT);
     WaitHelper.waitForNavigationToLoginPage(() -> $("[id='logout-setting:logout-menu-item']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
     return new LoginPage();
+  }
+
+  public AdminSettingsPage openAdminSettings() {
+    openUserSettingMenu();
+    WaitHelper.waitForNavigation(() -> $("[id='adminui-menu-item']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
+    return new AdminSettingsPage();
+  }
+
+  public void waitForAjaxIndicatorDisappeared() {
+    WaitHelper.waitAttributeToBe(WebDriverRunner.getWebDriver(), By.id("ajax-indicator:ajax-indicator-ajax-indicator_start"), "display", "none");
   }
 }
