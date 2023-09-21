@@ -85,7 +85,7 @@ pipeline {
 
           echo '====================Execute maven for testing===================='
           def mavenGoal = params.deployToRepo? 'deploy' : 'install'
-          bat "mvn clean ${mavenGoal} -f AxonIvyPortal/portal-selenium-test/customized_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
+          bat "mvn clean ${mavenGoal} -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
           utils.cleanDisk()
 
           echo '====================Copy ElasticSearch log===================='

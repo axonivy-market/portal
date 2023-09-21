@@ -11,6 +11,7 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtil;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.PasswordResetPage;
 
@@ -20,16 +21,17 @@ public class PasswordResetScreenshotTest extends ScreenshotBaseTest {
   @BeforeEach
   @Override
   public void setup() {
-    launchBrowserAndGotoRelativeLink(PORTAL_HOME_PAGE_URL);
+    super.setup();
+    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "false");
     redirectToRelativeLink(portalKitTestHelperPasswordResetUrl);
-    login(TestAccount.ADMIN_USER);
-    showNewDashboard();
-    NewDashboardPage homePage = new NewDashboardPage();
-    homePage.clickOnLogout();
   }
 
   @Test
   public void testResetPassword() throws IOException {
+    login(TestAccount.ADMIN_USER);
+    showNewDashboard();
+    NewDashboardPage homePage = new NewDashboardPage();
+    homePage.clickOnLogout();
     redirectToRelativeLink(String.format(portalPasswordResetUrl, TestAccount.TEST_FORGOT_PASSWORD_USER.getPassword(),
         TestAccount.TEST_FORGOT_PASSWORD_USER.getUsername()));
     ScreenshotUtil.resizeBrowser(new Dimension(1024, 768));

@@ -55,13 +55,14 @@ public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
     ExampleOverviewPage exampleOverviewPage = new ExampleOverviewPage();
     exampleOverviewPage.switchToIFrameOfTask();
     exampleOverviewPage.waitForIFrameContentVisible();
-    ScreenshotUtil.executeDecorateJs("highlightUserExampleCard(0)");
     exampleOverviewPage.switchBackToParent();
+    ScreenshotUtil.executeDecorateJs("highlightUserExampleCard(0)");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DEMO_FOLDER + "example-overview-leave-request");
     refreshPage();
     exampleOverviewPage = new ExampleOverviewPage();
     exampleOverviewPage.switchToIFrameOfTask();
     exampleOverviewPage.waitForIFrameContentVisible();
+    exampleOverviewPage.switchBackToParent();
     ScreenshotUtil.executeDecorateJs("highlightUserExampleCard(1)");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DEMO_FOLDER + "example-overview-lending-case");
   }
