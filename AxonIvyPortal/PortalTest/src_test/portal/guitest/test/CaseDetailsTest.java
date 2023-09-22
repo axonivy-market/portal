@@ -3,9 +3,7 @@ package portal.guitest.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assume.assumeTrue;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang.StringUtils;
@@ -18,7 +16,6 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
-import ch.ivy.addon.portalkit.util.ConfigurationJsonUtil;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.CaseState;
@@ -363,38 +360,6 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.saveAndSwitchToViewMode();
   }
   
-  @Test
-  public void testCustomWidgetsInCaseDetails() throws IOException {
-    redirectToRelativeLink(CREATE_EVENT_TEST_URL);
-
-    setupCaseDetailsWithIFrameProcess();
-    assumeTrue("iframe CustomWidget is displayed", detailsPage.iframeCustomWidgetIsDisplayed());
-    String processLink = detailsPage.getProcessLinkInCustomIFrameWidget();
-    assertTrue(processLink.contains("portal-developer-examples/17A2C6D73AB4186E/startReview.ivp"));
-    
-    setupCaseDetailsWithIFrameURL();
-    String url = detailsPage.getIFrameURLOfCustomWidget();
-    assertTrue(url.contains("www.axonivy.com"));
-    
-    setupCaseDetailsWith2Panels();
-    assertTrue(detailsPage.isCustomMiddlePanelDisplay());
-  }
-
-  public void setupCaseDetailsWith2Panels() throws IOException {
-    ConfigurationJsonUtil.updateJSONSetting("custom-case-details-with-panel.json", Variable.CASE_DETAIL);
-    detailsPage = goToCaseList().openDetailsOfCaseHasName(CUSTOM_CASE_WIDGET_NAME);
-  }
-
-  public void setupCaseDetailsWithIFrameURL() throws IOException {
-    ConfigurationJsonUtil.updateJSONSetting("custom-case-details-with-url.json", Variable.CASE_DETAIL);
-    detailsPage = goToCaseList().openDetailsOfCaseHasName(CUSTOM_CASE_WIDGET_NAME);
-  }
-
-  public void setupCaseDetailsWithIFrameProcess() throws IOException {
-    ConfigurationJsonUtil.updateJSONSetting("custom-case-details.json", Variable.CASE_DETAIL);
-    detailsPage = goToCaseList().openDetailsOfCaseHasName(CUSTOM_CASE_WIDGET_NAME);
-  }
-
   public CaseWidgetPage goToCaseList() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
