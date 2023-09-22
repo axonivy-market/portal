@@ -77,7 +77,7 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest{
     detailsPage.waitForCaseDetailsDisplay();
     SelenideElement addNote = detailsPage.getAddNoteDialog();
     ScreenshotUtil.captureElementScreenshot(addNote, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-add-task-note1");
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(addNote, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-add-task-note", new ScreenshotMargin(50, 10, 10, 10));
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(addNote, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-add-task-note", new ScreenshotMargin(30, 50));
 
 //    detailsPage.addNote("Take Order");
 //    
