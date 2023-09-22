@@ -218,10 +218,6 @@ public class TaskDetailsPage extends TemplatePage {
     findElementByCssSelector("[id$=':task-notes:show-more-note-link']").click();
   }
   
-  public String getTaskResponsible() {
-    return findElementByCssSelector(".role-and-user-information .task-activator").getText();
-  }
-  
   public String getTaskId() {
     return findElementByCssSelector("[id$=':task-id']").getText();
   }
@@ -252,11 +248,6 @@ public class TaskDetailsPage extends TemplatePage {
     openActionPanel();
     WebElement actionPanel = findElementByCssSelector("div[id$=':additional-options:side-steps-panel']");
     return actionPanel.findElements(By.cssSelector("a[class*='option-item']")).stream().map(WebElement::getText).collect(Collectors.toList());
-  }
-
-  public void addCommentOnTaskDelegationDialog(String comment) {
-    waitForElementDisplayed(By.cssSelector("textarea[id$=':task-item-delegate-component:task-delegate-form:input-text-area-delegate-message']"), true);
-    type(By.cssSelector("textarea[id$=':task-item-delegate-component:task-delegate-form:input-text-area-delegate-message']"), comment);
   }
 
   @SuppressWarnings("deprecation")
