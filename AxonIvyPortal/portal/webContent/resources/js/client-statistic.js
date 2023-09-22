@@ -27,7 +27,13 @@ function initStatistics() {
     let refreshInfos = [];
     $('.chart-options').each(async (index, chart) => {
         let chartId = chart.getAttribute('data-chart-id');
-        let response = await instance.post('/api/statistic-data-service/Data', { "chartId": chartId });
+        let response;
+        try {
+            response = await instance.post('/api/statistic-data-service/Data', { "chartId": chartId });
+        } catch (error) {
+            renderNoPermissionStatistics(chart, error.response.data);
+            return;
+        }
         let data = await response.data;
         let result = data.result.aggs?.[0]?.buckets ?? [];
         let config = data.chartConfig;
@@ -56,9 +62,6 @@ function initStatistics() {
 
         if (chartData !== undefined) {
             refreshInfos.push(chartObject);
-        }
-        if ($('.chart-options').length === refreshInfos.length) {
-            initRefresh(refreshInfos);
         }
 
         function renderNumberChart() {
@@ -97,6 +100,8 @@ function initStatistics() {
             }
         }
 
+        initRefresh(refreshInfos);
+
         function renderBarChart() {
             chartData = renderBarLineChart(result, chart, config);
         }
@@ -109,7 +114,7 @@ function initStatistics() {
             let html = renderChartCanvas(chart.getAttribute('data-chart-id'));
             $(chart).html(html);
             let canvasObject = $(chart).find('canvas');
-            let chartData = new Chart(canvasObject, {
+            var chartData = new Chart(canvasObject, {
                 type: config.chartType,
                 data: {
                     labels: result.map(bucket => formatChartLabel(bucket.key)),
@@ -131,13 +136,13 @@ function initStatistics() {
                         y: {
                             beginAtZero: true,
                             title: {
-                                text: (config.chartType === "bar" ?  config.barChartConfig : config.lineChartConfig).yTitle,
+                                text: (config.chartType === "bar" ? config.barChartConfig : config.lineChartConfig).yTitle,
                                 display: true
                             }
                         },
                         x: {
                             title: {
-                                text: (config.chartType === "bar" ?  config.barChartConfig : config.lineChartConfig).xTitle,
+                                text: (config.chartType === "bar" ? config.barChartConfig : config.lineChartConfig).xTitle,
                                 display: true
                             }
                         }
@@ -186,10 +191,10 @@ function initStatistics() {
             let refreshInfo = refreshInfos[i];
             if (refreshInfo.refreshInterval && refreshInfo.refreshInterval > 0) {
                 // when init statistic again, e.g., AJAX update statistic, clear exising interval
-                if (typeof refreshIntervalId !== 'undefined') {
-                    clearInterval(refreshIntervalId);
+                if (typeof refreshInfo.refreshIntervalId !== 'undefined') {
+                    clearInterval(refreshInfo.refreshIntervalId);
                 }
-                refreshIntervalId = setInterval(() => {
+                refreshInfo.refreshIntervalId = setInterval(() => {
                     refreshChart(refreshInfo);
                 }, refreshInfo.refreshInterval * 1000);
             }
@@ -223,12 +228,22 @@ function initStatistics() {
         });
 
         let emptyChartHtml = `
-        <div class="empty-message-container">
-            <i class="si si-analytics-pie-2 empty-message-icon"></i>
-            <p class="empty-message-text">` + emptyChartDataMessage + `</p>
-        </div>
+            <div class="empty-message-container">
+                <i class="si si-analytics-pie-2 empty-message-icon"></i>
+                <p class="empty-message-text">` + emptyChartDataMessage + `</p>
+            </div>
         `;
         $(chart).html(emptyChartHtml);
+    }
+
+    function renderNoPermissionStatistics(chart, noPermissionChartMessage) {
+        let noPermissionChartHtml = `
+            <div class="process-dashboard-widget__empty-process empty-message-container">
+                <i class="si si-lock-1 empty-message-icon"></i>
+                <br><span class="empty-message-text">` + noPermissionChartMessage + `</span>
+            </div>
+        `;
+        $(chart).html(noPermissionChartHtml);
     }
 
     function renderChartCanvas(chartId) {
@@ -238,18 +253,18 @@ function initStatistics() {
 
     function renderNumberChartHtml(label) {
         let html = `
-                <div class="u-text-align-center chart-content-card">
-                    <div class="chart-icon-font-size">
-                        <i class="fa-solid fa-chart-line"></i>
-                    </div>
-                    <div>
-                        <span class="card-number chart-number-font-size"></span>
-                    </div>
-                    <div>
-                        <span class="card-name chart-name-font-size">${label}</span>
-                    </div>
+            <div class="u-text-align-center chart-content-card">
+                <div class="chart-icon-font-size">
+                    <i class="fa-solid fa-chart-line"></i>
                 </div>
-            `;
+                <div>
+                    <span class="card-number chart-number-font-size"></span>
+                </div>
+                <div>
+                    <span class="card-name chart-name-font-size">${label}</span>
+                </div>
+            </div>
+        `;
         return html;
     };
 
