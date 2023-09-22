@@ -18,7 +18,7 @@
       value="#{dashboardModificationBean.dashboards}" var="dashboard"
       styleClass="ui-g-12 u-no-padding-left u-no-padding-right"
       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
-      <p:ajax event="rowReorder" global="false" update="dashboard-table" listener="#{dashboardModificationBean.save()}"/>
+      <p:ajax event="rowReorder" global="false" update="dashboard-table" listener="#{dashboardModificationBean.saveArrangment()}"/>
       <p:column width="20%"
         headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}">
         <h:panelGroup id="dashboard-title-group" styleClass="u-truncate-text" layout="block">

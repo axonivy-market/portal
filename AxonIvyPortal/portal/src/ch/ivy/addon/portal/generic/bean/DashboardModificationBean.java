@@ -353,7 +353,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     return isPublicDashboard && PermissionUtils.hasShareDashboardPermission();
   }
 
-  public void save() {
+  public void saveArrangment() {
     if (isPublicDashboard) {
       savePublicArrangement();
     } else {
