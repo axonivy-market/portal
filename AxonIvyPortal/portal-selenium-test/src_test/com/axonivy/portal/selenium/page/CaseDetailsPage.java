@@ -175,15 +175,13 @@ public class CaseDetailsPage extends TemplatePage {
   
   public SelenideElement getAddNoteDialog() {
     onClickHistoryIcon();
-//    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+    waitForAjaxIndicatorDisappeared();
     $(".ui-inputtextarea.note-content-textarea").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-//    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ui-inputtextarea.note-content-textarea", CLASS_PROPERTY);
-    return $("[id$='case-histories:add-note-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $("[id$=':case-histories:add-note-dialog']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
   }
   
   @SuppressWarnings("deprecation")
   public void onClickHistoryIcon() {
     $("a[id$=':case-histories:add-note-command']").shouldBe(getClickableCondition()).click();
-//    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 }
