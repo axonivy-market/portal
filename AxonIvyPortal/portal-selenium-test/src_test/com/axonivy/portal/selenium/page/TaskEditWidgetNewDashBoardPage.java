@@ -172,7 +172,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private SelenideElement getMultiLanguageDialogWhenAddWidget() {
-    return $("div[id='widget-configuration-form:new-widget-configuration-component:title-language-config:multiple-languages-dialog']");
+    return $("div[id='widget-configuration-form:new-widget-configuration-component:title-language-config:multiple-languages-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   public WebElement openMultiLanguageDialogWhenAddWidget() {
     getAddLanguageButton().click();
