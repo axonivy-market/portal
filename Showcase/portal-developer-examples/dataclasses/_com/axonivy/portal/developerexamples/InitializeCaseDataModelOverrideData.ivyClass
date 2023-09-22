@@ -1,0 +1,3 @@
+InitializeCaseDataModelOverrideData #class
+_com.axonivy.portal.developerexamples #namespace
+dataModel ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel #field
