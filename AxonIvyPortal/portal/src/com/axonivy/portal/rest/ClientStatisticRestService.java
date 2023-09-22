@@ -21,6 +21,7 @@ import com.google.gson.GsonBuilder;
 import ch.ivy.addon.portal.chat.GsonUTCDateAdapter;
 import ch.ivy.addon.portalkit.statistics.ClientStatisticResponse;
 import ch.ivyteam.ivy.elasticsearch.client.agg.AggregationResult;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -51,7 +52,10 @@ public class ClientStatisticRestService {
     } catch (NotFoundException e) {
       return buildResponse(Status.NOT_FOUND, e);
     } catch (NoPermissionException e) {
-      return buildResponse(Status.FORBIDDEN, e);
+      return Response.status(Status.FORBIDDEN)
+          .entity(Ivy.cms()
+              .co("/Dialogs/com/axonivy/portal/dashboard/component/ClientStatisticWidget/NoPermissionChartMessage"))
+          .build();
     }
   }
 

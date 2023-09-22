@@ -108,12 +108,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS: Axon Ivy process
     DashboardWidgetType:
       CASE: Case widget
+      CLIENT_STATISTIC: Statistic widget
       CUSTOM: Custom widget
       NEW: New widget
       NEWS: News feed
       PROCESS: Process widget
       PROCESS_VIEWER: Process viewer widget
-      CLIENT_STATISTIC: Statistic widget
       STATISTIC: Statistic widget
       TASK: Task widget
       WELCOME: Welcome widget
@@ -1623,6 +1623,8 @@ Dialogs:
             LinkCopied: Link copied!
         dashboard:
           component:
+            ClientStatisticWidget:
+              NoPermissionChartMessage: You do not have the required permission to see this chart.
             DashboardImportDetails:
               FileInfomation: File Infomation
               ImportPrivate: Import Private Dashboard
