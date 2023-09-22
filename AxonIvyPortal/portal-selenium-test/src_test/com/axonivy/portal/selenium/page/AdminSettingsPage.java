@@ -50,6 +50,12 @@ public class AdminSettingsPage extends TemplatePage {
     return new AnnouncementPage();
   }
 
+  public RoleManagementPage openRoleManagementTab() {
+    $("a[href='#admin-setting-component:adminTabView:role-management-tab']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id$=':role-management-component:role-management-form:role-tree-table']").shouldBe(appear, DEFAULT_TIMEOUT);
+    return new RoleManagementPage();
+  }
+
   public void closeAddApplicationDialog() {
     $("[id='admin-setting-component:appDialog']").shouldBe(appear, DEFAULT_TIMEOUT).$("a.ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id='admin-setting-component:appDialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
@@ -57,5 +63,12 @@ public class AdminSettingsPage extends TemplatePage {
   public void closeEditSettingDialog() {
     $("[id='admin-setting-component:settingDialog']").shouldBe(appear, DEFAULT_TIMEOUT).$("a.ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id='admin-setting-component:settingDialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  public PasswordValidationPage openPasswordValidationTab() {
+    $("[id$='admin-setting-component:adminTabView']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("a[href='#admin-setting-component:adminTabView:password-validation-tab']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id$=':password-validation-component:password-validation-form:password-policy-setting']").shouldBe(appear, DEFAULT_TIMEOUT);
+    return new PasswordValidationPage();
   }
 }

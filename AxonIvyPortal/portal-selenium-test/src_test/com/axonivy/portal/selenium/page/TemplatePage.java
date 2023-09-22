@@ -22,6 +22,7 @@ import com.codeborne.selenide.WebDriverRunner;
 public abstract class TemplatePage extends AbstractPage {
   protected static final String LAYOUT_WRAPPER = ".layout-wrapper";
   public static final String CLASS_PROPERTY = "class";
+  public static final String ID_PROPERTY = "id";
 
   // If page load more than 45s, mark it failed by timeout
   protected long getTimeOutForLocator() {
@@ -100,5 +101,15 @@ public abstract class TemplatePage extends AbstractPage {
   public ProjectVersionPage openProjectVersionPage() {
     clickUserMenuItem("project-info-menu-item");
     return new ProjectVersionPage();
+  }
+
+  public UserProfilePage openMyProfilePage() {
+    clickUserMenuItem("user-profile");
+    return new UserProfilePage();
+  }
+
+  public AbsencePage openAbsencePage() {
+    clickUserMenuItem("absence-menu-item");
+    return new AbsencePage();
   }
 }
