@@ -108,11 +108,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS: Axon Ivy process
     DashboardWidgetType:
       CASE: Case widget
+      CLIENT_STATISTIC: Statistic widget
       CUSTOM: Custom widget
       NEW: New widget
       PROCESS: Process widget
       PROCESS_VIEWER: Process viewer widget
-      CLIENT_STATISTIC: Statistic widget
       STATISTIC: Statistic widget
       TASK: Task widget
     GlobalVariable:
