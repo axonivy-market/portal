@@ -1,0 +1,6 @@
+CaseHistoryCustomTaskFilterOverrideData #class
+portalKit_test #namespace
+tasks java.util.List<ch.ivyteam.ivy.workflow.ITask> #field
+tasks PERSISTENT #fieldModifier
+filterdTasks java.util.List<ch.ivyteam.ivy.workflow.ITask> #field
+filterdTasks PERSISTENT #fieldModifier
