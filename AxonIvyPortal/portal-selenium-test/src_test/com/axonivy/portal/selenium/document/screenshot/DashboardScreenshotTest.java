@@ -130,6 +130,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
 
     // Take screenshots of Task widget configuration dialog
     TaskEditWidgetNewDashBoardPage taskConfigurationPage = detailsEditPage.addNewTaskWidget();
+    taskConfigurationPage.waitPreviewTableLoaded();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskConfigurationPage.openMultiLanguageDialogWhenAddWidget(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "dashboard-multi-language-widget-dialog", new ScreenshotMargin(20));
 
     taskConfigurationPage.cancelMultiLanguageDialogWhenAddWidget();
