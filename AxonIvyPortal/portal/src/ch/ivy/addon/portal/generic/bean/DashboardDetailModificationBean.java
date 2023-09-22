@@ -253,7 +253,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         break;
       case CUSTOM:
         newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
-            Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/statistic/timePeriod/custom")));
+            Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/ExternalPageWidget")));
         widget = getDefaultCustomDashboardWidget();
         ((CustomDashboardWidget) widget).getData().setType(DashboardCustomWidgetType.EXTERNAL_URL);
         break;
