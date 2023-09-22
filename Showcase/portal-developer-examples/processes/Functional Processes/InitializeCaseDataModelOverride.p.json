@@ -1,0 +1,56 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "id" : "164B5BE6623EDE15",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "_com.axonivy.portal.developerexamples.InitializeCaseDataModelOverrideData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "call()",
+      "config" : {
+        "signature" : "call",
+        "result" : {
+          "params" : [
+            { "name" : "caseDataModel", "type" : "ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel", "desc" : "" }
+          ],
+          "map" : {
+            "result.caseDataModel" : "in.dataModel"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Initialize case data model",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.developerexamples.component.customize.cases.CustomizedCaseLazyDataModel;",
+            "",
+            "in.dataModel = new CustomizedCaseLazyDataModel();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 },
+        "size" : { "width" : 144, "height" : 60 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    } ]
+}
