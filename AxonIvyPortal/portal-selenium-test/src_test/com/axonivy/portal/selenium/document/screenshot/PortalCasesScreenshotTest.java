@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
+import com.axonivy.portal.selenium.common.FileHelper;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtil;
@@ -67,50 +68,60 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest{
     Sleeper.sleep(250); // Need to wait for bread-crumb finished render
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details");
     
-//    Se generalInfor = detailsPage.getGeneralInforBox();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(detailsPage.getGeneralInforBox(), ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details-data-description", new ScreenshotMargin(50, 10, 10, 10));
     
-//    WebElement relatedTask = detailsPage.getRelatedRunningTaskBox();
     ScreenshotUtil.captureElementScreenshot(detailsPage.getRelatedRunningTaskBox(), ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details-related-tasks-cases");
     
     refreshPage();
     detailsPage.waitForCaseDetailsDisplay();
     SelenideElement addNote = detailsPage.getAddNoteDialog();
-    ScreenshotUtil.captureElementScreenshot(addNote, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-add-task-note1");
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(addNote, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-add-task-note", new ScreenshotMargin(30, 50));
+    ScreenshotUtil.captureElementScreenshot(addNote, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-add-task-note");
 
-//    detailsPage.addNote("Take Order");
-//    
-//    WebElement addDocument = detailsPage.getAddAttachmentDialog();
-//    ScreenshotUtil.captureElementWithMarginOptionScreenshot(addDocument, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-attach-document-to-case", new ScreenshotMargin(30, 60));
-//    detailsPage.uploadDocumentWithoutError(getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
-//    
-//    refreshPage();
-//    detailsPage.waitForCaseDetailsDisplay();
-//    WebElement document = detailsPage.getDocumentBox();
-//    ScreenshotUtil.captureElementWithMarginOptionScreenshot(document, ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details-documents", new ScreenshotMargin(10));
-//    
-//    executeDecorateJs("scrollToBottomOfLayoutContent()");
-//    WebElement histories = detailsPage.getHistoriesBox();
-//    ScreenshotUtil.captureElementScreenshot(histories, ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details-histories");
-//    
-//    refreshPage();
-//    detailsPage.waitForCaseDetailsDisplay();
-//    WebElement deleteDocument = detailsPage.getDeleteDocumentConfirmDialog();
-//    ScreenshotUtil.captureElementWithMarginOptionScreenshot(deleteDocument, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-delete-an-attachment-from-case", new ScreenshotMargin(100, 200));
-//    
-//    refreshPage();
-//    detailsPage.waitForCaseDetailsDisplay();
-//    executeDecorateJs("scrollToBottomOfLayoutContent()");
-//    executeDecorateJs("highlightShowMoreNoteLink()");
-//    histories = detailsPage.getHistoriesBox();
-//    ScreenshotUtil.captureElementScreenshot(histories, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-show-note-details");
-//    
-//    detailsPage.showNoteHistory();
-//    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
-//    homePage.switchLastBrowserTab();
-//    WaitHelper.assertTrueWithWait(() -> ScreenshotUtil.isDOMStatusComplete());
-//    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.CASE_WIDGET_FOLDER + "export-case-history", new Dimension(SCREENSHOT_MEDIUM_WIDTH, 1000));
+    detailsPage.addNote("Take Order");
+    
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(detailsPage.getAddAttachmentDialog(), ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-attach-document-to-case", new ScreenshotMargin(30, 60));
+    detailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
+    
+    refreshPage();
+    detailsPage.waitForCaseDetailsDisplay();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(detailsPage.getDocumentBox(), ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details-documents", new ScreenshotMargin(10));
+    
+    ScreenshotUtil.executeDecorateJs("scrollToBottomOfLayoutContent()");
+    ScreenshotUtil.captureElementScreenshot(detailsPage.getHistoriesBox(), ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details-histories");
+    
+    refreshPage();
+    detailsPage.waitForCaseDetailsDisplay();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(detailsPage.getDeleteDocumentConfirmDialog(), ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-delete-an-attachment-from-case", new ScreenshotMargin(100, 200));
+    
+    refreshPage();
+    detailsPage.waitForCaseDetailsDisplay();
+    ScreenshotUtil.executeDecorateJs("scrollToBottomOfLayoutContent()");
+    ScreenshotUtil.executeDecorateJs("highlightShowMoreNoteLink()");
+    detailsPage.getHistoriesBox();
+    ScreenshotUtil.captureElementScreenshot(detailsPage.getHistoriesBox(), ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-show-note-details");
+    
+    detailsPage.showNoteHistory();
+    detailsPage.switchLastBrowserTab();
+    detailsPage.waitForShowNoteHistory();
+    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.CASE_WIDGET_FOLDER + "export-case-history", new Dimension(SCREENSHOT_MEDIUM_WIDTH, 1000));
+  }
+
+  @Test
+  public void screenshotCustomizeCaseDetails() throws IOException {
+    ScreenshotUtil.resizeBrowser(new Dimension(1366, 1200));
+    redirectToRelativeLink(createNewPaymentUrl);
+    CaseWidgetPage caseWidget = mainMenuPage.openCaseList();
+
+    CaseDetailsPage caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Create New Payment");
+    caseDetailsPage.waitForCaseDetailsDisplay();
+    ScreenshotUtil.executeDecorateJs("highlightCaseDetailComponents()");
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-standard-1");
+
+    refreshPage();
+    caseDetailsPage.waitForCaseDetailsDisplay();
+    ScreenshotUtil.executeDecorateJs("scrollToMiddleOfLayoutContent()");
+    ScreenshotUtil.executeDecorateJs("highlightCaseDetailComponents()");
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-standard-2");
   }
 
 }

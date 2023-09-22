@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import org.openqa.selenium.By;
 
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -45,7 +46,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void addNote(String noteContent) {
     $("a[id$=':case-histories:add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT);
-    $("a[id$=':case-histories:add-note-command']").click();
+//    $("a[id$=':case-histories:add-note-command']").click();
     $("div[id$=':case-histories:add-note-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("div[id$=':case-histories:add-note-dialog']").find("textarea").sendKeys(noteContent);
     $("button[id$=':case-histories:add-note-form:save-add-note-command']").click();
@@ -183,5 +184,48 @@ public class CaseDetailsPage extends TemplatePage {
   @SuppressWarnings("deprecation")
   public void onClickHistoryIcon() {
     $("a[id$=':case-histories:add-note-command']").shouldBe(getClickableCondition()).click();
+  }
+
+  public SelenideElement getAddAttachmentDialog() {
+    $("a[id$='add-document-command']").shouldBe(getClickableCondition()).click();
+    $(By.cssSelector("span[id$='document-upload-dialog_title']")).shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+//    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ui-dialog.case-upload-dialog", CLASS_PROPERTY);
+    return $("[id$='document:document-upload-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public void uploadDocumentWithoutError(String pathToFile) {
+    Sleeper.sleep(2000);//slow down a bit for FF
+    openAddDocumentDialogAndUploadDocument(pathToFile);
+    $(By.cssSelector("span[class$='ui-messages-info-summary']")).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $(By.cssSelector("button[id$='document:document-upload-close-command']")).shouldBe(getClickableCondition()).click();
+  }
+  
+  private void openAddDocumentDialogAndUploadDocument(String pathToFile) {
+//    getAddAttachmentDialog();
+    $("input[id$='document-upload-panel_input']").sendKeys(pathToFile);
+    // currently haven't found solution to check when the file upload finish, we have to wait
+    Sleeper.sleep(2000);
+  }
+
+  public SelenideElement getDocumentBox() {
+    return $("[id$='case-details-document-card']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getHistoriesBox() {
+    return $("[id$='history-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getDeleteDocumentConfirmDialog() {
+    $("a[id$='delete-file']").shouldBe(getClickableCondition()).click();
+    $(By.cssSelector("div[id$='document-deletion-dialog']")).shouldBe(appear, DEFAULT_TIMEOUT);
+    return $("div[id$='document-deletion-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void showNoteHistory() {
+    $("a[id$='show-more-note-link']").shouldBe(getClickableCondition()).click();
+  }
+  
+  public void waitForShowNoteHistory() {
+    $(".note-history-container").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
   }
 }
