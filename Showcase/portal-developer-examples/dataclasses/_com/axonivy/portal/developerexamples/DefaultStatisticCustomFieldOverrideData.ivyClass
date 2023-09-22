@@ -1,0 +1,3 @@
+DefaultStatisticCustomFieldOverrideData #class
+_com.axonivy.portal.developerexamples #namespace
+customFields java.util.List<String> #field
