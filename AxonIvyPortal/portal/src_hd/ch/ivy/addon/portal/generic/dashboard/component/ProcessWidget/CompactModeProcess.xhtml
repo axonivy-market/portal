@@ -7,6 +7,7 @@
 <ui:composition>
     <!-- INDEX OR ALPHABET SORT -->
     <h:panelGroup id="process-list" layout="block" styleClass="compact-processes-container widget-content" rendered="#{!compactDashboardProcessBean.isPreviewCustomOrder()}">
+      <h:form rendered="#{not empty processes}">
       <ui:repeat varStatus="status" var="process" value="#{processes}">
         <span class="process-start-list-item">
           <p:commandLink actionListener="#{compactDashboardProcessBean.startProcessWithCompactMode(process)}" disabled="#{!isReadOnlyMode or isInConfiguration}"
@@ -34,24 +35,24 @@
           </p:commandLink>
         </span>
       </ui:repeat>
+     </h:form>
     </h:panelGroup>
     
-    
-    <h:panelGroup id="custom-order-process-list" layout="block" styleClass="compact-processes-container widget-content" rendered="#{compactDashboardProcessBean.isPreviewCustomOrder()}">
-      <p:orderList id="compact-order-list" value="#{processes}" var="process" itemValue="#{process}" converter="pojoConverter"
-        controlsLocation="none" responsive="true" styleClass="order-list-items">
-        <p:column>
-          <div class="process-start-list-item">
-            <div class="process-start-list-item-icon">
-              <span class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())}" />
-            </div>
-            <div class="process-start-list-item-name">
-              <h:outputText id="process-name-process-item" value="#{process.name}" styleClass="dashboard-compact-process-item process-start-list-item-name-text u-truncate-text" />
-            </div>
+  <h:panelGroup id="custom-order-process-list" layout="block" styleClass="compact-processes-container widget-content" rendered="#{compactDashboardProcessBean.isPreviewCustomOrder()}">
+    <p:orderList id="compact-order-list" value="#{processes}" var="process" itemValue="#{process}" converter="pojoConverter"
+      controlsLocation="none" responsive="true" styleClass="order-list-items">
+      <p:column>
+        <div class="process-start-list-item">
+          <div class="process-start-list-item-icon">
+            <span class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())}" />
           </div>
-        </p:column>
-      </p:orderList>
-    </h:panelGroup>
+          <div class="process-start-list-item-name">
+            <h:outputText id="process-name-process-item" value="#{process.name}" styleClass="dashboard-compact-process-item process-start-list-item-name-text u-truncate-text" />
+          </div>
+        </div>
+      </p:column>
+    </p:orderList>
+  </h:panelGroup>
     
 </ui:composition>
 </html>

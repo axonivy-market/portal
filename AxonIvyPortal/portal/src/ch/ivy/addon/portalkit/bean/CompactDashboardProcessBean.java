@@ -19,6 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
 import ch.ivy.addon.portalkit.enums.ProcessSorting;
@@ -216,10 +217,11 @@ public class CompactDashboardProcessBean
   }
   
   public boolean isPreviewCustomOrder() {
-    CompactProcessDashboardWidget widget = getWidget();
-    if (widget == null) {
+    ProcessDashboardWidget widget = dashboardProcessBean.getWidget();
+    if (widget == null || !(widget instanceof CompactProcessDashboardWidget)) {
       return false;
     }
-    return widget.isPreview() && ProcessSorting.BY_CUSTOM_ORDER.name().equals(widget.getSorting());
+    CompactProcessDashboardWidget compactProcessWidget = (CompactProcessDashboardWidget)widget;
+    return compactProcessWidget.isPreview() && ProcessSorting.BY_CUSTOM_ORDER.name().equals(compactProcessWidget.getSorting());
   }
 }
