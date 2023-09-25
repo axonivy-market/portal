@@ -20,7 +20,6 @@
   <c:set var="dashboardProcessBeanHandler" value="#{widget.displayMode eq 'COMPACT_MODE' ? compactDashboardProcessBean : 
   (widget.displayMode eq 'COMBINED_MODE' ? combinedDashboardProcessBean : 
   (widget.displayMode eq 'FULL_MODE' ? fullDashboardProcessBean : imageDashboardProcessBean))}" />
-  <c:set var="isRenderPreviewButton" value="#{widget.displayMode eq 'COMPACT_MODE' ? compactDashboardProcessBean.sorting ne 'BY_CUSTOM_ORDER' : true}" />
 
   <f:event listener="#{dashboardProcessBeanHandler.preRender(widget)}" type="preRenderComponent" />
   <f:event listener="#{dashboardProcessBean.initPortalDashboardProcesses(cc.attrs.isPublicDashboard)}" type="preRenderComponent" />
@@ -68,15 +67,14 @@
         <div class="ui-g-4">
           <strong>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/availableFilters")}</strong>
         </div>
-        <h:panelGroup layout="block" styleClass="ui-g-8" id="preview-button-container">
-          <p:commandButton id="preview-button" 
-            rendered="#{isRenderPreviewButton}"
+        <div class="ui-g-8">
+          <p:commandButton id="preview-button"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}" 
             styleClass="Fright preview-button" icon="si si-search" 
             actionListener="#{dashboardProcessBeanHandler.preview()}"
             update="#{cc.clientId}:preview-process #{cc.clientId}:widget-preview" 
             process="user-filter widget-title-group" oncomplete="PF('new-widget-configuration-dialog').initPosition();"/>
-        </h:panelGroup>
+        </div>
       </div>
 
       <!-- Widget Filters -->
@@ -112,9 +110,9 @@
             <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sorting')}" for="processes-sorting" />
           </div>
           <div class="ui-g-8 ui-fluid">
-            <p:selectOneMenu id="processes-sorting" value="#{widget.sorting}">
+            <p:selectOneMenu id="processes-sorting" value="#{widget.sorting}" title="#{widget.sorting eq 'BY_CUSTOM_ORDER' ? ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/ProcessWidgetConfiguration/DragAndDropTooltip') : ''} ">
               <f:selectItems value="#{compactDashboardProcessBean.processSorting}" var="sorting" itemValue="#{sorting}" itemLabel="#{sorting.label}" />
-              <p:ajax oncomplete="PF('new-widget-configuration-dialog').initPosition();" update="preview-button-container widget-preview"/>
+              <p:ajax oncomplete="PF('new-widget-configuration-dialog').initPosition();"/>
             </p:selectOneMenu>
           </div>
         </h:panelGroup>
@@ -199,6 +197,8 @@
     <div class="ui-g #{isCompact ? 'widget-preview--compact' : ''} #{isFull ? 'widget-preview--full' : ''} #{isCombined ? 'widget-preview--combined' : ''} #{isImage ? 'widget-preview--image-width' : ''}">
       <div class="ui-g-12 widget-preview__header">
         <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}</h2>
+        <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/ProcessWidgetConfiguration/DragAndDropToChangeOrder')}" 
+        rendered="#{compactDashboardProcessBean.isPreviewCustomOrder()}"/>
       </div>
 
       <!-- Widget data -->

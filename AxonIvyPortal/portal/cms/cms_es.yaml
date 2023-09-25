@@ -1552,6 +1552,9 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: ¡No se pudo encontrar el proceso vinculado!
+                ProcessWidgetConfiguration:
+                  DragAndDropToChangeOrder: Arrastrar y soltar para cambiar el orden.
+                  DragAndDropTooltip: Haz clic en vista previa y arrastra y suelta para cambiar el orden
         portalkit:
           component:
             CaseItemDetails:
