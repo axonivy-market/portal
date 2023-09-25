@@ -228,4 +228,10 @@ public class CaseDetailsPage extends TemplatePage {
   public void waitForShowNoteHistory() {
     $(".note-history-container").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
   }
+
+  public void waitForIFrameWidgetLoad() {
+    switchToIframeWithId("custom-widget-iframe");
+    $("form[id='content-form']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    switchBackToParent();
+  }
 }

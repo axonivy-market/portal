@@ -12,9 +12,13 @@ import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtil;
 import com.axonivy.portal.selenium.common.Sleeper;
+import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
+import com.axonivy.portal.selenium.test.CaseDetailsTest;
+import com.axonivy.portal.selenium.util.ConfigurationJsonUtil;
 import com.codeborne.selenide.SelenideElement;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -124,4 +128,40 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest{
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-standard-2");
   }
 
+  @Test
+  public void screenshotExportToExcel() throws IOException {
+    ScreenshotUtil.resizeBrowser(new Dimension(1366, 600));
+    mainMenuPage.openCaseList();
+    ScreenshotUtil.executeDecorateJs("highlightCaseExportToExcelButton()");
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_WIDGET_FOLDER + "export-to-excel-button");
+  }
+  
+  @Test
+  public void testCustomWidgetInCaseDetails() throws IOException {
+    ScreenshotUtil.resizeBrowser(new Dimension(1366, 1000));
+    redirectToRelativeLink(createEventTestUrl);
+    CaseDetailsPage detailsPage = setupCustomWidgetByJSONFile("custom-case-details.json");
+    ScreenshotUtil.executeDecorateJs("highlightCustomWidgetInCaseDetails()");
+    detailsPage.waitForIFrameWidgetLoad();
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-customized-iframe-process");
+    
+    setupCustomWidgetByJSONFile("custom-case-details-with-url.json");
+    ScreenshotUtil.executeDecorateJs("highlightCustomWidgetInCaseDetails()");
+//    detailsPage.waitForIFrameURLWidgetLoad();
+//    detailsPage.switchToDefaultContent();
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-customized-iframe-url");
+  }
+
+  public CaseDetailsPage setupCustomWidgetByJSONFile(String configFile) throws IOException {
+    ConfigurationJsonUtil.updateJSONSetting(configFile, Variable.CASE_DETAIL);
+    CaseDetailsPage detailsPage = goToCaseList().openDetailsOfCaseHasName(CaseDetailsTest.CUSTOM_CASE_WIDGET_NAME);
+    return detailsPage;
+  }
+  
+  public CaseWidgetPage goToCaseList() {
+    login(TestAccount.DEMO_USER);
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    CaseWidgetPage casePage = mainMenuPage.openCaseList();
+    return casePage;
+  }
 }

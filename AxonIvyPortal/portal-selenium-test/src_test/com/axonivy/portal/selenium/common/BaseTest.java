@@ -91,6 +91,7 @@ public class BaseTest {
   protected String processViewerExampleInFrameUrl = "portal-components-examples/1821592826979C20/showProcessViewerOfLeaveRequestUsingProcessLink.ivp";
   protected String securityMemberNameAndAvatarExampleInFrameUrl = "/portal-components-examples/182A5FCAF7FC6B1A/showSecurityMemberNameAndAvatarExamples.ivp?embedInFrame";
   protected String templateInFrameExampleInFrameUrl = "/portal-developer-examples/162511D2577DBA88/createTaskWithFrameTemplate.ivp?embedInFrame";
+  protected String createEventTestUrl ="portal-developer-examples/17A2C6D73AB4186E/CreateEventTest.ivp";
 
 
   protected void redirectToNewDashBoard() {
