@@ -30,7 +30,6 @@
           <ui:param name="processes" value="#{widget.displayProcesses}" />
           <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode}" />
           <ui:param name="isInConfiguration" value="#{cc.attrs.isInConfiguration}" />
-          <ui:param name="sorting" value="#{widget.sorting}" />
         </ui:include>
       </ui:fragment>
       <ui:fragment rendered="#{widget.displayMode eq 'FULL_MODE' and widget.process ne null}">
