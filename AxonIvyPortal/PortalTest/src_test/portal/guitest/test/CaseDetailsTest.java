@@ -362,7 +362,7 @@ public class CaseDetailsTest extends BaseTest {
   
   public CaseWidgetPage goToCaseList() {
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
