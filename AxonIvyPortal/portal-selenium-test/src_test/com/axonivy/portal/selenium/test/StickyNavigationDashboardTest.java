@@ -57,7 +57,6 @@ public class StickyNavigationDashboardTest extends BaseTest {
     configurationPage.reorderPublicDashboard();
     ReorderDashboardPage reorderDashboardPage = new ReorderDashboardPage();
     reorderDashboardPage.reorderPublicDashboard("New public dashboard 1", "New public dashboard");
-    reorderDashboardPage.saveSetting();
     redirectToNewDashBoard();
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard"));
@@ -85,10 +84,7 @@ public class StickyNavigationDashboardTest extends BaseTest {
     newDashboardPage.selectDashboard(1);
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"));
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
-    configurationPage.reorderPrivateDashboard();
-    ReorderDashboardPage reorderDashboardPage = new ReorderDashboardPage();
-    reorderDashboardPage.toggleVisibility("New public dashboard 1");
-    reorderDashboardPage.saveSetting();
+    configurationPage.reorderPublicDashboard();
     newDashboardPage = configurationPage.backToHomePage();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard"));
   }

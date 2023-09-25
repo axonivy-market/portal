@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 
 import java.util.List;
@@ -47,8 +48,7 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public void selectPrivateDashboardType() {
     waitForDashboardConfigurationTypeSelectionAppear();
-    $("a[id$='private-dashboard-type']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .shouldBe(getClickableCondition()).click();
+    $("a[id$='private-dashboard-type']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $(".dashboard-configuration__content.js-private-dashboard-configuration").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -159,13 +159,13 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
   public void reorderPublicDashboard() {
     selectPublicDashboardType();
-    $("a[id$='reorder-dashboard-action'].js-public-dashboard").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    $("i.dashboard-icon-drag-drop").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
   }
 
   public void reorderPrivateDashboard() {
     selectPrivateDashboardType();
-    $("a[id$='reorder-dashboard-action'].js-private-dashboard").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    $("i.dashboard-icon-drag-drop").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
   }
 
@@ -232,7 +232,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
   
   public SelenideElement getDashboardImportSaveButton() {
-    return $("button[id$=':dashboard-detail-save-button']");  
+    return $("button[id$=':dashboard-import-component:dashboard-detail-save-button']");
   }
   
   public SelenideElement getDashboardImportPermission() {
@@ -319,5 +319,11 @@ public class DashboardConfigurationPage extends TemplatePage {
   private SelenideElement findPublicDashboardRowByName(String dashboardName) {
     return $("[id$=':dashboard-table_data']").shouldBe(appear, DEFAULT_TIMEOUT).$$("tr[role='row']")
         .asFixedIterable().stream().filter(row -> row.getText().contains(dashboardName)).findFirst().get();
+  }
+
+  public void closeAddDashboardDialog() {
+    $("[id='dashboard-template-selection-component:create-new-dashboard-dialog']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("a.ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id='dashboard-template-selection-component:create-new-dashboard-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 }

@@ -3,6 +3,7 @@ package com.axonivy.portal.selenium.test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.TestAccount;
@@ -11,6 +12,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 
+@IvyWebTest
 public class ReorderDashboardTest extends BaseTest {
 
   @Override

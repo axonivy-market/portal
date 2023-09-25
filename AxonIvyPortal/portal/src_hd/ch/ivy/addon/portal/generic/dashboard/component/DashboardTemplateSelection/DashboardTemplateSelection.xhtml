@@ -9,7 +9,7 @@
 
 <cc:implementation>
   <c:set var="isPublicDashboard" value="#{cc.attrs.isPublicDashboard}" scope="request" />
-  <p:dialog appendTo="@(body)" fitViewport="true" closeOnEscape="true" width="500px"
+  <p:dialog appendTo="@(body)" cache="false" fitViewport="true" closeOnEscape="true" width="500px"
     header="#{ivy.cms.co('/Labels/CreateNewDashboard')}" resizable="false" id="create-new-dashboard-dialog"
     widgetVar="create-new-dashboard-dialog" dynamic="true" modal="true" responsive="true">
     <h:panelGroup id="create-new-dashboard-form" styleClass="ui-g">
