@@ -2,7 +2,6 @@ package portal.guitest.page;
 
 import static portal.guitest.common.Variable.CLIENT_SIDE_TIMEOUT;
 import static portal.guitest.common.Variable.SHOW_ENVIRONMENT_INFO;
-import static portal.guitest.common.Variable.SHOW_LEGACY_UI;
 
 import java.util.List;
 
@@ -131,18 +130,6 @@ public class AdminSettingsPage extends TemplatePage {
     closeConfirmationDialog();
   }
 
-  public void setShowLegacyUI() {
-    openSettingTab();
-    editGlobalVariable(SHOW_LEGACY_UI.getKey(), "true", true);
-    clickOnbackToHomepageOnAdminSetting();
-  }
-
-  public void resetShowLegacyUI() {
-    openSettingTab();
-    resetGlobalVariable(SHOW_LEGACY_UI.getKey());
-    closeConfirmationDialog();
-  }
-  
   public boolean isWarningDialogShowWhenTimeoutIsLosing() {
     waitForElementDisplayed(By.cssSelector("div[id$=':timeout-warning-dialog']"), true, 121);
     return isElementDisplayed(By.cssSelector("div[id$=':timeout-warning-dialog']"));

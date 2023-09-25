@@ -1,7 +1,6 @@
 package portal.guitest.document.screenshot;
 
 import static portal.guitest.common.Variable.ENABLE_GROUP_CHAT;
-import static portal.guitest.common.Variable.SHOW_LEGACY_UI;
 import static portal.guitest.common.Variable.SHOW_USER_GUIDE;
 
 import java.io.IOException;
@@ -354,7 +353,6 @@ public class DashboardScreenshotTest extends ScreenshotTest {
 
   private void loginAsAdminAndAddPublicWidget(int widgetIndex) {
     login(TestAccount.ADMIN_USER);
-    updatePortalSetting(SHOW_LEGACY_UI .getKey(), "false");
     redirectToDashboardConfiguration();
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
     configPage.selectPublicDashboardType();
@@ -368,12 +366,6 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     newDashboardPage.clickAddWidget();
     WebElement newWidgetDialog = newDashboardPage.getAddWidgetDialog();
     newWidgetDialog.findElement(By.id("new-widget-dialog-content:" + widgetIndex + ":add-widget")).click();
-  }
-
-  private void showNewCustomizedDashboard() {
-    updatePortalSetting(SHOW_LEGACY_UI .getKey(), "false");
-    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
-    newDashboardPage = new NewDashboardPage();
   }
 
   private void refreshHomePage() {
