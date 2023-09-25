@@ -1,4 +1,0 @@
-CustomizedGuideData #class
-com.axonivy.portal.developerexamples.customization.CustomizedGuide #namespace
-taskView ch.ivy.addon.portal.generic.view.TaskView #field
-taskView PERSISTENT #fieldModifier

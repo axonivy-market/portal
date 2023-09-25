@@ -186,7 +186,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     TaskList: Aufgabenliste
     defaultOption: Standard ({0})
     defaultViewMode: Standardanzeige
-    showTutorial: Willkommenstour anzeigen
   PortalManagement:
     AdminSetting: Administration
   ProcessViewer:
@@ -288,7 +287,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showEnvironmentInfoNote: Zum Ein-/Ausschalten der Anzeige der Environment-Information
       showErrorLogToConsole: Auf true setzen, um Fehlerprotokoll in die Browserkonsole zu schreiben
       showGlobalSearch: Zum Ein-/Ausschalten der Anzeige der globalen Suche.
-      showLegacyUI: Zum Ein-/Ausschalten der Legacy UI des Dashboards.
       showProcessInformation: Auf "false" setzen, um die Verknüpfung zu Informationen des Prozesses auf der Seite Prozesse (Gittermodus) und Falldetails anzeigen zu deaktivieren.
       showTaskDurationTime: Zum Ein-/Ausschalten der Anzeige der Bearbeitungszeit auf der Aufgabendetailseite.
       showUserGuide: 'Aktiviert die interaktive Benutzeranleitung "erste Schritte" im Portal bei erstmaliger Anmeldung. '

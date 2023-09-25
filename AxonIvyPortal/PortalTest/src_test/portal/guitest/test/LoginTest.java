@@ -28,7 +28,6 @@ public class LoginTest extends BaseTest {
 
   @Test
   public void testLogin() {
-    updatePortalSettingToShowLegacyUI();
     loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
     HomePage homePage = new HomePage();

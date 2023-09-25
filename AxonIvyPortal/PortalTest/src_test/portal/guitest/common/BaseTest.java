@@ -1,6 +1,5 @@
 package portal.guitest.common;
 
-import static portal.guitest.common.Variable.SHOW_LEGACY_UI;
 import static portal.guitest.common.Variable.SHOW_USER_GUIDE;
 
 import java.io.IOException;
@@ -119,7 +118,6 @@ public class BaseTest {
     browser = Browser.getBrowser();
     launchBrowserAndGotoRelativeLink(cleanupDataLink);
     updatePortalSetting(SHOW_USER_GUIDE.getKey(), "false");
-    updatePortalSettingToShowLegacyUI();
   }
   
   /**
@@ -131,7 +129,6 @@ public class BaseTest {
     browser = Browser.getBrowser();
     launchBrowserAndGotoRelativeLink(relativePath);
     updatePortalSetting(SHOW_USER_GUIDE.getKey(), "false");
-    updatePortalSettingToShowLegacyUI();
     login(account);
   }
 
@@ -322,13 +319,8 @@ public class BaseTest {
     Sleeper.sleep(200); // Wait for JS executed successfully
   }
 
-  public void updatePortalSettingToShowLegacyUI() {
-    updatePortalSetting(SHOW_LEGACY_UI.getKey(), "true");
-  }
-
   protected void showNewDashboard() {
-    updatePortalSetting(SHOW_LEGACY_UI.getKey(), "false");
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL); // TODO z1 remove?
   }
   
 }
