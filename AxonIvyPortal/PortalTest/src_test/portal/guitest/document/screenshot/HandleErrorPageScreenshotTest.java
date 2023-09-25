@@ -21,7 +21,6 @@ public class HandleErrorPageScreenshotTest extends ScreenshotTest {
   private String portalCustom500ErrorUrl = "portal/1549F58C18A6C562/Error500Page.ivp";
   
   @Test
-  @Ignore
   public void screenshotErrorPages() throws IOException {
     ScreenshotUtil.resizeBrowser(new Dimension(1200, 800));
     HomePage homePage = new HomePage();

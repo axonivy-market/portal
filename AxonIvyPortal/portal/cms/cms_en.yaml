@@ -1593,6 +1593,8 @@ Dialogs:
                   Share: Share
         portalkit:
           component:
+            CaseItemDetails:
+              ShareCaseDetails: Share case details
             CaseWidget:
               CaseCategory: Case Category
               CaseDetail:
@@ -1607,9 +1609,15 @@ Dialogs:
               defaultEmptyMessage: There are no cases
             IconSelection:
               IconLinkTooltip: Click to change icon
+            TaskItemDetails:
+              ShareTaskDetails: Share task details
   com:
     axonivy:
       portal:
+        component:
+          ShareLinkDialog:
+            CopyLink: Copy link
+            LinkCopied: Link copied!
         dashboard:
           component:
             DashboardImportDetails:
@@ -1618,8 +1626,6 @@ Dialogs:
               ImportPublic: Import Public Dashboard
               chooseAJsonFile: Choose a json file
             DashboardSharing:
-              CopyLink: Copy link
-              LinkCopied: Link copied!
               ShareDashboard: Share Dashboard
             NewsWidget:
               NewsContentPlaceHolder: Enter News content
@@ -1771,6 +1777,7 @@ Labels:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Permissions: Permissions
+  Share: Share
   Task: Task
   TaskItemDetail: Task Details
   TaskUser-Explain: Comma separated list of users
