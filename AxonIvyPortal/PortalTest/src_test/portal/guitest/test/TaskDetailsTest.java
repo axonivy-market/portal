@@ -43,6 +43,24 @@ public class TaskDetailsTest extends BaseTest {
     homePage = new HomePage();
   }
 
+  @Test
+  public void testDelegateTaskInTaskDetail() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    homePage = new HomePage();
+    taskDetailsPage = openDetailsPageOfFirstTask();
+    assertTrue(StringUtils.equalsIgnoreCase(TestRole.EVERYBODY_ROLE, taskDetailsPage.getTaskResponsible()));
+    taskDetailsPage.openTaskDelegateDialog();
+    taskDetailsPage.selectDelegateResponsible(TestAccount.HR_ROLE_USER.getFullName(), false);
+    assertTrue(StringUtils.equalsIgnoreCase(TestAccount.HR_ROLE_USER.getFullName(), taskDetailsPage.getTaskResponsible()));
+
+    taskDetailsPage.openTaskDelegateDialog();
+    taskDetailsPage.addCommentOnTaskDelegationDialog(COMMENT_CONTENT);
+    taskDetailsPage.selectDelegateResponsible(TestRole.HR_ROLE, true);
+    assertTrue(StringUtils.equalsIgnoreCase(TestRole.HR_ROLE, taskDetailsPage.getTaskResponsible()));
+    assertTrue(StringUtils.contains(taskDetailsPage.getFirstTaskNoteComment(), COMMENT_CONTENT));
+  }
+
   private TaskDetailsPage openDetailsPageOfFirstTask() {
     taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.expand();
