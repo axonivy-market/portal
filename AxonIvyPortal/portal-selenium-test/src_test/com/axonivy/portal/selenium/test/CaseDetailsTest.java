@@ -14,6 +14,7 @@ import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
+import com.codeborne.selenide.Condition;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
@@ -75,5 +76,29 @@ public class CaseDetailsTest extends BaseTest {
     taskDetailsPage.getNotesWithContent(NOTE_TECHNICAL_CASE).shouldHave(size(1));
     taskDetailsPage.gotoBusinessCase();
     caseDetailsPage.getNotesWithContent(NOTE_TECHNICAL_CASE).shouldHave(size(1));
+  }
+
+  @Test
+  public void testShareCaseDetails() {
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(grantShareLinkCaseDetailsPermission);
+    redirectToNewDashBoard();
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    mainMenuPage.openCaseList();
+    CaseWidgetPage caseWidgetPage = new CaseWidgetPage();
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
+    caseDetailsPage.getRelatedCasesComponent().shouldHave(sizeGreaterThanOrEqual(1));
+    caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
+    caseDetailsPage.getShareButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    caseDetailsPage.getShareDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
+    redirectToRelativeLink(denyShareLinkCaseDetailsPermission);
+    redirectToNewDashBoard();
+    mainMenuPage.openCaseList();
+    caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
+    caseDetailsPage.getRelatedCasesComponent().shouldHave(sizeGreaterThanOrEqual(1));
+    caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
+    caseDetailsPage.getShareButton().shouldBe(Condition.disappear);
   }
 }

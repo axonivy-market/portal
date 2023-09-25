@@ -162,6 +162,14 @@ public class CaseDetailsPage extends TemplatePage {
     switchToIframeWithId("iFrame");
   }
   
+  public SelenideElement getShareButton() {
+    return $("button[id$=':share-page-button']");
+  }
+
+  public SelenideElement getShareDialog() {
+    return $("div[id$=':share-case-details-dialog']");
+  } 
+
   public SelenideElement getGeneralInforBox() {
     return $("[id$='case-detail-general-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }

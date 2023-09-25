@@ -96,7 +96,10 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
   public void captureScreenshotTaskAnalysisComponent() throws IOException {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(createTestingTasksUrl);
-    login(TestAccount.ADMIN_USER);   
+    login(TestAccount.ADMIN_USER);
+    showNewDashboard();
+    NewDashboardPage homepage = new NewDashboardPage();
+    homepage.waitForCaseWidgetLoaded();
     MainMenuPage mainMenuPage = new MainMenuPage();
     StatisticWidgetPage statisticWidgetDashboardPage = mainMenuPage.openStatisticPage();
     statisticWidgetDashboardPage.navigateToTaskAnalysisPage();

@@ -38,7 +38,10 @@ public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
 
   @Test
   public void screenshotUserExampleLink() throws IOException {
+    redirectToRelativeLink(createTestingTasksUrl);
     showNewDashboard();
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForCaseWidgetLoaded();
     mainMenuPage = new MainMenuPage();
     mainMenuPage.expandMainMenu();
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 500));

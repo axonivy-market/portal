@@ -122,7 +122,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public SelenideElement getAddLanguageButton() {
     SelenideElement addLanguageButton = $("button[id$='add-language-button']");
     addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    addLanguageButton.shouldBe(getClickableCondition());
+    addLanguageButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     waitUntilElementToBeClickable(addLanguageButton);
     return addLanguageButton;
   }
