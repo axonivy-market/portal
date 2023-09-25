@@ -1,7 +1,6 @@
 package portal.guitest.document.screenshot;
 
 import static portal.guitest.common.Variable.DISPLAY_MESSAGE_AFTER_FINISH_TASK;
-import static portal.guitest.common.Variable.SHOW_LEGACY_UI;
 
 import java.io.IOException;
 
@@ -39,7 +38,6 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
   public void captureScreenshotGrowlMessage() throws IOException {
     login(TestAccount.ADMIN_USER);
     updatePortalSetting(DISPLAY_MESSAGE_AFTER_FINISH_TASK.getKey(), "true");
-    updatePortalSetting(SHOW_LEGACY_UI .getKey(), "false");
     redirectToRelativeLink(createTestingCaseContainOneTask);
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 1000));
 

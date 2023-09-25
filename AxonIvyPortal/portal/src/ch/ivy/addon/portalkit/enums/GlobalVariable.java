@@ -56,7 +56,6 @@ public enum GlobalVariable {
   DISPLAY_USERS_OF_ROLE("Portal.DisplayUsersOfRole", GlobalVariableType.SELECTION, Option.FALSE.toString(), "displayAllUsersOfTaskActivator"),
   SHOW_PROCESS_INFORMATION("Portal.Processes.ShowInformation", GlobalVariableType.SELECTION, Option.TRUE.toString(), "showProcessInformation"),
   LOGGED_IN_USER_FORMAT("Portal.LoggedInUserFormat", GlobalVariableType.SELECTION, Option.DISPLAY_NAME.name(), "loggedInUserFormat", getLoggedInUserFormatOptions()),
-  SHOW_LEGACY_UI("Portal.ShowLegacyUI", GlobalVariableType.SELECTION, Option.FALSE.toString(), "showLegacyUI"),
   DEFAULT_SORT_FIELD_OF_CASE_LIST("Portal.Cases.SortField", GlobalVariableType.EXTERNAL_SELECTION, CaseSortField.ID.name(), "defaultSortFieldOfCaseList", getCaseListSortFields()),
   DEFAULT_SORT_DIRECTION_OF_CASE_LIST("Portal.Cases.SortDirection", GlobalVariableType.EXTERNAL_SELECTION, SortDirection.DESC.name(), "defaultSortDirectionOfCaseList", getSortDirections()),
   DEFAULT_PROCESS_MODE("Portal.Processes.Mode", GlobalVariableType.EXTERNAL_SELECTION, ProcessMode.IMAGE.name(), "defaultProcessMode", getProcessMode()),

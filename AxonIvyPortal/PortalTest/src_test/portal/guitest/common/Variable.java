@@ -59,7 +59,6 @@ public enum Variable {
   CASE_COLUMN("Portal.Cases.CaseColumn"),
   CASE_FILTER( "Portal.Cases.CaseFilters"),
   CASE_DETAIL("Portal.CaseDetails"),
-  SHOW_LEGACY_UI("Portal.ShowLegacyUI"),
   HIDE_RELATED_CASE_INFO_FROM_HISTORY("Portal.Histories.HideRelatedCaseInfo"),
   USER_MENU("Portal.UserMenu"),
   ENABLE_SWITCH_THEME_BUTTON("Portal.Theme.EnableSwitchThemeModeButton"),
