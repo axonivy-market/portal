@@ -15,11 +15,13 @@ import java.util.Locale;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.DateTimePattern;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.TestRole;
 import portal.guitest.common.Variable;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskDetailsPage;
