@@ -1586,3 +1586,8 @@ span.new-widget-dialog__icon.si {
 .widget__content.task-widget {
   max-height: fit-content;
 }
+
+.order-list-items .ui-widget-content.ui-orderlist-list.ui-corner-all.ui-sortable{
+  height:100%;
+  border:none;
+}
