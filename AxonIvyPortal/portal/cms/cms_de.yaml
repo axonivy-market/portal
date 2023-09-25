@@ -1552,6 +1552,9 @@ Dialogs:
                   CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
                 DashboardModification:
                   Share: Aktie
+                ProcessWidgetConfiguration:
+                  DragAndDropToChangeOrder: ziehen und ablegen zum ändern der Reihenfolge.
+                  DragAndDropTooltip: Klicken Sie auf die Vorschau und ändern Sie die Reihenfolge durch Ziehen und Ableg
         portalkit:
           component:
             CaseWidget:
