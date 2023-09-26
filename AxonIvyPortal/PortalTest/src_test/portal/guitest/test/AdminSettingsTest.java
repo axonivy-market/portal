@@ -17,7 +17,7 @@ import portal.guitest.common.SystemProperties;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.CaseWidgetPage;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.TaskWidgetPage;
 
@@ -26,36 +26,36 @@ public class AdminSettingsTest extends BaseTest {
   @Test
 	public void whenLoginAsAdminThenAdminMenuItemDisplayed() {
 		login(TestAccount.ADMIN_USER);
-		HomePage homePage = new HomePage();
-		assertTrue("Admin Settings menu item is not displayed", homePage.isAdminSettingsMenuItemPresent());
-		AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
+		NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+		assertTrue("Admin Settings menu item is not displayed", newDashboardPage2.isAdminSettingsMenuItemPresent());
+		AdminSettingsPage adminSettingsPage = newDashboardPage2.openAdminSettings();
 		assertTrue("Admin Settings dialog is not displayed", adminSettingsPage.isDisplayed());
 	}
 
 	@Test
 	public void whenLoginAsNonAdminThenAdminMenuItemNotDisplayed() {
-		HomePage homePage = new HomePage();
-		assertFalse("Admin Settings menu item is displayed", homePage.isAdminSettingsMenuItemPresent());
+		NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+		assertFalse("Admin Settings menu item is displayed", newDashboardPage2.isAdminSettingsMenuItemPresent());
 	}
 
 	@Test
 	public void testDefaultEnvironmentInfo() {
     login(TestAccount.ADMIN_USER);
-    HomePage homePage = new HomePage();
-    AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
+    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+    AdminSettingsPage adminSettingsPage = newDashboardPage2.openAdminSettings();
     adminSettingsPage.setEnviromentInfo();
-    assertTrue(homePage.getEnviromentInfo().contains("Host: " + SystemProperties.getServerName()));
+    assertTrue(newDashboardPage2.getEnviromentInfo().contains("Host: " + SystemProperties.getServerName()));
 	}
 	
 	@Test
 	public void testCustomizedEnvironmentInfo() {
     updatePortalSetting(SHOW_ENVIRONMENT_INFO.getKey(), "true");
 		login(TestAccount.ADMIN_USER);
-		HomePage homePage = new HomePage();
+		NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
 		//Customize environment info in portal example 
-		redirectToRelativeLinkWithEmbedInFrame(HomePage.PORTAL_EXAMPLES_EMPLOYEE_SEARCH);
+		redirectToRelativeLinkWithEmbedInFrame(NewDashboardPage2.PORTAL_EXAMPLES_EMPLOYEE_SEARCH);
 		
-		assertTrue(homePage.getEnviromentInfo().contains("Dev Team: Wawa"));
+		assertTrue(newDashboardPage2.getEnviromentInfo().contains("Dev Team: Wawa"));
 	}
 
 	@Test
@@ -65,7 +65,7 @@ public class AdminSettingsTest extends BaseTest {
     redirectToRelativeLink(cleanSessionCacheUrl);
 
     createTestingTasks();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
     assertEquals("high", taskWidgetPage.getPriorityOfTask(0));
@@ -77,7 +77,7 @@ public class AdminSettingsTest extends BaseTest {
 	   redirectToRelativeLink(create12CasesWithCategoryUrl); 
      updatePortalSetting(DEFAULT_SORT_FIELD_OF_CASE_LIST.getKey(), "NAME");
      updatePortalSetting(DEFAULT_SORT_DIRECTION_OF_CASE_LIST.getKey(), SortDirection.DESC.name());
-     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+     redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
 	   TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
 	   MainMenuPage mainMenuPage = taskWidgetPage.openMainMenu();
 	   CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();

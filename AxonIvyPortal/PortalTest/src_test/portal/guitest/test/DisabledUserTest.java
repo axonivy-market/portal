@@ -10,13 +10,14 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.FileHelper;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AbsencePage;
 import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.ExpressManagementPage;
 import portal.guitest.page.ExpressProcessPage;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.TaskWidgetPage;
 
@@ -53,8 +54,8 @@ public class DisabledUserTest extends BaseTest {
   public void testFilterByDisabledUserInCaseCreatorFilter() {
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(TASK_CASE_CREATION_FOR_DISABLED_USER_LINK);
-    HomePage homePage = new HomePage();
-    CaseWidgetPage caseWidgetPage = homePage.openCaseList();
+    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+    CaseWidgetPage caseWidgetPage = newDashboardPage2.openCaseList();
     caseWidgetPage.openAdvancedFilter("Creator", "creator");
     caseWidgetPage.filterByCreator(VISIBILITY_USER_FULL_NAME);
     assertTrue(caseWidgetPage.getFilterValue("creator-filter").contains(DISABLED_VISIBILITY_USER_FULL_DISPLAY_NAME));
@@ -65,16 +66,15 @@ public class DisabledUserTest extends BaseTest {
 
   @Test
   public void testExpressWfWithDisabledUser() {
-    HomePage homePage = new HomePage();
-    AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
+    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+    AdminSettingsPage adminSettingsPage = newDashboardPage2.openAdminSettings();
     ExpressManagementPage expressManagementPage = adminSettingsPage.openExpressManagementTab();
     expressManagementPage.openImportDialog();
     expressManagementPage.selectJSONFile(FileHelper.getAbsolutePathToTestFile("express-wf-with-disabled-user.json"));
     expressManagementPage.clickOnDeployExpress();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    homePage = new HomePage();
-    ProcessWidgetPage processPage = homePage.getProcessWidget();
-    processPage.expand();
+    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
+    newDashboardPage2 = new NewDashboardPage2();
+    ProcessWidgetPage processPage = NavigationHelper.navigateToProcessList();
     ExpressProcessPage expressPage = processPage.editExpressWF("Test disabled user");
     assertEquals("Test disabled user", expressPage.getProcessName());
     assertTrue(expressPage.getProcessOwnerNames().contains(DISABLED_VISIBILITY_USER_BRIEF_DISPLAY_NAME));
@@ -85,16 +85,16 @@ public class DisabledUserTest extends BaseTest {
   @Test
   public void testAbsenceWithDisabledUser() {
     redirectToRelativeLink(cleanUpAbsencesAndSubstituesLink);
-    AbsencePage absencePage = new HomePage().openAbsencePage();
+    AbsencePage absencePage = new NewDashboardPage2().openAbsencePage();
     absencePage.setSubstitutedByAdmin(VISIBILITY_USER_FULL_NAME);
     absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getFullName()), 0);
     absencePage.saveSubstitute();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    absencePage = new HomePage().openAbsencePage();
+    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
+    absencePage = new NewDashboardPage2().openAbsencePage();
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     assertEquals(DISABLED_VISIBILITY_USER_BRIEF_DISPLAY_NAME, absencePage.getSubstitutedByAdmin(0));
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    absencePage = new HomePage().openAbsencePage();
+    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
+    absencePage = new NewDashboardPage2().openAbsencePage();
     absencePage.setSubstitutedByAdmin(VISIBILITY_USER_FULL_NAME);
     assertEquals(TestAccount.DEMO_USER.getFullName(), absencePage.getMyDeputy(0));
   }

@@ -9,7 +9,7 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.SystemProperties;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.ChangePasswordPage;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.LoginPage;
 
 public class PasswordChangeTest extends BaseTest {
@@ -23,11 +23,11 @@ public class PasswordChangeTest extends BaseTest {
   
   @Test
   public void passwordChangeTest() {
-    HomePage homePage = new HomePage();
+    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
 
     String newPassword = "abc";
 
-    ChangePasswordPage changePasswordPage = homePage.openChangePasswordPage();
+    ChangePasswordPage changePasswordPage = newDashboardPage2.openChangePasswordPage();
 
     changePasswordPage.changePassword("random password", newPassword);
     assertTrue(changePasswordPage.isWrongCurrentPasswordError());
@@ -39,14 +39,14 @@ public class PasswordChangeTest extends BaseTest {
     changePasswordPage.changePassword(TestAccount.TEST_CHANGE_PASSWORD_USER.getPassword(), newPassword);
     if (!SystemProperties.isInServerMode()) {
       launchBrowserAndLogoutInDesigner();
-      redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+      redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
     } else {
-      launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+      launchBrowserAndGotoRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
     }
     new LoginPage(TestAccount.TEST_CHANGE_PASSWORD_USER).login(TestAccount.TEST_CHANGE_PASSWORD_USER.getUsername(),
         newPassword);
 
-    assertTrue(homePage.isDisplayed());
+    assertTrue(newDashboardPage2.isDisplayed());
   }
 
 }

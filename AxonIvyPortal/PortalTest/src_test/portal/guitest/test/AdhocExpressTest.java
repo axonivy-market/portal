@@ -13,7 +13,7 @@ import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
 import portal.guitest.page.DefaultExpresTaskPage;
 import portal.guitest.page.ExpressProcessPage;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.WorkingTaskDialogPage;
@@ -68,7 +68,7 @@ public class AdhocExpressTest extends BaseTest {
     defaultExpressTaskPage.finishDefaultTask();
     
     //approval task of adhoc
-    new HomePage().isDisplayed();
+    new NewDashboardPage2().isDisplayed();
     taskWidgetPage.filterTasksBy(defaultTaskName2, 1);
     assertEquals(1, taskWidgetPage.countTasks());
     taskWidgetPage.startTask(0);
@@ -77,7 +77,7 @@ public class AdhocExpressTest extends BaseTest {
     defaultExpressTaskPage.finishDefaultTask();
     
     //check if task Maternity task
-    new HomePage().isDisplayed();
+    new NewDashboardPage2().isDisplayed();
     taskWidgetPage.filterTasksBy(taskNamePrefix, 1);
     assertEquals(1, taskWidgetPage.countTasks());
     taskWidgetPage.startTask(0);

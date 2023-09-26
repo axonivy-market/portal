@@ -209,7 +209,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 
 	public void finishWorkflow() {
 		click(By.id("finish-button"));
-		new HomePage().isDisplayed();
+		new NewDashboardPage2().isDisplayed();
 	}
 
 	public void executeWorkflow() {
@@ -243,20 +243,20 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 				"document.querySelector(\"input[name='form:information-email:email-content_input'\").value='" + content + "';");
 	}
 
-  public HomePage leave() {
+  public NewDashboardPage2 leave() {
     click(By.id("user-menu-required-login:warning-before-leaving-task-component:leave-button"));
-    return new HomePage();
+    return new NewDashboardPage2();
   }
   
-  public HomePage cancel() {
+  public NewDashboardPage2 cancel() {
     click(By.id("cancel-button"));
     waitForElementDisplayed(By.id("yes-button"), true);
     click(By.id("yes-button"));
-    return new HomePage();
+    return new NewDashboardPage2();
   }
   
-  public HomePage save() {
+  public NewDashboardPage2 save() {
     click(By.id("save-button"));
-    return new HomePage();
+    return new NewDashboardPage2();
   }
 }

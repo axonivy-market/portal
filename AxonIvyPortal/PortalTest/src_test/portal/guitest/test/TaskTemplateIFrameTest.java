@@ -11,7 +11,7 @@ import org.openqa.selenium.By;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.Variable;
 import portal.guitest.common.WaitHelper;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 
@@ -25,7 +25,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
   }
 
   @Test
@@ -82,9 +82,9 @@ public class TaskTemplateIFrameTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
     taskWidgetPage.filterTasksBy("Approve Investment", 1);
     TaskTemplatePage taskTemplatePage2 = taskWidgetPage.startTask(0);
-    HomePage homePage = taskTemplatePage2.backToHomeInIFrameApprovalTask();
+    NewDashboardPage2 newDashboardPage2 = taskTemplatePage2.backToHomeInIFrameApprovalTask();
     WaitHelper
-        .assertTrueWithWait(() -> homePage.isElementDisplayed(By.id("task-widget:task-list-link:task-list-link")));
+        .assertTrueWithWait(() -> newDashboardPage2.isElementDisplayed(By.id("task-widget:task-list-link:task-list-link")));
   }
 
   @Test
@@ -121,8 +121,8 @@ public class TaskTemplateIFrameTest extends BaseTest {
   @Test
   public void testShowCategoryInCaseByDefaultIframe() {
     redirectToRelativeLink("InternalSupport/15B1EA24CCF377E8/saleAndInform.ivp");
-    HomePage homePage = new HomePage();
-    TaskWidgetPage taskWidget = homePage.openTaskList();
+    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+    TaskWidgetPage taskWidget = newDashboardPage2.openTaskList();
     taskWidget.filterTasksInExpandedModeBy("sale department", 1);
     TaskTemplatePage startTask = taskWidget.startTask(0);
     startTask.openCaseInfo();

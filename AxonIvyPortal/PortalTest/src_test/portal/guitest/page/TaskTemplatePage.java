@@ -189,18 +189,18 @@ public class TaskTemplatePage extends TemplatePage {
     return findDisplayedElementByCssSelector(adhocCreationMessageCSSSelector).getText();
   }
 
-  public HomePage clickSubmitButton() {
+  public NewDashboardPage2 clickSubmitButton() {
     clickOnSubmitButton();
-    return new HomePage();
+    return new NewDashboardPage2();
   }
 
   public void clickOnSubmitButton() {
     clickByCssSelector("button[id$='button-submit']");
   }
 
-  public HomePage clickCancelAndLeftButton() {
+  public NewDashboardPage2 clickCancelAndLeftButton() {
     clickByCssSelector("a[id$='button-cancel']");
-    return new HomePage();
+    return new NewDashboardPage2();
   }
 
   public void clickCancelButton() {
@@ -282,12 +282,12 @@ public class TaskTemplatePage extends TemplatePage {
     return new TaskWidgetPage();
   }
 
-  public HomePage backToHomeInIFrameApprovalTask() {
+  public NewDashboardPage2 backToHomeInIFrameApprovalTask() {
     driver.switchTo().frame("iFrame");
     waitForElementDisplayed(By.id("content-form:home-btn"), true);
     click(By.id("content-form:home-btn"));
     driver.switchTo().defaultContent();
-    return new HomePage();
+    return new NewDashboardPage2();
   }
 
   public TaskWidgetPage finishIFrameReviewTask() {

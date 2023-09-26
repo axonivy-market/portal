@@ -11,15 +11,16 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.Variable;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
 
-  private HomePage homePage;
+  private NewDashboardPage2 newDashboardPage2;
   private TaskWidgetPage taskWidgetPage;
   private TaskDetailsPage taskDetailsPage;
 
@@ -27,7 +28,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
-    homePage = new HomePage();
+    newDashboardPage2 = new NewDashboardPage2();
   }
 
   @Test
@@ -83,7 +84,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
   public void testVisibilityTaskDone() {
     login(TestAccount.DEMO_USER);
     createTestingTasks();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
     gotoTaskList();
     // Suspended
     TaskWidgetPage taskWidgetPageDemo = new TaskWidgetPage();
@@ -92,7 +93,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     int countTasks = taskWidgetPageDemo.countTasks();
     // User Guest
     login(TestAccount.GUEST_USER);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
     gotoTaskList();
     // Suspended
     TaskWidgetPage taskWidgetPageGuest = new TaskWidgetPage();
@@ -102,9 +103,8 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
   }
 
   private void gotoTaskList() {
-    homePage = new HomePage();
-    taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
+    newDashboardPage2 = new NewDashboardPage2();
+    NavigationHelper.navigateToTasList();
   }
   
   private void assertFalseTaskActionsByTaskState(String state, List<String> taskActionInTaskDetails) {

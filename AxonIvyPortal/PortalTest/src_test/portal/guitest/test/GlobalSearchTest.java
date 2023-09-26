@@ -6,21 +6,21 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.SearchResultPage;
 import portal.guitest.page.TemplatePage.GlobalSearch;
 
 public class GlobalSearchTest extends BaseTest{
 
-  private HomePage homePage;
+  private NewDashboardPage2 newDashboardPage2;
   private GlobalSearch globalSearch;
   private SearchResultPage searchResultPage;
   
   @Test
   public void testSearchCustomResult() {
-    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
-    homePage = new HomePage();
-    globalSearch = homePage.getGlobalSearch();
+    redirectToRelativeLink(NewDashboardPage2.PORTAL_EXAMPLES_HOME_PAGE_URL);
+    newDashboardPage2 = new NewDashboardPage2();
+    globalSearch = newDashboardPage2.getGlobalSearch();
     searchResultPage = globalSearch.inputSearchKeyword("Nam");
     searchResultPage.openEmployeeTab();
     Assert.assertEquals(2, searchResultPage.countNumberOfEmployee());
@@ -29,9 +29,9 @@ public class GlobalSearchTest extends BaseTest{
   @Test
   public void testHideGlobalSearch() {
     updatePortalSetting(SHOW_GLOBAL_SEARCH.getKey(), "false");
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    homePage = new HomePage();
-    globalSearch = homePage.getGlobalSearch();
+    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
+    newDashboardPage2 = new NewDashboardPage2();
+    globalSearch = newDashboardPage2.getGlobalSearch();
     Assert.assertFalse(globalSearch.isPresent());
   }
 }

@@ -10,7 +10,7 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.AnnouncementPage;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.UserProfilePage;
 
 public class AnnouncementTest extends BaseTest {
@@ -24,29 +24,29 @@ public class AnnouncementTest extends BaseTest {
 
   @Test
   public void testNotificationLocalizationWhenChangingLanguageSetting() {
-    HomePage homePage = new HomePage();
-    AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
+    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+    AdminSettingsPage adminSettingsPage = newDashboardPage2.openAdminSettings();
     AnnouncementPage announcementPage = adminSettingsPage.openAnnouncementTab();
     announcementPage.setAnnoucement(0, "lies mich");
     announcementPage.setAnnoucement(1, "Readme1");
     announcementPage.publish();
-    adminSettingsPage.clickOnbackToHomepageOnAdminSetting();
-    homePage = new HomePage();
-    UserProfilePage userProfilePage = homePage.openMyProfilePage();
+    adminSettingsPage.clickOnbackToNewDashboardPage2OnAdminSetting();
+    newDashboardPage2 = new NewDashboardPage2();
+    UserProfilePage userProfilePage = newDashboardPage2.openMyProfilePage();
     userProfilePage.selectLanguage(3);
     userProfilePage.save();
-    assertEquals("lies mich", homePage.getAnnouncementMessage());
+    assertEquals("lies mich", newDashboardPage2.getAnnouncementMessage());
 
-    userProfilePage = homePage.openMyProfilePage();
+    userProfilePage = newDashboardPage2.openMyProfilePage();
     userProfilePage.selectLanguage(1);
-    homePage = userProfilePage.save();
-    assertEquals("Readme1", homePage.getAnnouncementMessage());
+    newDashboardPage2 = userProfilePage.save();
+    assertEquals("Readme1", newDashboardPage2.getAnnouncementMessage());
   }
 
   @Test
   public void testValidationForDefaultLanguage() {
-    HomePage homePage = new HomePage();
-    AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
+    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+    AdminSettingsPage adminSettingsPage = newDashboardPage2.openAdminSettings();
     AnnouncementPage announcementPage = adminSettingsPage.openAnnouncementTab();
     announcementPage.publish();
     assertEquals("Announcement for application default language is required.", announcementPage.getInfoSummary());
@@ -54,23 +54,23 @@ public class AnnouncementTest extends BaseTest {
 
   @Test
   public void testShouldDisplayNotification() {
-    HomePage homePage = new HomePage();
-    homePage.waitForGrowlMessageDisplayClearly();
-    AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
+    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+    newDashboardPage2.waitForGrowlMessageDisplayClearly();
+    AdminSettingsPage adminSettingsPage = newDashboardPage2.openAdminSettings();
     AnnouncementPage announcementPage = adminSettingsPage.openAnnouncementTab();
     assertTrue("Admin Settings dialog is displayed", announcementPage.isDisplayed());
     
     announcementPage.setAnnoucement(1, "Readme1");
     announcementPage.publish();
-    adminSettingsPage.clickOnbackToHomepageOnAdminSetting();
-    homePage = new HomePage();
-    assertEquals("Readme1", homePage.getAnnouncementMessage());
+    adminSettingsPage.clickOnbackToNewDashboardPage2OnAdminSetting();
+    newDashboardPage2 = new NewDashboardPage2();
+    assertEquals("Readme1", newDashboardPage2.getAnnouncementMessage());
   }
 
   @Test
   public void testDepulishNotification() {
-    HomePage homePage = new HomePage();
-    AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
+    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+    AdminSettingsPage adminSettingsPage = newDashboardPage2.openAdminSettings();
     AnnouncementPage announcementPage = adminSettingsPage.openAnnouncementTab();
     assertTrue("Admin Settings dialog is not displayed", announcementPage.isDisplayed());
 
@@ -80,6 +80,6 @@ public class AnnouncementTest extends BaseTest {
     announcementPage.setAnnoucement(3, "Readme3");
     announcementPage.publish();
     announcementPage.dePublish();
-    assertTrue("Announcement is displaying ", homePage.isAnnouncementMessageNotDisplayed());
+    assertTrue("Announcement is displaying ", newDashboardPage2.isAnnouncementMessageNotDisplayed());
   }
 }

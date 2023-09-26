@@ -17,7 +17,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import vn.wawa.guitest.base.client.Browser;
 import vn.wawa.guitest.base.enums.BrowserType;
 
@@ -167,7 +167,7 @@ public class BaseTest {
   protected void logoutDesigner() {
     try {
       browser.goHome(designerLogoutUrl);
-      redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+      redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
     } catch (Exception e) {
       throw new PortalGUITestException(e);
     }
@@ -240,7 +240,7 @@ public class BaseTest {
       Awaitility.await().atMost(new Duration(60, TimeUnit.SECONDS)).until(() -> {
         try {
           redirectToRelativeLink(String.format(LOGIN_URL_PATTERN, username, password));
-          return new HomePage() {
+          return new NewDashboardPage2() {
             @Override
             protected long getTimeOutForLocator() {
               return 10L;
@@ -320,7 +320,7 @@ public class BaseTest {
   }
 
   protected void showNewDashboard() {
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL); // TODO z1 remove?
+    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL); // TODO z1 remove?
   }
   
 }

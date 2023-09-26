@@ -13,7 +13,7 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseWidgetPage;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.MainMenuPage;
 
 public class CaseFilterTest extends BaseTest {
@@ -30,8 +30,8 @@ public class CaseFilterTest extends BaseTest {
     updatePortalSetting(ENABLE_CASE_OWNER.getKey(), "true");
     redirectToRelativeLink(userIsOwnerUrl);
     login(TestAccount.ADMIN_USER);
-    HomePage homePage = new HomePage();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+    MainMenuPage mainMenuPage = newDashboardPage2.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
 
     casePage.openAdvancedFilter("Owner", "owner");
@@ -43,8 +43,8 @@ public class CaseFilterTest extends BaseTest {
   @Test
   public void testCaseAdvancedFilter() {
     login(TestAccount.ADMIN_USER);
-    HomePage homePage = new HomePage();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+    MainMenuPage mainMenuPage = newDashboardPage2.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
 
     casePage.openAdvancedFilter("Description", "description");
@@ -62,8 +62,8 @@ public class CaseFilterTest extends BaseTest {
 	@Test
 	public void testSaveFilter() {
 		login(TestAccount.ADMIN_USER);
-		HomePage homePage = new HomePage();
-		MainMenuPage mainMenuPage = homePage.openMainMenu();
+		NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+		MainMenuPage mainMenuPage = newDashboardPage2.openMainMenu();
 		CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
 
 		casePage.openAdvancedFilter("Description", "description");
@@ -106,7 +106,7 @@ public class CaseFilterTest extends BaseTest {
 		casePage.filterByDescription(filterMaternity);
 		casePage.saveFilter(filterMaternity);
 
-		redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+		redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
 
 		casePage = mainMenuPage.selectCaseMenu();
 		casePage.openAdvancedFilter("Creator", "creator");

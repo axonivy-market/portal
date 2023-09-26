@@ -8,26 +8,26 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.WaitHelper;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.SearchResultPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.TemplatePage.GlobalSearch;
 
 public class SearchProcessTest extends BaseTest {
 
-  private HomePage homePage;
+  private NewDashboardPage2 newDashboardPage2;
 
   @Override
   @Before
   public void setup() {
     super.setup();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    homePage = new HomePage();
+    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
+    newDashboardPage2 = new NewDashboardPage2();
   }
 
   @Test
   public void testFindAndStartProcessByName() {
-    GlobalSearch globalSearch = homePage.getGlobalSearch();
+    GlobalSearch globalSearch = newDashboardPage2.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
 
     String processName = "Simple Payment";
@@ -37,9 +37,8 @@ public class SearchProcessTest extends BaseTest {
     assertTrue(searchResultPage.isProcessGroupDisplay("S"));
 
     searchResultPage.startProcess(processName);
-    homePage = new HomePage();
-    homePage.waitForStatisticRendered();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    newDashboardPage2 = new NewDashboardPage2();
+    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     WaitHelper.assertTrueWithRefreshPage(taskWidgetPage,
         () -> taskWidgetPage.getNameOfTaskInCompactListAt(0).contains("Payment"));
@@ -48,7 +47,7 @@ public class SearchProcessTest extends BaseTest {
   @Test
   public void testFindCaseMapByName() {
     String caseMapName = "Case Map: Leave Request";
-    GlobalSearch globalSearch = homePage.getGlobalSearch();
+    GlobalSearch globalSearch = newDashboardPage2.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
 
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(caseMapName);

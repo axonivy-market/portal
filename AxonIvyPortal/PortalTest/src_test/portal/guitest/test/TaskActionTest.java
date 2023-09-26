@@ -10,9 +10,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.Variable;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
@@ -20,7 +21,7 @@ import portal.guitest.userexamples.page.LeaveRequestPage;
 
 public class TaskActionTest extends BaseTest {
 
-  private HomePage homePage;
+  private NewDashboardPage2 newDashboardPage2;
   private TaskWidgetPage taskWidgetPage;
   private TaskDetailsPage taskDetailsPage;
 
@@ -55,7 +56,7 @@ public class TaskActionTest extends BaseTest {
     super.setup();
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     createTestingTasks();
-    homePage = new HomePage();
+    newDashboardPage2 = new NewDashboardPage2();
   }
 
   @SuppressWarnings("deprecation")
@@ -185,9 +186,8 @@ public class TaskActionTest extends BaseTest {
   }
 
   private void gotoTaskList() {
-    homePage = new HomePage();
-    taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
+    newDashboardPage2 = new NewDashboardPage2();
+    taskWidgetPage = NavigationHelper.navigateToTasList();
   }
 
   private void assertTaskActionsByTaskState(String state, List<String> taskActionInTaskDetails) {

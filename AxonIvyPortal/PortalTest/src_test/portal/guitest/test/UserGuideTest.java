@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.UserGuidePage;
 import portal.guitest.page.UserProfilePage;
 
@@ -38,15 +38,15 @@ public class UserGuideTest extends BaseTest {
   @Test
   public void testChangeShowUserGuideInGeneralSetting() {
     updatePortalSetting(SHOW_USER_GUIDE.getKey(), "false");
-    HomePage homePage = new HomePage();
-    UserProfilePage userProfilePage = homePage.openMyProfilePage();
+    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+    UserProfilePage userProfilePage = newDashboardPage2.openMyProfilePage();
     assertTrue(userProfilePage.isDisableShowTutorialCheckbox());
     updatePortalSetting(SHOW_USER_GUIDE.getKey(), "true");
-    homePage = new HomePage();
-    userProfilePage = homePage.openMyProfilePage();
+    newDashboardPage2 = new NewDashboardPage2();
+    userProfilePage = newDashboardPage2.openMyProfilePage();
     assertFalse(userProfilePage.isDisableShowTutorialCheckbox());
     userProfilePage.checkShowTutorial();
-    homePage = userProfilePage.save();
+    newDashboardPage2 = userProfilePage.save();
     UserGuidePage userGuidePage = new UserGuidePage();
     assertTrue(userGuidePage.isFinishButtonDisplay());
     userGuidePage.finishInStatisticGuide();

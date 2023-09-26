@@ -221,16 +221,16 @@ public class CaseDetailsPage extends TemplatePage {
     return new AdditionalCaseDetailsPage();
   }
 
-  public HomePage clickRelatedCaseSubmitLeaveReason(int index) {
+  public NewDashboardPage2 clickRelatedCaseSubmitLeaveReason(int index) {
     WebElement sideSteps = findElementByCssSelector(String.format("[id$='related-cases-widget:related-cases:%d:action-step-component:side-steps']", index));
     findChildElementByLinkText(sideSteps, "Submit leave reason").click();
-    return new HomePage();
+    return new NewDashboardPage2();
   }
 
-  public HomePage clickRelatedCaseUploadAdditionalDocument(int index) {
+  public NewDashboardPage2 clickRelatedCaseUploadAdditionalDocument(int index) {
     WebElement sideSteps = findElementByCssSelector(String.format("[id$='related-cases-widget:related-cases:%d:action-step-component:side-steps']", index));
     findChildElementByLinkText(sideSteps, "Upload additional data").click();
-    return new HomePage();
+    return new NewDashboardPage2();
   }
 
   @SuppressWarnings("deprecation")
