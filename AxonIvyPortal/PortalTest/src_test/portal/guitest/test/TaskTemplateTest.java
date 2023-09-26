@@ -102,8 +102,7 @@ public class TaskTemplateTest extends BaseTest {
     taskTemplatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
     dialogPage.leaveTask();
-    TaskWidgetPage taskWidget = new TaskWidgetPage();
-    taskWidget.expand();
+    TaskWidgetPage taskWidget = NavigationHelper.navigateToTasList();
     assertTrue(taskWidget.isTaskStateOpen(0));
   }
   
@@ -119,8 +118,7 @@ public class TaskTemplateTest extends BaseTest {
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
     dialogPage.reserveTask();
     redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-    TaskWidgetPage taskWidget = new TaskWidgetPage();
-    taskWidget.expand();
+    TaskWidgetPage taskWidget = NavigationHelper.navigateToTasList();
     Assert.assertTrue(taskWidget.isTaskStateReserved(0));
   }
   
@@ -133,8 +131,7 @@ public class TaskTemplateTest extends BaseTest {
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(latestTask);
     taskTemplatePage.clickTaskActionMenu();
     taskTemplatePage.startSideStep();
-    TaskWidgetPage taskWidget = new TaskWidgetPage();
-    taskWidget.expand();
+    TaskWidgetPage taskWidget = NavigationHelper.navigateToTasList();
     assertTrue(taskWidget.isTaskStateOpen(0));
   }
 
@@ -151,7 +148,7 @@ public class TaskTemplateTest extends BaseTest {
   }
   
   private TaskTemplatePage startATaskAndOpenCaseInfo() {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.openCaseInfo();
     return taskTemplatePage;

@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.Variable;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.NewDashboardPage2;
@@ -31,7 +32,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
   @Test
   public void testCustomParamsForTaskTemplate8() {
     redirectToRelativeLink(CUSTOM_PARAMS_TEMPLATE_TASK_URL);
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
     taskWidgetPage.filterTasksBy("Task template 8 with custom params");
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTaskWithouWaitForTaskActionPresent(0);
     assertFalse(taskTemplatePage.isTaskNameDisplayed());
@@ -42,7 +43,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
   @Test
   public void testCustomParamsForIFrameTaskTemplate() {
     redirectToRelativeLink(CUSTOM_PARAMS_TEMPLATE_TASK_URL);
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
     taskWidgetPage.filterTasksBy("IFrame task with custom params");
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTaskWithouWaitForTaskActionPresent(0);
     assertFalse(taskTemplatePage.isTaskNameDisplayed());

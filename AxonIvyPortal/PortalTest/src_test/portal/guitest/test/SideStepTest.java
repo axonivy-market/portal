@@ -8,10 +8,11 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.page.AdhocPage;
 import portal.guitest.page.CaseWidgetPage;
-import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 
@@ -33,7 +34,7 @@ public class SideStepTest extends BaseTest {
   }
 
   private TaskTemplatePage startATask() {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     return taskTemplatePage;
   }
@@ -43,10 +44,9 @@ public class SideStepTest extends BaseTest {
   public void testAddAdhocTask() {
     int firstTask = 0;
     final String TASK_NAME = "Create Leave Request";
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
     assertTrue(taskWidgetPage.countTasks() == 1);
     assertEquals(taskWidgetPage.getNameOfTaskAt(0), TASK_NAME);
-    taskWidgetPage.expand();
     AdhocPage adhocPage = taskWidgetPage.addAdhoc(firstTask);
     adhocPage.enterSubject("Collect Information");
     adhocPage.addTask();
