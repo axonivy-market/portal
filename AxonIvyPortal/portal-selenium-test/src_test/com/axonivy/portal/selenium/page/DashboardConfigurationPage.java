@@ -107,9 +107,9 @@ public class DashboardConfigurationPage extends TemplatePage {
     inputCreateDashboardDialog(newName, icon, newDescription, permissions);
   }
 
-  public SelenideElement setupDataPublicDashboardFromScratch() {
+  public SelenideElement openCreateDashboardDialog() {
     $("a[id$=':create-from-scratch']").shouldBe(getClickableCondition()).click();
-    String creationDetailsDialogId = "[id$=':dashboard-title']";
+    String creationDetailsDialogId = "[id='dashboard-template-selection-component:dashboard-creation-component:dashboard-creation-details-dialog']";
     $(creationDetailsDialogId).shouldBe(appear, DEFAULT_TIMEOUT);
     SelenideElement createDashboardDialog = $(creationDetailsDialogId);
     return createDashboardDialog;
@@ -126,8 +126,12 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public void changeDashboardTitle(SelenideElement dashboardDialog, String title) {
-    dashboardDialog.$("input[id$=':dashboard-title']").clear();
-    dashboardDialog.$("input[id$=':dashboard-title']").sendKeys(title);
+    dashboardDialog.$(
+        "input[id='dashboard-template-selection-component:dashboard-creation-component:dashboard-detail-form:dashboard-title']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).clear();
+    dashboardDialog.$(
+        "input[id='dashboard-template-selection-component:dashboard-creation-component:dashboard-detail-form:dashboard-title']")
+        .sendKeys(title);
   }
 
   public SelenideElement getAddLanguageButton() {
