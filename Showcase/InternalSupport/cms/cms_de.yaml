@@ -1,16 +1,4 @@
 Categories:
-  AnnualLeave:
-    name: Jahresurlaub
-  LeaveRequest:
-    name: Leave Request German
-  OtherLeave:
-    Maternity:
-      name: Mutterschaft
-    SickLeave:
-      Long:
-        name: Lange
-      name: Krank
-    name: Andere verlassen
   Resource:
     Austria:
       name: Österreich
