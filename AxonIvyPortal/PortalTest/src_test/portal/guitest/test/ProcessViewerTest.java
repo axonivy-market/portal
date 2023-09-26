@@ -197,6 +197,6 @@ public class ProcessViewerTest extends BaseTest {
 
   private void gotoTaskList() {
     newDashboardPage2 = new NewDashboardPage2();
-    NavigationHelper.navigateToTasList();
+    taskWidgetPage = NavigationHelper.navigateToTasList();
   }
 }

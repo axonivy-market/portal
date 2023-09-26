@@ -158,7 +158,7 @@ public class ExpressManagementTest extends BaseTest {
 
   private void gotoTaskList() {
     newDashboardPage2 = new NewDashboardPage2();
-    NavigationHelper.navigateToTasList();
+    taskWidgetPage = NavigationHelper.navigateToTasList();
   }
 
   private void executeFinalReviewTask() {

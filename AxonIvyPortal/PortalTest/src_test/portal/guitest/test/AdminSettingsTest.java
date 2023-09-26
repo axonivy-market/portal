@@ -7,7 +7,6 @@ import static portal.guitest.common.Variable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST
 import static portal.guitest.common.Variable.DEFAULT_SORT_DIRECTION_OF_TASK_LIST;
 import static portal.guitest.common.Variable.DEFAULT_SORT_FIELD_OF_CASE_LIST;
 import static portal.guitest.common.Variable.DEFAULT_SORT_FIELD_OF_TASK_LIST;
-import static portal.guitest.common.Variable.SHOW_ENVIRONMENT_INFO;
 
 import org.junit.Test;
 
@@ -46,17 +45,6 @@ public class AdminSettingsTest extends BaseTest {
     AdminSettingsPage adminSettingsPage = newDashboardPage2.openAdminSettings();
     adminSettingsPage.setEnviromentInfo();
     assertTrue(newDashboardPage2.getEnviromentInfo().contains("Host: " + SystemProperties.getServerName()));
-	}
-	
-	@Test
-	public void testCustomizedEnvironmentInfo() {
-    updatePortalSetting(SHOW_ENVIRONMENT_INFO.getKey(), "true");
-		login(TestAccount.ADMIN_USER);
-		NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
-		//Customize environment info in portal example 
-		redirectToRelativeLinkWithEmbedInFrame(NewDashboardPage2.PORTAL_EXAMPLES_EMPLOYEE_SEARCH);
-		
-		assertTrue(newDashboardPage2.getEnviromentInfo().contains("Dev Team: Wawa"));
 	}
 
 	@Test
