@@ -22,7 +22,7 @@ import com.axonivy.portal.selenium.page.ProjectVersionPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtil;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class SettingScreenshotTest extends ScreenshotBaseTest {
 
   private static final LocalDate TODAY = LocalDate.now();
