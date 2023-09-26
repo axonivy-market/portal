@@ -14,7 +14,6 @@ import org.openqa.selenium.Dimension;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtil;
-import com.axonivy.portal.selenium.page.NewDashboardPage;
 
 
 @IvyWebTest
@@ -27,22 +26,14 @@ public class HandleErrorPageScreenshotTest extends ScreenshotBaseTest {
   @Test
   public void screenshotErrorPages() throws IOException {
     ScreenshotUtil.resizeBrowser(new Dimension(1200, 800));
+    redirectToRelativeLink(portalCustomErrorUrl); $("[id$=':test-error-method']")
+      .shouldBe(exist, DEFAULT_TIMEOUT) .shouldBe(visible, DEFAULT_TIMEOUT).click();
+      $(".notification-container").shouldBe(appear, DEFAULT_TIMEOUT);
 
-    // WAIT ROBOT FIX SCREENSHOT ERROR
-    /*
-     * redirectToRelativeLink(portalCustomErrorUrl); $("[id$=':test-error-method']")
-     * .shouldBe(exist, DEFAULT_TIMEOUT) .shouldBe(visible,
-     * DEFAULT_TIMEOUT).click();
-     * 
-     * $(".notification-container").shouldBe(appear, DEFAULT_TIMEOUT);
-     * $("a[class$='notification-content-action-more-details']") .shouldBe(exist,
-     * DEFAULT_TIMEOUT) .shouldBe(visible, DEFAULT_TIMEOUT).click();
-     * 
-     * ScreenshotUtil.capturePageScreenshot(ERROR_HANDLING_FOLDER +
-     * "portal-ajax-error-handler");
-     */
+      $("a[class$='notification-content-action-more-details']") .shouldBe(exist, DEFAULT_TIMEOUT) .shouldBe(visible, DEFAULT_TIMEOUT).click();
+      ScreenshotUtil.capturePageScreenshot(ERROR_HANDLING_FOLDER +
+      "portal-ajax-error-handler");
 
-    
     redirectToRelativeLink(showIvyErrorPageUrl);
     $(".exception-body").shouldBe(appear, DEFAULT_TIMEOUT);
     ScreenshotUtil.capturePageScreenshot(ERROR_HANDLING_FOLDER + "default-ivy-error");

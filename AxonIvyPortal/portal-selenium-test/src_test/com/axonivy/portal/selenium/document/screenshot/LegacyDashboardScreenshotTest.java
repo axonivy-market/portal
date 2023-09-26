@@ -28,11 +28,11 @@ public class LegacyDashboardScreenshotTest extends ScreenshotBaseTest{
   public void setup() {
     super.setup();
     updatePortalSetting(Variable.ENABLE_GROUP_CHAT.getKey(), "true");
-//    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "true");
+    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "true");
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createUserFavoriteProcess);
-    redirectToNewDashBoard();
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
     homePage = new LegacyDashboardPage();
   }
 
@@ -71,12 +71,15 @@ public class LegacyDashboardScreenshotTest extends ScreenshotBaseTest{
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(homePage.getTopBar(), ScreenshotUtil.DASHBOARD_FOLDER + "portal-header-with-numbering-annotation", new ScreenshotMargin(20, 20, 20, 120));
     ScreenshotUtil.resizeBrowser(new Dimension(1400, 800));
 
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    homePage = new LegacyDashboardPage();
+    homePage.waitForStatisticFinishAnimation();
     ScreenshotUtil.executeDecorateJs("numberingTaskItem();");
     ScreenshotUtil.captureElementScreenshot(homePage.getTaskWidgetElement(), ScreenshotUtil.DASHBOARD_FOLDER + "personal-tasks-key-information");
 
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
-    MainMenuPage mainMenuPage = new MainMenuPage();
-    mainMenuPage.openLegacyDashboard();
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    homePage = new LegacyDashboardPage();
     homePage.waitForStatisticFinishAnimation();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DASHBOARD_FOLDER + "legacy-dashboard");
     ScreenshotUtil.executeDecorateJs("highlightAndNumberingDashboardSections();");
