@@ -5,9 +5,12 @@ import org.openqa.selenium.WebElement;
 
 import portal.guitest.common.WaitHelper;
 
-public class NewDashboardPage extends TemplatePage {
-  public final static String PORTAL_HOME_PAGE_URL = "portal/1549F58C18A6C562/DefaultApplicationHompePage.ivp";
-
+public class NewDashboardPage2 extends TemplatePage {
+  public final static String PORTAL_HOME_PAGE_URL = "portal/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
+  public final static String PORTAL_EXAMPLES_HOME_PAGE_URL = "portal-developer-examples/164211E97C598DAA/DefaultApplicationHomePage.ivp";
+  public final static String PORTAL_EXAMPLES_EMPLOYEE_SEARCH = "portal-developer-examples/180D50804A2BF9E9/employeeSearch.ivp";
+  public final static String PORTAL_INTERNAL_HOME_PAGE_URL = "internalSupport/164211FF9482BB44/DefaultApplicationHomePage.ivp";
+  
   private static final String CONFIGURATION_DIALOG_ID = "new-widget-configuration-dialog";
   private static final String ADD_WIDGET_DIALOG_ID = "new-widget-dialog";
   private static final String ADD_CUSTOM_WIDGET_BUTTON_ID = "new-custom-widget-dialog-content:0:add-widget";
@@ -212,4 +215,5 @@ public class NewDashboardPage extends TemplatePage {
   public void findTranslationButton(String tabIndex) {
     findElementByCssSelector(String.format("[id$=':%s:translate-language-button']", tabIndex)).click();
   }
+
 }

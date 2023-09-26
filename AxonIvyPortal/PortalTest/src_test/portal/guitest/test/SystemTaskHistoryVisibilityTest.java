@@ -11,7 +11,7 @@ import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.NoteHistoryPage;
 
 public class SystemTaskHistoryVisibilityTest extends BaseTest {
@@ -25,8 +25,8 @@ public class SystemTaskHistoryVisibilityTest extends BaseTest {
   @Test
   public void testSystemTaskVisibilityInCaseHistory() {
     updatePortalSetting(HIDE_SYSTEM_TASKS_FROM_HISTORY.getKey(), "true");
-    HomePage homePage = new HomePage();
-    CaseWidgetPage caseWidgetPage = homePage.openCaseList();
+    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+    CaseWidgetPage caseWidgetPage = newDashboardPage2.openCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openCaseDetailsFromActionMenuByCaseName("Create New Payment");
     String caseId = caseDetailsPage.getCaseId();
     goToCaseNoteHistoryPage(caseId);
@@ -34,7 +34,7 @@ public class SystemTaskHistoryVisibilityTest extends BaseTest {
     assertFalse(noteHistoryPage.getNoteAuthors().contains("System user"));
     
     updatePortalSetting(HIDE_SYSTEM_TASKS_FROM_HISTORY.getKey(), "false");
-    WaitHelper.assertTrueWithRefreshPage(homePage, () -> {
+    WaitHelper.assertTrueWithRefreshPage(newDashboardPage2, () -> {
       goToCaseNoteHistoryPage(caseId);
       return new NoteHistoryPage().getNoteAuthors().contains("System user");
     });
@@ -44,11 +44,11 @@ public class SystemTaskHistoryVisibilityTest extends BaseTest {
   public void testSystemTaskVisibilityInCaseHistoryForAdmin() {
     login(TestAccount.ADMIN_USER);
     updatePortalSetting(HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR.getKey(), "false");
-    HomePage homePage = new HomePage();
-    CaseWidgetPage caseWidgetPage = homePage.openCaseList();
+    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+    CaseWidgetPage caseWidgetPage = newDashboardPage2.openCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openCaseDetailsFromActionMenuByCaseName("Create New Payment");
     String caseId = caseDetailsPage.getCaseId();
-    WaitHelper.assertTrueWithRefreshPage(homePage, () -> {
+    WaitHelper.assertTrueWithRefreshPage(newDashboardPage2, () -> {
       goToCaseNoteHistoryPage(caseId);
       return new NoteHistoryPage().getNoteAuthors().contains("System user");
     });

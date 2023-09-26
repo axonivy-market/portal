@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.NoteHistoryPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
@@ -25,8 +25,8 @@ public class ShowTaskNoteHistoryTest extends BaseTest {
     
     @Test
     public void testShowTaskNoteHistory() {
-        HomePage homePage = new HomePage();
-        TaskWidgetPage taskWidgetPage = homePage.openTaskList();
+        NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+        TaskWidgetPage taskWidgetPage = newDashboardPage2.openTaskList();
         String taskId = taskWidgetPage.getTaskIdOfRow(0);
         TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
         taskTemplatePage.openCaseInfo();

@@ -13,6 +13,7 @@ import org.openqa.selenium.WebElement;
 
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.DefaultExpresTaskPage;
@@ -22,8 +23,8 @@ import portal.guitest.page.ExpressFormDefinitionPage;
 import portal.guitest.page.ExpressProcessPage;
 import portal.guitest.page.ExpressReviewPage;
 import portal.guitest.page.ExpressTaskPage;
-import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.SearchResultPage;
 import portal.guitest.page.TaskTemplatePage;
@@ -41,7 +42,7 @@ public class PortalExpressTest extends BaseTest {
 	protected static final int INPUT_NUMBER_TYPE_INDEX = 1;
 	protected static final int INPUT_DATE_TYPE_INDEX = 2;
 
-	protected HomePage homePage;
+	protected NewDashboardPage2 newDashboardPage2;
 	protected ProcessWidgetPage processWidget;
 	protected TaskWidgetPage taskWidgetPage;
 
@@ -54,14 +55,14 @@ public class PortalExpressTest extends BaseTest {
 	public void setup() {
 		super.setup();
 		redirectToRelativeLink("portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp");
-		homePage = new HomePage();
+		newDashboardPage2 = new NewDashboardPage2();
 	}
 
 	@Test
 	public void testOpenProcessWidgetWithoutCreateExpressWorkflowPermission() throws Exception {
 		String denyAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/denyPortalPermission.ivp";
 		redirectToRelativeLink(denyAllPermissionsForAdminUserURL);
-		MainMenuPage mainMenuPage = homePage.openMainMenu();
+		MainMenuPage mainMenuPage = newDashboardPage2.openMainMenu();
 		processWidget = mainMenuPage.selectProcessesMenu();
 		assertEquals(false, processWidget.hasCreateNewExpressWorkflowLink());
 		// run process to grant permission back to normal
@@ -157,7 +158,7 @@ public class PortalExpressTest extends BaseTest {
 		formDefinition.executeWorkflow();
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		expressTaskPage.finish();
-		HomePage home = new HomePage();
+		NewDashboardPage2 home = new NewDashboardPage2();
 		assertTrue(home.isDisplayed());
 	}
 
@@ -217,7 +218,7 @@ public class PortalExpressTest extends BaseTest {
   public void testUserAdminCanViewEditDeleteProcess() {
     createAdministratedWorkflow("Test approval", Arrays.asList(responsible1, groupHr), false);
     login(TestAccount.ADMIN_USER);
-    GlobalSearch globalSearch = homePage.getGlobalSearch();
+    GlobalSearch globalSearch = newDashboardPage2.getGlobalSearch();
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("Test approval");
     searchResultPage.waitForFirstTabFinishedLoading();
 
@@ -235,7 +236,7 @@ public class PortalExpressTest extends BaseTest {
   @Test
   public void testUserCreatorCanViewEditDeleteProcess() {
     createAdministratedWorkflow("Test approval", Arrays.asList(responsible1, groupHr), false);
-    GlobalSearch globalSearch = homePage.getGlobalSearch();
+    GlobalSearch globalSearch = newDashboardPage2.getGlobalSearch();
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("Test approval");
     searchResultPage.waitForFirstTabFinishedLoading();
     WebElement expressWorkflow = searchResultPage.findElementByClassName("express-workflow");
@@ -253,7 +254,7 @@ public class PortalExpressTest extends BaseTest {
   public void testProcessOwnerCanViewAndEditProcess() {
     createAdministratedWorkflow("Test approval", Arrays.asList(responsible1, groupHr), false);
     login(TestAccount.HR_ROLE_USER);
-    GlobalSearch globalSearch = homePage.getGlobalSearch();
+    GlobalSearch globalSearch = newDashboardPage2.getGlobalSearch();
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("Test approval");
     searchResultPage.waitForFirstTabFinishedLoading();
 
@@ -274,7 +275,7 @@ public class PortalExpressTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     createAdministratedWorkflow("Test approval", Arrays.asList(groupHr), false);
     login(TestAccount.DEMO_USER);
-    GlobalSearch globalSearch = homePage.getGlobalSearch();
+    GlobalSearch globalSearch = newDashboardPage2.getGlobalSearch();
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("Test approval");
     searchResultPage.waitForFirstTabFinishedLoading();
     
@@ -458,8 +459,8 @@ public class PortalExpressTest extends BaseTest {
 	}
 
 	protected void startExpressProcess(String processName) {
-		homePage = new HomePage();
-		GlobalSearch globalSearch = homePage.getGlobalSearch();
+		newDashboardPage2 = new NewDashboardPage2();
+		GlobalSearch globalSearch = newDashboardPage2.getGlobalSearch();
 		SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(processName);
 		searchResultPage.waitForFirstTabFinishedLoading();
 		searchResultPage.startProcess(processName);
@@ -490,8 +491,7 @@ public class PortalExpressTest extends BaseTest {
 	}
 
 	protected void goToCreateExpressProcess() {
-		processWidget = homePage.getProcessWidget();
-		processWidget.expand();
+    processWidget = NavigationHelper.navigateToProcessList();
 		processWidget.openExpressPage();
 	}
 	

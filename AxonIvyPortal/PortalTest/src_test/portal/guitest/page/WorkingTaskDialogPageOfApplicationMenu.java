@@ -9,8 +9,8 @@ public class WorkingTaskDialogPageOfApplicationMenu extends TemplatePage {
     return "id('user-menu-required-login:warning-before-leaving-task-component:task-leave-warning-dialog')";
   }
 
-  public HomePage leaveTask() {
+  public NewDashboardPage2 leaveTask() {
     click(By.id("user-menu-required-login:warning-before-leaving-task-component:leave-button"));
-    return new HomePage();
+    return new NewDashboardPage2();
   }
 }

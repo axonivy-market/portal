@@ -170,8 +170,8 @@ public class ExpressProcessPage extends TemplatePage {
     waitForElementDisplayed(findElementById("choose-responsible-dialog"), false);
   }
   
-  public HomePage cancelWorkflowDefinition() {
+  public NewDashboardPage2 cancelWorkflowDefinition() {
     click(By.id("form:cancel-workflow-button"));
-    return new HomePage();
+    return new NewDashboardPage2();
   }
 }

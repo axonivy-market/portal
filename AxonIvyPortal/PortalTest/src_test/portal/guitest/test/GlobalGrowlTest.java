@@ -13,7 +13,7 @@ import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.ExpressFormDefinitionPage;
 import portal.guitest.page.ExpressProcessPage;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.SearchResultPage;
 import portal.guitest.page.TaskTemplatePage;
@@ -39,8 +39,8 @@ public class GlobalGrowlTest extends BaseTest {
     redirectToRelativeLink(CUSTOM_GROWL_URL);
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    HomePage homePage = taskTemplatePage.clickSubmitButton();
-    assertGrowlMessage(homePage, CUSTOM_FINISH_MESSAGE);
+    NewDashboardPage2 newDashboardPage2 = taskTemplatePage.clickSubmitButton();
+    assertGrowlMessage(newDashboardPage2, CUSTOM_FINISH_MESSAGE);
   }
   
   @Test
@@ -50,8 +50,8 @@ public class GlobalGrowlTest extends BaseTest {
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     taskTemplatePage.inputFields("Employee", today, today, "Representation");
-    HomePage homePage = taskTemplatePage.clickSubmitButton();
-    assertGrowlMessage(homePage, FINISH_MESSAGE_WITH_DETAILS);
+    NewDashboardPage2 newDashboardPage2 = taskTemplatePage.clickSubmitButton();
+    assertGrowlMessage(newDashboardPage2, FINISH_MESSAGE_WITH_DETAILS);
   }
   
   @Test
@@ -60,8 +60,8 @@ public class GlobalGrowlTest extends BaseTest {
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     taskTemplatePage.inputFields("Employee", today, today, "Representation");
-    HomePage homePage = taskTemplatePage.clickSubmitButton();
-    assertGrowlMessage(homePage, FINISH_MESSAGE_WITH_DETAILS);
+    NewDashboardPage2 newDashboardPage2 = taskTemplatePage.clickSubmitButton();
+    assertGrowlMessage(newDashboardPage2, FINISH_MESSAGE_WITH_DETAILS);
   }
 
   @Test
@@ -69,8 +69,8 @@ public class GlobalGrowlTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    HomePage homePage = taskTemplatePage.clickCancelAndLeftButton();
-    assertGrowlMessage(homePage, CANCEL_MESSAGE_WITH_DETAILS); 
+    NewDashboardPage2 newDashboardPage2 = taskTemplatePage.clickCancelAndLeftButton();
+    assertGrowlMessage(newDashboardPage2, CANCEL_MESSAGE_WITH_DETAILS); 
   }
   
   @Test
@@ -78,16 +78,16 @@ public class GlobalGrowlTest extends BaseTest {
     redirectToRelativeLink(CUSTOM_GROWL_URL);
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    HomePage homePage = taskTemplatePage.clickCancelAndLeftButton();
-    assertGrowlMessage(homePage, CUSTOM_CANCEL_MESSAGE);
+    NewDashboardPage2 newDashboardPage2 = taskTemplatePage.clickCancelAndLeftButton();
+    assertGrowlMessage(newDashboardPage2, CUSTOM_CANCEL_MESSAGE);
   }
   
   @Test
   public void testDisplayDefaultGrowlAfterCancelFirstTask() {
     redirectToRelativeLink(SKIP_TASK_LIST_URL);
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
-    HomePage homePage = taskTemplatePage.clickCancelAndLeftButton();
-    assertGrowlMessage(homePage, CANCEL_MESSAGE_WITH_DETAILS);
+    NewDashboardPage2 newDashboardPage2 = taskTemplatePage.clickCancelAndLeftButton();
+    assertGrowlMessage(newDashboardPage2, CANCEL_MESSAGE_WITH_DETAILS);
   }
 
   @Test
@@ -96,8 +96,8 @@ public class GlobalGrowlTest extends BaseTest {
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     expressProcessPage.fillProcessProperties(false, true, "Test approval", "Test description");
     ExpressFormDefinitionPage formDefinition = configureExpressProcess(expressProcessPage);
-    HomePage homePage = formDefinition.save();
-    assertGrowlMessage(homePage, FINISH_MESSAGE_WITH_DETAILS);
+    NewDashboardPage2 newDashboardPage2 = formDefinition.save();
+    assertGrowlMessage(newDashboardPage2, FINISH_MESSAGE_WITH_DETAILS);
   }
   
   @Test
@@ -107,8 +107,8 @@ public class GlobalGrowlTest extends BaseTest {
     expressProcessPage.fillProcessProperties(false, true, "Test approval", "Test description");
     ExpressFormDefinitionPage formDefinition = configureExpressProcess(expressProcessPage);
     formDefinition.finishWorkflow();
-    HomePage homePage = new HomePage();
-    assertGrowlMessage(homePage, FINISH_MESSAGE);
+    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+    assertGrowlMessage(newDashboardPage2, FINISH_MESSAGE);
   }
   
   private ExpressFormDefinitionPage configureExpressProcess(ExpressProcessPage expressProcessPage) {
@@ -136,15 +136,15 @@ public class GlobalGrowlTest extends BaseTest {
     expressProcessPage.createTask(0, 0, "Task 1", "Task 1 description",
         Arrays.asList(new ExpressResponsible(TestAccount.DEMO_USER.getUsername(), false)));
     ExpressFormDefinitionPage expressFormDefinitionPage = expressProcessPage.goToFormDefinition();
-    HomePage homePage = expressFormDefinitionPage.cancel();
-    assertGrowlMessage(homePage, CANCEL_MESSAGE);
+    NewDashboardPage2 newDashboardPage2 = expressFormDefinitionPage.cancel();
+    assertGrowlMessage(newDashboardPage2, CANCEL_MESSAGE);
   }
 
   private void leftExpressWorkflowDefinition() {
     redirectToRelativeLink(expressStartLink);
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
-    HomePage homePage = expressProcessPage.cancelWorkflowDefinition();
-    assertGrowlMessage(homePage, CANCEL_MESSAGE);
+    NewDashboardPage2 newDashboardPage2 = expressProcessPage.cancelWorkflowDefinition();
+    assertGrowlMessage(newDashboardPage2, CANCEL_MESSAGE);
   }
 
   private void leftTaskWhenGlobalSearch() {
@@ -160,8 +160,8 @@ public class GlobalGrowlTest extends BaseTest {
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     MainMenuPage mainMenuPage = expressProcessPage.openMainMenu();
     WorkingTaskDialogPageOfApplicationMenu leaveTaskDialogOfMenu = mainMenuPage.selectDashboardMenu();
-    HomePage homePage = leaveTaskDialogOfMenu.leaveTask();
-    assertGrowlMessage(homePage, CANCEL_MESSAGE);
+    NewDashboardPage2 newDashboardPage2 = leaveTaskDialogOfMenu.leaveTask();
+    assertGrowlMessage(newDashboardPage2, CANCEL_MESSAGE);
   }
 
   private void leftTaskWhenClickingOnLogo() {
@@ -169,8 +169,8 @@ public class GlobalGrowlTest extends BaseTest {
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     expressProcessPage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
-    HomePage homePage = dialogPage.leaveTask();
-    assertGrowlMessage(homePage, CANCEL_MESSAGE);
+    NewDashboardPage2 newDashboardPage2 = dialogPage.leaveTask();
+    assertGrowlMessage(newDashboardPage2, CANCEL_MESSAGE);
   }
 
   private void assertGrowlMessage(TemplatePage templatePage, String message) {

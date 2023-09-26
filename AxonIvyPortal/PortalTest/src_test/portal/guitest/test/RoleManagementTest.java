@@ -13,7 +13,7 @@ import ch.ivy.addon.portalkit.enums.PortalPermission;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdminSettingsPage;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.RoleManagementPage;
 
 public class RoleManagementTest extends BaseTest {
@@ -21,7 +21,7 @@ public class RoleManagementTest extends BaseTest {
   private static final String DENY_SPECIFIC_PERMISSION = "portalKitTestHelper/14DE09882B540AD5/denySpecificPortalPermission.ivp?portalPermission=%s";
   private static final String GRANT_SPECIFIC_PERMISSION = "portalKitTestHelper/14DE09882B540AD5/grantSpecificPortalPermission.ivp?portalPermission=%s";
 
-  private HomePage homePage;
+  private NewDashboardPage2 newDashboardPage2;
   private AdminSettingsPage adminSettingsPage;
   private RoleManagementPage roleManagementPage;
 
@@ -30,7 +30,7 @@ public class RoleManagementTest extends BaseTest {
   public void setup() {
     super.setup();
     login(TestAccount.ADMIN_USER);
-    homePage = new HomePage();
+    newDashboardPage2 = new NewDashboardPage2();
   }
 
   @Test
@@ -40,8 +40,8 @@ public class RoleManagementTest extends BaseTest {
 
     // Admin lacks RoleReadAll permission
     denySpecificPortalPermission(PortalPermission.ROLE_MANAGEMENT);
-    homePage = new HomePage();
-    adminSettingsPage = homePage.openAdminSettings();
+    newDashboardPage2 = new NewDashboardPage2();
+    adminSettingsPage = newDashboardPage2.openAdminSettings();
     assertFalse("RoleManagement tab is displayed", adminSettingsPage.isRoleAssingmentTabViewPresent());
   }
 
@@ -173,8 +173,8 @@ public class RoleManagementTest extends BaseTest {
   }
 
   private RoleManagementPage accessToRoleManagement() {
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    var adminSettingsPage = new HomePage().openAdminSettings();
+    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
+    var adminSettingsPage = new NewDashboardPage2().openAdminSettings();
     assertTrue("RoleManagement tab is NOT displayed", adminSettingsPage.isRoleAssingmentTabViewPresent());
     roleManagementPage = adminSettingsPage.openRoleManagementTab();
     return roleManagementPage;

@@ -9,13 +9,13 @@ public class WorkingTaskDialogPage extends TemplatePage {
     return "id('task-leave-warning-component:logo-task-losing-confirmation-dialog')";
   }
 
-  public HomePage leaveTask() {
+  public NewDashboardPage2 leaveTask() {
     click(By.id("task-leave-warning-component:leave-button"));
-    return new HomePage();
+    return new NewDashboardPage2();
   }
   
-  public HomePage reserveTask() {
+  public NewDashboardPage2 reserveTask() {
     click(By.id("task-leave-warning-component:reserve-task-button"));
-    return new HomePage();
+    return new NewDashboardPage2();
   }
 }

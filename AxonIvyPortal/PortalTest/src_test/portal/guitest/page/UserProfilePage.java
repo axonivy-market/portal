@@ -47,9 +47,9 @@ public class UserProfilePage extends TemplatePage {
     formattingLanguage.sendKeys(newLanguage);
   }
 
-  public HomePage save() {
+  public NewDashboardPage2 save() {
     saveWithoutWaitingNavigation();
-    return new HomePage();
+    return new NewDashboardPage2();
   }
   
   @SuppressWarnings("deprecation")
@@ -185,20 +185,20 @@ public class UserProfilePage extends TemplatePage {
     ensureNoBackgroundRequest();
   }
 
-  public void changeHomePageToCase() {
-    String homepageLabel = "my-profile-form:homepage_label";
-    click(By.id(homepageLabel));
+  public void changeNewDashboardPage2ToCase() {
+    String newdashboardpage2Label = "my-profile-form:newdashboardpage2_label";
+    click(By.id(newdashboardpage2Label));
     String caseItemCssSelector = "li.ui-selectonemenu-item[data-label='Cases']";
     waitForElementDisplayed(By.cssSelector(caseItemCssSelector), true);
     clickByCssSelector(caseItemCssSelector);
-    waitUntilTextToBePresentInElement(findElementById(homepageLabel), "Cases", getTimeOutForLocator());
+    waitUntilTextToBePresentInElement(findElementById(newdashboardpage2Label), "Cases", getTimeOutForLocator());
   }
   
   @SuppressWarnings("deprecation")
-  public HomePage clickOnCancelLink() {
+  public NewDashboardPage2 clickOnCancelLink() {
     click(findElementByCssSelector("a[id^='my-profile-form:']"));
     waitForPageLoaded();
-    return new HomePage();
+    return new NewDashboardPage2();
   }
 
   public void changeDateFormatToPattern(String pattern) {
