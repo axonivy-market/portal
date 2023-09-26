@@ -31,7 +31,6 @@ public class DefaultChartTest extends BaseTest {
     Sleeper.sleep(2000); // To make Firefox test more stable, make business data updated correctly 
     login(TestAccount.ADMIN_USER);
     grantPermissionToCreateChart();
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_EXAMPLES_HOME_PAGE_URL);
   }
 
   @After
