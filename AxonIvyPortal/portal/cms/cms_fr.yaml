@@ -287,7 +287,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showGlobalSearch: Pour activer/désactiver l'affichage de la recherche globale.
       showProcessInformation: Définissez la valeur false pour désactiver le lien vers l'option Afficher les informations du processus sur la page processus (mode grille) et détails du cas.
       showTaskDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de la tâche.
-      showUserGuide: 'Active le guide d''utilisation interactif "premiers pas" dans le portail lors de la première connexion. '
       statisticChartScalingInterval: Intervalle en secondes pour effectuer les demandes de mise à l'échelle périodique des graphiques statistiques. Si la valeur de l'intervalle est inférieure à 10, la mise à l'échelle périodique des graphiques statistiques est désactivée.
       uploadDocumentWhiteListExtensionNote: 'Laissez la valeur vide si vous autorisez toutes les extensions. Si juste autoriser quelques extensions, listez les extensions ici, séparées par des virgules. Exemple: pdf, txt, doc, docx.'
     key: Clé
@@ -700,28 +699,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       importHeaderTitle: 'La liste des processus Express sera exportée :'
       processCount: processus(s)
       waitingMessage: Les données sont recueillies …
-    guide:
-      dontShowAgain: Ne plus montrer
-      mainMenu:
-        content: 'Dans ce menu, vous pouvez naviguer dans les différents domaines : processus, tâches, cas et statistiques.'
-        title: Menu principal
-      process:
-        content: Dans cette zone, vous pouvez définir vos propres favoris et voir les procédures standard de la demande. Il suffit de cliquer dessus pour lancer le processus.
-        title: Processus
-      statistic:
-        content: Dans ce domaine, vous trouverez tous les différents types de statistiques existantes. Cliquez pour plus de détails.
-        title: Statistiques
-      task:
-        content: Dans cette zone, vous trouverez toutes les tâches ouvertes. Il suffit de cliquer dessus pour travailler sur une tâche.
-        title: Tâches
-      username:
-        content: En cliquant sur le nom d'utilisateur, vous pouvez définir les absences, la langue, les paramètres du courrier électronique, etc.
-        title: Nom d'utilisateur
-      welcome:
-        content: 'Nous voulons vous aider à prendre un bon début avec le portail. Pour cela, nous voulons vous guider à travers les premières actions que vous pouvez faire. En outre, vous trouverez ici une documentation détaillée pour les utilisateurs, y compris un "Guide pratique" : <a href="{0}" target="_blank">Guide
-          pratique du portail</a>'
-        mobileContent: 'Vous pouvez accéder directement à vos tâches dans cette page ou naviguer vers d''autres domaines en utilisant <span class="{0}"></span>. Vous pouvez trouver une documetation utilisateur étendue ici : <a href="{1}" target="_blank">PortalGuide</a>'
-        title: Bienvenue sur Axon Ivy Portal
     passwordValidation:
       criteria: Critères
       enablePasswordValidation: Activer la validation du mot de passe

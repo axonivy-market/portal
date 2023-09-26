@@ -25,7 +25,6 @@ import com.axonivy.portal.components.service.impl.ProcessService;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
-import ch.ivy.addon.portalkit.bo.GuidePool;
 import ch.ivy.addon.portalkit.bo.IvyProcess;
 import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
@@ -37,7 +36,6 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
-import ch.ivy.addon.portalkit.service.DummyProcessService;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
@@ -46,7 +44,6 @@ import ch.ivy.addon.portalkit.service.UserProcessService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @Deprecated(since = "9.3")
@@ -71,7 +68,6 @@ private static final long serialVersionUID = -5889375917550618261L;
   private boolean editMode;
   private boolean isUserFavoritesEnabled;
   private boolean isDisplayShowAllProcessesLink;
-  private boolean isGuide;
   
   @PostConstruct
   public void init() {
@@ -80,13 +76,8 @@ private static final long serialVersionUID = -5889375917550618261L;
   }
   
   public void preRender() {
-    isGuide = GuidePool.instance().guide(Ivy.session().getSessionUserName()).isGuideShown();
     userProcessService = UserProcessService.getInstance();
     selectedUserProcesses = new ArrayList<>();
-    
-    if (isGuide) {
-      createDummyDataForGuide();
-    }
   }
   
   public void initProcesses() {
@@ -101,13 +92,6 @@ private static final long serialVersionUID = -5889375917550618261L;
     isDisplayShowAllProcessesLink = PermissionUtils.checkAccessFullProcessListPermission();
   }
   
-  private void createDummyDataForGuide() {
-    isUserFavoritesEnabled = DummyProcessService.enableUserFavorites();
-    isDisplayShowAllProcessesLink = DummyProcessService.displayShowAllProcessesLink();
-    userProcesses = DummyProcessService.dummyFavorites();
-    defaultProcesses = DummyProcessService.dummyApplicationProcesses();
-  }
-
   private List<UserProcess> findStartableDefaultProcesses() {
     List<UserProcess> processes = userProcessService.getPublicConfig();
 

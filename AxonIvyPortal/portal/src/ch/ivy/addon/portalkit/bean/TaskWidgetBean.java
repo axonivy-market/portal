@@ -18,7 +18,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.enums.SearchScopeTaskField;
 
-import ch.ivy.addon.portalkit.bo.GuidePool;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
@@ -46,7 +45,6 @@ public class TaskWidgetBean implements Serializable {
   private TaskLazyDataModel dataModel;
   private Boolean isTaskDetailOpenning;
   private boolean isShowFullTaskList;
-  private boolean isGuide;
   private boolean isAdminTaskStateIncluded;
   private boolean isRunningTaskWhenClickingOnTaskInList;
 
@@ -65,11 +63,8 @@ public class TaskWidgetBean implements Serializable {
   
   public void preRender(TaskLazyDataModel dataModel) {
     if (dataModel == null) {
-      isGuide = false;
       return;
-    }
-    isGuide = GuidePool.instance().guide(Ivy.session().getSessionUserName()).isGuideShown();
-    dataModel.setIsGuide(isGuide);
+    } // TODO z1 remove
   }
 
   public Long getExpandedTaskId() {
