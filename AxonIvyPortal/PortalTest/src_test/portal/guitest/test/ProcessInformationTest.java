@@ -40,7 +40,7 @@ public class ProcessInformationTest extends BaseTest {
     processInformationPage.startProcess();
     newDashboardPage2 = new NewDashboardPage2();
     TaskWidgetPage taskWidget = NavigationHelper.navigateToTasList();
-    taskWidget.filterTasksBy(PROCESS_NAME, 1);
+    taskWidget.filterTasksInExpandedModeBy(PROCESS_NAME, 1);
     assertEquals(1, taskWidget.countTasks());
   }
   

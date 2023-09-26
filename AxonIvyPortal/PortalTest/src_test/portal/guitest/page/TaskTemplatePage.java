@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.WaitHelper;
 
@@ -279,7 +280,7 @@ public class TaskTemplatePage extends TemplatePage {
     click(By.id("form:save-btn"));
     driver.switchTo().defaultContent();
     WaitHelper.waitForPresenceOfElementLocatedInFrame(driver, "[id$='global-search-component:global-search-data']");
-    return new TaskWidgetPage();
+    return NavigationHelper.navigateToTasList();
   }
 
   public NewDashboardPage2 backToHomeInIFrameApprovalTask() {

@@ -33,7 +33,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
   public void testCustomParamsForTaskTemplate8() {
     redirectToRelativeLink(CUSTOM_PARAMS_TEMPLATE_TASK_URL);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
-    taskWidgetPage.filterTasksBy("Task template 8 with custom params");
+    taskWidgetPage.filterTasksInExpandedModeBy("Task template 8 with custom params");
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTaskWithouWaitForTaskActionPresent(0);
     assertFalse(taskTemplatePage.isTaskNameDisplayed());
     assertFalse(taskTemplatePage.isTaskActionDisplayed());
@@ -44,7 +44,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
   public void testCustomParamsForIFrameTaskTemplate() {
     redirectToRelativeLink(CUSTOM_PARAMS_TEMPLATE_TASK_URL);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
-    taskWidgetPage.filterTasksBy("IFrame task with custom params");
+    taskWidgetPage.filterTasksInExpandedModeBy("IFrame task with custom params");
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTaskWithouWaitForTaskActionPresent(0);
     assertFalse(taskTemplatePage.isTaskNameDisplayed());
     assertFalse(taskTemplatePage.isTaskActionDisplayed());
@@ -67,7 +67,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     waitForTemplateRender();
     TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
     TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
-    taskWidgetPage.filterTasksBy("Approve Investment", 1);
+    taskWidgetPage.filterTasksInExpandedModeBy("Approve Investment", 1);
     TaskTemplatePage taskTemplatePage2 = taskWidgetPage.startTask(0);
     taskTemplatePage2.clickOnLogo();
     WaitHelper.assertTrueWithWait(
@@ -81,7 +81,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     waitForTemplateRender();
     TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
     TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
-    taskWidgetPage.filterTasksBy("Approve Investment", 1);
+    taskWidgetPage.filterTasksInExpandedModeBy("Approve Investment", 1);
     TaskTemplatePage taskTemplatePage2 = taskWidgetPage.startTask(0);
     NewDashboardPage2 newDashboardPage2 = taskTemplatePage2.backToHomeInIFrameApprovalTask();
     WaitHelper

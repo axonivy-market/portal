@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
@@ -43,8 +44,9 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
   public void testSettingHideUploadDeleteDocumentForDoneCase() {
     createCaseAndUploadDocumentByUser(TestAccount.ADMIN_USER);
     redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage = NavigationHelper.navigateToTasList();
     taskWidgetPage.startTaskWithoutUI(0);
+    taskWidgetPage.openTaskList();
     updatePortalSetting(HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE.getKey(), "true");
     redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
 
