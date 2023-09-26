@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Selenide.$;
 import java.util.ArrayList;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -47,6 +48,10 @@ public abstract class TemplatePage extends AbstractPage {
   
   public void switchToIframeWithId(String id) {
     WebDriverRunner.getWebDriver().switchTo().frame($("iframe[id='" + id + "']"));
+  }
+  
+  public void switchToIframeWithNameOrId(String value) {
+    WebDriverRunner.getWebDriver().switchTo().frame(value);
   }
 
   public void waitForGrowlMessageDisappear() {
@@ -111,5 +116,9 @@ public abstract class TemplatePage extends AbstractPage {
   public AbsencePage openAbsencePage() {
     clickUserMenuItem("absence-menu-item");
     return new AbsencePage();
+  }
+  
+  public WebDriver getDriver() {
+    return WebDriverRunner.getWebDriver();
   }
 }

@@ -575,6 +575,10 @@ function highlightDashboardConfiguration() {
    createRedMediumOutline($("#dashboard-configuration"));
 }
 
+function highlightSharePageButton() {
+  createRedMediumOutline($("[id$=':share-page-button']"));
+}
+
 function highlightAndNumberingTaskTemplate() {
   $(".task-template-title-horizontal-container").css("padding-top", "10px");
 

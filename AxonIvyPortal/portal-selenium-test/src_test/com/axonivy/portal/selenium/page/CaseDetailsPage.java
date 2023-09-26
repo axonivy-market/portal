@@ -8,6 +8,8 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 
 import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.Condition;
@@ -18,10 +20,11 @@ public class CaseDetailsPage extends TemplatePage {
   private static final String RELATED_CASES = "Related Cases";
   private static final String RELATED_TASKS_OF_CASES = "Related Tasks of Case";
   private static final String HISTORY = "History";
+  public static final String CLASS_PROPERTY = "class";
 
   @Override
   protected String getLoadedLocator() {
-    return "#time-information";
+    return ".js-layout-content";
   }
 
   public void waitForTechnicalCaseDisplay() {
@@ -198,7 +201,9 @@ public class CaseDetailsPage extends TemplatePage {
     $("a[id$='add-document-command']").shouldBe(getClickableCondition()).click();
     $(By.cssSelector("span[id$='document-upload-dialog_title']")).shouldBe(Condition.visible, DEFAULT_TIMEOUT);
 //    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ui-dialog.case-upload-dialog", CLASS_PROPERTY);
-    return $("[id$='document:document-upload-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("[id$='document-upload-close-command']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    waitUntilElementToBeClickable($("[id$='document-upload-close-command']"));
+    return $("[id$='document:document-upload-dialog']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
   }
 
   public void uploadDocumentWithoutError(String pathToFile) {
@@ -238,8 +243,71 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void waitForIFrameWidgetLoad() {
-    switchToIframeWithId("custom-widget-iframe");
+    $("[name='custom-widget-iframe']").shouldBe(appear, DEFAULT_TIMEOUT);
+    switchToIframeWithNameOrId("custom-widget-iframe");
     $("form[id='content-form']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
     switchBackToParent();
+  }
+
+  public void waitForIFrameURLWidgetLoad() {
+    $("[name='custom-widget-iframe-url']").shouldBe(appear, DEFAULT_TIMEOUT);
+    switchToIframeWithNameOrId("custom-widget-iframe-url");
+    $("a[href='https://www.axonivy.com']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    switchBackToParent();
+  }
+
+  public SelenideElement getSharePageButtonElement() {
+    return $("[id$=':share-page-button']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+  }
+  
+  public SelenideElement getSwitchToEditModeButton() {
+    return $("[id$=':switch-to-edit-mode-button']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+  }
+  
+  public SelenideElement getSwitchToViewModeButton() {
+    return $("[id$=':switch-to-view-mode-button']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+  }
+  
+  public SelenideElement getResetButton() {
+    $(By.cssSelector("[id$=':reset-details-settings-button']")).shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    return $("[id$=':reset-details-settings-button']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+  }
+  
+  public void switchToEditMode() {
+    $(By.cssSelector("[id$=':switch-to-edit-mode-button']")).shouldBe(getClickableCondition()).click();
+    $("[id$='case-details-information-panel']").shouldBe(Condition.visible, DEFAULT_TIMEOUT).shouldHave(Condition.attribute(CLASS_PROPERTY, "grid-stack-item ui-draggable ui-resizable ui-resizable-autohide"));
+//    $(By.cssSelector("[id$=':switch-to-edit-mode-button']")).get;
+//    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+//    WaitHelper.assertTrueWithWait(() -> {
+//      var infoWidget = findElementByCssSelector("[id$='case-details-information-panel']");
+//      return infoWidget.getAttribute(CLASS_PROPERTY).contains("ui-resizable ui-resizable-autohide");
+//    });
+  }
+
+  public void waitForSaveButtonDisplayed() {
+    $(By.cssSelector("[id$=':switch-to-view-mode-button']")).shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+  }
+  
+  public void drapAndDropWidgets(String sourceName, String destinationName) {
+    $(By.cssSelector(String.format("[id='case-details-%s-panel']", sourceName))).shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    SelenideElement sourceElement = $(String.format("[id='case-details-%s-panel']", sourceName)).shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    $(By.cssSelector(String.format("[id='case-details-%s-panel']", destinationName))).shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    SelenideElement destinationElement = $(String.format("[id='case-details-%s-panel']", destinationName)).shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    Actions actions = new Actions(getDriver());
+    Action moveWidget = actions.dragAndDrop(sourceElement, destinationElement).build();
+    moveWidget.perform();
+    $("[id$=':case-details-container:case-details-widgets']").shouldBe(Condition.visible, DEFAULT_TIMEOUT).$(".ui-droppable-over").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+//    WaitHelper.assertTrueWithWait(() -> {
+//      var caseDetails = findElementByCssSelector("[id$=':case-details-container:case-details-widgets']");
+//      return !caseDetails.getAttribute(CLASS_PROPERTY).contains("ui-droppable-over");
+//    });
+  }
+  
+  public void saveAndSwitchToViewMode() {
+    $(By.cssSelector("[id$=':switch-to-view-mode-button']")).shouldBe(getClickableCondition()).click();
+  }
+  
+  public void resetToDefault() {
+    $(By.cssSelector("[id$=':reset-details-settings-button']")).shouldBe(getClickableCondition()).click();
   }
 }

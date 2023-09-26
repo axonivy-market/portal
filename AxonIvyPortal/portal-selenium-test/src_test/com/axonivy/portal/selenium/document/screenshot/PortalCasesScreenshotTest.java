@@ -17,6 +17,7 @@ import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
+import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 import com.axonivy.portal.selenium.test.CaseDetailsTest;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtil;
 import com.codeborne.selenide.SelenideElement;
@@ -82,8 +83,7 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest{
     ScreenshotUtil.captureElementScreenshot(addNote, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-add-task-note");
 
     detailsPage.addNote("Take Order");
-    
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(detailsPage.getAddAttachmentDialog(), ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-attach-document-to-case", new ScreenshotMargin(30, 60));
+    ScreenshotUtil.captureElementScreenshot(detailsPage.getAddAttachmentDialog(), ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-attach-document-to-case");
     detailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
     
     refreshPage();
@@ -144,11 +144,10 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest{
     ScreenshotUtil.executeDecorateJs("highlightCustomWidgetInCaseDetails()");
     detailsPage.waitForIFrameWidgetLoad();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-customized-iframe-process");
-    
+    refreshPage();
     setupCustomWidgetByJSONFile("custom-case-details-with-url.json");
     ScreenshotUtil.executeDecorateJs("highlightCustomWidgetInCaseDetails()");
-//    detailsPage.waitForIFrameURLWidgetLoad();
-//    detailsPage.switchToDefaultContent();
+    detailsPage.waitForIFrameURLWidgetLoad();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-customized-iframe-url");
   }
 
@@ -163,5 +162,59 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest{
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
     CaseWidgetPage casePage = mainMenuPage.openCaseList();
     return casePage;
+  }
+  
+  @Test
+  public void screenshotActionButtonsOnCaseDetails() throws IOException {
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1440));
+    login(TestAccount.ADMIN_USER);
+    showNewDashboard();
+    CaseWidgetPage caseWidget = mainMenuPage.openCaseList();
+    CaseDetailsPage caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Order Pizza");
+    caseDetailsPage.waitForCaseDetailsDisplay();
+
+    ScreenshotUtil.executeDecorateJs("highlightSharePageButton()");
+    SelenideElement sharePageBtn = caseDetailsPage.getSharePageButtonElement();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(sharePageBtn,
+        ScreenshotUtil.CASE_DETAIL_FOLDER + "share-page-button", new ScreenshotMargin(100, 200));
+    refreshPage();
+    
+    ScreenshotUtil.executeDecorateJs("highlightSwitchToEditMode()");
+    SelenideElement switchToEditMode = caseDetailsPage.getSwitchToEditModeButton();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(switchToEditMode,
+        ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-switch-to-edit-mode", new ScreenshotMargin(100, 200));
+
+    caseDetailsPage.switchToEditMode();
+    caseDetailsPage.waitForSaveButtonDisplayed();
+    caseDetailsPage.drapAndDropWidgets("information", "document");
+    ScreenshotUtil.executeDecorateJs("highlightSwitchToViewMode()");
+    SelenideElement switchToViewMode = caseDetailsPage.getSwitchToViewModeButton();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(switchToViewMode,
+        ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-switch-to-view-mode", new ScreenshotMargin(100, 200));
+
+    caseDetailsPage.saveAndSwitchToViewMode();
+    caseDetailsPage.switchToEditMode();
+    ScreenshotUtil.executeDecorateJs("highlightResetToDefault()");
+    SelenideElement resetButton = caseDetailsPage.getResetButton();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(resetButton,
+        ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-reset-to-default", new ScreenshotMargin(100, 200));
+    caseDetailsPage.resetToDefault();
+  }
+
+  @Test
+  public void screenshotProcessOverviewLink() throws IOException {
+    ScreenshotUtil.resizeBrowser(new Dimension(1920, 900));
+    login(TestAccount.ADMIN_USER);
+    ProcessWidgetPage processWidget = mainMenuPage.openProcessList();
+    processWidget.waitForStartListShow();
+    processWidget.startProcessByName("Process With Process Steps");
+    showNewDashboard();
+    
+    CaseWidgetPage caseWidget = mainMenuPage.openCaseList();
+    CaseDetailsPage caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Process With Process Steps");
+    caseDetailsPage.waitForCaseDetailsDisplay();
+    
+    ScreenshotUtil.executeDecorateJs("highlightProcessOverviewLink()");
+    ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.PROCESSES_INFORMATION_WIDGET_FOLDER + "process-overview-link");
   }
 }
