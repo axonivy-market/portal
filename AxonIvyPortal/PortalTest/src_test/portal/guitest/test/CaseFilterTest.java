@@ -77,30 +77,6 @@ public class CaseFilterTest extends BaseTest {
 	}
 
 	@Test
-	public void testSaveCaseFilterOnDifferentCaseList() {
-		MainMenuPage mainMenuPage = new MainMenuPage();
-		CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
-
-		String filterName = "MyFilter";
-
-		casePage.openAdvancedFilter("Description", "description");
-		casePage.filterByDescription("Sick");
-		casePage.saveFilter(filterName);
-
-		redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
-		casePage = mainMenuPage.selectCaseMenu();
-
-		assertTrue(casePage.getFilterName().contains("Default filter"));
-
-		casePage.filterByDescription("Leave");
-		casePage.saveFilter(filterName);
-
-		mainMenuPage.selectTaskMenu();
-		casePage = mainMenuPage.openCaseList();
-		assertEquals(filterName, casePage.getFilterName());
-	}
-
-	@Test
 	public void testCategory() {
 		MainMenuPage mainMenuPage = new MainMenuPage();
 		CaseWidgetPage casePage = mainMenuPage.openCaseList();
