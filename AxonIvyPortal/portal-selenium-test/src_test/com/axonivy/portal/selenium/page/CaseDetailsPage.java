@@ -190,31 +190,34 @@ public class CaseDetailsPage extends TemplatePage {
     var result = $("div[id$=':case-histories:add-note-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     waitForAjaxIndicatorDisappeared();
     result.$(".ui-dialog-title").shouldBe(appear, DEFAULT_TIMEOUT).click();
-    return result.$(".ui-dialog-content");
+    return result.shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void onClickHistoryIcon() {
     $("a[id$=':case-histories:add-note-command']").shouldBe(getClickableCondition()).click();
   }
 
+  public void openAddAttachmentDialog() {
+    $("a[id$='add-document-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    getAddAttachmentDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("[id$=':document:document-upload-form:document-upload-panel_label']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
   public SelenideElement getAddAttachmentDialog() {
-    $("a[id$='add-document-command']").shouldBe(getClickableCondition()).click();
-    $(By.cssSelector("span[id$='document-upload-dialog_title']")).shouldBe(Condition.visible, DEFAULT_TIMEOUT);
-//    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ui-dialog.case-upload-dialog", CLASS_PROPERTY);
-    $("[id$='document-upload-close-command']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
-    waitUntilElementToBeClickable($("[id$='document-upload-close-command']"));
-    return $("[id$='document:document-upload-dialog']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    return $("[id$='document:document-upload-dialog']");
   }
 
   public void uploadDocumentWithoutError(String pathToFile) {
     Sleeper.sleep(2000);//slow down a bit for FF
     openAddDocumentDialogAndUploadDocument(pathToFile);
     $(By.cssSelector("span[class$='ui-messages-info-summary']")).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public void closeUploadDocumentDialog() {
     $(By.cssSelector("button[id$='document:document-upload-close-command']")).shouldBe(getClickableCondition()).click();
   }
   
   private void openAddDocumentDialogAndUploadDocument(String pathToFile) {
-//    getAddAttachmentDialog();
     $("input[id$='document-upload-panel_input']").sendKeys(pathToFile);
     // currently haven't found solution to check when the file upload finish, we have to wait
     Sleeper.sleep(2000);
