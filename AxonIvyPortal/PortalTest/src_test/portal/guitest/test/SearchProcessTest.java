@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.SearchResultPage;
@@ -39,7 +40,7 @@ public class SearchProcessTest extends BaseTest {
     searchResultPage.startProcess(processName);
     newDashboardPage2 = new NewDashboardPage2();
     redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
     WaitHelper.assertTrueWithRefreshPage(taskWidgetPage,
         () -> taskWidgetPage.getNameOfTaskInCompactListAt(0).contains("Payment"));
   }

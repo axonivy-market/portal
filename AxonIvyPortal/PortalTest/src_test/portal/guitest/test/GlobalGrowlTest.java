@@ -9,12 +9,13 @@ import org.junit.Test;
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.DateTimePattern;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.ExpressFormDefinitionPage;
 import portal.guitest.page.ExpressProcessPage;
-import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.SearchResultPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
@@ -36,8 +37,8 @@ public class GlobalGrowlTest extends BaseTest {
   
   @Test
   public void testDisplayCustomGrowlAfterFinishTask() {
-    redirectToRelativeLink(CUSTOM_GROWL_URL);
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    redirectToRelativeLink(CUSTOM_GROWL_URL); // TODO z1 check
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     NewDashboardPage2 newDashboardPage2 = taskTemplatePage.clickSubmitButton();
     assertGrowlMessage(newDashboardPage2, CUSTOM_FINISH_MESSAGE);
@@ -46,7 +47,7 @@ public class GlobalGrowlTest extends BaseTest {
   @Test
   public void testDisplayDefaultGrowlAfterFinishTask() {
     redirectToRelativeLink(createTestingTasksUrl);
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     taskTemplatePage.inputFields("Employee", today, today, "Representation");
@@ -67,7 +68,7 @@ public class GlobalGrowlTest extends BaseTest {
   @Test
   public void testDisplayDefaultGrowlAfterCancelTask() {
     redirectToRelativeLink(createTestingTasksUrl);
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     NewDashboardPage2 newDashboardPage2 = taskTemplatePage.clickCancelAndLeftButton();
     assertGrowlMessage(newDashboardPage2, CANCEL_MESSAGE_WITH_DETAILS); 
@@ -76,7 +77,7 @@ public class GlobalGrowlTest extends BaseTest {
   @Test
   public void testDisplayCustomGrowlAfterCancelTask() {
     redirectToRelativeLink(CUSTOM_GROWL_URL);
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     NewDashboardPage2 newDashboardPage2 = taskTemplatePage.clickCancelAndLeftButton();
     assertGrowlMessage(newDashboardPage2, CUSTOM_CANCEL_MESSAGE);

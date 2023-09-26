@@ -9,10 +9,11 @@ import org.junit.Test;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
-import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.NoteHistoryPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
@@ -57,7 +58,7 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
   @Test
   public void testShowCaseNoteHistoryInTask() {
     grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.openCaseInfo();
     taskTemplatePage.addNewNote(NOTE_CONTENT);

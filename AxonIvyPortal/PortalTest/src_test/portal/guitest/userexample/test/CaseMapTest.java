@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.TaskWidgetPage;
@@ -118,7 +119,7 @@ public class CaseMapTest extends BaseTest {
   }
 
   private void startTaskByTaskName(String taskname) {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
     taskWidgetPage.filterTasksBy(taskname);
     taskWidgetPage.startTask(0);
   }

@@ -47,16 +47,6 @@ public class TaskWidgetPage extends TemplatePage {
     return "//*[contains(@id,'task-widget:task-view')]";
   }
 
-  @SuppressWarnings("deprecation")
-  public void expand() {
-    waitForElementDisplayed(By.cssSelector("a[id$=':task-list-link:task-list-link']"), true);
-    WebElement fullModeButton = findElementById(taskWidgetId + ":task-list-link:task-list-link");
-    click(fullModeButton);
-    WaitHelper.assertTrueWithWait(() -> isElementDisplayed(By.cssSelector("li.topbar-item.breadcrumb-container")));
-    WaitHelper.assertTrueWithWait(() -> isElementDisplayed(By.cssSelector("[id$=':filter-save-action']")));
-    waitForLocatorDisplayed("id('" + taskWidgetId + ":filter-save-action')");
-  }
-
   public TaskDetailsPage openTaskDetails(int index) {
     waitForElementDisplayed(By.cssSelector("div.js-task-start-list"), true);
     return clickOnTaskEntryInFullMode(index);

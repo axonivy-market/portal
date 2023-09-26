@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
@@ -186,7 +187,7 @@ public class ChatTest extends BaseTest {
     redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
     ChatPage chatPage = new NewDashboardPage2().getChat();
     // Create chat group via task
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.clickTaskActionMenu();
     taskTemplatePage.clickChatGroup();
@@ -200,7 +201,7 @@ public class ChatTest extends BaseTest {
   private void joinChatGroupWhichAlreadyHadChatGroup(TestAccount userJoined) {
     login(userJoined);
     redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.clickTaskActionMenu();
     taskTemplatePage.clickChatGroup();
