@@ -292,18 +292,6 @@ public class TaskWidgetPage extends TemplatePage {
     }
   }
 
-  public boolean isTaskListColumnExist(String columnHeaderText) {
-    String taskListHeaderSelector = taskWidgetId + ":task-widget-sort-menu";
-    waitForElementDisplayed(By.id(taskListHeaderSelector), true);
-    WebElement taskListHeader = findElementById(taskListHeaderSelector);
-    for (WebElement column : taskListHeader.findElements(By.tagName("a"))) {
-      if (columnHeaderText.equals(column.getText())) {
-        return true;
-      }
-    }
-    return false;
-  }
-
   public void sortTaskListByColumn(String columnHeaderText, int rowIndex, String columnId, String expectedValue) {
     WebElement taskListHeader = findElementById(taskWidgetId + ":task-widget-sort-menu");
     for (WebElement column : taskListHeader.findElements(By.tagName("a"))) {
@@ -313,10 +301,6 @@ public class TaskWidgetPage extends TemplatePage {
       }
     }
     WaitHelper.assertTrueWithWait(() -> getTaskListCustomCellValue(rowIndex, columnId).equals(expectedValue));
-  }
-
-  public void WaitUntilSortDownIconDiplayed() {
-    waitForElementDisplayed(By.cssSelector("i.sort-icon.fa.fa-angle-up"), true);
   }
 
   public String getTaskListCustomCellValue(int index, String columnId) {
