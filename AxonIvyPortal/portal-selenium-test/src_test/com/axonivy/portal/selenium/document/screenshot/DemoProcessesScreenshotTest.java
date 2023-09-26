@@ -52,20 +52,17 @@ public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
   @Test
   public void screenshotUserExampleOverview() throws IOException{
     mainMenuPage.closeMainMenu();
-    
     ScreenshotUtil.resizeBrowser(new Dimension(1600, 1300));
     redirectToRelativeLinkWithEmbedInFrame(startUserExampleProcess);
     ExampleOverviewPage exampleOverviewPage = new ExampleOverviewPage();
     exampleOverviewPage.switchToIFrameOfTask();
     exampleOverviewPage.waitForIFrameContentVisible();
-    exampleOverviewPage.switchBackToParent();
     ScreenshotUtil.executeDecorateJs("highlightUserExampleCard(0)");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DEMO_FOLDER + "example-overview-leave-request");
     refreshPage();
     exampleOverviewPage = new ExampleOverviewPage();
     exampleOverviewPage.switchToIFrameOfTask();
     exampleOverviewPage.waitForIFrameContentVisible();
-    exampleOverviewPage.switchBackToParent();
     ScreenshotUtil.executeDecorateJs("highlightUserExampleCard(1)");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DEMO_FOLDER + "example-overview-lending-case");
   }
