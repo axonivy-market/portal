@@ -11,9 +11,9 @@ import org.junit.Test;
 
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.page.DefaultExpresTaskPage;
 import portal.guitest.page.ExpressProcessPage;
-import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.WorkingTaskDialogPage;
@@ -39,8 +39,8 @@ public class AdhocExpressTest extends BaseTest {
     String defaultTaskComment2 = "it's okay";
     
     //check if task Maternity exists
-    taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy(taskNamePrefix, 1);
+    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage.filterTasksInExpandedModeBy(taskNamePrefix, 1);
     assertEquals(1, taskWidgetPage.countTasks());
     String taskId = taskWidgetPage.getTaskId();
     taskTemplatePage = taskWidgetPage.startTask(0);
@@ -68,8 +68,8 @@ public class AdhocExpressTest extends BaseTest {
     defaultExpressTaskPage.finishDefaultTask();
     
     //approval task of adhoc
-    new NewDashboardPage2().isDisplayed();
-    taskWidgetPage.filterTasksBy(defaultTaskName2, 1);
+    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage.filterTasksInExpandedModeBy(defaultTaskName2, 1);
     assertEquals(1, taskWidgetPage.countTasks());
     taskWidgetPage.startTask(0);
     defaultExpressTaskPage = new DefaultExpresTaskPage();
@@ -77,8 +77,8 @@ public class AdhocExpressTest extends BaseTest {
     defaultExpressTaskPage.finishDefaultTask();
     
     //check if task Maternity task
-    new NewDashboardPage2().isDisplayed();
-    taskWidgetPage.filterTasksBy(taskNamePrefix, 1);
+    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage.filterTasksInExpandedModeBy(taskNamePrefix, 1);
     assertEquals(1, taskWidgetPage.countTasks());
     taskWidgetPage.startTask(0);
     
@@ -99,6 +99,7 @@ public class AdhocExpressTest extends BaseTest {
     taskTemplatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
     dialogPage.leaveTask();
+    taskWidgetPage = NavigationHelper.navigateToTasList();
     taskWidgetPage.startTask(0);
     assertEquals(false, taskTemplatePage.isAdhocHistoryDialogExist());
     

@@ -24,6 +24,7 @@ import portal.guitest.page.ExpressProcessPage;
 import portal.guitest.page.ExpressReviewPage;
 import portal.guitest.page.ExpressTaskPage;
 import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.SearchResultPage;
@@ -179,15 +180,15 @@ public class PortalExpressTest extends BaseTest {
 		defaultExpresTaskPage.enterTextToDefaultTask("Test input");
 		defaultExpresTaskPage.finishDefaultTask();
 
-		taskWidgetPage = new TaskWidgetPage();
-		taskWidgetPage.filterTasksBy("Next Default Task");
+    taskWidgetPage = new NewDashboardPage().openTaskList();
+    taskWidgetPage.filterTasksInExpandedModeBy("Next Default Task");
 		taskWidgetPage.startTask(0);
 		defaultExpresTaskPage = new DefaultExpresTaskPage();
 		defaultExpresTaskPage.enterTextToDefaultTask("Comment");
 		defaultExpresTaskPage.finishDefaultTask();
 
-		taskWidgetPage = new TaskWidgetPage();
-		taskWidgetPage.filterTasksBy("Test create default process: Final Review");
+    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.filterTasksInExpandedModeBy("Test create default process: Final Review");
 		taskWidgetPage.startTask(0);
 		
 		ExpressReviewPage reviewPage = new ExpressReviewPage();
@@ -441,8 +442,8 @@ public class PortalExpressTest extends BaseTest {
 	}
 
 	protected String executeReview(String taskName) {
-		taskWidgetPage = new TaskWidgetPage();
-		taskWidgetPage.filterTasksBy(taskName);
+    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage.filterTasksInExpandedModeBy(taskName);
 		taskWidgetPage.startTask(0);
 		ExpressReviewPage reviewPage = new ExpressReviewPage();
 		String approvalResult = reviewPage.getApprovalResult();
@@ -468,9 +469,9 @@ public class PortalExpressTest extends BaseTest {
 	}
 
 	protected void executeApproval(String comment) {
-		taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage = NavigationHelper.navigateToTasList();
 		if (taskWidgetPage.countTasks() == 0) {
-		  taskWidgetPage.filterTasksBy("Task");
+      taskWidgetPage.filterTasksInExpandedModeBy("Task");
 		}
 		taskWidgetPage.startTask(0);
 		ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();

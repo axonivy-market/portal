@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.DateTimePattern;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseDetailsPage;
@@ -55,7 +56,7 @@ public class LeaveRequestTest extends BaseTest {
     leaveRequestPage.clickSubmitButton();
     leaveRequestPage.clickOnLogout();
     login(TestAccount.ADMIN_USER);
-    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage = NavigationHelper.navigateToTasList();
     taskWidgetPage.startTask(0);
     taskWidgetPage.switchToIFrameOfTask();
     WaitHelper.assertTrueWithWait(() -> "Approval".equals(leaveRequestPage.getPageTitle()));
@@ -63,8 +64,8 @@ public class LeaveRequestTest extends BaseTest {
     leaveRequestPage.clickApproveBtn();
     leaveRequestPage.clickOnLogout();
     login(TestAccount.DEMO_USER);
-    taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy("Your leave request is approved");
+    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage.filterTasksInExpandedModeBy("Your leave request is approved");
     taskWidgetPage.startTask(0);
     taskWidgetPage.switchToIFrameOfTask();
     WaitHelper.assertTrueWithWait(() -> "Approval Result".equals(leaveRequestPage.getPageTitle()));
@@ -83,7 +84,7 @@ public class LeaveRequestTest extends BaseTest {
     leaveRequestPage.clickSubmitButton();
     leaveRequestPage.clickOnLogout();
     login(TestAccount.ADMIN_USER);
-    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage = NavigationHelper.navigateToTasList();
     taskWidgetPage.startTask(0);
     taskWidgetPage.switchToIFrameOfTask();
     WaitHelper.assertTrueWithWait(() -> "Approval".equals(leaveRequestPage.getPageTitle()));
@@ -91,8 +92,8 @@ public class LeaveRequestTest extends BaseTest {
     leaveRequestPage.clickRejectBtn();
     leaveRequestPage.clickOnLogout();
     login(TestAccount.DEMO_USER);
-    taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy("Your leave request is rejected");
+    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage.filterTasksInExpandedModeBy("Your leave request is rejected");
     taskWidgetPage.startTask(0);
     taskWidgetPage.switchToIFrameOfTask();
     WaitHelper.assertTrueWithWait(() -> "Approval Result".equals(leaveRequestPage.getPageTitle()));

@@ -119,21 +119,6 @@ public class TaskWidgetPage extends TemplatePage {
     return taskElements.size();
   }
 
-  public void filterTasksBy(String keyword, int... expectedNumberOfTasksAfterFiltering) {
-    if (countTasks() == getExpectedNumberOfTasks(expectedNumberOfTasksAfterFiltering)) {
-      return;
-    }
-    var keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR);
-    keywordFilter.clear();
-    keywordFilter.click(); // To make Firefox more stable
-    keywordFilter.sendKeys(keyword);
-    WaitHelper.assertTrueWithWait(() -> {
-      var result = findElementByCssSelector(KEYWORD_FILTER_SELECTOR);
-      return result.getAttribute("value").equals(keyword);
-    });
-    waitForNumberOfTasks(expectedNumberOfTasksAfterFiltering);
-  }
-
   private void waitForNumberOfTasks(int... expectedNumberOfTasksAfterFiltering) {
     int expectedNumber = getExpectedNumberOfTasks(expectedNumberOfTasksAfterFiltering);
     WaitHelper.assertTrueWithWait(() -> this.countTasks() == expectedNumber);
@@ -650,10 +635,10 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public String getTaskId() {
-    String taskTitleCssSelection = "span[id$='task-start-task-id']";
+    String taskTitleCssSelection = "span[id$=':task-id']";
     String taskTitle = findElementByCssSelector(taskTitleCssSelection).getText();
-    String taskId = taskTitle.substring(taskTitle.indexOf("#") + 1, taskTitle.indexOf(")"));
-    return taskId;
+    // String taskId = taskTitle.substring(taskTitle.indexOf("#") + 1, taskTitle.indexOf(")"));
+    return taskTitle;
   }
 
   public boolean hasNoTask() {
@@ -662,18 +647,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void startTaskWithoutUI(int index) {
-    String taskId = getTaskId(index);
     waitTaskAppearThenClick(index);
-    Awaitility.await().atMost(new Duration(10, TimeUnit.SECONDS)).until(() -> {
-      try {
-        if (!findListElementsByCssSelector(".no-task-message").isEmpty()) {
-          return true;
-        }
-        return !getTaskId(index).equals(taskId);
-      } catch (Exception e) {
-        return false;
-      }
-    });
   }
 
   private String getTaskId(int taskIndex) {

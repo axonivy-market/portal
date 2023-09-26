@@ -58,8 +58,8 @@ public class CaseWidgetTest extends BaseTest {
     initNewDashboardPage2(TestAccount.ADMIN_USER);
     
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
-    taskWidgetPage.filterTasksBy("Report and hide case");
-    taskWidgetPage.startTaskWithoutUI(0);
+    taskWidgetPage.filterTasksInExpandedModeBy("Report and hide case", 2);
+    taskWidgetPage.startTaskWithoutUI(1);
     newDashboardPage2 = new NewDashboardPage2();
     
     mainMenuPage = newDashboardPage2.openMainMenu();

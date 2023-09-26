@@ -89,8 +89,8 @@ public class CaseMapTest extends BaseTest {
     Assert.assertEquals("Ok", caseMapPage.getVerifierComment());
     Assert.assertEquals("Fail", caseMapPage.getInternalCreditComment());
     caseMapPage.clickRejectButton();
-    taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy(APPROVAL_LEVEL_2, 0);
+    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage.filterTasksInExpandedModeBy(APPROVAL_LEVEL_2, 0);
     Assert.assertEquals(0, taskWidgetPage.countTasks());
   }
 
@@ -120,7 +120,7 @@ public class CaseMapTest extends BaseTest {
 
   private void startTaskByTaskName(String taskname) {
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
-    taskWidgetPage.filterTasksBy(taskname);
+    taskWidgetPage.filterTasksInExpandedModeBy(taskname);
     taskWidgetPage.startTask(0);
   }
 }
