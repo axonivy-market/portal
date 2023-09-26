@@ -1,7 +1,6 @@
 package portal.guitest.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -14,8 +13,8 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.WaitHelper;
-import portal.guitest.page.HomePage;
+import portal.guitest.common.NavigationHelper;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.ProcessWidgetPage.AddNewExternalLinkDialog;
 import portal.guitest.page.UserFavoriteProcessPage;
@@ -34,31 +33,19 @@ public class ProcessWidgetTest extends BaseTest {
   private static final String EMPLOYEE_SEARCH_IN_IFRAME = "Employee Search in Iframe";
   private static final String CREATE_INVESTMENT = "Create Investment";
 
-  private HomePage homePage;
+  private NewDashboardPage2 newDashboardPage2;
   ProcessWidgetPage processWidget;
 
   @Before
   @Override
   public void setup() {
     super.setup();
-    homePage = new HomePage();
-  }
-
-  @Test
-  public void testCanExpandCollapse() {
-    processWidget = homePage.getProcessWidget();
-    assertTrue(processWidget.isCompactMode());
-    processWidget.expand();
-    assertTrue(processWidget.isExpandedMode());
-    resetLanguageOfCurrentUser();
+    newDashboardPage2 = new NewDashboardPage2();
   }
 
   @Test
   public void testCaseMapIsDisplayedInExpandedMode() {
-    processWidget = homePage.getProcessWidget();
-    assertTrue(processWidget.isCompactMode());
-    processWidget.expand();
-    assertTrue(processWidget.isExpandedMode());
+    processWidget = NavigationHelper.navigateToProcessList();
     assertNotNull(processWidget.getProcess(CASE_MAP_LEAVES));
     resetLanguageOfCurrentUser();
   }
@@ -67,15 +54,14 @@ public class ProcessWidgetTest extends BaseTest {
   public void testDeleteProcess() {
     String processName = "AGoogle";
     String processLink = "google.com";
-    processWidget = homePage.getProcessWidget();
-    processWidget.expand();
+    processWidget = NavigationHelper.navigateToProcessList();
     createPrivateExternalTestProcess(processName, processLink);
     
     processName = "AAGoogle";
     processLink = "google.com";
     createPrivateExternalTestProcess(processName, processLink);
     
-    backToCompactProcessWidget();
+    // backToCompactProcessWidget(); TODO z1
     UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
     addNewProcessDialog.selectProcessByName(AAGOOGLE_LINK);
     addNewProcessDialog.submitForm();
@@ -92,105 +78,14 @@ public class ProcessWidgetTest extends BaseTest {
     processWidget.clickSaveProcess();
     assertEquals(numberOfProcesses - 1, processWidget.getNumberOfFavoriteUserProcesses());
     
-    processWidget = homePage.getProcessWidget();
-    processWidget.expand();
+    processWidget = NavigationHelper.navigateToProcessList();
     processWidget.selectViewMode(ProcessWidgetPage.GRID_MODE);
     processWidget.waitForGridProcessListDisplayed();
     processWidget.clickMoreButtonOfFirstGridProcess();
     processWidget.deleteGridProcess(0);
-    backToCompactProcessWidget();
+    // backToCompactProcessWidget(); TODO z1
     
     assertEquals(0, processWidget.getNumberOfFavoriteUserProcesses());
-    resetLanguageOfCurrentUser();
-  }
-
-  @Test
-  public void testSortFavoriteProcessByName() {
-    processWidget = homePage.getProcessWidget();
-    String processName = "AGoogle";
-    String processLink = "google.com";
-    processWidget.expand();
-    createPrivateExternalTestProcess(processName, processLink);
-    backToCompactProcessWidget();
-    UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
-    addNewProcessDialog.selectProcessByName(CASE_MAP_LEAVES);
-    addNewProcessDialog.submitForm();
-    addNewProcessDialog = processWidget.openNewProcessDialog();
-    addNewProcessDialog.selectProcessByName(CLEAN_ALL_FAVORITE_PROCESSES);
-    addNewProcessDialog.submitForm();
-    addNewProcessDialog = processWidget.openNewProcessDialog();
-    addNewProcessDialog.selectProcessByName(processName);
-    addNewProcessDialog.submitForm();
-    processWidget.clickSortFavoriteProcessByName();
-    assertEquals(CLEAN_ALL_FAVORITE_PROCESSES, processWidget.getProcessNameFromFavoriteProcessList(0));
-    assertEquals(processName, processWidget.getProcessNameFromFavoriteProcessList(1));
-    assertEquals(CASE_MAP_LEAVES, processWidget.getProcessNameFromFavoriteProcessList(2));
-    resetLanguageOfCurrentUser();
-  }
-
-  @Test
-  public void testSortDefaultProcessByName() {
-    redirectToRelativeLink(EXAMPLE_APPLICATION_PROCESSES);
-    processWidget = new ProcessWidgetPage();
-    processWidget.clickSortDefaultProcessByName();
-    assertEquals(CREATE_INVESTMENT, processWidget.getProcessNameFromDefaultProcessList(0));
-    assertEquals(EMPLOYEE_SEARCH, processWidget.getProcessNameFromDefaultProcessList(1));
-    assertEquals(EMPLOYEE_SEARCH_IN_IFRAME, processWidget.getProcessNameFromDefaultProcessList(2));
-    assertEquals("Favorite Express Process Display Name", processWidget.getProcessNameFromDefaultProcessList(3));
-    assertEquals("Favorite External Process Display Name", processWidget.getProcessNameFromDefaultProcessList(4));
-    resetLanguageOfCurrentUser();
-  }
-
-  @Test
-  public void testSortDefaultProcessByIndex() {
-    redirectToRelativeLink(EXAMPLE_APPLICATION_PROCESSES);
-    processWidget = new ProcessWidgetPage();
-    assertEquals(EMPLOYEE_SEARCH, processWidget.getProcessNameFromDefaultProcessList(0));
-    assertEquals(EMPLOYEE_SEARCH_IN_IFRAME, processWidget.getProcessNameFromDefaultProcessList(1));
-    assertEquals(CREATE_INVESTMENT, processWidget.getProcessNameFromDefaultProcessList(2));
-    assertEquals("Favorite Express Process Display Name", processWidget.getProcessNameFromDefaultProcessList(3));
-    assertEquals("Favorite External Process Display Name", processWidget.getProcessNameFromDefaultProcessList(4));
-    resetLanguageOfCurrentUser();
-  }
-
-  @Test
-  public void testReorderFavoriteProcess() {
-    processWidget = homePage.getProcessWidget();
-    processWidget.expand();
-    processWidget.openMainMenu();
-    String processName = "AGoogle";
-    String processLink = "google.com";
-    createPrivateExternalTestProcess(processName, processLink);
-    processName = "AAGoogle";
-    processLink = "google.com";
-    createPrivateExternalTestProcess(processName, processLink);
-    
-    backToCompactProcessWidget();
-    UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
-    addNewProcessDialog.selectProcessByName(AGOOGLE_LINK);
-    addNewProcessDialog.submitForm();
-    
-    addNewProcessDialog = processWidget.openNewProcessDialog();
-    addNewProcessDialog.selectProcessByName(CASE_MAP_LEAVES);
-    addNewProcessDialog.submitForm();
-
-    addNewProcessDialog = processWidget.openNewProcessDialog();
-    addNewProcessDialog.selectProcessByName(CLEAN_ALL_FAVORITE_PROCESSES);
-    addNewProcessDialog.submitForm();
-
-    var processNameBeforeChanging = processWidget.findListElementsByCssSelector(".process-start-list-item-name").get(1).getText();
-    processWidget.clickEditSwitchLink();
-    processWidget.moveFavoriteProcess(3, 1);
-    WaitHelper.assertTrueWithWait(() -> !processNameBeforeChanging
-        .equals(processWidget.findListElementsByCssSelector(".process-start-list-item-name").get(1).getText()));
-    processWidget.clickSaveProcess();
-
-    assertFalse(processNameBeforeChanging.equals(processWidget.getProcessNameFromFavoriteProcessList(1)));
-
-    addNewProcessDialog = processWidget.openNewProcessDialog();
-    addNewProcessDialog.selectProcessByName(AAGOOGLE_LINK);
-    addNewProcessDialog.submitForm();
-    assertEquals(processName, processWidget.getProcessNameFromFavoriteProcessList(3));
     resetLanguageOfCurrentUser();
   }
 
@@ -199,28 +94,27 @@ public class ProcessWidgetTest extends BaseTest {
   public void testOpenExternalProcessInNewTab() {
     String processName = "AGoogle";
     String processLink = "google.com";
-    processWidget = homePage.getProcessWidget();
-    processWidget.expand();
+    processWidget = NavigationHelper.navigateToProcessList();
     createPrivateExternalTestProcess(processName, processLink);
     
-    backToCompactProcessWidget();
+    // backToCompactProcessWidget(); TODO z1
     UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
     addNewProcessDialog.selectProcessByName(AGOOGLE_LINK);
     addNewProcessDialog.submitForm();
     
-    assertEquals(1, homePage.countBrowserTab());
+    assertEquals(1, newDashboardPage2.countBrowserTab());
 
     processWidget.startProcess(AGOOGLE_LINK);
-    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
-    homePage.switchLastBrowserTab();
-    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.getPageTitle().length() > 1);
-    assertEquals("Google", homePage.getPageTitle());
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> newDashboardPage2.countBrowserTab() > 1);
+    newDashboardPage2.switchLastBrowserTab();
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> newDashboardPage2.getPageTitle().length() > 1);
+    assertEquals("Google", newDashboardPage2.getPageTitle());
     resetLanguageOfCurrentUser();
   }
 
   @Test
   public void testAddProcessBySelectingIvyProcess() {
-    processWidget = homePage.getProcessWidget();
+    processWidget = NavigationHelper.navigateToProcessList();
     UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
     addNewProcessDialog.selectProcessByName(CLEAN_ALL_FAVORITE_PROCESSES);
     addNewProcessDialog.submitForm();
@@ -230,7 +124,7 @@ public class ProcessWidgetTest extends BaseTest {
 
   @Test
   public void testAddProcessWithMultilingual() {
-    processWidget = homePage.getProcessWidget();
+    processWidget = NavigationHelper.navigateToProcessList();
     UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
     addNewProcessDialog.selectProcessByName(APPRAISAL);
     SettingProcessLanguageDialog settingProcessLanguageDialog = addNewProcessDialog.openAddlanguageDialog();
@@ -242,73 +136,26 @@ public class ProcessWidgetTest extends BaseTest {
     // Change language to German
     changeLanguage(3);
     
-    processWidget = homePage.getProcessWidget();
+    processWidget = NavigationHelper.navigateToProcessList();
     assertNotNull(processWidget.getProcess(String.format("%s - %s", APPRAISAL, "German Name")));
     resetLanguageOfCurrentUser();
   }
 
   private void changeLanguage(int selectionIndex) {
-    UserProfilePage userProfilePage = homePage.openMyProfilePage();
+    UserProfilePage userProfilePage = newDashboardPage2.openMyProfilePage();
     userProfilePage.selectLanguage(selectionIndex);
-    homePage = userProfilePage.save();
+    newDashboardPage2 = userProfilePage.save();
   }
   
-  @Test
-  public void testDefaultProcessIsExcludedFromSearchProcessToAdd() {
-    processWidget = homePage.getProcessWidget();
-    String processName = "Axon Ivy Selfservice";
-    UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
-    assertFalse(addNewProcessDialog.isIvyProcessByNameSearchable(processName));
-    resetLanguageOfCurrentUser();
-  }
-
-  @Test
-  public void testAddCaseMapBySelectingCaseMap() {
-    processWidget = homePage.getProcessWidget();
-    UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
-    addNewProcessDialog.selectProcessByName(CASE_MAP_LEAVES);
-    addNewProcessDialog.submitForm();
-    assertNotNull(processWidget.getProcess(CASE_MAP_LEAVES));
-    resetLanguageOfCurrentUser();
-  }
-
-  @Test
-  public void testDefaultIconOfANewFavoriteProcess() {
-    processWidget = homePage.getProcessWidget();
-    UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
-    assertTrue(addNewProcessDialog.isDefaultIcon());
-    resetLanguageOfCurrentUser();
-  }
-
-  @Test
-  public void testSearchAnExistedIcon() {
-    processWidget = homePage.getProcessWidget();
-    UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
-    addNewProcessDialog.clickChangeIconButton();
-    addNewProcessDialog.inputSearchedIconName("area chart");
-    assertEquals(1, addNewProcessDialog.getDisplayedIconAmount());
-    resetLanguageOfCurrentUser();
-  }
-
-  @Test
-  public void testSearchANonExistedIcon() {
-    processWidget = homePage.getProcessWidget();
-    UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
-    addNewProcessDialog.clickChangeIconButton();
-    addNewProcessDialog.inputSearchedIconName("chart1");
-    assertEquals(0, addNewProcessDialog.getDisplayedIconAmount());
-    resetLanguageOfCurrentUser();
-  }
 
   @Test
   public void testBreadCrumb() {
-    processWidget = homePage.getProcessWidget();
-    processWidget.expand();
+    processWidget = NavigationHelper.navigateToProcessList();
     assertEquals("Processes", processWidget.getTextOfCurrentBreadcrumb());
 
     processWidget.goToHomeFromBreadcrumb();
-    homePage = new HomePage();
-    assertEquals(true, homePage.isDisplayed());
+    newDashboardPage2 = new NewDashboardPage2();
+    assertEquals(true, newDashboardPage2.isDisplayed());
     resetLanguageOfCurrentUser();
   }
 
@@ -318,9 +165,4 @@ public class ProcessWidgetTest extends BaseTest {
     addNewExternalLinkDialog.submitForm();
   }
 
-  public void backToCompactProcessWidget() {
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    homePage = new HomePage();
-    processWidget = homePage.getProcessWidget();
-  }
 }

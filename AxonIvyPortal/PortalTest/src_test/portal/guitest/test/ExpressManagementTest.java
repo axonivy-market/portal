@@ -17,6 +17,7 @@ import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.FileHelper;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.CaseDetailsPage;
@@ -26,7 +27,7 @@ import portal.guitest.page.ExpressBusinessViewPage;
 import portal.guitest.page.ExpressManagementPage;
 import portal.guitest.page.ExpressReviewPage;
 import portal.guitest.page.ExpressTaskPage;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.UserTaskWithMailFormPage;
@@ -41,7 +42,7 @@ public class ExpressManagementTest extends BaseTest {
   public static final String SECOND_COMMENT = "I totally agree";
 
   
-  private HomePage homePage;
+  private NewDashboardPage2 newDashboardPage2;
   private ProcessWidgetPage processWidget;
   private TaskWidgetPage taskWidgetPage;
 
@@ -50,7 +51,7 @@ public class ExpressManagementTest extends BaseTest {
   public void setup() {
     super.setup();
     login(TestAccount.ADMIN_USER);
-    this.homePage = new HomePage();
+    this.newDashboardPage2 = new NewDashboardPage2();
   }
 
   @Test
@@ -63,7 +64,7 @@ public class ExpressManagementTest extends BaseTest {
   
   @Test
   public void testImportExpressProcess() {
-    AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
+    AdminSettingsPage adminSettingsPage = newDashboardPage2.openAdminSettings();
     ExpressManagementPage expressManagementPage = uploadExpressJsonFile("express-test.json");
     expressManagementPage.deployExpressFile();
     adminSettingsPage.closeConfirmationDialog();
@@ -77,12 +78,12 @@ public class ExpressManagementTest extends BaseTest {
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.openCaseInfo();
     expressTaskPage.clickOnAdditionalBusinessDetailLink();
-    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
-    homePage.switchLastBrowserTab();
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> newDashboardPage2.countBrowserTab() > 1);
+    newDashboardPage2.switchLastBrowserTab();
     ExpressBusinessViewPage expressBusiness = new ExpressBusinessViewPage();
     assertTrue(StringUtils.contains(expressBusiness.getTextOfCurrentBreadcrumb(), "Business Details of Case #"));
     assertTrue(StringUtils.contains("There is no completed Express Task yet", expressBusiness.getEmptyFinishedTaskMessage()));
-    homePage = expressBusiness.clickOnCloseButton();
+    newDashboardPage2 = expressBusiness.clickOnCloseButton();
   }
 
   public void prepareExpressWorkflowStep() {
@@ -131,14 +132,14 @@ public class ExpressManagementTest extends BaseTest {
   }
 
   public void openAdditionalBusinessPage(String caseName) {
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    homePage = new HomePage();
-    CaseWidgetPage caseWidgetPage = homePage.openCaseList();
+    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
+    newDashboardPage2 = new NewDashboardPage2();
+    CaseWidgetPage caseWidgetPage = newDashboardPage2.openCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openCaseDetailsFromActionMenuByCaseName(caseName);
     caseDetailsPage.openActionMenu();
     caseDetailsPage.openAdditionalCaseDetailsPage();
-    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
-    homePage.switchLastBrowserTab();
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> newDashboardPage2.countBrowserTab() > 1);
+    newDashboardPage2.switchLastBrowserTab();
   }
 
   public void completeExpressWorkflowTasks(String firstComment, String secondComment) {
@@ -156,9 +157,8 @@ public class ExpressManagementTest extends BaseTest {
   }
 
   private void gotoTaskList() {
-    homePage = new HomePage();
-    taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
+    newDashboardPage2 = new NewDashboardPage2();
+    NavigationHelper.navigateToTasList();
   }
 
   private void executeFinalReviewTask() {
@@ -166,7 +166,7 @@ public class ExpressManagementTest extends BaseTest {
     taskWidgetPage.clickOnStartTaskLink(0);
     ExpressReviewPage expressReview = new ExpressReviewPage();
     expressReview.finish();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
   }
 
   private void executeApprovalTask(String comment) {
@@ -212,7 +212,7 @@ public class ExpressManagementTest extends BaseTest {
   }
 
   private ExpressManagementPage uploadExpressJsonFile(String fileName) {
-    AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
+    AdminSettingsPage adminSettingsPage = newDashboardPage2.openAdminSettings();
     ExpressManagementPage expressManagementPage = adminSettingsPage.openExpressManagementTab();
     expressManagementPage.openImportDialog();
     expressManagementPage.selectJSONFile(FileHelper.getAbsolutePathToTestFile(fileName));
@@ -220,9 +220,8 @@ public class ExpressManagementTest extends BaseTest {
   }
   
   private void startExpressHelperProcess(String processName) {
-    homePage = new HomePage();
-    processWidget = homePage.getProcessWidget();
-    processWidget.expand();
+    newDashboardPage2 = new NewDashboardPage2();
+    processWidget = NavigationHelper.navigateToProcessList();
     assertTrue(processWidget.isExpandedMode());
     processWidget.enterSearchKeyword(processName);
     Awaitility.await().atMost(new Duration(10, TimeUnit.SECONDS)).until(() -> processWidget.isProcessDisplay(processName));
@@ -232,7 +231,7 @@ public class ExpressManagementTest extends BaseTest {
   private void executeUserTask() {
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.finish();
-    HomePage home = new HomePage();
+    NewDashboardPage2 home = new NewDashboardPage2();
     home.waitForPageLoaded();
   }
 }

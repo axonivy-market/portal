@@ -11,7 +11,7 @@ import org.junit.Test;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.Variable;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.UserProfilePage;
 
@@ -98,7 +98,7 @@ public class TaskDescriptionChangeTest extends BaseTest {
     UserProfilePage userProfilePage = taskWidgetPage.openMyProfilePage();
     userProfilePage.selectLanguage(index);
     userProfilePage.save();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
   }

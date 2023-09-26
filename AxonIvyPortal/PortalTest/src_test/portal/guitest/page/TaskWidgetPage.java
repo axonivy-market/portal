@@ -359,7 +359,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   /**
-   * Get name from task item in task scroller at specific index in compact list (homepage)
+   * Get name from task item in task scroller at specific index in compact list (newdashboardpage2)
    * 
    * @param index
    * @return task name

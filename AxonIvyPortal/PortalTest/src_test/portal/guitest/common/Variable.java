@@ -43,7 +43,7 @@ public enum Variable {
   LOGGED_IN_USER_FORMAT("Portal.LoggedInUserFormat"),
   SHOW_GLOBAL_SEARCH("Portal.ShowGlobalSearch"),
   SHOW_BUTTON_ICON("Portal.ShowButtonIcon"),
-  DEFAULT_HOMEPAGE("Portal.Homepage"),
+  DEFAULT_NEWDASHBOARDPAGE2("Portal.NewDashboardPage2"),
   DISPLAY_USERS_OF_TASK_ACTIVATOR("Portal.DisplayUsersOfRole"),
   ANNOUNCEMENT("Portal.Announcement"),
   TASK_ANALYSIS_FILTER("Portal.TaskAnalysisFilters"),

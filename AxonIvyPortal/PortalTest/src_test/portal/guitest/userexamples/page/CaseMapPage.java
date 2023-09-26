@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 
@@ -105,28 +105,28 @@ public class CaseMapPage extends TaskTemplatePage {
   }
   
   @Override
-  public HomePage clickSubmitButton() {
+  public NewDashboardPage2 clickSubmitButton() {
     clickByCssSelector("button[id$='submit-button']");
     switchToDefaultContent();
-    return new HomePage();
+    return new NewDashboardPage2();
   }
   
-  public HomePage clickSubmitRequestButton() {
+  public NewDashboardPage2 clickSubmitRequestButton() {
     clickByCssSelector("button[id$='submit-request']");
     switchToDefaultContent();
-    return new HomePage();
+    return new NewDashboardPage2();
   }
 
-  public HomePage clickApproveButton() {
+  public NewDashboardPage2 clickApproveButton() {
     clickByCssSelector("button[id$='form:approval-button']");
     switchToDefaultContent();
-    return new HomePage();
+    return new NewDashboardPage2();
   }
   
-  public HomePage clickRejectButton() {
+  public NewDashboardPage2 clickRejectButton() {
     clickByCssSelector("button[id$='form:rejected-button']");
     switchToDefaultContent();
-    return new HomePage();
+    return new NewDashboardPage2();
   }
   
   public UserExamplesEndPage clickSubmitContractButton() {

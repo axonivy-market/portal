@@ -15,15 +15,15 @@ import java.util.Locale;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.DateTimePattern;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.TestRole;
 import portal.guitest.common.Variable;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.UserProfilePage;
@@ -31,7 +31,7 @@ import portal.guitest.page.UserProfilePage;
 public class TaskDetailsTest extends BaseTest {
 
   private static final String COMMENT_CONTENT = "Test comment";
-  private HomePage homePage;
+  private NewDashboardPage2 newDashboardPage2;
   private TaskWidgetPage taskWidgetPage;
   private TaskDetailsPage taskDetailsPage;
 
@@ -41,15 +41,15 @@ public class TaskDetailsTest extends BaseTest {
     super.setup();
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     createTestingTasks();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    homePage = new HomePage();
+    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
+    newDashboardPage2 = new NewDashboardPage2();
   }
 
   @Test
   public void testDelegateTaskInTaskDetail() {
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    homePage = new HomePage();
+    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
+    newDashboardPage2 = new NewDashboardPage2();
     taskDetailsPage = openDetailsPageOfFirstTask();
     assertTrue(StringUtils.equalsIgnoreCase(TestRole.EVERYBODY_ROLE, taskDetailsPage.getTaskResponsible()));
     taskDetailsPage.openTaskDelegateDialog();
@@ -64,8 +64,7 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   private TaskDetailsPage openDetailsPageOfFirstTask() {
-    taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
+    taskWidgetPage = NavigationHelper.navigateToTasList();
     return taskWidgetPage.openTaskDetails(0);
   }
 
@@ -80,10 +79,10 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   private void setFormattingLanguage() {
-    HomePage homePage = new HomePage();
-    UserProfilePage userProfilePage = homePage.openMyProfilePage();
+    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+    UserProfilePage userProfilePage = newDashboardPage2.openMyProfilePage();
     userProfilePage.inputFormattingLanguage("English (United Kingdom)");
-    homePage = userProfilePage.save();
+    newDashboardPage2 = userProfilePage.save();
   }
 
   @Test
@@ -170,7 +169,7 @@ public class TaskDetailsTest extends BaseTest {
   public void testShowTaskWorkflowEvent() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTechnicalStateUrl);
-    homePage = new HomePage();
+    newDashboardPage2 = new NewDashboardPage2();
 
     taskDetailsPage = openDetailsPageOfFirstTask();
     String eventData = taskDetailsPage.openWorkflowEventDialog();
@@ -180,9 +179,8 @@ public class TaskDetailsTest extends BaseTest {
   private void openDelayTask() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTaskWithSystemState);
-    homePage = new HomePage();
-    taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
+    newDashboardPage2 = new NewDashboardPage2();
+    taskWidgetPage = NavigationHelper.navigateToTasList();
     taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Delayed"));
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
   }
@@ -195,9 +193,8 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   private void openFirstTaskInCompletedTasks() {
-    homePage = new HomePage();
-    taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
+    newDashboardPage2 = new NewDashboardPage2();
+    taskWidgetPage = NavigationHelper.navigateToTasList();
     taskWidgetPage.openAdvancedFilter("Completed on (from/to)", "completed");
     filterByDateType("completed");
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
@@ -232,9 +229,8 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   private void openFirstTaskInTaskList() {
-    homePage = new HomePage();
-    taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
+    newDashboardPage2 = new NewDashboardPage2();
+    taskWidgetPage = NavigationHelper.navigateToTasList();
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
   }
 

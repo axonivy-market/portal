@@ -22,9 +22,9 @@ public class ExpressBusinessViewPage extends TaskTemplatePage {
   }
 
   @SuppressWarnings("deprecation")
-  public HomePage clickOnCloseButton() {
+  public NewDashboardPage2 clickOnCloseButton() {
     click(findElementByCssSelector("[id$='express-view-form:cancel-btn']"));
-    return new HomePage();
+    return new NewDashboardPage2();
   }
   
   public WebElement getLegendFisnishedTaskFieldset(int index) {

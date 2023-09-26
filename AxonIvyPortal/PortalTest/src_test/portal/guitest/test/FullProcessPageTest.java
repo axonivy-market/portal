@@ -10,7 +10,7 @@ import org.junit.Test;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.TestRole;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.ProcessWidgetPage.AddNewExternalLinkDialog;
@@ -18,15 +18,15 @@ import portal.guitest.page.ProcessWidgetPage.AddNewExternalLinkDialog;
 public class FullProcessPageTest extends BaseTest{
   
   private static final String AAGOOGLE_LINK = "11AAGoogle";
-  protected HomePage homePage;
+  protected NewDashboardPage2 newDashboardPage2;
   protected ProcessWidgetPage processWidgetPage;
   
   @Override
   @Before
   public void setup() {
     super.setup();
-    homePage = new HomePage();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    newDashboardPage2 = new NewDashboardPage2();
+    MainMenuPage mainMenuPage = newDashboardPage2.openMainMenu();
     processWidgetPage = mainMenuPage.selectProcessesMenu();
   }
   
@@ -53,8 +53,8 @@ public class FullProcessPageTest extends BaseTest{
   @Test
   public void testEditDeleteProcessIcon() {
     login(TestAccount.ADMIN_USER);
-    homePage = new HomePage();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    newDashboardPage2 = new NewDashboardPage2();
+    MainMenuPage mainMenuPage = newDashboardPage2.openMainMenu();
     processWidgetPage = mainMenuPage.selectProcessesMenu();
     createPublicExternalTestProcess(AAGOOGLE_LINK, AAGOOGLE_LINK, TestRole.TESTER_ROLE);
 
@@ -77,22 +77,22 @@ public class FullProcessPageTest extends BaseTest{
     assertFalse("Current Icon is not changed", StringUtils.equals(currentIcon, newIcon));
 
     login(TestAccount.CASE_OWNER_USER);
-    homePage = new HomePage();
-    mainMenuPage = homePage.openMainMenu();
+    newDashboardPage2 = new NewDashboardPage2();
+    mainMenuPage = newDashboardPage2.openMainMenu();
     processWidgetPage = mainMenuPage.selectProcessesMenu();
     processWidgetPage.enterSearchKeyword(AAGOOGLE_LINK);
     assertTrue(processWidgetPage.isNoProcessFound());
 
     login(TestAccount.HR_ROLE_USER);
-    homePage = new HomePage();
-    mainMenuPage = homePage.openMainMenu();
+    newDashboardPage2 = new NewDashboardPage2();
+    mainMenuPage = newDashboardPage2.openMainMenu();
     processWidgetPage = mainMenuPage.selectProcessesMenu();
     processWidgetPage.enterSearchKeyword(AAGOOGLE_LINK);
     assertTrue(processWidgetPage.isProcessDisplay(AAGOOGLE_LINK));
 
     login(TestAccount.ADMIN_USER);
-    homePage = new HomePage();
-    mainMenuPage = homePage.openMainMenu();
+    newDashboardPage2 = new NewDashboardPage2();
+    mainMenuPage = newDashboardPage2.openMainMenu();
     processWidgetPage = mainMenuPage.selectProcessesMenu();
     processWidgetPage.selectViewMode(ProcessWidgetPage.GRID_MODE);
     processWidgetPage.waitForGridProcessListDisplayed();

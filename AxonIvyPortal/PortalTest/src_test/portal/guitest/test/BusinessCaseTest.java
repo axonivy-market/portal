@@ -11,7 +11,7 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.Variable;
 import portal.guitest.page.CaseWidgetPage;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.SearchResultPage;
 import portal.guitest.page.TaskWidgetPage;
@@ -32,8 +32,8 @@ public class BusinessCaseTest extends BaseTest {
   @Test
   public void testOnlyDisplayBusinessCaseOnCaseList() {
 
-    HomePage homePage = new HomePage();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+    MainMenuPage mainMenuPage = newDashboardPage2.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     assertTrue(casePage.isCaseDisplayed(BUSINESS_CASE_NAME));
     assertFalse(casePage.isCaseDisplayed(TECHNICAL_CASE_NAME));
@@ -43,8 +43,8 @@ public class BusinessCaseTest extends BaseTest {
   public void testOnlyDisplayBusinessCaseOnCaseListWithAdmin() {
     login(TestAccount.ADMIN_USER);
 
-    HomePage homePage = new HomePage();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+    MainMenuPage mainMenuPage = newDashboardPage2.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     assertTrue(casePage.isCaseDisplayed(BUSINESS_CASE_NAME));
     assertFalse(casePage.isCaseDisplayed(TECHNICAL_CASE_NAME));
@@ -52,8 +52,8 @@ public class BusinessCaseTest extends BaseTest {
   
   @Test
   public void testOnlyDisplayBusinessCaseOnGlobalSearch() {
-    HomePage homePage = new HomePage();
-    GlobalSearch globalSearch = homePage.getGlobalSearch();
+    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+    GlobalSearch globalSearch = newDashboardPage2.getGlobalSearch();
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(BUSINESS_CASE_NAME);
     searchResultPage.openCaseTab();
     assertEquals(1, searchResultPage.countCase());

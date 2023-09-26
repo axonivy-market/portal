@@ -11,7 +11,7 @@ import ch.ivy.addon.portalkit.enums.PortalPermission;
 import portal.guitest.common.BaseTest;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.NoteHistoryPage;
 import portal.guitest.page.TaskTemplatePage;
@@ -20,7 +20,7 @@ import portal.guitest.page.TaskWidgetPage;
 public class ShowCaseNoteHistoryTest extends BaseTest {
 
   private CaseDetailsPage detailsPage;
-  private HomePage homePage;
+  private NewDashboardPage2 newDashboardPage2;
   private MainMenuPage mainMenuPage;
   private NoteHistoryPage caseHistoryPage;
   private static final String NOTE_CONTENT = "test";
@@ -32,8 +32,8 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
   public void setup() {
     super.setup();
     redirectToRelativeLink(createTestingTasksUrl);
-    homePage = new HomePage();
-    mainMenuPage = homePage.openMainMenu();
+    newDashboardPage2 = new NewDashboardPage2();
+    mainMenuPage = newDashboardPage2.openMainMenu();
   }
 
   @Test

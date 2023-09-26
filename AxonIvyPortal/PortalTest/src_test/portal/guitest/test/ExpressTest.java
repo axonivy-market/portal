@@ -18,7 +18,7 @@ import portal.guitest.page.ExpressFormDefinitionPage;
 import portal.guitest.page.ExpressProcessPage;
 import portal.guitest.page.ExpressReviewPage;
 import portal.guitest.page.ExpressTaskPage;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.TaskWidgetPage;
 
 public class ExpressTest extends BaseTest{
@@ -28,14 +28,14 @@ public class ExpressTest extends BaseTest{
   private static final int INPUT_TEXT_TYPE_INDEX = 0;
   private static final int INPUT_NUMBER_TYPE_INDEX = 1;
   
-  private HomePage homePage;
+  private NewDashboardPage2 newDashboardPage2;
   private TaskWidgetPage taskWidgetPage;
   ExpressResponsible responsible1 = new ExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
   @Override
   @Before
   public void setup() {
     super.setup();
-    homePage = new HomePage();
+    newDashboardPage2 = new NewDashboardPage2();
   }
 
   @Test
@@ -60,8 +60,8 @@ public class ExpressTest extends BaseTest{
     ExpressFormDefinitionPage formDefinition = expressProcessPage.goToFormDefinition();
     assertEquals("Express Workflow", formDefinition.getTextOfCurrentBreadcrumb());
 
-    homePage = formDefinition.goToHomeFromBreadcrumbWithWarning();
-    assertEquals(true, homePage.isDisplayed());
+    newDashboardPage2 = formDefinition.goToHomeFromBreadcrumbWithWarning();
+    assertEquals(true, newDashboardPage2.isDisplayed());
   }
   
   private ExpressFormDefinitionPage configureExpressProcessWhenMultiApproval(ExpressProcessPage expressProcessPage) {
@@ -118,7 +118,7 @@ public class ExpressTest extends BaseTest{
     taskWidgetPage.startTask(0);
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.finish();
-    HomePage home = new HomePage();
+    NewDashboardPage2 home = new NewDashboardPage2();
     home.waitForPageLoaded();
   }
   
@@ -129,7 +129,7 @@ public class ExpressTest extends BaseTest{
     ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
     approvalPage1.comment(comment);
     approvalPage1.approve();
-    HomePage home = new HomePage();
+    NewDashboardPage2 home = new NewDashboardPage2();
     home.waitForPageLoaded();
   }
 

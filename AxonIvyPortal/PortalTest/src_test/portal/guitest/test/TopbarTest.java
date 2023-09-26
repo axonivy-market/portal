@@ -9,7 +9,7 @@ import static portal.guitest.common.Variable.LOGGED_IN_USER_FORMAT;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 
 public class TopbarTest extends BaseTest {
 
@@ -20,37 +20,37 @@ public class TopbarTest extends BaseTest {
   @Test
   public void testLoggedInUserWithUsernameFormat() {
     updatePortalSetting(LOGGED_IN_USER_FORMAT_SETTING, "USERNAME");
-    HomePage homePage = new HomePage();
-    assertEquals("demo", homePage.getLoggedInUserFormat());
+    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+    assertEquals("demo", newDashboardPage2.getLoggedInUserFormat());
   }
   
   @Test
   public void testLoggedInUserWithDisplayNameFormat() {
     updatePortalSetting(LOGGED_IN_USER_FORMAT_SETTING, "DISPLAY_NAME");
-    HomePage homePage = new HomePage();
-    assertEquals("Portal Demo User", homePage.getLoggedInUserFormat());
+    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+    assertEquals("Portal Demo User", newDashboardPage2.getLoggedInUserFormat());
   }
   
   @Test
   public void testLoggedInUserWithDisplayNameUsernameFormat() {
     updatePortalSetting(LOGGED_IN_USER_FORMAT_SETTING, "DISPLAY_NAME_USERNAME");
-    HomePage homePage = new HomePage();
-    assertEquals("Portal Demo User (demo)", homePage.getLoggedInUserFormat());
+    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+    assertEquals("Portal Demo User (demo)", newDashboardPage2.getLoggedInUserFormat());
   }
 
   @Test
   public void testLoggedInUserWithUsernameDisplayNameFormat() {
     updatePortalSetting(LOGGED_IN_USER_FORMAT_SETTING, "USERNAME_DISPLAY_NAME");
-    HomePage homePage = new HomePage();
-    assertEquals("demo (Portal Demo User)", homePage.getLoggedInUserFormat());
+    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+    assertEquals("demo (Portal Demo User)", newDashboardPage2.getLoggedInUserFormat());
   }
 
   @Test
   public void testThemeMode() {
     updatePortalSetting(DEFAULT_THEME_MODE_SETTING, "Dark");
     updatePortalSetting(ENABLE_SWITCH_THEME_BUTTON_SETTING, "False");
-    HomePage homePage = new HomePage();
-    assertTrue(homePage.isSwitchThemeToLightModeLinkIconDisplayed());
-    assertTrue(homePage.isSwitchThemeLinkIconDisabled());
+    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
+    assertTrue(newDashboardPage2.isSwitchThemeToLightModeLinkIconDisplayed());
+    assertTrue(newDashboardPage2.isSwitchThemeLinkIconDisabled());
   }
 }

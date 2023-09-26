@@ -19,7 +19,7 @@ import portal.guitest.common.TestAccount;
 import portal.guitest.common.Variable;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.NoteHistoryPage;
 import portal.guitest.page.TaskDetailsPage;
@@ -27,7 +27,7 @@ import portal.guitest.page.TaskDetailsPage;
 public class ShowRelatedTasksTest extends BaseTest {
   
   private CaseDetailsPage detailsPage;
-  private HomePage homePage;
+  private NewDashboardPage2 newDashboardPage2;
   NoteHistoryPage caseHistoryPage;
 
   @Override
@@ -41,8 +41,8 @@ public class ShowRelatedTasksTest extends BaseTest {
   }
   
   private void openCaseDetail() {
-    homePage = new HomePage();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    newDashboardPage2 = new NewDashboardPage2();
+    MainMenuPage mainMenuPage = newDashboardPage2.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
   }
@@ -90,8 +90,8 @@ public class ShowRelatedTasksTest extends BaseTest {
     openCaseDetail();
     detailsPage.addNote("test");
     String doneTaskName = detailsPage.openDoneTask(0);
-    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
-    homePage.switchLastBrowserTab();
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> newDashboardPage2.countBrowserTab() > 1);
+    newDashboardPage2.switchLastBrowserTab();
     int numberOfNotes;
     try {
         numberOfNotes = caseHistoryPage.countNotes();

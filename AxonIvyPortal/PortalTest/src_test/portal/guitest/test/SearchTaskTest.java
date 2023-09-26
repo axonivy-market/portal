@@ -7,25 +7,25 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.SearchResultPage;
 import portal.guitest.page.TemplatePage.GlobalSearch;
 
 public class SearchTaskTest extends BaseTest {
-  private HomePage homePage;
+  private NewDashboardPage2 newDashboardPage2;
 
   @Override
   @Before
   public void setup() {
     super.setup();
     redirectToRelativeLink(createTestingTasksUrl);
-    homePage = new HomePage();
+    newDashboardPage2 = new NewDashboardPage2();
   }
 
   @Test
   public void testFindTaskByName() {
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    GlobalSearch globalSearch = homePage.getGlobalSearch();
+    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
+    GlobalSearch globalSearch = newDashboardPage2.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
     
     String taskName = "Annual Leave Request";

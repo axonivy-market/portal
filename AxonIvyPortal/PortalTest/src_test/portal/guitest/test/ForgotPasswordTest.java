@@ -9,7 +9,7 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.SystemProperties;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.ForgotPasswordPage;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.LoginPage;
 import vn.wawa.guitest.base.client.Browser;
 
@@ -20,7 +20,7 @@ public class ForgotPasswordTest extends BaseTest {
   @Override
   public void setup() {
     setBrowser(Browser.getBrowser());
-    launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    launchBrowserAndGotoRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
     if (!SystemProperties.isInServerMode()) {
       logoutDesigner();
     }

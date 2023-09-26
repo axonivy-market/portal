@@ -109,7 +109,7 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   @SuppressWarnings("deprecation")
-  public void clickOnbackToHomepageOnAdminSetting() {
+  public void clickOnbackToNewDashboardPage2OnAdminSetting() {
     WebElement closeButton = findElementById("back-to-home-button");
     WaitHelper.waitForNavigation(this, () -> click(closeButton));
   }
@@ -121,7 +121,7 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   public void closeConfirmationDialog() {
-    clickOnbackToHomepageOnAdminSetting();
+    clickOnbackToNewDashboardPage2OnAdminSetting();
   }
 
   public void setEnviromentInfo() {
