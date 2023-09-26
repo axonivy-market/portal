@@ -289,7 +289,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showGlobalSearch: Zum Ein-/Ausschalten der Anzeige der globalen Suche.
       showProcessInformation: Auf "false" setzen, um die Verknüpfung zu Informationen des Prozesses auf der Seite Prozesse (Gittermodus) und Falldetails anzeigen zu deaktivieren.
       showTaskDurationTime: Zum Ein-/Ausschalten der Anzeige der Bearbeitungszeit auf der Aufgabendetailseite.
-      showUserGuide: 'Aktiviert die interaktive Benutzeranleitung "erste Schritte" im Portal bei erstmaliger Anmeldung. '
       statisticChartScalingInterval: Intervall in Sekunden, in dem die Skalierung des statistischen Diagramms regelmäßig angefordert wird. Ist der Intervallwert kleiner als 10, wird die periodische Skalierung des statistischen Diagramms deaktiviert.
       uploadDocumentWhiteListExtensionNote: 'Leer lassen, falls Sie alle Formate erlauben. Falls Sie nur eine geringe Anzahl an Formate erlauben möchten (White list), können Sie diese hier, mit Komma getrennt, aufführen. Z.B.: pdf, txt, doc, docx.'
     key: Schlüssel
@@ -702,27 +701,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       importHeaderTitle: 'Liste von Express Prozessen werden exportiert:'
       processCount: Prozess(e)
       waitingMessage: Daten werden gesammelt…
-    guide:
-      dontShowAgain: Nicht mehr anzeigen
-      mainMenu:
-        content: In diesem Menü können Sie zu den unterschiedlichen Bereichen Prozesse, Aufgaben, Vorgänge und Statistiken navigieren.
-        title: Hauptmenü
-      process:
-        content: In diesem Bereich können Sie Ihre eigenen Favoriten definieren und Standardprozesse der Anwendung einsehen. Klicken Sie darauf und der Prozess wird gestartet.
-        title: Prozesse
-      statistic:
-        content: "In diesem Bereich finden Sie alle verfügbaren Statistiken. Klicken Sie darauf für mehr Details. \n"
-        title: Statistiken
-      task:
-        content: In diesem Bereich finden Sie alle offenen Aufgaben. Klicken Sie darauf, um eine Aufgabe zu bearbeiten.
-        title: Aufgaben
-      username:
-        content: Mi Klick auf dem Benutzername können Sie Einstellungen wie Abwesenheiten, Sprache, Email Einstellungen, usw. vornehmen.
-        title: Benutzername
-      welcome:
-        content: 'Wir möchten Ihnen einen guten Start im Portal ermöglichen. Dazu möchten wir Sie durch die ersten Aktionen führen, die Sie durchführen können. Darüber hinaus finden Sie hier eine erweiterte Benutzerdokumentation inklusive "How-to-Guide": <a href="{0}"  target="_blank">Portal-Anleitung</a>'
-        mobileContent: 'Sie können auf dieser Seite sofort auf Ihre Aufgaben zugreifen oder mit <span class="{0}"></span> zu anderen Bereichen navigieren. Sie finden weiterführende Informationen hier: <a href="{1}"  target="_blank">PortalGuide</a>'
-        title: Willkommen im Axon Ivy Portal
     passwordValidation:
       criteria: Kriterien
       enablePasswordValidation: Kennwortüberprüfung einschalten

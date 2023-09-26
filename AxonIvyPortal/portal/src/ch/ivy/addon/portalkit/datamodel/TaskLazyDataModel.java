@@ -30,7 +30,6 @@ import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
-import ch.ivy.addon.portalkit.service.DummyTaskService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.TaskColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
@@ -99,7 +98,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   protected boolean isNotKeepFilter;
   protected boolean disableTaskCount;
   protected Boolean isSelectedDefaultFilter;
-  protected boolean isGuide = true;
   protected List<String> standardSortFields;
   protected boolean isSelectedAllFilters;
 
@@ -267,55 +265,26 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
    */
   @Override
   public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-    if (isGuide && compactMode) {
-      return createDummyDataForGuide();
-    } else {
-      if (first == 0) {
-        initializedDataModel(criteria);
-        if (!disableTaskCount) {
-          PrimeFaces.current().executeScript("updateTaskCount()");
-        }
+    if (first == 0) {
+      initializedDataModel(criteria);
+      if (!disableTaskCount) {
+        PrimeFaces.current().executeScript("updateTaskCount()");
       }
-
-      List<ITask> foundTasks = findTasks(criteria, first, pageSize);
-      if (disableTaskCount) {
-        int rowCount = 0;
-        if (foundTasks.size() >= pageSize) {
-          rowCount = first + pageSize + 1;
-        } else {
-          rowCount = first + foundTasks.size();
-        }
-        setRowCount(rowCount);
-        PrimeFaces.current().executeScript("PF('task-list-scroller').cfg.totalSize = " + rowCount);
-      }
-      data.addAll(foundTasks);
-      return foundTasks;
     }
-  }
 
-  private List<ITask> createDummyDataForGuide() {
-    data = new ArrayList<>();
-    List<ITask> tasks = DummyTaskService.dummyTasks();
-    data.addAll(tasks);
-    setRowCount(1);
-    PrimeFaces.current().executeScript("updateTaskCount()");
-    return tasks;
-  }
-
-  /**
-   * @hidden
-   * @return isGuide
-   */
-  public boolean getIsGuide() {
-    return isGuide;
-  }
-
-  /**
-   * @hidden
-   * @param isGuide
-   */
-  public void setIsGuide(boolean isGuide) {
-    this.isGuide = isGuide;
+    List<ITask> foundTasks = findTasks(criteria, first, pageSize);
+    if (disableTaskCount) {
+      int rowCount = 0;
+      if (foundTasks.size() >= pageSize) {
+        rowCount = first + pageSize + 1;
+      } else {
+        rowCount = first + foundTasks.size();
+      }
+      setRowCount(rowCount);
+      PrimeFaces.current().executeScript("PF('task-list-scroller').cfg.totalSize = " + rowCount);
+    }
+    data.addAll(foundTasks);
+    return foundTasks;
   }
 
   /**

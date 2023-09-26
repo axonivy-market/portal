@@ -1,5 +1,0 @@
-UserForGuide #class
-internaltest #namespace
-name String #field
-isGuideShown Boolean #field
-guidePropertyValue String #field

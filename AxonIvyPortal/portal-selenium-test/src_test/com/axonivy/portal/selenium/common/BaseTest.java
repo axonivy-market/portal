@@ -1,6 +1,5 @@
 package com.axonivy.portal.selenium.common;
 
-import static com.axonivy.portal.selenium.common.Variable.SHOW_USER_GUIDE;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.refresh;
 
@@ -103,7 +102,6 @@ public class BaseTest {
    */
   public void setup() {
     launchBrowserAndGotoRelativeLink(cleanupDataLink);
-    updatePortalSetting(SHOW_USER_GUIDE.getKey(), "false");
     createJSonFile("default-dashboard.json", PortalVariable.DASHBOARD.key);
   }
   

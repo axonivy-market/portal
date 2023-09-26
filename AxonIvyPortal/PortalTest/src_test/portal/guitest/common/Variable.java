@@ -16,7 +16,6 @@ public enum Variable {
   HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR("Portal.Histories.HideSystemNotesForAdministrator"),
   ENABLE_USER_FAVORITES("Portal.Dashboard.ShowUserFavorites"),
   HIDE_STATISTIC_WIDGET("Portal.Dashboard.HideStatisticWidget"),
-  SHOW_USER_GUIDE("Portal.Dashboard.ShowUserGuide"),
   ENABLE_GROUP_CHAT("Portal.Chat.EnableGroup"),
   ENABLE_PRIVATE_CHAT("Portal.Chat.EnablePrivate"),
   CHAT_RESPONSE_TIMEOUT("Portal.Chat.ResponseTimeout"),
