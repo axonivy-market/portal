@@ -104,10 +104,11 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
 
   private void gotoTaskList() {
     newDashboardPage2 = new NewDashboardPage2();
-    NavigationHelper.navigateToTasList();
+    taskWidgetPage = NavigationHelper.navigateToTasList();
   }
   
   private void assertFalseTaskActionsByTaskState(String state, List<String> taskActionInTaskDetails) {
+    taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList(state));
     List<String> actionInTaskList = taskWidgetPage.getActiveTaskAction(0);
     actionInTaskList.remove("Details");
