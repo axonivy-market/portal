@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.ExpressApprovalPage;
@@ -123,8 +124,8 @@ public class ExpressTest extends BaseTest{
   }
   
   private void executeApproval(String comment) {
-    taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy("Task", 1);
+    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage.filterTasksInExpandedModeBy("Task", 1);
     taskWidgetPage.startTask(0);
     ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
     approvalPage1.comment(comment);
