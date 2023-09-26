@@ -33,7 +33,6 @@ public enum GlobalVariable {
   HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR("Portal.Histories.HideSystemNotesForAdministrator", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideSystemNotesFromHistoryAdministrator"),
   ENABLE_USER_FAVORITES("Portal.Dashboard.ShowUserFavorites", GlobalVariableType.SELECTION, Option.TRUE.toString(), "enableUserFavorites"),
   HIDE_STATISTIC_WIDGET("Portal.Dashboard.HideStatisticWidget", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideStatisticWidget"),
-  SHOW_USER_GUIDE("Portal.Dashboard.ShowUserGuide", GlobalVariableType.SELECTION, Option.TRUE.toString(), "showUserGuide"),
   ENABLE_GROUP_CHAT("Portal.Chat.EnableGroup", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableGroupChat"),
   ENABLE_PRIVATE_CHAT("Portal.Chat.EnablePrivate", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enablePrivateChat"),
   CHAT_RESPONSE_TIMEOUT("Portal.Chat.ResponseTimeout", GlobalVariableType.NUMBER, "0", "chatResponseTimeout"),

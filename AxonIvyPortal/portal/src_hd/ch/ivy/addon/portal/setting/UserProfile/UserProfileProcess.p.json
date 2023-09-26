@@ -34,7 +34,6 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f5",
@@ -47,7 +46,6 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 320, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f9"
@@ -65,19 +63,12 @@
       "elements" : [ {
           "id" : "S70-f28",
           "type" : "Script",
-          "name" : [
-            "update show user guide",
-            "and selected homepage"
-          ],
+          "name" : "update selected homepage",
           "config" : {
             "output" : {
               "code" : [
                 "import ch.ivy.addon.portal.generic.bean.UserProfileBean;",
-                "import ch.ivy.addon.portalkit.bean.GuideBean;",
                 "import ch.ivy.addon.portalkit.jsf.ManagedBeans;",
-                "",
-                "GuideBean guideBean =  ManagedBeans.get(\"guideBean\") as GuideBean;",
-                "guideBean.setDontShowAgain(!in.showTutorial);",
                 "",
                 "UserProfileBean userProfileBean =  ManagedBeans.get(\"userProfileBean\") as UserProfileBean;",
                 "userProfileBean.saveHomepage(in.selectedHomepage.getName());"
@@ -98,7 +89,6 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f11",
@@ -111,7 +101,6 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 384, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f5"
@@ -177,7 +166,6 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 3, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f20",
@@ -190,7 +178,6 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 352, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f26"
@@ -306,7 +293,6 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f4",
@@ -319,7 +305,6 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 480, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f20"
@@ -335,44 +320,16 @@
       "type" : "EmbeddedProcess",
       "name" : "Init General Setting",
       "elements" : [ {
-          "id" : "S40-f11",
-          "type" : "Script",
-          "name" : "Init User Guide",
-          "config" : {
-            "output" : {
-              "code" : [
-                "import ch.ivy.addon.portalkit.constant.UserProperty;",
-                "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
-                "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
-                "import ch.ivy.addon.portalkit.bo.Guide;",
-                "",
-                "// Find Global setting for SHOW_USER_GUIDE",
-                "GlobalSettingService globalSettingService = new GlobalSettingService();",
-                "in.disableShowTutorial = !Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_USER_GUIDE));",
-                "",
-                "// Get isShowGuide from IUser",
-                "in.showTutorial = Boolean.valueOf(ivy.session.getSessionUser().getProperty(UserProperty.SHOW_GUIDE));"
-              ]
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 232, "y" : 160 }
-          },
-          "connect" : [
-            { "id" : "S40-f2", "to" : "S40-f4" }
-          ]
-        }, {
           "id" : "S40-g0",
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f24",
           "connect" : [
-            { "id" : "S40-f0", "to" : "S40-f11" }
+            { "id" : "S40-f0", "to" : "S40-f4" }
           ]
         }, {
           "id" : "S40-g1",
@@ -380,7 +337,6 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 584, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f4"
@@ -471,7 +427,6 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f7",
@@ -484,7 +439,6 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 480, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f13"
@@ -542,7 +496,6 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f35",
@@ -555,7 +508,6 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 480, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f36"
@@ -739,8 +691,7 @@
           "id" : "S00-g0",
           "type" : "EmbeddedStart",
           "visual" : {
-            "at" : { "x" : 0, "y" : 256 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 0, "y" : 256 }
           },
           "parentConnector" : "f9",
           "connect" : [
@@ -750,8 +701,7 @@
           "id" : "S00-g1",
           "type" : "EmbeddedEnd",
           "visual" : {
-            "at" : { "x" : 576, "y" : 256 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 576, "y" : 256 }
           },
           "parentConnector" : "f17"
         }, {

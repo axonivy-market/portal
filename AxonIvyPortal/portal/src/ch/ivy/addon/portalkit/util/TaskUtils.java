@@ -18,7 +18,6 @@ import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.publicapi.TaskAPI;
 
-import ch.ivy.addon.portalkit.constant.DummyTask;
 import ch.ivy.addon.portalkit.datamodel.internal.RelatedTaskLazyDataModel;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
@@ -268,9 +267,6 @@ public final class TaskUtils {
   public static boolean canResume(ITask task) {
     if (task == null) {
       return false;
-    }
-    if (StringUtils.equals(task.names().current(), DummyTask.TASK_NAME)) {
-      return true;
     }
     IUser sessionUser = Ivy.session().getSessionUser();
     return sessionUser != null ? task.canUserResumeTask(sessionUser.getUserToken()).wasSuccessful() : false;

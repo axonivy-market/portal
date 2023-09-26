@@ -48,7 +48,6 @@
   <h:outputScript name="responsive-toolkit.js" library="js" />
   <h:outputScript name="main.js" library="js" />
   <h:outputScript name="portal.js" library="js" />
-  <h:outputScript name="guide-panel.js" library="js" />
 
   <ui:insert name="head" />
 </h:head>
@@ -102,7 +101,6 @@
               <ui:param name="enablesChat" value="#{enablesChat}" />
               <ui:param name="viewName" value="#{viewName}" />
               <ui:param name="case" value="#{case}" />
-              <ui:param name="updatedComponentAfterGuide" value="#{updatedComponentAfterGuide}" />
             </ui:decorate>
 
             <h:panelGroup layout="block" rendered="#{!isPortalInTeams}"
@@ -149,8 +147,6 @@
         </div>
         <ic:ch.ivy.addon.portalkit.component.PageFooter />
       </div>
-      
-      <div id="guide-modal" class="guide-modal" />
     </c:otherwise>
   </c:choose>
 

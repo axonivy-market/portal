@@ -253,7 +253,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showGlobalSearch: For switch on/off the display of the global search.
       showProcessInformation: Set to false to disable link to Show Information of process on Processes page (grid mode) and Case Details.
       showTaskDurationTime: For switch on/off the display of the duration time in task details page.
-      showUserGuide: 'Activates the interactive user guide "first steps" in the portal at first login. '
       statisticChartScalingInterval: Interval in seconds to do periodic statistic chart scaling requests. If the interval value is less than 10, periodic statistic chart scaling is disabled.
       uploadDocumentWhiteListExtensionNote: 'Leave value empty if you allow all extensions. If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.'
     key: Key
@@ -620,27 +619,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       importHeaderTitle: 'List of Express processes will be exported:'
       processCount: process(es)
       waitingMessage: 'Data is collecting ... '
-    guide:
-      dontShowAgain: Don't show again
-      mainMenu:
-        content: In this menu you can navigate to the different areas processes, tasks, cases and statistics.
-        title: Main Menu
-      process:
-        content: In this area you can define your own favorites and see standard processes of the application. Just click on it and the process will start.
-        title: Processes
-      statistic:
-        content: In this area you will find all different kind of existing statistics. Click for more details.
-        title: Statistics
-      task:
-        content: In this area you will find all open tasks. Just click on it to work on a task.
-        title: Tasks
-      username:
-        content: Clicking on the user name you can define absences, language, Email settings, etc.
-        title: Username
-      welcome:
-        content: 'We want to support you having a good start with the portal. For that we want to guide you through the first actions you can do. In addition, you can find an extended user documentation including "How-to-Guide" here: <a href="{0}"  target="_blank">PortalGuide</a>'
-        mobileContent: 'You can access directly to your tasks in this page or navigate to other areas using <span class="{0}"></span>. You can find an extended user documetation here: <a href="{1}"  target="_blank">PortalGuide</a>'
-        title: Welcome to the Axon Ivy Portal
     processChain:
       currentStepIsNotDefined: Current step ({0}) of process chain is not defined
     statisticWidget:
