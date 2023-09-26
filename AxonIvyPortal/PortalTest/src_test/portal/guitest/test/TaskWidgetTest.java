@@ -51,8 +51,7 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testOpenRelatedCaseOfTask() {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.expand();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
     taskWidgetPage.openTaskDetails(0);
 
     String relatedCaseName = taskWidgetPage.getRelatedCase();
@@ -65,8 +64,7 @@ public class TaskWidgetTest extends BaseTest {
   @SuppressWarnings("deprecation")
   @Test
   public void testReserveTask() {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.expand();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
     taskWidgetPage.sideStepMenuOnActionButton(0);
     assertEquals(MATERNITY_LEAVE_REQUEST, taskWidgetPage.getNameOfTaskAt(0));
     taskWidgetPage.reserveTask(0);

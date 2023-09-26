@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.Variable;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseDetailsPage;
@@ -60,16 +61,14 @@ public class PortalPermissionTest extends BaseTest{
   public void testShowHideTaskActions() {
     denyTaskActionsPermissions();
     createTestingTasks();
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.expand();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
     Assert.assertFalse(taskWidgetPage.isTaskResetDisplayed());
     Assert.assertFalse(taskWidgetPage.isTaskDelegateDisplayed());
     Assert.assertFalse(taskWidgetPage.isTaskReserverDisplayed());
     Assert.assertFalse(taskWidgetPage.isAdhocSideStepDisplayed());
     
     grantTaskActionsPermissions();
-    taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.expand();
+    taskWidgetPage = NavigationHelper.navigateToTasList();
     taskWidgetPage.sideStepMenuOnActionButton(0);
     Assert.assertTrue(taskWidgetPage.isTaskResetDisplayed());
     Assert.assertTrue(taskWidgetPage.isTaskDelegateDisplayed());

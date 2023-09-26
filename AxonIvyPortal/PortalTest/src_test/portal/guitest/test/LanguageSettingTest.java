@@ -6,8 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.page.NewDashboardPage2;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.UserProfilePage;
 import portal.guitest.page.WorkingTaskDialogFromUserProfilePage;
@@ -23,7 +24,7 @@ public class LanguageSettingTest extends BaseTest {
 
   @Test
   public void testChangeLanguageWhenWorkingOnTask() {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
     taskWidgetPage.startTask(0);
     taskWidgetPage.clickOnMyProfile();
     WorkingTaskDialogFromUserProfilePage workingTaskDialogPage = new WorkingTaskDialogFromUserProfilePage();

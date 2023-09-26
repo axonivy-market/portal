@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.DateTimePattern;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.Variable;
 import portal.guitest.page.CaseDetailsPage;
@@ -49,8 +50,7 @@ public class BackNavigationTest extends BaseTest {
   @Test
   public void testEnterTaskDetailAndGoBack() {
     createTestingTasks();
-    taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.expand();
+    taskWidgetPage = NavigationHelper.navigateToTasList();
 
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
     assertEquals(TASK_DETAILS_TITLE, taskDetailsPage.getPageTitle());

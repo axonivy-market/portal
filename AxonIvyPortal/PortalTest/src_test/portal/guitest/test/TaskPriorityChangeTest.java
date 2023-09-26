@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.Variable;
 import portal.guitest.page.TaskDetailsPage;
@@ -28,8 +29,7 @@ public class TaskPriorityChangeTest extends BaseTest {
     int firstTask = 0;
     int priorityIntValue = 2;
     String priorityStringValue = "NORMAL";
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.expand();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
     TaskDetailsPage taskDetailsPage = taskWidgetPage.openTaskDetails(firstTask);
     taskDetailsPage.changePriorityOfTask(priorityIntValue);
     assertTrue(priorityStringValue.equals(taskDetailsPage.getPriorityOfTask()));
@@ -38,8 +38,7 @@ public class TaskPriorityChangeTest extends BaseTest {
   @Test
   public void testUserWithoutPermissionCannotChangeTaskPriority() {
     int firstTask = 0;
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.expand();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
     taskWidgetPage.openTaskDetails(firstTask);
     assertFalse(taskWidgetPage.isTaskPriorityChangeComponentPresented(firstTask));
   }
