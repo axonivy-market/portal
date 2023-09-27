@@ -170,13 +170,6 @@ public class ProcessWidgetPage extends TemplatePage {
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
-  @SuppressWarnings("deprecation")
-  public UserFavoriteProcessPage openNewProcessDialog() {
-    click(findChildElementByCssSelector(processWidget, "[id$='show-adding-dialog-commmand']"));
-    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
-    return new UserFavoriteProcessPage();
-  }
-  
   public AddNewExternalLinkDialog openNewExternalLinkDialog() {
     waitForElementDisplayed(By.id(processWidgetId + ":add-external-link-command"), true);
     click(By.id("process-widget:add-external-link-command"));
