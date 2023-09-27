@@ -127,6 +127,33 @@ public class TaskFilterTest extends BaseTest {
   }
 
   @Test
+  public void testSaveTaskFilterOnDifferentTaskList() {
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.expand();
+
+    String filterName = "myFilter";
+
+    taskWidgetPage.openAdvancedFilter("Description", "description");
+    taskWidgetPage.filterByDescription("Sick");
+    taskWidgetPage.saveFilter(filterName);
+
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
+    taskWidgetPage.expand();
+
+    assertTrue(taskWidgetPage.getFilterName().contains("Default filter"));
+
+    taskWidgetPage.openAdvancedFilter("Customer name", "customer-name");
+    taskWidgetPage.filterByCustomerName("Anh");
+    taskWidgetPage.saveFilter(filterName);
+
+    mainMenuPage.selectCaseMenu();
+    taskWidgetPage = mainMenuPage.openTaskList();
+    assertEquals(filterName, taskWidgetPage.getFilterName());
+  }
+
+  @Test
   public void testShowTaskWithNotExistsedActivatorToPersonHaveTaskReadAllPermission() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTaskWithNotExistedActivatorUrl);
