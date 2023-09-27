@@ -2,7 +2,6 @@ package portal.guitest.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 import java.util.concurrent.TimeUnit;
 
@@ -17,9 +16,6 @@ import portal.guitest.common.NavigationHelper;
 import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.ProcessWidgetPage.AddNewExternalLinkDialog;
-import portal.guitest.page.UserFavoriteProcessPage;
-import portal.guitest.page.UserFavoriteProcessPage.SettingProcessLanguageDialog;
-import portal.guitest.page.UserProfilePage;
 
 public class ProcessWidgetTest extends BaseTest {
 
@@ -56,36 +52,11 @@ public class ProcessWidgetTest extends BaseTest {
     String processLink = "google.com";
     processWidget = NavigationHelper.navigateToProcessList();
     createPrivateExternalTestProcess(processName, processLink);
-    
-    processName = "AAGoogle";
-    processLink = "google.com";
-    createPrivateExternalTestProcess(processName, processLink);
-    
-    // backToCompactProcessWidget(); TODO z1
-    UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
-    addNewProcessDialog.selectProcessByName(AAGOOGLE_LINK);
-    addNewProcessDialog.submitForm();
-    
-    addNewProcessDialog = processWidget.openNewProcessDialog();
-    addNewProcessDialog.selectProcessByName(AGOOGLE_LINK);
-    addNewProcessDialog.submitForm();
-    
-    int numberOfProcesses = processWidget.getNumberOfFavoriteUserProcesses();
-    processWidget.clickEditSwitchLink();
-    int indexOfProcess = numberOfProcesses - 1;
-    processWidget.checkDeleteItem(indexOfProcess);
-    assertTrue(processWidget.isDeleteProcessItemSelected(indexOfProcess));
-    processWidget.clickSaveProcess();
-    assertEquals(numberOfProcesses - 1, processWidget.getNumberOfFavoriteUserProcesses());
-    
     processWidget = NavigationHelper.navigateToProcessList();
     processWidget.selectViewMode(ProcessWidgetPage.GRID_MODE);
     processWidget.waitForGridProcessListDisplayed();
     processWidget.clickMoreButtonOfFirstGridProcess();
     processWidget.deleteGridProcess(0);
-    // backToCompactProcessWidget(); TODO z1
-    
-    assertEquals(0, processWidget.getNumberOfFavoriteUserProcesses());
     resetLanguageOfCurrentUser();
   }
 
@@ -96,12 +67,6 @@ public class ProcessWidgetTest extends BaseTest {
     String processLink = "google.com";
     processWidget = NavigationHelper.navigateToProcessList();
     createPrivateExternalTestProcess(processName, processLink);
-    
-    // backToCompactProcessWidget(); TODO z1
-    UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
-    addNewProcessDialog.selectProcessByName(AGOOGLE_LINK);
-    addNewProcessDialog.submitForm();
-    
     assertEquals(1, newDashboardPage2.countBrowserTab());
 
     processWidget.startProcess(AGOOGLE_LINK);
@@ -111,42 +76,6 @@ public class ProcessWidgetTest extends BaseTest {
     assertEquals("Google", newDashboardPage2.getPageTitle());
     resetLanguageOfCurrentUser();
   }
-
-  @Test
-  public void testAddProcessBySelectingIvyProcess() {
-    processWidget = NavigationHelper.navigateToProcessList();
-    UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
-    addNewProcessDialog.selectProcessByName(CLEAN_ALL_FAVORITE_PROCESSES);
-    addNewProcessDialog.submitForm();
-    assertNotNull(processWidget.getProcess(CLEAN_ALL_FAVORITE_PROCESSES));
-    resetLanguageOfCurrentUser();
-  }
-
-  @Test
-  public void testAddProcessWithMultilingual() {
-    processWidget = NavigationHelper.navigateToProcessList();
-    UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
-    addNewProcessDialog.selectProcessByName(APPRAISAL);
-    SettingProcessLanguageDialog settingProcessLanguageDialog = addNewProcessDialog.openAddlanguageDialog();
-    settingProcessLanguageDialog.fillProcessNamesByLocaleName();
-    addNewProcessDialog.submitForm();
-    
-    assertNotNull(processWidget.getProcess(String.format("%s - %s", APPRAISAL, "English Name*")));
-    
-    // Change language to German
-    changeLanguage(3);
-    
-    processWidget = NavigationHelper.navigateToProcessList();
-    assertNotNull(processWidget.getProcess(String.format("%s - %s", APPRAISAL, "German Name")));
-    resetLanguageOfCurrentUser();
-  }
-
-  private void changeLanguage(int selectionIndex) {
-    UserProfilePage userProfilePage = newDashboardPage2.openMyProfilePage();
-    userProfilePage.selectLanguage(selectionIndex);
-    newDashboardPage2 = userProfilePage.save();
-  }
-  
 
   @Test
   public void testBreadCrumb() {

@@ -900,4 +900,9 @@ public class CaseDetailsPage extends TemplatePage {
   public WebElement getSharePageButtonElement() {
     return findElementByCssSelector("[id$=':share-page-button']");
   }
+
+  public String getCaseUuid() {
+    return findElementByCssSelector("a[id$='show-more-note-link']").getAttribute("href").split("uuid=")[1];
+  }
+
 }
