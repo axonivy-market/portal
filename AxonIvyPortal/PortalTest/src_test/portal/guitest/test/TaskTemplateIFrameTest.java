@@ -12,6 +12,7 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.Variable;
 import portal.guitest.common.WaitHelper;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
@@ -70,8 +71,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     taskWidgetPage.filterTasksInExpandedModeBy("Approve Investment", 1);
     TaskTemplatePage taskTemplatePage2 = taskWidgetPage.startTask(0);
     taskTemplatePage2.clickOnLogo();
-    WaitHelper.assertTrueWithWait(
-        () -> taskTemplatePage2.isElementDisplayed(By.id("task-widget:task-list-link:task-list-link")));
+    new NewDashboardPage();
   }
 
   @Test
@@ -83,9 +83,8 @@ public class TaskTemplateIFrameTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
     taskWidgetPage.filterTasksInExpandedModeBy("Approve Investment", 1);
     TaskTemplatePage taskTemplatePage2 = taskWidgetPage.startTask(0);
-    NewDashboardPage2 newDashboardPage2 = taskTemplatePage2.backToHomeInIFrameApprovalTask();
-    WaitHelper
-        .assertTrueWithWait(() -> newDashboardPage2.isElementDisplayed(By.id("task-widget:task-list-link:task-list-link")));
+    taskTemplatePage2.backToHomeInIFrameApprovalTask();
+    new NewDashboardPage();
   }
 
   @Test

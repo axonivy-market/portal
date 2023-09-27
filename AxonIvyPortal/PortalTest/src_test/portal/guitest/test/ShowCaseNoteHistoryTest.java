@@ -43,8 +43,9 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
     detailsPage = casePage.openDetailsOfCaseHasName(CASE_NAME);
     String caseName = detailsPage.getCaseName();
     String caseId = detailsPage.getCaseId();
+    String uuid = detailsPage.getCaseUuid();
     detailsPage.addNote(NOTE_CONTENT);
-    goToCaseNoteHistoryPage(caseId);
+    goToCaseNoteHistoryPage(uuid);
 
     caseHistoryPage = new NoteHistoryPage();
     int numberOfNotes = caseHistoryPage.countNotes();
@@ -58,14 +59,16 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
   @Test
   public void testShowCaseNoteHistoryInTask() {
     grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
+    CaseWidgetPage caseWidgetPage = NavigationHelper.navigateToCaseList();
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
+    String caseUuid = caseDetailsPage.getCaseUuid();
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.openCaseInfo();
     taskTemplatePage.addNewNote(NOTE_CONTENT);
     String caseName = taskTemplatePage.getCaseName();
     getBrowser().getDriver().switchTo().defaultContent();
-    String caseID = taskTemplatePage.getCaseId();
-    goToCaseNoteHistoryPage(caseID);
+    goToCaseNoteHistoryPage(caseUuid);
 
     caseHistoryPage = new NoteHistoryPage();
     int numberOfNotes = caseHistoryPage.countNotes();
