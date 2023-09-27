@@ -74,6 +74,13 @@ public class DashboardConfigurationPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$='dashboard-modification-container']"), true);
   }
 
+  public void closeAddDashboardDialog() {
+    waitForElementDisplayed(By.cssSelector("[id='dashboard-template-selection-component:create-new-dashboard-dialog']"), true);
+    WebElement element = findElementByCssSelector("[id='dashboard-template-selection-component:create-new-dashboard-dialog']");
+    waitAjaxIndicatorDisappear();
+    element.findElement(By.cssSelector("a.ui-dialog-titlebar-close")).click();
+  }
+
   public void reorderPrivateDashboards() {
     selectPrivateDashboardType();
     clickByCssSelector("a[id$='reorder-dashboard-action'].js-private-dashboard");
@@ -82,7 +89,7 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public void createPublicDashboardFromScratch() {
     selectPublicDashboardType();
-    clickByCssSelector("a[id$='create-dashboard-action'].js-public-dashboard");
+    clickByCssSelector("button[id$='create-dashboard-action']");
     waitForElementDisplayed(By.cssSelector("div[id$=':create-new-dashboard-section']"), true);
     clickByCssSelector("a[id$=':create-from-scratch']");
     waitForElementDisplayed(By.cssSelector("div[id$=':dashboard-creation-details-dialog']"), true);
@@ -91,7 +98,7 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public void openEditPublicDashboards() {
     selectPublicDashboardType();
-    clickByCssSelector("a[id$='edit-dashboard-action'].js-public-dashboard");
+    clickByCssSelector("button[id$='dashboard-modification-component:dashboard-table:0:edit']");
     waitForElementDisplayed(By.cssSelector("[id$='dashboard-modification-container']"), true);
   }
 
@@ -141,7 +148,6 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public void openImportPublicDashboards() {
     selectPublicDashboardType();
-    clickByCssSelector("a[id$='create-dashboard-action'].js-public-dashboard");
     waitForElementDisplayed(By.cssSelector("div[id$=':create-new-dashboard-section']"), true);
     openImportDashboardDialog();
   }
