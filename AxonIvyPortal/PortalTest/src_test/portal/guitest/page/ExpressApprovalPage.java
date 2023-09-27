@@ -6,7 +6,7 @@ public class ExpressApprovalPage extends TaskTemplatePage {
   
   public void approve() {
     clickOnApprove();
-   	new NewDashboardPage2().isDisplayed();
+    new TaskWidgetPage();
   }
   
   public void clickOnApprove() {

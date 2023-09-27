@@ -199,9 +199,9 @@ public class TaskTemplatePage extends TemplatePage {
     clickByCssSelector("button[id$='button-submit']");
   }
 
-  public NewDashboardPage2 clickCancelAndLeftButton() {
+  public TaskWidgetPage clickCancelAndLeftButton() {
     clickByCssSelector("a[id$='button-cancel']");
-    return new NewDashboardPage2();
+    return new TaskWidgetPage();
   }
 
   public void clickCancelButton() {
