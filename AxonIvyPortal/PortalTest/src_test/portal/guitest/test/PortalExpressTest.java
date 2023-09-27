@@ -324,11 +324,12 @@ public class PortalExpressTest extends BaseTest {
 	protected void rejectWhenMultiApproval() {
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		expressTaskPage.finish();
-		var taskWidgetPage = new TaskWidgetPage();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    var taskWidgetPage = newDashboardPage.openTaskList();
 		if (taskWidgetPage.countTasks() != 1) {
-			WaitHelper.waitForNavigation(taskWidgetPage, () -> taskWidgetPage.clickOnLogo());
+      WaitHelper.waitForNavigation(taskWidgetPage, () -> taskWidgetPage.openTaskList());
 			if (taskWidgetPage.countTasks() != 1) {
-				WaitHelper.waitForNavigation(taskWidgetPage, () -> taskWidgetPage.clickOnLogo());
+        WaitHelper.waitForNavigation(taskWidgetPage, () -> taskWidgetPage.openTaskList());
 			}
 		}
 		assertEquals(1, new TaskWidgetPage().countTasks());
@@ -406,12 +407,12 @@ public class PortalExpressTest extends BaseTest {
 	protected void executeExpressProcessWhenMultiApproval() {
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		expressTaskPage.finish();
-		executeApproval("Approved at first level");
-		executeApproval("Approved at second level");
+    executeApproval("Approved at first level", 0);
+    executeApproval("Approved at second level", 0);
 		login(TestAccount.ADMIN_USER);
-		executeApproval("Approved at second level");
+    executeApproval("Approved at second level", 3);
 		login(TestAccount.DEMO_USER);
-
+    taskWidgetPage = NavigationHelper.navigateToTasList();
 		String approvalResult = executeReview();
 		Assert.assertEquals("Portal Demo User,Approved at first level,Yes," + TestAccount.DEMO_USER.getFullName()
 				+ ",Approved at second level,Yes," + TestAccount.ADMIN_USER.getFullName()
@@ -425,7 +426,7 @@ public class PortalExpressTest extends BaseTest {
 		userTaskWithMailFormPage.selectEmailTab();
 		userTaskWithMailFormPage.inputData("wawa@axongroupio.ch", "Task information", "Task is created");
 		userTaskWithMailFormPage.finish();
-		executeApproval("Approved at first level");
+    executeApproval("Approved at first level", 0);
 		executeUserTask();
 		String approvalResult = executeReview("Test approval: Final Review");
 		Assert.assertEquals("Portal Demo User,Approved at first level,Yes", approvalResult);
@@ -468,12 +469,12 @@ public class PortalExpressTest extends BaseTest {
 		new TaskTemplatePage().isDisplayed();
 	}
 
-	protected void executeApproval(String comment) {
+  protected void executeApproval(String comment, int taskIndex) {
     taskWidgetPage = NavigationHelper.navigateToTasList();
-		if (taskWidgetPage.countTasks() == 0) {
+    if (taskWidgetPage.countTasks() <= taskIndex) {
       taskWidgetPage.filterTasksInExpandedModeBy("Task");
 		}
-		taskWidgetPage.startTask(0);
+    taskWidgetPage.startTask(taskIndex);
 		ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
 		approvalPage1.comment(comment);
 		approvalPage1.approve();

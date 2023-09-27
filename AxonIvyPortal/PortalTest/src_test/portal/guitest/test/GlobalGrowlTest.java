@@ -70,8 +70,8 @@ public class GlobalGrowlTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    NewDashboardPage2 newDashboardPage2 = taskTemplatePage.clickCancelAndLeftButton();
-    assertGrowlMessage(newDashboardPage2, CANCEL_MESSAGE_WITH_DETAILS); 
+    taskWidgetPage = taskTemplatePage.clickCancelAndLeftButton();
+    assertGrowlMessage(taskWidgetPage, CANCEL_MESSAGE_WITH_DETAILS);
   }
   
   @Test
@@ -79,16 +79,16 @@ public class GlobalGrowlTest extends BaseTest {
     redirectToRelativeLink(CUSTOM_GROWL_URL);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    NewDashboardPage2 newDashboardPage2 = taskTemplatePage.clickCancelAndLeftButton();
-    assertGrowlMessage(newDashboardPage2, CUSTOM_CANCEL_MESSAGE);
+    taskWidgetPage = taskTemplatePage.clickCancelAndLeftButton();
+    assertGrowlMessage(taskWidgetPage, CUSTOM_CANCEL_MESSAGE);
   }
   
   @Test
   public void testDisplayDefaultGrowlAfterCancelFirstTask() {
     redirectToRelativeLink(SKIP_TASK_LIST_URL);
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
-    NewDashboardPage2 newDashboardPage2 = taskTemplatePage.clickCancelAndLeftButton();
-    assertGrowlMessage(newDashboardPage2, CANCEL_MESSAGE_WITH_DETAILS);
+    TaskWidgetPage taskWidgetPage = taskTemplatePage.clickCancelAndLeftButton();
+    assertGrowlMessage(taskWidgetPage, CANCEL_MESSAGE_WITH_DETAILS);
   }
 
   @Test
