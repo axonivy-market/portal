@@ -207,14 +207,14 @@ public class TaskWidgetTest extends BaseTest {
     //Start first task
     assertFalse(taskWidgetPage.isResumedTask(0));
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    newDashboardPage2 = taskTemplatePage.clickCancelAndLeftButton();
+    taskWidgetPage = taskTemplatePage.clickCancelAndLeftButton();
     
     //First task is resumed
     taskWidgetPage = NavigationHelper.navigateToTasList();
     assertTrue(taskWidgetPage.isResumedTask(0));
     taskTemplatePage = taskWidgetPage.startTask(0);
     assertEquals(NEW_PAYMENT, taskTemplatePage.getTaskName());
-    newDashboardPage2 = taskTemplatePage.clickCancelAndLeftButton();
+    taskWidgetPage = taskTemplatePage.clickCancelAndLeftButton();
     
     taskWidgetPage = NavigationHelper.navigateToTasList();
     //Start second task
