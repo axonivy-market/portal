@@ -1,4 +1,6 @@
 {
-  /PROCESS *
   /HTML_DIALOG *
+  /PROCESS {
+    /Functional-Processes.BuildCaseQuery "Functional Processes/BuildCaseQueryOverride"
+  }
 }
