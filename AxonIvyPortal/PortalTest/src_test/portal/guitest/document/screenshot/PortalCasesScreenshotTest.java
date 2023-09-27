@@ -168,7 +168,7 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
 
   public CaseWidgetPage goToCaseList() {
     login(TestAccount.DEMO_USER);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
