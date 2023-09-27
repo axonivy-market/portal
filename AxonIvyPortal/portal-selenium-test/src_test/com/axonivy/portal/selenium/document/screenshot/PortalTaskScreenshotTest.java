@@ -29,6 +29,7 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
   @BeforeEach
   public void setup() {
     super.setup();
+    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "false");
     updatePortalSetting(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createTestingTasksUrl);
