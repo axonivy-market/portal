@@ -279,12 +279,6 @@ public class CaseDetailsPage extends TemplatePage {
   public void switchToEditMode() {
     $(By.cssSelector("[id$=':switch-to-edit-mode-button']")).shouldBe(getClickableCondition()).click();
     $("[id$='case-details-information-panel']").shouldBe(Condition.visible, DEFAULT_TIMEOUT).shouldHave(Condition.attribute(CLASS_PROPERTY, "grid-stack-item ui-draggable ui-resizable ui-resizable-autohide"));
-//    $(By.cssSelector("[id$=':switch-to-edit-mode-button']")).get;
-//    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
-//    WaitHelper.assertTrueWithWait(() -> {
-//      var infoWidget = findElementByCssSelector("[id$='case-details-information-panel']");
-//      return infoWidget.getAttribute(CLASS_PROPERTY).contains("ui-resizable ui-resizable-autohide");
-//    });
   }
 
   public void waitForSaveButtonDisplayed() {

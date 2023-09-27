@@ -6,9 +6,14 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 
 public class TaskDetailsPage extends TemplatePage {
 
@@ -89,5 +94,46 @@ public class TaskDetailsPage extends TemplatePage {
 
   public SelenideElement getShareDialog() {
     return $("div[id$=':share-task-details-dialog']");
+  }
+
+  public SelenideElement getSharePageButtonElement() {
+    return $("[id$=':share-page-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getSwitchToEditModeButtonElement() {
+    return $("[id$=':switch-to-edit-mode-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public void clickOnSwitchToEditModeButton() {
+    $(By.cssSelector("[id$=':switch-to-edit-mode-button']")).shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("[id$='task-details-information-panel']").shouldBe(Condition.visible, DEFAULT_TIMEOUT).shouldHave(Condition.attribute(CLASS_PROPERTY, "grid-stack-item ui-draggable ui-resizable ui-resizable-autohide"));
+  }
+
+  public void waitForSwitchToViewModeButtonDisplayed() {
+    $(By.cssSelector("[id$=':switch-to-view-mode-button']")).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public void drapAndDropWidgets(String sourceName, String destinationName) {
+    SelenideElement sourceElement = $(String.format("[id$=':task-detail-%s-container']", sourceName)).shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement destinationElement = $(By.cssSelector(String.format("[id$=':task-detail-%s-container']", destinationName))).shouldBe(appear, DEFAULT_TIMEOUT);
+    Actions actions = new Actions(WebDriverRunner.getWebDriver());
+    Action moveWidget = actions.dragAndDrop(sourceElement, destinationElement).build();
+    moveWidget.perform();
+  }
+
+  public SelenideElement getSwitchToViewModeButtonElement() {
+    return $("[id$=':switch-to-view-mode-button']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void clickOnSwitchToViewModeButton() {
+    $(By.cssSelector("[id$=':switch-to-view-mode-button']")).shouldBe(getClickableCondition()).click();
+  }
+
+  public SelenideElement getResetButtonElement() {
+    return $(By.cssSelector("[id$=':reset-details-settings-button']")).shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void clickOnResetToDefaultButton() {
+    getResetButtonElement().shouldBe(getClickableCondition()).click();
   }
 }
