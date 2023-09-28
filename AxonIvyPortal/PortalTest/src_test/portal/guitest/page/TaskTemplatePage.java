@@ -190,9 +190,9 @@ public class TaskTemplatePage extends TemplatePage {
     return findDisplayedElementByCssSelector(adhocCreationMessageCSSSelector).getText();
   }
 
-  public NewDashboardPage2 clickSubmitButton() {
+  public TaskWidgetPage clickSubmitButton() {
     clickOnSubmitButton();
-    return new NewDashboardPage2();
+    return new TaskWidgetPage();
   }
 
   public void clickOnSubmitButton() {
