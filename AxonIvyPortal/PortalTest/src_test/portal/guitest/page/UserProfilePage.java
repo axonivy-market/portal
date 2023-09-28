@@ -186,7 +186,7 @@ public class UserProfilePage extends TemplatePage {
   }
 
   public void changeNewDashboardPage2ToCase() {
-    String newdashboardpage2Label = "my-profile-form:newdashboardpage2_label";
+    String newdashboardpage2Label = "my-profile-form:homepage_label";
     click(By.id(newdashboardpage2Label));
     String caseItemCssSelector = "li.ui-selectonemenu-item[data-label='Cases']";
     waitForElementDisplayed(By.cssSelector(caseItemCssSelector), true);
