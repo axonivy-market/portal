@@ -92,7 +92,7 @@ public class ExpressTest extends BaseTest{
     executeApproval("Approved at first level");
     executeApproval("Approved at second level");
     login(TestAccount.ADMIN_USER);
-    executeApproval("Approved at second level");
+    executeApproval("Approved at second level", "Task 3", 2, 1);
     login(TestAccount.DEMO_USER);
     
     String approvalResult = executeReview();
@@ -106,7 +106,7 @@ public class ExpressTest extends BaseTest{
   }
 
   private String executeReview() {
-    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage = NavigationHelper.navigateToTasList();
     taskWidgetPage.startTask(0);
     ExpressReviewPage reviewPage = new ExpressReviewPage();
     String approvalResult = reviewPage.getApprovalResult();
@@ -115,23 +115,24 @@ public class ExpressTest extends BaseTest{
   }
   
   private void executeUserTask() {
-    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage = NavigationHelper.navigateToTasList();
     taskWidgetPage.startTask(0);
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.finish();
-    NewDashboardPage2 home = new NewDashboardPage2();
-    home.waitForPageLoaded();
+    new TaskWidgetPage();
   }
   
   private void executeApproval(String comment) {
+    executeApproval(comment, "Task", 1, 0);
+  }
+
+  private void executeApproval(String comment, String taskNameFilter, int expectedNumber, int startTaskIndex) {
     taskWidgetPage = NavigationHelper.navigateToTasList();
-    taskWidgetPage.filterTasksInExpandedModeBy("Task", 1);
-    taskWidgetPage.startTask(0);
+    taskWidgetPage.filterTasksInExpandedModeBy(taskNameFilter, expectedNumber);
+    taskWidgetPage.startTask(startTaskIndex);
     ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
     approvalPage1.comment(comment);
     approvalPage1.approve();
-    NewDashboardPage2 home = new NewDashboardPage2();
-    home.waitForPageLoaded();
   }
 
   private void goToExpressCreationPage() {

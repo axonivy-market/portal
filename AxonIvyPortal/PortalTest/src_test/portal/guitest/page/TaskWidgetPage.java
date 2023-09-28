@@ -333,18 +333,6 @@ public class TaskWidgetPage extends TemplatePage {
     return name.getText();
   }
 
-  /**
-   * Get name from task item in task scroller at specific index in compact list (newdashboardpage2)
-   * 
-   * @param index
-   * @return task name
-   */
-  public String getNameOfTaskInCompactListAt(int index) {
-    WebElement name =
-        findElementByCssSelector(ID_END + index + ":task-item:task-start-item-view:task-start-task-name']");
-    return name.getText();
-  }
-
   public String getResponsibleOfTaskAt(int index) {
     List<WebElement> responsibles = findListElementsByCssSelector(".responsible-cell .name-after-avatar");
     return responsibles.get(index).getText();
@@ -655,21 +643,10 @@ public class TaskWidgetPage extends TemplatePage {
         "span[id$='" + taskIndex + "\\:task-item\\:task-start-item-view\\:task-start-task-id']").getText();
   }
 
-  @SuppressWarnings("deprecation")
   private void waitTaskAppearThenClick(int index) {
-    WebElement taskListElement = findElementById(taskWidgetId + ":task-list-scroller");
-    if (taskListElement.getAttribute(CLASS).contains("compact-mode")) {
-      List<WebElement> taskItems = taskListElement.findElements(By.className("compact-task-start-link"));
-      boolean isResumedTask = taskItems.get(index).getAttribute("id").contains("compact-resumed-task-start-link");
-      click(taskItems.get(index));
-      if (isResumedTask) {
-        resetResumedTask();
-      }
-    } else {
-      String cssSelector = String.format("a[id$='%d:task-item:task-action:task-action-component']", index);
-      refreshAndWaitElement(cssSelector);
-      clickByCssSelector(cssSelector);
-    }
+    String cssSelector = String.format("a[id$='%d:task-item:task-action:task-action-component']", index);
+    refreshAndWaitElement(cssSelector);
+    clickByCssSelector(cssSelector);
   }
 
   @SuppressWarnings("deprecation")
@@ -686,7 +663,7 @@ public class TaskWidgetPage extends TemplatePage {
       return taskItems.get(index).getAttribute("id").contains("compact-resumed-task-start-link");
     }
 
-    taskItems = taskListElement.findElements(By.className("task-start-list-item"));
+    taskItems = taskListElement.findElements(By.className("start-task-action"));
     return taskItems.get(index).getAttribute("id").contains(":task-action:resume-task-action-component");
   }
 
