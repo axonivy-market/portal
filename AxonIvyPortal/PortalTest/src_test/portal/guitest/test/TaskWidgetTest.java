@@ -20,6 +20,7 @@ import portal.guitest.common.TestRole;
 import portal.guitest.common.Variable;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseDetailsPage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
@@ -237,6 +238,7 @@ public class TaskWidgetTest extends BaseTest {
     assertTrue(StringUtils.equalsIgnoreCase("Annual Leave Request", taskName));
     taskWidgetPage.sortTaskListByColumn("Name / Description", 0, "task-name", "Annual Leave Request");
     taskWidgetPage.clickOnLogo();
+    new NewDashboardPage();
     taskWidgetPage = NavigationHelper.navigateToTasList();
     taskName = taskWidgetPage.getTaskListCustomCellValue(0, "task-name");
     assertTrue(StringUtils.equalsIgnoreCase("Sick Leave Request", taskName));
