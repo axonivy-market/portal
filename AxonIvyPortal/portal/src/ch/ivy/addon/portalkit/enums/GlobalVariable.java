@@ -77,6 +77,8 @@ public enum GlobalVariable {
   ENABLE_SWITCH_THEME_BUTTON("Portal.Theme.EnableSwitchThemeModeButton", GlobalVariableType.SELECTION, Option.TRUE.toString(), "EnableSwitchThemeModeButton"),
   DEFAULT_THEME_MODE("Portal.Theme.Mode", GlobalVariableType.EXTERNAL_SELECTION, ThemeMode.LIGHT.toString(), "DefaultThemeMode", getThemeModes()),
   SEARCH_SCOPE_BY_TASK_FIELDS("Portal.SearchScope.ByTaskFields", GlobalVariableType.MULTI_EXTERNAL_SELECTIONS, getSearchScopeTaskFields(), "SearchScopeTaskFields", getSearchScopeTaskFields()),
+  GLOBAL_HOST_FOOTER_INFO("Portal.GlobalHostFooterInfo", GlobalVariableType.TEXT, "dev", "GlobalHostFooterInfo"),
+  GLOBAL_ENV_FOOTER_INFO("Portal.GlobalEnvFooterInfo", GlobalVariableType.TEXT, "Default", "GlobalEnvFooterInfo"),
   SEARCH_SCOPE_BY_CASE_FIELDS("Portal.SearchScope.ByCaseFields", GlobalVariableType.MULTI_EXTERNAL_SELECTIONS, getSearchScopeCaseFields(), "SearchScopeCaseFields", getSearchScopeCaseFields());
 
   private String key;

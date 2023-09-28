@@ -10,6 +10,12 @@
 </cc:interface>
 
 <cc:implementation>
-  <div class="ui-sm-hidden" style="height: 20px; text-align: center; background-color: var(--primary-color); color: white">This is footer</div>
+   <span id="server-infor" jsf:rendered="#{userMenuBean.showServerInformation}" class="show-environment-info">
+   <h:outputText escape="false" value="Host: #{serverInformationBean.host}" /> 
+  </span>
+  <span id="environment-infor" jsf:rendered="#{userMenuBean.showServerInformation}" class="show-environment-info">
+   <h:outputText escape="false" value="Env: #{serverInformationBean.environment}" />
+  </span>
+  
 </cc:implementation>
 </html>
