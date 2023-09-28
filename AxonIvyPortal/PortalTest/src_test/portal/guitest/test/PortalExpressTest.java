@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -410,7 +411,7 @@ public class PortalExpressTest extends BaseTest {
     executeApproval("Approved at first level", 0);
     executeApproval("Approved at second level", 0);
 		login(TestAccount.ADMIN_USER);
-    executeApproval("Approved at second level", 3);
+    executeApproval("Approved at second level", 1, "Task 3", 2);
 		login(TestAccount.DEMO_USER);
     taskWidgetPage = NavigationHelper.navigateToTasList();
 		String approvalResult = executeReview();
@@ -469,16 +470,23 @@ public class PortalExpressTest extends BaseTest {
 		new TaskTemplatePage().isDisplayed();
 	}
 
-  protected void executeApproval(String comment, int taskIndex) {
+  protected void executeApproval(String comment, int taskIndex, String taskNameFilter, int taskCountAfterFiltering) {
     taskWidgetPage = NavigationHelper.navigateToTasList();
     if (taskWidgetPage.countTasks() <= taskIndex) {
-      taskWidgetPage.filterTasksInExpandedModeBy("Task");
-		}
+      taskWidgetPage.filterTasksInExpandedModeBy("Task", taskCountAfterFiltering);
+    }
+    if (StringUtils.isNotEmpty(taskNameFilter)) {
+      taskWidgetPage.filterTasksInExpandedModeBy(taskNameFilter, taskCountAfterFiltering);
+    }
     taskWidgetPage.startTask(taskIndex);
-		ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
-		approvalPage1.comment(comment);
-		approvalPage1.approve();
-	}
+    ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
+    approvalPage1.comment(comment);
+    approvalPage1.approve();
+  }
+
+  protected void executeApproval(String comment, int taskIndex) {
+    executeApproval(comment, taskIndex, null, 1);
+  }
 
 	protected void rejectApproval(String comment) {
 		taskWidgetPage = new TaskWidgetPage();
