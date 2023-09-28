@@ -191,7 +191,7 @@
         "at" : { "x" : 776, "y" : 88 }
       },
       "connect" : [
-        { "id" : "f9", "to" : "f28" }
+        { "id" : "f27", "to" : "f9" }
       ]
     }, {
       "id" : "f7",
@@ -382,6 +382,25 @@
       },
       "connect" : [
         { "id" : "f25", "to" : "f43", "via" : [ { "x" : 448, "y" : 832 } ] }
+      ]
+    }, {
+      "id" : "f9",
+      "type" : "SubProcessCall",
+      "name" : "get custom fields",
+      "config" : {
+        "processCall" : "Functional Processes/DefaultStatisticCustomField:createDefaultStatisticCustomFields()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.customFields" : "result.customFields"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 976, "y" : 88 }
+      },
+      "connect" : [
+        { "id" : "f29", "to" : "f28" }
       ]
     }, {
       "id" : "f28",
