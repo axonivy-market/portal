@@ -8,7 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
 
-import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtil;
@@ -17,7 +16,6 @@ import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.legacy.LegacyDashboardPage;
 import com.axonivy.portal.selenium.page.legacy.LegacyTaskWidgetPage;
 
-@IvyWebTest
 public class LegacyDashboardScreenshotTest extends ScreenshotBaseTest{
   private LegacyDashboardPage homePage;
   private static final int SCREENSHOT_WIDTH = 1500;
