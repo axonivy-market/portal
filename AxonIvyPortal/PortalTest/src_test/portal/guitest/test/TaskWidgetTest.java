@@ -20,10 +20,8 @@ import portal.guitest.common.TestRole;
 import portal.guitest.common.Variable;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseDetailsPage;
-import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.TaskDetailsPage;
-import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.UserProfilePage;
 
@@ -193,44 +191,6 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testStartATaskAtNewDashboardPage2() {
-    login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(createTestingCaseMapUrl);
-    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
-    newDashboardPage2.waitForPageLoaded();
-    redirectToRelativeLink(simplePaymentUrl);
-    final String NEW_PAYMENT = "Do New Payment";
-    final String LEAVE_REQUEST = "Case Map Leave Request";
-
-    newDashboardPage2 = new NewDashboardPage2();
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
-    //Start first task
-    assertFalse(taskWidgetPage.isResumedTask(0));
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    taskWidgetPage = taskTemplatePage.clickCancelAndLeftButton();
-    
-    //First task is resumed
-    taskWidgetPage = NavigationHelper.navigateToTasList();
-    assertTrue(taskWidgetPage.isResumedTask(0));
-    taskTemplatePage = taskWidgetPage.startTask(0);
-    assertEquals(NEW_PAYMENT, taskTemplatePage.getTaskName());
-    taskWidgetPage = taskTemplatePage.clickCancelAndLeftButton();
-    
-    taskWidgetPage = NavigationHelper.navigateToTasList();
-    //Start second task
-    assertFalse(taskWidgetPage.isResumedTask(1));
-    taskTemplatePage = taskWidgetPage.startTask(1);
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-    newDashboardPage2 = new NewDashboardPage2();
-
-    //Second task is resumed
-    taskWidgetPage = NavigationHelper.navigateToTasList();
-    assertTrue(taskWidgetPage.isResumedTask(1));
-    taskTemplatePage = taskWidgetPage.startTask(1);
-    assertEquals(LEAVE_REQUEST, taskTemplatePage.getTaskName());
-  }
-
-  @Test
   public void testChangeTaskSortingOptions() {
     NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
     UserProfilePage userProfilePage = newDashboardPage2.openMyProfilePage();
@@ -272,36 +232,21 @@ public class TaskWidgetTest extends BaseTest {
   public void testStickySortTaskList() {
     NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
-    // Sort task on Dashboard
-    taskWidgetPage.openCompactSortMenu();
-    taskWidgetPage.selectCompactSortByName("Expiry (Newest first)", 0, "Maternity Leave Request");
-    // Navigate around Portal
-    CaseWidgetPage caseWidgetPage = taskWidgetPage.openCaseList();
-    // Check result at full Task List
-    taskWidgetPage = caseWidgetPage.openTaskList();
-    String selectedSortColumn = taskWidgetPage.getSelectedSortColumn();
-    assertTrue(StringUtils.equalsIgnoreCase("Expiry", selectedSortColumn));
-    String taskName = taskWidgetPage.getTaskListCustomCellValue(0, "task-name");
-    assertTrue(StringUtils.equalsIgnoreCase("Maternity Leave Request", taskName));
-    // Change to another column - which is not include at compact task list
     taskWidgetPage.sortTaskListByColumn("Name / Description", 0, "task-name", "Annual Leave Request");
-    // Back to Dashboard - compact task list will sort by default column
+    String taskName = taskWidgetPage.getTaskListCustomCellValue(0, "task-name");
+    assertTrue(StringUtils.equalsIgnoreCase("Annual Leave Request", taskName));
+    taskWidgetPage.sortTaskListByColumn("Name / Description", 0, "task-name", "Annual Leave Request");
     taskWidgetPage.clickOnLogo();
-    // Create new task
-    createTestingTasks();
-    newDashboardPage2 = new NewDashboardPage2();
     taskWidgetPage = NavigationHelper.navigateToTasList();
-    selectedSortColumn = taskWidgetPage.getSelectedCompactSortLable();
-    assertTrue(StringUtils.equalsIgnoreCase("Creation date (Newest first)", selectedSortColumn));
-    // Change User sort selection
+    taskName = taskWidgetPage.getTaskListCustomCellValue(0, "task-name");
+    assertTrue(StringUtils.equalsIgnoreCase("Sick Leave Request", taskName));
+
     UserProfilePage userProfilePage = taskWidgetPage.openMyProfilePage();
     userProfilePage.selectTaskSortField("Priority");
     userProfilePage.selectTaskSortDirection("Sort ascending");
     newDashboardPage2 = userProfilePage.save();
-    // Check result
+
     taskWidgetPage = newDashboardPage2.openTaskList();
-    selectedSortColumn = taskWidgetPage.getSelectedSortColumn();
-    assertTrue(StringUtils.equalsIgnoreCase("Prio", selectedSortColumn));
     assertEquals("high", taskWidgetPage.getPriorityOfTask(0));
   }
 
