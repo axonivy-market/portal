@@ -23,6 +23,7 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
 
   private List<String> processPaths;
   protected String sorting;
+  private Map<String, Integer> customIndexs;
 
   @JsonIgnore
   private List<DashboardProcess> displayProcesses;
@@ -153,5 +154,13 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
 
   public void setSorting(String sorting) {
     this.sorting = sorting;
+  }
+
+  public Map<String, Integer> getCustomIndexs() {
+    return customIndexs;
+  }
+
+  public void setCustomIndexs(Map<String, Integer> customIndexs) {
+    this.customIndexs = customIndexs;
   }
 }
