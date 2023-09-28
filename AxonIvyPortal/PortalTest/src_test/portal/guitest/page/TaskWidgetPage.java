@@ -644,9 +644,16 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   private void waitTaskAppearThenClick(int index) {
-    String cssSelector = String.format("a[id$='%d:task-item:task-action:task-action-component']", index);
-    refreshAndWaitElement(cssSelector);
-    clickByCssSelector(cssSelector);
+    WebElement taskStartElement = findElementById(taskWidgetId + ":task-list-scroller")
+        .findElements(By.className("start-task-action")).get(index);
+    if (taskStartElement.getAttribute("id").contains(":task-action:resume-task-action-component")) {
+      click(taskStartElement);
+      resetResumedTask();
+    } else {
+      String cssSelector = String.format("a[id$='%d:task-item:task-action:task-action-component']", index);
+      refreshAndWaitElement(cssSelector);
+      clickByCssSelector(cssSelector);
+    }
   }
 
   @SuppressWarnings("deprecation")
@@ -790,11 +797,6 @@ public class TaskWidgetPage extends TemplatePage {
     WebElement confirmButton = findChildElementById(destroyConfirmationDialog, taskWidgetId + ":confirm-destruction");
     confirmButton.click();
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
-  }
-
-  public void openCompactSortMenu() {
-    click(By.cssSelector("[id$='sort-task-menu_label']"));
-    waitForElementDisplayed(By.cssSelector("div[id$='sort-task-menu_panel']"), true);
   }
 
   public void selectCompactSortByName(String sortName, int rowIndex, String expectedValue) {
