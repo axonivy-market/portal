@@ -202,6 +202,7 @@ public class ChatTest extends BaseTest {
     login(userJoined);
     redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage.filterTasksInExpandedModeBy("Sick Leave Request Default Case Details Page");
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.clickTaskActionMenu();
     taskTemplatePage.clickChatGroup();

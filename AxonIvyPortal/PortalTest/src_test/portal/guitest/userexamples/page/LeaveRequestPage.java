@@ -9,8 +9,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import portal.guitest.common.WaitHelper;
-import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.TaskTemplateIFramePage;
+import portal.guitest.page.TaskWidgetPage;
 
 public class LeaveRequestPage extends TaskTemplateIFramePage {
 
@@ -57,16 +57,16 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
     enterKeys(findElementById("leave-request:approver-comment"), approverComment);
   }
   
-  public NewDashboardPage2 clickApproveBtn() {
+  public TaskWidgetPage clickApproveBtn() {
     click(By.id("leave-request:approved-btn"));
     switchToDefaultContent();
-    return new NewDashboardPage2();
+    return new TaskWidgetPage();
   }
   
-  public NewDashboardPage2 clickRejectBtn() {
+  public TaskWidgetPage clickRejectBtn() {
     click(By.id("leave-request:rejected-btn"));
     switchToDefaultContent();
-    return new NewDashboardPage2();
+    return new TaskWidgetPage();
   }
   
   public UserExamplesEndPage finishLeaveRequest() {
