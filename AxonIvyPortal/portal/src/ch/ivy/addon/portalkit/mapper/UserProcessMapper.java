@@ -9,6 +9,7 @@ import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.configuration.UserProcess;
+import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -36,6 +37,17 @@ public class UserProcessMapper {
       icon = Process.DEFAULT_PROCESS_ICON;
     }
     userProcess.setIcon(icon);
+    return userProcess;
+  }
+  
+  public static UserProcess toUserProcess(DashboardProcess process) {
+    UserProcess userProcess = new UserProcess();
+    userProcess.setProcessId(process.getId());
+    userProcess.setProcessType(process.getType());
+    userProcess.setProcessName(stripHtmlTags(process.getName()));
+    userProcess.setLink(process.getStartLink());
+    userProcess.setDescription(process.getDescription());
+    userProcess.setIcon(process.getIcon());
     return userProcess;
   }
 
