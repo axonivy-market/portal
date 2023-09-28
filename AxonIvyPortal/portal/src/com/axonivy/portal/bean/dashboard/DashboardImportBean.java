@@ -40,11 +40,22 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
   private Boolean isError = false;
   private String fileSize;
   private IRole everybodyRole;
+  private int index = 0;
 
   @Override
   @PostConstruct
   public void init() {
     everybodyRole = Ivy.security().roles().topLevel();
+  }
+
+  public void tabInit() {
+    if (CollectionUtils.isNotEmpty(this.importedDashboards)) {
+      selectedDashboard = importedDashboards.stream().findFirst().get();
+    }
+  }
+
+  public void onTabChange(Dashboard dashboard) {
+    this.selectedDashboard = dashboard;
   }
 
   public void importDashboard(boolean isPublicDashboard) {
@@ -63,7 +74,7 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
       return;
     }
     try {
-      selectedDashboard = DashboardUtils.convertDashboardToLatestVersion(importFile.getInputStream());
+      dashboards = DashboardUtils.convertDashboardsFromUploadFileToLastestVersion(importFile.getInputStream());
     } catch (Exception e) {
       isError = true;
       displayedMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileCouldNotParse"));
@@ -71,10 +82,14 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
       return;
     }
 
-    selectedDashboard.setIsPublic(isPublicDashboard);
-    selectedDashboard.setId(DashboardUtils.generateId());
-    selectedDashboard.setPermissionDTOs(new ArrayList<>());
-    findAndSetPermissions();
+    dashboards.stream().forEach(dashboard -> {
+      selectedDashboard = dashboard;
+      selectedDashboard.setIsPublic(isPublicDashboard);
+      selectedDashboard.setId(DashboardUtils.generateId());
+      selectedDashboard.setPermissionDTOs(new ArrayList<>());
+      findAndSetPermissions();
+    });
+
 
     fileSize = FileUtils.byteCountToDisplaySize(importFile.getSize());
     isLoaded = true;
@@ -103,15 +118,20 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
 
   @Override
   public void createDashboard() {
-    if (CollectionUtils.isNotEmpty(this.selectedDashboard.getWidgets())) {
-      for (DashboardWidget widget : this.selectedDashboard.getWidgets()) {
-        if (widget instanceof WelcomeDashboardWidget) {
-          WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
-          WelcomeWidgetUtils.writeWelcomeWidgetImage(welcomeWidget);
+    if (CollectionUtils.isNotEmpty(dashboards)) {
+      for (Dashboard dashboard : dashboards) {
+        selectedDashboard = dashboard;
+        if (CollectionUtils.isNotEmpty(this.selectedDashboard.getWidgets())) {
+          for (DashboardWidget widget : this.selectedDashboard.getWidgets()) {
+            if (widget instanceof WelcomeDashboardWidget) {
+              WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
+              WelcomeWidgetUtils.writeWelcomeWidgetImage(welcomeWidget);
+            }
+          }
         }
+        super.createDashboard();
       }
     }
-    super.createDashboard();
   }
 
   private void displayedMessage(String validateMessage) {
@@ -120,12 +140,14 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
   }
 
   private void resetDialog() {
+    dashboards = new ArrayList<>();
     selectedDashboard = new Dashboard();
     this.selectedDashboard.setTitles(new ArrayList<>());
     this.selectedDashboardPermissions = new ArrayList<>();
     fileSize = null;
     importFile = null;
     isLoaded = isError = false;
+    index = 0;
   }
 
   public boolean isLoaded() {
@@ -158,5 +180,14 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
 
   public void setFileSize(String fileSize) {
     this.fileSize = fileSize;
+  }
+
+  public String getDashBoardIndex() {
+    if (CollectionUtils.isNotEmpty(dashboards) && index >= dashboards.size()) {
+      index = 0;
+    }
+    index++;
+    return Ivy.cms().coLocale("/ch.ivy.addon.portalkit.ui.jsf/common/dashboard", Ivy.session().getContentLocale()) + " "
+        + index;
   }
 }

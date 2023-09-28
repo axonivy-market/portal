@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -18,9 +17,9 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 
-import ch.addon.portal.generic.menu.MenuView;
 import com.axonivy.portal.service.DeepLTranslationService;
 
+import ch.addon.portal.generic.menu.MenuView;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
@@ -52,7 +51,6 @@ import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
-import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
@@ -85,7 +83,8 @@ public class DashboardBean implements Serializable {
   protected String translatedText;
   protected String warningText;
   protected String dashboardUrl;
-  
+  protected List<Dashboard> importedDashboards;
+
   @PostConstruct
   public void init() {
     currentDashboardIndex = 0;
@@ -197,7 +196,7 @@ public class DashboardBean implements Serializable {
       navigateToSelectedTaskDetails(task);
     }
   }
-  
+
   public void handleStartTask(ITask task) throws IOException {
     selectedTask = task;
     TaskUtils.handleStartTask(task, PortalPage.HOME_PAGE, PortalConstants.RESET_TASK_CONFIRMATION_DIALOG);
@@ -234,11 +233,11 @@ public class DashboardBean implements Serializable {
   public String createExtractedTextFromHtml(String text) {
     return HtmlParser.extractTextFromHtml(text);
   }
-  
+
   public String createParseTextFromHtml (String text) {
 	  return HtmlParser.parseTextFromHtml(text);
   }
-  
+
   public int getCurrentTabIndex() {
     return dashboards.indexOf(getSelectedDashboard());
   }
@@ -274,7 +273,7 @@ public class DashboardBean implements Serializable {
   protected String translate(String cms) {
     return Ivy.cms().co(cms);
   }
-  
+
   protected String translate(String cms, List<Object> params) {
     return Ivy.cms().co(cms, params);
   }
@@ -385,15 +384,15 @@ public class DashboardBean implements Serializable {
   public void setDashboardTemplates(List<DashboardTemplate> dashboardTemplates) {
     this.dashboardTemplates = dashboardTemplates;
   }
-  
+
   private String readDashboardFromSession() {
     return (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString());
   }
-  
+
   private void storeDashboardInSession(String id) {
     Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), id);
   }
-  
+
   private int findIndexOfDashboardById(String selectedDashboardId) {
     int currentDashboardIndex = 0;
     if(StringUtils.isNotBlank(selectedDashboardId)) {
@@ -450,11 +449,11 @@ public class DashboardBean implements Serializable {
   public void setDashboardUrl(String dashboardUrl) {
     this.dashboardUrl = dashboardUrl;
   }
-  
+
   public void initShareDashboardLink(Dashboard dashboard) {
     setDashboardUrl(UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId()));
   }
-  
+
   public boolean isShowShareButtonOnDashboard() {
     return PermissionUtils.hasShareDashboardPermission() && selectedDashboard != null && !getIsEditMode() && selectedDashboard.getIsPublic();
   }

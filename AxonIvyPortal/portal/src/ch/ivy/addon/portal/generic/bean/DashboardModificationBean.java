@@ -152,7 +152,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
   /**
    * Remove the image of welcome widget from CMS
-   * 
+   *
    */
   private void removeWelcomeWidgetImage(DashboardWidget selectedWidget) {
     WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) selectedWidget;
@@ -202,7 +202,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   public void createDashboard() {
     collectDashboardsForManagement();
     saveDashboardDetail();
-    navigateToDashboardDetailsPage(this.selectedDashboard.getId());
+    PortalNavigator.navigateToDashboard();
   }
 
   public boolean isPublicDashboard() {
@@ -232,6 +232,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
 
   public void updateCurrentLanguage() {
+    Ivy.log().error(this.selectedDashboard.getTitle());
     List<DisplayName> languages = this.selectedDashboard.getTitles();
     String currentLanguage = UserUtils.getUserLanguage();
     Optional<DisplayName> optional = languages.stream()
@@ -301,7 +302,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     return isPublicDashboard ?
         PermissionUtils.hasDashboardExportPublicPermission() : PermissionUtils.hasDashboardExportOwnPermission();
   }
-  
+
   public boolean hasImportDashboardPermission(boolean isPublicDashboard) {
     return isPublicDashboard ?
         PermissionUtils.hasDashboardImportPublicPermission() : PermissionUtils.hasDashboardImportOwnPermission();
@@ -323,7 +324,11 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
         }
       });
 
-    var inputStream = new ByteArrayInputStream(BusinessEntityConverter.prettyPrintEntityToJsonValue(dashboard).getBytes(StandardCharsets.UTF_8));
+    List<Dashboard> dashboardList = new ArrayList<>();
+    dashboardList.add(dashboard);
+
+    var inputStream = new ByteArrayInputStream(
+        BusinessEntityConverter.prettyPrintEntityToJsonValue(dashboardList).getBytes(StandardCharsets.UTF_8));
     return DefaultStreamedContent
         .builder()
         .stream(() -> inputStream)
@@ -348,8 +353,8 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   private String getFileName(String dashboardName) {
     return dashboardName + JSON_FILE_SUFFIX;
   }
-  
+
   public boolean isShowShareButtonOnConfig(boolean isPublicDashboard) {
     return isPublicDashboard && PermissionUtils.hasShareDashboardPermission();
-  }  
+  }
 }
