@@ -1,4 +1,16 @@
 Categories:
+  AnnualLeave:
+    name: Annual Leave
+  LeaveRequest:
+    name: Leave Request
+  OtherLeave:
+    Maternity:
+      name: Maternity
+    SickLeave:
+      Long:
+        name: Long
+      name: Sick Leave
+    name: Other Leave
   PersonalRequest:
     RaiseSalary:
       name: Raise Salary
