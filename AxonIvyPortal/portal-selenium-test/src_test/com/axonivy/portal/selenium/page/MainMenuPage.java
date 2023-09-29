@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 import org.openqa.selenium.By;
 
 import com.axonivy.portal.selenium.common.WaitHelper;
-import com.axonivy.portal.selenium.page.legacy.LegacyDashboardPage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
@@ -52,15 +51,6 @@ public class MainMenuPage extends TemplatePage {
     });
     return new StatisticWidgetPage();
   }
-
-  public LegacyDashboardPage openLegacyDashboard() {
-    waitLeftMenuReady();
-    WaitHelper.waitForNavigation(() -> {
-      clickByJavaScript($("a[id='user-menu-required-login:logo-small']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()));
-    });
-    return new LegacyDashboardPage();
-  }
-  
 
   public void openUserSettingMenu() {
     $("#top-menu").shouldBe(appear, DEFAULT_TIMEOUT);
