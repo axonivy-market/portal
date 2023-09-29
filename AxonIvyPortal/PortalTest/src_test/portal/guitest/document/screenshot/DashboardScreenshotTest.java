@@ -155,7 +155,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     configPage.selectEditPublicDashboards();
     newDashboardPage.waitForPageLoaded();
     newDashboardPage.addNewExternalPageWidget();
-
+    newDashboardPage.waitForElementDisplayed(By.id("widget-configuration-form:new-widget-configuration-component:external-url"), true, DEFAULT_TIMEOUT);
     WebElement urlField = newDashboardPage.findElementById("widget-configuration-form:new-widget-configuration-component:external-url");
     newDashboardPage.type(urlField, "https://developer.axonivy.com");
     ScreenshotUtil.captureElementScreenshot(newDashboardPage.getConfigurationDialog(), ScreenshotUtil.DASHBOARD_FOLDER + "external-page-widget-configuration");
