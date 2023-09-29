@@ -56,26 +56,6 @@ public class AdminSettingsPage extends TemplatePage {
     }
   }
 
-  @SuppressWarnings("deprecation")
-  private void resetGlobalVariable(String variableName) {
-    List<WebElement> tableRows = getAdminTable().findElements(By.tagName("tr"));
-    for (WebElement row : tableRows) {
-      List<WebElement> columns = row.findElements(By.tagName("td"));
-      if (!CollectionUtils.isEmpty(columns)) {
-        WebElement keyColumn = columns.get(0);
-        if (keyColumn.getText().equals(variableName)) {
-          WebElement editButton = row.findElement(By.cssSelector("a[id$=reset]"));
-          click(editButton);
-          waitForElementPresent(By.cssSelector("[id$=':resetConfirmationDialog']"), true);
-          waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
-          WebElement restoreButton = findElementById("admin-setting-component:reset-setting");
-          click(restoreButton);
-          return;
-        }
-      }
-    }
-  }
-
   private WebElement getAdminTable() {
     return findElementByCssSelector("[id$=':adminTabView:settingTable']");
   }

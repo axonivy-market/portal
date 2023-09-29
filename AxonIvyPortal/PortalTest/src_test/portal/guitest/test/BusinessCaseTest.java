@@ -65,7 +65,7 @@ public class BusinessCaseTest extends BaseTest {
   public void testTaskOfTechnicalCaseDisplayBusinessCaseOnTaskDetails() {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     int firstTask = 0;
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.openTaskDetails(firstTask);
     assertTrue(taskWidgetPage.getRelatedCase().contains(BUSINESS_CASE_NAME));
   }

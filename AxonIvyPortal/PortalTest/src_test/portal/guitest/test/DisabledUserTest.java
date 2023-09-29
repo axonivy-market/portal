@@ -42,7 +42,7 @@ public class DisabledUserTest extends BaseTest {
   public void testFilterByDisabledUserInTaskResponsibleFilter() {
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(TASK_CASE_CREATION_FOR_DISABLED_USER_LINK);
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterByResponsible(VISIBILITY_USER_FULL_NAME);
     assertTrue(taskWidgetPage.getFilterValue("responsible-filter").contains(DISABLED_VISIBILITY_USER_FULL_DISPLAY_NAME));
     assertEquals(1, taskWidgetPage.countTasks());

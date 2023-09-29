@@ -39,8 +39,7 @@ public class SearchProcessTest extends BaseTest {
 
     searchResultPage.startProcess(processName);
     newDashboardPage2 = new NewDashboardPage2();
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     WaitHelper.assertTrueWithRefreshPage(taskWidgetPage,
         () -> taskWidgetPage.getNameOfTaskAt(0).contains("Payment"));
   }

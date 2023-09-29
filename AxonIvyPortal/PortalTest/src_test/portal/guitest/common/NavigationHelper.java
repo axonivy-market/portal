@@ -17,7 +17,7 @@ public class NavigationHelper {
     }
   }
 
-  public static TaskWidgetPage navigateToTasList() {
+  public static TaskWidgetPage navigateToTaskList() {
     navigateToRelativeLink(TASK_LIST_PAGE_URL);
     return new TaskWidgetPage();
   }

@@ -50,7 +50,7 @@ public class BackNavigationTest extends BaseTest {
   @Test
   public void testEnterTaskDetailAndGoBack() {
     createTestingTasks();
-    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
 
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
     assertEquals(TASK_DETAILS_TITLE, taskDetailsPage.getPageTitle());

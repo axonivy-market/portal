@@ -31,7 +31,7 @@ public class ShowTaskNoteHistoryTest extends BaseTest {
         TaskWidgetPage taskWidgetPage = newDashboardPage2.openTaskList();
         TaskDetailsPage taskDetailsPage = taskWidgetPage.openTaskDetailsFromActionMenu(0);
         String taskUuid = taskDetailsPage.getTaskUuid();
-        NavigationHelper.navigateToTasList();
+        NavigationHelper.navigateToTaskList();
         TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
         taskTemplatePage.openCaseInfo();
         taskTemplatePage.addNewNote(NOTE_CONTENT);

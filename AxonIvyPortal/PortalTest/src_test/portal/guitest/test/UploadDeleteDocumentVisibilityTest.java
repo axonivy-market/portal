@@ -44,7 +44,7 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
   public void testSettingHideUploadDeleteDocumentForDoneCase() {
     createCaseAndUploadDocumentByUser(TestAccount.ADMIN_USER);
     redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.startTaskWithoutUI(0);
     taskWidgetPage.openTaskList();
     updatePortalSetting(HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE.getKey(), "true");

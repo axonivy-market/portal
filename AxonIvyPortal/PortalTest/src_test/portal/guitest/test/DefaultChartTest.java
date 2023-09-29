@@ -40,8 +40,7 @@ public class DefaultChartTest extends BaseTest {
 
   @Test
   public void testCreateDefaultChart() {
-    NewDashboardPage2 home = new NewDashboardPage2();
-
+    new NewDashboardPage2();
     MainMenuPage mainMenuPage = new MainMenuPage();
     StatisticWidgetPage statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);

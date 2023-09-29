@@ -187,7 +187,7 @@ public class ChatTest extends BaseTest {
     redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
     ChatPage chatPage = new NewDashboardPage2().getChat();
     // Create chat group via task
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.clickTaskActionMenu();
     taskTemplatePage.clickChatGroup();
@@ -200,8 +200,7 @@ public class ChatTest extends BaseTest {
 
   private void joinChatGroupWhichAlreadyHadChatGroup(TestAccount userJoined) {
     login(userJoined);
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy("Sick Leave Request Default Case Details Page");
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.clickTaskActionMenu();
