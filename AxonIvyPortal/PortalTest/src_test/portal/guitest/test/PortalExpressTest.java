@@ -413,7 +413,7 @@ public class PortalExpressTest extends BaseTest {
 		login(TestAccount.ADMIN_USER);
     executeApproval("Approved at second level", 1, "Task 3", 2);
 		login(TestAccount.DEMO_USER);
-    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
 		String approvalResult = executeReview();
 		Assert.assertEquals("Portal Demo User,Approved at first level,Yes," + TestAccount.DEMO_USER.getFullName()
 				+ ",Approved at second level,Yes," + TestAccount.ADMIN_USER.getFullName()
@@ -444,7 +444,7 @@ public class PortalExpressTest extends BaseTest {
 	}
 
 	protected String executeReview(String taskName) {
-    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy(taskName);
 		taskWidgetPage.startTask(0);
 		ExpressReviewPage reviewPage = new ExpressReviewPage();
@@ -471,7 +471,7 @@ public class PortalExpressTest extends BaseTest {
 	}
 
   protected void executeApproval(String comment, int taskIndex, String taskNameFilter, int taskCountAfterFiltering) {
-    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     if (taskWidgetPage.countTasks() <= taskIndex) {
       taskWidgetPage.filterTasksInExpandedModeBy("Task", taskCountAfterFiltering);
     }

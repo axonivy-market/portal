@@ -280,7 +280,7 @@ public class TaskTemplatePage extends TemplatePage {
     click(By.id("form:save-btn"));
     driver.switchTo().defaultContent();
     WaitHelper.waitForPresenceOfElementLocatedInFrame(driver, "[id$='global-search-component:global-search-data']");
-    return NavigationHelper.navigateToTasList();
+    return NavigationHelper.navigateToTaskList();
   }
 
   public NewDashboardPage2 backToHomeInIFrameApprovalTask() {

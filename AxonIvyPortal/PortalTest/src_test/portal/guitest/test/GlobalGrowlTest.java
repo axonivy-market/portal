@@ -39,7 +39,7 @@ public class GlobalGrowlTest extends BaseTest {
   @Test
   public void testDisplayCustomGrowlAfterFinishTask() {
     redirectToRelativeLink(CUSTOM_GROWL_URL); // TODO z1 check
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskWidgetPage = taskTemplatePage.clickSubmitButton();
     assertGrowlMessage(taskWidgetPage, CUSTOM_FINISH_MESSAGE);
@@ -48,7 +48,7 @@ public class GlobalGrowlTest extends BaseTest {
   @Test
   public void testDisplayDefaultGrowlAfterFinishTask() {
     redirectToRelativeLink(createTestingTasksUrl);
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     taskTemplatePage.inputFields("Employee", today, today, "Representation");
@@ -58,7 +58,7 @@ public class GlobalGrowlTest extends BaseTest {
   
   @Test
   public void testDisplayDefaultGrowlAfterFinishFirstTask() {
-    NavigationHelper.navigateToTasList();
+    NavigationHelper.navigateToTaskList();
     redirectToRelativeLink(SKIP_TASK_LIST_URL);
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
@@ -70,7 +70,7 @@ public class GlobalGrowlTest extends BaseTest {
   @Test
   public void testDisplayDefaultGrowlAfterCancelTask() {
     redirectToRelativeLink(createTestingTasksUrl);
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskWidgetPage = taskTemplatePage.clickCancelAndLeftButton();
     assertGrowlMessage(taskWidgetPage, CANCEL_MESSAGE_WITH_DETAILS);
@@ -79,7 +79,7 @@ public class GlobalGrowlTest extends BaseTest {
   @Test
   public void testDisplayCustomGrowlAfterCancelTask() {
     redirectToRelativeLink(CUSTOM_GROWL_URL);
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskWidgetPage = taskTemplatePage.clickCancelAndLeftButton();
     assertGrowlMessage(taskWidgetPage, CUSTOM_CANCEL_MESSAGE);

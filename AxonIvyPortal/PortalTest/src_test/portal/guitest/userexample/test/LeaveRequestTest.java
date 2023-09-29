@@ -56,7 +56,7 @@ public class LeaveRequestTest extends BaseTest {
     leaveRequestPage.clickSubmitButton();
     leaveRequestPage.clickOnLogout();
     login(TestAccount.ADMIN_USER);
-    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.startTask(0);
     taskWidgetPage.switchToIFrameOfTask();
     WaitHelper.assertTrueWithWait(() -> "Approval".equals(leaveRequestPage.getPageTitle()));
@@ -64,7 +64,7 @@ public class LeaveRequestTest extends BaseTest {
     leaveRequestPage.clickApproveBtn();
     leaveRequestPage.clickOnLogout();
     login(TestAccount.DEMO_USER);
-    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy("Your leave request is approved");
     taskWidgetPage.startTask(0);
     taskWidgetPage.switchToIFrameOfTask();
@@ -84,7 +84,7 @@ public class LeaveRequestTest extends BaseTest {
     leaveRequestPage.clickSubmitButton();
     leaveRequestPage.clickOnLogout();
     login(TestAccount.ADMIN_USER);
-    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.startTask(0);
     taskWidgetPage.switchToIFrameOfTask();
     WaitHelper.assertTrueWithWait(() -> "Approval".equals(leaveRequestPage.getPageTitle()));
@@ -92,7 +92,7 @@ public class LeaveRequestTest extends BaseTest {
     leaveRequestPage.clickRejectBtn();
     leaveRequestPage.clickOnLogout();
     login(TestAccount.DEMO_USER);
-    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy("Your leave request is rejected");
     taskWidgetPage.startTask(0);
     taskWidgetPage.switchToIFrameOfTask();

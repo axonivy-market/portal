@@ -29,7 +29,7 @@ public class TaskPriorityChangeTest extends BaseTest {
     int firstTask = 0;
     int priorityIntValue = 2;
     String priorityStringValue = "NORMAL";
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     TaskDetailsPage taskDetailsPage = taskWidgetPage.openTaskDetails(firstTask);
     taskDetailsPage.changePriorityOfTask(priorityIntValue);
     assertTrue(priorityStringValue.equals(taskDetailsPage.getPriorityOfTask()));
@@ -38,7 +38,7 @@ public class TaskPriorityChangeTest extends BaseTest {
   @Test
   public void testUserWithoutPermissionCannotChangeTaskPriority() {
     int firstTask = 0;
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.openTaskDetails(firstTask);
     assertFalse(taskWidgetPage.isTaskPriorityChangeComponentPresented(firstTask));
   }

@@ -39,7 +39,7 @@ public class AdhocExpressTest extends BaseTest {
     String defaultTaskComment2 = "it's okay";
     
     //check if task Maternity exists
-    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy(taskNamePrefix, 1);
     assertEquals(1, taskWidgetPage.countTasks());
     String taskId = taskWidgetPage.getTaskId();
@@ -68,7 +68,7 @@ public class AdhocExpressTest extends BaseTest {
     defaultExpressTaskPage.finishDefaultTask();
     
     //approval task of adhoc
-    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy(defaultTaskName2, 1);
     assertEquals(1, taskWidgetPage.countTasks());
     taskWidgetPage.startTask(0);
@@ -77,7 +77,7 @@ public class AdhocExpressTest extends BaseTest {
     defaultExpressTaskPage.finishDefaultTask();
     
     //check if task Maternity task
-    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy(taskNamePrefix, 1);
     assertEquals(1, taskWidgetPage.countTasks());
     taskWidgetPage.startTask(0);
@@ -99,7 +99,7 @@ public class AdhocExpressTest extends BaseTest {
     taskTemplatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
     dialogPage.leaveTask();
-    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.startTask(0);
     assertEquals(false, taskTemplatePage.isAdhocHistoryDialogExist());
     

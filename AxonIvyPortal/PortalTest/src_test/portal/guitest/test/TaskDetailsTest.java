@@ -31,7 +31,6 @@ import portal.guitest.page.UserProfilePage;
 public class TaskDetailsTest extends BaseTest {
 
   private static final String COMMENT_CONTENT = "Test comment";
-  private NewDashboardPage2 newDashboardPage2;
   private TaskWidgetPage taskWidgetPage;
   private TaskDetailsPage taskDetailsPage;
 
@@ -42,14 +41,12 @@ public class TaskDetailsTest extends BaseTest {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     createTestingTasks();
     redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-    newDashboardPage2 = new NewDashboardPage2();
+    new NewDashboardPage2();
   }
 
   @Test
   public void testDelegateTaskInTaskDetail() {
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-    newDashboardPage2 = new NewDashboardPage2();
     taskDetailsPage = openDetailsPageOfFirstTask();
     assertTrue(StringUtils.equalsIgnoreCase(TestRole.EVERYBODY_ROLE, taskDetailsPage.getTaskResponsible()));
     taskDetailsPage.openTaskDelegateDialog();
@@ -64,7 +61,7 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   private TaskDetailsPage openDetailsPageOfFirstTask() {
-    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     return taskWidgetPage.openTaskDetails(0);
   }
 
@@ -169,8 +166,6 @@ public class TaskDetailsTest extends BaseTest {
   public void testShowTaskWorkflowEvent() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTechnicalStateUrl);
-    newDashboardPage2 = new NewDashboardPage2();
-
     taskDetailsPage = openDetailsPageOfFirstTask();
     String eventData = taskDetailsPage.openWorkflowEventDialog();
     assertTrue(eventData.contains("admin"));
@@ -179,8 +174,7 @@ public class TaskDetailsTest extends BaseTest {
   private void openDelayTask() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTaskWithSystemState);
-    newDashboardPage2 = new NewDashboardPage2();
-    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Delayed"));
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
   }
@@ -193,8 +187,7 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   private void openFirstTaskInCompletedTasks() {
-    newDashboardPage2 = new NewDashboardPage2();
-    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.openAdvancedFilter("Completed on (from/to)", "completed");
     filterByDateType("completed");
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
@@ -229,8 +222,7 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   private void openFirstTaskInTaskList() {
-    newDashboardPage2 = new NewDashboardPage2();
-    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
   }
 

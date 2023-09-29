@@ -34,7 +34,7 @@ public class SideStepTest extends BaseTest {
   }
 
   private TaskTemplatePage startATask() {
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     return taskTemplatePage;
   }
@@ -44,7 +44,7 @@ public class SideStepTest extends BaseTest {
   public void testAddAdhocTask() {
     int firstTask = 0;
     final String TASK_NAME = "Create Leave Request";
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     assertTrue(taskWidgetPage.countTasks() == 1);
     assertEquals(taskWidgetPage.getNameOfTaskAt(0), TASK_NAME);
     AdhocPage adhocPage = taskWidgetPage.addAdhoc(firstTask);
