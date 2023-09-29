@@ -420,7 +420,6 @@ public class TaskDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':reset-details-settings-button']"), true);
   }
 
-  @SuppressWarnings("deprecation")
   public void changeEscaltionActivatorTo(String activatorName, boolean isUser) {
     boolean canEditExpiryActivator = canChangeEscalationActivator();
     if (canEditExpiryActivator) {

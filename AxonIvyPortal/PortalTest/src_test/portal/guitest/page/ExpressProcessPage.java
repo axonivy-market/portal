@@ -31,7 +31,6 @@ public class ExpressProcessPage extends TemplatePage {
 		type(By.id("form:process-description"), processDescription);
 	}
 
-  @SuppressWarnings("deprecation")
   private void selectCheckbox(String forAttribute) {
 		WebElement checkboxLabel = findElementByXpath(String.format("//label[@for='%s']", forAttribute));
 		click(checkboxLabel);
@@ -170,8 +169,8 @@ public class ExpressProcessPage extends TemplatePage {
     waitForElementDisplayed(findElementById("choose-responsible-dialog"), false);
   }
   
-  public NewDashboardPage2 cancelWorkflowDefinition() {
+  public NewDashboardPage cancelWorkflowDefinition() {
     click(By.id("form:cancel-workflow-button"));
-    return new NewDashboardPage2();
+    return new NewDashboardPage();
   }
 }

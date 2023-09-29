@@ -58,7 +58,6 @@ public class TaskWidgetPage extends TemplatePage {
     return new TaskDetailsPage();
   }
 
-  @SuppressWarnings("deprecation")
   public void showNoteHistory() {
     click(driver.findElement(By.cssSelector("a[id$='show-more-note-link']")));
   }
@@ -140,7 +139,6 @@ public class TaskWidgetPage extends TemplatePage {
     waitForNumberOfTasks(expectedNumberOfTasksAfterFiltering);
   }
 
-  @SuppressWarnings("deprecation")
   public CaseDetailsPage openRelatedCaseOfTask() {
     click(findElementByCssSelector("a[id$='related-case']"));
     return new CaseDetailsPage();
@@ -159,7 +157,6 @@ public class TaskWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.id(actionPanel), true);
   }
 
-  @SuppressWarnings("deprecation")
   public TaskTemplatePage clickOnSideStepAction(int taskIndex, int sideStepIndex) {
     String sideStepsId = String.format(
         "task-widget:task-list-scroller:%d:task-item:task-action:additional-options:task-additional-actions",
@@ -176,7 +173,6 @@ public class TaskWidgetPage extends TemplatePage {
     return isElementDisplayedById(moreButton);
   }
 
-  @SuppressWarnings("deprecation")
   public void reserveTask(int taskId) {
     String reserveCommandButton = String.format(
         taskWidgetId + ":task-list-scroller:%d:task-item:task-action:additional-options:task-reserve-command", taskId);
@@ -184,7 +180,6 @@ public class TaskWidgetPage extends TemplatePage {
     click(findElementById(reserveCommandButton));
   }
 
-  @SuppressWarnings("deprecation")
   public void resetTask(int taskId) {
     String resetCommandButton = String.format(
         taskWidgetId + ":task-list-scroller:%s:task-item:task-action:additional-options:task-reset-command", taskId);
@@ -524,7 +519,6 @@ public class TaskWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("button[id$='state-filter:filter-input-form:update-command']"), false);
   }
 
-  @SuppressWarnings("deprecation")
   public void clickOnUnCheckSelectAllStates() {
     var selectAll = getStateFilterPanel().findElement(By.cssSelector("[id$=':filter-input-form:states-select-all']"));
     if (selectAll.findElement(By.className("ui-chkbox-box")).getAttribute(CLASS_PROPERTY).contains("ui-state-active")) {
@@ -547,7 +541,6 @@ public class TaskWidgetPage extends TemplatePage {
     return findElementByCssSelector("div[id$='state-filter:filter-input-form:advanced-filter-panel']");
   }
 
-  @SuppressWarnings("deprecation")
   public void clickOnStartTaskLink(int index) {
     String startLinkId =
         String.format("a[id$='task-list-scroller:%d:task-item:task-action:task-action-component']", index);
@@ -555,7 +548,6 @@ public class TaskWidgetPage extends TemplatePage {
     click(findElementByCssSelector(startLinkId));
   }
 
-  @SuppressWarnings("deprecation")
   public void saveFilter(String filterName) {
     openSaveFilterDialog();
     WebElement filterNameInput = findElementById(taskWidgetId + ":filter-save-form:save-filter-set-name-input");
@@ -585,7 +577,6 @@ public class TaskWidgetPage extends TemplatePage {
     return findElementById("task-widget:save-filter-set-dialog");
   }
 
-  @SuppressWarnings("deprecation")
   public void openSavedFilters(String filterName) {
     click(findElementById("task-widget:filter-selection-form:filter-name"));
     waitForElementDisplayed(By.cssSelector("span[id$='private-filters']"), true);
@@ -649,7 +640,6 @@ public class TaskWidgetPage extends TemplatePage {
     }
   }
 
-  @SuppressWarnings("deprecation")
   public void resetResumedTask() {
     waitForElementDisplayed(By.cssSelector("[id$=':reset-task-dialog_content']"), true);
     click(findElementByCssSelector("[id$=':reset-task-form:reset-task-button']"));
@@ -740,7 +730,6 @@ public class TaskWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("div[id$=':task-category-filter-tree']"), true);
   }
 
-  @SuppressWarnings("deprecation")
   public void toggleNoCategory() {
     List<WebElement> categories = findListElementsByCssSelector(".filter-category-checkbox-tree .ui-tree-selectable");
     for (WebElement category : categories) {
@@ -769,7 +758,6 @@ public class TaskWidgetPage extends TemplatePage {
     return !destroyButton.getAttribute(CLASS).contains("ui-state-disabled");
   }
 
-  @SuppressWarnings("deprecation")
   public void destroyTask(int rowIndex) {
     click(findDestroyCommand(rowIndex));
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
@@ -861,7 +849,6 @@ public class TaskWidgetPage extends TemplatePage {
         .collect(Collectors.toList());
   }
 
-  @SuppressWarnings("deprecation")
   public void clickOnTaskActionLink(int taskIndex) {
     click(findElementByCssSelector(String.format(
         "a[id$='task-list-scroller:%d:task-item:task-action:additional-options:task-side-steps-menu'", taskIndex)));

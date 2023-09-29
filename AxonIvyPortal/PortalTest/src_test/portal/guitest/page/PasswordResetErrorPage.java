@@ -20,7 +20,6 @@ public class PasswordResetErrorPage extends AbstractPage {
     this.goForgotPasswordButton =  findElementByCssSelector("button[id='password-reset-error:go-forgot-password-button']");
   }
 
-  @SuppressWarnings("deprecation")
   public void goForgotPassword() {
     click(goForgotPasswordButton);
     waitForElementDisplayed(By.id("forgot-password:forgot-password-form:send-command"), true, PASSWORD_RESET_TIMEOUT);

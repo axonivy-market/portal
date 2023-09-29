@@ -8,7 +8,7 @@ import org.junit.Test;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.NavigationHelper;
 import portal.guitest.page.MainMenuPage;
-import portal.guitest.page.NewDashboardPage2;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.UserProfilePage;
 import portal.guitest.page.WorkingTaskDialogFromUserProfilePage;
@@ -35,14 +35,14 @@ public class LanguageSettingTest extends BaseTest {
 
   @Test
   public void testChangeLanguage() {
-    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
-    UserProfilePage userProfilePage = newDashboardPage2.openMyProfilePage();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
     // select German
     userProfilePage.selectLanguage(3);
-    newDashboardPage2 = userProfilePage.save();
-    MainMenuPage mainMenuPage = newDashboardPage2.openMainMenu();
+    newDashboardPage = userProfilePage.save();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     assertEquals("Prozesse", mainMenuPage.getProcessMenuItemText());
-    userProfilePage = newDashboardPage2.openMyProfilePage();
+    userProfilePage = newDashboardPage.openMyProfilePage();
     userProfilePage.selectLanguage(1);
     userProfilePage.save();
     mainMenuPage = userProfilePage.openMainMenu();

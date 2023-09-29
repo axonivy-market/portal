@@ -13,13 +13,13 @@ import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.MainMenuPage;
-import portal.guitest.page.NewDashboardPage2;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class PortalPermissionTest extends BaseTest{
   
-  protected NewDashboardPage2 newDashboardPage2;
+  protected NewDashboardPage newDashboardPage;
   private String grantSpecificPortalPermissionLink = "portalKitTestHelper/14DE09882B540AD5/grantSpecificPortalPermission.ivp?portalPermission=%s";
   private String denySpecificPortalPermissionLink = "portalKitTestHelper/14DE09882B540AD5/denySpecificPortalPermission.ivp?portalPermission=%s";
   
@@ -28,7 +28,7 @@ public class PortalPermissionTest extends BaseTest{
   public void setup() {
     super.setup();
     grantAccessFullListPermissions();
-    newDashboardPage2 = new NewDashboardPage2();
+    newDashboardPage = new NewDashboardPage();
   }
   
   @After
@@ -42,7 +42,7 @@ public class PortalPermissionTest extends BaseTest{
   
   @Test
   public void testShowHideSubMenuItems() {
-    MainMenuPage mainMenuPage = newDashboardPage2.openMainMenu();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     denyAccessFullListPermissions();
     Assert.assertFalse(mainMenuPage.isProcessesDisplayed());
     Assert.assertFalse(mainMenuPage.isTasksDisplayed());
@@ -50,7 +50,7 @@ public class PortalPermissionTest extends BaseTest{
     Assert.assertFalse(mainMenuPage.isStatisticsDisplayed());
     
     grantAccessFullListPermissions();
-    newDashboardPage2 = new NewDashboardPage2();
+    newDashboardPage = new NewDashboardPage();
     WaitHelper.assertTrueWithWait(() -> mainMenuPage.isProcessesDisplayed());
     Assert.assertTrue(mainMenuPage.isTasksDisplayed());
     Assert.assertTrue(mainMenuPage.isCasesDisplayed());
@@ -82,7 +82,7 @@ public class PortalPermissionTest extends BaseTest{
     createTestingTasks();
     denyShowHideNotePermissions();
     denyDocumentOfInvolvedCaseWritePemissionFromCurrentUser();
-    MainMenuPage mainMenuPage = newDashboardPage2.openMainMenu();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
     Assert.assertFalse(caseDetailsPage.isAddNoteButtonDisplayed());
@@ -112,7 +112,7 @@ public class PortalPermissionTest extends BaseTest{
   public void testShowHideLinkRelatedToCasePermissions() {
     createTestingTasks();
     denyCasePermissions();
-    MainMenuPage mainMenuPage = newDashboardPage2.openMainMenu();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
     Assert.assertFalse(caseDetailsPage.isShowDetailsDisplayed());

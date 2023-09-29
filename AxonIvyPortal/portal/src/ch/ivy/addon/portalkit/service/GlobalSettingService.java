@@ -84,20 +84,6 @@ public class GlobalSettingService {
     }
     return entity;
   }
-  //
-  // public GlobalSetting updateRelatedGlobalSettingByGlobalSetting(GlobalSetting entity) { TODO z1 remove
-  // GlobalSetting relatedSetting = null;
-  // String relatedSettingValue = null;
-  // if (GlobalVariable.SHOW_LEGACY_UI.getKey().equals(entity.getKey())) {
-  // relatedSettingValue =
-  // Option.TRUE.toString().equals(entity.getValue()) ? ProcessMode.COMPACT.name() : ProcessMode.IMAGE.name();
-  // relatedSetting = new GlobalSetting(GlobalVariable.DEFAULT_PROCESS_MODE.getKey(), relatedSettingValue);
-  // }
-  // if (relatedSetting != null) {
-  // relatedSetting = save(relatedSetting);
-  // }
-  // return relatedSetting;
-  // }
 
   public List<GlobalSetting> findAll() {
     return getPortalVariableStream().sorted((v1, v2) -> StringUtils.compareIgnoreCase(v1.name(), v2.name()))

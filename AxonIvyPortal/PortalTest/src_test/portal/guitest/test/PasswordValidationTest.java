@@ -15,12 +15,12 @@ import ch.ivy.addon.portalkit.enums.PortalPermission;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdminSettingsPage;
-import portal.guitest.page.NewDashboardPage2;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.PasswordValidationPage;
 
 public class PasswordValidationTest extends BaseTest {
 
-  private NewDashboardPage2 newDashboardPage2;
+  private NewDashboardPage newDashboardPage;
   private AdminSettingsPage adminSettingsPage;
   private PasswordValidationPage passwordValidationPage;
 
@@ -29,7 +29,7 @@ public class PasswordValidationTest extends BaseTest {
   public void setup() {
     super.setup();
     login(TestAccount.ADMIN_USER);
-    newDashboardPage2 = new NewDashboardPage2();
+    newDashboardPage = new NewDashboardPage();
   }
 
   @Test
@@ -38,8 +38,8 @@ public class PasswordValidationTest extends BaseTest {
     assertTrue("PasswordValidation tab is not displayed", passwordValidationPage.isDisplayed());
 
     denySpecificPortalPermission(PortalPermission.PASSWORD_VALIDATION);
-    newDashboardPage2 = new NewDashboardPage2();
-    adminSettingsPage = newDashboardPage2.openAdminSettings();
+    newDashboardPage = new NewDashboardPage();
+    adminSettingsPage = newDashboardPage.openAdminSettings();
     assertFalse("PasswordValidation tab is displayed", adminSettingsPage.isPasswordValidationTabViewPresent());
   }
 
@@ -90,8 +90,8 @@ public class PasswordValidationTest extends BaseTest {
   }
 
   private PasswordValidationPage accessToPasswordValidation() {
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-    var adminSettingsPage = new NewDashboardPage2().openAdminSettings();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    var adminSettingsPage = new NewDashboardPage().openAdminSettings();
     assertTrue("PasswordValidation tab is NOT displayed", adminSettingsPage.isPasswordValidationTabViewPresent());
     passwordValidationPage = adminSettingsPage.openPasswordValidationTab();
     return passwordValidationPage;

@@ -24,7 +24,7 @@ import portal.guitest.page.AdditionalCaseDetailsPage;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.MainMenuPage;
-import portal.guitest.page.NewDashboardPage2;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.UserProfilePage;
 
@@ -39,7 +39,7 @@ public class CaseWidgetTest extends BaseTest {
   private static final String RELATED_CASE_STATE_COLUMN = "state-column";
   private static final String RELATED_CASE_CREATED_COLUMN = "created-column";
   
-  private NewDashboardPage2 newDashboardPage2;
+  private NewDashboardPage newDashboardPage;
   private MainMenuPage mainMenuPage;
   private CaseWidgetPage casePage;
   private CaseDetailsPage caseDetailsPage;
@@ -55,14 +55,14 @@ public class CaseWidgetTest extends BaseTest {
   @Test
   public void testHideCase() {
     redirectToRelativeLink(hideCaseUrl);
-    initNewDashboardPage2(TestAccount.ADMIN_USER);
+    initNewDashboardPage(TestAccount.ADMIN_USER);
     
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy("Report and hide case", 2);
     taskWidgetPage.startTaskWithoutUI(1);
-    newDashboardPage2 = new NewDashboardPage2();
+    newDashboardPage = new NewDashboardPage();
     
-    mainMenuPage = newDashboardPage2.openMainMenu();
+    mainMenuPage = newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
     assertFalse(casePage.isCaseDisplayed("Repair Computer"));
   }
@@ -70,8 +70,8 @@ public class CaseWidgetTest extends BaseTest {
   @SuppressWarnings("deprecation")
   @Test
   public void testDestroyCaseWithPermission() {
-    initNewDashboardPage2(TestAccount.ADMIN_USER);
-    mainMenuPage = newDashboardPage2.openMainMenu();
+    initNewDashboardPage(TestAccount.ADMIN_USER);
+    mainMenuPage = newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
     casePage.clickDestroyButton();
     casePage.confimDestruction();
@@ -83,16 +83,16 @@ public class CaseWidgetTest extends BaseTest {
 
   @Test
   public void testDestroyCaseWithoutPermission() {
-    initNewDashboardPage2(TestAccount.DEMO_USER);
-    mainMenuPage = newDashboardPage2.openMainMenu();
+    initNewDashboardPage(TestAccount.DEMO_USER);
+    mainMenuPage = newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
     assertFalse(casePage.isDestroyButtonVisible());
   }
 
   @Test
   public void testOpenRelatedTasksOfCase() {
-    initNewDashboardPage2(TestAccount.DEMO_USER);
-    mainMenuPage = newDashboardPage2.openMainMenu();
+    initNewDashboardPage(TestAccount.DEMO_USER);
+    mainMenuPage = newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
     caseDetailsPage = casePage.openDetailsOfCaseHasName(LEAVE_REQUEST_CASE_NAME);
     assertEquals(4, caseDetailsPage.countRelatedTasks());
@@ -101,8 +101,8 @@ public class CaseWidgetTest extends BaseTest {
   @Test
   public void testOpenRelatedCasesOfCase() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    initNewDashboardPage2(TestAccount.DEMO_USER);
-    mainMenuPage = newDashboardPage2.openMainMenu();
+    initNewDashboardPage(TestAccount.DEMO_USER);
+    mainMenuPage = newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
     caseDetailsPage = casePage.openDetailsOfCaseHasName(ORDER_PIZZA);
     assertEquals(1, caseDetailsPage.countRelatedCases());
@@ -122,8 +122,8 @@ public class CaseWidgetTest extends BaseTest {
   
   @Test
   public void testEnableAndDisableColumnsInCaseWidget() {
-    initNewDashboardPage2(TestAccount.DEMO_USER);
-    mainMenuPage = newDashboardPage2.openMainMenu();
+    initNewDashboardPage(TestAccount.DEMO_USER);
+    mainMenuPage = newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
     assertTrue(casePage.isCaseListColumnExist(CREATED_COLUMN_HEADER));
     assertTrue(casePage.isCaseListColumnExist(STATE_COLUMN_HEADER));
@@ -143,16 +143,16 @@ public class CaseWidgetTest extends BaseTest {
 
   private void openAdditionalCaseDetailsPage(String initDataUrl, String caseName){
     redirectToRelativeLink(initDataUrl);
-    initNewDashboardPage2(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-    mainMenuPage = newDashboardPage2.openMainMenu();
+    initNewDashboardPage(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    mainMenuPage = newDashboardPage.openMainMenu();
     additionalCaseDetailsPage = new AdditionalCaseDetailsPage();
     casePage = mainMenuPage.selectCaseMenu();
     caseDetailsPage = casePage.openDetailsOfCaseHasName(caseName);
     caseDetailsPage.openActionMenu();
     caseDetailsPage.openAdditionalCaseDetailsPage();
-    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> newDashboardPage2.countBrowserTab() > 1);
-    newDashboardPage2.switchLastBrowserTab();
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> newDashboardPage.countBrowserTab() > 1);
+    newDashboardPage.switchLastBrowserTab();
   }
   
   private void validateAdditionalCaseDetailsPage(int expectedNumberOfFields, String expectedFirstFieldValue){
@@ -167,15 +167,15 @@ public class CaseWidgetTest extends BaseTest {
     assertEquals(expectedFirstFieldValue, additionalCaseDetailsPage.getAdditionalFieldContentOfFirstRow());
   }
 
-  private void initNewDashboardPage2(TestAccount account) {
+  private void initNewDashboardPage(TestAccount account) {
     login(account);
-    newDashboardPage2 = new NewDashboardPage2();
+    newDashboardPage = new NewDashboardPage();
   }
   
   @Test
   public void testShowCaseCount() {
-    initNewDashboardPage2(TestAccount.DEMO_USER);
-    mainMenuPage = newDashboardPage2.openMainMenu();
+    initNewDashboardPage(TestAccount.DEMO_USER);
+    mainMenuPage = newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
     casePage.waitUntilCaseCountDifferentThanZero();
     assertEquals(1, casePage.getCaseCount().intValue());
@@ -184,27 +184,27 @@ public class CaseWidgetTest extends BaseTest {
   @Test
   public void testDisableCaseCount() {
     updatePortalSetting(DISABLE_CASE_COUNT.getKey(), "true");
-    initNewDashboardPage2(TestAccount.ADMIN_USER);
+    initNewDashboardPage(TestAccount.ADMIN_USER);
 
-    mainMenuPage = newDashboardPage2.openMainMenu();
+    mainMenuPage = newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
     assertEquals("Case count is not disabled", null, casePage.getCaseCount());
   }
 
   @Test
   public void testBreadCrumb() {
-    initNewDashboardPage2(TestAccount.DEMO_USER);
-    mainMenuPage = newDashboardPage2.openMainMenu();
+    initNewDashboardPage(TestAccount.DEMO_USER);
+    mainMenuPage = newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
     assertEquals("Cases (1)", casePage.getTextOfCurrentBreadcrumb());
-    newDashboardPage2 = casePage.goToHomeFromBreadcrumb();
-    assertTrue(newDashboardPage2.isDisplayed());
+    newDashboardPage = casePage.goToHomeFromBreadcrumb();
+    assertTrue(newDashboardPage.isDisplayed());
   }
 
   @Test
   public void testBreadCrumbInCaseDetail() {
-    initNewDashboardPage2(TestAccount.DEMO_USER);
-    mainMenuPage = newDashboardPage2.openMainMenu();
+    initNewDashboardPage(TestAccount.DEMO_USER);
+    mainMenuPage = newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     assertEquals("Case: Leave Request", caseDetailsPage.getTextOfCurrentBreadcrumb());
@@ -214,24 +214,24 @@ public class CaseWidgetTest extends BaseTest {
     assertTrue(casePage.isDisplayed());
 
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
-    newDashboardPage2 = caseDetailsPage.goToHomeFromBreadcrumb();
-    assertTrue(newDashboardPage2.isDisplayed());
+    newDashboardPage = caseDetailsPage.goToHomeFromBreadcrumb();
+    assertTrue(newDashboardPage.isDisplayed());
   }
 
   @Test
   public void testChangeCaseSortingOptions() {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
 
-    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
-    UserProfilePage userProfilePage = newDashboardPage2.openMyProfilePage();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
 
     // Change sorting options
     userProfilePage.selectCaseSortField("Name");
     userProfilePage.selectCaseSortDirection("Sort ascending");
-    newDashboardPage2 = userProfilePage.save();
+    newDashboardPage = userProfilePage.save();
 
     // Check result
-    CaseWidgetPage caseWidgetPage = newDashboardPage2.openCaseList();
+    CaseWidgetPage caseWidgetPage = newDashboardPage.openCaseList();
     assertEquals("Create 12 Cases with category", caseWidgetPage.getCaseNameAt(0));
     assertEquals("TestCase", caseWidgetPage.getCaseNameAt(13));
 
@@ -239,18 +239,18 @@ public class CaseWidgetTest extends BaseTest {
     userProfilePage = caseWidgetPage.openMyProfilePage();
     userProfilePage.selectCaseSortField("State");
     userProfilePage.selectCaseSortDirection("Sort descending");
-    newDashboardPage2 = userProfilePage.save();
+    newDashboardPage = userProfilePage.save();
 
     // Check result
-    caseWidgetPage = newDashboardPage2.openCaseList();
+    caseWidgetPage = newDashboardPage.openCaseList();
     assertEquals(CaseState.DONE, caseWidgetPage.getCaseState(0));
   }
 
   @Test
   public void testExportToExcel() {
     login(TestAccount.ADMIN_USER);
-    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
-    CaseWidgetPage caseWidgetPage = newDashboardPage2.openCaseList();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    CaseWidgetPage caseWidgetPage = newDashboardPage.openCaseList();
 
     caseWidgetPage.clickExportToExcelLink();
 
@@ -260,12 +260,12 @@ public class CaseWidgetTest extends BaseTest {
   @Test
   public void testStickySortCaseList() {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
-    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
-    CaseWidgetPage caseWidgetPage = newDashboardPage2.openCaseList();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    CaseWidgetPage caseWidgetPage = newDashboardPage.openCaseList();
     caseWidgetPage.sortCaseListByColumn("case-widget:case-list-header:created-date-column-header:created-date-column-header");
     caseWidgetPage.clickOnLogo();
-    newDashboardPage2 = new NewDashboardPage2();
-    caseWidgetPage = newDashboardPage2.openCaseList();
+    newDashboardPage = new NewDashboardPage();
+    caseWidgetPage = newDashboardPage.openCaseList();
     String selectedSortColumn = caseWidgetPage.getSelectedSortColumn();
     assertTrue(StringUtils.equalsIgnoreCase("Created", selectedSortColumn));
     String caseName = caseWidgetPage.getCaseNameAt(0);
@@ -274,10 +274,10 @@ public class CaseWidgetTest extends BaseTest {
     UserProfilePage userProfilePage = caseWidgetPage.openMyProfilePage();
     userProfilePage.selectCaseSortField("State");
     userProfilePage.selectCaseSortDirection("Sort descending");
-    newDashboardPage2 = userProfilePage.save();
+    newDashboardPage = userProfilePage.save();
     
     // Check result
-    caseWidgetPage = newDashboardPage2.openCaseList();
+    caseWidgetPage = newDashboardPage.openCaseList();
     selectedSortColumn = caseWidgetPage.getSelectedSortColumn();
     assertTrue(StringUtils.equalsIgnoreCase("State", selectedSortColumn));
     assertEquals(CaseState.DONE, caseWidgetPage.getCaseState(0));
@@ -286,8 +286,8 @@ public class CaseWidgetTest extends BaseTest {
   @Test
   public void testRelatedCaseEnableAndDisableColumns() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
-    CaseWidgetPage casePage = newDashboardPage2.openCaseList();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    CaseWidgetPage casePage = newDashboardPage.openCaseList();
     CaseDetailsPage detailsPage = casePage.openDetailsOfCaseHasName(ORDER_PIZZA);
     assertTrue(detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_CREATED_COLUMN));
     assertTrue(detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_STATE_COLUMN));

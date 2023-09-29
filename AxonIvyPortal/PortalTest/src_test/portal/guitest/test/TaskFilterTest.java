@@ -17,7 +17,7 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.MainMenuPage;
-import portal.guitest.page.NewDashboardPage2;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class TaskFilterTest extends BaseTest {
@@ -27,7 +27,7 @@ public class TaskFilterTest extends BaseTest {
   public void setup() {
     super.setup();
     redirectToRelativeLink(createTestingTasksUrl);
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
   }
 
   @Test
@@ -92,7 +92,7 @@ public class TaskFilterTest extends BaseTest {
   public void testSaveTaskFilterForAdmin() {
     List<String> normalStates = Arrays.asList("Suspended", "In progress");
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
 
     MainMenuPage mainMenuPage = new MainMenuPage();
     TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
@@ -117,9 +117,9 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.waitAjaxIndicatorDisappear();
 
     login(TestAccount.DEMO_USER);
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
-    mainMenuPage = newDashboardPage2.openMainMenu();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    mainMenuPage = newDashboardPage.openMainMenu();
     taskWidgetPage = mainMenuPage.openTaskList();
     assertFalse(taskWidgetPage.isExistedFilter(filterName));
   }
@@ -141,7 +141,7 @@ public class TaskFilterTest extends BaseTest {
     List<String> adminStates = Arrays.asList("Created", "Ready for joining", "Suspended", "In progress", "Reserved",
         "Delayed", "Done", "Destroyed", "Failed", "Join failed", "Waiting for event");
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     MainMenuPage mainMenuPage = new MainMenuPage();
     TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
 
@@ -259,7 +259,7 @@ public class TaskFilterTest extends BaseTest {
   @Test
   public void testTaskFilterForUnavailableActivator() {
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
 
     MainMenuPage mainMenuPage = new MainMenuPage();
     TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
@@ -276,9 +276,9 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.saveAdminFilter("admin filter");
 
     login(TestAccount.DEMO_USER);
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
-    mainMenuPage = newDashboardPage2.openMainMenu();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    mainMenuPage = newDashboardPage.openMainMenu();
     taskWidgetPage = mainMenuPage.openTaskList();
     assertFalse(taskWidgetPage.isExistedFilter(filterName));
   }

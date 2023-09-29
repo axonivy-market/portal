@@ -23,7 +23,7 @@ import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.TestRole;
 import portal.guitest.common.Variable;
-import portal.guitest.page.NewDashboardPage2;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.UserProfilePage;
@@ -40,8 +40,8 @@ public class TaskDetailsTest extends BaseTest {
     super.setup();
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     createTestingTasks();
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-    new NewDashboardPage2();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    new NewDashboardPage();
   }
 
   @Test
@@ -76,10 +76,10 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   private void setFormattingLanguage() {
-    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
-    UserProfilePage userProfilePage = newDashboardPage2.openMyProfilePage();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
     userProfilePage.inputFormattingLanguage("English (United Kingdom)");
-    newDashboardPage2 = userProfilePage.save();
+    newDashboardPage = userProfilePage.save();
   }
 
   @Test
