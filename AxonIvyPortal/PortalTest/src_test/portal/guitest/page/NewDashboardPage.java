@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import portal.guitest.common.WaitHelper;
 
 public class NewDashboardPage extends TemplatePage {
-  public final static String PORTAL_HOME_PAGE_URL = "portal/1549F58C18A6C562/DefaultApplicationHompePage.ivp";
+  public final static String PORTAL_HOME_PAGE_URL = "portal/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
 
   private static final String CONFIGURATION_DIALOG_ID = "new-widget-configuration-dialog";
   private static final String ADD_WIDGET_DIALOG_ID = "new-widget-dialog";
