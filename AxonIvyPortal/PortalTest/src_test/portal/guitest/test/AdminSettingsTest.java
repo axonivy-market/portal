@@ -18,7 +18,7 @@ import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.MainMenuPage;
-import portal.guitest.page.NewDashboardPage2;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class AdminSettingsTest extends BaseTest {
@@ -26,25 +26,25 @@ public class AdminSettingsTest extends BaseTest {
   @Test
 	public void whenLoginAsAdminThenAdminMenuItemDisplayed() {
 		login(TestAccount.ADMIN_USER);
-		NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
-		assertTrue("Admin Settings menu item is not displayed", newDashboardPage2.isAdminSettingsMenuItemPresent());
-		AdminSettingsPage adminSettingsPage = newDashboardPage2.openAdminSettings();
+		NewDashboardPage newDashboardPage = new NewDashboardPage();
+		assertTrue("Admin Settings menu item is not displayed", newDashboardPage.isAdminSettingsMenuItemPresent());
+		AdminSettingsPage adminSettingsPage = newDashboardPage.openAdminSettings();
 		assertTrue("Admin Settings dialog is not displayed", adminSettingsPage.isDisplayed());
 	}
 
 	@Test
 	public void whenLoginAsNonAdminThenAdminMenuItemNotDisplayed() {
-		NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
-		assertFalse("Admin Settings menu item is displayed", newDashboardPage2.isAdminSettingsMenuItemPresent());
+		NewDashboardPage newDashboardPage = new NewDashboardPage();
+		assertFalse("Admin Settings menu item is displayed", newDashboardPage.isAdminSettingsMenuItemPresent());
 	}
 
 	@Test
 	public void testDefaultEnvironmentInfo() {
     login(TestAccount.ADMIN_USER);
-    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
-    AdminSettingsPage adminSettingsPage = newDashboardPage2.openAdminSettings();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    AdminSettingsPage adminSettingsPage = newDashboardPage.openAdminSettings();
     adminSettingsPage.setEnviromentInfo();
-    assertTrue(newDashboardPage2.getEnviromentInfo().contains("Host: " + SystemProperties.getServerName()));
+    assertTrue(newDashboardPage.getEnviromentInfo().contains("Host: " + SystemProperties.getServerName()));
 	}
 
 	@Test

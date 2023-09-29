@@ -17,7 +17,7 @@ import portal.guitest.common.Variable;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.MainMenuPage;
-import portal.guitest.page.NewDashboardPage2;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.NoteHistoryPage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
@@ -112,15 +112,15 @@ public class SystemNoteVisibilityTest extends BaseTest {
   }
 
   private TaskDetailsPage openTaskDetails() {
-    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
-    MainMenuPage mainMenuPage = newDashboardPage2.openMainMenu();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     TaskWidgetPage taskWidget = mainMenuPage.selectTaskMenu();
     return taskWidget.openTaskDetails(0);
   }
   
   private CaseDetailsPage openCaseDetails() {
-    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
-    MainMenuPage mainMenuPage = newDashboardPage2.openMainMenu();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     return casePage.openDetailsOfCaseHasName("Create note");
   }

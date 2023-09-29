@@ -30,8 +30,8 @@ public class LoginTest extends BaseTest {
   public void testLogin() {
     loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
-    NewDashboardPage newDashboardPage2 = new NewDashboardPage();
-    assertTrue(newDashboardPage2.isDisplayed());
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    assertTrue(newDashboardPage.isDisplayed());
   }
 
   @Test

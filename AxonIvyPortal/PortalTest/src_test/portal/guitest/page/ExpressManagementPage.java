@@ -19,7 +19,6 @@ public class ExpressManagementPage extends TemplatePage {
     return "id('admin-setting-component:adminTabView:express-management-component:express-management-form')";
   }
 
-  @SuppressWarnings("deprecation")
   public void openImportDialog() {
     click(findElementByCssSelector("button[id$=':express-management-form:import-express-btn']"));
     waitForElementDisplayed(findElementByCssSelector("[id$=':import-express-form:express-process-upload_label']"), true);
@@ -42,7 +41,6 @@ public class ExpressManagementPage extends TemplatePage {
     Sleeper.sleep(2000);
   }
 
-  @SuppressWarnings("deprecation")
   public void clickOnCloseButton() {
     WebElement closeButton = findElementByCssSelector("*[id$=':close-import-express']");
     Awaitility.await().atMost(new Duration(10, TimeUnit.SECONDS)).until(() -> closeButton.isEnabled());
@@ -50,7 +48,6 @@ public class ExpressManagementPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("*[id$=':close-import-express']"), false);
   }
 
-  @SuppressWarnings("deprecation")
   public void clickOnDeployExpress() {
     WebElement deployButton = waitForDeployButtonEnabled();
     click(deployButton);
@@ -79,7 +76,6 @@ public class ExpressManagementPage extends TemplatePage {
     selectExpressCheckboxByIndex(0);
   }
 
-  @SuppressWarnings("deprecation")
   public void selectExpressCheckboxByIndex(int index) {
     WebElement expressTable = findElementByCssSelector("[id$=':express-management-component:express-management-form:express-workflow-summary-table']");
     List<WebElement> checkboxSelections = findChildElementsByClassName(expressTable, "express-selection-column");
@@ -90,7 +86,6 @@ public class ExpressManagementPage extends TemplatePage {
     }
   }
 
-  @SuppressWarnings("deprecation")
   public void clickOnExportButton() {
     waitForElementEnabled(By.cssSelector("[id$=':express-management-component:express-management-form:export-express-btn']"), true, DEFAULT_TIMEOUT);
     click(findElementByCssSelector("[id$=':express-management-component:express-management-form:export-express-btn']"));

@@ -12,7 +12,7 @@ import portal.guitest.common.NavigationHelper;
 import portal.guitest.page.AdhocPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.MainMenuPage;
-import portal.guitest.page.NewDashboardPage2;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 
@@ -63,8 +63,8 @@ public class SideStepTest extends BaseTest {
   
   @Test
   public void testSideStepInCaseList() {
-    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
-    MainMenuPage mainMenuPage = newDashboardPage2.openMainMenu();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     int sideSteps = casePage.countSideStepItems();
     assertEquals(2, sideSteps);

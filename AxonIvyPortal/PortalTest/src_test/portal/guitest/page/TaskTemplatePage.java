@@ -92,7 +92,6 @@ public class TaskTemplatePage extends TemplatePage {
     return new TaskDetailsPage();
   }
 
-  @SuppressWarnings("deprecation")
   public void startSideStep() {
     String actionPanelId = "horizontal-task-action-form:horizontal-task-action-menu";
     waitForElementDisplayed(By.id(actionPanelId), true);
@@ -115,7 +114,6 @@ public class TaskTemplatePage extends TemplatePage {
     click(By.linkText("Reset"));
   }
 
-  @SuppressWarnings("deprecation")
   public void showNoteHistory() {
     click(driver.findElement(By.cssSelector("a[id$='show-more-note-link']")));
   }
@@ -283,12 +281,12 @@ public class TaskTemplatePage extends TemplatePage {
     return NavigationHelper.navigateToTaskList();
   }
 
-  public NewDashboardPage2 backToHomeInIFrameApprovalTask() {
+  public NewDashboardPage backToHomeInIFrameApprovalTask() {
     driver.switchTo().frame("iFrame");
     waitForElementDisplayed(By.id("content-form:home-btn"), true);
     click(By.id("content-form:home-btn"));
     driver.switchTo().defaultContent();
-    return new NewDashboardPage2();
+    return new NewDashboardPage();
   }
 
   public TaskWidgetPage finishIFrameReviewTask() {

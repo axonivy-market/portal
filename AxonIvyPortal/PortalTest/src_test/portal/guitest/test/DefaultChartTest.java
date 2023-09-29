@@ -16,7 +16,7 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.MainMenuPage;
-import portal.guitest.page.NewDashboardPage2;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.StatisticWidgetPage;
 
 public class DefaultChartTest extends BaseTest {
@@ -40,7 +40,7 @@ public class DefaultChartTest extends BaseTest {
 
   @Test
   public void testCreateDefaultChart() {
-    new NewDashboardPage2();
+    new NewDashboardPage();
     MainMenuPage mainMenuPage = new MainMenuPage();
     StatisticWidgetPage statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);

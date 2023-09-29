@@ -12,13 +12,13 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
-import portal.guitest.page.NewDashboardPage2;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.UserProfilePage;
 
 public class CaseDescriptionChangeTest extends BaseTest {
   
-  private NewDashboardPage2 newDashboardPage2;
+  private NewDashboardPage newDashboardPage;
   private CaseWidgetPage casePage;
 
   @Override
@@ -39,8 +39,8 @@ public class CaseDescriptionChangeTest extends BaseTest {
     var newCaseDescriptionEn = "New Case Description - English";
     var newCaseDescriptionGer = "New Case Description - German";
     login(TestAccount.ADMIN_USER);
-    newDashboardPage2 = new NewDashboardPage2();
-    MainMenuPage mainMenuPage = newDashboardPage2.openMainMenu();
+    newDashboardPage = new NewDashboardPage();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
     CaseDetailsPage detailsPage = casePage.openDetailsOfCaseHasName(caseNameEn);
     detailsPage.changeCaseDescription(newCaseDescriptionEn);
@@ -48,9 +48,9 @@ public class CaseDescriptionChangeTest extends BaseTest {
 
     // Change to language to German then change description
     changeLanguage(3);
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-    newDashboardPage2 = new NewDashboardPage2();
-    newDashboardPage2.openMainMenu();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsOfCaseHasName(caseNameGer);
     detailsPage.changeCaseDescription(newCaseDescriptionGer);
@@ -63,9 +63,9 @@ public class CaseDescriptionChangeTest extends BaseTest {
     
     // Change to German then verify description
     changeLanguage(3);
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-    newDashboardPage2 = new NewDashboardPage2();
-    newDashboardPage2.openMainMenu();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsOfCaseHasName(caseNameGer);
     assertEquals(newCaseDescriptionGer, detailsPage.getDescription());
@@ -74,20 +74,20 @@ public class CaseDescriptionChangeTest extends BaseTest {
   @Test
   public void testUserWithoutPermissionCannotChangeCaseDescription() {
     int caseIndex = 0;
-    newDashboardPage2 = new NewDashboardPage2();
-    MainMenuPage mainMenuPage = newDashboardPage2.openMainMenu();
+    newDashboardPage = new NewDashboardPage();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
     CaseDetailsPage detailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     assertFalse(detailsPage.isCaseDescriptionChangeComponentPresented(caseIndex));
   }
 
   public void changeLanguage(int index) {
-    UserProfilePage userProfilePage = newDashboardPage2.openMyProfilePage();
+    UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
     userProfilePage.selectLanguage(index);
-    newDashboardPage2 = userProfilePage.save();
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-    newDashboardPage2 = new NewDashboardPage2();
-    var mainMenuPage = newDashboardPage2.openMainMenu();
+    newDashboardPage = userProfilePage.save();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    newDashboardPage = new NewDashboardPage();
+    var mainMenuPage = newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
   }
 

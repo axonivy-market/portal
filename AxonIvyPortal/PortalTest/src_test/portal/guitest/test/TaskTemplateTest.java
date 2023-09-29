@@ -18,7 +18,7 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.Variable;
-import portal.guitest.page.NewDashboardPage2;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.NoteHistoryPage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskTemplatePage;
@@ -110,8 +110,8 @@ public class TaskTemplateTest extends BaseTest {
   public void testReserveWorkingTaskByClickingOnLogo() {
     redirectToRelativeLink(simplePaymentUrl);
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-    NewDashboardPage2 home = new NewDashboardPage2();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    NewDashboardPage home = new NewDashboardPage();
     home.waitForPageLoaded();
     TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     taskTemplatePage.clickOnLogo();
@@ -155,8 +155,8 @@ public class TaskTemplateTest extends BaseTest {
   @Test
   public void testShowCategoryColummnByDefault() {
     createTestData();
-    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
-    TaskWidgetPage taskList = newDashboardPage2.openTaskList();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    TaskWidgetPage taskList = newDashboardPage.openTaskList();
     assertTrue(taskList.isCategoryColumnDisplayed());
   }
 }

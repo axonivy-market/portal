@@ -7,13 +7,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.page.NewDashboardPage2;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.SearchResultPage;
 import portal.guitest.page.TemplatePage.GlobalSearch;
 
 public class SearchCaseTest extends BaseTest {
 
-  private NewDashboardPage2 newDashboardPage2;
+  private NewDashboardPage newDashboardPage;
 
   @Before
   @Override
@@ -21,13 +21,13 @@ public class SearchCaseTest extends BaseTest {
     super.setup();
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink("internalSupport/14B2FC03D2E87141/CreateTaskWithSpecialCharacter.ivp");
-    newDashboardPage2 = new NewDashboardPage2();
+    newDashboardPage = new NewDashboardPage();
   }
 
   @Test
   public void testFindCaseByNameAndOpenCaseList() {
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-    GlobalSearch globalSearch = newDashboardPage2.getGlobalSearch(); 
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    GlobalSearch globalSearch = newDashboardPage.getGlobalSearch(); 
     assertTrue(globalSearch.isDisplayed());
 
     String caseName = "Leave Request";
@@ -40,8 +40,8 @@ public class SearchCaseTest extends BaseTest {
 
   @Test
   public void testFindCaseByNameWithSpecialCharacter() {
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-    GlobalSearch globalSearch = newDashboardPage2.getGlobalSearch();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    GlobalSearch globalSearch = newDashboardPage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
 
     String caseName = "\u00D6sterreich Resource with ID 1212";
@@ -52,7 +52,7 @@ public class SearchCaseTest extends BaseTest {
 
   @Test
   public void testFindNotFoundOutData() {
-    GlobalSearch globalSearch = newDashboardPage2.getGlobalSearch();
+    GlobalSearch globalSearch = newDashboardPage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
 
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("no case found");
