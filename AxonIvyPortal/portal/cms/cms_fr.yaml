@@ -261,7 +261,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       enablePrivateChat: Définissez cette propriété à true pour activer la fonction de chat privé
       enableProcessViewer: Définissez cette propriété à true pour activer l'option de visualisation de processus dans les actions de Task/Case.
       enableScriptCheckingForUploadedDocumentNote: Défini sur true pour activer la vérification de script pour le document téléchargé. Actuellement, cette fonction prend en charge la vérification de PDF, Excel, Word.
-      enableUserFavorites: Si la propriété est désactivée, n'affichez pas la section des favoris de l'utilisateur de la liste des processus dans la page d'accueil du portail.
       enableVirusScannerForUploadedDocumentNote: Définie sur true pour activer le scanner de virus pour le document téléchargé. Actuellement, cette fonction utilise l'API VIRUSTOTAL.
       expressEndPageNote: Affiche la page de fin personnalisée à la fin de chaque processus Express.
       hideCaseDocument: Si vous choisissez "true", la section du document dans la page de détail du cas sera invisible, sinon elle sera visible.
@@ -1097,7 +1096,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     expressWorkflow: Workflow Express
     externalLink: lien externe
     externalLinkVisibility: Visibilité
-    favoriteProcesses: Vos favoris
     goTo: 'Aller à:'
     icon: Icône
     image: Image

@@ -263,7 +263,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       enablePrivateChat: Setzen Sie diese Einstellung auf "true", um den privaten Chat zu aktivieren
       enableProcessViewer: Setzen Sie diese Einstellung auf true, um die Prozess-Viewer-Option in Aufgaben-/Vorgang-Aktionen zu aktivieren
       enableScriptCheckingForUploadedDocumentNote: 'Auf "true" setzen, um die Skriptüberprüfung zu aktivieren. Es werden die Formate PDF, Excel und Word unterstützt. '
-      enableUserFavorites: Wenn diese Einstellung deaktiviert ist, zeigen Sie den Benutzerfavoritenabschnitt der Prozessliste nicht in Portal Home an.
       enableVirusScannerForUploadedDocumentNote: Auf true setzen, um den Virenscanner für das hochgeladene Dokument zu aktivieren. Derzeit verwendet diese Funktion die API VIRUSTOTAL.
       expressEndPageNote: Anzeigen der angepassten Endseite nach dem Ende eines Express Prozesses.
       hideCaseDocument: Auf "true" setzen, um die Dokumentensektion in Vorgangsdetails auszublenden.
@@ -1101,7 +1100,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     expressWorkflow: Express Workflow
     externalLink: Externer Link
     externalLinkVisibility: Sichtbarkeit
-    favoriteProcesses: Ihre Favoriten
     goTo: 'Gehe zu: '
     icon: Symbol
     image: Bild
