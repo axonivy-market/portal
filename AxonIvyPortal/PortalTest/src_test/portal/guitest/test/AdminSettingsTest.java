@@ -54,8 +54,7 @@ public class AdminSettingsTest extends BaseTest {
     redirectToRelativeLink(cleanSessionCacheUrl);
 
     createTestingTasks();
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     assertEquals("high", taskWidgetPage.getPriorityOfTask(0));
     assertEquals("low", taskWidgetPage.getPriorityOfTask(taskWidgetPage.countTasks() - 1));
 	}
@@ -65,8 +64,7 @@ public class AdminSettingsTest extends BaseTest {
 	   redirectToRelativeLink(create12CasesWithCategoryUrl); 
      updatePortalSetting(DEFAULT_SORT_FIELD_OF_CASE_LIST.getKey(), "NAME");
      updatePortalSetting(DEFAULT_SORT_DIRECTION_OF_CASE_LIST.getKey(), SortDirection.DESC.name());
-     redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
+     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
 	   MainMenuPage mainMenuPage = taskWidgetPage.openMainMenu();
 	   CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
 	   assertEquals("TestCase", caseWidgetPage.getCaseNameAt(0));

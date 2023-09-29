@@ -57,7 +57,7 @@ public class CaseWidgetTest extends BaseTest {
     redirectToRelativeLink(hideCaseUrl);
     initNewDashboardPage2(TestAccount.ADMIN_USER);
     
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy("Report and hide case", 2);
     taskWidgetPage.startTaskWithoutUI(1);
     newDashboardPage2 = new NewDashboardPage2();

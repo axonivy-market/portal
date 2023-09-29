@@ -8,12 +8,9 @@ import org.junit.Test;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
-import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.TaskWidgetPage;
 
 public class TaskCategoryMenuTest extends BaseTest {
-
-  private NewDashboardPage2 newDashboardPage2;
 
   @Before
   @Override
@@ -24,16 +21,14 @@ public class TaskCategoryMenuTest extends BaseTest {
 
   @Test
   public void testSelectTaskCategoryMenuAsNormalUser() {
-    newDashboardPage2 = new NewDashboardPage2();
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     assertEquals(3, taskWidgetPage.countTasks());
   }
 
   @Test
   public void testSelectTaskCategoryMenuAsAdminRole() {
     login(TestAccount.ADMIN_USER);
-    newDashboardPage2 = new NewDashboardPage2();
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     assertEquals(4, taskWidgetPage.countTasks());
   }
 }

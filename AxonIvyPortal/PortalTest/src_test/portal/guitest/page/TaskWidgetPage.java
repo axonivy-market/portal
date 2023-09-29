@@ -29,8 +29,6 @@ public class TaskWidgetPage extends TemplatePage {
   private static final String ID_END = "*[id$='";
   private static final String TASK_STATE_COMPONENT_ID =
       "task-widget:task-list-scroller:%d:task-item:task-state-component:task-state";
-  private static final String KEYWORD_FILTER_SELECTOR =
-      "input[id='task-widget:filter-form:filter-container:ajax-keyword-filter']";
   private static final String KEYWORD_FILTER_SELECTOR_EXPANDED_MODE =
       "input[id='task-widget:expanded-mode-filter-form:expanded-mode-filter-container:ajax-keyword-filter']";
 
@@ -636,11 +634,6 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void startTaskWithoutUI(int index) {
     waitTaskAppearThenClick(index);
-  }
-
-  private String getTaskId(int taskIndex) {
-    return findElementByCssSelector(
-        "span[id$='" + taskIndex + "\\:task-item\\:task-start-item-view\\:task-start-task-id']").getText();
   }
 
   private void waitTaskAppearThenClick(int index) {

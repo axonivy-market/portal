@@ -106,7 +106,7 @@ public class ExpressTest extends BaseTest{
   }
 
   private String executeReview() {
-    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.startTask(0);
     ExpressReviewPage reviewPage = new ExpressReviewPage();
     String approvalResult = reviewPage.getApprovalResult();
@@ -115,7 +115,7 @@ public class ExpressTest extends BaseTest{
   }
   
   private void executeUserTask() {
-    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.startTask(0);
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.finish();
@@ -127,7 +127,7 @@ public class ExpressTest extends BaseTest{
   }
 
   private void executeApproval(String comment, String taskNameFilter, int expectedNumber, int startTaskIndex) {
-    taskWidgetPage = NavigationHelper.navigateToTasList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy(taskNameFilter, expectedNumber);
     taskWidgetPage.startTask(startTaskIndex);
     ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();

@@ -102,7 +102,7 @@ public class TaskTemplateTest extends BaseTest {
     taskTemplatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
     dialogPage.leaveTask();
-    TaskWidgetPage taskWidget = NavigationHelper.navigateToTasList();
+    TaskWidgetPage taskWidget = NavigationHelper.navigateToTaskList();
     assertTrue(taskWidget.isTaskStateOpen(0));
   }
   
@@ -117,21 +117,19 @@ public class TaskTemplateTest extends BaseTest {
     taskTemplatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
     dialogPage.reserveTask();
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-    TaskWidgetPage taskWidget = NavigationHelper.navigateToTasList();
+    TaskWidgetPage taskWidget = NavigationHelper.navigateToTaskList();
     Assert.assertTrue(taskWidget.isTaskStateReserved(0));
   }
   
   @Test
   public void testResetTaskWhenStartSideStep() {
     redirectToRelativeLink(createTestingCaseMapUrl);
-    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     int latestTask = taskWidgetPage.countTasks() - 1;
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(latestTask);
     taskTemplatePage.clickTaskActionMenu();
     taskTemplatePage.startSideStep();
-    TaskWidgetPage taskWidget = NavigationHelper.navigateToTasList();
+    TaskWidgetPage taskWidget = NavigationHelper.navigateToTaskList();
     assertTrue(taskWidget.isTaskStateOpen(0));
   }
 
@@ -148,7 +146,7 @@ public class TaskTemplateTest extends BaseTest {
   }
   
   private TaskTemplatePage startATaskAndOpenCaseInfo() {
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTasList();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.openCaseInfo();
     return taskTemplatePage;

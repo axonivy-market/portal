@@ -13,7 +13,6 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.Variable;
-import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
@@ -21,7 +20,6 @@ import portal.guitest.userexamples.page.LeaveRequestPage;
 
 public class TaskActionTest extends BaseTest {
 
-  private NewDashboardPage2 newDashboardPage2;
   private TaskWidgetPage taskWidgetPage;
   private TaskDetailsPage taskDetailsPage;
 
@@ -56,7 +54,6 @@ public class TaskActionTest extends BaseTest {
     super.setup();
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     createTestingTasks();
-    newDashboardPage2 = new NewDashboardPage2();
   }
 
   @SuppressWarnings("deprecation")
@@ -64,7 +61,7 @@ public class TaskActionTest extends BaseTest {
   public void testVisibilityTaskActionForNormalUser() {
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink(createTaskWithSystemState);
-    gotoTaskList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     // Ready for Join
     assertTaskActionsByTaskState(READY_FOR_JOINING, Arrays.asList(DETAILS, PROCESS_VIEWER));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
@@ -96,7 +93,7 @@ public class TaskActionTest extends BaseTest {
   public void testVisibilityTaskActionForAdminUser() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTaskWithSystemState);
-    gotoTaskList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     // Ready for Join
     assertTaskActionsByTaskState(READY_FOR_JOINING,
         Arrays.asList(DETAILS, RESET, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
@@ -141,14 +138,14 @@ public class TaskActionTest extends BaseTest {
   public void testVisibleTaskActionsWhenTaskStatusIsDoneAndDestroyed() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTaskWithSystemState);
-    gotoTaskList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
 
     taskWidgetPage.clickOnStartTaskLink(4);
     LeaveRequestPage leaveRequestPage = new LeaveRequestPage();
     leaveRequestPage.fulfillAndSendMaternityLeaveRequest();
 
     redirectToRelativeLink(createTaskWithSystemState);
-    gotoTaskList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
 
     // Done
     List<String> taskActionInTaskDetails = Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER);
@@ -158,7 +155,7 @@ public class TaskActionTest extends BaseTest {
     assertTrue(actionInTaskList.containsAll(taskActionInTaskDetails));
 
     redirectToRelativeLink(createTaskWithSystemState);
-    gotoTaskList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
 
     // Destroyed
     assertTaskActionsByTaskState(DESTROYED, Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
@@ -169,7 +166,7 @@ public class TaskActionTest extends BaseTest {
   public void testVisibilityTaskActionForTechnicalStates() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTechnicalStateUrl);
-    gotoTaskList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
 
     // Failed
     assertTaskActionsByTaskState(FAILED, Arrays.asList(DETAILS, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
@@ -183,11 +180,6 @@ public class TaskActionTest extends BaseTest {
     assertTaskActionsByTaskState(WAITING_FOR_EVENT, Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
-  }
-
-  private void gotoTaskList() {
-    newDashboardPage2 = new NewDashboardPage2();
-    taskWidgetPage = NavigationHelper.navigateToTasList();
   }
 
   private void assertTaskActionsByTaskState(String state, List<String> taskActionInTaskDetails) {
