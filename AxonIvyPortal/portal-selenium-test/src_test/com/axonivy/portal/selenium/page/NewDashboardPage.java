@@ -41,10 +41,13 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void waitForAbsencesGrowlMessageDisplay() {
-    $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-growl-message")
-        .shouldBe(disappear, DEFAULT_TIMEOUT);
+    $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  public void waitForTaskListDisplay() {
+    $("div[id='task-task_1:widget-content']").shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-growl-message")
+        .shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
   public ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration() {
     var configurationPage = openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
