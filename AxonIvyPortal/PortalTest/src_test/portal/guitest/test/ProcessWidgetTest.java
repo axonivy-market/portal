@@ -13,7 +13,7 @@ import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.NavigationHelper;
-import portal.guitest.page.NewDashboardPage2;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.ProcessWidgetPage.AddNewExternalLinkDialog;
 
@@ -22,14 +22,14 @@ public class ProcessWidgetTest extends BaseTest {
   private static final String CASE_MAP_LEAVES = "Case Map: Leave Request";
   private static final String AGOOGLE_LINK = "AGoogle";
 
-  private NewDashboardPage2 newDashboardPage2;
+  private NewDashboardPage newDashboardPage;
   ProcessWidgetPage processWidget;
 
   @Before
   @Override
   public void setup() {
     super.setup();
-    newDashboardPage2 = new NewDashboardPage2();
+    newDashboardPage = new NewDashboardPage();
   }
 
   @Test
@@ -60,13 +60,13 @@ public class ProcessWidgetTest extends BaseTest {
     String processLink = "google.com";
     processWidget = NavigationHelper.navigateToProcessList();
     createPrivateExternalTestProcess(processName, processLink);
-    assertEquals(1, newDashboardPage2.countBrowserTab());
+    assertEquals(1, newDashboardPage.countBrowserTab());
 
     processWidget.startProcess(AGOOGLE_LINK);
-    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> newDashboardPage2.countBrowserTab() > 1);
-    newDashboardPage2.switchLastBrowserTab();
-    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> newDashboardPage2.getPageTitle().length() > 1);
-    assertEquals("Google", newDashboardPage2.getPageTitle());
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> newDashboardPage.countBrowserTab() > 1);
+    newDashboardPage.switchLastBrowserTab();
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> newDashboardPage.getPageTitle().length() > 1);
+    assertEquals("Google", newDashboardPage.getPageTitle());
     resetLanguageOfCurrentUser();
   }
 
@@ -76,8 +76,8 @@ public class ProcessWidgetTest extends BaseTest {
     assertEquals("Processes", processWidget.getTextOfCurrentBreadcrumb());
 
     processWidget.goToHomeFromBreadcrumb();
-    newDashboardPage2 = new NewDashboardPage2();
-    assertEquals(true, newDashboardPage2.isDisplayed());
+    newDashboardPage = new NewDashboardPage();
+    assertEquals(true, newDashboardPage.isDisplayed());
     resetLanguageOfCurrentUser();
   }
 

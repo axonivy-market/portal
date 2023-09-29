@@ -11,14 +11,14 @@ import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
-import portal.guitest.page.NewDashboardPage2;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.ProcessInformationPage;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class ProcessInformationTest extends BaseTest {
 
-  private NewDashboardPage2 newDashboardPage2;
+  private NewDashboardPage newDashboardPage;
   private ProcessWidgetPage processWidget;
   private ProcessInformationPage processInformationPage;
   private static String PROCESS_NAME = "Process With Process Steps";
@@ -28,7 +28,7 @@ public class ProcessInformationTest extends BaseTest {
   @Override
   public void setup() {
     super.setup();
-    newDashboardPage2 = new NewDashboardPage2();
+    newDashboardPage = new NewDashboardPage();
   }
 
   @Test
@@ -38,7 +38,7 @@ public class ProcessInformationTest extends BaseTest {
     assertEquals(PROCESS_DESCRIPTION, processInformationPage.getProcessDescription());
 
     processInformationPage.startProcess();
-    newDashboardPage2 = new NewDashboardPage2();
+    newDashboardPage = new NewDashboardPage();
     TaskWidgetPage taskWidget = NavigationHelper.navigateToTaskList();
     taskWidget.filterTasksInExpandedModeBy(PROCESS_NAME, 1);
     assertEquals(1, taskWidget.countTasks());
@@ -59,8 +59,8 @@ public class ProcessInformationTest extends BaseTest {
     processWidget = NavigationHelper.navigateToProcessList();
     processWidget.startProcess(PROCESS_NAME);
 
-    newDashboardPage2 = new NewDashboardPage2();
-    CaseWidgetPage caseWidget = newDashboardPage2.openCaseList();
+    newDashboardPage = new NewDashboardPage();
+    CaseWidgetPage caseWidget = newDashboardPage.openCaseList();
     CaseDetailsPage caseDetails = caseWidget.openCaseDetailsFromActionMenuByCaseName(PROCESS_NAME);
     caseDetails.openActionMenu();
     caseDetails.openProcessOverviewPage();

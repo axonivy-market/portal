@@ -19,11 +19,11 @@ import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
-import portal.guitest.page.NewDashboardPage2;
+import portal.guitest.page.NewDashboardPage;
 
 public class UploadDocumentTest extends BaseTest{
   
-  private NewDashboardPage2 newDashboardPage2;
+  private NewDashboardPage newDashboardPage;
   private CaseWidgetPage casePage;
   private CaseDetailsPage caseDetailsPage;
   
@@ -36,8 +36,8 @@ public class UploadDocumentTest extends BaseTest{
   
   @Test
   public void uploadNormalDocument() {
-    initNewDashboardPage2(TestAccount.ADMIN_USER);
-    casePage = newDashboardPage2.openCaseList();
+    initNewDashboardPage(TestAccount.ADMIN_USER);
+    casePage = newDashboardPage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     int numberOfDocument = caseDetailsPage.countNumberOfDocument();
     caseDetailsPage.uploadDocumentWithoutError(getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
@@ -47,8 +47,8 @@ public class UploadDocumentTest extends BaseTest{
   @Test
   public void uploadScriptDocumentAndGetError() {
     enableScriptCheckingInPortalSetting();
-    initNewDashboardPage2(TestAccount.ADMIN_USER);
-    casePage = newDashboardPage2.openCaseList();
+    initNewDashboardPage(TestAccount.ADMIN_USER);
+    casePage = newDashboardPage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     String error = caseDetailsPage.uploadDocumentWithError(getAbsolutePathToTestFile("test-with-macro.doc"));
     assertEquals("This file is not allowed to upload because it contains some script!", error);
@@ -66,8 +66,8 @@ public class UploadDocumentTest extends BaseTest{
   @Test
   public void uploadUnsupportedFileType(){
     enableScriptCheckingInPortalSetting();
-    initNewDashboardPage2(TestAccount.ADMIN_USER);
-    casePage = newDashboardPage2.openCaseList();
+    initNewDashboardPage(TestAccount.ADMIN_USER);
+    casePage = newDashboardPage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     String error = caseDetailsPage.uploadDocumentWithError(getAbsolutePathToTestFile("unsupportedExtension.abc"));
     assertEquals("This file type is not accepted!", error);
@@ -81,9 +81,9 @@ public class UploadDocumentTest extends BaseTest{
     final String unsupportFile = "unsupportedExtension.abc";
     
     updateFileExtensionWhiteListInPortalSetting();
-    initNewDashboardPage2(TestAccount.ADMIN_USER);
+    initNewDashboardPage(TestAccount.ADMIN_USER);
 
-    casePage = newDashboardPage2.openCaseList();
+    casePage = newDashboardPage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     
     caseDetailsPage.uploadDocumentWithoutError(getAbsolutePathToTestFile(pdfFile));
@@ -113,18 +113,18 @@ public class UploadDocumentTest extends BaseTest{
   @Test
   public void addUnspportedFileTypeToSettingAndUploadFile() {
     updateFileExtensionWhiteListInPortalSetting();
-    initNewDashboardPage2(TestAccount.ADMIN_USER);
-    casePage = newDashboardPage2.openCaseList();
+    initNewDashboardPage(TestAccount.ADMIN_USER);
+    casePage = newDashboardPage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     int numberOfDocument = caseDetailsPage.countNumberOfDocument();
     caseDetailsPage.uploadDocumentWithoutError(getAbsolutePathToTestFile("unsupportedExtension.abc"));
     assertEquals(numberOfDocument + 1, caseDetailsPage.countNumberOfDocument());
   }
   
-  private void initNewDashboardPage2(TestAccount account) {
+  private void initNewDashboardPage(TestAccount account) {
     login(account);
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-    newDashboardPage2 = new NewDashboardPage2();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    newDashboardPage = new NewDashboardPage();
   }
   
   private void updateFileExtensionWhiteListInPortalSetting() {

@@ -13,7 +13,6 @@ import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.Variable;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.NewDashboardPage;
-import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 
@@ -27,7 +26,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
   }
 
   @Test
@@ -121,8 +120,8 @@ public class TaskTemplateIFrameTest extends BaseTest {
   @Test
   public void testShowCategoryInCaseByDefaultIframe() {
     redirectToRelativeLink("InternalSupport/15B1EA24CCF377E8/saleAndInform.ivp");
-    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
-    TaskWidgetPage taskWidget = newDashboardPage2.openTaskList();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    TaskWidgetPage taskWidget = newDashboardPage.openTaskList();
     taskWidget.filterTasksInExpandedModeBy("sale department", 1);
     TaskTemplatePage startTask = taskWidget.startTask(0);
     startTask.openCaseInfo();

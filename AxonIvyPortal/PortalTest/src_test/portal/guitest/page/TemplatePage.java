@@ -392,18 +392,18 @@ public abstract class TemplatePage extends AbstractPage {
     });
   }
 
-  public NewDashboardPage2 goToHomeFromBreadcrumb() {
+  public NewDashboardPage goToHomeFromBreadcrumb() {
     waitForElementDisplayed(By.cssSelector(HOME_BREADCRUMB_SELECTOR), true);
     click(By.cssSelector(HOME_BREADCRUMB_SELECTOR));
-    return new NewDashboardPage2();
+    return new NewDashboardPage();
   }
   
-  public NewDashboardPage2 goToHomeFromBreadcrumbWithWarning() {
+  public NewDashboardPage goToHomeFromBreadcrumbWithWarning() {
     waitForElementDisplayed(By.cssSelector(HOME_BREADCRUMB_SELECTOR), true);
     click(By.cssSelector(HOME_BREADCRUMB_SELECTOR));
     waitForElementDisplayed(By.id("user-menu-required-login:warning-before-leaving-task-component:leave-button"), true);
     click(By.id("user-menu-required-login:warning-before-leaving-task-component:leave-button"));
-    return new NewDashboardPage2();
+    return new NewDashboardPage();
   }
   
   public String getTextOfCurrentBreadcrumb() {
@@ -432,7 +432,6 @@ public abstract class TemplatePage extends AbstractPage {
     return isElementDisplayed(By.cssSelector("#theme-switcher .topbar-icon.pi.pi-sun"));
   }
 
-  @SuppressWarnings("deprecation")
   public ChatPage getChat() {
     waitForElementDisplayed(By.id("toggle-chat-panel-command"), true, 5);
     click(findElementById("toggle-chat-panel-command"));
@@ -442,7 +441,6 @@ public abstract class TemplatePage extends AbstractPage {
     return findElementById("absence-management-dialog");
   }
   
-  @SuppressWarnings("deprecation")
   public WebElement getUserSettings() {
     waitForElementDisplayed(By.id("user-settings-menu"), true);
     click(findElementById("user-settings-menu"));
@@ -463,7 +461,6 @@ public abstract class TemplatePage extends AbstractPage {
     waitForElementDisplayed(By.className("notification-container"), true);
   }
   
-  @SuppressWarnings("deprecation")
   public void clickOnShowMoreLinkOfErrorMessages() {
     click(findElementByCssSelector("a[class$='notification-content-action-more-details']"));
   }
@@ -521,8 +518,6 @@ public abstract class TemplatePage extends AbstractPage {
     WaitHelper.waitForIFrameAvailable(driver, iframeId);
   }
 
-  ///////////////////////////////////////////////////////////////////////////////////////////// TODO z1 move from other
-  ///////////////////////////////////////////////////////////////////////////////////////////// places
   public boolean isAnnouncementMessageNotDisplayed() {
     if (driver.findElements(By.cssSelector("div[class*='announcement-message-customizable']")).size() == 0) {
       return true;

@@ -77,8 +77,8 @@ public class MainMenuPage extends TemplatePage {
     return findElementByCssSelector(PROCESS_MENU_ITEM_CSS_SELECTOR).getText();
   }
 
-  public NewDashboardPage2 backToHomeByClickOnBreadcrumb() {
+  public NewDashboardPage backToHomeByClickOnBreadcrumb() {
     WaitHelper.waitForNavigation(this, () -> clickByCssSelector("a.ui-icon-home"));
-    return new NewDashboardPage2();
+    return new NewDashboardPage();
   }
 }

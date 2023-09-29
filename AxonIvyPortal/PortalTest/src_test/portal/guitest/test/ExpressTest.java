@@ -19,7 +19,7 @@ import portal.guitest.page.ExpressFormDefinitionPage;
 import portal.guitest.page.ExpressProcessPage;
 import portal.guitest.page.ExpressReviewPage;
 import portal.guitest.page.ExpressTaskPage;
-import portal.guitest.page.NewDashboardPage2;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class ExpressTest extends BaseTest{
@@ -29,14 +29,14 @@ public class ExpressTest extends BaseTest{
   private static final int INPUT_TEXT_TYPE_INDEX = 0;
   private static final int INPUT_NUMBER_TYPE_INDEX = 1;
   
-  private NewDashboardPage2 newDashboardPage2;
+  private NewDashboardPage newDashboardPage;
   private TaskWidgetPage taskWidgetPage;
   ExpressResponsible responsible1 = new ExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
   @Override
   @Before
   public void setup() {
     super.setup();
-    newDashboardPage2 = new NewDashboardPage2();
+    newDashboardPage = new NewDashboardPage();
   }
 
   @Test
@@ -61,8 +61,8 @@ public class ExpressTest extends BaseTest{
     ExpressFormDefinitionPage formDefinition = expressProcessPage.goToFormDefinition();
     assertEquals("Express Workflow", formDefinition.getTextOfCurrentBreadcrumb());
 
-    newDashboardPage2 = formDefinition.goToHomeFromBreadcrumbWithWarning();
-    assertEquals(true, newDashboardPage2.isDisplayed());
+    newDashboardPage = formDefinition.goToHomeFromBreadcrumbWithWarning();
+    assertEquals(true, newDashboardPage.isDisplayed());
   }
   
   private ExpressFormDefinitionPage configureExpressProcessWhenMultiApproval(ExpressProcessPage expressProcessPage) {

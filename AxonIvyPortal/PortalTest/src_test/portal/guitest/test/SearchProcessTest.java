@@ -9,26 +9,26 @@ import org.junit.Test;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.WaitHelper;
-import portal.guitest.page.NewDashboardPage2;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.SearchResultPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.TemplatePage.GlobalSearch;
 
 public class SearchProcessTest extends BaseTest {
 
-  private NewDashboardPage2 newDashboardPage2;
+  private NewDashboardPage newDashboardPage;
 
   @Override
   @Before
   public void setup() {
     super.setup();
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
-    newDashboardPage2 = new NewDashboardPage2();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    newDashboardPage = new NewDashboardPage();
   }
 
   @Test
   public void testFindAndStartProcessByName() {
-    GlobalSearch globalSearch = newDashboardPage2.getGlobalSearch();
+    GlobalSearch globalSearch = newDashboardPage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
 
     String processName = "Simple Payment";
@@ -38,7 +38,7 @@ public class SearchProcessTest extends BaseTest {
     assertTrue(searchResultPage.isProcessGroupDisplay("S"));
 
     searchResultPage.startProcess(processName);
-    newDashboardPage2 = new NewDashboardPage2();
+    newDashboardPage = new NewDashboardPage();
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     WaitHelper.assertTrueWithRefreshPage(taskWidgetPage,
         () -> taskWidgetPage.getNameOfTaskAt(0).contains("Payment"));
@@ -47,7 +47,7 @@ public class SearchProcessTest extends BaseTest {
   @Test
   public void testFindCaseMapByName() {
     String caseMapName = "Case Map: Leave Request";
-    GlobalSearch globalSearch = newDashboardPage2.getGlobalSearch();
+    GlobalSearch globalSearch = newDashboardPage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
 
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(caseMapName);

@@ -6,7 +6,7 @@ import org.junit.Test;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseWidgetPage;
-import portal.guitest.page.NewDashboardPage2;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.UserProfilePage;
 
 public class UserHomepageTest extends BaseTest {
@@ -20,9 +20,9 @@ public class UserHomepageTest extends BaseTest {
 
   @Test
   public void testHomepageInUserProfile() {
-    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
-    UserProfilePage profilePage = newDashboardPage2.openMyProfilePage();
-    profilePage.changeNewDashboardPage2ToCase();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    UserProfilePage profilePage = newDashboardPage.openMyProfilePage();
+    profilePage.changeNewDashboardPageToCase();
     profilePage.saveWithoutWaitingNavigation();
     new CaseWidgetPage();
   }

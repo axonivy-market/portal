@@ -21,7 +21,6 @@ import portal.guitest.common.Variable;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.NewDashboardPage;
-import portal.guitest.page.NewDashboardPage2;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.UserProfilePage;
@@ -105,7 +104,7 @@ public class TaskWidgetTest extends BaseTest {
   public void testDestroyTask() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(GRANT_DESTROY_TASK_URL);
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy("Annual Leave Request");
     taskWidgetPage.sideStepMenuOnActionButton(0);
@@ -145,8 +144,8 @@ public class TaskWidgetTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     assertEquals("Tasks (3)", taskWidgetPage.getTextOfCurrentBreadcrumb());
     taskWidgetPage.goToHomeFromBreadcrumb();
-    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
-    assertEquals(true, newDashboardPage2.isDisplayed());
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    assertEquals(true, newDashboardPage.isDisplayed());
   }
 
   @Test
@@ -161,14 +160,14 @@ public class TaskWidgetTest extends BaseTest {
 
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
     taskDetailsPage.goToHomeFromBreadcrumb();
-    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
-    assertEquals(true, newDashboardPage2.isDisplayed());
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    assertEquals(true, newDashboardPage.isDisplayed());
   }
   
   @Test
   public void testDelegateTask() {
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     assertEquals(TestRole.EVERYBODY_ROLE, taskWidgetPage.getResponsibleOfTaskAt(0));
     taskWidgetPage.openTaskDelegateDialog(0);
@@ -183,16 +182,16 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testChangeTaskSortingOptions() {
-    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
-    UserProfilePage userProfilePage = newDashboardPage2.openMyProfilePage();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
 
     // Change sorting options
     userProfilePage.selectTaskSortField("Priority");
     userProfilePage.selectTaskSortDirection("Sort ascending");
-    newDashboardPage2 = userProfilePage.save();
+    newDashboardPage = userProfilePage.save();
 
     // Check result
-    TaskWidgetPage taskWidgetPage = newDashboardPage2.openTaskList();
+    TaskWidgetPage taskWidgetPage = newDashboardPage.openTaskList();
     assertEquals("high", taskWidgetPage.getPriorityOfTask(0));
     assertEquals("low", taskWidgetPage.getPriorityOfTask(taskWidgetPage.countTasks() - 1));
 
@@ -200,10 +199,10 @@ public class TaskWidgetTest extends BaseTest {
     userProfilePage = taskWidgetPage.openMyProfilePage();
     userProfilePage.selectTaskSortField("Name");
     userProfilePage.selectTaskSortDirection("Sort descending");
-    newDashboardPage2 = userProfilePage.save();
+    newDashboardPage = userProfilePage.save();
 
     // Check result
-    taskWidgetPage = newDashboardPage2.openTaskList();
+    taskWidgetPage = newDashboardPage.openTaskList();
     assertEquals("Sick Leave Request", taskWidgetPage.getNameOfTaskAt(0));
     assertEquals("Annual Leave Request", taskWidgetPage.getNameOfTaskAt(taskWidgetPage.countTasks() - 1));
   }
@@ -234,9 +233,9 @@ public class TaskWidgetTest extends BaseTest {
     UserProfilePage userProfilePage = taskWidgetPage.openMyProfilePage();
     userProfilePage.selectTaskSortField("Priority");
     userProfilePage.selectTaskSortDirection("Sort ascending");
-    NewDashboardPage2 newDashboardPage2 = userProfilePage.save();
+    NewDashboardPage newDashboardPage = userProfilePage.save();
 
-    taskWidgetPage = newDashboardPage2.openTaskList();
+    taskWidgetPage = newDashboardPage.openTaskList();
     assertEquals("high", taskWidgetPage.getPriorityOfTask(0));
   }
 

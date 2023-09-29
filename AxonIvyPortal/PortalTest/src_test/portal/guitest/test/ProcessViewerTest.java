@@ -10,7 +10,7 @@ import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseWidgetPage;
-import portal.guitest.page.NewDashboardPage2;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.ProcessViewerComponentPage;
 import portal.guitest.page.ProcessViewerPage;
 import portal.guitest.page.TaskWidgetPage;
@@ -26,7 +26,7 @@ public class ProcessViewerTest extends BaseTest {
   private static final String PROCESS_VIEWER_IS_NOT_FOUND_ON_TASK_LIST_PAGE = "Process Viewer is NOT found on TaskList page";
   private static final String PROCESS_VIEWER_IS_NOT_FOUND_ON_TASK_DETAILS_PAGE = "Process Viewer is NOT found on TaskDetails page";
   private static final String PROCESS_VIEWER = "Process Viewer";
-  private NewDashboardPage2 newDashboardPage2;
+  private NewDashboardPage newDashboardPage;
   private CaseWidgetPage caseWidgetPage;
   private TaskWidgetPage taskWidgetPage;
 
@@ -56,8 +56,8 @@ public class ProcessViewerTest extends BaseTest {
     gotoCaseList();
     caseWidgetPage.openActionStepMenu();
     caseWidgetPage.clickOnProcessViewerOption();
-    WaitHelper.assertTrueWithWait(() -> newDashboardPage2.countBrowserTab() > 1);
-    newDashboardPage2.switchLastBrowserTab();
+    WaitHelper.assertTrueWithWait(() -> newDashboardPage.countBrowserTab() > 1);
+    newDashboardPage.switchLastBrowserTab();
     ProcessViewerPage processViewerPage = new ProcessViewerPage();
     assertTrue(processViewerPage.getProcessRequestPath().equalsIgnoreCase("Categoried Leave Request"));
   }
@@ -68,8 +68,8 @@ public class ProcessViewerTest extends BaseTest {
     gotoTaskList();
     taskWidgetPage.clickOnTaskActionLink(0);
     taskWidgetPage.clickOnProcessViewerOption();
-    WaitHelper.assertTrueWithWait(() -> newDashboardPage2.countBrowserTab() > 1);
-    newDashboardPage2.switchLastBrowserTab();
+    WaitHelper.assertTrueWithWait(() -> newDashboardPage.countBrowserTab() > 1);
+    newDashboardPage.switchLastBrowserTab();
     ProcessViewerPage processViewerPage = new ProcessViewerPage();
     assertTrue(processViewerPage.getProcessRequestPath().equalsIgnoreCase("Categoried Leave Request"));
   }
@@ -108,7 +108,7 @@ public class ProcessViewerTest extends BaseTest {
     var expressManagementTest = new ExpressManagementTest();
     expressManagementTest.prepareExpressWorkflowStep();
     expressManagementTest.executePromoteResourceTask();
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     gotoCaseList();
     caseWidgetPage.openActionStepMenu();
     var steps = caseWidgetPage.getAvailableActionSteps();
@@ -135,7 +135,7 @@ public class ProcessViewerTest extends BaseTest {
   @Test
   public void testProcessViewerPermissionInCaseAction() {
     redirectToRelativeLink(processViewerPermissionExampleUrl);
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     gotoCaseList();
     caseWidgetPage.openActionStepMenu();
     var steps = caseWidgetPage.getAvailableActionSteps();
@@ -150,7 +150,7 @@ public class ProcessViewerTest extends BaseTest {
   @Test
   public void testProcessViewerPermissionInTaskAction() {
     redirectToRelativeLink(processViewerPermissionExampleUrl);
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     gotoTaskList();
     var actions = taskWidgetPage.getActiveTaskAction(0);
     assertTrue(PROCESS_VIEWER_IS_FOUND_ON_TASK_LIST_PAGE, !actions.contains(PROCESS_VIEWER));
@@ -163,7 +163,7 @@ public class ProcessViewerTest extends BaseTest {
   @Test
   public void testCaseMapViewerPermissionInCaseAction() {
     redirectToRelativeLink(createTestingCaseMapUrl);
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     gotoCaseList();
     caseWidgetPage.openActionStepMenu();
     var steps = caseWidgetPage.getAvailableActionSteps();
@@ -178,7 +178,7 @@ public class ProcessViewerTest extends BaseTest {
   @Test
   public void testCaseMapViewerPermissionInTaskAction() {
     redirectToRelativeLink(createTestingCaseMapUrl);
-    redirectToRelativeLink(NewDashboardPage2.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     gotoTaskList();
     var actions = taskWidgetPage.getActiveTaskAction(0);
     assertTrue(PROCESS_VIEWER_IS_NOT_FOUND_ON_TASK_LIST_PAGE, actions.contains(PROCESS_VIEWER));
@@ -189,14 +189,14 @@ public class ProcessViewerTest extends BaseTest {
   }
   
   private CaseWidgetPage gotoCaseList() {
-    newDashboardPage2 = new NewDashboardPage2();
-    var mainMenuPage = newDashboardPage2.openMainMenu();
+    newDashboardPage = new NewDashboardPage();
+    var mainMenuPage = newDashboardPage.openMainMenu();
     caseWidgetPage = mainMenuPage.selectCaseMenu();
     return caseWidgetPage;
   }
 
   private void gotoTaskList() {
-    newDashboardPage2 = new NewDashboardPage2();
+    newDashboardPage = new NewDashboardPage();
     taskWidgetPage = NavigationHelper.navigateToTaskList();
   }
 }

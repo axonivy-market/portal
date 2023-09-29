@@ -47,12 +47,11 @@ public class UserProfilePage extends TemplatePage {
     formattingLanguage.sendKeys(newLanguage);
   }
 
-  public NewDashboardPage2 save() {
+  public NewDashboardPage save() {
     saveWithoutWaitingNavigation();
-    return new NewDashboardPage2();
+    return new NewDashboardPage();
   }
   
-  @SuppressWarnings("deprecation")
   public void saveWithoutWaitingNavigation() {
     WebElement save = findElementByCssSelector("button[id$='save-settings']");
     WaitHelper.waitForNavigation(new UserProfilePage(), () -> click(save));
@@ -79,7 +78,6 @@ public class UserProfilePage extends TemplatePage {
     switchOffSetting(FURTHER_EMAIL_FROM_APP_SELECTOR);
   }
 
-  @SuppressWarnings("deprecation")
   private void switchOnSetting(String cssSelector) {
     WebElement inputSwitch = findElementByCssSelector(cssSelector);
     if (!inputSwitch.getAttribute("class").contains("ui-inputswitch-checked")) {
@@ -87,7 +85,6 @@ public class UserProfilePage extends TemplatePage {
     }
   }
   
-  @SuppressWarnings("deprecation")
   private void switchOffSetting(String cssSelector) {
     WebElement inputSwitch = findElementByCssSelector(cssSelector);
     if (inputSwitch.getAttribute("class").contains("ui-inputswitch-checked")) {
@@ -95,7 +92,6 @@ public class UserProfilePage extends TemplatePage {
     }
   }
 
-  @SuppressWarnings("deprecation")
   public void selectDaysForDailySummary(List<Integer> indices) {
     List<WebElement> selectDays = findListElementsByXpath(SELECTED_DAY_XPATH);
     for(int index : indices) {
@@ -136,7 +132,6 @@ public class UserProfilePage extends TemplatePage {
     return checkbox.getAttribute("class").contains("ui-state-disabled");
   }
 
-  @SuppressWarnings("deprecation")
   public void checkShowTutorial() {
     WebElement checkbox = findElementByXpath(SHOW_TUTORIAL_XPATH);
     if (!checkbox.getAttribute("class").contains("ui-state-active")) {
@@ -185,20 +180,19 @@ public class UserProfilePage extends TemplatePage {
     ensureNoBackgroundRequest();
   }
 
-  public void changeNewDashboardPage2ToCase() {
-    String newdashboardpage2Label = "my-profile-form:homepage_label";
-    click(By.id(newdashboardpage2Label));
+  public void changeNewDashboardPageToCase() {
+    String newdashboardpageLabel = "my-profile-form:homepage_label";
+    click(By.id(newdashboardpageLabel));
     String caseItemCssSelector = "li.ui-selectonemenu-item[data-label='Cases']";
     waitForElementDisplayed(By.cssSelector(caseItemCssSelector), true);
     clickByCssSelector(caseItemCssSelector);
-    waitUntilTextToBePresentInElement(findElementById(newdashboardpage2Label), "Cases", getTimeOutForLocator());
+    waitUntilTextToBePresentInElement(findElementById(newdashboardpageLabel), "Cases", getTimeOutForLocator());
   }
   
-  @SuppressWarnings("deprecation")
-  public NewDashboardPage2 clickOnCancelLink() {
+  public NewDashboardPage clickOnCancelLink() {
     click(findElementByCssSelector("a[id^='my-profile-form:']"));
     waitForPageLoaded();
-    return new NewDashboardPage2();
+    return new NewDashboardPage();
   }
 
   public void changeDateFormatToPattern(String pattern) {

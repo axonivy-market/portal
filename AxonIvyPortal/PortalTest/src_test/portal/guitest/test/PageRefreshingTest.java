@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.page.MainMenuPage;
-import portal.guitest.page.NewDashboardPage2;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class PageRefreshingTest extends BaseTest {
@@ -23,8 +23,8 @@ public class PageRefreshingTest extends BaseTest {
 
   @Test
   public void testTasksInPortalTaskPageUpdatedAfterReloading() {
-    NewDashboardPage2 newDashboardPage2 = new NewDashboardPage2();
-    MainMenuPage mainMenuPage = newDashboardPage2.openMainMenu();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
 
     TaskWidgetPage taskWidgetPage = mainMenuPage.selectTaskMenu();
     assertEquals(3, taskWidgetPage.countTasks());
