@@ -261,7 +261,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       enablePrivateChat: Set this property to true to enable private chat function
       enableProcessViewer: Set this property to true to enable process viewer option in Task/Case actions
       enableScriptCheckingForUploadedDocumentNote: Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word.
-      enableUserFavorites: If this property is disabled, do not display user favorites section of process list in Portal home.
       enableVirusScannerForUploadedDocumentNote: Set to true to enable virus scanner for uploaded document. Currently this function is using API VIRUSTOTAL.
       expressEndPageNote: Display the custom end page at the end of each Express process.
       hideCaseDocument: Set to true, the document section in case detail page will be hidden, otherwise it will be shown.
@@ -1123,7 +1122,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     expressWorkflow: Express workflow
     externalLink: External link
     externalLinkVisibility: Visibility
-    favoriteProcesses: User Favorites
     goTo: 'Go to: '
     icon: Icon
     image: Image

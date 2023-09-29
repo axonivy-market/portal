@@ -70,7 +70,6 @@ public class BaseTest {
   protected String complexPaymentUrl = "portal-developer-examples/162511D2577DBA88/complexPayment.ivp";
   protected String documentTableComponentUrl = "portal-components-examples/1818938E7EBC9329/showCustomizedDocumentTableExample.ivp";
   protected String cleanUpAbsencesAndSubstituesLink = "portalKitTestHelper/1511A66AF619A768/cleanAbsencesAndSubstitues.ivp";
-  protected String createUserFavoriteProcess = "portalKitTestHelper/153CACC26D0D4C3D/createTestUserFavoriteProcess.ivp";
   protected String createCasesForCaseListCustomization = "portal-developer-examples/162511D2577DBA88/createCasesForCaseListCustomization.ivp";
   protected String processChainShowcaseUrl = "portal-components-examples/181897243F2BFDD3/showProcessChainExamples.ivp";
   protected String userSelectionComponentShowcaseUrl = "portal-components-examples/18189AF10B521DF4/showUserSelectionExamples.ivp";

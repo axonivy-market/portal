@@ -79,14 +79,6 @@ Variables:
       # Set to true to hide Statistic widget from homepage and application menu.
       HideStatisticWidget: false
 
-      # If this property is false, do not display user favorites section of process list in Portal home.
-      ShowUserFavorites: true
-
-      # You can include your custom application favorites processes via this JSON file.
-      # It will be shown as the processes in the application favorite section.
-      # [file: json]
-      FavoriteProcesses:
-
     Processes:
       # The standard setting of view mode in the process list.
       # [enum: COMPACT, IMAGE, GRID]
