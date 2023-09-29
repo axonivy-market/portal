@@ -820,8 +820,8 @@ public class NewDashboardPage extends TemplatePage {
 
     String infoPanel = String.format("div[id$='info-overlay-panel-%d']", index);
     $(infoPanel).shouldBe(appear, DEFAULT_TIMEOUT).$(".widget-info--type").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $(infoPanel).$("[class*='js-loading-']").shouldBe(disappear, DEFAULT_TIMEOUT);
-    return $(infoPanel);
+    $(infoPanel).$("[class^='js-loading-']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    return $(infoPanel).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void startTask(int index) {
