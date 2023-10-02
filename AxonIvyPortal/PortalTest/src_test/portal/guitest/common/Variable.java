@@ -64,6 +64,7 @@ public enum Variable {
   USER_MENU("Portal.UserMenu"),
   ENABLE_SWITCH_THEME_BUTTON("Portal.Theme.EnableSwitchThemeModeButton"),
   DEFAULT_THEME_MODE("Portal.Theme.Mode"),
+  GLOBAL_HOST_FOOTER_INFO("Portal.GlobalHostFooterInfo"), GLOBAL_ENV_FOOTER_INFO("Portal.GlobalEnvFooterInfo"),
   DASHBOARD("Portal.Dashboard");
 
   private String key;
