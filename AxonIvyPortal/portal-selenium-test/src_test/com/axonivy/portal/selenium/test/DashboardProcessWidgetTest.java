@@ -36,11 +36,12 @@ public class DashboardProcessWidgetTest extends BaseTest {
   private static final String CATEGORIED_LEAVE_REQUEST = "Categoried Leave Request";
   private static final String SHOWCASE = "Showcase";
   private static final String SHOWCASE_APPLICATION = "Showcase Application";
-  private static final String CLEAN_ABSENCES = "(For autotest) Clean absences ";
+  private static final String CLEAN_ABSENCES = "(For autotest) Clean absences";
   private static final String PROCESS_WITH_INDEX_1 = "Process Sorting By Index 1a";
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
   private static final String ALPHABETICALLY_SORTING = "Alphabetically";
-  private static final String SORTING_INDEX = "Sorting Index";
+  private static final String SORTING_INDEX = "Sorting index";
+  private static final String CUSTOM_ORDER = "Custom order";
   private NewDashboardPage newDashboardPage;
 
   @Override
@@ -420,6 +421,26 @@ public class DashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.getCompactModeProcessPreview().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName().shouldBe(Condition.appear)
         .shouldHave(Condition.exactTextCaseSensitive(PROCESS_WITH_INDEX_1));
+  }
+  
+  @Test
+  public void testSortProcessCompactProcessModeCustomSorting() {
+    ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
+        newDashboardPage.editProcessWidgetConfiguration();
+    editProcessWidgetConfiguration.selectCompactMode();
+    editProcessWidgetConfiguration.selectCompactProcessSorting(CUSTOM_ORDER);
+    editProcessWidgetConfiguration.getPreviewButton().click();
+    editProcessWidgetConfiguration.getCompactModeProcessPreview().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    // expect "Clean absences" process is the first process
+    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName().shouldBe(Condition.appear)
+        .shouldHave(Condition.exactTextCaseSensitive(CLEAN_ABSENCES));
+    int fromIndex = 0;
+    int toIndex = 1;
+    editProcessWidgetConfiguration.dragAndDropProcess(fromIndex, toIndex);
+    editProcessWidgetConfiguration.save();
+    editProcessWidgetConfiguration = newDashboardPage.editProcessWidgetConfiguration();
+    editProcessWidgetConfiguration.getPreviewProcessElement(toIndex-1).shouldBe(Condition.appear)
+    .shouldHave(Condition.exactTextCaseSensitive(CLEAN_ABSENCES));
   }
 
   @Test
