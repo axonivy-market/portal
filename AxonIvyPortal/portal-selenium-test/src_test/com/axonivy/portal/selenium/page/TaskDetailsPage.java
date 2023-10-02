@@ -6,10 +6,15 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -135,5 +140,109 @@ public class TaskDetailsPage extends TemplatePage {
 
   public void clickOnResetToDefaultButton() {
     getResetButtonElement().shouldBe(getClickableCondition()).click();
+  }
+
+  public SelenideElement getTaskGeneralInformation() {
+    return $("[id$=':task-detail-general-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public void openAddNoteDialog() {
+    $("[id$=':task-notes:add-note-command']").shouldBe(getClickableCondition()).click();
+    $("[id$=':task-notes:add-new-note-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getAddNoteDialog() {
+    waitForAjaxIndicatorDisappeared();
+    var noteDialog = $("[id$=':task-notes:add-new-note-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    noteDialog.$(".ui-dialog-title").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    return noteDialog;
+  }
+
+  public void waitUtilsTaskDetailsDisplayed() {
+    $("[id$=':task-detail-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public void addNoteToTaskWithContent(String content) {
+    $("div.ui-dialog[aria-hidden='false']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    SelenideElement addNoteDialog = $("div.ui-dialog[aria-hidden='false']").shouldBe(appear, DEFAULT_TIMEOUT);
+    addNoteDialog.findElement(By.cssSelector("textarea[id$='note-content']")).sendKeys(content);
+    addNoteDialog.findElement(By.cssSelector("button[id$='save-add-note-command']")).click();
+  }
+
+  public void openAddAttachmentDialog() {
+    $("[id$=':task-documents:add-document-command']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("[id$=':task-documents:document-upload-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getAddAttachmentDialog() {
+    var uploadDialog = $("[id$=':task-documents:document-upload-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    uploadDialog.$(".ui-dialog-title").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    return uploadDialog;
+  }
+
+  public void uploadDocument(String path) {
+    Sleeper.sleep(500);
+    uploadDocumentByPath(path);
+    $("span[class$='ui-messages-info-summary']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("button[id$=':task-documents:document-upload-close-command']").shouldBe(getClickableCondition()).click();
+  }
+  
+  private void uploadDocumentByPath(String path) {
+    $("input[id$='document-upload-panel_input']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).sendKeys(path);
+  }
+
+  public SelenideElement getTaskHistories() {
+    return $("[id$=':task-detail-note-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getTaskAttachment() {
+    return $("[id$=':task-detail-document-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public WebElement getDeleteDocumentConfirmDialog() {
+    $("a[id$='delete-file']").shouldBe(getClickableCondition()).click();
+    return $("div[id$='document-deletion-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public String openWorkflowEventDialog() {
+    openActionPanel();
+    clickOnShowWorkflowEventLink();
+    return getDataOfWorkflowEventsTable();
+  }
+
+  private String getDataOfWorkflowEventsTable() {
+    List<WebElement> cells = $("tbody[id$='events-table_data']").shouldBe(appear, DEFAULT_TIMEOUT).findElements(By.cssSelector("td"));
+    return String.join(",", cells.stream().map(WebElement::getText).collect(Collectors.toList()));
+  }
+
+  public void clickOnShowWorkflowEventLink() {
+    $("a[id$=':task-workflow-event-command']").shouldBe(getClickableCondition()).click();
+    $("div[id$='events-table']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public WebElement getWorkflowEventsTable() {
+    $("th[id*='events-table:']").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $("div[id$='workflow-events-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void clickOnShowMoreHistories() {
+    $("[id$=':task-notes:show-more-note-link']").shouldBe(getClickableCondition()).click();
+  }
+
+  public void waitForIFrameURLWidgetLoad() {
+    switchToIframeWithNameOrId("custom-widget-iframe-url");
+    $("a[href='https://www.axonivy.com']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    switchBackToParent();
+
+  }
+
+  public void waitForIFrameWidgetLoad() {
+//    driver.switchTo().frame("custom-widget-iframe");
+//    WaitHelper.assertTrueWithWait(() -> findElementByCssSelector(".container.frame").isDisplayed());
+
+//    $("[name='custom-widget-iframe']").shouldBe(appear, DEFAULT_TIMEOUT);
+    switchToIframeWithNameOrId("custom-widget-iframe");
+    $(".container.frame").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    switchBackToParent();
   }
 }

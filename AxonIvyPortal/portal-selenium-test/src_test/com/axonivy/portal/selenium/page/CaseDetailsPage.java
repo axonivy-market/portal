@@ -49,7 +49,6 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void addNote(String noteContent) {
     $("a[id$=':case-histories:add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT);
-//    $("a[id$=':case-histories:add-note-command']").click();
     $("div[id$=':case-histories:add-note-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("div[id$=':case-histories:add-note-dialog']").find("textarea").sendKeys(noteContent);
     $("button[id$=':case-histories:add-note-form:save-add-note-command']").click();
@@ -294,10 +293,6 @@ public class CaseDetailsPage extends TemplatePage {
     Action moveWidget = actions.dragAndDrop(sourceElement, destinationElement).build();
     moveWidget.perform();
     $("[id$=':case-details-container:case-details-widgets']").shouldBe(Condition.visible, DEFAULT_TIMEOUT).$(".ui-droppable-over").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
-//    WaitHelper.assertTrueWithWait(() -> {
-//      var caseDetails = findElementByCssSelector("[id$=':case-details-container:case-details-widgets']");
-//      return !caseDetails.getAttribute(CLASS_PROPERTY).contains("ui-droppable-over");
-//    });
   }
   
   public void saveAndSwitchToViewMode() {

@@ -11,7 +11,6 @@ import com.axonivy.portal.selenium.common.FileHelper;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtil;
-import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
@@ -25,7 +24,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class PortalCasesScreenshotTest extends ScreenshotBaseTest{
   
   private MainMenuPage mainMenuPage;
