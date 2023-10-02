@@ -90,7 +90,7 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 public class DashboardDetailModificationBean extends DashboardBean implements Serializable, PropertyChangeListener {
 
   private static final long serialVersionUID = -5272278165636659596L;
-  private static final String DEFAULT_USER_FILTER_ID = "widget-configuration-form";
+  private static final String DEFAULT_USER_FILTER_ID = "widget-configuration-form:new-widget-configuration-component:user-filter";
   private static final String DEFAULT_WIDGET_TITLE_ID = "widget-configuration-form:new-widget-configuration-component:widget-title-group";
 
   private List<WidgetSample> samples;
@@ -807,10 +807,14 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public String getComponentToProcessOnSave() {
     var componentId = "@this";
-    if (getWidget() != null) {
+    DashboardWidget processWidget = getWidget();
+    if (processWidget != null) {
       componentId = DEFAULT_WIDGET_TITLE_ID;
-      if (NEWS != getWidget().getType()) {
+      if (NEWS != processWidget.getType()) {
         componentId = componentId.concat(" ").concat(DEFAULT_USER_FILTER_ID);
+      } 
+      if (PROCESS == processWidget.getType()) {
+        componentId = componentId.concat(" widget-configuration-form");
       }
     }
     return componentId;
