@@ -129,7 +129,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     configPage.selectEditPublicDashboards();
     newDashboardPage.waitForPageLoaded();
     newDashboardPage.addNewCustomWidget();
-
+    newDashboardPage.waitForPageLoaded();
     WebElement dateField = newDashboardPage.findElementById("widget-configuration-form:new-widget-configuration-component:parammeters:1:param-calendar-_input");
     newDashboardPage.type(dateField, "24 Nov, 2021 00:00");
 
@@ -212,6 +212,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(newWidgetDialog, ScreenshotUtil.NEW_DASHBOARD_FOLDER + "add-widget", new ScreenshotMargin(40));
 
     // Take screenshots of Task widget configuration dialog
+    newDashboardPage.waitForElementDisplayed(By.id("new-widget-dialog-content:6:add-widget"), true);
     newWidgetDialog.findElement(By.id("new-widget-dialog-content:6:add-widget")).click();
     DashboardWidgetConfigurationDialogPage configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
     configurationDialogPage.openMultiLanguageDialog();
