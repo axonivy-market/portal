@@ -1405,6 +1405,8 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Could not find the linked process!
+                ProcessWidgetConfiguration:
+                  DragAndDropToChangeOrder: Drag and drop to change the order.
         portalkit:
           component:
             CaseItemDetails:
