@@ -44,6 +44,7 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
     originalDisplayProcesses = widget.getOriginalDisplayProcesses();
     processes = widget.getProcesses();
     sorting = widget.getSorting();
+    customIndexs = widget.getCustomIndexs();
   }
 
   public CompactProcessDashboardWidget(ProcessDashboardWidget widget) {
