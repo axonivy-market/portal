@@ -29,8 +29,8 @@ import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.PrimeFacesUtils;
@@ -153,7 +153,7 @@ public class PortalMenuNavigator {
     }
     navigateToTargetPage(params);
   }
-  private record PortalSubMenuItemWrapper(Locale loadedLocale, List<SubMenuItem> portalSubMenuItems) {};
+  private record PortalSubMenuItemWrapper(Locale loadedLocale, List<SubMenuItem> portalSubMenuItems) {}
 
   private static List<SubMenuItem> getSubmenuList() {
     List<SubMenuItem> subMenuItems = new ArrayList<>();
