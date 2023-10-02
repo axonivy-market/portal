@@ -130,6 +130,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       IMAGE: Bild
     ProcessSorting:
       BY_ALPHABETICALLY: Alphabetisch
+      BY_CUSTOM_ORDER: Benutzerdefinierte Reihenfolge
       BY_INDEX: Sortierindex
     ProcessType:
       EXPRESS_PROCESS: Express Workflow
@@ -1593,6 +1594,9 @@ Dialogs:
                   CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
                 DashboardModification:
                   Share: Aktie
+                ProcessWidgetConfiguration:
+                  DragAndDropToChangeOrder: ziehen und ablegen zum ändern der Reihenfolge.
+                  DragAndDropTooltip: Klicken Sie auf die Vorschau und ändern Sie die Reihenfolge durch Ziehen und Ableg
         portalkit:
           component:
             CaseItemDetails:
