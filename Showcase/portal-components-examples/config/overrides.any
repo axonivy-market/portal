@@ -1,4 +1,6 @@
 {
   /HTML_DIALOG *
-  /PROCESS *
+  /PROCESS {
+    /Functional-Processes.OpenCaseDetailsHook "Functional Processes/OpenCaseDetailsHookOverride"
+  }
 }
