@@ -61,8 +61,11 @@ public enum Variable {
   CASE_DETAIL("Portal.CaseDetails"),
   SHOW_AVATAR("Portal.ShowAvatar"),
   GLOBAL_SEARCH_BY_TASK_FIELDS("Portal.SearchScope.ByTaskFields"),
-  GLOBAL_SEARCH_BY_CASE_FIELDS("Portal.SearchScope.ByCaseFields"), DEEPL_AUTH_KEY("Portal.DeepL.AuthKey"),
-  ENABLE_DEEPL_TRANSLATION("Portal.DeepL.Enable");
+  GLOBAL_SEARCH_BY_CASE_FIELDS("Portal.SearchScope.ByCaseFields"),
+  DEEPL_AUTH_KEY("Portal.DeepL.AuthKey"),
+  ENABLE_DEEPL_TRANSLATION("Portal.DeepL.Enable"),
+  DASHBOARD("Portal.Dashboard"),
+  SHOW_LEGACY_UI("Portal.ShowLegacyUI");
 
   private String key;
 
