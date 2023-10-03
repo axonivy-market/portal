@@ -1082,7 +1082,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewProcess: Prozess hinzufügen
     addNewProcessDialogHeader: Neuen Prozess hinzufügen
     backToOverview: Zurück zur Übersicht
-    brokenLinkProcess: Der Prozess-Link ist ungültig. Bitte aktualisieren Sie Ihre Favoriten oder kontaktieren Sie den Administrator
     defaultProcesses: Anwendungs-Favoriten
     deleteExpressWorkflowTooltip: Express Workflow entfernen
     deleteExternalLinkTooltip: Externen Link löschen

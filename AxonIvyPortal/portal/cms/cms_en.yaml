@@ -1104,7 +1104,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewProcess: Add new process
     addNewProcessDialogHeader: Add new user process
     backToOverview: Back to overview
-    brokenLinkProcess: The process link is broken. Please update your favorites or contact the administrator
     defaultProcesses: Application Favorites
     deleteExpressWorkflowTooltip: Delete Express Workflow
     deleteExternalLinkTooltip: Delete external link
