@@ -4,11 +4,13 @@ import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 
+import org.openqa.selenium.interactions.Actions;
 import java.util.List;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 
 public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
@@ -413,6 +415,23 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     $(processEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='widget-configuration-save-button']")
         .shouldBe(getClickableCondition()).click();
     $("[id$='task-component:loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    $("[id$='process-process_1:widget-content']").shouldBe(Condition.interactable, DEFAULT_TIMEOUT);
+  }
+
+  public void dragAndDropProcess(int fromIndex, int toIndex) {
+    Actions a = new Actions(WebDriverRunner.getWebDriver());
+    SelenideElement processList = $("ul.ui-widget-content");
+    processList.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    ElementsCollection findAll = processList.findAll("li.ui-orderlist-item");
+    if (findAll.size() > toIndex) {
+      SelenideElement fromElement = findAll.get(fromIndex);
+      SelenideElement toElement = findAll.get(toIndex);
+      a.dragAndDrop(fromElement, toElement).build().perform();
+    }
+  }
+
+  public SelenideElement getPreviewProcessElement(int index) {
+    return $("div.compact-processes-container").findAll(".process-start-list-item").get(index);
   }
   
   public SelenideElement getTranslationOverlayPanel(int index) {
