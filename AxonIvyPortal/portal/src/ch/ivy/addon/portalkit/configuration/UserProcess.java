@@ -6,8 +6,6 @@ import java.util.Locale;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.ProcessType;
@@ -22,10 +20,6 @@ public class UserProcess {
   private String link;
   private String icon;
   private String processId;
-  @JsonIgnore
-  private boolean isBrokenLink = false;
-
-  @JsonIgnore
   private String description;
 
   public UserProcess() {
@@ -38,7 +32,6 @@ public class UserProcess {
     link = userProcess.link;
     icon = userProcess.icon;
     processId = userProcess.processId;
-    isBrokenLink = userProcess.isBrokenLink;
     description = userProcess.description;
   }
 
@@ -108,15 +101,6 @@ public class UserProcess {
 
   public void setProcessId(String processId) {
     this.processId = processId;
-  }
-
-  public boolean isBrokenLink() {
-    return isBrokenLink;
-  }
-
-  @JsonIgnore
-  public void setBrokenLink(boolean isBrokenLink) {
-    this.isBrokenLink = isBrokenLink;
   }
 
   public String getDescription() {
