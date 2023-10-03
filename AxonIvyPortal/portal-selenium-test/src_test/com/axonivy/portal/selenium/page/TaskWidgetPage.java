@@ -100,6 +100,17 @@ public class TaskWidgetPage extends TemplatePage {
       .shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
+  @SuppressWarnings("deprecation")
+  public TaskTemplatePage clickOnSideStepAction(int taskIndex, int sideStepIndex) {
+    String sideStepsId = String.format(
+        "task-widget:task-list-scroller:%d:task-item:task-action:additional-options:task-additional-actions",
+        taskIndex);
+    SelenideElement sideStepPanel = $("[id$='" + sideStepsId + "']");
+    ElementsCollection sideSteps = sideStepPanel.findAll(By.className("option-item"));
+    sideSteps.get(sideStepIndex).click();
+    return new TaskTemplatePage();
+  }
+  
   private void openTriggerEscalationDialog() {
     $("a[id$='task-trigger-escalation-command']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("div[id$='escalation-task-confirmation-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
