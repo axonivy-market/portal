@@ -50,7 +50,7 @@
   flex-direction: row;
 }
 
-.new-widget-dialog__fieldset:nth-child(1) {
+.new-widget-dialog__fieldset:not(:last-child) {
   margin-bottom: 1rem;
 }
 
