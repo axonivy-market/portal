@@ -1078,7 +1078,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewProcess: Ajouter un processus
     addNewProcessDialogHeader: Ajouter un nouveau processus utilisateur
     backToOverview: Retour à l'aperçu
-    brokenLinkProcess: Le lien du processus est cassé. Veuillez mettre à jour vos favoris ou contacter l'administrateur
     defaultProcesses: Favoris de l'application
     deleteExpressWorkflowTooltip: Supprimer le Workflow Express
     deleteExternalLinkTooltip: Supprimer le lien externe
