@@ -5,6 +5,7 @@ isLogOut = false;
 var PortalSessionWarning = function() {
   var warningDialogShow = false,
   isInteractedInIframeTaskTemplate = false,
+  isInteractedTaskTemplate = false,
   intervalCheckSessionTimeout,
 
   init = function(clientSideTimeOut) {
@@ -67,6 +68,11 @@ var PortalSessionWarning = function() {
     }
 
     if (timeOutSeconds < 60) {
+      if (isInteractedTaskTemplate == true) {
+        keepSession();
+        return;
+      }
+
       if ($("#iFrame").length > 0 && isInteractedInIframeTaskTemplate == true) {
         warningDialogShow = false;
         isInteractedInIframeTaskTemplate = false;
@@ -86,7 +92,16 @@ var PortalSessionWarning = function() {
       timeOutSeconds = timeout / 1000;
       sessionCounter = timeOutSeconds;
     }
+    isInteractedTaskTemplate = true;
   },
+
+  resetInteractedTaskTemplate = function() {
+    isInteractedTaskTemplate = false;
+  }
+
+  updateInteractedTaskTemplate = function() {
+    isInteractedTaskTemplate = true;
+  }
 
   updateInteractionStatusInIFrame = function() {
     isInteractedInIframeTaskTemplate = true;
@@ -100,6 +115,7 @@ var PortalSessionWarning = function() {
   return {
     init: init,
     resetCounterAndTimeout: resetCounterAndTimeout,
+    resetInteractedTaskTemplate : resetInteractedTaskTemplate,
     hideWarningDialog: hideWarningDialog
   };
 }();

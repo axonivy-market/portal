@@ -259,6 +259,9 @@
           </f:facet>
         </p:dialog>
 
+        <p:remoteCommand name="keepSession" global="false" process="@this" update="@this"
+          oncomplete="PortalSessionWarning.resetCounterAndTimeout(); PortalSessionWarning.resetInteractedTaskTemplate();" />
+
         <ic:ch.ivy.addon.portalkit.feature.WarnOnClosingBrowserTab
           confirmMessage="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/browserTabClosingWarning')}" />
       </div>
