@@ -2,14 +2,6 @@ Categories:
   Resource:
     Austria:
       name: Österreich
-DefaultColumns:
-  ACTIVATOR: Verantwortlich
-  CREATION_TIME: Erstellt
-  EXPIRY_TIME: Ablaufdatum
-  ID: Aufgaben Id
-  NAME: Titel / Beschreibung
-  PRIORITY: Priorität
-  STATE: Status
 ProcessPages:
   ProcessLeaves:
     ProcessLeave:
