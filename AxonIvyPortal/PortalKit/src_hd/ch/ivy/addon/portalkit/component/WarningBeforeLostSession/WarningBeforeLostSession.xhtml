@@ -35,6 +35,7 @@
       onstart="PF('timeout-warning-dialog').hide()" oncomplete="PF('timeout-dialog').show()" />
 
     <p:remoteCommand name="keepSession" global="false" process="@this" update="@this"
+      actionListener="#{logic.extendSession}"
       oncomplete="PortalSessionWarning.resetCounterAndTimeout(); PortalSessionWarning.resetInteractedTaskTemplate();" />
   </h:form>
   <script type="text/javascript">
