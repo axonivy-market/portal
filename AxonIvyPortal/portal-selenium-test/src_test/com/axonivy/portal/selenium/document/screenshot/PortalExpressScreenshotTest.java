@@ -132,7 +132,7 @@ public class PortalExpressScreenshotTest extends ScreenshotBaseTest{
     expressFormDefinition.waitForEmailEditorDisplayed();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "express-workflow-email-editor");
   }
-
+  
   @Test
   public void screenshotExpressManagement() throws IOException {
     ScreenshotUtil.resizeBrowser(new Dimension(1200, 800));
@@ -178,6 +178,7 @@ public class PortalExpressScreenshotTest extends ScreenshotBaseTest{
     ProcessWidgetPage processWidget = mainMenu.openProcessList();
     processWidget.waitForStartListShow();
     processWidget.startProcessByName(REQUEST_NEW_RESOURCE_PROCESS);
+    ScreenshotUtil.resizeBrowser(new Dimension(1920, 1080));
     completeExpressWorkflowTasks(FIRST_COMMENT, SECOND_COMMENT);
 
     ScreenshotUtil.resizeBrowser(new Dimension(1050, 600));
