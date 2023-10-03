@@ -52,13 +52,13 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
 
   @Test
   public void screenshotBasicTaskDetails() throws IOException {
-    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1000));
     login(TestAccount.ADMIN_USER);
     showNewDashboard();
-    mainMenuPage.expandMainMenu();
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1000));
     TaskWidgetPage taskWidget = mainMenuPage.openTaskList();
     taskWidget.openTaskDetail(0);
     taskWidget.waitDocumentReady();
+    mainMenuPage.expandMainMenu();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_FOLDER + "detailed-task-information");
     ScreenshotUtil.executeDecorateJs("highlightTaskDetailComponent()");
     taskWidget.waitDocumentReady();
@@ -154,8 +154,8 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
 
   @Test
   public void screenshotShowMoreTaskHistories() throws IOException {
-    ScreenshotUtil.resizeBrowser(new Dimension(2560, 1000));
     login(TestAccount.ADMIN_USER);
+    ScreenshotUtil.resizeBrowser(new Dimension(2560, 1000));
     showNewDashboard();
     TaskWidgetPage taskWidget = mainMenuPage.openTaskList();
     TaskDetailsPage taskDetails = taskWidget.openTaskDetail(0);
