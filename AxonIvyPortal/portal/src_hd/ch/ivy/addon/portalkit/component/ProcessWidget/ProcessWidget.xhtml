@@ -87,7 +87,7 @@
                   groupCode="js-grid-process-index-group js-process-group-#{entryProcess.key}"
                   status="#{status}"
                   ableToEdit="#{!processWidgetBean.isIvyProcess(process) and process.getProcess().ableToEdit}"
-                  showInformationLink="#{processWidgetBean.showInformationLink}"
+                  showInformationLink="#{processWidgetBean.isShowInformationLink(process)}"
                   oncompleteEditProcess="PF('edit-process-dialog').show();"
                   componentToUpdateOnEditProcess="#{cc.clientId}:edit-process-dialog"
                   editActionListener="#{processWidgetBean.setEditedProcess(process)}"
