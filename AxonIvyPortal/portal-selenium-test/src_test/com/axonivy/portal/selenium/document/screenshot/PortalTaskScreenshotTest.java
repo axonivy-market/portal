@@ -72,7 +72,6 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
     login(TestAccount.ADMIN_USER);
     showNewDashboard();
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1440));
-    refreshPage();
     TaskWidgetPage taskWidget = mainMenuPage.openTaskList();
     TaskDetailsPage taskDetails = taskWidget.openTaskDetail(0);
     ScreenshotUtil.executeDecorateJs("highlightSharePageButton()");
