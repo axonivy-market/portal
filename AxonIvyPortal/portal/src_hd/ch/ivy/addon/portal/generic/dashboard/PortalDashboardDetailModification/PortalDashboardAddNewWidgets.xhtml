@@ -27,7 +27,7 @@
           value="#{dashboardDetailModificationBean.samples}">
           <div class="new-widget-dialog__item card js-widget">
             <div class="new-widget-dialog__item-title">
-              <p:outputLabel id="widget-name" value="#{sample.name}" styleClass="new-widget-dialog__widget-name"/>
+              <h:outputText id="widget-name" value="#{sample.name}" styleClass="new-widget-dialog__widget-name"/>
             </div>
             <div class="new-widget-dialog__item-details">
               <p:graphicImage library="images" name="#{sample.image}" styleClass="new-widget-dialog__image" rendered="#{!sample.useIcon}" />
@@ -36,7 +36,7 @@
               </h:panelGroup>
 
               <h:panelGroup layout="block" styleClass="ui-panelgrid-blank new-widget-dialog__item-content">
-                <p:outputLabel value="#{sample.introduction}" styleClass="new-widget-dialog__introduction"/>
+                <h:outputText value="#{sample.introduction}" styleClass="new-widget-dialog__introduction"/>
                 <p:commandButton id="add-widget" styleClass="new-widget-dialog__add-widget-button"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
                   actionListener="#{dashboardDetailModificationBean.create(sample)}" update="new-widget-configuration-dialog widget-configuration-form"
@@ -60,7 +60,7 @@
           <div class="new-widget-dialog__item card js-widget">
 
             <div class="new-widget-dialog__item-title">
-              <p:outputLabel id="widget-name" value="#{widget.name}" styleClass="new-widget-dialog__widget-name"/>
+              <h:outputText id="widget-name" value="#{widget.name}" styleClass="new-widget-dialog__widget-name"/>
               <p:tooltip id="widget-name-tooltip" for="widget-name" value="#{widget.name}" trackMouse="true" />
             </div>
 
@@ -70,7 +70,7 @@
               </h:panelGroup>
 
               <h:panelGroup layout="block" styleClass="ui-panelgrid-blank new-widget-dialog__item-content">
-                <p:outputLabel value="#{widget.description}" styleClass="new-widget-dialog__introduction"/>
+                <h:outputText value="#{widget.description}" styleClass="new-widget-dialog__introduction"/>
 
                 <p:commandButton id="add-widget" styleClass="new-widget-dialog__add-widget-button"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
@@ -97,7 +97,7 @@
           <div class="new-widget-dialog__item card js-widget">
 
             <div class="new-widget-dialog__item-title">
-              <p:outputLabel id="widget-name" value="#{widget.name}" styleClass="new-widget-dialog__widget-name"/>
+              <h:outputText id="widget-name" value="#{widget.name}" styleClass="new-widget-dialog__widget-name"/>
               <p:tooltip id="widget-name-tooltip" for="widget-name" value="#{widget.name}" trackMouse="true" />
             </div>
 
@@ -107,7 +107,7 @@
               </h:panelGroup>
 
               <h:panelGroup layout="block" styleClass="ui-panelgrid-blank new-widget-dialog__item-content">
-                <p:outputLabel value="#{widget.description}" styleClass="new-widget-dialog__introduction"/>
+                <h:outputText value="#{widget.description}" styleClass="new-widget-dialog__introduction"/>
                 <p:commandButton id="add-widget" styleClass="new-widget-dialog__add-widget-button"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
                   actionListener="#{dashboardDetailModificationBean.createCustomDashboardWidget(widget)}" 

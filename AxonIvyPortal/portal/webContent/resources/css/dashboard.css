@@ -796,7 +796,7 @@ span.new-widget-dialog__icon.si {
   flex-direction: column;
 }
 
-body .ui-widget.new-widget-dialog__widget-name {
+.new-widget-dialog__widget-name {
   font-weight: var(--new-widget-dialog-title-font-weight);
   font-style: var(--new-widget-dialog-title-font-style);
   font-size: var(--new-widget-dialog-title-font-size);

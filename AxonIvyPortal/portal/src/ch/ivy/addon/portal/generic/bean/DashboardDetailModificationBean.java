@@ -380,9 +380,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   private ClientStatisticDashboardWidget getDefaultClientStatisticDashboardWidget(String widgetName, String chartId) {
     String widgetId = DashboardWidgetUtils.generateNewWidgetId(CLIENT_STATISTIC);
-    if (StringUtils.isEmpty(widgetName)) {
-      widgetName = "New Statistic Widget";
-    }
     ClientStatisticDashboardWidget widget = null;
     widget = (ClientStatisticDashboardWidget) DashboardWidgetUtils.buildDefaultWidget(widgetId, widgetName,
         CLIENT_STATISTIC);
@@ -707,10 +704,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         widget.getLayout().setAxisX(nextAxisX);
         widget.getLayout().setAxisY(lastWidget.getLayout().getAxisY());
       } else {
+        portalGridsCurrentRow = Long.valueOf(lastWidget.getLayout().getAxisY() + lastWidget.getLayout().getHeight());
         widget.getLayout().setAxisX(0);
-        if (portalGridsCurrentRow == null) {
-          portalGridsCurrentRow = (long) (lastWidget.getLayout().getAxisY() + lastWidget.getLayout().getHeight());
-        }
         widget.getLayout().setAxisY(portalGridsCurrentRow.intValue());
       }
     }
