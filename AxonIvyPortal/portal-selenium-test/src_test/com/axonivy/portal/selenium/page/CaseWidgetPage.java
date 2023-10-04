@@ -6,6 +6,9 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import org.openqa.selenium.By;
+
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
@@ -70,4 +73,12 @@ public class CaseWidgetPage extends TemplatePage {
   public SelenideElement getCreatorAvatar() {
     return $(".security-member-container > .has-avatar > .ui-avatar").shouldBe(appear, DEFAULT_TIMEOUT);
   }
+  
+  public String getCaseId(int caseIndex) {
+    $("[id$=':case-list']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+//    WebElement selectedCaseElement = findElementByCssSelector(String.format("[id$='case-list-scroller:%d:case-item:case-item-container']", caseIndex));
+    SelenideElement selectedCaseIdElement = $(String.format("[id$='case-list-scroller:%d:case-item:case-item-container']", caseIndex)).find(By.cssSelector("[id$=':case-id-cell']"));
+    return selectedCaseIdElement.getText();
+  }
+
 }

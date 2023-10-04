@@ -4,19 +4,31 @@ import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
+import org.openqa.selenium.WebElement;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class NewDashboardDetailsEditPage extends TemplatePage {
 
+  public static final String TASK_WIDGET = "Task List";
+  public static final String CASE_WIDGET = "Case List";
+  public static final String PROCESS_WIDGET = "Process List";
+  public static final String PROCESS_VIEWER_WIDGET = "Process Viewer";
+  public static final String CUSTOM_WIDGET = "Custom Widget";
+  public static final String STATISTIC_WIDGET = "Statistic chart";
+  public static final String WELCOME_WIDGET = "Welcome widget";
+  public static final String NEWS_WIDGET = "News feed widget";
+
   @Override
   protected String getLoadedLocator() {
     return "#add-button";
   }
 
-  public void addWidget() {
+  public WebElement addWidget() {
     $("button[id='add-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    return $("div[id$='new-widget-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public TaskEditWidgetNewDashBoardPage addNewTaskWidget() {
@@ -44,7 +56,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     return new CustomWidgetNewDashBoardPage();
   }
 
-  private void addWidgetByName(String name) {
+  public void addWidgetByName(String name) {
     $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$("div.new-widget-dialog__item").filter(text(name)).first()
         .$("button[id^='new-widget-dialog-content']").shouldBe(getClickableCondition()).click();
@@ -167,5 +179,10 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   public DashboardNewsWidgetConfigurationPage addNewsFeedWidget() {
     addWidgetByName("News feed widget");
     return new DashboardNewsWidgetConfigurationPage();
+  }
+
+  public void waitForCaseWidgetLoaded() {
+    $("div[id$='dashboard-cases-container']").shouldBe(appear, DEFAULT_TIMEOUT)
+      .$("div[id$='dashboard-cases']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 }
