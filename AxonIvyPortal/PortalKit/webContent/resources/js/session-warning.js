@@ -33,10 +33,10 @@ var PortalSessionWarning = function() {
   timerDecrement = function() {
     timeOutSeconds = timeOutSeconds - 1;
 
-    // when timed out, close the warning dialog and make a request to server to show session timeout dialog
+    // when timed out, close the warning dialog and logout
     if (timeOutSeconds < 0) {
         hideWarningDialog();
-        keepSession();
+        logoutAndShowDialog();
         return;
       }
 
