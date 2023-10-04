@@ -36,7 +36,7 @@
 
     <p:remoteCommand name="keepSession" global="false" process="@this" update="@this"
       actionListener="#{logic.extendSession}"
-      oncomplete="PortalSessionWarning.resetCounterAndTimeout(); PortalSessionWarning.resetInteractedTaskTemplate();" />
+      oncomplete="PortalSessionWarning.resetCounterAndTimeout();" />
   </h:form>
   <script type="text/javascript">
       $(function() { 
