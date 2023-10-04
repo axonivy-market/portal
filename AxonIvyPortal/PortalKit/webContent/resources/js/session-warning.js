@@ -11,7 +11,13 @@ var PortalSessionWarning = function() {
     timeout = clientSideTimeOut,
     timeOutSeconds = timeout / 1000,
     isLogOut = false,
-    intervalCheckSessionTimeout = setInterval(timerDecrement, 1000); // Call Every Second
+    intervalCheckSessionTimeout = setInterval(function() {
+        timerDecrement();
+        if (isLogOut) {
+          clearInterval(intervalCheckSessionTimeout);
+        }
+      }, 1000); // Call every second, stop when user is logged out
+
     window.onload = resetCounterAndTimeout;
     document.onkeypress = updateInteractedTaskTemplate;
     document.onclick = updateInteractedTaskTemplate;
@@ -33,15 +39,16 @@ var PortalSessionWarning = function() {
   timerDecrement = function() {
     timeOutSeconds = timeOutSeconds - 1;
 
-    // when timed out, close the warning dialog and logout
-    if (timeOutSeconds < 0) {
+    // when timed out, close the warning dialog and make a request to server to show session timeout dialog
+    if (timeOutSeconds < 0 && isLogOut == false) {
         hideWarningDialog();
         logoutAndShowDialog();
+        isLogOut = true;
         return;
       }
 
     // perform check interaction when timeout less than 60 seconds and the warning dialog is hiding
-    if (timeOutSeconds < 60 && warningDialogShow == false) {
+    if (timeOutSeconds < 60 && warningDialogShow == false && isLogOut == false) {
 
       // If have interaction, send a request to server to keep session
       if (isInteractedTaskTemplate == true) {
@@ -70,10 +77,6 @@ var PortalSessionWarning = function() {
     timeOutSeconds = timeout / 1000;
   },
 
-  resetInteractedTaskTemplate = function() {
-    isInteractedTaskTemplate = false;
-  }
-
   updateInteractedTaskTemplate = function() {
     isInteractedTaskTemplate = true;
   }
@@ -90,8 +93,6 @@ var PortalSessionWarning = function() {
   return {
     init: init,
     resetCounterAndTimeout: resetCounterAndTimeout,
-    resetInteractedTaskTemplate : resetInteractedTaskTemplate,
-    updateInteractedTaskTemplate : updateInteractedTaskTemplate,
     hideWarningDialog: hideWarningDialog
   };
 }();
