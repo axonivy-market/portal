@@ -1,13 +1,16 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 
 import java.util.List;
 
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+
 import com.axonivy.portal.selenium.common.FileHelper;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.DragAndDropOptions;
 import com.codeborne.selenide.SelenideElement;
 
 public class DashboardConfigurationPage extends TemplatePage {
@@ -19,6 +22,11 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   private void waitForDashboardConfigurationTypeSelectionAppear() {
     $("[id$='dashboard-configuration-type']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public SelenideElement getDashboardConfigurationPage() {
+    waitForDashboardConfigurationTypeSelectionAppear();
+    return $("div[id$='configuration-group']");
   }
 
   public SelenideElement getPrivateDashboardConfigurationTypeSelection() {
@@ -33,8 +41,8 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public DashboardModificationPage openEditPublicDashboardsPage() {
     selectPublicDashboardType();
-    $("button[id$='dashboard-modification-component:dashboard-table:0:edit']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .shouldBe(getClickableCondition());
+    $("a[id$='edit-dashboard-action'].js-public-dashboard").shouldBe(appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition()).click();
     return new DashboardModificationPage();
   }
 
@@ -54,21 +62,21 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public DashboardModificationPage openEditPrivateDashboardsPage() {
     selectPrivateDashboardType();
-    $("button[id$='dashboard-modification-component:dashboard-table:0:edit']").shouldBe(appear, DEFAULT_TIMEOUT)
+    $("a[id$='edit-dashboard-action'].js-private-dashboard").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
     return new DashboardModificationPage();
   }
 
   public void openCreatePublicDashboardMenu() {
     selectPublicDashboardType();
-    $("button[id$='create-dashboard-action']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    $("a[id$='create-dashboard-action'].js-public-dashboard").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
     waitForCreateNewDashboardSectionAppear();
   }
 
   public void openCreatePrivateDashboardMenu() {
     selectPrivateDashboardType();
-    $("button[id$='create-dashboard-action'].js-private-dashboard").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    $("a[id$='create-dashboard-action'].js-private-dashboard").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
     waitForCreateNewDashboardSectionAppear();
   }
@@ -82,7 +90,7 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public void createPrivateDashboardFromScratch(String newName, String icon, String newDescription) {
     selectPrivateDashboardType();
-    $("button[id$='create-dashboard-action'].js-private-dashboard").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    $("a[id$='create-dashboard-action'].js-private-dashboard").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
     waitForCreateNewDashboardSectionAppear();
     $("a[id$=':create-from-scratch']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
@@ -109,14 +117,14 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public SelenideElement setupDataPublicDashboardFromScratch() {
     $("a[id$=':create-from-scratch']").shouldBe(getClickableCondition()).click();
-    String creationDetailsDialogId = "[id$=':dashboard-title']";
+    String creationDetailsDialogId = "div[id$=':dashboard-creation-details-dialog']";
     $(creationDetailsDialogId).shouldBe(appear, DEFAULT_TIMEOUT);
     SelenideElement createDashboardDialog = $(creationDetailsDialogId);
     return createDashboardDialog;
   }
 
   public void createPublicDashboardFromScratch(SelenideElement createDashboardDialog, List<String> permissions) {
-    String creationDetailsDialogId = "[id$=':dashboard-title']";
+    String creationDetailsDialogId = "div[id$=':dashboard-creation-details-dialog']";
     if (permissions != null) {
       setPermissions(permissions);
     }
@@ -161,12 +169,14 @@ public class DashboardConfigurationPage extends TemplatePage {
     selectPublicDashboardType();
     $("a[id$='reorder-dashboard-action'].js-public-dashboard").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
+    $("form[id$=':reorder-dashboard-form']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void reorderPrivateDashboard() {
     selectPrivateDashboardType();
     $("a[id$='reorder-dashboard-action'].js-private-dashboard").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
+    $("form[id$=':reorder-dashboard-form']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   private void inputCreateDashboardDialog(String newName, String icon, String newDescription, List<String> permissions) {
@@ -213,15 +223,11 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public NewDashboardPage backToHomePage() {
+    $("[id$='actions-group']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("[id$='back-to-home-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     return new NewDashboardPage();
   }
   
-  public NewDashboardPage backToHomePageBottom() {
-    $("[id$='back-to-home-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    return new NewDashboardPage();
-  }
-
   public SelenideElement getImportDashboardDialog() {
     $("a[id$=':import-dashboard']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     return $("div[id$='dashboard-import-dialog']");
@@ -287,37 +293,115 @@ public class DashboardConfigurationPage extends TemplatePage {
     multipleLanguageDialog.$("button[type='submit']").click();
     multipleLanguageDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
-
-  private SelenideElement findPrivateDashboardRowByName(String dashboardName) {
-    return $("[id$=':dashboard-table_data']").shouldBe(appear, DEFAULT_TIMEOUT).$$("tr[role='row']").asFixedIterable()
-        .stream().filter(row -> row.getText().contains(dashboardName)).findFirst().get();
+  
+  public void createPrivateDashboardFromScratch() {
+    openCreatePrivateDashboardMenu();
+    $("a[id$=':create-from-scratch']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("[id$=':dashboard-title']").sendKeys("My dashboard");
   }
 
-
-  public void reorderPrivateDashboard(String fromDashboardName, String toDashboardName) {
-    var toRow = findPrivateDashboardRowByName(toDashboardName).$("i.si-move-expand-vertical");
-    var fromRow = findPrivateDashboardRowByName(fromDashboardName).$("i.si-move-expand-vertical");
-    dragAndDropTo(toRow, fromRow);
+  public SelenideElement getDashboardCreationDialog() {
+    return $("div[id$=':dashboard-creation-details-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public WebElement openMultiLanguageDialog() {
+    getAddLanguageButton().click();
+    return $("div[id$=':dashboard-creation-component:title-language-config:multiple-languages-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void cancelMultiLanguageDialog() {
+    $("a[id$=':multi-language-cancel-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div[id$=':dashboard-creation-component:title-language-config:multiple-languages-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+  
+  public void cancelCreateDashboard() {
+    $("a[id$='dashboard-creation-component:dashboard-detail-close-button']").shouldBe(getClickableCondition()).click();
+  }
+  
+  public void createPublicDashboardFromScratch() {
+    openCreatePublicDashboardMenu();
+    $("a[id$=':create-from-scratch']").shouldBe(getClickableCondition()).click();
+  }
+  
+  public SelenideElement getDashboardTemplates() {
+    return $("[id$=':create-new-dashboard-form']");
+  }  
+  
+  public void openImportPublicDashboards() {
+    openCreatePublicDashboardMenu();
+    getImportDashboardDialog();
+    uploadFile("Dashboard_Dashboard_Export.json");
+  }
+  
+  public SelenideElement getImportDialog() {
+    $("input[id$=':import-dashboard-form:import-dashboard-title']").hover();
+    return $("div[id$=':dashboard-import-dialog']");
+  }
+  
+  public void openImportPrivateDashboards() {
+    openCreatePrivateDashboardMenu();
+    getImportDashboardDialog();
+    uploadFile("Dashboard_Dashboard_Export.json");
+  }
+  
+  public SelenideElement getShareDashboardDialog() {
+    $("button[id$=':share-dashboard']").click();
+    $("div[id$=':share-dashboard-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $("div[id$=':share-dashboard-dialog']");
+  }
+  
+  public void cancelImportDashboard() {
+    $("a[id$=':dashboard-import-close-button']").shouldBe(getClickableCondition()).click();
   }
 
-  private void dragAndDropTo(SelenideElement toRow, SelenideElement fromRow) {
-    var targetCssSelector = String.format("[id$='%s']", toRow.getAttribute("id"));
-    fromRow.dragAndDropTo(targetCssSelector, DragAndDropOptions.usingActions());
+  public WebElement getConfigurationFilter() {
+    return $("widget-configuration-form:new-widget-configuration-component:filter-container").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  public void reorderPublicDashboard(String fromDashboardName, String toDashboardName) {
-    var toRow = findPublicDashboardRowByName(toDashboardName).$("i.si-move-expand-vertical");
-    var fromRow = findPublicDashboardRowByName(fromDashboardName).$("i.si-move-expand-vertical");
-    dragAndDropTo(toRow, fromRow);
+  public WebElement openManageColumnDialog(boolean isTask) {
+    String manageColumnPattern = "widget-configuration-form:new-widget-configuration-component:%s-widget-preview:column-toggler";
+    String manageColumnLinkId = isTask ? String.format(manageColumnPattern, "task") : String.format(manageColumnPattern, "case");
+    $("[id='" + manageColumnLinkId + "']").shouldBe(appear, DEFAULT_TIMEOUT)
+      .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    
+    String manageColumnDialogId = "widget-configuration-form:new-widget-configuration-component:column-management-component:column-management-dialog";
+    return $("[id='" + manageColumnDialogId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  public void saveSetting() {
-    $("button[id$='save-settings']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("[id$='dashboard-configuration-content']").shouldBe(appear, DEFAULT_TIMEOUT);
+  public SelenideElement getConfigurationDialog() {
+    return $("div[id='new-widget-configuration-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  private SelenideElement findPublicDashboardRowByName(String dashboardName) {
-    return $("[id$=':dashboard-table_data']").shouldBe(appear, DEFAULT_TIMEOUT).$$("tr[role='row']")
-        .asFixedIterable().stream().filter(row -> row.getText().contains(dashboardName)).findFirst().get();
+  public void closeConfigurationDialog() {
+    getConfigurationDialog().$(".ui-dialog-footer").$("a").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div[id='new-widget-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+  
+  public SelenideElement getDashboardMultiLanguageDialog() {
+    $("div[id$='dashboard-template-selection-component:dashboard-creation-component:title-language-config:multiple-languages-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $("[id='dashboard-template-selection-component:dashboard-creation-component:title-language-config:multiple-languages-dialog']");
+  }
+  
+  public void clickOnTextToTranslate(int index) {
+    $(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", index)).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div[id$=':overlay-panel-input']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void setTranslatedTitle() {
+    $(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", 1)).sendKeys(Keys.CONTROL, "a");
+    $(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", 1)).sendKeys("Mon tableau de bord");
+    $(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", 2)).sendKeys(Keys.CONTROL, "a");
+    $(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", 2)).sendKeys("Mein Armaturenbrett");
+    $(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", 3)).sendKeys(Keys.CONTROL, "a");
+    $(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", 3)).sendKeys("Mi cuadro de mandos");
+  }
+  
+  public void clickOkMultiLanguageDialog() {
+    $("button[id$=':multi-language-ok-button']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("button[id$=':multi-language-ok-button']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void clickOkCreateDashboard() {
+    $("button[id$='dashboard-creation-component:dashboard-create-button']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 }

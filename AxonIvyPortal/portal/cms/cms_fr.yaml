@@ -131,6 +131,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       IMAGE: Image
     ProcessSorting:
       BY_ALPHABETICALLY: Alphabétiquement
+      BY_CUSTOM_ORDER: Commande personnalisée
       BY_INDEX: Index de tri
     ProcessType:
       EXPRESS_PROCESS: Flux de travail express
@@ -1584,13 +1585,14 @@ Dialogs:
         portal:
           generic:
             dashboard:
-              PortalDashboardConfiguration:
-                NewDashboard: Nouveau tableau de bord
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
                 DashboardModification:
                   Share: Partager
+                ProcessWidgetConfiguration:
+                  DragAndDropToChangeOrder: Glisser-déposer pour modifier l'ordre.
+                  DragAndDropTooltip: Cliquer sur l'aperçu puis glisser-déposer pour modifier l'ordre
         portalkit:
           component:
             CaseItemDetails:
@@ -1759,7 +1761,6 @@ Labels:
   AdhocWorkflow: Décrivez votre workflow
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
-  CreateNewDashboard: Créer un nouveau tableau de bord
   Enums:
     ThemeMode:
       DARK: Dark
