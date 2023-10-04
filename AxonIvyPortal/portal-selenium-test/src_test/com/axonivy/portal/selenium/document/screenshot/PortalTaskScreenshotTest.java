@@ -16,6 +16,7 @@ import com.axonivy.portal.selenium.common.ScreenshotUtil;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.MainMenuPage;
+import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtil;
@@ -104,12 +105,13 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
   public void screenshotTaskDetails() throws IOException {
     login(TestAccount.ADMIN_USER);
     showNewDashboard();
-    ScreenshotUtil.resizeBrowser(new Dimension(2560, 1440));
-    refreshPage();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForCaseWidgetLoaded();
     TaskWidgetPage taskWidget = mainMenuPage.openTaskList();
     TaskDetailsPage taskDetails = taskWidget.openTaskDetail(0);
     taskDetails.waitUtilsTaskDetailsDisplayed();
 
+    ScreenshotUtil.resizeBrowser(new Dimension(2560, 1440));
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskDetails.getTaskGeneralInformation(),
         ScreenshotUtil.TASK_DETAIL_FOLDER + "detailed-task-information-data-description", new ScreenshotMargin(10));
     
