@@ -44,7 +44,6 @@ public class UserProcessMapper {
     UserProcess userProcess = new UserProcess();
     userProcess.setProcessId(process.getId());
     userProcess.setProcessType(process.getType());
-    userProcess.setProcessName(stripHtmlTags(process.getName()));
     userProcess.setLink(process.getStartLink());
     userProcess.setDescription(process.getDescription());
     userProcess.setIcon(process.getIcon());
