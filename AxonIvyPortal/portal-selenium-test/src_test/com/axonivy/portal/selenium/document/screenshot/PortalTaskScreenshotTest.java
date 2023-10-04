@@ -173,8 +173,9 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
     WebElement showMoreTaskHistories = taskDetails.getTaskHistories();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(showMoreTaskHistories, ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-show-note-details", new ScreenshotMargin(10));
     taskDetails.clickOnShowMoreHistories();
+    taskDetails.waitForNewTabOpen();
     taskDetails.switchLastBrowserTab();
-    taskDetails.waitDocumentReady();
+    taskDetails.waitForNewTabOpen();
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-export-note-details", new Dimension(SCREENSHOT_WIDTH, 1000));
   }
 

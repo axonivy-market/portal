@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import java.time.Duration;
 import java.util.ArrayList;
 
 import org.openqa.selenium.By;
@@ -121,4 +122,13 @@ public abstract class TemplatePage extends AbstractPage {
   public WebDriver getDriver() {
     return WebDriverRunner.getWebDriver();
   }
+  
+  public int countBrowserTab() {
+    return getDriver().getWindowHandles().size();
+  }
+  
+  public void waitForNewTabOpen() {
+    new WebDriverWait(WebDriverRunner.getWebDriver(), Duration.ofSeconds(30)).until(ExpectedConditions.numberOfWindowsToBe(2));
+  }
+
 }
