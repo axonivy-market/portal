@@ -411,9 +411,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   public void saveClientStatisticWidget(ClientStatistic clientStatistic) {
-    String widgetId = DashboardWidgetUtils.generateNewWidgetId(CLIENT_STATISTIC);
     createClientStatisticWidget(clientStatistic);
-    widget.setId(widgetId);
     saveWidget();
   }
 
