@@ -24,6 +24,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -674,9 +675,12 @@ public class DashboardWidgetUtils {
       }
     }
     if (processSorting == null || ProcessSorting.BY_ALPHABETICALLY.name().equals(processSorting)) {
-      processesAfterSorting = DashboardWidgetUtils.sortProcessByAlphabet(processes);
+      processesAfterSorting = sortProcessByAlphabet(processes);
     } else if (ProcessSorting.BY_INDEX.name().equals(processSorting)) {
-      processesAfterSorting = DashboardWidgetUtils.sortProcessByIndex(processes);
+      processesAfterSorting = sortProcessByIndex(processes);
+    } else if (ProcessSorting.BY_CUSTOM_ORDER.name().equals(processSorting)) {
+      Map<String, Integer> customIndexs = processWidget.getCustomIndexs();
+      processesAfterSorting = sortProcessByCustomOrder(processes, customIndexs);
     }
     return processesAfterSorting;
   }
@@ -770,5 +774,27 @@ public class DashboardWidgetUtils {
     processWithIndex.addAll(processWithoutIndex);
 
     return processWithIndex;
+  }
+  
+  public static List<DashboardProcess> sortProcessByCustomOrder(List<DashboardProcess> processes, Map<String, Integer> indexes) {
+    List<DashboardProcess> result = new ArrayList<>();
+    if (MapUtils.isNotEmpty(indexes)) {
+      indexes.entrySet().stream().sorted(Map.Entry.comparingByValue()).forEach(entry -> {
+        String processId = entry.getKey();
+        for (int i = 0; i < processes.size(); i ++) {
+          if (processes.get(i).getId().equals(processId)) {
+            result.add(processes.get(i));
+            processes.remove(i);
+            break;
+          } 
+        }
+      });
+      // add the rest of processes which are not indexed to the end of the list
+      result.addAll(processes);
+    } else {
+      result.addAll(processes);
+    }
+    return result;
+    
   }
 }

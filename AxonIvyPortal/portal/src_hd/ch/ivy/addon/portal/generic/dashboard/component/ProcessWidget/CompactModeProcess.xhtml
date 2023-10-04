@@ -1,33 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf"
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <ui:composition>
-  <h:form rendered="#{not empty processes}">
-    <h:panelGroup id="process-list" layout="block" styleClass="compact-processes-container widget-content">
+  <!-- INDEX OR ALPHABET SORT -->
+  <h:panelGroup id="process-list" layout="block" styleClass="compact-processes-container widget-content"
+    rendered="#{!compactDashboardProcessBean.isPreviewCustomOrder()}">
+    <h:panelGroup layout="block" rendered="#{isReadOnlyMode and !isInConfiguration}">
+      <!-- Only render form when not in read only mode or configuration-->
+      <h:form rendered="#{not empty processes}">
+        <ui:repeat varStatus="status" var="process" value="#{processes}">
+          <span class="process-start-list-item"> <p:commandLink
+              actionListener="#{compactDashboardProcessBean.startProcessWithCompactMode(process)}"
+              target="#{dashboardProcessBean.targetToStartProcess(process)}"
+              ajax="#{!dashboardProcessBean.isExternalLink(process)}" styleClass="process-item">
+              <h:panelGroup layout="block" class="process-start-list-item-icon">
+                <span class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())}" />
+              </h:panelGroup>
+              <div class="process-start-list-item-name">
+                <h:outputText id="process-name-process-item" value="#{process.name}"
+                  styleClass="dashboard-compact-process-item process-start-list-item-name-text u-truncate-text" />
+                <p:tooltip for="process-name-process-item" value="#{process.name}" styleClass="process-tooltip" />
+              </div>
+              <div class="process-item-action-container">
+                <h:panelGroup styleClass="process-start-list-item-action u-hidden-md-down"
+                  rendered="#{not empty process.description}">
+                  <h:outputText id="info-workflow"
+                    styleClass="si si-information-circle process-description process-item" />
+                  <p:tooltip id="info-workflow-tooltip" for="info-workflow" value="#{process.description}"
+                    position="top" trackMouse="true" hideEvent="mouseleave click"
+                    styleClass="js-process-start-list-item-description process-tooltip" />
+                </h:panelGroup>
+                <h:panelGroup styleClass="process-start-list-item-action"
+                  rendered="#{compactDashboardProcessBean.isBrokenLink(process)}">
+                  <h:outputText id="warning-icon" styleClass="si si-road-sign-warning warning-icon" />
+                  <p:tooltip id="warning-icon-tooltip" for="warning-icon"
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/brokenLinkProcess')}"
+                    position="top" trackMouse="true" hideEvent="mouseleave click" />
+                </h:panelGroup>
+                <h:panelGroup id="open-process-start" class="si si-arrow-right-1 open-icon" />
+              </div>
+            </p:commandLink>
+          </span>
+        </ui:repeat>
+      </h:form>
+    </h:panelGroup>
+    <h:panelGroup layout="block" rendered="#{!isReadOnlyMode or isInConfiguration}">
+      <!-- render list with no form, to avoid can not save in custom order mode -->
       <ui:repeat varStatus="status" var="process" value="#{processes}">
-        <span class="process-start-list-item">
-          <p:commandLink actionListener="#{compactDashboardProcessBean.startProcessWithCompactMode(process)}" disabled="#{!isReadOnlyMode or isInConfiguration}"
-            target="#{dashboardProcessBean.targetToStartProcess(process)}" ajax="#{!dashboardProcessBean.isExternalLink(process)}" styleClass="process-item">
+        <span class="process-start-list-item"> <p:commandLink
+            actionListener="#{compactDashboardProcessBean.startProcessWithCompactMode(process)}" disabled="true"
+            target="#{dashboardProcessBean.targetToStartProcess(process)}"
+            ajax="#{!dashboardProcessBean.isExternalLink(process)}" styleClass="process-item">
             <h:panelGroup layout="block" class="process-start-list-item-icon">
               <span class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())}" />
             </h:panelGroup>
             <div class="process-start-list-item-name">
-              <h:outputText id="process-name-process-item" value="#{process.name}" styleClass="dashboard-compact-process-item process-start-list-item-name-text u-truncate-text" />
-              <p:tooltip for="process-name-process-item" value="#{process.name}" styleClass="process-tooltip"/>
+              <h:outputText id="process-name-process-item" value="#{process.name}"
+                styleClass="dashboard-compact-process-item process-start-list-item-name-text u-truncate-text" />
+              <p:tooltip for="process-name-process-item" value="#{process.name}" styleClass="process-tooltip" />
             </div>
             <div class="process-item-action-container">
-              <h:panelGroup styleClass="process-start-list-item-action u-hidden-md-down" rendered="#{not empty process.description}">
+              <h:panelGroup styleClass="process-start-list-item-action u-hidden-md-down"
+                rendered="#{not empty process.description}">
                 <h:outputText id="info-workflow" styleClass="si si-information-circle process-description process-item" />
-                <p:tooltip id="info-workflow-tooltip" for="info-workflow" value="#{process.description}" position="top" trackMouse="true" hideEvent="mouseleave click"
+                <p:tooltip id="info-workflow-tooltip" for="info-workflow" value="#{process.description}" position="top"
+                  trackMouse="true" hideEvent="mouseleave click"
                   styleClass="js-process-start-list-item-description process-tooltip" />
               </h:panelGroup>
-              <h:panelGroup styleClass="process-start-list-item-action" rendered="#{compactDashboardProcessBean.isBrokenLink(process)}">
+              <h:panelGroup styleClass="process-start-list-item-action"
+                rendered="#{compactDashboardProcessBean.isBrokenLink(process)}">
                 <h:outputText id="warning-icon" styleClass="si si-road-sign-warning warning-icon" />
-                <p:tooltip id="warning-icon-tooltip" for="warning-icon" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/brokenLinkProcess')}" position="top" trackMouse="true"
-                  hideEvent="mouseleave click" />
+                <p:tooltip id="warning-icon-tooltip" for="warning-icon"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/brokenLinkProcess')}" position="top"
+                  trackMouse="true" hideEvent="mouseleave click" />
               </h:panelGroup>
               <h:panelGroup id="open-process-start" class="si si-arrow-right-1 open-icon" />
             </div>
@@ -35,6 +85,25 @@
         </span>
       </ui:repeat>
     </h:panelGroup>
-  </h:form>
+  </h:panelGroup>
+
+  <h:panelGroup id="custom-order-process-list" layout="block" styleClass="compact-processes-container widget-content"
+    rendered="#{compactDashboardProcessBean.isPreviewCustomOrder()}">
+    <p:orderList id="compact-order-list" value="#{processes}" var="process" itemValue="#{process}"
+      converter="pojoConverter" controlsLocation="none" responsive="true" styleClass="order-list-items">
+      <p:column>
+        <div class="process-start-list-item">
+          <div class="process-start-list-item-icon">
+            <span class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())}" />
+          </div>
+          <div class="process-start-list-item-name">
+            <h:outputText id="process-name-process-item" value="#{process.name}"
+              styleClass="dashboard-compact-process-item process-start-list-item-name-text u-truncate-text" />
+          </div>
+        </div>
+      </p:column>
+    </p:orderList>
+  </h:panelGroup>
+
 </ui:composition>
 </html>
