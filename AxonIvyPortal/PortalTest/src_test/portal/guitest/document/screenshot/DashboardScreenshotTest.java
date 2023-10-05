@@ -1,7 +1,7 @@
 package portal.guitest.document.screenshot;
 
 import static portal.guitest.common.Variable.ENABLE_GROUP_CHAT;
-import static portal.guitest.common.Variable.SHOW_ENVIRONMENT_INFO;
+import static portal.guitest.common.Variable.GLOBAL_FOOTER_INFO;
 import static portal.guitest.common.Variable.SHOW_LEGACY_UI;
 import static portal.guitest.common.Variable.SHOW_USER_GUIDE;
 
@@ -58,7 +58,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
   
   @Test
   public void takeScreenshotWithEnvironmentInfo() throws IOException {
-    updatePortalSetting(SHOW_ENVIRONMENT_INFO.getKey(), "true");
+    updatePortalSetting(GLOBAL_FOOTER_INFO.getKey(), "Dev Team: Wawa, Env: Dev");
     showNewDashboard();
     newDashboardPage = new NewDashboardPage();
     ScreenshotUtil.resizeBrowser(new Dimension(1200, 500));

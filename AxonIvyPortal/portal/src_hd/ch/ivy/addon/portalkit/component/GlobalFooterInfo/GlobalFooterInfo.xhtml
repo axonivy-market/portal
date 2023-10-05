@@ -10,12 +10,8 @@
 </cc:interface>
 
 <cc:implementation>
-   <span id="server-infor" jsf:rendered="#{userMenuBean.showServerInformation}" class="show-environment-info">
-   <h:outputText escape="false" value="Host: #{serverInformationBean.host}" /> 
+   <span id="server-infor" jsf:rendered="#{not empty globalFooterInfoBean.info}" class="show-environment-info">
+   <h:outputText escape="false" value="#{globalFooterInfoBean.info}" /> 
   </span>
-  <span id="environment-infor" jsf:rendered="#{userMenuBean.showServerInformation}" class="show-environment-info">
-   <h:outputText escape="false" value="Env: #{serverInformationBean.environment}" />
-  </span>
-  
 </cc:implementation>
 </html>

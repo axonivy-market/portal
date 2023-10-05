@@ -4,7 +4,6 @@ public enum Variable {
   
   HIDE_LOGOUT_BUTTON("Portal.UserMenu.HideLogoutMenu"),
   HIDE_CHANGE_PASSWORD_BUTTON("Portal.UserMenu.HideChangePasswordMenu"),
-  SHOW_ENVIRONMENT_INFO("Portal.ShowEnvironmentInfo"),
   ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT("Portal.Document.EnableScriptChecking"),
   ENABLE_VIRUS_SCANNER_FOR_UPLOADED_DOCUMENT("Portal.Document.EnableVirusScanner"),
   UPLOAD_DOCUMENT_WHITELIST_EXTENSION("Portal.Document.WhitelistExtension"),
@@ -64,7 +63,7 @@ public enum Variable {
   USER_MENU("Portal.UserMenu"),
   ENABLE_SWITCH_THEME_BUTTON("Portal.Theme.EnableSwitchThemeModeButton"),
   DEFAULT_THEME_MODE("Portal.Theme.Mode"),
-  GLOBAL_HOST_FOOTER_INFO("Portal.GlobalHostFooterInfo"), GLOBAL_ENV_FOOTER_INFO("Portal.GlobalEnvFooterInfo"),
+  GLOBAL_FOOTER_INFO("Portal.GlobalFooterInfo"),
   DASHBOARD("Portal.Dashboard");
 
   private String key;

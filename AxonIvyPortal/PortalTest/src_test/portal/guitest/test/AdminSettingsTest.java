@@ -7,9 +7,7 @@ import static portal.guitest.common.Variable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST
 import static portal.guitest.common.Variable.DEFAULT_SORT_DIRECTION_OF_TASK_LIST;
 import static portal.guitest.common.Variable.DEFAULT_SORT_FIELD_OF_CASE_LIST;
 import static portal.guitest.common.Variable.DEFAULT_SORT_FIELD_OF_TASK_LIST;
-import static portal.guitest.common.Variable.GLOBAL_ENV_FOOTER_INFO;
-import static portal.guitest.common.Variable.GLOBAL_HOST_FOOTER_INFO;
-import static portal.guitest.common.Variable.SHOW_ENVIRONMENT_INFO;
+import static portal.guitest.common.Variable.GLOBAL_FOOTER_INFO;
 
 import org.junit.Test;
 
@@ -46,23 +44,19 @@ public class AdminSettingsTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     HomePage homePage = new HomePage();
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
-    adminSettingsPage.setEnviromentInfo();
-    assertTrue(homePage.getServerInfo().contains("Default"));
-    assertTrue(homePage.getEnviromentInfo().contains("dev"));
+    adminSettingsPage.setGlobalFooterInfo();
+    assertTrue(homePage.getGlobalFooterInfo().contains("Wawa"));
   }
 
   @Test
   public void testCustomizedEnvironmentInfo() {
-    updatePortalSetting(SHOW_ENVIRONMENT_INFO.getKey(), "true");
-    updatePortalSetting(GLOBAL_HOST_FOOTER_INFO.getKey(), "Wawa");
-    updatePortalSetting(GLOBAL_ENV_FOOTER_INFO.getKey(), "Dev");
+    updatePortalSetting(GLOBAL_FOOTER_INFO.getKey(), "Dev Team: Wawa, Env: Dev");
     login(TestAccount.ADMIN_USER);
     HomePage homePage = new HomePage();
     // Customize environment info in portal example
     redirectToRelativeLinkWithEmbedInFrame(HomePage.PORTAL_EXAMPLES_EMPLOYEE_SEARCH);
 
-    assertTrue(homePage.getServerInfo().contains("Wawa"));
-    assertTrue(homePage.getEnviromentInfo().contains("Dev"));
+    assertTrue(homePage.getGlobalFooterInfo().contains("Wawa"));
   }
 
   @Test

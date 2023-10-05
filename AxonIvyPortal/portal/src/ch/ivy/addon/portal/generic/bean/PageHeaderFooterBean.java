@@ -3,6 +3,7 @@ package ch.ivy.addon.portal.generic.bean;
 import java.io.Serializable;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -15,16 +16,31 @@ public class PageHeaderFooterBean implements Serializable {
 
   private static final long serialVersionUID = -5824689842763372385L;
 
-  public String getHeader() {
-    Map<String, Object> result = IvyAdapterService
+  private String header;
+  private String footer;
+
+  @PostConstruct
+  public void init() {
+    Map<String, Object> mapHeaderFooter = IvyAdapterService
         .startSubProcessInSecurityContext(PortalCustomSignature.GET_PAGE_HEADER_AND_FOOTER.getSignature(), null);
-    return result != null ? (String) result.get("pageHeader") : null;
+    this.header = mapHeaderFooter != null ? (String) mapHeaderFooter.get("pageHeader") : null;
+    this.footer = mapHeaderFooter != null ? (String) mapHeaderFooter.get("pageFooter") : null;
+  }
+
+  public void setHeader(String header) {
+    this.header = header;
+  }
+
+  public void setFooter(String footer) {
+    this.footer = footer;
+  }
+
+  public String getHeader() {
+    return header;
   }
 
   public String getFooter() {
-    Map<String, Object> result = IvyAdapterService
-        .startSubProcessInSecurityContext(PortalCustomSignature.GET_PAGE_HEADER_AND_FOOTER.getSignature(), null);
-    return result != null ? (String) result.get("pageFooter") : null;
+    return footer;
   }
 
 }

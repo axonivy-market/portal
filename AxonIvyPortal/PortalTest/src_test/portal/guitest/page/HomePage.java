@@ -89,14 +89,9 @@ public class HomePage extends TemplatePage {
     return true;
   }
 
-  public String getServerInfo() {
+  public String getGlobalFooterInfo() {
     waitForElementDisplayed(By.cssSelector("span[id$='server-infor']"), true, 5);
     return findElementByCssSelector("span[id$='server-infor']").getText();
-  }
-
-  public String getEnviromentInfo() {
-    waitForElementDisplayed(By.cssSelector("span[id$='environment-infor']"), true, 5);
-    return findElementByCssSelector("span[id$='environment-infor']").getText();
   }
 
   public WebElement getStatisticWidgetElement() {
