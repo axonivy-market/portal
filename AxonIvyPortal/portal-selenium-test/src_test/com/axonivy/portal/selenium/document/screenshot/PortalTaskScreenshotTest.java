@@ -15,8 +15,10 @@ import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtil;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.axonivy.portal.selenium.page.NoteHistoryPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtil;
@@ -55,14 +57,17 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
   public void screenshotBasicTaskDetails() throws IOException {
     login(TestAccount.ADMIN_USER);
     showNewDashboard();
-    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1000));
+    NewDashboardPage homePage = new NewDashboardPage();
+    homePage.waitForCaseWidgetLoaded();
     TaskWidgetPage taskWidget = mainMenuPage.openTaskList();
-    taskWidget.openTaskDetail(0);
-    taskWidget.waitDocumentReady();
+    WaitHelper.waitForNavigation(() -> taskWidget.openTaskDetail(0));
+    TaskDetailsPage detailsPage = new TaskDetailsPage();
+    detailsPage.waitUtilsTaskDetailsDisplayed();
     mainMenuPage.expandMainMenu();
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1000));
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_FOLDER + "detailed-task-information");
     ScreenshotUtil.executeDecorateJs("highlightTaskDetailComponent()");
-    taskWidget.waitDocumentReady();
+    detailsPage.waitUtilsTaskDetailsDisplayed();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-standard");
   }
 
@@ -71,15 +76,20 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
   public void screenshotActionButtonsOnTaskDetailsWithJsonFile() throws IOException {
     login(TestAccount.ADMIN_USER);
     showNewDashboard();
-    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1440));
-    refreshPage();
+    NewDashboardPage homePage = new NewDashboardPage();
+    homePage.waitForCaseWidgetLoaded();
     TaskWidgetPage taskWidget = mainMenuPage.openTaskList();
-    TaskDetailsPage taskDetails = taskWidget.openTaskDetail(0);
+    WaitHelper.waitForNavigation(() -> taskWidget.openTaskDetail(0));
+    TaskDetailsPage taskDetails = new TaskDetailsPage();
+
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1440));
     ScreenshotUtil.executeDecorateJs("highlightSharePageButton()");
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskDetails.getSharePageButtonElement(),
         ScreenshotUtil.TASK_DETAIL_FOLDER + "share-page-button", new ScreenshotMargin(100, 200));
-    refreshPage();
-    
+
+    taskDetails = new TaskDetailsPage();
+    taskDetails.waitUtilsTaskDetailsDisplayed();
+    ScreenshotUtil.executeDecorateJs("removeHighlightSharePageButton()");
     ScreenshotUtil.executeDecorateJs("highlightSwitchToEditMode()");
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskDetails.getSwitchToEditModeButtonElement(),
         ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-switch-to-edit-mode", new ScreenshotMargin(100, 200));
@@ -94,8 +104,8 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
 
     taskDetails.clickOnSwitchToViewModeButton();
     taskDetails.clickOnSwitchToEditModeButton();
-    ScreenshotUtil.executeDecorateJs("highlightResetToDefault()");
     WebElement resetButton = taskDetails.getResetButtonElement();
+    ScreenshotUtil.executeDecorateJs("highlightResetToDefault()");
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(resetButton,
         ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-reset-to-default", new ScreenshotMargin(100, 200));
     taskDetails.clickOnResetToDefaultButton();
@@ -174,7 +184,8 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(showMoreTaskHistories, ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-show-note-details", new ScreenshotMargin(10));
     taskDetails.clickOnShowMoreHistories();
     taskDetails.switchLastBrowserTab();
-    taskDetails.waitDocumentReady();
+    NoteHistoryPage noteHistoryPage = new NoteHistoryPage();
+    noteHistoryPage.waitDocumentReady();
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-export-note-details", new Dimension(SCREENSHOT_WIDTH, 1000));
   }
 
