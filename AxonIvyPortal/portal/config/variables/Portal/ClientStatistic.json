@@ -1,7 +1,6 @@
 [
   {
     "id": "1",
-    "chartId": "1",
     "aggregates": "priority",
     "chartTarget": "TASK",
     "permissions": [
@@ -49,7 +48,6 @@
   },
   {
     "id": "2",
-    "chartId": "2",
     "aggregates": "expiryTimestamp",
     "filter": "expiryTimestamp:>=now <=now+4d/d",
     "chartTarget": "TASK",
@@ -136,7 +134,6 @@
   },
   {
     "id": "3",
-    "chartId": "3",
     "aggregates": "businessState",
     "filter": "businessState:OPEN",
     "permissions": [
@@ -188,7 +185,6 @@
   },
   {
     "id": "4",
-    "chartId": "4",
     "aggregates": "endTimestamp",
     "filter": "endTimestamp:>=now-4d/d <=now+1d,businessState:DONE",
     "permissions": [
@@ -275,7 +271,6 @@
   },
   {
     "id": "5",
-    "chartId": "5",
     "aggregates": "expiryTimestamp",
     "filter": "expiryTimestamp:>=now <=now+2M/d",
     "chartTarget": "TASK",
