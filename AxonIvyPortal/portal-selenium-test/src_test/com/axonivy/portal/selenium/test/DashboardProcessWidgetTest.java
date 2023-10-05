@@ -433,14 +433,14 @@ public class DashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.getPreviewButton().click();
     editProcessWidgetConfiguration.getCompactModeProcessPreview().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     // expect "Clean absences" process is the first process
-    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName().shouldBe(Condition.appear)
+    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName().shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldHave(Condition.exactTextCaseSensitive(CLEAN_ABSENCES));
     int fromIndex = 0;
     int toIndex = 1;
     editProcessWidgetConfiguration.dragAndDropProcess(fromIndex, toIndex);
     editProcessWidgetConfiguration.save();
     editProcessWidgetConfiguration = newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.getPreviewProcessElement(toIndex-1).shouldBe(Condition.appear)
+    editProcessWidgetConfiguration.getPreviewProcessElement(toIndex-1).shouldBe(Condition.appear, DEFAULT_TIMEOUT)
     .shouldHave(Condition.exactTextCaseSensitive(CLEAN_ABSENCES));
   }
 
