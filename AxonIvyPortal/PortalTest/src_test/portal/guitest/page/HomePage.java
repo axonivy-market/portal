@@ -10,40 +10,40 @@ import portal.guitest.common.WaitHelper;
 
 public class HomePage extends TemplatePage {
 
-	public final static String PORTAL_HOME_PAGE_URL = "portal/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
-	public final static String PORTAL_EXAMPLES_HOME_PAGE_URL = "portal-developer-examples/164211E97C598DAA/DefaultApplicationHomePage.ivp";
-	public final static String PORTAL_EXAMPLES_EMPLOYEE_SEARCH = "portal-developer-examples/180D50804A2BF9E9/employeeSearch.ivp";
-	public final static String PORTAL_INTERNAL_HOME_PAGE_URL = "internalSupport/164211FF9482BB44/DefaultApplicationHomePage.ivp";
-	private final static String TASK_SWITCH_MODE_BTN_LOCATOR = "id('task-widget:task-list-link:task-list-link')";
-	private static final String SHOW_ALL_PROCESSES_LINK_ID = "process-widget:process-link:process-link-label";
-	private static final String SHOW_TASK_LIST_LINK_ID = "task-widget:task-list-link:task-list-link-label";
-	private static final String SHOW_ALL_CHARTS_LINK_ID = "statistics-widget:statistic-link:statistic-link-label";
+  public final static String PORTAL_HOME_PAGE_URL = "portal/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
+  public final static String PORTAL_EXAMPLES_HOME_PAGE_URL = "portal-developer-examples/164211E97C598DAA/DefaultApplicationHomePage.ivp";
+  public final static String PORTAL_EXAMPLES_EMPLOYEE_SEARCH = "portal-developer-examples/180D50804A2BF9E9/employeeSearch.ivp";
+  public final static String PORTAL_INTERNAL_HOME_PAGE_URL = "internalSupport/164211FF9482BB44/DefaultApplicationHomePage.ivp";
+  private final static String TASK_SWITCH_MODE_BTN_LOCATOR = "id('task-widget:task-list-link:task-list-link')";
+  private static final String SHOW_ALL_PROCESSES_LINK_ID = "process-widget:process-link:process-link-label";
+  private static final String SHOW_TASK_LIST_LINK_ID = "task-widget:task-list-link:task-list-link-label";
+  private static final String SHOW_ALL_CHARTS_LINK_ID = "statistics-widget:statistic-link:statistic-link-label";
 
-	@Override
-	protected String getLoadedLocator() {
-		return TASK_SWITCH_MODE_BTN_LOCATOR;
-	}
+  @Override
+  protected String getLoadedLocator() {
+    return TASK_SWITCH_MODE_BTN_LOCATOR;
+  }
 
-	public TaskWidgetPage getTaskWidget() {
-		return new TaskWidgetPage();
-	}
+  public TaskWidgetPage getTaskWidget() {
+    return new TaskWidgetPage();
+  }
 
-	public ProcessWidgetPage getProcessWidget() {
-		return new ProcessWidgetPage();
-	}
+  public ProcessWidgetPage getProcessWidget() {
+    return new ProcessWidgetPage();
+  }
 
-	public boolean isShowAllProcessesLinkDisplayed() {
-		return isElementDisplayedById(SHOW_ALL_PROCESSES_LINK_ID);
-	}
+  public boolean isShowAllProcessesLinkDisplayed() {
+    return isElementDisplayedById(SHOW_ALL_PROCESSES_LINK_ID);
+  }
 
-	public boolean isShowTaskListLinkDisplayed() {
-		return isElementDisplayedById(SHOW_TASK_LIST_LINK_ID);
-	}
+  public boolean isShowTaskListLinkDisplayed() {
+    return isElementDisplayedById(SHOW_TASK_LIST_LINK_ID);
+  }
 
-	public boolean isShowAllChartsLinkDisplayed() {
-		return isElementDisplayedById(SHOW_ALL_CHARTS_LINK_ID);
-	}
-	
+  public boolean isShowAllChartsLinkDisplayed() {
+    return isElementDisplayedById(SHOW_ALL_CHARTS_LINK_ID);
+  }
+
   /** 
    * Wait for statistic charts are displayed in 5s
    */
@@ -71,37 +71,37 @@ public class HomePage extends TemplatePage {
     mainMenuPage.backToHomeByClickOnBreadcrumb();
   }
 
-	public String getAnnouncementMessage() {
-		waitForElementDisplayed(By.cssSelector("div[class*='announcement-message-customizable']"), true);
-		return driver.findElement(By.cssSelector("div[class*='announcement-message-customizable']")).getText();
-	}
+  public String getAnnouncementMessage() {
+    waitForElementDisplayed(By.cssSelector("div[class*='announcement-message-customizable']"), true);
+    return driver.findElement(By.cssSelector("div[class*='announcement-message-customizable']")).getText();
+  }
 
-	public boolean isAnnouncementMessageNotDisplayed() {
-		if (driver.findElements(By.cssSelector("div[class*='announcement-message-customizable']")).size() == 0) {
-			return true;
-		}
-		return false;
-	}
+  public boolean isAnnouncementMessageNotDisplayed() {
+    if (driver.findElements(By.cssSelector("div[class*='announcement-message-customizable']")).size() == 0) {
+      return true;
+    }
+    return false;
+  }
 
-	public boolean isChatDisplayed() {
-		if (driver.findElements(By.id("toggle-chat-panel-command")).size() == 0) {
-			return false;
-		}
-		return true;
-	}
+  public boolean isChatDisplayed() {
+    if (driver.findElements(By.id("toggle-chat-panel-command")).size() == 0) {
+      return false;
+    }
+    return true;
+  }
 
-	public String getEnviromentInfo() {
-		waitForElementDisplayed(By.cssSelector("span[id$='server-infor']"), true, 5);
-		return findElementByCssSelector("span[id$='server-infor']").getText();
-	}
-	
-	public WebElement getStatisticWidgetElement() {
-	  return findElementById("statistics-widget");
-	}
-	
-	public WebElement getProcessWidgetElement() {
-	  return findElementById("process-widget");
-	}
+  public String getEnviromentInfo() {
+    waitForElementDisplayed(By.cssSelector("span[id$='server-infor']"), true, 5);
+    return findElementByCssSelector("span[id$='server-infor']").getText();
+  }
+
+  public WebElement getStatisticWidgetElement() {
+    return findElementById("statistics-widget");
+  }
+
+  public WebElement getProcessWidgetElement() {
+    return findElementById("process-widget");
+  }
 
   public WebElement getTaskWidgetElement() {
     waitForElementDisplayed(By.id("task-widget"), true);
@@ -116,5 +116,61 @@ public class HomePage extends TemplatePage {
     waitForElementDisplayed(By.className("process-widget"), true);
     waitForElementDisplayed(By.className("js-loading-text"), false);
     waitForElementDisplayed(By.className("user-process-container"), true);
+  }
+
+  public int getNotificationsBadge() {
+    waitForElementDisplayed(By.id("topbar-unread-notifications"), true);
+    return Integer.parseInt(findElementById("topbar-unread-notifications").getText());
+  }
+
+  public WebElement getNotificationsPanel() {
+    waitForElementDisplayed(By.id(PORTAL_GLOBAL_GROWL_ID), false);
+    waitForElementDisplayed(By.id("topbar-unread-notifications"), true);
+    findElementById("topbar-unread-notifications").click();
+    waitForElementDisplayed(By.className("notifications-container-content"), true);
+    return findElementByClassName("notifications-container-content");
+  }
+
+  public void hideNotificationsPanel() {
+    waitForElementDisplayed(By.id("topbar-unread-notifications"), true);
+    findElementById("topbar-unread-notifications").click();
+    waitForElementDisplayed(By.className("notifications-container-content"), false);
+  }
+  public boolean isOnlyUnreadDisplayed(WebElement notificationsPanel) {
+    waitForElementDisplayed(By.id("notifications-only-unread"), true);
+    return findElementById("notifications-only-unread").isDisplayed();
+  }
+
+  public void clickOnlyUnreadDisplayed(WebElement notificationsPanel) {
+    waitForElementDisplayed(By.id("notifications-only-unread"), true);
+    findElementById("notifications-only-unread").click();
+  }
+
+  public boolean isMarkAllAsReadDisplayed(WebElement notificationsPanel) {
+    waitForElementDisplayed(By.id("notificationMarkAllAsRead"), true);
+    return findElementById("notificationMarkAllAsRead").isDisplayed();
+  }
+
+  public boolean isTodayGroupLineDisplayed(WebElement notificationsPanel) {
+    waitForElementDisplayed(By.className("notifications-group-name"), true);
+    return findElementByClassName("notifications-group-name").isDisplayed();
+  }
+
+  public void markAsRead(WebElement notificationsPanel, int expectedBadge) {
+    waitForElementDisplayed(By.id(PORTAL_GLOBAL_GROWL_ID), false);
+    WebElement item = findElementByClassName("ui-datascroller-item");
+    item.findElement(By.id("notificationForm:notifications-scroller:0:notificationMarkAsRead")).click();
+    waitForElementValueChanged("#topbar-unread-notifications", String.valueOf(expectedBadge));
+  }
+
+  public int findNumberOfNotificationsItem(WebElement notificationsPanel) {
+    List<WebElement> item = findListElementsByClassName("ui-datascroller-item");
+    return item.size();
+  }
+
+  public void markAsAllRead(WebElement notificationsPanel) {
+    waitForElementDisplayed(By.id("notificationMarkAllAsRead"), true);
+    findElementById("notificationMarkAllAsRead").click();
+    waitForElementValueChanged("#topbar-unread-notifications", "0");
   }
 }

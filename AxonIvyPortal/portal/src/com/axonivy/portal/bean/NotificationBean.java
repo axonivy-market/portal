@@ -46,7 +46,7 @@ public class NotificationBean implements Serializable {
 
   public void markAsRead(NotificationDto dto) {
     if (!dto.isRead()) {
-      webNotifications.markAsRead(dto.getNotification());
+      dataModel.markAsRead(dto.getNotification());
       countUnread--;
     }
   }
