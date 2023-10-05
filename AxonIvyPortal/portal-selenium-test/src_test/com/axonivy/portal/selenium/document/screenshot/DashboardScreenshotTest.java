@@ -89,6 +89,21 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
   }
   
   @Test
+  public void screenshotConfigureExternalPageWidget() throws IOException {
+    redirectToDashboardConfiguration();
+    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.selectPublicDashboardType();
+    DashboardModificationPage editPage = configPage.openEditPublicDashboardsPage();
+    NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
+    detailsEditPage.waitPageLoaded();
+    detailsEditPage.addWidget();
+
+    CustomWidgetNewDashBoardPage customWidgetPage = detailsEditPage.addExternalPageWidget();
+    customWidgetPage.inputExternalUrlField("https://developer.axonivy.com");
+    ScreenshotUtil.captureElementScreenshot(customWidgetPage.getConfigurationDialog(), ScreenshotUtil.DASHBOARD_FOLDER + "external-page-widget-configuration");
+  }
+
+  @Test
   public void screenshotDashboardWithAnnotation() throws IOException {
     ScreenshotUtil.resizeBrowser(new Dimension(1100, 800));
     showNewDashboard();
