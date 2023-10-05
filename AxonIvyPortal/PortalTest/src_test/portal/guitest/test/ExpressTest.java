@@ -89,10 +89,10 @@ public class ExpressTest extends BaseTest{
     login(TestAccount.ADMIN_USER);
     executeUserTask();
     login(TestAccount.DEMO_USER);
-    executeApproval("Approved at first level");
-    executeApproval("Approved at second level");
+    executeApproval("Approved at first level", TestAccount.DEMO_USER.getFullName());
+    executeApproval("Approved at second level", TestAccount.DEMO_USER.getFullName());
     login(TestAccount.ADMIN_USER);
-    executeApproval("Approved at second level", "Task 3", 2, 1);
+    executeApproval("Approved at second level", "Task 3", 1, 0, TestAccount.ADMIN_USER.getFullName());
     login(TestAccount.DEMO_USER);
     
     String approvalResult = executeReview();
@@ -116,18 +116,21 @@ public class ExpressTest extends BaseTest{
   
   private void executeUserTask() {
     taskWidgetPage = NavigationHelper.navigateToTaskList();
+    taskWidgetPage.filterByResponsible(TestAccount.ADMIN_USER.getFullName());
     taskWidgetPage.startTask(0);
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.finish();
     new TaskWidgetPage();
   }
   
-  private void executeApproval(String comment) {
-    executeApproval(comment, "Task", 1, 0);
+  private void executeApproval(String comment, String responsible) {
+    executeApproval(comment, "Task", 1, 0, responsible);
   }
 
-  private void executeApproval(String comment, String taskNameFilter, int expectedNumber, int startTaskIndex) {
+  private void executeApproval(String comment, String taskNameFilter, int expectedNumber, int startTaskIndex,
+      String responsible) {
     taskWidgetPage = NavigationHelper.navigateToTaskList();
+    taskWidgetPage.filterByResponsible(responsible);
     taskWidgetPage.filterTasksInExpandedModeBy(taskNameFilter, expectedNumber);
     taskWidgetPage.startTask(startTaskIndex);
     ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
