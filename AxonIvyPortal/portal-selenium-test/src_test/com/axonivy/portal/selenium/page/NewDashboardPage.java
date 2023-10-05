@@ -838,4 +838,12 @@ public class NewDashboardPage extends TemplatePage {
     $("[id='toggle-chat-panel-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     return new ChatPage();
   }
+  
+  public SelenideElement getTopBar() {
+    return $("[id='top-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void clickOnGlobalSearch() {
+    $("a[id='global-search-item']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
 }

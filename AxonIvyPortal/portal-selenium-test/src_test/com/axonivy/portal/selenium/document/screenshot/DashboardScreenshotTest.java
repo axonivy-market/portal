@@ -87,6 +87,17 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
 
     ScreenshotUtil.captureElementScreenshot(customWidgetPage.getConfigurationDialog(), ScreenshotUtil.DASHBOARD_FOLDER + "process-custom-widget-configuration");
   }
+  
+  @Test
+  public void screenshotDashboardWithAnnotation() throws IOException {
+    ScreenshotUtil.resizeBrowser(new Dimension(1100, 800));
+    showNewDashboard();
+    homePage = new NewDashboardPage();
+    homePage.waitForCaseWidgetLoaded();
+    homePage.clickOnGlobalSearch();
+    ScreenshotUtil.executeDecorateJs("numberingTopBar()");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(homePage.getTopBar(), ScreenshotUtil.DASHBOARD_FOLDER + "portal-header-with-numbering-annotation", new ScreenshotMargin(20, 20, 20, 120));
+  }
 
   @Test
   public void screenshotNewDashboardUserGuide() throws IOException {
