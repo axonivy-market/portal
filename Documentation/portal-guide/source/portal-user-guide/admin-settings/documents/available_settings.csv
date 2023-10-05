@@ -47,7 +47,6 @@ Portal.Processes.ShowInformation,TRUE,Set to false to disable link to Show Infor
 Portal.ShowButtonIcon,TRUE,"If true, show icons in buttons."
 Portal.ShowEnvironmentInfo,FALSE,"If true, show environment information."
 Portal.ShowGlobalSearch,TRUE,"If true, display the global search box."
-Portal.ShowLegacyUI,FALSE,For switch on/off the display of the legacy UI.
 Portal.TaskDetails.HideDocument,FALSE,"If true, the document section in task detail page will be hidden, otherwise it will be shown."
 Portal.TaskDetails.ShowDurationTime,TRUE,For switch on/off the display of the duration time in task details page.
 Portal.Tasks.DisableCount,FALSE,Set to true to disable counting task in task list.
