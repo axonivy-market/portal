@@ -1,5 +1,5 @@
 CustomCalculateTaskDelegateData #class
-_com.axonivy.portal.developerexamples #namespace
+com.axonivy.portal.developerexamples #namespace
 currentUser com.axonivy.portal.components.dto.SecurityMemberDTO #field
 task ch.ivyteam.ivy.workflow.ITask #field
 users java.util.List<com.axonivy.portal.components.dto.UserDTO> #field
