@@ -221,6 +221,8 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   private void clickUserMenuItem(String menuItemSelector) {
+    waitForElementDisplayed(By.className("js-dashboard__wrapper"), true);
+
     waitForElementDisplayed(By.id("user-settings-menu"), true);
     clickByJavaScript(findElementById("user-settings-menu"));
     waitForElementDisplayed(By.id(menuItemSelector), true);
