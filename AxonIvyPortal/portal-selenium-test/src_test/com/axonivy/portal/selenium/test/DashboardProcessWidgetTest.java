@@ -34,6 +34,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
   private static final String TEST_FOR_IVYPORTAL_3369 = "Test for IVYPORTAL-3369";
   private static final String START_APPLICATION_SHOWCASE = "Start Application Showcase";
   private static final String CATEGORIED_LEAVE_REQUEST = "Categoried Leave Request";
+  private static final String PROCESS_WITH_PROCESS_STEPS = "Process With Process Steps";
   private static final String SHOWCASE = "Showcase";
   private static final String SHOWCASE_APPLICATION = "Showcase Application";
   private static final String CLEAN_ABSENCES = "(For autotest) Clean absences";
@@ -107,7 +108,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
   public void testMoreInfoLinkImageProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectImageModeAndSaveWidget(SHOWCASE_APPLICATION);
+    editProcessWidgetConfiguration.selectImageModeAndSaveWidget(PROCESS_WITH_PROCESS_STEPS);
     newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
     backToNewDashboardPage();
     newDashboardPage.getMoreInformationLink().shouldBe(Condition.appear);
@@ -171,7 +172,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
   public void testMoreInfoLinkFullModeProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(SHOWCASE_APPLICATION);
+    editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(PROCESS_WITH_PROCESS_STEPS);
     newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
 
     backToNewDashboardPage();
