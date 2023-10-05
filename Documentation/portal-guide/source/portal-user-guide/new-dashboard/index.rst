@@ -222,6 +222,8 @@ You can select the chart to be displayed.
 - This is the sample output of the widget configured above:
 
   |statistic-chart-widget|
+  
+Another alternative way to add statistic chart widget is selecting a specific one in the :guilabel:`Statistic Widgets category`. The selected widget will be added to the dashboard without any additional configuration step.
 
 Welcome widget
 ==============
