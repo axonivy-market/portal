@@ -39,8 +39,8 @@
       "config" : {
         "output" : {
           "code" : [
-            "in.pageFooter = \"custom page footer\";",
-            "in.pageHeader = \"custom page header\";"
+            "in.pageFooter = \"<strong>custom page footer</strong>\";",
+            "in.pageHeader = \"<span style='color: red';> custom page header </span>\";"
           ]
         }
       },
