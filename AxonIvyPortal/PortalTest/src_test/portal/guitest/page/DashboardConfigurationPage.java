@@ -33,9 +33,6 @@ public class DashboardConfigurationPage extends TemplatePage {
   public void selectEditPublicDashboards() {
     waitForElementDisplayed(By.cssSelector(".dashboard-configuration__content.js-public-dashboard-configuration"), true);
     clickByCssSelector("button[id$='dashboard-modification-component:dashboard-table:0:configure-dashboard']");
-    // waitForElementDisplayed(By.cssSelector("[id$=':dashboard-modification-container']"),
-    // true);
-  }
 
   public WebElement getDashboardConfigurationPage() {
     return findElementById("configuration-group");
