@@ -43,10 +43,10 @@
             value="#{managedBean.importFile}" auto="true" 
             requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" oncomplete="PF('#{cc.attrs.importDialogId}').initPosition();">
           </p:fileUpload>
-        </div>
+        </div>  
 
         <div class="ui-g-12">
-          <p:messages id="import-dashboard-dialog-message" />
+          <p:messages id="import-dashboard-dialog-message" showIcon="false" closable="true"/>
         </div>
       </h:panelGroup>
 
@@ -59,11 +59,17 @@
         </div>
 
 <!--       	DashBoard Information Form -->
-    <div class="ui-g-12">
-     <p:tabView rendered="#{not empty managedBean.dashboards}" value="#{managedBean.dashboards}" var="dashboard" scrollable="true" id="dashboards-information-form" activeIndex="0">
-      <f:event listener="#{dashboardImportBean.tabInit}" type="preRenderComponent" />
+    <div class="ui-g-12" id="import-dashboard-tab">
+     <p:tabView rendered="#{not empty managedBean.importedDashboards}" value="#{managedBean.importedDashboards}" var="dashboard" id="dashboards-information-form" activeIndex="#{dashboardImportBean.activeIndex}">
+      <f:event listener="#{dashboardImportBean.tabInit()}" type="preRenderComponent" />
       <p:ajax event="tabChange" listener="#{dashboardImportBean.onTabChange(dashboard)}" />
-      <p:tab title="#{dashboardImportBean.dashBoardIndex}">
+      <p:tab title="Dashboard #{dashboardImportBean.dashBoardIndex}" id="dashboard_#{dashboardImportBean.dashBoardIndex}" ariaLabel="true">
+<!--        <div class="ui-g-12"> -->
+<!--         <p:messages id="import-dashboard-title-message" -->
+<!--          for="import-dashboard-title" /> -->
+<!--         <p:messages id="import-dashboard-form-message" -->
+<!--          for="dashboard-permission" /> -->
+<!--        </div> -->
        <div class="ui-g-2 import-dashboard-label">
         <p:outputLabel
          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardIcon')}" />
@@ -75,12 +81,14 @@
 
        <div class="ui-g-2 import-dashboard-label">
         <p:outputLabel for="import-dashboard-title"
-         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}" />
+         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')} #{dashboardImportBean.dashBoardIndex }" />
        </div>
        <div class="ui-g-10 ui-fluid ui-inputgroup">
         <p:inputText id="import-dashboard-title"
-         value="#{dashboard.title}" required="true"
-         styleClass="manage-dashboard__input" />
+         value="#{dashboard.title}" styleClass="manage-dashboard__input" required="true">
+         <f:validator validatorId="dashboardImportTabValidator"/>
+<!--          <p:ajax update="import-dashboard-title-message"/> -->
+        </p:inputText>
         <p:commandButton id="add-language-button"
          icon="si si-chat-translate">
          <p:ajax event="click"
@@ -94,7 +102,7 @@
         styleClass="ui-g-2 import-dashboard-label"
         rendered="#{cc.attrs.isPublicDashboard}">
         <p:outputLabel for="dashboard-permission"
-         value="#{ivy.cms.co('/Labels/Permissions')}" />
+        value="#{ivy.cms.co('/Labels/Permissions')}" />
        </h:panelGroup>
        <h:panelGroup layout="block" styleClass="ui-g-10 ui-fluid"
         rendered="#{cc.attrs.isPublicDashboard}">
@@ -146,8 +154,8 @@
     <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
       id="title-language-config" titles="#{managedBean.getTitles()}"
       managedBean="#{managedBean}"
-      updateCurrentLanguage="#{managedBean.updateCurrentLanguage()}"
-      componentToUpdateOnModify="#{p:resolveFirstComponentWithId('import-dashboard-title', view).clientId}" />
+      updateCurrentLanguage="#{managedbean.updatecurrentlanguage()}"
+      componentToUpdateOnModify="dashboard-template-selection-component:dashboard-import-component:import-dashboard-form:dashboards-information-form:#{dashboardImportBean.activeIndex}:import-dashboard-title" />
     <f:facet name="footer">
       <h:panelGroup layout="block" styleClass="u-text-align-right"
         id="footer-button-container">

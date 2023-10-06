@@ -457,4 +457,13 @@ public class DashboardBean implements Serializable {
   public boolean isShowShareButtonOnDashboard() {
     return PermissionUtils.hasShareDashboardPermission() && selectedDashboard != null && !getIsEditMode() && selectedDashboard.getIsPublic();
   }
+
+  public List<Dashboard> getImportedDashboards() {
+    return importedDashboards;
+  }
+
+  public void setImportedDashboards(List<Dashboard> importedDashboards) {
+    this.importedDashboards = importedDashboards;
+  }
+
 }

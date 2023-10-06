@@ -41,6 +41,7 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
   private String fileSize;
   private IRole everybodyRole;
   private int index = 0;
+  private int activeIndex;
 
   @Override
   @PostConstruct
@@ -50,7 +51,8 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
 
   public void tabInit() {
     if (CollectionUtils.isNotEmpty(this.importedDashboards)) {
-      selectedDashboard = importedDashboards.stream().findFirst().get();
+      this.selectedDashboard = importedDashboards.get(0);
+      index = 0;
     }
   }
 
@@ -74,7 +76,7 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
       return;
     }
     try {
-      dashboards = DashboardUtils.convertDashboardsFromUploadFileToLastestVersion(importFile.getInputStream());
+      importedDashboards = DashboardUtils.convertDashboardsFromUploadFileToLastestVersion(importFile.getInputStream());
     } catch (Exception e) {
       isError = true;
       displayedMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileCouldNotParse"));
@@ -82,7 +84,7 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
       return;
     }
 
-    dashboards.stream().forEach(dashboard -> {
+    importedDashboards.stream().forEach(dashboard -> {
       selectedDashboard = dashboard;
       selectedDashboard.setIsPublic(isPublicDashboard);
       selectedDashboard.setId(DashboardUtils.generateId());
@@ -118,8 +120,8 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
 
   @Override
   public void createDashboard() {
-    if (CollectionUtils.isNotEmpty(dashboards)) {
-      for (Dashboard dashboard : dashboards) {
+    if (CollectionUtils.isNotEmpty(importedDashboards)) {
+      for (Dashboard dashboard : importedDashboards) {
         selectedDashboard = dashboard;
         if (CollectionUtils.isNotEmpty(this.selectedDashboard.getWidgets())) {
           for (DashboardWidget widget : this.selectedDashboard.getWidgets()) {
@@ -140,7 +142,7 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
   }
 
   private void resetDialog() {
-    dashboards = new ArrayList<>();
+    importedDashboards = new ArrayList<>();
     selectedDashboard = new Dashboard();
     this.selectedDashboard.setTitles(new ArrayList<>());
     this.selectedDashboardPermissions = new ArrayList<>();
@@ -148,6 +150,7 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
     importFile = null;
     isLoaded = isError = false;
     index = 0;
+    activeIndex = 0;
   }
 
   public boolean isLoaded() {
@@ -182,12 +185,20 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
     this.fileSize = fileSize;
   }
 
-  public String getDashBoardIndex() {
-    if (CollectionUtils.isNotEmpty(dashboards) && index >= dashboards.size()) {
+  public int getDashBoardIndex() {
+    if (CollectionUtils.isNotEmpty(importedDashboards) && index >= importedDashboards.size()) {
       index = 0;
     }
     index++;
-    return Ivy.cms().coLocale("/ch.ivy.addon.portalkit.ui.jsf/common/dashboard", Ivy.session().getContentLocale()) + " "
-        + index;
+    return index;
   }
+
+  public int getActiveIndex() {
+    return activeIndex;
+  }
+
+  public void setActiveIndex(int activeIndex) {
+    this.activeIndex = activeIndex;
+  }
+
 }
