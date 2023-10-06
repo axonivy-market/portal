@@ -31,7 +31,7 @@ import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.WelcomeEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtil;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class DashboardScreenshotTest extends ScreenshotBaseTest{
   private NewDashboardPage homePage;
   private static final int SCREENSHOT_WIDTH = 1500;
@@ -75,7 +75,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
     redirectToDashboardConfiguration();
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
     configPage.selectPublicDashboardType();
-    DashboardModificationPage editPage = configPage.openEditPublicDashboardsPage();
+    DashboardModificationPage editPage = new DashboardModificationPage();
     NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
     detailsEditPage.waitPageLoaded();
     detailsEditPage.addWidget();
@@ -93,7 +93,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
     redirectToDashboardConfiguration();
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
     configPage.selectPublicDashboardType();
-    DashboardModificationPage editPage = configPage.openEditPublicDashboardsPage();
+    DashboardModificationPage editPage = new DashboardModificationPage();
     NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
     detailsEditPage.waitPageLoaded();
     detailsEditPage.addWidget();
@@ -145,7 +145,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
     redirectToDashboardConfiguration();
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
     configPage.selectPublicDashboardType();
-    DashboardModificationPage editPage = configPage.openEditPublicDashboardsPage();
+    DashboardModificationPage editPage = new DashboardModificationPage();
     NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
     detailsEditPage.waitForCaseWidgetLoaded();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.NEW_DASHBOARD_FOLDER + "edit-widget");
@@ -297,11 +297,10 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
   }
 
   private void addPublicWidget(String widgetName) {
-//    updatePortalSetting(Variable.SHOW_LEGACY_UI .getKey(), "false");
     redirectToDashboardConfiguration();
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
     configPage.selectPublicDashboardType();
-    DashboardModificationPage editPage = configPage.openEditPublicDashboardsPage();
+    DashboardModificationPage editPage = new DashboardModificationPage();
     NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
     detailsEditPage.waitPageLoaded();
     detailsEditPage.addWidget();

@@ -682,6 +682,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement getConfigureDashboardMenu() {
+    waitForDashboardPageAvailable();
     $("#user-settings-menu").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("#user-setting-container").shouldBe(Condition.exist, DEFAULT_TIMEOUT)
            .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("a#user-profile").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
@@ -696,6 +697,7 @@ public class NewDashboardPage extends TemplatePage {
       }
     SelenideElement configureButton = getConfigureDashboardMenu();
     configureButton.click();
+    waitPageLoaded();
     return new DashboardConfigurationPage();
   }
 
