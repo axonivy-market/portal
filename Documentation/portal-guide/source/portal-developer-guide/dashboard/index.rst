@@ -25,7 +25,7 @@ Available widgets of Portal dashboard are:
 - Welcome widget
 - News feed widget
 - External page widget
-- Client statistic widget
+- Client statistics widget
 
 You can predefine Portal dashboards, and details of each widget
 by configuring variable **Portal.Dashboard**.

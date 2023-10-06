@@ -1,7 +1,7 @@
 .. _configure-new-dashboard-client-statistic-widget:
 
 Configure Client Statistics Widget
-=================================
+==================================
 
 Define Client Statistics Widget
 -------------------------------
