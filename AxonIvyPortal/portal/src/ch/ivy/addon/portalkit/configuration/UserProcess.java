@@ -6,7 +6,6 @@ import java.util.Locale;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.util.Locales;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -73,7 +72,7 @@ public class UserProcess extends AbstractConfiguration {
   }
 
   private String getActiveDisplayName() {
-    Locale currentLocale = new Locales().getCurrentLocale();
+    Locale currentLocale = Ivy.session().getContentLocale();
     return names.stream().filter(displayName -> displayName.getLocale().equals(currentLocale))
         .map(DisplayName::getValue).findFirst().orElse(getDisplayNameWithCms());
   }
