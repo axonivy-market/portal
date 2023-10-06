@@ -214,7 +214,7 @@ function initStatistics() {
             chartData.update();
         } else {
             let config = response.data.chartConfig;
-            let cardNumber = result.map(bucket => bucket.count) + `${config.numberChartConfig.suffixSymbol}`;
+            let cardNumber = (result.length == 0 ? 0 : result.map(bucket => bucket.count)) + `${config.numberChartConfig.suffixSymbol}`;
             chartData.find('.card-number').html(cardNumber);
         }
     }
