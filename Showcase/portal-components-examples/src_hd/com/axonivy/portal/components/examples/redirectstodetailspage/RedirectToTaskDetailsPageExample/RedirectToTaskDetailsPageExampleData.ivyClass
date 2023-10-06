@@ -1,5 +1,5 @@
 RedirectToTaskDetailsPageExampleData #class
-com.axonivy.portal.components.examples.redirectToDetailsPage.RedirectToTaskDetailsPageExample #namespace
+com.axonivy.portal.components.examples.redirectstodetailspage.RedirectToTaskDetailsPageExample #namespace
 taskId Long #field
 taskId PERSISTENT #fieldModifier
 taskLink String #field
