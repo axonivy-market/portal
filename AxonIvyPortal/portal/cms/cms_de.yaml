@@ -130,6 +130,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       IMAGE: Bild
     ProcessSorting:
       BY_ALPHABETICALLY: Alphabetisch
+      BY_CUSTOM_ORDER: Benutzerdefinierte Reihenfolge
       BY_INDEX: Sortierindex
     ProcessType:
       EXPRESS_PROCESS: Express Workflow
@@ -1549,10 +1550,13 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
+                DashboardModification:
+                  Share: Aktie
+                ProcessWidgetConfiguration:
+                  DragAndDropToChangeOrder: ziehen und ablegen zum ändern der Reihenfolge.
+                  DragAndDropTooltip: Klicken Sie auf die Vorschau und ändern Sie die Reihenfolge durch Ziehen und Ableg
         portalkit:
           component:
-            CaseItemDetails:
-              ShareCaseDetails: Falldetails teilen
             CaseWidget:
               CaseCategory: Vorgangskategorie
               CaseDetail:
@@ -1567,15 +1571,9 @@ Dialogs:
               defaultEmptyMessage: Keine Vorgänge verfügbar
             IconSelection:
               IconLinkTooltip: Zum Ändern des Symbols anklicken
-            TaskItemDetails:
-              ShareTaskDetails: Teilen Sie Aufgabendetails
   com:
     axonivy:
       portal:
-        component:
-          ShareLinkDialog:
-            CopyLink: Link kopieren
-            LinkCopied: Link kopiert!
         dashboard:
           component:
             DashboardImportDetails:
@@ -1584,6 +1582,8 @@ Dialogs:
               ImportPublic: Öffentliches Dashboard importieren
               chooseAJsonFile: Wählen Sie eine JSON-Datei
             DashboardSharing:
+              CopyLink: Link kopieren
+              LinkCopied: Link kopiert!
               ShareDashboard: Dashboard teilen
             NewsWidget:
               NewsContentPlaceHolder: Nachrichteninhalt eingeben
@@ -1731,7 +1731,6 @@ Labels:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Permissions: Berechtigungen
-  Share: Aktie
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails
   TaskUser-Explain: Kommaseparierte Liste von Benutzern
