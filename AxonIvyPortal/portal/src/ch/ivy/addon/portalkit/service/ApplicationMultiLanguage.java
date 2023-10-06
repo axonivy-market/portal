@@ -6,17 +6,16 @@ import java.util.Set;
 
 import org.primefaces.shaded.json.JSONException;
 
-import com.axonivy.portal.components.util.Locales;
-
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;
+import ch.ivyteam.ivy.environment.Ivy;
 
 public class ApplicationMultiLanguage {
 
   private ApplicationMultiLanguage() {}
 
   public static String getDisplayNameInCurrentLocale(Application application) throws JSONException {
-    Locale currentLocale = new Locales().getCurrentLocale();
+    Locale currentLocale = Ivy.session().getContentLocale();
     DisplayNameAdaptor displayNameAdaptor = new DisplayNameAdaptor(application.getDisplayName(), currentLocale);
     if (null != displayNameAdaptor.getDisplayNameAsString()) {
       return displayNameAdaptor.getDisplayNameAsString();
