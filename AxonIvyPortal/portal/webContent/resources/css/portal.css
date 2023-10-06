@@ -1717,3 +1717,15 @@ body .notification-checkbox .ui-chkbox-box {
   margin-left: 15px;
   top: 50%;
 }
+
+i.dashboard-icon-drag-drop {
+    border: 1px solid var(--ivy-primary-color);
+    color: var(--ivy-primary-color);
+    width: 2.357rem;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 2.257rem;
+    vertical-align: unset;
+    cursor: move
+
+}
