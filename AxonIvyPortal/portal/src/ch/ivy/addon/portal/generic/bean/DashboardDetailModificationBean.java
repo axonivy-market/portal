@@ -296,7 +296,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void createClientStatisticWidget(ClientStatistic clientStatistic) {
     newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
         Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticChartWidget")));
-    widget = getDefaultClientStatisticDashboardWidget(clientStatistic.getName(), clientStatistic.getChartId());
+    widget = getDefaultClientStatisticDashboardWidget(clientStatistic.getName(), clientStatistic.getId());
   }
 
   public void createCustomDashboardWidget(DashboardProcess process) {
@@ -411,9 +411,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   public void saveClientStatisticWidget(ClientStatistic clientStatistic) {
-    String widgetId = DashboardWidgetUtils.generateNewWidgetId(CLIENT_STATISTIC);
     createClientStatisticWidget(clientStatistic);
-    widget.setId(widgetId);
     saveWidget();
   }
 
@@ -476,7 +474,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
     updateWidgetPosition(widget);
     resetUserFilter();
-    initMultipleLanguagesForWidgetName(this.widget.getName());
+
+    if (widget.getType() != DashboardWidgetType.CLIENT_STATISTIC) {
+      initMultipleLanguagesForWidgetName(this.widget.getName());
+    }
+
     this.widget.buildPredefinedFilterData();
     if (widgets.contains(this.widget)) {
       widgets.set(widgets.indexOf(this.widget), this.widget);

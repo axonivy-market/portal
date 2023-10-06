@@ -437,11 +437,14 @@ public class DashboardWidgetUtils {
 
 
   private static DashboardWidget buildDefaultStatisticWidget(String id, String name, DashboardWidgetType widgetType) {
-    var widget = widgetType == DashboardWidgetType.CLIENT_STATISTIC 
-        ? new ClientStatisticDashboardWidget()
-        : new StatisticDashboardWidget();
+    DashboardWidget widget = null;
+    if (widgetType == DashboardWidgetType.CLIENT_STATISTIC) {
+      widget = new ClientStatisticDashboardWidget();
+    } else {
+      widget = new StatisticDashboardWidget();
+      widget.setName(name);
+    }
     widget.setId(id);
-    widget.setName(name);
     var layout = new WidgetLayout();
     layout.setWidth(5);
     layout.setHeight(5);
