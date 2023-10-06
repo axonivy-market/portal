@@ -29,6 +29,11 @@ public class ClientStatistic extends AbstractConfiguration {
   private String description;
   @JsonProperty(access = Access.READ_ONLY)
   private List<Entry<String, String>> additionalConfig;
+  private String icon;
+
+  public String getIcon() {
+    return icon;
+  }
 
   public NumberChartConfig getNumberChartConfig() {
     return numberChartConfig;

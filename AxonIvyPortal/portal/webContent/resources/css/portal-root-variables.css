@@ -141,7 +141,7 @@
   --new-widget-dialog-description-font-style: normal;
   --new-widget-dialog-description-font-size: 1rem;
   --dashboard-table-empty-message-icon-font-size: 6rem;
-  --new-widget-dialog-title-font-weight: 700;
+  --new-widget-dialog-title-font-weight: bold;
   --new-widget-dialog-title-font-style: normal;
   --new-widget-dialog-title-font-size: 1.1rem;
 

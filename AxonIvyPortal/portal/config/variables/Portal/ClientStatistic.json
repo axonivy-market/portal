@@ -25,7 +25,7 @@
         "value": "Tareas por prioridad"
       }
     ],
-    "description": [
+    "descriptions": [
       {
         "locale": "de",
         "value": "Aufgaben nach Priorität"
@@ -44,7 +44,7 @@
       }
     ],
     "icon": "si si-pie-line-graph",
-    "refreshInterval": 3
+    "refreshInterval": 10
   },
   {
     "id": "2",
@@ -92,7 +92,7 @@
       }
     ],
     "icon": "si si-pie-line-graph",
-    "refreshInterval": 4,
+    "refreshInterval": 10,
     "barChartConfig": {
       "xTitles": [
         {
@@ -178,7 +178,7 @@
       }
     ],
     "icon": "si si-pie-line-graph",
-    "refreshInterval": 5,
+    "refreshInterval": 10,
     "numberChartConfig": {
        "suffixSymbol": ""
      }
@@ -229,7 +229,7 @@
       }
     ],
     "icon": "si si-pie-line-graph",
-    "refreshInterval": 6,
+    "refreshInterval": 10,
     "barChartConfig": {
       "xTitles": [
         {
@@ -315,7 +315,7 @@
       }
     ],
     "icon": "si si-pie-line-graph",
-    "refreshInterval": 4,
+    "refreshInterval": 10,
     "lineChartConfig": {
       "xTitles": [
         {
