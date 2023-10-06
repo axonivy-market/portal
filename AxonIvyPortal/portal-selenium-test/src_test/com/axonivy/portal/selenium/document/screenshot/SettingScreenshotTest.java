@@ -65,12 +65,15 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
 
   @Test
   public void screenshotSettingWithAnnotation() throws IOException {
+    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "false");
+    redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
-    ScreenshotUtil.resizeBrowser(new Dimension(1500, 800));
     showNewDashboard();
     NewDashboardPage homePage = new NewDashboardPage();
+    homePage.waitForCaseWidgetLoaded();
     homePage.openUserSettingMenu();
 
+    ScreenshotUtil.resizeBrowser(new Dimension(1500, 800));
     ScreenshotUtil.executeDecorateJs("highlightUserName()");
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.SETTINGS_FOLDER + "user-settings", new Dimension(1100, 800));
 
