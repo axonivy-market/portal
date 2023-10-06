@@ -314,7 +314,7 @@ HowTo: Share Task Details
 |how-to-share-task-details|
 
 
-.. include:: ../includes/_common-icon.rst
+.. include:: ../../includes/_common-icon.rst
 
 
 .. |navigate-to-full-task-list-page| image:: ../../screenshots/dashboard/expanded-left-menu.png

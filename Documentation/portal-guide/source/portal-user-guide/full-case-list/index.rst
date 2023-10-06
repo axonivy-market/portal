@@ -384,7 +384,7 @@ HowTo: Share Case Details
 
 |how-to-share-case-details|
 
-.. include:: ../includes/_common-icon.rst
+.. include:: ../../includes/_common-icon.rst
 
 .. |navigate-to-full-cases-list-page| image:: ../../screenshots/case/navigate-to-full-cases-list-page.png
 .. |case-key-information| image:: ../../screenshots/case/case-key-information.png

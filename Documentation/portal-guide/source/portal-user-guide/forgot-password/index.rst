@@ -28,7 +28,7 @@ you will see this page:
 
 Click on :guilabel:`Back To Login Page` and log in again with your account and the new password.
 
-.. include:: ../includes/_common-icon.rst
+.. include:: ../../includes/_common-icon.rst
 
 .. |login-screen| image:: ../../screenshots/login/login-form.png
 .. |send-email-screen| image:: ../../screenshots/forgot-password/send-email-screen.png

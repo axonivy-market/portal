@@ -215,7 +215,7 @@ Define an Information Email
 
 |express-workflow-email-editor|
 
-.. include:: ../includes/_common-icon.rst
+.. include:: ../../includes/_common-icon.rst
 
 
 Express Business Summary

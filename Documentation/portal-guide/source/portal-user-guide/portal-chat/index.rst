@@ -47,7 +47,7 @@ HowTo: Read/Send chat message
 
 #. You could type, then press :kbd:`Enter` or click |send-email-icon| to send messages.
 
-.. include:: ../includes/_common-icon.rst
+.. include:: ../../includes/_common-icon.rst
 
 .. |chat| image:: ../../screenshots/chat/chat.png
 .. |chat-process-assignee| image:: ../../screenshots/chat/chat-group-assignee.png

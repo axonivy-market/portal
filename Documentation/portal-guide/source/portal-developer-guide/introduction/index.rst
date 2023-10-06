@@ -38,7 +38,7 @@ Also other parts of the portal have improved:
 
 Not only for the end user but also for developers, the portal was updated:
 
-- The portal projects have been simplified, two projects are left:  Portal & Portal-Components
+- The portal projects have been simplified, two projects are left: Portal & Portal-Components
 - The multiapp approach is now covered by the |ivy| core, making the use of the portal for displaying tasks from more than one application much easier
 - Through the separation of process and portal by the iframe approach, supported by the portal templates on portal, can serve multiple applications
 - Dialog Templates now offer portal functions, e.g., forwarding the user in an exit event, or interacting with the portal from within the iframe template.

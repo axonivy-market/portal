@@ -67,7 +67,7 @@ point. The Portal Homepage has the following elements:
 
    |axon-ivy-portal|
 
-.. include:: ../includes/_common-icon.rst
+.. include:: ../../includes/_common-icon.rst
 
 
 .. |login-screen| image:: ../../screenshots/login/login-form.png

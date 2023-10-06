@@ -14,7 +14,7 @@ Introduction
 ^^^^^^^^^^^^
 
 The Portal's Task Analysis component provides features in accordance with the
-user's permission StatisticAnalyzeTask in PortalTaskPermissions. Refer to
+user's permission ``StatisticAnalyzeTask`` in ``PortalTaskPermissions``. Refer to
 :dev-url:`Security section in Cockpit
 </doc/|version|/engine-guide/reference/engine-cockpit/security.html>` to
 analyze not only tasks but also cases. These features are:
@@ -203,6 +203,9 @@ breeze.
 
       This component is deprecated. Please use `Cron Job <https://market.axonivy.com/cronjob>`_ on
       Axon Ivy Market instead.
+
+
+.. include:: ../../includes/_common-icon.rst
 
 .. |task-analysis| image:: ../../screenshots/components/task-analysis.png
 .. |example-global-growl-finished-task| image:: ../../screenshots/components/example-global-growl-finished-task.png

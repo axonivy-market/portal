@@ -115,7 +115,7 @@ HowTo: Add an external link
    regular basis we highly recommend configuring them on your personal
    dashboard. See :ref:`howto-add-a-process-as-a-user-favorite` for an instruction.
 
-.. include:: ../includes/_common-icon.rst
+.. include:: ../../includes/_common-icon.rst
 
 
 .. |navigate-to-full-process-list| image:: ../../screenshots/process/navigate-to-full-process-list.png

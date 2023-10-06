@@ -272,7 +272,7 @@ In manage news, the user can:
 
 After setting up everything, simply click on the :guilabel:`Share this dashboard` link at the bottom of your dashboard to share it with colleagues.
 
-.. include:: ../includes/_common-icon.rst  
+.. include:: ../../includes/_common-icon.rst  
 
 .. |dash-board| image:: ../../screenshots/new-dashboard/dashboard.png
 .. |widget-filter| image:: ../../screenshots/new-dashboard/widget-filter.png
