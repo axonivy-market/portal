@@ -14,8 +14,8 @@ Below is a sample JSON definition of a client statistics widget in the Portal da
 
   {
     "id": "1",
-    "chartId": "1",
     "aggregates": "priority",
+    "filter": "priority:HIGH",
     "chartTarget": "TASK",
     "permissions": [
       "Everybody"
@@ -67,9 +67,9 @@ The basic JSON structure of a client statistics widget
 
    ``id``: ID of the widget
 
-   ``chartId``: ID of the chart
-
    ``aggregates``: column configuration in the widget
+   
+   ``filter``: filters for ``aggregates`` field. The format of syntax is :guilabel:`<aggregates field>:<available aggregates' value>` 
    
    ``chartTarget``: could be ``TASK`` or ``CASE``
    

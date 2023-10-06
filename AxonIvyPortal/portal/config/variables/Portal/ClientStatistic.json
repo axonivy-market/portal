@@ -3,6 +3,7 @@
     "id": "1",
     "chartId": "1",
     "aggregates": "priority",
+    "filter": "priority:HIGH",
     "chartTarget": "TASK",
     "permissions": [
       "Everybody"
