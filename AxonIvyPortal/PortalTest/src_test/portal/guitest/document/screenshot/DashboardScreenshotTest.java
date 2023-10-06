@@ -127,10 +127,9 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
     configPage.selectPublicDashboardType();
     configPage.selectEditPublicDashboards();
-    configPage.configureDashboardByIndex(0);
     newDashboardPage.waitForPageLoaded();
     newDashboardPage.addNewCustomWidget();
-
+    newDashboardPage.waitForPageLoaded();
     WebElement dateField = newDashboardPage.findElementById("widget-configuration-form:new-widget-configuration-component:parammeters:1:param-calendar-_input");
     newDashboardPage.type(dateField, "24 Nov, 2021 00:00");
 
@@ -154,10 +153,9 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
     configPage.selectPublicDashboardType();
     configPage.selectEditPublicDashboards();
-    configPage.configureDashboardByIndex(0);
     newDashboardPage.waitForPageLoaded();
     newDashboardPage.addNewExternalPageWidget();
-
+    newDashboardPage.waitForElementDisplayed(By.id("widget-configuration-form:new-widget-configuration-component:external-url"), true, DEFAULT_TIMEOUT);
     WebElement urlField = newDashboardPage.findElementById("widget-configuration-form:new-widget-configuration-component:external-url");
     newDashboardPage.type(urlField, "https://developer.axonivy.com");
     ScreenshotUtil.captureElementScreenshot(newDashboardPage.getConfigurationDialog(), ScreenshotUtil.DASHBOARD_FOLDER + "external-page-widget-configuration");
@@ -203,7 +201,6 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
     configPage.selectPublicDashboardType();
     configPage.selectEditPublicDashboards();
-    configPage.configureDashboardByIndex(0);
     newDashboardPage.waitForPageLoaded();
     WaitHelper.assertTrueWithWait(() -> ScreenshotUtil.isDOMStatusComplete());
     newDashboardPage.waitForTaskWidgetLoading();
@@ -215,6 +212,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(newWidgetDialog, ScreenshotUtil.NEW_DASHBOARD_FOLDER + "add-widget", new ScreenshotMargin(40));
 
     // Take screenshots of Task widget configuration dialog
+    newDashboardPage.waitForElementDisplayed(By.id("new-widget-dialog-content:6:add-widget"), true);
     newWidgetDialog.findElement(By.id("new-widget-dialog-content:6:add-widget")).click();
     DashboardWidgetConfigurationDialogPage configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
     configurationDialogPage.openMultiLanguageDialog();
@@ -359,7 +357,6 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
     configPage.selectPublicDashboardType();
     configPage.selectEditPublicDashboards();
-    configPage.configureDashboardByIndex(0);
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForPageLoaded();
     WaitHelper.assertTrueWithWait(() -> ScreenshotUtil.isDOMStatusComplete());
@@ -370,11 +367,6 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     newWidgetDialog.findElement(By.id("new-widget-dialog-content:" + widgetIndex + ":add-widget")).click();
   }
 
-  private void showNewCustomizedDashboard() {
-    updatePortalSetting(SHOW_LEGACY_UI .getKey(), "false");
-    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
-    newDashboardPage = new NewDashboardPage();
-  }
 
   private void refreshHomePage() {
     refreshPage();

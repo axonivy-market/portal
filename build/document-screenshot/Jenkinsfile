@@ -9,7 +9,7 @@ pipeline {
     cron('0 23 * * *')
   }
 
-  tools { 
+  tools {
     maven '3.8' 
     jdk '17' 
   }
