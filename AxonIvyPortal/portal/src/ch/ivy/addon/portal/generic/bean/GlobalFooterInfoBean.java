@@ -18,7 +18,8 @@ public class GlobalFooterInfoBean implements Serializable {
 
   @PostConstruct
   public void init() {
-    this.info = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.GLOBAL_FOOTER_INFO).toString();
+    this.info = HtmlParser.sanitize(
+        GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.GLOBAL_FOOTER_INFO).toString());
   }
 
   public String getInfo() {

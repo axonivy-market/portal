@@ -10,6 +10,8 @@ import javax.faces.bean.RequestScoped;
 import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.enums.PortalCustomSignature;
 
+import ch.ivy.addon.portalkit.support.HtmlParser;
+
 @ManagedBean
 @RequestScoped
 public class PageHeaderFooterBean implements Serializable {
@@ -23,8 +25,8 @@ public class PageHeaderFooterBean implements Serializable {
   public void init() {
     Map<String, Object> mapHeaderFooter = IvyAdapterService
         .startSubProcessInSecurityContext(PortalCustomSignature.GET_PAGE_HEADER_AND_FOOTER.getSignature(), null);
-    this.header = mapHeaderFooter != null ? (String) mapHeaderFooter.get("pageHeader") : null;
-    this.footer = mapHeaderFooter != null ? (String) mapHeaderFooter.get("pageFooter") : null;
+    this.header = mapHeaderFooter != null ? HtmlParser.sanitize((String) mapHeaderFooter.get("pageHeader")) : null;
+    this.footer = mapHeaderFooter != null ? HtmlParser.sanitize((String) mapHeaderFooter.get("pageFooter")) : null;
   }
 
   public void setHeader(String header) {
