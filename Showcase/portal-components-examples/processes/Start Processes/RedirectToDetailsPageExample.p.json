@@ -26,7 +26,7 @@
       "type" : "DialogCall",
       "name" : "RedirectToTaskDetailsPageExample",
       "config" : {
-        "dialog" : "com.axonivy.portal.components.examples.redirectToDetailsPage.RedirectToTaskDetailsPageExample:start()"
+        "dialog" : "com.axonivy.portal.components.examples.redirectstodetailspage.RedirectToTaskDetailsPageExample:start()"
       },
       "visual" : {
         "at" : { "x" : 336, "y" : 64 },
@@ -54,7 +54,7 @@
       "type" : "DialogCall",
       "name" : "RedirectToCaseDetailsExample",
       "config" : {
-        "dialog" : "com.axonivy.portal.components.examples.redirectToDetailsPage.RedirectToCaseDetailsExample:start()"
+        "dialog" : "com.axonivy.portal.components.examples.redirectstodetailspage.RedirectToCaseDetailsExample:start()"
       },
       "visual" : {
         "at" : { "x" : 336, "y" : 168 },
@@ -82,7 +82,7 @@
       "type" : "DialogCall",
       "name" : "RedirectToTaskDetailsPageByUUIDExample",
       "config" : {
-        "dialog" : "com.axonivy.portal.components.examples.redirectToDetailsPage.RedirectToTaskDetailsPageByUUIDExample:start()"
+        "dialog" : "com.axonivy.portal.components.examples.redirectstodetailspage.RedirectToTaskDetailsPageByUUIDExample:start()"
       },
       "visual" : {
         "at" : { "x" : 352, "y" : 280 },
@@ -110,7 +110,7 @@
       "type" : "DialogCall",
       "name" : "RedirectToCaseDetailsByUUIDExample",
       "config" : {
-        "dialog" : "com.axonivy.portal.components.examples.redirectToDetailsPage.RedirectToCaseDetailsByUUIDExample:start()"
+        "dialog" : "com.axonivy.portal.components.examples.redirectstodetailspage.RedirectToCaseDetailsByUUIDExample:start()"
       },
       "visual" : {
         "at" : { "x" : 351, "y" : 384 },
