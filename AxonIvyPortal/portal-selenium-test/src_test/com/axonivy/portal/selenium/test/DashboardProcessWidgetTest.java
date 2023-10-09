@@ -424,7 +424,6 @@ public class DashboardProcessWidgetTest extends BaseTest {
         .shouldHave(Condition.exactTextCaseSensitive(PROCESS_WITH_INDEX_1));
   }
   
-  @Test
   public void testSortProcessCompactProcessModeCustomSorting() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
