@@ -11,6 +11,7 @@ public enum PortalCustomSignature {
   DOWNLOAD_DOCUMENT("portalDownloadDocument(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)"),
   DELETE_DOCUMENT("portalDeleteDocument(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)"),
   DELEGATE("portalCalculateTaskDelegate(java.util.List<com.axonivy.portal.components.dto.RoleDTO>,java.util.List<com.axonivy.portal.components.dto.UserDTO>,com.axonivy.portal.components.dto.SecurityMemberDTO,ch.ivyteam.ivy.workflow.ITask)"),
+  GET_PAGE_HEADER_AND_FOOTER("portalGetPageHeaderAndFooter()"),
   LOAD_SUB_MENU_ITEMS("portalLoadSubMenuItems()");
 
   private String signature;
