@@ -3,7 +3,7 @@
   "id" : "189BA1E3B3EBAADD",
   "kind" : "HTML_DIALOG",
   "config" : {
-    "data" : "com.axonivy.portal.components.examples.redirectToDetailsPage.RedirectToCaseDetailsExample.RedirectToCaseDetailsExampleData"
+    "data" : "com.axonivy.portal.components.examples.redirectstodetailspage.RedirectToCaseDetailsExample.RedirectToCaseDetailsExampleData"
   },
   "elements" : [ {
       "id" : "f0",
