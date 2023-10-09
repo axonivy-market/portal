@@ -73,9 +73,6 @@ Variables:
     # This setting will be taken over for all other dashboard.
     # [file: json]
     Dashboard:
-      # Activates the interactive user guide "first steps" in the portal at first login.
-      ShowUserGuide: true
-
       # Set to true to hide Statistic widget from homepage and application menu.
       HideStatisticWidget: false
 
