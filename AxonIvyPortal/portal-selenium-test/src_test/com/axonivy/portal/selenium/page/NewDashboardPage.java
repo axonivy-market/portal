@@ -695,7 +695,6 @@ public class NewDashboardPage extends TemplatePage {
       }
     SelenideElement configureButton = getConfigureDashboardMenu();
     configureButton.click();
-    waitPageLoaded();
     return new DashboardConfigurationPage();
   }
 
