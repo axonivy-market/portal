@@ -1,8 +1,8 @@
 package com.axonivy.portal.components.util;
 
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public final class TaskUtils {
 
@@ -16,9 +16,8 @@ public final class TaskUtils {
    * @return {@link ITask}
    */
   public static ITask findTaskById(long taskId) {
-    return IvyExecutor.executeAsSystem(() -> {
-      TaskQuery taskQuery = TaskQuery.create().where().taskId().isEqual(taskId);
-      return Ivy.wf().getTaskQueryExecutor().getFirstResult(taskQuery);
+    return Sudo.get(() -> {
+      return Ivy.wf().findTask(taskId);
     });
   }
 }
