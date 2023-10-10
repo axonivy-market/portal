@@ -15,9 +15,12 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.dto.UserDTO;
+import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.enums.dashboard.filter.FilterType;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
+import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
@@ -34,6 +37,7 @@ public class DashboardCaseFilterBean implements Serializable {
   private List<SecurityMemberDTO> creators;
   private List<SecurityMemberDTO> owners;
   private CaseDashboardWidget widget;
+  private static List<DashboardStandardCaseColumn> filterTypes = DashboardStandardCaseColumn.getFilterableFields();
 
   @PostConstruct
   public void init() {
@@ -110,5 +114,50 @@ public class DashboardCaseFilterBean implements Serializable {
 
   public void setOwners(List<SecurityMemberDTO> owners) {
     this.owners = owners;
+  }
+
+  public List<DashboardStandardCaseColumn> getFilterTypes() {
+    return filterTypes;
+  }
+
+  public void addNewFilter(CaseDashboardWidget widget) {
+    if (widget.getFilters() == null) {
+      widget.setFilters(new ArrayList<>());
+    }
+    widget.getFilters().add(new DashboardFilter());
+  }
+
+  public void removeFilter(CaseDashboardWidget widget, DashboardFilter filter) {
+    widget.getFilters().remove(filter);
+  }
+
+  public void onSelectFilter(DashboardFilter filter) {
+    DashboardStandardCaseColumn columnEnum = DashboardStandardCaseColumn.findBy(filter.getField());
+    if (columnEnum == null) {
+      return;
+    }
+
+    switch (columnEnum) {
+      case CREATED -> initDateFilter(filter);
+      case ACTIONS -> throw new UnsupportedOperationException("Unimplemented case: " + columnEnum);
+      case APPLICATION -> throw new UnsupportedOperationException("Unimplemented case: " + columnEnum);
+      case CATEGORY -> throw new UnsupportedOperationException("Unimplemented case: " + columnEnum);
+      case CREATOR -> throw new UnsupportedOperationException("Unimplemented case: " + columnEnum);
+      case DESCRIPTION -> throw new UnsupportedOperationException("Unimplemented case: " + columnEnum);
+      case FINISHED -> throw new UnsupportedOperationException("Unimplemented case: " + columnEnum);
+      case ID -> throw new UnsupportedOperationException("Unimplemented case: " + columnEnum);
+      case NAME -> initTextFilter(filter);
+      case OWNER -> throw new UnsupportedOperationException("Unimplemented case: " + columnEnum);
+      case STATE -> throw new UnsupportedOperationException("Unimplemented case: " + columnEnum);
+    };
+  }
+
+  private void initDateFilter(DashboardFilter filter) {
+    filter.setType(FilterType.DATE);
+  }
+
+  private void initTextFilter(DashboardFilter filter) {
+    filter.setType(FilterType.TEXT);
+    filter.setTexts(new ArrayList<>());
   }
 }

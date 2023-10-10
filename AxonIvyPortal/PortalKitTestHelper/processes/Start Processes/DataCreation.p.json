@@ -220,17 +220,6 @@
             "priority" : {
               "level" : "LOW"
             }
-          }, {
-            "id" : "TaskB",
-            "name" : "<%=in1.caseName%>_B",
-            "category" : "<%=in1.taskStructureInfo%>"
-          }, {
-            "id" : "TaskC",
-            "name" : "<%=in1.caseName%>_C",
-            "category" : "<%=in1.taskStructureInfo%>",
-            "priority" : {
-              "level" : "HIGH"
-            }
           } ],
         "case" : {
           "name" : "<%=in1.caseName%>",
@@ -1882,5 +1871,219 @@
       "connect" : [
         { "id" : "f182", "to" : "f181" }
       ]
+    }, {
+      "id" : "f185",
+      "type" : "RequestStart",
+      "name" : "createTestDataForComplexFilter.ivp",
+      "config" : {
+        "signature" : "createTestDataForComplexFilter",
+        "request" : {
+          "name" : "Create test data with category"
+        },
+        "case" : {
+          "name" : "Create test data with category",
+          "attachToBusinessCase" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 56, "y" : 2080 },
+        "labelOffset" : { "x" : 56, "y" : 40 }
+      },
+      "connect" : [
+        { "id" : "f194", "to" : "f191" }
+      ]
+    }, {
+      "id" : "f186",
+      "type" : "TriggerCall",
+      "name" : "DataCreation",
+      "config" : {
+        "processCall" : "Start Processes/DataCreation:createTasks(String)",
+        "call" : {
+          "map" : {
+            "param.taskStructureInfo" : "in.handler.getNextTaskStructureInfo()"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1032, "y" : 2080 }
+      },
+      "connect" : [
+        { "id" : "f198", "to" : "f190", "via" : [ { "x" : 1032, "y" : 1912 } ] }
+      ]
+    }, {
+      "id" : "f187",
+      "type" : "Script",
+      "name" : "init handler",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.test.util.DataCreationHandler;",
+            "if(in.attachToBusinessCase) {",
+            " ivy.case.name = \"Create test data with category attach to one business case\";  ",
+            "}",
+            "in.handler = new DataCreationHandler(in.numOfCats, in.numOfSubCats, in.numOfCasesPerSubCat);"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 424, "y" : 2080 }
+      },
+      "connect" : [
+        { "id" : "f202", "to" : "f188" }
+      ]
+    }, {
+      "id" : "f188",
+      "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f200" : "in.handler.createMoreTasks()"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 592, "y" : 2080 }
+      },
+      "connect" : [
+        { "id" : "f200", "to" : "f192" },
+        { "id" : "f203", "to" : "f189" }
+      ]
+    }, {
+      "id" : "f189",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 592, "y" : 2152 }
+      }
+    }, {
+      "id" : "f190",
+      "type" : "Script",
+      "name" : [
+        "Sleep a bit before",
+        "triggering new process"
+      ],
+      "config" : {
+        "output" : {
+          "code" : "Thread.sleep(10);"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 1912 }
+      },
+      "connect" : [
+        { "id" : "f199", "to" : "f188", "via" : [ { "x" : 592, "y" : 1912 }, { "x" : 592, "y" : 2032 } ] }
+      ]
+    }, {
+      "id" : "f191",
+      "type" : "DialogCall",
+      "name" : "input number of tasks",
+      "config" : {
+        "dialog" : "ch.ivy.addon.portalkit.test.DataCreation:start()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.attachToBusinessCase" : "result.attachToBussinessCase",
+            "out.numOfCasesPerSubCat" : "result.numOfCasesPerSubCat",
+            "out.numOfCats" : "result.numOfCats",
+            "out.numOfSubCats" : "result.numOfSubCats"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 2080 }
+      },
+      "connect" : [
+        { "id" : "f197", "to" : "f187" }
+      ]
+    }, {
+      "id" : "f192",
+      "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f195" : "!in.attachToBusinessCase"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 904, "y" : 2080 }
+      },
+      "connect" : [
+        { "id" : "f195", "to" : "f186" },
+        { "id" : "f196", "to" : "f193", "via" : [ { "x" : 904, "y" : 2144 } ] }
+      ]
+    }, {
+      "id" : "f193",
+      "type" : "TriggerCall",
+      "name" : "DataCreation",
+      "config" : {
+        "processCall" : "Start Processes/DataCreation:createTaskAttachToBusinessCase(String)",
+        "call" : {
+          "map" : {
+            "param.taskStructureInfo" : "in.handler.getNextTaskStructureInfo()"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1032, "y" : 2144 }
+      },
+      "connect" : [
+        { "id" : "f201", "to" : "f190", "via" : [ { "x" : 1144, "y" : 2144 }, { "x" : 1144, "y" : 2032 } ] }
+      ]
+    }, {
+      "id" : "f204",
+      "type" : "RequestStart",
+      "name" : "createCaseForComplexFilter(String)",
+      "config" : {
+        "signature" : "createCaseForComplexFilter",
+        "input" : {
+          "params" : [
+            { "name" : "caseName", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.caseName" : "param.caseName"
+          }
+        },
+        "request" : {
+          "isHttpRequestable" : false
+        },
+        "triggerable" : true,
+        "task" : {
+          "responsible" : {
+            "activator" : "SYSTEM"
+          }
+        },
+        "case" : {
+          "attachToBusinessCase" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 56, "y" : 2304 },
+        "labelOffset" : { "x" : 41, "y" : 41 }
+      },
+      "connect" : [
+        { "id" : "f219", "to" : "f208" }
+      ]
+    }, {
+      "id" : "f208",
+      "type" : "Script",
+      "name" : "set case name",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "in.caseName = in.caseName + \"_\" + ivy.case.getId();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 2304 }
+      },
+      "connect" : [
+        { "id" : "f205", "to" : "f211" }
+      ]
+    }, {
+      "id" : "f211",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 440, "y" : 2304 },
+        "description" : "create multiple test users"
+      }
     } ]
 }

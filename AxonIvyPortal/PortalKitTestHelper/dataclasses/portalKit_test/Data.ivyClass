@@ -6,3 +6,11 @@ taskId Number #field
 taskId PERSISTENT #fieldModifier
 taskCounter Number #field
 taskCounter PERSISTENT #fieldModifier
+caseuuid String #field
+caseuuid PERSISTENT #fieldModifier
+times Integer #field
+times PERSISTENT #fieldModifier
+createdDate Integer #field
+createdDate PERSISTENT #fieldModifier
+date Date #field
+date PERSISTENT #fieldModifier

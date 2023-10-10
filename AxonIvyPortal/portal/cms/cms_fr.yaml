@@ -425,6 +425,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewParticipant: Voir les participants
   common:
     All: Toutes
+    And: et
     BusinessCaseInformation: Informations sur les cas d'affaires
     CollapseAll: Réduire tout
     ExpandAll: Ouvrir tout
@@ -1755,6 +1756,49 @@ Labels:
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
   Enums:
+    DashboardStandardCaseColumn:
+      ACTIONS: Actions
+      APPLICATION: Application
+      CATEGORY: Category
+      CREATED: Created Date
+      CREATOR: Creator
+      DESCRIPTION: Description
+      FINISHED: Finished Date
+      ID: Id
+      NAME: name
+      OWNER: Case Owner
+      STATE: State
+    FilterOperator:
+      BEFORE: Est avant
+      BETWEEN: Entre
+      CONTAINS: Contient
+      CURRENT: Actuel
+      EMPTY: Est vide
+      END_WITH: Se termine par
+      IN: En
+      IS: Est
+      IS_NOT: N'est pas
+      LAST: Dernière(s) période(s)
+      NOT_CONTAINS: Ne contient pas
+      NOT_EMPTY: N'est pas vide
+      NOT_END_WITH: Ne se termine pas par
+      NOT_IN: Pas dans
+      NOT_START_WITH: Ne commence pas par
+      START_WITH: Commence par
+      TODAY: Aujourd'hui
+      YESTERDAY: Hier
+    FilterPeriodType:
+      DAY: Jour
+      MONTH: Mois
+      Plural:
+        DAY: Jour(s)
+        MONTH: Mois
+        QUARTER: Trimestre(s)
+        WEEK: Semaine(s)
+        YEAR: Année(s)
+      QUARTER: Trimestre
+      WEEK: Semaine
+      YEAR: Année
     ThemeMode:
       DARK: Dark
       LIGHT: Lumière
