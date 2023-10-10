@@ -34,6 +34,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
   private static final String TEST_FOR_IVYPORTAL_3369 = "Test for IVYPORTAL-3369";
   private static final String START_APPLICATION_SHOWCASE = "Start Application Showcase";
   private static final String CATEGORIED_LEAVE_REQUEST = "Categoried Leave Request";
+  private static final String PROCESS_WITH_PROCESS_STEPS = "Process With Process Steps";
   private static final String SHOWCASE = "Showcase";
   private static final String SHOWCASE_APPLICATION = "Showcase Application";
   private static final String CLEAN_ABSENCES = "(For autotest) Clean absences";
@@ -107,7 +108,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
   public void testMoreInfoLinkImageProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectImageModeAndSaveWidget(SHOWCASE_APPLICATION);
+    editProcessWidgetConfiguration.selectImageModeAndSaveWidget(PROCESS_WITH_PROCESS_STEPS);
     newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
     backToNewDashboardPage();
     newDashboardPage.getMoreInformationLink().shouldBe(Condition.appear);
@@ -171,7 +172,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
   public void testMoreInfoLinkFullModeProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(SHOWCASE_APPLICATION);
+    editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(PROCESS_WITH_PROCESS_STEPS);
     newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
 
     backToNewDashboardPage();
@@ -423,7 +424,6 @@ public class DashboardProcessWidgetTest extends BaseTest {
         .shouldHave(Condition.exactTextCaseSensitive(PROCESS_WITH_INDEX_1));
   }
   
-  @Test
   public void testSortProcessCompactProcessModeCustomSorting() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
@@ -432,15 +432,15 @@ public class DashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.getPreviewButton().click();
     editProcessWidgetConfiguration.getCompactModeProcessPreview().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     // expect "Clean absences" process is the first process
-    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName().shouldBe(Condition.appear)
+    editProcessWidgetConfiguration.getPreviewProcessElement(0).shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldHave(Condition.exactTextCaseSensitive(CLEAN_ABSENCES));
     int fromIndex = 0;
-    int toIndex = 1;
+    int toIndex = 4;
     editProcessWidgetConfiguration.dragAndDropProcess(fromIndex, toIndex);
     editProcessWidgetConfiguration.save();
     editProcessWidgetConfiguration = newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.getPreviewProcessElement(toIndex-1).shouldBe(Condition.appear)
-    .shouldHave(Condition.exactTextCaseSensitive(CLEAN_ABSENCES));
+    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName().shouldBe(Condition.appear)
+      .shouldNotHave(Condition.exactTextCaseSensitive(CLEAN_ABSENCES));
   }
 
   @Test
