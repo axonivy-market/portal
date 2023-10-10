@@ -4,11 +4,13 @@
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:jsf="http://xmlns.jcp.org/jsf">
+  xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
 </cc:interface>
-
 <cc:implementation>
+  <div class="ui-md-hidden #{empty pageHeaderFooterBean.header ? 'u-hidden' : ''}" style="height: 20px; text-align: center; background-color: var(--primary-color); color: white" >
+    <h:outputText escape="false" value="#{pageHeaderFooterBean.header}" />
+  </div>
 </cc:implementation>
 </html>

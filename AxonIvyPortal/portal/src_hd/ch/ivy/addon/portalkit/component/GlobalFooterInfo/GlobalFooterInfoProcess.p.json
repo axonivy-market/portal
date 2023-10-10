@@ -1,9 +1,9 @@
 {
   "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
-  "id" : "176CBB21393A5FFF",
+  "id" : "1705775E741380D0",
   "kind" : "HTML_DIALOG",
   "config" : {
-    "data" : "com.axonivy.portal.developerexamples.customization.component.PageHeaderOverride.PageHeaderOverrideData"
+    "data" : "ch.ivy.addon.portalkit.component.GlobalFooterInfo.GlobalFooterInfoData"
   },
   "elements" : [ {
       "id" : "f0",

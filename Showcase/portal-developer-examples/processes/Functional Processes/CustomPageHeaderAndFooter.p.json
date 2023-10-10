@@ -1,0 +1,56 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "id" : "18B1854EC0276551",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.portal.developerexamples.CustomPageHeaderAndFooterData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "portalGetPageHeaderAndFooter()",
+      "config" : {
+        "signature" : "portalGetPageHeaderAndFooter",
+        "result" : {
+          "params" : [
+            { "name" : "pageHeader", "type" : "String", "desc" : "" },
+            { "name" : "pageFooter", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "result.pageHeader" : "in.pageHeader",
+            "result.pageFooter" : "in.pageFooter"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 360, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "custom page header and footer",
+      "config" : {
+        "output" : {
+          "code" : [
+            "in.pageFooter = \"<span>custom page footer</span>\";",
+            "in.pageHeader = \"<span>custom page header</span>\";"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f1" }
+      ]
+    } ]
+}
