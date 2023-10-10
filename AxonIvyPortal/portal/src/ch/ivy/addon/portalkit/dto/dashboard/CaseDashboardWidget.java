@@ -10,6 +10,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.SortMeta;
 
+import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardCaseLazyDataModel;
@@ -37,6 +38,7 @@ public class CaseDashboardWidget extends DashboardWidget {
   public CaseDashboardWidget() {
     dataModel = new DashboardCaseLazyDataModel();
     setColumns(new ArrayList<>());
+    setFilters(new ArrayList<>());
   }
 
   @JsonIgnore
@@ -112,6 +114,14 @@ public class CaseDashboardWidget extends DashboardWidget {
 
   public void setColumns(List<CaseColumnModel> columns) {
     this.dataModel.getCriteria().setColumns(columns);
+  }
+
+  public List<DashboardFilter> getFilters() {
+    return this.dataModel.getCriteria().getFilters();
+  }
+
+  public void setFilters(List<DashboardFilter> filters) {
+    this.dataModel.getCriteria().setFilters(filters);
   }
 
   @JsonIgnore

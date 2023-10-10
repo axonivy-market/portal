@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="filter" type="com.axonivy.portal.dto.dashboard.filter.DashboardFilter" />
+  <cc:attribute name="componentToUpdate" required="true" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="filter" value="#{cc.attrs.filter}" />
+
+  <h:panelGroup id="date-filter-operator-panel" layout="block">
+      <p:selectOneMenu id="operator-selection" value="#{filter.operator}">
+        <f:selectItems value="#{widgetDateFilterBean.operators}" var="operator"
+          itemValue="#{operator}" itemLabel="#{operator.label}" />
+          <p:ajax event="itemSelect" listener="#{widgetDateFilterBean.onChangeOperator(filter)}"
+            process="@(this)" update="#{cc.attrs.componentToUpdate}" />
+      </p:selectOneMenu>
+  </h:panelGroup>
+
+  <h:panelGroup id="before-date-panel" layout="block" rendered="#{filter.operator == 'BEFORE'}" styleClass="date-picker-panel">
+    <p:datePicker id="before-date" value="#{filter.from}" locale="#{localeBean.locale}" showTime="#{!dateTimePatternBean.isTimeHidden}"
+      showIcon="true" converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
+  </h:panelGroup>
+
+  <h:panelGroup id="between-dates-panel-from" layout="block" rendered="#{filter.operator == 'BETWEEN'}" styleClass="date-picker-panel">
+    <p:datePicker id="from-date" value="#{filter.from}" locale="#{localeBean.locale}" showTime="#{!dateTimePatternBean.isTimeHidden}"
+      showIcon="true" converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
+  </h:panelGroup>
+
+  <h:panelGroup id="between-dates-panel-and" layout="block" rendered="#{filter.operator == 'BETWEEN'}">
+    <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/And')}</span>
+  </h:panelGroup>
+
+  <h:panelGroup id="between-dates-panel-to" layout="block" rendered="#{filter.operator == 'BETWEEN'}" styleClass="date-picker-panel">
+    <p:datePicker id="to-date" value="#{filter.to}" locale="#{localeBean.locale}" showTime="#{!dateTimePatternBean.isTimeHidden}"
+      showIcon="true" converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
+  </h:panelGroup>
+
+  <h:panelGroup id="current-period-panel" layout="block" rendered="#{filter.operator == 'CURRENT'}">
+    <p:selectOneMenu id="current-period-selection" value="#{filter.periodType}">
+      <f:selectItems value="#{widgetDateFilterBean.filterPeriodTypes}" var="period"
+        itemValue="#{period}" itemLabel="#{period.label}" />
+    </p:selectOneMenu>
+  </h:panelGroup>
+
+  <h:panelGroup id="number-of-periods-panel" layout="block" rendered="#{filter.operator == 'LAST' or filter.operator == 'NEXT'}" styleClass="number-of-periods-panel">
+    <p:spinner id="number-of-period" value="#{filter.periods}" min="1" />
+  </h:panelGroup>
+
+  <h:panelGroup id="period-type-panel" layout="block" rendered="#{filter.operator == 'LAST' or filter.operator == 'NEXT'}">
+    <p:selectOneMenu id="period-n-type-selection" value="#{filter.periodType}">
+      <f:selectItems value="#{widgetDateFilterBean.filterPeriodTypes}" var="period"
+        itemValue="#{period}" itemLabel="#{period.pluralLabel}" />
+    </p:selectOneMenu>
+  </h:panelGroup>
+</cc:implementation>
+
+</html>

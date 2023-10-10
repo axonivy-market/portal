@@ -107,7 +107,7 @@
   fitViewport="true" responsive="true" modal="true">
   <c:set var="widget" value="#{dashboardDetailModificationBean.widget}" />
 
-  <h:form id="widget-configuration-form" styleClass="ui-g">
+  <h:form id="widget-configuration-form" styleClass="ui-g widget-configuration-form">
     <c:if test="#{widget.type eq 'TASK'}">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidgetConfiguration id="new-widget-configuration-component" taskWidget="#{widget}"
         managedBean="#{dashboardDetailModificationBean}"

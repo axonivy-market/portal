@@ -16,47 +16,20 @@
   <ui:decorate template="/layouts/restricted/decorator/TableWidgetConfiguration.xhtml">
     <ui:param name="widget" value="#{cc.attrs.caseWidget}" />
     <ui:param name="managedBean" value="#{cc.attrs.managedBean}" />
-    <ui:param name="componentToUpdateOnPreviewAction" value="#{cc.clientId}:case-widget-preview:dashboard-cases" />
-    <ui:param name="componentToProcessOnPreviewAction" value="user-filter" />
+    <ui:param name="componentToUpdateOnPreviewAction" value="@(form)" />
+    <ui:param name="componentToProcessOnPreviewAction" value="@(form)" />
     <ui:param name="onCompletePreviewAction" value="PF('dashboard-cases-#{cc.attrs.caseWidget.id}').filter()" />
+    <ui:param name="filterContainerStyleClass" value="case-widget-filter" />
 
     <ui:define name="widgetFilterContent">
-      <h:panelGroup id="user-filter" layout="block" styleClass="ui-g">
-        <ui:repeat var="field" value="#{cc.attrs.caseWidget.filterableColumns}">
-          <ic:ch.ivy.addon.portalkit.component.dashboard.casewidget.StateFilterColumn field="#{field}"
-            stateOptions="#{dashboardCaseFilterBean.states}"
-            selectedStates="#{field.states}"/>
-
-          <ic:ch.ivy.addon.portalkit.component.dashboard.casewidget.CreatorFilterColumn field="#{field}"
-            creatorCompleteMethod="#{dashboardCaseFilterBean.completeCreators}"
-            selectedCreators="#{field.creators}"/>
-
-          <ic:ch.ivy.addon.portalkit.component.dashboard.casewidget.OwnerFilterColumn field="#{field}"
-            selectedOwners="#{field.owners}"
-            ownerCompleteMethod="#{dashboardCaseFilterBean.completeOwners}"/>
-
-          <ic:ch.ivy.addon.portalkit.component.dashboard.widget.TextFilterColumn field="#{field}"
-            inputTextValue="#{field.filter}"
-            selectedTexts="#{field.filterList}" selectOptions="#{field.filterListOptions}"/>
-
-          <ic:ch.ivy.addon.portalkit.component.dashboard.widget.NumberFilterColumn field="#{field}"
-            filterTo="#{field.filterTo}"
-            filterFrom="#{field.filterFrom}"/>
-
-          <ic:ch.ivy.addon.portalkit.component.dashboard.widget.TimestampFilterColumn field="#{field}"
-            filterTo="#{field.dateFilterTo}"
-            filterFrom="#{field.dateFilterFrom}"/>
-
-          <ic:ch.ivy.addon.portalkit.component.dashboard.widget.CategoryFilterColumn field="#{field}"
-            displaySelectedCategories="#{field.displayCategories}" configurationMode="true"
-            categoryNodeSelection="#{field.selectionCategoryNodes}" categoryTree="#{field.categoryTree}"
-            containerStyleClass="case-configuration__category" overlayCategoryStyleClass="case-configuration__category-panel"
-            inputCategoryStyleClass="case-configuration__input-text" showUnselectableCheckbox="false"/>
-            
-          <ic:ch.ivy.addon.portalkit.component.dashboard.widget.ApplicationFilterColumn field="#{field}" 
-            selectedApps="#{field.filterList}"
-            appOptions="#{field.applications}"/>
+      <h:panelGroup id="user-filter" layout="block" styleClass="ui-g dashboard-widget-filter__main-panel">
+        <ui:repeat var="filter" value="#{widget.filters}">
+          <ic:com.axonivy.portal.dashboard.component.filter.DashboardFilter filter="#{filter}" widget="#{widget}"
+            managedBean="#{dashboardCaseFilterBean}" componentToUpdate="#{p:resolveFirstComponentWithId('user-filter', view).clientId}"/>
         </ui:repeat>
+        <div class="ui-g-12">
+          <p:commandLink id="add-filter" actionListener="#{dashboardCaseFilterBean.addNewFilter(widget)}" update="user-filter" process="user-filter" value="Add filter" />
+        </div>
       </h:panelGroup>
     </ui:define>
 

@@ -1,0 +1,1189 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "id" : "18B031C59C3C7814",
+  "config" : {
+    "data" : "portalKit_test.Data"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "CreateCaseCreatedThisMonday",
+      "config" : {
+        "signature" : "CreateCaseCreatedThisMonday",
+        "request" : {
+          "isVisibleOnStartList" : false
+        },
+        "triggerable" : true,
+        "task" : {
+          "responsible" : {
+            "activator" : "SYSTEM"
+          }
+        },
+        "case" : {
+          "name" : "Created Monday this week",
+          "attachToBusinessCase" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 656 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f5" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 928, "y" : 656 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "RequestStart",
+      "name" : "CreateDataForCaseComplexFilter",
+      "config" : {
+        "signature" : "CreateDataForCaseComplexFilter"
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 120 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f113" }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "TriggerCall",
+      "name" : [
+        "Created Monday",
+        "this week"
+      ],
+      "config" : {
+        "processCall" : "Start Processes/CreateDataForComplexFilter:CreateCaseCreatedThisMonday()"
+      },
+      "visual" : {
+        "at" : { "x" : 536, "y" : 120 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f26" }
+      ]
+    }, {
+      "id" : "f8",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 48, "y" : 240 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "Script",
+      "name" : "set case uuid",
+      "config" : {
+        "output" : {
+          "code" : "in.caseuuid = ivy.case.uuid();"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 656 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f68" }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "Database",
+      "name" : "Update Case info",
+      "config" : {
+        "query" : {
+          "dbName" : "IvySystemDatabase",
+          "sql" : {
+            "kind" : "ANY",
+            "stmt" : [
+              "UPDATE IWA_CASE",
+              "SET STARTTIMESTAMP = '<%=in.date%>'",
+              "WHERE UUID = '<%=in.caseuuid%>'"
+            ]
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 800, "y" : 656 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f12",
+      "type" : "RequestStart",
+      "name" : "CreateCaseCreatedStartOfThisQuarter",
+      "config" : {
+        "signature" : "CreateCaseCreatedStartOfThisQuarter",
+        "request" : {
+          "isVisibleOnStartList" : false
+        },
+        "triggerable" : true,
+        "task" : {
+          "responsible" : {
+            "activator" : "SYSTEM"
+          }
+        },
+        "case" : {
+          "name" : "Created this quarter",
+          "attachToBusinessCase" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 848 }
+      },
+      "connect" : [
+        { "id" : "f17", "to" : "f14" }
+      ]
+    }, {
+      "id" : "f13",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 928, "y" : 848 }
+      }
+    }, {
+      "id" : "f14",
+      "type" : "Script",
+      "name" : "set case uuid",
+      "config" : {
+        "output" : {
+          "code" : "in.caseuuid = ivy.case.uuid();"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 848 }
+      },
+      "connect" : [
+        { "id" : "f18", "to" : "f72" }
+      ]
+    }, {
+      "id" : "f15",
+      "type" : "Database",
+      "name" : "Update Case info",
+      "config" : {
+        "query" : {
+          "dbName" : "IvySystemDatabase",
+          "sql" : {
+            "kind" : "ANY",
+            "stmt" : [
+              "UPDATE IWA_CASE",
+              "SET STARTTIMESTAMP = '<%=in.date%>'",
+              "WHERE UUID = '<%=in.caseuuid%>'"
+            ]
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 800, "y" : 848 }
+      },
+      "connect" : [
+        { "id" : "f23", "to" : "f13" }
+      ]
+    }, {
+      "id" : "f19",
+      "type" : "RequestStart",
+      "name" : "CreateCaseCreatedStartOfThisMonth",
+      "config" : {
+        "signature" : "CreateCaseCreatedStartOfThisMonth",
+        "request" : {
+          "isVisibleOnStartList" : false
+        },
+        "triggerable" : true,
+        "task" : {
+          "responsible" : {
+            "activator" : "SYSTEM"
+          }
+        },
+        "case" : {
+          "name" : "Created this month",
+          "attachToBusinessCase" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 752 }
+      },
+      "connect" : [
+        { "id" : "f25", "to" : "f21" }
+      ]
+    }, {
+      "id" : "f20",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 928, "y" : 752 }
+      }
+    }, {
+      "id" : "f21",
+      "type" : "Script",
+      "name" : "set case uuid",
+      "config" : {
+        "output" : {
+          "code" : "in.caseuuid = ivy.case.uuid();"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 752 }
+      },
+      "connect" : [
+        { "id" : "f24", "to" : "f70" }
+      ]
+    }, {
+      "id" : "f22",
+      "type" : "Database",
+      "name" : "Update Case info",
+      "config" : {
+        "query" : {
+          "dbName" : "IvySystemDatabase",
+          "sql" : {
+            "kind" : "ANY",
+            "stmt" : [
+              "UPDATE IWA_CASE",
+              "SET STARTTIMESTAMP = '<%=in.date%>'",
+              "WHERE UUID = '<%=in.caseuuid%>'"
+            ]
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 800, "y" : 752 }
+      },
+      "connect" : [
+        { "id" : "f16", "to" : "f20" }
+      ]
+    }, {
+      "id" : "f26",
+      "type" : "TriggerCall",
+      "name" : "Created this month",
+      "config" : {
+        "processCall" : "Start Processes/CreateDataForComplexFilter:CreateCaseCreatedStartOfThisMonth()"
+      },
+      "visual" : {
+        "at" : { "x" : 720, "y" : 120 }
+      },
+      "connect" : [
+        { "id" : "f27", "to" : "f28" }
+      ]
+    }, {
+      "id" : "f28",
+      "type" : "TriggerCall",
+      "name" : "Created this quarter",
+      "config" : {
+        "processCall" : "Start Processes/CreateDataForComplexFilter:CreateCaseCreatedStartOfThisQuarter()"
+      },
+      "visual" : {
+        "at" : { "x" : 888, "y" : 120 }
+      },
+      "connect" : [
+        { "id" : "f29", "to" : "f85" }
+      ]
+    }, {
+      "id" : "f30",
+      "type" : "RequestStart",
+      "name" : "CreateCaseCreatedNDaysAgo",
+      "config" : {
+        "signature" : "CreateCaseCreatedNDaysAgo",
+        "input" : {
+          "params" : [
+            { "name" : "times", "type" : "Integer", "desc" : "" }
+          ],
+          "map" : {
+            "out.times" : "param.times"
+          }
+        },
+        "request" : {
+          "isVisibleOnStartList" : false
+        },
+        "triggerable" : true,
+        "task" : {
+          "responsible" : {
+            "activator" : "SYSTEM"
+          }
+        },
+        "case" : {
+          "name" : "Create case created <%=param.times%> days ago",
+          "attachToBusinessCase" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 1048 }
+      },
+      "connect" : [
+        { "id" : "f35", "to" : "f32" }
+      ]
+    }, {
+      "id" : "f31",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 928, "y" : 1048 }
+      }
+    }, {
+      "id" : "f32",
+      "type" : "Script",
+      "name" : "set case uuid",
+      "config" : {
+        "output" : {
+          "code" : [
+            "Thread.sleep(100);",
+            "",
+            "in.caseuuid = ivy.case.uuid();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 1048 }
+      },
+      "connect" : [
+        { "id" : "f36", "to" : "f74" }
+      ]
+    }, {
+      "id" : "f33",
+      "type" : "Database",
+      "name" : "Update Case info",
+      "config" : {
+        "query" : {
+          "dbName" : "IvySystemDatabase",
+          "sql" : {
+            "kind" : "ANY",
+            "stmt" : [
+              "UPDATE IWA_CASE",
+              "SET STARTTIMESTAMP = '<%=in.date%>'",
+              "WHERE UUID = '<%=in.caseuuid%>'"
+            ]
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 800, "y" : 1048 }
+      },
+      "connect" : [
+        { "id" : "f45", "to" : "f31" }
+      ]
+    }, {
+      "id" : "f37",
+      "type" : "TriggerCall",
+      "name" : [
+        "Create case created",
+        "5 days ago"
+      ],
+      "config" : {
+        "processCall" : "Start Processes/CreateDataForComplexFilter:CreateCaseCreatedNDaysAgo(Integer)",
+        "call" : {
+          "map" : {
+            "param.times" : "5"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1056, "y" : 240 }
+      },
+      "connect" : [
+        { "id" : "f38", "to" : "f46" }
+      ]
+    }, {
+      "id" : "f39",
+      "type" : "RequestStart",
+      "name" : "CreateCaseCreatedNWeeksAgo",
+      "config" : {
+        "signature" : "CreateCaseCreatedNWeeksAgo",
+        "input" : {
+          "params" : [
+            { "name" : "times", "type" : "Integer", "desc" : "" }
+          ],
+          "map" : {
+            "out.times" : "param.times"
+          }
+        },
+        "request" : {
+          "isVisibleOnStartList" : false
+        },
+        "triggerable" : true,
+        "task" : {
+          "responsible" : {
+            "activator" : "SYSTEM"
+          }
+        },
+        "case" : {
+          "name" : "Create case created <%=param.times%> weeks ago",
+          "attachToBusinessCase" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 1144 }
+      },
+      "connect" : [
+        { "id" : "f44", "to" : "f41" }
+      ]
+    }, {
+      "id" : "f40",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 928, "y" : 1144 }
+      }
+    }, {
+      "id" : "f41",
+      "type" : "Script",
+      "name" : "set case uuid",
+      "config" : {
+        "output" : {
+          "code" : [
+            "Thread.sleep(100);",
+            "",
+            "in.caseuuid = ivy.case.uuid();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 1144 }
+      },
+      "connect" : [
+        { "id" : "f43", "to" : "f87" }
+      ]
+    }, {
+      "id" : "f42",
+      "type" : "Database",
+      "name" : "Update Case info",
+      "config" : {
+        "query" : {
+          "dbName" : "IvySystemDatabase",
+          "sql" : {
+            "kind" : "ANY",
+            "stmt" : [
+              "UPDATE IWA_CASE",
+              "SET STARTTIMESTAMP = '<%=in.date%>'",
+              "WHERE UUID = '<%=in.caseuuid%>'"
+            ]
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 800, "y" : 1144 }
+      },
+      "connect" : [
+        { "id" : "f53", "to" : "f40" }
+      ]
+    }, {
+      "id" : "f46",
+      "type" : "TriggerCall",
+      "name" : [
+        "Create case created",
+        "3 weeks ago"
+      ],
+      "config" : {
+        "processCall" : "Start Processes/CreateDataForComplexFilter:CreateCaseCreatedNWeeksAgo(Integer)",
+        "call" : {
+          "map" : {
+            "param.times" : "3"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 888, "y" : 240 }
+      },
+      "connect" : [
+        { "id" : "f47", "to" : "f55" }
+      ]
+    }, {
+      "id" : "f48",
+      "type" : "RequestStart",
+      "name" : "CreateCaseCreatedNMonthsAgo",
+      "config" : {
+        "signature" : "CreateCaseCreatedNMonthsAgo",
+        "input" : {
+          "params" : [
+            { "name" : "times", "type" : "Integer", "desc" : "" }
+          ],
+          "map" : {
+            "out.times" : "param.times"
+          }
+        },
+        "request" : {
+          "isVisibleOnStartList" : false
+        },
+        "triggerable" : true,
+        "task" : {
+          "responsible" : {
+            "activator" : "SYSTEM"
+          }
+        },
+        "case" : {
+          "name" : "Create case created <%=param.times%> months ago",
+          "attachToBusinessCase" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 1248 }
+      },
+      "connect" : [
+        { "id" : "f52", "to" : "f50" }
+      ]
+    }, {
+      "id" : "f49",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 928, "y" : 1248 }
+      }
+    }, {
+      "id" : "f50",
+      "type" : "Script",
+      "name" : "set case uuid",
+      "config" : {
+        "output" : {
+          "code" : [
+            "Thread.sleep(100);",
+            "",
+            "in.caseuuid = ivy.case.uuid();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 1248 }
+      },
+      "connect" : [
+        { "id" : "f54", "to" : "f89" }
+      ]
+    }, {
+      "id" : "f51",
+      "type" : "Database",
+      "name" : "Update Case info",
+      "config" : {
+        "query" : {
+          "dbName" : "IvySystemDatabase",
+          "sql" : {
+            "kind" : "ANY",
+            "stmt" : [
+              "UPDATE IWA_CASE",
+              "SET STARTTIMESTAMP = '<%=in.date%>'",
+              "WHERE UUID = '<%=in.caseuuid%>'"
+            ]
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 800, "y" : 1248 }
+      },
+      "connect" : [
+        { "id" : "f62", "to" : "f49" }
+      ]
+    }, {
+      "id" : "f55",
+      "type" : "TriggerCall",
+      "name" : "Create case created 7 months ago",
+      "config" : {
+        "processCall" : "Start Processes/CreateDataForComplexFilter:CreateCaseCreatedNMonthsAgo(Integer)",
+        "call" : {
+          "map" : {
+            "param.times" : "7"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 720, "y" : 240 }
+      },
+      "connect" : [
+        { "id" : "f56", "to" : "f64" }
+      ]
+    }, {
+      "id" : "f57",
+      "type" : "RequestStart",
+      "name" : "CreateCaseCreatedNYearsAgo",
+      "config" : {
+        "signature" : "CreateCaseCreatedNYearsAgo",
+        "input" : {
+          "params" : [
+            { "name" : "times", "type" : "Integer", "desc" : "" }
+          ],
+          "map" : {
+            "out.times" : "param.times"
+          }
+        },
+        "request" : {
+          "isVisibleOnStartList" : false
+        },
+        "triggerable" : true,
+        "task" : {
+          "responsible" : {
+            "activator" : "SYSTEM"
+          }
+        },
+        "case" : {
+          "name" : "Create case created <%=param.times%> years ago",
+          "attachToBusinessCase" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 1352 },
+        "description" : "create multiple test users"
+      },
+      "connect" : [
+        { "id" : "f61", "to" : "f59" }
+      ]
+    }, {
+      "id" : "f58",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 928, "y" : 1352 }
+      }
+    }, {
+      "id" : "f59",
+      "type" : "Script",
+      "name" : "set case uuid",
+      "config" : {
+        "output" : {
+          "code" : [
+            "Thread.sleep(100);",
+            "",
+            "in.caseuuid = ivy.case.uuid();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 1352 }
+      },
+      "connect" : [
+        { "id" : "f63", "to" : "f91" }
+      ]
+    }, {
+      "id" : "f60",
+      "type" : "Database",
+      "name" : "Update Case info",
+      "config" : {
+        "query" : {
+          "dbName" : "IvySystemDatabase",
+          "sql" : {
+            "kind" : "ANY",
+            "stmt" : [
+              "UPDATE IWA_CASE",
+              "SET STARTTIMESTAMP = '<%=in.date%>'",
+              "WHERE UUID = '<%=in.caseuuid%>'"
+            ]
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 800, "y" : 1352 }
+      },
+      "connect" : [
+        { "id" : "f81", "to" : "f58" }
+      ]
+    }, {
+      "id" : "f64",
+      "type" : "TriggerCall",
+      "name" : [
+        "Create case created",
+        "2 quarters ago"
+      ],
+      "config" : {
+        "processCall" : "Start Processes/CreateDataForComplexFilter:CreateCaseCreatedNQuartersAgo(Integer)",
+        "call" : {
+          "map" : {
+            "param.times" : "2"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 536, "y" : 240 }
+      },
+      "connect" : [
+        { "id" : "f65", "to" : "f66" }
+      ]
+    }, {
+      "id" : "f66",
+      "type" : "TriggerCall",
+      "name" : "Created case created 2 years ago",
+      "config" : {
+        "processCall" : "Start Processes/CreateDataForComplexFilter:CreateCaseCreatedNYearsAgo(Integer)",
+        "call" : {
+          "map" : {
+            "param.times" : "2"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 360, "y" : 240 }
+      },
+      "connect" : [
+        { "id" : "f67", "to" : "f109" }
+      ]
+    }, {
+      "id" : "f68",
+      "type" : "Script",
+      "name" : "calculate date",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.util.PortalDateUtils;",
+            "",
+            "in.date = PortalDateUtils.getStartOfCurrentWeek();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 616, "y" : 656 }
+      },
+      "connect" : [
+        { "id" : "f69", "to" : "f10" }
+      ]
+    }, {
+      "id" : "f70",
+      "type" : "Script",
+      "name" : "calculate date",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.util.PortalDateUtils;",
+            "",
+            "in.date = PortalDateUtils.getStartOfCurrentMonth();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 616, "y" : 752 }
+      },
+      "connect" : [
+        { "id" : "f71", "to" : "f22" }
+      ]
+    }, {
+      "id" : "f72",
+      "type" : "Script",
+      "name" : "calculate date",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.util.PortalDateUtils;",
+            "",
+            "in.date = PortalDateUtils.getStartOfCurrentQuarter();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 616, "y" : 848 }
+      },
+      "connect" : [
+        { "id" : "f73", "to" : "f15" }
+      ]
+    }, {
+      "id" : "f74",
+      "type" : "Script",
+      "name" : "calculate date",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.util.PortalDateUtils;",
+            "",
+            "in.date = PortalDateUtils.getDayByPeriod(-in.times);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 616, "y" : 1048 }
+      },
+      "connect" : [
+        { "id" : "f75", "to" : "f33" }
+      ]
+    }, {
+      "id" : "f76",
+      "type" : "RequestStart",
+      "name" : "CreateCaseCreatedStartOfThisYear",
+      "config" : {
+        "signature" : "CreateCaseCreatedStartOfThisYear",
+        "request" : {
+          "isVisibleOnStartList" : false
+        },
+        "triggerable" : true,
+        "task" : {
+          "responsible" : {
+            "activator" : "SYSTEM"
+          }
+        },
+        "case" : {
+          "name" : "Created this year",
+          "attachToBusinessCase" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 952 },
+        "labelOffset" : { "x" : 9, "y" : 33 }
+      },
+      "connect" : [
+        { "id" : "f82", "to" : "f78" }
+      ]
+    }, {
+      "id" : "f77",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 928, "y" : 952 }
+      }
+    }, {
+      "id" : "f78",
+      "type" : "Script",
+      "name" : "set case uuid",
+      "config" : {
+        "output" : {
+          "code" : [
+            "Thread.sleep(100);",
+            "",
+            "in.caseuuid = ivy.case.uuid();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 952 }
+      },
+      "connect" : [
+        { "id" : "f83", "to" : "f80" }
+      ]
+    }, {
+      "id" : "f79",
+      "type" : "Database",
+      "name" : "Update Case info",
+      "config" : {
+        "query" : {
+          "dbName" : "IvySystemDatabase",
+          "sql" : {
+            "kind" : "ANY",
+            "stmt" : [
+              "UPDATE IWA_CASE",
+              "SET STARTTIMESTAMP = '<%=in.date%>'",
+              "WHERE UUID = '<%=in.caseuuid%>'"
+            ]
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 800, "y" : 952 }
+      },
+      "connect" : [
+        { "id" : "f34", "to" : "f77" }
+      ]
+    }, {
+      "id" : "f80",
+      "type" : "Script",
+      "name" : "calculate date",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.util.PortalDateUtils;",
+            "",
+            "in.date = PortalDateUtils.getStartOfCurrentYear();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 616, "y" : 952 }
+      },
+      "connect" : [
+        { "id" : "f84", "to" : "f79" }
+      ]
+    }, {
+      "id" : "f85",
+      "type" : "TriggerCall",
+      "name" : "Created this year",
+      "config" : {
+        "processCall" : "Start Processes/CreateDataForComplexFilter:CreateCaseCreatedStartOfThisYear()"
+      },
+      "visual" : {
+        "at" : { "x" : 1056, "y" : 120 }
+      },
+      "connect" : [
+        { "id" : "f86", "to" : "f37" }
+      ]
+    }, {
+      "id" : "f87",
+      "type" : "Script",
+      "name" : "calculate date",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.util.PortalDateUtils;",
+            "",
+            "in.date = PortalDateUtils.getWeekByPeriod(-in.times);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 616, "y" : 1144 }
+      },
+      "connect" : [
+        { "id" : "f88", "to" : "f42" }
+      ]
+    }, {
+      "id" : "f89",
+      "type" : "Script",
+      "name" : "calculate date",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.util.PortalDateUtils;",
+            "",
+            "in.date = PortalDateUtils.getMonthByPeriod(-in.times);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 616, "y" : 1248 }
+      },
+      "connect" : [
+        { "id" : "f90", "to" : "f51" }
+      ]
+    }, {
+      "id" : "f91",
+      "type" : "Script",
+      "name" : "calculate date",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.util.PortalDateUtils;",
+            "",
+            "in.date = PortalDateUtils.getYearByPeriod(-in.times);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 616, "y" : 1352 }
+      },
+      "connect" : [
+        { "id" : "f92", "to" : "f60" }
+      ]
+    }, {
+      "id" : "f109",
+      "type" : "Script",
+      "name" : "Reindex",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.elasticsearch.index.IndexInfo;",
+            "import ch.ivyteam.ivy.elasticsearch.client.IndexName;",
+            "import ch.ivyteam.ivy.elasticsearch.IElasticsearchManager;",
+            "// via APi change that triggers the sync, e.g. CustomField",
+            "// also applies to tasks ",
+            "",
+            "//ivy.wf.findCase(in.caseID).customFields().stringField(\"ReindexTrigger\").set(\"1\");",
+            "",
+            "//Alternativ is via api with which to trigger reindexing. ",
+            "",
+            "for (int i = 0; i < IElasticsearchManager.instance().indices().size(); i++) {",
+            "  ",
+            "  IndexInfo indexInfo = IElasticsearchManager.instance().indices().get(i);",
+            "  ivy.log.info(\"Reindexing STARTED for: \" + indexInfo.indexName().toString());",
+            "  IElasticsearchManager.instance().reindexSync(indexInfo.indexName());",
+            "  ivy.log.info(\"Reindexing DONE for: \" + indexInfo.indexName().toString());",
+            "  ",
+            "}",
+            "",
+            "",
+            "//IElasticsearchManager.instance().indices().size()",
+            "//with the indices start the reindex",
+            "// IElasticsearchManager.instance().reindex(indexName)"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 176, "y" : 240 }
+      },
+      "connect" : [
+        { "id" : "f110", "to" : "f8" }
+      ]
+    }, {
+      "id" : "f93",
+      "type" : "RequestStart",
+      "name" : "CreateCaseCreatedNQuartersAgo",
+      "config" : {
+        "signature" : "CreateCaseCreatedNQuartersAgo",
+        "input" : {
+          "params" : [
+            { "name" : "times", "type" : "Integer", "desc" : "" }
+          ],
+          "map" : {
+            "out.times" : "param.times"
+          }
+        },
+        "request" : {
+          "isVisibleOnStartList" : false
+        },
+        "triggerable" : true,
+        "task" : {
+          "responsible" : {
+            "activator" : "SYSTEM"
+          }
+        },
+        "case" : {
+          "name" : "Create case created <%=param.times%> quarters ago",
+          "attachToBusinessCase" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 1448 }
+      },
+      "connect" : [
+        { "id" : "f100", "to" : "f95" }
+      ]
+    }, {
+      "id" : "f94",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 928, "y" : 1448 }
+      }
+    }, {
+      "id" : "f95",
+      "type" : "Script",
+      "name" : "set case uuid",
+      "config" : {
+        "output" : {
+          "code" : [
+            "Thread.sleep(100);",
+            "",
+            "in.caseuuid = ivy.case.uuid();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 1448 }
+      },
+      "connect" : [
+        { "id" : "f101", "to" : "f97" }
+      ]
+    }, {
+      "id" : "f96",
+      "type" : "Database",
+      "name" : "Update Case info",
+      "config" : {
+        "query" : {
+          "dbName" : "IvySystemDatabase",
+          "sql" : {
+            "kind" : "ANY",
+            "stmt" : [
+              "UPDATE IWA_CASE",
+              "SET STARTTIMESTAMP = '<%=in.date%>'",
+              "WHERE UUID = '<%=in.caseuuid%>'"
+            ]
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 800, "y" : 1448 }
+      },
+      "connect" : [
+        { "id" : "f98", "to" : "f94" }
+      ]
+    }, {
+      "id" : "f97",
+      "type" : "Script",
+      "name" : "calculate date",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.util.PortalDateUtils;",
+            "",
+            "in.date = PortalDateUtils.getMonthByPeriod(-(in.times*3));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 616, "y" : 1448 }
+      },
+      "connect" : [
+        { "id" : "f99", "to" : "f96" }
+      ]
+    }, {
+      "id" : "f102",
+      "type" : "RequestStart",
+      "name" : "CreateCaseCreatedYesterday",
+      "config" : {
+        "signature" : "CreateCaseCreatedYesterday",
+        "request" : {
+          "isVisibleOnStartList" : false
+        },
+        "triggerable" : true,
+        "task" : {
+          "responsible" : {
+            "activator" : "SYSTEM"
+          }
+        },
+        "case" : {
+          "name" : "Created yesterday",
+          "attachToBusinessCase" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 560 }
+      },
+      "connect" : [
+        { "id" : "f107", "to" : "f104" }
+      ]
+    }, {
+      "id" : "f103",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 928, "y" : 560 }
+      }
+    }, {
+      "id" : "f104",
+      "type" : "Script",
+      "name" : "set case uuid",
+      "config" : {
+        "output" : {
+          "code" : "in.caseuuid = ivy.case.uuid();"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 560 }
+      },
+      "connect" : [
+        { "id" : "f112", "to" : "f106" }
+      ]
+    }, {
+      "id" : "f105",
+      "type" : "Database",
+      "name" : "Update Case info",
+      "config" : {
+        "query" : {
+          "dbName" : "IvySystemDatabase",
+          "sql" : {
+            "kind" : "ANY",
+            "stmt" : [
+              "UPDATE IWA_CASE",
+              "SET STARTTIMESTAMP = '<%=in.date%>'",
+              "WHERE UUID = '<%=in.caseuuid%>'"
+            ]
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 800, "y" : 560 }
+      },
+      "connect" : [
+        { "id" : "f111", "to" : "f103" }
+      ]
+    }, {
+      "id" : "f106",
+      "type" : "Script",
+      "name" : "calculate date",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang3.time.DateUtils;",
+            "",
+            "in.date = DateUtils.addDays(new Date(), -1);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 616, "y" : 560 }
+      },
+      "connect" : [
+        { "id" : "f108", "to" : "f105" }
+      ]
+    }, {
+      "id" : "f113",
+      "type" : "TriggerCall",
+      "name" : "Created yesterday",
+      "config" : {
+        "processCall" : "Start Processes/CreateDataForComplexFilter:CreateCaseCreatedYesterday()"
+      },
+      "visual" : {
+        "at" : { "x" : 360, "y" : 120 }
+      },
+      "connect" : [
+        { "id" : "f114", "to" : "f6" }
+      ]
+    } ]
+}
