@@ -110,6 +110,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
 
     // In progress for admin user
+    newDashboardPage.waitForGrowlMessageDisappear();
     assertTaskActionsByTaskState(IN_PROGRESS, Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, DESTROY,
         WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
 
@@ -120,6 +121,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.clickCancelTask();
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
     // In progress for normal user
+    newDashboardPage.waitForGrowlMessageDisappear();
     assertTaskActionsByTaskState(IN_PROGRESS,
         Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK));
   }
