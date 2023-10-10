@@ -29,9 +29,6 @@ Variables:
     # For switch on/off the display icon in button.
     ShowButtonIcon: true
 
-    # For switch on/off the display of environment information.
-    ShowEnvironmentInfo: false
-
     # Display the custom end page at the end of each Express process.
     ExpressEndPage: true
 
@@ -280,6 +277,9 @@ Variables:
     # Additional menu items for the main menu of Portal. Could be an Ivy process or an external link.
     # [file: json]
     CustomMenuItems:
+
+    # GlobalVariable of footer info that can be set in the portal admin settings.
+    GlobalFooterInfo: ''
 
     # Support the translation from English to the other languages or from German to the other languages (German, English, French, Spanish)
     DeepL:
