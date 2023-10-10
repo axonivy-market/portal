@@ -185,4 +185,13 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     $("div[id$='dashboard-cases-container']").shouldBe(appear, DEFAULT_TIMEOUT)
       .$("div[id$='dashboard-cases']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
+  
+  public void clickToAddClientStatisticWidget() {
+    $("button[id$='new-statistic-widget-dialog-content:0:add-widget']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    
+  }
+
+  public ElementsCollection countStatisticCharts() {
+    return $("div[id='dashboard-body']").$$(".statistic-chart-widget__chart");
+  }
 }
