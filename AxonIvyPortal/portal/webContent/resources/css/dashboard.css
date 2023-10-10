@@ -1673,3 +1673,62 @@ body .ui-widget.new-widget-dialog__introduction {
 .widget__content.task-widget {
   max-height: fit-content;
 }
+
+/* new filter */
+.widget-configuration-form {
+  flex-wrap: nowrap;
+}
+
+.widget-configuration-form .widget-preview {
+  width: auto;
+}
+
+.case-widget-filter.widget-configuration.card {
+  width: auto;
+}
+
+.dashboard-configuration-filter-container {
+  flex-direction: column;
+}
+
+.dashboard-widget-filter__main-panel {
+  width: 100%;
+}
+
+.dashboard-widget-filter__filter-panel {
+  display: flex;
+  margin-top: 10px;
+}
+
+.dashboard-widget-filter__filter-panel:first-child {
+  margin-top: 0;
+}
+
+.dashboard-widget-filter__filter-panel > div {
+  margin-left: 0.5em;
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-widget-filter__filter-panel > div.date-picker-panel {
+  min-width: 210px;
+}
+
+.dashboard-widget-filter__filter-panel > div.number-of-periods-panel {
+  width: 100px;
+}
+
+.dashboard-widget-filter__filter-panel > div:first-child {
+  margin-left: 0;
+}
+
+body .ui-button.rounded-button.dashboard-widget-filter__remove-filter {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+body .ui-button.rounded-button.dashboard-widget-filter__remove-filter .ui-icon {
+  font-size: 0.5rem;
+  margin-top: -0.25rem;
+  margin-left: -0.25rem;
+}

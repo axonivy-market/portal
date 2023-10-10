@@ -425,6 +425,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewParticipant: View participants
   common:
     All: All
+    And: and
     BusinessCaseInformation: Business Case Information
     CollapseAll: Collapse all
     ExpandAll: Expand all
@@ -1761,6 +1762,50 @@ Labels:
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
   Enums:
+    DashboardStandardCaseColumn:
+      ACTIONS: Actions
+      APPLICATION: Application
+      CATEGORY: Category
+      CREATED: Created Date
+      CREATOR: Creator
+      DESCRIPTION: Description
+      FINISHED: Finished Date
+      ID: Id
+      NAME: name
+      OWNER: Case Owner
+      STATE: State
+    FilterOperator:
+      BEFORE: Is Before
+      BETWEEN: Between
+      CONTAINS: Contains
+      CURRENT: Current
+      EMPTY: Is Empty
+      END_WITH: Ends With
+      IN: In
+      IS: Is
+      IS_NOT: Is Not
+      LAST: Last N Period(s)
+      NEXT: Next N period(s)
+      NOT_CONTAINS: Does Not Contain
+      NOT_EMPTY: Is Not Empty
+      NOT_END_WITH: Doesn’t end with
+      NOT_IN: Not In
+      NOT_START_WITH: Doesn’t start with
+      START_WITH: Starts With
+      TODAY: Today
+      YESTERDAY: Yesterday
+    FilterPeriodType:
+      DAY: Day
+      MONTH: Month
+      Plural:
+        DAY: Day(s)
+        MONTH: Month(s)
+        QUARTER: Quarter(s)
+        WEEK: Week(s)
+        YEAR: Year(s)
+      QUARTER: Quarter
+      WEEK: Week
+      YEAR: Year
     SearchScopeCaseField:
       CUSTOM: Custom string fields
       DESCRIPTION: Description

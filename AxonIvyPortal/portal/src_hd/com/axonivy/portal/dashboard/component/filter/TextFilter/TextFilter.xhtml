@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="filter" type="com.axonivy.portal.dto.dashboard.filter.DashboardFilter" />
+  <cc:attribute name="componentToUpdate" required="true" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="filter" value="#{cc.attrs.filter}" />
+
+  <h:panelGroup id="text-filter-operator-panel" layout="block">
+      <p:selectOneMenu id="operator-selection" value="#{filter.operator}">
+        <f:selectItems value="#{widgetTextFilterBean.operators}" var="operator"
+          itemValue="#{operator}" itemLabel="#{operator.label}" />
+          <p:ajax event="itemSelect" listener="#{widgetTextFilterBean.onChangeOperator(filter)}"
+            process="@(this)" update="#{cc.attrs.componentToUpdate}" />
+      </p:selectOneMenu>
+  </h:panelGroup>
+
+  <h:panelGroup id="text-list-panel" layout="block" rendered="#{widgetTextFilterBean.isShowTextListPanel(filter)}" styleClass="date-picker-panel">
+    <p:chips value="#{filter.texts}" unique="true" addOnPaste="true" />
+  </h:panelGroup>
+</cc:implementation>
+
+</html>

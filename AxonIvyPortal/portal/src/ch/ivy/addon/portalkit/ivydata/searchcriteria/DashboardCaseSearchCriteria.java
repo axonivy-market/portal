@@ -9,6 +9,16 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
+import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateBeforeOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateBetweenOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateCurrentPeriodOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateNumberOfPeriodsOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateTodayOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateYesterdayOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.name.NameContainsOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.name.NameIsEmptyOperatorHandler;
+
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
@@ -29,6 +39,7 @@ public class DashboardCaseSearchCriteria {
 
   private static final String LIKE_FORMAT = "%%%s%%";
   private List<CaseColumnModel> columns;
+  private List<DashboardFilter> filters;
   private String sortField;
   private boolean sortDescending;
   private boolean isInConfiguration;
@@ -58,6 +69,53 @@ public class DashboardCaseSearchCriteria {
       }
       query.where().and(subQuery);
     }
+  }
+
+  private void queryComplexFilter(CaseQuery query) {
+    if (CollectionUtils.isEmpty(filters)) {
+      return;
+    }
+
+    for (DashboardFilter filter : filters) {
+      DashboardStandardCaseColumn fieldEnum  = DashboardStandardCaseColumn.findBy(filter.getField());
+
+      if (Optional.ofNullable(filter).map(DashboardFilter::getOperator).isEmpty()) {
+        continue;
+      }
+
+      CaseQuery filterQuery = switch (fieldEnum) {
+        case NAME -> generateNameFilterQuery(filter);
+        case CREATED -> generateCreatedDateFilterQuery(filter);
+        default -> null;
+      };
+
+      if (filterQuery != null) {
+        query.where().and(filterQuery);
+      }
+    }
+  }
+
+  private CaseQuery generateCreatedDateFilterQuery(DashboardFilter filter) {
+    return switch (filter.getOperator()) {
+      case BETWEEN -> CreatedDateBetweenOperatorHandler.getInstance().buildQuery(filter);
+      case BEFORE -> CreatedDateBeforeOperatorHandler.getInstance().buildQuery(filter);
+      case TODAY -> CreatedDateTodayOperatorHandler.getInstance().buildQuery();
+      case YESTERDAY -> CreatedDateYesterdayOperatorHandler.getInstance().buildQuery();
+      case CURRENT -> CreatedDateCurrentPeriodOperatorHandler.getInstance().buildQuery(filter);
+      case LAST -> CreatedDateNumberOfPeriodsOperatorHandler.getInstance().buildQuery(filter, true);
+      case NEXT -> CreatedDateNumberOfPeriodsOperatorHandler.getInstance().buildQuery(filter, false);
+      default -> null;
+    };
+  }
+
+  private CaseQuery generateNameFilterQuery(DashboardFilter filter) {
+    return switch (filter.getOperator()) {
+      case EMPTY -> NameIsEmptyOperatorHandler.getInstance().buildIsEmptyQuery(filter);
+      case NOT_EMPTY -> NameIsEmptyOperatorHandler.getInstance().buildNotEmptyQuery(filter);
+      case CONTAINS -> NameContainsOperatorHandler.getInstance().buildContainsQuery(filter);
+      case NOT_CONTAINS -> NameContainsOperatorHandler.getInstance().buildNotContainsQuery(filter);
+      default -> null;
+    };
   }
 
   private void queryName(CaseQuery query, String name) {
@@ -135,6 +193,8 @@ public class DashboardCaseSearchCriteria {
   }
   
   private void queryFilters(CaseQuery query) {
+    queryComplexFilter(query);
+
     var states = new ArrayList<CaseBusinessState>();
     for (ColumnModel column : columns) {
       String field = column.getField();
@@ -405,5 +465,13 @@ public class DashboardCaseSearchCriteria {
   
   public void setColumns(List<CaseColumnModel> columns) {
     this.columns = columns;
+  }
+
+  public List<DashboardFilter> getFilters() {
+    return filters;
+  }
+
+  public void setFilters(List<DashboardFilter> filters) {
+    this.filters = filters;
   }
 }

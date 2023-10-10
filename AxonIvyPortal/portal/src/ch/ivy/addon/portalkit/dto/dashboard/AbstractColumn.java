@@ -62,7 +62,6 @@ public abstract class AbstractColumn implements Serializable {
   protected Boolean sorted;
   protected Boolean sortDescending;
   protected DashboardColumnType type;
-
   protected String userFilter;
   protected List<String> userFilterList;
   protected String userFilterFrom;

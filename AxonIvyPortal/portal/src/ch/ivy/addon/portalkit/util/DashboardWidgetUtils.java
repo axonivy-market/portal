@@ -539,6 +539,7 @@ public class DashboardWidgetUtils {
     widget.setSortField(CaseSortField.ID.toString());
     widget.setSortDescending(true);
     widget.setColumns(initStandardColumns());
+    widget.setFilters(new ArrayList<>());
     return DashboardWidgetUtils.buildCaseColumns(widget);
   }
 
