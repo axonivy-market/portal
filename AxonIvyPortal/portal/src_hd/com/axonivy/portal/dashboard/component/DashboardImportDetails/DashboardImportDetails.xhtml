@@ -46,7 +46,7 @@
         </div>  
 
         <div class="ui-g-12">
-          <p:messages id="import-dashboard-dialog-message" showIcon="false" closable="true"/>
+          <p:messages id="import-dashboard-dialog-message" showIcon="false"/>
         </div>
       </h:panelGroup>
 
@@ -63,13 +63,7 @@
      <p:tabView rendered="#{not empty managedBean.importedDashboards}" value="#{managedBean.importedDashboards}" var="dashboard" id="dashboards-information-form" activeIndex="#{dashboardImportBean.activeIndex}">
       <f:event listener="#{dashboardImportBean.tabInit()}" type="preRenderComponent" />
       <p:ajax event="tabChange" listener="#{dashboardImportBean.onTabChange(dashboard)}" />
-      <p:tab title="Dashboard #{dashboardImportBean.dashBoardIndex}" id="dashboard_#{dashboardImportBean.dashBoardIndex}" ariaLabel="true">
-<!--        <div class="ui-g-12"> -->
-<!--         <p:messages id="import-dashboard-title-message" -->
-<!--          for="import-dashboard-title" /> -->
-<!--         <p:messages id="import-dashboard-form-message" -->
-<!--          for="dashboard-permission" /> -->
-<!--        </div> -->
+      <p:tab title="Dashboard #{dashboardImportBean.dashBoardIndex}" id="dashboard_#{dashboardImportBean.dashBoardIndex}">
        <div class="ui-g-2 import-dashboard-label">
         <p:outputLabel
          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardIcon')}" />
@@ -81,13 +75,11 @@
 
        <div class="ui-g-2 import-dashboard-label">
         <p:outputLabel for="import-dashboard-title"
-         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')} #{dashboardImportBean.dashBoardIndex }" />
+         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}" />
        </div>
        <div class="ui-g-10 ui-fluid ui-inputgroup">
         <p:inputText id="import-dashboard-title"
          value="#{dashboard.title}" styleClass="manage-dashboard__input" required="true">
-         <f:validator validatorId="dashboardImportTabValidator"/>
-<!--          <p:ajax update="import-dashboard-title-message"/> -->
         </p:inputText>
         <p:commandButton id="add-language-button"
          icon="si si-chat-translate">

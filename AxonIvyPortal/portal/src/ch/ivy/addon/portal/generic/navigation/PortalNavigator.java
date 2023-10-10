@@ -203,6 +203,11 @@ public final class PortalNavigator extends BaseNavigator{
     navigateByKeyword("DashboardDetails.ivp", PORTAL_DASHBOARD_DETAILS, params);
   }
 
+  public static void navigateToDashBoardConfigurationUrl() {
+    Map<String, String> params = new HashMap<>();
+    navigateByKeyword("PortalDashboardConfiguration.ivp", PORTAL_NEW_DASHBOARD_CONFIGURATION, params);
+  }
+
   public static String getDashboardLink() {
     Map<String, String> params = new HashMap<>();
     params.put(DASHBOARD_PARAM, Boolean.TRUE.toString());

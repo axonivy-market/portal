@@ -185,6 +185,14 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     PortalNavigator.navigateToDashboardDetailsPage(dashboardId, isPublicDashboard);
   }
 
+  public void navigateToPublicDashBoardListPage() {
+    PortalNavigator.navigateToDashBoardConfigurationUrl();
+  }
+
+  public void navigateToPrivateDashboardPage() {
+    PortalNavigator.navigateToDashBoardConfigurationUrl();
+  }
+
   public void onSelectedDeleteDashboard(Dashboard dashboard) {
     this.selectedDashboard = dashboard;
   }
@@ -202,7 +210,17 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   public void createDashboard() {
     collectDashboardsForManagement();
     saveDashboardDetail();
-    PortalNavigator.navigateToDashboard();
+    navigateToDashboardDetailsPage(this.selectedDashboard.getId());
+  }
+
+  public void createDashboards(Boolean isPublicDashboard) {
+    collectDashboardsForManagement();
+    saveDashboardDetail();
+    if (this.isPublicDashboard) {
+      navigateToPublicDashBoardListPage();
+    } else {
+      navigateToPrivateDashboardPage();
+    }
   }
 
   public boolean isPublicDashboard() {
