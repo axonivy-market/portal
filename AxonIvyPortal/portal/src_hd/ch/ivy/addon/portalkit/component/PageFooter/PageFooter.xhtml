@@ -9,6 +9,7 @@
 <cc:interface componentType="IvyComponent">
 </cc:interface>
 
-<cc:implementation> 
+<cc:implementation>
+   <h:outputText  class="ui-md-hidden #{empty pageHeaderFooterBean.footer ? 'u-hidden' : ''}" escape="false" value="#{pageHeaderFooterBean.footer}" />
 </cc:implementation>
 </html>
