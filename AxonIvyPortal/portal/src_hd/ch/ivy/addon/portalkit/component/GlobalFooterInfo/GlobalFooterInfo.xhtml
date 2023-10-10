@@ -10,6 +10,8 @@
 </cc:interface>
 
 <cc:implementation>
-  <div class="ui-sm-hidden" style="height: 20px; text-align: center; background-color: var(--primary-color); color: white">This is footer</div>
+  <span id="server-infor" jsf:rendered="#{not empty globalFooterInfoBean.info}" class="show-environment-info">
+   <h:outputText escape="false" value="#{globalFooterInfoBean.info}" />
+  </span>
 </cc:implementation>
 </html>
