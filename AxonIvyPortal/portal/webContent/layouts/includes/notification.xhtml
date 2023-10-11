@@ -54,6 +54,7 @@
                 </h:panelGroup>
                 
                 <h:panelGroup id="has-notifications" rendered="#{notificationBean.hasNotifications()}">
+                  <h:outputText styleClass="#{notificationBean.render ? 'u-hidden' : ''}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
                   <h:form id="notificationForm" onmouseover="Portal.updateLayoutContent()">
                     <p:dataScroller id="notifications-scroller" lazy="true" styleClass="notification-scroll" value="#{notificationBean.dataModel}" var="notification"
                       rendered="#{notificationBean.render}" chunkSize="20" mode="inline" widgetVar="notifications-scroller">
@@ -65,9 +66,10 @@
                             <p:commandLink id="notificationMarkAsRead" process="@this"
                               actionListener="#{notificationBean.markAsRead(notification)}"
                               global="false"
-                              oncomplete="Portal.updateLayoutContent()"
-                              update="#{unreadNotificationsId}, #{notificationScrollerId}">
-                              <i class="notifications-button fa #{notification.read ? 'fa-circle-thin': 'fa-circle'}" />
+                              onclick="markAsRead('#{notification.id}')"
+                              oncomplete="Portal.updateLayoutContent();"
+                              update="#{unreadNotificationsId}">
+                              <i class="notifications-button fa #{notification.read ? 'fa-circle-thin': 'fa-circle'}" id="#{notification.id}" />
                             </p:commandLink>
                             <p:tooltip for="notificationMarkAsRead" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}" />
                           </div>

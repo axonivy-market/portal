@@ -99,7 +99,6 @@ public class NotificationLazyModel extends LazyDataModel<NotificationDto> {
 
   public void markAsRead(WebNotification dto) {
     webNotifications.markAsRead(dto);
-    resetGroupNotifications();
   }
 
 }
