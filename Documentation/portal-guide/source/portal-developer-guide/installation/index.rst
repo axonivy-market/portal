@@ -121,6 +121,13 @@ In Engine
 
 #. Follow detailed migration notes for each version below.
 
+Migrate 10.0.12 To 10.0.13
+--------------------------
+
+- Override HTML dialog ``UserWithEnvironmentInfo`` is removed and no longer supported, use ``GlobalFooterInfo`` dialog instead with the GlobalVariable.
+
+- Override HTML dialog ``PageHeader`` and ``PageFooter`` are no longer supported, use callable instead.
+
 Migrate 10.0 To 10.0.12
 -----------------------
 

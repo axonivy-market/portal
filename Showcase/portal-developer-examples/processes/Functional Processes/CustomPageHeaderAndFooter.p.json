@@ -1,0 +1,52 @@
+{
+  "format" : "10.0.0",
+  "id" : "18AD9B29EC17E7B5",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.portal.developerexamples.CustomPageHeaderAndFooterData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "portalGetPageHeaderAndFooter()",
+      "config" : {
+        "callSignature" : "portalGetPageHeaderAndFooter",
+        "result" : {
+          "params" : [
+            { "name" : "pageHeader", "type" : "String" },
+            { "name" : "pageFooter", "type" : "String" }
+          ],
+          "map" : {
+            "result.pageHeader" : "in.pageHeader",
+            "result.pageFooter" : "in.pageFooter"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 464, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "custom page header and footer",
+      "config" : {
+        "output" : {
+          "code" : [
+            "in.pageFooter = \"\";",
+            "in.pageHeader = \"<div style='height: 20px; text-align: center; background-color: var(--primary-color); color: white'><span>custom page header</span></div>\";"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}
