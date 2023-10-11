@@ -21,22 +21,37 @@
       </p:selectOneMenu>
   </h:panelGroup>
 
+  <h:panelGroup id="is-date-panel" layout="block" rendered="#{filter.operator == 'IS'}" styleClass="date-picker-panel">
+    <p:datePicker id="is-date" value="#{filter.from}" locale="#{localeBean.locale}"
+      showIcon="true" converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
+  </h:panelGroup>
+
+  <h:panelGroup id="is-not-date-panel" layout="block" rendered="#{filter.operator == 'IS_NOT'}" styleClass="date-picker-panel">
+    <p:datePicker id="is-not-date" value="#{filter.from}" locale="#{localeBean.locale}"
+      showIcon="true" converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
+  </h:panelGroup>
+
   <h:panelGroup id="before-date-panel" layout="block" rendered="#{filter.operator == 'BEFORE'}" styleClass="date-picker-panel">
-    <p:datePicker id="before-date" value="#{filter.from}" locale="#{localeBean.locale}" showTime="#{!dateTimePatternBean.isTimeHidden}"
+    <p:datePicker id="before-date" value="#{filter.from}" locale="#{localeBean.locale}"
       showIcon="true" converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
   </h:panelGroup>
 
-  <h:panelGroup id="between-dates-panel-from" layout="block" rendered="#{filter.operator == 'BETWEEN'}" styleClass="date-picker-panel">
-    <p:datePicker id="from-date" value="#{filter.from}" locale="#{localeBean.locale}" showTime="#{!dateTimePatternBean.isTimeHidden}"
+  <h:panelGroup id="after-date-panel" layout="block" rendered="#{filter.operator == 'AFTER'}" styleClass="date-picker-panel">
+    <p:datePicker id="after-date" value="#{filter.to}" locale="#{localeBean.locale}"
       showIcon="true" converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
   </h:panelGroup>
 
-  <h:panelGroup id="between-dates-panel-and" layout="block" rendered="#{filter.operator == 'BETWEEN'}">
+  <h:panelGroup id="between-dates-panel-from" layout="block" rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}" styleClass="date-picker-panel">
+    <p:datePicker id="from-date" value="#{filter.from}" locale="#{localeBean.locale}"
+      showIcon="true" converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
+  </h:panelGroup>
+
+  <h:panelGroup id="between-dates-panel-and" layout="block" rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}">
     <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/And')}</span>
   </h:panelGroup>
 
-  <h:panelGroup id="between-dates-panel-to" layout="block" rendered="#{filter.operator == 'BETWEEN'}" styleClass="date-picker-panel">
-    <p:datePicker id="to-date" value="#{filter.to}" locale="#{localeBean.locale}" showTime="#{!dateTimePatternBean.isTimeHidden}"
+  <h:panelGroup id="between-dates-panel-to" layout="block" rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}" styleClass="date-picker-panel">
+    <p:datePicker id="to-date" value="#{filter.to}" locale="#{localeBean.locale}"
       showIcon="true" converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
   </h:panelGroup>
 

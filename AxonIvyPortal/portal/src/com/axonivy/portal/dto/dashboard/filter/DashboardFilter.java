@@ -17,10 +17,10 @@ public class DashboardFilter implements Serializable {
 
   private String field;
 
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "[MM/dd/yyyy][MM-dd-yyyy]")
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
   private Date from;
 
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "[MM/dd/yyyy][MM-dd-yyyy]")
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
   private Date to;
 
   private FilterType type;

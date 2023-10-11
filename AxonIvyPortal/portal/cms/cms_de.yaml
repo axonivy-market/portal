@@ -1621,6 +1621,8 @@ Dialogs:
             LinkCopied: Link kopiert!
         dashboard:
           component:
+            CaseWidgetConfiguration:
+              AddFilter: Filter hinzufügen
             DashboardImportDetails:
               FileInfomation: Dateiinformationen
               ImportPrivate: Privates Dashboard importieren
@@ -1772,6 +1774,7 @@ Labels:
       OWNER: Case Owner
       STATE: State
     FilterOperator:
+      AFTER: Ist nach
       BEFORE: Ist vor
       BETWEEN: Zwischen
       CONTAINS: Enthält
@@ -1783,6 +1786,7 @@ Labels:
       IS_NOT: Ist nicht
       LAST: Letzte N Periode(n)
       NEXT: Nächste(r) N Zeitraum(e)
+      NOT_BETWEEN: Nicht zwischen
       NOT_CONTAINS: Enthält nicht
       NOT_EMPTY: Ist nicht leer
       NOT_END_WITH: Endet nicht mit

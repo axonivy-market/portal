@@ -2,9 +2,8 @@ package com.axonivy.portal.util.filter.operator.caze.createddate;
 
 import java.util.Date;
 
-import org.apache.commons.lang3.time.DateUtils;
-
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.util.PortalDateUtils;
 import com.axonivy.portal.util.filter.operator.AbstractFilterOperatorHandler;
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -21,9 +20,10 @@ public class CreatedDateBetweenOperatorHandler extends AbstractFilterOperatorHan
   }
 
   
-  public CaseQuery buildQuery(DashboardFilter filter) {
-    Date from = filter.getFrom();
-    Date to = filter.getTo();
+  public CaseQuery buildBetweenQuery(DashboardFilter filter) {
+    Date from = PortalDateUtils.getStartOfDate(filter.getFrom());
+    Date to = PortalDateUtils.getEndOfDate(filter.getTo());
+
     if (from == null && to == null) {
       return null;
     }
@@ -34,8 +34,31 @@ public class CreatedDateBetweenOperatorHandler extends AbstractFilterOperatorHan
     }
 
     if (to != null) {
-      subQuery.where().startTimestamp().isLowerOrEqualThan(DateUtils.addDays(to, 1));
+      subQuery.where().startTimestamp().isLowerOrEqualThan(to);
     }
     return subQuery;
+  }
+
+  public CaseQuery buildNotBetweenQuery(DashboardFilter filter) {
+    Date from = PortalDateUtils.getStartOfDate(filter.getFrom());
+    Date to = PortalDateUtils.getEndOfDate(filter.getTo());
+
+    CaseQuery subQuery = CaseQuery.create();
+    if (from != null && to != null) {
+      subQuery.where().startTimestamp().isLowerThan(from).or().startTimestamp().isGreaterThan(to);
+      return subQuery;
+    }
+
+    if (from != null) {
+      subQuery.where().startTimestamp().isLowerThan(from);
+      return subQuery;
+    }
+
+    if (to != null) {
+      subQuery.where().startTimestamp().isGreaterThan(to);
+      return subQuery;
+    }
+
+    return null;
   }
 }
