@@ -1,7 +1,5 @@
 ProcessViewerData #class
 com.axonivy.portal.components.ProcessViewer #namespace
-caseId Long #field
-caseId PERSISTENT #fieldModifier
 processId String #field
 processId PERSISTENT #fieldModifier
 isError Boolean #field
@@ -20,5 +18,7 @@ category String #field
 category PERSISTENT #fieldModifier
 errorIcon String #field
 errorIcon PERSISTENT #fieldModifier
-taskId Long #field
-taskId PERSISTENT #fieldModifier
+taskUUID String #field
+taskUUID PERSISTENT #fieldModifier
+caseUUID String #field
+caseUUID PERSISTENT #fieldModifier

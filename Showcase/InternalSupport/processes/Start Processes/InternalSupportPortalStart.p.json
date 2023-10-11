@@ -3711,11 +3711,11 @@
       "type" : "DialogCall",
       "name" : "ProcessViewer",
       "config" : {
-        "dialog" : "ch.ivy.addon.portal.generic.ProcessViewer:start(Long,Long,String)",
+        "dialog" : "ch.ivy.addon.portal.generic.ProcessViewer:start(String,String,String)",
         "call" : {
           "map" : {
-            "param.taskId" : "in.taskId",
-            "param.caseId" : "in.caseId",
+            "param.taskUUID" : "in.taskUUID",
+            "param.caseUUID" : "in.caseUUID",
             "param.processId" : "in.processId"
           }
         }
@@ -3735,14 +3735,14 @@
         "signature" : "PortalProcessViewer",
         "input" : {
           "params" : [
-            { "name" : "selectedTaskId", "type" : "Long", "desc" : "" },
-            { "name" : "caseId", "type" : "Long", "desc" : "" },
+            { "name" : "taskUUID", "type" : "String", "desc" : "" },
+            { "name" : "caseUUID", "type" : "String", "desc" : "" },
             { "name" : "processKey", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.caseId" : "param.caseId",
+            "out.caseUUID" : "param.caseUUID",
             "out.processId" : "param.processKey",
-            "out.taskId" : "param.selectedTaskId"
+            "out.taskUUID" : "param.taskUUID"
           }
         },
         "request" : {

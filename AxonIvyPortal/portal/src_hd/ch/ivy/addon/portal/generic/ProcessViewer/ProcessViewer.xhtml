@@ -13,7 +13,7 @@
       <h:panelGroup layout="block" id="portal-process-viewer-form"
         styleClass="ui-g portal-process-viewer-form portal-card-container">
         <h:panelGroup layout="block" styleClass="ui-g-12 portal-process-viewer-data card">
-            <ic:com.axonivy.portal.components.ProcessViewer taskId="#{data.taskId}" caseId="#{data.caseId}" processLink="#{data.processId}" />
+            <ic:com.axonivy.portal.components.ProcessViewer taskUUID="#{data.taskUUID}" caseUUID="#{data.caseUUID}" processLink="#{data.processId}" />
         </h:panelGroup>
         <div class="ui-g-12 u-text-align-right process-viewer-command u-padding-0">
           <p:commandButton id="close-process" actionListener="#{logic.close}"
