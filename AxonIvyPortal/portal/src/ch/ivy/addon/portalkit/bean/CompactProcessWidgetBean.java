@@ -34,6 +34,7 @@ import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.configuration.UserProcess;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
@@ -44,7 +45,6 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.service.UserProcessService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
@@ -495,10 +495,10 @@ private static final long serialVersionUID = -5889375917550618261L;
   }
 
   public boolean isExternalLink(UserProcess process) {
-    return process != null && ProcessStartUtils.isExternalLink(process.getProcessType());
+    return process != null && process.getProcessType() == ProcessType.EXTERNAL_LINK;
   }
 
   public boolean isExpressProcess(UserProcess process) {
-    return process != null && ProcessStartUtils.isExpressProcess(process.getProcessType());
+    return process != null && process.getProcessType() == ProcessType.EXPRESS_PROCESS;
   }
 }
