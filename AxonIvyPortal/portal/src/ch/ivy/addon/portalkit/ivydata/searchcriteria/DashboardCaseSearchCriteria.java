@@ -10,9 +10,11 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateAfterOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateBeforeOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateBetweenOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateCurrentPeriodOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateIsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateNumberOfPeriodsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateTodayOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateYesterdayOperatorHandler;
@@ -97,13 +99,17 @@ public class DashboardCaseSearchCriteria {
 
   private CaseQuery generateCreatedDateFilterQuery(DashboardFilter filter) {
     return switch (filter.getOperator()) {
-      case BETWEEN -> CreatedDateBetweenOperatorHandler.getInstance().buildQuery(filter);
+      case BETWEEN -> CreatedDateBetweenOperatorHandler.getInstance().buildBetweenQuery(filter);
+      case NOT_BETWEEN -> CreatedDateBetweenOperatorHandler.getInstance().buildNotBetweenQuery(filter);
       case BEFORE -> CreatedDateBeforeOperatorHandler.getInstance().buildQuery(filter);
+      case AFTER -> CreatedDateAfterOperatorHandler.getInstance().buildQuery(filter);
       case TODAY -> CreatedDateTodayOperatorHandler.getInstance().buildQuery();
       case YESTERDAY -> CreatedDateYesterdayOperatorHandler.getInstance().buildQuery();
       case CURRENT -> CreatedDateCurrentPeriodOperatorHandler.getInstance().buildQuery(filter);
-      case LAST -> CreatedDateNumberOfPeriodsOperatorHandler.getInstance().buildQuery(filter, true);
-      case NEXT -> CreatedDateNumberOfPeriodsOperatorHandler.getInstance().buildQuery(filter, false);
+      case LAST -> CreatedDateNumberOfPeriodsOperatorHandler.getInstance().buildLastPeriodQuery(filter);
+      case NEXT -> CreatedDateNumberOfPeriodsOperatorHandler.getInstance().buildNextPeriodQuery(filter);
+      case IS -> CreatedDateIsOperatorHandler.getInstance().buildIsQuery(filter);
+      case IS_NOT -> CreatedDateIsOperatorHandler.getInstance().buildIsNotQuery(filter);
       default -> null;
     };
   }

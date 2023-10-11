@@ -1711,7 +1711,7 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .dashboard-widget-filter__filter-panel > div.date-picker-panel {
-  min-width: 210px;
+  min-width: 220px;
 }
 
 .dashboard-widget-filter__filter-panel > div.number-of-periods-panel {
