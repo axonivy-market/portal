@@ -138,14 +138,9 @@ public class DashboardCaseFilterBean implements Serializable {
     }
 
     switch (columnEnum) {
-      case CREATED:
-        initDateFilter(filter);
-        break;
-      case NAME:
-        initTextFilter(filter);
-        break;
-      default:
-        break;
+      case CREATED -> initDateFilter(filter);
+      case NAME -> initTextFilter(filter);
+      default -> {}
     };
   }
 
