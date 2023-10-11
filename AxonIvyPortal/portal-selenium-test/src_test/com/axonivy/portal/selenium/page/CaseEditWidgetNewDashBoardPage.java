@@ -5,6 +5,8 @@ import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
+import org.openqa.selenium.WebElement;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -109,10 +111,10 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     $(caseEditWidgetId).shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
-  public void openColumnManagementDialog() {
+  public WebElement openColumnManagementDialog() {
     $("div[id$='case-widget-preview:dashboard-cases-container']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("a[id$='column-toggler']").click();
-    getColumnManagementDialog().shouldBe(appear, DEFAULT_TIMEOUT);
+    return getColumnManagementDialog().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getColumnManagementDialog() {
@@ -238,5 +240,18 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     translationOverlay.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
 
     return translationOverlay;
+  }
+
+  public WebElement getConfigurationFilter() {
+    return $("[id='widget-configuration-form:new-widget-configuration-component:filter-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getConfigurationDialog() {
+    return $("div[id='new-widget-configuration-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void closeConfigurationDialog() {
+    getConfigurationDialog().$(".ui-dialog-footer").$("a").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div[id='new-widget-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 }

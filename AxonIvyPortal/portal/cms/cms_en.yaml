@@ -130,7 +130,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       IMAGE: Image
     ProcessSorting:
       BY_ALPHABETICALLY: Alphabetically
-      BY_INDEX: Sorting Index
+      BY_CUSTOM_ORDER: Custom order
+      BY_INDEX: Sorting index
     ProcessType:
       EXPRESS_PROCESS: Express Workflow
       EXTERNAL_LINK: External Link
@@ -283,7 +284,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showAvatar: For switch on/off the display of user/role avatars.
       showButtonIcon: For switch on/off the display icons in button.
       showCaseDurationTime: For switch on/off the display of the duration time in case details page.
-      showEnvironmentInfoNote: For switch on/off the display of environment information.
       showErrorLogToConsole: Set to true to enable write error log to browser console
       showGlobalSearch: For switch on/off the display of the global search.
       showLegacyUI: For switch on/off the display of the legacy UI.
@@ -1587,11 +1587,16 @@ Dialogs:
         portal:
           generic:
             dashboard:
+              PortalDashboardConfiguration:
+                NewDashboard: New Dashboard
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Could not find the linked process!
                 DashboardModification:
                   Share: Share
+                ProcessWidgetConfiguration:
+                  DragAndDropToChangeOrder: Drag and drop to change the order.
+                  DragAndDropTooltip: Click Preview, then drag and drop to change the order
         portalkit:
           component:
             CaseItemDetails:
@@ -1763,6 +1768,7 @@ Labels:
   AdhocWorkflow: Describe your Workflow
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
+  CreateNewDashboard: Create new dashboard
   Enums:
     DashboardStandardCaseColumn:
       ACTIONS: Actions

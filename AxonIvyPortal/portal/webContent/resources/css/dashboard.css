@@ -1674,6 +1674,11 @@ body .ui-widget.new-widget-dialog__introduction {
   max-height: fit-content;
 }
 
+.order-list-items .ui-widget-content.ui-orderlist-list.ui-corner-all.ui-sortable{
+  height:100%;
+  border:none;
+}
+
 /* new filter */
 .widget-configuration-form {
   flex-wrap: nowrap;

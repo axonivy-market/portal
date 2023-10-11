@@ -12,11 +12,14 @@ import java.util.ArrayList;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
+
 public abstract class TemplatePage extends AbstractPage {
+  protected static final String LAYOUT_WRAPPER = ".layout-wrapper";
 
   // If page load more than 45s, mark it failed by timeout
   protected long getTimeOutForLocator() {
@@ -46,5 +49,24 @@ public abstract class TemplatePage extends AbstractPage {
   public void waitForGrowlMessageDisappear() {
     $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT)
           .$("div.ui-growl-message").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+  
+  public void waitForGrowlMessageDisplayClearly() {
+    $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-growl-message").hover();
+  }
+  
+  public void switchToIFrameOfTask() {
+    switchToIframeWithId("iFrame");
+  }
+  
+  public void switchBackToParent() {
+    WebDriverRunner.getWebDriver().switchTo().parentFrame();
+  }
+
+  public LoginPage clickOnLogout() {
+    $("[id='user-settings-menu']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id='logout-setting:logout-menu-item']").shouldBe(appear, DEFAULT_TIMEOUT);
+    WaitHelper.waitForNavigationToLoginPage(() -> $("[id='logout-setting:logout-menu-item']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
+    return new LoginPage();
   }
 }

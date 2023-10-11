@@ -64,7 +64,7 @@
                 rendered="#{data.showRelatedCaseInfo}"
                 width="20%">
                 <p:commandLink value="#{history.displayCaseName}"
-                  actionListener="#{caseDetailsBean.navigateToCaseDetails(history.uuid)}"/>
+                  actionListener="#{caseDetailsBean.navigateToCaseDetails(history.caseUUID)}"/>
               </p:column>
               <p:column width="20%" sortBy="#{history.displayName}"
                 filterBy="#{history.displayName}"
