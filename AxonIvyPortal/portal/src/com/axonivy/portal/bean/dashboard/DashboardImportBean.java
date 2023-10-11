@@ -131,7 +131,16 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
             }
           }
         }
-        createDashboards(isPublicDashboard);
+        createDashboards();
+      }
+      if (importedDashboards.size() > 1) {
+        if (this.isPublicDashboard) {
+          navigateToPublicDashBoardListPage();
+        } else {
+          navigateToPrivateDashboardPage();
+        }
+      } else {
+        navigateToDashboardDetailsPage(importedDashboards.get(0).getId());
       }
     }
   }

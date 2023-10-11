@@ -58,7 +58,7 @@
           <h:outputText>#{managedBean.importFile.getFileName()} | #{managedBean.fileSize}</h:outputText>
         </div>
 
-<!--       	DashBoard Information Form -->
+    <!--       	DashBoard Information Form -->
     <div class="ui-g-12" id="import-dashboard-tab">
      <p:tabView rendered="#{not empty managedBean.importedDashboards}" value="#{managedBean.importedDashboards}" var="dashboard" id="dashboards-information-form" activeIndex="#{dashboardImportBean.activeIndex}">
       <f:event listener="#{dashboardImportBean.tabInit()}" type="preRenderComponent" />
@@ -69,35 +69,23 @@
          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardIcon')}" />
        </div>
        <div class="ui-g-10">
-        <ic:ch.ivy.addon.portalkit.component.IconSelection
-         value="#{dashboard.icon}" />
+        <ic:ch.ivy.addon.portalkit.component.IconSelection value="#{dashboard.icon}" />
        </div>
 
        <div class="ui-g-2 import-dashboard-label">
-        <p:outputLabel for="import-dashboard-title"
-         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}" />
+        <p:outputLabel for="import-dashboard-title" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}" />
        </div>
        <div class="ui-g-10 ui-fluid ui-inputgroup">
-        <p:inputText id="import-dashboard-title"
-         value="#{dashboard.title}" styleClass="manage-dashboard__input" required="true">
+        <p:inputText id="import-dashboard-title" value="#{dashboard.title}" styleClass="manage-dashboard__input" required="true">
         </p:inputText>
-        <p:commandButton id="add-language-button"
-         icon="si si-chat-translate">
-         <p:ajax event="click"
-          listener="#{managedBean.updateDashboardTitleByLocale()}"
-          process="import-dashboard-title"
-          update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
-          oncomplete="PF('multiple-languages-dialog').show();" />
+        <p:commandButton id="add-language-button" icon="si si-chat-translate">
+         <p:ajax event="click" listener="#{managedBean.updateDashboardTitleByLocale()}" process="import-dashboard-title" update="#{cc.clientId}:title-language-config:multiple-languages-dialog" oncomplete="PF('multiple-languages-dialog').show();" />
         </p:commandButton>
        </div>
-       <h:panelGroup layout="block"
-        styleClass="ui-g-2 import-dashboard-label"
-        rendered="#{cc.attrs.isPublicDashboard}">
-        <p:outputLabel for="dashboard-permission"
-        value="#{ivy.cms.co('/Labels/Permissions')}" />
+       <h:panelGroup layout="block" styleClass="ui-g-2 import-dashboard-label" rendered="#{cc.attrs.isPublicDashboard}">
+        <p:outputLabel for="dashboard-permission" value="#{ivy.cms.co('/Labels/Permissions')}" />
        </h:panelGroup>
-       <h:panelGroup layout="block" styleClass="ui-g-10 ui-fluid"
-        rendered="#{cc.attrs.isPublicDashboard}">
+       <h:panelGroup layout="block" styleClass="ui-g-10 ui-fluid" rendered="#{cc.attrs.isPublicDashboard}">
         <p:autoComplete id="dashboard-permission" scrollHeight="210"
          dropdown="true" required="#{param['skipValidator'] == null}"
          completeMethod="#{managedBean.completePermissions}"
