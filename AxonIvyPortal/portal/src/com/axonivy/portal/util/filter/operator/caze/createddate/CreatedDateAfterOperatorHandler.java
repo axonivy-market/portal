@@ -6,24 +6,23 @@ import com.axonivy.portal.util.filter.operator.AbstractFilterOperatorHandler;
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-public class CreatedDateBeforeOperatorHandler extends AbstractFilterOperatorHandler {
-  private static CreatedDateBeforeOperatorHandler instance;
+public class CreatedDateAfterOperatorHandler extends AbstractFilterOperatorHandler {
+  private static CreatedDateAfterOperatorHandler instance;
 
-  public static CreatedDateBeforeOperatorHandler getInstance() {
+  public static CreatedDateAfterOperatorHandler getInstance() {
     if (instance == null) {
-      instance = new CreatedDateBeforeOperatorHandler();
+      instance = new CreatedDateAfterOperatorHandler();
     }
     return instance;
   }
 
-  
   public CaseQuery buildQuery(DashboardFilter filter) {
-    if (filter.getFrom() == null) {
+    if (filter.getTo() == null) {
       return null;
     }
 
     CaseQuery query = CaseQuery.create();
-    query.where().startTimestamp().isLowerThan(PortalDateUtils.getStartOfDate(filter.getFrom()));
+    query.where().startTimestamp().isGreaterThan(PortalDateUtils.getEndOfDate(filter.getTo()));
 
     return query;
   }
