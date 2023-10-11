@@ -282,7 +282,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showAvatar: For switch on/off the display of user/role avatars.
       showButtonIcon: For switch on/off the display icons in button.
       showCaseDurationTime: For switch on/off the display of the duration time in case details page.
-      showEnvironmentInfoNote: For switch on/off the display of environment information.
       showErrorLogToConsole: Set to true to enable write error log to browser console
       showGlobalSearch: For switch on/off the display of the global search.
       showLegacyUI: For switch on/off the display of the legacy UI.

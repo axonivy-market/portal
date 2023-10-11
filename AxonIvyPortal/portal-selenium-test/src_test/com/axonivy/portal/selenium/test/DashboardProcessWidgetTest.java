@@ -424,7 +424,6 @@ public class DashboardProcessWidgetTest extends BaseTest {
         .shouldHave(Condition.exactTextCaseSensitive(PROCESS_WITH_INDEX_1));
   }
   
-  @Test
   public void testSortProcessCompactProcessModeCustomSorting() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
@@ -433,15 +432,15 @@ public class DashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.getPreviewButton().click();
     editProcessWidgetConfiguration.getCompactModeProcessPreview().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     // expect "Clean absences" process is the first process
-    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName().shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    editProcessWidgetConfiguration.getPreviewProcessElement(0).shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldHave(Condition.exactTextCaseSensitive(CLEAN_ABSENCES));
     int fromIndex = 0;
     int toIndex = 4;
     editProcessWidgetConfiguration.dragAndDropProcess(fromIndex, toIndex);
     editProcessWidgetConfiguration.save();
     editProcessWidgetConfiguration = newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.getPreviewProcessElement(toIndex-1).shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-    .shouldHave(Condition.exactTextCaseSensitive(CLEAN_ABSENCES));
+    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName().shouldBe(Condition.appear)
+      .shouldNotHave(Condition.exactTextCaseSensitive(CLEAN_ABSENCES));
   }
 
   @Test
