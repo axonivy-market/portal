@@ -138,17 +138,14 @@ public class DashboardCaseFilterBean implements Serializable {
     }
 
     switch (columnEnum) {
-      case CREATED -> initDateFilter(filter);
-      case ACTIONS -> throw new UnsupportedOperationException("Unimplemented case: " + columnEnum);
-      case APPLICATION -> throw new UnsupportedOperationException("Unimplemented case: " + columnEnum);
-      case CATEGORY -> throw new UnsupportedOperationException("Unimplemented case: " + columnEnum);
-      case CREATOR -> throw new UnsupportedOperationException("Unimplemented case: " + columnEnum);
-      case DESCRIPTION -> throw new UnsupportedOperationException("Unimplemented case: " + columnEnum);
-      case FINISHED -> throw new UnsupportedOperationException("Unimplemented case: " + columnEnum);
-      case ID -> throw new UnsupportedOperationException("Unimplemented case: " + columnEnum);
-      case NAME -> initTextFilter(filter);
-      case OWNER -> throw new UnsupportedOperationException("Unimplemented case: " + columnEnum);
-      case STATE -> throw new UnsupportedOperationException("Unimplemented case: " + columnEnum);
+      case CREATED:
+        initDateFilter(filter);
+        break;
+      case NAME:
+        initTextFilter(filter);
+        break;
+      default:
+        break;
     };
   }
 

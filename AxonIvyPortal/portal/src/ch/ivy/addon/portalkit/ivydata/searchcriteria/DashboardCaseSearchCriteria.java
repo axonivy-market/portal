@@ -199,7 +199,10 @@ public class DashboardCaseSearchCriteria {
   }
   
   private void queryFilters(CaseQuery query) {
-    queryComplexFilter(query);
+    if (CollectionUtils.isNotEmpty(filters)) {
+      queryComplexFilter(query);
+      return;
+    }
 
     var states = new ArrayList<CaseBusinessState>();
     for (ColumnModel column : columns) {

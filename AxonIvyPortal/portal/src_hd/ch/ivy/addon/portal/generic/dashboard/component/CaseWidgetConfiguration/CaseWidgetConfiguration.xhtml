@@ -28,9 +28,11 @@
             managedBean="#{dashboardCaseFilterBean}" componentToUpdate="#{p:resolveFirstComponentWithId('user-filter', view).clientId}"/>
         </ui:repeat>
         <div class="ui-g-12">
-          <p:commandLink id="add-filter" update="user-filter" process="user-filter"
+          <p:commandButton id="add-filter" icon="#{visibilityBean.generateButtonIcon('si si-add-circle')}"
+            update="user-filter" process="user-filter" styleClass="u-mar-right-5 ui-button-flat"
             actionListener="#{dashboardCaseFilterBean.addNewFilter(widget)}"
-            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/CaseWidgetConfiguration/AddFilter')}" />
+            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/CaseWidgetConfiguration/AddFilter')}"
+            title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/CaseWidgetConfiguration/AddFilter')}" />
         </div>
       </h:panelGroup>
     </ui:define>
