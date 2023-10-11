@@ -66,8 +66,6 @@ public abstract class DashboardWidget implements Serializable {
   @JsonIgnore
   protected UserFilterCollection userFilterCollection;
 
-  private List<DashboardFilter> predefinedFilters;
-
   public DashboardWidget() {}
 
   public DashboardWidget(DashboardWidget widget) {
@@ -287,13 +285,5 @@ public abstract class DashboardWidget implements Serializable {
     } else if (!id.equals(other.id))
       return false;
     return true;
-  }
-
-  public List<DashboardFilter> getPredefinedFilters() {
-    return predefinedFilters;
-  }
-
-  public void setPredefinedFilters(List<DashboardFilter> predefinedFilters) {
-    this.predefinedFilters = predefinedFilters;
   }
 }

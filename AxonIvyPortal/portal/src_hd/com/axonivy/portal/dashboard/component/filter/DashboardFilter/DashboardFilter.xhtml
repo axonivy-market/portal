@@ -14,22 +14,23 @@
   <c:set var="widget" value="#{cc.attrs.widget}" />
   <c:set var="filter" value="#{cc.attrs.filter}" />
   <h:panelGroup id ="filter-selection" layout="block" styleClass="ui-g-12 u-padding-0 dashboard-widget-filter__filter-panel">
-    <div>
-      <p:selectOneMenu id="field-selection" value="#{filter.field}">
-        <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/pleaseSelect')}" itemValue="#{null}" />
-        <f:selectItems value="#{cc.attrs.managedBean.filterTypes}" var="type"
-          itemValue="#{type.field}" itemLabel="#{type.label}" />
-        <p:ajax event="itemSelect" listener="#{cc.attrs.managedBean.onSelectFilter(filter)}" process="@(this)" update="filter-selection" global="false" />
-      </p:selectOneMenu>
-    </div>
+    <p:selectOneMenu id="field-selection" value="#{filter.field}">
+      <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/pleaseSelect')}" itemValue="#{null}" />
+      <f:selectItems value="#{cc.attrs.managedBean.filterTypes}" var="type"
+        itemValue="#{type.field}" itemLabel="#{type.label}" />
+      <p:ajax event="itemSelect" listener="#{cc.attrs.managedBean.onSelectFilter(filter)}" process="@(this)" update="filter-selection" global="false" />
+    </p:selectOneMenu>
+
     <h:panelGroup layout="block" rendered="#{filter.isDate()}">
       <ic:com.axonivy.portal.dashboard.component.filter.DateFilter filter="#{filter}"
         componentToUpdate="#{cc.attrs.componentToUpdate}" />
     </h:panelGroup>
+
     <h:panelGroup layout="block" rendered="#{filter.isText()}">
       <ic:com.axonivy.portal.dashboard.component.filter.TextFilter filter="#{filter}"
         componentToUpdate="#{cc.attrs.componentToUpdate}" />
     </h:panelGroup>
+
     <div>
       <p:commandButton id="remove-filter" icon="si si-subtract"
         styleClass="rounded-button ui-button-outlined action-column-icon-button ui-button-danger dashboard-widget-filter__remove-filter"

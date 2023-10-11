@@ -1,7 +1,6 @@
 package com.axonivy.portal.bean.dashboard;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -19,9 +18,6 @@ public class WidgetDateFilterBean implements Serializable {
 
   private static List<FilterOperator> operators = FilterOperator.DATE_OPERATORS.stream().toList();
   private static FilterPeriodType[] filterPeriodTypes = FilterPeriodType.values();
-  private Date beforeDate;
-  private Date fromDate;
-  private Date toDate;
 
   public List<FilterOperator> getOperators() {
     return operators;
@@ -36,29 +32,5 @@ public class WidgetDateFilterBean implements Serializable {
     filter.setTo(null);
     filter.setPeriodType(FilterPeriodType.YEAR);
     filter.setPeriods(1L);
-  }
-
-  public Date getBeforeDate() {
-    return beforeDate;
-  }
-
-  public void setBeforeDate(Date beforeDate) {
-    this.beforeDate = beforeDate;
-  }
-
-  public Date getFromDate() {
-    return fromDate;
-  }
-
-  public void setFromDate(Date fromDate) {
-    this.fromDate = fromDate;
-  }
-
-  public Date getToDate() {
-    return toDate;
-  }
-
-  public void setToDate(Date toDate) {
-    this.toDate = toDate;
   }
 }
