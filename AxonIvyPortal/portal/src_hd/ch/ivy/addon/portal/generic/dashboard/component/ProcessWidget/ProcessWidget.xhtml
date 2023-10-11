@@ -43,7 +43,7 @@
           oncompleteRemoveProcess="PF('remove-widget-dialog').show()"
           componentToUpdateOnRemoveProcess="remove-widget-dialog"
           removeActionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
-          showInformationLink="#{data.showInformationLink}"
+          showInformationLink="#{dashboardProcessBean.isShowInformationLink(widget.process)}"
           processStyleClass="ui-g-12 u-padding-0 process-widget--full"
           processIconStyleClass="process-grid-view__icon"
           isInConfiguration="#{cc.attrs.isInConfiguration}"/>
