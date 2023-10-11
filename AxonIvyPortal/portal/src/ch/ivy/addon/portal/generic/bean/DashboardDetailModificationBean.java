@@ -40,8 +40,10 @@ import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.dto.News;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
+import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
+import com.google.common.base.Predicate;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
@@ -427,6 +429,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       case WELCOME:
         updateWelcomeWidget(widget);
         break;
+      case CASE:
+        updateCaseWidget(widget);
       default:
         break;
     }
@@ -503,6 +507,20 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         tempImageFile.delete();
       }
     }
+  }
+
+  private void updateCaseWidget(DashboardWidget widget) {
+    var caseWidget = (CaseDashboardWidget) widget;
+    if (CollectionUtils.isNotEmpty(caseWidget.getFilters())) {
+      caseWidget.setFilters(caseWidget.getFilters().stream()
+          .filter(Objects::nonNull).filter(checkValidFilter()).collect(Collectors.toList()));
+    }
+  }
+
+  private Predicate<DashboardFilter> checkValidFilter() {
+    return filter -> {
+      return StringUtils.isNotBlank(filter.getField()) && filter.getOperator() != null && filter.getType() != null;
+    };
   }
 
   private void removeTempImageOfWelcomeWidget(DashboardWidget widget) {
