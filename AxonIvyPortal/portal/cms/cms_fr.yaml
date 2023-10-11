@@ -284,7 +284,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showAvatar: Pour activer/désactiver l'affichage des avatars des utilisateurs/rôles.
       showButtonIcon: Pour activer/désactiver l'icône d'affichage dans le bouton.
       showCaseDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de l'affaire.
-      showEnvironmentInfoNote: Pour activer/désactiver l'affichage des informations sur l'environnement.
       showErrorLogToConsole: Défini à true pour activer l'écriture du journal des erreurs dans la console du navigateur.
       showGlobalSearch: Pour activer/désactiver l'affichage de la recherche globale.
       showLegacyUI: Pour activer/désactiver l'affichage de l'interface utilisateur héritée.
@@ -1584,6 +1583,8 @@ Dialogs:
         portal:
           generic:
             dashboard:
+              PortalDashboardConfiguration:
+                NewDashboard: Nouveau tableau de bord
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
@@ -1758,6 +1759,7 @@ Labels:
   AdhocWorkflow: Décrivez votre workflow
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
+  CreateNewDashboard: Créer un nouveau tableau de bord
   Enums:
     ThemeMode:
       DARK: Dark

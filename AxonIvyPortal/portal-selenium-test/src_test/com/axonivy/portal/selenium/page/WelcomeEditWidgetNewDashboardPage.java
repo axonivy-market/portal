@@ -9,6 +9,7 @@ import java.util.List;
 import com.axonivy.portal.selenium.common.FileHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 
 public class WelcomeEditWidgetNewDashboardPage extends TemplatePage {
 
@@ -69,5 +70,14 @@ public class WelcomeEditWidgetNewDashboardPage extends TemplatePage {
     configDialog.shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='widget-configuration-save-button']")
         .shouldBe(getClickableCondition()).click();
     $("div[id$='new-widget-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getConfigurationDialog() {
+    return $("div[id='new-widget-configuration-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void waitForDialogLoaded() {
+    getConfigurationDialog().$("[id$=':welcome-text-color_button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    getConfigurationDialog().$(".user-filter__header").shouldBe(appear, DEFAULT_TIMEOUT).click();
   }
 }

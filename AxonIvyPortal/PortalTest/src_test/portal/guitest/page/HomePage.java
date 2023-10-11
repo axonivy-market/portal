@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 
 import portal.guitest.common.WaitHelper;
 
-
 public class HomePage extends TemplatePage {
 
   public final static String PORTAL_HOME_PAGE_URL = "portal/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
@@ -44,7 +43,7 @@ public class HomePage extends TemplatePage {
     return isElementDisplayedById(SHOW_ALL_CHARTS_LINK_ID);
   }
 
-  /** 
+  /**
    * Wait for statistic charts are displayed in 5s
    */
   public void waitForStatisticRendered() {
@@ -60,10 +59,9 @@ public class HomePage extends TemplatePage {
   }
 
   /**
-   * Try to refresh Statistic chart list
-   * First, go to StatisticPage to read statistic chart from DB again
-   * Wait for no background request
-   * Then click on bread-crumb to back to homepage
+   * Try to refresh Statistic chart list First, go to StatisticPage to read
+   * statistic chart from DB again Wait for no background request Then click on
+   * bread-crumb to back to homepage
    */
   private void refreshStatisticChartData() {
     MainMenuPage mainMenuPage = new MainMenuPage();
@@ -90,7 +88,7 @@ public class HomePage extends TemplatePage {
     return true;
   }
 
-  public String getEnviromentInfo() {
+  public String getGlobalFooterInfo() {
     waitForElementDisplayed(By.cssSelector("span[id$='server-infor']"), true, 5);
     return findElementByCssSelector("span[id$='server-infor']").getText();
   }

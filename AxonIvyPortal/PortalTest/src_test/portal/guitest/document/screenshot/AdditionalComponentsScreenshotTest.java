@@ -55,7 +55,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
     newDashboardPage.startTask(1);
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     taskTemplatePage.clickCancelButton();
-    WaitHelper.assertTrueWithWait(() -> ScreenshotUtil.isDOMStatusComplete());
+
     ScreenshotUtil.resizeBrowser(new Dimension(1366, 800));
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForTaskStartButtonDisplay(1);
