@@ -9,8 +9,10 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
+import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
@@ -54,6 +56,7 @@ public class PortalExpressTest extends BaseTest {
 	public void setup() {
 		super.setup();
 		redirectToRelativeLink("portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp");
+		redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
 		homePage = new HomePage();
 	}
 
@@ -91,6 +94,7 @@ public class PortalExpressTest extends BaseTest {
 
 	@Test
 	public void createFullElementsOfForm() {
+    ScreenshotUtil.resizeBrowser(new Dimension(2560, 1440));
 		goToExpressCreationPage();
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.fillProcessProperties(true, true, "Test 1", "Test description");

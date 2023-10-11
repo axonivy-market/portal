@@ -31,6 +31,8 @@ public class DashboardConfigurationBean implements Serializable {
     resetAllIndicators();
     isPublicDashboard = Attrs.currentContext().getAttribute("#{data.isPublicDashboard}", Boolean.class);
     isSelectingAction = true;
+    this.isEditingDashboard = true;
+    this.isPublicDashboard = false;
   }
 
   private void initPermissions() {

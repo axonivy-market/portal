@@ -9,7 +9,6 @@ User Guide
    forgot-password/index
    new-dashboard/index
    dashboard-configuration/index
-   dashboard/index
    portal-header/index
    full-process-list/index
    process-information/index
