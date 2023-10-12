@@ -3714,9 +3714,10 @@
       "type" : "DialogCall",
       "name" : "ProcessViewer",
       "config" : {
-        "dialog" : "ch.ivy.addon.portal.generic.ProcessViewer:start(Long,String)",
+        "dialog" : "ch.ivy.addon.portal.generic.ProcessViewer:start(Long,Long,String)",
         "call" : {
           "map" : {
+            "param.taskId" : "in.taskId",
             "param.caseId" : "in.caseId",
             "param.processId" : "in.processId"
           }
@@ -3738,11 +3739,13 @@
         "input" : {
           "params" : [
             { "name" : "caseId", "type" : "Long", "desc" : "" },
-            { "name" : "processKey", "type" : "String", "desc" : "" }
+            { "name" : "processKey", "type" : "String", "desc" : "" },
+            { "name" : "selectedTaskId", "type" : "Long", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.caseId",
-            "out.processId" : "param.processKey"
+            "out.processId" : "param.processKey",
+            "out.taskId" : "param.selectedTaskId"
           }
         },
         "request" : {

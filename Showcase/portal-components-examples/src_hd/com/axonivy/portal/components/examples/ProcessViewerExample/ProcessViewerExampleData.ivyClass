@@ -1,5 +1,7 @@
 ProcessViewerExampleData #class
 com.axonivy.portal.components.examples.ProcessViewerExample #namespace
+taskId Long #field
+taskId PERSISTENT #fieldModifier
 caseId Long #field
 caseId PERSISTENT #fieldModifier
 processLink String #field
