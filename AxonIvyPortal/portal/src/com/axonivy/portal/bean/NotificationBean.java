@@ -70,4 +70,14 @@ public class NotificationBean implements Serializable {
   public boolean isRender() {
     return isRender;
   }
+
+  private boolean isOnlyUnread = false;
+
+  public boolean isOnlyUnread() {
+    return isOnlyUnread;
+  }
+
+  public void setOnlyUnread(boolean isOnlyUnread) {
+    this.isOnlyUnread = isOnlyUnread;
+  }
 }

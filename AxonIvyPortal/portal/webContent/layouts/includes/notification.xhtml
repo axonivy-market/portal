@@ -20,7 +20,7 @@
                 <span class="notifications-title-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationTitle')}</span>
                   
                   <div class="p-d-flex">
-                    <p:selectBooleanCheckbox id="notifications-only-unread" value="#{notificationBean.dataModel.onlyUnread}"
+                    <p:selectBooleanCheckbox id="notifications-only-unread" value="#{notificationBean.onlyUnread}"
                       itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/onlyUnread')}" styleClass="notification-checkbox" >
                       <p:ajax listener="#{notificationBean.dataModel.onSelectedFilter()}" oncomplete="Portal.updateLayoutContent()"
                       update="#{unreadNotificationsId}, #{notificationScrollerId}" global="false" partialSubmit="true"/>
@@ -63,8 +63,10 @@
                       <div class="#{notification.style} notifications-container-top">
                         <div class="p-d-flex">
                           <div class="p-d-flex">
-                            <p:commandLink id="notificationMarkAsRead" process="@this"
+                            <p:commandLink id="notificationMarkAsRead"
                               actionListener="#{notificationBean.markAsRead(notification)}"
+                              process="@this"
+                              partialSubmit="true"
                               global="false"
                               onclick="markAsRead('#{notification.id}')"
                               oncomplete="Portal.updateLayoutContent();"
