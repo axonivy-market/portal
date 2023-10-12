@@ -39,5 +39,3 @@ dashboardId String #field
 uuid String #field
 isOpenWithoutMenu Boolean #field
 isOpenDashboardFromLink Boolean #field
-taskUUID String #field
-caseUUID String #field

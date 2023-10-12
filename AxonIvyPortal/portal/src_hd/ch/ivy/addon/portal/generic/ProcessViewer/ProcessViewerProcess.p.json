@@ -8,19 +8,19 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
-      "name" : "start(String,String,String)",
+      "name" : "start(Long,Long,String)",
       "config" : {
         "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "taskUUID", "type" : "String", "desc" : "" },
-            { "name" : "caseUUID", "type" : "String", "desc" : "" },
-            { "name" : "processId", "type" : "String", "desc" : "" }
+            { "name" : "taskId", "type" : "Long" },
+            { "name" : "caseId", "type" : "Long" },
+            { "name" : "processId", "type" : "String" }
           ],
           "map" : {
-            "out.caseUUID" : "param.caseUUID",
+            "out.caseId" : "param.caseId",
             "out.processId" : "param.processId",
-            "out.taskUUID" : "param.taskUUID"
+            "out.taskId" : "param.taskId"
           }
         },
         "guid" : "17FABECA5A299E70"
@@ -64,13 +64,12 @@
       "config" : {
         "output" : {
           "code" : [
-            "import org.apache.commons.lang3.StringUtils;",
-            "import com.axonivy.portal.components.util.TaskUtils;",
-            "import com.axonivy.portal.components.util.CaseUtils;",
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "import ch.ivy.addon.portalkit.util.CaseUtils;",
             "",
-            "in.selectedCase = CaseUtils.findCase(in.caseUUID);",
-            "if(StringUtils.isNotEmpty(in.taskUUID)) {",
-            "  in.selectedTask = TaskUtils.findTask(in.taskUUID);",
+            "in.selectedCase = CaseUtils.findCase(in.caseId);",
+            "if(in.taskId != 0) {",
+            "  in.selectedTask = TaskUtils.findTaskById(in.taskId);",
             "}"
           ]
         },

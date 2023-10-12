@@ -1829,7 +1829,7 @@
       "type" : "DialogCall",
       "name" : "ProcessViewer",
       "config" : {
-        "dialog" : "ch.ivy.addon.portal.generic.ProcessViewer:start(String,String,String)",
+        "dialog" : "ch.ivy.addon.portal.generic.ProcessViewer:start(Long,Long,String)",
         "call" : {
           "map" : { },
           "code" : [

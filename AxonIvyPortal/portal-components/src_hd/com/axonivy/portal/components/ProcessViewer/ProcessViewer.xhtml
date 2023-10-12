@@ -4,8 +4,8 @@
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
   xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="taskUUID" />
-  <cc:attribute name="caseUUID" />
+  <cc:attribute name="taskId" />
+  <cc:attribute name="caseId" />
   <cc:attribute name="processLink" />
   <cc:attribute name="containerStyleClass" />
 </cc:interface>
@@ -15,7 +15,7 @@
   <h:outputStylesheet library="css" name="portal-components.css" />
   <h:outputStylesheet library="css" name="process-viewer-component.css" />
 
-  <f:event listener="#{logic.initData(cc.attrs.taskUUID, cc.attrs.caseUUID, cc.attrs.processLink)}" type="preRenderComponent" />
+  <f:event listener="#{logic.initData(cc.attrs.taskId, cc.attrs.caseId, cc.attrs.processLink)}" type="preRenderComponent" />
   <h:panelGroup layout="block" styleClass="ui-g-12 u-padding-0 process-viewer-data #{data.isError ? 'has-error-message' : ''} #{cc.attrs.containerStyleClass}">
     <h:panelGroup rendered="#{!data.isError}">
       <div id="process-viewer-information" class="ui-g-12 u-padding-0 process-viewer-information">

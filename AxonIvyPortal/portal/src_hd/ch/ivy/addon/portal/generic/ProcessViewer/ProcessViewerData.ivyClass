@@ -1,12 +1,12 @@
 ProcessViewerData #class
 ch.ivy.addon.portal.generic.ProcessViewer #namespace
-caseUUID String #field
-caseUUID PERSISTENT #fieldModifier
+caseId Long #field
+caseId PERSISTENT #fieldModifier
 selectedCase ch.ivyteam.ivy.workflow.ICase #field
 selectedCase PERSISTENT #fieldModifier
 processId String #field
 processId PERSISTENT #fieldModifier
-taskUUID String #field
-taskUUID PERSISTENT #fieldModifier
+taskId Long #field
+taskId PERSISTENT #fieldModifier
 selectedTask ch.ivyteam.ivy.workflow.ITask #field
 selectedTask PERSISTENT #fieldModifier

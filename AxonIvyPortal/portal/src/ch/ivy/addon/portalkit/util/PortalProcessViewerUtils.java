@@ -24,14 +24,14 @@ public class PortalProcessViewerUtils {
     if (Objects.isNull(selectedCase) || Objects.isNull(selectedCase.getProcessStart()) || ProcessViewerUtils.isExpressCase(selectedCase)) {
       return DEFAULT_LINK;
     }
-    return buildPortalProcessViewerUrl(null, selectedCase.uuid(), selectedCase.getProcessStart().getLink().getRelative());
+    return buildPortalProcessViewerUrl(null, selectedCase.getId(), selectedCase.getProcessStart().getLink().getRelative());
   }
 
   public static String getStartProcessViewerPageUri(ITask selectedTask) {
     if (Objects.isNull(selectedTask) || Objects.isNull(selectedTask.getCase()) || Objects.isNull(selectedTask.getCase().getProcessStart()) || ProcessViewerUtils.isExpressCase(selectedTask.getCase())) {
       return DEFAULT_LINK;
     }
-    return buildPortalProcessViewerUrl(selectedTask.uuid(), null, null);
+    return buildPortalProcessViewerUrl(selectedTask.getId(), null, null);
   }
 
   public static String getStartProcessViewerPageUri(String processStartLink) {
@@ -41,10 +41,10 @@ public class PortalProcessViewerUtils {
     return buildPortalProcessViewerUrl(null, null, processStartLink);
   }
 
-  private static String buildPortalProcessViewerUrl(String taskUUID, String caseUUID, String processStartLink) {
+  private static String buildPortalProcessViewerUrl(Long selectedTaskId, Long caseId, String processStartLink) {
     Map<String, String> params = new HashMap<>();
-    Optional.ofNullable(taskUUID).ifPresent(v -> params.put("taskUUID", String.valueOf(v)));
-    Optional.ofNullable(caseUUID).ifPresent(v -> params.put("caseUUID", String.valueOf(v)));
+    Optional.ofNullable(selectedTaskId).ifPresent(v -> params.put("selectedTaskId", String.valueOf(v)));
+    Optional.ofNullable(caseId).ifPresent(v -> params.put("caseId", String.valueOf(v)));
     Optional.ofNullable(processStartLink).ifPresent(v -> params.put("processKey", v));
     return PortalNavigator.buildUrlByKeyword("PortalProcessViewer.ivp", START_PROCESS_PORTAL_PROCESS_VIEWER_PAGE, params);
   }

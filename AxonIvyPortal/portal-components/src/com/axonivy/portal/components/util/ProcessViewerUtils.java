@@ -31,16 +31,16 @@ public class ProcessViewerUtils {
 
   private static List<IWebStartable> webStartables;
 
-  public static ProcessViewerDTO initProcessViewer(String taskUUID, String caseUUID, String processLink) {
+  public static ProcessViewerDTO initProcessViewer(Long taskId, Long caseId, String processLink) {
     boolean isViewerAllowed = false;
     IWebStartable webStartable = null;
     WebLink webLink = null;
     boolean isError = false;
     String errorMessage = "";
     String errorIcon = "";
-
-    if (StringUtils.isNotBlank(taskUUID)) {
-      ITask selectedTask = TaskUtils.findTask(taskUUID);
+    if (taskId != 0 || caseId != 0 || StringUtils.isNotBlank(processLink)) {
+      // init data using caseId
+      ITask selectedTask = TaskUtils.findTaskById(taskId);
       isViewerAllowed = isViewerAllowed(selectedTask);
       if (isViewerAllowed) {
         webLink = ProcessViewer.of(selectedTask).url().toWebLink();
@@ -50,29 +50,33 @@ public class ProcessViewerUtils {
         } else {
           webStartable = findWebStartable(selectedTask.getCase().getProcessStart().getLink().getRelative());
         }
-      }
-    } else if (StringUtils.isNotBlank(caseUUID)) {
-      ICase selectedCase = CaseUtils.findCase(caseUUID);
-      isViewerAllowed = isViewerAllowed(selectedCase);
-      if (isViewerAllowed) {
-        ICaseMap caseMap = findCaseMapByCase(selectedCase);
-        if (!Objects.isNull(caseMap)) {
-          webStartable = findWebStartable(caseMap);
-          webLink = CaseMapViewer.of(caseMap).url().toWebLink();
-        } else {
-          webStartable = findWebStartable(selectedCase.getProcessStart().getLink().getRelative());
-          webLink = ProcessViewer.of(selectedCase).url().toWebLink();
+      } else {
+        ICase selectedCase = CaseUtils.findCase(caseId);
+        isViewerAllowed = isViewerAllowed(selectedCase);
+        if (isViewerAllowed) {
+          ICaseMap caseMap = findCaseMapByCase(selectedCase);
+          if (!Objects.isNull(caseMap)) {
+            webStartable = findWebStartable(caseMap);
+            webLink = CaseMapViewer.of(caseMap).url().toWebLink();
+          } else {
+            webStartable = findWebStartable(selectedCase.getProcessStart().getLink().getRelative());
+            webLink = ProcessViewer.of(selectedCase).url().toWebLink();
+          }
         }
       }
-    } else if (StringUtils.isNotBlank(processLink)) {
-      webStartable = ProcessService.getInstance().findWebStartableInSecurityContextByRelativeLink(processLink);
-      String processId = webStartable.getId();
-      isViewerAllowed = Ivy.session().getAllStartables().anyMatch(startable -> startable.getId().equals(processId));
-      if (isViewerAllowed) {
-        if (webStartable instanceof ICaseMapWebStartable) {
-          webLink = CaseMapViewer.of((ICaseMapWebStartable) webStartable).url().toWebLink();
-        } else {
-          webLink = ProcessViewer.of((IProcessWebStartable) webStartable).url().toWebLink();
+
+      // try to init data using processLink
+      if (webLink == null) {
+        webStartable = ProcessService.getInstance().findWebStartableInSecurityContextByRelativeLink(processLink);
+        String processId = webStartable.getId();
+        isViewerAllowed = Ivy.session().getAllStartables().anyMatch(startable-> startable.getId().equals(processId));
+        
+        if (isViewerAllowed) {
+          if (webStartable instanceof ICaseMapWebStartable) {
+            webLink = CaseMapViewer.of((ICaseMapWebStartable) webStartable).url().toWebLink();
+          } else {
+            webLink = ProcessViewer.of((IProcessWebStartable) webStartable).url().toWebLink();
+          }
         }
       }
     }
