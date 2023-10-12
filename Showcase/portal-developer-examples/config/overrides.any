@@ -1,9 +1,6 @@
 {
   /PROCESS *
   /HTML_DIALOG {
-    /ch.ivy.addon.portalkit.component.PageHeader "com.axonivy.portal.developerexamples.customization.component.PageHeaderOverride"
-    /ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo "com.axonivy.portal.developerexamples.customization.component.UserWithEnvironmentInfoOverride"
-    /ch.ivy.addon.portalkit.component.PageFooter "com.axonivy.portal.developerexamples.customization.component.PageFooterOverride"
     /ch.ivy.addon.portal.component.ProcessInformation "com.axonivy.portal.developerexamples.customization.CustomizedProcessInformation"
   }
 }

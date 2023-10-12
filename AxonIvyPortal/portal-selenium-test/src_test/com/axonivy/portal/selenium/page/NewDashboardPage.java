@@ -9,10 +9,13 @@ import static com.codeborne.selenide.Selenide.$$;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 
 public class NewDashboardPage extends TemplatePage {
   private static final String IVY_PROCESS = "IVY_PROCESS";
@@ -41,10 +44,13 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void waitForAbsencesGrowlMessageDisplay() {
-    $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-growl-message")
-        .shouldBe(disappear, DEFAULT_TIMEOUT);
+    $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  public void waitForTaskListDisplay() {
+    $("div[id='task-task_1:widget-content']").shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-growl-message")
+        .shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
   public ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration() {
     var configurationPage = openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
@@ -68,6 +74,45 @@ public class NewDashboardPage extends TemplatePage {
     $("button[id$='remove-widget-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
         .click();
     $("div#remove-widget-dialog").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  public void waitForProcessViewerLoading(SelenideElement processViewer) {
+    processViewer.$("[id$='loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    WebDriver driver = WebDriverRunner.getWebDriver();
+    processViewer.$("iframe").shouldBe(appear, DEFAULT_TIMEOUT);
+    switchToIframeWithId("process-viewer");
+    $("svg.sprotty-graph").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    driver.switchTo().defaultContent();
+    waitForWidgetLoadedByExpandThenCollapse(processViewer);
+  }
+
+  public WebElement waitAndGetProcessViewerWidget(int index) {
+    var widget = $$(".process-viewer-widget-panel").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT)
+        .get(index).shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForProcessViewerLoading(widget);
+    return widget.ancestor(".grid-stack-item");
+  }
+
+  public WebElement waitAndGetStatisticChart(int index) {
+    var widget = $$(".statistic-chart-widget").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT)
+        .get(index).shouldBe(appear, DEFAULT_TIMEOUT);
+    widget.$("[id$='loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    waitForWidgetLoadedByExpandThenCollapse(widget);
+    return widget.ancestor(".grid-stack-item");
+  }
+
+  public WebElement waitAndGetNewsWidget(int index) {
+    var widget = $$(".news-widget").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT)
+        .get(index).shouldBe(appear, DEFAULT_TIMEOUT);
+    widget.$("[id$='loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    widget.$("[id$=':add-news-button']").shouldBe(appear, DEFAULT_TIMEOUT);
+    return widget.ancestor(".grid-stack-item");
+  }
+
+  private void waitForWidgetLoadedByExpandThenCollapse(SelenideElement widget) {
+    widget.$(".expand-link").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    widget.$(".collapse-link").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    widget.$(".expand-link").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public WelcomeEditWidgetNewDashboardPage editWelcomeWidgetConfiguration(String widgetId) {
@@ -750,5 +795,50 @@ public class NewDashboardPage extends TemplatePage {
     getGlobalSearchInput().sendKeys(Keys.ENTER.toString());
     $("#search-results-tabview").shouldBe(appear, DEFAULT_TIMEOUT);
     return new GlobalSearchResultPage();
+  }
+
+  public void waitForCaseWidgetLoaded() {
+    checkDisplayedCaseWidgetContainer();
+    getCaseWidgetTable().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement openWidgetFilter(int index) {
+    $("[id$='filter-sidebar-link-" + index + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    var result = $("div[id$=':filter-overlay-panel-" + index + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    result.$("[class*='js-loading-']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    result.$(".filter-overlay-panel__header").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    return result;
+  }
+
+  public void closeWidgetFilter(int index) {
+    var widgetFilterPanel = $("div[id$=':filter-overlay-panel-" + index + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    widgetFilterPanel.$(".ui-overlaypanel-footer__cancel").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    widgetFilterPanel.shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  
+  public WebElement openWidgetInformation(int index) {
+    String widgetInfo =  String.format("button[id$=':info-sidebar-link-%d']", index);
+    $(widgetInfo).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+
+    String infoPanel = String.format("div[id$='info-overlay-panel-%d']", index);
+    $(infoPanel).shouldBe(appear, DEFAULT_TIMEOUT).$(".widget-info--type").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(infoPanel).$("[class^='js-loading-']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    return $(infoPanel).shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void startTask(int index) {
+    String cssSelector = String.format("a[id$=':task-component:dashboard-tasks:%d:dashboard-tasks-columns:0:start-task']", index);
+    $(cssSelector).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void waitForTaskStartButtonDisplay(int index) {
+    String cssSelector = String.format("a[id*='task-component:dashboard-tasks:%d']", index);
+    $(cssSelector).shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public ChatPage openChatDialog() {
+    $("[id='toggle-chat-panel-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return new ChatPage();
   }
 }

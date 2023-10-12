@@ -537,5 +537,5 @@ public class MenuView implements Serializable {
     return Ivy.session();
   }
 
-  private record PortalDashboardItemWrapper(List<Dashboard> dashboards) {};
+  private record PortalDashboardItemWrapper(List<Dashboard> dashboards) {}
 }

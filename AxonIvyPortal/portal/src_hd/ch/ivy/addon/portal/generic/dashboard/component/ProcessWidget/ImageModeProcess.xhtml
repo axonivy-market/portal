@@ -67,7 +67,7 @@
               styleClass="process-more-info-link"
               href="#{dashboardProcessBean.getProcessInformationPageUrl(process)}"
               disabled="#{!isReadOnlyMode or isInConfiguration}"
-              rendered="#{data.showInformationLink and !isExternalLink and !isExpress and !isCaseMap}"
+              rendered="#{dashboardProcessBean.isShowInformationLink(process) and !isExternalLink and !isExpress and !isCaseMap}"
               />
           </div>
         </div>

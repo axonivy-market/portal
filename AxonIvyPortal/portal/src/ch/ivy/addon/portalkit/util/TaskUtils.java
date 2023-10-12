@@ -20,7 +20,6 @@ import com.axonivy.portal.components.publicapi.TaskAPI;
 
 import ch.ivy.addon.portalkit.datamodel.internal.RelatedTaskLazyDataModel;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
-import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.PortalPage;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
@@ -29,6 +28,7 @@ import ch.ivy.addon.portalkit.service.TaskInforActionService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
@@ -38,16 +38,17 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 public final class TaskUtils {
-  private static final String PORTAL_GLOBAL_GROWL= "portal-global-growl";
-  private static final String PORTAL_GLOBAL_GROWL_MESSAGE= "portal-global-growl-message";
+  private static final String PORTAL_GLOBAL_GROWL = "portal-global-growl";
+  private static final String PORTAL_GLOBAL_GROWL_MESSAGE = "portal-global-growl-message";
   private static final String PRIORITY_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskPriority/";
   private static final String TASK_BUSINESS_STATE_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/";
 
   private TaskUtils() {}
 
   public static void resetTask(final ITask task) {
-    IvyExecutor.executeAsSystem(() -> {
-      if (Arrays.asList(TaskState.RESUMED, TaskState.CREATED, TaskState.PARKED, TaskState.READY_FOR_JOIN, TaskState.FAILED)
+    Sudo.get(() -> {
+      if (Arrays
+          .asList(TaskState.RESUMED, TaskState.CREATED, TaskState.PARKED, TaskState.READY_FOR_JOIN, TaskState.FAILED)
           .contains(task.getState())) {
         task.reset();
       }
@@ -61,7 +62,7 @@ public final class TaskUtils {
    * @param task : Task need to be park
    */
   public static void parkTask(final ITask task) {
-    IvyExecutor.executeAsSystem(() -> {
+    Sudo.get(() -> {
       IWorkflowSession iWorkflowSession = Ivy.session();
       iWorkflowSession.parkTask(task);
       return Void.class;
@@ -75,7 +76,7 @@ public final class TaskUtils {
    * @return Boolean
    */
   public static Boolean removeTaskDelay(final ITask task) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       task.setDelayTimestamp(null);
       return true;
     });
@@ -88,7 +89,7 @@ public final class TaskUtils {
    * @return Boolean
    */
   public static Boolean removeTaskDeadline(final ITask task) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       task.setExpiryTimestamp(null);
       return true;
     });
@@ -120,7 +121,7 @@ public final class TaskUtils {
    * @param iSecurityMember
    */
   public static void delegateTask(final ITask iTask, final ISecurityMember iSecurityMember) {
-    IvyExecutor.executeAsSystem(() -> {
+    Sudo.get(() -> {
       iTask.setActivator(iSecurityMember);
       iTask.customFields().timestampField(CUSTOM_TIMESTAMP_FIELD5).set(new Date());
       return Void.class;
@@ -134,30 +135,10 @@ public final class TaskUtils {
    * @param iSecurityMember
    */
   public static void delegateTaskAfterEscalation(final ITask iTask, final ISecurityMember iSecurityMember) {
-    IvyExecutor.executeAsSystem(() -> {
+    Sudo.get(() -> {
       iTask.setExpiryActivator(iSecurityMember);
       return Void.class;
     });
-  }
-
-  /**
-   * Sets the "HIDE" additional property to the given task to hide it in any task lists of Portal.
-   * @deprecated Use {@link TaskAPI#setHidePropertyToHideInPortal(ITask)} instead
-   * @param task
-   */
-  @Deprecated
-  public static void setHidePropertyToHideInPortal(ITask task) {
-    task.customFields().stringField(AdditionalProperty.HIDE.toString()).set(AdditionalProperty.HIDE.toString());
-  }
-
-  /**
-   * Removes the "HIDE" property to the given task to display it in any task lists of Portal.
-   * @deprecated Use {@link TaskAPI#removeHidePropertyToDisplayInPortal(ITask)} instead
-   * @param task
-   */
-  @Deprecated
-  public static void removeHidePropertyToDisplayInPortal(ITask task) {
-    task.customFields().stringField(AdditionalProperty.HIDE.toString()).set(null);
   }
 
   /**
@@ -167,7 +148,7 @@ public final class TaskUtils {
    * @return task if it exists and user has insufficient rights to see, null if otherwise
    */
   public static ITask findTaskUserHasPermissionToSee(final long taskId) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       TaskQuery taskQuery1 = TaskQuery.create().where().taskId().isEqual(taskId);
       TaskQuery taskQuery2 = TaskQuery.create().where().currentUserIsInvolved();
       IUser user = Ivy.session().getSessionUser();
@@ -180,29 +161,30 @@ public final class TaskUtils {
 
   /**
    * Finds a task by its ID
+   * 
    * @param taskId
    * @return {@link ITask}
    */
   public static ITask findTaskById(long taskId) {
-    return IvyExecutor.executeAsSystem(() -> {
-      TaskQuery taskQuery = TaskQuery.create().where().taskId().isEqual(taskId);
-      return Ivy.wf().getTaskQueryExecutor().getFirstResult(taskQuery);
+    return Sudo.get(() -> {
+      return Ivy.wf().findTask(taskId);
     });
   }
 
-  public static boolean isTaskCurrentOpeningTask(ITask task){
-    return IvyExecutor.executeAsSystem(() -> {
+  public static boolean isTaskCurrentOpeningTask(ITask task) {
+    return Sudo.get(() -> {
       var wfTask = Ivy.wfTask();
       return task.getBusinessState() == TaskBusinessState.IN_PROGRESS || task.getId() == wfTask.getId();
     });
   }
-  
+
   public static void updateTaskStartedAttribute(boolean status) {
     Ivy.session().setAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString(), status);
   }
 
-  /** Destroys task if session user has permission TASK_READ, TASK_DESTROY
-   * and this task is not DONE or DESTROYED
+  /**
+   * Destroys task if session user has permission TASK_READ, TASK_DESTROY and this task is not DONE or DESTROYED
+   * 
    * @param taskId
    */
   public static void destroyTaskById(long taskId) {
@@ -211,7 +193,7 @@ public final class TaskUtils {
       if (task == null || Arrays.asList(TaskState.DONE, TaskState.DESTROYED).contains(task.getState())) {
         return;
       }
-      IvyExecutor.executeAsSystem(() -> {
+      Sudo.get(() -> {
         task.destroy();
         return Void.class;
       });
@@ -243,8 +225,7 @@ public final class TaskUtils {
 
   public static List<TaskBusinessState> filterStateByPermission(List<TaskBusinessState> states) {
     var validStates = getValidStates();
-    return CollectionUtils.emptyIfNull(states).stream()
-        .filter(state -> validStates.contains(state))
+    return CollectionUtils.emptyIfNull(states).stream().filter(state -> validStates.contains(state))
         .collect(Collectors.toList()).stream().distinct().toList();
   }
 
@@ -286,7 +267,8 @@ public final class TaskUtils {
     if (StringUtils.isNotBlank(notification)) {
       FacesContext facesContext = FacesContext.getCurrentInstance();
       facesContext.validationFailed();
-      facesContext.addMessage(PORTAL_GLOBAL_GROWL_MESSAGE, new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
+      facesContext.addMessage(PORTAL_GLOBAL_GROWL_MESSAGE,
+          new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
       PrimeFaces.current().ajax().update(PORTAL_GLOBAL_GROWL);
     }
     return StringUtils.isBlank(notification);
@@ -297,7 +279,8 @@ public final class TaskUtils {
     List<Object> cmsList = new ArrayList<>();
     cmsList.add(task.names().current());
     if (task.getBusinessState() == TaskBusinessState.DONE) {
-      notification = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/taskDone", cmsList);
+      notification =
+          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/taskDone", cmsList);
     } else if (!canResume(task)) {
       IUser worker = task.getWorkerUser();
       if (worker != null) {
@@ -305,9 +288,11 @@ public final class TaskUtils {
         String workerName = StringUtils.isBlank(fullName) ? worker.getName() : fullName + " (" + worker.getName() + ")";
         cmsList.add(task.getId());
         cmsList.add(workerName);
-        notification = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/isAnotherUserWorking", cmsList);
+        notification = Ivy.cms().co(
+            "/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/isAnotherUserWorking", cmsList);
       } else {
-        notification = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/cannotStartTask", cmsList);
+        notification = Ivy.cms()
+            .co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/cannotStartTask", cmsList);
       }
     }
 
@@ -318,10 +303,11 @@ public final class TaskUtils {
     TaskEndInfo taskEndInfo = new TaskEndInfo();
     taskEndInfo.setDataModel(dataModel);
     taskEndInfo.setPortalPage(currentPortalPage);
-    String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(task.getId());
+    String taskEndInfoSessionAttributeKey =
+        StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(task.getId());
     SecurityServiceUtils.setSessionAttribute(taskEndInfoSessionAttributeKey, taskEndInfo);
   }
-  
+
   public static void expiryTaskById(Long taskId) {
     ITask task = findTaskById(taskId);
     if (task == null) {
@@ -340,7 +326,11 @@ public final class TaskUtils {
     task.getCase().createNote(Ivy.session(), triggerNote);
   }
 
-  //To convert Ivy task state to portal task state with multiple languages
+  /**
+   * Convert Ivy task state to portal task state with multiple languages
+   * @param state
+   * @return task state
+   */
   public static String convertToUserFriendlyTaskState(TaskBusinessState state) {
     if (state == null) {
       return StringUtils.EMPTY;
@@ -349,8 +339,12 @@ public final class TaskUtils {
     return Ivy.cms().co(TASK_BUSINESS_STATE_CMS_PATH + state + "_UPPERCASE");
   }
 
-  //To get Ivy task priority with multiple languages
-  public static String convertToUserFriendlyTaskPriority (WorkflowPriority priority) {
+  /**
+   * Get Ivy task priority with multiple languages
+   * @param priority
+   * @return task priority
+   */
+  public static String convertToUserFriendlyTaskPriority(WorkflowPriority priority) {
     if (priority == null) {
       return StringUtils.EMPTY;
     }

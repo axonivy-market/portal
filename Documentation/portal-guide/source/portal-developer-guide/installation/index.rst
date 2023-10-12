@@ -121,6 +121,13 @@ In Engine
 
 #. Follow detailed migration notes for each version below.
 
+Migrate 10.0.12 To 10.0.13
+--------------------------
+
+- Override HTML dialog ``UserWithEnvironmentInfo`` is removed and no longer supported, use ``GlobalFooterInfo`` dialog instead with the GlobalVariable.
+
+- Override HTML dialog ``PageHeader`` and ``PageFooter`` are no longer supported, use callable instead.
+
 Migrate 10.0 To 10.0.12
 -----------------------
 
@@ -350,8 +357,8 @@ Migrate 9.2 To 9.3
    If you use have any customized date filters in your project, update template accordingly.
 
 #. The callable process ``DefaultChart.p.json``, ``DefaultUserProcess.p.json`` has been removed. They are replaced by
-   the :dev-url:`Variables </doc/|version|/designer-guide/configuration/variables.html>` configuration approach,
-   refer to :ref:`Default Chart <customization-default-chart>` and :ref:`Default User Process <customization-default-user-process>` for more information
+   the :dev-url:`Variables </doc/|version|/designer-guide/configuration/variables.html>` configuration approach.
+   
 
 Migrate 9.1 To 9.2
 ------------------
@@ -475,6 +482,7 @@ Changes in 11.2.0
 - The ``ch.ivy.addon.portalkit.publicapi.RoleAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.RoleAPI`` instead.
 - The ``ch.ivy.addon.portalkit.publicapi.TaskAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.TaskAPI`` instead.
 - The ``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI`` instead.
+- Introduced the sort feature for the process dashboard widget. User can sort the processes by index, alphabetical order or by custom order.
 
 Changes in 10
 -------------

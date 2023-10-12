@@ -7,13 +7,13 @@ import static portal.guitest.common.Variable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST
 import static portal.guitest.common.Variable.DEFAULT_SORT_DIRECTION_OF_TASK_LIST;
 import static portal.guitest.common.Variable.DEFAULT_SORT_FIELD_OF_CASE_LIST;
 import static portal.guitest.common.Variable.DEFAULT_SORT_FIELD_OF_TASK_LIST;
+import static portal.guitest.common.Variable.GLOBAL_FOOTER_INFO;
 
 import org.junit.Test;
 
 import ch.ivy.addon.portalkit.enums.SortDirection;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.NavigationHelper;
-import portal.guitest.common.SystemProperties;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.CaseWidgetPage;
@@ -38,17 +38,28 @@ public class AdminSettingsTest extends BaseTest {
 		assertFalse("Admin Settings menu item is displayed", newDashboardPage.isAdminSettingsMenuItemPresent());
 	}
 
-	@Test
-	public void testDefaultEnvironmentInfo() {
+  @Test
+  public void testDefaultEnvironmentInfo() {
     login(TestAccount.ADMIN_USER);
-    NewDashboardPage newDashboardPage = new NewDashboardPage();
-    AdminSettingsPage adminSettingsPage = newDashboardPage.openAdminSettings();
-    adminSettingsPage.setEnviromentInfo();
-    assertTrue(newDashboardPage.getEnviromentInfo().contains("Host: " + SystemProperties.getServerName()));
-	}
+    NewDashboardPage homePage = new NewDashboardPage();
+    AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
+    adminSettingsPage.setGlobalFooterInfo();
+    assertTrue(homePage.getGlobalFooterInfo().contains("Wawa"));
+  }
 
-	@Test
-	public void testDefaultSortOptionsForTaskList() {
+  @Test
+  public void testCustomizedEnvironmentInfo() {
+    updatePortalSetting(GLOBAL_FOOTER_INFO.getKey(), "Dev Team: Wawa, Env: Dev");
+    login(TestAccount.ADMIN_USER);
+    NewDashboardPage homePage = new NewDashboardPage();
+    // Customize environment info in portal example
+    redirectToRelativeLinkWithEmbedInFrame(NewDashboardPage.PORTAL_EXAMPLES_EMPLOYEE_SEARCH);
+
+    assertTrue(homePage.getGlobalFooterInfo().contains("Wawa"));
+  }
+
+  @Test
+  public void testDefaultSortOptionsForTaskList() {
     updatePortalSetting(DEFAULT_SORT_FIELD_OF_TASK_LIST.getKey(), "PRIORITY");
     updatePortalSetting(DEFAULT_SORT_DIRECTION_OF_TASK_LIST.getKey(), SortDirection.ASC.name());
     redirectToRelativeLink(cleanSessionCacheUrl);
@@ -57,7 +68,7 @@ public class AdminSettingsTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     assertEquals("high", taskWidgetPage.getPriorityOfTask(0));
     assertEquals("low", taskWidgetPage.getPriorityOfTask(taskWidgetPage.countTasks() - 1));
-	}
+  }
 
 	 @Test
 	  public void testDefaultSortOptionsForCaseList() {
@@ -65,6 +76,7 @@ public class AdminSettingsTest extends BaseTest {
      updatePortalSetting(DEFAULT_SORT_FIELD_OF_CASE_LIST.getKey(), "NAME");
      updatePortalSetting(DEFAULT_SORT_DIRECTION_OF_CASE_LIST.getKey(), SortDirection.DESC.name());
      TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+
 	   MainMenuPage mainMenuPage = taskWidgetPage.openMainMenu();
 	   CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
 	   assertEquals("TestCase", caseWidgetPage.getCaseNameAt(0));

@@ -44,10 +44,9 @@ public class ReorderDashboardPage extends TemplatePage {
   }
 
   private SelenideElement findPublicDashboardRowByName(String dashboardName) {
-    $("[id$=':reorder-dashboard-form:public-dashboard-table']").shouldHave(appear, DEFAULT_TIMEOUT);
-    return $("[id$=':public-dashboard-table_data']").shouldBe(appear, DEFAULT_TIMEOUT)
-          .$$("tr[role='row']").asFixedIterable().stream()
-              .filter(row -> row.$("span[id$=':dashboard-title']").getText().equals(dashboardName))
+    return $("[id$=':dashboard-table_data']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$$("tr.ui-widget-content").asFixedIterable().stream()
+        .filter(row -> row.$("[id$=':dashboard-title-group']").getText().equals(dashboardName))
               .findFirst().get();
   }
 
