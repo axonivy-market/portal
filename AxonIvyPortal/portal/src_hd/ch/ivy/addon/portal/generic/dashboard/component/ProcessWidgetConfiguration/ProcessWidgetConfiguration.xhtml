@@ -110,9 +110,10 @@
             <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sorting')}" for="processes-sorting" />
           </div>
           <div class="ui-g-8 ui-fluid">
-            <p:selectOneMenu id="processes-sorting" value="#{widget.sorting}">
+            <p:selectOneMenu id="processes-sorting" value="#{widget.sorting}" 
+            title="#{ivy.cms.co(widget.sorting eq 'BY_CUSTOM_ORDER' ? '/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/ProcessWidgetConfiguration/DragAndDropTooltip' : '')}">
               <f:selectItems value="#{compactDashboardProcessBean.processSorting}" var="sorting" itemValue="#{sorting}" itemLabel="#{sorting.label}" />
-              <p:ajax oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
+              <p:ajax oncomplete="PF('new-widget-configuration-dialog').initPosition();" update="processes-sorting"/>
             </p:selectOneMenu>
           </div>
         </h:panelGroup>
@@ -197,12 +198,16 @@
     <div class="ui-g #{isCompact ? 'widget-preview--compact' : ''} #{isFull ? 'widget-preview--full' : ''} #{isCombined ? 'widget-preview--combined' : ''} #{isImage ? 'widget-preview--image-width' : ''}">
       <div class="ui-g-12 widget-preview__header">
         <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}</h2>
+        <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/ProcessWidgetConfiguration/DragAndDropToChangeOrder')}" 
+        rendered="#{compactDashboardProcessBean.isPreviewCustomOrder()}"/>
       </div>
 
       <!-- Widget data -->
       <div class="ui-g-12">
         <h:panelGroup id="preview-process" class="ui-g-12 u-padding-0 #{isImage ? 'widget-preview--image-height' : ''}">
-          <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessWidget processWidget="#{cc.attrs.processWidget}" isReadOnlyMode="true" isInConfiguration="true"
+          <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessWidget processWidget="#{cc.attrs.processWidget}" 
+            isReadOnlyMode="true" 
+            isInConfiguration="true"
             onLoadProcessComplete="PF('new-widget-configuration-dialog').initPosition();" />
         </h:panelGroup>
       </div>

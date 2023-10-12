@@ -130,6 +130,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       IMAGE: Image
     ProcessSorting:
       BY_ALPHABETICALLY: Alphabétiquement
+      BY_CUSTOM_ORDER: Commande personnalisée
       BY_INDEX: Index de tri
     ProcessType:
       EXPRESS_PROCESS: Flux de travail express
@@ -283,7 +284,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showAvatar: Pour activer/désactiver l'affichage des avatars des utilisateurs/rôles.
       showButtonIcon: Pour activer/désactiver l'icône d'affichage dans le bouton.
       showCaseDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de l'affaire.
-      showEnvironmentInfoNote: Pour activer/désactiver l'affichage des informations sur l'environnement.
       showErrorLogToConsole: Défini à true pour activer l'écriture du journal des erreurs dans la console du navigateur.
       showGlobalSearch: Pour activer/désactiver l'affichage de la recherche globale.
       showLegacyUI: Pour activer/désactiver l'affichage de l'interface utilisateur héritée.
@@ -1548,6 +1548,9 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
+                ProcessWidgetConfiguration:
+                  DragAndDropToChangeOrder: Glisser-déposer pour modifier l'ordre.
+                  DragAndDropTooltip: Cliquer sur l'aperçu puis glisser-déposer pour modifier l'ordre
         portalkit:
           component:
             CaseItemDetails:

@@ -42,7 +42,7 @@ You find ``portal-developer-examples`` in the engine demo mode or import them in
    global-search-result
    document-processes
    responsive-css
-   user-with-environment-info
+   global-footer-info
    page-header-footer
    process-information
    process-image
