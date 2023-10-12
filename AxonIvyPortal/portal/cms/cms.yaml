@@ -247,7 +247,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       refreshTaskListIntervalNote: Task list refresh interval in seconds.
       showButtonIcon: For switch on/off the display icons in button.
       showCaseDurationTime: For switch on/off the display of the duration time in case details page.
-      showEnvironmentInfoNote: For switch on/off the display of environment information.
       showErrorLogToConsole: Set to true to enable write error log to browser console
       showGlobalSearch: For switch on/off the display of the global search.
       showProcessInformation: Set to false to disable link to Show Information of process on Processes page (grid mode) and Case Details.
@@ -1375,9 +1374,13 @@ Dialogs:
         portal:
           generic:
             dashboard:
+              PortalDashboardConfiguration:
+                NewDashboard: New Dashboard
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Could not find the linked process!
+                ProcessWidgetConfiguration:
+                  DragAndDropToChangeOrder: Drag and drop to change the order.
         portalkit:
           component:
             CaseItemDetails:
@@ -1531,6 +1534,7 @@ Labels:
   AdhocWorkflow: Describe your Workflow
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
+  CreateNewDashboard: Create new dashboard
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
   Task: Task

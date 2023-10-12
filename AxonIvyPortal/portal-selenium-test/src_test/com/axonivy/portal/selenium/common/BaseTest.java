@@ -23,7 +23,7 @@ public class BaseTest {
 
   private String designerLogoutUrl = "http://localhost:8081/designer/logout";
   private final static String LOGIN_URL_PATTERN = "/PortalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
-  private final static String PORTAL_HOME_PAGE_URL = "/portal/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
+  protected final static String PORTAL_HOME_PAGE_URL = "/portal/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
   protected final static Duration DEFAULT_TIMEOUT = Duration.ofSeconds(45);
   
   public BaseTest() {}
@@ -89,6 +89,10 @@ public class BaseTest {
   protected String denyShareLinkCaseDetailsPermission = "PortalKitTestHelper/14DE09882B540AD5/denyCaseDetailsShareLinkPermission.ivp";
   protected String grantShareLinkTaskDetailsPermission = "PortalKitTestHelper/14DE09882B540AD5/grantTaskDetailsShareLinkPermission.ivp";
   protected String denyShareLinkTaskDetailsPermission = "PortalKitTestHelper/14DE09882B540AD5/denyTaskDetailsShareLinkPermission.ivp";
+  protected String showProcessViewerUrl = "portal/1549F58C18A6C562/PortalProcessViewer.ivp?caseId=%s&processKey=%s";
+  protected String processViewerExampleInFrameUrl = "portal-components-examples/1821592826979C20/showProcessViewerOfLeaveRequestUsingProcessLink.ivp";
+  protected String securityMemberNameAndAvatarExampleInFrameUrl = "/portal-components-examples/182A5FCAF7FC6B1A/showSecurityMemberNameAndAvatarExamples.ivp?embedInFrame";
+  protected String templateInFrameExampleInFrameUrl = "/portal-developer-examples/162511D2577DBA88/createTaskWithFrameTemplate.ivp?embedInFrame";
 
 
   protected void redirectToNewDashBoard() {
@@ -250,5 +254,18 @@ public class BaseTest {
       e.printStackTrace();
     }
     redirectToRelativeLink(String.format(createJSonFileUrl,filepath,key));
+  }
+  
+  protected void showNewDashboard() {
+    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "false");
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+  }
+  
+  public void redirectToRelativeLinkWithEmbedInFrame(String relativeProcessStartUrl) {
+    try {
+      open(UrlHelpers.generateAbsoluteProcessStartLink(relativeProcessStartUrl) + "?embedInFrame");
+    } catch (Exception e) {
+      throw new PortalGUITestException(e);
+    }
   }
 }

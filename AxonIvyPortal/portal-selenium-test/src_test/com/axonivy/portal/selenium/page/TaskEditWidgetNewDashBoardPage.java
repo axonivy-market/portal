@@ -5,6 +5,8 @@ import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
+import org.openqa.selenium.WebElement;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -120,7 +122,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public SelenideElement getAddLanguageButton() {
     SelenideElement addLanguageButton = $("button[id$='add-language-button']");
     addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    addLanguageButton.shouldBe(getClickableCondition());
+    addLanguageButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     waitUntilElementToBeClickable(addLanguageButton);
     return addLanguageButton;
   }
@@ -137,5 +139,60 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     translationOverlay.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
 
     return translationOverlay;
+  }
+
+  public WebElement getConfigurationFilter() {
+    return $("[id='widget-configuration-form:new-widget-configuration-component:filter-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public WebElement openColumnManagementDialog() {
+    $("div[id$='task-widget-preview:dashboard-tasks-container']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("a[id$='column-toggler']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return getColumnManagementDialog().shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getColumnManagementDialog() {
+    return $("div[id$='column-management-dialog']");
+  }
+
+  public void removeAddedField(String field) {
+    SelenideElement removeLink = getAddedFieldRemoveLink(field);
+    removeLink.click();
+    removeLink.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getAddedFieldRemoveLink(String field) {
+    return getColumnManagementDialog().$("tbody td.js-column-field-" + field + " a").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+  }
+
+  public void saveColumn() {
+    getColumnManagementDialog().$("button[id$='column-management-save-btn']").click();
+    $("div[id$=':column-management-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    waitPreviewTableLoaded();
+  }
+
+  private SelenideElement getMultiLanguageDialogWhenAddWidget() {
+    return $("div[id='widget-configuration-form:new-widget-configuration-component:title-language-config:multiple-languages-dialog']");
+  }
+  public WebElement openMultiLanguageDialogWhenAddWidget() {
+    getAddLanguageButton().click();
+    getMultiLanguageDialogWhenAddWidget().shouldBe(Condition.appear, DEFAULT_TIMEOUT).$(".ui-dialog-title").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    return getMultiLanguageDialogWhenAddWidget();
+  }
+  
+  public void cancelMultiLanguageDialogWhenAddWidget() {
+    $("a[id$=':multi-language-cancel-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    getMultiLanguageDialogWhenAddWidget().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getConfigurationDialog() {
+    $("div[id='new-widget-configuration-dialog']").shouldBe(appear, DEFAULT_TIMEOUT)
+      .$("[id='new-widget-configuration-dialog_title']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    return $("div[id='new-widget-configuration-dialog']");
+  }
+
+  public void closeConfigurationDialog() {
+    getConfigurationDialog().$(".ui-dialog-footer").$("a").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div[id='new-widget-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 }

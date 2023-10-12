@@ -26,12 +26,23 @@ public final class WaitHelper {
     $(".layout-menu li[role='menuitem'] a.DASHBOARD").shouldHave(Condition.appear, DEFAULT_TIMEOUT);
   }
 
+  public static void waitForNavigationToLoginPage(Runnable navigationAcion) {
+    String viewState = $("input[name='javax.faces.ViewState'][id$='javax.faces.ViewState:1']").getAttribute("value");
+    navigationAcion.run();
+    $$("input[value='" + viewState + "']").shouldHave(CollectionCondition.sizeLessThanOrEqual(0), DEFAULT_TIMEOUT);
+    $("[id='login:login-form:username']").shouldHave(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
   public static void waitForIFrameAvailable(WebDriver driver, String frameId) {
     wait(driver).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameId));
   }
 
   public static void waitNumberOfElementsToBe(WebDriver dirver, By selector, Integer expectedSize) {
     wait(dirver).until(ExpectedConditions.numberOfElementsToBe(selector, expectedSize));
+  }
+
+  public static void waitAttributeToBe(WebDriver dirver, By selector, String attribute, String value) {
+    wait(dirver).until(ExpectedConditions.attributeToBe(selector, attribute, value));
   }
 
   public static WebDriverWait wait(WebDriver driver) {

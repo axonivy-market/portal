@@ -13,8 +13,8 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseWidgetPage;
-import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.NewDashboardPage;
 
 public class CaseFilterTest extends BaseTest {
 
