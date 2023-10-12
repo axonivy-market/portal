@@ -15,6 +15,7 @@ public class NotificationsTest extends BaseTest {
     HomePage homepage = new HomePage();
     int oldBadge = homepage.getNotificationsBadge();
     redirectToRelativeLink(create12CasesWithCategoryUrl);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     int newBadge = homepage.getNotificationsBadge();
     assertEquals(newBadge - oldBadge, 12);
 
