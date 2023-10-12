@@ -35,15 +35,15 @@ import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public final class TaskUtils {
-  private static final String PORTAL_GLOBAL_GROWL= "portal-global-growl";
-  private static final String PORTAL_GLOBAL_GROWL_MESSAGE= "portal-global-growl-message";
+  private static final String PORTAL_GLOBAL_GROWL = "portal-global-growl";
+  private static final String PORTAL_GLOBAL_GROWL_MESSAGE = "portal-global-growl-message";
 
   private TaskUtils() {}
 
   public static void resetTask(final ITask task) {
     Sudo.get(() -> {
-      if (Arrays.asList(TaskState.RESUMED, TaskState.CREATED, TaskState.PARKED, TaskState.READY_FOR_JOIN,
-          TaskState.FAILED)
+      if (Arrays
+          .asList(TaskState.RESUMED, TaskState.CREATED, TaskState.PARKED, TaskState.READY_FOR_JOIN, TaskState.FAILED)
           .contains(task.getState())) {
         task.reset();
       }
@@ -92,14 +92,14 @@ public final class TaskUtils {
   /**
    * Get finished tasks by {@link ICase}
    * 
-   * @param iCase object as {@link ICase}
+   * @param caze object as {@link ICase}
    * 
    * @return list of {@link ITask}
    */
-  public static List<ITask> getFinishedTasksByCase(ICase iCase) {
+  public static List<ITask> getFinishedTasksByCase(ICase caze) {
     List<ITask> currentTasks = new ArrayList<>();
-    if (iCase != null && iCase.tasks().all() != null && !iCase.tasks().all().isEmpty()) {
-      for (ITask iTask : iCase.tasks().all()) {
+    if (caze != null && caze.tasks().all() != null && !caze.tasks().all().isEmpty()) {
+      for (ITask iTask : caze.tasks().all()) {
         if (iTask != null && TaskState.DONE == iTask.getState()) {
           currentTasks.add(iTask);
         }
@@ -134,7 +134,7 @@ public final class TaskUtils {
       return Void.class;
     });
   }
-  
+
   /**
    * Gets task by ID that session user has permission to see
    * 
@@ -155,29 +155,30 @@ public final class TaskUtils {
 
   /**
    * Finds a task by its ID
+   * 
    * @param taskId
    * @return {@link ITask}
    */
   public static ITask findTaskById(long taskId) {
     return Sudo.get(() -> {
-      TaskQuery taskQuery = TaskQuery.create().where().taskId().isEqual(taskId);
-      return Ivy.wf().getTaskQueryExecutor().getFirstResult(taskQuery);
+      return Ivy.wf().findTask(taskId);
     });
   }
 
-  public static boolean isTaskCurrentOpeningTask(ITask task){
+  public static boolean isTaskCurrentOpeningTask(ITask task) {
     return Sudo.get(() -> {
       var wfTask = Ivy.wfTask();
       return task.getState() == TaskState.RESUMED || task.getId() == wfTask.getId();
     });
   }
-  
+
   public static void updateTaskStartedAttribute(boolean status) {
     Ivy.session().setAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString(), status);
   }
 
-  /** Destroys task if session user has permission TASK_READ, TASK_DESTROY
-   * and this task is not DONE or DESTROYED
+  /**
+   * Destroys task if session user has permission TASK_READ, TASK_DESTROY and this task is not DONE or DESTROYED
+   * 
    * @param taskId
    */
   public static void destroyTaskById(long taskId) {
@@ -200,8 +201,7 @@ public final class TaskUtils {
     } else {
       states.add(TaskState.DONE);
     }
-    return states.stream()
-        .sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString()))
+    return states.stream().sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString()))
         .collect(Collectors.toList());
   }
 
@@ -210,8 +210,7 @@ public final class TaskUtils {
       return states;
     }
     var validStates = getValidStates();
-    return CollectionUtils.emptyIfNull(states).stream()
-        .filter(state -> validStates.contains(state))
+    return CollectionUtils.emptyIfNull(states).stream().filter(state -> validStates.contains(state))
         .collect(Collectors.toList());
   }
 
@@ -256,7 +255,8 @@ public final class TaskUtils {
     if (StringUtils.isNotBlank(notification)) {
       FacesContext facesContext = FacesContext.getCurrentInstance();
       facesContext.validationFailed();
-      facesContext.addMessage(PORTAL_GLOBAL_GROWL_MESSAGE, new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
+      facesContext.addMessage(PORTAL_GLOBAL_GROWL_MESSAGE,
+          new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
       PrimeFaces.current().ajax().update(PORTAL_GLOBAL_GROWL);
     }
     return StringUtils.isBlank(notification);
@@ -267,7 +267,8 @@ public final class TaskUtils {
     List<Object> cmsList = new ArrayList<>();
     cmsList.add(task.names().current());
     if (task.getState() == TaskState.DONE) {
-      notification = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/taskDone", cmsList);
+      notification =
+          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/taskDone", cmsList);
     } else if (!canResume(task)) {
       IUser worker = task.getWorkerUser();
       if (worker != null) {
@@ -275,9 +276,11 @@ public final class TaskUtils {
         String workerName = StringUtils.isBlank(fullName) ? worker.getName() : fullName + " (" + worker.getName() + ")";
         cmsList.add(task.getId());
         cmsList.add(workerName);
-        notification = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/isAnotherUserWorking", cmsList);
+        notification = Ivy.cms().co(
+            "/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/isAnotherUserWorking", cmsList);
       } else {
-        notification = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/cannotStartTask", cmsList);
+        notification = Ivy.cms()
+            .co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/cannotStartTask", cmsList);
       }
     }
 
@@ -288,10 +291,11 @@ public final class TaskUtils {
     TaskEndInfo taskEndInfo = new TaskEndInfo();
     taskEndInfo.setDataModel(dataModel);
     taskEndInfo.setPortalPage(currentPortalPage);
-    String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(task.getId());
+    String taskEndInfoSessionAttributeKey =
+        StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(task.getId());
     SecurityServiceUtils.setSessionAttribute(taskEndInfoSessionAttributeKey, taskEndInfo);
   }
-  
+
   public static void expiryTaskById(Long taskId) {
     ITask task = findTaskById(taskId);
     if (task == null) {
@@ -309,38 +313,40 @@ public final class TaskUtils {
     String triggerNote = new TaskInforActionService().prepareTriggerEscalationNoteContent(fullName, userName, taskId);
     task.getCase().createNote(Ivy.session(), triggerNote);
   }
-  
-//To convert Ivy task state to portal task state with multiple languages
- public static String convertToUserFriendlyTaskState(TaskState state) {
-   if (state == null) {
-     return StringUtils.EMPTY;
-   }
-   return switch (state) {
-     case SUSPENDED -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/SUSPENDED_UPPERCASE");
-     case CREATED -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/OPEN_UPPERCASE");
-     case RESUMED -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/INPROGRESS");
-     case DONE -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/DONE_UPPERCASE");
-     case PARKED -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/RESERVED");
-     case DESTROYED -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/DESTROYED_UPPERCASE");
-     case DELAYED -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/DELAYED_UPPERCASE");
-     case READY_FOR_JOIN -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/READY_FOR_JOINING_UPPERCASE");
-     case FAILED -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/FAILED_UPPERCASE");
-     case JOIN_FAILED -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/JOIN_FAILED_UPPERCASE");
-     case WAITING_FOR_INTERMEDIATE_EVENT -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/WAITING_FOR_INTERMEDIATE_EVENT_UPPERCASE");
-     default -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/SYSTEM");
-   };
- }
- 
- //To get Ivy task priority with multiple languages
- public static String convertToUserFriendlyTaskPriority (WorkflowPriority priority) {
-   if (priority == null) {
-     return StringUtils.EMPTY;
-   }
-   return switch(priority) {
-     case NORMAL -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/NORMAL");
-     case LOW -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/LOW");
-     case HIGH -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/HIGH");
-     default -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/EXCEPTION");
-   };
- }
+
+  // To convert Ivy task state to portal task state with multiple languages
+  public static String convertToUserFriendlyTaskState(TaskState state) {
+    if (state == null) {
+      return StringUtils.EMPTY;
+    }
+    String url = switch (state) {
+      case SUSPENDED -> "/ch.ivy.addon.portalkit.ui.jsf/taskState/SUSPENDED_UPPERCASE";
+      case CREATED -> "/ch.ivy.addon.portalkit.ui.jsf/taskState/OPEN_UPPERCASE";
+      case RESUMED -> "/ch.ivy.addon.portalkit.ui.jsf/taskState/INPROGRESS";
+      case DONE -> "/ch.ivy.addon.portalkit.ui.jsf/taskState/DONE_UPPERCASE";
+      case PARKED -> "/ch.ivy.addon.portalkit.ui.jsf/taskState/RESERVED";
+      case DESTROYED -> "/ch.ivy.addon.portalkit.ui.jsf/taskState/DESTROYED_UPPERCASE";
+      case DELAYED -> "/ch.ivy.addon.portalkit.ui.jsf/taskState/DELAYED_UPPERCASE";
+      case READY_FOR_JOIN -> "/ch.ivy.addon.portalkit.ui.jsf/taskState/READY_FOR_JOINING_UPPERCASE";
+      case FAILED -> "/ch.ivy.addon.portalkit.ui.jsf/taskState/FAILED_UPPERCASE";
+      case JOIN_FAILED -> "/ch.ivy.addon.portalkit.ui.jsf/taskState/JOIN_FAILED_UPPERCASE";
+      case WAITING_FOR_INTERMEDIATE_EVENT -> "/ch.ivy.addon.portalkit.ui.jsf/taskState/WAITING_FOR_INTERMEDIATE_EVENT_UPPERCASE";
+      default -> "/ch.ivy.addon.portalkit.ui.jsf/taskState/SYSTEM";
+    };
+    return Ivy.cms().co(url);
+  }
+
+  // To get Ivy task priority with multiple languages
+  public static String convertToUserFriendlyTaskPriority(WorkflowPriority priority) {
+    if (priority == null) {
+      return StringUtils.EMPTY;
+    }
+    String url = switch (priority) {
+      case NORMAL -> "/ch.ivy.addon.portalkit.ui.jsf/taskPriority/NORMAL";
+      case LOW -> "/ch.ivy.addon.portalkit.ui.jsf/taskPriority/LOW";
+      case HIGH -> "/ch.ivy.addon.portalkit.ui.jsf/taskPriority/HIGH";
+      default -> "/ch.ivy.addon.portalkit.ui.jsf/taskPriority/EXCEPTION";
+    };
+    return Ivy.cms().co(url);
+  }
 }

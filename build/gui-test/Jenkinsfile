@@ -1,6 +1,6 @@
 pipeline {
   agent {label 'portal-slave'}
-  
+
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '60'))
   }
@@ -9,9 +9,9 @@ pipeline {
     cron('0 20 * * *')
   }
 
-  tools { 
-    maven '3.8' 
-    jdk '17' 
+  tools {
+    maven '3.8'
+    jdk '17'
   }
 
   parameters {

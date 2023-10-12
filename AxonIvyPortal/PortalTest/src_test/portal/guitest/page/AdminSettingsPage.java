@@ -1,7 +1,7 @@
 package portal.guitest.page;
 
 import static portal.guitest.common.Variable.CLIENT_SIDE_TIMEOUT;
-import static portal.guitest.common.Variable.SHOW_ENVIRONMENT_INFO;
+import static portal.guitest.common.Variable.GLOBAL_FOOTER_INFO;
 import static portal.guitest.common.Variable.SHOW_LEGACY_UI;
 
 import java.util.List;
@@ -125,9 +125,9 @@ public class AdminSettingsPage extends TemplatePage {
     clickOnbackToHomepageOnAdminSetting();
   }
 
-  public void setEnviromentInfo() {
+  public void setGlobalFooterInfo() {
     openSettingTab();
-    editGlobalVariable(SHOW_ENVIRONMENT_INFO.getKey(), "true", true);
+    editGlobalVariable(GLOBAL_FOOTER_INFO.getKey(), "Dev Team: Wawa, Env: Dev", false);
     closeConfirmationDialog();
   }
 

@@ -35,7 +35,7 @@ public class CaseWidgetBeanTest {
     PowerMockito.mockStatic(PermissionUtils.class);
     caseWidgetBean = new CaseWidgetBean();
   }
-  
+
   @Test
   @PrepareForTest({CaseWidgetBean.class, PermissionUtils.class, FacesContext.class})
   public void testGetAdditionalCaseDetailsPageUriWithCustomization() throws Exception {

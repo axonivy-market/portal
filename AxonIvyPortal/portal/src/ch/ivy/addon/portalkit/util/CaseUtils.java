@@ -37,10 +37,6 @@ public final class CaseUtils {
       return Objects.nonNull(ivyCaseResultDTO) ? ivyCaseResultDTO.getCases() : new ArrayList<>();
     });
   }
-
-  public static CaseQuery createBusinessCaseQuery() {
-    return CaseQuery.businessCases();
-  }
   
   public static List<INote> findNotes(ICase iCase, boolean excludeSystemNotes) {
     Objects.requireNonNull(iCase, "Case must not be null");
@@ -51,6 +47,10 @@ public final class CaseUtils {
           .collect(Collectors.toList());
     }
     return new ArrayList<>(notes);
+  }
+
+  public static CaseQuery createBusinessCaseQuery() {
+    return CaseQuery.businessCases();
   }
   
   public static void destroyCase(ICase selectedCase) {
@@ -87,12 +87,13 @@ public final class CaseUtils {
     if (state == null) {
       return StringUtils.EMPTY;
     }
-    return switch (state) {
-      case CREATED -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/CREATED_UPPERCASE");
-      case RUNNING -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/INPROGRESS");
-      case DESTROYED -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/DESTROYED_UPPERCASE");
-      case DONE -> Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/DONE_UPPERCASE");
+    String url = switch (state) {
+      case CREATED -> "/ch.ivy.addon.portalkit.ui.jsf/caseState/CREATED_UPPERCASE";
+      case RUNNING -> "/ch.ivy.addon.portalkit.ui.jsf/caseState/INPROGRESS";
+      case DESTROYED -> "/ch.ivy.addon.portalkit.ui.jsf/caseState/DESTROYED_UPPERCASE";
+      case DONE -> "/ch.ivy.addon.portalkit.ui.jsf/caseState/DONE_UPPERCASE";
       default -> StringUtils.EMPTY;
     };
+    return Ivy.cms().co(url);
   }
 }

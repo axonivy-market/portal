@@ -295,8 +295,7 @@ public class TaskActionBean implements Serializable {
   }
 
   public String getProcessViewerPageUri(ITask task) {
-    task.getCase().getBusinessCase();
-    return PortalProcessViewerUtils.getStartProcessViewerPageUri(task.getCase().getBusinessCase());
+    return PortalProcessViewerUtils.getStartProcessViewerPageUri(task);
   }
 
   public String getDurationOfTask(ITask task) {

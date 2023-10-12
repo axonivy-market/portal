@@ -2,7 +2,6 @@ package ch.ivy.addon.portaltemplate.generic.bean;
 
 import static ch.ivy.addon.portalkit.enums.GlobalVariable.HIDE_LOGOUT_BUTTON;
 import static ch.ivy.addon.portalkit.enums.GlobalVariable.LOGGED_IN_USER_FORMAT;
-import static ch.ivy.addon.portalkit.enums.GlobalVariable.SHOW_ENVIRONMENT_INFO;
 import static org.junit.Assert.assertEquals;
 import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
@@ -48,7 +47,6 @@ public class UserMenuBeanTest {
     
     globalSettingService = mock(GlobalSettingService.class);
     whenNew(GlobalSettingService.class).withNoArguments().thenReturn(globalSettingService);
-    when(globalSettingService.findGlobalSettingValue(SHOW_ENVIRONMENT_INFO)).thenReturn("true");
     when(globalSettingService.findGlobalSettingValue(HIDE_LOGOUT_BUTTON)).thenReturn("true");
     when(globalSettingService.findGlobalSettingValue(LOGGED_IN_USER_FORMAT)).thenReturn("USERNAME");
     
@@ -61,13 +59,6 @@ public class UserMenuBeanTest {
     assertEquals(userMenuBean.getLoggedInUser(), testUsername);
   }
 
-  @Test
-  @PrepareForTest({ Ivy.class, UserMenuBean.class })
-  public void testIsShowServerInformation() throws Exception {
-    assertEquals(Boolean.TRUE, userMenuBean.isShowServerInformation());
-    verifyNew(GlobalSettingService.class).withNoArguments();
-    Mockito.verify(globalSettingService).findGlobalSettingValue(SHOW_ENVIRONMENT_INFO);
-  }
 
   @Test
   @PrepareForTest({ Ivy.class, UserMenuBean.class })

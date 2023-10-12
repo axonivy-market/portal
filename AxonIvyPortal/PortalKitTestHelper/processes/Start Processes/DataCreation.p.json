@@ -1673,9 +1673,10 @@
       "name" : "ProcessViewer",
       "config" : {
         "dialogId" : "ch.ivy.addon.portal.generic.ProcessViewer",
-        "startMethod" : "start(Long,String)",
+        "startMethod" : "start(Long,Long,String)",
         "call" : {
           "params" : [
+            { "name" : "taskId", "type" : "Long" },
             { "name" : "caseId", "type" : "Long" },
             { "name" : "processId", "type" : "String" }
           ],
