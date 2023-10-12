@@ -76,7 +76,7 @@ public class ProcessStartUtils {
     httpResponse.sendRedirect(uri);
   }
   
-  private static String findFriendlyRequestPathContainsKeyword(String keyword, Object portalStartPmvId) {
+  public static String findFriendlyRequestPathContainsKeyword(String keyword, Object portalStartPmvId) {
     if (portalStartPmvId == null) {
       return findFriendlyRequestPathContainsKeywordInPMV(keyword, Ivy.wfTask().getProcessModelVersion());
     } else {

@@ -42,7 +42,6 @@ import ch.ivy.addon.portalkit.service.DummyProcessService;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.service.UserProcessService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
@@ -188,7 +187,7 @@ private static final long serialVersionUID = -5889375917550618261L;
 
   private Map<String, Process> findExpressProcesses() {
     List<ExpressProcess> processes = new ArrayList<>();
-    String expressStartLink = ProcessStartCollector.getInstance().findExpressWorkflowStartLink();
+    String expressStartLink = ExpressProcessService.getInstance().findExpressWorkflowStartLink();
     if (StringUtils.isNotBlank(expressStartLink)) {
       List<ExpressProcess> workflows = ExpressProcessService.getInstance().findReadyToExecuteProcessOrderByName();
       for (ExpressProcess wf : workflows) {
@@ -316,8 +315,7 @@ private static final long serialVersionUID = -5889375917550618261L;
     }
     
     if (isExpressProcess(userProcess) && StringUtils.isNotBlank(userProcess.getProcessId())) {
-      ProcessStartCollector processStartCollector = new ProcessStartCollector();
-      String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
+      String expressStartLink = ExpressProcessService.getInstance().findExpressWorkflowStartLink();
       if (StringUtils.isNotBlank(expressStartLink)) {
         FacesContext.getCurrentInstance().getExternalContext().redirect(expressStartLink + "?workflowID=" + userProcess.getProcessId());
         return;

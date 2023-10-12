@@ -8,12 +8,12 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.generic.navigation.BaseNavigator;
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
+import com.axonivy.portal.components.util.ProcessStartUtils;
 
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
-import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.IHttpRequest;
@@ -210,12 +210,6 @@ public final class PortalNavigator extends BaseNavigator{
     return buildUrlByKeyword("CaseDetailsPage.ivp", PORTAL_CASE_DETAILS, params);
   }
 
-//  public static String buildPortalCaseDetailInFrameUrl(String uuid, IProcessModelVersion processModelVersion) {
-//    Map<String, String> params = new HashMap<>();
-//    params.put(UUID, uuid);
-//    return buildUrlByKeywordInPMV(PORTAL_CASE_DETAILS_IN_IFRAME_START, processModelVersion, PORTAL_CASE_DETAILS_IN_FRAME, params);
-//  }
-
   public static String buildPortalCaseDetailInFrameUrl(String uuid) {
     Map<String, String> params = new HashMap<>();
     params.put(UUID, uuid);
@@ -236,16 +230,9 @@ public final class PortalNavigator extends BaseNavigator{
   
   public static String buildUrlByKeyword(String keyword, String defaultFriendlyRequestPath, Map<String, String> param) {
     Object portalStartPmvId = Ivy.session().getAttribute(SessionAttribute.PORTAL_START_PMV_ID.toString());
-    String customizePortalFriendlyRequestPath = ProcessStartCollector.getInstance().findFriendlyRequestPathContainsKeyword(keyword, portalStartPmvId); 
-        //ProcessStartUtils.findFriendlyRequestPathContainsKeyword(keyword);
+    String customizePortalFriendlyRequestPath = ProcessStartUtils.findFriendlyRequestPathContainsKeyword(keyword, portalStartPmvId); 
     return buildUrl(StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, defaultFriendlyRequestPath), param);
   }
-  
-//  private static String buildUrlByKeywordInPMV(String keyword, IProcessModelVersion processModelVersion ,String defaultFriendlyRequestPath, Map<String, String> param) {
-//    String customizePortalFriendlyRequestPath = ProcessStartCollector.getInstance().findFriendlyRequestPathContainsKeyword(keyword, processModelVersion);
-//        //ProcessStartUtils.findFriendlyRequestPathContainsKeywordInPMV(keyword, processModelVersion);
-//    return buildUrl(StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, defaultFriendlyRequestPath), param);
-//  }
 
   private static String buildUrl(String friendlyRequestPath, Map<String, String> params) {
     String requestPath = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(friendlyRequestPath);
