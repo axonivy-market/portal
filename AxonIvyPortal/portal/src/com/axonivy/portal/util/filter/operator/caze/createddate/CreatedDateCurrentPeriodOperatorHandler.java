@@ -37,7 +37,6 @@ public class CreatedDateCurrentPeriodOperatorHandler extends AbstractFilterOpera
     CaseQuery query = CaseQuery.create();
     switch (dateFilterPeriodType) {
       case YEAR -> buildQuery(query, PortalDateUtils.getStartOfCurrentYear(), PortalDateUtils.getEndOfCurrentYear());
-      case QUARTER -> buildQuery(query, PortalDateUtils.getStartOfCurrentQuarter(), PortalDateUtils.getEndOfCurrentQuarter());
       case MONTH -> buildQuery(query, PortalDateUtils.getStartOfCurrentMonth(), PortalDateUtils.getEndOfCurrentMonth());
       case WEEK -> buildQuery(query, PortalDateUtils.getStartOfCurrentWeek(), PortalDateUtils.getEndOfCurrentWeek());
       case DAY -> buildQuery(query, PortalDateUtils.getStartOfToday(), PortalDateUtils.getEndOfToday());

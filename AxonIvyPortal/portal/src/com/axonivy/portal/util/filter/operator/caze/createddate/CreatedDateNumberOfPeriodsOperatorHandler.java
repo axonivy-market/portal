@@ -48,12 +48,11 @@ public class CreatedDateNumberOfPeriodsOperatorHandler {
   }
 
   private CaseQuery queryCreatedDateByNUmberOfPeriod(FilterPeriodType dateFilterPeriodType, Long numberOfPeriods, boolean isPast) {
-    Long absNumberOfPeriods = Math.abs(numberOfPeriods);
+    Long absNumberOfPeriods = isPast ?  -Math.abs(numberOfPeriods) : Math.abs(numberOfPeriods);
     Date today = new Date();
     CaseQuery query = CaseQuery.create();
     switch (dateFilterPeriodType) {
       case YEAR -> buildQuery(query, PortalDateUtils.getYearByPeriod(absNumberOfPeriods), today, isPast);
-      case QUARTER -> buildQuery(query, PortalDateUtils.getQuarterByPeriod(absNumberOfPeriods), today, isPast);
       case MONTH -> buildQuery(query, PortalDateUtils.getMonthByPeriod(absNumberOfPeriods), today, isPast);
       case WEEK -> buildQuery(query, PortalDateUtils.getWeekByPeriod(absNumberOfPeriods), today, isPast);
       case DAY -> buildQuery(query, PortalDateUtils.getDayByPeriod(absNumberOfPeriods), today, isPast);

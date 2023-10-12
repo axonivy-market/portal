@@ -1715,12 +1715,24 @@ body .ui-widget.new-widget-dialog__introduction {
   align-items: center;
 }
 
+.dashboard-widget-filter__filter-panel > div..filter-selection-panel {
+  min-width: 130px;
+}
+
 .dashboard-widget-filter__filter-panel > div.date-picker-panel {
-  min-width: 220px;
+  min-width: 200px;
 }
 
 .dashboard-widget-filter__filter-panel > div.number-of-periods-panel {
   width: 100px;
+}
+
+.dashboard-widget-filter__filter-panel > div.period-type-panel {
+  width: 120px;
+}
+
+.dashboard-widget-filter__filter-panel > div.filter-operator-panel {
+  width: 150px;
 }
 
 .dashboard-widget-filter__filter-panel > div:first-child {

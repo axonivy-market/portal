@@ -1807,10 +1807,8 @@ Labels:
       Plural:
         DAY: Tag(e)
         MONTH: Monat(e)
-        QUARTER: Quartal(e)
         WEEK: Woche(n)
         YEAR: Jahr(e)
-      QUARTER: Quartal
       WEEK: Woche
       YEAR: Jahr
     SearchScopeCaseField:

@@ -2,9 +2,7 @@ package com.axonivy.portal.util;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.YearMonth;
 import java.time.ZoneId;
-import java.time.temporal.IsoFields;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -54,19 +52,6 @@ public class PortalDateUtils {
     return getEndOfDate(DateUtils.addDays(startDateOfNextYear, -1));
   }
 
-  public static Date getStartOfCurrentQuarter() {
-    LocalDate date = LocalDate.now();
-    LocalDate startDateOfQuarter = YearMonth.of(date.getYear(), 1)
-        .with(IsoFields.QUARTER_OF_YEAR, date.get(IsoFields.QUARTER_OF_YEAR))
-        .atDay(1);
-    return DateUtils.truncate(toDate(startDateOfQuarter), Calendar.DATE);
-  }
-
-  public static Date getEndOfCurrentQuarter() {
-    Date endOfCurrentQuarter = DateUtils.addDays(DateUtils.addMonths(getStartOfCurrentQuarter(), 3), -1);
-    return getEndOfDate(endOfCurrentQuarter);
-  }
-
   public static Date getStartOfCurrentMonth() {
     return DateUtils.truncate(new Date(), Calendar.MONTH);
   }
@@ -90,11 +75,6 @@ public class PortalDateUtils {
   public static Date getYearByPeriod(Long period) {
     LocalDateTime today = LocalDateTime.now();
     return toDate(today.plusYears(period).toLocalDate());
-  }
-
-  public static Date getQuarterByPeriod(Long period) {
-    Long numberOfMonths = period*3;
-    return getMonthByPeriod(numberOfMonths);
   }
 
   public static Date getMonthByPeriod(Long period) {
