@@ -6,13 +6,14 @@
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/Title')}</ui:define>
     <ui:param name="viewName" value="PROCESS_VIEWER" />
+    <ui:param name="task" value="#{data.selectedTask}" />
     <ui:param name="case" value="#{data.selectedCase}" />
     <ui:define name="pageContent">
 
       <h:panelGroup layout="block" id="portal-process-viewer-form"
         styleClass="ui-g portal-process-viewer-form portal-card-container">
         <h:panelGroup layout="block" styleClass="ui-g-12 portal-process-viewer-data card">
-            <ic:com.axonivy.portal.components.ProcessViewer caseId="#{data.caseId}" processLink="#{data.processId}" />
+            <ic:com.axonivy.portal.components.ProcessViewer taskId="#{data.taskId}" caseId="#{data.caseId}" processLink="#{data.processId}" />
         </h:panelGroup>
         <div class="ui-g-12 u-text-align-right process-viewer-command u-padding-0">
           <p:commandButton id="close-process" actionListener="#{logic.close}"

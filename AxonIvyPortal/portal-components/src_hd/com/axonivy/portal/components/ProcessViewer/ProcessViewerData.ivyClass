@@ -20,3 +20,5 @@ category String #field
 category PERSISTENT #fieldModifier
 errorIcon String #field
 errorIcon PERSISTENT #fieldModifier
+taskId Long #field
+taskId PERSISTENT #fieldModifier
