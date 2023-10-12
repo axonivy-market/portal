@@ -4,7 +4,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public enum FilterPeriodType {
   YEAR,
-  QUARTER,
   MONTH,
   WEEK,
   DAY;

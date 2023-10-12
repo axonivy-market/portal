@@ -1803,10 +1803,8 @@ Labels:
       Plural:
         DAY: Jour(s)
         MONTH: Mois
-        QUARTER: Trimestre(s)
         WEEK: Semaine(s)
         YEAR: Année(s)
-      QUARTER: Trimestre
       WEEK: Semaine
       YEAR: Année
     ThemeMode:

@@ -7,21 +7,26 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="filter" type="com.axonivy.portal.dto.dashboard.filter.DashboardFilter" />
   <cc:attribute name="componentToUpdate" required="true" />
+  <cc:attribute name="filterIndex" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="filter" value="#{cc.attrs.filter}" />
 
-  <h:panelGroup id="text-filter-operator-panel" layout="block">
+  <h:panelGroup id="text-filter-operator-panel" layout="block"
+    styleClass="ui-fluid md-inputfield filter-operator-panel">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}">
         <f:selectItems value="#{widgetTextFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
           <p:ajax event="itemSelect" listener="#{widgetTextFilterBean.onChangeOperator(filter)}"
             process="@(this)" update="#{cc.attrs.componentToUpdate}" />
+          <f:param name="skipValidator" value="true" />
       </p:selectOneMenu>
   </h:panelGroup>
 
-  <h:panelGroup id="text-list-panel" layout="block" rendered="#{widgetTextFilterBean.isShowTextListPanel(filter)}" styleClass="date-picker-panel">
+  <h:panelGroup id="text-list-panel" layout="block"
+    styleClass="ui-fluid md-inputfield"
+    rendered="#{widgetTextFilterBean.isShowTextListPanel(filter)}">
     <p:chips value="#{filter.texts}" unique="true" addOnPaste="true" />
   </h:panelGroup>
 </cc:implementation>
