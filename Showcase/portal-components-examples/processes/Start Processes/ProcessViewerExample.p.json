@@ -69,8 +69,14 @@
       "type" : "DialogCall",
       "name" : "ProcessViewerExample",
       "config" : {
-        "dialog" : "com.axonivy.portal.components.examples.ProcessViewerExample:start(Long,String)",
+        "dialogId" : "com.axonivy.portal.components.examples.ProcessViewerExample",
+        "startMethod" : "start(Long,Long,String)",
         "call" : {
+          "params" : [
+            { "name" : "taskId", "type" : "Long" },
+            { "name" : "caseId", "type" : "Long" },
+            { "name" : "processLink", "type" : "String" }
+          ],
           "map" : {
             "param.caseId" : "in.selectedCaseId"
           }
@@ -225,8 +231,14 @@
       "type" : "DialogCall",
       "name" : "ProcessViewerExample",
       "config" : {
-        "dialog" : "com.axonivy.portal.components.examples.ProcessViewerExample:start(Long,String)",
+        "dialogId" : "com.axonivy.portal.components.examples.ProcessViewerExample",
+        "startMethod" : "start(Long,Long,String)",
         "call" : {
+          "params" : [
+            { "name" : "taskId", "type" : "Long" },
+            { "name" : "caseId", "type" : "Long" },
+            { "name" : "processLink", "type" : "String" }
+          ],
           "map" : {
             "param.processLink" : "in.selectedProcessLink"
           }
