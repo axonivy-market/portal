@@ -286,7 +286,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showAvatar: Zum Ein- und Ausschalten der Anzeige von Benutzer-/Rollenavataren.
       showButtonIcon: Zum Ein-/Ausschalten des Anzeigesymbols bei Butons im Portal
       showCaseDurationTime: Zum Ein-/Ausschalten der Anzeige der Bearbeitungszeit auf der Vorgangsdetailseite.
-      showEnvironmentInfoNote: Zum Ein-/Ausschalten der Anzeige der Environment-Information
       showErrorLogToConsole: Auf true setzen, um Fehlerprotokoll in die Browserkonsole zu schreiben
       showGlobalSearch: Zum Ein-/Ausschalten der Anzeige der globalen Suche.
       showLegacyUI: Zum Ein-/Ausschalten der Legacy UI des Dashboards.
