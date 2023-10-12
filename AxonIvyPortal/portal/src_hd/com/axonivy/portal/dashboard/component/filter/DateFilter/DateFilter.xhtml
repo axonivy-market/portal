@@ -7,52 +7,95 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="filter" type="com.axonivy.portal.dto.dashboard.filter.DashboardFilter" />
   <cc:attribute name="componentToUpdate" required="true" />
+  <cc:attribute name="filterIndex" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="filter" value="#{cc.attrs.filter}" />
+  <c:set var="filterIndex" value="#{cc.attrs.filterIndex}" />
 
-  <h:panelGroup id="date-filter-operator-panel" layout="block">
+  <h:panelGroup id="date-filter-operator-panel" layout="block"
+    styleClass="ui-fluid md-inputfield filter-operator-panel">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}">
         <f:selectItems value="#{widgetDateFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
           <p:ajax event="itemSelect" listener="#{widgetDateFilterBean.onChangeOperator(filter)}"
             process="@(this)" update="#{cc.attrs.componentToUpdate}" />
+          <f:param name="skipValidator" value="true" />
       </p:selectOneMenu>
   </h:panelGroup>
 
-  <h:panelGroup id="is-date-panel" layout="block" rendered="#{filter.operator == 'IS'}" styleClass="date-picker-panel">
+  <h:panelGroup id="is-date-panel" layout="block" rendered="#{filter.operator == 'IS'}"
+    styleClass="ui-fluid md-inputfield date-picker-panel">
     <p:datePicker id="is-date" value="#{filter.from}" locale="#{localeBean.locale}"
-      showIcon="true" converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
+      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex)}">
+      <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
+      <f:attribute name="filter" value="#{filter}" />
+      <f:attribute name="filterIndex" value="#{filterIndex}" />
+      <f:attribute name="locale" value="#{localeBean.locale}" />
+    </p:datePicker>
   </h:panelGroup>
 
-  <h:panelGroup id="is-not-date-panel" layout="block" rendered="#{filter.operator == 'IS_NOT'}" styleClass="date-picker-panel">
+  <h:panelGroup id="is-not-date-panel" layout="block" rendered="#{filter.operator == 'IS_NOT'}"
+    styleClass="ui-fluid md-inputfield date-picker-panel">
     <p:datePicker id="is-not-date" value="#{filter.from}" locale="#{localeBean.locale}"
-      showIcon="true" converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
+      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex)}">
+      <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
+      <f:attribute name="filter" value="#{filter}" />
+      <f:attribute name="filterIndex" value="#{filterIndex}" />
+      <f:attribute name="locale" value="#{localeBean.locale}" />
+    </p:datePicker>
   </h:panelGroup>
 
-  <h:panelGroup id="before-date-panel" layout="block" rendered="#{filter.operator == 'BEFORE'}" styleClass="date-picker-panel">
+  <h:panelGroup id="before-date-panel" layout="block" rendered="#{filter.operator == 'BEFORE'}"
+    styleClass="ui-fluid md-inputfield date-picker-panel">
     <p:datePicker id="before-date" value="#{filter.from}" locale="#{localeBean.locale}"
-      showIcon="true" converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
+      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex)}">
+      <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
+      <f:attribute name="filter" value="#{filter}" />
+      <f:attribute name="filterIndex" value="#{filterIndex}" />
+      <f:attribute name="locale" value="#{localeBean.locale}" />
+    </p:datePicker>
   </h:panelGroup>
 
-  <h:panelGroup id="after-date-panel" layout="block" rendered="#{filter.operator == 'AFTER'}" styleClass="date-picker-panel">
+  <h:panelGroup id="after-date-panel" layout="block" rendered="#{filter.operator == 'AFTER'}"
+    styleClass="ui-fluid md-inputfield date-picker-panel">
     <p:datePicker id="after-date" value="#{filter.to}" locale="#{localeBean.locale}"
-      showIcon="true" converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
+      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex)}">
+      <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
+      <f:attribute name="filter" value="#{filter}" />
+      <f:attribute name="filterIndex" value="#{filterIndex}" />
+      <f:attribute name="locale" value="#{localeBean.locale}" />
+    </p:datePicker>
   </h:panelGroup>
 
-  <h:panelGroup id="between-dates-panel-from" layout="block" rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}" styleClass="date-picker-panel">
+  <h:panelGroup id="between-dates-panel-from" layout="block"
+    rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}"
+    styleClass="ui-fluid md-inputfield date-picker-panel">
     <p:datePicker id="from-date" value="#{filter.from}" locale="#{localeBean.locale}"
-      showIcon="true" converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
+      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex)}">
+      <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
+      <f:attribute name="filter" value="#{filter}" />
+      <f:attribute name="filterIndex" value="#{filterIndex}" />
+      <f:attribute name="locale" value="#{localeBean.locale}" />
+    </p:datePicker>
   </h:panelGroup>
 
-  <h:panelGroup id="between-dates-panel-and" layout="block" rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}">
+  <h:panelGroup id="between-dates-panel-and" layout="block"
+    rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}">
     <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/And')}</span>
   </h:panelGroup>
 
-  <h:panelGroup id="between-dates-panel-to" layout="block" rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}" styleClass="date-picker-panel">
+  <h:panelGroup id="between-dates-panel-to" layout="block"
+    rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}"
+    styleClass="ui-fluid md-inputfield date-picker-panel">
     <p:datePicker id="to-date" value="#{filter.to}" locale="#{localeBean.locale}"
-      showIcon="true" converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
+      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex)}">
+      <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
+      <f:attribute name="filter" value="#{filter}" />
+      <f:attribute name="filterIndex" value="#{filterIndex}" />
+      <f:attribute name="locale" value="#{localeBean.locale}" />
+    </p:datePicker>
   </h:panelGroup>
 
   <h:panelGroup id="current-period-panel" layout="block" rendered="#{filter.operator == 'CURRENT'}">
@@ -62,11 +105,15 @@
     </p:selectOneMenu>
   </h:panelGroup>
 
-  <h:panelGroup id="number-of-periods-panel" layout="block" rendered="#{filter.operator == 'LAST' or filter.operator == 'NEXT'}" styleClass="number-of-periods-panel">
+  <h:panelGroup id="number-of-periods-panel" layout="block"
+    rendered="#{filter.operator == 'LAST' or filter.operator == 'NEXT'}"
+    styleClass="number-of-periods-panel ui-fluid md-inputfield">
     <p:spinner id="number-of-period" value="#{filter.periods}" min="1" />
   </h:panelGroup>
 
-  <h:panelGroup id="period-type-panel" layout="block" rendered="#{filter.operator == 'LAST' or filter.operator == 'NEXT'}">
+  <h:panelGroup id="period-type-panel" layout="block"
+    rendered="#{filter.operator == 'LAST' or filter.operator == 'NEXT'}"
+    styleClass="period-type-panel ui-fluid md-inputfield">
     <p:selectOneMenu id="period-n-type-selection" value="#{filter.periodType}">
       <f:selectItems value="#{widgetDateFilterBean.filterPeriodTypes}" var="period"
         itemValue="#{period}" itemLabel="#{period.pluralLabel}" />
