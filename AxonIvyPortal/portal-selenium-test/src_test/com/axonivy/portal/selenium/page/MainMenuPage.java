@@ -1,11 +1,6 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.disappear;
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebDriverRunner;
-
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -14,6 +9,9 @@ import java.util.stream.Collectors;
 import org.openqa.selenium.By;
 
 import com.axonivy.portal.selenium.common.WaitHelper;
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 
 public class MainMenuPage extends TemplatePage {
 
@@ -46,21 +44,38 @@ public class MainMenuPage extends TemplatePage {
     return new ProcessWidgetPage();
   }
 
+  public StatisticWidgetPage openStatisticPage() {
+    waitLeftMenuReady();
+    WaitHelper.waitForNavigation(() -> {
+      clickByJavaScript($(".layout-menu li[role='menuitem'] a.STATISTICS").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()));
+    });
+    return new StatisticWidgetPage();
+  }
+
   public void openUserSettingMenu() {
     $("#top-menu").shouldBe(appear, DEFAULT_TIMEOUT);
     clickByJavaScript($("a[id='user-settings-menu']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()));
   }
 
-  private void waitLeftMenuReady() {
+  public void waitLeftMenuReady() {
+    WaitHelper.waitNumberOfElementsToBe(WebDriverRunner.getWebDriver(), By.cssSelector("[id$=':main-navigator:main-menu']"), 1);
     $("[id$=':main-navigator:main-menu']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void expandMainMenu() {
     waitLeftMenuReady();
-    if ($("a[id$='user-menu-required-login:toggle-menu']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).is(disappear)) {
-      $("[id$=':main-navigator:main-menu']").hover();
-      WaitHelper.waitNumberOfElementsToBe(WebDriverRunner.getWebDriver(), By.id("user-menu-required-login:toggle-menu"), 1);
+    if ($("[id='user-menu-required-login:logo-small']").isDisplayed()) {
+      $("[id='user-menu-required-login:logo-small']").shouldBe(appear, DEFAULT_TIMEOUT).hover();
+      $("[id='user-menu-required-login:logo']").shouldBe(appear, DEFAULT_TIMEOUT);
+      $("a[id='user-menu-required-login:toggle-menu']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    }
+  }
+  
+  public void closeMainMenu() {
+    waitLeftMenuReady();
+    if ($("a[id$='user-menu-required-login:toggle-menu']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).is(appear)) {
       $("a[id$='user-menu-required-login:toggle-menu']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+      $(".portal-home-logo-small").shouldBe(Condition.hidden, DEFAULT_TIMEOUT);
     }
   }
 

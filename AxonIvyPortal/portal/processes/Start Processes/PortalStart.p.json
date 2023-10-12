@@ -4422,6 +4422,9 @@
             "out.dashboardId" : "param.dashboardId",
             "out.isOpenWithoutMenu" : "param.openWithoutMenu"
           }
+        },
+        "request" : {
+          "isVisibleOnStartList" : false
         }
       },
       "visual" : {

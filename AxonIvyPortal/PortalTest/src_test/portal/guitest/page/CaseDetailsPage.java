@@ -800,6 +800,24 @@ public class CaseDetailsPage extends TemplatePage {
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
+  public boolean iframeCustomWidgetIsDisplayed() {
+    return findElementByCssSelector("iframe[name='custom-widget-iframe']").isDisplayed();
+  }
+
+  public String getProcessLinkInCustomIFrameWidget() {
+    WebElement formInFrame = findElementByCssSelector("form[id='custom-widget-iframe-data']");
+    return formInFrame.getAttribute("action");
+  }
+
+  public String getIFrameURLOfCustomWidget() {
+    WebElement iframe = findElementByCssSelector("[id$=':custom-iframe']");
+    return iframe.findElement(By.tagName("iframe")).getAttribute("src");
+  }
+
+  public boolean isCustomMiddlePanelDisplay() {
+    return findElementByCssSelector("[id$=':caseItemDetailCustomMiddle']").isDisplayed();
+  }
+
   public void waitForIFrameWidgetLoad() {
     driver.switchTo().frame("custom-widget-iframe");
     WaitHelper.assertTrueWithWait(() -> findElementByCssSelector("form[id='content-form']").isDisplayed());

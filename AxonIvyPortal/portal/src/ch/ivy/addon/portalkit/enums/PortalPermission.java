@@ -12,7 +12,7 @@ public enum PortalPermission {
   DASHBOARD_EXPORT_PUBLIC("DashboardExportPublic", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
   DASHBOARD_IMPORT_OWN("DashboardImportOwn", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
   DASHBOARD_IMPORT_PUBLIC("DashboardImportPublic", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
-  DASHBOARD_SHARE_LINK("DashboardShareLink", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
+  DASHBOARD_SHARE_LINK("ShareDashboardLink", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
   TASK_WRITE_ACTIVATOR_OWN_TASKS("TaskWriteActivatorOwnTasks", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
   TASK_DISPLAY_ADDITIONAL_OPTIONS("TaskDisplayAdditionalOptions", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
   STATISTIC_ADD_DASHBOARD_CHART("StatisticAddDashboardChart", PortalPermissionGroup.STATISTIC_GROUP),

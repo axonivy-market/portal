@@ -10,8 +10,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
+import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.NavigationHelper;
@@ -93,6 +95,7 @@ public class PortalExpressTest extends BaseTest {
 
 	@Test
 	public void createFullElementsOfForm() {
+    ScreenshotUtil.resizeBrowser(new Dimension(2560, 1440));
 		goToExpressCreationPage();
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.fillProcessProperties(true, true, "Test 1", "Test description");
