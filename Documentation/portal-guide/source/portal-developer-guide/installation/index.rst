@@ -484,7 +484,7 @@ Changes in 10.0.13
 Changes in 10.0.12
 ------------------
 
-Introduced the sort feature for the process dashboard widget. User can sort the processes by index or by alphabetical order.
+- Introduced the sort feature for the process dashboard widget. User can sort the processes by index or by alphabetical order.
 
 Changes in 10.0.9
 -----------------
