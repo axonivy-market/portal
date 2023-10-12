@@ -478,7 +478,8 @@ releases of |ivy|.
 Changes in 10.0.13
 ------------------
 
-Introduced the sort by custom order for the process dashboard widget. You can change your custom order by drag and drop the processes.
+- Introduced the sort by custom order for the process dashboard widget. You can change your custom order by drag and drop the processes.
+- Introduced the ``Task ID`` param for the component ``ic:com.axonivy.portal.components.ProcessViewer`` to highlight the selected task in the Process Viewer.
 
 Changes in 10.0.12
 ------------------
