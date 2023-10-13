@@ -1715,7 +1715,7 @@ body .ui-widget.new-widget-dialog__introduction {
   align-items: center;
 }
 
-.dashboard-widget-filter__filter-panel > div..filter-selection-panel {
+.dashboard-widget-filter__filter-panel > div.filter-selection-panel {
   min-width: 130px;
 }
 
