@@ -115,4 +115,60 @@ public class HomePage extends TemplatePage {
     waitForElementDisplayed(By.className("js-loading-text"), false);
     waitForElementDisplayed(By.className("user-process-container"), true);
   }
+
+  public int getNotificationsBadge() {
+    waitForElementDisplayed(By.id("topbar-unread-notifications"), true);
+    return Integer.parseInt(findElementById("topbar-unread-notifications").getText());
+  }
+
+  public WebElement getNotificationsPanel() {
+    waitForElementDisplayed(By.id(PORTAL_GLOBAL_GROWL_ID), false);
+    waitForElementDisplayed(By.id("topbar-unread-notifications"), true);
+    findElementById("topbar-unread-notifications").click();
+    waitForElementDisplayed(By.className("notifications-container-content"), true);
+    return findElementByClassName("notifications-container-content");
+  }
+
+  public void hideNotificationsPanel() {
+    waitForElementDisplayed(By.id("topbar-unread-notifications"), true);
+    findElementById("topbar-unread-notifications").click();
+    waitForElementDisplayed(By.className("notifications-container-content"), false);
+  }
+  public boolean isOnlyUnreadDisplayed(WebElement notificationsPanel) {
+    waitForElementDisplayed(By.id("notifications-only-unread"), true);
+    return findElementById("notifications-only-unread").isDisplayed();
+  }
+
+  public void clickOnlyUnreadDisplayed(WebElement notificationsPanel) {
+    waitForElementDisplayed(By.id("notifications-only-unread"), true);
+    findElementById("notifications-only-unread").click();
+  }
+
+  public boolean isMarkAllAsReadDisplayed(WebElement notificationsPanel) {
+    waitForElementDisplayed(By.id("notificationMarkAllAsRead"), true);
+    return findElementById("notificationMarkAllAsRead").isDisplayed();
+  }
+
+  public boolean isTodayGroupLineDisplayed(WebElement notificationsPanel) {
+    waitForElementDisplayed(By.className("notifications-group-name"), true);
+    return findElementByClassName("notifications-group-name").isDisplayed();
+  }
+
+  public void markAsRead(WebElement notificationsPanel, int expectedBadge) {
+    waitForElementDisplayed(By.id(PORTAL_GLOBAL_GROWL_ID), false);
+    WebElement item = findElementByClassName("ui-datascroller-item");
+    item.findElement(By.id("notificationForm:notifications-scroller:0:notificationMarkAsRead")).click();
+    waitForElementValueChanged("#topbar-unread-notifications", String.valueOf(expectedBadge));
+  }
+
+  public int findNumberOfNotificationsItem(WebElement notificationsPanel) {
+    List<WebElement> item = findListElementsByClassName("ui-datascroller-item");
+    return item.size();
+  }
+
+  public void markAsAllRead(WebElement notificationsPanel) {
+    waitForElementDisplayed(By.id("notificationMarkAllAsRead"), true);
+    findElementById("notificationMarkAllAsRead").click();
+    waitForElementValueChanged("#topbar-unread-notifications", "0");
+  }
 }
