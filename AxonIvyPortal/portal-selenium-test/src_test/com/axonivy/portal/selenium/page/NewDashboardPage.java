@@ -693,17 +693,12 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public DashboardConfigurationPage openDashboardConfigurationPage() {
-    waitForDashboardPageAvailable();
     if ($("div[id='portal-global-growl_container']").is(appear)) {
         waitForGrowlMessageDisappear();
       }
     SelenideElement configureButton = getConfigureDashboardMenu();
     configureButton.click();
     return new DashboardConfigurationPage();
-  }
-
-  public void waitForDashboardPageAvailable() {
-    $(".js-dashboard__wrapper").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public ElementsCollection getDashboardCollection() {
@@ -843,6 +838,14 @@ public class NewDashboardPage extends TemplatePage {
   public ChatPage openChatDialog() {
     $("[id='toggle-chat-panel-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     return new ChatPage();
+  }
+  
+  public SelenideElement getTopBar() {
+    return $("[id='top-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void clickOnGlobalSearch() {
+    $("a[id='global-search-item']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
 
   public int getNotificationsBadge() {

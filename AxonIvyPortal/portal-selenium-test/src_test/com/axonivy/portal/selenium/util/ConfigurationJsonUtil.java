@@ -10,7 +10,6 @@ import org.apache.commons.io.FileUtils;
 
 import com.axonivy.portal.selenium.common.FileHelper;
 import com.axonivy.portal.selenium.common.LinkNavigator;
-import com.axonivy.portal.selenium.common.UrlHelpers;
 import com.axonivy.portal.selenium.common.Variable;
 
 public class ConfigurationJsonUtil {
@@ -29,6 +28,6 @@ public class ConfigurationJsonUtil {
   }
 
   public static void redirectToRelativeLink(String relativeProcessStartUrl) {
-    LinkNavigator.redirectToRelativeLink(UrlHelpers.generateAbsoluteProcessStartLink(relativeProcessStartUrl));
+    LinkNavigator.redirectToRelativeLink(relativeProcessStartUrl);
   }
 }

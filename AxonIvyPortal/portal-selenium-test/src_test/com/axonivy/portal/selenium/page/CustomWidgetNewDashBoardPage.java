@@ -20,6 +20,7 @@ public class CustomWidgetNewDashBoardPage extends TemplatePage {
   private static final String CUSTOM_STRING_INPUT_PATTERN = "widget-configuration-form:new-widget-configuration-component:parammeters:%d:param-string-";
   private static final String CUSTOM_USER_SELECTION_INPUT_PATTERN = "widget-configuration-form:new-widget-configuration-component:parammeters:%d:param-user-:user-selection_input";
   private static final String CUSTOM_USER_SELECTION_DIALOG_PATTERN = "widget-configuration-form:new-widget-configuration-component:parammeters:%d:param-user-:user-selection_panel";
+  private static final String EXTERNAL_URL = "widget-configuration-form:new-widget-configuration-component:external-url";
 
   @Override
   protected String getLoadedLocator() {
@@ -83,6 +84,10 @@ public class CustomWidgetNewDashBoardPage extends TemplatePage {
   public void inputStringField(int index, String value) {
     String fieldId = String.format(CUSTOM_STRING_INPUT_PATTERN, index);
     $("[id='"+ fieldId +"']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT).sendKeys(value);
+  }
+
+  public void inputExternalUrlField(String value) {
+    $("[id='" + EXTERNAL_URL + "']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT).sendKeys(value);
   }
 
   public WebElement getConfigurationDialog() {
