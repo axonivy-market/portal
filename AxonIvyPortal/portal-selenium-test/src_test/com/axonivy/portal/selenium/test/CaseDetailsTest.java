@@ -29,6 +29,7 @@ public class CaseDetailsTest extends BaseTest {
   private static final String NOTE_BUSINESS_CASE = "Note is added on Business Case";
 
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
+  public static final String CUSTOM_CASE_WIDGET_NAME = "Create Event: Test custom case details";
 
   @Override
   @BeforeEach

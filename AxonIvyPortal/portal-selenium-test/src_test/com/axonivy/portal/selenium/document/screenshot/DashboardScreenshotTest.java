@@ -75,7 +75,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
     redirectToDashboardConfiguration();
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
     configPage.selectPublicDashboardType();
-    DashboardModificationPage editPage = configPage.openEditPublicDashboardsPage();
+    DashboardModificationPage editPage = new DashboardModificationPage();
     NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
     detailsEditPage.waitPageLoaded();
     detailsEditPage.addWidget();
@@ -86,6 +86,32 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
     customWidgetPage.inputUserField(0, "demo");
 
     ScreenshotUtil.captureElementScreenshot(customWidgetPage.getConfigurationDialog(), ScreenshotUtil.DASHBOARD_FOLDER + "process-custom-widget-configuration");
+  }
+  
+  @Test
+  public void screenshotConfigureExternalPageWidget() throws IOException {
+    redirectToDashboardConfiguration();
+    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.selectPublicDashboardType();
+    DashboardModificationPage editPage = new DashboardModificationPage();
+    NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
+    detailsEditPage.waitPageLoaded();
+    detailsEditPage.addWidget();
+
+    CustomWidgetNewDashBoardPage customWidgetPage = detailsEditPage.addExternalPageWidget();
+    customWidgetPage.inputExternalUrlField("https://developer.axonivy.com");
+    ScreenshotUtil.captureElementScreenshot(customWidgetPage.getConfigurationDialog(), ScreenshotUtil.DASHBOARD_FOLDER + "external-page-widget-configuration");
+  }
+
+  @Test
+  public void screenshotDashboardWithAnnotation() throws IOException {
+    ScreenshotUtil.resizeBrowser(new Dimension(1100, 800));
+    showNewDashboard();
+    homePage = new NewDashboardPage();
+    homePage.waitForCaseWidgetLoaded();
+    homePage.clickOnGlobalSearch();
+    ScreenshotUtil.executeDecorateJs("numberingTopBar()");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(homePage.getTopBar(), ScreenshotUtil.DASHBOARD_FOLDER + "portal-header-with-numbering-annotation", new ScreenshotMargin(20, 20, 20, 120));
   }
 
   @Test
@@ -119,7 +145,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
     redirectToDashboardConfiguration();
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
     configPage.selectPublicDashboardType();
-    DashboardModificationPage editPage = configPage.openEditPublicDashboardsPage();
+    DashboardModificationPage editPage = new DashboardModificationPage();
     NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
     detailsEditPage.waitForCaseWidgetLoaded();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.NEW_DASHBOARD_FOLDER + "edit-widget");
@@ -271,11 +297,10 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
   }
 
   private void addPublicWidget(String widgetName) {
-//    updatePortalSetting(Variable.SHOW_LEGACY_UI .getKey(), "false");
     redirectToDashboardConfiguration();
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
     configPage.selectPublicDashboardType();
-    DashboardModificationPage editPage = configPage.openEditPublicDashboardsPage();
+    DashboardModificationPage editPage = new DashboardModificationPage();
     NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
     detailsEditPage.waitPageLoaded();
     detailsEditPage.addWidget();

@@ -26,7 +26,8 @@ public class BaseTest {
   private final static String LOGIN_URL_PATTERN = "/PortalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
   protected final static String PORTAL_HOME_PAGE_URL = "/portal/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
   protected final static Duration DEFAULT_TIMEOUT = Duration.ofSeconds(45);
-  
+  public final static String PORTAL_EXAMPLES_HOME_PAGE_URL = "portal-developer-examples/164211E97C598DAA/DefaultApplicationHomePage.ivp";
+
   public BaseTest() {}
 
   @AfterEach
@@ -54,7 +55,7 @@ public class BaseTest {
   protected String createNewPaymentUrl = "portal-developer-examples/162511D2577DBA88/createNewPayment.ivp";
   protected String documentTableComponentUrl = "portal-components-examples/1818938E7EBC9329/showCustomizedDocumentTableExample.ivp";
   protected String cleanUpAbsencesAndSubstituesLink = "portalKitTestHelper/1511A66AF619A768/cleanAbsencesAndSubstitues.ivp";
-  protected String createUserFavoriteProcess = "portalKitTestHelper/153CACC26D0D4C3D/createTestUserFavoriteProcess.ivp";
+  protected String createUserFavoriteProcess = "PortalKitTestHelper/153CACC26D0D4C3D/createTestUserFavoriteProcess.ivp";
   protected String createCasesForCaseListCustomization = "portal-developer-examples/162511D2577DBA88/createCasesForCaseListCustomization.ivp";
   protected String processChainShowcaseUrl = "portal-components-examples/181897243F2BFDD3/showProcessChainExamples.ivp";
   protected String userSelectionComponentShowcaseUrl = "portal-components-examples/18189AF10B521DF4/showUserSelectionExamples.ivp";
@@ -95,6 +96,7 @@ public class BaseTest {
   protected String processViewerExampleInFrameUrl = "portal-components-examples/1821592826979C20/showProcessViewerOfLeaveRequestUsingProcessLink.ivp";
   protected String securityMemberNameAndAvatarExampleInFrameUrl = "/portal-components-examples/182A5FCAF7FC6B1A/showSecurityMemberNameAndAvatarExamples.ivp?embedInFrame";
   protected String templateInFrameExampleInFrameUrl = "/portal-developer-examples/162511D2577DBA88/createTaskWithFrameTemplate.ivp?embedInFrame";
+  protected String createEventTestUrl ="portal-developer-examples/17A2C6D73AB4186E/CreateEventTest.ivp";
 
 
   protected void redirectToNewDashBoard() {
