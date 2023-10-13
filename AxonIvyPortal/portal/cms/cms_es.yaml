@@ -1789,8 +1789,8 @@ Labels:
       IN: En
       IS: Es
       IS_NOT: No es
-      LAST: Último(s) período(s) N
-      NEXT: Próximo(s) período(s) N
+      LAST: En los últimos
+      NEXT: En los próximos
       NOT_BETWEEN: No entre
       NOT_CONTAINS: No contiene
       NOT_EMPTY: No está vacío

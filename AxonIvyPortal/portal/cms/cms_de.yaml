@@ -1790,8 +1790,8 @@ Labels:
       IN: Unter
       IS: Ist
       IS_NOT: Ist nicht
-      LAST: Letzte N Periode(n)
-      NEXT: Nächste(r) N Zeitraum(e)
+      LAST: In den letzten
+      NEXT: Innerhalb der nächsten
       NOT_BETWEEN: Nicht zwischen
       NOT_CONTAINS: Enthält nicht
       NOT_EMPTY: Ist nicht leer

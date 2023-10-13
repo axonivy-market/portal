@@ -24,6 +24,7 @@ public class WidgetDateFilterBean implements Serializable {
 
   private static List<FilterOperator> operators = FilterOperator.DATE_OPERATORS.stream().toList();
   private static FilterPeriodType[] filterPeriodTypes = FilterPeriodType.values();
+  private static List<FilterPeriodType> currentFilterPeriodTypes = FilterPeriodType.PERIOD_TYPES_FOR_CURRENT_OPERATOR.stream().toList();
 
   public List<FilterOperator> getOperators() {
     return operators;
@@ -46,5 +47,9 @@ public class WidgetDateFilterBean implements Serializable {
 
   public String getWrongFormatMessage(String field, int index) {
     return String.join(": ", getMessagePrefix(field, index), Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat"));
+  }
+
+  public List<FilterPeriodType> getCurrentFilterPeriodTypes() {
+    return currentFilterPeriodTypes;
   }
 }
