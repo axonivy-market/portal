@@ -46,7 +46,7 @@ public class NotificationBean implements Serializable {
 
   public void markAsRead(NotificationDto dto) {
     if (!dto.isRead()) {
-      webNotifications.markAsRead(dto.getNotification());
+      dataModel.markAsRead(dto.getNotification());
       countUnread--;
     }
   }
@@ -69,5 +69,15 @@ public class NotificationBean implements Serializable {
 
   public boolean isRender() {
     return isRender;
+  }
+
+  private boolean isOnlyUnread = false;
+
+  public boolean isOnlyUnread() {
+    return isOnlyUnread;
+  }
+
+  public void setOnlyUnread(boolean isOnlyUnread) {
+    this.isOnlyUnread = isOnlyUnread;
   }
 }

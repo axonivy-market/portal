@@ -521,4 +521,15 @@ public abstract class TemplatePage extends AbstractPage {
     WaitHelper.waitForIFrameAvailable(driver, iframeId);
   }
 
+  public void waitForElementValueChanged(String cssSelector, String expectedValue) {
+    Awaitility.await().atMost(new Duration(DEFAULT_TIMEOUT, TimeUnit.SECONDS)).until(() -> {
+      try {
+        return expectedValue.equals(findElementByCssSelector(cssSelector).getText());
+      } catch (WebDriverException e) {
+        System.out.println("Exception when waiting for element existed, try again.");
+      }
+      return false;
+    });
+  }
+
 }

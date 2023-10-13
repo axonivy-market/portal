@@ -10,6 +10,15 @@ function closeNotificationPanel() {
     document.getElementById("notifications-panel").style.right = "-420px";
 }
 
+function markAsRead(notiId) {
+  let noti = $('i#' + notiId);
+  if (noti !== undefined) {
+    noti.addClass('fa-circle-thin');
+    noti.removeClass('fa-circle');
+    noti.parents('.notifications-container-top').removeClass('p-text-bold');
+  }
+}
+
 $(document).ready(function () {
     closeNotificationPanel();
     let notificationPanel = document.getElementById("notifications-panel");
