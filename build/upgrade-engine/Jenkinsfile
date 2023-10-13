@@ -17,16 +17,16 @@ pipeline {
         script {
           today = new Date().format('dd-MM-yyyy_HH-mm')
           config = [master:[engine: 'master', systemDatabase: 'AxonIvySystemDatabase-master'], 
-		  performanceTest:[engine:'performance-master', systemDatabase: 'AxonIvySystemDatabase-performance-master']]
+          performanceTest:[engine:'performance-master', systemDatabase: 'AxonIvySystemDatabase-performance-master']]
           engineParentDir = '/var/tools/ivy/'
           engineDir = engineParentDir + config[params.engine]['engine']
           databaseBackupDir = '/var/database-backups/'
           databaseName = config[params.engine]['systemDatabase']
           dbBackupFile = databaseBackupDir + databaseName + '-' + today + '.dump'
-		  // Set SystemDb Autoconvert: true - migrate System DB automatically when upgrading ivy
+          // Set SystemDb Autoconvert: true - migrate System DB automatically when upgrading ivy
           updateConfigFile(' true')
-		  
-		  if (params.engine == 'performanceTest') {
+          
+          if (params.engine == 'performanceTest') {
             sh """
               echo ====================Start engine performance test====================
               docker compose -f ${engineDir}/docker-compose.yml up -d
@@ -46,24 +46,25 @@ pipeline {
     stage('upgradeEngine') {
       steps {
         script {
-		  if (params.engine == 'performanceTest') {
+          if (params.engine == 'performanceTest') {
             sh """
               cd ${engineDir}
               echo ====================Stop engine performance test====================
               docker compose down
               docker compose pull
+              docker compose up -d
             """
           } else {
-          sh """
-            echo ====================Upgrade engine====================
-            cd ${engineDir}
-            docker compose stop
-            docker compose pull
-            docker compose up -d
-          """
-		  }
-		  
-		  // Set SystemDb Autoconvert: false - avoid migrating SystemDB automatically when upgrading ivy manually
+            sh """
+              echo ====================Upgrade engine====================
+              cd ${engineDir}
+              docker compose stop
+              docker compose pull
+              docker compose up -d
+            """
+          }
+          
+          // Set SystemDb Autoconvert: false - avoid migrating SystemDB automatically when upgrading ivy manually
           updateConfigFile(' false')
         }
       }
