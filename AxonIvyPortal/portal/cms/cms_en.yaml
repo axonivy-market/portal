@@ -1793,8 +1793,8 @@ Labels:
       IN: In
       IS: Is
       IS_NOT: Is Not
-      LAST: Last N Period(s)
-      NEXT: Next N period(s)
+      LAST: Within the last
+      NEXT: Within the next
       NOT_BETWEEN: Not Between
       NOT_CONTAINS: Does Not Contain
       NOT_EMPTY: Is Not Empty

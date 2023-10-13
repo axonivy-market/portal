@@ -21,7 +21,7 @@
         <f:selectItems value="#{cc.attrs.managedBean.filterTypes}" var="type"
           itemValue="#{type.field}" itemLabel="#{type.label}" />
           <f:param name="skipValidator" value="true" />
-        <p:ajax event="itemSelect" listener="#{cc.attrs.managedBean.onSelectFilter(filter)}" process="@(this)" update="filter-selection" global="false" />
+        <p:ajax event="itemSelect" listener="#{cc.attrs.managedBean.onSelectFilter(filter)}" process="@(this)" update="filter-selection-panel" global="false" />
       </p:selectOneMenu>
     </div>
 
