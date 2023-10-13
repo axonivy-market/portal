@@ -84,6 +84,13 @@ public abstract class TemplatePage extends AbstractPage {
     return new LoginPage();
   }
 
+  public void waitForElementValueChanged(String cssSelector, String expectedValue) {
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(ExpectedConditions.textToBe(By.cssSelector(cssSelector), expectedValue));
+  }
+
+  public void waitForGlobalGrowlDisappear() {
+    $("div[id='portal-global-growl_container']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
   public AdminSettingsPage openAdminSettings() {
     openUserSettingMenu();
     WaitHelper.waitForNavigation(() -> $("[id='adminui-menu-item']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());

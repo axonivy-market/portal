@@ -6,6 +6,9 @@ import static com.codeborne.selenide.Condition.editable;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -843,5 +846,55 @@ public class NewDashboardPage extends TemplatePage {
   
   public void clickOnGlobalSearch() {
     $("a[id='global-search-item']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
+
+  public int getNotificationsBadge() {
+    $("[id='topbar-unread-notifications']").shouldBe(appear, DEFAULT_TIMEOUT);
+    return Integer.parseInt($("[id='topbar-unread-notifications']").getText());
+  }
+
+  public WebElement getNotificationsPanel() {
+    waitForGlobalGrowlDisappear();
+    $("[id='topbar-unread-notifications']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(".notifications-container-content").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $(".notifications-container-content");
+  }
+
+  public void hideNotificationsPanel() {
+    $("[id='topbar-unread-notifications']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(".notifications-container-content").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  public boolean isOnlyUnreadDisplayed(WebElement notificationsPanel) {
+    return $("[id='notifications-only-unread']").shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
+  }
+
+  public void clickOnlyUnreadDisplayed(WebElement notificationsPanel) {
+    $("[id='notifications-only-unread']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public boolean isMarkAllAsReadDisplayed(WebElement notificationsPanel) {
+    return $("[id='notificationMarkAllAsRead']").shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
+  }
+
+  public boolean isTodayGroupLineDisplayed(WebElement notificationsPanel) {
+    return $(".notifications-group-name").shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
+  }
+
+  public void markAsRead(WebElement notificationsPanel, int expectedBadge) {
+    waitForGlobalGrowlDisappear();
+    WebElement item = $(".ui-datascroller-item");
+    item.findElement(By.id("notificationForm:notifications-scroller:0:notificationMarkAsRead")).click();
+    waitForElementValueChanged("#topbar-unread-notifications", String.valueOf(expectedBadge));
+  }
+
+  public int findNumberOfNotificationsItem(WebElement notificationsPanel) {
+    List<SelenideElement> item = $$(".ui-datascroller-item");
+    return item.size();
+  }
+
+  public void markAsAllRead(WebElement notificationsPanel) {
+    $("[id='notificationMarkAllAsRead']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    waitForElementValueChanged("#topbar-unread-notifications", "0");
   }
 }

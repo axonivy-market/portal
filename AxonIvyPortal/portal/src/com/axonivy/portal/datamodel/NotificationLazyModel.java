@@ -12,8 +12,11 @@ import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
 
+import com.axonivy.portal.bean.NotificationBean;
 import com.axonivy.portal.dto.NotificationDto;
 
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivyteam.ivy.notification.web.WebNotification;
 import ch.ivyteam.ivy.notification.web.WebNotifications;
 
 public class NotificationLazyModel extends LazyDataModel<NotificationDto> {
@@ -30,29 +33,28 @@ public class NotificationLazyModel extends LazyDataModel<NotificationDto> {
     this.webNotifications = webNotifications;
   }
 
-  private boolean isOnlyUnread = false;
-
-  public boolean isOnlyUnread() {
-    return isOnlyUnread;
-  }
-
-  public void setOnlyUnread(boolean isOnlyUnread) {
-    this.isOnlyUnread = isOnlyUnread;
-  }
-
   @Override
   public int count(Map<String, FilterMeta> filterBy) {
     return (int) webNotifications.countAll();
   }
 
+  private AtomicBoolean isMarkedToday = new AtomicBoolean();
+  private AtomicBoolean isMarkedOlder = new AtomicBoolean();
   @Override
   public List<NotificationDto> load(int first, int pageSize, Map<String, SortMeta> sortBy,
       Map<String, FilterMeta> filterBy) {
-
+    if (first == 0) {
+      resetGroupNotifications();
+    }
     Date today = new Date();
-    AtomicBoolean isMarkedToday = new AtomicBoolean();
-    AtomicBoolean isMarkedOlder = new AtomicBoolean();
-    List<NotificationDto> results = webNotifications.read(first, pageSize).stream().map(noti -> {
+    NotificationBean notificationBean = ManagedBeans.get("notificationBean");
+    List<WebNotification> notifications;
+    if (notificationBean.isOnlyUnread()) {
+      notifications = webNotifications.unread(first, pageSize);
+    } else {
+      notifications = webNotifications.all(first, pageSize);
+    }
+    List<NotificationDto> results = notifications.stream().map(noti -> {
       NotificationDto dto = new NotificationDto(noti);
       if (DateUtils.isSameDay(dto.getCreatedAt(), today)) {
         if (!isMarkedToday.get() && first == 0) {
@@ -79,8 +81,16 @@ public class NotificationLazyModel extends LazyDataModel<NotificationDto> {
   }
 
   public void onSelectedFilter() {
-    // Just for fire event load
+    resetGroupNotifications();
   }
 
+  private void resetGroupNotifications() {
+    isMarkedToday.getAndSet(false);
+    isMarkedOlder.getAndSet(false);
+  }
+
+  public void markAsRead(WebNotification dto) {
+    webNotifications.markAsRead(dto);
+  }
 
 }

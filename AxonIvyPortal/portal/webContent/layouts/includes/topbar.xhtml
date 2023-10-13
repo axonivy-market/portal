@@ -48,7 +48,7 @@
         </li>
         <li class="topbar-item">
           <p:commandLink id="open-notifications-panel" global="false" update="#{p:resolveFirstComponentWithId('has-notifications', view).clientId}"
-          actionListener="#{notificationBean.setRender(true)}" oncomplete="openNotificationPanel()" >
+          actionListener="#{notificationBean.setRender(true)}" onclick="openNotificationPanel()" >
             <i class="topbar-icon pi pi-bell" />
             <div class="notifications-badge">
               <h:outputText id="topbar-unread-notifications"

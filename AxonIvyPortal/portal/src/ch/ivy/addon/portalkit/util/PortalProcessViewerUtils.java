@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.util;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -12,6 +13,7 @@ import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.ITask;
 
 public class PortalProcessViewerUtils {
 
@@ -22,20 +24,28 @@ public class PortalProcessViewerUtils {
     if (Objects.isNull(selectedCase) || Objects.isNull(selectedCase.getProcessStart()) || ProcessViewerUtils.isExpressCase(selectedCase)) {
       return DEFAULT_LINK;
     }
-    return buildPortalProcessViewerUrl(selectedCase.getId(), selectedCase.getProcessStart().getLink().getRelative());
+    return buildPortalProcessViewerUrl(null, selectedCase.getId(), selectedCase.getProcessStart().getLink().getRelative());
+  }
+
+  public static String getStartProcessViewerPageUri(ITask selectedTask) {
+    if (Objects.isNull(selectedTask) || Objects.isNull(selectedTask.getCase()) || Objects.isNull(selectedTask.getCase().getProcessStart()) || ProcessViewerUtils.isExpressCase(selectedTask.getCase())) {
+      return DEFAULT_LINK;
+    }
+    return buildPortalProcessViewerUrl(selectedTask.getId(), null, null);
   }
 
   public static String getStartProcessViewerPageUri(String processStartLink) {
     if (StringUtils.isBlank(processStartLink)) {
       return DEFAULT_LINK;
     }
-    return buildPortalProcessViewerUrl(null, processStartLink);
+    return buildPortalProcessViewerUrl(null, null, processStartLink);
   }
 
-  private static String buildPortalProcessViewerUrl(Long caseId, String processStartLink) {
+  private static String buildPortalProcessViewerUrl(Long selectedTaskId, Long caseId, String processStartLink) {
     Map<String, String> params = new HashMap<>();
-    params.put("caseId", String.valueOf(caseId));
-    params.put("processKey", processStartLink);
+    Optional.ofNullable(selectedTaskId).ifPresent(v -> params.put("selectedTaskId", String.valueOf(v)));
+    Optional.ofNullable(caseId).ifPresent(v -> params.put("caseId", String.valueOf(v)));
+    Optional.ofNullable(processStartLink).ifPresent(v -> params.put("processKey", v));
     return PortalNavigator.buildUrlByKeyword("PortalProcessViewer.ivp", START_PROCESS_PORTAL_PROCESS_VIEWER_PAGE, params);
   }
 
