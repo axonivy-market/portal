@@ -73,7 +73,7 @@ pipeline {
 
 def updateConfigFile(value) {
   sh """
-    awk -F':' -v OFS=':' -v newval='${value}' '/^  Autoconvert:/{\$2=newval;print;next}1' ${engineDir}/ivy.yaml > ${engineDir}/tmp.yaml
-    awk -F':' -v OFS=':' -v newval='${value}' '/^  Autoconvert:/{\$2=newval;print;next}1' ${engineDir}/tmp.yaml > ${engineDir}/ivy.yaml
+    awk -F':' -v OFS=':' -v newval='${value}' '/^  Autoconvert:/{\$2=newval;print;next}1' ${engineDir}/configuration/ivy.yaml > ${engineDir}/configuration/tmp.yaml
+    awk -F':' -v OFS=':' -v newval='${value}' '/^  Autoconvert:/{\$2=newval;print;next}1' ${engineDir}/configuration/tmp.yaml > ${engineDir}/configuration/ivy.yaml
   """
 }
