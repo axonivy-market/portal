@@ -2,8 +2,6 @@ package ch.ivy.addon.portalkit.util;
 
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 
-import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.server.restricted.EngineMode;
 
@@ -35,13 +33,13 @@ public class SecurityServiceUtils {
     Ivy.session().removeAttribute(name);
   }
 
-  @Deprecated(since = "9.3", forRemoval = true)
-  public static String findFriendlyRequestPathContainsKeyword(String keyword){
-    return IvyExecutor.executeAsSystem(() -> {
-      Object portalStartPmvId = getSessionAttribute(SessionAttribute.PORTAL_START_PMV_ID.toString());
-      return ProcessStartCollector.getInstance().findFriendlyRequestPathContainsKeyword(keyword, portalStartPmvId);
-    });
-  }
+//  @Deprecated(since = "9.3", forRemoval = true)
+//  public static String findFriendlyRequestPathContainsKeyword(String keyword){
+//    return IvyExecutor.executeAsSystem(() -> {
+//      Object portalStartPmvId = getSessionAttribute(SessionAttribute.PORTAL_START_PMV_ID.toString());
+//      return ProcessStartCollector.getInstance().findFriendlyRequestPathContainsKeyword(keyword, portalStartPmvId);
+//    });
+//  }
 
   /**
    * Check current engine is designer or not.
