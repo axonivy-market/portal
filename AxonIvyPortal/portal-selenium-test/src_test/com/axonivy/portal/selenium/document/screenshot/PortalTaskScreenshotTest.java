@@ -39,11 +39,11 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
     updatePortalSetting(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createTestingTasksUrl);
-    mainMenuPage = new MainMenuPage();
   }
   
   @Test
   public void screenshotTaskList() throws IOException {
+    mainMenuPage = new MainMenuPage();
     showNewDashboard();
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
     TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
@@ -55,7 +55,8 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
 
   @Test
   public void screenshotBasicTaskDetails() throws IOException {
-    login(TestAccount.ADMIN_USER);
+    WaitHelper.waitForNavigation(() -> login(TestAccount.ADMIN_USER));
+    mainMenuPage = new MainMenuPage();
     showNewDashboard();
     NewDashboardPage homePage = new NewDashboardPage();
     homePage.waitForCaseWidgetLoaded();
@@ -74,7 +75,8 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
 
   @Test
   public void screenshotActionButtonsOnTaskDetailsWithJsonFile() throws IOException {
-    login(TestAccount.ADMIN_USER);
+    WaitHelper.waitForNavigation(() -> login(TestAccount.ADMIN_USER));
+    mainMenuPage = new MainMenuPage();
     showNewDashboard();
     NewDashboardPage homePage = new NewDashboardPage();
     homePage.waitForCaseWidgetLoaded();
@@ -113,7 +115,8 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
 
   @Test
   public void screenshotTaskDetails() throws IOException {
-    login(TestAccount.ADMIN_USER);
+    WaitHelper.waitForNavigation(() -> login(TestAccount.ADMIN_USER));
+    mainMenuPage = new MainMenuPage();
     showNewDashboard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForCaseWidgetLoaded();
@@ -166,7 +169,8 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
 
   @Test
   public void screenshotShowMoreTaskHistories() throws IOException {
-    login(TestAccount.ADMIN_USER);
+    WaitHelper.waitForNavigation(() -> login(TestAccount.ADMIN_USER));
+    mainMenuPage = new MainMenuPage();
     ScreenshotUtil.resizeBrowser(new Dimension(2560, 1000));
     showNewDashboard();
     TaskWidgetPage taskWidget = mainMenuPage.openTaskList();
@@ -192,6 +196,7 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
 
   @Test
   public void screenshotExportToExcel() throws IOException {
+    mainMenuPage = new MainMenuPage();
     showNewDashboard();
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
     TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
@@ -221,7 +226,8 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
 
   private TaskDetailsPage setupCustomWidgetByJSONFile(String configFile) throws IOException {
     ConfigurationJsonUtil.updateJSONSetting(configFile, Variable.TASK_DETAIL);
-    login(TestAccount.ADMIN_USER);
+    WaitHelper.waitForNavigation(() -> login(TestAccount.ADMIN_USER));
+    mainMenuPage = new MainMenuPage();
     redirectToRelativeLink(PORTAL_EXAMPLES_HOME_PAGE_URL);
     ScreenshotUtil.resizeBrowser(new Dimension(1366, 1200));
     TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();

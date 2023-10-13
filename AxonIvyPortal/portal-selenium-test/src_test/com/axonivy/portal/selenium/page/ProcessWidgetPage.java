@@ -86,6 +86,7 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public void clickOnProcessEditMenu(int index) {
     getProcessEditMenu(index).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id$='process-widget:edit-process-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public WebElement getEditProcessDialog() {
