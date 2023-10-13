@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 import java.util.ArrayList;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -68,5 +69,13 @@ public abstract class TemplatePage extends AbstractPage {
     $("[id='logout-setting:logout-menu-item']").shouldBe(appear, DEFAULT_TIMEOUT);
     WaitHelper.waitForNavigationToLoginPage(() -> $("[id='logout-setting:logout-menu-item']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
     return new LoginPage();
+  }
+
+  public void waitForElementValueChanged(String cssSelector, String expectedValue) {
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(ExpectedConditions.textToBe(By.cssSelector(cssSelector), expectedValue));
+  }
+
+  public void waitForGlobalGrowlDisappear() {
+    $("div[id='portal-global-growl_container']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 }
