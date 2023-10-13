@@ -39,7 +39,7 @@
         "labelOffset" : { "x" : 7, "y" : 37 }
       },
       "connect" : [
-        { "id" : "f4", "to" : "f3" }
+        { "id" : "f4", "to" : "f1" }
       ]
     }, {
       "id" : "f1",
@@ -47,35 +47,6 @@
       "visual" : {
         "at" : { "x" : 432, "y" : 64 }
       }
-    }, {
-      "id" : "f3",
-      "type" : "DialogCall",
-      "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.showcase.ApplicationDialog:start(com.axonivy.portal.developerexamples.showcase.GdprRequest)",
-        "call" : {
-          "map" : {
-            "param.gdprRequest" : "in.gdprRequest"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 248, "y" : 64 }
-      },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
-    }, {
-      "id" : "f10",
-      "type" : "DialogCall",
-      "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.showcase.CustomizedUI:start()"
-      },
-      "visual" : {
-        "at" : { "x" : 248, "y" : 256 }
-      },
-      "connect" : [
-        { "id" : "f14", "to" : "f12" }
-      ]
     }, {
       "id" : "f11",
       "type" : "RequestStart",
@@ -105,7 +76,7 @@
         "labelOffset" : { "x" : 8, "y" : 39 }
       },
       "connect" : [
-        { "id" : "f13", "to" : "f10" }
+        { "id" : "f13", "to" : "f12" }
       ]
     }, {
       "id" : "f12",
@@ -146,7 +117,7 @@
         "labelOffset" : { "x" : 19, "y" : 49 }
       },
       "connect" : [
-        { "id" : "f26", "to" : "f25" }
+        { "id" : "f26", "to" : "f21" }
       ]
     }, {
       "id" : "f21",
@@ -154,52 +125,6 @@
       "visual" : {
         "at" : { "x" : 592, "y" : 480 }
       }
-    }, {
-      "id" : "f25",
-      "type" : "Script",
-      "name" : "Get param from session",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import org.apache.commons.lang3.StringUtils;",
-            "",
-            "in.actuaStepIndex = ivy.session.getAttribute(\"taskConfigExampleActualStepIndex\") as Integer;",
-            "in.processChainDirection = ivy.session.getAttribute(\"taskConfigExampleProcessChainDirection\") as String;",
-            "in.processChainShape = ivy.session.getAttribute(\"taskConfigExampleProcessChainShape\") as String;",
-            "if (StringUtils.isEmpty(in.processChainDirection)) {",
-            "  in.processChainDirection = \"HORIZONTAL\";",
-            "}",
-            "if (StringUtils.isEmpty(in.processChainShape)) {",
-            "  in.processChainShape = \"LINE\";",
-            "}"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 248, "y" : 480 },
-        "size" : { "width" : 144, "height" : 60 }
-      },
-      "connect" : [
-        { "id" : "f24", "to" : "f23" }
-      ]
-    }, {
-      "id" : "f23",
-      "type" : "DialogCall",
-      "name" : "open task template",
-      "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.showcase.CustomTaskTemplate:start(com.axonivy.portal.developerexamples.showcase.Data)",
-        "call" : {
-          "map" : {
-            "param.data" : "in"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 440, "y" : 480 }
-      },
-      "connect" : [
-        { "id" : "f22", "to" : "f21" }
-      ]
     }, {
       "id" : "f32",
       "type" : "RequestStart",
@@ -248,7 +173,7 @@
         "labelOffset" : { "x" : -4, "y" : 38 }
       },
       "connect" : [
-        { "id" : "f38", "to" : "f37" }
+        { "id" : "f38", "to" : "f36" }
       ]
     }, {
       "id" : "f36",
@@ -256,19 +181,5 @@
       "visual" : {
         "at" : { "x" : 432, "y" : 360 }
       }
-    }, {
-      "id" : "f37",
-      "type" : "DialogCall",
-      "name" : "PortalDialogExample",
-      "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.showcase.PortalDialogExample:start()"
-      },
-      "visual" : {
-        "at" : { "x" : 248, "y" : 360 },
-        "size" : { "width" : 128, "height" : 60 }
-      },
-      "connect" : [
-        { "id" : "f39", "to" : "f36" }
-      ]
     } ]
 }

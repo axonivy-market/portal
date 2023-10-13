@@ -27,7 +27,6 @@ import portal.guitest.page.WorkingTaskDialogPage;
 
 public class TaskTemplateTest extends BaseTest {
 
-  private String createImpersistentTaskUrl = "portal-developer-examples/169BDE2F368D6EC4/ApplicationShowcase.ivp";
   private static final String ANNUAL_LEAVE_REQUEST_TASK ="Annual Leave Request";
   @Override
   @Before
@@ -131,14 +130,6 @@ public class TaskTemplateTest extends BaseTest {
     taskTemplatePage.startSideStep();
     TaskWidgetPage taskWidget = NavigationHelper.navigateToTaskList();
     assertTrue(taskWidget.isTaskStateOpen(0));
-  }
-
-  @Test
-  public void testNotShowStartAdhocWhenOpenImpersistedTask() {
-    redirectToRelativeLink(createImpersistentTaskUrl);
-    TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
-    taskTemplatePage.clickTaskActionMenu();
-    assertEquals(true, taskTemplatePage.isStartAdhocBtnNotExist());
   }
 
   private void createTestData() {

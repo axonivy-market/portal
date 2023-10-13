@@ -264,7 +264,7 @@ Variables:
     # [file: json]
     CustomMenuItems:
 
-    # GlobalVariable of footer info that can be set in the portal admin settings.
+    # Global footer info that is displayed in bottom right corner can be set in the portal admin settings.
     GlobalFooterInfo: ''
 
     # Support the translation from English to the other languages or from German to the other languages (German, English, French, Spanish)
