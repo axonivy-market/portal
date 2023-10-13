@@ -44,7 +44,7 @@
         "signature" : "CreateDataForCaseComplexFilter"
       },
       "visual" : {
-        "at" : { "x" : 208, "y" : 120 }
+        "at" : { "x" : 352, "y" : 120 }
       },
       "connect" : [
         { "id" : "f4", "to" : "f113" }
@@ -60,7 +60,7 @@
         "processCall" : "Start Processes/CreateDataForComplexFilter:CreateCaseCreatedThisMonday()"
       },
       "visual" : {
-        "at" : { "x" : 536, "y" : 120 }
+        "at" : { "x" : 680, "y" : 120 }
       },
       "connect" : [
         { "id" : "f9", "to" : "f26" }
@@ -108,76 +108,6 @@
       },
       "connect" : [
         { "id" : "f11", "to" : "f1" }
-      ]
-    }, {
-      "id" : "f12",
-      "type" : "RequestStart",
-      "name" : "CreateCaseCreatedStartOfThisQuarter",
-      "config" : {
-        "signature" : "CreateCaseCreatedStartOfThisQuarter",
-        "request" : {
-          "isVisibleOnStartList" : false
-        },
-        "triggerable" : true,
-        "task" : {
-          "responsible" : {
-            "activator" : "SYSTEM"
-          }
-        },
-        "case" : {
-          "name" : "Created this quarter",
-          "attachToBusinessCase" : false
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 208, "y" : 848 }
-      },
-      "connect" : [
-        { "id" : "f17", "to" : "f14" }
-      ]
-    }, {
-      "id" : "f13",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 928, "y" : 848 }
-      }
-    }, {
-      "id" : "f14",
-      "type" : "Script",
-      "name" : "set case uuid",
-      "config" : {
-        "output" : {
-          "code" : "in.caseuuid = ivy.case.uuid();"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 408, "y" : 848 }
-      },
-      "connect" : [
-        { "id" : "f18", "to" : "f72" }
-      ]
-    }, {
-      "id" : "f15",
-      "type" : "Database",
-      "name" : "Update Case info",
-      "config" : {
-        "query" : {
-          "dbName" : "IvySystemDatabase",
-          "sql" : {
-            "kind" : "ANY",
-            "stmt" : [
-              "UPDATE IWA_CASE",
-              "SET STARTTIMESTAMP = '<%=in.date%>'",
-              "WHERE UUID = '<%=in.caseuuid%>'"
-            ]
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 800, "y" : 848 }
-      },
-      "connect" : [
-        { "id" : "f23", "to" : "f13" }
       ]
     }, {
       "id" : "f19",
@@ -257,23 +187,10 @@
         "processCall" : "Start Processes/CreateDataForComplexFilter:CreateCaseCreatedStartOfThisMonth()"
       },
       "visual" : {
-        "at" : { "x" : 720, "y" : 120 }
+        "at" : { "x" : 864, "y" : 120 }
       },
       "connect" : [
-        { "id" : "f27", "to" : "f28" }
-      ]
-    }, {
-      "id" : "f28",
-      "type" : "TriggerCall",
-      "name" : "Created this quarter",
-      "config" : {
-        "processCall" : "Start Processes/CreateDataForComplexFilter:CreateCaseCreatedStartOfThisQuarter()"
-      },
-      "visual" : {
-        "at" : { "x" : 888, "y" : 120 }
-      },
-      "connect" : [
-        { "id" : "f29", "to" : "f85" }
+        { "id" : "f12", "to" : "f85" }
       ]
     }, {
       "id" : "f30",
@@ -304,7 +221,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 208, "y" : 1048 }
+        "at" : { "x" : 208, "y" : 944 }
       },
       "connect" : [
         { "id" : "f35", "to" : "f32" }
@@ -313,7 +230,7 @@
       "id" : "f31",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 928, "y" : 1048 }
+        "at" : { "x" : 928, "y" : 944 }
       }
     }, {
       "id" : "f32",
@@ -329,7 +246,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 408, "y" : 1048 }
+        "at" : { "x" : 408, "y" : 944 }
       },
       "connect" : [
         { "id" : "f36", "to" : "f74" }
@@ -352,7 +269,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 800, "y" : 1048 }
+        "at" : { "x" : 800, "y" : 944 }
       },
       "connect" : [
         { "id" : "f45", "to" : "f31" }
@@ -407,7 +324,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 208, "y" : 1144 }
+        "at" : { "x" : 208, "y" : 1040 }
       },
       "connect" : [
         { "id" : "f44", "to" : "f41" }
@@ -416,7 +333,7 @@
       "id" : "f40",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 928, "y" : 1144 }
+        "at" : { "x" : 928, "y" : 1040 }
       }
     }, {
       "id" : "f41",
@@ -432,7 +349,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 408, "y" : 1144 }
+        "at" : { "x" : 408, "y" : 1040 }
       },
       "connect" : [
         { "id" : "f43", "to" : "f87" }
@@ -455,7 +372,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 800, "y" : 1144 }
+        "at" : { "x" : 800, "y" : 1040 }
       },
       "connect" : [
         { "id" : "f53", "to" : "f40" }
@@ -510,7 +427,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 208, "y" : 1248 }
+        "at" : { "x" : 208, "y" : 1136 }
       },
       "connect" : [
         { "id" : "f52", "to" : "f50" }
@@ -519,7 +436,7 @@
       "id" : "f49",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 928, "y" : 1248 }
+        "at" : { "x" : 928, "y" : 1136 }
       }
     }, {
       "id" : "f50",
@@ -535,7 +452,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 408, "y" : 1248 }
+        "at" : { "x" : 408, "y" : 1136 }
       },
       "connect" : [
         { "id" : "f54", "to" : "f89" }
@@ -558,7 +475,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 800, "y" : 1248 }
+        "at" : { "x" : 800, "y" : 1136 }
       },
       "connect" : [
         { "id" : "f62", "to" : "f49" }
@@ -610,7 +527,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 208, "y" : 1352 },
+        "at" : { "x" : 208, "y" : 1240 },
         "description" : "create multiple test users"
       },
       "connect" : [
@@ -620,7 +537,7 @@
       "id" : "f58",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 928, "y" : 1352 }
+        "at" : { "x" : 928, "y" : 1240 }
       }
     }, {
       "id" : "f59",
@@ -636,7 +553,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 408, "y" : 1352 }
+        "at" : { "x" : 408, "y" : 1240 }
       },
       "connect" : [
         { "id" : "f63", "to" : "f91" }
@@ -659,7 +576,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 800, "y" : 1352 }
+        "at" : { "x" : 800, "y" : 1240 }
       },
       "connect" : [
         { "id" : "f81", "to" : "f58" }
@@ -742,25 +659,6 @@
         { "id" : "f71", "to" : "f22" }
       ]
     }, {
-      "id" : "f72",
-      "type" : "Script",
-      "name" : "calculate date",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.portal.util.PortalDateUtils;",
-            "",
-            "in.date = PortalDateUtils.getStartOfCurrentQuarter();"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 616, "y" : 848 }
-      },
-      "connect" : [
-        { "id" : "f73", "to" : "f15" }
-      ]
-    }, {
       "id" : "f74",
       "type" : "Script",
       "name" : "calculate date",
@@ -774,7 +672,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 616, "y" : 1048 }
+        "at" : { "x" : 616, "y" : 944 }
       },
       "connect" : [
         { "id" : "f75", "to" : "f33" }
@@ -800,7 +698,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 208, "y" : 952 },
+        "at" : { "x" : 208, "y" : 848 },
         "labelOffset" : { "x" : 9, "y" : 33 }
       },
       "connect" : [
@@ -810,7 +708,7 @@
       "id" : "f77",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 928, "y" : 952 }
+        "at" : { "x" : 928, "y" : 848 }
       }
     }, {
       "id" : "f78",
@@ -826,7 +724,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 408, "y" : 952 }
+        "at" : { "x" : 408, "y" : 848 }
       },
       "connect" : [
         { "id" : "f83", "to" : "f80" }
@@ -849,7 +747,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 800, "y" : 952 }
+        "at" : { "x" : 800, "y" : 848 }
       },
       "connect" : [
         { "id" : "f34", "to" : "f77" }
@@ -868,7 +766,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 616, "y" : 952 }
+        "at" : { "x" : 616, "y" : 848 }
       },
       "connect" : [
         { "id" : "f84", "to" : "f79" }
@@ -900,7 +798,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 616, "y" : 1144 }
+        "at" : { "x" : 616, "y" : 1040 }
       },
       "connect" : [
         { "id" : "f88", "to" : "f42" }
@@ -919,7 +817,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 616, "y" : 1248 }
+        "at" : { "x" : 616, "y" : 1136 }
       },
       "connect" : [
         { "id" : "f90", "to" : "f51" }
@@ -938,7 +836,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 616, "y" : 1352 }
+        "at" : { "x" : 616, "y" : 1240 }
       },
       "connect" : [
         { "id" : "f92", "to" : "f60" }
@@ -1011,7 +909,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 208, "y" : 1448 }
+        "at" : { "x" : 208, "y" : 1336 }
       },
       "connect" : [
         { "id" : "f100", "to" : "f95" }
@@ -1020,7 +918,7 @@
       "id" : "f94",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 928, "y" : 1448 }
+        "at" : { "x" : 928, "y" : 1336 }
       }
     }, {
       "id" : "f95",
@@ -1036,7 +934,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 408, "y" : 1448 }
+        "at" : { "x" : 408, "y" : 1336 }
       },
       "connect" : [
         { "id" : "f101", "to" : "f97" }
@@ -1059,7 +957,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 800, "y" : 1448 }
+        "at" : { "x" : 800, "y" : 1336 }
       },
       "connect" : [
         { "id" : "f98", "to" : "f94" }
@@ -1078,7 +976,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 616, "y" : 1448 }
+        "at" : { "x" : 616, "y" : 1336 }
       },
       "connect" : [
         { "id" : "f99", "to" : "f96" }
@@ -1180,7 +1078,7 @@
         "processCall" : "Start Processes/CreateDataForComplexFilter:CreateCaseCreatedYesterday()"
       },
       "visual" : {
-        "at" : { "x" : 360, "y" : 120 }
+        "at" : { "x" : 504, "y" : 120 }
       },
       "connect" : [
         { "id" : "f114", "to" : "f6" }
