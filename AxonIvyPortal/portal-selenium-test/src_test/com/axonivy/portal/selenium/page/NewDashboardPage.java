@@ -850,14 +850,14 @@ public class NewDashboardPage extends TemplatePage {
 
   public int getNotificationsBadge() {
     $("[id='topbar-unread-notifications']").shouldBe(appear, DEFAULT_TIMEOUT);
-    return Integer.parseInt($("[id='topbar-unread-notifications']").getText());
+    $("[id='notifications-badge-value']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    return Integer.parseInt($("[id='notifications-badge-value']").getValue());
   }
 
   public WebElement getNotificationsPanel() {
     waitForGlobalGrowlDisappear();
     $("[id='topbar-unread-notifications']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $(".notifications-container-content").shouldBe(appear, DEFAULT_TIMEOUT);
-    return $(".notifications-container-content");
+    return $(".notifications-container-content").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void hideNotificationsPanel() {
@@ -885,7 +885,7 @@ public class NewDashboardPage extends TemplatePage {
     waitForGlobalGrowlDisappear();
     WebElement item = $(".ui-datascroller-item");
     item.findElement(By.id("notificationForm:notifications-scroller:0:notificationMarkAsRead")).click();
-    waitForElementValueChanged("#topbar-unread-notifications", String.valueOf(expectedBadge));
+    $(By.id("notifications-badge-value")).shouldBe(Condition.exactValue(String.valueOf(expectedBadge)), DEFAULT_TIMEOUT);
   }
 
   public int findNumberOfNotificationsItem(WebElement notificationsPanel) {

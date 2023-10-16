@@ -80,4 +80,8 @@ public class NotificationBean implements Serializable {
   public void setOnlyUnread(boolean isOnlyUnread) {
     this.isOnlyUnread = isOnlyUnread;
   }
+
+  public long getCountUnread() {
+    return this.countUnread;
+  }
 }
