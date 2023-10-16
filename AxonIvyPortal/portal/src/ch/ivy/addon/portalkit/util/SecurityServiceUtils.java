@@ -33,14 +33,6 @@ public class SecurityServiceUtils {
     Ivy.session().removeAttribute(name);
   }
 
-//  @Deprecated(since = "9.3", forRemoval = true)
-//  public static String findFriendlyRequestPathContainsKeyword(String keyword){
-//    return IvyExecutor.executeAsSystem(() -> {
-//      Object portalStartPmvId = getSessionAttribute(SessionAttribute.PORTAL_START_PMV_ID.toString());
-//      return ProcessStartCollector.getInstance().findFriendlyRequestPathContainsKeyword(keyword, portalStartPmvId);
-//    });
-//  }
-
   /**
    * Check current engine is designer or not.
    * 
