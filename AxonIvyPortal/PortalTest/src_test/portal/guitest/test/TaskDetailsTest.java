@@ -70,11 +70,11 @@ public class TaskDetailsTest extends BaseTest {
   @Test
   public void testChangeTaskDeadline() {
     setFormattingLanguage();
-    
-    String tomorrowStringLiteral = prepareTomorrowAsString();
+    LocalDateTime now = LocalDateTime.now();
+    String tomorrowStringLiteral = prepareTomorrowAsString(now);
     taskDetailsPage = openDetailsPageOfFirstTask();
     taskDetailsPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
-    assertEquals(prepareTomorrowAsLocaleDateString(), taskDetailsPage.getExpiryOfTaskAt());
+    assertEquals(prepareTomorrowAsLocaleDateString(now), taskDetailsPage.getExpiryOfTaskAt());
   }
 
   private void setFormattingLanguage() {
@@ -89,10 +89,11 @@ public class TaskDetailsTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTestingCaseMapUrl);
     setFormattingLanguage();
-    String tomorrowStringLiteral = prepareTomorrowAsString();
+    LocalDateTime now = LocalDateTime.now();
+    String tomorrowStringLiteral = prepareTomorrowAsString(now);
     taskDetailsPage = openDetailsPageOfFirstTask();
     taskDetailsPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
-    assertTrue(StringUtils.equalsIgnoreCase(prepareTomorrowAsLocaleDateString(), taskDetailsPage.getExpiryOfTaskAt()));
+    assertTrue(StringUtils.equalsIgnoreCase(prepareTomorrowAsLocaleDateString(now), taskDetailsPage.getExpiryOfTaskAt()));
     String firstTaskNoteComment = taskDetailsPage.getFirstTaskNoteComment();
     assertTrue(StringUtils.contains(firstTaskNoteComment, "Portal Admin User (admin) has set deadline to task"));
     assertTrue(StringUtils.contains(firstTaskNoteComment, "assign Everybody as the task escalation activator"));
@@ -126,13 +127,13 @@ public class TaskDetailsTest extends BaseTest {
     assertFalse(taskDetailsPage.canChangeEscalationActivator());
   }
 
-  private String prepareTomorrowAsString() {
-    LocalDateTime tomorrow = LocalDateTime.now().plusDays(1);
+  private String prepareTomorrowAsString(LocalDateTime now) {
+    LocalDateTime tomorrow = now.plusDays(1);
     return tomorrow.format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
   }
   
-  private String prepareTomorrowAsLocaleDateString() {
-    LocalDateTime tommorrow = LocalDateTime.now().plusDays(1);
+  private String prepareTomorrowAsLocaleDateString(LocalDateTime now) {
+    LocalDateTime tommorrow = now.plusDays(1);
     return tommorrow.format(DateTimeFormatter.ofPattern(DateTimePattern.LOCALE_DATE_TIME_PATTERN, Locale.UK));
   }
 
@@ -152,8 +153,9 @@ public class TaskDetailsTest extends BaseTest {
     setFormattingLanguage();
     openDelayTask();
     assertTrue(StringUtils.equalsIgnoreCase("DELAYED", taskDetailsPage.getTaskState()));
-    String tomorrow = prepareTomorrowAsString();
-    String tomorrowWithLocale = prepareTomorrowAsLocaleDateString();
+    LocalDateTime now = LocalDateTime.now();
+    String tomorrow = prepareTomorrowAsString(now);
+    String tomorrowWithLocale = prepareTomorrowAsLocaleDateString(now);
     taskDetailsPage.updateDelayTimestamp(tomorrow,tomorrowWithLocale);
     assertTrue(StringUtils.equalsIgnoreCase("DELAYED", taskDetailsPage.getTaskState()));
     refreshPage();
