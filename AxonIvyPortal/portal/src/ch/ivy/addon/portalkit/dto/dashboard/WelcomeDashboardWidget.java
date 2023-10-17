@@ -169,4 +169,7 @@ public class WelcomeDashboardWidget extends DashboardWidget {
   public void setImageContent(String imageContent) {
     this.imageContent = imageContent;
   }
+
+  @Override
+  public void cancelUserFilter() {}
 }

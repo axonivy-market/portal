@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -67,20 +68,18 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
     filter.setWidgetName(widget.getName());
     filter.setWidgetId(widget.getId());
     var filterableColumns = new ArrayList<ColumnModel>();
+
     switch (widget.getType()) {
-      case TASK:
-        filterableColumns.addAll(((TaskDashboardWidget) widget).getFilterableColumns());
-        break;
-      case CASE:
-        filterableColumns.addAll(((CaseDashboardWidget) widget).getFilterableColumns());
-        break;
-      case PROCESS:
-        filterableColumns.addAll(((CompactProcessDashboardWidget) widget).getFilterableColumns());
-        break;
-      default:
-        break;
+      case TASK -> filterableColumns.addAll(((TaskDashboardWidget) widget).getFilterableColumns());
+      case CASE -> filter.setUserFilters(((CaseDashboardWidget) widget).getUserFilters());
+      case PROCESS -> filterableColumns.addAll(((CompactProcessDashboardWidget) widget).getFilterableColumns());
+      default -> {}
     }
-    filter.addFilterableColumns(filterableColumns);
+
+    if (CollectionUtils.isEmpty(filter.getUserFilters())) {
+      filter.addFilterableColumns(filterableColumns);
+    }
+
     // Update savedFilter for HelperBean
     ((WidgetFilterHelperBean) ManagedBeans.get("widgetFilterHelperBean")).setSaveFilter(filter);
     return filter;
@@ -127,7 +126,8 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
           widgetFilterableColumns.addAll(((TaskDashboardWidget) widget).getFilterableColumns());
           break;
         case CASE:
-          widgetFilterableColumns.addAll(((CaseDashboardWidget) widget).getFilterableColumns());
+          ((CaseDashboardWidget) widget).getUserFilters()
+            .addAll(Optional.ofNullable(userFilterOptions.getUserFilters()).orElse(new ArrayList<>()));
           break;
         case PROCESS:
           var processWidget = (ProcessDashboardWidget) widget;
@@ -138,9 +138,12 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
         default:
           break;
       }
-      for (var widgetColumn : widgetFilterableColumns) {
-        widgetColumn.resetUserFilter();
-        mergeUserFilterInput(userFilterOptions, widgetColumn);
+
+      if (CollectionUtils.isNotEmpty(widgetFilterableColumns)) {
+        for (var widgetColumn : widgetFilterableColumns) {
+          widgetColumn.resetUserFilter();
+          mergeUserFilterInput(userFilterOptions, widgetColumn);
+        }
       }
     }
     widget.setUserDefinedFiltersCount(DashboardWidgetUtils.countDefinedUserFilter(widget));

@@ -5,6 +5,7 @@ import static ch.ivy.addon.portalkit.constant.DashboardConstants.REMOTE_COMMAND_
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.primefaces.PrimeFaces;
@@ -17,6 +18,7 @@ import ch.ivy.addon.portalkit.datamodel.DashboardCaseLazyDataModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.service.DashboardWidgetInformationService;
+import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
@@ -39,6 +41,7 @@ public class CaseDashboardWidget extends DashboardWidget {
     dataModel = new DashboardCaseLazyDataModel();
     setColumns(new ArrayList<>());
     setFilters(new ArrayList<>());
+    setUserFilters(new ArrayList<>());
   }
 
   @JsonIgnore
@@ -116,14 +119,6 @@ public class CaseDashboardWidget extends DashboardWidget {
     this.dataModel.getCriteria().setColumns(columns);
   }
 
-  public List<DashboardFilter> getFilters() {
-    return this.dataModel.getCriteria().getFilters();
-  }
-
-  public void setFilters(List<DashboardFilter> filters) {
-    this.dataModel.getCriteria().setFilters(filters);
-  }
-
   @JsonIgnore
   public int getCaseCount() {
     return getDataModel().getRowCount();
@@ -157,7 +152,22 @@ public class CaseDashboardWidget extends DashboardWidget {
   @Override
   @JsonIgnore
   public void resetWidgetFilters() {
-    DashboardWidgetUtils.resetUserFilterOnColumns(getColumns());
+    setUserFilters(new ArrayList<>());
+  }
+
+  @JsonIgnore
+  @Override
+  public void onApplyUserFilters() {
+    this.getUserFilters().forEach(filter -> filter.setTemp(false));
+    var filterService = WidgetFilterService.getInstance();
+    userFilterCollection.updateUserFilterOptionValue(this);
+    filterService.storeUserSelectedFiltersToSession(id, getType(), userFilterCollection);
+    userDefinedFiltersCount = DashboardWidgetUtils.countDefinedUserFilter(this);
+  }
+
+  @Override
+  public void cancelUserFilter() {
+    setUserFilters(getUserFilters().stream().filter(filter -> !filter.isTemp()).collect(Collectors.toList()));
   }
 
   @Override
@@ -171,5 +181,36 @@ public class CaseDashboardWidget extends DashboardWidget {
 
   public void setRowsPerPage(int rowsPerPage) {
     this.rowsPerPage = rowsPerPage;
+  }
+
+  public List<DashboardFilter> getFilters() {
+    return this.dataModel.getCriteria().getFilters();
+  }
+
+  public void setFilters(List<DashboardFilter> filters) {
+    this.dataModel.getCriteria().setFilters(filters);
+  }
+
+  @JsonIgnore
+  public List<DashboardFilter> getUserFilters() {
+    return this.dataModel.getCriteria().getUserFilters();
+  }
+
+  @JsonIgnore
+  public void setUserFilters(List<DashboardFilter> userFilters) {
+    this.dataModel.getCriteria().setUserFilters(userFilters);
+  }
+
+  @JsonIgnore
+  public void loadUserFilter() {
+    updateSavedFiltersSelection();
+
+    // Don't load user filters when already loaded from session
+    if (CollectionUtils.isNotEmpty(getUserFilters())) {
+      return;
+    }
+
+    var latestUserFilterOptions = getUserFilterCollection().getLatestFilterOption();
+    WidgetFilterService.getInstance().updateFilterOptionsData(this, latestUserFilterOptions);
   }
 }

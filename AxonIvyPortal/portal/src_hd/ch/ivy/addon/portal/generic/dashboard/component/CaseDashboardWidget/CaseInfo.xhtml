@@ -91,7 +91,7 @@
             <ui:repeat var="creator" value="#{field.creators}">
               <div class="#{avatarBean.isShowAvatar() ? 'owner-name-with-avatar' : ''}">
                 <pc:securityMemberNameAndAvatar
-                  displayName="#{dashboardCaseFilterBean.formatName(creator)}" securityMember="#{creator}">
+                  displayName="#{caseWidgetConfigurationFilterBean.formatName(creator)}" securityMember="#{creator}">
                   <f:facet name="alternativeAvatar">
                     <h:outputText rendered="#{not avatarBean.isShowAvatar()}" styleClass="fa #{creator.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
                   </f:facet>
@@ -109,7 +109,7 @@
             <ui:repeat var="owner" value="#{field.owners}">
               <div class="#{avatarBean.isShowAvatar() ? 'owner-name-with-avatar' : ''}">
                 <pc:securityMemberNameAndAvatar
-                  displayName="#{dashboardCaseFilterBean.formatName(owner)}" securityMember="#{owner}">
+                  displayName="#{caseWidgetConfigurationFilterBean.formatName(owner)}" securityMember="#{owner}">
                   <f:facet name="alternativeAvatar">
                     <h:outputText rendered="#{not avatarBean.isShowAvatar()}" styleClass="fa #{owner.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
                   </f:facet>
