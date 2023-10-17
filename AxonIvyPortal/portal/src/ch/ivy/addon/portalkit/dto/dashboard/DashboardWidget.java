@@ -9,7 +9,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
-import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -103,8 +102,13 @@ public abstract class DashboardWidget implements Serializable {
   public abstract void resetWidgetFilters();
 
   @JsonIgnore
-  public void onCancelUserFilters() {}
-  
+  public void onCancelUserFilters() {
+    cancelUserFilter();
+  }
+
+  @JsonIgnore
+  public abstract void cancelUserFilter();
+
   @JsonIgnore
   public void onApplyUserFilters() {
     var filterService = WidgetFilterService.getInstance();
@@ -120,7 +124,6 @@ public abstract class DashboardWidget implements Serializable {
   @JsonIgnore
   public void loadUserFilter() {
     updateSavedFiltersSelection();
-
     var latestUserFilterOptions = getUserFilterCollection().getLatestFilterOption();
     WidgetFilterService.getInstance().updateFilterOptionsData(this, latestUserFilterOptions);
   }

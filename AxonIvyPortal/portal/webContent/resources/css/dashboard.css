@@ -518,7 +518,7 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 }
 
 .filter-overlay-panel.ui-widget-content>.ui-overlaypanel-content {
-  max-width: 800px;
+  max-width: 1000px;
   padding: 0;
 }
 
@@ -1698,6 +1698,10 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .dashboard-widget-filter__main-panel {
   width: 100%;
+}
+
+.dashboard-widget-filter__read-only-panel .dashboard-widget-filter__filter-panel:last-child {
+  margin-bottom: 10px;
 }
 
 .dashboard-widget-filter__filter-panel {

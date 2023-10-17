@@ -198,4 +198,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   public void setRowsPerPage(int rowsPerPage) {
     this.rowsPerPage = rowsPerPage;
   }
+
+  @Override
+  public void cancelUserFilter() {}
 }

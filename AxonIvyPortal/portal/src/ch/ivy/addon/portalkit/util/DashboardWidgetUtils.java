@@ -394,33 +394,24 @@ public class DashboardWidgetUtils {
   }
 
   public static Optional<String> countDefinedUserFilter(DashboardWidget widget) {
-    List<ColumnModel> filterableColumns = switch (widget.getType()) {
-      case CASE -> ((CaseDashboardWidget) widget).getFilterableColumns();
-      case TASK -> ((TaskDashboardWidget) widget).getFilterableColumns();
-      case PROCESS -> ((CompactProcessDashboardWidget) widget).getFilterableColumns();
-      default ->  new ArrayList<>();
+    long numberOfFilters = switch (widget.getType()) {
+      case CASE -> countCaseFilters(widget);
+      default -> 0;
     };
-    if (CollectionUtils.isEmpty(filterableColumns)) {
-      return Optional.empty();
-    }
-
-    int numberOfFilters = 0;
-    for (ColumnModel col : filterableColumns) {
-      if (StringUtils.isNotEmpty(col.getUserFilter()) || CollectionUtils.isNotEmpty(col.getUserFilterList())
-          || StringUtils.isNotEmpty(col.getUserFilterFrom()) || col.getUserDateFilterFrom() != null
-          || StringUtils.isNotEmpty(col.getUserFilterTo()) || col.getUserDateFilterTo() != null) {
-        numberOfFilters++;
-      }
-      if (numberOfFilters > MAX_NOTI_FILTERS) {
-        break;
-      }
-    }
     if (numberOfFilters == 0) {
       return Optional.empty();
     }
 
     return Optional.of(numberOfFilters <= MAX_NOTI_FILTERS ? String.valueOf(numberOfFilters)
         : String.format(MAX_NOTI_PATTERN, MAX_NOTI_FILTERS));
+  }
+
+  private static long countCaseFilters(DashboardWidget widget) {
+    CaseDashboardWidget caseWidget = (CaseDashboardWidget) widget;
+    return Optional.ofNullable(caseWidget.getUserFilters())
+        .orElse(new ArrayList<>())
+        .stream().filter(Objects::nonNull)
+        .filter(filter -> !filter.isTemp()).count();
   }
 
   public static DashboardWidget buildDefaultWidget(String id, String name, DashboardWidgetType type) {

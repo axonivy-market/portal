@@ -34,6 +34,9 @@ public class DashboardFilter implements Serializable {
   private List<String> texts;
 
   @JsonIgnore
+  private boolean isTemp;
+
+  @JsonIgnore
   public boolean isDate() {
     return this.type == FilterType.DATE;
   }
@@ -110,5 +113,13 @@ public class DashboardFilter implements Serializable {
 
   public void setTexts(List<String> texts) {
     this.texts = texts;
+  }
+
+  public boolean isTemp() {
+    return isTemp;
+  }
+
+  public void setTemp(boolean isTemp) {
+    this.isTemp = isTemp;
   }
 }
