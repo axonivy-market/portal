@@ -65,7 +65,6 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
 
   @Test
   public void screenshotSettingWithAnnotation() throws IOException {
-    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "false");
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
     showNewDashboard();
