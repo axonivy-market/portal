@@ -17,7 +17,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessInformationPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class PortalProcessesScreenshotTest extends ScreenshotBaseTest{
 
   private static final int SCREENSHOT_WIDTH = 1440;
