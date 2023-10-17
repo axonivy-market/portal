@@ -40,7 +40,7 @@
         "output" : {
           "code" : [
             "in.pageFooter = \"\";",
-            "in.pageHeader = \"<div style='height: 20px; text-align: center; background-color: var(--primary-color); color: white'><span>custom page header</span></div>\";"
+            "in.pageHeader = \"\";"
           ]
         }
       },
