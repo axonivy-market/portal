@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.FileHelper;
+import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtil;
@@ -206,8 +207,6 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
   
   @Test
   public void screenshotCustomTaskDetails() throws IOException {
-    redirectToRelativeLink("portal-developer-examples/1791D27754935B10/SaleManagment.ivp");
-    showNewDashboard();
     TaskDetailsPage taskDetails = setupCustomWidgetByJSONFile("task-details-custom-panel.json");
     refreshPage();
     taskDetails.waitUtilsTaskDetailsDisplayed();
@@ -226,10 +225,9 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
   private TaskDetailsPage setupCustomWidgetByJSONFile(String configFile) throws IOException {
     ConfigurationJsonUtil.updateJSONSetting(configFile, Variable.TASK_DETAIL);
     WaitHelper.waitForNavigation(() -> login(TestAccount.ADMIN_USER));
-    mainMenuPage = new MainMenuPage();
-    redirectToRelativeLink(PORTAL_EXAMPLES_HOME_PAGE_URL);
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
     ScreenshotUtil.resizeBrowser(new Dimension(1366, 1200));
-    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     TaskDetailsPage taskDetails = taskWidgetPage.openTaskDetail(0);
     taskDetails.waitUtilsTaskDetailsDisplayed();
     return taskDetails;

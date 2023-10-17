@@ -17,7 +17,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessInformationPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class PortalProcessesScreenshotTest extends ScreenshotBaseTest{
 
   private static final int SCREENSHOT_WIDTH = 1440;
@@ -63,6 +63,7 @@ public class PortalProcessesScreenshotTest extends ScreenshotBaseTest{
 
   @Test
   public void screenshotPortalFullProcessesList() throws IOException {
+    redirectToRelativeLink(createSampleProcesses);
     login(TestAccount.ADMIN_USER);
     MainMenuPage mainMenuPage = new MainMenuPage();
     processWidget = mainMenuPage.openProcessList();
