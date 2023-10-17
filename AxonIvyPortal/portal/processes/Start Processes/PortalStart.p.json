@@ -4194,11 +4194,6 @@
           "id" : "S92-f256",
           "type" : "Alternative",
           "name" : "Authorized?",
-          "config" : {
-            "conditions" : {
-              "S92-f1" : "in.isAuthorized"
-            }
-          },
           "visual" : {
             "at" : { "x" : 320, "y" : 144 },
             "labelOffset" : { "x" : 24, "y" : -16 }
@@ -4206,7 +4201,7 @@
           "connect" : [
             { "id" : "S92-f1", "to" : "S92-g1", "label" : {
                 "name" : "Yes"
-              } },
+              }, "condition" : "in.isAuthorized" },
             { "id" : "S92-f259", "to" : "S92-f258", "label" : {
                 "name" : "No"
               } }
@@ -4224,10 +4219,8 @@
           "visual" : {
             "at" : { "x" : 64, "y" : 144 }
           },
-          "parentConnector" : "f258",
-          "connect" : [
-            { "id" : "S92-f3", "to" : "S92-f2" }
-          ]
+          "parentConnector" : "f263",
+          "connect" : { "id" : "S92-f3", "to" : "S92-f2" }
         }, {
           "id" : "S92-g1",
           "type" : "EmbeddedEnd",
@@ -4235,7 +4228,7 @@
           "visual" : {
             "at" : { "x" : 456, "y" : 144 }
           },
-          "parentConnector" : "f266"
+          "parentConnector" : "f262"
         }, {
           "id" : "S92-f2",
           "type" : "Script",
@@ -4252,65 +4245,60 @@
           "visual" : {
             "at" : { "x" : 192, "y" : 144 }
           },
-          "connect" : [
-            { "id" : "S92-f0", "to" : "S92-f256" }
-          ]
+          "connect" : { "id" : "S92-f0", "to" : "S92-f256" }
         } ],
       "visual" : {
-        "at" : { "x" : 200, "y" : 3736 }
+        "at" : { "x" : 248, "y" : 3784 }
       },
-      "connect" : [
-        { "id" : "f266", "to" : "f247" }
-      ]
+      "connect" : { "id" : "f262", "to" : "f260" }
     }, {
-      "id" : "f246",
+      "id" : "f258",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 592, "y" : 3736 }
+        "at" : { "x" : 640, "y" : 3784 }
       }
     }, {
-      "id" : "f247",
+      "id" : "f260",
       "type" : "DialogCall",
       "name" : "PortalDashboardConfiguration",
       "config" : {
-        "dialog" : "ch.ivy.addon.portal.generic.dashboard.PortalDashboardConfiguration:PortalDashboadConfigurationEditPage(Boolean)",
+        "dialogId" : "ch.ivy.addon.portal.generic.dashboard.PortalDashboardConfiguration",
+        "startMethod" : "PortalDashboadConfigurationEditPage(Boolean)",
         "call" : {
+          "params" : [
+            { "name" : "isPublicDashBoard", "type" : "Boolean" }
+          ],
           "map" : {
             "param.isPublicDashBoard" : "in.isPublicDashboard"
           }
         }
       },
       "visual" : {
-        "at" : { "x" : 416, "y" : 3736 },
+        "at" : { "x" : 464, "y" : 3784 },
         "size" : { "width" : 256, "height" : 60 }
       },
-      "connect" : [
-        { "id" : "f250", "to" : "f246" }
-      ]
+      "connect" : { "id" : "f264", "to" : "f258" }
     }, {
-      "id" : "f248",
+      "id" : "f261",
       "type" : "RequestStart",
       "name" : "PortalDashboardConfigurationEditPage.ivp",
       "config" : {
-        "signature" : "PortalDashboardConfigurationEditPage",
+        "callSignature" : "PortalDashboardConfigurationEditPage",
         "input" : {
           "params" : [
-            { "name" : "isPublicDashboard", "type" : "Boolean", "desc" : "" }
+            { "name" : "isPublicDashboard", "type" : "Boolean" }
           ],
           "map" : {
             "out.isPublicDashboard" : "param.isPublicDashboard"
           }
         },
-        "request" : {
-          "isVisibleOnStartList" : false
-        }
+        "outLink" : "PortalDashboardConfigurationEditPage.ivp",
+        "showInStartList" : false
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 3736 },
+        "at" : { "x" : 144, "y" : 3784 },
         "labelOffset" : { "x" : -55, "y" : 33 }
       },
-      "connect" : [
-        { "id" : "f258", "to" : "S92" }
-      ]
+      "connect" : { "id" : "f263", "to" : "S92" }
     } ]
 }
