@@ -166,6 +166,53 @@ public class DashboardUtils {
       Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), dashboardId);
     }
   }
+
+  public static List<Dashboard> convertDashboardsToLatestVersion(String json) {
+    try {
+      ObjectMapper mapper = new ObjectMapper();
+      JsonDashboardMigrator migrator = new JsonDashboardMigrator(mapper.readTree(json));
+      return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), Dashboard.class);
+    } catch (JsonProcessingException ex) {
+      Ivy.log().error("Failed to read dashboard from JSON {0}", ex, json);
+    }
+    return null;
+  }
+
+  public static List<Dashboard> convertDashboardsFromUploadFileToLastestVersion(InputStream inputStream)
+      throws IOException {
+    new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+    try {
+      ObjectMapper mapper = new ObjectMapper();
+      JsonDashboardMigrator migrator = new JsonDashboardMigrator(mapper.readTree(inputStream));
+      return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), Dashboard.class);
+    } catch (JsonProcessingException e) {
+      Ivy.log().error("Failed to read dashboard from JSON {0}", e);
+    }
+    return null;
+  }
+
+  public static Dashboard convertDashboardToLatestVersion(InputStream inputStream) throws IOException {
+    new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+    try {
+      ObjectMapper mapper = new ObjectMapper();
+      JsonDashboardMigrator migrator = new JsonDashboardMigrator(mapper.readTree(inputStream));
+      return BusinessEntityConverter.convertJsonNodeToEntity(migrator.migrate(), Dashboard.class);
+    } catch (JsonProcessingException ex) {
+      Ivy.log().error("Failed to read dashboard from JSON {0}", ex);
+    }
+    return null;
+  }
+
+  private static List<DashboardTemplate> convertDashboardTemplatesToLatestVersion(String json) {
+    try {
+      ObjectMapper mapper = new ObjectMapper();
+      JsonDashboardTemplateMigrator migrator = new JsonDashboardTemplateMigrator(mapper.readTree(json));
+      return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), DashboardTemplate.class);
+    } catch (JsonProcessingException ex) {
+      Ivy.log().error("Failed to read dashboard template from JSON {0}", ex, json);
+    }
+    return null;
+  }
   
   public static void storeDashboardInSession(String id) {
     Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), id);
