@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -299,7 +300,7 @@ public class MenuView implements Serializable {
         buildBreadCrumbForEditDashboardDetail();
         break;
       case PROCESS_VIEWER:
-        buildBreadCrumbForProcessViewer(userCase);
+        buildBreadCrumbForProcessViewer(userTask, userCase);
         break;
       case PORTAL_MANAGEMENT:
         setPortalHomeMenuToBreadcrumbModel();
@@ -310,12 +311,17 @@ public class MenuView implements Serializable {
     }
   }
 
-  private void buildBreadCrumbForProcessViewer(ICase userCase) {
+  private void buildBreadCrumbForProcessViewer(ITask userTask, ICase userCase) {
     setPortalHomeMenuToBreadcrumbModel();
     var menuItem = (DefaultMenuItem) buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/Title");
-    if (userCase != null && StringUtils.isNotEmpty(userCase.getProcessStart().getName())) {
-      menuItem.setValue(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/Breadcrumb",
-          Arrays.asList(userCase.getProcessStart().getName())));
+    if (Objects.isNull(userCase) || StringUtils.isBlank(userCase.getProcessStart().getName())) {
+      if (Objects.nonNull(userTask)) {
+        userCase = userTask.getCase();
+      }
+    }
+
+    if (Objects.nonNull(userCase) && StringUtils.isNotEmpty(userCase.getProcessStart().getName())) {
+      menuItem.setValue(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/Breadcrumb", Arrays.asList(userCase.getProcessStart().getName())));
     }
     breadcrumbModel.getElements().add(menuItem);
   }
