@@ -19,7 +19,7 @@
         panelStyleClass="case-configuration__selectcheckboxmenu-panel"
         styleClass="case-configuration__selectcheckboxmenu">
         <f:selectItems value="#{cc.attrs.stateOptions}" var="state" itemValue="#{state}"
-          itemLabel="#{dashboardCaseFilterBean.getUserFriendlyCaseState(state)}" />
+          itemLabel="#{caseWidgetConfigurationFilterBean.getUserFriendlyCaseState(state)}" />
       </p:selectCheckboxMenu>
     </div>
   </h:panelGroup>

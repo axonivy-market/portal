@@ -8,15 +8,17 @@
   <cc:attribute name="filter" type="com.axonivy.portal.dto.dashboard.filter.DashboardFilter" />
   <cc:attribute name="componentToUpdate" required="true" />
   <cc:attribute name="filterIndex" />
+  <cc:attribute name="readOnly" default="false" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="filter" value="#{cc.attrs.filter}" />
   <c:set var="filterIndex" value="#{cc.attrs.filterIndex}" />
+  <c:set var="readOnly" value="#{cc.attrs.readOnly}" />
 
   <h:panelGroup id="date-filter-operator-panel" layout="block"
     styleClass="ui-fluid md-inputfield filter-operator-panel">
-      <p:selectOneMenu id="operator-selection" value="#{filter.operator}">
+      <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
         <f:selectItems value="#{widgetDateFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
           <p:ajax event="itemSelect" listener="#{widgetDateFilterBean.onChangeOperator(filter)}"
@@ -27,8 +29,10 @@
 
   <h:panelGroup id="is-date-panel" layout="block" rendered="#{filter.operator == 'IS'}"
     styleClass="ui-fluid md-inputfield date-picker-panel">
-    <p:datePicker id="is-date" value="#{filter.from}" locale="#{localeBean.locale}"
+    <p:datePicker id="is-date" value="#{filter.from}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex)}">
+      <p:ajax event="change" process="@(this)" update="@(this)" partialSubmit="true" global="false" />
+      <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
       <f:attribute name="filter" value="#{filter}" />
       <f:attribute name="filterIndex" value="#{filterIndex}" />
@@ -38,8 +42,10 @@
 
   <h:panelGroup id="is-not-date-panel" layout="block" rendered="#{filter.operator == 'IS_NOT'}"
     styleClass="ui-fluid md-inputfield date-picker-panel">
-    <p:datePicker id="is-not-date" value="#{filter.from}" locale="#{localeBean.locale}"
+    <p:datePicker id="is-not-date" value="#{filter.from}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex)}">
+      <p:ajax event="change" process="@(this)" update="@(this)" partialSubmit="true" global="false" />
+      <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
       <f:attribute name="filter" value="#{filter}" />
       <f:attribute name="filterIndex" value="#{filterIndex}" />
@@ -49,8 +55,10 @@
 
   <h:panelGroup id="before-date-panel" layout="block" rendered="#{filter.operator == 'BEFORE'}"
     styleClass="ui-fluid md-inputfield date-picker-panel">
-    <p:datePicker id="before-date" value="#{filter.from}" locale="#{localeBean.locale}"
+    <p:datePicker id="before-date" value="#{filter.from}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex)}">
+      <p:ajax event="change" process="@(this)" update="@(this)" partialSubmit="true" global="false" />
+      <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
       <f:attribute name="filter" value="#{filter}" />
       <f:attribute name="filterIndex" value="#{filterIndex}" />
@@ -60,8 +68,10 @@
 
   <h:panelGroup id="after-date-panel" layout="block" rendered="#{filter.operator == 'AFTER'}"
     styleClass="ui-fluid md-inputfield date-picker-panel">
-    <p:datePicker id="after-date" value="#{filter.to}" locale="#{localeBean.locale}"
+    <p:datePicker id="after-date" value="#{filter.to}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex)}">
+      <p:ajax event="change" process="@(this)" update="@(this)" partialSubmit="true" global="false" />
+      <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
       <f:attribute name="filter" value="#{filter}" />
       <f:attribute name="filterIndex" value="#{filterIndex}" />
@@ -72,8 +82,10 @@
   <h:panelGroup id="between-dates-panel-from" layout="block"
     rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}"
     styleClass="ui-fluid md-inputfield date-picker-panel">
-    <p:datePicker id="from-date" value="#{filter.from}" locale="#{localeBean.locale}"
+    <p:datePicker id="from-date" value="#{filter.from}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex)}">
+      <p:ajax event="change" process="@(this)" update="@(this)" partialSubmit="true" global="false" />
+      <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
       <f:attribute name="filter" value="#{filter}" />
       <f:attribute name="filterIndex" value="#{filterIndex}" />
@@ -89,8 +101,10 @@
   <h:panelGroup id="between-dates-panel-to" layout="block"
     rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}"
     styleClass="ui-fluid md-inputfield date-picker-panel">
-    <p:datePicker id="to-date" value="#{filter.to}" locale="#{localeBean.locale}"
+    <p:datePicker id="to-date" value="#{filter.to}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex)}">
+      <p:ajax event="change" process="@(this)" update="@(this)" partialSubmit="true" global="false" />
+      <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
       <f:attribute name="filter" value="#{filter}" />
       <f:attribute name="filterIndex" value="#{filterIndex}" />
@@ -99,7 +113,7 @@
   </h:panelGroup>
 
   <h:panelGroup id="current-period-panel" layout="block" rendered="#{filter.operator == 'CURRENT'}">
-    <p:selectOneMenu id="current-period-selection" value="#{filter.periodType}">
+    <p:selectOneMenu id="current-period-selection" value="#{filter.periodType}" disabled="#{readOnly}">
       <f:selectItems value="#{widgetDateFilterBean.currentFilterPeriodTypes}" var="period"
         itemValue="#{period}" itemLabel="#{period.label}" />
     </p:selectOneMenu>
@@ -108,13 +122,13 @@
   <h:panelGroup id="number-of-periods-panel" layout="block"
     rendered="#{filter.operator == 'LAST' or filter.operator == 'NEXT'}"
     styleClass="number-of-periods-panel ui-fluid md-inputfield">
-    <p:spinner id="number-of-period" value="#{filter.periods}" min="1" />
+    <p:spinner id="number-of-period" value="#{filter.periods}" min="1" disabled="#{readOnly}" />
   </h:panelGroup>
 
   <h:panelGroup id="period-type-panel" layout="block"
     rendered="#{filter.operator == 'LAST' or filter.operator == 'NEXT'}"
     styleClass="period-type-panel ui-fluid md-inputfield">
-    <p:selectOneMenu id="period-n-type-selection" value="#{filter.periodType}">
+    <p:selectOneMenu id="period-n-type-selection" value="#{filter.periodType}" disabled="#{readOnly}">
       <f:selectItems value="#{widgetDateFilterBean.filterPeriodTypes}" var="period"
         itemValue="#{period}" itemLabel="#{period.pluralLabel}" />
     </p:selectOneMenu>
