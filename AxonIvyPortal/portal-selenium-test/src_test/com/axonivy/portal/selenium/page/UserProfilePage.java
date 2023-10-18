@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.page;
 
+import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.axonivy.portal.selenium.common.WaitHelper;
@@ -24,4 +25,15 @@ public class UserProfilePage extends TemplatePage {
     return new NewDashboardPage();
   }
 
+  public void changeNewDashboardPageToCase() {
+    String newdashboardpageLabel = "my-profile-form:homepage_label";
+    $("[id='" + newdashboardpageLabel + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    String caseItemCssSelector = "li.ui-selectonemenu-item[data-label='Cases']";
+    $(caseItemCssSelector).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id='" + newdashboardpageLabel + "']").shouldBe(appear, DEFAULT_TIMEOUT).shouldHave(Condition.text("Cases"), DEFAULT_TIMEOUT);
+  }
+
+  public void saveWithoutWaitingNavigation() {
+    WaitHelper.waitForNavigation(() -> $("button[id$='save-settings']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
+  }
 }

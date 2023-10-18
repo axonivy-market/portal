@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.page.component;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Condition.appear;
 
 import com.axonivy.portal.selenium.page.TemplatePage;
 import com.codeborne.selenide.Condition;
@@ -25,20 +26,22 @@ public class UserSelectionComponentPage extends TemplatePage{
   public SelenideElement getAjaxEventUserSelectionComponent() {
     return $("[id='item-select-with-ajax-event-component']");
   }
-  
-  @SuppressWarnings("deprecation")
+
   public String selectFirstItemForNormalUserSelectionComponent(String keyword) {
     SelenideElement userElement = selectUserComponent("user-by-role-autocomplete", keyword);
-    userElement.shouldBe(getClickableCondition()).click();
+    userElement.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("span[id$='user-by-role-autocomplete_panel']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
     return userElement.getCssValue("data-item-value");
   }
   
   public String getNormalUserSelection() {
-    return $("input[id$='user-by-role-autocomplete_hinput']").getCssValue("value");
+    return getNormalUserSelectionElement().getCssValue("value");
   }
-  
-  @SuppressWarnings("deprecation")
+
+  public SelenideElement getNormalUserSelectionElement() {
+    return $("input[id$='user-by-role-autocomplete_input']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
   public String selectFirstItemForFloatingLabelUserSelectionComponent(String keyword) {
     SelenideElement userElement = selectUserComponent("all-user-autocomplete", keyword);
     userElement.shouldBe(getClickableCondition()).click();
@@ -47,10 +50,13 @@ public class UserSelectionComponentPage extends TemplatePage{
   }
   
   public String getFloatingLabelUserSelection() {
-    return $("input[id$='all-user-autocomplete_hinput']").getCssValue("value");
+    return $("input[id$='all-user-autocomplete_input']").getCssValue("value");
   }
-  
-  @SuppressWarnings("deprecation")
+
+  public SelenideElement getFloatingLabelUserSelectionElem() {
+    return $("input[id$='all-user-autocomplete_input']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
   public String selectFirstItemForAjaxEventUserSelectionComponent(String keyword) {
     SelenideElement userElement = selectUserComponent("item-select-event-for-user-selection", keyword);
     userElement.shouldBe(getClickableCondition()).click();
@@ -59,7 +65,7 @@ public class UserSelectionComponentPage extends TemplatePage{
   }
   
   public String getAjaxEventUserSelection() {
-    return $("input[id$='item-select-event-for-user-selection_hinput']").getCssValue("value");
+    return $("input[id$='item-select-event-for-user-selection_input']").getCssValue("value");
   }
   
   public void openSelectionPanelForAjaxEventUserSelectionComponent(String keyword) {
@@ -74,5 +80,5 @@ public class UserSelectionComponentPage extends TemplatePage{
     ElementsCollection selectionItems = $("span[id$='"+componentId+"_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).findAll(".ui-autocomplete-item");
     return selectionItems.get(0);
   }
-  
+
 }
