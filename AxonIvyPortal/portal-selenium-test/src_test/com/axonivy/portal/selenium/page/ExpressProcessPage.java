@@ -62,4 +62,8 @@ public class ExpressProcessPage extends TemplatePage {
   public void clickSave() {
     $("[id='form:save']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
+
+  public String getProcessName() {
+    return findElementById("form:process-name").getAttribute("value");
+  }
 }

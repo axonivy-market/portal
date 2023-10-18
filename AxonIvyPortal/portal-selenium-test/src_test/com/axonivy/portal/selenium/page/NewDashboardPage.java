@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Condition.editable;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -26,6 +27,8 @@ public class NewDashboardPage extends TemplatePage {
   private static final String MY_FILTER = "My filter";
   private static final String SHOWCASE = "Showcase";
 
+  public final static String PORTAL_EXAMPLES_EMPLOYEE_SEARCH = "portal-developer-examples/180D50804A2BF9E9/employeeSearch.ivp";
+  public final static String PORTAL_HOME_PAGE_URL = "portal/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
   @Override
   protected String getLoadedLocator() {
     return ".js-dashboard__wrapper";
@@ -840,5 +843,10 @@ public class NewDashboardPage extends TemplatePage {
   public ChatPage openChatDialog() {
     $("[id='toggle-chat-panel-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     return new ChatPage();
+  }
+
+  public String getGlobalFooterInfo() {
+    waitForElementDisplayed(By.cssSelector("span[id$='server-infor']"), true, 5);
+    return $("span[id$='server-infor']").getText();
   }
 }

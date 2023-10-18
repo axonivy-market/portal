@@ -41,6 +41,7 @@ public enum Variable {
   SHOW_GLOBAL_SEARCH("Portal.ShowGlobalSearch"),
   SHOW_BUTTON_ICON("Portal.ShowButtonIcon"),
   DEFAULT_HOMEPAGE("Portal.Homepage"),
+  HIDE_RELATED_CASE_INFO_FROM_HISTORY("Portal.Histories.HideRelatedCaseInfo"),
   DISPLAY_USERS_OF_TASK_ACTIVATOR("Portal.DisplayUsersOfRole"),
   ANNOUNCEMENT("Portal.Announcement"),
   TASK_ANALYSIS_FILTER("Portal.TaskAnalysisFilters"),
@@ -61,6 +62,7 @@ public enum Variable {
   DEEPL_AUTH_KEY("Portal.DeepL.AuthKey"),
   ENABLE_DEEPL_TRANSLATION("Portal.DeepL.Enable"),
   DASHBOARD("Portal.Dashboard"),
+  GLOBAL_FOOTER_INFO("Portal.GlobalFooterInfo"),
   SHOW_LEGACY_UI("Portal.ShowLegacyUI");
 
   private String key;

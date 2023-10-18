@@ -2,14 +2,23 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.and;
 import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disabled;
 import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import java.time.Duration;
 import java.util.ArrayList;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -21,15 +30,24 @@ import com.codeborne.selenide.WebDriverRunner;
 public abstract class TemplatePage extends AbstractPage {
   protected static final String LAYOUT_WRAPPER = ".layout-wrapper";
   public static final String ID_PROPERTY = "id";
+  public static final String CLASS_PROPERTY = "class";
+  public static final String CURRENT_BREADCRUMB_SELECTOR = ".portal-breadcrumb li:last-child .ui-menuitem-link.ui-state-disabled";
+  private static final String TEMPLATE_PAGE_LOCATOR = "[id='global-search-item']";
 
   // If page load more than 45s, mark it failed by timeout
   protected long getTimeOutForLocator() {
-    return 45L;
+    return 15L;
+  }
+
+  public String getPageTitle() {
+    return driver.getTitle();
   }
 
   protected Condition getClickableCondition() {
     return and("should be clickable", visible, exist);
   }
+
+  public WebDriver driver = WebDriverRunner.getWebDriver();
 
   public void switchLastBrowserTab() {
     String oldTab = WebDriverRunner.getWebDriver().getWindowHandle();
@@ -39,25 +57,73 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void waitUntilElementToBeClickable(SelenideElement element) {
-    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
-        .until(ExpectedConditions.elementToBeClickable(element));
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(ExpectedConditions.elementToBeClickable(element));
   }
-  
+
   public void switchToIframeWithId(String id) {
     WebDriverRunner.getWebDriver().switchTo().frame($("iframe[id='" + id + "']"));
   }
 
   public void waitForGrowlMessageDisappear() {
-    $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT)
-          .$("div.ui-growl-message").shouldBe(disappear, DEFAULT_TIMEOUT);
+    $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-growl-message").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
-  
+
+  public void waitForElementDisplayed(By element, boolean expected) {
+    if (expected) {
+      $(element).shouldBe(appear, DEFAULT_TIMEOUT);
+    } else {
+      $(element).shouldBe(disappear, DEFAULT_TIMEOUT);
+    }
+  }
+
+  public void waitForElementEnabled(By element, boolean expected) {
+    if (expected) {
+      $(element).shouldBe(enabled, DEFAULT_TIMEOUT);
+    } else {
+      $(element).shouldBe(disabled, DEFAULT_TIMEOUT);
+    }
+  }
+  public void waitForElementDisplayed(SelenideElement element, boolean expected) {
+    if (expected) {
+      element.shouldBe(appear, DEFAULT_TIMEOUT);
+    } else {
+      element.shouldBe(disappear, DEFAULT_TIMEOUT);
+    }
+  }
+  public void waitForElementDisplayed(By element, boolean expected, long timeout) {
+    if (expected) {
+      $(element).shouldBe(appear, Duration.ofSeconds(timeout));
+    } else {
+      $(element).shouldBe(disappear, Duration.ofSeconds(timeout));
+    }
+  }
+
   public void waitForGrowlMessageDisplayClearly() {
     $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-growl-message").hover();
   }
-  
+
+  public SelenideElement waitForElementClickable(SelenideElement element) {
+    return element.shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+  }
+
   public SelenideElement waitForElementClickable(String cssSelector) {
-    return $(cssSelector).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    return $(cssSelector).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+  }
+
+  public boolean isElementDisplayed(By element) {
+    return $(element).shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
+  }
+
+  public boolean isElementEnabled(By element) {
+    return $(element).shouldBe(appear, DEFAULT_TIMEOUT).isEnabled();
+  }
+
+  public void waitForElementClickableThenClick(SelenideElement element) {
+    waitForElementClickable(element).click();
+  }
+
+  public boolean isElementPresent(By element) {
+    return $(element).is(visible);
   }
 
   public void waitForElementClickableThenClick(String cssSelector) {
@@ -67,9 +133,24 @@ public abstract class TemplatePage extends AbstractPage {
   public void switchToIFrameOfTask() {
     switchToIframeWithId("iFrame");
   }
-  
+
   public void switchBackToParent() {
     WebDriverRunner.getWebDriver().switchTo().parentFrame();
+  }
+
+  public void waitAjaxIndicatorDisappear() {
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(new ExpectedCondition<Boolean>() {
+      public Boolean apply(WebDriver wdriver) {
+        boolean isAjaxFinished = ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript("return jQuery.active == 0").equals(true);
+        boolean isLoaderHidden = (boolean) ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript("return $('.spinner').is(':visible') == false");
+        return isAjaxFinished && isLoaderHidden;
+      }
+
+    });
+  }
+
+  public void waitForPageLoad() {
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
   }
 
   public LoginPage clickOnLogout() {
@@ -85,12 +166,144 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   private void clickUserMenuItem(String menuItemSelector) {
-    $(By.id("user-settings-menu")).shouldBe(appear, DEFAULT_TIMEOUT);
-    clickByJavaScript($(By.id("user-settings-menu")));
-    $(By.id(menuItemSelector)).shouldBe(appear, DEFAULT_TIMEOUT);
-    clickByJavaScript($(By.id(menuItemSelector)));
+    waitForElementClickableThenClick("[id='user-settings-menu']");
+    $(By.id(menuItemSelector)).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    waitAjaxIndicatorDisappear();
     $(By.id("user-setting-container")).shouldBe(disappear, DEFAULT_TIMEOUT);
-//    WaitHelper.assertTrueWithWait(() -> !findElementById("user-setting-container").isDisplayed());
+    waitForPageLoad();
+  }
+
+  public SelenideElement findElementById(String selector) {
+    return $(String.format("[id$='%s']", selector));
+  }
+
+  public boolean isAdminSettingsMenuItemPresent() {
+    return $("[id='adminui-menu-item']").is(Condition.exist);
+  }
+
+  public boolean isElementDisplayedById(String id) {
+    try {
+      findElementById(id);
+      return true;
+    } catch (org.openqa.selenium.NoSuchElementException e) {
+      return false;
+    }
+  }
+
+  public AdminSettingsPage openAdminSettings() {
+    clickUserMenuItem("adminui-menu-item");
+    waitAjaxIndicatorDisappear();
+    return new AdminSettingsPage();
+  }
+
+  public MainMenuPage openMainMenu() {
+    waitPageLoaded();
+    if (!isMainMenuOpen()) {
+      $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover();
+      waitForElementClickableThenClick($(By.xpath("//a[@id='user-menu-required-login:toggle-menu']")));
+    }
+    return new MainMenuPage();
+  }
+
+  public boolean isMainMenuOpen() {
+    WebElement mainMenu = $(".layout-wrapper");
+    return mainMenu.getAttribute(CLASS_PROPERTY).indexOf("static") > 0;
+  }
+
+  public UserProfilePage openMyProfilePage() {
+    clickUserMenuItem("user-profile");
+    return new UserProfilePage();
+  }
+
+  public void clickOnMyProfile() {
+    waitForElementClickableThenClick("[id='user-settings-menu']");
+    waitForElementClickableThenClick("[id='user-profile]");
+    WaitHelper.assertTrueWithWait(() -> $("[id$=':logo-task-losing-confirmation-dialog']").isDisplayed());
+  }
+
+  public String getAnnouncementMessage() {
+    waitForElementDisplayed(By.cssSelector("div[class*='announcement-message-customizable']"), true);
+    return WebDriverRunner.getWebDriver().findElement(By.cssSelector("div[class*='announcement-message-customizable']")).getText();
+  }
+
+  public boolean isAnnouncementMessageNotDisplayed() {
+    if (WebDriverRunner.getWebDriver().findElements(By.cssSelector("div[class*='announcement-message-customizable']")).size() == 0) {
+      return true;
+    }
+    return false;
+  }
+
+  public TaskDetailsPage openTaskDetails(int index) {
+    waitForElementDisplayed(By.cssSelector("div.js-task-start-list"), true);
+    return clickOnTaskEntryInFullMode(index);
+  }
+
+  private TaskDetailsPage clickOnTaskEntryInFullMode(int index) {
+    waitForElementClickableThenClick($(By.cssSelector("div[id$='" + index + "\\:task-item\\:task-info']")));
+    return new TaskDetailsPage();
+  }
+
+  public GlobalSearch getGlobalSearch() {
+    return new GlobalSearch();
+  }
+  public class GlobalSearch {
+
+    private static final String GLOBAL_SEARCH_INPUT_SELECTOR = "#global-search-component\\:global-search-data";
+
+    public GlobalSearch() {
+    }
+
+    private WebElement getSearchInput() {
+      waitForElementDisplayed(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR), true);
+      return findElementByCssSelector(GLOBAL_SEARCH_INPUT_SELECTOR);
+    }
+
+    public boolean isDisplayed() {
+      waitForElementDisplayed(By.cssSelector("a[id$='global-search-item']"), true);
+      return findElementByCssSelector("a[id$='global-search-item']").isDisplayed();
+    }
+
+    public GlobalSearchResultPage inputSearchKeyword(String keyword) {
+      waitForElementDisplayed(By.cssSelector(".topbar-item.search-item"), true);
+      waitForElementClickableThenClick("a[id$='global-search-item']");
+      waitForElementDisplayed(By.cssSelector("input[id$='global-search-component:global-search-data']"), true);
+      $(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR)).click();
+      getSearchInput().sendKeys(Keys.ENTER.toString());
+      try {
+        waitForElementDisplayed(By.id("search-results-tabview"), true);
+      } catch (Exception e) {
+        System.out.println("Exception when waiting for search page displayed, press Enter again.");
+        getSearchInput().sendKeys(Keys.ENTER.toString());
+      }
+      return new GlobalSearchResultPage();
+    }
+
+    public boolean isPresent() {
+      return isElementPresent(By.cssSelector("a[id$='global-search-item']"));
+    }
+
+    public void waitUtilProcessWidgetDisplayed() {
+      waitForElementDisplayed(By.className("process-widget"), true);
+      waitForElementDisplayed(By.className("js-loading-process-list"), false);
+      waitForElementDisplayed(By.className("js-process-start-list-container"), true);
+    }
+  }
+
+
+  public String getTextOfCurrentBreadcrumb() {
+    WebElement breadcrumb = findElementByCssSelector(CURRENT_BREADCRUMB_SELECTOR);
+    String result = "";
+    if (CollectionUtils.isNotEmpty(breadcrumb.findElements(By.cssSelector(".js-count")))) {
+      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getAttribute("innerHTML") + breadcrumb.findElement(By.cssSelector(".js-count")).getAttribute("innerHTML");
+    } else {
+      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getAttribute("innerHTML");
+    }
+    return result;
 
   }
+
+  public int countBrowserTab() {
+    return driver.getWindowHandles().size();
+  }
+
 }

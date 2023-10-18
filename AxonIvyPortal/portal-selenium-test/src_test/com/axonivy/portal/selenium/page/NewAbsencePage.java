@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
@@ -18,7 +19,7 @@ public class NewAbsencePage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('absence-dialog_title')";
+    return "[id='absence-dialog_title']";
   }
   
   public void input(LocalDate absenceFrom, LocalDate absenceTill, String comment) {
@@ -68,8 +69,9 @@ public class NewAbsencePage extends TemplatePage {
   }
 
   public void proceed() {
+    $(By.id("absence-dialog_title")).click();
     $("button[id*='save-absence']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-//    waitAjaxIndicatorDisappear();
+    waitAjaxIndicatorDisappear();
   }
 
   public void closeAddAbsenceDialog() {
