@@ -53,7 +53,7 @@ public class AdminSettingsTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     NewDashboardPage homePage = new NewDashboardPage();
     // Customize environment info in portal example
-    redirectToRelativeLinkWithEmbedInFrame(NewDashboardPage.PORTAL_EXAMPLES_EMPLOYEE_SEARCH);
+    redirectToRelativeLinkWithEmbedInFrame(createTaskWithIframe);
 
     assertTrue(homePage.getGlobalFooterInfo().contains("Wawa"));
   }

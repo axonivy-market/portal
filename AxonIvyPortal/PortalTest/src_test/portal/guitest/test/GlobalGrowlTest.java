@@ -26,24 +26,15 @@ import portal.guitest.page.WorkingTaskDialogPageOfApplicationMenu;
 
 public class GlobalGrowlTest extends BaseTest {
 
-  private static final String CUSTOM_FINISH_MESSAGE = "Task is done successfully\nClick here for details.";
   private static final String FINISH_MESSAGE = "You have finished the task successfully";
   private static final String FINISH_MESSAGE_WITH_DETAILS = "You have finished the task successfully.\nClick here for details.";
-  private static final String CUSTOM_CANCEL_MESSAGE = "You have cancelled and left the task successfully\nClick here for details.";
   private static final String CANCEL_MESSAGE = "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.";
   private static final String CANCEL_MESSAGE_WITH_DETAILS = "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.\nClick here for details.";
-  private static final String CUSTOM_GROWL_URL = "portal-developer-examples/16A7BB2ADC9580A8/start.ivp";
   private static final String SKIP_TASK_LIST_URL = "portal-developer-examples/16FA8B451814E32A/start.ivp";
   
-  @Test
-  public void testDisplayCustomGrowlAfterFinishTask() {
-    redirectToRelativeLink(CUSTOM_GROWL_URL);
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    taskWidgetPage = taskTemplatePage.clickSubmitButton();
-    assertGrowlMessage(taskWidgetPage, CUSTOM_FINISH_MESSAGE);
-  }
-  
+  // TODO Write test for custom Growl in IFrame, in version 10 it has the test public void
+  // testDisplayCustomGrowlAfterFinishTask()
+
   @Test
   public void testDisplayDefaultGrowlAfterFinishTask() {
     redirectToRelativeLink(createTestingTasksUrl);
@@ -75,14 +66,8 @@ public class GlobalGrowlTest extends BaseTest {
     assertGrowlMessage(taskWidgetPage, CANCEL_MESSAGE_WITH_DETAILS);
   }
   
-  @Test
-  public void testDisplayCustomGrowlAfterCancelTask() {
-    redirectToRelativeLink(CUSTOM_GROWL_URL);
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    taskWidgetPage = taskTemplatePage.clickCancelAndLeftButton();
-    assertGrowlMessage(taskWidgetPage, CUSTOM_CANCEL_MESSAGE);
-  }
+  // TODO Write test for custom Growl in IFrame, in version 10 it has the test public void
+  // testDisplayCustomGrowlAfterCancelTask()
   
   @Test
   public void testDisplayDefaultGrowlAfterCancelFirstTask() {

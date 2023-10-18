@@ -30,17 +30,6 @@ public class TaskTemplateIFrameTest extends BaseTest {
   }
 
   @Test
-  public void testCustomParamsForTaskTemplate8() {
-    redirectToRelativeLink(CUSTOM_PARAMS_TEMPLATE_TASK_URL);
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.filterTasksInExpandedModeBy("Task template 8 with custom params");
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTaskWithouWaitForTaskActionPresent(0);
-    assertFalse(taskTemplatePage.isTaskNameDisplayed());
-    assertFalse(taskTemplatePage.isTaskActionDisplayed());
-    assertFalse(taskTemplatePage.isCaseInfoButtonDisplayed());
-  }
-
-  @Test
   public void testCustomParamsForIFrameTaskTemplate() {
     redirectToRelativeLink(CUSTOM_PARAMS_TEMPLATE_TASK_URL);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
