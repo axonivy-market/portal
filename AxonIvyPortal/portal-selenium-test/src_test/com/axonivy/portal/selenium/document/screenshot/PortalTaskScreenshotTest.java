@@ -55,7 +55,7 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
 
   @Test
   public void screenshotBasicTaskDetails() throws IOException {
-    WaitHelper.waitForNavigation(() -> login(TestAccount.ADMIN_USER));
+    login(TestAccount.ADMIN_USER);
     mainMenuPage = new MainMenuPage();
     showNewDashboard();
     NewDashboardPage homePage = new NewDashboardPage();
@@ -75,7 +75,7 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
 
   @Test
   public void screenshotActionButtonsOnTaskDetailsWithJsonFile() throws IOException {
-    WaitHelper.waitForNavigation(() -> login(TestAccount.ADMIN_USER));
+    login(TestAccount.ADMIN_USER);
     mainMenuPage = new MainMenuPage();
     showNewDashboard();
     NewDashboardPage homePage = new NewDashboardPage();
@@ -115,7 +115,7 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
 
   @Test
   public void screenshotTaskDetails() throws IOException {
-    WaitHelper.waitForNavigation(() -> login(TestAccount.ADMIN_USER));
+    login(TestAccount.ADMIN_USER);
     mainMenuPage = new MainMenuPage();
     showNewDashboard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
@@ -169,7 +169,7 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
 
   @Test
   public void screenshotShowMoreTaskHistories() throws IOException {
-    WaitHelper.waitForNavigation(() -> login(TestAccount.ADMIN_USER));
+    login(TestAccount.ADMIN_USER);
     mainMenuPage = new MainMenuPage();
     ScreenshotUtil.resizeBrowser(new Dimension(2560, 1000));
     showNewDashboard();
@@ -226,7 +226,7 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
 
   private TaskDetailsPage setupCustomWidgetByJSONFile(String configFile) throws IOException {
     ConfigurationJsonUtil.updateJSONSetting(configFile, Variable.TASK_DETAIL);
-    WaitHelper.waitForNavigation(() -> login(TestAccount.ADMIN_USER));
+    login(TestAccount.ADMIN_USER);
     mainMenuPage = new MainMenuPage();
     redirectToRelativeLink(PORTAL_EXAMPLES_HOME_PAGE_URL);
     ScreenshotUtil.resizeBrowser(new Dimension(1366, 1200));
