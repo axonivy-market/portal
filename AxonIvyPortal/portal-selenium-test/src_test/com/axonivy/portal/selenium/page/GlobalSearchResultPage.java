@@ -62,4 +62,19 @@ public class GlobalSearchResultPage extends TemplatePage {
   public void waitUtilProcessWidgetDisplayed() {
     $("[id='search-results-tabview:process-results:process-list']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
+
+  public int countCase() {
+    CaseWidgetPage caseWidgetPage = getCaseWidget();
+    return caseWidgetPage.getNumberOfCases();
+  }
+
+  private CaseWidgetPage getCaseWidget() {
+    return new CaseWidgetPage("search-results-tabview:case-results");
+  }
+
+  public String getCaseResult(int index) {
+    CaseWidgetPage caseWidgetPage = getCaseWidget();
+    return caseWidgetPage.getCaseNameAt(index);
+  }
+
 }

@@ -6,8 +6,14 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import org.openqa.selenium.By;
+import java.util.List;
+import java.util.stream.Stream;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
+
+import com.axonivy.portal.selenium.common.CaseState;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
@@ -15,6 +21,18 @@ import com.codeborne.selenide.SelenideElement;
 
 public class CaseWidgetPage extends TemplatePage {
 
+  private static final String CASE_ITEM_LIST_SELECTOR = "li[class='ui-datascroller-item']";
+  private static final String CASE_NAME_CSS_SELECTOR = "span[class*='case-header-name-cell']";
+
+  private String caseWidgetId;
+
+  public CaseWidgetPage() {
+    this("case-widget");
+  }
+
+  public CaseWidgetPage(String caseWidgetId) {
+    this.caseWidgetId = caseWidgetId;
+  }
   @Override
   protected String getLoadedLocator() {
     return ".js-case-widget-header";
@@ -76,9 +94,57 @@ public class CaseWidgetPage extends TemplatePage {
   
   public String getCaseId(int caseIndex) {
     $("[id$=':case-list']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-//    WebElement selectedCaseElement = findElementByCssSelector(String.format("[id$='case-list-scroller:%d:case-item:case-item-container']", caseIndex));
     SelenideElement selectedCaseIdElement = $(String.format("[id$='case-list-scroller:%d:case-item:case-item-container']", caseIndex)).find(By.cssSelector("[id$=':case-id-cell']"));
     return selectedCaseIdElement.getText();
+  }
+
+  public String getCaseNameAt(int index) {
+    waitForElementDisplayed(By.className("js-case-list"), true);
+    WebElement name = $("[id$='case-list-scroller:" + index + ":case-item:case-name-component:case-header-name-cell']");
+    return name.getText();
+  }
+
+  public boolean isCaseDisplayed(String name) {
+    waitForElementDisplayed(By.cssSelector("div[id='case-widget:case-list-scroller']"), true);
+    List<SelenideElement> caseNameElements = $$(".case-header-name-cell");
+    return caseNameElements.stream().anyMatch(caseNameElement -> name.equals(caseNameElement.getText()));
+  }
+
+  public int getNumberOfCases() {
+    List<SelenideElement> caseItems = $$(CASE_ITEM_LIST_SELECTOR);
+    return caseItems.size();
+  }
+
+  public CaseDetailsPage openDetailsOfCaseHasName(String caseName) {
+    List<SelenideElement> caseItems = $$(CASE_ITEM_LIST_SELECTOR);
+    for (SelenideElement caseItem : caseItems) {
+      if (caseItem.findElement(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText().equals(caseName)) {
+        caseItem.findElement(By.cssSelector("span[id*='case-info-row']")).click();
+        return new CaseDetailsPage();
+      }
+    }
+    throw new NoSuchElementException("Cannot find case has name " + caseName);
+  }
+
+  public CaseState getCaseState(int caseIndex) {
+    List<SelenideElement> caseStateCells = $$("span[id$=':case-state-cell']");
+    String stateClass = caseStateCells.get(caseIndex).findElement(By.className("case-state")).getAttribute("class");
+    String[] stateClasses = stateClass.trim().split(" ");
+    String state = Stream.of(stateClasses).filter(clazz -> clazz.endsWith("-case-state")).findFirst().orElse("");
+    return CaseState.fromClass(state);
+  }
+
+  public CaseDetailsPage openCaseDetailsFromActionMenuByCaseName(String caseName) {
+    List<SelenideElement> caseItems = $$(CASE_ITEM_LIST_SELECTOR);
+    for (SelenideElement caseItem : caseItems) {
+      if (caseItem.findElement(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText().equals(caseName)) {
+        caseItem.findElement(By.cssSelector("a[id*='action-steps-menu']")).click();
+        waitForElementDisplayed(By.cssSelector("div[id$='action-steps-panel']"), true);
+        findElementByCssSelector("a[id$='case-item-open-detail-link']").click();
+        return new CaseDetailsPage();
+      }
+    }
+    throw new NoSuchElementException("Cannot find case has name " + caseName);
   }
 
 }
