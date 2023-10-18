@@ -12,6 +12,7 @@ import java.time.Duration;
 import org.junit.jupiter.api.AfterEach;
 
 import com.axonivy.ivy.webtest.engine.EngineUrl;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -216,11 +217,9 @@ public class BaseTest {
       username = URLEncoder.encode(testAccount.getUsername(), "UTF-8");
       password = URLEncoder.encode(testAccount.getPassword(), "UTF-8");
       try {
-        WaitHelper.waitForNavigation(() -> open(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password))));
-        if (!$(".layout-topbar-right").exists()) {
-          throw new Exception();
-        }
-      } catch (Exception e) {
+        open(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
+        $(".js-dashboard__wrapper").shouldBe(Condition.exist);
+      } catch (Error e) {
         open(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
       }
     } catch (UnsupportedEncodingException e) {
