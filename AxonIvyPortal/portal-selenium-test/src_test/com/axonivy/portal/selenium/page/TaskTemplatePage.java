@@ -78,4 +78,9 @@ public class TaskTemplatePage extends TemplatePage {
     $("[id='chat-assignee-selection-form:chat-group-create-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id='chat-assignee-selection-form:chat-group-create-button']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
+
+  public String getTaskName() {
+    return getTextOfCurrentBreadcrumb().replace("Task: ", "");
+  }
+
 }

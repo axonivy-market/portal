@@ -10,13 +10,14 @@ import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
+import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
 public abstract class AbstractPage {
   
   protected final Log log;
 //  protected static final long DEFAULT_TIMEOUT = 45000;
-  protected static final Duration DEFAULT_TIMEOUT= Duration.ofSeconds(45);
+  protected static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(5);
 
   /**
    * This abstract method is used to determine identity of a page.
@@ -35,11 +36,19 @@ public abstract class AbstractPage {
     $(getLoadedLocator()).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  public boolean isDisplayed() {
+    return $(getLoadedLocator()).isDisplayed();
+  }
+
   /**
    * @param element
    * this function used for action click in some invisible element
    */
   public void clickByJavaScript(WebElement element) {
     ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript("arguments[0].click();", element);
+  }
+
+  public SelenideElement findElementByCssSelector(String cssSelector) {
+    return $(cssSelector);
   }
 }

@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
@@ -179,4 +180,10 @@ public class TaskWidgetPage extends TemplatePage {
   public void waitTillOnlyOneTaskAppear() {
     WaitHelper.waitNumberOfElementsToBe(WebDriverRunner.getWebDriver(), By.cssSelector("div[id$='task-widget:task-view-container'] ul li"), 1);
   }
+
+  public String getRelatedCase() {
+    WebElement relatedCaseLink = findElementByCssSelector("a[id$='related-case']");
+    return relatedCaseLink.getText();
+  }
+
 }

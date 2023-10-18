@@ -31,7 +31,7 @@ public class MainMenuPage extends TemplatePage {
   public CaseWidgetPage openCaseList() {
     waitLeftMenuReady();
     WaitHelper.waitForNavigation(() -> {
-      clickByJavaScript($(".layout-menu li[role='menuitem'] a.CASE").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()));
+      clickByJavaScript($(".layout-menu li[role='menuitem'] a.CASE").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT));
     });
     return new CaseWidgetPage();
   }
@@ -84,5 +84,10 @@ public class MainMenuPage extends TemplatePage {
     return String.join(",", $$(".layout-menu li[role='menuitem'] a span")
         .asFixedIterable().stream()
         .map(SelenideElement::getText).collect(Collectors.toList()));
+  }
+
+  public CaseWidgetPage selectCaseMenu() {
+    WaitHelper.waitForNavigation(() -> $(By.cssSelector(".layout-menu li.sub-menu-item-case")).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
+    return new CaseWidgetPage();
   }
 }
