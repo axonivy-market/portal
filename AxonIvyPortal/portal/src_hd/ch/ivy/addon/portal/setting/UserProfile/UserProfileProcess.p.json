@@ -34,7 +34,6 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f5",
@@ -47,7 +46,6 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 320, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f9"
@@ -98,7 +96,6 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f11",
@@ -111,7 +108,6 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 384, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f5"
@@ -177,7 +173,6 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 3, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f20",
@@ -190,7 +185,6 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 352, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f26"
@@ -306,7 +300,6 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f4",
@@ -319,7 +312,6 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 480, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f20"
@@ -367,10 +359,9 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
-          "parentConnector" : "f24",
+          "parentConnector" : "f10",
           "connect" : [
             { "id" : "S40-f0", "to" : "S40-f11" }
           ]
@@ -380,7 +371,6 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 584, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f4"
@@ -471,7 +461,6 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f7",
@@ -484,16 +473,15 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 480, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
-          "parentConnector" : "f13"
+          "parentConnector" : "f10"
         } ],
       "visual" : {
         "at" : { "x" : 216, "y" : 144 }
       },
       "connect" : [
-        { "id" : "f13", "to" : "f39" }
+        { "id" : "f10", "to" : "S40" }
       ]
     }, {
       "id" : "S10",
@@ -542,7 +530,6 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f35",
@@ -555,16 +542,15 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 480, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
-          "parentConnector" : "f36"
+          "parentConnector" : "f11"
         } ],
       "visual" : {
         "at" : { "x" : 216, "y" : 280 }
       },
       "connect" : [
-        { "id" : "f36", "to" : "f45" }
+        { "id" : "f11", "to" : "S70" }
       ]
     }, {
       "id" : "f1",
@@ -609,61 +595,17 @@
         { "id" : "f35", "to" : "S10" }
       ]
     }, {
-      "id" : "f39",
-      "type" : "SubProcessCall",
-      "name" : "init EmailSetting",
-      "config" : {
-        "processCall" : "Ivy Data Processes/EmailSettingService:findEmailSetting()",
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.emailSetting" : "result.ivyEmailSetting"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 360, "y" : 144 }
-      },
-      "connect" : [
-        { "id" : "f24", "to" : "S40" }
-      ]
-    }, {
       "id" : "f42",
       "type" : "HtmlDialogEnd",
       "visual" : {
         "at" : { "x" : 1168, "y" : 280 }
       }
     }, {
-      "id" : "f45",
-      "type" : "SubProcessCall",
-      "name" : "Save EmailSetting",
-      "config" : {
-        "processCall" : "Ivy Data Processes/EmailSettingService:saveEmailSetting(ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting)",
-        "call" : {
-          "map" : {
-            "param.emailSetting" : "in.emailSetting"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 360, "y" : 280 }
-      },
-      "connect" : [
-        { "id" : "f11", "to" : "S70" }
-      ]
-    }, {
       "id" : "f0",
       "type" : "HtmlDialogStart",
       "name" : "start()",
       "config" : {
         "signature" : "start",
-        "input" : {
-          "map" : { },
-          "code" : [
-            "import ch.ivyteam.util.date.Weekday;",
-            "out.dailySummaryList = [Weekday.MONDAY, Weekday.TUESDAY, Weekday.WEDNESDAY, Weekday.THURSDAY, Weekday.FRIDAY, Weekday.SATURDAY, Weekday.SUNDAY];"
-          ]
-        },
         "guid" : "172546E1FE4FCAB2"
       },
       "visual" : {
@@ -739,8 +681,7 @@
           "id" : "S00-g0",
           "type" : "EmbeddedStart",
           "visual" : {
-            "at" : { "x" : 0, "y" : 256 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 0, "y" : 256 }
           },
           "parentConnector" : "f9",
           "connect" : [
@@ -750,8 +691,7 @@
           "id" : "S00-g1",
           "type" : "EmbeddedEnd",
           "visual" : {
-            "at" : { "x" : 576, "y" : 256 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 576, "y" : 256 }
           },
           "parentConnector" : "f17"
         }, {

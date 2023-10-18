@@ -174,7 +174,6 @@ ch.ivy.addon.portalkit.ui.jsf:
   MyProfile:
     CaseList: Lista de casos
     DateFormat: Formato de la fecha
-    Email: Envíe un correo electrónico a
     FormattingLanguage: Lenguaje de formato
     General: Generales
     Homepage: Página web
@@ -187,6 +186,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     TaskList: Lista de tareas
     defaultOption: Predeterminado ({0})
     defaultViewMode: Modo predeterminado
+    notificationChannels: Canales de notificación
     showTutorial: Mostrar tour de bienvenida
   PortalManagement:
     AdminSetting: Configuración de administrador

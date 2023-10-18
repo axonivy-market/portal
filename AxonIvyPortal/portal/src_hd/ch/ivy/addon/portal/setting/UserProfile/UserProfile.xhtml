@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions">
+  xmlns:pe="http://primefaces.org/ui/extensions"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="viewName" value="USER_PROFILE" />
@@ -144,37 +145,78 @@
                 </div>
               </div>
 
-              <!-- Email Setting -->
+<!--               Email Setting -->
               <div id="email-setting-container" class="email-setting-container ui-g-12">
-                <div class="setting-header ui-g-12">
-                  <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Email')}</h2>
-                </div>
-
                 <div class="ui-g-12 u-no-padding-top">
-                  <h:panelGrid columns="2" columnClasses="application-email-setting-label, Fright" styleClass="application-email-panel">
-                    <!-- MAIL NOTIFICATION ON TASK ASSIGNMENT -->
-                    <p:outputLabel id="mail-notification-on-task-assign-label"
-                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/mailNotificationOnTaskAssign')}"
-                      for="mail-notification-on-task-assign" />
-                    <p:inputSwitch id="mail-notification-on-task-assign" value="#{data.emailSetting.emailSendOnNewWorkTasks}" />
+                  <div class="card">
+                    <h:form id="notificationsForm">
+                      <p:growl for="notificationMessage">
+                        <p:autoUpdate />
+                      </p:growl>
+                      <div class="card-header">
 
-                    <!-- FURTHER MAILS FROM APPLICATION -->
-                    <p:outputLabel id="further-mails-from-application-label"
-                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/furtherEmailFromApp')}" for="further-mails-from-application" />
-                    <p:inputSwitch id="further-mails-from-application" value="#{data.emailSetting.customMailEnabled}" />
-                  </h:panelGrid>
+                        <div class="setting-header ui-g-12">
+                        <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/notificationChannels')}</h2>
+                        </div>
+                        <p:commandButton id="reset" actionListener="#{notificationChannelBean.reset}"
+                          title="Reset to default" icon="si si-undo"
+                          styleClass="p-col-fixed p-ml-auto ui-button-danger rounded-button" update="notificationsForm" />
+                      </div>
 
-                  <h:panelGrid columns="1" styleClass="ui-g-12 u-padding-0">
-                    <!--  DAILY SUMMARY -->
-                    <p:outputLabel id="daily-summary-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/dailySummary')}"
-                      for="daily-summary" styleClass="ui-g-12 u-no-padding-top u-no-padding-bottom" />
+                      <p:dataTable paginator="true" rows="10" paginatorPosition="bottom" paginatorAlwaysVisible="false"
+                        var="event" value="#{notificationChannelBean.events}" id="notificationChannelsTable"
+                        lazy="false" styleClass="ui-fluid">
 
-                    <p:selectManyCheckbox id="daily-summary" value="#{data.emailSetting.emailSendDailyTaskSummary}" layout="responsive" columns="3"
-                      styleClass="daily-summary">
-                      <f:selectItems value="#{data.dailySummaryList}" var="day" itemLabel="#{day.getLocalizedName(ivy.session.getContentLocale())}"
-                        itemValue="#{day}" />
-                    </p:selectManyCheckbox>
-                  </h:panelGrid>
+                        <p:column headerText="Event" sortBy="#{event}">
+                          <h:outputText value="#{event}" />
+                        </p:column>
+
+                        <p:columns id="channels" var="channel" value="#{notificationChannelBean.channels}"
+                          style="text-align: center">
+                          <f:facet name="header">
+                            <h:outputText value="#{channel.channel.displayName()}">
+                              <i class="#{channel.channel.displayIcon()} table-icon" />
+                            </h:outputText>
+                          </f:facet>
+
+                          <c:set var="subscription" value="#{channel.getSubscription(event)}" />
+                          <i class="si table-icon si-#{subscription.icon} subscription-icon"
+                            title="#{subscription.title}" style="padding-right: 10px; vertical-align: top" />
+                          <p:triStateCheckbox id="subscriptionCheckbox" value="#{subscription.stateAsString}">
+                            <p:ajax event="change" update="notificationsForm"
+                              listener="#{channel.setSubscriptionIconAndTitle(event)}" />
+                          </p:triStateCheckbox>
+                        </p:columns>
+
+                      </p:dataTable>
+                    </h:form>
+                  </div>
+
+
+                  <!--                   <h:panelGrid columns="2" columnClasses="application-email-setting-label, Fright" styleClass="application-email-panel"> -->
+                  <!--                     MAIL NOTIFICATION ON TASK ASSIGNMENT -->
+                  <!--                     <p:outputLabel id="mail-notification-on-task-assign-label" -->
+                  <!--                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/mailNotificationOnTaskAssign')}" -->
+                  <!--                       for="mail-notification-on-task-assign" /> -->
+                  <!--                     <p:inputSwitch id="mail-notification-on-task-assign" value="#{data.emailSetting.emailSendOnNewWorkTasks}" /> -->
+
+                  <!--                     FURTHER MAILS FROM APPLICATION -->
+                  <!--                     <p:outputLabel id="further-mails-from-application-label" -->
+                  <!--                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/furtherEmailFromApp')}" for="further-mails-from-application" /> -->
+                  <!--                     <p:inputSwitch id="further-mails-from-application" value="#{data.emailSetting.customMailEnabled}" /> -->
+                  <!--                   </h:panelGrid> -->
+
+                  <!--                   <h:panelGrid columns="1" styleClass="ui-g-12 u-padding-0"> -->
+                  <!--                      DAILY SUMMARY -->
+                  <!--                     <p:outputLabel id="daily-summary-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/dailySummary')}" -->
+                  <!--                       for="daily-summary" styleClass="ui-g-12 u-no-padding-top u-no-padding-bottom" /> -->
+
+                  <!--                     <p:selectManyCheckbox id="daily-summary" value="#{data.emailSetting.emailSendDailyTaskSummary}" layout="responsive" columns="3" -->
+                  <!--                       styleClass="daily-summary"> -->
+                  <!--                       <f:selectItems value="#{data.dailySummaryList}" var="day" itemLabel="#{day.getLocalizedName(ivy.session.getContentLocale())}" -->
+                  <!--                         itemValue="#{day}" /> -->
+                  <!--                     </p:selectManyCheckbox> -->
+                  <!--                   </h:panelGrid> -->
                 </div>
               </div>
 

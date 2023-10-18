@@ -2,10 +2,6 @@ UserProfileData #class
 ch.ivy.addon.portal.setting.UserProfile #namespace
 language ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage #field
 language PERSISTENT #fieldModifier
-emailSetting ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting #field
-emailSetting PERSISTENT #fieldModifier
-dailySummaryList java.util.List<ch.ivyteam.util.date.Weekday> #field
-dailySummaryList PERSISTENT #fieldModifier
 showTutorial Boolean #field
 showTutorial PERSISTENT #fieldModifier
 selectedHomepage ch.addon.portal.generic.userprofile.homepage.Homepage #field
@@ -40,3 +36,5 @@ queryLanguage String #field
 queryLanguage PERSISTENT #fieldModifier
 formatLanguages java.util.List<javax.faces.model.SelectItem> #field
 formatLanguages PERSISTENT #fieldModifier
+notificationSubscription ch.ivyteam.ivy.notification.channel.NotificationSubscription #field
+notificationSubscription PERSISTENT #fieldModifier
