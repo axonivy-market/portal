@@ -11,7 +11,7 @@ import com.axonivy.portal.bo.jsonversion.DashboardFilterJsonVersion;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterType;
 import com.axonivy.portal.migration.common.IJsonConverter;
-import com.axonivy.portal.migration.common.search.JsonWidgetSearch;
+import com.axonivy.portal.migration.common.search.JsonDashboardConfigurationSearch;
 import com.axonivy.portal.migration.common.visitor.JsonDashboardVisitor;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -30,23 +30,19 @@ public class DashboardCaseWidgetFilterConverter implements IJsonConverter {
 
   @Override
   public void convert(JsonNode jsonNode) {
-    List<JsonNode> caseWidgets = new JsonWidgetSearch(jsonNode)
-        .type(DashboardWidgetType.CASE.name()).findWidgets();
-
-    for (JsonNode caseWidget : caseWidgets) {
-      ArrayNode columns = Optional.ofNullable(caseWidget.get("filterableColumns")).filter(JsonNode::isArray).map(ArrayNode.class::cast).get();
-
-      columns.elements().forEachRemaining(col -> {
-        if (col.get("field").asText().contentEquals(DashboardStandardCaseColumn.CREATED.getField())) {
-          convertCreatedDateFilters(initFilterNode(caseWidget), col.get("userFilterFrom"), col.get("userFilterTo"));
-          removeOldFiltersFields(col);
-        }
-        if (col.get("field").asText().contentEquals(DashboardStandardCaseColumn.NAME.getField())) {
-          convertNameFilters(initFilterNode(caseWidget), col.get("userFilter"));
-          removeOldFiltersFields(col);
-        }
+    new JsonDashboardConfigurationSearch(jsonNode)
+      .type(DashboardWidgetType.CASE.name())
+      .findFilterableColumns().ifPresent(columns -> {
+          columns.elements().forEachRemaining(col -> {
+          if (col.get("field").asText().contentEquals(DashboardStandardCaseColumn.CREATED.getField())) {
+              convertCreatedDateFilters(initFilterNode(jsonNode), col.get("userFilterFrom"), col.get("userFilterTo"));
+            }
+            if (col.get("field").asText().contentEquals(DashboardStandardCaseColumn.NAME.getField())) {
+              convertNameFilters(initFilterNode(jsonNode), col.get("userFilter"));
+            }
+          });
+        columns.removeAll();
       });
-    }
   }
 
   public List<JsonNode> findWidgets(JsonNode dashboard) {
@@ -106,17 +102,9 @@ public class DashboardCaseWidgetFilterConverter implements IJsonConverter {
   }
 
   private ArrayNode initFilterNode(JsonNode widget) {
-    if (widget.get("filters") == null) {
-      return ((ObjectNode)widget).putArray("filters");
+    if (widget.get("userFilters") == null) {
+      return ((ObjectNode)widget).putArray("userFilters");
     }
-    return Optional.ofNullable(widget.get("filters")).filter(JsonNode::isArray).map(ArrayNode.class::cast).get();
-  }
-
-  private void removeOldFiltersFields(JsonNode column) {
-    ObjectNode columnObj = (ObjectNode) column;
-    columnObj.remove("filter");
-    columnObj.remove("filterForm");
-    columnObj.remove("filterTo");
-    columnObj.remove("filterList");
+    return Optional.ofNullable(widget.get("userFilters")).filter(JsonNode::isArray).map(ArrayNode.class::cast).get();
   }
 }
