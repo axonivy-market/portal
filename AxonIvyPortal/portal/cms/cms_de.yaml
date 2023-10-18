@@ -1768,17 +1768,17 @@ Labels:
   CreateNewDashboard: Neues Dashboard erstellen
   Enums:
     DashboardStandardCaseColumn:
-      ACTIONS: Actions
-      APPLICATION: Application
-      CATEGORY: Category
-      CREATED: Created Date
-      CREATOR: Creator
-      DESCRIPTION: Description
-      FINISHED: Finished Date
+      ACTIONS: Aktionen
+      APPLICATION: Anmeldung
+      CATEGORY: Kategorie
+      CREATED: Erstellt am
+      CREATOR: Schöpfer
+      DESCRIPTION: Beschreibung
+      FINISHED: Beendetes Datum
       ID: Id
-      NAME: name
-      OWNER: Case Owner
-      STATE: State
+      NAME: Name
+      OWNER: Eigentümer des Falles
+      STATE: Staat
     FilterOperator:
       AFTER: Ist nach
       BEFORE: Ist vor

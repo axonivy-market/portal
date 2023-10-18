@@ -1770,14 +1770,17 @@ Labels:
   CreateNewDashboard: Crear un nuevo cuadro de mandos
   Enums:
     DashboardStandardCaseColumn:
-      ACTIONS: Actions
-      APPLICATION: Application
-      CREATED: Created Date
-      DESCRIPTION: Description
-      FINISHED: Finished Date
+      ACTIONS: Acciones
+      APPLICATION: Aplicación
+      CATEGORY: Categoría
+      CREATED: Fecha de creación
+      CREATOR: Creador
+      DESCRIPTION: Descripción
+      FINISHED: Fecha de finalización
       ID: Id
-      OWNER: Case Owner
-      STATE: State
+      NAME: Nombre
+      OWNER: Propietario del caso
+      STATE: Estado
     FilterOperator:
       AFTER: Es Después
       BEFORE: Es Antes
