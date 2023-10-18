@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.common;
 
 import static com.axonivy.portal.selenium.common.Variable.SHOW_USER_GUIDE;
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.refresh;
 
@@ -11,6 +12,7 @@ import java.time.Duration;
 import org.junit.jupiter.api.AfterEach;
 
 import com.axonivy.ivy.webtest.engine.EngineUrl;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -215,6 +217,11 @@ public class BaseTest {
       username = URLEncoder.encode(testAccount.getUsername(), "UTF-8");
       password = URLEncoder.encode(testAccount.getPassword(), "UTF-8");
       open(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
+      try {
+        $(".js-dashboard__wrapper").shouldBe(Condition.exist);
+      } catch (Exception e) {
+        open(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
+      }
     } catch (UnsupportedEncodingException e) {
       throw new PortalGUITestException(e);
     }
