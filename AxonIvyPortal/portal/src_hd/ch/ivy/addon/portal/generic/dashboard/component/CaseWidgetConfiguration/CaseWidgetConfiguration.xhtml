@@ -16,8 +16,6 @@
   <ui:decorate template="/layouts/restricted/decorator/TableWidgetConfiguration.xhtml">
     <ui:param name="widget" value="#{cc.attrs.caseWidget}" />
     <ui:param name="managedBean" value="#{cc.attrs.managedBean}" />
-    <ui:param name="componentToUpdateOnPreviewAction" value="@(form)" />
-    <ui:param name="componentToProcessOnPreviewAction" value="@(form)" />
     <ui:param name="onCompletePreviewAction" value="PF('dashboard-cases-#{cc.attrs.caseWidget.id}').filter()" />
     <ui:param name="filterContainerStyleClass" value="case-widget-filter" />
 
@@ -52,7 +50,7 @@
         componentToUpdate="#{cc.attrs.componentToUpdate}" />
       <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidget id="case-widget-preview" isReadOnlyMode="#{cc.attrs.isReadOnlyMode}"
         caseWidget="#{widget}" renderColumnConfiguration="true" isPreviewMode="true"
-        onCompleteLoadWidget="PF('new-widget-configuration-dialog').initPosition();" componentToUpdateCaseWidget="#{componentToUpdateOnPreviewAction}"/>
+        onCompleteLoadWidget="PF('new-widget-configuration-dialog').initPosition();"/>
     </ui:define>
 
     <ui:define name="multiLanguageDialog">

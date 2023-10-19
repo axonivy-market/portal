@@ -8,8 +8,6 @@
 
     *** REQUIRED PARAMS:
     * widget: widget model.
-    * componentToUpdateOnPreviewAction: component id which will be updated when the preview button is clicked.
-    * componentToProcessOnPreviewAction: component id which will be updated when the preview button is clicked.
     * onCompletePreviewAction: AJAX method which will be call when the preview button is clicked.
 -->
 
@@ -53,9 +51,7 @@
         <p:commandButton id="preview-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}"
           styleClass="Fright preview-button u-hidden-sm-down" icon="si si-search"
-          update="#{componentToUpdateOnPreviewAction}"
-          process="#{componentToProcessOnPreviewAction} widget-title-group"
-          oncomplete="#{onCompletePreviewAction}" />
+          onclick="reloadCaseWidget#{widget.id}()" />
       </div>
     </div>
 
