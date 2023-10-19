@@ -7,8 +7,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
@@ -141,13 +139,6 @@ public class ProcessWidgetPage extends TemplatePage {
     List<WebElement> indexGroup = findListElementsByXpath("//legend[@class='ui-fieldset-legend ui-corner-all ui-state-default']");
     return indexGroup.stream().anyMatch(item -> processGroupCharacter.equals(item.getText()));
   }
-  
-  public String getProcessNameFromFavoriteProcessList(int index) {
-    String id = index + ":process-item-form:process-name";
-    WebElement favoriteProcessList = findElementById(processWidgetId + ":process-list");
-    String name = findChildElementByCssSelector(favoriteProcessList, "span[id*='" + id + "']").getText();
-    return name;
-  }
 
   public String getProcessNameFromDefaultProcessList(int index) {
     WebElement defaultProcessList = findElementById(processWidgetId + ":user-default-process-list");
@@ -198,18 +189,6 @@ public class ProcessWidgetPage extends TemplatePage {
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
-  public int getNumberOfFavoriteUserProcesses() {
-    WebElement favoriteProcessList = findElementById(processWidgetId + ":process-list");
-    List<WebElement> processes = findChildElementsByCssSelector(favoriteProcessList, "form[id*='process-item-form']");
-    return processes.size();
-  }
-
-  public void clickSortFavoriteProcessByName() {
-    waitForElementDisplayed(By.cssSelector("[id$='name-sort-command']"), true, DEFAULT_TIMEOUT);
-    click(findElementByCssSelector("[id$='name-sort-command']"));
-    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
-  }
-
   public void clickSortDefaultProcessByName() {
     waitForElementDisplayed(By.cssSelector("[id$='default-process-name-sort-command']"), true, DEFAULT_TIMEOUT);
     click(findElementByCssSelector("[id$='default-process-name-sort-command']"));
@@ -250,17 +229,6 @@ public class ProcessWidgetPage extends TemplatePage {
   public void enterSearchKeyword(String keyword) {
     liveSearchTextField = findElementById(processWidgetId + ":process-search:non-ajax-keyword-filter");
     type(liveSearchTextField, keyword);
-  }
-  
-  public void moveFavoriteProcess(int processToMoveIndex, int destinationProcessIndex) {
-    WebElement editProcesses = findElementByCssSelector("form[id$=':edit-process-item-form']");
-    List<WebElement> processItems = findChildElementsByCssSelector(editProcesses, ".ui-orderlist-list .ui-orderlist-item");
-    WebElement processToMove = processItems.get(processToMoveIndex - 1);
-    WebElement destinationProcess = processItems.get(destinationProcessIndex - 1);
-
-    Actions builder = new Actions(driver);
-    Action moveProcessSequence = builder.dragAndDrop(processToMove, destinationProcess).build();
-    moveProcessSequence.perform();
   }
   
   public class AddNewExternalLinkDialog {
@@ -360,10 +328,6 @@ public class ProcessWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.id("process-widget"), true);
     waitForElementDisplayed(By.className("js-loading-process-list"), false);
     waitForElementDisplayed(By.className("js-process-start-list-container"), true);
-  }
-  
-  public void waitUtilProcessWidgetUserFavoriteDisplayed() {
-    waitForElementDisplayed(By.id("process-widget:user-process-container"), true);
   }
 
   public String getCurrentViewMode() {
