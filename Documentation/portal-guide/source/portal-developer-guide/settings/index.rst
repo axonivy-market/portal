@@ -269,8 +269,7 @@ Other Permissions
  |           +---------------------------------+----------------------------------------------------+
  |           | Create public external link, all| ``PortalPermission.CREATE_PUBLIC_EXTERNAL_LINK``   |
  |           | other users can see that link in|                                                    |
- |           | full process list and can also  |                                                    |
- |           | add it to User Favorite         |                                                    |
+ |           | full process list               |                                                    |
  |           +---------------------------------+----------------------------------------------------+
  |           | Dashboard sharing               | ``PortalPermission.DASHBOARD_SHARE_LINK``          |
  +-----------+---------------------------------+----------------------------------------------------+
@@ -484,52 +483,6 @@ Data model:
       -  ``CustomVarCharField``: name of ``ICase.customFields()``
 
 -  ``position``: position index of chart. Used to order the charts in the UI
-
-.. _portal-dashboard-favorite-processes:
-
-Portal Dashboard Favorite Processes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-You can include the favorite processes of your custom application via the following
-JSON file. It will be shown as the processes in the application favorite
-section.
-
-Filename: ``variables.Portal.Dashboard.FavoriteProcesses.json``
-
-Data model:
-
-.. code-block:: html
-
-   [{ "id": "234152a58c7a48a2b63be8a946e5731b",
-      "processType": "IVY_PROCESS",
-      "names": [
-         {
-            "locale": "de",
-            "value": "Investition anlegen"
-         },
-         {
-            "locale": "en",
-            "value": "Create Investment"
-         },
-         {
-            "locale": "fr",
-            "value": "Réaliser un investissement"
-         },
-         {
-            "locale": "es",
-            "value": "Crear investición"
-         }
-      ],
-      "icon": "fa-building",
-      "processId": "Portal/portal-developer-examples/Start Processes/IFrameExample/CreateInvestment.ivp",
-      "index": 1
-   }]
-
-- ``id``: the identification of a process. auto-generated UUID.
-- ``processType``: type of a process such as ``EXPRESS_PROCESS``, ``EXTERNAL_LINK``, ``IVY_PROCESS``.
-- ``names``: the display name of a process. Multilingual name is supported.
-- ``icon``: the style class of the process icon.
-- ``processId``: the process id of the process start.
-- ``index``: the index number to order the processes in the dashboard.
 
 Portal Processes External Links
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
