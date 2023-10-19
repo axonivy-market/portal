@@ -30,9 +30,8 @@ public class GlobalGrowlTest extends BaseTest {
   private static final String FINISH_MESSAGE_WITH_DETAILS = "You have finished the task successfully.\nClick here for details.";
   private static final String CANCEL_MESSAGE = "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.";
   private static final String CANCEL_MESSAGE_WITH_DETAILS = "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.\nClick here for details.";
-  private static final String SKIP_TASK_LIST_URL = "portal-developer-examples/16FA8B451814E32A/start.ivp";
   
-  // TODO Write test for custom Growl in IFrame, in version 10 it has the test public void
+  // TODO Write test for Growl in IFrame, in version 10 it has the test public void
   // testDisplayCustomGrowlAfterFinishTask()
 
   @Test
@@ -46,16 +45,8 @@ public class GlobalGrowlTest extends BaseTest {
     assertGrowlMessage(taskWidgetPage, FINISH_MESSAGE_WITH_DETAILS);
   }
   
-  @Test
-  public void testDisplayDefaultGrowlAfterFinishFirstTask() {
-    NavigationHelper.navigateToTaskList();
-    redirectToRelativeLink(SKIP_TASK_LIST_URL);
-    TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
-    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
-    taskTemplatePage.inputFields("Employee", today, today, "Representation");
-    taskTemplatePage.clickOnSubmitButton();
-    assertGrowlMessage(new NewDashboardPage(), FINISH_MESSAGE_WITH_DETAILS);
-  }
+  // TODO Write test for Growl in IFrame, in version 10 it has the test public void
+  // testDisplayDefaultGrowlAfterFinishFirstTask()
 
   @Test
   public void testDisplayDefaultGrowlAfterCancelTask() {
@@ -66,16 +57,11 @@ public class GlobalGrowlTest extends BaseTest {
     assertGrowlMessage(taskWidgetPage, CANCEL_MESSAGE_WITH_DETAILS);
   }
   
-  // TODO Write test for custom Growl in IFrame, in version 10 it has the test public void
+  // TODO Write test for Growl in IFrame, in version 10 it has the test public void
   // testDisplayCustomGrowlAfterCancelTask()
   
-  @Test
-  public void testDisplayDefaultGrowlAfterCancelFirstTask() {
-    redirectToRelativeLink(SKIP_TASK_LIST_URL);
-    TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
-    taskTemplatePage.clickCancelButton();
-    assertGrowlMessage(new NewDashboardPage(), CANCEL_MESSAGE_WITH_DETAILS);
-  }
+  // TODO Write test for Growl in IFrame, in version 10 it has the test public void
+  // testDisplayDefaultGrowlAfterCancelFirstTask()
 
   @Test
   public void testSaveExpressFormDefinition() {

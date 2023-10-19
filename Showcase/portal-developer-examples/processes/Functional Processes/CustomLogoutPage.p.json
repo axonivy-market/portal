@@ -36,7 +36,7 @@
       "id" : "f3",
       "type" : "ProcessAnnotation",
       "name" : [
-        "This process customizes Portal logout page. It set the in.logoutPage to the url of application home apge.",
+        "This process customizes Portal logout page. It set the in.logoutPage to the url of application home page.",
         "So whenever user logout of Portal, he will be redirected to the application home page."
       ],
       "visual" : {
