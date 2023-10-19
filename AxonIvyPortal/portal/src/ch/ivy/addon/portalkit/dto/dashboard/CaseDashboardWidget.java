@@ -48,8 +48,7 @@ public class CaseDashboardWidget extends DashboardWidget {
   @Override
   public void buildStatisticInfos() {
     String combinedAjaxCommand = String.format(REMOTE_COMMAND_PATTERN, "buildStatisticCaseStates", id)
-        .concat(String.format(REMOTE_COMMAND_PATTERN, "buildStatisticCaseCategory", id))
-        .concat(String.format(REMOTE_COMMAND_PATTERN, "buildCaseDefinedFilter", id));
+        .concat(String.format(REMOTE_COMMAND_PATTERN, "buildStatisticCaseCategory", id));
     PrimeFaces.current().executeScript(combinedAjaxCommand);
   }
 
@@ -142,11 +141,6 @@ public class CaseDashboardWidget extends DashboardWidget {
   @JsonIgnore
   public Map<String, Long> getCaseByCategoryStatistic() {
     return caseByCategoryStatistic;
-  }
-
-  @Override
-  public void buildPredefinedFilterData() {
-    setHasPredefinedFilter(DashboardWidgetUtils.hasPredefinedCaseFilter(this));
   }
 
   @Override

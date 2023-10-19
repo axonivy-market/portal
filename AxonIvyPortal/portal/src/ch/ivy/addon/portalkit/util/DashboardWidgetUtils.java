@@ -334,33 +334,8 @@ public class DashboardWidgetUtils {
   public static boolean hasPredefinedFilter(DashboardWidget widget) {
     return switch (widget.getType()) {
       case TASK -> hasPredefinedTaskFilter((TaskDashboardWidget) widget);
-      case CASE -> hasPredefinedCaseFilter((CaseDashboardWidget) widget);
       default -> false;
     };
-  }
-
-  public static boolean hasPredefinedCaseFilter(CaseDashboardWidget widget) {
-    boolean hasPredefinedFilter = false;
-    List<ColumnModel> filterableColumns = widget.getFilterableColumns();
-    if (CollectionUtils.isEmpty(filterableColumns)) {
-      return hasPredefinedFilter;
-    }
-    for (ColumnModel col : filterableColumns) {
-      if (hasPredefinedFilter) {
-        break;
-      }
-      List<String> asList = Arrays.asList(DashboardStandardCaseColumn.STATE.getField(), 
-                                          DashboardStandardCaseColumn.CREATOR.getField(), 
-                                          DashboardStandardCaseColumn.OWNER.getField(), 
-                                          DashboardStandardCaseColumn.CATEGORY.getField(), 
-                                          DashboardStandardCaseColumn.APPLICATION.getField());
-      if (asList.stream().anyMatch(col.getField()::equalsIgnoreCase) && CollectionUtils.isNotEmpty(col.getFilterList())) {
-        hasPredefinedFilter = true;
-      } else {
-        hasPredefinedFilter = hasPredefinedCustomField(col);
-      }
-    }
-    return hasPredefinedFilter;
   }
 
   public static boolean hasPredefinedTaskFilter(TaskDashboardWidget widget) {
