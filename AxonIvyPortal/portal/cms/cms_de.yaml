@@ -10,8 +10,6 @@ ch.ivy.addon.portal.generic:
     noCaseId: Keine Vorgangs-ID spezifiziert
     requestTabTitle: Anfrage
     statusTabTitle: Vorgangsinformationen
-  CustomLinkGenerator:
-    myTasks: Meine Aufgaben
   OpenTaskTemplate:
     adhocHistory: AdHoc Prozesshistorie
     adhocHistoryTooltip: AdHoc Prozesshistorie anzeigen
@@ -23,22 +21,6 @@ ch.ivy.addon.portal.generic:
     resultFromAdhocProcess: Ergebnisse aus dem Ad-Hoc Prozess
     startAdHoc: Start Adhoc
     startAdHocTooltip: Neue Aufgabe hinzufügen, und den aktuellen Prozess umleiten.
-  PortalCaseMenu:
-    AllCases: Alle Vorgänge
-    MyCases: Meine Vorgänge
-  PortalTaskMenu:
-    AllTasks: Alle Aufgaben
-    GroupTasks: Gruppenaufgaben
-    PersonalTasks: '{0}''''s Aufgaben'
-  TaskMail:
-    dailyTaskSummaryIntro: 'Liste der offenen Workflow Aufgaben:'
-    dailyTaskSummaryTitle: Tägliche Zusammenfassung
-    newTaskIntro: 'Ihnen wurde die folgende Workflow Aufgabe zugewiesen:'
-    newTaskTitle: Neue Aufgabe zugewiesen
-    taskResume: Aufnehmen
-ch.ivy.addon.portalkit:
-  variables:
-    portalkit_serveradress: PORTALKIT_SERVERADRESS
 ch.ivy.addon.portalkit.ui.jsf:
   AbsenceAndDeputy:
     Messages:
@@ -85,14 +67,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskState: Aufgabenstatus
   CaseDocuments:
     CaseDocumentsPageTitle: Dokumente zum Vorfall
-  CaseStatusInformation:
-    CurrentTasks:
-      currentTasks: Laufende Aufgaben
-      noTasksFound: Keine Aufgaben gefunden.
-    GeneralInformation:
-      processVersion: Prozessversion
-      removeDelayConfirm: Durch diese Aktion wird die Verzögerungs-Einstellung der Aufgabe entfernt. Sind Sie sicher?
-      showNow: Sofort anzeigen
   Enums:
     BasicDocumentType:
       CONTRACT: Vertrag
@@ -178,8 +152,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     FormattingLanguage: Sprache der Formatierung
     General: Allgemeine
     Homepage: Homepage
-    HomepageSelection:
-      fullTaskList: Vollständige Aufgabenliste
     Language: Sprache
     ProcessList: Prozess-Liste
     SortFieldSelections:
@@ -398,8 +370,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     OPEN: Offen
     OPEN_UPPERCASE: OFFEN
     RUNNING: in Bearbeitung
-  caseTreeTable:
-    caseState: Vorgangsstatus
   chat:
     chatAssigneeDialogHeader: Benutzer zum Chat hinzufügen
     chatAssigneeDialogHint: 'Bitte wählen Sie die relevanten User und Gruppen, die Sie zum Gruppenchat hinzufügen möchten:'
@@ -658,9 +628,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       noUser: Es sind keine Benutzer vorhanden.
       tooltipHelper: Klicken Sie hier, um alle Benutzer anzuzeigen, die diese Rolle direkt oder indirekt besitzen
       userOfRoleTitle: Benutzer der Gruppe {0}
-    compactProcessWidget:
-      selectedProcess: Ausgewählter Prozess
-      settingFavoriteProcessName: Namensdefinition für Prozess-Favorit
     expressManagement:
       deployButton: Hochladen
       deployMessage: Prozesse werden deployt
@@ -1008,9 +975,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     seachIconByNamePlaceHolder: Icon anhand des Namens suchen
   languageSetting:
     Language: Sprache
-    cannotSetEmailLanguage: Sprache kann nicht als Emailbenachrichtigungssprache gewählt werden.
-    languageSetting: Spracheinstellungen
-    saveLanguageHasWSErrors: Fehler beim Speichern der Sprache
   login:
     AxonIvyPortal: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
@@ -1082,7 +1046,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewProcess: Prozess hinzufügen
     addNewProcessDialogHeader: Neuen Prozess hinzufügen
     backToOverview: Zurück zur Übersicht
-    defaultProcesses: Anwendungs-Favoriten
     deleteExpressWorkflowTooltip: Express Workflow entfernen
     deleteExternalLinkTooltip: Externen Link löschen
     deleteProcess: Prozess löschen
@@ -1104,7 +1067,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     image: Bild
     isRequiredMessage: muss gesetzt werden
     linkDescription: Link Beschreibung
-    noFavoriteProcess: Sie haben keine Favoriten definiert.
     noProcess: Keinen Prozess gefunden.
     noProcesses: Keine Prozesse gefunden.
     private: Privat
@@ -1468,7 +1430,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskNotFound: Die Aufgabe existiert nicht oder Sie haben ungenügende Rechte, um diese Aufgabe zu sehen.
   userProfile:
     myProfileTitle: Mein Profil
-    saveUserSettingsSuccessfully: Benutzereinstellungen erfolgreich gespeichert.
   warningBeforeLostSession:
     extend: Erweitern
     warningMessage: Ihre Sitzung läuft in 1 Minute ab. Möchten Sie diese verlängern?
