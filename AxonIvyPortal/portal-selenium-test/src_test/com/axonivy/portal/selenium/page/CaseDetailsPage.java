@@ -733,4 +733,42 @@ public class CaseDetailsPage extends TemplatePage {
     // waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     waitAjaxIndicatorDisappear();
   }
+
+  public int countNumberOfDocument() {
+    return $$("a[id$='download']").size();
+  }
+
+  public boolean checkNumberOfDocument(int number) {
+    return $$("a[id$='download']").size() == number;
+  }
+
+  public void uploadDocumentWithoutError(String pathToFile) {
+    openAddDocumentDialogAndUploadDocument(pathToFile);
+    $("span[class$='ui-messages-info-summary']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("button[id$='document:document-upload-close-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void openAddDocumentDialogAndUploadDocument(String pathToFile) {
+    getAddAttachmentDialog();
+    $("input[id$='document-upload-panel_input']").shouldBe(exist, DEFAULT_TIMEOUT).shouldBe(Condition.hidden, DEFAULT_TIMEOUT).sendKeys(pathToFile);
+  }
+
+  public SelenideElement getAddAttachmentDialog() {
+    $("a[id$='add-document-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("span[id$='document-upload-dialog_title']").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $("[id$='document:document-upload-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public boolean checkUploadDocumentErrorContent(String error) {
+    return $("div[id$='upload-messages']").shouldBe(appear, DEFAULT_TIMEOUT).is(Condition.text(error));
+  }
+
+  public void closeUploadDocumentDialog() {
+    $("button[id$='document-upload-close-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id$='document:document-upload-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  public ElementsCollection findDocumentItemInCaseDetailsDocumentTable() {
+    return $$("a[id$='download']");
+  }
 }
