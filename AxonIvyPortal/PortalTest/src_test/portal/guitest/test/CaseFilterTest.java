@@ -13,8 +13,8 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseWidgetPage;
-import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.NewDashboardPage;
 
 public class CaseFilterTest extends BaseTest {
 
@@ -30,8 +30,8 @@ public class CaseFilterTest extends BaseTest {
     updatePortalSetting(ENABLE_CASE_OWNER.getKey(), "true");
     redirectToRelativeLink(userIsOwnerUrl);
     login(TestAccount.ADMIN_USER);
-    HomePage homePage = new HomePage();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
 
     casePage.openAdvancedFilter("Owner", "owner");
@@ -43,8 +43,8 @@ public class CaseFilterTest extends BaseTest {
   @Test
   public void testCaseAdvancedFilter() {
     login(TestAccount.ADMIN_USER);
-    HomePage homePage = new HomePage();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
 
     casePage.openAdvancedFilter("Description", "description");
@@ -62,8 +62,8 @@ public class CaseFilterTest extends BaseTest {
 	@Test
 	public void testSaveFilter() {
 		login(TestAccount.ADMIN_USER);
-		HomePage homePage = new HomePage();
-		MainMenuPage mainMenuPage = homePage.openMainMenu();
+		NewDashboardPage newDashboardPage = new NewDashboardPage();
+		MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
 		CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
 
 		casePage.openAdvancedFilter("Description", "description");
@@ -74,30 +74,6 @@ public class CaseFilterTest extends BaseTest {
 		mainMenuPage.selectTaskMenu();
 		casePage = mainMenuPage.openCaseList();
 		assertEquals(filterName, casePage.getFilterName().toLowerCase());
-	}
-
-	@Test
-	public void testSaveCaseFilterOnDifferentCaseList() {
-		MainMenuPage mainMenuPage = new MainMenuPage();
-		CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
-
-		String filterName = "MyFilter";
-
-		casePage.openAdvancedFilter("Description", "description");
-		casePage.filterByDescription("Sick");
-		casePage.saveFilter(filterName);
-
-		redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
-		casePage = mainMenuPage.selectCaseMenu();
-
-		assertTrue(casePage.getFilterName().contains("Default filter"));
-
-		casePage.filterByDescription("Leave");
-		casePage.saveFilter(filterName);
-
-		mainMenuPage.selectTaskMenu();
-		casePage = mainMenuPage.openCaseList();
-		assertEquals(filterName, casePage.getFilterName());
 	}
 
 	@Test
@@ -130,7 +106,7 @@ public class CaseFilterTest extends BaseTest {
 		casePage.filterByDescription(filterMaternity);
 		casePage.saveFilter(filterMaternity);
 
-		redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+		redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
 
 		casePage = mainMenuPage.selectCaseMenu();
 		casePage.openAdvancedFilter("Creator", "creator");

@@ -8,7 +8,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
@@ -134,18 +133,5 @@ public class ProcessStartCollector {
       return  String.format("%s?workflowID=%s", url, workflowId);
     }
     return StringUtils.EMPTY;
-  }
-
-  /**
-   * Find start link from friendly request path
-   * @deprecated Use {@link ProcessStartAPI#findStartableLinkByUserFriendlyRequestPath(String)} instead
-   * @param requestPath 
-   * @return start link or empty string
-   */
-  @Deprecated
-  public String findStartableLinkByUserFriendlyRequestPath(String requestPath) {
-    return IvyExecutor.executeAsSystem(() -> {
-      return ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(requestPath);
-    });
   }
 }

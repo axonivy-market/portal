@@ -72,7 +72,7 @@
                actionListener="#{userMenuBean.navigateToUserProfileOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}" />
              </li>
 
-            <li jsf:rendered="#{userMenuBean.showDashboardConfigurationMenu and !menuView.isShowLegacyUI()}">
+            <li jsf:rendered="#{userMenuBean.showDashboardConfigurationMenu}">
               <p:commandLink id="dashboard-configuration"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title')}"
                 actionListener="#{userMenuBean.navigateToDashboardConfigurationOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"/>
@@ -115,15 +115,6 @@
         <div class="second-header-bar" />
         <div class="third-header-bar" />
       </div>
-
-      <ui:insert name="userSettingsGuide">
-        <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="setting-container-guide-component" targetComponent="setting-container"
-          title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/username/title')}" 
-          content="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/username/content')}"
-          targetCssSelector=".setting-container" iconClass="si si-single-neutral-actions" onNext="PF('statistic-widget-container-guide').show()"
-          my="right bottom-30" at="right top" arrowPosition="top right" onShow="showUsernameGuide()" onHide="hideUsernameGuide()"
-          updatedComponentAfterGuide="#{updatedComponentAfterGuide}" rendered="#{guideBean.isGuideShown}" />
-      </ui:insert>
 
       <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" width="50%" closeOnEscape="true"
         widgetVar="changePasswordDialog" id="change-password-dialog" resizable="false" modal="true" draggable="false" appendTo="@(body)" dynamic="true"

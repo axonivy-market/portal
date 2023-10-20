@@ -27,8 +27,6 @@ public class TaskAnalysisScreenshotTest extends ScreenshotBaseTest{
   public void setup() {
     super.setup();
     updatePortalSetting(Variable.ENABLE_GROUP_CHAT.getKey(), "true");
-    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "false");
-    updatePortalSetting(Variable.SHOW_USER_GUIDE.getKey(), "false");
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTestingTasksUrl);
   }

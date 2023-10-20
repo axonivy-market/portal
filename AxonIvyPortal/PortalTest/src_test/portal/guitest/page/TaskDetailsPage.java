@@ -420,7 +420,6 @@ public class TaskDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':reset-details-settings-button']"), true);
   }
 
-  @SuppressWarnings("deprecation")
   public void changeEscaltionActivatorTo(String activatorName, boolean isUser) {
     boolean canEditExpiryActivator = canChangeEscalationActivator();
     if (canEditExpiryActivator) {
@@ -479,4 +478,9 @@ public class TaskDetailsPage extends TemplatePage {
   public WebElement getSharePageButtonElement() {
     return findElementByCssSelector("[id$=':share-page-button']");
   }
+
+  public String getTaskUuid() {
+    return findElementByCssSelector("a[id$='show-more-note-link']").getAttribute("href").split("uuid=")[1];
+  }
+
 }
