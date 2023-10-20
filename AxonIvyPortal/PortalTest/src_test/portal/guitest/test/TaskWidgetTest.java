@@ -13,16 +13,15 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TaskState;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.TestRole;
 import portal.guitest.common.Variable;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseDetailsPage;
-import portal.guitest.page.CaseWidgetPage;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.TaskDetailsPage;
-import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.UserProfilePage;
 
@@ -50,8 +49,7 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testOpenRelatedCaseOfTask() {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.expand();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.openTaskDetails(0);
 
     String relatedCaseName = taskWidgetPage.getRelatedCase();
@@ -64,8 +62,7 @@ public class TaskWidgetTest extends BaseTest {
   @SuppressWarnings("deprecation")
   @Test
   public void testReserveTask() {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.expand();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.sideStepMenuOnActionButton(0);
     assertEquals(MATERNITY_LEAVE_REQUEST, taskWidgetPage.getNameOfTaskAt(0));
     taskWidgetPage.reserveTask(0);
@@ -86,9 +83,7 @@ public class TaskWidgetTest extends BaseTest {
   @Test
   public void testStartButtonStatus() {
     login(TestAccount.ADMIN_USER);
-    HomePage homePage = new HomePage();
-    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy("Annual Leave Request");
     WaitHelper.assertTrueWithWait(() -> !taskWidgetPage.isTaskStartEnabled(0));
     taskWidgetPage.filterTasksInExpandedModeBy("Sick Leave Request");
@@ -99,9 +94,7 @@ public class TaskWidgetTest extends BaseTest {
   public void testDisplayDelegateButton() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(GRANT_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
-    HomePage homePage = new HomePage();
-    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     assertFalse(taskWidgetPage.isTaskDelegateOptionDisable("Sick Leave Request"));
     assertTrue(taskWidgetPage.isTaskDelegateOptionDisable("Annual Leave Request"));
     redirectToRelativeLink(DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
@@ -111,10 +104,8 @@ public class TaskWidgetTest extends BaseTest {
   public void testDestroyTask() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(GRANT_DESTROY_TASK_URL);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    HomePage homePage = new HomePage();
-    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy("Annual Leave Request");
     taskWidgetPage.sideStepMenuOnActionButton(0);
     Assert.assertTrue(taskWidgetPage.isTaskDestroyEnabled(0));
@@ -127,9 +118,7 @@ public class TaskWidgetTest extends BaseTest {
   @Test
   public void testDisplayTaskAndCaseCategory() {
     login(TestAccount.ADMIN_USER);
-    HomePage homePage = new HomePage();
-    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.openTaskDetails(0);
     assertEquals("Other Leave/Maternity", taskWidgetPage.getTaskCategory());
     assertEquals("Leave Request", taskWidgetPage.getCaseCategory());
@@ -137,11 +126,7 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testShowTaskCount() { 
-    HomePage homePage = new HomePage();
-    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.waitUntilTaskCountDifferentThanZero();
-    assertEquals("In Dashboard, Task Count != 3", 3, taskWidgetPage.getTaskCount().intValue());
-    taskWidgetPage.expand();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.waitUntilTaskCountDifferentThanZero();
     assertEquals("In Task list, Task Count != 3", 3, taskWidgetPage.getTaskCount().intValue());
   }
@@ -150,30 +135,22 @@ public class TaskWidgetTest extends BaseTest {
   public void testDisableTaskCount() {
     updatePortalSetting(DISABLE_TASK_COUNT_SETTING, "true");
     login(TestAccount.ADMIN_USER);
-    HomePage homePage = new HomePage();
-
-    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
-    assertEquals("In HomePage, Task Count is disabled", null, taskWidgetPage.getTaskCount());
-    taskWidgetPage.expand();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     assertEquals("In Task list, Task Count is disabled", null, taskWidgetPage.getTaskCount());
   }
 
   @Test
   public void testBreadCrumb() {
-    HomePage homePage = new HomePage();
-    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     assertEquals("Tasks (3)", taskWidgetPage.getTextOfCurrentBreadcrumb());
     taskWidgetPage.goToHomeFromBreadcrumb();
-    homePage = new HomePage();
-    assertEquals(true, homePage.isDisplayed());
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    assertEquals(true, newDashboardPage.isDisplayed());
   }
 
   @Test
   public void testBreadCrumbInTaskDetail() {
-    HomePage homePage = new HomePage();
-    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
     assertEquals("Task: Maternity Leave Request", taskDetailsPage.getTextOfCurrentBreadcrumb());
 
@@ -183,17 +160,15 @@ public class TaskWidgetTest extends BaseTest {
 
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
     taskDetailsPage.goToHomeFromBreadcrumb();
-    homePage = new HomePage();
-    assertEquals(true, homePage.isDisplayed());
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    assertEquals(true, newDashboardPage.isDisplayed());
   }
   
   @Test
   public void testDelegateTask() {
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    HomePage homePage = new HomePage();
-    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     assertEquals(TestRole.EVERYBODY_ROLE, taskWidgetPage.getResponsibleOfTaskAt(0));
     taskWidgetPage.openTaskDelegateDialog(0);
     WaitHelper.assertTrueWithWait(() -> taskWidgetPage.isDelegateTypeSelectAvailable());
@@ -206,55 +181,17 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testStartATaskAtHomePage() {
-    login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(createTestingCaseMapUrl);
-    HomePage homePage = new HomePage();
-    homePage.waitForPageLoaded();
-    redirectToRelativeLink(simplePaymentUrl);
-    final String NEW_PAYMENT = "Do New Payment";
-    final String LEAVE_REQUEST = "Case Map Leave Request";
-
-    homePage = new HomePage();
-    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
-    //Start first task
-    assertFalse(taskWidgetPage.isResumedTask(0));
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    homePage = taskTemplatePage.clickCancelAndLeftButton();
-    
-    //First task is resumed
-    taskWidgetPage = homePage.getTaskWidget();
-    assertTrue(taskWidgetPage.isResumedTask(0));
-    taskTemplatePage = taskWidgetPage.startTask(0);
-    assertEquals(NEW_PAYMENT, taskTemplatePage.getTaskName());
-    homePage = taskTemplatePage.clickCancelAndLeftButton();
-    
-    taskWidgetPage = homePage.getTaskWidget();
-    //Start second task
-    assertFalse(taskWidgetPage.isResumedTask(1));
-    taskTemplatePage = taskWidgetPage.startTask(1);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    homePage = new HomePage();
-
-    //Second task is resumed
-    taskWidgetPage = homePage.getTaskWidget();
-    assertTrue(taskWidgetPage.isResumedTask(1));
-    taskTemplatePage = taskWidgetPage.startTask(1);
-    assertEquals(LEAVE_REQUEST, taskTemplatePage.getTaskName());
-  }
-
-  @Test
   public void testChangeTaskSortingOptions() {
-    HomePage homePage = new HomePage();
-    UserProfilePage userProfilePage = homePage.openMyProfilePage();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
 
     // Change sorting options
     userProfilePage.selectTaskSortField("Priority");
     userProfilePage.selectTaskSortDirection("Sort ascending");
-    homePage = userProfilePage.save();
+    newDashboardPage = userProfilePage.save();
 
     // Check result
-    TaskWidgetPage taskWidgetPage = homePage.openTaskList();
+    TaskWidgetPage taskWidgetPage = newDashboardPage.openTaskList();
     assertEquals("high", taskWidgetPage.getPriorityOfTask(0));
     assertEquals("low", taskWidgetPage.getPriorityOfTask(taskWidgetPage.countTasks() - 1));
 
@@ -262,10 +199,10 @@ public class TaskWidgetTest extends BaseTest {
     userProfilePage = taskWidgetPage.openMyProfilePage();
     userProfilePage.selectTaskSortField("Name");
     userProfilePage.selectTaskSortDirection("Sort descending");
-    homePage = userProfilePage.save();
+    newDashboardPage = userProfilePage.save();
 
     // Check result
-    taskWidgetPage = homePage.openTaskList();
+    taskWidgetPage = newDashboardPage.openTaskList();
     assertEquals("Sick Leave Request", taskWidgetPage.getNameOfTaskAt(0));
     assertEquals("Annual Leave Request", taskWidgetPage.getNameOfTaskAt(taskWidgetPage.countTasks() - 1));
   }
@@ -273,9 +210,7 @@ public class TaskWidgetTest extends BaseTest {
   @Test
   public void testExportToExcel() {
     login(TestAccount.ADMIN_USER);
-    HomePage homePage = new HomePage();
-    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
 
     taskWidgetPage.clickExportToExcelLink();
 
@@ -284,38 +219,23 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testStickySortTaskList() {
-    HomePage homePage = new HomePage();
-    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
-    // Sort task on Dashboard
-    taskWidgetPage.openCompactSortMenu();
-    taskWidgetPage.selectCompactSortByName("Expiry (Newest first)", 0, "Maternity Leave Request");
-    // Navigate around Portal
-    CaseWidgetPage caseWidgetPage = taskWidgetPage.openCaseList();
-    // Check result at full Task List
-    taskWidgetPage = caseWidgetPage.openTaskList();
-    String selectedSortColumn = taskWidgetPage.getSelectedSortColumn();
-    assertTrue(StringUtils.equalsIgnoreCase("Expiry", selectedSortColumn));
-    String taskName = taskWidgetPage.getTaskListCustomCellValue(0, "task-name");
-    assertTrue(StringUtils.equalsIgnoreCase("Maternity Leave Request", taskName));
-    // Change to another column - which is not include at compact task list
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.sortTaskListByColumn("Name / Description", 0, "task-name", "Annual Leave Request");
-    // Back to Dashboard - compact task list will sort by default column
+    String taskName = taskWidgetPage.getTaskListCustomCellValue(0, "task-name");
+    assertTrue(StringUtils.equalsIgnoreCase("Annual Leave Request", taskName));
+    taskWidgetPage.sortTaskListByColumn("Name / Description", 0, "task-name", "Sick Leave Request");
     taskWidgetPage.clickOnLogo();
-    // Create new task
-    createTestingTasks();
-    homePage = new HomePage();
-    taskWidgetPage = homePage.getTaskWidget();
-    selectedSortColumn = taskWidgetPage.getSelectedCompactSortLable();
-    assertTrue(StringUtils.equalsIgnoreCase("Creation date (Newest first)", selectedSortColumn));
-    // Change User sort selection
+    new NewDashboardPage();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
+    taskName = taskWidgetPage.getTaskListCustomCellValue(0, "task-name");
+    assertTrue(StringUtils.equalsIgnoreCase("Sick Leave Request", taskName));
+
     UserProfilePage userProfilePage = taskWidgetPage.openMyProfilePage();
     userProfilePage.selectTaskSortField("Priority");
     userProfilePage.selectTaskSortDirection("Sort ascending");
-    homePage = userProfilePage.save();
-    // Check result
-    taskWidgetPage = homePage.openTaskList();
-    selectedSortColumn = taskWidgetPage.getSelectedSortColumn();
-    assertTrue(StringUtils.equalsIgnoreCase("Prio", selectedSortColumn));
+    NewDashboardPage newDashboardPage = userProfilePage.save();
+
+    taskWidgetPage = newDashboardPage.openTaskList();
     assertEquals("high", taskWidgetPage.getPriorityOfTask(0));
   }
 

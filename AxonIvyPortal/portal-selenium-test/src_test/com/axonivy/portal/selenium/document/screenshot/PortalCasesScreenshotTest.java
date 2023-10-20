@@ -38,7 +38,6 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest{
     super.setup();
     grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
     redirectToRelativeLink(createTestingTasksUrl);
-    redirectToRelativeLink(createUserFavoriteProcess);
     redirectToRelativeLink(createTestingCaseMapUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     refreshPage();

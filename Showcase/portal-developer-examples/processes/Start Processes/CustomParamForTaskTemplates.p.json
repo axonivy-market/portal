@@ -34,12 +34,6 @@
             "id" : "TaskA",
             "name" : "IFrame task with custom params"
           }, {
-            "id" : "TaskB",
-            "name" : "Task template 8 with custom params",
-            "customFields" : [
-              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
-            ]
-          }, {
             "id" : "TaskC",
             "name" : "IFrame with custom task name"
           } ]
@@ -49,7 +43,6 @@
       },
       "connect" : [
         { "id" : "f6", "to" : "f5", "condition" : "ivp==\"TaskA.ivp\"" },
-        { "id" : "f8", "to" : "f7", "via" : [ { "x" : 192, "y" : 288 } ], "condition" : "ivp==\"TaskB.ivp\"" },
         { "id" : "f12", "to" : "f11", "via" : [ { "x" : 192, "y" : 47 } ], "condition" : "ivp==\"TaskC.ivp\"" }
       ]
     }, {
@@ -65,20 +58,6 @@
       },
       "connect" : [
         { "id" : "f2", "to" : "f1" }
-      ]
-    }, {
-      "id" : "f7",
-      "type" : "DialogCall",
-      "name" : "CustomParamsForTaskTemplate8",
-      "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.testdata.CustomParamsForTaskTemplate8:start()"
-      },
-      "visual" : {
-        "at" : { "x" : 368, "y" : 288 },
-        "size" : { "width" : 208, "height" : 60 }
-      },
-      "connect" : [
-        { "id" : "f9", "to" : "f1", "via" : [ { "x" : 512, "y" : 288 } ] }
       ]
     }, {
       "id" : "f11",

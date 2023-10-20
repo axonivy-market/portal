@@ -76,7 +76,7 @@ Processes:
       description1: Simulates an external solvency service task
     InternalSolvencyCheckDescription:
       description1: Get the data from the process to realize a solvency check (outside the system)
-      description2: "<P>\r\nYou can start the side step “External solvency service” clicking on this icon: \r<i class=\"fa fa-align-justify\" ></i>\n</P>\r\n\n"
+      description2: "<P>\nYou can start the side step “External solvency service” clicking on this icon: \r<i class=\"fa fa-align-justify\" ></i>\n</P>\n\n"
     Stage:
       approval: Approval
       creditRating: Credit rating
