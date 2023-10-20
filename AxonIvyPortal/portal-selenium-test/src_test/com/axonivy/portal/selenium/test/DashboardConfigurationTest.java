@@ -373,6 +373,27 @@ public class DashboardConfigurationTest extends BaseTest {
     configurationPage.createPublicDashboardFromTemplate(name, icon, description, permissions, 0);
   }
   
+  
+  @Test
+  public void testVisibleSharingDashboardButton() {
+    redirectToRelativeLink(denyDashboardShareLinkPermissionUrl);
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    DashboardModificationPage modificationPage = navigateToConfigurationAndEditDashboards(true);
+    modificationPage.getDashboardShareLinkButton().shouldBe(Condition.disappear);
+    
+    redirectToRelativeLink(grantDashboardShareLinkPermissionUrl);
+    refreshPage();
+    DashboardModificationPage modificationPage2 = navigateToConfigurationAndEditDashboards(true);
+    modificationPage2.getDashboardShareLinkButton().shouldBe(Condition.appear);
+  }
+  
+  @Test
+  public void testSharingDashboard() {
+    redirectToRelativeLink(grantDashboardShareLinkPermissionUrl);
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    DashboardModificationPage modificationPage = navigateToConfigurationAndEditDashboards(true);
+    modificationPage.getDashboardShareLinkDialog();
+  }
   @Test
   public void testImportOnlyPublicDashboards() {
     redirectToRelativeLink(grantDashboardImportPublicPermissionUrl);
@@ -442,26 +463,5 @@ public class DashboardConfigurationTest extends BaseTest {
     permissions.add("Everybody");
     
     configurationPage.saveImportDashboard(name, newGermanName, description, icon, permissions);
-  }
-  
-  @Test
-  public void testVisibleSharingDashboardButton() {
-    redirectToRelativeLink(denyDashboardShareLinkPermissionUrl);
-    LinkNavigator.redirectToPortalDashboardConfiguration();
-    DashboardModificationPage modificationPage = navigateToConfigurationAndEditDashboards(true);
-    modificationPage.getDashboardShareLinkButton().shouldBe(Condition.disappear);
-    
-    redirectToRelativeLink(grantDashboardShareLinkPermissionUrl);
-    refreshPage();
-    DashboardModificationPage modificationPage2 = navigateToConfigurationAndEditDashboards(true);
-    modificationPage2.getDashboardShareLinkButton().shouldBe(Condition.appear);
-  }
-  
-  @Test
-  public void testSharingDashboard() {
-    redirectToRelativeLink(grantDashboardShareLinkPermissionUrl);
-    LinkNavigator.redirectToPortalDashboardConfiguration();
-    DashboardModificationPage modificationPage = navigateToConfigurationAndEditDashboards(true);
-    modificationPage.getDashboardShareLinkDialog();
   }
 }
