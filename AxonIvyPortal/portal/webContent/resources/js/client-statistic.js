@@ -5,6 +5,8 @@ const instance = axios.create({
     timeout: 60000,
     headers: { 'X-Requested-By': 'ivy' }
 });
+const DATA_CHART_ID = 'data-chart-id';
+const WIDGET_HEADER_TITLE = '.widget__header-title';
 
 function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
@@ -26,7 +28,7 @@ function initStatistics() {
 
     let refreshInfos = [];
     $('.chart-options').each(async (index, chart) => {
-        let chartId = chart.getAttribute('data-chart-id');
+        let chartId = chart.getAttribute(DATA_CHART_ID);
         let response;
         try {
             response = await instance.post('/api/statistic-data-service/Data', { "chartId": chartId });
@@ -64,11 +66,15 @@ function initStatistics() {
             refreshInfos.push(chartObject);
         }
 
+        initRefresh(refreshInfos);
+
         function renderNumberChart() {
-            let html = renderNumberChartHtml(config.name);
-            $(chart).html(html);
-            let cardNumber = (result.length == 0 ? 0 : result.map(bucket => bucket.count)) + `${config.numberChartConfig.suffixSymbol}`;
-            $(chart).find('.card-number').html(cardNumber);
+            initWidgetHeaderName(config.name);
+            let filters = getChartFilters(data);
+            result = fillUpResultBasedOnFilter(result, filters);
+
+            let multipleKPI = renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol);
+            $(chart).html(multipleKPI);
             chartData = $(chart);
             resizeNumberChart();
         }
@@ -100,10 +106,15 @@ function initStatistics() {
             }
         }
 
-        initRefresh(refreshInfos);
-
         function renderBarChart() {
             chartData = renderBarLineChart(result, chart, config);
+        }
+
+        function initWidgetHeaderName(widgetName){
+            let widgetHeader = $(chart).parents(".card-widget-panel")
+                .find(".widget__header")
+                .find(".widget__header-title").get(0);
+            widgetHeader.textContent = widgetName;
         }
     });
 
@@ -111,7 +122,7 @@ function initStatistics() {
         if (result.length == 0) {
             renderEmptyStatistics(chart, config.additionalConfig);
         } else {
-            let html = renderChartCanvas(chart.getAttribute('data-chart-id'));
+            let html = renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
             $(chart).html(html);
             let canvasObject = $(chart).find('canvas');
             var chartData = new Chart(canvasObject, {
@@ -168,12 +179,9 @@ function initStatistics() {
 
     function updateTitle(chartId, chartType, title) {
         $('.dashboard__widget').each(function () {
-            if ($(this).find("div[data-chart-id='" + chartId + "']").length) {
-                if ('number' === chartType) {
-                    $(this).find('.widget__header-title').text("");
-                } else {
-                    $(this).find('.widget__header-title').text(title);
-                }
+            if ($(this).find(`div[${DATA_CHART_ID}='${chartId}']`).length 
+                && 'number' !== chartType) {
+                $(this).find(WIDGET_HEADER_TITLE).text(title);
                 return;
             }
         });
@@ -204,7 +212,8 @@ function initStatistics() {
     async function refreshChart(chartInfo) {
         let chartId = chartInfo.chartId;
         const response = await instance.post('/api/statistic-data-service/Data', { "chartId": chartId });
-        const result = response.data.result.aggs[0].buckets;
+        let data = await response.data;
+        let result = data.result.aggs?.[0]?.buckets ?? [];
         let chartData = chartInfo.chartData;
         if (chartInfo.chartType !== 'number') {
             chartData.data.labels = result.map(bucket => formatChartLabel(bucket.key));
@@ -214,45 +223,49 @@ function initStatistics() {
             chartData.update();
         } else {
             let config = response.data.chartConfig;
-            let cardNumber = (result.length == 0 ? 0 : result.map(bucket => bucket.count)) + `${config.numberChartConfig.suffixSymbol}`;
-            chartData.find('.card-number').html(cardNumber);
+            let filters = getChartFilters(data);
+            result = fillUpResultBasedOnFilter(result, filters);
+
+            multipleKPI = renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol);
+            $(chartData).html(multipleKPI);
+            resizeNumberChart();
         }
     }
+}
 
-    function renderEmptyStatistics(chart, additionalConfig) {
-        let emptyChartDataMessage;
-        additionalConfig.find(function (item) {
-            if (Object.keys(item)[0] === "emptyChartDataMessage") {
-                emptyChartDataMessage = item.emptyChartDataMessage;
-            }
-        });
+function renderEmptyStatistics(chart, additionalConfig) {
+    let emptyChartDataMessage;
+    additionalConfig.find(function (item) {
+        if (Object.keys(item)[0] === "emptyChartDataMessage") {
+            emptyChartDataMessage = item.emptyChartDataMessage;
+        }
+    });
+    let emptyChartHtml = `
+           <div class="empty-message-container">
+               <i class="si si-analytics-pie-2 empty-message-icon"></i>
+               <p class="empty-message-text">` + emptyChartDataMessage + `</p>
+           </div>
+       `;
+    $(chart).html(emptyChartHtml);
+}
 
-        let emptyChartHtml = `
-            <div class="empty-message-container">
-                <i class="si si-analytics-pie-2 empty-message-icon"></i>
-                <p class="empty-message-text">` + emptyChartDataMessage + `</p>
-            </div>
-        `;
-        $(chart).html(emptyChartHtml);
-    }
+function renderNoPermissionStatistics(chart, noPermissionChartMessage) {
+    let noPermissionChartHtml = `
+           <div class="process-dashboard-widget__empty-process empty-message-container">
+               <i class="si si-lock-1 empty-message-icon"></i>
+               <br><span class="empty-message-text">` + noPermissionChartMessage + `</span>
+           </div>
+       `;
+    $(chart).html(noPermissionChartHtml);
+}
 
-    function renderNoPermissionStatistics(chart, noPermissionChartMessage) {
-        let noPermissionChartHtml = `
-            <div class="process-dashboard-widget__empty-process empty-message-container">
-                <i class="si si-lock-1 empty-message-icon"></i>
-                <br><span class="empty-message-text">` + noPermissionChartMessage + `</span>
-            </div>
-        `;
-        $(chart).html(noPermissionChartHtml);
-    }
+function renderChartCanvas(chartId) {
+    let html = `<canvas id="${chartId}" />`;
+    return html;
+};
 
-    function renderChartCanvas(chartId) {
-        let html = `<canvas id="${chartId}" />`;
-        return html;
-    };
-
-    function renderNumberChartHtml(label) {
-        let html = `
+function renderNumberChartHtml(label, number) {
+    let html = `
             <div class="u-text-align-center chart-content-card">
                 <div class="chart-icon-font-size">
                     <i class="fa-solid fa-chart-line"></i>
@@ -268,28 +281,76 @@ function initStatistics() {
         return html;
     };
 
+function renderMultipleNumberChartInHTML(result, suffixSymbold){
+    let multipleNumberChartInHTML = '';
+
+    if (result.length > 0) {
+        for (item of result) {
+            let htmlString = renderNumberChartHtml(item.key, item.count + suffixSymbold);
+            multipleNumberChartInHTML += htmlString;
+        };
+    } else {
+        multipleNumberChartInHTML = renderNumberChartHtml('', '0' + suffixSymbold);
+    }
+    return multipleNumberChartInHTML;
 }
 
 function resizeNumberChart() {
     let chartNumber = $('.chart-number-font-size');
     let chartName = $('.chart-name-font-size');
     let chartIcon = $('.chart-icon-font-size');
-    if (chartNumber.length && chartNumber.length > 0) {
-        chartNumber.each((i, item) => {
-            let fs = getFontSizeRatio(item, 1);
-            item.style.fontSize = fs + '%';
-        })
+    const NUMBER_SCALE_RATIO = 1;
+    const NAME_SCALE_RATIO = 0.25;
+    const ICON_SCALE_RATIO = 0.5;
+
+    handleItemFontSizeForNumberChart(chartNumber, NUMBER_SCALE_RATIO);
+    handleItemFontSizeForNumberChart(chartName, NAME_SCALE_RATIO);
+    handleItemFontSizeForNumberChart(chartIcon, ICON_SCALE_RATIO);
+}
+
+function handleItemFontSizeForNumberChart(chartItem, fontSizeScaleRatio){
+    if (!chartItem.length || chartItem.length < 0) {
+      return;
     }
-    if (chartName.length && chartName.length > 0) {
-        chartName.each((i, item) => {
-            let fs = getFontSizeRatio(item, 0.25);
-            item.style.fontSize = fs + '%';
-        })
+    for(item of chartItem) {
+      let fs = getFontSizeRatio(item, fontSizeScaleRatio);
+      item.style.fontSize = fs + '%';
+    };
+}
+
+function getChartFilters(data){
+    const EMPTY_SPACE = '';
+    const WHITE_SPACE = ' ';
+    let filters = data.chartConfig.filter?.replace(`${data.chartConfig.aggregates}:`, EMPTY_SPACE);
+    filters = filters.split(WHITE_SPACE);
+
+    return filters;
+}
+
+function fillUpResultBasedOnFilter(result, filters){
+    if(result.length == filters.length){
+        return result;
     }
-    if (chartIcon.length && chartIcon.length > 0) {
-        chartIcon.each((i, item) => {
-            let fs = getFontSizeRatio(item, 0.5);
-            item.style.fontSize = fs + '%';
-        })
+
+    if (result.length == 0) {
+        filters.forEach(filter => {
+            result.push({
+                key: filter,
+                count: 0,
+                aggs: []
+            })
+        });
+    } else if (result.length < filters.length) {
+        let currentResult = result.map(item => item.key);
+        let missingPieces = filters.filter(item => !currentResult.includes(item));
+        missingPieces.forEach(piece => {
+            result.push({
+                key: piece,
+                count: 0,
+                aggs: []
+            })
+        });
     }
+
+    return result;
 }

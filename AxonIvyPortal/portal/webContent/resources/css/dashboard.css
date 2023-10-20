@@ -1295,6 +1295,13 @@ body .ui-widget.new-widget-dialog__introduction {
   height: 100%;
   width: 100%;
   position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  gap: 30px;
+  overflow: auto;
 }
 
 .chart-information-container {
@@ -1537,7 +1544,7 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .card-widget__content.widget__content {
-  padding-top: 0;
+  padding-top: 30px;
 }
 
 .card-widget-info-overlay-panel__footer .info-overlay-panel__close-link {
@@ -1698,7 +1705,6 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .chart-content-card {
   position: relative;
-  top: 10%
 }
 
 .order-list-items .ui-widget-content.ui-orderlist-list.ui-corner-all.ui-sortable{
