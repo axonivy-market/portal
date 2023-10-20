@@ -484,6 +484,7 @@ Changes in 11.2.0
 - The ``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI`` instead.
 - Introduced the sort feature for the process dashboard widget. User can sort the processes by index, alphabetical order or by custom order.
 - Introduced the ``taskId`` param for the component ``ic:com.axonivy.portal.components.ProcessViewer`` to highlight the current step in the Process Viewer.
+- Portal Legacy Dashboard is removed.
 
 Changes in 10
 -------------
