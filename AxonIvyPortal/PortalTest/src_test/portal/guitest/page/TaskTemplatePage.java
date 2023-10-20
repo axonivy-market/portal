@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.WaitHelper;
 
@@ -91,7 +92,6 @@ public class TaskTemplatePage extends TemplatePage {
     return new TaskDetailsPage();
   }
 
-  @SuppressWarnings("deprecation")
   public void startSideStep() {
     String actionPanelId = "horizontal-task-action-form:horizontal-task-action-menu";
     waitForElementDisplayed(By.id(actionPanelId), true);
@@ -114,7 +114,6 @@ public class TaskTemplatePage extends TemplatePage {
     click(By.linkText("Reset"));
   }
 
-  @SuppressWarnings("deprecation")
   public void showNoteHistory() {
     click(driver.findElement(By.cssSelector("a[id$='show-more-note-link']")));
   }
@@ -189,18 +188,18 @@ public class TaskTemplatePage extends TemplatePage {
     return findDisplayedElementByCssSelector(adhocCreationMessageCSSSelector).getText();
   }
 
-  public HomePage clickSubmitButton() {
+  public TaskWidgetPage clickSubmitButton() {
     clickOnSubmitButton();
-    return new HomePage();
+    return new TaskWidgetPage();
   }
 
   public void clickOnSubmitButton() {
     clickByCssSelector("button[id$='button-submit']");
   }
 
-  public HomePage clickCancelAndLeftButton() {
+  public TaskWidgetPage clickCancelAndLeftButton() {
     clickByCssSelector("a[id$='button-cancel']");
-    return new HomePage();
+    return new TaskWidgetPage();
   }
 
   public void clickCancelButton() {
@@ -279,15 +278,15 @@ public class TaskTemplatePage extends TemplatePage {
     click(By.id("form:save-btn"));
     driver.switchTo().defaultContent();
     WaitHelper.waitForPresenceOfElementLocatedInFrame(driver, "[id$='global-search-component:global-search-data']");
-    return new TaskWidgetPage();
+    return NavigationHelper.navigateToTaskList();
   }
 
-  public HomePage backToHomeInIFrameApprovalTask() {
+  public NewDashboardPage backToHomeInIFrameApprovalTask() {
     driver.switchTo().frame("iFrame");
     waitForElementDisplayed(By.id("content-form:home-btn"), true);
     click(By.id("content-form:home-btn"));
     driver.switchTo().defaultContent();
-    return new HomePage();
+    return new NewDashboardPage();
   }
 
   public TaskWidgetPage finishIFrameReviewTask() {

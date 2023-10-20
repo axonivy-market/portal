@@ -6,8 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.page.HomePage;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.UserProfilePage;
 import portal.guitest.page.WorkingTaskDialogFromUserProfilePage;
@@ -23,7 +24,7 @@ public class LanguageSettingTest extends BaseTest {
 
   @Test
   public void testChangeLanguageWhenWorkingOnTask() {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.startTask(0);
     taskWidgetPage.clickOnMyProfile();
     WorkingTaskDialogFromUserProfilePage workingTaskDialogPage = new WorkingTaskDialogFromUserProfilePage();
@@ -34,14 +35,14 @@ public class LanguageSettingTest extends BaseTest {
 
   @Test
   public void testChangeLanguage() {
-    HomePage homePage = new HomePage();
-    UserProfilePage userProfilePage = homePage.openMyProfilePage();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
     // select German
     userProfilePage.selectLanguage(3);
-    homePage = userProfilePage.save();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    newDashboardPage = userProfilePage.save();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     assertEquals("Prozesse", mainMenuPage.getProcessMenuItemText());
-    userProfilePage = homePage.openMyProfilePage();
+    userProfilePage = newDashboardPage.openMyProfilePage();
     userProfilePage.selectLanguage(1);
     userProfilePage.save();
     mainMenuPage = userProfilePage.openMainMenu();

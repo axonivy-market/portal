@@ -10,7 +10,7 @@ import org.junit.Test;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseWidgetPage;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.MainMenuPage;
 
 public class CaseOwnerTest extends BaseTest {
@@ -18,7 +18,7 @@ public class CaseOwnerTest extends BaseTest {
   private static final String USER_IS_OWNER_URL = "internalSupport/16A68510A341BE6E/userIsOwner.ivp";
   private static final String ROLE_IS_OWNER_URL = "internalSupport/16A68510A341BE6E/roleIsOwner.ivp";
   
-  private HomePage homePage;
+  private NewDashboardPage newDashboardPage;
   private MainMenuPage mainMenuPage;
   private CaseWidgetPage casePage;
 
@@ -37,10 +37,10 @@ public class CaseOwnerTest extends BaseTest {
   @Test
   public void testUserIsOwner() {
     redirectToRelativeLink(USER_IS_OWNER_URL);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     
-    homePage = new HomePage();
-    mainMenuPage = homePage.openMainMenu();
+    newDashboardPage = new NewDashboardPage();
+    mainMenuPage = newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
     assertTrue(casePage.isCaseDisplayed("demo user is owner"));
   }
@@ -48,11 +48,11 @@ public class CaseOwnerTest extends BaseTest {
   @Test
   public void testRoleIsOwner() {
     redirectToRelativeLink(ROLE_IS_OWNER_URL);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     login(TestAccount.CASE_OWNER_USER);
     
-    homePage = new HomePage();
-    mainMenuPage = homePage.openMainMenu();
+    newDashboardPage = new NewDashboardPage();
+    mainMenuPage = newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
     assertTrue(casePage.isCaseDisplayed("Test role is owner"));
   }

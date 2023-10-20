@@ -1,6 +1,0 @@
-WelcomePortalDialogData #class
-ch.ivy.addon.portalkit.component.WelcomePortalDialog #namespace
-content String #field
-content PERSISTENT #fieldModifier
-mobileContent String #field
-mobileContent PERSISTENT #fieldModifier

@@ -19,7 +19,6 @@ public class ProcessHistoryPage extends TemplatePage {
     return isElementDisplayed(By.className("process-history-empty-message"));
   }
   
-  @SuppressWarnings("deprecation")
   public int openDialogAndCountCases() {
     click(findElementById("process-history-dialog-button"));
     waitForElementDisplayed(By.cssSelector("ul.ui-datascroller-list li div.js-case-item.case-list-item"), true);
@@ -27,7 +26,6 @@ public class ProcessHistoryPage extends TemplatePage {
     return caseList.findElements(By.className("ui-datascroller-item")).size();
   }
   
-  @SuppressWarnings("deprecation")
   public WebElement getProcessHistoryDialog() {
     click(findElementById("process-history-dialog-button"));
     waitForElementDisplayed(By.id("process-history-dialog_content"), true);
