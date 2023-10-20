@@ -278,8 +278,8 @@ function renderNumberChartHtml(label, number) {
                 </div>
             </div>
         `;
-        return html;
-    };
+    return html;
+};
 
 function renderMultipleNumberChartInHTML(result, suffixSymbold){
     let multipleNumberChartInHTML = '';
