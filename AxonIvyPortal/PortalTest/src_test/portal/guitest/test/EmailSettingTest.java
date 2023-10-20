@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.UserProfilePage;
 
 public class EmailSettingTest  extends BaseTest{
@@ -22,20 +22,20 @@ public class EmailSettingTest  extends BaseTest{
 
   @Test
   public void testChangeEmailSetting() {
-    HomePage homePage = new HomePage();
-    UserProfilePage userProfilePage = homePage.openMyProfilePage();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
     userProfilePage.switchOnEmailOnTaskAssignmentSetting();
     userProfilePage.switchOnFurtherEmailFromAppSetting();
     userProfilePage.selectDaysForDailySummary(Arrays.asList(1,2,3,4));
     assertEquals(4, userProfilePage.getSelectedDaySummary());
-    homePage = userProfilePage.save();
-    userProfilePage = homePage.openMyProfilePage();
+    newDashboardPage = userProfilePage.save();
+    userProfilePage = newDashboardPage.openMyProfilePage();
     assertTrue(userProfilePage.isEmailOnTaskAssignmentSettingSwitchedOn());
     assertTrue(userProfilePage.isFurtherEmailFromAppSettingSwitchedOn());
     userProfilePage.switchOffFurtherEmailFromAppSetting();
     userProfilePage.switchOffEmailOnTaskAssignmentSetting();
-    homePage = userProfilePage.save();
-    userProfilePage = homePage.openMyProfilePage();
+    newDashboardPage = userProfilePage.save();
+    userProfilePage = newDashboardPage.openMyProfilePage();
     assertFalse(userProfilePage.isEmailOnTaskAssignmentSettingSwitchedOn());
     assertFalse(userProfilePage.isFurtherEmailFromAppSettingSwitchedOn());
   }

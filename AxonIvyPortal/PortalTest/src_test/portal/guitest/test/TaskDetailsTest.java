@@ -19,10 +19,11 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.DateTimePattern;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.TestRole;
 import portal.guitest.common.Variable;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.UserProfilePage;
@@ -30,7 +31,6 @@ import portal.guitest.page.UserProfilePage;
 public class TaskDetailsTest extends BaseTest {
 
   private static final String COMMENT_CONTENT = "Test comment";
-  private HomePage homePage;
   private TaskWidgetPage taskWidgetPage;
   private TaskDetailsPage taskDetailsPage;
 
@@ -40,14 +40,13 @@ public class TaskDetailsTest extends BaseTest {
     super.setup();
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     createTestingTasks();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    homePage = new HomePage();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    new NewDashboardPage();
   }
 
   @Test
   public void testDelegateTaskInTaskDetail() {
     login(TestAccount.ADMIN_USER);
-    homePage = new HomePage();
     taskDetailsPage = openDetailsPageOfFirstTask();
     assertTrue(StringUtils.equalsIgnoreCase(TestRole.EVERYBODY_ROLE, taskDetailsPage.getTaskResponsible()));
     taskDetailsPage.openTaskDelegateDialog();
@@ -62,8 +61,7 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   private TaskDetailsPage openDetailsPageOfFirstTask() {
-    taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     return taskWidgetPage.openTaskDetails(0);
   }
 
@@ -78,10 +76,10 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   private void setFormattingLanguage() {
-    HomePage homePage = new HomePage();
-    UserProfilePage userProfilePage = homePage.openMyProfilePage();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
     userProfilePage.inputFormattingLanguage("English (United Kingdom)");
-    homePage = userProfilePage.save();
+    newDashboardPage = userProfilePage.save();
   }
 
   @Test
@@ -170,8 +168,6 @@ public class TaskDetailsTest extends BaseTest {
   public void testShowTaskWorkflowEvent() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTechnicalStateUrl);
-    homePage = new HomePage();
-
     taskDetailsPage = openDetailsPageOfFirstTask();
     String eventData = taskDetailsPage.openWorkflowEventDialog();
     assertTrue(eventData.contains("admin"));
@@ -180,9 +176,7 @@ public class TaskDetailsTest extends BaseTest {
   private void openDelayTask() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTaskWithSystemState);
-    homePage = new HomePage();
-    taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Delayed"));
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
   }
@@ -195,9 +189,7 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   private void openFirstTaskInCompletedTasks() {
-    homePage = new HomePage();
-    taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.openAdvancedFilter("Completed on (from/to)", "completed");
     filterByDateType("completed");
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
@@ -232,9 +224,7 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   private void openFirstTaskInTaskList() {
-    homePage = new HomePage();
-    taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
   }
 

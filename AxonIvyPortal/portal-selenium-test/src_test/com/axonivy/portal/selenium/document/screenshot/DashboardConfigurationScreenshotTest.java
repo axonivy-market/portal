@@ -25,7 +25,6 @@ public class DashboardConfigurationScreenshotTest extends ScreenshotBaseTest {
   public void setup() {
     super.setup();
     updatePortalSetting(Variable.ENABLE_GROUP_CHAT.getKey(), "true");
-    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "false");
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createSampleDashboardUrl);
   }

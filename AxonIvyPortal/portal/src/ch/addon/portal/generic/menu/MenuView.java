@@ -130,10 +130,6 @@ public class MenuView implements Serializable {
         || !UrlUtils.isIvyUrl(subMenuItem.getLink());
   }
 
-  public boolean isShowLegacyUI() {
-    return HomepageUtils.isShowLegacyUI();
-  }
-
   private DefaultMenuItem buildThirdPartyItem(Application application, int menuIndex) {
     String menuIcon = StringUtils.defaultString(application.getMenuIcon());
     String iconClass = (menuIcon.startsWith("fa") ? "fa " : "si ") + menuIcon;
@@ -157,42 +153,37 @@ public class MenuView implements Serializable {
       dashboardLink = getDefaultDashboardUrl();
     }
 
-    if (!isShowLegacyUI()) {
-      var dashboards = getDashboardCache().dashboards;
-      if (CollectionUtils.isNotEmpty(dashboards)) {
-        DefaultSubMenu dashboardGroupMenu = DefaultSubMenu.builder()
-                .label(dashboardTitle)
-                .icon(PortalMenuItem.DEFAULT_DASHBOARD_ICON)
-                .id(String.format(DASHBOARD_MENU_PATTERN, MenuKind.DASHBOARD.name()))
-                .styleClass(DASHBOARD_MENU_JS_CLASS).build();
-        if (dashboards.size() > 1) {
-          for (var board : dashboards) {
-            if(StringUtils.isBlank(board.getIcon())) {
-              board.setIcon(board.getIsPublic() ? "si-network-share" : "si-single-neutral-shield");  
-            }
-            var iconClass = (board.getIcon().startsWith("fa") ? "fa " : "si ") + board.getIcon();
-            var dashboardMenu = new PortalMenuBuilder(board.getTitle(), MenuKind.DASHBOARD, this.isWorkingOnATask)
-                  .icon(iconClass)
-                  .url(dashboardLink)
-                  .workingTaskId(this.workingTaskId).build();
-            dashboardMenu.setId(String.format(DASHBOARD_MENU_ITEM_PATTERN, board.getId()));
+    var dashboards = getDashboardCache().dashboards;
+    if (CollectionUtils.isNotEmpty(dashboards)) {
+      DefaultSubMenu dashboardGroupMenu =
+          DefaultSubMenu.builder().label(dashboardTitle).icon(PortalMenuItem.DEFAULT_DASHBOARD_ICON)
+              .id(String.format(DASHBOARD_MENU_PATTERN, MenuKind.DASHBOARD.name())).styleClass(DASHBOARD_MENU_JS_CLASS)
+              .build();
+      if (dashboards.size() > 1) {
+        for (var board : dashboards) {
+          if (StringUtils.isBlank(board.getIcon())) {
+            board.setIcon(board.getIsPublic() ? "si-network-share" : "si-single-neutral-shield");
+          }
+          var iconClass = (board.getIcon().startsWith("fa") ? "fa " : "si ") + board.getIcon();
+          var dashboardMenu = new PortalMenuBuilder(board.getTitle(), MenuKind.DASHBOARD, this.isWorkingOnATask)
+              .icon(iconClass).url(dashboardLink).workingTaskId(this.workingTaskId).build();
+          dashboardMenu.setId(String.format(DASHBOARD_MENU_ITEM_PATTERN, board.getId()));
 
-            String defaultTitle = (String) dashboardMenu.getValue();
-            String title = board.getTitles().stream()
-                .filter(name -> StatisticService.equalsLanguageLocale(name, currentLanguage)
-                    && StringUtils.isNotBlank(name.getValue()))
-                .map(DisplayName::getValue).findFirst().orElse(defaultTitle);
-            dashboardMenu.setValue(title);
-            dashboardGroupMenu.getElements().add(dashboardMenu);
-          }
-          if (StringUtils.endsWith(Ivy.request().getRootRequest().getRequestPath(), DASHBOARD_PAGE_URL)) {
-            dashboardGroupMenu.setExpanded(true);
-          }
-          return dashboardGroupMenu;
-        } else {
-          dashboardTitle = dashboards.get(0).getTitle();
-          dashboardId = dashboards.get(0).getId();
+          String defaultTitle = (String) dashboardMenu.getValue();
+          String title = board.getTitles().stream()
+              .filter(name -> StatisticService.equalsLanguageLocale(name, currentLanguage)
+                  && StringUtils.isNotBlank(name.getValue()))
+              .map(DisplayName::getValue).findFirst().orElse(defaultTitle);
+          dashboardMenu.setValue(title);
+          dashboardGroupMenu.getElements().add(dashboardMenu);
         }
+        if (StringUtils.endsWith(Ivy.request().getRootRequest().getRequestPath(), DASHBOARD_PAGE_URL)) {
+          dashboardGroupMenu.setExpanded(true);
+        }
+        return dashboardGroupMenu;
+      } else {
+        dashboardTitle = dashboards.get(0).getTitle();
+        dashboardId = dashboards.get(0).getId();
       }
     }
 
