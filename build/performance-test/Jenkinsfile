@@ -5,6 +5,10 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '200', artifactNumToKeepStr: '5'))
   }
 
+  triggers {
+    cron('0 13 * * *')
+  }
+
   environment {
     engineVersion = 'master'
     jmeterSourceDir = 'AxonIvyPortal/PortalTest/jmeter'

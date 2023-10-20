@@ -1,12 +1,12 @@
 pipeline {
-  agent {label 'tung-pc'}
+  agent {label 'portal-slave'}
   
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '60'))
   }
 
   triggers {
-    //pollSCM '0 7 * * *'
+    pollSCM '0 7 * * *'
     cron('0 21 * * *')
   }
 
