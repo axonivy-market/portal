@@ -1,6 +1,7 @@
 package com.axonivy.portal.bean.dashboard;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +27,8 @@ public class WidgetDateFilterBean implements Serializable {
   private static FilterPeriodType[] filterPeriodTypes = FilterPeriodType.values();
   private static List<FilterPeriodType> currentFilterPeriodTypes = FilterPeriodType.PERIOD_TYPES_FOR_CURRENT_OPERATOR.stream().toList();
 
+  private static SimpleDateFormat formatter = new SimpleDateFormat(DashboardFilter.DATE_FORMAT);
+
   public List<FilterOperator> getOperators() {
     return operators;
   }
@@ -35,10 +38,12 @@ public class WidgetDateFilterBean implements Serializable {
   }
 
   public void onChangeOperator(DashboardFilter filter) {
+    filter.setFromDate(null);
+    filter.setToDate(null);
     filter.setFrom(null);
     filter.setTo(null);
-    filter.setPeriodType(FilterPeriodType.YEAR);
-    filter.setPeriods(1L);
+    filter.setPeriodType(null);
+    filter.setPeriods(null);
   }
 
   private String getMessagePrefix(String field, int index) {
@@ -51,5 +56,13 @@ public class WidgetDateFilterBean implements Serializable {
 
   public List<FilterPeriodType> getCurrentFilterPeriodTypes() {
     return currentFilterPeriodTypes;
+  }
+
+  public void updateToDate(DashboardFilter filter) {
+    filter.setTo(formatter.format(filter.getToDate()));
+  }
+
+  public void updateFromDate(DashboardFilter filter) {
+    filter.setFrom(formatter.format(filter.getFromDate()));
   }
 }
