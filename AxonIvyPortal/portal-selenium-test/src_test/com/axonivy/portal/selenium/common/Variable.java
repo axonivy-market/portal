@@ -63,7 +63,7 @@ public enum Variable {
   ENABLE_DEEPL_TRANSLATION("Portal.DeepL.Enable"),
   DASHBOARD("Portal.Dashboard"),
   GLOBAL_FOOTER_INFO("Portal.GlobalFooterInfo"),
-  SHOW_LEGACY_UI("Portal.ShowLegacyUI");
+  USER_MENU("Portal.UserMenu");
 
   private String key;
 

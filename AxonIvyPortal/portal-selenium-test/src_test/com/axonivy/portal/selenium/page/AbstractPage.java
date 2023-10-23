@@ -9,6 +9,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
@@ -50,5 +52,10 @@ public abstract class AbstractPage {
 
   public SelenideElement findElementByCssSelector(String cssSelector) {
     return $(cssSelector).shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void waitDocumentReady() {
+    new WebDriverWait(WebDriverRunner.getWebDriver(), Duration.ofSeconds(30)).until((ExpectedCondition<Boolean>) wd ->
+          ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
   }
 }

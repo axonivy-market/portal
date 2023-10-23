@@ -10,8 +10,6 @@ ch.ivy.addon.portal.generic:
     noCaseId: No case-Id specified
     requestTabTitle: Request
     statusTabTitle: Case Information
-  CustomLinkGenerator:
-    myTasks: My Tasks
   OpenTaskTemplate:
     adhocHistory: Adhoc history
     adhocHistoryTooltip: Show adhoc history
@@ -23,22 +21,6 @@ ch.ivy.addon.portal.generic:
     resultFromAdhocProcess: Results from the Ad-Hoc Process
     startAdHoc: Start Adhoc
     startAdHocTooltip: Reroute this process using ad-hoc steps
-  PortalCaseMenu:
-    AllCases: All cases
-    MyCases: My cases
-  PortalTaskMenu:
-    AllTasks: All tasks
-    GroupTasks: Group tasks
-    PersonalTasks: '{0}''''s tasks'
-  TaskMail:
-    dailyTaskSummaryIntro: 'The following tasks are waiting to be processed:'
-    dailyTaskSummaryTitle: Daily task summary
-    newTaskIntro: 'The following task has been assigned to you:'
-    newTaskTitle: New Task assigned
-    taskResume: Run
-ch.ivy.addon.portalkit:
-  variables:
-    portalkit_serveradress: PORTALKIT_SERVERADRESS
 ch.ivy.addon.portalkit.ui.jsf:
   AbsenceAndDeputy:
     Messages:
@@ -85,14 +67,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskState: Task state
   CaseDocuments:
     CaseDocumentsPageTitle: Case Documents
-  CaseStatusInformation:
-    CurrentTasks:
-      currentTasks: Current tasks
-      noTasksFound: No tasks found.
-    GeneralInformation:
-      processVersion: Process version
-      removeDelayConfirm: This will remove the delay setting of the task. Are you sure?
-      showNow: Show now
   Enums:
     BasicDocumentType:
       CONTRACT: Contract
@@ -154,8 +128,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     DateFormat: Date Format
     General: General
     Homepage: Homepage
-    HomepageSelection:
-      fullTaskList: Full Task list
     ProcessList: Process list
     SortFieldSelections:
       defaultSortFieldLabel: Default sort field
@@ -356,8 +328,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     OPEN: Open
     OPEN_UPPERCASE: OPEN
     RUNNING: In progress
-  caseTreeTable:
-    caseState: Case state
   chat:
     chatAssigneeDialogHeader: Add users to chat
     chatAssigneeDialogHint: 'Please select the relevant users and groups which should be added to your process related chat:'
@@ -575,9 +545,6 @@ ch.ivy.addon.portalkit.ui.jsf:
         <ul class="tooltip-body {1}">{2}</ul>
       tooltipHelper: Click to show all users which own this role directly or indirectly
       userOfRoleTitle: User of {0} group
-    compactProcessWidget:
-      selectedProcess: Selected process
-      settingFavoriteProcessName: Favorite process name definition
     expressManagement:
       deployButton: Deploy
       deployMessage: 'Deploying processes  ... '
@@ -860,10 +827,6 @@ ch.ivy.addon.portalkit.ui.jsf:
   iconselection:
     iconSelectionDialogHeader: Selecting icon
     seachIconByNamePlaceHolder: Search icon by name
-  languageSetting:
-    cannotSetEmailLanguage: Language cannot be set as email notification language.
-    languageSetting: Language settings
-    saveLanguageHasWSErrors: Language save error.
   login:
     login: Login
     loginErrorMessage: You are not logged in or your username is not known by this application. Please consult your system administrator.
@@ -908,7 +871,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewProcess: Add new process
     addNewProcessDialogHeader: Add new user process
     backToOverview: Back to overview
-    defaultProcesses: Application Favorites
     deleteExpressWorkflowTooltip: Delete Express Workflow
     deleteExternalLinkTooltip: Delete external link
     deleteProcess: Delete Process
@@ -929,7 +891,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     icon: Icon
     isRequiredMessage: has to be set
     linkDescription: Link description
-    noFavoriteProcess: You have not defined any favorites.
     noProcess: There are no processes.
     noProcesses: There are no processes.
     processFilterPlaceHolder: Name, Description, Category
@@ -1283,7 +1244,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskNotFound: The task does not exist or you have insufficient rights to see this task.
   userProfile:
     myProfileTitle: My profile
-    saveUserSettingsSuccessfully: User settings saved successfully.
   warningBeforeLostSession:
     extend: Extend
     warningMessage: Your session will expire in 1 minute. Would you like to extend it?

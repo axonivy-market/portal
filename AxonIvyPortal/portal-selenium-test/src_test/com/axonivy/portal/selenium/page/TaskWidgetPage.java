@@ -379,4 +379,24 @@ public class TaskWidgetPage extends TemplatePage {
     waitForElementClickableThenClick(detailOptionCssSelector);
     return new TaskDetailsPage();
   }
+
+  public SelenideElement getSaveFilterDialog() {
+    $("[id$='task-widget:filter-save-action']").shouldBe(getClickableCondition()).click();
+    $(By.id("task-widget:filter-save-form:save-filter-set-name-input")).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("[id$=':save-filter-set-name-input']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $(By.id("task-widget:save-filter-set-dialog")).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public void closeSaveFilterDialog() {
+    $("a[id^='task-widget:filter-save-form']").shouldBe(getClickableCondition()).click();
+    $(By.id("task-widget:save-filter-set-dialog")).shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    waitForAjaxIndicatorDisappeared();
+  }
+
+  public TaskDetailsPage openTaskDetail(int index) {
+    openTaskWithAccessTaskDetailsBehaviour(index);
+    TaskDetailsPage detailsPage = new TaskDetailsPage();
+    detailsPage.waitPageLoaded();
+    return new TaskDetailsPage();
+  }
 }
