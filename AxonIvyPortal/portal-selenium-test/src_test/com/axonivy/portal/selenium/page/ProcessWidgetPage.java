@@ -24,6 +24,7 @@ public class ProcessWidgetPage extends TemplatePage {
   private static final String IMAGE_EDIT_PROCESS_LINK = "[id$=':%d:image-processes:%d:process-item:image-process-action-component:edit-process']";
   private static final String MORE_ACTION_BUTTON = "[id='process-widget:image-process-group-alphabet:%d:image-processes:%d:process-item:image-process-action-component:process-action-button']";
   private static final String ACTION_DIALOG = "[id='process-widget:image-process-group-alphabet:%d:image-processes:%d:process-item:image-process-action-component:process-action-menu']";
+  private static final String GRID_ACTION_BUTTON = "[id$=':%d:grid-processes:%d:process-grid-item:process-item:grid-process-action-component:process-action-button']";
   private SelenideElement liveSearchTextField;
   private SelenideElement processWidget;
   private String processWidgetId;
@@ -254,8 +255,8 @@ public class ProcessWidgetPage extends TemplatePage {
     SelenideElement startProcessItemElement = null;
     List<SelenideElement> processItems = processListElement.$$(".js-process-start-list-item");
     for (SelenideElement process : processItems) {
-      SelenideElement processNameElement = process.$(".js-process-start-list-item-name");
-      if (processNameElement.getText().equalsIgnoreCase(processName)) {
+      SelenideElement processNameElement = process.$(".js-process-start-list-item-name").shouldBe(appear, DEFAULT_TIMEOUT);
+      if (processName.equalsIgnoreCase(processNameElement.getText())) {
         startProcessItemElement = process.$("[id$=':process-item:start-button']");
         break;
       }
@@ -419,4 +420,10 @@ public class ProcessWidgetPage extends TemplatePage {
   public void startProcess(String processName) {
     getProcess(processName).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
+
+  public void clickMoreButtonOfFirstGridProcess() {
+    waitForElementDisplayed(By.cssSelector(String.format(GRID_ACTION_BUTTON, 0, 0)), true);
+    waitForElementClickableThenClick(String.format(GRID_ACTION_BUTTON, 0, 0));
+  }
+
 }

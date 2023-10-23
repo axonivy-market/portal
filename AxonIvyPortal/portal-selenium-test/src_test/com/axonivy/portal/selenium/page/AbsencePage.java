@@ -31,7 +31,6 @@ public class AbsencePage extends TemplatePage {
   public NewAbsencePage openNewAbsenceDialog() {
     String selector = "button[id*='add-absence']";
     waitForElementClickableThenClick(selector);
-//    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "absence-form\\\\:absence-start-date_input", ID_PROPERTY);
     return new NewAbsencePage();
   }
 
@@ -47,7 +46,6 @@ public class AbsencePage extends TemplatePage {
     boolean checkBoxSelected = checkBox.isSelected();
     if (checkBoxSelected != shown) {
       waitForElementClickableThenClick("div[id*='show-absence-in-the-past'] div.ui-chkbox-box");
-//      waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ajax-indicator:ajax-indicator-ajax-indicator_start", "id");
     }
   }
 
@@ -113,7 +111,6 @@ public class AbsencePage extends TemplatePage {
   }
 
   private void clickSelectedDeputiesLink(int deputyRoleIndex) {
-//    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     String deputiesSelector = String.format("a[id$='absences-management-form:substitute-table:%d:selected-deputies-link']", deputyRoleIndex);
     $(deputiesSelector).shouldBe(appear, DEFAULT_TIMEOUT);
     waitForElementClickableThenClick(deputiesSelector);

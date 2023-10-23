@@ -8,7 +8,6 @@ import java.time.Duration;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -31,6 +30,7 @@ public abstract class AbstractPage {
   protected AbstractPage() {
     log = LogFactory.getLog(getClass());
     log.debug("Created page abstraction for " + getClass().getName());
+    WebDriverRunner.getWebDriver().manage().window().maximize();
     waitPageLoaded();
   }
 
@@ -46,8 +46,9 @@ public abstract class AbstractPage {
    * @param element
    * this function used for action click in some invisible element
    */
-  public void clickByJavaScript(WebElement element) {
+  public void clickByJavaScript(SelenideElement element) {
     ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript("arguments[0].click();", element);
+
   }
 
   public SelenideElement findElementByCssSelector(String cssSelector) {

@@ -7,8 +7,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
@@ -188,18 +186,6 @@ public class ProcessWidgetPage extends TemplatePage {
     List<WebElement> deleteCheckboxes = findDeleteIcons();
     WebElement checkBox = deleteCheckboxes.get(itemIndex);
     click(checkBox);
-    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
-  }
-
-  public int getNumberOfFavoriteUserProcesses() {
-    WebElement favoriteProcessList = findElementById(processWidgetId + ":process-list");
-    List<WebElement> processes = findChildElementsByCssSelector(favoriteProcessList, "form[id*='process-item-form']");
-    return processes.size();
-  }
-
-  public void clickSortFavoriteProcessByName() {
-    waitForElementDisplayed(By.cssSelector("[id$='name-sort-command']"), true, DEFAULT_TIMEOUT);
-    click(findElementByCssSelector("[id$='name-sort-command']"));
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 

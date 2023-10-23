@@ -9,6 +9,7 @@ import java.net.URLEncoder;
 import java.time.Duration;
 
 import org.junit.jupiter.api.AfterEach;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.axonivy.ivy.webtest.engine.EngineUrl;
 import com.codeborne.selenide.Condition;
@@ -35,6 +36,7 @@ public class BaseTest {
     WebDriverRunner.getWebDriver().quit();
   }
 
+  protected String createTaskWithIframe = "portal-developer-examples/16E5DB746865BCEC/CreateInvestment.ivp";
   protected String processViewerPermissionExampleUrl = "portal-developer-examples/183C12775FE2BAB8/start.ivp";
   protected String testProcessViewerPermissionUrl = "portalKitTestHelper/153CACC26D0D4C3D/testProcessViewerPermission.ivp";
   protected String createTestingTasksUrl = "portal-developer-examples/162511D2577DBA88/CategoriedLeaveRequest.ivp";
@@ -278,5 +280,9 @@ public class BaseTest {
     } catch (Exception e) {
       throw new PortalGUITestException(e);
     }
+  }
+
+  public WebDriverWait webDriverWait() {
+    return new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT);
   }
 }

@@ -30,17 +30,6 @@ public class TaskTemplateIFrameTest extends BaseTest {
   }
 
   @Test
-  public void testCustomParamsForTaskTemplate8() {
-    redirectToRelativeLink(CUSTOM_PARAMS_TEMPLATE_TASK_URL);
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.filterTasksInExpandedModeBy("Task template 8 with custom params");
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTaskWithouWaitForTaskActionPresent(0);
-    assertFalse(taskTemplatePage.isTaskNameDisplayed());
-    assertFalse(taskTemplatePage.isTaskActionDisplayed());
-    assertFalse(taskTemplatePage.isCaseInfoButtonDisplayed());
-  }
-
-  @Test
   public void testCustomParamsForIFrameTaskTemplate() {
     redirectToRelativeLink(CUSTOM_PARAMS_TEMPLATE_TASK_URL);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
@@ -97,7 +86,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     TaskTemplatePage taskTemplatePage2 = taskWidgetPage1.startTask(0);
     TaskWidgetPage taskWidgetPage2 = taskTemplatePage2.finishIFrameReviewTask();
     WaitHelper
-        .assertTrueWithWait(() -> taskWidgetPage2.isElementDisplayed(By.cssSelector("[id$='task-config-command']")));
+            .assertTrueWithWait(() -> taskWidgetPage2.isElementDisplayed(By.cssSelector("[id$='task-config-command']")));
   }
 
   public void waitForTemplateRender() {
@@ -114,9 +103,9 @@ public class TaskTemplateIFrameTest extends BaseTest {
     taskWidgetPage1.filterTasksInExpandedModeBy("Approve Investment", 1);
     TaskTemplatePage taskTemplatePage2 = taskWidgetPage1.startTask(0);
     assertEquals("Review Request (Skip Tasklist in IFrame)",
-        taskTemplatePage2.getTaskNameOutsideIFrameWithSkipTaskList());
+            taskTemplatePage2.getTaskNameOutsideIFrameWithSkipTaskList());
   }
-  
+
   @Test
   public void testShowCategoryInCaseByDefaultIframe() {
     redirectToRelativeLink("InternalSupport/15B1EA24CCF377E8/saleAndInform.ivp");
