@@ -4186,5 +4186,119 @@
         { "id" : "f254", "to" : "f253", "condition" : "ivy.session.isSessionUserUnknown()" },
         { "id" : "f170", "to" : "f238" }
       ]
+    }, {
+      "id" : "S92",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S92-f256",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "visual" : {
+            "at" : { "x" : 320, "y" : 144 },
+            "labelOffset" : { "x" : 24, "y" : -16 }
+          },
+          "connect" : [
+            { "id" : "S92-f1", "to" : "S92-g1", "label" : {
+                "name" : "Yes"
+              }, "condition" : "in.isAuthorized" },
+            { "id" : "S92-f259", "to" : "S92-f258", "label" : {
+                "name" : "No"
+              } }
+          ]
+        }, {
+          "id" : "S92-f258",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 320, "y" : 224 }
+          }
+        }, {
+          "id" : "S92-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 144 }
+          },
+          "parentConnector" : "f263",
+          "connect" : { "id" : "S92-f3", "to" : "S92-f2" }
+        }, {
+          "id" : "S92-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 456, "y" : 144 }
+          },
+          "parentConnector" : "f262"
+        }, {
+          "id" : "S92-f2",
+          "type" : "Script",
+          "name" : "Init isAuthorized",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.util.PermissionUtils;",
+                "in.isAuthorized = PermissionUtils.hasDashboardWriteOwnPermission()",
+                "  || PermissionUtils.hasDashboardWritePublicPermission();"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 192, "y" : 144 }
+          },
+          "connect" : { "id" : "S92-f0", "to" : "S92-f256" }
+        } ],
+      "visual" : {
+        "at" : { "x" : 248, "y" : 3784 }
+      },
+      "connect" : { "id" : "f262", "to" : "f260" }
+    }, {
+      "id" : "f258",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 640, "y" : 3784 }
+      }
+    }, {
+      "id" : "f260",
+      "type" : "DialogCall",
+      "name" : "PortalDashboardConfiguration",
+      "config" : {
+        "dialogId" : "ch.ivy.addon.portal.generic.dashboard.PortalDashboardConfiguration",
+        "startMethod" : "PortalDashboadConfigurationEditPage(Boolean)",
+        "call" : {
+          "params" : [
+            { "name" : "isPublicDashBoard", "type" : "Boolean" }
+          ],
+          "map" : {
+            "param.isPublicDashBoard" : "in.isPublicDashboard"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 464, "y" : 3784 },
+        "size" : { "width" : 256, "height" : 60 }
+      },
+      "connect" : { "id" : "f264", "to" : "f258" }
+    }, {
+      "id" : "f261",
+      "type" : "RequestStart",
+      "name" : "PortalDashboardConfigurationEditPage.ivp",
+      "config" : {
+        "callSignature" : "PortalDashboardConfigurationEditPage",
+        "input" : {
+          "params" : [
+            { "name" : "isPublicDashboard", "type" : "Boolean" }
+          ],
+          "map" : {
+            "out.isPublicDashboard" : "param.isPublicDashboard"
+          }
+        },
+        "outLink" : "PortalDashboardConfigurationEditPage.ivp",
+        "showInStartList" : false
+      },
+      "visual" : {
+        "at" : { "x" : 144, "y" : 3784 },
+        "labelOffset" : { "x" : -55, "y" : 33 }
+      },
+      "connect" : { "id" : "f263", "to" : "S92" }
     } ]
 }
