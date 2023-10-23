@@ -271,7 +271,7 @@ function renderNumberChartHtml(label, number) {
                     <i class="fa-solid fa-chart-line"></i>
                 </div>
                 <div>
-                    <span class="card-number chart-number-font-size"></span>
+                    <span class="card-number chart-number-font-size">${number}</span>
                 </div>
                 <div>
                     <span class="card-name chart-name-font-size">${label}</span>
