@@ -44,6 +44,9 @@ public class GlobalGrowlTest extends BaseTest {
     assertGrowlMessage(taskWidgetPage, CUSTOM_FINISH_MESSAGE);
   }
   
+  // TODO Write test for Growl in IFrame, in version 10 it has the test public void
+  // testDisplayCustomGrowlAfterFinishTask()
+
   @Test
   public void testDisplayDefaultGrowlAfterFinishTask() {
     redirectToRelativeLink(createTestingTasksUrl);
@@ -54,7 +57,7 @@ public class GlobalGrowlTest extends BaseTest {
     taskWidgetPage = taskTemplatePage.clickSubmitButton();
     assertGrowlMessage(taskWidgetPage, FINISH_MESSAGE_WITH_DETAILS);
   }
-  
+
   @Test
   public void testDisplayDefaultGrowlAfterFinishFirstTask() {
     NavigationHelper.navigateToTaskList();
@@ -66,6 +69,9 @@ public class GlobalGrowlTest extends BaseTest {
     assertGrowlMessage(new NewDashboardPage(), FINISH_MESSAGE_WITH_DETAILS);
   }
 
+  // TODO Write test for Growl in IFrame, in version 10 it has the test public void
+  // testDisplayDefaultGrowlAfterFinishFirstTask()
+
   @Test
   public void testDisplayDefaultGrowlAfterCancelTask() {
     redirectToRelativeLink(createTestingTasksUrl);
@@ -74,7 +80,7 @@ public class GlobalGrowlTest extends BaseTest {
     taskWidgetPage = taskTemplatePage.clickCancelAndLeftButton();
     assertGrowlMessage(taskWidgetPage, CANCEL_MESSAGE_WITH_DETAILS);
   }
-  
+
   @Test
   public void testDisplayCustomGrowlAfterCancelTask() {
     redirectToRelativeLink(CUSTOM_GROWL_URL);
@@ -91,6 +97,11 @@ public class GlobalGrowlTest extends BaseTest {
     taskTemplatePage.clickCancelButton();
     assertGrowlMessage(new NewDashboardPage(), CANCEL_MESSAGE_WITH_DETAILS);
   }
+  // TODO Write test for Growl in IFrame, in version 10 it has the test public void
+  // testDisplayCustomGrowlAfterCancelTask()
+
+  // TODO Write test for Growl in IFrame, in version 10 it has the test public void
+  // testDisplayDefaultGrowlAfterCancelFirstTask()
 
   @Test
   public void testSaveExpressFormDefinition() {

@@ -52,11 +52,6 @@
   }
 }
 
-.widget-tasklist-header {
-  position: relative;
-  height: 36px;
-}
-
 .widget-header-content-filter {
   width: 100%;
 }
@@ -1396,10 +1391,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 
 .external-link-type-radio td label {
   margin-right: 15px;
-}
-
-.favorite-process-name {
-  max-width: 850px;
 }
 
 .process-tooltip {
@@ -4749,11 +4740,6 @@ _:-ms-fullscreen, :root .content-link-history {
 /*  =================== END TASK TEMPLATE PAGE ========================= */
 
 /*====================FIX FOR SERENITY 2.0 STYLE========================*/
-.favorite-process-title {
-  display: inline-block;
-  padding-right: 20px;
-}
-
 /**************DATA TABLE START*******************/
 .column-header-top-alignment {
   vertical-align: baseline;

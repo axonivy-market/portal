@@ -69,6 +69,10 @@ public abstract class TemplatePage extends AbstractPage {
     WebDriverRunner.getWebDriver().switchTo().frame($("iframe[id='" + id + "']"));
   }
 
+  public void switchToIframeWithNameOrId(String value) {
+    WebDriverRunner.getWebDriver().switchTo().frame(value);
+  }
+
   public void waitForGrowlMessageDisappear() {
     $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-growl-message").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
@@ -115,6 +119,8 @@ public abstract class TemplatePage extends AbstractPage {
     } else {
       $(element).shouldBe(disappear, Duration.ofSeconds(timeout));
     }
+    $("div[id='portal-global-growl_container']").shouldBe(exist, DEFAULT_TIMEOUT)
+          .$("div.ui-growl-message").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void waitForGrowlMessageDisplayClearly() {
@@ -161,6 +167,7 @@ public abstract class TemplatePage extends AbstractPage {
     WebDriverRunner.getWebDriver().switchTo().parentFrame();
   }
 
+  public void openUserSettingMenu() {
   public void waitAjaxIndicatorDisappear() {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(new ExpectedCondition<Boolean>() {
       public Boolean apply(WebDriver wdriver) {
@@ -182,6 +189,11 @@ public abstract class TemplatePage extends AbstractPage {
 
   public LoginPage clickOnLogout() {
     $("[id='user-settings-menu']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id='user-setting-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public LoginPage clickOnLogout() {
+    openUserSettingMenu();
     $("[id='logout-setting:logout-menu-item']").shouldBe(appear, DEFAULT_TIMEOUT);
     WaitHelper.waitForNavigationToLoginPage(() -> $("[id='logout-setting:logout-menu-item']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
     return new LoginPage();
@@ -384,6 +396,61 @@ public abstract class TemplatePage extends AbstractPage {
 
   public String getDescription() {
     return $(By.cssSelector("[id$='case-description-output']")).shouldBe(appear, DEFAULT_TIMEOUT).getText();
+  }
+
+
+  public void waitForElementValueChanged(String cssSelector, String expectedValue) {
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(ExpectedConditions.textToBe(By.cssSelector(cssSelector), expectedValue));
+  }
+
+  public void waitForGlobalGrowlDisappear() {
+    $("div[id='portal-global-growl_container']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+  public AdminSettingsPage openAdminSettings() {
+    openUserSettingMenu();
+    WaitHelper.waitForNavigation(() -> $("[id='adminui-menu-item']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
+    return new AdminSettingsPage();
+  }
+
+  public void waitForAjaxIndicatorDisappeared() {
+    WaitHelper.waitAttributeToBe(WebDriverRunner.getWebDriver(), By.id("ajax-indicator:ajax-indicator-ajax-indicator_start"), "display", "none");
+  }
+
+  private void clickUserMenuItem(String menuItemSelector) {
+    openUserSettingMenu();
+    $("[id='" + menuItemSelector + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public ChangePasswordPage openChangePasswordPage() {
+    clickUserMenuItem("change-password-menu-item");
+    return new ChangePasswordPage();
+  }
+
+  public ProjectVersionPage openProjectVersionPage() {
+    clickUserMenuItem("project-info-menu-item");
+    return new ProjectVersionPage();
+  }
+
+  public UserProfilePage openMyProfilePage() {
+    clickUserMenuItem("user-profile");
+    return new UserProfilePage();
+  }
+
+  public AbsencePage openAbsencePage() {
+    clickUserMenuItem("absence-menu-item");
+    return new AbsencePage();
+  }
+
+  public WebDriver getDriver() {
+    return WebDriverRunner.getWebDriver();
+  }
+
+  public int countBrowserTab() {
+    return getDriver().getWindowHandles().size();
+  }
+
+  public void waitForNewTabOpen() {
+    new WebDriverWait(WebDriverRunner.getWebDriver(), Duration.ofSeconds(30)).until(ExpectedConditions.numberOfWindowsToBe(2));
   }
 
 }

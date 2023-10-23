@@ -48,12 +48,13 @@
         </li>
         <li class="topbar-item">
           <p:commandLink id="open-notifications-panel" global="false" update="#{p:resolveFirstComponentWithId('has-notifications', view).clientId}"
-          actionListener="#{notificationBean.setRender(true)}" oncomplete="openNotificationPanel()" >
+          actionListener="#{notificationBean.setRender(true)}" onclick="openNotificationPanel()" >
             <i class="topbar-icon pi pi-bell" />
-            <div class="notifications-badge">
+            <h:panelGroup class="notifications-badge" id="topbar-unread-notifications-container">
               <h:outputText id="topbar-unread-notifications"
                 value="#{notificationBean.getUnreadNotifications()}" />
-            </div>
+              <input type="hidden" id="notifications-badge-value" value="#{notificationBean.countUnread}"/>  
+            </h:panelGroup>
           </p:commandLink>
         </li>
         <li jsf:rendered="#{chatRendererBean.isChatRendered}" class="topbar-item chat-item">

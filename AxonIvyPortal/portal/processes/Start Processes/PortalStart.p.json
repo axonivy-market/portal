@@ -3620,9 +3620,10 @@
       "type" : "DialogCall",
       "name" : "ProcessViewer",
       "config" : {
-        "dialog" : "ch.ivy.addon.portal.generic.ProcessViewer:start(Long,String)",
+        "dialog" : "ch.ivy.addon.portal.generic.ProcessViewer:start(Long,Long,String)",
         "call" : {
           "map" : {
+            "param.taskId" : "in.taskId",
             "param.caseId" : "in.caseId",
             "param.processId" : "in.processId"
           }
@@ -3644,11 +3645,13 @@
         "input" : {
           "params" : [
             { "name" : "caseId", "type" : "Long", "desc" : "" },
-            { "name" : "processKey", "type" : "String", "desc" : "" }
+            { "name" : "processKey", "type" : "String", "desc" : "" },
+            { "name" : "selectedTaskId", "type" : "Long", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.caseId",
-            "out.processId" : "param.processKey"
+            "out.processId" : "param.processKey",
+            "out.taskId" : "param.selectedTaskId"
           }
         },
         "request" : {
@@ -4508,6 +4511,132 @@
       "connect" : [
         { "id" : "f244", "to" : "f254" },
         { "id" : "f245", "to" : "f223" }
+      ]
+    }, {
+      "id" : "S92",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S92-f256",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S92-f1" : "in.isAuthorized"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 320, "y" : 144 },
+            "labelOffset" : { "x" : 24, "y" : -16 }
+          },
+          "connect" : [
+            { "id" : "S92-f1", "to" : "S92-g1", "label" : {
+                "name" : "Yes"
+              } },
+            { "id" : "S92-f259", "to" : "S92-f258", "label" : {
+                "name" : "No"
+              } }
+          ]
+        }, {
+          "id" : "S92-f258",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 320, "y" : 224 }
+          }
+        }, {
+          "id" : "S92-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 144 }
+          },
+          "parentConnector" : "f258",
+          "connect" : [
+            { "id" : "S92-f3", "to" : "S92-f2" }
+          ]
+        }, {
+          "id" : "S92-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 456, "y" : 144 }
+          },
+          "parentConnector" : "f266"
+        }, {
+          "id" : "S92-f2",
+          "type" : "Script",
+          "name" : "Init isAuthorized",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.util.PermissionUtils;",
+                "in.isAuthorized = PermissionUtils.hasDashboardWriteOwnPermission()",
+                "  || PermissionUtils.hasDashboardWritePublicPermission();"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 192, "y" : 144 }
+          },
+          "connect" : [
+            { "id" : "S92-f0", "to" : "S92-f256" }
+          ]
+        } ],
+      "visual" : {
+        "at" : { "x" : 200, "y" : 3736 }
+      },
+      "connect" : [
+        { "id" : "f266", "to" : "f247" }
+      ]
+    }, {
+      "id" : "f246",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 592, "y" : 3736 }
+      }
+    }, {
+      "id" : "f247",
+      "type" : "DialogCall",
+      "name" : "PortalDashboardConfiguration",
+      "config" : {
+        "dialog" : "ch.ivy.addon.portal.generic.dashboard.PortalDashboardConfiguration:PortalDashboadConfigurationEditPage(Boolean)",
+        "call" : {
+          "map" : {
+            "param.isPublicDashBoard" : "in.isPublicDashboard"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 416, "y" : 3736 },
+        "size" : { "width" : 256, "height" : 60 }
+      },
+      "connect" : [
+        { "id" : "f250", "to" : "f246" }
+      ]
+    }, {
+      "id" : "f248",
+      "type" : "RequestStart",
+      "name" : "PortalDashboardConfigurationEditPage.ivp",
+      "config" : {
+        "signature" : "PortalDashboardConfigurationEditPage",
+        "input" : {
+          "params" : [
+            { "name" : "isPublicDashboard", "type" : "Boolean", "desc" : "" }
+          ],
+          "map" : {
+            "out.isPublicDashboard" : "param.isPublicDashboard"
+          }
+        },
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 3736 },
+        "labelOffset" : { "x" : -55, "y" : 33 }
+      },
+      "connect" : [
+        { "id" : "f258", "to" : "S92" }
       ]
     } ]
 }

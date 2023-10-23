@@ -420,4 +420,33 @@ public class CaseWidgetPage extends TemplatePage {
     return steps.asFixedIterable().stream().map(WebElement::getText).collect(Collectors.toList());
   }
 
+  public SelenideElement openActionStepMenu(int index) {
+    String menuSelector = String.format("[id='case-widget:case-list-scroller:%d:case-item:case-item-action-form:action-step-component:action-steps-menu']", index);
+    String menuPanelSelector = String.format("[id='case-widget:case-list-scroller:%d:case-item:case-item-action-form:action-step-component:action-steps-panel']", index);
+    $(menuSelector).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return $(menuPanelSelector).shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void openAdditionalCaseDetails(SelenideElement actionMenu) {
+    actionMenu.$("[id$=':show-additional-case-details-link']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public SelenideElement getSaveFilterDialog() {
+    $(By.id(caseWidgetId + ":filter-save-action")).shouldBe(getClickableCondition()).click();
+    $(By.id(caseWidgetId + ":filter-save-form:save-filter-set-name-input")).shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    return $(By.id(caseWidgetId + ":save-filter-set-dialog")).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public CaseDetailsPage openDetailsOfCaseHasName(String caseName) {
+    List<SelenideElement> caseItems = $$(CASE_ITEM_LIST_SELECTOR);
+    for (SelenideElement caseItem : caseItems) {
+      System.out.println(caseItem.findElement(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText());
+      if (caseItem.findElement(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText().equals(caseName)) {
+        caseItem.findElement(By.cssSelector("span[id*='case-info-row']")).click();
+        return new CaseDetailsPage();
+      }
+    }
+    throw new NoSuchElementException("Cannot find case has name " + caseName);
+  }
+
 }

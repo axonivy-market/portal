@@ -40,7 +40,7 @@ public class DashboardModificationPage extends TemplatePage {
   public NewDashboardDetailsEditPage navigateToEditDashboardDetailsByName(String dashboardName) {
     SelenideElement dashboardRow = getDashboardRowByName(dashboardName);
     if (dashboardRow != null) {
-      dashboardRow.$("[id$=':configure-dashboard']").click();
+      dashboardRow.$("button[id$='dashboard-modification-component:dashboard-table:0:configure-dashboard']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
       NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
       return newDashboardDetailsEditPage;
     }

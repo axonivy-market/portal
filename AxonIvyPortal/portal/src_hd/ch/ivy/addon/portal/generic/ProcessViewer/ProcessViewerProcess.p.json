@@ -8,17 +8,19 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
-      "name" : "start(Long,String)",
+      "name" : "start(Long,Long,String)",
       "config" : {
         "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long", "desc" : "" },
-            { "name" : "processId", "type" : "String", "desc" : "" }
+            { "name" : "taskId", "type" : "Long" },
+            { "name" : "caseId", "type" : "Long" },
+            { "name" : "processId", "type" : "String" }
           ],
           "map" : {
             "out.caseId" : "param.caseId",
-            "out.processId" : "param.processId"
+            "out.processId" : "param.processId",
+            "out.taskId" : "param.taskId"
           }
         },
         "guid" : "17FABECA5A299E70"
@@ -62,9 +64,13 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
             "import ch.ivy.addon.portalkit.util.CaseUtils;",
             "",
-            "in.selectedCase = CaseUtils.findCase(in.caseId);"
+            "in.selectedCase = CaseUtils.findCase(in.caseId);",
+            "if(in.taskId != 0) {",
+            "  in.selectedTask = TaskUtils.findTaskById(in.taskId);",
+            "}"
           ]
         },
         "sudo" : true
