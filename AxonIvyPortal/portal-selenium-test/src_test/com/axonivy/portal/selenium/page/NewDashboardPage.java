@@ -920,4 +920,16 @@ public class NewDashboardPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("span[id$='server-infor']"), true, 5);
     return $("span[id$='server-infor']").getText();
   }
+
+  public boolean checkNameOfLoggedInUserFormat(String name) {
+    return $("[id='user-settings-menu']").shouldBe(appear, DEFAULT_TIMEOUT).$(".name-after-avatar").shouldBe(appear, DEFAULT_TIMEOUT).is(Condition.text(name));
+  }
+
+  public boolean isSwitchThemeToLightModeLinkIconDisplayed() {
+    return $("[id='theme-switcher']").shouldBe(appear, DEFAULT_TIMEOUT).$(".topbar-icon.pi.pi-sun").is(appear);
+  }
+
+  public boolean isSwitchThemeLinkIconDisabled() {
+    return $("[id='theme-switcher']").shouldBe(appear, DEFAULT_TIMEOUT).is(Condition.cssClass("ui-state-disabled"));
+  }
 }

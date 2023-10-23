@@ -42,12 +42,11 @@ public class CaseDetailsPage extends TemplatePage {
   private static final String RELATED_CASES = "Related Cases";
   private static final String RELATED_TASKS_OF_CASES = "Related Tasks of Case";
   private static final String HISTORY = "History";
-  public static final String CLASS_PROPERTY = "class";
   private SelenideElement caseItem;
 
   @Override
   protected String getLoadedLocator() {
-    return ".js-layout-content";
+    return "#time-information";
   }
 
   public CaseDetailsPage() {
@@ -75,6 +74,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void addNote(String noteContent) {
     $("a[id$=':case-histories:add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("a[id$=':case-histories:add-note-command']").click();
     $("div[id$=':case-histories:add-note-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("div[id$=':case-histories:add-note-dialog']").find("textarea").sendKeys(noteContent);
     $("button[id$=':case-histories:add-note-form:save-add-note-command']").click();
@@ -532,20 +532,6 @@ public class CaseDetailsPage extends TemplatePage {
     // waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
-//  public void drapAndDropWidgets(String sourceName, String destinationName) {
-//    waitForElementDisplayed(By.cssSelector(String.format("[id='case-details-%s-panel']", sourceName)), true);
-//    WebElement sourceElement = findElementByCssSelector(String.format("[id='case-details-%s-panel']", sourceName));
-//    waitForElementDisplayed(By.cssSelector(String.format("[id='case-details-%s-panel']", destinationName)), true);
-//    WebElement destinationElement = findElementByCssSelector(String.format("[id='case-details-%s-panel']", destinationName));
-//    Actions actions = new Actions(WebDriverRunner.getWebDriver());
-//    Action moveWidget = actions.dragAndDrop(sourceElement, destinationElement).build();
-//    moveWidget.perform();
-//    WaitHelper.assertTrueWithWait(() -> {
-//      var caseDetails = findElementByCssSelector("[id$=':case-details-container:case-details-widgets']");
-//      return !caseDetails.getAttribute(CLASS_PROPERTY).contains("ui-droppable-over");
-//    });
-//  }
-
   public void waitForResetButtonDisplayed() {
     waitForElementDisplayed(By.cssSelector("[id$=':reset-details-settings-button']"), true);
   }
@@ -774,7 +760,9 @@ public class CaseDetailsPage extends TemplatePage {
     if (isRole) {
       waitForElementDisplayed(By.cssSelector("[id$=':task-delegate-form:activator-type-select']"), true);
       waitForElementEnabled(By.cssSelector("[id$=':task-delegate-form:activator-type-select:1']"), true);
+      waitForElementClickable($(By.cssSelector("[id$=':task-delegate-form:activator-type-select:1']")));
       waitForElementClickableThenClick($("[for$=':task-delegate-form:activator-type-select:1']"));
+//      waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
       waitAjaxIndicatorDisappear();
       waitForElementDisplayed(By.cssSelector("input[id$='group-activator-select_input']"), true);
       $(By.cssSelector("input[id$='group-activator-select_input']")).sendKeys(responsibleName);
@@ -896,6 +884,10 @@ public class CaseDetailsPage extends TemplatePage {
     return $$("a[id$='download']");
   }
 
+  public boolean checkCaseName(String name) {
+    ElementsCollection breadcrumbs = $("[id='breadcrumb-container']").shouldBe(appear, DEFAULT_TIMEOUT).$("ol.ui-breadcrumb-items").$$("li");
+    return breadcrumbs.get(breadcrumbs.size() - 1).is(Condition.text("Case: " + name));
+  }
   public void clickCaseListBreadCrumb() {
     waitForElementClickableThenClick($((By.cssSelector(".portal-breadcrumb ol li:nth-of-type(2) .ui-menuitem-link"))));
   }
@@ -960,5 +952,4 @@ public class CaseDetailsPage extends TemplatePage {
     var steps = $$(panelId + " a.action-step-item");
     return steps.asFixedIterable().stream().map(WebElement::getText).collect(Collectors.toList());
   }
-
 }
