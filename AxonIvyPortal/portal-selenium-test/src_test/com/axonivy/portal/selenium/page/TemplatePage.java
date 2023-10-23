@@ -29,6 +29,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.conditions.Not;
 
 public abstract class TemplatePage extends AbstractPage {
   protected static final String LAYOUT_WRAPPER = ".layout-wrapper";
@@ -151,6 +152,14 @@ public abstract class TemplatePage extends AbstractPage {
     waitForElementClickable(element).click();
   }
 
+  public void waitForElementPresent(By element, boolean expected) {
+    if (expected) {
+      $(element).shouldBe(exist, DEFAULT_TIMEOUT);
+    } else {
+      $(element).shouldBe(Not.exist, DEFAULT_TIMEOUT);
+    }
+  }
+
   public boolean isElementPresent(By element) {
     return $(element).is(visible);
   }
@@ -168,6 +177,8 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void openUserSettingMenu() {
+
+  }
   public void waitAjaxIndicatorDisappear() {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(new ExpectedCondition<Boolean>() {
       public Boolean apply(WebDriver wdriver) {
@@ -187,10 +198,10 @@ public abstract class TemplatePage extends AbstractPage {
     $("span.ui-growl-title").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
-  public LoginPage clickOnLogout() {
-    $("[id='user-settings-menu']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("[id='user-setting-container']").shouldBe(appear, DEFAULT_TIMEOUT);
-  }
+//  public LoginPage clickOnLogout() {
+//    $("[id='user-settings-menu']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+//    $("[id='user-setting-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+//  }
 
   public LoginPage clickOnLogout() {
     openUserSettingMenu();
@@ -199,10 +210,10 @@ public abstract class TemplatePage extends AbstractPage {
     return new LoginPage();
   }
 
-  public AbsencePage openAbsencePage() {
-    clickUserMenuItem("absence-menu-item");
-    return new AbsencePage();
-  }
+//  public AbsencePage openAbsencePage() {
+//    clickUserMenuItem("absence-menu-item");
+//    return new AbsencePage();
+//  }
 
   private void clickUserMenuItem(String menuItemSelector) {
     waitForElementClickableThenClick("[id='user-settings-menu']");
@@ -229,10 +240,10 @@ public abstract class TemplatePage extends AbstractPage {
     }
   }
 
-  public AdminSettingsPage openAdminSettings() {
-    clickUserMenuItem("adminui-menu-item");
-    return new AdminSettingsPage();
-  }
+//  public AdminSettingsPage openAdminSettings() {
+//    clickUserMenuItem("adminui-menu-item");
+//    return new AdminSettingsPage();
+//  }
 
   public MainMenuPage openMainMenu() {
     if (!isMainMenuOpen()) {
@@ -247,11 +258,11 @@ public abstract class TemplatePage extends AbstractPage {
     return mainMenu.getAttribute(CLASS_PROPERTY).indexOf("static") > 0;
   }
 
-  public UserProfilePage openMyProfilePage() {
-    clickUserMenuItem("user-profile");
-    waitAjaxIndicatorDisappear();
-    return new UserProfilePage();
-  }
+//  public UserProfilePage openMyProfilePage() {
+//    clickUserMenuItem("user-profile");
+//    waitAjaxIndicatorDisappear();
+//    return new UserProfilePage();
+//  }
 
   public void clickOnMyProfile() {
     waitForElementClickableThenClick("[id='user-settings-menu']");
@@ -340,9 +351,9 @@ public abstract class TemplatePage extends AbstractPage {
 
   }
 
-  public int countBrowserTab() {
-    return driver.getWindowHandles().size();
-  }
+//  public int countBrowserTab() {
+//    return driver.getWindowHandles().size();
+//  }
 
   public TaskWidgetPage selectTaskMenu() {
     WaitHelper.waitForNavigation(() -> $(".layout-menu li[role='menuitem'] a.TASK").click());
@@ -416,10 +427,10 @@ public abstract class TemplatePage extends AbstractPage {
     WaitHelper.waitAttributeToBe(WebDriverRunner.getWebDriver(), By.id("ajax-indicator:ajax-indicator-ajax-indicator_start"), "display", "none");
   }
 
-  private void clickUserMenuItem(String menuItemSelector) {
-    openUserSettingMenu();
-    $("[id='" + menuItemSelector + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-  }
+//  private void clickUserMenuItem(String menuItemSelector) {
+//    openUserSettingMenu();
+//    $("[id='" + menuItemSelector + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+//  }
 
   public ChangePasswordPage openChangePasswordPage() {
     clickUserMenuItem("change-password-menu-item");

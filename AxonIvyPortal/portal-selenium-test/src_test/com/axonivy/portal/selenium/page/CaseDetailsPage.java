@@ -23,7 +23,6 @@ import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
@@ -211,34 +210,30 @@ public class CaseDetailsPage extends TemplatePage {
     return result.shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  public void onClickHistoryIcon() {
-    $("a[id$=':case-histories:add-note-command']").shouldBe(getClickableCondition()).click();
-  }
-
   public void openAddAttachmentDialog() {
     $("a[id$='add-document-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     getAddAttachmentDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $("[id$='document:document-upload-dialog_title']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
-  public SelenideElement getAddAttachmentDialog() {
-    return $("[id$='document:document-upload-dialog']");
-  }
+//  public SelenideElement getAddAttachmentDialog() {
+//    return $("[id$='document:document-upload-dialog']");
+//  }
 
-  public void uploadDocumentWithoutError(String pathToFile) {
-    Sleeper.sleep(500);
-    uploadDocumentByPath(pathToFile);
-    $("span[class$='ui-messages-info-summary']").shouldBe(appear, DEFAULT_TIMEOUT);
-    $("button[id$=':document-upload-close-command']").shouldBe(getClickableCondition()).click();
-  }
+//  public void uploadDocumentWithoutError(String pathToFile) {
+//    Sleeper.sleep(500);
+//    uploadDocumentByPath(pathToFile);
+//    $("span[class$='ui-messages-info-summary']").shouldBe(appear, DEFAULT_TIMEOUT);
+//    $("button[id$=':document-upload-close-command']").shouldBe(getClickableCondition()).click();
+//  }
 
   private void uploadDocumentByPath(String path) {
     $("input[id$='document-upload-panel_input']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).sendKeys(path);
   }
-
-  public void closeUploadDocumentDialog() {
-    $(By.cssSelector("button[id$='document:document-upload-close-command']")).shouldBe(getClickableCondition()).click();
-  }
+//
+//  public void closeUploadDocumentDialog() {
+//    $(By.cssSelector("button[id$='document:document-upload-close-command']")).shouldBe(getClickableCondition()).click();
+//  }
 
   public SelenideElement getDocumentBox() {
     return $("[id$='case-details-document-card']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
@@ -253,10 +248,10 @@ public class CaseDetailsPage extends TemplatePage {
     $(By.cssSelector("div[id$='document-deletion-dialog']")).shouldBe(appear, DEFAULT_TIMEOUT);
     return $("div[id$='document-deletion-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
-
-  public void showNoteHistory() {
-    $("a[id$='show-more-note-link']").shouldBe(getClickableCondition()).click();
-  }
+//
+//  public void showNoteHistory() {
+//    $("a[id$='show-more-note-link']").shouldBe(getClickableCondition()).click();
+//  }
 
   public void waitForShowNoteHistory() {
     $(".note-history-container").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
@@ -293,14 +288,14 @@ public class CaseDetailsPage extends TemplatePage {
     return $("[id$=':reset-details-settings-button']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
   }
 
-  public void switchToEditMode() {
-    $(By.cssSelector("[id$=':switch-to-edit-mode-button']")).shouldBe(getClickableCondition()).click();
-    $("[id$='case-details-information-panel']").shouldBe(Condition.visible, DEFAULT_TIMEOUT).shouldHave(Condition.attribute(CLASS_PROPERTY, "grid-stack-item ui-draggable ui-resizable ui-resizable-autohide"));
-  }
-
-  public void waitForSaveButtonDisplayed() {
-    $(By.cssSelector("[id$=':switch-to-view-mode-button']")).shouldBe(Condition.visible, DEFAULT_TIMEOUT);
-  }
+//  public void switchToEditMode() {
+//    $(By.cssSelector("[id$=':switch-to-edit-mode-button']")).shouldBe(getClickableCondition()).click();
+//    $("[id$='case-details-information-panel']").shouldBe(Condition.visible, DEFAULT_TIMEOUT).shouldHave(Condition.attribute(CLASS_PROPERTY, "grid-stack-item ui-draggable ui-resizable ui-resizable-autohide"));
+//  }
+//
+//  public void waitForSaveButtonDisplayed() {
+//    $(By.cssSelector("[id$=':switch-to-view-mode-button']")).shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+//  }
 
   public void drapAndDropWidgets(String sourceName, String destinationName) {
     $(By.cssSelector(String.format("[id='case-details-%s-panel']", sourceName))).shouldBe(Condition.visible, DEFAULT_TIMEOUT);
@@ -312,14 +307,14 @@ public class CaseDetailsPage extends TemplatePage {
     moveWidget.perform();
     $("[id$=':case-details-container:case-details-widgets']").shouldBe(Condition.visible, DEFAULT_TIMEOUT).$(".ui-droppable-over").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
-
-  public void saveAndSwitchToViewMode() {
-    $(By.cssSelector("[id$=':switch-to-view-mode-button']")).shouldBe(getClickableCondition()).click();
-  }
-
-  public void resetToDefault() {
-    $(By.cssSelector("[id$=':reset-details-settings-button']")).shouldBe(getClickableCondition()).click();
-  }
+//
+//  public void saveAndSwitchToViewMode() {
+//    $(By.cssSelector("[id$=':switch-to-view-mode-button']")).shouldBe(getClickableCondition()).click();
+//  }
+//
+//  public void resetToDefault() {
+//    $(By.cssSelector("[id$=':reset-details-settings-button']")).shouldBe(getClickableCondition()).click();
+//  }
 
   public boolean isCaseDescriptionChangeComponentPresented(int caseIndex) {
     return isElementPresent(By.id(String.format("case-widget:case-list-scroller:%d:case-item:case-body:case-description-input", caseIndex)));
@@ -537,19 +532,19 @@ public class CaseDetailsPage extends TemplatePage {
     // waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
-  public void drapAndDropWidgets(String sourceName, String destinationName) {
-    waitForElementDisplayed(By.cssSelector(String.format("[id='case-details-%s-panel']", sourceName)), true);
-    WebElement sourceElement = findElementByCssSelector(String.format("[id='case-details-%s-panel']", sourceName));
-    waitForElementDisplayed(By.cssSelector(String.format("[id='case-details-%s-panel']", destinationName)), true);
-    WebElement destinationElement = findElementByCssSelector(String.format("[id='case-details-%s-panel']", destinationName));
-    Actions actions = new Actions(WebDriverRunner.getWebDriver());
-    Action moveWidget = actions.dragAndDrop(sourceElement, destinationElement).build();
-    moveWidget.perform();
-    WaitHelper.assertTrueWithWait(() -> {
-      var caseDetails = findElementByCssSelector("[id$=':case-details-container:case-details-widgets']");
-      return !caseDetails.getAttribute(CLASS_PROPERTY).contains("ui-droppable-over");
-    });
-  }
+//  public void drapAndDropWidgets(String sourceName, String destinationName) {
+//    waitForElementDisplayed(By.cssSelector(String.format("[id='case-details-%s-panel']", sourceName)), true);
+//    WebElement sourceElement = findElementByCssSelector(String.format("[id='case-details-%s-panel']", sourceName));
+//    waitForElementDisplayed(By.cssSelector(String.format("[id='case-details-%s-panel']", destinationName)), true);
+//    WebElement destinationElement = findElementByCssSelector(String.format("[id='case-details-%s-panel']", destinationName));
+//    Actions actions = new Actions(WebDriverRunner.getWebDriver());
+//    Action moveWidget = actions.dragAndDrop(sourceElement, destinationElement).build();
+//    moveWidget.perform();
+//    WaitHelper.assertTrueWithWait(() -> {
+//      var caseDetails = findElementByCssSelector("[id$=':case-details-container:case-details-widgets']");
+//      return !caseDetails.getAttribute(CLASS_PROPERTY).contains("ui-droppable-over");
+//    });
+//  }
 
   public void waitForResetButtonDisplayed() {
     waitForElementDisplayed(By.cssSelector("[id$=':reset-details-settings-button']"), true);

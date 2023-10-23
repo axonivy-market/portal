@@ -14,7 +14,7 @@ import com.axonivy.portal.selenium.page.AnnouncementPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class AnnouncementTest extends BaseTest {
   @Override
   @BeforeEach

@@ -126,17 +126,6 @@ public class CaseWidgetPage extends TemplatePage {
     return $$(CASE_ITEM_LIST_SELECTOR);
   }
 
-  public CaseDetailsPage openDetailsOfCaseHasName(String caseName) {
-    List<SelenideElement> caseItems = $$(CASE_ITEM_LIST_SELECTOR);
-    for (SelenideElement caseItem : caseItems) {
-      if (caseItem.findElement(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText().equals(caseName)) {
-        caseItem.findElement(By.cssSelector("span[id*='case-info-row']")).click();
-        return new CaseDetailsPage();
-      }
-    }
-    throw new NoSuchElementException("Cannot find case has name " + caseName);
-  }
-
   public CaseState getCaseState(int caseIndex) {
     List<SelenideElement> caseStateCells = $$("span[id$=':case-state-cell']");
     String stateClass = caseStateCells.get(caseIndex).findElement(By.className("case-state")).getAttribute("class");
@@ -180,12 +169,6 @@ public class CaseWidgetPage extends TemplatePage {
     waitForElementClickableThenClick($(By.id(caseWidgetId + ":filter-save-form:filter-save-command")));
     waitAjaxIndicatorDisappear();
     // ensureNoBackgroundRequest();
-  }
-
-  public WebElement getSaveFilterDialog() {
-    waitForElementClickableThenClick($(By.id(caseWidgetId + ":filter-save-action")));
-    waitForElementDisplayed(By.id(caseWidgetId + ":filter-save-form:save-filter-set-name-input"), true);
-    return findElementById(caseWidgetId + ":save-filter-set-dialog");
   }
 
   public String getFilterName() {

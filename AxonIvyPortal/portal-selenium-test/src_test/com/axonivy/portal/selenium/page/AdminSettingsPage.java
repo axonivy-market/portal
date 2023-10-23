@@ -1,6 +1,5 @@
 package com.axonivy.portal.selenium.page;
 
-
 import static com.axonivy.portal.selenium.common.Variable.CLIENT_SIDE_TIMEOUT;
 import static com.axonivy.portal.selenium.common.Variable.GLOBAL_FOOTER_INFO;
 import static com.codeborne.selenide.Selenide.$;
@@ -13,6 +12,7 @@ import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
+import com.codeborne.selenide.Condition;
 
 public class AdminSettingsPage extends TemplatePage {
 
@@ -117,14 +117,12 @@ public class AdminSettingsPage extends TemplatePage {
     return new AnnouncementPage();
   }
 
-//  @SuppressWarnings("deprecation")
-//  public ExpressManagementPage openExpressManagementTab() {
-//    WebElement settingTabLink = findElementByXpath("//a[@href='#admin-setting-component:adminTabView:express-management-tab']");
-//    click(settingTabLink);
-//    waitForElementPresent(By.id("admin-setting-component:adminTabView:express-management-tab"), true);
-//    waitAjaxIndicatorDisappear();
-//    return new ExpressManagementPage();
-//  }
+  public ExpressManagementPage openExpressManagementTab() {
+    waitForElementClickableThenClick($(By.xpath(("//a[@href='#admin-setting-component:adminTabView:express-management-tab']"))));
+    waitForElementPresent(By.id("admin-setting-component:adminTabView:express-management-tab"), true);
+    waitAjaxIndicatorDisappear();
+    return new ExpressManagementPage();
+  }
 
   public RoleManagementPage openRoleManagementTab() {
     waitForElementDisplayed(By.cssSelector("[id$='admin-setting-component:adminTabView']"), true);
@@ -162,7 +160,18 @@ public class AdminSettingsPage extends TemplatePage {
   public WebElement getEditSettingDialogOfFirstRow() {
     waitForElementClickableThenClick($(By.id("admin-setting-component:adminTabView:settingTable:0:edit")));
     waitForElementDisplayed(By.id("admin-setting-component:settingDialog"), true);
-    Sleeper.sleep(300);//Wait a bit focus effects, just only use this for capture screenshot
+    Sleeper.sleep(300);// Wait a bit focus effects, just only use this for capture screenshot
     return findElementById("admin-setting-component:settingDialog");
   }
+
+  public void closeAddApplicationDialog() {
+    $("[id='admin-setting-component:appDialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("a.ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id='admin-setting-component:appDialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  public void closeEditSettingDialog() {
+    $("[id='admin-setting-component:settingDialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("a.ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id='admin-setting-component:settingDialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
 }
