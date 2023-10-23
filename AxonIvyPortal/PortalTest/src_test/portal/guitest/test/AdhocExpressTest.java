@@ -75,6 +75,7 @@ public class AdhocExpressTest extends BaseTest {
     defaultExpressTaskPage = new DefaultExpresTaskPage();
     defaultExpressTaskPage.enterTextToDefaultTask(defaultTaskComment2);
     defaultExpressTaskPage.finishDefaultTask();
+    new TaskWidgetPage();
     
     //check if task Maternity task
     taskWidgetPage = NavigationHelper.navigateToTaskList();

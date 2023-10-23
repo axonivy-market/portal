@@ -429,6 +429,7 @@ public class PortalExpressTest extends BaseTest {
 		userTaskWithMailFormPage.selectEmailTab();
 		userTaskWithMailFormPage.inputData("wawa@axongroupio.ch", "Task information", "Task is created");
 		userTaskWithMailFormPage.finish();
+    new NewDashboardPage();
     executeApproval("Approved at first level", 0);
 		executeUserTask();
 		String approvalResult = executeReview("Test approval: Final Review");
