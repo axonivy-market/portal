@@ -48,6 +48,10 @@ public final class WaitHelper {
     wait(dirver).until(ExpectedConditions.attributeToBe(selector, attribute, value));
   }
 
+  public static void waitAttributeContains(WebDriver dirver, By selector, String attribute, String value) {
+    wait(dirver).until(ExpectedConditions.attributeContains(selector, attribute, value));
+  }
+
   public static WebDriverWait wait(WebDriver driver) {
     return new WebDriverWait(driver, DEFAULT_TIMEOUT);
   }
