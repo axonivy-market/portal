@@ -9,6 +9,7 @@
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle')}</ui:define>
     <ui:define name="pageContent">
       <f:event listener="#{logic.initSettings}" type="preRenderComponent" />
+      <f:event listener="#{userProfileBean.init}" type="preRenderComponent" />
 
       <h:form id="my-profile-form" styleClass="my-profile-form ">
         <div id="my-profile-container" class="ui-g my-profile-container">
@@ -145,12 +146,12 @@
                 </div>
               </div>
 
-<!--               Email Setting -->
-              <div id="email-setting-container" class="email-setting-container ui-g-12">
+<!--               Notification Channels -->
+              <div id="notification-channels" class="ui-g-12">
                 <div class="ui-g-12 u-no-padding-top">
                   <div class="card">
-                    <h:form id="notificationsForm">
-                      <p:growl for="notificationMessage">
+                    <h:form id="notifications-Form">
+                      <p:growl for="notification-Message">
                         <p:autoUpdate />
                       </p:growl>
                       <div class="card-header">
@@ -158,20 +159,20 @@
                         <div class="setting-header ui-g-12">
                         <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/notificationChannels')}</h2>
                         </div>
-                        <p:commandButton id="reset" actionListener="#{notificationChannelBean.reset}"
+                        <p:commandButton id="reset" actionListener="#{logic.resetNotification()"
                           title="Reset to default" icon="si si-undo"
-                          styleClass="p-col-fixed p-ml-auto ui-button-danger rounded-button" update="notificationsForm" />
+                          styleClass="p-col-fixed p-ml-auto ui-button-danger rounded-button" update="my-profile-form:notifications-Form" />
                       </div>
 
                       <p:dataTable paginator="true" rows="10" paginatorPosition="bottom" paginatorAlwaysVisible="false"
-                        var="event" value="#{notificationChannelBean.events}" id="notificationChannelsTable"
+                        var="event" value="#{userProfileBean.notificationChannelService.events}" id="notification-Channels-Table"
                         lazy="false" styleClass="ui-fluid">
 
                         <p:column headerText="Event" sortBy="#{event}">
                           <h:outputText value="#{event}" />
                         </p:column>
 
-                        <p:columns id="channels" var="channel" value="#{notificationChannelBean.channels}"
+                        <p:columns id="channels" var="channel" value="#{userProfileBean.notificationChannelService.channels}"
                           style="text-align: center">
                           <f:facet name="header">
                             <h:outputText value="#{channel.channel.displayName()}">
@@ -181,9 +182,9 @@
 
                           <c:set var="subscription" value="#{channel.getSubscription(event)}" />
                           <i class="si table-icon si-#{subscription.icon} subscription-icon"
-                            title="#{subscription.title}" style="padding-right: 10px; vertical-align: top" />
+                            title="#{subscription.title}" />
                           <p:triStateCheckbox id="subscriptionCheckbox" value="#{subscription.stateAsString}">
-                            <p:ajax event="change" update="notificationsForm"
+                            <p:ajax event="change" update="my-profile-form:notifications-Form"
                               listener="#{channel.setSubscriptionIconAndTitle(event)}" />
                           </p:triStateCheckbox>
                         </p:columns>

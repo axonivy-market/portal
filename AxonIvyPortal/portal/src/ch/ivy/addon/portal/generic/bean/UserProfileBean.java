@@ -16,9 +16,11 @@ import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.SortDirection;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
+import ch.ivy.addon.portalkit.ivydata.service.impl.NotificationChannelService;
 import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 
 @ManagedBean
@@ -27,7 +29,15 @@ public class UserProfileBean implements Serializable {
   private static final String DEFAULT_OPTION = "/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption";
   private static final long serialVersionUID = 4952280551311826903L;
   private static final String DEFAULT = UserSettingService.DEFAULT;
+  private NotificationChannelService notificationChannelService;
+  private ISecurityContext securityContext;
+  private IUser user;
   
+  public void init() {
+    securityContext = ISecurityContext.current();
+    user = Ivy.session().getSessionUser();
+    notificationChannelService = NotificationChannelService.instance(user, securityContext);
+  }
   public void saveHomepage(String homepageName) {
     IUser user = Ivy.session().getSessionUser();
     if (StringUtils.isBlank(homepageName)) {
@@ -94,4 +104,15 @@ public class UserProfileBean implements Serializable {
     return Ivy.cms().co(DEFAULT_OPTION, Arrays.asList(sortFieldName));
   }
 
+  public NotificationChannelService getNotificationChannelService() {
+    return notificationChannelService;
+  }
+
+  public void setNotificationChannelService(NotificationChannelService notificationChannelService) {
+    this.notificationChannelService = notificationChannelService;
+  }
+
+  public UserProfileBean(NotificationChannelService notificationChannelService) {
+    this.notificationChannelService = notificationChannelService;
+  }
 }
