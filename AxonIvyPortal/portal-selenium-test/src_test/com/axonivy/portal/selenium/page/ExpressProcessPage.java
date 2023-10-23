@@ -122,4 +122,8 @@ public class ExpressProcessPage extends TemplatePage {
   public void waitUntilExpressProcessDisplay() {
     $("[id='form:process-setting-fieldset']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
+
+  public String getProcessName() {
+    return findElementById("form:process-name").getAttribute("value");
+  }
 }

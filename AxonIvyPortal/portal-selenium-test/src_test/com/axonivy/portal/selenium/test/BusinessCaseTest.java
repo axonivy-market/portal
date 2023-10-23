@@ -19,7 +19,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.TemplatePage.GlobalSearch;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class BusinessCaseTest extends BaseTest {
 
   private static final String TECHNICAL_CASE_NAME = "TECH: Update checkin time";

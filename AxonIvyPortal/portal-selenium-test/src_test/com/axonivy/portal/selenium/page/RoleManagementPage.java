@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.WaitHelper;
+import com.codeborne.selenide.Condition;
 
 public class RoleManagementPage extends TemplatePage {
 
@@ -215,5 +216,9 @@ public class RoleManagementPage extends TemplatePage {
       $$("a[id$=':delete-user-link']").get(index).click();
       removeUserOfRole(0);
     }
+  }
+
+  public WebElement getRoleCreationDialog() {
+    return $("[id='admin-setting-component:adminTabView:role-management-component:role-details-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 }
