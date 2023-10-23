@@ -319,6 +319,11 @@ public class DashboardBean implements Serializable {
 
     if (widget.getType() == DashboardWidgetType.CASE) {
       CaseDashboardWidget caseWidget = ((CaseDashboardWidget) widget);
+
+      if (CollectionUtils.isEmpty(caseWidget.getUserFilters())) {
+        return;
+      }
+
       List<DashboardFilter> savedFilters = caseWidget.getUserFilterCollection()
           .getSelectedWidgetFilters().stream()
           .map(WidgetFilterModel::getUserFilters)
