@@ -27,6 +27,7 @@ public class TaskWidgetPage extends TemplatePage {
   private static final String CLASS = "class";
   private static final String KEYWORD_FILTER_SELECTOR_EXPANDED_MODE = "input[id='task-widget:expanded-mode-filter-form:expanded-mode-filter-container:ajax-keyword-filter']";
 
+  private static final String ID_END = "*[id$='";
   private static final String TASK_STATE_COMPONENT_ID = "task-widget:task-list-scroller:%d:task-item:task-state-component:task-state";
   private static final String TASK_ACTION = "horizontal-task-actions";
   public TaskWidgetPage() {
@@ -111,6 +112,12 @@ public class TaskWidgetPage extends TemplatePage {
     $("div[id$='task-widget:task-view-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  public void waitTillNameOfFirstTaskToBe(String name) {
+    $("div[id$='task-widget:task-view-container']").shouldBe(appear, DEFAULT_TIMEOUT)
+      .$("[id='task-widget:task-list-scroller:0:task-item:task-name-component:task-name']")
+      .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(Condition.text(name), DEFAULT_TIMEOUT);
+  }
+
   public void clickOnTaskActionLink(int taskIndex) {
     $(String.format("a[id$=':%d:task-item:task-action:additional-options:task-side-steps-menu']", taskIndex)).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $(String.format("div[id$=':%d:task-item:task-action:additional-options:side-steps-panel']", taskIndex)).shouldBe(appear, DEFAULT_TIMEOUT);
@@ -190,8 +197,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public String getRelatedCase() {
-    WebElement relatedCaseLink = findElementByCssSelector("a[id$='related-case']");
-    return relatedCaseLink.getText();
+    return findElementByCssSelector("a[id$='related-case']").shouldBe(appear, DEFAULT_TIMEOUT).getText();
   }
 
   public void filterTasksInExpandedModeBy(String keyword, int... expectedNumberOfTasksAfterFiltering) {
@@ -242,6 +248,11 @@ public class TaskWidgetPage extends TemplatePage {
     String reserveCommandButton = String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-action:additional-options:task-reserve-command", taskId);
 //    waitForElementDisplayed(By.id(reserveCommandButton), true);
     waitForElementClickableThenClick($(By.id(reserveCommandButton)));
+  }
+
+  public void resetTask(int taskId) {
+    String resetButton = String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-action:additional-options:task-reset-command", taskId);
+    waitForElementClickableThenClick($(By.id(resetButton)));
   }
 
   @SuppressWarnings("deprecation")
@@ -398,5 +409,82 @@ public class TaskWidgetPage extends TemplatePage {
     TaskDetailsPage detailsPage = new TaskDetailsPage();
     detailsPage.waitPageLoaded();
     return new TaskDetailsPage();
+  }
+
+  public CaseDetailsPage openRelatedCaseOfTask() {
+    WaitHelper.waitForNavigation(() -> {$("a[id$='related-case']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();});
+    return new CaseDetailsPage();
+  }
+
+  public boolean checkNameOfTaskAt(int index, String name) {
+    return $(ID_END + index + ":task-item:task-name-component:task-name']").shouldBe(appear, DEFAULT_TIMEOUT).is(Condition.text(name));
+  }
+
+  public boolean isReserveLinkDisabled(int taskId) {
+    return $(getReserveTaskLinkSelector(taskId)).shouldBe(appear, DEFAULT_TIMEOUT).is(Condition.disabled);
+  }
+
+  public String getReserveTaskLinkSelector(int taskId) {
+    String reserveCommandButton = String.format(
+        "task-widget:task-list-scroller:%d:task-item:task-action:additional-options:task-reserve-command", taskId);
+    return "[id='" + reserveCommandButton + "']";
+  }
+
+  public boolean checkTaskState(int index, String state) {
+    return getTaskState(index).is(Condition.cssClass(state));
+  }
+
+  public boolean isResetLinkDisabled(int taskId) {
+    return $(getResetTaskLinkSelector(taskId)).shouldBe(appear, DEFAULT_TIMEOUT).is(Condition.disabled);
+  }
+
+  private String getResetTaskLinkSelector(int taskId) {
+    return String.format("[id='task-widget:task-list-scroller:%s:task-item:task-action:additional-options:task-reset-command']", taskId);
+  }
+
+  public void isTaskEnabled(int index) {
+    getStartTaskElement(index).shouldBe(appear, DEFAULT_TIMEOUT).shouldNot(Condition.cssClass("ui-state-disabled"));
+  }
+
+  public void isTaskDisabled(int index) {
+    getStartTaskElement(index).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(Condition.cssClass("ui-state-disabled"));
+  }
+
+  private SelenideElement getStartTaskElement(int index) {
+    String startCommandButton =
+        String.format("task-widget:task-list-scroller:%d:task-item:task-action:task-action-component", index);
+    return $("[id='" + startCommandButton + "']");
+  }
+
+  public void isTaskDelegationEnabled(int index) {
+    getDelegateCommandElement(index).shouldBe(appear, DEFAULT_TIMEOUT).shouldNot(Condition.cssClass("ui-state-disabled"));
+  }
+
+  public void isTaskDelegationDisabled(int index) {
+    getDelegateCommandElement(index).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(Condition.cssClass("ui-state-disabled"));
+  }
+
+  private SelenideElement getDelegateCommandElement(int index) {
+    sideStepMenuOnActionButton(index);
+    return $("[id='task-widget:task-list-scroller:" + index + ":task-item:task-action:additional-options:task-delegate-command']");
+  }
+
+  public void isTaskDestroyEnabled(int index) {
+    sideStepMenuOnActionButton(index);
+    getDestroyCommandElement(index).shouldBe(appear, DEFAULT_TIMEOUT).shouldNot(Condition.cssClass("ui-state-disabled"));
+  }
+
+  private SelenideElement getDestroyCommandElement(int index) {
+    return $("[id='task-widget:task-list-scroller:" + index + ":task-item:task-action:additional-options:task-destroy-command']");
+  }
+
+  public void destroyTask(int index) {
+    getDestroyCommandElement(index).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void confimDestruction() {
+    SelenideElement destroyDialog = $("[id='task-widget:destroy-task-confirmation-dialog']");
+    destroyDialog.shouldBe(appear, DEFAULT_TIMEOUT).$("[id='task-widget:confirm-destruction']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    destroyDialog.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 }
