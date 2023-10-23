@@ -269,7 +269,7 @@ Other Permissions
  |           +---------------------------------+----------------------------------------------------+
  |           | Create public external link, all| ``PortalPermission.CREATE_PUBLIC_EXTERNAL_LINK``   |
  |           | other users can see that link in|                                                    |
- |           | full process list               |                                                    |
+ |           | the full process list           |                                                    |
  |           +---------------------------------+----------------------------------------------------+
  |           | Dashboard sharing               | ``PortalPermission.DASHBOARD_SHARE_LINK``          |
  +-----------+---------------------------------+----------------------------------------------------+
