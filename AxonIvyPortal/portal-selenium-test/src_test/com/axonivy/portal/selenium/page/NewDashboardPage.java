@@ -6,7 +6,6 @@ import static com.codeborne.selenide.Condition.editable;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import org.openqa.selenium.By;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -15,8 +14,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.common.LinkNavigator;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -917,7 +916,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public String getGlobalFooterInfo() {
-    waitForElementDisplayed(By.cssSelector("span[id$='server-infor']"), true, 5);
+    waitForElementDisplayed(By.cssSelector("span[id$='server-infor']"), true);
     return $("span[id$='server-infor']").getText();
   }
 

@@ -18,6 +18,7 @@ import com.codeborne.selenide.WebDriverRunner;
 public class MainMenuPage extends TemplatePage {
 
   private static String PROCESS_MENU_ITEM_CSS_SELECTOR = ".layout-menu li[role='menuitem'] a.PROCESS";
+
   @Override
   protected String getLoadedLocator() {
     return ".layout-menu li[role='menuitem'] a.DASHBOARD";
@@ -73,7 +74,7 @@ public class MainMenuPage extends TemplatePage {
       $("a[id$='user-menu-required-login:toggle-menu']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     }
   }
-  
+
   public void closeMainMenu() {
     waitLeftMenuReady();
     if ($("a[id$='user-menu-required-login:toggle-menu']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).is(appear)) {
@@ -85,13 +86,11 @@ public class MainMenuPage extends TemplatePage {
 
   public String getMenuItemsAsString() {
     expandMainMenu();
-    return String.join(",", $$(".layout-menu li[role='menuitem'] a span")
-        .asDynamicIterable().stream()
-        .map(SelenideElement::getText).collect(Collectors.toList()));
+    return String.join(",", $$(".layout-menu li[role='menuitem'] a span").asDynamicIterable().stream().map(SelenideElement::getText).collect(Collectors.toList()));
   }
 
   public CaseWidgetPage selectCaseMenu() {
-    WaitHelper.waitForNavigation(() -> $(By.cssSelector(".layout-menu li.sub-menu-item-case")).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
+    WaitHelper.waitForNavigation(() -> $(By.cssSelector(".layout-menu li.sub-menu-item-case")).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
     return new CaseWidgetPage();
   }
 
@@ -103,6 +102,7 @@ public class MainMenuPage extends TemplatePage {
   private void waitForProcessesPageAfterSelectProcessesCategory() {
     waitForElementDisplayed(By.id("process-widget:process-search:non-ajax-keyword-filter"), true);
   }
+
   public ProcessWidgetPage selectProcessesMenu() {
     waitForElementClickableThenClick($(PROCESS_MENU_ITEM_CSS_SELECTOR));
     waitForProcessesPageAfterSelectProcessesCategory();
@@ -125,7 +125,9 @@ public class MainMenuPage extends TemplatePage {
 
   private boolean isMenuItemDisplayed(String menuItemName) {
     return $$("li[role='menuitem']").asFixedIterable().stream().filter(element -> element.getText().equals(menuItemName)).findFirst().map(WebElement::isDisplayed).orElse(false);
-  }  public boolean isTasksDisplayed() {
+  }
+
+  public boolean isTasksDisplayed() {
     return isMenuItemDisplayed("Tasks");
   }
 

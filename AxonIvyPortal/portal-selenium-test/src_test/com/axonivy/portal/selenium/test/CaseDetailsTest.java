@@ -18,7 +18,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.CaseState;
-import com.axonivy.portal.selenium.common.ScreenshotUtil;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.TestRole;
 import com.axonivy.portal.selenium.common.Variable;
@@ -148,6 +147,7 @@ public class CaseDetailsTest extends BaseTest {
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsOfCaseHasName(LEAVE_REQUEST_CASE_NAME);
     detailsPage.waitPageLoaded();
+    detailsPage.waitRelatedTasks();
   }
 
   private void createTestingCaseContainTechnicalCases() {
@@ -517,7 +517,8 @@ public class CaseDetailsTest extends BaseTest {
   public void testShowRelatedCaseInfoByConfigInCaseHistory() {
     updateGlobalVariable(Variable.HIDE_RELATED_CASE_INFO_FROM_HISTORY.getKey(), "false");
     createTestingCaseContainTechnicalCases();
-    ScreenshotUtil.executeDecorateJs("window.scrollTo(0, document.body.scrollHeight)");
+    // ScreenshotUtil.executeDecorateJs("window.scrollTo(0,
+    // document.body.scrollHeight)");
     assertTrue(detailsPage.isShowRelatedCaseCheckbox());
     detailsPage.clickOnRelatedCaseCheckbox(true);
     assertTrue(detailsPage.isRelatedCaseInfoColumnIsDisplay());

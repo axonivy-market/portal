@@ -46,7 +46,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "#time-information";
+    return ".js-layout-content";
   }
 
   public CaseDetailsPage() {
@@ -73,8 +73,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void addNote(String noteContent) {
-    $("a[id$=':case-histories:add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT);
-    $("a[id$=':case-histories:add-note-command']").click();
+    $("a[id$=':case-histories:add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT).click();
     $("div[id$=':case-histories:add-note-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("div[id$=':case-histories:add-note-dialog']").find("textarea").sendKeys(noteContent);
     $("button[id$=':case-histories:add-note-form:save-add-note-command']").click();
@@ -429,14 +428,11 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector(openDetailsCommandButton), true);
     findElementByCssSelector(openDetailsCommandButton).click();
     waitForElementDisplayed(By.cssSelector(openDetailsCommandButton), false);
-    // waitForElementPresent(By.cssSelector(openDetailsCommandButton), false);
     return new CaseDetailsPage();
   }
 
   public CaseDetailsPage openBusinessCaseFromTechnicalCase() {
     caseItem.findElement(By.cssSelector("a[id$='related-business-case']")).click();
-    // waitForElementPresent(By.cssSelector("div[id$='business-case-information']"),
-    // false);
     waitForElementDisplayed(By.cssSelector("div[id$='business-case-information']"), false);
     return new CaseDetailsPage();
   }
@@ -444,7 +440,7 @@ public class CaseDetailsPage extends TemplatePage {
   public boolean isShowRelatedCaseCheckbox() {
     waitForElementDisplayed(By.cssSelector("[id$=':history-container']"), true);
     try {
-      return findElementByCssSelector("[id$=':case-histories:related-case-checkbox']").isDisplayed();
+      return $("[id$=':case-histories:related-case-checkbox']").isDisplayed();
     } catch (Exception e) {
       return false;
     }
@@ -468,7 +464,7 @@ public class CaseDetailsPage extends TemplatePage {
   public boolean isRelatedCaseInfoColumnIsDisplay() {
     waitForElementDisplayed(By.cssSelector("[id$=':history-container']"), true);
     try {
-      return findElementByCssSelector("[id$=':case-histories'] th.history-related-case").isDisplayed();
+      return $("th.history-related-case").isDisplayed();
     } catch (Exception e) {
       return false;
     }
@@ -893,14 +889,17 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public boolean isRelatedCaseListColumnExist(String columnClass) {
-    return $(By.cssSelector(".related-cases-container th." + columnClass)).isDisplayed();
+    try {
+      $(By.cssSelector(".related-cases-container th." + columnClass)).shouldBe(exist, DEFAULT_TIMEOUT);
+      return true;
+    } catch (Exception e) {
+      return false;
+    }
   }
 
   public void clickRelatedCaseColumnsButton() {
     waitForElementClickableThenClick($(("a[id$='case-config-button']")));
-    ;
     waitForElementDisplayed($("label[for$='related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox:3']"), true);
-//    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public void clickRelatedCaseColumnCheckbox(int columnIndex) {
@@ -951,5 +950,9 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector(panelId), true);
     var steps = $$(panelId + " a.action-step-item");
     return steps.asFixedIterable().stream().map(WebElement::getText).collect(Collectors.toList());
+  }
+
+  public void waitRelatedTasks() {
+    $("[id='case-details-relatedTask-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 }

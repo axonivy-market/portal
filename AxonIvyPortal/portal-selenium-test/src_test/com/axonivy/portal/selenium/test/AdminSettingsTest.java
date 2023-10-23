@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
@@ -58,7 +57,7 @@ public class AdminSettingsTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     NewDashboardPage homePage = new NewDashboardPage();
     // Customize environment info in portal example
-    redirectToRelativeLinkWithEmbedInFrame(NewDashboardPage.PORTAL_EXAMPLES_EMPLOYEE_SEARCH);
+    redirectToRelativeLinkWithEmbedInFrame(createTaskWithIframe);
 
     assertTrue(homePage.getGlobalFooterInfo().contains("Wawa"));
   }
@@ -83,7 +82,6 @@ public class AdminSettingsTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
 
     MainMenuPage mainMenuPage = taskWidgetPage.openMainMenu();
-    taskWidgetPage.waitForElementDisplayed(By.id("statistics-widget"), true);
     CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
     assertEquals("TestCase", caseWidgetPage.getCaseNameAt(0));
   }

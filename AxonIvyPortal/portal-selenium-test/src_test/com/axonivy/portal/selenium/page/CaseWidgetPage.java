@@ -423,9 +423,8 @@ public class CaseWidgetPage extends TemplatePage {
   public CaseDetailsPage openDetailsOfCaseHasName(String caseName) {
     List<SelenideElement> caseItems = $$(CASE_ITEM_LIST_SELECTOR);
     for (SelenideElement caseItem : caseItems) {
-      System.out.println(caseItem.findElement(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText());
-      if (caseItem.findElement(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText().equals(caseName)) {
-        caseItem.findElement(By.cssSelector("span[id*='case-info-row']")).click();
+      if (caseItem.$(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText().equals(caseName)) {
+        caseItem.$(By.cssSelector("span[id*='case-info-row']")).click();
         return new CaseDetailsPage();
       }
     }

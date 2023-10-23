@@ -75,7 +75,8 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void waitForGrowlMessageDisappear() {
-    $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-growl-message").shouldBe(disappear, DEFAULT_TIMEOUT);
+    $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT).$(".ui-growl-icon-close.ui-icon.ui-icon-closethick").hover().click();
+    $("div[id='portal-global-growl_container']").$("div.ui-growl-message").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void waitForAjaxStatusPositionDisappear() {
@@ -120,8 +121,7 @@ public abstract class TemplatePage extends AbstractPage {
     } else {
       $(element).shouldBe(disappear, Duration.ofSeconds(timeout));
     }
-    $("div[id='portal-global-growl_container']").shouldBe(exist, DEFAULT_TIMEOUT)
-          .$("div.ui-growl-message").shouldBe(disappear, DEFAULT_TIMEOUT);
+    $("div[id='portal-global-growl_container']").shouldBe(exist, DEFAULT_TIMEOUT).$("div.ui-growl-message").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void waitForGrowlMessageDisplayClearly() {
@@ -129,7 +129,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public SelenideElement waitForElementClickable(SelenideElement element) {
-    return element.shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    return element.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
   }
 
   public SelenideElement waitForElementClickable(String cssSelector) {
@@ -177,8 +177,12 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void openUserSettingMenu() {
-
+    waitForGrowlMessageDisappear();
+    waitForElementDisplayed(By.id("user-settings-menu"), true);
+    clickByJavaScript(findElementById("user-settings-menu"));
+    $("[id='user-setting-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
+
   public void waitAjaxIndicatorDisappear() {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(new ExpectedCondition<Boolean>() {
       public Boolean apply(WebDriver wdriver) {
@@ -195,13 +199,11 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void waitForGrowlTitleDisappear() {
+    if ($(".ui-growl-item").isDisplayed() && $(".ui-growl-item").exists()) {
+      $(".ui-growl-item").$(".ui-growl-icon-close.ui-icon.ui-icon-closethick").hover().click();
+    }
     $("span.ui-growl-title").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
-
-//  public LoginPage clickOnLogout() {
-//    $("[id='user-settings-menu']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-//    $("[id='user-setting-container']").shouldBe(appear, DEFAULT_TIMEOUT);
-//  }
 
   public LoginPage clickOnLogout() {
     openUserSettingMenu();
@@ -210,22 +212,24 @@ public abstract class TemplatePage extends AbstractPage {
     return new LoginPage();
   }
 
-//  public AbsencePage openAbsencePage() {
-//    clickUserMenuItem("absence-menu-item");
-//    return new AbsencePage();
-//  }
-
   private void clickUserMenuItem(String menuItemSelector) {
-    waitForElementClickableThenClick("[id='user-settings-menu']");
-    waitForGrowlTitleDisappear();
-    $(By.id(menuItemSelector)).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    waitAjaxIndicatorDisappear();
-    $(By.id("user-setting-container")).shouldBe(disappear, DEFAULT_TIMEOUT);
+//    waitForElementClickableThenClick("[id='user-settings-menu']");
+//    waitAjaxIndicatorDisappear();
+//    waitForGrowlTitleDisappear();
+//    $(".topbar-item user-profile setting-container").shouldBe(appear, DEFAULT_TIMEOUT).click();
+//    $(By.id(menuItemSelector)).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+//    waitAjaxIndicatorDisappear();
+//    $(By.id("user-setting-container")).shouldBe(disappear, DEFAULT_TIMEOUT);
+    // waitForPageLoad();
+    waitForElementDisplayed(By.id("user-settings-menu"), true);
+    clickByJavaScript(findElementById("user-settings-menu"));
+    waitForElementDisplayed(By.id(menuItemSelector), true);
+    clickByJavaScript(findElementById(menuItemSelector));
     waitForPageLoad();
   }
 
   public SelenideElement findElementById(String selector) {
-    return $(String.format("[id$='%s']", selector));
+    return $(String.format("[id$='%s']", selector)).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public boolean isAdminSettingsMenuItemPresent() {
@@ -240,15 +244,10 @@ public abstract class TemplatePage extends AbstractPage {
     }
   }
 
-//  public AdminSettingsPage openAdminSettings() {
-//    clickUserMenuItem("adminui-menu-item");
-//    return new AdminSettingsPage();
-//  }
-
   public MainMenuPage openMainMenu() {
     if (!isMainMenuOpen()) {
       $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover();
-      waitForElementClickableThenClick($(By.xpath("//a[@id='user-menu-required-login:toggle-menu']")));
+      waitForElementClickableThenClick($(By.id("user-menu-required-login:toggle-menu")));
     }
     return new MainMenuPage();
   }
@@ -409,7 +408,6 @@ public abstract class TemplatePage extends AbstractPage {
     return $(By.cssSelector("[id$='case-description-output']")).shouldBe(appear, DEFAULT_TIMEOUT).getText();
   }
 
-
   public void waitForElementValueChanged(String cssSelector, String expectedValue) {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(ExpectedConditions.textToBe(By.cssSelector(cssSelector), expectedValue));
   }
@@ -417,6 +415,7 @@ public abstract class TemplatePage extends AbstractPage {
   public void waitForGlobalGrowlDisappear() {
     $("div[id='portal-global-growl_container']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
+
   public AdminSettingsPage openAdminSettings() {
     openUserSettingMenu();
     WaitHelper.waitForNavigation(() -> $("[id='adminui-menu-item']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
