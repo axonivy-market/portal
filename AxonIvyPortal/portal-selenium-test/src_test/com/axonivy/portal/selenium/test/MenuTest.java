@@ -1,13 +1,23 @@
 package com.axonivy.portal.selenium.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebDriver;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.MainMenuPage;
+import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.axonivy.portal.selenium.page.StatisticWidgetPage;
+import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
@@ -21,7 +31,48 @@ public class MenuTest extends BaseTest {
     createJSonFile("custom-menu-items.json", PortalVariable.CUSTOM_MENU_ITEMS.key);
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
-    String expected = "Dashboard,Processes,Tasks,Cases,Statistics,User example guide,Google,Testing link google,Testing example,A link,B link";
+    String expected = "Dashboard,Processes,Tasks,Cases,Statistics,User example guide,Google,Testing link google,Testing example,A link,B link,Google";
     assertEquals(expected, mainMenuPage.getMenuItemsAsString());
+  }
+
+  @Test
+  public void testKeepOpenStateWhenNavigateToAnotherPage() {
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
+    TaskWidgetPage taskWidgetPage = mainMenuPage.selectTaskMenu();
+    assertTrue(taskWidgetPage.isMainMenuOpen());
+  }
+
+  @Test
+  public void testKeepClosedStateWhenNavigateToAnotherPage() {
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
+    StatisticWidgetPage dashboardPage = mainMenuPage.selectStatisticDashboard();
+    dashboardPage.waitForPageLoad();
+
+    dashboardPage.closeMainMenu();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    newDashboardPage = new NewDashboardPage();
+    assertFalse(newDashboardPage.isMainMenuOpen());
+  }
+
+  @Test
+  public void testNavigateToThirdPartyApp() {
+    createThirdPartyApp();
+    login(TestAccount.DEMO_USER);
+    // to refresh cache
+    login(TestAccount.ADMIN_USER);
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
+    mainMenuPage.clickThirdPartyApp();
+
+    WebDriver driver = WebDriverRunner.getWebDriver();
+    WaitHelper.assertTrueWithWait(() -> driver.getWindowHandles().size() > 1);
+    ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+    driver.switchTo().window(tabs.get(1));
+    WaitHelper.assertTrueWithWait(() -> "Google".equals(driver.getTitle()));
+    assertEquals("https://www.google.com/", driver.getCurrentUrl());
   }
 }

@@ -12,6 +12,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -32,6 +33,7 @@ public class NewDashboardPage extends TemplatePage {
   @Override
   protected String getLoadedLocator() {
     return ".js-dashboard__wrapper";
+//    return "[id='dashboard-body']";
   }
 
   public CaseWidgetNewDashBoardPage selectCaseWidget(String caseWidgetName) {
@@ -53,6 +55,19 @@ public class NewDashboardPage extends TemplatePage {
   public void waitForTaskListDisplay() {
     $("div[id='task-task_1:widget-content']").shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-growl-message")
         .shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  public ChangePasswordPage openChangePasswordPage() {
+    clickUserMenuItem("change-password-menu-item");
+    return new ChangePasswordPage();
+  }
+
+  private void clickUserMenuItem(String menuItemSelector) {
+    waitForElementDisplayed(By.id("user-settings-menu"), true);
+    clickByJavaScript(findElementById("user-settings-menu"));
+    waitForElementDisplayed(By.id(menuItemSelector), true);
+    clickByJavaScript(findElementById(menuItemSelector));
+    WaitHelper.assertTrueWithWait(() -> !findElementById("user-setting-container").isDisplayed());
   }
   public ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration() {
     var configurationPage = openDashboardConfigurationPage();

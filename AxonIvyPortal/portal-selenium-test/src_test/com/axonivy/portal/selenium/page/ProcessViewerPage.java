@@ -15,7 +15,10 @@ public class ProcessViewerPage extends TemplatePage{
     $("[id='process-viewer-information'").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return $("[id$='portal-process-viewer-form'] [id$='request-path']").getText();
   }
-  
+
+  public String getErrorMessage() {
+    return findElementByCssSelector(".empty-message-text").getText();
+  }
   public void waitForSprottyToolDisplayed() {
     switchToIframeWithId("process-viewer");
     $("[id='sprotty']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);

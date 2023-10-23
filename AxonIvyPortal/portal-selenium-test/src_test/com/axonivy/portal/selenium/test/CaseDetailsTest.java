@@ -39,7 +39,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class CaseDetailsTest extends BaseTest {
   private static final String ORDER_PIZZA = "Order Pizza";
   private static final String TAKE_ORDER = "Take Order";
@@ -93,7 +93,6 @@ public class CaseDetailsTest extends BaseTest {
     taskDetailsPage.getNotesWithContent(NOTE_BUSINESS_CASE).shouldHave(size(1));
   }
 
-  // pass
   @Test
   public void testVisibilityOfNotesWhenAddNoteOnTechnicalCaseDetails() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
@@ -115,7 +114,6 @@ public class CaseDetailsTest extends BaseTest {
     caseDetailsPage.getNotesWithContent(NOTE_TECHNICAL_CASE).shouldHave(size(1));
   }
 
-  // pass
   @Test
   public void testShareCaseDetails() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
@@ -133,8 +131,6 @@ public class CaseDetailsTest extends BaseTest {
 
     redirectToRelativeLink(denyShareLinkCaseDetailsPermission);
     redirectToNewDashBoard();
-    // fail
-    caseDetailsPage.waitPageLoaded();
     mainMenuPage.openCaseList();
     caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
     caseDetailsPage.getRelatedCasesComponents().shouldHave(sizeGreaterThanOrEqual(1));
@@ -200,7 +196,6 @@ public class CaseDetailsTest extends BaseTest {
     assertTrue(detailsPage.isDocumentComponentPresented());
   }
 
-  // fail
   @Test
   public void testShowBusinessCaseInTechnicalCase() {
     redirectToRelativeLink(createTestingCaseMapUrl);
@@ -217,7 +212,7 @@ public class CaseDetailsTest extends BaseTest {
     // open related case detail - technical case detail
     detailsPage.clickRelatedCaseActionButton(0);
     CaseDetailsPage technicalCaseDetailsPage = detailsPage.openCasesOfCasePageViaDetailsAction(0);
-    WaitHelper.assertTrueWithWait(() -> "Case Details".equals(""));
+    WaitHelper.assertTrueWithWait(() -> "Case Details".equals(technicalCaseDetailsPage.getPageTitle()));
 
     // check business case information is displayed in technical case
     WaitHelper.assertTrueWithWait(() -> detailsPage.isBusinessCaseInformationSectionDisplayed());
@@ -272,7 +267,6 @@ public class CaseDetailsTest extends BaseTest {
     assertTrue(detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskBusinessState.DESTROYED));
   }
 
-  // fail
   @Test
   public void testRelatedTaskDelegateTask() {
     createTestingTask();
@@ -300,7 +294,6 @@ public class CaseDetailsTest extends BaseTest {
     redirectToRelativeLink(DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
   }
 
-  // pass
   @Test
   public void testRelatedTaskOpenDetails() {
     createTestingTask();
@@ -310,7 +303,6 @@ public class CaseDetailsTest extends BaseTest {
     WaitHelper.assertTrueWithWait(() -> "Task Details".equals(taskDetailsPage.getPageTitle()));
   }
 
-  // pass
   @Test
   public void testRelatedCaseOpenDetails() {
     createTestingCaseContainTechnicalCases();
@@ -319,7 +311,6 @@ public class CaseDetailsTest extends BaseTest {
     WaitHelper.assertTrueWithWait(() -> "Case Details".equals(caseDetailsPage.getPageTitle()));
   }
 
-//pass
   @Test
   public void testRelatedCaseOpenBusinessDetails() {
     createTestingCaseContainTechnicalCases();
