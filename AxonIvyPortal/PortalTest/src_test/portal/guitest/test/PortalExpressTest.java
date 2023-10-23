@@ -462,6 +462,7 @@ public class PortalExpressTest extends BaseTest {
 		taskWidgetPage.startTask(0);
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		expressTaskPage.finish();
+    taskWidgetPage = new TaskWidgetPage();
 	}
 
 	protected void startExpressProcess(String processName) {
