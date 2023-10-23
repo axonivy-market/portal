@@ -44,6 +44,7 @@ import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
+import com.axonivy.portal.util.filter.DashboardFilterUtils;
 import com.google.common.base.Predicate;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -526,6 +527,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     if (CollectionUtils.isNotEmpty(caseWidget.getFilters())) {
       caseWidget.setFilters(caseWidget.getFilters().stream()
           .filter(Objects::nonNull).filter(checkValidFilter()).collect(Collectors.toList()));
+      DashboardFilterUtils.updateDateFiltersBeforeSave(caseWidget.getFilters());
     }
   }
 
