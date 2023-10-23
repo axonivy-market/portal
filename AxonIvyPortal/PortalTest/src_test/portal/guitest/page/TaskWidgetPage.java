@@ -646,7 +646,7 @@ public class TaskWidgetPage extends TemplatePage {
   private void waitTaskAppearThenClick(int index) {
     WebElement taskStartElement = findElementById(taskWidgetId + ":task-list-scroller")
         .findElements(By.className("start-task-action")).get(index);
-    if (taskStartElement.getAttribute("id").contains(":task-action:resume-task-action-component")) {
+    if (taskStartElement.getAttribute("id").contains(":task-action:resume-task-action-component") && taskStartElement.isDisplayed()) {
       click(taskStartElement);
       resetResumedTask();
     } else {
