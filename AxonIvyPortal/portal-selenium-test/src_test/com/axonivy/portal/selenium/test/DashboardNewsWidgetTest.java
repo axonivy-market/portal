@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.DashboardNewsWidgetConfigurationPage;
@@ -50,8 +51,7 @@ public class DashboardNewsWidgetTest extends BaseTest {
   @Test
   public void testAddNewsFeedWidget() {
     login(TestAccount.ADMIN_USER);
-    redirectToNewDashBoard();
-    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage =
         modificationPage.navigateToEditDashboardDetailsByName("Dashboard");

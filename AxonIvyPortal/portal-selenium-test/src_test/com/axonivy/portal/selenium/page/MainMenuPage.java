@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -66,10 +67,10 @@ public class MainMenuPage extends TemplatePage {
 
   public void expandMainMenu() {
     waitLeftMenuReady();
-    if ($("[id='user-menu-required-login:logo-small']").isDisplayed()) {
-      $("[id='user-menu-required-login:logo-small']").shouldBe(appear, DEFAULT_TIMEOUT).hover();
-      $("[id='user-menu-required-login:logo']").shouldBe(appear, DEFAULT_TIMEOUT);
-      $("a[id='user-menu-required-login:toggle-menu']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    if ($("a[id$='user-menu-required-login:toggle-menu']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).is(disappear)) {
+      $("[id$=':main-navigator:main-menu']").hover();
+      WaitHelper.waitNumberOfElementsToBe(WebDriverRunner.getWebDriver(), By.id("user-menu-required-login:toggle-menu"), 1);
+      $("a[id$='user-menu-required-login:toggle-menu']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     }
   }
   
@@ -77,7 +78,8 @@ public class MainMenuPage extends TemplatePage {
     waitLeftMenuReady();
     if ($("a[id$='user-menu-required-login:toggle-menu']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).is(appear)) {
       $("a[id$='user-menu-required-login:toggle-menu']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-      $(".portal-home-logo-small").shouldBe(Condition.hidden, DEFAULT_TIMEOUT);
+      $(".js-layout-main").hover();
+      $(".portal-home-logo.portal-home-logo-small").should(Condition.visible, DEFAULT_TIMEOUT);
     }
   }
 

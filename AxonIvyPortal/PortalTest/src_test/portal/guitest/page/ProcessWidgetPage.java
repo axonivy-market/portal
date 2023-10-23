@@ -141,13 +141,6 @@ public class ProcessWidgetPage extends TemplatePage {
     List<WebElement> indexGroup = findListElementsByXpath("//legend[@class='ui-fieldset-legend ui-corner-all ui-state-default']");
     return indexGroup.stream().anyMatch(item -> processGroupCharacter.equals(item.getText()));
   }
-  
-  public String getProcessNameFromFavoriteProcessList(int index) {
-    String id = index + ":process-item-form:process-name";
-    WebElement favoriteProcessList = findElementById(processWidgetId + ":process-list");
-    String name = findChildElementByCssSelector(favoriteProcessList, "span[id*='" + id + "']").getText();
-    return name;
-  }
 
   public String getProcessNameFromDefaultProcessList(int index) {
     WebElement defaultProcessList = findElementById(processWidgetId + ":user-default-process-list");
@@ -251,18 +244,7 @@ public class ProcessWidgetPage extends TemplatePage {
     liveSearchTextField = findElementById(processWidgetId + ":process-search:non-ajax-keyword-filter");
     type(liveSearchTextField, keyword);
   }
-  
-  public void moveFavoriteProcess(int processToMoveIndex, int destinationProcessIndex) {
-    WebElement editProcesses = findElementByCssSelector("form[id$=':edit-process-item-form']");
-    List<WebElement> processItems = findChildElementsByCssSelector(editProcesses, ".ui-orderlist-list .ui-orderlist-item");
-    WebElement processToMove = processItems.get(processToMoveIndex - 1);
-    WebElement destinationProcess = processItems.get(destinationProcessIndex - 1);
 
-    Actions builder = new Actions(driver);
-    Action moveProcessSequence = builder.dragAndDrop(processToMove, destinationProcess).build();
-    moveProcessSequence.perform();
-  }
-  
   public class AddNewExternalLinkDialog {
     private final String EXTERNAL_LINK_NAME_INPUT_CSS_SELECTOR = "input[id$=':add-external-link-form:external-link-name']";
     private final String EXTERNAL_LINK_INPUT_CSS_SELECTOR = "input[id$=':add-external-link-form:external-link']";
@@ -360,10 +342,6 @@ public class ProcessWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.id("process-widget"), true);
     waitForElementDisplayed(By.className("js-loading-process-list"), false);
     waitForElementDisplayed(By.className("js-process-start-list-container"), true);
-  }
-  
-  public void waitUtilProcessWidgetUserFavoriteDisplayed() {
-    waitForElementDisplayed(By.id("process-widget:user-process-container"), true);
   }
 
   public String getCurrentViewMode() {

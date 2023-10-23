@@ -73,4 +73,22 @@ public class UserProfilePage extends TemplatePage {
   public void saveWithoutWaitingNavigation() {
     WaitHelper.waitForNavigation(() -> $("button[id$='save-settings']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
   }
+  public WebElement getUserSettingCard() {
+    return $("[id='my-profile-container']");
+  }
+
+  public void switchOnEmailOnTaskAssignmentSetting() {
+    switchOnSetting(MAIL_NOTI_ON_TASK_ASSIGNMENT_SELECTOR);
+  }
+
+  private void switchOnSetting(String cssSelector) {
+    SelenideElement inputSwitch = $(cssSelector).shouldBe(appear, DEFAULT_TIMEOUT);
+    if (!inputSwitch.getAttribute("class").contains("ui-inputswitch-checked")) {
+      $(inputSwitch).click();
+    }
+  }
+
+  public void switchOnFurtherEmailFromAppSetting() {
+    switchOnSetting(FURTHER_EMAIL_FROM_APP_SELECTOR);
+  }
 }
