@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -648,9 +649,7 @@ public class CaseDetailsPage extends TemplatePage {
     if (isRole) {
       waitForElementDisplayed(By.cssSelector("[id$=':task-delegate-form:activator-type-select']"), true);
       waitForElementEnabled(By.cssSelector("[id$=':task-delegate-form:activator-type-select:1']"), true);
-      waitForElementClickable($(By.cssSelector("[id$=':task-delegate-form:activator-type-select:1']")));
       waitForElementClickableThenClick($("[for$=':task-delegate-form:activator-type-select:1']"));
-//      waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
       waitAjaxIndicatorDisappear();
       waitForElementDisplayed(By.cssSelector("input[id$='group-activator-select_input']"), true);
       $(By.cssSelector("input[id$='group-activator-select_input']")).sendKeys(responsibleName);
@@ -771,4 +770,70 @@ public class CaseDetailsPage extends TemplatePage {
   public ElementsCollection findDocumentItemInCaseDetailsDocumentTable() {
     return $$("a[id$='download']");
   }
+
+  public void clickCaseListBreadCrumb() {
+    waitForElementClickableThenClick($((By.cssSelector(".portal-breadcrumb ol li:nth-of-type(2) .ui-menuitem-link"))));
+  }
+
+  public boolean isRelatedCaseListColumnExist(String columnClass) {
+    return $(By.cssSelector(".related-cases-container th." + columnClass)).isDisplayed();
+  }
+
+  public void clickRelatedCaseColumnsButton() {
+    waitForElementClickableThenClick($(("a[id$='case-config-button']")));
+    ;
+    waitForElementDisplayed($("label[for$='related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox:3']"), true);
+//    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+  }
+
+  public void clickRelatedCaseColumnCheckbox(int columnIndex) {
+    String xpath = String.format("//*[contains(@id,\":related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox\")]/tbody/tr[%s]/td/div/div[2]", columnIndex);
+    waitForElementClickableThenClick($(By.xpath(xpath)));
+  }
+
+  public void clickRelatedCaseDefaultCheckbox() {
+    String xpath = "//*[contains(@id,\":related-cases-widget:case-columns-configuration:select-columns-form:default-columns\")]/div[2]";
+    waitForElementClickableThenClick($(By.xpath(xpath)));
+    WaitHelper
+        .assertTrueWithWait(() -> !findElementByCssSelector("label[for$='related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox:3']").getAttribute("class").equals("ui-state-disabled"));
+  }
+
+  public void clickRelatedCaseApplyButton() {
+    waitForElementClickableThenClick($(By.cssSelector("button[id$='related-cases-widget:case-columns-configuration:select-columns-form:update-command']")));
+//    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+  }
+
+  public boolean isAddNoteButtonDisplayed() {
+    return isElementDisplayed(By.cssSelector("a[id$='case-histories:add-note-command']"));
+  }
+
+  public boolean isShowMoreNoteButtonDisplayed() {
+    return isElementDisplayed(By.cssSelector("a[id$='case-histories:show-more-note-link']"));
+  }
+
+  public boolean isShowDetailsDisplayed() {
+    return isElementDisplayed(By.cssSelector("a[id$='show-additional-case-details-link']"));
+  }
+
+  public boolean isAddDocumentLinkDisplayed() {
+    return isElementDisplayed(By.cssSelector("a[id$='document:add-document-command']"));
+  }
+
+  public void openProcessOverviewPage() {
+    waitForElementClickableThenClick(PROCESS_OVERVIEW_URL_CSS_SELECTOR);
+  }
+
+  public List<String> getAvailableActionSteps() {
+    waitForElementDisplayed(By.cssSelector("[id$=':action-group:action-steps-panel'].action-steps-panel"), true);
+    var steps = $$("[id$=':action-group:action-steps-panel'].action-steps-panel a.action-step-item");
+    return steps.asFixedIterable().stream().map(WebElement::getText).collect(Collectors.toList());
+  }
+
+  public List<String> getAvailableActionStepsOfTechnicalCase(int caseIndex) {
+    var panelId = String.format("[id$=':related-cases-widget:related-cases:%d:action-step-component:action-steps-panel']", caseIndex);
+    waitForElementDisplayed(By.cssSelector(panelId), true);
+    var steps = $$(panelId + " a.action-step-item");
+    return steps.asFixedIterable().stream().map(WebElement::getText).collect(Collectors.toList());
+  }
+
 }
