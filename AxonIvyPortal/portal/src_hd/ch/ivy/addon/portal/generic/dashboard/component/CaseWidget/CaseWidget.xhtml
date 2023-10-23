@@ -67,8 +67,16 @@
             <ui:include src="NameCell.xhtml" />
           </h:panelGroup>
 
-          <h:panelGroup rendered="#{(column.format eq 'STRING' or column.format eq 'TEXT') and column.field ne 'name'}">
+          <h:panelGroup rendered="#{(column.format eq 'STRING' or column.format eq 'TEXT') and column.field ne 'name' and !column.isCustomAction(caseItem)}">
             <h:outputText value="#{column.display(caseItem)}" styleClass="#{column.fieldStyleClass}" style="#{column.fieldStyle}" />
+          </h:panelGroup>
+
+          <h:panelGroup rendered="#{column.isCustomAction(caseItem)}">
+            <p:link title="#{column.getDesCription(caseItem)}"
+              styleClass="#{column.fieldStyle}"
+              href="#{column.getCustomProcessPath(caseItem)}">
+              <i class="#{column.getIcon(caseItem)}" />
+            </p:link>
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.format eq 'TIMESTAMP'}">

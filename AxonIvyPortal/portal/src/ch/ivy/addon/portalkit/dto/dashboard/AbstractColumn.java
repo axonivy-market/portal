@@ -40,6 +40,10 @@ public abstract class AbstractColumn implements Serializable {
   public static final String NORMAL_WIDTH = "width: 120px";
   @JsonIgnore
   public static final String EXTRA_WIDTH = "width: 150px";
+  @JsonIgnore
+  public static final String ICON_ATTRIBUTE = "Icon";
+  @JsonIgnore
+  public static final String IS_CUSTOM_ACTION_ATTRIBUTE = "IsCustomAction";
 
   @Deprecated(since = "10.0", forRemoval = true)
   @JsonProperty(access = Access.WRITE_ONLY)
