@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Selenide.$$;
 import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
@@ -15,6 +16,7 @@ import com.codeborne.selenide.WebDriverRunner;
 
 public class MainMenuPage extends TemplatePage {
 
+  private static String PROCESS_MENU_ITEM_CSS_SELECTOR = ".layout-menu li[role='menuitem'] a.PROCESS";
   @Override
   protected String getLoadedLocator() {
     return ".layout-menu li[role='menuitem'] a.DASHBOARD";
@@ -82,12 +84,54 @@ public class MainMenuPage extends TemplatePage {
   public String getMenuItemsAsString() {
     expandMainMenu();
     return String.join(",", $$(".layout-menu li[role='menuitem'] a span")
-        .asFixedIterable().stream()
+        .asDynamicIterable().stream()
         .map(SelenideElement::getText).collect(Collectors.toList()));
   }
 
   public CaseWidgetPage selectCaseMenu() {
     WaitHelper.waitForNavigation(() -> $(By.cssSelector(".layout-menu li.sub-menu-item-case")).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
     return new CaseWidgetPage();
+  }
+
+  public StatisticWidgetPage selectStatisticDashboard() {
+    WaitHelper.waitForNavigation(() -> waitForElementClickableThenClick($(".layout-menu li[role='menuitem'] a.STATISTICS")));
+    return new StatisticWidgetPage();
+  }
+
+  private void waitForProcessesPageAfterSelectProcessesCategory() {
+    waitForElementDisplayed(By.id("process-widget:process-search:non-ajax-keyword-filter"), true);
+  }
+  public ProcessWidgetPage selectProcessesMenu() {
+    waitForElementClickableThenClick($(PROCESS_MENU_ITEM_CSS_SELECTOR));
+    waitForProcessesPageAfterSelectProcessesCategory();
+    return new ProcessWidgetPage();
+  }
+
+  public String getProcessMenuItemText() {
+    openMainMenu();
+    return findElementByCssSelector(PROCESS_MENU_ITEM_CSS_SELECTOR).getText();
+  }
+
+  public void clickThirdPartyApp() {
+    waitForElementDisplayed(By.cssSelector("li[class*='thirdparty-menu-item'] > a"), true);
+    waitForElementClickableThenClick($("li[class*='thirdparty-menu-item'] > a"));
+  }
+
+  public boolean isProcessesDisplayed() {
+    return isMenuItemDisplayed("Processes");
+  }
+
+  private boolean isMenuItemDisplayed(String menuItemName) {
+    return $$("li[role='menuitem']").asFixedIterable().stream().filter(element -> element.getText().equals(menuItemName)).findFirst().map(WebElement::isDisplayed).orElse(false);
+  }  public boolean isTasksDisplayed() {
+    return isMenuItemDisplayed("Tasks");
+  }
+
+  public boolean isCasesDisplayed() {
+    return isMenuItemDisplayed("Cases");
+  }
+
+  public boolean isStatisticsDisplayed() {
+    return isMenuItemDisplayed("Statistics");
   }
 }

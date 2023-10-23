@@ -2,16 +2,31 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Selenide.$;
 
+import org.openqa.selenium.By;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
-public class ProcessHistoryPage extends TemplatePage{
+public class ProcessHistoryPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
     return LAYOUT_WRAPPER;
   }
-  
+
+  public int countCases() {
+    return $(".ui-datascroller-list").$$(By.className("ui-datascroller-item")).size();
+  }
+
+  public boolean isEmptyMessageDisplay() {
+    return isElementDisplayed(By.className("process-history-empty-message"));
+  }
+  public int openDialogAndCountCases() {
+    waitForElementClickableThenClick($(By.id("process-history-dialog-button")));
+    waitForElementDisplayed(By.cssSelector("ul.ui-datascroller-list li div.js-case-item.case-list-item"), true);
+    return $(".ui-datascroller-list").$$(By.className("ui-datascroller-item")).size();
+  }
+
   @SuppressWarnings("deprecation")
   public SelenideElement getProcessHistoryDialog() {
     $("button[id='process-history-dialog-button']").shouldBe(getClickableCondition()).click();

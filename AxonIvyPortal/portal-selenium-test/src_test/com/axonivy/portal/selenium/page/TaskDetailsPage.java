@@ -6,6 +6,12 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -89,5 +95,31 @@ public class TaskDetailsPage extends TemplatePage {
 
   public SelenideElement getShareDialog() {
     return $("div[id$=':share-task-details-dialog']");
+  }
+
+  public String getCreatedOnDateText() {
+    return findElementByCssSelector("span[id$='start-date']").getText();
+  }
+
+  public boolean isActionLinkEnable() {
+    return !$(".action-link").getAttribute("class").contains("ui-state-disabled");
+  }
+
+  public List<String> getActiveTaskAction() {
+    openActionPanel();
+    WebElement actionPanel = findElementByCssSelector("div[id$=':additional-options:side-steps-panel']");
+    return actionPanel.findElements(By.cssSelector("a[class*='option-item']")).stream().map(WebElement::getText).collect(Collectors.toList());
+  }
+
+  public boolean isAddNoteButtonDisplayed() {
+    return isElementDisplayed(By.cssSelector("[id$=':task-notes:add-note-command']"));
+  }
+
+  public boolean isShowMoreNoteButtonDisplayed() {
+    return isElementDisplayed(By.cssSelector("[id$=':task-notes:show-more-note-link']"));
+  }
+
+  public boolean isAddDocumentLinkDisplayed() {
+    return isElementDisplayed(By.cssSelector("[id$=':task-documents:add-document-command']"));
   }
 }

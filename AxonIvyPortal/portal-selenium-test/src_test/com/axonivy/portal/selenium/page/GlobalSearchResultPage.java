@@ -65,7 +65,7 @@ public class GlobalSearchResultPage extends TemplatePage {
 
   public int countCase() {
     CaseWidgetPage caseWidgetPage = getCaseWidget();
-    return caseWidgetPage.getNumberOfCases();
+    return caseWidgetPage.getCasesList().size();
   }
 
   private CaseWidgetPage getCaseWidget() {

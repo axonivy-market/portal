@@ -14,7 +14,7 @@ public class PasswordValidationPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('admin-setting-component:adminTabView:password-validation-tab')";
+    return "[id='admin-setting-component:adminTabView:password-validation-tab']";
   }
 
   public boolean isPasswordValidationTogglePresent() {

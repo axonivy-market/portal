@@ -27,4 +27,7 @@ public class DocumentTableComponentPage extends TemplatePage{
     $("[id$=':document-table-component']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
+  public int countDocuments() {
+    return getDocuments().size();
+  }
 }

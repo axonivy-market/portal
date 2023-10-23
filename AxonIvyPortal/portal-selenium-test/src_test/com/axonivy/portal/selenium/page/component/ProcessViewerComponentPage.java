@@ -11,7 +11,11 @@ public class ProcessViewerComponentPage extends TemplatePage{
   protected String getLoadedLocator() {
     return LAYOUT_WRAPPER;
   }
-  
+
+  public String getProcessRequestPath() {
+    return findElementByCssSelector("span[id$=':request-path']").getText();
+  }
+
   public void waitForSprottyToolDisplayed() {
     switchToIframeWithId("process-viewer");
     $("[id='sprotty']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);

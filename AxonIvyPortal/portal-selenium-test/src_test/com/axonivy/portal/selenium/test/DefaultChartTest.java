@@ -1,0 +1,78 @@
+package com.axonivy.portal.selenium.test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Set;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import com.axonivy.ivy.webtest.IvyWebTest;
+import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.Sleeper;
+import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.page.MainMenuPage;
+import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.axonivy.portal.selenium.page.StatisticWidgetPage;
+
+@IvyWebTest
+public class DefaultChartTest extends BaseTest {
+
+  private static final String DEFAULT_CHART = "Tasks by Priority";
+  private static final String RESTORE_DEFAULT = "Restore default";
+  
+  @Override
+  @BeforeEach
+  public void setup() {
+    super.setup();
+    Sleeper.sleep(2000); // To make Firefox test more stable, make business data updated correctly 
+    login(TestAccount.ADMIN_USER);
+    grantPermissionToCreateChart();
+  }
+
+  @AfterEach
+  public void clear() {
+    resetLanguageOfCurrentUser();
+  }
+
+  @Test
+  public void testCreateDefaultChart() {
+    new NewDashboardPage();
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    StatisticWidgetPage statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
+    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
+    Set<String> chartNames = statisticWidgetPage.getAllChartNames();
+    assertTrue(chartNames.contains(DEFAULT_CHART));
+    assertEquals(RESTORE_DEFAULT, statisticWidgetPage.getRestoreDefaultButtonName());
+  }
+  
+  @Test
+  public void testRestoreDefaultChart() {
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    StatisticWidgetPage statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
+    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
+    statisticWidgetPage.switchCreateMode();
+    statisticWidgetPage.createCaseByFinishedTask();
+    statisticWidgetPage.backToDashboard();
+    statisticWidgetPage.restoreDefaultCharts();
+
+    WebElement taskByExpiryChartName3 = null ;
+    try {
+      taskByExpiryChartName3 = statisticWidgetPage.findElementById("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:2:chart-name");
+    } catch (Exception ex) {
+    }
+    
+    assertEquals(DEFAULT_CHART, statisticWidgetPage.getChartName(0));
+    assertFalse(taskByExpiryChartName3.isDisplayed());
+  }
+  
+  private void grantPermissionToCreateChart() {
+    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
+    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
+  }
+}
