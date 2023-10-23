@@ -144,16 +144,6 @@ a tab is provided, giving you the results of your search.
 
 |portal-global-search-result-page|
 
-.. hint::
-   Your company’s application may
-   provide further search
-   capabilities which are integrated
-   in the |ivy| Portal Global
-   Search. You’d find the results on
-   the result page accordingly.
-   Contact your administrator for
-   more information.
-
 HowTo: Limit search scope of Global Search
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
