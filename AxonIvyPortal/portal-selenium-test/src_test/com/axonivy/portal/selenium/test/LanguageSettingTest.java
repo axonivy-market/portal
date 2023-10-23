@@ -14,7 +14,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 import com.axonivy.portal.selenium.page.WorkingTaskDialogFromUserProfilePage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class LanguageSettingTest extends BaseTest {
 
   @Override

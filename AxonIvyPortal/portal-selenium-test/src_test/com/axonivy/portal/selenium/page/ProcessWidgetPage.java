@@ -150,19 +150,19 @@ public class ProcessWidgetPage extends TemplatePage {
     return $(".js-process-nav-item.js-process-starts-with-" + character).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
   }
 
-  public void clickMoreButtonOfFirstImageProcess() {
-    $(String.format(MORE_ACTION_BUTTON, 0, 0)).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $(String.format(ACTION_DIALOG, 0, 0)).shouldBe(appear, DEFAULT_TIMEOUT);
-  }
+//  public void clickMoreButtonOfFirstImageProcess() {
+//    $(String.format(MORE_ACTION_BUTTON, 0, 0)).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+//    $(String.format(ACTION_DIALOG, 0, 0)).shouldBe(appear, DEFAULT_TIMEOUT);
+//  }
 
   public SelenideElement getProcessEditMenu(int index) {
     return $(String.format(IMAGE_EDIT_PROCESS_LINK, 0, index)).shouldBe(appear, DEFAULT_TIMEOUT);
   }
-
-  public void clickOnProcessEditMenu(int index) {
-    getProcessEditMenu(index).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("[id$='process-widget:edit-process-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-  }
+//
+//  public void clickOnProcessEditMenu(int index) {
+//    getProcessEditMenu(index).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+//    $("[id$='process-widget:edit-process-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+//  }
 
   public WebElement getEditProcessDialog() {
     return $("[id$='process-widget:edit-process-dialog']");
@@ -194,15 +194,15 @@ public class ProcessWidgetPage extends TemplatePage {
       .findFirst().get().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  public void clickMoreInformationLink(String processName) {
-    getProcessItem(processName).$(".process-more-info-link")
-      .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-  }
-
-  public SelenideElement getProcessItem(String processName) {
-    return $$(".js-process-start-list-item").asFixedIterable().stream().filter(WebElement::isDisplayed).filter(process ->
-      process.$(".js-process-start-list-item-name").shouldBe(appear, DEFAULT_TIMEOUT).getText().contentEquals(processName)).findFirst().get();
-  }
+//  public void clickMoreInformationLink(String processName) {
+//    getProcessItem(processName).$(".process-more-info-link")
+//      .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+//  }
+//
+//  public SelenideElement getProcessItem(String processName) {
+//    return $$(".js-process-start-list-item").asFixedIterable().stream().filter(WebElement::isDisplayed).filter(process ->
+//      process.$(".js-process-start-list-item-name").shouldBe(appear, DEFAULT_TIMEOUT).getText().contentEquals(processName)).findFirst().get();
+//  }
 
   public SelenideElement getFilterTextfield() {
     return $("[id='process-widget:process-search:non-ajax-keyword-filter']").shouldBe(appear, DEFAULT_TIMEOUT);

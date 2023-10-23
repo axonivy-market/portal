@@ -1,7 +1,7 @@
 package com.axonivy.portal.selenium.page;
 
-import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -13,13 +13,11 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import org.openqa.selenium.WebElement;
-
 import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 
 public class StatisticWidgetPage extends TemplatePage {
   public static final String TASK_BY_PRIORITY_CHART_NAME = "Task by priority chart";
@@ -52,15 +50,15 @@ public class StatisticWidgetPage extends TemplatePage {
     return findElementByCssSelector("span[id$='restore-default-chart-link-label']").getText();
   }
 
-  public void switchCreateMode() {
-    waitForElementClickableThenClick($("a[id$='create-chart-link']"));
-    waitForElementDisplayed(By.cssSelector("a[id$='statistics-widget:back-from-chart-creation']"), true);
-  }
-
-  public void backToDashboard() {
-    waitForElementClickableThenClick($("a[id$='back-from-chart-creation']"));
-    waitForElementDisplayed(By.cssSelector("a[id$='create-chart-link']"), true);
-  }
+//  public void switchCreateMode() {
+//    waitForElementClickableThenClick($("a[id$='create-chart-link']"));
+//    waitForElementDisplayed(By.cssSelector("a[id$='statistics-widget:back-from-chart-creation']"), true);
+//  }
+//
+//  public void backToDashboard() {
+//    waitForElementClickableThenClick($("a[id$='back-from-chart-creation']"));
+//    waitForElementDisplayed(By.cssSelector("a[id$='create-chart-link']"), true);
+//  }
 
   public void createCaseByFinishedTask() {
     var caseByFinishedTaskSelector = "button[id$=':chart-management-form:create-case-by-finished-task-link']";
@@ -76,11 +74,11 @@ public class StatisticWidgetPage extends TemplatePage {
     waitForElementExisted(By.cssSelector("span[class='ui-growl-title']"), true);
   }
 
-  private void inputNameForSupportedLanguages(String value) {
-    for (int i = 0; i < 4; i++) {
-      findElementByCssSelector("input[id$='" + i + ":chart-name-input']").sendKeys(value);
-    }
-  }
+//  private void inputNameForSupportedLanguages(String value) {
+//    for (int i = 0; i < 4; i++) {
+//      findElementByCssSelector("input[id$='" + i + ":chart-name-input']").sendKeys(value);
+//    }
+//  }
 
   @SuppressWarnings("deprecation")
   public void restoreDefaultCharts() {

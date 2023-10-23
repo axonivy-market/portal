@@ -50,7 +50,6 @@ public class CaseDetailsTest extends BaseTest {
   private static final String NOTE_BUSINESS_CASE = "Note is added on Business Case";
 
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
-  public static final String CUSTOM_CASE_WIDGET_NAME = "Create Event: Test custom case details";
 
   private static final String RELATED_TASK_STATE_COLUMN = "related-task-state-column";
   private static final String RELATED_TASK_EXPIRY_COLUMN = "related-task-expiry-column";
@@ -76,7 +75,7 @@ public class CaseDetailsTest extends BaseTest {
     grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
   }
 
-  @Test 
+  @Test
   public void testVisibilityOfNotesWhenAddNoteOnBusinessCaseDetails() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     login(TestAccount.ADMIN_USER);

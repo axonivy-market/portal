@@ -23,7 +23,7 @@ import com.axonivy.portal.selenium.page.CaseWidgetPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class CaseFilterTest extends BaseTest {
 
   private static final String EMPTY = "";

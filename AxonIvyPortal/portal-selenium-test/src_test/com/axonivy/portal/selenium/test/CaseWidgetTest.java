@@ -26,7 +26,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 import com.codeborne.selenide.WebDriverRunner;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class CaseWidgetTest extends BaseTest {
 
   private static final String INVESTMENT_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME = "Create Investment";

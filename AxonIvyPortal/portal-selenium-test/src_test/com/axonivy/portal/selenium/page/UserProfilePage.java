@@ -18,6 +18,8 @@ public class UserProfilePage extends TemplatePage {
   private static final String CASE_SORT_FIELD_SELECTION_LABEL = "my-profile-form:case-sort-field-selection_label";
   private static final String CASE_SORT_FIELD_SELECTION = "my-profile-form:case-sort-field-selection";
   public static final String TASK_SORT_DIRECTION_SELECTION_ITEMS = "my-profile-form:task-sort-direction-selection_items";
+  private static String MAIL_NOTI_ON_TASK_ASSIGNMENT_SELECTOR = "div[id$=':mail-notification-on-task-assign']";
+  private static String FURTHER_EMAIL_FROM_APP_SELECTOR = "div[id$=':further-mails-from-application']";
 
   @Override
   protected String getLoadedLocator() {
@@ -73,7 +75,8 @@ public class UserProfilePage extends TemplatePage {
   public void saveWithoutWaitingNavigation() {
     WaitHelper.waitForNavigation(() -> $("button[id$='save-settings']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
   }
-  public WebElement getUserSettingCard() {
+
+  public SelenideElement getUserSettingCard() {
     return $("[id='my-profile-container']");
   }
 
