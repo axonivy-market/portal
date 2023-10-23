@@ -13,6 +13,7 @@ import org.openqa.selenium.WebElement;
 import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 
 public class AdminSettingsPage extends TemplatePage {
 
@@ -38,14 +39,14 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   private void editGlobalVariable(String variableName, String variableValue, boolean isBooleanType) {
-    List<WebElement> tableRows = getAdminTable().findElements(By.tagName("tr"));
-    for (WebElement row : tableRows) {
-      List<WebElement> columns = row.findElements(By.tagName("td"));
+    List<SelenideElement> tableRows = getAdminTable().$$(By.tagName("tr"));
+    for (SelenideElement row : tableRows) {
+      List<SelenideElement> columns = row.$$(By.tagName("td"));
       if (!CollectionUtils.isEmpty(columns)) {
-        WebElement keyColumn = columns.get(0);
+        SelenideElement keyColumn = columns.get(0);
         if (keyColumn.getText().equals(variableName)) {
-          WebElement editButton = row.findElement(By.cssSelector("a[id$=edit]"));
-          editButton.click();
+          SelenideElement editButton = row.$(By.cssSelector("a[id$=edit]"));
+          clickByJavaScript(editButton);
           waitForElementDisplayed(By.cssSelector("[id$=':settingDialogForm']"), true);
           saveGlobalVariable(variableValue, isBooleanType);
           return;
@@ -54,7 +55,7 @@ public class AdminSettingsPage extends TemplatePage {
     }
   }
 
-  private WebElement getAdminTable() {
+  private SelenideElement getAdminTable() {
     return $("[id$=':adminTabView:settingTable']");
   }
 

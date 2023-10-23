@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.test;
 
+import static com.axonivy.portal.selenium.common.Variable.GLOBAL_FOOTER_INFO;
 import static com.axonivy.portal.selenium.common.Variable.HIDE_YEAR;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -32,6 +33,7 @@ public class AbsenceTest extends BaseTest {
   public void setup() {
     super.setupWithAlternativeLinkAndAccount(cleanUpAbsencesAndSubstituesLink, TestAccount.DEMO_USER);
     updatePortalSetting(HIDE_YEAR.getKey(), "false");
+    updatePortalSetting(GLOBAL_FOOTER_INFO.getKey(), "");
   }
 
   @Test
@@ -119,7 +121,7 @@ public class AbsenceTest extends BaseTest {
     absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getFullName()), 0);
     absencePage.saveSubstitute();
     login(TestAccount.DEMO_USER);
-    absencePage = openAbsencePage(newDashboardPage);
+    absencePage = openAbsencePage(new NewDashboardPage());
     assertEquals(absencePage.getIAMDeputyFor().contains(TestAccount.ADMIN_USER.getFullName()), true);
   }
 

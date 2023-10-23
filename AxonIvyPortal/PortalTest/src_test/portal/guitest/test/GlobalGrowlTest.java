@@ -26,24 +26,11 @@ import portal.guitest.page.WorkingTaskDialogPageOfApplicationMenu;
 
 public class GlobalGrowlTest extends BaseTest {
 
-  private static final String CUSTOM_FINISH_MESSAGE = "Task is done successfully\nClick here for details.";
   private static final String FINISH_MESSAGE = "You have finished the task successfully";
   private static final String FINISH_MESSAGE_WITH_DETAILS = "You have finished the task successfully.\nClick here for details.";
-  private static final String CUSTOM_CANCEL_MESSAGE = "You have cancelled and left the task successfully\nClick here for details.";
   private static final String CANCEL_MESSAGE = "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.";
   private static final String CANCEL_MESSAGE_WITH_DETAILS = "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.\nClick here for details.";
-  private static final String CUSTOM_GROWL_URL = "portal-developer-examples/16A7BB2ADC9580A8/start.ivp";
-  private static final String SKIP_TASK_LIST_URL = "portal-developer-examples/16FA8B451814E32A/start.ivp";
-  
-  @Test
-  public void testDisplayCustomGrowlAfterFinishTask() {
-    redirectToRelativeLink(CUSTOM_GROWL_URL);
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    taskWidgetPage = taskTemplatePage.clickSubmitButton();
-    assertGrowlMessage(taskWidgetPage, CUSTOM_FINISH_MESSAGE);
-  }
-  
+
   // TODO Write test for Growl in IFrame, in version 10 it has the test public void
   // testDisplayCustomGrowlAfterFinishTask()
 
@@ -58,17 +45,6 @@ public class GlobalGrowlTest extends BaseTest {
     assertGrowlMessage(taskWidgetPage, FINISH_MESSAGE_WITH_DETAILS);
   }
 
-  @Test
-  public void testDisplayDefaultGrowlAfterFinishFirstTask() {
-    NavigationHelper.navigateToTaskList();
-    redirectToRelativeLink(SKIP_TASK_LIST_URL);
-    TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
-    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
-    taskTemplatePage.inputFields("Employee", today, today, "Representation");
-    taskTemplatePage.clickOnSubmitButton();
-    assertGrowlMessage(new NewDashboardPage(), FINISH_MESSAGE_WITH_DETAILS);
-  }
-
   // TODO Write test for Growl in IFrame, in version 10 it has the test public void
   // testDisplayDefaultGrowlAfterFinishFirstTask()
 
@@ -81,22 +57,6 @@ public class GlobalGrowlTest extends BaseTest {
     assertGrowlMessage(taskWidgetPage, CANCEL_MESSAGE_WITH_DETAILS);
   }
 
-  @Test
-  public void testDisplayCustomGrowlAfterCancelTask() {
-    redirectToRelativeLink(CUSTOM_GROWL_URL);
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    taskWidgetPage = taskTemplatePage.clickCancelAndLeftButton();
-    assertGrowlMessage(taskWidgetPage, CUSTOM_CANCEL_MESSAGE);
-  }
-  
-  @Test
-  public void testDisplayDefaultGrowlAfterCancelFirstTask() {
-    redirectToRelativeLink(SKIP_TASK_LIST_URL);
-    TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
-    taskTemplatePage.clickCancelButton();
-    assertGrowlMessage(new NewDashboardPage(), CANCEL_MESSAGE_WITH_DETAILS);
-  }
   // TODO Write test for Growl in IFrame, in version 10 it has the test public void
   // testDisplayCustomGrowlAfterCancelTask()
 
@@ -112,7 +72,7 @@ public class GlobalGrowlTest extends BaseTest {
     NewDashboardPage newDashboardPage = formDefinition.save();
     assertGrowlMessage(newDashboardPage, FINISH_MESSAGE_WITH_DETAILS);
   }
-  
+
   @Test
   public void testFinishExpressFormDefinition() {
     redirectToRelativeLink(expressStartLink);
@@ -123,7 +83,7 @@ public class GlobalGrowlTest extends BaseTest {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     assertGrowlMessage(newDashboardPage, FINISH_MESSAGE);
   }
-  
+
   private ExpressFormDefinitionPage configureExpressProcess(ExpressProcessPage expressProcessPage) {
     ExpressResponsible responsible = new ExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
     expressProcessPage.createTask(0, 0, "Task 1", "Task 1 description", Arrays.asList(responsible));
@@ -147,7 +107,7 @@ public class GlobalGrowlTest extends BaseTest {
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");
     expressProcessPage.createTask(0, 0, "Task 1", "Task 1 description",
-        Arrays.asList(new ExpressResponsible(TestAccount.DEMO_USER.getUsername(), false)));
+            Arrays.asList(new ExpressResponsible(TestAccount.DEMO_USER.getUsername(), false)));
     ExpressFormDefinitionPage expressFormDefinitionPage = expressProcessPage.goToFormDefinition();
     NewDashboardPage newDashboardPage = expressFormDefinitionPage.cancel();
     assertGrowlMessage(newDashboardPage, CANCEL_MESSAGE);
