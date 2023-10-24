@@ -16,7 +16,6 @@ import com.axonivy.portal.selenium.common.FileHelper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-
 public class ProcessWidgetPage extends TemplatePage {
   public static final String IMAGE_MODE = "IMAGE";
   public static final String GRID_MODE = "GRID";
@@ -98,9 +97,6 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public void addExternalLink(String name, String link, String iconClass, String imageName) {
-    $("a[id$=':add-external-link-command']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    $("a[id$=':add-external-link-command']").click();
-
     openExternalLinkDialog();
 
     $("input[id$=':add-external-link-form:external-link-name']").sendKeys(name);
@@ -426,4 +422,16 @@ public class ProcessWidgetPage extends TemplatePage {
     waitForElementClickableThenClick(String.format(GRID_ACTION_BUTTON, 0, 0));
   }
 
+//  public WebElement getStartImageProcess(String processName, SelenideElement processListElement) {
+//    SelenideElement startProcessItemElement = null;
+//    List<SelenideElement> processItems = processListElement.$(".js-process-start-list-item");
+//    for (SelenideElement process : processItems) {
+//      SelenideElement processNameElement = process.$(".js-process-start-list-item-name");
+//      if (processNameElement.getText().equalsIgnoreCase(processName)) {
+//        startProcessItemElement = process.$("[id$=':process-item:start-button']");
+//        break;
+//      }
+//    }
+//    return startProcessItemElement;
+//  }
 }

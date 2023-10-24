@@ -138,7 +138,7 @@ public class RoleManagementPage extends TemplatePage {
   }
 
   public void clickOnCancelLinkOfRoleDialog() {
-    $("[id$=':role-management-component:cancel-link']");
+    waitForElementClickableThenClick($("[id$=':role-management-component:cancel-link']"));
     waitForElementDisplayed(getRoleDetailsDialog(), false);
   }
 
@@ -189,7 +189,7 @@ public class RoleManagementPage extends TemplatePage {
   }
   
   public void clickOnCloseAssignUsersButton() {
-    $("button[id$=':role-management-component:cancel-update-users']");
+    waitForElementClickableThenClick($("button[id$=':role-management-component:cancel-update-users']"));
     waitForElementDisplayed(getRoleDetailsDialog(), false);
   }
 

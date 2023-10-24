@@ -24,6 +24,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -34,11 +35,13 @@ import com.codeborne.selenide.conditions.Not;
 public abstract class TemplatePage extends AbstractPage {
   protected static final String LAYOUT_WRAPPER = ".layout-wrapper";
   public static final String ID_PROPERTY = "id";
+  private static final String TEMPLATE_PAGE_LOCATOR = "[id='global-search-item']";
   public static final String CLASS_PROPERTY = "class";
   public static final String CURRENT_BREADCRUMB_SELECTOR = ".portal-breadcrumb li:last-child .ui-menuitem-link.ui-state-disabled";
   private static final String HOME_BREADCRUMB_SELECTOR = ".portal-breadcrumb .ui-menuitem-link:first-child";
   public static final String PORTAL_GLOBAL_GROWL_ID = "portal-global-growl_container";
   protected static final String COMPONENT_PAGE_LOCATOR = "//*[contains(@id,'theme-selection')]";
+  private static final String GLOBAL_SEARCH_INPUT_SELECTOR = "#global-search-component\\:global-search-data";
 
   // If page load more than 45s, mark it failed by timeout
   protected long getTimeOutForLocator() {
@@ -75,8 +78,10 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void waitForGrowlMessageDisappear() {
-    $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT).$(".ui-growl-icon-close.ui-icon.ui-icon-closethick").hover().click();
-    $("div[id='portal-global-growl_container']").$("div.ui-growl-message").shouldBe(disappear, DEFAULT_TIMEOUT);
+    try {
+      $("div[id='portal-global-growl_container']").$("div.ui-growl-message").shouldBe(disappear, Duration.ofSeconds(45));
+    } catch (Exception ignore) {
+    }
   }
 
   public void waitForAjaxStatusPositionDisappear() {
@@ -138,6 +143,7 @@ public abstract class TemplatePage extends AbstractPage {
 
   public boolean isElementDisplayed(By element) {
     try {
+      waitPageLoaded();
       return $(element).isDisplayed();
     } catch (Exception e) {
       return false;
@@ -177,7 +183,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void openUserSettingMenu() {
-    waitForGrowlMessageDisappear();
+    // waitForGrowlMessageDisappear();
     waitForElementDisplayed(By.id("user-settings-menu"), true);
     clickByJavaScript(findElementById("user-settings-menu"));
     $("[id='user-setting-container']").shouldBe(appear, DEFAULT_TIMEOUT);
@@ -238,7 +244,7 @@ public abstract class TemplatePage extends AbstractPage {
 
   public boolean isElementDisplayedById(String id) {
     try {
-      return findElementById(id).isDisplayed();
+      return $(String.format("[id$='%s']", id)).isDisplayed();
     } catch (org.openqa.selenium.NoSuchElementException e) {
       return false;
     }
@@ -247,6 +253,7 @@ public abstract class TemplatePage extends AbstractPage {
   public MainMenuPage openMainMenu() {
     if (!isMainMenuOpen()) {
       $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover();
+      Sleeper.sleep(500);
       waitForElementClickableThenClick($(By.id("user-menu-required-login:toggle-menu")));
     }
     return new MainMenuPage();
@@ -256,12 +263,6 @@ public abstract class TemplatePage extends AbstractPage {
     WebElement mainMenu = $(".layout-wrapper");
     return mainMenu.getAttribute(CLASS_PROPERTY).indexOf("static") > 0;
   }
-
-//  public UserProfilePage openMyProfilePage() {
-//    clickUserMenuItem("user-profile");
-//    waitAjaxIndicatorDisappear();
-//    return new UserProfilePage();
-//  }
 
   public void clickOnMyProfile() {
     waitForElementClickableThenClick("[id='user-settings-menu']");
@@ -312,7 +313,7 @@ public abstract class TemplatePage extends AbstractPage {
       return findElementByCssSelector("a[id$='global-search-item']").isDisplayed();
     }
 
-    public GlobalSearchResultPage inputSearchKeyword(String keyword) {
+    public SearchResultPage inputSearchKeyword(String keyword) {
       waitForElementDisplayed(By.cssSelector(".topbar-item.search-item"), true);
       waitForElementClickableThenClick("a[id$='global-search-item']");
       waitForElementDisplayed(By.cssSelector("input[id$='global-search-component:global-search-data']"), true);
@@ -324,7 +325,7 @@ public abstract class TemplatePage extends AbstractPage {
         System.out.println("Exception when waiting for search page displayed, press Enter again.");
         getSearchInput().sendKeys(Keys.ENTER.toString());
       }
-      return new GlobalSearchResultPage();
+      return new SearchResultPage();
     }
 
     public boolean isPresent() {
@@ -350,9 +351,10 @@ public abstract class TemplatePage extends AbstractPage {
 
   }
 
-//  public int countBrowserTab() {
-//    return driver.getWindowHandles().size();
-//  }
+  private WebElement getSearchInput() {
+    waitForElementDisplayed(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR), true);
+    return findElementByCssSelector(GLOBAL_SEARCH_INPUT_SELECTOR);
+  }
 
   public TaskWidgetPage selectTaskMenu() {
     WaitHelper.waitForNavigation(() -> $(".layout-menu li[role='menuitem'] a.TASK").click());
@@ -418,18 +420,13 @@ public abstract class TemplatePage extends AbstractPage {
 
   public AdminSettingsPage openAdminSettings() {
     openUserSettingMenu();
-    WaitHelper.waitForNavigation(() -> $("[id='adminui-menu-item']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
+    WaitHelper.waitForNavigation(() -> clickByJavaScript($("[id='adminui-menu-item']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)));
     return new AdminSettingsPage();
   }
 
   public void waitForAjaxIndicatorDisappeared() {
     WaitHelper.waitAttributeToBe(WebDriverRunner.getWebDriver(), By.id("ajax-indicator:ajax-indicator-ajax-indicator_start"), "display", "none");
   }
-
-//  private void clickUserMenuItem(String menuItemSelector) {
-//    openUserSettingMenu();
-//    $("[id='" + menuItemSelector + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-//  }
 
   public ChangePasswordPage openChangePasswordPage() {
     clickUserMenuItem("change-password-menu-item");

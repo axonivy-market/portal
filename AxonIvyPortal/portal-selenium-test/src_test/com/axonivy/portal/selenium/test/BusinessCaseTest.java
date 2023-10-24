@@ -13,9 +13,9 @@ import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
-import com.axonivy.portal.selenium.page.GlobalSearchResultPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.axonivy.portal.selenium.page.SearchResultPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.TemplatePage.GlobalSearch;
 
@@ -57,7 +57,7 @@ public class BusinessCaseTest extends BaseTest {
   public void testOnlyDisplayBusinessCaseOnGlobalSearch() {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     GlobalSearch globalSearch = newDashboardPage.getGlobalSearch();
-    GlobalSearchResultPage searchResultPage = globalSearch.inputSearchKeyword(BUSINESS_CASE_NAME);
+    SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(BUSINESS_CASE_NAME);
     searchResultPage.openCaseTab();
     assertEquals(1, searchResultPage.countCase());
     assertEquals(BUSINESS_CASE_NAME, searchResultPage.getCaseResult(0));

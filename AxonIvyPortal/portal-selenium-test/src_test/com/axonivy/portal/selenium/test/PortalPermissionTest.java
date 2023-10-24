@@ -88,6 +88,7 @@ public class PortalPermissionTest extends BaseTest{
     createTestingTasks();
     denyShowHideNotePermissions();
     denyDocumentOfInvolvedCaseWritePemissionFromCurrentUser();
+    newDashboardPage.waitPageLoaded();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");

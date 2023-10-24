@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
@@ -25,6 +26,12 @@ import ch.ivy.addon.portalkit.enums.SortDirection;
 
 @IvyWebTest
 public class AdminSettingsTest extends BaseTest {
+
+  @BeforeEach
+  public void setup() {
+    super.setup();
+    updatePortalSetting(GLOBAL_FOOTER_INFO.getKey(), "");
+  }
 
   @Test
   public void whenLoginAsAdminThenAdminMenuItemDisplayed() {
