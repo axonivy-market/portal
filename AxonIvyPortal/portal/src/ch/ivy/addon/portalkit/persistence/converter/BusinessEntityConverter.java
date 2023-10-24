@@ -64,6 +64,17 @@ public class BusinessEntityConverter {
     }
   }
 
+  public static <T> List<T> inputStreamToEntities(InputStream inputStream, Class<T> classType) {
+    try {
+      new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+      return getObjectMapper().readValue(inputStream,
+          getObjectMapper().getTypeFactory().constructCollectionType(List.class, classType));
+    } catch (IOException e) {
+      Ivy.log().error("Can't read json value", e);
+      throw new PortalException(e);
+    }
+  }
+
   public static <T> List<T> jsonValueToEntities(String jsonValue, Class<T> classType) {
     if (StringUtils.isBlank(jsonValue)) {
       return new ArrayList<>();
