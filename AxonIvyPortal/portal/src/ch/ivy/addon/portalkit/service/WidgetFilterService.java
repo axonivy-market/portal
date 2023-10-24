@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -71,7 +72,7 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
 
     switch (widget.getType()) {
       case TASK -> filterableColumns.addAll(((TaskDashboardWidget) widget).getFilterableColumns());
-      case CASE -> filter.setUserFilters(((CaseDashboardWidget) widget).getUserFilters());
+      case CASE -> prepareSaveCaseFilter(filter, (CaseDashboardWidget) widget);
       case PROCESS -> filterableColumns.addAll(((CompactProcessDashboardWidget) widget).getFilterableColumns());
       default -> {}
     }
@@ -83,6 +84,15 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
     // Update savedFilter for HelperBean
     ((WidgetFilterHelperBean) ManagedBeans.get("widgetFilterHelperBean")).setSaveFilter(filter);
     return filter;
+  }
+
+  public void prepareSaveCaseFilter(WidgetFilterModel filter, CaseDashboardWidget widget) {
+    if (CollectionUtils.isEmpty(widget.getUserFilters())) {
+      return;
+    }
+
+    filter.setUserFilters(widget.getUserFilters().stream().filter(Objects::nonNull)
+        .filter(userFilter -> StringUtils.isNotBlank(userFilter.getField())).collect(Collectors.toList()));
   }
 
   public void applyUserFilterFromSession(DashboardWidget widget) {
