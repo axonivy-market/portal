@@ -262,7 +262,7 @@ function renderChartCanvas(chartId) {
     return html;
 };
 
-function renderNumberChartHtml(label, number) {
+function renderNumberChartHtml(label, number, suffixSymbol) {
     let html = `
             <div class="u-text-align-center chart-content-card">
                 <div class="chart-icon-font-size chart-number-animation">
@@ -270,6 +270,7 @@ function renderNumberChartHtml(label, number) {
                 </div>
                 <div>
                     <span class="card-number chart-number-font-size chart-number-animation">${number}</span>
+                    <i class="card-number chart-number-font-size chart-number-animation ${suffixSymbol}"></i>
                 </div>
                 <div>
                     <span class="card-name chart-name-font-size chart-number-animation">${label}</span>
@@ -284,11 +285,11 @@ function renderMultipleNumberChartInHTML(result, suffixSymbold){
 
     if (result.length > 0) {
         for (item of result) {
-            let htmlString = renderNumberChartHtml(item.key, item.count + suffixSymbold);
+            let htmlString = renderNumberChartHtml(item.key, item.count, suffixSymbold);
             multipleNumberChartInHTML += htmlString;
         };
     } else {
-        multipleNumberChartInHTML = renderNumberChartHtml('', '0' + suffixSymbold);
+        multipleNumberChartInHTML = renderNumberChartHtml('', '0', suffixSymbold);
     }
     return multipleNumberChartInHTML;
 }
