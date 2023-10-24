@@ -16,7 +16,7 @@
   <c:set var="readOnly" value="#{cc.attrs.readOnly}" />
 
   <h:panelGroup id="text-filter-operator-panel" layout="block"
-    styleClass="ui-fluid md-inputfield filter-operator-panel">
+    styleClass="ui-fluid md-inputfield">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
         <f:selectItems value="#{widgetTextFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
