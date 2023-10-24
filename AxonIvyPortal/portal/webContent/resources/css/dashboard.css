@@ -518,7 +518,7 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 }
 
 .filter-overlay-panel.ui-widget-content>.ui-overlaypanel-content {
-  max-width: 1000px;
+  max-width: 1100px;
   padding: 0;
 }
 
@@ -1720,7 +1720,7 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .dashboard-widget-filter__filter-panel > div.filter-selection-panel {
-  min-width: 130px;
+  min-width: 150px;
 }
 
 .dashboard-widget-filter__filter-panel > div.date-picker-panel {
@@ -1733,10 +1733,6 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .dashboard-widget-filter__filter-panel > div.period-type-panel {
   width: 120px;
-}
-
-.dashboard-widget-filter__filter-panel > div.filter-operator-panel {
-  width: 150px;
 }
 
 .dashboard-widget-filter__filter-panel > div:first-child {
